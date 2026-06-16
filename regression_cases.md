@@ -76,3 +76,33 @@ ideally a contrastive one — for every new prompt feature.
 **[C-no] No reptiles are warm-blooded.**
 
     (: no_reptiles_are_warm_blooded (Inheritance reptile warm_blooded) (STV 0.0 0.99))
+
+## D — negation
+
+**[D-pred] Dolphins are not fish.**
+
+    (: dolphins_not_fish (Inheritance dolphin fish) (STV 0.0 0.99))
+
+**[D-no] No swan is white.**  — categorical ¬∃ = strength 0 on the class (contrast D-notall)
+
+    (: swan_not_white (Inheritance swan white) (STV 0.0 0.99))
+
+**[D-notall] Not all swans are white.**  — counterexample witness, NOT strength 0 (contrast D-no)
+
+    (: sk_swan_1_is_swan   (Member sk_swan_1 swan)  (STV 1.0 0.99))
+    (: sk_swan_1_not_white (Member sk_swan_1 white) (STV 0.0 0.99))
+
+**[D-neither] Whales are neither fish nor reptiles.**
+
+    (: whale_not_fish    (Inheritance whale fish)    (STV 0.0 0.99))
+    (: whale_not_reptile (Inheritance whale reptile) (STV 0.0 0.99))
+
+**[D-antonym] Alice is unhappy.**  — antonym is a positive property (contrast D-notprop)
+
+    (: alice_unhappy (Member alice unhappy) (STV 1.0 0.99))
+    (: alice_name    (Name alice "Alice")   (STV 1.0 0.99))
+
+**[D-notprop] Alice is not happy.**  — explicit "not" → strength 0 on base property (contrast D-antonym)
+
+    (: alice_not_happy (Member alice happy) (STV 0.0 0.99))
+    (: alice_name      (Name alice "Alice") (STV 1.0 0.99))

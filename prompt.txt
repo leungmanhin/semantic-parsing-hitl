@@ -137,6 +137,40 @@ individual** named `sk_<class>_<n>` and assert its memberships:
 - Indefinite "a/an" can be generic rather than existential: "A dog is a mammal" is
   universal → `(Inheritance dog mammal)`. Judge from context.
 
+## Negation — "not", "no", "neither", antonyms
+
+Negation lives in the **truth value**, not in a wrapper: assert the *same* statement at
+**strength `0.0`** (confidence stays `0.99` — you are sure it is false). There is no
+`(Not ...)` atom to emit.
+
+- **Predicate negation** — "X is/are not Y", "no X is Y", "never Y" — keeps the `Member` /
+  `Inheritance` shape at strength `0.0`:
+
+      Dolphins are not fish.  →  (: dolphins_not_fish (Inheritance dolphin fish) (STV 0.0 0.99))
+      Socrates is not a cat.  →  (: socrates_not_cat  (Member socrates cat)      (STV 0.0 0.99))
+      No swan is white.       →  (: swan_not_white    (Inheritance swan white)   (STV 0.0 0.99))
+
+  "no X is Y" ≡ "all X are not Y" — the strength-`0.0` end of the graded scale.
+
+- **"not all / not every X is Y"** denies the universal by asserting a **counterexample
+  witness** — one X that is not Y (NOT strength 0 on the class):
+
+      Not all swans are white.  →  (: sk_swan_1_is_swan   (Member sk_swan_1 swan)  (STV 1.0 0.99))
+                                   (: sk_swan_1_not_white (Member sk_swan_1 white) (STV 0.0 0.99))
+
+- **"neither A nor B"** — one strength-`0.0` fact per disjunct:
+
+      Whales are neither fish nor reptiles.
+        →  (: whale_not_fish    (Inheritance whale fish)    (STV 0.0 0.99))
+           (: whale_not_reptile (Inheritance whale reptile) (STV 0.0 0.99))
+
+- **Lexical antonyms are not negation.** "unhappy", "closed", "dishonest" are their own
+  positive properties — strength `1.0`, not the opposite at `0.0`:
+
+      Alice is unhappy.  →  (: alice_unhappy (Member alice unhappy) (STV 1.0 0.99))
+
+  Only an explicit *not / n't / no / never / neither* sets strength to `0.0`.
+
 ## Relations and named entities
 
 An **n-ary relation** is a plain predicate — an UpperCamelCase head with the related
