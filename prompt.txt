@@ -232,3 +232,61 @@ fact — the symbol stays clean while the original text is preserved:
 
 Use distinct symbols for distinct entities that share a name (`alice_1`, `alice_2`), each
 with its own `Name`.
+
+## Quantifier scope — two quantifiers over a relation
+
+When two quantifiers are linked by a relation ("every X V some Y"), **read the natural
+meaning — not word order**. Find the universal entity and the existential entity, and ask
+whether the existential is **shared** (one thing for all) or **dependent** (a different one
+per instance):
+
+- **∀∀** "every dog chased every cat" — rule, two universal premises:
+
+      (: every_dog_chased_every_cat
+         (Implication (Premises (Member $x dog) (Member $y cat)) (Conclusions (Chased $x $y)))
+         (STV 1.0 0.9))
+
+- **∀∃ dependent** "every student read some book" (each a different book) — the existential
+  is a **Skolem function `(sk_<class> $x)`** of the universal variable:
+
+      (: every_student_read_some_book
+         (Implication (Premises (Member $x student))
+                      (Conclusions (Member (sk_book $x) book) (Read $x (sk_book $x))))
+         (STV 1.0 0.9))
+
+- **∃∀ shared** "some critic reviewed every film" (one critic) — a witness **constant** for
+  the shared entity + a rule over the universal one:
+
+      (: sk_critic_1_is_critic (Member sk_critic_1 critic) (STV 1.0 0.99))
+      (: that_critic_reviewed_every_film
+         (Implication (Premises (Member $y film)) (Conclusions (Reviewed sk_critic_1 $y)))
+         (STV 1.0 0.9))
+
+- **∃∃** "some dog chased some cat" — two witness constants + a plain fact:
+
+      (: sk_dog_1_is_dog (Member sk_dog_1 dog) (STV 1.0 0.99))
+      (: sk_cat_1_is_cat (Member sk_cat_1 cat) (STV 1.0 0.99))
+      (: sk_dog_1_chased_sk_cat_1 (Chased sk_dog_1 sk_cat_1) (STV 1.0 0.99))
+
+The universal entity can be the grammatical **object**: "a nurse is assigned to every
+patient" is ∀∃ dependent — universal = patient, dependent existential = nurse →
+`(sk_nurse $p)`. Cues like "the **same** Y" or "a **certain** Y" force the **shared**
+(constant) reading even when the universal comes first. Only if a sentence is genuinely
+ambiguous, fall back to word order (first quantifier takes wide scope). Rule strength is
+`1.0`, confidence by the definitional/empirical dial (relational universals are usually
+empirical → `0.9`); witness facts stay `0.99`.
+
+**Negation over a universal** — pick the natural reading:
+
+- **¬∀** "not every X V-s" / "all the X did not V" ("Not every guest arrived") denies the
+  universal → a **counterexample witness** (one X that does not V), as in Negation:
+
+      (: sk_guest_1_is_guest    (Member sk_guest_1 guest)  (STV 1.0 0.99))
+      (: sk_guest_1_not_arrived (Arrived sk_guest_1)       (STV 0.0 0.99))
+
+- **∀¬** "no X V-s Y" / "every X doesn't V Y" ("No key opens this lock") → a universal rule
+  with a **strength-`0.0`** conclusion:
+
+      (: no_key_opens_this_lock
+         (Implication (Premises (Member $x key)) (Conclusions (Opens $x this_lock)))
+         (STV 0.0 0.99))

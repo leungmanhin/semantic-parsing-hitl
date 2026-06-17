@@ -7,8 +7,11 @@ Golden `sentence → expected atoms` pairs for the translator driven by `prompt.
 1. Spawn a Sonnet translator that reads the current `prompt.txt` as its only instructions.
 2. Feed it each NL sentence below, independently.
 3. Compare each output to the Expected atoms **semantically**: check the relation, the
-   arguments, and the STV. **Ignore** the proof-name (the `(: <here> ...)` id) and the
-   witness index (`sk_<class>_<n>`) — those may differ in a passing run.
+   arguments, and the STV. **Ignore** the proof-name / rule-name (the `(: <here> ...)` id)
+   and the witness/Skolem names (`sk_<class>_<n>`, `(sk_<class> $x)`) — those may differ in
+   a passing run. For scope cases, the things that must match are the **rule structure**
+   (premises/conclusions) and whether the existential is a **shared constant** vs a
+   **dependent Skolem function**.
 4. (Optional) Load the produced atoms into the engine (`add_atom`, via the PeTTa-fiet
    worktree) to catch any malformed output.
 
@@ -94,6 +97,45 @@ ideally a contrastive one — for every new prompt feature.
 **[E-emp] Sharks are dangerous.**  — empirical property, bare generic → 0.9 / 0.9 (contrast E-def)
 
     (: sharks_are_dangerous (Inheritance shark dangerous) (STV 0.9 0.9))
+
+## F — quantifier scope (two quantifiers over a relation)
+
+**[F-aa] Every dog chased every cat.**  — ∀∀, two universal premises
+
+    (: every_dog_chased_every_cat (Implication (Premises (Member $x dog) (Member $y cat)) (Conclusions (Chased $x $y))) (STV 1.0 0.9))
+
+**[F-ae] Every student read some book.**  — ∀∃ dependent → Skolem function (each its own book)
+
+    (: every_student_read_some_book (Implication (Premises (Member $x student)) (Conclusions (Member (sk_book $x) book) (Read $x (sk_book $x)))) (STV 1.0 0.9))
+
+**[F-ea] Some critic reviewed every film.**  — ∃∀ shared → witness constant + rule over films
+
+    (: sk_critic_1_is_critic (Member sk_critic_1 critic) (STV 1.0 0.99))
+    (: that_critic_reviewed_every_film (Implication (Premises (Member $y film)) (Conclusions (Reviewed sk_critic_1 $y))) (STV 1.0 0.9))
+
+**[F-ee] Some dog chased some cat.**  — ∃∃, two witness constants + plain fact
+
+    (: sk_dog_1_is_dog (Member sk_dog_1 dog) (STV 1.0 0.99))
+    (: sk_cat_1_is_cat (Member sk_cat_1 cat) (STV 1.0 0.99))
+    (: sk_dog_1_chased_sk_cat_1 (Chased sk_dog_1 sk_cat_1) (STV 1.0 0.99))
+
+**[F-inv-dist] A nurse is assigned to every patient.**  — INVERSE scope: universal = patient (object), dependent existential = nurse
+
+    (: every_patient_has_a_nurse (Implication (Premises (Member $p patient)) (Conclusions (Member (sk_nurse $p) nurse) (AssignedTo (sk_nurse $p) $p))) (STV 1.0 0.9))
+
+**[F-inv-shared] Every guest brought the same gift.**  — "same" forces SHARED → witness constant despite ∀ first
+
+    (: sk_gift_1_is_gift (Member sk_gift_1 gift) (STV 1.0 0.99))
+    (: every_guest_brought_sk_gift_1 (Implication (Premises (Member $g guest)) (Conclusions (Brought $g sk_gift_1))) (STV 1.0 0.9))
+
+**[F-not-all] Not every guest arrived.**  — ¬∀ → counterexample witness (one guest who did not arrive)
+
+    (: sk_guest_1_is_guest (Member sk_guest_1 guest) (STV 1.0 0.99))
+    (: sk_guest_1_not_arrived (Arrived sk_guest_1) (STV 0.0 0.99))
+
+**[F-none] No key opens this lock.**  — ∀¬ → universal rule with strength-0 conclusion
+
+    (: no_key_opens_this_lock (Implication (Premises (Member $x key)) (Conclusions (Opens $x this_lock))) (STV 0.0 0.99))
 
 ## D — negation
 
