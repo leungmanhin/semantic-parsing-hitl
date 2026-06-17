@@ -23,9 +23,9 @@ ideally a contrastive one — for every new prompt feature.
 
     (: triangle_is_polygon (Inheritance triangle polygon) (STV 1.0 0.99))
 
-**[A-emp] All swans are white.**
+**[A-emp] All swans are white.**  — empirical universal → confidence 0.9 (black swans exist)
 
-    (: swans_are_white (Inheritance swan white) (STV 1.0 0.99))
+    (: swans_are_white (Inheritance swan white) (STV 1.0 0.9))
 
 **[A-mem] Tokyo is a city.**  — named individual → `Member` + `Name`
 
@@ -52,30 +52,48 @@ ideally a contrastive one — for every new prompt feature.
 
 ## C — graded quantifiers
 
-**[C-most] Most teachers are patient.**
+**[C-most] Most teachers are patient.**  — empirical graded → confidence 0.9
 
-    (: most_teachers_are_patient (Inheritance teacher patient) (STV 0.9 0.99))
+    (: most_teachers_are_patient (Inheritance teacher patient) (STV 0.9 0.9))
 
 **[C-alot] A lot of buildings are tall.**
 
-    (: a_lot_of_buildings_are_tall (Inheritance building tall) (STV 0.8 0.99))
+    (: a_lot_of_buildings_are_tall (Inheritance building tall) (STV 0.8 0.9))
 
 **[C-many] Many snakes are venomous.**
 
-    (: many_snakes_are_venomous (Inheritance snake venomous) (STV 0.7 0.99))
+    (: many_snakes_are_venomous (Inheritance snake venomous) (STV 0.7 0.9))
 
 **[C-few] Few politicians are honest.**  — low proportion (contrast C-afew)
 
-    (: few_politicians_are_honest (Inheritance politician honest) (STV 0.1 0.99))
+    (: few_politicians_are_honest (Inheritance politician honest) (STV 0.1 0.9))
 
 **[C-afew] A few apples are rotten.**  — "a few" = witness, NOT a low proportion (contrast C-few)
 
     (: sk_apple_1_is_apple (Member sk_apple_1 apple) (STV 1.0 0.99))
     (: sk_apple_1_is_rotten (Member sk_apple_1 rotten) (STV 1.0 0.99))
 
-**[C-no] No reptiles are warm-blooded.**
+**[C-no] No reptiles are warm-blooded.**  — definitional biological trait → confidence stays 0.99 (dial is by judgment, not mechanical; contrast the empirical graded cases above)
 
     (: no_reptiles_are_warm_blooded (Inheritance reptile warm_blooded) (STV 0.0 0.99))
+
+## E — generics & confidence
+
+**[E-bare-emp] Apples are sweet.**  — bare generic, empirical → strength 0.9, confidence 0.9
+
+    (: apples_are_sweet (Inheritance apple sweet) (STV 0.9 0.9))
+
+**[E-bare-def] Whales are mammals.**  — bare generic but definitional → strength 1.0, confidence 0.99
+
+    (: whales_are_mammals (Inheritance whale mammal) (STV 1.0 0.99))
+
+**[E-def] Sharks are fish.**  — definitional/taxonomic → 1.0 / 0.99 (contrast E-emp)
+
+    (: sharks_are_fish (Inheritance shark fish) (STV 1.0 0.99))
+
+**[E-emp] Sharks are dangerous.**  — empirical property, bare generic → 0.9 / 0.9 (contrast E-def)
+
+    (: sharks_are_dangerous (Inheritance shark dangerous) (STV 0.9 0.9))
 
 ## D — negation
 
@@ -83,9 +101,9 @@ ideally a contrastive one — for every new prompt feature.
 
     (: dolphins_not_fish (Inheritance dolphin fish) (STV 0.0 0.99))
 
-**[D-no] No swan is white.**  — categorical ¬∃ = strength 0 on the class (contrast D-notall)
+**[D-no] No swan is white.**  — categorical ¬∃ = strength 0 on the class; empirical → conf 0.9 (contrast D-notall)
 
-    (: swan_not_white (Inheritance swan white) (STV 0.0 0.99))
+    (: swan_not_white (Inheritance swan white) (STV 0.0 0.9))
 
 **[D-notall] Not all swans are white.**  — counterexample witness, NOT strength 0 (contrast D-no)
 

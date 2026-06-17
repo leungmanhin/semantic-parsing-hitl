@@ -29,6 +29,8 @@ Rules:
 - Default truth value for an asserted statement is **`(STV 1.0 0.99)`**.
 - **Never use confidence `1.0`.** In PLN, confidence `1.0` means infinite evidence and
   can never be revised; `0.99` keeps every atom open to future revision.
+- **Generalizations carry lower confidence when empirical**: `0.99` if definitional, `0.9`
+  if empirical/contingent (see **Confidence — definitional vs empirical**).
 
 ## Names and casing
 
@@ -82,10 +84,12 @@ A plain universal "all/every X is/are Y" (Y a class or property) is a **single
 subsumption fact at strength `1.0`**:
 
     Every dog is a mammal.  →  (: dog_is_mammal (Inheritance dog mammal) (STV 1.0 0.99))
-    All ravens are black.   →  (: ravens_are_black (Inheritance raven black) (STV 1.0 0.99))
+    All swans are white.    →  (: swans_are_white (Inheritance swan white) (STV 1.0 0.9))
 
-Empirical universals ("all ravens are black") are currently treated the same as
-definitional ones ("every dog is a mammal") — both `(STV 1.0 0.99)`.
+Strength stays `1.0` either way — explicit "all/every" claims the whole class. The
+**confidence** depends on whether the universal is definitional or empirical (see
+**Confidence — definitional vs empirical**): "every dog is a mammal" is definitional
+(`0.99`); "all swans are white" is empirical and exception-prone (`0.9`).
 
 Use the **`Implication`** rule form **only** when a universal involves a **relation** or
 **multiple premises** (not a plain "X are Y"). Variables are `$`-prefixed:
@@ -105,10 +109,11 @@ Example:
 ## Graded quantifiers — "most", "many", "few", …
 
 Same shape as a universal (`Inheritance` / `Member`), but the **strength** drops to the
-proportion the word conveys; **confidence stays `0.99`** (the vagueness is in the
-proportion, not in how sure you are):
+proportion the word conveys. Graded claims are *usually* empirical, so **confidence is
+`0.9`** (strength = how many; confidence = how sure); a definitional one keeps `0.99` —
+see **Confidence — definitional vs empirical**:
 
-    Most ravens are black.  →  (: most_ravens_are_black (Inheritance raven black) (STV 0.9 0.99))
+    Most ravens are black.  →  (: most_ravens_are_black (Inheritance raven black) (STV 0.9 0.9))
 
 Strength per word:
 
@@ -119,6 +124,42 @@ Strength per word:
 - no / none → `0.0`
 
 ("few" is a low *proportion*; "a few" is a small *count* — see Existential.)
+
+## Confidence — definitional vs empirical generalizations
+
+For a **general statement** (a class-level `Inheritance` — universal, generic, or graded),
+set the confidence by how the generalization is secured. Ask: *could a counterexample
+exist, even in principle?*
+
+- **Definitional / taxonomic** — no counterexample conceivable (true by meaning or
+  category) → confidence **`0.99`**, and **strength `1.0`** (definitionally all) even with
+  no "every":
+
+      Dogs are mammals.      →  (: dogs_are_mammals (Inheritance dog mammal) (STV 1.0 0.99))
+      Squares are rectangles.→  (: squares_are_rectangles (Inheritance square rectangle) (STV 1.0 0.99))
+
+- **Empirical / contingent** — exceptions are possible (true by observation) → confidence
+  **`0.9`**; strength is the proportion (1.0 for "all", or the graded / generic value):
+
+      All swans are white.   →  (: swans_are_white (Inheritance swan white) (STV 1.0 0.9))
+      Most metals are solid. →  (: most_metals_solid (Inheritance metal solid) (STV 0.9 0.9))
+
+When unsure, treat as **empirical** (`0.9`) — do not over-claim certainty.
+
+**Individual facts keep confidence `0.99`** — a `Member` fact about a specific thing, or a
+relation like `Owns`. This dial is only for *generalizations*, which admit exceptions.
+
+## Generics — no quantifier word
+
+A bare generic (a plural or mass noun with no quantifier word: "apples are sweet", "dogs
+are friendly") does not claim universality. Unless it is definitional, give it **strength
+`0.9`** (≈ "most") with empirical confidence `0.9`:
+
+    Apples are sweet.   →  (: apples_are_sweet (Inheritance apple sweet) (STV 0.9 0.9))
+    Dogs are friendly.  →  (: dogs_are_friendly (Inheritance dog friendly) (STV 0.9 0.9))
+
+A *definitional* bare generic ("dogs are mammals", "whales are mammals") is strength `1.0`,
+confidence `0.99` — the definitional rule above takes precedence.
 
 ## Existential — "there is/are", "there exists", "some X", indefinite "a/an"
 
@@ -140,17 +181,20 @@ individual** named `sk_<class>_<n>` and assert its memberships:
 ## Negation — "not", "no", "neither", antonyms
 
 Negation lives in the **truth value**, not in a wrapper: assert the *same* statement at
-**strength `0.0`** (confidence stays `0.99` — you are sure it is false). There is no
-`(Not ...)` atom to emit.
+**strength `0.0`** (the strength, not the confidence, carries the negation). Confidence
+still follows the definitional/empirical dial. There is no `(Not ...)` atom to emit.
 
 - **Predicate negation** — "X is/are not Y", "no X is Y", "never Y" — keeps the `Member` /
-  `Inheritance` shape at strength `0.0`:
+  `Inheritance` shape at strength `0.0`; confidence is `0.99` for a definitional negation,
+  `0.9` for an empirical one:
 
       Dolphins are not fish.  →  (: dolphins_not_fish (Inheritance dolphin fish) (STV 0.0 0.99))
+      Ravens are not white.   →  (: ravens_not_white  (Inheritance raven white)  (STV 0.0 0.9))
       Socrates is not a cat.  →  (: socrates_not_cat  (Member socrates cat)      (STV 0.0 0.99))
-      No swan is white.       →  (: swan_not_white    (Inheritance swan white)   (STV 0.0 0.99))
 
-  "no X is Y" ≡ "all X are not Y" — the strength-`0.0` end of the graded scale.
+  ("dolphins are not fish" is taxonomic → `0.99`; "ravens are not white" is empirical →
+  `0.9`; "Socrates is not a cat" is an individual fact → `0.99`.) "no X is Y" ≡ "all X are
+  not Y" — the strength-`0.0` end of the graded scale.
 
 - **"not all / not every X is Y"** denies the universal by asserting a **counterexample
   witness** — one X that is not Y (NOT strength 0 on the class):
