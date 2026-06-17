@@ -17,6 +17,11 @@ fences. Each atom is a single statement:
 - `<content>` — the logical content (see **Representation**).
 - `(STV <strength> <confidence>)` — the truth value (see **Truth values**).
 
+If the input is a **question**, output a single **query** line instead — see **Queries**.
+
+Ignore tense, time, and aspect — translate the tenseless proposition (drop markers like
+"tonight", "yesterday", "will", "used to").
+
 ## Truth values (STV)
 
 `strength` and `confidence` are both in `[0,1]`:
@@ -290,3 +295,69 @@ empirical → `0.9`); witness facts stay `0.99`.
       (: no_key_opens_this_lock
          (Implication (Premises (Member $x key)) (Conclusions (Opens $x this_lock)))
          (STV 0.0 0.99))
+
+## Capability and modality
+
+PLN has no built-in modal operator, so modals are **reified** — the operator is kept as
+structure, so it can be inherited and queried.
+
+**Capability / ability — "can", "able to", "cannot"** — a **`(can <action>)`** property in
+the class slot, parallel to a plain property; it inherits down taxonomies and to instances:
+
+    Birds can fly.        →  (: birds_can_fly (Inheritance bird (can fly)) (STV 0.9 0.9))
+    Mary can swim.        →  (: mary_can_swim (Member mary (can swim)) (STV 1.0 0.99))
+    Penguins cannot fly.  →  (: penguins_cannot_fly (Inheritance penguin (can fly)) (STV 0.0 0.99))
+
+- `<action>` is the bare verb (`fly`), or a compound for a transitive action: "cats can
+  catch mice" → `(Inheritance cat (can (catch mouse)))`.
+- This marks *ability*, distinct from plain actuality: "birds fly" is `(Inheritance bird
+  fly)` (the activity as a plain property); "birds can fly" wraps it in `(can ...)`.
+- Strength/confidence follow the usual dials: generic → `0.9 0.9`, individual → `1.0 0.99`,
+  negated ability ("cannot") → strength `0.0`.
+
+**Epistemic modality — "might", "probably", "must" (inference)** — reify the operator over
+the whole **proposition** (written exactly as you would assert it on its own, so the modal
+claim and the bare fact share structure). Normalise the operator to one of **`might`**
+(may / might / could / possibly), **`probably`** (likely / probably), **`must`** (epistemic
+necessity: must / surely / certainly):
+
+    It might rain.         →  (: might_rain (might (rain)) (STV 1.0 0.9))
+    John must be asleep.   →  (: john_must_be_asleep (must (Member john asleep)) (STV 1.0 0.9))
+    It will probably snow. →  (: probably_snow (probably (snow)) (STV 1.0 0.9))
+
+- The **degree** lives in the operator (`might`/`probably`/`must`), not the strength; the
+  inner is a parenthesised proposition — `(rain)`, `(Member john asleep)` — never a bare atom.
+- Deontic "must/should" (obligation) and "may" (permission) are **not** handled yet — skip
+  the modal and assert the plain content for now.
+
+## Queries — converting a question
+
+Every rule above builds a **statement**. A **question** instead becomes a single **query
+pattern** — the same content atom(s), with a `$`-variable in each unknown slot, wrapped as:
+
+    (: $prf <pattern> $tv)
+
+- **Yes/no question** — no unknown; query the whole proposition (the engine returns its
+  truth value).
+- **Wh-question** — put a `$`-variable where the wh-word asks (use `Member` to ask for
+  individuals, `Inheritance` for kinds).
+
+A **named individual** mentioned in the question is **not** hard-coded as a symbol — you do
+not know which symbol the knowledge base used for it (it may be disambiguated, e.g.
+`tom_1`, or there may be several). Bind it with a variable constrained by its `Name`,
+conjoined with `And`:
+
+    Is Tokyo a city?     →  (: $prf (And (Name $x "Tokyo") (Member $x city)) $tv)
+    What does Maria own? →  (: $prf (And (Name $m "Maria") (Owns $m $x)) $tv)
+
+Common nouns — classes and properties — keep their canonical symbol directly:
+
+    Can penguins fly?    →  (: $prf (Inheritance penguin (can fly)) $tv)
+    Who can swim?        →  (: $prf (Member $x (can swim)) $tv)
+    What can birds do?   →  (: $prf (Inheritance bird (can $x)) $tv)
+    What might happen?   →  (: $prf (might $x) $tv)
+
+Build the pattern exactly as you would the matching statement (same relations, casing, modal
+wrappers); only the unknowns and any named entity become `$`-variables, and the truth value
+becomes `$tv`. Output **only** the query — never assert a standalone `Name` or other fact (a
+question asks, it does not add knowledge).

@@ -137,6 +137,67 @@ ideally a contrastive one — for every new prompt feature.
 
     (: no_key_opens_this_lock (Implication (Premises (Member $x key)) (Conclusions (Opens $x this_lock))) (STV 0.0 0.99))
 
+## G — capability & modality
+
+**[G-cap-gen] Birds can fly.**  — generic capability → `(can …)` property, empirical 0.9/0.9
+
+    (: birds_can_fly (Inheritance bird (can fly)) (STV 0.9 0.9))
+
+**[G-cap-ind] Mary can swim.**  — individual capability → Member + Name, 1.0/0.99
+
+    (: mary_can_swim (Member mary (can swim)) (STV 1.0 0.99))
+    (: mary_name (Name mary "Mary") (STV 1.0 0.99))
+
+**[G-cap-neg] Penguins cannot fly.**  — negated capability → strength 0; flightlessness ≈ definitional → conf 0.99
+
+    (: penguins_cannot_fly (Inheritance penguin (can fly)) (STV 0.0 0.99))
+
+**[G-cap-trans] Cats can catch mice.**  — transitive capability → nested action `(can (catch mouse))`
+
+    (: cats_can_catch_mice (Inheritance cat (can (catch mouse))) (STV 0.9 0.9))
+
+**[G-epi-might] It might rain.**  — epistemic possibility → reified `might` over a proposition
+
+    (: might_rain (might (rain)) (STV 1.0 0.9))
+
+**[G-epi-must] John must be asleep.**  — epistemic necessity → reified `must` over the proposition `(Member john asleep)`
+
+    (: john_must_be_asleep (must (Member john asleep)) (STV 1.0 0.9))
+    (: john_name (Name john "John") (STV 1.0 0.99))
+
+**[G-epi-prob] It will probably snow.**  — epistemic likelihood → reified `probably`
+
+    (: probably_snow (probably (snow)) (STV 1.0 0.9))
+
+## Q — queries (questions → query patterns)
+
+For these the expected output is a single query line `(: $prf <pattern> $tv)`; check the
+**pattern and variable placement** (the `$prf`/`$tv` names are immaterial).
+
+**[Q-yesno-mem] Is Tokyo a city?**  — named individual → bind by `Name` constraint, not a hard-coded symbol
+
+    (: $prf (And (Name $x "Tokyo") (Member $x city)) $tv)
+
+**[Q-yesno-cap] Can penguins fly?**  — yes/no over a capability
+
+    (: $prf (Inheritance penguin (can fly)) $tv)
+
+**[Q-wh-rel] What does Maria own?**  — named individual (`Name` constraint) + wh on the relation's object
+
+    (: $prf (And (Name $m "Maria") (Owns $m $x)) $tv)
+
+**[Q-wh-who] Who can swim?**  — "who" → individual (Member) with a capability
+
+    (: $prf (Member $x (can swim)) $tv)
+
+**[Q-wh-cap] What can birds do?**  — variable inside the reified modal
+
+    (: $prf (Inheritance bird (can $x)) $tv)
+
+**[Q-wh-epi] What might happen?**  — variable as the epistemic modal's proposition
+
+    (: $prf (might $x) $tv)
+
 ## D — negation
 
 **[D-pred] Dolphins are not fish.**
