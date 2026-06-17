@@ -327,8 +327,29 @@ necessity: must / surely / certainly):
 
 - The **degree** lives in the operator (`might`/`probably`/`must`), not the strength; the
   inner is a parenthesised proposition — `(rain)`, `(Member john asleep)` — never a bare atom.
-- Deontic "must/should" (obligation) and "may" (permission) are **not** handled yet — skip
-  the modal and assert the plain content for now.
+**Deontic modality — obligation / permission / prohibition** — reify subject-centered, like
+capability (it concerns what an agent must / may *do*), so it inherits via the scaffolding.
+Use operators **distinct from epistemic**:
+
+- **Obligation** ("must", "have to", "required to", "shall") → **`(obligated <action>)`**;
+  weaker "should" / "ought to" → the same operator at strength `0.7`:
+
+      Students must submit homework. →  (: students_must_submit (Inheritance student (obligated (submit homework))) (STV 1.0 0.99))
+      Citizens should vote.         →  (: citizens_should_vote (Inheritance citizen (obligated vote)) (STV 0.7 0.99))
+
+- **Permission** ("may", "can" = permission, "allowed / permitted to") → **`(permitted
+  <action>)`**:
+
+      Visitors may use the lounge.  →  (: visitors_may_use_lounge (Inheritance visitor (permitted (use lounge))) (STV 1.0 0.99))
+
+- **Prohibition** ("must not", "may not", "forbidden", "not allowed") → permission at
+  strength `0.0` (forbidden ≡ not permitted):
+
+      Passengers must not smoke.    →  (: passengers_not_smoke (Inheritance passenger (permitted smoke)) (STV 0.0 0.99))
+
+The same surface word picks the operator **by sense**: "must" → epistemic `must` or deontic
+`obligated`; "may" → epistemic `might` or deontic `permitted`; "can" → ability `can` or
+deontic `permitted`. Deontic norms are prescriptive → confidence `0.99`.
 
 ## Queries — converting a question
 
@@ -357,7 +378,14 @@ Common nouns — classes and properties — keep their canonical symbol directly
     What can birds do?   →  (: $prf (Inheritance bird (can $x)) $tv)
     What might happen?   →  (: $prf (might $x) $tv)
 
+A **negative / polarity** question — "what can't X do?", "what must X not do?", "what is X
+forbidden to do?" — pins the truth value to **`(STV 0.0 $conf)`** to match the strength-0
+(negated) atoms:
+
+    What can't penguins do?   →  (: $prf (Inheritance penguin (can $x)) (STV 0.0 $conf))
+    What may visitors not do? →  (: $prf (Inheritance visitor (permitted $x)) (STV 0.0 $conf))
+
 Build the pattern exactly as you would the matching statement (same relations, casing, modal
 wrappers); only the unknowns and any named entity become `$`-variables, and the truth value
-becomes `$tv`. Output **only** the query — never assert a standalone `Name` or other fact (a
-question asks, it does not add knowledge).
+becomes `$tv` (or `(STV 0.0 $conf)` for a negative question). Output **only** the query —
+never assert a standalone `Name` or other fact (a question asks, it does not add knowledge).

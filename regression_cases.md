@@ -169,6 +169,29 @@ ideally a contrastive one — for every new prompt feature.
 
     (: probably_snow (probably (snow)) (STV 1.0 0.9))
 
+## H — deontic modality
+
+**[H-oblig] Students must submit their homework.**  — obligation → `(obligated <action>)`, prescriptive 1.0/0.99
+
+    (: students_must_submit (Inheritance student (obligated (submit homework))) (STV 1.0 0.99))
+
+**[H-oblig-ind] John must leave.**  — individual obligation → Member + Name
+
+    (: john_must_leave (Member john (obligated leave)) (STV 1.0 0.99))
+    (: john_name (Name john "John") (STV 1.0 0.99))
+
+**[H-should] Citizens should vote.**  — weak obligation ("should") → strength 0.7
+
+    (: citizens_should_vote (Inheritance citizen (obligated vote)) (STV 0.7 0.99))
+
+**[H-perm] Visitors may use the lounge.**  — permission → `(permitted <action>)`
+
+    (: visitors_may_use_lounge (Inheritance visitor (permitted (use lounge))) (STV 1.0 0.99))
+
+**[H-prohib] Passengers must not smoke.**  — prohibition → permission at strength 0 (forbidden ≡ ¬permitted)
+
+    (: passengers_not_smoke (Inheritance passenger (permitted smoke)) (STV 0.0 0.99))
+
 ## Q — queries (questions → query patterns)
 
 For these the expected output is a single query line `(: $prf <pattern> $tv)`; check the
@@ -197,6 +220,14 @@ For these the expected output is a single query line `(: $prf <pattern> $tv)`; c
 **[Q-wh-epi] What might happen?**  — variable as the epistemic modal's proposition
 
     (: $prf (might $x) $tv)
+
+**[Q-neg-cap] What can't penguins do?**  — negative question → pin TV to strength 0
+
+    (: $prf (Inheritance penguin (can $x)) (STV 0.0 $conf))
+
+**[Q-deon-prohib] What must passengers not do?**  — prohibition query → strength-0 permission
+
+    (: $prf (Inheritance passenger (permitted $x)) (STV 0.0 $conf))
 
 ## D — negation
 
