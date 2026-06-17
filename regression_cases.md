@@ -139,58 +139,58 @@ ideally a contrastive one — for every new prompt feature.
 
 ## G — capability & modality
 
-**[G-cap-gen] Birds can fly.**  — generic capability → `(can …)` property, empirical 0.9/0.9
+**[G-cap-gen] Birds can fly.**  — generic capability → `(Can …)` property, empirical 0.9/0.9
 
-    (: birds_can_fly (Inheritance bird (can fly)) (STV 0.9 0.9))
+    (: birds_can_fly (Inheritance bird (Can fly)) (STV 0.9 0.9))
 
 **[G-cap-ind] Mary can swim.**  — individual capability → Member + Name, 1.0/0.99
 
-    (: mary_can_swim (Member mary (can swim)) (STV 1.0 0.99))
+    (: mary_can_swim (Member mary (Can swim)) (STV 1.0 0.99))
     (: mary_name (Name mary "Mary") (STV 1.0 0.99))
 
 **[G-cap-neg] Penguins cannot fly.**  — negated capability → strength 0; flightlessness ≈ definitional → conf 0.99
 
-    (: penguins_cannot_fly (Inheritance penguin (can fly)) (STV 0.0 0.99))
+    (: penguins_cannot_fly (Inheritance penguin (Can fly)) (STV 0.0 0.99))
 
-**[G-cap-trans] Cats can catch mice.**  — transitive capability → nested action `(can (catch mouse))`
+**[G-cap-trans] Cats can catch mice.**  — transitive capability → nested action `(Can (catch mouse))`
 
-    (: cats_can_catch_mice (Inheritance cat (can (catch mouse))) (STV 0.9 0.9))
+    (: cats_can_catch_mice (Inheritance cat (Can (catch mouse))) (STV 0.9 0.9))
 
 **[G-epi-might] It might rain.**  — epistemic possibility → reified `might` over a proposition
 
-    (: might_rain (might (rain)) (STV 1.0 0.9))
+    (: might_rain (Might (rain)) (STV 1.0 0.9))
 
 **[G-epi-must] John must be asleep.**  — epistemic necessity → reified `must` over the proposition `(Member john asleep)`
 
-    (: john_must_be_asleep (must (Member john asleep)) (STV 1.0 0.9))
+    (: john_must_be_asleep (Must (Member john asleep)) (STV 1.0 0.9))
     (: john_name (Name john "John") (STV 1.0 0.99))
 
 **[G-epi-prob] It will probably snow.**  — epistemic likelihood → reified `probably`
 
-    (: probably_snow (probably (snow)) (STV 1.0 0.9))
+    (: probably_snow (Probably (snow)) (STV 1.0 0.9))
 
 ## H — deontic modality
 
-**[H-oblig] Students must submit their homework.**  — obligation → `(obligated <action>)`, prescriptive 1.0/0.99
+**[H-oblig] Students must submit their homework.**  — obligation → `(Obligated <action>)`, prescriptive 1.0/0.99
 
-    (: students_must_submit (Inheritance student (obligated (submit homework))) (STV 1.0 0.99))
+    (: students_must_submit (Inheritance student (Obligated (submit homework))) (STV 1.0 0.99))
 
 **[H-oblig-ind] John must leave.**  — individual obligation → Member + Name
 
-    (: john_must_leave (Member john (obligated leave)) (STV 1.0 0.99))
+    (: john_must_leave (Member john (Obligated leave)) (STV 1.0 0.99))
     (: john_name (Name john "John") (STV 1.0 0.99))
 
 **[H-should] Citizens should vote.**  — weak obligation ("should") → strength 0.7
 
-    (: citizens_should_vote (Inheritance citizen (obligated vote)) (STV 0.7 0.99))
+    (: citizens_should_vote (Inheritance citizen (Obligated vote)) (STV 0.7 0.99))
 
-**[H-perm] Visitors may use the lounge.**  — permission → `(permitted <action>)`
+**[H-perm] Visitors may use the lounge.**  — permission → `(Permitted <action>)`
 
-    (: visitors_may_use_lounge (Inheritance visitor (permitted (use lounge))) (STV 1.0 0.99))
+    (: visitors_may_use_lounge (Inheritance visitor (Permitted (use lounge))) (STV 1.0 0.99))
 
 **[H-prohib] Passengers must not smoke.**  — prohibition → permission at strength 0 (forbidden ≡ ¬permitted)
 
-    (: passengers_not_smoke (Inheritance passenger (permitted smoke)) (STV 0.0 0.99))
+    (: passengers_not_smoke (Inheritance passenger (Permitted smoke)) (STV 0.0 0.99))
 
 ## Q — queries (questions → query patterns)
 
@@ -203,7 +203,7 @@ For these the expected output is a single query line `(: $prf <pattern> $tv)`; c
 
 **[Q-yesno-cap] Can penguins fly?**  — yes/no over a capability
 
-    (: $prf (Inheritance penguin (can fly)) $tv)
+    (: $prf (Inheritance penguin (Can fly)) $tv)
 
 **[Q-wh-rel] What does Maria own?**  — named individual (`Name` constraint) + wh on the relation's object
 
@@ -211,23 +211,68 @@ For these the expected output is a single query line `(: $prf <pattern> $tv)`; c
 
 **[Q-wh-who] Who can swim?**  — "who" → individual (Member) with a capability
 
-    (: $prf (Member $x (can swim)) $tv)
+    (: $prf (Member $x (Can swim)) $tv)
 
 **[Q-wh-cap] What can birds do?**  — variable inside the reified modal
 
-    (: $prf (Inheritance bird (can $x)) $tv)
+    (: $prf (Inheritance bird (Can $x)) $tv)
 
 **[Q-wh-epi] What might happen?**  — variable as the epistemic modal's proposition
 
-    (: $prf (might $x) $tv)
+    (: $prf (Might $x) $tv)
 
 **[Q-neg-cap] What can't penguins do?**  — negative question → pin TV to strength 0
 
-    (: $prf (Inheritance penguin (can $x)) (STV 0.0 $conf))
+    (: $prf (Inheritance penguin (Can $x)) (STV 0.0 $conf))
 
 **[Q-deon-prohib] What must passengers not do?**  — prohibition query → strength-0 permission
 
-    (: $prf (Inheritance passenger (permitted $x)) (STV 0.0 $conf))
+    (: $prf (Inheritance passenger (Permitted $x)) (STV 0.0 $conf))
+
+## I — tense & lemmatization
+
+**[I-past] Alice visited Paris.**  — past tense → `past` wrapper; verb lemmatized (visited→visit)
+
+    (: alice_visited_paris (Past (Visit alice paris)) (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: paris_name (Name paris "Paris") (STV 1.0 0.99))
+
+**[I-future] It will rain tomorrow.**  — future → `future` wrapper; drop fine time ("tomorrow")
+
+    (: future_rain (Future (rain)) (STV 1.0 0.99))
+
+**[I-present] Alice knows Bob.**  — present → unmarked
+
+    (: alice_knows_bob (Know alice bob) (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+
+**[I-cont] Alice was singing.**  — past progressive → `Past` + `Ongoing` (sing lemma)
+
+    (: alice_was_singing (Past (Ongoing (Sing alice))) (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+
+**[I-lemma-verb] Alice ran.**  — irregular verb lemma (ran→run) + past
+
+    (: alice_ran (Past (Run alice)) (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+
+**[I-lemma-noun] Geese migrate.**  — irregular noun lemma (geese→goose) + generic (unmarked, empirical 0.9/0.9)
+
+    (: geese_migrate (Inheritance goose migrate) (STV 0.9 0.9))
+
+**[I-ongoing] Bob is cooking dinner.**  — present progressive → `Ongoing` wrapper, tense unmarked
+
+    (: bob_is_cooking (Ongoing (Cook bob dinner)) (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+
+**[I-q-habitual] What does Alice do?**  — habitual query (unmarked); named → `Name` constraint
+
+    (: $prf (And (Name $a "Alice") ($rel $a $obj)) $tv)
+
+**[I-q-ongoing] What is Alice doing?**  — progressive query → `Ongoing` wrapper (contrast I-q-habitual)
+
+    (: $prf (And (Name $a "Alice") (Ongoing ($rel $a $obj))) $tv)
 
 ## D — negation
 

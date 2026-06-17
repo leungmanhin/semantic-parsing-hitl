@@ -19,9 +19,6 @@ fences. Each atom is a single statement:
 
 If the input is a **question**, output a single **query** line instead — see **Queries**.
 
-Ignore tense, time, and aspect — translate the tenseless proposition (drop markers like
-"tonight", "yesterday", "will", "used to").
-
 ## Truth values (STV)
 
 `strength` and `confidence` are both in `[0,1]`:
@@ -44,6 +41,9 @@ Rules:
 - **Entity terms** — individuals, classes, properties (the arguments) — are **lowercase
   snake_case**: the person *Locky* → `locky`; the class *Mammal* → `mammal`; the property
   *black* → `black`; a witness → `sk_dog_1`.
+- **Lemmatize** every head to its dictionary base form: verbs → base (`ran` / `running` →
+  `run`), nouns → singular (`ravens` / `mice` → `raven` / `mouse`), adjectives → base
+  (`taller` → `tall`). All inflectional variants of a word map to one symbol.
 - **Proof names** (the id in `(: id ...)`) are snake_case.
 - **Variables** are `$`-prefixed. **String literals** are double-quoted and preserve the
   original surface form: `"Alice"`, `"New York City"`.
@@ -301,55 +301,79 @@ empirical → `0.9`); witness facts stay `0.99`.
 PLN has no built-in modal operator, so modals are **reified** — the operator is kept as
 structure, so it can be inherited and queried.
 
-**Capability / ability — "can", "able to", "cannot"** — a **`(can <action>)`** property in
+**Capability / ability — "can", "able to", "cannot"** — a **`(Can <action>)`** property in
 the class slot, parallel to a plain property; it inherits down taxonomies and to instances:
 
-    Birds can fly.        →  (: birds_can_fly (Inheritance bird (can fly)) (STV 0.9 0.9))
-    Mary can swim.        →  (: mary_can_swim (Member mary (can swim)) (STV 1.0 0.99))
-    Penguins cannot fly.  →  (: penguins_cannot_fly (Inheritance penguin (can fly)) (STV 0.0 0.99))
+    Birds can fly.        →  (: birds_can_fly (Inheritance bird (Can fly)) (STV 0.9 0.9))
+    Mary can swim.        →  (: mary_can_swim (Member mary (Can swim)) (STV 1.0 0.99))
+    Penguins cannot fly.  →  (: penguins_cannot_fly (Inheritance penguin (Can fly)) (STV 0.0 0.99))
 
 - `<action>` is the bare verb (`fly`), or a compound for a transitive action: "cats can
-  catch mice" → `(Inheritance cat (can (catch mouse)))`.
+  catch mice" → `(Inheritance cat (Can (catch mouse)))`.
 - This marks *ability*, distinct from plain actuality: "birds fly" is `(Inheritance bird
-  fly)` (the activity as a plain property); "birds can fly" wraps it in `(can ...)`.
+  fly)` (the activity as a plain property); "birds can fly" wraps it in `(Can ...)`.
 - Strength/confidence follow the usual dials: generic → `0.9 0.9`, individual → `1.0 0.99`,
   negated ability ("cannot") → strength `0.0`.
 
 **Epistemic modality — "might", "probably", "must" (inference)** — reify the operator over
 the whole **proposition** (written exactly as you would assert it on its own, so the modal
-claim and the bare fact share structure). Normalise the operator to one of **`might`**
-(may / might / could / possibly), **`probably`** (likely / probably), **`must`** (epistemic
+claim and the bare fact share structure). Normalise the operator to one of **`Might`**
+(may / might / could / possibly), **`Probably`** (likely / probably), **`Must`** (epistemic
 necessity: must / surely / certainly):
 
-    It might rain.         →  (: might_rain (might (rain)) (STV 1.0 0.9))
-    John must be asleep.   →  (: john_must_be_asleep (must (Member john asleep)) (STV 1.0 0.9))
-    It will probably snow. →  (: probably_snow (probably (snow)) (STV 1.0 0.9))
+    It might rain.         →  (: might_rain (Might (rain)) (STV 1.0 0.9))
+    John must be asleep.   →  (: john_must_be_asleep (Must (Member john asleep)) (STV 1.0 0.9))
+    It will probably snow. →  (: probably_snow (Probably (snow)) (STV 1.0 0.9))
 
-- The **degree** lives in the operator (`might`/`probably`/`must`), not the strength; the
+- The **degree** lives in the operator (`Might`/`Probably`/`Must`), not the strength; the
   inner is a parenthesised proposition — `(rain)`, `(Member john asleep)` — never a bare atom.
+
 **Deontic modality — obligation / permission / prohibition** — reify subject-centered, like
 capability (it concerns what an agent must / may *do*), so it inherits via the scaffolding.
 Use operators **distinct from epistemic**:
 
-- **Obligation** ("must", "have to", "required to", "shall") → **`(obligated <action>)`**;
+- **Obligation** ("must", "have to", "required to", "shall") → **`(Obligated <action>)`**;
   weaker "should" / "ought to" → the same operator at strength `0.7`:
 
-      Students must submit homework. →  (: students_must_submit (Inheritance student (obligated (submit homework))) (STV 1.0 0.99))
-      Citizens should vote.         →  (: citizens_should_vote (Inheritance citizen (obligated vote)) (STV 0.7 0.99))
+      Students must submit homework. →  (: students_must_submit (Inheritance student (Obligated (submit homework))) (STV 1.0 0.99))
+      Citizens should vote.         →  (: citizens_should_vote (Inheritance citizen (Obligated vote)) (STV 0.7 0.99))
 
-- **Permission** ("may", "can" = permission, "allowed / permitted to") → **`(permitted
-  <action>)`**:
+- **Permission** ("may", "can" = permission, "allowed / permitted to") → **`(Permitted <action>)`**:
 
-      Visitors may use the lounge.  →  (: visitors_may_use_lounge (Inheritance visitor (permitted (use lounge))) (STV 1.0 0.99))
+      Visitors may use the lounge.  →  (: visitors_may_use_lounge (Inheritance visitor (Permitted (use lounge))) (STV 1.0 0.99))
 
 - **Prohibition** ("must not", "may not", "forbidden", "not allowed") → permission at
   strength `0.0` (forbidden ≡ not permitted):
 
-      Passengers must not smoke.    →  (: passengers_not_smoke (Inheritance passenger (permitted smoke)) (STV 0.0 0.99))
+      Passengers must not smoke.    →  (: passengers_not_smoke (Inheritance passenger (Permitted smoke)) (STV 0.0 0.99))
 
-The same surface word picks the operator **by sense**: "must" → epistemic `must` or deontic
-`obligated`; "may" → epistemic `might` or deontic `permitted`; "can" → ability `can` or
-deontic `permitted`. Deontic norms are prescriptive → confidence `0.99`.
+The same surface word picks the operator **by sense**: "must" → epistemic `Must` or deontic
+`Obligated`; "may" → epistemic `Might` or deontic `Permitted`; "can" → ability `Can` or
+deontic `Permitted`. Deontic norms are prescriptive → confidence `0.99`.
+
+## Tense
+
+Detect grammatical **past**, **future**, or **progressive** and wrap the proposition in that
+operator; **present-simple, generic, and timeless** statements stay **unmarked**:
+
+    Alice visited Paris.  →  (: alice_visited_paris (Past (Visit alice paris)) (STV 1.0 0.99))
+                             (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+                             (: paris_name (Name paris "Paris") (STV 1.0 0.99))
+    It will rain.         →  (: future_rain (Future (rain)) (STV 1.0 0.99))
+    Alice is sleeping.    →  (: alice_is_sleeping (Ongoing (Sleep alice)) (STV 1.0 0.99))
+    Alice knows Bob.      →  (: alice_knows_bob (Know alice bob) (STV 1.0 0.99))   ; present → unmarked
+    Birds fly.            →  (: birds_fly (Inheritance bird fly) (STV 0.9 0.9))    ; generic → unmarked
+
+- The inner is the proposition exactly as you would assert it tenseless (a parenthesised
+  predicate, `Member`, or `Inheritance`), so the tensed form and the bare fact share structure.
+- **Continuous / progressive** forms add an **`Ongoing`** wrapper (simple / habitual stays
+  unmarked): "is walking" → `(Ongoing (Walk alice))`; "was walking" →
+  `(Past (Ongoing (Walk alice)))`; "will be walking" → `(Future (Ongoing (Walk alice)))`.
+  **Perfect** ("has visited") drops to coarse tense → `(Past (Visit alice paris))`.
+- Drop finer time markers ("yesterday", "tonight", "in 1999") and ordering for now.
+- Query the same way: "What did Alice do?" → `(: $prf (Past ($rel alice $obj)) $tv)`; "What is
+  Alice doing?" (progressive) → `(: $prf (Ongoing ($rel alice $obj)) $tv)`; "What does Alice
+  do?" (habitual) → `(: $prf ($rel alice $obj) $tv)`; "What will happen?" → `(: $prf (Future $p) $tv)`.
 
 ## Queries — converting a question
 
@@ -373,17 +397,17 @@ conjoined with `And`:
 
 Common nouns — classes and properties — keep their canonical symbol directly:
 
-    Can penguins fly?    →  (: $prf (Inheritance penguin (can fly)) $tv)
-    Who can swim?        →  (: $prf (Member $x (can swim)) $tv)
-    What can birds do?   →  (: $prf (Inheritance bird (can $x)) $tv)
-    What might happen?   →  (: $prf (might $x) $tv)
+    Can penguins fly?    →  (: $prf (Inheritance penguin (Can fly)) $tv)
+    Who can swim?        →  (: $prf (Member $x (Can swim)) $tv)
+    What can birds do?   →  (: $prf (Inheritance bird (Can $x)) $tv)
+    What might happen?   →  (: $prf (Might $x) $tv)
 
 A **negative / polarity** question — "what can't X do?", "what must X not do?", "what is X
 forbidden to do?" — pins the truth value to **`(STV 0.0 $conf)`** to match the strength-0
 (negated) atoms:
 
-    What can't penguins do?   →  (: $prf (Inheritance penguin (can $x)) (STV 0.0 $conf))
-    What may visitors not do? →  (: $prf (Inheritance visitor (permitted $x)) (STV 0.0 $conf))
+    What can't penguins do?   →  (: $prf (Inheritance penguin (Can $x)) (STV 0.0 $conf))
+    What may visitors not do? →  (: $prf (Inheritance visitor (Permitted $x)) (STV 0.0 $conf))
 
 Build the pattern exactly as you would the matching statement (same relations, casing, modal
 wrappers); only the unknowns and any named entity become `$`-variables, and the truth value
