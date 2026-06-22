@@ -12,9 +12,8 @@ fences. Each atom is a single statement:
 
     (: <proof_name> <content> (STV <strength> <confidence>))
 
-- `<proof_name>` — a short, descriptive, unique snake_case id (e.g. `dog_is_mammal`,
-  `mary_is_doctor`).
-- `<content>` — the logical content (see **Representation**).
+- `<proof_name>` — a short, descriptive, unique snake_case id (e.g. `bob_cooks`, `e1_agent`).
+- `<content>` — the logical content.
 - `(STV <strength> <confidence>)` — the truth value (see **Truth values**).
 
 If the input is a **question**, output a single **query** line instead — see **Queries**.
@@ -29,387 +28,282 @@ If the input is a **question**, output a single **query** line instead — see *
 Rules:
 
 - Default truth value for an asserted statement is **`(STV 1.0 0.99)`**.
-- **Never use confidence `1.0`.** In PLN, confidence `1.0` means infinite evidence and
-  can never be revised; `0.99` keeps every atom open to future revision.
+- **Never use confidence `1.0`** — `1.0` means infinite evidence (unrevisable); `0.99` keeps
+  every atom open to revision.
 - **Generalizations carry lower confidence when empirical**: `0.99` if definitional, `0.9`
   if empirical/contingent (see **Confidence — definitional vs empirical**).
 
 ## Names and casing
 
-- **Predicate / relation heads** (the first symbol of an expression) are
-  **UpperCamelCase**: `Member`, `Inheritance`, `Owns`, `Name`, `Loves`.
-- **Entity terms** — individuals, classes, properties (the arguments) — are **lowercase
-  snake_case**: the person *Locky* → `locky`; the class *Mammal* → `mammal`; the property
-  *black* → `black`; a witness → `sk_dog_1`.
-- **Lemmatize** every head to its dictionary base form: verbs → base (`ran` / `running` →
-  `run`), nouns → singular (`ravens` / `mice` → `raven` / `mouse`), adjectives → base
-  (`taller` → `tall`). All inflectional variants of a word map to one symbol.
-- **Proof names** (the id in `(: id ...)`) are snake_case.
-- **Variables** are `$`-prefixed. **String literals** are double-quoted and preserve the
-  original surface form: `"Alice"`, `"New York City"`.
-- A **named** individual (proper noun) gets a stable symbol from its name, reused for
-  every mention (`alice` throughout), plus a `Name` fact (see below). An **existential
-  witness** is anonymous — mint a fresh `sk_<class>_<n>` each time; witnesses don't corefer.
+- **Heads** — the first symbol of an expression — are **UpperCamelCase**: relations
+  (`Member`, `Inheritance`, `Name`), thematic roles (`Agent`, `Patient`, …), and status
+  operators (`Past`, `Can`, `Must`, …).
+- **Entity terms** — individuals, classes, properties, events (the arguments) — are
+  **lowercase snake_case**: `locky`, `mammal`, `black`, `sk_dog_1`, `sk_cook_1`.
+- **Lemmatize** every head and class to its dictionary base form: verbs → base (`ran` /
+  `running` → `run`), nouns → singular (`ravens` / `mice` → `raven` / `mouse`), adjectives →
+  base (`taller` → `tall`). All inflectional variants of a word map to one symbol.
+- **Proof names** are snake_case. **Variables** are `$`-prefixed. **String literals** are
+  double-quoted, preserving surface form: `"Alice"`, `"New York City"`.
+- A **named** individual (proper noun) gets a stable name-derived symbol reused for every
+  mention (`alice`), plus a `Name` fact: `(Name alice "Alice")`. Distinct same-named
+  entities get distinct symbols (`alice_1`, `alice_2`), each with its own `Name`. An
+  **existential witness** is anonymous — mint a fresh `sk_<class>_<n>` each time; witnesses
+  don't corefer.
 
-## Representation — individuals vs classes
+## Two kinds of clause
 
-Categorical statements use one of two relations, chosen by the **subject's type**:
+Decide first what the predicate is:
 
-- **Individual** — a specific, named thing (proper nouns, specific referents) →
-  **`Member`**:
+- **Copular** — "X **is a/an** N" or "X **is** ADJ" → a **categorical** statement
+  (`Member` / `Inheritance`). See **Categorical statements**.
+- **Verbal** — any other verb, action *or* state ("Bob **cooks**", "Alice **owns** a dog",
+  "Maria **gave** Bob a book", "Bob **knows** Alice") → reify an **event**. See **Events**.
 
-      Locky is a person.   →  (: locky_is_person (Member locky person) (STV 1.0 0.99))
+So "Bob is a teacher" is copular → `(Member bob teacher)`; "Bob teaches" is verbal → an event.
 
-- **Class / kind** (a category, used generically), and **properties** (adjectives,
-  treated as classes) → **`Inheritance`**:
+## Categorical statements (copular)
+
+Choose by the **subject's type**:
+
+- **Individual** (proper noun / specific referent) → **`Member`**:
+
+      Locky is a person.  →  (: locky_is_person (Member locky person) (STV 1.0 0.99))
+
+- **Class / kind**, and **properties** (adjectives as classes) → **`Inheritance`**:
 
       Every dog is a mammal.  →  (: dog_is_mammal (Inheritance dog mammal) (STV 1.0 0.99))
-      All ravens are black.   →  (: ravens_are_black (Inheritance raven black) (STV 1.0 0.99))
 
-**Rule of thumb:** a proper noun or "the specific X" → individual (`Member`); a common
-noun used as a kind → class (`Inheritance`).
+**Discipline:** an individual must **never** appear in a class position. The relation
+(`Member` vs `Inheritance`) is what marks individual vs class — misusing it derives errors
+(e.g. "Socrates is a man" + "man is a species" both as `Inheritance` would wrongly give
+"Socrates is a species").
 
-**Discipline:** an individual must **never** appear in a class position (the 2nd slot of
-`Member`, or either slot of `Inheritance`). The relation you choose (`Member` vs
-`Inheritance`) is what tells the engine "individual" vs "class". Misusing `Inheritance`
-for an individual causes wrong inferences — e.g. encoding "Socrates is a man" and "man
-is a species" both with `Inheritance` would wrongly derive "Socrates is a species".
+**Do not emit background rules.** The engine already has inheritance transitivity and
+"a member of a subclass is a member of the superclass". Emit only the atoms for the
+sentence; never emit `(Inheritance $x dog) → (Inheritance $x mammal)`.
 
-## Do not emit background rules
+**Quantity → strength** (same `Inheritance`/`Member` shape):
 
-The engine already has its generic reasoning rules (inheritance transitivity, and
-"a member of a subclass is a member of the superclass"). **Emit only the atoms for the
-sentence in front of you.** For "every dog is a mammal", emit just the single fact
-above — do **not** also emit a rule like `(Inheritance $x dog) → (Inheritance $x mammal)`;
-it is redundant, and the engine derives those conclusions itself.
+- "all" / "every" → `1.0`; bare generic (no quantifier: "dogs are friendly") → `0.9` (≈most).
+- most → `0.9`, a lot of → `0.8`, many → `0.7`, few → `0.1`, no / none → `0.0`.
 
-## Universal quantifiers — "all", "every"
+      All swans are white.    →  (: swans_are_white (Inheritance swan white) (STV 1.0 0.9))
+      Most teachers are patient. → (: most_teachers_patient (Inheritance teacher patient) (STV 0.9 0.9))
+      Apples are sweet.       →  (: apples_sweet (Inheritance apple sweet) (STV 0.9 0.9))
 
-A plain universal "all/every X is/are Y" (Y a class or property) is a **single
-subsumption fact at strength `1.0`**:
+("a few X" is a small *count*, not a proportion → existential witness, see **Existential**.)
 
-    Every dog is a mammal.  →  (: dog_is_mammal (Inheritance dog mammal) (STV 1.0 0.99))
-    All swans are white.    →  (: swans_are_white (Inheritance swan white) (STV 1.0 0.9))
+### Confidence — definitional vs empirical
 
-Strength stays `1.0` either way — explicit "all/every" claims the whole class. The
-**confidence** depends on whether the universal is definitional or empirical (see
-**Confidence — definitional vs empirical**): "every dog is a mammal" is definitional
-(`0.99`); "all swans are white" is empirical and exception-prone (`0.9`).
+For a general statement, set confidence by *could a counterexample exist, even in principle?*
 
-Use the **`Implication`** rule form **only** when a universal involves a **relation** or
-**multiple premises** (not a plain "X are Y"). Variables are `$`-prefixed:
+- **Definitional / taxonomic** (no counterexample conceivable) → `0.99`, and strength `1.0`
+  even without "every": "dogs are mammals" → `(Inheritance dog mammal) (STV 1.0 0.99)`.
+- **Empirical / contingent** (exceptions possible) → `0.9`: "all swans are white" →
+  `(Inheritance swan white) (STV 1.0 0.9)`.
+- When unsure → **empirical** (`0.9`). **Individual facts keep `0.99`** — the dial is only
+  for generalizations.
 
-    (: <rule_name>
-       (Implication (Premises <premise> ...) (Conclusions <conclusion> ...))
-       (STV 1.0 0.99))
+### Negation (copular)
 
-Example:
-
-    Everyone who owns a dog is a pet owner.
-      →  (: dog_owner_is_pet_owner
-           (Implication (Premises (Owns $x $y) (Member $y dog))
-                        (Conclusions (Member $x pet_owner)))
-           (STV 1.0 0.99))
-
-## Graded quantifiers — "most", "many", "few", …
-
-Same shape as a universal (`Inheritance` / `Member`), but the **strength** drops to the
-proportion the word conveys. Graded claims are *usually* empirical, so **confidence is
-`0.9`** (strength = how many; confidence = how sure); a definitional one keeps `0.99` —
-see **Confidence — definitional vs empirical**:
-
-    Most ravens are black.  →  (: most_ravens_are_black (Inheritance raven black) (STV 0.9 0.9))
-
-Strength per word:
-
-- most → `0.9`
-- a lot of → `0.8`
-- many → `0.7`
-- few → `0.1`
-- no / none → `0.0`
-
-("few" is a low *proportion*; "a few" is a small *count* — see Existential.)
-
-## Confidence — definitional vs empirical generalizations
-
-For a **general statement** (a class-level `Inheritance` — universal, generic, or graded),
-set the confidence by how the generalization is secured. Ask: *could a counterexample
-exist, even in principle?*
-
-- **Definitional / taxonomic** — no counterexample conceivable (true by meaning or
-  category) → confidence **`0.99`**, and **strength `1.0`** (definitionally all) even with
-  no "every":
-
-      Dogs are mammals.      →  (: dogs_are_mammals (Inheritance dog mammal) (STV 1.0 0.99))
-      Squares are rectangles.→  (: squares_are_rectangles (Inheritance square rectangle) (STV 1.0 0.99))
-
-- **Empirical / contingent** — exceptions are possible (true by observation) → confidence
-  **`0.9`**; strength is the proportion (1.0 for "all", or the graded / generic value):
-
-      All swans are white.   →  (: swans_are_white (Inheritance swan white) (STV 1.0 0.9))
-      Most metals are solid. →  (: most_metals_solid (Inheritance metal solid) (STV 0.9 0.9))
-
-When unsure, treat as **empirical** (`0.9`) — do not over-claim certainty.
-
-**Individual facts keep confidence `0.99`** — a `Member` fact about a specific thing, or a
-relation like `Owns`. This dial is only for *generalizations*, which admit exceptions.
-
-## Generics — no quantifier word
-
-A bare generic (a plural or mass noun with no quantifier word: "apples are sweet", "dogs
-are friendly") does not claim universality. Unless it is definitional, give it **strength
-`0.9`** (≈ "most") with empirical confidence `0.9`:
-
-    Apples are sweet.   →  (: apples_are_sweet (Inheritance apple sweet) (STV 0.9 0.9))
-    Dogs are friendly.  →  (: dogs_are_friendly (Inheritance dog friendly) (STV 0.9 0.9))
-
-A *definitional* bare generic ("dogs are mammals", "whales are mammals") is strength `1.0`,
-confidence `0.99` — the definitional rule above takes precedence.
-
-## Existential — "there is/are", "there exists", "some X", indefinite "a/an"
-
-An existential asserts that *at least one* such thing exists. Introduce a **fresh witness
-individual** named `sk_<class>_<n>` and assert its memberships:
-
-    There is a black raven.   →  (: sk_raven_1_is_raven (Member sk_raven_1 raven) (STV 1.0 0.99))
-                                  (: sk_raven_1_is_black (Member sk_raven_1 black) (STV 1.0 0.99))
-
-- Fresh index per existential, so separate witnesses never collide.
-- "There is a X" and "some X" get the same witness encoding.
-- "a few X" / "a couple of X" also assert existence (a small number) → a witness; the
-  exact count is not represented ("a few" ≠ "few", which is a low proportion).
-- Existence only ("at least one"). Do **not** use a witness for proportion words like
-  "most" / "many" / "few" (those set the strength instead).
-- Indefinite "a/an" can be generic rather than existential: "A dog is a mammal" is
-  universal → `(Inheritance dog mammal)`. Judge from context.
-
-## Negation — "not", "no", "neither", antonyms
-
-Negation lives in the **truth value**, not in a wrapper: assert the *same* statement at
-**strength `0.0`** (the strength, not the confidence, carries the negation). Confidence
-still follows the definitional/empirical dial. There is no `(Not ...)` atom to emit.
-
-- **Predicate negation** — "X is/are not Y", "no X is Y", "never Y" — keeps the `Member` /
-  `Inheritance` shape at strength `0.0`; confidence is `0.99` for a definitional negation,
-  `0.9` for an empirical one:
+Negate by setting **strength `0.0`** on the same atom (confidence per the dial):
 
       Dolphins are not fish.  →  (: dolphins_not_fish (Inheritance dolphin fish) (STV 0.0 0.99))
-      Ravens are not white.   →  (: ravens_not_white  (Inheritance raven white)  (STV 0.0 0.9))
-      Socrates is not a cat.  →  (: socrates_not_cat  (Member socrates cat)      (STV 0.0 0.99))
+      No reptile is warm-blooded. → (: reptile_not_warm (Inheritance reptile warm_blooded) (STV 0.0 0.99))
 
-  ("dolphins are not fish" is taxonomic → `0.99`; "ravens are not white" is empirical →
-  `0.9`; "Socrates is not a cat" is an individual fact → `0.99`.) "no X is Y" ≡ "all X are
-  not Y" — the strength-`0.0` end of the graded scale.
+- **"not all / not every X is Y"** → a **counterexample witness**, one X that is not Y:
 
-- **"not all / not every X is Y"** denies the universal by asserting a **counterexample
-  witness** — one X that is not Y (NOT strength 0 on the class):
+      Not all swans are white. → (: sk_swan_1_swan (Member sk_swan_1 swan) (STV 1.0 0.99))
+                                 (: sk_swan_1_not_white (Member sk_swan_1 white) (STV 0.0 0.99))
 
-      Not all swans are white.  →  (: sk_swan_1_is_swan   (Member sk_swan_1 swan)  (STV 1.0 0.99))
-                                   (: sk_swan_1_not_white (Member sk_swan_1 white) (STV 0.0 0.99))
+- **"neither A nor B"** → one strength-`0.0` fact per disjunct.
+- **Lexical antonyms are not negation**: "unhappy", "closed" are positive properties at
+  strength `1.0` — only an explicit *not / n't / no / never* sets strength `0.0`.
 
-- **"neither A nor B"** — one strength-`0.0` fact per disjunct:
+## Events (verbal)
 
-      Whales are neither fish nor reptiles.
-        →  (: whale_not_fish    (Inheritance whale fish)    (STV 0.0 0.99))
-           (: whale_not_reptile (Inheritance whale reptile) (STV 0.0 0.99))
+A verbal clause reifies an **event** (an eventuality — action *or* state). Mint a fresh
+event witness `sk_<verb>_<n>`, then assert, as **separate atoms**:
 
-- **Lexical antonyms are not negation.** "unhappy", "closed", "dishonest" are their own
-  positive properties — strength `1.0`, not the opposite at `0.0`:
+1. the **event class** — `(Member <event> <verb-lemma>)`;
+2. one **role** atom per participant — `(<Role> <event> <filler>)`;
+3. any **status** atom(s) — tense / aspect / modality (below).
 
-      Alice is unhappy.  →  (: alice_unhappy (Member alice unhappy) (STV 1.0 0.99))
+      Bob cooks dinner.  →  (: e_cook (Member sk_cook_1 cook) (STV 1.0 0.99))
+                            (: e_agent (Agent sk_cook_1 bob) (STV 1.0 0.99))
+                            (: e_patient (Patient sk_cook_1 dinner) (STV 1.0 0.99))
+                            (: bob_name (Name bob "Bob") (STV 1.0 0.99))
 
-  Only an explicit *not / n't / no / never / neither* sets strength to `0.0`.
+The verb is always the lowercase class `cook`; only roles/status are UpperCamelCase. Build
+up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more roles/status.
 
-## Relations and named entities
+### Thematic roles  `(<Role> <event> <filler>)`
 
-An **n-ary relation** is a plain predicate — an UpperCamelCase head with the related
-entities as arguments:
+- `Agent` — volitional doer / subject of an action.
+- `Patient` — entity affected / created / consumed (direct object of an action).
+- `Theme` — entity moved, transferred, located, or possessed.
+- `Recipient` — goal of a transfer (indirect object / "to").
+- `Experiencer` — subject of a perception/psych state ("know", "love", "see"); `Stimulus` —
+  its object.
+- `Holder` — subject of a possession/relational state ("own", "have").
+- Obliques: `Instrument` ("with …"), `Location` ("in/at/on …"), `Time` ("yesterday"),
+  `Manner` (adverb), `Source` ("from …"), `Goal` ("to …" non-recipient), `Beneficiary` ("for …").
 
-    Alice owns a dog.  →  (: sk_dog_1_is_dog     (Member sk_dog_1 dog)  (STV 1.0 0.99))
-                          (: alice_owns_sk_dog_1 (Owns alice sk_dog_1)  (STV 1.0 0.99))
+Assign: subject → `Agent` (action) / `Experiencer` or `Holder` (state); direct object →
+`Patient` (action) / `Theme` or `Stimulus` (state, transfer); indirect object → `Recipient`;
+obliques by their preposition/adverb. Be consistent; when unsure use the closest role.
 
-("a dog" is existential → a witness, per the Existential rules.)
+An **indefinite argument** ("a book") is an existential → witness + class, referenced by its
+role. A **passive / agentless** clause just omits `Agent`.
 
-For a **named individual** (a proper noun), also record its surface name with a `Name`
-fact — the symbol stays clean while the original text is preserved:
+      Maria gave Bob a book in the library.
+        →  (: e_give (Member sk_give_1 give) (STV 1.0 0.99))
+           (: e_agent (Agent sk_give_1 maria) (STV 1.0 0.99))
+           (: e_recip (Recipient sk_give_1 bob) (STV 1.0 0.99))
+           (: e_theme (Theme sk_give_1 sk_book_1) (STV 1.0 0.99))
+           (: e_book (Member sk_book_1 book) (STV 1.0 0.99))
+           (: e_loc (Location sk_give_1 library) (STV 1.0 0.99))
+           (: e_past (Past sk_give_1) (STV 1.0 0.99))
+           (: maria_name (Name maria "Maria") (STV 1.0 0.99))
+           (: bob_name (Name bob "Bob") (STV 1.0 0.99))
 
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+      Alice owns a dog.  →  (: e_own (Member sk_own_1 own) (STV 1.0 0.99))
+                            (: e_holder (Holder sk_own_1 alice) (STV 1.0 0.99))
+                            (: e_theme (Theme sk_own_1 sk_dog_1) (STV 1.0 0.99))
+                            (: e_dog (Member sk_dog_1 dog) (STV 1.0 0.99))
+                            (: alice_name (Name alice "Alice") (STV 1.0 0.99))
 
-Use distinct symbols for distinct entities that share a name (`alice_1`, `alice_2`), each
-with its own `Name`.
+      Dinner was cooked.  →  (: e_cook (Member sk_cook_1 cook) (STV 1.0 0.99))
+                             (: e_patient (Patient sk_cook_1 dinner) (STV 1.0 0.99))
+                             (: e_past (Past sk_cook_1) (STV 1.0 0.99))
 
-## Quantifier scope — two quantifiers over a relation
+### Status predicates  `(<Status> <event>)`
 
-When two quantifiers are linked by a relation ("every X V some Y"), **read the natural
-meaning — not word order**. Find the universal entity and the existential entity, and ask
-whether the existential is **shared** (one thing for all) or **dependent** (a different one
-per instance):
+An event with **no status predicate is generic / habitual / dispositional** — *not* a
+specific occurrence. Mark otherwise (stack as needed):
 
-- **∀∀** "every dog chased every cat" — rule, two universal premises:
+- **Tense**: `(Past e)`, `(Future e)`. (A present occurrence is usually `(Ongoing e)`.)
+- **Aspect**: `(Ongoing e)` (progressive). Perfect ("has V-ed") → coarse `(Past e)`.
+- **Capability** ("can / able to"): `(Can e)`.
+- **Epistemic** ("might / probably / must"-inference): `(Might e)`, `(Probably e)`, `(Must e)`.
+- **Deontic** ("must / required" obligation; "may / allowed" permission): `(Obligated e)`,
+  `(Permitted e)`; weaker "should / ought" → `(Obligated e)` at strength `0.7`.
 
-      (: every_dog_chased_every_cat
-         (Implication (Premises (Member $x dog) (Member $y cat)) (Conclusions (Chased $x $y)))
-         (STV 1.0 0.9))
+      Bob can cook dinner.   →  (Member sk_cook_1 cook) (Agent sk_cook_1 bob)
+                                (Patient sk_cook_1 dinner) (Can sk_cook_1)
+      Bob cooked dinner yesterday. → … (Patient sk_cook_1 dinner) (Past sk_cook_1)
+                                       (Time sk_cook_1 yesterday)
+      Bob is cooking dinner. →  … (Patient sk_cook_1 dinner) (Ongoing sk_cook_1)
+      Bob was cooking.       →  (Member sk_cook_1 cook) (Agent sk_cook_1 bob)
+                                (Past sk_cook_1) (Ongoing sk_cook_1)
 
-- **∀∃ dependent** "every student read some book" (each a different book) — the existential
-  is a **Skolem function `(sk_<class> $x)`** of the universal variable:
+Drop the same surface word's *sense* into the right operator: "must" → epistemic `Must`
+**or** deontic `Obligated`; "may" → epistemic `Might` **or** deontic `Permitted`; "can" →
+capability `Can` **or** deontic `Permitted`. Status atoms are `(STV 1.0 0.99)`, **except
+epistemic** `Might`/`Probably`/`Must`, which take confidence `0.9` (an inference, not a flat
+fact); deontic "should" is strength `0.7`.
 
-      (: every_student_read_some_book
-         (Implication (Premises (Member $x student))
-                      (Conclusions (Member (sk_book $x) book) (Read $x (sk_book $x))))
-         (STV 1.0 0.9))
+**Tense / modality over a copular clause** has no event — wrap the categorical atom in the
+status operator instead:
 
-- **∃∀ shared** "some critic reviewed every film" (one critic) — a witness **constant** for
-  the shared entity + a rule over the universal one:
+      Alice was happy.       →  (: alice_was_happy (Past (Member alice happy)) (STV 1.0 0.99))
+      John must be asleep.   →  (: john_must_asleep (Must (Member john asleep)) (STV 1.0 0.9))
+      Bob will be a doctor.  →  (: bob_will_doctor (Future (Member bob doctor)) (STV 1.0 0.99))
 
-      (: sk_critic_1_is_critic (Member sk_critic_1 critic) (STV 1.0 0.99))
-      (: that_critic_reviewed_every_film
-         (Implication (Premises (Member $y film)) (Conclusions (Reviewed sk_critic_1 $y)))
-         (STV 1.0 0.9))
+### Negation (events)
 
-- **∃∃** "some dog chased some cat" — two witness constants + a plain fact:
+Wrap the event's atoms in a **conjunction** and set **strength `0.0`** on it (confidence per
+the dial). Positive event = separate atoms; negated event = one strength-`0.0` conjunction:
 
-      (: sk_dog_1_is_dog (Member sk_dog_1 dog) (STV 1.0 0.99))
-      (: sk_cat_1_is_cat (Member sk_cat_1 cat) (STV 1.0 0.99))
-      (: sk_dog_1_chased_sk_cat_1 (Chased sk_dog_1 sk_cat_1) (STV 1.0 0.99))
+      Bob didn't cook dinner. → (: bob_not_cook
+                                  (And (Member sk_cook_1 cook) (Agent sk_cook_1 bob) (Patient sk_cook_1 dinner))
+                                  (STV 0.0 0.99))
+      Bob can't cook.         → (: bob_cant_cook
+                                  (And (Member sk_cook_1 cook) (Agent sk_cook_1 bob) (Can sk_cook_1))
+                                  (STV 0.0 0.99))
 
-The universal entity can be the grammatical **object**: "a nurse is assigned to every
-patient" is ∀∃ dependent — universal = patient, dependent existential = nurse →
-`(sk_nurse $p)`. Cues like "the **same** Y" or "a **certain** Y" force the **shared**
-(constant) reading even when the universal comes first. Only if a sentence is genuinely
-ambiguous, fall back to word order (first quantifier takes wide scope). Rule strength is
-`1.0`, confidence by the definitional/empirical dial (relational universals are usually
-empirical → `0.9`); witness facts stay `0.99`.
+## Existential — "a/an", "some", "there is/are"
 
-**Negation over a universal** — pick the natural reading:
+An existential entity asserts *at least one* such thing → a fresh witness `sk_<class>_<n>`
+with its membership, used wherever the entity appears (a role filler in an event, or on its
+own):
 
-- **¬∀** "not every X V-s" / "all the X did not V" ("Not every guest arrived") denies the
-  universal → a **counterexample witness** (one X that does not V), as in Negation:
+      There is a black raven. → (: sk_raven_1_raven (Member sk_raven_1 raven) (STV 1.0 0.99))
+                                (: sk_raven_1_black (Member sk_raven_1 black) (STV 1.0 0.99))
 
-      (: sk_guest_1_is_guest    (Member sk_guest_1 guest)  (STV 1.0 0.99))
-      (: sk_guest_1_not_arrived (Arrived sk_guest_1)       (STV 0.0 0.99))
+"There is a X" and "some X" share this encoding. "a few" / "a couple" → a witness too (small
+count, exact number not represented). Do **not** use a witness for proportion words
+("most"/"many"/"few" set the strength instead). Indefinite "a/an" can be generic, not
+existential ("A dog is a mammal" = `(Inheritance dog mammal)`) — judge from context.
 
-- **∀¬** "no X V-s Y" / "every X doesn't V Y" ("No key opens this lock") → a universal rule
-  with a **strength-`0.0`** conclusion:
+## Quantifiers, generics & scope (verbal → rules)
 
-      (: no_key_opens_this_lock
-         (Implication (Premises (Member $x key)) (Conclusions (Opens $x this_lock)))
-         (STV 0.0 0.99))
+A **verbal** generic or universal over a kind becomes a **rule** that gives each instance
+its own event, via a **Skolem-function** event term `(sk_<verb> $x)` (distinct per binding;
+never a free/unbound variable). Rule strength = the quantity (all `1.0`, generic/most `0.9`,
+many `0.7`, few `0.1`); confidence by the dial. A **deontic norm** over a kind ("students
+must submit homework", "visitors may enter") is prescriptive → strength `1.0`, confidence
+`0.99`.
 
-## Capability and modality
+      Birds fly.      →  (: birds_fly (Implication (Premises (Member $x bird))
+                            (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x))) (STV 0.9 0.9))
+      Birds can fly.  →  (: birds_can_fly (Implication (Premises (Member $x bird))
+                            (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x) (Can (sk_fly $x)))) (STV 0.9 0.9))
 
-PLN has no built-in modal operator, so modals are **reified** — the operator is kept as
-structure, so it can be inherited and queried.
+A clause with **two quantifiers over a relation** — read the natural meaning, not word
+order — uses Skolem **functions** for *dependent* existentials, witness **constants** for
+*shared* ones, and rule premises for universals:
 
-**Capability / ability — "can", "able to", "cannot"** — a **`(Can <action>)`** property in
-the class slot, parallel to a plain property; it inherits down taxonomies and to instances:
+- **∀∃ (dependent)** "every student read some book" — each its own book:
 
-    Birds can fly.        →  (: birds_can_fly (Inheritance bird (Can fly)) (STV 0.9 0.9))
-    Mary can swim.        →  (: mary_can_swim (Member mary (Can swim)) (STV 1.0 0.99))
-    Penguins cannot fly.  →  (: penguins_cannot_fly (Inheritance penguin (Can fly)) (STV 0.0 0.99))
+      (: every_student_read_book (Implication (Premises (Member $x student))
+         (Conclusions (Member (sk_read $x) read) (Agent (sk_read $x) $x)
+                      (Theme (sk_read $x) (sk_book $x)) (Member (sk_book $x) book))) (STV 1.0 0.9))
 
-- `<action>` is the bare verb (`fly`), or a compound for a transitive action: "cats can
-  catch mice" → `(Inheritance cat (Can (catch mouse)))`.
-- This marks *ability*, distinct from plain actuality: "birds fly" is `(Inheritance bird
-  fly)` (the activity as a plain property); "birds can fly" wraps it in `(Can ...)`.
-- Strength/confidence follow the usual dials: generic → `0.9 0.9`, individual → `1.0 0.99`,
-  negated ability ("cannot") → strength `0.0`.
+- **∃∀ (shared)** "some critic reviewed every film" — one shared critic (a constant):
 
-**Epistemic modality — "might", "probably", "must" (inference)** — reify the operator over
-the whole **proposition** (written exactly as you would assert it on its own, so the modal
-claim and the bare fact share structure). Normalise the operator to one of **`Might`**
-(may / might / could / possibly), **`Probably`** (likely / probably), **`Must`** (epistemic
-necessity: must / surely / certainly):
+      (: sk_critic_1_critic (Member sk_critic_1 critic) (STV 1.0 0.99))
+      (: that_critic_reviewed (Implication (Premises (Member $y film))
+         (Conclusions (Member (sk_review $y) review) (Agent (sk_review $y) sk_critic_1) (Theme (sk_review $y) $y))) (STV 1.0 0.9))
 
-    It might rain.         →  (: might_rain (Might (rain)) (STV 1.0 0.9))
-    John must be asleep.   →  (: john_must_be_asleep (Must (Member john asleep)) (STV 1.0 0.9))
-    It will probably snow. →  (: probably_snow (Probably (snow)) (STV 1.0 0.9))
+- **∀∀** "every dog chased every cat" — two universal premises:
 
-- The **degree** lives in the operator (`Might`/`Probably`/`Must`), not the strength; the
-  inner is a parenthesised proposition — `(rain)`, `(Member john asleep)` — never a bare atom.
+      (: every_dog_chased_cat (Implication (Premises (Member $x dog) (Member $y cat))
+         (Conclusions (Member (sk_chase $x $y) chase) (Agent (sk_chase $x $y) $x) (Patient (sk_chase $x $y) $y))) (STV 1.0 0.9))
 
-**Deontic modality — obligation / permission / prohibition** — reify subject-centered, like
-capability (it concerns what an agent must / may *do*), so it inherits via the scaffolding.
-Use operators **distinct from epistemic**:
+Cues "the **same** Y" / "a **certain** Y" force the shared (constant) reading; genuine
+ambiguity → first quantifier takes wide scope. A relational universal with a **copular**
+conclusion mixes the two forms — "everyone who owns a dog is a pet owner":
 
-- **Obligation** ("must", "have to", "required to", "shall") → **`(Obligated <action>)`**;
-  weaker "should" / "ought to" → the same operator at strength `0.7`:
+      (: dog_owner_pet_owner (Implication
+         (Premises (Member $e own) (Holder $e $x) (Theme $e $y) (Member $y dog))
+         (Conclusions (Member $x pet_owner))) (STV 1.0 0.99))
 
-      Students must submit homework. →  (: students_must_submit (Inheritance student (Obligated (submit homework))) (STV 1.0 0.99))
-      Citizens should vote.         →  (: citizens_should_vote (Inheritance citizen (Obligated vote)) (STV 0.7 0.99))
-
-- **Permission** ("may", "can" = permission, "allowed / permitted to") → **`(Permitted <action>)`**:
-
-      Visitors may use the lounge.  →  (: visitors_may_use_lounge (Inheritance visitor (Permitted (use lounge))) (STV 1.0 0.99))
-
-- **Prohibition** ("must not", "may not", "forbidden", "not allowed") → permission at
-  strength `0.0` (forbidden ≡ not permitted):
-
-      Passengers must not smoke.    →  (: passengers_not_smoke (Inheritance passenger (Permitted smoke)) (STV 0.0 0.99))
-
-The same surface word picks the operator **by sense**: "must" → epistemic `Must` or deontic
-`Obligated`; "may" → epistemic `Might` or deontic `Permitted`; "can" → ability `Can` or
-deontic `Permitted`. Deontic norms are prescriptive → confidence `0.99`.
-
-## Tense
-
-Detect grammatical **past**, **future**, or **progressive** and wrap the proposition in that
-operator; **present-simple, generic, and timeless** statements stay **unmarked**:
-
-    Alice visited Paris.  →  (: alice_visited_paris (Past (Visit alice paris)) (STV 1.0 0.99))
-                             (: alice_name (Name alice "Alice") (STV 1.0 0.99))
-                             (: paris_name (Name paris "Paris") (STV 1.0 0.99))
-    It will rain.         →  (: future_rain (Future (rain)) (STV 1.0 0.99))
-    Alice is sleeping.    →  (: alice_is_sleeping (Ongoing (Sleep alice)) (STV 1.0 0.99))
-    Alice knows Bob.      →  (: alice_knows_bob (Know alice bob) (STV 1.0 0.99))   ; present → unmarked
-    Birds fly.            →  (: birds_fly (Inheritance bird fly) (STV 0.9 0.9))    ; generic → unmarked
-
-- The inner is the proposition exactly as you would assert it tenseless (a parenthesised
-  predicate, `Member`, or `Inheritance`), so the tensed form and the bare fact share structure.
-- **Continuous / progressive** forms add an **`Ongoing`** wrapper (simple / habitual stays
-  unmarked): "is walking" → `(Ongoing (Walk alice))`; "was walking" →
-  `(Past (Ongoing (Walk alice)))`; "will be walking" → `(Future (Ongoing (Walk alice)))`.
-  **Perfect** ("has visited") drops to coarse tense → `(Past (Visit alice paris))`.
-- Drop finer time markers ("yesterday", "tonight", "in 1999") and ordering for now.
-- Query the same way: "What did Alice do?" → `(: $prf (Past ($rel alice $obj)) $tv)`; "What is
-  Alice doing?" (progressive) → `(: $prf (Ongoing ($rel alice $obj)) $tv)`; "What does Alice
-  do?" (habitual) → `(: $prf ($rel alice $obj) $tv)`; "What will happen?" → `(: $prf (Future $p) $tv)`.
+(**Copular** universals/generics do **not** reify events — "all dogs are mammals", "most
+teachers are patient" stay the single `Inheritance` fact from **Categorical statements**.)
 
 ## Queries — converting a question
 
-Every rule above builds a **statement**. A **question** instead becomes a single **query
-pattern** — the same content atom(s), with a `$`-variable in each unknown slot, wrapped as:
+A question becomes a **query pattern** — the same content you would assert, with a
+`$`-variable in each unknown slot, wrapped as `(: $prf <pattern> $tv)`. Join the conjuncts
+of an event/relation with **`And`** on the shared event variable.
 
-    (: $prf <pattern> $tv)
+- **Yes/no** — no unknown; query the whole proposition (the engine returns its STV).
+- **Wh-question** — a `$`-variable where the wh-word asks.
+- A **named individual** is bound by its `Name`, not a hard-coded symbol (you don't know the
+  KB's symbol): conjoin `(Name $x "…")`.
+- A **negative / polarity** question pins the truth value to `(STV 0.0 $conf)`.
 
-- **Yes/no question** — no unknown; query the whole proposition (the engine returns its
-  truth value).
-- **Wh-question** — put a `$`-variable where the wh-word asks (use `Member` to ask for
-  individuals, `Inheritance` for kinds).
+      Is Tokyo a city?      →  (: $prf (And (Name $x "Tokyo") (Member $x city)) $tv)
+      What did Bob cook?    →  (: $prf (And (Member $e cook) (Agent $e bob) (Patient $e $what) (Past $e)) $tv)
+      What can Bob cook?    →  (: $prf (And (Member $e cook) (Agent $e bob) (Patient $e $what) (Can $e)) $tv)
+      Who cooked dinner?    →  (: $prf (And (Member $e cook) (Patient $e dinner) (Agent $e $who) (Past $e)) $tv)
+      What does Bob do?     →  (: $prf (And (Member $e $verb) (Agent $e bob)) $tv)
+      Can penguins fly?     →  (: $prf (And (Member $e fly) (Agent $e penguin) (Can $e)) $tv)
+      Did Bob cook?         →  (: $prf (And (Member $e cook) (Agent $e bob) (Past $e)) $tv)
 
-A **named individual** mentioned in the question is **not** hard-coded as a symbol — you do
-not know which symbol the knowledge base used for it (it may be disambiguated, e.g.
-`tom_1`, or there may be several). Bind it with a variable constrained by its `Name`,
-conjoined with `And`:
-
-    Is Tokyo a city?     →  (: $prf (And (Name $x "Tokyo") (Member $x city)) $tv)
-    What does Maria own? →  (: $prf (And (Name $m "Maria") (Owns $m $x)) $tv)
-
-Common nouns — classes and properties — keep their canonical symbol directly:
-
-    Can penguins fly?    →  (: $prf (Inheritance penguin (Can fly)) $tv)
-    Who can swim?        →  (: $prf (Member $x (Can swim)) $tv)
-    What can birds do?   →  (: $prf (Inheritance bird (Can $x)) $tv)
-    What might happen?   →  (: $prf (Might $x) $tv)
-
-A **negative / polarity** question — "what can't X do?", "what must X not do?", "what is X
-forbidden to do?" — pins the truth value to **`(STV 0.0 $conf)`** to match the strength-0
-(negated) atoms:
-
-    What can't penguins do?   →  (: $prf (Inheritance penguin (Can $x)) (STV 0.0 $conf))
-    What may visitors not do? →  (: $prf (Inheritance visitor (Permitted $x)) (STV 0.0 $conf))
-
-Build the pattern exactly as you would the matching statement (same relations, casing, modal
-wrappers); only the unknowns and any named entity become `$`-variables, and the truth value
-becomes `$tv` (or `(STV 0.0 $conf)` for a negative question). Output **only** the query —
-never assert a standalone `Name` or other fact (a question asks, it does not add knowledge).
+Build the pattern exactly as the matching statement (same classes, roles, casing, status);
+only the unknowns and any named entity become `$`-variables, and the truth value becomes
+`$tv` (or `(STV 0.0 $conf)` for a negative question). Output **only** the query — never
+assert a `Name` or other fact (a question asks, it does not add knowledge).
