@@ -370,7 +370,7 @@ attach to one symbol. Resolve each anaphor to the most salient compatible antece
     Every farmer who owns a donkey beats it.
       →  (: every_farmer_beats_donkey (Implication
             (Premises (Member $f farmer) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d donkey))
-            (Conclusions (Member $b beat) (Agent $b $f) (Patient $b $d))) (STV 1.0 0.9))   ; it = $d
+            (Conclusions (Member (sk_beat $f $d) beat) (Agent (sk_beat $f $d) $f) (Patient (sk_beat $f $d) $d))) (STV 1.0 0.9))   ; it = $d
 
 ## Queries — converting a question
 
