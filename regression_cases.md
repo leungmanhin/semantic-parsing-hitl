@@ -157,12 +157,14 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 **[ev-passive] The report was published.** — passive: Patient, no Agent
 
     (: e_publish (Member sk_publish_1 publish) (STV 1.0 0.99))
-    (: e_patient (Patient sk_publish_1 report) (STV 1.0 0.99))
+    (: e_patient (Patient sk_publish_1 sk_report_1) (STV 1.0 0.99))
+    (: e_report (Member sk_report_1 report) (STV 1.0 0.99))
     (: e_past (Past sk_publish_1) (STV 1.0 0.99))
 
 **[ev-neg] Grace didn't sign the contract.** — event negation → strength-0 conjunction
 
-    (: grace_not_sign (And (Member sk_sign_1 sign) (Agent sk_sign_1 grace) (Patient sk_sign_1 contract)) (STV 0.0 0.99))
+    (: sk_contract_1_contract (Member sk_contract_1 contract) (STV 1.0 0.99))
+    (: grace_not_sign (And (Member sk_sign_1 sign) (Agent sk_sign_1 grace) (Patient sk_sign_1 sk_contract_1) (Past sk_sign_1)) (STV 0.0 0.99))
     (: grace_name (Name grace "Grace") (STV 1.0 0.99))
 
 ## Coordination & plurals
@@ -197,13 +199,14 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
 **[coord-shared] Tom and Grace cleaned the kitchen.** — distributive + shared object (one `kitchen`)
 
+    (: sk_kitchen_1_kitchen (Member sk_kitchen_1 kitchen) (STV 1.0 0.99))
     (: e_clean1 (Member sk_clean_1 clean) (STV 1.0 0.99))
     (: e_clean1_agent (Agent sk_clean_1 tom) (STV 1.0 0.99))
-    (: e_clean1_patient (Patient sk_clean_1 kitchen) (STV 1.0 0.99))
+    (: e_clean1_patient (Patient sk_clean_1 sk_kitchen_1) (STV 1.0 0.99))
     (: e_clean1_past (Past sk_clean_1) (STV 1.0 0.99))
     (: e_clean2 (Member sk_clean_2 clean) (STV 1.0 0.99))
     (: e_clean2_agent (Agent sk_clean_2 grace) (STV 1.0 0.99))
-    (: e_clean2_patient (Patient sk_clean_2 kitchen) (STV 1.0 0.99))
+    (: e_clean2_patient (Patient sk_clean_2 sk_kitchen_1) (STV 1.0 0.99))
     (: e_clean2_past (Past sk_clean_2) (STV 1.0 0.99))
     (: tom_name (Name tom "Tom") (STV 1.0 0.99))
     (: grace_name (Name grace "Grace") (STV 1.0 0.99))
@@ -219,9 +222,9 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
 **[coord-group] The orchestra performed.** — group as a unit (collective noun) → sum individual
 
-    (: the_orchestra_orchestra (Member the_orchestra orchestra) (STV 1.0 0.99))
+    (: sk_orchestra_1_orchestra (Member sk_orchestra_1 orchestra) (STV 1.0 0.99))
     (: e_perform (Member sk_perform_1 perform) (STV 1.0 0.99))
-    (: e_perform_agent (Agent sk_perform_1 the_orchestra) (STV 1.0 0.99))
+    (: e_perform_agent (Agent sk_perform_1 sk_orchestra_1) (STV 1.0 0.99))
     (: e_perform_past (Past sk_perform_1) (STV 1.0 0.99))
 
 **[plural-group] The tourists assembled.** — bare definite plural → group entity + `GroupOf` member kind
@@ -382,7 +385,7 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 
 **[q-wh-who] Who built the bridge?** — wh on the Agent
 
-    (: $prf (And (Member $e build) (Patient $e bridge) (Agent $e $who) (Past $e)) $tv)
+    (: $prf (And (Member $e build) (Patient $e $b) (Member $b bridge) (Agent $e $who) (Past $e)) $tv)
 
 **[q-wh-do] What does Nina do?** — wh on the verb class (habitual, unmarked)
 

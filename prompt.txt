@@ -166,7 +166,8 @@ role. A **passive / agentless** clause just omits `Agent`.
            (: e_recip (Recipient sk_give_1 bob) (STV 1.0 0.99))
            (: e_theme (Theme sk_give_1 sk_book_1) (STV 1.0 0.99))
            (: e_book (Member sk_book_1 book) (STV 1.0 0.99))
-           (: e_loc (Location sk_give_1 library) (STV 1.0 0.99))
+           (: e_loc (Location sk_give_1 sk_library_1) (STV 1.0 0.99))
+           (: e_lib (Member sk_library_1 library) (STV 1.0 0.99))
            (: e_past (Past sk_give_1) (STV 1.0 0.99))
            (: maria_name (Name maria "Maria") (STV 1.0 0.99))
            (: bob_name (Name bob "Bob") (STV 1.0 0.99))
@@ -220,7 +221,7 @@ Wrap the event's atoms in a **conjunction** and set **strength `0.0`** on it (co
 the dial). Positive event = separate atoms; negated event = one strength-`0.0` conjunction:
 
       Bob didn't cook dinner. → (: bob_not_cook
-                                  (And (Member sk_cook_1 cook) (Agent sk_cook_1 bob) (Patient sk_cook_1 dinner))
+                                  (And (Member sk_cook_1 cook) (Agent sk_cook_1 bob) (Patient sk_cook_1 dinner) (Past sk_cook_1))
                                   (STV 0.0 0.99))
       Bob can't cook.         → (: bob_cant_cook
                                   (And (Member sk_cook_1 cook) (Agent sk_cook_1 bob) (Can sk_cook_1))
@@ -239,6 +240,15 @@ own):
 count, exact number not represented). Do **not** use a witness for proportion words
 ("most"/"many"/"few" set the strength instead). Indefinite "a/an" can be generic, not
 existential ("A dog is a mammal" = `(Inheritance dog mammal)`) — judge from context.
+
+A **definite** description — "**the** report", "**this** car" — that picks out a specific
+thing is encoded the **same way**: a typed individual `sk_<class>_<n>` + its `(Member …)`.
+Definiteness ("the" vs "a") changes only **coreference**, not the encoding — resolve "the N"
+to an existing symbol when there is an antecedent (see **Coreference & anaphora**), else mint a
+fresh one. Reserve the **bare class symbol** for a **non-specific / generic** object ("pays
+tax", "speaks French", "cooked dinner"), never for a specific definite individual. In a
+**query**, bind a definite common noun by its kind, like a name binds by `Name`: "Who built
+the bridge?" → `(… (Patient $e $b) (Member $b bridge) …)`.
 
 ## Coordination & plurals
 
@@ -274,8 +284,8 @@ that can corefer later as "it" / "they" → mint **one group entity** (a sum ind
 predicate over it. Record its **member kind** with `(GroupOf <group> <kind>)`, add a
 **collective noun** (if any) with `Member`, and link any **named** members with `PartOf`:
 
-      The committee approved the plan. →  (Member the_committee committee) (Member sk_approve_1 approve)
-                                          (Agent sk_approve_1 the_committee) (Patient sk_approve_1 sk_plan_1)
+      The committee approved the plan. →  (Member sk_committee_1 committee) (Member sk_approve_1 approve)
+                                          (Agent sk_approve_1 sk_committee_1) (Patient sk_approve_1 sk_plan_1)
                                           (Member sk_plan_1 plan) (Past sk_approve_1)
       The students gathered.           →  (GroupOf sk_group_1 student) (Member sk_gather_1 gather)
                                           (Agent sk_gather_1 sk_group_1) (Past sk_gather_1)
