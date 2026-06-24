@@ -67,3 +67,13 @@
 ; "hundreds" ≥ 200
 (: cp_hundreds_min (Implication (Premises (CardinalityPhrase $g "hundreds"))
    (Conclusions (CardinalityAtLeast $g 200))) (STV 1.0 0.8))
+
+; ===== Comparative / degree scaffolding =====
+
+; "more" is transitive on any scale:  More(s,x,y), More(s,y,z) ⟹ More(s,x,z)
+(: more_trans (Implication (Premises (More $s $x $y) (More $s $y $z))
+   (Conclusions (More $s $x $z))) (STV 1.0 0.99))
+
+; "as ADJ as" (equative) is symmetric
+(: samedegree_sym (Implication (Premises (SameDegree $s $x $y))
+   (Conclusions (SameDegree $s $y $x))) (STV 1.0 0.99))

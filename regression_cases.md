@@ -316,6 +316,70 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: $prf (And (Member $e score) (Agent $e $g) (GroupOf $g player) (Cardinality $g $n) (GreaterThan $n 4) (Past $e)) $tv)
 
+## Comparatives & degree
+
+**[comp-basic] Carol is faster than Dan.** — comparative → `More` (no positive property)
+
+    (: comp_basic (More fast carol dan) (STV 1.0 0.99))
+    (: carol_name (Name carol "Carol") (STV 1.0 0.99))
+    (: dan_name (Name dan "Dan") (STV 1.0 0.99))
+
+**[comp-less] Leo is less experienced than Mary.** — "less" → swap the pair
+
+    (: comp_less (More experienced mary leo) (STV 1.0 0.99))
+    (: leo_name (Name leo "Leo") (STV 1.0 0.99))
+    (: mary_name (Name mary "Mary") (STV 1.0 0.99))
+
+**[comp-antonym] Nina is weaker than Oscar.** — antonym → positive pole `strong` + swap (keep-lemma `(More weak nina oscar)` also valid)
+
+    (: comp_antonym (More strong oscar nina) (STV 1.0 0.99))
+    (: nina_name (Name nina "Nina") (STV 1.0 0.99))
+    (: oscar_name (Name oscar "Oscar") (STV 1.0 0.99))
+
+**[comp-super] Felix is the smartest engineer.** — superlative → `Most` + class membership
+
+    (: comp_super (Most smart felix engineer) (STV 1.0 0.99))
+    (: felix_engineer (Member felix engineer) (STV 1.0 0.99))
+    (: felix_name (Name felix "Felix") (STV 1.0 0.99))
+
+**[comp-equative] Grace is as old as Victor.** — equative → `SameDegree`
+
+    (: comp_equative (SameDegree old grace victor) (STV 1.0 0.99))
+    (: grace_name (Name grace "Grace") (STV 1.0 0.99))
+    (: victor_name (Name victor "Victor") (STV 1.0 0.99))
+
+**[comp-very] Diana is extremely calm.** — intensifier → positive + `Degree high`
+
+    (: diana_calm (Member diana calm) (STV 1.0 0.99))
+    (: diana_calm_deg (Degree diana calm high) (STV 1.0 0.99))
+    (: diana_name (Name diana "Diana") (STV 1.0 0.99))
+
+**[comp-too] The coffee is too sweet.** — "too" → `Degree excessive` (definite `the coffee` typed)
+
+    (: sk_coffee_1_coffee (Member sk_coffee_1 coffee) (STV 1.0 0.99))
+    (: sk_coffee_1_sweet (Member sk_coffee_1 sweet) (STV 1.0 0.99))
+    (: sk_coffee_1_deg (Degree sk_coffee_1 sweet excessive) (STV 1.0 0.99))
+
+**[comp-enough] The rope is long enough.** — "enough" → `Degree sufficient`
+
+    (: sk_rope_1_rope (Member sk_rope_1 rope) (STV 1.0 0.99))
+    (: sk_rope_1_long (Member sk_rope_1 long) (STV 1.0 0.99))
+    (: sk_rope_1_deg (Degree sk_rope_1 long sufficient) (STV 1.0 0.99))
+
+**[comp-tense] Carol was taller than Dan.** — tense wraps the comparative atom
+
+    (: comp_tense (Past (More tall carol dan)) (STV 1.0 0.99))
+    (: carol_name (Name carol "Carol") (STV 1.0 0.99))
+    (: dan_name (Name dan "Dan") (STV 1.0 0.99))
+
+**[comp-q-who] Who is faster than Dan?** — wh on the higher term
+
+    (: $prf (And (Name $d "Dan") (More fast $x $d)) $tv)
+
+**[comp-q-super] Who is the smartest engineer?** — superlative query
+
+    (: $prf (Most smart $x engineer) $tv)
+
 ## Generics & scope (verbal → rules)
 
 **[gen-verbal] Fish swim.** — verbal generic over a kind → Skolem-event rule, 0.9/0.9

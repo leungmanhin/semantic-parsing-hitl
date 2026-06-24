@@ -356,6 +356,47 @@ is predicated as a unit (per-member distribution is a separate, not-yet-emitted 
 (A combined total **across** groups uses the engine's `FoldAll` to sum cardinalities — emit that
 only when the question explicitly asks for an aggregate total.)
 
+## Comparatives & degree
+
+Adjectives are binary properties (`(Member x tall)`). **Comparison** is *ordering on a scale*
+and usually gives no number, so **reify the ordering as a relation** — don't compute it. The
+**scale** is the lemmatized adjective (same symbol as the positive: "taller" → `tall`).
+
+- **Comparative** "X is ADJ-er / more ADJ than Y" → `(More <scale> X Y)` (X exceeds Y on the
+  scale). It does **not** entail the positive — taller-than-Y doesn't make X tall:
+
+      Alice is taller than Bob. →  (More tall alice bob) (Name alice "Alice") (Name bob "Bob")
+
+  "**less** ADJ than" → **swap** the pair ("Maria is less patient than Tom" → `(More patient tom
+  maria)`). For an **antonym** comparative, **prefer the scale's positive ("more") pole** when
+  there is a clear one, swapping the pair — "Bob is shorter than Alice" → `(More tall alice
+  bob)`, "X is weaker than Y" → `(More strong Y X)` — so comparisons on one dimension share a
+  scale and chain. When there is **no obvious positive pole** ("cheaper", "further left"), keep
+  the surface lemma; either is valid.
+
+- **Superlative** "X is the most ADJ / the ADJ-est [N]" → `(Most <scale> X <class>)`, plus X is
+  a member of the class:
+
+      Alice is the tallest student. →  (Most tall alice student) (Member alice student) (Name alice "Alice")
+
+  Bare "the tallest" (no noun) → the contextual comparison class (default `person`).
+
+- **Equative** "X is as ADJ as Y" → `(SameDegree <scale> X Y)`:
+
+      Bob is as strong as Tom. →  (SameDegree strong bob tom) (Name bob "Bob") (Name tom "Tom")
+
+- **Degree** ("very / too / slightly ADJ") — assert the **positive property** *and* a
+  `(Degree X <scale> <level>)` atom (intensifiers entail the property, so keep the positive);
+  level ∈ `high` (very/really/extremely), `low` (slightly/somewhat), `excessive` (too),
+  `sufficient` (enough):
+
+      Alice is very tall.  →  (Member alice tall) (Degree alice tall high) (Name alice "Alice")
+      The soup is too hot. →  (Member sk_soup_1 soup) (Member sk_soup_1 hot) (Degree sk_soup_1 hot excessive)
+
+`More`'s transitivity and `SameDegree`'s symmetry are **seeded** (`seeded_rules.metta`), not
+emitted. Tense/modality **wrap** a comparative like any copular atom: "Alice was taller than
+Bob" → `(Past (More tall alice bob))`.
+
 ## Quantifiers, generics & scope (verbal → rules)
 
 A **verbal** generic or universal over a kind becomes a **rule** that gives each instance
@@ -448,6 +489,9 @@ of an event/relation with **`And`** on the shared event variable.
 - **Wh-question** — a `$`-variable where the wh-word asks.
 - A **named individual** is bound by its `Name`, not a hard-coded symbol (you don't know the
   KB's symbol): conjoin `(Name $x "…")`.
+- The **wh-answer variable is returned bare** — do **not** bind a `(Name $ans …)` for it (its
+  symbol already resolves to a `Name` in the KB; binding it drops unnamed answers and adds a
+  needless conjunct), and don't restate a class the pattern already fixes.
 - A **negative / polarity** question pins the truth value to `(STV 0.0 $conf)`.
 
       Is Tokyo a city?      →  (: $prf (And (Name $x "Tokyo") (Member $x city)) $tv)
