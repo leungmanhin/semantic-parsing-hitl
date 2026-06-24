@@ -20,375 +20,378 @@ Coreference cases are **passages** (multiple sentences) — feed the whole passa
 key check is that coreferring mentions (pronoun, "the X", a name, event anaphora) **share one
 symbol** across sentences (the exact `sk_*` symbol and some role labels may vary).
 
-Update Expected whenever a convention changes. Add a contrastive case per new prompt feature.
+**Inputs are deliberately NOT the prompt's own examples** — each is structurally parallel to a
+`prompt.txt` illustration but lexically different, so a pass reflects the rules generalizing,
+not the translator reciting the prompt. Keep it that way: when a convention changes, add a
+*new* contrastive sentence rather than copying the prompt's example. Update Expected too.
 
 ---
 
 ## Categorical (copular: "X is a/an N", "X is ADJ")
 
-**[cat-mem] Bob is a teacher.** — named individual → `Member` + `Name`
+**[cat-mem] Grace is a pilot.** — named individual → `Member` + `Name`
 
-    (: bob_is_teacher (Member bob teacher) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: grace_is_pilot (Member grace pilot) (STV 1.0 0.99))
+    (: grace_name (Name grace "Grace") (STV 1.0 0.99))
 
-**[cat-def] Dogs are mammals.** — definitional/taxonomic → 1.0 / 0.99
+**[cat-def] Oaks are trees.** — definitional/taxonomic → 1.0 / 0.99
 
-    (: dog_is_mammal (Inheritance dog mammal) (STV 1.0 0.99))
+    (: oak_is_tree (Inheritance oak tree) (STV 1.0 0.99))
 
-**[cat-emp] All swans are white.** — empirical universal → confidence 0.9
+**[cat-emp] All lions are fierce.** — empirical universal → confidence 0.9
 
-    (: swans_are_white (Inheritance swan white) (STV 1.0 0.9))
+    (: lions_are_fierce (Inheritance lion fierce) (STV 1.0 0.9))
 
-**[cat-generic] Apples are sweet.** — bare generic → strength 0.9, empirical 0.9
+**[cat-generic] Lemons are sour.** — bare generic → strength 0.9, empirical 0.9
 
-    (: apples_are_sweet (Inheritance apple sweet) (STV 0.9 0.9))
+    (: lemons_are_sour (Inheritance lemon sour) (STV 0.9 0.9))
 
-**[cat-most] Most teachers are patient.** — graded → strength 0.9
+**[cat-most] Most athletes are fit.** — graded → strength 0.9
 
-    (: most_teachers_patient (Inheritance teacher patient) (STV 0.9 0.9))
+    (: most_athletes_fit (Inheritance athlete fit) (STV 0.9 0.9))
 
-**[cat-few] Few politicians are honest.** — graded → strength 0.1
+**[cat-few] Few volcanoes are active.** — graded → strength 0.1
 
-    (: few_politicians_honest (Inheritance politician honest) (STV 0.1 0.9))
+    (: few_volcanoes_active (Inheritance volcano active) (STV 0.1 0.9))
 
-**[cat-no] No reptile is warm-blooded.** — strength 0; definitional trait → conf 0.99
+**[cat-no] No square is round.** — strength 0; definitional trait → conf 0.99
 
-    (: reptile_not_warm (Inheritance reptile warm_blooded) (STV 0.0 0.99))
+    (: square_not_round (Inheritance square round) (STV 0.0 0.99))
 
-**[cat-neg] Dolphins are not fish.** — negation → strength 0; taxonomic → 0.99
+**[cat-neg] Spiders are not insects.** — negation → strength 0; taxonomic → 0.99
 
-    (: dolphins_not_fish (Inheritance dolphin fish) (STV 0.0 0.99))
+    (: spiders_not_insects (Inheritance spider insect) (STV 0.0 0.99))
 
-**[cat-notall] Not all swans are white.** — ¬∀ → counterexample witness
+**[cat-notall] Not all metals are magnetic.** — ¬∀ → counterexample witness
 
-    (: sk_swan_1_swan (Member sk_swan_1 swan) (STV 1.0 0.99))
-    (: sk_swan_1_not_white (Member sk_swan_1 white) (STV 0.0 0.99))
+    (: sk_metal_1_metal (Member sk_metal_1 metal) (STV 1.0 0.99))
+    (: sk_metal_1_not_magnetic (Member sk_metal_1 magnetic) (STV 0.0 0.99))
 
-**[cat-antonym] Alice is unhappy.** — antonym is a positive property
+**[cat-antonym] Victor is dishonest.** — antonym is a positive property
 
-    (: alice_unhappy (Member alice unhappy) (STV 1.0 0.99))
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: victor_dishonest (Member victor dishonest) (STV 1.0 0.99))
+    (: victor_name (Name victor "Victor") (STV 1.0 0.99))
 
-**[cat-status] John must be asleep.** — modality over a copular clause → wrap the atom (epistemic 0.9)
+**[cat-status] Mary must be ill.** — epistemic modality over a copular clause → wrap the atom (0.9)
 
-    (: john_must_asleep (Must (Member john asleep)) (STV 1.0 0.9))
-    (: john_name (Name john "John") (STV 1.0 0.99))
+    (: mary_must_ill (Must (Member mary ill)) (STV 1.0 0.9))
+    (: mary_name (Name mary "Mary") (STV 1.0 0.99))
 
-**[cat-past] Alice was happy.** — tense over a copular clause → wrap the atom
+**[cat-past] Tom was nervous.** — tense over a copular clause → wrap the atom
 
-    (: alice_was_happy (Past (Member alice happy)) (STV 1.0 0.99))
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: tom_was_nervous (Past (Member tom nervous)) (STV 1.0 0.99))
+    (: tom_name (Name tom "Tom") (STV 1.0 0.99))
 
 ## Events (verbal)
 
-**[ev-intrans] Bob cooks.** — habitual (unmarked status)
+**[ev-intrans] Felix jogs.** — habitual (unmarked status)
 
-    (: e_cook (Member sk_cook_1 cook) (STV 1.0 0.99))
-    (: e_agent (Agent sk_cook_1 bob) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: e_jog (Member sk_jog_1 jog) (STV 1.0 0.99))
+    (: e_agent (Agent sk_jog_1 felix) (STV 1.0 0.99))
+    (: felix_name (Name felix "Felix") (STV 1.0 0.99))
 
-**[ev-trans] Bob cooks dinner.** — + Patient role
+**[ev-trans] Nina brews coffee.** — + Patient role
 
-    (: e_cook (Member sk_cook_1 cook) (STV 1.0 0.99))
-    (: e_agent (Agent sk_cook_1 bob) (STV 1.0 0.99))
-    (: e_patient (Patient sk_cook_1 dinner) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: e_brew (Member sk_brew_1 brew) (STV 1.0 0.99))
+    (: e_agent (Agent sk_brew_1 nina) (STV 1.0 0.99))
+    (: e_patient (Patient sk_brew_1 coffee) (STV 1.0 0.99))
+    (: nina_name (Name nina "Nina") (STV 1.0 0.99))
 
-**[ev-ditrans] Maria gave Bob a book.** — Agent/Recipient/Theme + existential Theme + Past
+**[ev-ditrans] Tom sent Grace a letter.** — Agent/Recipient/Theme + existential Theme + Past
 
-    (: e_give (Member sk_give_1 give) (STV 1.0 0.99))
-    (: e_agent (Agent sk_give_1 maria) (STV 1.0 0.99))
-    (: e_recip (Recipient sk_give_1 bob) (STV 1.0 0.99))
-    (: e_theme (Theme sk_give_1 sk_book_1) (STV 1.0 0.99))
-    (: e_book (Member sk_book_1 book) (STV 1.0 0.99))
-    (: e_past (Past sk_give_1) (STV 1.0 0.99))
-    (: maria_name (Name maria "Maria") (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: e_send (Member sk_send_1 send) (STV 1.0 0.99))
+    (: e_agent (Agent sk_send_1 tom) (STV 1.0 0.99))
+    (: e_recip (Recipient sk_send_1 grace) (STV 1.0 0.99))
+    (: e_theme (Theme sk_send_1 sk_letter_1) (STV 1.0 0.99))
+    (: e_letter (Member sk_letter_1 letter) (STV 1.0 0.99))
+    (: e_past (Past sk_send_1) (STV 1.0 0.99))
+    (: tom_name (Name tom "Tom") (STV 1.0 0.99))
+    (: grace_name (Name grace "Grace") (STV 1.0 0.99))
 
-**[ev-stative] Alice owns a dog.** — state eventuality: Holder/Theme + existential Theme
+**[ev-stative] Victor owns a yacht.** — state eventuality: Holder/Theme + existential Theme
 
     (: e_own (Member sk_own_1 own) (STV 1.0 0.99))
-    (: e_holder (Holder sk_own_1 alice) (STV 1.0 0.99))
-    (: e_theme (Theme sk_own_1 sk_dog_1) (STV 1.0 0.99))
-    (: e_dog (Member sk_dog_1 dog) (STV 1.0 0.99))
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: e_holder (Holder sk_own_1 victor) (STV 1.0 0.99))
+    (: e_theme (Theme sk_own_1 sk_yacht_1) (STV 1.0 0.99))
+    (: e_yacht (Member sk_yacht_1 yacht) (STV 1.0 0.99))
+    (: victor_name (Name victor "Victor") (STV 1.0 0.99))
 
-**[ev-past] Bob cooked dinner yesterday.** — Past + Time role (fine-temporal as a role)
+**[ev-past] Leo served lunch yesterday.** — Past + Time role (fine-temporal as a role)
 
-    (: e_cook (Member sk_cook_1 cook) (STV 1.0 0.99))
-    (: e_agent (Agent sk_cook_1 bob) (STV 1.0 0.99))
-    (: e_patient (Patient sk_cook_1 dinner) (STV 1.0 0.99))
-    (: e_past (Past sk_cook_1) (STV 1.0 0.99))
-    (: e_time (Time sk_cook_1 yesterday) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: e_serve (Member sk_serve_1 serve) (STV 1.0 0.99))
+    (: e_agent (Agent sk_serve_1 leo) (STV 1.0 0.99))
+    (: e_patient (Patient sk_serve_1 lunch) (STV 1.0 0.99))
+    (: e_past (Past sk_serve_1) (STV 1.0 0.99))
+    (: e_time (Time sk_serve_1 yesterday) (STV 1.0 0.99))
+    (: leo_name (Name leo "Leo") (STV 1.0 0.99))
 
-**[ev-ongoing] Bob is cooking.** — progressive → Ongoing
+**[ev-ongoing] Oscar is running.** — progressive → Ongoing
 
-    (: e_cook (Member sk_cook_1 cook) (STV 1.0 0.99))
-    (: e_agent (Agent sk_cook_1 bob) (STV 1.0 0.99))
-    (: e_ongoing (Ongoing sk_cook_1) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: e_run (Member sk_run_1 run) (STV 1.0 0.99))
+    (: e_agent (Agent sk_run_1 oscar) (STV 1.0 0.99))
+    (: e_ongoing (Ongoing sk_run_1) (STV 1.0 0.99))
+    (: oscar_name (Name oscar "Oscar") (STV 1.0 0.99))
 
-**[ev-can] Bob can cook dinner.** — capability → Can
+**[ev-can] Grace can speak French.** — capability → Can
 
-    (: e_cook (Member sk_cook_1 cook) (STV 1.0 0.99))
-    (: e_agent (Agent sk_cook_1 bob) (STV 1.0 0.99))
-    (: e_patient (Patient sk_cook_1 dinner) (STV 1.0 0.99))
-    (: e_can (Can sk_cook_1) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: e_speak (Member sk_speak_1 speak) (STV 1.0 0.99))
+    (: e_agent (Agent sk_speak_1 grace) (STV 1.0 0.99))
+    (: e_patient (Patient sk_speak_1 french) (STV 1.0 0.99))
+    (: e_can (Can sk_speak_1) (STV 1.0 0.99))
+    (: grace_name (Name grace "Grace") (STV 1.0 0.99))
 
-**[ev-epistemic] Bob might leave.** — epistemic over a verbal clause → Might on the event
+**[ev-epistemic] Oscar might resign.** — epistemic over a verbal clause → Might on the event
 
-    (: e_leave (Member sk_leave_1 leave) (STV 1.0 0.99))
-    (: e_agent (Agent sk_leave_1 bob) (STV 1.0 0.99))
-    (: e_might (Might sk_leave_1) (STV 1.0 0.9))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: e_resign (Member sk_resign_1 resign) (STV 1.0 0.99))
+    (: e_agent (Agent sk_resign_1 oscar) (STV 1.0 0.99))
+    (: e_might (Might sk_resign_1) (STV 1.0 0.9))
+    (: oscar_name (Name oscar "Oscar") (STV 1.0 0.99))
 
-**[ev-deontic] Bob must apologize.** — deontic obligation (individual) → Obligated
+**[ev-deontic] Tom must comply.** — deontic obligation (individual) → Obligated
 
-    (: e_apologize (Member sk_apologize_1 apologize) (STV 1.0 0.99))
-    (: e_agent (Agent sk_apologize_1 bob) (STV 1.0 0.99))
-    (: e_obligated (Obligated sk_apologize_1) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: e_comply (Member sk_comply_1 comply) (STV 1.0 0.99))
+    (: e_agent (Agent sk_comply_1 tom) (STV 1.0 0.99))
+    (: e_obligated (Obligated sk_comply_1) (STV 1.0 0.99))
+    (: tom_name (Name tom "Tom") (STV 1.0 0.99))
 
-**[ev-passive] The cake was eaten.** — passive: Patient, no Agent
+**[ev-passive] The report was published.** — passive: Patient, no Agent
 
-    (: e_eat (Member sk_eat_1 eat) (STV 1.0 0.99))
-    (: e_patient (Patient sk_eat_1 cake) (STV 1.0 0.99))
-    (: e_past (Past sk_eat_1) (STV 1.0 0.99))
+    (: e_publish (Member sk_publish_1 publish) (STV 1.0 0.99))
+    (: e_patient (Patient sk_publish_1 report) (STV 1.0 0.99))
+    (: e_past (Past sk_publish_1) (STV 1.0 0.99))
 
-**[ev-neg] Bob didn't cook dinner.** — event negation → strength-0 conjunction
+**[ev-neg] Grace didn't sign the contract.** — event negation → strength-0 conjunction
 
-    (: bob_not_cook (And (Member sk_cook_1 cook) (Agent sk_cook_1 bob) (Patient sk_cook_1 dinner)) (STV 0.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: grace_not_sign (And (Member sk_sign_1 sign) (Agent sk_sign_1 grace) (Patient sk_sign_1 contract)) (STV 0.0 0.99))
+    (: grace_name (Name grace "Grace") (STV 1.0 0.99))
 
 ## Coordination & plurals
 
-**[coord-vp] Bob sang and danced.** — coordinated VPs → two events, shared agent
+**[coord-vp] Nina laughed and cried.** — coordinated VPs → two events, shared agent
 
-    (: e_sing (Member sk_sing_1 sing) (STV 1.0 0.99))
-    (: e_sing_agent (Agent sk_sing_1 bob) (STV 1.0 0.99))
-    (: e_sing_past (Past sk_sing_1) (STV 1.0 0.99))
-    (: e_dance (Member sk_dance_1 dance) (STV 1.0 0.99))
-    (: e_dance_agent (Agent sk_dance_1 bob) (STV 1.0 0.99))
-    (: e_dance_past (Past sk_dance_1) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: e_laugh (Member sk_laugh_1 laugh) (STV 1.0 0.99))
+    (: e_laugh_agent (Agent sk_laugh_1 nina) (STV 1.0 0.99))
+    (: e_laugh_past (Past sk_laugh_1) (STV 1.0 0.99))
+    (: e_cry (Member sk_cry_1 cry) (STV 1.0 0.99))
+    (: e_cry_agent (Agent sk_cry_1 nina) (STV 1.0 0.99))
+    (: e_cry_past (Past sk_cry_1) (STV 1.0 0.99))
+    (: nina_name (Name nina "Nina") (STV 1.0 0.99))
 
-**[coord-distrib] Bob and Alice left.** — coordinated NPs, distributive → two events
+**[coord-distrib] Tom and Grace departed.** — coordinated NPs, distributive → two events
 
-    (: e_leave1 (Member sk_leave_1 leave) (STV 1.0 0.99))
-    (: e_leave1_agent (Agent sk_leave_1 bob) (STV 1.0 0.99))
-    (: e_leave1_past (Past sk_leave_1) (STV 1.0 0.99))
-    (: e_leave2 (Member sk_leave_2 leave) (STV 1.0 0.99))
-    (: e_leave2_agent (Agent sk_leave_2 alice) (STV 1.0 0.99))
-    (: e_leave2_past (Past sk_leave_2) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: e_depart1 (Member sk_depart_1 depart) (STV 1.0 0.99))
+    (: e_depart1_agent (Agent sk_depart_1 tom) (STV 1.0 0.99))
+    (: e_depart1_past (Past sk_depart_1) (STV 1.0 0.99))
+    (: e_depart2 (Member sk_depart_2 depart) (STV 1.0 0.99))
+    (: e_depart2_agent (Agent sk_depart_2 grace) (STV 1.0 0.99))
+    (: e_depart2_past (Past sk_depart_2) (STV 1.0 0.99))
+    (: tom_name (Name tom "Tom") (STV 1.0 0.99))
+    (: grace_name (Name grace "Grace") (STV 1.0 0.99))
 
-**[coord-copular] Bob and Alice are teachers.** — distributive copular → one atom per conjunct
+**[coord-copular] Leo and Mary are nurses.** — distributive copular → one atom per conjunct
 
-    (: bob_teacher (Member bob teacher) (STV 1.0 0.99))
-    (: alice_teacher (Member alice teacher) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: leo_nurse (Member leo nurse) (STV 1.0 0.99))
+    (: mary_nurse (Member mary nurse) (STV 1.0 0.99))
+    (: leo_name (Name leo "Leo") (STV 1.0 0.99))
+    (: mary_name (Name mary "Mary") (STV 1.0 0.99))
 
-**[coord-shared] Bob and Alice ate the cake.** — distributive + shared object (one `cake`)
+**[coord-shared] Tom and Grace cleaned the kitchen.** — distributive + shared object (one `kitchen`)
 
-    (: e_eat1 (Member sk_eat_1 eat) (STV 1.0 0.99))
-    (: e_eat1_agent (Agent sk_eat_1 bob) (STV 1.0 0.99))
-    (: e_eat1_patient (Patient sk_eat_1 cake) (STV 1.0 0.99))
-    (: e_eat1_past (Past sk_eat_1) (STV 1.0 0.99))
-    (: e_eat2 (Member sk_eat_2 eat) (STV 1.0 0.99))
-    (: e_eat2_agent (Agent sk_eat_2 alice) (STV 1.0 0.99))
-    (: e_eat2_patient (Patient sk_eat_2 cake) (STV 1.0 0.99))
-    (: e_eat2_past (Past sk_eat_2) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: e_clean1 (Member sk_clean_1 clean) (STV 1.0 0.99))
+    (: e_clean1_agent (Agent sk_clean_1 tom) (STV 1.0 0.99))
+    (: e_clean1_patient (Patient sk_clean_1 kitchen) (STV 1.0 0.99))
+    (: e_clean1_past (Past sk_clean_1) (STV 1.0 0.99))
+    (: e_clean2 (Member sk_clean_2 clean) (STV 1.0 0.99))
+    (: e_clean2_agent (Agent sk_clean_2 grace) (STV 1.0 0.99))
+    (: e_clean2_patient (Patient sk_clean_2 kitchen) (STV 1.0 0.99))
+    (: e_clean2_past (Past sk_clean_2) (STV 1.0 0.99))
+    (: tom_name (Name tom "Tom") (STV 1.0 0.99))
+    (: grace_name (Name grace "Grace") (STV 1.0 0.99))
 
-**[coord-collective] Bob and Alice met.** — reciprocal verb → one event, two `Agent` atoms
+**[coord-collective] Leo and Mary argued.** — reciprocal verb → one event, two `Agent` atoms
 
-    (: e_meet (Member sk_meet_1 meet) (STV 1.0 0.99))
-    (: e_meet_agent1 (Agent sk_meet_1 bob) (STV 1.0 0.99))
-    (: e_meet_agent2 (Agent sk_meet_1 alice) (STV 1.0 0.99))
-    (: e_meet_past (Past sk_meet_1) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: e_argue (Member sk_argue_1 argue) (STV 1.0 0.99))
+    (: e_argue_agent1 (Agent sk_argue_1 leo) (STV 1.0 0.99))
+    (: e_argue_agent2 (Agent sk_argue_1 mary) (STV 1.0 0.99))
+    (: e_argue_past (Past sk_argue_1) (STV 1.0 0.99))
+    (: leo_name (Name leo "Leo") (STV 1.0 0.99))
+    (: mary_name (Name mary "Mary") (STV 1.0 0.99))
 
-**[coord-group] The committee approved the plan.** — group as a unit (collective noun) → sum individual
+**[coord-group] The orchestra performed.** — group as a unit (collective noun) → sum individual
 
-    (: the_committee_committee (Member the_committee committee) (STV 1.0 0.99))
-    (: e_approve (Member sk_approve_1 approve) (STV 1.0 0.99))
-    (: e_approve_agent (Agent sk_approve_1 the_committee) (STV 1.0 0.99))
-    (: e_approve_patient (Patient sk_approve_1 sk_plan_1) (STV 1.0 0.99))
-    (: e_plan (Member sk_plan_1 plan) (STV 1.0 0.99))
-    (: e_approve_past (Past sk_approve_1) (STV 1.0 0.99))
+    (: the_orchestra_orchestra (Member the_orchestra orchestra) (STV 1.0 0.99))
+    (: e_perform (Member sk_perform_1 perform) (STV 1.0 0.99))
+    (: e_perform_agent (Agent sk_perform_1 the_orchestra) (STV 1.0 0.99))
+    (: e_perform_past (Past sk_perform_1) (STV 1.0 0.99))
 
-**[plural-group] The students gathered.** — bare definite plural → group entity + `GroupOf` member kind
+**[plural-group] The tourists assembled.** — bare definite plural → group entity + `GroupOf` member kind
 
-    (: sk_group_1_students (GroupOf sk_group_1 student) (STV 1.0 0.99))
-    (: e_gather (Member sk_gather_1 gather) (STV 1.0 0.99))
-    (: e_gather_agent (Agent sk_gather_1 sk_group_1) (STV 1.0 0.99))
-    (: e_gather_past (Past sk_gather_1) (STV 1.0 0.99))
+    (: sk_group_1_tourists (GroupOf sk_group_1 tourist) (STV 1.0 0.99))
+    (: e_assemble (Member sk_assemble_1 assemble) (STV 1.0 0.99))
+    (: e_assemble_agent (Agent sk_assemble_1 sk_group_1) (STV 1.0 0.99))
+    (: e_assemble_past (Past sk_assemble_1) (STV 1.0 0.99))
 
-**[coord-pronoun] Bob and Alice arrived. They were tired.** — plural pronoun distributes (passage)
+**[coord-pronoun] Felix and Diana traveled. They were exhausted.** — plural pronoun distributes (passage)
 
-    (: e_arrive1 (Member sk_arrive_1 arrive) (STV 1.0 0.99))
-    (: e_arrive1_agent (Agent sk_arrive_1 bob) (STV 1.0 0.99))
-    (: e_arrive1_past (Past sk_arrive_1) (STV 1.0 0.99))
-    (: e_arrive2 (Member sk_arrive_2 arrive) (STV 1.0 0.99))
-    (: e_arrive2_agent (Agent sk_arrive_2 alice) (STV 1.0 0.99))
-    (: e_arrive2_past (Past sk_arrive_2) (STV 1.0 0.99))
-    (: bob_tired (Past (Member bob tired)) (STV 1.0 0.99))
-    (: alice_tired (Past (Member alice tired)) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: e_travel1 (Member sk_travel_1 travel) (STV 1.0 0.99))
+    (: e_travel1_agent (Agent sk_travel_1 felix) (STV 1.0 0.99))
+    (: e_travel1_past (Past sk_travel_1) (STV 1.0 0.99))
+    (: e_travel2 (Member sk_travel_2 travel) (STV 1.0 0.99))
+    (: e_travel2_agent (Agent sk_travel_2 diana) (STV 1.0 0.99))
+    (: e_travel2_past (Past sk_travel_2) (STV 1.0 0.99))
+    (: felix_exhausted (Past (Member felix exhausted)) (STV 1.0 0.99))
+    (: diana_exhausted (Past (Member diana exhausted)) (STV 1.0 0.99))
+    (: felix_name (Name felix "Felix") (STV 1.0 0.99))
+    (: diana_name (Name diana "Diana") (STV 1.0 0.99))
 
 ## Generics & scope (verbal → rules)
 
-**[gen-verbal] Birds fly.** — verbal generic over a kind → Skolem-event rule, 0.9/0.9
+**[gen-verbal] Fish swim.** — verbal generic over a kind → Skolem-event rule, 0.9/0.9
 
-    (: birds_fly (Implication (Premises (Member $x bird)) (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x))) (STV 0.9 0.9))
+    (: fish_swim (Implication (Premises (Member $x fish)) (Conclusions (Member (sk_swim $x) swim) (Agent (sk_swim $x) $x))) (STV 0.9 0.9))
 
-**[gen-cap] Birds can fly.** — generic capability → rule + Can
+**[gen-cap] Cats can climb.** — generic capability → rule + Can
 
-    (: birds_can_fly (Implication (Premises (Member $x bird)) (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x) (Can (sk_fly $x)))) (STV 0.9 0.9))
+    (: cats_can_climb (Implication (Premises (Member $x cat)) (Conclusions (Member (sk_climb $x) climb) (Agent (sk_climb $x) $x) (Can (sk_climb $x)))) (STV 0.9 0.9))
 
-**[gen-deontic] Students must submit homework.** — generic deontic over a kind → rule + Obligated, 1.0/0.99
+**[gen-deontic] Citizens must pay tax.** — generic deontic over a kind → rule + Obligated, 1.0/0.99
 
-    (: students_must_submit (Implication (Premises (Member $x student)) (Conclusions (Member (sk_submit $x) submit) (Agent (sk_submit $x) $x) (Patient (sk_submit $x) homework) (Obligated (sk_submit $x)))) (STV 1.0 0.99))
+    (: citizens_must_pay (Implication (Premises (Member $x citizen)) (Conclusions (Member (sk_pay $x) pay) (Agent (sk_pay $x) $x) (Patient (sk_pay $x) tax) (Obligated (sk_pay $x)))) (STV 1.0 0.99))
 
-**[scope-ae] Every student read some book.** — ∀∃ dependent → Skolem function event + book
+**[scope-ae] Every guest brings a gift.** — ∀∃ dependent → Skolem function event + gift
 
-    (: every_student_read_book (Implication (Premises (Member $x student)) (Conclusions (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Theme (sk_read $x) (sk_book $x)) (Member (sk_book $x) book))) (STV 1.0 0.9))
+    (: every_guest_brings_gift (Implication (Premises (Member $x guest)) (Conclusions (Member (sk_bring $x) bring) (Agent (sk_bring $x) $x) (Theme (sk_bring $x) (sk_gift $x)) (Member (sk_gift $x) gift))) (STV 1.0 0.9))
 
-**[scope-ea] Some critic reviewed every film.** — ∃∀ shared → witness constant + rule over films
+**[scope-ea] Some teacher graded every exam.** — ∃∀ shared → witness constant + rule over exams
 
-    (: sk_critic_1_critic (Member sk_critic_1 critic) (STV 1.0 0.99))
-    (: critic_reviewed_films (Implication (Premises (Member $y film)) (Conclusions (Member (sk_review $y) review) (Agent (sk_review $y) sk_critic_1) (Theme (sk_review $y) $y) (Past (sk_review $y)))) (STV 1.0 0.9))
+    (: sk_teacher_1_teacher (Member sk_teacher_1 teacher) (STV 1.0 0.99))
+    (: teacher_graded_exams (Implication (Premises (Member $y exam)) (Conclusions (Member (sk_grade $y) grade) (Agent (sk_grade $y) sk_teacher_1) (Theme (sk_grade $y) $y) (Past (sk_grade $y)))) (STV 1.0 0.9))
 
-**[scope-aa] Every dog chased every cat.** — ∀∀ → two universal premises
+**[scope-aa] Every wolf hunted every deer.** — ∀∀ → two universal premises
 
-    (: every_dog_chased_cat (Implication (Premises (Member $x dog) (Member $y cat)) (Conclusions (Member (sk_chase $x $y) chase) (Agent (sk_chase $x $y) $x) (Patient (sk_chase $x $y) $y) (Past (sk_chase $x $y)))) (STV 1.0 0.9))
+    (: every_wolf_hunted_deer (Implication (Premises (Member $x wolf) (Member $y deer)) (Conclusions (Member (sk_hunt $x $y) hunt) (Agent (sk_hunt $x $y) $x) (Patient (sk_hunt $x $y) $y) (Past (sk_hunt $x $y)))) (STV 1.0 0.9))
 
-**[rel-univ] Everyone who owns a dog is a pet owner.** — event-premise rule + copular conclusion
+**[rel-univ] Everyone who has a garden is a gardener.** — event-premise rule + copular conclusion
 
-    (: dog_owner_pet_owner (Implication (Premises (Member $e own) (Holder $e $x) (Theme $e $y) (Member $y dog)) (Conclusions (Member $x pet_owner))) (STV 1.0 0.99))
+    (: gardener_rule (Implication (Premises (Member $e have) (Holder $e $x) (Theme $e $y) (Member $y garden)) (Conclusions (Member $x gardener))) (STV 1.0 0.99))
 
 ## Coreference & anaphora (passages)
 
-**[coref-pronoun] Alice has a dog. It is brown.** — "it" = the dog → shared `sk_dog_1`
+**[coref-pronoun] Nina owns a parrot. It is green.** — "it" = the parrot → shared `sk_parrot_1`
 
-    (: e_have (Member sk_have_1 have) (STV 1.0 0.99))
-    (: e_holder (Holder sk_have_1 alice) (STV 1.0 0.99))
-    (: e_theme (Theme sk_have_1 sk_dog_1) (STV 1.0 0.99))
-    (: e_dog (Member sk_dog_1 dog) (STV 1.0 0.99))
-    (: it_brown (Member sk_dog_1 brown) (STV 1.0 0.99))
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: e_own (Member sk_own_1 own) (STV 1.0 0.99))
+    (: e_holder (Holder sk_own_1 nina) (STV 1.0 0.99))
+    (: e_theme (Theme sk_own_1 sk_parrot_1) (STV 1.0 0.99))
+    (: e_parrot (Member sk_parrot_1 parrot) (STV 1.0 0.99))
+    (: it_green (Member sk_parrot_1 green) (STV 1.0 0.99))
+    (: nina_name (Name nina "Nina") (STV 1.0 0.99))
 
-**[coref-definite] A man entered. The man sat down.** — "the man" = `sk_man_1`
+**[coref-definite] A stranger appeared. The stranger spoke.** — "the stranger" = `sk_stranger_1`
 
-    (: sk_man_1_man (Member sk_man_1 man) (STV 1.0 0.99))
-    (: e_enter (Member sk_enter_1 enter) (STV 1.0 0.99))
-    (: e_enter_agent (Agent sk_enter_1 sk_man_1) (STV 1.0 0.99))
-    (: e_enter_past (Past sk_enter_1) (STV 1.0 0.99))
-    (: e_sit (Member sk_sit_1 sit) (STV 1.0 0.99))
-    (: e_sit_agent (Agent sk_sit_1 sk_man_1) (STV 1.0 0.99))
-    (: e_sit_past (Past sk_sit_1) (STV 1.0 0.99))
+    (: sk_stranger_1_stranger (Member sk_stranger_1 stranger) (STV 1.0 0.99))
+    (: e_appear (Member sk_appear_1 appear) (STV 1.0 0.99))
+    (: e_appear_agent (Agent sk_appear_1 sk_stranger_1) (STV 1.0 0.99))
+    (: e_appear_past (Past sk_appear_1) (STV 1.0 0.99))
+    (: e_speak (Member sk_speak_1 speak) (STV 1.0 0.99))
+    (: e_speak_agent (Agent sk_speak_1 sk_stranger_1) (STV 1.0 0.99))
+    (: e_speak_past (Past sk_speak_1) (STV 1.0 0.99))
 
-**[coref-named] Bob met Carol. She smiled.** — "she" = `carol` (gender agreement)
+**[coref-named] Felix greeted Diana. She waved.** — "she" = `diana` (gender agreement)
 
-    (: e_meet (Member sk_meet_1 meet) (STV 1.0 0.99))
-    (: e_meet_agent (Agent sk_meet_1 bob) (STV 1.0 0.99))
-    (: e_meet_patient (Patient sk_meet_1 carol) (STV 1.0 0.99))
-    (: e_meet_past (Past sk_meet_1) (STV 1.0 0.99))
-    (: e_smile (Member sk_smile_1 smile) (STV 1.0 0.99))
-    (: e_smile_agent (Agent sk_smile_1 carol) (STV 1.0 0.99))
-    (: e_smile_past (Past sk_smile_1) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
-    (: carol_name (Name carol "Carol") (STV 1.0 0.99))
+    (: e_greet (Member sk_greet_1 greet) (STV 1.0 0.99))
+    (: e_greet_agent (Agent sk_greet_1 felix) (STV 1.0 0.99))
+    (: e_greet_patient (Patient sk_greet_1 diana) (STV 1.0 0.99))
+    (: e_greet_past (Past sk_greet_1) (STV 1.0 0.99))
+    (: e_wave (Member sk_wave_1 wave) (STV 1.0 0.99))
+    (: e_wave_agent (Agent sk_wave_1 diana) (STV 1.0 0.99))
+    (: e_wave_past (Past sk_wave_1) (STV 1.0 0.99))
+    (: felix_name (Name felix "Felix") (STV 1.0 0.99))
+    (: diana_name (Name diana "Diana") (STV 1.0 0.99))
 
-**[coref-event] Bob won the race. It surprised Carol.** — event anaphora: "It" = the winning event `sk_win_1`
+**[coref-event] Felix scored a goal. It thrilled Diana.** — event anaphora: "It" = the scoring event `sk_score_1`
 
-    (: e_win (Member sk_win_1 win) (STV 1.0 0.99))
-    (: e_win_agent (Agent sk_win_1 bob) (STV 1.0 0.99))
-    (: e_win_theme (Theme sk_win_1 sk_race_1) (STV 1.0 0.99))
-    (: e_race (Member sk_race_1 race) (STV 1.0 0.99))
-    (: e_win_past (Past sk_win_1) (STV 1.0 0.99))
-    (: e_surprise (Member sk_surprise_1 surprise) (STV 1.0 0.99))
-    (: e_surprise_stim (Stimulus sk_surprise_1 sk_win_1) (STV 1.0 0.99))
-    (: e_surprise_exp (Experiencer sk_surprise_1 carol) (STV 1.0 0.99))
-    (: e_surprise_past (Past sk_surprise_1) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
-    (: carol_name (Name carol "Carol") (STV 1.0 0.99))
+    (: e_score (Member sk_score_1 score) (STV 1.0 0.99))
+    (: e_score_agent (Agent sk_score_1 felix) (STV 1.0 0.99))
+    (: e_score_patient (Patient sk_score_1 sk_goal_1) (STV 1.0 0.99))
+    (: e_goal (Member sk_goal_1 goal) (STV 1.0 0.99))
+    (: e_score_past (Past sk_score_1) (STV 1.0 0.99))
+    (: e_thrill (Member sk_thrill_1 thrill) (STV 1.0 0.99))
+    (: e_thrill_stim (Stimulus sk_thrill_1 sk_score_1) (STV 1.0 0.99))
+    (: e_thrill_exp (Experiencer sk_thrill_1 diana) (STV 1.0 0.99))
+    (: e_thrill_past (Past sk_thrill_1) (STV 1.0 0.99))
+    (: felix_name (Name felix "Felix") (STV 1.0 0.99))
+    (: diana_name (Name diana "Diana") (STV 1.0 0.99))
 
-**[coref-reflexive] Bob hurt himself.** — "himself" = the subject `bob`
+**[coref-reflexive] Oscar blamed himself.** — "himself" = the subject `oscar`
 
-    (: e_hurt (Member sk_hurt_1 hurt) (STV 1.0 0.99))
-    (: e_hurt_agent (Agent sk_hurt_1 bob) (STV 1.0 0.99))
-    (: e_hurt_patient (Patient sk_hurt_1 bob) (STV 1.0 0.99))
-    (: e_hurt_past (Past sk_hurt_1) (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: e_blame (Member sk_blame_1 blame) (STV 1.0 0.99))
+    (: e_blame_agent (Agent sk_blame_1 oscar) (STV 1.0 0.99))
+    (: e_blame_patient (Patient sk_blame_1 oscar) (STV 1.0 0.99))
+    (: e_blame_past (Past sk_blame_1) (STV 1.0 0.99))
+    (: oscar_name (Name oscar "Oscar") (STV 1.0 0.99))
 
-**[coref-bridging] Alice bought a car. The engine was broken.** — "the engine" new, bridged to the car
+**[coref-bridging] Tom rented a house. The roof was damaged.** — "the roof" new, bridged to the house
 
-    (: e_buy (Member sk_buy_1 buy) (STV 1.0 0.99))
-    (: e_buy_agent (Agent sk_buy_1 alice) (STV 1.0 0.99))
-    (: e_buy_theme (Theme sk_buy_1 sk_car_1) (STV 1.0 0.99))
-    (: e_car (Member sk_car_1 car) (STV 1.0 0.99))
-    (: e_buy_past (Past sk_buy_1) (STV 1.0 0.99))
-    (: e_engine (Member sk_engine_1 engine) (STV 1.0 0.99))
-    (: e_engine_partof (PartOf sk_engine_1 sk_car_1) (STV 1.0 0.99))
-    (: e_engine_broken (Past (Member sk_engine_1 broken)) (STV 1.0 0.99))
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: e_rent (Member sk_rent_1 rent) (STV 1.0 0.99))
+    (: e_rent_agent (Agent sk_rent_1 tom) (STV 1.0 0.99))
+    (: e_rent_theme (Theme sk_rent_1 sk_house_1) (STV 1.0 0.99))
+    (: e_house (Member sk_house_1 house) (STV 1.0 0.99))
+    (: e_rent_past (Past sk_rent_1) (STV 1.0 0.99))
+    (: e_roof (Member sk_roof_1 roof) (STV 1.0 0.99))
+    (: e_roof_partof (PartOf sk_roof_1 sk_house_1) (STV 1.0 0.99))
+    (: e_roof_damaged (Past (Member sk_roof_1 damaged)) (STV 1.0 0.99))
+    (: tom_name (Name tom "Tom") (STV 1.0 0.99))
 
-**[coref-one] Alice has a red car. Bob has a blue one.** — "one" = a fresh car `sk_car_2` (same class)
+**[coref-one] Nina bought a wooden table. Leo bought a metal one.** — "one" = a fresh table `sk_table_2` (same class)
 
-    (: e_have1 (Member sk_have_1 have) (STV 1.0 0.99))
-    (: e_have1_holder (Holder sk_have_1 alice) (STV 1.0 0.99))
-    (: e_have1_theme (Theme sk_have_1 sk_car_1) (STV 1.0 0.99))
-    (: e_car1 (Member sk_car_1 car) (STV 1.0 0.99))
-    (: e_car1_red (Member sk_car_1 red) (STV 1.0 0.99))
-    (: e_have2 (Member sk_have_2 have) (STV 1.0 0.99))
-    (: e_have2_holder (Holder sk_have_2 bob) (STV 1.0 0.99))
-    (: e_have2_theme (Theme sk_have_2 sk_car_2) (STV 1.0 0.99))
-    (: e_car2 (Member sk_car_2 car) (STV 1.0 0.99))
-    (: e_car2_blue (Member sk_car_2 blue) (STV 1.0 0.99))
-    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
-    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: e_buy1 (Member sk_buy_1 buy) (STV 1.0 0.99))
+    (: e_buy1_agent (Agent sk_buy_1 nina) (STV 1.0 0.99))
+    (: e_buy1_theme (Theme sk_buy_1 sk_table_1) (STV 1.0 0.99))
+    (: e_table1 (Member sk_table_1 table) (STV 1.0 0.99))
+    (: e_table1_wooden (Member sk_table_1 wooden) (STV 1.0 0.99))
+    (: e_buy1_past (Past sk_buy_1) (STV 1.0 0.99))
+    (: e_buy2 (Member sk_buy_2 buy) (STV 1.0 0.99))
+    (: e_buy2_agent (Agent sk_buy_2 leo) (STV 1.0 0.99))
+    (: e_buy2_theme (Theme sk_buy_2 sk_table_2) (STV 1.0 0.99))
+    (: e_table2 (Member sk_table_2 table) (STV 1.0 0.99))
+    (: e_table2_metal (Member sk_table_2 metal) (STV 1.0 0.99))
+    (: e_buy2_past (Past sk_buy_2) (STV 1.0 0.99))
+    (: nina_name (Name nina "Nina") (STV 1.0 0.99))
+    (: leo_name (Name leo "Leo") (STV 1.0 0.99))
 
-**[coref-donkey] Every farmer who owns a donkey beats it.** — "it" = the premise-bound `$d`
+**[coref-donkey] Every shepherd who owns a sheep shears it.** — "it" = the premise-bound `$d`
 
-    (: every_farmer_beats_donkey (Implication (Premises (Member $f farmer) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d donkey)) (Conclusions (Member $b beat) (Agent $b $f) (Patient $b $d))) (STV 1.0 0.9))
+    (: every_shepherd_shears_sheep (Implication (Premises (Member $f shepherd) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d sheep)) (Conclusions (Member (sk_shear $f $d) shear) (Agent (sk_shear $f $d) $f) (Patient (sk_shear $f $d) $d))) (STV 1.0 0.9))
 
 ## Queries (questions → query patterns)
 
 For these the expected output is a single query line `(: $prf <pattern> $tv)`; check the
 conjuncts and variable placement. Named individuals are bound by `(Name $x "…")`.
 
-**[q-yesno-cat] Is Tokyo a city?** — categorical yes/no; named → Name constraint
+**[q-yesno-cat] Is Paris a capital?** — categorical yes/no; named → Name constraint
 
-    (: $prf (And (Name $x "Tokyo") (Member $x city)) $tv)
+    (: $prf (And (Name $x "Paris") (Member $x capital)) $tv)
 
-**[q-yesno-ev] Did Bob cook dinner?** — event yes/no
+**[q-yesno-ev] Did Leo serve lunch?** — event yes/no
 
-    (: $prf (And (Name $b "Bob") (Member $e cook) (Agent $e $b) (Patient $e dinner) (Past $e)) $tv)
+    (: $prf (And (Name $l "Leo") (Member $e serve) (Agent $e $l) (Patient $e lunch) (Past $e)) $tv)
 
-**[q-wh-what] What did Bob cook?** — wh on the Patient
+**[q-wh-what] What did Oscar bake?** — wh on the Patient
 
-    (: $prf (And (Name $b "Bob") (Member $e cook) (Agent $e $b) (Patient $e $what) (Past $e)) $tv)
+    (: $prf (And (Name $o "Oscar") (Member $e bake) (Agent $e $o) (Patient $e $what) (Past $e)) $tv)
 
-**[q-wh-who] Who cooked dinner?** — wh on the Agent
+**[q-wh-who] Who built the bridge?** — wh on the Agent
 
-    (: $prf (And (Member $e cook) (Patient $e dinner) (Agent $e $who) (Past $e)) $tv)
+    (: $prf (And (Member $e build) (Patient $e bridge) (Agent $e $who) (Past $e)) $tv)
 
-**[q-wh-do] What does Bob do?** — wh on the verb class (habitual, unmarked)
+**[q-wh-do] What does Nina do?** — wh on the verb class (habitual, unmarked)
 
-    (: $prf (And (Name $b "Bob") (Member $e $verb) (Agent $e $b)) $tv)
+    (: $prf (And (Name $n "Nina") (Member $e $verb) (Agent $e $n)) $tv)
 
-**[q-cap] Can penguins fly?** — capability yes/no (class subject, direct)
+**[q-cap] Can ostriches fly?** — capability yes/no (class subject, direct)
 
-    (: $prf (And (Member $e fly) (Agent $e penguin) (Can $e)) $tv)
+    (: $prf (And (Member $e fly) (Agent $e ostrich) (Can $e)) $tv)
 
-**[q-neg] What can't penguins do?** — negative/polarity → pin TV to strength 0
+**[q-neg] What can't infants do?** — negative/polarity → pin TV to strength 0
 
-    (: $prf (And (Member $e $verb) (Agent $e penguin) (Can $e)) (STV 0.0 $conf))
+    (: $prf (And (Member $e $verb) (Agent $e infant) (Can $e)) (STV 0.0 $conf))
