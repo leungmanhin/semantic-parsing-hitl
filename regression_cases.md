@@ -16,6 +16,10 @@ Golden `sentence → expected atoms` pairs for the translator driven by `prompt.
    worktree to catch malformed output. Event **querying** is engine-pending (needs n-conjunct
    conjunctive queries + multi-conclusion projection), so don't expect event QA to run yet.
 
+Coreference cases are **passages** (multiple sentences) — feed the whole passage at once; the
+key check is that coreferring mentions (pronoun, "the X", a name, event anaphora) **share one
+symbol** across sentences (the exact `sk_*` symbol and some role labels may vary).
+
 Update Expected whenever a convention changes. Add a contrastive case per new prompt feature.
 
 ---
@@ -188,6 +192,92 @@ Update Expected whenever a convention changes. Add a contrastive case per new pr
 **[rel-univ] Everyone who owns a dog is a pet owner.** — event-premise rule + copular conclusion
 
     (: dog_owner_pet_owner (Implication (Premises (Member $e own) (Holder $e $x) (Theme $e $y) (Member $y dog)) (Conclusions (Member $x pet_owner))) (STV 1.0 0.99))
+
+## Coreference & anaphora (passages)
+
+**[coref-pronoun] Alice has a dog. It is brown.** — "it" = the dog → shared `sk_dog_1`
+
+    (: e_have (Member sk_have_1 have) (STV 1.0 0.99))
+    (: e_holder (Holder sk_have_1 alice) (STV 1.0 0.99))
+    (: e_theme (Theme sk_have_1 sk_dog_1) (STV 1.0 0.99))
+    (: e_dog (Member sk_dog_1 dog) (STV 1.0 0.99))
+    (: it_brown (Member sk_dog_1 brown) (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+
+**[coref-definite] A man entered. The man sat down.** — "the man" = `sk_man_1`
+
+    (: sk_man_1_man (Member sk_man_1 man) (STV 1.0 0.99))
+    (: e_enter (Member sk_enter_1 enter) (STV 1.0 0.99))
+    (: e_enter_agent (Agent sk_enter_1 sk_man_1) (STV 1.0 0.99))
+    (: e_enter_past (Past sk_enter_1) (STV 1.0 0.99))
+    (: e_sit (Member sk_sit_1 sit) (STV 1.0 0.99))
+    (: e_sit_agent (Agent sk_sit_1 sk_man_1) (STV 1.0 0.99))
+    (: e_sit_past (Past sk_sit_1) (STV 1.0 0.99))
+
+**[coref-named] Bob met Carol. She smiled.** — "she" = `carol` (gender agreement)
+
+    (: e_meet (Member sk_meet_1 meet) (STV 1.0 0.99))
+    (: e_meet_agent (Agent sk_meet_1 bob) (STV 1.0 0.99))
+    (: e_meet_patient (Patient sk_meet_1 carol) (STV 1.0 0.99))
+    (: e_meet_past (Past sk_meet_1) (STV 1.0 0.99))
+    (: e_smile (Member sk_smile_1 smile) (STV 1.0 0.99))
+    (: e_smile_agent (Agent sk_smile_1 carol) (STV 1.0 0.99))
+    (: e_smile_past (Past sk_smile_1) (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: carol_name (Name carol "Carol") (STV 1.0 0.99))
+
+**[coref-event] Bob won the race. It surprised Carol.** — event anaphora: "It" = the winning event `sk_win_1`
+
+    (: e_win (Member sk_win_1 win) (STV 1.0 0.99))
+    (: e_win_agent (Agent sk_win_1 bob) (STV 1.0 0.99))
+    (: e_win_theme (Theme sk_win_1 sk_race_1) (STV 1.0 0.99))
+    (: e_race (Member sk_race_1 race) (STV 1.0 0.99))
+    (: e_win_past (Past sk_win_1) (STV 1.0 0.99))
+    (: e_surprise (Member sk_surprise_1 surprise) (STV 1.0 0.99))
+    (: e_surprise_stim (Stimulus sk_surprise_1 sk_win_1) (STV 1.0 0.99))
+    (: e_surprise_exp (Experiencer sk_surprise_1 carol) (STV 1.0 0.99))
+    (: e_surprise_past (Past sk_surprise_1) (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: carol_name (Name carol "Carol") (STV 1.0 0.99))
+
+**[coref-reflexive] Bob hurt himself.** — "himself" = the subject `bob`
+
+    (: e_hurt (Member sk_hurt_1 hurt) (STV 1.0 0.99))
+    (: e_hurt_agent (Agent sk_hurt_1 bob) (STV 1.0 0.99))
+    (: e_hurt_patient (Patient sk_hurt_1 bob) (STV 1.0 0.99))
+    (: e_hurt_past (Past sk_hurt_1) (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+
+**[coref-bridging] Alice bought a car. The engine was broken.** — "the engine" new, bridged to the car
+
+    (: e_buy (Member sk_buy_1 buy) (STV 1.0 0.99))
+    (: e_buy_agent (Agent sk_buy_1 alice) (STV 1.0 0.99))
+    (: e_buy_theme (Theme sk_buy_1 sk_car_1) (STV 1.0 0.99))
+    (: e_car (Member sk_car_1 car) (STV 1.0 0.99))
+    (: e_buy_past (Past sk_buy_1) (STV 1.0 0.99))
+    (: e_engine (Member sk_engine_1 engine) (STV 1.0 0.99))
+    (: e_engine_partof (PartOf sk_engine_1 sk_car_1) (STV 1.0 0.99))
+    (: e_engine_broken (Past (Member sk_engine_1 broken)) (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+
+**[coref-one] Alice has a red car. Bob has a blue one.** — "one" = a fresh car `sk_car_2` (same class)
+
+    (: e_have1 (Member sk_have_1 have) (STV 1.0 0.99))
+    (: e_have1_holder (Holder sk_have_1 alice) (STV 1.0 0.99))
+    (: e_have1_theme (Theme sk_have_1 sk_car_1) (STV 1.0 0.99))
+    (: e_car1 (Member sk_car_1 car) (STV 1.0 0.99))
+    (: e_car1_red (Member sk_car_1 red) (STV 1.0 0.99))
+    (: e_have2 (Member sk_have_2 have) (STV 1.0 0.99))
+    (: e_have2_holder (Holder sk_have_2 bob) (STV 1.0 0.99))
+    (: e_have2_theme (Theme sk_have_2 sk_car_2) (STV 1.0 0.99))
+    (: e_car2 (Member sk_car_2 car) (STV 1.0 0.99))
+    (: e_car2_blue (Member sk_car_2 blue) (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+
+**[coref-donkey] Every farmer who owns a donkey beats it.** — "it" = the premise-bound `$d`
+
+    (: every_farmer_beats_donkey (Implication (Premises (Member $f farmer) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d donkey)) (Conclusions (Member $b beat) (Agent $b $f) (Patient $b $d))) (STV 1.0 0.9))
 
 ## Queries (questions → query patterns)
 

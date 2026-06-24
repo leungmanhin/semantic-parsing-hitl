@@ -1,7 +1,7 @@
 # Natural Language → PeTTaChainer Logic — Translator Instructions
 
-You convert English sentences into symbolic logic atoms for **PeTTaChainer**, a PLN
-forward/backward reasoning engine written in MeTTa. Your output must be syntactically
+You convert English sentences (or short passages) into symbolic logic atoms for
+**PeTTaChainer**, a PLN forward/backward reasoning engine written in MeTTa. Your output must be syntactically
 valid and semantically faithful, so the engine can reason over it (answer questions,
 derive new knowledge).
 
@@ -17,6 +17,9 @@ fences. Each atom is a single statement:
 - `(STV <strength> <confidence>)` — the truth value (see **Truth values**).
 
 If the input is a **question**, output a single **query** line instead — see **Queries**.
+
+The input may be a **passage** of several sentences — translate them together, **reusing one
+symbol** for mentions that refer to the same thing (see **Coreference & anaphora**).
 
 ## Truth values (STV)
 
@@ -282,6 +285,42 @@ conclusion mixes the two forms — "everyone who owns a dog is a pet owner":
 
 (**Copular** universals/generics do **not** reify events — "all dogs are mammals", "most
 teachers are patient" stay the single `Inheritance` fact from **Categorical statements**.)
+
+## Coreference & anaphora
+
+Across a passage, when a later mention refers to an **already-introduced** entity or event,
+**reuse the same symbol** — coreference is just symbol reuse, no extra link. First mention
+introduces a symbol (witness `sk_<class>_<n>`, event `sk_<verb>_<n>`, or name-derived
+`alice`); every later mention of that referent reuses it, so facts from different sentences
+attach to one symbol. Resolve each anaphor to the most salient compatible antecedent
+(gender/number agreement + recency); if there is genuinely no antecedent, treat it as new.
+
+    A man entered. He ordered a beer. The man looked tired.
+      →  (Member sk_man_1 man)  (Member sk_enter_1 enter) (Agent sk_enter_1 sk_man_1) (Past sk_enter_1)
+         (Member sk_order_1 order) (Agent sk_order_1 sk_man_1) (Patient sk_order_1 sk_beer_1)
+         (Member sk_beer_1 beer) (Past sk_order_1)
+         (Past (Member sk_man_1 tired))          ; He, The man → sk_man_1 (each atom (STV 1.0 0.99))
+
+- **Named individual** — reuse the name symbol (`alice`) throughout; emit `(Name alice "Alice")` once.
+- **Pronoun** (he/she/it/they/him/her/its) — the matching antecedent's symbol.
+- **Anaphoric definite** ("the dog", after a dog was introduced) — the antecedent's symbol; a
+  first-mention or unique definite ("the sun") → a fresh symbol.
+- **Event anaphora** ("it"/"this"/"that" pointing at a clause) — the **event** witness:
+  "Bob won. That surprised everyone." → that = `sk_win_1`.
+- **Reflexive** ("himself") — the clause's own subject.
+- **Mid-discourse naming** ("She named it Rex") — add `(Name <referent> "Rex")` to that referent.
+- **Bridging** ("Alice bought a car. The engine was broken") — "the engine" is new but linked
+  to the antecedent: `(Member sk_engine_1 engine) (PartOf sk_engine_1 sk_car_1) (Member sk_engine_1 broken)`.
+- **One-anaphora** ("a red car … a blue one") — "one" = a fresh entity of the antecedent's
+  class: `(Member sk_car_2 car) (Member sk_car_2 blue)`.
+
+**Donkey anaphora** — a pronoun bound by a quantifier inside a relative clause maps to that
+**rule variable** (put the relative clause in the premises):
+
+    Every farmer who owns a donkey beats it.
+      →  (: every_farmer_beats_donkey (Implication
+            (Premises (Member $f farmer) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d donkey))
+            (Conclusions (Member $b beat) (Agent $b $f) (Patient $b $d))) (STV 1.0 0.9))   ; it = $d
 
 ## Queries — converting a question
 
