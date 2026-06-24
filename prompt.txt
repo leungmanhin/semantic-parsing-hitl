@@ -240,6 +240,56 @@ count, exact number not represented). Do **not** use a witness for proportion wo
 ("most"/"many"/"few" set the strength instead). Indefinite "a/an" can be generic, not
 existential ("A dog is a mammal" = `(Inheritance dog mammal)`) — judge from context.
 
+## Coordination & plurals
+
+**Coordinated clauses / verb phrases** — translate each conjunct **independently**, as if
+written as separate sentences (a shared subject carries over to each conjunct):
+
+      Bob sang and danced.  →  (Member sk_sing_1 sing) (Agent sk_sing_1 bob) (Past sk_sing_1)
+                               (Member sk_dance_1 dance) (Agent sk_dance_1 bob) (Past sk_dance_1)
+      Bob is tall and kind. →  (Member bob tall) (Member bob kind)
+
+**Coordinated noun phrases ("X and Y")** are **distributive by default** — replicate the
+whole predication once per conjunct (verbal → one event each; copular → one atom each); a
+shared object reuses one symbol:
+
+      Bob and Alice left.         →  (Member sk_leave_1 leave) (Agent sk_leave_1 bob) (Past sk_leave_1)
+                                     (Member sk_leave_2 leave) (Agent sk_leave_2 alice) (Past sk_leave_2)
+      Bob and Alice are teachers. →  (Member bob teacher) (Member alice teacher)
+      Bob and Alice ate the cake. →  (Member sk_eat_1 eat) (Agent sk_eat_1 bob) (Patient sk_eat_1 cake) (Past sk_eat_1)
+                                     (Member sk_eat_2 eat) (Agent sk_eat_2 alice) (Patient sk_eat_2 cake) (Past sk_eat_2)
+
+Use the **collective** form — **one** event with **multiple `Agent` atoms** — only when the
+predicate is reciprocal/aggregate ("meet", "gather", "assemble", "collide") or marked
+"together" / "between them":
+
+      Bob and Alice met. →  (Member sk_meet_1 meet) (Agent sk_meet_1 bob) (Agent sk_meet_1 alice) (Past sk_meet_1)
+
+So **many events = distributive; one event with many agents = collective.** A plural pronoun
+distributes the same way: "Bob and Alice arrived. They were tired." →
+`(Member bob tired) (Member alice tired)`.
+
+**A plural referred to as a unit (group)** — "the team", "the committee", "the students", one
+that can corefer later as "it" / "they" → mint **one group entity** (a sum individual) and
+predicate over it. Record its **member kind** with `(GroupOf <group> <kind>)`, add a
+**collective noun** (if any) with `Member`, and link any **named** members with `PartOf`:
+
+      The committee approved the plan. →  (Member the_committee committee) (Member sk_approve_1 approve)
+                                          (Agent sk_approve_1 the_committee) (Patient sk_approve_1 sk_plan_1)
+                                          (Member sk_plan_1 plan) (Past sk_approve_1)
+      The students gathered.           →  (GroupOf sk_group_1 student) (Member sk_gather_1 gather)
+                                          (Agent sk_gather_1 sk_group_1) (Past sk_gather_1)
+
+`(GroupOf g student)` says *the members are students* — not that the group is a student (a
+group is an individual; it never goes in a class slot). A collective noun already names the
+kind, so "the committee" needs no `GroupOf`; "a flock of birds" takes both (`(Member sk_flock_1
+flock) (GroupOf sk_flock_1 bird)`). Distributing a predicate to **each** member still needs a
+rule, so it stays deferred (below).
+
+**Not yet represented** (keep to the forms above): a **count** ("three students", "both"),
+distributing a predicate to **each** member of an unnamed plural, and **disjunction**
+("Bob or Alice").
+
 ## Quantifiers, generics & scope (verbal → rules)
 
 A **verbal** generic or universal over a kind becomes a **rule** that gives each instance

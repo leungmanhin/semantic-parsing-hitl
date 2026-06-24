@@ -162,6 +162,87 @@ Update Expected whenever a convention changes. Add a contrastive case per new pr
     (: bob_not_cook (And (Member sk_cook_1 cook) (Agent sk_cook_1 bob) (Patient sk_cook_1 dinner)) (STV 0.0 0.99))
     (: bob_name (Name bob "Bob") (STV 1.0 0.99))
 
+## Coordination & plurals
+
+**[coord-vp] Bob sang and danced.** — coordinated VPs → two events, shared agent
+
+    (: e_sing (Member sk_sing_1 sing) (STV 1.0 0.99))
+    (: e_sing_agent (Agent sk_sing_1 bob) (STV 1.0 0.99))
+    (: e_sing_past (Past sk_sing_1) (STV 1.0 0.99))
+    (: e_dance (Member sk_dance_1 dance) (STV 1.0 0.99))
+    (: e_dance_agent (Agent sk_dance_1 bob) (STV 1.0 0.99))
+    (: e_dance_past (Past sk_dance_1) (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+
+**[coord-distrib] Bob and Alice left.** — coordinated NPs, distributive → two events
+
+    (: e_leave1 (Member sk_leave_1 leave) (STV 1.0 0.99))
+    (: e_leave1_agent (Agent sk_leave_1 bob) (STV 1.0 0.99))
+    (: e_leave1_past (Past sk_leave_1) (STV 1.0 0.99))
+    (: e_leave2 (Member sk_leave_2 leave) (STV 1.0 0.99))
+    (: e_leave2_agent (Agent sk_leave_2 alice) (STV 1.0 0.99))
+    (: e_leave2_past (Past sk_leave_2) (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+
+**[coord-copular] Bob and Alice are teachers.** — distributive copular → one atom per conjunct
+
+    (: bob_teacher (Member bob teacher) (STV 1.0 0.99))
+    (: alice_teacher (Member alice teacher) (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+
+**[coord-shared] Bob and Alice ate the cake.** — distributive + shared object (one `cake`)
+
+    (: e_eat1 (Member sk_eat_1 eat) (STV 1.0 0.99))
+    (: e_eat1_agent (Agent sk_eat_1 bob) (STV 1.0 0.99))
+    (: e_eat1_patient (Patient sk_eat_1 cake) (STV 1.0 0.99))
+    (: e_eat1_past (Past sk_eat_1) (STV 1.0 0.99))
+    (: e_eat2 (Member sk_eat_2 eat) (STV 1.0 0.99))
+    (: e_eat2_agent (Agent sk_eat_2 alice) (STV 1.0 0.99))
+    (: e_eat2_patient (Patient sk_eat_2 cake) (STV 1.0 0.99))
+    (: e_eat2_past (Past sk_eat_2) (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+
+**[coord-collective] Bob and Alice met.** — reciprocal verb → one event, two `Agent` atoms
+
+    (: e_meet (Member sk_meet_1 meet) (STV 1.0 0.99))
+    (: e_meet_agent1 (Agent sk_meet_1 bob) (STV 1.0 0.99))
+    (: e_meet_agent2 (Agent sk_meet_1 alice) (STV 1.0 0.99))
+    (: e_meet_past (Past sk_meet_1) (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+
+**[coord-group] The committee approved the plan.** — group as a unit (collective noun) → sum individual
+
+    (: the_committee_committee (Member the_committee committee) (STV 1.0 0.99))
+    (: e_approve (Member sk_approve_1 approve) (STV 1.0 0.99))
+    (: e_approve_agent (Agent sk_approve_1 the_committee) (STV 1.0 0.99))
+    (: e_approve_patient (Patient sk_approve_1 sk_plan_1) (STV 1.0 0.99))
+    (: e_plan (Member sk_plan_1 plan) (STV 1.0 0.99))
+    (: e_approve_past (Past sk_approve_1) (STV 1.0 0.99))
+
+**[plural-group] The students gathered.** — bare definite plural → group entity + `GroupOf` member kind
+
+    (: sk_group_1_students (GroupOf sk_group_1 student) (STV 1.0 0.99))
+    (: e_gather (Member sk_gather_1 gather) (STV 1.0 0.99))
+    (: e_gather_agent (Agent sk_gather_1 sk_group_1) (STV 1.0 0.99))
+    (: e_gather_past (Past sk_gather_1) (STV 1.0 0.99))
+
+**[coord-pronoun] Bob and Alice arrived. They were tired.** — plural pronoun distributes (passage)
+
+    (: e_arrive1 (Member sk_arrive_1 arrive) (STV 1.0 0.99))
+    (: e_arrive1_agent (Agent sk_arrive_1 bob) (STV 1.0 0.99))
+    (: e_arrive1_past (Past sk_arrive_1) (STV 1.0 0.99))
+    (: e_arrive2 (Member sk_arrive_2 arrive) (STV 1.0 0.99))
+    (: e_arrive2_agent (Agent sk_arrive_2 alice) (STV 1.0 0.99))
+    (: e_arrive2_past (Past sk_arrive_2) (STV 1.0 0.99))
+    (: bob_tired (Past (Member bob tired)) (STV 1.0 0.99))
+    (: alice_tired (Past (Member alice tired)) (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+    (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+
 ## Generics & scope (verbal → rules)
 
 **[gen-verbal] Birds fly.** — verbal generic over a kind → Skolem-event rule, 0.9/0.9
