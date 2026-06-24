@@ -247,6 +247,75 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
     (: felix_name (Name felix "Felix") (STV 1.0 0.99))
     (: diana_name (Name diana "Diana") (STV 1.0 0.99))
 
+## Cardinality (counting)
+
+**[card-exact] Four chefs prepared the banquet.** — exact cardinal → `GroupOf` + `Cardinality n`, predicate over the group
+
+    (: sk_group_1_chefs (GroupOf sk_group_1 chef) (STV 1.0 0.99))
+    (: sk_group_1_card (Cardinality sk_group_1 4) (STV 1.0 0.99))
+    (: e_prepare (Member sk_prepare_1 prepare) (STV 1.0 0.99))
+    (: e_prepare_agent (Agent sk_prepare_1 sk_group_1) (STV 1.0 0.99))
+    (: e_prepare_patient (Patient sk_prepare_1 sk_banquet_1) (STV 1.0 0.99))
+    (: e_banquet (Member sk_banquet_1 banquet) (STV 1.0 0.99))
+    (: e_prepare_past (Past sk_prepare_1) (STV 1.0 0.99))
+
+**[card-both] Both twins laughed.** — "both" = exactly 2 (definite)
+
+    (: sk_group_1_twins (GroupOf sk_group_1 twin) (STV 1.0 0.99))
+    (: sk_group_1_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+    (: e_laugh (Member sk_laugh_1 laugh) (STV 1.0 0.99))
+    (: e_laugh_agent (Agent sk_laugh_1 sk_group_1) (STV 1.0 0.99))
+    (: e_laugh_past (Past sk_laugh_1) (STV 1.0 0.99))
+
+**[card-possess] Bob has three cars.** — cardinal possession → group is the Theme
+
+    (: sk_group_1_cars (GroupOf sk_group_1 car) (STV 1.0 0.99))
+    (: sk_group_1_card (Cardinality sk_group_1 3) (STV 1.0 0.99))
+    (: e_have (Member sk_have_1 have) (STV 1.0 0.99))
+    (: e_have_holder (Holder sk_have_1 bob) (STV 1.0 0.99))
+    (: e_have_theme (Theme sk_have_1 sk_group_1) (STV 1.0 0.99))
+    (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+
+**[card-atleast] More than five passengers complained.** — bounded → `CardinalityAtLeast` (>5 ⇒ ≥6)
+
+    (: sk_group_1_passengers (GroupOf sk_group_1 passenger) (STV 1.0 0.99))
+    (: sk_group_1_atleast (CardinalityAtLeast sk_group_1 6) (STV 1.0 0.99))
+    (: e_complain (Member sk_complain_1 complain) (STV 1.0 0.99))
+    (: e_complain_agent (Agent sk_complain_1 sk_group_1) (STV 1.0 0.99))
+    (: e_complain_past (Past sk_complain_1) (STV 1.0 0.99))
+
+**[card-atmost] Fewer than ten students attended.** — bounded → `CardinalityAtMost` (<10 ⇒ ≤9)
+
+    (: sk_group_1_students (GroupOf sk_group_1 student) (STV 1.0 0.99))
+    (: sk_group_1_atmost (CardinalityAtMost sk_group_1 9) (STV 1.0 0.99))
+    (: e_attend (Member sk_attend_1 attend) (STV 1.0 0.99))
+    (: e_attend_agent (Agent sk_attend_1 sk_group_1) (STV 1.0 0.99))
+    (: e_attend_past (Past sk_attend_1) (STV 1.0 0.99))
+
+**[card-vague] A few children napped.** — vague phrase → `GroupOf` + `CardinalityPhrase`, no number (seeded rules derive the bound)
+
+    (: sk_group_1_children (GroupOf sk_group_1 child) (STV 1.0 0.99))
+    (: sk_group_1_phrase (CardinalityPhrase sk_group_1 "a few") (STV 1.0 0.99))
+    (: e_nap (Member sk_nap_1 nap) (STV 1.0 0.99))
+    (: e_nap_agent (Agent sk_nap_1 sk_group_1) (STV 1.0 0.99))
+    (: e_nap_past (Past sk_nap_1) (STV 1.0 0.99))
+
+**[card-phrase] Dozens of protesters marched.** — large vague magnitude → `CardinalityPhrase "dozens"` (seeded rule ⟹ `CardinalityAtLeast 24`)
+
+    (: sk_group_1_protesters (GroupOf sk_group_1 protester) (STV 1.0 0.99))
+    (: sk_group_1_phrase (CardinalityPhrase sk_group_1 "dozens") (STV 1.0 0.99))
+    (: e_march (Member sk_march_1 march) (STV 1.0 0.99))
+    (: e_march_agent (Agent sk_march_1 sk_group_1) (STV 1.0 0.99))
+    (: e_march_past (Past sk_march_1) (STV 1.0 0.99))
+
+**[card-howmany-q] How many visitors registered?** — count question → bind `(Cardinality $g $n)`
+
+    (: $prf (And (Member $e register) (Agent $e $g) (GroupOf $g visitor) (Cardinality $g $n) (Past $e)) $tv)
+
+**[card-bounded-q] Did more than four players score?** — bounded question → `GreaterThan`
+
+    (: $prf (And (Member $e score) (Agent $e $g) (GroupOf $g player) (Cardinality $g $n) (GreaterThan $n 4) (Past $e)) $tv)
+
 ## Generics & scope (verbal → rules)
 
 **[gen-verbal] Fish swim.** — verbal generic over a kind → Skolem-event rule, 0.9/0.9
@@ -383,9 +452,9 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 
     (: $prf (And (Name $o "Oscar") (Member $e bake) (Agent $e $o) (Patient $e $what) (Past $e)) $tv)
 
-**[q-wh-who] Who built the bridge?** — wh on the Agent
+**[q-wh-who] Who painted the mural?** — wh on the Agent (definite object bound by kind)
 
-    (: $prf (And (Member $e build) (Patient $e $b) (Member $b bridge) (Agent $e $who) (Past $e)) $tv)
+    (: $prf (And (Member $e paint) (Patient $e $m) (Member $m mural) (Agent $e $who) (Past $e)) $tv)
 
 **[q-wh-do] What does Nina do?** — wh on the verb class (habitual, unmarked)
 

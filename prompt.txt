@@ -95,7 +95,7 @@ sentence; never emit `(Inheritance $x dog) → (Inheritance $x mammal)`.
       Most teachers are patient. → (: most_teachers_patient (Inheritance teacher patient) (STV 0.9 0.9))
       Apples are sweet.       →  (: apples_sweet (Inheritance apple sweet) (STV 0.9 0.9))
 
-("a few X" is a small *count*, not a proportion → existential witness, see **Existential**.)
+("a few" / "several" / "dozens" are vague *counts*, not proportions → see **Cardinality**.)
 
 ### Confidence — definitional vs empirical
 
@@ -236,8 +236,8 @@ own):
       There is a black raven. → (: sk_raven_1_raven (Member sk_raven_1 raven) (STV 1.0 0.99))
                                 (: sk_raven_1_black (Member sk_raven_1 black) (STV 1.0 0.99))
 
-"There is a X" and "some X" share this encoding. "a few" / "a couple" → a witness too (small
-count, exact number not represented). Do **not** use a witness for proportion words
+"There is a X" and "some X" share this encoding. Vague *counts* — "a few", "several", "dozens" — go under **Cardinality** (`CardinalityPhrase`),
+not a lone witness; "a couple" ≈ 2 → `(Cardinality g 2)`. Do **not** use a witness for proportion words
 ("most"/"many"/"few" set the strength instead). Indefinite "a/an" can be generic, not
 existential ("A dog is a mammal" = `(Inheritance dog mammal)`) — judge from context.
 
@@ -296,9 +296,65 @@ kind, so "the committee" needs no `GroupOf`; "a flock of birds" takes both (`(Me
 flock) (GroupOf sk_flock_1 bird)`). Distributing a predicate to **each** member still needs a
 rule, so it stays deferred (below).
 
-**Not yet represented** (keep to the forms above): a **count** ("three students", "both"),
-distributing a predicate to **each** member of an unnamed plural, and **disjunction**
-("Bob or Alice").
+**Not yet represented** here: distributing a predicate to **each** member of an unnamed
+plural, and **disjunction** ("Bob or Alice"). (Counts — "three students", "both" — are handled
+next, under **Cardinality**.)
+
+## Cardinality (counting)
+
+A plural is always a **group** (`GroupOf g <kind>`, from **Coordination & plurals**); when it
+carries a **number**, add a **count atom** to that group. The count rides on the group, which
+is predicated as a unit (per-member distribution is a separate, not-yet-emitted step).
+
+- **Exact number** — a numeral, or a fixed-value word ("both" = 2, "a pair" = 2, "a dozen" =
+  12) → `(Cardinality <group> <n>)` (a **native integer**):
+
+      Three students passed the exam. →  (GroupOf sk_group_1 student) (Cardinality sk_group_1 3)
+                                          (Member sk_pass_1 pass) (Agent sk_pass_1 sk_group_1)
+                                          (Patient sk_pass_1 sk_exam_1) (Member sk_exam_1 exam) (Past sk_pass_1)
+      Both dogs barked. →  (GroupOf sk_group_1 dog) (Cardinality sk_group_1 2)
+                           (Member sk_bark_1 bark) (Agent sk_bark_1 sk_group_1) (Past sk_bark_1)
+
+  `(Cardinality g 3)` is the size of *that* group (a point value) — it does **not** claim the
+  world holds only 3 (and "**exactly** three" emits that same `(Cardinality g 3)` — the "no
+  more" closure is a global/open-world reading we don't separately encode). **"both"** = exactly 2 and is **definite** (reuse the two members' symbols
+  if already introduced).
+
+- **Bounded number** → `(CardinalityAtLeast <group> <n>)` / `(CardinalityAtMost <group> <n>)`
+  ("more than 3" = at least 4; "at least 5" = 5; "fewer than 10" = at most 9; "at most 4" = 4):
+
+      More than three guests arrived. →  (GroupOf sk_group_1 guest) (CardinalityAtLeast sk_group_1 4)
+                                          (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_group_1) (Past sk_arrive_1)
+
+- **Vague quantity** with no exact number — "a few", "several", "a handful", "dozens",
+  "scores", "hundreds", "a lot of" — makes the group plus a **`(CardinalityPhrase <group>
+  "<phrase>")`** atom recording the surface word (normalized to the canonical lexicon string).
+  Emit **no number yourself** — seeded rules in `seeded_rules.metta` map the phrase to a bound
+  (e.g. `(CardinalityPhrase g "dozens") → (CardinalityAtLeast g 24)`, with an STV for how
+  reliable the reading is):
+
+      Several birds sang. →  (GroupOf sk_group_1 bird) (CardinalityPhrase sk_group_1 "several")
+                             (Member sk_sing_1 sing) (Agent sk_sing_1 sk_group_1) (Past sk_sing_1)
+
+  "a couple" ≈ 2 → exact `(Cardinality g 2)`. Proportion words ("many / most / few / a lot" in
+  their *proportion* sense — "most of the crowd") stay **strength** on an `Inheritance`/`Member`
+  per **Categorical**; use `CardinalityPhrase` only when the phrase counts *things*.
+
+### Counting questions
+
+- **"How many X V?"** → read the group's cardinality (bind `$n`):
+
+      How many students passed? →  (: $prf (And (Member $e pass) (Agent $e $g) (GroupOf $g student)
+                                        (Cardinality $g $n) (Past $e)) $tv)
+
+- **Bounded "did more than k X V?"** → add `(GreaterThan $n k)`, which the engine evaluates
+  (use the engine's `<` / `>` comparison for the other direction):
+
+      Did more than three students pass? →  (: $prf (And (Member $e pass) (Agent $e $g) (GroupOf $g student)
+                                                (Cardinality $g $n) (GreaterThan $n 3) (Past $e)) $tv)
+
+(A combined total **across** groups uses the engine's `FoldAll` to sum cardinalities — emit that
+only when the question explicitly asks for an aggregate total.)
 
 ## Quantifiers, generics & scope (verbal → rules)
 
