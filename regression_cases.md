@@ -568,10 +568,10 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
     (: panel_question (Implication (Premises (PartOf $x sk_panel_1) (PartOf $y sk_panel_1) (Compute == ($x $y) -> false)) (Conclusions (Member (sk_question $x $y) question) (Agent (sk_question $x $y) $x) (Patient (sk_question $x $y) $y) (Past (sk_question $x $y)))) (STV 1.0 0.9))
     (: sk_panel_1_panel (Member sk_panel_1 panel) (STV 1.0 0.99))
 
-**[recip-sym-pair] Wendy and Xavier are cousins.** — symmetric relation → assert once + per-relation **literal-head** symmetry rule
+**[recip-sym-pair] Wendy and Xavier are cousins.** — symmetric relation → assert once + `(Symmetric <Rel>)` tag (seeded `sym_rel` derives the reverse)
 
     (: wendy_xavier_cousin (Cousin wendy xavier) (STV 1.0 0.99))
-    (: cousin_sym (Implication (Premises (Cousin $x $y)) (Conclusions (Cousin $y $x))) (STV 1.0 0.99))
+    (: cousin_sym_tag (Symmetric Cousin) (STV 1.0 0.99))
     (: wendy_name (Name wendy "Wendy") (STV 1.0 0.99))
     (: xavier_name (Name xavier "Xavier") (STV 1.0 0.99))
 

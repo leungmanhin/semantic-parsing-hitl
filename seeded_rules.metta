@@ -77,3 +77,12 @@
 ; "as ADJ as" (equative) is symmetric
 (: samedegree_sym (Implication (Premises (SameDegree $s $x $y))
    (Conclusions (SameDegree $s $y $x))) (STV 1.0 0.99))
+
+; ===== Symmetric-relation scaffolding =====
+
+; A tagged symmetric relation holds both ways:  Symmetric(R), R(x,y) => R(y,x).
+; The translator emits  (R a b)  +  (Symmetric R)  for a relation that is mutual by
+; meaning ("are friends / siblings / similar"); this single rule symmetrizes any
+; tagged relation (R's head is a variable).
+(: sym_rel (Implication (Premises (Symmetric $r) ($r $x $y))
+   (Conclusions ($r $y $x))) (STV 1.0 0.99))

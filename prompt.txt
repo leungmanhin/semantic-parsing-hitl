@@ -512,23 +512,16 @@ never as a free-variable atom outside the rule:
            (Member sk_committee_1 committee)
 
 **Symmetric predicates** — mutual **by meaning** ("are friends / siblings / colleagues", "is
-similar / equal / married to", stative "resembles") — assert the relation **once**, then emit a
-one-line **symmetry rule** so the reasoner derives the reverse. Its head is the **literal**
-relation (`<Rel>` = the lemmatized predicate, UpperCamelCase), so the derived reverse is
-**pattern-queryable**:
+similar / equal / married to", stative "resembles") — assert the relation **once** plus a
+**`(Symmetric <Rel>)`** tag (`<Rel>` = the lemmatized predicate, UpperCamelCase). The seeded
+`sym_rel` rule derives the reverse direction, so one tag symmetrizes any relation:
 
-      Bob and Alice are friends.
-        →  (Friend bob alice)
-           (: friend_sym (Implication (Premises (Friend $x $y)) (Conclusions (Friend $y $x))) (STV 1.0 0.99))
-           (Name bob "Bob") (Name alice "Alice")
-      Carl is similar to Dan.
-        →  (Similar carl dan)
-           (: similar_sym (Implication (Premises (Similar $x $y)) (Conclusions (Similar $y $x))) (STV 1.0 0.99))
-           (Name carl "Carl") (Name dan "Dan")
+      Bob and Alice are friends.  →  (Friend bob alice) (Symmetric Friend) (Name bob "Bob") (Name alice "Alice")
+      Carl is similar to Dan.     →  (Similar carl dan) (Symmetric Similar) (Name carl "Carl") (Name dan "Dan")
 
 A symmetric relation over a whole **group** ("the senators are all colleagues") needs **no**
-separate symmetry rule — the group rule already ranges over all ordered distinct pairs, so it
-yields both directions; just give it a literal-head conclusion:
+`Symmetric` tag — the group rule already ranges over all ordered distinct pairs, so it yields
+both directions; just give it a literal-head conclusion:
 
       The senators are all colleagues.
         →  (: senators_colleague (Implication
@@ -537,7 +530,7 @@ yields both directions; just give it a literal-head conclusion:
 
 **Routing.** An **eventive** symmetric verb (meet / gather / collide) stays **collective** — one
 event, multiple `Agent` atoms (see **Coordination & plurals**); only **stative** symmetric
-predicates take the relation + symmetry-rule form. A **collective noun** ("are a couple / a
+predicates take the relation + `Symmetric` tag. A **collective noun** ("are a couple / a
 pair") is a group, not a relation → `(Member sk_couple_1 couple)` + `PartOf` members.
 
 **Querying** matches either direction (the reverse is derived):
