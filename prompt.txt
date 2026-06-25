@@ -477,6 +477,75 @@ conclusion mixes the two forms — "everyone who owns a dog is a pet owner":
 (**Copular** universals/generics do **not** reify events — "all dogs are mammals", "most
 teachers are patient" stay the single `Inheritance` fact from **Categorical statements**.)
 
+## Reciprocals & symmetric relations
+
+A relation that holds **mutually** — "each other" / "one another", or a predicate symmetric by
+meaning ("are friends") — must be encoded so the engine can answer it **either way**.
+
+**"X and Y V each other / one another"**, where the verb is **directed** (not mutual on its own
+— "admire", "trust", "help", "blame"): the relation holds **both ways, with the roles swapped**.
+For **named, enumerable** participants, emit one directed event per ordered pair, using the
+verb's normal roles and swapping the two fillers:
+
+      Alice and Bob admire each other.
+        →  (Member sk_admire_1 admire) (Experiencer sk_admire_1 alice) (Stimulus sk_admire_1 bob)
+           (Member sk_admire_2 admire) (Experiencer sk_admire_2 bob)   (Stimulus sk_admire_2 alice)
+           (Name alice "Alice") (Name bob "Bob")
+
+For an **unnamed group** (you don't have the individuals) emit a **rule** over the members, with
+a distinctness guard `(Compute == ($x $y) -> false)` (so nobody pairs with themselves) and a
+Skolem-**function** event `(sk_<verb> $x $y)`, one per ordered pair — like the ∀∀ rule above.
+**Range over the predicate the members satisfy**: a plural that **names the kind** ("jurors",
+"students") → `(Member $x <kind>)`; a **collective noun** ("committee", "team") whose members'
+kind isn't stated → `(PartOf $x <group>)`. Put any tense/status **inside** the `Conclusions` —
+never as a free-variable atom outside the rule:
+
+      The jurors distrust one another.
+        →  (: jurors_distrust (Implication
+              (Premises (Member $x juror) (Member $y juror) (Compute == ($x $y) -> false))
+              (Conclusions (Member (sk_distrust $x $y) distrust) (Agent (sk_distrust $x $y) $x)
+                           (Patient (sk_distrust $x $y) $y))) (STV 1.0 0.9))
+      The committee members argued with one another.
+        →  (: committee_argue (Implication
+              (Premises (PartOf $x sk_committee_1) (PartOf $y sk_committee_1) (Compute == ($x $y) -> false))
+              (Conclusions (Member (sk_argue $x $y) argue) (Agent (sk_argue $x $y) $x)
+                           (Patient (sk_argue $x $y) $y) (Past (sk_argue $x $y)))) (STV 1.0 0.9))
+           (Member sk_committee_1 committee)
+
+**Symmetric predicates** — mutual **by meaning** ("are friends / siblings / colleagues", "is
+similar / equal / married to", stative "resembles") — assert the relation **once**, then emit a
+one-line **symmetry rule** so the reasoner derives the reverse. Its head is the **literal**
+relation (`<Rel>` = the lemmatized predicate, UpperCamelCase), so the derived reverse is
+**pattern-queryable**:
+
+      Bob and Alice are friends.
+        →  (Friend bob alice)
+           (: friend_sym (Implication (Premises (Friend $x $y)) (Conclusions (Friend $y $x))) (STV 1.0 0.99))
+           (Name bob "Bob") (Name alice "Alice")
+      Carl is similar to Dan.
+        →  (Similar carl dan)
+           (: similar_sym (Implication (Premises (Similar $x $y)) (Conclusions (Similar $y $x))) (STV 1.0 0.99))
+           (Name carl "Carl") (Name dan "Dan")
+
+A symmetric relation over a whole **group** ("the senators are all colleagues") needs **no**
+separate symmetry rule — the group rule already ranges over all ordered distinct pairs, so it
+yields both directions; just give it a literal-head conclusion:
+
+      The senators are all colleagues.
+        →  (: senators_colleague (Implication
+              (Premises (Member $x senator) (Member $y senator) (Compute == ($x $y) -> false))
+              (Conclusions (Colleague $x $y))) (STV 1.0 0.9))
+
+**Routing.** An **eventive** symmetric verb (meet / gather / collide) stays **collective** — one
+event, multiple `Agent` atoms (see **Coordination & plurals**); only **stative** symmetric
+predicates take the relation + symmetry-rule form. A **collective noun** ("are a couple / a
+pair") is a group, not a relation → `(Member sk_couple_1 couple)` + `PartOf` members.
+
+**Querying** matches either direction (the reverse is derived):
+
+      Who is Bob friends with?  →  (: $prf (And (Name $b "Bob") (Friend $b $x)) $tv)
+      Does Alice admire Bob?    →  (: $prf (And (Member $e admire) (Experiencer $e alice) (Stimulus $e bob)) $tv)
+
 ## Coreference & anaphora
 
 Across a passage, when a later mention refers to an **already-introduced** entity or event,

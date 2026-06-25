@@ -12,9 +12,9 @@ Golden `sentence → expected atoms` pairs for the translator driven by `prompt.
      **status** atoms (`Past`/`Ongoing`/`Can`/…). **Ignore** the event/witness symbol
      (`sk_<verb>_<n>`, `(sk_<verb> $x)`) and proof-names — they may differ in a passing run.
    - **Queries**: check the conjuncts and variable placement; `$prf`/`$tv` names are immaterial.
-4. (Optional, statement-side only) load produced atoms into the engine via the PeTTa-fiet
-   worktree to catch malformed output. Event **querying** is engine-pending (needs n-conjunct
-   conjunctive queries + multi-conclusion projection), so don't expect event QA to run yet.
+4. (Optional) load the produced atoms into the chainer to catch malformed output and run the
+   paired query; `e2e_regression.py` exercises the full NL→atoms→chainer→answer path for a
+   representative subset.
 
 Coreference cases are **passages** (multiple sentences) — feed the whole passage at once; the
 key check is that coreferring mentions (pronoun, "the X", a name, event anaphora) **share one
@@ -543,6 +543,58 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 **[coref-donkey] Every shepherd who owns a sheep shears it.** — "it" = the premise-bound `$d`
 
     (: every_shepherd_shears_sheep (Implication (Premises (Member $f shepherd) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d sheep)) (Conclusions (Member (sk_shear $f $d) shear) (Agent (sk_shear $f $d) $f) (Patient (sk_shear $f $d) $d))) (STV 1.0 0.9))
+
+## Reciprocals & symmetric relations
+
+**[recip-directed-pair] Hannah and Ivan congratulated each other.** — "each other" + directed verb, named → one directed event per ordered pair, roles swapped
+
+    (: e_congrat1 (Member sk_congratulate_1 congratulate) (STV 1.0 0.99))
+    (: e_congrat1_agent (Agent sk_congratulate_1 hannah) (STV 1.0 0.99))
+    (: e_congrat1_patient (Patient sk_congratulate_1 ivan) (STV 1.0 0.99))
+    (: e_congrat1_past (Past sk_congratulate_1) (STV 1.0 0.99))
+    (: e_congrat2 (Member sk_congratulate_2 congratulate) (STV 1.0 0.99))
+    (: e_congrat2_agent (Agent sk_congratulate_2 ivan) (STV 1.0 0.99))
+    (: e_congrat2_patient (Patient sk_congratulate_2 hannah) (STV 1.0 0.99))
+    (: e_congrat2_past (Past sk_congratulate_2) (STV 1.0 0.99))
+    (: hannah_name (Name hannah "Hannah") (STV 1.0 0.99))
+    (: ivan_name (Name ivan "Ivan") (STV 1.0 0.99))
+
+**[recip-group-kind] The rivals undermine one another.** — unnamed group, plural names the kind → rule over `(Member $x rival)`, distinctness guard, Skolem-pair event
+
+    (: rivals_undermine (Implication (Premises (Member $x rival) (Member $y rival) (Compute == ($x $y) -> false)) (Conclusions (Member (sk_undermine $x $y) undermine) (Agent (sk_undermine $x $y) $x) (Patient (sk_undermine $x $y) $y))) (STV 1.0 0.9))
+
+**[recip-group-collnoun] The panel members questioned one another.** — collective noun → rule over `(PartOf $x <group>)`, tense **inside** Conclusions (a compound-kind `(Member $x panel_member)` reading is an accepted equivalent)
+
+    (: panel_question (Implication (Premises (PartOf $x sk_panel_1) (PartOf $y sk_panel_1) (Compute == ($x $y) -> false)) (Conclusions (Member (sk_question $x $y) question) (Agent (sk_question $x $y) $x) (Patient (sk_question $x $y) $y) (Past (sk_question $x $y)))) (STV 1.0 0.9))
+    (: sk_panel_1_panel (Member sk_panel_1 panel) (STV 1.0 0.99))
+
+**[recip-sym-pair] Wendy and Xavier are cousins.** — symmetric relation → assert once + per-relation **literal-head** symmetry rule
+
+    (: wendy_xavier_cousin (Cousin wendy xavier) (STV 1.0 0.99))
+    (: cousin_sym (Implication (Premises (Cousin $x $y)) (Conclusions (Cousin $y $x))) (STV 1.0 0.99))
+    (: wendy_name (Name wendy "Wendy") (STV 1.0 0.99))
+    (: xavier_name (Name xavier "Xavier") (STV 1.0 0.99))
+
+**[recip-sym-group] All the finalists are rivals.** — symmetric relation over a group → literal-head rule (both directions from the pair-range), **no** separate symmetry rule
+
+    (: finalists_rivals (Implication (Premises (Member $x finalist) (Member $y finalist) (Compute == ($x $y) -> false)) (Conclusions (Rival $x $y))) (STV 1.0 0.9))
+
+**[recip-routing] Hassan and Omar reconciled with each other.** — eventive symmetric verb + "each other" → **collective** (one event, two `Agent` atoms), not two directed events
+
+    (: e_reconcile (Member sk_reconcile_1 reconcile) (STV 1.0 0.99))
+    (: e_reconcile_agent1 (Agent sk_reconcile_1 hassan) (STV 1.0 0.99))
+    (: e_reconcile_agent2 (Agent sk_reconcile_1 omar) (STV 1.0 0.99))
+    (: e_reconcile_past (Past sk_reconcile_1) (STV 1.0 0.99))
+    (: hassan_name (Name hassan "Hassan") (STV 1.0 0.99))
+    (: omar_name (Name omar "Omar") (STV 1.0 0.99))
+
+**[recip-q-sym] Who is Wendy a cousin of?** — symmetric-relation query (reverse derived by the symmetry rule)
+
+    (: $prf (And (Name $w "Wendy") (Cousin $w $x)) $tv)
+
+**[recip-q-directed] Did Hannah congratulate Ivan?** — directed each-other query (one direction)
+
+    (: $prf (And (Name $h "Hannah") (Name $i "Ivan") (Member $e congratulate) (Agent $e $h) (Patient $e $i) (Past $e)) $tv)
 
 ## Queries (questions → query patterns)
 
