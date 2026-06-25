@@ -422,6 +422,20 @@ was 6 feet tall" → `(Past (Measure alice tall 6 foot))`).
 - **Bounded** → `(MeasureAtLeast …)` / `(MeasureAtMost …)`: "at least 3 m" → `(MeasureAtLeast
   sk_rope_1 long 3 meter)`; "no more than 5 kg" → `(MeasureAtMost sk_box_1 weight 5 kilogram)`.
   Strict "more/less than" uses the same bound (continuous quantity — the boundary point is dropped).
+- **Approximate** ("about / around / roughly / approximately X") → a **distribution** magnitude
+  `(ParticleFromNormal <X> <σ>)` in place of the plain number, with **σ ≈ 10% of X** (so the
+  spread scales with the value):
+
+      Alice is about 6 feet tall. →  (Measure alice tall (ParticleFromNormal 6 0.6) foot) (Name alice "Alice")
+      The load is roughly 200 kg. →  (Member sk_load_1 load) (Measure sk_load_1 weight (ParticleFromNormal 200 20) kilogram)
+
+  A **threshold** question over an approximate (distribution) magnitude uses **`GreaterThan`** —
+  it returns a graded `P(value > threshold)` — in place of `Compute`:
+
+      Is Alice taller than 5 feet? →  (: $prf (And (Name $a "Alice") (Measure $a tall $d foot) (GreaterThan $d 5)) $tv)
+
+  (`GreaterThan` works **only** on a distribution magnitude; an **exact** measure stays a plain
+  number queried with `Compute`. Two approximate measures compare the same way: `(GreaterThan $da $db)`.)
 
 **Measure questions** bind the magnitude; gate a threshold with a `Compute` comparison — a
 **hard integer** test on the exact value (`GreaterThan` is for *distribution* / uncertain

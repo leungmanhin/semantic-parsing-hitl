@@ -425,6 +425,20 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: $prf (And (Name $g "Grace") (Measure $g tall $n centimeter) (Compute > ($n 160) -> true)) $tv)
 
+**[meas-approx-adj] The fence is about 3 meters tall.** — approximate → distribution magnitude `(ParticleFromNormal X σ)`, σ ≈ 10% of X
+
+    (: fence_tall (Measure sk_fence_1 tall (ParticleFromNormal 3 0.3) meter) (STV 1.0 0.99))
+    (: fence_member (Member sk_fence_1 fence) (STV 1.0 0.99))
+
+**[meas-approx-verb] The crate weighs roughly 40 kilograms.** — approximate on a dimension-noun scale
+
+    (: crate_weight (Measure sk_crate_1 weight (ParticleFromNormal 40 4) kilogram) (STV 1.0 0.99))
+    (: crate_member (Member sk_crate_1 crate) (STV 1.0 0.99))
+
+**[meas-approx-q] Is the fence taller than 2 meters?** — threshold over an approximate measure → `GreaterThan` (graded P>), not `Compute`
+
+    (: $prf (And (Member $f fence) (Measure $f tall $d meter) (GreaterThan $d 2)) $tv)
+
 ## Generics & scope (verbal → rules)
 
 **[gen-verbal] Fish swim.** — verbal generic over a kind → Skolem-event rule, 0.9/0.9
