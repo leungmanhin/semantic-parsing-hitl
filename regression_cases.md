@@ -596,6 +596,50 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: $prf (And (Name $h "Hannah") (Name $i "Ivan") (Member $e congratulate) (Agent $e $h) (Patient $e $i) (Past $e)) $tv)
 
+## Disjunction ("or")
+
+**[disj-subj-named] Greg or Tina will win.** — disjoint named subject → narrow `(Or …)` over the Agent inside one `(And …)` fact
+
+    (: greg_or_tina_win (And (Member sk_win_1 win) (Or (Agent sk_win_1 greg) (Agent sk_win_1 tina)) (Future sk_win_1)) (STV 1.0 0.99))
+    (: greg_name (Name greg "Greg") (STV 1.0 0.99))
+    (: tina_name (Name tina "Tina") (STV 1.0 0.99))
+
+**[disj-obj] Carla drinks juice or water.** — disjoint bare-noun object → narrow `(Or …)` over the Theme (habitual, unmarked)
+
+    (: carla_drink (And (Member sk_drink_1 drink) (Agent sk_drink_1 carla) (Or (Theme sk_drink_1 juice) (Theme sk_drink_1 water))) (STV 1.0 0.99))
+    (: carla_name (Name carla "Carla") (STV 1.0 0.99))
+
+**[disj-obj-indef] Sam will buy a bike or a scooter.** — disjoint *indefinite* object → each witness's `(Member …)` lives **inside** its Or branch
+
+    (: sam_buy (And (Member sk_buy_1 buy) (Agent sk_buy_1 sam) (Or (And (Theme sk_buy_1 sk_bike_1) (Member sk_bike_1 bike)) (And (Theme sk_buy_1 sk_scooter_1) (Member sk_scooter_1 scooter))) (Future sk_buy_1)) (STV 1.0 0.99))
+    (: sam_name (Name sam "Sam") (STV 1.0 0.99))
+
+**[disj-cop] The light is red or amber.** — disjoint property → `(Or …)` of two `Member` atoms + definite subject membership
+
+    (: light_color (Or (Member sk_light_1 red) (Member sk_light_1 amber)) (STV 1.0 0.99))
+    (: light (Member sk_light_1 light) (STV 1.0 0.99))
+
+**[disj-wide] The engine stalled or the brakes failed.** — independent clauses → wide `(Or <bundleA> <bundleB>)`, definite subjects outside
+
+    (: engine_or_brakes (Or (And (Member sk_stall_1 stall) (Agent sk_stall_1 sk_engine_1) (Past sk_stall_1)) (And (Member sk_fail_1 fail) (Agent sk_fail_1 sk_brake_1) (Past sk_fail_1))) (STV 1.0 0.99))
+    (: engine (Member sk_engine_1 engine) (STV 1.0 0.99))
+    (: brake (Member sk_brake_1 brake) (STV 1.0 0.99))
+
+**[disj-rule] A driver who is reckless or drunk is fined.** — disjunctive rule condition → one rule per disjunct
+
+    (: reckless_fined (Implication (Premises (Member $x driver) (Member $x reckless)) (Conclusions (Member (sk_fine $x) fine) (Patient (sk_fine $x) $x))) (STV 1.0 0.99))
+    (: drunk_fined (Implication (Premises (Member $x driver) (Member $x drunk)) (Conclusions (Member (sk_fine $x) fine) (Patient (sk_fine $x) $x))) (STV 1.0 0.99))
+
+**[disj-q-comp] Who is older or taller than Tom?** — disjunctive question → one query line per disjunct
+
+    (: $prf (And (Name $t "Tom") (More old $x $t)) $tv)
+    (: $prf (And (Name $t "Tom") (More tall $x $t)) $tv)
+
+**[disj-q-event] Did the bell chime or the phone buzz?** — disjunctive event question → one query line per disjunct
+
+    (: $prf (And (Member $e chime) (Agent $e sk_bell_1) (Member sk_bell_1 bell) (Past $e)) $tv)
+    (: $prf (And (Member $e buzz) (Agent $e sk_phone_1) (Member sk_phone_1 phone) (Past $e)) $tv)
+
 ## Queries (questions → query patterns)
 
 For these the expected output is a single query line `(: $prf <pattern> $tv)`; check the

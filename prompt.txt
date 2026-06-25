@@ -297,8 +297,7 @@ flock) (GroupOf sk_flock_1 bird)`). Distributing a predicate to **each** member 
 rule, so it stays deferred (below).
 
 **Not yet represented** here: distributing a predicate to **each** member of an unnamed
-plural, and **disjunction** ("Bob or Alice"). (Counts — "three students", "both" — are handled
-next, under **Cardinality**.)
+plural. (Counts — "three students", "both" — are under **Cardinality**; "or" under **Disjunction**.)
 
 ## Cardinality (counting)
 
@@ -545,6 +544,64 @@ pair") is a group, not a relation → `(Member sk_couple_1 couple)` + `PartOf` m
 
       Who is Bob friends with?  →  (: $prf (And (Name $b "Bob") (Friend $b $x)) $tv)
       Does Alice admire Bob?    →  (: $prf (And (Member $e admire) (Experiencer $e alice) (Stimulus $e bob)) $tv)
+
+## Disjunction ("or")
+
+"or" says **at least one** disjunct holds without saying which — reify it with **`(Or <d1> <d2>
+…)`**. The engine keeps `(Or …)` **opaque**: it never asserts an individual disjunct (so "Bob or
+Alice came" does not make "Bob came" true), which is the faithful reading. Treat every "or" —
+including "either … or" — as **inclusive**.
+
+**Scope the `(Or …)` as narrowly as possible** — wrap it around only the constituent that varies
+and keep the shared/definite parts as ordinary conjuncts of one `(And …)` fact, so those stay
+queryable while the Or stays opaque:
+
+      Bob or Alice will come.      (disjoint subject)
+        →  (: will_come (And (Member sk_come_1 come) (Or (Agent sk_come_1 bob) (Agent sk_come_1 alice)) (Future sk_come_1)) (STV 1.0 0.99))
+           (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+           (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+      Bob ordered tea or coffee.   (disjoint object)
+        →  (: bob_order (And (Member sk_order_1 order) (Agent sk_order_1 bob) (Or (Theme sk_order_1 tea) (Theme sk_order_1 coffee)) (Past sk_order_1)) (STV 1.0 0.99))
+           (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+      The vase is red or blue.     (disjoint property)
+        →  (: vase_color (Or (Member sk_vase_1 red) (Member sk_vase_1 blue)) (STV 1.0 0.99))
+           (: vase (Member sk_vase_1 vase) (STV 1.0 0.99))
+
+So "Did someone come?" (`(Member $e come)`) still answers yes, but "Will **Bob** come?"
+(`(Agent sk_come_1 bob)`) returns nothing — genuinely unknown. The whole disjunctive clause is
+**one `(And …)` fact** (like a negated event); the `(Or …)` and its definite siblings live inside
+it, and you do **not** also assert the disjuncts on their own. If a disjunct brings its **own
+indefinite entity** ("a salad or a sandwich"), keep that entity's `(Member <witness> <class>)`
+**inside** its Or branch (each branch an `(And …)`), so neither object is asserted to exist alone:
+
+      Priya ordered a salad or a sandwich.
+        →  (: priya_order (And (Member sk_order_1 order) (Agent sk_order_1 priya)
+              (Or (And (Theme sk_order_1 sk_salad_1) (Member sk_salad_1 salad))
+                  (And (Theme sk_order_1 sk_sandwich_1) (Member sk_sandwich_1 sandwich))) (Past sk_order_1)) (STV 1.0 0.99))
+           (: priya_name (Name priya "Priya") (STV 1.0 0.99))
+
+Use **wide scope** — `(Or <bundleA>
+<bundleB>)`, each disjunct a full `(And …)`/atom — only for **independent clauses** that share
+nothing: "The server crashed or the network failed" → `(Or (And (Member sk_crash_1 crash) (Agent
+sk_crash_1 sk_server_1) (Past sk_crash_1)) (And (Member sk_fail_1 fail) (Agent sk_fail_1
+sk_network_1) (Past sk_fail_1)))`.
+
+**Disjunction in a rule's condition → two rules.** An `(Or …)` premise needs *all* its operands,
+so split a disjunctive condition into one rule per disjunct (each fires on either):
+
+      A package that is fragile or heavy is flagged.
+        →  (: fragile_flagged (Implication (Premises (Member $x package) (Member $x fragile)) (Conclusions (Member $x flagged))) (STV 1.0 0.99))
+           (: heavy_flagged   (Implication (Premises (Member $x package) (Member $x heavy))   (Conclusions (Member $x flagged))) (STV 1.0 0.99))
+
+**Disjunctive question → one query line per disjunct** (a single `(Or …)` query would need *all*
+disjuncts); any match is the answer:
+
+      Who is faster or stronger than Dan?
+        →  (: $prf (And (Name $d "Dan") (More fast $x $d)) $tv)
+           (: $prf (And (Name $d "Dan") (More strong $x $d)) $tv)
+      Did Bob or Alice call?
+        →  (: $prf (And (Name $b "Bob") (Member $e call) (Agent $e $b) (Past $e)) $tv)
+           (: $prf (And (Name $a "Alice") (Member $e call) (Agent $e $a) (Past $e)) $tv)
 
 ## Coreference & anaphora
 
