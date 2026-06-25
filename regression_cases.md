@@ -312,9 +312,9 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: $prf (And (Member $e register) (Agent $e $g) (GroupOf $g visitor) (Cardinality $g $n) (Past $e)) $tv)
 
-**[card-bounded-q] Did more than four players score?** — bounded question → `GreaterThan`
+**[card-bounded-q] Did more than four players score?** — bounded question → `Compute >` (hard int gate)
 
-    (: $prf (And (Member $e score) (Agent $e $g) (GroupOf $g player) (Cardinality $g $n) (GreaterThan $n 4) (Past $e)) $tv)
+    (: $prf (And (Member $e score) (Agent $e $g) (GroupOf $g player) (Cardinality $g $n) (Compute > ($n 4) -> true) (Past $e)) $tv)
 
 ## Comparatives & degree
 
@@ -379,6 +379,51 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 **[comp-q-super] Who is the smartest engineer?** — superlative query
 
     (: $prf (Most smart $x engineer) $tv)
+
+## Measures & units
+
+**[meas-adj] Grace is 165 centimeters tall.** — measure on a stated adjective scale
+
+    (: meas_adj (Measure grace tall 165 centimeter) (STV 1.0 0.99))
+    (: grace_name (Name grace "Grace") (STV 1.0 0.99))
+
+**[meas-age] Leo is 40 years old.** — age → `old` scale
+
+    (: meas_age (Measure leo old 40 year) (STV 1.0 0.99))
+    (: leo_name (Name leo "Leo") (STV 1.0 0.99))
+
+**[meas-verb] The parcel weighs 2 kilograms.** — verb → dimension noun `weight` (no adjective stated)
+
+    (: sk_parcel_1_parcel (Member sk_parcel_1 parcel) (STV 1.0 0.99))
+    (: meas_verb (Measure sk_parcel_1 weight 2 kilogram) (STV 1.0 0.99))
+
+**[meas-price] The ticket costs 50 dollars.** — "costs" → `price` scale
+
+    (: sk_ticket_1_ticket (Member sk_ticket_1 ticket) (STV 1.0 0.99))
+    (: meas_price (Measure sk_ticket_1 price 50 dollar) (STV 1.0 0.99))
+
+**[meas-tense] The bridge was 200 meters long.** — tense wraps the measure atom
+
+    (: sk_bridge_1_bridge (Member sk_bridge_1 bridge) (STV 1.0 0.99))
+    (: meas_tense (Past (Measure sk_bridge_1 long 200 meter)) (STV 1.0 0.99))
+
+**[meas-atleast] The fence is at least 4 meters long.** — bounded → `MeasureAtLeast`
+
+    (: sk_fence_1_fence (Member sk_fence_1 fence) (STV 1.0 0.99))
+    (: meas_atleast (MeasureAtLeast sk_fence_1 long 4 meter) (STV 1.0 0.99))
+
+**[meas-atmost] The package weighs no more than 3 kilograms.** — bounded → `MeasureAtMost`
+
+    (: sk_package_1_package (Member sk_package_1 package) (STV 1.0 0.99))
+    (: meas_atmost (MeasureAtMost sk_package_1 weight 3 kilogram) (STV 1.0 0.99))
+
+**[meas-q-how] How old is Leo?** — measure question → bind magnitude + unit
+
+    (: $prf (And (Name $l "Leo") (Measure $l old $n $u)) $tv)
+
+**[meas-q-threshold] Is Grace taller than 160 centimeters?** — threshold → `Compute >` (hard int gate)
+
+    (: $prf (And (Name $g "Grace") (Measure $g tall $n centimeter) (Compute > ($n 160) -> true)) $tv)
 
 ## Generics & scope (verbal → rules)
 

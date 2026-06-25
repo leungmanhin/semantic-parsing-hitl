@@ -347,11 +347,13 @@ is predicated as a unit (per-member distribution is a separate, not-yet-emitted 
       How many students passed? →  (: $prf (And (Member $e pass) (Agent $e $g) (GroupOf $g student)
                                         (Cardinality $g $n) (Past $e)) $tv)
 
-- **Bounded "did more than k X V?"** → add `(GreaterThan $n k)`, which the engine evaluates
-  (use the engine's `<` / `>` comparison for the other direction):
+- **Bounded "did more than k X V?"** → gate the exact count with a `Compute` comparison
+  (`>` / `>=` / `<` / `<=` per the wording): `(Compute > ($n k) -> true)` keeps the branch only
+  when it holds. (`Compute` is the **hard integer** test; `GreaterThan` is for *distribution*
+  values, not plain numbers.)
 
       Did more than three students pass? →  (: $prf (And (Member $e pass) (Agent $e $g) (GroupOf $g student)
-                                                (Cardinality $g $n) (GreaterThan $n 3) (Past $e)) $tv)
+                                                (Cardinality $g $n) (Compute > ($n 3) -> true) (Past $e)) $tv)
 
 (A combined total **across** groups uses the engine's `FoldAll` to sum cardinalities — emit that
 only when the question explicitly asks for an aggregate total.)
@@ -396,6 +398,38 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
 `More`'s transitivity and `SameDegree`'s symmetry are **seeded** (`seeded_rules.metta`), not
 emitted. Tense/modality **wrap** a comparative like any copular atom: "Alice was taller than
 Bob" → `(Past (More tall alice bob))`.
+
+## Measures & units
+
+A **measure** puts a number on a dimension, so it *can* use the engine's numeric tooling
+(`GreaterThan`, `Compute`). Form (like `Degree`, but a magnitude + unit instead of a level):
+
+      (Measure <entity> <scale> <magnitude> <unit>)
+
+- **scale** = the **surface dimension**: the gradable adjective if one is stated ("6 feet
+  **tall**" → `tall`, "30 years **old**" → `old`), else the dimension noun ("**weighs** 5 kg" →
+  `weight`, "**costs** $20" → `price`). Record what's said — don't force a verb/noun onto an
+  adjective (so `weight`-measures and `heavy`-comparatives need not unify yet).
+- **magnitude** = a native number; **unit** = lemmatized singular (`foot`, `meter`, `kilogram`,
+  `year`, `dollar`).
+
+      Alice is 6 feet tall.       →  (Measure alice tall 6 foot) (Name alice "Alice")
+      The rope is 3 meters long.  →  (Member sk_rope_1 rope) (Measure sk_rope_1 long 3 meter)
+      The box weighs 5 kilograms. →  (Member sk_box_1 box) (Measure sk_box_1 weight 5 kilogram)
+
+A measure does **not** entail the positive ("6 feet tall" ≠ tall); tense **wraps** it ("Alice
+was 6 feet tall" → `(Past (Measure alice tall 6 foot))`).
+
+- **Bounded** → `(MeasureAtLeast …)` / `(MeasureAtMost …)`: "at least 3 m" → `(MeasureAtLeast
+  sk_rope_1 long 3 meter)`; "no more than 5 kg" → `(MeasureAtMost sk_box_1 weight 5 kilogram)`.
+  Strict "more/less than" uses the same bound (continuous quantity — the boundary point is dropped).
+
+**Measure questions** bind the magnitude; gate a threshold with a `Compute` comparison — a
+**hard integer** test on the exact value (`GreaterThan` is for *distribution* / uncertain
+values, not plain numbers):
+
+      How tall is Alice?           →  (: $prf (And (Name $a "Alice") (Measure $a tall $n $u)) $tv)
+      Is Bob taller than 2 meters? →  (: $prf (And (Name $b "Bob") (Measure $b tall $n meter) (Compute > ($n 2) -> true)) $tv)
 
 ## Quantifiers, generics & scope (verbal → rules)
 
