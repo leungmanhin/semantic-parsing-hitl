@@ -686,3 +686,20 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 **[q-neg] What can't infants do?** — negative/polarity → pin TV to strength 0
 
     (: $prf (And (Member $e $verb) (Agent $e infant) (Can $e)) (STV 0.0 $conf))
+
+**[q-compound-chain] Who is the smartest, and what do they study?** — compound (shared referent) → one query, `$who` chains the parts, two unknowns
+
+    (: $prf (And (Most smart $who person) (Member $e study) (Agent $e $who) (Patient $e $what)) $tv)
+
+**[q-compound-obj] What did Nora paint, and who bought it?** — compound chained via the object "it" (shared `$work`)
+
+    (: $prf (And (Name $n "Nora") (Member $pe paint) (Agent $pe $n) (Patient $pe $work) (Past $pe) (Member $be buy) (Agent $be $who) (Patient $be $work) (Past $be)) $tv)
+
+**[q-compound-indep] Who is the oldest dog, and who is the youngest cat?** — independent parts still **one** query (the `And` binds both jointly)
+
+    (: $prf (And (Most old $d dog) (Most young $c cat)) $tv)
+
+**[q-compound-difftv] What can robots do, and what can't they do?** — different truth-value pins → the one case that splits into two lines
+
+    (: $prf (And (Member $e $verb) (Agent $e robot) (Can $e)) $tv)
+    (: $prf (And (Member $e $verb) (Agent $e robot) (Can $e)) (STV 0.0 $conf))

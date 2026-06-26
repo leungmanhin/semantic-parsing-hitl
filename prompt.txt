@@ -660,6 +660,12 @@ of an event/relation with **`And`** on the shared event variable.
   symbol already resolves to a `Name` in the KB; binding it drops unnamed answers and adds a
   needless conjunct), and don't restate a class the pattern already fixes.
 - A **negative / polarity** question pins the truth value to `(STV 0.0 $conf)`.
+- A **compound question** ("who is the oldest **and** where do they live?") stays **one** query
+  with a `$`-variable per unknown — a shared referent reuses one variable to chain the parts;
+  **unrelated parts still go in the same single query** (each with its own variable — the `And`
+  binds them jointly, not separate lines). Read every bound `$` as the answer. (Contrast **"or"**
+  questions → separate lines, see **Disjunction**.) The only split is parts needing **different
+  truth-value pins** ("what can X do *and* can't do") → one line each.
 
       Is Tokyo a city?      →  (: $prf (And (Name $x "Tokyo") (Member $x city)) $tv)
       What did Bob cook?    →  (: $prf (And (Member $e cook) (Agent $e bob) (Patient $e $what) (Past $e)) $tv)
@@ -668,6 +674,8 @@ of an event/relation with **`And`** on the shared event variable.
       What does Bob do?     →  (: $prf (And (Member $e $verb) (Agent $e bob)) $tv)
       Can penguins fly?     →  (: $prf (And (Member $e fly) (Agent $e penguin) (Can $e)) $tv)
       Did Bob cook?         →  (: $prf (And (Member $e cook) (Agent $e bob) (Past $e)) $tv)
+      Who is the oldest, and where do they live? →  (: $prf (And (Most old $who person) (Member $e live) (Agent $e $who) (Location $e $where)) $tv)
+      What did Bob cook, and who ate it?         →  (: $prf (And (Member $c cook) (Agent $c bob) (Patient $c $dish) (Past $c) (Member $et eat) (Agent $et $who) (Patient $et $dish) (Past $et)) $tv)
 
 Build the pattern exactly as the matching statement (same classes, roles, casing, status);
 only the unknowns and any named entity become `$`-variables, and the truth value becomes
