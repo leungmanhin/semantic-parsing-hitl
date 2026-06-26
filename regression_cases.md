@@ -493,6 +493,26 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: gardener_rule (Implication (Premises (Member $e have) (Holder $e $x) (Theme $e $y) (Member $y garden)) (Conclusions (Member $x gardener))) (STV 1.0 0.99))
 
+### Striking & relational generics
+
+Judge whether the property holds of *most* individuals. A bare generic relating two KINDS → a kind-level relation (no instance distribution, strength stays high). A striking *minority* copular generic → `Inheritance` at a lowered strength. (An *explicit* universal stays a ∀∀ rule — see [scope-aa].)
+
+**[genR-rel-eat] Vultures eat carrion.** — relational generic (two kinds) → kind-level relation, never distributes to instances, strength high
+
+    (: vultures_eat_carrion (Eat vulture carrion) (STV 0.9 0.9))
+
+**[genR-rel-catch] Spiders catch insects.** — relational generic → kind-level relation
+
+    (: spiders_catch_insects (Catch spider insect) (STV 0.9 0.9))
+
+**[genR-strike] Programmers are antisocial.** — striking *minority* copular generic → `Inheritance` at LOWERED strength (~0.2–0.3, not 0.9)
+
+    (: programmers_antisocial (Inheritance programmer antisocial) (STV 0.3 0.9))
+
+**[genR-majority] Eagles are predators.** — *majority* copular generic (control) → `Inheritance` at 0.9, NOT lowered
+
+    (: eagles_predators (Inheritance eagle predator) (STV 0.9 0.9))
+
 ## Coreference & anaphora (passages)
 
 **[coref-pronoun] Nina owns a parrot. It is green.** — "it" = the parrot → shared `sk_parrot_1`

@@ -511,6 +511,34 @@ conclusion mixes the two forms — "everyone who owns a dog is a pet owner":
 (**Copular** universals/generics do **not** reify events — "all dogs are mammals", "most
 teachers are patient" stay the single `Inheritance` fact from **Categorical statements**.)
 
+**Striking & relational generics** — first judge: does the property hold of *most* individuals of
+the kind? The default (a distributing rule, or `Inheritance`, at strength `0.9`) fits only
+**majority** generics ("birds fly", "dogs have four legs"). Two cases differ:
+
+- **Relational generic** relating two KINDS ("mosquitoes carry malaria", "bees pollinate flowers",
+  "lions have manes", "sharks attack swimmers") → a **kind-level relation** `(<Verb> <kindA>
+  <kindB>)` (lemmatized UpperCamelCase head, two kind args), **not** a per-instance rule. It stays
+  opaque, so it never distributes — "does *this* mosquito carry malaria?" correctly stays unknown.
+  Strength **high** (`0.9`, a true kind characterization); distributing it to all instance-pairs
+  would wrongly assert "every mosquito carries malaria".
+
+      Mosquitoes carry malaria.  →  (: m_carry (Carry mosquito malaria) (STV 0.9 0.9))
+      Bees pollinate flowers.    →  (: b_poll (Pollinate bee flower) (STV 0.9 0.9))
+      Lions have manes.          →  (: l_mane (Have lion mane) (STV 0.9 0.9))
+
+  (An **explicit** universal "every dog chases every cat" stays a ∀∀ rule; a specific past "a dog
+  chased a cat" stays an instance event. Only a **bare** relational generic becomes a kind relation.)
+
+- **Striking copular generic** — an "X are ADJ/N" generic true of only a **minority**
+  ("politicians are corrupt") → keep `(Inheritance <kind> <prop>)`, but **lower the strength to the
+  actual proportion** (striking minority ≈ `0.2`–`0.3`, not `0.9`); the engine distributes it to
+  each member at that low strength, so an arbitrary member isn't strongly asserted to have it.
+
+      Politicians are corrupt.   →  (: pol_corrupt (Inheritance politician corrupt) (STV 0.3 0.9))
+
+Rule of thumb: set the strength to what an **arbitrary instance** should inherit — a kind relation
+doesn't inherit (stays high), a copular `Inheritance` does (lower it when the property is rare).
+
 ## Reciprocals & symmetric relations
 
 A relation that holds **mutually** — "each other" / "one another", or a predicate symmetric by
