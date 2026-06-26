@@ -677,6 +677,43 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
     (: $prf (And (Member $e chime) (Agent $e sk_bell_1) (Member sk_bell_1 bell) (Past $e)) $tv)
     (: $prf (And (Member $e buzz) (Agent $e sk_phone_1) (Member sk_phone_1 phone) (Past $e)) $tv)
 
+## Exclusive or (XOR)
+
+Bare "or" is inclusive (above); these carry an exclusivity cue — explicit "but not both" / "exactly one of", or contradictory states of one entity — so *exactly one* holds. Reify as `(Xor a b)`; **atomic** disjuncts also get two strength-0 implications (`a→¬b`, `b→¬a`) for the rule-out inference; **complex/event** disjuncts get the label only.
+
+**[xor-atomic-states] The reactor is either online or offline.** — contradictory states → exclusive; atomic → `Xor` + two strength-0 rules
+
+    (: sk_reactor_1_reactor (Member sk_reactor_1 reactor) (STV 1.0 0.99))
+    (: reactor_xor (Xor (Member sk_reactor_1 online) (Member sk_reactor_1 offline)) (STV 1.0 0.99))
+    (: reactor_excl_1 (Implication (Premises (Member sk_reactor_1 online)) (Conclusions (Member sk_reactor_1 offline))) (STV 0.0 0.99))
+    (: reactor_excl_2 (Implication (Premises (Member sk_reactor_1 offline)) (Conclusions (Member sk_reactor_1 online))) (STV 0.0 0.99))
+
+**[xor-atomic-cue] The patient is either conscious or unconscious, but not both.** — explicit "but not both" → exclusive; atomic
+
+    (: sk_patient_1_patient (Member sk_patient_1 patient) (STV 1.0 0.99))
+    (: patient_xor (Xor (Member sk_patient_1 conscious) (Member sk_patient_1 unconscious)) (STV 1.0 0.99))
+    (: patient_excl_1 (Implication (Premises (Member sk_patient_1 conscious)) (Conclusions (Member sk_patient_1 unconscious))) (STV 0.0 0.99))
+    (: patient_excl_2 (Implication (Premises (Member sk_patient_1 unconscious)) (Conclusions (Member sk_patient_1 conscious))) (STV 0.0 0.99))
+
+**[xor-event-label] Either the committee will approve the proposal or it will reject it, but not both.** — complex/event disjuncts → `Xor` **label only** (no rules)
+
+    (: sk_committee_1_committee (Member sk_committee_1 committee) (STV 1.0 0.99))
+    (: sk_proposal_1_proposal (Member sk_proposal_1 proposal) (STV 1.0 0.99))
+    (: committee_xor (Xor (And (Member sk_approve_1 approve) (Agent sk_approve_1 sk_committee_1) (Patient sk_approve_1 sk_proposal_1) (Future sk_approve_1)) (And (Member sk_reject_1 reject) (Agent sk_reject_1 sk_committee_1) (Patient sk_reject_1 sk_proposal_1) (Future sk_reject_1))) (STV 1.0 0.99))
+
+**[xor-passage-ruleout] The reactor is either online or offline. It is currently online.** — passage: the confirmed state is **bare/present** (not `Ongoing`), so the rule rules out "offline" at strength 0
+
+    (: sk_reactor_1_reactor (Member sk_reactor_1 reactor) (STV 1.0 0.99))
+    (: reactor_xor (Xor (Member sk_reactor_1 online) (Member sk_reactor_1 offline)) (STV 1.0 0.99))
+    (: reactor_excl_1 (Implication (Premises (Member sk_reactor_1 online)) (Conclusions (Member sk_reactor_1 offline))) (STV 0.0 0.99))
+    (: reactor_excl_2 (Implication (Premises (Member sk_reactor_1 offline)) (Conclusions (Member sk_reactor_1 online))) (STV 0.0 0.99))
+    (: reactor_online (Member sk_reactor_1 online) (STV 1.0 0.99))
+
+**[xor-control-inclusive] The fabric is either waterproof or breathable.** — "either…or" but the two properties are NOT mutually exclusive and there is no cue → stays **inclusive** `Or`, NOT `Xor`
+
+    (: sk_fabric_1_fabric (Member sk_fabric_1 fabric) (STV 1.0 0.99))
+    (: fabric_props (Or (Member sk_fabric_1 waterproof) (Member sk_fabric_1 breathable)) (STV 1.0 0.99))
+
 ## Queries (questions → query patterns)
 
 For these the expected output is a single query line `(: $prf <pattern> $tv)`; check the

@@ -578,7 +578,8 @@ pair") is a group, not a relation → `(Member sk_couple_1 couple)` + `PartOf` m
 "or" says **at least one** disjunct holds without saying which — reify it with **`(Or <d1> <d2>
 …)`**. The engine keeps `(Or …)` **opaque**: it never asserts an individual disjunct (so "Bob or
 Alice came" does not make "Bob came" true), which is the faithful reading. Treat every "or" —
-including "either … or" — as **inclusive**.
+including a bare "either … or" — as **inclusive**, *unless* an exclusivity cue fires (see
+**Exclusive "or"** below).
 
 **Scope the `(Or …)` as narrowly as possible** — wrap it around only the constituent that varies
 and keep the shared/definite parts as ordinary conjuncts of one `(And …)` fact, so those stay
@@ -630,6 +631,48 @@ disjuncts); any match is the answer:
       Did Bob or Alice call?
         →  (: $prf (And (Name $b "Bob") (Member $e call) (Agent $e $b) (Past $e)) $tv)
            (: $prf (And (Name $a "Alice") (Member $e call) (Agent $e $a) (Past $e)) $tv)
+
+## Exclusive "or" (XOR)
+
+Some "or" is **exclusive** — *exactly one* disjunct holds, **not both**. Default to inclusive
+(above); switch to exclusive only on a clear cue: an explicit **"but not both" / "exactly one of
+…"**, or an **"either … or"** over two **manifestly contradictory** states of one entity
+(open/closed, on/off, awake/asleep, a single location/value). When in doubt, stay inclusive.
+
+Reify exclusivity as **`(Xor <a> <b>)`** — "exactly one of a, b." Like `Or` it is **opaque**
+(stores + pattern-queries, never leaks a disjunct); emit it for **every** exclusive-or as the
+faithful record.
+
+**When both disjuncts are *atomic*** (one predicate atom each — a property / state / location like
+`(Member x open)`, **not** a multi-atom event), also emit the two **strength-0 implications** that
+make the exclusivity active — `a → not-b` and `b → not-a`, each an `(Implication …)` at strength
+**0.0** (confidence as usual — definitional ≈ 0.99). They let the reasoner **rule out the other**
+disjunct once one is confirmed (e.g. later in the passage):
+
+      The door is either open or closed.        (contradictory states → exclusive)
+        →  (: sk_door_1_door (Member sk_door_1 door) (STV 1.0 0.99))
+           (: door_xor (Xor (Member sk_door_1 open) (Member sk_door_1 closed)) (STV 1.0 0.99))
+           (: door_excl_1 (Implication (Premises (Member sk_door_1 open)) (Conclusions (Member sk_door_1 closed))) (STV 0.0 0.99))
+           (: door_excl_2 (Implication (Premises (Member sk_door_1 closed)) (Conclusions (Member sk_door_1 open))) (STV 0.0 0.99))
+
+So a later "It is open" (`(Member sk_door_1 open)` at strength 1) makes the reasoner derive
+`(Member sk_door_1 closed)` at **strength 0** — the other option is ruled out. With no disjunct yet
+confirmed the rules lie dormant (nothing leaks from inside the `Xor`). A confirming state is
+**present/unmarked** — "currently / right now it is open" → bare `(Member sk_door_1 open)`, **not**
+`(Ongoing …)` — so it matches the rule premise.
+
+**When a disjunct is a *complex / event* proposition** (a multi-atom `(And …)`), emit **only** the
+`(Xor …)` label — the strength-0-rule form is unwieldy over events, so the rule-out inference is
+dropped there:
+
+      Either Alice will fly to Tokyo or she will take the train, but not both.
+        →  (: trip_xor (Xor
+              (And (Member sk_fly_1 fly) (Agent sk_fly_1 alice) (Destination sk_fly_1 tokyo) (Future sk_fly_1))
+              (And (Member sk_take_1 take) (Agent sk_take_1 alice) (Patient sk_take_1 sk_train_1) (Member sk_train_1 train) (Future sk_take_1))) (STV 1.0 0.99))
+           (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+
+A **question** about an exclusive-or matches the `(Xor …)` atom by pattern (bind the unknown side);
+if a disjunct was later confirmed, ordinary queries find it and the other reads strength 0.
 
 ## Coreference & anaphora
 
