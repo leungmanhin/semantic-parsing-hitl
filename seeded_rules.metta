@@ -17,9 +17,8 @@
 (: inh_trans (Implication (Premises (Inheritance $a $b) (Inheritance $b $c))
    (Conclusions (Inheritance $a $c))) (STV 1.0 0.99))
 
-; Member of a subclass is a member of the superclass:  x∈A , A⊑B  ⟹  x∈B
-(: mem_inh (Implication (Premises (Member $x $a) (Inheritance $a $b))
-   (Conclusions (Member $x $b))) (STV 1.0 0.99))
+; Member-of-superclass (x∈A , A⊑B ⟹ x∈B) is derived NATIVELY by the chainer
+; (member-inheritance-implication), including strength-0 propagation — no seeded rule needed.
 
 ; ===== Deontic scaffolding =====
 
