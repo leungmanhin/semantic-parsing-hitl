@@ -396,9 +396,10 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: $prf (And (Name $n "Nora") (Name $o "Owen") (MoreBy tall $n $o $m $u)) $tv)
 
-**[comp-diff-threshold] Is Nora more than 5 cm taller than Owen?** — threshold on the gap → `Compute >`
+**[comp-diff-threshold] Is Nora more than 5 cm taller than Owen?** — gap threshold; the gap may be stored exact or approximate, so emit BOTH branches (`Compute` ∪ `GreaterThan`) + union
 
     (: $prf (And (Name $n "Nora") (Name $o "Owen") (MoreBy tall $n $o $m centimeter) (Compute > ($m 5) -> true)) $tv)
+    (: $prf (And (Name $n "Nora") (Name $o "Owen") (MoreBy tall $n $o $m centimeter) (GreaterThan $m 5)) $tv)
 
 ## Measures & units
 
@@ -441,23 +442,25 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: $prf (And (Name $l "Leo") (Measure $l old $n $u)) $tv)
 
-**[meas-q-threshold] Is Grace taller than 160 centimeters?** — threshold → `Compute >` (hard int gate)
+**[meas-q-threshold] Is Grace taller than 160 centimeters?** — a threshold question can't know if the target is stored exact or approximate → emit BOTH branches + union
 
     (: $prf (And (Name $g "Grace") (Measure $g tall $n centimeter) (Compute > ($n 160) -> true)) $tv)
+    (: $prf (And (Name $g "Grace") (Measure $g tall $n centimeter) (GreaterThan $n 160)) $tv)
 
-**[meas-approx-adj] The fence is about 3 meters tall.** — approximate → distribution magnitude `(ParticleFromNormal X σ)`, σ ≈ 10% of X
+**[meas-approx-adj] The fence is about 3 meters tall.** — approximate, **tight** hedge ("about") → distribution magnitude `(ParticleFromNormal X σ)`, σ ≈ 10% of X
 
     (: fence_tall (Measure sk_fence_1 tall (ParticleFromNormal 3 0.3) meter) (STV 1.0 0.99))
     (: fence_member (Member sk_fence_1 fence) (STV 1.0 0.99))
 
-**[meas-approx-verb] The crate weighs roughly 40 kilograms.** — approximate on a dimension-noun scale
+**[meas-approx-verb] The crate weighs roughly 40 kilograms.** — approximate, **loose** hedge ("roughly") on a dimension-noun scale → σ ≈ 20% of X
 
-    (: crate_weight (Measure sk_crate_1 weight (ParticleFromNormal 40 4) kilogram) (STV 1.0 0.99))
+    (: crate_weight (Measure sk_crate_1 weight (ParticleFromNormal 40 8) kilogram) (STV 1.0 0.99))
     (: crate_member (Member sk_crate_1 crate) (STV 1.0 0.99))
 
-**[meas-approx-q] Is the fence taller than 2 meters?** — threshold over an approximate measure → `GreaterThan` (graded P>), not `Compute`
+**[meas-q-threshold-open] Which beams are longer than 5 meters?** — open threshold over a possibly-mixed KB (some beams exact, some approximate); BOTH branches + union, branches disjoint so no double-count
 
-    (: $prf (And (Member $f fence) (Measure $f tall $d meter) (GreaterThan $d 2)) $tv)
+    (: $prf (And (Member $b beam) (Measure $b long $n meter) (Compute > ($n 5) -> true)) $tv)
+    (: $prf (And (Member $b beam) (Measure $b long $n meter) (GreaterThan $n 5)) $tv)
 
 ## Generics & scope (verbal → rules)
 

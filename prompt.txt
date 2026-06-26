@@ -383,9 +383,10 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
       Alice is 3 cm taller than Bob.            →  (MoreBy tall alice bob 3 centimeter) (Name alice "Alice") (Name bob "Bob")
       The package is 2 kg heavier than the box. →  (Member sk_package_1 package) (Member sk_box_1 box) (MoreBy heavy sk_package_1 sk_box_1 2 kilogram)
 
-  Query the gap via `MoreBy`: "how much taller?" → bind `$n $u`; "more than 2 cm taller?" →
-  `(MoreBy … $n centimeter) (Compute > ($n 2) -> true)`. An **approximate** gap ("about 3 cm
-  taller") takes a distribution magnitude `(ParticleFromNormal X σ)` + `GreaterThan` (see **Measures & units**).
+  Query the gap via `MoreBy`: "how much taller?" → bind `$n $u`. A gap **threshold** ("more than 2
+  cm taller?") routes like any measure threshold — the gap may be stored exact (int) or, for an
+  **approximate** gap ("about 3 cm taller" → `(ParticleFromNormal X σ)`), as a distribution — so emit
+  **both** branches (`Compute` and `GreaterThan`) and union them (see **Measures & units**).
 
 - **Superlative** "X is the most ADJ / the ADJ-est [N]" → `(Most <scale> X <class>)`, plus X is
   a member of the class:
@@ -435,26 +436,34 @@ was 6 feet tall" → `(Past (Measure alice tall 6 foot))`).
   sk_rope_1 long 3 meter)`; "no more than 5 kg" → `(MeasureAtMost sk_box_1 weight 5 kilogram)`.
   Strict "more/less than" uses the same bound (continuous quantity — the boundary point is dropped).
 - **Approximate** ("about / around / roughly / approximately X") → a **distribution** magnitude
-  `(ParticleFromNormal <X> <σ>)` in place of the plain number, with **σ ≈ 10% of X** (so the
-  spread scales with the value):
+  `(ParticleFromNormal <X> <σ>)` in place of the plain number. **σ scales with the hedge** (and
+  the value): a **tight** hedge ("about / around / approximately") → **σ ≈ 10% of X**; a **loose**
+  hedge ("roughly / ~ / -ish / or so") → **σ ≈ 20% of X**:
 
       Alice is about 6 feet tall. →  (Measure alice tall (ParticleFromNormal 6 0.6) foot) (Name alice "Alice")
-      The load is roughly 200 kg. →  (Member sk_load_1 load) (Measure sk_load_1 weight (ParticleFromNormal 200 20) kilogram)
+      The load is roughly 200 kg. →  (Member sk_load_1 load) (Measure sk_load_1 weight (ParticleFromNormal 200 40) kilogram)
 
-  A **threshold** question over an approximate (distribution) magnitude uses **`GreaterThan`** —
-  it returns a graded `P(value > threshold)` — in place of `Compute`:
+  An **exact** value stays a plain number; only a hedged value becomes a distribution — so the same
+  dimension may hold either across different entities, which is why threshold **questions** (below)
+  must cover both forms.
 
-      Is Alice taller than 5 feet? →  (: $prf (And (Name $a "Alice") (Measure $a tall $d foot) (GreaterThan $d 5)) $tv)
+**Measure questions.** A **value-retrieval** question ("how tall?") just binds the magnitude — one
+line, and the bound variable captures a plain number or a distribution alike:
 
-  (`GreaterThan` works **only** on a distribution magnitude; an **exact** measure stays a plain
-  number queried with `Compute`. Two approximate measures compare the same way: `(GreaterThan $da $db)`.)
+      How tall is Alice? →  (: $prf (And (Name $a "Alice") (Measure $a tall $n $u)) $tv)
 
-**Measure questions** bind the magnitude; gate a threshold with a `Compute` comparison — a
-**hard integer** test on the exact value (`GreaterThan` is for *distribution* / uncertain
-values, not plain numbers):
+A **threshold** question ("taller than N?") must *compare*, and the operator depends on storage:
+`(Compute > ($n N) -> true)` is the **hard-integer** test for an **exact** value, while **`GreaterThan`**
+returns a graded `P(value > N)` for a **distribution** (it also compares two distributions:
+`(GreaterThan $da $db)`). At query time you **can't know** which way the target was stored — it may
+be set in another sentence, and an open query may span a mix of exact and approximate entities — and
+each operator returns **nothing** on the other's storage. So a threshold question **emits both
+branches and unions the answers** (a multi-query, like a disjunctive question — see *Queries*); the
+branches are disjoint (neither operator matches the other's storage), so the union never double-counts:
 
-      How tall is Alice?           →  (: $prf (And (Name $a "Alice") (Measure $a tall $n $u)) $tv)
-      Is Bob taller than 2 meters? →  (: $prf (And (Name $b "Bob") (Measure $b tall $n meter) (Compute > ($n 2) -> true)) $tv)
+      Is Bob taller than 2 meters?
+        →  (: $prf (And (Name $b "Bob") (Measure $b tall $n meter) (Compute > ($n 2) -> true)) $tv)
+           (: $prf (And (Name $b "Bob") (Measure $b tall $n meter) (GreaterThan $n 2)) $tv)
 
 ## Quantifiers, generics & scope (verbal → rules)
 
