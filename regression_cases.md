@@ -380,6 +380,26 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: $prf (Most smart $x engineer) $tv)
 
+**[comp-diff] Nora is 6 centimeters taller than Owen.** — differential comparative → `MoreBy` (seeded `morebydiff` derives the plain `More`)
+
+    (: nora_owen_diff (MoreBy tall nora owen 6 centimeter) (STV 1.0 0.99))
+    (: nora_name (Name nora "Nora") (STV 1.0 0.99))
+    (: owen_name (Name owen "Owen") (STV 1.0 0.99))
+
+**[comp-diff-antonym] The pony is 30 kilograms lighter than the horse.** — antonym → swap to the positive pole `heavy`
+
+    (: pony_horse_diff (MoreBy heavy sk_horse_1 sk_pony_1 30 kilogram) (STV 1.0 0.99))
+    (: pony_member (Member sk_pony_1 pony) (STV 1.0 0.99))
+    (: horse_member (Member sk_horse_1 horse) (STV 1.0 0.99))
+
+**[comp-diff-q] How much taller is Nora than Owen?** — gap query → bind magnitude + unit
+
+    (: $prf (And (Name $n "Nora") (Name $o "Owen") (MoreBy tall $n $o $m $u)) $tv)
+
+**[comp-diff-threshold] Is Nora more than 5 cm taller than Owen?** — threshold on the gap → `Compute >`
+
+    (: $prf (And (Name $n "Nora") (Name $o "Owen") (MoreBy tall $n $o $m centimeter) (Compute > ($m 5) -> true)) $tv)
+
 ## Measures & units
 
 **[meas-adj] Grace is 165 centimeters tall.** — measure on a stated adjective scale

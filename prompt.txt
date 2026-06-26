@@ -375,6 +375,18 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
   scale and chain. When there is **no obvious positive pole** ("cheaper", "further left"), keep
   the surface lemma; either is valid.
 
+- **Differential** "X is N \<unit\> ADJ-er than Y" (a comparative with a measured gap) →
+  `(MoreBy <scale> X Y <magnitude> <unit>)` — scale / magnitude / unit exactly as in **Measures &
+  units**. A seeded rule derives the plain `(More <scale> X Y)` ordering, so emit only the
+  `MoreBy` atom. "less" / antonyms **swap the pair**, as above:
+
+      Alice is 3 cm taller than Bob.            →  (MoreBy tall alice bob 3 centimeter) (Name alice "Alice") (Name bob "Bob")
+      The package is 2 kg heavier than the box. →  (Member sk_package_1 package) (Member sk_box_1 box) (MoreBy heavy sk_package_1 sk_box_1 2 kilogram)
+
+  Query the gap via `MoreBy`: "how much taller?" → bind `$n $u`; "more than 2 cm taller?" →
+  `(MoreBy … $n centimeter) (Compute > ($n 2) -> true)`. An **approximate** gap ("about 3 cm
+  taller") takes a distribution magnitude `(ParticleFromNormal X σ)` + `GreaterThan` (see **Measures & units**).
+
 - **Superlative** "X is the most ADJ / the ADJ-est [N]" → `(Most <scale> X <class>)`, plus X is
   a member of the class:
 

@@ -78,6 +78,10 @@
 (: samedegree_sym (Implication (Premises (SameDegree $s $x $y))
    (Conclusions (SameDegree $s $y $x))) (STV 1.0 0.99))
 
+; a measured comparative entails the plain ordering:  MoreBy(s,x,y,n,u) => More(s,x,y)
+(: morebydiff (Implication (Premises (MoreBy $s $x $y $n $u))
+   (Conclusions (More $s $x $y))) (STV 1.0 0.99))
+
 ; ===== Symmetric-relation scaffolding =====
 
 ; A tagged symmetric relation holds both ways:  Symmetric(R), R(x,y) => R(y,x).
