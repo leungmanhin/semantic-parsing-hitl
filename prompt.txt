@@ -539,6 +539,35 @@ the kind? The default (a distributing rule, or `Inheritance`, at strength `0.9`)
 Rule of thumb: set the strength to what an **arbitrary instance** should inherit — a kind relation
 doesn't inherit (stays high), a copular `Inheritance` does (lower it when the property is rare).
 
+**Defeasible generics & exceptions** ("X are/can P, but sub-kind Y isn't/can't"). A general generic
+plus a sub-kind exception resolves through the **confidence dial**: state the exception **more
+confidently than the general**, and the engine's revision lets the specific override the general for
+that sub-kind while ordinary members keep the general value. Emit three `Inheritance` facts — the
+**general** `prop` at the empirical generic confidence **0.9**, the **taxonomy** link, and the
+**exception** at the **opposite strength** (negation = `0.0`) and the **higher** confidence **0.99**:
+
+      Birds can fly, but penguins can't.
+        →  (: bird_canfly   (Inheritance bird (can fly))    (STV 0.9 0.9))
+           (: penguin_bird  (Inheritance penguin bird)      (STV 0.99 0.99))
+           (: penguin_nofly (Inheritance penguin (can fly)) (STV 0.0 0.99))
+
+A penguin then inherits `(can fly)` ≈ 0 (overridden); other birds stay ≈ 0.9. Reverse polarity is
+symmetric — a positive exception to a negative general:
+
+      Mammals don't lay eggs, but the platypus does.
+        →  (: mammal_noegg    (Inheritance mammal egg_layer)   (STV 0.0 0.9))
+           (: platypus_mammal (Inheritance platypus mammal)    (STV 0.99 0.99))
+           (: platypus_egg    (Inheritance platypus egg_layer) (STV 1.0 0.99))
+
+Rules: the exception's **property symbol must match the general's** (`(can fly)`, `egg_layer`); use
+the **capability** `(can <verb>)` form when the contrast is ability, a plain **adjective/property**
+for copular contrasts ("Mammals are land-dwellers, but whales aren't"). The confidence **gap** is
+essential — a **definitional** general (`0.99`) admits no exception (correctly; definitional kinds
+have none), so only **empirical** generics (`0.9`) take exceptions. Cues: "but / except / unless /
+however / aside from / other than" introducing a sub-kind that lacks or reverses the property. (A
+defeasible *relational* generic — opaque kind-relation, **Striking & relational** above — does not
+revise this way; keep it to property / capability / categorical generics.)
+
 ## Reciprocals & symmetric relations
 
 A relation that holds **mutually** — "each other" / "one another", or a predicate symmetric by

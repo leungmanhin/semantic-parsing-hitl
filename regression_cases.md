@@ -513,6 +513,32 @@ Judge whether the property holds of *most* individuals. A bare generic relating 
 
     (: eagles_predators (Inheritance eagle predator) (STV 0.9 0.9))
 
+### Defeasible generics & exceptions
+
+A general generic + a sub-kind exception: emit the general `Inheritance` at empirical **0.9**, the taxonomy link, and the exception at the **opposite** strength and **higher** confidence **0.99** — revision then overrides the general for that sub-kind while ordinary members keep it. Capability `(can V)` for ability contrasts, plain property for copular; the exception's property symbol must **match** the general's.
+
+**[defeas-cap] Cats can retract their claws, but cheetahs can't.** — capability defeasible → exception `(can …)` at strength 0 / conf 0.99
+
+    (: cat_retract (Inheritance cat (can retract_claws)) (STV 0.9 0.9))
+    (: cheetah_cat (Inheritance cheetah cat) (STV 0.99 0.99))
+    (: cheetah_noretract (Inheritance cheetah (can retract_claws)) (STV 0.0 0.99))
+
+**[defeas-prop] Citrus fruits are sour, but oranges aren't.** — copular property defeasible → exception against the SAME property `sour` at strength 0
+
+    (: citrus_sour (Inheritance citrus_fruit sour) (STV 0.9 0.9))
+    (: orange_citrus (Inheritance orange citrus_fruit) (STV 0.99 0.99))
+    (: orange_notsour (Inheritance orange sour) (STV 0.0 0.99))
+
+**[defeas-rev] Fish can't survive on land, but lungfish can.** — reverse polarity: negative general (0.0/0.9), positive exception (1.0/0.99)
+
+    (: fish_noland (Inheritance fish (can survive_on_land)) (STV 0.0 0.9))
+    (: lungfish_fish (Inheritance lungfish fish) (STV 0.99 0.99))
+    (: lungfish_land (Inheritance lungfish (can survive_on_land)) (STV 1.0 0.99))
+
+**[defeas-control] Owls are nocturnal.** — generic with NO stated exception → plain generic, no exception fact
+
+    (: owls_nocturnal (Inheritance owl nocturnal) (STV 0.9 0.9))
+
 ## Coreference & anaphora (passages)
 
 **[coref-pronoun] Nina owns a parrot. It is green.** — "it" = the parrot → shared `sk_parrot_1`
