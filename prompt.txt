@@ -634,6 +634,22 @@ exemption take this form — a plain "Citizens must pay tax" (no exception) keep
 `Obligated`. Exemption cues: "but / unless / except + exempt / not required / need not / does not
 have to."
 
+**Conditional properties** ("X is P **when / at / under / if** C" — the property holds only under a
+condition). Reify as **`(ConditionalProperty <kind> <property> <condition>)`**; do **not** also
+assert the bare `(Inheritance kind property)` (the condition is essential — metals aren't *always*
+solid). A seeded rule (`cond_prop`) then gives the property to any member of the kind that is also in
+the condition-state, so it connects to a later "the glass is cold" (`(Member glass cold)`):
+
+      Metals are solid at room temperature.  →  (: metal_solid (ConditionalProperty metal solid room_temperature) (STV 0.9 0.9))
+                                                 (: rt_genus (Inheritance room_temperature temperature) (STV 0.99 0.99))
+      Glass is brittle when cold.            →  (: glass_brittle (ConditionalProperty glass brittle cold) (STV 0.9 0.9))
+
+So "under what condition is metal solid?" = `(ConditionalProperty metal solid $c)` → `room_temperature`,
+and a glass known to be cold is derived brittle. Strength = how reliably the property holds under the
+condition (generic `0.9`; definitional like "water boils at 100°C" → `0.99`). The condition is an
+adjective/state (`cold`, `wet`, `raw`) or a measure / environment (`room_temperature`); decompose a
+compound condition per **Compound concepts** (`room_temperature` → `temperature`).
+
 ## Reciprocals & symmetric relations
 
 A relation that holds **mutually** — "each other" / "one another", or a predicate symmetric by

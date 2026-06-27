@@ -89,3 +89,10 @@
 ; tagged relation (R's head is a variable).
 (: sym_rel (Implication (Premises (Symmetric $r) ($r $x $y))
    (Conclusions ($r $y $x))) (STV 1.0 0.99))
+
+; ===== Conditional-property scaffolding =====
+
+; A property that holds only under a condition.  (ConditionalProperty k p c) means
+; members of kind k have property p when they are also in the condition-state c.
+(: cond_prop (Implication (Premises (ConditionalProperty $k $p $c) (Member $x $k) (Member $x $c))
+   (Conclusions (Member $x $p))) (STV 1.0 0.99))

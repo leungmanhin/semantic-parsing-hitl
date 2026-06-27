@@ -602,6 +602,23 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
     (: hawk_hunter (Inheritance hawk hunter) (STV 0.9 0.9))
     (: hunter_can (Inheritance hunter (can hunt)) (STV 0.99 0.99))
 
+## Conditional properties
+
+"X is P when/at/under/if C" → reified `(ConditionalProperty kind property condition)` (do NOT assert the bare property unconditionally); a seeded `cond_prop` rule gives the property to a kind-member also in the condition-state. Decompose a compound condition per **Compound concepts**.
+
+**[cond-adj] Clay is malleable when wet.** — adjectival condition → reified conditional, condition `wet`
+
+    (: clay_malleable (ConditionalProperty clay malleable wet) (STV 0.9 0.9))
+
+**[cond-measure] Chocolate is soft in warm weather.** — environment condition; the compound `warm_weather` decomposes to its head noun
+
+    (: choc_soft (ConditionalProperty chocolate soft warm_weather) (STV 0.9 0.9))
+    (: ww_genus (Inheritance warm_weather weather) (STV 0.99 0.99))
+
+**[cond-if] Berries are dangerous if unripe.** — "if" condition
+
+    (: berry_danger (ConditionalProperty berry dangerous unripe) (STV 0.9 0.9))
+
 ## Coreference & anaphora (passages)
 
 **[coref-pronoun] Nina owns a parrot. It is green.** — "it" = the parrot → shared `sk_parrot_1`
