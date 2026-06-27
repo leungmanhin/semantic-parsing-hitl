@@ -54,6 +54,55 @@ Rules:
   **existential witness** is anonymous — mint a fresh `sk_<class>_<n>` each time; witnesses
   don't corefer.
 
+## Compound concepts — prefer single-word, else decompose
+
+Always prefer a **single lemma** for a predicate / class / property / action. When a **compound**
+symbol is genuinely needed, also emit **decomposition atoms** that unpack it into single-word parts,
+so the reasoner connects it and answers finer questions. Decompose **once, to single-word lemmas,
+then stop** — don't recurse on parts already single; don't decompose idioms / non-compositional
+names (`hot_dog`). Decomposition atoms carry definitional `(STV 0.99 0.99)` and never change the
+original meaning (a compound buried in a property does **not** leak to its genus — `(obligated
+pay_dues)` ≠ `(obligated pay)`).
+
+- **Compound action** = `verb_object` (`pay_dues`, `wear_seatbelt`, `bring_guest`), as it appears
+  inside a reified `(can …)` / `(obligated …)` / `(permitted …)`: emit its **genus** `(Inheritance
+  <compound> <verb>)` + its **object** `(Patient <compound> <object>)`:
+
+      … (obligated pay_dues) …   →  (: pd_pay (Inheritance pay_dues pay) (STV 0.99 0.99))
+                                     (: pd_obj (Patient pay_dues dues) (STV 0.99 0.99))
+
+  so "what must members pay?" = `(And (Inheritance member (obligated $a)) (Patient $a $w))` binds
+  `$w = dues`. (A verb+object in **event** form is already decomposed — `(Member e pay) (Patient e
+  dues)` — and needs nothing extra.)
+
+- **Compound kind** = `modifier_noun` whose last word is a real head noun (`light_switch`,
+  `lifetime_member`, `delivery_van`): emit its **genus** `(Inheritance <compound> <head-noun>)`:
+
+      The light switch …   →  (: sw_g (Inheritance light_switch switch) (STV 0.99 0.99))
+
+  so a `light_switch` instance is also a `switch`. If the modifier is a plain **adjective** that
+  genuinely describes the compound, you may also expose it (`senior_contractor` → `(Inheritance
+  senior_contractor senior)`). **Don't** decompose a modifier that names a **purpose / association**
+  rather than a property — `fire_exit` is **not** `fire`, `tow_truck` is **not** `tow`; leave those
+  in the symbol.
+
+- **Agent-nominalization** = `X-er` ("one who Xs": `swimmer`, `egg_layer`, `predator`,
+  `firefighter`): expose the underlying verb via a **capability** `(Inheritance <nom> (can <verb>))`;
+  if an **object** is incorporated (`egg_layer` = lay + egg), also a **kind-relation** `(<Verb>
+  <nom> <object>)`:
+
+      Penguins are swimmers.   →  (: pen_sw (Inheritance penguin swimmer) (STV 0.9 0.9))
+                                  (: sw_can (Inheritance swimmer (can swim)) (STV 0.99 0.99))
+      Hens are egg-layers.     →  (: hen_el (Inheritance hen egg_layer) (STV 0.9 0.9))
+                                  (: el_can (Inheritance egg_layer (can lay)) (STV 0.99 0.99))
+                                  (: el_rel (Lay egg_layer egg) (STV 0.99 0.99))
+
+  so "what does an egg-layer lay?" = `(Lay egg_layer $w)` binds `egg`, and a `swimmer` instance gets
+  `(can swim)`.
+
+**Leave opaque for now** (don't force): adjective / condition compounds (`solid_at_room_temperature`)
+— pending a conditional-property representation.
+
 ## Two kinds of clause
 
 Decide first what the predicate is:

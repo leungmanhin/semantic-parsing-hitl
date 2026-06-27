@@ -559,6 +559,49 @@ A deontic norm with a stated exemption: reify the obligation/permission as a pro
 
     (: pedestrian_crosswalk (Implication (Premises (Member $x pedestrian)) (Conclusions (Member (sk_use $x) use) (Agent (sk_use $x) $x) (Patient (sk_use $x) crosswalk) (Obligated (sk_use $x)))) (STV 1.0 0.99))
 
+## Compound decomposition (cross-cutting)
+
+Prefer single-word symbols; when a compound is genuinely needed, also emit decomposition atoms at `0.99/0.99` — **action** `verb_object` → genus `(Inheritance compound verb)` + object `(Patient compound obj)`; **kind** `modifier_noun` → genus `(Inheritance compound head-noun)` (+ adjective modifier when it genuinely describes the compound); **agent-nominalization** `X-er` → capability `(Inheritance nom (can verb))` + kind-relation `(Verb nom obj)` if an object is incorporated. Stop at single-word lemmas; leave purpose/association modifiers opaque (and adjective/condition compounds, deferred).
+
+**[decomp-action] Residents must recycle waste, but tenants are exempt.** — compound action `recycle_waste` (inside `(obligated …)`) → genus `recycle` + object `waste`
+
+    (: resident_recycle (Inheritance resident (obligated recycle_waste)) (STV 0.9 0.9))
+    (: tenant_resident (Inheritance tenant resident) (STV 0.99 0.99))
+    (: tenant_exempt (Inheritance tenant (obligated recycle_waste)) (STV 0.0 0.99))
+    (: rw_genus (Inheritance recycle_waste recycle) (STV 0.99 0.99))
+    (: rw_obj (Patient recycle_waste waste) (STV 0.99 0.99))
+
+**[decomp-kind] A police dog barked.** — compound kind `police_dog` → genus `dog`; "police" is an association modifier, left in the symbol (a police dog is not `police`)
+
+    (: sk_police_dog_1_m (Member sk_police_dog_1 police_dog) (STV 1.0 0.99))
+    (: pd_genus (Inheritance police_dog dog) (STV 0.99 0.99))
+    (: e_bark (Member sk_bark_1 bark) (STV 1.0 0.99))
+    (: e_agent (Agent sk_bark_1 sk_police_dog_1) (STV 1.0 0.99))
+    (: e_past (Past sk_bark_1) (STV 1.0 0.99))
+
+**[decomp-kind-adj] The wooden bridge is old.** — compound kind `wooden_bridge` → genus `bridge` + adjective modifier `wooden` (a wooden bridge IS wooden)
+
+    (: sk_wooden_bridge_1_m (Member sk_wooden_bridge_1 wooden_bridge) (STV 1.0 0.99))
+    (: wb_genus (Inheritance wooden_bridge bridge) (STV 0.99 0.99))
+    (: wb_adj (Inheritance wooden_bridge wooden) (STV 0.99 0.99))
+    (: wb_old (Member sk_wooden_bridge_1 old) (STV 1.0 0.99))
+
+**[nom-intrans] Greyhounds are racers.** — intransitive agent-nominalization → capability `(can <verb>)`, no object
+
+    (: greyhound_racer (Inheritance greyhound racer) (STV 0.9 0.9))
+    (: racer_can (Inheritance racer (can race)) (STV 0.99 0.99))
+
+**[nom-trans] Beavers are dam-builders.** — transitive nominalization (object incorporated) → capability + kind-relation `(Build dam_builder dam)`
+
+    (: beaver_builder (Inheritance beaver dam_builder) (STV 0.9 0.9))
+    (: builder_can (Inheritance dam_builder (can build)) (STV 0.99 0.99))
+    (: builder_rel (Build dam_builder dam) (STV 0.99 0.99))
+
+**[nom-noobject] Hawks are hunters.** — verb takes an object but the noun doesn't incorporate one → capability only, no kind-relation
+
+    (: hawk_hunter (Inheritance hawk hunter) (STV 0.9 0.9))
+    (: hunter_can (Inheritance hunter (can hunt)) (STV 0.99 0.99))
+
 ## Coreference & anaphora (passages)
 
 **[coref-pronoun] Nina owns a parrot. It is green.** — "it" = the parrot → shared `sk_parrot_1`
