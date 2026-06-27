@@ -568,6 +568,23 @@ however / aside from / other than" introducing a sub-kind that lacks or reverses
 defeasible *relational* generic — opaque kind-relation, **Striking & relational** above — does not
 revise this way; keep it to property / capability / categorical generics.)
 
+**Defeasible deontic norms** ("X must/may P, but sub-kind Y is exempt"). Same revision mechanism,
+but the obligation/permission is **reified as a property** `(obligated <action>)` / `(permitted
+<action>)` (lowercase, parallel to `(can <action>)`) so it sits on `Inheritance` and can be
+overridden — the **event-rule** deontic form (modality `Obligated`/`Permitted`, used for plain norms)
+does **not** revise. Three facts, the same dial:
+
+      Members must pay dues, but lifetime members are exempt.
+        →  (: member_dues     (Inheritance member (obligated pay_dues))          (STV 0.9 0.9))
+           (: lifetime_member (Inheritance lifetime_member member)               (STV 0.99 0.99))
+           (: lifetime_exempt (Inheritance lifetime_member (obligated pay_dues)) (STV 0.0 0.99))
+
+A lifetime member's obligation then ≈ 0 (exempt); a regular member ≈ 0.9 (still obligated).
+Permission exemptions use `(permitted <action>)` the same way. **Only** deontic norms with a stated
+exemption take this form — a plain "Citizens must pay tax" (no exception) keeps the event-rule with
+`Obligated`. Exemption cues: "but / unless / except + exempt / not required / need not / does not
+have to."
+
 ## Reciprocals & symmetric relations
 
 A relation that holds **mutually** — "each other" / "one another", or a predicate symmetric by

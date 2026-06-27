@@ -539,6 +539,26 @@ A general generic + a sub-kind exception: emit the general `Inheritance` at empi
 
     (: owls_nocturnal (Inheritance owl nocturnal) (STV 0.9 0.9))
 
+### Defeasible deontic norms
+
+A deontic norm with a stated exemption: reify the obligation/permission as a property `(obligated <action>)` / `(permitted <action>)` (so revision can override it — the event-rule form does not), then the Group S three-fact pattern. Plain norms (no exemption) keep the event-rule with `Obligated`/`Permitted`.
+
+**[deon-oblig] Passengers must wear seatbelts, but infants are exempt.** — defeasible obligation → reified `(obligated …)` property, exemption at strength 0 / conf 0.99
+
+    (: passenger_seatbelt (Inheritance passenger (obligated wear_seatbelt)) (STV 0.9 0.9))
+    (: infant_passenger (Inheritance infant passenger) (STV 0.99 0.99))
+    (: infant_exempt (Inheritance infant (obligated wear_seatbelt)) (STV 0.0 0.99))
+
+**[deon-perm] Staff may access the archive, but interns may not.** — defeasible permission → reified `(permitted …)` property
+
+    (: staff_archive (Inheritance staff (permitted access_archive)) (STV 0.9 0.9))
+    (: intern_staff (Inheritance intern staff) (STV 0.99 0.99))
+    (: intern_noperm (Inheritance intern (permitted access_archive)) (STV 0.0 0.99))
+
+**[deon-control] Pedestrians must use the crosswalk.** — plain deontic norm (no exemption) → event-rule with `Obligated`, NOT the property form
+
+    (: pedestrian_crosswalk (Implication (Premises (Member $x pedestrian)) (Conclusions (Member (sk_use $x) use) (Agent (sk_use $x) $x) (Patient (sk_use $x) crosswalk) (Obligated (sk_use $x)))) (STV 1.0 0.99))
+
 ## Coreference & anaphora (passages)
 
 **[coref-pronoun] Nina owns a parrot. It is green.** — "it" = the parrot → shared `sk_parrot_1`
