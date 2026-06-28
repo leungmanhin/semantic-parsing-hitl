@@ -514,6 +514,40 @@ branches are disjoint (neither operator matches the other's storage), so the uni
         →  (: $prf (And (Name $b "Bob") (Measure $b tall $n meter) (Compute > ($n 2) -> true)) $tv)
            (: $prf (And (Name $b "Bob") (Measure $b tall $n meter) (GreaterThan $n 2)) $tv)
 
+**Cross-unit comparison & conversion.** Emit each measure in its **stated** unit (unchanged); a
+seeded lexicon auto-derives every measure's value in its dimension's **canonical unit** — **meter**
+(length), **kilogram** (mass), **second** (time). So to **compare or threshold across units, query
+in the canonical unit** — the conversion is already done, no arithmetic needed:
+
+      Alice is 6 feet tall. Bob is 180 cm tall. Is Alice taller than Bob?
+        →  (: alice_h (Measure alice tall 6 foot) (STV 1.0 0.99)) (: alice_n (Name alice "Alice") (STV 1.0 0.99))
+           (: bob_h (Measure bob tall 180 centimeter) (STV 1.0 0.99)) (: bob_n (Name bob "Bob") (STV 1.0 0.99))
+           (: $prf (And (Name $a "Alice") (Name $b "Bob") (Measure $a tall $ha meter) (Measure $b tall $hb meter) (Compute > ($ha $hb) -> true)) $tv)
+
+A **threshold stated in a non-canonical unit** converts the threshold **in the query** via `(Compute
+* (<value> <factor>) -> $t)` (the engine does the arithmetic — never compute it yourself):
+
+      Is the rope longer than 6 feet?
+        →  (: $prf (And (Member $r rope) (Measure $r long $m meter) (Compute * (6 0.3048) -> $t) (Compute > ($m $t) -> true)) $tv)
+
+Factors: foot 0.3048, inch 0.0254, yard 0.9144, mile 1609.344, centimeter 0.01, kilometer 1000 (→
+meter); pound 0.453592, ounce 0.0283495, gram 0.001, ton 1000 (→ kilogram); minute 60, hour 3600,
+day 86400 (→ second). A threshold already in the canonical unit needs no conversion. **Bounded**
+measures (`MeasureAtLeast`/`MeasureAtMost`) convert the same way — query the bound in the canonical
+unit (e.g. "what is its minimum length in meters?" → `(MeasureAtLeast $x long $m meter)`).
+
+**Temperature** is **affine** (offset, not just a factor); canonical = **kelvin** (seeded rules:
+celsius `+273.15`; fahrenheit `(F−32)×5/9+273.15`). Compare in kelvin like any dimension. A
+temperature **threshold** converts in-query: `N celsius` → `(Compute + (N 273.15) -> $t)`; `N
+fahrenheit` → `(Compute - (N 32) -> $a) (Compute * ($a 5) -> $b) (Compute / ($b 9) -> $c) (Compute +
+($c 273.15) -> $t)`. A temperature measure uses the **dimension-noun scale `temperature`** (no
+adjective is stated — "is 200 °C"); "hotter/warmer" → `>`, "colder/cooler" → `<`, both on
+`temperature`:
+
+      The oven is 200 °C. Is it hotter than 350 °F?
+        →  (: oven_temp (Measure sk_oven_1 temperature 200 celsius) (STV 1.0 0.99)) (: oven_m (Member sk_oven_1 oven) (STV 1.0 0.99))
+           (: $prf (And (Member $o oven) (Measure $o temperature $k kelvin) (Compute - (350 32) -> $a) (Compute * ($a 5) -> $b) (Compute / ($b 9) -> $c) (Compute + ($c 273.15) -> $t) (Compute > ($k $t) -> true)) $tv)
+
 ## Quantifiers, generics & scope (verbal → rules)
 
 A **verbal** generic or universal over a kind becomes a **rule** that gives each instance

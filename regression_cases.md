@@ -462,6 +462,53 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
     (: $prf (And (Member $b beam) (Measure $b long $n meter) (Compute > ($n 5) -> true)) $tv)
     (: $prf (And (Member $b beam) (Measure $b long $n meter) (GreaterThan $n 5)) $tv)
 
+### Cross-unit conversion
+
+Measures keep their stated unit (a seeded lexicon auto-derives the canonical unit — meter/kilogram/second). Compare or threshold **in the canonical unit**; convert a non-canonical threshold in-query via `Compute *`.
+
+**[unit-compare] The plank is 2 meters long. The beam is 250 centimeters long. Is the beam longer than the plank?** — cross-unit comparison → query both in canonical `meter`
+
+    (: plank_mem (Member sk_plank_1 plank) (STV 1.0 0.99))
+    (: plank_long (Measure sk_plank_1 long 2 meter) (STV 1.0 0.99))
+    (: beam_mem (Member sk_beam_1 beam) (STV 1.0 0.99))
+    (: beam_long (Measure sk_beam_1 long 250 centimeter) (STV 1.0 0.99))
+    (: $prf (And (Member $b beam) (Measure $b long $mb meter) (Member $p plank) (Measure $p long $mp meter) (Compute > ($mb $mp) -> true)) $tv)
+
+**[unit-threshold] The fence is 300 centimeters tall. Is it taller than 8 feet?** — cross-unit threshold → entity auto-converts to `meter`, threshold converted in-query (foot 0.3048)
+
+    (: fence_mem (Member sk_fence_1 fence) (STV 1.0 0.99))
+    (: fence_tall (Measure sk_fence_1 tall 300 centimeter) (STV 1.0 0.99))
+    (: $prf (And (Member $f fence) (Measure $f tall $m meter) (Compute * (8 0.3048) -> $t) (Compute > ($m $t) -> true)) $tv)
+
+**[unit-mass] The cat weighs 4 kilograms. The dog weighs 8000 grams. Is the dog heavier than the cat?** — cross-unit mass comparison → query both in canonical `kilogram`
+
+    (: cat_mem (Member sk_cat_1 cat) (STV 1.0 0.99))
+    (: cat_weight (Measure sk_cat_1 weight 4 kilogram) (STV 1.0 0.99))
+    (: dog_mem (Member sk_dog_1 dog) (STV 1.0 0.99))
+    (: dog_weight (Measure sk_dog_1 weight 8000 gram) (STV 1.0 0.99))
+    (: $prf (And (Member $d dog) (Measure $d weight $md kilogram) (Member $c cat) (Measure $c weight $mc kilogram) (Compute > ($md $mc) -> true)) $tv)
+
+**[temp-compare] The forge is 1500°C. The kiln is 2000°F. Is the forge hotter than the kiln?** — temperature is affine; canonical `kelvin`; scale = `temperature`; compare in kelvin
+
+    (: forge_m (Member sk_forge_1 forge) (STV 1.0 0.99))
+    (: forge_temp (Measure sk_forge_1 temperature 1500 celsius) (STV 1.0 0.99))
+    (: kiln_m (Member sk_kiln_1 kiln) (STV 1.0 0.99))
+    (: kiln_temp (Measure sk_kiln_1 temperature 2000 fahrenheit) (STV 1.0 0.99))
+    (: $prf (And (Member $f forge) (Measure $f temperature $kf kelvin) (Member $k kiln) (Measure $k temperature $kk kelvin) (Compute > ($kf $kk) -> true)) $tv)
+
+**[temp-threshold] The freezer is at 4°C. Is it colder than 10°C?** — "colder" = stored < threshold; threshold converted in-query (`+273.15`); dual-branch per cross-type routing
+
+    (: freezer_m (Member sk_freezer_1 freezer) (STV 1.0 0.99))
+    (: freezer_temp (Measure sk_freezer_1 temperature 4 celsius) (STV 1.0 0.99))
+    (: $prf (And (Member $f freezer) (Measure $f temperature $k kelvin) (Compute + (10 273.15) -> $t) (Compute < ($k $t) -> true)) $tv)
+    (: $prf (And (Member $f freezer) (Measure $f temperature $k kelvin) (Compute + (10 273.15) -> $t) (GreaterThan $t $k)) $tv)
+
+**[unit-bound] The ladder is at least 12 feet tall. What is its minimum height in meters?** — bounded measure converts the bound; query in canonical `meter`
+
+    (: ladder_mem (Member sk_ladder_1 ladder) (STV 1.0 0.99))
+    (: ladder_tall (MeasureAtLeast sk_ladder_1 tall 12 foot) (STV 1.0 0.99))
+    (: $prf (And (Member $l ladder) (MeasureAtLeast $l tall $m meter)) $tv)
+
 ## Generics & scope (verbal → rules)
 
 **[gen-verbal] Fish swim.** — verbal generic over a kind → Skolem-event rule, 0.9/0.9

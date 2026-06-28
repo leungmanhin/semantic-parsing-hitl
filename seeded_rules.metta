@@ -96,3 +96,66 @@
 ; members of kind k have property p when they are also in the condition-state c.
 (: cond_prop (Implication (Premises (ConditionalProperty $k $p $c) (Member $x $k) (Member $x $c))
    (Conclusions (Member $x $p))) (STV 1.0 0.99))
+
+; ===== Unit-conversion scaffolding =====
+; Each measure in a non-canonical unit derives its value in the dimension's canonical unit
+; (length -> meter, mass -> kilogram, time -> second), so measures in different units can be
+; compared. Conversions are definitional (linear scalar; affine units like temperature excluded).
+
+; -- length -> meter --
+(: foot_to_meter (Implication (Premises (Measure $x $s $m foot) (Compute * ($m 0.3048) -> $r))
+   (Conclusions (Measure $x $s $r meter))) (STV 1.0 0.99))
+(: inch_to_meter (Implication (Premises (Measure $x $s $m inch) (Compute * ($m 0.0254) -> $r))
+   (Conclusions (Measure $x $s $r meter))) (STV 1.0 0.99))
+(: yard_to_meter (Implication (Premises (Measure $x $s $m yard) (Compute * ($m 0.9144) -> $r))
+   (Conclusions (Measure $x $s $r meter))) (STV 1.0 0.99))
+(: mile_to_meter (Implication (Premises (Measure $x $s $m mile) (Compute * ($m 1609.344) -> $r))
+   (Conclusions (Measure $x $s $r meter))) (STV 1.0 0.99))
+(: centimeter_to_meter (Implication (Premises (Measure $x $s $m centimeter) (Compute * ($m 0.01) -> $r))
+   (Conclusions (Measure $x $s $r meter))) (STV 1.0 0.99))
+(: millimeter_to_meter (Implication (Premises (Measure $x $s $m millimeter) (Compute * ($m 0.001) -> $r))
+   (Conclusions (Measure $x $s $r meter))) (STV 1.0 0.99))
+(: kilometer_to_meter (Implication (Premises (Measure $x $s $m kilometer) (Compute * ($m 1000.0) -> $r))
+   (Conclusions (Measure $x $s $r meter))) (STV 1.0 0.99))
+
+; -- mass -> kilogram --
+(: gram_to_kilogram (Implication (Premises (Measure $x $s $m gram) (Compute * ($m 0.001) -> $r))
+   (Conclusions (Measure $x $s $r kilogram))) (STV 1.0 0.99))
+(: milligram_to_kilogram (Implication (Premises (Measure $x $s $m milligram) (Compute * ($m 0.000001) -> $r))
+   (Conclusions (Measure $x $s $r kilogram))) (STV 1.0 0.99))
+(: pound_to_kilogram (Implication (Premises (Measure $x $s $m pound) (Compute * ($m 0.453592) -> $r))
+   (Conclusions (Measure $x $s $r kilogram))) (STV 1.0 0.99))
+(: ounce_to_kilogram (Implication (Premises (Measure $x $s $m ounce) (Compute * ($m 0.0283495) -> $r))
+   (Conclusions (Measure $x $s $r kilogram))) (STV 1.0 0.99))
+(: ton_to_kilogram (Implication (Premises (Measure $x $s $m ton) (Compute * ($m 1000.0) -> $r))
+   (Conclusions (Measure $x $s $r kilogram))) (STV 1.0 0.99))
+
+; -- time -> second --
+(: minute_to_second (Implication (Premises (Measure $x $s $m minute) (Compute * ($m 60.0) -> $r))
+   (Conclusions (Measure $x $s $r second))) (STV 1.0 0.99))
+(: hour_to_second (Implication (Premises (Measure $x $s $m hour) (Compute * ($m 3600.0) -> $r))
+   (Conclusions (Measure $x $s $r second))) (STV 1.0 0.99))
+(: day_to_second (Implication (Premises (Measure $x $s $m day) (Compute * ($m 86400.0) -> $r))
+   (Conclusions (Measure $x $s $r second))) (STV 1.0 0.99))
+(: week_to_second (Implication (Premises (Measure $x $s $m week) (Compute * ($m 604800.0) -> $r))
+   (Conclusions (Measure $x $s $r second))) (STV 1.0 0.99))
+
+; -- temperature -> kelvin (AFFINE: offset, not just a scale factor) --
+(: celsius_to_kelvin (Implication (Premises (Measure $x $s $m celsius) (Compute + ($m 273.15) -> $r))
+   (Conclusions (Measure $x $s $r kelvin))) (STV 1.0 0.99))
+(: fahrenheit_to_kelvin (Implication (Premises (Measure $x $s $m fahrenheit)
+   (Compute - ($m 32) -> $a) (Compute * ($a 5) -> $b) (Compute / ($b 9) -> $c) (Compute + ($c 273.15) -> $r))
+   (Conclusions (Measure $x $s $r kelvin))) (STV 1.0 0.99))
+
+; -- bounded measures convert the same way (the bound is a plain number; scaling preserves the
+;    >=/<= sense). Same lexicon as plain Measure; extend to other units as needed. --
+(: foot_atleast_m (Implication (Premises (MeasureAtLeast $x $s $m foot) (Compute * ($m 0.3048) -> $r)) (Conclusions (MeasureAtLeast $x $s $r meter))) (STV 1.0 0.99))
+(: foot_atmost_m (Implication (Premises (MeasureAtMost $x $s $m foot) (Compute * ($m 0.3048) -> $r)) (Conclusions (MeasureAtMost $x $s $r meter))) (STV 1.0 0.99))
+(: inch_atleast_m (Implication (Premises (MeasureAtLeast $x $s $m inch) (Compute * ($m 0.0254) -> $r)) (Conclusions (MeasureAtLeast $x $s $r meter))) (STV 1.0 0.99))
+(: inch_atmost_m (Implication (Premises (MeasureAtMost $x $s $m inch) (Compute * ($m 0.0254) -> $r)) (Conclusions (MeasureAtMost $x $s $r meter))) (STV 1.0 0.99))
+(: centimeter_atleast_m (Implication (Premises (MeasureAtLeast $x $s $m centimeter) (Compute * ($m 0.01) -> $r)) (Conclusions (MeasureAtLeast $x $s $r meter))) (STV 1.0 0.99))
+(: centimeter_atmost_m (Implication (Premises (MeasureAtMost $x $s $m centimeter) (Compute * ($m 0.01) -> $r)) (Conclusions (MeasureAtMost $x $s $r meter))) (STV 1.0 0.99))
+(: kilometer_atleast_m (Implication (Premises (MeasureAtLeast $x $s $m kilometer) (Compute * ($m 1000.0) -> $r)) (Conclusions (MeasureAtLeast $x $s $r meter))) (STV 1.0 0.99))
+(: kilometer_atmost_m (Implication (Premises (MeasureAtMost $x $s $m kilometer) (Compute * ($m 1000.0) -> $r)) (Conclusions (MeasureAtMost $x $s $r meter))) (STV 1.0 0.99))
+(: pound_atleast_kg (Implication (Premises (MeasureAtLeast $x $s $m pound) (Compute * ($m 0.453592) -> $r)) (Conclusions (MeasureAtLeast $x $s $r kilogram))) (STV 1.0 0.99))
+(: pound_atmost_kg (Implication (Premises (MeasureAtMost $x $s $m pound) (Compute * ($m 0.453592) -> $r)) (Conclusions (MeasureAtMost $x $s $r kilogram))) (STV 1.0 0.99))
