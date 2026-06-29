@@ -312,9 +312,15 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: $prf (And (Member $e register) (Agent $e $g) (GroupOf $g visitor) (Cardinality $g $n) (Past $e)) $tv)
 
-**[card-bounded-q] Did more than four players score?** — bounded question → `Compute >` (hard int gate)
+**[card-bounded-q] Did more than four players score?** — bounded (lower) question: a count may be stored exact *or* as a bound, so emit the `Cardinality` branch **and** the `CardinalityAtLeast` branch + union (disjoint); "more than" → `>`
 
     (: $prf (And (Member $e score) (Agent $e $g) (GroupOf $g player) (Cardinality $g $n) (Compute > ($n 4) -> true) (Past $e)) $tv)
+    (: $prf (And (Member $e score) (Agent $e $g) (GroupOf $g player) (CardinalityAtLeast $g $m) (Compute > ($m 4) -> true) (Past $e)) $tv)
+
+**[card-bounded-upper-q] Did fewer than seven hikers return?** — bounded (upper) question → `Cardinality` branch **and** `CardinalityAtMost` branch + union; "fewer than" → `<`
+
+    (: $prf (And (Member $e return) (Agent $e $g) (GroupOf $g hiker) (Cardinality $g $n) (Compute < ($n 7) -> true) (Past $e)) $tv)
+    (: $prf (And (Member $e return) (Agent $e $g) (GroupOf $g hiker) (CardinalityAtMost $g $k) (Compute < ($k 7) -> true) (Past $e)) $tv)
 
 ## Comparatives & degree
 

@@ -395,13 +395,24 @@ is predicated as a unit (per-member distribution is a separate, not-yet-emitted 
       How many students passed? →  (: $prf (And (Member $e pass) (Agent $e $g) (GroupOf $g student)
                                         (Cardinality $g $n) (Past $e)) $tv)
 
-- **Bounded "did more than k X V?"** → gate the exact count with a `Compute` comparison
-  (`>` / `>=` / `<` / `<=` per the wording): `(Compute > ($n k) -> true)` keeps the branch only
-  when it holds. (`Compute` is the **hard integer** test; `GreaterThan` is for *distribution*
-  values, not plain numbers.)
+- **Bounded "did more than k X V?"** → gate the count with a `Compute` comparison
+  (`>` "more than" / `>=` "at least" / `<` "fewer than" / `<=` "at most"): `(Compute > ($n k) ->
+  true)` keeps the branch only when it holds. (`Compute` is the **hard-integer** test; `GreaterThan`
+  is for *distribution* values, not plain counts.) But a count may be stored **exact**
+  (`Cardinality`) *or* as a **bound** (`CardinalityAtLeast` / `CardinalityAtMost` — from a "more than
+  k" statement or a vague phrase), and the two **don't unify** (an exact `Cardinality` answers a
+  `CardinalityAtLeast` query with nothing). You can't know which way the target was stored, so a
+  threshold question **emits both the exact branch and the matching-direction bound branch and unions
+  them** (like a measure threshold — see *Measures & units*): a **lower-bound** question ("at least /
+  more than k") pairs `Cardinality` with `CardinalityAtLeast`; an **upper-bound** question ("at most /
+  fewer than k") pairs `Cardinality` with `CardinalityAtMost` (the opposite bound can never confirm
+  it — omit it). The branches are disjoint, so the union never double-counts:
 
-      Did more than three students pass? →  (: $prf (And (Member $e pass) (Agent $e $g) (GroupOf $g student)
-                                                (Cardinality $g $n) (Compute > ($n 3) -> true) (Past $e)) $tv)
+      Did more than three students pass?
+        →  (: $prf (And (Member $e pass) (Agent $e $g) (GroupOf $g student)
+                        (Cardinality $g $n) (Compute > ($n 3) -> true) (Past $e)) $tv)
+           (: $prf (And (Member $e pass) (Agent $e $g) (GroupOf $g student)
+                        (CardinalityAtLeast $g $m) (Compute > ($m 3) -> true) (Past $e)) $tv)
 
 (A combined total **across** groups uses the engine's `FoldAll` to sum cardinalities — emit that
 only when the question explicitly asks for an aggregate total.)
