@@ -619,6 +619,19 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
 
     (: every_wolf_hunted_deer (Implication (Premises (Member $x wolf) (Member $y deer)) (Conclusions (Member (sk_hunt $x $y) hunt) (Agent (sk_hunt $x $y) $x) (Patient (sk_hunt $x $y) $y) (Past (sk_hunt $x $y)))) (STV 1.0 0.9))
 
+**[scope-aae] Every coach assigned every player a drill.** — ∀∀∃ → two universal premises; dependent existential = Skolem of **both** `(sk_drill $c $p)`
+
+    (: every_coach_assigned_drill (Implication (Premises (Member $c coach) (Member $p player)) (Conclusions (Member (sk_assign $c $p) assign) (Agent (sk_assign $c $p) $c) (Recipient (sk_assign $c $p) $p) (Theme (sk_assign $c $p) (sk_drill $c $p)) (Member (sk_drill $c $p) drill) (Past (sk_assign $c $p)))) (STV 1.0 0.9))
+
+**[scope-num] Every student memorized three poems.** — numeric under ∀ → Skolem **group** + `Cardinality` (a function of `$x`)
+
+    (: every_student_memorized_poems (Implication (Premises (Member $x student)) (Conclusions (Member (sk_memorize $x) memorize) (Agent (sk_memorize $x) $x) (Theme (sk_memorize $x) (sk_poems $x)) (GroupOf (sk_poems $x) poem) (Cardinality (sk_poems $x) 3) (Past (sk_memorize $x)))) (STV 1.0 0.9))
+
+**[scope-shared] Every senator emailed every colleague the same memo.** — ∀∀ + "the same" → one **shared constant** memo (not a Skolem function)
+
+    (: sk_memo_1_memo (Member sk_memo_1 memo) (STV 1.0 0.99))
+    (: every_senator_emailed_colleague (Implication (Premises (Member $s senator) (Member $c colleague)) (Conclusions (Member (sk_email $s $c) email) (Agent (sk_email $s $c) $s) (Recipient (sk_email $s $c) $c) (Theme (sk_email $s $c) sk_memo_1) (Past (sk_email $s $c)))) (STV 1.0 0.9))
+
 **[rel-univ] Everyone who has a garden is a gardener.** — event-premise rule + copular conclusion
 
     (: gardener_rule (Implication (Premises (Member $e have) (Holder $e $x) (Theme $e $y) (Member $y garden)) (Conclusions (Member $x gardener))) (STV 1.0 0.99))
