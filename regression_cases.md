@@ -120,7 +120,7 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: e_serve (Member sk_serve_1 serve) (STV 1.0 0.99))
     (: e_agent (Agent sk_serve_1 leo) (STV 1.0 0.99))
-    (: e_patient (Patient sk_serve_1 lunch) (STV 1.0 0.99))
+    (: e_theme (Theme sk_serve_1 lunch) (STV 1.0 0.99))
     (: e_past (Past sk_serve_1) (STV 1.0 0.99))
     (: e_time (Time sk_serve_1 yesterday) (STV 1.0 0.99))
     (: leo_name (Name leo "Leo") (STV 1.0 0.99))
@@ -136,7 +136,7 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: e_speak (Member sk_speak_1 speak) (STV 1.0 0.99))
     (: e_agent (Agent sk_speak_1 grace) (STV 1.0 0.99))
-    (: e_patient (Patient sk_speak_1 french) (STV 1.0 0.99))
+    (: e_theme (Theme sk_speak_1 french) (STV 1.0 0.99))
     (: e_can (Can sk_speak_1) (STV 1.0 0.99))
     (: grace_name (Name grace "Grace") (STV 1.0 0.99))
 
@@ -787,7 +787,7 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
 
     (: e_greet (Member sk_greet_1 greet) (STV 1.0 0.99))
     (: e_greet_agent (Agent sk_greet_1 felix) (STV 1.0 0.99))
-    (: e_greet_patient (Patient sk_greet_1 diana) (STV 1.0 0.99))
+    (: e_greet_theme (Theme sk_greet_1 diana) (STV 1.0 0.99))
     (: e_greet_past (Past sk_greet_1) (STV 1.0 0.99))
     (: e_wave (Member sk_wave_1 wave) (STV 1.0 0.99))
     (: e_wave_agent (Agent sk_wave_1 diana) (STV 1.0 0.99))
@@ -813,7 +813,7 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
 
     (: e_blame (Member sk_blame_1 blame) (STV 1.0 0.99))
     (: e_blame_agent (Agent sk_blame_1 oscar) (STV 1.0 0.99))
-    (: e_blame_patient (Patient sk_blame_1 oscar) (STV 1.0 0.99))
+    (: e_blame_theme (Theme sk_blame_1 oscar) (STV 1.0 0.99))
     (: e_blame_past (Past sk_blame_1) (STV 1.0 0.99))
     (: oscar_name (Name oscar "Oscar") (STV 1.0 0.99))
 
@@ -856,11 +856,11 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
 
     (: e_congrat1 (Member sk_congratulate_1 congratulate) (STV 1.0 0.99))
     (: e_congrat1_agent (Agent sk_congratulate_1 hannah) (STV 1.0 0.99))
-    (: e_congrat1_patient (Patient sk_congratulate_1 ivan) (STV 1.0 0.99))
+    (: e_congrat1_theme (Theme sk_congratulate_1 ivan) (STV 1.0 0.99))
     (: e_congrat1_past (Past sk_congratulate_1) (STV 1.0 0.99))
     (: e_congrat2 (Member sk_congratulate_2 congratulate) (STV 1.0 0.99))
     (: e_congrat2_agent (Agent sk_congratulate_2 ivan) (STV 1.0 0.99))
-    (: e_congrat2_patient (Patient sk_congratulate_2 hannah) (STV 1.0 0.99))
+    (: e_congrat2_theme (Theme sk_congratulate_2 hannah) (STV 1.0 0.99))
     (: e_congrat2_past (Past sk_congratulate_2) (STV 1.0 0.99))
     (: hannah_name (Name hannah "Hannah") (STV 1.0 0.99))
     (: ivan_name (Name ivan "Ivan") (STV 1.0 0.99))
@@ -968,7 +968,7 @@ Bare "or" is inclusive (above); these carry an exclusivity cue — explicit "but
 
     (: sk_committee_1_committee (Member sk_committee_1 committee) (STV 1.0 0.99))
     (: sk_proposal_1_proposal (Member sk_proposal_1 proposal) (STV 1.0 0.99))
-    (: committee_xor (Xor (And (Member sk_approve_1 approve) (Agent sk_approve_1 sk_committee_1) (Patient sk_approve_1 sk_proposal_1) (Future sk_approve_1)) (And (Member sk_reject_1 reject) (Agent sk_reject_1 sk_committee_1) (Patient sk_reject_1 sk_proposal_1) (Future sk_reject_1))) (STV 1.0 0.99))
+    (: committee_xor (Xor (And (Member sk_approve_1 approve) (Agent sk_approve_1 sk_committee_1) (Theme sk_approve_1 sk_proposal_1) (Future sk_approve_1)) (And (Member sk_reject_1 reject) (Agent sk_reject_1 sk_committee_1) (Theme sk_reject_1 sk_proposal_1) (Future sk_reject_1))) (STV 1.0 0.99))
 
 **[xor-passage-ruleout] The reactor is either online or offline. It is currently online.** — passage: the confirmed state is **bare/present** (not `Ongoing`), so the rule rules out "offline" at strength 0
 
