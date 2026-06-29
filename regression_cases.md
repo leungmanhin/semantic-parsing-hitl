@@ -167,6 +167,45 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
     (: grace_not_sign (And (Member sk_sign_1 sign) (Agent sk_sign_1 grace) (Patient sk_sign_1 sk_contract_1) (Past sk_sign_1)) (STV 0.0 0.99))
     (: grace_name (Name grace "Grace") (STV 1.0 0.99))
 
+### Thematic role: Theme vs Patient (#23)
+
+The object role must be the **same** in a statement and its question or the query misses (roles are opaque). Rule: `Patient` only when the action creates / destroys / consumes / physically changes the object; otherwise (acquired / transferred / perceived / evaluated) `Theme`, the default when unclear. These fresh verbs (not in the prompt's lists) check the rule generalizes; each statement/question pair must agree.
+
+**[role-theme-stmt] Maya purchased a bicycle.** — acquire, object unchanged → `Theme`
+
+    (: e_buy (Member sk_purchase_1 purchase) (STV 1.0 0.99))
+    (: e_agent (Agent sk_purchase_1 maya) (STV 1.0 0.99))
+    (: e_theme (Theme sk_purchase_1 sk_bicycle_1) (STV 1.0 0.99))
+    (: e_bike (Member sk_bicycle_1 bicycle) (STV 1.0 0.99))
+    (: e_past (Past sk_purchase_1) (STV 1.0 0.99))
+    (: maya_name (Name maya "Maya") (STV 1.0 0.99))
+
+**[role-theme-q] What did Maya purchase?** — same verb → same `Theme` role, so the query matches the statement
+
+    (: $prf (And (Name $m "Maya") (Member $e purchase) (Agent $e $m) (Theme $e $what) (Past $e)) $tv)
+
+**[role-eval-stmt] The auditor inspected the ledger.** — evaluate/perceive, object unchanged → `Theme`
+
+    (: e_insp (Member sk_inspect_1 inspect) (STV 1.0 0.99))
+    (: e_agent (Agent sk_inspect_1 sk_auditor_1) (STV 1.0 0.99))
+    (: e_aud (Member sk_auditor_1 auditor) (STV 1.0 0.99))
+    (: e_theme (Theme sk_inspect_1 sk_ledger_1) (STV 1.0 0.99))
+    (: e_ledg (Member sk_ledger_1 ledger) (STV 1.0 0.99))
+    (: e_past (Past sk_inspect_1) (STV 1.0 0.99))
+
+**[role-patient-stmt] The worker assembled a cabinet.** — creates / physically forms the object → `Patient`
+
+    (: e_asm (Member sk_assemble_1 assemble) (STV 1.0 0.99))
+    (: e_agent (Agent sk_assemble_1 sk_worker_1) (STV 1.0 0.99))
+    (: e_wkr (Member sk_worker_1 worker) (STV 1.0 0.99))
+    (: e_patient (Patient sk_assemble_1 sk_cabinet_1) (STV 1.0 0.99))
+    (: e_cab (Member sk_cabinet_1 cabinet) (STV 1.0 0.99))
+    (: e_past (Past sk_assemble_1) (STV 1.0 0.99))
+
+**[role-patient-q] What did the worker assemble?** — same verb → same `Patient` role
+
+    (: $prf (And (Member $w worker) (Member $e assemble) (Agent $e $w) (Patient $e $what) (Past $e)) $tv)
+
 ## Coordination & plurals
 
 **[coord-vp] Nina laughed and cried.** — coordinated VPs → two events, shared agent

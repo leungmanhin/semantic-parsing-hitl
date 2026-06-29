@@ -193,8 +193,11 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
 ### Thematic roles  `(<Role> <event> <filler>)`
 
 - `Agent` — volitional doer / subject of an action.
-- `Patient` — entity affected / created / consumed (direct object of an action).
-- `Theme` — entity moved, transferred, located, or possessed.
+- `Patient` — direct object the action **creates, destroys, consumes, or physically changes**
+  (cook, build, write, break, cut, burn, eat, clean, fix).
+- `Theme` — direct object **acquired, transferred, moved, possessed, perceived, or evaluated**
+  with **no change to it** (buy, sell, rent, give, send, carry, read, watch, grade, score,
+  review, measure, choose, keep, use).
 - `Recipient` — goal of a transfer (indirect object / "to").
 - `Experiencer` — subject of a perception/psych state ("know", "love", "see"); `Stimulus` —
   its object.
@@ -203,8 +206,12 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
   `Manner` (adverb), `Source` ("from …"), `Goal` ("to …" non-recipient), `Beneficiary` ("for …").
 
 Assign: subject → `Agent` (action) / `Experiencer` or `Holder` (state); direct object →
-`Patient` (action) / `Theme` or `Stimulus` (state, transfer); indirect object → `Recipient`;
-obliques by their preposition/adverb. Be consistent; when unsure use the closest role.
+`Patient` **only when the action creates / destroys / consumes / physically changes it,
+otherwise `Theme`** — one yes/no test ("does the object itself change?"), so a verb takes the
+**same role in a statement and in its question** and QA matches (e.g. *bought / rented / graded /
+scored* → `Theme` both times; *cooked / built* → `Patient` both times); when the test is unclear,
+default to `Theme`. Psych/perception object → `Stimulus`; indirect object → `Recipient`;
+obliques by their preposition/adverb.
 
 An **indefinite argument** ("a book") is an existential → witness + class, referenced by its
 role. A **passive / agentless** clause just omits `Agent`.
