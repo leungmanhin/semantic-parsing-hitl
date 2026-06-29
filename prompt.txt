@@ -341,7 +341,7 @@ predicate over it. Record its **member kind** with `(GroupOf <group> <kind>)`, a
 **collective noun** (if any) with `Member`, and link any **named** members with `PartOf`:
 
       The committee approved the plan. →  (Member sk_committee_1 committee) (Member sk_approve_1 approve)
-                                          (Agent sk_approve_1 sk_committee_1) (Patient sk_approve_1 sk_plan_1)
+                                          (Agent sk_approve_1 sk_committee_1) (Theme sk_approve_1 sk_plan_1)
                                           (Member sk_plan_1 plan) (Past sk_approve_1)
       The students gathered.           →  (GroupOf sk_group_1 student) (Member sk_gather_1 gather)
                                           (Agent sk_gather_1 sk_group_1) (Past sk_gather_1)
@@ -366,7 +366,7 @@ is predicated as a unit (per-member distribution is a separate, not-yet-emitted 
 
       Three students passed the exam. →  (GroupOf sk_group_1 student) (Cardinality sk_group_1 3)
                                           (Member sk_pass_1 pass) (Agent sk_pass_1 sk_group_1)
-                                          (Patient sk_pass_1 sk_exam_1) (Member sk_exam_1 exam) (Past sk_pass_1)
+                                          (Theme sk_pass_1 sk_exam_1) (Member sk_exam_1 exam) (Past sk_pass_1)
       Both dogs barked. →  (GroupOf sk_group_1 dog) (Cardinality sk_group_1 2)
                            (Member sk_bark_1 bark) (Agent sk_bark_1 sk_group_1) (Past sk_bark_1)
 
@@ -391,9 +391,10 @@ is predicated as a unit (per-member distribution is a separate, not-yet-emitted 
       Several birds sang. →  (GroupOf sk_group_1 bird) (CardinalityPhrase sk_group_1 "several")
                              (Member sk_sing_1 sing) (Agent sk_sing_1 sk_group_1) (Past sk_sing_1)
 
-  "a couple" ≈ 2 → exact `(Cardinality g 2)`. Proportion words ("many / most / few / a lot" in
-  their *proportion* sense — "most of the crowd") stay **strength** on an `Inheritance`/`Member`
-  per **Categorical**; use `CardinalityPhrase` only when the phrase counts *things*.
+  "a couple" ≈ 2 → exact `(Cardinality g 2)`. Proportion words ("many / most / few / a lot") in a
+  **generic** sense — "most birds migrate" — stay **strength** on an `Inheritance`/`Member` per
+  **Categorical**; the same word in a **partitive** — "most **of the** Ns" (a definite set) — goes to
+  **Partitives** below, not generic strength; use `CardinalityPhrase` only when the phrase counts *things*.
 
 ### Counting questions
 
@@ -423,6 +424,39 @@ is predicated as a unit (per-member distribution is a separate, not-yet-emitted 
 
 (A combined total **across** groups uses the engine's `FoldAll` to sum cardinalities — emit that
 only when the question explicitly asks for an aggregate total.)
+
+### Partitives — "Q of the Ns" (a definite, specific set)
+
+A **partitive** quantifies over a **specific, presupposed set** — flagged by **"of the / of these /
+of those / of them"** — not the generic kind. Introduce a **definite superset** group and quantify a
+**subset** of it; emit **no** generic kind-claim.
+
+- **Definite superset** `G` → `(GroupOf <G> <kind>)` (the contextual "the Ns"); add `(Cardinality
+  <G> <N>)` if the whole's size is stated ("three of the **20** students").
+- **Quantified subset** `S` of `G` → `(GroupOf <S> <kind>) (SubsetOf <S> <G>)`, predicate/event on **S**:
+  - **cardinal** ("three of", "one of") → `(Cardinality <S> <k>)`;
+  - **proportional** ("most / some / half / all / few of") → `(ProportionOf <S> <G> <level>)`,
+    `<level>` ∈ `all / most / half / some / few / none`.
+
+      Three of the students passed.
+        →  (GroupOf sk_students_1 student)                                  ; the definite set "the students"
+           (GroupOf sk_group_1 student) (SubsetOf sk_group_1 sk_students_1)
+           (Cardinality sk_group_1 3)
+           (Member sk_pass_1 pass) (Agent sk_pass_1 sk_group_1) (Past sk_pass_1)
+
+      Most of the apples are ripe.
+        →  (GroupOf sk_apples_1 apple)                                      ; the definite set "the apples"
+           (GroupOf sk_group_1 apple) (SubsetOf sk_group_1 sk_apples_1)
+           (ProportionOf sk_group_1 sk_apples_1 most)
+           (Inheritance sk_group_1 ripe)
+
+**Never** emit a generic `(Inheritance <kind> <prop>)` for a partitive — "most **of the** apples" is
+that specific set, not apples-in-general. Contrasts: bare generic "most apples are ripe" →
+`(Inheritance apple ripe) (STV 0.9 0.9)` (kind, distributes to any apple); bare count "three students
+passed" → group + count, **no** superset / `SubsetOf`. ("none of the Ns V" → `(Cardinality <S> 0)`
+with the event **not** asserted; "all of the Ns" → `(ProportionOf <S> <G> all)`, the whole set.)
+**Queries:** "how many of the Ns V?" → bind `(Cardinality $s $n)` with `(SubsetOf $s <G>)`; "did most
+of the Ns V?" → `(ProportionOf $s <G> most)`.
 
 ## Comparatives & degree
 
@@ -859,7 +893,7 @@ dropped there:
       Either Alice will fly to Tokyo or she will take the train, but not both.
         →  (: trip_xor (Xor
               (And (Member sk_fly_1 fly) (Agent sk_fly_1 alice) (Destination sk_fly_1 tokyo) (Future sk_fly_1))
-              (And (Member sk_take_1 take) (Agent sk_take_1 alice) (Patient sk_take_1 sk_train_1) (Member sk_train_1 train) (Future sk_take_1))) (STV 1.0 0.99))
+              (And (Member sk_take_1 take) (Agent sk_take_1 alice) (Theme sk_take_1 sk_train_1) (Member sk_train_1 train) (Future sk_take_1))) (STV 1.0 0.99))
            (: alice_name (Name alice "Alice") (STV 1.0 0.99))
 
 A **question** about an exclusive-or matches the `(Xor …)` atom by pattern (bind the unknown side);
@@ -876,7 +910,7 @@ attach to one symbol. Resolve each anaphor to the most salient compatible antece
 
     A man entered. He ordered a beer. The man looked tired.
       →  (Member sk_man_1 man)  (Member sk_enter_1 enter) (Agent sk_enter_1 sk_man_1) (Past sk_enter_1)
-         (Member sk_order_1 order) (Agent sk_order_1 sk_man_1) (Patient sk_order_1 sk_beer_1)
+         (Member sk_order_1 order) (Agent sk_order_1 sk_man_1) (Theme sk_order_1 sk_beer_1)
          (Member sk_beer_1 beer) (Past sk_order_1)
          (Past (Member sk_man_1 tired))          ; He, The man → sk_man_1 (each atom (STV 1.0 0.99))
 

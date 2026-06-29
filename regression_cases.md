@@ -361,6 +361,44 @@ The object role must be the **same** in a statement and its question or the quer
     (: $prf (And (Member $e return) (Agent $e $g) (GroupOf $g hiker) (Cardinality $g $n) (Compute < ($n 7) -> true) (Past $e)) $tv)
     (: $prf (And (Member $e return) (Agent $e $g) (GroupOf $g hiker) (CardinalityAtMost $g $k) (Compute < ($k 7) -> true) (Past $e)) $tv)
 
+### Partitives — "Q of the Ns" (#6)
+
+"Q **of the** Ns" quantifies a **definite, specific set**: emit a definite superset group + a `SubsetOf` subset, predicate on the subset, and **no** generic kind-claim. Cardinal → `Cardinality`; proportional → `ProportionOf S G level`. The two control cases (bare generic / bare count, no "of the") must **not** get a superset.
+
+**[part-card] Four of the jurors disagreed.** — cardinal partitive → definite superset + `SubsetOf` subset + `Cardinality`
+
+    (: jurors_set (GroupOf sk_jurors_1 juror) (STV 1.0 0.99))
+    (: sub_grp (GroupOf sk_group_1 juror) (STV 1.0 0.99))
+    (: sub_of (SubsetOf sk_group_1 sk_jurors_1) (STV 1.0 0.99))
+    (: sub_card (Cardinality sk_group_1 4) (STV 1.0 0.99))
+    (: e_disagree (Member sk_disagree_1 disagree) (STV 1.0 0.99))
+    (: e_agent (Agent sk_disagree_1 sk_group_1) (STV 1.0 0.99))
+    (: e_past (Past sk_disagree_1) (STV 1.0 0.99))
+
+**[part-card-q] How many of the jurors disagreed?** — partitive count question → bind `Cardinality` of the `SubsetOf` subset
+
+    (: $prf (And (Member $e disagree) (Agent $e $s) (SubsetOf $s sk_jurors_1) (Cardinality $s $n) (Past $e)) $tv)
+
+**[part-prop] Most of the votes were valid.** — proportional partitive → `ProportionOf S G most` + property on the subset
+
+    (: votes_set (GroupOf sk_votes_1 vote) (STV 1.0 0.99))
+    (: sub_grp (GroupOf sk_group_1 vote) (STV 1.0 0.99))
+    (: sub_of (SubsetOf sk_group_1 sk_votes_1) (STV 1.0 0.99))
+    (: sub_prop (ProportionOf sk_group_1 sk_votes_1 most) (STV 1.0 0.99))
+    (: valid_past (Past (Member sk_group_1 valid)) (STV 1.0 0.99))
+
+**[part-generic-ctrl] Most insects are harmless.** — bare generic (no "of the") → kind `Inheritance` @0.9, **no** superset / `SubsetOf`
+
+    (: insects_harmless (Inheritance insect harmless) (STV 0.9 0.9))
+
+**[part-count-ctrl] Five swimmers finished.** — bare count (no "of the") → group + `Cardinality`, **no** superset / `SubsetOf`
+
+    (: swimmers_grp (GroupOf sk_group_1 swimmer) (STV 1.0 0.99))
+    (: swimmers_card (Cardinality sk_group_1 5) (STV 1.0 0.99))
+    (: e_finish (Member sk_finish_1 finish) (STV 1.0 0.99))
+    (: e_agent (Agent sk_finish_1 sk_group_1) (STV 1.0 0.99))
+    (: e_past (Past sk_finish_1) (STV 1.0 0.99))
+
 ## Comparatives & degree
 
 **[comp-basic] Carol is faster than Dan.** — comparative → `More` (no positive property)
