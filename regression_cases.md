@@ -484,6 +484,71 @@ The object role must be the **same** in a statement and its question or the quer
     (: $prf (And (Name $n "Nora") (Name $o "Owen") (MoreBy tall $n $o $m centimeter) (Compute > ($m 5) -> true)) $tv)
     (: $prf (And (Name $n "Nora") (Name $o "Owen") (MoreBy tall $n $o $m centimeter) (GreaterThan $m 5)) $tv)
 
+### Ratios, rates, correlatives, adverbials & purpose (#24)
+
+**[ratio-times] The warehouse is three times as large as the shop.** — multiplicative → `TimesAs` (factor 3; seeded rule derives `More large warehouse shop`)
+
+    (: ware_shop_ratio (TimesAs large sk_warehouse_1 sk_shop_1 3) (STV 1.0 0.99))
+    (: ware_member (Member sk_warehouse_1 warehouse) (STV 1.0 0.99))
+    (: shop_member (Member sk_shop_1 shop) (STV 1.0 0.99))
+
+**[ratio-half] The new tablet is half as heavy as the old laptop.** — fractional factor 0.5 (seeded rule derives `More heavy laptop tablet`); adjective modifiers `new`/`old` optional
+
+    (: tab_lap_ratio (TimesAs heavy sk_tablet_1 sk_laptop_1 0.5) (STV 1.0 0.99))
+    (: tablet_member (Member sk_tablet_1 tablet) (STV 1.0 0.99))
+    (: laptop_member (Member sk_laptop_1 laptop) (STV 1.0 0.99))
+
+**[ratio-q] How many times as large is the warehouse as the shop?** — bind the factor
+
+    (: $prf (And (Member $w warehouse) (Member $s shop) (TimesAs large $w $s $f)) $tv)
+
+**[rate-diff] The cheetah is 40 km/h faster than the gazelle.** — rate differential → `MoreBy` with a compound rate unit
+
+    (: cheetah_gaz_rate (MoreBy fast sk_cheetah_1 sk_gazelle_1 40 kilometer_per_hour) (STV 1.0 0.99))
+    (: cheetah_member (Member sk_cheetah_1 cheetah) (STV 1.0 0.99))
+    (: gazelle_member (Member sk_gazelle_1 gazelle) (STV 1.0 0.99))
+
+**[corr-direct] The wider a road is, the safer it is.** — covariation rule, restricted to the domain noun `road`
+
+    (: corr_wide_safe (Implication (Premises (Member $x road) (Member $y road) (More wide $x $y)) (Conclusions (More safe $x $y))) (STV 0.9 0.9))
+
+**[corr-inverse] The heavier a vehicle is, the less efficient it is.** — inverse correlative → swap the conclusion pair (`More efficient $y $x`)
+
+    (: corr_heavy_ineff (Implication (Premises (Member $x vehicle) (Member $y vehicle) (More heavy $x $y)) (Conclusions (More efficient $y $x))) (STV 0.9 0.9))
+
+**[adv-comp] The courier rides faster than the cyclist.** — adverbial comparative → two events compared with `More fast`
+
+    (: ride1 (Member sk_ride_1 ride) (STV 1.0 0.99))
+    (: ride1_agent (Agent sk_ride_1 sk_courier_1) (STV 1.0 0.99))
+    (: courier_member (Member sk_courier_1 courier) (STV 1.0 0.99))
+    (: ride2 (Member sk_ride_2 ride) (STV 1.0 0.99))
+    (: ride2_agent (Agent sk_ride_2 sk_cyclist_1) (STV 1.0 0.99))
+    (: cyclist_member (Member sk_cyclist_1 cyclist) (STV 1.0 0.99))
+    (: adv_more (More fast sk_ride_1 sk_ride_2) (STV 1.0 0.99))
+
+**[too-purpose] The puppy is too small to climb the stairs.** — "too ADJ to V" → `Degree excessive` + negated capability event (cannot climb; one strength-0 conjunction)
+
+    (: puppy_member (Member sk_puppy_1 puppy) (STV 1.0 0.99))
+    (: puppy_small (Member sk_puppy_1 small) (STV 1.0 0.99))
+    (: puppy_deg (Degree sk_puppy_1 small excessive) (STV 1.0 0.99))
+    (: puppy_cant_climb (And (Member sk_climb_1 climb) (Agent sk_climb_1 sk_puppy_1) (Theme sk_climb_1 sk_stairs_1) (Can sk_climb_1)) (STV 0.0 0.99))
+    (: stairs_member (Member sk_stairs_1 stair) (STV 1.0 0.99))
+
+**[enough-purpose] The rope is long enough to span the gap.** — "ADJ enough to V" → `Degree sufficient` + positive capability event (can span)
+
+    (: rope_member (Member sk_rope_1 rope) (STV 1.0 0.99))
+    (: rope_long (Member sk_rope_1 long) (STV 1.0 0.99))
+    (: rope_deg (Degree sk_rope_1 long sufficient) (STV 1.0 0.99))
+    (: span1 (Member sk_span_1 span) (STV 1.0 0.99))
+    (: span1_agent (Agent sk_span_1 sk_rope_1) (STV 1.0 0.99))
+    (: span1_theme (Theme sk_span_1 sk_gap_1) (STV 1.0 0.99))
+    (: gap_member (Member sk_gap_1 gap) (STV 1.0 0.99))
+    (: rope_can_span (Can sk_span_1) (STV 1.0 0.99))
+
+**[purpose-q] Can the rope span the gap?** — query the capability event
+
+    (: $prf (And (Member $r rope) (Member $e span) (Agent $e $r) (Theme $e $g) (Member $g gap) (Can $e)) $tv)
+
 ## Measures & units
 
 **[meas-adj] Grace is 165 centimeters tall.** — measure on a stated adjective scale

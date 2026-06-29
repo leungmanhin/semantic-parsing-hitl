@@ -81,6 +81,23 @@
 (: morebydiff (Implication (Premises (MoreBy $s $x $y $n $u))
    (Conclusions (More $s $x $y))) (STV 1.0 0.99))
 
+; differential gaps add along a chain (same unit):
+;   MoreBy(s,x,y,a,u), MoreBy(s,y,z,b,u) => MoreBy(s,x,z,a+b,u)
+(: morebydiff_trans (Implication (Premises (MoreBy $s $x $y $a $u) (MoreBy $s $y $z $b $u)
+   (Compute + ($a $b) -> $c)) (Conclusions (MoreBy $s $x $z $c $u))) (STV 1.0 0.99))
+
+; a multiplicative comparative entails the plain ordering, by the factor's side of 1:
+;   TimesAs(s,x,y,f), f>1 => More(s,x,y) ;  f<1 => More(s,y,x)
+(: ratio_more_gt (Implication (Premises (TimesAs $s $x $y $f) (Compute > ($f 1) -> true))
+   (Conclusions (More $s $x $y))) (STV 1.0 0.99))
+(: ratio_more_lt (Implication (Premises (TimesAs $s $x $y $f) (Compute < ($f 1) -> true))
+   (Conclusions (More $s $y $x))) (STV 1.0 0.99))
+
+; a multiplicative comparative + a known measure of Y derives the measure of X:
+;   TimesAs(s,x,y,f), Measure(y,s,m,u) => Measure(x,s,f*m,u)
+(: ratio_measure (Implication (Premises (TimesAs $s $x $y $f) (Measure $y $s $m $u)
+   (Compute * ($m $f) -> $r)) (Conclusions (Measure $x $s $r $u))) (STV 1.0 0.99))
+
 ; ===== Symmetric-relation scaffolding =====
 
 ; A tagged symmetric relation holds both ways:  Symmetric(R), R(x,y) => R(y,x).

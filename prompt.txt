@@ -489,6 +489,20 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
   **approximate** gap ("about 3 cm taller" → `(ParticleFromNormal X σ)`), as a distribution — so emit
   **both** branches (`Compute` and `GreaterThan`) and union them (see **Measures & units**).
 
+- **Multiplicative / ratio** "X is twice / three times / half as ADJ as Y" → `(TimesAs <scale> X Y
+  <factor>)` (twice→2, three times→3, half→0.5, "N times"→N). Like `More`, it does **not** entail
+  the positive. A seeded rule derives the plain ordering (factor > 1 → `(More X Y)`, < 1 → `(More Y
+  X)`) and — when Y's measure on that scale is known — the derived measure of X, so emit only the
+  `TimesAs` atom. Query the factor by binding it:
+
+      Alice is twice as tall as Bob. →  (TimesAs tall alice bob 2) (Name alice "Alice") (Name bob "Bob")
+      Bob is half as tall as Alice.  →  (TimesAs tall bob alice 0.5) (Name bob "Bob") (Name alice "Alice")
+
+- **Rate differential** "X is N \<rate\> ADJ-er than Y" is just `MoreBy` with a **compound rate
+  unit** (lemmatized: km/h → `kilometer_per_hour`, mph → `mile_per_hour`, m/s → `meter_per_second`):
+
+      The train is 5 km/h faster than the bus. →  (Member sk_train_1 train) (Member sk_bus_1 bus) (MoreBy fast sk_train_1 sk_bus_1 5 kilometer_per_hour)
+
 - **Superlative** "X is the most ADJ / the ADJ-est [N]" → `(Most <scale> X <class>)`, plus X is
   a member of the class:
 
@@ -500,6 +514,24 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
 
       Bob is as strong as Tom. →  (SameDegree strong bob tom) (Name bob "Bob") (Name tom "Tom")
 
+- **Comparative correlative** "The ADJ-er X, the ADJ-er Y" / "the more X …, the more Y …" states a
+  **covariation** — emit a **rule** relating the two orderings, **restricted to the domain noun** (the
+  "X" the sentence is about, so the rule applies only to that kind), strength 0.9 empirical / 0.99
+  definitional. An **inverse** correlative ("the more X, the *less* Y") swaps the conclusion's pair →
+  `(Conclusions (More <scale2> $y $x))`:
+
+      The older a wine is, the more expensive it is.
+        →  (Implication (Premises (Member $x wine) (Member $y wine) (More old $x $y))
+                        (Conclusions (More expensive $x $y))) (STV 0.9 0.9)
+
+- **Adverbial comparative** "X Vs ADV-er than Y" ("Diego swims faster than Mia") compares two
+  **events** on the adverb's scale (faster→`fast`, harder→`hard`, better→`good`, more quickly→`quick`).
+  Reify both events (the second is elliptical — "than Mia [swims]") and relate them with `More`:
+
+      Diego swims faster than Mia.
+        →  (Member sk_swim_1 swim) (Agent sk_swim_1 diego) (Member sk_swim_2 swim) (Agent sk_swim_2 mia)
+           (More fast sk_swim_1 sk_swim_2) (Name diego "Diego") (Name mia "Mia")
+
 - **Degree** ("very / too / slightly ADJ") — assert the **positive property** *and* a
   `(Degree X <scale> <level>)` atom (intensifiers entail the property, so keep the positive);
   level ∈ `high` (very/really/extremely), `low` (slightly/somewhat), `excessive` (too),
@@ -508,9 +540,22 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
       Alice is very tall.  →  (Member alice tall) (Degree alice tall high) (Name alice "Alice")
       The soup is too hot. →  (Member sk_soup_1 soup) (Member sk_soup_1 hot) (Degree sk_soup_1 hot excessive)
 
-`More`'s transitivity and `SameDegree`'s symmetry are **seeded** (`seeded_rules.metta`), not
-emitted. Tense/modality **wrap** a comparative like any copular atom: "Alice was taller than
-Bob" → `(Past (More tall alice bob))`.
+- **"too ADJ to V" / "ADJ enough to V"** add the **capability consequence** to the degree. "too ADJ
+  to V" → the positive ADJ + `(Degree x ADJ excessive)` + the action as a **negated capability** (the
+  strength-`0.0` event conjunction — x *cannot* V). "ADJ enough to V" → positive ADJ + `(Degree x ADJ
+  sufficient)` + the action as a **positive capability** event (x *can* V). Reify the purpose action
+  with x as `Agent` (its object, if any, is a `Theme` — see **Events**):
+
+      Maya is too young to vote.   →  (Member maya young) (Degree maya young excessive)
+                                      (And (Member sk_vote_1 vote) (Agent sk_vote_1 maya) (Can sk_vote_1))   ; STV 0.0
+                                      (Name maya "Maya")
+      Sam is old enough to drive.  →  (Member sam old) (Degree sam old sufficient)
+                                      (Member sk_drive_1 drive) (Agent sk_drive_1 sam) (Can sk_drive_1) (Name sam "Sam")
+
+`More`'s transitivity, `SameDegree`'s symmetry, **differential-gap addition** along a chain, and the
+**`TimesAs` → ordering / measure** derivations are **seeded** (`seeded_rules.metta`), not emitted.
+Tense/modality **wrap** a comparative like any copular atom: "Alice was taller than Bob" → `(Past
+(More tall alice bob))`.
 
 ## Measures & units
 
