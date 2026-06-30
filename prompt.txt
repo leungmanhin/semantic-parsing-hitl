@@ -1038,4 +1038,88 @@ of an event/relation with **`And`** on the shared event variable.
 Build the pattern exactly as the matching statement (same classes, roles, casing, status);
 only the unknowns and any named entity become `$`-variables, and the truth value becomes
 `$tv` (or `(STV 0.0 $conf)` for a negative question). Output **only** the query — never
-assert a `Name` or other fact (a question asks, it does not add knowledge).
+assert a `Name` or other fact (a question asks, it does not add knowledge). A **causal question**
+("why / how / what-for / why-not") is still just a query — of a causal relation (see **Causal
+questions**), so it likewise adds nothing to the KB.
+
+## Causal & discourse relations (between clauses)
+
+When an **explicit connective** marks a relation BETWEEN two clauses/eventualities, reify BOTH
+clauses as eventualities and emit a **binary relation atom** `(<Rel> <cause> <effect>)` (UpperCamelCase
+head, two eventuality arguments). Reify each clause the usual way — a verbal clause is its event
+witness `sk_<verb>_<n>`. A **copular STATE that participates in such a relation** is reified as a
+**state witness** `sk_<prop>_<n>` with `(Member sk_<prop>_<n> <prop>)` and its subject attached by
+`Experiencer` (or `Holder`) — so the state can be a relation endpoint — **and ALSO emit the flat
+`(Member <subj> <prop>)`** so a plain non-causal question ("is X P?") still resolves (both forms
+coexist). (Reify a state this way only when it is a causal endpoint; otherwise just the flat copular
+form.)
+
+**Relation lexicon** (map the connective to the head; the **antecedent comes first** — the cause, or
+for `Despite` the concession — the main clause second):
+
+- `CauseOf` — "X, **so** Y" / "**because** X, Y" / "Y **because** X" / "**as a result**" /
+  "**therefore**" / "**consequently**" / "**thus**" / "X **caused** Y" / "X **led to** Y".
+- `Trigger` — "**triggered**" / "**set off**".
+- `Enable` — "**enabled**" / "**allowed** … to" / "**let** … ".
+- `Contribute` — "**contributed to**" / "**was a factor in**" / "**partly caused**".
+- `Prevent` — "**prevented** … from" / "**stopped** … from" / "**kept** … from" (preventer → prevented
+  event). The prevented event did **not** occur, so ALSO emit it as a negated event (strength `0.0`,
+  per **Negation (events)**), with `Prevent` pointing at it.
+- `Motivate` — purpose "**to** V" / "**in order to**" / "**so as to**" giving the **reason for an
+  action** (the purpose eventuality → the action). Reify the purpose clause as an eventuality and mark
+  it `(Intended <e>)` (intended, not asserted to have occurred). **Not** "**too** / **enough** ADJ
+  **to** V" — a degree-governed infinitive is the **capability** form (see **Comparatives & degree**),
+  not a purpose; use `Motivate` only when "to V" is the reason for an action, with no `too`/`enough`.
+- `Reason` — belief reason "X **believed / thought** P, **so** …" (the belief eventuality → the action).
+- `Despite` — concession "**despite**" / "**although**" / "**even though**" — **concessive clause
+  first, main event second** (same argument order as the others), e.g. "Despite the storm, the ferry
+  sailed." → `(Despite sk_storm_1 sk_sail_1)`. `Despite` is **NOT** a causal explanation — keep it
+  distinct from `CauseOf`/`Enable`.
+
+These relation atoms are `(STV 1.0 0.99)` (a definitional record of the stated connective). Every
+endpoint still gets its own atoms (class, roles, status) as usual. Example:
+
+      The low road flooded because heavy rain fell.
+        →  (: e_flood (Member sk_flood_1 flood) (STV 1.0 0.99))
+           (: e_flood_pat (Patient sk_flood_1 sk_road_1) (STV 1.0 0.99))
+           (: e_road (Member sk_road_1 road) (STV 1.0 0.99))
+           (: e_rain (Member sk_rain_1 rain) (STV 1.0 0.99))
+           (: e_rain_past (Past sk_rain_1) (STV 1.0 0.99))
+           (: e_flood_past (Past sk_flood_1) (STV 1.0 0.99))
+           (: c_cause (CauseOf sk_rain_1 sk_flood_1) (STV 1.0 0.99))
+
+## Causal questions (why / how / what-for / why-not)
+
+A **causal question** asks for an eventuality linked to a **focus** event by a causal relation. It
+needs **no** separate type atom: a question compiles to a (transient) **query**, never an asserted
+fact, so identify the question word and express it as the **causal relation you query** — the relation,
+bound to the focus, IS the question type, and nothing is written to the KB (the literal "why" / "how"
+is a surface feature, recoverable from the question text, never stored). Build the focus event pattern
+as usual (per **Queries**) and put a bare `$`-variable in the asked relation:
+
+- "**why** …?" / "**what made** …?" / "**how come** …?" → the cause(s) of the focus: `(CauseOf $cause
+  <focus>)`. If the focus is an intentional action that may have BOTH a cause and a purpose, emit **one
+  query line per relation** — `(CauseOf $cause <focus>)` AND `(Motivate $goal <focus>)`.
+- "**what** … **for**?" / "in order to do what?" → the purpose only: `(Motivate $goal <focus>)`.
+- "**how** did … happen?" (mechanism) → the causal CHAIN into the focus, binding the intermediate(s):
+  `(And (CauseOf $c1 $mid) (CauseOf $mid <focus>))`.
+- "**why didn't** …?" → the preventer of the (negated) focus event: `(Prevent $preventer $f)`. The
+  focus event did **not** occur, so it lives inside a strength-`0.0` `(And …)` bundle — anchor it with
+  a **single** event-class atom only: `(And (Member $f <verb>) (Prevent $p $f))`. Do **not** add the
+  focus's roles/participants: a multi-atom focus pattern can't bind into the negated bundle (its atoms
+  co-project from one blob and trip the engine's evidence-overlap guard → []).
+
+The queried relation recovers the type unambiguously — `Motivate` alone = *what-for*; `CauseOf`
+(optionally with `Motivate`) = *why*; a `CauseOf` **chain** = *how*; `Prevent` = *why-not*. The cause /
+goal / preventer is the bare answer variable (returned bare, per **Queries**); a definite focus noun
+binds by its kind, a named participant by `Name`, exactly as in **Queries**.
+
+      Why did the road flood?
+        →  (: $prf (And (Member $f flood) (Patient $f $r) (Member $r road) (CauseOf $c $f)) $tv)
+
+      Why did Maria drive to the store?   (intentional action — dual cause + purpose)
+        →  (: $prf (And (Member $d drive) (Agent $d $m) (Name $m "Maria") (CauseOf $c $d)) $tv)
+           (: $prf (And (Member $d drive) (Agent $d $m) (Name $m "Maria") (Motivate $g $d)) $tv)
+
+      Why didn't the fire spread?   (negated focus — single event-class anchor only)
+        →  (: $prf (And (Member $s spread) (Prevent $p $s)) $tv)

@@ -1101,3 +1101,67 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 
     (: $prf (And (Member $e $verb) (Agent $e robot) (Can $e)) $tv)
     (: $prf (And (Member $e $verb) (Agent $e robot) (Can $e)) (STV 0.0 $conf))
+
+## Causal & discourse relations
+
+**[caus-because] The bridge collapsed because the cable snapped.** — `CauseOf` (cause first); each endpoint is its own eventuality, undergoers → `Patient`
+
+    (: e_snap (Member sk_snap_1 snap) (STV 1.0 0.99))
+    (: snap_pat (Patient sk_snap_1 sk_cable_1) (STV 1.0 0.99))
+    (: e_cable (Member sk_cable_1 cable) (STV 1.0 0.99))
+    (: snap_past (Past sk_snap_1) (STV 1.0 0.99))
+    (: e_collapse (Member sk_collapse_1 collapse) (STV 1.0 0.99))
+    (: collapse_pat (Patient sk_collapse_1 sk_bridge_1) (STV 1.0 0.99))
+    (: e_bridge (Member sk_bridge_1 bridge) (STV 1.0 0.99))
+    (: collapse_past (Past sk_collapse_1) (STV 1.0 0.99))
+    (: c_cause (CauseOf sk_snap_1 sk_collapse_1) (STV 1.0 0.99))
+
+**[caus-purpose] Liam saved money to buy a bicycle.** — purpose "to V" → `Motivate` + the purpose event marked `(Intended …)` (not asserted to have occurred)
+
+    (: e_save (Member sk_save_1 save) (STV 1.0 0.99))
+    (: save_ag (Agent sk_save_1 liam) (STV 1.0 0.99))
+    (: save_th (Theme sk_save_1 money) (STV 1.0 0.99))
+    (: save_past (Past sk_save_1) (STV 1.0 0.99))
+    (: liam_name (Name liam "Liam") (STV 1.0 0.99))
+    (: e_buy (Member sk_buy_1 buy) (STV 1.0 0.99))
+    (: buy_ag (Agent sk_buy_1 liam) (STV 1.0 0.99))
+    (: buy_th (Theme sk_buy_1 sk_bicycle_1) (STV 1.0 0.99))
+    (: e_bicycle (Member sk_bicycle_1 bicycle) (STV 1.0 0.99))
+    (: buy_intended (Intended sk_buy_1) (STV 1.0 0.99))
+    (: c_motivate (Motivate sk_buy_1 sk_save_1) (STV 1.0 0.99))
+
+**[caus-prevent] The vaccine prevented the patient from getting sick.** — `Prevent` (preventer → prevented event); the prevented event did NOT occur → also a negated `(And …)` at strength 0.0
+
+    (: e_vaccine (Member sk_vaccine_1 vaccine) (STV 1.0 0.99))
+    (: e_patient (Member sk_patient_1 patient) (STV 1.0 0.99))
+    (: c_prevent (Prevent sk_vaccine_1 sk_sick_1) (STV 1.0 0.99))
+    (: neg_sick (And (Member sk_sick_1 sick) (Experiencer sk_sick_1 sk_patient_1)) (STV 0.0 0.99))
+
+**[caus-state] The glass cracked because it was cold.** — a copular STATE that is a causal endpoint → reified state witness + `Experiencer` AND the flat `(Member subj prop)` (dual-emit, so non-causal "is it cold?" still resolves)
+
+    (: e_crack (Member sk_crack_1 crack) (STV 1.0 0.99))
+    (: crack_pat (Patient sk_crack_1 sk_glass_1) (STV 1.0 0.99))
+    (: e_glass (Member sk_glass_1 glass) (STV 1.0 0.99))
+    (: crack_past (Past sk_crack_1) (STV 1.0 0.99))
+    (: e_cold (Member sk_cold_1 cold) (STV 1.0 0.99))
+    (: cold_exp (Experiencer sk_cold_1 sk_glass_1) (STV 1.0 0.99))
+    (: glass_cold_flat (Member sk_glass_1 cold) (STV 1.0 0.99))
+    (: c_cause (CauseOf sk_cold_1 sk_crack_1) (STV 1.0 0.99))
+
+**[caus-why-q] Why did the bridge collapse?** — query the cause of a POSITIVE focus (full focus pattern is fine — its atoms are independently asserted)
+
+    (: $prf (And (Member $f collapse) (Patient $f $b) (Member $b bridge) (CauseOf $c $f)) $tv)
+
+**[caus-whynot-q] Why didn't the patient get sick?** — negated focus → anchor with a SINGLE event-class atom + `Prevent` (a multi-atom focus can't bind into the negated bundle)
+
+    (: $prf (And (Member $f sick) (Prevent $p $f)) $tv)
+
+**[caus-despite] Although it snowed, the marathon proceeded.** — concession → `Despite` (concessive clause first, main event second); NOT causal
+
+    (: e_snow (Member sk_snow_1 snow) (STV 1.0 0.99))
+    (: snow_past (Past sk_snow_1) (STV 1.0 0.99))
+    (: e_proceed (Member sk_proceed_1 proceed) (STV 1.0 0.99))
+    (: proceed_ag (Agent sk_proceed_1 sk_marathon_1) (STV 1.0 0.99))
+    (: e_marathon (Member sk_marathon_1 marathon) (STV 1.0 0.99))
+    (: proceed_past (Past sk_proceed_1) (STV 1.0 0.99))
+    (: c_despite (Despite sk_snow_1 sk_proceed_1) (STV 1.0 0.99))
