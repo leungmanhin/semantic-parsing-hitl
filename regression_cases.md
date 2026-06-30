@@ -692,6 +692,10 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
 
     (: every_student_memorized_poems (Implication (Premises (Member $x student)) (Conclusions (Member (sk_memorize $x) memorize) (Agent (sk_memorize $x) $x) (Theme (sk_memorize $x) (sk_poems $x)) (GroupOf (sk_poems $x) poem) (Cardinality (sk_poems $x) 3) (Past (sk_memorize $x)))) (STV 1.0 0.9))
 
+**[scope-num-thresh] Did Tara memorize more than two poems?** (over "every student memorized three poems") — threshold over a scope-derived count → anchor the Skolem group with a **single** count premise + `Compute`; do **not** re-list the event/role atoms (conjoining co-derived conclusions trips the evidence-overlap guard → [])
+
+    (: $prf (And (Cardinality (sk_poems tara) $n) (Compute > ($n 2) -> true)) $tv)
+
 **[scope-shared] Every senator emailed every colleague the same memo.** — ∀∀ + "the same" → one **shared constant** memo (not a Skolem function)
 
     (: sk_memo_1_memo (Member sk_memo_1 memo) (STV 1.0 0.99))

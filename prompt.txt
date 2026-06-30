@@ -422,8 +422,9 @@ is predicated as a unit (per-member distribution is a separate, not-yet-emitted 
            (: $prf (And (Member $e pass) (Agent $e $g) (GroupOf $g student)
                         (CardinalityAtLeast $g $m) (Compute > ($m 3) -> true) (Past $e)) $tv)
 
-(A combined total **across** groups uses the engine's `FoldAll` to sum cardinalities — emit that
-only when the question explicitly asks for an aggregate total.)
+(A combined total **across** groups uses the engine's `FoldAll` to sum cardinalities — `(FoldAll (And
+(GroupOf $g <kind>) (Cardinality $g $n)) $n 0 + -> $tot)` (args are *pattern · value · init · fold-fn*,
+so `0` then `+`, in that order) — emit that only when the question explicitly asks for an aggregate total.)
 
 ### Partitives — "Q of the Ns" (a definite, specific set)
 
@@ -695,6 +696,13 @@ order — uses Skolem **functions** for *dependent* existentials, witness **cons
       (: every_student_read_three (Implication (Premises (Member $x student))
          (Conclusions (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Theme (sk_read $x) (sk_books $x))
                       (GroupOf (sk_books $x) book) (Cardinality (sk_books $x) 3))) (STV 1.0 0.9))
+
+  To **query a threshold over such a derived count** ("did Al read more than two books?"), anchor on
+  the rule's Skolem group with a **single** count premise + `Compute` — do **not** also list the
+  event/role atoms: conjoining two conclusions co-derived from one rule firing trips the engine's
+  evidence-overlap guard and returns nothing.
+
+      Did Al read more than two books? →  (: $prf (And (Cardinality (sk_books al) $n) (Compute > ($n 2) -> true)) $tv)
 
 Cues "the **same** Y" / "a **certain** Y" force the shared (constant) reading; genuine
 ambiguity → first quantifier takes wide scope. A relational universal with a **copular**
