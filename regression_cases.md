@@ -705,6 +705,44 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
 
     (: gardener_rule (Implication (Premises (Member $e have) (Holder $e $x) (Theme $e $y) (Member $y garden)) (Conclusions (Member $x gardener))) (STV 1.0 0.99))
 
+### Distribution to each member (#21)
+
+Explicit distributive-universal ("all the / each of the / every one of the Ns V") over a **distributive** verbal predicate → the same rule form, ranging over the members (kind-named → `(Member $x kind)`; collective-noun group → `(PartOf $x group)`), one per-member Skolem event. A **collective** predicate and a **bare** plural/count do **not** distribute.
+
+**[dist-kind] All the passengers boarded.** — kind-named plural, intransitive → rule over `(Member $x passenger)`, strength 1.0
+
+    (: all_passengers_boarded (Implication (Premises (Member $x passenger)) (Conclusions (Member (sk_board $x) board) (Agent (sk_board $x) $x) (Past (sk_board $x)))) (STV 1.0 0.9))
+
+**[dist-partof] Every member of the panel abstained.** — collective-noun group → rule over `(PartOf $x sk_panel_1)`
+
+    (: panel_abstained (Implication (Premises (PartOf $x sk_panel_1)) (Conclusions (Member (sk_abstain $x) abstain) (Agent (sk_abstain $x) $x) (Past (sk_abstain $x)))) (STV 1.0 0.9))
+    (: p (Member sk_panel_1 panel) (STV 1.0 0.99))
+
+**[dist-theme] All the analysts endorsed the proposal.** — distribution carries roles; `endorse` → **Theme** (object unchanged, per #23), shared definite object
+
+    (: analysts_endorsed (Implication (Premises (Member $x analyst)) (Conclusions (Member (sk_endorse $x) endorse) (Agent (sk_endorse $x) $x) (Theme (sk_endorse $x) sk_proposal_1) (Past (sk_endorse $x)))) (STV 1.0 0.9))
+    (: pr (Member sk_proposal_1 proposal) (STV 1.0 0.99))
+
+**[dist-q] Did Omar board?** (over [dist-kind], Omar a passenger) — query the distributed member with the **full** event
+
+    (: $prf (And (Member $e board) (Agent $e omar) (Past $e)) $tv)
+
+**[dist-collective] The tourists assembled in the lobby.** — collective/reciprocal predicate → **one** event, group agent, **no** distribution rule
+
+    (: assemble (Member sk_assemble_1 assemble) (STV 1.0 0.99))
+    (: ta (Agent sk_assemble_1 sk_group_1) (STV 1.0 0.99))
+    (: tg (GroupOf sk_group_1 tourist) (STV 1.0 0.99))
+    (: tp (Past sk_assemble_1) (STV 1.0 0.99))
+
+**[dist-bare] The trustees approved the budget.** — bare plural, **no** explicit universal → stays collective (group as unit), **no** distribution rule (conservative trigger)
+
+    (: approve (Member sk_approve_1 approve) (STV 1.0 0.99))
+    (: aa (Agent sk_approve_1 sk_group_1) (STV 1.0 0.99))
+    (: ag (GroupOf sk_group_1 trustee) (STV 1.0 0.99))
+    (: at (Theme sk_approve_1 sk_budget_1) (STV 1.0 0.99))
+    (: ab (Member sk_budget_1 budget) (STV 1.0 0.99))
+    (: ap (Past sk_approve_1) (STV 1.0 0.99))
+
 ### Striking & relational generics
 
 Judge whether the property holds of *most* individuals. A bare generic relating two KINDS → a kind-level relation (no instance distribution, strength stays high). A striking *minority* copular generic → `Inheritance` at a lowered strength. (An *explicit* universal stays a ∀∀ rule — see [scope-aa].)

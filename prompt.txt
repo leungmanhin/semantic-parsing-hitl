@@ -349,17 +349,20 @@ predicate over it. Record its **member kind** with `(GroupOf <group> <kind>)`, a
 `(GroupOf g student)` says *the members are students* — not that the group is a student (a
 group is an individual; it never goes in a class slot). A collective noun already names the
 kind, so "the committee" needs no `GroupOf`; "a flock of birds" takes both (`(Member sk_flock_1
-flock) (GroupOf sk_flock_1 bird)`). Distributing a predicate to **each** member still needs a
-rule, so it stays deferred (below).
+flock) (GroupOf sk_flock_1 bird)`). Predicating over the group as a **unit** is the default
+here; distributing to **each** member uses a rule (below).
 
-**Not yet represented** here: distributing a predicate to **each** member of an unnamed
-plural. (Counts — "three students", "both" — are under **Cardinality**; "or" under **Disjunction**.)
+A plural **predicated as a unit** stays **collective** (one event, the group as agent); an
+**explicit distributive-universal** over it — "all the / each of the / every one of the Ns V" —
+instead distributes to **each** member via a rule (see *Quantifiers, generics & scope*). (Counts
+— "three students", "both" — are under **Cardinality**; "or" under **Disjunction**.)
 
 ## Cardinality (counting)
 
 A plural is always a **group** (`GroupOf g <kind>`, from **Coordination & plurals**); when it
 carries a **number**, add a **count atom** to that group. The count rides on the group, which
-is predicated as a unit (per-member distribution is a separate, not-yet-emitted step).
+is predicated as a unit. (An explicit "all the / each of the" universal distributes to members
+via a rule instead — see *Quantifiers, generics & scope*; a bare count does not.)
 
 - **Exact number** — a numeral, or a fixed-value word ("both" = 2, "a pair" = 2, "a dozen" =
   12) → `(Cardinality <group> <n>)` (a **native integer**):
@@ -659,6 +662,35 @@ must submit homework", "visitors may enter") is prescriptive → strength `1.0`,
                             (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x))) (STV 0.9 0.9))
       Birds can fly.  →  (: birds_can_fly (Implication (Premises (Member $x bird))
                             (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x) (Can (sk_fly $x)))) (STV 0.9 0.9))
+
+The **same rule form** distributes an **explicitly universal** predication over a **definite
+plural or a group** — "all the / each of the / every one of the Ns V" (and bare "each / every
+N V"). Range over the members exactly as the reciprocal rules do (see *Reciprocals & symmetric
+relations*): a plural that **names the kind** ("all the students", "each juror") →
+`(Member $x <kind>)`; a **collective noun** whose members' kind isn't stated ("every member of
+the committee") → `(PartOf $x <group>)`. Strength = the quantity (`all` / `each` / `every` =
+`1.0`), confidence `0.9`:
+
+      All the students passed.      →  (: all_students_passed (Implication (Premises (Member $x student))
+                                           (Conclusions (Member (sk_pass $x) pass) (Agent (sk_pass $x) $x)
+                                                        (Past (sk_pass $x)))) (STV 1.0 0.9))
+      Every member of the committee resigned.
+                                    →  (: committee_resigned (Implication (Premises (PartOf $x sk_committee_1))
+                                           (Conclusions (Member (sk_resign $x) resign) (Agent (sk_resign $x) $x)
+                                                        (Past (sk_resign $x)))) (STV 1.0 0.9))
+                                       (Member sk_committee_1 committee)
+
+Only an **explicit** universal + a **distributive** predicate distributes this way. A
+**collective** predicate ("the students gathered", "the jury deliberated") stays **one** event
+with the group as agent (see *Coordination & plurals*); a **bare** plural predicated as a unit
+("the students passed the exam") and a **bare count** ("three students passed") stay
+collective / group + count — no per-member rule. A rule-derived event is stored as **one
+bundle**, so a distributed-member question queries **exactly that bundle** — the member's own
+**constant symbol** in the role slot and **every** atom the rule concluded, with **nothing else
+conjoined**. A `(Name …)` lookup, an extra filter, or a dropped atom each force the bundle apart
+and miss (the co-derived atoms share the rule's evidence). "Did Ana pass?" (Ana a student) →
+`(: $prf (And (Member $e pass) (Agent $e ana) (Past $e)) $tv)` — the constant `ana`, not a `Name`
+match.
 
 A clause with **two quantifiers over a relation** — read the natural meaning, not word
 order — uses Skolem **functions** for *dependent* existentials, witness **constants** for
