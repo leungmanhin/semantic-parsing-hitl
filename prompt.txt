@@ -211,7 +211,10 @@ otherwise `Theme`** — one yes/no test ("does the object itself change?"), so a
 **same role in a statement and in its question** and QA matches (e.g. *bought / rented / graded /
 scored* → `Theme` both times; *cooked / built* → `Patient` both times); when the test is unclear,
 default to `Theme`. Psych/perception object → `Stimulus`; indirect object → `Recipient`;
-obliques by their preposition/adverb.
+obliques by their preposition/adverb. For an **intransitive** subject (no object), apply the same
+"does it change?" test to the **subject**: a **change-of-state undergoer** → `Patient` (*collapse,
+sink, melt, shatter, snap, freeze, break, spread*); a **motion / volitional / self-propelled**
+subject → `Agent` (*run, arrive, leave, march, proceed, sail, gather*); when unclear, `Agent`.
 
 An **indefinite argument** ("a book") is an existential → witness + class, referenced by its
 role. A **passive / agentless** clause just omits `Agent`.
@@ -247,8 +250,12 @@ specific occurrence. Mark otherwise (stack as needed):
 - **Aspect**: `(Ongoing e)` (progressive). Perfect ("has V-ed") → coarse `(Past e)`.
 - **Capability** ("can / able to"): `(Can e)`.
 - **Epistemic** ("might / probably / must"-inference): `(Might e)`, `(Probably e)`, `(Must e)`.
-- **Deontic** ("must / required" obligation; "may / allowed" permission): `(Obligated e)`,
-  `(Permitted e)`; weaker "should / ought" → `(Obligated e)` at strength `0.7`.
+- **Deontic** on a **specific** act ("must / required" obligation; "may / allowed" permission) →
+  `(Obligated e)`, `(Permitted e)`; weaker "should / ought" → `(Obligated e)` at strength `0.7`. A
+  **prohibition** ("must not / may not / shall not / forbidden to V") is the **denial of
+  permission** → `(Permitted e)` at strength `0.0`, **not** a negated `(Obligated e)` (see
+  *Negation (events)*). A deontic norm over a **kind** uses a reified property — see *Quantifiers,
+  generics & scope*.
 
       Bob can cook dinner.   →  (Member sk_cook_1 cook) (Agent sk_cook_1 bob)
                                 (Patient sk_cook_1 dinner) (Can sk_cook_1)
@@ -282,6 +289,9 @@ the dial). Positive event = separate atoms; negated event = one strength-`0.0` c
       Bob can't cook.         → (: bob_cant_cook
                                   (And (Member sk_cook_1 cook) (Agent sk_cook_1 bob) (Can sk_cook_1))
                                   (STV 0.0 0.99))
+      Bob may not enter.      → (: bob_not_enter
+                                  (And (Member sk_enter_1 enter) (Agent sk_enter_1 bob) (Permitted sk_enter_1))
+                                  (STV 0.0 0.99))   ; deontic prohibition = permission denied
 
 ## Existential — "a/an", "some", "there is/are"
 
@@ -352,10 +362,12 @@ kind, so "the committee" needs no `GroupOf`; "a flock of birds" takes both (`(Me
 flock) (GroupOf sk_flock_1 bird)`). Predicating over the group as a **unit** is the default
 here; distributing to **each** member uses a rule (below).
 
-A plural **predicated as a unit** stays **collective** (one event, the group as agent); an
-**explicit distributive-universal** over it — "all the / each of the / every one of the Ns V" —
-instead distributes to **each** member via a rule (see *Quantifiers, generics & scope*). (Counts
-— "three students", "both" — are under **Cardinality**; "or" under **Disjunction**.)
+A plural predicated with a **distributive** predicate (each member acts separately) keeps the group
+event (counting / "did any?") **and** distributes to its members via a rule over `(PartOf $x
+<group>)` (see *Quantifiers, generics & scope* and *Cardinality*), so a member named later is
+queryable; only a **collective** predicate (gather, meet, assemble — the group as one unit) stays
+**group-only**. An **explicit universal** ("all the / each of the Ns V") distributes the same way.
+(Counts — "three students", "both", "several" — are under **Cardinality**; "or" under **Disjunction**.)
 
 ## Cardinality (counting)
 
@@ -369,14 +381,26 @@ via a rule instead — see *Quantifiers, generics & scope*; a bare count does no
 
       Three students passed the exam. →  (GroupOf sk_group_1 student) (Cardinality sk_group_1 3)
                                           (Member sk_pass_1 pass) (Agent sk_pass_1 sk_group_1)
-                                          (Theme sk_pass_1 sk_exam_1) (Member sk_exam_1 exam) (Past sk_pass_1)
+                                          (Theme sk_pass_1 sk_exam_1) (Member sk_exam_1 exam) (Past sk_pass_1)   ; + a per-member rule too (pass is distributive)
       Both dogs barked. →  (GroupOf sk_group_1 dog) (Cardinality sk_group_1 2)
-                           (Member sk_bark_1 bark) (Agent sk_bark_1 sk_group_1) (Past sk_bark_1)
+                           (Member sk_bark_1 bark) (Agent sk_bark_1 sk_group_1) (Past sk_bark_1)   ; group event — count / "did any?"
+                           (: dogs_barked (Implication (Premises (PartOf $x sk_group_1))
+                              (Conclusions (Member (sk_bark $x) bark) (Agent (sk_bark $x) $x) (Past (sk_bark $x)))) (STV 1.0 0.9))   ; per-member rule (bark distributive)
 
   `(Cardinality g 3)` is the size of *that* group (a point value) — it does **not** claim the
   world holds only 3 (and "**exactly** three" emits that same `(Cardinality g 3)` — the "no
   more" closure is a global/open-world reading we don't separately encode). **"both"** = exactly 2 and is **definite** (reuse the two members' symbols
   if already introduced).
+
+  A plural with a **distributive** predicate (bark, pass, laugh, arrive — each member acts
+  separately) **also distributes to its members via a rule** (as *Both dogs barked* shows): keep the
+  group + count + group event **for counting / "did any?"**, and add a **distribution rule** ranging
+  over the group's members `(PartOf $x <group>)` (see *Quantifiers, generics & scope*). The rule
+  stays **dormant** until a member is individuated, then fires — so this works across **any** count
+  (vague and large included, since it doesn't enumerate). *Both dogs barked. Fido was one of them.*
+  adds `(Member fido dog) (PartOf fido sk_group_1) (Name fido "Fido")`, firing the rule → Fido's own
+  bark event, so **"did Fido bark?"** → `(And (Name $f "Fido") (Member $e bark) (Agent $e $f) (Past $e))` resolves. A **collective** predicate
+  (gather, meet, assemble) stays **group-only** (no rule).
 
 - **Bounded number** → `(CardinalityAtLeast <group> <n>)` / `(CardinalityAtMost <group> <n>)`
   ("more than 3" = at least 4; "at least 5" = 5; "fewer than 10" = at most 9; "at most 4" = 4):
@@ -432,15 +456,17 @@ so `0` then `+`, in that order) — emit that only when the question explicitly 
 ### Partitives — "Q of the Ns" (a definite, specific set)
 
 A **partitive** quantifies over a **specific, presupposed set** — flagged by **"of the / of these /
-of those / of them"** — not the generic kind. Introduce a **definite superset** group and quantify a
+of those / of them"** with a **cardinal or non-universal-proportional** amount — not the generic
+kind. (A **universal** — "all / each / every of the" — is **not** a partitive; it **distributes**
+per member — see *Quantifiers, generics & scope*.) Introduce a **definite superset** group and quantify a
 **subset** of it; emit **no** generic kind-claim.
 
 - **Definite superset** `G` → `(GroupOf <G> <kind>)` (the contextual "the Ns"); add `(Cardinality
   <G> <N>)` if the whole's size is stated ("three of the **20** students").
 - **Quantified subset** `S` of `G` → `(GroupOf <S> <kind>) (SubsetOf <S> <G>)`, predicate/event on **S**:
   - **cardinal** ("three of", "one of") → `(Cardinality <S> <k>)`;
-  - **proportional** ("most / some / half / all / few of") → `(ProportionOf <S> <G> <level>)`,
-    `<level>` ∈ `all / most / half / some / few / none`.
+  - **proportional** ("most / some / half / few of") → `(ProportionOf <S> <G> <level>)`,
+    `<level>` ∈ `most / half / some / few / none`.
 
       Three of the students passed.
         →  (GroupOf sk_students_1 student)                                  ; the definite set "the students"
@@ -458,7 +484,8 @@ of those / of them"** — not the generic kind. Introduce a **definite superset*
 that specific set, not apples-in-general. Contrasts: bare generic "most apples are ripe" →
 `(Inheritance apple ripe) (STV 0.9 0.9)` (kind, distributes to any apple); bare count "three students
 passed" → group + count, **no** superset / `SubsetOf`. ("none of the Ns V" → `(Cardinality <S> 0)`
-with the event **not** asserted; "all of the Ns" → `(ProportionOf <S> <G> all)`, the whole set.)
+with the event **not** asserted; "**all of the** Ns" is a **universal** → the per-member
+**distribution** rule, not a partitive — see *Quantifiers, generics & scope*.)
 **Queries:** "how many of the Ns V?" → bind `(Cardinality $s $n)` with `(SubsetOf $s <G>)`; "did most
 of the Ns V?" → `(ProportionOf $s <G> most)`.
 
@@ -477,8 +504,12 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
   maria)`). For an **antonym** comparative, **prefer the scale's positive ("more") pole** when
   there is a clear one, swapping the pair — "Bob is shorter than Alice" → `(More tall alice
   bob)`, "X is weaker than Y" → `(More strong Y X)` — so comparisons on one dimension share a
-  scale and chain. When there is **no obvious positive pole** ("cheaper", "further left"), keep
-  the surface lemma; either is valid.
+  scale and chain. **Pick the canonical positive ("more") pole deterministically** so a statement
+  and its question always land on the same (opaque) scale — a mismatch misses: `short`→`tall`,
+  `weak`→`strong`, `slow`→`fast`, `cheap`→`expensive`, `light`→`heavy`, `narrow`→`wide`,
+  `shallow`→`deep`, `low`→`high`, `young`→`old`, `cold`→`hot`, `dim`→`bright`, `quiet`→`loud`. Only
+  when a scale has **genuinely no lexicalized positive pole** ("further left", "more downstream")
+  keep the surface lemma, applied consistently on both sides.
 
 - **Differential** "X is N \<unit\> ADJ-er than Y" (a comparative with a measured gap) →
   `(MoreBy <scale> X Y <magnitude> <unit>)` — scale / magnitude / unit exactly as in **Measures &
@@ -544,17 +575,19 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
       Alice is very tall.  →  (Member alice tall) (Degree alice tall high) (Name alice "Alice")
       The soup is too hot. →  (Member sk_soup_1 soup) (Member sk_soup_1 hot) (Degree sk_soup_1 hot excessive)
 
-- **"too ADJ to V" / "ADJ enough to V"** add the **capability consequence** to the degree. "too ADJ
-  to V" → the positive ADJ + `(Degree x ADJ excessive)` + the action as a **negated capability** (the
-  strength-`0.0` event conjunction — x *cannot* V). "ADJ enough to V" → positive ADJ + `(Degree x ADJ
-  sufficient)` + the action as a **positive capability** event (x *can* V). Reify the purpose action
-  with x as `Agent` (its object, if any, is a `Theme` — see **Events**):
+- **"too ADJ to V" / "ADJ enough to V"** add the consequence to the degree. "too ADJ to V" → the
+  positive ADJ + `(Degree x ADJ excessive)` + the action as a **negated** consequence (the
+  strength-`0.0` event conjunction — x *cannot / may not* V). "ADJ enough to V" → positive ADJ +
+  `(Degree x ADJ sufficient)` + the action as a **positive** one. Pick the operator by sense (as
+  with "can", **Status predicates**): physical **ability** → `(Can e)`; legal/eligibility
+  **permission** ("too young to vote / drink / marry") → `(Permitted e)`. Reify the action with x
+  as `Agent` (its object, if any, is a `Theme` — see **Events**):
 
       Maya is too young to vote.   →  (Member maya young) (Degree maya young excessive)
-                                      (And (Member sk_vote_1 vote) (Agent sk_vote_1 maya) (Can sk_vote_1))   ; STV 0.0
+                                      (And (Member sk_vote_1 vote) (Agent sk_vote_1 maya) (Permitted sk_vote_1))   ; STV 0.0 — eligibility
                                       (Name maya "Maya")
-      Sam is old enough to drive.  →  (Member sam old) (Degree sam old sufficient)
-                                      (Member sk_drive_1 drive) (Agent sk_drive_1 sam) (Can sk_drive_1) (Name sam "Sam")
+      Sam is fit enough to run.    →  (Member sam fit) (Degree sam fit sufficient)
+                                      (Member sk_run_1 run) (Agent sk_run_1 sam) (Can sk_run_1) (Name sam "Sam")
 
 `More`'s transitivity, `SameDegree`'s symmetry, **differential-gap addition** along a chain, and the
 **`TimesAs` → ordering / measure** derivations are **seeded** (`seeded_rules.metta`), not emitted.
@@ -601,6 +634,12 @@ was 6 feet tall" → `(Past (Measure alice tall 6 foot))`).
 line, and the bound variable captures a plain number or a distribution alike:
 
       How tall is Alice? →  (: $prf (And (Name $a "Alice") (Measure $a tall $n $u)) $tv)
+
+A measure question's **scale** is the one the measure is **stored** under — the dimension **noun** when
+the value came from a measure verb/noun, **not** the comparative adjective: "how heavy / heavier /
+lighter?" → `weight`, "how expensive / cheaper?" → `price`, "hotter / colder?" → `temperature`; a
+dimension stored under an **adjective** matches its comparative directly ("taller" → `tall`, "longer" →
+`long`, "older" → `old`).
 
 A **threshold** question ("taller than N?") must *compare*, and the operator depends on storage:
 `(Compute > ($n N) -> true)` is the **hard-integer** test for an **exact** value, while **`GreaterThan`**
@@ -654,22 +693,28 @@ adjective is stated — "is 200 °C"); "hotter/warmer" → `>`, "colder/cooler" 
 A **verbal** generic or universal over a kind becomes a **rule** that gives each instance
 its own event, via a **Skolem-function** event term `(sk_<verb> $x)` (distinct per binding;
 never a free/unbound variable). Rule strength = the quantity (all `1.0`, generic/most `0.9`,
-many `0.7`, few `0.1`); confidence by the dial. A **deontic norm** over a kind ("students
-must submit homework", "visitors may enter") is prescriptive → strength `1.0`, confidence
-`0.99`.
+many `0.7`, few `0.1`); confidence by the dial. A **deontic norm over a kind** ("drivers must
+carry a license", "visitors may enter", a prohibition "guests must not smoke") is **not** this
+event-rule form — it is a **reified property** on the kind, `(Inheritance <kind> (obligated /
+permitted <action>))` (see *Deontic norms & prohibitions over a kind* below), which inherits to
+members and can be overridden.
 
       Birds fly.      →  (: birds_fly (Implication (Premises (Member $x bird))
                             (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x))) (STV 0.9 0.9))
       Birds can fly.  →  (: birds_can_fly (Implication (Premises (Member $x bird))
                             (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x) (Can (sk_fly $x)))) (STV 0.9 0.9))
 
-The **same rule form** distributes an **explicitly universal** predication over a **definite
-plural or a group** — "all the / each of the / every one of the Ns V" (and bare "each / every
-N V"). Range over the members exactly as the reciprocal rules do (see *Reciprocals & symmetric
-relations*): a plural that **names the kind** ("all the students", "each juror") →
-`(Member $x <kind>)`; a **collective noun** whose members' kind isn't stated ("every member of
-the committee") → `(PartOf $x <group>)`. Strength = the quantity (`all` / `each` / `every` =
-`1.0`), confidence `0.9`:
+The **same rule form** distributes a **distributive predicate over a plural or group** — whether an
+**explicit universal** ("all the / **all of the** / each (of the) / every (one of the) Ns V", bare
+"each / every N V") or a **grouped / counted plural** ("the dogs barked", "several / both dogs
+barked" — see *Cardinality*, which keeps the group event + count alongside the rule). A universal
+**always distributes** — the "of the" wording does **not** make it a partitive (partitives are
+cardinal or non-universal proportional — see *Partitives*); only a **collective** predicate (gather,
+meet, assemble) does **not** distribute. Range over the members as the reciprocal rules do (see
+*Reciprocals & symmetric relations*): a plural that **names the kind** ("all the students", "each
+juror") → `(Member $x <kind>)`; a **specific group** — a collective noun ("every member of the
+committee") or a counted/bare plural ("several dogs", "both dogs") → `(PartOf $x <group>)`. Strength
+= the quantity (`all` / `each` / `every`, and a plain plural/count = `1.0`), confidence `0.9`:
 
       All the students passed.      →  (: all_students_passed (Implication (Premises (Member $x student))
                                            (Conclusions (Member (sk_pass $x) pass) (Agent (sk_pass $x) $x)
@@ -684,13 +729,20 @@ Only an **explicit** universal + a **distributive** predicate distributes this w
 **collective** predicate ("the students gathered", "the jury deliberated") stays **one** event
 with the group as agent (see *Coordination & plurals*); a **bare** plural predicated as a unit
 ("the students passed the exam") and a **bare count** ("three students passed") stay
-collective / group + count — no per-member rule. A rule-derived event is stored as **one
-bundle**, so a distributed-member question queries **exactly that bundle** — the member's own
-**constant symbol** in the role slot and **every** atom the rule concluded, with **nothing else
-conjoined**. A `(Name …)` lookup, an extra filter, or a dropped atom each force the bundle apart
-and miss (the co-derived atoms share the rule's evidence). "Did Ana pass?" (Ana a student) →
-`(: $prf (And (Member $e pass) (Agent $e ana) (Past $e)) $tv)` — the constant `ana`, not a `Name`
-match.
+collective / group + count — no per-member rule. Query a distributed member like any event — its
+event class, the roles (a **named** member bound by `Name`), and status: "Did Ana pass?" (Ana a
+student) → `(: $prf (And (Name $a "Ana") (Member $e pass) (Agent $e $a) (Past $e)) $tv)`.
+
+**Negated verbal generic / verbal ¬∀.** "Ns don't V" as a generic habit ("owls don't migrate") =
+the **same distributing rule at strength `0.0`** — each member's event then derives at strength 0,
+so an arbitrary N does *not* V. "**Not every** N V" ("not every intern replied") is a
+**counterexample witness**, parallel to copular "not all" (see **Negation (copular)**): one witness
+N at strength 1 plus its event bundle at strength `0.0`.
+
+      Owls don't migrate.       →  (: owls_no_migrate (Implication (Premises (Member $x owl))
+                                       (Conclusions (Member (sk_migrate $x) migrate) (Agent (sk_migrate $x) $x))) (STV 0.0 0.9))
+      Not every intern replied. →  (: sk_intern_1_i (Member sk_intern_1 intern) (STV 1.0 0.99))
+                                   (: sk_intern_1_nr (And (Member sk_reply_1 reply) (Agent sk_reply_1 sk_intern_1) (Past sk_reply_1)) (STV 0.0 0.99))
 
 A clause with **two quantifiers over a relation** — read the natural meaning, not word
 order — uses Skolem **functions** for *dependent* existentials, witness **constants** for
@@ -729,12 +781,10 @@ order — uses Skolem **functions** for *dependent* existentials, witness **cons
          (Conclusions (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Theme (sk_read $x) (sk_books $x))
                       (GroupOf (sk_books $x) book) (Cardinality (sk_books $x) 3))) (STV 1.0 0.9))
 
-  To **query a threshold over such a derived count** ("did Al read more than two books?"), anchor on
-  the rule's Skolem group with a **single** count premise + `Compute` — do **not** also list the
-  event/role atoms: conjoining two conclusions co-derived from one rule firing trips the engine's
-  evidence-overlap guard and returns nothing.
+  To **query a threshold over such a derived count** ("did Al read more than two books?"), bind the
+  member's group through the event and threshold its `Cardinality`:
 
-      Did Al read more than two books? →  (: $prf (And (Cardinality (sk_books al) $n) (Compute > ($n 2) -> true)) $tv)
+      Did Al read more than two books? →  (: $prf (And (Name $a "Al") (Member $e read) (Agent $e $a) (Theme $e $g) (GroupOf $g book) (Cardinality $g $n) (Compute > ($n 2) -> true)) $tv)
 
 Cues "the **same** Y" / "a **certain** Y" force the shared (constant) reading; genuine
 ambiguity → first quantifier takes wide scope. A relational universal with a **copular**
@@ -804,22 +854,34 @@ however / aside from / other than" introducing a sub-kind that lacks or reverses
 defeasible *relational* generic — opaque kind-relation, **Striking & relational** above — does not
 revise this way; keep it to property / capability / categorical generics.)
 
-**Defeasible deontic norms** ("X must/may P, but sub-kind Y is exempt"). Same revision mechanism,
-but the obligation/permission is **reified as a property** `(obligated <action>)` / `(permitted
-<action>)` (lowercase, parallel to `(can <action>)`) so it sits on `Inheritance` and can be
-overridden — the **event-rule** deontic form (modality `Obligated`/`Permitted`, used for plain norms)
-does **not** revise. Three facts, the same dial:
+**Deontic norms & prohibitions over a kind** ("Ns must / may / must-not V"). A deontic norm on a
+**kind** is a **reified property** on the kind — `(Inheritance <kind> (obligated <action>))` for an
+obligation, `(permitted <action>)` for a permission (lowercase, parallel to `(can <action>)`) —
+**not** an event rule. This one form covers plain norms, prohibitions, and (with an added exception
+fact) defeasible ones; it inherits to members and can be revised. Decompose the compound action per
+**Compound concepts** (`carry_license` → `(Inheritance carry_license carry) (Patient carry_license license)`).
+
+      Drivers must carry a license. →  (: driver_license (Inheritance driver (obligated carry_license)) (STV 1.0 0.99))
+      Visitors may enter.           →  (: visitor_enter (Inheritance visitor (permitted enter)) (STV 1.0 0.99))
+      Guests must not smoke.        →  (: guest_smoke (Inheritance guest (permitted smoke)) (STV 0.0 0.99))
+
+A **prohibition** ("must not / may not / shall not V") is the **denial of permission** →
+`(permitted <action>)` at **strength `0.0`** (not a negated `(obligated …)`). Strength = the norm's
+force: a plain norm `1.0` / conf `0.99`; a **defeasible** norm (with a stated exemption) drops the
+general to the **empirical `0.9`** so the exception can override it via the confidence dial — the
+three-fact pattern:
 
       Members must pay dues, but lifetime members are exempt.
         →  (: member_dues     (Inheritance member (obligated pay_dues))          (STV 0.9 0.9))
            (: lifetime_member (Inheritance lifetime_member member)               (STV 0.99 0.99))
            (: lifetime_exempt (Inheritance lifetime_member (obligated pay_dues)) (STV 0.0 0.99))
 
-A lifetime member's obligation then ≈ 0 (exempt); a regular member ≈ 0.9 (still obligated).
-Permission exemptions use `(permitted <action>)` the same way. **Only** deontic norms with a stated
-exemption take this form — a plain "Citizens must pay tax" (no exception) keeps the event-rule with
-`Obligated`. Exemption cues: "but / unless / except + exempt / not required / need not / does not
-have to."
+A lifetime member's obligation then ≈ 0 (exempt); a regular member ≈ 0.9 (still obligated). The
+confidence **gap** (empirical general `0.9` < exception `0.99`) is the revision lever, so a
+defeasible norm's general is `0.9` and a plain norm is `1.0`. Obligation implies permission (seeded
+`oblig_perm` fires on the property form too). A **specific one-off** deontic act on an individual
+keeps the event form `(Obligated e)` / `(Permitted e)` instead (see *Status predicates*). Exemption
+cues: "but / unless / except + exempt / not required / need not / does not have to."
 
 **Conditional properties** ("X is P **when / at / under / if** C" — the property holds only under a
 condition). Reify as **`(ConditionalProperty <kind> <property> <condition>)`**; do **not** also
@@ -855,7 +917,10 @@ verb's normal roles and swapping the two fillers:
 For an **unnamed group** (you don't have the individuals) emit a **rule** over the members, with
 a distinctness guard `(Compute == ($x $y) -> false)` (so nobody pairs with themselves) and a
 Skolem-**function** event `(sk_<verb> $x $y)`, one per ordered pair — like the ∀∀ rule above.
-**Range over the predicate the members satisfy**: a plural that **names the kind** ("jurors",
+**Give the pair the verb's normal roles by the usual test** (see *Thematic roles*): a psych/attitude
+verb ("distrust", "envy", "admire") → `Experiencer`/`Stimulus`; a verb whose object is unchanged
+("question", "argue with") → `Theme`; only a create/destroy/change verb → `Patient` — never default
+to `Agent`/`Patient`. **Range over the predicate the members satisfy**: a plural that **names the kind** ("jurors",
 "students") → `(Member $x <kind>)`; a **collective noun** ("committee", "team") whose members'
 kind isn't stated → `(PartOf $x <group>)`. Put any tense/status **inside** the `Conclusions` —
 never as a free-variable atom outside the rule:
@@ -863,13 +928,13 @@ never as a free-variable atom outside the rule:
       The jurors distrust one another.
         →  (: jurors_distrust (Implication
               (Premises (Member $x juror) (Member $y juror) (Compute == ($x $y) -> false))
-              (Conclusions (Member (sk_distrust $x $y) distrust) (Agent (sk_distrust $x $y) $x)
-                           (Patient (sk_distrust $x $y) $y))) (STV 1.0 0.9))
+              (Conclusions (Member (sk_distrust $x $y) distrust) (Experiencer (sk_distrust $x $y) $x)
+                           (Stimulus (sk_distrust $x $y) $y))) (STV 1.0 0.9))
       The committee members argued with one another.
         →  (: committee_argue (Implication
               (Premises (PartOf $x sk_committee_1) (PartOf $y sk_committee_1) (Compute == ($x $y) -> false))
               (Conclusions (Member (sk_argue $x $y) argue) (Agent (sk_argue $x $y) $x)
-                           (Patient (sk_argue $x $y) $y) (Past (sk_argue $x $y)))) (STV 1.0 0.9))
+                           (Theme (sk_argue $x $y) $y) (Past (sk_argue $x $y)))) (STV 1.0 0.9))
            (Member sk_committee_1 committee)
 
 **Symmetric predicates** — mutual **by meaning** ("are friends / siblings / colleagues", "is
@@ -897,7 +962,10 @@ pair") is a group, not a relation → `(Member sk_couple_1 couple)` + `PartOf` m
 **Querying** matches either direction (the reverse is derived):
 
       Who is Bob friends with?  →  (: $prf (And (Name $b "Bob") (Friend $b $x)) $tv)
-      Does Alice admire Bob?    →  (: $prf (And (Member $e admire) (Experiencer $e alice) (Stimulus $e bob)) $tv)
+      Does Alice admire Bob?    →  (: $prf (And (Name $a "Alice") (Name $b "Bob") (Member $e admire) (Experiencer $e $a) (Stimulus $e $b)) $tv)
+
+A **group-rule** reciprocal (the unnamed-group form) is queried the same way — each named member
+bound by `Name`: "Does juror Ann distrust juror Ben?" → `(: $prf (And (Name $a "Ann") (Name $b "Ben") (Member $e distrust) (Experiencer $e $a) (Stimulus $e $b)) $tv)`.
 
 ## Disjunction ("or")
 
@@ -993,7 +1061,7 @@ dropped there:
 
       Either Alice will fly to Tokyo or she will take the train, but not both.
         →  (: trip_xor (Xor
-              (And (Member sk_fly_1 fly) (Agent sk_fly_1 alice) (Destination sk_fly_1 tokyo) (Future sk_fly_1))
+              (And (Member sk_fly_1 fly) (Agent sk_fly_1 alice) (Goal sk_fly_1 tokyo) (Future sk_fly_1))
               (And (Member sk_take_1 take) (Agent sk_take_1 alice) (Theme sk_take_1 sk_train_1) (Member sk_train_1 train) (Future sk_take_1))) (STV 1.0 0.99))
            (: alice_name (Name alice "Alice") (STV 1.0 0.99))
 
@@ -1024,7 +1092,7 @@ attach to one symbol. Resolve each anaphor to the most salient compatible antece
 - **Reflexive** ("himself") — the clause's own subject.
 - **Mid-discourse naming** ("She named it Rex") — add `(Name <referent> "Rex")` to that referent.
 - **Bridging** ("Alice bought a car. The engine was broken") — "the engine" is new but linked
-  to the antecedent: `(Member sk_engine_1 engine) (PartOf sk_engine_1 sk_car_1) (Member sk_engine_1 broken)`.
+  to the antecedent: `(Member sk_engine_1 engine) (PartOf sk_engine_1 sk_car_1) (Past (Member sk_engine_1 broken))`.
 - **One-anaphora** ("a red car … a blue one") — "one" = a fresh entity of the antecedent's
   class: `(Member sk_car_2 car) (Member sk_car_2 blue)`.
 
@@ -1050,14 +1118,17 @@ of an event/relation with **`And`** on the shared event variable.
   symbol already resolves to a `Name` in the KB; binding it drops unnamed answers and adds a
   needless conjunct), and don't restate a class the pattern already fixes.
 - A **negative / polarity** question pins the truth value to `(STV 0.0 $conf)`.
-- A **compound question** ("who is the oldest **and** where do they live?") stays **one** query
-  with a `$`-variable per unknown — a shared referent reuses one variable to chain the parts;
-  **unrelated parts still go in the same single query** (each with its own variable — the `And`
-  binds them jointly, not separate lines). Read every bound `$` as the answer. (Contrast **"or"**
-  questions → separate lines, see **Disjunction**.) The only split is parts needing **different
-  truth-value pins** ("what can X do *and* can't do") → one line each.
+- A **compound question** splits by whether its parts **share a referent**. **Shared referent**
+  (the same entity — "who is the oldest **and** where do they live?") → **one** query, the shared
+  `$`-variable chaining the parts and a `$`-variable per unknown; read every bound `$` as the
+  answer. **Independent parts** (no shared variable — "who is the oldest dog, **and** who is the
+  youngest cat?") → **one query line each**, like a disjunctive question: a single `(And …)` needs
+  *every* part provable at once, so one part with no data drops the **whole** answer. Parts needing
+  **different truth-value pins** ("what can X do *and* can't do") also go one line each. (Contrast:
+  "**or**" questions are always separate lines — see **Disjunction**.)
 
       Is Tokyo a city?      →  (: $prf (And (Name $x "Tokyo") (Member $x city)) $tv)
+      Was Alice happy?      →  (: $prf (And (Name $x "Alice") (Past (Member $x happy))) $tv)
       What did Bob cook?    →  (: $prf (And (Member $e cook) (Agent $e bob) (Patient $e $what) (Past $e)) $tv)
       What can Bob cook?    →  (: $prf (And (Member $e cook) (Agent $e bob) (Patient $e $what) (Can $e)) $tv)
       Who cooked dinner?    →  (: $prf (And (Member $e cook) (Patient $e dinner) (Agent $e $who) (Past $e)) $tv)
@@ -1135,11 +1206,8 @@ as usual (per **Queries**) and put a bare `$`-variable in the asked relation:
 - "**what** … **for**?" / "in order to do what?" → the purpose only: `(Motivate $goal <focus>)`.
 - "**how** did … happen?" (mechanism) → the causal CHAIN into the focus, binding the intermediate(s):
   `(And (CauseOf $c1 $mid) (CauseOf $mid <focus>))`.
-- "**why didn't** …?" → the preventer of the (negated) focus event: `(Prevent $preventer $f)`. The
-  focus event did **not** occur, so it lives inside a strength-`0.0` `(And …)` bundle — anchor it with
-  a **single** event-class atom only: `(And (Member $f <verb>) (Prevent $p $f))`. Do **not** add the
-  focus's roles/participants: a multi-atom focus pattern can't bind into the negated bundle (its atoms
-  co-project from one blob and trip the engine's evidence-overlap guard → []).
+- "**why didn't** …?" → the preventer of the (negated) focus event: `(Prevent $preventer $f)`, built
+  like any focus pattern (event class + roles) plus the `Prevent` relation.
 
 The queried relation recovers the type unambiguously — `Motivate` alone = *what-for*; `CauseOf`
 (optionally with `Motivate`) = *why*; a `CauseOf` **chain** = *how*; `Prevent` = *why-not*. The cause /
@@ -1153,5 +1221,5 @@ binds by its kind, a named participant by `Name`, exactly as in **Queries**.
         →  (: $prf (And (Member $d drive) (Agent $d $m) (Name $m "Maria") (CauseOf $c $d)) $tv)
            (: $prf (And (Member $d drive) (Agent $d $m) (Name $m "Maria") (Motivate $g $d)) $tv)
 
-      Why didn't the fire spread?   (negated focus — single event-class anchor only)
-        →  (: $prf (And (Member $s spread) (Prevent $p $s)) $tv)
+      Why didn't the fire spread?
+        →  (: $prf (And (Member $s spread) (Patient $s $f) (Member $f fire) (Prevent $p $s)) $tv)

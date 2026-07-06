@@ -26,6 +26,18 @@
 (: oblig_perm (Implication (Premises (Obligated $e))
    (Conclusions (Permitted $e))) (STV 1.0 0.99))
 
+; Property-form (kind-norm) obligation implies permission:
+;   Inheritance(k, obligated a)  ⟹  Inheritance(k, permitted a)
+(: oblig_perm_prop (Implication (Premises (Inheritance $k (obligated $a)))
+   (Conclusions (Inheritance $k (permitted $a)))) (STV 1.0 0.99))
+
+; ... and at the member level. Native member-inheritance does NOT fire off a rule-DERIVED
+; Inheritance, so the kind-level permission above never reaches a member; derive member-permission
+; directly from the member-obligation that member-inheritance DOES produce:
+;   Member(x, obligated a)  ⟹  Member(x, permitted a)
+(: oblig_perm_mem (Implication (Premises (Member $x (obligated $a)))
+   (Conclusions (Member $x (permitted $a)))) (STV 1.0 0.99))
+
 ; ===== Cardinality-phrase lexicon =====
 ; The translator emits  (CardinalityPhrase g "<phrase>")  for a vague count word.
 ; These DEFEASIBLE rules give that phrase a numeric reading. Each is single-

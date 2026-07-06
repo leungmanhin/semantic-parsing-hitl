@@ -298,13 +298,26 @@ The object role must be the **same** in a statement and its question or the quer
     (: e_banquet (Member sk_banquet_1 banquet) (STV 1.0 0.99))
     (: e_prepare_past (Past sk_prepare_1) (STV 1.0 0.99))
 
-**[card-both] Both twins laughed.** — "both" = exactly 2 (definite)
+**[card-both] Both twins laughed.** — "both" = exactly 2 (definite); laugh is **distributive** → group event (counting) **plus** a per-member distribution rule over `(PartOf $x <group>)`
 
     (: sk_group_1_twins (GroupOf sk_group_1 twin) (STV 1.0 0.99))
     (: sk_group_1_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
     (: e_laugh (Member sk_laugh_1 laugh) (STV 1.0 0.99))
     (: e_laugh_agent (Agent sk_laugh_1 sk_group_1) (STV 1.0 0.99))
     (: e_laugh_past (Past sk_laugh_1) (STV 1.0 0.99))
+    (: twins_laughed (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) $x) (Past (sk_laugh $x)))) (STV 1.0 0.9))
+
+**[dist-grouped] Several dogs barked. Fido was one of those dogs.** — vague-counted distributive plural → group + `CardinalityPhrase` + group event (counting / "did any?") + a distribution rule over `(PartOf $x <group>)`; `(PartOf fido …)` fires the rule so "did Fido bark?" resolves (works for vague/large counts, no enumeration)
+
+    (: sk_group_1_g (GroupOf sk_group_1 dog) (STV 1.0 0.99))
+    (: sk_group_1_cp (CardinalityPhrase sk_group_1 "several") (STV 1.0 0.99))
+    (: e_bark (Member sk_bark_1 bark) (STV 1.0 0.99))
+    (: e_bark_agent (Agent sk_bark_1 sk_group_1) (STV 1.0 0.99))
+    (: e_bark_past (Past sk_bark_1) (STV 1.0 0.99))
+    (: dogs_barked (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_bark $x) bark) (Agent (sk_bark $x) $x) (Past (sk_bark $x)))) (STV 1.0 0.9))
+    (: fido_dog (Member fido dog) (STV 1.0 0.99))
+    (: fido_partof (PartOf fido sk_group_1) (STV 1.0 0.99))
+    (: fido_name (Name fido "Fido") (STV 1.0 0.99))
 
 **[card-possess] Bob has three cars.** — cardinal possession → group is the Theme
 
@@ -413,7 +426,7 @@ The object role must be the **same** in a statement and its question or the quer
     (: leo_name (Name leo "Leo") (STV 1.0 0.99))
     (: mary_name (Name mary "Mary") (STV 1.0 0.99))
 
-**[comp-antonym] Nina is weaker than Oscar.** — antonym → positive pole `strong` + swap (keep-lemma `(More weak nina oscar)` also valid)
+**[comp-antonym] Nina is weaker than Oscar.** — antonym → canonical positive pole `strong` + swap (deterministic; no keep-lemma variant)
 
     (: comp_antonym (More strong oscar nina) (STV 1.0 0.99))
     (: nina_name (Name nina "Nina") (STV 1.0 0.99))
@@ -667,9 +680,11 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
 
     (: cats_can_climb (Implication (Premises (Member $x cat)) (Conclusions (Member (sk_climb $x) climb) (Agent (sk_climb $x) $x) (Can (sk_climb $x)))) (STV 0.9 0.9))
 
-**[gen-deontic] Citizens must pay tax.** — generic deontic over a kind → rule + Obligated, 1.0/0.99
+**[gen-deontic] Citizens must pay tax.** — deontic norm over a kind → reified property `(Inheritance kind (obligated action))` @ 1.0/0.99 (NOT an event rule) + compound-action decomposition
 
-    (: citizens_must_pay (Implication (Premises (Member $x citizen)) (Conclusions (Member (sk_pay $x) pay) (Agent (sk_pay $x) $x) (Patient (sk_pay $x) tax) (Obligated (sk_pay $x)))) (STV 1.0 0.99))
+    (: citizen_tax (Inheritance citizen (obligated pay_tax)) (STV 1.0 0.99))
+    (: pay_tax_g (Inheritance pay_tax pay) (STV 0.99 0.99))
+    (: pay_tax_o (Patient pay_tax tax) (STV 0.99 0.99))
 
 **[scope-ae] Every guest brings a gift.** — ∀∃ dependent → Skolem function event + gift
 
@@ -692,9 +707,9 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
 
     (: every_student_memorized_poems (Implication (Premises (Member $x student)) (Conclusions (Member (sk_memorize $x) memorize) (Agent (sk_memorize $x) $x) (Theme (sk_memorize $x) (sk_poems $x)) (GroupOf (sk_poems $x) poem) (Cardinality (sk_poems $x) 3) (Past (sk_memorize $x)))) (STV 1.0 0.9))
 
-**[scope-num-thresh] Did Tara memorize more than two poems?** (over "every student memorized three poems") — threshold over a scope-derived count → anchor the Skolem group with a **single** count premise + `Compute`; do **not** re-list the event/role atoms (conjoining co-derived conclusions trips the evidence-overlap guard → [])
+**[scope-num-thresh] Did Tara memorize more than two poems?** (over "every student memorized three poems") — threshold over a scope-derived count → the faithful full-context query: bind Tara's group through the event and threshold its `Cardinality`
 
-    (: $prf (And (Cardinality (sk_poems tara) $n) (Compute > ($n 2) -> true)) $tv)
+    (: $prf (And (Name $t "Tara") (Member $e memorize) (Agent $e $t) (Theme $e $g) (GroupOf $g poem) (Cardinality $g $n) (Compute > ($n 2) -> true)) $tv)
 
 **[scope-shared] Every senator emailed every colleague the same memo.** — ∀∀ + "the same" → one **shared constant** memo (not a Skolem function)
 
@@ -723,9 +738,9 @@ Explicit distributive-universal ("all the / each of the / every one of the Ns V"
     (: analysts_endorsed (Implication (Premises (Member $x analyst)) (Conclusions (Member (sk_endorse $x) endorse) (Agent (sk_endorse $x) $x) (Theme (sk_endorse $x) sk_proposal_1) (Past (sk_endorse $x)))) (STV 1.0 0.9))
     (: pr (Member sk_proposal_1 proposal) (STV 1.0 0.99))
 
-**[dist-q] Did Omar board?** (over [dist-kind], Omar a passenger) — query the distributed member with the **full** event
+**[dist-q] Did Omar board?** (over [dist-kind], Omar a passenger) — query the distributed member like any event, the named member bound by `Name`
 
-    (: $prf (And (Member $e board) (Agent $e omar) (Past $e)) $tv)
+    (: $prf (And (Name $o "Omar") (Member $e board) (Agent $e $o) (Past $e)) $tv)
 
 **[dist-collective] The tourists assembled in the lobby.** — collective/reciprocal predicate → **one** event, group agent, **no** distribution rule
 
@@ -742,6 +757,10 @@ Explicit distributive-universal ("all the / each of the / every one of the Ns V"
     (: at (Theme sk_approve_1 sk_budget_1) (STV 1.0 0.99))
     (: ab (Member sk_budget_1 budget) (STV 1.0 0.99))
     (: ap (Past sk_approve_1) (STV 1.0 0.99))
+
+**[dist-ofthe] All of the delegates voted.** — universal with "of the" → per-member **distribution** rule (NOT a partitive `ProportionOf`); "of the" does not make a universal a partitive, and "each of the" no longer double-matches
+
+    (: delegates_voted (Implication (Premises (Member $x delegate)) (Conclusions (Member (sk_vote $x) vote) (Agent (sk_vote $x) $x) (Past (sk_vote $x)))) (STV 1.0 0.9))
 
 ### Striking & relational generics
 
@@ -791,7 +810,7 @@ A general generic + a sub-kind exception: emit the general `Inheritance` at empi
 
 ### Defeasible deontic norms
 
-A deontic norm with a stated exemption: reify the obligation/permission as a property `(obligated <action>)` / `(permitted <action>)` (so revision can override it — the event-rule form does not), then the Group S three-fact pattern. Plain norms (no exemption) keep the event-rule with `Obligated`/`Permitted`.
+A deontic norm over a **kind** reifies the obligation/permission as a property `(obligated <action>)` / `(permitted <action>)` — plain norms, prohibitions (denial of permission at strength 0), and defeasible ones (the Group S three-fact pattern) all use this one form. A **specific individual act** keeps the event `Obligated`/`Permitted` instead.
 
 **[deon-oblig] Passengers must wear seatbelts, but infants are exempt.** — defeasible obligation → reified `(obligated …)` property, exemption at strength 0 / conf 0.99
 
@@ -805,9 +824,15 @@ A deontic norm with a stated exemption: reify the obligation/permission as a pro
     (: intern_staff (Inheritance intern staff) (STV 0.99 0.99))
     (: intern_noperm (Inheritance intern (permitted access_archive)) (STV 0.0 0.99))
 
-**[deon-control] Pedestrians must use the crosswalk.** — plain deontic norm (no exemption) → event-rule with `Obligated`, NOT the property form
+**[deon-plain] Pedestrians must use the crosswalk.** — plain deontic norm over a kind (no exemption) → reified property `(Inheritance kind (obligated action))` @ 1.0/0.99 + decomposition (the defeasible form minus the exception)
 
-    (: pedestrian_crosswalk (Implication (Premises (Member $x pedestrian)) (Conclusions (Member (sk_use $x) use) (Agent (sk_use $x) $x) (Patient (sk_use $x) crosswalk) (Obligated (sk_use $x)))) (STV 1.0 0.99))
+    (: pedestrian_crosswalk (Inheritance pedestrian (obligated use_crosswalk)) (STV 1.0 0.99))
+    (: uc_g (Inheritance use_crosswalk use) (STV 0.99 0.99))
+    (: uc_o (Patient use_crosswalk crosswalk) (STV 0.99 0.99))
+
+**[deon-prohibition] Minors must not gamble.** — prohibition over a kind → denial of permission `(permitted gamble)` at strength 0.0 (NOT a negated obligation)
+
+    (: minor_gamble (Inheritance minor (permitted gamble)) (STV 0.0 0.99))
 
 ## Compound decomposition (cross-cutting)
 
@@ -978,7 +1003,7 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
 
 **[recip-group-collnoun] The panel members questioned one another.** — collective noun → rule over `(PartOf $x <group>)`, tense **inside** Conclusions (a compound-kind `(Member $x panel_member)` reading is an accepted equivalent)
 
-    (: panel_question (Implication (Premises (PartOf $x sk_panel_1) (PartOf $y sk_panel_1) (Compute == ($x $y) -> false)) (Conclusions (Member (sk_question $x $y) question) (Agent (sk_question $x $y) $x) (Patient (sk_question $x $y) $y) (Past (sk_question $x $y)))) (STV 1.0 0.9))
+    (: panel_question (Implication (Premises (PartOf $x sk_panel_1) (PartOf $y sk_panel_1) (Compute == ($x $y) -> false)) (Conclusions (Member (sk_question $x $y) question) (Agent (sk_question $x $y) $x) (Theme (sk_question $x $y) $y) (Past (sk_question $x $y)))) (STV 1.0 0.9))
     (: sk_panel_1_panel (Member sk_panel_1 panel) (STV 1.0 0.99))
 
 **[recip-sym-pair] Wendy and Xavier are cousins.** — symmetric relation → assert once + `(Symmetric <Rel>)` tag (seeded `sym_rel` derives the reverse)
@@ -1131,9 +1156,10 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 
     (: $prf (And (Name $n "Nora") (Member $pe paint) (Agent $pe $n) (Patient $pe $work) (Past $pe) (Member $be buy) (Agent $be $who) (Patient $be $work) (Past $be)) $tv)
 
-**[q-compound-indep] Who is the oldest dog, and who is the youngest cat?** — independent parts still **one** query (the `And` binds both jointly)
+**[q-compound-indep] Who is the oldest dog, and who is the youngest cat?** — independent parts (no shared variable) → **one query line each** (a conjoined `And` would drop the whole answer if either half has no data)
 
-    (: $prf (And (Most old $d dog) (Most young $c cat)) $tv)
+    (: $prf (Most old $d dog) $tv)
+    (: $prf (Most young $c cat) $tv)
 
 **[q-compound-difftv] What can robots do, and what can't they do?** — different truth-value pins → the one case that splits into two lines
 
@@ -1190,9 +1216,9 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 
     (: $prf (And (Member $f collapse) (Patient $f $b) (Member $b bridge) (CauseOf $c $f)) $tv)
 
-**[caus-whynot-q] Why didn't the patient get sick?** — negated focus → anchor with a SINGLE event-class atom + `Prevent` (a multi-atom focus can't bind into the negated bundle)
+**[caus-whynot-q] Why didn't the patient get sick?** — negated focus → the full focus pattern (event class + roles) + `Prevent`
 
-    (: $prf (And (Member $f sick) (Prevent $p $f)) $tv)
+    (: $prf (And (Member $f sick) (Experiencer $f $pt) (Member $pt patient) (Prevent $p $f)) $tv)
 
 **[caus-despite] Although it snowed, the marathon proceeded.** — concession → `Despite` (concessive clause first, main event second); NOT causal
 
