@@ -188,3 +188,44 @@
 (: kilometer_atmost_m (Implication (Premises (MeasureAtMost $x $s $m kilometer) (Compute * ($m 1000.0) -> $r)) (Conclusions (MeasureAtMost $x $s $r meter))) (STV 1.0 0.99))
 (: pound_atleast_kg (Implication (Premises (MeasureAtLeast $x $s $m pound) (Compute * ($m 0.453592) -> $r)) (Conclusions (MeasureAtLeast $x $s $r kilogram))) (STV 1.0 0.99))
 (: pound_atmost_kg (Implication (Premises (MeasureAtMost $x $s $m pound) (Compute * ($m 0.453592) -> $r)) (Conclusions (MeasureAtMost $x $s $r kilogram))) (STV 1.0 0.99))
+
+; ===== Temporal scaffolding =====
+
+; "before" is transitive:  Before(x,y), Before(y,z)  ⟹  Before(x,z)
+(: before_trans (Implication (Premises (Before $x $y) (Before $y $z))
+   (Conclusions (Before $x $z))) (STV 1.0 0.99))
+
+; a measured gap entails the plain ordering:  BeforeBy(x,y,n,u)  ⟹  Before(x,y)
+(: beforeby_before (Implication (Premises (BeforeBy $x $y $n $u))
+   (Conclusions (Before $x $y))) (STV 1.0 0.99))
+
+; gaps add along a chain (same unit):
+;   BeforeBy(x,y,a,u), BeforeBy(y,z,b,u)  ⟹  BeforeBy(x,z,a+b,u)
+(: beforeby_trans (Implication (Premises (BeforeBy $x $y $a $u) (BeforeBy $y $z $b $u)
+   (Compute + ($a $b) -> $c)) (Conclusions (BeforeBy $x $z $c $u))) (STV 1.0 0.99))
+
+; a clock interval's length (same-day Start/End hours):
+;   Start(e, Hour s), End(e, Hour n)  ⟹  Measure(e, duration, n−s, hour)
+(: interval_duration_hour (Implication (Premises (Start $e (Hour $s)) (End $e (Hour $n))
+   (Compute - ($n $s) -> $d)) (Conclusions (Measure $e duration $d hour))) (STV 1.0 0.99))
+
+; a year interval's length:  Start(e, Year s), End(e, Year n)  ⟹  duration n−s years
+(: interval_duration_year (Implication (Premises (Start $e (Year $s)) (End $e (Year $n))
+   (Compute - ($n $s) -> $d)) (Conclusions (Measure $e duration $d year))) (STV 1.0 0.99))
+
+; ===== Month lexicon =====
+; Month names stay symbols inside Time terms; these facts supply the number for
+; ordering/threshold queries via a join:
+;   (Time $e (Month $m)) (MonthNumber $m $n) (Compute < ($n 7) -> true)
+(: mn_january (MonthNumber january 1) (STV 1.0 0.99))
+(: mn_february (MonthNumber february 2) (STV 1.0 0.99))
+(: mn_march (MonthNumber march 3) (STV 1.0 0.99))
+(: mn_april (MonthNumber april 4) (STV 1.0 0.99))
+(: mn_may (MonthNumber may 5) (STV 1.0 0.99))
+(: mn_june (MonthNumber june 6) (STV 1.0 0.99))
+(: mn_july (MonthNumber july 7) (STV 1.0 0.99))
+(: mn_august (MonthNumber august 8) (STV 1.0 0.99))
+(: mn_september (MonthNumber september 9) (STV 1.0 0.99))
+(: mn_october (MonthNumber october 10) (STV 1.0 0.99))
+(: mn_november (MonthNumber november 11) (STV 1.0 0.99))
+(: mn_december (MonthNumber december 12) (STV 1.0 0.99))

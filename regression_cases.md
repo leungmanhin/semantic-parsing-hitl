@@ -670,6 +670,221 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
     (: ladder_tall (MeasureAtLeast sk_ladder_1 tall 12 foot) (STV 1.0 0.99))
     (: $prf (And (Member $l ladder) (MeasureAtLeast $l tall $m meter)) $tv)
 
+## Time — dates, ordering, intervals & duration
+
+**[time-date] The museum reopened on March 12, 2019.** — one `Time` atom per stated granularity; unaccusative "reopened" → `Patient`
+
+    (: e_reopen (Member sk_reopen_1 reopen) (STV 1.0 0.99))
+    (: e_pat (Patient sk_reopen_1 sk_museum_1) (STV 1.0 0.99))
+    (: e_mus (Member sk_museum_1 museum) (STV 1.0 0.99))
+    (: e_yr (Time sk_reopen_1 (Year 2019)) (STV 1.0 0.99))
+    (: e_mo (Time sk_reopen_1 (Month march)) (STV 1.0 0.99))
+    (: e_dy (Time sk_reopen_1 (Day 12)) (STV 1.0 0.99))
+    (: e_past (Past sk_reopen_1) (STV 1.0 0.99))
+
+**[time-clock] Priya will arrive at 9:45 am.** — clock → `Hour` + `Minute` (24-hour)
+
+    (: e_arrive (Member sk_arrive_1 arrive) (STV 1.0 0.99))
+    (: e_agent (Agent sk_arrive_1 priya) (STV 1.0 0.99))
+    (: e_fut (Future sk_arrive_1) (STV 1.0 0.99))
+    (: e_hr (Time sk_arrive_1 (Hour 9)) (STV 1.0 0.99))
+    (: e_min (Time sk_arrive_1 (Minute 45)) (STV 1.0 0.99))
+    (: priya_name (Name priya "Priya") (STV 1.0 0.99))
+
+**[time-weekday] Raj will visit Delhi next Tuesday.** — "next" is carried by `Future`, no `next_` symbol
+
+    (: e_visit (Member sk_visit_1 visit) (STV 1.0 0.99))
+    (: e_agent (Agent sk_visit_1 raj) (STV 1.0 0.99))
+    (: e_theme (Theme sk_visit_1 delhi) (STV 1.0 0.99))
+    (: e_fut (Future sk_visit_1) (STV 1.0 0.99))
+    (: e_wd (Time sk_visit_1 (Weekday tuesday)) (STV 1.0 0.99))
+    (: raj_name (Name raj "Raj") (STV 1.0 0.99))
+    (: delhi_name (Name delhi "Delhi") (STV 1.0 0.99))
+
+**[time-deictic] Elena called the plumber this morning.** — deictic stays a bare symbol
+
+    (: e_call (Member sk_call_1 call) (STV 1.0 0.99))
+    (: e_agent (Agent sk_call_1 elena) (STV 1.0 0.99))
+    (: e_theme (Theme sk_call_1 sk_plumber_1) (STV 1.0 0.99))
+    (: e_plumber (Member sk_plumber_1 plumber) (STV 1.0 0.99))
+    (: e_time (Time sk_call_1 this_morning) (STV 1.0 0.99))
+    (: e_past (Past sk_call_1) (STV 1.0 0.99))
+    (: elena_name (Name elena "Elena") (STV 1.0 0.99))
+
+**[time-after] The crowd cheered after the goal was scored.** — "after" swaps into canonical `Before`
+
+    (: e_crowd (Member sk_crowd_1 crowd) (STV 1.0 0.99))
+    (: e_cheer (Member sk_cheer_1 cheer) (STV 1.0 0.99))
+    (: e_cheer_ag (Agent sk_cheer_1 sk_crowd_1) (STV 1.0 0.99))
+    (: e_cheer_past (Past sk_cheer_1) (STV 1.0 0.99))
+    (: e_goal (Member sk_goal_1 goal) (STV 1.0 0.99))
+    (: e_score (Member sk_score_1 score) (STV 1.0 0.99))
+    (: e_score_pat (Patient sk_score_1 sk_goal_1) (STV 1.0 0.99))
+    (: e_score_past (Past sk_score_1) (STV 1.0 0.99))
+    (: e_before (Before sk_score_1 sk_cheer_1) (STV 1.0 0.99))
+
+**[time-gapby] The band stopped playing an hour before the fireworks.** — measured gap → `BeforeBy`; the aspectual complement decomposes to a linked `play` event (two blind translators converged on this)
+
+    (: e_band (Member sk_band_1 band) (STV 1.0 0.99))
+    (: e_play (Member sk_play_1 play) (STV 1.0 0.99))
+    (: e_play_ag (Agent sk_play_1 sk_band_1) (STV 1.0 0.99))
+    (: e_play_past (Past sk_play_1) (STV 1.0 0.99))
+    (: e_stop (Member sk_stop_1 stop) (STV 1.0 0.99))
+    (: e_stop_ag (Agent sk_stop_1 sk_band_1) (STV 1.0 0.99))
+    (: e_stop_th (Theme sk_stop_1 sk_play_1) (STV 1.0 0.99))
+    (: e_stop_past (Past sk_stop_1) (STV 1.0 0.99))
+    (: e_fw (Member sk_firework_1 firework) (STV 1.0 0.99))
+    (: e_gap (BeforeBy sk_stop_1 sk_firework_1 1 hour) (STV 1.0 0.99))
+
+**[time-ago] Tara moved to Lisbon two years ago.** — "ago" anchors on the reserved symbol `now`
+
+    (: e_move (Member sk_move_1 move) (STV 1.0 0.99))
+    (: e_agent (Agent sk_move_1 tara) (STV 1.0 0.99))
+    (: e_goal (Goal sk_move_1 lisbon) (STV 1.0 0.99))
+    (: e_past (Past sk_move_1) (STV 1.0 0.99))
+    (: e_gap (BeforeBy sk_move_1 now 2 year) (STV 1.0 0.99))
+    (: tara_name (Name tara "Tara") (STV 1.0 0.99))
+    (: lisbon_name (Name lisbon "Lisbon") (STV 1.0 0.99))
+
+**[time-pastperf] Marta had eaten by the time the ceremony began.** — past perfect + reference clause = `Past` on both + `Before`
+
+    (: e_eat (Member sk_eat_1 eat) (STV 1.0 0.99))
+    (: e_eat_ag (Agent sk_eat_1 marta) (STV 1.0 0.99))
+    (: e_eat_past (Past sk_eat_1) (STV 1.0 0.99))
+    (: e_begin (Member sk_begin_1 begin) (STV 1.0 0.99))
+    (: e_begin_pat (Patient sk_begin_1 sk_ceremony_1) (STV 1.0 0.99))
+    (: e_cer (Member sk_ceremony_1 ceremony) (STV 1.0 0.99))
+    (: e_begin_past (Past sk_begin_1) (STV 1.0 0.99))
+    (: e_before (Before sk_eat_1 sk_begin_1) (STV 1.0 0.99))
+    (: marta_name (Name marta "Marta") (STV 1.0 0.99))
+
+**[time-bound-year] The castle was demolished before 1960.** — unknown year, bounded; strict "before" drops the boundary → `(Year 1959)`
+
+    (: e_castle (Member sk_castle_1 castle) (STV 1.0 0.99))
+    (: e_dem (Member sk_demolish_1 demolish) (STV 1.0 0.99))
+    (: e_dem_pat (Patient sk_demolish_1 sk_castle_1) (STV 1.0 0.99))
+    (: e_dem_past (Past sk_demolish_1) (STV 1.0 0.99))
+    (: e_dem_bound (TimeAtMost sk_demolish_1 (Year 1959)) (STV 1.0 0.99))
+
+**[time-deadline] Dana must return the projector by 6 pm.** — "by T" deadline → `TimeAtMost` on the obligated act
+
+    (: e_ret (Member sk_return_1 return) (STV 1.0 0.99))
+    (: e_ret_ag (Agent sk_return_1 dana) (STV 1.0 0.99))
+    (: e_ret_th (Theme sk_return_1 sk_projector_1) (STV 1.0 0.99))
+    (: e_proj (Member sk_projector_1 projector) (STV 1.0 0.99))
+    (: e_ret_ob (Obligated sk_return_1) (STV 1.0 0.99))
+    (: e_ret_dl (TimeAtMost sk_return_1 (Hour 18)) (STV 1.0 0.99))
+    (: dana_name (Name dana "Dana") (STV 1.0 0.99))
+
+**[time-interval] The clinic operates from 9 am to 2 pm.** — `Start`/`End` terms; habitual schedule stays unmarked
+
+    (: e_op (Member sk_operate_1 operate) (STV 1.0 0.99))
+    (: e_op_ag (Agent sk_operate_1 sk_clinic_1) (STV 1.0 0.99))
+    (: e_clinic (Member sk_clinic_1 clinic) (STV 1.0 0.99))
+    (: e_op_start (Start sk_operate_1 (Hour 9)) (STV 1.0 0.99))
+    (: e_op_end (End sk_operate_1 (Hour 14)) (STV 1.0 0.99))
+
+**[time-since] Ken has worked at the mill since 2021.** — continuative perfect → `Ongoing` + `Start`, **no** `Past`
+
+    (: e_work (Member sk_work_1 work) (STV 1.0 0.99))
+    (: e_work_ag (Agent sk_work_1 ken) (STV 1.0 0.99))
+    (: e_work_loc (Location sk_work_1 sk_mill_1) (STV 1.0 0.99))
+    (: e_mill (Member sk_mill_1 mill) (STV 1.0 0.99))
+    (: e_work_on (Ongoing sk_work_1) (STV 1.0 0.99))
+    (: e_work_start (Start sk_work_1 (Year 2021)) (STV 1.0 0.99))
+    (: ken_name (Name ken "Ken") (STV 1.0 0.99))
+
+**[time-during] The generator failed during the storm.** — `During` nests the event in the containing eventuality
+
+    (: e_gen (Member sk_generator_1 generator) (STV 1.0 0.99))
+    (: e_fail (Member sk_fail_1 fail) (STV 1.0 0.99))
+    (: e_fail_pat (Patient sk_fail_1 sk_generator_1) (STV 1.0 0.99))
+    (: e_storm (Member sk_storm_1 storm) (STV 1.0 0.99))
+    (: e_during (During sk_fail_1 sk_storm_1) (STV 1.0 0.99))
+    (: e_fail_past (Past sk_fail_1) (STV 1.0 0.99))
+
+**[time-duration] Rosa hiked for five hours.** — "for N units" adverbial → duration measure
+
+    (: e_hike (Member sk_hike_1 hike) (STV 1.0 0.99))
+    (: e_hike_ag (Agent sk_hike_1 rosa) (STV 1.0 0.99))
+    (: e_hike_past (Past sk_hike_1) (STV 1.0 0.99))
+    (: e_hike_dur (Measure sk_hike_1 duration 5 hour) (STV 1.0 0.99))
+    (: rosa_name (Name rosa "Rosa") (STV 1.0 0.99))
+
+**[time-inyear] The archive burned in 1985.** — year alone → one `Time` atom
+
+    (: e_arch (Member sk_archive_1 archive) (STV 1.0 0.99))
+    (: e_burn (Member sk_burn_1 burn) (STV 1.0 0.99))
+    (: e_burn_pat (Patient sk_burn_1 sk_archive_1) (STV 1.0 0.99))
+    (: e_burn_yr (Time sk_burn_1 (Year 1985)) (STV 1.0 0.99))
+    (: e_burn_past (Past sk_burn_1) (STV 1.0 0.99))
+
+**[time-none-ctrl] Victor painted the fence.** — control: no temporal wording → **no** time atoms
+
+    (: e_paint (Member sk_paint_1 paint) (STV 1.0 0.99))
+    (: e_paint_ag (Agent sk_paint_1 victor) (STV 1.0 0.99))
+    (: e_paint_pat (Patient sk_paint_1 sk_fence_1) (STV 1.0 0.99))
+    (: e_fence (Member sk_fence_1 fence) (STV 1.0 0.99))
+    (: e_paint_past (Past sk_paint_1) (STV 1.0 0.99))
+    (: victor_name (Name victor "Victor") (STV 1.0 0.99))
+
+**[time-deictic-family] The board met last month.** — an unlisted deictic-family form stays a speech-anchored constant (no `sk_` witness, no `Member` atom for it); `meet` is collective → group event only, no distribution rule
+
+    (: e_board (Member sk_board_1 board) (STV 1.0 0.99))
+    (: e_meet (Member sk_meet_1 meet) (STV 1.0 0.99))
+    (: e_agent (Agent sk_meet_1 sk_board_1) (STV 1.0 0.99))
+    (: e_past (Past sk_meet_1) (STV 1.0 0.99))
+    (: e_time (Time sk_meet_1 last_month) (STV 1.0 0.99))
+
+**[time-anaphoric] The hikers reached the summit on Sunday. That evening, they celebrated.** — discourse-anaphoric time → interim deictic-style constant `that_evening` (anchored form deferred); "the summit" is a discourse-referential noun → ordinary `sk_` witness; distributive predicates over the group add `PartOf` rules carrying the time atoms
+
+    (: hiker_group (GroupOf sk_group_1 hiker) (STV 1.0 0.99))
+    (: reach_e (Member sk_reach_1 reach) (STV 1.0 0.99))
+    (: reach_agent (Agent sk_reach_1 sk_group_1) (STV 1.0 0.99))
+    (: reach_theme (Theme sk_reach_1 sk_summit_1) (STV 1.0 0.99))
+    (: summit_e (Member sk_summit_1 summit) (STV 1.0 0.99))
+    (: reach_past (Past sk_reach_1) (STV 1.0 0.99))
+    (: reach_time (Time sk_reach_1 (Weekday sunday)) (STV 1.0 0.99))
+    (: reach_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_reach $x) reach) (Agent (sk_reach $x) $x) (Theme (sk_reach $x) sk_summit_1) (Past (sk_reach $x)) (Time (sk_reach $x) (Weekday sunday)))) (STV 1.0 0.9))
+    (: celebrate_e (Member sk_celebrate_1 celebrate) (STV 1.0 0.99))
+    (: celebrate_agent (Agent sk_celebrate_1 sk_group_1) (STV 1.0 0.99))
+    (: celebrate_past (Past sk_celebrate_1) (STV 1.0 0.99))
+    (: celebrate_time (Time sk_celebrate_1 that_evening) (STV 1.0 0.99))
+    (: celebrate_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_celebrate $x) celebrate) (Agent (sk_celebrate $x) $x) (Past (sk_celebrate $x)) (Time (sk_celebrate $x) that_evening))) (STV 1.0 0.9))
+
+**[time-q-when] When did the museum reopen?** — open `(Time $e $t)`; one row per stored granularity
+
+    (: $prf (And (Member $e reopen) (Patient $e $m) (Member $m museum) (Time $e $t) (Past $e)) $tv)
+
+**[time-q-year] What year did the archive burn?** — bind inside the term
+
+    (: $prf (And (Member $e burn) (Patient $e $a) (Member $a archive) (Time $e (Year $y)) (Past $e)) $tv)
+
+**[time-q-order] Did the band stop playing before the fireworks?** — query the `Before` (derived from the gap via seeded `beforeby_before`)
+
+    (: $prf (And (Member $s stop) (Agent $s $b) (Member $b band) (Past $s) (Member $f firework) (Before $s $f)) $tv)
+
+**[time-q-bound] Was the castle demolished before 1970?** — dual branch: exact `Time` ∪ matching-direction `TimeAtMost`, union
+
+    (: $prf (And (Member $e demolish) (Patient $e $c) (Member $c castle) (Time $e (Year $y)) (Compute < ($y 1970) -> true) (Past $e)) $tv)
+    (: $prf (And (Member $e demolish) (Patient $e $c) (Member $c castle) (TimeAtMost $e (Year $y)) (Compute < ($y 1970) -> true) (Past $e)) $tv)
+
+**[time-q-contain] Is the clinic operating at noon?** — noon → 12; interval containment via two `Compute`s
+
+    (: $prf (And (Member $e operate) (Agent $e $c) (Member $c clinic) (Start $e (Hour $s)) (Compute <= ($s 12) -> true) (End $e (Hour $n)) (Compute >= ($n 12) -> true)) $tv)
+
+**[time-q-dur] How long did Rosa hike?** — bind the duration measure
+
+    (: $prf (And (Member $e hike) (Agent $e $r) (Name $r "Rosa") (Measure $e duration $n $u) (Past $e)) $tv)
+
+**[time-q-gap] How long before the fireworks did the band stop playing?** — bind the `BeforeBy` gap
+
+    (: $prf (And (Member $s stop) (Agent $s $b) (Member $b band) (Past $s) (Member $f firework) (BeforeBy $s $f $n $u)) $tv)
+
+**[time-q-month] Did the museum reopen before June?** — month name has no number; join the seeded `MonthNumber` lexicon
+
+    (: $prf (And (Member $e reopen) (Patient $e $m) (Member $m museum) (Time $e (Month $mo)) (MonthNumber $mo $n) (Compute < ($n 6) -> true) (Past $e)) $tv)
+
 ## Generics & scope (verbal → rules)
 
 **[gen-verbal] Fish swim.** — verbal generic over a kind → Skolem-event rule, 0.9/0.9
@@ -981,6 +1196,98 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
 **[coref-donkey] Every shepherd who owns a sheep shears it.** — "it" = the premise-bound `$d`
 
     (: every_shepherd_shears_sheep (Implication (Premises (Member $f shepherd) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d sheep)) (Conclusions (Member (sk_shear $f $d) shear) (Agent (sk_shear $f $d) $f) (Patient (sk_shear $f $d) $d))) (STV 1.0 0.9))
+
+## Context input (#18)
+
+These cases have TWO input blocks — feed both, exactly as shown: `CONTEXT:` (prior atoms
+verbatim; optional `TODAY:` / `DOMAIN:` lines) then `TEXT:`. Expected atoms cover the TEXT
+only — context atoms are read-only background and must **not** be re-emitted.
+
+**[ctx-coref] The puppy chewed his shoe.** — with CONTEXT = the parse of "Tomas adopted a puppy.":
+
+    CONTEXT:
+    (: e_adopt (Member sk_adopt_1 adopt) (STV 1.0 0.99))
+    (: e_adopt_ag (Agent sk_adopt_1 tomas) (STV 1.0 0.99))
+    (: e_adopt_th (Theme sk_adopt_1 sk_puppy_1) (STV 1.0 0.99))
+    (: e_puppy (Member sk_puppy_1 puppy) (STV 1.0 0.99))
+    (: e_adopt_past (Past sk_adopt_1) (STV 1.0 0.99))
+    (: tomas_name (Name tomas "Tomas") (STV 1.0 0.99))
+
+"the puppy" reuses `sk_puppy_1`; "his" → `tomas` (possessive → own-event); fresh witnesses for
+chew/shoe/own; no context atom re-emitted:
+
+    (: e_chew (Member sk_chew_1 chew) (STV 1.0 0.99))
+    (: e_chew_ag (Agent sk_chew_1 sk_puppy_1) (STV 1.0 0.99))
+    (: e_chew_pat (Patient sk_chew_1 sk_shoe_1) (STV 1.0 0.99))
+    (: e_shoe (Member sk_shoe_1 shoe) (STV 1.0 0.99))
+    (: e_own (Member sk_own_1 own) (STV 1.0 0.99))
+    (: e_own_holder (Holder sk_own_1 tomas) (STV 1.0 0.99))
+    (: e_own_theme (Theme sk_own_1 sk_shoe_1) (STV 1.0 0.99))
+    (: e_chew_past (Past sk_chew_1) (STV 1.0 0.99))
+
+**[ctx-fresh] Ann filed a report.** — with CONTEXT = the parse of "Omar filed a report." (`sk_file_1`,
+`sk_report_1`, `omar`): the indefinite is a **new** witness and indices continue per class —
+`sk_file_2` / `sk_report_2`, no reuse, nothing re-emitted:
+
+    (: ann_file (Member sk_file_2 file) (STV 1.0 0.99))
+    (: ann_file_ag (Agent sk_file_2 ann) (STV 1.0 0.99))
+    (: ann_file_th (Theme sk_file_2 sk_report_2) (STV 1.0 0.99))
+    (: ann_report (Member sk_report_2 report) (STV 1.0 0.99))
+    (: ann_file_past (Past sk_file_2) (STV 1.0 0.99))
+    (: ann_name (Name ann "Ann") (STV 1.0 0.99))
+
+**[ctx-ground] The shipment arrived yesterday.** — with `CONTEXT: TODAY: Tuesday 2026-07-07` —
+dual-emit: the deictic constant stays AND the calendar atoms are added (±1 day):
+
+    (: e_arrive (Member sk_arrive_1 arrive) (STV 1.0 0.99))
+    (: e_agent (Agent sk_arrive_1 sk_shipment_1) (STV 1.0 0.99))
+    (: e_shipment (Member sk_shipment_1 shipment) (STV 1.0 0.99))
+    (: e_past (Past sk_arrive_1) (STV 1.0 0.99))
+    (: e_time (Time sk_arrive_1 yesterday) (STV 1.0 0.99))
+    (: e_day (Time sk_arrive_1 (Day 6)) (STV 1.0 0.99))
+    (: e_month (Time sk_arrive_1 (Month july)) (STV 1.0 0.99))
+    (: e_year (Time sk_arrive_1 (Year 2026)) (STV 1.0 0.99))
+
+(No-context control: the same sentence WITHOUT `TODAY` emits the constant only — no calendar
+atoms.)
+
+**[ctx-ground-subday] Milo mowed the lawn this morning.** — same `TODAY` context; a sub-day deictic
+keeps its constant and adds **today's** day atoms (Day 7, not 6):
+
+    (: e_mow (Member sk_mow_1 mow) (STV 1.0 0.99))
+    (: e_agent (Agent sk_mow_1 milo) (STV 1.0 0.99))
+    (: e_patient (Patient sk_mow_1 sk_lawn_1) (STV 1.0 0.99))
+    (: e_lawn (Member sk_lawn_1 lawn) (STV 1.0 0.99))
+    (: e_past (Past sk_mow_1) (STV 1.0 0.99))
+    (: e_time (Time sk_mow_1 this_morning) (STV 1.0 0.99))
+    (: e_day (Time sk_mow_1 (Day 7)) (STV 1.0 0.99))
+    (: e_month (Time sk_mow_1 (Month july)) (STV 1.0 0.99))
+    (: e_year (Time sk_mow_1 (Year 2026)) (STV 1.0 0.99))
+    (: milo_name (Name milo "Milo") (STV 1.0 0.99))
+
+**[ctx-ground-noarith] Zoe will fly to Rome next Tuesday.** — same `TODAY` context; weekday-relative
+stays `Weekday` + tense, **no** calendar atoms (no week arithmetic):
+
+    (: e_fly (Member sk_fly_1 fly) (STV 1.0 0.99))
+    (: e_agent (Agent sk_fly_1 zoe) (STV 1.0 0.99))
+    (: e_goal (Goal sk_fly_1 rome) (STV 1.0 0.99))
+    (: e_future (Future sk_fly_1) (STV 1.0 0.99))
+    (: e_time (Time sk_fly_1 (Weekday tuesday)) (STV 1.0 0.99))
+    (: zoe_name (Name zoe "Zoe") (STV 1.0 0.99))
+    (: rome_name (Name rome "Rome") (STV 1.0 0.99))
+
+**[ctx-update] Bo no longer works at the bakery.** — with CONTEXT = the parse of "Bo works at the
+bakery." (`sk_work_1`, `bo`, `sk_bakery_1`): the denial goes on the **same context symbols** —
+engine revision then blends it with the old positives into one graded leaning-no answer (~0.25;
+a fresh witness would leave the stale positive untouched — engine-verified):
+
+    (: bo_no_longer_work (And (Member sk_work_1 work) (Agent sk_work_1 bo) (Location sk_work_1 sk_bakery_1)) (STV 0.0 0.99))
+
+**[ctx-query] Who owns the parrot?** — with CONTEXT = the parse of "Nadia owns a parrot."
+(`sk_own_1`, `nadia`, `sk_parrot_1`): a context-identified referent is queried as its **constant**
+symbol (the KB symbol is known — that is what context is for):
+
+    (: $prf (And (Member $e own) (Theme $e sk_parrot_1) (Holder $e $who)) $tv)
 
 ## Reciprocals & symmetric relations
 
