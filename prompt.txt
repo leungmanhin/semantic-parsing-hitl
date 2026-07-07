@@ -30,10 +30,11 @@ as follows:
   even if the context has one of that class.
 - **Witness indices continue past the context**: `sk_report_1` in context → a new report is
   `sk_report_2`; never reuse or collide (this applies per class, and to event witnesses too).
-- **Denying a context eventuality** ("no longer", "not anymore"): put the strength-0 `(And …)`
-  on the **same context symbols** — the denial is about that very eventuality, and only the
-  same-symbol form lets the engine's revision merge it with the old positives into one graded
-  answer; a fresh witness would leave the stale positive standing beside an unrelated denial.
+- **Denying a context eventuality** ("no longer", "not anymore"): the full **cessation**
+  bundle on the **same context symbols** — add `(Past <e>)` (the state held) plus the
+  strength-0 `(And …)` denial (see *Time*). Same-symbol is what lets the engine's revision
+  merge the denial with the old positives into one graded answer; a fresh witness would leave
+  the stale positive standing beside an unrelated denial.
 - **In a question, a referent the context identifies is its constant symbol directly** (with
   context you DO know the KB symbol — that is what it is for); referents not in the context
   keep the usual `Name` / kind binding.
@@ -349,7 +350,9 @@ status operator instead:
 ### Negation (events)
 
 Wrap the event's atoms in a **conjunction** and set **strength `0.0`** on it (confidence per
-the dial). Positive event = separate atoms; negated event = one strength-`0.0` conjunction:
+the dial). Positive event = separate atoms; negated event = one strength-`0.0` conjunction.
+(A negation that denies a **previously-asserted, still-standing** state — "no longer", "not
+anymore", "used to" — is **cessation**: the denial plus a `(Past e)`, see *Time*.)
 
       Bob didn't cook dinner. → (: bob_not_cook
                                   (And (Member sk_cook_1 cook) (Agent sk_cook_1 bob) (Patient sk_cook_1 dinner) (Past sk_cook_1))
@@ -815,6 +818,43 @@ anteriority — `Past` on both events **plus** the `Before`:
            (Member sk_reach_1 reach) (Agent sk_reach_1 sara) (Theme sk_reach_1 sk_platform_1)
            (Member sk_platform_1 platform) (Past sk_reach_1) (Before sk_depart_1 sk_reach_1)
            (Name sara "Sara")
+
+**Cessation — "no longer V-s" / "doesn't V anymore" / "used to V".** The state **held** and
+does **not hold now** — emit both halves on ONE event symbol (the context/passage symbol if
+the state was already asserted — see *Input*; a fresh witness for a first-mention past habit):
+
+1. the state's atoms + **`(Past e)`** — it held, as a past state. For an already-asserted
+   state, `(Past e)` is the only new positive atom (never re-emit the rest);
+2. the **same-symbol strength-0 `(And …)`** over the event-class + role atoms, **without**
+   the `Past` — the denial of the present state.
+
+      Mia used to smoke.
+        →  (: e_smoke (Member sk_smoke_1 smoke) (STV 1.0 0.99))
+           (: e_sag (Agent sk_smoke_1 mia) (STV 1.0 0.99))
+           (: e_spast (Past sk_smoke_1) (STV 1.0 0.99))
+           (: e_snot (And (Member sk_smoke_1 smoke) (Agent sk_smoke_1 mia)) (STV 0.0 0.99))
+           (: mia_name (Name mia "Mia") (STV 1.0 0.99))
+
+Boundaries: "V-ed **until** <date>" → an interval `End` (below), no denial; "**stopped /
+quit** V-ing" is **eventive** — a stop event + the activity, both positive `Past` — only the
+stative "no longer / not anymore / used to" wordings emit the denial.
+
+**Cessation questions.** "**Did** X V?" → the past query — the `Past` conjunct keeps it clear
+of the denial. "Does X **still** V?" → the **bare present query** (no `Past`; the referent
+bound as usual); the engine revises the held-state and the denial into one **graded** answer —
+low strength = "probably not anymore" — and that graded value is the answer. Explicitly
+negative wording ("has X stopped V-ing?") → pin `(STV 0.0 $conf)`.
+
+      Did Mia smoke?        →  (: $prf (And (Member $e smoke) (Agent $e $m) (Name $m "Mia") (Past $e)) $tv)
+      Does Mia still smoke? →  (: $prf (And (Member $e smoke) (Agent $e $m) (Name $m "Mia")) $tv)
+
+"**When did X stop V-ing?**" — the endpoint may be stored EITHER as the activity's interval
+`End` (from an "until <date>" statement) OR as a reified stop event (from "stopped V-ing") —
+emit **both branches and union**, like a measure threshold:
+
+      When did the ferry stop running?
+        →  (: $prf (And (Member $e run) (Agent $e $f) (Member $f ferry) (End $e $t) (Past $e)) $tv)
+           (: $prf (And (Member $s stop) (Agent $s $f) (Member $f ferry) (Theme $s $o) (Member $o run) (Time $s $t) (Past $s)) $tv)
 
 **Bounded time** — the event's time is unknown but bounded → **`(TimeAtLeast e <term>)` /
 `(TimeAtMost e <term>)`** with the same structured terms. Strict "before / after" drops the

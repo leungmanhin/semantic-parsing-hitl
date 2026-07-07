@@ -852,6 +852,77 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
     (: celebrate_time (Time sk_celebrate_1 that_evening) (STV 1.0 0.99))
     (: celebrate_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_celebrate $x) celebrate) (Agent (sk_celebrate $x) $x) (Past (sk_celebrate $x)) (Time (sk_celebrate $x) that_evening))) (STV 1.0 0.9))
 
+**[cess-update] Jonas no longer works at the garage.** — with CONTEXT = the parse of "Jonas works
+at the garage." (`sk_work_1`, `jonas`, `sk_garage_1`): cessation on the SAME context symbols —
+`(Past e)` (the state held; the only new positive atom) + the strength-0 denial WITHOUT the
+`Past`; nothing re-emitted. Engine: past-Q → yes (~1.0), bare present-Q → graded leaning-no
+blend, pinned `(STV 0.0 $conf)` → the raw denial
+
+    (: e_wpast (Past sk_work_1) (STV 1.0 0.99))
+    (: e_wnot (And (Member sk_work_1 work) (Agent sk_work_1 jonas) (Location sk_work_1 sk_garage_1)) (STV 0.0 0.99))
+
+**[cess-usedto] Dario used to paint.** — first-mention past habit → the full cessation bundle on a
+fresh witness: positives + `Past` + the same-symbol denial (no `Past` inside)
+
+    (: e_paint (Member sk_paint_1 paint) (STV 1.0 0.99))
+    (: e_page (Agent sk_paint_1 dario) (STV 1.0 0.99))
+    (: e_ppast (Past sk_paint_1) (STV 1.0 0.99))
+    (: e_pnot (And (Member sk_paint_1 paint) (Agent sk_paint_1 dario)) (STV 0.0 0.99))
+    (: dario_name (Name dario "Dario") (STV 1.0 0.99))
+
+**[cess-anymore] The fountain doesn't operate anymore.** — "not … anymore" = the same stative
+cessation bundle
+
+    (: e_op (Member sk_operate_1 operate) (STV 1.0 0.99))
+    (: e_opag (Agent sk_operate_1 sk_fountain_1) (STV 1.0 0.99))
+    (: e_fountain (Member sk_fountain_1 fountain) (STV 1.0 0.99))
+    (: e_oppast (Past sk_operate_1) (STV 1.0 0.99))
+    (: e_opnot (And (Member sk_operate_1 operate) (Agent sk_operate_1 sk_fountain_1)) (STV 0.0 0.99))
+
+**[cess-eventive-ctrl] Greta stopped knitting.** — control: "stopped V-ing" is EVENTIVE — a stop
+event + the activity, both positive `Past`, **no** denial blob
+
+    (: e_knit (Member sk_knit_1 knit) (STV 1.0 0.99))
+    (: e_knag (Agent sk_knit_1 greta) (STV 1.0 0.99))
+    (: e_knpast (Past sk_knit_1) (STV 1.0 0.99))
+    (: e_stop (Member sk_stop_1 stop) (STV 1.0 0.99))
+    (: e_stag (Agent sk_stop_1 greta) (STV 1.0 0.99))
+    (: e_stth (Theme sk_stop_1 sk_knit_1) (STV 1.0 0.99))
+    (: e_stpast (Past sk_stop_1) (STV 1.0 0.99))
+    (: greta_name (Name greta "Greta") (STV 1.0 0.99))
+
+**[cess-until-ctrl] The mine operated until 1998.** — control: "until <date>" is an interval `End`,
+**no** denial blob
+
+    (: e_op (Member sk_operate_1 operate) (STV 1.0 0.99))
+    (: e_opag (Agent sk_operate_1 sk_mine_1) (STV 1.0 0.99))
+    (: e_mine (Member sk_mine_1 mine) (STV 1.0 0.99))
+    (: e_oppast (Past sk_operate_1) (STV 1.0 0.99))
+    (: e_opend (End sk_operate_1 (Year 1998)) (STV 1.0 0.99))
+
+**[cess-q-did] Did Jonas work at the garage?** — the past query; the `Past` conjunct keeps it clear
+of the denial (answers ~1.0 against [cess-update])
+
+    (: $prf (And (Member $e work) (Agent $e $j) (Name $j "Jonas") (Location $e $g) (Member $g garage) (Past $e)) $tv)
+
+**[cess-q-still] Does Dario still paint?** — the bare present query; the graded blended TV
+(leaning no) IS the answer. (Engine note: the faithful Name-bound form currently hits the
+Name-on-bundle gap — the constant/context form blends correctly.)
+
+    (: $prf (And (Member $e paint) (Agent $e $d) (Name $d "Dario")) $tv)
+
+**[cess-q-stopped] Has the fountain stopped operating?** — explicitly negative wording → pin
+`(STV 0.0 $conf)` (retrieves the raw denial, pre-merge)
+
+    (: $prf (And (Member $e operate) (Agent $e $f) (Member $f fountain)) (STV 0.0 $conf))
+
+**[cess-q-when-stop] When did the mine stop operating?** — the endpoint may be stored as the
+activity's `End` ("until <date>") or as a reified stop event ("stopped V-ing") → both branches +
+union
+
+    (: $prf (And (Member $e operate) (Agent $e $m) (Member $m mine) (End $e $t) (Past $e)) $tv)
+    (: $prf (And (Member $s stop) (Agent $s $m) (Member $m mine) (Theme $s $o) (Member $o operate) (Time $s $t) (Past $s)) $tv)
+
 **[time-q-when] When did the museum reopen?** — open `(Time $e $t)`; one row per stored granularity
 
     (: $prf (And (Member $e reopen) (Patient $e $m) (Member $m museum) (Time $e $t) (Past $e)) $tv)
