@@ -783,14 +783,81 @@ bare symbol. Terms: `(Year <n>)`, `(Month <name>)`, `(Day <n>)`, `(Weekday <name
 - **Deictic times are speech-anchored CONSTANTS**, like `now`: `yesterday`, `today`, `tonight`,
   `this_morning`, `last_week`, … Every mention in the passage names the same time, so reuse the
   bare symbol; **never** mint an `sk_` witness or a `Member` atom for one. (Contrast an
-  event-denoting **noun** — "the show", "the storm" — which stays an ordinary `sk_` entity.) A
-  temporal NP that points **anaphorically at a discourse time** ("that evening", "the following
-  morning" — the evening of a day the text introduced) has no full convention yet: interim, treat
-  it like a deictic constant (`that_evening`); its anchoring link is future work. With a `TODAY`
-  line in the context, groundable deictics **dual-emit** — the constant stays, calendar atoms are
-  added (see **Input**).
+  event-denoting **noun** — "the show", "the storm" — which stays an ordinary `sk_` entity.)
+  With a `TODAY` line in the context, groundable deictics **dual-emit** — the constant stays,
+  calendar atoms are added (see **Input**).
+- **Day-parts** ("in the morning / afternoon / evening / at night") are bare symbols on `Time` —
+  `(Time e morning)` — and **compose** with calendar terms (which day + which part of it).
+- An **approximate clock time** ("around 3 pm") takes a **distribution** in the value slot, like
+  an approximate measure (*Measures & units*): `(Time e (Hour (ParticleFromNormal 15 1)))` —
+  σ ≈ 1 hour for a tight hedge ("about / around"), 2 for a loose one ("sometime around"). An
+  exact time stays a plain number.
+- **Light verbs over event-nouns** — "the ceremony **occurred** / **happened** / **took place**
+  in March" — do **not** reify a separate `occur` event: the event-noun's witness IS the
+  eventuality — put the tense and `Time` terms directly on it (`(Member sk_ceremony_1 ceremony)
+  (Time sk_ceremony_1 (Month march)) (Past sk_ceremony_1)`), the same way "the show" / "the
+  storm" take time relations directly. Ordering two event-nouns relates their **witnesses**
+  (`(Before $a $b)`), in both statements and questions.
+- A temporal NP that points **anaphorically at a discourse time** resolves by **term
+  propagation** — like pronoun coreference, but with calendar terms: "**that** evening / day /
+  night" → copy the antecedent event's **day-level terms** (`Weekday` / `Day` / `Month` /
+  `Year`, whichever are stated) onto the new event, plus the day-part symbol. "**The next / the
+  following** morning / day / evening" → the antecedent's day terms **plus one** (day + 1, or
+  the weekday's successor), plus the day-part, plus `(Before <antecedent> <new>)` (an explicit
+  sequence). If the antecedent's day is unknown, emit just the day-part (and the `Before` for
+  next/following).
+
+      We docked on Saturday. That evening, the crew feasted.
+        →  … (Time sk_dock_1 (Weekday saturday)) (Past sk_dock_1)
+           (Member sk_feast_1 feast) (Agent sk_feast_1 sk_crew_1) (Member sk_crew_1 crew)
+           (Time sk_feast_1 (Weekday saturday)) (Time sk_feast_1 evening) (Past sk_feast_1)
+      The following morning, they departed.
+        →  (Member sk_depart_1 depart) (Agent sk_depart_1 sk_crew_1)
+           (Time sk_depart_1 (Weekday sunday)) (Time sk_depart_1 morning)
+           (Before sk_feast_1 sk_depart_1) (Past sk_depart_1)
+
 - "**next / last** Tuesday" → `(Time e (Weekday tuesday))` — the clause's `Future`/`Past` tense
   already carries the direction.
+
+**Frequency & habitual schedules** — "every Monday / every morning / every two weeks". The
+event stays **unmarked** (habitual — see *Status predicates*); the recurrence adds:
+
+- the **slot**, as an ordinary `Time` term when one is named: "every Monday" → `(Time e
+  (Weekday monday))`; "every morning" → `(Time e morning)`; "every June" → `(Time e (Month
+  june))`. A named slot also implies its cycle — add `(Every e 1 <cycle>)` (`monday` → `week`,
+  `morning` → `day`, a month name → `year`);
+- a **period**, as **`(Every e <n> <unit>)`** when the wording is periodic: "every two weeks" →
+  `(Every e 2 week)`, "every month" → `(Every e 1 month)`;
+- a **rate** "N times a / per <unit>" → **`(TimesPer e <n> <unit>)`**: "twice a week" →
+  `(TimesPer e 2 week)`.
+
+      The market opens every Monday.   →  (Member sk_open_1 open) (Patient sk_open_1 sk_market_1)
+                                          (Member sk_market_1 market) (Time sk_open_1 (Weekday monday))
+                                          (Every sk_open_1 1 week)        ; no Past/Ongoing — habitual
+      The board meets every two weeks. →  … (Every sk_meet_1 2 week)
+      Lena swims three times a week.   →  … (TimesPer sk_swim_1 3 week)
+
+"**How often** does X V?" → the storage form follows the statement's wording, so emit **both
+branches and union**: bind `(Every $e $n $u)` and bind `(TimesPer $e $n $u)`. "**What day /
+when** does X V?" → bind the slot term. A frequency **threshold** → `Compute` on the bound `$n`
+in its unit.
+
+**"Every time / whenever <clause>, <clause>"** quantifies over **occurrences** — an event
+domain, not a calendar slot — so it IS a rule (the *Quantifiers* machinery): the trigger clause
+as the premises, the response as a Skolem event **per occurrence**, tied to its trigger with
+`During`:
+
+      Every time the bell rings, the dog barks.
+        →  (: bell_m (Member sk_bell_1 bell) (STV 1.0 0.99))
+           (: dog_m (Member sk_dog_1 dog) (STV 1.0 0.99))
+           (: whenever_ring_bark (Implication (Premises (Member $x ring) (Agent $x sk_bell_1))
+              (Conclusions (Member (sk_bark $x) bark) (Agent (sk_bark $x) sk_dog_1) (During (sk_bark $x) $x))) (STV 1.0 0.9))
+
+A later specific occurrence fires it ("The bell rang at noon." → that bark derives). Query the
+derived event as the **whole conclusion bundle** — the trigger slot may stay a variable:
+`(And (Member $e bark) (Agent $e sk_dog_1) (During $e $r))`. Contrast: "every **Monday**" is a
+calendar **slot**, not an occurrence domain — days are terms, not entities, so a rule would
+never fire; use the flat habitual form above.
 - A **copular** clause with a time modifier reifies the state to anchor it (like a causal
   endpoint), **plus** the flat copular atom: "Alice was ill on Friday" → `(Member sk_ill_1 ill)
   (Experiencer sk_ill_1 alice) (Time sk_ill_1 (Weekday friday)) (Past sk_ill_1)` + `(Past (Member
@@ -857,14 +924,18 @@ emit **both branches and union**, like a measure threshold:
            (: $prf (And (Member $s stop) (Agent $s $f) (Member $f ferry) (Theme $s $o) (Member $o run) (Time $s $t) (Past $s)) $tv)
 
 **Bounded time** — the event's time is unknown but bounded → **`(TimeAtLeast e <term>)` /
-`(TimeAtMost e <term>)`** with the same structured terms. Strict "before / after" drops the
-boundary point ("before 2000" → at most **1999**; "after 2015" → at least **2016**); "by T"
-(deadline) → at most T. `before` / `after` + a **date** is a bound; + an **event/clause** is the
-`Before` relation above.
+`(TimeAtMost e <term>)`** with the same structured terms — **any granularity**: `Year`, `Month`,
+`Weekday`, `Hour`. Strict "before / after" drops the boundary point ("before 2000" → at most
+**1999**; "after 2015" → at least **2016**; "before March" → at most **february**; "after
+October" → at least **november** — decrement/increment the month **name**); "by T" (deadline) →
+at most T. `before` / `after` + a **date** is a bound; + an **event/clause** is the `Before`
+relation above.
 
-      The bridge was built before 1900.   →  … (Past sk_build_1) (TimeAtMost sk_build_1 (Year 1899))
-      The statue was erected after 2015.  →  … (Past sk_erect_1) (TimeAtLeast sk_erect_1 (Year 2016))
-      Bob must submit the report by 5 pm. →  … (Obligated sk_submit_1) (TimeAtMost sk_submit_1 (Hour 17))
+      The bridge was built before 1900.    →  … (Past sk_build_1) (TimeAtMost sk_build_1 (Year 1899))
+      The statue was erected after 2015.   →  … (Past sk_erect_1) (TimeAtLeast sk_erect_1 (Year 2016))
+      Bob must submit the report by 5 pm.  →  … (Obligated sk_submit_1) (TimeAtMost sk_submit_1 (Hour 17))
+      The roof was repaired before March.  →  … (Past sk_repair_1) (TimeAtMost sk_repair_1 (Month february))
+      Hand the keys in by Friday.          →  … (Obligated sk_hand_1) (TimeAtMost sk_hand_1 (Weekday friday))
 
 **Intervals** — an eventuality with a stated extent gets **`(Start e <term>)` / `(End e
 <term>)`** ("from X to / until Y"; "since X" → `Start` only, usually with `Ongoing`; "until Y" →
@@ -893,11 +964,25 @@ via the seeded lexicon (*Measures & units*); seeded rules also derive a duration
   storage may be **exact** (`Time`) or a **bound** (`TimeAtMost` / `TimeAtLeast`), so emit **both
   branches and union**; only the **matching-direction** bound can confirm ("before" pairs with
   `TimeAtMost`, "after" with `TimeAtLeast`; omit the opposite bound).
-- **Month order** has no number to compare — join the seeded lexicon fact `(MonthNumber $m $n)`.
+- **Month / weekday order** has no number to compare — join the seeded lexicon fact
+  (`(MonthNumber $m $n)` / `(WeekdayNumber $w $n)`); the join works on **bounds** the same way:
+  `(TimeAtMost $e (Month $m)) (MonthNumber $m $n) (Compute < ($n 5) -> true)`.
+- An **hour threshold** follows the measure rule: the stored hour may be **exact** (plain
+  number → `Compute`) or **approximate** (distribution → `GreaterThan`, graded) — emit **both
+  branches + union**. A threshold **with minutes** ("before 4:30 pm") adds a split: hours
+  strictly below, ∪ the boundary hour with minutes below —
+  `(Time $e (Hour $h)) (Compute < ($h 16) -> true)` ∪
+  `(Time $e (Hour 16)) (Time $e (Minute $m)) (Compute < ($m 30) -> true)`.
+  (A boundary-hour event with no stored minutes is genuinely unknown — an open-world miss.)
 - **Order of two events?** → `(Before $e1 $e2)` with each event's own anchors (transitivity is
-  seeded). **How long before?** → bind the `BeforeBy` gap. **How long did it take?** → bind
-  `(Measure $e duration $n $u)`; thresholds cross units in canonical seconds (*Measures & units*).
-  **Ongoing at T?** → interval containment, two `Compute`s: Start ≤ T and End ≥ T.
+  seeded; fully **dated** events also derive `Before` from their calendar terms via seeded
+  strict rules — year, same-year month, same-year-month day). For **undated** events compared
+  by month/day, add the two-event **join branch** + union:
+  `… (Time $e1 (Month $m1)) (MonthNumber $m1 $n1) (Time $e2 (Month $m2)) (MonthNumber $m2 $n2)
+  (Compute < ($n1 $n2) -> true) …`. **How long before?** → bind the `BeforeBy` gap. **How long
+  did it take?** → bind `(Measure $e duration $n $u)`; thresholds cross units in canonical
+  seconds (*Measures & units*). **Ongoing at T?** → interval containment, two `Compute`s:
+  Start ≤ T and End ≥ T.
 
       When did Omar jog?
         →  (: $prf (And (Member $e jog) (Agent $e $o) (Name $o "Omar") (Time $e $t) (Past $e)) $tv)
@@ -950,13 +1035,15 @@ committee") or a counted/bare plural ("several dogs", "both dogs") → `(PartOf 
                                                         (Past (sk_resign $x)))) (STV 1.0 0.9))
                                        (Member sk_committee_1 committee)
 
-Only an **explicit** universal + a **distributive** predicate distributes this way. A
-**collective** predicate ("the students gathered", "the jury deliberated") stays **one** event
-with the group as agent (see *Coordination & plurals*); a **bare** plural predicated as a unit
-("the students passed the exam") and a **bare count** ("three students passed") stay
-collective / group + count — no per-member rule. Query a distributed member like any event — its
-event class, the roles (a **named** member bound by `Name`), and status: "Did Ana pass?" (Ana a
-student) → `(: $prf (And (Name $a "Ana") (Member $e pass) (Agent $e $a) (Past $e)) $tv)`.
+A **distributive** predicate distributes; a **collective** predicate ("the students gathered",
+"the jury deliberated") stays **one** event with the group as agent (see *Coordination &
+plurals*). An **explicit universal** ("all the / each / every") is the pure rule above; a
+**grouped or counted plural** ("the dogs barked", "several dogs barked", "both dogs barked")
+keeps its **group event + count** (for counting and "did any?") **plus** the `(PartOf $x
+<group>)` rule alongside — it fires when a member is individuated later (see *Coordination &
+plurals*). Query a distributed member like any event — its event class, the roles (a **named**
+member bound by `Name`), and status: "Did Ana pass?" (Ana a student) → `(: $prf (And (Name $a
+"Ana") (Member $e pass) (Agent $e $a) (Past $e)) $tv)`.
 
 **Negated verbal generic / verbal ¬∀.** "Ns don't V" as a generic habit ("owls don't migrate") =
 the **same distributing rule at strength `0.0`** — each member's event then derives at strength 0,

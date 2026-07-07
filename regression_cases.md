@@ -836,7 +836,7 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
     (: e_past (Past sk_meet_1) (STV 1.0 0.99))
     (: e_time (Time sk_meet_1 last_month) (STV 1.0 0.99))
 
-**[time-anaphoric] The hikers reached the summit on Sunday. That evening, they celebrated.** — discourse-anaphoric time → interim deictic-style constant `that_evening` (anchored form deferred); "the summit" is a discourse-referential noun → ordinary `sk_` witness; distributive predicates over the group add `PartOf` rules carrying the time atoms
+**[time-anaphoric] The hikers reached the summit on Sunday. That evening, they celebrated.** — discourse-anaphoric time resolves by **term propagation** (2026-07-07, supersedes the earlier `that_evening` constant interim): the antecedent's day terms copy onto the new event + the day-part symbol; distributive predicates over the group add `PartOf` rules carrying the same time atoms
 
     (: hiker_group (GroupOf sk_group_1 hiker) (STV 1.0 0.99))
     (: reach_e (Member sk_reach_1 reach) (STV 1.0 0.99))
@@ -849,8 +849,115 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
     (: celebrate_e (Member sk_celebrate_1 celebrate) (STV 1.0 0.99))
     (: celebrate_agent (Agent sk_celebrate_1 sk_group_1) (STV 1.0 0.99))
     (: celebrate_past (Past sk_celebrate_1) (STV 1.0 0.99))
-    (: celebrate_time (Time sk_celebrate_1 that_evening) (STV 1.0 0.99))
-    (: celebrate_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_celebrate $x) celebrate) (Agent (sk_celebrate $x) $x) (Past (sk_celebrate $x)) (Time (sk_celebrate $x) that_evening))) (STV 1.0 0.9))
+    (: celebrate_wd (Time sk_celebrate_1 (Weekday sunday)) (STV 1.0 0.99))
+    (: celebrate_part (Time sk_celebrate_1 evening) (STV 1.0 0.99))
+    (: celebrate_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_celebrate $x) celebrate) (Agent (sk_celebrate $x) $x) (Past (sk_celebrate $x)) (Time (sk_celebrate $x) (Weekday sunday)) (Time (sk_celebrate $x) evening))) (STV 1.0 0.9))
+
+**[time-anaphor-next] Vera landed in Oslo on Wednesday. The next morning, she toured the harbor.** — "the next morning" = the antecedent day's **successor** + the day-part + explicit `Before`
+
+    (: v_name (Name vera "Vera") (STV 1.0 0.99))
+    (: v_land (Member sk_land_1 land) (STV 1.0 0.99))
+    (: v_land_ag (Agent sk_land_1 vera) (STV 1.0 0.99))
+    (: v_land_loc (Location sk_land_1 oslo) (STV 1.0 0.99))
+    (: v_land_t (Time sk_land_1 (Weekday wednesday)) (STV 1.0 0.99))
+    (: v_land_past (Past sk_land_1) (STV 1.0 0.99))
+    (: v_harbor (Member sk_harbor_1 harbor) (STV 1.0 0.99))
+    (: v_tour (Member sk_tour_1 tour) (STV 1.0 0.99))
+    (: v_tour_ag (Agent sk_tour_1 vera) (STV 1.0 0.99))
+    (: v_tour_th (Theme sk_tour_1 sk_harbor_1) (STV 1.0 0.99))
+    (: v_tour_t1 (Time sk_tour_1 (Weekday thursday)) (STV 1.0 0.99))
+    (: v_tour_t2 (Time sk_tour_1 morning) (STV 1.0 0.99))
+    (: v_before (Before sk_land_1 sk_tour_1) (STV 1.0 0.99))
+    (: v_tour_past (Past sk_tour_1) (STV 1.0 0.99))
+
+**[time-anaphor-day] The gallery opened on April 2. The following day, a critic wrote a review.** — numeric day + 1 propagates (`Day 3`, month copied); no day-part in "the following day"
+
+    (: gal_g (Member sk_gallery_1 gallery) (STV 1.0 0.99))
+    (: gal_open (Member sk_open_1 open) (STV 1.0 0.99))
+    (: gal_open_pat (Patient sk_open_1 sk_gallery_1) (STV 1.0 0.99))
+    (: gal_open_m (Time sk_open_1 (Month april)) (STV 1.0 0.99))
+    (: gal_open_d (Time sk_open_1 (Day 2)) (STV 1.0 0.99))
+    (: gal_open_past (Past sk_open_1) (STV 1.0 0.99))
+    (: gal_critic (Member sk_critic_1 critic) (STV 1.0 0.99))
+    (: gal_write (Member sk_write_1 write) (STV 1.0 0.99))
+    (: gal_write_ag (Agent sk_write_1 sk_critic_1) (STV 1.0 0.99))
+    (: gal_write_pat (Patient sk_write_1 sk_review_1) (STV 1.0 0.99))
+    (: gal_review (Member sk_review_1 review) (STV 1.0 0.99))
+    (: gal_write_m (Time sk_write_1 (Month april)) (STV 1.0 0.99))
+    (: gal_write_d (Time sk_write_1 (Day 3)) (STV 1.0 0.99))
+    (: gal_before (Before sk_open_1 sk_write_1) (STV 1.0 0.99))
+    (: gal_write_past (Past sk_write_1) (STV 1.0 0.99))
+
+**[time-anaphor-fallback] Noor finished the draft late at night. The next morning, she submitted it.** — antecedent day unknown → **no** day terms propagate; just the day-part + the `Before`
+
+    (: n_name (Name noor "Noor") (STV 1.0 0.99))
+    (: n_draft (Member sk_draft_1 draft) (STV 1.0 0.99))
+    (: n_finish (Member sk_finish_1 finish) (STV 1.0 0.99))
+    (: n_finish_ag (Agent sk_finish_1 noor) (STV 1.0 0.99))
+    (: n_finish_pat (Patient sk_finish_1 sk_draft_1) (STV 1.0 0.99))
+    (: n_finish_t (Time sk_finish_1 night) (STV 1.0 0.99))
+    (: n_finish_past (Past sk_finish_1) (STV 1.0 0.99))
+    (: n_submit (Member sk_submit_1 submit) (STV 1.0 0.99))
+    (: n_submit_ag (Agent sk_submit_1 noor) (STV 1.0 0.99))
+    (: n_submit_th (Theme sk_submit_1 sk_draft_1) (STV 1.0 0.99))
+    (: n_submit_t (Time sk_submit_1 morning) (STV 1.0 0.99))
+    (: n_before (Before sk_finish_1 sk_submit_1) (STV 1.0 0.99))
+    (: n_submit_past (Past sk_submit_1) (STV 1.0 0.99))
+
+**[time-daypart] Farid waters the plants in the morning.** — plain day-part on a habitual (unmarked) event
+
+    (: f_name (Name farid "Farid") (STV 1.0 0.99))
+    (: f_plants (GroupOf sk_group_1 plant) (STV 1.0 0.99))
+    (: f_water (Member sk_water_1 water) (STV 1.0 0.99))
+    (: f_water_ag (Agent sk_water_1 farid) (STV 1.0 0.99))
+    (: f_water_th (Theme sk_water_1 sk_group_1) (STV 1.0 0.99))
+    (: f_water_t (Time sk_water_1 morning) (STV 1.0 0.99))
+
+**[freq-slot] The clinic screens patients every Friday.** — habitual (unmarked) + slot term + the slot's cycle `(Every e 1 week)`
+
+    (: c_clinic (Member sk_clinic_1 clinic) (STV 1.0 0.99))
+    (: c_screen (Member sk_screen_1 screen) (STV 1.0 0.99))
+    (: c_screen_ag (Agent sk_screen_1 sk_clinic_1) (STV 1.0 0.99))
+    (: c_screen_th (Theme sk_screen_1 patient) (STV 1.0 0.99))
+    (: c_screen_t (Time sk_screen_1 (Weekday friday)) (STV 1.0 0.99))
+    (: c_screen_ev (Every sk_screen_1 1 week) (STV 1.0 0.99))
+
+**[freq-period] The inspector visits every three months.** — periodic wording → `(Every e n unit)`
+
+    (: i_insp (Member sk_inspector_1 inspector) (STV 1.0 0.99))
+    (: i_visit (Member sk_visit_1 visit) (STV 1.0 0.99))
+    (: i_visit_ag (Agent sk_visit_1 sk_inspector_1) (STV 1.0 0.99))
+    (: i_visit_ev (Every sk_visit_1 3 month) (STV 1.0 0.99))
+
+**[freq-rate] Tomas rows twice a week.** — rate wording → `(TimesPer e n unit)`
+
+    (: t_name (Name tomas "Tomas") (STV 1.0 0.99))
+    (: t_row (Member sk_row_1 row) (STV 1.0 0.99))
+    (: t_row_ag (Agent sk_row_1 tomas) (STV 1.0 0.99))
+    (: t_row_tp (TimesPer sk_row_1 2 week) (STV 1.0 0.99))
+
+**[freq-whenever] Every time the doorbell buzzes, the terrier growls. The doorbell buzzed at midnight.** — "every time/whenever + clause" quantifies over **occurrences** → an `Implication` (trigger clause as premises, per-occurrence Skolem event `During`-linked to its trigger); the specific buzz then fires it. Contrast "every Friday" ([freq-slot]): calendar slots are terms, not entities — no rule. (QA: the derived growl answers to the whole-bundle open-trigger query; the natural kind-bound + `Past` form hits the bundle-rigidity gap — `GAP-whenever`.)
+
+    (: e_doorbell (Member sk_doorbell_1 doorbell) (STV 1.0 0.99))
+    (: e_terrier (Member sk_terrier_1 terrier) (STV 1.0 0.99))
+    (: whenever_buzz_growl (Implication (Premises (Member $x buzz) (Agent $x sk_doorbell_1)) (Conclusions (Member (sk_growl $x) growl) (Agent (sk_growl $x) sk_terrier_1) (During (sk_growl $x) $x))) (STV 1.0 0.9))
+    (: e_buzz (Member sk_buzz_1 buzz) (STV 1.0 0.99))
+    (: e_buzz_ag (Agent sk_buzz_1 sk_doorbell_1) (STV 1.0 0.99))
+    (: e_buzz_t (Time sk_buzz_1 (Hour 0)) (STV 1.0 0.99))
+    (: e_buzz_past (Past sk_buzz_1) (STV 1.0 0.99))
+
+**[time-q-anaphor] Did the host serve dinner on Tuesday?** (after "The guests arrived on Tuesday. That evening, the host served dinner.") — the propagated day term answers the yes/no directly
+
+    (: $prf (And (Member $e serve) (Agent $e $h) (Member $h host) (Theme $e dinner) (Time $e (Weekday tuesday)) (Past $e)) $tv)
+
+**[freq-q-often] How often does the inspector visit?** — storage follows the statement's wording → `Every` ∪ `TimesPer` branches + union
+
+    (: $prf (And (Member $e visit) (Agent $e $i) (Member $i inspector) (Every $e $n $u)) $tv)
+    (: $prf (And (Member $e visit) (Agent $e $i) (Member $i inspector) (TimesPer $e $n $u)) $tv)
+
+**[freq-q-day] What day does the clinic screen patients?** — bind the slot term (habitual: no tense)
+
+    (: $prf (And (Member $e screen) (Agent $e $c) (Member $c clinic) (Theme $e patient) (Time $e (Weekday $w))) $tv)
 
 **[cess-update] Jonas no longer works at the garage.** — with CONTEXT = the parse of "Jonas works
 at the garage." (`sk_work_1`, `jonas`, `sk_garage_1`): cessation on the SAME context symbols —
@@ -922,6 +1029,83 @@ union
 
     (: $prf (And (Member $e operate) (Agent $e $m) (Member $m mine) (End $e $t) (Past $e)) $tv)
     (: $prf (And (Member $s stop) (Agent $s $m) (Member $m mine) (Theme $s $o) (Member $o operate) (Time $s $t) (Past $s)) $tv)
+
+**[time-bound-month] The renovation finished before March.** — month bound: strict "before" decrements the month **name**
+
+    (: e1_finish (Member sk_finish_1 finish) (STV 1.0 0.99))
+    (: e1_patient (Patient sk_finish_1 sk_renovation_1) (STV 1.0 0.99))
+    (: e1_renovation (Member sk_renovation_1 renovation) (STV 1.0 0.99))
+    (: e1_past (Past sk_finish_1) (STV 1.0 0.99))
+    (: e1_before (TimeAtMost sk_finish_1 (Month february)) (STV 1.0 0.99))
+
+**[time-bound-month-after] The boiler was installed after October.** — "after" increments → at least november
+
+    (: e2_install (Member sk_install_1 install) (STV 1.0 0.99))
+    (: e2_patient (Patient sk_install_1 sk_boiler_1) (STV 1.0 0.99))
+    (: e2_boiler (Member sk_boiler_1 boiler) (STV 1.0 0.99))
+    (: e2_past (Past sk_install_1) (STV 1.0 0.99))
+    (: e2_after (TimeAtLeast sk_install_1 (Month november)) (STV 1.0 0.99))
+
+**[time-deadline-weekday] Rita must return the badge by Friday.** — weekday deadline on the obligated act
+
+    (: e3_return (Member sk_return_1 return) (STV 1.0 0.99))
+    (: e3_agent (Agent sk_return_1 rita) (STV 1.0 0.99))
+    (: e3_theme (Theme sk_return_1 sk_badge_1) (STV 1.0 0.99))
+    (: e3_badge (Member sk_badge_1 badge) (STV 1.0 0.99))
+    (: e3_obligated (Obligated sk_return_1) (STV 1.0 0.99))
+    (: e3_deadline (TimeAtMost sk_return_1 (Weekday friday)) (STV 1.0 0.99))
+    (: rita_name (Name rita "Rita") (STV 1.0 0.99))
+
+**[time-lightverb] The audit occurred in March 2022. The launch occurred in June 2022.** — light verbs (occur/happen/take place) do NOT reify their own event: the event-noun witness IS the eventuality; Time terms + tense sit on it directly (seeded strict date rules then derive `(Before sk_audit_1 sk_launch_1)`)
+
+    (: e_audit (Member sk_audit_1 audit) (STV 1.0 0.99))
+    (: e_audit_month (Time sk_audit_1 (Month march)) (STV 1.0 0.99))
+    (: e_audit_year (Time sk_audit_1 (Year 2022)) (STV 1.0 0.99))
+    (: e_audit_past (Past sk_audit_1) (STV 1.0 0.99))
+    (: e_launch (Member sk_launch_1 launch) (STV 1.0 0.99))
+    (: e_launch_month (Time sk_launch_1 (Month june)) (STV 1.0 0.99))
+    (: e_launch_year (Time sk_launch_1 (Year 2022)) (STV 1.0 0.99))
+    (: e_launch_past (Past sk_launch_1) (STV 1.0 0.99))
+
+**[time-approx] The courier arrived around 5 pm.** — approximate clock time: a distribution in the `Hour` value slot (tight hedge → σ ≈ 1)
+
+    (: e_arrive (Member sk_arrive_1 arrive) (STV 1.0 0.99))
+    (: e_courier (Member sk_courier_1 courier) (STV 1.0 0.99))
+    (: e_agent (Agent sk_arrive_1 sk_courier_1) (STV 1.0 0.99))
+    (: e_past (Past sk_arrive_1) (STV 1.0 0.99))
+    (: e_time (Time sk_arrive_1 (Hour (ParticleFromNormal 17 1))) (STV 1.0 0.99))
+
+**[time-clock-minutes] Zia called at 4:10 pm.** — hour + minute terms (24-hour)
+
+    (: e_call (Member sk_call_1 call) (STV 1.0 0.99))
+    (: zia_name (Name zia "Zia") (STV 1.0 0.99))
+    (: e_agent (Agent sk_call_1 zia) (STV 1.0 0.99))
+    (: e_past (Past sk_call_1) (STV 1.0 0.99))
+    (: e_hour (Time sk_call_1 (Hour 16)) (STV 1.0 0.99))
+    (: e_minute (Time sk_call_1 (Minute 10)) (STV 1.0 0.99))
+
+**[time-q-bound-month] Did the renovation finish before May?** — exact ∪ bound branches, each joined through `MonthNumber` (May = 5)
+
+    (: $prf (And (Member $e finish) (Patient $e $r) (Member $r renovation) (Time $e (Month $m)) (MonthNumber $m $n) (Compute < ($n 5) -> true) (Past $e)) $tv)
+    (: $prf (And (Member $e finish) (Patient $e $r) (Member $r renovation) (TimeAtMost $e (Month $m)) (MonthNumber $m $n) (Compute < ($n 5) -> true) (Past $e)) $tv)
+
+**[time-q-deadline] By when must Rita return the badge?** — bind the deadline bound (open term)
+
+    (: $prf (And (Member $e return) (Agent $e $r) (Name $r "Rita") (Theme $e $w) (Member $w badge) (Obligated $e) (TimeAtMost $e $t)) $tv)
+
+**[time-q-order-dated] Did the audit occur before the launch?** — event-noun witnesses relate directly; `Before` derives from their calendar terms (seeded)
+
+    (: $prf (And (Member $e1 audit) (Past $e1) (Member $e2 launch) (Past $e2) (Before $e1 $e2)) $tv)
+
+**[time-q-hour-thresh] Did the courier arrive after 4 pm?** — hour threshold = exact (`Compute`) ∪ approximate (`GreaterThan`) branches
+
+    (: $prf (And (Member $e arrive) (Agent $e $c) (Member $c courier) (Time $e (Hour $h)) (Compute > ($h 16) -> true) (Past $e)) $tv)
+    (: $prf (And (Member $e arrive) (Agent $e $c) (Member $c courier) (Time $e (Hour $h)) (GreaterThan $h 16) (Past $e)) $tv)
+
+**[time-q-minute-thresh] Did Zia call before 4:30 pm?** — minute split: hours strictly below ∪ the boundary hour with minutes below
+
+    (: $prf (And (Member $e call) (Agent $e $z) (Name $z "Zia") (Time $e (Hour $h)) (Compute < ($h 16) -> true) (Past $e)) $tv)
+    (: $prf (And (Member $e call) (Agent $e $z) (Name $z "Zia") (Time $e (Hour 16)) (Time $e (Minute $m)) (Compute < ($m 30) -> true) (Past $e)) $tv)
 
 **[time-q-when] When did the museum reopen?** — open `(Time $e $t)`; one row per stored granularity
 

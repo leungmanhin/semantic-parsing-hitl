@@ -213,6 +213,32 @@
 (: interval_duration_year (Implication (Premises (Start $e (Year $s)) (End $e (Year $n))
    (Compute - ($n $s) -> $d)) (Conclusions (Measure $e duration $d year))) (STV 1.0 0.99))
 
+; ===== Date-ordering scaffolding =====
+; STRICT rules deriving (Before x y) from stored calendar terms. Guards: the month rule needs
+; the SAME year on both events (shared $yr), the day rule the same year AND month — so a
+; cross-year "march before june" can never fire wrongly. UNDATED comparisons (no year stated)
+; are deliberately NOT seeded (a no-year rule would mis-fire across years); they stay
+; query-side joins (see prompt.txt, Time questions).
+(: date_before_year (Implication (Premises (Time $x (Year $a)) (Time $y (Year $b))
+   (Compute < ($a $b) -> true)) (Conclusions (Before $x $y))) (STV 1.0 0.99))
+(: date_before_month (Implication (Premises (Time $x (Year $yr)) (Time $y (Year $yr))
+   (Time $x (Month $ma)) (MonthNumber $ma $na) (Time $y (Month $mb)) (MonthNumber $mb $nb)
+   (Compute < ($na $nb) -> true)) (Conclusions (Before $x $y))) (STV 1.0 0.99))
+(: date_before_day (Implication (Premises (Time $x (Year $yr)) (Time $y (Year $yr))
+   (Time $x (Month $mo)) (Time $y (Month $mo)) (Time $x (Day $da)) (Time $y (Day $db))
+   (Compute < ($da $db) -> true)) (Conclusions (Before $x $y))) (STV 1.0 0.99))
+
+; ===== Weekday lexicon =====
+; Weekday names stay symbols inside Time terms; these facts supply the number for
+; ordering/threshold queries (monday=1 … sunday=7), like MonthNumber below.
+(: wd_monday (WeekdayNumber monday 1) (STV 1.0 0.99))
+(: wd_tuesday (WeekdayNumber tuesday 2) (STV 1.0 0.99))
+(: wd_wednesday (WeekdayNumber wednesday 3) (STV 1.0 0.99))
+(: wd_thursday (WeekdayNumber thursday 4) (STV 1.0 0.99))
+(: wd_friday (WeekdayNumber friday 5) (STV 1.0 0.99))
+(: wd_saturday (WeekdayNumber saturday 6) (STV 1.0 0.99))
+(: wd_sunday (WeekdayNumber sunday 7) (STV 1.0 0.99))
+
 ; ===== Month lexicon =====
 ; Month names stay symbols inside Time terms; these facts supply the number for
 ; ordering/threshold queries via a join:
