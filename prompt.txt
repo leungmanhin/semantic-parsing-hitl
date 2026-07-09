@@ -150,7 +150,12 @@ pay_dues)` ≠ `(obligated pay)`).
   genuinely describes the compound, you may also expose it (`senior_contractor` → `(Inheritance
   senior_contractor senior)`). **Don't** decompose a modifier that names a **purpose / association**
   rather than a property — `fire_exit` is **not** `fire`, `tow_truck` is **not** `tow`; leave those
-  in the symbol.
+  in the symbol. Fuse a `modifier_noun` **only when the modifier _classifies_ the head into a
+  genuine subtype** (`light_switch`, `delivery_van`). When the first noun is instead a **possessor
+  / whole** and the second its **part / component** — "car engine" (the engine of a car), "table
+  leg" — do **not** fuse: emit the head as its own kind and attach it with `(PartOf <part>
+  <whole>)`, e.g. "the car engine" → `(Member sk_engine_1 engine) (PartOf sk_engine_1 sk_car_1)`
+  (+ `(Member sk_car_1 car)`), never `car_engine`.
 
 - **Agent-nominalization** = `X-er` ("one who Xs": `swimmer`, `egg_layer`, `predator`,
   `firefighter`): expose the underlying verb via a **capability** `(Inheritance <nom> (can <verb>))`;
@@ -265,14 +270,17 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
   with **no change to it** (buy, sell, rent, give, send, carry, read, watch, grade, score,
   review, measure, choose, keep, use).
 - `Recipient` — goal of a transfer (indirect object / "to").
-- `Experiencer` — subject of a perception/psych state ("know", "love", "see"); `Stimulus` —
-  its object.
-- `Holder` — subject of a possession/relational state ("own", "have").
+- `Experiencer` — subject of a **stative predication**: a perception/psych state ("know",
+  "love", "see") **or a predicate-adjective / property state** ("was ill", "was empty", "was
+  rusty") — the entity the state holds of; `Stimulus` — a psych state's object.
+- `Holder` — subject of a **possession / relational** state **only** ("own", "have", "lack") —
+  a bare property is `Experiencer`, never `Holder`.
 - Obliques: `Instrument` ("with …"), `Location` ("in/at/on …"), `Time` ("yesterday"; dates &
   clock times — see **Time**), `Manner` (adverb), `Source` ("from …"), `Goal` ("to …"
   non-recipient), `Beneficiary` ("for …").
 
-Assign: subject → `Agent` (action) / `Experiencer` or `Holder` (state); direct object →
+Assign: subject → `Agent` (action) / `Experiencer` (a property or psych state) / `Holder` (a
+possession/relational state only — own/have/lack); direct object →
 `Patient` **only when the action creates / destroys / consumes / physically changes it,
 otherwise `Theme`** — one yes/no test ("does the object itself change?"), so a verb takes the
 **same role in a statement and in its question** and QA matches (e.g. *bought / rented / graded /
@@ -1467,7 +1475,7 @@ clauses as eventualities and emit a **binary relation atom** `(<Rel> <cause> <ef
 head, two eventuality arguments). Reify each clause the usual way — a verbal clause is its event
 witness `sk_<verb>_<n>`. A **copular STATE that participates in such a relation** is reified as a
 **state witness** `sk_<prop>_<n>` with `(Member sk_<prop>_<n> <prop>)` and its subject attached by
-`Experiencer` (or `Holder`) — so the state can be a relation endpoint — **and ALSO emit the flat
+`Experiencer` (a property/psych state; reserve `Holder` for possession — see **Thematic roles**) — so the state can be a relation endpoint — **and ALSO emit the flat
 `(Member <subj> <prop>)`** so a plain non-causal question ("is X P?") still resolves (both forms
 coexist). (Reify a state this way only when it is a causal endpoint; otherwise just the flat copular
 form.)
@@ -1515,9 +1523,13 @@ bound to the focus, IS the question type, and nothing is written to the KB (the 
 is a surface feature, recoverable from the question text, never stored). Build the focus event pattern
 as usual (per **Queries**) and put a bare `$`-variable in the asked relation:
 
-- "**why** …?" / "**what made** …?" / "**how come** …?" → the cause(s) of the focus: `(CauseOf $cause
-  <focus>)`. If the focus is an intentional action that may have BOTH a cause and a purpose, emit **one
-  query line per relation** — `(CauseOf $cause <focus>)` AND `(Motivate $goal <focus>)`.
+- "**why** …?" / "**what made** …?" / "**how come** …?" → the reason(s) for the focus. A physical /
+  non-volitional focus (flood, collapse, spoil) takes just `(CauseOf $cause <focus>)`. An **intentional
+  action** may have a cause, a purpose, OR a driving **belief**, so emit **one query line per
+  relation** — `(CauseOf $cause <focus>)`, `(Motivate $goal <focus>)`, AND `(Reason $reason <focus>)`.
+  (A belief-motivated action — "he took an umbrella because he **thought** it would rain" — stores its
+  reason under `Reason`; the question text gives no hint of the belief, so the `Reason` branch must be
+  queried too, or the answer is missed.)
 - "**what** … **for**?" / "in order to do what?" → the purpose only: `(Motivate $goal <focus>)`.
 - "**how** did … happen?" (mechanism) → the causal CHAIN into the focus, binding the intermediate(s):
   `(And (CauseOf $c1 $mid) (CauseOf $mid <focus>))`.
@@ -1525,16 +1537,17 @@ as usual (per **Queries**) and put a bare `$`-variable in the asked relation:
   like any focus pattern (event class + roles) plus the `Prevent` relation.
 
 The queried relation recovers the type unambiguously — `Motivate` alone = *what-for*; `CauseOf`
-(optionally with `Motivate`) = *why*; a `CauseOf` **chain** = *how*; `Prevent` = *why-not*. The cause /
+(optionally with `Motivate` / `Reason`) = *why*; a `CauseOf` **chain** = *how*; `Prevent` = *why-not*. The cause /
 goal / preventer is the bare answer variable (returned bare, per **Queries**); a definite focus noun
 binds by its kind, a named participant by `Name`, exactly as in **Queries**.
 
       Why did the road flood?
         →  (: $prf (And (Member $f flood) (Patient $f $r) (Member $r road) (CauseOf $c $f)) $tv)
 
-      Why did Maria drive to the store?   (intentional action — dual cause + purpose)
+      Why did Maria drive to the store?   (intentional action — cause, purpose, or belief)
         →  (: $prf (And (Member $d drive) (Agent $d $m) (Name $m "Maria") (CauseOf $c $d)) $tv)
            (: $prf (And (Member $d drive) (Agent $d $m) (Name $m "Maria") (Motivate $g $d)) $tv)
+           (: $prf (And (Member $d drive) (Agent $d $m) (Name $m "Maria") (Reason $r $d)) $tv)
 
       Why didn't the fire spread?
         →  (: $prf (And (Member $s spread) (Patient $s $f) (Member $f fire) (Prevent $p $s)) $tv)

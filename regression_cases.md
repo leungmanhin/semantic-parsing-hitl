@@ -116,6 +116,20 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
     (: e_yacht (Member sk_yacht_1 yacht) (STV 1.0 0.99))
     (: victor_name (Name victor "Victor") (STV 1.0 0.99))
 
+**[ev-state-cause] The trail was icy, so the ranger closed it.** — a predicate-adjective state that is a **causal endpoint** reifies as a state witness with **`Experiencer`** (never `Holder` — that is possession-only) + the flat copular form; `CauseOf` links it to the action
+
+    (: e_icy (Member sk_icy_1 icy) (STV 1.0 0.99))
+    (: e_icy_exp (Experiencer sk_icy_1 sk_trail_1) (STV 1.0 0.99))
+    (: e_trail (Member sk_trail_1 trail) (STV 1.0 0.99))
+    (: e_icy_past (Past sk_icy_1) (STV 1.0 0.99))
+    (: e_trail_icy_flat (Past (Member sk_trail_1 icy)) (STV 1.0 0.99))
+    (: e_close (Member sk_close_1 close) (STV 1.0 0.99))
+    (: e_close_agent (Agent sk_close_1 sk_ranger_1) (STV 1.0 0.99))
+    (: e_ranger (Member sk_ranger_1 ranger) (STV 1.0 0.99))
+    (: e_close_patient (Patient sk_close_1 sk_trail_1) (STV 1.0 0.99))
+    (: e_close_past (Past sk_close_1) (STV 1.0 0.99))
+    (: c_cause (CauseOf sk_icy_1 sk_close_1) (STV 1.0 0.99))
+
 **[ev-past] Leo served lunch yesterday.** — Past + Time role (fine-temporal as a role)
 
     (: e_serve (Member sk_serve_1 serve) (STV 1.0 0.99))
@@ -1306,7 +1320,7 @@ A deontic norm over a **kind** reifies the obligation/permission as a property `
 
 ## Compound decomposition (cross-cutting)
 
-Prefer single-word symbols; when a compound is genuinely needed, also emit decomposition atoms at `0.99/0.99` — **action** `verb_object` → genus `(Inheritance compound verb)` + object `(Patient compound obj)`; **kind** `modifier_noun` → genus `(Inheritance compound head-noun)` (+ adjective modifier when it genuinely describes the compound); **agent-nominalization** `X-er` → capability `(Inheritance nom (can verb))` + kind-relation `(Verb nom obj)` if an object is incorporated. Stop at single-word lemmas; leave purpose/association modifiers opaque (and adjective/condition compounds, deferred).
+Prefer single-word symbols; when a compound is genuinely needed, also emit decomposition atoms at `0.99/0.99` — **action** `verb_object` → genus `(Inheritance compound verb)` + object `(Patient compound obj)`; **kind** `modifier_noun` → genus `(Inheritance compound head-noun)` (+ adjective modifier when it genuinely describes the compound); **agent-nominalization** `X-er` → capability `(Inheritance nom (can verb))` + kind-relation `(Verb nom obj)` if an object is incorporated. Stop at single-word lemmas; leave purpose/association modifiers opaque (and adjective/condition compounds, deferred). A **possessor+part** noun-noun (a part *of* a whole: "car engine", "desk drawer") is **not** a compound kind — emit the head as its own kind + `(PartOf part whole)`, never fused.
 
 **[decomp-action] Residents must recycle waste, but tenants are exempt.** — compound action `recycle_waste` (inside `(obligated …)`) → genus `recycle` + object `waste`
 
@@ -1330,6 +1344,17 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
     (: wb_genus (Inheritance wooden_bridge bridge) (STV 0.99 0.99))
     (: wb_adj (Inheritance wooden_bridge wooden) (STV 0.99 0.99))
     (: wb_old (Member sk_wooden_bridge_1 old) (STV 1.0 0.99))
+
+**[decomp-part] Dana cleaned the desk drawer.** — a **possessor+part** noun-noun ("the drawer of a desk") is **not** a compound kind: the head is its own kind + `(PartOf part whole)` (the whole a witness), never fused `desk_drawer`
+
+    (: e_clean (Member sk_clean_1 clean) (STV 1.0 0.99))
+    (: e_clean_agent (Agent sk_clean_1 dana) (STV 1.0 0.99))
+    (: e_clean_patient (Patient sk_clean_1 sk_drawer_1) (STV 1.0 0.99))
+    (: e_drawer (Member sk_drawer_1 drawer) (STV 1.0 0.99))
+    (: e_drawer_partof (PartOf sk_drawer_1 sk_desk_1) (STV 1.0 0.99))
+    (: e_desk (Member sk_desk_1 desk) (STV 1.0 0.99))
+    (: e_clean_past (Past sk_clean_1) (STV 1.0 0.99))
+    (: dana_name (Name dana "Dana") (STV 1.0 0.99))
 
 **[nom-intrans] Greyhounds are racers.** — intransitive agent-nominalization → capability `(can <verb>)`, no object
 
@@ -1777,6 +1802,12 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 **[caus-why-q] Why did the bridge collapse?** — query the cause of a POSITIVE focus (full focus pattern is fine — its atoms are independently asserted)
 
     (: $prf (And (Member $f collapse) (Patient $f $b) (Member $b bridge) (CauseOf $c $f)) $tv)
+
+**[caus-why-intentional-q] Why did Wesley carry a lantern?** — an INTENTIONAL action's "why" queries the UNION of all three reason relations (cause ∪ purpose ∪ belief), one line each; the `Reason` branch catches a belief-motivated action ("…because he thought the power would fail") the question text can't reveal
+
+    (: $prf (And (Member $e carry) (Agent $e $w) (Name $w "Wesley") (Theme $e $l) (Member $l lantern) (Past $e) (CauseOf $c $e)) $tv)
+    (: $prf (And (Member $e carry) (Agent $e $w) (Name $w "Wesley") (Theme $e $l) (Member $l lantern) (Past $e) (Motivate $m $e)) $tv)
+    (: $prf (And (Member $e carry) (Agent $e $w) (Name $w "Wesley") (Theme $e $l) (Member $l lantern) (Past $e) (Reason $r $e)) $tv)
 
 **[caus-whynot-q] Why didn't the patient get sick?** — negated focus → the full focus pattern (event class + roles) + `Prevent`
 
