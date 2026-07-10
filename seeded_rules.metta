@@ -255,3 +255,23 @@
 (: mn_october (MonthNumber october 10) (STV 1.0 0.99))
 (: mn_november (MonthNumber november 11) (STV 1.0 0.99))
 (: mn_december (MonthNumber december 12) (STV 1.0 0.99))
+
+; ===== Inter-clause connective bridge (2026-07-09) =====
+
+; Statements store the SURFACE connective head, main clause first / subordinate
+; second (see prompt.txt "Inter-clause connectives"). These rules derive the
+; canonical ask-relations (ReasonFor <reason> <event>) / (PurposeOf <goal> <event>)
+; that explanation QUERIES use; the two canonical heads never appear in translated
+; statements. But / Although / Despite / Yet state no reason — no bridge.
+
+(: rf_because (Implication (Premises (Because $m $s)) (Conclusions (ReasonFor $s $m))) (STV 1.0 0.99))
+(: rf_since (Implication (Premises (Since $m $s)) (Conclusions (ReasonFor $s $m))) (STV 1.0 0.99))
+(: rf_so (Implication (Premises (So $a $c)) (Conclusions (ReasonFor $a $c))) (STV 1.0 0.99))
+(: rf_asaresult (Implication (Premises (AsAResult $a $c)) (Conclusions (ReasonFor $a $c))) (STV 1.0 0.99))
+(: rf_therefore (Implication (Premises (Therefore $a $c)) (Conclusions (ReasonFor $a $c))) (STV 1.0 0.99))
+(: rf_consequently (Implication (Premises (Consequently $a $c)) (Conclusions (ReasonFor $a $c))) (STV 1.0 0.99))
+(: rf_thus (Implication (Premises (Thus $a $c)) (Conclusions (ReasonFor $a $c))) (STV 1.0 0.99))
+(: po_to (Implication (Premises (To $m $p)) (Conclusions (PurposeOf $p $m))) (STV 1.0 0.99))
+(: po_inorderto (Implication (Premises (InOrderTo $m $p)) (Conclusions (PurposeOf $p $m))) (STV 1.0 0.99))
+(: po_soasto (Implication (Premises (SoAsTo $m $p)) (Conclusions (PurposeOf $p $m))) (STV 1.0 0.99))
+(: rf_purpose (Implication (Premises (PurposeOf $p $m)) (Conclusions (ReasonFor $p $m))) (STV 1.0 0.99))

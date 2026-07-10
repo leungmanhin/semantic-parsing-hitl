@@ -116,7 +116,7 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
     (: e_yacht (Member sk_yacht_1 yacht) (STV 1.0 0.99))
     (: victor_name (Name victor "Victor") (STV 1.0 0.99))
 
-**[ev-state-cause] The trail was icy, so the ranger closed it.** — a predicate-adjective state that is a **causal endpoint** reifies as a state witness with **`Experiencer`** (never `Holder` — that is possession-only) + the flat copular form; `CauseOf` links it to the action
+**[ev-state-conn] The trail was icy, so the ranger closed it.** — a predicate-adjective state that is a **connective-atom endpoint** reifies as a state witness with **`Experiencer`** (never `Holder` — that is possession-only) + the flat copular form; the stated connective becomes the surface head (`So`, a coordinator — surface order)
 
     (: e_icy (Member sk_icy_1 icy) (STV 1.0 0.99))
     (: e_icy_exp (Experiencer sk_icy_1 sk_trail_1) (STV 1.0 0.99))
@@ -128,7 +128,13 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
     (: e_ranger (Member sk_ranger_1 ranger) (STV 1.0 0.99))
     (: e_close_patient (Patient sk_close_1 sk_trail_1) (STV 1.0 0.99))
     (: e_close_past (Past sk_close_1) (STV 1.0 0.99))
-    (: c_cause (CauseOf sk_icy_1 sk_close_1) (STV 1.0 0.99))
+    (: conn (So sk_icy_1 sk_close_1) (STV 1.0 0.99))
+
+**[expletive-it] It rained all afternoon.** — expletive / weather "it" is dropped; the weather predicate is reified **agentless** (no `Agent`/`Experiencer`), carrying its Time and tense
+
+    (: e_rain (Member sk_rain_1 rain) (STV 1.0 0.99))
+    (: e_rain_time (Time sk_rain_1 afternoon) (STV 1.0 0.99))
+    (: e_rain_past (Past sk_rain_1) (STV 1.0 0.99))
 
 **[ev-past] Leo served lunch yesterday.** — Past + Time role (fine-temporal as a role)
 
@@ -973,6 +979,17 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
 
     (: $prf (And (Member $e screen) (Agent $e $c) (Member $c clinic) (Theme $e patient) (Time $e (Weekday $w))) $tv)
 
+**[aspect-inception] The baby started to cry.** — inceptive aspect (mirror of cessation): an eventive `start`/`begin` event + `Theme` = the activity (its own witness, `Ongoing`), both `Past`; the `start`/`begin` lemma kept surface-faithful
+
+    (: e_start (Member sk_start_1 start) (STV 1.0 0.99))
+    (: e_start_ag (Agent sk_start_1 sk_baby_1) (STV 1.0 0.99))
+    (: e_start_th (Theme sk_start_1 sk_cry_1) (STV 1.0 0.99))
+    (: e_start_past (Past sk_start_1) (STV 1.0 0.99))
+    (: e_baby (Member sk_baby_1 baby) (STV 1.0 0.99))
+    (: e_cry (Member sk_cry_1 cry) (STV 1.0 0.99))
+    (: e_cry_ag (Agent sk_cry_1 sk_baby_1) (STV 1.0 0.99))
+    (: e_cry_on (Ongoing sk_cry_1) (STV 1.0 0.99))
+
 **[cess-update] Jonas no longer works at the garage.** — with CONTEXT = the parse of "Jonas works
 at the garage." (`sk_work_1`, `jonas`, `sk_garage_1`): cessation on the SAME context symbols —
 `(Past e)` (the state held; the only new positive atom) + the strength-0 denial WITHOUT the
@@ -1320,7 +1337,7 @@ A deontic norm over a **kind** reifies the obligation/permission as a property `
 
 ## Compound decomposition (cross-cutting)
 
-Prefer single-word symbols; when a compound is genuinely needed, also emit decomposition atoms at `0.99/0.99` — **action** `verb_object` → genus `(Inheritance compound verb)` + object `(Patient compound obj)`; **kind** `modifier_noun` → genus `(Inheritance compound head-noun)` (+ adjective modifier when it genuinely describes the compound); **agent-nominalization** `X-er` → capability `(Inheritance nom (can verb))` + kind-relation `(Verb nom obj)` if an object is incorporated. Stop at single-word lemmas; leave purpose/association modifiers opaque (and adjective/condition compounds, deferred). A **possessor+part** noun-noun (a part *of* a whole: "car engine", "desk drawer") is **not** a compound kind — emit the head as its own kind + `(PartOf part whole)`, never fused.
+Prefer single-word symbols; when a compound is genuinely needed, also emit decomposition atoms at `0.99/0.99` — **action** `verb_object` → genus `(Inheritance compound verb)` + object `(Patient compound obj)`; **kind** `modifier_noun` → genus `(Inheritance compound head-noun)` (+ adjective modifier when it genuinely describes the compound); **agent-nominalization** `X-er` → capability `(Inheritance nom (can verb))` + kind-relation `(Verb nom obj)` if an object is incorporated. Stop at single-word lemmas; leave purpose/association modifiers opaque (and adjective/condition compounds, deferred). A **possessor+part** noun-noun (a part *of* a whole: "car engine", "desk drawer") is **not** a compound kind — emit the head as its own kind + `(PartOf part whole)`, never fused. A **phrasal / particle verb** ("went out", "brought in") stays one surface symbol `verb_particle` (`go_out`, `bring_in`) — no single-word synonym, no genus; recognizing `go_out` ≈ `fail` is deferred to a downstream statistical normalizer, not done here.
 
 **[decomp-action] Residents must recycle waste, but tenants are exempt.** — compound action `recycle_waste` (inside `(obligated …)`) → genus `recycle` + object `waste`
 
@@ -1355,6 +1372,14 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
     (: e_desk (Member sk_desk_1 desk) (STV 1.0 0.99))
     (: e_clean_past (Past sk_clean_1) (STV 1.0 0.99))
     (: dana_name (Name dana "Dana") (STV 1.0 0.99))
+
+**[decomp-phrasal] The heater switched off overnight.** — a **phrasal / particle verb** stays a single surface symbol `verb_particle` (`switch_off`), never a synonym (`deactivate`) or a bare head (`switch`), and takes **no genus**; the subject/object attaches by role (surface kept faithful — lexical synonymy is a downstream normalization step)
+
+    (: e_switch_off (Member sk_switch_off_1 switch_off) (STV 1.0 0.99))
+    (: e_heater (Member sk_heater_1 heater) (STV 1.0 0.99))
+    (: e_switch_off_pat (Patient sk_switch_off_1 sk_heater_1) (STV 1.0 0.99))
+    (: e_switch_off_time (Time sk_switch_off_1 night) (STV 1.0 0.99))
+    (: e_switch_off_past (Past sk_switch_off_1) (STV 1.0 0.99))
 
 **[nom-intrans] Greyhounds are racers.** — intransitive agent-nominalization → capability `(can <verb>)`, no object
 
@@ -1753,21 +1778,46 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: $prf (And (Member $e $verb) (Agent $e robot) (Can $e)) $tv)
     (: $prf (And (Member $e $verb) (Agent $e robot) (Can $e)) (STV 0.0 $conf))
 
-## Causal & discourse relations
+## Inter-clause connectives (surface-head)
 
-**[caus-because] The bridge collapsed because the cable snapped.** — `CauseOf` (cause first); each endpoint is its own eventuality, undergoers → `Patient`
+**[conn-because] The bridge collapsed because the cable snapped.** — the stated connective becomes the **UpperCamelCase surface head** (`Because`), **main clause first**, subordinate clause second (here identical to surface order); each clause parses as usual, undergoers → `Patient`
 
-    (: e_snap (Member sk_snap_1 snap) (STV 1.0 0.99))
-    (: snap_pat (Patient sk_snap_1 sk_cable_1) (STV 1.0 0.99))
-    (: e_cable (Member sk_cable_1 cable) (STV 1.0 0.99))
-    (: snap_past (Past sk_snap_1) (STV 1.0 0.99))
     (: e_collapse (Member sk_collapse_1 collapse) (STV 1.0 0.99))
     (: collapse_pat (Patient sk_collapse_1 sk_bridge_1) (STV 1.0 0.99))
     (: e_bridge (Member sk_bridge_1 bridge) (STV 1.0 0.99))
     (: collapse_past (Past sk_collapse_1) (STV 1.0 0.99))
-    (: c_cause (CauseOf sk_snap_1 sk_collapse_1) (STV 1.0 0.99))
+    (: e_snap (Member sk_snap_1 snap) (STV 1.0 0.99))
+    (: snap_pat (Patient sk_snap_1 sk_cable_1) (STV 1.0 0.99))
+    (: e_cable (Member sk_cable_1 cable) (STV 1.0 0.99))
+    (: snap_past (Past sk_snap_1) (STV 1.0 0.99))
+    (: conn (Because sk_collapse_1 sk_snap_1) (STV 1.0 0.99))
 
-**[caus-purpose] Liam saved money to buy a bicycle.** — purpose "to V" → `Motivate` + the purpose event marked `(Intended …)` (not asserted to have occurred)
+**[conn-because-fronted] Because the cable snapped, the bridge collapsed.** — fronting the subordinate clause changes NOTHING: the main clause is still the first argument (same atoms as [conn-because])
+
+    (: e_collapse (Member sk_collapse_1 collapse) (STV 1.0 0.99))
+    (: collapse_pat (Patient sk_collapse_1 sk_bridge_1) (STV 1.0 0.99))
+    (: e_bridge (Member sk_bridge_1 bridge) (STV 1.0 0.99))
+    (: collapse_past (Past sk_collapse_1) (STV 1.0 0.99))
+    (: e_snap (Member sk_snap_1 snap) (STV 1.0 0.99))
+    (: snap_pat (Patient sk_snap_1 sk_cable_1) (STV 1.0 0.99))
+    (: e_cable (Member sk_cable_1 cable) (STV 1.0 0.99))
+    (: snap_past (Past sk_snap_1) (STV 1.0 0.99))
+    (: conn (Because sk_collapse_1 sk_snap_1) (STV 1.0 0.99))
+
+**[coref-bridge-clause] The cottage burned, so the chimney toppled.** — in-sentence bridging: the definite part-NP in the second clause links to the first clause's whole by `PartOf` (same rule as cross-sentence bridging), alongside the surface connective
+
+    (: e_burn (Member sk_burn_1 burn) (STV 1.0 0.99))
+    (: burn_pat (Patient sk_burn_1 sk_cottage_1) (STV 1.0 0.99))
+    (: e_cottage (Member sk_cottage_1 cottage) (STV 1.0 0.99))
+    (: burn_past (Past sk_burn_1) (STV 1.0 0.99))
+    (: e_topple (Member sk_topple_1 topple) (STV 1.0 0.99))
+    (: topple_pat (Patient sk_topple_1 sk_chimney_1) (STV 1.0 0.99))
+    (: e_chimney (Member sk_chimney_1 chimney) (STV 1.0 0.99))
+    (: chimney_partof (PartOf sk_chimney_1 sk_cottage_1) (STV 1.0 0.99))
+    (: topple_past (Past sk_topple_1) (STV 1.0 0.99))
+    (: conn (So sk_burn_1 sk_topple_1) (STV 1.0 0.99))
+
+**[conn-purpose] Liam saved money to buy a bicycle.** — purpose infinitive → head `To`, main action first; the non-finite purpose event carries NO tense/status atom (nothing is asserted about whether it occurred)
 
     (: e_save (Member sk_save_1 save) (STV 1.0 0.99))
     (: save_ag (Agent sk_save_1 liam) (STV 1.0 0.99))
@@ -1778,42 +1828,39 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: buy_ag (Agent sk_buy_1 liam) (STV 1.0 0.99))
     (: buy_th (Theme sk_buy_1 sk_bicycle_1) (STV 1.0 0.99))
     (: e_bicycle (Member sk_bicycle_1 bicycle) (STV 1.0 0.99))
-    (: buy_intended (Intended sk_buy_1) (STV 1.0 0.99))
-    (: c_motivate (Motivate sk_buy_1 sk_save_1) (STV 1.0 0.99))
+    (: conn (To sk_save_1 sk_buy_1) (STV 1.0 0.99))
 
-**[caus-prevent] The vaccine prevented the patient from getting sick.** — `Prevent` (preventer → prevented event); the prevented event did NOT occur → also a negated `(And …)` at strength 0.0
+**[conn-belief] The vendor believed the crowd would grow, so she restocked the cart.** — belief-reason "so": the antecedent is the attitude eventuality itself; the belief content attaches by `Stimulus` and keeps the status its own grammar marks ("would" → `Future`)
 
-    (: e_vaccine (Member sk_vaccine_1 vaccine) (STV 1.0 0.99))
-    (: e_patient (Member sk_patient_1 patient) (STV 1.0 0.99))
-    (: c_prevent (Prevent sk_vaccine_1 sk_sick_1) (STV 1.0 0.99))
-    (: neg_sick (And (Member sk_sick_1 sick) (Experiencer sk_sick_1 sk_patient_1)) (STV 0.0 0.99))
+    (: e_believe (Member sk_believe_1 believe) (STV 1.0 0.99))
+    (: believe_exp (Experiencer sk_believe_1 sk_vendor_1) (STV 1.0 0.99))
+    (: e_vendor (Member sk_vendor_1 vendor) (STV 1.0 0.99))
+    (: believe_past (Past sk_believe_1) (STV 1.0 0.99))
+    (: e_grow (Member sk_grow_1 grow) (STV 1.0 0.99))
+    (: grow_pat (Patient sk_grow_1 sk_crowd_1) (STV 1.0 0.99))
+    (: e_crowd (Member sk_crowd_1 crowd) (STV 1.0 0.99))
+    (: grow_future (Future sk_grow_1) (STV 1.0 0.99))
+    (: believe_stim (Stimulus sk_believe_1 sk_grow_1) (STV 1.0 0.99))
+    (: e_restock (Member sk_restock_1 restock) (STV 1.0 0.99))
+    (: restock_ag (Agent sk_restock_1 sk_vendor_1) (STV 1.0 0.99))
+    (: restock_pat (Patient sk_restock_1 sk_cart_1) (STV 1.0 0.99))
+    (: e_cart (Member sk_cart_1 cart) (STV 1.0 0.99))
+    (: restock_past (Past sk_restock_1) (STV 1.0 0.99))
+    (: conn (So sk_believe_1 sk_restock_1) (STV 1.0 0.99))
 
-**[caus-state] The glass cracked because it was cold.** — a copular STATE that is a causal endpoint → reified state witness + `Experiencer` AND the flat `(Member subj prop)` (dual-emit, so non-causal "is it cold?" still resolves)
+**[conn-but] The rooster crowed, but the farmhand dozed.** — adversative "but" is captured like any other stated connective: surface head `But`, surface order
 
-    (: e_crack (Member sk_crack_1 crack) (STV 1.0 0.99))
-    (: crack_pat (Patient sk_crack_1 sk_glass_1) (STV 1.0 0.99))
-    (: e_glass (Member sk_glass_1 glass) (STV 1.0 0.99))
-    (: crack_past (Past sk_crack_1) (STV 1.0 0.99))
-    (: e_cold (Member sk_cold_1 cold) (STV 1.0 0.99))
-    (: cold_exp (Experiencer sk_cold_1 sk_glass_1) (STV 1.0 0.99))
-    (: glass_cold_flat (Member sk_glass_1 cold) (STV 1.0 0.99))
-    (: c_cause (CauseOf sk_cold_1 sk_crack_1) (STV 1.0 0.99))
+    (: e_crow (Member sk_crow_1 crow) (STV 1.0 0.99))
+    (: e_rooster (Member sk_rooster_1 rooster) (STV 1.0 0.99))
+    (: e_crow_ag (Agent sk_crow_1 sk_rooster_1) (STV 1.0 0.99))
+    (: e_crow_past (Past sk_crow_1) (STV 1.0 0.99))
+    (: e_doze (Member sk_doze_1 doze) (STV 1.0 0.99))
+    (: e_farmhand (Member sk_farmhand_1 farmhand) (STV 1.0 0.99))
+    (: e_doze_ag (Agent sk_doze_1 sk_farmhand_1) (STV 1.0 0.99))
+    (: e_doze_past (Past sk_doze_1) (STV 1.0 0.99))
+    (: conn (But sk_crow_1 sk_doze_1) (STV 1.0 0.99))
 
-**[caus-why-q] Why did the bridge collapse?** — query the cause of a POSITIVE focus (full focus pattern is fine — its atoms are independently asserted)
-
-    (: $prf (And (Member $f collapse) (Patient $f $b) (Member $b bridge) (CauseOf $c $f)) $tv)
-
-**[caus-why-intentional-q] Why did Wesley carry a lantern?** — an INTENTIONAL action's "why" queries the UNION of all three reason relations (cause ∪ purpose ∪ belief), one line each; the `Reason` branch catches a belief-motivated action ("…because he thought the power would fail") the question text can't reveal
-
-    (: $prf (And (Member $e carry) (Agent $e $w) (Name $w "Wesley") (Theme $e $l) (Member $l lantern) (Past $e) (CauseOf $c $e)) $tv)
-    (: $prf (And (Member $e carry) (Agent $e $w) (Name $w "Wesley") (Theme $e $l) (Member $l lantern) (Past $e) (Motivate $m $e)) $tv)
-    (: $prf (And (Member $e carry) (Agent $e $w) (Name $w "Wesley") (Theme $e $l) (Member $l lantern) (Past $e) (Reason $r $e)) $tv)
-
-**[caus-whynot-q] Why didn't the patient get sick?** — negated focus → the full focus pattern (event class + roles) + `Prevent`
-
-    (: $prf (And (Member $f sick) (Experiencer $f $pt) (Member $pt patient) (Prevent $p $f)) $tv)
-
-**[caus-despite] Although it snowed, the marathon proceeded.** — concession → `Despite` (concessive clause first, main event second); NOT causal
+**[conn-although] Although it snowed, the marathon proceeded.** — concessive → surface head `Although`; the concessive clause is SUBORDINATE, so the fronted MAIN clause is still the first argument (the weather clause keeps its expletive-"it" agentless form)
 
     (: e_snow (Member sk_snow_1 snow) (STV 1.0 0.99))
     (: snow_past (Past sk_snow_1) (STV 1.0 0.99))
@@ -1821,4 +1868,27 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: proceed_ag (Agent sk_proceed_1 sk_marathon_1) (STV 1.0 0.99))
     (: e_marathon (Member sk_marathon_1 marathon) (STV 1.0 0.99))
     (: proceed_past (Past sk_proceed_1) (STV 1.0 0.99))
-    (: c_despite (Despite sk_snow_1 sk_proceed_1) (STV 1.0 0.99))
+    (: conn (Although sk_proceed_1 sk_snow_1) (STV 1.0 0.99))
+
+**[conn-verb] The nurse kept the toddler from falling.** — a causation-flavored VERB is an ordinary event (never a relation head); the embedded eventuality attaches by `Theme`, the shared NP takes its role INSIDE the embedded event, and the non-finite embedded event carries no tense/status atom
+
+    (: e_keep (Member sk_keep_1 keep) (STV 1.0 0.99))
+    (: keep_ag (Agent sk_keep_1 sk_nurse_1) (STV 1.0 0.99))
+    (: e_nurse (Member sk_nurse_1 nurse) (STV 1.0 0.99))
+    (: keep_past (Past sk_keep_1) (STV 1.0 0.99))
+    (: keep_th (Theme sk_keep_1 sk_fall_1) (STV 1.0 0.99))
+    (: e_fall (Member sk_fall_1 fall) (STV 1.0 0.99))
+    (: fall_pat (Patient sk_fall_1 sk_toddler_1) (STV 1.0 0.99))
+    (: e_toddler (Member sk_toddler_1 toddler) (STV 1.0 0.99))
+
+**[conn-why-q] Why did the bridge collapse?** — the focus event pattern (built per Queries, incl. tense) + the canonical ask-conjunct `(ReasonFor $r <focus>)`; seeded rules derive `ReasonFor` from whatever surface head was stored, so no head enumeration is needed
+
+    (: $prf (And (Member $f collapse) (Patient $f $b) (Member $b bridge) (Past $f) (ReasonFor $r $f)) $tv)
+
+**[conn-whatfor-q] What did Liam save for?** — "what … for" asks the purpose only → conjoin `(PurposeOf $g <focus>)`
+
+    (: $prf (And (Member $e save) (Agent $e $l) (Name $l "Liam") (Past $e) (PurposeOf $g $e)) $tv)
+
+**[conn-how-q] How did the shutdown happen?** — mechanism → the two-hop `ReasonFor` chain into the focus, binding the intermediate
+
+    (: $prf (And (Member $f shutdown) (ReasonFor $mid $f) (ReasonFor $c $mid)) $tv)

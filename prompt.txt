@@ -126,7 +126,7 @@ Always prefer a **single lemma** for a predicate / class / property / action. Wh
 symbol is genuinely needed, also emit **decomposition atoms** that unpack it into single-word parts,
 so the reasoner connects it and answers finer questions. Decompose **once, to single-word lemmas,
 then stop** — don't recurse on parts already single; don't decompose idioms / non-compositional
-names (`hot_dog`). Decomposition atoms carry definitional `(STV 0.99 0.99)` and never change the
+names (`hot_dog`) or **phrasal / particle verbs** (`go_out`, `break_down` — kept whole, never a bare head or a single-word synonym; see below). Decomposition atoms carry definitional `(STV 0.99 0.99)` and never change the
 original meaning (a compound buried in a property does **not** leak to its genus — `(obligated
 pay_dues)` ≠ `(obligated pay)`).
 
@@ -140,6 +140,15 @@ pay_dues)` ≠ `(obligated pay)`).
   so "what must members pay?" = `(And (Inheritance member (obligated $a)) (Patient $a $w))` binds
   `$w = dues`. (A verb+object in **event** form is already decomposed — `(Member e pay) (Patient e
   dues)` — and needs nothing extra.)
+
+- **Phrasal / particle verb** = `verb_particle` ("went out", "broke down", "brought in", "switched
+  on"): keep it as **one surface symbol** joining the lemmatized verb + particle (`go_out`,
+  `break_down`, `bring_in`, `switch_on`). Do **not** swap in a single-word synonym (**not** `fail` /
+  `introduce` / `activate`), do **not** split off or drop the particle, and emit **no genus** (a
+  phrasal verb is usually non-compositional — `go_out` ≠ `go`). Render the surface form the **same
+  way every time**; recognizing that `go_out` means the same as `fail` is a downstream (statistical)
+  normalization step, not the translator's job. (An object attaches by its role as in any event:
+  "brought in restrictions" → `(Member e bring_in) (Patient e restriction)`.)
 
 - **Compound kind** = `modifier_noun` whose last word is a real head noun (`light_switch`,
   `lifetime_member`, `delivery_van`): emit its **genus** `(Inheritance <compound> <head-noun>)`:
@@ -265,7 +274,8 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
 
 - `Agent` — volitional doer / subject of an action.
 - `Patient` — direct object the action **creates, destroys, consumes, or physically changes**
-  (cook, build, write, break, cut, burn, eat, clean, fix).
+  (cook, build, write, break, cut, burn, eat, clean, fix, water — applying a substance or
+  treatment changes the object).
 - `Theme` — direct object **acquired, transferred, moved, possessed, perceived, or evaluated**
   with **no change to it** (buy, sell, rent, give, send, carry, read, watch, grade, score,
   review, measure, choose, keep, use).
@@ -292,7 +302,10 @@ sink, melt, shatter, snap, freeze, break, spread*); a **motion / volitional / se
 subject → `Agent` (*run, arrive, leave, march, proceed, sail, gather*); when unclear, `Agent`.
 
 An **indefinite argument** ("a book") is an existential → witness + class, referenced by its
-role. A **passive / agentless** clause just omits `Agent`.
+role. A **passive / agentless** clause just omits `Agent`. An **expletive / weather "it"** ("it is
+raining", "it got cold", "it seems") is **not** a referent — drop it and reify the predicate
+**agentless** (no `Agent` / `Experiencer` for the "it"): "it would rain" → `(Member sk_rain_1 rain)
+(Future sk_rain_1)`.
 
       Maria gave Bob a book in the library.
         →  (: e_give (Member sk_give_1 give) (STV 1.0 0.99))
@@ -866,7 +879,7 @@ derived event as the **whole conclusion bundle** — the trigger slot may stay a
 `(And (Member $e bark) (Agent $e sk_dog_1) (During $e $r))`. Contrast: "every **Monday**" is a
 calendar **slot**, not an occurrence domain — days are terms, not entities, so a rule would
 never fire; use the flat habitual form above.
-- A **copular** clause with a time modifier reifies the state to anchor it (like a causal
+- A **copular** clause with a time modifier reifies the state to anchor it (like a connective
   endpoint), **plus** the flat copular atom: "Alice was ill on Friday" → `(Member sk_ill_1 ill)
   (Experiencer sk_ill_1 alice) (Time sk_ill_1 (Weekday friday)) (Past sk_ill_1)` + `(Past (Member
   alice ill))`.
@@ -930,6 +943,22 @@ emit **both branches and union**, like a measure threshold:
       When did the ferry stop running?
         →  (: $prf (And (Member $e run) (Agent $e $f) (Member $f ferry) (End $e $t) (Past $e)) $tv)
            (: $prf (And (Member $s stop) (Agent $s $f) (Member $f ferry) (Theme $s $o) (Member $o run) (Time $s $t) (Past $s)) $tv)
+
+**Inception — "began / started / commenced to V" / "started V-ing".** The mirror of cessation's
+eventive boundary: reify the aspectual verb as an **eventive** `begin` / `start` event — the subject
+takes `Agent` (or the intransitive-subject role), `Theme` = the activity (its own witness, marked
+`Ongoing` — it is underway once begun) — both `Past` if past. No denial and no merge (nothing
+ceases). Keep the `begin` / `start` lemma surface-faithful (synonymy is downstream).
+
+      The audience began to applaud.
+        →  (: e_begin (Member sk_begin_1 begin) (STV 1.0 0.99))
+           (: e_bag (Agent sk_begin_1 sk_audience_1) (STV 1.0 0.99))
+           (: e_bth (Theme sk_begin_1 sk_applaud_1) (STV 1.0 0.99))
+           (: e_bpast (Past sk_begin_1) (STV 1.0 0.99))
+           (: e_aud (Member sk_audience_1 audience) (STV 1.0 0.99))
+           (: e_applaud (Member sk_applaud_1 applaud) (STV 1.0 0.99))
+           (: e_apag (Agent sk_applaud_1 sk_audience_1) (STV 1.0 0.99))
+           (: e_apon (Ongoing sk_applaud_1) (STV 1.0 0.99))
 
 **Bounded time** — the event's time is unknown but bounded → **`(TimeAtLeast e <term>)` /
 `(TimeAtMost e <term>)`** with the same structured terms — **any granularity**: `Year`, `Month`,
@@ -1416,6 +1445,8 @@ reuse their symbols, re-emit nothing (see **Input**).
 - **Mid-discourse naming** ("She named it Rex") — add `(Name <referent> "Rex")` to that referent.
 - **Bridging** ("Alice bought a car. The engine was broken") — "the engine" is new but linked
   to the antecedent: `(Member sk_engine_1 engine) (PartOf sk_engine_1 sk_car_1) (Past (Member sk_engine_1 broken))`.
+  Bridge the same way when the antecedent and the definite part are in the SAME sentence
+  (e.g. two clauses joined by a connective) — the `PartOf` link is still emitted.
 - **One-anaphora** ("a red car … a blue one") — "one" = a fresh entity of the antecedent's
   class: `(Member sk_car_2 car) (Member sk_car_2 blue)`.
 
@@ -1464,90 +1495,101 @@ of an event/relation with **`And`** on the shared event variable.
 Build the pattern exactly as the matching statement (same classes, roles, casing, status);
 only the unknowns and any named entity become `$`-variables, and the truth value becomes
 `$tv` (or `(STV 0.0 $conf)` for a negative question). Output **only** the query — never
-assert a `Name` or other fact (a question asks, it does not add knowledge). A **causal question**
-("why / how / what-for / why-not") is still just a query — of a causal relation (see **Causal
-questions**), so it likewise adds nothing to the KB.
+assert a `Name` or other fact (a question asks, it does not add knowledge). An **explanation
+question** ("why / how / what-for / why-not") is likewise just a query — the focus event pattern
+plus a canonical ask-relation conjunct (see **Explanation questions**) — adding nothing to the KB.
 
-## Causal & discourse relations (between clauses)
+## Inter-clause connectives (because / so / although / but / purpose "to")
 
-When an **explicit connective** marks a relation BETWEEN two clauses/eventualities, reify BOTH
-clauses as eventualities and emit a **binary relation atom** `(<Rel> <cause> <effect>)` (UpperCamelCase
-head, two eventuality arguments). Reify each clause the usual way — a verbal clause is its event
-witness `sk_<verb>_<n>`. A **copular STATE that participates in such a relation** is reified as a
-**state witness** `sk_<prop>_<n>` with `(Member sk_<prop>_<n> <prop>)` and its subject attached by
-`Experiencer` (a property/psych state; reserve `Holder` for possession — see **Thematic roles**) — so the state can be a relation endpoint — **and ALSO emit the flat
-`(Member <subj> <prop>)`** so a plain non-causal question ("is X P?") still resolves (both forms
-coexist). (Reify a state this way only when it is a causal endpoint; otherwise just the flat copular
-form.)
+A **non-temporal connective** stating a relation BETWEEN two clauses — causal ("because", "so",
+"as a result", "therefore", "consequently"), purposive ("to" V / "in order to" / "so as to"),
+belief-reason ("thought / believed P, **so** …"), concessive ("although", "even though",
+"despite"), adversative ("but", "yet") — is captured **surface-faithfully**: reify BOTH clauses
+as eventualities (each parsed as usual — classes, roles, tense, negation) and emit **one binary
+relation atom whose head is the UpperCamelCase surface connective itself**, with the **main /
+matrix clause first and the subordinate clause second**. For a coordinating connective ("so",
+"but", "therefore") that is just the surface order; a fronted subordinate ("Because / Although
+X, Y") still puts the main clause Y first:
 
-**Relation lexicon** (map the connective to the head; the **antecedent comes first** — the cause, or
-for `Despite` the concession — the main clause second):
+      The latch stuck because the hinge rusted.
+        →  (: e_stick (Member sk_stick_1 stick) (STV 1.0 0.99))
+           (: e_stick_pat (Patient sk_stick_1 sk_latch_1) (STV 1.0 0.99))
+           (: e_latch (Member sk_latch_1 latch) (STV 1.0 0.99))
+           (: e_stick_past (Past sk_stick_1) (STV 1.0 0.99))
+           (: e_rust (Member sk_rust_1 rust) (STV 1.0 0.99))
+           (: e_rust_pat (Patient sk_rust_1 sk_hinge_1) (STV 1.0 0.99))
+           (: e_hinge (Member sk_hinge_1 hinge) (STV 1.0 0.99))
+           (: e_rust_past (Past sk_rust_1) (STV 1.0 0.99))
+           (: conn (Because sk_stick_1 sk_rust_1) (STV 1.0 0.99))
 
-- `CauseOf` — "X, **so** Y" / "**because** X, Y" / "Y **because** X" / "**as a result**" /
-  "**therefore**" / "**consequently**" / "**thus**" / "X **caused** Y" / "X **led to** Y".
-- `Trigger` — "**triggered**" / "**set off**".
-- `Enable` — "**enabled**" / "**allowed** … to" / "**let** … ".
-- `Contribute` — "**contributed to**" / "**was a factor in**" / "**partly caused**".
-- `Prevent` — "**prevented** … from" / "**stopped** … from" / "**kept** … from" (preventer → prevented
-  event). The prevented event did **not** occur, so ALSO emit it as a negated event (strength `0.0`,
-  per **Negation (events)**), with `Prevent` pointing at it.
-- `Motivate` — purpose "**to** V" / "**in order to**" / "**so as to**" giving the **reason for an
-  action** (the purpose eventuality → the action). Reify the purpose clause as an eventuality and mark
-  it `(Intended <e>)` (intended, not asserted to have occurred). **Not** "**too** / **enough** ADJ
-  **to** V" — a degree-governed infinitive is the **capability** form (see **Comparatives & degree**),
-  not a purpose; use `Motivate` only when "to V" is the reason for an action, with no `too`/`enough`.
-- `Reason` — belief reason "X **believed / thought** P, **so** …" (the belief eventuality → the action).
-- `Despite` — concession "**despite**" / "**although**" / "**even though**" — **concessive clause
-  first, main event second** (same argument order as the others), e.g. "Despite the storm, the ferry
-  sailed." → `(Despite sk_storm_1 sk_sail_1)`. `Despite` is **NOT** a causal explanation — keep it
-  distinct from `CauseOf`/`Enable`.
+      The hinge rusted, so the latch stuck.
+        →  … the same eight event atoms …
+           (: conn (So sk_rust_1 sk_stick_1) (STV 1.0 0.99))
 
-These relation atoms are `(STV 1.0 0.99)` (a definitional record of the stated connective). Every
-endpoint still gets its own atoms (class, roles, status) as usual. Example:
+      Because the hinge rusted, the latch stuck.
+        →  … the same eight event atoms …
+           (: conn (Because sk_stick_1 sk_rust_1) (STV 1.0 0.99))   (fronting changes nothing — main clause still first)
 
-      The low road flooded because heavy rain fell.
-        →  (: e_flood (Member sk_flood_1 flood) (STV 1.0 0.99))
-           (: e_flood_pat (Patient sk_flood_1 sk_road_1) (STV 1.0 0.99))
-           (: e_road (Member sk_road_1 road) (STV 1.0 0.99))
-           (: e_rain (Member sk_rain_1 rain) (STV 1.0 0.99))
-           (: e_rain_past (Past sk_rain_1) (STV 1.0 0.99))
-           (: e_flood_past (Past sk_flood_1) (STV 1.0 0.99))
-           (: c_cause (CauseOf sk_rain_1 sk_flood_1) (STV 1.0 0.99))
+- **Do NOT normalize the connective** to a canonical relation — there is no closed causal
+  lexicon. The surface word IS the data (a multiword connective CamelCase-joins: "as a result"
+  → `AsAResult`, "in order to" → `InOrderTo`, "even though" → `EvenThough`); merging
+  "because" / "so" / "led to" into one causal notion is downstream work, not the translator's.
+  The connective atom is `(STV 1.0 0.99)` (a definitional record of the stated connective).
+  Emit it ONLY for an explicit connective — bare juxtaposition of clauses or sentences states
+  no relation and gets **no** connective atom.
+- **Temporal connectives get NO connective atom** — "after / before / when / while / until /
+  as soon as" locate eventualities in time and keep their canonical forms from the time
+  sections (`Before`, `During`, …). A connective atom is emitted only when the connective
+  states cause / purpose / concession / contrast.
+- A **purpose infinitive** ties the main action to the purpose eventuality (main action first):
+  "The clerk knelt to check the drain." → `(To sk_kneel_1 sk_check_1)` (head `To`; "in order
+  to" → `InOrderTo`). **Not** "**too** / **enough** ADJ **to** V" — a degree-governed
+  infinitive is the **capability** form (see **Comparatives & degree**), not a purpose.
+- **Belief-reason**: after an attitude clause, the antecedent of "so" is the attitude
+  eventuality itself — "Joel thought the tram would be crowded, so he cycled." →
+  `(So sk_think_1 sk_cycle_1)` (the belief content attaches to the attitude event by its role,
+  e.g. `Stimulus`).
+- **Causation-flavored VERBS are ordinary verbs** — "caused", "triggered", "prevented … from",
+  "stopped … from", "made" parse as verbal events with their usual roles, never as relation
+  heads; an embedded complement eventuality is reified and attached to the matrix verb by
+  `Theme`. In "V-ed NP from V-ing", the NP is the embedded event's participant only — give it
+  its role INSIDE the embedded event, not on the matrix verb. A **non-finite embedded
+  eventuality** ("from slipping", "to check the drain") carries **no** tense/status atom of
+  its own unless its own grammar marks one ("would V" → `Future`) — whether it actually
+  occurred is not stated, so assert or deny nothing about that.
+- A **copular STATE that is a connective-atom endpoint** is reified as a state witness
+  `sk_<prop>_<n>` with `(Member sk_<prop>_<n> <prop>)`, its subject attached by `Experiencer`
+  (reserve `Holder` for possession — see **Thematic roles**), **and ALSO emit the flat
+  `(Member <subj> <prop>)`** so a plain "is X P?" still resolves (both forms coexist; reify
+  only when the state is such an endpoint, otherwise just the flat copular form):
+  "The wallpaper peeled because it was damp." →
+  `(Because sk_peel_1 sk_damp_1)` with `(Member sk_damp_1 damp) (Experiencer sk_damp_1
+  sk_wallpaper_1)` + flat `(Member sk_wallpaper_1 damp)`.
 
-## Causal questions (why / how / what-for / why-not)
+## Explanation questions (why / how / what-for / why-not)
 
-A **causal question** asks for an eventuality linked to a **focus** event by a causal relation. It
-needs **no** separate type atom: a question compiles to a (transient) **query**, never an asserted
-fact, so identify the question word and express it as the **causal relation you query** — the relation,
-bound to the focus, IS the question type, and nothing is written to the KB (the literal "why" / "how"
-is a surface feature, recoverable from the question text, never stored). Build the focus event pattern
-as usual (per **Queries**) and put a bare `$`-variable in the asked relation:
+An explanation question asks for the stated reason of a **focus** event. The stored connective
+head is a surface word the question cannot name — but seeded engine rules derive a canonical
+**`(ReasonFor <reason> <event>)`** from every reason-bearing head (because / since / so / as a
+result / therefore / consequently / thus), and **`(PurposeOf <goal> <event>)`** from the
+purpose heads (`To`, `InOrderTo`, `SoAsTo`), with `PurposeOf` chaining into `ReasonFor`. Build
+the focus event pattern exactly per **Queries** (classes, roles, tense) and conjoin the asked
+relation — these two canonical heads appear ONLY in queries and seeded rules, never in
+translated statements:
 
-- "**why** …?" / "**what made** …?" / "**how come** …?" → the reason(s) for the focus. A physical /
-  non-volitional focus (flood, collapse, spoil) takes just `(CauseOf $cause <focus>)`. An **intentional
-  action** may have a cause, a purpose, OR a driving **belief**, so emit **one query line per
-  relation** — `(CauseOf $cause <focus>)`, `(Motivate $goal <focus>)`, AND `(Reason $reason <focus>)`.
-  (A belief-motivated action — "he took an umbrella because he **thought** it would rain" — stores its
-  reason under `Reason`; the question text gives no hint of the belief, so the `Reason` branch must be
-  queried too, or the answer is missed.)
-- "**what** … **for**?" / "in order to do what?" → the purpose only: `(Motivate $goal <focus>)`.
-- "**how** did … happen?" (mechanism) → the causal CHAIN into the focus, binding the intermediate(s):
-  `(And (CauseOf $c1 $mid) (CauseOf $mid <focus>))`.
-- "**why didn't** …?" → the preventer of the (negated) focus event: `(Prevent $preventer $f)`, built
-  like any focus pattern (event class + roles) plus the `Prevent` relation.
+- "**why** …?" / "**what made** …?" / "**how come** …?" → conjoin `(ReasonFor $r <focus>)` —
+  one line; causes, purposes, and belief-reasons all bind through the bridge.
+- "**what** … **for**?" / "in order to do what?" → the purpose only: `(PurposeOf $g <focus>)`.
+- "**how** did … happen?" (mechanism) → the chain into the focus, binding the intermediate:
+  `… (ReasonFor $mid <focus>) (ReasonFor $c $mid)` in the same `And`.
+- "**why didn't** …?" → the focus is the negated event: build the focus pattern with the
+  `(STV 0.0 $conf)` pin (per **Queries**) and conjoin `(ReasonFor $r <focus>)`; it can bind
+  only when the text actually stated the non-occurrence and a reason for it.
 
-The queried relation recovers the type unambiguously — `Motivate` alone = *what-for*; `CauseOf`
-(optionally with `Motivate` / `Reason`) = *why*; a `CauseOf` **chain** = *how*; `Prevent` = *why-not*. The cause /
-goal / preventer is the bare answer variable (returned bare, per **Queries**); a definite focus noun
-binds by its kind, a named participant by `Name`, exactly as in **Queries**.
+Nothing about the question is ever asserted.
 
-      Why did the road flood?
-        →  (: $prf (And (Member $f flood) (Patient $f $r) (Member $r road) (CauseOf $c $f)) $tv)
+      Why did the latch stick?
+        →  (: $prf (And (Member $e stick) (Patient $e $l) (Member $l latch) (Past $e) (ReasonFor $r $e)) $tv)
 
-      Why did Maria drive to the store?   (intentional action — cause, purpose, or belief)
-        →  (: $prf (And (Member $d drive) (Agent $d $m) (Name $m "Maria") (CauseOf $c $d)) $tv)
-           (: $prf (And (Member $d drive) (Agent $d $m) (Name $m "Maria") (Motivate $g $d)) $tv)
-           (: $prf (And (Member $d drive) (Agent $d $m) (Name $m "Maria") (Reason $r $d)) $tv)
-
-      Why didn't the fire spread?
-        →  (: $prf (And (Member $s spread) (Patient $s $f) (Member $f fire) (Prevent $p $s)) $tv)
+      What did the clerk kneel for?
+        →  (: $prf (And (Member $e kneel) (Agent $e $c) (Member $c clerk) (Past $e) (PurposeOf $g $e)) $tv)
