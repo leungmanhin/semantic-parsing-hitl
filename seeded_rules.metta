@@ -110,6 +110,41 @@
 (: ratio_measure (Implication (Premises (TimesAs $s $x $y $f) (Measure $y $s $m $u)
    (Compute * ($m $f) -> $r)) (Conclusions (Measure $x $s $r $u))) (STV 1.0 0.99))
 
+; ===== Scale poles (antonym comparatives) =====
+; An antonym comparative is stored on the SURFACE adjective, in surface argument order
+; ("Bob is shorter than Alice" -> (More short bob alice)); these rules link the two poles
+; of one dimension, so orderings on it still chain and a question worded from either pole
+; matches. The translator emits neither ScaleOpposite nor the flipped atom.
+;   (More short bob alice)  <=>  (More tall alice bob)
+
+; the pole relation is mutual — one fact per dimension below supplies both directions
+(: so_sym (Implication (Premises (ScaleOpposite $a $b))
+   (Conclusions (ScaleOpposite $b $a))) (STV 1.0 0.99))
+
+(: pole_more (Implication (Premises (ScaleOpposite $a $b) (More $a $x $y))
+   (Conclusions (More $b $y $x))) (STV 1.0 0.99))
+(: pole_moreby (Implication (Premises (ScaleOpposite $a $b) (MoreBy $a $x $y $n $u))
+   (Conclusions (MoreBy $b $y $x $n $u))) (STV 1.0 0.99))
+; The flipped PLAIN ordering needs no rule of its own: morebydiff gives the ordering on the
+; stated pole and pole_more flips it. Do NOT add a direct MoreBy->More pole edge as well --
+; two independently sufficient derivations of one goal make the query return NOTHING
+; (repro bug_competing_derivations_return_empty.py).
+
+; One fact per dimension (so_sym gives the reverse). Extend freely — a dimension with no
+; pair here simply keeps its surface scale and does not chain with its opposite.
+(: sp_tall      (ScaleOpposite short tall) (STV 1.0 0.99))
+(: sp_strong    (ScaleOpposite weak strong) (STV 1.0 0.99))
+(: sp_fast      (ScaleOpposite slow fast) (STV 1.0 0.99))
+(: sp_expensive (ScaleOpposite cheap expensive) (STV 1.0 0.99))
+(: sp_heavy     (ScaleOpposite light heavy) (STV 1.0 0.99))
+(: sp_wide      (ScaleOpposite narrow wide) (STV 1.0 0.99))
+(: sp_deep      (ScaleOpposite shallow deep) (STV 1.0 0.99))
+(: sp_high      (ScaleOpposite low high) (STV 1.0 0.99))
+(: sp_old       (ScaleOpposite young old) (STV 1.0 0.99))
+(: sp_hot       (ScaleOpposite cold hot) (STV 1.0 0.99))
+(: sp_bright    (ScaleOpposite dim bright) (STV 1.0 0.99))
+(: sp_loud      (ScaleOpposite quiet loud) (STV 1.0 0.99))
+
 ; ===== Symmetric-relation scaffolding =====
 
 ; A tagged symmetric relation holds both ways:  Symmetric(R), R(x,y) => R(y,x).

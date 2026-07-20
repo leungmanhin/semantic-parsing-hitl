@@ -38,25 +38,29 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
 
     (: oak_is_tree (Inheritance oak tree) (STV 1.0 0.99))
 
-**[cat-emp] All lions are fierce.** — empirical universal → confidence 0.9
+**[cat-emp] All lions are fierce.** — empirical universal → confidence 0.9; quantifier word recorded
 
     (: lions_are_fierce (Inheritance lion fierce) (STV 1.0 0.9))
+    (: lions_q (QuantifierPhrase lion fierce "all") (STV 1.0 0.99))
 
-**[cat-generic] Lemons are sour.** — bare generic → strength 0.9, empirical 0.9
+**[cat-generic] Lemons are sour.** — bare generic → strength 0.9, empirical 0.9; NO QuantifierPhrase (its absence marks the bare generic)
 
     (: lemons_are_sour (Inheritance lemon sour) (STV 0.9 0.9))
 
-**[cat-most] Most athletes are fit.** — graded → strength 0.9
+**[cat-most] Most athletes are fit.** — graded → strength 0.9 + quantifier word (distinguishes it from a bare generic, which is also 0.9)
 
     (: most_athletes_fit (Inheritance athlete fit) (STV 0.9 0.9))
+    (: athletes_q (QuantifierPhrase athlete fit "most") (STV 1.0 0.99))
 
-**[cat-few] Few volcanoes are active.** — graded → strength 0.1
+**[cat-few] Few volcanoes are active.** — graded → strength 0.1 + quantifier word
 
     (: few_volcanoes_active (Inheritance volcano active) (STV 0.1 0.9))
+    (: volcanoes_q (QuantifierPhrase volcano active "few") (STV 1.0 0.99))
 
-**[cat-no] No square is round.** — strength 0; definitional trait → conf 0.99
+**[cat-no] No square is round.** — strength 0; definitional trait → conf 0.99; "no" is a quantifier → companion (contrast [cat-neg], plain "not", which has none)
 
     (: square_not_round (Inheritance square round) (STV 0.0 0.99))
+    (: square_q (QuantifierPhrase square round "no") (STV 1.0 0.99))
 
 **[cat-neg] Spiders are not insects.** — negation → strength 0; taxonomic → 0.99
 
@@ -186,6 +190,28 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
     (: sk_contract_1_contract (Member sk_contract_1 contract) (STV 1.0 0.99))
     (: grace_not_sign (And (Member sk_sign_1 sign) (Agent sk_sign_1 grace) (Patient sk_sign_1 sk_contract_1) (Past sk_sign_1)) (STV 0.0 0.99))
     (: grace_name (Name grace "Grace") (STV 1.0 0.99))
+
+**[ev-coagent] The ranger hiked the ridge with Petra.** — comitative "with" (a co-participant) → `CoAgent`, never `Instrument`
+
+    (: e_hike (Member sk_hike_1 hike) (STV 1.0 0.99))
+    (: e_agent (Agent sk_hike_1 sk_ranger_1) (STV 1.0 0.99))
+    (: e_ranger (Member sk_ranger_1 ranger) (STV 1.0 0.99))
+    (: e_theme (Theme sk_hike_1 sk_ridge_1) (STV 1.0 0.99))
+    (: e_ridge (Member sk_ridge_1 ridge) (STV 1.0 0.99))
+    (: e_coagent (CoAgent sk_hike_1 petra) (STV 1.0 0.99))
+    (: e_past (Past sk_hike_1) (STV 1.0 0.99))
+    (: petra_name (Name petra "Petra") (STV 1.0 0.99))
+
+**[ev-instrument] The ranger split the log with a wedge.** — contrast control: instrumental "with" (a means) stays `Instrument`
+
+    (: e_split (Member sk_split_1 split) (STV 1.0 0.99))
+    (: e_agent (Agent sk_split_1 sk_ranger_1) (STV 1.0 0.99))
+    (: e_ranger (Member sk_ranger_1 ranger) (STV 1.0 0.99))
+    (: e_patient (Patient sk_split_1 sk_log_1) (STV 1.0 0.99))
+    (: e_log (Member sk_log_1 log) (STV 1.0 0.99))
+    (: e_instr (Instrument sk_split_1 sk_wedge_1) (STV 1.0 0.99))
+    (: e_wedge (Member sk_wedge_1 wedge) (STV 1.0 0.99))
+    (: e_past (Past sk_split_1) (STV 1.0 0.99))
 
 ### Thematic role: Theme vs Patient (#23)
 
@@ -446,9 +472,9 @@ The object role must be the **same** in a statement and its question or the quer
     (: leo_name (Name leo "Leo") (STV 1.0 0.99))
     (: mary_name (Name mary "Mary") (STV 1.0 0.99))
 
-**[comp-antonym] Nina is weaker than Oscar.** — antonym → canonical positive pole `strong` + swap (deterministic; no keep-lemma variant)
+**[comp-antonym] Nina is weaker than Oscar.** — antonym keeps its SURFACE scale and argument order; the seeded `ScaleOpposite` lexicon derives `(More strong oscar nina)`
 
-    (: comp_antonym (More strong oscar nina) (STV 1.0 0.99))
+    (: comp_antonym (More weak nina oscar) (STV 1.0 0.99))
     (: nina_name (Name nina "Nina") (STV 1.0 0.99))
     (: oscar_name (Name oscar "Oscar") (STV 1.0 0.99))
 
@@ -464,10 +490,10 @@ The object role must be the **same** in a statement and its question or the quer
     (: grace_name (Name grace "Grace") (STV 1.0 0.99))
     (: victor_name (Name victor "Victor") (STV 1.0 0.99))
 
-**[comp-very] Diana is extremely calm.** — intensifier → positive + `Degree high`
+**[comp-very] Diana is extremely calm.** — intensifier → positive + `Degree` carrying the SURFACE adverb (not a collapsed band)
 
     (: diana_calm (Member diana calm) (STV 1.0 0.99))
-    (: diana_calm_deg (Degree diana calm high) (STV 1.0 0.99))
+    (: diana_calm_deg (Degree diana calm extremely) (STV 1.0 0.99))
     (: diana_name (Name diana "Diana") (STV 1.0 0.99))
 
 **[comp-too] The coffee is too sweet.** — "too" → `Degree excessive` (definite `the coffee` typed)
@@ -502,9 +528,9 @@ The object role must be the **same** in a statement and its question or the quer
     (: nora_name (Name nora "Nora") (STV 1.0 0.99))
     (: owen_name (Name owen "Owen") (STV 1.0 0.99))
 
-**[comp-diff-antonym] The pony is 30 kilograms lighter than the horse.** — antonym → swap to the positive pole `heavy`
+**[comp-diff-antonym] The pony is 30 kilograms lighter than the horse.** — antonym keeps its SURFACE scale and order; seeded rules derive `(MoreBy heavy sk_horse_1 sk_pony_1 30 kilogram)` and `(More heavy sk_horse_1 sk_pony_1)`
 
-    (: pony_horse_diff (MoreBy heavy sk_horse_1 sk_pony_1 30 kilogram) (STV 1.0 0.99))
+    (: pony_horse_diff (MoreBy light sk_pony_1 sk_horse_1 30 kilogram) (STV 1.0 0.99))
     (: pony_member (Member sk_pony_1 pony) (STV 1.0 0.99))
     (: horse_member (Member sk_horse_1 horse) (STV 1.0 0.99))
 

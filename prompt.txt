@@ -215,14 +215,22 @@ Choose by the **subject's type**:
 "a member of a subclass is a member of the superclass". Emit only the atoms for the
 sentence; never emit `(Inheritance $x dog) → (Inheritance $x mammal)`.
 
-**Quantity → strength** (same `Inheritance`/`Member` shape):
+**Quantity → strength** (same `Inheritance`/`Member` shape). Set the strength from the
+quantifier **and** record the quantifier word itself in a companion
+**`(QuantifierPhrase <subject> <predicate> "<word>")`** atom `(STV 1.0 0.99)`: the strength is
+what the engine reasons with, the word is the surface record (the same split as
+`CardinalityPhrase` — without it "most Ns are P" and a bare generic "Ns are P" both land on
+`0.9` and become indistinguishable). Emit the companion **only when a quantifier word is
+actually there** — its **absence** is what marks a bare generic:
 
 - "all" / "every" → `1.0`; bare generic (no quantifier: "dogs are friendly") → `0.9` (≈most).
 - most → `0.9`, a lot of → `0.8`, many → `0.7`, few → `0.1`, no / none → `0.0`.
 
       All swans are white.    →  (: swans_are_white (Inheritance swan white) (STV 1.0 0.9))
+                                 (: swans_q (QuantifierPhrase swan white "all") (STV 1.0 0.99))
       Most teachers are patient. → (: most_teachers_patient (Inheritance teacher patient) (STV 0.9 0.9))
-      Apples are sweet.       →  (: apples_sweet (Inheritance apple sweet) (STV 0.9 0.9))
+                                 (: teachers_q (QuantifierPhrase teacher patient "most") (STV 1.0 0.99))
+      Apples are sweet.       →  (: apples_sweet (Inheritance apple sweet) (STV 0.9 0.9))   ; bare generic — no companion
 
 ("a few" / "several" / "dozens" are vague *counts*, not proportions → see **Cardinality**.)
 
@@ -243,6 +251,10 @@ Negate by setting **strength `0.0`** on the same atom (confidence per the dial):
 
       Dolphins are not fish.  →  (: dolphins_not_fish (Inheritance dolphin fish) (STV 0.0 0.99))
       No reptile is warm-blooded. → (: reptile_not_warm (Inheritance reptile warm_blooded) (STV 0.0 0.99))
+                                    (: reptile_q (QuantifierPhrase reptile warm_blooded "no") (STV 1.0 0.99))
+
+The quantifier **"no" / "none"** takes a `QuantifierPhrase` companion like any other quantifier
+word (above); plain **"not"** negation takes none — so the two `0.0` readings stay distinct.
 
 - **"not all / not every X is Y"** → a **counterexample witness**, one X that is not Y:
 
@@ -285,7 +297,13 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
   rusty") — the entity the state holds of; `Stimulus` — a psych state's object.
 - `Holder` — subject of a **possession / relational** state **only** ("own", "have", "lack") —
   a bare property is `Experiencer`, never `Holder`.
-- Obliques: `Instrument` ("with …"), `Location` ("in/at/on …"), `Time` ("yesterday"; dates &
+- `CoAgent` — an animate **co-participant** in the action ("with John", "together with", "along
+  with", "accompanied by"): a second doer, **not** a means. Split a "with"-phrase by one test —
+  a **participant** in the action → `CoAgent`; the **means** it is performed by → `Instrument`.
+  (A **collective / reciprocal** predicate — "met with", "collided with" — instead stays one
+  event with multiple `Agent` atoms; see **Coordination & plurals**.)
+- Obliques: `Instrument` (the **means**, "with a knife" — a tool or substance, never a person),
+  `Location` ("in/at/on …"), `Time` ("yesterday"; dates &
   clock times — see **Time**), `Manner` (adverb), `Source` ("from …"), `Goal` ("to …"
   non-recipient), `Beneficiary` ("for …").
 
@@ -593,20 +611,21 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
       Alice is taller than Bob. →  (More tall alice bob) (Name alice "Alice") (Name bob "Bob")
 
   "**less** ADJ than" → **swap** the pair ("Maria is less patient than Tom" → `(More patient tom
-  maria)`). For an **antonym** comparative, **prefer the scale's positive ("more") pole** when
-  there is a clear one, swapping the pair — "Bob is shorter than Alice" → `(More tall alice
-  bob)`, "X is weaker than Y" → `(More strong Y X)` — so comparisons on one dimension share a
-  scale and chain. **Pick the canonical positive ("more") pole deterministically** so a statement
-  and its question always land on the same (opaque) scale — a mismatch misses: `short`→`tall`,
-  `weak`→`strong`, `slow`→`fast`, `cheap`→`expensive`, `light`→`heavy`, `narrow`→`wide`,
-  `shallow`→`deep`, `low`→`high`, `young`→`old`, `cold`→`hot`, `dim`→`bright`, `quiet`→`loud`. Only
-  when a scale has **genuinely no lexicalized positive pole** ("further left", "more downstream")
-  keep the surface lemma, applied consistently on both sides.
+  maria)`): the scale stays the **stated** adjective and only the order flips, because "less X
+  than" is the converse of "more X than".
+
+  An **antonym** comparative likewise keeps the **surface adjective as the scale, in surface
+  argument order** — "Bob is shorter than Alice" → `(More short bob alice)`, "X is weaker than
+  Y" → `(More weak X Y)`. Do **not** re-express it on the opposite pole: a **seeded** lexicon
+  (`ScaleOpposite`) links the two poles of a dimension, so orderings on it still chain and a
+  question worded from **either** pole matches. Word the query with the adjective the question
+  actually uses.
 
 - **Differential** "X is N \<unit\> ADJ-er than Y" (a comparative with a measured gap) →
   `(MoreBy <scale> X Y <magnitude> <unit>)` — scale / magnitude / unit exactly as in **Measures &
   units**. A seeded rule derives the plain `(More <scale> X Y)` ordering, so emit only the
-  `MoreBy` atom. "less" / antonyms **swap the pair**, as above:
+  `MoreBy` atom. "less" **swaps the pair**; an **antonym** keeps its **surface** scale and
+  argument order (the seeded pole lexicon links it), both as above:
 
       Alice is 3 cm taller than Bob.            →  (MoreBy tall alice bob 3 centimeter) (Name alice "Alice") (Name bob "Bob")
       The package is 2 kg heavier than the box. →  (Member sk_package_1 package) (Member sk_box_1 box) (MoreBy heavy sk_package_1 sk_box_1 2 kilogram)
@@ -660,11 +679,14 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
            (More fast sk_swim_1 sk_swim_2) (Name diego "Diego") (Name mia "Mia")
 
 - **Degree** ("very / too / slightly ADJ") — assert the **positive property** *and* a
-  `(Degree X <scale> <level>)` atom (intensifiers entail the property, so keep the positive);
-  level ∈ `high` (very/really/extremely), `low` (slightly/somewhat), `excessive` (too),
-  `sufficient` (enough):
+  `(Degree X <scale> <level>)` atom (intensifiers entail the property, so keep the positive).
+  For a plain **intensifier / downtoner**, `<level>` is the **surface adverb, lemmatized**
+  (`very`, `really`, `extremely`, `slightly`, `somewhat`, `fairly`) — record the word that was
+  used; do **not** collapse it into a band. Only the two **construction** markers are fixed
+  symbols, because they select how a following infinitive is encoded (below): `excessive`
+  (too), `sufficient` (enough):
 
-      Alice is very tall.  →  (Member alice tall) (Degree alice tall high) (Name alice "Alice")
+      Alice is very tall.  →  (Member alice tall) (Degree alice tall very) (Name alice "Alice")
       The soup is too hot. →  (Member sk_soup_1 soup) (Member sk_soup_1 hot) (Degree sk_soup_1 hot excessive)
 
 - **"too ADJ to V" / "ADJ enough to V"** add the consequence to the degree. "too ADJ to V" → the
@@ -681,8 +703,9 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
       Sam is fit enough to run.    →  (Member sam fit) (Degree sam fit sufficient)
                                       (Member sk_run_1 run) (Agent sk_run_1 sam) (Can sk_run_1) (Name sam "Sam")
 
-`More`'s transitivity, `SameDegree`'s symmetry, **differential-gap addition** along a chain, and the
-**`TimesAs` → ordering / measure** derivations are **seeded** (`seeded_rules.metta`), not emitted.
+`More`'s transitivity, `SameDegree`'s symmetry, **differential-gap addition** along a chain, the
+**`TimesAs` → ordering / measure** derivations, and the **`ScaleOpposite` pole lexicon** are
+**seeded** (`seeded_rules.metta`), not emitted.
 Tense/modality **wrap** a comparative like any copular atom: "Alice was taller than Bob" → `(Past
 (More tall alice bob))`.
 
@@ -885,7 +908,7 @@ never fire; use the flat habitual form above.
   alice ill))`.
 
 **Ordering** between two eventualities is the canonical relation **`(Before <earlier> <later>)`**
-— "after" **swaps the arguments** (one relation per pair, like the positive comparative pole);
+— "after" **swaps the arguments** (one relation per pair, a closed-class logical converse);
 it chains via seeded transitivity. A **measured gap** is **`(BeforeBy <earlier> <later> <n>
 <unit>)`** — the `MoreBy` of time: seeded rules derive the plain `Before` and add gaps along a
 same-unit chain. "**N units ago / from now**" anchors on the reserved symbol **`now`**:
