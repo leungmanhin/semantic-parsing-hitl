@@ -301,6 +301,53 @@ A **resultative** predicates a result of the object caused by the action. **Stat
     (: e_soup_cold (Member sk_soup_1 cold) (STV 1.0 0.99))
     (: lena_name (Name lena "Lena") (STV 1.0 0.99))
 
+### Periphrastic causatives (#34b)
+
+"have / get / make / let X do" → the causative verb is a matrix event (`Agent` = causer, `Theme` = the reified caused event); the causee's role in the caused event follows the embedded **verb form** — a **past participle** ("had it repaired") makes the object the caused event's `Patient` (causee/agent implicit → omitted); a **bare/`to`-infinitive** ("made him sign", "got her to sign", "let them leave") makes the object the caused event's `Agent`. Flavor (arrange/coerce/permit) rides the surface verb symbol; no separate operator. "have/get + NP" **alone** is possession (`Holder`/`Theme`), not causative.
+
+**[caus-participle] Dmitri had the roof replaced.** — participle complement → matrix `have` (Agent=causer, Theme=caused event); the object is the caused event's `Patient`, the causee implicit (omitted)
+
+    (: e_have (Member sk_have_1 have) (STV 1.0 0.99))
+    (: e_have_agent (Agent sk_have_1 dmitri) (STV 1.0 0.99))
+    (: e_have_theme (Theme sk_have_1 sk_replace_1) (STV 1.0 0.99))
+    (: e_have_past (Past sk_have_1) (STV 1.0 0.99))
+    (: e_replace (Member sk_replace_1 replace) (STV 1.0 0.99))
+    (: e_replace_patient (Patient sk_replace_1 sk_roof_1) (STV 1.0 0.99))
+    (: e_roof (Member sk_roof_1 roof) (STV 1.0 0.99))
+    (: dmitri_name (Name dmitri "Dmitri") (STV 1.0 0.99))
+
+**[caus-infinitive] The sergeant made the recruit kneel.** — bare-infinitive complement → matrix `make`; the object is the caused event's `Agent` (the causee)
+
+    (: e_make (Member sk_make_1 make) (STV 1.0 0.99))
+    (: e_make_agent (Agent sk_make_1 sk_sergeant_1) (STV 1.0 0.99))
+    (: e_sergeant (Member sk_sergeant_1 sergeant) (STV 1.0 0.99))
+    (: e_make_theme (Theme sk_make_1 sk_kneel_1) (STV 1.0 0.99))
+    (: e_make_past (Past sk_make_1) (STV 1.0 0.99))
+    (: e_kneel (Member sk_kneel_1 kneel) (STV 1.0 0.99))
+    (: e_kneel_agent (Agent sk_kneel_1 sk_recruit_1) (STV 1.0 0.99))
+    (: e_recruit (Member sk_recruit_1 recruit) (STV 1.0 0.99))
+
+**[caus-get-to] Elena got the vendor to lower the price.** — "get … to"-infinitive → the object (vendor) is the caused event's `Agent` (causee); the embedded event keeps its own object (price → `Patient`)
+
+    (: e_get (Member sk_get_1 get) (STV 1.0 0.99))
+    (: e_get_agent (Agent sk_get_1 elena) (STV 1.0 0.99))
+    (: e_get_theme (Theme sk_get_1 sk_lower_1) (STV 1.0 0.99))
+    (: e_get_past (Past sk_get_1) (STV 1.0 0.99))
+    (: e_lower (Member sk_lower_1 lower) (STV 1.0 0.99))
+    (: e_lower_agent (Agent sk_lower_1 sk_vendor_1) (STV 1.0 0.99))
+    (: e_vendor (Member sk_vendor_1 vendor) (STV 1.0 0.99))
+    (: e_lower_patient (Patient sk_lower_1 sk_price_1) (STV 1.0 0.99))
+    (: e_price (Member sk_price_1 price) (STV 1.0 0.99))
+    (: elena_name (Name elena "Elena") (STV 1.0 0.99))
+
+**[caus-boundary] Otis has a compass.** — CONTROL: "have + NP" alone (no verb complement) is **possession**, not causative → `have` event with `Holder`/`Theme`, no caused event, no `Agent`
+
+    (: e_have (Member sk_have_1 have) (STV 1.0 0.99))
+    (: e_have_holder (Holder sk_have_1 otis) (STV 1.0 0.99))
+    (: e_have_theme (Theme sk_have_1 sk_compass_1) (STV 1.0 0.99))
+    (: e_compass (Member sk_compass_1 compass) (STV 1.0 0.99))
+    (: otis_name (Name otis "Otis") (STV 1.0 0.99))
+
 ## Coordination & plurals
 
 **[coord-vp] Nina laughed and cried.** — coordinated VPs → two events, shared agent

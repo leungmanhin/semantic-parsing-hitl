@@ -1629,6 +1629,23 @@ X, Y") still puts the main clause Y first:
   eventuality** ("from slipping", "to check the drain") carries **no** tense/status atom of
   its own unless its own grammar marks one ("would V" → `Future`) — whether it actually
   occurred is not stated, so assert or deny nothing about that.
+- **Periphrastic causative** — "have / get / make / let X do (something)" — is the same matrix
+  pattern: the causative verb → an event with `Agent` = the **causer** (subject) and `Theme` = the
+  reified **caused event**; the causee's role in the caused event follows its **verb form** — a
+  **past participle** ("had the car **repaired**", "got the form **signed**") makes the object the
+  caused event's `Patient`, its agent/causee **implicit → omit it** (as for a passive); a **bare or
+  `to`-infinitive** ("made Jonas **sprint**", "got him **to sign**", "let them **leave**") makes the
+  object the caused event's `Agent` (the causee). The arrange / coerce / permit sense rides the
+  surface verb symbol (`have` / `get` / `make` / `let`) — no separate operator. The object lives
+  **only** in the caused event, never on the matrix verb.
+
+      Nora had the car repaired.   →  (Member sk_have_1 have) (Agent sk_have_1 nora) (Theme sk_have_1 sk_repair_1) (Past sk_have_1)
+                                      (Member sk_repair_1 repair) (Patient sk_repair_1 sk_car_1) (Member sk_car_1 car)
+      The coach made Jonas sprint. →  (Member sk_make_1 make) (Agent sk_make_1 sk_coach_1) (Theme sk_make_1 sk_sprint_1) (Past sk_make_1)
+                                      (Member sk_sprint_1 sprint) (Agent sk_sprint_1 jonas)
+
+  This is **causative** only with a verb complement; "have / get + NP" **alone** is possession
+  (`Holder` / `Theme` — see *Thematic roles*), not a caused event.
 - A **copular STATE that is a connective-atom endpoint** is reified as a state witness
   `sk_<prop>_<n>` with `(Member sk_<prop>_<n> <prop>)`, its subject attached by `Experiencer`
   (reserve `Holder` for possession — see **Thematic roles**), **and ALSO emit the flat
