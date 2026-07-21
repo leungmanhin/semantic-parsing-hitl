@@ -252,6 +252,55 @@ The object role must be the **same** in a statement and its question or the quer
 
     (: $prf (And (Member $w worker) (Member $e assemble) (Agent $e $w) (Patient $e $what) (Past $e)) $tv)
 
+### Resultatives & secondary predicates (#34a)
+
+A **resultative** predicates a result of the object caused by the action. **State result** ("scrubbed it spotless") → object `Patient` + reified result state (`Member` + `Experiencer`) + flat `(Member obj state)` + `(Result event state)`. **Motion result** ("rolled it into the yard") → object `Theme` + the path as a `Source`/`Goal` **oblique**, **no** `Result` atom (the oblique is the result). A **depictive** (a state merely concurrent, not caused — "served it cold") is **not** a resultative: plain concurrent state, no `Result` link.
+
+**[result-state] Hana scrubbed the pan spotless.** — state resultative: object `Patient` (changed) + reified result state (`Experiencer`) + flat property + `(Result event state)`
+
+    (: e_scrub (Member sk_scrub_1 scrub) (STV 1.0 0.99))
+    (: e_scrub_agent (Agent sk_scrub_1 hana) (STV 1.0 0.99))
+    (: e_scrub_patient (Patient sk_scrub_1 sk_pan_1) (STV 1.0 0.99))
+    (: e_scrub_past (Past sk_scrub_1) (STV 1.0 0.99))
+    (: e_pan (Member sk_pan_1 pan) (STV 1.0 0.99))
+    (: e_spotless (Member sk_spotless_1 spotless) (STV 1.0 0.99))
+    (: e_spotless_exp (Experiencer sk_spotless_1 sk_pan_1) (STV 1.0 0.99))
+    (: e_pan_spotless (Member sk_pan_1 spotless) (STV 1.0 0.99))
+    (: e_result (Result sk_scrub_1 sk_spotless_1) (STV 1.0 0.99))
+    (: hana_name (Name hana "Hana") (STV 1.0 0.99))
+
+**[result-motion-goal] Diego rolled the barrel into the yard.** — motion resultative: object moved → `Theme`, path → `Goal` oblique, **no** `Result` atom
+
+    (: e_roll (Member sk_roll_1 roll) (STV 1.0 0.99))
+    (: e_roll_agent (Agent sk_roll_1 diego) (STV 1.0 0.99))
+    (: e_roll_theme (Theme sk_roll_1 sk_barrel_1) (STV 1.0 0.99))
+    (: e_roll_past (Past sk_roll_1) (STV 1.0 0.99))
+    (: e_barrel (Member sk_barrel_1 barrel) (STV 1.0 0.99))
+    (: e_yard (Member sk_yard_1 yard) (STV 1.0 0.99))
+    (: e_roll_goal (Goal sk_roll_1 sk_yard_1) (STV 1.0 0.99))
+    (: diego_name (Name diego "Diego") (STV 1.0 0.99))
+
+**[result-motion-source] Bruno wiped the smudge off the mirror.** — motion resultative with a `Source` path ("off …"); object moved → `Theme`, **no** `Result` atom
+
+    (: e_wipe (Member sk_wipe_1 wipe) (STV 1.0 0.99))
+    (: e_wipe_agent (Agent sk_wipe_1 bruno) (STV 1.0 0.99))
+    (: e_wipe_theme (Theme sk_wipe_1 sk_smudge_1) (STV 1.0 0.99))
+    (: e_wipe_past (Past sk_wipe_1) (STV 1.0 0.99))
+    (: e_smudge (Member sk_smudge_1 smudge) (STV 1.0 0.99))
+    (: e_mirror (Member sk_mirror_1 mirror) (STV 1.0 0.99))
+    (: e_wipe_source (Source sk_wipe_1 sk_mirror_1) (STV 1.0 0.99))
+    (: bruno_name (Name bruno "Bruno") (STV 1.0 0.99))
+
+**[result-depictive] Lena served the soup cold.** — a **depictive** (the soup was cold independently, not made cold by serving) → plain concurrent state, **no** `Result` link; serve is a transfer → `Theme`
+
+    (: e_serve (Member sk_serve_1 serve) (STV 1.0 0.99))
+    (: e_serve_agent (Agent sk_serve_1 lena) (STV 1.0 0.99))
+    (: e_serve_theme (Theme sk_serve_1 sk_soup_1) (STV 1.0 0.99))
+    (: e_serve_past (Past sk_serve_1) (STV 1.0 0.99))
+    (: e_soup (Member sk_soup_1 soup) (STV 1.0 0.99))
+    (: e_soup_cold (Member sk_soup_1 cold) (STV 1.0 0.99))
+    (: lena_name (Name lena "Lena") (STV 1.0 0.99))
+
 ## Coordination & plurals
 
 **[coord-vp] Nina laughed and cried.** — coordinated VPs → two events, shared agent

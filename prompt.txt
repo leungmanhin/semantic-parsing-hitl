@@ -404,6 +404,37 @@ status operator instead:
       John must be asleep.   →  (: john_must_asleep (Must (Member john asleep)) (STV 1.0 0.9))
       Bob will be a doctor.  →  (: bob_will_doctor (Future (Member bob doctor)) (STV 1.0 0.99))
 
+### Resultatives & secondary predicates
+
+A **resultative** predicates a *result* of the object caused by the action — the object comes to be
+in that state *because of* the verb. Two shapes, by what the result is:
+
+- **State result** ("painted it red", "wiped it clean", "hammered it flat", "forced it open"): the
+  object is the `Patient` (it changes); reify the result state — `(Member sk_<state>_N <state>)
+  (Experiencer sk_<state>_N <obj>)` — add the **flat** `(Member <obj> <state>)` so "is it
+  <state>?" still binds, and link it to the event with `(Result <event> sk_<state>_N)`:
+
+      Mara painted the fence white.
+        →  (Member sk_paint_1 paint) (Agent sk_paint_1 mara) (Patient sk_paint_1 sk_fence_1) (Past sk_paint_1)
+           (Member sk_fence_1 fence)
+           (Member sk_white_1 white) (Experiencer sk_white_1 sk_fence_1)
+           (Member sk_fence_1 white)
+           (Result sk_paint_1 sk_white_1)
+
+- **Motion result** ("slid the plate off the counter", "pushed it into the box"): the result is a
+  new **location**, already carried by the motion **obliques** — the object by its usual role
+  (moved → `Theme`), the path by `(Source <event> <from>)` ("off / from …") or `(Goal <event>
+  <to>)` ("into / onto / to …"). **No `Result` atom** — the `Source` / `Goal` *is* the result:
+
+      Otto slid the plate off the counter.
+        →  (Member sk_slide_1 slide) (Agent sk_slide_1 otto) (Theme sk_slide_1 sk_plate_1) (Past sk_slide_1)
+           (Member sk_plate_1 plate) (Member sk_counter_1 counter) (Source sk_slide_1 sk_counter_1)
+
+A **depictive** — a state that merely holds *during* the action, not caused by it ("ate the meat
+raw", "arrived tired") — is **not** a resultative: emit a plain concurrent state (flat, or a reified
+`Experiencer` state if it is a clause endpoint) with **no `Result` link**. When it is genuinely
+unclear whether a state is caused or merely concurrent, omit `Result` (prefer the plain state).
+
 ### Negation (events)
 
 Wrap the event's atoms in a **conjunction** and set **strength `0.0`** on it (confidence per
