@@ -166,6 +166,24 @@ pay_dues)` ≠ `(obligated pay)`).
   <whole>)`, e.g. "the car engine" → `(Member sk_engine_1 engine) (PartOf sk_engine_1 sk_car_1)`
   (+ `(Member sk_car_1 car)`), never `car_engine`.
 
+- **Possessive / genitive NP** = a possessor marked by **'s** ("Tom's phone") or a **possessive
+  pronoun** ("his / her / their phone"): attach the possessor to the possessed head by ONE test —
+  is the possessed a **part / component** of the possessor? If yes, `(PartOf <possessed>
+  <possessor>)` (exactly the "car engine" part-whole above); else one opaque `(Possession
+  <possessed> <possessor>)` (possessed first) — **never** an `own` event (a static genitive asserts
+  a link, not that anyone acquired anything). `Possession` is opaque, so it covers ownership,
+  kinship, and looser association alike without having to *mean* ownership:
+
+      Tom's phone …        →  (Member sk_phone_1 phone) (Possession sk_phone_1 tom)
+      the car's engine …   →  (Member sk_engine_1 engine) (PartOf sk_engine_1 sk_car_1)
+      her sister …         →  (Member sk_sister_1 sister) (Possession sk_sister_1 <her>)
+
+  Resolve the possessor by **coreference** (a name stays itself; a pronoun reuses its antecedent —
+  see **Coreference**). "Whose Y?" binds the possessor slot; "what does X have?" the possessed slot.
+  A genuinely possessive **of-phrase** ("the engine of the car") maps the same way — but not a
+  **partitive** "of the" (→ `SubsetOf` / `ProportionOf`), a **measure** ("a cup of water"), or an
+  **about**-phrase ("a photo of Mary").
+
 - **Agent-nominalization** = `X-er` ("one who Xs": `swimmer`, `egg_layer`, `predator`,
   `firefighter`): expose the underlying verb via a **capability** `(Inheritance <nom> (can <verb>))`;
   if an **object** is incorporated (`egg_layer` = lay + egg), also a **kind-relation** `(<Verb>

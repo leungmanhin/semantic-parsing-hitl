@@ -1423,6 +1423,49 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
     (: hawk_hunter (Inheritance hawk hunter) (STV 0.9 0.9))
     (: hunter_can (Inheritance hunter (can hunt)) (STV 0.99 0.99))
 
+### Possessive / genitive NPs (#35)
+
+A possessor marked by **'s** or a **possessive pronoun** attaches to the possessed head by one test — is the possessed a **part/component** of the possessor? If yes → `(PartOf possessed possessor)` (the part-whole rule); else one opaque `(Possession possessed possessor)` (possessed first), **never** an `own` event. `Possession` is opaque, so ownership, kinship, and looser association all use it. The possessor resolves by coreference (a name stays itself; a pronoun reuses its antecedent).
+
+**[poss-alienable] Priya's kettle broke.** — alienable ownership 's-genitive → `Possession` (possessed first), no `own` event; the possessed is its own witness, the possessor a bare name
+
+    (: e_kettle (Member sk_kettle_1 kettle) (STV 1.0 0.99))
+    (: e_kettle_poss (Possession sk_kettle_1 priya) (STV 1.0 0.99))
+    (: e_break (Member sk_break_1 break) (STV 1.0 0.99))
+    (: e_break_patient (Patient sk_break_1 sk_kettle_1) (STV 1.0 0.99))
+    (: e_break_past (Past sk_break_1) (STV 1.0 0.99))
+    (: priya_name (Name priya "Priya") (STV 1.0 0.99))
+
+**[poss-part] The tower's antenna toppled.** — a part/component 's-genitive routes to `PartOf` (not `Possession`), the whole a witness — the 's form reuses the "car engine" part-whole rule
+
+    (: e_antenna (Member sk_antenna_1 antenna) (STV 1.0 0.99))
+    (: e_antenna_partof (PartOf sk_antenna_1 sk_tower_1) (STV 1.0 0.99))
+    (: e_tower (Member sk_tower_1 tower) (STV 1.0 0.99))
+    (: e_topple (Member sk_topple_1 topple) (STV 1.0 0.99))
+    (: e_topple_patient (Patient sk_topple_1 sk_antenna_1) (STV 1.0 0.99))
+    (: e_topple_past (Past sk_topple_1) (STV 1.0 0.99))
+
+**[poss-kinship] Leo's uncle laughed.** — a kinship 's-genitive is still `Possession` (opaque — **not** an invented `Uncle` relation head, **not** an `own` event); the possessed `uncle` is a person witness, the subject an `Agent` (volitional intransitive)
+
+    (: e_uncle (Member sk_uncle_1 uncle) (STV 1.0 0.99))
+    (: e_uncle_poss (Possession sk_uncle_1 leo) (STV 1.0 0.99))
+    (: e_laugh (Member sk_laugh_1 laugh) (STV 1.0 0.99))
+    (: e_laugh_agent (Agent sk_laugh_1 sk_uncle_1) (STV 1.0 0.99))
+    (: e_laugh_past (Past sk_laugh_1) (STV 1.0 0.99))
+    (: leo_name (Name leo "Leo") (STV 1.0 0.99))
+
+**[poss-pronoun] Marcus frowned. His van stalled.** — a possessive **pronoun** "his" resolves by coreference to the antecedent `marcus`; the van is his via `Possession`
+
+    (: e_frown (Member sk_frown_1 frown) (STV 1.0 0.99))
+    (: e_frown_agent (Agent sk_frown_1 marcus) (STV 1.0 0.99))
+    (: e_frown_past (Past sk_frown_1) (STV 1.0 0.99))
+    (: marcus_name (Name marcus "Marcus") (STV 1.0 0.99))
+    (: e_van (Member sk_van_1 van) (STV 1.0 0.99))
+    (: e_van_poss (Possession sk_van_1 marcus) (STV 1.0 0.99))
+    (: e_stall (Member sk_stall_1 stall) (STV 1.0 0.99))
+    (: e_stall_patient (Patient sk_stall_1 sk_van_1) (STV 1.0 0.99))
+    (: e_stall_past (Past sk_stall_1) (STV 1.0 0.99))
+
 ## Conditional properties
 
 "X is P when/at/under/if C" → reified `(ConditionalProperty kind property condition)` (do NOT assert the bare property unconditionally); a seeded `cond_prop` rule gives the property to a kind-member also in the condition-state. Decompose a compound condition per **Compound concepts**.
@@ -1773,6 +1816,10 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 **[q-wh-who] Who painted the mural?** — wh on the Agent (definite object bound by kind)
 
     (: $prf (And (Member $e paint) (Patient $e $m) (Member $m mural) (Agent $e $who) (Past $e)) $tv)
+
+**[q-wh-whose] Whose kettle broke?** — wh on the **possessor** of a genitive → bind the `Possession` possessor slot, the possessed chained by kind + its event (pairs with [poss-alienable] → `priya`)
+
+    (: $prf (And (Member $k kettle) (Possession $k $who) (Member $e break) (Patient $e $k)) $tv)
 
 **[q-wh-do] What does Nina do?** — wh on the verb class (habitual, unmarked)
 
