@@ -252,6 +252,13 @@ The object role must be the **same** in a statement and its question or the quer
 
     (: $prf (And (Member $w worker) (Member $e assemble) (Agent $e $w) (Patient $e $what) (Past $e)) $tv)
 
+**[intrans-natural] The reservoir drained.** — a **non-volitional natural process** (a mass moved by gravity) puts its subject in `Patient` (it **undergoes** the draining), not `Agent`, even though "drain" is motion-like (#36)
+
+    (: e_drain (Member sk_drain_1 drain) (STV 1.0 0.99))
+    (: e_drain_patient (Patient sk_drain_1 sk_reservoir_1) (STV 1.0 0.99))
+    (: e_reservoir (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))
+    (: e_drain_past (Past sk_drain_1) (STV 1.0 0.99))
+
 ### Resultatives & secondary predicates (#34a)
 
 A **resultative** predicates a result of the object caused by the action. **State result** ("scrubbed it spotless") → object `Patient` + reified result state (`Member` + `Experiencer`) + flat `(Member obj state)` + `(Result event state)`. **Motion result** ("rolled it into the yard") → object `Theme` + the path as a `Source`/`Goal` **oblique**, **no** `Result` atom (the oblique is the result). A **depictive** (a state merely concurrent, not caused — "served it cold") is **not** a resultative: plain concurrent state, no `Result` link.
@@ -427,6 +434,48 @@ A **resultative** predicates a result of the object caused by the action. **Stat
     (: diana_exhausted (Past (Member diana exhausted)) (STV 1.0 0.99))
     (: felix_name (Name felix "Felix") (STV 1.0 0.99))
     (: diana_name (Name diana "Diana") (STV 1.0 0.99))
+
+**Mass partitives & precise proportions (#6 residuals).** A **mass** whole → `PartOf` + a single portion witness (no `GroupOf`); a **precise fraction** → `(Fraction n d)` in the `ProportionOf` level slot; a **percentage** `p%` → `(Fraction p 100)` (surface number over 100, **never reduced**, decimals allowed). The level slot is polymorphic over {vague symbol, `Fraction`}.
+
+**[part-mass] Half of the milk spoiled.** — mass partitive: the whole is a plain `Member` (not `GroupOf`), the portion `Member` + `PartOf` (mass analogue of `SubsetOf`), `ProportionOf` level `half`; predicate on the portion
+
+    (: e_milk (Member sk_milk_1 milk) (STV 1.0 0.99))
+    (: e_portion (Member sk_portion_1 milk) (STV 1.0 0.99))
+    (: e_portion_part (PartOf sk_portion_1 sk_milk_1) (STV 1.0 0.99))
+    (: e_portion_prop (ProportionOf sk_portion_1 sk_milk_1 half) (STV 1.0 0.99))
+    (: e_spoil (Member sk_spoil_1 spoil) (STV 1.0 0.99))
+    (: e_spoil_patient (Patient sk_spoil_1 sk_portion_1) (STV 1.0 0.99))
+    (: e_spoil_past (Past sk_spoil_1) (STV 1.0 0.99))
+
+**[part-fraction] Two-thirds of the jurors abstained.** — count partitive, precise fraction → `(Fraction 2 3)` in the level slot (subset form unchanged)
+
+    (: e_jurors (GroupOf sk_jurors_1 juror) (STV 1.0 0.99))
+    (: e_sub (GroupOf sk_sub_1 juror) (STV 1.0 0.99))
+    (: e_sub_subset (SubsetOf sk_sub_1 sk_jurors_1) (STV 1.0 0.99))
+    (: e_sub_prop (ProportionOf sk_sub_1 sk_jurors_1 (Fraction 2 3)) (STV 1.0 0.99))
+    (: e_abstain (Member sk_abstain_1 abstain) (STV 1.0 0.99))
+    (: e_abstain_agent (Agent sk_abstain_1 sk_sub_1) (STV 1.0 0.99))
+    (: e_abstain_past (Past sk_abstain_1) (STV 1.0 0.99))
+
+**[part-percent] Forty percent of the budget was cut.** — mass partitive + percentage → `(Fraction 40 100)` (unreduced — denom 100 keeps the percent signal)
+
+    (: e_budget (Member sk_budget_1 budget) (STV 1.0 0.99))
+    (: e_portion (Member sk_portion_1 budget) (STV 1.0 0.99))
+    (: e_portion_part (PartOf sk_portion_1 sk_budget_1) (STV 1.0 0.99))
+    (: e_portion_prop (ProportionOf sk_portion_1 sk_budget_1 (Fraction 40 100)) (STV 1.0 0.99))
+    (: e_cut (Member sk_cut_1 cut) (STV 1.0 0.99))
+    (: e_cut_patient (Patient sk_cut_1 sk_portion_1) (STV 1.0 0.99))
+    (: e_cut_past (Past sk_cut_1) (STV 1.0 0.99))
+
+**[part-percent-decimal] 12.5% of the applicants withdrew.** — count partitive + **decimal** percentage → `(Fraction 12.5 100)` (decimal numerator, denom 100, unreduced)
+
+    (: e_applicants (GroupOf sk_applicants_1 applicant) (STV 1.0 0.99))
+    (: e_sub (GroupOf sk_sub_1 applicant) (STV 1.0 0.99))
+    (: e_sub_subset (SubsetOf sk_sub_1 sk_applicants_1) (STV 1.0 0.99))
+    (: e_sub_prop (ProportionOf sk_sub_1 sk_applicants_1 (Fraction 12.5 100)) (STV 1.0 0.99))
+    (: e_withdraw (Member sk_withdraw_1 withdraw) (STV 1.0 0.99))
+    (: e_withdraw_agent (Agent sk_withdraw_1 sk_sub_1) (STV 1.0 0.99))
+    (: e_withdraw_past (Past sk_withdraw_1) (STV 1.0 0.99))
 
 ## Cardinality (counting)
 
@@ -952,6 +1001,12 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
     (: e_hike_past (Past sk_hike_1) (STV 1.0 0.99))
     (: e_hike_dur (Measure sk_hike_1 duration 5 hour) (STV 1.0 0.99))
     (: rosa_name (Name rosa "Rosa") (STV 1.0 0.99))
+
+**[dur-plural] The outage lasted for days.** — a **bare-plural** duration ("for days", no count) implies **at least two** → `(MeasureAtLeast e duration 2 day)` on the event-noun witness (#36)
+
+    (: e_outage (Member sk_outage_1 outage) (STV 1.0 0.99))
+    (: e_outage_past (Past sk_outage_1) (STV 1.0 0.99))
+    (: e_outage_dur (MeasureAtLeast sk_outage_1 duration 2 day) (STV 1.0 0.99))
 
 **[time-inyear] The archive burned in 1985.** — year alone → one `Time` atom
 

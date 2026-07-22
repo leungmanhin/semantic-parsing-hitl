@@ -335,7 +335,10 @@ default to `Theme`. Psych/perception object → `Stimulus`; indirect object → 
 obliques by their preposition/adverb. For an **intransitive** subject (no object), apply the same
 "does it change?" test to the **subject**: a **change-of-state undergoer** → `Patient` (*collapse,
 sink, melt, shatter, snap, freeze, break, spread*); a **motion / volitional / self-propelled**
-subject → `Agent` (*run, arrive, leave, march, proceed, sail, gather*); when unclear, `Agent`.
+subject → `Agent` (*run, arrive, leave, march, proceed, sail, gather*). But a **non-volitional
+natural process / force** — precipitation, fluids, gases, or a mass moved by gravity (*rain fell,
+the reservoir drained, smoke rose, the tide receded*) — takes `Patient` (its subject **undergoes**
+the motion, it does not initiate it), even when the verb is motion-like; when unclear, `Agent`.
 
 An **indefinite argument** ("a book") is an existential → witness + class, referenced by its
 role. A **passive / agentless** clause just omits `Agent`. An **expletive / weather "it"** ("it is
@@ -624,8 +627,13 @@ per member — see *Quantifiers, generics & scope*.) Introduce a **definite supe
   <G> <N>)` if the whole's size is stated ("three of the **20** students").
 - **Quantified subset** `S` of `G` → `(GroupOf <S> <kind>) (SubsetOf <S> <G>)`, predicate/event on **S**:
   - **cardinal** ("three of", "one of") → `(Cardinality <S> <k>)`;
-  - **proportional** ("most / some / half / few of") → `(ProportionOf <S> <G> <level>)`,
-    `<level>` ∈ `most / half / some / few / none`.
+  - **proportional** ("most / some / half / few of") → `(ProportionOf <S> <G> <level>)`. The
+    `<level>` is **polymorphic**: a **vague word** → the symbol `most / half / some / few / none`;
+    an **exact fraction** ("two-thirds / three-quarters / X out of Y") → **`(Fraction <n> <d>)`**;
+    a **percentage** ("37% / forty percent") → **`(Fraction <p> 100)`** — the surface number `<p>`
+    (integer or decimal) over a denominator of **100**, **never reduced** ("40%" → `(Fraction 40
+    100)`, "12.5%" → `(Fraction 12.5 100)`, *not* `(Fraction 2 5)` / `(Fraction 1 8)`); the
+    un-reduced `/100` preserves that it was a percentage.
 
       Three of the students passed.
         →  (GroupOf sk_students_1 student)                                  ; the definite set "the students"
@@ -638,6 +646,25 @@ per member — see *Quantifiers, generics & scope*.) Introduce a **definite supe
            (GroupOf sk_group_1 apple) (SubsetOf sk_group_1 sk_apples_1)
            (ProportionOf sk_group_1 sk_apples_1 most)
            (Inheritance sk_group_1 ripe)
+
+      Two-thirds of the students passed.                                  ; precise fraction in the level slot
+        →  (GroupOf sk_students_1 student)
+           (GroupOf sk_group_1 student) (SubsetOf sk_group_1 sk_students_1)
+           (ProportionOf sk_group_1 sk_students_1 (Fraction 2 3))
+           (Member sk_pass_1 pass) (Agent sk_pass_1 sk_group_1) (Past sk_pass_1)
+
+**Mass / non-count whole** ("half of the cake", "most of the water", "40% of the budget"). A mass has
+**no members** to subset, so use **`PartOf`** in place of `SubsetOf` and **no `GroupOf`**: the whole
+is a plain `(Member <W> <mass>)`, the portion `(Member <P> <mass>) (PartOf <P> <W>)` (a part of a
+homogeneous mass is still that mass), with `(ProportionOf <P> <W> <level>)`; put the predicate on
+`<P>`. The count/mass split is cued by the noun — a **plural/count** "the Ns" → `GroupOf` + `SubsetOf`,
+a **singular mass** "the N" → a single `Member` + `PartOf`:
+
+      Half of the cake melted.
+        →  (Member sk_cake_1 cake)
+           (Member sk_portion_1 cake) (PartOf sk_portion_1 sk_cake_1)
+           (ProportionOf sk_portion_1 sk_cake_1 half)
+           (Member sk_melt_1 melt) (Patient sk_melt_1 sk_portion_1) (Past sk_melt_1)
 
 **Never** emit a generic `(Inheritance <kind> <prop>)` for a partitive — "most **of the** apples" is
 that specific set, not apples-in-general. Contrasts: bare generic "most apples are ripe" →
@@ -1052,7 +1079,8 @@ relation above.
 **`(During <inner> <outer>)`**, both reified. A **duration** ("for three hours", "lasted two
 days") is a measure — **`(Measure e duration <n> <unit>)`** — converting to canonical **second**
 via the seeded lexicon (*Measures & units*); seeded rules also derive a duration from a same-day
-`Hour` or `Year` `Start`/`End` pair.
+`Hour` or `Year` `Start`/`End` pair. A **bare-plural** duration with no stated count ("for days",
+"over weeks") gives no exact figure but implies **at least two** → `(MeasureAtLeast e duration 2 <unit>)`.
 
       The market runs from 8 am to 1 pm. →  (Member sk_run_1 run) (Agent sk_run_1 sk_market_1)
                                             (Member sk_market_1 market) (Start sk_run_1 (Hour 8)) (End sk_run_1 (Hour 13))
@@ -1555,14 +1583,14 @@ of an event/relation with **`And`** on the shared event variable.
 
       Is Tokyo a city?      →  (: $prf (And (Name $x "Tokyo") (Member $x city)) $tv)
       Was Alice happy?      →  (: $prf (And (Name $x "Alice") (Past (Member $x happy))) $tv)
-      What did Bob cook?    →  (: $prf (And (Member $e cook) (Agent $e bob) (Patient $e $what) (Past $e)) $tv)
-      What can Bob cook?    →  (: $prf (And (Member $e cook) (Agent $e bob) (Patient $e $what) (Can $e)) $tv)
+      What did Bob cook?    →  (: $prf (And (Name $b "Bob") (Member $e cook) (Agent $e $b) (Patient $e $what) (Past $e)) $tv)
+      What can Bob cook?    →  (: $prf (And (Name $b "Bob") (Member $e cook) (Agent $e $b) (Patient $e $what) (Can $e)) $tv)
       Who cooked dinner?    →  (: $prf (And (Member $e cook) (Patient $e dinner) (Agent $e $who) (Past $e)) $tv)
-      What does Bob do?     →  (: $prf (And (Member $e $verb) (Agent $e bob)) $tv)
+      What does Bob do?     →  (: $prf (And (Name $b "Bob") (Member $e $verb) (Agent $e $b)) $tv)
       Can penguins fly?     →  (: $prf (And (Member $e fly) (Agent $e penguin) (Can $e)) $tv)
-      Did Bob cook?         →  (: $prf (And (Member $e cook) (Agent $e bob) (Past $e)) $tv)
+      Did Bob cook?         →  (: $prf (And (Name $b "Bob") (Member $e cook) (Agent $e $b) (Past $e)) $tv)
       Who is the oldest, and where do they live? →  (: $prf (And (Most old $who person) (Member $e live) (Agent $e $who) (Location $e $where)) $tv)
-      What did Bob cook, and who ate it?         →  (: $prf (And (Member $c cook) (Agent $c bob) (Patient $c $dish) (Past $c) (Member $et eat) (Agent $et $who) (Patient $et $dish) (Past $et)) $tv)
+      What did Bob cook, and who ate it?         →  (: $prf (And (Name $b "Bob") (Member $c cook) (Agent $c $b) (Patient $c $dish) (Past $c) (Member $et eat) (Agent $et $who) (Patient $et $dish) (Past $et)) $tv)
 
 Build the pattern exactly as the matching statement (same classes, roles, casing, status);
 only the unknowns and any named entity become `$`-variables, and the truth value becomes
