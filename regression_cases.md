@@ -1442,7 +1442,7 @@ Explicit distributive-universal ("all the / each of the / every one of the Ns V"
 
 ### Striking & relational generics
 
-Judge whether the property holds of *most* individuals. A bare generic relating two KINDS → a kind-level relation (no instance distribution, strength stays high). A striking *minority* copular generic → `Inheritance` at a lowered strength. (An *explicit* universal stays a ∀∀ rule — see [scope-aa].)
+Judge whether the property holds of *most* individuals. A bare generic relating two KINDS → a kind-level relation (no instance distribution, strength stays high). A striking *minority* copular generic → `Inheritance` at a lowered strength; a striking **verbal** generic naming a *rare event* (that befalls few members) → the distribution **rule** at a lowered strength, while a *characteristic disposition* stays 0.9. (An *explicit* universal stays a ∀∀ rule — see [scope-aa].)
 
 **[genR-rel-eat] Vultures eat carrion.** — relational generic (two kinds) → kind-level relation, never distributes to instances, strength high
 
@@ -1459,6 +1459,10 @@ Judge whether the property holds of *most* individuals. A bare generic relating 
 **[genR-majority] Eagles are predators.** — *majority* copular generic (control) → `Inheritance` at 0.9, NOT lowered
 
     (: eagles_predators (Inheritance eagle predator) (STV 0.9 0.9))
+
+**[genR-strike-verbal] Ships sink.** — striking **verbal** generic naming a *rare event* (an arbitrary ship seldom sinks) → the distribution **rule** at LOWERED strength (~0.3), the undergoer → `Patient`; a *characteristic disposition* like "dogs bite" stays 0.9
+
+    (: ships_sink (Implication (Premises (Member $x ship)) (Conclusions (Member (sk_sink $x) sink) (Patient (sk_sink $x) $x))) (STV 0.3 0.9))
 
 ### Defeasible generics & exceptions
 

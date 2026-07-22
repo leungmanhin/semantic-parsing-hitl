@@ -1248,7 +1248,7 @@ teachers are patient" stay the single `Inheritance` fact from **Categorical stat
 
 **Striking & relational generics** — first judge: does the property hold of *most* individuals of
 the kind? The default (a distributing rule, or `Inheritance`, at strength `0.9`) fits only
-**majority** generics ("birds fly", "dogs have four legs"). Two cases differ:
+**majority** generics ("birds fly", "dogs have four legs"). Three cases differ:
 
 - **Relational generic** relating two KINDS ("mosquitoes carry malaria", "bees pollinate flowers",
   "lions have manes", "sharks attack swimmers") → a **kind-level relation** `(<Verb> <kindA>
@@ -1271,8 +1271,20 @@ the kind? The default (a distributing rule, or `Inheritance`, at strength `0.9`)
 
       Politicians are corrupt.   →  (: pol_corrupt (Inheritance politician corrupt) (STV 0.3 0.9))
 
+- **Striking verbal generic** — a *distributing* verbal generic naming a **rare event that befalls
+  only a minority** of the kind ("planes crash", "cars break down", "houses flood") → keep the
+  distribution **rule** but **lower its strength** to the proportion (≈ `0.2`–`0.3`), so an arbitrary
+  member isn't strongly asserted to undergo it. A **characteristic disposition / capability** ("birds
+  fly", "dogs bite", "bees sting", "camels spit") **stays `0.9`** — the kind is defined by being able
+  / inclined to do it, even if few do so at any given moment. The test is the same base-rate check as
+  the copular case: would an *arbitrary* member undergo this? Rarely → lower; characteristically → 0.9.
+
+      Planes crash.  →  (: planes_crash (Implication (Premises (Member $x plane))
+                          (Conclusions (Member (sk_crash $x) crash) (Patient (sk_crash $x) $x))) (STV 0.3 0.9))
+
 Rule of thumb: set the strength to what an **arbitrary instance** should inherit — a kind relation
-doesn't inherit (stays high), a copular `Inheritance` does (lower it when the property is rare).
+doesn't inherit (stays high), a copular `Inheritance` **or a distributing verbal rule** does (lower
+it when the property is rare).
 
 **Defeasible generics & exceptions** ("X are/can P, but sub-kind Y isn't/can't"). A general generic
 plus a sub-kind exception resolves through the **confidence dial**: state the exception **more
