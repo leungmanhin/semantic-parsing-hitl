@@ -477,6 +477,22 @@ A **resultative** predicates a result of the object caused by the action. **Stat
     (: e_withdraw_agent (Agent sk_withdraw_1 sk_sub_1) (STV 1.0 0.99))
     (: e_withdraw_past (Past sk_withdraw_1) (STV 1.0 0.99))
 
+**[part-rest] Two runners finished; the rest of the runners collapsed.** — "the rest of X" = the **remainder** partitive → count portion (`GroupOf`+`SubsetOf`) + `(RestOf rest whole)`; the mentioned part (the 2 finishers) stays its own disjoint `SubsetOf` portion (a mass/heterogeneous whole would use `PartOf` instead)
+
+    (: e_finishers (GroupOf sk_finishers_1 runner) (STV 1.0 0.99))
+    (: e_finishers_card (Cardinality sk_finishers_1 2) (STV 1.0 0.99))
+    (: e_runners (GroupOf sk_runners_1 runner) (STV 1.0 0.99))
+    (: e_fin_subset (SubsetOf sk_finishers_1 sk_runners_1) (STV 1.0 0.99))
+    (: e_finish (Member sk_finish_1 finish) (STV 1.0 0.99))
+    (: e_finish_agent (Agent sk_finish_1 sk_finishers_1) (STV 1.0 0.99))
+    (: e_finish_past (Past sk_finish_1) (STV 1.0 0.99))
+    (: e_rest (GroupOf sk_rest_1 runner) (STV 1.0 0.99))
+    (: e_rest_subset (SubsetOf sk_rest_1 sk_runners_1) (STV 1.0 0.99))
+    (: e_rest_restof (RestOf sk_rest_1 sk_runners_1) (STV 1.0 0.99))
+    (: e_collapse (Member sk_collapse_1 collapse) (STV 1.0 0.99))
+    (: e_collapse_patient (Patient sk_collapse_1 sk_rest_1) (STV 1.0 0.99))
+    (: e_collapse_past (Past sk_collapse_1) (STV 1.0 0.99))
+
 ## Cardinality (counting)
 
 **[card-exact] Four chefs prepared the banquet.** — exact cardinal → `GroupOf` + `Cardinality n`, predicate over the group
@@ -752,6 +768,21 @@ A **resultative** predicates a result of the object caused by the action. **Stat
 **[purpose-q] Can the rope span the gap?** — query the capability event
 
     (: $prf (And (Member $r rope) (Member $e span) (Agent $e $r) (Theme $e $g) (Member $g gap) (Can $e)) $tv)
+
+**[deg-toolittle] There was too little rain.** — "too little" + a mass noun evaluates the **amount** → `(Degree <mass> quantity insufficient)` (the new `insufficient` marker), not an adjective degree
+
+    (: e_rain (Member sk_rain_1 rain) (STV 1.0 0.99))
+    (: e_rain_deg (Degree sk_rain_1 quantity insufficient) (STV 1.0 0.99))
+
+**[deg-toomuch] Mia used too much glue.** — "too much" + a mass noun → `(Degree <mass> quantity excessive)` on the noun's witness (its role in the event stays as usual)
+
+    (: e_use (Member sk_use_1 use) (STV 1.0 0.99))
+    (: e_use_agent (Agent sk_use_1 mia) (STV 1.0 0.99))
+    (: e_use_theme (Theme sk_use_1 sk_glue_1) (STV 1.0 0.99))
+    (: e_glue (Member sk_glue_1 glue) (STV 1.0 0.99))
+    (: e_glue_deg (Degree sk_glue_1 quantity excessive) (STV 1.0 0.99))
+    (: e_use_past (Past sk_use_1) (STV 1.0 0.99))
+    (: mia_name (Name mia "Mia") (STV 1.0 0.99))
 
 ## Measures & units
 

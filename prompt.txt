@@ -666,6 +666,17 @@ a **singular mass** "the N" → a single `Member` + `PartOf`:
            (ProportionOf sk_portion_1 sk_cake_1 half)
            (Member sk_melt_1 melt) (Patient sk_melt_1 sk_portion_1) (Past sk_melt_1)
 
+**"The rest of X" / "the remaining X"** picks the **remainder** of a definite whole (what is left
+after a mentioned part). Emit the ordinary partitive portion — a **count** whole → `(GroupOf <rest>
+<kind>) (SubsetOf <rest> <whole>)`, a **mass / heterogeneous** whole → `(PartOf <rest> <whole>)` —
+and add `(RestOf <rest> <whole>)` to flag it as the remainder; put the predicate on the rest. The
+mentioned part stays its own disjoint `PartOf` / `SubsetOf` portion.
+
+      One aisle was flooded; the rest of the warehouse stayed dry.
+        →  (Member sk_warehouse_1 warehouse)
+           (Member sk_aisle_1 aisle) (PartOf sk_aisle_1 sk_warehouse_1)
+           (PartOf sk_rest_1 sk_warehouse_1) (RestOf sk_rest_1 sk_warehouse_1) (Member sk_rest_1 dry)
+
 **Never** emit a generic `(Inheritance <kind> <prop>)` for a partitive — "most **of the** apples" is
 that specific set, not apples-in-general. Contrasts: bare generic "most apples are ripe" →
 `(Inheritance apple ripe) (STV 0.9 0.9)` (kind, distributes to any apple); bare count "three students
@@ -758,9 +769,9 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
   `(Degree X <scale> <level>)` atom (intensifiers entail the property, so keep the positive).
   For a plain **intensifier / downtoner**, `<level>` is the **surface adverb, lemmatized**
   (`very`, `really`, `extremely`, `slightly`, `somewhat`, `fairly`) — record the word that was
-  used; do **not** collapse it into a band. Only the two **construction** markers are fixed
+  used; do **not** collapse it into a band. Only these **construction** markers are fixed
   symbols, because they select how a following infinitive is encoded (below): `excessive`
-  (too), `sufficient` (enough):
+  (too), `sufficient` (enough), `insufficient` (too little / not enough):
 
       Alice is very tall.  →  (Member alice tall) (Degree alice tall very) (Name alice "Alice")
       The soup is too hot. →  (Member sk_soup_1 soup) (Member sk_soup_1 hot) (Degree sk_soup_1 hot excessive)
@@ -778,6 +789,17 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
                                       (Name maya "Maya")
       Sam is fit enough to run.    →  (Member sam fit) (Degree sam fit sufficient)
                                       (Member sk_run_1 run) (Agent sk_run_1 sam) (Can sk_run_1) (Name sam "Sam")
+
+- **"too much / too little / enough" + a quantity** (a mass noun, or a plural count) evaluates the
+  **amount**, not an adjective: put `(Degree <N> quantity <marker>)` on the noun's witness — "too
+  much" → `excessive`, "too little / too few / not enough" → `insufficient`, "enough / sufficient" →
+  `sufficient`. A **purpose** clause attaches its consequence exactly as "too ADJ to V"
+  (`excessive` / `insufficient` → the **negated** action, `sufficient` → the **positive** one); a
+  stated number ("over 3 tsp") adds a `Measure` as usual.
+
+      There was too little baking powder.  →  (Member sk_baking_powder_1 baking_powder)
+                                              (Degree sk_baking_powder_1 quantity insufficient)
+      He added too much salt.              →  (Member sk_salt_1 salt) (Degree sk_salt_1 quantity excessive)
 
 `More`'s transitivity, `SameDegree`'s symmetry, **differential-gap addition** along a chain, the
 **`TimesAs` → ordering / measure** derivations, and the **`ScaleOpposite` pole lexicon** are
