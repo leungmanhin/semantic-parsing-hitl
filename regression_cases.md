@@ -2151,3 +2151,98 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 **[conn-how-q] How did the shutdown happen?** — mechanism → the two-hop `ReasonFor` chain into the focus, binding the intermediate
 
     (: $prf (And (Member $f shutdown) (ReasonFor $mid $f) (ReasonFor $c $mid)) $tv)
+
+## Propositional attitudes (#41)
+
+**[att-believe] Priya believes that the tunnel is flooded.** — non-factive attitude: reify the attitude event + `Experiencer` holder + the complement **sealed** as one term under `Theme`; P is **not** asserted at top level (belief ≠ truth)
+
+    (: e_believe (Member sk_believe_1 believe) (STV 1.0 0.99))
+    (: e_believe_exp (Experiencer sk_believe_1 priya) (STV 1.0 0.99))
+    (: e_believe_theme (Theme sk_believe_1 (Member sk_tunnel_1 flooded)) (STV 1.0 0.99))
+    (: priya_name (Name priya "Priya") (STV 1.0 0.99))
+
+**[att-know] The inspector knows that the cable is frayed.** — factive attitude: same shape, and the complement is **also** emitted as ordinary top-level facts (know entails P)
+
+    (: e_know (Member sk_know_1 know) (STV 1.0 0.99))
+    (: e_know_exp (Experiencer sk_know_1 sk_inspector_1) (STV 1.0 0.99))
+    (: e_inspector (Member sk_inspector_1 inspector) (STV 1.0 0.99))
+    (: e_know_theme (Theme sk_know_1 (Member sk_cable_1 frayed)) (STV 1.0 0.99))
+    (: e_cable_frayed (Member sk_cable_1 frayed) (STV 1.0 0.99))
+
+**[att-negation] Omar doesn't think that the deal will close.** — negation targets the **attitude** (strength-0 bundle), not P; the complement stays sealed and unasserted
+
+    (: e_not_think (And (Member sk_think_1 think) (Experiencer sk_think_1 omar) (Theme sk_think_1 (And (Member sk_close_1 close) (Patient sk_close_1 sk_deal_1) (Future sk_close_1)))) (STV 0.0 0.99))
+    (: omar_name (Name omar "Omar") (STV 1.0 0.99))
+
+**[att-entity-object] Lena distrusts the auditor.** — CONTROL: a psych verb with an **entity** object keeps `Experiencer`/`Stimulus`; no clausal complement, no sealing, no `Theme`-term
+
+    (: e_distrust (Member sk_distrust_1 distrust) (STV 1.0 0.99))
+    (: e_distrust_exp (Experiencer sk_distrust_1 lena) (STV 1.0 0.99))
+    (: e_distrust_stim (Stimulus sk_distrust_1 sk_auditor_1) (STV 1.0 0.99))
+    (: e_auditor (Member sk_auditor_1 auditor) (STV 1.0 0.99))
+    (: lena_name (Name lena "Lena") (STV 1.0 0.99))
+
+## Focus particles & clefts (#38)
+
+**[foc-only] Only the treasurer objected.** — exclusive focus → assert the prejacent + opaque `(Only filler event)`; NO unbounded exclusion rule
+
+    (: e_object (Member sk_object_1 object) (STV 1.0 0.99))
+    (: e_object_agent (Agent sk_object_1 sk_treasurer_1) (STV 1.0 0.99))
+    (: e_treasurer (Member sk_treasurer_1 treasurer) (STV 1.0 0.99))
+    (: e_object_past (Past sk_object_1) (STV 1.0 0.99))
+    (: e_only (Only sk_treasurer_1 sk_object_1) (STV 1.0 0.99))
+
+**[foc-even] Even the veteran hesitated.** — scalar focus → prejacent + opaque `(Even filler event)`; the least-expected presupposition is recorded structurally, not asserted
+
+    (: e_hesitate (Member sk_hesitate_1 hesitate) (STV 1.0 0.99))
+    (: e_hesitate_agent (Agent sk_hesitate_1 sk_veteran_1) (STV 1.0 0.99))
+    (: e_veteran (Member sk_veteran_1 veteran) (STV 1.0 0.99))
+    (: e_hesitate_past (Past sk_hesitate_1) (STV 1.0 0.99))
+    (: e_even (Even sk_veteran_1 sk_hesitate_1) (STV 1.0 0.99))
+
+**[foc-also] Marco also signed the petition.** — additive focus → prejacent + opaque `(Also filler event)`; the "someone else too" presupposition is not asserted
+
+    (: e_sign (Member sk_sign_1 sign) (STV 1.0 0.99))
+    (: e_sign_agent (Agent sk_sign_1 marco) (STV 1.0 0.99))
+    (: e_sign_theme (Theme sk_sign_1 sk_petition_1) (STV 1.0 0.99))
+    (: e_petition (Member sk_petition_1 petition) (STV 1.0 0.99))
+    (: e_sign_past (Past sk_sign_1) (STV 1.0 0.99))
+    (: e_also (Also marco sk_sign_1) (STV 1.0 0.99))
+    (: marco_name (Name marco "Marco") (STV 1.0 0.99))
+
+**[foc-itcleft] It was the courier who lost the parcel.** — it-cleft = exhaustive identificational focus → prejacent + opaque `(Cleft filler event)`
+
+    (: e_lose (Member sk_lose_1 lose) (STV 1.0 0.99))
+    (: e_lose_agent (Agent sk_lose_1 sk_courier_1) (STV 1.0 0.99))
+    (: e_lose_theme (Theme sk_lose_1 sk_parcel_1) (STV 1.0 0.99))
+    (: e_courier (Member sk_courier_1 courier) (STV 1.0 0.99))
+    (: e_parcel (Member sk_parcel_1 parcel) (STV 1.0 0.99))
+    (: e_lose_past (Past sk_lose_1) (STV 1.0 0.99))
+    (: e_cleft (Cleft sk_courier_1 sk_lose_1) (STV 1.0 0.99))
+
+**[foc-pseudocleft] What the committee wanted was transparency.** — pseudo-cleft → assert the backgrounded clause (committee wanted transparency) + `(Cleft focus event)`
+
+    (: e_want (Member sk_want_1 want) (STV 1.0 0.99))
+    (: e_want_exp (Experiencer sk_want_1 sk_committee_1) (STV 1.0 0.99))
+    (: e_committee (Member sk_committee_1 committee) (STV 1.0 0.99))
+    (: e_want_stim (Stimulus sk_want_1 transparency) (STV 1.0 0.99))
+    (: e_want_past (Past sk_want_1) (STV 1.0 0.99))
+    (: e_cleft (Cleft transparency sk_want_1) (STV 1.0 0.99))
+
+## Imperatives (#47)
+
+**[imp-positive] Lock the gate.** — directive → the commanded event **sealed** under `(Directive <sealed-event>)`; no tense/occurrence asserted, no addressee referent (real object referents still typed)
+
+    (: e_directive (Directive (And (Member sk_lock_1 lock) (Patient sk_lock_1 sk_gate_1))) (STV 1.0 0.99))
+    (: e_gate (Member sk_gate_1 gate) (STV 1.0 0.99))
+
+**[imp-negative] Never share the passcode.** — negative command → `(Forbid <sealed-event>)`
+
+    (: e_forbid (Forbid (And (Member sk_share_1 share) (Theme sk_share_1 sk_passcode_1))) (STV 1.0 0.99))
+    (: e_passcode (Member sk_passcode_1 passcode) (STV 1.0 0.99))
+
+**[imp-vocative] Rosa, water the plants.** — explicit vocative addressee rides **inside** the sealed term as the `Agent`
+
+    (: e_directive (Directive (And (Member sk_water_1 water) (Agent sk_water_1 rosa) (Patient sk_water_1 sk_group_1))) (STV 1.0 0.99))
+    (: e_plants (GroupOf sk_group_1 plant) (STV 1.0 0.99))
+    (: rosa_name (Name rosa "Rosa") (STV 1.0 0.99))

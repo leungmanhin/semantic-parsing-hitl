@@ -455,6 +455,62 @@ anymore", "used to" — is **cessation**: the denial plus a `(Past e)`, see *Tim
                                   (And (Member sk_enter_1 enter) (Agent sk_enter_1 bob) (Permitted sk_enter_1))
                                   (STV 0.0 0.99))   ; deontic prohibition = permission denied
 
+### Propositional attitudes (believe / know / hope that …)
+
+A verb of thought or speech with a **clausal "that"-complement** — *believe, think, suppose,
+imagine, doubt, suspect, hope, fear, expect, assume, claim, say* (**non-factive**) or *know,
+realize, discover, learn, notice, remember, regret* (**factive**) — reifies the **attitude** as an
+event with `Experiencer` = the holder, and attaches the complement proposition **P** by `Theme`.
+Parse P as usual (classes, roles, tense), then **seal** its atoms as **one term**: a single atom if
+P is one atom, else `(And …)`.
+
+      Nadia believes that the bridge is unsafe.
+        →  (Member sk_believe_1 believe) (Experiencer sk_believe_1 nadia)
+           (Theme sk_believe_1 (Member sk_bridge_1 unsafe))
+
+- **Emit no atom of P at top level for a non-factive** attitude — belief / hope / fear do **not**
+  make P true, so the sealed term is P's only trace. A flat `(Member sk_bridge_1 unsafe)` here would
+  wrongly assert the bridge really *is* unsafe. A multi-atom complement seals under `(And …)`:
+  "Nadia believes Tom left" → `(Theme sk_believe_1 (And (Member sk_leave_1 leave) (Agent sk_leave_1
+  tom) (Past sk_leave_1)))`.
+- A **factive** verb (*know / realize / discover / regret*) entails P, so **also** emit P's atoms as
+  ordinary top-level facts, alongside the sealed `Theme` term:
+
+      Tom knows that the bridge is unsafe.
+        →  (Member sk_know_1 know) (Experiencer sk_know_1 tom)
+           (Theme sk_know_1 (Member sk_bridge_1 unsafe))
+           (Member sk_bridge_1 unsafe)                       ; factive: P is true
+
+- **Negation** ("doesn't believe", "never thought") negates the **attitude**, not P — wrap the
+  attitude bundle in a strength-`0.0` conjunction (see **Negation (events)**); P stays sealed and
+  unasserted either way. (Contrast a **causative** — "made the alarm sound" — which *asserts* its
+  complement; see **Causation-flavored verbs**.)
+- Only for a **clausal** complement. A psych/attitude verb with an **entity** object ("distrusts
+  Ben", "fears the dog") keeps `Experiencer` / `Stimulus` (see **Thematic roles**) — no sealing.
+
+QA — "Does X believe / know that P?" rebuilds `(And (Member $e <verb>) (Experiencer $e <holder>)
+(Theme $e <P>))`, reconstructing the sealed term (a variable stands for a referent with no top-level
+anchor, e.g. `(Theme $e (Member $x unsafe))`). "Is P actually so?" queries P directly — it binds for
+a factive, and correctly finds nothing for a non-factive.
+
+### Imperatives (commands)
+
+An **imperative** — "Close the valve", "Don't open the hatch" — is a **directive**, not an
+assertion: the commanded event has not happened, so it must not contaminate the KB with
+occurred-event facts. Reify the commanded eventuality (class, roles, any deadline / manner) and
+**seal it as one term** (as for an attitude complement) under **`(Directive <sealed-event>)`** for a
+positive command or **`(Forbid <sealed-event>)`** for a negative one. Assert **no** tense /
+occurrence, and mint **no** addressee referent (real object referents are still typed):
+
+      Close the valve.        →  (Directive (And (Member sk_close_1 close) (Patient sk_close_1 sk_valve_1)))
+                                 (Member sk_valve_1 valve)
+      Don't open the hatch.   →  (Forbid (And (Member sk_open_1 open) (Patient sk_open_1 sk_hatch_1)))
+                                 (Member sk_hatch_1 hatch)
+
+An explicit **vocative** addressee ("Sam, close the valve") goes **inside** the sealed term as the
+`Agent`. "What was commanded?" queries `(Directive $c)` / `(Forbid $c)`; "did a closing happen?"
+correctly finds nothing.
+
 ## Existential — "a/an", "some", "there is/are"
 
 An existential entity asserts *at least one* such thing → a fresh witness `sk_<class>_<n>`
@@ -1551,6 +1607,42 @@ dropped there:
 A **question** about an exclusive-or matches the `(Xor …)` atom by pattern (bind the unknown side);
 if a disjunct was later confirmed, ordinary queries find it and the other reads strength 0.
 
+## Focus particles & clefts (only / even / also / it-clefts)
+
+A **focus particle** or a **cleft** adds a focus-sensitive meaning on top of an ordinary clause.
+Assert the **prejacent** — the clause with the particle removed — **normally**, then add **one
+opaque focus atom** `(<Op> <focused-filler> <event>)` naming the focused constituent. The focus atom
+is **opaque** (stored and matched verbatim, like `Or` / `Xor`), never expanded into inference:
+
+- exclusive **"only / just / solely"** → `(Only <filler> <event>)`
+- scalar **"even"** → `(Even <filler> <event>)`
+- additive **"also / too / as well"** → `(Also <filler> <event>)`
+- **it-cleft** ("**it was** the intern **who** fixed it") / **pseudo-cleft** ("**what** the team
+  needed **was** time") → `(Cleft <filler> <event>)` — the backgrounded clause is the prejacent
+  (assert it), the clefted phrase is the focus.
+
+      Only Sara passed.
+        →  (Member sk_pass_1 pass) (Agent sk_pass_1 sara) (Past sk_pass_1)
+           (Only sara sk_pass_1)
+      It was the intern who fixed the leak.
+        →  (Member sk_fix_1 fix) (Agent sk_fix_1 sk_intern_1) (Patient sk_fix_1 sk_leak_1) (Past sk_fix_1)
+           (Member sk_intern_1 intern) (Member sk_leak_1 leak)
+           (Cleft sk_intern_1 sk_fix_1)
+
+- **Do NOT emit an exclusion rule** for "only" / clefts (∀ other → ¬P): the domain is contextual,
+  not the whole KB, so an unbounded strength-`0.0` rule would assert false things about every other
+  individual. Full exhaustivity inference is **closure-gated** (as for counting closure); the opaque
+  tag records the exhaustive-focus claim without firing it.
+- **Do NOT assert the additive / scalar presupposition** as a fact ("someone else also passed"):
+  the `(Also …)` / `(Even …)` tag records it structurally — asserting it would invent evidence.
+- The particle marks whichever constituent it sits on (subject, object, or the VP): use that
+  constituent's symbol as `<filler>`. With **VP-ellipsis** ("Ana passed too", "Ana did too")
+  reconstruct the verb (see **Coordination**), then tag `(Also ana <ana-event>)`. Focus atoms are
+  `(STV 1.0 0.99)`.
+
+QA — "Who alone passed?" → `(And (Member $e pass) (Only $x $e))`; "did only Sara pass?" rebuilds the
+prejacent + `(Only sara …)`.
+
 ## Coreference & anaphora
 
 Across a passage, when a later mention refers to an **already-introduced** entity or event,
@@ -1681,8 +1773,8 @@ X, Y") still puts the main clause Y first:
   infinitive is the **capability** form (see **Comparatives & degree**), not a purpose.
 - **Belief-reason**: after an attitude clause, the antecedent of "so" is the attitude
   eventuality itself — "Joel thought the tram would be crowded, so he cycled." →
-  `(So sk_think_1 sk_cycle_1)` (the belief content attaches to the attitude event by its role,
-  e.g. `Stimulus`).
+  `(So sk_think_1 sk_cycle_1)`, with the belief content **sealed** under the think event's `Theme`
+  (see **Propositional attitudes**).
 - **Causation-flavored VERBS are ordinary verbs** — "caused", "triggered", "prevented … from",
   "stopped … from", "made" parse as verbal events with their usual roles, never as relation
   heads; an embedded complement eventuality is reified and attached to the matrix verb by
