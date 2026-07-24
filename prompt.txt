@@ -407,6 +407,23 @@ status operator instead:
       John must be asleep.   →  (: john_must_asleep (Must (Member john asleep)) (STV 1.0 0.9))
       Bob will be a doctor.  →  (: bob_will_doctor (Future (Member bob doctor)) (STV 1.0 0.99))
 
+### Aspectual particles (again / still / already / yet)
+
+A repetitive / continuative / phasal particle adds a **presupposition** to an eventuality. Assert the
+eventuality normally + **one opaque tag** on its event (like a focus particle — the presupposition is
+recorded, never asserted as a separate fact); do **not** stuff these into `Manner`:
+
+- **"again"** (repetitive / restitutive — a prior same-type event happened) → `(Again <event>)`
+- **"still"** (the eventuality continues; the positive counterpart of cessation) → `(Still <event>)`
+- **"already"** (happened earlier than expected) → `(Already <event>)`
+- **"yet"** (NPI — expected but **not yet**, always under negation / a question) → `(Yet <event>)` on
+  the negated event bundle
+
+      The server crashed again. →  (Member sk_crash_1 crash) (Patient sk_crash_1 sk_server_1)
+                                   (Member sk_server_1 server) (Past sk_crash_1) (Again sk_crash_1)
+
+Do **not** assert the presupposed prior / expected event itself.
+
 ### Resultatives & secondary predicates
 
 A **resultative** predicates a *result* of the object caused by the action — the object comes to be
@@ -492,6 +509,28 @@ QA — "Does X believe / know that P?" rebuilds `(And (Member $e <verb>) (Experi
 (Theme $e <P>))`, reconstructing the sealed term (a variable stands for a referent with no top-level
 anchor, e.g. `(Theme $e (Member $x unsafe))`). "Is P actually so?" queries P directly — it binds for
 a factive, and correctly finds nothing for a non-factive.
+
+### Embedded questions (wonder / know / ask whether / who …)
+
+An **indirect question** — an interrogative clause as a complement ("wonders **whether** the vault is
+locked", "knows **who** signed", "asked **where** to go") — reifies the matrix verb + `Experiencer`
+holder (as an attitude) and **seals the QUESTION** under `Theme`, keeping its question-hood:
+
+- a **polar** "whether / if" question → `(Whether <sealed-P>)`
+- a **constituent** wh-question → `(Question <wh-word> <sealed-content>)`, the wh-word (`who` / `what`
+  / `where` / `when` / `how`) reused as the **gap** filler inside the sealed content.
+
+      Mara wonders whether the vault is locked.
+        →  (Member sk_wonder_1 wonder) (Experiencer sk_wonder_1 mara)
+           (Theme sk_wonder_1 (Whether (Member sk_vault_1 locked))) (Name mara "Mara")
+      The auditor knows who signed the form.
+        →  (Member sk_know_1 know) (Experiencer sk_know_1 sk_auditor_1) (Member sk_auditor_1 auditor)
+           (Theme sk_know_1 (Question who (And (Member sk_sign_1 sign) (Agent sk_sign_1 who) (Theme sk_sign_1 sk_form_1) (Past sk_sign_1))))
+
+The embedded question's content is **sealed** (never asserted at top level): "whether P" must **not**
+become `(Might P)`, and the wh-gap must **not** leak as a plain existential — nothing about the actual
+answer is asserted. (A **that**-clause — "knows **that** P" — is the *declarative* case that may assert
+P; see **Propositional attitudes**. This rule is only for **interrogative** whether/wh complements.)
 
 ### Imperatives (commands)
 
@@ -799,6 +838,15 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
 
   Bare "the tallest" (no noun) → the contextual comparison class (default `person`).
 
+- **Ordinal** "the **third** climber", "the **first** to respond", "the **last** runner" →
+  `(Ordinal <entity> <n> <scale>)` — the entity's rank `n` on an ordering `<scale>` (the associated
+  event, or an explicit "-est" dimension); "first" → `1`, a numeral → that integer, "last" → the
+  symbol `last`. A superlative is the rank-`1` special case (`the tallest` = `(Most tall …)`; `the
+  third tallest` → `(Ordinal x 3 tall)`).
+
+      Priya was the first to respond. →  (Ordinal priya 1 respond)
+                                         (Member sk_respond_1 respond) (Agent sk_respond_1 priya) (Past sk_respond_1) (Name priya "Priya")
+
 - **Equative** "X is as ADJ as Y" → `(SameDegree <scale> X Y)`:
 
       Bob is as strong as Tom. →  (SameDegree strong bob tom) (Name bob "Bob") (Name tom "Tom")
@@ -856,6 +904,22 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
       There was too little baking powder.  →  (Member sk_baking_powder_1 baking_powder)
                                               (Degree sk_baking_powder_1 quantity insufficient)
       He added too much salt.              →  (Member sk_salt_1 salt) (Degree sk_salt_1 quantity excessive)
+
+- **Comparison-class** "X is ADJ **for a** N" ("tall for a gymnast") — X exceeds the *norm for the
+  class*, **not** an absolute claim → `(Degree X <scale> (forKind <class>))`, and do **not** also
+  assert the plain `(Member X <scale>)` (X may not be ADJ absolutely):
+
+      Sven is tall for a gymnast. →  (Degree sven tall (forKind gymnast)) (Name sven "Sven")
+
+- **Clausal / quantity comparative** "**fewer** guests attended **than** she had invited" — a
+  comparative whose standard is a **clause** and whose compared dimension is a **quantity**: reify
+  both clauses, make each varying quantity a **group**, and compare the two groups on the quantity
+  scale with `More` (antonym pole — "fewer / less" → `(More few …)`, "more" → `(More many …)`):
+
+      Fewer guests attended than she had invited.
+        →  (Member sk_attend_1 attend) (GroupOf sk_att_1 guest) (Agent sk_attend_1 sk_att_1) (Past sk_attend_1)
+           (Member sk_invite_1 invite) (GroupOf sk_inv_1 guest) (Theme sk_invite_1 sk_inv_1) (Past sk_invite_1)
+           (More few sk_att_1 sk_inv_1)
 
 `More`'s transitivity, `SameDegree`'s symmetry, **differential-gap addition** along a chain, the
 **`TimesAs` → ordering / measure** derivations, and the **`ScaleOpposite` pole lexicon** are
@@ -1349,6 +1413,18 @@ the kind? The default (a distributing rule, or `Inheritance`, at strength `0.9`)
 
       Politicians are corrupt.   →  (: pol_corrupt (Inheritance politician corrupt) (STV 0.3 0.9))
 
+- **Kind-level (non-distributing) property** — a property of the KIND / population as a whole that
+  **no single instance can hold** ("the dodo is **extinct**", "pandas are **endangered**", "the house
+  sparrow is **widespread**"; also *common / rare / numerous / plentiful / ubiquitous / dying out /
+  thriving / declining*) → `(KindProperty <kind> <property>)`, an **opaque** kind-predication that does
+  **not** distribute — unlike `(Inheritance kind prop)`, which would hand the property to every
+  instance via member-inheritance. Test: *could one individual be "extinct" / "widespread"?* No →
+  `KindProperty` (so "is **this** dodo extinct?" correctly stays unknown); yes ("grey", "large") →
+  ordinary `Inheritance`. Distinct from the *striking copular* case above, where the property **does**
+  distribute (just rarely, at a lowered strength).
+
+      The dodo is extinct. →  (: dodo_extinct (KindProperty dodo extinct) (STV 1.0 0.9))
+
 - **Striking verbal generic** — a *distributing* verbal generic naming a **rare event that befalls
   only a minority** of the kind ("planes crash", "cars break down", "houses flood") → keep the
   distribution **rule** but **lower its strength** to the proportion (≈ `0.2`–`0.3`), so an arbitrary
@@ -1808,6 +1884,27 @@ X, Y") still puts the main clause Y first:
   "The wallpaper peeled because it was damp." →
   `(Because sk_peel_1 sk_damp_1)` with `(Member sk_damp_1 damp) (Experiencer sk_damp_1
   sk_wallpaper_1)` + flat `(Member sk_wallpaper_1 damp)`.
+
+### Counterfactual conditionals
+
+A **counterfactual** — a subjunctive "if X **had** V-ed, Y **would have** V-ed" — presupposes the
+antecedent is **false**. Reify both clauses and emit an opaque `(Counterfactual (And <antecedent>)
+(And <consequent>))` (both clauses **sealed** as terms — neither asserted true), **plus** the
+antecedent proposition as a strength-`0.0` bundle (the "it didn't happen" presupposition). Do **not**
+assert the consequent either way:
+
+      If Mia had trained, she would have won.
+        →  (Counterfactual (And (Member sk_train_1 train) (Agent sk_train_1 mia) (Past sk_train_1))
+                           (And (Member sk_win_1 win) (Agent sk_win_1 mia) (Past sk_win_1)))
+           (And (Member sk_train_1 train) (Agent sk_train_1 mia) (Past sk_train_1)) (STV 0.0 0.99)   ; she didn't train
+           (Name mia "Mia")
+
+An ordinary **indicative** conditional ("if the alarm sounds, the doors lock") is a plain
+`Implication` **rule** (see *Quantifiers, generics & scope*), not a counterfactual — only the
+subjunctive *had / would-have* form gets `Counterfactual`. **"unless X" / "if not X"** (a
+negated-antecedent conditional) is **not yet supported** — a rule premise cannot yet mean "X is not
+the case"; treat "unless" only as its **defeasible-exception** cue (see *Defeasible generics*) and
+otherwise leave the negated-antecedent inference out.
 
 ## Explanation questions (why / how / what-for / why-not)
 

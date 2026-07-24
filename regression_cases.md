@@ -2246,3 +2246,127 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: e_directive (Directive (And (Member sk_water_1 water) (Agent sk_water_1 rosa) (Patient sk_water_1 sk_group_1))) (STV 1.0 0.99))
     (: e_plants (GroupOf sk_group_1 plant) (STV 1.0 0.99))
     (: rosa_name (Name rosa "Rosa") (STV 1.0 0.99))
+
+## Kind-level (non-distributing) properties (#44)
+
+**[kind-extinct] The great auk is extinct.** — a KIND-only property (no individual can be "extinct") → opaque `(KindProperty kind prop)`, which does **not** distribute (unlike `Inheritance`, which would hand "extinct" to every instance via member-inheritance); an optional taxonomy genus is fine
+
+    (: ga_genus (Inheritance great_auk auk) (STV 0.99 0.99))
+    (: ga_extinct (KindProperty great_auk extinct) (STV 1.0 0.9))
+
+**[kind-endangered] Rhinos are endangered.** — same class (endangered / widespread / common / rare / numerous / thriving) → `(KindProperty rhino endangered)`
+
+    (: rhino_endangered (KindProperty rhino endangered) (STV 1.0 0.9))
+
+**[kind-control-grey] Sparrows are grey.** — CONTROL: an ordinary property one individual CAN hold stays a distributing `(Inheritance kind prop)@0.9`, NOT `KindProperty`
+
+    (: sparrow_grey (Inheritance sparrow grey) (STV 0.9 0.9))
+
+## Ordinals (#42)
+
+**[ord-nth] Nadia was the second to finish.** — `(Ordinal <entity> <n> <scale>)`: rank `n` on an ordering scale (the associated event); "first" → `1`; a superlative is the rank-1 special case
+
+    (: nadia_ord (Ordinal nadia 2 finish) (STV 1.0 0.99))
+    (: e_finish (Member sk_finish_1 finish) (STV 1.0 0.99))
+    (: e_finish_ag (Agent sk_finish_1 nadia) (STV 1.0 0.99))
+    (: e_finish_past (Past sk_finish_1) (STV 1.0 0.99))
+    (: nadia_name (Name nadia "Nadia") (STV 1.0 0.99))
+
+**[ord-noun] The fourth witness testified.** — ordinal on the head noun ranked by its associated event (`testify`)
+
+    (: witness_ord (Ordinal sk_witness_1 4 testify) (STV 1.0 0.99))
+    (: e_witness (Member sk_witness_1 witness) (STV 1.0 0.99))
+    (: e_testify (Member sk_testify_1 testify) (STV 1.0 0.99))
+    (: e_testify_ag (Agent sk_testify_1 sk_witness_1) (STV 1.0 0.99))
+    (: e_testify_past (Past sk_testify_1) (STV 1.0 0.99))
+
+## Aspectual particles (#43)
+
+**[asp-again] The printer jammed again.** — repetitive → the eventuality asserted normally + an opaque `(Again <event>)` tag (the prior-event presupposition recorded, not asserted); never stuffed into `Manner`
+
+    (: jam_ev (Member sk_jam_1 jam) (STV 1.0 0.99))
+    (: jam_pat (Patient sk_jam_1 sk_printer_1) (STV 1.0 0.99))
+    (: jam_printer (Member sk_printer_1 printer) (STV 1.0 0.99))
+    (: jam_past (Past sk_jam_1) (STV 1.0 0.99))
+    (: jam_again (Again sk_jam_1) (STV 1.0 0.99))
+
+**[asp-still] The reactor is still running.** — continuative (the positive counterpart of cessation) → `(Still <event>)`
+
+    (: run_ev (Member sk_run_1 run) (STV 1.0 0.99))
+    (: run_ag (Agent sk_run_1 sk_reactor_1) (STV 1.0 0.99))
+    (: run_reactor (Member sk_reactor_1 reactor) (STV 1.0 0.99))
+    (: run_ong (Ongoing sk_run_1) (STV 1.0 0.99))
+    (: run_still (Still sk_run_1) (STV 1.0 0.99))
+
+**[asp-already] The ferry had already departed.** — phasal (earlier than expected) → `(Already <event>)`
+
+    (: dep_ev (Member sk_depart_1 depart) (STV 1.0 0.99))
+    (: dep_ag (Agent sk_depart_1 sk_ferry_1) (STV 1.0 0.99))
+    (: dep_ferry (Member sk_ferry_1 ferry) (STV 1.0 0.99))
+    (: dep_past (Past sk_depart_1) (STV 1.0 0.99))
+    (: dep_already (Already sk_depart_1) (STV 1.0 0.99))
+
+## Comparison-class & clausal comparatives (#45 / #46)
+
+**[cmp-class] Bruno is fast for a tortoise.** — comparison-class: X exceeds the class norm, NOT an absolute claim → `(Degree X <scale> (forKind <class>))`, with **no** plain `(Member X <scale>)`
+
+    (: bruno_deg (Degree bruno fast (forKind tortoise)) (STV 1.0 0.99))
+    (: bruno_name (Name bruno "Bruno") (STV 1.0 0.99))
+
+**[cmp-clausal] More books sold than the store ordered.** — a comparative whose standard is a CLAUSE and dimension is a QUANTITY → reify both clauses, make each varying quantity a group, compare with `More` on the quantity scale (antonym pole: "more" → `many`, "fewer/less" → `few`)
+
+    (: sell_ev (Member sk_sell_1 sell) (STV 1.0 0.99))
+    (: sell_grp (GroupOf sk_sold_1 book) (STV 1.0 0.99))
+    (: sell_thm (Theme sk_sell_1 sk_sold_1) (STV 1.0 0.99))
+    (: sell_past (Past sk_sell_1) (STV 1.0 0.99))
+    (: order_ev (Member sk_order_1 order) (STV 1.0 0.99))
+    (: order_ag (Agent sk_order_1 sk_store_1) (STV 1.0 0.99))
+    (: order_grp (GroupOf sk_ord_1 book) (STV 1.0 0.99))
+    (: order_thm (Theme sk_order_1 sk_ord_1) (STV 1.0 0.99))
+    (: order_past (Past sk_order_1) (STV 1.0 0.99))
+    (: store_m (Member sk_store_1 store) (STV 1.0 0.99))
+    (: sold_more (More many sk_sold_1 sk_ord_1) (STV 1.0 0.99))
+
+## Embedded questions (#39)
+
+**[eq-whether] The referee wondered whether the goal counted.** — a polar embedded question → reify the matrix verb + `Experiencer` holder (as an attitude) + the QUESTION sealed under `Theme` as `(Whether <sealed-P>)`; P is not asserted and "whether P" must **not** become `(Might P)`
+
+    (: e1_referee (Member sk_referee_1 referee) (STV 1.0 0.99))
+    (: e1_wonder (Member sk_wonder_1 wonder) (STV 1.0 0.99))
+    (: e1_wonder_exp (Experiencer sk_wonder_1 sk_referee_1) (STV 1.0 0.99))
+    (: e1_wonder_past (Past sk_wonder_1) (STV 1.0 0.99))
+    (: e1_wonder_theme (Theme sk_wonder_1 (Whether (And (Member sk_count_1 count) (Experiencer sk_count_1 sk_goal_1) (Past sk_count_1)))) (STV 1.0 0.99))
+    (: e1_goal (Member sk_goal_1 goal) (STV 1.0 0.99))
+
+**[eq-wh-who] The clerk asked who approved the refund.** — a constituent wh-question → `(Question who <sealed-content>)`, the wh-word `who` reused as the **gap** filler in the Agent slot
+
+    (: e3_clerk (Member sk_clerk_1 clerk) (STV 1.0 0.99))
+    (: e3_ask (Member sk_ask_1 ask) (STV 1.0 0.99))
+    (: e3_ask_exp (Experiencer sk_ask_1 sk_clerk_1) (STV 1.0 0.99))
+    (: e3_ask_past (Past sk_ask_1) (STV 1.0 0.99))
+    (: e3_ask_theme (Theme sk_ask_1 (Question who (And (Member sk_approve_1 approve) (Agent sk_approve_1 who) (Theme sk_approve_1 sk_refund_1) (Past sk_approve_1)))) (STV 1.0 0.99))
+    (: e3_refund (Member sk_refund_1 refund) (STV 1.0 0.99))
+
+**[eq-wh-when] The historian discovered when the treaty was signed.** — wh-`when` → `(Question when …)`, `when` filling the `(Time … when)` gap
+
+    (: e2_historian (Member sk_historian_1 historian) (STV 1.0 0.99))
+    (: e2_discover (Member sk_discover_1 discover) (STV 1.0 0.99))
+    (: e2_discover_exp (Experiencer sk_discover_1 sk_historian_1) (STV 1.0 0.99))
+    (: e2_discover_past (Past sk_discover_1) (STV 1.0 0.99))
+    (: e2_discover_theme (Theme sk_discover_1 (Question when (And (Member sk_sign_1 sign) (Theme sk_sign_1 sk_treaty_1) (Time sk_sign_1 when) (Past sk_sign_1)))) (STV 1.0 0.99))
+    (: e2_treaty (Member sk_treaty_1 treaty) (STV 1.0 0.99))
+
+## Counterfactual conditionals (#40)
+
+**[cf-basic] If the levee had held, the town would have survived.** — subjunctive counterfactual → opaque `(Counterfactual (And <ante>) (And <cons>))` (both clauses sealed, neither asserted true) + the antecedent re-asserted at strength-`0.0` (the "it didn't happen" presupposition); the consequent is never asserted (real referents levee/town are still typed)
+
+    (: e1_cf (Counterfactual (And (Member sk_hold_1 hold) (Patient sk_hold_1 sk_levee_1) (Past sk_hold_1)) (And (Member sk_survive_1 survive) (Agent sk_survive_1 sk_town_1) (Past sk_survive_1))) (STV 1.0 0.99))
+    (: e1_levee (Member sk_levee_1 levee) (STV 1.0 0.99))
+    (: e1_town (Member sk_town_1 town) (STV 1.0 0.99))
+    (: e1_neg (And (Member sk_hold_1 hold) (Patient sk_hold_1 sk_levee_1) (Past sk_hold_1)) (STV 0.0 0.99))
+
+**[cf-named] If Omar had studied, he would have passed.** — same shape with the consequent subject "he" → `omar` by coreference
+
+    (: e2_cf (Counterfactual (And (Member sk_study_1 study) (Agent sk_study_1 omar) (Past sk_study_1)) (And (Member sk_pass_1 pass) (Agent sk_pass_1 omar) (Past sk_pass_1))) (STV 1.0 0.99))
+    (: e2_neg (And (Member sk_study_1 study) (Agent sk_study_1 omar) (Past sk_study_1)) (STV 0.0 0.99))
+    (: e2_name (Name omar "Omar") (STV 1.0 0.99))
