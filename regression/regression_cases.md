@@ -202,6 +202,15 @@ not the translator reciting the prompt. Keep it that way: when a convention chan
     (: e_past (Past sk_hike_1) (STV 1.0 0.99))
     (: petra_name (Name petra "Petra") (STV 1.0 0.99))
 
+**[ev-coagent-together] Elena hiked together with Marco.** — comitative "together **with** NP" is a `CoAgent` phrase (one event, one `Agent`), NOT the bare-"together" collective
+
+    (: e_hike (Member sk_hike_1 hike) (STV 1.0 0.99))
+    (: e_agent (Agent sk_hike_1 elena) (STV 1.0 0.99))
+    (: e_coagent (CoAgent sk_hike_1 marco) (STV 1.0 0.99))
+    (: e_past (Past sk_hike_1) (STV 1.0 0.99))
+    (: elena_name (Name elena "Elena") (STV 1.0 0.99))
+    (: marco_name (Name marco "Marco") (STV 1.0 0.99))
+
 **[ev-instrument] The ranger split the log with a wedge.** — contrast control: instrumental "with" (a means) stays `Instrument`
 
     (: e_split (Member sk_split_1 split) (STV 1.0 0.99))
@@ -407,6 +416,17 @@ A **resultative** predicates a result of the object caused by the action. **Stat
     (: e_argue_past (Past sk_argue_1) (STV 1.0 0.99))
     (: leo_name (Name leo "Leo") (STV 1.0 0.99))
     (: mary_name (Name mary "Mary") (STV 1.0 0.99))
+
+**[coord-together] Nils and Petra lifted the crate together.** — bare "together" on the coordinated subject → collective (one event, two `Agent` atoms); the crate is moved, not changed → `Theme`
+
+    (: e_lift (Member sk_lift_1 lift) (STV 1.0 0.99))
+    (: e_lift_agent1 (Agent sk_lift_1 nils) (STV 1.0 0.99))
+    (: e_lift_agent2 (Agent sk_lift_1 petra) (STV 1.0 0.99))
+    (: e_lift_theme (Theme sk_lift_1 sk_crate_1) (STV 1.0 0.99))
+    (: e_crate (Member sk_crate_1 crate) (STV 1.0 0.99))
+    (: e_lift_past (Past sk_lift_1) (STV 1.0 0.99))
+    (: nils_name (Name nils "Nils") (STV 1.0 0.99))
+    (: petra_name (Name petra "Petra") (STV 1.0 0.99))
 
 **[coord-group] The orchestra performed.** — group as a unit (collective noun) → sum individual
 
@@ -1385,15 +1405,25 @@ union
 
     (: fish_swim (Implication (Premises (Member $x fish)) (Conclusions (Member (sk_swim $x) swim) (Agent (sk_swim $x) $x))) (STV 0.9 0.9))
 
-**[gen-cap] Cats can climb.** — generic capability → rule + Can
+**[gen-quant] Most gulls scavenge.** — a verbal generic's explicit quantifier word rides a `QuantifierPhrase` companion beside the 0.9 rule (mirror of the copular convention; a bare generic gets NO companion)
 
-    (: cats_can_climb (Implication (Premises (Member $x cat)) (Conclusions (Member (sk_climb $x) climb) (Agent (sk_climb $x) $x) (Can (sk_climb $x)))) (STV 0.9 0.9))
+    (: most_scavenge (Implication (Premises (Member $x gull)) (Conclusions (Member (sk_scavenge $x) scavenge) (Agent (sk_scavenge $x) $x))) (STV 0.9 0.9))
+    (: gulls_q (QuantifierPhrase gull scavenge "most") (STV 1.0 0.99))
+
+**[gen-cap] Cats can climb.** — capability generic → **reified property** on the kind (same family as deontic norms & agent-nominalizations; inherits to members natively, revisable by exceptions), NOT an event rule
+
+    (: cats_can_climb (Inheritance cat (can climb)) (STV 0.9 0.9))
 
 **[gen-deontic] Citizens must pay tax.** — deontic norm over a kind → reified property `(Inheritance kind (obligated action))` @ 1.0/0.99 (NOT an event rule) + compound-action decomposition
 
     (: citizen_tax (Inheritance citizen (obligated pay_tax)) (STV 1.0 0.99))
-    (: pay_tax_g (Inheritance pay_tax pay) (STV 0.99 0.99))
-    (: pay_tax_o (Patient pay_tax tax) (STV 0.99 0.99))
+    (: pay_tax_g (Inheritance pay_tax pay) (STV 1.0 0.99))
+    (: pay_tax_o (Patient pay_tax tax) (STV 1.0 0.99))
+
+**[gen-none] None of the tenants complained.** — "none of the Ns" = the universal's **negative twin**: the same per-member distribution rule at **strength 0.0** (ranging as the universal does; no subset, no `Cardinality 0`) — an individuated member's event then derives at ~0; the quantifier word rides the `"none"` companion (quantifier-none vs plain "don't")
+
+    (: none_tenants_complained (Implication (Premises (Member $x tenant)) (Conclusions (Member (sk_complain $x) complain) (Agent (sk_complain $x) $x) (Past (sk_complain $x)))) (STV 0.0 0.9))
+    (: tenants_q (QuantifierPhrase tenant complain "none") (STV 1.0 0.99))
 
 **[scope-ae] Every guest brings a gift.** — ∀∃ dependent → Skolem function event + gift
 
@@ -1502,19 +1532,19 @@ A general generic + a sub-kind exception: emit the general `Inheritance` at empi
 **[defeas-cap] Cats can retract their claws, but cheetahs can't.** — capability defeasible → exception `(can …)` at strength 0 / conf 0.99
 
     (: cat_retract (Inheritance cat (can retract_claws)) (STV 0.9 0.9))
-    (: cheetah_cat (Inheritance cheetah cat) (STV 0.99 0.99))
+    (: cheetah_cat (Inheritance cheetah cat) (STV 1.0 0.99))
     (: cheetah_noretract (Inheritance cheetah (can retract_claws)) (STV 0.0 0.99))
 
 **[defeas-prop] Citrus fruits are sour, but oranges aren't.** — copular property defeasible → exception against the SAME property `sour` at strength 0
 
     (: citrus_sour (Inheritance citrus_fruit sour) (STV 0.9 0.9))
-    (: orange_citrus (Inheritance orange citrus_fruit) (STV 0.99 0.99))
+    (: orange_citrus (Inheritance orange citrus_fruit) (STV 1.0 0.99))
     (: orange_notsour (Inheritance orange sour) (STV 0.0 0.99))
 
 **[defeas-rev] Fish can't survive on land, but lungfish can.** — reverse polarity: negative general (0.0/0.9), positive exception (1.0/0.99)
 
     (: fish_noland (Inheritance fish (can survive_on_land)) (STV 0.0 0.9))
-    (: lungfish_fish (Inheritance lungfish fish) (STV 0.99 0.99))
+    (: lungfish_fish (Inheritance lungfish fish) (STV 1.0 0.99))
     (: lungfish_land (Inheritance lungfish (can survive_on_land)) (STV 1.0 0.99))
 
 **[defeas-control] Owls are nocturnal.** — generic with NO stated exception → plain generic, no exception fact
@@ -1528,20 +1558,20 @@ A deontic norm over a **kind** reifies the obligation/permission as a property `
 **[deon-oblig] Passengers must wear seatbelts, but infants are exempt.** — defeasible obligation → reified `(obligated …)` property, exemption at strength 0 / conf 0.99
 
     (: passenger_seatbelt (Inheritance passenger (obligated wear_seatbelt)) (STV 0.9 0.9))
-    (: infant_passenger (Inheritance infant passenger) (STV 0.99 0.99))
+    (: infant_passenger (Inheritance infant passenger) (STV 1.0 0.99))
     (: infant_exempt (Inheritance infant (obligated wear_seatbelt)) (STV 0.0 0.99))
 
 **[deon-perm] Staff may access the archive, but interns may not.** — defeasible permission → reified `(permitted …)` property
 
     (: staff_archive (Inheritance staff (permitted access_archive)) (STV 0.9 0.9))
-    (: intern_staff (Inheritance intern staff) (STV 0.99 0.99))
+    (: intern_staff (Inheritance intern staff) (STV 1.0 0.99))
     (: intern_noperm (Inheritance intern (permitted access_archive)) (STV 0.0 0.99))
 
 **[deon-plain] Pedestrians must use the crosswalk.** — plain deontic norm over a kind (no exemption) → reified property `(Inheritance kind (obligated action))` @ 1.0/0.99 + decomposition (the defeasible form minus the exception)
 
     (: pedestrian_crosswalk (Inheritance pedestrian (obligated use_crosswalk)) (STV 1.0 0.99))
-    (: uc_g (Inheritance use_crosswalk use) (STV 0.99 0.99))
-    (: uc_o (Patient use_crosswalk crosswalk) (STV 0.99 0.99))
+    (: uc_g (Inheritance use_crosswalk use) (STV 1.0 0.99))
+    (: uc_o (Patient use_crosswalk crosswalk) (STV 1.0 0.99))
 
 **[deon-prohibition] Minors must not gamble.** — prohibition over a kind → denial of permission `(permitted gamble)` at strength 0.0 (NOT a negated obligation)
 
@@ -1554,15 +1584,15 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
 **[decomp-action] Residents must recycle waste, but tenants are exempt.** — compound action `recycle_waste` (inside `(obligated …)`) → genus `recycle` + object `waste`
 
     (: resident_recycle (Inheritance resident (obligated recycle_waste)) (STV 0.9 0.9))
-    (: tenant_resident (Inheritance tenant resident) (STV 0.99 0.99))
+    (: tenant_resident (Inheritance tenant resident) (STV 1.0 0.99))
     (: tenant_exempt (Inheritance tenant (obligated recycle_waste)) (STV 0.0 0.99))
-    (: rw_genus (Inheritance recycle_waste recycle) (STV 0.99 0.99))
-    (: rw_obj (Patient recycle_waste waste) (STV 0.99 0.99))
+    (: rw_genus (Inheritance recycle_waste recycle) (STV 1.0 0.99))
+    (: rw_obj (Patient recycle_waste waste) (STV 1.0 0.99))
 
 **[decomp-kind] A police dog barked.** — compound kind `police_dog` → genus `dog`; "police" is an association modifier, left in the symbol (a police dog is not `police`)
 
     (: sk_police_dog_1_m (Member sk_police_dog_1 police_dog) (STV 1.0 0.99))
-    (: pd_genus (Inheritance police_dog dog) (STV 0.99 0.99))
+    (: pd_genus (Inheritance police_dog dog) (STV 1.0 0.99))
     (: e_bark (Member sk_bark_1 bark) (STV 1.0 0.99))
     (: e_agent (Agent sk_bark_1 sk_police_dog_1) (STV 1.0 0.99))
     (: e_past (Past sk_bark_1) (STV 1.0 0.99))
@@ -1570,8 +1600,8 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
 **[decomp-kind-adj] The wooden bridge is old.** — compound kind `wooden_bridge` → genus `bridge` + adjective modifier `wooden` (a wooden bridge IS wooden)
 
     (: sk_wooden_bridge_1_m (Member sk_wooden_bridge_1 wooden_bridge) (STV 1.0 0.99))
-    (: wb_genus (Inheritance wooden_bridge bridge) (STV 0.99 0.99))
-    (: wb_adj (Inheritance wooden_bridge wooden) (STV 0.99 0.99))
+    (: wb_genus (Inheritance wooden_bridge bridge) (STV 1.0 0.99))
+    (: wb_adj (Inheritance wooden_bridge wooden) (STV 1.0 0.99))
     (: wb_old (Member sk_wooden_bridge_1 old) (STV 1.0 0.99))
 
 **[decomp-part] Dana cleaned the desk drawer.** — a **possessor+part** noun-noun ("the drawer of a desk") is **not** a compound kind: the head is its own kind + `(PartOf part whole)` (the whole a witness), never fused `desk_drawer`
@@ -1596,18 +1626,18 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
 **[nom-intrans] Greyhounds are racers.** — intransitive agent-nominalization → capability `(can <verb>)`, no object
 
     (: greyhound_racer (Inheritance greyhound racer) (STV 0.9 0.9))
-    (: racer_can (Inheritance racer (can race)) (STV 0.99 0.99))
+    (: racer_can (Inheritance racer (can race)) (STV 1.0 0.99))
 
 **[nom-trans] Beavers are dam-builders.** — transitive nominalization (object incorporated) → capability + kind-relation `(Build dam_builder dam)`
 
     (: beaver_builder (Inheritance beaver dam_builder) (STV 0.9 0.9))
-    (: builder_can (Inheritance dam_builder (can build)) (STV 0.99 0.99))
-    (: builder_rel (Build dam_builder dam) (STV 0.99 0.99))
+    (: builder_can (Inheritance dam_builder (can build)) (STV 1.0 0.99))
+    (: builder_rel (Build dam_builder dam) (STV 1.0 0.99))
 
 **[nom-noobject] Hawks are hunters.** — verb takes an object but the noun doesn't incorporate one → capability only, no kind-relation
 
     (: hawk_hunter (Inheritance hawk hunter) (STV 0.9 0.9))
-    (: hunter_can (Inheritance hunter (can hunt)) (STV 0.99 0.99))
+    (: hunter_can (Inheritance hunter (can hunt)) (STV 1.0 0.99))
 
 ### Possessive / genitive NPs (#35)
 
@@ -1663,7 +1693,7 @@ A possessor marked by **'s** or a **possessive pronoun** attaches to the possess
 **[cond-measure] Chocolate is soft in warm weather.** — environment condition; the compound `warm_weather` decomposes to its head noun
 
     (: choc_soft (ConditionalProperty chocolate soft warm_weather) (STV 0.9 0.9))
-    (: ww_genus (Inheritance warm_weather weather) (STV 0.99 0.99))
+    (: ww_genus (Inheritance warm_weather weather) (STV 1.0 0.99))
 
 **[cond-if] Berries are dangerous if unripe.** — "if" condition
 
@@ -2003,21 +2033,30 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 
     (: $prf (And (Member $e paint) (Patient $e $m) (Member $m mural) (Agent $e $who) (Past $e)) $tv)
 
-**[q-wh-whose] Whose kettle broke?** — wh on the **possessor** of a genitive → bind the `Possession` possessor slot, the possessed chained by kind + its event (pairs with [poss-alienable] → `priya`)
+**[q-wh-whose] Whose kettle broke?** — wh on the **possessor** → bind the `Possession` possessor slot, the possessed chained by kind + its event; the seeded have/own→`Possession` bridge makes this one form cover verbally-stored possession too (pairs with [poss-alienable] → `priya`)
 
     (: $prf (And (Member $k kettle) (Possession $k $who) (Member $e break) (Patient $e $k)) $tv)
+
+**[q-have] What does Marisol have?** — possessed-slot wh: the single `Possession` query (the seeded bridge derives it from a have/own event, so no event branch is needed)
+
+    (: $prf (And (Name $m "Marisol") (Possession $w $m)) $tv)
 
 **[q-wh-do] What does Nina do?** — wh on the verb class (habitual, unmarked)
 
     (: $prf (And (Name $n "Nina") (Member $e $verb) (Agent $e $n)) $tv)
 
-**[q-cap] Can ostriches fly?** — capability yes/no (class subject, direct)
+**[q-cap] Can ostriches fly?** — capability yes/no with a KIND subject → query the reified property
 
-    (: $prf (And (Member $e fly) (Agent $e ostrich) (Can $e)) $tv)
+    (: $prf (Inheritance ostrich (can fly)) $tv)
 
-**[q-neg] What can't infants do?** — negative/polarity → pin TV to strength 0
+**[q-cap-ind] Can Rufus swim?** — individual capability: the ability may be stored as an asserted event (`Can e`) or inherited from a kind property → **both branches + union** (disjoint)
 
-    (: $prf (And (Member $e $verb) (Agent $e infant) (Can $e)) (STV 0.0 $conf))
+    (: $prf (And (Name $r "Rufus") (Member $e swim) (Agent $e $r) (Can $e)) $tv)
+    (: $prf (And (Name $r "Rufus") (Member $r (can swim))) $tv)
+
+**[q-neg] What can't infants do?** — negative/polarity (kind subject) → the property form, TV pinned to strength 0
+
+    (: $prf (Inheritance infant (can $verb)) (STV 0.0 $conf))
 
 **[q-compound-chain] Who is the smartest, and what do they study?** — compound (shared referent) → one query, `$who` chains the parts, two unknowns
 
@@ -2032,10 +2071,10 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: $prf (Most old $d dog) $tv)
     (: $prf (Most young $c cat) $tv)
 
-**[q-compound-difftv] What can robots do, and what can't they do?** — different truth-value pins → the one case that splits into two lines
+**[q-compound-difftv] What can robots do, and what can't they do?** — different truth-value pins → the one case that splits into two lines (kind subject → property form)
 
-    (: $prf (And (Member $e $verb) (Agent $e robot) (Can $e)) $tv)
-    (: $prf (And (Member $e $verb) (Agent $e robot) (Can $e)) (STV 0.0 $conf))
+    (: $prf (Inheritance robot (can $verb)) $tv)
+    (: $prf (Inheritance robot (can $verb)) (STV 0.0 $conf))
 
 ## Inter-clause connectives (surface-head)
 
@@ -2118,6 +2157,13 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: e_doze_ag (Agent sk_doze_1 sk_farmhand_1) (STV 1.0 0.99))
     (: e_doze_past (Past sk_doze_1) (STV 1.0 0.99))
     (: conn (But sk_crow_1 sk_doze_1) (STV 1.0 0.99))
+
+**[conn-no-but-defeasible] Reptiles are cold-blooded, but sea turtles aren't.** — a "but" introducing a **defeasible exception** to a generic is consumed by that construction (generic clauses reify no eventualities → no endpoints): the three-fact exception pattern and **NO** connective atom
+
+    (: general (Inheritance reptile cold_blooded) (STV 0.9 0.9))
+    (: taxonomy (Inheritance sea_turtle reptile) (STV 1.0 0.99))
+    (: genus (Inheritance sea_turtle turtle) (STV 1.0 0.99))
+    (: exception (Inheritance sea_turtle cold_blooded) (STV 0.0 0.99))
 
 **[conn-although] Although it snowed, the marathon proceeded.** — concessive → surface head `Although`; the concessive clause is SUBORDINATE, so the fronted MAIN clause is still the first argument (the weather clause keeps its expletive-"it" agentless form)
 
@@ -2229,6 +2275,14 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: e_want_past (Past sk_want_1) (STV 1.0 0.99))
     (: e_cleft (Cleft transparency sk_want_1) (STV 1.0 0.99))
 
+**[foc-vp] Greta only hummed.** — VP / whole-predicate focus → the **verb-class lemma** is the filler
+
+    (: e_hum (Member sk_hum_1 hum) (STV 1.0 0.99))
+    (: e_hum_agent (Agent sk_hum_1 greta) (STV 1.0 0.99))
+    (: e_hum_past (Past sk_hum_1) (STV 1.0 0.99))
+    (: e_hum_only (Only hum sk_hum_1) (STV 1.0 0.99))
+    (: greta_name (Name greta "Greta") (STV 1.0 0.99))
+
 ## Imperatives (#47)
 
 **[imp-positive] Lock the gate.** — directive → the commanded event **sealed** under `(Directive <sealed-event>)`; no tense/occurrence asserted, no addressee referent (real object referents still typed)
@@ -2251,7 +2305,7 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 
 **[kind-extinct] The great auk is extinct.** — a KIND-only property (no individual can be "extinct") → opaque `(KindProperty kind prop)`, which does **not** distribute (unlike `Inheritance`, which would hand "extinct" to every instance via member-inheritance); an optional taxonomy genus is fine
 
-    (: ga_genus (Inheritance great_auk auk) (STV 0.99 0.99))
+    (: ga_genus (Inheritance great_auk auk) (STV 1.0 0.99))
     (: ga_extinct (KindProperty great_auk extinct) (STV 1.0 0.9))
 
 **[kind-endangered] Rhinos are endangered.** — same class (endangered / widespread / common / rare / numerous / thriving) → `(KindProperty rhino endangered)`
@@ -2306,12 +2360,24 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: dep_past (Past sk_depart_1) (STV 1.0 0.99))
     (: dep_already (Already sk_depart_1) (STV 1.0 0.99))
 
+**[asp-yet] The invoice hasn't been paid yet.** — NPI "yet" under negation: the strength-0 denial bundle + the `(Yet <event>)` expectation tag as its **own positive atom OUTSIDE** the bundle (inside, the expectation would read as denied)
+
+    (: e_invoice (Member sk_invoice_1 invoice) (STV 1.0 0.99))
+    (: e_pay_neg (And (Member sk_pay_1 pay) (Patient sk_pay_1 sk_invoice_1) (Past sk_pay_1)) (STV 0.0 0.99))
+    (: e_pay_yet (Yet sk_pay_1) (STV 1.0 0.99))
+
 ## Comparison-class & clausal comparatives (#45 / #46)
 
 **[cmp-class] Bruno is fast for a tortoise.** — comparison-class: X exceeds the class norm, NOT an absolute claim → `(Degree X <scale> (forKind <class>))`, with **no** plain `(Member X <scale>)`
 
     (: bruno_deg (Degree bruno fast (forKind tortoise)) (STV 1.0 0.99))
     (: bruno_name (Name bruno "Bruno") (STV 1.0 0.99))
+
+**[cmp-class-intens] Tomas is very strong for a violinist.** — an intensifier beside a comparison-class: BOTH `Degree` atoms, the positive property still un-asserted
+
+    (: tomas_deg_very (Degree tomas strong very) (STV 1.0 0.99))
+    (: tomas_deg_class (Degree tomas strong (forKind violinist)) (STV 1.0 0.99))
+    (: tomas_name (Name tomas "Tomas") (STV 1.0 0.99))
 
 **[cmp-clausal] More books sold than the store ordered.** — a comparative whose standard is a CLAUSE and dimension is a QUANTITY → reify both clauses, make each varying quantity a group, compare with `More` on the quantity scale (antonym pole: "more" → `many`, "fewer/less" → `few`)
 

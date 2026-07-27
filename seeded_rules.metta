@@ -310,3 +310,15 @@
 (: po_inorderto (Implication (Premises (InOrderTo $m $p)) (Conclusions (PurposeOf $p $m))) (STV 1.0 0.99))
 (: po_soasto (Implication (Premises (SoAsTo $m $p)) (Conclusions (PurposeOf $p $m))) (STV 1.0 0.99))
 (: rf_purpose (Implication (Premises (PurposeOf $p $m)) (Conclusions (ReasonFor $p $m))) (STV 1.0 0.99))
+
+; ===== Possession bridge (2026-07-27 review decision #3) =====
+
+; A genitive stores (Possession <possessed> <possessor>) directly; a verbal
+; "X has / owns Y" stores a have/own EVENT (Holder/Theme — the roles section
+; restricts Holder to possession states, which gates these rules). Possession
+; QUESTIONS always query the Possession form; these rules derive it from the
+; verbal storages on demand. ("lack" is a Holder verb too but states absence —
+; deliberately NO bridge.)
+
+(: poss_have (Implication (Premises (Member $e have) (Holder $e $x) (Theme $e $y)) (Conclusions (Possession $y $x))) (STV 1.0 0.99))
+(: poss_own (Implication (Premises (Member $e own) (Holder $e $x) (Theme $e $y)) (Conclusions (Possession $y $x))) (STV 1.0 0.99))

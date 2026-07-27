@@ -81,6 +81,10 @@ fences. Each atom is a single statement:
 - `<content>` — the logical content.
 - `(STV <strength> <confidence>)` — the truth value (see **Truth values**).
 
+(The **examples** in these instructions often drop the `(: <proof_name> … (STV …))` wrapper for
+brevity — content atoms only, with the full form shown where a non-default truth value matters.
+Your **output** always uses the full wrapped form.)
+
 If the input is a **question**, output a single **query** line instead — see **Queries**.
 
 The input may be a **passage** of several sentences — translate them together, **reusing one
@@ -113,6 +117,11 @@ Rules:
   base (`taller` → `tall`). All inflectional variants of a word map to one symbol.
 - **Proof names** are snake_case. **Variables** are `$`-prefixed. **String literals** are
   double-quoted, preserving surface form: `"Alice"`, `"New York City"`.
+- **Casing exceptions**: reified **property constructors** are lowercase — `(can <verb>)`,
+  `(obligated <action>)`, `(permitted <action>)` — they build property *terms*, and the case is
+  what distinguishes them from the status heads `Can` / `Obligated` / `Permitted`. Structured
+  **term constructors** (`Year`, `Fraction`, `ParticleFromNormal`, `Whether`, …) are
+  UpperCamelCase like heads; `forKind` is the one deliberate camelCase marker.
 - A **named** individual (proper noun) gets a stable name-derived symbol reused for every
   mention (`alice`), plus a `Name` fact: `(Name alice "Alice")`. Distinct same-named
   entities get distinct symbols (`alice_1`, `alice_2`), each with its own `Name`. An
@@ -126,7 +135,7 @@ Always prefer a **single lemma** for a predicate / class / property / action. Wh
 symbol is genuinely needed, also emit **decomposition atoms** that unpack it into single-word parts,
 so the reasoner connects it and answers finer questions. Decompose **once, to single-word lemmas,
 then stop** — don't recurse on parts already single; don't decompose idioms / non-compositional
-names (`hot_dog`) or **phrasal / particle verbs** (`go_out`, `break_down` — kept whole, never a bare head or a single-word synonym; see below). Decomposition atoms carry definitional `(STV 0.99 0.99)` and never change the
+names (`hot_dog`) or **phrasal / particle verbs** (`go_out`, `break_down` — kept whole, never a bare head or a single-word synonym; see below). Decomposition atoms carry definitional `(STV 1.0 0.99)` and never change the
 original meaning (a compound buried in a property does **not** leak to its genus — `(obligated
 pay_dues)` ≠ `(obligated pay)`).
 
@@ -134,8 +143,8 @@ pay_dues)` ≠ `(obligated pay)`).
   inside a reified `(can …)` / `(obligated …)` / `(permitted …)`: emit its **genus** `(Inheritance
   <compound> <verb>)` + its **object** `(Patient <compound> <object>)`:
 
-      … (obligated pay_dues) …   →  (: pd_pay (Inheritance pay_dues pay) (STV 0.99 0.99))
-                                     (: pd_obj (Patient pay_dues dues) (STV 0.99 0.99))
+      … (obligated pay_dues) …   →  (: pd_pay (Inheritance pay_dues pay) (STV 1.0 0.99))
+                                     (: pd_obj (Patient pay_dues dues) (STV 1.0 0.99))
 
   so "what must members pay?" = `(And (Inheritance member (obligated $a)) (Patient $a $w))` binds
   `$w = dues`. (A verb+object in **event** form is already decomposed — `(Member e pay) (Patient e
@@ -153,7 +162,7 @@ pay_dues)` ≠ `(obligated pay)`).
 - **Compound kind** = `modifier_noun` whose last word is a real head noun (`light_switch`,
   `lifetime_member`, `delivery_van`): emit its **genus** `(Inheritance <compound> <head-noun>)`:
 
-      The light switch …   →  (: sw_g (Inheritance light_switch switch) (STV 0.99 0.99))
+      The light switch …   →  (: sw_g (Inheritance light_switch switch) (STV 1.0 0.99))
 
   so a `light_switch` instance is also a `switch`. If the modifier is a plain **adjective** that
   genuinely describes the compound, you may also expose it (`senior_contractor` → `(Inheritance
@@ -179,7 +188,10 @@ pay_dues)` ≠ `(obligated pay)`).
       her sister …         →  (Member sk_sister_1 sister) (Possession sk_sister_1 <her>)
 
   Resolve the possessor by **coreference** (a name stays itself; a pronoun reuses its antecedent —
-  see **Coreference**). "Whose Y?" binds the possessor slot; "what does X have?" the possessed slot.
+  see **Coreference**). Possession **questions always query the `Possession` form** — "Whose Y?"
+  binds the possessor slot, "what does X have / own?" the possessed slot — regardless of how the
+  fact was stated: seeded rules derive `(Possession <possessed> <possessor>)` from a verbal
+  have/own event (`Holder`/`Theme`), so the one query form covers both storages.
   A genuinely possessive **of-phrase** ("the engine of the car") maps the same way — but not a
   **partitive** "of the" (→ `SubsetOf` / `ProportionOf`), a **measure** ("a cup of water"), or an
   **about**-phrase ("a photo of Mary").
@@ -190,10 +202,10 @@ pay_dues)` ≠ `(obligated pay)`).
   <nom> <object>)`:
 
       Penguins are swimmers.   →  (: pen_sw (Inheritance penguin swimmer) (STV 0.9 0.9))
-                                  (: sw_can (Inheritance swimmer (can swim)) (STV 0.99 0.99))
+                                  (: sw_can (Inheritance swimmer (can swim)) (STV 1.0 0.99))
       Hens are egg-layers.     →  (: hen_el (Inheritance hen egg_layer) (STV 0.9 0.9))
-                                  (: el_can (Inheritance egg_layer (can lay)) (STV 0.99 0.99))
-                                  (: el_rel (Lay egg_layer egg) (STV 0.99 0.99))
+                                  (: el_can (Inheritance egg_layer (can lay)) (STV 1.0 0.99))
+                                  (: el_rel (Lay egg_layer egg) (STV 1.0 0.99))
 
   so "what does an egg-layer lay?" = `(Lay egg_layer $w)` binds `egg`, and a `swimmer` instance gets
   `(can swim)`.
@@ -315,11 +327,13 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
   rusty") — the entity the state holds of; `Stimulus` — a psych state's object.
 - `Holder` — subject of a **possession / relational** state **only** ("own", "have", "lack") —
   a bare property is `Experiencer`, never `Holder`.
-- `CoAgent` — an animate **co-participant** in the action ("with John", "together with", "along
-  with", "accompanied by"): a second doer, **not** a means. Split a "with"-phrase by one test —
-  a **participant** in the action → `CoAgent`; the **means** it is performed by → `Instrument`.
+- `CoAgent` — an animate **co-participant** in the action, named by a comitative **phrase**
+  ("with John", "together with John", "along with", "accompanied by"): a second doer, **not** a
+  means. Split a "with"-phrase by one test — a **participant** in the action → `CoAgent`; the
+  **means** it is performed by → `Instrument`.
   (A **collective / reciprocal** predicate — "met with", "collided with" — instead stays one
-  event with multiple `Agent` atoms; see **Coordination & plurals**.)
+  event with multiple `Agent` atoms, as does bare **"together"** on a plural/coordinated
+  subject; see **Coordination & plurals**.)
 - Obliques: `Instrument` (the **means**, "with a knife" — a tool or substance, never a person),
   `Location` ("in/at/on …"), `Time` ("yesterday"; dates &
   clock times — see **Time**), `Manner` (adverb), `Source` ("from …"), `Goal` ("to …"
@@ -377,7 +391,8 @@ specific occurrence. Mark otherwise (stack as needed):
 - **Aspect**: `(Ongoing e)` (progressive). Perfect ("has V-ed") → coarse `(Past e)`; a **past
   perfect with a reference clause** also emits the ordering `(Before …)`, and a **continuative**
   perfect ("has lived there since 2019") → `(Ongoing e)` + `Start` — see **Time**.
-- **Capability** ("can / able to"): `(Can e)`.
+- **Capability** ("can / able to"): `(Can e)` — a **specific** subject's ability; a capability
+  generic over a **kind** is a reified property instead (see *Quantifiers, generics & scope*).
 - **Epistemic** ("might / probably / must"-inference): `(Might e)`, `(Probably e)`, `(Must e)`.
 - **Deontic** on a **specific** act ("must / required" obligation; "may / allowed" permission) →
   `(Obligated e)`, `(Permitted e)`; weaker "should / ought" → `(Obligated e)` at strength `0.7`. A
@@ -416,8 +431,13 @@ recorded, never asserted as a separate fact); do **not** stuff these into `Manne
 - **"again"** (repetitive / restitutive — a prior same-type event happened) → `(Again <event>)`
 - **"still"** (the eventuality continues; the positive counterpart of cessation) → `(Still <event>)`
 - **"already"** (happened earlier than expected) → `(Already <event>)`
-- **"yet"** (NPI — expected but **not yet**, always under negation / a question) → `(Yet <event>)` on
-  the negated event bundle
+- **"yet"** (NPI — expected but **not yet**, always under negation / a question) → `(Yet <event>)`
+  as its **own positive atom OUTSIDE** the strength-0 `(And …)` denial — the expectation is TRUE;
+  inside the bundle it would read as denied:
+
+      The parcel hasn't shipped yet. →  (Member sk_parcel_1 parcel)
+                                        (: neg (And (Member sk_ship_1 ship) (Patient sk_ship_1 sk_parcel_1) (Past sk_ship_1)) (STV 0.0 0.99))
+                                        (Yet sk_ship_1)
 
       The server crashed again. →  (Member sk_crash_1 crash) (Patient sk_crash_1 sk_server_1)
                                    (Member sk_server_1 server) (Past sk_crash_1) (Again sk_crash_1)
@@ -500,8 +520,9 @@ P is one atom, else `(And …)`.
 
 - **Negation** ("doesn't believe", "never thought") negates the **attitude**, not P — wrap the
   attitude bundle in a strength-`0.0` conjunction (see **Negation (events)**); P stays sealed and
-  unasserted either way. (Contrast a **causative** — "made the alarm sound" — which *asserts* its
-  complement; see **Causation-flavored verbs**.)
+  unasserted either way. (Contrast a **causative** — "made the alarm sound" — whose complement
+  event is reified **at top level**, occurrence-neutral, rather than sealed; see the
+  causation-flavored-verbs bullet under **Inter-clause connectives**.)
 - Only for a **clausal** complement. A psych/attitude verb with an **entity** object ("distrusts
   Ben", "fears the dog") keeps `Experiencer` / `Stimulus` (see **Thematic roles**) — no sealing.
 
@@ -547,8 +568,9 @@ occurrence, and mint **no** addressee referent (real object referents are still 
                                  (Member sk_hatch_1 hatch)
 
 An explicit **vocative** addressee ("Sam, close the valve") goes **inside** the sealed term as the
-`Agent`. "What was commanded?" queries `(Directive $c)` / `(Forbid $c)`; "did a closing happen?"
-correctly finds nothing.
+`Agent`; its `(Name sam "Sam")` atom is still emitted at top level (a name is a label, not an
+occurrence fact). "What was commanded?" queries `(Directive $c)` / `(Forbid $c)`; "did a closing
+happen?" correctly finds nothing.
 
 ## Existential — "a/an", "some", "there is/are"
 
@@ -589,12 +611,14 @@ shared object reuses one symbol:
       Bob and Alice left.         →  (Member sk_leave_1 leave) (Agent sk_leave_1 bob) (Past sk_leave_1)
                                      (Member sk_leave_2 leave) (Agent sk_leave_2 alice) (Past sk_leave_2)
       Bob and Alice are teachers. →  (Member bob teacher) (Member alice teacher)
-      Bob and Alice ate the cake. →  (Member sk_eat_1 eat) (Agent sk_eat_1 bob) (Patient sk_eat_1 cake) (Past sk_eat_1)
-                                     (Member sk_eat_2 eat) (Agent sk_eat_2 alice) (Patient sk_eat_2 cake) (Past sk_eat_2)
+      Bob and Alice ate the cake. →  (Member sk_eat_1 eat) (Agent sk_eat_1 bob) (Patient sk_eat_1 sk_cake_1) (Past sk_eat_1)
+                                     (Member sk_eat_2 eat) (Agent sk_eat_2 alice) (Patient sk_eat_2 sk_cake_1) (Past sk_eat_2)
+                                     (Member sk_cake_1 cake)     ; definite "the cake" → one typed individual, shared
 
 Use the **collective** form — **one** event with **multiple `Agent` atoms** — only when the
-predicate is reciprocal/aggregate ("meet", "gather", "assemble", "collide") or marked
-"together" / "between them":
+predicate is reciprocal/aggregate ("meet", "gather", "assemble", "collide") or marked by bare
+**"together"** / "between them" on the plural/coordinated subject (a comitative "together
+**with** NP" instead makes NP a `CoAgent` — see **Thematic roles**):
 
       Bob and Alice met. →  (Member sk_meet_1 meet) (Agent sk_meet_1 bob) (Agent sk_meet_1 alice) (Past sk_meet_1)
 
@@ -617,7 +641,9 @@ predicate over it. Record its **member kind** with `(GroupOf <group> <kind>)`, a
 group is an individual; it never goes in a class slot). A collective noun already names the
 kind, so "the committee" needs no `GroupOf`; "a flock of birds" takes both (`(Member sk_flock_1
 flock) (GroupOf sk_flock_1 bird)`). Predicating over the group as a **unit** is the default
-here; distributing to **each** member uses a rule (below).
+here; distributing to **each** member uses a rule (below). Group witnesses are ordinary
+witnesses — `sk_group_<n>` by default; with several groups in play, a mnemonic stem
+(`sk_students_1`) is fine.
 
 A plural predicated with a **distributive** predicate (each member acts separately) keeps the group
 event (counting / "did any?") **and** distributes to its members via a rule over `(PartOf $x
@@ -628,10 +654,12 @@ queryable; only a **collective** predicate (gather, meet, assemble — the group
 
 ## Cardinality (counting)
 
-A plural is always a **group** (`GroupOf g <kind>`, from **Coordination & plurals**); when it
-carries a **number**, add a **count atom** to that group. The count rides on the group, which
-is predicated as a unit. (An explicit "all the / each of the" universal distributes to members
-via a rule instead — see *Quantifiers, generics & scope*; a bare count does not.)
+A plural referred to as a unit is a **group** (`GroupOf g <kind>`, from **Coordination & plurals**);
+when it carries a **number**, add a **count atom** to that group. The count rides on the group,
+which is predicated as a unit. (An explicit "all the / each of the" universal becomes the
+per-member rule **instead of** a group — see *Quantifiers, generics & scope*. A counted plural
+keeps its group; when its predicate is distributive it **adds** the per-member rule alongside —
+below.)
 
 - **Exact number** — a numeral, or a fixed-value word ("both" = 2, "a pair" = 2, "a dozen" =
   12) → `(Cardinality <group> <n>)` (a **native integer**):
@@ -676,9 +704,11 @@ via a rule instead — see *Quantifiers, generics & scope*; a bare count does no
                              (Member sk_sing_1 sing) (Agent sk_sing_1 sk_group_1) (Past sk_sing_1)
 
   "a couple" ≈ 2 → exact `(Cardinality g 2)`. Proportion words ("many / most / few / a lot") in a
-  **generic** sense — "most birds migrate" — stay **strength** on an `Inheritance`/`Member` per
-  **Categorical**; the same word in a **partitive** — "most **of the** Ns" (a definite set) — goes to
-  **Partitives** below, not generic strength; use `CardinalityPhrase` only when the phrase counts *things*.
+  **generic** sense — "most birds migrate" — set **strength** instead (on the `Inheritance` for a
+  copular generic per **Categorical**, on the **rule** for a verbal one per **Quantifiers**, each
+  with its `QuantifierPhrase` companion); the same word in a **partitive** — "most **of the** Ns"
+  (a definite set) — goes to **Partitives** below, not generic strength; use `CardinalityPhrase`
+  only when the phrase counts *things*.
 
 ### Counting questions
 
@@ -775,9 +805,10 @@ mentioned part stays its own disjoint `PartOf` / `SubsetOf` portion.
 **Never** emit a generic `(Inheritance <kind> <prop>)` for a partitive — "most **of the** apples" is
 that specific set, not apples-in-general. Contrasts: bare generic "most apples are ripe" →
 `(Inheritance apple ripe) (STV 0.9 0.9)` (kind, distributes to any apple); bare count "three students
-passed" → group + count, **no** superset / `SubsetOf`. ("none of the Ns V" → `(Cardinality <S> 0)`
-with the event **not** asserted; "**all of the** Ns" is a **universal** → the per-member
-**distribution** rule, not a partitive — see *Quantifiers, generics & scope*.)
+passed" → group + count, **no** superset / `SubsetOf`. ("**all of the** Ns" is a **universal** →
+the per-member **distribution** rule, not a partitive — and "**none of the** Ns V" is its
+**negative twin**: the same distribution rule at **strength `0.0`**, no subset and no
+`Cardinality 0` — see *Quantifiers, generics & scope*.)
 **Queries:** "how many of the Ns V?" → bind `(Cardinality $s $n)` with `(SubsetOf $s <G>)`; "did most
 of the Ns V?" → `(ProportionOf $s <G> most)`.
 
@@ -907,7 +938,9 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
 
 - **Comparison-class** "X is ADJ **for a** N" ("tall for a gymnast") — X exceeds the *norm for the
   class*, **not** an absolute claim → `(Degree X <scale> (forKind <class>))`, and do **not** also
-  assert the plain `(Member X <scale>)` (X may not be ADJ absolutely):
+  assert the plain `(Member X <scale>)` (X may not be ADJ absolutely; an intensifier alongside —
+  "**very** tall for a gymnast" — adds its own `(Degree X <scale> very)` beside the `forKind`
+  atom, the positive staying un-asserted either way):
 
       Sven is tall for a gymnast. →  (Degree sven tall (forKind gymnast)) (Name sven "Sven")
 
@@ -1282,16 +1315,25 @@ via the seeded lexicon (*Measures & units*); seeded rules also derive a duration
 A **verbal** generic or universal over a kind becomes a **rule** that gives each instance
 its own event, via a **Skolem-function** event term `(sk_<verb> $x)` (distinct per binding;
 never a free/unbound variable). Rule strength = the quantity (all `1.0`, generic/most `0.9`,
-many `0.7`, few `0.1`); confidence by the dial. A **deontic norm over a kind** ("drivers must
-carry a license", "visitors may enter", a prohibition "guests must not smoke") is **not** this
-event-rule form — it is a **reified property** on the kind, `(Inheritance <kind> (obligated /
-permitted <action>))` (see *Deontic norms & prohibitions over a kind* below), which inherits to
-members and can be overridden.
+many `0.7`, few `0.1`); confidence by the dial. As on the copular side, **record an explicit
+quantifier word** in a companion `(QuantifierPhrase <kind> <verb-lemma> "<word>")` `(STV 1.0
+0.99)` — emit it **only when the word is actually there** (its absence marks the bare generic;
+a "none of the" strength-0 rule gets `"none"`, distinguishing quantifier-none from plain
+"Ns don't V"). A **deontic norm over a kind** ("drivers must
+carry a license", "visitors may enter", a prohibition "guests must not smoke") and a
+**capability generic** ("Ns **can** V") are **not** this event-rule form — each is a **reified
+property** on the kind, `(Inheritance <kind> (obligated / permitted / can <action>))` (see
+*Deontic norms & prohibitions over a kind* below; the defeasible pattern and
+agent-nominalizations already use the same `(can <verb>)` form), which inherits to members
+natively and can be overridden by an exception. Only a **non-modal** verbal generic ("birds
+fly") takes the event rule.
 
       Birds fly.      →  (: birds_fly (Implication (Premises (Member $x bird))
                             (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x))) (STV 0.9 0.9))
-      Birds can fly.  →  (: birds_can_fly (Implication (Premises (Member $x bird))
-                            (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x) (Can (sk_fly $x)))) (STV 0.9 0.9))
+      Birds can fly.  →  (: bird_canfly (Inheritance bird (can fly)) (STV 0.9 0.9))   ; capability generic — property, not a rule
+      Most birds migrate. →  (: most_migrate (Implication (Premises (Member $x bird))
+                            (Conclusions (Member (sk_migrate $x) migrate) (Agent (sk_migrate $x) $x))) (STV 0.9 0.9))
+                             (: birds_q (QuantifierPhrase bird migrate "most") (STV 1.0 0.99))   ; the word, beside the 0.9 rule
 
 The **same rule form** distributes a **distributive predicate over a plural or group** — whether an
 **explicit universal** ("all the / **all of the** / each (of the) / every (one of the) Ns V", bare
@@ -1326,7 +1368,10 @@ member bound by `Name`), and status: "Did Ana pass?" (Ana a student) → `(: $pr
 
 **Negated verbal generic / verbal ¬∀.** "Ns don't V" as a generic habit ("owls don't migrate") =
 the **same distributing rule at strength `0.0`** — each member's event then derives at strength 0,
-so an arbitrary N does *not* V. "**Not every** N V" ("not every intern replied") is a
+so an arbitrary N does *not* V. "**None of the** Ns V-ed" (a definite set's blanket denial) is the
+same strength-`0.0` rule, ranging exactly as the **universal** does (a kind-naming plural →
+`(Member $x <kind>)`; a specific group → `(PartOf $x <group>)`) — the negative twin of "all (of
+the) Ns V", with no subset and no `Cardinality 0`. "**Not every** N V" ("not every intern replied") is a
 **counterexample witness**, parallel to copular "not all" (see **Negation (copular)**): one witness
 N at strength 1 plus its event bundle at strength `0.0`.
 
@@ -1449,7 +1494,7 @@ that sub-kind while ordinary members keep the general value. Emit three `Inherit
 
       Birds can fly, but penguins can't.
         →  (: bird_canfly   (Inheritance bird (can fly))    (STV 0.9 0.9))
-           (: penguin_bird  (Inheritance penguin bird)      (STV 0.99 0.99))
+           (: penguin_bird  (Inheritance penguin bird)      (STV 1.0 0.99))
            (: penguin_nofly (Inheritance penguin (can fly)) (STV 0.0 0.99))
 
 A penguin then inherits `(can fly)` ≈ 0 (overridden); other birds stay ≈ 0.9. Reverse polarity is
@@ -1457,7 +1502,7 @@ symmetric — a positive exception to a negative general:
 
       Mammals don't lay eggs, but the platypus does.
         →  (: mammal_noegg    (Inheritance mammal egg_layer)   (STV 0.0 0.9))
-           (: platypus_mammal (Inheritance platypus mammal)    (STV 0.99 0.99))
+           (: platypus_mammal (Inheritance platypus mammal)    (STV 1.0 0.99))
            (: platypus_egg    (Inheritance platypus egg_layer) (STV 1.0 0.99))
 
 Rules: the exception's **property symbol must match the general's** (`(can fly)`, `egg_layer`); use
@@ -1488,7 +1533,7 @@ three-fact pattern:
 
       Members must pay dues, but lifetime members are exempt.
         →  (: member_dues     (Inheritance member (obligated pay_dues))          (STV 0.9 0.9))
-           (: lifetime_member (Inheritance lifetime_member member)               (STV 0.99 0.99))
+           (: lifetime_member (Inheritance lifetime_member member)               (STV 1.0 0.99))
            (: lifetime_exempt (Inheritance lifetime_member (obligated pay_dues)) (STV 0.0 0.99))
 
 A lifetime member's obligation then ≈ 0 (exempt); a regular member ≈ 0.9 (still obligated). The
@@ -1505,7 +1550,7 @@ solid). A seeded rule (`cond_prop`) then gives the property to any member of the
 the condition-state, so it connects to a later "the glass is cold" (`(Member glass cold)`):
 
       Metals are solid at room temperature.  →  (: metal_solid (ConditionalProperty metal solid room_temperature) (STV 0.9 0.9))
-                                                 (: rt_genus (Inheritance room_temperature temperature) (STV 0.99 0.99))
+                                                 (: rt_genus (Inheritance room_temperature temperature) (STV 1.0 0.99))
       Glass is brittle when cold.            →  (: glass_brittle (ConditionalProperty glass brittle cold) (STV 0.9 0.9))
 
 So "under what condition is metal solid?" = `(ConditionalProperty metal solid $c)` → `room_temperature`,
@@ -1712,7 +1757,8 @@ is **opaque** (stored and matched verbatim, like `Or` / `Xor`), never expanded i
 - **Do NOT assert the additive / scalar presupposition** as a fact ("someone else also passed"):
   the `(Also …)` / `(Even …)` tag records it structurally — asserting it would invent evidence.
 - The particle marks whichever constituent it sits on (subject, object, or the VP): use that
-  constituent's symbol as `<filler>`. With **VP-ellipsis** ("Ana passed too", "Ana did too")
+  constituent's symbol as `<filler>` — for a **VP / whole-predicate** focus ("Bob only *sang*"),
+  the **verb-class lemma** (`(Only sing sk_sing_1)`). With **VP-ellipsis** ("Ana passed too", "Ana did too")
   reconstruct the verb (see **Coordination**), then tag `(Also ana <ana-event>)`. Focus atoms are
   `(STV 1.0 0.99)`.
 
@@ -1774,6 +1820,15 @@ of an event/relation with **`And`** on the shared event variable.
   symbol already resolves to a `Name` in the KB; binding it drops unnamed answers and adds a
   needless conjunct), and don't restate a class the pattern already fixes.
 - A **negative / polarity** question pins the truth value to `(STV 0.0 $conf)`.
+- A **capability question routes by subject**. A **kind** subject ("Can penguins fly?", "What
+  can't infants do?") queries the reified property — `(Inheritance <kind> (can <verb>))`, a wh
+  or negative form binding or pinning it (`(Inheritance infant (can $verb))` with `(STV 0.0
+  $conf)`). An **individual** subject ("Can Mira dive?") can't know whether the ability was
+  asserted as an event (`(Can e)`) or inherited from a kind, so it emits **both branches and
+  unions them** (the branches are disjoint): the event branch and the property branch
+  `(And (Name $r "…") (Member $r (can <verb>)))`. (A capability question with a specific
+  **object** — "What can Bob cook?" — keeps the event form: individual abilities with objects
+  are asserted as events.)
 - A **compound question** splits by whether its parts **share a referent**. **Shared referent**
   (the same entity — "who is the oldest **and** where do they live?") → **one** query, the shared
   `$`-variable chaining the parts and a `$`-variable per unknown; read every bound `$` as the
@@ -1789,7 +1844,7 @@ of an event/relation with **`And`** on the shared event variable.
       What can Bob cook?    →  (: $prf (And (Name $b "Bob") (Member $e cook) (Agent $e $b) (Patient $e $what) (Can $e)) $tv)
       Who cooked dinner?    →  (: $prf (And (Member $e cook) (Patient $e dinner) (Agent $e $who) (Past $e)) $tv)
       What does Bob do?     →  (: $prf (And (Name $b "Bob") (Member $e $verb) (Agent $e $b)) $tv)
-      Can penguins fly?     →  (: $prf (And (Member $e fly) (Agent $e penguin) (Can $e)) $tv)
+      Can penguins fly?     →  (: $prf (Inheritance penguin (can fly)) $tv)
       Did Bob cook?         →  (: $prf (And (Name $b "Bob") (Member $e cook) (Agent $e $b) (Past $e)) $tv)
       Who is the oldest, and where do they live? →  (: $prf (And (Most old $who person) (Member $e live) (Agent $e $who) (Location $e $where)) $tv)
       What did Bob cook, and who ate it?         →  (: $prf (And (Name $b "Bob") (Member $c cook) (Agent $c $b) (Patient $c $dish) (Past $c) (Member $et eat) (Agent $et $who) (Patient $et $dish) (Past $et)) $tv)
@@ -1838,7 +1893,11 @@ X, Y") still puts the main clause Y first:
   "because" / "so" / "led to" into one causal notion is downstream work, not the translator's.
   The connective atom is `(STV 1.0 0.99)` (a definitional record of the stated connective).
   Emit it ONLY for an explicit connective — bare juxtaposition of clauses or sentences states
-  no relation and gets **no** connective atom.
+  no relation and gets **no** connective atom. A "but / except / unless" that introduces a
+  **defeasible exception** to a generic ("Birds can fly, but penguins can't") is consumed by
+  that construction — the generic clauses reify no eventualities, so there are no endpoints;
+  emit the three-fact exception pattern (see *Defeasible generics & exceptions*) and **no**
+  connective atom.
 - **Temporal connectives get NO connective atom** — "after / before / when / while / until /
   as soon as" locate eventualities in time and keep their canonical forms from the time
   sections (`Before`, `During`, …). A connective atom is emitted only when the connective
@@ -1896,7 +1955,7 @@ assert the consequent either way:
       If Mia had trained, she would have won.
         →  (Counterfactual (And (Member sk_train_1 train) (Agent sk_train_1 mia) (Past sk_train_1))
                            (And (Member sk_win_1 win) (Agent sk_win_1 mia) (Past sk_win_1)))
-           (And (Member sk_train_1 train) (Agent sk_train_1 mia) (Past sk_train_1)) (STV 0.0 0.99)   ; she didn't train
+           (: mia_no_train (And (Member sk_train_1 train) (Agent sk_train_1 mia) (Past sk_train_1)) (STV 0.0 0.99))   ; she didn't train
            (Name mia "Mia")
 
 An ordinary **indicative** conditional ("if the alarm sounds, the doors lock") is a plain

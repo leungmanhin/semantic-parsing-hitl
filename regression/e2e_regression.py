@@ -262,12 +262,12 @@ run_strength("genR-majority  is this dog loyal? (majority distributes ~0.9)",
     ['(: dog_loyal (Inheritance dog loyal) (STV 0.9 0.9))','(: d1 (Member sk_dog_1 dog) (STV 1.0 0.99))'],
     '(Member sk_dog_1 loyal)', 0.85, 0.95, chain=True)
 # Defeasible exceptions (Group S): general @0.9 + sub-kind exception @0.0/0.99 -> revision overrides
-DEF=['(: bf (Inheritance bird (can fly)) (STV 0.9 0.9))','(: pb (Inheritance penguin bird) (STV 0.99 0.99))',
+DEF=['(: bf (Inheritance bird (can fly)) (STV 0.9 0.9))','(: pb (Inheritance penguin bird) (STV 1.0 0.99))',
      '(: pf (Inheritance penguin (can fly)) (STV 0.0 0.99))','(: pingu (Member pingu penguin) (STV 1.0 0.99))',
      '(: tweety (Member tweety bird) (STV 1.0 0.99))']
 run_strength("defeas  exception overrides: can pingu fly? (~0)", DEF, '(Member pingu (can fly))', 0.0, 0.15, chain=True)
 run_strength("defeas  generic intact: can tweety fly? (~0.9)", DEF, '(Member tweety (can fly))', 0.8, 0.95, chain=True)
-REV=['(: me (Inheritance mammal egg_layer) (STV 0.0 0.9))','(: pm (Inheritance platypus mammal) (STV 0.99 0.99))',
+REV=['(: me (Inheritance mammal egg_layer) (STV 0.0 0.9))','(: pm (Inheritance platypus mammal) (STV 1.0 0.99))',
      '(: pe (Inheritance platypus egg_layer) (STV 1.0 0.99))','(: perry (Member perry platypus) (STV 1.0 0.99))',
      '(: rex (Member rex mammal) (STV 1.0 0.99))']
 run_strength("defeas-rev  positive exception: perry lays eggs? (~0.9)", REV, '(Member perry egg_layer)', 0.8, 0.98, chain=True)
@@ -291,29 +291,29 @@ SVERBM=['(: birds_fly2 (Implication (Premises (Member $x bird)) (Conclusions (Me
 run_strength("strike-verbal-ctrl  majority 'birds fly' distributes at ~0.9 (arbitrary robin)", SVERBM,
     '(And (Member $e fly) (Agent $e robin2))', 0.75, 0.95, chain=True)
 # Defeasible deontic (Group S deontic): obligation/permission reified as property -> revision overrides
-DEON=['(: ed (Inheritance employee (obligated badge_in)) (STV 0.9 0.9))','(: ee (Inheritance executive employee) (STV 0.99 0.99))',
+DEON=['(: ed (Inheritance employee (obligated badge_in)) (STV 0.9 0.9))','(: ee (Inheritance executive employee) (STV 1.0 0.99))',
       '(: ex (Inheritance executive (obligated badge_in)) (STV 0.0 0.99))','(: e1 (Member dave executive) (STV 1.0 0.99))',
       '(: e2 (Member carol employee) (STV 1.0 0.99))']
 run_strength("deon  exempt: must exec badge in? (~0)", DEON, '(Member dave (obligated badge_in))', 0.0, 0.15, chain=True)
 run_strength("deon  regular: must employee badge in? (~0.9)", DEON, '(Member carol (obligated badge_in))', 0.8, 0.95, chain=True)
-PERM=['(: mp (Inheritance member (permitted bring_guest)) (STV 0.9 0.9))','(: tm (Inheritance trial_member member) (STV 0.99 0.99))',
+PERM=['(: mp (Inheritance member (permitted bring_guest)) (STV 0.9 0.9))','(: tm (Inheritance trial_member member) (STV 1.0 0.99))',
       '(: tx (Inheritance trial_member (permitted bring_guest)) (STV 0.0 0.99))','(: m1 (Member tina trial_member) (STV 1.0 0.99))']
 run_strength("deon-perm  exempt: may trial member bring guest? (~0)", PERM, '(Member tina (permitted bring_guest))', 0.0, 0.15, chain=True)
 # Compound decomposition (#12): unpack compounds into single-word parts
 DEC=['(: gen (Inheritance member (obligated pay_dues)) (STV 0.9 0.9))',
-     '(: pd_g (Inheritance pay_dues pay) (STV 0.99 0.99))','(: pd_o (Patient pay_dues dues) (STV 0.99 0.99))',
+     '(: pd_g (Inheritance pay_dues pay) (STV 1.0 0.99))','(: pd_o (Patient pay_dues dues) (STV 1.0 0.99))',
      '(: m1 (Member alice member) (STV 1.0 0.99))']
 run("decomp-t1  unpack: what must members pay? (-> dues)", DEC, '(And (Inheritance member (obligated $a)) (Patient $a $w))', contains="dues")
 run("decomp-t1  SAFETY no leak: obligated (generic) pay? (expect [])", DEC, '(Member alice (obligated pay))', want="empty", chain=True)
 run("decomp-t2  a light_switch instance IS a switch (genus)",
-    ['(: s1 (Member sk_switch_1 light_switch) (STV 1.0 0.99))','(: g (Inheritance light_switch switch) (STV 0.99 0.99))'],
+    ['(: s1 (Member sk_switch_1 light_switch) (STV 1.0 0.99))','(: g (Inheritance light_switch switch) (STV 1.0 0.99))'],
     '(Member sk_switch_1 switch)', chain=True)
 # Nominalization decomposition (#12 Tier 3a): X-er -> capability (+ kind-relation if object incorporated)
-NOM=['(: pen_sw (Inheritance penguin swimmer) (STV 0.9 0.9))','(: sw_can (Inheritance swimmer (can swim)) (STV 0.99 0.99))',
+NOM=['(: pen_sw (Inheritance penguin swimmer) (STV 0.9 0.9))','(: sw_can (Inheritance swimmer (can swim)) (STV 1.0 0.99))',
      '(: p1 (Member pingu penguin) (STV 1.0 0.99))']
 run("nom-intrans  a swimmer instance can swim (pingu)", NOM, '(Member pingu (can swim))', chain=True)
 run("nom-intrans  what can a swimmer do? (-> swim)", NOM, '(Inheritance swimmer (can $v))', contains="swim")
-NOMT=['(: el_can (Inheritance egg_layer (can lay)) (STV 0.99 0.99))','(: el_rel (Lay egg_layer egg) (STV 0.99 0.99))',
+NOMT=['(: el_can (Inheritance egg_layer (can lay)) (STV 1.0 0.99))','(: el_rel (Lay egg_layer egg) (STV 1.0 0.99))',
       '(: pl (Member perry egg_layer) (STV 1.0 0.99))']
 run("nom-trans  what does an egg_layer lay? (-> egg)", NOMT, '(Lay egg_layer $w)', contains="egg")
 run("nom-trans  SAFETY kind-rel no distribute: (Lay perry egg) (expect [])", NOMT, '(Lay perry egg)', want="empty", chain=True)
@@ -795,7 +795,7 @@ run("measure-heavy-ctrl  same Q on adjective scale 'heavy' -> [] (why normalize)
 # Deontic norm over a kind (Q3 unify): plain norm = reified property (same shape as defeasible,
 # minus the exception); inherits to members; obligation implies permission via seeded oblig_perm_prop.
 KNORM=['(: ct (Inheritance citizen (obligated pay_tax)) (STV 1.0 0.99))',
-       '(: ptg (Inheritance pay_tax pay) (STV 0.99 0.99))','(: pto (Patient pay_tax tax) (STV 0.99 0.99))',
+       '(: ptg (Inheritance pay_tax pay) (STV 1.0 0.99))','(: pto (Patient pay_tax tax) (STV 1.0 0.99))',
        '(: bc (Member bob citizen) (STV 1.0 0.99))']
 run("deon-kind-member  must Bob (a citizen) pay tax? (property inherits to member)", KNORM,
     '(Member bob (obligated pay_tax))', seeded=True, chain=True)
@@ -1205,7 +1205,7 @@ run("imp-voc-struct fully-structured query reaches into the sealed directive ter
 # Tier-2 batch WAVE 1 (#44/#42/#43/#45/#46).
 # #44 kind-level (non-distributing) property: (KindProperty kind prop) is OPAQUE -> a kind-only
 # property (extinct/endangered) does NOT distribute to instances (unlike Inheritance, which would).
-KP44=['(: ga_genus (Inheritance great_auk auk) (STV 0.99 0.99))',
+KP44=['(: ga_genus (Inheritance great_auk auk) (STV 1.0 0.99))',
       '(: ga_extinct (KindProperty great_auk extinct) (STV 1.0 0.9))',
       '(: ga_mem (Member sk_auk_1 great_auk) (STV 1.0 0.99))']
 run("kindprop-kind   is the great auk (kind) extinct? (KindProperty binds)", KP44, '(KindProperty great_auk extinct)')
@@ -1292,6 +1292,64 @@ run("cf-ante0       presupposition: did Omar study? pinned @0 binds (he didn't)"
     '(And (Member $e study) (Agent $e omar))', tv='(STV 0.0 $conf)', contains="sk_study_1")
 run("cf-cons-noleak SAFETY consequent NOT asserted: did Omar pass? (expect [])", CF,
     '(Member $e pass)', want="empty")
+
+# ============================================================================
+# Can-routing (2026-07-27 review decision #1): a capability generic is a reified property
+# (Inheritance kind (can verb)) — kind-Q queries the property (wh binds inside the term);
+# individual-Q = event-branch ∪ property-branch union, branches disjoint both ways.
+CAP_PROP=['(: bird_canfly (Inheritance bird (can fly)) (STV 0.9 0.9))',
+          '(: p1 (Member pingu bird) (STV 1.0 0.99))','(: pn (Name pingu "Pingu") (STV 1.0 0.99))']
+CAP_EVT=['(: e_swim (Member sk_swim_1 swim) (STV 1.0 0.99))','(: e_ag (Agent sk_swim_1 rufus) (STV 1.0 0.99))',
+         '(: e_can (Can sk_swim_1) (STV 1.0 0.99))','(: rn (Name rufus "Rufus") (STV 1.0 0.99))']
+run("can-kind      kind capability Q -> property form binds", CAP_PROP, '(Inheritance bird (can fly))')
+run("can-kind-wh   what can birds do? -> (can $v) binds inside the term", CAP_PROP, '(Inheritance bird (can $v))', contains="fly")
+run("can-ind-prop  individual union: property branch (Name + inherited (can fly))", CAP_PROP,
+    '(And (Name $p "Pingu") (Member $p (can fly)))')
+run("can-ind-evt   individual union: event branch (asserted ability, Name-bound)", CAP_EVT,
+    '(And (Name $r "Rufus") (Member $e swim) (Agent $e $r) (Can $e))')
+run("can-disjoint  SAFETY event branch finds nothing on property storage", CAP_PROP,
+    '(And (Name $p "Pingu") (Member $e fly) (Agent $e $p) (Can $e))', want="empty")
+
+# Possession bridge (decision #3): questions query (Possession y x); seeded rules derive it
+# from have/own events (Holder-gated; "lack" deliberately unbridged).
+POSS_HAVE=['(: h1 (Member sk_have_1 have) (STV 1.0 0.99))','(: h2 (Holder sk_have_1 tom) (STV 1.0 0.99))',
+           '(: h3 (Theme sk_have_1 sk_kettle_1) (STV 1.0 0.99))','(: h4 (Member sk_kettle_1 kettle) (STV 1.0 0.99))',
+           '(: h5 (Name tom "Tom") (STV 1.0 0.99))','(: b1 (Member sk_break_1 break) (STV 1.0 0.99))',
+           '(: b2 (Patient sk_break_1 sk_kettle_1) (STV 1.0 0.99))','(: b3 (Past sk_break_1) (STV 1.0 0.99))']
+POSS_OWN=['(: o1 (Member sk_own_1 own) (STV 1.0 0.99))','(: o2 (Holder sk_own_1 rita) (STV 1.0 0.99))',
+          '(: o3 (Theme sk_own_1 sk_mill_1) (STV 1.0 0.99))','(: o4 (Member sk_mill_1 mill) (STV 1.0 0.99))']
+run("poss-br-have  have-event -> (Possession y x) derives via seeded bridge", POSS_HAVE,
+    '(Possession $y $x)', seeded=True, contains="tom")
+run("poss-br-whose whose-kettle-broke chain over have storage", POSS_HAVE,
+    '(And (Member $k kettle) (Possession $k $who) (Member $e break) (Patient $e $k) (Past $e))', seeded=True, contains="tom")
+run("poss-br-own   own-event -> (Possession y x) derives via seeded bridge", POSS_OWN,
+    '(Possession $y $x)', seeded=True, contains="rita")
+run("poss-br-ctrl  SAFETY no possession stated -> empty", ['(: c1 (Member sk_lamp_9 lamp) (STV 1.0 0.99))'],
+    '(Possession $y $x)', seeded=True, want="empty")
+
+# "None of the Ns V" (decision #4): the universal's negative twin — the same per-member
+# distribution rule at strength 0.0 (no subset, no Cardinality 0).
+NONE_R=['(: none_objected (Implication (Premises (Member $x juror)) (Conclusions (Member (sk_object $x) object) (Agent (sk_object $x) $x) (Past (sk_object $x)))) (STV 0.0 0.9))',
+        '(: a1 (Member ann juror) (STV 1.0 0.99))','(: an (Name ann "Ann") (STV 1.0 0.99))']
+run_strength("none-member  'did Ann object?' derives ~0 (blanket denial distributes)", NONE_R,
+    '(And (Name $a "Ann") (Member $e object) (Agent $e $a) (Past $e))', 0.0, 0.2)
+run("none-pin      pinned (STV 0.0 $conf) form binds the denial", NONE_R,
+    '(And (Name $a "Ann") (Member $e object) (Agent $e $a) (Past $e))', tv='(STV 0.0 $conf)')
+
+# "yet" placement (decision #5): the (Yet e) expectation tag lives OUTSIDE the strength-0
+# denial bundle (inside, it marginally projects at strength 0 — the expectation would read as denied).
+YET=['(: t1 (Member sk_train_1 train) (STV 1.0 0.99))',
+     '(: neg (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_train_1) (Past sk_arrive_1)) (STV 0.0 0.99))',
+     '(: y1 (Yet sk_arrive_1) (STV 1.0 0.99))']
+run_strength("yet-tag      (Yet $e) expectation reads POSITIVE (~1, outside the denial)", YET, '(Yet $e)', 0.8, 1.0)
+run("yet-denial    pinned 'has it arrived?' denial still binds beside the tag", YET,
+    '(And (Member $e arrive) (Agent $e $t) (Member $t train) (Past $e))', tv='(STV 0.0 $conf)')
+
+# QuantifierPhrase extended to verbal rules (decision #6): the quantifier word rides a companion
+# beside the rule, mirroring the copular convention (absence = bare generic).
+QPV=['(: r (Implication (Premises (Member $x gull)) (Conclusions (Member (sk_scavenge $x) scavenge) (Agent (sk_scavenge $x) $x))) (STV 0.9 0.9))',
+     '(: q (QuantifierPhrase gull scavenge "most") (STV 1.0 0.99))']
+run("qp-verbal     companion binds by pattern beside the rule", QPV, '(QuantifierPhrase gull $v $w)', contains="most")
 
 # ============================================================================
 # Bundle-QA rigidity family: the FAITHFUL translator queries (Name-bound / full-context) used to
