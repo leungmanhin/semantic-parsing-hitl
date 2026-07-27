@@ -23,18 +23,15 @@ as follows:
 
 - **Never re-emit a context atom** — it is already in the KB, and re-adding it counts as new
   evidence (spuriously inflating its confidence). Output atoms for the TEXT only.
-- **Coreference extends into the context** (see *Coreference & anaphora*): a TEXT mention that
-  refers to a context entity — a proper name matching its `Name`, or a pronoun / definite
-  matching a context entity's class and salience — **reuses the context symbol** and does not
-  re-emit its `Name`/`Member` atoms. An indefinite ("a report") is always a **new** witness,
-  even if the context has one of that class.
+- **Coreference extends into the context** (*Coreference & anaphora*): a TEXT mention of a context
+  entity — a name matching its `Name`, or a pronoun / definite matching its class and salience —
+  **reuses that symbol** and re-emits none of its atoms. An indefinite ("a report") is always a
+  **new** witness, even if the context has one of that class.
 - **Witness indices continue past the context**: `sk_report_1` in context → a new report is
   `sk_report_2`; never reuse or collide (this applies per class, and to event witnesses too).
-- **Denying a context eventuality** ("no longer", "not anymore"): the full **cessation**
-  bundle on the **same context symbols** — add `(Past <e>)` (the state held) plus the
-  strength-0 `(And …)` denial (see *Time*). Same-symbol is what lets the engine's revision
-  merge the denial with the old positives into one graded answer; a fresh witness would leave
-  the stale positive standing beside an unrelated denial.
+- **Denying a context eventuality** ("no longer", "not anymore"): the full **cessation** bundle on
+  the **same context symbols** (*Time*). Same-symbol is what lets revision merge the denial with the
+  old positives into one graded answer; a fresh witness would leave the stale positive standing.
 - **In a question, a referent the context identifies is its constant symbol directly** (with
   context you DO know the KB symbol — that is what it is for); referents not in the context
   keep the usual `Name` / kind binding.
@@ -59,14 +56,11 @@ as follows:
       TEXT:
       The kitten scratched her yesterday.
 
-      →  (: e_scratch (Member sk_scratch_1 scratch) (STV 1.0 0.99))
-         (: e_sag (Agent sk_scratch_1 sk_kitten_1) (STV 1.0 0.99))     ; context symbol reused
-         (: e_spat (Patient sk_scratch_1 maya) (STV 1.0 0.99))         ; "her" → maya
-         (: e_spast (Past sk_scratch_1) (STV 1.0 0.99))
-         (: e_st (Time sk_scratch_1 yesterday) (STV 1.0 0.99))
-         (: e_sd (Time sk_scratch_1 (Day 6)) (STV 1.0 0.99))           ; TODAY-grounded, dual-emit
-         (: e_sm (Time sk_scratch_1 (Month july)) (STV 1.0 0.99))
-         (: e_sy (Time sk_scratch_1 (Year 2026)) (STV 1.0 0.99))
+      →  (Member sk_scratch_1 scratch) (Agent sk_scratch_1 sk_kitten_1)   ; context symbol reused
+         (Patient sk_scratch_1 maya) (Past sk_scratch_1)                  ; "her" → maya
+         (Time sk_scratch_1 yesterday)
+         (Time sk_scratch_1 (Day 6)) (Time sk_scratch_1 (Month july))
+         (Time sk_scratch_1 (Year 2026))                                  ; TODAY-grounded, dual-emit
 
 With no `CONTEXT` block, everything below applies unchanged.
 
@@ -104,6 +98,42 @@ Rules:
   every atom open to revision.
 - **Generalizations carry lower confidence when empirical**: `0.99` if definitional, `0.9`
   if empirical/contingent (see **Confidence — definitional vs empirical**).
+
+## Core patterns
+
+Five patterns recur throughout; each is defined **here once** and only referenced below.
+
+- **Dual-storage union.** When one fact can be stored two ways, a question **emits one query line
+  per storage and unions the answers**: at query time you can't know which form the KB holds (it may
+  come from another sentence), and each form returns **nothing** on the other. The branches are
+  disjoint, so the union never double-counts. Instances: exact `Cardinality` vs bound
+  `CardinalityAtLeast`/`AtMost`; exact magnitude (`Compute`) vs distribution (`GreaterThan`); exact
+  `Time` vs `TimeAtLeast`/`AtMost`; `Every` vs `TimesPer`; interval `End` vs a reified stop event;
+  an individual's capability as `(Can e)` vs an inherited `(can <verb>)`. For a threshold, only the
+  **matching-direction** bound can confirm — omit the opposite one.
+- **Opaque heads** are **stored and matched verbatim** — never decomposed, nothing is inferred from
+  what is *inside* them, and a question matches them by pattern (binding the unknown slot): `Or`,
+  `Xor`, `Only`/`Even`/`Also`/`Cleft`, `Again`/`Still`/`Already`/`Yet`, `Possession`,
+  `KindProperty`, `RestOf`, `Ordinal`, `Counterfactual`, `Directive`/`Forbid`, `Whether`/`Question`,
+  `Symmetric`, kind-level relations (`(Carry mosquito malaria)`), and the surface connective heads
+  (`Because`, `So`, `Although`, …). Opacity is **structural, not inferential**: a seeded rule may
+  still fire on the atom **as a whole** — the *causal / purposive* connective heads feed
+  `ReasonFor`/`PurposeOf`, and `Symmetric` feeds the mutual-relation rule — but nothing reaches into
+  their arguments. (Concessive and adversative heads — `Although`, `But`, `Yet` — feed nothing.)
+- **Sealing** records a proposition **without asserting it**: nest it as **one term argument** of
+  another atom — a single atom as itself, several as `(And …)`. Nothing inside is true at top
+  level, yet the wrapper stays queryable and a query reaches **inside** by rebuilding the term with
+  variables in the unknown slots. Used by propositional attitudes (under `Theme`), embedded
+  questions (`Whether` / `Question`), imperatives (`Directive` / `Forbid`), counterfactuals.
+- **Dual-emit.** Where one clause must answer two question shapes, emit **both** forms: a reified
+  state **and** the flat copular atom (resultatives, connective endpoints, a copular clause carrying
+  a time modifier); a deictic constant **and** its `TODAY`-grounded calendar atoms; a **factive**
+  attitude's sealed complement **and** its flat proposition.
+- **Truth values at a glance.** Default `(STV 1.0 0.99)`; definitional / structural links — genus,
+  taxonomy, decomposition — also `1.0 0.99`; empirical generic `0.9 0.9`; striking minority strength
+  `0.2`–`0.3`; negation / denial / prohibition strength `0.0`; epistemic `Might`/`Probably`/`Must`
+  confidence `0.9`; deontic "should" strength `0.7`; a defeasible **exception** takes confidence
+  `0.99` against its general's `0.9`. Never confidence `1.0`.
 
 ## Names and casing
 
@@ -288,7 +318,7 @@ word (above); plain **"not"** negation takes none — so the two `0.0` readings 
 
 - **"not all / not every X is Y"** → a **counterexample witness**, one X that is not Y:
 
-      Not all swans are white. → (: sk_swan_1_swan (Member sk_swan_1 swan) (STV 1.0 0.99))
+      Not all swans are white. → (Member sk_swan_1 swan)
                                  (: sk_swan_1_not_white (Member sk_swan_1 white) (STV 0.0 0.99))
 
 - **"neither A nor B"** → one strength-`0.0` fact per disjunct.
@@ -361,26 +391,15 @@ raining", "it got cold", "it seems") is **not** a referent — drop it and reify
 (Future sk_rain_1)`.
 
       Maria gave Bob a book in the library.
-        →  (: e_give (Member sk_give_1 give) (STV 1.0 0.99))
-           (: e_agent (Agent sk_give_1 maria) (STV 1.0 0.99))
-           (: e_recip (Recipient sk_give_1 bob) (STV 1.0 0.99))
-           (: e_theme (Theme sk_give_1 sk_book_1) (STV 1.0 0.99))
-           (: e_book (Member sk_book_1 book) (STV 1.0 0.99))
-           (: e_loc (Location sk_give_1 sk_library_1) (STV 1.0 0.99))
-           (: e_lib (Member sk_library_1 library) (STV 1.0 0.99))
-           (: e_past (Past sk_give_1) (STV 1.0 0.99))
-           (: maria_name (Name maria "Maria") (STV 1.0 0.99))
-           (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+        →  (Member sk_give_1 give) (Agent sk_give_1 maria) (Recipient sk_give_1 bob)
+           (Theme sk_give_1 sk_book_1) (Member sk_book_1 book)
+           (Location sk_give_1 sk_library_1) (Member sk_library_1 library) (Past sk_give_1)
+           (Name maria "Maria") (Name bob "Bob")
 
-      Alice owns a dog.  →  (: e_own (Member sk_own_1 own) (STV 1.0 0.99))
-                            (: e_holder (Holder sk_own_1 alice) (STV 1.0 0.99))
-                            (: e_theme (Theme sk_own_1 sk_dog_1) (STV 1.0 0.99))
-                            (: e_dog (Member sk_dog_1 dog) (STV 1.0 0.99))
-                            (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+      Alice owns a dog.  →  (Member sk_own_1 own) (Holder sk_own_1 alice) (Theme sk_own_1 sk_dog_1)
+                            (Member sk_dog_1 dog) (Name alice "Alice")
 
-      Dinner was cooked.  →  (: e_cook (Member sk_cook_1 cook) (STV 1.0 0.99))
-                             (: e_patient (Patient sk_cook_1 dinner) (STV 1.0 0.99))
-                             (: e_past (Past sk_cook_1) (STV 1.0 0.99))
+      Dinner was cooked. →  (Member sk_cook_1 cook) (Patient sk_cook_1 dinner) (Past sk_cook_1)
 
 ### Status predicates  `(<Status> <event>)`
 
@@ -433,7 +452,9 @@ recorded, never asserted as a separate fact); do **not** stuff these into `Manne
 - **"already"** (happened earlier than expected) → `(Already <event>)`
 - **"yet"** (NPI — expected but **not yet**, always under negation / a question) → `(Yet <event>)`
   as its **own positive atom OUTSIDE** the strength-0 `(And …)` denial — the expectation is TRUE;
-  inside the bundle it would read as denied:
+  inside the bundle it would read as denied. **Arity disambiguates**: this **unary** tag is
+  unrelated to the **binary** `(Yet <main> <sub>)` adversative connective (*Inter-clause
+  connectives*) — same symbol, different sense, and they never unify:
 
       The parcel hasn't shipped yet. →  (Member sk_parcel_1 parcel)
                                         (: neg (And (Member sk_ship_1 ship) (Patient sk_ship_1 sk_parcel_1) (Past sk_ship_1)) (STV 0.0 0.99))
@@ -498,8 +519,7 @@ A verb of thought or speech with a **clausal "that"-complement** — *believe, t
 imagine, doubt, suspect, hope, fear, expect, assume, claim, say* (**non-factive**) or *know,
 realize, discover, learn, notice, remember, regret* (**factive**) — reifies the **attitude** as an
 event with `Experiencer` = the holder, and attaches the complement proposition **P** by `Theme`.
-Parse P as usual (classes, roles, tense), then **seal** its atoms as **one term**: a single atom if
-P is one atom, else `(And …)`.
+Parse P as usual (classes, roles, tense), then **seal** it (*Core patterns*).
 
       Nadia believes that the bridge is unsafe.
         →  (Member sk_believe_1 believe) (Experiencer sk_believe_1 nadia)
@@ -558,9 +578,9 @@ P; see **Propositional attitudes**. This rule is only for **interrogative** whet
 An **imperative** — "Close the valve", "Don't open the hatch" — is a **directive**, not an
 assertion: the commanded event has not happened, so it must not contaminate the KB with
 occurred-event facts. Reify the commanded eventuality (class, roles, any deadline / manner) and
-**seal it as one term** (as for an attitude complement) under **`(Directive <sealed-event>)`** for a
-positive command or **`(Forbid <sealed-event>)`** for a negative one. Assert **no** tense /
-occurrence, and mint **no** addressee referent (real object referents are still typed):
+**seal** it under **`(Directive <sealed-event>)`** (positive) or **`(Forbid <sealed-event>)`**
+(negative). Assert **no** tense / occurrence, and mint **no** addressee referent (real object
+referents are still typed):
 
       Close the valve.        →  (Directive (And (Member sk_close_1 close) (Patient sk_close_1 sk_valve_1)))
                                  (Member sk_valve_1 valve)
@@ -578,8 +598,7 @@ An existential entity asserts *at least one* such thing → a fresh witness `sk_
 with its membership, used wherever the entity appears (a role filler in an event, or on its
 own):
 
-      There is a black raven. → (: sk_raven_1_raven (Member sk_raven_1 raven) (STV 1.0 0.99))
-                                (: sk_raven_1_black (Member sk_raven_1 black) (STV 1.0 0.99))
+      There is a black raven. →  (Member sk_raven_1 raven) (Member sk_raven_1 black)
 
 "There is a X" and "some X" share this encoding. Vague *counts* — "a few", "several", "dozens" — go under **Cardinality** (`CardinalityPhrase`),
 not a lone witness; "a couple" ≈ 2 → `(Cardinality g 2)`. Do **not** use a witness for proportion words
@@ -645,11 +664,10 @@ here; distributing to **each** member uses a rule (below). Group witnesses are o
 witnesses — `sk_group_<n>` by default; with several groups in play, a mnemonic stem
 (`sk_students_1`) is fine.
 
-A plural predicated with a **distributive** predicate (each member acts separately) keeps the group
-event (counting / "did any?") **and** distributes to its members via a rule over `(PartOf $x
-<group>)` (see *Quantifiers, generics & scope* and *Cardinality*), so a member named later is
-queryable; only a **collective** predicate (gather, meet, assemble — the group as one unit) stays
-**group-only**. An **explicit universal** ("all the / each of the Ns V") distributes the same way.
+A **distributive** predicate (each member acts separately) also hands the predication to the
+group's members via a rule, so a member named later is queryable; a **collective** predicate
+(gather, meet, assemble — the group as one unit) stays **group-only**. That machinery — and the
+**explicit universal** ("all the / each of the Ns V") — lives in *Quantifiers, generics & scope*.
 (Counts — "three students", "both", "several" — are under **Cardinality**; "or" under **Disjunction**.)
 
 ## Cardinality (counting)
@@ -677,15 +695,13 @@ below.)
   more" closure is a global/open-world reading we don't separately encode). **"both"** = exactly 2 and is **definite** (reuse the two members' symbols
   if already introduced).
 
-  A plural with a **distributive** predicate (bark, pass, laugh, arrive — each member acts
-  separately) **also distributes to its members via a rule** (as *Both dogs barked* shows): keep the
-  group + count + group event **for counting / "did any?"**, and add a **distribution rule** ranging
-  over the group's members `(PartOf $x <group>)` (see *Quantifiers, generics & scope*). The rule
-  stays **dormant** until a member is individuated, then fires — so this works across **any** count
-  (vague and large included, since it doesn't enumerate). *Both dogs barked. Fido was one of them.*
-  adds `(Member fido dog) (PartOf fido sk_group_1) (Name fido "Fido")`, firing the rule → Fido's own
-  bark event, so **"did Fido bark?"** → `(And (Name $f "Fido") (Member $e bark) (Agent $e $f) (Past $e))` resolves. A **collective** predicate
-  (gather, meet, assemble) stays **group-only** (no rule).
+  A plural with a **distributive** predicate (bark, pass, laugh, arrive) keeps the group + count +
+  group event **for counting / "did any?"** and **adds** the per-member rule over `(PartOf $x
+  <group>)` (*Quantifiers, generics & scope*), as *Both dogs barked* shows. The rule stays
+  **dormant** until a member is individuated, then fires — so it works at **any** count, vague or
+  large, without enumerating: *Both dogs barked. Fido was one of them.* adds `(Member fido dog)
+  (PartOf fido sk_group_1) (Name fido "Fido")` → Fido's own bark event, so "did Fido bark?"
+  resolves. A **collective** predicate stays **group-only** (no rule).
 
 - **Bounded number** → `(CardinalityAtLeast <group> <n>)` / `(CardinalityAtMost <group> <n>)`
   ("more than 3" = at least 4; "at least 5" = 5; "fewer than 10" = at most 9; "at most 4" = 4):
@@ -720,15 +736,10 @@ below.)
 - **Bounded "did more than k X V?"** → gate the count with a `Compute` comparison
   (`>` "more than" / `>=` "at least" / `<` "fewer than" / `<=` "at most"): `(Compute > ($n k) ->
   true)` keeps the branch only when it holds. (`Compute` is the **hard-integer** test; `GreaterThan`
-  is for *distribution* values, not plain counts.) But a count may be stored **exact**
-  (`Cardinality`) *or* as a **bound** (`CardinalityAtLeast` / `CardinalityAtMost` — from a "more than
-  k" statement or a vague phrase), and the two **don't unify** (an exact `Cardinality` answers a
-  `CardinalityAtLeast` query with nothing). You can't know which way the target was stored, so a
-  threshold question **emits both the exact branch and the matching-direction bound branch and unions
-  them** (like a measure threshold — see *Measures & units*): a **lower-bound** question ("at least /
-  more than k") pairs `Cardinality` with `CardinalityAtLeast`; an **upper-bound** question ("at most /
-  fewer than k") pairs `Cardinality` with `CardinalityAtMost` (the opposite bound can never confirm
-  it — omit it). The branches are disjoint, so the union never double-counts:
+  is for *distribution* values, not plain counts.) A count may be stored exact (`Cardinality`) or as
+  a bound (`CardinalityAtLeast` / `CardinalityAtMost`, from a "more than k" statement or a vague
+  phrase) → **dual-storage union** (*Core patterns*): a lower-bound question pairs `Cardinality`
+  with `CardinalityAtLeast`, an upper-bound one with `CardinalityAtMost`:
 
       Did more than three students pass?
         →  (: $prf (And (Member $e pass) (Agent $e $g) (GroupOf $g student)
@@ -744,9 +755,9 @@ so `0` then `+`, in that order) — emit that only when the question explicitly 
 
 A **partitive** quantifies over a **specific, presupposed set** — flagged by **"of the / of these /
 of those / of them"** with a **cardinal or non-universal-proportional** amount — not the generic
-kind. (A **universal** — "all / each / every of the" — is **not** a partitive; it **distributes**
-per member — see *Quantifiers, generics & scope*.) Introduce a **definite superset** group and quantify a
-**subset** of it; emit **no** generic kind-claim.
+kind. (A **universal** — "all / each / every of the" — is **not** a partitive; see the note below.)
+Introduce a **definite superset** group and quantify a **subset** of it; emit **no** generic
+kind-claim.
 
 - **Definite superset** `G` → `(GroupOf <G> <kind>)` (the contextual "the Ns"); add `(Cardinality
   <G> <N>)` if the whole's size is stated ("three of the **20** students").
@@ -772,11 +783,7 @@ per member — see *Quantifiers, generics & scope*.) Introduce a **definite supe
            (ProportionOf sk_group_1 sk_apples_1 most)
            (Inheritance sk_group_1 ripe)
 
-      Two-thirds of the students passed.                                  ; precise fraction in the level slot
-        →  (GroupOf sk_students_1 student)
-           (GroupOf sk_group_1 student) (SubsetOf sk_group_1 sk_students_1)
-           (ProportionOf sk_group_1 sk_students_1 (Fraction 2 3))
-           (Member sk_pass_1 pass) (Agent sk_pass_1 sk_group_1) (Past sk_pass_1)
+      ("Two-thirds of the students passed" is the same shape with `(Fraction 2 3)` in the level slot.)
 
 **Mass / non-count whole** ("half of the cake", "most of the water", "40% of the budget"). A mass has
 **no members** to subset, so use **`PartOf`** in place of `SubsetOf` and **no `GroupOf`**: the whole
@@ -804,8 +811,8 @@ mentioned part stays its own disjoint `PartOf` / `SubsetOf` portion.
 
 **Never** emit a generic `(Inheritance <kind> <prop>)` for a partitive — "most **of the** apples" is
 that specific set, not apples-in-general. Contrasts: bare generic "most apples are ripe" →
-`(Inheritance apple ripe) (STV 0.9 0.9)` (kind, distributes to any apple); bare count "three students
-passed" → group + count, **no** superset / `SubsetOf`. ("**all of the** Ns" is a **universal** →
+`(Inheritance apple ripe)` (kind, distributes to any apple); bare count "three students passed" →
+group + count, **no** superset / `SubsetOf`. ("**all of the** Ns" is a **universal** →
 the per-member **distribution** rule, not a partitive — and "**none of the** Ns V" is its
 **negative twin**: the same distribution rule at **strength `0.0`**, no subset and no
 `Cardinality 0` — see *Quantifiers, generics & scope*.)
@@ -844,9 +851,8 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
       The package is 2 kg heavier than the box. →  (Member sk_package_1 package) (Member sk_box_1 box) (MoreBy heavy sk_package_1 sk_box_1 2 kilogram)
 
   Query the gap via `MoreBy`: "how much taller?" → bind `$n $u`. A gap **threshold** ("more than 2
-  cm taller?") routes like any measure threshold — the gap may be stored exact (int) or, for an
-  **approximate** gap ("about 3 cm taller" → `(ParticleFromNormal X σ)`), as a distribution — so emit
-  **both** branches (`Compute` and `GreaterThan`) and union them (see **Measures & units**).
+  cm taller?") routes like any measure threshold — `Compute` ∪ `GreaterThan` (an approximate gap,
+  "about 3 cm taller", stores `(ParticleFromNormal X σ)`).
 
 - **Multiplicative / ratio** "X is twice / three times / half as ADJ as Y" → `(TimesAs <scale> X Y
   <factor>)` (twice→2, three times→3, half→0.5, "N times"→N). Like `More`, it does **not** entail
@@ -992,9 +998,8 @@ was 6 feet tall" → `(Past (Measure alice tall 6 foot))`).
       Alice is about 6 feet tall. →  (Measure alice tall (ParticleFromNormal 6 0.6) foot) (Name alice "Alice")
       The load is roughly 200 kg. →  (Member sk_load_1 load) (Measure sk_load_1 weight (ParticleFromNormal 200 40) kilogram)
 
-  An **exact** value stays a plain number; only a hedged value becomes a distribution — so the same
-  dimension may hold either across different entities, which is why threshold **questions** (below)
-  must cover both forms.
+  An **exact** value stays a plain number; only a hedged value becomes a distribution — so one
+  dimension may hold either form across entities (hence the union on threshold questions).
 
 **Measure questions.** A **value-retrieval** question ("how tall?") just binds the magnitude — one
 line, and the bound variable captures a plain number or a distribution alike:
@@ -1010,11 +1015,7 @@ dimension stored under an **adjective** matches its comparative directly ("talle
 A **threshold** question ("taller than N?") must *compare*, and the operator depends on storage:
 `(Compute > ($n N) -> true)` is the **hard-integer** test for an **exact** value, while **`GreaterThan`**
 returns a graded `P(value > N)` for a **distribution** (it also compares two distributions:
-`(GreaterThan $da $db)`). At query time you **can't know** which way the target was stored — it may
-be set in another sentence, and an open query may span a mix of exact and approximate entities — and
-each operator returns **nothing** on the other's storage. So a threshold question **emits both
-branches and unions the answers** (a multi-query, like a disjunctive question — see *Queries*); the
-branches are disjoint (neither operator matches the other's storage), so the union never double-counts:
+`(GreaterThan $da $db)`) → **dual-storage union** (*Core patterns*), both branches emitted:
 
       Is Bob taller than 2 meters?
         →  (: $prf (And (Name $b "Bob") (Measure $b tall $n meter) (Compute > ($n 2) -> true)) $tv)
@@ -1026,8 +1027,8 @@ seeded lexicon auto-derives every measure's value in its dimension's **canonical
 in the canonical unit** — the conversion is already done, no arithmetic needed:
 
       Alice is 6 feet tall. Bob is 180 cm tall. Is Alice taller than Bob?
-        →  (: alice_h (Measure alice tall 6 foot) (STV 1.0 0.99)) (: alice_n (Name alice "Alice") (STV 1.0 0.99))
-           (: bob_h (Measure bob tall 180 centimeter) (STV 1.0 0.99)) (: bob_n (Name bob "Bob") (STV 1.0 0.99))
+        →  (Measure alice tall 6 foot) (Name alice "Alice")
+           (Measure bob tall 180 centimeter) (Name bob "Bob")
            (: $prf (And (Name $a "Alice") (Name $b "Bob") (Measure $a tall $ha meter) (Measure $b tall $hb meter) (Compute > ($ha $hb) -> true)) $tv)
 
 A **threshold stated in a non-canonical unit** converts the threshold **in the query** via `(Compute
@@ -1143,16 +1144,14 @@ as the premises, the response as a Skolem event **per occurrence**, tied to its 
 `During`:
 
       Every time the bell rings, the dog barks.
-        →  (: bell_m (Member sk_bell_1 bell) (STV 1.0 0.99))
-           (: dog_m (Member sk_dog_1 dog) (STV 1.0 0.99))
+        →  (Member sk_bell_1 bell) (Member sk_dog_1 dog)
            (: whenever_ring_bark (Implication (Premises (Member $x ring) (Agent $x sk_bell_1))
               (Conclusions (Member (sk_bark $x) bark) (Agent (sk_bark $x) sk_dog_1) (During (sk_bark $x) $x))) (STV 1.0 0.9))
 
 A later specific occurrence fires it ("The bell rang at noon." → that bark derives). Query the
 derived event as the **whole conclusion bundle** — the trigger slot may stay a variable:
-`(And (Member $e bark) (Agent $e sk_dog_1) (During $e $r))`. Contrast: "every **Monday**" is a
-calendar **slot**, not an occurrence domain — days are terms, not entities, so a rule would
-never fire; use the flat habitual form above.
+`(And (Member $e bark) (Agent $e sk_dog_1) (During $e $r))`. Contrast "every **Monday**": a calendar
+**slot**, not an occurrence domain — days are terms, not entities, so use the flat habitual form.
 - A **copular** clause with a time modifier reifies the state to anchor it (like a connective
   endpoint), **plus** the flat copular atom: "Alice was ill on Friday" → `(Member sk_ill_1 ill)
   (Experiencer sk_ill_1 alice) (Time sk_ill_1 (Weekday friday)) (Past sk_ill_1)` + `(Past (Member
@@ -1191,11 +1190,8 @@ the state was already asserted — see *Input*; a fresh witness for a first-ment
    the `Past` — the denial of the present state.
 
       Mia used to smoke.
-        →  (: e_smoke (Member sk_smoke_1 smoke) (STV 1.0 0.99))
-           (: e_sag (Agent sk_smoke_1 mia) (STV 1.0 0.99))
-           (: e_spast (Past sk_smoke_1) (STV 1.0 0.99))
-           (: e_snot (And (Member sk_smoke_1 smoke) (Agent sk_smoke_1 mia)) (STV 0.0 0.99))
-           (: mia_name (Name mia "Mia") (STV 1.0 0.99))
+        →  (Member sk_smoke_1 smoke) (Agent sk_smoke_1 mia) (Past sk_smoke_1) (Name mia "Mia")
+           (: e_snot (And (Member sk_smoke_1 smoke) (Agent sk_smoke_1 mia)) (STV 0.0 0.99))   ; the denial
 
 Boundaries: "V-ed **until** <date>" → an interval `End` (below), no denial; "**stopped /
 quit** V-ing" is **eventive** — a stop event + the activity, both positive `Past` — only the
@@ -1210,9 +1206,8 @@ negative wording ("has X stopped V-ing?") → pin `(STV 0.0 $conf)`.
       Did Mia smoke?        →  (: $prf (And (Member $e smoke) (Agent $e $m) (Name $m "Mia") (Past $e)) $tv)
       Does Mia still smoke? →  (: $prf (And (Member $e smoke) (Agent $e $m) (Name $m "Mia")) $tv)
 
-"**When did X stop V-ing?**" — the endpoint may be stored EITHER as the activity's interval
-`End` (from an "until <date>" statement) OR as a reified stop event (from "stopped V-ing") —
-emit **both branches and union**, like a measure threshold:
+"**When did X stop V-ing?**" — the endpoint may be stored as the activity's interval `End` (from
+"until <date>") or as a reified stop event (from "stopped V-ing") → **dual-storage union**:
 
       When did the ferry stop running?
         →  (: $prf (And (Member $e run) (Agent $e $f) (Member $f ferry) (End $e $t) (Past $e)) $tv)
@@ -1225,14 +1220,9 @@ takes `Agent` (or the intransitive-subject role), `Theme` = the activity (its ow
 ceases). Keep the `begin` / `start` lemma surface-faithful (synonymy is downstream).
 
       The audience began to applaud.
-        →  (: e_begin (Member sk_begin_1 begin) (STV 1.0 0.99))
-           (: e_bag (Agent sk_begin_1 sk_audience_1) (STV 1.0 0.99))
-           (: e_bth (Theme sk_begin_1 sk_applaud_1) (STV 1.0 0.99))
-           (: e_bpast (Past sk_begin_1) (STV 1.0 0.99))
-           (: e_aud (Member sk_audience_1 audience) (STV 1.0 0.99))
-           (: e_applaud (Member sk_applaud_1 applaud) (STV 1.0 0.99))
-           (: e_apag (Agent sk_applaud_1 sk_audience_1) (STV 1.0 0.99))
-           (: e_apon (Ongoing sk_applaud_1) (STV 1.0 0.99))
+        →  (Member sk_begin_1 begin) (Agent sk_begin_1 sk_audience_1) (Theme sk_begin_1 sk_applaud_1)
+           (Past sk_begin_1) (Member sk_audience_1 audience)
+           (Member sk_applaud_1 applaud) (Agent sk_applaud_1 sk_audience_1) (Ongoing sk_applaud_1)
 
 **Bounded time** — the event's time is unknown but bounded → **`(TimeAtLeast e <term>)` /
 `(TimeAtMost e <term>)`** with the same structured terms — **any granularity**: `Year`, `Month`,
@@ -1246,7 +1236,6 @@ relation above.
       The statue was erected after 2015.   →  … (Past sk_erect_1) (TimeAtLeast sk_erect_1 (Year 2016))
       Bob must submit the report by 5 pm.  →  … (Obligated sk_submit_1) (TimeAtMost sk_submit_1 (Hour 17))
       The roof was repaired before March.  →  … (Past sk_repair_1) (TimeAtMost sk_repair_1 (Month february))
-      Hand the keys in by Friday.          →  … (Obligated sk_hand_1) (TimeAtMost sk_hand_1 (Weekday friday))
 
 **Intervals** — an eventuality with a stated extent gets **`(Start e <term>)` / `(End e
 <term>)`** ("from X to / until Y"; "since X" → `Start` only, usually with `Ongoing`; "until Y" →
@@ -1272,16 +1261,14 @@ via the seeded lexicon (*Measures & units*); seeded rules also derive a duration
   deictic. **What year / what day / what time?** → bind **inside** the term: `(Time $e (Year
   $y))`, `(Time $e (Weekday $w))`, `(Time $e (Hour $h))`. Yes/no at a specific time → constants
   in the term.
-- **Before / after a date?** → threshold on the bound value — and, like a measure threshold, the
-  storage may be **exact** (`Time`) or a **bound** (`TimeAtMost` / `TimeAtLeast`), so emit **both
-  branches and union**; only the **matching-direction** bound can confirm ("before" pairs with
-  `TimeAtMost`, "after" with `TimeAtLeast`; omit the opposite bound).
+- **Before / after a date?** → threshold on the bound value; storage may be exact (`Time`) or a
+  bound (`TimeAtMost` / `TimeAtLeast`) → **dual-storage union** ("before" pairs with `TimeAtMost`,
+  "after" with `TimeAtLeast`).
 - **Month / weekday order** has no number to compare — join the seeded lexicon fact
   (`(MonthNumber $m $n)` / `(WeekdayNumber $w $n)`); the join works on **bounds** the same way:
   `(TimeAtMost $e (Month $m)) (MonthNumber $m $n) (Compute < ($n 5) -> true)`.
-- An **hour threshold** follows the measure rule: the stored hour may be **exact** (plain
-  number → `Compute`) or **approximate** (distribution → `GreaterThan`, graded) — emit **both
-  branches + union**. A threshold **with minutes** ("before 4:30 pm") adds a split: hours
+- An **hour threshold** follows the measure rule — exact (`Compute`) ∪ approximate distribution
+  (`GreaterThan`, graded). A threshold **with minutes** ("before 4:30 pm") adds a split: hours
   strictly below, ∪ the boundary hour with minutes below —
   `(Time $e (Hour $h)) (Compute < ($h 16) -> true)` ∪
   `(Time $e (Hour 16)) (Time $e (Minute $m)) (Compute < ($m 30) -> true)`.
@@ -1356,15 +1343,9 @@ committee") or a counted/bare plural ("several dogs", "both dogs") → `(PartOf 
                                                         (Past (sk_resign $x)))) (STV 1.0 0.9))
                                        (Member sk_committee_1 committee)
 
-A **distributive** predicate distributes; a **collective** predicate ("the students gathered",
-"the jury deliberated") stays **one** event with the group as agent (see *Coordination &
-plurals*). An **explicit universal** ("all the / each / every") is the pure rule above; a
-**grouped or counted plural** ("the dogs barked", "several dogs barked", "both dogs barked")
-keeps its **group event + count** (for counting and "did any?") **plus** the `(PartOf $x
-<group>)` rule alongside — it fires when a member is individuated later (see *Coordination &
-plurals*). Query a distributed member like any event — its event class, the roles (a **named**
-member bound by `Name`), and status: "Did Ana pass?" (Ana a student) → `(: $prf (And (Name $a
-"Ana") (Member $e pass) (Agent $e $a) (Past $e)) $tv)`.
+Query a distributed member like any event — its class, the roles (a **named** member bound by
+`Name`), and status: "Did Ana pass?" (Ana a student) → `(: $prf (And (Name $a "Ana") (Member $e
+pass) (Agent $e $a) (Past $e)) $tv)`.
 
 **Negated verbal generic / verbal ¬∀.** "Ns don't V" as a generic habit ("owls don't migrate") =
 the **same distributing rule at strength `0.0`** — each member's event then derives at strength 0,
@@ -1377,7 +1358,7 @@ N at strength 1 plus its event bundle at strength `0.0`.
 
       Owls don't migrate.       →  (: owls_no_migrate (Implication (Premises (Member $x owl))
                                        (Conclusions (Member (sk_migrate $x) migrate) (Agent (sk_migrate $x) $x))) (STV 0.0 0.9))
-      Not every intern replied. →  (: sk_intern_1_i (Member sk_intern_1 intern) (STV 1.0 0.99))
+      Not every intern replied. →  (Member sk_intern_1 intern)
                                    (: sk_intern_1_nr (And (Member sk_reply_1 reply) (Agent sk_reply_1 sk_intern_1) (Past sk_reply_1)) (STV 0.0 0.99))
 
 A clause with **two quantifiers over a relation** — read the natural meaning, not word
@@ -1392,7 +1373,7 @@ order — uses Skolem **functions** for *dependent* existentials, witness **cons
 
 - **∃∀ (shared)** "some critic reviewed every film" — one shared critic (a constant):
 
-      (: sk_critic_1_critic (Member sk_critic_1 critic) (STV 1.0 0.99))
+      (Member sk_critic_1 critic)
       (: that_critic_reviewed (Implication (Premises (Member $y film))
          (Conclusions (Member (sk_review $y) review) (Agent (sk_review $y) sk_critic_1) (Theme (sk_review $y) $y))) (STV 1.0 0.9))
 
@@ -1641,14 +1622,13 @@ queryable while the Or stays opaque:
 
       Bob or Alice will come.      (disjoint subject)
         →  (: will_come (And (Member sk_come_1 come) (Or (Agent sk_come_1 bob) (Agent sk_come_1 alice)) (Future sk_come_1)) (STV 1.0 0.99))
-           (: bob_name (Name bob "Bob") (STV 1.0 0.99))
-           (: alice_name (Name alice "Alice") (STV 1.0 0.99))
+           (Name bob "Bob") (Name alice "Alice")
       Bob ordered tea or coffee.   (disjoint object)
         →  (: bob_order (And (Member sk_order_1 order) (Agent sk_order_1 bob) (Or (Theme sk_order_1 tea) (Theme sk_order_1 coffee)) (Past sk_order_1)) (STV 1.0 0.99))
-           (: bob_name (Name bob "Bob") (STV 1.0 0.99))
+           (Name bob "Bob")
       The vase is red or blue.     (disjoint property)
         →  (: vase_color (Or (Member sk_vase_1 red) (Member sk_vase_1 blue)) (STV 1.0 0.99))
-           (: vase (Member sk_vase_1 vase) (STV 1.0 0.99))
+           (Member sk_vase_1 vase)
 
 So "Did someone come?" (`(Member $e come)`) still answers yes, but "Will **Bob** come?"
 (`(Agent sk_come_1 bob)`) returns nothing — genuinely unknown. The whole disjunctive clause is
@@ -1661,7 +1641,7 @@ indefinite entity** ("a salad or a sandwich"), keep that entity's `(Member <witn
         →  (: priya_order (And (Member sk_order_1 order) (Agent sk_order_1 priya)
               (Or (And (Theme sk_order_1 sk_salad_1) (Member sk_salad_1 salad))
                   (And (Theme sk_order_1 sk_sandwich_1) (Member sk_sandwich_1 sandwich))) (Past sk_order_1)) (STV 1.0 0.99))
-           (: priya_name (Name priya "Priya") (STV 1.0 0.99))
+           (Name priya "Priya")
 
 Use **wide scope** — `(Or <bundleA>
 <bundleB>)`, each disjunct a full `(And …)`/atom — only for **independent clauses** that share
@@ -1693,9 +1673,8 @@ Some "or" is **exclusive** — *exactly one* disjunct holds, **not both**. Defau
 …"**, or an **"either … or"** over two **manifestly contradictory** states of one entity
 (open/closed, on/off, awake/asleep, a single location/value). When in doubt, stay inclusive.
 
-Reify exclusivity as **`(Xor <a> <b>)`** — "exactly one of a, b." Like `Or` it is **opaque**
-(stores + pattern-queries, never leaks a disjunct); emit it for **every** exclusive-or as the
-faithful record.
+Reify exclusivity as **`(Xor <a> <b>)`** — "exactly one of a, b", **opaque** like `Or`; emit it for
+**every** exclusive-or as the faithful record.
 
 **When both disjuncts are *atomic*** (one predicate atom each — a property / state / location like
 `(Member x open)`, **not** a multi-atom event), also emit the two **strength-0 implications** that
@@ -1704,7 +1683,7 @@ make the exclusivity active — `a → not-b` and `b → not-a`, each an `(Impli
 disjunct once one is confirmed (e.g. later in the passage):
 
       The door is either open or closed.        (contradictory states → exclusive)
-        →  (: sk_door_1_door (Member sk_door_1 door) (STV 1.0 0.99))
+        →  (Member sk_door_1 door)
            (: door_xor (Xor (Member sk_door_1 open) (Member sk_door_1 closed)) (STV 1.0 0.99))
            (: door_excl_1 (Implication (Premises (Member sk_door_1 open)) (Conclusions (Member sk_door_1 closed))) (STV 0.0 0.99))
            (: door_excl_2 (Implication (Premises (Member sk_door_1 closed)) (Conclusions (Member sk_door_1 open))) (STV 0.0 0.99))
@@ -1732,8 +1711,7 @@ if a disjunct was later confirmed, ordinary queries find it and the other reads 
 
 A **focus particle** or a **cleft** adds a focus-sensitive meaning on top of an ordinary clause.
 Assert the **prejacent** — the clause with the particle removed — **normally**, then add **one
-opaque focus atom** `(<Op> <focused-filler> <event>)` naming the focused constituent. The focus atom
-is **opaque** (stored and matched verbatim, like `Or` / `Xor`), never expanded into inference:
+opaque focus atom** `(<Op> <focused-filler> <event>)` naming the focused constituent:
 
 - exclusive **"only / just / solely"** → `(Only <filler> <event>)`
 - scalar **"even"** → `(Even <filler> <event>)`
@@ -1821,14 +1799,12 @@ of an event/relation with **`And`** on the shared event variable.
   needless conjunct), and don't restate a class the pattern already fixes.
 - A **negative / polarity** question pins the truth value to `(STV 0.0 $conf)`.
 - A **capability question routes by subject**. A **kind** subject ("Can penguins fly?", "What
-  can't infants do?") queries the reified property — `(Inheritance <kind> (can <verb>))`, a wh
-  or negative form binding or pinning it (`(Inheritance infant (can $verb))` with `(STV 0.0
-  $conf)`). An **individual** subject ("Can Mira dive?") can't know whether the ability was
-  asserted as an event (`(Can e)`) or inherited from a kind, so it emits **both branches and
-  unions them** (the branches are disjoint): the event branch and the property branch
-  `(And (Name $r "…") (Member $r (can <verb>)))`. (A capability question with a specific
-  **object** — "What can Bob cook?" — keeps the event form: individual abilities with objects
-  are asserted as events.)
+  can't infants do?") queries the reified property `(Inheritance <kind> (can <verb>))` — a wh binds
+  or the TV pins inside it (`(Inheritance infant (can $verb))` at `(STV 0.0 $conf)`). An
+  **individual** subject ("Can Mira dive?") takes the **dual-storage union**: the event branch
+  `(Can $e)` ∪ the property branch `(And (Name $r "…") (Member $r (can <verb>)))`. (With a specific
+  **object** — "What can Bob cook?" — keep the event form: individual abilities with objects are
+  asserted as events.)
 - A **compound question** splits by whether its parts **share a referent**. **Shared referent**
   (the same entity — "who is the oldest **and** where do they live?") → **one** query, the shared
   `$`-variable chaining the parts and a `$`-variable per unknown; read every bound `$` as the
@@ -1861,7 +1837,8 @@ plus a canonical ask-relation conjunct (see **Explanation questions**) — addin
 A **non-temporal connective** stating a relation BETWEEN two clauses — causal ("because", "so",
 "as a result", "therefore", "consequently"), purposive ("to" V / "in order to" / "so as to"),
 belief-reason ("thought / believed P, **so** …"), concessive ("although", "even though",
-"despite"), adversative ("but", "yet") — is captured **surface-faithfully**: reify BOTH clauses
+"despite"), adversative ("but", "yet" — binary `Yet`, distinct from the unary aspectual tag) —
+is captured **surface-faithfully**: reify BOTH clauses
 as eventualities (each parsed as usual — classes, roles, tense, negation) and emit **one binary
 relation atom whose head is the UpperCamelCase surface connective itself**, with the **main /
 matrix clause first and the subordinate clause second**. For a coordinating connective ("so",
@@ -1869,15 +1846,9 @@ matrix clause first and the subordinate clause second**. For a coordinating conn
 X, Y") still puts the main clause Y first:
 
       The latch stuck because the hinge rusted.
-        →  (: e_stick (Member sk_stick_1 stick) (STV 1.0 0.99))
-           (: e_stick_pat (Patient sk_stick_1 sk_latch_1) (STV 1.0 0.99))
-           (: e_latch (Member sk_latch_1 latch) (STV 1.0 0.99))
-           (: e_stick_past (Past sk_stick_1) (STV 1.0 0.99))
-           (: e_rust (Member sk_rust_1 rust) (STV 1.0 0.99))
-           (: e_rust_pat (Patient sk_rust_1 sk_hinge_1) (STV 1.0 0.99))
-           (: e_hinge (Member sk_hinge_1 hinge) (STV 1.0 0.99))
-           (: e_rust_past (Past sk_rust_1) (STV 1.0 0.99))
-           (: conn (Because sk_stick_1 sk_rust_1) (STV 1.0 0.99))
+        →  (Member sk_stick_1 stick) (Patient sk_stick_1 sk_latch_1) (Member sk_latch_1 latch) (Past sk_stick_1)
+           (Member sk_rust_1 rust) (Patient sk_rust_1 sk_hinge_1) (Member sk_hinge_1 hinge) (Past sk_rust_1)
+           (Because sk_stick_1 sk_rust_1)
 
       The hinge rusted, so the latch stuck.
         →  … the same eight event atoms …
@@ -1893,7 +1864,7 @@ X, Y") still puts the main clause Y first:
   "because" / "so" / "led to" into one causal notion is downstream work, not the translator's.
   The connective atom is `(STV 1.0 0.99)` (a definitional record of the stated connective).
   Emit it ONLY for an explicit connective — bare juxtaposition of clauses or sentences states
-  no relation and gets **no** connective atom. A "but / except / unless" that introduces a
+  no relation and gets **no** connective atom. A "but / yet / except / unless" that introduces a
   **defeasible exception** to a generic ("Birds can fly, but penguins can't") is consumed by
   that construction — the generic clauses reify no eventualities, so there are no endpoints;
   emit the three-fact exception pattern (see *Defeasible generics & exceptions*) and **no**

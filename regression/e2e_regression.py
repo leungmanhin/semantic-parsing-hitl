@@ -1344,6 +1344,19 @@ YET=['(: t1 (Member sk_train_1 train) (STV 1.0 0.99))',
 run_strength("yet-tag      (Yet $e) expectation reads POSITIVE (~1, outside the denial)", YET, '(Yet $e)', 0.8, 1.0)
 run("yet-denial    pinned 'has it arrived?' denial still binds beside the tag", YET,
     '(And (Member $e arrive) (Agent $e $t) (Member $t train) (Past $e))', tv='(STV 0.0 $conf)')
+# Yet is a HEAD COLLISION: unary aspectual tag vs binary adversative connective. Arity is the
+# only disambiguator, so guard that the two senses stay disjoint when BOTH are in one KB.
+YET2=YET+['(: h1 (Member sk_harden_1 harden) (STV 1.0 0.99))',
+          '(: w1 (Member sk_warp_1 warp) (STV 1.0 0.99))',
+          '(: y2 (Yet sk_harden_1 sk_warp_1) (STV 1.0 0.99))']
+run("yet-adversative binary (Yet main sub) connective binds", YET2,
+    '(Yet $a $b)', contains="sk_warp_1")
+run("yet-arity-1   unary query binds ONLY the aspectual tag, not the connective", YET2,
+    '(Yet $e)', contains="sk_arrive_1")
+run("yet-arity-x1  unary query pinned to the CONNECTIVE event -> []", YET2,
+    '(Yet sk_harden_1)', want="empty")
+run("yet-arity-x2  binary query pinned to the ASPECTUAL event -> []", YET2,
+    '(Yet sk_arrive_1 $b)', want="empty")
 
 # QuantifierPhrase extended to verbal rules (decision #6): the quantifier word rides a companion
 # beside the rule, mirroring the copular convention (absence = bare generic).

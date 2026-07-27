@@ -2158,6 +2158,18 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: e_doze_past (Past sk_doze_1) (STV 1.0 0.99))
     (: conn (But sk_crow_1 sk_doze_1) (STV 1.0 0.99))
 
+**[conn-yet] The varnish hardened, yet the seam warped.** — adversative "yet" is an ordinary stated connective → surface head `Yet`, surface order. This **binary** `Yet` is a different sense from the **unary** aspectual `(Yet <event>)` tag of [asp-yet]; arity alone disambiguates and the two never unify (both undergoers → `Patient`)
+
+    (: e_harden (Member sk_harden_1 harden) (STV 1.0 0.99))
+    (: e_varnish (Member sk_varnish_1 varnish) (STV 1.0 0.99))
+    (: e_harden_pat (Patient sk_harden_1 sk_varnish_1) (STV 1.0 0.99))
+    (: e_harden_past (Past sk_harden_1) (STV 1.0 0.99))
+    (: e_warp (Member sk_warp_1 warp) (STV 1.0 0.99))
+    (: e_seam (Member sk_seam_1 seam) (STV 1.0 0.99))
+    (: e_warp_pat (Patient sk_warp_1 sk_seam_1) (STV 1.0 0.99))
+    (: e_warp_past (Past sk_warp_1) (STV 1.0 0.99))
+    (: conn (Yet sk_harden_1 sk_warp_1) (STV 1.0 0.99))
+
 **[conn-no-but-defeasible] Reptiles are cold-blooded, but sea turtles aren't.** — a "but" introducing a **defeasible exception** to a generic is consumed by that construction (generic clauses reify no eventualities → no endpoints): the three-fact exception pattern and **NO** connective atom
 
     (: general (Inheritance reptile cold_blooded) (STV 0.9 0.9))
