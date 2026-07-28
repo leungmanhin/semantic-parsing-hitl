@@ -78,6 +78,14 @@ sentences+context ──▶ [P1 harness: blind Sonnet agents + prompt.txt] ─�
 
 ## 3. Phase 0 — Specs & metrics (deliverables in `fusenf/specs/`)
 
+> **Status: P0 delivered 2026-07-27.** `specs/schema.md`, `specs/canonicalization.md`,
+> `specs/metrics.md` and `specs/vocabulary.json` are now **authoritative**; the sketches in §3.1–3.3
+> below are the design intent they were built from, kept for the record. Three things the specs
+> settled that these sketches did not: the parse key is **`(id, run)`** not `id` (M1 needs several
+> parses of one item); canonical and consolidated forms live in **separate files** so the faithful
+> parse is never rewritten; and the §1 seeded-rules/QA compatibility gate is now a machine-checkable
+> **`frozen`** flag, derived from what seeded rules and query patterns actually match on.
+
 ### 3.1 Parse record schema (`schema.md` + validator)
 
 One JSON object per record, JSONL files. Statement records:
@@ -290,7 +298,9 @@ fusenf/
   specs/                  schema.md, canonicalization.md, metrics.md, vocabulary.json
   harness/                parse orchestration, validator.py, canonicalize.py (+ unit tests)
   corpora/                tierA.jsonl, tierB.jsonl, tierC_pairs.jsonl (inputs only)
-  parses/                 <tier>.parses.jsonl (faithful, immutable)
+  parses/                 <tier>.parses.jsonl (faithful, APPEND-ONLY)
+  canonical/              <tier>.canon.jsonl (canonicalizer output, keyed to a parse)
+  consolidated/           <tier>.cons.jsonl (rewriter output, keyed to a canonical form)
   mining/                 m1_stars.py, m2_rolefiller.py, m4_paraphrase_align.py, wave2/, wave3/
   rules/                  candidates.jsonl, validated.jsonl, mined_bridges.metta
   eval/                   m1_stability.md, m2_convergence.md, … (reports)
