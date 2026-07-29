@@ -1,0 +1,6 @@
+(: registrar_member (Member sk_registrar_1 registrar) (STV 1.0 0.99))
+(: e_suspect (Member sk_suspect_1 suspect) (STV 1.0 0.99))
+(: e_experiencer (Experiencer sk_suspect_1 sk_registrar_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_suspect_1 (And (Member sk_pad_1 pad) (Patient sk_pad_1 sk_tally_1) (Past sk_pad_1))) (STV 1.0 0.99))
+(: e_past (Past sk_suspect_1) (STV 1.0 0.99))
+(: tally_member (Member sk_tally_1 tally) (STV 1.0 0.99))

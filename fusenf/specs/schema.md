@@ -76,6 +76,7 @@ The user-specified core is `sentences` / `context` / `statements`; everything el
     "(: drove_agent (Agent sk_drive_1 maria) (STV 1.0 0.99))",
     "(: maria_name (Name maria \"Maria\") (STV 1.0 0.99))",
     "(: drove_goal (Goal sk_drive_1 sk_store_1) (STV 1.0 0.99))",
+    "(: store_kind (Member sk_store_1 store) (STV 1.0 0.99))",
     "(: drove_past (Past sk_drive_1) (STV 1.0 0.99))"
   ],
   "parser": {
@@ -125,6 +126,16 @@ confirm whether that person is Bob"* — background that legitimately shifts the
 its confidence for an input like *"I saw the man with the telescope"*, without itself being a claim
 to translate.
 
+**Authoring rule — which channel to put a thing in.** This is guidance for whoever *populates* a
+corpus item (the harness, the corpus builder), not for the parser, which only ever reads what it is
+given:
+
+> An entity named **only** in `notes`/`BACKGROUND` is **not referable** — background may not mint a
+> symbol, so a pronoun pointing at it gets an anonymous witness rather than the intended referent.
+> To let the text corefer with someone the setting names, put them in **`prior`/`CONTEXT`**
+> (`(Name dana "Dana")`) and let `notes` describe the situation. The two compose: `CONTEXT` supplies
+> referable symbols, `BACKGROUND` supplies interpretation. Verified 3/3 blind.
+
 **The interpretive-only rule.** `prior` supplies symbols for coreference and *may* be re-asserted per
 the prompt's existing CONTEXT handling. `notes` and ad-hoc keys are **interpretive only**: they may
 change which reading is chosen and the confidence attached, but **no atom may be emitted for their
@@ -151,7 +162,7 @@ are decidable from the text of the record plus `vocabulary.json`; none involves 
 | C3 | Assertion shape `(: <proof-name> <expr> (STV <s> <c>))`; proof names snake_case and **unique within the record**; `s, c ∈ [0,1]`; **`c ≠ 1.0`** (prompt rule) |
 | C4 | Closed-class head + arity check against `vocabulary.json`, keyed on **`(name, arity)`** |
 | C5 | Casing: heads UpperCamelCase except the declared lowercase property constructors (`can`/`obligated`/`permitted`) and `forKind`; entity terms lowercase snake_case; variables `$`-prefixed; string literals double-quoted |
-| C6 | Structural sanity: every symbol bearing a role or status atom has a `(Member <e> <verb>)` in the record or the context-carried symbol set; role atoms reference symbols that exist; no free variable outside an `Implication` |
+| C6 | Structural sanity: every symbol bearing a role or status atom is **declared** — by `(Member <e> <verb>)` *or* `(Inheritance <e> <verb>)` (compound-action decomposition uses the latter); role/status fillers are not literals; no free variable outside an `Implication` |
 | C7 | Chainer smoke test: all statements load into a fresh PeTTaChainer KB without exception |
 | C8 | Duplicate detection: two statements with identical expressions differing only in proof name |
 
@@ -161,7 +172,26 @@ are decidable from the text of the record plus `vocabulary.json`; none involves 
   Python validator cannot read 1,900 lines of English prose, so the operator inventory has to be
   extracted into a table. Regenerate it whenever `prompt.txt` or `seeded_rules.metta` changes; the
   stored hashes are what reveal it is stale.
-- **C7 is expensive**, so it runs batched per file, not per record.
+- **C7 is expensive**, so it runs batched per file, not per record. Calibration found it is a
+  **backstop, not an independent check**: nothing the chainer rejects survives C2/C3/C4. Kept as
+  cheap insurance against a malformation we did not anticipate.
+- **C6 carve-outs, all found by calibrating against the goldens** rather than reasoned in advance:
+  a status head may scope a **whole proposition** rather than an event symbol
+  (`(Past (Member tom nervous))`, `(Must (Member mary ill))` — 23 and 1 golden occurrences), so no
+  declaration is required when the argument is a compound term; skolem-**function** heads are
+  lowercase (`(sk_hunt $x $y)`), and a relation name may legitimately sit in an argument slot
+  (`(Symmetric Cousin)`), so C5 exempts any symbol used as a head elsewhere in the record.
+- **C6 does not check filler existence.** "Every role filler is declared somewhere" is not
+  objectively implementable: a legitimate parse may mention a participant once
+  (`(Goal sk_drive_1 sk_store_1)` with no further atom about the store). The stricter reading is a
+  judgment call and belongs to §5.2.
+- **The context-carried symbol set has no mechanical source.** §4's `context` holds English
+  (`prior`), not atoms, so C6 cannot resolve a symbol introduced by a prior sentence. A corpus item
+  may supply `context["symbols"]` explicitly; absent that, a parse referencing a prior-sentence
+  symbol will show a C6 finding, which is why report-only mode matters for multi-sentence items.
+- **C4's open-class boundary is the least objective check.** An unknown UpperCamelCase head is
+  either a typo'd operator or a licensed open-class lexical relation, and nothing in the text
+  distinguishes them. It reports with a hint; adjudication belongs to §5.2.
 
 **Severities are set from data, not guessed.** For the first pilot the mechanical validator runs
 **report-only**: nothing is quarantined, every check records what it fired on. We then set

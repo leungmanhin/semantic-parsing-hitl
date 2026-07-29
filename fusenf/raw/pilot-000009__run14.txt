@@ -1,0 +1,3 @@
+(: safety_module_genus (Inheritance safety_module module) (STV 1.0 0.99))
+(: every_apprentice_completed (Implication (Premises (Member $x apprentice)) (Conclusions (Member (sk_complete $x) complete) (Agent (sk_complete $x) $x) (Theme (sk_complete $x) (sk_module $x)) (Member (sk_module $x) safety_module) (Past (sk_complete $x)))) (STV 1.0 0.9))
+(: apprentice_q (QuantifierPhrase apprentice complete "every") (STV 1.0 0.99))

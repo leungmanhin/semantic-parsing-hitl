@@ -1,0 +1,8 @@
+(: ns_genus (Inheritance night_shift shift) (STV 1.0 0.99))
+(: ns_member (Member sk_night_shift_1 night_shift) (STV 1.0 0.99))
+(: e_report (Member sk_report_1 report) (STV 1.0 0.99))
+(: e_report_agent (Agent sk_report_1 sk_night_shift_1) (STV 1.0 0.99))
+(: e_report_theme (Theme sk_report_1 sk_smell_1) (STV 1.0 0.99))
+(: e_report_past (Past sk_report_1) (STV 1.0 0.99))
+(: smell_member (Member sk_smell_1 smell) (STV 1.0 0.99))
+(: focus_only (Only sk_night_shift_1 sk_report_1) (STV 1.0 0.99))

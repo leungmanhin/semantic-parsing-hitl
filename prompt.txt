@@ -13,6 +13,7 @@ The input is either a bare passage/question, or two labeled blocks:
       <prior atoms, verbatim — zero or more lines>
       TODAY: <weekday> <YYYY-MM-DD>           ; optional
       DOMAIN: <free-text topic hint>          ; optional
+      BACKGROUND: <free-text situation>       ; optional, may span lines
 
       TEXT:
       <the passage or question to translate>
@@ -43,6 +44,16 @@ as follows:
   the same day atoms once. "next Tuesday" stays `(Weekday tuesday)` + tense — no week
   arithmetic. Without `TODAY`, deictics stay bare constants as usual.
 - **`DOMAIN` is a disambiguation hint** (word senses, role choices); it never becomes atoms.
+- **`BACKGROUND` is free-text situational / conversational / perceptual setting — INTERPRETIVE
+  ONLY**, like `DOMAIN` and for the same reason. It may change **which reading you choose** and
+  **how confident** you are; it **never becomes atoms**. The background selects the reading — only
+  the TEXT supplies atoms. With `BACKGROUND: you are holding a telescope, trying to confirm whether
+  the distant figure is Bob`, the TEXT "I saw the man with the telescope" takes the instrument
+  reading (`Instrument` on the seeing event — licensed by the TEXT's own "with the telescope"), but
+  nothing is emitted for the holding, the distance, or the intention. If the background makes a
+  reading merely *likelier* rather than certain, lower the confidence rather than picking a
+  different structure. An entity named **only** in `BACKGROUND` is therefore **not referable** — it
+  has no symbol — so a pronoun with no `CONTEXT` referent takes an ordinary anonymous witness.
 
       CONTEXT:
       (: maya_name (Name maya "Maya") (STV 1.0 0.99))
@@ -101,7 +112,20 @@ Rules:
 
 ## Core patterns
 
-Five patterns recur throughout; each is defined **here once** and only referenced below.
+Six patterns recur throughout; each is defined **here once** and only referenced below.
+
+- **Assert only what the text states.** World knowledge picks the *reading*; it never adds content.
+  If two mentioned things are obviously related in the world — a wick sits in a lantern, a
+  hinge belongs to a door — that relation is **not** an atom unless the text says so:
+  "The lantern dimmed because the wick had frayed" must **not** yield
+  `(PartOf sk_wick_1 sk_lantern_1)`. Likewise no unstated property, possessor, location or
+  causal link, however obvious. Still fully licensed, because each is traceable to the words:
+  **typing** a mentioned referent (`(Member sk_valve_1 valve)`), the **genus** and **capability**
+  atoms of a compound you decomposed (`(Inheritance east_wing wing)`, `(Inheritance egg_layer (can
+  lay))` — always emitted, exactly as **Compound decomposition** specifies), **roles** read off the
+  clause, a stated deictic's `TODAY`-grounded calendar atoms, and a witness minted for an
+  indefinite. The test —
+  **point at the words that put the atom there**; if you cannot, drop it.
 
 - **Dual-storage union.** When one fact can be stored two ways, a question **emits one query line
   per storage and unions the answers**: at query time you can't know which form the KB holds (it may
@@ -125,6 +149,12 @@ Five patterns recur throughout; each is defined **here once** and only reference
   level, yet the wrapper stays queryable and a query reaches **inside** by rebuilding the term with
   variables in the unknown slots. Used by propositional attitudes (under `Theme`), embedded
   questions (`Whether` / `Question`), imperatives (`Directive` / `Forbid`), counterfactuals.
+  **Definite referents inside a seal project**: a **definite** NP ("the valve", "the tally", "the
+  vault") is presupposed to exist whatever the seal says about it, so emit its `Member` /
+  `Name` typing atom at **top level** beside the wrapper — in **every** sealing construct alike.
+  An **indefinite** introduced inside the seal ("believes **a** unicorn escaped") does **not**
+  project: its witness stays sealed, since only the sealed proposition posits it. What is never
+  asserted either way is the sealed proposition itself.
 - **Dual-emit.** Where one clause must answer two question shapes, emit **both** forms: a reified
   state **and** the flat copular atom (resultatives, connective endpoints, a copular clause carrying
   a time modifier); a deictic constant **and** its `TODAY`-grounded calendar atoms; a **factive**
@@ -154,7 +184,9 @@ Five patterns recur throughout; each is defined **here once** and only reference
   UpperCamelCase like heads; `forKind` is the one deliberate camelCase marker.
 - A **named** individual (proper noun) gets a stable name-derived symbol reused for every
   mention (`alice`), plus a `Name` fact: `(Name alice "Alice")`. Distinct same-named
-  entities get distinct symbols (`alice_1`, `alice_2`), each with its own `Name`. An
+  entities get distinct symbols (`alice_1`, `alice_2`), each with its own `Name`. A kinship or
+  courtesy **title** ("Dr Okoro", "Uncle Bertrand") is **surface, not structure**: keep the full
+  form in the `Name` string and derive the symbol from the name alone — `(Name okoro "Dr Okoro")`. Emit a kinship relation only if the text states whose relative they are. An
   **existential witness** is anonymous — mint a fresh `sk_<class>_<n>` each time; witnesses
   don't corefer. (With a `CONTEXT` block, indices continue past the context's symbols —
   see **Input**.)
@@ -194,11 +226,19 @@ pay_dues)` ≠ `(obligated pay)`).
 
       The light switch …   →  (: sw_g (Inheritance light_switch switch) (STV 1.0 0.99))
 
-  so a `light_switch` instance is also a `switch`. If the modifier is a plain **adjective** that
-  genuinely describes the compound, you may also expose it (`senior_contractor` → `(Inheritance
-  senior_contractor senior)`). **Don't** decompose a modifier that names a **purpose / association**
-  rather than a property — `fire_exit` is **not** `fire`, `tow_truck` is **not** `tow`; leave those
-  in the symbol. Fuse a `modifier_noun` **only when the modifier _classifies_ the head into a
+  so a `light_switch` instance is also a `switch`. **Whether the modifier also gets a genus is
+  determined, not optional** (an optional atom makes two faithful parses differ): expose it **iff it
+  is an adjectival property of the referent** — a gradable adjective (`senior_contractor` →
+  `(Inheritance senior_contractor senior)`), a positional / cardinal one (`east_wing` →
+  `(Inheritance east_wing east)`, `upper_deck` → `upper`), or a material *adjective*
+  (`wooden_bridge` → `wooden`). A **noun** modifier is **never** exposed, whatever it names —
+  purpose, association, role or time alike: `fire_exit` is **not** `fire`, `tow_truck` is **not**
+  `tow`, `delivery_van` is **not** `delivery`, `replacement_burner` is **not** `replacement`,
+  `night_shift` is **not** `night`, `steel_beam` is **not** `steel`; leave those in the symbol. The
+  line is **part of speech, not meaning**: `wooden` is an adjective predicable of the bridge, `steel`
+  is a noun sitting in front of another noun. Test: can the modifier be predicated of the thing
+  ("the contractor **is** senior", "the wing **is** east", "the bridge **is** wooden")? The genus
+  itself (`shift`, `truck`, `beam`) is **always** emitted either way. Fuse a `modifier_noun` **only when the modifier _classifies_ the head into a
   genuine subtype** (`light_switch`, `delivery_van`). When the first noun is instead a **possessor
   / whole** and the second its **part / component** — "car engine" (the engine of a car), "table
   leg" — do **not** fuse: emit the head as its own kind and attach it with `(PartOf <part>
@@ -226,16 +266,30 @@ pay_dues)` ≠ `(obligated pay)`).
   **partitive** "of the" (→ `SubsetOf` / `ProportionOf`), a **measure** ("a cup of water"), or an
   **about**-phrase ("a photo of Mary").
 
-- **Agent-nominalization** = `X-er` ("one who Xs": `swimmer`, `egg_layer`, `predator`,
-  `firefighter`): expose the underlying verb via a **capability** `(Inheritance <nom> (can <verb>))`;
-  if an **object** is incorporated (`egg_layer` = lay + egg), also a **kind-relation** `(<Verb>
-  <nom> <object>)`:
+- **Agent-nominalization** = a noun that *is* "one who/that Vs" (`swimmer`, `egg_layer`, `predator`,
+  `firefighter`, `surveyor`): expose the underlying verb via a **capability** `(Inheritance <nom>
+  (can <verb>))`; if an **object** is incorporated (`egg_layer` = lay + egg), also a **kind-relation**
+  `(<Verb> <nom> <object>)`. **Two tests, both required**: stripping the suffix (`-er` / `-or` /
+  `-ist` / `-ant`) must leave a **verb that stands on its own**, and "an X is one who/that Vs" must
+  be **true by definition** — `engineer` (from the noun `engine`), `hydrologist`, `stranger`,
+  `tenant`, `student` all fail and stay plain kinds.
 
-      Penguins are swimmers.   →  (: pen_sw (Inheritance penguin swimmer) (STV 0.9 0.9))
-                                  (: sw_can (Inheritance swimmer (can swim)) (STV 1.0 0.99))
-      Hens are egg-layers.     →  (: hen_el (Inheritance hen egg_layer) (STV 0.9 0.9))
-                                  (: el_can (Inheritance egg_layer (can lay)) (STV 1.0 0.99))
-                                  (: el_rel (Lay egg_layer egg) (STV 1.0 0.99))
+  **Where it fires is fixed, not a judgment call** (an atom emitted only sometimes makes two
+  faithful parses differ). Emit the capability — and the kind-relation — in exactly two places:
+  when the symbol is one **you fused from the surface** (`egg_layer`, `dam_builder`), the same
+  licence as the compound genus, since nothing else in the KB reaches a symbol you minted; or when
+  the nominalization is the **copular predicate** of the clause ("Penguins **are** swimmers"), where
+  the sentence is *about* what the kind is. Everywhere else it merely **refers** — subject, object,
+  appositive — and is an ordinary single-word kind: **type the referent and stop**. Linking a bare
+  `welder` to `weld` is a downstream normalization step, like `go_out` ≈ `fail`.
+
+      Penguins are swimmers.    →  (: pen_sw (Inheritance penguin swimmer) (STV 0.9 0.9))
+                                   (: sw_can (Inheritance swimmer (can swim)) (STV 1.0 0.99))
+      Hens are egg-layers.      →  (: hen_el (Inheritance hen egg_layer) (STV 0.9 0.9))
+                                   (: el_can (Inheritance egg_layer (can lay)) (STV 1.0 0.99))
+                                   (: el_rel (Lay egg_layer egg) (STV 1.0 0.99))
+      A welder checked the seam.→  (: e_welder (Member sk_welder_1 welder) (STV 1.0 0.99))
+                                   ; referring use — no (can weld), the event atoms follow as usual
 
   so "what does an egg-layer lay?" = `(Lay egg_layer $w)` binds `egg`, and a `swimmer` instance gets
   `(can swim)`.
@@ -362,7 +416,7 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
   means. Split a "with"-phrase by one test — a **participant** in the action → `CoAgent`; the
   **means** it is performed by → `Instrument`.
   (A **collective / reciprocal** predicate — "met with", "collided with" — instead stays one
-  event with multiple `Agent` atoms, as does bare **"together"** on a plural/coordinated
+  event with multiple `Agent` atoms, as does bare **"together" / "jointly" / "between them"** on a plural/coordinated
   subject; see **Coordination & plurals**.)
 - Obliques: `Instrument` (the **means**, "with a knife" — a tool or substance, never a person),
   `Location` ("in/at/on …"), `Time` ("yesterday"; dates &
@@ -374,15 +428,22 @@ possession/relational state only — own/have/lack); direct object →
 `Patient` **only when the action creates / destroys / consumes / physically changes it,
 otherwise `Theme`** — one yes/no test ("does the object itself change?"), so a verb takes the
 **same role in a statement and in its question** and QA matches (e.g. *bought / rented / graded /
-scored* → `Theme` both times; *cooked / built* → `Patient` both times); when the test is unclear,
-default to `Theme`. Psych/perception object → `Stimulus`; indirect object → `Recipient`;
+scored / **replaced** / swapped / moved* → `Theme` both times — the object is displaced, not altered;
+*cooked / built / **repainted*** → `Patient` both times); when the test is unclear,
+default to `Theme`. The subject test below is for **intransitives**; a **transitive** subject is
+`Agent` even when inanimate and non-volitional ("the consignment cleared customs", "the storm broke
+the mast") — inanimacy alone never demotes a transitive subject. Psych/perception object → `Stimulus`; indirect object → `Recipient`;
 obliques by their preposition/adverb. For an **intransitive** subject (no object), apply the same
 "does it change?" test to the **subject**: a **change-of-state undergoer** → `Patient` (*collapse,
 sink, melt, shatter, snap, freeze, break, spread*); a **motion / volitional / self-propelled**
 subject → `Agent` (*run, arrive, leave, march, proceed, sail, gather*). But a **non-volitional
 natural process / force** — precipitation, fluids, gases, or a mass moved by gravity (*rain fell,
 the reservoir drained, smoke rose, the tide receded*) — takes `Patient` (its subject **undergoes**
-the motion, it does not initiate it), even when the verb is motion-like; when unclear, `Agent`.
+the motion, it does not initiate it), even when the verb is motion-like. A **stative** intransitive
+— nothing changes and nothing moves, the clause just says how something *is* — takes `Experiencer`,
+the same role a reified predicate-adjective state gives its holder: locative / postural statives
+(*the fault **lies** in the relay*, *the tower **stands** on the ridge*, *the crate **sat** in the
+bay*) and psych / perception states alike. When unclear, `Agent`.
 
 An **indefinite argument** ("a book") is an existential → witness + class, referenced by its
 role. A **passive / agentless** clause just omits `Agent`. An **expletive / weather "it"** ("it is
@@ -408,11 +469,16 @@ specific occurrence. Mark otherwise (stack as needed):
 
 - **Tense**: `(Past e)`, `(Future e)`. (A present occurrence is usually `(Ongoing e)`.)
 - **Aspect**: `(Ongoing e)` (progressive). Perfect ("has V-ed") → coarse `(Past e)`; a **past
-  perfect with a reference clause** also emits the ordering `(Before …)`, and a **continuative**
-  perfect ("has lived there since 2019") → `(Ongoing e)` + `Start` — see **Time**.
+  perfect** also emits the ordering `(Before …)` whenever the sentence gives it something to order
+  against — see **Time** for the exact test — and a **continuative** perfect ("has lived there since
+  2019") → `(Ongoing e)` + `Start` — see **Time**.
 - **Capability** ("can / able to"): `(Can e)` — a **specific** subject's ability; a capability
   generic over a **kind** is a reified property instead (see *Quantifiers, generics & scope*).
 - **Epistemic** ("might / probably / must"-inference): `(Might e)`, `(Probably e)`, `(Must e)`.
+  A bare epistemic modal is the event's **only** status atom — add **no** tense beside it. English
+  present-tense modals are tense-neutral ("she might be home **now**" is not future), so a
+  `(Future e)` inferred from the modal alone would over-commit. Add tense only when the clause
+  marks it independently: "might **have** cleared" → the perfect inside, "**will** clear" → `Future`.
 - **Deontic** on a **specific** act ("must / required" obligation; "may / allowed" permission) →
   `(Obligated e)`, `(Permitted e)`; weaker "should / ought" → `(Obligated e)` at strength `0.7`. A
   **prohibition** ("must not / may not / shall not / forbidden to V") is the **denial of
@@ -524,10 +590,15 @@ Parse P as usual (classes, roles, tense), then **seal** it (*Core patterns*).
       Nadia believes that the bridge is unsafe.
         →  (Member sk_believe_1 believe) (Experiencer sk_believe_1 nadia)
            (Theme sk_believe_1 (Member sk_bridge_1 unsafe))
+           (Member sk_bridge_1 bridge)                       ; definite referent — projects (*Core patterns*)
 
-- **Emit no atom of P at top level for a non-factive** attitude — belief / hope / fear do **not**
-  make P true, so the sealed term is P's only trace. A flat `(Member sk_bridge_1 unsafe)` here would
-  wrongly assert the bridge really *is* unsafe. A multi-atom complement seals under `(And …)`:
+- **Emit no *predication* of P at top level for a non-factive** attitude — belief / hope / fear do
+  **not** make P true, so the sealed term is P's only trace. A flat `(Member sk_bridge_1 unsafe)`
+  here would wrongly assert the bridge really *is* unsafe. This bars P's **predications**, not the
+  **typing** of a definite referent it mentions: `(Member sk_bridge_1 bridge)` still projects
+  (*Core patterns*), because the bridge exists whatever Nadia believes about it. Both are `Member`
+  atoms on the same symbol — the sealed one says what is *claimed* of it, the projected one says
+  what it *is*. A multi-atom complement seals under `(And …)`:
   "Nadia believes Tom left" → `(Theme sk_believe_1 (And (Member sk_leave_1 leave) (Agent sk_leave_1
   tom) (Past sk_leave_1)))`.
 - A **factive** verb (*know / realize / discover / regret*) entails P, so **also** emit P's atoms as
@@ -537,6 +608,7 @@ Parse P as usual (classes, roles, tense), then **seal** it (*Core patterns*).
         →  (Member sk_know_1 know) (Experiencer sk_know_1 tom)
            (Theme sk_know_1 (Member sk_bridge_1 unsafe))
            (Member sk_bridge_1 unsafe)                       ; factive: P is true
+           (Member sk_bridge_1 bridge)                       ; definite referent — projects either way
 
 - **Negation** ("doesn't believe", "never thought") negates the **attitude**, not P — wrap the
   attitude bundle in a strength-`0.0` conjunction (see **Negation (events)**); P stays sealed and
@@ -564,9 +636,11 @@ holder (as an attitude) and **seals the QUESTION** under `Theme`, keeping its qu
       Mara wonders whether the vault is locked.
         →  (Member sk_wonder_1 wonder) (Experiencer sk_wonder_1 mara)
            (Theme sk_wonder_1 (Whether (Member sk_vault_1 locked))) (Name mara "Mara")
+           (Member sk_vault_1 vault)                                  ; definite — projects
       The auditor knows who signed the form.
         →  (Member sk_know_1 know) (Experiencer sk_know_1 sk_auditor_1) (Member sk_auditor_1 auditor)
            (Theme sk_know_1 (Question who (And (Member sk_sign_1 sign) (Agent sk_sign_1 who) (Theme sk_sign_1 sk_form_1) (Past sk_sign_1))))
+           (Member sk_form_1 form)                                    ; definite — projects
 
 The embedded question's content is **sealed** (never asserted at top level): "whether P" must **not**
 become `(Might P)`, and the wh-gap must **not** leak as a plain existential — nothing about the actual
@@ -636,7 +710,7 @@ shared object reuses one symbol:
 
 Use the **collective** form — **one** event with **multiple `Agent` atoms** — only when the
 predicate is reciprocal/aggregate ("meet", "gather", "assemble", "collide") or marked by bare
-**"together"** / "between them" on the plural/coordinated subject (a comitative "together
+**"together" / "jointly"** / "between them" on the plural/coordinated subject (a comitative "together
 **with** NP" instead makes NP a `CoAgent` — see **Thematic roles**):
 
       Bob and Alice met. →  (Member sk_meet_1 meet) (Agent sk_meet_1 bob) (Agent sk_meet_1 alice) (Past sk_meet_1)
@@ -781,9 +855,15 @@ kind-claim.
         →  (GroupOf sk_apples_1 apple)                                      ; the definite set "the apples"
            (GroupOf sk_group_1 apple) (SubsetOf sk_group_1 sk_apples_1)
            (ProportionOf sk_group_1 sk_apples_1 most)
-           (Inheritance sk_group_1 ripe)
+           (Inheritance sk_group_1 ripe)      ; Inheritance, NOT Member — see below
 
       ("Two-thirds of the students passed" is the same shape with `(Fraction 2 3)` in the level slot.)
+
+A **property of the subset group** takes **`Inheritance`**, not `Member` — the one deliberate
+exception to "specific referent → `Member`". The subset behaves **kind-like**, so the property
+**distributes to its members** natively, which is the intended reading (*each* apple in that subset
+is ripe). `Member` would instead predicate ripeness of the group **as an object**, and no member
+would inherit it.
 
 **Mass / non-count whole** ("half of the cake", "most of the water", "40% of the budget"). A mass has
 **no members** to subset, so use **`PartOf`** in place of `SubsetOf` and **no `GroupOf`**: the whole
@@ -983,6 +1063,9 @@ A **measure** puts a number on a dimension, so it *can* use the engine's numeric
       Alice is 6 feet tall.       →  (Measure alice tall 6 foot) (Name alice "Alice")
       The rope is 3 meters long.  →  (Member sk_rope_1 rope) (Measure sk_rope_1 long 3 meter)
       The box weighs 5 kilograms. →  (Member sk_box_1 box) (Measure sk_box_1 weight 5 kilogram)
+      The crates weighed 180 kg.   →  (GroupOf sk_group_1 crate) (Past (Measure sk_group_1 weight 180 kilogram))
+                                       ; a measure on a PLURAL subject is the group AGGREGATE, like
+                                       ; Cardinality — it does NOT distribute to each member
 
 A measure does **not** entail the positive ("6 feet tall" ≠ tall); tense **wraps** it ("Alice
 was 6 feet tall" → `(Past (Measure alice tall 6 foot))`).
@@ -1073,11 +1156,18 @@ bare symbol. Terms: `(Year <n>)`, `(Month <name>)`, `(Day <n>)`, `(Weekday <name
       Nina will land at 3:30 pm. →  (Member sk_land_1 land) (Agent sk_land_1 nina) (Future sk_land_1)
                                     (Time sk_land_1 (Hour 15)) (Time sk_land_1 (Minute 30)) (Name nina "Nina")
       Omar jogged on Monday.     →  … (Time sk_jog_1 (Weekday monday)) (Past sk_jog_1)
+      The permit lapses on 14 March 2029.
+                                 →  … (Future sk_lapse_1) (Time sk_lapse_1 (Year 2029)) …
+
+  A **present-tense futurate** — a scheduled, dated, one-off event ("the permit **lapses** on …",
+  "the train **leaves** at six") — takes **`Future`**: the tense is present but the event is not.
+  A present-tense **habitual** ("the train leaves at six every day") is a generic rule instead.
 
 - Month / weekday names are lowercase lemmas (`june`, `monday`); clock hours are **24-hour**
   ("3 pm" → `15`).
 - **Deictic times are speech-anchored CONSTANTS**, like `now`: `yesterday`, `today`, `tonight`,
-  `this_morning`, `last_week`, … Every mention in the passage names the same time, so reuse the
+  `this_morning`, `last_week`, `last_spring`, `next_summer`, … (seasons form these the same way as
+  weeks and months) … Every mention in the passage names the same time, so reuse the
   bare symbol; **never** mint an `sk_` witness or a `Member` atom for one. (Contrast an
   event-denoting **noun** — "the show", "the storm" — which stays an ordinary `sk_` entity.)
   With a `TODAY` line in the context, groundable deictics **dual-emit** — the constant stays,
@@ -1094,6 +1184,10 @@ bare symbol. Terms: `(Year <n>)`, `(Month <name>)`, `(Day <n>)`, `(Weekday <name
   (Time sk_ceremony_1 (Month march)) (Past sk_ceremony_1)`), the same way "the show" / "the
   storm" take time relations directly. Ordering two event-nouns relates their **witnesses**
   (`(Before $a $b)`), in both statements and questions.
+  An event-noun that is only a **temporal anchor** in an adjunct ("… **after the outage**",
+  "… **before the inspection**") gets its class atom and the ordering relation and **nothing
+  else** — no tense or status of its own, because the clause predicates nothing of it. "Before the
+  inspection" shows why: a `(Past …)` there would assert an inspection that may never have happened.
 - A temporal NP that points **anaphorically at a discourse time** resolves by **term
   propagation** — like pronoun coreference, but with calendar terms: "**that** evening / day /
   night" → copy the antecedent event's **day-level terms** (`Weekday` / `Day` / `Month` /
@@ -1101,7 +1195,11 @@ bare symbol. Terms: `(Year <n>)`, `(Month <name>)`, `(Day <n>)`, `(Weekday <name
   following** morning / day / evening" → the antecedent's day terms **plus one** (day + 1, or
   the weekday's successor), plus the day-part, plus `(Before <antecedent> <new>)` (an explicit
   sequence). If the antecedent's day is unknown, emit just the day-part (and the `Before` for
-  next/following).
+  next/following). The same shape holds at **coarser granularity** — "the following **week /
+  month / year**" increments the antecedent's term at *that* level. When the antecedent supplies
+  no term at that level (no year was ever stated), emit the **measured gap**
+  `(BeforeBy <antecedent> <new> 1 year)` rather than inventing a calendar term; the gap is what the
+  sentence actually states.
 
       We docked on Saturday. That evening, the crew feasted.
         →  … (Time sk_dock_1 (Weekday saturday)) (Past sk_dock_1)
@@ -1171,8 +1269,15 @@ same-unit chain. "**N units ago / from now**" anchors on the reserved symbol **`
         →  … (Member sk_show_1 show) (BeforeBy sk_leave_1 sk_show_1 10 minute) (Past sk_leave_1)
       Leo resigned three days ago.  →  … (Past sk_resign_1) (BeforeBy sk_resign_1 now 3 day)
 
-A **past perfect with a reference clause** ("had V-ed when / by the time …") is exactly this
-anteriority — `Past` on both events **plus** the `Before`:
+A **past perfect** is exactly this anteriority — `Past` on both events **plus** the `Before`. The
+test is **not** which connective joins them: emit the ordering whenever the sentence contains
+**another asserted event** for the perfect to precede, whatever links them — a temporal clause
+("had V-ed **when** / **by the time** …"), a causal one ("the drain backed up **because** the filter
+had split" → `(Before sk_split_1 sk_back_up_1)`), or a relative clause. Two cases take no ordering
+atom: a past perfect with **no other event in the text** ("The ferry had already departed") — there
+is nothing to order against — and one **inside a seal** (an attitude complement, an embedded
+question, a counterfactual), where the sealed proposition keeps its own `Past` and nothing relates
+it to the matrix event: ordering atoms never cross a seal boundary, in either direction.
 
       The train had departed when Sara reached the platform.
         →  (Member sk_depart_1 depart) (Agent sk_depart_1 sk_train_1) (Member sk_train_1 train) (Past sk_depart_1)
@@ -1228,14 +1333,19 @@ ceases). Keep the `begin` / `start` lemma surface-faithful (synonymy is downstre
 `(TimeAtMost e <term>)`** with the same structured terms — **any granularity**: `Year`, `Month`,
 `Weekday`, `Hour`. Strict "before / after" drops the boundary point ("before 2000" → at most
 **1999**; "after 2015" → at least **2016**; "before March" → at most **february**; "after
-October" → at least **november** — decrement/increment the month **name**); "by T" (deadline) →
-at most T. `before` / `after` + a **date** is a bound; + an **event/clause** is the `Before`
-relation above.
+October" → at least **november**; "before Thursday" → at most **wednesday**; "after Friday" → at
+least **saturday** — decrement/increment the **name**, months and weekdays alike, using the seeded
+`MonthNumber` / `WeekdayNumber` order); "by T" (deadline) → at most T. `before` / `after` + a
+**date** is a bound; + an **event/clause** is the `Before` relation above.
+A recurring unit (month name, weekday, hour) is read **within the one contextually relevant cycle**
+— the same year for a month, the same week for a weekday, the same day for an hour. That anchoring
+is what makes the decrement well-defined; do not reach across cycles.
 
       The bridge was built before 1900.    →  … (Past sk_build_1) (TimeAtMost sk_build_1 (Year 1899))
       The statue was erected after 2015.   →  … (Past sk_erect_1) (TimeAtLeast sk_erect_1 (Year 2016))
       Bob must submit the report by 5 pm.  →  … (Obligated sk_submit_1) (TimeAtMost sk_submit_1 (Hour 17))
       The roof was repaired before March.  →  … (Past sk_repair_1) (TimeAtMost sk_repair_1 (Month february))
+      The audit must finish before Thursday. → … (Obligated sk_finish_1) (TimeAtMost sk_finish_1 (Weekday wednesday))
 
 **Intervals** — an eventuality with a stated extent gets **`(Start e <term>)` / `(End e
 <term>)`** ("from X to / until Y"; "since X" → `Start` only, usually with `Ongoing`; "until Y" →
@@ -1306,7 +1416,12 @@ many `0.7`, few `0.1`); confidence by the dial. As on the copular side, **record
 quantifier word** in a companion `(QuantifierPhrase <kind> <verb-lemma> "<word>")` `(STV 1.0
 0.99)` — emit it **only when the word is actually there** (its absence marks the bare generic;
 a "none of the" strength-0 rule gets `"none"`, distinguishing quantifier-none from plain
-"Ns don't V"). A **deontic norm over a kind** ("drivers must
+"Ns don't V"). **One companion per explicit quantifier PHRASE**, so a rule with two universal
+premises gets **two** ("Every wolf hunted every deer" → a `wolf` companion *and* a `deer` one);
+a **group** premise (`PartOf $x <group>`) names the group kind. An **existential** subject
+("**some** teacher graded every exam") becomes a witness constant rather than a rule range, so it
+takes no companion — only the quantified range does. **"Every time / whenever"** is a frequency
+conditional, not a determiner on a subject: it takes **no** companion. A **deontic norm over a kind** ("drivers must
 carry a license", "visitors may enter", a prohibition "guests must not smoke") and a
 **capability generic** ("Ns **can** V") are **not** this event-rule form — each is a **reified
 property** on the kind, `(Inheritance <kind> (obligated / permitted / can <action>))` (see
@@ -1337,11 +1452,13 @@ committee") or a counted/bare plural ("several dogs", "both dogs") → `(PartOf 
       All the students passed.      →  (: all_students_passed (Implication (Premises (Member $x student))
                                            (Conclusions (Member (sk_pass $x) pass) (Agent (sk_pass $x) $x)
                                                         (Past (sk_pass $x)))) (STV 1.0 0.9))
+                                       (: students_q (QuantifierPhrase student pass "all") (STV 1.0 0.99))
       Every member of the committee resigned.
                                     →  (: committee_resigned (Implication (Premises (PartOf $x sk_committee_1))
                                            (Conclusions (Member (sk_resign $x) resign) (Agent (sk_resign $x) $x)
                                                         (Past (sk_resign $x)))) (STV 1.0 0.9))
                                        (Member sk_committee_1 committee)
+                                       (: committee_q (QuantifierPhrase committee resign "every") (STV 1.0 0.99))
 
 Query a distributed member like any event — its class, the roles (a **named** member bound by
 `Name`), and status: "Did Ana pass?" (Ana a student) → `(: $prf (And (Name $a "Ana") (Member $e
@@ -1533,6 +1650,14 @@ the condition-state, so it connects to a later "the glass is cold" (`(Member gla
       Metals are solid at room temperature.  →  (: metal_solid (ConditionalProperty metal solid room_temperature) (STV 0.9 0.9))
                                                  (: rt_genus (Inheritance room_temperature temperature) (STV 1.0 0.99))
       Glass is brittle when cold.            →  (: glass_brittle (ConditionalProperty glass brittle cold) (STV 0.9 0.9))
+
+The **property slot may itself be a reified deontic/capability term**, which is how a
+**circumstantial modifier attaches to a kind-level norm** — the norm is a bare property with no
+event witness, so there is no role slot for "on arrival", and the condition slot is where it goes:
+
+      Contractors must show a badge at entry.
+                                             →  (: con_show (ConditionalProperty contractor (obligated show_badge) entry) (STV 1.0 0.99))
+                                                (Inheritance show_badge show) (Patient show_badge badge)
 
 So "under what condition is metal solid?" = `(ConditionalProperty metal solid $c)` → `room_temperature`,
 and a glass known to be cold is derived brittle. Strength = how reliably the property holds under the

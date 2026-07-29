@@ -1,0 +1,6 @@
+(: presses_super (GroupOf sk_presses_1 press) (STV 1.0 0.99))
+(: presses_super_card (Cardinality sk_presses_1 7) (STV 1.0 0.99))
+(: idle_group (GroupOf sk_group_1 press) (STV 1.0 0.99))
+(: idle_group_subset (SubsetOf sk_group_1 sk_presses_1) (STV 1.0 0.99))
+(: idle_group_card (Cardinality sk_group_1 3) (STV 1.0 0.99))
+(: idle_group_pred (Past (Inheritance sk_group_1 idle)) (STV 1.0 0.99))

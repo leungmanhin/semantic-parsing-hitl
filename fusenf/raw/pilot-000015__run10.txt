@@ -1,0 +1,4 @@
+(: fault_mem (Member sk_fault_1 fault) (STV 1.0 0.99))
+(: relay_mem (Member sk_relay_1 relay) (STV 1.0 0.99))
+(: wiring_mem (Member sk_wiring_1 wiring) (STV 1.0 0.99))
+(: fault_lies (And (Member sk_lie_1 lie) (Agent sk_lie_1 sk_fault_1) (Or (Location sk_lie_1 sk_relay_1) (Location sk_lie_1 sk_wiring_1))) (STV 1.0 0.99))

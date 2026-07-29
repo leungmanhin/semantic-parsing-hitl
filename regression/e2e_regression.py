@@ -317,6 +317,14 @@ NOMT=['(: el_can (Inheritance egg_layer (can lay)) (STV 1.0 0.99))','(: el_rel (
       '(: pl (Member perry egg_layer) (STV 1.0 0.99))']
 run("nom-trans  what does an egg_layer lay? (-> egg)", NOMT, '(Lay egg_layer $w)', contains="egg")
 run("nom-trans  SAFETY kind-rel no distribute: (Lay perry egg) (expect [])", NOMT, '(Lay perry egg)', want="empty", chain=True)
+# gap-0023 scope: decomposition fires only for a FUSED symbol or a copular predicate; a merely
+# referring nominalization is typed and left alone, so no capability link exists to inherit.
+NOMR=['(: e_weaver (Member sk_weaver_1 weaver) (STV 1.0 0.99))']
+run("nom-referring  SAFETY bare mention has no capability (expect [])", NOMR, '(Member sk_weaver_1 (can weave))', want="empty", chain=True)
+NOMF=['(: e_mender (Member sk_mender_1 net_mender) (STV 1.0 0.99))',
+      '(: mender_can (Inheritance net_mender (can mend)) (STV 1.0 0.99))',
+      '(: mender_rel (Mend net_mender net) (STV 1.0 0.99))']
+run("nom-referring-fused  fused-symbol instance still can mend", NOMF, '(Member sk_mender_1 (can mend))', chain=True)
 # Possessive / genitive NPs (#35): 's-genitive / possessive pronoun -> opaque (Possession possessed
 # possessor), NO own-event, EXCEPT a part/component -> (PartOf part whole) (reuses the noun-noun rule).
 POSS=['(: e_kettle (Member sk_kettle_1 kettle) (STV 1.0 0.99))',

@@ -1,4 +1,4 @@
-# FUSE-NF — Canonicalization spec (`fusenf-canon/1`)
+# FUSE-NF — Canonicalization spec (`fusenf-canon/2`)
 
 P0 deliverable. Turns a faithful parse into a canonical graph with a stable identity hash, so that
 **two parses that mean the same thing by construction hash identically**. Everything downstream —
@@ -31,9 +31,9 @@ Output, one record in `fusenf/canonical/<tier>.canon.jsonl`:
 
 ```json
 {
-  "schema": "fusenf-canon/1",
+  "schema": "fusenf-canon/2",
   "id": "tierB-000123", "run": 1,
-  "parse_input_sha256": "…", "canon_version": "fusenf-canon/1",
+  "parse_input_sha256": "…", "canon_version": "fusenf-canon/2",
   "atoms": [{"term": "(Member e0 drive)", "stv": [1.0, 0.99], "bucket": ["full", "def"],
              "proof_name": "maria_drove"}],
   "linearization": "…",
@@ -47,7 +47,10 @@ Output, one record in `fusenf/canonical/<tier>.canon.jsonl`:
 }
 ```
 
-`exact: false` records that a symmetry tie-break fell back to the bounded heuristic (§4.3).
+`exact: false` records that a symmetry tie-break fell back to the bounded heuristic (§4.3) — i.e. a
+symmetric class **larger than K**. A record with automorphisms within K is resolved exactly and
+reports `exact: true`. `stats.symmetric_classes` and `stats.max_symmetric_class` report how often
+symmetry arose at all, so §4.5a's "track how often that happens" is answerable directly.
 
 ## 2. The graph a parse denotes
 
@@ -175,6 +178,19 @@ term((h a1 … an))  = "(" h " " term(a1) … " " term(an) ")"
 Atoms sort by `term`, ties broken by bucketed STV. Linearization is the sorted atom terms joined by
 `\n`, each optionally suffixed with its projection-dependent TV field.
 
+**Commutative heads** (`fusenf-canon/2`). Sorting atoms is not enough: the arguments of an unordered
+conjunction must be sorted too, or two parses that differ only in where a conjunct sits inside one
+`(And …)` bundle get different identities. `Premises`, `Conclusions` and **`And`** are sorted; `Or`
+and `Xor` deliberately are **not** — they are opaque heads the chainer matches verbatim, so their
+argument order is still operationally load-bearing and normalizing it would hide a real difference.
+
+The sort has to happen **before** §4.2 names the skolems, not after. Inside a single bundle the walk
+order *is* the emission order, so naming skolems off the unsorted term makes the whole renaming
+depend on where the parser put `(Past …)` — the atom-level sort never sees it, because there is only
+one atom. The pre-sort key masks every skolem to its colour, so it cannot depend on the names being
+assigned. Found by M1 v4 (2026-07-29): `pilot-000007` scored 0.333 on a pure conjunct-order
+difference, which is exactly the `canonicalizer` bucket the metric is supposed to keep at zero.
+
 ### 4.5a Start simple — the algorithm is not the contract
 
 §7's invariance tests are the contract; §4.1–4.5 describe one implementation that satisfies them.
@@ -294,8 +310,16 @@ any injective map. Score = `|shared atoms| / |union atoms|` under the best map f
 
 Search procedure (deterministic):
 
-1. Candidate pairs are restricted to skolems with **compatible refined colours** — an exact map, when
-   one exists, is always colour-compatible, so this prunes without loss.
+1. Refined-colour compatibility is a strong **preference** in the cost matrix — **not** a hard prune.
+
+   The original spec pruned incompatible pairs outright, reasoning that an exact map is always
+   colour-compatible so nothing is lost. That reasoning is **wrong in the case that actually
+   matters**: it holds only for isomorphic graphs, and isomorphic graphs never reach this function —
+   their hashes already agree and no search runs. Everything `soft_jaccard` sees is a *near-miss*,
+   where a hard prune can refuse to align the obviously-corresponding skolems and return a
+   spuriously low similarity. Since M1 reads this number as "how different were these two parses"
+   and M2 reads it as the headline convergence measure, that would have understated agreement in
+   both.
 2. Build a similarity matrix (agreement count if the pair is matched, other arguments held at their
    current assignment) and solve the assignment problem exactly (Hungarian).
 3. One local-improvement pass: swap any pair whose exchange raises total agreement; iterate to a
@@ -314,12 +338,23 @@ either arm. When two graphs are truly isomorphic the hashes already agree and no
 1. **Order invariance** — shuffling `statements` leaves all three hashes unchanged.
 2. **α-invariance** — renaming `sk_drive_1 → sk_drive_7` (consistently) leaves them unchanged.
 3. **Proof-name invariance** — renaming proof names leaves them unchanged.
-4. **TV jitter** — `0.9 → 0.88` leaves `graph_id` unchanged; `0.9 → 0.0` changes it.
+4. **TV jitter** — with bucketing **on** (`BUCKET_TV_IN_HASHES`), `0.9 → 0.88` leaves `graph_id`
+   unchanged while `0.9 → 0.0` changes it. With bucketing **off** — the shipped default per §4.6 —
+   any TV change moves `graph_id`, and the test pins that instead. Both behaviours are asserted, so
+   flipping the flag when M1 reports `tv-only` disagreements cannot silently break the contract.
+   (These two clauses contradicted each other in the first draft: §4.6 deferred bucketing while §7.4
+   asserted the bucketed behaviour unconditionally.)
 5. **Symmetry** — two structurally identical witnesses canonicalize deterministically, and the two
    possible emission orders agree.
 6. **Discrimination** — a hand-built set of near-miss pairs (participant swap, added negation,
-   antonym, role swap Agent↔Patient) must hash *differently* under `graph_id`. This is the check
-   that canonicalization is not silently over-merging.
+   antonym, role swap) must hash *differently* under `graph_id`. This is the check that
+   canonicalization is not silently over-merging.
+
+   **The role-swap control needs three roles.** On a two-role event, relabelling `Agent`↔`Patient`
+   *and* swapping the participants yields the very same graph, which must hash identically — so that
+   fixture tests nothing. Use a ditransitive (`Recipient`↔`Theme`, `Agent`↔`Recipient`), and pin the
+   two-role degeneracy as its own positive test so the control cannot quietly regress into a
+   tautology.
 7. **Idempotence** — canonicalizing a canonical record is a fixed point.
 8. **Projection sanity** — `content_id` equality with `graph_id` inequality occurs exactly on pairs
    differing only in surface-record atoms.

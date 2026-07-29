@@ -1,0 +1,8 @@
+(: shift_mem (Member sk_night_shift_1 night_shift) (STV 1.0 0.99))
+(: shift_genus (Inheritance night_shift shift) (STV 1.0 0.99))
+(: report_mem (Member sk_report_1 report) (STV 1.0 0.99))
+(: report_agent (Agent sk_report_1 sk_night_shift_1) (STV 1.0 0.99))
+(: report_theme (Theme sk_report_1 sk_smell_1) (STV 1.0 0.99))
+(: smell_mem (Member sk_smell_1 smell) (STV 1.0 0.99))
+(: report_past (Past sk_report_1) (STV 1.0 0.99))
+(: report_only (Only sk_night_shift_1 sk_report_1) (STV 1.0 0.99))

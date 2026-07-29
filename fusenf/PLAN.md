@@ -160,11 +160,14 @@ comes from prompt-side normalization + a deterministic canonicalizer, not a conf
   batch of ≤6 records (output-cap experience from blind validation), returns per-record statement
   lists; parallel spawns; retries on malformed output. Model: latest Sonnet. The orchestrator writes
   JSONL, stamps `parser` provenance.
-- **Validator**: (1) s-expression well-formedness; (2) vocabulary + arity check against a schema
-  inventory extracted from prompt.txt + seeded_rules.metta (`specs/vocabulary.json`, maintained);
-  (3) structural sanity (every event skolem has a `Member` atom, roles point at existing nodes);
-  (4) optional chainer load smoke-test; (5) when `context` is present, a **context-leak check** — no
-  atoms parsed from the background context itself. Failures → `fusenf/triage/parse_failures.jsonl`.
+- **Validation is split by decidability** (`specs/schema.md` §5, superseding this bullet's original
+  single-validator framing): **Python** does the mechanical checks C1–C8 — s-expression
+  well-formedness, assertion shape, head+arity against `specs/vocabulary.json`, casing, structural
+  sanity, chainer smoke-test, duplicates — in **report-only** mode for the pilot, severities set from
+  observed data rather than guessed. An **agent reviewer** takes what no program can decide: is the
+  parse right for the sentence, **does `prompt.txt` even cover this construction** (the coverage gap
+  — the highest-value signal for the prompt loop), and the **context-leak** check, which has no
+  reliable mechanical form. Findings → `fusenf/triage/parse_failures.jsonl`.
 - **Canonicalizer** (`canonicalize.py`) implementing §3.2, with unit tests on hand-built isomorphic
   pairs.
 - **Exit experiment**: micro-pilot ~30 Tier-B sentences end-to-end through canonicalizer → run M1.

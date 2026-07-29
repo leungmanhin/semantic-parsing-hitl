@@ -1,0 +1,7 @@
+(: lease_mem (Member sk_lease_1 lease) (STV 1.0 0.99))
+(: expire_mem (Member sk_expire_1 expire) (STV 1.0 0.99))
+(: expire_pat (Patient sk_expire_1 sk_lease_1) (STV 1.0 0.99))
+(: expire_future (Future sk_expire_1) (STV 1.0 0.99))
+(: expire_day (Time sk_expire_1 (Day 30)) (STV 1.0 0.99))
+(: expire_month (Time sk_expire_1 (Month september)) (STV 1.0 0.99))
+(: expire_year (Time sk_expire_1 (Year 2027)) (STV 1.0 0.99))

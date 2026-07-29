@@ -268,6 +268,14 @@ The object role must be the **same** in a statement and its question or the quer
     (: e_reservoir (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))
     (: e_drain_past (Past sk_drain_1) (STV 1.0 0.99))
 
+**[intrans-stative] The chimney sits behind the workshop.** — a **stative** intransitive (nothing changes, nothing moves — the clause says how something *is*) puts its subject in `Experiencer`, the same role a reified predicate-adjective state gives its holder; **not** `Agent` (no volition) and **not** `Patient` (no change)
+
+    (: e_sit (Member sk_sit_1 sit) (STV 1.0 0.99))
+    (: e_sit_exp (Experiencer sk_sit_1 sk_chimney_1) (STV 1.0 0.99))
+    (: e_chimney (Member sk_chimney_1 chimney) (STV 1.0 0.99))
+    (: e_workshop (Member sk_workshop_1 workshop) (STV 1.0 0.99))
+    (: e_sit_loc (Location sk_sit_1 sk_workshop_1) (STV 1.0 0.99))
+
 ### Resultatives & secondary predicates (#34a)
 
 A **resultative** predicates a result of the object caused by the action. **State result** ("scrubbed it spotless") → object `Patient` + reified result state (`Member` + `Experiencer`) + flat `(Member obj state)` + `(Result event state)`. **Motion result** ("rolled it into the yard") → object `Theme` + the path as a `Source`/`Goal` **oblique**, **no** `Result` atom (the oblique is the result). A **depictive** (a state merely concurrent, not caused — "served it cold") is **not** a resultative: plain concurrent state, no `Result` link.
@@ -1000,6 +1008,28 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
     (: e_before (Before sk_eat_1 sk_begin_1) (STV 1.0 0.99))
     (: marta_name (Name marta "Marta") (STV 1.0 0.99))
 
+**[time-pastperf-causal] The basement flooded because the sump had failed.** — the ordering does **not** depend on the connective being temporal: a causal clause supplies the reference event just as "by the time" does
+
+    (: e_flood (Member sk_flood_1 flood) (STV 1.0 0.99))
+    (: e_flood_pat (Patient sk_flood_1 sk_basement_1) (STV 1.0 0.99))
+    (: e_basement (Member sk_basement_1 basement) (STV 1.0 0.99))
+    (: e_flood_past (Past sk_flood_1) (STV 1.0 0.99))
+    (: e_fail (Member sk_fail_1 fail) (STV 1.0 0.99))
+    (: e_fail_pat (Patient sk_fail_1 sk_sump_1) (STV 1.0 0.99))
+    (: e_sump (Member sk_sump_1 sump) (STV 1.0 0.99))
+    (: e_fail_past (Past sk_fail_1) (STV 1.0 0.99))
+    (: e_before (Before sk_fail_1 sk_flood_1) (STV 1.0 0.99))
+    (: e_because (Because sk_flood_1 sk_fail_1) (STV 1.0 0.99))
+
+**[time-pastperf-sealed] Ingrid assumed the invoice had been settled.** — a past perfect **inside a seal** keeps its own `Past` and takes **no** `Before`: ordering atoms never cross a seal boundary, so the sealed proposition is not related to the matrix event
+
+    (: e_assume (Member sk_assume_1 assume) (STV 1.0 0.99))
+    (: e_assume_exp (Experiencer sk_assume_1 ingrid) (STV 1.0 0.99))
+    (: e_assume_past (Past sk_assume_1) (STV 1.0 0.99))
+    (: e_assume_theme (Theme sk_assume_1 (And (Member sk_settle_1 settle) (Patient sk_settle_1 sk_invoice_1) (Past sk_settle_1))) (STV 1.0 0.99))
+    (: e_invoice (Member sk_invoice_1 invoice) (STV 1.0 0.99))
+    (: ingrid_name (Name ingrid "Ingrid") (STV 1.0 0.99))
+
 **[time-bound-year] The castle was demolished before 1960.** — unknown year, bounded; strict "before" drops the boundary → `(Year 1959)`
 
     (: e_castle (Member sk_castle_1 castle) (STV 1.0 0.99))
@@ -1428,23 +1458,30 @@ union
 **[scope-ae] Every guest brings a gift.** — ∀∃ dependent → Skolem function event + gift
 
     (: every_guest_brings_gift (Implication (Premises (Member $x guest)) (Conclusions (Member (sk_bring $x) bring) (Agent (sk_bring $x) $x) (Theme (sk_bring $x) (sk_gift $x)) (Member (sk_gift $x) gift))) (STV 1.0 0.9))
+    (: guest_q (QuantifierPhrase guest bring "every") (STV 1.0 0.99))
 
 **[scope-ea] Some teacher graded every exam.** — ∃∀ shared → witness constant + rule over exams
 
     (: sk_teacher_1_teacher (Member sk_teacher_1 teacher) (STV 1.0 0.99))
     (: teacher_graded_exams (Implication (Premises (Member $y exam)) (Conclusions (Member (sk_grade $y) grade) (Agent (sk_grade $y) sk_teacher_1) (Theme (sk_grade $y) $y) (Past (sk_grade $y)))) (STV 1.0 0.9))
+    (: exam_q (QuantifierPhrase exam grade "every") (STV 1.0 0.99))
 
 **[scope-aa] Every wolf hunted every deer.** — ∀∀ → two universal premises
 
     (: every_wolf_hunted_deer (Implication (Premises (Member $x wolf) (Member $y deer)) (Conclusions (Member (sk_hunt $x $y) hunt) (Agent (sk_hunt $x $y) $x) (Patient (sk_hunt $x $y) $y) (Past (sk_hunt $x $y)))) (STV 1.0 0.9))
+    (: wolf_q (QuantifierPhrase wolf hunt "every") (STV 1.0 0.99))
+    (: deer_q (QuantifierPhrase deer hunt "every") (STV 1.0 0.99))
 
 **[scope-aae] Every coach assigned every player a drill.** — ∀∀∃ → two universal premises; dependent existential = Skolem of **both** `(sk_drill $c $p)`
 
     (: every_coach_assigned_drill (Implication (Premises (Member $c coach) (Member $p player)) (Conclusions (Member (sk_assign $c $p) assign) (Agent (sk_assign $c $p) $c) (Recipient (sk_assign $c $p) $p) (Theme (sk_assign $c $p) (sk_drill $c $p)) (Member (sk_drill $c $p) drill) (Past (sk_assign $c $p)))) (STV 1.0 0.9))
+    (: coach_q (QuantifierPhrase coach assign "every") (STV 1.0 0.99))
+    (: player_q (QuantifierPhrase player assign "every") (STV 1.0 0.99))
 
 **[scope-num] Every student memorized three poems.** — numeric under ∀ → Skolem **group** + `Cardinality` (a function of `$x`)
 
     (: every_student_memorized_poems (Implication (Premises (Member $x student)) (Conclusions (Member (sk_memorize $x) memorize) (Agent (sk_memorize $x) $x) (Theme (sk_memorize $x) (sk_poems $x)) (GroupOf (sk_poems $x) poem) (Cardinality (sk_poems $x) 3) (Past (sk_memorize $x)))) (STV 1.0 0.9))
+    (: student_q (QuantifierPhrase student memorize "every") (STV 1.0 0.99))
 
 **[scope-num-thresh] Did Tara memorize more than two poems?** (over "every student memorized three poems") — threshold over a scope-derived count → the faithful full-context query: bind Tara's group through the event and threshold its `Cardinality`
 
@@ -1454,6 +1491,8 @@ union
 
     (: sk_memo_1_memo (Member sk_memo_1 memo) (STV 1.0 0.99))
     (: every_senator_emailed_colleague (Implication (Premises (Member $s senator) (Member $c colleague)) (Conclusions (Member (sk_email $s $c) email) (Agent (sk_email $s $c) $s) (Recipient (sk_email $s $c) $c) (Theme (sk_email $s $c) sk_memo_1) (Past (sk_email $s $c)))) (STV 1.0 0.9))
+    (: senator_q (QuantifierPhrase senator email "every") (STV 1.0 0.99))
+    (: colleague_q (QuantifierPhrase colleague email "every") (STV 1.0 0.99))
 
 **[rel-univ] Everyone who has a garden is a gardener.** — event-premise rule + copular conclusion
 
@@ -1466,16 +1505,19 @@ Explicit distributive-universal ("all the / each of the / every one of the Ns V"
 **[dist-kind] All the passengers boarded.** — kind-named plural, intransitive → rule over `(Member $x passenger)`, strength 1.0
 
     (: all_passengers_boarded (Implication (Premises (Member $x passenger)) (Conclusions (Member (sk_board $x) board) (Agent (sk_board $x) $x) (Past (sk_board $x)))) (STV 1.0 0.9))
+    (: passenger_q (QuantifierPhrase passenger board "all") (STV 1.0 0.99))
 
 **[dist-partof] Every member of the panel abstained.** — collective-noun group → rule over `(PartOf $x sk_panel_1)`
 
     (: panel_abstained (Implication (Premises (PartOf $x sk_panel_1)) (Conclusions (Member (sk_abstain $x) abstain) (Agent (sk_abstain $x) $x) (Past (sk_abstain $x)))) (STV 1.0 0.9))
     (: p (Member sk_panel_1 panel) (STV 1.0 0.99))
+    (: panel_q (QuantifierPhrase panel abstain "every") (STV 1.0 0.99))
 
 **[dist-theme] All the analysts endorsed the proposal.** — distribution carries roles; `endorse` → **Theme** (object unchanged, per #23), shared definite object
 
     (: analysts_endorsed (Implication (Premises (Member $x analyst)) (Conclusions (Member (sk_endorse $x) endorse) (Agent (sk_endorse $x) $x) (Theme (sk_endorse $x) sk_proposal_1) (Past (sk_endorse $x)))) (STV 1.0 0.9))
     (: pr (Member sk_proposal_1 proposal) (STV 1.0 0.99))
+    (: analyst_q (QuantifierPhrase analyst endorse "all") (STV 1.0 0.99))
 
 **[dist-q] Did Omar board?** (over [dist-kind], Omar a passenger) — query the distributed member like any event, the named member bound by `Name`
 
@@ -1500,6 +1542,7 @@ Explicit distributive-universal ("all the / each of the / every one of the Ns V"
 **[dist-ofthe] All of the delegates voted.** — universal with "of the" → per-member **distribution** rule (NOT a partitive `ProportionOf`); "of the" does not make a universal a partitive, and "each of the" no longer double-matches
 
     (: delegates_voted (Implication (Premises (Member $x delegate)) (Conclusions (Member (sk_vote $x) vote) (Agent (sk_vote $x) $x) (Past (sk_vote $x)))) (STV 1.0 0.9))
+    (: delegate_q (QuantifierPhrase delegate vote "all") (STV 1.0 0.99))
 
 ### Striking & relational generics
 
@@ -1579,7 +1622,7 @@ A deontic norm over a **kind** reifies the obligation/permission as a property `
 
 ## Compound decomposition (cross-cutting)
 
-Prefer single-word symbols; when a compound is genuinely needed, also emit decomposition atoms at `0.99/0.99` — **action** `verb_object` → genus `(Inheritance compound verb)` + object `(Patient compound obj)`; **kind** `modifier_noun` → genus `(Inheritance compound head-noun)` (+ adjective modifier when it genuinely describes the compound); **agent-nominalization** `X-er` → capability `(Inheritance nom (can verb))` + kind-relation `(Verb nom obj)` if an object is incorporated. Stop at single-word lemmas; leave purpose/association modifiers opaque (and adjective/condition compounds, deferred). A **possessor+part** noun-noun (a part *of* a whole: "car engine", "desk drawer") is **not** a compound kind — emit the head as its own kind + `(PartOf part whole)`, never fused. A **phrasal / particle verb** ("went out", "brought in") stays one surface symbol `verb_particle` (`go_out`, `bring_in`) — no single-word synonym, no genus; recognizing `go_out` ≈ `fail` is deferred to a downstream statistical normalizer, not done here.
+Prefer single-word symbols; when a compound is genuinely needed, also emit decomposition atoms at `0.99/0.99` — **action** `verb_object` → genus `(Inheritance compound verb)` + object `(Patient compound obj)`; **kind** `modifier_noun` → genus `(Inheritance compound head-noun)` (+ adjective modifier when it genuinely describes the compound); **agent-nominalization** → capability `(Inheritance nom (can verb))` + kind-relation `(Verb nom obj)` if an object is incorporated, but **only** where the symbol was fused from the surface (`egg_layer`) or the nominalization is the **copular predicate** ("Penguins are swimmers") — a merely referring one ("the welder checked it") is typed and left alone; the suffix must also strip to a standalone verb that the noun is definitionally "one who/that" does (`engineer`, `hydrologist`, `tenant` fail). Stop at single-word lemmas; leave purpose/association modifiers opaque (and adjective/condition compounds, deferred). A **possessor+part** noun-noun (a part *of* a whole: "car engine", "desk drawer") is **not** a compound kind — emit the head as its own kind + `(PartOf part whole)`, never fused. A **phrasal / particle verb** ("went out", "brought in") stays one surface symbol `verb_particle` (`go_out`, `bring_in`) — no single-word synonym, no genus; recognizing `go_out` ≈ `fail` is deferred to a downstream statistical normalizer, not done here.
 
 **[decomp-action] Residents must recycle waste, but tenants are exempt.** — compound action `recycle_waste` (inside `(obligated …)`) → genus `recycle` + object `waste`
 
@@ -1596,6 +1639,14 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
     (: e_bark (Member sk_bark_1 bark) (STV 1.0 0.99))
     (: e_agent (Agent sk_bark_1 sk_police_dog_1) (STV 1.0 0.99))
     (: e_past (Past sk_bark_1) (STV 1.0 0.99))
+
+**[decomp-kind-noun-mod] The steel beam buckled.** — the modifier line is **part of speech, not meaning**: `steel` is a noun modifier, so the genus is emitted and the modifier is **not** exposed (contrast `[decomp-kind-adj]`, where `wooden` is an adjective)
+
+    (: sk_steel_beam_1_m (Member sk_steel_beam_1 steel_beam) (STV 1.0 0.99))
+    (: sb_genus (Inheritance steel_beam beam) (STV 1.0 0.99))
+    (: e_buckle (Member sk_buckle_1 buckle) (STV 1.0 0.99))
+    (: e_buckle_pat (Patient sk_buckle_1 sk_steel_beam_1) (STV 1.0 0.99))
+    (: e_buckle_past (Past sk_buckle_1) (STV 1.0 0.99))
 
 **[decomp-kind-adj] The wooden bridge is old.** — compound kind `wooden_bridge` → genus `bridge` + adjective modifier `wooden` (a wooden bridge IS wooden)
 
@@ -1638,6 +1689,24 @@ Prefer single-word symbols; when a compound is genuinely needed, also emit decom
 
     (: hawk_hunter (Inheritance hawk hunter) (STV 0.9 0.9))
     (: hunter_can (Inheritance hunter (can hunt)) (STV 1.0 0.99))
+
+**[nom-referring] The weaver tightened the loom.** — SCOPE: a nominalization that merely **refers** (not the copular predicate, symbol not fused) is an ordinary kind — type it and stop, **no** `(Inheritance weaver (can weave))`
+
+    (: e_tighten (Member sk_tighten_1 tighten) (STV 1.0 0.99))
+    (: e_weaver (Member sk_weaver_1 weaver) (STV 1.0 0.99))
+    (: e_loom (Member sk_loom_1 loom) (STV 1.0 0.99))
+    (: e_tighten_agent (Agent sk_tighten_1 sk_weaver_1) (STV 1.0 0.99))
+    (: e_tighten_pat (Patient sk_tighten_1 sk_loom_1) (STV 1.0 0.99))
+    (: e_tighten_past (Past sk_tighten_1) (STV 1.0 0.99))
+
+**[nom-referring-fused] A net-mender arrived.** — the other branch: the symbol was **fused from the surface**, so it decomposes even in a referring use (nothing else reaches a minted symbol)
+
+    (: e_arrive (Member sk_arrive_1 arrive) (STV 1.0 0.99))
+    (: e_mender (Member sk_mender_1 net_mender) (STV 1.0 0.99))
+    (: mender_can (Inheritance net_mender (can mend)) (STV 1.0 0.99))
+    (: mender_rel (Mend net_mender net) (STV 1.0 0.99))
+    (: e_arrive_agent (Agent sk_arrive_1 sk_mender_1) (STV 1.0 0.99))
+    (: e_arrive_past (Past sk_arrive_1) (STV 1.0 0.99))
 
 ### Possessive / genitive NPs (#35)
 
@@ -1786,6 +1855,7 @@ A possessor marked by **'s** or a **possessive pronoun** attaches to the possess
 **[coref-donkey] Every shepherd who owns a sheep shears it.** — "it" = the premise-bound `$d`
 
     (: every_shepherd_shears_sheep (Implication (Premises (Member $f shepherd) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d sheep)) (Conclusions (Member (sk_shear $f $d) shear) (Agent (sk_shear $f $d) $f) (Patient (sk_shear $f $d) $d))) (STV 1.0 0.9))
+    (: shepherd_q (QuantifierPhrase shepherd shear "every") (STV 1.0 0.99))
 
 ## Context input (#18)
 
@@ -1825,6 +1895,31 @@ chew/shoe/own; no context atom re-emitted:
     (: ann_report (Member sk_report_2 report) (STV 1.0 0.99))
     (: ann_file_past (Past sk_file_2) (STV 1.0 0.99))
     (: ann_name (Name ann "Ann") (STV 1.0 0.99))
+
+**[ctx-background] The thermostat failed overnight.** — with `BACKGROUND: The room is unusually cold and the speaker is shivering.` — `BACKGROUND` is **interpretive only**: it may steer the reading and the confidence, but emits **NO** atoms. Nothing here for the cold, the room, or the shivering
+
+    (: e_fail (Member sk_fail_1 fail) (STV 1.0 0.99))
+    (: e_patient (Patient sk_fail_1 sk_thermostat_1) (STV 1.0 0.99))
+    (: e_thermostat (Member sk_thermostat_1 thermostat) (STV 1.0 0.99))
+    (: e_time (Time sk_fail_1 overnight) (STV 1.0 0.99))
+    (: e_past (Past sk_fail_1) (STV 1.0 0.99))
+
+**[ctx-background-unref] He replaced the cylinder.** — with `BACKGROUND: You are in a turn-based conversation with Rurik. Rurik is a locksmith.` — an entity named **only** in `BACKGROUND` is **not referable** (it has no symbol, and background may not mint one), so "He" takes an ordinary anonymous witness — NOT `rurik`, and no `Name`/locksmith atom
+
+    (: e_replace (Member sk_replace_1 replace) (STV 1.0 0.99))
+    (: e_agent (Agent sk_replace_1 sk_person_1) (STV 1.0 0.99))
+    (: e_person (Member sk_person_1 person) (STV 1.0 0.99))
+    (: e_theme (Theme sk_replace_1 sk_cylinder_1) (STV 1.0 0.99))
+    (: e_cylinder (Member sk_cylinder_1 cylinder) (STV 1.0 0.99))
+    (: e_past (Past sk_replace_1) (STV 1.0 0.99))
+
+**[ctx-background-ref] She examined the parrot.** — same setting but with `CONTEXT: (: dana_name (Name dana "Dana") (STV 1.0 0.99))` — the two channels **compose**: `CONTEXT` makes `dana` referable so "She" binds to it (its `Name` is NOT re-emitted), while `BACKGROUND` still contributes nothing (no veterinarian atom)
+
+    (: e_examine (Member sk_examine_1 examine) (STV 1.0 0.99))
+    (: e_agent (Agent sk_examine_1 dana) (STV 1.0 0.99))
+    (: e_theme (Theme sk_examine_1 sk_parrot_1) (STV 1.0 0.99))
+    (: e_parrot (Member sk_parrot_1 parrot) (STV 1.0 0.99))
+    (: e_past (Past sk_examine_1) (STV 1.0 0.99))
 
 **[ctx-ground] The shipment arrived yesterday.** — with `CONTEXT: TODAY: Tuesday 2026-07-07` —
 dual-emit: the deictic constant stays AND the calendar atoms are added (±1 day):
@@ -1913,6 +2008,7 @@ symbol (the KB symbol is known — that is what context is for):
 **[recip-sym-group] All the finalists are rivals.** — symmetric relation over a group → literal-head rule (both directions from the pair-range), **no** separate symmetry rule
 
     (: finalists_rivals (Implication (Premises (Member $x finalist) (Member $y finalist) (Compute == ($x $y) -> false)) (Conclusions (Rival $x $y))) (STV 1.0 0.9))
+    (: finalist_q (QuantifierPhrase finalist rival "all") (STV 1.0 0.99))
 
 **[recip-routing] Hassan and Omar reconciled with each other.** — eventive symmetric verb + "each other" → **collective** (one event, two `Agent` atoms), not two directed events
 
@@ -2231,6 +2327,7 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 
     (: e_not_think (And (Member sk_think_1 think) (Experiencer sk_think_1 omar) (Theme sk_think_1 (And (Member sk_close_1 close) (Patient sk_close_1 sk_deal_1) (Future sk_close_1)))) (STV 0.0 0.99))
     (: omar_name (Name omar "Omar") (STV 1.0 0.99))
+    (: e_deal (Member sk_deal_1 deal) (STV 1.0 0.99))
 
 **[att-entity-object] Lena distrusts the auditor.** — CONTROL: a psych verb with an **entity** object keeps `Experiencer`/`Stimulus`; no clausal complement, no sealing, no `Theme`-term
 

@@ -1,0 +1,6 @@
+(: press_superset (GroupOf sk_presses_1 press) (STV 1.0 0.99))
+(: press_superset_count (Cardinality sk_presses_1 7) (STV 1.0 0.99))
+(: press_subset (GroupOf sk_group_1 press) (STV 1.0 0.99))
+(: press_subset_of (SubsetOf sk_group_1 sk_presses_1) (STV 1.0 0.99))
+(: press_subset_count (Cardinality sk_group_1 3) (STV 1.0 0.99))
+(: press_subset_idle (Past (Inheritance sk_group_1 idle)) (STV 1.0 0.99))

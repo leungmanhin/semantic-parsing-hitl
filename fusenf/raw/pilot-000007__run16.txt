@@ -1,0 +1,3 @@
+(: pump_mem (Member sk_pump_1 pump) (STV 1.0 0.99))
+(: outage_mem (Member sk_outage_1 outage) (STV 1.0 0.99))
+(: pump_not_restart (And (Member sk_restart_1 restart) (Patient sk_restart_1 sk_pump_1) (Past sk_restart_1) (Before sk_outage_1 sk_restart_1)) (STV 0.0 0.99))

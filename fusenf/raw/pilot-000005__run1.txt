@@ -1,0 +1,6 @@
+(: consignment_1 (Member sk_consignment_1 consignment) (STV 1.0 0.99))
+(: e_clear (Member sk_clear_1 clear) (STV 1.0 0.99))
+(: e_agent (Agent sk_clear_1 sk_consignment_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_clear_1 customs) (STV 1.0 0.99))
+(: e_might (Might sk_clear_1) (STV 1.0 0.9))
+(: e_deadline (TimeAtMost sk_clear_1 (Weekday wednesday)) (STV 1.0 0.99))
