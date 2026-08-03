@@ -268,6 +268,30 @@ The object role must be the **same** in a statement and its question or the quer
     (: e_reservoir (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))
     (: e_drain_past (Past sk_drain_1) (STV 1.0 0.99))
 
+**[role-occurrence-patient] The registrar cancelled the hearing.** — a state change need **not** be physical: the object is itself an occurrence and the verb changes whether it happens → `Patient`, not `Theme`
+
+    (: e_cancel (Member sk_cancel_1 cancel) (STV 1.0 0.99))
+    (: e_registrar (Member sk_registrar_1 registrar) (STV 1.0 0.99))
+    (: e_hearing (Member sk_hearing_1 hearing) (STV 1.0 0.99))
+    (: e_cancel_agent (Agent sk_cancel_1 sk_registrar_1) (STV 1.0 0.99))
+    (: e_cancel_pat (Patient sk_cancel_1 sk_hearing_1) (STV 1.0 0.99))
+    (: e_cancel_past (Past sk_cancel_1) (STV 1.0 0.99))
+
+**[role-passive-by] The ledger is audited by a statute.** — a passive **by**-phrase takes the role the ACTIVE subject would have had: `Agent` even for an inanimate, non-volitional causer — **never** `Holder`, which is possession-only
+
+    (: e_audit (Member sk_audit_1 audit) (STV 1.0 0.99))
+    (: e_statute (Member sk_statute_1 statute) (STV 1.0 0.99))
+    (: e_ledger (Member sk_ledger_1 ledger) (STV 1.0 0.99))
+    (: e_audit_agent (Agent sk_audit_1 sk_statute_1) (STV 1.0 0.99))
+    (: e_audit_theme (Theme sk_audit_1 sk_ledger_1) (STV 1.0 0.99))
+
+**[intrans-expire] The permit expired.** — non-physical change of state: the subject ceases to be valid, so the intransitive subject test gives `Patient`, not `Agent`
+
+    (: e_expire (Member sk_expire_1 expire) (STV 1.0 0.99))
+    (: e_permit (Member sk_permit_1 permit) (STV 1.0 0.99))
+    (: e_expire_pat (Patient sk_expire_1 sk_permit_1) (STV 1.0 0.99))
+    (: e_expire_past (Past sk_expire_1) (STV 1.0 0.99))
+
 **[intrans-stative] The chimney sits behind the workshop.** — a **stative** intransitive (nothing changes, nothing moves — the clause says how something *is*) puts its subject in `Experiencer`, the same role a reified predicate-adjective state gives its holder; **not** `Agent` (no volition) and **not** `Patient` (no change)
 
     (: e_sit (Member sk_sit_1 sit) (STV 1.0 0.99))
@@ -1501,6 +1525,22 @@ union
 ### Distribution to each member (#21)
 
 Explicit distributive-universal ("all the / each of the / every one of the Ns V") over a **distributive** verbal predicate → the same rule form, ranging over the members (kind-named → `(Member $x kind)`; collective-noun group → `(PartOf $x group)`), one per-member Skolem event. A **collective** predicate and a **bare** plural/count do **not** distribute.
+
+**[dist-collnoun-singular] A crew patched the hull.** — SCOPE: a **singular collective noun** is not a plural. One participant, plain event, **no** distribution rule — distributing would assert that each crew member separately patched it (contrast `[dist-collnoun-members]`)
+
+    (: e_patch (Member sk_patch_1 patch) (STV 1.0 0.99))
+    (: e_crew (Member sk_crew_1 crew) (STV 1.0 0.99))
+    (: e_hull (Member sk_hull_1 hull) (STV 1.0 0.99))
+    (: e_patch_agent (Agent sk_patch_1 sk_crew_1) (STV 1.0 0.99))
+    (: e_patch_pat (Patient sk_patch_1 sk_hull_1) (STV 1.0 0.99))
+    (: e_patch_past (Past sk_patch_1) (STV 1.0 0.99))
+
+**[dist-collnoun-members] Every member of the crew signed the log.** — the other branch: explicit wording reaches the members, so the rule ranges over `(PartOf $x <group>)`
+
+    (: crew_signed (Implication (Premises (PartOf $x sk_crew_1)) (Conclusions (Member (sk_sign $x) sign) (Agent (sk_sign $x) $x) (Theme (sk_sign $x) sk_log_1) (Past (sk_sign $x)))) (STV 1.0 0.9))
+    (: e_crew (Member sk_crew_1 crew) (STV 1.0 0.99))
+    (: e_log (Member sk_log_1 log) (STV 1.0 0.99))
+    (: crew_q (QuantifierPhrase crew sign "every") (STV 1.0 0.99))
 
 **[dist-kind] All the passengers boarded.** — kind-named plural, intransitive → rule over `(Member $x passenger)`, strength 1.0
 

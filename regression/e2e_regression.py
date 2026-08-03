@@ -751,6 +751,16 @@ run("distr-kind  all the passengers boarded -> did Omar board? (kind-ranged)", D
     '(And (Member $e board) (Agent $e omar) (Past $e))')
 run("distr-typed  same rule; a dog does NOT board (rule is typed to passenger)", DIST_K+['(: d1 (Member rex dog) (STV 1.0 0.99))'],
     '(And (Member $e board) (Agent $e rex) (Past $e))', want="nomatch")
+# gap-0017: a SINGULAR collective-noun subject is one participant, not a plural — the group event
+# must not reach the members (that would assert each crew member patched the hull on their own).
+COLL_SG=['(: c (Member sk_crew_1 crew) (STV 1.0 0.99))','(: m1 (PartOf pia sk_crew_1) (STV 1.0 0.99))',
+         '(: e (Member sk_patch_1 patch) (STV 1.0 0.99))',
+         '(: a (Agent sk_patch_1 sk_crew_1) (STV 1.0 0.99))',
+         '(: p (Patient sk_patch_1 sk_hull_1) (STV 1.0 0.99))']
+run("distr-collnoun-sg  the GROUP patched the hull (group event holds)", COLL_SG,
+    '(And (Member $e patch) (Agent $e sk_crew_1))')
+run("distr-collnoun-sg  SAFETY no member-level event: did Pia patch it? (expect [])", COLL_SG,
+    '(And (Member $e patch) (Agent $e pia))', want="nomatch")
 run("distr-partof  every panel member abstained -> did Leo abstain? (PartOf-ranged)",
     ['(: c (Member sk_panel_1 panel) (STV 1.0 0.99))','(: m1 (PartOf ivy sk_panel_1) (STV 1.0 0.99))',
      '(: m2 (PartOf leo sk_panel_1) (STV 1.0 0.99))',

@@ -429,13 +429,18 @@ possession/relational state only — own/have/lack); direct object →
 otherwise `Theme`** — one yes/no test ("does the object itself change?"), so a verb takes the
 **same role in a statement and in its question** and QA matches (e.g. *bought / rented / graded /
 scored / **replaced** / swapped / moved* → `Theme` both times — the object is displaced, not altered;
-*cooked / built / **repainted*** → `Patient` both times); when the test is unclear,
-default to `Theme`. The subject test below is for **intransitives**; a **transitive** subject is
+*cooked / built / **repainted*** → `Patient` both times). **A state change need not be physical**:
+when the object is itself an **event or scheduled occurrence** (a flight, a vote, a match, a
+hearing) and the verb changes **whether or when it happens** — *cancel, call off, postpone, put off,
+delay, reschedule, bring forward* — the occurrence itself is altered, so → `Patient`. This does not
+reach verbs that merely **evaluate or record** an object (*grade, score, inspect, review*), which
+leave it as it was → `Theme`. When the test is unclear, default to `Theme`. The subject test below is for **intransitives**; a **transitive** subject is
 `Agent` even when inanimate and non-volitional ("the consignment cleared customs", "the storm broke
 the mast") — inanimacy alone never demotes a transitive subject. Psych/perception object → `Stimulus`; indirect object → `Recipient`;
 obliques by their preposition/adverb. For an **intransitive** subject (no object), apply the same
 "does it change?" test to the **subject**: a **change-of-state undergoer** → `Patient` (*collapse,
-sink, melt, shatter, snap, freeze, break, spread*); a **motion / volitional / self-propelled**
+sink, melt, shatter, snap, freeze, break, spread*, and — the same non-physical change as above —
+*expire, lapse*, where a term or permit ceases to be valid); a **motion / volitional / self-propelled**
 subject → `Agent` (*run, arrive, leave, march, proceed, sail, gather*). But a **non-volitional
 natural process / force** — precipitation, fluids, gases, or a mass moved by gravity (*rain fell,
 the reservoir drained, smoke rose, the tide receded*) — takes `Patient` (its subject **undergoes**
@@ -446,7 +451,10 @@ the same role a reified predicate-adjective state gives its holder: locative / p
 bay*) and psych / perception states alike. When unclear, `Agent`.
 
 An **indefinite argument** ("a book") is an existential → witness + class, referenced by its
-role. A **passive / agentless** clause just omits `Agent`. An **expletive / weather "it"** ("it is
+role. A **passive** carries **exactly the roles its active would**: a **`by`-phrase takes the role
+the active subject would have had** — `Agent` for a transitive, **even a stative or inanimate one**
+("the gate is jammed **by rust**" → `(Agent … rust)`, never `Holder`, which is possession-only) — and an **agentless** passive simply omits that atom. A voice alternation must
+therefore produce the *same* atoms; if it does not, one of the two readings is wrong. An **expletive / weather "it"** ("it is
 raining", "it got cold", "it seems") is **not** a referent — drop it and reify the predicate
 **agentless** (no `Agent` / `Experiencer` for the "it"): "it would rain" → `(Member sk_rain_1 rain)
 (Future sk_rain_1)`.
@@ -1440,7 +1448,15 @@ fly") takes the event rule.
 The **same rule form** distributes a **distributive predicate over a plural or group** — whether an
 **explicit universal** ("all the / **all of the** / each (of the) / every (one of the) Ns V", bare
 "each / every N V") or a **grouped / counted plural** ("the dogs barked", "several / both dogs
-barked" — see *Cardinality*, which keeps the group event + count alongside the rule). A universal
+barked" — see *Cardinality*, which keeps the group event + count alongside the rule).
+
+**A singular collective noun is NOT a plural** and does **not** distribute: "a crew repairs the
+pipe", "the committee approved it", "an airline cancelled the flight" each name **one** participant
+— the group itself — so they get a plain event with the group as its role-filler and **no rule**.
+Distributing there would assert that every crew member separately repaired the pipe. Reaching the
+members takes explicit wording — "**every member of** the crew", "the crew **members**", "**each of**
+the crew" — which is the explicit-universal case above. The trigger is **grammatical number, not
+whether the referent happens to be a group.** A universal
 **always distributes** — the "of the" wording does **not** make it a partitive (partitives are
 cardinal or non-universal proportional — see *Partitives*); only a **collective** predicate (gather,
 meet, assemble) does **not** distribute. Range over the members as the reciprocal rules do (see
