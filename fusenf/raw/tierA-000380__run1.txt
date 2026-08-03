@@ -1,0 +1,5 @@
+(: e_physician (Member sk_physician_1 physician) (STV 1.0 0.99))
+(: e_group (GroupOf sk_group_1 sample) (STV 1.0 0.99))
+(: e_examine (Member sk_examine_1 examine) (STV 1.0 0.99))
+(: e_agent (Agent sk_examine_1 sk_physician_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_examine_1 sk_group_1) (STV 1.0 0.99))

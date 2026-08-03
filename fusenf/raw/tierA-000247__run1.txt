@@ -1,0 +1,6 @@
+(: g_soil (GroupOf sk_group_1 soil_sample) (STV 1.0 0.99))
+(: g_genus (Inheritance soil_sample sample) (STV 1.0 0.99))
+(: e_depart (Member sk_depart_1 depart) (STV 1.0 0.99))
+(: e_agent (Agent sk_depart_1 sk_group_1) (STV 1.0 0.99))
+(: e_instr (Instrument sk_depart_1 post) (STV 1.0 0.99))
+(: rule_depart (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_depart $x) depart) (Agent (sk_depart $x) $x) (Instrument (sk_depart $x) post))) (STV 1.0 0.9))

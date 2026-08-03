@@ -1,0 +1,7 @@
+(: t128_auditor (Member sk_auditor_1 auditor) (STV 1.0 0.99))
+(: t128_error (Member sk_error_1 error) (STV 1.0 0.99))
+(: t128_ledger (Member sk_ledger_1 ledger) (STV 1.0 0.99))
+(: t128_loc (Location sk_error_1 sk_ledger_1) (STV 1.0 0.99))
+(: t128_e (Member sk_discover_1 discover) (STV 1.0 0.99))
+(: t128_exp (Experiencer sk_discover_1 sk_auditor_1) (STV 1.0 0.99))
+(: t128_stim (Stimulus sk_discover_1 sk_error_1) (STV 1.0 0.99))

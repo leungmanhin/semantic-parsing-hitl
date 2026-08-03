@@ -1,0 +1,4 @@
+(: accident_mem (Member sk_accident_1 accident) (STV 1.0 0.99))
+(: survivor_group (GroupOf sk_group_1 survivor) (STV 1.0 0.99))
+(: survivor_count (Cardinality sk_group_1 0) (STV 1.0 0.99))
+(: survivor_poss (Possession sk_group_1 sk_accident_1) (STV 1.0 0.99))

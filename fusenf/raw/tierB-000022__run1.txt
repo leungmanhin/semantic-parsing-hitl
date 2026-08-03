@@ -1,0 +1,3 @@
+(: bridges_group (GroupOf sk_group_1 bridge) (STV 1.0 0.99))
+(: bridges_card (CardinalityPhrase sk_group_1 "several") (STV 1.0 0.99))
+(: bridges_fate (Or (And (Member sk_damage_1 damage) (Patient sk_damage_1 sk_group_1) (Past sk_damage_1)) (And (Member sk_sweep_away_1 sweep_away) (Patient sk_sweep_away_1 sk_group_1) (Past sk_sweep_away_1))) (STV 1.0 0.99))

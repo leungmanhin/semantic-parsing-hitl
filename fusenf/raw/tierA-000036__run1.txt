@@ -1,0 +1,7 @@
+(: f36_elec (Member sk_electrician_1 electrician) (STV 1.0 0.99))
+(: f36_fl (Member sk_yard_floodlight_1 yard_floodlight) (STV 1.0 0.99))
+(: f36_fl_genus (Inheritance yard_floodlight floodlight) (STV 1.0 0.99))
+(: f36_fix (Member sk_fix_1 fix) (STV 1.0 0.99))
+(: f36_agent (Agent sk_fix_1 sk_electrician_1) (STV 1.0 0.99))
+(: f36_patient (Patient sk_fix_1 sk_yard_floodlight_1) (STV 1.0 0.99))
+(: f36_past (Past sk_fix_1) (STV 1.0 0.99))

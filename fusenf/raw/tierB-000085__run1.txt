@@ -1,0 +1,8 @@
+(: s6_group (GroupOf sk_group_1 flower) (STV 1.0 0.99))
+(: s6_giveoff (Member sk_giveoff_1 give_off) (STV 1.0 0.99))
+(: s6_agent (Agent sk_giveoff_1 sk_group_1) (STV 1.0 0.99))
+(: s6_theme (Theme sk_giveoff_1 sk_perfume_1) (STV 1.0 0.99))
+(: s6_perfume (Member sk_perfume_1 perfume) (STV 1.0 0.99))
+(: s6_pleasant (Member sk_perfume_1 pleasant) (STV 1.0 0.99))
+(: s6_deg (Degree sk_perfume_1 pleasant very) (STV 1.0 0.99))
+(: s6_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_giveoff $x) give_off) (Agent (sk_giveoff $x) $x) (Theme (sk_giveoff $x) sk_perfume_1))) (STV 1.0 0.9))

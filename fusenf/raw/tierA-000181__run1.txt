@@ -1,0 +1,7 @@
+(: c181_group (GroupOf sk_group_1 child) (STV 1.0 0.99))
+(: c181_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: c181_walk (Member sk_walk_1 walk) (STV 1.0 0.99))
+(: c181_walk_ag (Agent sk_walk_1 sk_group_1) (STV 1.0 0.99))
+(: c181_walk_goal (Goal sk_walk_1 sk_pier_1) (STV 1.0 0.99))
+(: c181_pier (Member sk_pier_1 pier) (STV 1.0 0.99))
+(: c181_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_walk $x) walk) (Agent (sk_walk $x) $x) (Goal (sk_walk $x) sk_pier_1))) (STV 1.0 0.9))

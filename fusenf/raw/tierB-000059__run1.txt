@@ -1,0 +1,4 @@
+(: db_g (Inheritance dung_beetle beetle) (STV 1.0 0.99))
+(: sun_m (Member sk_sun_1 sun) (STV 1.0 0.99))
+(: stars_g (GroupOf sk_stars_1 star) (STV 1.0 0.99))
+(: db_navigate (Implication (Premises (Member $x dung_beetle)) (Conclusions (Member (sk_navigate $x) navigate) (Agent (sk_navigate $x) $x) (Instrument (sk_navigate $x) sk_sun_1) (Instrument (sk_navigate $x) sk_stars_1))) (STV 0.9 0.9))

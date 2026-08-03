@@ -1,0 +1,7 @@
+(: dr_member (Member sk_dress_rehearsal_1 dress_rehearsal) (STV 1.0 0.99))
+(: dr_genus (Inheritance dress_rehearsal rehearsal) (STV 1.0 0.99))
+(: e_begin (Member sk_begin_1 begin) (STV 1.0 0.99))
+(: e_patient (Patient sk_begin_1 sk_dress_rehearsal_1) (STV 1.0 0.99))
+(: e_might (Might sk_begin_1) (STV 1.0 0.9))
+(: lunch_member (Member sk_lunch_1 lunch) (STV 1.0 0.99))
+(: e_before (Before sk_lunch_1 sk_begin_1) (STV 1.0 0.99))

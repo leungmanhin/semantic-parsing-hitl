@@ -1,0 +1,8 @@
+(: trawler_genus (Inheritance fishing_trawler trawler) (STV 1.0 0.99))
+(: trawlers_group (GroupOf sk_group_1 fishing_trawler) (STV 1.0 0.99))
+(: waters_m (Member sk_waters_1 water) (STV 1.0 0.99))
+(: waters_local (Member sk_waters_1 local) (STV 1.0 0.99))
+(: e_fishout (Member sk_fish_out_1 fish_out) (STV 1.0 0.99))
+(: e_agent (Agent sk_fish_out_1 sk_group_1) (STV 1.0 0.99))
+(: e_patient (Patient sk_fish_out_1 sk_waters_1) (STV 1.0 0.99))
+(: e_past (Past sk_fish_out_1) (STV 1.0 0.99))

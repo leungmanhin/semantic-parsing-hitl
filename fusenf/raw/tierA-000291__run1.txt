@@ -1,0 +1,8 @@
+(: elder_m (Member sk_elder_1 elder) (STV 1.0 0.99))
+(: group_g (GroupOf sk_group_1 child) (STV 1.0 0.99))
+(: song_m (Member sk_song_1 song) (STV 1.0 0.99))
+(: e_teach (Member sk_teach_1 teach) (STV 1.0 0.99))
+(: e_agent (Agent sk_teach_1 sk_elder_1) (STV 1.0 0.99))
+(: e_recipient (Recipient sk_teach_1 sk_group_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_teach_1 sk_song_1) (STV 1.0 0.99))
+(: teach_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_teach $x) teach) (Agent (sk_teach $x) sk_elder_1) (Recipient (sk_teach $x) $x) (Theme (sk_teach $x) sk_song_1))) (STV 1.0 0.9))

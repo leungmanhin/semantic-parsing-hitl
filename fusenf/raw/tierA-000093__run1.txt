@@ -1,0 +1,3 @@
+(: permit_1_type (Member sk_permit_1 permit) (STV 1.0 0.99))
+(: countersig_1_type (Member sk_countersignature_1 countersignature) (STV 1.0 0.99))
+(: require_1_neg (And (Member sk_require_1 require) (Holder sk_require_1 sk_permit_1) (Theme sk_require_1 sk_countersignature_1)) (STV 0.0 0.99))

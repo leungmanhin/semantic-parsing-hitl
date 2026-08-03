@@ -1,0 +1,7 @@
+(: depot1_mem (Member sk_depot_1 depot) (STV 1.0 0.99))
+(: e_purchase (Member sk_purchase_1 purchase) (STV 1.0 0.99))
+(: e_agent (Agent sk_purchase_1 sk_depot_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_purchase_1 sk_group_1) (STV 1.0 0.99))
+(: g_group (GroupOf sk_group_1 forklift) (STV 1.0 0.99))
+(: g_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: e_past (Past sk_purchase_1) (STV 1.0 0.99))

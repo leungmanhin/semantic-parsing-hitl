@@ -1,0 +1,3 @@
+(: nw2_nurse (Member sk_nurse_1 nurse) (STV 1.0 0.99))
+(: nw2_ward (Member sk_ward_1 ward) (STV 1.0 0.99))
+(: nw2_neg (And (Member sk_walk_1 walk) (Agent sk_walk_1 sk_nurse_1) (Location sk_walk_1 sk_ward_1)) (STV 0.0 0.99))

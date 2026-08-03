@@ -1,0 +1,3 @@
+(: ic_g (Inheritance imported_car car) (STV 1.0 0.99))
+(: ic_imp (Inheritance imported_car imported) (STV 1.0 0.99))
+(: ic_repair (Implication (Premises (Member $x imported_car)) (Conclusions (Member (sk_repair $x) repair) (Patient (sk_repair $x) $x) (Degree (sk_repair $x) price more))) (STV 0.9 0.9))

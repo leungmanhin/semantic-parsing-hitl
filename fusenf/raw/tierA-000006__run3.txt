@@ -1,0 +1,8 @@
+(: forklifts_group (GroupOf sk_group_1 forklift) (STV 1.0 0.99))
+(: forklifts_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: e_buy (Member sk_buy_1 buy) (STV 1.0 0.99))
+(: e_agent (Agent sk_buy_1 sk_group_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_buy_1 sk_depot_1) (STV 1.0 0.99))
+(: depot_mem (Member sk_depot_1 depot) (STV 1.0 0.99))
+(: e_past (Past sk_buy_1) (STV 1.0 0.99))
+(: forklifts_buy_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_buy $x) buy) (Agent (sk_buy $x) $x) (Theme (sk_buy $x) sk_depot_1) (Past (sk_buy $x)))) (STV 1.0 0.9))

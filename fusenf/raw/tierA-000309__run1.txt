@@ -1,0 +1,4 @@
+(: museum9_m (Member sk_museum_1 museum) (STV 1.0 0.99))
+(: gallery9_m (Member sk_gallery_1 gallery) (STV 1.0 0.99))
+(: painting9_m (Member sk_painting_1 painting) (STV 1.0 0.99))
+(: e9_neg (And (Member sk_lend_1 lend) (Agent sk_lend_1 sk_museum_1) (Recipient sk_lend_1 sk_gallery_1) (Theme sk_lend_1 sk_painting_1)) (STV 0.0 0.99))

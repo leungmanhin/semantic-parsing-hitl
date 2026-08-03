@@ -1,0 +1,4 @@
+(: firm_typ (Member sk_firm_1 firm) (STV 1.0 0.99))
+(: tender_typ (Member sk_tender_1 tender) (STV 1.0 0.99))
+(: tender_poss (Possession sk_tender_1 sk_firm_1) (STV 1.0 0.99))
+(: neg (And (Member sk_abandon_1 abandon) (Agent sk_abandon_1 sk_firm_1) (Theme sk_abandon_1 sk_tender_1)) (STV 0.0 0.99))

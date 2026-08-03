@@ -1,0 +1,7 @@
+(: s4_box (Member sk_box_1 box) (STV 1.0 0.99))
+(: s4_big (Member sk_box_1 big) (STV 1.0 0.99))
+(: s4_deg (Degree sk_box_1 big excessive) (STV 1.0 0.99))
+(: s4_trunk (Member sk_trunk_1 trunk) (STV 1.0 0.99))
+(: s4_trunk_part (PartOf sk_trunk_1 sk_car_1) (STV 1.0 0.99))
+(: s4_car (Member sk_car_1 car) (STV 1.0 0.99))
+(: s4_neg (And (Member sk_put_1 put) (Theme sk_put_1 sk_box_1) (Goal sk_put_1 sk_trunk_1) (Can sk_put_1)) (STV 0.0 0.99))

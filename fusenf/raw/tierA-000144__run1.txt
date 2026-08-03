@@ -1,0 +1,6 @@
+(: airline_mem (Member sk_airline_1 airline) (STV 1.0 0.99))
+(: calloff_mem (Member sk_call_off_1 call_off) (STV 1.0 0.99))
+(: calloff_agent (Agent sk_call_off_1 sk_airline_1) (STV 1.0 0.99))
+(: calloff_theme (Theme sk_call_off_1 sk_flight_1) (STV 1.0 0.99))
+(: flight_mem (Member sk_flight_1 evening_flight) (STV 1.0 0.99))
+(: flight_genus (Inheritance evening_flight flight) (STV 1.0 0.99))

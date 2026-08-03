@@ -1,0 +1,6 @@
+(: permit_1_type (Member sk_permit_1 permit) (STV 1.0 0.99))
+(: require_1_class (Member sk_require_1 require) (STV 1.0 0.99))
+(: require_1_holder (Holder sk_require_1 sk_permit_1) (STV 1.0 0.99))
+(: require_1_theme (Theme sk_require_1 sk_countersigs_1) (STV 1.0 0.99))
+(: countersigs_1_group (GroupOf sk_countersigs_1 countersignature) (STV 1.0 0.99))
+(: countersigs_1_card (Cardinality sk_countersigs_1 2) (STV 1.0 0.99))

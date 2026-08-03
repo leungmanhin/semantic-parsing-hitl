@@ -1,0 +1,3 @@
+(: ms_genus (Inheritance modern_ship ship) (STV 1.0 0.99))
+(: ms_prop (Inheritance modern_ship modern) (STV 1.0 0.99))
+(: ship_crew_rule (Implication (Premises (Member $x modern_ship)) (Conclusions (Member (sk_need $x) need) (Experiencer (sk_need $x) $x) (Theme (sk_need $x) (sk_crew $x)) (Member (sk_crew $x) crew) (Member (sk_crew $x) small) (Only (sk_crew $x) (sk_need $x)))) (STV 0.9 0.9))

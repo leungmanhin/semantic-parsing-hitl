@@ -1,0 +1,7 @@
+(: e_group (GroupOf sk_group_1 automobile) (STV 1.0 0.99))
+(: e_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: e_block (Member sk_block_1 block) (STV 1.0 0.99))
+(: e_agent (Agent sk_block_1 sk_group_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_block_1 sk_lane_1) (STV 1.0 0.99))
+(: e_lane (Member sk_lane_1 lane) (STV 1.0 0.99))
+(: e_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_block $x) block) (Agent (sk_block $x) $x) (Theme (sk_block $x) sk_lane_1))) (STV 1.0 0.9))

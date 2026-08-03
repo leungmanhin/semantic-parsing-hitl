@@ -1,0 +1,5 @@
+(: crew1_typ (Member sk_crew_1 crew) (STV 1.0 0.99))
+(: pipe1_typ (Member sk_pipe_1 feed_pipe) (STV 1.0 0.99))
+(: pipe1_genus (Inheritance feed_pipe pipe) (STV 1.0 0.99))
+(: pipe1_cracked (Member sk_pipe_1 cracked) (STV 1.0 0.99))
+(: neg_repair (And (Member sk_repair_1 repair) (Agent sk_repair_1 sk_crew_1) (Patient sk_repair_1 sk_pipe_1)) (STV 0.0 0.99))

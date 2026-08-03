@@ -1,0 +1,8 @@
+(: e_studio (Member sk_pottery_studio_1 pottery_studio) (STV 1.0 0.99))
+(: e_studio_genus (Inheritance pottery_studio studio) (STV 1.0 0.99))
+(: e_kiln (Member sk_kiln_1 kiln) (STV 1.0 0.99))
+(: e_ordinal (Ordinal sk_kiln_1 2 purchase) (STV 1.0 0.99))
+(: e_purchase (Member sk_purchase_1 purchase) (STV 1.0 0.99))
+(: e_agent (Agent sk_purchase_1 sk_pottery_studio_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_purchase_1 sk_kiln_1) (STV 1.0 0.99))
+(: e_past (Past sk_purchase_1) (STV 1.0 0.99))

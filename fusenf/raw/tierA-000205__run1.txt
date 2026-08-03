@@ -1,0 +1,4 @@
+(: t205_board (Member sk_board_1 board) (STV 1.0 0.99))
+(: t205_budget (Member sk_budget_1 budget) (STV 1.0 0.99))
+(: t205_poss (Possession sk_budget_1 next_year) (STV 1.0 0.99))
+(: t205_neg (And (Member sk_decide_1 decide) (Agent sk_decide_1 sk_board_1) (Theme sk_decide_1 sk_budget_1)) (STV 0.0 0.99))

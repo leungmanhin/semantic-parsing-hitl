@@ -1,0 +1,3 @@
+(: board_m (Member sk_board_1 board) (STV 1.0 0.99))
+(: vote_m (Member sk_vote_1 vote) (STV 1.0 0.99))
+(: neg_postpone (And (Member sk_postpone_1 postpone) (Agent sk_postpone_1 sk_board_1) (Theme sk_postpone_1 sk_vote_1)) (STV 0.0 0.99))

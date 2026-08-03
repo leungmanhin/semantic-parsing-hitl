@@ -1,0 +1,3 @@
+(: everyone_went (Implication (Premises (Member $x person) (Compute == ($x tom) -> false)) (Conclusions (Member (sk_go $x) go) (Agent (sk_go $x) $x) (Goal (sk_go $x) boston) (Past (sk_go $x)))) (STV 1.0 0.9))
+(: tom_name (Name tom "Tom") (STV 1.0 0.99))
+(: tom_not_go (And (Member sk_go_1 go) (Agent sk_go_1 tom) (Goal sk_go_1 boston) (Past sk_go_1)) (STV 0.0 0.99))

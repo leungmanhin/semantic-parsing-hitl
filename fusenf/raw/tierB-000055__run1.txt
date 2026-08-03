@@ -1,0 +1,6 @@
+(: pf_group (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: pf_card (CardinalityPhrase sk_group_1 "a lot of") (STV 1.0 0.99))
+(: pf_do (Member sk_do_1 do) (STV 1.0 0.99))
+(: pf_agent (Agent sk_do_1 sk_group_1) (STV 1.0 0.99))
+(: pf_theme (Theme sk_do_1 sk_that_1) (STV 1.0 0.99))
+(: pf_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_do $x) do) (Agent (sk_do $x) $x) (Theme (sk_do $x) sk_that_1))) (STV 1.0 0.9))

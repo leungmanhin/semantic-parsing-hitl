@@ -1,0 +1,7 @@
+(: automobiles_grp (GroupOf sk_group_1 automobile) (STV 1.0 0.99))
+(: automobiles_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: wait_ev (Member sk_wait_1 wait) (STV 1.0 0.99))
+(: wait_exp (Experiencer sk_wait_1 sk_group_1) (STV 1.0 0.99))
+(: wait_loc (Location sk_wait_1 sk_gate_1) (STV 1.0 0.99))
+(: gate_m (Member sk_gate_1 gate) (STV 1.0 0.99))
+(: wait_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_wait $x) wait) (Experiencer (sk_wait $x) $x) (Location (sk_wait $x) sk_gate_1))) (STV 1.0 0.9))

@@ -140,8 +140,19 @@ def operator_class(vocab: dict, head: str, arity: int) -> str | None:
 
 
 def _open_class_heads(vocab: dict) -> frozenset:
+    """Heads checked by position and arity only, never by name.
+
+    `attested_heads` is a documentation list of lexical relations we have seen.
+    `oblique_prepositions` is load-bearing: `prompt.txt` licenses obliques
+    **named after their own preposition or adverb**, so that head set is open by
+    construction. Enumerating only the attested ones made C4 fire on every
+    previously-unseen preposition — `By` in "antibodies work **by** attaching …"
+    is a correct parse — and on natural text that noise would bury real findings.
+    """
     oc = vocab.get("open_class") or {}
-    return frozenset(oc.get("attested_heads") or [])
+    return frozenset(oc.get("attested_heads") or []) | frozenset(
+        oc.get("oblique_prepositions") or []
+    )
 
 
 # ---------------------------------------------------------------------------

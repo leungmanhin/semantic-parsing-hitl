@@ -1,0 +1,4 @@
+(: lathe_typ (Member sk_lathe_1 lathe) (STV 1.0 0.99))
+(: ms_genus (Inheritance monthly_servicing servicing) (STV 1.0 0.99))
+(: ms_mod (Inheritance monthly_servicing monthly) (STV 1.0 0.99))
+(: lathe_no_require (And (Member sk_require_1 require) (Experiencer sk_require_1 sk_lathe_1) (Theme sk_require_1 monthly_servicing)) (STV 0.0 0.99))
