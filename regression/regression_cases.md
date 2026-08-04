@@ -268,6 +268,119 @@ The object role must be the **same** in a statement and its question or the quer
     (: e_reservoir (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))
     (: e_drain_past (Past sk_drain_1) (STV 1.0 0.99))
 
+**[aspect-simple-present] The kiln cools overnight.** — `Ongoing` needs an explicit marker (progressive / continuative perfect / inceptive complement); a bare simple present has none, so **no status atom at all**
+
+    (: e_cool (Member sk_cool_1 cool) (STV 1.0 0.99))
+    (: e_kiln (Member sk_kiln_1 kiln) (STV 1.0 0.99))
+    (: e_cool_pat (Patient sk_cool_1 sk_kiln_1) (STV 1.0 0.99))
+    (: e_cool_time (Time sk_cool_1 night) (STV 1.0 0.99))
+
+**[role-mental-eventive] The auditor discovered an error.** — the psych/`Experiencer` carve-out is bounded by the **progressive test**: "is discovering" is fine, so `discover` is an event, not a state → ordinary `Agent`/`Theme`, never `Experiencer`/`Stimulus` (contrast `[role-mental-stative]`)
+
+    (: e_discover (Member sk_discover_1 discover) (STV 1.0 0.99))
+    (: e_auditor (Member sk_auditor_1 auditor) (STV 1.0 0.99))
+    (: e_error (Member sk_error_1 error) (STV 1.0 0.99))
+    (: e_discover_agent (Agent sk_discover_1 sk_auditor_1) (STV 1.0 0.99))
+    (: e_discover_theme (Theme sk_discover_1 sk_error_1) (STV 1.0 0.99))
+    (: e_discover_past (Past sk_discover_1) (STV 1.0 0.99))
+
+**[role-mental-stative] The auditor distrusted the figures.** — the other branch: *"is distrusting" is bad, so it is a state → `Experiencer` + `Stimulus`
+
+    (: e_distrust (Member sk_distrust_1 distrust) (STV 1.0 0.99))
+    (: e_auditor (Member sk_auditor_1 auditor) (STV 1.0 0.99))
+    (: e_figures (GroupOf sk_group_1 figure) (STV 1.0 0.99))
+    (: e_distrust_exp (Experiencer sk_distrust_1 sk_auditor_1) (STV 1.0 0.99))
+    (: e_distrust_stim (Stimulus sk_distrust_1 sk_group_1) (STV 1.0 0.99))
+    (: e_distrust_past (Past sk_distrust_1) (STV 1.0 0.99))
+
+**[oblique-subject-matter] The glazier worked on the skylight.** — a PP naming what the activity is ABOUT takes the preposition-named oblique `(On …)`: not `Location` (he is not standing on it), not `Theme`, not `Patient`
+
+    (: e_work (Member sk_work_1 work) (STV 1.0 0.99))
+    (: e_glazier (Member sk_glazier_1 glazier) (STV 1.0 0.99))
+    (: e_skylight (Member sk_skylight_1 skylight) (STV 1.0 0.99))
+    (: e_work_agent (Agent sk_work_1 sk_glazier_1) (STV 1.0 0.99))
+    (: e_work_on (On sk_work_1 sk_skylight_1) (STV 1.0 0.99))
+    (: e_work_past (Past sk_work_1) (STV 1.0 0.99))
+
+**[idiom-unit] The old mare kicked the bucket last winter.** — a fixed idiom is ONE surface symbol (like a phrasal verb), never unpacked into a literal event: no `kick` event, no `bucket` witness. The `≈ die` link is a downstream normalization step, not emitted here
+
+    (: e_ktb (Member sk_kick_the_bucket_1 kick_the_bucket) (STV 1.0 0.99))
+    (: e_mare (Member sk_mare_1 mare) (STV 1.0 0.99))
+    (: e_mare_old (Member sk_mare_1 old) (STV 1.0 0.99))
+    (: e_ktb_agent (Agent sk_kick_the_bucket_1 sk_mare_1) (STV 1.0 0.99))
+    (: e_ktb_time (Time sk_kick_the_bucket_1 last_winter) (STV 1.0 0.99))
+    (: e_ktb_past (Past sk_kick_the_bucket_1) (STV 1.0 0.99))
+
+**[idiom-literal] The toddler kicked the bucket across the yard.** — the other branch of the coherence test: the literal reading IS available for these participants, so parse it literally — a `kick` event with a real `bucket`
+
+    (: e_kick (Member sk_kick_1 kick) (STV 1.0 0.99))
+    (: e_toddler (Member sk_toddler_1 toddler) (STV 1.0 0.99))
+    (: e_bucket (Member sk_bucket_1 bucket) (STV 1.0 0.99))
+    (: e_yard (Member sk_yard_1 yard) (STV 1.0 0.99))
+    (: e_kick_agent (Agent sk_kick_1 sk_toddler_1) (STV 1.0 0.99))
+    (: e_kick_theme (Theme sk_kick_1 sk_bucket_1) (STV 1.0 0.99))
+    (: e_kick_goal (Across sk_kick_1 sk_yard_1) (STV 1.0 0.99))
+    (: e_kick_past (Past sk_kick_1) (STV 1.0 0.99))
+
+**[neg-projection] The warden did not show the visitors a permit.** — a strength-0 denial obeys the SAME projection as a seal: the **definite** "the visitors" is presupposed so its typing sits OUTSIDE, the **indefinite** "a permit" is posited only by the denied proposition so its witness stays INSIDE; event class + all roles always inside
+
+    (: e_warden (Member sk_warden_1 warden) (STV 1.0 0.99))
+    (: e_visitors (GroupOf sk_group_1 visitor) (STV 1.0 0.99))
+    (: e_not_show (And (Member sk_show_1 show) (Agent sk_show_1 sk_warden_1) (Recipient sk_show_1 sk_group_1) (Theme sk_show_1 sk_permit_1) (Member sk_permit_1 permit) (Past sk_show_1)) (STV 0.0 0.99))
+
+**[neg-indef-witness] A farrier does not burnish the flange.** — SCOPE: negation does not re-decide the subject. An **indefinite singular** is a **witness** under negation just as it is without one, so this denies ONE farrier's act — it does not become a kind-level rule (contrast `[neg-bareplural-rule]`); the definite "the flange" projects, the indefinite subject stays inside
+
+    (: e_flange (Member sk_flange_1 flange) (STV 1.0 0.99))
+    (: e_not_burnish (And (Member sk_burnish_1 burnish) (Agent sk_burnish_1 sk_farrier_1) (Member sk_farrier_1 farrier) (Patient sk_burnish_1 sk_flange_1)) (STV 0.0 0.99))
+
+**[neg-bareplural-rule] Farriers do not burnish the flange.** — the other branch: a generic denial needs the surface signal a positive generic needs, so the **bare plural** takes the strength-0 rule form. Plain "Ns don't V" gets **no** `QuantifierPhrase` — that companion is what distinguishes it from "none of the"
+
+    (: e_flange (Member sk_flange_1 flange) (STV 1.0 0.99))
+    (: farriers_not_burnish (Implication (Member $x farrier) (And (Member (sk_burnish $x) burnish) (Agent (sk_burnish $x) $x) (Patient (sk_burnish $x) sk_flange_1))) (STV 0.0 0.9))
+
+**[neg-group-dual] The thatchers do not grout the culvert.** — a negated plural keeps BOTH emissions the positive sentence would make: the group-level denial AND the per-member distribution rule, each at strength 0.0. Dropping either is a weaker claim (the group did not do it, and no member did)
+
+    (: e_group (GroupOf sk_group_1 thatcher) (STV 1.0 0.99))
+    (: e_culvert (Member sk_culvert_1 culvert) (STV 1.0 0.99))
+    (: e_not_grout (And (Member sk_grout_1 grout) (Agent sk_grout_1 sk_group_1) (Patient sk_grout_1 sk_culvert_1)) (STV 0.0 0.99))
+    (: thatchers_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_grout $x) grout) (Agent (sk_grout $x) $x) (Patient (sk_grout $x) sk_culvert_1))) (STV 0.0 0.9))
+
+**[neg-indef-deontic] A machinist must unbolt a gasket.** — CARVE-OUT: the witness reading above is for **verbal** predicates. A deontic norm over a kind keys on the **modal, not the determiner**, so an indefinite singular subject here still takes the kind-level reified-property form, not a witness event
+
+    (: mach_unbolt (Inheritance machinist (obligated unbolt_gasket)) (STV 1.0 0.99))
+    (: ug_genus (Inheritance unbolt_gasket unbolt) (STV 1.0 0.99))
+    (: ug_obj (Patient unbolt_gasket gasket) (STV 1.0 0.99))
+
+**[dist-universal-copular] The stewards are all fatigued.** — a universal over a COPULAR predicate distributes like any other: a rule over `(PartOf $x <group>)` with the property as conclusion — not `(Inheritance diver exhausted)` (every diver everywhere) and not a bare property on the group symbol
+
+    (: stewards_fatigued (Implication (PartOf $x sk_group_1) (Member $x fatigued)) (STV 1.0 0.9))
+    (: e_group (GroupOf sk_group_1 steward) (STV 1.0 0.99))
+    (: stewards_q (QuantifierPhrase steward fatigued "all") (STV 1.0 0.99))
+
+**[role-stative-transitive] The report contains an error.** — stativity does **not** demote a transitive subject: `Agent`, not `Experiencer` (that branch is intransitive-only) and not `Holder` (possession verbs only — own/have/lack)
+
+    (: e_contain (Member sk_contain_1 contain) (STV 1.0 0.99))
+    (: e_report (Member sk_report_1 report) (STV 1.0 0.99))
+    (: e_error (Member sk_error_1 error) (STV 1.0 0.99))
+    (: e_contain_agent (Agent sk_contain_1 sk_report_1) (STV 1.0 0.99))
+    (: e_contain_theme (Theme sk_contain_1 sk_error_1) (STV 1.0 0.99))
+
+**[time-no-futurate] The ferry departs at noon.** — a bare present with an **unanchored** adjunct and no `TODAY`: there is no evidence the event is ahead, so **no tense atom** (contrast `[time-clock]`, where "will" marks it)
+
+    (: e_depart (Member sk_depart_1 depart) (STV 1.0 0.99))
+    (: e_ferry (Member sk_ferry_1 ferry) (STV 1.0 0.99))
+    (: e_depart_agent (Agent sk_depart_1 sk_ferry_1) (STV 1.0 0.99))
+    (: e_depart_hr (Time sk_depart_1 (Hour 12)) (STV 1.0 0.99))
+
+**[gen-relational-singular] A kiln requires a firing schedule.** — the kind-relation form needs **both** arguments to be bare kind-denoting NPs; an indefinite singular is an ordinary verbal clause → reify an **event**, never `(Require kiln firing_schedule)`
+
+    (: e_require (Member sk_require_1 require) (STV 1.0 0.99))
+    (: e_kiln (Member sk_kiln_1 kiln) (STV 1.0 0.99))
+    (: e_sched (Member sk_schedule_1 firing_schedule) (STV 1.0 0.99))
+    (: e_sched_genus (Inheritance firing_schedule schedule) (STV 1.0 0.99))
+    (: e_require_agent (Agent sk_require_1 sk_kiln_1) (STV 1.0 0.99))
+    (: e_require_theme (Theme sk_require_1 sk_schedule_1) (STV 1.0 0.99))
+
 **[role-occurrence-patient] The registrar cancelled the hearing.** — a state change need **not** be physical: the object is itself an occurrence and the verb changes whether it happens → `Patient`, not `Theme`
 
     (: e_cancel (Member sk_cancel_1 cancel) (STV 1.0 0.99))
@@ -564,7 +677,7 @@ A **resultative** predicates a result of the object caused by the action. **Stat
     (: e_laugh (Member sk_laugh_1 laugh) (STV 1.0 0.99))
     (: e_laugh_agent (Agent sk_laugh_1 sk_group_1) (STV 1.0 0.99))
     (: e_laugh_past (Past sk_laugh_1) (STV 1.0 0.99))
-    (: twins_laughed (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) $x) (Past (sk_laugh $x)))) (STV 1.0 0.9))
+    (: twins_laughed (Implication (PartOf $x sk_group_1) (And (Member (sk_laugh $x) laugh) (Agent (sk_laugh $x) $x) (Past (sk_laugh $x)))) (STV 1.0 0.9))
 
 **[dist-grouped] Several dogs barked. Fido was one of those dogs.** — vague-counted distributive plural → group + `CardinalityPhrase` + group event (counting / "did any?") + a distribution rule over `(PartOf $x <group>)`; `(PartOf fido …)` fires the rule so "did Fido bark?" resolves (works for vague/large counts, no enumeration)
 
@@ -573,7 +686,7 @@ A **resultative** predicates a result of the object caused by the action. **Stat
     (: e_bark (Member sk_bark_1 bark) (STV 1.0 0.99))
     (: e_bark_agent (Agent sk_bark_1 sk_group_1) (STV 1.0 0.99))
     (: e_bark_past (Past sk_bark_1) (STV 1.0 0.99))
-    (: dogs_barked (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_bark $x) bark) (Agent (sk_bark $x) $x) (Past (sk_bark $x)))) (STV 1.0 0.9))
+    (: dogs_barked (Implication (PartOf $x sk_group_1) (And (Member (sk_bark $x) bark) (Agent (sk_bark $x) $x) (Past (sk_bark $x)))) (STV 1.0 0.9))
     (: fido_dog (Member fido dog) (STV 1.0 0.99))
     (: fido_partof (PartOf fido sk_group_1) (STV 1.0 0.99))
     (: fido_name (Name fido "Fido") (STV 1.0 0.99))
@@ -782,11 +895,11 @@ A **resultative** predicates a result of the object caused by the action. **Stat
 
 **[corr-direct] The wider a road is, the safer it is.** — covariation rule, restricted to the domain noun `road`
 
-    (: corr_wide_safe (Implication (Premises (Member $x road) (Member $y road) (More wide $x $y)) (Conclusions (More safe $x $y))) (STV 0.9 0.9))
+    (: corr_wide_safe (Implication (And (Member $x road) (Member $y road) (More wide $x $y)) (More safe $x $y)) (STV 0.9 0.9))
 
 **[corr-inverse] The heavier a vehicle is, the less efficient it is.** — inverse correlative → swap the conclusion pair (`More efficient $y $x`)
 
-    (: corr_heavy_ineff (Implication (Premises (Member $x vehicle) (Member $y vehicle) (More heavy $x $y)) (Conclusions (More efficient $y $x))) (STV 0.9 0.9))
+    (: corr_heavy_ineff (Implication (And (Member $x vehicle) (Member $y vehicle) (More heavy $x $y)) (More efficient $y $x)) (STV 0.9 0.9))
 
 **[adv-comp] The courier rides faster than the cyclist.** — adverbial comparative → two events compared with `More fast`
 
@@ -1147,13 +1260,13 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
     (: summit_e (Member sk_summit_1 summit) (STV 1.0 0.99))
     (: reach_past (Past sk_reach_1) (STV 1.0 0.99))
     (: reach_time (Time sk_reach_1 (Weekday sunday)) (STV 1.0 0.99))
-    (: reach_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_reach $x) reach) (Agent (sk_reach $x) $x) (Theme (sk_reach $x) sk_summit_1) (Past (sk_reach $x)) (Time (sk_reach $x) (Weekday sunday)))) (STV 1.0 0.9))
+    (: reach_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_reach $x) reach) (Agent (sk_reach $x) $x) (Theme (sk_reach $x) sk_summit_1) (Past (sk_reach $x)) (Time (sk_reach $x) (Weekday sunday)))) (STV 1.0 0.9))
     (: celebrate_e (Member sk_celebrate_1 celebrate) (STV 1.0 0.99))
     (: celebrate_agent (Agent sk_celebrate_1 sk_group_1) (STV 1.0 0.99))
     (: celebrate_past (Past sk_celebrate_1) (STV 1.0 0.99))
     (: celebrate_wd (Time sk_celebrate_1 (Weekday sunday)) (STV 1.0 0.99))
     (: celebrate_part (Time sk_celebrate_1 evening) (STV 1.0 0.99))
-    (: celebrate_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_celebrate $x) celebrate) (Agent (sk_celebrate $x) $x) (Past (sk_celebrate $x)) (Time (sk_celebrate $x) (Weekday sunday)) (Time (sk_celebrate $x) evening))) (STV 1.0 0.9))
+    (: celebrate_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_celebrate $x) celebrate) (Agent (sk_celebrate $x) $x) (Past (sk_celebrate $x)) (Time (sk_celebrate $x) (Weekday sunday)) (Time (sk_celebrate $x) evening))) (STV 1.0 0.9))
 
 **[time-anaphor-next] Vera landed in Oslo on Wednesday. The next morning, she toured the harbor.** — "the next morning" = the antecedent day's **successor** + the day-part + explicit `Before`
 
@@ -1242,7 +1355,7 @@ Measures keep their stated unit (a seeded lexicon auto-derives the canonical uni
 
     (: e_doorbell (Member sk_doorbell_1 doorbell) (STV 1.0 0.99))
     (: e_terrier (Member sk_terrier_1 terrier) (STV 1.0 0.99))
-    (: whenever_buzz_growl (Implication (Premises (Member $x buzz) (Agent $x sk_doorbell_1)) (Conclusions (Member (sk_growl $x) growl) (Agent (sk_growl $x) sk_terrier_1) (During (sk_growl $x) $x))) (STV 1.0 0.9))
+    (: whenever_buzz_growl (Implication (And (Member $x buzz) (Agent $x sk_doorbell_1)) (And (Member (sk_growl $x) growl) (Agent (sk_growl $x) sk_terrier_1) (During (sk_growl $x) $x))) (STV 1.0 0.9))
     (: e_buzz (Member sk_buzz_1 buzz) (STV 1.0 0.99))
     (: e_buzz_ag (Agent sk_buzz_1 sk_doorbell_1) (STV 1.0 0.99))
     (: e_buzz_t (Time sk_buzz_1 (Hour 0)) (STV 1.0 0.99))
@@ -1457,11 +1570,11 @@ union
 
 **[gen-verbal] Fish swim.** — verbal generic over a kind → Skolem-event rule, 0.9/0.9
 
-    (: fish_swim (Implication (Premises (Member $x fish)) (Conclusions (Member (sk_swim $x) swim) (Agent (sk_swim $x) $x))) (STV 0.9 0.9))
+    (: fish_swim (Implication (Member $x fish) (And (Member (sk_swim $x) swim) (Agent (sk_swim $x) $x))) (STV 0.9 0.9))
 
 **[gen-quant] Most gulls scavenge.** — a verbal generic's explicit quantifier word rides a `QuantifierPhrase` companion beside the 0.9 rule (mirror of the copular convention; a bare generic gets NO companion)
 
-    (: most_scavenge (Implication (Premises (Member $x gull)) (Conclusions (Member (sk_scavenge $x) scavenge) (Agent (sk_scavenge $x) $x))) (STV 0.9 0.9))
+    (: most_scavenge (Implication (Member $x gull) (And (Member (sk_scavenge $x) scavenge) (Agent (sk_scavenge $x) $x))) (STV 0.9 0.9))
     (: gulls_q (QuantifierPhrase gull scavenge "most") (STV 1.0 0.99))
 
 **[gen-cap] Cats can climb.** — capability generic → **reified property** on the kind (same family as deontic norms & agent-nominalizations; inherits to members natively, revisable by exceptions), NOT an event rule
@@ -1476,35 +1589,35 @@ union
 
 **[gen-none] None of the tenants complained.** — "none of the Ns" = the universal's **negative twin**: the same per-member distribution rule at **strength 0.0** (ranging as the universal does; no subset, no `Cardinality 0`) — an individuated member's event then derives at ~0; the quantifier word rides the `"none"` companion (quantifier-none vs plain "don't")
 
-    (: none_tenants_complained (Implication (Premises (Member $x tenant)) (Conclusions (Member (sk_complain $x) complain) (Agent (sk_complain $x) $x) (Past (sk_complain $x)))) (STV 0.0 0.9))
+    (: none_tenants_complained (Implication (Member $x tenant) (And (Member (sk_complain $x) complain) (Agent (sk_complain $x) $x) (Past (sk_complain $x)))) (STV 0.0 0.9))
     (: tenants_q (QuantifierPhrase tenant complain "none") (STV 1.0 0.99))
 
 **[scope-ae] Every guest brings a gift.** — ∀∃ dependent → Skolem function event + gift
 
-    (: every_guest_brings_gift (Implication (Premises (Member $x guest)) (Conclusions (Member (sk_bring $x) bring) (Agent (sk_bring $x) $x) (Theme (sk_bring $x) (sk_gift $x)) (Member (sk_gift $x) gift))) (STV 1.0 0.9))
+    (: every_guest_brings_gift (Implication (Member $x guest) (And (Member (sk_bring $x) bring) (Agent (sk_bring $x) $x) (Theme (sk_bring $x) (sk_gift $x)) (Member (sk_gift $x) gift))) (STV 1.0 0.9))
     (: guest_q (QuantifierPhrase guest bring "every") (STV 1.0 0.99))
 
 **[scope-ea] Some teacher graded every exam.** — ∃∀ shared → witness constant + rule over exams
 
     (: sk_teacher_1_teacher (Member sk_teacher_1 teacher) (STV 1.0 0.99))
-    (: teacher_graded_exams (Implication (Premises (Member $y exam)) (Conclusions (Member (sk_grade $y) grade) (Agent (sk_grade $y) sk_teacher_1) (Theme (sk_grade $y) $y) (Past (sk_grade $y)))) (STV 1.0 0.9))
+    (: teacher_graded_exams (Implication (Member $y exam) (And (Member (sk_grade $y) grade) (Agent (sk_grade $y) sk_teacher_1) (Theme (sk_grade $y) $y) (Past (sk_grade $y)))) (STV 1.0 0.9))
     (: exam_q (QuantifierPhrase exam grade "every") (STV 1.0 0.99))
 
 **[scope-aa] Every wolf hunted every deer.** — ∀∀ → two universal premises
 
-    (: every_wolf_hunted_deer (Implication (Premises (Member $x wolf) (Member $y deer)) (Conclusions (Member (sk_hunt $x $y) hunt) (Agent (sk_hunt $x $y) $x) (Patient (sk_hunt $x $y) $y) (Past (sk_hunt $x $y)))) (STV 1.0 0.9))
+    (: every_wolf_hunted_deer (Implication (And (Member $x wolf) (Member $y deer)) (And (Member (sk_hunt $x $y) hunt) (Agent (sk_hunt $x $y) $x) (Patient (sk_hunt $x $y) $y) (Past (sk_hunt $x $y)))) (STV 1.0 0.9))
     (: wolf_q (QuantifierPhrase wolf hunt "every") (STV 1.0 0.99))
     (: deer_q (QuantifierPhrase deer hunt "every") (STV 1.0 0.99))
 
 **[scope-aae] Every coach assigned every player a drill.** — ∀∀∃ → two universal premises; dependent existential = Skolem of **both** `(sk_drill $c $p)`
 
-    (: every_coach_assigned_drill (Implication (Premises (Member $c coach) (Member $p player)) (Conclusions (Member (sk_assign $c $p) assign) (Agent (sk_assign $c $p) $c) (Recipient (sk_assign $c $p) $p) (Theme (sk_assign $c $p) (sk_drill $c $p)) (Member (sk_drill $c $p) drill) (Past (sk_assign $c $p)))) (STV 1.0 0.9))
+    (: every_coach_assigned_drill (Implication (And (Member $c coach) (Member $p player)) (And (Member (sk_assign $c $p) assign) (Agent (sk_assign $c $p) $c) (Recipient (sk_assign $c $p) $p) (Theme (sk_assign $c $p) (sk_drill $c $p)) (Member (sk_drill $c $p) drill) (Past (sk_assign $c $p)))) (STV 1.0 0.9))
     (: coach_q (QuantifierPhrase coach assign "every") (STV 1.0 0.99))
     (: player_q (QuantifierPhrase player assign "every") (STV 1.0 0.99))
 
 **[scope-num] Every student memorized three poems.** — numeric under ∀ → Skolem **group** + `Cardinality` (a function of `$x`)
 
-    (: every_student_memorized_poems (Implication (Premises (Member $x student)) (Conclusions (Member (sk_memorize $x) memorize) (Agent (sk_memorize $x) $x) (Theme (sk_memorize $x) (sk_poems $x)) (GroupOf (sk_poems $x) poem) (Cardinality (sk_poems $x) 3) (Past (sk_memorize $x)))) (STV 1.0 0.9))
+    (: every_student_memorized_poems (Implication (Member $x student) (And (Member (sk_memorize $x) memorize) (Agent (sk_memorize $x) $x) (Theme (sk_memorize $x) (sk_poems $x)) (GroupOf (sk_poems $x) poem) (Cardinality (sk_poems $x) 3) (Past (sk_memorize $x)))) (STV 1.0 0.9))
     (: student_q (QuantifierPhrase student memorize "every") (STV 1.0 0.99))
 
 **[scope-num-thresh] Did Tara memorize more than two poems?** (over "every student memorized three poems") — threshold over a scope-derived count → the faithful full-context query: bind Tara's group through the event and threshold its `Cardinality`
@@ -1514,13 +1627,13 @@ union
 **[scope-shared] Every senator emailed every colleague the same memo.** — ∀∀ + "the same" → one **shared constant** memo (not a Skolem function)
 
     (: sk_memo_1_memo (Member sk_memo_1 memo) (STV 1.0 0.99))
-    (: every_senator_emailed_colleague (Implication (Premises (Member $s senator) (Member $c colleague)) (Conclusions (Member (sk_email $s $c) email) (Agent (sk_email $s $c) $s) (Recipient (sk_email $s $c) $c) (Theme (sk_email $s $c) sk_memo_1) (Past (sk_email $s $c)))) (STV 1.0 0.9))
+    (: every_senator_emailed_colleague (Implication (And (Member $s senator) (Member $c colleague)) (And (Member (sk_email $s $c) email) (Agent (sk_email $s $c) $s) (Recipient (sk_email $s $c) $c) (Theme (sk_email $s $c) sk_memo_1) (Past (sk_email $s $c)))) (STV 1.0 0.9))
     (: senator_q (QuantifierPhrase senator email "every") (STV 1.0 0.99))
     (: colleague_q (QuantifierPhrase colleague email "every") (STV 1.0 0.99))
 
 **[rel-univ] Everyone who has a garden is a gardener.** — event-premise rule + copular conclusion
 
-    (: gardener_rule (Implication (Premises (Member $e have) (Holder $e $x) (Theme $e $y) (Member $y garden)) (Conclusions (Member $x gardener))) (STV 1.0 0.99))
+    (: gardener_rule (Implication (And (Member $e have) (Holder $e $x) (Theme $e $y) (Member $y garden)) (Member $x gardener)) (STV 1.0 0.99))
 
 ### Distribution to each member (#21)
 
@@ -1537,25 +1650,25 @@ Explicit distributive-universal ("all the / each of the / every one of the Ns V"
 
 **[dist-collnoun-members] Every member of the crew signed the log.** — the other branch: explicit wording reaches the members, so the rule ranges over `(PartOf $x <group>)`
 
-    (: crew_signed (Implication (Premises (PartOf $x sk_crew_1)) (Conclusions (Member (sk_sign $x) sign) (Agent (sk_sign $x) $x) (Theme (sk_sign $x) sk_log_1) (Past (sk_sign $x)))) (STV 1.0 0.9))
+    (: crew_signed (Implication (PartOf $x sk_crew_1) (And (Member (sk_sign $x) sign) (Agent (sk_sign $x) $x) (Theme (sk_sign $x) sk_log_1) (Past (sk_sign $x)))) (STV 1.0 0.9))
     (: e_crew (Member sk_crew_1 crew) (STV 1.0 0.99))
     (: e_log (Member sk_log_1 log) (STV 1.0 0.99))
     (: crew_q (QuantifierPhrase crew sign "every") (STV 1.0 0.99))
 
 **[dist-kind] All the passengers boarded.** — kind-named plural, intransitive → rule over `(Member $x passenger)`, strength 1.0
 
-    (: all_passengers_boarded (Implication (Premises (Member $x passenger)) (Conclusions (Member (sk_board $x) board) (Agent (sk_board $x) $x) (Past (sk_board $x)))) (STV 1.0 0.9))
+    (: all_passengers_boarded (Implication (Member $x passenger) (And (Member (sk_board $x) board) (Agent (sk_board $x) $x) (Past (sk_board $x)))) (STV 1.0 0.9))
     (: passenger_q (QuantifierPhrase passenger board "all") (STV 1.0 0.99))
 
 **[dist-partof] Every member of the panel abstained.** — collective-noun group → rule over `(PartOf $x sk_panel_1)`
 
-    (: panel_abstained (Implication (Premises (PartOf $x sk_panel_1)) (Conclusions (Member (sk_abstain $x) abstain) (Agent (sk_abstain $x) $x) (Past (sk_abstain $x)))) (STV 1.0 0.9))
+    (: panel_abstained (Implication (PartOf $x sk_panel_1) (And (Member (sk_abstain $x) abstain) (Agent (sk_abstain $x) $x) (Past (sk_abstain $x)))) (STV 1.0 0.9))
     (: p (Member sk_panel_1 panel) (STV 1.0 0.99))
     (: panel_q (QuantifierPhrase panel abstain "every") (STV 1.0 0.99))
 
 **[dist-theme] All the analysts endorsed the proposal.** — distribution carries roles; `endorse` → **Theme** (object unchanged, per #23), shared definite object
 
-    (: analysts_endorsed (Implication (Premises (Member $x analyst)) (Conclusions (Member (sk_endorse $x) endorse) (Agent (sk_endorse $x) $x) (Theme (sk_endorse $x) sk_proposal_1) (Past (sk_endorse $x)))) (STV 1.0 0.9))
+    (: analysts_endorsed (Implication (Member $x analyst) (And (Member (sk_endorse $x) endorse) (Agent (sk_endorse $x) $x) (Theme (sk_endorse $x) sk_proposal_1) (Past (sk_endorse $x)))) (STV 1.0 0.9))
     (: pr (Member sk_proposal_1 proposal) (STV 1.0 0.99))
     (: analyst_q (QuantifierPhrase analyst endorse "all") (STV 1.0 0.99))
 
@@ -1581,7 +1694,7 @@ Explicit distributive-universal ("all the / each of the / every one of the Ns V"
 
 **[dist-ofthe] All of the delegates voted.** — universal with "of the" → per-member **distribution** rule (NOT a partitive `ProportionOf`); "of the" does not make a universal a partitive, and "each of the" no longer double-matches
 
-    (: delegates_voted (Implication (Premises (Member $x delegate)) (Conclusions (Member (sk_vote $x) vote) (Agent (sk_vote $x) $x) (Past (sk_vote $x)))) (STV 1.0 0.9))
+    (: delegates_voted (Implication (Member $x delegate) (And (Member (sk_vote $x) vote) (Agent (sk_vote $x) $x) (Past (sk_vote $x)))) (STV 1.0 0.9))
     (: delegate_q (QuantifierPhrase delegate vote "all") (STV 1.0 0.99))
 
 ### Striking & relational generics
@@ -1606,7 +1719,7 @@ Judge whether the property holds of *most* individuals. A bare generic relating 
 
 **[genR-strike-verbal] Ships sink.** — striking **verbal** generic naming a *rare event* (an arbitrary ship seldom sinks) → the distribution **rule** at LOWERED strength (~0.3), the undergoer → `Patient`; a *characteristic disposition* like "dogs bite" stays 0.9
 
-    (: ships_sink (Implication (Premises (Member $x ship)) (Conclusions (Member (sk_sink $x) sink) (Patient (sk_sink $x) $x))) (STV 0.3 0.9))
+    (: ships_sink (Implication (Member $x ship) (And (Member (sk_sink $x) sink) (Patient (sk_sink $x) $x))) (STV 0.3 0.9))
 
 ### Defeasible generics & exceptions
 
@@ -1894,7 +2007,7 @@ A possessor marked by **'s** or a **possessive pronoun** attaches to the possess
 
 **[coref-donkey] Every shepherd who owns a sheep shears it.** — "it" = the premise-bound `$d`
 
-    (: every_shepherd_shears_sheep (Implication (Premises (Member $f shepherd) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d sheep)) (Conclusions (Member (sk_shear $f $d) shear) (Agent (sk_shear $f $d) $f) (Patient (sk_shear $f $d) $d))) (STV 1.0 0.9))
+    (: every_shepherd_shears_sheep (Implication (And (Member $f shepherd) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d sheep)) (And (Member (sk_shear $f $d) shear) (Agent (sk_shear $f $d) $f) (Patient (sk_shear $f $d) $d))) (STV 1.0 0.9))
     (: shepherd_q (QuantifierPhrase shepherd shear "every") (STV 1.0 0.99))
 
 ## Context input (#18)
@@ -2031,11 +2144,11 @@ symbol (the KB symbol is known — that is what context is for):
 
 **[recip-group-kind] The rivals undermine one another.** — unnamed group, plural names the kind → rule over `(Member $x rival)`, distinctness guard, Skolem-pair event
 
-    (: rivals_undermine (Implication (Premises (Member $x rival) (Member $y rival) (Compute == ($x $y) -> false)) (Conclusions (Member (sk_undermine $x $y) undermine) (Agent (sk_undermine $x $y) $x) (Patient (sk_undermine $x $y) $y))) (STV 1.0 0.9))
+    (: rivals_undermine (Implication (And (Member $x rival) (Member $y rival) (Compute == ($x $y) -> false)) (And (Member (sk_undermine $x $y) undermine) (Agent (sk_undermine $x $y) $x) (Patient (sk_undermine $x $y) $y))) (STV 1.0 0.9))
 
-**[recip-group-collnoun] The panel members questioned one another.** — collective noun → rule over `(PartOf $x <group>)`, tense **inside** Conclusions (a compound-kind `(Member $x panel_member)` reading is an accepted equivalent)
+**[recip-group-collnoun] The panel members questioned one another.** — collective noun → rule over `(PartOf $x <group>)`, tense **inside** the consequent (a compound-kind `(Member $x panel_member)` reading is an accepted equivalent)
 
-    (: panel_question (Implication (Premises (PartOf $x sk_panel_1) (PartOf $y sk_panel_1) (Compute == ($x $y) -> false)) (Conclusions (Member (sk_question $x $y) question) (Agent (sk_question $x $y) $x) (Theme (sk_question $x $y) $y) (Past (sk_question $x $y)))) (STV 1.0 0.9))
+    (: panel_question (Implication (And (PartOf $x sk_panel_1) (PartOf $y sk_panel_1) (Compute == ($x $y) -> false)) (And (Member (sk_question $x $y) question) (Agent (sk_question $x $y) $x) (Theme (sk_question $x $y) $y) (Past (sk_question $x $y)))) (STV 1.0 0.9))
     (: sk_panel_1_panel (Member sk_panel_1 panel) (STV 1.0 0.99))
 
 **[recip-sym-pair] Wendy and Xavier are cousins.** — symmetric relation → assert once + `(Symmetric <Rel>)` tag (seeded `sym_rel` derives the reverse)
@@ -2047,7 +2160,7 @@ symbol (the KB symbol is known — that is what context is for):
 
 **[recip-sym-group] All the finalists are rivals.** — symmetric relation over a group → literal-head rule (both directions from the pair-range), **no** separate symmetry rule
 
-    (: finalists_rivals (Implication (Premises (Member $x finalist) (Member $y finalist) (Compute == ($x $y) -> false)) (Conclusions (Rival $x $y))) (STV 1.0 0.9))
+    (: finalists_rivals (Implication (And (Member $x finalist) (Member $y finalist) (Compute == ($x $y) -> false)) (Rival $x $y)) (STV 1.0 0.9))
     (: finalist_q (QuantifierPhrase finalist rival "all") (STV 1.0 0.99))
 
 **[recip-routing] Hassan and Omar reconciled with each other.** — eventive symmetric verb + "each other" → **collective** (one event, two `Agent` atoms), not two directed events
@@ -2098,8 +2211,8 @@ symbol (the KB symbol is known — that is what context is for):
 
 **[disj-rule] A driver who is reckless or drunk is fined.** — disjunctive rule condition → one rule per disjunct
 
-    (: reckless_fined (Implication (Premises (Member $x driver) (Member $x reckless)) (Conclusions (Member (sk_fine $x) fine) (Patient (sk_fine $x) $x))) (STV 1.0 0.99))
-    (: drunk_fined (Implication (Premises (Member $x driver) (Member $x drunk)) (Conclusions (Member (sk_fine $x) fine) (Patient (sk_fine $x) $x))) (STV 1.0 0.99))
+    (: reckless_fined (Implication (And (Member $x driver) (Member $x reckless)) (And (Member (sk_fine $x) fine) (Patient (sk_fine $x) $x))) (STV 1.0 0.99))
+    (: drunk_fined (Implication (And (Member $x driver) (Member $x drunk)) (And (Member (sk_fine $x) fine) (Patient (sk_fine $x) $x))) (STV 1.0 0.99))
 
 **[disj-q-comp] Who is older or taller than Tom?** — disjunctive question → one query line per disjunct
 
@@ -2119,15 +2232,15 @@ Bare "or" is inclusive (above); these carry an exclusivity cue — explicit "but
 
     (: sk_reactor_1_reactor (Member sk_reactor_1 reactor) (STV 1.0 0.99))
     (: reactor_xor (Xor (Member sk_reactor_1 online) (Member sk_reactor_1 offline)) (STV 1.0 0.99))
-    (: reactor_excl_1 (Implication (Premises (Member sk_reactor_1 online)) (Conclusions (Member sk_reactor_1 offline))) (STV 0.0 0.99))
-    (: reactor_excl_2 (Implication (Premises (Member sk_reactor_1 offline)) (Conclusions (Member sk_reactor_1 online))) (STV 0.0 0.99))
+    (: reactor_excl_1 (Implication (Member sk_reactor_1 online) (Member sk_reactor_1 offline)) (STV 0.0 0.99))
+    (: reactor_excl_2 (Implication (Member sk_reactor_1 offline) (Member sk_reactor_1 online)) (STV 0.0 0.99))
 
 **[xor-atomic-cue] The patient is either conscious or unconscious, but not both.** — explicit "but not both" → exclusive; atomic
 
     (: sk_patient_1_patient (Member sk_patient_1 patient) (STV 1.0 0.99))
     (: patient_xor (Xor (Member sk_patient_1 conscious) (Member sk_patient_1 unconscious)) (STV 1.0 0.99))
-    (: patient_excl_1 (Implication (Premises (Member sk_patient_1 conscious)) (Conclusions (Member sk_patient_1 unconscious))) (STV 0.0 0.99))
-    (: patient_excl_2 (Implication (Premises (Member sk_patient_1 unconscious)) (Conclusions (Member sk_patient_1 conscious))) (STV 0.0 0.99))
+    (: patient_excl_1 (Implication (Member sk_patient_1 conscious) (Member sk_patient_1 unconscious)) (STV 0.0 0.99))
+    (: patient_excl_2 (Implication (Member sk_patient_1 unconscious) (Member sk_patient_1 conscious)) (STV 0.0 0.99))
 
 **[xor-event-label] Either the committee will approve the proposal or it will reject it, but not both.** — complex/event disjuncts → `Xor` **label only** (no rules)
 
@@ -2139,8 +2252,8 @@ Bare "or" is inclusive (above); these carry an exclusivity cue — explicit "but
 
     (: sk_reactor_1_reactor (Member sk_reactor_1 reactor) (STV 1.0 0.99))
     (: reactor_xor (Xor (Member sk_reactor_1 online) (Member sk_reactor_1 offline)) (STV 1.0 0.99))
-    (: reactor_excl_1 (Implication (Premises (Member sk_reactor_1 online)) (Conclusions (Member sk_reactor_1 offline))) (STV 0.0 0.99))
-    (: reactor_excl_2 (Implication (Premises (Member sk_reactor_1 offline)) (Conclusions (Member sk_reactor_1 online))) (STV 0.0 0.99))
+    (: reactor_excl_1 (Implication (Member sk_reactor_1 online) (Member sk_reactor_1 offline)) (STV 0.0 0.99))
+    (: reactor_excl_2 (Implication (Member sk_reactor_1 offline) (Member sk_reactor_1 online)) (STV 0.0 0.99))
     (: reactor_online (Member sk_reactor_1 online) (STV 1.0 0.99))
 
 **[xor-control-inclusive] The fabric is either waterproof or breathable.** — "either…or" but the two properties are NOT mutually exclusive and there is no cue → stays **inclusive** `Or`, NOT `Xor`

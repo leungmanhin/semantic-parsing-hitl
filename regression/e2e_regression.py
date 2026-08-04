@@ -1,6 +1,8 @@
-import sys
-sys.path.insert(0, "/home/manhin/Dev/PeTTa-fiet/python")
 from pettachainer import PeTTaChainer
+
+# cfe25f9 needs a deeper budget than the old default of 100 once the
+# seeded rules are loaded (ratio-measure returns [] at 100, derives at 300).
+STEPS = 400
 SEEDED = "/home/manhin/Dev/semantic-parsing-hitl/seeded_rules.metta"
 
 def load_seeded(h):
@@ -23,7 +25,7 @@ def run(label, atoms, query, want="match", contains=None, seeded=False, chain=Fa
     # (forward chaining removed 2026-07-21 — the engine's forward_chain went caller-directed and
     # no longer persists derivations queryably; the query back-chains rule-derived facts on demand.
     # `chain` is kept only as a per-case tag.)
-    res=h.query('(: $prf %s %s)'%(query,tv), timeout_sec=0)
+    res=h.query('(: $prf %s %s)'%(query,tv), steps=STEPS, timeout_sec=0)
     ok = bool(res) if want=="match" else (not res)
     if ok and contains is not None:
         needles = contains if isinstance(contains,list) else [contains]
@@ -38,7 +40,7 @@ def run_strength(label, atoms, query, lo, hi, chain=False):
     # (forward chaining removed 2026-07-21 — the engine's forward_chain went caller-directed and
     # no longer persists derivations queryably; the query back-chains rule-derived facts on demand.
     # `chain` is kept only as a per-case tag.)
-    res=h.query('(: $prf %s $tv)'%query, timeout_sec=0)
+    res=h.query('(: $prf %s $tv)'%query, steps=STEPS, timeout_sec=0)
     s=None
     if res:
         m=re.search(r'\(STV ([0-9.]+) ', res[-1])
@@ -52,8 +54,8 @@ def run_xtype(label, atoms, compute_q, gt_q, exact_name, approx_name):
     # the GreaterThan branch the APPROX-stored one only (branches disjoint), union = both.
     h=PeTTaChainer()
     for a in atoms: h.add_atom(a)
-    rc=h.query('(: $prf %s $tv)'%compute_q, timeout_sec=0)
-    rg=h.query('(: $prf %s $tv)'%gt_q, timeout_sec=0)
+    rc=h.query('(: $prf %s $tv)'%compute_q, steps=STEPS, timeout_sec=0)
+    rg=h.query('(: $prf %s $tv)'%gt_q, steps=STEPS, timeout_sec=0)
     ec = any(exact_name in r for r in rc) and not any(approx_name in r for r in rc)
     ag = any(approx_name in r for r in rg) and not any(exact_name in r for r in rg)
     union = list(rc)+list(rg)
@@ -212,27 +214,27 @@ run("meas-threshold  taller than 160?", GRACE, '(And (Name $g "Grace") (Measure 
 run("meas-threshold-neg  taller than 170? (expect [])", GRACE, '(And (Name $g "Grace") (Measure $g tall $n centimeter) (Compute > ($n 170) -> true))', want="empty")
 # Generics & scope
 run("gen-verbal  Birds fly + Tweety => Tweety flies?",
-    ['(: r (Implication (Premises (Member $x bird)) (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x))) (STV 0.9 0.9))','(: t (Member tweety bird) (STV 1.0 0.99))'],
+    ['(: r (Implication (Member $x bird) (And (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x))) (STV 0.9 0.9))','(: t (Member tweety bird) (STV 1.0 0.99))'],
     '(And (Member $e fly) (Agent $e tweety))', chain=True)
 run("scope-ae  every student read some book + Alice => Alice read a book?",
-    ['(: r (Implication (Premises (Member $x student)) (Conclusions (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Theme (sk_read $x) (sk_book $x)) (Member (sk_book $x) book))) (STV 1.0 0.9))','(: a (Member alice student) (STV 1.0 0.99))'],
+    ['(: r (Implication (Member $x student) (And (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Theme (sk_read $x) (sk_book $x)) (Member (sk_book $x) book))) (STV 1.0 0.9))','(: a (Member alice student) (STV 1.0 0.99))'],
     '(And (Member $e read) (Agent $e alice) (Theme $e $b) (Member $b book))', chain=True)
 run("rel-univ  has-garden=>gardener + Tom => Tom gardener?",
-    ['(: r (Implication (Premises (Member $e have) (Holder $e $x) (Theme $e $y) (Member $y garden)) (Conclusions (Member $x gardener))) (STV 1.0 0.99))',
+    ['(: r (Implication (And (Member $e have) (Holder $e $x) (Theme $e $y) (Member $y garden)) (Member $x gardener)) (STV 1.0 0.99))',
      '(: a (Member sk_have_1 have) (STV 1.0 0.99))','(: b (Holder sk_have_1 tom) (STV 1.0 0.99))','(: c (Theme sk_have_1 sk_gard_1) (STV 1.0 0.99))','(: d (Member sk_gard_1 garden) (STV 1.0 0.99))'],
     '(Member tom gardener)', chain=True)
 # 3+ quantifiers & numeric-in-scope (#5): each universal -> a premise; a dependent existential ->
 # a Skolem function of ALL universals scoping over it; a numeric under a universal -> a Skolem GROUP
 # with Cardinality. (Defer: branching/cumulative, numeric wide-scope.)
-AAE=['(: r (Implication (Premises (Member $t teacher) (Member $s student)) (Conclusions (Member (sk_give $t $s) give) (Agent (sk_give $t $s) $t) (Recipient (sk_give $t $s) $s) (Theme (sk_give $t $s) (sk_book $t $s)) (Member (sk_book $t $s) book))) (STV 1.0 0.9))',
+AAE=['(: r (Implication (And (Member $t teacher) (Member $s student)) (And (Member (sk_give $t $s) give) (Agent (sk_give $t $s) $t) (Recipient (sk_give $t $s) $s) (Theme (sk_give $t $s) (sk_book $t $s)) (Member (sk_book $t $s) book))) (STV 1.0 0.9))',
      '(: t1 (Member ms_lee teacher) (STV 1.0 0.99))','(: s1 (Member al student) (STV 1.0 0.99))']
 run("scope-aae  did Ms Lee give Al a book? (book = Skolem of BOTH univ)", AAE,
     '(And (Member $e give) (Agent $e ms_lee) (Recipient $e al) (Theme $e $b) (Member $b book))', chain=True)
-AAA=['(: r (Implication (Premises (Member $x teacher) (Member $y student) (Member $z book)) (Conclusions (Member (sk_assign $x $y $z) assign) (Agent (sk_assign $x $y $z) $x) (Recipient (sk_assign $x $y $z) $y) (Theme (sk_assign $x $y $z) $z))) (STV 1.0 0.9))',
+AAA=['(: r (Implication (And (Member $x teacher) (Member $y student) (Member $z book)) (And (Member (sk_assign $x $y $z) assign) (Agent (sk_assign $x $y $z) $x) (Recipient (sk_assign $x $y $z) $y) (Theme (sk_assign $x $y $z) $z))) (STV 1.0 0.9))',
      '(: t1 (Member ms_lee teacher) (STV 1.0 0.99))','(: s1 (Member al student) (STV 1.0 0.99))','(: b1 (Member b_alg book) (STV 1.0 0.99))']
 run("scope-aaa  3 universals: Ms Lee assigned Al the algebra book?", AAA,
     '(And (Member $e assign) (Agent $e ms_lee) (Recipient $e al) (Theme $e b_alg))', chain=True)
-NUMSC=['(: r (Implication (Premises (Member $x student)) (Conclusions (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Theme (sk_read $x) (sk_books $x)) (GroupOf (sk_books $x) book) (Cardinality (sk_books $x) 3))) (STV 1.0 0.9))',
+NUMSC=['(: r (Implication (Member $x student) (And (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Theme (sk_read $x) (sk_books $x)) (GroupOf (sk_books $x) book) (Cardinality (sk_books $x) 3))) (STV 1.0 0.9))',
        '(: s1 (Member al student) (STV 1.0 0.99))','(: s2 (Member bo student) (STV 1.0 0.99))']
 run("scope-num  how many books did Al read? (numeric-under-forall -> 3)", NUMSC,
     '(And (Member $e read) (Agent $e al) (Theme $e $g) (GroupOf $g book) (Cardinality $g $n))', contains="Cardinality (sk_books al) 3", chain=True)
@@ -282,11 +284,11 @@ run_strength("cascade  L1 general: robin (bird) can fly? (~0.9)", CASC, '(Member
 run_strength("cascade  L2 exception: waddle (penguin) can fly? (~0)", CASC, '(Member waddle (can fly))', 0.0, 0.2, chain=True)
 run_strength("cascade  L3 exception-to-exception: zoomer can fly? (flips back, >> L2)", CASC, '(Member zoomer (can fly))', 0.6, 0.97, chain=True)
 # Striking verbal generic (#11): a minority-disposition verbal generic distributes at LOWERED strength.
-SVERB=['(: ships_sink (Implication (Premises (Member $x ship)) (Conclusions (Member (sk_sink $x) sink) (Patient (sk_sink $x) $x))) (STV 0.3 0.9))',
+SVERB=['(: ships_sink (Implication (Member $x ship) (And (Member (sk_sink $x) sink) (Patient (sk_sink $x) $x))) (STV 0.3 0.9))',
        '(: sv_s (Member sk_ship_9 ship) (STV 1.0 0.99))']
 run_strength("strike-verbal  does an arbitrary ship sink? rare-event verbal -> LOW ~0.3 (not 0.9)", SVERB,
     '(And (Member $e sink) (Patient $e sk_ship_9))', 0.15, 0.5, chain=True)
-SVERBM=['(: birds_fly2 (Implication (Premises (Member $x bird)) (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x))) (STV 0.9 0.9))',
+SVERBM=['(: birds_fly2 (Implication (Member $x bird) (And (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x))) (STV 0.9 0.9))',
         '(: sv_r (Member robin2 bird) (STV 1.0 0.99))']
 run_strength("strike-verbal-ctrl  majority 'birds fly' distributes at ~0.9 (arbitrary robin)", SVERBM,
     '(And (Member $e fly) (Agent $e robin2))', 0.75, 0.95, chain=True)
@@ -580,18 +582,18 @@ run("recip-directed  2-named each-other: admire bob->alice",
     ['(: e1 (Member sk_admire_1 admire) (STV 1.0 0.99))','(: e1e (Experiencer sk_admire_1 alice) (STV 1.0 0.99))','(: e1s (Stimulus sk_admire_1 bob) (STV 1.0 0.99))',
      '(: e2 (Member sk_admire_2 admire) (STV 1.0 0.99))','(: e2e (Experiencer sk_admire_2 bob) (STV 1.0 0.99))','(: e2s (Stimulus sk_admire_2 alice) (STV 1.0 0.99))'],
     '(And (Member $e admire) (Experiencer $e bob) (Stimulus $e alice))')
-RECIP_JUR=['(: jd (Implication (Premises (Member $x juror) (Member $y juror) (Compute == ($x $y) -> false)) (Conclusions (Member (sk_distrust $x $y) distrust) (Experiencer (sk_distrust $x $y) $x) (Stimulus (sk_distrust $x $y) $y))) (STV 1.0 0.9))',
+RECIP_JUR=['(: jd (Implication (And (Member $x juror) (Member $y juror) (Compute == ($x $y) -> false)) (And (Member (sk_distrust $x $y) distrust) (Experiencer (sk_distrust $x $y) $x) (Stimulus (sk_distrust $x $y) $y))) (STV 1.0 0.9))',
     '(: j1 (Member ann juror) (STV 1.0 0.99))','(: j2 (Member ben juror) (STV 1.0 0.99))']
 run("recip-group-kind  jurors distrust => ann->ben", RECIP_JUR,
     '(And (Member $e distrust) (Experiencer $e ann) (Stimulus $e ben))', chain=True)
 run("recip-group-kind-self  ann->ann (distinctness guard, expect [])", RECIP_JUR,
     '(And (Member $e distrust) (Experiencer $e ann) (Stimulus $e ann))', want="empty", chain=True)
 run("recip-group-partof  committee(PartOf) argue dana->evan + Past inside",
-    ['(: ca (Implication (Premises (PartOf $x sk_committee_1) (PartOf $y sk_committee_1) (Compute == ($x $y) -> false)) (Conclusions (Member (sk_argue $x $y) argue) (Agent (sk_argue $x $y) $x) (Theme (sk_argue $x $y) $y) (Past (sk_argue $x $y)))) (STV 1.0 0.9))',
+    ['(: ca (Implication (And (PartOf $x sk_committee_1) (PartOf $y sk_committee_1) (Compute == ($x $y) -> false)) (And (Member (sk_argue $x $y) argue) (Agent (sk_argue $x $y) $x) (Theme (sk_argue $x $y) $y) (Past (sk_argue $x $y)))) (STV 1.0 0.9))',
      '(: c0 (Member sk_committee_1 committee) (STV 1.0 0.99))','(: p1 (PartOf dana sk_committee_1) (STV 1.0 0.99))','(: p2 (PartOf evan sk_committee_1) (STV 1.0 0.99))'],
     '(And (Member $e argue) (Agent $e dana) (Theme $e evan) (Past $e))', chain=True)
 run("recip-sym-group  senators colleague (literal-head rule) pattern",
-    ['(: sc (Implication (Premises (Member $x senator) (Member $y senator) (Compute == ($x $y) -> false)) (Conclusions (Colleague $x $y))) (STV 1.0 0.9))',
+    ['(: sc (Implication (And (Member $x senator) (Member $y senator) (Compute == ($x $y) -> false)) (Colleague $x $y)) (STV 1.0 0.9))',
      '(: s1 (Member finn senator) (STV 1.0 0.99))','(: s2 (Member gita senator) (STV 1.0 0.99))'],
     '(Colleague finn $x)', contains="gita", chain=True)
 # Disjunction
@@ -605,8 +607,8 @@ run("disj-cop  is it a vase? (definite, color Or opaque)",
     ['(: vc (Or (Member sk_vase_1 red) (Member sk_vase_1 blue)) (STV 1.0 0.99))','(: v (Member sk_vase_1 vase) (STV 1.0 0.99))'],
     '(Member sk_vase_1 vase)')
 run("disj-rule  fragile package flagged (two rules, fires on one disjunct)",
-    ['(: fr (Implication (Premises (Member $x package) (Member $x fragile)) (Conclusions (Member $x flagged))) (STV 1.0 0.99))',
-     '(: hv (Implication (Premises (Member $x package) (Member $x heavy)) (Conclusions (Member $x flagged))) (STV 1.0 0.99))',
+    ['(: fr (Implication (And (Member $x package) (Member $x fragile)) (Member $x flagged)) (STV 1.0 0.99))',
+     '(: hv (Implication (And (Member $x package) (Member $x heavy)) (Member $x flagged)) (STV 1.0 0.99))',
      '(: p1 (Member sk_pkg_1 package) (STV 1.0 0.99))','(: p2 (Member sk_pkg_1 fragile) (STV 1.0 0.99))'],
     '(Member sk_pkg_1 flagged)', chain=True)
 run("disj-q  disjunctive question branch hits (heavier-than-dan -> finn)",
@@ -615,8 +617,8 @@ run("disj-q  disjunctive question branch hits (heavier-than-dan -> finn)",
 # Exclusive-or (XOR): faithful (Xor ...) label + strength-0 rules -> "rule out the other"
 DOOR_X=['(: door_mem (Member sk_door_1 door) (STV 1.0 0.99))',
         '(: door_xor (Xor (Member sk_door_1 open) (Member sk_door_1 closed)) (STV 1.0 0.99))',
-        '(: door_excl_1 (Implication (Premises (Member sk_door_1 open)) (Conclusions (Member sk_door_1 closed))) (STV 0.0 0.99))',
-        '(: door_excl_2 (Implication (Premises (Member sk_door_1 closed)) (Conclusions (Member sk_door_1 open))) (STV 0.0 0.99))']
+        '(: door_excl_1 (Implication (Member sk_door_1 open) (Member sk_door_1 closed)) (STV 0.0 0.99))',
+        '(: door_excl_2 (Implication (Member sk_door_1 closed) (Member sk_door_1 open)) (STV 0.0 0.99))']
 run("xor  Xor label pattern-queryable (bind other disjunct)", DOOR_X, '(Xor (Member sk_door_1 open) $o)', contains="closed")
 run("xor  dormant: closed NOT derived w/o confirmation (expect [])", DOOR_X, '(Member sk_door_1 closed)', want="empty", chain=True)
 run_strength("xor  confirm open -> closed ruled out (s=0)", DOOR_X+['(: door_open (Member sk_door_1 open) (STV 1.0 0.99))'],
@@ -676,13 +678,13 @@ RATE=['(: mb (MoreBy fast sk_train_1 sk_bus_1 5 kilometer_per_hour) (STV 1.0 0.9
       '(: t (Member sk_train_1 train) (STV 1.0 0.99))','(: b (Member sk_bus_1 bus) (STV 1.0 0.99))']
 run("rate-order   5km/h faster => More fast train bus", RATE, '(More fast sk_train_1 sk_bus_1)', seeded=True, chain=True)
 run("rate-gap     query the rate gap (=5)", RATE, '(MoreBy fast sk_train_1 sk_bus_1 $n kilometer_per_hour)', contains="5")
-CORR=['(: corr (Implication (Premises (Member $x wine) (Member $y wine) (More old $x $y)) (Conclusions (More expensive $x $y))) (STV 0.9 0.9))',
+CORR=['(: corr (Implication (And (Member $x wine) (Member $y wine) (More old $x $y)) (More expensive $x $y)) (STV 0.9 0.9))',
       '(: w1 (Member sk_wine_1 wine) (STV 1.0 0.99))','(: w2 (Member sk_wine_2 wine) (STV 1.0 0.99))',
       '(: f (More old sk_wine_1 sk_wine_2) (STV 1.0 0.99))']
 run("corr-fire    older->pricier => More expensive w1 w2", CORR, '(More expensive sk_wine_1 sk_wine_2)', chain=True)
 run("corr-nofire  no covariation instance => []", CORR, '(More expensive sk_wine_2 sk_wine_1)', want="empty", chain=True)
 run("corr-domain  non-domain pair (same order, not wine) => []",
-    ['(: corr (Implication (Premises (Member $x wine) (Member $y wine) (More old $x $y)) (Conclusions (More expensive $x $y))) (STV 0.9 0.9))',
+    ['(: corr (Implication (And (Member $x wine) (Member $y wine) (More old $x $y)) (More expensive $x $y)) (STV 0.9 0.9))',
      '(: f (More old rock_a rock_b) (STV 1.0 0.99))'], '(More expensive rock_a rock_b)', want="empty", chain=True)
 ADV=['(: e1 (Member sk_swim_1 swim) (STV 1.0 0.99))','(: a1 (Agent sk_swim_1 diego) (STV 1.0 0.99))',
      '(: e2 (Member sk_swim_2 swim) (STV 1.0 0.99))','(: a2 (Agent sk_swim_2 mia) (STV 1.0 0.99))',
@@ -745,8 +747,7 @@ run("conn-how-chain  two-hop ReasonFor chain across So+AsAResult surface heads",
 # (see the distr-name / recip-name / grouped-name checks near the end). Monadic
 # twin of the Group O reciprocal rule / the line-651 "birds fly" universal rule.
 DIST_K=['(: p1 (Member omar passenger) (STV 1.0 0.99))','(: p2 (Member nadia passenger) (STV 1.0 0.99))',
-        '(: r (Implication (Premises (Member $x passenger)) (Conclusions (Member (sk_board $x) board) '
-        '(Agent (sk_board $x) $x) (Past (sk_board $x)))) (STV 1.0 0.9))']
+        '(: r (Implication (Member $x passenger) (And (Member (sk_board $x) board) ' '(Agent (sk_board $x) $x) (Past (sk_board $x)))) (STV 1.0 0.9))']
 run("distr-kind  all the passengers boarded -> did Omar board? (kind-ranged)", DIST_K,
     '(And (Member $e board) (Agent $e omar) (Past $e))')
 run("distr-typed  same rule; a dog does NOT board (rule is typed to passenger)", DIST_K+['(: d1 (Member rex dog) (STV 1.0 0.99))'],
@@ -764,14 +765,12 @@ run("distr-collnoun-sg  SAFETY no member-level event: did Pia patch it? (expect 
 run("distr-partof  every panel member abstained -> did Leo abstain? (PartOf-ranged)",
     ['(: c (Member sk_panel_1 panel) (STV 1.0 0.99))','(: m1 (PartOf ivy sk_panel_1) (STV 1.0 0.99))',
      '(: m2 (PartOf leo sk_panel_1) (STV 1.0 0.99))',
-     '(: r (Implication (Premises (PartOf $x sk_panel_1)) (Conclusions (Member (sk_abstain $x) abstain) '
-     '(Agent (sk_abstain $x) $x) (Past (sk_abstain $x)))) (STV 1.0 0.9))'],
+     '(: r (Implication (PartOf $x sk_panel_1) (And (Member (sk_abstain $x) abstain) ' '(Agent (sk_abstain $x) $x) (Past (sk_abstain $x)))) (STV 1.0 0.9))'],
     '(And (Member $e abstain) (Agent $e leo) (Past $e))')
 run("distr-theme  all the analysts endorsed the proposal -> what did Mia endorse? (shared Theme; endorse->Theme per #23)",
     ['(: i1 (Member mia analyst) (STV 1.0 0.99))','(: i2 (Member sam analyst) (STV 1.0 0.99))',
      '(: w (Member sk_proposal_1 proposal) (STV 1.0 0.99))',
-     '(: r (Implication (Premises (Member $x analyst)) (Conclusions (Member (sk_endorse $x) endorse) '
-     '(Agent (sk_endorse $x) $x) (Theme (sk_endorse $x) sk_proposal_1) (Past (sk_endorse $x)))) (STV 1.0 0.9))'],
+     '(: r (Implication (Member $x analyst) (And (Member (sk_endorse $x) endorse) ' '(Agent (sk_endorse $x) $x) (Theme (sk_endorse $x) sk_proposal_1) (Past (sk_endorse $x)))) (STV 1.0 0.9))'],
     '(And (Member $e endorse) (Agent $e mia) (Theme $e $what) (Past $e))', contains="sk_proposal_1")
 run("distr-collective  the tourists assembled -> group assembled? (collective NOT distributed)",
     ['(: g (GroupOf grp tourist) (STV 1.0 0.99))','(: e (Member sk_assemble_1 assemble) (STV 1.0 0.99))',
@@ -788,8 +787,7 @@ run("copular-status-ctrl  was Alice sad? (wrong property -> [])",
 
 # Negated verbal generic: "Owls don't migrate" = the distributing rule at strength 0.0, so each
 # member's event derives at strength 0 (an arbitrary owl does NOT migrate).
-NEG_GEN=['(: r (Implication (Premises (Member $x owl)) (Conclusions (Member (sk_migrate $x) migrate) '
-         '(Agent (sk_migrate $x) $x))) (STV 0.0 0.9))','(: o (Member ollie owl) (STV 1.0 0.99))']
+NEG_GEN=['(: r (Implication (Member $x owl) (And (Member (sk_migrate $x) migrate) ' '(Agent (sk_migrate $x) $x))) (STV 0.0 0.9))','(: o (Member ollie owl) (STV 1.0 0.99))']
 run_strength("neg-generic  owls don't migrate -> ollie migrate strength ~0", NEG_GEN,
     '(And (Member $e migrate) (Agent $e ollie))', 0.0, 0.1, chain=True)
 
@@ -835,7 +833,7 @@ run("deon-specific-prohib  may Bob enter? (specific prohibition, STV 0.0)",
 # is individuated later, making that member queryable -- works for vague/large counts (no enumeration).
 DGRP=['(: g (GroupOf sk_group_1 dog) (STV 1.0 0.99))','(: gc (CardinalityPhrase sk_group_1 "several") (STV 1.0 0.99))',
       '(: ge (Member sk_bark_1 bark) (STV 1.0 0.99))','(: gea (Agent sk_bark_1 sk_group_1) (STV 1.0 0.99))','(: gep (Past sk_bark_1) (STV 1.0 0.99))']
-DFIDO=DGRP+['(: r (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_bark $x) bark) (Agent (sk_bark $x) $x) (Past (sk_bark $x)))) (STV 1.0 0.9))',
+DFIDO=DGRP+['(: r (Implication (PartOf $x sk_group_1) (And (Member (sk_bark $x) bark) (Agent (sk_bark $x) $x) (Past (sk_bark $x)))) (STV 1.0 0.9))',
             '(: fd (Member fido dog) (STV 1.0 0.99))','(: fp (PartOf fido sk_group_1) (STV 1.0 0.99))','(: fn (Name fido "Fido") (STV 1.0 0.99))']
 run("distgrp-anon   several dogs barked -> did the group bark? (group event, no member needed)", DGRP,
     '(And (Member $e bark) (Agent $e $g) (GroupOf $g dog) (Past $e))')
@@ -966,9 +964,9 @@ run("ctx-query  a context-known referent queried as its CONSTANT symbol", CTXPAR
 CTXBO=['(: bo_name (Name bo "Bo") (STV 1.0 0.99))','(: e_work (Member sk_work_1 work) (STV 1.0 0.99))',
        '(: e_wag (Agent sk_work_1 bo) (STV 1.0 0.99))','(: e_wloc (Location sk_work_1 sk_bakery_1) (STV 1.0 0.99))',
        '(: e_bak (Member sk_bakery_1 bakery) (STV 1.0 0.99))']
-run("CAUSE-B ctx-update  'no longer works' same symbols -> now RAW denial 0.0 (was ~0.25 blend)",
+run("ctx-update   'no longer works' same symbols -> ~0.25 blend (revision restored 2026-08-04)",
     CTXBO+['(: bo_no_longer_work (And (Member sk_work_1 work) (Agent sk_work_1 bo) (Location sk_work_1 sk_bakery_1)) (STV 0.0 0.99))'],
-    '(And (Member $e work) (Agent $e bo) (Location $e sk_bakery_1))', contains="STV 0.0")
+    '(And (Member $e work) (Agent $e bo) (Location $e sk_bakery_1))', contains="STV 0.249")
 run("ctx-update-fresh-ctrl  fresh-symbol denial does NOT merge -> stale positive persists (why same-symbol)",
     CTXBO+['(: bo_not_work_fresh (And (Member sk_work_2 work) (Agent sk_work_2 bo) (Location sk_work_2 sk_bakery_1)) (STV 0.0 0.99))'],
     '(And (Member $e work) (Agent $e bo) (Location $e sk_bakery_1))', contains=["STV 0.0","STV 1.0"])
@@ -979,22 +977,23 @@ run("ctx-update-fresh-ctrl  fresh-symbol denial does NOT merge -> stale positive
 # graded leaning-no row; a pinned (STV 0.0 $conf) query retrieves the RAW denial (the pin sees
 # proof-level TVs BEFORE the merge). "stopped V-ing" (eventive) and "until DATE" stay positive.
 #
-# CAUSE-B ENGINE CHANGE (2026-07-21, assumed INTENDED pending owner confirmation): the engine
-# update stopped REVISING a same-symbol strength-0 (And ...) denial with the separately-stored
-# positive atoms. So the bare present-query now returns the RAW denial 0.0 (no ~0.25 blend), and
-# a positive bundle query that shares the denial's (Member,Agent) sub-conjunction (cess-past,
-# cess-update) now returns [] instead of ~1.0. General revision is unaffected (defeasibility
-# still overrides). The four cases below are re-baselined to the CURRENT behavior and tagged
-# CAUSE-B so this regression suite flags it again if the behavior changes back; the #32 cessation
-# representation needs revisiting under the new revision semantics (deferred as its own task).
+# CAUSE-B RESOLVED 2026-08-04 (PeTTaChainer cfe25f9). The 2026-07-21 engine change had stopped
+# REVISING a same-symbol strength-0 (And ...) denial against the separately-stored positive atoms,
+# so present-queries returned the RAW denial 0.0 and positive bundle queries sharing the denial's
+# (Member,Agent) sub-conjunction returned []. The migration re-measured all four: revision is
+# RESTORED -- cess-past and cess-update are back to ~1.0, and the present-queries blend again
+# (cess-still ~0.33, ctx-update ~0.25). The four CAUSE-B markers are therefore converted back to
+# POSITIVE checks, and GAP-cess-name (the pinned Name-bound form, previously [] pending an engine
+# fix) now binds the denial at 0.0 and is a positive check too. This suite will flag it if the
+# behavior regresses again. bug_cessation_revision_lost is FIXED.
 CESS=['(: e_paint (Member sk_paint_1 paint) (STV 1.0 0.99))','(: e_page (Agent sk_paint_1 dario) (STV 1.0 0.99))',
       '(: e_ppast (Past sk_paint_1) (STV 1.0 0.99))',
       '(: e_pnot (And (Member sk_paint_1 paint) (Agent sk_paint_1 dario)) (STV 0.0 0.99))',
       '(: dario_name (Name dario "Dario") (STV 1.0 0.99))']
-run("CAUSE-B cess-past   did Dario paint? Past bundle now -> [] (was ~1.0; shares denial's Member/Agent)", CESS,
-    '(And (Member $e paint) (Agent $e $d) (Name $d "Dario") (Past $e))', want="empty")
-run("CAUSE-B cess-still  does Dario still paint? bare-Q now -> RAW denial 0.0 (was ~0.25 blend)", CESS,
-    '(And (Member $e paint) (Agent $e dario))', contains="STV 0.0")
+run("cess-past    did Dario paint? Past bundle -> ~1.0 (CAUSE-B regression FIXED upstream 2026-08-04)", CESS,
+    '(And (Member $e paint) (Agent $e $d) (Name $d "Dario") (Past $e))', contains="STV 1.0")
+run("cess-still   does Dario still paint? bare-Q -> blended ~0.33, not the raw denial (revision restored)", CESS,
+    '(And (Member $e paint) (Agent $e dario))', contains="STV 0.333")
 run("cess-pin    negative wording -> pinned @0 retrieves the raw denial (pre-merge)", CESS,
     '(And (Member $e paint) (Agent $e dario))', tv='(STV 0.0 $conf)', contains="STV 0.0")
 CESSJ=['(: jonas_name (Name jonas "Jonas") (STV 1.0 0.99))','(: e_work (Member sk_work_1 work) (STV 1.0 0.99))',
@@ -1002,8 +1001,8 @@ CESSJ=['(: jonas_name (Name jonas "Jonas") (STV 1.0 0.99))','(: e_work (Member s
        '(: e_gar (Member sk_garage_1 garage) (STV 1.0 0.99))',
        '(: e_wpast (Past sk_work_1) (STV 1.0 0.99))',
        '(: e_wnot (And (Member sk_work_1 work) (Agent sk_work_1 jonas) (Location sk_work_1 sk_garage_1)) (STV 0.0 0.99))']
-run("CAUSE-B cess-update  did Jonas work there? Past bundle now -> [] (was ~1.0; shares denial's Member/Agent)", CESSJ,
-    '(And (Member $e work) (Agent $e jonas) (Location $e $g) (Member $g garage) (Past $e))', want="empty")
+run("cess-update   did Jonas work there? Past bundle -> ~1.0 (CAUSE-B regression FIXED upstream 2026-08-04)", CESSJ,
+    '(And (Member $e work) (Agent $e jonas) (Location $e $g) (Member $g garage) (Past $e))', contains="STV 1.0")
 run("cess-eventive-ctrl  'Greta stopped knitting' stays eventive -> the activity positive, no denial",
     ['(: e_knit (Member sk_knit_1 knit) (STV 1.0 0.99))','(: e_knag (Agent sk_knit_1 greta) (STV 1.0 0.99))',
      '(: e_knpast (Past sk_knit_1) (STV 1.0 0.99))','(: e_stop (Member sk_stop_1 stop) (STV 1.0 0.99))',
@@ -1064,7 +1063,7 @@ TROW=['(: t_name (Name tomas "Tomas") (STV 1.0 0.99))','(: t_row (Member sk_row_
 run("tail-freq-rate  rows twice a week -> more than once a week? (TimesPer + Compute)", TROW,
     '(And (Member $e row) (Agent $e tomas) (TimesPer $e $n week) (Compute > ($n 1) -> true))')
 TWHEN=['(: e_doorbell (Member sk_doorbell_1 doorbell) (STV 1.0 0.99))','(: e_terrier (Member sk_terrier_1 terrier) (STV 1.0 0.99))',
-       '(: whenever_buzz_growl (Implication (Premises (Member $x buzz) (Agent $x sk_doorbell_1)) (Conclusions (Member (sk_growl $x) growl) (Agent (sk_growl $x) sk_terrier_1) (During (sk_growl $x) $x))) (STV 1.0 0.9))',
+       '(: whenever_buzz_growl (Implication (And (Member $x buzz) (Agent $x sk_doorbell_1)) (And (Member (sk_growl $x) growl) (Agent (sk_growl $x) sk_terrier_1) (During (sk_growl $x) $x))) (STV 1.0 0.9))',
        '(: e_buzz (Member sk_buzz_1 buzz) (STV 1.0 0.99))','(: e_buzz_ag (Agent sk_buzz_1 sk_doorbell_1) (STV 1.0 0.99))',
        '(: e_buzz_t (Time sk_buzz_1 (Hour 0)) (STV 1.0 0.99))','(: e_buzz_past (Past sk_buzz_1) (STV 1.0 0.99))']
 run("tail-whenever  midnight buzz fires the occurrence rule (whole-bundle, open trigger)", TWHEN,
@@ -1347,7 +1346,7 @@ run("poss-br-ctrl  SAFETY no possession stated -> empty", ['(: c1 (Member sk_lam
 
 # "None of the Ns V" (decision #4): the universal's negative twin — the same per-member
 # distribution rule at strength 0.0 (no subset, no Cardinality 0).
-NONE_R=['(: none_objected (Implication (Premises (Member $x juror)) (Conclusions (Member (sk_object $x) object) (Agent (sk_object $x) $x) (Past (sk_object $x)))) (STV 0.0 0.9))',
+NONE_R=['(: none_objected (Implication (Member $x juror) (And (Member (sk_object $x) object) (Agent (sk_object $x) $x) (Past (sk_object $x)))) (STV 0.0 0.9))',
         '(: a1 (Member ann juror) (STV 1.0 0.99))','(: an (Name ann "Ann") (STV 1.0 0.99))']
 run_strength("none-member  'did Ann object?' derives ~0 (blanket denial distributes)", NONE_R,
     '(And (Name $a "Ann") (Member $e object) (Agent $e $a) (Past $e))', 0.0, 0.2)
@@ -1378,7 +1377,7 @@ run("yet-arity-x2  binary query pinned to the ASPECTUAL event -> []", YET2,
 
 # QuantifierPhrase extended to verbal rules (decision #6): the quantifier word rides a companion
 # beside the rule, mirroring the copular convention (absence = bare generic).
-QPV=['(: r (Implication (Premises (Member $x gull)) (Conclusions (Member (sk_scavenge $x) scavenge) (Agent (sk_scavenge $x) $x))) (STV 0.9 0.9))',
+QPV=['(: r (Implication (Member $x gull) (And (Member (sk_scavenge $x) scavenge) (Agent (sk_scavenge $x) $x))) (STV 0.9 0.9))',
      '(: q (QuantifierPhrase gull scavenge "most") (STV 1.0 0.99))']
 run("qp-verbal     companion binds by pattern beside the rule", QPV, '(QuantifierPhrase gull $v $w)', contains="most")
 
@@ -1389,7 +1388,7 @@ run("qp-verbal     companion binds by pattern beside the rule", QPV, '(Quantifie
 # conjunction frontiers") after the filed repros (bug_name_binding_on_bundle_query.py,
 # bug_and_query_order_sensitivity.py, bug_overlap_guard_overfire.py) -- the four ex-GAP markers
 # below are now POSITIVE checks. Two gaps REMAIN: GAP-cess-name + GAP-whenever below.
-GAPDK=['(: r (Implication (Premises (Member $x passenger)) (Conclusions (Member (sk_board $x) board) (Agent (sk_board $x) $x) (Past (sk_board $x)))) (STV 1.0 0.9))',
+GAPDK=['(: r (Implication (Member $x passenger) (And (Member (sk_board $x) board) (Agent (sk_board $x) $x) (Past (sk_board $x)))) (STV 1.0 0.9))',
        '(: p (Member omar passenger) (STV 1.0 0.99))','(: n (Name omar "Omar") (STV 1.0 0.99))']
 run("distr-name    faithful 'did Omar board?' (Name-bound; engine fixed 2026-07-09)", GAPDK,
     '(And (Name $o "Omar") (Member $e board) (Agent $e $o) (Past $e))', contains="sk_board", chain=True)
@@ -1404,8 +1403,8 @@ run("scope-thresh  faithful 'did Al read >2 books?' (full-context; engine fixed 
 # Name-on-bundle, NEW consequence found in #32: a (Name ...) conjunct not only misses the stored
 # (And...) denial -- it also BLOCKS the same-proposition merge, so the faithful Name-bound
 # "does X still V?" returns the misleading bare positive and the pinned form returns [].
-run("GAP-cess-name  faithful Name-bound 'has Dario stopped painting?' (pin) -> [] pending engine fix", CESS,
-    '(And (Member $e paint) (Agent $e $d) (Name $d "Dario"))', tv='(STV 0.0 $conf)', want="empty")
+run("cess-name     faithful Name-bound 'has Dario stopped painting?' pinned @0 binds (engine fixed 2026-08-04)", CESS,
+    '(And (Member $e paint) (Agent $e $d) (Name $d "Dario"))', tv='(STV 0.0 $conf)', contains="STV 0.0")
 # A blind question can't know an event is whenever-rule-derived: the natural "did the terrier
 # growl?" (kind-bound agent + Past, no During) is a partial/kind-bound pattern against the derived
 # bundle -> the same rigidity family; the whole-bundle open-trigger form (tail-whenever) works.

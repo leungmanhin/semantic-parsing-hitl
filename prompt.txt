@@ -155,6 +155,12 @@ Six patterns recur throughout; each is defined **here once** and only referenced
   An **indefinite** introduced inside the seal ("believes **a** unicorn escaped") does **not**
   project: its witness stays sealed, since only the sealed proposition posits it. What is never
   asserted either way is the sealed proposition itself.
+  **A strength-0 `(And …)` denial obeys the same projection**, because it is the same structure: a
+  proposition recorded without being asserted. In "the auditor did **not** send the trustees a summary",
+  the **definite** "the trustees" is presupposed and its `GroupOf` / `Member` typing sits **outside**
+  the denial, while the **indefinite** "a summary" — posited only by the sentence being denied — keeps
+  its witness and typing **inside**. The event class and every role atom always stay inside. Decide
+  each participant by its own determiner; do not put all typing atoms on one side or the other.
 - **Dual-emit.** Where one clause must answer two question shapes, emit **both** forms: a reified
   state **and** the flat copular atom (resultatives, connective endpoints, a copular clause carrying
   a time modifier); a deictic constant **and** its `TODAY`-grounded calendar atoms; a **factive**
@@ -197,7 +203,16 @@ Always prefer a **single lemma** for a predicate / class / property / action. Wh
 symbol is genuinely needed, also emit **decomposition atoms** that unpack it into single-word parts,
 so the reasoner connects it and answers finer questions. Decompose **once, to single-word lemmas,
 then stop** — don't recurse on parts already single; don't decompose idioms / non-compositional
-names (`hot_dog`) or **phrasal / particle verbs** (`go_out`, `break_down` — kept whole, never a bare head or a single-word synonym; see below). Decomposition atoms carry definitional `(STV 1.0 0.99)` and never change the
+names (`hot_dog`) or **phrasal / particle verbs** (`go_out`, `break_down` — kept whole, never a bare head or a single-word synonym; see below).
+A **fixed multi-word idiom** is the same case with more words: "the intern **spilled the beans** about
+the merger" → the single surface symbol **`spill_the_beans`**, keeping every word, and **never**
+unpacked into a literal event — `(Member sk_spill_1 spill)` + `(Member sk_bean_1 bean)` asserts
+physical beans the text never introduced. The trigger is a **coherence test, not a list**: take the
+idiomatic reading only when the literal one is incoherent for these participants, and the literal one
+whenever it is available ("the cook spilled the beans across the floor" → an ordinary `spill` event
+with real beans). That is world knowledge choosing the **reading**, which *Core patterns* licenses;
+it adds no content. As with `go_out` ≈ `fail`, recognizing `spill_the_beans` ≈ `reveal` is a
+**downstream** normalization step — never emit the equivalence, or a rule expressing it, here. Decomposition atoms carry definitional `(STV 1.0 0.99)` and never change the
 original meaning (a compound buried in a property does **not** leak to its genus — `(obligated
 pay_dues)` ≠ `(obligated pay)`).
 
@@ -422,6 +437,12 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
   `Location` ("in/at/on …"), `Time` ("yesterday"; dates &
   clock times — see **Time**), `Manner` (adverb), `Source` ("from …"), `Goal` ("to …"
   non-recipient), `Beneficiary` ("for …").
+  Those named roles apply when the PP answers **where / when / how / whence / whither**. When it
+  instead names **what the activity is about or directed at** — "work **on** the mural", "depend
+  **on** the pump", "look **at** the gauge", "argue **about** the lease" — none of them fits, so use
+  the **preposition-named oblique**: `(On <event> <mural>)`. "On the mural" is not a `Location` (they
+  are not standing on it), and it is neither `Theme` nor `Patient`. Decide by the question the PP
+  answers, never by which listed role is closest.
 
 Assign: subject → `Agent` (action) / `Experiencer` (a property or psych state) / `Holder` (a
 possession/relational state only — own/have/lack); direct object →
@@ -436,7 +457,16 @@ delay, reschedule, bring forward* — the occurrence itself is altered, so → `
 reach verbs that merely **evaluate or record** an object (*grade, score, inspect, review*), which
 leave it as it was → `Theme`. When the test is unclear, default to `Theme`. The subject test below is for **intransitives**; a **transitive** subject is
 `Agent` even when inanimate and non-volitional ("the consignment cleared customs", "the storm broke
-the mast") — inanimacy alone never demotes a transitive subject. Psych/perception object → `Stimulus`; indirect object → `Recipient`;
+the mast") — inanimacy alone never demotes a transitive subject, **and neither does stativity**: a
+**stative transitive** ("the manifest **lists** two pallets", "the tank **holds** forty litres")
+still takes `Agent`. Only two verb classes move a transitive subject
+off `Agent`: **possession** (own / have / lack) → `Holder`, and **STATIVE psych / perception** →
+`Experiencer`. That second class is bounded by the **progressive test**, not by a list of examples: a
+stative mental verb resists the progressive (*"is knowing", *"is believing", *"is fearing") and takes
+`Experiencer` — *know, believe, fear, want, like, see, hear*. A mental verb that accepts it is an
+**event**, not a state, and its subject is an ordinary `Agent` — *discover, notice, realise, learn,
+check, examine* ("is discovering" is fine). Coming to know something is an act; knowing it is a state. The `Experiencer` branch further down is for **intransitive** statives
+only; it never reaches a subject that has an object. Psych/perception object → `Stimulus`; indirect object → `Recipient`;
 obliques by their preposition/adverb. For an **intransitive** subject (no object), apply the same
 "does it change?" test to the **subject**: a **change-of-state undergoer** → `Patient` (*collapse,
 sink, melt, shatter, snap, freeze, break, spread*, and — the same non-physical change as above —
@@ -475,7 +505,12 @@ raining", "it got cold", "it seems") is **not** a referent — drop it and reify
 An event with **no status predicate is generic / habitual / dispositional** — *not* a
 specific occurrence. Mark otherwise (stack as needed):
 
-- **Tense**: `(Past e)`, `(Future e)`. (A present occurrence is usually `(Ongoing e)`.)
+- **Tense**: `(Past e)`, `(Future e)`. **`(Ongoing e)` needs an explicit marker** — there are exactly
+  three: **progressive** morphology ("is / was V-ing"), a **continuative perfect** ("has lived there
+  since 2019"), and the **activity complement of an inceptive** ("started to cry" — the crying is
+  ongoing). A bare **simple present** is *not* one of them: "the survey begins at dawn", "the last elm
+  kicks the bucket" get **no status atom at all**, which is the generic / unmarked default below.
+  Never choose between `Ongoing`, `Past` and nothing by feel — read the marker off the clause.
 - **Aspect**: `(Ongoing e)` (progressive). Perfect ("has V-ed") → coarse `(Past e)`; a **past
   perfect** also emits the ordering `(Before …)` whenever the sentence gives it something to order
   against — see **Time** for the exact test — and a **continuative** perfect ("has lived there since
@@ -587,6 +622,37 @@ anymore", "used to" — is **cessation**: the denial plus a `(Past e)`, see *Tim
                                   (And (Member sk_enter_1 enter) (Agent sk_enter_1 bob) (Permitted sk_enter_1))
                                   (STV 0.0 0.99))   ; deontic prohibition = permission denied
 
+**Negation does not re-decide the subject.** Parse the subject exactly as the positive sentence
+would, then wrap and set strength `0.0`. An **indefinite or definite singular** ("a cooper", "the
+tutor") is a **witness** under negation just as it is without one — it does **not** become a kind.
+A generic denial needs the same surface signal a positive generic needs: a **bare plural** or an
+**explicit quantifier**. The two are different claims; emit the one the surface shows.
+
+      A cooper does not caulk the barrel.
+        →  (: e_barrel (Member sk_barrel_1 barrel) (STV 1.0 0.99))   ; definite — projects (*Core patterns*)
+           (: cooper_not_caulk (And (Member sk_caulk_1 caulk) (Agent sk_caulk_1 sk_cooper_1)
+                                    (Member sk_cooper_1 cooper)      ; indefinite subject — stays inside
+                                    (Patient sk_caulk_1 sk_barrel_1)) (STV 0.0 0.99))
+      Coopers do not caulk the barrel.
+        →  (: e_barrel (Member sk_barrel_1 barrel) (STV 1.0 0.99))
+           (: coopers_not_caulk (Implication (Member $x cooper) (And (Member (sk_caulk $x) caulk) (Agent (sk_caulk $x) $x) (Patient (sk_caulk $x) sk_barrel_1))) (STV 0.0 0.9))
+
+**A negated plural or group keeps both emissions.** Where the positive sentence would emit a group
+event **and** a distribution rule (*Quantifiers, generics & scope*; *Cardinality*), the negated one
+emits **both**, each at strength `0.0` — the group did not do it, and no member did. Dropping
+either is a different, weaker claim.
+
+      The kegs do not ferment.
+        →  (: kegs_g (GroupOf sk_group_1 keg) (STV 1.0 0.99))
+           (: kegs_neg (And (Member sk_ferment_1 ferment) (Agent sk_ferment_1 sk_group_1))
+              (STV 0.0 0.99))
+           (: kegs_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_ferment $x) ferment) (Agent (sk_ferment $x) $x)))
+              (STV 0.0 0.9))
+
+This leaves **cessation** (which adds `(Past e)`), the **copular** denial (*Negation (copular)*),
+and the **"none of the"** twin untouched — "none" is an explicit quantifier, so it takes the rule
+form and its `QuantifierPhrase` companion as always.
+
 ### Propositional attitudes (believe / know / hope that …)
 
 A verb of thought or speech with a **clausal "that"-complement** — *believe, think, suppose,
@@ -684,8 +750,13 @@ own):
 
 "There is a X" and "some X" share this encoding. Vague *counts* — "a few", "several", "dozens" — go under **Cardinality** (`CardinalityPhrase`),
 not a lone witness; "a couple" ≈ 2 → `(Cardinality g 2)`. Do **not** use a witness for proportion words
-("most"/"many"/"few" set the strength instead). Indefinite "a/an" can be generic, not
-existential ("A dog is a mammal" = `(Inheritance dog mammal)`) — judge from context.
+("most"/"many"/"few" set the strength instead). Indefinite "a/an" is generic in a **copular /
+definitional** predication ("A dog is a mammal" = `(Inheritance dog mammal)` — see *Categorical
+statements*). With a **verbal** predicate it is a **witness**: a verbal generic takes a bare plural
+or an explicit quantifier ("Dogs bark", "Every dog barks"), not "a dog". **Modal predications are
+decided by their own section** — a deontic norm or a capability generic over a kind keys on the
+modal, not the determiner, so "A wheelwright must lacquer the spigot" stays the kind-level property
+form (*Deontic norms & prohibitions over a kind*).
 
 A **definite** description — "**the** report", "**this** car" — that picks out a specific
 thing is encoded the **same way**: a typed individual `sk_<class>_<n>` + its `(Member …)`.
@@ -769,8 +840,7 @@ below.)
                                           (Theme sk_pass_1 sk_exam_1) (Member sk_exam_1 exam) (Past sk_pass_1)   ; + a per-member rule too (pass is distributive)
       Both dogs barked. →  (GroupOf sk_group_1 dog) (Cardinality sk_group_1 2)
                            (Member sk_bark_1 bark) (Agent sk_bark_1 sk_group_1) (Past sk_bark_1)   ; group event — count / "did any?"
-                           (: dogs_barked (Implication (Premises (PartOf $x sk_group_1))
-                              (Conclusions (Member (sk_bark $x) bark) (Agent (sk_bark $x) $x) (Past (sk_bark $x)))) (STV 1.0 0.9))   ; per-member rule (bark distributive)
+                           (: dogs_barked (Implication (PartOf $x sk_group_1) (And (Member (sk_bark $x) bark) (Agent (sk_bark $x) $x) (Past (sk_bark $x)))) (STV 1.0 0.9))   ; per-member rule (bark distributive)
 
   `(Cardinality g 3)` is the size of *that* group (a point value) — it does **not** claim the
   world holds only 3 (and "**exactly** three" emits that same `(Cardinality g 3)` — the "no
@@ -980,11 +1050,10 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
   **covariation** — emit a **rule** relating the two orderings, **restricted to the domain noun** (the
   "X" the sentence is about, so the rule applies only to that kind), strength 0.9 empirical / 0.99
   definitional. An **inverse** correlative ("the more X, the *less* Y") swaps the conclusion's pair →
-  `(Conclusions (More <scale2> $y $x))`:
+  the consequent becomes `(More <scale2> $y $x)`:
 
       The older a wine is, the more expensive it is.
-        →  (Implication (Premises (Member $x wine) (Member $y wine) (More old $x $y))
-                        (Conclusions (More expensive $x $y))) (STV 0.9 0.9)
+        →  (Implication (And (Member $x wine) (Member $y wine) (More old $x $y)) (More expensive $x $y)) (STV 0.9 0.9)
 
 - **Adverbial comparative** "X Vs ADV-er than Y" ("Diego swims faster than Mia") compares two
   **events** on the adverb's scale (faster→`fast`, harder→`hard`, better→`good`, more quickly→`quick`).
@@ -1167,8 +1236,14 @@ bare symbol. Terms: `(Year <n>)`, `(Month <name>)`, `(Day <n>)`, `(Weekday <name
       The permit lapses on 14 March 2029.
                                  →  … (Future sk_lapse_1) (Time sk_lapse_1 (Year 2029)) …
 
-  A **present-tense futurate** — a scheduled, dated, one-off event ("the permit **lapses** on …",
-  "the train **leaves** at six") — takes **`Future`**: the tense is present but the event is not.
+  A **present-tense futurate** — a scheduled, one-off event — takes **`Future`**: the tense is
+  present but the event is not. **It requires positive evidence that the event is ahead**, and there
+  are exactly two kinds: a **calendar time you can place after `TODAY`** ("the permit **lapses** on
+  30 June 2029", with `TODAY` supplied), or a **lexically future adjunct** ("the train **leaves**
+  tomorrow / next week / in two days"). Absent both — a bare present with an unanchored adjunct
+  ("the survey **begins** at dawn", "the harvest **begins** in September", with no `TODAY`) — you
+  cannot tell whether it is ahead, so emit **no tense atom at all** and let the default stand.
+  Guessing `Future` from the adjunct alone makes the same sentence parse two ways on two readings.
   A present-tense **habitual** ("the train leaves at six every day") is a generic rule instead.
 
 - Month / weekday names are lowercase lemmas (`june`, `monday`); clock hours are **24-hour**
@@ -1251,8 +1326,7 @@ as the premises, the response as a Skolem event **per occurrence**, tied to its 
 
       Every time the bell rings, the dog barks.
         →  (Member sk_bell_1 bell) (Member sk_dog_1 dog)
-           (: whenever_ring_bark (Implication (Premises (Member $x ring) (Agent $x sk_bell_1))
-              (Conclusions (Member (sk_bark $x) bark) (Agent (sk_bark $x) sk_dog_1) (During (sk_bark $x) $x))) (STV 1.0 0.9))
+           (: whenever_ring_bark (Implication (And (Member $x ring) (Agent $x sk_bell_1)) (And (Member (sk_bark $x) bark) (Agent (sk_bark $x) sk_dog_1) (During (sk_bark $x) $x))) (STV 1.0 0.9))
 
 A later specific occurrence fires it ("The bell rang at noon." → that bark derives). Query the
 derived event as the **whole conclusion bundle** — the trigger slot may stay a variable:
@@ -1438,17 +1512,23 @@ agent-nominalizations already use the same `(can <verb>)` form), which inherits 
 natively and can be overridden by an exception. Only a **non-modal** verbal generic ("birds
 fly") takes the event rule.
 
-      Birds fly.      →  (: birds_fly (Implication (Premises (Member $x bird))
-                            (Conclusions (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x))) (STV 0.9 0.9))
+      Birds fly.      →  (: birds_fly (Implication (Member $x bird) (And (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x))) (STV 0.9 0.9))
       Birds can fly.  →  (: bird_canfly (Inheritance bird (can fly)) (STV 0.9 0.9))   ; capability generic — property, not a rule
-      Most birds migrate. →  (: most_migrate (Implication (Premises (Member $x bird))
-                            (Conclusions (Member (sk_migrate $x) migrate) (Agent (sk_migrate $x) $x))) (STV 0.9 0.9))
+      Most birds migrate. →  (: most_migrate (Implication (Member $x bird) (And (Member (sk_migrate $x) migrate) (Agent (sk_migrate $x) $x))) (STV 0.9 0.9))
                              (: birds_q (QuantifierPhrase bird migrate "most") (STV 1.0 0.99))   ; the word, beside the 0.9 rule
 
 The **same rule form** distributes a **distributive predicate over a plural or group** — whether an
 **explicit universal** ("all the / **all of the** / each (of the) / every (one of the) Ns V", bare
 "each / every N V") or a **grouped / counted plural** ("the dogs barked", "several / both dogs
 barked" — see *Cardinality*, which keeps the group event + count alongside the rule).
+
+**A universal over a COPULAR predicate distributes the same way**, and to the same range: "the divers
+are **all** very tired", "**every** panel member is eligible" → a rule whose conclusion is the
+property atom (plus any `Degree`), ranging over `(PartOf $x <group>)` for a definite group or
+`(Member $x <kind>)` for a kind-named plural — never `(Inheritance <kind> <prop>)`, which would
+assert the property of **every** diver everywhere rather than these ones, and never a bare
+`(Inheritance <group> <prop>)` on the group symbol, which predicates of the group-as-object instead
+of its members. The `QuantifierPhrase` companion comes along as usual.
 
 **A singular collective noun is NOT a plural** and does **not** distribute: "a crew repairs the
 pipe", "the committee approved it", "an airline cancelled the flight" each name **one** participant
@@ -1465,14 +1545,10 @@ juror") → `(Member $x <kind>)`; a **specific group** — a collective noun ("e
 committee") or a counted/bare plural ("several dogs", "both dogs") → `(PartOf $x <group>)`. Strength
 = the quantity (`all` / `each` / `every`, and a plain plural/count = `1.0`), confidence `0.9`:
 
-      All the students passed.      →  (: all_students_passed (Implication (Premises (Member $x student))
-                                           (Conclusions (Member (sk_pass $x) pass) (Agent (sk_pass $x) $x)
-                                                        (Past (sk_pass $x)))) (STV 1.0 0.9))
+      All the students passed.      →  (: all_students_passed (Implication (Member $x student) (And (Member (sk_pass $x) pass) (Agent (sk_pass $x) $x) (Past (sk_pass $x)))) (STV 1.0 0.9))
                                        (: students_q (QuantifierPhrase student pass "all") (STV 1.0 0.99))
       Every member of the committee resigned.
-                                    →  (: committee_resigned (Implication (Premises (PartOf $x sk_committee_1))
-                                           (Conclusions (Member (sk_resign $x) resign) (Agent (sk_resign $x) $x)
-                                                        (Past (sk_resign $x)))) (STV 1.0 0.9))
+                                    →  (: committee_resigned (Implication (PartOf $x sk_committee_1) (And (Member (sk_resign $x) resign) (Agent (sk_resign $x) $x) (Past (sk_resign $x)))) (STV 1.0 0.9))
                                        (Member sk_committee_1 committee)
                                        (: committee_q (QuantifierPhrase committee resign "every") (STV 1.0 0.99))
 
@@ -1489,8 +1565,7 @@ the) Ns V", with no subset and no `Cardinality 0`. "**Not every** N V" ("not eve
 **counterexample witness**, parallel to copular "not all" (see **Negation (copular)**): one witness
 N at strength 1 plus its event bundle at strength `0.0`.
 
-      Owls don't migrate.       →  (: owls_no_migrate (Implication (Premises (Member $x owl))
-                                       (Conclusions (Member (sk_migrate $x) migrate) (Agent (sk_migrate $x) $x))) (STV 0.0 0.9))
+      Owls don't migrate.       →  (: owls_no_migrate (Implication (Member $x owl) (And (Member (sk_migrate $x) migrate) (Agent (sk_migrate $x) $x))) (STV 0.0 0.9))
       Not every intern replied. →  (Member sk_intern_1 intern)
                                    (: sk_intern_1_nr (And (Member sk_reply_1 reply) (Agent sk_reply_1 sk_intern_1) (Past sk_reply_1)) (STV 0.0 0.99))
 
@@ -1500,36 +1575,28 @@ order — uses Skolem **functions** for *dependent* existentials, witness **cons
 
 - **∀∃ (dependent)** "every student read some book" — each its own book:
 
-      (: every_student_read_book (Implication (Premises (Member $x student))
-         (Conclusions (Member (sk_read $x) read) (Agent (sk_read $x) $x)
-                      (Theme (sk_read $x) (sk_book $x)) (Member (sk_book $x) book))) (STV 1.0 0.9))
+      (: every_student_read_book (Implication (Member $x student) (And (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Theme (sk_read $x) (sk_book $x)) (Member (sk_book $x) book))) (STV 1.0 0.9))
 
 - **∃∀ (shared)** "some critic reviewed every film" — one shared critic (a constant):
 
       (Member sk_critic_1 critic)
-      (: that_critic_reviewed (Implication (Premises (Member $y film))
-         (Conclusions (Member (sk_review $y) review) (Agent (sk_review $y) sk_critic_1) (Theme (sk_review $y) $y))) (STV 1.0 0.9))
+      (: that_critic_reviewed (Implication (Member $y film) (And (Member (sk_review $y) review) (Agent (sk_review $y) sk_critic_1) (Theme (sk_review $y) $y))) (STV 1.0 0.9))
 
 - **∀∀** "every dog chased every cat" — two universal premises:
 
-      (: every_dog_chased_cat (Implication (Premises (Member $x dog) (Member $y cat))
-         (Conclusions (Member (sk_chase $x $y) chase) (Agent (sk_chase $x $y) $x) (Patient (sk_chase $x $y) $y))) (STV 1.0 0.9))
+      (: every_dog_chased_cat (Implication (And (Member $x dog) (Member $y cat)) (And (Member (sk_chase $x $y) chase) (Agent (sk_chase $x $y) $x) (Patient (sk_chase $x $y) $y))) (STV 1.0 0.9))
 
 - **Three or more** quantifiers generalize this — one premise per universal, and each **dependent**
   existential is a Skolem function of **every** universal that scopes over it (`(sk_<verb> $x $y …)`);
   a shared one stays a constant. "Every teacher gave every student a book" (∀∀∃ — each its own book):
 
-      (: every_teacher_gave_book (Implication (Premises (Member $t teacher) (Member $s student))
-         (Conclusions (Member (sk_give $t $s) give) (Agent (sk_give $t $s) $t) (Recipient (sk_give $t $s) $s)
-                      (Theme (sk_give $t $s) (sk_book $t $s)) (Member (sk_book $t $s) book))) (STV 1.0 0.9))
+      (: every_teacher_gave_book (Implication (And (Member $t teacher) (Member $s student)) (And (Member (sk_give $t $s) give) (Agent (sk_give $t $s) $t) (Recipient (sk_give $t $s) $s) (Theme (sk_give $t $s) (sk_book $t $s)) (Member (sk_book $t $s) book))) (STV 1.0 0.9))
 
 - A **number under a universal** ("every student read **three** books") = a per-binding Skolem
   **group** carrying a `Cardinality` — the books vary per student, so the group is a function of `$x`
   ("the **same** three" → one constant group instead, as in ∃∀):
 
-      (: every_student_read_three (Implication (Premises (Member $x student))
-         (Conclusions (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Theme (sk_read $x) (sk_books $x))
-                      (GroupOf (sk_books $x) book) (Cardinality (sk_books $x) 3))) (STV 1.0 0.9))
+      (: every_student_read_three (Implication (Member $x student) (And (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Theme (sk_read $x) (sk_books $x)) (GroupOf (sk_books $x) book) (Cardinality (sk_books $x) 3))) (STV 1.0 0.9))
 
   To **query a threshold over such a derived count** ("did Al read more than two books?"), bind the
   member's group through the event and threshold its `Cardinality`:
@@ -1540,9 +1607,7 @@ Cues "the **same** Y" / "a **certain** Y" force the shared (constant) reading; g
 ambiguity → first quantifier takes wide scope. A relational universal with a **copular**
 conclusion mixes the two forms — "everyone who owns a dog is a pet owner":
 
-      (: dog_owner_pet_owner (Implication
-         (Premises (Member $e own) (Holder $e $x) (Theme $e $y) (Member $y dog))
-         (Conclusions (Member $x pet_owner))) (STV 1.0 0.99))
+      (: dog_owner_pet_owner (Implication (And (Member $e own) (Holder $e $x) (Theme $e $y) (Member $y dog)) (Member $x pet_owner)) (STV 1.0 0.99))
 
 (**Copular** universals/generics do **not** reify events — "all dogs are mammals", "most
 teachers are patient" stay the single `Inheritance` fact from **Categorical statements**.)
@@ -1553,7 +1618,13 @@ the kind? The default (a distributing rule, or `Inheritance`, at strength `0.9`)
 
 - **Relational generic** relating two KINDS ("mosquitoes carry malaria", "bees pollinate flowers",
   "lions have manes", "sharks attack swimmers") → a **kind-level relation** `(<Verb> <kindA>
-  <kindB>)` (lemmatized UpperCamelCase head, two kind args), **not** a per-instance rule. It stays
+  <kindB>)` (lemmatized UpperCamelCase head, two kind args), **not** a per-instance rule. **The
+  trigger is both arguments being bare kind-denoting NPs** — bare plural or mass on each side. An
+  indefinite or definite singular is **not** one: "a winch needs an annual inspection" and "the
+  winch needs inspection" are ordinary verbal clauses and reify an **event**, never
+  `(Need winch annual_inspection)`. This matters because the two forms are not comparable — one
+  is an event with roles, the other an opaque binary atom — so a clause that drifts between them
+  produces two records with nothing in common. It stays
   opaque, so it never distributes — "does *this* mosquito carry malaria?" correctly stays unknown.
   Strength **high** (`0.9`, a true kind characterization); distributing it to all instance-pairs
   would wrongly assert "every mosquito carries malaria".
@@ -1592,8 +1663,7 @@ the kind? The default (a distributing rule, or `Inheritance`, at strength `0.9`)
   / inclined to do it, even if few do so at any given moment. The test is the same base-rate check as
   the copular case: would an *arbitrary* member undergo this? Rarely → lower; characteristically → 0.9.
 
-      Planes crash.  →  (: planes_crash (Implication (Premises (Member $x plane))
-                          (Conclusions (Member (sk_crash $x) crash) (Patient (sk_crash $x) $x))) (STV 0.3 0.9))
+      Planes crash.  →  (: planes_crash (Implication (Member $x plane) (And (Member (sk_crash $x) crash) (Patient (sk_crash $x) $x))) (STV 0.3 0.9))
 
 Rule of thumb: set the strength to what an **arbitrary instance** should inherit — a kind relation
 doesn't inherit (stays high), a copular `Inheritance` **or a distributing verbal rule** does (lower
@@ -1704,19 +1774,13 @@ verb ("distrust", "envy", "admire") → `Experiencer`/`Stimulus`; a verb whose o
 ("question", "argue with") → `Theme`; only a create/destroy/change verb → `Patient` — never default
 to `Agent`/`Patient`. **Range over the predicate the members satisfy**: a plural that **names the kind** ("jurors",
 "students") → `(Member $x <kind>)`; a **collective noun** ("committee", "team") whose members'
-kind isn't stated → `(PartOf $x <group>)`. Put any tense/status **inside** the `Conclusions` —
+kind isn't stated → `(PartOf $x <group>)`. Put any tense/status **inside** the consequent —
 never as a free-variable atom outside the rule:
 
       The jurors distrust one another.
-        →  (: jurors_distrust (Implication
-              (Premises (Member $x juror) (Member $y juror) (Compute == ($x $y) -> false))
-              (Conclusions (Member (sk_distrust $x $y) distrust) (Experiencer (sk_distrust $x $y) $x)
-                           (Stimulus (sk_distrust $x $y) $y))) (STV 1.0 0.9))
+        →  (: jurors_distrust (Implication (And (Member $x juror) (Member $y juror) (Compute == ($x $y) -> false)) (And (Member (sk_distrust $x $y) distrust) (Experiencer (sk_distrust $x $y) $x) (Stimulus (sk_distrust $x $y) $y))) (STV 1.0 0.9))
       The committee members argued with one another.
-        →  (: committee_argue (Implication
-              (Premises (PartOf $x sk_committee_1) (PartOf $y sk_committee_1) (Compute == ($x $y) -> false))
-              (Conclusions (Member (sk_argue $x $y) argue) (Agent (sk_argue $x $y) $x)
-                           (Theme (sk_argue $x $y) $y) (Past (sk_argue $x $y)))) (STV 1.0 0.9))
+        →  (: committee_argue (Implication (And (PartOf $x sk_committee_1) (PartOf $y sk_committee_1) (Compute == ($x $y) -> false)) (And (Member (sk_argue $x $y) argue) (Agent (sk_argue $x $y) $x) (Theme (sk_argue $x $y) $y) (Past (sk_argue $x $y)))) (STV 1.0 0.9))
            (Member sk_committee_1 committee)
 
 **Symmetric predicates** — mutual **by meaning** ("are friends / siblings / colleagues", "is
@@ -1732,9 +1796,7 @@ A symmetric relation over a whole **group** ("the senators are all colleagues") 
 both directions; just give it a literal-head conclusion:
 
       The senators are all colleagues.
-        →  (: senators_colleague (Implication
-              (Premises (Member $x senator) (Member $y senator) (Compute == ($x $y) -> false))
-              (Conclusions (Colleague $x $y))) (STV 1.0 0.9))
+        →  (: senators_colleague (Implication (And (Member $x senator) (Member $y senator) (Compute == ($x $y) -> false)) (Colleague $x $y)) (STV 1.0 0.9))
 
 **Routing.** An **eventive** symmetric verb (meet / gather / collide) stays **collective** — one
 event, multiple `Agent` atoms (see **Coordination & plurals**); only **stative** symmetric
@@ -1794,8 +1856,8 @@ sk_network_1) (Past sk_fail_1)))`.
 so split a disjunctive condition into one rule per disjunct (each fires on either):
 
       A package that is fragile or heavy is flagged.
-        →  (: fragile_flagged (Implication (Premises (Member $x package) (Member $x fragile)) (Conclusions (Member $x flagged))) (STV 1.0 0.99))
-           (: heavy_flagged   (Implication (Premises (Member $x package) (Member $x heavy))   (Conclusions (Member $x flagged))) (STV 1.0 0.99))
+        →  (: fragile_flagged (Implication (And (Member $x package) (Member $x fragile)) (Member $x flagged)) (STV 1.0 0.99))
+           (: heavy_flagged   (Implication (And (Member $x package) (Member $x heavy)) (Member $x flagged)) (STV 1.0 0.99))
 
 **Disjunctive question → one query line per disjunct** (a single `(Or …)` query would need *all*
 disjuncts); any match is the answer:
@@ -1826,8 +1888,8 @@ disjunct once one is confirmed (e.g. later in the passage):
       The door is either open or closed.        (contradictory states → exclusive)
         →  (Member sk_door_1 door)
            (: door_xor (Xor (Member sk_door_1 open) (Member sk_door_1 closed)) (STV 1.0 0.99))
-           (: door_excl_1 (Implication (Premises (Member sk_door_1 open)) (Conclusions (Member sk_door_1 closed))) (STV 0.0 0.99))
-           (: door_excl_2 (Implication (Premises (Member sk_door_1 closed)) (Conclusions (Member sk_door_1 open))) (STV 0.0 0.99))
+           (: door_excl_1 (Implication (Member sk_door_1 open) (Member sk_door_1 closed)) (STV 0.0 0.99))
+           (: door_excl_2 (Implication (Member sk_door_1 closed) (Member sk_door_1 open)) (STV 0.0 0.99))
 
 So a later "It is open" (`(Member sk_door_1 open)` at strength 1) makes the reasoner derive
 `(Member sk_door_1 closed)` at **strength 0** — the other option is ruled out. With no disjunct yet
@@ -1921,9 +1983,7 @@ reuse their symbols, re-emit nothing (see **Input**).
 **rule variable** (put the relative clause in the premises):
 
     Every farmer who owns a donkey beats it.
-      →  (: every_farmer_beats_donkey (Implication
-            (Premises (Member $f farmer) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d donkey))
-            (Conclusions (Member (sk_beat $f $d) beat) (Agent (sk_beat $f $d) $f) (Patient (sk_beat $f $d) $d))) (STV 1.0 0.9))   ; it = $d
+      →  (: every_farmer_beats_donkey (Implication (And (Member $f farmer) (Member $e own) (Holder $e $f) (Theme $e $d) (Member $d donkey)) (And (Member (sk_beat $f $d) beat) (Agent (sk_beat $f $d) $f) (Patient (sk_beat $f $d) $d))) (STV 1.0 0.9))   ; it = $d
 
 ## Queries — converting a question
 
