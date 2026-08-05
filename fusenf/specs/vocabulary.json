@@ -2,9 +2,9 @@
   "meta": {
     "schema": "fusenf-vocabulary/1",
     "generated": "2026-07-27",
-    "prompt_sha256": "98671f6303eecd801b1b07f2be2b15b296db3c42bea2b15a2093fa366c4ee1c5",
+    "prompt_sha256": "d8f5caff0d7d224442e1016c93d25176a6aee9caa8a20d276f1e2704abe3d3fe",
     "seeded_sha256": "0b743262298318bf647029215e294d88aea0aef234be33b12d26b4d33ce86dc2",
-    "prompt_lines": 2106,
+    "prompt_lines": 2161,
     "seeded_rules": 106,
     "method": "two independent full-prompt extractions (different models) reconciled against a mechanical inventory of every atom in the 316 regression goldens, the e2e harness and the seeded rules; 17 field disagreements adjudicated by the orchestrator and marked _adjudicated",
     "attestation_sources": [
@@ -20,7 +20,7 @@
       "field_disagreements": 17
     },
     "revised": "2026-08-03",
-    "revision_note": "re-pinned 2026-08-03 after the role fix-batch (gap-0017 singular-collective non-distribution, gap-0028 passive by-phrase = Agent, gap-0029 occurrence-object Patient, gap-0010 expire). Also registered 62 oblique prepositions as open class — prompt.txt names obliques after their own preposition, so that head set cannot be enumerated and C4 was flagging correct parses. No operator added, removed or re-typed. Goldens 331, e2e 329."
+    "revision_note": "re-pinned 2026-08-04, M1-round-3 fixes: gap-0035 `Ongoing` requires one of three explicit markers (progressive / continuative perfect / inceptive complement) and a bare simple present gets NO status atom; gap-0036 the psych/Experiencer carve-out is bounded by the PROGRESSIVE TEST rather than an example list (discover/notice/realise are events -> Agent); gap-0037 a subject-matter PP takes the preposition-named oblique (On e x), not Location/Theme/Patient. Goldens 342, e2e 329."
   },
   "field_semantics": {
     "class": "core-link | role | status | property-constructor | operator | discourse | surface-record | engine",

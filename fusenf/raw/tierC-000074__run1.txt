@@ -1,0 +1,6 @@
+(: plasmid_typ (Member sk_plasmid_1 plasmid) (STV 1.0 0.99))
+(: plasmid_desired (Member sk_plasmid_1 desired) (STV 1.0 0.99))
+(: plasmid_white (Member sk_plasmid_1 white) (STV 1.0 0.99))
+(: rc_genus (Inheritance recombinant_colony colony) (STV 1.0 0.99))
+(: rc_prop (Inheritance recombinant_colony recombinant) (STV 1.0 0.99))
+(: colonies_not_contain (And (GroupOf sk_group_1 recombinant_colony) (Member sk_contain_1 contain) (Agent sk_contain_1 sk_group_1) (Theme sk_contain_1 sk_plasmid_1) (Might sk_contain_1)) (STV 0.0 0.99))

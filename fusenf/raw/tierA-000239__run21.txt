@@ -1,0 +1,2 @@
+(: freight_typ (Member sk_freight_1 freight) (STV 1.0 0.99))
+(: freight_not_arrive (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_freight_1) (Time sk_arrive_1 (Hour 12))) (STV 0.0 0.99))

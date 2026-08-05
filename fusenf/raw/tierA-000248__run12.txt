@@ -1,0 +1,4 @@
+(: samples_grp (GroupOf sk_group_1 soil_sample) (STV 1.0 0.99))
+(: soilsample_genus (Inheritance soil_sample sample) (STV 1.0 0.99))
+(: samples_not_arrive (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_group_1) (Instrument sk_arrive_1 post)) (STV 0.0 0.99))
+(: samples_not_arrive_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_arrive $x) arrive) (Agent (sk_arrive $x) $x) (Instrument (sk_arrive $x) post))) (STV 0.0 0.9))

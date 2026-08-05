@@ -1,0 +1,6 @@
+(: tutor_mem (Member sk_tutor_1 tutor) (STV 1.0 0.99))
+(: sess_mem (Member sk_session_1 afternoon_session) (STV 1.0 0.99))
+(: sess_genus (Inheritance afternoon_session session) (STV 1.0 0.99))
+(: confirm_mem (Member sk_confirm_1 confirm) (STV 1.0 0.99))
+(: confirm_agent (Agent sk_confirm_1 sk_tutor_1) (STV 1.0 0.99))
+(: confirm_theme (Theme sk_confirm_1 sk_session_1) (STV 1.0 0.99))

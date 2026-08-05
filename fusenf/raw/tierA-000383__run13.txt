@@ -1,0 +1,2 @@
+(: samples_grp (GroupOf sk_samples_1 sample) (STV 1.0 0.99))
+(: phys_no_examine (Implication (Premises (Member $x physician)) (Conclusions (Member (sk_examine $x) examine) (Agent (sk_examine $x) $x) (Theme (sk_examine $x) sk_samples_1))) (STV 0.0 0.9))

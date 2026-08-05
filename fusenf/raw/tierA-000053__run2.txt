@@ -1,0 +1,6 @@
+(: survey_mem (Member sk_shoreline_survey_1 shoreline_survey) (STV 1.0 0.99))
+(: survey_genus (Inheritance shoreline_survey survey) (STV 1.0 0.99))
+(: start_ev (Member sk_start_1 start) (STV 1.0 0.99))
+(: start_patient (Patient sk_start_1 sk_shoreline_survey_1) (STV 1.0 0.99))
+(: start_time (Time sk_start_1 dawn) (STV 1.0 0.99))
+(: start_future (Future sk_start_1) (STV 1.0 0.99))

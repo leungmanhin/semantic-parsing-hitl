@@ -1,0 +1,8 @@
+(: illegal_state (Member sk_illegal_1 illegal) (STV 1.0 0.99))
+(: illegal_exp (Experiencer sk_illegal_1 prostitution) (STV 1.0 0.99))
+(: illegal_loc (Location sk_illegal_1 canada) (STV 1.0 0.99))
+(: prostitution_illegal (Inheritance prostitution illegal) (STV 1.0 0.9))
+(: canada_name (Name canada "Canada") (STV 1.0 0.99))
+(: relate_sym (Symmetric Relate) (STV 1.0 0.99))
+(: activity_legal_rule (Implication (And (Member $x activity) (Relate $x prostitution)) (Member $x legal)) (STV 0.9 0.9))
+(: activity_q (QuantifierPhrase activity legal "most") (STV 1.0 0.99))

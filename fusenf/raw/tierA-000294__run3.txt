@@ -1,0 +1,4 @@
+(: elder_m (Member sk_elder_1 elder) (STV 1.0 0.99))
+(: children_g (GroupOf sk_children_1 child) (STV 1.0 0.99))
+(: song_m (Member sk_song_1 song) (STV 1.0 0.99))
+(: neg_teach (And (Member sk_teach_1 teach) (Agent sk_teach_1 sk_elder_1) (Recipient sk_teach_1 sk_children_1) (Theme sk_teach_1 sk_song_1)) (STV 0.0 0.99))

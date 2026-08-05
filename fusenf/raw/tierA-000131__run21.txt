@@ -1,0 +1,2 @@
+(: ledger_typing (Member sk_ledger_1 ledger) (STV 1.0 0.99))
+(: auditor_not_discover (And (Member sk_discover_1 discover) (Agent sk_discover_1 sk_auditor_1) (Member sk_auditor_1 auditor) (Theme sk_discover_1 sk_error_1) (Member sk_error_1 error) (Location sk_discover_1 sk_ledger_1)) (STV 0.0 0.99))

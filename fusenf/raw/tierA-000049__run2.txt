@@ -1,0 +1,7 @@
+(: pipe_feed_mem (Member sk_feed_pipe_1 feed_pipe) (STV 1.0 0.99))
+(: pipe_feed_genus (Inheritance feed_pipe pipe) (STV 1.0 0.99))
+(: pipe_cracked (Member sk_feed_pipe_1 cracked) (STV 1.0 0.99))
+(: crew_mem (Member sk_crew_1 crew) (STV 1.0 0.99))
+(: repair_ev (Member sk_repair_1 repair) (STV 1.0 0.99))
+(: repair_agent (Agent sk_repair_1 sk_crew_1) (STV 1.0 0.99))
+(: repair_patient (Patient sk_repair_1 sk_feed_pipe_1) (STV 1.0 0.99))

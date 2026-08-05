@@ -1,0 +1,7 @@
+(: t51_pipe_type (Member sk_pipe_1 feed_pipe) (STV 1.0 0.99))
+(: t51_pipe_genus (Inheritance feed_pipe pipe) (STV 1.0 0.99))
+(: t51_pipe_cracked (Member sk_pipe_1 cracked) (STV 1.0 0.99))
+(: t51_crew_type (Member sk_crew_1 crew) (STV 1.0 0.99))
+(: t51_repair_class (Member sk_repair_1 repair) (STV 1.0 0.99))
+(: t51_repair_agent (Agent sk_repair_1 sk_pipe_1) (STV 1.0 0.99))
+(: t51_repair_patient (Patient sk_repair_1 sk_crew_1) (STV 1.0 0.99))

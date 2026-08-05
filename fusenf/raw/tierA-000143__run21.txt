@@ -1,0 +1,6 @@
+(: air1 (Member sk_airline_1 airline) (STV 1.0 0.99))
+(: flt1 (Member sk_flight_1 evening_flight) (STV 1.0 0.99))
+(: flt1_genus (Inheritance evening_flight flight) (STV 1.0 0.99))
+(: cxl1 (Member sk_cancel_1 cancel) (STV 1.0 0.99))
+(: cxl1_agent (Agent sk_cancel_1 sk_airline_1) (STV 1.0 0.99))
+(: cxl1_patient (Patient sk_cancel_1 sk_flight_1) (STV 1.0 0.99))

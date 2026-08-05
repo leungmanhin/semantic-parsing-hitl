@@ -1,0 +1,7 @@
+(: dep_m (Member sk_depot_1 depot) (STV 1.0 0.99))
+(: e_buy (Member sk_buy_1 buy) (STV 1.0 0.99))
+(: e_ag (Agent sk_buy_1 sk_depot_1) (STV 1.0 0.99))
+(: e_th (Theme sk_buy_1 sk_group_1) (STV 1.0 0.99))
+(: grp_of (GroupOf sk_group_1 forklift) (STV 1.0 0.99))
+(: grp_card (Cardinality sk_group_1 3) (STV 1.0 0.99))
+(: e_past (Past sk_buy_1) (STV 1.0 0.99))

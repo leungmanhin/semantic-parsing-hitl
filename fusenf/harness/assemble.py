@@ -32,6 +32,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import records as R  # noqa: E402
 import validator as V  # noqa: E402
+import impl_syntax as IMPL  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FUSENF = os.path.dirname(HERE)
@@ -144,10 +145,19 @@ def main(argv=None) -> int:
             with open(path, "r", encoding="utf-8") as fh:
                 raw_text = fh.read()
             statements, strip_log = R.extract_atoms(raw_text)
+            # PeTTaChainer cfe25f9 dropped the (Premises ...)/(Conclusions ...) implication
+            # wrappers. Normalize HERE rather than rewriting raw/: those files are the provenance
+            # record of what a given model emitted under a given prompt_sha256, and editing them
+            # would falsify that. The converter is idempotent, so parses from before and after the
+            # prompt migration assemble to the same shape.
+            statements, n_converted = zip(*(IMPL.convert(s) for s in statements)) \
+                if statements else ((), ())
+            statements = list(statements)
             record = R.build_record(item, statements, run, provenance)
             record["extraction"] = {
                 "raw_file": os.path.basename(path),
                 "strip_log": strip_log,
+                "impl_syntax_converted": sum(n_converted),
             }
             built.append((record, None))
 

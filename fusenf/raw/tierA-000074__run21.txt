@@ -1,0 +1,6 @@
+(: e_warden (Member sk_warden_1 warden) (STV 1.0 0.99))
+(: e_forbid (Member sk_forbid_1 forbid) (STV 1.0 0.99))
+(: e_agent (Agent sk_forbid_1 sk_warden_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_forbid_1 visitor) (STV 1.0 0.99))
+(: e_time (Time sk_forbid_1 (Weekday sunday)) (STV 1.0 0.99))
+(: e_every (Every sk_forbid_1 1 week) (STV 1.0 0.99))

@@ -39,7 +39,11 @@ from records import (  # noqa: E402
     term_key,
 )
 
-PETTA_PYTHON_PATH = "/home/manhin/Dev/PeTTa-fiet/python"
+# PeTTaChainer cfe25f9 (2026-08-04) makes PeTTa an ordinary pinned dependency, so there is no
+# fork checkout to put on sys.path any more. C7 now needs the interpreter from PeTTaChainer's own
+# uv environment: run the harness under `cd /home/manhin/Dev/PeTTaChainer && uv run python ...`,
+# or point PETTA_VENV_PYTHON at that interpreter. Kept as a fallback for older checkouts.
+PETTA_PYTHON_PATH = os.environ.get("PETTA_PYTHON_PATH", "")
 
 CHECKS = ("C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8")
 
@@ -550,15 +554,18 @@ def check_c6(record: dict, statements: Sequence[str], parsed: Sequence[dict], vo
             for var in free:
                 add(f"free variable {var} outside an Implication")
         else:
+            # PeTTaChainer cfe25f9: an Implication is positional — expr[1] is the antecedent
+            # (which binds) and expr[2] the consequent (which uses). There is no (Premises …)
+            # head to key off any more.
             bound: set[str] = set()
             used: set[str] = set()
-            for part in expr[1:]:
-                target = bound if _head_of(part) == "Premises" else used
+            for idx, part in enumerate(expr[1:], start=1):
+                target = bound if idx == 1 else used
                 for tok in iter_tokens(part):
                     if isinstance(tok, str) and is_variable(tok):
                         target.add(tok)
             for var in sorted(used - bound):
-                add(f"variable {var} appears in the conclusions but is not bound by any premise")
+                add(f"variable {var} appears in the consequent but is not bound by the antecedent")
     return out
 
 
@@ -568,7 +575,7 @@ def check_c6(record: dict, statements: Sequence[str], parsed: Sequence[dict], vo
 
 
 def _load_chainer():
-    if PETTA_PYTHON_PATH not in sys.path:
+    if PETTA_PYTHON_PATH and PETTA_PYTHON_PATH not in sys.path:
         sys.path.insert(0, PETTA_PYTHON_PATH)
     buf = io.StringIO()
     with redirect_stdout(buf), redirect_stderr(buf):

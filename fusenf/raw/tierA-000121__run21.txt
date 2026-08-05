@@ -1,0 +1,2 @@
+(: e_departure (Member sk_departure_1 departure) (STV 1.0 0.99))
+(: ferry_not_postpone (And (Member sk_postpone_1 postpone) (Agent sk_postpone_1 sk_ferry_1) (Member sk_ferry_1 ferry) (Patient sk_postpone_1 sk_departure_1) (Possession sk_departure_1 sk_ferry_1)) (STV 0.0 0.99))

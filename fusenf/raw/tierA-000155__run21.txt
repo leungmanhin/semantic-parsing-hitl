@@ -1,0 +1,6 @@
+(: sess_mem (Member sk_session_1 afternoon_session) (STV 1.0 0.99))
+(: sess_genus (Inheritance afternoon_session session) (STV 1.0 0.99))
+(: tutor_mem (Member sk_tutor_1 tutor) (STV 1.0 0.99))
+(: cancel_mem (Member sk_cancel_1 cancel) (STV 1.0 0.99))
+(: cancel_patient (Patient sk_cancel_1 sk_session_1) (STV 1.0 0.99))
+(: cancel_agent (Agent sk_cancel_1 sk_tutor_1) (STV 1.0 0.99))

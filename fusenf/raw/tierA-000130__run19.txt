@@ -1,0 +1,7 @@
+(: s130_error (Member sk_error_1 error) (STV 1.0 0.99))
+(: s130_ledger (Member sk_ledger_1 ledger) (STV 1.0 0.99))
+(: s130_loc (Location sk_error_1 sk_ledger_1) (STV 1.0 0.99))
+(: s130_auditor (Member sk_auditor_1 auditor) (STV 1.0 0.99))
+(: s130_discover (Member sk_discover_1 discover) (STV 1.0 0.99))
+(: s130_agt (Agent sk_discover_1 sk_auditor_1) (STV 1.0 0.99))
+(: s130_theme (Theme sk_discover_1 sk_error_1) (STV 1.0 0.99))

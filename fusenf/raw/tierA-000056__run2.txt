@@ -1,0 +1,6 @@
+(: survey_member (Member sk_survey_1 shoreline_survey) (STV 1.0 0.99))
+(: survey_genus (Inheritance shoreline_survey survey) (STV 1.0 0.99))
+(: end_member (Member sk_end_1 end) (STV 1.0 0.99))
+(: end_patient (Patient sk_end_1 sk_survey_1) (STV 1.0 0.99))
+(: end_time (Time sk_end_1 dawn) (STV 1.0 0.99))
+(: end_future (Future sk_end_1) (STV 1.0 0.99))

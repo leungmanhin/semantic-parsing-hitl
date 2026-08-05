@@ -58,8 +58,8 @@ CLEAN_STATEMENTS = [
     '(: scan_patient (Patient sk_scan_1 sk_ledger_1) (STV 1.0 0.99))',
     '(: ledger_kind (Member sk_ledger_1 ledger) (STV 1.0 0.99))',
     '(: scan_past (Past sk_scan_1) (STV 1.0 0.99))',
-    '(: ledger_fragile (Implication (Premises (Member $x ledger)) '
-    '(Conclusions (Member $x fragile))) (STV 0.9 0.9))',
+    '(: ledger_fragile (Implication (Member $x ledger) '
+    '(Member $x fragile)) (STV 0.9 0.9))',
 ]
 
 
@@ -111,8 +111,8 @@ class TestCleanRecord(unittest.TestCase):
                 '(: cousin_sym (Symmetric Cousin) (STV 1.0 0.99))',
             ],
             "skolem function head": [
-                '(: hunt_rule (Implication (Premises (Member $x wolf)) '
-                '(Conclusions (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x))) (STV 1.0 0.9))',
+                '(: hunt_rule (Implication (Member $x wolf) '
+                '(And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x))) (STV 1.0 0.9))',
             ],
             "lowercase property constructor": [
                 '(: gulls_can_fly (Inheritance gull (can fly)) (STV 0.9 0.9))',
@@ -273,8 +273,8 @@ class TestC5(unittest.TestCase):
 
     def test_malformed_variable(self):
         result = run_checks([
-            '(: rule_bad (Implication (Premises (Member $1x ledger)) '
-            '(Conclusions (Member $1x fragile))) (STV 0.9 0.9))'
+            '(: rule_bad (Implication (Member $1x ledger) '
+            '(Member $1x fragile)) (STV 0.9 0.9))'
         ])
         self.assertIn("malformed variable", details(result, "C5"))
 
@@ -300,10 +300,10 @@ class TestC6(unittest.TestCase):
 
     def test_conclusion_variable_not_bound_by_a_premise(self):
         result = run_checks([
-            '(: unbound (Implication (Premises (Member $x ledger)) '
-            '(Conclusions (Member $y fragile))) (STV 0.9 0.9))'
+            '(: unbound (Implication (Member $x ledger) '
+            '(Member $y fragile)) (STV 0.9 0.9))'
         ])
-        self.assertIn("not bound by any premise", details(result, "C6"))
+        self.assertIn("not bound by the antecedent", details(result, "C6"))
 
     def test_role_on_a_literal(self):
         result = run_checks(['(: lit (Agent "Maria" sk_archivist_1) (STV 1.0 0.99))'])
@@ -432,12 +432,12 @@ class TestExtractAtoms(unittest.TestCase):
         self.assertIn("C4", found)  # the misspelled head
 
     def test_joins_a_hard_wrapped_statement(self):
-        raw = ("(: ledger_fragile (Implication (Premises (Member $x ledger))\n"
-               "   (Conclusions (Member $x fragile))) (STV 0.9 0.9))\n")
+        raw = ("(: ledger_fragile (Implication (Member $x ledger)\n"
+               "   (Member $x fragile)) (STV 0.9 0.9))\n")
         statements, strip_log = R.extract_atoms(raw)
         self.assertEqual(statements, [
-            '(: ledger_fragile (Implication (Premises (Member $x ledger)) '
-            '(Conclusions (Member $x fragile))) (STV 0.9 0.9))'
+            '(: ledger_fragile (Implication (Member $x ledger) '
+            '(Member $x fragile)) (STV 0.9 0.9))'
         ])
         self.assertTrue(any("joined-continuation" in entry for entry in strip_log))
 

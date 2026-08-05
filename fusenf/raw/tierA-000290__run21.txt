@@ -1,0 +1,2 @@
+(: squad_mem (Member sk_squad_1 squad) (STV 1.0 0.99))
+(: coach_not_teach (And (Member sk_teach_1 teach) (Agent sk_teach_1 sk_coach_1) (Member sk_coach_1 coach) (Recipient sk_teach_1 sk_squad_1) (Theme sk_teach_1 sk_drill_1) (Member sk_drill_1 drill)) (STV 0.0 0.99))

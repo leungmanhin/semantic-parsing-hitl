@@ -1,0 +1,4 @@
+(: dr1_mem (Member sk_dress_rehearsal_1 dress_rehearsal) (STV 1.0 0.99))
+(: dr1_gen (Inheritance dress_rehearsal rehearsal) (STV 1.0 0.99))
+(: lunch1_mem (Member sk_lunch_1 lunch) (STV 1.0 0.99))
+(: e1_neg (And (Member sk_begin_1 begin) (Patient sk_begin_1 sk_dress_rehearsal_1) (Before sk_lunch_1 sk_begin_1) (Future sk_begin_1)) (STV 0.0 0.99))

@@ -1,0 +1,3 @@
+(: e_museum (Member sk_museum_1 museum) (STV 1.0 0.99))
+(: e_gallery (Member sk_gallery_1 gallery) (STV 1.0 0.99))
+(: museum_not_lend (And (Member sk_lend_1 lend) (Agent sk_lend_1 sk_museum_1) (Recipient sk_lend_1 sk_gallery_1) (Theme sk_lend_1 sk_painting_1) (Member sk_painting_1 painting)) (STV 0.0 0.99))

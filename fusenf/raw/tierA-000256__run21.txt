@@ -1,0 +1,2 @@
+(: founder_typ (Member sk_founder_1 founder) (STV 1.0 0.99))
+(: founder_not_die (And (Member sk_die_1 die) (Patient sk_die_1 sk_founder_1) (Measure sk_die_1 age 90 year)) (STV 0.0 0.99))

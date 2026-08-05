@@ -1,0 +1,6 @@
+(: i154_tutor (Member sk_tutor_1 tutor) (STV 1.0 0.99))
+(: i154_session (Member sk_afternoon_session_1 afternoon_session) (STV 1.0 0.99))
+(: i154_session_genus (Inheritance afternoon_session session) (STV 1.0 0.99))
+(: i154_e (Member sk_call_off_1 call_off) (STV 1.0 0.99))
+(: i154_agent (Agent sk_call_off_1 sk_tutor_1) (STV 1.0 0.99))
+(: i154_patient (Patient sk_call_off_1 sk_afternoon_session_1) (STV 1.0 0.99))

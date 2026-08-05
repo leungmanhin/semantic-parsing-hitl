@@ -1,0 +1,7 @@
+(: e6_group_of (GroupOf sk_group_1 child) (STV 1.0 0.99))
+(: e6_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: e6_stroll_mem (Member sk_stroll_1 stroll) (STV 1.0 0.99))
+(: e6_stroll_agent (Agent sk_stroll_1 sk_group_1) (STV 1.0 0.99))
+(: e6_stroll_goal (Goal sk_stroll_1 sk_pier_1) (STV 1.0 0.99))
+(: e6_pier_mem (Member sk_pier_1 pier) (STV 1.0 0.99))
+(: e6_stroll_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_stroll $x) stroll) (Agent (sk_stroll $x) $x) (Goal (sk_stroll $x) sk_pier_1))) (STV 1.0 0.9))

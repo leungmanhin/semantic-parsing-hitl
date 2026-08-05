@@ -1,0 +1,7 @@
+(: e4_group_of (GroupOf sk_group_1 child) (STV 1.0 0.99))
+(: e4_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: e4_walk_mem (Member sk_walk_1 walk) (STV 1.0 0.99))
+(: e4_walk_agent (Agent sk_walk_1 sk_group_1) (STV 1.0 0.99))
+(: e4_walk_goal (Goal sk_walk_1 sk_pier_1) (STV 1.0 0.99))
+(: e4_pier_mem (Member sk_pier_1 pier) (STV 1.0 0.99))
+(: e4_walk_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_walk $x) walk) (Agent (sk_walk $x) $x) (Goal (sk_walk $x) sk_pier_1))) (STV 1.0 0.9))

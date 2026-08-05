@@ -1,0 +1,2 @@
+(: footbridge_1 (Member sk_footbridge_1 footbridge) (STV 1.0 0.99))
+(: flood_not_destroy (And (Member sk_destroy_1 destroy) (Agent sk_destroy_1 sk_flood_1) (Member sk_flood_1 flood) (Patient sk_destroy_1 sk_footbridge_1)) (STV 0.0 0.99))

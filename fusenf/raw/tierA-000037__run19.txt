@@ -1,0 +1,7 @@
+(: electrician_e (Member sk_electrician_1 electrician) (STV 1.0 0.99))
+(: floodlight_e (Member sk_floodlight_1 yard_floodlight) (STV 1.0 0.99))
+(: floodlight_genus (Inheritance yard_floodlight floodlight) (STV 1.0 0.99))
+(: mend_e (Member sk_mend_1 mend) (STV 1.0 0.99))
+(: mend_agent (Agent sk_mend_1 sk_electrician_1) (STV 1.0 0.99))
+(: mend_patient (Patient sk_mend_1 sk_floodlight_1) (STV 1.0 0.99))
+(: mend_past (Past sk_mend_1) (STV 1.0 0.99))

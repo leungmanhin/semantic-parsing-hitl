@@ -1,0 +1,5 @@
+(: harvest_genus (Inheritance apple_harvest harvest) (STV 1.0 0.99))
+(: harvest_witness (Member sk_harvest_1 apple_harvest) (STV 1.0 0.99))
+(: end_event (Member sk_end_1 end) (STV 1.0 0.99))
+(: end_patient (Patient sk_end_1 sk_harvest_1) (STV 1.0 0.99))
+(: end_time (Time sk_end_1 (Month september)) (STV 1.0 0.99))

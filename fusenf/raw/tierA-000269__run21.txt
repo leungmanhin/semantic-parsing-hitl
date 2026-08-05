@@ -1,0 +1,3 @@
+(: e269_lib (Member sk_library_1 library) (STV 1.0 0.99))
+(: e269_rule (Implication (Member $x member) (And (Member (sk_give $x) give) (Agent (sk_give $x) sk_library_1) (Recipient (sk_give $x) $x) (Theme (sk_give $x) (sk_cards $x)) (GroupOf (sk_cards $x) card) (Cardinality (sk_cards $x) 2))) (STV 1.0 0.9))
+(: e269_q (QuantifierPhrase member give "each") (STV 1.0 0.99))

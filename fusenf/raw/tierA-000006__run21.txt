@@ -1,0 +1,8 @@
+(: e6_group (GroupOf sk_group_1 forklift) (STV 1.0 0.99))
+(: e6_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: e6_buy (Member sk_buy_1 buy) (STV 1.0 0.99))
+(: e6_agent (Agent sk_buy_1 sk_group_1) (STV 1.0 0.99))
+(: e6_depot (Member sk_depot_1 depot) (STV 1.0 0.99))
+(: e6_theme (Theme sk_buy_1 sk_depot_1) (STV 1.0 0.99))
+(: e6_past (Past sk_buy_1) (STV 1.0 0.99))
+(: e6_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_buy $x) buy) (Agent (sk_buy $x) $x) (Theme (sk_buy $x) sk_depot_1) (Past (sk_buy $x)))) (STV 1.0 0.9))

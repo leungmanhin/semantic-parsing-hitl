@@ -1,0 +1,3 @@
+(: soil_sample_genus (Inheritance soil_sample sample) (STV 1.0 0.99))
+(: sample_group (GroupOf sk_group_1 soil_sample) (STV 1.0 0.99))
+(: arrive_neg (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_group_1) (Instrument sk_arrive_1 post)) (STV 0.0 0.99))

@@ -1,0 +1,4 @@
+(: dara_name (Name dara "Dara") (STV 1.0 0.99))
+(: nils_name (Name nils "Nils") (STV 1.0 0.99))
+(: ldg_1 (Member sk_ledger_1 ledger) (STV 1.0 0.99))
+(: wrk_neg (And (Member sk_work_1 work) (Agent sk_work_1 dara) (CoAgent sk_work_1 nils) (On sk_work_1 sk_ledger_1)) (STV 0.0 0.99))

@@ -1,0 +1,8 @@
+(: children2_g (GroupOf sk_children_1 child) (STV 1.0 0.99))
+(: learn2 (Member sk_learn_1 learn) (STV 1.0 0.99))
+(: learn2_agent (Agent sk_learn_1 sk_children_1) (STV 1.0 0.99))
+(: learn2_theme (Theme sk_learn_1 sk_song_1) (STV 1.0 0.99))
+(: song2 (Member sk_song_1 song) (STV 1.0 0.99))
+(: learn2_source (Source sk_learn_1 sk_elder_1) (STV 1.0 0.99))
+(: elder2 (Member sk_elder_1 elder) (STV 1.0 0.99))
+(: children2_rule (Implication (PartOf $x sk_children_1) (And (Member (sk_learn $x) learn) (Agent (sk_learn $x) $x) (Theme (sk_learn $x) sk_song_1) (Source (sk_learn $x) sk_elder_1))) (STV 1.0 0.9))

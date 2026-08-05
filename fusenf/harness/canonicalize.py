@@ -1,4 +1,4 @@
-"""FUSE-NF deterministic canonicalizer (``fusenf-canon/2``).
+"""FUSE-NF deterministic canonicalizer (``fusenf-canon/3``).
 
 Implements ``specs/canonicalization.md``.  Turns a faithful parse record
 (``specs/schema.md`` §3) into a canonical record with three identity hashes.
@@ -45,8 +45,11 @@ import json
 import os
 import re
 
-CANON_VERSION = "fusenf-canon/2"  # /2: And-conjuncts canonically ordered, and the skolem
+CANON_VERSION = "fusenf-canon/3"  # /2: And-conjuncts canonically ordered, and the skolem
 # renaming derived from the sorted term rather than emission order (M1 v4, 2026-07-29)
+# /3: PeTTaChainer cfe25f9 dropped the (Premises ...)/(Conclusions ...) implication wrappers, so
+# ``And`` is the only commutative head left. This changes every hash — regenerate all canonical
+# files; do not compare a /3 graph_id against a /2 one. (2026-08-04)
 
 #: §4.6 — identity uses exact truth values until M1 reports ``tv-only`` jitter.
 BUCKET_TV_IN_HASHES = False
@@ -538,7 +541,7 @@ def _tv_sort_key(stv, bucket_tv):
 # anywhere in the pipeline.  ``Or`` / ``Xor`` are deliberately NOT here: they are
 # opaque heads the chainer matches verbatim, so their argument order is still
 # operationally load-bearing and reordering it would hide a real difference.
-COMMUTATIVE_HEADS = ("Premises", "Conclusions", "And")
+COMMUTATIVE_HEADS = ("And",)
 
 
 def _sort_conjuncts(term, keyfn):

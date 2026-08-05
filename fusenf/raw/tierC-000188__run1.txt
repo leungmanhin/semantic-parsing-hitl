@@ -1,0 +1,8 @@
+(: bti_g (Inheritance botulinum_toxin_injection injection) (STV 1.0 0.99))
+(: bti_local (Inheritance botulinum_toxin_injection local) (STV 1.0 0.99))
+(: bti_intraderm (Inheritance botulinum_toxin_injection intradermal) (STV 1.0 0.99))
+(: fn_g (Inheritance focal_neuropathy neuropathy) (STV 1.0 0.99))
+(: fn_focal (Inheritance focal_neuropathy focal) (STV 1.0 0.99))
+(: bti_helpful (ConditionalProperty botulinum_toxin_injection helpful focal_neuropathy) (STV 0.9 0.9))
+(: bti_painful (ConditionalProperty botulinum_toxin_injection painful focal_neuropathy) (STV 0.9 0.9))
+(: bti_painful_deg (Degree botulinum_toxin_injection painful chronically) (STV 1.0 0.99))

@@ -1,0 +1,3 @@
+(: e_app (Member sk_app_1 loan_application) (STV 1.0 0.99))
+(: e_app_genus (Inheritance loan_application application) (STV 1.0 0.99))
+(: bank_not_reject (And (Member sk_reject_1 reject) (Agent sk_reject_1 sk_bank_1) (Member sk_bank_1 bank) (Theme sk_reject_1 sk_app_1)) (STV 0.0 0.99))

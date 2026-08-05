@@ -1,0 +1,2 @@
+(: e_greenhouse (Member sk_greenhouse_1 greenhouse) (STV 1.0 0.99))
+(: storm_not_destroy (And (Member sk_destroy_1 destroy) (Agent sk_destroy_1 sk_storm_1) (Member sk_storm_1 storm) (Patient sk_destroy_1 sk_greenhouse_1)) (STV 0.0 0.99))

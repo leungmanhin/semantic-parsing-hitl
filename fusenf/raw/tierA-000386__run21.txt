@@ -1,0 +1,6 @@
+(: t386_doctor (Member sk_doctor_1 doctor) (STV 1.0 0.99))
+(: t386_scan (Member sk_scan_1 scan) (STV 1.0 0.99))
+(: t386_ord (Ordinal sk_scan_1 2 scan) (STV 1.0 0.99))
+(: t386_ev (Member sk_order_1 order) (STV 1.0 0.99))
+(: t386_agent (Agent sk_order_1 sk_doctor_1) (STV 1.0 0.99))
+(: t386_theme (Theme sk_order_1 sk_scan_1) (STV 1.0 0.99))

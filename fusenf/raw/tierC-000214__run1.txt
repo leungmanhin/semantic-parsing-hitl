@@ -1,0 +1,8 @@
+(: room_m (Member sk_room_1 room) (STV 1.0 0.99))
+(: e_build (Member sk_build_1 build) (STV 1.0 0.99))
+(: e_build_pat (Patient sk_build_1 sk_room_1) (STV 1.0 0.99))
+(: barometer_m (Member sk_barometer_1 barometer) (STV 1.0 0.99))
+(: e_build_instr1 (Instrument sk_build_1 sk_barometer_1) (STV 1.0 0.99))
+(: scale_m (Member sk_scale_1 scale) (STV 1.0 0.99))
+(: scale_presented (Member sk_scale_1 present) (STV 1.0 0.99))
+(: e_build_instr2 (Instrument sk_build_1 sk_scale_1) (STV 1.0 0.99))

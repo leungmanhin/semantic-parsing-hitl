@@ -1,0 +1,7 @@
+(: e3_acquire (Member sk_acquire_1 acquire) (STV 1.0 0.99))
+(: e3_depot (Member sk_depot_1 depot) (STV 1.0 0.99))
+(: e3_agent (Agent sk_acquire_1 sk_depot_1) (STV 1.0 0.99))
+(: e3_group (GroupOf sk_group_1 forklift) (STV 1.0 0.99))
+(: e3_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: e3_theme (Theme sk_acquire_1 sk_group_1) (STV 1.0 0.99))
+(: e3_past (Past sk_acquire_1) (STV 1.0 0.99))

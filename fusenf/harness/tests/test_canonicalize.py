@@ -238,8 +238,8 @@ DOGS_GROUP = [
     '(: eb (Member sk_bark_1 bark) (STV 1.0 0.99))',
     '(: eb_ag (Agent sk_bark_1 sk_group_1) (STV 1.0 0.99))',
     '(: eb_past (Past sk_bark_1) (STV 1.0 0.99))',
-    '(: r (Implication (Premises (PartOf $x sk_group_1))'
-    ' (Conclusions (Member (sk_bark $x) bark) (Agent (sk_bark $x) $x)'
+    '(: r (Implication (PartOf $x sk_group_1)'
+    ' (And (Member (sk_bark $x) bark) (Agent (sk_bark $x) $x)'
     ' (Past (sk_bark $x)))) (STV 1.0 0.9))',
     '(: f1 (Member fido dog) (STV 1.0 0.99))',
     '(: f2 (PartOf fido sk_group_1) (STV 1.0 0.99))',
@@ -253,8 +253,8 @@ DOGS_GROUP_ALPHA = [
     '(: eb (Member sk_bark_4 bark) (STV 1.0 0.99))',
     '(: eb_ag (Agent sk_bark_4 sk_grp_9) (STV 1.0 0.99))',
     '(: eb_past (Past sk_bark_4) (STV 1.0 0.99))',
-    '(: r (Implication (Premises (PartOf $z sk_grp_9))'
-    ' (Conclusions (Past (sk_bark $z)) (Agent (sk_bark $z) $z)'
+    '(: r (Implication (PartOf $z sk_grp_9)'
+    ' (And (Past (sk_bark $z)) (Agent (sk_bark $z) $z)'
     ' (Member (sk_bark $z) bark))) (STV 1.0 0.9))',
     '(: f1 (Member fido dog) (STV 1.0 0.99))',
     '(: f2 (PartOf fido sk_grp_9) (STV 1.0 0.99))',
@@ -265,17 +265,17 @@ DOGS_GROUP_ALPHA = [
 # (Compute == ($x $y) -> false).  Both occurrences of $x are the same variable.
 RIVALS = [
     '(: finalists_rivals (Implication'
-    ' (Premises (Member $x finalist) (Member $y finalist)'
+    ' (And (Member $x finalist) (Member $y finalist)'
     ' (Compute == ($x $y) -> false))'
-    ' (Conclusions (Rival $x $y))) (STV 1.0 0.9))',
+    ' (Rival $x $y)) (STV 1.0 0.9))',
     '(: sym (Symmetric Rival) (STV 1.0 0.99))',
 ]
 
 RIVALS_ALPHA = [
     '(: finalists_rivals (Implication'
-    ' (Premises (Member $aaa finalist) (Member $bbb finalist)'
+    ' (And (Member $aaa finalist) (Member $bbb finalist)'
     ' (Compute == ($aaa $bbb) -> false))'
-    ' (Conclusions (Rival $aaa $bbb))) (STV 1.0 0.9))',
+    ' (Rival $aaa $bbb)) (STV 1.0 0.9))',
     '(: sym (Symmetric Rival) (STV 1.0 0.99))',
 ]
 
@@ -666,11 +666,11 @@ class TestParseStatement(unittest.TestCase):
 
     def test_rule(self):
         got = C.parse_statement(
-            "(: r (Implication (Premises (Member $x fish))"
-            " (Conclusions (Member (sk_swim $x) swim))) (STV 0.9 0.9))"
+            "(: r (Implication (Member $x fish)"
+            " (Member (sk_swim $x) swim)) (STV 0.9 0.9))"
         )
         self.assertEqual(got["term"][0], "Implication")
-        self.assertEqual(got["term"][2], ["Conclusions", ["Member", ["sk_swim", "$x"], "swim"]])
+        self.assertEqual(got["term"][2], ["Member", ["sk_swim", "$x"], "swim"])
 
     def test_whitespace_and_newlines(self):
         got = C.parse_statement("(:  p\n   (Past   sk_e_1)\n  (STV 1.0 0.99) )")
@@ -851,7 +851,7 @@ class TestDeterminism(unittest.TestCase):
             "renaming", "stars", "exact", "stats",
         ):
             self.assertIn(field, canon)
-        self.assertEqual(canon["schema"], "fusenf-canon/2")
+        self.assertEqual(canon["schema"], "fusenf-canon/3")
         self.assertTrue(canon["graph_id"].startswith("sha256:"))
         self.assertEqual(
             sorted(canon["stats"]),

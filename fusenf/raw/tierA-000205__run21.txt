@@ -1,0 +1,3 @@
+(: t5_budget (Member sk_budget_1 budget) (STV 1.0 0.99))
+(: t5_poss (Possession sk_budget_1 next_year) (STV 1.0 0.99))
+(: t5_neg (And (Member sk_decide_1 decide) (Agent sk_decide_1 sk_board_1) (Member sk_board_1 board) (Theme sk_decide_1 sk_budget_1)) (STV 0.0 0.99))

@@ -1,0 +1,4 @@
+(: ana_name (Name ana "Ana") (STV 1.0 0.99))
+(: bo_name (Name bo "Bo") (STV 1.0 0.99))
+(: e_mural (Member sk_mural_1 mural) (STV 1.0 0.99))
+(: ana_not_work (And (Member sk_work_1 work) (Agent sk_work_1 ana) (CoAgent sk_work_1 bo) (On sk_work_1 sk_mural_1)) (STV 0.0 0.99))
