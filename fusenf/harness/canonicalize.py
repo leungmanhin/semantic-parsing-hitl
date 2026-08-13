@@ -1,4 +1,4 @@
-"""FUSE-NF deterministic canonicalizer (``fusenf-canon/3``).
+"""FUSE-NF deterministic canonicalizer (``fusenf-canon/4``).
 
 Implements ``specs/canonicalization.md``.  Turns a faithful parse record
 (``specs/schema.md`` §3) into a canonical record with three identity hashes.
@@ -45,11 +45,17 @@ import json
 import os
 import re
 
-CANON_VERSION = "fusenf-canon/3"  # /2: And-conjuncts canonically ordered, and the skolem
+CANON_VERSION = "fusenf-canon/4"  # /2: And-conjuncts canonically ordered, and the skolem
 # renaming derived from the sorted term rather than emission order (M1 v4, 2026-07-29)
 # /3: PeTTaChainer cfe25f9 dropped the (Premises ...)/(Conclusions ...) implication wrappers, so
 # ``And`` is the only commutative head left. This changes every hash — regenerate all canonical
 # files; do not compare a /3 graph_id against a /2 one. (2026-08-04)
+# /4: whitespace inside STRING LITERALS is normalized at tokenization (runs collapse to one
+# space, no space before , ; : . ! ? % ' ) ] or after ( [ ). Tokenized corpus text (PAWS writes
+# "City , LA") made two verbatim-faithful parses hash apart on spacing alone — mechanical
+# variance, so it is erased here per the deterministic-first split, not legislated in the
+# prompt. Every hash changes (the version is part of the payload) — regenerate all canonical
+# files; do not compare a /4 graph_id against a /3 one. (2026-08-07)
 
 #: §4.6 — identity uses exact truth values until M1 reports ``tv-only`` jitter.
 BUCKET_TV_IN_HASHES = False
@@ -70,6 +76,11 @@ _WILD_SKOLEM = "\x01"
 _WILD_FN_HEAD = "\x02"
 _WILD_VAR = "\x03"
 _UNMATCHED = "\x04"
+
+#: /4 — string-literal interior whitespace (see the CANON_VERSION note).
+_RE_STR_WS_RUN = re.compile(r"\s+")
+_RE_STR_WS_BEFORE = re.compile(r" ([,;:.!?%')\]])")
+_RE_STR_WS_AFTER = re.compile(r"([(\[]) ")
 
 _RE_CANON_SKOLEM = re.compile(r"[ex][0-9]+\Z")
 _RE_CANON_FN = re.compile(r"f[0-9]+\Z")
@@ -146,6 +157,20 @@ def _is_opaque(vocab, head, arity):
 # --------------------------------------------------------------------------
 
 
+def _normalize_string_ws(lit):
+    """/4 — normalize whitespace INSIDE a string literal (``lit`` includes its quotes).
+
+    Tokenized corpus text arrives with detached punctuation ("City , LA"); one parse copies it
+    verbatim, another de-tokenizes, and both are faithful. Collapse runs to a single space, trim,
+    and drop the space next to punctuation so the two hash together. Escape sequences pass
+    through untouched (the regexes only ever remove literal whitespace characters).
+    """
+    inner = _RE_STR_WS_RUN.sub(" ", lit[1:-1]).strip()
+    inner = _RE_STR_WS_BEFORE.sub(r"\1", inner)
+    inner = _RE_STR_WS_AFTER.sub(r"\1", inner)
+    return '"' + inner + '"'
+
+
 def _tokenize(text):
     toks = []
     i, n = 0, len(text)
@@ -182,7 +207,7 @@ def _tokenize(text):
                     break
             if not closed:
                 raise ValueError("unterminated string literal")
-            toks.append("".join(buf))
+            toks.append(_normalize_string_ws("".join(buf)))
             i = j
             continue
         j = i

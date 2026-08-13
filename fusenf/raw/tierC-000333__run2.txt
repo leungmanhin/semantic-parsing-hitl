@@ -1,0 +1,2 @@
+(: solvent_shake_extract (Implication (And (Member $x solvent) (Member (sk_shake $x) shake) (Patient (sk_shake $x) $x)) (And (Member (sk_extract $x) extract) (Theme (sk_extract $x) (sk_liquid_a $x)) (Member (sk_liquid_a $x) liquid) (Theme (sk_extract $x) (sk_liquid_b $x)) (Member (sk_liquid_b $x) liquid) (Immiscible (sk_liquid_a $x) (sk_liquid_b $x)) (During (sk_extract $x) (sk_shake $x)))) (STV 1.0 0.9))
+(: immiscible_sym (Symmetric Immiscible) (STV 1.0 0.99))

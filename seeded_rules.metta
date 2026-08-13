@@ -129,6 +129,25 @@
 ; tagged relation (R's head is a variable).
 (: sym_rel (Implication (And (Symmetric $r) ($r $x $y)) ($r $y $x)) (STV 1.0 0.99))
 
+; ===== Spatial scaffolding (2026-08-06, FUSE-NF gap G1) =====
+
+; (LocatedIn thing place) is the STATIC location of an entity — where a thing is — as
+; against the event oblique (Location event place), which says where an eventuality
+; holds.  They are deliberately different heads: an entity's location is a state of a
+; thing, an event's is a property of an eventuality, and merging them would make
+; "what happened in Greece?" return villages.  These two rules are what buys the
+; merge's convenience back without the conflation.
+
+; Containment is transitive:  LocatedIn(a,b), LocatedIn(b,c)  ⟹  LocatedIn(a,c)
+(: locin_trans (Implication (And (LocatedIn $a $b) (LocatedIn $b $c)) (LocatedIn $a $c)) (STV 1.0 0.99))
+
+; ... and it carries an EVENT's location outward too, so an event located in a place is
+; located in whatever contains that place:
+;   Location(e,x), LocatedIn(x,y)  ⟹  Location(e,y)
+; Without this, "the festival is held in Methoni, a village in Greece" answers "was it
+; held in Greece?" with [] — the two links would never meet.
+(: locin_event (Implication (And (Location $e $x) (LocatedIn $x $y)) (Location $e $y)) (STV 1.0 0.99))
+
 ; ===== Conditional-property scaffolding =====
 
 ; A property that holds only under a condition.  (ConditionalProperty k p c) means

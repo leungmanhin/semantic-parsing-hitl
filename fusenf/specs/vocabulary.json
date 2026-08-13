@@ -1,3356 +1,3378 @@
 {
-  "meta": {
-    "schema": "fusenf-vocabulary/1",
-    "generated": "2026-07-27",
-    "prompt_sha256": "d8f5caff0d7d224442e1016c93d25176a6aee9caa8a20d276f1e2704abe3d3fe",
-    "seeded_sha256": "0b743262298318bf647029215e294d88aea0aef234be33b12d26b4d33ce86dc2",
-    "prompt_lines": 2161,
-    "seeded_rules": 106,
-    "method": "two independent full-prompt extractions (different models) reconciled against a mechanical inventory of every atom in the 316 regression goldens, the e2e harness and the seeded rules; 17 field disagreements adjudicated by the orchestrator and marked _adjudicated",
-    "attestation_sources": [
-      "regression/regression_cases.md",
-      "regression/e2e_regression.py",
-      "seeded_rules.metta"
-    ],
-    "extractor_agreement": {
-      "names_A": 116,
-      "names_B": 116,
-      "union": 116,
-      "both": 116,
-      "field_disagreements": 17
-    },
-    "revised": "2026-08-03",
-    "revision_note": "re-pinned 2026-08-04, M1-round-3 fixes: gap-0035 `Ongoing` requires one of three explicit markers (progressive / continuative perfect / inceptive complement) and a bare simple present gets NO status atom; gap-0036 the psych/Experiencer carve-out is bounded by the PROGRESSIVE TEST rather than an example list (discover/notice/realise are events -> Agent); gap-0037 a subject-matter PP takes the preposition-named oblique (On e x), not Location/Theme/Patient. Goldens 342, e2e 329."
+ "meta": {
+  "schema": "fusenf-vocabulary/1",
+  "generated": "2026-07-27",
+  "prompt_sha256": "d8f5caff0d7d224442e1016c93d25176a6aee9caa8a20d276f1e2704abe3d3fe",
+  "seeded_sha256": "0b743262298318bf647029215e294d88aea0aef234be33b12d26b4d33ce86dc2",
+  "prompt_lines": 2161,
+  "seeded_rules": 106,
+  "method": "two independent full-prompt extractions (different models) reconciled against a mechanical inventory of every atom in the 316 regression goldens, the e2e harness and the seeded rules; 17 field disagreements adjudicated by the orchestrator and marked _adjudicated",
+  "attestation_sources": [
+   "regression/regression_cases.md",
+   "regression/e2e_regression.py",
+   "seeded_rules.metta"
+  ],
+  "extractor_agreement": {
+   "names_A": 116,
+   "names_B": 116,
+   "union": 116,
+   "both": 116,
+   "field_disagreements": 17
   },
-  "field_semantics": {
-    "class": "core-link | role | status | property-constructor | operator | discourse | surface-record | engine",
-    "opaque": "stored and matched verbatim; do NOT decompose. Star decomposition treats the atom as one node.",
-    "bridged": "a seeded rule fires FROM this head. Independent of `opaque` — 11 heads are both.",
-    "frozen": "mining may NOT propose a rule rewriting this operator away. Derived mechanically: head matched by a seeded rule premise, or by a documented query pattern, or core/engine. Open-class heads are never frozen — they are what consolidation is for.",
-    "frozen_false_WARNING": "`frozen: false` is NOT a licence to merge. This is a COMPATIBILITY gate only — it says rewriting the head breaks no existing seeded rule or query pattern, not that a merge is meaning-preserving. Semantic safety is M4's job (rule precision + the zero negative-control-merge hard gate). Several unfrozen heads (Must, Future, Probably, Instrument, Manner) are unfrozen only because no current query happens to exercise them.",
-    "variadic": "argument count varies; `arities` records the attested range, not a fixed signature.",
-    "attested": "occurrence counts from the regression corpus; n=0 means declared but never exercised."
+  "revised": "2026-08-03",
+  "revision_note": "re-pinned 2026-08-04, M1-round-3 fixes: gap-0035 `Ongoing` requires one of three explicit markers (progressive / continuative perfect / inceptive complement) and a bare simple present gets NO status atom; gap-0036 the psych/Experiencer carve-out is bounded by the PROGRESSIVE TEST rather than an example list (discover/notice/realise are events -> Agent); gap-0037 a subject-matter PP takes the preposition-named oblique (On e x), not Location/Theme/Patient. Goldens 342, e2e 329."
+ },
+ "field_semantics": {
+  "class": "core-link | role | status | property-constructor | operator | discourse | surface-record | engine",
+  "opaque": "stored and matched verbatim; do NOT decompose. Star decomposition treats the atom as one node.",
+  "bridged": "a seeded rule fires FROM this head. Independent of `opaque` — 11 heads are both.",
+  "frozen": "mining may NOT propose a rule rewriting this operator away. Derived mechanically: head matched by a seeded rule premise, or by a documented query pattern, or core/engine. Open-class heads are never frozen — they are what consolidation is for.",
+  "frozen_false_WARNING": "`frozen: false` is NOT a licence to merge. This is a COMPATIBILITY gate only — it says rewriting the head breaks no existing seeded rule or query pattern, not that a merge is meaning-preserving. Semantic safety is M4's job (rule precision + the zero negative-control-merge hard gate). Several unfrozen heads (Must, Future, Probably, Instrument, Manner) are unfrozen only because no current query happens to exercise them.",
+  "variadic": "argument count varies; `arities` records the attested range, not a fixed signature.",
+  "attested": "occurrence counts from the regression corpus; n=0 means declared but never exercised."
+ },
+ "operators": {
+  ":": {
+   "class": "engine",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "symbol",
+    "term",
+    "term"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Output format",
+   "gloss": "Statement wrapper: proof-name, logical content, truth value.",
+   "attested": {
+    "arities": {},
+    "n": 0,
+    "sources": [],
+    "note": "wrapper stripped by the extractor; present on every asserted atom"
+   },
+   "notes": "`(: <proof_name> <content> (STV s c))`. Proof-name is snake_case in statements, `$prf` in queries. Absent from the mechanical empirical inventory because the extractor strips the wrapper; it is present on every golden atom."
   },
-  "operators": {
-    ":": {
-      "class": "engine",
-      "arities": [
-        3
-      ],
-      "arg_types": [
-        "symbol",
-        "term",
-        "term"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Output format",
-      "gloss": "Statement wrapper: proof-name, logical content, truth value.",
-      "attested": {
-        "arities": {},
-        "n": 0,
-        "sources": [],
-        "note": "wrapper stripped by the extractor; present on every asserted atom"
-      },
-      "notes": "`(: <proof_name> <content> (STV s c))`. Proof-name is snake_case in statements, `$prf` in queries. Absent from the mechanical empirical inventory because the extractor strips the wrapper; it is present on every golden atom."
-    },
-    "Again": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Repetitive/restitutive presupposition: a prior same-type event happened.",
-      "attested": {
-        "arities": {
-          "1": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "Opaque presupposition tag on the event; the presupposed prior/expected event is never asserted. Defined under `### Aspectual particles`."
-    },
-    "Agent": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Volitional doer / subject of an action.",
-      "attested": {
-        "arities": {
-          "2": 418
-        },
-        "n": 418,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Also a motion/self-propelled intransitive subject; a collective predicate takes several Agent atoms on one event."
-    },
-    "Already": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "The eventuality happened earlier than expected.",
-      "attested": {
-        "arities": {
-          "1": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "Opaque presupposition tag on the event; the presupposed prior/expected event is never asserted. Defined under `### Aspectual particles`."
-    },
-    "Also": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Focus particles & clefts (only / even / also / it-clefts)",
-      "gloss": "Additive focus particle ('also / too / as well').",
-      "attested": {
-        "arities": {
-          "2": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "`(<Op> <focused-filler> <event>)`; the prejacent is asserted normally. Filler is the focused constituent's symbol, or the verb-class lemma for VP focus. Never emit an exclusion rule or assert the presupposition."
-    },
-    "Although": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Concessive connective 'although'.",
-      "attested": {
-        "arities": {
-          "2": 1
-        },
-        "n": 1,
-        "sources": [
-          "goldens"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. States no reason — no seeded bridge to ReasonFor."
-    },
-    "And": {
-      "class": "core-link",
-      "arities": [
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9
-      ],
-      "arg_types": [
-        "atom-list"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": true,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Conjunction bundle; one fact, one truth value.",
-      "attested": {
-        "arities": {
-          "2": 61,
-          "3": 114,
-          "4": 68,
-          "5": 45,
-          "6": 22,
-          "7": 14,
-          "8": 1,
-          "9": 2
-        },
-        "n": 327,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Three jobs: the strength-0 wrapper of a negated/denied event (`### Negation (events)`), the multi-atom sealing term (*Core patterns*), and the query join over a shared event variable (*Queries*)."
-    },
-    "AsAResult": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Causal connective 'as a result'.",
-      "attested": {
-        "arities": {
-          "2": 2
-        },
-        "n": 2,
-        "sources": [
-          "e2e",
-          "seeded"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
-    },
-    "Because": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Causal connective 'because'.",
-      "attested": {
-        "arities": {
-          "2": 7
-        },
-        "n": 7,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. NOTE a tension in the prompt: the Core-patterns roster calls the surface connective heads opaque (\"no rule fires from them\"), yet the seeded rf_*/po_* bridge rules DO fire from them to derive ReasonFor/PurposeOf."
-    },
-    "Before": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Canonical ordering: the first eventuality precedes the second.",
-      "attested": {
-        "arities": {
-          "2": 24
-        },
-        "n": 24,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "'after' swaps the arguments. Transitivity and calendar-derived orderings are seeded."
-    },
-    "BeforeBy": {
-      "class": "operator",
-      "arities": [
-        4
-      ],
-      "arg_types": [
-        "event",
-        "event",
-        "number",
-        "unit"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Measured temporal gap between two eventualities.",
-      "attested": {
-        "arities": {
-          "4": 12
-        },
-        "n": 12,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "The MoreBy of time; anchors on the reserved symbol `now` for 'ago / from now'. Seeded rules derive Before and add gaps along a chain."
-    },
-    "Beneficiary": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Events (verbal)",
-      "gloss": "'for …' oblique.",
-      "attested": {
-        "arities": {},
-        "n": 0,
-        "sources": []
-      }
-    },
-    "But": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Adversative connective 'but'.",
-      "attested": {
-        "arities": {
-          "2": 1
-        },
-        "n": 1,
-        "sources": [
-          "goldens"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. States no reason — no seeded bridge to ReasonFor."
-    },
-    "Can": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "A specific subject's capability on this event.",
-      "attested": {
-        "arities": {
-          "1": 10
-        },
-        "n": 10,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "A capability generic over a KIND is the reified property `(Inheritance kind (can v))` instead — an individual capability question unions the two storages. Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
-    },
-    "Cardinality": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "number"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Cardinality (counting)",
-      "gloss": "Exact size of a group (a point value, native integer).",
-      "attested": {
-        "arities": {
-          "2": 30
-        },
-        "n": 30,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Does not claim world-closure; 'exactly three' emits the same atom."
-    },
-    "CardinalityAtLeast": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "number"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Cardinality (counting)",
-      "gloss": "Lower bound on a group's size.",
-      "attested": {
-        "arities": {
-          "2": 16
-        },
-        "n": 16,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      }
-    },
-    "CardinalityAtMost": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "number"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Cardinality (counting)",
-      "gloss": "Upper bound on a group's size.",
-      "attested": {
-        "arities": {
-          "2": 7
-        },
-        "n": 7,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      }
-    },
-    "CardinalityPhrase": {
-      "class": "surface-record",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "string"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Cardinality (counting)",
-      "gloss": "Records a vague count phrase on a group ('several', 'dozens').",
-      "attested": {
-        "arities": {
-          "2": 16
-        },
-        "n": 16,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Normalized to the canonical lexicon string; seeded rules map it to a numeric bound. Emit no number yourself."
-    },
-    "Cleft": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Focus particles & clefts (only / even / also / it-clefts)",
-      "gloss": "It-cleft / pseudo-cleft focus marker.",
-      "attested": {
-        "arities": {
-          "2": 6
-        },
-        "n": 6,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "`(<Op> <focused-filler> <event>)`; the prejacent is asserted normally. Filler is the focused constituent's symbol, or the verb-class lemma for VP focus. Never emit an exclusion rule or assert the presupposition."
-    },
-    "CoAgent": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Animate co-participant named by a comitative phrase ('with John').",
-      "attested": {
-        "arities": {
-          "2": 4
-        },
-        "n": 4,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "A means, not a participant, is Instrument instead."
-    },
-    "Compute": {
-      "class": "engine",
-      "arities": [
-        4
-      ],
-      "arg_types": [
-        "symbol",
-        "term",
-        "symbol",
-        "var"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Cardinality (counting)",
-      "gloss": "Hard-numeric arithmetic/comparison test on bound integers.",
-      "attested": {
-        "arities": {
-          "4": 130
-        },
-        "n": 130,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "`(Compute > ($n k) -> true)`. Arg1 = operator symbol (> < >= <= == + - * /), arg2 = argument tuple, arg3 = the literal `->` marker, arg4 = `true`/`false` for a test or a `$`-var receiving a computed value. Introduced under `### Counting questions`; reused in Measures, Time and reciprocal distinctness guards."
-    },
-    "Conclusions": {
-      "class": "core-link",
-      "arities": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6
-      ],
-      "arg_types": [
-        "atom-list"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": true,
-      "frozen": true,
-      "section": "## Quantifiers, generics & scope (verbal → rules)",
-      "gloss": "Variadic consequent conjunct list of an Implication.",
-      "attested": {
-        "arities": {
-          "1": 97,
-          "2": 9,
-          "3": 14,
-          "4": 8,
-          "5": 5,
-          "6": 2
-        },
-        "n": 135,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      }
-    },
-    "ConditionalProperty": {
-      "class": "operator",
-      "arities": [
-        3
-      ],
-      "arg_types": [
-        "kind",
-        "property",
-        "property"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Quantifiers, generics & scope (verbal → rules)",
-      "gloss": "A kind has a property only under a stated condition.",
-      "attested": {
-        "arities": {
-          "3": 9
-        },
-        "n": 9,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Do not also assert the bare Inheritance; seeded `cond_prop` hands the property to a member in the condition state."
-    },
-    "Consequently": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Causal connective 'consequently'.",
-      "attested": {
-        "arities": {
-          "2": 1
-        },
-        "n": 1,
-        "sources": [
-          "seeded"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
-    },
-    "Counterfactual": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "proposition",
-        "proposition"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Sealed subjunctive conditional: antecedent and consequent, neither asserted.",
-      "attested": {
-        "arities": {
-          "2": 4
-        },
-        "n": 4,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Plus the antecedent as a separate strength-0.0 bundle (the 'it didn't happen' presupposition); the consequent is never asserted. 'unless / if not X' is explicitly NOT yet supported. Defined under `### Counterfactual conditionals`."
-    },
-    "Day": {
-      "class": "operator",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "number"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Day-of-month term.",
-      "attested": {
-        "arities": {
-          "1": 13
-        },
-        "n": 13,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
-    },
-    "Degree": {
-      "class": "operator",
-      "arities": [
-        3
-      ],
-      "arg_types": [
-        "individual",
-        "property",
-        "symbol"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Comparatives & degree",
-      "gloss": "Intensity level of a property on an entity.",
-      "attested": {
-        "arities": {
-          "3": 21
-        },
-        "n": 21,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Level is the lemmatized surface adverb (very/slightly/…), a fixed construction marker (`excessive`/`sufficient`/`insufficient`), or a `(forKind <class>)` term. For a quantity the scale slot is the literal `quantity`. The positive property is asserted alongside — except in the forKind comparison-class case."
-    },
-    "Despite": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Concessive connective 'despite'.",
-      "attested": {
-        "arities": {},
-        "n": 0,
-        "sources": []
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. States no reason — no seeded bridge to ReasonFor."
-    },
-    "Directive": {
-      "class": "operator",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "proposition"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Seals a positive imperative's commanded eventuality.",
-      "attested": {
-        "arities": {
-          "1": 7
-        },
-        "n": 7,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "No tense/occurrence asserted, no addressee referent minted; a vocative addressee goes inside as Agent. Defined under `### Imperatives`."
-    },
-    "During": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "The inner eventuality is nested inside the outer one.",
-      "attested": {
-        "arities": {
-          "2": 6
-        },
-        "n": 6,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Also ties a whenever-rule's per-occurrence response event to its trigger."
-    },
-    "End": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "term"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Interval end point of an eventuality.",
-      "attested": {
-        "arities": {
-          "2": 11
-        },
-        "n": 11,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "A 'when did X stop' question unions the interval End branch with a reified stop-event branch."
-    },
-    "Even": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Focus particles & clefts (only / even / also / it-clefts)",
-      "gloss": "Scalar focus particle ('even').",
-      "attested": {
-        "arities": {
-          "2": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "`(<Op> <focused-filler> <event>)`; the prejacent is asserted normally. Filler is the focused constituent's symbol, or the verb-class lemma for VP focus. Never emit an exclusion rule or assert the presupposition."
-    },
-    "EvenThough": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Concessive connective 'even though'.",
-      "attested": {
-        "arities": {},
-        "n": 0,
-        "sources": []
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. States no reason — no seeded bridge to ReasonFor."
-    },
-    "Every": {
-      "class": "operator",
-      "arities": [
-        3
-      ],
-      "arg_types": [
-        "event",
-        "number",
-        "unit"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Periodic recurrence: the event happens every n units.",
-      "attested": {
-        "arities": {
-          "3": 6
-        },
-        "n": 6,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "A named calendar slot also implies its cycle, e.g. `(Every e 1 week)` for 'every Monday'. Unions with TimesPer on a 'how often' question."
-    },
-    "Experiencer": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Subject of a stative predication — psych state or predicate-adjective state.",
-      "attested": {
-        "arities": {
-          "2": 37
-        },
-        "n": 37,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      }
-    },
-    "FoldAll": {
-      "class": "engine",
-      "arities": [
-        6
-      ],
-      "arg_types": [
-        "term",
-        "var",
-        "number",
-        "symbol",
-        "symbol",
-        "var"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Cardinality (counting)",
-      "gloss": "Aggregate fold across all pattern matches (e.g. sum of cardinalities).",
-      "attested": {
-        "arities": {
-          "6": 1
-        },
-        "n": 1,
-        "sources": [
-          "e2e"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "`(FoldAll <pattern> <value> <init> <fold-fn> -> $tot)`; emit only when the question asks for an explicit aggregate total. NOT present in the supplied empirical inventory, but I verified it IS attested at regression/e2e_regression.py:251 — the extractor appears to have missed it (no `(: …)` wrapper)."
-    },
-    "Forbid": {
-      "class": "operator",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "proposition"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Seals a negative imperative's forbidden eventuality.",
-      "attested": {
-        "arities": {
-          "1": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      }
-    },
-    "Fraction": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "number",
-        "number"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Cardinality (counting)",
-      "gloss": "Exact fraction / percentage term, numerator over denominator.",
-      "attested": {
-        "arities": {
-          "2": 9
-        },
-        "n": 9,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "A percentage is `(Fraction <p> 100)`, never reduced."
-    },
-    "Future": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Events (verbal)",
-      "gloss": "Future tense on an eventuality.",
-      "attested": {
-        "arities": {
-          "1": 13
-        },
-        "n": 13,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
-    },
-    "Goal": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Non-recipient destination / 'to …' oblique.",
-      "attested": {
-        "arities": {
-          "2": 6
-        },
-        "n": 6,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Also carries a motion resultative's endpoint ('into the box')."
-    },
-    "GreaterThan": {
-      "class": "engine",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "number",
-        "number"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Measures & units",
-      "gloss": "Graded P(value > N) over a distribution magnitude.",
-      "attested": {
-        "arities": {
-          "2": 12
-        },
-        "n": 12,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Also compares two distributions `(GreaterThan $da $db)`. The distribution half of the exact-vs-distribution dual-storage union; `Compute` is the hard-integer half."
-    },
-    "GroupOf": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "kind"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Coordination & plurals",
-      "gloss": "The members of this group individual are of that kind.",
-      "attested": {
-        "arities": {
-          "2": 77
-        },
-        "n": 77,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "The group is an individual, never a class filler; a collective noun already names the kind and needs no GroupOf."
-    },
-    "Holder": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Subject of a possession/relational state only (own, have, lack).",
-      "attested": {
-        "arities": {
-          "2": 23
-        },
-        "n": 23,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "A bare property state is Experiencer, never Holder; the seeded poss_have/poss_own bridge keys off Holder."
-    },
-    "Hour": {
-      "class": "operator",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "number"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Clock hour term, 24-hour.",
-      "attested": {
-        "arities": {
-          "1": 31
-        },
-        "n": 31,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
-    },
-    "Implication": {
-      "class": "core-link",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "term",
-        "term"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Quantifiers, generics & scope (verbal → rules)",
-      "gloss": "Inference rule: a Premises term implies a Conclusions term.",
-      "attested": {
-        "arities": {
-          "2": 135
-        },
-        "n": 135,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "Also used for exclusivity rules (strength 0.0) under Exclusive-or, and for comparative correlatives."
-    },
-    "InOrderTo": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Purpose connective 'in order to'.",
-      "attested": {
-        "arities": {
-          "2": 1
-        },
-        "n": 1,
-        "sources": [
-          "seeded"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. Purpose heads bridge to PurposeOf, which chains into ReasonFor. `To` is NOT used for a degree-governed infinitive ('too/enough ADJ to V')."
-    },
-    "Inheritance": {
-      "class": "core-link",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "kind",
-        "kind"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Categorical statements (copular)",
-      "gloss": "A class/property is a subclass of another class/property.",
-      "attested": {
-        "arities": {
-          "2": 106
-        },
-        "n": 106,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Second argument may be a property or a reified property term `(can|obligated|permitted <action>)`; also `(Inheritance <compound> <head-noun>)` for decomposition."
-    },
-    "Instrument": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Events (verbal)",
-      "gloss": "The means an action is performed by ('with a knife').",
-      "attested": {
-        "arities": {
-          "2": 1
-        },
-        "n": 1,
-        "sources": [
-          "goldens"
-        ]
-      },
-      "notes": "A tool or substance, never a person."
-    },
-    "KindProperty": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "kind",
-        "property"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Quantifiers, generics & scope (verbal → rules)",
-      "gloss": "Non-distributing property of a kind/population as a whole.",
-      "attested": {
-        "arities": {
-          "2": 4
-        },
-        "n": 4,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "For properties no single instance can hold (extinct, widespread); contrasts with Inheritance, which distributes."
-    },
-    "Location": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Where the eventuality holds ('in/at/on …').",
-      "attested": {
-        "arities": {
-          "2": 15
-        },
-        "n": 15,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      }
-    },
-    "Manner": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "uncertain"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Events (verbal)",
-      "gloss": "Adverbial manner of the eventuality.",
-      "attested": {
-        "arities": {},
-        "n": 0,
-        "sources": []
-      },
-      "_adjudicated": true,
-      "notes": "Declared in the obliques list; aspectual particles must NOT be stuffed into Manner."
-    },
-    "Measure": {
-      "class": "operator",
-      "arities": [
-        4
-      ],
-      "arg_types": [
-        "individual",
-        "property",
-        "number",
-        "unit"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Measures & units",
-      "gloss": "Puts a magnitude and unit on an entity's dimension.",
-      "attested": {
-        "arities": {
-          "4": 118
-        },
-        "n": 118,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Scale = the surface dimension (stated adjective, else the dimension noun: weight/price/temperature/duration). Magnitude may be a `(ParticleFromNormal X σ)` distribution. Does not entail the positive; tense wraps it."
-    },
-    "MeasureAtLeast": {
-      "class": "operator",
-      "arities": [
-        4
-      ],
-      "arg_types": [
-        "individual",
-        "property",
-        "number",
-        "unit"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Measures & units",
-      "gloss": "Lower-bounded measure.",
-      "attested": {
-        "arities": {
-          "4": 18
-        },
-        "n": 18,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      }
-    },
-    "MeasureAtMost": {
-      "class": "operator",
-      "arities": [
-        4
-      ],
-      "arg_types": [
-        "individual",
-        "property",
-        "number",
-        "unit"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Measures & units",
-      "gloss": "Upper-bounded measure.",
-      "attested": {
-        "arities": {
-          "4": 13
-        },
-        "n": 13,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      }
-    },
-    "Member": {
-      "class": "core-link",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "kind"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Categorical statements (copular)",
-      "gloss": "An individual belongs to a class or holds a property.",
-      "attested": {
-        "arities": {
-          "2": 1246
-        },
-        "n": 1246,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Also the event class `(Member <event> <verb-lemma>)`, adjectival predication `(Member x tall)`, and an inherited reified property `(Member x (can fly))`."
-    },
-    "Might": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Epistemic possibility ('might / may').",
-      "attested": {
-        "arities": {
-          "1": 2
-        },
-        "n": 2,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "Confidence 0.9 (an inference, not a flat fact). Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
-    },
-    "Minute": {
-      "class": "operator",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "number"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Clock minute term.",
-      "attested": {
-        "arities": {
-          "1": 6
-        },
-        "n": 6,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
-    },
-    "Month": {
-      "class": "operator",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "symbol"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Calendar month term (lowercase month-name lemma).",
-      "attested": {
-        "arities": {
-          "1": 29
-        },
-        "n": 29,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
-    },
-    "MonthNumber": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "symbol",
-        "number"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Seeded lexicon fact giving a month name its ordinal number.",
-      "attested": {
-        "arities": {
-          "2": 21
-        },
-        "n": 21,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Never emitted by the translator; joined in QUERIES to order/threshold months."
-    },
-    "More": {
-      "class": "operator",
-      "arities": [
-        3
-      ],
-      "arg_types": [
-        "property",
-        "individual",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Comparatives & degree",
-      "gloss": "X exceeds Y on a scale (reified comparative ordering).",
-      "attested": {
-        "arities": {
-          "3": 60
-        },
-        "n": 60,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Scale is the lemmatized surface adjective/adverb; 'less' swaps the pair, an antonym keeps its surface pole. Comparanda may be individuals, events (adverbial comparatives) or groups (clausal quantity comparatives). Does not entail the positive."
-    },
-    "MoreBy": {
-      "class": "operator",
-      "arities": [
-        5
-      ],
-      "arg_types": [
-        "property",
-        "individual",
-        "individual",
-        "number",
-        "unit"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Comparatives & degree",
-      "gloss": "Comparative with a measured gap: X exceeds Y by n units.",
-      "attested": {
-        "arities": {
-          "5": 27
-        },
-        "n": 27,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Magnitude may be a `(ParticleFromNormal …)` distribution; unit may be a compound rate unit. Seeded rules derive the plain More and add gaps along a chain."
-    },
-    "Most": {
-      "class": "operator",
-      "arities": [
-        3
-      ],
-      "arg_types": [
-        "property",
-        "individual",
-        "kind"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Comparatives & degree",
-      "gloss": "Superlative: X is the most ADJ member of a class.",
-      "attested": {
-        "arities": {
-          "3": 17
-        },
-        "n": 17,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Emitted with X's `(Member X <class>)`; bare 'the tallest' defaults the class to `person`."
-    },
-    "Must": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Events (verbal)",
-      "gloss": "Epistemic necessity ('must'-inference).",
-      "attested": {
-        "arities": {
-          "1": 1
-        },
-        "n": 1,
-        "sources": [
-          "goldens"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "Confidence 0.9; the deontic sense of 'must' is Obligated instead. Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
-    },
-    "Name": {
-      "class": "surface-record",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "string"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Names and casing",
-      "gloss": "Records a named individual's surface name string.",
-      "attested": {
-        "arities": {
-          "2": 227
-        },
-        "n": 227,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Emitted once per referent; a query binds a named individual via `(Name $x \"…\")` rather than a hard-coded symbol. Never emitted by a question."
-    },
-    "Obligated": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Deontic obligation on a specific act.",
-      "attested": {
-        "arities": {
-          "1": 8
-        },
-        "n": 8,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "Strength 0.7 for weak 'should / ought'. A kind-level norm uses `(obligated <action>)` instead. Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
-    },
-    "Ongoing": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Progressive / continuative aspect.",
-      "attested": {
-        "arities": {
-          "1": 7
-        },
-        "n": 7,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
-    },
-    "Only": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Focus particles & clefts (only / even / also / it-clefts)",
-      "gloss": "Exclusive focus particle ('only / just / solely').",
-      "attested": {
-        "arities": {
-          "2": 4
-        },
-        "n": 4,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "`(<Op> <focused-filler> <event>)`; the prejacent is asserted normally. Filler is the focused constituent's symbol, or the verb-class lemma for VP focus. Never emit an exclusion rule or assert the presupposition."
-    },
-    "Or": {
-      "class": "core-link",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "atom-list"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": true,
-      "frozen": true,
-      "section": "## Disjunction (\"or\")",
-      "gloss": "Inclusive disjunction: at least one disjunct holds, unspecified which.",
-      "attested": {
-        "arities": {
-          "2": 9
-        },
-        "n": 9,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Declared `(Or <d1> <d2> …)` — variadic; each disjunct is an atom or an `(And …)` bundle. Scope as narrowly as possible; never assert a disjunct on its own."
-    },
-    "Ordinal": {
-      "class": "operator",
-      "arities": [
-        3
-      ],
-      "arg_types": [
-        "individual",
-        "number",
-        "property"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Comparatives & degree",
-      "gloss": "The entity's rank n on an ordering scale.",
-      "attested": {
-        "arities": {
-          "3": 6
-        },
-        "n": 6,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Rank may be the symbol `last` instead of an integer; scale is the associated event verb-lemma or an explicit '-est' dimension. Rank 1 is the Most special case."
-    },
-    "PartOf": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Compound concepts — prefer single-word, else decompose",
-      "gloss": "Part/component (or named member) of a whole.",
-      "attested": {
-        "arities": {
-          "2": 29
-        },
-        "n": 29,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Introduced for possessor-part compounds ('car engine'); reused for group membership (Coordination), mass partitives (Partitives), and as the range predicate of a group distribution rule (Quantifiers)."
-    },
-    "ParticleFromNormal": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "number",
-        "number"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Measures & units",
-      "gloss": "Approximate magnitude as a normal distribution: mean and sigma.",
-      "attested": {
-        "arities": {
-          "2": 9
-        },
-        "n": 9,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "σ ≈ 10% of X for a tight hedge, ≈ 20% for a loose one; also used inside an `(Hour …)` term for an approximate clock time and inside MoreBy for an approximate gap."
-    },
-    "Past": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Past tense on an eventuality.",
-      "attested": {
-        "arities": {
-          "1": 375
-        },
-        "n": 375,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
-    },
-    "Patient": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Object the action creates, destroys, consumes or physically changes.",
-      "attested": {
-        "arities": {
-          "2": 142
-        },
-        "n": 142,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Also a change-of-state intransitive subject and a non-volitional natural-process subject."
-    },
-    "Permitted": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Deontic permission on a specific act.",
-      "attested": {
-        "arities": {
-          "1": 6
-        },
-        "n": 6,
-        "sources": [
-          "e2e",
-          "seeded"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "A prohibition is `(Permitted e)` at strength 0.0, never a negated Obligated. Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
-    },
-    "Possession": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "individual"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Compound concepts — prefer single-word, else decompose",
-      "gloss": "Possessed-to-possessor link (ownership, kinship, loose association).",
-      "attested": {
-        "arities": {
-          "2": 18
-        },
-        "n": 18,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Possessed first. Never an `own` event for a static genitive; a part/component takes PartOf instead. Possession questions ALWAYS query this form — seeded poss_have/poss_own derive it from a verbal have/own event."
-    },
-    "Premises": {
-      "class": "core-link",
-      "arities": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        7
-      ],
-      "arg_types": [
-        "atom-list"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": true,
-      "frozen": true,
-      "section": "## Quantifiers, generics & scope (verbal → rules)",
-      "gloss": "Variadic antecedent conjunct list of an Implication.",
-      "attested": {
-        "arities": {
-          "1": 64,
-          "2": 45,
-          "3": 20,
-          "4": 2,
-          "5": 2,
-          "7": 2
-        },
-        "n": 135,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      }
-    },
-    "Probably": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Events (verbal)",
-      "gloss": "Epistemic probability ('probably').",
-      "attested": {
-        "arities": {},
-        "n": 0,
-        "sources": []
-      },
-      "_adjudicated": true,
-      "notes": "Confidence 0.9. Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
-    },
-    "ProportionOf": {
-      "class": "operator",
-      "arities": [
-        3
-      ],
-      "arg_types": [
-        "individual",
-        "individual",
-        "symbol"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Cardinality (counting)",
-      "gloss": "The portion's proportion of a definite whole.",
-      "attested": {
-        "arities": {
-          "3": 16
-        },
-        "n": 16,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Level is polymorphic: a vague symbol (most/half/some/few/none) or a `(Fraction n d)` term."
-    },
-    "PurposeOf": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Explanation questions (why / how / what-for / why-not)",
-      "gloss": "Canonical ask-relation: purpose/goal of a focus event.",
-      "attested": {
-        "arities": {
-          "2": 6
-        },
-        "n": 6,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "QUERY-ONLY, like ReasonFor; derived from the purpose heads To / InOrderTo / SoAsTo."
-    },
-    "QuantifierPhrase": {
-      "class": "surface-record",
-      "arities": [
-        3
-      ],
-      "arg_types": [
-        "kind",
-        "property",
-        "string"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Categorical statements (copular)",
-      "gloss": "Records the surface quantifier word beside the strength it set.",
-      "attested": {
-        "arities": {
-          "3": 29
-        },
-        "n": 29,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Copular form `(QuantifierPhrase <subject> <predicate> \"<word>\")`; verbal form `(QuantifierPhrase <kind> <verb-lemma> \"<word>\")` beside the distributing rule. Emitted ONLY when a quantifier word is actually present — its absence marks a bare generic."
-    },
-    "Question": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "symbol",
-        "proposition"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Seals an embedded constituent (wh-) question with its wh-word.",
-      "attested": {
-        "arities": {
-          "2": 6
-        },
-        "n": 6,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "The wh-word (who/what/where/when/how) is reused as the gap filler inside the sealed content; the gap must not leak as an existential."
-    },
-    "ReasonFor": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Explanation questions (why / how / what-for / why-not)",
-      "gloss": "Canonical ask-relation: reason for a focus event.",
-      "attested": {
-        "arities": {
-          "2": 15
-        },
-        "n": 15,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "QUERY-ONLY: appears only in queries and seeded rules, never in translated statements. Derived by seeded bridge rules from every reason-bearing surface head; PurposeOf chains into it."
-    },
-    "Recipient": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Goal of a transfer (indirect object / 'to').",
-      "attested": {
-        "arities": {
-          "2": 7
-        },
-        "n": 7,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      }
-    },
-    "RestOf": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "individual"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Cardinality (counting)",
-      "gloss": "Flags a portion as the remainder of a definite whole.",
-      "attested": {
-        "arities": {
-          "2": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Emitted alongside the ordinary partitive SubsetOf/PartOf portion."
-    },
-    "Result": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Links an event to the reified result state it caused.",
-      "attested": {
-        "arities": {
-          "2": 5
-        },
-        "n": 5,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "State resultatives only — a motion result carries no Result atom (Source/Goal IS the result); omit when it is unclear whether a state is caused or merely concurrent. Defined under `### Resultatives & secondary predicates`."
-    },
-    "STV": {
-      "class": "engine",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "number",
-        "number"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Truth values (STV)",
-      "gloss": "Truth value: strength and confidence, both in [0,1].",
-      "attested": {
-        "arities": {
-          "2": 2234
-        },
-        "n": 2234,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Confidence is never 1.0; in a query the whole TV is `$tv`, or pinned `(STV 0.0 $conf)`."
-    },
-    "SameDegree": {
-      "class": "operator",
-      "arities": [
-        3
-      ],
-      "arg_types": [
-        "property",
-        "individual",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Comparatives & degree",
-      "gloss": "Equative: X is as ADJ as Y.",
-      "attested": {
-        "arities": {
-          "3": 3
-        },
-        "n": 3,
-        "sources": [
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Symmetry is seeded (samedegree_sym)."
-    },
-    "ScaleOpposite": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "property",
-        "property"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Comparatives & degree",
-      "gloss": "Links the two poles of one gradable dimension.",
-      "attested": {
-        "arities": {
-          "2": 16
-        },
-        "n": 16,
-        "sources": [
-          "seeded"
-        ]
-      },
-      "notes": "Named in the prompt as a SEEDED lexicon — the translator emits neither ScaleOpposite nor the flipped comparative atom. Included for completeness; empirically it appears only in seeded_rules.metta."
-    },
-    "Since": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Causal connective 'since'.",
-      "attested": {
-        "arities": {
-          "2": 1
-        },
-        "n": 1,
-        "sources": [
-          "seeded"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
-    },
-    "So": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Causal connective 'so'.",
-      "attested": {
-        "arities": {
-          "2": 5
-        },
-        "n": 5,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
-    },
-    "SoAsTo": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Purpose connective 'so as to'.",
-      "attested": {
-        "arities": {
-          "2": 1
-        },
-        "n": 1,
-        "sources": [
-          "seeded"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. Purpose heads bridge to PurposeOf, which chains into ReasonFor. `To` is NOT used for a degree-governed infinitive ('too/enough ADJ to V')."
-    },
-    "Source": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Origin / 'from …' oblique.",
-      "attested": {
-        "arities": {
-          "2": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Also carries a motion resultative's starting point ('off the counter')."
-    },
-    "Start": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "term"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Interval start point of an eventuality.",
-      "attested": {
-        "arities": {
-          "2": 10
-        },
-        "n": 10,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      }
-    },
-    "Still": {
-      "class": "status",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "event|proposition"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Continuative: the eventuality still holds (positive counterpart of cessation).",
-      "attested": {
-        "arities": {
-          "1": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "Opaque presupposition tag on the event; the presupposed prior/expected event is never asserted. Defined under `### Aspectual particles`."
-    },
-    "Stimulus": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Object of a psych/perception state.",
-      "attested": {
-        "arities": {
-          "2": 13
-        },
-        "n": 13,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      }
-    },
-    "SubsetOf": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "individual",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Cardinality (counting)",
-      "gloss": "A quantified subset group of a definite superset group.",
-      "attested": {
-        "arities": {
-          "2": 18
-        },
-        "n": 18,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Count/plural partitives only; a mass whole uses PartOf instead. Defined under `### Partitives`."
-    },
-    "Symmetric": {
-      "class": "operator",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "symbol"
-      ],
-      "opaque": true,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Reciprocals & symmetric relations",
-      "gloss": "Tags a relation head as mutual by meaning.",
-      "attested": {
-        "arities": {
-          "1": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Argument is the lemmatized UpperCamelCase relation head; seeded `sym_rel` derives the reverse direction. A group-rule reciprocal needs NO tag."
-    },
-    "Theme": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "individual"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Object acquired, transferred, moved, possessed, perceived or evaluated unchanged.",
-      "attested": {
-        "arities": {
-          "2": 162
-        },
-        "n": 162,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Also carries a sealed proposition for propositional attitudes / embedded questions, and the reified caused event of a periphrastic causative. Default role when the change test is unclear."
-    },
-    "Therefore": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Causal connective 'therefore'.",
-      "attested": {
-        "arities": {
-          "2": 1
-        },
-        "n": 1,
-        "sources": [
-          "seeded"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
-    },
-    "Thus": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Causal connective 'thus'.",
-      "attested": {
-        "arities": {
-          "2": 1
-        },
-        "n": 1,
-        "sources": [
-          "seeded"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
-    },
-    "Time": {
-      "class": "role",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "term"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Locates an eventuality at a time point or recurrence slot.",
-      "attested": {
-        "arities": {
-          "2": 125
-        },
-        "n": 125,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Filler is a structured calendar/clock term `(Year …)`/`(Month …)`/`(Day …)`/`(Weekday …)`/`(Hour …)`/`(Minute …)`, or a bare deictic/day-part symbol (`yesterday`, `morning`). Listed as an oblique role under `### Thematic roles`; fully specified under the Time section."
-    },
-    "TimeAtLeast": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "term"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Lower-bounded (earliest) time of an eventuality.",
-      "attested": {
-        "arities": {
-          "2": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Strict 'after' drops the boundary point; any granularity term."
-    },
-    "TimeAtMost": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "term"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Upper-bounded (latest) time of an eventuality.",
-      "attested": {
-        "arities": {
-          "2": 15
-        },
-        "n": 15,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Strict 'before' drops the boundary point; 'by T' deadlines map here."
-    },
-    "TimesAs": {
-      "class": "operator",
-      "arities": [
-        4
-      ],
-      "arg_types": [
-        "property",
-        "individual",
-        "individual",
-        "number"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Comparatives & degree",
-      "gloss": "Multiplicative comparative: X is <factor> times as ADJ as Y.",
-      "attested": {
-        "arities": {
-          "4": 10
-        },
-        "n": 10,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "twice→2, half→0.5. Seeded rules derive the ordering and, given Y's measure, X's measure."
-    },
-    "TimesPer": {
-      "class": "operator",
-      "arities": [
-        3
-      ],
-      "arg_types": [
-        "event",
-        "number",
-        "unit"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Rate recurrence: n times per unit.",
-      "attested": {
-        "arities": {
-          "3": 4
-        },
-        "n": 4,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      }
-    },
-    "To": {
-      "class": "discourse",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "event",
-        "event"
-      ],
-      "opaque": true,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
-      "gloss": "Purpose infinitive connective 'to'.",
-      "attested": {
-        "arities": {
-          "2": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. Purpose heads bridge to PurposeOf, which chains into ReasonFor. `To` is NOT used for a degree-governed infinitive ('too/enough ADJ to V')."
-    },
-    "Weekday": {
-      "class": "operator",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "symbol"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Weekday term (lowercase weekday-name lemma).",
-      "attested": {
-        "arities": {
-          "1": 20
-        },
-        "n": 20,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
-    },
-    "WeekdayNumber": {
-      "class": "operator",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "symbol",
-        "number"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Seeded lexicon fact giving a weekday name its number (monday=1).",
-      "attested": {
-        "arities": {
-          "2": 8
-        },
-        "n": 8,
-        "sources": [
-          "e2e",
-          "seeded"
-        ]
-      },
-      "notes": "Never emitted by the translator; joined in QUERIES to order/threshold weekdays."
-    },
-    "Whether": {
-      "class": "operator",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "proposition"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "Seals an embedded polar question under the matrix verb's Theme.",
-      "attested": {
-        "arities": {
-          "1": 3
-        },
-        "n": 3,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Must not become `(Might P)`; the content is never asserted. Defined under `### Embedded questions`."
-    },
-    "Xor": {
-      "class": "core-link",
-      "arities": [
-        2
-      ],
-      "arg_types": [
-        "proposition",
-        "proposition"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Exclusive \"or\" (XOR)",
-      "gloss": "Exclusive disjunction: exactly one of two disjuncts holds.",
-      "attested": {
-        "arities": {
-          "2": 8
-        },
-        "n": 8,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Atomic disjuncts additionally get two strength-0.0 `Implication` rule-out rules; complex/event disjuncts get the `Xor` label only. n-ary XOR is an open backlog item."
-    },
-    "Year": {
-      "class": "operator",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "number"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Time — dates, ordering, intervals & duration",
-      "gloss": "Calendar year term.",
-      "attested": {
-        "arities": {
-          "1": 34
-        },
-        "n": 34,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
-    },
-    "Yet": {
-      "class": "status",
-      "arities": [
-        1,
-        2
-      ],
-      "arg_types": [
-        "event"
-      ],
-      "opaque": true,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Events (verbal)",
-      "gloss": "NPI 'yet': expected but not yet — under negation or a question.",
-      "attested": {
-        "arities": {
-          "1": 5,
-          "2": 4
-        },
-        "n": 9,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "HEAD COLLISION: two unrelated senses share this symbol, disambiguated only by arity. Operator identity for mining is (name, arity), not name.",
-      "senses": [
-        {
-          "arity": 1,
-          "class": "status",
-          "opaque": true,
-          "section": "Aspectual particles",
-          "gloss": "NPI 'yet': expected but not yet, always under negation or a question"
-        },
-        {
-          "arity": 2,
-          "class": "discourse",
-          "opaque": true,
-          "section": "Inter-clause connectives",
-          "gloss": "adversative 'yet' connective: (Yet <main-clause> <subordinate-clause>)"
-        }
-      ]
-    },
-    "can": {
-      "class": "property-constructor",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "verb-lemma"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Quantifiers, generics & scope (verbal → rules)",
-      "gloss": "Builds the reified capability property term from a verb lemma.",
-      "attested": {
-        "arities": {
-          "1": 31
-        },
-        "n": 31,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "Lowercase by the casing exception — distinguishes it from the status head `Can`. Used by capability generics, agent-nominalizations and defeasible exceptions."
-    },
-    "forKind": {
-      "class": "operator",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "kind"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Comparatives & degree",
-      "gloss": "Comparison-class marker: ADJ relative to the norm for a kind.",
-      "attested": {
-        "arities": {
-          "1": 4
-        },
-        "n": 4,
-        "sources": [
-          "e2e",
-          "goldens"
-        ]
-      },
-      "notes": "The one deliberate camelCase symbol; appears only in a Degree level slot."
-    },
-    "obligated": {
-      "class": "property-constructor",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "verb-lemma"
-      ],
-      "opaque": false,
-      "bridged": true,
-      "variadic": false,
-      "frozen": true,
-      "section": "## Quantifiers, generics & scope (verbal → rules)",
-      "gloss": "Builds the reified obligation property term from an action.",
-      "attested": {
-        "arities": {
-          "1": 18
-        },
-        "n": 18,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "Action may be a compound `verb_object` symbol, which is then decomposed (genus + Patient). Defined under 'Deontic norms & prohibitions over a kind'."
-    },
-    "permitted": {
-      "class": "property-constructor",
-      "arities": [
-        1
-      ],
-      "arg_types": [
-        "verb-lemma"
-      ],
-      "opaque": false,
-      "bridged": false,
-      "variadic": false,
-      "frozen": false,
-      "section": "## Quantifiers, generics & scope (verbal → rules)",
-      "gloss": "Builds the reified permission property term from an action.",
-      "attested": {
-        "arities": {
-          "1": 11
-        },
-        "n": 11,
-        "sources": [
-          "e2e",
-          "goldens",
-          "seeded"
-        ]
-      },
-      "_adjudicated": true,
-      "notes": "A kind-level prohibition is this term at strength 0.0."
+  "Again": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Repetitive/restitutive presupposition: a prior same-type event happened.",
+   "attested": {
+    "arities": {
+     "1": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "Opaque presupposition tag on the event; the presupposed prior/expected event is never asserted. Defined under `### Aspectual particles`."
+  },
+  "Agent": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Volitional doer / subject of an action.",
+   "attested": {
+    "arities": {
+     "2": 418
+    },
+    "n": 418,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Also a motion/self-propelled intransitive subject; a collective predicate takes several Agent atoms on one event."
+  },
+  "Already": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "The eventuality happened earlier than expected.",
+   "attested": {
+    "arities": {
+     "1": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "Opaque presupposition tag on the event; the presupposed prior/expected event is never asserted. Defined under `### Aspectual particles`."
+  },
+  "Also": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Focus particles & clefts (only / even / also / it-clefts)",
+   "gloss": "Additive focus particle ('also / too / as well').",
+   "attested": {
+    "arities": {
+     "2": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "`(<Op> <focused-filler> <event>)`; the prejacent is asserted normally. Filler is the focused constituent's symbol, or the verb-class lemma for VP focus. Never emit an exclusion rule or assert the presupposition."
+  },
+  "Although": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Concessive connective 'although'.",
+   "attested": {
+    "arities": {
+     "2": 1
+    },
+    "n": 1,
+    "sources": [
+     "goldens"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. States no reason — no seeded bridge to ReasonFor."
+  },
+  "And": {
+   "class": "core-link",
+   "arities": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "arg_types": [
+    "atom-list"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": true,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Conjunction bundle; one fact, one truth value.",
+   "attested": {
+    "arities": {
+     "2": 61,
+     "3": 114,
+     "4": 68,
+     "5": 45,
+     "6": 22,
+     "7": 14,
+     "8": 1,
+     "9": 2
+    },
+    "n": 327,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Three jobs: the strength-0 wrapper of a negated/denied event (`### Negation (events)`), the multi-atom sealing term (*Core patterns*), and the query join over a shared event variable (*Queries*)."
+  },
+  "AsAResult": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Causal connective 'as a result'.",
+   "attested": {
+    "arities": {
+     "2": 2
+    },
+    "n": 2,
+    "sources": [
+     "e2e",
+     "seeded"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
+  },
+  "Because": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Causal connective 'because'.",
+   "attested": {
+    "arities": {
+     "2": 7
+    },
+    "n": 7,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. NOTE a tension in the prompt: the Core-patterns roster calls the surface connective heads opaque (\"no rule fires from them\"), yet the seeded rf_*/po_* bridge rules DO fire from them to derive ReasonFor/PurposeOf."
+  },
+  "Before": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Canonical ordering: the first eventuality precedes the second.",
+   "attested": {
+    "arities": {
+     "2": 24
+    },
+    "n": 24,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "'after' swaps the arguments. Transitivity and calendar-derived orderings are seeded."
+  },
+  "BeforeBy": {
+   "class": "operator",
+   "arities": [
+    4
+   ],
+   "arg_types": [
+    "event",
+    "event",
+    "number",
+    "unit"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Measured temporal gap between two eventualities.",
+   "attested": {
+    "arities": {
+     "4": 12
+    },
+    "n": 12,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "The MoreBy of time; anchors on the reserved symbol `now` for 'ago / from now'. Seeded rules derive Before and add gaps along a chain."
+  },
+  "Beneficiary": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Events (verbal)",
+   "gloss": "'for …' oblique.",
+   "attested": {
+    "arities": {},
+    "n": 0,
+    "sources": []
+   }
+  },
+  "But": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Adversative connective 'but'.",
+   "attested": {
+    "arities": {
+     "2": 1
+    },
+    "n": 1,
+    "sources": [
+     "goldens"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. States no reason — no seeded bridge to ReasonFor."
+  },
+  "Can": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "A specific subject's capability on this event.",
+   "attested": {
+    "arities": {
+     "1": 10
+    },
+    "n": 10,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "A capability generic over a KIND is the reified property `(Inheritance kind (can v))` instead — an individual capability question unions the two storages. Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
+  },
+  "Cardinality": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "number"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Cardinality (counting)",
+   "gloss": "Exact size of a group (a point value, native integer).",
+   "attested": {
+    "arities": {
+     "2": 30
+    },
+    "n": 30,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Does not claim world-closure; 'exactly three' emits the same atom."
+  },
+  "CardinalityAtLeast": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "number"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Cardinality (counting)",
+   "gloss": "Lower bound on a group's size.",
+   "attested": {
+    "arities": {
+     "2": 16
+    },
+    "n": 16,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   }
+  },
+  "CardinalityAtMost": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "number"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Cardinality (counting)",
+   "gloss": "Upper bound on a group's size.",
+   "attested": {
+    "arities": {
+     "2": 7
+    },
+    "n": 7,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   }
+  },
+  "CardinalityPhrase": {
+   "class": "surface-record",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "string"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Cardinality (counting)",
+   "gloss": "Records a vague count phrase on a group ('several', 'dozens').",
+   "attested": {
+    "arities": {
+     "2": 16
+    },
+    "n": 16,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Normalized to the canonical lexicon string; seeded rules map it to a numeric bound. Emit no number yourself."
+  },
+  "Cleft": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Focus particles & clefts (only / even / also / it-clefts)",
+   "gloss": "It-cleft / pseudo-cleft focus marker.",
+   "attested": {
+    "arities": {
+     "2": 6
+    },
+    "n": 6,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "`(<Op> <focused-filler> <event>)`; the prejacent is asserted normally. Filler is the focused constituent's symbol, or the verb-class lemma for VP focus. Never emit an exclusion rule or assert the presupposition."
+  },
+  "CoAgent": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Animate co-participant named by a comitative phrase ('with John').",
+   "attested": {
+    "arities": {
+     "2": 4
+    },
+    "n": 4,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "A means, not a participant, is Instrument instead."
+  },
+  "Compute": {
+   "class": "engine",
+   "arities": [
+    4
+   ],
+   "arg_types": [
+    "symbol",
+    "term",
+    "symbol",
+    "var"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Cardinality (counting)",
+   "gloss": "Hard-numeric arithmetic/comparison test on bound integers.",
+   "attested": {
+    "arities": {
+     "4": 130
+    },
+    "n": 130,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "`(Compute > ($n k) -> true)`. Arg1 = operator symbol (> < >= <= == + - * /), arg2 = argument tuple, arg3 = the literal `->` marker, arg4 = `true`/`false` for a test or a `$`-var receiving a computed value. Introduced under `### Counting questions`; reused in Measures, Time and reciprocal distinctness guards."
+  },
+  "Conclusions": {
+   "class": "core-link",
+   "arities": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "arg_types": [
+    "atom-list"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": true,
+   "frozen": true,
+   "section": "## Quantifiers, generics & scope (verbal → rules)",
+   "gloss": "Variadic consequent conjunct list of an Implication.",
+   "attested": {
+    "arities": {
+     "1": 97,
+     "2": 9,
+     "3": 14,
+     "4": 8,
+     "5": 5,
+     "6": 2
+    },
+    "n": 135,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   }
+  },
+  "ConditionalProperty": {
+   "class": "operator",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "kind",
+    "property",
+    "property"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Quantifiers, generics & scope (verbal → rules)",
+   "gloss": "A kind has a property only under a stated condition.",
+   "attested": {
+    "arities": {
+     "3": 9
+    },
+    "n": 9,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Do not also assert the bare Inheritance; seeded `cond_prop` hands the property to a member in the condition state."
+  },
+  "Consequently": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Causal connective 'consequently'.",
+   "attested": {
+    "arities": {
+     "2": 1
+    },
+    "n": 1,
+    "sources": [
+     "seeded"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
+  },
+  "Counterfactual": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "proposition",
+    "proposition"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Sealed subjunctive conditional: antecedent and consequent, neither asserted.",
+   "attested": {
+    "arities": {
+     "2": 4
+    },
+    "n": 4,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Plus the antecedent as a separate strength-0.0 bundle (the 'it didn't happen' presupposition); the consequent is never asserted. 'unless / if not X' is explicitly NOT yet supported. Defined under `### Counterfactual conditionals`."
+  },
+  "Day": {
+   "class": "operator",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "number"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Day-of-month term.",
+   "attested": {
+    "arities": {
+     "1": 13
+    },
+    "n": 13,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
+  },
+  "Degree": {
+   "class": "operator",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "individual",
+    "property",
+    "symbol"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Comparatives & degree",
+   "gloss": "Intensity level of a property on an entity.",
+   "attested": {
+    "arities": {
+     "3": 21
+    },
+    "n": 21,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Level is the lemmatized surface adverb (very/slightly/…), a fixed construction marker (`excessive`/`sufficient`/`insufficient`), or a `(forKind <class>)` term. For a quantity the scale slot is the literal `quantity`. The positive property is asserted alongside — except in the forKind comparison-class case."
+  },
+  "Despite": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Concessive connective 'despite'.",
+   "attested": {
+    "arities": {},
+    "n": 0,
+    "sources": []
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. States no reason — no seeded bridge to ReasonFor."
+  },
+  "Directive": {
+   "class": "operator",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "proposition"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Seals a positive imperative's commanded eventuality.",
+   "attested": {
+    "arities": {
+     "1": 7
+    },
+    "n": 7,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "No tense/occurrence asserted, no addressee referent minted; a vocative addressee goes inside as Agent. Defined under `### Imperatives`."
+  },
+  "During": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "The inner eventuality is nested inside the outer one.",
+   "attested": {
+    "arities": {
+     "2": 6
+    },
+    "n": 6,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Also ties a whenever-rule's per-occurrence response event to its trigger."
+  },
+  "End": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "term"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Interval end point of an eventuality.",
+   "attested": {
+    "arities": {
+     "2": 11
+    },
+    "n": 11,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "A 'when did X stop' question unions the interval End branch with a reified stop-event branch."
+  },
+  "Even": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Focus particles & clefts (only / even / also / it-clefts)",
+   "gloss": "Scalar focus particle ('even').",
+   "attested": {
+    "arities": {
+     "2": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "`(<Op> <focused-filler> <event>)`; the prejacent is asserted normally. Filler is the focused constituent's symbol, or the verb-class lemma for VP focus. Never emit an exclusion rule or assert the presupposition."
+  },
+  "EvenThough": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Concessive connective 'even though'.",
+   "attested": {
+    "arities": {},
+    "n": 0,
+    "sources": []
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. States no reason — no seeded bridge to ReasonFor."
+  },
+  "Every": {
+   "class": "operator",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "event",
+    "number",
+    "unit"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Periodic recurrence: the event happens every n units.",
+   "attested": {
+    "arities": {
+     "3": 6
+    },
+    "n": 6,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "A named calendar slot also implies its cycle, e.g. `(Every e 1 week)` for 'every Monday'. Unions with TimesPer on a 'how often' question."
+  },
+  "Experiencer": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Subject of a stative predication — psych state or predicate-adjective state.",
+   "attested": {
+    "arities": {
+     "2": 37
+    },
+    "n": 37,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
+  },
+  "FoldAll": {
+   "class": "engine",
+   "arities": [
+    6
+   ],
+   "arg_types": [
+    "term",
+    "var",
+    "number",
+    "symbol",
+    "symbol",
+    "var"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Cardinality (counting)",
+   "gloss": "Aggregate fold across all pattern matches (e.g. sum of cardinalities).",
+   "attested": {
+    "arities": {
+     "6": 1
+    },
+    "n": 1,
+    "sources": [
+     "e2e"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "`(FoldAll <pattern> <value> <init> <fold-fn> -> $tot)`; emit only when the question asks for an explicit aggregate total. NOT present in the supplied empirical inventory, but I verified it IS attested at regression/e2e_regression.py:251 — the extractor appears to have missed it (no `(: …)` wrapper)."
+  },
+  "Forbid": {
+   "class": "operator",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "proposition"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Seals a negative imperative's forbidden eventuality.",
+   "attested": {
+    "arities": {
+     "1": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
+  },
+  "Fraction": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "number",
+    "number"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Cardinality (counting)",
+   "gloss": "Exact fraction / percentage term, numerator over denominator.",
+   "attested": {
+    "arities": {
+     "2": 9
+    },
+    "n": 9,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "A percentage is `(Fraction <p> 100)`, never reduced."
+  },
+  "Future": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Events (verbal)",
+   "gloss": "Future tense on an eventuality.",
+   "attested": {
+    "arities": {
+     "1": 13
+    },
+    "n": 13,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
+  },
+  "Goal": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Non-recipient destination / 'to …' oblique.",
+   "attested": {
+    "arities": {
+     "2": 6
+    },
+    "n": 6,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Also carries a motion resultative's endpoint ('into the box')."
+  },
+  "GreaterThan": {
+   "class": "engine",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "number",
+    "number"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Measures & units",
+   "gloss": "Graded P(value > N) over a distribution magnitude.",
+   "attested": {
+    "arities": {
+     "2": 12
+    },
+    "n": 12,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Also compares two distributions `(GreaterThan $da $db)`. The distribution half of the exact-vs-distribution dual-storage union; `Compute` is the hard-integer half."
+  },
+  "GroupOf": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "kind"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Coordination & plurals",
+   "gloss": "The members of this group individual are of that kind.",
+   "attested": {
+    "arities": {
+     "2": 77
+    },
+    "n": 77,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "The group is an individual, never a class filler; a collective noun already names the kind and needs no GroupOf."
+  },
+  "Holder": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Subject of a possession/relational state only (own, have, lack).",
+   "attested": {
+    "arities": {
+     "2": 23
+    },
+    "n": 23,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "A bare property state is Experiencer, never Holder; the seeded poss_have/poss_own bridge keys off Holder."
+  },
+  "Hour": {
+   "class": "operator",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "number"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Clock hour term, 24-hour.",
+   "attested": {
+    "arities": {
+     "1": 31
+    },
+    "n": 31,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
+  },
+  "Implication": {
+   "class": "core-link",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "term",
+    "term"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Quantifiers, generics & scope (verbal → rules)",
+   "gloss": "Inference rule: a Premises term implies a Conclusions term.",
+   "attested": {
+    "arities": {
+     "2": 135
+    },
+    "n": 135,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "Also used for exclusivity rules (strength 0.0) under Exclusive-or, and for comparative correlatives."
+  },
+  "InOrderTo": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Purpose connective 'in order to'.",
+   "attested": {
+    "arities": {
+     "2": 1
+    },
+    "n": 1,
+    "sources": [
+     "seeded"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. Purpose heads bridge to PurposeOf, which chains into ReasonFor. `To` is NOT used for a degree-governed infinitive ('too/enough ADJ to V')."
+  },
+  "Inheritance": {
+   "class": "core-link",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "kind",
+    "kind"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Categorical statements (copular)",
+   "gloss": "A class/property is a subclass of another class/property.",
+   "attested": {
+    "arities": {
+     "2": 106
+    },
+    "n": 106,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Second argument may be a property or a reified property term `(can|obligated|permitted <action>)`; also `(Inheritance <compound> <head-noun>)` for decomposition."
+  },
+  "Instrument": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Events (verbal)",
+   "gloss": "The means an action is performed by ('with a knife').",
+   "attested": {
+    "arities": {
+     "2": 1
+    },
+    "n": 1,
+    "sources": [
+     "goldens"
+    ]
+   },
+   "notes": "A tool or substance, never a person."
+  },
+  "KindProperty": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "kind",
+    "property"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Quantifiers, generics & scope (verbal → rules)",
+   "gloss": "Non-distributing property of a kind/population as a whole.",
+   "attested": {
+    "arities": {
+     "2": 4
+    },
+    "n": 4,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "For properties no single instance can hold (extinct, widespread); contrasts with Inheritance, which distributes."
+  },
+  "LocatedIn": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Events (verbal)",
+   "gloss": "Static location of an entity ('X is in Y') — as against the event oblique Location.",
+   "attested": {
+    "arities": {},
+    "n": 0,
+    "sources": []
+   },
+   "notes": "Added 2026-08-06 for FUSE-NF gap G1: Tier C's encyclopedic sentences locate THINGS, not events, and entity-attached Location was tripping C6 (44/190 Location atoms sat on a non-event). Deliberately a distinct head rather than widening Location, so that a bare (Location $e $p) query still returns only eventualities. Bridged by seeded locin_trans (containment transitivity) and locin_event (carries an event's Location outward through containment)."
+  },
+  "Location": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Where the eventuality holds ('in/at/on …').",
+   "attested": {
+    "arities": {
+     "2": 15
+    },
+    "n": 15,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
+  },
+  "Manner": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "uncertain"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Events (verbal)",
+   "gloss": "Adverbial manner of the eventuality.",
+   "attested": {
+    "arities": {},
+    "n": 0,
+    "sources": []
+   },
+   "_adjudicated": true,
+   "notes": "Declared in the obliques list; aspectual particles must NOT be stuffed into Manner."
+  },
+  "Measure": {
+   "class": "operator",
+   "arities": [
+    4
+   ],
+   "arg_types": [
+    "individual",
+    "property",
+    "number",
+    "unit"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Measures & units",
+   "gloss": "Puts a magnitude and unit on an entity's dimension.",
+   "attested": {
+    "arities": {
+     "4": 118
+    },
+    "n": 118,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Scale = the surface dimension (stated adjective, else the dimension noun: weight/price/temperature/duration). Magnitude may be a `(ParticleFromNormal X σ)` distribution. Does not entail the positive; tense wraps it."
+  },
+  "MeasureAtLeast": {
+   "class": "operator",
+   "arities": [
+    4
+   ],
+   "arg_types": [
+    "individual",
+    "property",
+    "number",
+    "unit"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Measures & units",
+   "gloss": "Lower-bounded measure.",
+   "attested": {
+    "arities": {
+     "4": 18
+    },
+    "n": 18,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   }
+  },
+  "MeasureAtMost": {
+   "class": "operator",
+   "arities": [
+    4
+   ],
+   "arg_types": [
+    "individual",
+    "property",
+    "number",
+    "unit"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Measures & units",
+   "gloss": "Upper-bounded measure.",
+   "attested": {
+    "arities": {
+     "4": 13
+    },
+    "n": 13,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   }
+  },
+  "Member": {
+   "class": "core-link",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "kind"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Categorical statements (copular)",
+   "gloss": "An individual belongs to a class or holds a property.",
+   "attested": {
+    "arities": {
+     "2": 1246
+    },
+    "n": 1246,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Also the event class `(Member <event> <verb-lemma>)`, adjectival predication `(Member x tall)`, and an inherited reified property `(Member x (can fly))`."
+  },
+  "Might": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Epistemic possibility ('might / may').",
+   "attested": {
+    "arities": {
+     "1": 2
+    },
+    "n": 2,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "Confidence 0.9 (an inference, not a flat fact). Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
+  },
+  "Minute": {
+   "class": "operator",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "number"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Clock minute term.",
+   "attested": {
+    "arities": {
+     "1": 6
+    },
+    "n": 6,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
+  },
+  "Month": {
+   "class": "operator",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "symbol"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Calendar month term (lowercase month-name lemma).",
+   "attested": {
+    "arities": {
+     "1": 29
+    },
+    "n": 29,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
+  },
+  "MonthNumber": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "symbol",
+    "number"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Seeded lexicon fact giving a month name its ordinal number.",
+   "attested": {
+    "arities": {
+     "2": 21
+    },
+    "n": 21,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Never emitted by the translator; joined in QUERIES to order/threshold months."
+  },
+  "More": {
+   "class": "operator",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "property",
+    "individual",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Comparatives & degree",
+   "gloss": "X exceeds Y on a scale (reified comparative ordering).",
+   "attested": {
+    "arities": {
+     "3": 60
+    },
+    "n": 60,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Scale is the lemmatized surface adjective/adverb; 'less' swaps the pair, an antonym keeps its surface pole. Comparanda may be individuals, events (adverbial comparatives) or groups (clausal quantity comparatives). Does not entail the positive."
+  },
+  "MoreBy": {
+   "class": "operator",
+   "arities": [
+    5
+   ],
+   "arg_types": [
+    "property",
+    "individual",
+    "individual",
+    "number",
+    "unit"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Comparatives & degree",
+   "gloss": "Comparative with a measured gap: X exceeds Y by n units.",
+   "attested": {
+    "arities": {
+     "5": 27
+    },
+    "n": 27,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Magnitude may be a `(ParticleFromNormal …)` distribution; unit may be a compound rate unit. Seeded rules derive the plain More and add gaps along a chain."
+  },
+  "Most": {
+   "class": "operator",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "property",
+    "individual",
+    "kind"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Comparatives & degree",
+   "gloss": "Superlative: X is the most ADJ member of a class.",
+   "attested": {
+    "arities": {
+     "3": 17
+    },
+    "n": 17,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Emitted with X's `(Member X <class>)`; bare 'the tallest' defaults the class to `person`."
+  },
+  "Must": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Events (verbal)",
+   "gloss": "Epistemic necessity ('must'-inference).",
+   "attested": {
+    "arities": {
+     "1": 1
+    },
+    "n": 1,
+    "sources": [
+     "goldens"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "Confidence 0.9; the deontic sense of 'must' is Obligated instead. Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
+  },
+  "Name": {
+   "class": "surface-record",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "string"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Names and casing",
+   "gloss": "Records a named individual's surface name string.",
+   "attested": {
+    "arities": {
+     "2": 227
+    },
+    "n": 227,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Emitted once per referent; a query binds a named individual via `(Name $x \"…\")` rather than a hard-coded symbol. Never emitted by a question."
+  },
+  "Obligated": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Deontic obligation on a specific act.",
+   "attested": {
+    "arities": {
+     "1": 8
+    },
+    "n": 8,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "Strength 0.7 for weak 'should / ought'. A kind-level norm uses `(obligated <action>)` instead. Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
+  },
+  "Ongoing": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Progressive / continuative aspect.",
+   "attested": {
+    "arities": {
+     "1": 7
+    },
+    "n": 7,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
+  },
+  "Only": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Focus particles & clefts (only / even / also / it-clefts)",
+   "gloss": "Exclusive focus particle ('only / just / solely').",
+   "attested": {
+    "arities": {
+     "2": 4
+    },
+    "n": 4,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "`(<Op> <focused-filler> <event>)`; the prejacent is asserted normally. Filler is the focused constituent's symbol, or the verb-class lemma for VP focus. Never emit an exclusion rule or assert the presupposition."
+  },
+  "Or": {
+   "class": "core-link",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "atom-list"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": true,
+   "frozen": true,
+   "section": "## Disjunction (\"or\")",
+   "gloss": "Inclusive disjunction: at least one disjunct holds, unspecified which.",
+   "attested": {
+    "arities": {
+     "2": 9
+    },
+    "n": 9,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Declared `(Or <d1> <d2> …)` — variadic; each disjunct is an atom or an `(And …)` bundle. Scope as narrowly as possible; never assert a disjunct on its own."
+  },
+  "Ordinal": {
+   "class": "operator",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "individual",
+    "number",
+    "property"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Comparatives & degree",
+   "gloss": "The entity's rank n on an ordering scale.",
+   "attested": {
+    "arities": {
+     "3": 6
+    },
+    "n": 6,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Rank may be the symbol `last` instead of an integer; scale is the associated event verb-lemma or an explicit '-est' dimension. Rank 1 is the Most special case."
+  },
+  "PartOf": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Compound concepts — prefer single-word, else decompose",
+   "gloss": "Part/component (or named member) of a whole.",
+   "attested": {
+    "arities": {
+     "2": 29
+    },
+    "n": 29,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Introduced for possessor-part compounds ('car engine'); reused for group membership (Coordination), mass partitives (Partitives), and as the range predicate of a group distribution rule (Quantifiers)."
+  },
+  "ParticleFromNormal": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "number",
+    "number"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Measures & units",
+   "gloss": "Approximate magnitude as a normal distribution: mean and sigma.",
+   "attested": {
+    "arities": {
+     "2": 9
+    },
+    "n": 9,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "σ ≈ 10% of X for a tight hedge, ≈ 20% for a loose one; also used inside an `(Hour …)` term for an approximate clock time and inside MoreBy for an approximate gap."
+  },
+  "Past": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Past tense on an eventuality.",
+   "attested": {
+    "arities": {
+     "1": 375
+    },
+    "n": 375,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
+  },
+  "Patient": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Object the action creates, destroys, consumes or physically changes.",
+   "attested": {
+    "arities": {
+     "2": 142
+    },
+    "n": 142,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Also a change-of-state intransitive subject and a non-volitional natural-process subject."
+  },
+  "Permitted": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Deontic permission on a specific act.",
+   "attested": {
+    "arities": {
+     "1": 6
+    },
+    "n": 6,
+    "sources": [
+     "e2e",
+     "seeded"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "A prohibition is `(Permitted e)` at strength 0.0, never a negated Obligated. Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
+  },
+  "Possession": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "individual"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Compound concepts — prefer single-word, else decompose",
+   "gloss": "Possessed-to-possessor link (ownership, kinship, loose association).",
+   "attested": {
+    "arities": {
+     "2": 18
+    },
+    "n": 18,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Possessed first. Never an `own` event for a static genitive; a part/component takes PartOf instead. Possession questions ALWAYS query this form — seeded poss_have/poss_own derive it from a verbal have/own event."
+  },
+  "Premises": {
+   "class": "core-link",
+   "arities": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7
+   ],
+   "arg_types": [
+    "atom-list"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": true,
+   "frozen": true,
+   "section": "## Quantifiers, generics & scope (verbal → rules)",
+   "gloss": "Variadic antecedent conjunct list of an Implication.",
+   "attested": {
+    "arities": {
+     "1": 64,
+     "2": 45,
+     "3": 20,
+     "4": 2,
+     "5": 2,
+     "7": 2
+    },
+    "n": 135,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   }
+  },
+  "Probably": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Events (verbal)",
+   "gloss": "Epistemic probability ('probably').",
+   "attested": {
+    "arities": {},
+    "n": 0,
+    "sources": []
+   },
+   "_adjudicated": true,
+   "notes": "Confidence 0.9. Over a copular clause the status head wraps the categorical atom as one term argument: `(Past (Member alice happy))`."
+  },
+  "ProportionOf": {
+   "class": "operator",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "individual",
+    "individual",
+    "symbol"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Cardinality (counting)",
+   "gloss": "The portion's proportion of a definite whole.",
+   "attested": {
+    "arities": {
+     "3": 16
+    },
+    "n": 16,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Level is polymorphic: a vague symbol (most/half/some/few/none) or a `(Fraction n d)` term."
+  },
+  "PurposeOf": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Explanation questions (why / how / what-for / why-not)",
+   "gloss": "Canonical ask-relation: purpose/goal of a focus event.",
+   "attested": {
+    "arities": {
+     "2": 6
+    },
+    "n": 6,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "QUERY-ONLY, like ReasonFor; derived from the purpose heads To / InOrderTo / SoAsTo."
+  },
+  "QuantifierPhrase": {
+   "class": "surface-record",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "kind",
+    "property",
+    "string"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Categorical statements (copular)",
+   "gloss": "Records the surface quantifier word beside the strength it set.",
+   "attested": {
+    "arities": {
+     "3": 29
+    },
+    "n": 29,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Copular form `(QuantifierPhrase <subject> <predicate> \"<word>\")`; verbal form `(QuantifierPhrase <kind> <verb-lemma> \"<word>\")` beside the distributing rule. Emitted ONLY when a quantifier word is actually present — its absence marks a bare generic."
+  },
+  "Question": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "symbol",
+    "proposition"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Seals an embedded constituent (wh-) question with its wh-word.",
+   "attested": {
+    "arities": {
+     "2": 6
+    },
+    "n": 6,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "The wh-word (who/what/where/when/how) is reused as the gap filler inside the sealed content; the gap must not leak as an existential."
+  },
+  "ReasonFor": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Explanation questions (why / how / what-for / why-not)",
+   "gloss": "Canonical ask-relation: reason for a focus event.",
+   "attested": {
+    "arities": {
+     "2": 15
+    },
+    "n": 15,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "QUERY-ONLY: appears only in queries and seeded rules, never in translated statements. Derived by seeded bridge rules from every reason-bearing surface head; PurposeOf chains into it."
+  },
+  "Recipient": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Goal of a transfer (indirect object / 'to').",
+   "attested": {
+    "arities": {
+     "2": 7
+    },
+    "n": 7,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
+  },
+  "RestOf": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "individual"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Cardinality (counting)",
+   "gloss": "Flags a portion as the remainder of a definite whole.",
+   "attested": {
+    "arities": {
+     "2": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Emitted alongside the ordinary partitive SubsetOf/PartOf portion."
+  },
+  "Result": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Links an event to the reified result state it caused.",
+   "attested": {
+    "arities": {
+     "2": 5
+    },
+    "n": 5,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "State resultatives only — a motion result carries no Result atom (Source/Goal IS the result); omit when it is unclear whether a state is caused or merely concurrent. Defined under `### Resultatives & secondary predicates`."
+  },
+  "STV": {
+   "class": "engine",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "number",
+    "number"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Truth values (STV)",
+   "gloss": "Truth value: strength and confidence, both in [0,1].",
+   "attested": {
+    "arities": {
+     "2": 2234
+    },
+    "n": 2234,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Confidence is never 1.0; in a query the whole TV is `$tv`, or pinned `(STV 0.0 $conf)`."
+  },
+  "SameDegree": {
+   "class": "operator",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "property",
+    "individual",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Comparatives & degree",
+   "gloss": "Equative: X is as ADJ as Y.",
+   "attested": {
+    "arities": {
+     "3": 3
+    },
+    "n": 3,
+    "sources": [
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Symmetry is seeded (samedegree_sym)."
+  },
+  "ScaleOpposite": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "property",
+    "property"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Comparatives & degree",
+   "gloss": "Links the two poles of one gradable dimension.",
+   "attested": {
+    "arities": {
+     "2": 16
+    },
+    "n": 16,
+    "sources": [
+     "seeded"
+    ]
+   },
+   "notes": "Named in the prompt as a SEEDED lexicon — the translator emits neither ScaleOpposite nor the flipped comparative atom. Included for completeness; empirically it appears only in seeded_rules.metta."
+  },
+  "Since": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Causal connective 'since'.",
+   "attested": {
+    "arities": {
+     "2": 1
+    },
+    "n": 1,
+    "sources": [
+     "seeded"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
+  },
+  "So": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Causal connective 'so'.",
+   "attested": {
+    "arities": {
+     "2": 5
+    },
+    "n": 5,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
+  },
+  "SoAsTo": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Purpose connective 'so as to'.",
+   "attested": {
+    "arities": {
+     "2": 1
+    },
+    "n": 1,
+    "sources": [
+     "seeded"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. Purpose heads bridge to PurposeOf, which chains into ReasonFor. `To` is NOT used for a degree-governed infinitive ('too/enough ADJ to V')."
+  },
+  "Source": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Origin / 'from …' oblique.",
+   "attested": {
+    "arities": {
+     "2": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Also carries a motion resultative's starting point ('off the counter')."
+  },
+  "Start": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "term"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Interval start point of an eventuality.",
+   "attested": {
+    "arities": {
+     "2": 10
+    },
+    "n": 10,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   }
+  },
+  "Still": {
+   "class": "status",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "event|proposition"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Continuative: the eventuality still holds (positive counterpart of cessation).",
+   "attested": {
+    "arities": {
+     "1": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "Opaque presupposition tag on the event; the presupposed prior/expected event is never asserted. Defined under `### Aspectual particles`."
+  },
+  "Stimulus": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Object of a psych/perception state.",
+   "attested": {
+    "arities": {
+     "2": 13
+    },
+    "n": 13,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
+  },
+  "SubsetOf": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "individual",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Cardinality (counting)",
+   "gloss": "A quantified subset group of a definite superset group.",
+   "attested": {
+    "arities": {
+     "2": 18
+    },
+    "n": 18,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Count/plural partitives only; a mass whole uses PartOf instead. Defined under `### Partitives`."
+  },
+  "Symmetric": {
+   "class": "operator",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "symbol"
+   ],
+   "opaque": true,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Reciprocals & symmetric relations",
+   "gloss": "Tags a relation head as mutual by meaning.",
+   "attested": {
+    "arities": {
+     "1": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Argument is the lemmatized UpperCamelCase relation head; seeded `sym_rel` derives the reverse direction. A group-rule reciprocal needs NO tag."
+  },
+  "Theme": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "individual"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Object acquired, transferred, moved, possessed, perceived or evaluated unchanged.",
+   "attested": {
+    "arities": {
+     "2": 162
+    },
+    "n": 162,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Also carries a sealed proposition for propositional attitudes / embedded questions, and the reified caused event of a periphrastic causative. Default role when the change test is unclear."
+  },
+  "Therefore": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Causal connective 'therefore'.",
+   "attested": {
+    "arities": {
+     "2": 1
+    },
+    "n": 1,
+    "sources": [
+     "seeded"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
+  },
+  "Thus": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Causal connective 'thus'.",
+   "attested": {
+    "arities": {
+     "2": 1
+    },
+    "n": 1,
+    "sources": [
+     "seeded"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none."
+  },
+  "Time": {
+   "class": "role",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "term"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Locates an eventuality at a time point or recurrence slot.",
+   "attested": {
+    "arities": {
+     "2": 125
+    },
+    "n": 125,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Filler is a structured calendar/clock term `(Year …)`/`(Month …)`/`(Day …)`/`(Weekday …)`/`(Hour …)`/`(Minute …)`, or a bare deictic/day-part symbol (`yesterday`, `morning`). Listed as an oblique role under `### Thematic roles`; fully specified under the Time section."
+  },
+  "TimeAtLeast": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "term"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Lower-bounded (earliest) time of an eventuality.",
+   "attested": {
+    "arities": {
+     "2": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Strict 'after' drops the boundary point; any granularity term."
+  },
+  "TimeAtMost": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "term"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Upper-bounded (latest) time of an eventuality.",
+   "attested": {
+    "arities": {
+     "2": 15
+    },
+    "n": 15,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Strict 'before' drops the boundary point; 'by T' deadlines map here."
+  },
+  "TimesAs": {
+   "class": "operator",
+   "arities": [
+    4
+   ],
+   "arg_types": [
+    "property",
+    "individual",
+    "individual",
+    "number"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Comparatives & degree",
+   "gloss": "Multiplicative comparative: X is <factor> times as ADJ as Y.",
+   "attested": {
+    "arities": {
+     "4": 10
+    },
+    "n": 10,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "twice→2, half→0.5. Seeded rules derive the ordering and, given Y's measure, X's measure."
+  },
+  "TimesPer": {
+   "class": "operator",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "event",
+    "number",
+    "unit"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Rate recurrence: n times per unit.",
+   "attested": {
+    "arities": {
+     "3": 4
+    },
+    "n": 4,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
+  },
+  "To": {
+   "class": "discourse",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "event"
+   ],
+   "opaque": true,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Inter-clause connectives (because / so / although / but / purpose \"to\")",
+   "gloss": "Purpose infinitive connective 'to'.",
+   "attested": {
+    "arities": {
+     "2": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" — the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective — temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. Purpose heads bridge to PurposeOf, which chains into ReasonFor. `To` is NOT used for a degree-governed infinitive ('too/enough ADJ to V')."
+  },
+  "Weekday": {
+   "class": "operator",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "symbol"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Weekday term (lowercase weekday-name lemma).",
+   "attested": {
+    "arities": {
+     "1": 20
+    },
+    "n": 20,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
+  },
+  "WeekdayNumber": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "symbol",
+    "number"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Seeded lexicon fact giving a weekday name its number (monday=1).",
+   "attested": {
+    "arities": {
+     "2": 8
+    },
+    "n": 8,
+    "sources": [
+     "e2e",
+     "seeded"
+    ]
+   },
+   "notes": "Never emitted by the translator; joined in QUERIES to order/threshold weekdays."
+  },
+  "Whether": {
+   "class": "operator",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "proposition"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Seals an embedded polar question under the matrix verb's Theme.",
+   "attested": {
+    "arities": {
+     "1": 3
+    },
+    "n": 3,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Must not become `(Might P)`; the content is never asserted. Defined under `### Embedded questions`."
+  },
+  "Xor": {
+   "class": "core-link",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "proposition",
+    "proposition"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Exclusive \"or\" (XOR)",
+   "gloss": "Exclusive disjunction: exactly one of two disjuncts holds.",
+   "attested": {
+    "arities": {
+     "2": 8
+    },
+    "n": 8,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "notes": "Atomic disjuncts additionally get two strength-0.0 `Implication` rule-out rules; complex/event disjuncts get the `Xor` label only. n-ary XOR is an open backlog item."
+  },
+  "Year": {
+   "class": "operator",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "number"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time — dates, ordering, intervals & duration",
+   "gloss": "Calendar year term.",
+   "attested": {
+    "arities": {
+     "1": 34
+    },
+    "n": 34,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "notes": "Structured Time term — one atom per granularity actually stated; also fills TimeAtLeast/TimeAtMost/Start/End slots."
+  },
+  "Yet": {
+   "class": "status",
+   "arities": [
+    1,
+    2
+   ],
+   "arg_types": [
+    "event"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "NPI 'yet': expected but not yet — under negation or a question.",
+   "attested": {
+    "arities": {
+     "1": 5,
+     "2": 4
+    },
+    "n": 9,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "HEAD COLLISION: two unrelated senses share this symbol, disambiguated only by arity. Operator identity for mining is (name, arity), not name.",
+   "senses": [
+    {
+     "arity": 1,
+     "class": "status",
+     "opaque": true,
+     "section": "Aspectual particles",
+     "gloss": "NPI 'yet': expected but not yet, always under negation or a question"
+    },
+    {
+     "arity": 2,
+     "class": "discourse",
+     "opaque": true,
+     "section": "Inter-clause connectives",
+     "gloss": "adversative 'yet' connective: (Yet <main-clause> <subordinate-clause>)"
     }
+   ]
   },
-  "open_class": {
-    "policy": "Lexical relation heads the prompt licenses generically rather than enumerating: kind-level relations, symmetric/reciprocal relations, nominalization relations. They cannot be checked by name — the validator checks position and arity only. Never frozen: these are the primary consolidation targets. Obliques are ALSO open class: prompt.txt attaches an oblique under a head named after its own preposition/adverb, so the head set cannot be enumerated in advance. `oblique_prepositions` lists the English prepositions that may therefore appear as an arity-2 head; an UpperCamelCase head that is NOT one of them is still flagged.",
-    "positions": [
-      "head of a kind-level relation atom, e.g. (Carry mosquito malaria)",
-      "head of a symmetric relation atom accompanied by (Symmetric <head>)",
-      "head of a nominalization kind-relation, e.g. (Build dam_builder dam)",
-      "skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)"
-    ],
-    "attested_heads": [
-      "Build",
-      "Carry",
-      "Catch",
-      "Colleague",
-      "Cousin",
-      "Eat",
-      "Friend",
-      "Lay",
-      "Mend",
-      "Rival"
-    ],
-    "skolem_function_heads": [
-      "sk_abstain",
-      "sk_argue",
-      "sk_assign",
-      "sk_bark",
-      "sk_board",
-      "sk_book",
-      "sk_books",
-      "sk_bring",
-      "sk_celebrate",
-      "sk_complain",
-      "sk_distrust",
-      "sk_drill",
-      "sk_email",
-      "sk_endorse",
-      "sk_fine",
-      "sk_fly",
-      "sk_gift",
-      "sk_give",
-      "sk_grade",
-      "sk_growl",
-      "sk_hunt",
-      "sk_laugh",
-      "sk_memorize",
-      "sk_migrate",
-      "sk_object",
-      "sk_poems",
-      "sk_question",
-      "sk_reach",
-      "sk_read",
-      "sk_scavenge",
-      "sk_shear",
-      "sk_sink",
-      "sk_swim",
-      "sk_undermine",
-      "sk_vote"
-    ],
-    "oblique_prepositions": [
-      "About",
-      "Above",
-      "Across",
-      "After",
-      "Against",
-      "Along",
-      "Among",
-      "Around",
-      "As",
-      "At",
-      "Before",
-      "Behind",
-      "Below",
-      "Beneath",
-      "Beside",
-      "Besides",
-      "Between",
-      "Beyond",
-      "But",
-      "By",
-      "Concerning",
-      "Despite",
-      "Down",
-      "During",
-      "Except",
-      "For",
-      "From",
-      "In",
-      "Inside",
-      "Into",
-      "Like",
-      "Near",
-      "Of",
-      "Off",
-      "On",
-      "Onto",
-      "Opposite",
-      "Out",
-      "Outside",
-      "Over",
-      "Past",
-      "Per",
-      "Regarding",
-      "Round",
-      "Since",
-      "Than",
-      "Through",
-      "Throughout",
-      "Till",
-      "To",
-      "Toward",
-      "Towards",
-      "Under",
-      "Underneath",
-      "Unlike",
-      "Until",
-      "Up",
-      "Upon",
-      "Via",
-      "With",
-      "Within",
-      "Without"
+  "can": {
+   "class": "property-constructor",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "verb-lemma"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Quantifiers, generics & scope (verbal → rules)",
+   "gloss": "Builds the reified capability property term from a verb lemma.",
+   "attested": {
+    "arities": {
+     "1": 31
+    },
+    "n": 31,
+    "sources": [
+     "e2e",
+     "goldens"
     ]
+   },
+   "notes": "Lowercase by the casing exception — distinguishes it from the status head `Can`. Used by capability generics, agent-nominalizations and defeasible exceptions."
   },
-  "declared_but_unattested": {
-    "note": "Declared in prompt.txt but exercised by no regression golden, e2e case or seeded rule. These are regression-coverage gaps, not errors.",
-    "heads": [
-      "Beneficiary",
-      "Despite",
-      "EvenThough",
-      "Manner",
-      "Probably"
+  "forKind": {
+   "class": "operator",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "kind"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Comparatives & degree",
+   "gloss": "Comparison-class marker: ADJ relative to the norm for a kind.",
+   "attested": {
+    "arities": {
+     "1": 4
+    },
+    "n": 4,
+    "sources": [
+     "e2e",
+     "goldens"
     ]
+   },
+   "notes": "The one deliberate camelCase symbol; appears only in a Degree level slot."
+  },
+  "obligated": {
+   "class": "property-constructor",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "verb-lemma"
+   ],
+   "opaque": false,
+   "bridged": true,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Quantifiers, generics & scope (verbal → rules)",
+   "gloss": "Builds the reified obligation property term from an action.",
+   "attested": {
+    "arities": {
+     "1": 18
+    },
+    "n": 18,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "Action may be a compound `verb_object` symbol, which is then decomposed (genus + Patient). Defined under 'Deontic norms & prohibitions over a kind'."
+  },
+  "permitted": {
+   "class": "property-constructor",
+   "arities": [
+    1
+   ],
+   "arg_types": [
+    "verb-lemma"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": false,
+   "section": "## Quantifiers, generics & scope (verbal → rules)",
+   "gloss": "Builds the reified permission property term from an action.",
+   "attested": {
+    "arities": {
+     "1": 11
+    },
+    "n": 11,
+    "sources": [
+     "e2e",
+     "goldens",
+     "seeded"
+    ]
+   },
+   "_adjudicated": true,
+   "notes": "A kind-level prohibition is this term at strength 0.0."
   }
+ },
+ "open_class": {
+  "policy": "Lexical relation heads the prompt licenses generically rather than enumerating: kind-level relations, symmetric/reciprocal relations, nominalization relations. They cannot be checked by name — the validator checks position and arity only. Never frozen: these are the primary consolidation targets. Obliques are ALSO open class: prompt.txt attaches an oblique under a head named after its own preposition/adverb, so the head set cannot be enumerated in advance. `oblique_prepositions` lists the English prepositions that may therefore appear as an arity-2 head; an UpperCamelCase head that is NOT one of them is still flagged.",
+  "positions": [
+   "head of a kind-level relation atom, e.g. (Carry mosquito malaria)",
+   "head of a symmetric relation atom accompanied by (Symmetric <head>)",
+   "head of a nominalization kind-relation, e.g. (Build dam_builder dam)",
+   "skolem-function head (sk_<verb>) in a scope construction, e.g. (sk_y $x)"
+  ],
+  "attested_heads": [
+   "Build",
+   "Carry",
+   "Catch",
+   "Colleague",
+   "Cousin",
+   "Eat",
+   "Friend",
+   "Lay",
+   "Mend",
+   "Rival"
+  ],
+  "skolem_function_heads": [
+   "sk_abstain",
+   "sk_argue",
+   "sk_assign",
+   "sk_bark",
+   "sk_board",
+   "sk_book",
+   "sk_books",
+   "sk_bring",
+   "sk_celebrate",
+   "sk_complain",
+   "sk_distrust",
+   "sk_drill",
+   "sk_email",
+   "sk_endorse",
+   "sk_fine",
+   "sk_fly",
+   "sk_gift",
+   "sk_give",
+   "sk_grade",
+   "sk_growl",
+   "sk_hunt",
+   "sk_laugh",
+   "sk_memorize",
+   "sk_migrate",
+   "sk_object",
+   "sk_poems",
+   "sk_question",
+   "sk_reach",
+   "sk_read",
+   "sk_scavenge",
+   "sk_shear",
+   "sk_sink",
+   "sk_swim",
+   "sk_undermine",
+   "sk_vote"
+  ],
+  "oblique_prepositions": [
+   "About",
+   "Above",
+   "Across",
+   "After",
+   "Against",
+   "Along",
+   "Among",
+   "Around",
+   "As",
+   "At",
+   "Before",
+   "Behind",
+   "Below",
+   "Beneath",
+   "Beside",
+   "Besides",
+   "Between",
+   "Beyond",
+   "But",
+   "By",
+   "Concerning",
+   "Despite",
+   "Down",
+   "During",
+   "Except",
+   "For",
+   "From",
+   "In",
+   "Inside",
+   "Into",
+   "Like",
+   "Near",
+   "Of",
+   "Off",
+   "On",
+   "Onto",
+   "Opposite",
+   "Out",
+   "Outside",
+   "Over",
+   "Past",
+   "Per",
+   "Regarding",
+   "Round",
+   "Since",
+   "Than",
+   "Through",
+   "Throughout",
+   "Till",
+   "To",
+   "Toward",
+   "Towards",
+   "Under",
+   "Underneath",
+   "Unlike",
+   "Until",
+   "Up",
+   "Upon",
+   "Via",
+   "With",
+   "Within",
+   "Without"
+  ]
+ },
+ "declared_but_unattested": {
+  "note": "Declared in prompt.txt but exercised by no regression golden, e2e case or seeded rule. These are regression-coverage gaps, not errors.",
+  "heads": [
+   "Beneficiary",
+   "Despite",
+   "EvenThough",
+   "Manner",
+   "Probably"
+  ]
+ }
 }

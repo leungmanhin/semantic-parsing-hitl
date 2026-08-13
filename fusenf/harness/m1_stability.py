@@ -23,9 +23,10 @@ def load(path):
 def wildcard_atoms(canon):
     """Atom terms with every canonical skolem replaced by a single token.
 
-    If two parses agree under this projection but disagree on graph_id, the difference is pure
-    skolem naming or atom order — which canonicalization is supposed to erase. That is a
-    canonicalizer BUG, and the count must be zero.
+    Agreement under this projection with a graph_id mismatch means the runs emitted the same
+    atom multiset wired to different carriers (`attachment` in `attribute()`). It does NOT
+    diagnose a canonicalizer bug — collapsing skolems erases exactly the wiring needed to tell
+    a hashing fault from a real attachment difference.
     """
     import re
     out = []
@@ -42,23 +43,38 @@ def head_of(term):
 
 def attribute(a, b, vocab_roles):
     """Mechanically classify one disagreeing pair. Returns a bucket name."""
-    if wildcard_atoms(a) == wildcard_atoms(b):
-        return "canonicalizer"                      # must be 0
+    # `tv-only` FIRST. `shape_id` hashes the terms alone, so shape equality means the terms are
+    # identical and a graph_id difference can only be truth values. The wildcard test below cannot
+    # see truth values at all, so with the checks the other way round every tv-only pair was
+    # reported as a canonicalizer BUG -- which is what the Tier C run's lone `canonicalizer` pair
+    # turned out to be (tierC-000147: identical terms, "mainly" read as 0.9 vs 1.0).
     if a.get("shape_id") == b.get("shape_id"):
         return "tv-only"
-    ta = {x["term"] if isinstance(x.get("term"), str) else str(x.get("term")) for x in a["atoms"]}
-    tb = {x["term"] if isinstance(x.get("term"), str) else str(x.get("term")) for x in b["atoms"]}
-    wa, wb = set(wildcard_atoms(a)), set(wildcard_atoms(b))
-    if wa < wb or wb < wa:
-        return "optional-atom"                      # one is a strict superset of the other
-    if len(wa) == len(wb):
-        only_a, only_b = wa - wb, wb - wa
-        if len(only_a) == len(only_b) and only_a:
-            ha = collections.Counter(head_of(t) for t in only_a)
-            hb = collections.Counter(head_of(t) for t in only_b)
-            if ha != hb and all(h in vocab_roles for h in (ha | hb)):
-                return "role-choice"
-    if abs(len(wa) - len(wb)) >= 2:
+    # Wildcard-equal but graph-different is NOT decidable as a canonicalizer bug from here:
+    # collapsing skolems erases the wiring, so this projection cannot tell "isomorphic graphs
+    # hashed apart" (a real canonicalizer bug) from "the same atoms attached to different
+    # carriers" (a real semantic difference -- tierC-000111: `(Ordinal e0 1 give)` vs
+    # `(Ordinal x1 1 give)`, both exactly canonicalized). An earlier version flagged this case
+    # as `canonicalizer -- MUST BE 0` and produced only false alarms. Canonicalizer health is
+    # the unit suite's job (permutation invariance + idempotence in test_canonicalize); here the
+    # pair is bucketed as what it observably is: an attachment difference.
+    if wildcard_atoms(a) == wildcard_atoms(b):
+        return "attachment"
+    # MULTISETS, not sets: wildcarding collapses distinct skolems onto identical strings, so a
+    # record often carries duplicate wildcard atoms. Under set() a strict multiset superset (one
+    # run = the other plus extra copies of atoms it already has) diffs to nothing on both sides
+    # and fell through to `unclassified`; Counters keep the copies countable.
+    ca, cb = collections.Counter(wildcard_atoms(a)), collections.Counter(wildcard_atoms(b))
+    only_a, only_b = ca - cb, cb - ca
+    if bool(only_a) != bool(only_b):
+        return "optional-atom"                      # one is a strict (multiset) superset
+    na, nb = sum(ca.values()), sum(cb.values())
+    if na == nb and sum(only_a.values()) == sum(only_b.values()) and only_a:
+        ha = collections.Counter(head_of(t) for t in only_a.elements())
+        hb = collections.Counter(head_of(t) for t in only_b.elements())
+        if ha != hb and all(h in vocab_roles for h in (ha | hb)):
+            return "role-choice"
+    if abs(na - nb) >= 2:
         return "decomposition-depth"
     return "unclassified"                            # -> agent reviewer
 
@@ -142,11 +158,7 @@ def main():
     L.append("## Variance attribution (mechanical)\n")
     L.append("| bucket | pairs |\n|---|---|")
     for b, c in buckets.most_common():
-        flag = "  **<-- MUST BE 0**" if b == "canonicalizer" else ""
-        L.append(f"| `{b}` | {c}{flag} |")
-    if buckets.get("canonicalizer"):
-        L.append("\n> **BLOCKER:** `canonicalizer` is non-zero — differences that canonicalization "
-                 "is supposed to erase are surviving into `graph_id`. Fix before P2 (metrics.md M1).")
+        L.append(f"| `{b}` | {c} |")
     if buckets.get("unclassified"):
         L.append(f"\n> `unclassified` ({buckets['unclassified']}) needs the agent reviewer — these "
                  "are the semantic buckets (genuine ambiguity vs a convention gap) that no program "

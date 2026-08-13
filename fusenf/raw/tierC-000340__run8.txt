@@ -1,0 +1,6 @@
+(: it_thing (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: habitat_grp (GroupOf sk_habitat_1 habitat) (STV 1.0 0.99))
+(: habitat_poss (Possession sk_habitat_1 sk_thing_1) (STV 1.0 0.99))
+(: lf_genus (Inheritance lowland_forest forest) (STV 1.0 0.99))
+(: lf_mod (Inheritance lowland_forest lowland) (STV 1.0 0.99))
+(: habitat_rule (Implication (PartOf $x sk_habitat_1) (And (Member $x moist) (Or (Member $x subtropical) (Member $x tropical)) (Or (And (Member $x natural) (Member $x lowland_forest)) (Member $x plantation)))) (STV 1.0 0.9))

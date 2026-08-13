@@ -1,0 +1,4 @@
+(: morrow_mean (And (Member sk_mean_1 mean) (Agent sk_mean_1 morrow) (Or (Theme sk_mean_1 sk_day_1) (Theme sk_mean_1 sk_future_1)) (Can sk_mean_1)) (STV 1.0 0.99))
+(: day_member (Member sk_day_1 next_day) (STV 1.0 0.99))
+(: day_genus (Inheritance next_day day) (STV 1.0 0.99))
+(: future_member (Member sk_future_1 future) (STV 1.0 0.99))

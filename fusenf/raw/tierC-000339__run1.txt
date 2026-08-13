@@ -1,0 +1,8 @@
+(: hab_group (GroupOf sk_habitat_1 habitat) (STV 1.0 0.99))
+(: hab_poss (Possession sk_habitat_1 sk_it_1) (STV 1.0 0.99))
+(: hab_moist (Member sk_habitat_1 moist) (STV 1.0 0.99))
+(: hab_climate (Or (Member sk_habitat_1 subtropical) (Member sk_habitat_1 tropical)) (STV 1.0 0.99))
+(: hab_nf (Member sk_habitat_1 natural_forest) (STV 1.0 0.99))
+(: nf_genus (Inheritance natural_forest forest) (STV 1.0 0.99))
+(: nf_natural (Inheritance natural_forest natural) (STV 1.0 0.99))
+(: hab_plantation (Member sk_habitat_1 plantation) (STV 1.0 0.99))

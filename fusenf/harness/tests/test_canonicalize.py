@@ -851,7 +851,7 @@ class TestDeterminism(unittest.TestCase):
             "renaming", "stars", "exact", "stats",
         ):
             self.assertIn(field, canon)
-        self.assertEqual(canon["schema"], "fusenf-canon/3")
+        self.assertEqual(canon["schema"], "fusenf-canon/4")
         self.assertTrue(canon["graph_id"].startswith("sha256:"))
         self.assertEqual(
             sorted(canon["stats"]),
@@ -903,6 +903,29 @@ class TestDeterminism(unittest.TestCase):
         a = C.canonicalize(rec(['(: d (Or (Member sk_1 relay) (Member sk_2 wiring)) (STV 0.9 0.9))']))
         b = C.canonicalize(rec(['(: d (Or (Member sk_2 wiring) (Member sk_1 relay)) (STV 0.9 0.9))']))
         self.assertNotEqual(a["graph_id"], b["graph_id"])
+
+
+class TestStringWhitespace(unittest.TestCase):
+    """/4 — tokenized-source spacing inside string literals is mechanical variance."""
+
+    def test_detached_punctuation_hashes_together(self):
+        a = rec(['(: n (Name x0 "Bossier City , LA") (STV 1.0 0.99))',
+                 '(: k (Member x0 area) (STV 1.0 0.99))'])
+        b = rec(['(: n (Name x0 "Bossier City, LA") (STV 1.0 0.99))',
+                 '(: k (Member x0 area) (STV 1.0 0.99))'])
+        ca, cb = C.canonicalize(a), C.canonicalize(b)
+        self.assertEqual(ca["graph_id"], cb["graph_id"])
+        self.assertEqual(ca["shape_id"], cb["shape_id"])
+
+    def test_run_collapse_and_trim(self):
+        self.assertEqual(C._normalize_string_ws('"  a   b , c  "'), '"a b, c"')
+
+    def test_escapes_untouched(self):
+        self.assertEqual(C._normalize_string_ws(r'"a \" b , c"'), r'"a \" b, c"')
+
+    def test_symbols_untouched(self):
+        canon = C.canonicalize(rec(['(: k (Member some_symbol area) (STV 1.0 0.99))']))
+        self.assertIn("some_symbol", canon["linearization"])
 
 
 class TestSoftJaccard(unittest.TestCase):

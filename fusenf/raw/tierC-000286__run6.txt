@@ -1,0 +1,6 @@
+(: laws_grp (GroupOf sk_group_1 law) (STV 1.0 0.99))
+(: laws_open_cls (Member sk_open_1 open) (STV 1.0 0.99))
+(: laws_open_pat (Patient sk_open_1 sk_group_1) (STV 1.0 0.99))
+(: laws_open_past (Past sk_open_1) (STV 1.0 0.99))
+(: many_nb_changed (Implication (Member $x nanobrewery) (And (Member (sk_change $x) change) (Patient (sk_change $x) $x) (Past (sk_change $x)) (Start (sk_change $x) sk_open_1))) (STV 0.7 0.9))
+(: nb_q (QuantifierPhrase nanobrewery change "many") (STV 1.0 0.99))

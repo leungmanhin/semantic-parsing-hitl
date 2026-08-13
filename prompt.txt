@@ -181,6 +181,14 @@ Six patterns recur throughout; each is defined **here once** and only referenced
 - **Lemmatize** every head and class to its dictionary base form: verbs → base (`ran` /
   `running` → `run`), nouns → singular (`ravens` / `mice` → `raven` / `mouse`), adjectives →
   base (`taller` → `tall`). All inflectional variants of a word map to one symbol.
+  **Inflection only — never derivation.** A word derived into another part of speech is a
+  **different word** and keeps its own form: `coastal` is not `coast`, `mountainous` is not
+  `mountain`, `tidal` is not `tide`. A **participle used as a modifier** is an adjective, not the
+  verb: "a laminated worktop" → `(Member sk_worktop_1 laminated)`, **not** `laminate`. Decide by
+  the word's **function here**, not its shape — the same participle in "the worktop was
+  laminated" *is* a verb and does take the base form. The same boundary holds for **`-ly`
+  adverbs**, which are derivation again: a `Manner` adverb keeps its surface form —
+  `(Manner <event> brightly)`, never the bare adjective `bright`.
 - **Proof names** are snake_case. **Variables** are `$`-prefixed. **String literals** are
   double-quoted, preserving surface form: `"Alice"`, `"New York City"`.
 - **Casing exceptions**: reified **property constructors** are lowercase — `(can <verb>)`,
@@ -188,14 +196,47 @@ Six patterns recur throughout; each is defined **here once** and only referenced
   what distinguishes them from the status heads `Can` / `Obligated` / `Permitted`. Structured
   **term constructors** (`Year`, `Fraction`, `ParticleFromNormal`, `Whether`, …) are
   UpperCamelCase like heads; `forKind` is the one deliberate camelCase marker.
-- A **named** individual (proper noun) gets a stable name-derived symbol reused for every
-  mention (`alice`), plus a `Name` fact: `(Name alice "Alice")`. Distinct same-named
-  entities get distinct symbols (`alice_1`, `alice_2`), each with its own `Name`. A kinship or
-  courtesy **title** ("Dr Okoro", "Uncle Bertrand") is **surface, not structure**: keep the full
-  form in the `Name` string and derive the symbol from the name alone — `(Name okoro "Dr Okoro")`. Emit a kinship relation only if the text states whose relative they are. An
-  **existential witness** is anonymous — mint a fresh `sk_<class>_<n>` each time; witnesses
+- A **proper noun** gets a stable name-derived symbol reused for every mention (`alice`), plus
+  **exactly one** `Name` fact: `(Name alice "Alice")`. Neither part is optional, and neither is
+  restricted to people — a place, organization, work, vessel, treaty or named event is a proper
+  noun too, and each gets its own `Name` (an optional atom makes two faithful parses differ).
+  Distinct same-named entities get distinct symbols (`alice_1`, `alice_2`), each with its own
+  `Name`. (Examples in later sections show only the atoms under discussion and often leave the
+  `Name` atoms out; a real parse always emits them.)
+- A **multi-word** name is **one opaque symbol built from the whole name** — `imogen_hartsley`,
+  `halvard_of_sunne`, `kestrel_river` — never split across atoms. The **Compound concepts** rules
+  below do **not** apply to it: a name is non-compositional, so emit **no** modifier genus
+  (`kestrel_river` is **not** `kestrel`). The name is exactly its **capitalized** run of words,
+  keeping internal lowercase particles ("of", "van", "de"); an adjacent **lowercase** common noun
+  is not part of it. State the entity's **kind** in one ordinary type atom instead — whether the
+  kind word sits inside the name or beside it:
+
+      the Kestrel River …    →  (Member kestrel_river river)  (Name kestrel_river "Kestrel River")
+      the Brindle estuary …  →  (Member brindle estuary)      (Name brindle "Brindle")
+
+  A lowercase **adjective** before a name is not part of it either — it carves out a
+  **sub-region** of the named place: mint a witness for that region, give it the property (by
+  `Member` — a witness is an individual), and contain it in the place; the modifier never joins
+  the name symbol:
+
+      in coastal Calderwick …  →  (Member sk_zone_1 coastal) (LocatedIn sk_zone_1 calderwick)
+                                  (Name calderwick "Calderwick")
+                                  ; whatever the sentence locates then sits (LocatedIn <thing> sk_zone_1)
+
+  The cue is the **casing itself**, mechanically: a **capitalized** modifier belongs to the
+  capitalized run and joins the name — "Upper Calderwick" is the single name `upper_calderwick`
+  (one symbol, one `Name`, no witness, no `(Member … upper)`) — while the same word lowercased
+  carves out the sub-region as above.
+
+- A kinship or courtesy **title** ("Dr Okoro", "Uncle Bertrand") is **surface, not structure**: keep the full
+  form in the `Name` string and derive the symbol from the name alone — `(Name okoro "Dr Okoro")`. Emit a kinship relation only if the text states whose relative they are.
+- An **existential witness** is anonymous — mint a fresh `sk_<class>_<n>` each time; witnesses
   don't corefer. (With a `CONTEXT` block, indices continue past the context's symbols —
-  see **Input**.)
+  see **Input**.) A **pronoun with no antecedent** takes such a witness, classed by what the
+  pronoun *means* and never by its grammatical gender: he / she / they-singular → `person`
+  (**not** `man` / `woman` — gender agreement is not a claim about the referent's kind), plural
+  they → a group (`GroupOf sk_group_1 person`), it → the salient kind if the text supplies one,
+  else `thing`.
 
 ## Compound concepts — prefer single-word, else decompose
 
@@ -204,6 +245,9 @@ symbol is genuinely needed, also emit **decomposition atoms** that unpack it int
 so the reasoner connects it and answers finer questions. Decompose **once, to single-word lemmas,
 then stop** — don't recurse on parts already single; don't decompose idioms / non-compositional
 names (`hot_dog`) or **phrasal / particle verbs** (`go_out`, `break_down` — kept whole, never a bare head or a single-word synonym; see below).
+**Nothing in this section applies to a proper noun**: a multi-word name is one opaque symbol
+carrying no genus and no modifier atoms, and its kind is stated by a separate type atom — see
+**Names and casing**.
 A **fixed multi-word idiom** is the same case with more words: "the intern **spilled the beans** about
 the merger" → the single surface symbol **`spill_the_beans`**, keeping every word, and **never**
 unpacked into a literal event — `(Member sk_spill_1 spill)` + `(Member sk_bean_1 bean)` asserts
@@ -254,7 +298,16 @@ pay_dues)` ≠ `(obligated pay)`).
   is a noun sitting in front of another noun. Test: can the modifier be predicated of the thing
   ("the contractor **is** senior", "the wing **is** east", "the bridge **is** wooden")? The genus
   itself (`shift`, `truck`, `beam`) is **always** emitted either way. Fuse a `modifier_noun` **only when the modifier _classifies_ the head into a
-  genuine subtype** (`light_switch`, `delivery_van`). When the first noun is instead a **possessor
+  genuine subtype** (`light_switch`, `delivery_van`). The same line decides an **adjective +
+  noun**: fuse when the pair names a recognized kind — a **term of art** (`blast_furnace`), a
+  **nationality / origin** adjective (`breton_tapestry`), a **role title** (`senior_contractor`),
+  a **material adjective** (`wooden_bridge`) — and never for **incidental description** (colour,
+  size, damage, mood): "a dented pail" is two atoms, `(Member sk_pail_1 pail) (Member sk_pail_1
+  dented)`, not `dented_pail`. On a **plural**, the restrictive modifier keeps the same split: a
+  fusing classifier rides in the group's kind slot (`(GroupOf sk_group_1 breton_tapestry)`, plus
+  the compound's decomposition as usual), while a descriptive modifier **distributes over the
+  members exactly like a copular predicate** (see the distributive rule under **Quantifiers &
+  generics**) — it is asserted *of* each thing, not part of what the things are called. When the first noun is instead a **possessor
   / whole** and the second its **part / component** — "car engine" (the engine of a car), "table
   leg" — do **not** fuse: emit the head as its own kind and attach it with `(PartOf <part>
   <whole>)`, e.g. "the car engine" → `(Member sk_engine_1 engine) (PartOf sk_engine_1 sk_car_1)`
@@ -338,7 +391,21 @@ Choose by the **subject's type**:
 **Discipline:** an individual must **never** appear in a class position. The relation
 (`Member` vs `Inheritance`) is what marks individual vs class — misusing it derives errors
 (e.g. "Socrates is a man" + "man is a species" both as `Inheritance` would wrongly give
-"Socrates is a species").
+"Socrates is a species"). The witness case follows the same line: any minted `sk_*` symbol — an
+ordinary witness or a **group** witness — is an **individual**, so a property predicated of it
+attaches by `Member` (`(Member sk_zone_1 coastal)`), never `Inheritance`; `Inheritance` requires a
+kind or property on **both** sides.
+
+A **plural** subject is decided by its **determiner, not by its meaning**. A **bare** plural is
+the generic and takes `Inheritance` on the kind. A **definite / demonstrative / possessed** plural
+("**the** views", "**these** functions", "**its** habitats") picks out specific things, so it
+takes a **group witness** — `(GroupOf <group> <kind>)`, then predicate over it or distribute per
+**Coordination & plurals** — and **never** `Inheritance`, which would assert something about the
+kind at large that the text does not say:
+
+      Trellises are wooden.     →  (: tr_wood (Inheritance trellis wooden) (STV 0.9 0.9))       ; bare — generic kind
+      The trellises are wooden. →  (: tr_grp (GroupOf sk_trellis_1 trellis) (STV 1.0 0.99))     ; definite — specific things
+                                   … plus the distributive rule of *Coordination & plurals*
 
 **Do not emit background rules.** The engine already has inheritance transitivity and
 "a member of a subclass is a member of the superclass". Emit only the atoms for the
@@ -420,7 +487,9 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
 - `Theme` — direct object **acquired, transferred, moved, possessed, perceived, or evaluated**
   with **no change to it** (buy, sell, rent, give, send, carry, read, watch, grade, score,
   review, measure, choose, keep, use).
-- `Recipient` — goal of a transfer (indirect object / "to").
+- `Recipient` — goal of a transfer (indirect object / "to"), **including the addressee of
+  communication** ("talk / speak / write / mutter **to**"): a message is a transfer, so "muttered
+  to the bailiff" takes `(Recipient <event> <bailiff>)`, never the spatial `Goal`.
 - `Experiencer` — subject of a **stative predication**: a perception/psych state ("know",
   "love", "see") **or a predicate-adjective / property state** ("was ill", "was empty", "was
   rusty") — the entity the state holds of; `Stimulus` — a psych state's object.
@@ -436,13 +505,80 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
 - Obliques: `Instrument` (the **means**, "with a knife" — a tool or substance, never a person),
   `Location` ("in/at/on …"), `Time` ("yesterday"; dates &
   clock times — see **Time**), `Manner` (adverb), `Source` ("from …"), `Goal` ("to …"
-  non-recipient), `Beneficiary` ("for …").
+  non-recipient), `Beneficiary` ("for …" — **only a party the event is done for the benefit
+  of**: "carved a flute **for Odile**" → `(Beneficiary <event> odile)`; acting **in someone's
+  place or on their behalf** — "deputized **for** the reeve" — is the same benefit relation, so
+  substitution-"for" is a `Beneficiary` too; when "for" instead names
+  the **ground, prize or exchange** — "commended **for** the salvage" — no one is benefited *by
+  the commending*, so it is the preposition-named `(For <event> …)` oblique below).
   Those named roles apply when the PP answers **where / when / how / whence / whither**. When it
   instead names **what the activity is about or directed at** — "work **on** the mural", "depend
   **on** the pump", "look **at** the gauge", "argue **about** the lease" — none of them fits, so use
   the **preposition-named oblique**: `(On <event> <mural>)`. "On the mural" is not a `Location` (they
   are not standing on it), and it is neither `Theme` nor `Patient`. Decide by the question the PP
-  answers, never by which listed role is closest.
+  answers, never by which listed role is closest. Two mechanical rules on top: the head is the
+  preposition **actually used** — never a synonym head for a near-fit reading (`in` stays `In`;
+  `During` renders only the word "during") — and the oblique's **object NP** follows the ordinary
+  NP rules (an article mints a witness with its kind atom; a bare mass / domain / proper name
+  stays a constant).
+
+A **participial post-modifier** on a noun — "the rules **concerning** the levy", "a skiff
+**moored** at the jetty" — is a **reduced relative clause**, so it takes the ordinary **event**
+form with the modified noun filling its role, never a relation named after the participle
+(**not** `(Concerning rule levy)`). Test by expanding it: if "the rules **that concern** the levy"
+is what the phrase means, it is an event. This holds even for participles that have drifted toward
+preposition use (`concerning`, `regarding`, `following`). The genuine prepositions that merely end
+in *-ing* — `during`, `pending`, `notwithstanding` — are **not** reduced relatives and keep the
+preposition-named form.
+
+**Never coin a relation head.** The closed-class heads plus these preposition-named obliques are
+the **entire** relational vocabulary: a verb, noun or adjective from the sentence never becomes a
+new UpperCamelCase head — the verb is an **event**, the property a `Member` / `Inheritance` atom,
+per everything above. The one licensed open-class relation is the **`Symmetric`-tagged mutual
+predicate** of *Reciprocals & symmetric relations* — a relation the copula itself asserts to hold
+both ways. And a surface **preposition** is never promoted into one: "like …" stays the oblique
+`(Like …)`, whatever nearby relation it resembles.
+
+**Where a THING is** — "X is a village **in** Y", "the reserve lies **in** Z" — is **not** an
+event oblique: there is no eventuality for `Location` to attach to. Use the static
+**`(LocatedIn <entity> <place>)`**, and route the **stative locative verbs** onto it as well
+("is located in / lies in / sits in / is situated in" predicate a position; they do not report
+something happening, so they mint no event):
+
+      A jetty is situated in the Brindle estuary. →  (Member sk_jetty_1 jetty) (LocatedIn sk_jetty_1 brindle)
+      Thornmere is a village in Calderwick.       →  (Member thornmere village) (LocatedIn thornmere calderwick)
+
+`Location` keeps its event job unchanged, and the two chain: seeded `locin_trans` closes
+containment and `locin_event` carries an event outward through it, so an event held in Thornmere
+is derivably in Calderwick. **Never emit both heads for one fact**, and never `Location` on an
+entity — the head *is* the event-vs-entity distinction, exactly as `Member` vs `Inheritance` is
+the individual-vs-class one.
+
+**An event that creates or positions a thing takes `Location` on the event ONLY.** "The guild
+erected a granary in Thornmere" locates the *erecting*; where the granary stands afterwards is an
+inference, so also emitting `(LocatedIn sk_granary_1 thornmere)` both double-states one fact and
+asserts a persistence the sentence never claimed (built once — perhaps demolished since). A
+second "in <Place>" stacked directly on a place NP contains the **place**, not the event:
+
+      The guild erected a granary in Thornmere in Calderwick.
+        →  (Member sk_erect_1 erect) (Agent sk_erect_1 sk_guild_1) (Member sk_guild_1 guild)
+           (Member sk_granary_1 granary) (Patient sk_erect_1 sk_granary_1) (Past sk_erect_1)
+           (Location sk_erect_1 thornmere) (LocatedIn thornmere calderwick)   ; and NO (LocatedIn sk_granary_1 …)
+
+**Entity-attached "from" is origin, not position.** "wool from Calderwick" says where the wool is
+*from*, not where it *is* — so it is neither `LocatedIn` (wrong fact) nor an event `Source` (no
+event): keep the surface preposition on the entity, `(From sk_wool_1 calderwick)`.
+
+**A place inside a place is `LocatedIn`, never `PartOf`.** `PartOf` keeps its two existing jobs —
+a **component** of an object ("car engine") and a **member** of a group — and geography is
+neither: a district within a district, a village in a county, a county in a country are all
+containment. (A relational noun that states a link rather than a position — "a tributary **of**
+the larger river" — is the ordinary genitive of *Possessive / genitive NP*, untouched by this
+rule.)
+
+A **framing / domain** PP ("**in** fluid mechanics", "**under** maritime law") is not a place at
+all: it says which field the claim is made in, so it takes neither head but the
+**preposition-named oblique** above — `(In <what-is-claimed> fluid_mechanics)`.
 
 Assign: subject → `Agent` (action) / `Experiencer` (a property or psych state) / `Holder` (a
 possession/relational state only — own/have/lack); direct object →
@@ -453,7 +589,12 @@ scored / **replaced** / swapped / moved* → `Theme` both times — the object i
 *cooked / built / **repainted*** → `Patient` both times). **A state change need not be physical**:
 when the object is itself an **event or scheduled occurrence** (a flight, a vote, a match, a
 hearing) and the verb changes **whether or when it happens** — *cancel, call off, postpone, put off,
-delay, reschedule, bring forward* — the occurrence itself is altered, so → `Patient`. This does not
+delay, reschedule, bring forward* — the occurrence itself is altered, so → `Patient`. The same
+goes for an **informational artifact** (a recording, a treatise, a dataset): a verb that **brings
+it into existence or reworks its content** (*compile, splice, redact, abridge*) alters the
+artifact itself → `Patient` — "physically" contrasts with mere handling, **not** with abstract
+media. And displacement stays displacement whatever is moved: hauling a pail or **abducting a
+diplomat** relocates something unchanged → `Theme`. This does not
 reach verbs that merely **evaluate or record** an object (*grade, score, inspect, review*), which
 leave it as it was → `Theme`. When the test is unclear, default to `Theme`. The subject test below is for **intransitives**; a **transitive** subject is
 `Agent` even when inanimate and non-volitional ("the consignment cleared customs", "the storm broke
@@ -549,6 +690,13 @@ status operator instead:
       Alice was happy.       →  (: alice_was_happy (Past (Member alice happy)) (STV 1.0 0.99))
       John must be asleep.   →  (: john_must_asleep (Must (Member john asleep)) (STV 1.0 0.9))
       Bob will be a doctor.  →  (: bob_will_doctor (Future (Member bob doctor)) (STV 1.0 0.99))
+
+  **The surface tense decides, mechanically.** A past-tense copular wraps even when the fact
+  reads as timeless (a historical figure's role, a defunct thing's kind), and it wraps **every**
+  categorical atom the clause yields — the complement's `Member`/`Inheritance` and any `PartOf`
+  the clause asserts alike. An **appositive** ("Halvard, a wheelwright, …") has no tense of its
+  own: its typing atom takes the **host clause's** wrapper — past host →
+  `(Past (Member halvard wheelwright))`, present host → the bare atom.
 
 ### Aspectual particles (again / still / already / yet)
 
@@ -1441,7 +1589,7 @@ via the seeded lexicon (*Measures & units*); seeded rules also derive a duration
       The market runs from 8 am to 1 pm. →  (Member sk_run_1 run) (Agent sk_run_1 sk_market_1)
                                             (Member sk_market_1 market) (Start sk_run_1 (Hour 8)) (End sk_run_1 (Hour 13))
       Mia has lived in Oslo since 2019.  →  (Member sk_live_1 live) (Agent sk_live_1 mia) (Location sk_live_1 oslo)
-                                            (Ongoing sk_live_1) (Start sk_live_1 (Year 2019)) (Name mia "Mia")
+                                            (Ongoing sk_live_1) (Start sk_live_1 (Year 2019)) (Name mia "Mia") (Name oslo "Oslo")
       The phone rang during the lecture. →  (Member sk_ring_1 ring) (Agent sk_ring_1 sk_phone_1) (Member sk_phone_1 phone)
                                             (Member sk_lecture_1 lecture) (During sk_ring_1 sk_lecture_1) (Past sk_ring_1)
       Sam drove for six hours.           →  (Member sk_drive_1 drive) (Agent sk_drive_1 sam) (Past sk_drive_1)
@@ -1709,6 +1857,21 @@ fact) defeasible ones; it inherits to members and can be revised. Decompose the 
       Visitors may enter.           →  (: visitor_enter (Inheritance visitor (permitted enter)) (STV 1.0 0.99))
       Guests must not smoke.        →  (: guest_smoke (Inheritance guest (permitted smoke)) (STV 0.0 0.99))
 
+The cue is the **modal meaning, not an active modal verb**: a **passive or participial** deontic
+("Ns **are permitted / are required / are not allowed / are forbidden** to V") is the same norm in
+the same reified form, mapped onto the same three constructors — permitted / allowed / may →
+`permitted`; must / required / obligated → `obligated`; forbidden / prohibited / banned →
+`permitted` at strength `0.0`.
+
+When such a deontic leaves its **action elided** ("Trailers are not permitted", with no verb to
+reify), do **not** invent one — "not permitted *to do what*" is not in the text. Use the deontic
+participle itself as a **bare property** of the kind; a locative or circumstantial restriction
+then goes in the condition slot exactly as any kind-level norm's does (see *Conditional
+properties*):
+
+      Trailers are not permitted.               →  (: trailer_perm (Inheritance trailer permitted) (STV 0.0 0.99))
+      Trailers are permitted on the causeway.   →  (: trailer_cway (ConditionalProperty trailer permitted causeway) (STV 1.0 0.99))
+
 A **prohibition** ("must not / may not / shall not V") is the **denial of permission** →
 `(permitted <action>)` at **strength `0.0`** (not a negated `(obligated …)`). Strength = the norm's
 force: a plain norm `1.0` / conf `0.99`; a **defeasible** norm (with a stated exemption) drops the
@@ -1965,7 +2128,8 @@ reuse their symbols, re-emit nothing (see **Input**).
          (Past (Member sk_man_1 tired))          ; He, The man → sk_man_1 (each atom (STV 1.0 0.99))
 
 - **Named individual** — reuse the name symbol (`alice`) throughout; emit `(Name alice "Alice")` once.
-- **Pronoun** (he/she/it/they/him/her/its) — the matching antecedent's symbol.
+- **Pronoun** (he/she/it/they/him/her/its) — the matching antecedent's symbol; with **no**
+  antecedent, a fresh witness classed `person` / `thing` — see **Names and casing**.
 - **Anaphoric definite** ("the dog", after a dog was introduced) — the antecedent's symbol; a
   first-mention or unique definite ("the sun") → a fresh symbol.
 - **Event anaphora** ("it"/"this"/"that" pointing at a clause) — the **event** witness:

@@ -1,0 +1,8 @@
+(: ecr_kind (Member east_coast_railway railway) (STV 1.0 0.99))
+(: ecr_name (Name east_coast_railway "East Coast Railway") (STV 1.0 0.99))
+(: ecr_dept (Member east_coast_railway department) (STV 1.0 0.99))
+(: dept_grp (GroupOf sk_dept_1 department) (STV 1.0 0.99))
+(: dept_card (Cardinality sk_dept_1 3) (STV 1.0 0.99))
+(: ecr_partof (PartOf east_coast_railway sk_dept_1) (STV 1.0 0.99))
+(: dept_partof (PartOf sk_dept_1 khurda_road) (STV 1.0 0.99))
+(: khurda_name (Name khurda_road "Khurda Road") (STV 1.0 0.99))

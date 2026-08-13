@@ -1,0 +1,7 @@
+(: pf_genus (Inheritance predictive_function function) (STV 1.0 0.99))
+(: pf_mod (Inheritance predictive_function predictive) (STV 1.0 0.99))
+(: pf_grp (GroupOf sk_group_1 predictive_function) (STV 1.0 0.99))
+(: ptf_genus (Inheritance pedotransfer_function function) (STV 1.0 0.99))
+(: ctx_m (Member sk_context_1 context) (STV 1.0 0.99))
+(: ctx_ns (Member sk_context_1 non_spatial) (STV 1.0 0.99))
+(: refer_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_refer $x) refer) (To (sk_refer $x) $x) (As (sk_refer $x) pedotransfer_function) (In (sk_refer $x) sk_context_1))) (STV 1.0 0.9))

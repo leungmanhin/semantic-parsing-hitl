@@ -1,0 +1,8 @@
+(: div_grp (GroupOf sk_div_1 division) (STV 1.0 0.99))
+(: div_card (Cardinality sk_div_1 3) (STV 1.0 0.99))
+(: div_partof_khurda (PartOf sk_div_1 khurda_road) (STV 1.0 0.99))
+(: khurda_name (Name khurda_road "Khurda Road") (STV 1.0 0.99))
+(: ecr_name (Name east_coast_railway "East Coast Railway") (STV 1.0 0.99))
+(: ecr_kind (Member east_coast_railway railway) (STV 1.0 0.99))
+(: ecr_division (Member east_coast_railway division) (STV 1.0 0.99))
+(: ecr_partof_div (PartOf east_coast_railway sk_div_1) (STV 1.0 0.99))

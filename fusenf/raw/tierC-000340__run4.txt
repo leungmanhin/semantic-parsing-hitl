@@ -1,0 +1,8 @@
+(: c340_thing (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: c340_group (GroupOf sk_group_1 habitat) (STV 1.0 0.99))
+(: c340_poss (Possession sk_group_1 sk_thing_1) (STV 1.0 0.99))
+(: c340_forest_genus (Inheritance lowland_forest forest) (STV 1.0 0.99))
+(: c340_forest_mod (Inheritance lowland_forest lowland) (STV 1.0 0.99))
+(: c340_climate_rule (Implication (PartOf $x sk_group_1) (And (Or (Member $x subtropical) (Member $x tropical)) (Member $x moist))) (STV 1.0 0.9))
+(: c340_forest_rule (Implication (PartOf $x sk_group_1) (And (Member $x lowland_forest) (Member $x natural))) (STV 1.0 0.9))
+(: c340_plantation_rule (Implication (PartOf $x sk_group_1) (Member $x plantation)) (STV 1.0 0.9))

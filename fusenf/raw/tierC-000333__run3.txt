@@ -1,0 +1,3 @@
+(: whenever_shake_extract (Implication (And (Member $sh shake) (Patient $sh $x) (Member $x solvent)) (And (Member (sk_extract $sh) extract) (Theme (sk_extract $sh) (sk_liquids $sh)) (GroupOf (sk_liquids $sh) immiscible_liquid) (Cardinality (sk_liquids $sh) 2) (During (sk_extract $sh) $sh))) (STV 1.0 0.9))
+(: il_genus (Inheritance immiscible_liquid liquid) (STV 1.0 0.99))
+(: il_mod (Inheritance immiscible_liquid immiscible) (STV 1.0 0.99))

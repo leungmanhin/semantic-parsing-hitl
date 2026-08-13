@@ -2698,3 +2698,161 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: e2_cf (Counterfactual (And (Member sk_study_1 study) (Agent sk_study_1 omar) (Past sk_study_1)) (And (Member sk_pass_1 pass) (Agent sk_pass_1 omar) (Past sk_pass_1))) (STV 1.0 0.99))
     (: e2_neg (And (Member sk_study_1 study) (Agent sk_study_1 omar) (Past sk_study_1)) (STV 0.0 0.99))
     (: e2_name (Name omar "Omar") (STV 1.0 0.99))
+
+**[locin-static] Averby is a hamlet in Marchford.** — static location of an ENTITY → `LocatedIn`, never the event oblique `Location` (there is no eventuality); the named entity carries its type atom and its `Name`
+
+    (: av_kind (Member averby hamlet) (STV 1.0 0.99))
+    (: av_in (LocatedIn averby marchford) (STV 1.0 0.99))
+    (: av_name (Name averby "Averby") (STV 1.0 0.99))
+    (: mf_kind (Member marchford county) (STV 1.0 0.99))
+    (: mf_name (Name marchford "Marchford") (STV 1.0 0.99))
+
+**[locin-stative-verb] The boathouse lies in Averby.** — a stative locative verb predicates a position and mints **no** event (the prompt's worked example uses a different verb of the same class, so this tests the rule rather than recall)
+
+    (: bh_kind (Member sk_boathouse_1 boathouse) (STV 1.0 0.99))
+    (: bh_in (LocatedIn sk_boathouse_1 averby) (STV 1.0 0.99))
+    (: av_name (Name averby "Averby") (STV 1.0 0.99))
+
+**[locin-event-contrast] The regatta was held in Averby.** — an EVENT keeps the oblique `Location`; seeded `locin_event` then carries it outward through containment, so no second locative atom is emitted
+
+    (: e_kind (Member sk_regatta_1 regatta) (STV 1.0 0.99))
+    (: e_loc (Location sk_regatta_1 averby) (STV 1.0 0.99))
+    (: e_past (Past sk_regatta_1) (STV 1.0 0.99))
+    (: av_name (Name averby "Averby") (STV 1.0 0.99))
+
+**[locin-not-partof] Marchford is a county in Wexford.** — a place inside a place is containment, **not** `PartOf`; `PartOf` stays for object components and group members
+
+    (: mf_kind (Member marchford county) (STV 1.0 0.99))
+    (: mf_in (LocatedIn marchford wexford) (STV 1.0 0.99))
+    (: mf_name (Name marchford "Marchford") (STV 1.0 0.99))
+    (: wx_name (Name wexford "Wexford") (STV 1.0 0.99))
+
+**[locin-framing-pp] In admiralty law, a derelict is abandoned property.** — a framing / domain PP is not a place at all: neither locative head, but the preposition-named oblique
+
+    (: der_kind (Inheritance derelict property) (STV 1.0 0.99))
+    (: der_aband (Inheritance derelict abandoned) (STV 1.0 0.99))
+    (: der_frame (In derelict admiralty_law) (STV 1.0 0.99))
+    (: al_genus (Inheritance admiralty_law law) (STV 1.0 0.99))
+
+**[role-relocate] A stagehand wheeled the harpsichord into the annex.** — relocation is not change: the moved object is `Theme` (never `Patient`), the path lands in `Goal`
+
+    (: e_ev (Member sk_wheel_1 wheel) (STV 1.0 0.99))
+    (: e_ag (Agent sk_wheel_1 sk_stagehand_1) (STV 1.0 0.99))
+    (: e_ak (Member sk_stagehand_1 stagehand) (STV 1.0 0.99))
+    (: e_th (Theme sk_wheel_1 sk_harpsichord_1) (STV 1.0 0.99))
+    (: e_tk (Member sk_harpsichord_1 harpsichord) (STV 1.0 0.99))
+    (: e_gl (Goal sk_wheel_1 sk_annex_1) (STV 1.0 0.99))
+    (: e_gk (Member sk_annex_1 annex) (STV 1.0 0.99))
+    (: e_pt (Past sk_wheel_1) (STV 1.0 0.99))
+
+**[role-create-info] An archivist authored an almanac.** — bringing an informational artifact into existence is creation → `Patient` (abstract media count)
+
+    (: a_ev (Member sk_author_1 author) (STV 1.0 0.99))
+    (: a_ag (Agent sk_author_1 sk_archivist_1) (STV 1.0 0.99))
+    (: a_ak (Member sk_archivist_1 archivist) (STV 1.0 0.99))
+    (: a_pa (Patient sk_author_1 sk_almanac_1) (STV 1.0 0.99))
+    (: a_pk (Member sk_almanac_1 almanac) (STV 1.0 0.99))
+    (: a_pt (Past sk_author_1) (STV 1.0 0.99))
+
+**[role-rework-info] A copyist amended the treatise.** — reworking an informational artifact's content alters it → `Patient`
+
+    (: m_ev (Member sk_amend_1 amend) (STV 1.0 0.99))
+    (: m_ag (Agent sk_amend_1 sk_copyist_1) (STV 1.0 0.99))
+    (: m_ak (Member sk_copyist_1 copyist) (STV 1.0 0.99))
+    (: m_pa (Patient sk_amend_1 sk_treatise_1) (STV 1.0 0.99))
+    (: m_pk (Member sk_treatise_1 treatise) (STV 1.0 0.99))
+    (: m_pt (Past sk_amend_1) (STV 1.0 0.99))
+
+**[ben-narrow] Marek stitched a banner for the chorister.** — "for" a party the event benefits → `Beneficiary`; the created banner is `Patient`
+
+    (: b_ev (Member sk_stitch_1 stitch) (STV 1.0 0.99))
+    (: b_ag (Agent sk_stitch_1 marek) (STV 1.0 0.99))
+    (: b_nm (Name marek "Marek") (STV 1.0 0.99))
+    (: b_pa (Patient sk_stitch_1 sk_banner_1) (STV 1.0 0.99))
+    (: b_pk (Member sk_banner_1 banner) (STV 1.0 0.99))
+    (: b_bf (Beneficiary sk_stitch_1 sk_chorister_1) (STV 1.0 0.99))
+    (: b_bk (Member sk_chorister_1 chorister) (STV 1.0 0.99))
+    (: b_pt (Past sk_stitch_1) (STV 1.0 0.99))
+
+**[for-ground] Beata was reprimanded for the spillage.** — "for" naming the ground of the act benefits no one → the preposition-named `(For …)`, not `Beneficiary`; the reprimanded party is unaltered → `Theme`
+
+    (: f_ev (Member sk_reprimand_1 reprimand) (STV 1.0 0.99))
+    (: f_th (Theme sk_reprimand_1 beata) (STV 1.0 0.99))
+    (: f_nm (Name beata "Beata") (STV 1.0 0.99))
+    (: f_fr (For sk_reprimand_1 sk_spillage_1) (STV 1.0 0.99))
+    (: f_fk (Member sk_spillage_1 spillage) (STV 1.0 0.99))
+    (: f_pt (Past sk_reprimand_1) (STV 1.0 0.99))
+
+**[locin-created] A mason constructed a smokehouse in Marchford.** — a creation event takes `Location` on the event ONLY; no `(LocatedIn sk_smokehouse_1 …)` is emitted (persistence is not asserted)
+
+    (: c_ev (Member sk_construct_1 construct) (STV 1.0 0.99))
+    (: c_ag (Agent sk_construct_1 sk_mason_1) (STV 1.0 0.99))
+    (: c_ak (Member sk_mason_1 mason) (STV 1.0 0.99))
+    (: c_pa (Patient sk_construct_1 sk_smokehouse_1) (STV 1.0 0.99))
+    (: c_pk (Member sk_smokehouse_1 smokehouse) (STV 1.0 0.99))
+    (: c_lo (Location sk_construct_1 marchford) (STV 1.0 0.99))
+    (: c_nm (Name marchford "Marchford") (STV 1.0 0.99))
+    (: c_pt (Past sk_construct_1) (STV 1.0 0.99))
+
+**[name-regionmod] The beacon sits in upland Marchford.** — a lowercase adjective before a name is not part of the name: region witness + `Member` property + containment; "sits" is stative → `LocatedIn`, no event
+
+    (: r_bk (Member sk_beacon_1 beacon) (STV 1.0 0.99))
+    (: r_in (LocatedIn sk_beacon_1 sk_zone_1) (STV 1.0 0.99))
+    (: r_zp (Member sk_zone_1 upland) (STV 1.0 0.99))
+    (: r_zc (LocatedIn sk_zone_1 marchford) (STV 1.0 0.99))
+    (: r_nm (Name marchford "Marchford") (STV 1.0 0.99))
+
+**[group-classifier] The pewter tankards tarnished.** — a classifying noun modifier rides in the group's kind slot as the fused compound (genus exposed, noun modifier not); distributive natural process → group event + `PartOf` rule, undergoer as `Patient`
+
+    (: t_gp (GroupOf sk_group_1 pewter_tankard) (STV 1.0 0.99))
+    (: t_gn (Inheritance pewter_tankard tankard) (STV 1.0 0.99))
+    (: t_ev (Member sk_tarnish_1 tarnish) (STV 1.0 0.99))
+    (: t_pa (Patient sk_tarnish_1 sk_group_1) (STV 1.0 0.99))
+    (: t_pt (Past sk_tarnish_1) (STV 1.0 0.99))
+    (: t_rl (Implication (PartOf $x sk_group_1) (And (Member (sk_tarnish $x) tarnish) (Patient (sk_tarnish $x) $x) (Past (sk_tarnish $x)))) (STV 1.0 0.9))
+
+**[group-descriptive] The scuffed flagons were dusty.** — a descriptive modifier never fuses: it distributes over the members like the copular predicate itself (kind slot stays bare)
+
+    (: d_gp (GroupOf sk_group_1 flagon) (STV 1.0 0.99))
+    (: d_r1 (Implication (PartOf $x sk_group_1) (Member $x scuffed)) (STV 1.0 0.9))
+    (: d_r2 (Implication (PartOf $x sk_group_1) (Past (Member $x dusty))) (STV 1.0 0.9))
+
+**[adv-manner] Danuta remarked candidly.** — a `-ly` adverb is derivation: `Manner` keeps the surface form, never the bare adjective
+
+    (: v_ev (Member sk_remark_1 remark) (STV 1.0 0.99))
+    (: v_ag (Agent sk_remark_1 danuta) (STV 1.0 0.99))
+    (: v_nm (Name danuta "Danuta") (STV 1.0 0.99))
+    (: v_mn (Manner sk_remark_1 candidly) (STV 1.0 0.99))
+    (: v_pt (Past sk_remark_1) (STV 1.0 0.99))
+
+**[ben-substitute] Danuta substituted for the drummer.** — acting in someone's place is the benefit relation → `Beneficiary`, not the ground-`(For …)`
+
+    (: s_ev (Member sk_substitute_1 substitute) (STV 1.0 0.99))
+    (: s_ag (Agent sk_substitute_1 danuta) (STV 1.0 0.99))
+    (: s_nm (Name danuta "Danuta") (STV 1.0 0.99))
+    (: s_bf (Beneficiary sk_substitute_1 sk_drummer_1) (STV 1.0 0.99))
+    (: s_bk (Member sk_drummer_1 drummer) (STV 1.0 0.99))
+    (: s_pt (Past sk_substitute_1) (STV 1.0 0.99))
+
+**[recipient-speech] Josefa whispered to the notary.** — the addressee of a communication verb is a `Recipient` (a message is a transfer), never the spatial `Goal`
+
+    (: w_ev (Member sk_whisper_1 whisper) (STV 1.0 0.99))
+    (: w_ag (Agent sk_whisper_1 josefa) (STV 1.0 0.99))
+    (: w_nm (Name josefa "Josefa") (STV 1.0 0.99))
+    (: w_rc (Recipient sk_whisper_1 sk_notary_1) (STV 1.0 0.99))
+    (: w_rk (Member sk_notary_1 notary) (STV 1.0 0.99))
+    (: w_pt (Past sk_whisper_1) (STV 1.0 0.99))
+
+**[appositive-tense] Beata, an archivist, retired.** — an appositive has no tense of its own: its typing atom takes the host clause's wrapper (past host → `Past`-wrapped)
+
+    (: p_ap (Past (Member beata archivist)) (STV 1.0 0.99))
+    (: p_ev (Member sk_retire_1 retire) (STV 1.0 0.99))
+    (: p_ag (Agent sk_retire_1 beata) (STV 1.0 0.99))
+    (: p_nm (Name beata "Beata") (STV 1.0 0.99))
+    (: p_pt (Past sk_retire_1) (STV 1.0 0.99))
+
+**[name-capmod] The boathouse stands in Outer Marchford.** — a capitalized modifier joins the capitalized run: one name symbol, no region witness, no `(Member … outer)`
+
+    (: o_bk (Member sk_boathouse_1 boathouse) (STV 1.0 0.99))
+    (: o_in (LocatedIn sk_boathouse_1 outer_marchford) (STV 1.0 0.99))
+    (: o_nm (Name outer_marchford "Outer Marchford") (STV 1.0 0.99))

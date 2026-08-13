@@ -1,0 +1,3 @@
+(: iliq_genus (Inheritance immiscible_liquid liquid) (STV 1.0 0.99))
+(: iliq_mod (Inheritance immiscible_liquid immiscible) (STV 1.0 0.99))
+(: solvent_rule (Implication (And (Member $x shake) (Patient $x $s) (Member $s solvent)) (And (Member (sk_extract $x) extract) (Theme (sk_extract $x) (sk_liquids $x)) (GroupOf (sk_liquids $x) immiscible_liquid) (Cardinality (sk_liquids $x) 2) (Manner (sk_extract $x) together) (During (sk_extract $x) $x))) (STV 1.0 0.9))

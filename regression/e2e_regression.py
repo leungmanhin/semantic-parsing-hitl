@@ -1381,6 +1381,28 @@ QPV=['(: r (Implication (Member $x gull) (And (Member (sk_scavenge $x) scavenge)
      '(: q (QuantifierPhrase gull scavenge "most") (STV 1.0 0.99))']
 run("qp-verbal     companion binds by pattern beside the rule", QPV, '(QuantifierPhrase gull $v $w)', contains="most")
 
+# Static location of an ENTITY (2026-08-06, FUSE-NF gap G1). LocatedIn is a distinct head from the
+# event oblique Location; seeded locin_trans/locin_event chain them. The two SAFETY cases are the
+# whole reason for the split -- a bare Location query must still return only eventualities.
+LOCIN=['(: av_kind (Member averby hamlet) (STV 1.0 0.99))',
+       '(: av_name (Name averby "Averby") (STV 1.0 0.99))',
+       '(: av_in   (LocatedIn averby marchford) (STV 1.0 0.99))',
+       '(: mf_kind (Member marchford county) (STV 1.0 0.99))']
+run("locin-static  where is Averby? (entity location binds)", LOCIN,
+    '(LocatedIn averby $where)', contains="marchford")
+LOCINT=LOCIN+['(: mf_in (LocatedIn marchford wexford) (STV 1.0 0.99))']
+run("locin-trans   Averby<Marchford<Wexford => Averby in Wexford (seeded locin_trans)", LOCINT,
+    '(LocatedIn averby wexford)', seeded=True, chain=True)
+LOCINE=LOCIN+['(: e_k (Member sk_regatta_1 regatta) (STV 1.0 0.99))',
+              '(: e_loc (Location sk_regatta_1 averby) (STV 1.0 0.99))',
+              '(: e_past (Past sk_regatta_1) (STV 1.0 0.99))']
+run("locin-event   regatta held in Averby -> held in Marchford? (seeded locin_event)", LOCINE,
+    '(And (Member $e regatta) (Location $e marchford))', seeded=True, chain=True)
+run("locin-noleak  SAFETY bare (Location $x marchford) returns NO village (why the split)", LOCIN,
+    '(Location $x marchford)', want="empty", seeded=True)
+run("locin-partof-ctrl  SAFETY containment did NOT mint PartOf (place-in-place is not part-of)", LOCIN,
+    '(PartOf averby marchford)', want="empty", seeded=True)
+
 # ============================================================================
 # Bundle-QA rigidity family: the FAITHFUL translator queries (Name-bound / full-context) used to
 # return [] (couldn't conjoin a (Name ...) with a rule-derived bundle; evidence-overlap guard

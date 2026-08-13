@@ -1,0 +1,4 @@
+(: ped_notpermit (Implication (Member $x pedestrian) (And (Member (sk_permit_ped $x) permit) (Theme (sk_permit_ped $x) $x))) (STV 0.0 0.9))
+(: bike_notpermit (Implication (Member $x bicycle) (And (Member (sk_permit_bike $x) permit) (Theme (sk_permit_bike $x) $x))) (STV 0.0 0.9))
+(: ped_allow (Implication (Member $x pedestrian) (And (Member (sk_allow_ped $x) allow) (Theme (sk_allow_ped $x) $x) (Location (sk_allow_ped $x) (sk_footpath_ped $x)) (Member (sk_footpath_ped $x) footpath) (Permitted (sk_allow_ped $x)))) (STV 0.9 0.9))
+(: bike_allow (Implication (Member $x bicycle) (And (Member (sk_allow_bike $x) allow) (Theme (sk_allow_bike $x) $x) (Location (sk_allow_bike $x) (sk_footpath_bike $x)) (Member (sk_footpath_bike $x) footpath) (Permitted (sk_allow_bike $x)))) (STV 0.9 0.9))

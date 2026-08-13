@@ -1,0 +1,3 @@
+(: t1_kiev_name (Name kiev "Kiev") (STV 1.0 0.99))
+(: t1_rule (Implication (And (Member $x treaty) (Member $x polish_russian) (Member (sk_concern $x) concern) (Agent (sk_concern $x) $x) (Theme (sk_concern $x) kiev)) (And (Member (sk_ratify $x) ratify) (Theme (sk_ratify $x) $x) (Past (sk_ratify $x)))) (STV 0.0 0.9))
+(: t1_q (QuantifierPhrase treaty ratify "none") (STV 1.0 0.99))
