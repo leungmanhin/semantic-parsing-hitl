@@ -1,0 +1,160 @@
+[
+ {
+  "rule_id": "rc0002",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x acquire)"
+  ],
+  "rhs": [
+   "(Member $x purchase)"
+  ],
+  "examples": [
+   {
+    "A": "The depot purchased two forklifts.",
+    "B": "The depot acquired two forklifts."
+   },
+   {
+    "A": "The school purchased a projector for the hall.",
+    "B": "The school acquired a projector for the hall."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0008",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Agent $c $x0)",
+   "(Member $c buy)"
+  ],
+  "rhs": [
+   "(Member $c sell)",
+   "(Recipient $c $x0)"
+  ],
+  "examples": [
+   {
+    "A": "The depot bought two forklifts.",
+    "B": "Two forklifts were sold to the depot."
+   },
+   {
+    "A": "Two forklifts were sold to the depot.",
+    "B": "Two forklifts were bought by the depot."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0014",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x hard)"
+  ],
+  "rhs": [
+   "(Member $x difficult)"
+  ],
+  "examples": [
+   {
+    "A": "The repair is difficult.",
+    "B": "The repair is hard."
+   },
+   {
+    "A": "The calibration is difficult.",
+    "B": "The calibration is hard."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0020",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Agent $c $x0)",
+   "(Member $c give)",
+   "(Recipient $c $x1)"
+  ],
+  "rhs": [
+   "(Agent $c $x2)",
+   "(Member $c receive)",
+   "(Source $c $x3)"
+  ],
+  "examples": [
+   {
+    "A": "A trainer gives a recruit a whistle.",
+    "B": "A recruit receives a whistle from a trainer."
+   },
+   {
+    "A": "A foreman gives a driver the manifest.",
+    "B": "A driver receives the manifest from a foreman."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0026",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Member $c reach)",
+   "(Member $e0 decision)",
+   "(Theme $c $e0)",
+   "(Theme $e0 $x0)"
+  ],
+  "rhs": [
+   "(Member $c decide)",
+   "(Theme $c $x0)"
+  ],
+  "examples": [
+   {
+    "A": "A committee decides on a new roof.",
+    "B": "A committee reaches a decision on a new roof."
+   },
+   {
+    "A": "A judge decides the case.",
+    "B": "A judge reaches a decision on the case."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0032",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x fix)"
+  ],
+  "rhs": [
+   "(Member $x repair)"
+  ],
+  "examples": [
+   {
+    "A": "The mechanic repaired a seized gearbox.",
+    "B": "The mechanic fixed a seized gearbox."
+   },
+   {
+    "A": "The mechanic fixed a seized gearbox.",
+    "B": "A seized gearbox was repaired by the mechanic."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0038",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Agent $c $x0)",
+   "(Member $c lend)",
+   "(Member $x0 depot)",
+   "(Member $x1 crew)",
+   "(Recipient $c $x1)"
+  ],
+  "rhs": [
+   "(Agent $c $x2)",
+   "(Member $c borrow)",
+   "(Member $x2 crew)",
+   "(Member $x3 depot)",
+   "(Source $c $x3)"
+  ],
+  "examples": [
+   {
+    "A": "The depot lends the crew a generator.",
+    "B": "The crew borrows a generator from the depot."
+   },
+   {
+    "A": "The museum lends the gallery a painting.",
+    "B": "The gallery borrows a painting from the museum."
+   }
+  ]
+ }
+]

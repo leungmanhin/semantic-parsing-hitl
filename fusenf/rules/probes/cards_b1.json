@@ -1,0 +1,158 @@
+[
+ {
+  "rule_id": "rc0001",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x acquire)"
+  ],
+  "rhs": [
+   "(Member $x buy)"
+  ],
+  "examples": [
+   {
+    "A": "The depot bought two forklifts.",
+    "B": "The depot acquired two forklifts."
+   },
+   {
+    "A": "The depot acquired two forklifts.",
+    "B": "Two forklifts were bought by the depot."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0007",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Agent $c $x0)",
+   "(Member $c acquire)"
+  ],
+  "rhs": [
+   "(Member $c sell)",
+   "(Recipient $c $x0)"
+  ],
+  "examples": [
+   {
+    "A": "The depot acquired two forklifts.",
+    "B": "Two forklifts were sold to the depot."
+   },
+   {
+    "A": "The school acquired a projector for the hall.",
+    "B": "A projector was sold to the school for the hall."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0013",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x call_off)"
+  ],
+  "rhs": [
+   "(Member $x cancel)"
+  ],
+  "examples": [
+   {
+    "A": "An airline cancels the evening flight.",
+    "B": "An airline calls off the evening flight."
+   },
+   {
+    "A": "A council cancels the summer fair.",
+    "B": "A council calls off the summer fair."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0019",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Agent $e0 $x0)",
+   "(Member $e0 cause)",
+   "(Theme $e0 $c)"
+  ],
+  "rhs": [
+   "(Agent $c $x0)"
+  ],
+  "examples": [
+   {
+    "A": "A storm destroys the greenhouse.",
+    "B": "A storm causes the destruction of the greenhouse."
+   },
+   {
+    "A": "A storm causes the destruction of the greenhouse.",
+    "B": "The greenhouse is destroyed by a storm."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0025",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Member $c make)",
+   "(Member $e0 decision)",
+   "(Patient $c $e0)",
+   "(Theme $e0 $x0)"
+  ],
+  "rhs": [
+   "(Member $c decide)",
+   "(Theme $c $x0)"
+  ],
+  "examples": [
+   {
+    "A": "A committee decides on a new roof.",
+    "B": "A committee makes a decision on a new roof."
+   },
+   {
+    "A": "A judge decides the case.",
+    "B": "A judge makes a decision on the case."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0031",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x mend)"
+  ],
+  "rhs": [
+   "(Member $x fix)"
+  ],
+  "examples": [
+   {
+    "A": "The mechanic fixed a seized gearbox.",
+    "B": "The mechanic mended a seized gearbox."
+   },
+   {
+    "A": "The electrician fixed the yard floodlight.",
+    "B": "The electrician mended the yard floodlight."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0037",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Agent $c $x0)",
+   "(Member $c learn)",
+   "(Member $x0 apprentice)",
+   "(Member $x1 coach)",
+   "(Source $c $x1)"
+  ],
+  "rhs": [
+   "(Agent $c $x2)",
+   "(Member $c teach)",
+   "(Member $x2 coach)",
+   "(Member $x3 apprentice)",
+   "(Recipient $c $x3)"
+  ],
+  "examples": [
+   {
+    "A": "An apprentice learns glazing from a potter.",
+    "B": "A potter teaches glazing to an apprentice."
+   },
+   {
+    "A": "The squad learns a drill from a coach.",
+    "B": "A coach teaches a drill to the squad."
+   }
+  ]
+ }
+]

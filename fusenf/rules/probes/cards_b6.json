@@ -1,0 +1,154 @@
+[
+ {
+  "rule_id": "rc0006",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x commence)"
+  ],
+  "rhs": [
+   "(Member $x start)"
+  ],
+  "examples": [
+   {
+    "A": "A shoreline survey starts at dawn.",
+    "B": "A shoreline survey commences at dawn."
+   },
+   {
+    "A": "A hearing starts on Monday morning.",
+    "B": "A hearing commences on Monday morning."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0012",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x large)"
+  ],
+  "rhs": [
+   "(Member $x big)"
+  ],
+  "examples": [
+   {
+    "A": "A crate is large in size.",
+    "B": "A crate is big in size."
+   },
+   {
+    "A": "The hatch is large in size.",
+    "B": "The hatch is big in size."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0018",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x turn_down)"
+  ],
+  "rhs": [
+   "(Member $x reject)"
+  ],
+  "examples": [
+   {
+    "A": "An editor rejects a manuscript.",
+    "B": "An editor turns down a manuscript."
+   },
+   {
+    "A": "An editor turns down a manuscript.",
+    "B": "A manuscript is rejected by an editor."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0024",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Member $c give)",
+   "(Member $x0 answer)",
+   "(Recipient $c $x1)",
+   "(Theme $c $x0)"
+  ],
+  "rhs": [
+   "(Member $c answer)",
+   "(Theme $c $x1)"
+  ],
+  "examples": [
+   {
+    "A": "A clerk gives an answer to the query.",
+    "B": "The query is answered by a clerk."
+   },
+   {
+    "A": "A pilot gives an answer to the tower.",
+    "B": "The tower is answered by a pilot."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0030",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x support)"
+  ],
+  "rhs": [
+   "(Member $x endorse)"
+  ],
+  "examples": [
+   {
+    "A": "It endorsed the views of the Free Soil Party and the Republican Party .",
+    "B": "It supported the views of the Free Soil Party and the Republican Party ."
+   },
+   {
+    "A": "It endorsed the views of the Free Soil Party and the Republican Party .",
+    "B": "It supported the views of the Republican Party and of the Free Soil Party ."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0036",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Agent $c $x0)",
+   "(Member $c borrow)",
+   "(Member $x0 crew)",
+   "(Member $x1 depot)",
+   "(Source $c $x1)"
+  ],
+  "rhs": [
+   "(Agent $c $x2)",
+   "(Member $c lend)",
+   "(Member $x2 depot)",
+   "(Member $x3 crew)",
+   "(Recipient $c $x3)"
+  ],
+  "examples": [
+   {
+    "A": "The crew borrows a generator from the depot.",
+    "B": "The depot lends a generator to the crew."
+   },
+   {
+    "A": "The gallery borrows a painting from the museum.",
+    "B": "The museum lends a painting to the gallery."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0042",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Inheritance paper_factory factory)"
+  ],
+  "rhs": [
+   "(Inheritance paper_mill mill)"
+  ],
+  "examples": [
+   {
+    "A": "The company built a hotel in Eskisehir in Turkey and a paper factory in Kazakhstan .",
+    "B": "In Eskisehir , the company built a hotel in Turkey and a paper mill in Kazakhstan ."
+   },
+   {
+    "A": "In Turkey , the company built a hotel in Eskisehir and a paper mill in Kazakhstan .",
+    "B": "The company built a hotel in Eskisehir and a paper factory in Kazakhstan in Turkey ."
+   }
+  ]
+ }
+]

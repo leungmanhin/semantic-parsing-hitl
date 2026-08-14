@@ -1,0 +1,156 @@
+[
+ {
+  "rule_id": "rc0003",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x commence)"
+  ],
+  "rhs": [
+   "(Member $x begin)"
+  ],
+  "examples": [
+   {
+    "A": "A shoreline survey begins at dawn.",
+    "B": "A shoreline survey commences at dawn."
+   },
+   {
+    "A": "A hearing begins on Monday morning.",
+    "B": "A hearing commences on Monday morning."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0009",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Agent $c $x0)",
+   "(Member $c purchase)"
+  ],
+  "rhs": [
+   "(Member $c sell)",
+   "(Recipient $c $x0)"
+  ],
+  "examples": [
+   {
+    "A": "The depot purchased two forklifts.",
+    "B": "Two forklifts were sold to the depot."
+   },
+   {
+    "A": "The school purchased a projector for the hall.",
+    "B": "A projector was sold to the school for the hall."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0015",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x find_out)"
+  ],
+  "rhs": [
+   "(Member $x discover)"
+  ],
+  "examples": [
+   {
+    "A": "An auditor discovers an error in the ledger.",
+    "B": "An auditor finds out an error in the ledger."
+   },
+   {
+    "A": "An auditor finds out an error in the ledger.",
+    "B": "An error in the ledger is discovered by an auditor."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0021",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Agent $c $x0)",
+   "(Member $c receive)",
+   "(Source $c $x1)"
+  ],
+  "rhs": [
+   "(Agent $c $x2)",
+   "(Member $c give)",
+   "(Recipient $c $x3)"
+  ],
+  "examples": [
+   {
+    "A": "A recruit receives a whistle from a trainer.",
+    "B": "A trainer gives a whistle to a recruit."
+   },
+   {
+    "A": "A driver receives the manifest from a foreman.",
+    "B": "A foreman gives the manifest to a driver."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0027",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x allow)"
+  ],
+  "rhs": [
+   "(Member $x permit)"
+  ],
+  "examples": [
+   {
+    "A": "A licence allows night deliveries.",
+    "B": "A licence permits night deliveries."
+   },
+   {
+    "A": "A curator allows photography in the hall.",
+    "B": "A curator permits photography in the hall."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0033",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x succeed)"
+  ],
+  "rhs": [
+   "(Member $x follow)"
+  ],
+  "examples": [
+   {
+    "A": "Margaret Fleming married James of Barrochan and was succeeded by Alexander , his eldest son .",
+    "B": "Margaret Fleming married James of Barrochan and was followed by Alexander , his eldest son ."
+   },
+   {
+    "A": "Henry Cole was followed by Bailey as Caretaker of Breakheart Hill .",
+    "B": "Henry Cole was succeeded as caretaker of Breakheart Hill by Bailey ."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0039",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Agent $c $x0)",
+   "(Member $c teach)",
+   "(Member $x0 coach)",
+   "(Member $x1 apprentice)",
+   "(Recipient $c $x1)"
+  ],
+  "rhs": [
+   "(Agent $c $x2)",
+   "(Member $c learn)",
+   "(Member $x2 apprentice)",
+   "(Member $x3 coach)",
+   "(Source $c $x3)"
+  ],
+  "examples": [
+   {
+    "A": "A potter teaches an apprentice glazing.",
+    "B": "An apprentice learns glazing from a potter."
+   },
+   {
+    "A": "A coach teaches the squad a drill.",
+    "B": "The squad learns a drill from a coach."
+   }
+  ]
+ }
+]

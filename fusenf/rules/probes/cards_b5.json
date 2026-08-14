@@ -1,0 +1,151 @@
+[
+ {
+  "rule_id": "rc0005",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x purchase)"
+  ],
+  "rhs": [
+   "(Member $x buy)"
+  ],
+  "examples": [
+   {
+    "A": "The depot bought two forklifts.",
+    "B": "The depot purchased two forklifts."
+   },
+   {
+    "A": "The depot purchased two forklifts.",
+    "B": "Two forklifts were bought by the depot."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0011",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x give_up)"
+  ],
+  "rhs": [
+   "(Member $x abandon)"
+  ],
+  "examples": [
+   {
+    "A": "A rescue team abandons the search.",
+    "B": "A rescue team gives up the search."
+   },
+   {
+    "A": "A rescue team gives up the search.",
+    "B": "The search is abandoned by a rescue team."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0017",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x put_off)"
+  ],
+  "rhs": [
+   "(Member $x postpone)"
+  ],
+  "examples": [
+   {
+    "A": "A board postpones the vote.",
+    "B": "A board puts off the vote."
+   },
+   {
+    "A": "A board puts off the vote.",
+    "B": "The vote is postponed by a board."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0023",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Member $c give)",
+   "(Member $x1 answer)",
+   "(Recipient $c $x0)",
+   "(Theme $c $x1)"
+  ],
+  "rhs": [
+   "(Member $c answer)",
+   "(Theme $c $x0)"
+  ],
+  "examples": [
+   {
+    "A": "A clerk answers the query.",
+    "B": "A clerk gives an answer to the query."
+   },
+   {
+    "A": "A pilot answers the tower.",
+    "B": "A pilot gives an answer to the tower."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0029",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x kick_the_bucket)"
+  ],
+  "rhs": [
+   "(Member $x die)"
+  ],
+  "examples": [
+   {
+    "A": "The founder dies at ninety.",
+    "B": "The founder kicks the bucket at ninety."
+   },
+   {
+    "A": "The last elm dies that autumn.",
+    "B": "The last elm kicks the bucket that autumn."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0035",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Agent $e0 $x0)",
+   "(Member $e0 take)",
+   "(Member $x0 nurse)",
+   "(Theme $e0 $c)"
+  ],
+  "rhs": [
+   "(Agent $c $x0)",
+   "(Member $x0 nurse)"
+  ],
+  "examples": [
+   {
+    "A": "A shepherd walks along the ridge.",
+    "B": "A shepherd takes a walk along the ridge."
+   },
+   {
+    "A": "A nurse walks through the ward.",
+    "B": "A nurse takes a walk through the ward."
+   }
+  ]
+ },
+ {
+  "rule_id": "rc0041",
+  "kind": "structural-alt",
+  "lhs": [
+   "(Degree $c tired very)",
+   "(Member $c tired)"
+  ],
+  "rhs": [
+   "(Member $c exhausted)"
+  ],
+  "examples": [
+   {
+    "A": "The night crew is exhausted.",
+    "B": "The night crew is very tired."
+   },
+   {
+    "A": "The courier is exhausted.",
+    "B": "The courier is very tired."
+   }
+  ]
+ }
+]
