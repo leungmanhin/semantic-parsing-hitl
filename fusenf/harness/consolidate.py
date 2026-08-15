@@ -18,6 +18,17 @@ Two rule shapes, recognized from the rule body:
   mined diffs came from positive paraphrases and a denial must never be
   restructured by them), matched atoms removed, RHS instantiated with
   ``(min strength, min confidence)`` over the matched set.
+* **pack rewrites** (``kind: subtree-collapse``, gauntlet round 2) — a
+  structural rewrite with three extra instance guards, enforced by
+  backtracking search (a failing assignment is skipped, not fatal): every
+  class variable (2nd arg of a ``Member`` LHS atom) must bind a plain
+  lowercase symbol, every center variable (1st arg of every LHS atom) must
+  bind a skolem, and ALL matched atoms must carry one identical STV — a
+  meta-node atom carries a single truth value, so a mixed-STV bundle stays
+  faithful.  RHS heads unknown to the vocabulary (the ``Mn*`` meta heads) are
+  registered in-process via ``augment_vocab`` so the re-canonicalization sees
+  them as ordinary role/status operators, NOT as opaque sealed terms —
+  ``specs/vocabulary.json`` (the parse validator's inventory) is never touched.
 
 Application order per the plan: larger LHS first, then higher confidence, then
 rule id; repeat to fixpoint (symbol rewrites are idempotent, structural rules
@@ -85,11 +96,15 @@ def substitute(pat, bnd):
     return [substitute(p, bnd) for p in pat]
 
 
-def match_rule(lhs_pats, atoms, positive_only=True):
-    """First (deterministic) assignment of distinct atom indices to LHS patterns."""
+def match_rule(lhs_pats, atoms, positive_only=True, accept=None):
+    """First (deterministic) assignment of distinct atom indices to LHS patterns.
+
+    ``accept(used, bnd)`` — optional instance guard checked on a complete
+    assignment; a rejection backtracks and the search continues, so a rule can
+    still fire on a later (guard-passing) instance in the same record."""
     def rec(i, used, bnd):
         if i == len(lhs_pats):
-            return used, bnd
+            return (used, bnd) if accept is None or accept(used, bnd) else None
         for j, atom in enumerate(atoms):
             if j in used:
                 continue
@@ -102,6 +117,27 @@ def match_rule(lhs_pats, atoms, positive_only=True):
                     return hit
         return None
     return rec(0, [], {})
+
+
+RE_CLASS_SYM = re.compile(r"[a-z][a-z0-9_]*")
+RE_SKOLEM_SYM = re.compile(r"[exf]\d+")
+
+
+def pack_guard(rule, atoms):
+    """Instance guard for subtree-collapse rules (see module docstring)."""
+    def accept(used, bnd):
+        if len({tuple(atoms[j]["stv"]) for j in used}) != 1:
+            return False
+        for v in rule["class_vars"]:
+            t = bnd.get(v)
+            if not (isinstance(t, str) and RE_CLASS_SYM.fullmatch(t)):
+                return False
+        for v in rule["center_vars"]:
+            t = bnd.get(v)
+            if not (isinstance(t, str) and RE_SKOLEM_SYM.fullmatch(t)):
+                return False
+        return True
+    return accept
 
 
 def token_rewrite(term_text, table):
@@ -158,7 +194,10 @@ def consolidate_record(rec, sym_table, struct_rules):
         hit_any = False
         for rule in struct_rules:
             while True:
-                hit = match_rule(rule["lhs_parsed"], atoms)
+                # the guard closes over the CURRENT atoms list — rebuilt every
+                # iteration because a hit rebinds ``atoms`` below
+                hit = match_rule(rule["lhs_parsed"], atoms,
+                                 accept=pack_guard(rule, atoms) if rule.get("pack") else None)
                 if not hit:
                     break
                 used, bnd = hit
@@ -211,10 +250,21 @@ def prepare_rules(rules):
             if ma and mb and ma.group(1) == mb.group(1):
                 sym_table[ma.group(2)] = mb.group(2)
                 continue
+        lhs_parsed = [C.parse_term(x) for x in r["lhs"]]
+        pack = r.get("kind") == "subtree-collapse"
+        class_vars, center_vars = [], []
+        if pack:
+            class_vars = sorted({p[2] for p in lhs_parsed
+                                 if isinstance(p, list) and len(p) == 3
+                                 and p[0] == "Member" and is_var(p[2])})
+            firsts = [set([p[1]] if isinstance(p, list) and len(p) > 1
+                          and is_var(p[1]) else []) for p in lhs_parsed]
+            center_vars = sorted(set.intersection(*firsts)) if firsts else []
         struct_rules.append({
             "id": r["id"], "confidence": r["confidence"],
-            "lhs_parsed": [C.parse_term(x) for x in r["lhs"]],
+            "lhs_parsed": lhs_parsed,
             "rhs_parsed": [C.parse_term(x) for x in r["rhs"]],
+            "pack": pack, "class_vars": class_vars, "center_vars": center_vars,
         })
     struct_rules.sort(key=lambda r: (-len(r["lhs_parsed"]), -r["confidence"], r["id"]))
     # resolve symbol chains (a->b, b->c => a->c); cycles are a build error
@@ -230,10 +280,30 @@ def prepare_rules(rules):
     return sym_table, struct_rules
 
 
+def augment_vocab(vocab, struct_rules):
+    """Register RHS heads unknown to the vocabulary (mined ``Mn*`` meta heads)
+    as ordinary non-opaque role/status operators — copies, never mutates: the
+    base vocab object is cached inside canonicalize."""
+    extra = set()
+    for r in struct_rules:
+        for p in r["rhs_parsed"]:
+            if isinstance(p, list) and p:
+                key = (p[0], len(p) - 1)
+                if key not in vocab["known"]:
+                    extra.add(key)
+    if not extra:
+        return vocab
+    out = dict(vocab)
+    out["known"] = frozenset(vocab["known"] | extra)
+    out["role_status"] = frozenset(vocab["role_status"] | extra)
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("canonical")
-    ap.add_argument("--rules", required=True)
+    ap.add_argument("--rules", required=True, action="append",
+                    help="rules file; repeatable (wave-1 + wave-2 validated sets)")
     ap.add_argument("--out", required=True)
     ap.add_argument("--date", required=True)
     ap.add_argument("--status", default="candidate,validated",
@@ -241,12 +311,12 @@ def main():
     args = ap.parse_args()
 
     ok_status = set(args.status.split(","))
-    rules = [r for r in load(args.rules)
+    rules = [r for path in args.rules for r in load(path)
              if r["type"] == "consolidation" and r["status"] in ok_status
              and r["direction"] == "lhs->rhs"]
     sym_table, struct_rules = prepare_rules(rules)
 
-    vocab = C.load_vocabulary()
+    vocab = augment_vocab(C.load_vocabulary(), struct_rules)
     n_rec = n_changed = 0
     tok_total = 0
     applied_total = collections.Counter()
@@ -259,7 +329,8 @@ def main():
         cons = C.canonicalize({"id": rec["id"], "run": rec.get("run"),
                                "statements": statements}, vocab=vocab)
         cons["consolidation"] = {
-            "date": args.date, "rules_file": os.path.basename(args.rules),
+            "date": args.date,
+            "rules_file": "+".join(os.path.basename(p) for p in args.rules),
             "source_graph_id": rec["graph_id"],
             "token_rewrites": n_tok,
             "structural_applied": dict(sorted(applied.items())),

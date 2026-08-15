@@ -16,7 +16,10 @@ and the bridges are what must carry the question across. Reported per metrics.md
 
 A preservation miss is triaged: if the query binds after dropping the event-class conjunct,
 the miss is attributed to the filed engine bug ``bug_conj_reuses_rule_premise`` (the class
-atom doubles as the deriving bridge's premise), not to the rule set.
+atom doubles as the deriving bridge's premise), not to the rule set.  If instead EVERY
+conjunct binds individually but the conjunction does not, the miss is attributed to
+``bug_conj_two_conjuncts_share_premise`` (wave-2: two conjuncts derived from the same
+stored meta-node atom by different expansion rules — repro at the repo root).
 
 Usage (MUST run via `cd /home/manhin/Dev/PeTTaChainer && uv run python ...`):
   python m5_preservation.py --faithful ../canonical/tierA.canon.jsonl \
@@ -100,7 +103,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--faithful", required=True)
     ap.add_argument("--consolidated", required=True)
-    ap.add_argument("--bridges", required=True)
+    ap.add_argument("--bridges", required=True, action="append",
+                    help="bridge .metta file; repeatable (wave-1 + wave-2)")
     ap.add_argument("--n", type=int, default=40)
     args = ap.parse_args()
 
@@ -109,10 +113,13 @@ def main():
     changed = sorted(cid for cid, r in cons.items()
                      if r.get("consolidation", {}).get("source_graph_id") != r["graph_id"])
     picked = changed[:args.n]
-    kb = rule_lines(SEEDED) + rule_lines(args.bridges)
+    kb = rule_lines(SEEDED)
+    for path in args.bridges:
+        kb += rule_lines(path)
 
     n_f = n_c = n_fab = 0
     engine_bug = []
+    engine_bug2 = []
     misses = []
     for cid in picked:
         q = build_query(faithful[cid])
@@ -127,6 +134,9 @@ def main():
             else:
                 if len(q) > 1 and answers(kb, statements_of(cons[cid]), q[1:]):
                     engine_bug.append(cid)
+                elif len(q) > 1 and all(answers(kb, statements_of(cons[cid]), [qq])
+                                        for qq in q):
+                    engine_bug2.append(cid)
                 else:
                     misses.append(cid)
         elif c_ans:
@@ -150,6 +160,8 @@ def main():
     print(f"answered by faithful: {n_f}")
     print(f"preservation: {n_c}/{n_f}"
           f"  (+{len(engine_bug)} attributable to bug_conj_reuses_rule_premise: {engine_bug})")
+    print(f"  (+{len(engine_bug2)} attributable to bug_conj_two_conjuncts_share_premise"
+          f" — every conjunct binds alone: {engine_bug2})")
     print(f"unexplained misses: {misses or 'none'}")
     print(f"fabrication: {n_fab}")
     nz = {k: v for k, v in sorted(delta.items()) if v}

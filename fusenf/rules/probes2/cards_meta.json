@@ -1,0 +1,477 @@
+[
+ {
+  "rule_id": "mn0001",
+  "kind": "subtree-collapse",
+  "head": "MnEvAgThPast",
+  "components": [
+   "Member",
+   "Agent",
+   "Theme",
+   "Past"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Agent $C $x1)",
+   "(Theme $C $x2)",
+   "(Past $C)"
+  ],
+  "rhs": [
+   "(MnEvAgThPast $C $v $x1 $x2)"
+  ],
+  "expansions": [
+   [
+    "(MnEvAgThPast $C $v $x1 $x2)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvAgThPast $C $v $x1 $x2)",
+    "(Agent $C $x1)"
+   ],
+   [
+    "(MnEvAgThPast $C $v $x1 $x2)",
+    "(Theme $C $x2)"
+   ],
+   [
+    "(MnEvAgThPast $C $v $x1 $x2)",
+    "(Past $C)"
+   ]
+  ],
+  "example_sentences": [
+   "The depot bought two forklifts.",
+   "The depot purchased two forklifts.",
+   "The depot acquired two forklifts."
+  ]
+ },
+ {
+  "rule_id": "mn0002",
+  "kind": "subtree-collapse",
+  "head": "MnEvAgPatPast",
+  "components": [
+   "Member",
+   "Agent",
+   "Patient",
+   "Past"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Agent $C $x1)",
+   "(Patient $C $x2)",
+   "(Past $C)"
+  ],
+  "rhs": [
+   "(MnEvAgPatPast $C $v $x1 $x2)"
+  ],
+  "expansions": [
+   [
+    "(MnEvAgPatPast $C $v $x1 $x2)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvAgPatPast $C $v $x1 $x2)",
+    "(Agent $C $x1)"
+   ],
+   [
+    "(MnEvAgPatPast $C $v $x1 $x2)",
+    "(Patient $C $x2)"
+   ],
+   [
+    "(MnEvAgPatPast $C $v $x1 $x2)",
+    "(Past $C)"
+   ]
+  ],
+  "example_sentences": [
+   "The mechanic repaired a seized gearbox.",
+   "The mechanic fixed a seized gearbox.",
+   "The mechanic mended a seized gearbox."
+  ]
+ },
+ {
+  "rule_id": "mn0003",
+  "kind": "subtree-collapse",
+  "head": "MnEvAgRecTh",
+  "components": [
+   "Member",
+   "Agent",
+   "Recipient",
+   "Theme"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Agent $C $x1)",
+   "(Recipient $C $x2)",
+   "(Theme $C $x3)"
+  ],
+  "rhs": [
+   "(MnEvAgRecTh $C $v $x1 $x2 $x3)"
+  ],
+  "expansions": [
+   [
+    "(MnEvAgRecTh $C $v $x1 $x2 $x3)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvAgRecTh $C $v $x1 $x2 $x3)",
+    "(Agent $C $x1)"
+   ],
+   [
+    "(MnEvAgRecTh $C $v $x1 $x2 $x3)",
+    "(Recipient $C $x2)"
+   ],
+   [
+    "(MnEvAgRecTh $C $v $x1 $x2 $x3)",
+    "(Theme $C $x3)"
+   ]
+  ],
+  "example_sentences": [
+   "A clerk gives an answer to the query.",
+   "A potter teaches an apprentice glazing.",
+   "A neighbour lends Ravi a ladder."
+  ]
+ },
+ {
+  "rule_id": "mn0005",
+  "kind": "subtree-collapse",
+  "head": "MnEvAgTh",
+  "components": [
+   "Member",
+   "Agent",
+   "Theme"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Agent $C $x1)",
+   "(Theme $C $x2)"
+  ],
+  "rhs": [
+   "(MnEvAgTh $C $v $x1 $x2)"
+  ],
+  "expansions": [
+   [
+    "(MnEvAgTh $C $v $x1 $x2)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvAgTh $C $v $x1 $x2)",
+    "(Agent $C $x1)"
+   ],
+   [
+    "(MnEvAgTh $C $v $x1 $x2)",
+    "(Theme $C $x2)"
+   ]
+  ],
+  "example_sentences": [
+   "A warden permits visitors on Sundays.",
+   "A warden forbids visitors on Sundays.",
+   "A warden might allow visitors on Sundays."
+  ]
+ },
+ {
+  "rule_id": "mn0006",
+  "kind": "subtree-collapse",
+  "head": "MnEvAgLoc",
+  "components": [
+   "Member",
+   "Agent",
+   "Location"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Agent $C $x1)",
+   "(Location $C $x2)"
+  ],
+  "rhs": [
+   "(MnEvAgLoc $C $v $x1 $x2)"
+  ],
+  "expansions": [
+   [
+    "(MnEvAgLoc $C $v $x1 $x2)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvAgLoc $C $v $x1 $x2)",
+    "(Agent $C $x1)"
+   ],
+   [
+    "(MnEvAgLoc $C $v $x1 $x2)",
+    "(Location $C $x2)"
+   ]
+  ],
+  "example_sentences": [
+   "A curator allows photography in the hall.",
+   "A curator permits photography in the hall.",
+   "A curator forbids photography in the hall."
+  ]
+ },
+ {
+  "rule_id": "mn0007",
+  "kind": "subtree-collapse",
+  "head": "MnEvAgPat",
+  "components": [
+   "Member",
+   "Agent",
+   "Patient"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Agent $C $x1)",
+   "(Patient $C $x2)"
+  ],
+  "rhs": [
+   "(MnEvAgPat $C $v $x1 $x2)"
+  ],
+  "expansions": [
+   [
+    "(MnEvAgPat $C $v $x1 $x2)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvAgPat $C $v $x1 $x2)",
+    "(Agent $C $x1)"
+   ],
+   [
+    "(MnEvAgPat $C $v $x1 $x2)",
+    "(Patient $C $x2)"
+   ]
+  ],
+  "example_sentences": [
+   "A cracked feed pipe is repaired by a crew.",
+   "The evening flight is canceled by an airline.",
+   "A council calls off the summer fair."
+  ]
+ },
+ {
+  "rule_id": "mn0008",
+  "kind": "subtree-collapse",
+  "head": "MnEvExpLoc",
+  "components": [
+   "Member",
+   "Experiencer",
+   "Location"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Experiencer $C $x1)",
+   "(Location $C $x2)"
+  ],
+  "rhs": [
+   "(MnEvExpLoc $C $v $x1 $x2)"
+  ],
+  "expansions": [
+   [
+    "(MnEvExpLoc $C $v $x1 $x2)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvExpLoc $C $v $x1 $x2)",
+    "(Experiencer $C $x1)"
+   ],
+   [
+    "(MnEvExpLoc $C $v $x1 $x2)",
+    "(Location $C $x2)"
+   ]
+  ],
+  "example_sentences": [
+   "An automobile waits at the gate.",
+   "On the table was an earthenware bowl filled with steaming potatoes.",
+   "The entrance to the station is around the corner."
+  ]
+ },
+ {
+  "rule_id": "mn0009",
+  "kind": "subtree-collapse",
+  "head": "MnEvPatPast",
+  "components": [
+   "Member",
+   "Patient",
+   "Past"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Patient $C $x1)",
+   "(Past $C)"
+  ],
+  "rhs": [
+   "(MnEvPatPast $C $v $x1)"
+  ],
+  "expansions": [
+   [
+    "(MnEvPatPast $C $v $x1)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvPatPast $C $v $x1)",
+    "(Patient $C $x1)"
+   ],
+   [
+    "(MnEvPatPast $C $v $x1)",
+    "(Past $C)"
+   ]
+  ],
+  "example_sentences": [
+   "The Berber-speaking population quickly plummeted with the arrival of the first French settlers.",
+   "Roads turned into rivers, with vehicles swept away by the rapid currents.",
+   "The applicability of any given comment depends on topics already established within the conversation."
+  ]
+ },
+ {
+  "rule_id": "mn0010",
+  "kind": "subtree-collapse",
+  "head": "MnEvLocTh",
+  "components": [
+   "Member",
+   "Location",
+   "Theme"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Location $C $x1)",
+   "(Theme $C $x2)"
+  ],
+  "rhs": [
+   "(MnEvLocTh $C $v $x1 $x2)"
+  ],
+  "expansions": [
+   [
+    "(MnEvLocTh $C $v $x1 $x2)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvLocTh $C $v $x1 $x2)",
+    "(Location $C $x1)"
+   ],
+   [
+    "(MnEvLocTh $C $v $x1 $x2)",
+    "(Theme $C $x2)"
+   ]
+  ],
+  "example_sentences": [
+   "The reduced speed limit is generally , posted as low as within the two cities .",
+   "In Japan it was first given on and the name was discovered .",
+   "Des Moines is included in the Warren County -- West Des Moines , IA Metropolitan Statistical Area ."
+  ]
+ },
+ {
+  "rule_id": "mn0011",
+  "kind": "subtree-collapse",
+  "head": "MnEvTh",
+  "components": [
+   "Member",
+   "Theme"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Theme $C $x1)"
+  ],
+  "rhs": [
+   "(MnEvTh $C $v $x1)"
+  ],
+  "expansions": [
+   [
+    "(MnEvTh $C $v $x1)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvTh $C $v $x1)",
+    "(Theme $C $x1)"
+   ]
+  ],
+  "example_sentences": [
+   "A recipe needs two eggs.",
+   "Two eggs are required by a recipe.",
+   "A committee makes a decision on a new roof."
+  ]
+ },
+ {
+  "rule_id": "mn0012",
+  "kind": "subtree-collapse",
+  "head": "MnEvAg",
+  "components": [
+   "Member",
+   "Agent"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Agent $C $x1)"
+  ],
+  "rhs": [
+   "(MnEvAg $C $v $x1)"
+  ],
+  "expansions": [
+   [
+    "(MnEvAg $C $v $x1)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvAg $C $v $x1)",
+    "(Agent $C $x1)"
+   ]
+  ],
+  "example_sentences": [
+   "Two children walk to the pier.",
+   "Two children stroll to the pier.",
+   "The freight arrives at noon."
+  ]
+ },
+ {
+  "rule_id": "mn0013",
+  "kind": "subtree-collapse",
+  "head": "MnEvPat",
+  "components": [
+   "Member",
+   "Patient"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Patient $C $x1)"
+  ],
+  "rhs": [
+   "(MnEvPat $C $v $x1)"
+  ],
+  "expansions": [
+   [
+    "(MnEvPat $C $v $x1)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvPat $C $v $x1)",
+    "(Patient $C $x1)"
+   ]
+  ],
+  "example_sentences": [
+   "A shoreline survey begins at dawn.",
+   "A shoreline survey starts at dawn.",
+   "A shoreline survey commences at dawn."
+  ]
+ },
+ {
+  "rule_id": "mn0014",
+  "kind": "subtree-collapse",
+  "head": "MnEvLoc",
+  "components": [
+   "Member",
+   "Location"
+  ],
+  "lhs": [
+   "(Member $C $v)",
+   "(Location $C $x1)"
+  ],
+  "rhs": [
+   "(MnEvLoc $C $v $x1)"
+  ],
+  "expansions": [
+   [
+    "(MnEvLoc $C $v $x1)",
+    "(Member $C $v)"
+   ],
+   [
+    "(MnEvLoc $C $v $x1)",
+    "(Location $C $x1)"
+   ]
+  ],
+  "example_sentences": [
+   "An auditor discovers an error in the ledger.",
+   "An error discovers an auditor in the ledger.",
+   "A shepherd takes a walk along the ridge."
+  ]
+ }
+]
