@@ -30,7 +30,23 @@ there it is chainer integration, not new machinery.
 
 ## 1. Rule taxonomy (the core output of Batch 1)
 
-Mining produces *equivalence candidates*; each validated candidate is routed to exactly one type:
+**The mining target is consolidation rules.** The FUSE-NF doc's §4.3 methods are normalization
+miners, and the doc's claims (M2 convergence, M3 compression) are realized exclusively by the
+consolidation set; the doc does not call for bridging-rule creation. Bridging is a PLAN-level
+auxiliary bucket (owner, 2026-08-16): when a mined equivalence is judged real but not
+rewrite-safe (converses, lossy near-synonyms, frozen-head conflicts), demoting it to a chainer
+implication preserves it for inference-time QA instead of discarding it — a bonus capture, not
+a target. Two rule species come out of Batch 1:
+
+1. **Equivalence candidates** (lexical/structural, §4.3.2/§4.3.4/§4.3.5) — each validated
+   candidate is routed to exactly one type per the table below.
+2. **Packaging (pack) rules** (meta-nodes, §4.3.1/§4.3.3; executed in gauntlet round 2) — NOT
+   equivalences: one-sided compression rewrites `(bundle over one event) → (Mn… head + fillers)`,
+   consolidation-only (no bridging fallback), bijective per instance, with per-component
+   expansion implications as the mechanical inverse — the decompressor is counted in M3's
+   strict rule cost.
+
+Routing for the equivalence species:
 
 | | **Consolidation rule** | **Bridging rule** |
 |---|---|---|
@@ -168,7 +184,7 @@ comes from prompt-side normalization + a deterministic canonicalizer, not a conf
   parse right for the sentence, **does `prompt.txt` even cover this construction** (the coverage gap
   — the highest-value signal for the prompt loop), and the **context-leak** check, which has no
   reliable mechanical form. Findings → `fusenf/triage/parse_failures.jsonl`.
-- **Canonicalizer** (`canonicalize.py`) implementing §3.2, with unit tests on hand-built isomorphic
+- **Canonicalizer** (`canonicalize.py`) implementing PLAN.md §3.2, with unit tests on hand-built isomorphic
   pairs.
 - **Exit experiment**: micro-pilot ~30 Tier-B sentences end-to-end through canonicalizer → run M1.
   Checkpoint report to user.
