@@ -1,0 +1,8 @@
+(: sterminos_name (Name river_sterminos "River Sterminos") (STV 1.0 0.99))
+(: sterminos_type (Member river_sterminos river) (STV 1.0 0.99))
+(: sterminos_trib (Member river_sterminos tributary) (STV 1.0 0.99))
+(: voievodu_name (Name river_voievodu "River Voievodu") (STV 1.0 0.99))
+(: voievodu_type (Member river_voievodu river) (STV 1.0 0.99))
+(: sterminos_partof (PartOf river_sterminos river_voievodu) (STV 1.0 0.99))
+(: romania_name (Name romania "Romania") (STV 1.0 0.99))
+(: voievodu_loc (LocatedIn river_voievodu romania) (STV 1.0 0.99))

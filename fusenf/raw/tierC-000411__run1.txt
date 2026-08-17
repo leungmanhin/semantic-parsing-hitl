@@ -1,0 +1,8 @@
+(: hopkinsville_name (Name hopkinsville "Hopkinsville") (STV 1.0 0.99))
+(: nashville_name (Name nashville "Nashville") (STV 1.0 0.99))
+(: tn_name (Name tn "TN") (STV 1.0 0.99))
+(: nashville_in_tn (LocatedIn nashville tn) (STV 1.0 0.99))
+(: market_member (Member sk_television_market_1 television_market) (STV 1.0 0.99))
+(: market_genus (Inheritance television_market market) (STV 1.0 0.99))
+(: market_poss (Possession sk_television_market_1 nashville) (STV 1.0 0.99))
+(: hopkinsville_in_market (LocatedIn hopkinsville sk_television_market_1) (STV 1.0 0.99))

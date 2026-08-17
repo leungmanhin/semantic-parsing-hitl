@@ -1,0 +1,7 @@
+(: lesion_mem (Member sk_lesion_1 lesion) (STV 1.0 0.99))
+(: lesion_detect (Member sk_lesion_1 detectable) (STV 1.0 0.99))
+(: lesion_earliest (Most early sk_lesion_1 lesion) (STV 1.0 0.99))
+(: ln_genus (Inheritance local_narrowing narrowing) (STV 1.0 0.99))
+(: ln_local (Inheritance local_narrowing local) (STV 1.0 0.99))
+(: lesion_narrow_or_irreg (Or (Member sk_lesion_1 local_narrowing) (Member sk_lesion_1 irregularity)) (STV 1.0 0.99))
+(: lesion_lumen (Possession sk_lesion_1 lumen) (STV 1.0 0.99))

@@ -1,0 +1,5 @@
+(: moj_ty (Member sk_minister_1 minister_of_justice) (STV 1.0 0.99))
+(: moj_genus (Inheritance minister_of_justice minister) (STV 1.0 0.99))
+(: tsar_ty (Member sk_tsar_1 tsar) (STV 1.0 0.99))
+(: r_nominate (Implication (Member $x judge) (And (Member (sk_nominate $x) nominate) (Agent (sk_nominate $x) sk_minister_1) (Theme (sk_nominate $x) $x) (Past (sk_nominate $x)))) (STV 0.9 0.9))
+(: r_appoint (Implication (Member $x judge) (And (Member (sk_appoint $x) appoint) (Agent (sk_appoint $x) sk_tsar_1) (Theme (sk_appoint $x) $x) (Past (sk_appoint $x)))) (STV 0.9 0.9))

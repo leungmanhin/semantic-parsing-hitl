@@ -1,0 +1,5 @@
+(: song_rule (Implication (Member $x song) (And (Member (sk_write $x) write) (Patient (sk_write $x) $x) (Agent (sk_write $x) chaitanya) (Member (sk_compose $x) compose) (Patient (sk_compose $x) $x) (Agent (sk_compose $x) s_narayan))) (STV 1.0 0.9))
+(: song_write_q (QuantifierPhrase song write "all") (STV 1.0 0.99))
+(: song_compose_q (QuantifierPhrase song compose "all") (STV 1.0 0.99))
+(: chaitanya_name (Name chaitanya "Chaitanya") (STV 1.0 0.99))
+(: narayan_name (Name s_narayan "S. Narayan") (STV 1.0 0.99))

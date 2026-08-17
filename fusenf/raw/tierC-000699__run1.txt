@@ -1,0 +1,4 @@
+(: prost_legal (In (Inheritance prostitution legal) canada) (STV 1.0 0.9))
+(: canada_name (Name canada "Canada") (STV 1.0 0.99))
+(: activities_illegal (Implication (And (Member $x activity) (Member (sk_relate $x) relate) (Experiencer (sk_relate $x) $x) (To (sk_relate $x) prostitution)) (Member $x illegal)) (STV 0.9 0.9))
+(: activities_q (QuantifierPhrase activity illegal "most") (STV 1.0 0.99))

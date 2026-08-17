@@ -1,0 +1,8 @@
+(: time_class (Member sk_time_1 time) (STV 1.0 0.99))
+(: remain_class (Member sk_remain_1 remain) (STV 1.0 0.99))
+(: remain_exp (Experiencer sk_remain_1 sk_time_1) (STV 1.0 0.99))
+(: time_shortest (Most short sk_time_1 time) (STV 1.0 0.99))
+(: short_state (Member sk_short_1 short) (STV 1.0 0.99))
+(: short_exp (Experiencer sk_short_1 sk_time_1) (STV 1.0 0.99))
+(: short_flat (Member sk_time_1 short) (STV 1.0 0.99))
+(: rule_handle_advantageous (Implication (And (Member $x process) (Member $x advantageous)) (And (Member (sk_handle $x) handle) (Theme (sk_handle $x) $x) (Manner (sk_handle $x) quickly) (Degree (sk_handle $x) quick very))) (STV 0.9 0.9))

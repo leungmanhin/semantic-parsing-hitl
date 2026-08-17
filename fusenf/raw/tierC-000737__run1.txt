@@ -1,0 +1,5 @@
+(: cogarch_rule (Implication (And (Member $x architecture) (Member $e implement) (Patient $e $x) (Agent $e $a) (Member $a intelligent_agent)) (And (Member (sk_refer $x) refer) (To (sk_refer $x) $x) (As (sk_refer $x) cognitive_architecture))) (STV 1.0 0.99))
+(: iagent_genus (Inheritance intelligent_agent agent) (STV 1.0 0.99))
+(: iagent_adj (Inheritance intelligent_agent intelligent) (STV 1.0 0.99))
+(: cogarch_genus (Inheritance cognitive_architecture architecture) (STV 1.0 0.99))
+(: cogarch_adj (Inheritance cognitive_architecture cognitive) (STV 1.0 0.99))

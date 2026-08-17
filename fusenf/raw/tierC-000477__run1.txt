@@ -1,0 +1,5 @@
+(: lack_ev (Member sk_lack_1 lack) (STV 1.0 0.99))
+(: lack_th (Theme sk_lack_1 wood) (STV 1.0 0.99))
+(: lack_past (Past sk_lack_1) (STV 1.0 0.99))
+(: reed_genus (Inheritance papyrus_reed reed) (STV 1.0 0.99))
+(: boats_bundle_rule (Implication (Member $x boat) (And (Member (sk_bundle $x) bundle) (Patient (sk_bundle $x) $x) (GroupOf (sk_reed $x) papyrus_reed) (Member (sk_reed $x) made) (Instrument (sk_bundle $x) (sk_reed $x)) (Past (sk_bundle $x)) (BecauseOf (sk_bundle $x) sk_lack_1))) (STV 0.3 0.9))

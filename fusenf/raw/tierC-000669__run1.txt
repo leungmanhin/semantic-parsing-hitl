@@ -1,0 +1,5 @@
+(: maynooth_name (Name maynooth "Maynooth") (STV 1.0 0.99))
+(: dublin_name (Name dublin "Dublin") (STV 1.0 0.99))
+(: sligo_name (Name sligo_intercity "Sligo Intercity") (STV 1.0 0.99))
+(: sligo_type (Member sligo_intercity service) (STV 1.0 0.99))
+(: pass_travel_rule (Implication (Member $x passenger) (And (Member (sk_travel $x) travel) (Agent (sk_travel $x) $x) (Goal (sk_travel $x) maynooth) (Member (sk_transfer $x) transfer) (Agent (sk_transfer $x) $x) (Source (sk_transfer $x) dublin) (Goal (sk_transfer $x) sligo_intercity) (To (sk_travel $x) (sk_transfer $x)))) (STV 0.9 0.9))

@@ -1,0 +1,8 @@
+(: boul_name (Name boul_river "Boul River") (STV 1.0 0.99))
+(: boul_kind (Member boul_river river) (STV 1.0 0.99))
+(: galbena_name (Name galbena_river "Galbena River") (STV 1.0 0.99))
+(: galbena_kind (Member galbena_river river) (STV 1.0 0.99))
+(: romania_name (Name romania "Romania") (STV 1.0 0.99))
+(: galbena_loc (LocatedIn galbena_river romania) (STV 1.0 0.99))
+(: boul_tributary (Member boul_river tributary) (STV 1.0 0.99))
+(: boul_of (Possession boul_river galbena_river) (STV 1.0 0.99))

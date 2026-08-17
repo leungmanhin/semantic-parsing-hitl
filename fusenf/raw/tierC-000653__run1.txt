@@ -1,0 +1,4 @@
+(: group_thing (GroupOf sk_group_1 thing) (STV 1.0 0.99))
+(: consume_bundle (And (Member sk_consume_1 consume) (Patient sk_consume_1 sk_group_1) (With sk_consume_1 beer)) (STV 0.3 0.9))
+(: snack_genus (Inheritance bar_snack snack) (STV 1.0 0.99))
+(: group_snack (Member sk_group_1 bar_snack) (STV 0.7 0.9))

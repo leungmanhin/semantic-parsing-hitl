@@ -1,0 +1,8 @@
+(: last_three_group (GroupOf sk_group_1 thing) (STV 1.0 0.99))
+(: last_three_card (Cardinality sk_group_1 3) (STV 1.0 0.99))
+(: last_three_on_cbs (Past (On sk_group_1 cbs)) (STV 1.0 0.99))
+(: cbs_name (Name cbs "CBS") (STV 1.0 0.99))
+(: first_thing (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: first_in_bn (Past (In sk_thing_1 blue_network)) (STV 1.0 0.99))
+(: bn_name (Name blue_network "Blue Network") (STV 1.0 0.99))
+(: bn_member (Member blue_network network) (STV 1.0 0.99))

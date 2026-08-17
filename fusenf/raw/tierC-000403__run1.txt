@@ -1,0 +1,8 @@
+(: sultanate_mem (Member sk_sultanate_1 bengali_sultanate) (STV 1.0 0.99))
+(: sultanate_genus (Inheritance bengali_sultanate sultanate) (STV 1.0 0.99))
+(: sultanate_mod (Inheritance bengali_sultanate bengali) (STV 1.0 0.99))
+(: bwriter_genus (Inheritance bengal_writer writer) (STV 1.0 0.99))
+(: mwork_genus (Inheritance medieval_work work) (STV 1.0 0.99))
+(: mwork_mod (Inheritance medieval_work medieval) (STV 1.0 0.99))
+(: arab_influence_rule (Implication (And (Member $x bengal_writer) (Member $x arab)) (And (Member (sk_influence $x) influence) (Agent (sk_influence $x) medieval_work) (Theme (sk_influence $x) $x) (Past (sk_influence $x)) (During (sk_influence $x) sk_sultanate_1))) (STV 0.9 0.9))
+(: persian_influence_rule (Implication (And (Member $x bengal_writer) (Member $x persian)) (And (Member (sk_influence $x) influence) (Agent (sk_influence $x) medieval_work) (Theme (sk_influence $x) $x) (Past (sk_influence $x)) (During (sk_influence $x) sk_sultanate_1))) (STV 0.9 0.9))

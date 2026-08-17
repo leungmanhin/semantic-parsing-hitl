@@ -1,0 +1,5 @@
+(: arch_rule (Implication (And (Member $x architecture) (Member $e implement) (Patient $e $x) (Agent $e cognitive_agent)) (Member $x intelligent_architecture)) (STV 1.0 0.99))
+(: ca_genus (Inheritance cognitive_agent agent) (STV 1.0 0.99))
+(: ca_adj (Inheritance cognitive_agent cognitive) (STV 1.0 0.99))
+(: ia_genus (Inheritance intelligent_architecture architecture) (STV 1.0 0.99))
+(: ia_adj (Inheritance intelligent_architecture intelligent) (STV 1.0 0.99))

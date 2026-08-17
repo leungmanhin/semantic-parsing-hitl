@@ -1,0 +1,8 @@
+(: cells_grp (GroupOf sk_cells_1 cell) (STV 1.0 0.99))
+(: volt_typ (Member sk_voltage_1 voltage) (STV 1.0 0.99))
+(: e1_induce (Member sk_induce_1 induce) (STV 1.0 0.99))
+(: e1_patient (Patient sk_induce_1 sk_voltage_1) (STV 1.0 0.99))
+(: e1_loc (Location sk_induce_1 sk_cells_1) (STV 1.0 0.99))
+(: e2_capture (Member sk_capture_1 capture) (STV 1.0 0.99))
+(: e2_theme (Theme sk_capture_1 sk_voltage_1) (STV 1.0 0.99))
+(: e2_manner (Manner sk_capture_1 electronically) (STV 1.0 0.99))

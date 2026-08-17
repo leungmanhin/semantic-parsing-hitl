@@ -1,0 +1,7 @@
+(: amaradia_name (Name amaradia "Amaradia") (STV 1.0 0.99))
+(: amaradia_river (Member amaradia river) (STV 1.0 0.99))
+(: negreni_name (Name negreni "Negreni") (STV 1.0 0.99))
+(: negreni_river (Member negreni river) (STV 1.0 0.99))
+(: valea_negrenilor_name (Name valea_negrenilor "Valea Negrenilor") (STV 1.0 0.99))
+(: valea_negrenilor_river (Member valea_negrenilor river) (STV 1.0 0.99))
+(: tributary_or (Or (And (Member amaradia tributary) (PartOf amaradia valea_negrenilor)) (And (Member negreni tributary) (PartOf negreni valea_negrenilor))) (STV 1.0 0.99))

@@ -1,0 +1,5 @@
+(: eng_name (Name english "English") (STV 1.0 0.99))
+(: understand_rule (Implication (Member $x person) (And (Member (sk_understand $x) understand) (Experiencer (sk_understand $x) $x) (Stimulus (sk_understand $x) english))) (STV 0.7 0.9))
+(: understand_q (QuantifierPhrase person understand "many") (STV 1.0 0.99))
+(: speak_rule (Implication (Member $x person) (And (Member (sk_speak $x) speak) (Agent (sk_speak $x) $x) (Theme (sk_speak $x) english) (Manner (sk_speak $x) fluently))) (STV 0.3 0.9))
+(: speak_q (QuantifierPhrase person speak "some") (STV 1.0 0.99))

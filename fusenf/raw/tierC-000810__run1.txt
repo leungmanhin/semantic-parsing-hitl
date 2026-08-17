@@ -1,0 +1,8 @@
+(: master_class (Member griffin digital_master) (STV 1.0 0.99))
+(: master_genus (Inheritance digital_master master) (STV 1.0 0.99))
+(: master_mod (Inheritance digital_master digital) (STV 1.0 0.99))
+(: master_name (Name griffin "Griffin") (STV 1.0 0.99))
+(: create_class (Member sk_create_1 create) (STV 1.0 0.99))
+(: create_patient (Patient sk_create_1 griffin) (STV 1.0 0.99))
+(: create_past (Past sk_create_1) (STV 1.0 0.99))
+(: no_eq (And (Member sk_use_1 use) (Theme sk_use_1 eq) (During sk_use_1 sk_create_1) (Past sk_use_1)) (STV 0.0 0.99))

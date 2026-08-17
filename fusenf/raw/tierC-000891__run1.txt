@@ -1,0 +1,4 @@
+(: resistance_loop_genus (Inheritance resistance_loop loop) (STV 1.0 0.99))
+(: e_loop_member (Member sk_loop_1 resistance_loop) (STV 1.0 0.99))
+(: e_lung_member (Member sk_lung_1 lung) (STV 1.0 0.99))
+(: cond_rule (Implication (And (Member sk_become_1 become) (Patient sk_become_1 sk_loop_1) (Member sk_loop_1 planar)) (And (Member sk_show_1 show) (Agent sk_show_1 sk_become_1) (Theme sk_show_1 sk_compliance_1) (Member sk_compliance_1 compliance) (Member sk_compliance_1 bad) (Possession sk_compliance_1 sk_lung_1))) (STV 1.0 0.99))

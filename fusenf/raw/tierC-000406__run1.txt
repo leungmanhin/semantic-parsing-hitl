@@ -1,0 +1,3 @@
+(: fr_genus (Inheritance flow_rate rate) (STV 1.0 0.99))
+(: result_grp (GroupOf sk_result_1 result) (STV 1.0 0.99))
+(: result_rule (Implication (And (Member $x maintain) (Theme $x $fr) (GroupOf $fr flow_rate) (Member $fr comparable) (Can $x)) (Member sk_result_1 high)) (STV 1.0 0.9))

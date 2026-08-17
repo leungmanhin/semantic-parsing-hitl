@@ -1,0 +1,8 @@
+(: destroy_e (Member sk_destroy_1 destroy) (STV 1.0 0.99))
+(: destroy_pat (Patient sk_destroy_1 mosque) (STV 1.0 0.99))
+(: destroy_past (Past sk_destroy_1) (STV 1.0 0.99))
+(: prov_grp (GroupOf sk_province_1 province) (STV 1.0 0.99))
+(: prov_card (CardinalityPhrase sk_province_1 "many") (STV 1.0 0.99))
+(: jt_genus (Inheritance japanese_troop troop) (STV 1.0 0.99))
+(: jt_mod (Inheritance japanese_troop japanese) (STV 1.0 0.99))
+(: hui_fate (Or (And (Member sk_slaughter_1 slaughter) (Patient sk_slaughter_1 hui) (Agent sk_slaughter_1 japanese_troop) (Location sk_slaughter_1 sk_province_1) (Past sk_slaughter_1)) (And (Member sk_bomb_1 bomb) (Patient sk_bomb_1 hui) (Location sk_bomb_1 sk_province_1) (Past sk_bomb_1))) (STV 1.0 0.99))

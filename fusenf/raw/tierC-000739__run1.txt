@@ -1,0 +1,8 @@
+(: provinces_g (GroupOf sk_provinces_1 province) (STV 1.0 0.99))
+(: provinces_q (CardinalityPhrase sk_provinces_1 "many") (STV 1.0 0.99))
+(: troops_g (GroupOf sk_troops_1 japanese_troops) (STV 1.0 0.99))
+(: jt_genus (Inheritance japanese_troops troop) (STV 1.0 0.99))
+(: jt_mod (Inheritance japanese_troops japanese) (STV 1.0 0.99))
+(: mosque_bomb_rule (Implication (Member $x mosque) (And (Member (sk_bomb $x) bomb) (Patient (sk_bomb $x) $x) (Agent (sk_bomb $x) sk_troops_1) (Location (sk_bomb $x) sk_provinces_1) (Past (sk_bomb $x)))) (STV 0.9 0.9))
+(: hui_name (Name hui "Hui") (STV 1.0 0.99))
+(: hui_event (And (Or (Member sk_slaughter_1 slaughter) (Member sk_slaughter_1 destroy)) (Patient sk_slaughter_1 hui) (Agent sk_slaughter_1 sk_troops_1) (Location sk_slaughter_1 sk_provinces_1) (Past sk_slaughter_1)) (STV 1.0 0.99))

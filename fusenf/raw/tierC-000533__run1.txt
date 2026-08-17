@@ -1,0 +1,7 @@
+(: evms_sys (Inheritance external_voucher_management_system system) (STV 1.0 0.99))
+(: evms_ext (Inheritance external_voucher_management_system external) (STV 1.0 0.99))
+(: in_name (Name intelligent_network "Intelligent Network") (STV 1.0 0.99))
+(: inbps_sys (Inheritance intelligent_network_based_prepaid_system system) (STV 1.0 0.99))
+(: inbps_prepaid (Inheritance intelligent_network_based_prepaid_system prepaid) (STV 1.0 0.99))
+(: inbps_on (On intelligent_network_based_prepaid_system intelligent_network) (STV 1.0 0.99))
+(: vms_use_rule (Implication (Member $x external_voucher_management_system) (And (Member (sk_use $x) use) (Theme (sk_use $x) $x) (With (sk_use $x) intelligent_network_based_prepaid_system))) (STV 0.9 0.9))

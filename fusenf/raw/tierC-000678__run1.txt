@@ -1,0 +1,4 @@
+(: ia_genus (Inheritance intelligent_agent agent) (STV 1.0 0.99))
+(: ia_intell (Inheritance intelligent_agent intelligent) (STV 1.0 0.99))
+(: ca_genus (Inheritance cognitive_architecture architecture) (STV 1.0 0.99))
+(: arch_refer_rule (Implication (And (Member $x architecture) (Member (sk_implement $x) implement) (Patient (sk_implement $x) $x) (Agent (sk_implement $x) intelligent_agent)) (And (Member (sk_refer $x) refer) (Theme (sk_refer $x) $x) (As (sk_refer $x) cognitive_architecture))) (STV 0.9 0.9))

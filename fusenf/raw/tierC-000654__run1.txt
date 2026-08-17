@@ -1,0 +1,6 @@
+(: they_grp (GroupOf sk_group_1 thing) (STV 1.0 0.99))
+(: e_consume (Member sk_consume_1 consume) (STV 0.8 0.9))
+(: e_consume_pat (Patient sk_consume_1 sk_group_1) (STV 0.8 0.9))
+(: e_consume_inst (Instrument sk_consume_1 beer) (STV 0.8 0.9))
+(: they_snack (Member sk_group_1 bar_snack) (STV 0.3 0.9))
+(: snack_genus (Inheritance bar_snack snack) (STV 1.0 0.99))

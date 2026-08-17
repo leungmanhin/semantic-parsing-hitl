@@ -1,0 +1,8 @@
+(: cells_grp (GroupOf sk_group_1 cell) (STV 1.0 0.99))
+(: v_typ (Member sk_voltage_1 voltage) (STV 1.0 0.99))
+(: e_reg (Member sk_register_1 register) (STV 1.0 0.99))
+(: e_reg_th (Theme sk_register_1 sk_voltage_1) (STV 1.0 0.99))
+(: e_reg_loc (Location sk_register_1 sk_group_1) (STV 1.0 0.99))
+(: e_ind (Member sk_induce_1 induce) (STV 1.0 0.99))
+(: e_ind_pat (Patient sk_induce_1 sk_voltage_1) (STV 1.0 0.99))
+(: e_ind_man (Manner sk_induce_1 electronically) (STV 1.0 0.99))

@@ -1,0 +1,8 @@
+(: ending_m (Member sk_ending_1 ending) (STV 1.0 0.99))
+(: ending_happy (Member sk_ending_1 happy) (STV 1.0 0.99))
+(: article_m (Member sk_article_1 lipizzaner_main_article) (STV 1.0 0.99))
+(: article_genus (Inheritance lipizzaner_main_article article) (STV 1.0 0.99))
+(: article_main (Inheritance lipizzaner_main_article main) (STV 1.0 0.99))
+(: detail_grp (GroupOf sk_detail_group_1 detail) (STV 1.0 0.99))
+(: detail_hist (Member sk_detail_group_1 historical) (STV 1.0 0.99))
+(: see_directive (Directive (And (Member sk_see_1 see) (Theme sk_see_1 sk_article_1) (For sk_see_1 sk_detail_group_1))) (STV 1.0 0.99))

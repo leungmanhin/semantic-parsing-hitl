@@ -1,0 +1,7 @@
+(: time_m (Member sk_time_1 time) (STV 1.0 0.99))
+(: remain_m (Member sk_remain_1 remain) (STV 1.0 0.99))
+(: remain_exp (Experiencer sk_remain_1 sk_time_1) (STV 1.0 0.99))
+(: remain_ong (Ongoing sk_remain_1) (STV 1.0 0.99))
+(: time_shortest (Most short sk_time_1 time) (STV 1.0 0.99))
+(: time_adv (Member sk_time_1 advantageous) (STV 1.0 0.99))
+(: short_proc_handled (Implication (And (Member $x process) (Member $x short)) (And (Member (sk_handle $x) handle) (Theme (sk_handle $x) $x) (Manner (sk_handle $x) quickly) (Degree (sk_handle $x) quickly very))) (STV 0.9 0.9))

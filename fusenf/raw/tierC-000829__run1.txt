@@ -1,0 +1,4 @@
+(: mouse_survive_rule (Implication (Member $x mouse) (And (Member (sk_survive $x) survive) (Agent (sk_survive $x) $x) (With (sk_survive $x) (sk_copy $x)) (Member (sk_copy $x) copy) (Member (sk_copy $x) non_working) (Of (sk_copy $x) twist_gene) (Past (sk_survive $x)))) (STV 0.9 0.9))
+(: twist_gene_name (Name twist_gene "TWIST-Gene") (STV 1.0 0.99))
+(: twist_gene_kind (Member twist_gene gene) (STV 1.0 0.99))
+(: twist_gene_indiv (Member twist_gene individual) (STV 1.0 0.99))

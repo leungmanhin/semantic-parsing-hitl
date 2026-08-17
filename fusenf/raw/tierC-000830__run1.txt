@@ -1,0 +1,4 @@
+(: mice_survive_rule (Implication (And (Member $x mouse) (Member (sk_copy $x) copy) (Member (sk_copy $x) single) (Possession (sk_copy $x) $x) (Possession (sk_copy $x) twist)) (And (Member (sk_survive $x) survive) (Agent (sk_survive $x) $x) (Past (sk_survive $x)))) (STV 0.9 0.9))
+(: twist_gene_m (Member twist gene) (STV 1.0 0.99))
+(: twist_name (Name twist "TWIST") (STV 1.0 0.99))
+(: twist_nonworking (Member twist non_working) (STV 1.0 0.99))

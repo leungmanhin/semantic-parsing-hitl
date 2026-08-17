@@ -1,0 +1,7 @@
+(: dg_name (Name danny_greene "Danny Greene") (STV 1.0 0.99))
+(: nardi_name (Name nardi "Nardi") (STV 1.0 0.99))
+(: e_murder (Member sk_murder_1 murder) (STV 1.0 0.99))
+(: e_murder_pat (Patient sk_murder_1 nardi) (STV 1.0 0.99))
+(: e_murder_past (Past sk_murder_1) (STV 1.0 0.99))
+(: dg_not_present (And (Member sk_present_1 present) (Experiencer sk_present_1 danny_greene) (During sk_present_1 sk_murder_1) (Past sk_present_1)) (STV 0.0 0.99))
+(: dg_not_present_flat (Past (Member danny_greene present)) (STV 0.0 0.99))
