@@ -96,7 +96,7 @@ def stage_mech(args):
 
     # --- stars corroboration set (lexical): unit patterns present at support>=3
     star_atoms = set()
-    for p in load(os.path.join(FUSENF, "mining", "out", "stars.jsonl")):
+    for p in load(os.path.join(FUSENF, "mining", args.mining_out, "stars.jsonl")):
         if p["support"] >= 3:
             star_atoms.update(p["atoms"])
 
@@ -333,6 +333,8 @@ def main():
     ap.add_argument("--corpus", action="append", required=True)
     ap.add_argument("--cards-dir", default=os.path.join(FUSENF, "rules", "probes"))
     ap.add_argument("--batches", type=int, default=6)
+    ap.add_argument("--mining-out", default="out",
+                    help="mining output dir name for stars corroboration (loop 2: out2)")
     ap.add_argument("--out", default=os.path.join(FUSENF, "rules", "validated.jsonl"))
     args = ap.parse_args()
     if args.stage == "mech":

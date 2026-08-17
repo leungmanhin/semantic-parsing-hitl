@@ -1,0 +1,50 @@
+[
+ {
+  "rule_id": "r30002",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x rate_of_flow)"
+  ],
+  "rhs": [
+   "(Member $x flow_rate)"
+  ],
+  "examples": [
+   {
+    "A": "When comparable rates of flow can be maintained , the results are high .",
+    "B": "The results are high when comparable flow rates can be maintained ."
+   }
+  ]
+ },
+ {
+  "rule_id": "r30004",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x orchestrate)"
+  ],
+  "rhs": [
+   "(Member $x direct)"
+  ],
+  "examples": [
+   {
+    "A": "The episode was directed by Graham Roland and written by Paul Holahan .",
+    "B": "The episode was orchestrated by Graham Roland and written by Paul Holahan ."
+   }
+  ]
+ },
+ {
+  "rule_id": "r30006",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x propose)"
+  ],
+  "rhs": [
+   "(Member $x suggest)"
+  ],
+  "examples": [
+   {
+    "A": "Matthew DeCoursey proposes that Thorne may have joined the project late .",
+    "B": "Matthew DeCoursey suggests that Thorne may have joined the project late ."
+   }
+  ]
+ }
+]

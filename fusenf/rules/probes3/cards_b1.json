@@ -1,0 +1,72 @@
+[
+ {
+  "rule_id": "r30001",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x Of)"
+  ],
+  "rhs": [
+   "(Member $x About)"
+  ],
+  "examples": [
+   {
+    "A": "This article is the second history of Alexander Mackenzie , the Prime Minister of Canada .",
+    "B": "This article is the second history of Alexander Mackenzie , the Electoral Prime Minister of Canada ."
+   }
+  ]
+ },
+ {
+  "rule_id": "r30003",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x train_station)"
+  ],
+  "rhs": [
+   "(Member $x railway_station)"
+  ],
+  "examples": [
+   {
+    "A": "Naxalbari has a railway station on the Siliguri -- Katihar line .",
+    "B": "Naxalbari has a train station on the line Siliguri -- Katihar ."
+   }
+  ]
+ },
+ {
+  "rule_id": "r30005",
+  "kind": "lexical-collapse",
+  "lhs": [
+   "(Member $x divide)"
+  ],
+  "rhs": [
+   "(Member $x separate)"
+  ],
+  "examples": [
+   {
+    "A": "It is divided by the Limbang - district of Sarawak into two parts .",
+    "B": "It is separated into two parts by the Limbang district of Sarawak ."
+   }
+  ]
+ },
+ {
+  "rule_id": "r30008",
+  "kind": "slot-merge",
+  "lhs": [
+   "(Member $x0 evening_flight)",
+   "(Patient $c $x0)"
+  ],
+  "rhs": [
+   "(Member $x0 evening_flight)",
+   "(Theme $c $x0)"
+  ],
+  "examples": [
+   {
+    "A": "In Havana , another series between Cincinnati Reds and Boston Red Sox was played .",
+    "B": "Another series was played in Havana between Boston Red Sox and Cincinnati Reds ."
+   },
+   {
+    "A": "An airline cancels the evening flight.",
+    "B": "The evening flight is canceled by an airline."
+   }
+  ]
+ }
+]
