@@ -80,10 +80,21 @@ standing sampled pass. Brief: `REVIEW.md`. Wrapper, same discipline as parsing:
   judgment; instead REVIEW.md's Q4 (licensed heads) asks the question neutrally over every
   head, and the orchestrator joins verdicts against `validation.findings` mechanically
   afterwards. Agreement/disagreement on flagged heads falls out of the join, unanchored.
-- **Sampling policy** (orchestrator-side): 100% of records with any mechanical finding
-  + ≥10% uniform random of clean records + anything triage marks `open`. Weighting toward
-  unseen construction types stays a manual orchestrator call until there is a construction
-  tagger.
+- **Sampling policy** (orchestrator-side), four strata:
+  1. 100% of records with any mechanical finding;
+  2. **review-by-provenance: 100% of records cited as evidence by a rule candidate,
+     reviewed BEFORE the candidate enters the gauntlet.** The review gates the candidate,
+     not just the record — mining runs over the unreviewed corpus freely; the review debt
+     comes due the moment a record's parse is about to justify a rule. A record that fails
+     review goes to triage (reparse or wontfix + substrate-exclusion), and the candidate's
+     support is recomputed without it: still above threshold → proceeds with the evidence
+     change logged; below → suspended with a ledger entry, never silently dropped.
+  3. ≥10% uniform random of clean records — the defect-rate estimator, not certification.
+     Escalation: sampled defect rate > ~5% → widen the sample and consider majority-of-N
+     parsing (`metrics.md` M1) before trusting the corpus further;
+  4. anything triage marks `open`.
+  Weighting toward unseen construction types stays a manual orchestrator call until there
+  is a construction tagger.
 - **Review substrate is `raw/<ID>__run<N>.txt`**, not the assembled JSONL — the reviewer must
   not see neighboring records or validation blocks, and extraction only strips non-semantic
   wrappers, so the raw bytes are the faithful parse.

@@ -14,6 +14,7 @@ C7 (chainer smoke test) is expensive and runs batched per file, not per record.
 
 from __future__ import annotations
 
+import hashlib
 import io
 import json
 import os
@@ -357,14 +358,38 @@ def check_c3(statements: Sequence[str], parsed: Sequence[dict], strict: bool) ->
 # ---------------------------------------------------------------------------
 
 
+def _engine_arg_terms(node: Node, vocab: dict) -> set:
+    """`id()`s of compound arguments of engine-class operators.
+
+    Engine operators carry their own argument syntax — `(Compute - (7 4) -> 3)` holds a
+    bare number tuple, not an operator application — so C4 must not read `7` as an
+    unknown head and C5 must not demand it be UpperCamelCase. The assertion head is
+    engine-class too and must NOT grant this skip (it would exempt every asserted
+    expression).
+    """
+    out: set = set()
+    for term in iter_terms(node):
+        head = _head_of(term)
+        if head and head != ASSERTION_HEAD and not is_variable(head) \
+                and operator_class(vocab, head, len(term) - 1) == "engine":
+            for arg in term[1:]:
+                if isinstance(arg, list):
+                    out.add(id(arg))
+    return out
+
+
 def check_c4(statements: Sequence[str], parsed: Sequence[dict], vocab: dict, strict: bool) -> list[dict]:
     out: list[dict] = []
     open_heads = _open_class_heads(vocab)
+    deprecated = vocab.get("deprecated_operators") or {}
     for i, (text, tree) in enumerate(zip(statements, parsed)):
         node = tree["node"]
         if node is None:
             continue
+        engine_args = _engine_arg_terms(node, vocab)
         for term in iter_terms(node):
+            if id(term) in engine_args:
+                continue
             head = _head_of(term)
             if head is None:
                 out.append(_finding(
@@ -375,6 +400,14 @@ def check_c4(statements: Sequence[str], parsed: Sequence[dict], vocab: dict, str
             arity = len(term) - 1
             op = resolve_operator(vocab, head, arity)
             if op is None:
+                dep = deprecated.get(head)
+                if dep:
+                    out.append(_finding(
+                        "C4", i,
+                        f"deprecated head {head!r} (removed {dep.get('removed', '?')}): "
+                        f"{dep.get('reason', 'no reason recorded')}",
+                        text, strict))
+                    continue
                 if SKOLEM_FN_RE.match(head) or head in open_heads:
                     continue  # open class: position and arity only, never checked by name
                 hint = ""
@@ -439,7 +472,10 @@ def check_c5(statements: Sequence[str], parsed: Sequence[dict], vocab: dict, str
         def add(detail: str) -> None:
             out.append(_finding("C5", i, detail, text, strict))
 
+        engine_args = _engine_arg_terms(node, vocab)
         for term in iter_terms(node):
+            if id(term) in engine_args:
+                continue
             head = _head_of(term)
             if head is None:
                 continue
@@ -698,6 +734,39 @@ def validation_block(result: dict) -> dict:
     }
 
 
+#: Live instruction-set files the vocabulary's meta pins must match.
+_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+VOCAB_PIN_FILES = (
+    ("prompt_sha256", os.path.join(_ROOT, "prompt.txt")),
+    ("seeded_sha256", os.path.join(_ROOT, "seeded_rules.metta")),
+)
+
+
+def vocab_staleness(vocab: dict) -> list[str]:
+    """Compare the vocabulary's meta pins against the live files. Empty list = current.
+
+    This is the tripwire that keeps C4 honest: a vocabulary extracted from an older
+    prompt silently mis-checks parses made with the current one. Fix by running
+    `harness/vocab_attest.py --date <today>` (adjudicate its report) then `--write`.
+    """
+    meta = vocab.get("meta") or {}
+    out = []
+    for pin_field, path in VOCAB_PIN_FILES:
+        pin = meta.get(pin_field)
+        try:
+            with open(path, "rb") as fh:
+                live = hashlib.sha256(fh.read()).hexdigest()
+        except OSError as exc:
+            out.append(f"{os.path.basename(path)}: unreadable ({exc}) — cannot verify {pin_field}")
+            continue
+        if pin and live != pin:
+            out.append(
+                f"{os.path.basename(path)} is {live[:12]}… but vocabulary.json pins "
+                f"{pin[:12]}… — VOCABULARY IS STALE; run harness/vocab_attest.py "
+                f"--date <today> (then --write)")
+    return out
+
+
 def validate_file(parses_path, vocab_path, corpora_path, strict: bool = False,
                   run_c7: bool = True) -> dict:
     """Validate a whole parses file. C7 runs BATCHED here — once, not per record.
@@ -738,6 +807,7 @@ def validate_file(parses_path, vocab_path, corpora_path, strict: bool = False,
         "ok_records": ok_records,
         "c7_run": bool(run_c7 and records),
         "strict": strict,
+        "vocab_stale": vocab_staleness(vocab),
         "by_code": by_code,
         "by_record": by_record,
         "findings": all_findings,
@@ -745,7 +815,8 @@ def validate_file(parses_path, vocab_path, corpora_path, strict: bool = False,
 
 
 def format_summary(summary: dict) -> str:
-    lines = [
+    lines = [f"!! {msg}" for msg in summary.get("vocab_stale") or []]
+    lines += [
         f"{summary['file']}: {summary['records']} record(s), "
         f"{summary['ok_records']} clean, "
         f"{summary['records'] - summary['ok_records']} with findings"

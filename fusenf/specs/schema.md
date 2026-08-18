@@ -170,8 +170,17 @@ are decidable from the text of the record plus `vocabulary.json`; none involves 
   heads (`(Carry mosquito malaria)`, `(Cousin wendy xavier)`) cannot be checked by name — only
   position and arity. This check is the reason `vocabulary.json` exists as a maintained file: a
   Python validator cannot read 1,900 lines of English prose, so the operator inventory has to be
-  extracted into a table. Regenerate it whenever `prompt.txt` or `seeded_rules.metta` changes; the
-  stored hashes are what reveal it is stale.
+  extracted into a table. Regenerate it whenever `prompt.txt` or `seeded_rules.metta` changes —
+  and staleness is **enforced, not remembered** (2026-08-18): `validate_file` compares the
+  vocabulary's meta pins against the live files and reports `VOCABULARY IS STALE` loudly;
+  `harness/vocab_attest.py` is the standing update procedure (mechanical attestation fields and
+  pins regenerated from the curated sources only; classes, glosses and non-variadic arities stay
+  human-adjudicated; its report lists anything needing adjudication first). Removed operators move
+  to `deprecated_operators` rather than vanishing — C4 then flags them with the removal reason
+  (e.g. the pre-cfe25f9 `Premises`/`Conclusions` Implication syntax, which the engine loads
+  silently and answers with `[]`). Engine-class operators' compound arguments (`(Compute - (7 4)
+  -> 3)`'s number tuple) are exempt from C4/C5 head checks — engine syntax, not operator
+  applications.
 - **C7 is expensive**, so it runs batched per file, not per record. Calibration found it is a
   **backstop, not an independent check**: nothing the chainer rejects survives C2/C3/C4. Kept as
   cheap insurance against a malformation we did not anticipate.

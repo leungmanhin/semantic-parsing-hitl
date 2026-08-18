@@ -96,6 +96,12 @@ claude-sonnet-5 blind agents, prompt.txt e2e 334/334.
 5. Owner reviews parked: the 9 register-overrides, the doctor/physician hypernym call,
    role-canonicalization re-promotion, uniform-hash re-parse of the 360 in-sample records.
 6. #48 adoption on representation grounds (typed trigger), if/when wanted.
+7. **Retroactive provenance audit** (queued 2026-08-19, owner-approved): Opus-review, per
+   `REVIEW.md`, of every record cited as evidence by a batch-1 validated rule (~100–200
+   distinct ids) — pack/role-bridge evidence is the half that matters (lexical rules were
+   judged on the words). Cheap; run before batch-2 mining trusts the ledger. Failure
+   handling per `DISPATCH.md` §Review: record → triage; rule support recomputed without
+   it; below-threshold → suspended with a ledger entry.
 
 ## 7. Reproducibility
 
