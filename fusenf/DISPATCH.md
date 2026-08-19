@@ -104,6 +104,31 @@ standing sampled pass. Brief: `REVIEW.md`. Wrapper, same discipline as parsing:
 - Batching: 5-item batches (`review_batches/rv-NN.txt`, same TSV as parse batches), fleets in
   ~8-agent sub-groups, same burst discipline as parsing.
 
+## Diagnosis dispatch (M1 judgment buckets — standing from batch 2)
+
+Batch 1 ran M1 disagreement diagnosis with ad-hoc wrappers over `m1_disagreements.py`
+dumps; `DIAGNOSE.md` is now the standing brief. Mechanical prep first, judgment second:
+
+    harness/m1_stability.py         -> buckets what it can (tv-only, canonicalizer, …)
+    harness/m1_disagreements.py --jsonl dump.jsonl --bucket unclassified
+                                    -> sentence + canonical terms + diff per pair
+    diag_batches/dg-NN.txt          -> <ID>\t<runA>\t<runB>, ~5 pairs per agent
+
+Wrapper:
+
+    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/DIAGNOSE.md and follow it exactly.
+    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/diag_batches/dg-NN.txt.
+    The dump file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/<dump path>.
+
+- **Model: `opus`** — same decorrelation argument as review: a same-family diagnostician can
+  share the exact bias that produced the wobble. (Batch-1 diagnosis used Sonnet ad hoc; its
+  verdicts stand as recorded in `eval/m1_tierC_diagnosis.md`.)
+- **Coverage: 100% of `unclassified` pairs** — this is the judgment residue after mechanical
+  bucketing, small by construction (Tier C round 1: 25 pairs). No sampling.
+- Ingestion is deterministic: `underdetermined` verdicts group by `missing_decision` and rank
+  by frequency = the prompt fix-round worklist; `garbled` → corpus triage; `different_readings`
+  → #48 evidence; `determined`+`winner` → error-rate bookkeeping. Verdicts never edit parses.
+
 ## Historical note
 
 Batch-1 wrappers followed the two-sentence pattern above with minor wording drift across
