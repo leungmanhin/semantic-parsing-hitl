@@ -1,8 +1,18 @@
-# FUSE-NF — Canonicalization spec (`fusenf-canon/2`)
+# FUSE-NF — Canonicalization spec (`fusenf-canon/4`)
 
 P0 deliverable. Turns a faithful parse into a canonical graph with a stable identity hash, so that
 **two parses that mean the same thing by construction hash identically**. Everything downstream —
 M1 stability, M2 convergence, star mining, the rewriter — is defined on this output.
+
+**Version history** (authoritative changelog = `harness/canonicalize.py` docstring; the version
+string is part of every hash payload, so ids are never comparable across versions):
+- `/2` — `And`-conjunct arguments canonically ordered; skolem renaming derived from the sorted
+  term, not emission order (M1 v4, 2026-07-29).
+- `/3` — PeTTaChainer cfe25f9 dropped the `(Premises …)/(Conclusions …)` wrappers; `And` is the
+  only commutative head left (2026-08-04).
+- `/4` — whitespace inside string literals normalized at tokenization; PAWS's tokenized text
+  ("City , LA") made two verbatim-faithful parses hash apart on spacing alone (2026-08-07).
+  This document was drafted at `/2`; sections below that name a version mark when a rule arrived.
 
 ## 0. Position relative to the paper
 
@@ -31,9 +41,9 @@ Output, one record in `fusenf/canonical/<tier>.canon.jsonl`:
 
 ```json
 {
-  "schema": "fusenf-canon/2",
+  "schema": "fusenf-canon/4",
   "id": "tierB-000123", "run": 1,
-  "parse_input_sha256": "…", "canon_version": "fusenf-canon/2",
+  "parse_input_sha256": "…", "canon_version": "fusenf-canon/4",
   "atoms": [{"term": "(Member e0 drive)", "stv": [1.0, 0.99], "bucket": ["full", "def"],
              "proof_name": "maria_drove"}],
   "linearization": "…",
@@ -180,7 +190,8 @@ Atoms sort by `term`, ties broken by bucketed STV. Linearization is the sorted a
 
 **Commutative heads** (`fusenf-canon/2`). Sorting atoms is not enough: the arguments of an unordered
 conjunction must be sorted too, or two parses that differ only in where a conjunct sits inside one
-`(And …)` bundle get different identities. `Premises`, `Conclusions` and **`And`** are sorted; `Or`
+`(And …)` bundle get different identities. **`And`** is sorted (at `/2` this list also held
+`Premises`/`Conclusions`; they left the language at `/3`); `Or`
 and `Xor` deliberately are **not** — they are opaque heads the chainer matches verbatim, so their
 argument order is still operationally load-bearing and normalizing it would hide a real difference.
 
