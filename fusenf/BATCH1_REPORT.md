@@ -102,6 +102,16 @@ claude-sonnet-5 blind agents, prompt.txt e2e 334/334.
    judged on the words). Cheap; run before batch-2 mining trusts the ledger. Failure
    handling per `DISPATCH.md` §Review: record → triage; rule support recomputed without
    it; below-threshold → suspended with a ledger entry.
+8. **M5 question arm** (banked 2026-08-19, owner-approved): add generated natural-language
+   questions to M5 alongside the e2e-pattern queries. Blind question-writer agents produce
+   questions answerable from the record's sentence alone — including *paraphrastic phrasings*
+   (synonyms/converses of the record's words), which makes this the first direct measure of
+   the bridging rules' QA payoff (deferred-topic #33 by another name). A question→query
+   translation step is new prompt surface. M5's differential design absorbs query-parse
+   noise (same query runs on both KBs); add a `query-brittleness` triage bucket for
+   one-sided binds. New briefs to be authored with the build: `QGEN.md` (question writer)
+   and `QPARSE.md` (question→query parser). External QA datasets rejected: their questions
+   presuppose background knowledge single-record KBs don't have.
 
 ## 7. Reproducibility
 
