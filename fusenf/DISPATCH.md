@@ -129,6 +129,16 @@ Wrapper:
   by frequency = the prompt fix-round worklist; `garbled` → corpus triage; `different_readings`
   → #48 evidence; `determined`+`winner` → error-rate bookkeeping. Verdicts never edit parses.
 
+## Judge dispatch (P4 gauntlet) — brief PENDING
+
+Gauntlet judges (the agents that validated/rejected rule candidates over probe cards in
+`rules/probes*/`) ran on ad-hoc wrappers in batch 1. Their brief (`JUDGE.md`) is deliberately
+deferred until the gauntlet layer of the owner walk-through (2026-08-19): probe cards differ
+by rule family (lexical pair / pack / AE pair / role bridge) and the round-1 register
+calibration incident constrains the wording, so the brief must be written against that
+machinery, not from memory. Until then, batch-1 vote records in `rules/probes*/votes_*.jsonl`
+are the de-facto format reference.
+
 ## Historical note
 
 Batch-1 wrappers followed the two-sentence pattern above with minor wording drift across
