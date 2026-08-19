@@ -1,0 +1,506 @@
+{
+    "probeALT-000001 run1": {
+        "sentence": "The gardener pruned the hedge.",
+        "before": [
+            "(: e_prune (Member sk_prune_1 prune) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_prune_1 sk_gardener_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_prune_1 sk_hedge_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_prune_1) (STV 1.0 0.99))",
+            "(: gardener_1 (Member sk_gardener_1 gardener) (STV 1.0 0.99))",
+            "(: hedge_1 (Member sk_hedge_1 hedge) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_prune (Member e0 prune) (STV 1.0 0.99))",
+            "(: gardener_1 (Member x0 gardener) (STV 1.0 0.99))",
+            "(: hedge_1 (Member x1 hedge) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000002 run1": {
+        "sentence": "The hedge was pruned by the gardener.",
+        "before": [
+            "(: e_prune (Member sk_prune_1 prune) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_prune_1 sk_hedge_1) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_prune_1 sk_gardener_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_prune_1) (STV 1.0 0.99))",
+            "(: hedge_1 (Member sk_hedge_1 hedge) (STV 1.0 0.99))",
+            "(: gardener_1 (Member sk_gardener_1 gardener) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_prune (Member e0 prune) (STV 1.0 0.99))",
+            "(: gardener_1 (Member x0 gardener) (STV 1.0 0.99))",
+            "(: hedge_1 (Member x1 hedge) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000003 run1": {
+        "sentence": "A courier collected the parcel.",
+        "before": [
+            "(: e_collect (Member sk_collect_1 collect) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_collect_1 sk_courier_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_collect_1 sk_parcel_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_collect_1) (STV 1.0 0.99))",
+            "(: courier_1 (Member sk_courier_1 courier) (STV 1.0 0.99))",
+            "(: parcel_1 (Member sk_parcel_1 parcel) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_collect (Member e0 collect) (STV 1.0 0.99))",
+            "(: courier_1 (Member x0 courier) (STV 1.0 0.99))",
+            "(: parcel_1 (Member x1 parcel) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000004 run1": {
+        "sentence": "The parcel was collected by a courier.",
+        "before": [
+            "(: e_collect (Member sk_collect_1 collect) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_collect_1 sk_parcel_1) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_collect_1 sk_courier_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_collect_1) (STV 1.0 0.99))",
+            "(: parcel_1 (Member sk_parcel_1 parcel) (STV 1.0 0.99))",
+            "(: courier_1 (Member sk_courier_1 courier) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_collect (Member e0 collect) (STV 1.0 0.99))",
+            "(: courier_1 (Member x0 courier) (STV 1.0 0.99))",
+            "(: parcel_1 (Member x1 parcel) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000005 run1": {
+        "sentence": "The miller ground the barley.",
+        "before": [
+            "(: e_grind (Member sk_grind_1 grind) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_grind_1 sk_miller_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_grind_1 sk_barley_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_grind_1) (STV 1.0 0.99))",
+            "(: miller_1 (Member sk_miller_1 miller) (STV 1.0 0.99))",
+            "(: barley_1 (Member sk_barley_1 barley) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_grind (Member e0 grind) (STV 1.0 0.99))",
+            "(: miller_1 (Member x0 miller) (STV 1.0 0.99))",
+            "(: barley_1 (Member x1 barley) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000006 run1": {
+        "sentence": "The barley was ground by the miller.",
+        "before": [
+            "(: e_grind (Member sk_grind_1 grind) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_grind_1 sk_barley_1) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_grind_1 sk_miller_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_grind_1) (STV 1.0 0.99))",
+            "(: barley_1 (Member sk_barley_1 barley) (STV 1.0 0.99))",
+            "(: miller_1 (Member sk_miller_1 miller) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_grind (Member e0 grind) (STV 1.0 0.99))",
+            "(: miller_1 (Member x0 miller) (STV 1.0 0.99))",
+            "(: barley_1 (Member x1 barley) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000007 run1": {
+        "sentence": "A gust cracked the pane.",
+        "before": [
+            "(: e_crack (Member sk_crack_1 crack) (STV 1.0 0.99))",
+            "(: e_crack_agent (Agent sk_crack_1 sk_gust_1) (STV 1.0 0.99))",
+            "(: e_gust (Member sk_gust_1 gust) (STV 1.0 0.99))",
+            "(: e_crack_patient (Patient sk_crack_1 sk_pane_1) (STV 1.0 0.99))",
+            "(: e_pane (Member sk_pane_1 pane) (STV 1.0 0.99))",
+            "(: e_crack_past (Past sk_crack_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_crack_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_crack (Member e0 crack) (STV 1.0 0.99))",
+            "(: e_gust (Member x0 gust) (STV 1.0 0.99))",
+            "(: e_pane (Member x1 pane) (STV 1.0 0.99))",
+            "(: e_crack_past (Past e0) (STV 1.0 0.99))",
+            "(: e_crack_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000008 run1": {
+        "sentence": "The pane was cracked by a gust.",
+        "before": [
+            "(: e_crack (Member sk_crack_1 crack) (STV 1.0 0.99))",
+            "(: e_crack_patient (Patient sk_crack_1 sk_pane_1) (STV 1.0 0.99))",
+            "(: e_pane (Member sk_pane_1 pane) (STV 1.0 0.99))",
+            "(: e_crack_agent (Agent sk_crack_1 sk_gust_1) (STV 1.0 0.99))",
+            "(: e_gust (Member sk_gust_1 gust) (STV 1.0 0.99))",
+            "(: e_crack_past (Past sk_crack_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_crack_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_crack (Member e0 crack) (STV 1.0 0.99))",
+            "(: e_gust (Member x0 gust) (STV 1.0 0.99))",
+            "(: e_pane (Member x1 pane) (STV 1.0 0.99))",
+            "(: e_crack_past (Past e0) (STV 1.0 0.99))",
+            "(: e_crack_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000009 run1": {
+        "sentence": "The steward locked the cabinet.",
+        "before": [
+            "(: e_lock (Member sk_lock_1 lock) (STV 1.0 0.99))",
+            "(: e_lock_agent (Agent sk_lock_1 sk_steward_1) (STV 1.0 0.99))",
+            "(: e_steward (Member sk_steward_1 steward) (STV 1.0 0.99))",
+            "(: e_lock_patient (Patient sk_lock_1 sk_cabinet_1) (STV 1.0 0.99))",
+            "(: e_cabinet (Member sk_cabinet_1 cabinet) (STV 1.0 0.99))",
+            "(: e_lock_past (Past sk_lock_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_lock_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_lock (Member e0 lock) (STV 1.0 0.99))",
+            "(: e_steward (Member x0 steward) (STV 1.0 0.99))",
+            "(: e_cabinet (Member x1 cabinet) (STV 1.0 0.99))",
+            "(: e_lock_past (Past e0) (STV 1.0 0.99))",
+            "(: e_lock_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000010 run1": {
+        "sentence": "The cabinet was locked by the steward.",
+        "before": [
+            "(: e_lock (Member sk_lock_1 lock) (STV 1.0 0.99))",
+            "(: e_lock_patient (Patient sk_lock_1 sk_cabinet_1) (STV 1.0 0.99))",
+            "(: e_cabinet (Member sk_cabinet_1 cabinet) (STV 1.0 0.99))",
+            "(: e_lock_agent (Agent sk_lock_1 sk_steward_1) (STV 1.0 0.99))",
+            "(: e_steward (Member sk_steward_1 steward) (STV 1.0 0.99))",
+            "(: e_lock_past (Past sk_lock_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_lock_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_lock (Member e0 lock) (STV 1.0 0.99))",
+            "(: e_steward (Member x0 steward) (STV 1.0 0.99))",
+            "(: e_cabinet (Member x1 cabinet) (STV 1.0 0.99))",
+            "(: e_lock_past (Past e0) (STV 1.0 0.99))",
+            "(: e_lock_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000011 run1": {
+        "sentence": "A clerk stamped the docket.",
+        "before": [
+            "(: e_stamp (Member sk_stamp_1 stamp) (STV 1.0 0.99))",
+            "(: e_stamp_agent (Agent sk_stamp_1 sk_clerk_1) (STV 1.0 0.99))",
+            "(: e_clerk (Member sk_clerk_1 clerk) (STV 1.0 0.99))",
+            "(: e_stamp_patient (Patient sk_stamp_1 sk_docket_1) (STV 1.0 0.99))",
+            "(: e_docket (Member sk_docket_1 docket) (STV 1.0 0.99))",
+            "(: e_stamp_past (Past sk_stamp_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_stamp_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_stamp (Member e0 stamp) (STV 1.0 0.99))",
+            "(: e_clerk (Member x0 clerk) (STV 1.0 0.99))",
+            "(: e_docket (Member x1 docket) (STV 1.0 0.99))",
+            "(: e_stamp_past (Past e0) (STV 1.0 0.99))",
+            "(: e_stamp_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000012 run1": {
+        "sentence": "The docket was stamped by a clerk.",
+        "before": [
+            "(: e_stamp (Member sk_stamp_1 stamp) (STV 1.0 0.99))",
+            "(: e_stamp_patient (Patient sk_stamp_1 sk_docket_1) (STV 1.0 0.99))",
+            "(: e_docket (Member sk_docket_1 docket) (STV 1.0 0.99))",
+            "(: e_stamp_agent (Agent sk_stamp_1 sk_clerk_1) (STV 1.0 0.99))",
+            "(: e_clerk (Member sk_clerk_1 clerk) (STV 1.0 0.99))",
+            "(: e_stamp_past (Past sk_stamp_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_stamp_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_stamp (Member e0 stamp) (STV 1.0 0.99))",
+            "(: e_clerk (Member x0 clerk) (STV 1.0 0.99))",
+            "(: e_docket (Member x1 docket) (STV 1.0 0.99))",
+            "(: e_stamp_past (Past e0) (STV 1.0 0.99))",
+            "(: e_stamp_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000013 run1": {
+        "sentence": "The porter handed the guest a key.",
+        "before": [
+            "(: hand1_event (Member sk_hand_1 hand) (STV 1.0 0.99))",
+            "(: hand1_agent (Agent sk_hand_1 sk_porter_1) (STV 1.0 0.99))",
+            "(: hand1_porter (Member sk_porter_1 porter) (STV 1.0 0.99))",
+            "(: hand1_recipient (Recipient sk_hand_1 sk_guest_1) (STV 1.0 0.99))",
+            "(: hand1_guest (Member sk_guest_1 guest) (STV 1.0 0.99))",
+            "(: hand1_theme (Theme sk_hand_1 sk_key_1) (STV 1.0 0.99))",
+            "(: hand1_key (Member sk_key_1 key) (STV 1.0 0.99))",
+            "(: hand1_past (Past sk_hand_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: hand1_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: hand1_event (Member e0 hand) (STV 1.0 0.99))",
+            "(: hand1_porter (Member x0 porter) (STV 1.0 0.99))",
+            "(: hand1_guest (Member x1 guest) (STV 1.0 0.99))",
+            "(: hand1_key (Member x2 key) (STV 1.0 0.99))",
+            "(: hand1_past (Past e0) (STV 1.0 0.99))",
+            "(: hand1_recipient (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: hand1_theme (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000014 run1": {
+        "sentence": "The porter handed a key to the guest.",
+        "before": [
+            "(: hand2_event (Member sk_hand_1 hand) (STV 1.0 0.99))",
+            "(: hand2_agent (Agent sk_hand_1 sk_porter_1) (STV 1.0 0.99))",
+            "(: hand2_porter (Member sk_porter_1 porter) (STV 1.0 0.99))",
+            "(: hand2_recipient (Recipient sk_hand_1 sk_guest_1) (STV 1.0 0.99))",
+            "(: hand2_guest (Member sk_guest_1 guest) (STV 1.0 0.99))",
+            "(: hand2_theme (Theme sk_hand_1 sk_key_1) (STV 1.0 0.99))",
+            "(: hand2_key (Member sk_key_1 key) (STV 1.0 0.99))",
+            "(: hand2_past (Past sk_hand_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: hand2_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: hand2_event (Member e0 hand) (STV 1.0 0.99))",
+            "(: hand2_porter (Member x0 porter) (STV 1.0 0.99))",
+            "(: hand2_guest (Member x1 guest) (STV 1.0 0.99))",
+            "(: hand2_key (Member x2 key) (STV 1.0 0.99))",
+            "(: hand2_past (Past e0) (STV 1.0 0.99))",
+            "(: hand2_recipient (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: hand2_theme (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000015 run1": {
+        "sentence": "The tutor sent the pupil a workbook.",
+        "before": [
+            "(: send1_event (Member sk_send_1 send) (STV 1.0 0.99))",
+            "(: send1_agent (Agent sk_send_1 sk_tutor_1) (STV 1.0 0.99))",
+            "(: send1_tutor (Member sk_tutor_1 tutor) (STV 1.0 0.99))",
+            "(: send1_recipient (Recipient sk_send_1 sk_pupil_1) (STV 1.0 0.99))",
+            "(: send1_pupil (Member sk_pupil_1 pupil) (STV 1.0 0.99))",
+            "(: send1_theme (Theme sk_send_1 sk_workbook_1) (STV 1.0 0.99))",
+            "(: send1_workbook (Member sk_workbook_1 workbook) (STV 1.0 0.99))",
+            "(: send1_past (Past sk_send_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: send1_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: send1_event (Member e0 send) (STV 1.0 0.99))",
+            "(: send1_tutor (Member x0 tutor) (STV 1.0 0.99))",
+            "(: send1_workbook (Member x1 workbook) (STV 1.0 0.99))",
+            "(: send1_pupil (Member x2 pupil) (STV 1.0 0.99))",
+            "(: send1_past (Past e0) (STV 1.0 0.99))",
+            "(: send1_recipient (Recipient e0 x2) (STV 1.0 0.99))",
+            "(: send1_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000016 run1": {
+        "sentence": "The tutor sent a workbook to the pupil.",
+        "before": [
+            "(: send2_event (Member sk_send_1 send) (STV 1.0 0.99))",
+            "(: send2_agent (Agent sk_send_1 sk_tutor_1) (STV 1.0 0.99))",
+            "(: send2_tutor (Member sk_tutor_1 tutor) (STV 1.0 0.99))",
+            "(: send2_recipient (Recipient sk_send_1 sk_pupil_1) (STV 1.0 0.99))",
+            "(: send2_pupil (Member sk_pupil_1 pupil) (STV 1.0 0.99))",
+            "(: send2_theme (Theme sk_send_1 sk_workbook_1) (STV 1.0 0.99))",
+            "(: send2_workbook (Member sk_workbook_1 workbook) (STV 1.0 0.99))",
+            "(: send2_past (Past sk_send_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: send2_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: send2_event (Member e0 send) (STV 1.0 0.99))",
+            "(: send2_tutor (Member x0 tutor) (STV 1.0 0.99))",
+            "(: send2_workbook (Member x1 workbook) (STV 1.0 0.99))",
+            "(: send2_pupil (Member x2 pupil) (STV 1.0 0.99))",
+            "(: send2_past (Past e0) (STV 1.0 0.99))",
+            "(: send2_recipient (Recipient e0 x2) (STV 1.0 0.99))",
+            "(: send2_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000017 run1": {
+        "sentence": "The agent mailed the owner a notice.",
+        "before": [
+            "(: mail1_event (Member sk_mail_1 mail) (STV 1.0 0.99))",
+            "(: mail1_agent (Agent sk_mail_1 sk_agent_1) (STV 1.0 0.99))",
+            "(: mail1_subj (Member sk_agent_1 agent) (STV 1.0 0.99))",
+            "(: mail1_recipient (Recipient sk_mail_1 sk_owner_1) (STV 1.0 0.99))",
+            "(: mail1_owner (Member sk_owner_1 owner) (STV 1.0 0.99))",
+            "(: mail1_theme (Theme sk_mail_1 sk_notice_1) (STV 1.0 0.99))",
+            "(: mail1_notice (Member sk_notice_1 notice) (STV 1.0 0.99))",
+            "(: mail1_past (Past sk_mail_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: mail1_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: mail1_event (Member e0 mail) (STV 1.0 0.99))",
+            "(: mail1_subj (Member x0 agent) (STV 1.0 0.99))",
+            "(: mail1_owner (Member x1 owner) (STV 1.0 0.99))",
+            "(: mail1_notice (Member x2 notice) (STV 1.0 0.99))",
+            "(: mail1_past (Past e0) (STV 1.0 0.99))",
+            "(: mail1_recipient (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: mail1_theme (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000018 run1": {
+        "sentence": "The agent mailed a notice to the owner.",
+        "before": [
+            "(: mail2_event (Member sk_mail_1 mail) (STV 1.0 0.99))",
+            "(: mail2_agent (Agent sk_mail_1 sk_agent_1) (STV 1.0 0.99))",
+            "(: mail2_subj (Member sk_agent_1 agent) (STV 1.0 0.99))",
+            "(: mail2_recipient (Recipient sk_mail_1 sk_owner_1) (STV 1.0 0.99))",
+            "(: mail2_owner (Member sk_owner_1 owner) (STV 1.0 0.99))",
+            "(: mail2_theme (Theme sk_mail_1 sk_notice_1) (STV 1.0 0.99))",
+            "(: mail2_notice (Member sk_notice_1 notice) (STV 1.0 0.99))",
+            "(: mail2_past (Past sk_mail_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: mail2_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: mail2_event (Member e0 mail) (STV 1.0 0.99))",
+            "(: mail2_subj (Member x0 agent) (STV 1.0 0.99))",
+            "(: mail2_owner (Member x1 owner) (STV 1.0 0.99))",
+            "(: mail2_notice (Member x2 notice) (STV 1.0 0.99))",
+            "(: mail2_past (Past e0) (STV 1.0 0.99))",
+            "(: mail2_recipient (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: mail2_theme (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000019 run1": {
+        "sentence": "The chef passed the waiter a tray.",
+        "before": [
+            "(: e1_ev (Member sk_pass_1 pass) (STV 1.0 0.99))",
+            "(: e1_ag (Agent sk_pass_1 sk_chef_1) (STV 1.0 0.99))",
+            "(: e1_ag_m (Member sk_chef_1 chef) (STV 1.0 0.99))",
+            "(: e1_rec (Recipient sk_pass_1 sk_waiter_1) (STV 1.0 0.99))",
+            "(: e1_rec_m (Member sk_waiter_1 waiter) (STV 1.0 0.99))",
+            "(: e1_th (Theme sk_pass_1 sk_tray_1) (STV 1.0 0.99))",
+            "(: e1_th_m (Member sk_tray_1 tray) (STV 1.0 0.99))",
+            "(: e1_past (Past sk_pass_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e1_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e1_ev (Member e0 pass) (STV 1.0 0.99))",
+            "(: e1_ag_m (Member x0 chef) (STV 1.0 0.99))",
+            "(: e1_rec_m (Member x1 waiter) (STV 1.0 0.99))",
+            "(: e1_th_m (Member x2 tray) (STV 1.0 0.99))",
+            "(: e1_past (Past e0) (STV 1.0 0.99))",
+            "(: e1_rec (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e1_th (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000020 run1": {
+        "sentence": "The chef passed a tray to the waiter.",
+        "before": [
+            "(: e2_ev (Member sk_pass_1 pass) (STV 1.0 0.99))",
+            "(: e2_ag (Agent sk_pass_1 sk_chef_1) (STV 1.0 0.99))",
+            "(: e2_ag_m (Member sk_chef_1 chef) (STV 1.0 0.99))",
+            "(: e2_th (Theme sk_pass_1 sk_tray_1) (STV 1.0 0.99))",
+            "(: e2_th_m (Member sk_tray_1 tray) (STV 1.0 0.99))",
+            "(: e2_rec (Recipient sk_pass_1 sk_waiter_1) (STV 1.0 0.99))",
+            "(: e2_rec_m (Member sk_waiter_1 waiter) (STV 1.0 0.99))",
+            "(: e2_past (Past sk_pass_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e2_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e2_ev (Member e0 pass) (STV 1.0 0.99))",
+            "(: e2_ag_m (Member x0 chef) (STV 1.0 0.99))",
+            "(: e2_rec_m (Member x1 waiter) (STV 1.0 0.99))",
+            "(: e2_th_m (Member x2 tray) (STV 1.0 0.99))",
+            "(: e2_past (Past e0) (STV 1.0 0.99))",
+            "(: e2_rec (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e2_th (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000021 run1": {
+        "sentence": "The office issued the driver a permit.",
+        "before": [
+            "(: e3_ev (Member sk_issue_1 issue) (STV 1.0 0.99))",
+            "(: e3_ag (Agent sk_issue_1 sk_office_1) (STV 1.0 0.99))",
+            "(: e3_ag_m (Member sk_office_1 office) (STV 1.0 0.99))",
+            "(: e3_rec (Recipient sk_issue_1 sk_driver_1) (STV 1.0 0.99))",
+            "(: e3_rec_m (Member sk_driver_1 driver) (STV 1.0 0.99))",
+            "(: e3_th (Theme sk_issue_1 sk_permit_1) (STV 1.0 0.99))",
+            "(: e3_th_m (Member sk_permit_1 permit) (STV 1.0 0.99))",
+            "(: e3_past (Past sk_issue_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e3_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e3_ev (Member e0 issue) (STV 1.0 0.99))",
+            "(: e3_ag_m (Member x0 office) (STV 1.0 0.99))",
+            "(: e3_rec_m (Member x1 driver) (STV 1.0 0.99))",
+            "(: e3_th_m (Member x2 permit) (STV 1.0 0.99))",
+            "(: e3_past (Past e0) (STV 1.0 0.99))",
+            "(: e3_rec (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e3_th (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000022 run1": {
+        "sentence": "The office issued a permit to the driver.",
+        "before": [
+            "(: e4_ev (Member sk_issue_1 issue) (STV 1.0 0.99))",
+            "(: e4_ag (Agent sk_issue_1 sk_office_1) (STV 1.0 0.99))",
+            "(: e4_ag_m (Member sk_office_1 office) (STV 1.0 0.99))",
+            "(: e4_th (Theme sk_issue_1 sk_permit_1) (STV 1.0 0.99))",
+            "(: e4_th_m (Member sk_permit_1 permit) (STV 1.0 0.99))",
+            "(: e4_rec (Recipient sk_issue_1 sk_driver_1) (STV 1.0 0.99))",
+            "(: e4_rec_m (Member sk_driver_1 driver) (STV 1.0 0.99))",
+            "(: e4_past (Past sk_issue_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e4_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e4_ev (Member e0 issue) (STV 1.0 0.99))",
+            "(: e4_ag_m (Member x0 office) (STV 1.0 0.99))",
+            "(: e4_rec_m (Member x1 driver) (STV 1.0 0.99))",
+            "(: e4_th_m (Member x2 permit) (STV 1.0 0.99))",
+            "(: e4_past (Past e0) (STV 1.0 0.99))",
+            "(: e4_rec (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e4_th (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000023 run1": {
+        "sentence": "The clinic offered the patient a slot.",
+        "before": [
+            "(: e5_ev (Member sk_offer_1 offer) (STV 1.0 0.99))",
+            "(: e5_ag (Agent sk_offer_1 sk_clinic_1) (STV 1.0 0.99))",
+            "(: e5_ag_m (Member sk_clinic_1 clinic) (STV 1.0 0.99))",
+            "(: e5_rec (Recipient sk_offer_1 sk_patient_1) (STV 1.0 0.99))",
+            "(: e5_rec_m (Member sk_patient_1 patient) (STV 1.0 0.99))",
+            "(: e5_th (Theme sk_offer_1 sk_slot_1) (STV 1.0 0.99))",
+            "(: e5_th_m (Member sk_slot_1 slot) (STV 1.0 0.99))",
+            "(: e5_past (Past sk_offer_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e5_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e5_ev (Member e0 offer) (STV 1.0 0.99))",
+            "(: e5_ag_m (Member x0 clinic) (STV 1.0 0.99))",
+            "(: e5_rec_m (Member x1 patient) (STV 1.0 0.99))",
+            "(: e5_th_m (Member x2 slot) (STV 1.0 0.99))",
+            "(: e5_past (Past e0) (STV 1.0 0.99))",
+            "(: e5_rec (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e5_th (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "probeALT-000024 run1": {
+        "sentence": "The clinic offered a slot to the patient.",
+        "before": [
+            "(: e6_ev (Member sk_offer_1 offer) (STV 1.0 0.99))",
+            "(: e6_ag (Agent sk_offer_1 sk_clinic_1) (STV 1.0 0.99))",
+            "(: e6_ag_m (Member sk_clinic_1 clinic) (STV 1.0 0.99))",
+            "(: e6_th (Theme sk_offer_1 sk_slot_1) (STV 1.0 0.99))",
+            "(: e6_th_m (Member sk_slot_1 slot) (STV 1.0 0.99))",
+            "(: e6_rec (Recipient sk_offer_1 sk_patient_1) (STV 1.0 0.99))",
+            "(: e6_rec_m (Member sk_patient_1 patient) (STV 1.0 0.99))",
+            "(: e6_past (Past sk_offer_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e6_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e6_ev (Member e0 offer) (STV 1.0 0.99))",
+            "(: e6_ag_m (Member x0 clinic) (STV 1.0 0.99))",
+            "(: e6_rec_m (Member x1 patient) (STV 1.0 0.99))",
+            "(: e6_th_m (Member x2 slot) (STV 1.0 0.99))",
+            "(: e6_past (Past e0) (STV 1.0 0.99))",
+            "(: e6_rec (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e6_th (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    }
+}

@@ -861,6 +861,36 @@ def _canonical_json(obj):
     return json.dumps(obj, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
 
 
+def view_entry(parse_record, canon):
+    """The 3-field readable projection of one record: sentence / before / after.
+
+    A VIEW, not an identity artifact: nothing downstream may read it. ``before``
+    is the faithful statements verbatim; ``after`` renders each canonical atom
+    back in assertion shape, in linearization order — proof names are provenance
+    (identity ignores them) but they are what lets a reader align the two lists.
+    """
+    return {
+        "sentence": " ".join(parse_record.get("sentences") or []),
+        "before": list(parse_record.get("statements") or []),
+        "after": ["(: %s %s (STV %s %s))" % (a.get("proof_name") or "_",
+                                             a["term"], a["stv"][0], a["stv"][1])
+                  for a in canon["atoms"]],
+    }
+
+
+def view_path_for(canon_path):
+    base = str(canon_path)
+    if base.endswith(".canon.jsonl"):
+        base = base[: -len(".canon.jsonl")]
+    return base + ".view.json"
+
+
+def write_view(view, path):
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(view, fh, indent=4, ensure_ascii=False)
+        fh.write("\n")
+
+
 def canonicalize(record, bucket_tv=None, vocab=None):
     """Parse record (``schema.md`` §3) -> canonical record (``canonicalization.md`` §1).
 
@@ -1233,10 +1263,16 @@ def main(argv=None):
         action="store_true",
         help="use §4.6 bucketed truth values in graph_id / content_id",
     )
+    ap.add_argument(
+        "--no-view",
+        action="store_true",
+        help="skip the readable <output-stem>.view.json (sentence/before/after) dump",
+    )
     args = ap.parse_args(argv)
 
     vocab = load_vocabulary()
     n = 0
+    view = {}
     with open(args.input, "r", encoding="utf-8") as src, open(
         args.output, "w", encoding="utf-8"
     ) as dst:
@@ -1247,8 +1283,14 @@ def main(argv=None):
             record = json.loads(line)
             canon = canonicalize(record, bucket_tv=args.bucket_tv, vocab=vocab)
             dst.write(_canonical_json(canon) + "\n")
+            if not args.no_view:
+                view["%s run%s" % (canon["id"], canon["run"])] = view_entry(record, canon)
             n += 1
     sys.stderr.write("canonicalized %d records -> %s\n" % (n, args.output))
+    if not args.no_view:
+        vp = view_path_for(args.output)
+        write_view(view, vp)
+        sys.stderr.write("readable view -> %s\n" % vp)
     return 0
 
 

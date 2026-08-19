@@ -1,0 +1,1322 @@
+{
+    "tierA-000104 run12": {
+        "sentence": "A firm abandons its tender.",
+        "before": [
+            "(: e_abandon (Member sk_abandon_1 abandon) (STV 1.0 0.99))",
+            "(: e_abandon_agent (Agent sk_abandon_1 sk_firm_1) (STV 1.0 0.99))",
+            "(: e_abandon_theme (Theme sk_abandon_1 sk_tender_1) (STV 1.0 0.99))",
+            "(: e_firm_mem (Member sk_firm_1 firm) (STV 1.0 0.99))",
+            "(: e_tender_mem (Member sk_tender_1 tender) (STV 1.0 0.99))",
+            "(: e_tender_poss (Possession sk_tender_1 sk_firm_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_abandon_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_abandon (Member e0 abandon) (STV 1.0 0.99))",
+            "(: e_firm_mem (Member x0 firm) (STV 1.0 0.99))",
+            "(: e_tender_mem (Member x1 tender) (STV 1.0 0.99))",
+            "(: e_tender_poss (Possession x1 x0) (STV 1.0 0.99))",
+            "(: e_abandon_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000104 run13": {
+        "sentence": "A firm abandons its tender.",
+        "before": [
+            "(: e_abandon (Member sk_abandon_1 abandon) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_abandon_1 sk_firm_1) (STV 1.0 0.99))",
+            "(: firm_m (Member sk_firm_1 firm) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_abandon_1 sk_tender_1) (STV 1.0 0.99))",
+            "(: tender_m (Member sk_tender_1 tender) (STV 1.0 0.99))",
+            "(: tender_poss (Possession sk_tender_1 sk_firm_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_abandon (Member e0 abandon) (STV 1.0 0.99))",
+            "(: firm_m (Member x0 firm) (STV 1.0 0.99))",
+            "(: tender_m (Member x1 tender) (STV 1.0 0.99))",
+            "(: tender_poss (Possession x1 x0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000104 run14": {
+        "sentence": "A firm abandons its tender.",
+        "before": [
+            "(: e_abandon (Member sk_abandon_1 abandon) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_abandon_1 sk_firm_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_abandon_1 sk_tender_1) (STV 1.0 0.99))",
+            "(: e_firm (Member sk_firm_1 firm) (STV 1.0 0.99))",
+            "(: e_tender (Member sk_tender_1 tender) (STV 1.0 0.99))",
+            "(: e_poss (Possession sk_tender_1 sk_firm_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_abandon (Member e0 abandon) (STV 1.0 0.99))",
+            "(: e_firm (Member x0 firm) (STV 1.0 0.99))",
+            "(: e_tender (Member x1 tender) (STV 1.0 0.99))",
+            "(: e_poss (Possession x1 x0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000073 run12": {
+        "sentence": "A warden permits visitors on Sundays.",
+        "before": [
+            "(: warden_permits_visitors (Implication (Premises (Member $x warden)) (Conclusions (Member (sk_permit $x) permit) (Agent (sk_permit $x) $x) (Theme (sk_permit $x) visitor) (Time (sk_permit $x) (Weekday sunday)) (Every (sk_permit $x) 1 week))) (STV 0.9 0.9))"
+        ],
+        "after": [
+            "(: warden_permits_visitors (Implication (Premises (Member $v0 warden)) (Conclusions (Member (f0 $v0) permit) (Agent (f0 $v0) $v0) (Theme (f0 $v0) visitor) (Time (f0 $v0) (Weekday sunday)) (Every (f0 $v0) 1 week))) (STV 0.9 0.9))"
+        ]
+    },
+    "tierA-000073 run13": {
+        "sentence": "A warden permits visitors on Sundays.",
+        "before": [
+            "(: e_permit (Member sk_permit_1 permit) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_permit_1 sk_warden_1) (STV 1.0 0.99))",
+            "(: warden_mem (Member sk_warden_1 warden) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_permit_1 visitor) (STV 1.0 0.99))",
+            "(: e_time (Time sk_permit_1 (Weekday sunday)) (STV 1.0 0.99))",
+            "(: e_every (Every sk_permit_1 1 week) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_every (Every e0 1 week) (STV 1.0 0.99))",
+            "(: e_permit (Member e0 permit) (STV 1.0 0.99))",
+            "(: warden_mem (Member x0 warden) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 visitor) (STV 1.0 0.99))",
+            "(: e_time (Time e0 (Weekday sunday)) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000073 run14": {
+        "sentence": "A warden permits visitors on Sundays.",
+        "before": [
+            "(: warden_permit_visitor (Implication (Premises (Member $x warden)) (Conclusions (Member (sk_permit $x) permit) (Agent (sk_permit $x) $x) (Theme (sk_permit $x) visitor) (Time (sk_permit $x) (Weekday sunday)) (Every (sk_permit $x) 1 week))) (STV 0.9 0.9))"
+        ],
+        "after": [
+            "(: warden_permit_visitor (Implication (Premises (Member $v0 warden)) (Conclusions (Member (f0 $v0) permit) (Agent (f0 $v0) $v0) (Theme (f0 $v0) visitor) (Time (f0 $v0) (Weekday sunday)) (Every (f0 $v0) 1 week))) (STV 0.9 0.9))"
+        ]
+    },
+    "tierA-000214 run12": {
+        "sentence": "The tower is answered by a pilot.",
+        "before": [
+            "(: e_answer (Member sk_answer_1 answer) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_answer_1 sk_pilot_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_answer_1 sk_tower_1) (STV 1.0 0.99))",
+            "(: e_pilot (Member sk_pilot_1 pilot) (STV 1.0 0.99))",
+            "(: e_tower (Member sk_tower_1 tower) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_answer (Member e0 answer) (STV 1.0 0.99))",
+            "(: e_pilot (Member x0 pilot) (STV 1.0 0.99))",
+            "(: e_tower (Member x1 tower) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000214 run13": {
+        "sentence": "The tower is answered by a pilot.",
+        "before": [
+            "(: e_answer (Member sk_answer_1 answer) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_answer_1 sk_tower_1) (STV 1.0 0.99))",
+            "(: tower_mem (Member sk_tower_1 tower) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_answer_1 sk_pilot_1) (STV 1.0 0.99))",
+            "(: pilot_mem (Member sk_pilot_1 pilot) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_answer (Member e0 answer) (STV 1.0 0.99))",
+            "(: pilot_mem (Member x0 pilot) (STV 1.0 0.99))",
+            "(: tower_mem (Member x1 tower) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000214 run14": {
+        "sentence": "The tower is answered by a pilot.",
+        "before": [
+            "(: ans_ev (Member sk_answer_1 answer) (STV 1.0 0.99))",
+            "(: ans_theme (Theme sk_answer_1 sk_tower_1) (STV 1.0 0.99))",
+            "(: tower_typ (Member sk_tower_1 tower) (STV 1.0 0.99))",
+            "(: ans_agent (Agent sk_answer_1 sk_pilot_1) (STV 1.0 0.99))",
+            "(: pilot_typ (Member sk_pilot_1 pilot) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: ans_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: ans_ev (Member e0 answer) (STV 1.0 0.99))",
+            "(: pilot_typ (Member x0 pilot) (STV 1.0 0.99))",
+            "(: tower_typ (Member x1 tower) (STV 1.0 0.99))",
+            "(: ans_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000248 run12": {
+        "sentence": "The soil samples do not arrive by post.",
+        "before": [
+            "(: samples_grp (GroupOf sk_group_1 soil_sample) (STV 1.0 0.99))",
+            "(: soilsample_genus (Inheritance soil_sample sample) (STV 1.0 0.99))",
+            "(: samples_not_arrive (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_group_1) (Instrument sk_arrive_1 post)) (STV 0.0 0.99))",
+            "(: samples_not_arrive_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_arrive $x) arrive) (Agent (sk_arrive $x) $x) (Instrument (sk_arrive $x) post))) (STV 0.0 0.9))"
+        ],
+        "after": [
+            "(: samples_not_arrive (And (Agent x0 x1) (Instrument x0 post) (Member x0 arrive)) (STV 0.0 0.99))",
+            "(: samples_grp (GroupOf x1 soil_sample) (STV 1.0 0.99))",
+            "(: samples_not_arrive_rule (Implication (Premises (PartOf $v0 x1)) (Conclusions (Member (f0 $v0) arrive) (Agent (f0 $v0) $v0) (Instrument (f0 $v0) post))) (STV 0.0 0.9))",
+            "(: soilsample_genus (Inheritance soil_sample sample) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000248 run13": {
+        "sentence": "The soil samples do not arrive by post.",
+        "before": [
+            "(: ss_genus (Inheritance soil_sample sample) (STV 1.0 0.99))",
+            "(: ss_group (GroupOf sk_group_1 soil_sample) (STV 1.0 0.99))",
+            "(: ss_no_arrive (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_group_1) (Instrument sk_arrive_1 post)) (STV 0.0 0.99))",
+            "(: ss_no_arrive_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_arrive $x) arrive) (Agent (sk_arrive $x) $x) (Instrument (sk_arrive $x) post))) (STV 0.0 0.9))"
+        ],
+        "after": [
+            "(: ss_no_arrive (And (Agent x0 x1) (Instrument x0 post) (Member x0 arrive)) (STV 0.0 0.99))",
+            "(: ss_group (GroupOf x1 soil_sample) (STV 1.0 0.99))",
+            "(: ss_no_arrive_rule (Implication (Premises (PartOf $v0 x1)) (Conclusions (Member (f0 $v0) arrive) (Agent (f0 $v0) $v0) (Instrument (f0 $v0) post))) (STV 0.0 0.9))",
+            "(: ss_genus (Inheritance soil_sample sample) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000248 run14": {
+        "sentence": "The soil samples do not arrive by post.",
+        "before": [
+            "(: soil_samples_group (GroupOf sk_group_1 soil_sample) (STV 1.0 0.99))",
+            "(: soil_sample_genus (Inheritance soil_sample sample) (STV 1.0 0.99))",
+            "(: soil_samples_not_arrive (And (Member sk_arrive_1 arrive) (Agent sk_arrive_1 sk_group_1) (Instrument sk_arrive_1 post)) (STV 0.0 0.99))",
+            "(: soil_samples_not_arrive_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_arrive $x) arrive) (Agent (sk_arrive $x) $x) (Instrument (sk_arrive $x) post))) (STV 0.0 0.9))"
+        ],
+        "after": [
+            "(: soil_samples_not_arrive (And (Agent x0 x1) (Instrument x0 post) (Member x0 arrive)) (STV 0.0 0.99))",
+            "(: soil_samples_group (GroupOf x1 soil_sample) (STV 1.0 0.99))",
+            "(: soil_samples_not_arrive_rule (Implication (Premises (PartOf $v0 x1)) (Conclusions (Member (f0 $v0) arrive) (Agent (f0 $v0) $v0) (Instrument (f0 $v0) post))) (STV 0.0 0.9))",
+            "(: soil_sample_genus (Inheritance soil_sample sample) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000052 run12": {
+        "sentence": "A shoreline survey begins at dawn.",
+        "before": [
+            "(: survey_mem (Member sk_shoreline_survey_1 shoreline_survey) (STV 1.0 0.99))",
+            "(: survey_genus (Inheritance shoreline_survey survey) (STV 1.0 0.99))",
+            "(: begin_mem (Member sk_begin_1 begin) (STV 1.0 0.99))",
+            "(: begin_patient (Patient sk_begin_1 sk_shoreline_survey_1) (STV 1.0 0.99))",
+            "(: begin_time (Time sk_begin_1 dawn) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: survey_genus (Inheritance shoreline_survey survey) (STV 1.0 0.99))",
+            "(: begin_mem (Member e0 begin) (STV 1.0 0.99))",
+            "(: survey_mem (Member x0 shoreline_survey) (STV 1.0 0.99))",
+            "(: begin_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: begin_time (Time e0 dawn) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000052 run13": {
+        "sentence": "A shoreline survey begins at dawn.",
+        "before": [
+            "(: survey_mem (Member sk_survey_1 shoreline_survey) (STV 1.0 0.99))",
+            "(: survey_genus (Inheritance shoreline_survey survey) (STV 1.0 0.99))",
+            "(: begin_mem (Member sk_begin_1 begin) (STV 1.0 0.99))",
+            "(: begin_patient (Patient sk_begin_1 sk_survey_1) (STV 1.0 0.99))",
+            "(: begin_time (Time sk_begin_1 dawn) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: survey_genus (Inheritance shoreline_survey survey) (STV 1.0 0.99))",
+            "(: begin_mem (Member e0 begin) (STV 1.0 0.99))",
+            "(: survey_mem (Member x0 shoreline_survey) (STV 1.0 0.99))",
+            "(: begin_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: begin_time (Time e0 dawn) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000052 run14": {
+        "sentence": "A shoreline survey begins at dawn.",
+        "before": [
+            "(: e_begin (Member sk_begin_1 begin) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_begin_1 sk_survey_1) (STV 1.0 0.99))",
+            "(: survey_typing (Member sk_survey_1 shoreline_survey) (STV 1.0 0.99))",
+            "(: survey_genus (Inheritance shoreline_survey survey) (STV 1.0 0.99))",
+            "(: e_time (Time sk_begin_1 dawn) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: survey_genus (Inheritance shoreline_survey survey) (STV 1.0 0.99))",
+            "(: e_begin (Member e0 begin) (STV 1.0 0.99))",
+            "(: survey_typing (Member x0 shoreline_survey) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e_time (Time e0 dawn) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000025 run12": {
+        "sentence": "A second kiln was sold to the pottery studio.",
+        "before": [
+            "(: e_sell (Member sk_sell_1 sell) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_sell_1 sk_kiln_1) (STV 1.0 0.99))",
+            "(: kiln_type (Member sk_kiln_1 kiln) (STV 1.0 0.99))",
+            "(: kiln_ord (Ordinal sk_kiln_1 2 sell) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient sk_sell_1 sk_pottery_studio_1) (STV 1.0 0.99))",
+            "(: studio_type (Member sk_pottery_studio_1 pottery_studio) (STV 1.0 0.99))",
+            "(: studio_genus (Inheritance pottery_studio studio) (STV 1.0 0.99))",
+            "(: e_past (Past sk_sell_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: studio_genus (Inheritance pottery_studio studio) (STV 1.0 0.99))",
+            "(: e_sell (Member e0 sell) (STV 1.0 0.99))",
+            "(: kiln_type (Member x0 kiln) (STV 1.0 0.99))",
+            "(: studio_type (Member x1 pottery_studio) (STV 1.0 0.99))",
+            "(: kiln_ord (Ordinal x0 2 sell) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000025 run13": {
+        "sentence": "A second kiln was sold to the pottery studio.",
+        "before": [
+            "(: e_sell (Member sk_sell_1 sell) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_sell_1 sk_kiln_1) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient sk_sell_1 sk_studio_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_sell_1) (STV 1.0 0.99))",
+            "(: kiln_member (Member sk_kiln_1 kiln) (STV 1.0 0.99))",
+            "(: kiln_ordinal (Ordinal sk_kiln_1 2 sell) (STV 1.0 0.99))",
+            "(: studio_member (Member sk_studio_1 pottery_studio) (STV 1.0 0.99))",
+            "(: studio_genus (Inheritance pottery_studio studio) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: studio_genus (Inheritance pottery_studio studio) (STV 1.0 0.99))",
+            "(: e_sell (Member e0 sell) (STV 1.0 0.99))",
+            "(: kiln_member (Member x0 kiln) (STV 1.0 0.99))",
+            "(: studio_member (Member x1 pottery_studio) (STV 1.0 0.99))",
+            "(: kiln_ordinal (Ordinal x0 2 sell) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000025 run14": {
+        "sentence": "A second kiln was sold to the pottery studio.",
+        "before": [
+            "(: e_sell (Member sk_sell_1 sell) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_sell_1 sk_kiln_1) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient sk_sell_1 sk_studio_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_sell_1) (STV 1.0 0.99))",
+            "(: kiln_typ (Member sk_kiln_1 kiln) (STV 1.0 0.99))",
+            "(: kiln_ord (Ordinal sk_kiln_1 2 sell) (STV 1.0 0.99))",
+            "(: studio_typ (Member sk_studio_1 pottery_studio) (STV 1.0 0.99))",
+            "(: studio_genus (Inheritance pottery_studio studio) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: studio_genus (Inheritance pottery_studio studio) (STV 1.0 0.99))",
+            "(: e_sell (Member e0 sell) (STV 1.0 0.99))",
+            "(: kiln_typ (Member x0 kiln) (STV 1.0 0.99))",
+            "(: studio_typ (Member x1 pottery_studio) (STV 1.0 0.99))",
+            "(: kiln_ord (Ordinal x0 2 sell) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000155 run12": {
+        "sentence": "The afternoon session is canceled by a tutor.",
+        "before": [
+            "(: e_cancel (Member sk_cancel_1 cancel) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_cancel_1 sk_afternoon_session_1) (STV 1.0 0.99))",
+            "(: session_mem (Member sk_afternoon_session_1 afternoon_session) (STV 1.0 0.99))",
+            "(: session_genus (Inheritance afternoon_session session) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_cancel_1 sk_tutor_1) (STV 1.0 0.99))",
+            "(: tutor_mem (Member sk_tutor_1 tutor) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: session_genus (Inheritance afternoon_session session) (STV 1.0 0.99))",
+            "(: e_cancel (Member e0 cancel) (STV 1.0 0.99))",
+            "(: tutor_mem (Member x0 tutor) (STV 1.0 0.99))",
+            "(: session_mem (Member x1 afternoon_session) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000155 run13": {
+        "sentence": "The afternoon session is canceled by a tutor.",
+        "before": [
+            "(: e_cancel (Member sk_cancel_1 cancel) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_cancel_1 sk_tutor_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_cancel_1 sk_session_1) (STV 1.0 0.99))",
+            "(: session_type (Member sk_session_1 afternoon_session) (STV 1.0 0.99))",
+            "(: session_genus (Inheritance afternoon_session session) (STV 1.0 0.99))",
+            "(: tutor_type (Member sk_tutor_1 tutor) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: session_genus (Inheritance afternoon_session session) (STV 1.0 0.99))",
+            "(: e_cancel (Member e0 cancel) (STV 1.0 0.99))",
+            "(: tutor_type (Member x0 tutor) (STV 1.0 0.99))",
+            "(: session_type (Member x1 afternoon_session) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000155 run14": {
+        "sentence": "The afternoon session is canceled by a tutor.",
+        "before": [
+            "(: e_cancel (Member sk_cancel_1 cancel) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_cancel_1 sk_tutor_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_cancel_1 sk_afternoon_session_1) (STV 1.0 0.99))",
+            "(: session_mem (Member sk_afternoon_session_1 afternoon_session) (STV 1.0 0.99))",
+            "(: session_genus (Inheritance afternoon_session session) (STV 1.0 0.99))",
+            "(: tutor_mem (Member sk_tutor_1 tutor) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: session_genus (Inheritance afternoon_session session) (STV 1.0 0.99))",
+            "(: e_cancel (Member e0 cancel) (STV 1.0 0.99))",
+            "(: tutor_mem (Member x0 tutor) (STV 1.0 0.99))",
+            "(: session_mem (Member x1 afternoon_session) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000199 run12": {
+        "sentence": "North decides to move a family.",
+        "before": [
+            "(: dec_ev (Member sk_decide_1 decide) (STV 1.0 0.99))",
+            "(: dec_ag (Agent sk_decide_1 north) (STV 1.0 0.99))",
+            "(: dec_th (Theme sk_decide_1 (And (Member sk_move_1 move) (Agent sk_move_1 north) (Theme sk_move_1 sk_family_1) (Member sk_family_1 family))) (STV 1.0 0.99))",
+            "(: north_name (Name north \"North\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: dec_ag (Agent e0 north) (STV 1.0 0.99))",
+            "(: dec_ev (Member e0 decide) (STV 1.0 0.99))",
+            "(: north_name (Name north \"North\") (STV 1.0 0.99))",
+            "(: dec_th (Theme e0 (And (Agent x0 north) (Member x0 move) (Member x1 family) (Theme x0 x1))) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000199 run13": {
+        "sentence": "North decides to move a family.",
+        "before": [
+            "(: e_decide (Member sk_decide_1 decide) (STV 1.0 0.99))",
+            "(: e_decide_exp (Experiencer sk_decide_1 north) (STV 1.0 0.99))",
+            "(: e_decide_theme (Theme sk_decide_1 (And (Member sk_move_1 move) (Agent sk_move_1 north) (Theme sk_move_1 sk_family_1) (Member sk_family_1 family))) (STV 1.0 0.99))",
+            "(: north_name (Name north \"North\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_decide_exp (Experiencer e0 north) (STV 1.0 0.99))",
+            "(: e_decide (Member e0 decide) (STV 1.0 0.99))",
+            "(: north_name (Name north \"North\") (STV 1.0 0.99))",
+            "(: e_decide_theme (Theme e0 (And (Agent x0 north) (Member x0 move) (Member x1 family) (Theme x0 x1))) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000199 run14": {
+        "sentence": "North decides to move a family.",
+        "before": [
+            "(: north_name (Name north \"North\") (STV 1.0 0.99))",
+            "(: e_decide (Member sk_decide_1 decide) (STV 1.0 0.99))",
+            "(: e_decide_agent (Agent sk_decide_1 north) (STV 1.0 0.99))",
+            "(: e_decide_theme (Theme sk_decide_1 sk_move_1) (STV 1.0 0.99))",
+            "(: e_move (Member sk_move_1 move) (STV 1.0 0.99))",
+            "(: e_move_agent (Agent sk_move_1 north) (STV 1.0 0.99))",
+            "(: e_move_theme (Theme sk_move_1 sk_family_1) (STV 1.0 0.99))",
+            "(: e_family (Member sk_family_1 family) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_decide_agent (Agent e0 north) (STV 1.0 0.99))",
+            "(: e_move_agent (Agent e1 north) (STV 1.0 0.99))",
+            "(: e_decide (Member e0 decide) (STV 1.0 0.99))",
+            "(: e_move (Member e1 move) (STV 1.0 0.99))",
+            "(: e_family (Member x0 family) (STV 1.0 0.99))",
+            "(: north_name (Name north \"North\") (STV 1.0 0.99))",
+            "(: e_decide_theme (Theme e0 e1) (STV 1.0 0.99))",
+            "(: e_move_theme (Theme e1 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000232 run12": {
+        "sentence": "A flood destroys the footbridge.",
+        "before": [
+            "(: destroy_event (Member sk_destroy_1 destroy) (STV 1.0 0.99))",
+            "(: destroy_agent (Agent sk_destroy_1 sk_flood_1) (STV 1.0 0.99))",
+            "(: destroy_patient (Patient sk_destroy_1 sk_footbridge_1) (STV 1.0 0.99))",
+            "(: flood_type (Member sk_flood_1 flood) (STV 1.0 0.99))",
+            "(: footbridge_type (Member sk_footbridge_1 footbridge) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: destroy_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: destroy_event (Member e0 destroy) (STV 1.0 0.99))",
+            "(: flood_type (Member x0 flood) (STV 1.0 0.99))",
+            "(: footbridge_type (Member x1 footbridge) (STV 1.0 0.99))",
+            "(: destroy_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000232 run13": {
+        "sentence": "A flood destroys the footbridge.",
+        "before": [
+            "(: e_destroy (Member sk_destroy_1 destroy) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_destroy_1 sk_flood_1) (STV 1.0 0.99))",
+            "(: e_flood (Member sk_flood_1 flood) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_destroy_1 sk_footbridge_1) (STV 1.0 0.99))",
+            "(: e_footbridge (Member sk_footbridge_1 footbridge) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_destroy (Member e0 destroy) (STV 1.0 0.99))",
+            "(: e_flood (Member x0 flood) (STV 1.0 0.99))",
+            "(: e_footbridge (Member x1 footbridge) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000232 run14": {
+        "sentence": "A flood destroys the footbridge.",
+        "before": [
+            "(: e_destroy (Member sk_destroy_1 destroy) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_destroy_1 sk_flood_1) (STV 1.0 0.99))",
+            "(: e_flood (Member sk_flood_1 flood) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_destroy_1 sk_footbridge_1) (STV 1.0 0.99))",
+            "(: e_footbridge (Member sk_footbridge_1 footbridge) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_destroy (Member e0 destroy) (STV 1.0 0.99))",
+            "(: e_flood (Member x0 flood) (STV 1.0 0.99))",
+            "(: e_footbridge (Member x1 footbridge) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000258 run12": {
+        "sentence": "The last elm kicks the bucket that autumn.",
+        "before": [
+            "(: elm_mem (Member sk_elm_1 elm) (STV 1.0 0.99))",
+            "(: elm_ord (Ordinal sk_elm_1 last kick_the_bucket) (STV 1.0 0.99))",
+            "(: ktb_mem (Member sk_kick_the_bucket_1 kick_the_bucket) (STV 1.0 0.99))",
+            "(: ktb_patient (Patient sk_kick_the_bucket_1 sk_elm_1) (STV 1.0 0.99))",
+            "(: ktb_time (Time sk_kick_the_bucket_1 that_autumn) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: ktb_mem (Member e0 kick_the_bucket) (STV 1.0 0.99))",
+            "(: elm_mem (Member x0 elm) (STV 1.0 0.99))",
+            "(: elm_ord (Ordinal x0 last kick_the_bucket) (STV 1.0 0.99))",
+            "(: ktb_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: ktb_time (Time e0 that_autumn) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000258 run13": {
+        "sentence": "The last elm kicks the bucket that autumn.",
+        "before": [
+            "(: e_kick (Member sk_kick_the_bucket_1 kick_the_bucket) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_kick_the_bucket_1 sk_elm_1) (STV 1.0 0.99))",
+            "(: elm_type (Member sk_elm_1 elm) (STV 1.0 0.99))",
+            "(: elm_last (Ordinal sk_elm_1 last kick_the_bucket) (STV 1.0 0.99))",
+            "(: e_time (Time sk_kick_the_bucket_1 autumn) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_kick (Member e0 kick_the_bucket) (STV 1.0 0.99))",
+            "(: elm_type (Member x0 elm) (STV 1.0 0.99))",
+            "(: elm_last (Ordinal x0 last kick_the_bucket) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e_time (Time e0 autumn) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000258 run14": {
+        "sentence": "The last elm kicks the bucket that autumn.",
+        "before": [
+            "(: elm_member (Member sk_elm_1 elm) (STV 1.0 0.99))",
+            "(: elm_ordinal (Ordinal sk_elm_1 last kick_the_bucket) (STV 1.0 0.99))",
+            "(: e_kick_class (Member sk_kick_the_bucket_1 kick_the_bucket) (STV 1.0 0.99))",
+            "(: e_kick_patient (Patient sk_kick_the_bucket_1 sk_elm_1) (STV 1.0 0.99))",
+            "(: e_kick_time (Time sk_kick_the_bucket_1 autumn) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_kick_class (Member e0 kick_the_bucket) (STV 1.0 0.99))",
+            "(: elm_member (Member x0 elm) (STV 1.0 0.99))",
+            "(: elm_ordinal (Ordinal x0 last kick_the_bucket) (STV 1.0 0.99))",
+            "(: e_kick_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e_kick_time (Time e0 autumn) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000130 run12": {
+        "sentence": "An error in the ledger is discovered by an auditor.",
+        "before": [
+            "(: e_discover (Member sk_discover_1 discover) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_discover_1 sk_auditor_1) (STV 1.0 0.99))",
+            "(: auditor_m (Member sk_auditor_1 auditor) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_discover_1 sk_error_1) (STV 1.0 0.99))",
+            "(: error_m (Member sk_error_1 error) (STV 1.0 0.99))",
+            "(: error_loc (Location sk_error_1 sk_ledger_1) (STV 1.0 0.99))",
+            "(: ledger_m (Member sk_ledger_1 ledger) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: error_loc (Location e1 x1) (STV 1.0 0.99))",
+            "(: e_discover (Member e0 discover) (STV 1.0 0.99))",
+            "(: error_m (Member e1 error) (STV 1.0 0.99))",
+            "(: auditor_m (Member x0 auditor) (STV 1.0 0.99))",
+            "(: ledger_m (Member x1 ledger) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 e1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000130 run13": {
+        "sentence": "An error in the ledger is discovered by an auditor.",
+        "before": [
+            "(: discover_ev (Member sk_discover_1 discover) (STV 1.0 0.99))",
+            "(: discover_agent (Agent sk_discover_1 sk_auditor_1) (STV 1.0 0.99))",
+            "(: auditor_mem (Member sk_auditor_1 auditor) (STV 1.0 0.99))",
+            "(: discover_theme (Theme sk_discover_1 sk_error_1) (STV 1.0 0.99))",
+            "(: error_mem (Member sk_error_1 error) (STV 1.0 0.99))",
+            "(: error_loc (Location sk_error_1 sk_ledger_1) (STV 1.0 0.99))",
+            "(: ledger_mem (Member sk_ledger_1 ledger) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: discover_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: error_loc (Location e1 x1) (STV 1.0 0.99))",
+            "(: discover_ev (Member e0 discover) (STV 1.0 0.99))",
+            "(: error_mem (Member e1 error) (STV 1.0 0.99))",
+            "(: auditor_mem (Member x0 auditor) (STV 1.0 0.99))",
+            "(: ledger_mem (Member x1 ledger) (STV 1.0 0.99))",
+            "(: discover_theme (Theme e0 e1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000130 run14": {
+        "sentence": "An error in the ledger is discovered by an auditor.",
+        "before": [
+            "(: disc_class (Member sk_discover_1 discover) (STV 1.0 0.99))",
+            "(: disc_agent (Agent sk_discover_1 sk_auditor_1) (STV 1.0 0.99))",
+            "(: auditor_type (Member sk_auditor_1 auditor) (STV 1.0 0.99))",
+            "(: disc_theme (Theme sk_discover_1 sk_error_1) (STV 1.0 0.99))",
+            "(: error_type (Member sk_error_1 error) (STV 1.0 0.99))",
+            "(: error_loc (Location sk_error_1 sk_ledger_1) (STV 1.0 0.99))",
+            "(: ledger_type (Member sk_ledger_1 ledger) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: disc_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: error_loc (Location e1 x1) (STV 1.0 0.99))",
+            "(: disc_class (Member e0 discover) (STV 1.0 0.99))",
+            "(: error_type (Member e1 error) (STV 1.0 0.99))",
+            "(: auditor_type (Member x0 auditor) (STV 1.0 0.99))",
+            "(: ledger_type (Member x1 ledger) (STV 1.0 0.99))",
+            "(: disc_theme (Theme e0 e1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000383 run12": {
+        "sentence": "A physician does not examine the samples.",
+        "before": [
+            "(: samples_typing (GroupOf sk_samples_1 sample) (STV 1.0 0.99))",
+            "(: physician_not_examine (And (Member sk_examine_1 examine) (Agent sk_examine_1 sk_physician_1) (Member sk_physician_1 physician) (Theme sk_examine_1 sk_samples_1)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: physician_not_examine (And (Agent x0 x1) (Member x0 examine) (Member x1 physician) (Theme x0 x2)) (STV 0.0 0.99))",
+            "(: samples_typing (GroupOf x2 sample) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000383 run13": {
+        "sentence": "A physician does not examine the samples.",
+        "before": [
+            "(: samples_grp (GroupOf sk_samples_1 sample) (STV 1.0 0.99))",
+            "(: phys_no_examine (Implication (Premises (Member $x physician)) (Conclusions (Member (sk_examine $x) examine) (Agent (sk_examine $x) $x) (Theme (sk_examine $x) sk_samples_1))) (STV 0.0 0.9))"
+        ],
+        "after": [
+            "(: samples_grp (GroupOf x0 sample) (STV 1.0 0.99))",
+            "(: phys_no_examine (Implication (Premises (Member $v0 physician)) (Conclusions (Member (f0 $v0) examine) (Agent (f0 $v0) $v0) (Theme (f0 $v0) x0))) (STV 0.0 0.9))"
+        ]
+    },
+    "tierA-000383 run14": {
+        "sentence": "A physician does not examine the samples.",
+        "before": [
+            "(: samples_group (GroupOf sk_samples_1 sample) (STV 1.0 0.99))",
+            "(: phys_no_examine (And (Member sk_examine_1 examine) (Agent sk_examine_1 sk_physician_1) (Member sk_physician_1 physician) (Theme sk_examine_1 sk_samples_1)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: phys_no_examine (And (Agent x0 x1) (Member x0 examine) (Member x1 physician) (Theme x0 x2)) (STV 0.0 0.99))",
+            "(: samples_group (GroupOf x2 sample) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000395 run12": {
+        "sentence": "An automobile waits at the gate.",
+        "before": [
+            "(: wait_class (Member sk_wait_1 wait) (STV 1.0 0.99))",
+            "(: wait_exp (Experiencer sk_wait_1 sk_automobile_1) (STV 1.0 0.99))",
+            "(: wait_loc (Location sk_wait_1 sk_gate_1) (STV 1.0 0.99))",
+            "(: automobile_typ (Member sk_automobile_1 automobile) (STV 1.0 0.99))",
+            "(: gate_typ (Member sk_gate_1 gate) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: wait_exp (Experiencer e0 x0) (STV 1.0 0.99))",
+            "(: wait_loc (Location e0 x1) (STV 1.0 0.99))",
+            "(: wait_class (Member e0 wait) (STV 1.0 0.99))",
+            "(: automobile_typ (Member x0 automobile) (STV 1.0 0.99))",
+            "(: gate_typ (Member x1 gate) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000395 run13": {
+        "sentence": "An automobile waits at the gate.",
+        "before": [
+            "(: e_wait (Member sk_wait_1 wait) (STV 1.0 0.99))",
+            "(: e_wait_exp (Experiencer sk_wait_1 sk_automobile_1) (STV 1.0 0.99))",
+            "(: e_wait_loc (Location sk_wait_1 sk_gate_1) (STV 1.0 0.99))",
+            "(: e_automobile (Member sk_automobile_1 automobile) (STV 1.0 0.99))",
+            "(: e_gate (Member sk_gate_1 gate) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_wait_exp (Experiencer e0 x0) (STV 1.0 0.99))",
+            "(: e_wait_loc (Location e0 x1) (STV 1.0 0.99))",
+            "(: e_wait (Member e0 wait) (STV 1.0 0.99))",
+            "(: e_automobile (Member x0 automobile) (STV 1.0 0.99))",
+            "(: e_gate (Member x1 gate) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000395 run14": {
+        "sentence": "An automobile waits at the gate.",
+        "before": [
+            "(: e_wait (Member sk_wait_1 wait) (STV 1.0 0.99))",
+            "(: e_exp (Experiencer sk_wait_1 sk_automobile_1) (STV 1.0 0.99))",
+            "(: e_auto (Member sk_automobile_1 automobile) (STV 1.0 0.99))",
+            "(: e_loc (Location sk_wait_1 sk_gate_1) (STV 1.0 0.99))",
+            "(: e_gate (Member sk_gate_1 gate) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_exp (Experiencer e0 x0) (STV 1.0 0.99))",
+            "(: e_loc (Location e0 x1) (STV 1.0 0.99))",
+            "(: e_wait (Member e0 wait) (STV 1.0 0.99))",
+            "(: e_auto (Member x0 automobile) (STV 1.0 0.99))",
+            "(: e_gate (Member x1 gate) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000277 run12": {
+        "sentence": "The winner receives a medal from a school.",
+        "before": [
+            "(: e1_winner (Member sk_winner_1 winner) (STV 1.0 0.99))",
+            "(: e1_receive (Member sk_receive_1 receive) (STV 1.0 0.99))",
+            "(: e1_agent (Agent sk_receive_1 sk_winner_1) (STV 1.0 0.99))",
+            "(: e1_theme (Theme sk_receive_1 sk_medal_1) (STV 1.0 0.99))",
+            "(: e1_medal (Member sk_medal_1 medal) (STV 1.0 0.99))",
+            "(: e1_source (Source sk_receive_1 sk_school_1) (STV 1.0 0.99))",
+            "(: e1_school (Member sk_school_1 school) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e1_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e1_receive (Member e0 receive) (STV 1.0 0.99))",
+            "(: e1_winner (Member x0 winner) (STV 1.0 0.99))",
+            "(: e1_school (Member x1 school) (STV 1.0 0.99))",
+            "(: e1_medal (Member x2 medal) (STV 1.0 0.99))",
+            "(: e1_source (Source e0 x1) (STV 1.0 0.99))",
+            "(: e1_theme (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000277 run13": {
+        "sentence": "The winner receives a medal from a school.",
+        "before": [
+            "(: e_mem (Member sk_receive_1 receive) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_receive_1 sk_winner_1) (STV 1.0 0.99))",
+            "(: w_mem (Member sk_winner_1 winner) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_receive_1 sk_medal_1) (STV 1.0 0.99))",
+            "(: medal_mem (Member sk_medal_1 medal) (STV 1.0 0.99))",
+            "(: e_source (Source sk_receive_1 sk_school_1) (STV 1.0 0.99))",
+            "(: school_mem (Member sk_school_1 school) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_mem (Member e0 receive) (STV 1.0 0.99))",
+            "(: w_mem (Member x0 winner) (STV 1.0 0.99))",
+            "(: school_mem (Member x1 school) (STV 1.0 0.99))",
+            "(: medal_mem (Member x2 medal) (STV 1.0 0.99))",
+            "(: e_source (Source e0 x1) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000277 run14": {
+        "sentence": "The winner receives a medal from a school.",
+        "before": [
+            "(: e_receive (Member sk_receive_1 receive) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_receive_1 sk_winner_1) (STV 1.0 0.99))",
+            "(: e_winner (Member sk_winner_1 winner) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_receive_1 sk_medal_1) (STV 1.0 0.99))",
+            "(: e_medal (Member sk_medal_1 medal) (STV 1.0 0.99))",
+            "(: e_source (Source sk_receive_1 sk_school_1) (STV 1.0 0.99))",
+            "(: e_school (Member sk_school_1 school) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_receive (Member e0 receive) (STV 1.0 0.99))",
+            "(: e_winner (Member x0 winner) (STV 1.0 0.99))",
+            "(: e_school (Member x1 school) (STV 1.0 0.99))",
+            "(: e_medal (Member x2 medal) (STV 1.0 0.99))",
+            "(: e_source (Source e0 x1) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000298 run12": {
+        "sentence": "A neighbour lends a ladder to Ravi.",
+        "before": [
+            "(: e_lend (Member sk_lend_1 lend) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_lend_1 sk_neighbour_1) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient sk_lend_1 ravi) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_lend_1 sk_ladder_1) (STV 1.0 0.99))",
+            "(: e_ladder (Member sk_ladder_1 ladder) (STV 1.0 0.99))",
+            "(: e_neighbour (Member sk_neighbour_1 neighbour) (STV 1.0 0.99))",
+            "(: ravi_name (Name ravi \"Ravi\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_lend (Member e0 lend) (STV 1.0 0.99))",
+            "(: e_neighbour (Member x0 neighbour) (STV 1.0 0.99))",
+            "(: e_ladder (Member x1 ladder) (STV 1.0 0.99))",
+            "(: ravi_name (Name ravi \"Ravi\") (STV 1.0 0.99))",
+            "(: e_recipient (Recipient e0 ravi) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000298 run13": {
+        "sentence": "A neighbour lends a ladder to Ravi.",
+        "before": [
+            "(: e_lend (Member sk_lend_1 lend) (STV 1.0 0.99))",
+            "(: e_lend_agent (Agent sk_lend_1 sk_neighbour_1) (STV 1.0 0.99))",
+            "(: e_lend_recipient (Recipient sk_lend_1 ravi) (STV 1.0 0.99))",
+            "(: e_lend_theme (Theme sk_lend_1 sk_ladder_1) (STV 1.0 0.99))",
+            "(: ladder_m (Member sk_ladder_1 ladder) (STV 1.0 0.99))",
+            "(: neighbour_m (Member sk_neighbour_1 neighbour) (STV 1.0 0.99))",
+            "(: ravi_name (Name ravi \"Ravi\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_lend_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_lend (Member e0 lend) (STV 1.0 0.99))",
+            "(: neighbour_m (Member x0 neighbour) (STV 1.0 0.99))",
+            "(: ladder_m (Member x1 ladder) (STV 1.0 0.99))",
+            "(: ravi_name (Name ravi \"Ravi\") (STV 1.0 0.99))",
+            "(: e_lend_recipient (Recipient e0 ravi) (STV 1.0 0.99))",
+            "(: e_lend_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000298 run14": {
+        "sentence": "A neighbour lends a ladder to Ravi.",
+        "before": [
+            "(: lend_event (Member sk_lend_1 lend) (STV 1.0 0.99))",
+            "(: lend_agent (Agent sk_lend_1 sk_neighbour_1) (STV 1.0 0.99))",
+            "(: lend_recipient (Recipient sk_lend_1 ravi) (STV 1.0 0.99))",
+            "(: lend_theme (Theme sk_lend_1 sk_ladder_1) (STV 1.0 0.99))",
+            "(: ladder_mem (Member sk_ladder_1 ladder) (STV 1.0 0.99))",
+            "(: neighbour_mem (Member sk_neighbour_1 neighbour) (STV 1.0 0.99))",
+            "(: ravi_name (Name ravi \"Ravi\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: lend_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: lend_event (Member e0 lend) (STV 1.0 0.99))",
+            "(: neighbour_mem (Member x0 neighbour) (STV 1.0 0.99))",
+            "(: ladder_mem (Member x1 ladder) (STV 1.0 0.99))",
+            "(: ravi_name (Name ravi \"Ravi\") (STV 1.0 0.99))",
+            "(: lend_recipient (Recipient e0 ravi) (STV 1.0 0.99))",
+            "(: lend_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000126 run12": {
+        "sentence": "A club might postpone the tournament.",
+        "before": [
+            "(: club_mem (Member sk_club_1 club) (STV 1.0 0.99))",
+            "(: e_postpone (Member sk_postpone_1 postpone) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_postpone_1 sk_club_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_postpone_1 sk_tournament_1) (STV 1.0 0.99))",
+            "(: tournament_mem (Member sk_tournament_1 tournament) (STV 1.0 0.99))",
+            "(: e_might (Might sk_postpone_1) (STV 1.0 0.9))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_postpone (Member e0 postpone) (STV 1.0 0.99))",
+            "(: club_mem (Member x0 club) (STV 1.0 0.99))",
+            "(: tournament_mem (Member x1 tournament) (STV 1.0 0.99))",
+            "(: e_might (Might e0) (STV 1.0 0.9))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000126 run13": {
+        "sentence": "A club might postpone the tournament.",
+        "before": [
+            "(: e_club (Member sk_club_1 club) (STV 1.0 0.99))",
+            "(: e_postpone (Member sk_postpone_1 postpone) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_postpone_1 sk_club_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_postpone_1 sk_tournament_1) (STV 1.0 0.99))",
+            "(: e_tournament (Member sk_tournament_1 tournament) (STV 1.0 0.99))",
+            "(: e_might (Might sk_postpone_1) (STV 1.0 0.9))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_postpone (Member e0 postpone) (STV 1.0 0.99))",
+            "(: e_club (Member x0 club) (STV 1.0 0.99))",
+            "(: e_tournament (Member x1 tournament) (STV 1.0 0.99))",
+            "(: e_might (Might e0) (STV 1.0 0.9))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000126 run14": {
+        "sentence": "A club might postpone the tournament.",
+        "before": [
+            "(: club_mem (Member sk_club_1 club) (STV 1.0 0.99))",
+            "(: postpone_ev (Member sk_postpone_1 postpone) (STV 1.0 0.99))",
+            "(: postpone_agent (Agent sk_postpone_1 sk_club_1) (STV 1.0 0.99))",
+            "(: postpone_patient (Patient sk_postpone_1 sk_tournament_1) (STV 1.0 0.99))",
+            "(: tournament_mem (Member sk_tournament_1 tournament) (STV 1.0 0.99))",
+            "(: postpone_might (Might sk_postpone_1) (STV 1.0 0.9))"
+        ],
+        "after": [
+            "(: postpone_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: postpone_ev (Member e0 postpone) (STV 1.0 0.99))",
+            "(: club_mem (Member x0 club) (STV 1.0 0.99))",
+            "(: tournament_mem (Member x1 tournament) (STV 1.0 0.99))",
+            "(: postpone_might (Might e0) (STV 1.0 0.9))",
+            "(: postpone_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000355 run12": {
+        "sentence": "The calibration is difficult.",
+        "before": [
+            "(: cal_1_mem (Member sk_calibration_1 calibration) (STV 1.0 0.99))",
+            "(: cal_1_difficult (Member sk_calibration_1 difficult) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: cal_1_mem (Member x0 calibration) (STV 1.0 0.99))",
+            "(: cal_1_difficult (Member x0 difficult) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000355 run13": {
+        "sentence": "The calibration is difficult.",
+        "before": [
+            "(: cal_member (Member sk_calibration_1 calibration) (STV 1.0 0.99))",
+            "(: cal_difficult (Member sk_calibration_1 difficult) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: cal_member (Member x0 calibration) (STV 1.0 0.99))",
+            "(: cal_difficult (Member x0 difficult) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000355 run14": {
+        "sentence": "The calibration is difficult.",
+        "before": [
+            "(: calib_type (Member sk_calibration_1 calibration) (STV 1.0 0.99))",
+            "(: calib_difficult (Member sk_calibration_1 difficult) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: calib_type (Member x0 calibration) (STV 1.0 0.99))",
+            "(: calib_difficult (Member x0 difficult) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000372 run12": {
+        "sentence": "The divers are all very tired.",
+        "before": [
+            "(: all_divers_tired (Implication (Premises (Member $x diver)) (Conclusions (Member $x tired) (Degree $x tired very))) (STV 1.0 0.9))",
+            "(: divers_q (QuantifierPhrase diver tired \"all\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: all_divers_tired (Implication (Premises (Member $v0 diver)) (Conclusions (Member $v0 tired) (Degree $v0 tired very))) (STV 1.0 0.9))",
+            "(: divers_q (QuantifierPhrase diver tired \"all\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000372 run13": {
+        "sentence": "The divers are all very tired.",
+        "before": [
+            "(: divers_tired (Implication (Premises (Member $x diver)) (Conclusions (Member $x tired) (Degree $x tired very))) (STV 1.0 0.9))",
+            "(: divers_q (QuantifierPhrase diver tired \"all\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: divers_tired (Implication (Premises (Member $v0 diver)) (Conclusions (Member $v0 tired) (Degree $v0 tired very))) (STV 1.0 0.9))",
+            "(: divers_q (QuantifierPhrase diver tired \"all\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000372 run14": {
+        "sentence": "The divers are all very tired.",
+        "before": [
+            "(: divers_tired (Implication (Premises (Member $x diver)) (Conclusions (Member $x tired) (Degree $x tired very))) (STV 1.0 0.9))",
+            "(: divers_q (QuantifierPhrase diver tired \"all\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: divers_tired (Implication (Premises (Member $v0 diver)) (Conclusions (Member $v0 tired) (Degree $v0 tired very))) (STV 1.0 0.9))",
+            "(: divers_q (QuantifierPhrase diver tired \"all\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000342 run12": {
+        "sentence": "The boiler is not huge in size.",
+        "before": [
+            "(: boiler_mem (Member sk_boiler_1 boiler) (STV 1.0 0.99))",
+            "(: boiler_not_huge (Member sk_boiler_1 huge) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: boiler_mem (Member x0 boiler) (STV 1.0 0.99))",
+            "(: boiler_not_huge (Member x0 huge) (STV 0.0 0.99))"
+        ]
+    },
+    "tierA-000342 run13": {
+        "sentence": "The boiler is not huge in size.",
+        "before": [
+            "(: boiler_type (Member sk_boiler_1 boiler) (STV 1.0 0.99))",
+            "(: boiler_not_huge (Member sk_boiler_1 huge) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: boiler_type (Member x0 boiler) (STV 1.0 0.99))",
+            "(: boiler_not_huge (Member x0 huge) (STV 0.0 0.99))"
+        ]
+    },
+    "tierA-000342 run14": {
+        "sentence": "The boiler is not huge in size.",
+        "before": [
+            "(: boiler_typ (Member sk_boiler_1 boiler) (STV 1.0 0.99))",
+            "(: boiler_not_huge (Member sk_boiler_1 huge) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: boiler_typ (Member x0 boiler) (STV 1.0 0.99))",
+            "(: boiler_not_huge (Member x0 huge) (STV 0.0 0.99))"
+        ]
+    },
+    "tierA-000337 run12": {
+        "sentence": "The new bench might be large.",
+        "before": [
+            "(: bench_type (Member sk_bench_1 bench) (STV 1.0 0.99))",
+            "(: bench_new (Member sk_bench_1 new) (STV 1.0 0.99))",
+            "(: bench_might_large (Might (Member sk_bench_1 large)) (STV 1.0 0.9))"
+        ],
+        "after": [
+            "(: bench_type (Member x0 bench) (STV 1.0 0.99))",
+            "(: bench_new (Member x0 new) (STV 1.0 0.99))",
+            "(: bench_might_large (Might (Member x0 large)) (STV 1.0 0.9))"
+        ]
+    },
+    "tierA-000337 run13": {
+        "sentence": "The new bench might be large.",
+        "before": [
+            "(: e_bench (Member sk_bench_1 bench) (STV 1.0 0.99))",
+            "(: e_bench_new (Member sk_bench_1 new) (STV 1.0 0.99))",
+            "(: e_bench_might_large (Might (Member sk_bench_1 large)) (STV 1.0 0.9))"
+        ],
+        "after": [
+            "(: e_bench (Member x0 bench) (STV 1.0 0.99))",
+            "(: e_bench_new (Member x0 new) (STV 1.0 0.99))",
+            "(: e_bench_might_large (Might (Member x0 large)) (STV 1.0 0.9))"
+        ]
+    },
+    "tierA-000337 run14": {
+        "sentence": "The new bench might be large.",
+        "before": [
+            "(: bench_typing (Member sk_bench_1 bench) (STV 1.0 0.99))",
+            "(: bench_new (Member sk_bench_1 new) (STV 1.0 0.99))",
+            "(: bench_might_large (Might (Member sk_bench_1 large)) (STV 1.0 0.9))"
+        ],
+        "after": [
+            "(: bench_typing (Member x0 bench) (STV 1.0 0.99))",
+            "(: bench_new (Member x0 new) (STV 1.0 0.99))",
+            "(: bench_might_large (Might (Member x0 large)) (STV 1.0 0.9))"
+        ]
+    },
+    "tierA-000168 run12": {
+        "sentence": "A panel rejects the proposal.",
+        "before": [
+            "(: e_panel (Member sk_panel_1 panel) (STV 1.0 0.99))",
+            "(: e_reject (Member sk_reject_1 reject) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_reject_1 sk_panel_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_reject_1 sk_proposal_1) (STV 1.0 0.99))",
+            "(: e_proposal (Member sk_proposal_1 proposal) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_reject (Member e0 reject) (STV 1.0 0.99))",
+            "(: e_panel (Member x0 panel) (STV 1.0 0.99))",
+            "(: e_proposal (Member x1 proposal) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000168 run13": {
+        "sentence": "A panel rejects the proposal.",
+        "before": [
+            "(: panel_mem (Member sk_panel_1 panel) (STV 1.0 0.99))",
+            "(: reject_ev (Member sk_reject_1 reject) (STV 1.0 0.99))",
+            "(: reject_agent (Agent sk_reject_1 sk_panel_1) (STV 1.0 0.99))",
+            "(: reject_theme (Theme sk_reject_1 sk_proposal_1) (STV 1.0 0.99))",
+            "(: proposal_mem (Member sk_proposal_1 proposal) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: reject_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: reject_ev (Member e0 reject) (STV 1.0 0.99))",
+            "(: panel_mem (Member x0 panel) (STV 1.0 0.99))",
+            "(: proposal_mem (Member x1 proposal) (STV 1.0 0.99))",
+            "(: reject_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000168 run14": {
+        "sentence": "A panel rejects the proposal.",
+        "before": [
+            "(: e_reject (Member sk_reject_1 reject) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_reject_1 sk_panel_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_reject_1 sk_proposal_1) (STV 1.0 0.99))",
+            "(: panel_m (Member sk_panel_1 panel) (STV 1.0 0.99))",
+            "(: proposal_m (Member sk_proposal_1 proposal) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_reject (Member e0 reject) (STV 1.0 0.99))",
+            "(: panel_m (Member x0 panel) (STV 1.0 0.99))",
+            "(: proposal_m (Member x1 proposal) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000037 run12": {
+        "sentence": "The electrician mended the yard floodlight.",
+        "before": [
+            "(: e_mend (Member sk_mend_1 mend) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_mend_1 sk_electrician_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_mend_1 sk_yard_floodlight_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_mend_1) (STV 1.0 0.99))",
+            "(: e_electrician (Member sk_electrician_1 electrician) (STV 1.0 0.99))",
+            "(: e_floodlight (Member sk_yard_floodlight_1 yard_floodlight) (STV 1.0 0.99))",
+            "(: fl_genus (Inheritance yard_floodlight floodlight) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: fl_genus (Inheritance yard_floodlight floodlight) (STV 1.0 0.99))",
+            "(: e_mend (Member e0 mend) (STV 1.0 0.99))",
+            "(: e_electrician (Member x0 electrician) (STV 1.0 0.99))",
+            "(: e_floodlight (Member x1 yard_floodlight) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000037 run13": {
+        "sentence": "The electrician mended the yard floodlight.",
+        "before": [
+            "(: e_mend (Member sk_mend_1 mend) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_mend_1 sk_electrician_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_mend_1 sk_floodlight_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_mend_1) (STV 1.0 0.99))",
+            "(: e_electrician (Member sk_electrician_1 electrician) (STV 1.0 0.99))",
+            "(: e_floodlight (Member sk_floodlight_1 yard_floodlight) (STV 1.0 0.99))",
+            "(: fl_genus (Inheritance yard_floodlight floodlight) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: fl_genus (Inheritance yard_floodlight floodlight) (STV 1.0 0.99))",
+            "(: e_mend (Member e0 mend) (STV 1.0 0.99))",
+            "(: e_electrician (Member x0 electrician) (STV 1.0 0.99))",
+            "(: e_floodlight (Member x1 yard_floodlight) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000037 run14": {
+        "sentence": "The electrician mended the yard floodlight.",
+        "before": [
+            "(: e_mend (Member sk_mend_1 mend) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_mend_1 sk_electrician_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_mend_1 sk_yard_floodlight_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_mend_1) (STV 1.0 0.99))",
+            "(: e_electrician (Member sk_electrician_1 electrician) (STV 1.0 0.99))",
+            "(: e_floodlight (Member sk_yard_floodlight_1 yard_floodlight) (STV 1.0 0.99))",
+            "(: e_floodlight_genus (Inheritance yard_floodlight floodlight) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_floodlight_genus (Inheritance yard_floodlight floodlight) (STV 1.0 0.99))",
+            "(: e_mend (Member e0 mend) (STV 1.0 0.99))",
+            "(: e_electrician (Member x0 electrician) (STV 1.0 0.99))",
+            "(: e_floodlight (Member x1 yard_floodlight) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000086 run12": {
+        "sentence": "Two eggs are required by a recipe.",
+        "before": [
+            "(: e_require (Member sk_require_1 require) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_require_1 sk_recipe_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_require_1 sk_group_1) (STV 1.0 0.99))",
+            "(: recipe_m (Member sk_recipe_1 recipe) (STV 1.0 0.99))",
+            "(: eggs_group (GroupOf sk_group_1 egg) (STV 1.0 0.99))",
+            "(: eggs_card (Cardinality sk_group_1 2) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: eggs_card (Cardinality x1 2) (STV 1.0 0.99))",
+            "(: eggs_group (GroupOf x1 egg) (STV 1.0 0.99))",
+            "(: e_require (Member e0 require) (STV 1.0 0.99))",
+            "(: recipe_m (Member x0 recipe) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000086 run13": {
+        "sentence": "Two eggs are required by a recipe.",
+        "before": [
+            "(: egg_group (GroupOf sk_group_1 egg) (STV 1.0 0.99))",
+            "(: egg_count (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+            "(: e_require (Member sk_require_1 require) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_require_1 sk_recipe_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_require_1 sk_group_1) (STV 1.0 0.99))",
+            "(: recipe_mem (Member sk_recipe_1 recipe) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: egg_count (Cardinality x1 2) (STV 1.0 0.99))",
+            "(: egg_group (GroupOf x1 egg) (STV 1.0 0.99))",
+            "(: e_require (Member e0 require) (STV 1.0 0.99))",
+            "(: recipe_mem (Member x0 recipe) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000086 run14": {
+        "sentence": "Two eggs are required by a recipe.",
+        "before": [
+            "(: req_event (Member sk_require_1 require) (STV 1.0 0.99))",
+            "(: req_agent (Agent sk_require_1 sk_recipe_1) (STV 1.0 0.99))",
+            "(: recipe_mem (Member sk_recipe_1 recipe) (STV 1.0 0.99))",
+            "(: req_theme (Theme sk_require_1 sk_group_1) (STV 1.0 0.99))",
+            "(: egg_group (GroupOf sk_group_1 egg) (STV 1.0 0.99))",
+            "(: egg_card (Cardinality sk_group_1 2) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: req_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: egg_card (Cardinality x1 2) (STV 1.0 0.99))",
+            "(: egg_group (GroupOf x1 egg) (STV 1.0 0.99))",
+            "(: req_event (Member e0 require) (STV 1.0 0.99))",
+            "(: recipe_mem (Member x0 recipe) (STV 1.0 0.99))",
+            "(: req_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000294 run12": {
+        "sentence": "An elder does not teach the children a song.",
+        "before": [
+            "(: elder_not_teach (Implication (Premises (Member $x elder)) (Conclusions (Member (sk_teach $x) teach) (Agent (sk_teach $x) $x) (Recipient (sk_teach $x) sk_children_1) (Theme (sk_teach $x) (sk_song $x)) (Member (sk_song $x) song))) (STV 0.0 0.9))",
+            "(: children_g (GroupOf sk_children_1 child) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: children_g (GroupOf x0 child) (STV 1.0 0.99))",
+            "(: elder_not_teach (Implication (Premises (Member $v0 elder)) (Conclusions (Member (f0 $v0) teach) (Agent (f0 $v0) $v0) (Recipient (f0 $v0) x0) (Theme (f0 $v0) (f1 $v0)) (Member (f1 $v0) song))) (STV 0.0 0.9))"
+        ]
+    },
+    "tierA-000294 run13": {
+        "sentence": "An elder does not teach the children a song.",
+        "before": [
+            "(: elder_not_teach (And (Member sk_elder_1 elder) (Member sk_teach_1 teach) (Agent sk_teach_1 sk_elder_1) (Recipient sk_teach_1 sk_children_1) (Theme sk_teach_1 sk_song_1) (Member sk_song_1 song)) (STV 0.0 0.99))",
+            "(: children_group (GroupOf sk_children_1 child) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: elder_not_teach (And (Agent x0 x1) (Member x0 teach) (Member x1 elder) (Member x2 song) (Recipient x0 x3) (Theme x0 x2)) (STV 0.0 0.99))",
+            "(: children_group (GroupOf x3 child) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000294 run14": {
+        "sentence": "An elder does not teach the children a song.",
+        "before": [
+            "(: children_group (GroupOf sk_children_1 child) (STV 1.0 0.99))",
+            "(: elder_not_teach (And (Member sk_teach_1 teach) (Agent sk_teach_1 sk_elder_1) (Member sk_elder_1 elder) (Recipient sk_teach_1 sk_children_1) (Theme sk_teach_1 sk_song_1) (Member sk_song_1 song)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: elder_not_teach (And (Agent x0 x1) (Member x0 teach) (Member x1 elder) (Member x2 song) (Recipient x0 x3) (Theme x0 x2)) (STV 0.0 0.99))",
+            "(: children_group (GroupOf x3 child) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000177 run12": {
+        "sentence": "A nurse walks through the ward.",
+        "before": [
+            "(: e_walk (Member sk_walk_1 walk) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_walk_1 sk_nurse_1) (STV 1.0 0.99))",
+            "(: nurse_mem (Member sk_nurse_1 nurse) (STV 1.0 0.99))",
+            "(: e_loc (Location sk_walk_1 sk_ward_1) (STV 1.0 0.99))",
+            "(: ward_mem (Member sk_ward_1 ward) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_loc (Location e0 x1) (STV 1.0 0.99))",
+            "(: e_walk (Member e0 walk) (STV 1.0 0.99))",
+            "(: nurse_mem (Member x0 nurse) (STV 1.0 0.99))",
+            "(: ward_mem (Member x1 ward) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000177 run13": {
+        "sentence": "A nurse walks through the ward.",
+        "before": [
+            "(: e1_walk (Member sk_walk_1 walk) (STV 1.0 0.99))",
+            "(: e1_agent (Agent sk_walk_1 sk_nurse_1) (STV 1.0 0.99))",
+            "(: e1_nurse (Member sk_nurse_1 nurse) (STV 1.0 0.99))",
+            "(: e1_loc (Location sk_walk_1 sk_ward_1) (STV 1.0 0.99))",
+            "(: e1_ward (Member sk_ward_1 ward) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e1_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e1_loc (Location e0 x1) (STV 1.0 0.99))",
+            "(: e1_walk (Member e0 walk) (STV 1.0 0.99))",
+            "(: e1_nurse (Member x0 nurse) (STV 1.0 0.99))",
+            "(: e1_ward (Member x1 ward) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000177 run14": {
+        "sentence": "A nurse walks through the ward.",
+        "before": [
+            "(: sk_nurse_1_typing (Member sk_nurse_1 nurse) (STV 1.0 0.99))",
+            "(: e_walk_class (Member sk_walk_1 walk) (STV 1.0 0.99))",
+            "(: e_walk_agent (Agent sk_walk_1 sk_nurse_1) (STV 1.0 0.99))",
+            "(: e_walk_loc (Location sk_walk_1 sk_ward_1) (STV 1.0 0.99))",
+            "(: sk_ward_1_typing (Member sk_ward_1 ward) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_walk_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_walk_loc (Location e0 x1) (STV 1.0 0.99))",
+            "(: e_walk_class (Member e0 walk) (STV 1.0 0.99))",
+            "(: sk_nurse_1_typing (Member x0 nurse) (STV 1.0 0.99))",
+            "(: sk_ward_1_typing (Member x1 ward) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000312 run12": {
+        "sentence": "Ana and Bo work on the mural.",
+        "before": [
+            "(: e1_mem (Member sk_work_1 work) (STV 1.0 0.99))",
+            "(: e1_agent (Agent sk_work_1 ana) (STV 1.0 0.99))",
+            "(: e1_on (On sk_work_1 sk_mural_1) (STV 1.0 0.99))",
+            "(: e2_mem (Member sk_work_2 work) (STV 1.0 0.99))",
+            "(: e2_agent (Agent sk_work_2 bo) (STV 1.0 0.99))",
+            "(: e2_on (On sk_work_2 sk_mural_1) (STV 1.0 0.99))",
+            "(: mural_mem (Member sk_mural_1 mural) (STV 1.0 0.99))",
+            "(: ana_name (Name ana \"Ana\") (STV 1.0 0.99))",
+            "(: bo_name (Name bo \"Bo\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e1_agent (Agent e0 ana) (STV 1.0 0.99))",
+            "(: e2_agent (Agent e1 bo) (STV 1.0 0.99))",
+            "(: e1_mem (Member e0 work) (STV 1.0 0.99))",
+            "(: e2_mem (Member e1 work) (STV 1.0 0.99))",
+            "(: mural_mem (Member x0 mural) (STV 1.0 0.99))",
+            "(: ana_name (Name ana \"Ana\") (STV 1.0 0.99))",
+            "(: bo_name (Name bo \"Bo\") (STV 1.0 0.99))",
+            "(: e1_on (On e0 x0) (STV 1.0 0.99))",
+            "(: e2_on (On e1 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000312 run13": {
+        "sentence": "Ana and Bo work on the mural.",
+        "before": [
+            "(: e_work_1 (Member sk_work_1 work) (STV 1.0 0.99))",
+            "(: e_work_1_agent (Agent sk_work_1 ana) (STV 1.0 0.99))",
+            "(: e_work_1_on (On sk_work_1 sk_mural_1) (STV 1.0 0.99))",
+            "(: e_work_2 (Member sk_work_2 work) (STV 1.0 0.99))",
+            "(: e_work_2_agent (Agent sk_work_2 bo) (STV 1.0 0.99))",
+            "(: e_work_2_on (On sk_work_2 sk_mural_1) (STV 1.0 0.99))",
+            "(: mural_member (Member sk_mural_1 mural) (STV 1.0 0.99))",
+            "(: ana_name (Name ana \"Ana\") (STV 1.0 0.99))",
+            "(: bo_name (Name bo \"Bo\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_work_1_agent (Agent e0 ana) (STV 1.0 0.99))",
+            "(: e_work_2_agent (Agent e1 bo) (STV 1.0 0.99))",
+            "(: e_work_1 (Member e0 work) (STV 1.0 0.99))",
+            "(: e_work_2 (Member e1 work) (STV 1.0 0.99))",
+            "(: mural_member (Member x0 mural) (STV 1.0 0.99))",
+            "(: ana_name (Name ana \"Ana\") (STV 1.0 0.99))",
+            "(: bo_name (Name bo \"Bo\") (STV 1.0 0.99))",
+            "(: e_work_1_on (On e0 x0) (STV 1.0 0.99))",
+            "(: e_work_2_on (On e1 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierA-000312 run14": {
+        "sentence": "Ana and Bo work on the mural.",
+        "before": [
+            "(: e1_work (Member sk_work_1 work) (STV 1.0 0.99))",
+            "(: e1_agent (Agent sk_work_1 ana) (STV 1.0 0.99))",
+            "(: e1_on (On sk_work_1 sk_mural_1) (STV 1.0 0.99))",
+            "(: e2_work (Member sk_work_2 work) (STV 1.0 0.99))",
+            "(: e2_agent (Agent sk_work_2 bo) (STV 1.0 0.99))",
+            "(: e2_on (On sk_work_2 sk_mural_1) (STV 1.0 0.99))",
+            "(: mural_mem (Member sk_mural_1 mural) (STV 1.0 0.99))",
+            "(: ana_name (Name ana \"Ana\") (STV 1.0 0.99))",
+            "(: bo_name (Name bo \"Bo\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e1_agent (Agent e0 ana) (STV 1.0 0.99))",
+            "(: e2_agent (Agent e1 bo) (STV 1.0 0.99))",
+            "(: e1_work (Member e0 work) (STV 1.0 0.99))",
+            "(: e2_work (Member e1 work) (STV 1.0 0.99))",
+            "(: mural_mem (Member x0 mural) (STV 1.0 0.99))",
+            "(: ana_name (Name ana \"Ana\") (STV 1.0 0.99))",
+            "(: bo_name (Name bo \"Bo\") (STV 1.0 0.99))",
+            "(: e1_on (On e0 x0) (STV 1.0 0.99))",
+            "(: e2_on (On e1 x0) (STV 1.0 0.99))"
+        ]
+    }
+}

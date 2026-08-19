@@ -1,0 +1,1132 @@
+{
+    "pilot-000001 run1": {
+        "sentence": "Sunniva is a hydrologist.",
+        "before": [
+            "(: sunniva_hydrologist (Member sunniva hydrologist) (STV 1.0 0.99))",
+            "(: sunniva_name (Name sunniva \"Sunniva\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: sunniva_hydrologist (Member sunniva hydrologist) (STV 1.0 0.99))",
+            "(: sunniva_name (Name sunniva \"Sunniva\") (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000001 run2": {
+        "sentence": "Sunniva is a hydrologist.",
+        "before": [
+            "(: sunniva_hydrologist (Member sunniva hydrologist) (STV 1.0 0.99))",
+            "(: sunniva_name (Name sunniva \"Sunniva\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: sunniva_hydrologist (Member sunniva hydrologist) (STV 1.0 0.99))",
+            "(: sunniva_name (Name sunniva \"Sunniva\") (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000001 run3": {
+        "sentence": "Sunniva is a hydrologist.",
+        "before": [
+            "(: sunniva_hydrologist (Member sunniva hydrologist) (STV 1.0 0.99))",
+            "(: sunniva_name (Name sunniva \"Sunniva\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: sunniva_hydrologist (Member sunniva hydrologist) (STV 1.0 0.99))",
+            "(: sunniva_name (Name sunniva \"Sunniva\") (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000002 run1": {
+        "sentence": "The technician replaced the cracked bearing.",
+        "before": [
+            "(: tech_1 (Member sk_technician_1 technician) (STV 1.0 0.99))",
+            "(: e_replace (Member sk_replace_1 replace) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_replace_1 sk_technician_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_replace_1 sk_bearing_1) (STV 1.0 0.99))",
+            "(: bearing_1 (Member sk_bearing_1 bearing) (STV 1.0 0.99))",
+            "(: bearing_cracked (Member sk_bearing_1 cracked) (STV 1.0 0.99))",
+            "(: e_past (Past sk_replace_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_replace (Member e0 replace) (STV 1.0 0.99))",
+            "(: tech_1 (Member x0 technician) (STV 1.0 0.99))",
+            "(: bearing_1 (Member x1 bearing) (STV 1.0 0.99))",
+            "(: bearing_cracked (Member x1 cracked) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000002 run2": {
+        "sentence": "The technician replaced the cracked bearing.",
+        "before": [
+            "(: e_replace (Member sk_replace_1 replace) (STV 1.0 0.99))",
+            "(: technician_m (Member sk_technician_1 technician) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_replace_1 sk_technician_1) (STV 1.0 0.99))",
+            "(: bearing_m (Member sk_bearing_1 bearing) (STV 1.0 0.99))",
+            "(: bearing_cracked (Member sk_bearing_1 cracked) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_replace_1 sk_bearing_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_replace_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_replace (Member e0 replace) (STV 1.0 0.99))",
+            "(: technician_m (Member x0 technician) (STV 1.0 0.99))",
+            "(: bearing_m (Member x1 bearing) (STV 1.0 0.99))",
+            "(: bearing_cracked (Member x1 cracked) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000002 run3": {
+        "sentence": "The technician replaced the cracked bearing.",
+        "before": [
+            "(: technician_m (Member sk_technician_1 technician) (STV 1.0 0.99))",
+            "(: bearing_m (Member sk_bearing_1 bearing) (STV 1.0 0.99))",
+            "(: bearing_cracked (Member sk_bearing_1 cracked) (STV 1.0 0.99))",
+            "(: e_replace (Member sk_replace_1 replace) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_replace_1 sk_technician_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_replace_1 sk_bearing_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_replace_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_replace (Member e0 replace) (STV 1.0 0.99))",
+            "(: technician_m (Member x0 technician) (STV 1.0 0.99))",
+            "(: bearing_m (Member x1 bearing) (STV 1.0 0.99))",
+            "(: bearing_cracked (Member x1 cracked) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000003 run1": {
+        "sentence": "Renata handed the surveyor a clipboard.",
+        "before": [
+            "(: e_hand (Member sk_hand_1 hand) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_hand_1 renata) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient sk_hand_1 sk_surveyor_1) (STV 1.0 0.99))",
+            "(: surveyor_1 (Member sk_surveyor_1 surveyor) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_hand_1 sk_clipboard_1) (STV 1.0 0.99))",
+            "(: clipboard_1 (Member sk_clipboard_1 clipboard) (STV 1.0 0.99))",
+            "(: e_past (Past sk_hand_1) (STV 1.0 0.99))",
+            "(: renata_name (Name renata \"Renata\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 renata) (STV 1.0 0.99))",
+            "(: e_hand (Member e0 hand) (STV 1.0 0.99))",
+            "(: clipboard_1 (Member x0 clipboard) (STV 1.0 0.99))",
+            "(: surveyor_1 (Member x1 surveyor) (STV 1.0 0.99))",
+            "(: renata_name (Name renata \"Renata\") (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000003 run2": {
+        "sentence": "Renata handed the surveyor a clipboard.",
+        "before": [
+            "(: e_hand (Member sk_hand_1 hand) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_hand_1 renata) (STV 1.0 0.99))",
+            "(: surveyor_m (Member sk_surveyor_1 surveyor) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient sk_hand_1 sk_surveyor_1) (STV 1.0 0.99))",
+            "(: clipboard_m (Member sk_clipboard_1 clipboard) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_hand_1 sk_clipboard_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_hand_1) (STV 1.0 0.99))",
+            "(: renata_name (Name renata \"Renata\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 renata) (STV 1.0 0.99))",
+            "(: e_hand (Member e0 hand) (STV 1.0 0.99))",
+            "(: clipboard_m (Member x0 clipboard) (STV 1.0 0.99))",
+            "(: surveyor_m (Member x1 surveyor) (STV 1.0 0.99))",
+            "(: renata_name (Name renata \"Renata\") (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000003 run3": {
+        "sentence": "Renata handed the surveyor a clipboard.",
+        "before": [
+            "(: e_hand (Member sk_hand_1 hand) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_hand_1 renata) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient sk_hand_1 sk_surveyor_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_hand_1 sk_clipboard_1) (STV 1.0 0.99))",
+            "(: surveyor_m (Member sk_surveyor_1 surveyor) (STV 1.0 0.99))",
+            "(: clipboard_m (Member sk_clipboard_1 clipboard) (STV 1.0 0.99))",
+            "(: e_past (Past sk_hand_1) (STV 1.0 0.99))",
+            "(: renata_name (Name renata \"Renata\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 renata) (STV 1.0 0.99))",
+            "(: e_hand (Member e0 hand) (STV 1.0 0.99))",
+            "(: clipboard_m (Member x0 clipboard) (STV 1.0 0.99))",
+            "(: surveyor_m (Member x1 surveyor) (STV 1.0 0.99))",
+            "(: renata_name (Name renata \"Renata\") (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_recipient (Recipient e0 x1) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000004 run1": {
+        "sentence": "The east wing was repainted last spring.",
+        "before": [
+            "(: wing_1 (Member sk_east_wing_1 east_wing) (STV 1.0 0.99))",
+            "(: wing_genus (Inheritance east_wing wing) (STV 1.0 0.99))",
+            "(: e_repaint (Member sk_repaint_1 repaint) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_repaint_1 sk_east_wing_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_repaint_1) (STV 1.0 0.99))",
+            "(: e_time (Time sk_repaint_1 last_spring) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: wing_genus (Inheritance east_wing wing) (STV 1.0 0.99))",
+            "(: e_repaint (Member e0 repaint) (STV 1.0 0.99))",
+            "(: wing_1 (Member x0 east_wing) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e_time (Time e0 last_spring) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000004 run2": {
+        "sentence": "The east wing was repainted last spring.",
+        "before": [
+            "(: wing_m (Member sk_wing_1 east_wing) (STV 1.0 0.99))",
+            "(: wing_genus (Inheritance east_wing wing) (STV 1.0 0.99))",
+            "(: e_repaint (Member sk_repaint_1 repaint) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_repaint_1 sk_wing_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_repaint_1) (STV 1.0 0.99))",
+            "(: e_time (Time sk_repaint_1 last_spring) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: wing_genus (Inheritance east_wing wing) (STV 1.0 0.99))",
+            "(: e_repaint (Member e0 repaint) (STV 1.0 0.99))",
+            "(: wing_m (Member x0 east_wing) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e_time (Time e0 last_spring) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000004 run3": {
+        "sentence": "The east wing was repainted last spring.",
+        "before": [
+            "(: wing_genus (Inheritance east_wing wing) (STV 1.0 0.99))",
+            "(: wing_m (Member sk_east_wing_1 east_wing) (STV 1.0 0.99))",
+            "(: e_repaint (Member sk_repaint_1 repaint) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_repaint_1 sk_east_wing_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_repaint_1) (STV 1.0 0.99))",
+            "(: e_time (Time sk_repaint_1 last_spring) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: wing_genus (Inheritance east_wing wing) (STV 1.0 0.99))",
+            "(: e_repaint (Member e0 repaint) (STV 1.0 0.99))",
+            "(: wing_m (Member x0 east_wing) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e_time (Time e0 last_spring) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000005 run1": {
+        "sentence": "The consignment might clear customs before Thursday.",
+        "before": [
+            "(: consignment_1 (Member sk_consignment_1 consignment) (STV 1.0 0.99))",
+            "(: e_clear (Member sk_clear_1 clear) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_clear_1 sk_consignment_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_clear_1 customs) (STV 1.0 0.99))",
+            "(: e_might (Might sk_clear_1) (STV 1.0 0.9))",
+            "(: e_deadline (TimeAtMost sk_clear_1 (Weekday wednesday)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_clear (Member e0 clear) (STV 1.0 0.99))",
+            "(: consignment_1 (Member x0 consignment) (STV 1.0 0.99))",
+            "(: e_might (Might e0) (STV 1.0 0.9))",
+            "(: e_theme (Theme e0 customs) (STV 1.0 0.99))",
+            "(: e_deadline (TimeAtMost e0 (Weekday wednesday)) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000005 run2": {
+        "sentence": "The consignment might clear customs before Thursday.",
+        "before": [
+            "(: consignment_m (Member sk_consignment_1 consignment) (STV 1.0 0.99))",
+            "(: e_clear (Member sk_clear_1 clear) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_clear_1 sk_consignment_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_clear_1 customs) (STV 1.0 0.99))",
+            "(: e_might (Might sk_clear_1) (STV 1.0 0.9))",
+            "(: e_time_max (TimeAtMost sk_clear_1 (Weekday wednesday)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_clear (Member e0 clear) (STV 1.0 0.99))",
+            "(: consignment_m (Member x0 consignment) (STV 1.0 0.99))",
+            "(: e_might (Might e0) (STV 1.0 0.9))",
+            "(: e_theme (Theme e0 customs) (STV 1.0 0.99))",
+            "(: e_time_max (TimeAtMost e0 (Weekday wednesday)) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000005 run3": {
+        "sentence": "The consignment might clear customs before Thursday.",
+        "before": [
+            "(: consignment_m (Member sk_consignment_1 consignment) (STV 1.0 0.99))",
+            "(: e_clear (Member sk_clear_1 clear) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_clear_1 sk_consignment_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_clear_1 customs) (STV 1.0 0.99))",
+            "(: e_might (Might sk_clear_1) (STV 1.0 0.9))",
+            "(: e_time (TimeAtMost sk_clear_1 (Weekday wednesday)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_clear (Member e0 clear) (STV 1.0 0.99))",
+            "(: consignment_m (Member x0 consignment) (STV 1.0 0.99))",
+            "(: e_might (Might e0) (STV 1.0 0.9))",
+            "(: e_theme (Theme e0 customs) (STV 1.0 0.99))",
+            "(: e_time (TimeAtMost e0 (Weekday wednesday)) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000006 run1": {
+        "sentence": "Volunteers must sign the register on arrival.",
+        "before": [
+            "(: volunteer_obligated (Inheritance volunteer (obligated sign_register)) (STV 1.0 0.99))",
+            "(: sign_register_genus (Inheritance sign_register sign) (STV 1.0 0.99))",
+            "(: sign_register_obj (Patient sign_register register) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: sign_register_genus (Inheritance sign_register sign) (STV 1.0 0.99))",
+            "(: volunteer_obligated (Inheritance volunteer (obligated sign_register)) (STV 1.0 0.99))",
+            "(: sign_register_obj (Patient sign_register register) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000006 run2": {
+        "sentence": "Volunteers must sign the register on arrival.",
+        "before": [
+            "(: v_sign_cond (ConditionalProperty volunteer (obligated sign_register) arrival) (STV 1.0 0.99))",
+            "(: sr_gen (Inheritance sign_register sign) (STV 1.0 0.99))",
+            "(: sr_obj (Patient sign_register register) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: v_sign_cond (ConditionalProperty volunteer (obligated sign_register) arrival) (STV 1.0 0.99))",
+            "(: sr_gen (Inheritance sign_register sign) (STV 1.0 0.99))",
+            "(: sr_obj (Patient sign_register register) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000006 run3": {
+        "sentence": "Volunteers must sign the register on arrival.",
+        "before": [
+            "(: vol_sign_obligated (Inheritance volunteer (obligated sign_register)) (STV 1.0 0.99))",
+            "(: sign_register_genus (Inheritance sign_register sign) (STV 1.0 0.99))",
+            "(: sign_register_patient (Patient sign_register register) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: sign_register_genus (Inheritance sign_register sign) (STV 1.0 0.99))",
+            "(: vol_sign_obligated (Inheritance volunteer (obligated sign_register)) (STV 1.0 0.99))",
+            "(: sign_register_patient (Patient sign_register register) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000007 run1": {
+        "sentence": "The pump did not restart after the outage.",
+        "before": [
+            "(: pump_m (Member sk_pump_1 pump) (STV 1.0 0.99))",
+            "(: outage_m (Member sk_outage_1 outage) (STV 1.0 0.99))",
+            "(: pump_no_restart (And (Member sk_restart_1 restart) (Patient sk_restart_1 sk_pump_1) (Past sk_restart_1) (Before sk_outage_1 sk_restart_1)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: pump_no_restart (And (Member x0 restart) (Patient x0 x1) (Past x0) (Before x2 x0)) (STV 0.0 0.99))",
+            "(: pump_m (Member x1 pump) (STV 1.0 0.99))",
+            "(: outage_m (Member x2 outage) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000007 run2": {
+        "sentence": "The pump did not restart after the outage.",
+        "before": [
+            "(: pump_m (Member sk_pump_1 pump) (STV 1.0 0.99))",
+            "(: outage_m (Member sk_outage_1 outage) (STV 1.0 0.99))",
+            "(: pump_not_restart (And (Member sk_restart_1 restart) (Patient sk_restart_1 sk_pump_1) (Past sk_restart_1) (Before sk_outage_1 sk_restart_1)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: pump_not_restart (And (Member x0 restart) (Patient x0 x1) (Past x0) (Before x2 x0)) (STV 0.0 0.99))",
+            "(: pump_m (Member x1 pump) (STV 1.0 0.99))",
+            "(: outage_m (Member x2 outage) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000007 run3": {
+        "sentence": "The pump did not restart after the outage.",
+        "before": [
+            "(: pump_m (Member sk_pump_1 pump) (STV 1.0 0.99))",
+            "(: outage_m (Member sk_outage_1 outage) (STV 1.0 0.99))",
+            "(: restart_neg (And (Member sk_restart_1 restart) (Patient sk_restart_1 sk_pump_1) (Past sk_restart_1) (Before sk_outage_1 sk_restart_1)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: restart_neg (And (Member x0 restart) (Patient x0 x1) (Past x0) (Before x2 x0)) (STV 0.0 0.99))",
+            "(: pump_m (Member x1 pump) (STV 1.0 0.99))",
+            "(: outage_m (Member x2 outage) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000008 run1": {
+        "sentence": "Barn owls hunt at night.",
+        "before": [
+            "(: barnowl_genus (Inheritance barn_owl owl) (STV 1.0 0.99))",
+            "(: owls_hunt (Implication (Premises (Member $x barn_owl)) (Conclusions (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) night))) (STV 0.9 0.9))"
+        ],
+        "after": [
+            "(: owls_hunt (Implication (Premises (Member $v0 barn_owl)) (Conclusions (Agent (f0 $v0) $v0) (Member (f0 $v0) hunt) (Time (f0 $v0) night))) (STV 0.9 0.9))",
+            "(: barnowl_genus (Inheritance barn_owl owl) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000008 run2": {
+        "sentence": "Barn owls hunt at night.",
+        "before": [
+            "(: barn_owl_g (Inheritance barn_owl owl) (STV 1.0 0.99))",
+            "(: barn_owls_hunt (Implication (Premises (Member $x barn_owl)) (Conclusions (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) night))) (STV 0.9 0.9))"
+        ],
+        "after": [
+            "(: barn_owls_hunt (Implication (Premises (Member $v0 barn_owl)) (Conclusions (Agent (f0 $v0) $v0) (Member (f0 $v0) hunt) (Time (f0 $v0) night))) (STV 0.9 0.9))",
+            "(: barn_owl_g (Inheritance barn_owl owl) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000008 run3": {
+        "sentence": "Barn owls hunt at night.",
+        "before": [
+            "(: barn_owl_genus (Inheritance barn_owl owl) (STV 1.0 0.99))",
+            "(: barn_owls_hunt (Implication (Premises (Member $x barn_owl)) (Conclusions (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) night))) (STV 0.9 0.9))"
+        ],
+        "after": [
+            "(: barn_owls_hunt (Implication (Premises (Member $v0 barn_owl)) (Conclusions (Agent (f0 $v0) $v0) (Member (f0 $v0) hunt) (Time (f0 $v0) night))) (STV 0.9 0.9))",
+            "(: barn_owl_genus (Inheritance barn_owl owl) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000009 run1": {
+        "sentence": "Every apprentice completed a safety module.",
+        "before": [
+            "(: safety_module_genus (Inheritance safety_module module) (STV 1.0 0.99))",
+            "(: apprentice_completed (Implication (Premises (Member $x apprentice)) (Conclusions (Member (sk_complete $x) complete) (Agent (sk_complete $x) $x) (Theme (sk_complete $x) (sk_module $x)) (Member (sk_module $x) safety_module) (Past (sk_complete $x)))) (STV 1.0 0.9))",
+            "(: apprentice_q (QuantifierPhrase apprentice complete \"every\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: apprentice_completed (Implication (Premises (Member $v0 apprentice)) (Conclusions (Agent (f0 $v0) $v0) (Member (f0 $v0) complete) (Member (f1 $v0) safety_module) (Past (f0 $v0)) (Theme (f0 $v0) (f1 $v0)))) (STV 1.0 0.9))",
+            "(: safety_module_genus (Inheritance safety_module module) (STV 1.0 0.99))",
+            "(: apprentice_q (QuantifierPhrase apprentice complete \"every\") (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000009 run2": {
+        "sentence": "Every apprentice completed a safety module.",
+        "before": [
+            "(: sm_g (Inheritance safety_module module) (STV 1.0 0.99))",
+            "(: every_apprentice_completed (Implication (Premises (Member $x apprentice)) (Conclusions (Member (sk_complete $x) complete) (Agent (sk_complete $x) $x) (Theme (sk_complete $x) (sk_module $x)) (Member (sk_module $x) safety_module) (Past (sk_complete $x)))) (STV 1.0 0.9))",
+            "(: apprentice_q (QuantifierPhrase apprentice complete \"every\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: every_apprentice_completed (Implication (Premises (Member $v0 apprentice)) (Conclusions (Agent (f0 $v0) $v0) (Member (f0 $v0) complete) (Member (f1 $v0) safety_module) (Past (f0 $v0)) (Theme (f0 $v0) (f1 $v0)))) (STV 1.0 0.9))",
+            "(: sm_g (Inheritance safety_module module) (STV 1.0 0.99))",
+            "(: apprentice_q (QuantifierPhrase apprentice complete \"every\") (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000009 run3": {
+        "sentence": "Every apprentice completed a safety module.",
+        "before": [
+            "(: safety_module_genus (Inheritance safety_module module) (STV 1.0 0.99))",
+            "(: every_apprentice_completed (Implication (Premises (Member $x apprentice)) (Conclusions (Member (sk_complete $x) complete) (Agent (sk_complete $x) $x) (Theme (sk_complete $x) (sk_module $x)) (Member (sk_module $x) safety_module) (Past (sk_complete $x)))) (STV 1.0 0.9))"
+        ],
+        "after": [
+            "(: every_apprentice_completed (Implication (Premises (Member $v0 apprentice)) (Conclusions (Agent (f0 $v0) $v0) (Member (f0 $v0) complete) (Member (f1 $v0) safety_module) (Past (f0 $v0)) (Theme (f0 $v0) (f1 $v0)))) (STV 1.0 0.9))",
+            "(: safety_module_genus (Inheritance safety_module module) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000010 run1": {
+        "sentence": "Three of the seven presses were idle.",
+        "before": [
+            "(: press_group (GroupOf sk_presses_1 press) (STV 1.0 0.99))",
+            "(: press_card (Cardinality sk_presses_1 7) (STV 1.0 0.99))",
+            "(: sub_group (GroupOf sk_group_1 press) (STV 1.0 0.99))",
+            "(: sub_subset (SubsetOf sk_group_1 sk_presses_1) (STV 1.0 0.99))",
+            "(: sub_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+            "(: sub_idle (Past (Inheritance sk_group_1 idle)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: press_card (Cardinality x0 7) (STV 1.0 0.99))",
+            "(: sub_card (Cardinality x1 3) (STV 1.0 0.99))",
+            "(: press_group (GroupOf x0 press) (STV 1.0 0.99))",
+            "(: sub_group (GroupOf x1 press) (STV 1.0 0.99))",
+            "(: sub_idle (Past (Inheritance x1 idle)) (STV 1.0 0.99))",
+            "(: sub_subset (SubsetOf x1 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000010 run2": {
+        "sentence": "Three of the seven presses were idle.",
+        "before": [
+            "(: presses_g (GroupOf sk_presses_1 press) (STV 1.0 0.99))",
+            "(: presses_c (Cardinality sk_presses_1 7) (STV 1.0 0.99))",
+            "(: idle_g (GroupOf sk_group_1 press) (STV 1.0 0.99))",
+            "(: idle_sub (SubsetOf sk_group_1 sk_presses_1) (STV 1.0 0.99))",
+            "(: idle_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+            "(: idle_pred (Past (Inheritance sk_group_1 idle)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: presses_c (Cardinality x0 7) (STV 1.0 0.99))",
+            "(: idle_card (Cardinality x1 3) (STV 1.0 0.99))",
+            "(: presses_g (GroupOf x0 press) (STV 1.0 0.99))",
+            "(: idle_g (GroupOf x1 press) (STV 1.0 0.99))",
+            "(: idle_pred (Past (Inheritance x1 idle)) (STV 1.0 0.99))",
+            "(: idle_sub (SubsetOf x1 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000010 run3": {
+        "sentence": "Three of the seven presses were idle.",
+        "before": [
+            "(: presses_group (GroupOf sk_presses_1 press) (STV 1.0 0.99))",
+            "(: presses_card (Cardinality sk_presses_1 7) (STV 1.0 0.99))",
+            "(: idle_group (GroupOf sk_group_1 press) (STV 1.0 0.99))",
+            "(: idle_subset (SubsetOf sk_group_1 sk_presses_1) (STV 1.0 0.99))",
+            "(: idle_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+            "(: idle_state (Past (Inheritance sk_group_1 idle)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: presses_card (Cardinality x0 7) (STV 1.0 0.99))",
+            "(: idle_card (Cardinality x1 3) (STV 1.0 0.99))",
+            "(: presses_group (GroupOf x0 press) (STV 1.0 0.99))",
+            "(: idle_group (GroupOf x1 press) (STV 1.0 0.99))",
+            "(: idle_state (Past (Inheritance x1 idle)) (STV 1.0 0.99))",
+            "(: idle_subset (SubsetOf x1 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000011 run1": {
+        "sentence": "The replacement burner runs quieter than the original.",
+        "before": [
+            "(: burner1_mem (Member sk_burner_1 replacement_burner) (STV 1.0 0.99))",
+            "(: burner1_gen (Inheritance replacement_burner burner) (STV 1.0 0.99))",
+            "(: burner2_mem (Member sk_burner_2 burner) (STV 1.0 0.99))",
+            "(: burner2_orig (Member sk_burner_2 original) (STV 1.0 0.99))",
+            "(: run1_mem (Member sk_run_1 run) (STV 1.0 0.99))",
+            "(: run1_agent (Agent sk_run_1 sk_burner_1) (STV 1.0 0.99))",
+            "(: run2_mem (Member sk_run_2 run) (STV 1.0 0.99))",
+            "(: run2_agent (Agent sk_run_2 sk_burner_2) (STV 1.0 0.99))",
+            "(: run_cmp (More quiet sk_run_1 sk_run_2) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: run1_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: run2_agent (Agent e1 x1) (STV 1.0 0.99))",
+            "(: burner1_gen (Inheritance replacement_burner burner) (STV 1.0 0.99))",
+            "(: run1_mem (Member e0 run) (STV 1.0 0.99))",
+            "(: run2_mem (Member e1 run) (STV 1.0 0.99))",
+            "(: burner1_mem (Member x0 replacement_burner) (STV 1.0 0.99))",
+            "(: burner2_mem (Member x1 burner) (STV 1.0 0.99))",
+            "(: burner2_orig (Member x1 original) (STV 1.0 0.99))",
+            "(: run_cmp (More quiet e0 e1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000011 run2": {
+        "sentence": "The replacement burner runs quieter than the original.",
+        "before": [
+            "(: rb_mem (Member sk_replacement_burner_1 replacement_burner) (STV 1.0 0.99))",
+            "(: rb_genus (Inheritance replacement_burner burner) (STV 1.0 0.99))",
+            "(: orig_mem (Member sk_burner_1 burner) (STV 1.0 0.99))",
+            "(: orig_prop (Member sk_burner_1 original) (STV 1.0 0.99))",
+            "(: e1_run (Member sk_run_1 run) (STV 1.0 0.99))",
+            "(: e1_agent (Agent sk_run_1 sk_replacement_burner_1) (STV 1.0 0.99))",
+            "(: e2_run (Member sk_run_2 run) (STV 1.0 0.99))",
+            "(: e2_agent (Agent sk_run_2 sk_burner_1) (STV 1.0 0.99))",
+            "(: run_cmp (More quiet sk_run_1 sk_run_2) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e1_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e2_agent (Agent e1 x1) (STV 1.0 0.99))",
+            "(: rb_genus (Inheritance replacement_burner burner) (STV 1.0 0.99))",
+            "(: e1_run (Member e0 run) (STV 1.0 0.99))",
+            "(: e2_run (Member e1 run) (STV 1.0 0.99))",
+            "(: rb_mem (Member x0 replacement_burner) (STV 1.0 0.99))",
+            "(: orig_mem (Member x1 burner) (STV 1.0 0.99))",
+            "(: orig_prop (Member x1 original) (STV 1.0 0.99))",
+            "(: run_cmp (More quiet e0 e1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000011 run3": {
+        "sentence": "The replacement burner runs quieter than the original.",
+        "before": [
+            "(: rb_mem (Member sk_replacement_burner_1 replacement_burner) (STV 1.0 0.99))",
+            "(: rb_genus (Inheritance replacement_burner burner) (STV 1.0 0.99))",
+            "(: orig_mem (Member sk_burner_1 burner) (STV 1.0 0.99))",
+            "(: orig_prop (Member sk_burner_1 original) (STV 1.0 0.99))",
+            "(: e_run1 (Member sk_run_1 run) (STV 1.0 0.99))",
+            "(: e_run1_agent (Agent sk_run_1 sk_replacement_burner_1) (STV 1.0 0.99))",
+            "(: e_run2 (Member sk_run_2 run) (STV 1.0 0.99))",
+            "(: e_run2_agent (Agent sk_run_2 sk_burner_1) (STV 1.0 0.99))",
+            "(: cmp_quiet (More quiet sk_run_1 sk_run_2) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_run1_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_run2_agent (Agent e1 x1) (STV 1.0 0.99))",
+            "(: rb_genus (Inheritance replacement_burner burner) (STV 1.0 0.99))",
+            "(: e_run1 (Member e0 run) (STV 1.0 0.99))",
+            "(: e_run2 (Member e1 run) (STV 1.0 0.99))",
+            "(: rb_mem (Member x0 replacement_burner) (STV 1.0 0.99))",
+            "(: orig_mem (Member x1 burner) (STV 1.0 0.99))",
+            "(: orig_prop (Member x1 original) (STV 1.0 0.99))",
+            "(: cmp_quiet (More quiet e0 e1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000012 run1": {
+        "sentence": "The samples weighed 4.2 kilograms.",
+        "before": [
+            "(: samples_grp (GroupOf sk_group_1 sample) (STV 1.0 0.99))",
+            "(: samples_weight (Past (Measure sk_group_1 weight 4.2 kilogram)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: samples_grp (GroupOf x0 sample) (STV 1.0 0.99))",
+            "(: samples_weight (Past (Measure x0 weight 4.2 kilogram)) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000012 run2": {
+        "sentence": "The samples weighed 4.2 kilograms.",
+        "before": [
+            "(: samples_group (GroupOf sk_group_1 sample) (STV 1.0 0.99))",
+            "(: samples_weight (Past (Measure sk_group_1 weight 4.2 kilogram)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: samples_group (GroupOf x0 sample) (STV 1.0 0.99))",
+            "(: samples_weight (Past (Measure x0 weight 4.2 kilogram)) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000012 run3": {
+        "sentence": "The samples weighed 4.2 kilograms.",
+        "before": [
+            "(: samples_group (GroupOf sk_group_1 sample) (STV 1.0 0.99))",
+            "(: samples_weight (Past (Measure sk_group_1 weight 4.2 kilogram)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: samples_group (GroupOf x0 sample) (STV 1.0 0.99))",
+            "(: samples_weight (Past (Measure x0 weight 4.2 kilogram)) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000013 run1": {
+        "sentence": "The lease expires on 30 September 2027.",
+        "before": [
+            "(: lease_mem (Member sk_lease_1 lease) (STV 1.0 0.99))",
+            "(: expire_mem (Member sk_expire_1 expire) (STV 1.0 0.99))",
+            "(: expire_pat (Patient sk_expire_1 sk_lease_1) (STV 1.0 0.99))",
+            "(: expire_fut (Future sk_expire_1) (STV 1.0 0.99))",
+            "(: expire_year (Time sk_expire_1 (Year 2027)) (STV 1.0 0.99))",
+            "(: expire_month (Time sk_expire_1 (Month september)) (STV 1.0 0.99))",
+            "(: expire_day (Time sk_expire_1 (Day 30)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: expire_fut (Future e0) (STV 1.0 0.99))",
+            "(: expire_mem (Member e0 expire) (STV 1.0 0.99))",
+            "(: lease_mem (Member x0 lease) (STV 1.0 0.99))",
+            "(: expire_pat (Patient e0 x0) (STV 1.0 0.99))",
+            "(: expire_day (Time e0 (Day 30)) (STV 1.0 0.99))",
+            "(: expire_month (Time e0 (Month september)) (STV 1.0 0.99))",
+            "(: expire_year (Time e0 (Year 2027)) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000013 run2": {
+        "sentence": "The lease expires on 30 September 2027.",
+        "before": [
+            "(: e_expire (Member sk_expire_1 expire) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_expire_1 sk_lease_1) (STV 1.0 0.99))",
+            "(: lease_mem (Member sk_lease_1 lease) (STV 1.0 0.99))",
+            "(: e_future (Future sk_expire_1) (STV 1.0 0.99))",
+            "(: e_year (Time sk_expire_1 (Year 2027)) (STV 1.0 0.99))",
+            "(: e_month (Time sk_expire_1 (Month september)) (STV 1.0 0.99))",
+            "(: e_day (Time sk_expire_1 (Day 30)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_future (Future e0) (STV 1.0 0.99))",
+            "(: e_expire (Member e0 expire) (STV 1.0 0.99))",
+            "(: lease_mem (Member x0 lease) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e_day (Time e0 (Day 30)) (STV 1.0 0.99))",
+            "(: e_month (Time e0 (Month september)) (STV 1.0 0.99))",
+            "(: e_year (Time e0 (Year 2027)) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000013 run3": {
+        "sentence": "The lease expires on 30 September 2027.",
+        "before": [
+            "(: lease_mem (Member sk_lease_1 lease) (STV 1.0 0.99))",
+            "(: e_expire (Member sk_expire_1 expire) (STV 1.0 0.99))",
+            "(: e_expire_patient (Patient sk_expire_1 sk_lease_1) (STV 1.0 0.99))",
+            "(: e_expire_future (Future sk_expire_1) (STV 1.0 0.99))",
+            "(: e_expire_year (Time sk_expire_1 (Year 2027)) (STV 1.0 0.99))",
+            "(: e_expire_month (Time sk_expire_1 (Month september)) (STV 1.0 0.99))",
+            "(: e_expire_day (Time sk_expire_1 (Day 30)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_expire_future (Future e0) (STV 1.0 0.99))",
+            "(: e_expire (Member e0 expire) (STV 1.0 0.99))",
+            "(: lease_mem (Member x0 lease) (STV 1.0 0.99))",
+            "(: e_expire_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e_expire_day (Time e0 (Day 30)) (STV 1.0 0.99))",
+            "(: e_expire_month (Time e0 (Month september)) (STV 1.0 0.99))",
+            "(: e_expire_year (Time e0 (Year 2027)) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000014 run1": {
+        "sentence": "Imani and Rurik jointly drafted the charter.",
+        "before": [
+            "(: draft_mem (Member sk_draft_1 draft) (STV 1.0 0.99))",
+            "(: draft_ag1 (Agent sk_draft_1 imani) (STV 1.0 0.99))",
+            "(: draft_ag2 (Agent sk_draft_1 rurik) (STV 1.0 0.99))",
+            "(: draft_pat (Patient sk_draft_1 sk_charter_1) (STV 1.0 0.99))",
+            "(: charter_mem (Member sk_charter_1 charter) (STV 1.0 0.99))",
+            "(: draft_past (Past sk_draft_1) (STV 1.0 0.99))",
+            "(: imani_name (Name imani \"Imani\") (STV 1.0 0.99))",
+            "(: rurik_name (Name rurik \"Rurik\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: draft_ag1 (Agent e0 imani) (STV 1.0 0.99))",
+            "(: draft_ag2 (Agent e0 rurik) (STV 1.0 0.99))",
+            "(: draft_mem (Member e0 draft) (STV 1.0 0.99))",
+            "(: charter_mem (Member x0 charter) (STV 1.0 0.99))",
+            "(: imani_name (Name imani \"Imani\") (STV 1.0 0.99))",
+            "(: rurik_name (Name rurik \"Rurik\") (STV 1.0 0.99))",
+            "(: draft_past (Past e0) (STV 1.0 0.99))",
+            "(: draft_pat (Patient e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000014 run2": {
+        "sentence": "Imani and Rurik jointly drafted the charter.",
+        "before": [
+            "(: e_draft (Member sk_draft_1 draft) (STV 1.0 0.99))",
+            "(: e_agent1 (Agent sk_draft_1 imani) (STV 1.0 0.99))",
+            "(: e_agent2 (Agent sk_draft_1 rurik) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_draft_1 sk_charter_1) (STV 1.0 0.99))",
+            "(: charter_mem (Member sk_charter_1 charter) (STV 1.0 0.99))",
+            "(: e_past (Past sk_draft_1) (STV 1.0 0.99))",
+            "(: imani_name (Name imani \"Imani\") (STV 1.0 0.99))",
+            "(: rurik_name (Name rurik \"Rurik\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent1 (Agent e0 imani) (STV 1.0 0.99))",
+            "(: e_agent2 (Agent e0 rurik) (STV 1.0 0.99))",
+            "(: e_draft (Member e0 draft) (STV 1.0 0.99))",
+            "(: charter_mem (Member x0 charter) (STV 1.0 0.99))",
+            "(: imani_name (Name imani \"Imani\") (STV 1.0 0.99))",
+            "(: rurik_name (Name rurik \"Rurik\") (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000014 run3": {
+        "sentence": "Imani and Rurik jointly drafted the charter.",
+        "before": [
+            "(: e_draft (Member sk_draft_1 draft) (STV 1.0 0.99))",
+            "(: e_draft_agent1 (Agent sk_draft_1 imani) (STV 1.0 0.99))",
+            "(: e_draft_agent2 (Agent sk_draft_1 rurik) (STV 1.0 0.99))",
+            "(: e_draft_patient (Patient sk_draft_1 sk_charter_1) (STV 1.0 0.99))",
+            "(: e_draft_past (Past sk_draft_1) (STV 1.0 0.99))",
+            "(: charter_mem (Member sk_charter_1 charter) (STV 1.0 0.99))",
+            "(: imani_name (Name imani \"Imani\") (STV 1.0 0.99))",
+            "(: rurik_name (Name rurik \"Rurik\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_draft_agent1 (Agent e0 imani) (STV 1.0 0.99))",
+            "(: e_draft_agent2 (Agent e0 rurik) (STV 1.0 0.99))",
+            "(: e_draft (Member e0 draft) (STV 1.0 0.99))",
+            "(: charter_mem (Member x0 charter) (STV 1.0 0.99))",
+            "(: imani_name (Name imani \"Imani\") (STV 1.0 0.99))",
+            "(: rurik_name (Name rurik \"Rurik\") (STV 1.0 0.99))",
+            "(: e_draft_past (Past e0) (STV 1.0 0.99))",
+            "(: e_draft_patient (Patient e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000015 run1": {
+        "sentence": "The fault lies in the relay or the wiring.",
+        "before": [
+            "(: fault_mem (Member sk_fault_1 fault) (STV 1.0 0.99))",
+            "(: relay_mem (Member sk_relay_1 relay) (STV 1.0 0.99))",
+            "(: wiring_mem (Member sk_wiring_1 wiring) (STV 1.0 0.99))",
+            "(: fault_lie (And (Member sk_lie_1 lie) (Experiencer sk_lie_1 sk_fault_1) (Or (Location sk_lie_1 sk_relay_1) (Location sk_lie_1 sk_wiring_1))) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: fault_lie (And (Member x0 lie) (Experiencer x0 x1) (Or (Location x0 x2) (Location x0 x3))) (STV 1.0 0.99))",
+            "(: fault_mem (Member x1 fault) (STV 1.0 0.99))",
+            "(: relay_mem (Member x2 relay) (STV 1.0 0.99))",
+            "(: wiring_mem (Member x3 wiring) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000015 run2": {
+        "sentence": "The fault lies in the relay or the wiring.",
+        "before": [
+            "(: fault_mem (Member sk_fault_1 fault) (STV 1.0 0.99))",
+            "(: relay_mem (Member sk_relay_1 relay) (STV 1.0 0.99))",
+            "(: wiring_mem (Member sk_wiring_1 wiring) (STV 1.0 0.99))",
+            "(: fault_loc (And (Member sk_lie_1 lie) (Experiencer sk_lie_1 sk_fault_1) (Or (Location sk_lie_1 sk_relay_1) (Location sk_lie_1 sk_wiring_1))) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: fault_loc (And (Member x0 lie) (Experiencer x0 x1) (Or (Location x0 x2) (Location x0 x3))) (STV 1.0 0.99))",
+            "(: fault_mem (Member x1 fault) (STV 1.0 0.99))",
+            "(: relay_mem (Member x2 relay) (STV 1.0 0.99))",
+            "(: wiring_mem (Member x3 wiring) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000015 run3": {
+        "sentence": "The fault lies in the relay or the wiring.",
+        "before": [
+            "(: fault_mem (Member sk_fault_1 fault) (STV 1.0 0.99))",
+            "(: relay_mem (Member sk_relay_1 relay) (STV 1.0 0.99))",
+            "(: wiring_mem (Member sk_wiring_1 wiring) (STV 1.0 0.99))",
+            "(: fault_loc (And (Member sk_lie_1 lie) (Experiencer sk_lie_1 sk_fault_1) (Or (Location sk_lie_1 sk_relay_1) (Location sk_lie_1 sk_wiring_1))) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: fault_loc (And (Member x0 lie) (Experiencer x0 x1) (Or (Location x0 x2) (Location x0 x3))) (STV 1.0 0.99))",
+            "(: fault_mem (Member x1 fault) (STV 1.0 0.99))",
+            "(: relay_mem (Member x2 relay) (STV 1.0 0.99))",
+            "(: wiring_mem (Member x3 wiring) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000016 run1": {
+        "sentence": "Aunt Delphine restored an old clock. She sold it the following year.",
+        "before": [
+            "(: delphine_name (Name delphine \"Aunt Delphine\") (STV 1.0 0.99))",
+            "(: restore1_ev (Member sk_restore_1 restore) (STV 1.0 0.99))",
+            "(: restore1_agent (Agent sk_restore_1 delphine) (STV 1.0 0.99))",
+            "(: restore1_patient (Patient sk_restore_1 sk_clock_1) (STV 1.0 0.99))",
+            "(: clock1_member (Member sk_clock_1 clock) (STV 1.0 0.99))",
+            "(: clock1_old (Member sk_clock_1 old) (STV 1.0 0.99))",
+            "(: restore1_past (Past sk_restore_1) (STV 1.0 0.99))",
+            "(: sell1_ev (Member sk_sell_1 sell) (STV 1.0 0.99))",
+            "(: sell1_agent (Agent sk_sell_1 delphine) (STV 1.0 0.99))",
+            "(: sell1_theme (Theme sk_sell_1 sk_clock_1) (STV 1.0 0.99))",
+            "(: sell1_past (Past sk_sell_1) (STV 1.0 0.99))",
+            "(: sell1_gap (BeforeBy sk_restore_1 sk_sell_1 1 year) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: sell1_agent (Agent e0 delphine) (STV 1.0 0.99))",
+            "(: restore1_agent (Agent e1 delphine) (STV 1.0 0.99))",
+            "(: sell1_gap (BeforeBy e1 e0 1 year) (STV 1.0 0.99))",
+            "(: sell1_ev (Member e0 sell) (STV 1.0 0.99))",
+            "(: restore1_ev (Member e1 restore) (STV 1.0 0.99))",
+            "(: clock1_member (Member x0 clock) (STV 1.0 0.99))",
+            "(: clock1_old (Member x0 old) (STV 1.0 0.99))",
+            "(: delphine_name (Name delphine \"Aunt Delphine\") (STV 1.0 0.99))",
+            "(: sell1_past (Past e0) (STV 1.0 0.99))",
+            "(: restore1_past (Past e1) (STV 1.0 0.99))",
+            "(: restore1_patient (Patient e1 x0) (STV 1.0 0.99))",
+            "(: sell1_theme (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000016 run2": {
+        "sentence": "Aunt Delphine restored an old clock. She sold it the following year.",
+        "before": [
+            "(: e1_restore (Member sk_restore_1 restore) (STV 1.0 0.99))",
+            "(: e1_agent (Agent sk_restore_1 delphine) (STV 1.0 0.99))",
+            "(: e1_patient (Patient sk_restore_1 sk_clock_1) (STV 1.0 0.99))",
+            "(: e1_past (Past sk_restore_1) (STV 1.0 0.99))",
+            "(: clock_member (Member sk_clock_1 clock) (STV 1.0 0.99))",
+            "(: clock_old (Member sk_clock_1 old) (STV 1.0 0.99))",
+            "(: delphine_name (Name delphine \"Aunt Delphine\") (STV 1.0 0.99))",
+            "(: e2_sell (Member sk_sell_1 sell) (STV 1.0 0.99))",
+            "(: e2_agent (Agent sk_sell_1 delphine) (STV 1.0 0.99))",
+            "(: e2_theme (Theme sk_sell_1 sk_clock_1) (STV 1.0 0.99))",
+            "(: e2_past (Past sk_sell_1) (STV 1.0 0.99))",
+            "(: restore_before_sell (Before sk_restore_1 sk_sell_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e2_agent (Agent e0 delphine) (STV 1.0 0.99))",
+            "(: e1_agent (Agent e1 delphine) (STV 1.0 0.99))",
+            "(: restore_before_sell (Before e1 e0) (STV 1.0 0.99))",
+            "(: e2_sell (Member e0 sell) (STV 1.0 0.99))",
+            "(: e1_restore (Member e1 restore) (STV 1.0 0.99))",
+            "(: clock_member (Member x0 clock) (STV 1.0 0.99))",
+            "(: clock_old (Member x0 old) (STV 1.0 0.99))",
+            "(: delphine_name (Name delphine \"Aunt Delphine\") (STV 1.0 0.99))",
+            "(: e2_past (Past e0) (STV 1.0 0.99))",
+            "(: e1_past (Past e1) (STV 1.0 0.99))",
+            "(: e1_patient (Patient e1 x0) (STV 1.0 0.99))",
+            "(: e2_theme (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000016 run3": {
+        "sentence": "Aunt Delphine restored an old clock. She sold it the following year.",
+        "before": [
+            "(: delphine_name (Name delphine \"Delphine\") (STV 1.0 0.99))",
+            "(: delphine_aunt (Member delphine aunt) (STV 1.0 0.99))",
+            "(: e_restore (Member sk_restore_1 restore) (STV 1.0 0.99))",
+            "(: e_restore_agent (Agent sk_restore_1 delphine) (STV 1.0 0.99))",
+            "(: e_restore_patient (Patient sk_restore_1 sk_clock_1) (STV 1.0 0.99))",
+            "(: e_restore_past (Past sk_restore_1) (STV 1.0 0.99))",
+            "(: clock_member (Member sk_clock_1 clock) (STV 1.0 0.99))",
+            "(: clock_old (Member sk_clock_1 old) (STV 1.0 0.99))",
+            "(: e_sell (Member sk_sell_1 sell) (STV 1.0 0.99))",
+            "(: e_sell_agent (Agent sk_sell_1 delphine) (STV 1.0 0.99))",
+            "(: e_sell_theme (Theme sk_sell_1 sk_clock_1) (STV 1.0 0.99))",
+            "(: e_sell_past (Past sk_sell_1) (STV 1.0 0.99))",
+            "(: e_sell_before (Before sk_restore_1 sk_sell_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_restore_agent (Agent e0 delphine) (STV 1.0 0.99))",
+            "(: e_sell_agent (Agent e1 delphine) (STV 1.0 0.99))",
+            "(: e_sell_before (Before e0 e1) (STV 1.0 0.99))",
+            "(: delphine_aunt (Member delphine aunt) (STV 1.0 0.99))",
+            "(: e_restore (Member e0 restore) (STV 1.0 0.99))",
+            "(: e_sell (Member e1 sell) (STV 1.0 0.99))",
+            "(: clock_member (Member x0 clock) (STV 1.0 0.99))",
+            "(: clock_old (Member x0 old) (STV 1.0 0.99))",
+            "(: delphine_name (Name delphine \"Delphine\") (STV 1.0 0.99))",
+            "(: e_restore_past (Past e0) (STV 1.0 0.99))",
+            "(: e_sell_past (Past e1) (STV 1.0 0.99))",
+            "(: e_restore_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e_sell_theme (Theme e1 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000017 run1": {
+        "sentence": "The culvert flooded because the grate had clogged.",
+        "before": [
+            "(: flood1_ev (Member sk_flood_1 flood) (STV 1.0 0.99))",
+            "(: flood1_patient (Patient sk_flood_1 sk_culvert_1) (STV 1.0 0.99))",
+            "(: culvert1_member (Member sk_culvert_1 culvert) (STV 1.0 0.99))",
+            "(: flood1_past (Past sk_flood_1) (STV 1.0 0.99))",
+            "(: clog1_ev (Member sk_clog_1 clog) (STV 1.0 0.99))",
+            "(: clog1_patient (Patient sk_clog_1 sk_grate_1) (STV 1.0 0.99))",
+            "(: grate1_member (Member sk_grate_1 grate) (STV 1.0 0.99))",
+            "(: clog1_past (Past sk_clog_1) (STV 1.0 0.99))",
+            "(: flood_because (Because sk_flood_1 sk_clog_1) (STV 1.0 0.99))",
+            "(: flood_before (Before sk_clog_1 sk_flood_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: flood_because (Because e0 e1) (STV 1.0 0.99))",
+            "(: flood_before (Before e1 e0) (STV 1.0 0.99))",
+            "(: flood1_ev (Member e0 flood) (STV 1.0 0.99))",
+            "(: clog1_ev (Member e1 clog) (STV 1.0 0.99))",
+            "(: culvert1_member (Member x0 culvert) (STV 1.0 0.99))",
+            "(: grate1_member (Member x1 grate) (STV 1.0 0.99))",
+            "(: flood1_past (Past e0) (STV 1.0 0.99))",
+            "(: clog1_past (Past e1) (STV 1.0 0.99))",
+            "(: flood1_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: clog1_patient (Patient e1 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000017 run2": {
+        "sentence": "The culvert flooded because the grate had clogged.",
+        "before": [
+            "(: e1_flood (Member sk_flood_1 flood) (STV 1.0 0.99))",
+            "(: e1_patient (Patient sk_flood_1 sk_culvert_1) (STV 1.0 0.99))",
+            "(: e1_past (Past sk_flood_1) (STV 1.0 0.99))",
+            "(: culvert_member (Member sk_culvert_1 culvert) (STV 1.0 0.99))",
+            "(: e2_clog (Member sk_clog_1 clog) (STV 1.0 0.99))",
+            "(: e2_patient (Patient sk_clog_1 sk_grate_1) (STV 1.0 0.99))",
+            "(: e2_past (Past sk_clog_1) (STV 1.0 0.99))",
+            "(: grate_member (Member sk_grate_1 grate) (STV 1.0 0.99))",
+            "(: conn_because (Because sk_flood_1 sk_clog_1) (STV 1.0 0.99))",
+            "(: clog_before_flood (Before sk_clog_1 sk_flood_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: conn_because (Because e0 e1) (STV 1.0 0.99))",
+            "(: clog_before_flood (Before e1 e0) (STV 1.0 0.99))",
+            "(: e1_flood (Member e0 flood) (STV 1.0 0.99))",
+            "(: e2_clog (Member e1 clog) (STV 1.0 0.99))",
+            "(: culvert_member (Member x0 culvert) (STV 1.0 0.99))",
+            "(: grate_member (Member x1 grate) (STV 1.0 0.99))",
+            "(: e1_past (Past e0) (STV 1.0 0.99))",
+            "(: e2_past (Past e1) (STV 1.0 0.99))",
+            "(: e1_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e2_patient (Patient e1 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000017 run3": {
+        "sentence": "The culvert flooded because the grate had clogged.",
+        "before": [
+            "(: culvert_member (Member sk_culvert_1 culvert) (STV 1.0 0.99))",
+            "(: e_flood (Member sk_flood_1 flood) (STV 1.0 0.99))",
+            "(: e_flood_patient (Patient sk_flood_1 sk_culvert_1) (STV 1.0 0.99))",
+            "(: e_flood_past (Past sk_flood_1) (STV 1.0 0.99))",
+            "(: grate_member (Member sk_grate_1 grate) (STV 1.0 0.99))",
+            "(: e_clog (Member sk_clog_1 clog) (STV 1.0 0.99))",
+            "(: e_clog_patient (Patient sk_clog_1 sk_grate_1) (STV 1.0 0.99))",
+            "(: e_clog_past (Past sk_clog_1) (STV 1.0 0.99))",
+            "(: e_clog_before (Before sk_clog_1 sk_flood_1) (STV 1.0 0.99))",
+            "(: conn_because (Because sk_flood_1 sk_clog_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: conn_because (Because e0 e1) (STV 1.0 0.99))",
+            "(: e_clog_before (Before e1 e0) (STV 1.0 0.99))",
+            "(: e_flood (Member e0 flood) (STV 1.0 0.99))",
+            "(: e_clog (Member e1 clog) (STV 1.0 0.99))",
+            "(: culvert_member (Member x0 culvert) (STV 1.0 0.99))",
+            "(: grate_member (Member x1 grate) (STV 1.0 0.99))",
+            "(: e_flood_past (Past e0) (STV 1.0 0.99))",
+            "(: e_clog_past (Past e1) (STV 1.0 0.99))",
+            "(: e_flood_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e_clog_patient (Patient e1 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000018 run1": {
+        "sentence": "Only the night shift reported the smell.",
+        "before": [
+            "(: shift1_member (Member sk_night_shift_1 night_shift) (STV 1.0 0.99))",
+            "(: shift1_genus (Inheritance night_shift shift) (STV 1.0 0.99))",
+            "(: report1_ev (Member sk_report_1 report) (STV 1.0 0.99))",
+            "(: report1_agent (Agent sk_report_1 sk_night_shift_1) (STV 1.0 0.99))",
+            "(: report1_theme (Theme sk_report_1 sk_smell_1) (STV 1.0 0.99))",
+            "(: smell1_member (Member sk_smell_1 smell) (STV 1.0 0.99))",
+            "(: report1_past (Past sk_report_1) (STV 1.0 0.99))",
+            "(: report1_only (Only sk_night_shift_1 sk_report_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: report1_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: shift1_genus (Inheritance night_shift shift) (STV 1.0 0.99))",
+            "(: report1_ev (Member e0 report) (STV 1.0 0.99))",
+            "(: shift1_member (Member x0 night_shift) (STV 1.0 0.99))",
+            "(: smell1_member (Member x1 smell) (STV 1.0 0.99))",
+            "(: report1_only (Only x0 e0) (STV 1.0 0.99))",
+            "(: report1_past (Past e0) (STV 1.0 0.99))",
+            "(: report1_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000018 run2": {
+        "sentence": "Only the night shift reported the smell.",
+        "before": [
+            "(: e_report (Member sk_report_1 report) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_report_1 sk_night_shift_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_report_1 sk_smell_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_report_1) (STV 1.0 0.99))",
+            "(: shift_member (Member sk_night_shift_1 night_shift) (STV 1.0 0.99))",
+            "(: shift_genus (Inheritance night_shift shift) (STV 1.0 0.99))",
+            "(: smell_member (Member sk_smell_1 smell) (STV 1.0 0.99))",
+            "(: only_focus (Only sk_night_shift_1 sk_report_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: shift_genus (Inheritance night_shift shift) (STV 1.0 0.99))",
+            "(: e_report (Member e0 report) (STV 1.0 0.99))",
+            "(: shift_member (Member x0 night_shift) (STV 1.0 0.99))",
+            "(: smell_member (Member x1 smell) (STV 1.0 0.99))",
+            "(: only_focus (Only x0 e0) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000018 run3": {
+        "sentence": "Only the night shift reported the smell.",
+        "before": [
+            "(: shift_member (Member sk_shift_1 night_shift) (STV 1.0 0.99))",
+            "(: shift_genus (Inheritance night_shift shift) (STV 1.0 0.99))",
+            "(: e_report (Member sk_report_1 report) (STV 1.0 0.99))",
+            "(: e_report_agent (Agent sk_report_1 sk_shift_1) (STV 1.0 0.99))",
+            "(: e_report_theme (Theme sk_report_1 sk_smell_1) (STV 1.0 0.99))",
+            "(: smell_member (Member sk_smell_1 smell) (STV 1.0 0.99))",
+            "(: e_report_past (Past sk_report_1) (STV 1.0 0.99))",
+            "(: only_focus (Only sk_shift_1 sk_report_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_report_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: shift_genus (Inheritance night_shift shift) (STV 1.0 0.99))",
+            "(: e_report (Member e0 report) (STV 1.0 0.99))",
+            "(: shift_member (Member x0 night_shift) (STV 1.0 0.99))",
+            "(: smell_member (Member x1 smell) (STV 1.0 0.99))",
+            "(: only_focus (Only x0 e0) (STV 1.0 0.99))",
+            "(: e_report_past (Past e0) (STV 1.0 0.99))",
+            "(: e_report_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000019 run1": {
+        "sentence": "The registrar suspected the tally had been padded.",
+        "before": [
+            "(: registrar1_member (Member sk_registrar_1 registrar) (STV 1.0 0.99))",
+            "(: suspect1_ev (Member sk_suspect_1 suspect) (STV 1.0 0.99))",
+            "(: suspect1_exp (Experiencer sk_suspect_1 sk_registrar_1) (STV 1.0 0.99))",
+            "(: suspect1_past (Past sk_suspect_1) (STV 1.0 0.99))",
+            "(: suspect1_theme (Theme sk_suspect_1 (And (Member sk_tally_1 tally) (Member sk_pad_1 pad) (Patient sk_pad_1 sk_tally_1) (Past sk_pad_1))) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: suspect1_exp (Experiencer e0 x0) (STV 1.0 0.99))",
+            "(: suspect1_ev (Member e0 suspect) (STV 1.0 0.99))",
+            "(: registrar1_member (Member x0 registrar) (STV 1.0 0.99))",
+            "(: suspect1_past (Past e0) (STV 1.0 0.99))",
+            "(: suspect1_theme (Theme e0 (And (Member x1 tally) (Member x2 pad) (Patient x2 x1) (Past x2))) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000019 run2": {
+        "sentence": "The registrar suspected the tally had been padded.",
+        "before": [
+            "(: e_suspect (Member sk_suspect_1 suspect) (STV 1.0 0.99))",
+            "(: e_experiencer (Experiencer sk_suspect_1 sk_registrar_1) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_suspect_1 (And (Member sk_pad_1 pad) (Patient sk_pad_1 sk_tally_1) (Past sk_pad_1))) (STV 1.0 0.99))",
+            "(: e_past (Past sk_suspect_1) (STV 1.0 0.99))",
+            "(: registrar_member (Member sk_registrar_1 registrar) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_experiencer (Experiencer e0 x0) (STV 1.0 0.99))",
+            "(: e_suspect (Member e0 suspect) (STV 1.0 0.99))",
+            "(: registrar_member (Member x0 registrar) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 (And (Member x1 pad) (Patient x1 x2) (Past x1))) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000019 run3": {
+        "sentence": "The registrar suspected the tally had been padded.",
+        "before": [
+            "(: reg_member (Member sk_registrar_1 registrar) (STV 1.0 0.99))",
+            "(: e_suspect (Member sk_suspect_1 suspect) (STV 1.0 0.99))",
+            "(: e_suspect_exp (Experiencer sk_suspect_1 sk_registrar_1) (STV 1.0 0.99))",
+            "(: e_suspect_past (Past sk_suspect_1) (STV 1.0 0.99))",
+            "(: tally_member (Member sk_tally_1 tally) (STV 1.0 0.99))",
+            "(: e_suspect_theme (Theme sk_suspect_1 (And (Member sk_pad_1 pad) (Patient sk_pad_1 sk_tally_1) (Past sk_pad_1) (Before sk_pad_1 sk_suspect_1))) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_suspect_exp (Experiencer e0 x0) (STV 1.0 0.99))",
+            "(: e_suspect (Member e0 suspect) (STV 1.0 0.99))",
+            "(: reg_member (Member x0 registrar) (STV 1.0 0.99))",
+            "(: tally_member (Member x1 tally) (STV 1.0 0.99))",
+            "(: e_suspect_past (Past e0) (STV 1.0 0.99))",
+            "(: e_suspect_theme (Theme e0 (And (Member x2 pad) (Patient x2 x1) (Past x2) (Before x2 e0))) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000020 run1": {
+        "sentence": "Most of Farhan's tools were missing.",
+        "before": [
+            "(: farhan_name (Name farhan \"Farhan\") (STV 1.0 0.99))",
+            "(: tools1_group (GroupOf sk_tools_1 tool) (STV 1.0 0.99))",
+            "(: tools1_poss (Possession sk_tools_1 farhan) (STV 1.0 0.99))",
+            "(: sub1_group (GroupOf sk_group_1 tool) (STV 1.0 0.99))",
+            "(: sub1_subset (SubsetOf sk_group_1 sk_tools_1) (STV 1.0 0.99))",
+            "(: sub1_prop (ProportionOf sk_group_1 sk_tools_1 most) (STV 1.0 0.99))",
+            "(: sub1_missing (Past (Inheritance sk_group_1 missing)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: sub1_group (GroupOf x0 tool) (STV 1.0 0.99))",
+            "(: tools1_group (GroupOf x1 tool) (STV 1.0 0.99))",
+            "(: farhan_name (Name farhan \"Farhan\") (STV 1.0 0.99))",
+            "(: sub1_missing (Past (Inheritance x0 missing)) (STV 1.0 0.99))",
+            "(: tools1_poss (Possession x1 farhan) (STV 1.0 0.99))",
+            "(: sub1_prop (ProportionOf x0 x1 most) (STV 1.0 0.99))",
+            "(: sub1_subset (SubsetOf x0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000020 run2": {
+        "sentence": "Most of Farhan's tools were missing.",
+        "before": [
+            "(: tools_group (GroupOf sk_tools_1 tool) (STV 1.0 0.99))",
+            "(: tools_possession (Possession sk_tools_1 farhan) (STV 1.0 0.99))",
+            "(: farhan_name (Name farhan \"Farhan\") (STV 1.0 0.99))",
+            "(: subset_group (GroupOf sk_group_1 tool) (STV 1.0 0.99))",
+            "(: subset_of (SubsetOf sk_group_1 sk_tools_1) (STV 1.0 0.99))",
+            "(: subset_proportion (ProportionOf sk_group_1 sk_tools_1 most) (STV 1.0 0.99))",
+            "(: subset_missing (Past (Inheritance sk_group_1 missing)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: subset_group (GroupOf x0 tool) (STV 1.0 0.99))",
+            "(: tools_group (GroupOf x1 tool) (STV 1.0 0.99))",
+            "(: farhan_name (Name farhan \"Farhan\") (STV 1.0 0.99))",
+            "(: subset_missing (Past (Inheritance x0 missing)) (STV 1.0 0.99))",
+            "(: tools_possession (Possession x1 farhan) (STV 1.0 0.99))",
+            "(: subset_proportion (ProportionOf x0 x1 most) (STV 1.0 0.99))",
+            "(: subset_of (SubsetOf x0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "pilot-000020 run3": {
+        "sentence": "Most of Farhan's tools were missing.",
+        "before": [
+            "(: farhan_name (Name farhan \"Farhan\") (STV 1.0 0.99))",
+            "(: tools_group (GroupOf sk_tools_1 tool) (STV 1.0 0.99))",
+            "(: tools_poss (Possession sk_tools_1 farhan) (STV 1.0 0.99))",
+            "(: sub_group (GroupOf sk_group_1 tool) (STV 1.0 0.99))",
+            "(: sub_subset (SubsetOf sk_group_1 sk_tools_1) (STV 1.0 0.99))",
+            "(: sub_prop (ProportionOf sk_group_1 sk_tools_1 most) (STV 1.0 0.99))",
+            "(: sub_missing (Past (Inheritance sk_group_1 missing)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: sub_group (GroupOf x0 tool) (STV 1.0 0.99))",
+            "(: tools_group (GroupOf x1 tool) (STV 1.0 0.99))",
+            "(: farhan_name (Name farhan \"Farhan\") (STV 1.0 0.99))",
+            "(: sub_missing (Past (Inheritance x0 missing)) (STV 1.0 0.99))",
+            "(: tools_poss (Possession x1 farhan) (STV 1.0 0.99))",
+            "(: sub_prop (ProportionOf x0 x1 most) (STV 1.0 0.99))",
+            "(: sub_subset (SubsetOf x0 x1) (STV 1.0 0.99))"
+        ]
+    }
+}

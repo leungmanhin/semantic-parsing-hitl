@@ -1,0 +1,1866 @@
+{
+    "tierB-000001 run1": {
+        "sentence": "Ziri was running around constantly.",
+        "before": [
+            "(: ziri_name (Name ziri \"Ziri\") (STV 1.0 0.99))",
+            "(: run_ev (Member sk_run_around_1 run_around) (STV 1.0 0.99))",
+            "(: run_ag (Agent sk_run_around_1 ziri) (STV 1.0 0.99))",
+            "(: run_past (Past sk_run_around_1) (STV 1.0 0.99))",
+            "(: run_ong (Ongoing sk_run_around_1) (STV 1.0 0.99))",
+            "(: run_manner (Manner sk_run_around_1 constantly) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: run_ag (Agent e0 ziri) (STV 1.0 0.99))",
+            "(: run_manner (Manner e0 constantly) (STV 1.0 0.99))",
+            "(: run_ev (Member e0 run_around) (STV 1.0 0.99))",
+            "(: ziri_name (Name ziri \"Ziri\") (STV 1.0 0.99))",
+            "(: run_ong (Ongoing e0) (STV 1.0 0.99))",
+            "(: run_past (Past e0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000002 run1": {
+        "sentence": "Tom waited for Mary to ring.",
+        "before": [
+            "(: tom_name (Name tom \"Tom\") (STV 1.0 0.99))",
+            "(: mary_name (Name mary \"Mary\") (STV 1.0 0.99))",
+            "(: wait_ev (Member sk_wait_1 wait) (STV 1.0 0.99))",
+            "(: wait_exp (Experiencer sk_wait_1 tom) (STV 1.0 0.99))",
+            "(: wait_past (Past sk_wait_1) (STV 1.0 0.99))",
+            "(: ring_ev (Member sk_ring_1 ring) (STV 1.0 0.99))",
+            "(: ring_ag (Agent sk_ring_1 mary) (STV 1.0 0.99))",
+            "(: wait_th (Theme sk_wait_1 sk_ring_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: ring_ag (Agent e0 mary) (STV 1.0 0.99))",
+            "(: wait_exp (Experiencer e1 tom) (STV 1.0 0.99))",
+            "(: ring_ev (Member e0 ring) (STV 1.0 0.99))",
+            "(: wait_ev (Member e1 wait) (STV 1.0 0.99))",
+            "(: mary_name (Name mary \"Mary\") (STV 1.0 0.99))",
+            "(: tom_name (Name tom \"Tom\") (STV 1.0 0.99))",
+            "(: wait_past (Past e1) (STV 1.0 0.99))",
+            "(: wait_th (Theme e1 e0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000003 run1": {
+        "sentence": "The imam is not there.",
+        "before": [
+            "(: imam_m (Member sk_imam_1 imam) (STV 1.0 0.99))",
+            "(: be_neg (And (Member sk_be_1 be) (Experiencer sk_be_1 sk_imam_1) (Location sk_be_1 there)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: be_neg (And (Experiencer x0 x1) (Location x0 there) (Member x0 be)) (STV 0.0 0.99))",
+            "(: imam_m (Member x1 imam) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000004 run1": {
+        "sentence": "Tom leaves the lights on all day.",
+        "before": [
+            "(: tom_name (Name tom \"Tom\") (STV 1.0 0.99))",
+            "(: leave_ev (Member sk_leave_1 leave) (STV 1.0 0.99))",
+            "(: leave_ag (Agent sk_leave_1 tom) (STV 1.0 0.99))",
+            "(: leave_pat (Patient sk_leave_1 sk_lights_1) (STV 1.0 0.99))",
+            "(: lights_grp (GroupOf sk_lights_1 light) (STV 1.0 0.99))",
+            "(: on_ev (Member sk_on_1 on) (STV 1.0 0.99))",
+            "(: on_exp (Experiencer sk_on_1 sk_lights_1) (STV 1.0 0.99))",
+            "(: on_flat (Member sk_lights_1 on) (STV 1.0 0.99))",
+            "(: leave_result (Result sk_leave_1 sk_on_1) (STV 1.0 0.99))",
+            "(: leave_dur (Measure sk_leave_1 duration 1 day) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: leave_ag (Agent e0 tom) (STV 1.0 0.99))",
+            "(: on_exp (Experiencer e1 x0) (STV 1.0 0.99))",
+            "(: lights_grp (GroupOf x0 light) (STV 1.0 0.99))",
+            "(: leave_dur (Measure e0 duration 1 day) (STV 1.0 0.99))",
+            "(: leave_ev (Member e0 leave) (STV 1.0 0.99))",
+            "(: on_ev (Member e1 on) (STV 1.0 0.99))",
+            "(: on_flat (Member x0 on) (STV 1.0 0.99))",
+            "(: tom_name (Name tom \"Tom\") (STV 1.0 0.99))",
+            "(: leave_pat (Patient e0 x0) (STV 1.0 0.99))",
+            "(: leave_result (Result e0 e1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000005 run1": {
+        "sentence": "The Berber-speaking population quickly plummeted with the arrival of the first French settlers.",
+        "before": [
+            "(: pop_m (Member sk_pop_1 berber_speaking_population) (STV 1.0 0.99))",
+            "(: pop_gen (Inheritance berber_speaking_population population) (STV 1.0 0.99))",
+            "(: pop_mod (Inheritance berber_speaking_population berber_speaking) (STV 1.0 0.99))",
+            "(: plummet_ev (Member sk_plummet_1 plummet) (STV 1.0 0.99))",
+            "(: plummet_pat (Patient sk_plummet_1 sk_pop_1) (STV 1.0 0.99))",
+            "(: plummet_past (Past sk_plummet_1) (STV 1.0 0.99))",
+            "(: plummet_manner (Manner sk_plummet_1 quick) (STV 1.0 0.99))",
+            "(: settlers_grp (GroupOf sk_settlers_1 french_settler) (STV 1.0 0.99))",
+            "(: settlers_gen (Inheritance french_settler settler) (STV 1.0 0.99))",
+            "(: settlers_mod (Inheritance french_settler french) (STV 1.0 0.99))",
+            "(: settlers_ord (Ordinal sk_settlers_1 1 arrival) (STV 1.0 0.99))",
+            "(: arrival_ev (Member sk_arrival_1 arrival) (STV 1.0 0.99))",
+            "(: arrival_ag (Agent sk_arrival_1 sk_settlers_1) (STV 1.0 0.99))",
+            "(: plummet_during (During sk_plummet_1 sk_arrival_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: arrival_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: plummet_during (During e1 e0) (STV 1.0 0.99))",
+            "(: settlers_grp (GroupOf x0 french_settler) (STV 1.0 0.99))",
+            "(: pop_mod (Inheritance berber_speaking_population berber_speaking) (STV 1.0 0.99))",
+            "(: pop_gen (Inheritance berber_speaking_population population) (STV 1.0 0.99))",
+            "(: settlers_mod (Inheritance french_settler french) (STV 1.0 0.99))",
+            "(: settlers_gen (Inheritance french_settler settler) (STV 1.0 0.99))",
+            "(: plummet_manner (Manner e1 quick) (STV 1.0 0.99))",
+            "(: arrival_ev (Member e0 arrival) (STV 1.0 0.99))",
+            "(: plummet_ev (Member e1 plummet) (STV 1.0 0.99))",
+            "(: pop_m (Member x1 berber_speaking_population) (STV 1.0 0.99))",
+            "(: settlers_ord (Ordinal x0 1 arrival) (STV 1.0 0.99))",
+            "(: plummet_past (Past e1) (STV 1.0 0.99))",
+            "(: plummet_pat (Patient e1 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000006 run1": {
+        "sentence": "Sami has never seen Layla in a relationship.",
+        "before": [
+            "(: sami_name (Name sami \"Sami\") (STV 1.0 0.99))",
+            "(: layla_name (Name layla \"Layla\") (STV 1.0 0.99))",
+            "(: see_neg (And (Member sk_see_1 see) (Experiencer sk_see_1 sami) (Stimulus sk_see_1 layla) (Member layla in_relationship) (Past sk_see_1)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: see_neg (And (Experiencer x0 sami) (Member layla in_relationship) (Member x0 see) (Past x0) (Stimulus x0 layla)) (STV 0.0 0.99))",
+            "(: layla_name (Name layla \"Layla\") (STV 1.0 0.99))",
+            "(: sami_name (Name sami \"Sami\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000007 run1": {
+        "sentence": "Sami is going to be a student.",
+        "before": [
+            "(: sami_will_student (Future (Member sami student)) (STV 1.0 0.99))",
+            "(: sami_name (Name sami \"Sami\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: sami_will_student (Future (Member sami student)) (STV 1.0 0.99))",
+            "(: sami_name (Name sami \"Sami\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000008 run1": {
+        "sentence": "Ziri was hiking on a very secluded hiking path.",
+        "before": [
+            "(: e_hike (Member sk_hike_1 hike) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_hike_1 ziri) (STV 1.0 0.99))",
+            "(: e_past (Past sk_hike_1) (STV 1.0 0.99))",
+            "(: e_ongoing (Ongoing sk_hike_1) (STV 1.0 0.99))",
+            "(: e_loc (Location sk_hike_1 sk_path_1) (STV 1.0 0.99))",
+            "(: path_member (Member sk_path_1 hiking_path) (STV 1.0 0.99))",
+            "(: path_genus (Inheritance hiking_path path) (STV 1.0 0.99))",
+            "(: path_secluded (Member sk_path_1 secluded) (STV 1.0 0.99))",
+            "(: path_degree (Degree sk_path_1 secluded very) (STV 1.0 0.99))",
+            "(: ziri_name (Name ziri \"Ziri\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 ziri) (STV 1.0 0.99))",
+            "(: path_degree (Degree x0 secluded very) (STV 1.0 0.99))",
+            "(: path_genus (Inheritance hiking_path path) (STV 1.0 0.99))",
+            "(: e_loc (Location e0 x0) (STV 1.0 0.99))",
+            "(: e_hike (Member e0 hike) (STV 1.0 0.99))",
+            "(: path_member (Member x0 hiking_path) (STV 1.0 0.99))",
+            "(: path_secluded (Member x0 secluded) (STV 1.0 0.99))",
+            "(: ziri_name (Name ziri \"Ziri\") (STV 1.0 0.99))",
+            "(: e_ongoing (Ongoing e0) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000009 run1": {
+        "sentence": "Miroslav used to hate that food.",
+        "before": [
+            "(: e_hate (Member sk_hate_1 hate) (STV 1.0 0.99))",
+            "(: e_exp (Experiencer sk_hate_1 miroslav) (STV 1.0 0.99))",
+            "(: e_stim (Stimulus sk_hate_1 sk_food_1) (STV 1.0 0.99))",
+            "(: food_member (Member sk_food_1 food) (STV 1.0 0.99))",
+            "(: e_past (Past sk_hate_1) (STV 1.0 0.99))",
+            "(: e_denial (And (Member sk_hate_1 hate) (Experiencer sk_hate_1 miroslav) (Stimulus sk_hate_1 sk_food_1)) (STV 0.0 0.99))",
+            "(: miroslav_name (Name miroslav \"Miroslav\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_denial (And (Experiencer e0 miroslav) (Member e0 hate) (Stimulus e0 x0)) (STV 0.0 0.99))",
+            "(: e_exp (Experiencer e0 miroslav) (STV 1.0 0.99))",
+            "(: e_hate (Member e0 hate) (STV 1.0 0.99))",
+            "(: food_member (Member x0 food) (STV 1.0 0.99))",
+            "(: miroslav_name (Name miroslav \"Miroslav\") (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_stim (Stimulus e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000010 run1": {
+        "sentence": "Everyone went to Boston except Tom.",
+        "before": [
+            "(: everyone_went (Implication (Premises (Member $x person) (Compute == ($x tom) -> false)) (Conclusions (Member (sk_go $x) go) (Agent (sk_go $x) $x) (Goal (sk_go $x) boston) (Past (sk_go $x)))) (STV 1.0 0.9))",
+            "(: tom_name (Name tom \"Tom\") (STV 1.0 0.99))",
+            "(: tom_not_go (And (Member sk_go_1 go) (Agent sk_go_1 tom) (Goal sk_go_1 boston) (Past sk_go_1)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: tom_not_go (And (Agent x0 tom) (Goal x0 boston) (Member x0 go) (Past x0)) (STV 0.0 0.99))",
+            "(: everyone_went (Implication (Premises (Member $v0 person) (Compute == ($v0 tom) -> false)) (Conclusions (Member (f0 $v0) go) (Agent (f0 $v0) $v0) (Goal (f0 $v0) boston) (Past (f0 $v0)))) (STV 1.0 0.9))",
+            "(: tom_name (Name tom \"Tom\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000011 run1": {
+        "sentence": "Janos was a bit scared.",
+        "before": [
+            "(: e_scared (Past (Member janos scared)) (STV 1.0 0.99))",
+            "(: e_degree (Degree janos scared a_bit) (STV 1.0 0.99))",
+            "(: janos_name (Name janos \"Janos\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_degree (Degree janos scared a_bit) (STV 1.0 0.99))",
+            "(: janos_name (Name janos \"Janos\") (STV 1.0 0.99))",
+            "(: e_scared (Past (Member janos scared)) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000012 run1": {
+        "sentence": "Kalman and Olivia partied that night and went to bed late.",
+        "before": [
+            "(: e_party1 (Member sk_party_1 party) (STV 1.0 0.99))",
+            "(: e_party1_ag (Agent sk_party_1 kalman) (STV 1.0 0.99))",
+            "(: e_party1_past (Past sk_party_1) (STV 1.0 0.99))",
+            "(: e_party1_time (Time sk_party_1 night) (STV 1.0 0.99))",
+            "(: e_party2 (Member sk_party_2 party) (STV 1.0 0.99))",
+            "(: e_party2_ag (Agent sk_party_2 olivia) (STV 1.0 0.99))",
+            "(: e_party2_past (Past sk_party_2) (STV 1.0 0.99))",
+            "(: e_party2_time (Time sk_party_2 night) (STV 1.0 0.99))",
+            "(: e_go1 (Member sk_go_1 go) (STV 1.0 0.99))",
+            "(: e_go1_ag (Agent sk_go_1 kalman) (STV 1.0 0.99))",
+            "(: e_go1_goal (Goal sk_go_1 bed) (STV 1.0 0.99))",
+            "(: e_go1_past (Past sk_go_1) (STV 1.0 0.99))",
+            "(: e_go1_manner (Manner sk_go_1 late) (STV 1.0 0.99))",
+            "(: e_go2 (Member sk_go_2 go) (STV 1.0 0.99))",
+            "(: e_go2_ag (Agent sk_go_2 olivia) (STV 1.0 0.99))",
+            "(: e_go2_goal (Goal sk_go_2 bed) (STV 1.0 0.99))",
+            "(: e_go2_past (Past sk_go_2) (STV 1.0 0.99))",
+            "(: e_go2_manner (Manner sk_go_2 late) (STV 1.0 0.99))",
+            "(: kalman_name (Name kalman \"Kalman\") (STV 1.0 0.99))",
+            "(: olivia_name (Name olivia \"Olivia\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_go1_ag (Agent e0 kalman) (STV 1.0 0.99))",
+            "(: e_party2_ag (Agent e1 olivia) (STV 1.0 0.99))",
+            "(: e_party1_ag (Agent e2 kalman) (STV 1.0 0.99))",
+            "(: e_go2_ag (Agent e3 olivia) (STV 1.0 0.99))",
+            "(: e_go1_goal (Goal e0 bed) (STV 1.0 0.99))",
+            "(: e_go2_goal (Goal e3 bed) (STV 1.0 0.99))",
+            "(: e_go1_manner (Manner e0 late) (STV 1.0 0.99))",
+            "(: e_go2_manner (Manner e3 late) (STV 1.0 0.99))",
+            "(: e_go1 (Member e0 go) (STV 1.0 0.99))",
+            "(: e_party2 (Member e1 party) (STV 1.0 0.99))",
+            "(: e_party1 (Member e2 party) (STV 1.0 0.99))",
+            "(: e_go2 (Member e3 go) (STV 1.0 0.99))",
+            "(: kalman_name (Name kalman \"Kalman\") (STV 1.0 0.99))",
+            "(: olivia_name (Name olivia \"Olivia\") (STV 1.0 0.99))",
+            "(: e_go1_past (Past e0) (STV 1.0 0.99))",
+            "(: e_party2_past (Past e1) (STV 1.0 0.99))",
+            "(: e_party1_past (Past e2) (STV 1.0 0.99))",
+            "(: e_go2_past (Past e3) (STV 1.0 0.99))",
+            "(: e_party2_time (Time e1 night) (STV 1.0 0.99))",
+            "(: e_party1_time (Time e2 night) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000013 run1": {
+        "sentence": "Ziri is hitting on Rima.",
+        "before": [
+            "(: e_hiton (Member sk_hit_on_1 hit_on) (STV 1.0 0.99))",
+            "(: e_ag (Agent sk_hit_on_1 ziri) (STV 1.0 0.99))",
+            "(: e_th (Theme sk_hit_on_1 rima) (STV 1.0 0.99))",
+            "(: e_ongoing (Ongoing sk_hit_on_1) (STV 1.0 0.99))",
+            "(: ziri_name (Name ziri \"Ziri\") (STV 1.0 0.99))",
+            "(: rima_name (Name rima \"Rima\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_ag (Agent e0 ziri) (STV 1.0 0.99))",
+            "(: e_hiton (Member e0 hit_on) (STV 1.0 0.99))",
+            "(: rima_name (Name rima \"Rima\") (STV 1.0 0.99))",
+            "(: ziri_name (Name ziri \"Ziri\") (STV 1.0 0.99))",
+            "(: e_ongoing (Ongoing e0) (STV 1.0 0.99))",
+            "(: e_th (Theme e0 rima) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000014 run1": {
+        "sentence": "There was nothing to be seen but fog.",
+        "before": [
+            "(: e_see (Member sk_see_1 see) (STV 1.0 0.99))",
+            "(: e_stim (Stimulus sk_see_1 sk_fog_1) (STV 1.0 0.99))",
+            "(: e_fog (Member sk_fog_1 fog) (STV 1.0 0.99))",
+            "(: e_past (Past sk_see_1) (STV 1.0 0.99))",
+            "(: e_can (Can sk_see_1) (STV 1.0 0.99))",
+            "(: e_only (Only sk_fog_1 sk_see_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_can (Can e0) (STV 1.0 0.99))",
+            "(: e_see (Member e0 see) (STV 1.0 0.99))",
+            "(: e_fog (Member x0 fog) (STV 1.0 0.99))",
+            "(: e_only (Only x0 e0) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_stim (Stimulus e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000015 run1": {
+        "sentence": "The purchase of pirated copies is against the law.",
+        "before": [
+            "(: pc_genus (Inheritance purchase_copy purchase) (STV 1.0 0.99))",
+            "(: pc_patient (Patient purchase_copy pirated_copy) (STV 1.0 0.99))",
+            "(: pcopy_genus (Inheritance pirated_copy copy) (STV 1.0 0.99))",
+            "(: pcopy_prop (Inheritance pirated_copy pirated) (STV 1.0 0.99))",
+            "(: pc_illegal (Inheritance purchase_copy against_the_law) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: pcopy_genus (Inheritance pirated_copy copy) (STV 1.0 0.99))",
+            "(: pcopy_prop (Inheritance pirated_copy pirated) (STV 1.0 0.99))",
+            "(: pc_illegal (Inheritance purchase_copy against_the_law) (STV 1.0 0.99))",
+            "(: pc_genus (Inheritance purchase_copy purchase) (STV 1.0 0.99))",
+            "(: pc_patient (Patient purchase_copy pirated_copy) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000016 run1": {
+        "sentence": "On the table was an earthenware bowl filled with steaming potatoes.",
+        "before": [
+            "(: table_member (Member sk_table_1 table) (STV 1.0 0.99))",
+            "(: bowl_member (Member sk_bowl_1 earthenware_bowl) (STV 1.0 0.99))",
+            "(: bowl_genus (Inheritance earthenware_bowl bowl) (STV 1.0 0.99))",
+            "(: e_filled (Member sk_filled_1 filled) (STV 1.0 0.99))",
+            "(: e_filled_exp (Experiencer sk_filled_1 sk_bowl_1) (STV 1.0 0.99))",
+            "(: e_filled_flat (Member sk_bowl_1 filled) (STV 1.0 0.99))",
+            "(: e_filled_instr (Instrument sk_filled_1 sk_potato_1) (STV 1.0 0.99))",
+            "(: e_filled_loc (Location sk_filled_1 sk_table_1) (STV 1.0 0.99))",
+            "(: e_filled_past (Past sk_filled_1) (STV 1.0 0.99))",
+            "(: potato_group (GroupOf sk_potato_1 potato) (STV 1.0 0.99))",
+            "(: potato_steaming (Member sk_potato_1 steaming) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_filled_exp (Experiencer e0 x0) (STV 1.0 0.99))",
+            "(: potato_group (GroupOf x1 potato) (STV 1.0 0.99))",
+            "(: bowl_genus (Inheritance earthenware_bowl bowl) (STV 1.0 0.99))",
+            "(: e_filled_instr (Instrument e0 x1) (STV 1.0 0.99))",
+            "(: e_filled_loc (Location e0 x2) (STV 1.0 0.99))",
+            "(: e_filled (Member e0 filled) (STV 1.0 0.99))",
+            "(: bowl_member (Member x0 earthenware_bowl) (STV 1.0 0.99))",
+            "(: e_filled_flat (Member x0 filled) (STV 1.0 0.99))",
+            "(: potato_steaming (Member x1 steaming) (STV 1.0 0.99))",
+            "(: table_member (Member x2 table) (STV 1.0 0.99))",
+            "(: e_filled_past (Past e0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000017 run1": {
+        "sentence": "There is no bus ride.",
+        "before": [
+            "(: e_genus (Inheritance bus_ride ride) (STV 1.0 0.99))",
+            "(: e_ride (Member sk_ride_1 bus_ride) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: e_genus (Inheritance bus_ride ride) (STV 1.0 0.99))",
+            "(: e_ride (Member x0 bus_ride) (STV 0.0 0.99))"
+        ]
+    },
+    "tierB-000018 run1": {
+        "sentence": "Roads turned into rivers, with vehicles swept away by the rapid currents.",
+        "before": [
+            "(: road_group (GroupOf sk_road_1 road) (STV 1.0 0.99))",
+            "(: e_turn (Member sk_turn_1 turn) (STV 1.0 0.99))",
+            "(: e_turn_patient (Patient sk_turn_1 sk_road_1) (STV 1.0 0.99))",
+            "(: e_turn_goal (Goal sk_turn_1 river) (STV 1.0 0.99))",
+            "(: e_turn_past (Past sk_turn_1) (STV 1.0 0.99))",
+            "(: vehicle_group (GroupOf sk_vehicle_1 vehicle) (STV 1.0 0.99))",
+            "(: current_group (GroupOf sk_current_1 current) (STV 1.0 0.99))",
+            "(: current_rapid (Member sk_current_1 rapid) (STV 1.0 0.99))",
+            "(: e_sweep (Member sk_sweep_1 sweep_away) (STV 1.0 0.99))",
+            "(: e_sweep_agent (Agent sk_sweep_1 sk_current_1) (STV 1.0 0.99))",
+            "(: e_sweep_theme (Theme sk_sweep_1 sk_vehicle_1) (STV 1.0 0.99))",
+            "(: e_sweep_past (Past sk_sweep_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_sweep_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_turn_goal (Goal e1 river) (STV 1.0 0.99))",
+            "(: current_group (GroupOf x0 current) (STV 1.0 0.99))",
+            "(: vehicle_group (GroupOf x1 vehicle) (STV 1.0 0.99))",
+            "(: road_group (GroupOf x2 road) (STV 1.0 0.99))",
+            "(: e_sweep (Member e0 sweep_away) (STV 1.0 0.99))",
+            "(: e_turn (Member e1 turn) (STV 1.0 0.99))",
+            "(: current_rapid (Member x0 rapid) (STV 1.0 0.99))",
+            "(: e_sweep_past (Past e0) (STV 1.0 0.99))",
+            "(: e_turn_past (Past e1) (STV 1.0 0.99))",
+            "(: e_turn_patient (Patient e1 x2) (STV 1.0 0.99))",
+            "(: e_sweep_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000019 run1": {
+        "sentence": "There are some brown balls in the red basket.",
+        "before": [
+            "(: balls_group (GroupOf sk_group_1 ball) (STV 1.0 0.99))",
+            "(: balls_card (CardinalityPhrase sk_group_1 \"some\") (STV 1.0 0.99))",
+            "(: balls_brown (Member sk_group_1 brown) (STV 1.0 0.99))",
+            "(: balls_loc (Location sk_group_1 sk_basket_1) (STV 1.0 0.99))",
+            "(: basket_m (Member sk_basket_1 basket) (STV 1.0 0.99))",
+            "(: basket_red (Member sk_basket_1 red) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: balls_card (CardinalityPhrase e0 \"some\") (STV 1.0 0.99))",
+            "(: balls_group (GroupOf e0 ball) (STV 1.0 0.99))",
+            "(: balls_loc (Location e0 x0) (STV 1.0 0.99))",
+            "(: balls_brown (Member e0 brown) (STV 1.0 0.99))",
+            "(: basket_m (Member x0 basket) (STV 1.0 0.99))",
+            "(: basket_red (Member x0 red) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000020 run1": {
+        "sentence": "Seven minus four make three.",
+        "before": [
+            "(: seven_minus_four (Compute - (7 4) -> 3) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: seven_minus_four (Compute - (7 4) -> 3) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000021 run1": {
+        "sentence": "Mary tried on a dress.",
+        "before": [
+            "(: e_tryon (Member sk_try_on_1 try_on) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_try_on_1 mary) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_try_on_1 sk_dress_1) (STV 1.0 0.99))",
+            "(: dress_m (Member sk_dress_1 dress) (STV 1.0 0.99))",
+            "(: e_past (Past sk_try_on_1) (STV 1.0 0.99))",
+            "(: mary_name (Name mary \"Mary\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 mary) (STV 1.0 0.99))",
+            "(: e_tryon (Member e0 try_on) (STV 1.0 0.99))",
+            "(: dress_m (Member x0 dress) (STV 1.0 0.99))",
+            "(: mary_name (Name mary \"Mary\") (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000022 run1": {
+        "sentence": "Several bridges have been damaged or swept away.",
+        "before": [
+            "(: bridges_group (GroupOf sk_group_1 bridge) (STV 1.0 0.99))",
+            "(: bridges_card (CardinalityPhrase sk_group_1 \"several\") (STV 1.0 0.99))",
+            "(: bridges_fate (Or (And (Member sk_damage_1 damage) (Patient sk_damage_1 sk_group_1) (Past sk_damage_1)) (And (Member sk_sweep_away_1 sweep_away) (Patient sk_sweep_away_1 sk_group_1) (Past sk_sweep_away_1))) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: bridges_card (CardinalityPhrase x0 \"several\") (STV 1.0 0.99))",
+            "(: bridges_group (GroupOf x0 bridge) (STV 1.0 0.99))",
+            "(: bridges_fate (Or (And (Member x1 damage) (Past x1) (Patient x1 x0)) (And (Member x2 sweep_away) (Past x2) (Patient x2 x0))) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000023 run1": {
+        "sentence": "This is not a good omen.",
+        "before": [
+            "(: this_not_good_omen (And (Member sk_this_1 omen) (Member sk_this_1 good)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: this_not_good_omen (And (Member x0 good) (Member x0 omen)) (STV 0.0 0.99))"
+        ]
+    },
+    "tierB-000024 run1": {
+        "sentence": "A good cat, a good rat.",
+        "before": [
+            "(: cat_m (Member sk_cat_1 cat) (STV 1.0 0.99))",
+            "(: cat_good (Member sk_cat_1 good) (STV 1.0 0.99))",
+            "(: rat_m (Member sk_rat_1 rat) (STV 1.0 0.99))",
+            "(: rat_good (Member sk_rat_1 good) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: rat_good (Member x0 good) (STV 1.0 0.99))",
+            "(: rat_m (Member x0 rat) (STV 1.0 0.99))",
+            "(: cat_m (Member x1 cat) (STV 1.0 0.99))",
+            "(: cat_good (Member x1 good) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000025 run1": {
+        "sentence": "Elias can always make a difference.",
+        "before": [
+            "(: e_make (Member sk_make_1 make) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_make_1 elias) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_make_1 sk_difference_1) (STV 1.0 0.99))",
+            "(: diff_m (Member sk_difference_1 difference) (STV 1.0 0.99))",
+            "(: e_can (Can sk_make_1) (STV 1.0 0.99))",
+            "(: elias_name (Name elias \"Elias\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 elias) (STV 1.0 0.99))",
+            "(: e_can (Can e0) (STV 1.0 0.99))",
+            "(: e_make (Member e0 make) (STV 1.0 0.99))",
+            "(: diff_m (Member x0 difference) (STV 1.0 0.99))",
+            "(: elias_name (Name elias \"Elias\") (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000026 run1": {
+        "sentence": "Sami has been following Layla.",
+        "before": [
+            "(: e_follow (Member sk_follow_1 follow) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_follow_1 sami) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_follow_1 layla) (STV 1.0 0.99))",
+            "(: e_ongoing (Ongoing sk_follow_1) (STV 1.0 0.99))",
+            "(: sami_name (Name sami \"Sami\") (STV 1.0 0.99))",
+            "(: layla_name (Name layla \"Layla\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 sami) (STV 1.0 0.99))",
+            "(: e_follow (Member e0 follow) (STV 1.0 0.99))",
+            "(: layla_name (Name layla \"Layla\") (STV 1.0 0.99))",
+            "(: sami_name (Name sami \"Sami\") (STV 1.0 0.99))",
+            "(: e_ongoing (Ongoing e0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 layla) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000027 run1": {
+        "sentence": "Fishing trawlers have fished out all the local waters.",
+        "before": [
+            "(: trawler_genus (Inheritance fishing_trawler trawler) (STV 1.0 0.99))",
+            "(: trawlers_group (GroupOf sk_group_1 fishing_trawler) (STV 1.0 0.99))",
+            "(: waters_m (Member sk_waters_1 water) (STV 1.0 0.99))",
+            "(: waters_local (Member sk_waters_1 local) (STV 1.0 0.99))",
+            "(: e_fishout (Member sk_fish_out_1 fish_out) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_fish_out_1 sk_group_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_fish_out_1 sk_waters_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_fish_out_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: trawlers_group (GroupOf x0 fishing_trawler) (STV 1.0 0.99))",
+            "(: trawler_genus (Inheritance fishing_trawler trawler) (STV 1.0 0.99))",
+            "(: e_fishout (Member e0 fish_out) (STV 1.0 0.99))",
+            "(: waters_local (Member x1 local) (STV 1.0 0.99))",
+            "(: waters_m (Member x1 water) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000028 run1": {
+        "sentence": "The nurse is dressing the wound.",
+        "before": [
+            "(: nurse_m (Member sk_nurse_1 nurse) (STV 1.0 0.99))",
+            "(: wound_m (Member sk_wound_1 wound) (STV 1.0 0.99))",
+            "(: e_dress (Member sk_dress_1 dress) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_dress_1 sk_nurse_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_dress_1 sk_wound_1) (STV 1.0 0.99))",
+            "(: e_ongoing (Ongoing sk_dress_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_dress (Member e0 dress) (STV 1.0 0.99))",
+            "(: nurse_m (Member x0 nurse) (STV 1.0 0.99))",
+            "(: wound_m (Member x1 wound) (STV 1.0 0.99))",
+            "(: e_ongoing (Ongoing e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000029 run1": {
+        "sentence": "Karl teleported Rima to Algeria.",
+        "before": [
+            "(: e_teleport (Member sk_teleport_1 teleport) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_teleport_1 karl) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_teleport_1 rima) (STV 1.0 0.99))",
+            "(: e_goal (Goal sk_teleport_1 algeria) (STV 1.0 0.99))",
+            "(: e_past (Past sk_teleport_1) (STV 1.0 0.99))",
+            "(: karl_name (Name karl \"Karl\") (STV 1.0 0.99))",
+            "(: rima_name (Name rima \"Rima\") (STV 1.0 0.99))",
+            "(: algeria_name (Name algeria \"Algeria\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 karl) (STV 1.0 0.99))",
+            "(: e_goal (Goal e0 algeria) (STV 1.0 0.99))",
+            "(: e_teleport (Member e0 teleport) (STV 1.0 0.99))",
+            "(: algeria_name (Name algeria \"Algeria\") (STV 1.0 0.99))",
+            "(: karl_name (Name karl \"Karl\") (STV 1.0 0.99))",
+            "(: rima_name (Name rima \"Rima\") (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 rima) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000030 run1": {
+        "sentence": "Rima and Skura stopped crying.",
+        "before": [
+            "(: e_stop1 (Member sk_stop_1 stop) (STV 1.0 0.99))",
+            "(: e_agent1 (Agent sk_stop_1 rima) (STV 1.0 0.99))",
+            "(: e_theme1 (Theme sk_stop_1 sk_cry_1) (STV 1.0 0.99))",
+            "(: e_cry1 (Member sk_cry_1 cry) (STV 1.0 0.99))",
+            "(: e_cryagent1 (Agent sk_cry_1 rima) (STV 1.0 0.99))",
+            "(: e_crypast1 (Past sk_cry_1) (STV 1.0 0.99))",
+            "(: e_past1 (Past sk_stop_1) (STV 1.0 0.99))",
+            "(: e_stop2 (Member sk_stop_2 stop) (STV 1.0 0.99))",
+            "(: e_agent2 (Agent sk_stop_2 skura) (STV 1.0 0.99))",
+            "(: e_theme2 (Theme sk_stop_2 sk_cry_2) (STV 1.0 0.99))",
+            "(: e_cry2 (Member sk_cry_2 cry) (STV 1.0 0.99))",
+            "(: e_cryagent2 (Agent sk_cry_2 skura) (STV 1.0 0.99))",
+            "(: e_crypast2 (Past sk_cry_2) (STV 1.0 0.99))",
+            "(: e_past2 (Past sk_stop_2) (STV 1.0 0.99))",
+            "(: rima_name (Name rima \"Rima\") (STV 1.0 0.99))",
+            "(: skura_name (Name skura \"Skura\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent2 (Agent e0 skura) (STV 1.0 0.99))",
+            "(: e_agent1 (Agent e1 rima) (STV 1.0 0.99))",
+            "(: e_cryagent1 (Agent e2 rima) (STV 1.0 0.99))",
+            "(: e_cryagent2 (Agent e3 skura) (STV 1.0 0.99))",
+            "(: e_stop2 (Member e0 stop) (STV 1.0 0.99))",
+            "(: e_stop1 (Member e1 stop) (STV 1.0 0.99))",
+            "(: e_cry1 (Member e2 cry) (STV 1.0 0.99))",
+            "(: e_cry2 (Member e3 cry) (STV 1.0 0.99))",
+            "(: rima_name (Name rima \"Rima\") (STV 1.0 0.99))",
+            "(: skura_name (Name skura \"Skura\") (STV 1.0 0.99))",
+            "(: e_past2 (Past e0) (STV 1.0 0.99))",
+            "(: e_past1 (Past e1) (STV 1.0 0.99))",
+            "(: e_crypast1 (Past e2) (STV 1.0 0.99))",
+            "(: e_crypast2 (Past e3) (STV 1.0 0.99))",
+            "(: e_theme2 (Theme e0 e3) (STV 1.0 0.99))",
+            "(: e_theme1 (Theme e1 e2) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000031 run1": {
+        "sentence": "Georgetown is the capital of Guyana.",
+        "before": [
+            "(: georgetown_capital (Member georgetown capital) (STV 1.0 0.99))",
+            "(: georgetown_partof_guyana (PartOf georgetown guyana) (STV 1.0 0.99))",
+            "(: georgetown_name (Name georgetown \"Georgetown\") (STV 1.0 0.99))",
+            "(: guyana_name (Name guyana \"Guyana\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: georgetown_capital (Member georgetown capital) (STV 1.0 0.99))",
+            "(: georgetown_name (Name georgetown \"Georgetown\") (STV 1.0 0.99))",
+            "(: guyana_name (Name guyana \"Guyana\") (STV 1.0 0.99))",
+            "(: georgetown_partof_guyana (PartOf georgetown guyana) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000032 run1": {
+        "sentence": "There is a lot of water behind the dam.",
+        "before": [
+            "(: water_mem (Member sk_water_1 water) (STV 1.0 0.99))",
+            "(: water_qty (CardinalityPhrase sk_water_1 \"a lot of\") (STV 1.0 0.99))",
+            "(: dam_mem (Member sk_dam_1 dam) (STV 1.0 0.99))",
+            "(: water_loc (Location sk_water_1 sk_dam_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: water_qty (CardinalityPhrase e0 \"a lot of\") (STV 1.0 0.99))",
+            "(: water_loc (Location e0 x0) (STV 1.0 0.99))",
+            "(: water_mem (Member e0 water) (STV 1.0 0.99))",
+            "(: dam_mem (Member x0 dam) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000033 run1": {
+        "sentence": "There were no survivors of the accident.",
+        "before": [
+            "(: accident_mem (Member sk_accident_1 accident) (STV 1.0 0.99))",
+            "(: survivor_group (GroupOf sk_group_1 survivor) (STV 1.0 0.99))",
+            "(: survivor_count (Cardinality sk_group_1 0) (STV 1.0 0.99))",
+            "(: survivor_poss (Possession sk_group_1 sk_accident_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: survivor_count (Cardinality x0 0) (STV 1.0 0.99))",
+            "(: survivor_group (GroupOf x0 survivor) (STV 1.0 0.99))",
+            "(: accident_mem (Member x1 accident) (STV 1.0 0.99))",
+            "(: survivor_poss (Possession x0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000034 run1": {
+        "sentence": "The applicability of any given comment depends on topics already established within the conversation.",
+        "before": [
+            "(: conversation_mem (Member sk_conversation_1 conversation) (STV 1.0 0.99))",
+            "(: topic_group (GroupOf sk_topic_1 topic) (STV 1.0 0.99))",
+            "(: establish_mem (Member sk_establish_1 establish) (STV 1.0 0.99))",
+            "(: establish_patient (Patient sk_establish_1 sk_topic_1) (STV 1.0 0.99))",
+            "(: establish_loc (Location sk_establish_1 sk_conversation_1) (STV 1.0 0.99))",
+            "(: establish_past (Past sk_establish_1) (STV 1.0 0.99))",
+            "(: establish_already (Already sk_establish_1) (STV 1.0 0.99))",
+            "(: comment_applic_depend_rule (Implication (Premises (Member $c comment)) (Conclusions (Member (sk_applicability $c) applicability) (Experiencer (sk_applicability $c) $c) (Member (sk_depend $c) depend) (Experiencer (sk_depend $c) (sk_applicability $c)) (Theme (sk_depend $c) sk_topic_1))) (STV 1.0 0.9))",
+            "(: comment_q (QuantifierPhrase comment depend \"any\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: establish_already (Already e0) (STV 1.0 0.99))",
+            "(: topic_group (GroupOf x0 topic) (STV 1.0 0.99))",
+            "(: comment_applic_depend_rule (Implication (Premises (Member $v0 comment)) (Conclusions (Member (f0 $v0) applicability) (Experiencer (f0 $v0) $v0) (Member (f1 $v0) depend) (Experiencer (f1 $v0) (f0 $v0)) (Theme (f1 $v0) x0))) (STV 1.0 0.9))",
+            "(: establish_loc (Location e0 x1) (STV 1.0 0.99))",
+            "(: establish_mem (Member e0 establish) (STV 1.0 0.99))",
+            "(: conversation_mem (Member x1 conversation) (STV 1.0 0.99))",
+            "(: establish_past (Past e0) (STV 1.0 0.99))",
+            "(: establish_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: comment_q (QuantifierPhrase comment depend \"any\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000035 run1": {
+        "sentence": "Modern ships only need a small crew.",
+        "before": [
+            "(: ms_genus (Inheritance modern_ship ship) (STV 1.0 0.99))",
+            "(: ms_prop (Inheritance modern_ship modern) (STV 1.0 0.99))",
+            "(: ship_crew_rule (Implication (Premises (Member $x modern_ship)) (Conclusions (Member (sk_need $x) need) (Experiencer (sk_need $x) $x) (Theme (sk_need $x) (sk_crew $x)) (Member (sk_crew $x) crew) (Member (sk_crew $x) small) (Only (sk_crew $x) (sk_need $x)))) (STV 0.9 0.9))"
+        ],
+        "after": [
+            "(: ship_crew_rule (Implication (Premises (Member $v0 modern_ship)) (Conclusions (Member (f0 $v0) need) (Experiencer (f0 $v0) $v0) (Theme (f0 $v0) (f1 $v0)) (Member (f1 $v0) crew) (Member (f1 $v0) small) (Only (f1 $v0) (f0 $v0)))) (STV 0.9 0.9))",
+            "(: ms_prop (Inheritance modern_ship modern) (STV 1.0 0.99))",
+            "(: ms_genus (Inheritance modern_ship ship) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000036 run1": {
+        "sentence": "The ant is walking on the little balloon.",
+        "before": [
+            "(: walk_mem (Member sk_walk_1 walk) (STV 1.0 0.99))",
+            "(: walk_agent (Agent sk_walk_1 sk_ant_1) (STV 1.0 0.99))",
+            "(: ant_mem (Member sk_ant_1 ant) (STV 1.0 0.99))",
+            "(: walk_loc (Location sk_walk_1 sk_balloon_1) (STV 1.0 0.99))",
+            "(: balloon_mem (Member sk_balloon_1 balloon) (STV 1.0 0.99))",
+            "(: balloon_little (Member sk_balloon_1 little) (STV 1.0 0.99))",
+            "(: walk_ongoing (Ongoing sk_walk_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: walk_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: walk_loc (Location e0 x1) (STV 1.0 0.99))",
+            "(: walk_mem (Member e0 walk) (STV 1.0 0.99))",
+            "(: ant_mem (Member x0 ant) (STV 1.0 0.99))",
+            "(: balloon_mem (Member x1 balloon) (STV 1.0 0.99))",
+            "(: balloon_little (Member x1 little) (STV 1.0 0.99))",
+            "(: walk_ongoing (Ongoing e0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000037 run1": {
+        "sentence": "That four-year plan has to be approved.",
+        "before": [
+            "(: plan_mem (Member sk_plan_1 plan) (STV 1.0 0.99))",
+            "(: plan_dur (Measure sk_plan_1 duration 4 year) (STV 1.0 0.99))",
+            "(: approve_mem (Member sk_approve_1 approve) (STV 1.0 0.99))",
+            "(: approve_thm (Theme sk_approve_1 sk_plan_1) (STV 1.0 0.99))",
+            "(: approve_obl (Obligated sk_approve_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: plan_dur (Measure x0 duration 4 year) (STV 1.0 0.99))",
+            "(: approve_mem (Member e0 approve) (STV 1.0 0.99))",
+            "(: plan_mem (Member x0 plan) (STV 1.0 0.99))",
+            "(: approve_obl (Obligated e0) (STV 1.0 0.99))",
+            "(: approve_thm (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000038 run1": {
+        "sentence": "Money can change a person in a few minutes.",
+        "before": [
+            "(: change_mem (Member sk_change_1 change) (STV 1.0 0.99))",
+            "(: change_agt (Agent sk_change_1 money) (STV 1.0 0.99))",
+            "(: change_pat (Patient sk_change_1 person) (STV 1.0 0.99))",
+            "(: change_can (Can sk_change_1) (STV 1.0 0.99))",
+            "(: change_dur (MeasureAtLeast sk_change_1 duration 2 minute) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: change_agt (Agent e0 money) (STV 1.0 0.99))",
+            "(: change_can (Can e0) (STV 1.0 0.99))",
+            "(: change_dur (MeasureAtLeast e0 duration 2 minute) (STV 1.0 0.99))",
+            "(: change_mem (Member e0 change) (STV 1.0 0.99))",
+            "(: change_pat (Patient e0 person) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000039 run1": {
+        "sentence": "Oak, pine and birch trees grow in this wood.",
+        "before": [
+            "(: wood_mem (Member sk_wood_1 wood) (STV 1.0 0.99))",
+            "(: oak_genus (Inheritance oak_tree tree) (STV 1.0 0.99))",
+            "(: pine_genus (Inheritance pine_tree tree) (STV 1.0 0.99))",
+            "(: birch_genus (Inheritance birch_tree tree) (STV 1.0 0.99))",
+            "(: grow1_mem (Member sk_grow_1 grow) (STV 1.0 0.99))",
+            "(: grow1_pat (Patient sk_grow_1 oak_tree) (STV 1.0 0.99))",
+            "(: grow1_loc (Location sk_grow_1 sk_wood_1) (STV 1.0 0.99))",
+            "(: grow2_mem (Member sk_grow_2 grow) (STV 1.0 0.99))",
+            "(: grow2_pat (Patient sk_grow_2 pine_tree) (STV 1.0 0.99))",
+            "(: grow2_loc (Location sk_grow_2 sk_wood_1) (STV 1.0 0.99))",
+            "(: grow3_mem (Member sk_grow_3 grow) (STV 1.0 0.99))",
+            "(: grow3_pat (Patient sk_grow_3 birch_tree) (STV 1.0 0.99))",
+            "(: grow3_loc (Location sk_grow_3 sk_wood_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: birch_genus (Inheritance birch_tree tree) (STV 1.0 0.99))",
+            "(: oak_genus (Inheritance oak_tree tree) (STV 1.0 0.99))",
+            "(: pine_genus (Inheritance pine_tree tree) (STV 1.0 0.99))",
+            "(: grow2_loc (Location e0 x0) (STV 1.0 0.99))",
+            "(: grow1_loc (Location e1 x0) (STV 1.0 0.99))",
+            "(: grow3_loc (Location e2 x0) (STV 1.0 0.99))",
+            "(: grow2_mem (Member e0 grow) (STV 1.0 0.99))",
+            "(: grow1_mem (Member e1 grow) (STV 1.0 0.99))",
+            "(: grow3_mem (Member e2 grow) (STV 1.0 0.99))",
+            "(: wood_mem (Member x0 wood) (STV 1.0 0.99))",
+            "(: grow2_pat (Patient e0 pine_tree) (STV 1.0 0.99))",
+            "(: grow1_pat (Patient e1 oak_tree) (STV 1.0 0.99))",
+            "(: grow3_pat (Patient e2 birch_tree) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000040 run1": {
+        "sentence": "Finally, the prophecies lead to the lost glory in and over the people of God.",
+        "before": [
+            "(: god_name (Name god \"God\") (STV 1.0 0.99))",
+            "(: people_grp (GroupOf sk_people_1 person) (STV 1.0 0.99))",
+            "(: people_poss (Possession sk_people_1 god) (STV 1.0 0.99))",
+            "(: glory_mem (Member sk_glory_1 glory) (STV 1.0 0.99))",
+            "(: glory_lost (Member sk_glory_1 lost) (STV 1.0 0.99))",
+            "(: glory_loc (Location sk_glory_1 sk_people_1) (STV 1.0 0.99))",
+            "(: prophecy_grp (GroupOf sk_prophecies_1 prophecy) (STV 1.0 0.99))",
+            "(: lead_mem (Member sk_lead_1 lead) (STV 1.0 0.99))",
+            "(: lead_agt (Agent sk_lead_1 sk_prophecies_1) (STV 1.0 0.99))",
+            "(: lead_goal (Goal sk_lead_1 sk_glory_1) (STV 1.0 0.99))",
+            "(: lead_manner (Manner sk_lead_1 finally) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: lead_agt (Agent e0 x0) (STV 1.0 0.99))",
+            "(: lead_goal (Goal e0 e1) (STV 1.0 0.99))",
+            "(: prophecy_grp (GroupOf x0 prophecy) (STV 1.0 0.99))",
+            "(: people_grp (GroupOf x1 person) (STV 1.0 0.99))",
+            "(: glory_loc (Location e1 x1) (STV 1.0 0.99))",
+            "(: lead_manner (Manner e0 finally) (STV 1.0 0.99))",
+            "(: lead_mem (Member e0 lead) (STV 1.0 0.99))",
+            "(: glory_mem (Member e1 glory) (STV 1.0 0.99))",
+            "(: glory_lost (Member e1 lost) (STV 1.0 0.99))",
+            "(: god_name (Name god \"God\") (STV 1.0 0.99))",
+            "(: people_poss (Possession x1 god) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000041 run1": {
+        "sentence": "At times like this, words are woefully inadequate.",
+        "before": [
+            "(: words_cond (ConditionalProperty word inadequate times_like_this) (STV 0.9 0.9))",
+            "(: words_deg (Degree word inadequate woefully) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: words_cond (ConditionalProperty word inadequate times_like_this) (STV 0.9 0.9))",
+            "(: words_deg (Degree word inadequate woefully) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000042 run1": {
+        "sentence": "This golf course is not open to non-members.",
+        "before": [
+            "(: golfcourse_mem (Member sk_golfcourse_1 golf_course) (STV 1.0 0.99))",
+            "(: golfcourse_genus (Inheritance golf_course course) (STV 1.0 0.99))",
+            "(: golfcourse_notopen (Member sk_golfcourse_1 open) (STV 0.0 0.99))",
+            "(: nonmember_perm (Inheritance non_member (permitted enter)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: golfcourse_genus (Inheritance golf_course course) (STV 1.0 0.99))",
+            "(: nonmember_perm (Inheritance non_member (permitted enter)) (STV 0.0 0.99))",
+            "(: golfcourse_mem (Member x0 golf_course) (STV 1.0 0.99))",
+            "(: golfcourse_notopen (Member x0 open) (STV 0.0 0.99))"
+        ]
+    },
+    "tierB-000043 run1": {
+        "sentence": "Skura has started high school.",
+        "before": [
+            "(: e1_start (Member sk_start_1 start) (STV 1.0 0.99))",
+            "(: e1_agent (Agent sk_start_1 skura) (STV 1.0 0.99))",
+            "(: e1_theme (Theme sk_start_1 high_school) (STV 1.0 0.99))",
+            "(: e1_past (Past sk_start_1) (STV 1.0 0.99))",
+            "(: hs_genus (Inheritance high_school school) (STV 1.0 0.99))",
+            "(: hs_mod (Inheritance high_school high) (STV 1.0 0.99))",
+            "(: skura_name (Name skura \"Skura\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e1_agent (Agent e0 skura) (STV 1.0 0.99))",
+            "(: hs_mod (Inheritance high_school high) (STV 1.0 0.99))",
+            "(: hs_genus (Inheritance high_school school) (STV 1.0 0.99))",
+            "(: e1_start (Member e0 start) (STV 1.0 0.99))",
+            "(: skura_name (Name skura \"Skura\") (STV 1.0 0.99))",
+            "(: e1_past (Past e0) (STV 1.0 0.99))",
+            "(: e1_theme (Theme e0 high_school) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000044 run1": {
+        "sentence": "Yanni and Skura are ready for a fresh start.",
+        "before": [
+            "(: start_class (Member sk_start_1 start) (STV 1.0 0.99))",
+            "(: start_fresh (Member sk_start_1 fresh) (STV 1.0 0.99))",
+            "(: e1_ready (Member sk_ready_1 ready) (STV 1.0 0.99))",
+            "(: e1_exp (Experiencer sk_ready_1 yanni) (STV 1.0 0.99))",
+            "(: e1_goal (Goal sk_ready_1 sk_start_1) (STV 1.0 0.99))",
+            "(: yanni_ready_flat (Member yanni ready) (STV 1.0 0.99))",
+            "(: e2_ready (Member sk_ready_2 ready) (STV 1.0 0.99))",
+            "(: e2_exp (Experiencer sk_ready_2 skura) (STV 1.0 0.99))",
+            "(: e2_goal (Goal sk_ready_2 sk_start_1) (STV 1.0 0.99))",
+            "(: skura_ready_flat (Member skura ready) (STV 1.0 0.99))",
+            "(: yanni_name (Name yanni \"Yanni\") (STV 1.0 0.99))",
+            "(: skura_name (Name skura \"Skura\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e1_exp (Experiencer e0 yanni) (STV 1.0 0.99))",
+            "(: e2_exp (Experiencer e1 skura) (STV 1.0 0.99))",
+            "(: e1_goal (Goal e0 x0) (STV 1.0 0.99))",
+            "(: e2_goal (Goal e1 x0) (STV 1.0 0.99))",
+            "(: e1_ready (Member e0 ready) (STV 1.0 0.99))",
+            "(: e2_ready (Member e1 ready) (STV 1.0 0.99))",
+            "(: skura_ready_flat (Member skura ready) (STV 1.0 0.99))",
+            "(: start_fresh (Member x0 fresh) (STV 1.0 0.99))",
+            "(: start_class (Member x0 start) (STV 1.0 0.99))",
+            "(: yanni_ready_flat (Member yanni ready) (STV 1.0 0.99))",
+            "(: skura_name (Name skura \"Skura\") (STV 1.0 0.99))",
+            "(: yanni_name (Name yanni \"Yanni\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000045 run1": {
+        "sentence": "The plane flew over the mountain.",
+        "before": [
+            "(: e_fly (Member sk_fly_1 fly) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_fly_1 sk_plane_1) (STV 1.0 0.99))",
+            "(: e_loc (Location sk_fly_1 sk_mountain_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_fly_1) (STV 1.0 0.99))",
+            "(: plane_m (Member sk_plane_1 plane) (STV 1.0 0.99))",
+            "(: mountain_m (Member sk_mountain_1 mountain) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_loc (Location e0 x1) (STV 1.0 0.99))",
+            "(: e_fly (Member e0 fly) (STV 1.0 0.99))",
+            "(: plane_m (Member x0 plane) (STV 1.0 0.99))",
+            "(: mountain_m (Member x1 mountain) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000046 run1": {
+        "sentence": "Algeria is a member of the Arab Maghreb Union.",
+        "before": [
+            "(: algeria_name (Name algeria \"Algeria\") (STV 1.0 0.99))",
+            "(: amu_name (Name arab_maghreb_union \"Arab Maghreb Union\") (STV 1.0 0.99))",
+            "(: amu_type (Member arab_maghreb_union union) (STV 1.0 0.99))",
+            "(: algeria_partof (PartOf algeria arab_maghreb_union) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: amu_type (Member arab_maghreb_union union) (STV 1.0 0.99))",
+            "(: algeria_name (Name algeria \"Algeria\") (STV 1.0 0.99))",
+            "(: amu_name (Name arab_maghreb_union \"Arab Maghreb Union\") (STV 1.0 0.99))",
+            "(: algeria_partof (PartOf algeria arab_maghreb_union) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000047 run1": {
+        "sentence": "Kate spread the cloth over the table.",
+        "before": [
+            "(: e_spread (Member sk_spread_1 spread) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_spread_1 kate) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_spread_1 sk_cloth_1) (STV 1.0 0.99))",
+            "(: e_goal (Goal sk_spread_1 sk_table_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_spread_1) (STV 1.0 0.99))",
+            "(: cloth_m (Member sk_cloth_1 cloth) (STV 1.0 0.99))",
+            "(: table_m (Member sk_table_1 table) (STV 1.0 0.99))",
+            "(: kate_name (Name kate \"Kate\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 kate) (STV 1.0 0.99))",
+            "(: e_goal (Goal e0 x0) (STV 1.0 0.99))",
+            "(: e_spread (Member e0 spread) (STV 1.0 0.99))",
+            "(: table_m (Member x0 table) (STV 1.0 0.99))",
+            "(: cloth_m (Member x1 cloth) (STV 1.0 0.99))",
+            "(: kate_name (Name kate \"Kate\") (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000048 run1": {
+        "sentence": "Mary lives in a large house by herself.",
+        "before": [
+            "(: e_live (Member sk_live_1 live) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_live_1 mary) (STV 1.0 0.99))",
+            "(: e_loc (Location sk_live_1 sk_house_1) (STV 1.0 0.99))",
+            "(: e_manner (Manner sk_live_1 alone) (STV 1.0 0.99))",
+            "(: house_m (Member sk_house_1 house) (STV 1.0 0.99))",
+            "(: house_large (Member sk_house_1 large) (STV 1.0 0.99))",
+            "(: mary_name (Name mary \"Mary\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 mary) (STV 1.0 0.99))",
+            "(: e_loc (Location e0 x0) (STV 1.0 0.99))",
+            "(: e_manner (Manner e0 alone) (STV 1.0 0.99))",
+            "(: e_live (Member e0 live) (STV 1.0 0.99))",
+            "(: house_m (Member x0 house) (STV 1.0 0.99))",
+            "(: house_large (Member x0 large) (STV 1.0 0.99))",
+            "(: mary_name (Name mary \"Mary\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000049 run1": {
+        "sentence": "The patient was well cared for by the doctor.",
+        "before": [
+            "(: e_care (Member sk_care_1 care_for) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_care_1 sk_doctor_1) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_care_1 sk_patient_1) (STV 1.0 0.99))",
+            "(: e_manner (Manner sk_care_1 well) (STV 1.0 0.99))",
+            "(: e_past (Past sk_care_1) (STV 1.0 0.99))",
+            "(: patient_m (Member sk_patient_1 patient) (STV 1.0 0.99))",
+            "(: doctor_m (Member sk_doctor_1 doctor) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_manner (Manner e0 well) (STV 1.0 0.99))",
+            "(: e_care (Member e0 care_for) (STV 1.0 0.99))",
+            "(: doctor_m (Member x0 doctor) (STV 1.0 0.99))",
+            "(: patient_m (Member x1 patient) (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000050 run1": {
+        "sentence": "China is larger than Japan.",
+        "before": [
+            "(: comp (More large china japan) (STV 1.0 0.99))",
+            "(: china_name (Name china \"China\") (STV 1.0 0.99))",
+            "(: japan_name (Name japan \"Japan\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: comp (More large china japan) (STV 1.0 0.99))",
+            "(: china_name (Name china \"China\") (STV 1.0 0.99))",
+            "(: japan_name (Name japan \"Japan\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000051 run1": {
+        "sentence": "Everything is all right at present.",
+        "before": [
+            "(: e_allright (Member sk_allright_1 all_right) (STV 1.0 0.99))",
+            "(: e_exp (Experiencer sk_allright_1 everything) (STV 1.0 0.99))",
+            "(: e_time (Time sk_allright_1 now) (STV 1.0 0.99))",
+            "(: flat_allright (Member everything all_right) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_exp (Experiencer e0 everything) (STV 1.0 0.99))",
+            "(: e_allright (Member e0 all_right) (STV 1.0 0.99))",
+            "(: flat_allright (Member everything all_right) (STV 1.0 0.99))",
+            "(: e_time (Time e0 now) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000052 run1": {
+        "sentence": "Make sure that nobody goes in there.",
+        "before": [
+            "(: d1 (Directive (And (Member sk_make_sure_1 make_sure) (Theme sk_make_sure_1 (Forbid (And (Member sk_go_1 go) (Location sk_go_1 there)))))) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: d1 (Directive (And (Member x0 make_sure) (Theme x0 (Forbid (And (Location x1 there) (Member x1 go)))))) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000053 run1": {
+        "sentence": "Xavier speaks English very poorly.",
+        "before": [
+            "(: e_speak (Member sk_speak_1 speak) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_speak_1 xavier) (STV 1.0 0.99))",
+            "(: e_theme (Theme sk_speak_1 english) (STV 1.0 0.99))",
+            "(: e_manner (Manner sk_speak_1 poor) (STV 1.0 0.99))",
+            "(: e_degree (Degree sk_speak_1 poor very) (STV 1.0 0.99))",
+            "(: xavier_name (Name xavier \"Xavier\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 xavier) (STV 1.0 0.99))",
+            "(: e_degree (Degree e0 poor very) (STV 1.0 0.99))",
+            "(: e_manner (Manner e0 poor) (STV 1.0 0.99))",
+            "(: e_speak (Member e0 speak) (STV 1.0 0.99))",
+            "(: xavier_name (Name xavier \"Xavier\") (STV 1.0 0.99))",
+            "(: e_theme (Theme e0 english) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000054 run1": {
+        "sentence": "That mountain is five times as high as this one.",
+        "before": [
+            "(: mtn1_m (Member sk_mountain_1 mountain) (STV 1.0 0.99))",
+            "(: mtn2_m (Member sk_mountain_2 mountain) (STV 1.0 0.99))",
+            "(: timesas (TimesAs high sk_mountain_1 sk_mountain_2 5) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: mtn2_m (Member x0 mountain) (STV 1.0 0.99))",
+            "(: mtn1_m (Member x1 mountain) (STV 1.0 0.99))",
+            "(: timesas (TimesAs high x1 x0 5) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000055 run1": {
+        "sentence": "A lot of people do do that.",
+        "before": [
+            "(: pf_group (GroupOf sk_group_1 person) (STV 1.0 0.99))",
+            "(: pf_card (CardinalityPhrase sk_group_1 \"a lot of\") (STV 1.0 0.99))",
+            "(: pf_do (Member sk_do_1 do) (STV 1.0 0.99))",
+            "(: pf_agent (Agent sk_do_1 sk_group_1) (STV 1.0 0.99))",
+            "(: pf_theme (Theme sk_do_1 sk_that_1) (STV 1.0 0.99))",
+            "(: pf_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_do $x) do) (Agent (sk_do $x) $x) (Theme (sk_do $x) sk_that_1))) (STV 1.0 0.9))"
+        ],
+        "after": [
+            "(: pf_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: pf_card (CardinalityPhrase x0 \"a lot of\") (STV 1.0 0.99))",
+            "(: pf_group (GroupOf x0 person) (STV 1.0 0.99))",
+            "(: pf_rule (Implication (Premises (PartOf $v0 x0)) (Conclusions (Member (f0 $v0) do) (Agent (f0 $v0) $v0) (Theme (f0 $v0) x1))) (STV 1.0 0.9))",
+            "(: pf_do (Member e0 do) (STV 1.0 0.99))",
+            "(: pf_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000056 run1": {
+        "sentence": "Rodrigo opened a vault-like door.",
+        "before": [
+            "(: e_open (Member sk_open_1 open) (STV 1.0 0.99))",
+            "(: e_agent (Agent sk_open_1 rodrigo) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_open_1 sk_door_1) (STV 1.0 0.99))",
+            "(: e_past (Past sk_open_1) (STV 1.0 0.99))",
+            "(: door_m (Member sk_door_1 door) (STV 1.0 0.99))",
+            "(: door_vl (Member sk_door_1 vault_like) (STV 1.0 0.99))",
+            "(: rodrigo_name (Name rodrigo \"Rodrigo\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_agent (Agent e0 rodrigo) (STV 1.0 0.99))",
+            "(: e_open (Member e0 open) (STV 1.0 0.99))",
+            "(: door_m (Member x0 door) (STV 1.0 0.99))",
+            "(: door_vl (Member x0 vault_like) (STV 1.0 0.99))",
+            "(: rodrigo_name (Name rodrigo \"Rodrigo\") (STV 1.0 0.99))",
+            "(: e_past (Past e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000057 run1": {
+        "sentence": "This is a hectoliter of wine.",
+        "before": [
+            "(: wine_m (Member sk_wine_1 wine) (STV 1.0 0.99))",
+            "(: wine_vol (Measure sk_wine_1 volume 1 hectoliter) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: wine_vol (Measure x0 volume 1 hectoliter) (STV 1.0 0.99))",
+            "(: wine_m (Member x0 wine) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000058 run1": {
+        "sentence": "This heather is very fragrant.",
+        "before": [
+            "(: heather_m (Member sk_heather_1 heather) (STV 1.0 0.99))",
+            "(: heather_frag (Member sk_heather_1 fragrant) (STV 1.0 0.99))",
+            "(: heather_deg (Degree sk_heather_1 fragrant very) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: heather_deg (Degree x0 fragrant very) (STV 1.0 0.99))",
+            "(: heather_frag (Member x0 fragrant) (STV 1.0 0.99))",
+            "(: heather_m (Member x0 heather) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000059 run1": {
+        "sentence": "Dung beetles navigate by the sun and the stars.",
+        "before": [
+            "(: db_g (Inheritance dung_beetle beetle) (STV 1.0 0.99))",
+            "(: sun_m (Member sk_sun_1 sun) (STV 1.0 0.99))",
+            "(: stars_g (GroupOf sk_stars_1 star) (STV 1.0 0.99))",
+            "(: db_navigate (Implication (Premises (Member $x dung_beetle)) (Conclusions (Member (sk_navigate $x) navigate) (Agent (sk_navigate $x) $x) (Instrument (sk_navigate $x) sk_sun_1) (Instrument (sk_navigate $x) sk_stars_1))) (STV 0.9 0.9))"
+        ],
+        "after": [
+            "(: stars_g (GroupOf x0 star) (STV 1.0 0.99))",
+            "(: db_navigate (Implication (Premises (Member $v0 dung_beetle)) (Conclusions (Member (f0 $v0) navigate) (Agent (f0 $v0) $v0) (Instrument (f0 $v0) x1) (Instrument (f0 $v0) x0))) (STV 0.9 0.9))",
+            "(: db_g (Inheritance dung_beetle beetle) (STV 1.0 0.99))",
+            "(: sun_m (Member x1 sun) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000060 run1": {
+        "sentence": "Imported cars often cost more to repair.",
+        "before": [
+            "(: ic_g (Inheritance imported_car car) (STV 1.0 0.99))",
+            "(: ic_imp (Inheritance imported_car imported) (STV 1.0 0.99))",
+            "(: ic_repair (Implication (Premises (Member $x imported_car)) (Conclusions (Member (sk_repair $x) repair) (Patient (sk_repair $x) $x) (Degree (sk_repair $x) price more))) (STV 0.9 0.9))"
+        ],
+        "after": [
+            "(: ic_repair (Implication (Premises (Member $v0 imported_car)) (Conclusions (Member (f0 $v0) repair) (Patient (f0 $v0) $v0) (Degree (f0 $v0) price more))) (STV 0.9 0.9))",
+            "(: ic_g (Inheritance imported_car car) (STV 1.0 0.99))",
+            "(: ic_imp (Inheritance imported_car imported) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000061 run1": {
+        "sentence": "Karl needed to make money anyhow possible.",
+        "before": [
+            "(: e_need (Member sk_need_1 need) (STV 1.0 0.99))",
+            "(: e_need_exp (Experiencer sk_need_1 karl) (STV 1.0 0.99))",
+            "(: e_need_theme (Theme sk_need_1 sk_make_1) (STV 1.0 0.99))",
+            "(: e_need_past (Past sk_need_1) (STV 1.0 0.99))",
+            "(: e_make (Member sk_make_1 make) (STV 1.0 0.99))",
+            "(: e_make_agent (Agent sk_make_1 karl) (STV 1.0 0.99))",
+            "(: e_make_patient (Patient sk_make_1 money) (STV 1.0 0.99))",
+            "(: e_make_manner (Manner sk_make_1 anyhow) (STV 1.0 0.99))",
+            "(: karl_name (Name karl \"Karl\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_make_agent (Agent e0 karl) (STV 1.0 0.99))",
+            "(: e_need_exp (Experiencer e1 karl) (STV 1.0 0.99))",
+            "(: e_make_manner (Manner e0 anyhow) (STV 1.0 0.99))",
+            "(: e_make (Member e0 make) (STV 1.0 0.99))",
+            "(: e_need (Member e1 need) (STV 1.0 0.99))",
+            "(: karl_name (Name karl \"Karl\") (STV 1.0 0.99))",
+            "(: e_need_past (Past e1) (STV 1.0 0.99))",
+            "(: e_make_patient (Patient e0 money) (STV 1.0 0.99))",
+            "(: e_need_theme (Theme e1 e0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000062 run1": {
+        "sentence": "The wind is dying down.",
+        "before": [
+            "(: e_die_down (Member sk_die_down_1 die_down) (STV 1.0 0.99))",
+            "(: e_patient (Patient sk_die_down_1 sk_wind_1) (STV 1.0 0.99))",
+            "(: wind_m (Member sk_wind_1 wind) (STV 1.0 0.99))",
+            "(: e_ongoing (Ongoing sk_die_down_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_die_down (Member e0 die_down) (STV 1.0 0.99))",
+            "(: wind_m (Member x0 wind) (STV 1.0 0.99))",
+            "(: e_ongoing (Ongoing e0) (STV 1.0 0.99))",
+            "(: e_patient (Patient e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000063 run1": {
+        "sentence": "In Ghardaia, Mozabites built a network of wells connected by underground channels.",
+        "before": [
+            "(: ghardaia_name (Name ghardaia \"Ghardaia\") (STV 1.0 0.99))",
+            "(: moz_group (GroupOf sk_group_1 mozabite) (STV 1.0 0.99))",
+            "(: e_build (Member sk_build_1 build) (STV 1.0 0.99))",
+            "(: e_build_agent (Agent sk_build_1 sk_group_1) (STV 1.0 0.99))",
+            "(: e_build_patient (Patient sk_build_1 sk_network_1) (STV 1.0 0.99))",
+            "(: e_build_loc (Location sk_build_1 ghardaia) (STV 1.0 0.99))",
+            "(: e_build_past (Past sk_build_1) (STV 1.0 0.99))",
+            "(: network_m (Member sk_network_1 network) (STV 1.0 0.99))",
+            "(: network_g (GroupOf sk_network_1 well) (STV 1.0 0.99))",
+            "(: chan_g (Inheritance underground_channel channel) (STV 1.0 0.99))",
+            "(: chan_und (Inheritance underground_channel underground) (STV 1.0 0.99))",
+            "(: channels_g (GroupOf sk_channels_1 underground_channel) (STV 1.0 0.99))",
+            "(: e_connect (Member sk_connect_1 connect) (STV 1.0 0.99))",
+            "(: e_connect_patient (Patient sk_connect_1 sk_network_1) (STV 1.0 0.99))",
+            "(: e_connect_instr (Instrument sk_connect_1 sk_channels_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_build_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: moz_group (GroupOf x0 mozabite) (STV 1.0 0.99))",
+            "(: channels_g (GroupOf x1 underground_channel) (STV 1.0 0.99))",
+            "(: network_g (GroupOf x2 well) (STV 1.0 0.99))",
+            "(: chan_g (Inheritance underground_channel channel) (STV 1.0 0.99))",
+            "(: chan_und (Inheritance underground_channel underground) (STV 1.0 0.99))",
+            "(: e_connect_instr (Instrument e1 x1) (STV 1.0 0.99))",
+            "(: e_build_loc (Location e0 ghardaia) (STV 1.0 0.99))",
+            "(: e_build (Member e0 build) (STV 1.0 0.99))",
+            "(: e_connect (Member e1 connect) (STV 1.0 0.99))",
+            "(: network_m (Member x2 network) (STV 1.0 0.99))",
+            "(: ghardaia_name (Name ghardaia \"Ghardaia\") (STV 1.0 0.99))",
+            "(: e_build_past (Past e0) (STV 1.0 0.99))",
+            "(: e_build_patient (Patient e0 x2) (STV 1.0 0.99))",
+            "(: e_connect_patient (Patient e1 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000064 run1": {
+        "sentence": "With this director, things are bound to be dull.",
+        "before": [
+            "(: dir_m (Member sk_director_1 director) (STV 1.0 0.99))",
+            "(: things_dull (ConditionalProperty thing dull sk_director_1) (STV 1.0 0.9))"
+        ],
+        "after": [
+            "(: things_dull (ConditionalProperty thing dull x0) (STV 1.0 0.9))",
+            "(: dir_m (Member x0 director) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000065 run1": {
+        "sentence": "The baby seemed to be fast asleep.",
+        "before": [
+            "(: baby_seem (Past (Probably (And (Member sk_baby_1 asleep) (Degree sk_baby_1 asleep fast)))) (STV 1.0 0.9))",
+            "(: baby_m (Member sk_baby_1 baby) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: baby_m (Member x0 baby) (STV 1.0 0.99))",
+            "(: baby_seem (Past (Probably (And (Degree x0 asleep fast) (Member x0 asleep)))) (STV 1.0 0.9))"
+        ]
+    },
+    "tierB-000066 run1": {
+        "sentence": "Having close friends is more important than being popular.",
+        "before": [
+            "(: cf_g (Inheritance close_friend friend) (STV 1.0 0.99))",
+            "(: cf_close (Inheritance close_friend close) (STV 1.0 0.99))",
+            "(: e_have (Member sk_have_1 have) (STV 1.0 0.99))",
+            "(: e_have_theme (Theme sk_have_1 close_friend) (STV 1.0 0.99))",
+            "(: e_popular (Member sk_popular_1 popular) (STV 1.0 0.99))",
+            "(: comp (More important sk_have_1 sk_popular_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: cf_close (Inheritance close_friend close) (STV 1.0 0.99))",
+            "(: cf_g (Inheritance close_friend friend) (STV 1.0 0.99))",
+            "(: e_have (Member e0 have) (STV 1.0 0.99))",
+            "(: e_popular (Member x0 popular) (STV 1.0 0.99))",
+            "(: comp (More important e0 x0) (STV 1.0 0.99))",
+            "(: e_have_theme (Theme e0 close_friend) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000067 run1": {
+        "sentence": "The soldier was killed in action.",
+        "before": [
+            "(: kill_ev (Member sk_kill_1 kill) (STV 1.0 0.99))",
+            "(: kill_pat (Patient sk_kill_1 sk_soldier_1) (STV 1.0 0.99))",
+            "(: soldier_m (Member sk_soldier_1 soldier) (STV 1.0 0.99))",
+            "(: kill_past (Past sk_kill_1) (STV 1.0 0.99))",
+            "(: kill_loc (Location sk_kill_1 action) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: kill_loc (Location e0 action) (STV 1.0 0.99))",
+            "(: kill_ev (Member e0 kill) (STV 1.0 0.99))",
+            "(: soldier_m (Member x0 soldier) (STV 1.0 0.99))",
+            "(: kill_past (Past e0) (STV 1.0 0.99))",
+            "(: kill_pat (Patient e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000068 run1": {
+        "sentence": "Cranes are big beautiful birds.",
+        "before": [
+            "(: crane_bird (Inheritance crane bird) (STV 1.0 0.99))",
+            "(: crane_big (Inheritance crane big) (STV 0.9 0.9))",
+            "(: crane_beautiful (Inheritance crane beautiful) (STV 0.9 0.9))"
+        ],
+        "after": [
+            "(: crane_beautiful (Inheritance crane beautiful) (STV 0.9 0.9))",
+            "(: crane_big (Inheritance crane big) (STV 0.9 0.9))",
+            "(: crane_bird (Inheritance crane bird) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000069 run1": {
+        "sentence": "Influencers are paid to show off products.",
+        "before": [
+            "(: infl_paid (Implication (Premises (Member $x influencer)) (Conclusions (Member (sk_pay $x) pay) (Theme (sk_pay $x) $x) (Member (sk_show_off $x) show_off) (Agent (sk_show_off $x) $x) (Theme (sk_show_off $x) product) (To (sk_pay $x) (sk_show_off $x)))) (STV 0.9 0.9))"
+        ],
+        "after": [
+            "(: infl_paid (Implication (Premises (Member $v0 influencer)) (Conclusions (Member (f0 $v0) pay) (Theme (f0 $v0) $v0) (Member (f1 $v0) show_off) (Agent (f1 $v0) $v0) (Theme (f1 $v0) product) (To (f0 $v0) (f1 $v0)))) (STV 0.9 0.9))"
+        ]
+    },
+    "tierB-000070 run1": {
+        "sentence": "That is how many people grew up.",
+        "before": [
+            "(: gu_event (Member sk_grow_up_1 grow_up) (STV 1.0 0.99))",
+            "(: gu_patient (Patient sk_grow_up_1 sk_group_1) (STV 1.0 0.99))",
+            "(: gu_group (GroupOf sk_group_1 person) (STV 1.0 0.99))",
+            "(: gu_card (CardinalityPhrase sk_group_1 \"many\") (STV 1.0 0.99))",
+            "(: gu_past (Past sk_grow_up_1) (STV 1.0 0.99))",
+            "(: gu_manner (Manner sk_grow_up_1 that) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: gu_card (CardinalityPhrase x0 \"many\") (STV 1.0 0.99))",
+            "(: gu_group (GroupOf x0 person) (STV 1.0 0.99))",
+            "(: gu_manner (Manner e0 that) (STV 1.0 0.99))",
+            "(: gu_event (Member e0 grow_up) (STV 1.0 0.99))",
+            "(: gu_past (Past e0) (STV 1.0 0.99))",
+            "(: gu_patient (Patient e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000071 run1": {
+        "sentence": "Germany is an anchor of stability for Europe.",
+        "before": [
+            "(: g_name (Name germany \"Germany\") (STV 1.0 0.99))",
+            "(: g_anchor (Member germany stability_anchor) (STV 1.0 0.99))",
+            "(: sa_genus (Inheritance stability_anchor anchor) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: sa_genus (Inheritance stability_anchor anchor) (STV 1.0 0.99))",
+            "(: g_anchor (Member germany stability_anchor) (STV 1.0 0.99))",
+            "(: g_name (Name germany \"Germany\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000072 run1": {
+        "sentence": "The Internet is really big.",
+        "before": [
+            "(: int_m (Member sk_internet_1 internet) (STV 1.0 0.99))",
+            "(: int_big (Member sk_internet_1 big) (STV 1.0 0.99))",
+            "(: int_deg (Degree sk_internet_1 big really) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: int_deg (Degree x0 big really) (STV 1.0 0.99))",
+            "(: int_big (Member x0 big) (STV 1.0 0.99))",
+            "(: int_m (Member x0 internet) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000073 run1": {
+        "sentence": "The cat made a high-pitched noise.",
+        "before": [
+            "(: make_ev (Member sk_make_1 make) (STV 1.0 0.99))",
+            "(: make_ag (Agent sk_make_1 sk_cat_1) (STV 1.0 0.99))",
+            "(: cat_m (Member sk_cat_1 cat) (STV 1.0 0.99))",
+            "(: make_pat (Patient sk_make_1 sk_noise_1) (STV 1.0 0.99))",
+            "(: noise_m (Member sk_noise_1 noise) (STV 1.0 0.99))",
+            "(: noise_hp (Member sk_noise_1 high_pitched) (STV 1.0 0.99))",
+            "(: make_past (Past sk_make_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: make_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: make_ev (Member e0 make) (STV 1.0 0.99))",
+            "(: cat_m (Member x0 cat) (STV 1.0 0.99))",
+            "(: noise_hp (Member x1 high_pitched) (STV 1.0 0.99))",
+            "(: noise_m (Member x1 noise) (STV 1.0 0.99))",
+            "(: make_past (Past e0) (STV 1.0 0.99))",
+            "(: make_pat (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000074 run1": {
+        "sentence": "Antibodies work by attaching themselves to an invading germ.",
+        "before": [
+            "(: antibody_work (Implication (Premises (Member $x antibody)) (Conclusions (Member (sk_work $x) work) (Agent (sk_work $x) $x) (Member (sk_attach $x) attach) (Agent (sk_attach $x) $x) (Theme (sk_attach $x) $x) (Goal (sk_attach $x) (sk_germ $x)) (Member (sk_germ $x) germ) (Member (sk_germ $x) invading) (By (sk_work $x) (sk_attach $x)))) (STV 0.9 0.9))"
+        ],
+        "after": [
+            "(: antibody_work (Implication (Premises (Member $v0 antibody)) (Conclusions (Member (f0 $v0) work) (Agent (f0 $v0) $v0) (Member (f1 $v0) attach) (Agent (f1 $v0) $v0) (Theme (f1 $v0) $v0) (Goal (f1 $v0) (f2 $v0)) (Member (f2 $v0) germ) (Member (f2 $v0) invading) (By (f0 $v0) (f1 $v0)))) (STV 0.9 0.9))"
+        ]
+    },
+    "tierB-000075 run1": {
+        "sentence": "Mark and Jessica began hanging out often.",
+        "before": [
+            "(: begin_ev (Member sk_begin_1 begin) (STV 1.0 0.99))",
+            "(: begin_ag1 (Agent sk_begin_1 mark) (STV 1.0 0.99))",
+            "(: begin_ag2 (Agent sk_begin_1 jessica) (STV 1.0 0.99))",
+            "(: begin_th (Theme sk_begin_1 sk_hang_out_1) (STV 1.0 0.99))",
+            "(: begin_past (Past sk_begin_1) (STV 1.0 0.99))",
+            "(: ho_ev (Member sk_hang_out_1 hang_out) (STV 1.0 0.99))",
+            "(: ho_ag1 (Agent sk_hang_out_1 mark) (STV 1.0 0.99))",
+            "(: ho_ag2 (Agent sk_hang_out_1 jessica) (STV 1.0 0.99))",
+            "(: ho_ong (Ongoing sk_hang_out_1) (STV 1.0 0.99))",
+            "(: ho_manner (Manner sk_hang_out_1 often) (STV 1.0 0.99))",
+            "(: mark_name (Name mark \"Mark\") (STV 1.0 0.99))",
+            "(: jessica_name (Name jessica \"Jessica\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: begin_ag2 (Agent e0 jessica) (STV 1.0 0.99))",
+            "(: begin_ag1 (Agent e0 mark) (STV 1.0 0.99))",
+            "(: ho_ag2 (Agent e1 jessica) (STV 1.0 0.99))",
+            "(: ho_ag1 (Agent e1 mark) (STV 1.0 0.99))",
+            "(: ho_manner (Manner e1 often) (STV 1.0 0.99))",
+            "(: begin_ev (Member e0 begin) (STV 1.0 0.99))",
+            "(: ho_ev (Member e1 hang_out) (STV 1.0 0.99))",
+            "(: jessica_name (Name jessica \"Jessica\") (STV 1.0 0.99))",
+            "(: mark_name (Name mark \"Mark\") (STV 1.0 0.99))",
+            "(: ho_ong (Ongoing e1) (STV 1.0 0.99))",
+            "(: begin_past (Past e0) (STV 1.0 0.99))",
+            "(: begin_th (Theme e0 e1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000076 run1": {
+        "sentence": "Ticks and mites are arachnids.",
+        "before": [
+            "(: tick_arachnid (Inheritance tick arachnid) (STV 1.0 0.99))",
+            "(: mite_arachnid (Inheritance mite arachnid) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: mite_arachnid (Inheritance mite arachnid) (STV 1.0 0.99))",
+            "(: tick_arachnid (Inheritance tick arachnid) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000077 run1": {
+        "sentence": "Everything here is drip-irrigated.",
+        "before": [
+            "(: eh_rule (Implication (Premises (Location $x here)) (Conclusions (Member $x drip_irrigated))) (STV 1.0 0.9))"
+        ],
+        "after": [
+            "(: eh_rule (Implication (Premises (Location $v0 here)) (Conclusions (Member $v0 drip_irrigated))) (STV 1.0 0.9))"
+        ]
+    },
+    "tierB-000078 run1": {
+        "sentence": "Daniel came up to Amanda to talk.",
+        "before": [
+            "(: come_ev (Member sk_come_up_1 come_up) (STV 1.0 0.99))",
+            "(: come_ag (Agent sk_come_up_1 daniel) (STV 1.0 0.99))",
+            "(: come_goal (Goal sk_come_up_1 amanda) (STV 1.0 0.99))",
+            "(: come_past (Past sk_come_up_1) (STV 1.0 0.99))",
+            "(: talk_ev (Member sk_talk_1 talk) (STV 1.0 0.99))",
+            "(: talk_ag (Agent sk_talk_1 daniel) (STV 1.0 0.99))",
+            "(: purpose (To sk_come_up_1 sk_talk_1) (STV 1.0 0.99))",
+            "(: daniel_name (Name daniel \"Daniel\") (STV 1.0 0.99))",
+            "(: amanda_name (Name amanda \"Amanda\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: talk_ag (Agent e0 daniel) (STV 1.0 0.99))",
+            "(: come_ag (Agent e1 daniel) (STV 1.0 0.99))",
+            "(: come_goal (Goal e1 amanda) (STV 1.0 0.99))",
+            "(: talk_ev (Member e0 talk) (STV 1.0 0.99))",
+            "(: come_ev (Member e1 come_up) (STV 1.0 0.99))",
+            "(: amanda_name (Name amanda \"Amanda\") (STV 1.0 0.99))",
+            "(: daniel_name (Name daniel \"Daniel\") (STV 1.0 0.99))",
+            "(: come_past (Past e1) (STV 1.0 0.99))",
+            "(: purpose (To e1 e0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000079 run1": {
+        "sentence": "Boldi was close to animals.",
+        "before": [
+            "(: e_close (Member sk_close_1 close) (STV 1.0 0.99))",
+            "(: e_close_exp (Experiencer sk_close_1 boldi) (STV 1.0 0.99))",
+            "(: e_close_stim (Stimulus sk_close_1 animal) (STV 1.0 0.99))",
+            "(: e_close_past (Past sk_close_1) (STV 1.0 0.99))",
+            "(: boldi_name (Name boldi \"Boldi\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_close_exp (Experiencer e0 boldi) (STV 1.0 0.99))",
+            "(: e_close (Member e0 close) (STV 1.0 0.99))",
+            "(: boldi_name (Name boldi \"Boldi\") (STV 1.0 0.99))",
+            "(: e_close_past (Past e0) (STV 1.0 0.99))",
+            "(: e_close_stim (Stimulus e0 animal) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000080 run1": {
+        "sentence": "Something had to be said.",
+        "before": [
+            "(: s1_say (Member sk_say_1 say) (STV 1.0 0.99))",
+            "(: s1_theme (Theme sk_say_1 sk_thing_1) (STV 1.0 0.99))",
+            "(: s1_thing (Member sk_thing_1 thing) (STV 1.0 0.99))",
+            "(: s1_obl (Obligated sk_say_1) (STV 1.0 0.99))",
+            "(: s1_past (Past sk_say_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: s1_say (Member e0 say) (STV 1.0 0.99))",
+            "(: s1_thing (Member x0 thing) (STV 1.0 0.99))",
+            "(: s1_obl (Obligated e0) (STV 1.0 0.99))",
+            "(: s1_past (Past e0) (STV 1.0 0.99))",
+            "(: s1_theme (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000081 run1": {
+        "sentence": "The entrance to the station is around the corner.",
+        "before": [
+            "(: s2_entrance (Member sk_entrance_1 entrance) (STV 1.0 0.99))",
+            "(: s2_part (PartOf sk_entrance_1 sk_station_1) (STV 1.0 0.99))",
+            "(: s2_station (Member sk_station_1 station) (STV 1.0 0.99))",
+            "(: s2_be (Member sk_be_1 be) (STV 1.0 0.99))",
+            "(: s2_exp (Experiencer sk_be_1 sk_entrance_1) (STV 1.0 0.99))",
+            "(: s2_corner (Member sk_corner_1 corner) (STV 1.0 0.99))",
+            "(: s2_loc (Location sk_be_1 sk_corner_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: s2_exp (Experiencer e0 x0) (STV 1.0 0.99))",
+            "(: s2_loc (Location e0 x1) (STV 1.0 0.99))",
+            "(: s2_be (Member e0 be) (STV 1.0 0.99))",
+            "(: s2_entrance (Member x0 entrance) (STV 1.0 0.99))",
+            "(: s2_corner (Member x1 corner) (STV 1.0 0.99))",
+            "(: s2_station (Member x2 station) (STV 1.0 0.99))",
+            "(: s2_part (PartOf x0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000082 run1": {
+        "sentence": "The whole thing is about to collapse.",
+        "before": [
+            "(: s3_thing (Member sk_thing_1 thing) (STV 1.0 0.99))",
+            "(: s3_whole (Member sk_thing_1 whole) (STV 1.0 0.99))",
+            "(: s3_collapse (Member sk_collapse_1 collapse) (STV 1.0 0.99))",
+            "(: s3_patient (Patient sk_collapse_1 sk_thing_1) (STV 1.0 0.99))",
+            "(: s3_future (Future sk_collapse_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: s3_future (Future e0) (STV 1.0 0.99))",
+            "(: s3_collapse (Member e0 collapse) (STV 1.0 0.99))",
+            "(: s3_thing (Member x0 thing) (STV 1.0 0.99))",
+            "(: s3_whole (Member x0 whole) (STV 1.0 0.99))",
+            "(: s3_patient (Patient e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000083 run1": {
+        "sentence": "That box is too big to put in the trunk of the car.",
+        "before": [
+            "(: s4_box (Member sk_box_1 box) (STV 1.0 0.99))",
+            "(: s4_big (Member sk_box_1 big) (STV 1.0 0.99))",
+            "(: s4_deg (Degree sk_box_1 big excessive) (STV 1.0 0.99))",
+            "(: s4_trunk (Member sk_trunk_1 trunk) (STV 1.0 0.99))",
+            "(: s4_trunk_part (PartOf sk_trunk_1 sk_car_1) (STV 1.0 0.99))",
+            "(: s4_car (Member sk_car_1 car) (STV 1.0 0.99))",
+            "(: s4_neg (And (Member sk_put_1 put) (Theme sk_put_1 sk_box_1) (Goal sk_put_1 sk_trunk_1) (Can sk_put_1)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: s4_neg (And (Can x0) (Goal x0 x1) (Member x0 put) (Theme x0 x2)) (STV 0.0 0.99))",
+            "(: s4_deg (Degree x2 big excessive) (STV 1.0 0.99))",
+            "(: s4_trunk (Member x1 trunk) (STV 1.0 0.99))",
+            "(: s4_big (Member x2 big) (STV 1.0 0.99))",
+            "(: s4_box (Member x2 box) (STV 1.0 0.99))",
+            "(: s4_car (Member x3 car) (STV 1.0 0.99))",
+            "(: s4_trunk_part (PartOf x1 x3) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000084 run1": {
+        "sentence": "The Eiffel Tower is in Paris.",
+        "before": [
+            "(: s5_be (Member sk_be_1 be) (STV 1.0 0.99))",
+            "(: s5_exp (Experiencer sk_be_1 eiffel_tower) (STV 1.0 0.99))",
+            "(: s5_loc (Location sk_be_1 paris) (STV 1.0 0.99))",
+            "(: s5_eiffel_name (Name eiffel_tower \"Eiffel Tower\") (STV 1.0 0.99))",
+            "(: s5_paris_name (Name paris \"Paris\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: s5_exp (Experiencer e0 eiffel_tower) (STV 1.0 0.99))",
+            "(: s5_loc (Location e0 paris) (STV 1.0 0.99))",
+            "(: s5_be (Member e0 be) (STV 1.0 0.99))",
+            "(: s5_eiffel_name (Name eiffel_tower \"Eiffel Tower\") (STV 1.0 0.99))",
+            "(: s5_paris_name (Name paris \"Paris\") (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000085 run1": {
+        "sentence": "The flowers give off a very pleasant perfume.",
+        "before": [
+            "(: s6_group (GroupOf sk_group_1 flower) (STV 1.0 0.99))",
+            "(: s6_giveoff (Member sk_giveoff_1 give_off) (STV 1.0 0.99))",
+            "(: s6_agent (Agent sk_giveoff_1 sk_group_1) (STV 1.0 0.99))",
+            "(: s6_theme (Theme sk_giveoff_1 sk_perfume_1) (STV 1.0 0.99))",
+            "(: s6_perfume (Member sk_perfume_1 perfume) (STV 1.0 0.99))",
+            "(: s6_pleasant (Member sk_perfume_1 pleasant) (STV 1.0 0.99))",
+            "(: s6_deg (Degree sk_perfume_1 pleasant very) (STV 1.0 0.99))",
+            "(: s6_rule (Implication (Premises (PartOf $x sk_group_1)) (Conclusions (Member (sk_giveoff $x) give_off) (Agent (sk_giveoff $x) $x) (Theme (sk_giveoff $x) sk_perfume_1))) (STV 1.0 0.9))"
+        ],
+        "after": [
+            "(: s6_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: s6_deg (Degree x1 pleasant very) (STV 1.0 0.99))",
+            "(: s6_group (GroupOf x0 flower) (STV 1.0 0.99))",
+            "(: s6_rule (Implication (Premises (PartOf $v0 x0)) (Conclusions (Member (f0 $v0) give_off) (Agent (f0 $v0) $v0) (Theme (f0 $v0) x1))) (STV 1.0 0.9))",
+            "(: s6_giveoff (Member e0 give_off) (STV 1.0 0.99))",
+            "(: s6_perfume (Member x1 perfume) (STV 1.0 0.99))",
+            "(: s6_pleasant (Member x1 pleasant) (STV 1.0 0.99))",
+            "(: s6_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000086 run1": {
+        "sentence": "Algeria needs to improve its business climate.",
+        "before": [
+            "(: s7_need (Member sk_need_1 need) (STV 1.0 0.99))",
+            "(: s7_exp (Experiencer sk_need_1 algeria) (STV 1.0 0.99))",
+            "(: s7_theme (Theme sk_need_1 (And (Member sk_improve_1 improve) (Agent sk_improve_1 algeria) (Patient sk_improve_1 sk_climate_1))) (STV 1.0 0.99))",
+            "(: s7_climate (Member sk_climate_1 business_climate) (STV 1.0 0.99))",
+            "(: s7_climate_genus (Inheritance business_climate climate) (STV 1.0 0.99))",
+            "(: s7_poss (Possession sk_climate_1 algeria) (STV 1.0 0.99))",
+            "(: s7_name (Name algeria \"Algeria\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: s7_exp (Experiencer e0 algeria) (STV 1.0 0.99))",
+            "(: s7_climate_genus (Inheritance business_climate climate) (STV 1.0 0.99))",
+            "(: s7_need (Member e0 need) (STV 1.0 0.99))",
+            "(: s7_climate (Member x0 business_climate) (STV 1.0 0.99))",
+            "(: s7_name (Name algeria \"Algeria\") (STV 1.0 0.99))",
+            "(: s7_poss (Possession x0 algeria) (STV 1.0 0.99))",
+            "(: s7_theme (Theme e0 (And (Agent x1 algeria) (Member x1 improve) (Patient x1 x0))) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000087 run1": {
+        "sentence": "Paul explained in full what happened.",
+        "before": [
+            "(: s8_explain (Member sk_explain_1 explain) (STV 1.0 0.99))",
+            "(: s8_exp (Experiencer sk_explain_1 paul) (STV 1.0 0.99))",
+            "(: s8_theme (Theme sk_explain_1 (Question what (And (Member sk_happen_1 happen) (Agent sk_happen_1 what) (Past sk_happen_1)))) (STV 1.0 0.99))",
+            "(: s8_manner (Manner sk_explain_1 full) (STV 1.0 0.99))",
+            "(: s8_past (Past sk_explain_1) (STV 1.0 0.99))",
+            "(: s8_name (Name paul \"Paul\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: s8_exp (Experiencer e0 paul) (STV 1.0 0.99))",
+            "(: s8_manner (Manner e0 full) (STV 1.0 0.99))",
+            "(: s8_explain (Member e0 explain) (STV 1.0 0.99))",
+            "(: s8_name (Name paul \"Paul\") (STV 1.0 0.99))",
+            "(: s8_past (Past e0) (STV 1.0 0.99))",
+            "(: s8_theme (Theme e0 (Question what (And (Agent x0 what) (Member x0 happen) (Past x0)))) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000088 run1": {
+        "sentence": "This castle is more beautiful than that.",
+        "before": [
+            "(: s9_castle1 (Member sk_castle_1 castle) (STV 1.0 0.99))",
+            "(: s9_castle2 (Member sk_castle_2 castle) (STV 1.0 0.99))",
+            "(: s9_more (More beautiful sk_castle_1 sk_castle_2) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: s9_castle1 (Member x0 castle) (STV 1.0 0.99))",
+            "(: s9_castle2 (Member x1 castle) (STV 1.0 0.99))",
+            "(: s9_more (More beautiful x0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000089 run1": {
+        "sentence": "Religion played a very important role in creating the various calendars still in use.",
+        "before": [
+            "(: s10_play (Member sk_play_1 play) (STV 1.0 0.99))",
+            "(: s10_play_agent (Agent sk_play_1 religion) (STV 1.0 0.99))",
+            "(: s10_play_theme (Theme sk_play_1 sk_role_1) (STV 1.0 0.99))",
+            "(: s10_play_past (Past sk_play_1) (STV 1.0 0.99))",
+            "(: s10_role (Member sk_role_1 role) (STV 1.0 0.99))",
+            "(: s10_role_imp (Member sk_role_1 important) (STV 1.0 0.99))",
+            "(: s10_role_deg (Degree sk_role_1 important very) (STV 1.0 0.99))",
+            "(: s10_play_loc (Location sk_play_1 sk_create_1) (STV 1.0 0.99))",
+            "(: s10_create (Member sk_create_1 create) (STV 1.0 0.99))",
+            "(: s10_create_agent (Agent sk_create_1 religion) (STV 1.0 0.99))",
+            "(: s10_create_patient (Patient sk_create_1 sk_group_1) (STV 1.0 0.99))",
+            "(: s10_group (GroupOf sk_group_1 calendar) (STV 1.0 0.99))",
+            "(: s10_group_various (Member sk_group_1 various) (STV 1.0 0.99))",
+            "(: s10_use (Member sk_use_1 use) (STV 1.0 0.99))",
+            "(: s10_use_theme (Theme sk_use_1 sk_group_1) (STV 1.0 0.99))",
+            "(: s10_use_still (Still sk_use_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: s10_play_agent (Agent e0 religion) (STV 1.0 0.99))",
+            "(: s10_create_agent (Agent e1 religion) (STV 1.0 0.99))",
+            "(: s10_role_deg (Degree x0 important very) (STV 1.0 0.99))",
+            "(: s10_group (GroupOf x1 calendar) (STV 1.0 0.99))",
+            "(: s10_play_loc (Location e0 e1) (STV 1.0 0.99))",
+            "(: s10_play (Member e0 play) (STV 1.0 0.99))",
+            "(: s10_create (Member e1 create) (STV 1.0 0.99))",
+            "(: s10_use (Member e2 use) (STV 1.0 0.99))",
+            "(: s10_role_imp (Member x0 important) (STV 1.0 0.99))",
+            "(: s10_role (Member x0 role) (STV 1.0 0.99))",
+            "(: s10_group_various (Member x1 various) (STV 1.0 0.99))",
+            "(: s10_play_past (Past e0) (STV 1.0 0.99))",
+            "(: s10_create_patient (Patient e1 x1) (STV 1.0 0.99))",
+            "(: s10_use_still (Still e2) (STV 1.0 0.99))",
+            "(: s10_play_theme (Theme e0 x0) (STV 1.0 0.99))",
+            "(: s10_use_theme (Theme e2 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000090 run1": {
+        "sentence": "This world is smoke and mirrors.",
+        "before": [
+            "(: s11_world (Member sk_world_1 world) (STV 1.0 0.99))",
+            "(: s11_pred (Member sk_world_1 smoke_and_mirrors) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: s11_pred (Member x0 smoke_and_mirrors) (STV 1.0 0.99))",
+            "(: s11_world (Member x0 world) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000091 run1": {
+        "sentence": "The shopkeeper let this cloth go for almost nothing.",
+        "before": [
+            "(: s12_shopkeeper (Member sk_shopkeeper_1 shopkeeper) (STV 1.0 0.99))",
+            "(: s12_letgo (Member sk_letgo_1 let_go) (STV 1.0 0.99))",
+            "(: s12_agent (Agent sk_letgo_1 sk_shopkeeper_1) (STV 1.0 0.99))",
+            "(: s12_theme (Theme sk_letgo_1 sk_cloth_1) (STV 1.0 0.99))",
+            "(: s12_past (Past sk_letgo_1) (STV 1.0 0.99))",
+            "(: s12_cloth (Member sk_cloth_1 cloth) (STV 1.0 0.99))",
+            "(: s12_manner (Manner sk_letgo_1 almost_nothing) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: s12_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: s12_manner (Manner e0 almost_nothing) (STV 1.0 0.99))",
+            "(: s12_letgo (Member e0 let_go) (STV 1.0 0.99))",
+            "(: s12_shopkeeper (Member x0 shopkeeper) (STV 1.0 0.99))",
+            "(: s12_cloth (Member x1 cloth) (STV 1.0 0.99))",
+            "(: s12_past (Past e0) (STV 1.0 0.99))",
+            "(: s12_theme (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000092 run1": {
+        "sentence": "Converting to Islam was wonderful.",
+        "before": [
+            "(: convert_ev (Member sk_convert_1 convert) (STV 1.0 0.99))",
+            "(: convert_goal (Goal sk_convert_1 islam) (STV 1.0 0.99))",
+            "(: islam_name (Name islam \"Islam\") (STV 1.0 0.99))",
+            "(: convert_wonderful (Past (Member sk_convert_1 wonderful)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: convert_goal (Goal e0 islam) (STV 1.0 0.99))",
+            "(: convert_ev (Member e0 convert) (STV 1.0 0.99))",
+            "(: islam_name (Name islam \"Islam\") (STV 1.0 0.99))",
+            "(: convert_wonderful (Past (Member e0 wonderful)) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000093 run1": {
+        "sentence": "Fluency boils down to one thing: practice.",
+        "before": [
+            "(: bd_ev (Member sk_boil_down_1 boil_down) (STV 1.0 0.99))",
+            "(: bd_exp (Experiencer sk_boil_down_1 fluency) (STV 1.0 0.99))",
+            "(: bd_goal (Goal sk_boil_down_1 practice) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: bd_exp (Experiencer e0 fluency) (STV 1.0 0.99))",
+            "(: bd_goal (Goal e0 practice) (STV 1.0 0.99))",
+            "(: bd_ev (Member e0 boil_down) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000094 run1": {
+        "sentence": "Summer has certainly passed by quickly.",
+        "before": [
+            "(: pass_ev (Member sk_pass_by_1 pass_by) (STV 1.0 0.99))",
+            "(: pass_pat (Patient sk_pass_by_1 summer) (STV 1.0 0.99))",
+            "(: pass_past (Past sk_pass_by_1) (STV 1.0 0.99))",
+            "(: pass_manner_certainly (Manner sk_pass_by_1 certainly) (STV 1.0 0.99))",
+            "(: pass_manner_quickly (Manner sk_pass_by_1 quickly) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: pass_manner_certainly (Manner e0 certainly) (STV 1.0 0.99))",
+            "(: pass_manner_quickly (Manner e0 quickly) (STV 1.0 0.99))",
+            "(: pass_ev (Member e0 pass_by) (STV 1.0 0.99))",
+            "(: pass_past (Past e0) (STV 1.0 0.99))",
+            "(: pass_pat (Patient e0 summer) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000095 run1": {
+        "sentence": "Six times three is eighteen.",
+        "before": [
+            "(: six_times_three (Compute * (6 3) -> 18) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: six_times_three (Compute * (6 3) -> 18) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000096 run1": {
+        "sentence": "Igor has been terrorizing campers in the area.",
+        "before": [
+            "(: igor_name (Name igor \"Igor\") (STV 1.0 0.99))",
+            "(: terr_ev (Member sk_terrorize_1 terrorize) (STV 1.0 0.99))",
+            "(: terr_ag (Agent sk_terrorize_1 igor) (STV 1.0 0.99))",
+            "(: terr_th (Theme sk_terrorize_1 camper) (STV 1.0 0.99))",
+            "(: area_mem (Member sk_area_1 area) (STV 1.0 0.99))",
+            "(: terr_loc (Location sk_terrorize_1 sk_area_1) (STV 1.0 0.99))",
+            "(: terr_ong (Ongoing sk_terrorize_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: terr_ag (Agent e0 igor) (STV 1.0 0.99))",
+            "(: terr_loc (Location e0 x0) (STV 1.0 0.99))",
+            "(: terr_ev (Member e0 terrorize) (STV 1.0 0.99))",
+            "(: area_mem (Member x0 area) (STV 1.0 0.99))",
+            "(: igor_name (Name igor \"Igor\") (STV 1.0 0.99))",
+            "(: terr_ong (Ongoing e0) (STV 1.0 0.99))",
+            "(: terr_th (Theme e0 camper) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000097 run1": {
+        "sentence": "The Moroccan police cracked down on the protests.",
+        "before": [
+            "(: police_mem (Member sk_police_1 police) (STV 1.0 0.99))",
+            "(: police_moroccan (Member sk_police_1 moroccan) (STV 1.0 0.99))",
+            "(: cd_ev (Member sk_crack_down_1 crack_down) (STV 1.0 0.99))",
+            "(: cd_ag (Agent sk_crack_down_1 sk_police_1) (STV 1.0 0.99))",
+            "(: protest_group (GroupOf sk_protest_1 protest) (STV 1.0 0.99))",
+            "(: cd_th (Theme sk_crack_down_1 sk_protest_1) (STV 1.0 0.99))",
+            "(: cd_past (Past sk_crack_down_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: cd_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: protest_group (GroupOf x1 protest) (STV 1.0 0.99))",
+            "(: cd_ev (Member e0 crack_down) (STV 1.0 0.99))",
+            "(: police_moroccan (Member x0 moroccan) (STV 1.0 0.99))",
+            "(: police_mem (Member x0 police) (STV 1.0 0.99))",
+            "(: cd_past (Past e0) (STV 1.0 0.99))",
+            "(: cd_th (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000098 run1": {
+        "sentence": "The leaves are changing colors.",
+        "before": [
+            "(: leaf_group (GroupOf sk_leaf_1 leaf) (STV 1.0 0.99))",
+            "(: change_ev (Member sk_change_1 change) (STV 1.0 0.99))",
+            "(: change_ag (Agent sk_change_1 sk_leaf_1) (STV 1.0 0.99))",
+            "(: change_th (Theme sk_change_1 color) (STV 1.0 0.99))",
+            "(: change_ong (Ongoing sk_change_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: change_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: leaf_group (GroupOf x0 leaf) (STV 1.0 0.99))",
+            "(: change_ev (Member e0 change) (STV 1.0 0.99))",
+            "(: change_ong (Ongoing e0) (STV 1.0 0.99))",
+            "(: change_th (Theme e0 color) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000099 run1": {
+        "sentence": "Anyone can make a speech here on Sundays.",
+        "before": [
+            "(: ms_genus (Inheritance make_speech make) (STV 1.0 0.99))",
+            "(: ms_obj (Patient make_speech speech) (STV 1.0 0.99))",
+            "(: anyone_here (ConditionalProperty person (permitted make_speech) here) (STV 1.0 0.99))",
+            "(: anyone_sunday (ConditionalProperty person (permitted make_speech) sunday) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: anyone_here (ConditionalProperty person (permitted make_speech) here) (STV 1.0 0.99))",
+            "(: anyone_sunday (ConditionalProperty person (permitted make_speech) sunday) (STV 1.0 0.99))",
+            "(: ms_genus (Inheritance make_speech make) (STV 1.0 0.99))",
+            "(: ms_obj (Patient make_speech speech) (STV 1.0 0.99))"
+        ]
+    },
+    "tierB-000100 run1": {
+        "sentence": "The ship leaves for Honolulu tomorrow.",
+        "before": [
+            "(: ship_mem (Member sk_ship_1 ship) (STV 1.0 0.99))",
+            "(: leave_ev (Member sk_leave_1 leave) (STV 1.0 0.99))",
+            "(: leave_ag (Agent sk_leave_1 sk_ship_1) (STV 1.0 0.99))",
+            "(: leave_goal (Goal sk_leave_1 honolulu) (STV 1.0 0.99))",
+            "(: honolulu_name (Name honolulu \"Honolulu\") (STV 1.0 0.99))",
+            "(: leave_fut (Future sk_leave_1) (STV 1.0 0.99))",
+            "(: leave_time (Time sk_leave_1 tomorrow) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: leave_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: leave_fut (Future e0) (STV 1.0 0.99))",
+            "(: leave_goal (Goal e0 honolulu) (STV 1.0 0.99))",
+            "(: leave_ev (Member e0 leave) (STV 1.0 0.99))",
+            "(: ship_mem (Member x0 ship) (STV 1.0 0.99))",
+            "(: honolulu_name (Name honolulu \"Honolulu\") (STV 1.0 0.99))",
+            "(: leave_time (Time e0 tomorrow) (STV 1.0 0.99))"
+        ]
+    }
+}
