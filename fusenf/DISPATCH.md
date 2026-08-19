@@ -139,6 +139,27 @@ calibration incident constrains the wording, so the brief must be written agains
 machinery, not from memory. Until then, batch-1 vote records in `rules/probes*/votes_*.jsonl`
 are the de-facto format reference.
 
+## Brief inventory (every agent role; nothing runs briefless from batch 2 on)
+
+| agent role | brief | status |
+|---|---|---|
+| batch parse, run 1 | `PARSE.md` | standing |
+| re-parse, run 2 | `REPARSE.md` | standing |
+| M1 stability runs | `M1PARSE.md` | standing |
+| one-sentence-per-agent parse | `SOLOPARSE.md` | standing |
+| Tier A corpus realization | `corpora/REALIZE.md` | standing (P2-era, still the standard) |
+| §5.2 parse reviewer | `REVIEW.md` | standing from batch 2 |
+| M1 disagreement diagnosis | `DIAGNOSE.md` | standing from batch 2 |
+| gauntlet judges (M4 / routing) | `JUDGE.md` | **PENDING** — authored at the gauntlet walk |
+| M5 question writer | `QGEN.md` | to-be-added with the M5 question arm (§6 item 8) |
+| M5 question→query parser | `QPARSE.md` | to-be-added with the M5 question arm (§6 item 8) |
+
+Agent-free by design (no brief will ever exist): canonicalization, star decomposition,
+M2/M3 measurement, M5 query instantiation + differential comparison, consolidation rewriting,
+majority-of-N voting, all miners' counting/thresholding. One-off closed contracts: the #48
+pilot (`pilot48/ADDENDUM.md`) and the batch-1 PAWS control-pair dissection (recorded in
+`eval/m2_heldout.md`; future instances = the judge family).
+
 ## Historical note
 
 Batch-1 wrappers followed the two-sentence pattern above with minor wording drift across
