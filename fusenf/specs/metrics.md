@@ -116,10 +116,29 @@ to bridging or reject them, and re-run.
 | `distinct_heads` | distinct open-class heads (closed-class is fixed by construction), before / after |
 | `mdl` | `size(rules) + size(consolidated corpus)` vs `size(original corpus)` |
 
-`size(corpus)` = total atoms; `size(rule)` = `|LHS atoms| + |RHS atoms| + 1`. **Success: net MDL gain
-> 0** — the rules must cost less than the redundancy they remove. This is the most ENF-spirited
-criterion available to us and the one hardest to game: a rule that fires twice does not pay for
-itself.
+`size(corpus)` = total atoms; `size(rule)` = `|LHS atoms| + |RHS atoms| + 1`. This is the most
+ENF-spirited criterion available to us and the one hardest to game: a rule that fires twice does
+not pay for itself.
+
+**Success criterion — per species, not global (amended 2026-08-19, owner decision; supersedes the
+original "net MDL gain > 0" global gate).** FUSE-NF's goal is normalization — semantically
+equivalent things represented identically — and KB size is a consequence for one rule species,
+not the goal. Per PLAN §1's two species:
+
+- **Equivalence rules** (lexical/structural collapses): M3 is **reported, never gated**. A symbol
+  rewrite preserves atom counts, so this species measures ≈0 *by construction* — a zero is the
+  signature of a normalization rule doing its job, and a net negative at scale is rule-storage
+  bookkeeping, not failure. This species' success criteria are M2 (convergence), M4 (truth) and
+  M5 (losslessness). Batch-1 evidence: round 1 posted MDL −39 while the same 13 rules moved Tier A
+  convergence 18.9%→43.3% — the "fail" framing was the metric's, not the rules'.
+- **Packing rules** (meta-node packs): **strict marginal MDL > 0 stays a hard per-candidate
+  selection gate** — for this species compression *is* the claim. Strict accounting (formula
+  pinned in `harness/gauntlet2.py`): rule cost `|LHS| + |RHS| + 1` **plus 2 per expansion
+  bridge** — the decompressor is part of the theory, so it is part of the bill. The rule-cost
+  term is the Occam regularizer, not bookkeeping: without it any pack that fires once looks
+  positive, and the selector would memorize the corpus one bespoke pack at a time. Batch-1
+  evidence: round-2 packs 6,372→4,894 atoms, strict +1,329, one candidate pack rejected purely
+  for not paying for itself.
 
 Reported alongside, not as a success criterion: mean atoms per record before/after (a sanity check
 that consolidation is not simply deleting content — cross-checked by M5).

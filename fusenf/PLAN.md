@@ -46,6 +46,11 @@ a target. Two rule species come out of Batch 1:
    expansion implications as the mechanical inverse — the decompressor is counted in M3's
    strict rule cost.
 
+   M3 splits along the same line (metrics.md M3, amended 2026-08-19): for equivalence rules MDL
+   is reported, never gated (a symbol rewrite saves ≈0 atoms by construction — its success
+   criteria are M2/M4/M5); for pack rules strict marginal MDL > 0 remains a hard per-candidate
+   selection gate, because for that species compression is the claim.
+
 Routing for the equivalence species:
 
 | | **Consolidation rule** | **Bridging rule** |
