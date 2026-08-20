@@ -129,32 +129,34 @@ Wrapper:
   by frequency = the prompt fix-round worklist; `garbled` → corpus triage; `different_readings`
   → #48 evidence; `determined`+`winner` → error-rate bookkeeping. Verdicts never edit parses.
 
-## Judge dispatch (P4 gauntlet) — brief PENDING
+## Judge dispatch (P4 gauntlet — standing from batch 2; brief authored 2026-08-19)
 
-Gauntlet judges (the agents that validated/rejected rule candidates over probe cards in
-`rules/probes*/`) ran on ad-hoc wrappers in batch 1. Their brief (`JUDGE.md`) is deliberately
-deferred until the gauntlet layer of the owner walk-through: it must be written against the
-probe-card machinery, not from memory. Until then, batch-1 vote records in
-`rules/probes*/votes_*.jsonl` are the de-facto format reference.
+Brief: `JUDGE.md`. Wrapper:
 
-**Requirements accumulated for authoring** (grew during the 2026-08-18/19 walk-through;
-extend this list, never re-derive it):
+    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/JUDGE.md and follow it exactly.
+    Your cards file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/rules/probes<N>/cards_<batch>.json.
+    Write your votes to /home/manhin/Dev/semantic-parsing-hitl/fusenf/rules/probes<N>/votes_<batch>_<judge>.jsonl.
 
-1. Probe cards differ by rule family — lexical pair / meta-node pack / AE pair / role
-   bridge each need their own card shape and questions.
-2. The round-1 register calibration incident constrains wording: register/formality shift
-   is NOT meaning loss (the `register_only()` precedent; 9 logged overrides).
-3. The brief must define the **loss taxonomy** judges rule under (metrics/M5 discussion,
-   08-19): answer-level loss forbidden; connotative/surface loss tolerated and judged;
-   quantified loss = bridging's TV; surface-record atoms preserved out-of-band. "Which
-   losses count" is brief content, not judge intuition.
-4. **Standalone-factor probes** (diff-factoring design, PATTERN_MINER_STUDY §4): for a
-   factored diff, the question is "is this edit meaning-preserving ON ITS OWN?" — asked
-   without showing the joint diff it was factored from (anchoring), while the joint key
-   remains a separate candidate. The converse trap (buy↔sell) is the calibration example.
-5. If the **graded-lexical-bridge route** is registered for batch 2 (deferred-topics #33
-   addendum): a judge task type that grades entailment direction + sets a confidence
-   ceiling < 0.9 for partial synonyms, instead of binary validate/reject.
+- **Model: `sonnet`, panels of 3 (majority vote).** The judged content is English
+  sentences, not model-generated parses, so the decorrelation argument that made the
+  reviewer and diagnostician Opus does not apply; batch-1 Sonnet panels calibrated well
+  (6/7 vs lexicographic ground truth, and they beat the seed table three times).
+  Escalation on a 2-1 split over a high-stakes candidate: widen to 5 or add one Opus
+  adjudicator — orchestrator's call, logged.
+- **Card-construction discipline** (orchestrator-side; the brief cannot enforce these):
+  cards carry **no provenance** — no miner name, no support counts, no confidence, no
+  sibling candidates (anchoring); a **factored-edit card must not show the joint diff it
+  was factored from** (the joint key is its own separate card); examples are natural
+  sentences from the cited corpus records, at least two per card.
+- The 5 authoring requirements accumulated during the walk-through are discharged into
+  the brief: per-family question sets via the card `task` field (req 1); the register
+  rule and the full loss taxonomy as brief text with worked calibration examples
+  (reqs 2+3); the judge-the-rule-not-the-examples doctrine + the bare-converse
+  calibration line + `defeaters` (req 4); `task: grade` present but dormant until the
+  graded-lexical-bridge route is registered (req 5).
+- **Audit trail**: `harness/ledger_view.py` renders the complete ledger — every candidate,
+  every mech gate, every vote verbatim, final routing — to `eval/rule_ledger.md`.
+  Regenerate after every gauntlet round.
 
 ## Brief inventory (every agent role; nothing runs briefless from batch 2 on)
 
@@ -167,7 +169,7 @@ extend this list, never re-derive it):
 | Tier A corpus realization | `corpora/REALIZE.md` | standing (P2-era, still the standard) |
 | §5.2 parse reviewer | `REVIEW.md` | standing from batch 2 |
 | M1 disagreement diagnosis | `DIAGNOSE.md` | standing from batch 2 |
-| gauntlet judges (M4 / routing) | `JUDGE.md` | **PENDING** — authored at the gauntlet walk |
+| gauntlet judges (M4 / routing) | `JUDGE.md` | standing from batch 2 (authored 2026-08-19) |
 | M5 question writer | `QGEN.md` | to-be-added with the M5 question arm (§6 item 8) |
 | M5 question→query parser | `QPARSE.md` | to-be-added with the M5 question arm (§6 item 8) |
 
