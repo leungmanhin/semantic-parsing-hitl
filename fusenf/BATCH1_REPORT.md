@@ -90,7 +90,14 @@ claude-sonnet-5 blind agents, prompt.txt e2e 334/334.
    (×10–100 rule inventory), and the plan's own step 6.
 2. **Engine And-prover fix** (upstream) — unblocks packed-KB conjunction QA (M5).
 3. Method-Wave-3 picks: LLM-as-rule-proposer, cluster-level anti-unification; plus the 77
-   event-centering-untranslatable cross-star MI groups.
+   event-centering-untranslatable cross-star MI groups. **Mining-design study done
+   (2026-08-19): `PATTERN_MINER_STUDY.md`** — Ben Goertzel's miner lineage (URE miner /
+   hyperon-miner) vs our `frequent_stars`; recommendation = Ben-faithful deterministic
+   Python miner (`frequent_patterns2`: top-down specialization, a-priori pruning,
+   conjunction expansion = the principled multi-center form, isurp/nisurp ranking) with
+   hyperon-miner run as a cross-reference on Tier A — NOT an oracle (it is itself WIP;
+   on divergence the arbiter is the written formal spec + the Tier A answer key);
+   supersedes the ad-hoc two-center idea.
 4. **Qwen3-family embedding channel** (owner-deferred) — corpus-independent lexical prior as
    a generator signal; would have separated the 91 scenario siblings pre-gauntlet.
 5. Owner reviews parked: the 9 register-overrides, the doctor/physician hypernym call,
