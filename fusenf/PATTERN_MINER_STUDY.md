@@ -173,3 +173,18 @@ first targets on the doubled substrate: the CoAgent~GroupOf correspondence (2-co
 2-center), the 77 cross-star MI groups (candidate 2–3-conjunct patterns), and shape-level
 role-frame patterns for #23-style role wobble. M4 (Tier A answer key) gates
 `frequent_patterns2` like any other method before its candidates enter the gauntlet.
+
+**§4.3.4 companion upgrade — within-unit diff factoring (owner discussion 2026-08-19).**
+Loop 2's null result is mechanical: natural-pair diffs bundle several independent edits
+in one unit, so bundled keys never recur. Fix: factor each unit diff into connected
+components over shared satellite variables, each minimal edit becoming its own candidate
+key. **Trap (must-keep discipline):** co-dependent edits fabricate false rules when split
+— the converse `buy↔sell` = lexeme swap + argument swap *jointly*; the lexeme atom shares
+only `$C` with the role atoms, so naive components split exactly there, and Tier A's
+participant-swap control keys would not catch the bare Member-swap. Therefore: (1) always
+emit the joint key alongside its factors; (2) a factor is promotable only if independently
+attested as a *sole* diff elsewhere, or judge-approved as meaning-preserving *on its own*;
+(3) existing guards stay (fires_on_control, garble/review gate, and the About/Of
+diff-rendering mistemplate fix — factoring raises the price of rendering bugs). Composes
+with cluster-level anti-unification: factor first (smaller exact keys), cluster the
+factors (approximate matching + true lgg).

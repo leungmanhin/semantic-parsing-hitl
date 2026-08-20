@@ -133,11 +133,28 @@ Wrapper:
 
 Gauntlet judges (the agents that validated/rejected rule candidates over probe cards in
 `rules/probes*/`) ran on ad-hoc wrappers in batch 1. Their brief (`JUDGE.md`) is deliberately
-deferred until the gauntlet layer of the owner walk-through (2026-08-19): probe cards differ
-by rule family (lexical pair / pack / AE pair / role bridge) and the round-1 register
-calibration incident constrains the wording, so the brief must be written against that
-machinery, not from memory. Until then, batch-1 vote records in `rules/probes*/votes_*.jsonl`
-are the de-facto format reference.
+deferred until the gauntlet layer of the owner walk-through: it must be written against the
+probe-card machinery, not from memory. Until then, batch-1 vote records in
+`rules/probes*/votes_*.jsonl` are the de-facto format reference.
+
+**Requirements accumulated for authoring** (grew during the 2026-08-18/19 walk-through;
+extend this list, never re-derive it):
+
+1. Probe cards differ by rule family — lexical pair / meta-node pack / AE pair / role
+   bridge each need their own card shape and questions.
+2. The round-1 register calibration incident constrains wording: register/formality shift
+   is NOT meaning loss (the `register_only()` precedent; 9 logged overrides).
+3. The brief must define the **loss taxonomy** judges rule under (metrics/M5 discussion,
+   08-19): answer-level loss forbidden; connotative/surface loss tolerated and judged;
+   quantified loss = bridging's TV; surface-record atoms preserved out-of-band. "Which
+   losses count" is brief content, not judge intuition.
+4. **Standalone-factor probes** (diff-factoring design, PATTERN_MINER_STUDY §4): for a
+   factored diff, the question is "is this edit meaning-preserving ON ITS OWN?" — asked
+   without showing the joint diff it was factored from (anchoring), while the joint key
+   remains a separate candidate. The converse trap (buy↔sell) is the calibration example.
+5. If the **graded-lexical-bridge route** is registered for batch 2 (deferred-topics #33
+   addendum): a judge task type that grades entailment direction + sets a confidence
+   ceiling < 0.9 for partial synonyms, instead of binary validate/reject.
 
 ## Brief inventory (every agent role; nothing runs briefless from batch 2 on)
 
