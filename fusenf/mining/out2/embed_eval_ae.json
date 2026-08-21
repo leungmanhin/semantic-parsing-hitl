@@ -1,0 +1,910 @@
+{
+ "date": "2026-08-21",
+ "model": "Qwen/Qwen3-Embedding-8B",
+ "dtype": "bfloat16",
+ "emb_sha256": "7ca035a4f7e72cd80f4df37279c6f889e87450ac8dd472b79f645826666b5517",
+ "load_seconds": 9.5,
+ "encode_seconds": 30.1,
+ "n_words": 82,
+ "valid_pairs": [
+  {
+   "pair": [
+    "automobile",
+    "car"
+   ],
+   "cosine": 0.9518
+  },
+  {
+   "pair": [
+    "doctor",
+    "physician"
+   ],
+   "cosine": 0.9425
+  }
+ ],
+ "threshold_floor_of_valid": 0.9425,
+ "rejected_n": 93,
+ "killed_below_floor": 93,
+ "kill_rate": 1.0,
+ "acceptance_>=0.90": true,
+ "surviving_siblings": [],
+ "ae_pairs": [
+  {
+   "id": "ae0001",
+   "status": "rejected",
+   "pair": [
+    "archive",
+    "flood"
+   ],
+   "cosine": 0.5754
+  },
+  {
+   "id": "ae0002",
+   "status": "rejected",
+   "pair": [
+    "archive",
+    "footbridge"
+   ],
+   "cosine": 0.5892
+  },
+  {
+   "id": "ae0003",
+   "status": "rejected",
+   "pair": [
+    "archive",
+    "greenhouse"
+   ],
+   "cosine": 0.5881
+  },
+  {
+   "id": "ae0004",
+   "status": "rejected",
+   "pair": [
+    "archive",
+    "storm"
+   ],
+   "cosine": 0.598
+  },
+  {
+   "id": "ae0005",
+   "status": "rejected",
+   "pair": [
+    "bank",
+    "editor"
+   ],
+   "cosine": 0.5891
+  },
+  {
+   "id": "ae0006",
+   "status": "rejected",
+   "pair": [
+    "bank",
+    "manuscript"
+   ],
+   "cosine": 0.5485
+  },
+  {
+   "id": "ae0007",
+   "status": "rejected",
+   "pair": [
+    "bank",
+    "panel"
+   ],
+   "cosine": 0.6969
+  },
+  {
+   "id": "ae0008",
+   "status": "rejected",
+   "pair": [
+    "bank",
+    "proposal"
+   ],
+   "cosine": 0.6468
+  },
+  {
+   "id": "ae0009",
+   "status": "rejected",
+   "pair": [
+    "boiler",
+    "skylight"
+   ],
+   "cosine": 0.5964
+  },
+  {
+   "id": "ae0010",
+   "status": "rejected",
+   "pair": [
+    "boiler",
+    "spoil_mound"
+   ],
+   "cosine": 0.5828
+  },
+  {
+   "id": "ae0011",
+   "status": "rejected",
+   "pair": [
+    "calibration",
+    "descent"
+   ],
+   "cosine": 0.6041
+  },
+  {
+   "id": "ae0012",
+   "status": "rejected",
+   "pair": [
+    "calibration",
+    "repair"
+   ],
+   "cosine": 0.6454
+  },
+  {
+   "id": "ae0013",
+   "status": "rejected",
+   "pair": [
+    "courier",
+    "government"
+   ],
+   "cosine": 0.6127
+  },
+  {
+   "id": "ae0014",
+   "status": "rejected",
+   "pair": [
+    "courier",
+    "night_crew"
+   ],
+   "cosine": 0.6225
+  },
+  {
+   "id": "ae0015",
+   "status": "rejected",
+   "pair": [
+    "descent",
+    "repair"
+   ],
+   "cosine": 0.6077
+  },
+  {
+   "id": "ae0016",
+   "status": "rejected",
+   "pair": [
+    "editor",
+    "loan_application"
+   ],
+   "cosine": 0.5219
+  },
+  {
+   "id": "ae0017",
+   "status": "rejected",
+   "pair": [
+    "editor",
+    "panel"
+   ],
+   "cosine": 0.7001
+  },
+  {
+   "id": "ae0018",
+   "status": "rejected",
+   "pair": [
+    "editor",
+    "proposal"
+   ],
+   "cosine": 0.6404
+  },
+  {
+   "id": "ae0019",
+   "status": "rejected",
+   "pair": [
+    "fire",
+    "flood"
+   ],
+   "cosine": 0.767
+  },
+  {
+   "id": "ae0020",
+   "status": "rejected",
+   "pair": [
+    "fire",
+    "footbridge"
+   ],
+   "cosine": 0.6394
+  },
+  {
+   "id": "ae0021",
+   "status": "rejected",
+   "pair": [
+    "fire",
+    "greenhouse"
+   ],
+   "cosine": 0.6498
+  },
+  {
+   "id": "ae0022",
+   "status": "rejected",
+   "pair": [
+    "fire",
+    "storm"
+   ],
+   "cosine": 0.7479
+  },
+  {
+   "id": "ae0023",
+   "status": "rejected",
+   "pair": [
+    "flood",
+    "greenhouse"
+   ],
+   "cosine": 0.5837
+  },
+  {
+   "id": "ae0024",
+   "status": "rejected",
+   "pair": [
+    "flood",
+    "storm"
+   ],
+   "cosine": 0.7656
+  },
+  {
+   "id": "ae0025",
+   "status": "rejected",
+   "pair": [
+    "footbridge",
+    "greenhouse"
+   ],
+   "cosine": 0.573
+  },
+  {
+   "id": "ae0026",
+   "status": "rejected",
+   "pair": [
+    "footbridge",
+    "storm"
+   ],
+   "cosine": 0.5673
+  },
+  {
+   "id": "ae0027",
+   "status": "rejected",
+   "pair": [
+    "form",
+    "speak"
+   ],
+   "cosine": 0.6442
+  },
+  {
+   "id": "ae0028",
+   "status": "rejected",
+   "pair": [
+    "government",
+    "night_crew"
+   ],
+   "cosine": 0.5632
+  },
+  {
+   "id": "ae0029",
+   "status": "rejected",
+   "pair": [
+    "loan_application",
+    "manuscript"
+   ],
+   "cosine": 0.5348
+  },
+  {
+   "id": "ae0030",
+   "status": "rejected",
+   "pair": [
+    "loan_application",
+    "panel"
+   ],
+   "cosine": 0.6232
+  },
+  {
+   "id": "ae0031",
+   "status": "rejected",
+   "pair": [
+    "loan_application",
+    "proposal"
+   ],
+   "cosine": 0.7162
+  },
+  {
+   "id": "ae0032",
+   "status": "rejected",
+   "pair": [
+    "manuscript",
+    "panel"
+   ],
+   "cosine": 0.6235
+  },
+  {
+   "id": "ae0033",
+   "status": "rejected",
+   "pair": [
+    "manuscript",
+    "proposal"
+   ],
+   "cosine": 0.663
+  },
+  {
+   "id": "ae0034",
+   "status": "rejected",
+   "pair": [
+    "skylight",
+    "spoil_mound"
+   ],
+   "cosine": 0.6405
+  },
+  {
+   "id": "ae0035",
+   "status": "rejected",
+   "pair": [
+    "follow",
+    "replace"
+   ],
+   "cosine": 0.7035
+  },
+  {
+   "id": "ae0036",
+   "status": "rejected",
+   "pair": [
+    "form",
+    "replace"
+   ],
+   "cosine": 0.6816
+  },
+  {
+   "id": "ae0037",
+   "status": "rejected",
+   "pair": [
+    "replace",
+    "speak"
+   ],
+   "cosine": 0.637
+  },
+  {
+   "id": "ae0038",
+   "status": "rejected",
+   "pair": [
+    "ridge",
+    "ward"
+   ],
+   "cosine": 0.7864
+  },
+  {
+   "id": "ae0039",
+   "status": "rejected",
+   "pair": [
+    "shepherd",
+    "ward"
+   ],
+   "cosine": 0.6715
+  },
+  {
+   "id": "ae0040",
+   "status": "rejected",
+   "pair": [
+    "boiler",
+    "hatch"
+   ],
+   "cosine": 0.6361
+  },
+  {
+   "id": "ae0041",
+   "status": "rejected",
+   "pair": [
+    "hatch",
+    "skylight"
+   ],
+   "cosine": 0.6976
+  },
+  {
+   "id": "ae0042",
+   "status": "rejected",
+   "pair": [
+    "hatch",
+    "spoil_mound"
+   ],
+   "cosine": 0.7082
+  },
+  {
+   "id": "ae0043",
+   "status": "rejected",
+   "pair": [
+    "nurse",
+    "ridge"
+   ],
+   "cosine": 0.5861
+  },
+  {
+   "id": "ae0044",
+   "status": "rejected",
+   "pair": [
+    "nurse",
+    "shepherd"
+   ],
+   "cosine": 0.6353
+  },
+  {
+   "id": "ae0045",
+   "status": "validated",
+   "pair": [
+    "automobile",
+    "car"
+   ],
+   "cosine": 0.9518
+  },
+  {
+   "id": "ae0046",
+   "status": "validated",
+   "pair": [
+    "doctor",
+    "physician"
+   ],
+   "cosine": 0.9425
+  },
+  {
+   "id": "ae0047",
+   "status": "rejected",
+   "pair": [
+    "big",
+    "hatch"
+   ],
+   "cosine": 0.6979
+  },
+  {
+   "id": "ae0048",
+   "status": "rejected",
+   "pair": [
+    "big",
+    "boiler"
+   ],
+   "cosine": 0.6237
+  },
+  {
+   "id": "ae0049",
+   "status": "rejected",
+   "pair": [
+    "big",
+    "skylight"
+   ],
+   "cosine": 0.6438
+  },
+  {
+   "id": "ae0050",
+   "status": "rejected",
+   "pair": [
+    "follow",
+    "form"
+   ],
+   "cosine": 0.7515
+  },
+  {
+   "id": "ae0051",
+   "status": "rejected",
+   "pair": [
+    "follow",
+    "speak"
+   ],
+   "cosine": 0.7034
+  },
+  {
+   "id": "ae0052",
+   "status": "rejected",
+   "pair": [
+    "big",
+    "spoil_mound"
+   ],
+   "cosine": 0.6659
+  },
+  {
+   "id": "ae0053",
+   "status": "rejected",
+   "pair": [
+    "become",
+    "replace"
+   ],
+   "cosine": 0.6836
+  },
+  {
+   "id": "ae0054",
+   "status": "rejected",
+   "pair": [
+    "bridge",
+    "lane"
+   ],
+   "cosine": 0.7707
+  },
+  {
+   "id": "ae0055",
+   "status": "rejected",
+   "pair": [
+    "become",
+    "follow"
+   ],
+   "cosine": 0.758
+  },
+  {
+   "id": "ae0056",
+   "status": "rejected",
+   "pair": [
+    "follow",
+    "produce"
+   ],
+   "cosine": 0.7286
+  },
+  {
+   "id": "ae0057",
+   "status": "rejected",
+   "pair": [
+    "produce",
+    "replace"
+   ],
+   "cosine": 0.6835
+  },
+  {
+   "id": "ae0058",
+   "status": "rejected",
+   "pair": [
+    "acquire",
+    "sell"
+   ],
+   "cosine": 0.6597
+  },
+  {
+   "id": "ae0059",
+   "status": "rejected",
+   "pair": [
+    "purchase",
+    "sell"
+   ],
+   "cosine": 0.7944
+  },
+  {
+   "id": "ae0060",
+   "status": "rejected",
+   "pair": [
+    "become",
+    "produce"
+   ],
+   "cosine": 0.7477
+  },
+  {
+   "id": "ae0061",
+   "status": "rejected",
+   "pair": [
+    "boiler",
+    "large"
+   ],
+   "cosine": 0.604
+  },
+  {
+   "id": "ae0062",
+   "status": "rejected",
+   "pair": [
+    "large",
+    "skylight"
+   ],
+   "cosine": 0.6546
+  },
+  {
+   "id": "ae0063",
+   "status": "rejected",
+   "pair": [
+    "large",
+    "spoil_mound"
+   ],
+   "cosine": 0.6572
+  },
+  {
+   "id": "ae0064",
+   "status": "rejected",
+   "pair": [
+    "Experiencer",
+    "Theme"
+   ],
+   "cosine": 0.494
+  },
+  {
+   "id": "ae0065",
+   "status": "rejected",
+   "pair": [
+    "form",
+    "produce"
+   ],
+   "cosine": 0.6956
+  },
+  {
+   "id": "ae0066",
+   "status": "rejected",
+   "pair": [
+    "produce",
+    "speak"
+   ],
+   "cosine": 0.6908
+  },
+  {
+   "id": "ae0067",
+   "status": "rejected",
+   "pair": [
+    "take",
+    "walk"
+   ],
+   "cosine": 0.7285
+  },
+  {
+   "id": "ae0068",
+   "status": "rejected",
+   "pair": [
+    "elm",
+    "founder"
+   ],
+   "cosine": 0.6035
+  },
+  {
+   "id": "ae0069",
+   "status": "rejected",
+   "pair": [
+    "founder",
+    "last"
+   ],
+   "cosine": 0.6815
+  },
+  {
+   "id": "ae0070",
+   "status": "rejected",
+   "pair": [
+    "frame",
+    "mural"
+   ],
+   "cosine": 0.6974
+  },
+  {
+   "id": "ae0071",
+   "status": "rejected",
+   "pair": [
+    "large",
+    "new"
+   ],
+   "cosine": 0.7214
+  },
+  {
+   "id": "ae0072",
+   "status": "rejected",
+   "pair": [
+    "be",
+    "start"
+   ],
+   "cosine": 0.7711
+  },
+  {
+   "id": "ae0073",
+   "status": "rejected",
+   "pair": [
+    "bench",
+    "large"
+   ],
+   "cosine": 0.7305
+  },
+  {
+   "id": "ae0074",
+   "status": "rejected",
+   "pair": [
+    "bench",
+    "hatch"
+   ],
+   "cosine": 0.7433
+  },
+  {
+   "id": "ae0075",
+   "status": "rejected",
+   "pair": [
+    "hatch",
+    "new"
+   ],
+   "cosine": 0.7251
+  },
+  {
+   "id": "ae0076",
+   "status": "rejected",
+   "pair": [
+    "big",
+    "new"
+   ],
+   "cosine": 0.7338
+  },
+  {
+   "id": "ae0077",
+   "status": "rejected",
+   "pair": [
+    "change",
+    "play"
+   ],
+   "cosine": 0.6404
+  },
+  {
+   "id": "ae0078",
+   "status": "rejected",
+   "pair": [
+    "committee",
+    "large"
+   ],
+   "cosine": 0.6244
+  },
+  {
+   "id": "ae0079",
+   "status": "rejected",
+   "pair": [
+    "large",
+    "roof"
+   ],
+   "cosine": 0.6408
+  },
+  {
+   "id": "ae0080",
+   "status": "rejected",
+   "pair": [
+    "bench",
+    "boiler"
+   ],
+   "cosine": 0.6881
+  },
+  {
+   "id": "ae0081",
+   "status": "rejected",
+   "pair": [
+    "bench",
+    "skylight"
+   ],
+   "cosine": 0.6641
+  },
+  {
+   "id": "ae0082",
+   "status": "rejected",
+   "pair": [
+    "bench",
+    "spoil_mound"
+   ],
+   "cosine": 0.6638
+  },
+  {
+   "id": "ae0083",
+   "status": "rejected",
+   "pair": [
+    "boiler",
+    "new"
+   ],
+   "cosine": 0.6101
+  },
+  {
+   "id": "ae0084",
+   "status": "rejected",
+   "pair": [
+    "new",
+    "skylight"
+   ],
+   "cosine": 0.6524
+  },
+  {
+   "id": "ae0085",
+   "status": "rejected",
+   "pair": [
+    "Agent",
+    "Theme"
+   ],
+   "cosine": 0.597
+  },
+  {
+   "id": "ae0086",
+   "status": "rejected",
+   "pair": [
+    "new",
+    "spoil_mound"
+   ],
+   "cosine": 0.651
+  },
+  {
+   "id": "ae0087",
+   "status": "rejected",
+   "pair": [
+    "be",
+    "commence"
+   ],
+   "cosine": 0.7332
+  },
+  {
+   "id": "ae0088",
+   "status": "rejected",
+   "pair": [
+    "locate",
+    "wait"
+   ],
+   "cosine": 0.6464
+  },
+  {
+   "id": "ae0089",
+   "status": "rejected",
+   "pair": [
+    "bench",
+    "committee"
+   ],
+   "cosine": 0.6746
+  },
+  {
+   "id": "ae0090",
+   "status": "rejected",
+   "pair": [
+    "bench",
+    "roof"
+   ],
+   "cosine": 0.668
+  },
+  {
+   "id": "ae0091",
+   "status": "rejected",
+   "pair": [
+    "big",
+    "committee"
+   ],
+   "cosine": 0.6238
+  },
+  {
+   "id": "ae0092",
+   "status": "rejected",
+   "pair": [
+    "big",
+    "roof"
+   ],
+   "cosine": 0.6354
+  },
+  {
+   "id": "ae0093",
+   "status": "rejected",
+   "pair": [
+    "bench",
+    "big"
+   ],
+   "cosine": 0.7557
+  },
+  {
+   "id": "ae0094",
+   "status": "rejected",
+   "pair": [
+    "committee",
+    "hatch"
+   ],
+   "cosine": 0.6206
+  },
+  {
+   "id": "ae0095",
+   "status": "rejected",
+   "pair": [
+    "hatch",
+    "roof"
+   ],
+   "cosine": 0.6783
+  }
+ ],
+ "synonym_targets": {
+  "buy~purchase": 0.9241,
+  "buy~acquire": 0.8029,
+  "repair~fix": 0.8272,
+  "repair~mend": 0.7556,
+  "begin~start": 0.9182,
+  "begin~commence": 0.8634,
+  "allow~permit": 0.9053,
+  "require~need": 0.7734,
+  "doctor~physician": 0.9425,
+  "car~automobile": 0.9518,
+  "big~large": 0.9419,
+  "difficult~hard": 0.9102
+ },
+ "control_pairs": {
+  "allow~forbid": 0.8248,
+  "abandon~continue": 0.7096,
+  "stroll~sprint": 0.6775,
+  "rise~fall": 0.7603,
+  "begin~end": 0.8495,
+  "buy~sell": 0.8073
+ }
+}

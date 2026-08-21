@@ -1,0 +1,24 @@
+{
+ "model": "Qwen/Qwen3-Embedding-8B",
+ "torch": "2.13.0+cu130",
+ "device": "cpu",
+ "dtype": "bfloat16",
+ "load_seconds": 9.9,
+ "encode_seconds_first": 17.9,
+ "dim": 4096,
+ "n_words": 18,
+ "encode_seconds_second": 13.7,
+ "rerun_deterministic": true,
+ "emb_sha256": "826a6afd840c840134cdaa61ecf25ef6466c43ccf956d1d917c79f8fc703845c",
+ "sanity_cosines": {
+  "car~automobile (synonym)": 0.9518,
+  "doctor~physician (hypernym-ish)": 0.9421,
+  "buy~purchase (synonym)": 0.9244,
+  "rate of flow~flow rate (compound)": 0.9595,
+  "train station~railway station": 0.972,
+  "archive~flood (sibling)": 0.5771,
+  "bank~editor (sibling)": 0.5891,
+  "big~large (synonym)": 0.9419,
+  "rise~fall (ANTONYM - expect embeddings to score this high; the judge's job, not the prior's)": 0.7603
+ }
+}

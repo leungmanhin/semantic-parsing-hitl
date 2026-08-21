@@ -261,3 +261,20 @@ unregistered); M5 question arm (QGEN/QPARSE, §6 item 8); embedding channel defe
   Concession kept: marginal QA semantics IS epistemic-Or → compile-to-Or recorded as
   legitimate ENGINE-internal strategy in the feature-req. Ambiguity is meta-level (which
   assertion was made), disjunction is object-level (what the text asserted).
+
+## 14. Embedding prior (batch-2 item C, 2026-08-21)
+
+- Qwen3-Embedding-8B bf16 on a 13GB no-GPU laptop: 10s load, ~1s/word, bit-exact reruns —
+  "speed is a non-issue for offline-batch small-vocab" confirmed empirically; the
+  determinism requirement (not latency) was the real constraint, and local+pinned beats
+  API on exactly that axis.
+- Retro-AE acceptance: **100% separation** (93/93 siblings below the validated floor
+  0.9425) — the corpus-independent prior solves precisely the failure the corpus-bound AE
+  could not (parallel scenarios manufacture distributional twins in-corpus; general
+  language knows better).
+- Deployment threshold ≈ 0.70–0.75, NOT the validated floor: several TRUE synonyms score
+  0.75–0.80 (repair~mend 0.756) while antonyms/converses score 0.76–0.85 (begin~end
+  0.849) — the prior kills siblings, cannot adjudicate synonymy vs antonymy/conversion.
+  Filter, never evidence; judges stay. The sibling band runs 0.49–0.79 with a thin tail
+  overlapping the low-synonym zone: ~0.75 gives ~95% kill keeping every true synonym;
+  100% kill costs 2–3 of them — a dial, acceptable because survivors merely reach judges.
