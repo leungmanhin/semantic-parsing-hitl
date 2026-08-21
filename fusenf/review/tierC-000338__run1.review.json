@@ -1,0 +1,13 @@
+{"id": "tierC-000338", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 8, "issue": "A lowercase common noun plus its of-phrase is fused into caretaker_of_breakheart_hill with an invented genus link, but the instruction set licenses fusion only for modifier+head-noun compounds and routes a possessive of-phrase to (Possession <caretaker> breakheart_hill)."},
+               {"statement": null, "issue": "\"Breakheart Hill\" — the only capitalized run here, hence the name — gets no symbol and no (Name breakheart_hill \"Breakheart Hill\") fact, leaving a proper noun in the text unrepresented."},
+               {"statement": 6, "issue": "The capacity adjunct becomes an untensed top-level (Member henry_cole caretaker_of_breakheart_hill), asserting as a standing fact an office the past-tense succession says he handed over."},
+               {"statement": null, "issue": "The \"as caretaker of Breakheart Hill\" phrase is never linked to the succeed event by any role or oblique — the adjunct is dropped from the event structure."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["capacity / predicative \"as NP\" adjunct on a verb (\"was succeeded as caretaker of X\") — no role, oblique or operator is defined for it",
+             "an office / position NP headed by a common noun with an of-phrase naming a place — whether the office is a class the holders are Members of, or a witness linked to the place by Possession"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The passive maps correctly (by-phrase → Agent bailey, surface subject → Theme henry_cole, Past on the event) and the succeed lemma is kept surface-faithful."}

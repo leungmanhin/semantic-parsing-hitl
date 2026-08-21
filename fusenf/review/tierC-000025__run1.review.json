@@ -1,0 +1,11 @@
+{"id": "tierC-000025", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "(CardinalityPhrase sk_group_1 \"some\") is not licensed — CardinalityPhrase is specified for a closed set of vague-count phrases (\"a few / several / a handful / dozens / scores / hundreds / a lot of\") normalized to the canonical lexicon string, whereas \"some Ns\" is given the plain existential/group encoding."},
+               {"statement": null, "issue": "The quantifier is recorded on the first conjunct's group only — sk_group_2 gets no quantifier atom at all — so the coordination is treated asymmetrically."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Spatial prepositions outside \"in / at / on\": \"around the post\" answers \"where\" (so the role test selects Location) yet Location is defined only over in/at/on while the competing mechanical rule says to keep the preposition actually used, and the instruction set never says which wins.",
+             "Scope of a determiner over a coordinated NP (\"Some A and B\"): nothing states whether the quantifier distributes to both conjuncts or attaches to the first only."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The inception pattern (begin event + Past, activity witness + Ongoing under Theme), the distributive coordination with one shared object symbol, the compound genus plus adjectival-modifier decompositions, and the Location-on-the-event-only rule for a creation event are all followed correctly. The modifier genus (Inheritance european_american_settler european_american) stops at a two-word part, short of the \"decompose to single-word lemmas, then stop\" requirement."}

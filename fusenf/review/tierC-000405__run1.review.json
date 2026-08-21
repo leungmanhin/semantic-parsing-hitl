@@ -1,0 +1,12 @@
+{"id": "tierC-000405", "run": 1,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": 1, "issue": "The Implication contains no variables at all - its premises are ground atoms over sk_maintain_1 / sk_rate_1, which are asserted nowhere in the parse, so the rule can never fire and the sentence's only claim is unretrievable; the instruction set requires a rule to range over a variable with a Skolem-function event term such as (sk_maintain $x)."},
+                {"statement": 1, "issue": "\"the results\" is a presupposed definite plural, but its (GroupOf sk_result_1 result) typing sits inside the rule's consequent, so the group exists only if the (unfirable) rule fires rather than standing as an asserted fact."},
+                {"statement": 1, "issue": "The plural descriptive modifier \"comparable\" is predicated of the group witness as (Member sk_rate_1 comparable) instead of distributing over the members like a copular predicate, and \"the results are high\" likewise gets no distributive rule alongside the group atom."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["noun + of-complement nominal (\"rates of flow\"): it is not a modifier_noun compound and not a possessive, partitive, measure or about of-phrase, so nothing licenses fusing it into rate_of_flow (or says how else to attach the complement) - only the genus half of the compound rule transfers",
+             "generic conditional \"P when <clause>\": the ConditionalProperty template (\"X is P when/at/under/if C\") is defined only for an adjective/state or measure/environment condition, and the plain-Implication route says nothing about how a definite-plural copular consequent and its required distribution are encoded inside a rule"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Lexically the parse is sound - Theme for \"maintained\", (Can e) for the modal passive, and the rate genus at definitional TV - so the failure is purely quantificational. A companion query for either clause would bind nothing, because every symbol in the rule is a constant introduced only inside the rule."}

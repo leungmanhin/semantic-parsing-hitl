@@ -1,0 +1,9 @@
+{"id": "tierA-000143", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "(Theme sk_cancel_1 sk_flight_1) should be Patient: the instruction set names this exact case, an object that is itself a scheduled occurrence (a flight) with a verb that changes whether or when it happens (cancel, postpone, reschedule) is altered, so it takes Patient."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The rest matches the instruction set's own worked examples: a singular collective \"an airline\" gets a plain event with the group as role-filler and no distribution rule, and evening_flight fuses with the head genus (Inheritance evening_flight flight) emitted and the noun modifier withheld, exactly as night_shift is specified. Bare simple present correctly gets no status atom."}

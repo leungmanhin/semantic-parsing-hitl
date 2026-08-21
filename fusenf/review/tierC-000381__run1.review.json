@@ -1,0 +1,11 @@
+{"id": "tierC-000381", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 15, "issue": "\"various\" is not one of the vague-count phrases the `CardinalityPhrase` lexicon lists (a few / several / a handful / dozens / scores / hundreds / a lot of) and expresses diversity rather than counting things, which is the sole use the instruction set permits for that atom."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["free participial adjunct on a clause (\"finished his career **playing** for European teams\") — the instruction set covers participles only as post-modifiers of a NOUN (reduced relatives) and links eventualities only via explicit connectives or temporal relations, so no relation is available to tie this adjunct eventuality to the matrix one",
+  "the determiner \"various\" (plurality plus diversity) has no encoding — it is neither a proportion word nor a listed vague-count phrase",
+  "affiliation \"for\" (\"play **for** a team\" = being on that team) — the for-phrase decision procedure enumerates only benefit / acting-on-someone's-behalf (`Beneficiary`) and ground / prize / exchange (`(For …)`)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "`(Patient sk_finish_1 sk_career_1)` and `(Beneficiary sk_play_1 sk_team_1)` are both borderline but defensible under the non-physical-change-of-state and substitution-\"for\" clauses respectively. `(In sk_play_1 sk_league_1)` correctly avoids `Location` for a non-spatial organizational domain, and the `european_team` genus plus modifier genus follow the part-of-speech test."}

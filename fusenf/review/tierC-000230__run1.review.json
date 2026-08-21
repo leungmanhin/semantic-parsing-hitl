@@ -1,0 +1,9 @@
+{"id": "tierC-000230", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The NP-internal PP \"between Cincinnati Reds and Boston Red Sox\" is promoted to two Agent role atoms on the series entity, but the instruction set says a PP is decided by the question it answers (never by the closest listed role) and an entity-attached preposition keeps its surface form, so this states a role relation the clause does not."}, {"statement": 2, "issue": "Same issue on the second conjunct: boston_red_sox is given an Agent role rather than the surface preposition-named attachment."}, {"statement": 1, "issue": "sk_series_1 is simultaneously an entity filling the Theme slot of sk_play_1 (statement 6) and an eventuality bearing Agent role atoms, so one symbol is used on both sides of the event-vs-entity distinction."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["the determiner \"another N\" (additive/repetitive determiner presupposing a prior one of the same kind) - the aspectual section covers \"again/still/already/yet\" on eventualities but nothing covers this NP-level presupposition, and the parse drops it entirely", "a two-argument \"between X and Y\" post-modifier on an entity noun - the instruction set illustrates entity-attached prepositions only for the one-argument \"from\" case and gives no shape for a symmetric two-relatum preposition"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The agentless passive, Past, Location on the event, and the Theme default for an unclear change test are all handled per the instruction set, and both multi-word team names are single opaque symbols with their required Name atoms. The whole content of \"another\" is unrepresented."}

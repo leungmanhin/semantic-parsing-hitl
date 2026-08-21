@@ -27,13 +27,20 @@ FUSENF = os.path.dirname(HERE)
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--validated", default=os.path.join(FUSENF, "rules", "validated3.jsonl"))
+    ap.add_argument("--retired", default=os.path.join(FUSENF, "rules", "retired.jsonl"),
+                    help="audit-retirement ledger; listed rule ids are excluded")
     ap.add_argument("--out", default=os.path.join(FUSENF, "rules", "mined_bridges_wave3.metta"))
     ap.add_argument("--date", required=True)
     args = ap.parse_args()
 
-    V = [json.loads(l) for l in open(args.validated, encoding="utf-8") if l.strip()]
+    retired = set()
+    if os.path.exists(args.retired):
+        retired = {json.loads(l)["id"] for l in open(args.retired, encoding="utf-8") if l.strip()}
+    V = [json.loads(l) for l in open(args.validated, encoding="utf-8") if l.strip()
+         if json.loads(l).get("id") not in retired]
     L = ["; ===== FUSE-NF loop-2 mined bridges (P4 GAUNTLET ROUND 3, VALIDATED ONLY) =====",
          "; generated %s by mining/export_bridges3.py from rules/validated3.jsonl;" % args.date,
+         "; audit-retired rules excluded per rules/retired.jsonl: %s" % (sorted(retired) or "none"),
          "; load beside seeded_rules.metta, mined_bridges_wave1.metta and",
          "; mined_bridges_wave2.metta; proof names unique (mined_w3_*).", ""]
     n = 0

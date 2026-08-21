@@ -1,0 +1,11 @@
+{"id": "tierB-000005", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 6, "issue": "A Manner adverb must keep its surface -ly form (`quickly`); `quick` is the derivationally reduced bare adjective the instruction set explicitly bars."},
+               {"statement": 13, "issue": "The 'with the arrival of ...' phrase is rendered with the head `During`, but the instruction set restricts `During` to the word 'during' and requires an oblique head to be the preposition actually used."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["attendant-circumstance / concomitant 'with' PP ('plummeted with the arrival of X'): the with-phrase rules cover only an animate CoAgent and an Instrument-as-means, and the preposition-named oblique is scoped to PPs naming what the activity is about or directed at, so a temporal-concomitance 'with' has no assigned form",
+             "a hyphenated participial compound modifier ('Berber-speaking population'): compound decomposition is specified as unpacking 'to single-word lemmas', which a two-word modifier atom (`berber_speaking`) cannot satisfy"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The definite-singular collective 'population' as a typed witness, the definite plural as a group with the fused classifier in the kind slot, `Ordinal ... 1 arrival`, and `Patient` on the intransitive change-undergoer `plummet` all follow the instruction set. The one genuinely borderline call is exposing the nationality modifier genus `(Inheritance french_settler french)` - the stated predication test licenses it, but nationality is not among the three enumerated exposable modifier categories."}

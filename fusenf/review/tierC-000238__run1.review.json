@@ -1,0 +1,9 @@
+{"id": "tierC-000238", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "sk_person_1 (the witness for \"he\") is referenced as a role filler but never typed - the required (Member sk_person_1 person) atom for an antecedent-less pronoun witness is missing."}, {"statement": 0, "issue": "\"Inomaru\" is capitalized, so by the instruction set's mechanical casing cue it is a proper noun and needs a name-derived symbol plus its non-optional (Name inomaru \"Inomaru\") fact; instead it is encoded as a common-noun kind with an sk_ witness and no Name atom."}, {"statement": null, "issue": "The first conjunct \"he is the ___\" yields no atom at all (its complement is missing from the source), so nothing records that a copular predication was stated."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"become\" plus a predicative complement (a change-of-state copular verb) - \"Two kinds of clause\" splits only copular \"is\" from ordinary verbal clauses, and nothing specifies the subject role or how to attach the predicate nominal, so the parse improvised Patient-subject plus Theme-complement", "no policy for an ungrammatical / truncated input: a sentence-initial dangling subordinator (\"As ,\" with no clause after it) and an NP with an elided head (\"is the\") both have no prescribed handling, so both are silently dropped"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Dropping the stranded \"As\" is defensible since a connective atom needs two reified endpoints and there is no second clause here. (Can sk_become_1) and the reduced-relative treatment of \"to borrow\" (the modified noun filling its Theme slot) both follow the instruction set."}

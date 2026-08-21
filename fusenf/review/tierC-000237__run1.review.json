@@ -1,0 +1,9 @@
+{"id": "tierC-000237", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "sk_person_1 (the witness for \"he\") is referenced as a role filler but never typed - the required (Member sk_person_1 person) atom for an antecedent-less pronoun witness is missing."}, {"statement": 0, "issue": "\"Inomaru\" is capitalized, so by the instruction set's mechanical casing cue it is a proper noun and needs a name-derived symbol plus its non-optional (Name inomaru \"Inomaru\") fact; instead it is encoded as a common-noun kind with an sk_ witness and no Name atom."}, {"statement": null, "issue": "The first conjunct \"He is the ___\" yields no atom at all (its complement is missing from the source), so nothing records that a copular predication was stated."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"become\" plus a predicative complement (a change-of-state copular verb) - \"Two kinds of clause\" splits only copular \"is\" from ordinary verbal clauses, and nothing specifies the subject role or how to attach the predicate nominal, so the parse improvised Patient-subject plus Theme-complement", "no policy for an ungrammatical / truncated input: an NP with an elided head (\"is the\" with no noun) has no prescribed handling, so it is silently dropped"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "(Can sk_become_1) for the specific subject's \"can\" is correct, and reifying the infinitival \"to borrow\" with the modified noun filling its Theme slot follows the reduced-relative pattern; note it is asserted with no status, which the Status-predicate rule reads as a generic/dispositional fact."}

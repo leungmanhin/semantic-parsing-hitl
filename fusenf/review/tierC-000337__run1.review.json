@@ -1,0 +1,13 @@
+{"id": "tierC-000337", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 8, "issue": "The office NP is fused into the compound symbol caretaker_of_breakheart_hill with an invented genus link, a shape the instruction set does not license — compound kinds are modifier+head-noun, while a genuinely possessive of-phrase maps to Possession/PartOf."},
+               {"statement": null, "issue": "The proper noun \"Breakheart Hill\" is swallowed into that compound and receives no symbol and no (Name ...) fact, and the fused symbol itself carries no Name atom either, so a proper noun in the text ends up unrepresented."},
+               {"statement": 6, "issue": "The past-tense capacity adjunct is converted into an untensed top-level (Member henry_cole caretaker_of_breakheart_hill), asserting as a standing present fact an office the sentence says Bailey took over."},
+               {"statement": null, "issue": "Nothing links the \"as Caretaker of Breakheart Hill\" phrase to the following event — the adjunct is dropped from the event's role/oblique structure entirely."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["capacity / predicative \"as NP\" adjunct on a verb (\"was followed as Caretaker of X\", \"served as chairman\") — no role, oblique or operator is defined for it",
+             "an office / position NP headed by a common noun with an of-phrase naming a place (\"Caretaker of Breakheart Hill\"), where the capitalized run also triggers the multi-word-name rule and the two readings conflict"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The passive is handled correctly — the by-phrase takes Agent and the surface subject Theme, with Past on the event and both person Names emitted."}

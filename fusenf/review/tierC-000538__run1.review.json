@@ -1,0 +1,10 @@
+{"id": "tierC-000538", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 11, "issue": "`(LocatedIn france europe)` asserts a geographic containment the sentence never states — world knowledge emitted as content, which Core patterns' \"assert only what the text states\" forbids (the stacked-place rule it resembles applies to \"in X in Y\" on one place NP, which this sentence does not have)."},
+               {"statement": null, "issue": "The \"where\" relative clause states that the training happened in Europe, but no locative atom for Europe attaches to the training event; that content is instead recoded as the unstated France-in-Europe containment."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["locative relative clause with \"where\" (\"sent to Europe where she was trained\"): the instruction set covers reduced relatives (participial post-modifiers) and quantifier-bound relatives, but gives no rule for a \"where\" relativizer projecting its antecedent place onto the embedded clause's event"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The filly's role under \"train\" is the Theme/Patient borderline — \"applying a treatment\" arguably licenses `Patient` — so I did not flag it. The send clause, the by-phrase `Agent`, the tense atoms and all `Name` atoms follow the instruction set."}

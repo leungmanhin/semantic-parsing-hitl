@@ -1,0 +1,12 @@
+{"id": "tierC-000158", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "Location is attached to an entity witness (sk_corruption_1, which the parse treats as an entity carrying a flat copular property, not an event), violating the explicit rule that Location is the event head and never goes on an entity."},
+               {"statement": 6, "issue": "Same violation for 'discipline in the army': Location on the entity sk_discipline_1 rather than an entity-level locative/framing head."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["change-of-state copular verb 'became ADJ' (become/turn/grow + adjective): the instruction set routes it to an event but prescribes no encoding for the adjectival complement, so the parse improvises the resultative shape (reified state + Experiencer + flat atom + Result)",
+             "a locative/domain PP modifying an abstract state or mass noun ('corruption ... in Persia', 'discipline in the army'): Location is event-only, LocatedIn is specified for a thing's physical position, and the framing 'In' oblique is specified for a field a claim is made in - none squarely covers this",
+             "bare abstract mass-noun subject of a copular clause ('Corruption was widespread'): the kind-vs-witness routing rule is stated for plural determiners only, and 'widespread' is listed among the KindProperty (non-distributing) examples, leaving witness+Member vs kind-level encoding undecided"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Past-wrapped copular atom, the empty connective slot for plain 'and', and Degree with the surface adverb 'dangerously' all match the instruction set."}

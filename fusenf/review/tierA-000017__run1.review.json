@@ -1,0 +1,11 @@
+{"id": "tierA-000017", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The plural \"crates\" is typed as a single individual crate on the group symbol, so the several crates collapse into one entity and no group of crates is ever introduced."},
+               {"statement": 2, "issue": "Crates and lemons share one symbol, so the containment the \"of\"-phrase states (lemons in crates) is unrecoverable and the lemons get no entity of their own."},
+               {"statement": 3, "issue": "\"several\" counts the crates, but the CardinalityPhrase sits on the symbol whose GroupOf member-kind is lemon, so the atom asserts several lemons rather than several crates."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["container / packaging pseudo-partitive NP (\"several crates of lemons\", like \"a cup of water\"): the instruction set names measure-of phrases only to exclude them from Possession, its Partitives section fires only on a definite \"of the / of these / of them\" superset, and Measures & units covers only magnitude + unit, so a counted container noun plus its contents has no stated encoding"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The event layer (chef as Agent, the surface lemma acquire kept, Theme for the unchanged goods, Past) is correct; the defect is confined to the object NP. The shape chosen mirrors the licensed \"a flock of birds\" pattern (Member + GroupOf on one symbol), but that pattern has a singular collective head, whereas here the head noun is plural and independently counted."}

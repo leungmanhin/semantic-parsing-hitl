@@ -1,0 +1,9 @@
+{"id": "tierA-000237", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "(Future sk_arrive_1) is not licensed: the futurate rule requires either a calendar time placeable after a supplied TODAY or a lexically future adjunct, and \"at noon\" with no CONTEXT/TODAY is the unanchored-adjunct case (\"the survey begins at dawn\"), which must carry no tense atom at all."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["named clock time \"noon\": it is not in the deictic-constant list, not in the day-part list (morning/afternoon/evening/night), and not a numeral clock expression, so whether it becomes a structured (Hour 12) term or a bare symbol is unspecified"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Agent for the intransitive \"arrive\" subject follows the instruction set's explicit motion-verb list, and the definite mass subject correctly gets a typed witness; only the tense atom is a defect."}

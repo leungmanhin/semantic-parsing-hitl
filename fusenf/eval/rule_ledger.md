@@ -2093,7 +2093,8 @@ RHS  (Theme $c $x0)
 - vote `b1_v3`: same_truth="no", lossless="no" — Patient (undergoer of a change of state, e.g. cancellation) and Theme (entity located/described without necessarily changing state) are distinct thematic roles, not freely interchangeable.
 - routing: {"consensus_votes": 1, "frozen_head_rewrite": ["Patient->Theme"], "judge_notes": ["Patient (undergoes change of state) and Theme (unaffected/located/described entity) are distinct thematic roles in general, even though this particular cancel-event filler is a borderline case.", "Patient (entity undergoing a change of state) and Theme (entity located/moved, not necessarily changed) are distinct the
 
-### r30009 — role-canonicalization — **validated/bridging** conf 0.6
+### r30009 — role-canonicalization — **validated/bridging** conf 0.6 — **RETIRED 2026-08-21 (provenance audit)**
+> provenance audit: sole Patient-side flip witness (tierC-000565) is a reviewer-flagged parse; flip basis collapsed. Owner decision: retire permanently; class may re-earn a bridge only through fresh batch-2 mining.
 ```
 LHS  (Member $e defeat)
 LHS  (Theme $e $x)
@@ -2115,7 +2116,8 @@ RHS  (Patient $e $x)
 - mech: consensus_votes=2, tierA_control_merges=0, frozen_head_rewrite=['Theme->Patient'], seeded_collision=[], symbol_pair_ok=False, tierA_new_identical=0
 - routing: {"consensus_votes": 2, "frozen_head_rewrite": ["Theme->Patient"], "judge_notes": [], "note": "annotation-level merge; frozen-head rewrite -> never consolidation (M5 gate)", "original_type": "consolidation", "plan_calibration_override": false, "probe_lossless": null, "probe_same_truth": null, "probe_votes": 0, "seeded_collision": [], "tierA_control_merges": 0, "tierA_new_identical": 0}
 
-### r30011 — role-canonicalization — **validated/bridging** conf 0.6
+### r30011 — role-canonicalization — **validated/bridging** conf 0.6 — **RETIRED 2026-08-21 (provenance audit)**
+> provenance audit: sole Patient-side flip witness (tierC-000513) is a reviewer-flagged parse; flip basis collapsed. Owner decision: retire permanently.
 ```
 LHS  (Member $e play)
 LHS  (Patient $e $x)
@@ -2137,7 +2139,8 @@ RHS  (Patient $e $x)
 - mech: consensus_votes=2, tierA_control_merges=0, frozen_head_rewrite=['Theme->Patient'], seeded_collision=[], symbol_pair_ok=False, tierA_new_identical=0
 - routing: {"consensus_votes": 2, "frozen_head_rewrite": ["Theme->Patient"], "judge_notes": [], "note": "annotation-level merge; frozen-head rewrite -> never consolidation (M5 gate)", "original_type": "consolidation", "plan_calibration_override": false, "probe_lossless": null, "probe_same_truth": null, "probe_votes": 0, "seeded_collision": [], "tierA_control_merges": 0, "tierA_new_identical": 0}
 
-### r30013 — role-canonicalization — **validated/bridging** conf 0.6
+### r30013 — role-canonicalization — **validated/bridging** conf 0.6 — **RETIRED 2026-08-21 (provenance audit)**
+> provenance audit: sole Patient-side flip witness (tierC-000454) is a reviewer-flagged parse; flip basis collapsed. Owner decision: retire permanently.
 ```
 LHS  (Member $e stop)
 LHS  (Patient $e $x)

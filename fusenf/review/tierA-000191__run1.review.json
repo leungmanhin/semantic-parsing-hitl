@@ -1,0 +1,9 @@
+{"id": "tierA-000191", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 6, "issue": "\"a decision on the case\" is a noun-attached about-PP, which the instruction set explicitly excludes from Theme and Patient, and this also puts a thematic role atom — whose form is (<Role> <event> <filler>) — on the non-event entity sk_decision_1."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["noun-attached PP modifier / about-phrase (\"a decision on the case\"): the instruction set rules the about-phrase out of the possessive mapping and shows only entity-attached \"from\" keeping its surface preposition, but states no general form for such a PP", "light / support-verb construction (\"makes a decision\"): the light-verb rule covers only occurred / happened / took place over an event noun, and only for attaching tense and Time, so nothing says whether this stays a make event over a decision entity or reifies one decide eventuality"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Patient on \"a decision\" is right — make creates its object — and the surface make lemma is correctly kept rather than normalized to decide. Definite \"the case\" as a typed individual and the absent status atom on the bare simple present are also correct."}

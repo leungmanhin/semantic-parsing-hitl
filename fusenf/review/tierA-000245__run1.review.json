@@ -1,0 +1,9 @@
+{"id": "tierA-000245", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "The per-member rule is written `(Implication (Premises ...) (Conclusions ...))`, but every rule in the instruction set is a two-argument `(Implication <premise> (And <conjuncts>))` — the Premises/Conclusions wrappers are invented and the conclusion's `(And ...)` grouping is missing."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["means-of-conveyance / transmission-medium PP (\"by post\") — the routing rule sends a \"how\" PP to a named role, but Instrument is defined as a tool or substance and Manner as an adverb, so no named role squarely covers a conveyance medium"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": ["Premises", "Conclusions"],
+ "notes": "Group witness for the definite plural, the `soil_sample` fusion with genus-only (noun modifier correctly not exposed), and the presence of a per-member rule for distributive \"arrive\" at STV 1.0 0.9 are all correct; only the rule's shape is wrong."}

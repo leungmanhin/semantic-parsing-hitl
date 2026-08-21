@@ -1,0 +1,11 @@
+{"id": "tierC-000382", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 10, "issue": "A league is an organizational / competition domain rather than a place, so `Location` asserts a spatial position the sentence does not state — by the instruction set's own \"on the mural is not a Location\" reasoning, a framing/domain PP takes the preposition-named oblique `(In …)`."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["means / method adjunct \"by V-ing\" (\"finished his career **by playing** …\") — `Manner` is for adverbs, `Instrument` is explicitly a tool or substance, and the inter-clause connective list covers only cause / purpose / concession / contrast, so an event-denoting means has no defined encoding",
+  "the determiner \"various\" (plurality plus diversity) has no encoding — it is neither a proportion word nor a listed vague-count phrase, and its content is simply dropped here",
+  "affiliation \"for\" (\"play **for** a team\" = being on that team) — the for-phrase decision procedure enumerates only benefit / acting-on-someone's-behalf (`Beneficiary`) and ground / prize / exchange (`(For …)`)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "`(By sk_finish_1 sk_play_1)` uses the preposition actually used and so falls under the preposition-named-oblique licence, though that licence is written for PP objects that are ordinary NPs, not reified events. Omitting a tense atom on the non-finite \"playing\" event follows the non-finite-embedded-eventuality rule, and `Theme` for \"his career\" is the instruction set's tie-break when the change test is unclear."}

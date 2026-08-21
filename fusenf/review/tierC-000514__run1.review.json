@@ -1,0 +1,10 @@
+{"id": "tierC-000514", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "The \"between Boston Red Sox and Cincinnati Reds\" PP is promoted to two `Agent` atoms on the playing event (statements 3 and 4), but the clause is an agentless passive whose agent atom the instruction set says to omit, so the teams' doing of the playing is added rather than stated."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"another N\": an additive determiner presupposing a prior instance of the kind — the instruction set covers event-level \"again\" (`Again`) and \"also\" (`Also`) but gives no encoding for NP-level \"another\", so the presupposition is silently dropped",
+             "\"between X and Y\": a two-object preposition — the preposition-named oblique form takes a single object, and no rule maps a between-participants phrase onto a thematic role (the collective-Agent licence in Coordination & plurals is for \"between them\" on a plural subject, not for a between-PP naming the participants)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "`Theme` for the played series follows the instruction set's unclear-case default, and \"in Havana\" is correctly an event `Location`. All three proper nouns carry their `Name` atoms."}

@@ -56,6 +56,11 @@ def main():
          "`rules/validated*`. One block per rule: proposal, mechanical gates, judge votes verbatim,",
          "final routing. Compiled implications live in `rules/mined_bridges_wave{1,2,3}.metta`.", ""]
 
+    retired = {}
+    rpath = os.path.join(R, "retired.jsonl")
+    if os.path.exists(rpath):
+        retired = {r["id"]: r for r in load_jsonl(rpath)}
+
     grand = collections.Counter()
     for title, cand_f, probes_d, val_f in ROUNDS:
         cands = {r["id"]: r for r in load_jsonl(os.path.join(R, cand_f))}
@@ -86,7 +91,11 @@ def main():
                 head += f" — **{f.get('status', '?')}/{f.get('type', '-')}** conf {f.get('confidence', '?')}"
             else:
                 head += " — (no verdict recorded)"
+            if rid in retired:
+                head += f" — **RETIRED {retired[rid]['retired']} (provenance audit)**"
             L.append(head)
+            if rid in retired:
+                L.append(f"> {retired[rid]['reason']}")
             lhs, rhs = atoms(c.get("lhs", [])), atoms(c.get("rhs", []))
             L.append("```")
             for a in lhs:

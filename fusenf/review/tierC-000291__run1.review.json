@@ -1,0 +1,10 @@
+{"id": "tierC-000291", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "No Name atom is emitted for the proper nouns turkey, eskisehir or kazakhstan, although the instruction set makes the name-derived symbol plus exactly one Name fact non-optional for places as well as people."},
+               {"statement": 14, "issue": "(Location sk_build_2 turkey) distributes the fronted frame \"In Turkey\" onto the conjunct the text explicitly locates in Kazakhstan, asserting that one building event happened in two mutually exclusive countries."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a fronted frame-setting locative (\"In Turkey, ...\") scoping over coordinated conjuncts that carry their own - here contradicting - location PPs: the instruction set addresses only a second \"in <Place>\" stacked directly on a place NP (which contains the place via LocatedIn, not the event), and says only that a shared SUBJECT carries over to each conjunct, leaving shared adjunct scope undecided"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Splitting the coordinated objects into two build events with a shared company symbol, Patient for build, the paper_mill fusion with genus (Inheritance paper_mill mill) and the noun modifier left unexposed, and the absence of any (LocatedIn sk_hotel_1 ...) are all correct. The parse also never records the Eskisehir-in-Turkey containment that the stacked-place rule would have produced."}

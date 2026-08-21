@@ -1,0 +1,9 @@
+{"id": "tierC-000075", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The symbol for the multi-word name is `margaret`, not one built from the whole name (`margaret_fleming`), which the instruction set requires for a multi-word proper noun."}, {"statement": 1, "issue": "Same truncation for \"James of Barrochan\": the symbol should be built from the whole capitalized run including the lowercase particle (`james_of_barrochan`, cf. the `halvard_of_sunne` example), not `james`."}, {"statement": 11, "issue": "The appositive typing `(Member alexander son)` is emitted bare, but the host clause is past, so it must take the host's wrapper `(Past (Member alexander son))`."}, {"statement": 4, "issue": "\"married\" is an eventive symmetric verb, which Routing sends to the collective form (one event, both participants as `Agent`); making James a `Theme` records the marriage in one direction only."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The passive \"was succeeded by\" is mapped correctly (by-phrase -> Agent, subject -> Theme), and the possessive \"his eldest son\" takes the right `Possession` shape with \"his\" resolved to James. The `Possession` and `Most` atoms from the same appositive are unwrapped too, on the same tense question as the `Member` atom."}

@@ -1,0 +1,11 @@
+{"id": "tierC-000356", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The antecedentless \"It\" becomes sk_it_1, named after the pronoun rather than a class and with no typing atom, where the instruction set requires an sk_<class>_<n> witness plus its Member atom (\"it\" → the salient kind, else thing)."},
+               {"statement": 4, "issue": "The definite plural \"the views\" is encoded as one singular witness (Member sk_view_1 view) instead of the group witness (GroupOf <group> view) the instruction set prescribes for a definite plural."},
+               {"statement": null, "issue": "The ordinary type atoms that must accompany a multi-word name are missing: (Member republican_party party) and (Member free_soil_party party)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["two coordinated of-phrases sharing one head noun (\"the views of A and of B\") — the instruction set does not say whether the repeated preposition forces two distinct possessed sets rather than one symbol carrying two Possession links"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Theme for support, the Past atom, and the possessed-first Possession order are correct; the repeated \"of\" arguably marks two separate view sets, which the single sk_view_1 collapses."}

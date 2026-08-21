@@ -1,0 +1,12 @@
+{"id": "tierB-000034", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 7, "issue": "The rule is built as `(Implication (Premises ...) (Conclusions ...))`, but every `Implication` in the instruction set takes exactly two arguments with a multi-atom conclusion wrapped in `(And ...)`; no `Premises` / `Conclusions` wrapper exists anywhere in it, so the sentence's principal claim is emitted in an unlicensed shape and its conclusion also lacks the required `And`."},
+               {"statement": 7, "issue": "'depends on topics' must take the preposition-named oblique `(On <event> <topics>)` - 'depend on the pump' is the instruction set's own example of a PP that is neither `Theme` nor `Patient` - so `Theme` on the depend event is wrong."},
+               {"statement": 7, "issue": "The of-genitive 'the applicability of any given comment' attaches its possessor by `(Possession <possessed> <possessor>)` for a non-part attribute, not by the thematic role `Experiencer`."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["an attribute nominalization serving as a clause argument ('the applicability of X depends on Y'): no form is given for reifying a de-adjectival property noun as an entity and predicating over it, so the link back to the entity it is an attribute of has to be improvised",
+             "the quantifier 'any' / 'any given': it is absent from the quantifier-to-strength table (all, every, most, a lot of, many, few, no, none), so both its rule strength and its `QuantifierPhrase` wording are unstated"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": ["Premises", "Conclusions"],
+ "notes": "The reduced relative 'topics already established', the opaque `Already` tag, the Skolem-function event terms bound to `$c`, `Patient` on the created topics, and the 1.0 / 0.9 rule truth value all follow the instruction set. `Location` for 'within the conversation' is a stretch (a discourse container rather than a place) but stays inside the 'in / at / on' range the named role covers."}

@@ -1,0 +1,9 @@
+{"id": "tierA-000018", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The plural 'several crates' is typed as a single individual crate — (Member sk_group_1 crate) predicates the kind 'crate' of the one group symbol instead of declaring a group whose members are crates."}, {"statement": 1, "issue": "(GroupOf sk_group_1 lemon) makes lemons the members of the group, so the counted group is a group of lemons rather than the group of crates the sentence quantifies."}, {"statement": 2, "issue": "Because the group's member kind is lemon, (CardinalityPhrase sk_group_1 \"several\") counts lemons, while 'several' actually modifies 'crates'."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Container / measure 'N of M' NP with a bare-plural complement ('several crates of lemons', 'a cup of water'): the instruction set explicitly excludes such measure/container of-phrases from the possessive-genitive mapping and from Partitives (which require 'of the / of these / of those / of them'), but supplies no positive representation for the container-to-contents relation, so there is no licensed way to link the crates to the lemons."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The event side is right: agentless passive omits the Agent, 'sell' takes Theme (transferred, unchanged), 'to the chef' takes Recipient, and Past is marked. The Theme filler inherits the group confusion, so what was sold reads as the lemons rather than the crates."}

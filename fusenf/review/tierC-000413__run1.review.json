@@ -1,0 +1,9 @@
+{"id": "tierC-000413", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 13, "issue": "\"near Monticello\" is rendered as (LocatedIn sk_sawmill_1 monticello), which asserts containment in Monticello although the text states only proximity, and it substitutes a synonym head for the preposition actually used (\"near\" should head its own oblique)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["change-of-state copular verb with a predicate nominal (\"became lawyer and politician\") — the instruction set prescribes no way to attach the resulting predicate to the reified become event, so sk_become_1 ends up with no link at all to lawyer/politician"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The temporal \"while\" is correctly handled as (During sk_operate_1 sk_become_1) with no connective atom, and \"successful sawmill\" is correctly split rather than fused. The flat (Member martin lawyer/politician) atoms are asserted untensed, which matches the resultative flat-atom pattern but records nothing of the past-ness of the becoming."}

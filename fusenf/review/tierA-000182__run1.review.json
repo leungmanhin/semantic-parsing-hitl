@@ -1,0 +1,10 @@
+{"id": "tierA-000182", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 4, "issue": "The walk is given as Patient of 'take', but taking a walk neither creates, destroys, consumes nor physically changes it, and the instruction set's unclear-case default is Theme (the rule at statement 8 repeats the same role)."},
+               {"statement": null, "issue": "The walk witness sk_walk_1 carries no Agent, so nothing says the children walked and a 'who walked?' query cannot bind, although the sentence states it."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["light verb with an eventive OBJECT ('take a walk', 'have a look', 'make a decision'): the Time section's light-verb rule covers only occurred/happened/took place predicated OF an event-noun, and the fixed-idiom rule targets non-compositional idioms (spill_the_beans), so neither says how to route the participants of the nominalized event, nor which object role the light verb takes"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": ["Premises", "Conclusions"],
+ "notes": "The group + Cardinality 2 + group-event + per-member-rule treatment and the per-binding Skolem walk (sk_walk $x) are correct, as is the absent tense atom. The Implication again uses the unlicensed Premises/Conclusions wrappers instead of the licensed two-argument (And ...) form."}

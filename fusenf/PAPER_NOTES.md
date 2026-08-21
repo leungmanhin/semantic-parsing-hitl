@@ -201,3 +201,24 @@ Tier C garble/stability entanglement (split stability corpus from convergence co
 frozen role vocabulary (re-promotion parked); graded lexical bridges (#33 route,
 unregistered); M5 question arm (QGEN/QPARSE, §6 item 8); embedding channel deferred;
 77 cross-star groups unmined; #48 representation adoption.
+
+## 12. Provenance audit (batch-2 item A, 2026-08-21) — audit-methodology rationales
+
+- Evidence failure is per (record, citing-rule), never per record: a parse with a wrong
+  Beneficiary is still valid evidence for a lexical swap it exemplifies. Relevance =
+  word-boundary match of the rule's content symbols (+ compound space-forms) against the
+  reviewer's issue text; conservative by design. → `harness/provenance_audit.py`.
+- **Pair-diff cancellation**: evidence validity depends on the MINING METHOD — a
+  systematic parse error shared by both sides of a paraphrase pair cancels in the diff
+  the rule was mined from (rc0017: all 5 records carried the identical Theme-for-Patient
+  choice; the put_off/postpone contrast survives untouched). Alignment-mined rules are
+  robust to shared errors; single-record evidence (AE, packs' samples) is not.
+- Role rules cited statistics, not record ids → witnesses re-derived deterministically
+  from the canon substrate; provenance SHOULD carry ids from batch 2 on (miner fix).
+- The audit doubled as the reviewer-machinery shakedown and immediately found its own
+  calibration gap: REVIEW.md leaves the yes/partial boundary undefined; 98/234 verdicts
+  came back "partial", unusable as a gate without the relevance layer. Fix queued
+  post-audit — never edit a brief mid-campaign (all verdicts must share one text).
+- Side harvest: 65 incidental doctrine findings = the largest parse-quality triage feed
+  to date (role choice, futurate rule, world-knowledge emission), from an audit that was
+  nominally about rule trust — reviewer passes pay for themselves in by-catch.
