@@ -1,0 +1,6 @@
+(: ferry_type (Member sk_ferry_1 ferry) (STV 1.0 0.99))
+(: e_putoff (Member sk_put_off_1 put_off) (STV 1.0 0.99))
+(: e_agent (Agent sk_put_off_1 sk_ferry_1) (STV 1.0 0.99))
+(: e_patient (Patient sk_put_off_1 sk_departure_1) (STV 1.0 0.99))
+(: departure_type (Member sk_departure_1 departure) (STV 1.0 0.99))
+(: departure_poss (Possession sk_departure_1 sk_ferry_1) (STV 1.0 0.99))

@@ -869,12 +869,21 @@ def view_entry(parse_record, canon):
     back in assertion shape, in linearization order — proof names are provenance
     (identity ignores them) but they are what lets a reader align the two lists.
     """
+    if canon.get("multi_reading"):
+        after = []
+        for r in canon.get("readings") or []:
+            after.append("[reading %s]" % r["tag"])
+            after += ["(: %s %s (STV %s %s))" % (a.get("proof_name") or "_",
+                                                 a["term"], a["stv"][0], a["stv"][1])
+                      for a in r["atoms"]]
+    else:
+        after = ["(: %s %s (STV %s %s))" % (a.get("proof_name") or "_",
+                                            a["term"], a["stv"][0], a["stv"][1])
+                 for a in canon["atoms"]]
     return {
         "sentence": " ".join(parse_record.get("sentences") or []),
         "before": list(parse_record.get("statements") or []),
-        "after": ["(: %s %s (STV %s %s))" % (a.get("proof_name") or "_",
-                                             a["term"], a["stv"][0], a["stv"][1])
-                  for a in canon["atoms"]],
+        "after": after,
     }
 
 
@@ -889,6 +898,73 @@ def write_view(view, path):
     with open(path, "w", encoding="utf-8") as fh:
         json.dump(view, fh, indent=4, ensure_ascii=False)
         fh.write("\n")
+
+
+#: `(Interpretation rN (: ...))` transport wrapper (prompt.txt "Multiple live readings",
+#: adopted batch-2 item B, 2026-08-21). Split BEFORE canonicalization: each reading =
+#: shared statements + that tag's inner statements, canonicalized as an ordinary record.
+RE_INTERP = re.compile(r"^\(Interpretation\s+(r\d+)\s+(\(.*\))\)$")
+#: set-identity payload marker — structurally distinct from any atom-level payload
+MRSET_PAYLOAD = "MRSET/1"
+
+
+def split_readings(statements):
+    """(shared, {tag: [inner statements]}) — or None when no wrapper is present."""
+    shared, tagged, found = [], {}, False
+    for s in statements:
+        m = RE_INTERP.match(s.strip())
+        if m:
+            found = True
+            tagged.setdefault(m.group(1), []).append(m.group(2))
+        else:
+            shared.append(s)
+    return (shared, tagged) if found else None
+
+
+def _set_hash(ids):
+    payload = "%s\n%s\n%s" % (CANON_VERSION, MRSET_PAYLOAD, "\n".join(sorted(ids)))
+    return "sha256:" + hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def _canonicalize_multireading(record, shared, tagged, bucket_tv, vocab):
+    readings = []
+    for tag in sorted(tagged):
+        sub = dict(record)
+        sub["statements"] = list(shared) + tagged[tag]
+        sub.pop("atoms", None)
+        sub.pop("readings", None)
+        c = canonicalize(sub, bucket_tv=bucket_tv, vocab=vocab)
+        readings.append({
+            "tag": tag, "graph_id": c["graph_id"], "shape_id": c["shape_id"],
+            "content_id": c["content_id"], "atoms": c["atoms"],
+            "linearization": c["linearization"], "renaming": c["renaming"],
+            "stars": c["stars"], "exact": c["exact"], "stats": c["stats"],
+        })
+    return {
+        "schema": CANON_VERSION,
+        "id": record.get("id"),
+        "run": record.get("run"),
+        "parse_input_sha256": hashlib.sha256(
+            _canonical_json(record).encode("utf-8")
+        ).hexdigest(),
+        "canon_version": CANON_VERSION,
+        "multi_reading": True,
+        "readings": readings,
+        # top-level identity = the READING SET: sorted per-reading ids hashed under a
+        # distinct payload. Tag names and reading order cannot affect it.
+        "graph_id": _set_hash([r["graph_id"] for r in readings]),
+        "shape_id": _set_hash([r["shape_id"] for r in readings]),
+        "content_id": _set_hash([r["content_id"] for r in readings]),
+        # empty atom/star views: miners iterate these and therefore skip the record
+        # (multi-reading mining semantics is deliberately out of scope — see spec §4.8)
+        "atoms": [],
+        "linearization": "",
+        "renaming": {},
+        "stars": {},
+        "exact": all(r["exact"] for r in readings),
+        "stats": {"readings": len(readings),
+                  "atoms": sum(len(r["atoms"]) for r in readings)},
+    }
 
 
 def canonicalize(record, bucket_tv=None, vocab=None):
@@ -914,7 +990,31 @@ def canonicalize(record, bucket_tv=None, vocab=None):
     if vocab is None:
         vocab = load_vocabulary()
 
-    atoms = [parse_statement(s) for s in _statements_of(record)]
+    if record.get("multi_reading") and record.get("readings"):
+        # idempotence for multi-reading canonical records: re-canonicalize each
+        # reading (its atoms are already canonical -> fixed point), re-hash the set
+        readings = []
+        for r in record["readings"]:
+            c = canonicalize({"id": record.get("id"), "run": record.get("run"),
+                              "atoms": r["atoms"]}, bucket_tv=bucket_tv, vocab=vocab)
+            readings.append(dict(r, graph_id=c["graph_id"], shape_id=c["shape_id"],
+                                 content_id=c["content_id"], atoms=c["atoms"],
+                                 linearization=c["linearization"], renaming=c["renaming"],
+                                 stars=c["stars"], exact=c["exact"], stats=c["stats"]))
+        out = dict(record)
+        out["readings"] = readings
+        out["graph_id"] = _set_hash([r["graph_id"] for r in readings])
+        out["shape_id"] = _set_hash([r["shape_id"] for r in readings])
+        out["content_id"] = _set_hash([r["content_id"] for r in readings])
+        out["exact"] = all(r["exact"] for r in readings)
+        return out
+
+    statements = _statements_of(record)
+    split = split_readings(statements)
+    if split is not None:
+        return _canonicalize_multireading(record, split[0], split[1], bucket_tv, vocab)
+
+    atoms = [parse_statement(s) for s in statements]
 
     # 1. rule-local variable namespaces (§4.4)
     for atom in atoms:

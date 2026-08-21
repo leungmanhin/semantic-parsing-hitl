@@ -202,6 +202,17 @@ are decidable from the text of the record plus `vocabulary.json`; none involves 
   either a typo'd operator or a licensed open-class lexical relation, and nothing in the text
   distinguishes them. It reports with a hint; adjudication belongs to §5.2.
 
+- **Multi-reading records (2026-08-21)**: a statement may be a transport wrapper
+  `(Interpretation rN (: …))` (prompt.txt "Multiple live readings"). A reading = the shared
+  statements + that tag's wrapped statements, and the checks scope accordingly: C3 validates
+  the wrapper shape and scopes proof-name uniqueness per reading; C6 scopes declarations
+  (shared lines declare for every reading, wrapped lines for their own tag); C8 scopes
+  duplicates the same way (the same expression in two *different* readings is legal — if it
+  holds in all readings it belongs in shared, a reviewer judgment, not C8's); C7 skips
+  wrapper lines entirely (transport, never a KB atom — engine marginalization is #48's
+  deferred half). The canonicalizer dissolves wrappers into per-reading records
+  (`canonicalization.md` §4.8).
+
 **Severities are set from data, not guessed.** For the first pilot the mechanical validator runs
 **report-only**: nothing is quarantined, every check records what it fired on. We then set
 ERROR/WARN from the observed distribution. Assigning them up front risks the worst failure mode

@@ -2,9 +2,9 @@
  "meta": {
   "schema": "fusenf-vocabulary/1",
   "generated": "2026-07-27",
-  "prompt_sha256": "64ad24645a04783211475c682fd56904d3e8971c6f922f77175492ba71c57c4a",
+  "prompt_sha256": "102bba250c11248f07c583ff06b1a5b1d250abadfae305c0f56bbe5e8a26f85f",
   "seeded_sha256": "b7e25b96347848cc86b156dfa6294e0d8eb08c247bf66651631be2ced22a7078",
-  "prompt_lines": 2330,
+  "prompt_lines": 2384,
   "seeded_rules": 110,
   "method": "two independent full-prompt extractions (different models) reconciled against a mechanical inventory of every atom in the 316 regression goldens, the e2e harness and the seeded rules; 17 field disagreements adjudicated by the orchestrator and marked _adjudicated",
   "attestation_sources": [
@@ -19,8 +19,8 @@
    "both": 116,
    "field_disagreements": 17
   },
-  "revised": "2026-08-18",
-  "revision_note": "mechanical attestation sweep by harness/vocab_attest.py: goldens 1596, e2e 863, seeded 110 statements; attestation blocks, open-class/skolem lists and pins regenerated; declared fields untouched.",
+  "revised": "2026-08-21",
+  "revision_note": "mechanical attestation sweep by harness/vocab_attest.py: goldens 1624, e2e 870, seeded 110 statements; attestation blocks, open-class/skolem lists and pins regenerated; declared fields untouched.",
   "maintenance": "When validator.py reports the vocabulary STALE (pins != live prompt.txt/seeded_rules.metta): run harness/vocab_attest.py --date <today>, adjudicate any UNKNOWN heads or arity flags it prints (edit operators by hand \u2014 declared fields are human decisions), then rerun with --write to regenerate attestation fields and re-pin. Full two-extractor reconciliation (meta.method) is only needed when prompt.txt's operator sections materially change."
  },
  "field_semantics": {
@@ -52,9 +52,9 @@
    "attested": {
     "arities": {
      "1": 2,
-     "3": 2567
+     "3": 2602
     },
-    "n": 2569,
+    "n": 2604,
     "sources": [
      "e2e",
      "goldens",
@@ -107,9 +107,9 @@
    "gloss": "Volitional doer / subject of an action.",
    "attested": {
     "arities": {
-     "2": 349
+     "2": 355
     },
-    "n": 349,
+    "n": 355,
     "sources": [
      "e2e",
      "goldens"
@@ -1513,9 +1513,9 @@
    "gloss": "An individual belongs to a class or holds a property.",
    "attested": {
     "arities": {
-     "2": 1105
+     "2": 1119
     },
-    "n": 1105,
+    "n": 1119,
     "sources": [
      "e2e",
      "goldens",
@@ -1761,9 +1761,9 @@
    "gloss": "Records a named individual's surface name string.",
    "attested": {
     "arities": {
-     "2": 218
+     "2": 219
     },
-    "n": 218,
+    "n": 219,
     "sources": [
      "e2e",
      "goldens"
@@ -1977,9 +1977,9 @@
    "gloss": "Past tense on an eventuality.",
    "attested": {
     "arities": {
-     "1": 352
+     "1": 358
     },
-    "n": 352,
+    "n": 358,
     "sources": [
      "e2e",
      "goldens"
@@ -2323,9 +2323,9 @@
    "gloss": "Truth value: strength and confidence, both in [0,1].",
    "attested": {
     "arities": {
-     "2": 2483
+     "2": 2518
     },
-    "n": 2483,
+    "n": 2518,
     "sources": [
      "e2e",
      "goldens",
@@ -2646,9 +2646,9 @@
    "gloss": "Object acquired, transferred, moved, possessed, perceived or evaluated unchanged.",
    "attested": {
     "arities": {
-     "2": 142
+     "2": 146
     },
-    "n": 142,
+    "n": 146,
     "sources": [
      "e2e",
      "goldens",
@@ -3160,6 +3160,32 @@
    },
    "_adjudicated": true,
    "notes": "A kind-level prohibition is this term at strength 0.0."
+  },
+  "Interpretation": {
+   "class": "meta",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "reading-tag",
+    "assertion"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Multiple live readings (Interpretation)",
+   "gloss": "Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine marginalization = deferred #48 half).",
+   "_adjudicated": "2026-08-21 batch-2 item B: new head, class 'meta' (transport, not content); frozen so no rule may rewrite it; opaque so mining never reaches inside a wrapper it should never see post-split.",
+   "attested": {
+    "arities": {
+     "2": 10
+    },
+    "n": 10,
+    "sources": [
+     "goldens"
+    ]
+   }
   }
  },
  "deprecated_operators": {

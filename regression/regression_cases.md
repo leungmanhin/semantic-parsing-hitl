@@ -2856,3 +2856,27 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: o_bk (Member sk_boathouse_1 boathouse) (STV 1.0 0.99))
     (: o_in (LocatedIn sk_boathouse_1 outer_marchford) (STV 1.0 0.99))
     (: o_nm (Name outer_marchford "Outer Marchford") (STV 1.0 0.99))
+
+**[multi-reading-attachment] A porter photographed the statue near the depot.** — the attachment trigger: "near the depot" coherently modifies the photographing (event location, r1) or the statue (entity modifier, r2), and nothing selects; shared atoms once, each reading's sole difference wrapped. Each reading = shared + its tag, complete on its own
+
+    (: p_type (Member sk_porter_1 porter) (STV 1.0 0.99))
+    (: s_type (Member sk_statue_1 statue) (STV 1.0 0.99))
+    (: d_type (Member sk_depot_1 depot) (STV 1.0 0.99))
+    (: e_ev (Member sk_photograph_1 photograph) (STV 1.0 0.99))
+    (: e_ag (Agent sk_photograph_1 sk_porter_1) (STV 1.0 0.99))
+    (: e_th (Theme sk_photograph_1 sk_statue_1) (STV 1.0 0.99))
+    (: e_tns (Past sk_photograph_1) (STV 1.0 0.99))
+    (Interpretation r1 (: e_near (Near sk_photograph_1 sk_depot_1) (STV 1.0 0.99)))
+    (Interpretation r2 (: s_near (Near sk_statue_1 sk_depot_1) (STV 1.0 0.99)))
+
+**[multi-reading-idiom-tie] Marvin kicked the bucket.** — the idiom coherence test genuinely ties: no temporal/manner cue selects the idiom (as "last winter" did) and no path selects the literal (as "across the yard" did). The readings share only the name; each is complete under its tag — idiom as ONE surface symbol (r1) vs a literal kick with a real bucket (r2, Theme per the literal-kick golden)
+
+    (: m_name (Name marvin "Marvin") (STV 1.0 0.99))
+    (Interpretation r1 (: e_ktb (Member sk_kick_the_bucket_1 kick_the_bucket) (STV 1.0 0.99)))
+    (Interpretation r1 (: e_ktb_ag (Agent sk_kick_the_bucket_1 marvin) (STV 1.0 0.99)))
+    (Interpretation r1 (: e_ktb_tns (Past sk_kick_the_bucket_1) (STV 1.0 0.99)))
+    (Interpretation r2 (: e_kick (Member sk_kick_1 kick) (STV 1.0 0.99)))
+    (Interpretation r2 (: b_type (Member sk_bucket_1 bucket) (STV 1.0 0.99)))
+    (Interpretation r2 (: e_kick_ag (Agent sk_kick_1 marvin) (STV 1.0 0.99)))
+    (Interpretation r2 (: e_kick_th (Theme sk_kick_1 sk_bucket_1) (STV 1.0 0.99)))
+    (Interpretation r2 (: e_kick_tns (Past sk_kick_1) (STV 1.0 0.99)))

@@ -283,6 +283,27 @@ converged" from "the parse converged apart from the recorded surface word" — a
 difference should consolidate is itself a batch-1 question, not something to prejudge by dropping
 the atoms.
 
+### 4.8 Multi-reading records (batch-2 item B, 2026-08-21 — additive to `/4`)
+
+`prompt.txt`'s "Multiple live readings" section (adopted per the #48 pilot contract,
+`pilot48/ADDENDUM.md`) lets a parse carry two or three complete readings: shared statements
+plus per-reading `(Interpretation rN (: …))` wrappers. The canonicalizer **splits before
+canonicalizing**: each reading = shared + that tag's inner statements, canonicalized as an
+ordinary record under everything above. The record's identity is the **reading set**:
+
+    graph_id = sha256 over "<CANON_VERSION>\nMRSET/1\n" + sorted per-reading graph_ids
+
+(same for `shape_id`/`content_id`). Consequences, all tested (`tests/test_canonicalize.py`
+`Test09MultiReading`): tag names and reading order cannot affect identity; different
+reading sets discriminate; idempotence holds; and a **single-reading record's output is
+byte-identical to plain `/4`** — this extension is additive, no version bump, no
+regeneration. The multi-reading record carries `multi_reading: true` + `readings: [...]`
+(each with its own atoms/ids/stars) and **empty top-level `atoms`/`stars`** — miners
+iterate those and therefore skip multi-reading records; mining semantics over readings is
+deliberately out of scope until evidence demands it. Validator scoping (schema.md §5.1):
+C3/C6/C8 treat each reading as shared + its tag; C7 never feeds a wrapper to the engine
+(marginalization is the deferred engine half of #48).
+
 ## 5. Star decomposition (the mining primitive)
 
 For each skolem or constant `v`, its **star** is `v` plus every atom mentioning `v`, with all *other*

@@ -71,6 +71,26 @@ ASSERTION_HEAD = ":"
 #: Heads whose arg0 introduces a symbol other atoms may predicate over (C6).
 DECLARING_HEADS = ("Member", "Inheritance")
 
+#: `(Interpretation rN (: ...))` — multi-reading transport wrapper (prompt.txt
+#: "Multiple live readings", batch-2 item B). Each reading = shared statements +
+#: that tag's wrapped statements; C3/C6/C8 scope their checks accordingly.
+INTERPRETATION_HEAD = "Interpretation"
+READING_TAG_RE = re.compile(r"^r\d+$")
+INTERP_LINE_RE = re.compile(r"^\s*\(Interpretation\s+r\d+\s")
+
+
+def _split_wrapper(node):
+    """(tag, inner) for a WELL-FORMED wrapper; (None, node) otherwise.
+
+    Malformation is C3's finding to make — other checks treat a malformed
+    wrapper as an ordinary (failing) statement rather than crashing.
+    """
+    if (isinstance(node, list) and len(node) == 3 and node[0] == INTERPRETATION_HEAD
+            and isinstance(node[1], str) and READING_TAG_RE.match(node[1])
+            and isinstance(node[2], list)):
+        return node[1], node[2]
+    return None, node
+
 REQUIRED_TOP_FIELDS = {
     "schema": str, "id": str, "run": int, "sentences": list,
     "context": dict, "statements": list, "parser": dict, "input_sha256": str,
@@ -299,7 +319,8 @@ def _stv_number(tok: Any) -> float | None:
 
 def check_c3(statements: Sequence[str], parsed: Sequence[dict], strict: bool) -> list[dict]:
     out: list[dict] = []
-    seen_names: dict[str, int] = {}
+    seen_shared: dict[str, int] = {}
+    seen_tag: dict[str, dict[str, int]] = {}
     for i, (text, tree) in enumerate(zip(statements, parsed)):
         node = tree["node"]
         if node is None:
@@ -307,6 +328,15 @@ def check_c3(statements: Sequence[str], parsed: Sequence[dict], strict: bool) ->
 
         def add(detail: str) -> None:
             out.append(_finding("C3", i, detail, text, strict))
+
+        tag = None
+        if _head_of(node) == INTERPRETATION_HEAD:
+            tag, inner = _split_wrapper(node)
+            if tag is None:
+                add("malformed Interpretation wrapper: expected "
+                    "'(Interpretation rN (: <proof-name> <expr> (STV <s> <c>)))'")
+                continue
+            node = inner
 
         if _head_of(node) != ASSERTION_HEAD:
             actual = term_key(node[0]) if node else "()"
@@ -323,11 +353,16 @@ def check_c3(statements: Sequence[str], parsed: Sequence[dict], strict: bool) ->
         elif not PROOF_NAME_RE.match(name):
             add(f"proof name {name!r} is not snake_case")
         else:
-            first = seen_names.get(name)
+            # a reading = shared + its tag's lines, so a name must be unique within
+            # every reading it appears in: shared names clash with everything;
+            # tagged names clash with shared and their own tag only
+            scopes = ([seen_shared] + list(seen_tag.values())) if tag is None \
+                else [seen_shared, seen_tag.setdefault(tag, {})]
+            first = next((sc[name] for sc in scopes if name in sc), None)
             if first is not None:
                 add(f"proof name {name!r} already used by statement {first}")
             else:
-                seen_names[name] = i
+                (seen_shared if tag is None else seen_tag[tag])[name] = i
 
         if not isinstance(expr, list):
             add(f"asserted expression must be a compound term, got bare {expr!r}")
@@ -539,14 +574,19 @@ def check_c6(record: dict, statements: Sequence[str], parsed: Sequence[dict], vo
     carried = _context_symbols(record)
 
     # Pass 1 — every symbol a Member/Inheritance introduces, anywhere, rules included.
+    # Multi-reading records scope declarations: shared lines declare for every reading;
+    # a wrapped line declares only for its own tag (each reading = shared + tag).
     declared: set[str] = set(carried)
+    declared_tag: dict[str, set] = {}
     for tree in parsed:
         node = tree["node"]
         if node is None:
             continue
-        for term in iter_terms(node):
+        tag, inner = _split_wrapper(node)
+        target = declared if tag is None else declared_tag.setdefault(tag, set())
+        for term in iter_terms(inner):
             if _head_of(term) in DECLARING_HEADS and len(term) == 3:
-                declared.add(term_key(term[1]))
+                target.add(term_key(term[1]))
 
     # Pass 2 — role/status atoms must attach to something declared; variables must be bound.
     for i, (text, tree) in enumerate(zip(statements, parsed)):
@@ -556,6 +596,9 @@ def check_c6(record: dict, statements: Sequence[str], parsed: Sequence[dict], vo
 
         def add(detail: str) -> None:
             out.append(_finding("C6", i, detail, text, strict))
+
+        tag, node = _split_wrapper(node)
+        scope = declared | declared_tag.get(tag, set()) if tag else declared
 
         expr = node[2] if (_head_of(node) == ASSERTION_HEAD and len(node) == 4) else node
         is_rule = _head_of(expr) == "Implication"
@@ -580,9 +623,10 @@ def check_c6(record: dict, statements: Sequence[str], parsed: Sequence[dict], vo
                 # `(Must (Member mary ill))`, `(Past (More tall carol dan))`. That is the
                 # prompt's copular tense/modality form, not a reference to an event symbol.
                 continue
-            if key not in declared:
+            if key not in scope:
                 add(f"({head} …) attaches to {key}, which has no (Member {key} <verb>) "
-                    "in the record or the context-carried symbol set")
+                    "in the record or the context-carried symbol set"
+                    + (f" (reading {tag}: shared + {tag} lines only)" if tag else ""))
 
         # Free variables: legal only inside a rule, and only if the premises bind them.
         if not is_rule:
@@ -632,6 +676,9 @@ def smoke_test(statements: Sequence[str], chainer_cls=None) -> list[tuple[int, s
     with redirect_stdout(buf), redirect_stderr(buf):
         handle = chainer_cls()
         for i, statement in enumerate(statements):
+            if INTERP_LINE_RE.match(statement):
+                continue  # transport wrapper, never a KB atom (engine marginalization
+                # is the deferred #48 half; the canonicalizer splits readings)
             try:
                 handle.add_atom(statement)
             except Exception as exc:  # noqa: BLE001 — any failure at all is the signal
@@ -654,15 +701,26 @@ def check_c7(statements: Sequence[str], strict: bool, chainer_cls=None) -> list[
 
 def check_c8(statements: Sequence[str], parsed: Sequence[dict], strict: bool) -> list[dict]:
     out: list[dict] = []
-    first_seen: dict[str, tuple[int, str]] = {}
+    # a reading = shared + its tag's lines, so duplicates are checked within that
+    # union: shared exprs clash with everything; tagged exprs clash with shared
+    # and their own tag (the same expr in r1 AND r2 is legal only when it should
+    # have been shared — that judgment is the reviewer's, not C8's)
+    shared_seen: dict[str, tuple[int, str]] = {}
+    tag_seen: dict[str, dict[str, tuple[int, str]]] = {}
     for i, (text, tree) in enumerate(zip(statements, parsed)):
         node = tree["node"]
-        if node is None or _head_of(node) != ASSERTION_HEAD or len(node) != 4:
+        if node is None:
+            continue
+        tag, node = _split_wrapper(node)
+        if _head_of(node) != ASSERTION_HEAD or len(node) != 4:
             continue
         key = term_key(node[2])
         stv = term_key(node[3])
-        if key in first_seen:
-            first_index, first_stv = first_seen[key]
+        scopes = ([shared_seen] + list(tag_seen.values())) if tag is None \
+            else [shared_seen, tag_seen.setdefault(tag, {})]
+        hit = next((sc[key] for sc in scopes if key in sc), None)
+        if hit is not None:
+            first_index, first_stv = hit
             tail = "" if stv == first_stv else f" (truth values differ: {first_stv} vs {stv})"
             out.append(_finding(
                 "C8", i,
@@ -670,7 +728,7 @@ def check_c8(statements: Sequence[str], parsed: Sequence[dict], strict: bool) ->
                 f" under a different proof name{tail}",
                 text, strict))
         else:
-            first_seen[key] = (i, stv)
+            (shared_seen if tag is None else tag_seen[tag])[key] = (i, stv)
     return out
 
 

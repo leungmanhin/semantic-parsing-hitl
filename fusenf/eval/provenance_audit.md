@@ -78,3 +78,21 @@ Suspension candidates: none — validated files untouched (append-only; owner de
    validation rested on instance-level gates over all firings.
 4. **Re-parse queue approved, executes AFTER item B** at the post-#48 prompt hash
    (`reparse_queue.txt`, 10 records) — one wave, no double-parsing.
+
+## Re-parse wave outcome (2026-08-21, executed as item-B tail @ run 30, prompt 102bba250c11)
+
+10/10 records re-parsed blind at the post-#48 hash, all validating clean (C1–C8 zero).
+Defect-level outcomes:
+- **rc0017's five records: all five now `Patient`** (the scheduled-occurrence rule the
+  reviewers cited) — the shared systematic error is corrected and the diff-cancellation
+  call is vindicated: the lexical contrast was never at risk.
+- **tierC-000405: the Implication now carries variables** — the unfirable ground-atom rule
+  is fixed; r30002's second evidence leg is restored (subject to any future re-review).
+- **Retired role witnesses**: defeat (tierC-000565) and play (tierC-000513) re-parse as
+  `Theme` — the original Patient attestations were parse artifacts; **retirement
+  empirically vindicated**. stop (tierC-000454) re-parses as `Patient` again — plausibly
+  genuine for the boxing sense ("stopped X in five rounds" = defeated); the class stays
+  retired per the owner decision, and may re-earn its bridge through fresh batch-2 mining
+  with clean witnesses, exactly the path the decision provided.
+- tierC-000001 received a fresh judgment-based parse (validates clean; full re-review not
+  in this wave's scope).

@@ -1,0 +1,260 @@
+{
+    "probe48-000001 run1": {
+        "sentence": "The auditor filmed the mural beside the silo.",
+        "before": [
+            "(: t_auditor (Member sk_auditor_1 auditor) (STV 1.0 0.99))",
+            "(: t_mural (Member sk_mural_1 mural) (STV 1.0 0.99))",
+            "(: t_silo (Member sk_silo_1 silo) (STV 1.0 0.99))",
+            "(: e_film (Member sk_film_1 film) (STV 1.0 0.99))",
+            "(: e_ag (Agent sk_film_1 sk_auditor_1) (STV 1.0 0.99))",
+            "(: e_th (Theme sk_film_1 sk_mural_1) (STV 1.0 0.99))",
+            "(: e_tns (Past sk_film_1) (STV 1.0 0.99))",
+            "(Interpretation r1 (: e_loc (Beside sk_film_1 sk_silo_1) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: m_loc (Beside sk_mural_1 sk_silo_1) (STV 1.0 0.99)))"
+        ],
+        "after": [
+            "[reading r1]",
+            "(: e_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_loc (Beside e0 x1) (STV 1.0 0.99))",
+            "(: e_film (Member e0 film) (STV 1.0 0.99))",
+            "(: t_auditor (Member x0 auditor) (STV 1.0 0.99))",
+            "(: t_silo (Member x1 silo) (STV 1.0 0.99))",
+            "(: t_mural (Member x2 mural) (STV 1.0 0.99))",
+            "(: e_tns (Past e0) (STV 1.0 0.99))",
+            "(: e_th (Theme e0 x2) (STV 1.0 0.99))",
+            "[reading r2]",
+            "(: e_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: m_loc (Beside x1 x2) (STV 1.0 0.99))",
+            "(: e_film (Member e0 film) (STV 1.0 0.99))",
+            "(: t_auditor (Member x0 auditor) (STV 1.0 0.99))",
+            "(: t_mural (Member x1 mural) (STV 1.0 0.99))",
+            "(: t_silo (Member x2 silo) (STV 1.0 0.99))",
+            "(: e_tns (Past e0) (STV 1.0 0.99))",
+            "(: e_th (Theme e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probe48-000002 run1": {
+        "sentence": "A courier sketched the gate near the mill.",
+        "before": [
+            "(: t_courier (Member sk_courier_1 courier) (STV 1.0 0.99))",
+            "(: t_gate (Member sk_gate_1 gate) (STV 1.0 0.99))",
+            "(: t_mill (Member sk_mill_1 mill) (STV 1.0 0.99))",
+            "(: e_sketch (Member sk_sketch_1 sketch) (STV 1.0 0.99))",
+            "(: e_ag (Agent sk_sketch_1 sk_courier_1) (STV 1.0 0.99))",
+            "(: e_th (Theme sk_sketch_1 sk_gate_1) (STV 1.0 0.99))",
+            "(: e_tns (Past sk_sketch_1) (STV 1.0 0.99))",
+            "(Interpretation r1 (: e_loc (Near sk_sketch_1 sk_mill_1) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: g_loc (Near sk_gate_1 sk_mill_1) (STV 1.0 0.99)))"
+        ],
+        "after": [
+            "[reading r1]",
+            "(: e_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_sketch (Member e0 sketch) (STV 1.0 0.99))",
+            "(: t_courier (Member x0 courier) (STV 1.0 0.99))",
+            "(: t_gate (Member x1 gate) (STV 1.0 0.99))",
+            "(: t_mill (Member x2 mill) (STV 1.0 0.99))",
+            "(: e_loc (Near e0 x2) (STV 1.0 0.99))",
+            "(: e_tns (Past e0) (STV 1.0 0.99))",
+            "(: e_th (Theme e0 x1) (STV 1.0 0.99))",
+            "[reading r2]",
+            "(: e_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_sketch (Member e0 sketch) (STV 1.0 0.99))",
+            "(: t_courier (Member x0 courier) (STV 1.0 0.99))",
+            "(: t_mill (Member x1 mill) (STV 1.0 0.99))",
+            "(: t_gate (Member x2 gate) (STV 1.0 0.99))",
+            "(: g_loc (Near x2 x1) (STV 1.0 0.99))",
+            "(: e_tns (Past e0) (STV 1.0 0.99))",
+            "(: e_th (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "probe48-000003 run1": {
+        "sentence": "Uncle Wilbur kicked the bucket.",
+        "before": [
+            "(: wilbur_name (Name wilbur \"Uncle Wilbur\") (STV 1.0 0.99))",
+            "(Interpretation r1 (: e_kick_idiom (Member sk_kick_1 kick_the_bucket) (STV 1.0 0.99)))",
+            "(Interpretation r1 (: e_kick_idiom_ag (Agent sk_kick_1 wilbur) (STV 1.0 0.99)))",
+            "(Interpretation r1 (: e_kick_idiom_tns (Past sk_kick_1) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: t_bucket (Member sk_bucket_1 bucket) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: e_kick_lit (Member sk_kick_2 kick) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: e_kick_lit_ag (Agent sk_kick_2 wilbur) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: e_kick_lit_th (Theme sk_kick_2 sk_bucket_1) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: e_kick_lit_tns (Past sk_kick_2) (STV 1.0 0.99)))"
+        ],
+        "after": [
+            "[reading r1]",
+            "(: e_kick_idiom_ag (Agent e0 wilbur) (STV 1.0 0.99))",
+            "(: e_kick_idiom (Member e0 kick_the_bucket) (STV 1.0 0.99))",
+            "(: wilbur_name (Name wilbur \"Uncle Wilbur\") (STV 1.0 0.99))",
+            "(: e_kick_idiom_tns (Past e0) (STV 1.0 0.99))",
+            "[reading r2]",
+            "(: e_kick_lit_ag (Agent e0 wilbur) (STV 1.0 0.99))",
+            "(: e_kick_lit (Member e0 kick) (STV 1.0 0.99))",
+            "(: t_bucket (Member x0 bucket) (STV 1.0 0.99))",
+            "(: wilbur_name (Name wilbur \"Uncle Wilbur\") (STV 1.0 0.99))",
+            "(: e_kick_lit_tns (Past e0) (STV 1.0 0.99))",
+            "(: e_kick_lit_th (Theme e0 x0) (STV 1.0 0.99))"
+        ]
+    },
+    "probe48-000004 run1": {
+        "sentence": "The manager saw her duck.",
+        "before": [
+            "(: t_manager (Member sk_manager_1 manager) (STV 1.0 0.99))",
+            "(: t_person (Member sk_person_1 person) (STV 1.0 0.99))",
+            "(: e_see (Member sk_see_1 see) (STV 1.0 0.99))",
+            "(: e_exp (Experiencer sk_see_1 sk_manager_1) (STV 1.0 0.99))",
+            "(: e_tns (Past sk_see_1) (STV 1.0 0.99))",
+            "(Interpretation r1 (: t_duck_n (Member sk_duck_1 duck) (STV 1.0 0.99)))",
+            "(Interpretation r1 (: e_poss (Possession sk_duck_1 sk_person_1) (STV 1.0 0.99)))",
+            "(Interpretation r1 (: e_stim1 (Stimulus sk_see_1 sk_duck_1) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: e_duck_v (Member sk_duck_2 duck) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: e_duck_ag (Agent sk_duck_2 sk_person_1) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: e_stim2 (Stimulus sk_see_1 sk_duck_2) (STV 1.0 0.99)))"
+        ],
+        "after": [
+            "[reading r1]",
+            "(: e_exp (Experiencer e0 x0) (STV 1.0 0.99))",
+            "(: e_see (Member e0 see) (STV 1.0 0.99))",
+            "(: t_manager (Member x0 manager) (STV 1.0 0.99))",
+            "(: t_duck_n (Member x1 duck) (STV 1.0 0.99))",
+            "(: t_person (Member x2 person) (STV 1.0 0.99))",
+            "(: e_tns (Past e0) (STV 1.0 0.99))",
+            "(: e_poss (Possession x1 x2) (STV 1.0 0.99))",
+            "(: e_stim1 (Stimulus e0 x1) (STV 1.0 0.99))",
+            "[reading r2]",
+            "(: e_duck_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_exp (Experiencer e1 x1) (STV 1.0 0.99))",
+            "(: e_duck_v (Member e0 duck) (STV 1.0 0.99))",
+            "(: e_see (Member e1 see) (STV 1.0 0.99))",
+            "(: t_person (Member x0 person) (STV 1.0 0.99))",
+            "(: t_manager (Member x1 manager) (STV 1.0 0.99))",
+            "(: e_tns (Past e1) (STV 1.0 0.99))",
+            "(: e_stim2 (Stimulus e1 e0) (STV 1.0 0.99))"
+        ]
+    },
+    "probe48-000005 run1": {
+        "sentence": "The porter slept near the depot.",
+        "before": [
+            "(: t_porter (Member sk_porter_1 porter) (STV 1.0 0.99))",
+            "(: t_depot (Member sk_depot_1 depot) (STV 1.0 0.99))",
+            "(: e_sleep (Member sk_sleep_1 sleep) (STV 1.0 0.99))",
+            "(: e_exp (Experiencer sk_sleep_1 sk_porter_1) (STV 1.0 0.99))",
+            "(: e_loc (Near sk_sleep_1 sk_depot_1) (STV 1.0 0.99))",
+            "(: e_tns (Past sk_sleep_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_exp (Experiencer e0 x0) (STV 1.0 0.99))",
+            "(: e_sleep (Member e0 sleep) (STV 1.0 0.99))",
+            "(: t_porter (Member x0 porter) (STV 1.0 0.99))",
+            "(: t_depot (Member x1 depot) (STV 1.0 0.99))",
+            "(: e_loc (Near e0 x1) (STV 1.0 0.99))",
+            "(: e_tns (Past e0) (STV 1.0 0.99))"
+        ]
+    },
+    "probe48-000006 run1": {
+        "sentence": "Old Nellie kicked the bucket last spring.",
+        "before": [
+            "(: nellie_name (Name nellie \"Nellie\") (STV 1.0 0.99))",
+            "(: nellie_old (Member nellie old) (STV 1.0 0.99))",
+            "(Interpretation r1 (: r1_ev (Member sk_kick_the_bucket_1 kick_the_bucket) (STV 1.0 0.99)))",
+            "(Interpretation r1 (: r1_ag (Agent sk_kick_the_bucket_1 nellie) (STV 1.0 0.99)))",
+            "(Interpretation r1 (: r1_past (Past sk_kick_the_bucket_1) (STV 1.0 0.99)))",
+            "(Interpretation r1 (: r1_time (Time sk_kick_the_bucket_1 last_spring) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: r2_ev (Member sk_kick_1 kick) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: r2_ag (Agent sk_kick_1 nellie) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: r2_th (Theme sk_kick_1 sk_bucket_1) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: r2_bucket (Member sk_bucket_1 bucket) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: r2_past (Past sk_kick_1) (STV 1.0 0.99)))",
+            "(Interpretation r2 (: r2_time (Time sk_kick_1 last_spring) (STV 1.0 0.99)))"
+        ],
+        "after": [
+            "[reading r1]",
+            "(: r1_ag (Agent e0 nellie) (STV 1.0 0.99))",
+            "(: r1_ev (Member e0 kick_the_bucket) (STV 1.0 0.99))",
+            "(: nellie_old (Member nellie old) (STV 1.0 0.99))",
+            "(: nellie_name (Name nellie \"Nellie\") (STV 1.0 0.99))",
+            "(: r1_past (Past e0) (STV 1.0 0.99))",
+            "(: r1_time (Time e0 last_spring) (STV 1.0 0.99))",
+            "[reading r2]",
+            "(: r2_ag (Agent e0 nellie) (STV 1.0 0.99))",
+            "(: r2_ev (Member e0 kick) (STV 1.0 0.99))",
+            "(: nellie_old (Member nellie old) (STV 1.0 0.99))",
+            "(: r2_bucket (Member x0 bucket) (STV 1.0 0.99))",
+            "(: nellie_name (Name nellie \"Nellie\") (STV 1.0 0.99))",
+            "(: r2_past (Past e0) (STV 1.0 0.99))",
+            "(: r2_th (Theme e0 x0) (STV 1.0 0.99))",
+            "(: r2_time (Time e0 last_spring) (STV 1.0 0.99))"
+        ]
+    },
+    "probe48-000007 run1": {
+        "sentence": "The goalie kicked the bucket over the fence.",
+        "before": [
+            "(: goalie_type (Member sk_goalie_1 goalie) (STV 1.0 0.99))",
+            "(: kick_ev (Member sk_kick_1 kick) (STV 1.0 0.99))",
+            "(: kick_ag (Agent sk_kick_1 sk_goalie_1) (STV 1.0 0.99))",
+            "(: kick_th (Theme sk_kick_1 sk_bucket_1) (STV 1.0 0.99))",
+            "(: bucket_type (Member sk_bucket_1 bucket) (STV 1.0 0.99))",
+            "(: kick_goal (Goal sk_kick_1 sk_fence_1) (STV 1.0 0.99))",
+            "(: fence_type (Member sk_fence_1 fence) (STV 1.0 0.99))",
+            "(: kick_past (Past sk_kick_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: kick_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: kick_goal (Goal e0 x1) (STV 1.0 0.99))",
+            "(: kick_ev (Member e0 kick) (STV 1.0 0.99))",
+            "(: goalie_type (Member x0 goalie) (STV 1.0 0.99))",
+            "(: fence_type (Member x1 fence) (STV 1.0 0.99))",
+            "(: bucket_type (Member x2 bucket) (STV 1.0 0.99))",
+            "(: kick_past (Past e0) (STV 1.0 0.99))",
+            "(: kick_th (Theme e0 x2) (STV 1.0 0.99))"
+        ]
+    },
+    "probe48-000008 run1": {
+        "sentence": "A tailor mended the jacket.",
+        "before": [
+            "(: tailor_type (Member sk_tailor_1 tailor) (STV 1.0 0.99))",
+            "(: mend_ev (Member sk_mend_1 mend) (STV 1.0 0.99))",
+            "(: mend_ag (Agent sk_mend_1 sk_tailor_1) (STV 1.0 0.99))",
+            "(: mend_pat (Patient sk_mend_1 sk_jacket_1) (STV 1.0 0.99))",
+            "(: jacket_type (Member sk_jacket_1 jacket) (STV 1.0 0.99))",
+            "(: mend_past (Past sk_mend_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: mend_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: mend_ev (Member e0 mend) (STV 1.0 0.99))",
+            "(: tailor_type (Member x0 tailor) (STV 1.0 0.99))",
+            "(: jacket_type (Member x1 jacket) (STV 1.0 0.99))",
+            "(: mend_past (Past e0) (STV 1.0 0.99))",
+            "(: mend_pat (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probe48-000009 run1": {
+        "sentence": "The florist watered the ferns.",
+        "before": [
+            "(: florist_type (Member sk_florist_1 florist) (STV 1.0 0.99))",
+            "(: ferns_group (GroupOf sk_ferns_1 fern) (STV 1.0 0.99))",
+            "(: water_ev (Member sk_water_1 water) (STV 1.0 0.99))",
+            "(: water_ag (Agent sk_water_1 sk_florist_1) (STV 1.0 0.99))",
+            "(: water_pat (Patient sk_water_1 sk_ferns_1) (STV 1.0 0.99))",
+            "(: water_past (Past sk_water_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: water_ag (Agent e0 x0) (STV 1.0 0.99))",
+            "(: ferns_group (GroupOf x1 fern) (STV 1.0 0.99))",
+            "(: water_ev (Member e0 water) (STV 1.0 0.99))",
+            "(: florist_type (Member x0 florist) (STV 1.0 0.99))",
+            "(: water_past (Past e0) (STV 1.0 0.99))",
+            "(: water_pat (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "probe48-000010 run1": {
+        "sentence": "Every guard checked a lantern.",
+        "before": [
+            "(: every_guard_checked (Implication (Member $x guard) (And (Member (sk_check $x) check) (Agent (sk_check $x) $x) (Theme (sk_check $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern) (Past (sk_check $x)))) (STV 1.0 0.9))",
+            "(: guard_q (QuantifierPhrase guard check \"every\") (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: every_guard_checked (Implication (Member $v0 guard) (And (Agent (f0 $v0) $v0) (Member (f0 $v0) check) (Member (f1 $v0) lantern) (Past (f0 $v0)) (Theme (f0 $v0) (f1 $v0)))) (STV 1.0 0.9))",
+            "(: guard_q (QuantifierPhrase guard check \"every\") (STV 1.0 0.99))"
+        ]
+    }
+}

@@ -222,3 +222,42 @@ unregistered); M5 question arm (QGEN/QPARSE, §6 item 8); embedding channel defe
 - Side harvest: 65 incidental doctrine findings = the largest parse-quality triage feed
   to date (role choice, futurate rule, world-knowledge emission), from an audit that was
   nominally about rule trust — reviewer passes pay for themselves in by-catch.
+
+## 13. #48 adoption (batch-2 item B, 2026-08-21) — multi-reading rationales
+
+- Adopted on REPRESENTATION grounds after the pilot refuted the stability motivation
+  (1/102 emissions; plateau ≠ binary ambiguity) — the trigger names ambiguity TYPES
+  (attachment / lexical sense / idiom-vs-literal) instead of "two complete readings",
+  exactly the pilot's closing recommendation.
+- Equipoise clause added from blind-batch calibration, not intuition: a world-knowledge
+  lean yields the favored single reading (confidence may drop); the tie requires both
+  readings genuinely unselected. One probe over-emission (idiom + temporal adjunct) is
+  what earned the line — the trigger boundary was DISCOVERED, not designed.
+- Reading-set identity: sha256 over sorted per-reading graph_ids under a distinct payload
+  — tag names and reading order provably cannot affect identity; single-reading records
+  stay byte-identical, so the canon extension is additive (no version bump, no corpus
+  regeneration). Alternative rejected: canon/5 (would orphan every existing id for zero
+  behavioral change on 100% of existing records).
+- Multi-reading records expose EMPTY top-level atoms/stars so every miner skips them
+  structurally rather than by special-case code; mining-over-readings is out of scope
+  until evidence demands semantics for it.
+- Serving semantics pinned in e2e: the KB answers from the SHARED layer; per-reading
+  content is absent until engine marginalization (#48's deferred half) — honest QA over
+  ambiguity means not answering from a reading the text didn't select.
+- Validator scoping principle: a reading = shared + its tag, so name-uniqueness,
+  declaration, and duplicate checks all run per-reading; the same expression in two
+  different readings is legal (if it holds in all readings it belongs in shared — a
+  reviewer judgment, deliberately not mechanized).
+- By-catch: the lexical probe ("saw her duck") surfaced a genuine coverage gap —
+  perception small-clauses have no prompt rule; the agent improvised via the
+  periphrastic-causative analogy. Prompt-loop material.
+- Rejected alternative (owner-proposed, adjudicated 2026-08-21): representing readings as
+  object-level `(Or r1 r2)` / `(And r1 r2)`. The And half is already the design (both-meant
+  = plain dual assertion, no uncertainty, no wrapper). The Or half: verified the engine
+  ACCEPTS Or-of-readings, but four costs — category collapse with genuine textual
+  disjunction (#20 entanglement); Or's sealed interior erases per-reading identity/stars/
+  TVs and lands on the sealed-interior canonicalizer ticket; unsorted Or args resurrect
+  order-instability the MRSET hash killed; one outer STV loses the equipoise/lean channel.
+  Concession kept: marginal QA semantics IS epistemic-Or → compile-to-Or recorded as
+  legitimate ENGINE-internal strategy in the feature-req. Ambiguity is meta-level (which
+  assertion was made), disjunction is object-level (what the text asserted).

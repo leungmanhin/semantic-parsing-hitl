@@ -1433,6 +1433,24 @@ run("cess-name     faithful Name-bound 'has Dario stopped painting?' pinned @0 b
 run("GAP-whenever  faithful natural 'did the terrier growl?' -> [] pending engine fix (bundle rigidity)", TWHEN,
     '(And (Member $e growl) (Agent $e $t) (Member $t terrier) (Past $e))', want="empty")
 
+# Multiple live readings (batch-2 item B): the KB serves the SHARED layer; wrapped
+# per-reading statements are transport for the canonicalizer's split and are NOT loaded
+# (engine marginalization = the deferred #48 half). These two cases pin that serving
+# semantics: shared answers normally; reading content is absent until marginalization.
+MRSHARED = [
+    '(: p_type (Member sk_porter_1 porter) (STV 1.0 0.99))',
+    '(: s_type (Member sk_statue_1 statue) (STV 1.0 0.99))',
+    '(: d_type (Member sk_depot_1 depot) (STV 1.0 0.99))',
+    '(: e_ev (Member sk_photograph_1 photograph) (STV 1.0 0.99))',
+    '(: e_ag (Agent sk_photograph_1 sk_porter_1) (STV 1.0 0.99))',
+    '(: e_th (Theme sk_photograph_1 sk_statue_1) (STV 1.0 0.99))',
+    '(: e_tns (Past sk_photograph_1) (STV 1.0 0.99))',
+]
+run("multi-reading  shared layer answers: who photographed the statue?", MRSHARED,
+    '(And (Member $e photograph) (Agent $e $p) (Member $p porter) (Past $e))')
+run("multi-reading  per-reading content not served pre-marginalization (expect [])", MRSHARED,
+    '(Near sk_photograph_1 sk_depot_1)', want="empty")
+
 print("\n==== %d / %d PASS ====" % (sum(1 for ok,_ in results if ok), len(results)))
 print("KNOWN ENGINE-GAP markers (faithful queries [], pending engine fix):",
       sum(1 for _,l in results if l.strip().startswith("GAP-")))

@@ -2328,3 +2328,57 @@ Nothing about the question is ever asserted.
 
       What did the clerk kneel for?
         →  (: $prf (And (Member $e kneel) (Agent $e $c) (Member $c clerk) (Past $e) (PurposeOf $g $e)) $tv)
+
+## Multiple live readings (Interpretation)
+
+DEFAULT: every sentence gets exactly **one** reading. World knowledge, `DOMAIN`, `BACKGROUND`
+and `CONTEXT` pick the reading (per **Input**); if anything in the sentence or its context
+rules a reading out — participant coherence, selectional fit, the idiom coherence test —
+resolve as usual and emit that single reading.
+
+Emit multiple readings ONLY when the sentence genuinely licenses two (rarely three)
+**complete** readings of one of exactly these three types, and nothing selects between them:
+
+- **attachment** — a modifier or PP with two coherent attachment sites ("with the …",
+  "beside the …" modifying either the event or a mentioned entity), both parses coherent
+  for these participants;
+- **lexical sense** — an ambiguous word where **both** senses give a coherent statement and
+  neither the sentence, the context, nor selectional fit picks one;
+- **idiom vs literal** — the idiom coherence test genuinely ties: the fixed idiom is licensed
+  AND the literal event is coherent for these participants, with no further cue.
+
+**Not a trigger** — stay single-reading: uncertainty about which representation rule applies;
+garbled or defective text (parse it as best you can); readings the sentence rules out;
+vagueness or degree; quantifier-scope alternations (their own sections decide those).
+**A mere world-knowledge lean is not a tie**: when likelihood favors one reading without
+ruling the other out, emit the favored reading (lowering its confidence if warranted) —
+the trigger requires genuine equipoise, both readings unselected.
+
+Output form when the trigger fires:
+
+1. Statements true under **every** reading (shared participants, uncontested atoms) are
+   written once, in the normal way.
+2. Every statement belonging to only one reading is wrapped:
+   `(Interpretation r1 (: name <content> (STV s c)))` — tag `r1` for the first reading,
+   `r2` for the second (`r3` only if genuinely needed). The inner statement is exactly what
+   you would have written had that reading been the only one — same naming rules, same TV
+   conventions; skolem names may repeat across readings (each reading is its own context).
+3. Each reading must be **complete** on its own: the shared lines plus that reading's
+   wrapped lines form a full, faithful parse of the sentence under that reading.
+4. Never assert, outside the wrappers, anything true in only some of the readings.
+
+      The clerk sketched the fountain beside the archive.
+        →  (: c_type (Member sk_clerk_1 clerk) (STV 1.0 0.99))
+           (: f_type (Member sk_fountain_1 fountain) (STV 1.0 0.99))
+           (: a_type (Member sk_archive_1 archive) (STV 1.0 0.99))
+           (: e_ev (Member sk_sketch_1 sketch) (STV 1.0 0.99))
+           (: e_ag (Agent sk_sketch_1 sk_clerk_1) (STV 1.0 0.99))
+           (: e_th (Theme sk_sketch_1 sk_fountain_1) (STV 1.0 0.99))
+           (: e_tns (Past sk_sketch_1) (STV 1.0 0.99))
+           (Interpretation r1 (: e_loc (Beside sk_sketch_1 sk_archive_1) (STV 1.0 0.99)))
+           (Interpretation r2 (: f_loc (Beside sk_fountain_1 sk_archive_1) (STV 1.0 0.99)))
+
+      — the sketching happened beside the archive (r1), or the sketched fountain is the one
+      beside the archive (r2); everything else is shared. A question about this sentence is
+      still translated per **Queries**, single-form — reading-aware answering is the
+      downstream consumer's concern, never the translation's.

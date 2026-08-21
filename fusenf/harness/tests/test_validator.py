@@ -563,3 +563,49 @@ class TestDeterminism(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class TestMultiReading(unittest.TestCase):
+    """Interpretation transport (prompt.txt 'Multiple live readings', batch-2 item B):
+    C3 wrapper shape + reading-scoped names, C6 reading-scoped declarations,
+    C8 reading-scoped duplicates, C7 skip (transport is never a KB atom)."""
+
+    W1 = ('(Interpretation r1 (: scan_loc (Beside sk_scan_1 sk_ledger_1) '
+          '(STV 1.0 0.99)))')
+    W2 = ('(Interpretation r2 (: ledger_loc (Beside sk_ledger_1 sk_archivist_1) '
+          '(STV 1.0 0.99)))')
+
+    def test_clean_multi_reading_record(self):
+        self.assertEqual(codes(run_checks(CLEAN_STATEMENTS + [self.W1, self.W2])), set())
+
+    def test_malformed_tag_is_c3(self):
+        bad = self.W1.replace(" r1 ", " x1 ")
+        result = run_checks(CLEAN_STATEMENTS + [bad])
+        self.assertIn("C3", codes(result))
+        self.assertIn("malformed Interpretation wrapper", details(result, "C3"))
+
+    def test_carrier_declared_in_other_reading_is_c6(self):
+        decl = '(Interpretation r1 (: gate_kind (Member sk_gate_1 gate) (STV 1.0 0.99)))'
+        use = '(Interpretation r2 (: gate_state (Ongoing sk_gate_1) (STV 1.0 0.99)))'
+        result = run_checks(CLEAN_STATEMENTS + [decl, use])
+        self.assertIn("C6", codes(result))
+
+    def test_duplicate_within_reading_is_c8_but_across_readings_is_legal(self):
+        dup = self.W1.replace("scan_loc", "scan_loc2")
+        self.assertIn("C8", codes(run_checks(CLEAN_STATEMENTS + [self.W1, dup])))
+        across = self.W1.replace(" r1 ", " r2 ").replace("scan_loc", "scan_locx")
+        self.assertEqual(codes(run_checks(CLEAN_STATEMENTS + [self.W1, across])), set())
+
+    def test_shared_name_reused_in_reading_is_c3(self):
+        clash = self.W1.replace("scan_loc", "arch_scan")
+        result = run_checks(CLEAN_STATEMENTS + [clash])
+        self.assertIn("C3", codes(result))
+        self.assertIn("already used", details(result, "C3"))
+
+    def test_c7_skips_transport_lines(self):
+        class Boom:
+            def __init__(self):
+                pass
+            def add_atom(self, s):
+                raise AssertionError("C7 must not feed a wrapper to the chainer: " + s)
+        self.assertEqual(V.smoke_test([self.W1, self.W2], chainer_cls=Boom), [])

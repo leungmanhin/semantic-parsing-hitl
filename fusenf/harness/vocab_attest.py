@@ -51,11 +51,24 @@ def sha256(path: str) -> str:
 
 
 def extract_statements(text: str) -> list[str]:
-    """Every balanced `(: …)` s-expression in the text, wherever it is embedded."""
+    """Every balanced `(: …)` or `(Interpretation …)` s-expression in the text.
+
+    Wrapper forms are scanned too — else the Interpretation head itself never
+    appears in any extracted statement (the `(: ` scan grabs only its interior).
+    A wrapper's inner assertion is still captured separately by the `(: ` scan;
+    the resulting double-count of inner atoms is harmless for attestation.
+    """
+    out = []
+    for marker in ("(: ", "(Interpretation "):
+        out += _extract_marker(text, marker)
+    return out
+
+
+def _extract_marker(text: str, marker: str) -> list[str]:
     out = []
     i = 0
     while True:
-        i = text.find("(: ", i)
+        i = text.find(marker, i)
         if i < 0:
             break
         depth, j = 0, i

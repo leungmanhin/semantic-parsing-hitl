@@ -1,0 +1,2 @@
+(: rate_genus (Inheritance rate_of_flow rate) (STV 1.0 0.99))
+(: main_rule (Implication (And (Member $e1 maintain) (Theme $e1 $r) (Member $r rate_of_flow) (Member $r comparable) (Can $e1)) (And (GroupOf (sk_results $e1) result) (Member (sk_results $e1) high))) (STV 1.0 0.9))

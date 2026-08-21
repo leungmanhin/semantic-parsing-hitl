@@ -994,3 +994,58 @@ class TestSoftJaccard(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class Test09MultiReading(unittest.TestCase):
+    """§4.8 (batch-2 item B): Interpretation split + reading-set identity."""
+
+    SHARED = [
+        "(: c_type (Member sk_clerk_1 clerk) (STV 1.0 0.99))",
+        "(: f_type (Member sk_fountain_1 fountain) (STV 1.0 0.99))",
+        "(: a_type (Member sk_archive_1 archive) (STV 1.0 0.99))",
+        "(: e_ev (Member sk_sketch_1 sketch) (STV 1.0 0.99))",
+        "(: e_ag (Agent sk_sketch_1 sk_clerk_1) (STV 1.0 0.99))",
+        "(: e_th (Theme sk_sketch_1 sk_fountain_1) (STV 1.0 0.99))",
+        "(: e_tns (Past sk_sketch_1) (STV 1.0 0.99))",
+    ]
+    W1 = "(Interpretation r1 (: e_loc (Beside sk_sketch_1 sk_archive_1) (STV 1.0 0.99)))"
+    W2 = "(Interpretation r2 (: f_loc (Beside sk_fountain_1 sk_archive_1) (STV 1.0 0.99)))"
+
+    def rec(self, statements):
+        return {"id": "test-000001", "run": 1, "statements": statements, "context": {}}
+
+    def setUp(self):
+        self.base = C.canonicalize(self.rec(self.SHARED + [self.W1, self.W2]))
+
+    def test_shape(self):
+        c = self.base
+        self.assertTrue(c["multi_reading"])
+        self.assertEqual(len(c["readings"]), 2)
+        self.assertEqual(c["atoms"], [])
+        self.assertEqual(c["stars"], {})
+        for r in c["readings"]:
+            self.assertEqual(len(r["atoms"]), 8)  # 7 shared + 1 wrapped
+
+    def test_order_invariance(self):
+        sts = list(reversed(self.SHARED + [self.W1, self.W2]))
+        self.assertEqual(C.canonicalize(self.rec(sts))["graph_id"], self.base["graph_id"])
+
+    def test_tag_relabel_invariance(self):
+        sw = [s.replace(" r1 ", " rX ").replace(" r2 ", " r1 ").replace(" rX ", " r2 ")
+              for s in self.SHARED + [self.W1, self.W2]]
+        self.assertEqual(C.canonicalize(self.rec(sw))["graph_id"], self.base["graph_id"])
+
+    def test_discrimination(self):
+        w2b = self.W2.replace("sk_archive_1", "sk_clerk_1")
+        other = C.canonicalize(self.rec(self.SHARED + [self.W1, w2b]))
+        self.assertNotEqual(other["graph_id"], self.base["graph_id"])
+
+    def test_idempotence(self):
+        c2 = C.canonicalize(self.base)
+        for key in ("graph_id", "shape_id", "content_id"):
+            self.assertEqual(c2[key], self.base[key])
+
+    def test_no_single_multi_collision(self):
+        single = C.canonicalize(self.rec(list(self.SHARED)))
+        self.assertFalse(single.get("multi_reading"))
+        self.assertNotEqual(single["graph_id"], self.base["graph_id"])
