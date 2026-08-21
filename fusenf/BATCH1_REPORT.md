@@ -86,6 +86,10 @@ claude-sonnet-5 blind agents, prompt.txt e2e 334/334.
 
 ## 6. Batch-2 agenda (ranked by expected leverage)
 
+> **Execution plan: `BATCH2_PLAN.md` (2026-08-21)** — owner-agreed sequence
+> #7 → #6 → (#4 ∥) → #5 → #3 → #8 → pre-flight → #1, with #2 event-triggered.
+> The list below stays as the leverage ranking; the plan is the order of work.
+
 1. **Tier B scale to 1–2k natural sentences** — the density fix M2-held-out demands
    (×10–100 rule inventory), and the plan's own step 6.
 2. **Engine And-prover fix** (upstream) — unblocks packed-KB conjunction QA (M5).
