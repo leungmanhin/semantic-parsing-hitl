@@ -7,9 +7,30 @@ batch's centerpiece and runs last on a single instrument version. `PLAN.md` rema
 method document; this file is batch-2 execution only.
 
     order:  A(#7 audit) -> B(#6 #48) -> [C(#4 Qwen3) in parallel] -> D(#5 owner reviews)
-            -> E(#3 miner upgrade) -> F(#8 M5 question arm) -> G(pre-flight checklist)
-            -> H(#1 Tier B campaign)
+            -> B2(fix-pack, added 2026-08-21) -> AFK parse program -> E(#3 miner upgrade)
+            -> F(#8 M5 question arm) -> G(pre-flight checklist) -> H(#1 Tier B campaign:
+            mining + measurement over the already-parsed corpus)
     event-triggered at any point:  X(#2 engine-fix response)
+
+**Amendment 2026-08-21 (owner decision, supersedes "B is the LAST prompt.txt change"):**
+a targeted **fix-pack B2** lands before any campaign parsing — [G] NEW Perception-reports
+section (veridical complement asserted + Stimulus link; the probe48 coverage gap) + three
+emphasis-only fixes for the audit's top recurring error themes (scheduled-occurrence
+Patient x9, futurate-without-anchor x8, antecedent-less pronoun typing x8); goldens/e2e/
+blind-batch/re-pin per the item-B pattern; THE post-fix-pack hash is final. Then the
+**AFK parse program** front-loads H's parsing: Tier B superset to **2,000** (RELAXED
+filters: digits allowed, <=2 commas; still no-pronouns/declarative; build_tierB --extend
+carries the pilot 100 verbatim; fresh dump sha+date recorded) + the D.4 Tier C 360
+re-parse — ~452 blind Sonnet agents in 8-groups, mechanical assemble+validate per tranche
+(NO review agents until the owner returns). The run-30 audit-queue wave is NOT redone at
+the final hash (its defect-verification purpose is served; H's Tier C re-parse covers its
+Tier C members).
+
+**B2 DONE 2026-08-22 — FINAL HASH `f6448eac9f88…`** (report `eval/fixpack.md`): perception
+section + 3 emphasis fixes + glossary/marker wires; no-recital clean; goldens 368; e2e
+**338/338**; blind batch **7/7** at the final hash (first dispatch discarded — it raced two
+glossary wires; freeze-prompt-before-dispatch rule affirmed); vocabulary re-pinned
+(`f6448eac9f88…`/`b7e25b963478…`, no vocab changes).
 
 Standing constraints carried forward, unchanged: deterministic-first; every agent role
 runs under its `DISPATCH.md`-inventoried brief (zero pending); parse ops = 5-item
@@ -77,6 +98,11 @@ ledger regenerated:
   standing invariants). `role_fillers` switches to the valuation export (event-only
   restriction dissolves). Diff factoring per study §4 (joint key kept; factor promotion
   discipline).
+- **Role-candidate doctrine (owner decision D.3, 2026-08-21 — error-vs-variance split)**:
+  a role-flip witness on a class whose role `prompt.txt` DETERMINES (e.g. the
+  scheduled-occurrence rule) is a parse ERROR -> diagnosis/re-parse path, never a bridge
+  candidate; only prompt-UNDETERMINED classes may propose Theme<->Patient bridges.
+  Re-promotion to build-time canonicalization stays off the table this batch.
 - **Gates before any candidate reaches a gauntlet**: M4 against the Tier A answer key —
   headline acceptance: recall ≥ wave-1's 30/31 **with `CoAgent~GroupOf` recovered via a
   2-conjunct pattern** (or its miss explained); zero control merges as always.
@@ -118,7 +144,10 @@ ledger regenerated:
 - **Corpus**: fresh Tatoeba export (dump date + sha recorded; weekly-refresh caveat),
   superset build to 1–2k via `build_tierB.py` (pilot 100 carried forward or their absence
   explained); broadened deliberately past the pilot's strict filters (feeding triage is a
-  feature).
+  feature). **ALL of Tier B parses at the final hash inside this campaign (pilot 100
+  included), and per owner decision D.4 the Tier C in-sample 360 re-parse rides the same
+  fleet (~72 agents) — unifying both M2 arms on one instrument. Tier A is NOT re-parsed
+  (the engineered answer key stays).**
 - **Parse**: blind Sonnet per `PARSE.md` at the frozen post-B hash; DISPATCH ops
   discipline; validation + sampled review live from record one.
 - **Mine**: `frequent_patterns2` + role-fillers-on-valuations + alignment

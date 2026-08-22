@@ -1,0 +1,139 @@
+{
+    "fixpack-000001 run1": {
+        "sentence": "The florist saw the tenant crack the window.",
+        "before": [
+            "(: e_see (Member sk_see_1 see) (STV 1.0 0.99))",
+            "(: e_see_exp (Experiencer sk_see_1 sk_florist_1) (STV 1.0 0.99))",
+            "(: e_see_past (Past sk_see_1) (STV 1.0 0.99))",
+            "(: e_florist (Member sk_florist_1 florist) (STV 1.0 0.99))",
+            "(: e_crack (Member sk_crack_1 crack) (STV 1.0 0.99))",
+            "(: e_crack_agent (Agent sk_crack_1 sk_tenant_1) (STV 1.0 0.99))",
+            "(: e_crack_patient (Patient sk_crack_1 sk_window_1) (STV 1.0 0.99))",
+            "(: e_tenant (Member sk_tenant_1 tenant) (STV 1.0 0.99))",
+            "(: e_window (Member sk_window_1 window) (STV 1.0 0.99))",
+            "(: e_stimulus (Stimulus sk_see_1 sk_crack_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_crack_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_see_exp (Experiencer e1 x1) (STV 1.0 0.99))",
+            "(: e_crack (Member e0 crack) (STV 1.0 0.99))",
+            "(: e_see (Member e1 see) (STV 1.0 0.99))",
+            "(: e_tenant (Member x0 tenant) (STV 1.0 0.99))",
+            "(: e_florist (Member x1 florist) (STV 1.0 0.99))",
+            "(: e_window (Member x2 window) (STV 1.0 0.99))",
+            "(: e_see_past (Past e1) (STV 1.0 0.99))",
+            "(: e_crack_patient (Patient e0 x2) (STV 1.0 0.99))",
+            "(: e_stimulus (Stimulus e1 e0) (STV 1.0 0.99))"
+        ]
+    },
+    "fixpack-000002 run1": {
+        "sentence": "A nurse heard the visitor humming.",
+        "before": [
+            "(: e_hear (Member sk_hear_1 hear) (STV 1.0 0.99))",
+            "(: e_hear_exp (Experiencer sk_hear_1 sk_nurse_1) (STV 1.0 0.99))",
+            "(: e_hear_past (Past sk_hear_1) (STV 1.0 0.99))",
+            "(: e_nurse (Member sk_nurse_1 nurse) (STV 1.0 0.99))",
+            "(: e_hum (Member sk_hum_1 hum) (STV 1.0 0.99))",
+            "(: e_hum_agent (Agent sk_hum_1 sk_visitor_1) (STV 1.0 0.99))",
+            "(: e_hum_ongoing (Ongoing sk_hum_1) (STV 1.0 0.99))",
+            "(: e_visitor (Member sk_visitor_1 visitor) (STV 1.0 0.99))",
+            "(: e_stimulus (Stimulus sk_hear_1 sk_hum_1) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_hum_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_hear_exp (Experiencer e1 x1) (STV 1.0 0.99))",
+            "(: e_hum (Member e0 hum) (STV 1.0 0.99))",
+            "(: e_hear (Member e1 hear) (STV 1.0 0.99))",
+            "(: e_visitor (Member x0 visitor) (STV 1.0 0.99))",
+            "(: e_nurse (Member x1 nurse) (STV 1.0 0.99))",
+            "(: e_hum_ongoing (Ongoing e0) (STV 1.0 0.99))",
+            "(: e_hear_past (Past e1) (STV 1.0 0.99))",
+            "(: e_stimulus (Stimulus e1 e0) (STV 1.0 0.99))"
+        ]
+    },
+    "fixpack-000003 run1": {
+        "sentence": "The seminar resumes at noon.",
+        "before": [
+            "(: e_resume (Member sk_resume_1 resume) (STV 1.0 0.99))",
+            "(: e_resume_patient (Patient sk_resume_1 sk_seminar_1) (STV 1.0 0.99))",
+            "(: e_seminar (Member sk_seminar_1 seminar) (STV 1.0 0.99))",
+            "(: e_resume_time (Time sk_resume_1 (Hour 12)) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_resume (Member e0 resume) (STV 1.0 0.99))",
+            "(: e_seminar (Member x0 seminar) (STV 1.0 0.99))",
+            "(: e_resume_patient (Patient e0 x0) (STV 1.0 0.99))",
+            "(: e_resume_time (Time e0 (Hour 12)) (STV 1.0 0.99))"
+        ]
+    },
+    "fixpack-000004 run1": {
+        "sentence": "It blocked the culvert.",
+        "before": [
+            "(: e_block (Member sk_block_1 block) (STV 1.0 0.99))",
+            "(: e_block_agent (Agent sk_block_1 sk_thing_1) (STV 1.0 0.99))",
+            "(: e_block_patient (Patient sk_block_1 sk_culvert_1) (STV 1.0 0.99))",
+            "(: e_block_past (Past sk_block_1) (STV 1.0 0.99))",
+            "(: e_thing (Member sk_thing_1 thing) (STV 1.0 0.99))",
+            "(: e_culvert (Member sk_culvert_1 culvert) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: e_block_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: e_block (Member e0 block) (STV 1.0 0.99))",
+            "(: e_thing (Member x0 thing) (STV 1.0 0.99))",
+            "(: e_culvert (Member x1 culvert) (STV 1.0 0.99))",
+            "(: e_block_past (Past e0) (STV 1.0 0.99))",
+            "(: e_block_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "fixpack-000005 run1": {
+        "sentence": "The porter heard the siren.",
+        "before": [
+            "(: hear_ev (Member sk_hear_1 hear) (STV 1.0 0.99))",
+            "(: hear_exp (Experiencer sk_hear_1 sk_porter_1) (STV 1.0 0.99))",
+            "(: hear_stim (Stimulus sk_hear_1 sk_siren_1) (STV 1.0 0.99))",
+            "(: hear_past (Past sk_hear_1) (STV 1.0 0.99))",
+            "(: porter_type (Member sk_porter_1 porter) (STV 1.0 0.99))",
+            "(: siren_type (Member sk_siren_1 siren) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: hear_exp (Experiencer e0 x0) (STV 1.0 0.99))",
+            "(: hear_ev (Member e0 hear) (STV 1.0 0.99))",
+            "(: porter_type (Member x0 porter) (STV 1.0 0.99))",
+            "(: siren_type (Member x1 siren) (STV 1.0 0.99))",
+            "(: hear_past (Past e0) (STV 1.0 0.99))",
+            "(: hear_stim (Stimulus e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "fixpack-000006 run1": {
+        "sentence": "The committee postponed the recital.",
+        "before": [
+            "(: postpone_ev (Member sk_postpone_1 postpone) (STV 1.0 0.99))",
+            "(: postpone_agent (Agent sk_postpone_1 sk_committee_1) (STV 1.0 0.99))",
+            "(: postpone_patient (Patient sk_postpone_1 sk_recital_1) (STV 1.0 0.99))",
+            "(: postpone_past (Past sk_postpone_1) (STV 1.0 0.99))",
+            "(: committee_type (Member sk_committee_1 committee) (STV 1.0 0.99))",
+            "(: recital_type (Member sk_recital_1 recital) (STV 1.0 0.99))"
+        ],
+        "after": [
+            "(: postpone_agent (Agent e0 x0) (STV 1.0 0.99))",
+            "(: postpone_ev (Member e0 postpone) (STV 1.0 0.99))",
+            "(: committee_type (Member x0 committee) (STV 1.0 0.99))",
+            "(: recital_type (Member x1 recital) (STV 1.0 0.99))",
+            "(: postpone_past (Past e0) (STV 1.0 0.99))",
+            "(: postpone_patient (Patient e0 x1) (STV 1.0 0.99))"
+        ]
+    },
+    "fixpack-000007 run1": {
+        "sentence": "The referee did not see the goalkeeper fall.",
+        "before": [
+            "(: referee_type (Member sk_referee_1 referee) (STV 1.0 0.99))",
+            "(: goalkeeper_type (Member sk_goalkeeper_1 goalkeeper) (STV 1.0 0.99))",
+            "(: referee_not_see_fall (And (Member sk_see_1 see) (Experiencer sk_see_1 sk_referee_1) (Past sk_see_1) (Member sk_fall_1 fall) (Patient sk_fall_1 sk_goalkeeper_1) (Stimulus sk_see_1 sk_fall_1)) (STV 0.0 0.99))"
+        ],
+        "after": [
+            "(: referee_not_see_fall (And (Experiencer x0 x1) (Member x0 see) (Member x2 fall) (Past x0) (Patient x2 x3) (Stimulus x0 x2)) (STV 0.0 0.99))",
+            "(: referee_type (Member x1 referee) (STV 1.0 0.99))",
+            "(: goalkeeper_type (Member x3 goalkeeper) (STV 1.0 0.99))"
+        ]
+    }
+}

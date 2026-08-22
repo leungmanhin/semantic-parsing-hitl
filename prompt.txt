@@ -236,7 +236,10 @@ Six patterns recur throughout; each is defined **here once** and only referenced
   pronoun *means* and never by its grammatical gender: he / she / they-singular → `person`
   (**not** `man` / `woman` — gender agreement is not a claim about the referent's kind), plural
   they → a group (`GroupOf sk_group_1 person`), it → the salient kind if the text supplies one,
-  else `thing`.
+  else `thing`. Both halves are **mandatory every time**: the symbol is minted from the
+  **class**, never from the pronoun (`sk_person_1` / `sk_thing_1`, never `sk_he_1` / `sk_it_1`),
+  and the witness's class atom is always **emitted** — an untyped referent symbol must never
+  appear in the output, even when `thing` is all that can be said.
 
 ## Compound concepts — prefer single-word, else decompose
 
@@ -486,13 +489,15 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
   treatment changes the object).
 - `Theme` — direct object **acquired, transferred, moved, possessed, perceived, or evaluated**
   with **no change to it** (buy, sell, rent, give, send, carry, read, watch, grade, score,
-  review, measure, choose, keep, use).
+  review, measure, choose, keep, use). Entity objects only — a perception verb's **eventive
+  complement** is `Stimulus` (*Perception reports*).
 - `Recipient` — goal of a transfer (indirect object / "to"), **including the addressee of
   communication** ("talk / speak / write / mutter **to**"): a message is a transfer, so "muttered
   to the bailiff" takes `(Recipient <event> <bailiff>)`, never the spatial `Goal`.
 - `Experiencer` — subject of a **stative predication**: a perception/psych state ("know",
   "love", "see") **or a predicate-adjective / property state** ("was ill", "was empty", "was
-  rusty") — the entity the state holds of; `Stimulus` — a psych state's object.
+  rusty") — the entity the state holds of; `Stimulus` — a psych state's object: an entity, or
+  the perceived **event** of a perception report.
 - `Holder` — subject of a **possession / relational** state **only** ("own", "have", "lack") —
   a bare property is `Experiencer`, never `Holder`.
 - `CoAgent` — an animate **co-participant** in the action, named by a comitative **phrase**
@@ -589,7 +594,11 @@ scored / **replaced** / swapped / moved* → `Theme` both times — the object i
 *cooked / built / **repainted*** → `Patient` both times). **A state change need not be physical**:
 when the object is itself an **event or scheduled occurrence** (a flight, a vote, a match, a
 hearing) and the verb changes **whether or when it happens** — *cancel, call off, postpone, put off,
-delay, reschedule, bring forward* — the occurrence itself is altered, so → `Patient`. The same
+delay, reschedule, bring forward* — the occurrence itself is altered, so → `Patient`. **Never
+read *postpone / delay / reschedule* as displacement-in-time**: moving a crate leaves the crate
+unchanged (`Theme`), but "moving" a hearing to Thursday alters the hearing itself — when an
+occurrence happens is part of what it *is* — so an occurrence object is `Patient` every time;
+the *moved / swapped* → `Theme` line above is for things, never for occurrences. The same
 goes for an **informational artifact** (a recording, a treatise, a dataset): a verb that **brings
 it into existence or reworks its content** (*compile, splice, redact, abridge*) alters the
 artifact itself → `Patient` — "physically" contrasts with mere handling, **not** with abstract
@@ -647,9 +656,10 @@ An event with **no status predicate is generic / habitual / dispositional** — 
 specific occurrence. Mark otherwise (stack as needed):
 
 - **Tense**: `(Past e)`, `(Future e)`. **`(Ongoing e)` needs an explicit marker** — there are exactly
-  three: **progressive** morphology ("is / was V-ing"), a **continuative perfect** ("has lived there
-  since 2019"), and the **activity complement of an inceptive** ("started to cry" — the crying is
-  ongoing). A bare **simple present** is *not* one of them: "the survey begins at dawn", "the last elm
+  four: **progressive** morphology ("is / was V-ing"), a **continuative perfect** ("has lived there
+  since 2019"), the **activity complement of an inceptive** ("started to cry" — the crying is
+  ongoing), and the **participial complement of a perception verb** ("heard the engine stalling" —
+  see *Perception reports*). A bare **simple present** is *not* one of them: "the survey begins at dawn", "the last elm
   kicks the bucket" get **no status atom at all**, which is the generic / unmarked default below.
   Never choose between `Ongoing`, `Past` and nothing by feel — read the marker off the clause.
 - **Aspect**: `(Ongoing e)` (progressive). Perfect ("has V-ed") → coarse `(Past e)`; a **past
@@ -837,13 +847,62 @@ Parse P as usual (classes, roles, tense), then **seal** it (*Core patterns*).
   unasserted either way. (Contrast a **causative** — "made the alarm sound" — whose complement
   event is reified **at top level**, occurrence-neutral, rather than sealed; see the
   causation-flavored-verbs bullet under **Inter-clause connectives**.)
-- Only for a **clausal** complement. A psych/attitude verb with an **entity** object ("distrusts
+- Only for a **finite clausal** complement. A psych/attitude verb with an **entity** object ("distrusts
   Ben", "fears the dog") keeps `Experiencer` / `Stimulus` (see **Thematic roles**) — no sealing.
+  A perception verb with an **eventive** complement ("saw the courier drop the parcel") is a
+  **perception report** (next section): asserted, never sealed.
 
 QA — "Does X believe / know that P?" rebuilds `(And (Member $e <verb>) (Experiencer $e <holder>)
 (Theme $e <P>))`, reconstructing the sealed term (a variable stands for a referent with no top-level
 anchor, e.g. `(Theme $e (Member $x unsafe))`). "Is P actually so?" queries P directly — it binds for
 a factive, and correctly finds nothing for a non-factive.
+
+### Perception reports (see / hear / watch someone do …)
+
+A perception verb — *see, hear, watch, feel, notice, observe* — with an **eventive complement**,
+bare infinitive ("saw the courier **drop** the parcel") or participle ("heard the engine
+**stalling**"), reports **direct perception of an event**. This is the third routing beside the
+two above: a **finite "that"-clause** ("saw **that** the door was open") is the **factive
+attitude** (seal + assert); an **entity** object ("heard the alarm") is plain role assignment
+(*Thematic roles*); an **eventive complement** is this construction. Reify BOTH events:
+
+- Parse the complement as an ordinary event (class, roles) and **assert its atoms at top level
+  at normal TVs** — direct perception is **veridical**: seeing the courier drop the parcel
+  entails the parcel was dropped. **Nothing is sealed.**
+- Link the two by **`(Stimulus <perception-event> <complement-event>)`**. The perceived
+  eventuality is a `Stimulus` **whatever the matrix verb's aspect** — watching is attending to a
+  stimulus, and an event is never a `Theme` acted on. The **subject** keeps its role by the
+  progressive test as always: *see / hear / feel* → `Experiencer`; *watch / observe / notice* →
+  `Agent`.
+- **Tense**: the matrix verb carries it; the complement event gets **no tense atom of its own**
+  — the perception is simultaneous with what is perceived, so the matrix time is its time. A
+  **participial** complement's -ing is a progressive marker, so it adds `(Ongoing <complement>)`
+  (caught in progress); a **bare infinitive** adds no aspect atom (the event perceived whole).
+- **Negation** ("didn't see anyone leave") loses the veridical entailment — nothing about the
+  complement alone is claimed — so wrap the **whole** bundle (perception atoms, complement
+  atoms, `Stimulus` link) in one strength-`0.0` conjunction (*Negation (events)*); definite
+  referents still project as always.
+
+      Mara saw the courier drop the parcel.
+        →  (Member sk_see_1 see) (Experiencer sk_see_1 mara) (Past sk_see_1) (Name mara "Mara")
+           (Member sk_drop_1 drop) (Agent sk_drop_1 sk_courier_1) (Theme sk_drop_1 sk_parcel_1)
+           (Stimulus sk_see_1 sk_drop_1)
+           (Member sk_courier_1 courier) (Member sk_parcel_1 parcel)
+      The guard heard the engine stalling.
+        →  (Member sk_hear_1 hear) (Experiencer sk_hear_1 sk_guard_1) (Past sk_hear_1)
+           (Member sk_stall_1 stall) (Patient sk_stall_1 sk_engine_1) (Ongoing sk_stall_1)
+           (Stimulus sk_hear_1 sk_stall_1)
+           (Member sk_guard_1 guard) (Member sk_engine_1 engine)
+
+*Seem / appear* ("the mast **seemed** to buckle") are **not** perception reports — no perceiver
+is a participant and nothing is entailed; they hedge the claim, so they take the **epistemic**
+route (`Might` / `Probably` status on the complement event — see the status-atom table), with
+**no** perception event reified.
+
+QA: "Was the parcel dropped?" binds at top level (veridical). "Did Mara see the courier drop
+the parcel?" rebuilds both events joined by `Stimulus`: `(: $prf (And (Member $e1 see)
+(Experiencer $e1 mara) (Member $e2 drop) (Agent $e2 $c) (Member $c courier) (Stimulus $e1 $e2))
+$tv)`.
 
 ### Embedded questions (wonder / know / ask whether / who …)
 
@@ -1381,8 +1440,12 @@ bare symbol. Terms: `(Year <n>)`, `(Month <name>)`, `(Day <n>)`, `(Weekday <name
       Nina will land at 3:30 pm. →  (Member sk_land_1 land) (Agent sk_land_1 nina) (Future sk_land_1)
                                     (Time sk_land_1 (Hour 15)) (Time sk_land_1 (Minute 30)) (Name nina "Nina")
       Omar jogged on Monday.     →  … (Time sk_jog_1 (Weekday monday)) (Past sk_jog_1)
-      The permit lapses on 14 March 2029.
+      The permit lapses on 14 March 2029.   (TODAY supplied, before the date)
                                  →  … (Future sk_lapse_1) (Time sk_lapse_1 (Year 2029)) …
+      The harvest begins in September.      (no TODAY supplied)
+                                 →  (Member sk_begin_1 begin) (Patient sk_begin_1 sk_harvest_1)
+                                    (Member sk_harvest_1 harvest) (Time sk_begin_1 (Month september))
+                                    ; and NO tense atom — the futurate rule below has no evidence to fire on
 
   A **present-tense futurate** — a scheduled, one-off event — takes **`Future`**: the tense is
   present but the event is not. **It requires positive evidence that the event is ahead**, and there

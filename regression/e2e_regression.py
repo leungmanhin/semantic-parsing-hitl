@@ -1451,6 +1451,25 @@ run("multi-reading  shared layer answers: who photographed the statue?", MRSHARE
 run("multi-reading  per-reading content not served pre-marginalization (expect [])", MRSHARED,
     '(Near sk_photograph_1 sk_depot_1)', want="empty")
 
+# Perception report (batch-2 fix-pack [G]): the eventive complement is ASSERTED (veridical)
+# and linked by Stimulus — both the direct complement query and the two-event rebuild bind.
+PERC = [
+    '(: e_watch (Member sk_watch_1 watch) (STV 1.0 0.99))',
+    '(: e_watch_ag (Agent sk_watch_1 sk_warden_1) (STV 1.0 0.99))',
+    '(: t_warden (Member sk_warden_1 warden) (STV 1.0 0.99))',
+    '(: e_watch_past (Past sk_watch_1) (STV 1.0 0.99))',
+    '(: e_seal (Member sk_seal_1 seal) (STV 1.0 0.99))',
+    '(: e_seal_ag (Agent sk_seal_1 sk_intern_1) (STV 1.0 0.99))',
+    '(: t_intern (Member sk_intern_1 intern) (STV 1.0 0.99))',
+    '(: e_seal_pat (Patient sk_seal_1 sk_crate_1) (STV 1.0 0.99))',
+    '(: t_crate (Member sk_crate_1 crate) (STV 1.0 0.99))',
+    '(: e_stim (Stimulus sk_watch_1 sk_seal_1) (STV 1.0 0.99))',
+]
+run("perception  veridical: was the crate sealed?", PERC,
+    '(And (Member $e seal) (Patient $e $c) (Member $c crate))')
+run("perception  full rebuild: did the warden watch the intern seal the crate?", PERC,
+    '(And (Member $e1 watch) (Agent $e1 $w) (Member $w warden) (Member $e2 seal) (Agent $e2 $i) (Member $i intern) (Stimulus $e1 $e2))')
+
 print("\n==== %d / %d PASS ====" % (sum(1 for ok,_ in results if ok), len(results)))
 print("KNOWN ENGINE-GAP markers (faithful queries [], pending engine fix):",
       sum(1 for _,l in results if l.strip().startswith("GAP-")))

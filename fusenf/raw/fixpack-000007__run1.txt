@@ -1,0 +1,3 @@
+(: referee_type (Member sk_referee_1 referee) (STV 1.0 0.99))
+(: goalkeeper_type (Member sk_goalkeeper_1 goalkeeper) (STV 1.0 0.99))
+(: referee_not_see_fall (And (Member sk_see_1 see) (Experiencer sk_see_1 sk_referee_1) (Past sk_see_1) (Member sk_fall_1 fall) (Patient sk_fall_1 sk_goalkeeper_1) (Stimulus sk_see_1 sk_fall_1)) (STV 0.0 0.99))

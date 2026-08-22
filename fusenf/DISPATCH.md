@@ -40,6 +40,7 @@ not just intended: every parse record carries `parser.prompt_sha256` + `input_sh
 |---|---|---|
 | `PARSE.md` | standard run-1 batch parse | `raw/<ID>__run1.txt` |
 | `REPARSE.md` | run 2 over the same items (never touches run 1) | `raw/<ID>__run2.txt` |
+| `REPARSE_run40.md` | batch-2 Tier C uniform-hash wave (D.4; run 40 avoids the fix-loop's 2–8 and the audit wave's 30) | `raw/<ID>__run40.txt` |
 | `M1PARSE.md` | M1 stability runs, run number in wrapper | `raw/<ID>__run<N>.txt` |
 | `SOLOPARSE.md` | one item per agent (within-batch-contamination isolation) | `raw/<ID>__run<N>.txt` |
 

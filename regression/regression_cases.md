@@ -2490,6 +2490,19 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: e_auditor (Member sk_auditor_1 auditor) (STV 1.0 0.99))
     (: lena_name (Name lena "Lena") (STV 1.0 0.99))
 
+**[perc-report] The warden watched the intern seal the crate.** — perception verb + **bare-infinitive eventive complement**: BOTH events reified; the complement is **asserted** at normal TVs (veridical — contrast the sealed attitudes above) and linked by `(Stimulus <perception-event> <complement-event>)`; subject role by the progressive test (*watch* → `Agent`); the complement event carries NO tense/aspect atom of its own
+
+    (: e_watch (Member sk_watch_1 watch) (STV 1.0 0.99))
+    (: e_watch_ag (Agent sk_watch_1 sk_warden_1) (STV 1.0 0.99))
+    (: t_warden (Member sk_warden_1 warden) (STV 1.0 0.99))
+    (: e_watch_past (Past sk_watch_1) (STV 1.0 0.99))
+    (: e_seal (Member sk_seal_1 seal) (STV 1.0 0.99))
+    (: e_seal_ag (Agent sk_seal_1 sk_intern_1) (STV 1.0 0.99))
+    (: t_intern (Member sk_intern_1 intern) (STV 1.0 0.99))
+    (: e_seal_pat (Patient sk_seal_1 sk_crate_1) (STV 1.0 0.99))
+    (: t_crate (Member sk_crate_1 crate) (STV 1.0 0.99))
+    (: e_stim (Stimulus sk_watch_1 sk_seal_1) (STV 1.0 0.99))
+
 ## Focus particles & clefts (#38)
 
 **[foc-only] Only the treasurer objected.** — exclusive focus → assert the prejacent + opaque `(Only filler event)`; NO unbounded exclusion rule

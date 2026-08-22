@@ -52,5 +52,8 @@
 (: mined_w2_lex_car_automobile (Implication (Member $x car) (Member $x automobile)) (STV 1.0 0.9))
 (: mined_w2_lex_automobile_car (Implication (Member $x automobile) (Member $x car)) (STV 1.0 0.9))
 ; doctor <-> physician   AE cosine 0.99, support 4, judged same-truth
-(: mined_w2_lex_doctor_physician (Implication (Member $x doctor) (Member $x physician)) (STV 1.0 0.9))
+; ASYMMETRIC TVs per owner decision 2026-08-21 (judges: hypernym pair, physician SUBSET-OF doctor
+; — doctor also covers dentists/vets/PhDs): the entailed direction physician->doctor keeps 0.9;
+; doctor->physician demoted to 0.7 ("near-synonymous in this corpus's usage" — honest recall aid).
+(: mined_w2_lex_doctor_physician (Implication (Member $x doctor) (Member $x physician)) (STV 1.0 0.7))
 (: mined_w2_lex_physician_doctor (Implication (Member $x physician) (Member $x doctor)) (STV 1.0 0.9))

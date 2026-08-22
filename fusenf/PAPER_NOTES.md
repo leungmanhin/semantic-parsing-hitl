@@ -278,3 +278,46 @@ unregistered); M5 question arm (QGEN/QPARSE, §6 item 8); embedding channel defe
   Filter, never evidence; judges stay. The sibling band runs 0.49–0.79 with a thin tail
   overlapping the low-synonym zone: ~0.75 gives ~95% kill keeping every true synonym;
   100% kill costs 2–3 of them — a dial, acceptable because survivors merely reach judges.
+
+## 15. Owner adjudications (batch-2 item D, 2026-08-21) — `rules/owner_decisions.jsonl`
+
+- Register overrides RATIFIED (all 9): the calibration override anticipated the JUDGE.md
+  taxonomy; the two connotation-flavored notes (procrastination-shading, indirectness)
+  adjudicated as tolerated connotative loss. Alternative (re-judging under the new brief)
+  declined as predictable rubber-stamping.
+- doctor/physician: the compiled mutual pair CONTRADICTED the judged hypernym verdict —
+  fixed to asymmetric TVs (physician->doctor 0.9 true direction; doctor->physician 0.7
+  corpus-usage recall aid). Lesson: export conventions can silently erase judge nuance;
+  the ledger view is what caught it.
+- Role re-promotion DEFERRED with the error-vs-variance doctrine: prompt-DETERMINED
+  classes route flips to diagnosis/re-parse (they are errors); UNDETERMINED classes keep
+  bridges (no canonical direction exists — which is what bridging IS). Canonicalizing
+  either species would be wrong for opposite reasons.
+- Uniform hash: Tier C 360 re-parses inside item H (one fleet, one instrument for both
+  M2 arms); Tier A deliberately NOT re-parsed — an engineered answer key's value is its
+  stability, and M4 scores labels, not hashes.
+
+## 16. Fix-pack B2 (2026-08-22) — the audit-to-prompt loop, closed
+
+- **Reviewer findings as prompt curriculum**: the retroactive audit's by-product — 98
+  evidence-relevant per-record findings — clustered into three recurring themes
+  (scheduled-occurrence role ×9, futurate-without-anchor ×8, pronoun typing ×8). Each
+  theme got an *emphasis-only* fix at the exact decision point where parses diverged,
+  not a new rule: the doctrine was already correct, the errors were salience failures.
+  This is the intended standing loop: review → theme → targeted emphasis → blind
+  re-validation, with the doctrine itself untouched.
+- **Perception reports entered by evidence, not agenda**: probe48-000004's blind parser
+  spontaneously linked a perceived *event* by `Stimulus` with no doctrine licensing it —
+  a coverage gap discovered by the pipeline's own validation layer. The new section
+  canonizes the representation the prompt's internal logic already pointed to
+  (perception object → `Stimulus`, whether entity or event), rather than importing an
+  external analysis.
+- **Veridicality as the routing axis**: the section completes a three-way complement
+  routing — sealed (non-factive attitude), sealed+asserted (factive), asserted-only
+  (direct perception) — with negation flipping perception to a whole-bundle denial
+  (veridicality does not survive negation). Uniform event-`Stimulus` across matrix
+  aspect (see vs watch) was chosen over splitting by stativity: one construction, one
+  shape, at the cost of one explicit glossary carve-out.
+- **Ops rule paid for twice**: the first blind dispatch raced two late glossary wires
+  and was discarded wholesale (transcript-verified which text each agent read). Freeze
+  the prompt before dispatching; the pinned hash must be the text the validation ran at.
