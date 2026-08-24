@@ -107,6 +107,31 @@ standing sampled pass. Brief: `REVIEW.md`. Wrapper, same discipline as parsing:
 - Batching: 5-item batches (`review_batches/rv-NN.txt`, same TSV as parse batches), fleets in
   ~8-agent sub-groups, same burst discipline as parsing.
 
+## Adjudication dispatch (the review-gate adjudicator — piloted 2026-08-24)
+
+Brief: `ADJUDICATE.md`. Sits between a blind review verdict and any repair: confirms or
+REFUTES each reviewer issue against prompt.txt (refute-don't-obey), then either accepts
+the parse or writes a minimal repair. Wrapper:
+
+    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/ADJUDICATE.md and follow it exactly.
+    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/adjudication_batches/aj-NN.txt.
+    Run number: <N>. Output tag: <TAG>.
+
+- **Model: decided by the dual-tier pilot** (30 records × Opus and Fable, scored against
+  the owner's 20 ground-truth adjudications in `review_batches/adjudication_sample.json`;
+  the deference test — refutation behavior on owner-acceptable records — picks the
+  production tier). Output tag = the model name, so tiers never collide.
+- **Isolation**: the adjudicator sees prompt.txt + sentence + parse + review verdict and
+  NOTHING else — no validator findings (13%-precision C4 would anchor), no triage, no
+  manifests (the owner's ground-truth calls live in a manifest and must stay unseen).
+- **The owner's calibration line is baked into the brief** (2026-08-24): improvisation in
+  gap territory is acceptable iff every atom is true and well-typed; false/ill-typed/
+  over-asserted content is a defect regardless of coverage.
+- Repairs land in `adjudication/` as pilot artifacts, NEVER in `raw/` — promotion to a
+  new run in the parse store is an explicit later step, so provenance stays clean
+  (a promoted repair is flagged non-blind).
+- Batching: 5-item batches, same TSV and group discipline as review.
+
 ## Diagnosis dispatch (M1 judgment buckets — standing from batch 2)
 
 Batch 1 ran M1 disagreement diagnosis with ad-hoc wrappers over `m1_disagreements.py`
@@ -171,6 +196,7 @@ Brief: `JUDGE.md`. Wrapper:
 | one-sentence-per-agent parse | `SOLOPARSE.md` | standing |
 | Tier A corpus realization | `corpora/REALIZE.md` | standing (P2-era, still the standard) |
 | §5.2 parse reviewer | `REVIEW.md` | standing from batch 2 |
+| review-gate adjudicator | `ADJUDICATE.md` | authored 2026-08-24; dual-tier pilot decides the production model |
 | M1 disagreement diagnosis | `DIAGNOSE.md` | standing from batch 2 |
 | gauntlet judges (M4 / routing) | `JUDGE.md` | standing from batch 2 (authored 2026-08-19) |
 | M5 question writer | `QGEN.md` | to-be-added with the M5 question arm (§6 item 8) |

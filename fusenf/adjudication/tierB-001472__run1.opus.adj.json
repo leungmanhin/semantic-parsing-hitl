@@ -1,0 +1,12 @@
+{"id": "tierB-001472", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The quantity-to-strength rule puts a bare generic at strength 0.9 (\"≈most\") and reserves 1.0 for \"all\"/\"every\", so strength 1.0 asserts that EVERY wart is benign — more than a \"generally\" hedged generic states."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "Same rule: an unquantified generic property of a kind is strength 0.9, and 1.0 over-asserts that every wart is contagious (the Degree atom records \"slightly\" and does not license raising the strength)."}],
+ "gaps_confirmed": ["adverbial generic hedges (\"generally\", \"typically\", \"usually\", \"often\") — the quantity-to-strength table lists only determiner-like quantifiers, and the QuantifierPhrase companion is licensed only when a quantifier word is present, so the hedge itself cannot be recorded"],
+ "new_gaps": ["Degree's entity slot with a KIND filler — (Degree wart contagious slightly) puts a kind where every example shows an individual, and no rule says whether a kind-level degree modifier is licensed or must ride a distributing rule"],
+ "decision": "repair",
+ "repair_summary": "Lowered (Inheritance wart benign) and (Inheritance wart contagious) from strength 1.0 to the bare-generic strength 0.9, confidences unchanged.",
+ "notes": "The infection genus at 1.0 0.99, the distribution of the coordinated adjectives instead of a compound, and \"slightly\" kept as a surface lemma in Degree are all correct. \"generally\" leaves no atom of its own, since no companion is licensed for an adverbial hedge."}

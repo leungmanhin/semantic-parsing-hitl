@@ -1,0 +1,9 @@
+{"id": "tierB-000019", "run": 2,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The Compound-concepts plural rule says a descriptive (colour) modifier 'distributes over the members exactly like a copular predicate' via the Quantifiers distributive rule ranging over (PartOf $x <group>), and (Member sk_group_1 brown) instead predicates brown of the group-as-object — the reading the Quantifiers section rejects as predicating 'of the group-as-object instead of its members'."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Replaced (Member sk_group_1 brown) with the per-member distributive rule (: e_balls_brown (Implication (PartOf $x sk_group_1) (Member $x brown)) (STV 1.0 0.9)); every other atom, symbol name and the atom order kept unchanged.",
+ "notes": "Rule TV follows the distribution convention (plain plural strength 1.0, confidence 0.9). The rest of the parse is licensed: GroupOf for the 'some'-plural with no CardinalityPhrase owed, unfused incidental colours, and static LocatedIn with group-unit containment."}

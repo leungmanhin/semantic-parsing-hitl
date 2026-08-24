@@ -1,0 +1,12 @@
+{"id": "tierB-001472", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The quantity-to-strength table caps even an unhedged bare copular generic at strength 0.9, and 'generally' hedges below universality, so 1.0 asserts 'all warts are benign' — more than the text states."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "A bare generic kind property takes strength 0.9 per the quantity-to-strength rule ('bare generic (no quantifier) → 0.9'), so 1.0 over-asserts that every wart is contagious."}],
+ "gaps_confirmed": ["adverbial generic hedges ('generally', 'typically', 'usually', 'often') — no strength mapping and no QuantifierPhrase licence, so the hedge word itself is unrecordable"],
+ "new_gaps": ["Degree with a kind in its entity slot ('a wart is slightly contagious' — generic subject): the Degree rule is illustrated only with individuals"],
+ "decision": "repair",
+ "repair_summary": "Lowered wart_benign and wart_contagious from strength 1.0 to the bare-generic 0.9 (confidence 0.9 kept); genus and Degree atoms unchanged.",
+ "notes": "No QuantifierPhrase companion is added for 'generally' — the companion is licensed only for actually-present quantifier words from the table, so the hedge survives only as the 0.9 strength (the confirmed gap)."}

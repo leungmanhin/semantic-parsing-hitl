@@ -1,0 +1,9 @@
+{"id": "tierB-000019", "run": 2,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Compound concepts' plural clause states that a descriptive (colour) modifier on a plural 'distributes over the members exactly like a copular predicate' (the trellises-are-wooden pattern: group witness plus the per-member rule over (PartOf $x <group>)), so (Member sk_group_1 brown) predicates brown of the group-as-object and records nothing of any ball being brown."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Replaced the group-level (Member sk_group_1 brown) with the per-member distribution rule (Implication (PartOf $x sk_group_1) (Member $x brown)) at the plural-distribution truth value (STV 1.0 0.9), keeping the parser's proof name e_balls_brown and the atom order; no other line touched.",
+ "notes": "The group-level (LocatedIn sk_group_1 sk_basket_1) is left standing: predicating over the group as a unit is the stated default and the atom is true of the sentence. Declining to fuse brown_ball / red_basket (incidental colour) and using the static LocatedIn rather than an event Location are both correct."}

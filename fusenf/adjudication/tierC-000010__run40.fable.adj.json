@@ -1,0 +1,9 @@
+{"id": "tierC-000010", "run": 40,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The Lemmatize rule makes a participle used as a pre-nominal modifier an adjective (\"a laminated worktop\" -> (Member sk_worktop_1 laminated), decide by function not shape) and the reduced-relative event form is stated only for participial POST-modifiers, so reifying pre-nominal \"nominated\" as a Past nominate event violates a stated rule; the Ordinal section's associated-event example (\"the first to respond\") covers an infinitival complement asserted as matrix predication, not an attributive participle, so it does not license the events."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Replaced the three nominate-event atoms (e_nominate, e_nom_theme, e_nom_past) with the licensed adjective atom (: film_nominated (Member sk_film_1 nominated) (STV 1.0 0.99)); all other atoms, names and order unchanged.",
+ "notes": "(Ordinal sk_film_1 1 nominate) stands: no issue names it, and Ordinal's scale slot is the associated event per its spec, traceable to \"first ... nominated\". The removed event atoms were entailed rather than false, but the construction is covered, so the adjective form is mandatory."}

@@ -1,0 +1,11 @@
+{"id": "tierB-001939", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "'Is composed of' is stative constitution that creates, destroys, consumes or physically changes nothing, so the object test — and its explicit 'when the test is unclear, default to Theme' fallback — assigns the molecule Theme, not Patient."}],
+ "gaps_confirmed": ["constitutive 'N of <mass>' NPs ('molecule of water') — the of-phrase rules exclude the measure-like case from the Possession/PartOf mapping without saying what replaces it, and nothing licenses the water_molecule fusion",
+                    "'be composed of / consist of / be made up of' — the of-complement is not a by-phrase, so the passive rule does not fix the constituents' role",
+                    "counted plural inside a universal rule's consequent — the per-member distribution Cardinality mandates has no licensed form nested in an Implication conclusion"],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Changed (Patient (sk_compose $x) $x) to (Theme (sk_compose $x) $x) in the rule's consequent; nothing else touched.",
+ "notes": "The attach conjunct's (Patient (sk_attach $x) (sk_h $x)) was not raised and plausibly passes the change-of-state test (the atoms become bonded), so it stands."}

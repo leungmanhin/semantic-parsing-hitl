@@ -1,0 +1,13 @@
+{"id": "tierB-000452", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "'Happy 40th birthday' is an optative wish, so (Member sk_birthday_1 happy) at 1.0/0.99 asserts more than the text states — the same bar the instruction set applies to unasserted content elsewhere (imperatives must not contaminate the KB; asserting a presupposition 'would invent evidence')."},
+            {"index": 1,
+             "verdict": "refute",
+             "reason": "The dedication and sign-off have no licensed addressee/sender encoding (the coverage gap the reviewer's own q2 files), and tying the birthday to Laura would itself be an unstated inference (no genitive in the text) — the Name atoms are exactly what the two mentioned proper nouns license, and the omission puts nothing false in the KB."}],
+ "gaps_confirmed": ["verbless optative / formulaic well-wish ('Happy 40th birthday') — no construct records a wish without asserting its content",
+                    "message framing: dedication 'To X' and sign-off 'Love, X' — no addressee/sender relation for a message exists"],
+ "new_gaps": ["Ordinal over a recurrence of the entity's own class ('40th birthday') — the scale slot has no defined filler for this case, forcing the entity's class to double as its own ordering"],
+ "decision": "repair",
+ "repair_summary": "Removed (: bday_happy (Member sk_birthday_1 happy) (STV 1.0 0.99)) — the wish's content must not enter the KB as fact and no optative encoding exists to replace it; all other atoms unchanged.",
+ "notes": "The birthday witness, its typing and the Ordinal stay: the occasion itself is presupposed by the card and '40th' is traceable to the words."}

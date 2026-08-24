@@ -1,0 +1,11 @@
+{"id": "tierB-001939", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "\"is composed of\" is a stative constitution predicate that neither creates, destroys, consumes nor physically changes the molecule, and the object test is explicit — \"direct object → Patient only when the action creates / destroys / consumes / physically changes it, otherwise Theme\", with \"when the test is unclear, default to Theme\"."}],
+ "gaps_confirmed": ["constitutive \"N of <mass>\" NP (\"molecule of water\") — the of-phrase inventory (possessive, partitive \"of the\", measure, about-phrase) excludes the measure/constitution case without saying what replaces it; nothing licenses re-ordering it into the compound kind water_molecule",
+                    "\"be composed of / consist of / be made up of\" — the of-complement is not a by-phrase, so the passive rule does not fix the constituents' role",
+                    "per-member distribution of a counted plural inside a universal rule (each of the two hydrogen atoms attached to the oxygen atom) — Cardinality mandates an added per-member Implication, but there is no form for nesting an Implication in a rule's consequent"],
+ "new_gaps": ["constitution has no STATIC head: PartOf is defined for a component of an object or a member of a group, so a stative \"X is composed of Y\" must be routed through a reified event even though no eventuality is reported — the carve-out LocatedIn makes for stative locatives has no constitution counterpart"],
+ "decision": "repair",
+ "repair_summary": "Changed (Patient (sk_compose $x) $x) to (Theme (sk_compose $x) $x) in the rule consequent; every other atom, symbol and TV is unchanged.",
+ "notes": "The Agent on the hydrogen group survives the object test's companion rule (\"a stative transitive still takes Agent\"), so only the object role needed correcting. The improvised water_molecule fusion and the reduced-relative expansion of \"attached to\" are gap-territory improvisations whose atoms are all true and well-typed."}

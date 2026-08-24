@@ -1,0 +1,12 @@
+{"id": "tierB-001951", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The Possessive / genitive NP rule routes only a \"genuinely possessive of-phrase\" to Possession and explicitly excludes the about / argument case (\"a photo of Mary\"), so (Possession sk_gamma_function_1 sk_factorial_function_1) — possessed first — asserts a possession link (the gamma function belongs to the factorial function) the sentence never states."},
+            {"index": 1,
+             "verdict": "refute",
+             "reason": "No rule requires a complement to sit inside the atom it modifies — every relation in this representation is a separate atom sharing a symbol — so \"recoverable only by stitching two statements\" describes the nominalization-argument gap the reviewer files in q2, not a false, ill-typed or over-asserted atom."}],
+ "gaps_confirmed": ["event / result nominalization with an of-complement naming its argument (\"a generalization of X\", \"the destruction of the city\", \"a photo of Mary\") — the genitive rule excludes these cases but prescribes no encoding for them; only agent-nominalizations are covered"],
+ "new_gaps": ["the entity-attached surface-preposition fallback is stated only for \"from\" (\"wool from Calderwick\"), so it is left unstated whether a leftover of-phrase may take a preposition-named (Of <entity> <entity>) atom, and whether such an atom should attach to the predicate nominal rather than the subject symbol"],
+ "decision": "repair",
+ "repair_summary": "Replaced (Possession sk_gamma_function_1 sk_factorial_function_1) with the surface-preposition atom (Of sk_gamma_function_1 sk_factorial_function_1), which records the of-phrase without asserting possession; nothing else changed.",
+ "notes": "Of is the preposition actually used, so it stays inside the licensed preposition-named vocabulary (\"never coin a relation head\"; \"like …\" stays the oblique (Like …)) rather than being a coined head; the atom is opaque and asserts only the stated surface relation."}

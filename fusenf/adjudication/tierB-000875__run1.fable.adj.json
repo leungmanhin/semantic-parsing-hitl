@@ -1,0 +1,9 @@
+{"id": "tierB-000875", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Lemmatization is 'inflection only -- never derivation' and a participial/adjectival modifier keeps its surface form ('a laminated worktop' -> laminated, not laminate), so the predicate adjective stays low_keyed; collapsing it to low_key is the downstream synonym-normalization step the instruction set forbids the translator."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Changed the property symbol low_key to low_keyed inside perf_lowkey's Past-wrapped Member atom; nothing else changed.",
+ "notes": "Copular routing, the mechanical Past wrapper over the categorical atom, and leaving the hyphenated adjective undecomposed are all correct."}

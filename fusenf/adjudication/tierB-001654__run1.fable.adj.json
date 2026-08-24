@@ -1,0 +1,9 @@
+{"id": "tierB-001654", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The interval rule's (End e T) asserts the eventuality's own extent ends at T, but the past act of postponing has no stated extent reaching tomorrow -- 'until tomorrow' states the final's new scheduled time -- so the atom puts an interval claim into the KB that the text does not state, incoherently paired with (Past sk_postpone_1)."}],
+ "gaps_confirmed": ["'postpone / delay / reschedule X until T', where the until-phrase gives the object occurrence's new time rather than an interval endpoint of the matrix event; the instruction set's only 'until' rule is the interval (End e <term>)"],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Replaced (: postpone_end (End sk_postpone_1 tomorrow)) with (: final_time (Time sk_final_1 tomorrow)), re-attaching the stated new time to the final's witness; nothing else changed.",
+ "notes": "The replacement is licensed vocabulary, not an invention: Time atoms attach directly to an event-denoting noun's witness (the 'the show' / 'the ceremony' rule) and the ungrounded deictic stays a bare constant. No tense atom is added for the final, since no confirmed issue names one."}

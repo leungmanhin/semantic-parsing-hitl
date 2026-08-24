@@ -1,0 +1,10 @@
+{"id": "tierB-001360", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "refute",
+             "reason": "The issue mistakes a coverage gap for a defect: the Degree section fixes only three CONSTRUCTION markers (they select how a following infinitive is encoded) and otherwise directs 'record the word that was used' as the surface level, so `(Degree sk_blood_1 quantity massive)` is true of the sentence, well-typed on a licensed scale, and over-asserts nothing."}],
+ "gaps_confirmed": ["unquantified mass-quantity expressions ('a massive amount of X', 'a great deal of') — no numeral for Measure, no members for GroupOf/CardinalityPhrase, and the Degree `quantity` construction is written only for too much / too little / enough",
+                    "entity-attached non-containment spatial prepositions ('all over the floor', 'on the table') — LocatedIn is the only head for where a THING is, while the 'wool from Calderwick' precedent keeps the surface preposition on the entity, and nothing decides between them ('all over' is lost either way)"],
+ "new_gaps": ["a past-tense existential ('there WAS a …') — nothing says whether the 'surface tense wraps every categorical atom the clause yields' rule reaches the witness's own typing atom, or only the predications over it; the Existential section's examples are all present tense"],
+ "decision": "accept",
+ "repair_summary": "",
+ "notes": "The reviewer's note about `Past` not wrapping `(Member sk_blood_1 blood)` is filed as a new gap rather than adjudicated, since it was not raised as a q1 issue."}

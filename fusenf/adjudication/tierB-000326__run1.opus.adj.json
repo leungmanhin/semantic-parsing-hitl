@@ -1,0 +1,12 @@
+{"id": "tierB-000326", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The existential section states it outright — a definite description is encoded as a typed individual sk_<class>_<n> plus its Member atom, and the bare class symbol is reserved for a non-specific / generic object, \"never for a specific definite individual\"."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "The selling does not take place inside the bottles, so (Location sk_sell_1 glass_bottle) is false; the PP names the container the goods are sold in and fails the where-test that licenses Location."}],
+ "gaps_confirmed": ["container / packaging PPs (\"sold in glass bottles\", \"packed in crates\") — no named role fits and nothing states whether the container attaches to the event or to the goods; the preposition-named oblique is the only landing spot, though its stated trigger is \"about / directed at\""],
+ "new_gaps": ["definite MASS reference (\"the milk\", \"the water\") — the definite-to-witness rule is illustrated only with count nouns, so whether a mass definite mints a witness or stays the mass constant is unstated"],
+ "decision": "repair",
+ "repair_summary": "Minted the definite referent as sk_milk_1 with its (Member sk_milk_1 milk) typing and used it as the Theme filler. Replaced the false (Location sk_sell_1 glass_bottle) with the preposition-named oblique (In sk_sell_1 glass_bottle), the preposition actually used.",
+ "notes": "The oblique keeps the bare class symbol glass_bottle (a non-specific object) and its bottle genus, with no \"glass\" genus, as the noun-modifier rule requires."}

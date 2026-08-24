@@ -1,0 +1,13 @@
+{"id": "tierB-000270", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "'Available in green' states that a green variant can be had, not that this shirt is green, so (Member sk_shirt_1 green) puts a property on the referent that no words put there — false, over-asserted content."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "The focus atom is defined as (<Op> <focused-filler> <event>) with an event second argument throughout, and this copular clause reifies no event, so an entity witness in that slot is an ill-typed, unlicensed encoding."}],
+ "gaps_confirmed": ["'available in <colour>' — a variant/configuration 'in' PP on a copular predicate, distinct from Location, framing-domain PPs, and a property of the referent",
+                    "focus particles over a purely copular clause — (<Op> <filler> <event>) has no event witness to fill its second slot"],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Removed the false (Member sk_shirt_1 green) and the ill-typed (Also green sk_shirt_1); no licensed encoding exists for the colour-variant PP or the additive particle on this clause, so both are recorded as gaps.",
+ "notes": "The kept typing and (Member sk_shirt_1 available) atoms are true and licensed; everything colour- and focus-related awaits the two confirmed gaps."}

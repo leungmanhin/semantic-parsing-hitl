@@ -1,0 +1,13 @@
+{"id": "tierB-000270", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "\"available in green\" says a green version can be had, not that this shirt is green — the \"also\" in fact implies the displayed one is another colour — so `(Member sk_shirt_1 green)` asserts a property the words do not put there (Core patterns: point at the words that put the atom there)."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "The focus form is fixed as `(<Op> <focused-filler> <event>)` — the second argument is always the event (a VP focus even uses the verb-class lemma) — and this copular clause reifies none, so an entity witness there is ill-typed; read literally the atom also repeats the index-0 over-assertion."}],
+ "gaps_confirmed": ["\"available in <colour>\" — the variant/configuration \"in\" PP on a copular predicate, distinct from a Location, a framing/domain PP, or a property of the referent",
+                    "focus particles (only/even/also/cleft) over a purely copular clause — no event witness exists to fill the focus atom's second slot"],
+ "new_gaps": ["product TYPE vs token: \"this shirt\" names a model of which colour variants exist, but the vocabulary offers only the individual witness, so \"a green one is to be had\" cannot be predicated of the referent without asserting the referent itself is green"],
+ "decision": "repair",
+ "repair_summary": "Removed `(Member sk_shirt_1 green)` (false of this shirt) and `(Also green sk_shirt_1)` (entity in the focus atom's event slot); neither has a licensed replacement — the variant-\"in\" PP and copular-clause focus are both recorded as gaps — leaving the typing and the bare availability property untouched.",
+ "notes": "Reifying the copular state to give the focus atom an anchor would have been an unlicensed extension: the instruction set reifies a copular state only for a connective endpoint or a time modifier (\"reify only when the state is such an endpoint\"). The repair therefore under-specifies rather than inventing."}

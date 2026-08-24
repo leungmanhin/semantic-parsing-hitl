@@ -1,0 +1,202 @@
+{
+ "date": "2026-08-24",
+ "design": "dual-tier adjudicator pilot: 20 owner-anchored + 10 fresh clean-stratum partials; each batch run twice (tags opus/fable)",
+ "anchors": [
+  {
+   "id": "tierB-000336",
+   "run": 1
+  },
+  {
+   "id": "tierB-001353",
+   "run": 1
+  },
+  {
+   "id": "tierB-001360",
+   "run": 1
+  },
+  {
+   "id": "tierB-001760",
+   "run": 1
+  },
+  {
+   "id": "tierC-000161",
+   "run": 40
+  },
+  {
+   "id": "tierB-000452",
+   "run": 1
+  },
+  {
+   "id": "tierB-000654",
+   "run": 1
+  },
+  {
+   "id": "tierB-000652",
+   "run": 1
+  },
+  {
+   "id": "tierC-000234",
+   "run": 40
+  },
+  {
+   "id": "tierB-001951",
+   "run": 1
+  },
+  {
+   "id": "tierB-000982",
+   "run": 1
+  },
+  {
+   "id": "tierB-000566",
+   "run": 1
+  },
+  {
+   "id": "tierC-000157",
+   "run": 40
+  },
+  {
+   "id": "tierC-000007",
+   "run": 40
+  },
+  {
+   "id": "tierB-001186",
+   "run": 1
+  },
+  {
+   "id": "tierB-001939",
+   "run": 1
+  },
+  {
+   "id": "tierB-000436",
+   "run": 1
+  },
+  {
+   "id": "tierC-000341",
+   "run": 40
+  },
+  {
+   "id": "tierB-000270",
+   "run": 1
+  },
+  {
+   "id": "tierB-001686",
+   "run": 1
+  }
+ ],
+ "fresh": [
+  {
+   "id": "tierB-001826",
+   "run": 1
+  },
+  {
+   "id": "tierB-000614",
+   "run": 1
+  },
+  {
+   "id": "tierB-001472",
+   "run": 1
+  },
+  {
+   "id": "tierB-000970",
+   "run": 1
+  },
+  {
+   "id": "tierB-000019",
+   "run": 2
+  },
+  {
+   "id": "tierC-000010",
+   "run": 40
+  },
+  {
+   "id": "tierB-000326",
+   "run": 1
+  },
+  {
+   "id": "tierB-001526",
+   "run": 1
+  },
+  {
+   "id": "tierB-001654",
+   "run": 1
+  },
+  {
+   "id": "tierB-000875",
+   "run": 1
+  }
+ ],
+ "fresh_rule": "clean-stratum partials minus anchors, sha256(id|run) ascending, first 10",
+ "batches": {
+  "aj-001": {
+   "run": 1,
+   "ids": [
+    "tierB-000336",
+    "tierB-001353",
+    "tierB-001360",
+    "tierB-001760",
+    "tierB-000452"
+   ]
+  },
+  "aj-002": {
+   "run": 1,
+   "ids": [
+    "tierB-000654",
+    "tierB-000652",
+    "tierB-001951",
+    "tierB-000982",
+    "tierB-000566"
+   ]
+  },
+  "aj-003": {
+   "run": 1,
+   "ids": [
+    "tierB-001186",
+    "tierB-001939",
+    "tierB-000436",
+    "tierB-000270",
+    "tierB-001686"
+   ]
+  },
+  "aj-004": {
+   "run": 1,
+   "ids": [
+    "tierB-001826",
+    "tierB-000614",
+    "tierB-001472",
+    "tierB-000970",
+    "tierB-000326"
+   ]
+  },
+  "aj-005": {
+   "run": 1,
+   "ids": [
+    "tierB-001526",
+    "tierB-001654",
+    "tierB-000875"
+   ]
+  },
+  "aj-006": {
+   "run": 2,
+   "ids": [
+    "tierB-000019"
+   ]
+  },
+  "aj-007": {
+   "run": 40,
+   "ids": [
+    "tierC-000161",
+    "tierC-000234",
+    "tierC-000157",
+    "tierC-000007",
+    "tierC-000341"
+   ]
+  },
+  "aj-008": {
+   "run": 40,
+   "ids": [
+    "tierC-000010"
+   ]
+  }
+ },
+ "scoring": "per tier: (a) on the 20 anchors, accept/repair decision vs owner genuine(->repair)/acceptable(->accept); refutation rate on the 6 owner-acceptable records = the deference test; (b) inter-tier agreement on all 30; ground truth stays in review_batches/adjudication_sample.json (agents never read it)"
+}

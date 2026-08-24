@@ -127,3 +127,32 @@ total review-defect now 170).
 2. Review-by-provenance (stratum 2) activates automatically when mining (E/H) produces
    candidates citing campaign records.
 3. The sweep is otherwise CLOSED: all four strata discharged or armed.
+
+## Owner adjudication of the 20-record partial sample (2026-08-24, joint session)
+
+Stratified deterministic sample (`review_batches/adjudication_sample.json`, verdicts
+embedded): **14 genuine / 6 acceptable → 70% of partial verdicts are real defects.**
+Reviewer calibration: q1-grading precision on partials = 70%; **fabricated issues = 0**
+(every named issue tracked something real — the strictness is over-flagging graceful
+improvisation in gap territory, which an adjudicator gate absorbs). The line that
+emerged and held across all 20: *improvisation is acceptable when the emitted atoms
+stay true and well-typed; defective when anything false, ill-typed, or over-asserted
+enters the KB.*
+
+**Projected true defect rate: 3.1% hard + 0.70×45.8% ≈ 35% (±5 at n=20).**
+Of the 14 genuine, ~half are the safety class (false/over-asserted content: 000270,
+000436, tierC-000234, tierC-000157, 001353, 000452); the rest are form/routing/
+consistency errors that hurt mining comparability more than QA truth.
+
+Side products: two corpus-defect-flavored records (000452 greeting-card fragments,
+001686 elliptical formula) → filter notes; one owner doctrine question filed:
+**expressive speech-act formulas — should an implicit speaker/addressee be minted?**
+(current doctrine forbids minting unstated referents, which forced 001686's gaps).
+
+Decision state after calibration: majority-of-N stays rejected (the genuine defects
+are dominated by correlated rule-routing/over-assertion patterns that same-model
+voting cannot fix); the parse→blind-review→adjudicated-repair pipeline pilot is now
+justified on measured reviewer quality; the fix-pack list gains confirmed
+high-frequency targets ("X is considered to be P" epistemic frames, restriction-
+scoping PPs on kind claims, nominalization of-complements, adjective+PP complements,
+control infinitives, degree-modified comparatives).

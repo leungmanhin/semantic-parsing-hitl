@@ -1,0 +1,13 @@
+{"id": "tierB-001186", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "refute",
+             "reason": "The focus form is `(<Op> <filler> <event>)` and this verbless existential reifies no event to fill the second slot, while Cardinality explicitly declines to encode the \"no more\" closure (\"exactly three\" emits the same Cardinality atom), so \"only one\" = \"exactly one\" is a coverage gap, not a dropped licensed atom."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "Existential: \"There is a X\" takes a fresh witness `sk_<class>_<n>` with its membership, and GroupOf is reserved for \"a plural referred to as a unit\" — a singular \"one book\" is neither, and the group encoding leaves the book with no individual symbol or class atom at all."}],
+ "gaps_confirmed": ["focus particle on a verbless existential/locative clause — (Only <filler> <event>) has no event to attach to",
+                    "static position with a preposition other than \"in\" (\"on the desk\") — LocatedIn is the only entity-position head, so on/in/under collapse"],
+ "new_gaps": ["a count on a SINGULAR existential (\"only one book\", \"exactly one N\") has no licensed home — Cardinality rides on a group, and the singular takes a witness instead, so the numeral itself is unrecorded"],
+ "decision": "repair",
+ "repair_summary": "Replaced the singleton group (book_grp, book_card) with the licensed existential witness `(Member sk_book_1 book)` and re-pointed book_loc's LocatedIn from sk_group_1 to sk_book_1; desk_type unchanged, \"only\" still unencoded (gap).",
+ "notes": "The reviewer's own note already concedes the \"only one\" = \"exactly one\" reading is licensed by the Cardinality closure note. LocatedIn on \"on the desk\" was left as-is: it is the reviewer's gap, not a confirmed issue."}

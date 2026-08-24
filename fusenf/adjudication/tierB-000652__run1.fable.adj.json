@@ -1,0 +1,8 @@
+{"id": "tierB-000652", "run": 1,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "The superlative is specified as (Most <scale> X <class>) 'plus X is a member of the class', and a group of sentences cannot satisfy that membership, so putting sk_group_1 in the ranked-individual slot is ill-typed and asserts the group is itself the single simplest sentence."},
+            {"index": 1, "verdict": "partial", "reason": "The group-in-entity-slot half stands exactly as in the first issue, but the absent identity atom is the equative coverage gap (no form exists for 'the Xs are the Ys'), not a parse defect — the shared symbol is the only available carrier."}],
+ "gaps_confirmed": ["identity / equative copular clause between two definite descriptions has no form", "plural superlative — the set of top-ranked members — has no form (Most ranks a single entity in a class)", "plural one-anaphora ('the ... ones') as a predicate nominal is uncovered"],
+ "new_gaps": ["definite plural with generic/aphoristic force — the determiner rule mandates a specific-group reading, leaving no kind-level generic route for 'the Xs are the Ys' aphorisms"],
+ "decision": "repair",
+ "repair_summary": "Re-expressed each superlative through the licensed definite-plural distribution rule — (Implication (PartOf $x sk_group_1) (Most simple $x sentence)) and likewise for elegant, each (STV 1.0 0.9) — so Most's entity slot holds a member sentence, not the group.",
+ "notes": "The distribution rules follow the stated pattern for copular predicates over a definite plural group; the identity of the two descriptions remains carried only by the shared group symbol pending the equative gap."}
