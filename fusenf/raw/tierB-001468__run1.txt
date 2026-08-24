@@ -1,0 +1,4 @@
+(: ivy_decplant (Inheritance ivy decorative_plant) (STV 1.0 0.99))
+(: decplant_genus (Inheritance decorative_plant plant) (STV 1.0 0.99))
+(: decplant_mod (Inheritance decorative_plant decorative) (STV 1.0 0.99))
+(: ivy_cause_rule (Implication (Member $x ivy) (And (Member (sk_cause $x) cause) (Agent (sk_cause $x) $x) (Patient (sk_cause $x) (sk_problems $x)) (GroupOf (sk_problems $x) problem) (CardinalityPhrase (sk_problems $x) "a few"))) (STV 0.9 0.9))

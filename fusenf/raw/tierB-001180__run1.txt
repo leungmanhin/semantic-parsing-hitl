@@ -1,0 +1,6 @@
+(: right_type (Member sk_right_1 right) (STV 1.0 0.99))
+(: hate_right_ev (Member sk_hate_1 hate) (STV 1.0 0.99))
+(: hate_right_exp (Experiencer sk_hate_1 sk_right_1) (STV 1.0 0.99))
+(: hate_right_stim (Stimulus sk_hate_1 child) (STV 1.0 0.99))
+(: no_one_hate_more (Implication (Member $x person) (And (Member (sk_hate $x) hate) (Experiencer (sk_hate $x) $x) (Stimulus (sk_hate $x) child) (More hate (sk_hate $x) sk_hate_1))) (STV 0.0 0.9))
+(: no_one_q (QuantifierPhrase person hate "no") (STV 1.0 0.99))

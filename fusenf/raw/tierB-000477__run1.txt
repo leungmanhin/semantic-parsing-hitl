@@ -1,0 +1,4 @@
+(: cond_type (Member sk_condition_1 human_condition) (STV 1.0 0.99))
+(: cond_genus (Inheritance human_condition condition) (STV 1.0 0.99))
+(: cond_mod (Inheritance human_condition human) (STV 1.0 0.99))
+(: welcome_dir (Directive (And (Member sk_welcome_1 welcome) (Goal sk_welcome_1 sk_condition_1))) (STV 1.0 0.99))

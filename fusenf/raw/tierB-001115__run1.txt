@@ -1,0 +1,2 @@
+(: ship_type (Member sk_ship_1 ship) (STV 1.0 0.99))
+(: ship_not_equipped (And (Member sk_equip_1 equip) (Patient sk_equip_1 sk_ship_1) (Instrument sk_equip_1 radar)) (STV 0.0 0.99))

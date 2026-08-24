@@ -1,0 +1,6 @@
+(: lang_grp (GroupOf sk_language_1 language) (STV 1.0 0.99))
+(: lang_diff (Member sk_language_1 different) (STV 1.0 0.99))
+(: cult_grp (GroupOf sk_culture_1 culture) (STV 1.0 0.99))
+(: cult_diff (Member sk_culture_1 different) (STV 1.0 0.99))
+(: everyone_friends (Implication (And (Member $x person) (Member $y person) (Compute == ($x $y) -> false)) (Past (Friend $x $y))) (STV 1.0 0.9))
+(: everyone_q (QuantifierPhrase person friend "everyone") (STV 1.0 0.99))

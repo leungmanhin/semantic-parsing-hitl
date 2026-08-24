@@ -1,0 +1,8 @@
+(: rs_genus (Inheritance russian_speech speech) (STV 1.0 0.99))
+(: rs_nat (Inheritance russian_speech russian) (STV 1.0 0.99))
+(: rs_inst (Member sk_speech_1 russian_speech) (STV 1.0 0.9))
+(: rs_no_swear (And (Member sk_swear_1 swear) (During sk_swear_1 sk_speech_1)) (STV 0.0 0.9))
+(: turn_ev (Member sk_turn_1 turn) (STV 1.0 0.9))
+(: turn_pat (Patient sk_turn_1 sk_speech_1) (STV 1.0 0.9))
+(: turn_goal (Goal sk_turn_1 sk_report_1) (STV 1.0 0.9))
+(: report_type (Member sk_report_1 report) (STV 1.0 0.9))

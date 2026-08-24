@@ -1,0 +1,8 @@
+(: tb1_children (GroupOf sk_group_1 child) (STV 1.0 0.99))
+(: tb1_sidewalk (Member sk_sidewalk_1 sidewalk) (STV 1.0 0.99))
+(: tb1_draw (Member sk_draw_1 draw) (STV 1.0 0.99))
+(: tb1_agent (Agent sk_draw_1 sk_group_1) (STV 1.0 0.99))
+(: tb1_loc (Location sk_draw_1 sk_sidewalk_1) (STV 1.0 0.99))
+(: tb1_instr (Instrument sk_draw_1 chalk) (STV 1.0 0.99))
+(: tb1_past (Past sk_draw_1) (STV 1.0 0.99))
+(: tb1_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Location (sk_draw $x) sk_sidewalk_1) (Instrument (sk_draw $x) chalk) (Past (sk_draw $x)))) (STV 1.0 0.9))

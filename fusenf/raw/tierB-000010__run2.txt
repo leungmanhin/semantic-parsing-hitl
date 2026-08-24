@@ -1,0 +1,5 @@
+(: tom_name (Name tom "Tom") (STV 1.0 0.99))
+(: boston_name (Name boston "Boston") (STV 1.0 0.99))
+(: tom_not_go (And (Member sk_go_1 go) (Agent sk_go_1 tom) (Goal sk_go_1 boston) (Past sk_go_1)) (STV 0.0 0.99))
+(: everyone_went (Implication (And (Member $x person) (Compute == ($x tom) -> false)) (And (Member (sk_go $x) go) (Agent (sk_go $x) $x) (Goal (sk_go $x) boston) (Past (sk_go $x)))) (STV 1.0 0.9))
+(: everyone_q (QuantifierPhrase person go "everyone") (STV 1.0 0.99))

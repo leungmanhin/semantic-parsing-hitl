@@ -1,0 +1,7 @@
+(: ta_grp (GroupOf sk_group_1 english_sentence) (STV 1.0 0.99))
+(: ta_genus (Inheritance english_sentence sentence) (STV 1.0 0.99))
+(: ta_mod (Inheritance english_sentence english) (STV 1.0 0.99))
+(: ta_card (CardinalityPhrase sk_group_1 "many") (STV 1.0 0.99))
+(: tatoeba_name (Name tatoeba "Tatoeba") (STV 1.0 0.99))
+(: ta_loc (LocatedIn sk_group_1 tatoeba) (STV 1.0 0.99))
+(: ta_interesting (Implication (PartOf $x sk_group_1) (Member $x interesting)) (STV 1.0 0.9))

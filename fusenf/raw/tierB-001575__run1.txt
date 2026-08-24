@@ -1,0 +1,7 @@
+(: symphony_type (Member sk_symphony_1 symphony) (STV 1.0 0.99))
+(: symphonies_group (GroupOf sk_symphonies_1 symphony) (STV 1.0 0.99))
+(: symphonies_great (Inheritance sk_symphonies_1 great) (STV 1.0 0.99))
+(: symphonies_compose_ev (Member sk_compose_1 compose) (STV 1.0 0.99))
+(: symphonies_compose_pat (Patient sk_compose_1 sk_symphonies_1) (STV 1.0 0.99))
+(: symphonies_compose_tense (Past sk_compose_1) (STV 1.0 0.99))
+(: this_partof_symphonies (PartOf sk_symphony_1 sk_symphonies_1) (STV 1.0 0.99))

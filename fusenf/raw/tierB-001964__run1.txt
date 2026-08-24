@@ -1,0 +1,8 @@
+(: author_type (Member sk_author_1 author) (STV 1.0 0.99))
+(: book_type (Member sk_book_1 book) (STV 1.0 0.99))
+(: plot_type (Member sk_plot_1 plot) (STV 1.0 0.99))
+(: plot_partof (PartOf sk_plot_1 sk_book_1) (STV 1.0 0.99))
+(: e_finalize (Member sk_finalize_1 finalize) (STV 1.0 0.99))
+(: e_finalize_agent (Agent sk_finalize_1 sk_author_1) (STV 1.0 0.99))
+(: e_finalize_patient (Patient sk_finalize_1 sk_plot_1) (STV 1.0 0.99))
+(: e_finalize_past (Past sk_finalize_1) (STV 1.0 0.99))

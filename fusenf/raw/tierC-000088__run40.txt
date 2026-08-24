@@ -1,0 +1,8 @@
+(: dem_fear_rule (Implication (Member $x democrat) (And (Member (sk_fear $x) fear) (Experiencer (sk_fear $x) $x) (Stimulus (sk_fear $x) industrialization) (Past (sk_fear $x)))) (STV 0.7 0.9))
+(: dem_fear_q (QuantifierPhrase democrat fear "many") (STV 1.0 0.99))
+(: whig_grp (GroupOf sk_group_1 whig) (STV 1.0 0.99))
+(: welcome_ev (Member sk_welcome_1 welcome) (STV 1.0 0.99))
+(: welcome_ag (Agent sk_welcome_1 sk_group_1) (STV 1.0 0.99))
+(: welcome_th (Theme sk_welcome_1 industrialization) (STV 1.0 0.99))
+(: welcome_tns (Past sk_welcome_1) (STV 1.0 0.99))
+(: welcome_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_welcome $x) welcome) (Agent (sk_welcome $x) $x) (Theme (sk_welcome $x) industrialization) (Past (sk_welcome $x)))) (STV 1.0 0.9))

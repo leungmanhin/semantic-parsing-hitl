@@ -1,0 +1,2 @@
+(: lot_flowers_bloom (Implication (Member $x flower) (And (Member (sk_begin $x) begin) (Patient (sk_begin $x) $x) (Theme (sk_begin $x) (sk_bloom $x)) (Member (sk_bloom $x) bloom) (Patient (sk_bloom $x) $x) (Ongoing (sk_bloom $x)) (Time (sk_begin $x) spring) (Every (sk_begin $x) 1 year))) (STV 0.8 0.9))
+(: flowers_q (QuantifierPhrase flower begin "a lot of") (STV 1.0 0.99))

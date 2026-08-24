@@ -1,0 +1,8 @@
+(: tb492_lawyer (Member sk_lawyer_1 lawyer) (STV 1.0 0.99))
+(: tb492_have (Member sk_have_1 have) (STV 1.0 0.99))
+(: tb492_holder (Holder sk_have_1 sk_lawyer_1) (STV 1.0 0.99))
+(: tb492_theme (Theme sk_have_1 sk_reputation_1) (STV 1.0 0.99))
+(: tb492_rep (Member sk_reputation_1 reputation) (STV 1.0 0.99))
+(: tb492_content (Theme sk_reputation_1 (Member sk_lawyer_1 ambulance_chaser)) (STV 1.0 0.99))
+(: tb492_ac_can (Inheritance ambulance_chaser (can chase)) (STV 1.0 0.99))
+(: tb492_ac_rel (Chase ambulance_chaser ambulance) (STV 1.0 0.99))

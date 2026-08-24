@@ -1,0 +1,8 @@
+(: eggs_grp (GroupOf sk_group_1 egg) (STV 1.0 0.99))
+(: bird_type (Member sk_bird_1 mother_bird) (STV 1.0 0.99))
+(: bird_genus (Inheritance mother_bird bird) (STV 1.0 0.99))
+(: e_incubate (Member sk_incubate_1 incubate) (STV 1.0 0.99))
+(: e_patient (Patient sk_incubate_1 sk_group_1) (STV 1.0 0.99))
+(: e_ongoing (Ongoing sk_incubate_1) (STV 1.0 0.99))
+(: e_loc (Location sk_incubate_1 sk_bird_1) (STV 1.0 0.99))
+(: eggs_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_incubate $x) incubate) (Patient (sk_incubate $x) $x) (Ongoing (sk_incubate $x)) (Location (sk_incubate $x) sk_bird_1))) (STV 1.0 0.9))

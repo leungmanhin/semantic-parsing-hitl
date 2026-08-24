@@ -1,0 +1,4 @@
+(: e_exist (Member sk_exist_1 exist) (STV 1.0 0.99))
+(: e_exp (Experiencer sk_exist_1 truth) (STV 1.0 0.99))
+(: lies_invented (Implication (Member $x lie) (And (Member (sk_invent $x) invent) (Patient (sk_invent $x) $x))) (STV 0.9 0.9))
+(: lies_only (Only lie invent) (STV 1.0 0.99))

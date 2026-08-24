@@ -1,0 +1,6 @@
+(: leonid_name (Name leonid "Leonid") (STV 1.0 0.99))
+(: bushes_1 (GroupOf sk_bushes_1 bush) (STV 1.0 0.99))
+(: part_1 (Member sk_part_1 part) (STV 1.0 0.99))
+(: part_of (PartOf sk_part_1 sk_bushes_1) (STV 1.0 0.99))
+(: part_thickest (Most thick sk_part_1 part) (STV 1.0 0.99))
+(: leonid_loc (Past (LocatedIn leonid sk_part_1)) (STV 1.0 0.99))

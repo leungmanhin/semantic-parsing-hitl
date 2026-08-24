@@ -1,0 +1,4 @@
+(: street_grp (GroupOf sk_street_1 street) (STV 1.0 0.99))
+(: village_ty (Member sk_village_1 village) (STV 1.0 0.99))
+(: street_loc (LocatedIn sk_street_1 sk_village_1) (STV 1.0 0.99))
+(: street_empty_rule (Implication (PartOf $x sk_street_1) (Member $x empty)) (STV 1.0 0.9))

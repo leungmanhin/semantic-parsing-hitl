@@ -1,0 +1,5 @@
+(: tb294_road (Member sk_road_1 road) (STV 1.0 0.99))
+(: tb294_cond_grp (GroupOf sk_conditions_1 condition) (STV 1.0 0.99))
+(: tb294_cond_proper (Implication (PartOf $x sk_conditions_1) (Member $x proper)) (STV 1.0 0.9))
+(: tb294_muddy_wait (Implication (Member sk_road_1 muddy) (Directive (And (Member sk_wait_1 wait) (For sk_wait_1 sk_conditions_1)))) (STV 1.0 0.99))
+(: tb294_slippery_wait (Implication (Member sk_road_1 slippery) (Directive (And (Member sk_wait_1 wait) (For sk_wait_1 sk_conditions_1)))) (STV 1.0 0.99))

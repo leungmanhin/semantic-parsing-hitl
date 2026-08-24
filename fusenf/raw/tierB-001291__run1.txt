@@ -1,0 +1,3 @@
+(: kitchen_type (Member sk_kitchen_1 kitchen) (STV 1.0 0.99))
+(: everyone_ate (Implication (Member $x person) (And (Member (sk_eat $x) eat) (Agent (sk_eat $x) $x) (Patient (sk_eat $x) breakfast) (Location (sk_eat $x) sk_kitchen_1) (Past (sk_eat $x)))) (STV 1.0 0.9))
+(: everyone_q (QuantifierPhrase person eat "everyone") (STV 1.0 0.99))

@@ -1,0 +1,4 @@
+(: crazies_grp (GroupOf sk_group_1 crazy) (STV 1.0 0.99))
+(: fm_genus (Inheritance full_moon moon) (STV 1.0 0.99))
+(: fm_full (Inheritance full_moon full) (STV 1.0 0.99))
+(: moon_bring_rule (Implication (Member $x full_moon) (And (Member (sk_bring_out $x) bring_out) (Agent (sk_bring_out $x) $x) (Patient (sk_bring_out $x) sk_group_1))) (STV 1.0 0.9))

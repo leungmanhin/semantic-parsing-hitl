@@ -1,0 +1,8 @@
+(: rt_genus (Inheritance regional_train train) (STV 1.0 0.99))
+(: rt_mod (Inheritance regional_train regional) (STV 1.0 0.99))
+(: rb_genus (Inheritance regional_bus bus) (STV 1.0 0.99))
+(: rb_mod (Inheritance regional_bus regional) (STV 1.0 0.99))
+(: train_run_rule (Implication (Member $x regional_train) (And (Member (sk_run $x) run) (Agent (sk_run $x) $x) (Manner (sk_run $x) smoothly) (Ongoing (sk_run $x)) (Time (sk_run $x) today))) (STV 1.0 0.9))
+(: train_q (QuantifierPhrase regional_train run "all") (STV 1.0 0.99))
+(: bus_run_rule (Implication (Member $x regional_bus) (And (Member (sk_run $x) run) (Agent (sk_run $x) $x) (Manner (sk_run $x) smoothly) (Ongoing (sk_run $x)) (Time (sk_run $x) today))) (STV 1.0 0.9))
+(: bus_q (QuantifierPhrase regional_bus run "all") (STV 1.0 0.99))

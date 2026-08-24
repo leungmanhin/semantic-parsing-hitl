@@ -1,0 +1,7 @@
+(: w_ev (Member sk_welcome_1 welcome) (STV 1.0 0.99))
+(: w_goal (Goal sk_welcome_1 wikipedia) (STV 1.0 0.99))
+(: w_name (Name wikipedia "Wikipedia") (STV 1.0 0.99))
+(: w_enc (Member wikipedia encyclopedia) (STV 1.0 0.99))
+(: w_free (Member wikipedia free) (STV 1.0 0.99))
+(: w_rule (Implication (Member $x person) (And (Member (sk_edit $x) edit) (Agent (sk_edit $x) $x) (Patient (sk_edit $x) wikipedia) (Can (sk_edit $x)))) (STV 1.0 0.9))
+(: w_q (QuantifierPhrase person edit "anyone") (STV 1.0 0.99))

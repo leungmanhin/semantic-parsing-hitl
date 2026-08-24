@@ -1,0 +1,6 @@
+(: wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))
+(: trees_group (GroupOf sk_trees_1 tree) (STV 1.0 0.99))
+(: e_whisper (Member sk_whisper_1 whisper) (STV 1.0 0.99))
+(: e_patient (Patient sk_whisper_1 sk_wind_1) (STV 1.0 0.99))
+(: e_through (Through sk_whisper_1 sk_trees_1) (STV 1.0 0.99))
+(: e_past (Past sk_whisper_1) (STV 1.0 0.99))

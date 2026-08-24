@@ -1,0 +1,8 @@
+(: broadcast_mem (Member sk_broadcast_1 broadcast) (STV 1.0 0.99))
+(: sched_ev (Member sk_schedule_1 schedule) (STV 1.0 0.99))
+(: sched_pat (Patient sk_schedule_1 sk_broadcast_1) (STV 1.0 0.99))
+(: sched_past (Past sk_schedule_1) (STV 1.0 0.99))
+(: hour_mem (Member sk_hour_1 hour) (STV 1.0 0.99))
+(: hour_late (Member sk_hour_1 late) (STV 1.0 0.99))
+(: hour_deg (Degree sk_hour_1 late very) (STV 1.0 0.99))
+(: broadcast_time (Time sk_broadcast_1 sk_hour_1) (STV 1.0 0.99))

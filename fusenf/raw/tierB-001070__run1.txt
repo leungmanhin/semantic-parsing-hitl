@@ -1,0 +1,8 @@
+(: pic_type (Member sk_picture_1 picture) (STV 1.0 0.99))
+(: fug_type (Member sk_fugitive_1 fugitive) (STV 1.0 0.99))
+(: pic_of (Of sk_picture_1 sk_fugitive_1) (STV 1.0 0.99))
+(: e_plaster (Member sk_plaster_1 plaster) (STV 1.0 0.99))
+(: e_theme (Theme sk_plaster_1 sk_picture_1) (STV 1.0 0.99))
+(: news_grp (GroupOf sk_newspaper_1 newspaper) (STV 1.0 0.99))
+(: e_loc (Location sk_plaster_1 sk_newspaper_1) (STV 1.0 0.99))
+(: e_past (Past sk_plaster_1) (STV 1.0 0.99))

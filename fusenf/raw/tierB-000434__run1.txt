@@ -1,0 +1,4 @@
+(: travel_ev (Member sk_travel_1 travel) (STV 1.0 0.99))
+(: travel_manner (Manner sk_travel_1 alone) (STV 1.0 0.99))
+(: nothing_pleasant (Implication (Member $x thing) (SameDegree pleasant $x sk_travel_1)) (STV 0.0 0.9))
+(: nothing_q (QuantifierPhrase thing pleasant "nothing") (STV 1.0 0.99))

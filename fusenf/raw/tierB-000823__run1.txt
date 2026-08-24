@@ -1,0 +1,4 @@
+(: ff_genus (Inheritance french_fry fry) (STV 1.0 0.99))
+(: ff_mod (Inheritance french_fry french) (STV 1.0 0.99))
+(: love_rule (Implication (Member $x person) (And (Member (sk_love $x) love) (Experiencer (sk_love $x) $x) (Stimulus (sk_love $x) french_fry))) (STV 1.0 0.9))
+(: love_q (QuantifierPhrase person love "everybody") (STV 1.0 0.99))

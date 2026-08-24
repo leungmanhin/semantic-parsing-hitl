@@ -1,0 +1,6 @@
+(: t1173_cow_group (GroupOf sk_cow_1 cow) (STV 1.0 0.99))
+(: t1173_cow_loc (LocatedIn sk_cow_1 india) (STV 1.0 0.99))
+(: t1173_india_name (Name india "India") (STV 1.0 0.99))
+(: t1173_people_group (GroupOf sk_people_1 person) (STV 1.0 0.99))
+(: t1173_people_card (CardinalityPhrase sk_people_1 "many") (STV 1.0 0.99))
+(: t1173_sacred_rule (Implication (PartOf $x sk_cow_1) (And (Member $x sacred) (To $x sk_people_1))) (STV 1.0 0.9))

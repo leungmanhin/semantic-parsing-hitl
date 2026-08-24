@@ -1,0 +1,8 @@
+(: tb1832_grp1 (GroupOf sk_group_1 student) (STV 1.0 0.99))
+(: tb1832_rule1 (Implication (PartOf $x sk_group_1) (Member $x happy)) (STV 1.0 0.9))
+(: tb1832_st1 (Member sk_happy_1 happy) (STV 1.0 0.99))
+(: tb1832_exp1 (Experiencer sk_happy_1 sk_group_1) (STV 1.0 0.99))
+(: tb1832_grp2 (GroupOf sk_group_2 teacher) (STV 1.0 0.99))
+(: tb1832_rule2 (Implication (PartOf $x sk_group_2) (Member $x happy)) (STV 0.0 0.9))
+(: tb1832_neg2 (And (Member sk_happy_2 happy) (Experiencer sk_happy_2 sk_group_2)) (STV 0.0 0.99))
+(: tb1832_but (But sk_happy_1 sk_happy_2) (STV 1.0 0.99))

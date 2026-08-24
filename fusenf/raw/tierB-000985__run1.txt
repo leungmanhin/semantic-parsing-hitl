@@ -1,0 +1,6 @@
+(: gov_type (Member sk_governor_1 governor) (STV 1.0 0.99))
+(: city_type (Member sk_city_1 city) (STV 1.0 0.99))
+(: e_visit (Member sk_visit_1 visit) (STV 1.0 0.99))
+(: e_agent (Agent sk_visit_1 sk_governor_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_visit_1 sk_city_1) (STV 1.0 0.99))
+(: e_past (Past sk_visit_1) (STV 1.0 0.99))

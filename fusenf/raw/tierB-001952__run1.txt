@@ -1,0 +1,6 @@
+(: delivery_ev (Member sk_delivery_1 delivery) (STV 1.0 0.99))
+(: delivery_th (Theme sk_delivery_1 goods) (STV 1.0 0.99))
+(: order_type (Member sk_order_1 order) (STV 1.0 0.99))
+(: place_ev (Member sk_place_1 place) (STV 1.0 0.99))
+(: place_pat (Patient sk_place_1 sk_order_1) (STV 1.0 0.99))
+(: gap (BeforeBy sk_place_1 sk_delivery_1 1 month) (STV 1.0 0.99))

@@ -1,0 +1,2 @@
+(: sky_type (Member sk_sky_1 sky) (STV 1.0 0.99))
+(: meteors_appear (Implication (Member $x meteor) (And (Member (sk_appear $x) appear) (Patient (sk_appear $x) $x) (Location (sk_appear $x) sk_sky_1))) (STV 0.9 0.9))

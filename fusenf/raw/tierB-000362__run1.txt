@@ -1,0 +1,8 @@
+(: trail_ty (Member sk_trail_1 trail) (STV 1.0 0.99))
+(: e_go (Member sk_go_1 go) (STV 1.0 0.99))
+(: e_go_pat (Patient sk_go_1 sk_trail_1) (STV 1.0 0.99))
+(: e_go_past (Past sk_go_1) (STV 1.0 0.99))
+(: cold_ty (Member sk_cold_1 cold) (STV 1.0 0.99))
+(: cold_exp (Experiencer sk_cold_1 sk_trail_1) (STV 1.0 0.99))
+(: trail_cold_flat (Member sk_trail_1 cold) (STV 1.0 0.99))
+(: e_result (Result sk_go_1 sk_cold_1) (STV 1.0 0.99))

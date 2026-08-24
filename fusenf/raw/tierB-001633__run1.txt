@@ -1,0 +1,5 @@
+(: tree_type (Member sk_tree_1 tree) (STV 1.0 0.99))
+(: orange_group (GroupOf sk_group_1 orange) (STV 1.0 0.99))
+(: orange_qty (CardinalityPhrase sk_group_1 "a lot of") (STV 1.0 0.99))
+(: orange_loc (LocatedIn sk_group_1 sk_tree_1) (STV 1.0 0.99))
+(: orange_loc_rule (Implication (PartOf $x sk_group_1) (LocatedIn $x sk_tree_1)) (STV 1.0 0.9))

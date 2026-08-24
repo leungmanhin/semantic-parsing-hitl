@@ -1,0 +1,8 @@
+(: t1089_grp (GroupOf sk_group_1 thing) (STV 1.0 0.99))
+(: t1089_cp (CardinalityPhrase sk_group_1 "a lot of") (STV 1.0 0.99))
+(: t1089_aa_genus (Inheritance abandonment_anxiety anxiety) (STV 1.0 0.99))
+(: t1089_cause_ev (Member sk_cause_1 cause) (STV 1.0 0.99))
+(: t1089_cause_ag (Agent sk_cause_1 sk_group_1) (STV 1.0 0.99))
+(: t1089_cause_pat (Patient sk_cause_1 abandonment_anxiety) (STV 1.0 0.99))
+(: t1089_cause_can (Can sk_cause_1) (STV 1.0 0.99))
+(: t1089_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_cause $x) cause) (Agent (sk_cause $x) $x) (Patient (sk_cause $x) abandonment_anxiety) (Can (sk_cause $x)))) (STV 1.0 0.9))

@@ -1,0 +1,6 @@
+(: t_time (Member sk_time_1 time) (STV 1.0 0.99))
+(: t_allotted (Member sk_time_1 allotted) (STV 1.0 0.99))
+(: t_tick (Member sk_tick_away_1 tick_away) (STV 1.0 0.99))
+(: t_patient (Patient sk_tick_away_1 sk_time_1) (STV 1.0 0.99))
+(: t_past (Past sk_tick_away_1) (STV 1.0 0.99))
+(: t_manner (Manner sk_tick_away_1 quickly) (STV 1.0 0.99))

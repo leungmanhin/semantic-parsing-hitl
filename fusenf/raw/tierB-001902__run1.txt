@@ -1,0 +1,8 @@
+(: e_group (GroupOf sk_group_1 newcomer) (STV 1.0 0.99))
+(: e_absorb (Member sk_absorb_1 absorb) (STV 1.0 0.99))
+(: e_patient (Patient sk_absorb_1 sk_group_1) (STV 1.0 0.99))
+(: e_goal (Goal sk_absorb_1 sk_community_1) (STV 1.0 0.99))
+(: e_community (Member sk_community_1 community) (STV 1.0 0.99))
+(: e_manner (Manner sk_absorb_1 quickly) (STV 1.0 0.99))
+(: e_tns (Past sk_absorb_1) (STV 1.0 0.99))
+(: e_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_absorb $x) absorb) (Patient (sk_absorb $x) $x) (Goal (sk_absorb $x) sk_community_1) (Manner (sk_absorb $x) quickly) (Past (sk_absorb $x)))) (STV 1.0 0.9))

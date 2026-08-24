@@ -1,0 +1,8 @@
+(: giraffes_grp (GroupOf sk_group_1 giraffe) (STV 1.0 0.99))
+(: e_spend (Member sk_spend_1 spend) (STV 1.0 0.99))
+(: e_spend_ag (Agent sk_spend_1 sk_group_1) (STV 1.0 0.99))
+(: day_type (Member sk_day_1 day) (STV 1.0 0.99))
+(: e_spend_th (Theme sk_spend_1 sk_day_1) (STV 1.0 0.99))
+(: e_spend_tns (Past sk_spend_1) (STV 1.0 0.99))
+(: e_find_neg (And (Member sk_find_1 find) (Agent sk_find_1 sk_group_1) (Theme sk_find_1 food)) (STV 0.0 0.99))
+(: e_without (Without sk_spend_1 sk_find_1) (STV 1.0 0.99))

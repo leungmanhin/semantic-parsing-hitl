@@ -1,0 +1,3 @@
+(: days_group (GroupOf sk_days_1 day) (STV 1.0 0.99))
+(: avail_neg (And (Member sk_avail_1 available) (Experiencer sk_avail_1 electricity) (Recipient sk_avail_1 person) (Time sk_avail_1 sk_days_1) (Past sk_avail_1)) (STV 0.0 0.99))
+(: avail_flat_neg (Past (Member electricity available)) (STV 0.0 0.99))

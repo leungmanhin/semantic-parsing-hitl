@@ -1,0 +1,5 @@
+(: nd_genus (Inheritance nature_documentary documentary) (STV 1.0 0.99))
+(: nd_full (Inheritance nature_documentary full) (STV 0.8 0.9))
+(: nd_full_q (QuantifierPhrase nature_documentary full "often") (STV 1.0 0.99))
+(: nd_of (Of nature_documentary animal) (STV 1.0 0.99))
+(: animal_eaten_rule (Implication (Member $x animal) (And (Member (sk_eat $x) eat) (Patient (sk_eat $x) $x) (Ongoing (sk_eat $x)) (Member $x alive))) (STV 0.3 0.9))

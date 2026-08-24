@@ -1,0 +1,1 @@
+(: blind_lead_fall (Implication (And (Member $x man) (Member $x blind) (Member $y man) (Member $y blind) (Compute == ($x $y) -> false) (Member $e lead) (Agent $e $x) (Theme $e $y)) (And (Member (sk_fall $x $y) fall) (Patient (sk_fall $x $y) $x) (Patient (sk_fall $x $y) $y) (Goal (sk_fall $x $y) (sk_pit $x $y)) (Member (sk_pit $x $y) pit))) (STV 1.0 0.9))

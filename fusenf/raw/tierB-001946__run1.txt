@@ -1,0 +1,2 @@
+(: tb1946_world (Member sk_world_1 world) (STV 1.0 0.99))
+(: tb1946_refugee_flow (Implication (Member $x refugee) (And (Member (sk_flow $x) flow) (Patient (sk_flow $x) $x) (Across (sk_flow $x) border) (Around (sk_flow $x) sk_world_1) (Member (sk_flight $x) flight) (Agent (sk_flight $x) $x) (Member (sk_conflict $x) conflict) (Member (sk_conflict $x) brutal) (Source (sk_flight $x) (sk_conflict $x)))) (STV 0.9 0.9))

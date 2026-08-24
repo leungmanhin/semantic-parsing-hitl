@@ -1,0 +1,4 @@
+(: db_genus (Inheritance dung_beetle beetle) (STV 1.0 0.99))
+(: animal_grp (GroupOf sk_animal_1 animal) (STV 1.0 0.99))
+(: animal_big (Member sk_animal_1 big) (STV 1.0 0.99))
+(: db_feed_rule (Implication (Member $x dung_beetle) (And (Member (sk_feed $x) feed) (Agent (sk_feed $x) $x) (Patient (sk_feed $x) (sk_poop $x)) (Member (sk_poop $x) poop) (From (sk_poop $x) sk_animal_1))) (STV 0.9 0.9))

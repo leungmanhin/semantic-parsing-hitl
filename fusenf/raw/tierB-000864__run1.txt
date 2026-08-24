@@ -1,0 +1,7 @@
+(: women_grp (GroupOf sk_group_1 woman) (STV 1.0 0.99))
+(: cook_ev (Member sk_cook_1 cook) (STV 1.0 0.99))
+(: cook_ag (Agent sk_cook_1 sk_group_1) (STV 1.0 0.99))
+(: cook_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_cook $x) cook) (Agent (sk_cook $x) $x))) (STV 1.0 0.9))
+(: gm_type (Member sk_grandmother_1 grandmother) (STV 1.0 0.99))
+(: serve_ev (Member sk_serve_1 serve) (STV 1.0 0.99))
+(: serve_ag (Agent sk_serve_1 sk_grandmother_1) (STV 1.0 0.99))

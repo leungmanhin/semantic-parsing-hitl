@@ -1,0 +1,7 @@
+(: rooms_grp (GroupOf sk_group_1 room) (STV 1.0 0.99))
+(: gp_genus (Inheritance general_purpose purpose) (STV 1.0 0.99))
+(: gp_mod (Inheritance general_purpose general) (STV 1.0 0.99))
+(: e_use (Member sk_use_1 use) (STV 1.0 0.99))
+(: e_use_th (Theme sk_use_1 sk_group_1) (STV 1.0 0.99))
+(: e_use_for (For sk_use_1 general_purpose) (STV 1.0 0.99))
+(: rooms_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_use $x) use) (Theme (sk_use $x) $x) (For (sk_use $x) general_purpose))) (STV 1.0 0.9))

@@ -1,0 +1,5 @@
+(: rev_grp (GroupOf sk_revellers_1 reveller) (STV 1.0 0.99))
+(: sub_grp (GroupOf sk_group_1 reveller) (STV 1.0 0.99))
+(: sub_subset (SubsetOf sk_group_1 sk_revellers_1) (STV 1.0 0.99))
+(: sub_prop (ProportionOf sk_group_1 sk_revellers_1 most) (STV 1.0 0.99))
+(: sub_tourist (Inheritance sk_group_1 tourist) (STV 1.0 0.99))

@@ -1,0 +1,5 @@
+(: cmd_blend (Directive (And (Member sk_blend_1 blend) (Patient sk_blend_1 butter) (Patient sk_blend_1 flour) (Member sk_add_1 add) (Theme sk_add_1 sk_ingredients_1) (Before sk_blend_1 sk_add_1))) (STV 1.0 0.99))
+(: cake_type (Member sk_cake_1 cake) (STV 1.0 0.99))
+(: ing_group (GroupOf sk_ingredients_1 ingredient) (STV 1.0 0.99))
+(: ing_part (PartOf sk_ingredients_1 sk_cake_1) (STV 1.0 0.99))
+(: ing_rest (RestOf sk_ingredients_1 sk_cake_1) (STV 1.0 0.99))

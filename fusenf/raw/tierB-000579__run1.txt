@@ -1,0 +1,8 @@
+(: cf_genus (Inheritance clay_figurine figurine) (STV 1.0 0.99))
+(: grp (GroupOf sk_group_1 clay_figurine) (STV 1.0 0.99))
+(: grp_card (CardinalityAtLeast sk_group_1 101) (STV 1.0 0.99))
+(: find_ev (Member sk_find_1 find) (STV 1.0 0.99))
+(: find_th (Theme sk_find_1 sk_group_1) (STV 1.0 0.99))
+(: tomb_ref (Member sk_tomb_1 tomb) (STV 1.0 0.99))
+(: find_loc (Location sk_find_1 sk_tomb_1) (STV 1.0 0.99))
+(: find_tns (Past sk_find_1) (STV 1.0 0.99))

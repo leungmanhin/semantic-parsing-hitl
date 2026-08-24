@@ -1,0 +1,2 @@
+(: sk_thing_1_type (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: things_happen_rule (Implication (And (Member $x thing) (Like $x sk_thing_1)) (And (Member (sk_happen $x) happen) (Agent (sk_happen $x) $x) (Time (sk_happen $x) now) (Manner (sk_happen $x) more_often))) (STV 0.9 0.9))

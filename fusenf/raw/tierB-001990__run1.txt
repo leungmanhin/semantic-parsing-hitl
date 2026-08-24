@@ -1,0 +1,8 @@
+(: pirates_group (GroupOf sk_group_1 pirate) (STV 1.0 0.99))
+(: capture_ev (Member sk_capture_1 capture) (STV 1.0 0.99))
+(: capture_agent (Agent sk_capture_1 sk_group_1) (STV 1.0 0.99))
+(: ship_type (Member sk_ship_1 merchant_ship) (STV 1.0 0.99))
+(: ship_genus (Inheritance merchant_ship ship) (STV 1.0 0.99))
+(: capture_theme (Theme sk_capture_1 sk_ship_1) (STV 1.0 0.99))
+(: capture_tense (Past sk_capture_1) (STV 1.0 0.99))
+(: pirates_capture_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_capture $x) capture) (Agent (sk_capture $x) $x) (Theme (sk_capture $x) sk_ship_1) (Past (sk_capture $x)))) (STV 1.0 0.9))

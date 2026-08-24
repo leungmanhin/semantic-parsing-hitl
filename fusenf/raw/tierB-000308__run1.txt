@@ -1,0 +1,7 @@
+(: ci_type (Member sk_checkin_1 check_in) (STV 1.0 0.99))
+(: ci_for (For sk_checkin_1 sk_flight_1) (STV 1.0 0.99))
+(: fl_type (Member sk_flight_1 flight) (STV 1.0 0.99))
+(: fl_goal (Goal sk_flight_1 stockholm) (STV 1.0 0.99))
+(: stockholm_name (Name stockholm "Stockholm") (STV 1.0 0.99))
+(: dep_type (Member sk_departure_1 departure) (STV 1.0 0.99))
+(: ci_before_dep (BeforeBy sk_checkin_1 sk_departure_1 90 minute) (STV 1.0 0.99))

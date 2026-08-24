@@ -1,0 +1,7 @@
+(: ls_type (Member sk_loudspeaker_1 loudspeaker) (STV 1.0 0.99))
+(: pulse_ev (Member sk_pulse_1 pulse) (STV 1.0 0.99))
+(: pulse_ag (Agent sk_pulse_1 sk_loudspeaker_1) (STV 1.0 0.99))
+(: pulse_tense (Past sk_pulse_1) (STV 1.0 0.99))
+(: noise_grp (GroupOf sk_noise_1 noise) (STV 1.0 0.99))
+(: pulse_with (With sk_pulse_1 sk_noise_1) (STV 1.0 0.99))
+(: noise_strange (Implication (PartOf $x sk_noise_1) (Member $x strange)) (STV 1.0 0.9))

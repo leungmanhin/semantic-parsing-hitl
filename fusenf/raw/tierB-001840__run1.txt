@@ -1,0 +1,8 @@
+(: castle_type (Member sk_castle_1 castle) (STV 1.0 0.99))
+(: castle_green (Member sk_castle_1 green) (STV 1.0 0.99))
+(: boys_group (GroupOf sk_group_1 boy) (STV 1.0 0.99))
+(: play_ev (Member sk_play_1 play) (STV 1.0 0.99))
+(: play_agent (Agent sk_play_1 sk_group_1) (STV 1.0 0.99))
+(: play_ongoing (Ongoing sk_play_1) (STV 1.0 0.99))
+(: play_around (Around sk_play_1 sk_castle_1) (STV 1.0 0.99))
+(: boys_play_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_play $x) play) (Agent (sk_play $x) $x) (Ongoing (sk_play $x)) (Around (sk_play $x) sk_castle_1))) (STV 1.0 0.9))

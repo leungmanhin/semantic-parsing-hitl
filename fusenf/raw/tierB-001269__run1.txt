@@ -1,0 +1,5 @@
+(: chairs_group (GroupOf sk_group_1 upholstered_chair) (STV 1.0 0.99))
+(: uc_genus (Inheritance upholstered_chair chair) (STV 1.0 0.99))
+(: uc_mod (Inheritance upholstered_chair upholstered) (STV 1.0 0.99))
+(: chairs_hold_neg (And (Member sk_hold_up_1 hold_up) (Experiencer sk_hold_up_1 sk_group_1) (Manner sk_hold_up_1 well) (Degree sk_hold_up_1 well very) (Over sk_hold_up_1 time) (Past sk_hold_up_1)) (STV 0.0 0.99))
+(: chairs_hold_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_hold_up $x) hold_up) (Experiencer (sk_hold_up $x) $x) (Manner (sk_hold_up $x) well) (Past (sk_hold_up $x)))) (STV 0.0 0.9))

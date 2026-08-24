@@ -1,0 +1,4 @@
+(: park_type (Past (Member sk_park_1 park)) (STV 1.0 0.99))
+(: park_large (Past (Member sk_park_1 large)) (STV 1.0 0.99))
+(: park_loc (Past (LocatedIn sk_park_1 here)) (STV 1.0 0.99))
+(: park_denial (And (Member sk_park_1 park) (Member sk_park_1 large) (LocatedIn sk_park_1 here)) (STV 0.0 0.99))

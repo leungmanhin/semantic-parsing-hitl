@@ -1,0 +1,5 @@
+(: alg_employed_rule (Implication (Member $x algerian) (And (Member (sk_employ $x) employ) (Theme (sk_employ $x) $x) (Location (sk_employ $x) sk_economy_1) (Still (sk_employ $x)))) (STV 0.7 0.9))
+(: alg_q (QuantifierPhrase algerian employ "many") (STV 1.0 0.99))
+(: economy_type (Member sk_economy_1 informal_economy) (STV 1.0 0.99))
+(: economy_genus (Inheritance informal_economy economy) (STV 1.0 0.99))
+(: economy_mod (Inheritance informal_economy informal) (STV 1.0 0.99))

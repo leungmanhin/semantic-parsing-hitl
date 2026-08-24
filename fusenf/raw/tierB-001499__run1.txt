@@ -1,0 +1,4 @@
+(: weather_type (Member sk_weather_1 weather) (STV 1.0 0.99))
+(: crop_grp (GroupOf sk_crop_1 crop) (STV 1.0 0.99))
+(: weather_not_good (And (Member sk_good_1 good) (Experiencer sk_good_1 sk_weather_1) (Beneficiary sk_good_1 sk_crop_1)) (STV 0.0 0.99))
+(: weather_not_good_flat (Member sk_weather_1 good) (STV 0.0 0.99))

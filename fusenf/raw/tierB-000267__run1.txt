@@ -1,0 +1,6 @@
+(: friend1_type (Member sk_friend_1 friend) (STV 1.0 0.99))
+(: friend1_old (Member sk_friend_1 old) (STV 1.0 0.99))
+(: friend2_grp (GroupOf sk_friend_2 friend) (STV 1.0 0.99))
+(: friend2_card (Cardinality sk_friend_2 2) (STV 1.0 0.99))
+(: friend2_new (Implication (PartOf $x sk_friend_2) (Member $x new)) (STV 1.0 0.9))
+(: cmp_good (More good sk_friend_1 sk_friend_2) (STV 1.0 0.99))

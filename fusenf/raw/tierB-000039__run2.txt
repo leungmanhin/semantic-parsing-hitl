@@ -1,0 +1,7 @@
+(: wood_type (Member sk_wood_1 wood) (STV 1.0 0.99))
+(: oak_genus (Inheritance oak_tree tree) (STV 1.0 0.99))
+(: pine_genus (Inheritance pine_tree tree) (STV 1.0 0.99))
+(: birch_genus (Inheritance birch_tree tree) (STV 1.0 0.99))
+(: oak_grow_rule (Implication (Member $x oak_tree) (And (Member (sk_grow $x) grow) (Patient (sk_grow $x) $x) (Location (sk_grow $x) sk_wood_1))) (STV 0.9 0.9))
+(: pine_grow_rule (Implication (Member $x pine_tree) (And (Member (sk_grow $x) grow) (Patient (sk_grow $x) $x) (Location (sk_grow $x) sk_wood_1))) (STV 0.9 0.9))
+(: birch_grow_rule (Implication (Member $x birch_tree) (And (Member (sk_grow $x) grow) (Patient (sk_grow $x) $x) (Location (sk_grow $x) sk_wood_1))) (STV 0.9 0.9))

@@ -1,0 +1,5 @@
+(: int_grp (GroupOf sk_group_1 interaction) (STV 1.0 0.99))
+(: gov_ev (Member sk_govern_1 govern) (STV 1.0 0.99))
+(: gov_ag (Agent sk_govern_1 rule) (STV 1.0 0.99))
+(: gov_thm (Theme sk_govern_1 sk_group_1) (STV 1.0 0.99))
+(: gov_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_govern $x) govern) (Agent (sk_govern $x) rule) (Theme (sk_govern $x) $x))) (STV 1.0 0.9))

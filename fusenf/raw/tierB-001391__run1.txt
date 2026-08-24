@@ -1,0 +1,3 @@
+(: tickets_grp (GroupOf sk_group_1 ticket) (STV 1.0 0.99))
+(: tickets_soldout (Implication (PartOf $x sk_group_1) (Member $x sold_out)) (STV 1.0 0.9))
+(: tickets_q (QuantifierPhrase ticket sold_out "all") (STV 1.0 0.99))

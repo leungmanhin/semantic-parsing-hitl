@@ -1,0 +1,4 @@
+(: people_grp (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: people_card (CardinalityAtMost sk_group_1 299) (STV 1.0 0.99))
+(: aud_type (Member sk_auditorium_1 auditorium) (STV 1.0 0.99))
+(: e_loc (Past (LocatedIn sk_group_1 sk_auditorium_1)) (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: igor_name (Name igor "Igor") (STV 1.0 0.99))
+(: forest_type (Member sk_forest_1 forest) (STV 1.0 0.99))
+(: middle_type (Member sk_middle_1 middle) (STV 1.0 0.99))
+(: middle_in_forest (LocatedIn sk_middle_1 sk_forest_1) (STV 1.0 0.99))
+(: igor_located (Past (LocatedIn igor sk_middle_1)) (STV 1.0 0.99))
+(: igor_away (Past (Measure igor away 50 minute)) (STV 1.0 0.99))
+(: igor_from_town (Past (From igor town)) (STV 1.0 0.99))

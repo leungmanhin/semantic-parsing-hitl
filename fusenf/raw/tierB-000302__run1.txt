@@ -1,0 +1,7 @@
+(: e3_bank (Member sk_bank_1 bank) (STV 1.0 0.99))
+(: e3_open_ev (Member sk_open_1 open) (STV 1.0 0.99))
+(: e3_open_patient (Patient sk_open_1 sk_bank_1) (STV 1.0 0.99))
+(: e3_open_time (Time sk_open_1 (Hour 9)) (STV 1.0 0.99))
+(: e3_shut_ev (Member sk_shut_1 shut) (STV 1.0 0.99))
+(: e3_shut_patient (Patient sk_shut_1 sk_bank_1) (STV 1.0 0.99))
+(: e3_shut_time (Time sk_shut_1 (Hour 15)) (STV 1.0 0.99))

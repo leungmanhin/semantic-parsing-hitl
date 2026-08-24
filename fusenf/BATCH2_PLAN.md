@@ -32,6 +32,14 @@ section + 3 emphasis fixes + glossary/marker wires; no-recital clean; goldens 36
 glossary wires; freeze-prompt-before-dispatch rule affirmed); vocabulary re-pinned
 (`f6448eac9f88…`/`b7e25b963478…`, no vocab changes).
 
+**AFK PARSE PROGRAM DONE 2026-08-23** (report `eval/afk_campaign.md`): 2,360 sentences
+across 472 batches, ALL at the final hash — Tier B new 1,900 @run 1 (1,830 clean/70
+report-only), pilot 100 @run 2 (97/3), Tier C in-sample 360 @run 40 (340/20; D.4
+executed); full-corpus verification passed (2,000/2,000 tierB ids final-hash-pinned,
+tierC r40 360/360, zero duplicate (id,run)); 2 session-limit incidents + 1 blind-protocol
+breach (pb-tb374) all recovered by disk-diff/re-run with zero loss; 564/600 agents used.
+H's parsing is banked — E (miner) picks up from here after owner reviews.
+
 Standing constraints carried forward, unchanged: deterministic-first; every agent role
 runs under its `DISPATCH.md`-inventoried brief (zero pending); parse ops = 5-item
 load-balanced batches, ~8-agent sub-groups, disk-diff recovery; owner commits everything;

@@ -1,0 +1,5 @@
+(: attack_type (Member sk_attack_1 attack) (STV 1.0 0.99))
+(: no_one_killed (Implication (Member $x person) (And (Member (sk_kill $x) kill) (Patient (sk_kill $x) $x) (In (sk_kill $x) sk_attack_1) (Past (sk_kill $x)))) (STV 0.0 0.99))
+(: no_kill_q (QuantifierPhrase person kill "no one") (STV 1.0 0.99))
+(: no_one_injured (Implication (Member $x person) (And (Member (sk_injure $x) injure) (Patient (sk_injure $x) $x) (In (sk_injure $x) sk_attack_1) (Past (sk_injure $x)))) (STV 0.0 0.99))
+(: no_injure_q (QuantifierPhrase person injure "no one") (STV 1.0 0.99))

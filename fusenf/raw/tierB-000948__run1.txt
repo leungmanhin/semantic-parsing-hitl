@@ -1,0 +1,4 @@
+(: uls_genus (Inheritance uber_like_service service) (STV 1.0 0.99))
+(: uls_mod (Inheritance uber_like_service uber_like) (STV 1.0 0.99))
+(: uls_new (Inheritance uber_like_service new) (STV 0.9 0.9))
+(: citizens_use_rule (Implication (Member $x citizen) (And (Member (sk_use $x) use) (Agent (sk_use $x) $x) (Theme (sk_use $x) uber_like_service) (Member (sk_have $x) have) (Agent (sk_have $x) $x) (Theme (sk_have $x) (sk_deliver $x)) (Member (sk_deliver $x) deliver) (Or (Patient (sk_deliver $x) drink) (Patient (sk_deliver $x) meal)) (To (sk_use $x) (sk_have $x)))) (STV 0.9 0.9))

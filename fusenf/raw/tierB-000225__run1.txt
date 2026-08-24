@@ -1,0 +1,8 @@
+(: sci_g (GroupOf sk_group_1 scientist) (STV 1.0 0.99))
+(: e_study (Member sk_study_1 study) (STV 1.0 0.99))
+(: e_study_ag (Agent sk_study_1 sk_group_1) (STV 1.0 0.99))
+(: e_study_ong (Ongoing sk_study_1) (STV 1.0 0.99))
+(: cc_gen (Inheritance climate_change change) (STV 1.0 0.99))
+(: gpp_gen (Inheritance global_precipitation_pattern pattern) (STV 1.0 0.99))
+(: gpp_glob (Inheritance global_precipitation_pattern global) (STV 1.0 0.99))
+(: e_study_th (Theme sk_study_1 (Question how (And (Member sk_affect_1 affect) (Agent sk_affect_1 climate_change) (Patient sk_affect_1 global_precipitation_pattern) (Manner sk_affect_1 how)))) (STV 1.0 0.99))

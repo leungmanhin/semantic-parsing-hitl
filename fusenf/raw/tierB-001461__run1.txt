@@ -1,0 +1,5 @@
+(: tb461_animal_type (Member sk_animal_1 animal) (STV 1.0 0.99))
+(: tb461_animal_cant_fly (And (Member sk_fly_1 fly) (Agent sk_fly_1 sk_animal_1) (Can sk_fly_1)) (STV 0.0 0.99))
+(: tb461_wing_grp (GroupOf sk_wing_1 wing) (STV 1.0 0.99))
+(: tb461_wing_part (PartOf sk_wing_1 sk_animal_1) (STV 1.0 0.99))
+(: tb461_wing_broken_rule (Implication (PartOf $x sk_wing_1) (Member $x broken)) (STV 1.0 0.9))

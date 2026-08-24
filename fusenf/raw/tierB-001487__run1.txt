@@ -1,0 +1,5 @@
+(: door_type (Member sk_door_1 door) (STV 1.0 0.99))
+(: open_ev (Member sk_open_1 open) (STV 1.0 0.99))
+(: open_pat (Patient sk_open_1 sk_door_1) (STV 1.0 0.99))
+(: open_pst (Past sk_open_1) (STV 1.0 0.99))
+(: open_meas (Measure sk_open_1 distance (ParticleFromNormal 3 0.6) inch) (STV 1.0 0.99))

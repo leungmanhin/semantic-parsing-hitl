@@ -1,0 +1,4 @@
+(: fp_group (GroupOf sk_group_1 footprint) (STV 1.0 0.99))
+(: floor_type (Member sk_floor_1 floor) (STV 1.0 0.99))
+(: fp_muddy_rule (Implication (PartOf $x sk_group_1) (Past (Member $x muddy))) (STV 1.0 0.9))
+(: fp_loc_rule (Implication (PartOf $x sk_group_1) (Past (LocatedIn $x sk_floor_1))) (STV 1.0 0.9))

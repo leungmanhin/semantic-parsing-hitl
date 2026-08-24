@@ -1,0 +1,8 @@
+(: song_type (Member sk_song_1 song) (STV 1.0 0.99))
+(: rhythm_type (Member sk_rhythm_1 rhythm) (STV 1.0 0.99))
+(: rhythm_part (PartOf sk_rhythm_1 sk_song_1) (STV 1.0 0.99))
+(: rhythm_light (Member sk_rhythm_1 light) (STV 1.0 0.99))
+(: tempo_type (Member sk_tempo_1 tempo) (STV 1.0 0.99))
+(: tempo_part (PartOf sk_tempo_1 sk_song_1) (STV 1.0 0.99))
+(: tempo_fast (Member sk_tempo_1 fast) (STV 1.0 0.99))
+(: young_like_song (Implication (And (Member $x person) (Member $x young)) (And (Member (sk_like $x) like) (Experiencer (sk_like $x) $x) (Stimulus (sk_like $x) sk_song_1))) (STV 0.9 0.9))

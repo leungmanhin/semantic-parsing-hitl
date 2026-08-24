@@ -1,0 +1,6 @@
+(: ceo_type (Member sk_ceo_1 ceo) (STV 1.0 0.99))
+(: award_ev (Member sk_award_1 award) (STV 1.0 0.99))
+(: award_recipient (Recipient sk_award_1 sk_ceo_1) (STV 1.0 0.99))
+(: award_theme (Theme sk_award_1 stock_option) (STV 1.0 0.99))
+(: stock_option_genus (Inheritance stock_option option) (STV 1.0 0.99))
+(: award_tense (Past sk_award_1) (STV 1.0 0.99))

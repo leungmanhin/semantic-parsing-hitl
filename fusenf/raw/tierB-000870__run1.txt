@@ -1,0 +1,6 @@
+(: helpline_type (Member sk_helpline_1 customer_service_helpline) (STV 1.0 0.99))
+(: chs_genus (Inheritance customer_service_helpline helpline) (STV 1.0 0.99))
+(: helpline_appropriate (Member sk_helpline_1 appropriate) (STV 1.0 0.99))
+(: contact_directive (Directive (And (Member sk_contact_1 contact) (Theme sk_contact_1 sk_helpline_1))) (STV 1.0 0.99))
+(: device_type (Member sk_device_1 device) (STV 1.0 0.99))
+(: device_not_operate (And (Member sk_operate_1 operate) (Agent sk_operate_1 sk_device_1) (Manner sk_operate_1 properly)) (STV 0.0 0.99))

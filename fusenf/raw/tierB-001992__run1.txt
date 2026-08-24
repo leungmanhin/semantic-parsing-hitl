@@ -1,0 +1,5 @@
+(: train_is_paris_train (Member sk_train_1 paris_train) (STV 1.0 0.99))
+(: paris_train_genus (Inheritance paris_train train) (STV 1.0 0.99))
+(: arrive_ev (Member sk_arrive_1 arrive) (STV 1.0 0.99))
+(: arrive_agent (Agent sk_arrive_1 sk_train_1) (STV 1.0 0.99))
+(: arrive_past (Past sk_arrive_1) (STV 1.0 0.99))

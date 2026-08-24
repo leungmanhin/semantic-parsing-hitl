@@ -1,0 +1,8 @@
+(: parade_type (Member sk_parade_1 parade) (STV 1.0 0.99))
+(: include_cls (Member sk_include_1 include) (STV 1.0 0.99))
+(: include_agent (Agent sk_include_1 sk_parade_1) (STV 1.0 0.99))
+(: band_group (GroupOf sk_group_1 marching_band) (STV 1.0 0.99))
+(: band_genus (Inheritance marching_band band) (STV 1.0 0.99))
+(: band_card (Cardinality sk_group_1 6) (STV 1.0 0.99))
+(: include_theme (Theme sk_include_1 sk_group_1) (STV 1.0 0.99))
+(: include_past (Past sk_include_1) (STV 1.0 0.99))

@@ -1,0 +1,6 @@
+(: hab_group (GroupOf sk_group_1 habitat) (STV 1.0 0.99))
+(: hab_poss (Possession sk_group_1 sk_thing_1) (STV 1.0 0.99))
+(: thing_type (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: nf_genus (Inheritance natural_forest forest) (STV 1.0 0.99))
+(: nf_mod (Inheritance natural_forest natural) (STV 1.0 0.99))
+(: hab_rule (Implication (PartOf $x sk_group_1) (And (Member $x moist) (Or (Member $x subtropical) (Member $x tropical)) (Or (Member $x natural_forest) (Member $x plantation)))) (STV 1.0 0.9))

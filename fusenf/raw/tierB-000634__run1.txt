@@ -1,0 +1,7 @@
+(: thunder_type (Member sk_thunder_1 thunder) (STV 1.0 0.99))
+(: children_grp (GroupOf sk_children_1 child) (STV 1.0 0.99))
+(: e_scare (Member sk_scare_1 scare) (STV 1.0 0.99))
+(: e_scare_ag (Agent sk_scare_1 sk_thunder_1) (STV 1.0 0.99))
+(: e_scare_pt (Patient sk_scare_1 sk_children_1) (STV 1.0 0.99))
+(: e_scare_tns (Past sk_scare_1) (STV 1.0 0.99))
+(: scare_rule (Implication (PartOf $x sk_children_1) (And (Member (sk_scare $x) scare) (Agent (sk_scare $x) sk_thunder_1) (Patient (sk_scare $x) $x) (Past (sk_scare $x)))) (STV 1.0 0.9))

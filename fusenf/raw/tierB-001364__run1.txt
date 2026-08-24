@@ -1,0 +1,7 @@
+(: books_grp (GroupOf sk_group_1 book) (STV 1.0 0.99))
+(: shelf_type (Member sk_shelf_1 shelf) (STV 1.0 0.99))
+(: fall_ev (Member sk_fall_1 fall) (STV 1.0 0.99))
+(: fall_pat (Patient sk_fall_1 sk_group_1) (STV 1.0 0.99))
+(: fall_src (Source sk_fall_1 sk_shelf_1) (STV 1.0 0.99))
+(: fall_tns (Past sk_fall_1) (STV 1.0 0.99))
+(: fall_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_fall $x) fall) (Patient (sk_fall $x) $x) (Source (sk_fall $x) sk_shelf_1) (Past (sk_fall $x)))) (STV 1.0 0.9))

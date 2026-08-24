@@ -1,0 +1,7 @@
+(: superman_name (Name superman "Superman") (STV 1.0 0.99))
+(: sup_fly (Member sk_fly_1 fly) (STV 1.0 0.99))
+(: sup_fly_agent (Agent sk_fly_1 superman) (STV 1.0 0.99))
+(: rocket_type (Member sk_rocket_1 rocket) (STV 1.0 0.99))
+(: rocket_fly (Member sk_fly_2 fly) (STV 1.0 0.99))
+(: rocket_fly_agent (Agent sk_fly_2 sk_rocket_1) (STV 1.0 0.99))
+(: fly_same_speed (SameDegree fast sk_fly_1 sk_fly_2) (STV 1.0 0.99))

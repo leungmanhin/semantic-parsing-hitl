@@ -1,0 +1,8 @@
+(: aroma_type (Member sk_aroma_1 aroma) (STV 1.0 0.99))
+(: aroma_poss1 (Possession sk_aroma_1 coffee) (STV 1.0 0.99))
+(: aroma_poss2 (Possession sk_aroma_1 croissant) (STV 1.0 0.99))
+(: kitchen_type (Member sk_kitchen_1 kitchen) (STV 1.0 0.99))
+(: e_fill (Member sk_fill_1 fill) (STV 1.0 0.99))
+(: e_fill_ag (Agent sk_fill_1 sk_aroma_1) (STV 1.0 0.99))
+(: e_fill_pt (Patient sk_fill_1 sk_kitchen_1) (STV 1.0 0.99))
+(: e_fill_tns (Past sk_fill_1) (STV 1.0 0.99))

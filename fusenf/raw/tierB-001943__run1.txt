@@ -1,0 +1,2 @@
+(: cat_mammal (Inheritance cat mammal) (STV 1.0 0.99))
+(: cats_live_humans (Implication (Member $x cat) (And (Member (sk_live $x) live) (Agent (sk_live $x) $x) (CoAgent (sk_live $x) human))) (STV 0.9 0.9))

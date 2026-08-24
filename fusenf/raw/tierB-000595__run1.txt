@@ -1,0 +1,3 @@
+(: bottle_type (Member sk_bottle_1 yogurt_bottle) (STV 1.0 0.99))
+(: bottle_genus (Inheritance yogurt_bottle bottle) (STV 1.0 0.99))
+(: bottle_not_contain (And (Member sk_contain_1 contain) (Agent sk_contain_1 sk_bottle_1) (Theme sk_contain_1 lactose)) (STV 0.0 0.99))

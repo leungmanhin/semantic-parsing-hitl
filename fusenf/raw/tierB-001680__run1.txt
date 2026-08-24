@@ -1,0 +1,5 @@
+(: john_name (Name john "John") (STV 1.0 0.99))
+(: bank_type (Member sk_bank_1 bank) (STV 1.0 0.99))
+(: acc_ev (Member sk_according_1 according) (STV 1.0 0.99))
+(: acc_exp (Experiencer sk_according_1 john) (STV 1.0 0.99))
+(: acc_theme (Theme sk_according_1 (And (Member sk_close_1 close) (Patient sk_close_1 sk_bank_1) (Time sk_close_1 (Hour 15)))) (STV 1.0 0.99))

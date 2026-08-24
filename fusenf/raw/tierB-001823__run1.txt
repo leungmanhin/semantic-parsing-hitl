@@ -1,0 +1,4 @@
+(: tb1823_force (Member sk_force_1 strong_force) (STV 1.0 0.99))
+(: tb1823_gen1 (Inheritance strong_force force) (STV 1.0 0.99))
+(: tb1823_gen2 (Inheritance strong_force strong) (STV 1.0 0.99))
+(: tb1823_rule (Implication (Member $y quark) (And (Member (sk_bind $y) bind) (Agent (sk_bind $y) sk_force_1) (Theme (sk_bind $y) $y))) (STV 0.9 0.9))

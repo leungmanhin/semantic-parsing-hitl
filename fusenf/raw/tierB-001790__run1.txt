@@ -1,0 +1,3 @@
+(: e_texts (GroupOf sk_group_1 text) (STV 1.0 0.99))
+(: no_one_reads (Implication (Member $x person) (And (Member (sk_read $x) read) (Agent (sk_read $x) $x) (Theme (sk_read $x) sk_group_1))) (STV 0.0 0.9))
+(: no_one_q (QuantifierPhrase person read "no") (STV 1.0 0.99))

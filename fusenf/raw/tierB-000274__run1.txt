@@ -1,0 +1,8 @@
+(: sold_grp (GroupOf sk_group_1 soldier) (STV 1.0 0.99))
+(: sold_card (CardinalityPhrase sk_group_1 "thousands") (STV 1.0 0.99))
+(: sold_young (Implication (PartOf $x sk_group_1) (Member $x young)) (STV 1.0 0.9))
+(: prep_ev (Member sk_prepare_1 prepare) (STV 1.0 0.99))
+(: prep_ag (Agent sk_prepare_1 sk_group_1) (STV 1.0 0.99))
+(: prep_ong (Ongoing sk_prepare_1) (STV 1.0 0.99))
+(: prep_for (For sk_prepare_1 battle) (STV 1.0 0.99))
+(: prep_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_prepare $x) prepare) (Agent (sk_prepare $x) $x) (Ongoing (sk_prepare $x)) (For (sk_prepare $x) battle))) (STV 1.0 0.9))

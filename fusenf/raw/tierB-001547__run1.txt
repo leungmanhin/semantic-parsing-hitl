@@ -1,0 +1,6 @@
+(: rumor_ty (Member sk_rumor_1 rumor) (STV 1.0 0.99))
+(: go_around_ev (Member sk_go_around_1 go_around) (STV 1.0 0.99))
+(: go_around_ag (Agent sk_go_around_1 sk_rumor_1) (STV 1.0 0.99))
+(: go_around_ong (Ongoing sk_go_around_1) (STV 1.0 0.99))
+(: actress_ty (Member sk_actress_1 actress) (STV 1.0 0.99))
+(: rumor_content (Theme sk_rumor_1 (And (Member sk_get_1 get) (Agent sk_get_1 sk_actress_1) (Theme sk_get_1 sk_divorce_1) (Member sk_divorce_1 divorce) (Future sk_get_1))) (STV 1.0 0.99))

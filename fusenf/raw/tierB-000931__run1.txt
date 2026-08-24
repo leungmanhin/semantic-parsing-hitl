@@ -1,0 +1,8 @@
+(: library_type (Member sk_library_1 library) (STV 1.0 0.99))
+(: have_ev (Member sk_have_1 have) (STV 1.0 0.99))
+(: have_holder (Holder sk_have_1 sk_library_1) (STV 1.0 0.99))
+(: have_theme (Theme sk_have_1 sk_bank_1) (STV 1.0 0.99))
+(: bank_type (Member sk_bank_1 bank) (STV 1.0 0.99))
+(: bank_grp (GroupOf sk_bank_1 document) (STV 1.0 0.99))
+(: bank_valuable (Member sk_bank_1 valuable) (STV 1.0 0.99))
+(: bank_old_rule (Implication (PartOf $x sk_bank_1) (Member $x old)) (STV 1.0 0.9))

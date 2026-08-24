@@ -1,0 +1,7 @@
+(: people_grp (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: king_type (Member sk_king_1 king) (STV 1.0 0.99))
+(: rebel_ev (Member sk_rebel_1 rebel) (STV 1.0 0.99))
+(: rebel_ag (Agent sk_rebel_1 sk_group_1) (STV 1.0 0.99))
+(: rebel_against (Against sk_rebel_1 sk_king_1) (STV 1.0 0.99))
+(: rebel_tns (Past sk_rebel_1) (STV 1.0 0.99))
+(: rebel_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_rebel $x) rebel) (Agent (sk_rebel $x) $x) (Against (sk_rebel $x) sk_king_1) (Past (sk_rebel $x)))) (STV 1.0 0.9))

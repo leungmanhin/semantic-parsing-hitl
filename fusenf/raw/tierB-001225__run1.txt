@@ -1,0 +1,2 @@
+(: area_ty (Member sk_area_1 area) (STV 1.0 0.99))
+(: locals_price_out (Implication (Member $x local) (And (Member (sk_price_out $x) price_out) (Theme (sk_price_out $x) $x) (Source (sk_price_out $x) sk_area_1) (Ongoing (sk_price_out $x)))) (STV 0.9 0.9))

@@ -1,0 +1,6 @@
+(: customer_type (Member sk_customer_1 customer) (STV 1.0 0.99))
+(: e_make (Member sk_make_1 make) (STV 1.0 0.99))
+(: make_agent (Agent sk_make_1 sk_customer_1) (STV 1.0 0.99))
+(: make_patient (Patient sk_make_1 sk_purchase_1) (STV 1.0 0.99))
+(: purchase_type (Member sk_purchase_1 purchase) (STV 1.0 0.99))
+(: make_tense (Future sk_make_1) (STV 1.0 0.99))

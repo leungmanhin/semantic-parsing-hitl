@@ -1,0 +1,7 @@
+(: crop_type (Member sk_rice_crop_1 rice_crop) (STV 1.0 0.99))
+(: crop_genus (Inheritance rice_crop crop) (STV 1.0 0.99))
+(: scanty_ev (Member sk_scanty_1 scanty) (STV 1.0 0.99))
+(: scanty_exp (Experiencer sk_scanty_1 sk_rice_crop_1) (STV 1.0 0.99))
+(: scanty_time (Time sk_scanty_1 this_year) (STV 1.0 0.99))
+(: scanty_past (Past sk_scanty_1) (STV 1.0 0.99))
+(: crop_scanty_flat (Past (Member sk_rice_crop_1 scanty)) (STV 1.0 0.99))

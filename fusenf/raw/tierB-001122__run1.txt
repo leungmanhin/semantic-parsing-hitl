@@ -1,0 +1,7 @@
+(: doctors_g (GroupOf sk_group_1 doctor) (STV 1.0 0.99))
+(: xray_type (Member sk_xray_1 x_ray) (STV 1.0 0.99))
+(: e_examine (Member sk_examine_1 examine) (STV 1.0 0.99))
+(: e_agent (Agent sk_examine_1 sk_group_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_examine_1 sk_xray_1) (STV 1.0 0.99))
+(: e_ongoing (Ongoing sk_examine_1) (STV 1.0 0.99))
+(: examine_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_examine $x) examine) (Agent (sk_examine $x) $x) (Theme (sk_examine $x) sk_xray_1) (Ongoing (sk_examine $x)))) (STV 1.0 0.9))

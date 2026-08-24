@@ -1,0 +1,6 @@
+(: e4_have (Member sk_have_1 have) (STV 1.0 0.99))
+(: e4_have_theme (Theme sk_have_1 sk_friends_1) (STV 1.0 0.99))
+(: e4_friends_grp (GroupOf sk_friends_1 friend) (STV 1.0 0.99))
+(: e4_friends_close (Implication (PartOf $x sk_friends_1) (Member $x close)) (STV 1.0 0.9))
+(: e4_popular (Member sk_popular_1 popular) (STV 1.0 0.99))
+(: e4_more (More important sk_have_1 sk_popular_1) (STV 1.0 0.99))

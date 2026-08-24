@@ -1,0 +1,8 @@
+(: fam_group (GroupOf sk_group_1 family) (STV 1.0 0.99))
+(: fam_card (Cardinality sk_group_1 4) (STV 1.0 0.99))
+(: fire_type (Member sk_fire_1 fire) (STV 1.0 0.99))
+(: e_die (Member sk_die_1 die) (STV 1.0 0.99))
+(: e_die_patient (Patient sk_die_1 sk_group_1) (STV 1.0 0.99))
+(: e_die_past (Past sk_die_1) (STV 1.0 0.99))
+(: e_die_loc (Location sk_die_1 sk_fire_1) (STV 1.0 0.99))
+(: fam_die_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_die $x) die) (Patient (sk_die $x) $x) (Past (sk_die $x)) (Location (sk_die $x) sk_fire_1))) (STV 1.0 0.9))

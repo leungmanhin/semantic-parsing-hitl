@@ -1,0 +1,4 @@
+(: beach_typ (Member sk_beach_1 beach) (STV 1.0 0.99))
+(: bungalow_grp (GroupOf sk_group_1 bungalow) (STV 1.0 0.99))
+(: bungalow_card (CardinalityPhrase sk_group_1 "many") (STV 1.0 0.99))
+(: bungalow_dist (Implication (PartOf $x sk_group_1) (And (Past (Member $x beautiful)) (Past (Near $x sk_beach_1)))) (STV 1.0 0.9))

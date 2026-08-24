@@ -1,0 +1,4 @@
+(: walls_grp (GroupOf sk_walls_1 wall) (STV 1.0 0.99))
+(: walls_rule (Implication (PartOf $x sk_walls_1) (Member $x thin)) (STV 1.0 0.9))
+(: beds_grp (GroupOf sk_beds_1 bed) (STV 1.0 0.99))
+(: beds_rule (Implication (PartOf $x sk_beds_1) (And (Member $x squeaky) (Degree $x squeaky quite))) (STV 1.0 0.9))

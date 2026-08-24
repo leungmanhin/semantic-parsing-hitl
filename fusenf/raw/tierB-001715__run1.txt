@@ -1,0 +1,8 @@
+(: beasts_group (GroupOf sk_group_1 beast) (STV 1.0 0.99))
+(: beasts_huge (Implication (PartOf $y sk_group_1) (Member $y huge)) (STV 1.0 0.9))
+(: instr_genus (Inheritance directional_instruction instruction) (STV 1.0 0.99))
+(: instr_mod (Inheritance directional_instruction directional) (STV 1.0 0.99))
+(: rc_genus (Inheritance remote_control control) (STV 1.0 0.99))
+(: rc_mod (Inheritance remote_control remote) (STV 1.0 0.99))
+(: puppeteers_control (Implication (Member $x puppeteer) (And (Member (sk_control $x) control) (Agent (sk_control $x) $x) (Theme (sk_control $x) sk_group_1) (Source (sk_control $x) backstage))) (STV 0.9 0.9))
+(: puppeteers_send (Implication (Member $x puppeteer) (And (Member (sk_send $x) send) (Agent (sk_send $x) $x) (Theme (sk_send $x) directional_instruction) (Instrument (sk_send $x) remote_control))) (STV 0.9 0.9))

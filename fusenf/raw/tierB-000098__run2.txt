@@ -1,0 +1,6 @@
+(: leaves_grp (GroupOf sk_leaves_1 leaf) (STV 1.0 0.99))
+(: e_change (Member sk_change_1 change) (STV 1.0 0.99))
+(: e_agent (Agent sk_change_1 sk_leaves_1) (STV 1.0 0.99))
+(: e_patient (Patient sk_change_1 color) (STV 1.0 0.99))
+(: e_ongoing (Ongoing sk_change_1) (STV 1.0 0.99))
+(: leaves_change_rule (Implication (PartOf $x sk_leaves_1) (And (Member (sk_change $x) change) (Agent (sk_change $x) $x) (Patient (sk_change $x) color) (Ongoing (sk_change $x)))) (STV 1.0 0.9))

@@ -1,0 +1,6 @@
+(: crowd_type (Member sk_crowd_1 crowd) (STV 1.0 0.99))
+(: crowd_group (GroupOf sk_crowd_1 person) (STV 1.0 0.99))
+(: entrance_type (Member sk_entrance_1 entrance) (STV 1.0 0.99))
+(: entrance_part (PartOf sk_entrance_1 sk_theater_1) (STV 1.0 0.99))
+(: theater_type (Member sk_theater_1 theater) (STV 1.0 0.99))
+(: crowd_loc (Past (LocatedIn sk_crowd_1 sk_entrance_1)) (STV 1.0 0.99))

@@ -1,0 +1,8 @@
+(: sl_type (Member sk_speed_limit_1 speed_limit) (STV 1.0 0.99))
+(: sl_genus (Inheritance speed_limit limit) (STV 1.0 0.99))
+(: sl_reduced (Member sk_speed_limit_1 reduced) (STV 1.0 0.99))
+(: sl_low (Member sk_speed_limit_1 low) (STV 1.0 0.99))
+(: sl_degree (Degree sk_speed_limit_1 low generally) (STV 1.0 0.99))
+(: cities_grp (GroupOf sk_group_1 city) (STV 1.0 0.99))
+(: cities_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: sl_loc (LocatedIn sk_speed_limit_1 sk_group_1) (STV 1.0 0.99))

@@ -1,0 +1,5 @@
+(: lid_type (Member sk_lid_1 lid) (STV 1.0 0.99))
+(: jar_type (Member sk_jar_1 jar) (STV 1.0 0.99))
+(: e_screw (Member sk_screw_1 screw) (STV 1.0 0.99))
+(: screw_patient (Patient sk_screw_1 sk_lid_1) (STV 1.0 0.99))
+(: screw_goal (Goal sk_screw_1 sk_jar_1) (STV 1.0 0.99))

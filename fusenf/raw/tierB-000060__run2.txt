@@ -1,0 +1,4 @@
+(: ic_genus (Inheritance imported_car car) (STV 1.0 0.99))
+(: ic_mod (Inheritance imported_car imported) (STV 1.0 0.99))
+(: ic_rule (Implication (Member $x imported_car) (And (Member (sk_cost $x) cost) (Agent (sk_cost $x) $x) (Degree (sk_cost $x) cost more) (Member (sk_repair $x) repair) (Patient (sk_repair $x) $x) (To (sk_cost $x) (sk_repair $x)))) (STV 0.8 0.9))
+(: ic_q (QuantifierPhrase imported_car cost "often") (STV 1.0 0.99))

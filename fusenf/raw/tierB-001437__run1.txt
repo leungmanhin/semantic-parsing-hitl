@@ -1,0 +1,4 @@
+(: nf_genus (Inheritance nuclear_family family) (STV 1.0 0.99))
+(: nf_mod (Inheritance nuclear_family nuclear) (STV 1.0 0.99))
+(: abuse_family (Implication (Member $e abuse) (Location $e nuclear_family)) (STV 0.9 0.9))
+(: abuse_family_q (QuantifierPhrase abuse occur "most") (STV 1.0 0.99))

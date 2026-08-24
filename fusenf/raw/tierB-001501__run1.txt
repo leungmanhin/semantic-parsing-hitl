@@ -1,0 +1,8 @@
+(: farmers_group (GroupOf sk_farmers_1 farmer) (STV 1.0 0.99))
+(: fields_group (GroupOf sk_fields_1 field) (STV 1.0 0.99))
+(: e_plow (Member sk_plow_1 plow) (STV 1.0 0.99))
+(: e_plow_ag (Agent sk_plow_1 sk_farmers_1) (STV 1.0 0.99))
+(: e_plow_pat (Patient sk_plow_1 sk_fields_1) (STV 1.0 0.99))
+(: e_plow_manner (Manner sk_plow_1 quickly) (STV 1.0 0.99))
+(: e_plow_past (Past sk_plow_1) (STV 1.0 0.99))
+(: farmers_plow_rule (Implication (PartOf $x sk_farmers_1) (And (Member (sk_plow $x) plow) (Agent (sk_plow $x) $x) (Patient (sk_plow $x) sk_fields_1) (Manner (sk_plow $x) quickly) (Past (sk_plow $x)))) (STV 1.0 0.9))

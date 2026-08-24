@@ -1,0 +1,8 @@
+(: hm_genus (Inheritance housing_market market) (STV 1.0 0.99))
+(: hm_type (Member sk_housing_market_1 housing_market) (STV 1.0 0.99))
+(: hm_loc (LocatedIn sk_housing_market_1 us) (STV 1.0 0.99))
+(: us_name (Name us "U.S.") (STV 1.0 0.99))
+(: e_collapse (Member sk_collapse_1 collapse) (STV 1.0 0.99))
+(: e_patient (Patient sk_collapse_1 sk_housing_market_1) (STV 1.0 0.99))
+(: e_time (Time sk_collapse_1 (Year 2008)) (STV 1.0 0.99))
+(: e_past (Past sk_collapse_1) (STV 1.0 0.99))

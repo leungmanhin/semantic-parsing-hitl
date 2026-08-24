@@ -1,0 +1,3 @@
+(: something_ty (Member sk_something_1 something) (STV 1.0 0.99))
+(: overlook_rule (Implication (Member $x person) (And (Member (sk_overlook $x) overlook) (Agent (sk_overlook $x) $x) (Theme (sk_overlook $x) sk_something_1) (Probably (sk_overlook $x)))) (STV 0.7 0.9))
+(: overlook_q (QuantifierPhrase person overlook "many") (STV 1.0 0.99))

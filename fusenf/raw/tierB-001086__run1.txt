@@ -1,0 +1,8 @@
+(: sheep_grp (GroupOf sk_group_1 sheep) (STV 1.0 0.99))
+(: dog_mem (Member sk_dog_1 dog) (STV 1.0 0.99))
+(: lead_ev (Member sk_lead_1 lead) (STV 1.0 0.99))
+(: lead_ag (Agent sk_lead_1 sk_dog_1) (STV 1.0 0.99))
+(: lead_th (Theme sk_lead_1 sk_group_1) (STV 1.0 0.99))
+(: lead_goal (Goal sk_lead_1 home) (STV 1.0 0.99))
+(: lead_tns (Past sk_lead_1) (STV 1.0 0.99))
+(: lead_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_lead $x) lead) (Agent (sk_lead $x) sk_dog_1) (Theme (sk_lead $x) $x) (Goal (sk_lead $x) home) (Past (sk_lead $x)))) (STV 1.0 0.9))

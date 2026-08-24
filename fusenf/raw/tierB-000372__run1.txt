@@ -1,0 +1,5 @@
+(: tbl_group (GroupOf sk_group_1 table) (STV 1.0 0.99))
+(: tbl_card (Cardinality sk_group_1 3) (STV 1.0 0.99))
+(: storeroom_type (Member sk_storeroom_1 storeroom) (STV 1.0 0.99))
+(: tbl_loc (LocatedIn sk_group_1 sk_storeroom_1) (STV 1.0 0.99))
+(: tbl_rule (Implication (PartOf $x sk_group_1) (LocatedIn $x sk_storeroom_1)) (STV 1.0 0.9))

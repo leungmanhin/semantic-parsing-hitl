@@ -1,0 +1,6 @@
+(: birds_group (GroupOf sk_group_1 bird) (STV 1.0 0.99))
+(: eat_ev (Member sk_eat_1 eat) (STV 1.0 0.99))
+(: eat_agent (Agent sk_eat_1 sk_group_1) (STV 1.0 0.99))
+(: eat_patient (Patient sk_eat_1 bread) (STV 1.0 0.99))
+(: eat_ongoing (Ongoing sk_eat_1) (STV 1.0 0.99))
+(: birds_eat_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_eat $x) eat) (Agent (sk_eat $x) $x) (Patient (sk_eat $x) bread) (Ongoing (sk_eat $x)))) (STV 1.0 0.9))

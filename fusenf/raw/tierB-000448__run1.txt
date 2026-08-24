@@ -1,0 +1,2 @@
+(: that_thing (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: people_say_rule (Implication (Member $x person) (And (Member (sk_say $x) say) (Agent (sk_say $x) $x) (Theme (sk_say $x) sk_thing_1) (Every (sk_say $x) 1 time))) (STV 0.9 0.9))

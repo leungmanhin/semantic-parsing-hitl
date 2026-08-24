@@ -1,0 +1,4 @@
+(: mtn_grp (GroupOf sk_mountain_1 mountain) (STV 1.0 0.99))
+(: mtn_ahead_rule (Implication (PartOf $x sk_mountain_1) (Member $x ahead)) (STV 1.0 0.9))
+(: mtn_craggy_rule (Implication (PartOf $x sk_mountain_1) (Member $x craggy)) (STV 1.0 0.9))
+(: mtn_impassable_rule (Implication (PartOf $x sk_mountain_1) (Degree $x impassable almost)) (STV 1.0 0.9))

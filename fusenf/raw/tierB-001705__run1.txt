@@ -1,0 +1,7 @@
+(: k_grp (GroupOf sk_group_1 soldier) (STV 1.0 0.99))
+(: k_card (CardinalityPhrase sk_group_1 "a lot of") (STV 1.0 0.99))
+(: k_ev (Member sk_kill_1 kill) (STV 1.0 0.99))
+(: k_pat (Patient sk_kill_1 sk_group_1) (STV 1.0 0.99))
+(: k_loc (Location sk_kill_1 here) (STV 1.0 0.99))
+(: k_tense (Past sk_kill_1) (STV 1.0 0.99))
+(: k_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_kill $x) kill) (Patient (sk_kill $x) $x) (Location (sk_kill $x) here) (Past (sk_kill $x)))) (STV 1.0 0.9))

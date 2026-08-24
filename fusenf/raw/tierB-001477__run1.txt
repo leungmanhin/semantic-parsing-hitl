@@ -1,0 +1,5 @@
+(: girls_group (GroupOf sk_group_1 girl) (STV 1.0 0.99))
+(: girls_cardphrase (CardinalityPhrase sk_group_1 "a lot of") (STV 1.0 0.99))
+(: world_type (Member sk_world_1 world) (STV 1.0 0.99))
+(: girls_located (LocatedIn sk_group_1 sk_world_1) (STV 1.0 0.99))
+(: girls_beautiful_rule (Implication (PartOf $x sk_group_1) (Member $x beautiful)) (STV 1.0 0.9))

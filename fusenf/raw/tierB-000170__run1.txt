@@ -1,0 +1,8 @@
+(: ed_type (Member sk_limited_edition_1 limited_edition) (STV 1.0 0.99))
+(: ed_genus (Inheritance limited_edition edition) (STV 1.0 0.99))
+(: ed_mod (Inheritance limited_edition limited) (STV 1.0 0.99))
+(: sign_ev (Member sk_sign_1 sign) (STV 1.0 0.99))
+(: sign_patient (Patient sk_sign_1 sk_limited_edition_1) (STV 1.0 0.99))
+(: sign_agent (Agent sk_sign_1 sk_author_1) (STV 1.0 0.99))
+(: author_type (Member sk_author_1 author) (STV 1.0 0.99))
+(: sign_past (Past sk_sign_1) (STV 1.0 0.99))

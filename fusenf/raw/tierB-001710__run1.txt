@@ -1,0 +1,5 @@
+(: dir_drink (Directive (And (Member sk_drink_1 drink) (Patient sk_drink_1 sk_milk_1) (Member sk_milk_1 milk))) (STV 1.0 0.99))
+(: e_healthy (Member sk_healthy_1 healthy) (STV 1.0 0.99))
+(: e_healthy_exp (Experiencer sk_healthy_1 sk_drink_1) (STV 1.0 0.99))
+(: e_drink_healthy (Member sk_drink_1 healthy) (STV 1.0 0.99))
+(: e_because (Because sk_drink_1 sk_healthy_1) (STV 1.0 0.99))

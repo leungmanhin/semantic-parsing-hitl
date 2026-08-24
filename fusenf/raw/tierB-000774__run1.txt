@@ -1,0 +1,8 @@
+(: field_type (Member sk_field_1 field) (STV 1.0 0.99))
+(: exp_grp (GroupOf sk_group_1 experiment) (STV 1.0 0.99))
+(: exp_qty (CardinalityPhrase sk_group_1 "many") (STV 1.0 0.99))
+(: e_carryout (Member sk_carry_out_1 carry_out) (STV 1.0 0.99))
+(: e_carryout_patient (Patient sk_carry_out_1 sk_group_1) (STV 1.0 0.99))
+(: e_carryout_past (Past sk_carry_out_1) (STV 1.0 0.99))
+(: e_carryout_in (In sk_carry_out_1 sk_field_1) (STV 1.0 0.99))
+(: exp_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_carry_out $x) carry_out) (Patient (sk_carry_out $x) $x) (Past (sk_carry_out $x)) (In (sk_carry_out $x) sk_field_1))) (STV 1.0 0.9))

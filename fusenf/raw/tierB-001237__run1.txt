@@ -1,0 +1,3 @@
+(: cpr_effort_g (Inheritance cpr_effort effort) (STV 1.0 0.99))
+(: all_cpr_failed (Implication (Member $x cpr_effort) (And (Member (sk_fail $x) fail) (Patient (sk_fail $x) $x) (Past (sk_fail $x)))) (STV 1.0 0.9))
+(: cpr_q (QuantifierPhrase cpr_effort fail "all") (STV 1.0 0.99))

@@ -1,0 +1,8 @@
+(: claudio_name (Name claudio "Claudio") (STV 1.0 0.99))
+(: e_wake (Member sk_wake_1 wake) (STV 1.0 0.99))
+(: e_patient (Patient sk_wake_1 claudio) (STV 1.0 0.99))
+(: e_past (Past sk_wake_1) (STV 1.0 0.99))
+(: e_goal (Goal sk_wake_1 sk_group_1) (STV 1.0 0.99))
+(: thud_grp (GroupOf sk_group_1 thud) (STV 1.0 0.99))
+(: thud_card (CardinalityPhrase sk_group_1 "some") (STV 1.0 0.99))
+(: thud_props (Implication (PartOf $x sk_group_1) (And (Member $x weird) (Member $x muffled))) (STV 1.0 0.9))

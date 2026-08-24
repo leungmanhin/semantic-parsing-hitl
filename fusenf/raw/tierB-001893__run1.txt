@@ -1,0 +1,7 @@
+(: tb1893_grp (GroupOf sk_group_1 thing) (STV 1.0 0.99))
+(: tb1893_happen (Member sk_happen_1 happen) (STV 1.0 0.99))
+(: tb1893_pat (Patient sk_happen_1 sk_group_1) (STV 1.0 0.99))
+(: tb1893_ong (Ongoing sk_happen_1) (STV 1.0 0.99))
+(: tb1893_town (Member sk_town_1 town) (STV 1.0 0.99))
+(: tb1893_loc (Location sk_happen_1 sk_town_1) (STV 1.0 0.99))
+(: tb1893_rule (Implication (PartOf $x sk_group_1) (And (Member $x strange) (Member (sk_happen $x) happen) (Patient (sk_happen $x) $x) (Ongoing (sk_happen $x)) (Location (sk_happen $x) sk_town_1))) (STV 1.0 0.9))

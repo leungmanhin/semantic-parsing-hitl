@@ -1,0 +1,6 @@
+(: light_type (Member sk_light_1 light) (STV 1.0 0.99))
+(: light_outside (Member sk_light_1 outside) (STV 1.0 0.99))
+(: fade_ev (Member sk_fade_1 fade) (STV 1.0 0.99))
+(: fade_patient (Patient sk_fade_1 sk_light_1) (STV 1.0 0.99))
+(: fade_ongoing (Ongoing sk_fade_1) (STV 1.0 0.99))
+(: fade_manner (Manner sk_fade_1 slowly) (STV 1.0 0.99))

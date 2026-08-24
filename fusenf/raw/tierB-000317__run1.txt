@@ -1,0 +1,2 @@
+(: none_students_arrived (Implication (Member $x student) (And (Member (sk_arrive $x) arrive) (Agent (sk_arrive $x) $x) (On (sk_arrive $x) time) (Past (sk_arrive $x)))) (STV 0.0 0.9))
+(: students_none_q (QuantifierPhrase student arrive "none") (STV 1.0 0.99))

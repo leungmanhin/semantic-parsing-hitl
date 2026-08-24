@@ -1,0 +1,6 @@
+(: filter_mem (Member sk_filter_1 oil_filter) (STV 1.0 0.99))
+(: filter_genus (Inheritance oil_filter filter) (STV 1.0 0.99))
+(: e_leak (Member sk_leak_1 leak) (STV 1.0 0.99))
+(: e_agent (Agent sk_leak_1 sk_filter_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_leak_1 oil) (STV 1.0 0.99))
+(: e_ongoing (Ongoing sk_leak_1) (STV 1.0 0.99))

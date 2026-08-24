@@ -1,0 +1,7 @@
+(: rp_grp (GroupOf sk_group_1 position) (STV 1.0 0.99))
+(: rp_nat (Member sk_group_1 russian) (STV 1.0 0.99))
+(: rp_loc (LocatedIn sk_group_1 crimea) (STV 1.0 0.99))
+(: crimea_name (Name crimea "Crimea") (STV 1.0 0.99))
+(: rp_fort (Member sk_group_1 fortified) (STV 1.0 0.99))
+(: rp_deg (Degree sk_group_1 fortified well) (STV 1.0 0.99))
+(: rp_dist (Implication (PartOf $x sk_group_1) (And (Member $x fortified) (Degree $x fortified well))) (STV 1.0 0.9))

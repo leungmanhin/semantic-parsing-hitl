@@ -1,0 +1,7 @@
+(: adv_doc (Member sk_doctor_1 doctor) (STV 1.0 0.99))
+(: adv_man (Member sk_man_1 man) (STV 1.0 0.99))
+(: adv_ev (Member sk_advise_1 advise) (STV 1.0 0.99))
+(: adv_ag (Agent sk_advise_1 sk_doctor_1) (STV 1.0 0.99))
+(: adv_rec (Recipient sk_advise_1 sk_man_1) (STV 1.0 0.99))
+(: adv_thm (Theme sk_advise_1 (And (Member sk_stop_1 stop) (Agent sk_stop_1 sk_man_1) (Theme sk_stop_1 sk_drink_1) (Member sk_drink_1 drink) (Agent sk_drink_1 sk_man_1))) (STV 1.0 0.99))
+(: adv_pst (Past sk_advise_1) (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: e_box (Member sk_box_1 box) (STV 1.0 0.99))
+(: e_box_big (Member sk_box_1 big) (STV 1.0 0.99))
+(: e_box_degree (Degree sk_box_1 big excessive) (STV 1.0 0.99))
+(: e_trunk (Member sk_trunk_1 trunk) (STV 1.0 0.99))
+(: e_car (Member sk_car_1 car) (STV 1.0 0.99))
+(: e_trunk_part (PartOf sk_trunk_1 sk_car_1) (STV 1.0 0.99))
+(: e_neg_put (And (Member sk_put_1 put) (Theme sk_put_1 sk_box_1) (Location sk_put_1 sk_trunk_1) (Can sk_put_1)) (STV 0.0 0.99))

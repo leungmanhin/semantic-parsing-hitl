@@ -1,0 +1,6 @@
+(: p_group (GroupOf sk_group_1 party) (STV 1.0 0.99))
+(: p_card (Cardinality sk_group_1 3) (STV 1.0 0.99))
+(: e_gov (Member sk_govern_1 govern) (STV 1.0 0.99))
+(: e_agent (Agent sk_govern_1 sk_group_1) (STV 1.0 0.99))
+(: coal_type (Member sk_coalition_1 coalition) (STV 1.0 0.99))
+(: e_loc (Location sk_govern_1 sk_coalition_1) (STV 1.0 0.99))

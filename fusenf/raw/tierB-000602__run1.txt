@@ -1,0 +1,8 @@
+(: critic_type (Member sk_critic_1 critic) (STV 1.0 0.99))
+(: critic_young (Member sk_critic_1 young) (STV 1.0 0.99))
+(: demand_type (Member sk_demand_1 demand) (STV 1.0 0.99))
+(: demand_high (Member sk_demand_1 high) (STV 1.0 0.99))
+(: demand_exp (Experiencer sk_demand_1 sk_critic_1) (STV 1.0 0.99))
+(: places_grp (GroupOf sk_group_1 place) (STV 1.0 0.99))
+(: places_card (CardinalityPhrase sk_group_1 "a lot of") (STV 1.0 0.99))
+(: demand_loc (Location sk_demand_1 sk_group_1) (STV 1.0 0.99))

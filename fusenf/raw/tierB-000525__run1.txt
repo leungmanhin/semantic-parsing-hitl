@@ -1,0 +1,4 @@
+(: tb525_chain_type (Member sk_retail_chain_1 retail_chain) (STV 1.0 0.99))
+(: tb525_chain_genus (Inheritance retail_chain chain) (STV 1.0 0.99))
+(: tb525_offer_rule (Implication (Member $s store) (And (Member (sk_offer $s) offer) (Agent (sk_offer $s) sk_retail_chain_1) (Theme (sk_offer $s) (sk_promotion $s)) (Member (sk_promotion $s) promotion) (Location (sk_offer $s) $s))) (STV 1.0 0.9))
+(: tb525_offer_q (QuantifierPhrase store offer "each") (STV 1.0 0.99))

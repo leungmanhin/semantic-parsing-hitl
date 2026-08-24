@@ -1,0 +1,2 @@
+(: growup_rule (Implication (Member $x person) (And (Member (sk_grow_up $x) grow_up) (Patient (sk_grow_up $x) $x) (Manner (sk_grow_up $x) that) (Past (sk_grow_up $x)))) (STV 0.7 0.9))
+(: growup_q (QuantifierPhrase person grow_up "many") (STV 1.0 0.99))

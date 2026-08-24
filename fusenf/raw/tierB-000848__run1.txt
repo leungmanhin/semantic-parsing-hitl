@@ -1,0 +1,3 @@
+(: oc_genus (Inheritance online_community community) (STV 1.0 0.99))
+(: oc_mod (Inheritance online_community online) (STV 1.0 0.99))
+(: creator_admin_rule (Implication (And (Member $c online_community) (Member $x creator) (Possession $x $c)) (Member $x admin)) (STV 0.9 0.9))

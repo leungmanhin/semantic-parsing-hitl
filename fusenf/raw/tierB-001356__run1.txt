@@ -1,0 +1,4 @@
+(: sm_genus (Inheritance synthetic_material material) (STV 1.0 0.99))
+(: sm_mod (Inheritance synthetic_material synthetic) (STV 1.0 0.99))
+(: syn_burn (Implication (Member $x synthetic_material) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Manner (sk_burn $x) well))) (STV 0.9 0.9))
+(: syn_burn_q (QuantifierPhrase synthetic_material burn "usually") (STV 1.0 0.99))

@@ -1,0 +1,3 @@
+(: def_medicine (Implication (Member $x medicine) (And (Member $x alternative_medicine) (Member (sk_work $x) work) (Agent (sk_work $x) $x))) (STV 1.0 0.99))
+(: alt_med_genus (Inheritance alternative_medicine medicine) (STV 1.0 0.99))
+(: alt_med_mod (Inheritance alternative_medicine alternative) (STV 1.0 0.99))

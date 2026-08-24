@@ -1,0 +1,3 @@
+(: gy_genus (Inheritance greek_yogurt yogurt) (STV 1.0 0.99))
+(: gy_mod (Inheritance greek_yogurt greek) (STV 1.0 0.99))
+(: gy_have_rule (Implication (Member $x greek_yogurt) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) (sk_group $x)) (GroupOf (sk_group $x) probiotic) (CardinalityPhrase (sk_group $x) "a lot of"))) (STV 0.9 0.9))

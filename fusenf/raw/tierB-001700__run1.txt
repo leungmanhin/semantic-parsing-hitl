@@ -1,0 +1,7 @@
+(: kid_type (Member sk_kid_1 kid) (STV 1.0 0.99))
+(: go_ev (Member sk_go_1 go) (STV 1.0 0.99))
+(: go_agent (Agent sk_go_1 sk_kid_1) (STV 1.0 0.99))
+(: go_goal (Goal sk_go_1 sleep) (STV 1.0 0.99))
+(: go_past (Past sk_go_1) (STV 1.0 0.99))
+(: eat_neg (And (Member sk_eat_1 eat) (Agent sk_eat_1 sk_kid_1) (Patient sk_eat_1 supper) (Past sk_eat_1)) (STV 0.0 0.99))
+(: go_without_eat (Without sk_go_1 sk_eat_1) (STV 1.0 0.99))

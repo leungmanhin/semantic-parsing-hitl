@@ -1,0 +1,7 @@
+(: tb1350_leave (Member sk_leave_1 leave) (STV 1.0 0.99))
+(: tb1350_agent (Agent sk_leave_1 marcus) (STV 1.0 0.99))
+(: tb1350_theme (Theme sk_leave_1 sk_room_1) (STV 1.0 0.99))
+(: tb1350_room (Member sk_room_1 room) (STV 1.0 0.99))
+(: tb1350_past (Past sk_leave_1) (STV 1.0 0.99))
+(: tb1350_name (Name marcus "Marcus") (STV 1.0 0.99))
+(: tb1350_neg_say (And (Member sk_say_1 say) (Agent sk_say_1 marcus) (Theme sk_say_1 sk_word_1) (Member sk_word_1 word) (Past sk_say_1)) (STV 0.0 0.99))

@@ -1,0 +1,7 @@
+(: girls_grp (GroupOf sk_girls_1 girl) (STV 1.0 0.99))
+(: sub_grp (GroupOf sk_group_1 girl) (STV 1.0 0.99))
+(: sub_of (SubsetOf sk_group_1 sk_girls_1) (STV 1.0 0.99))
+(: sub_card (Cardinality sk_group_1 1) (STV 1.0 0.99))
+(: e_class (Member sk_leave_behind_1 leave_behind) (STV 1.0 0.99))
+(: e_theme (Theme sk_leave_behind_1 sk_group_1) (STV 1.0 0.99))
+(: e_past (Past sk_leave_behind_1) (STV 1.0 0.99))

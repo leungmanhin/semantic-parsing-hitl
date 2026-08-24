@@ -1,0 +1,8 @@
+(: tree_type (Member sk_tree_1 tree) (STV 1.0 0.99))
+(: tree_rotten (Member sk_tree_1 rotten) (STV 1.0 0.99))
+(: tree_dead (Member sk_tree_1 dead) (STV 1.0 0.99))
+(: tree_dead_deg (Degree sk_tree_1 dead stone) (STV 1.0 0.99))
+(: fall_ev (Member sk_fall_1 fall) (STV 1.0 0.99))
+(: fall_patient (Patient sk_fall_1 sk_tree_1) (STV 1.0 0.99))
+(: fall_might (Might sk_fall_1) (STV 1.0 0.9))
+(: fall_time (Time sk_fall_1 any_time) (STV 1.0 0.99))

@@ -1,0 +1,3 @@
+(: fact_mem (Member sk_fact_1 fact) (STV 1.0 0.99))
+(: nobody_deny (Implication (Member $x person) (And (Member (sk_deny $x) deny) (Agent (sk_deny $x) $x) (Theme (sk_deny $x) sk_fact_1) (Can (sk_deny $x)))) (STV 0.0 0.9))
+(: nobody_q (QuantifierPhrase person deny "no") (STV 1.0 0.99))

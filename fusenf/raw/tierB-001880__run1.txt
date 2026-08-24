@@ -1,0 +1,7 @@
+(: drug_type (Member sk_drug_1 drug) (STV 1.0 0.99))
+(: illegal_st (Member sk_illegal_1 illegal) (STV 1.0 0.99))
+(: illegal_exp (Experiencer sk_illegal_1 sk_drug_1) (STV 1.0 0.99))
+(: illegal_at_least (TimeAtLeast sk_illegal_1 (Year 1990)) (STV 1.0 0.99))
+(: illegal_at_most (TimeAtMost sk_illegal_1 (Year 1999)) (STV 1.0 0.99))
+(: illegal_past (Past sk_illegal_1) (STV 1.0 0.99))
+(: drug_illegal_flat (Past (Member sk_drug_1 illegal)) (STV 1.0 0.99))

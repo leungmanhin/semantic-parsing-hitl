@@ -1,0 +1,5 @@
+(: cam1_type (Member sk_camera_1 camera) (STV 1.0 0.99))
+(: sys1_type (Member sk_system_1 focusing_system) (STV 1.0 0.99))
+(: sys1_genus (Inheritance focusing_system system) (STV 1.0 0.99))
+(: sys1_part (PartOf sk_system_1 sk_camera_1) (STV 1.0 0.99))
+(: sys1_not_work (And (Member sk_work_1 work) (Experiencer sk_work_1 sk_system_1) (Manner sk_work_1 properly)) (STV 0.0 0.99))

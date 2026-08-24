@@ -1,0 +1,7 @@
+(: e1_grp (GroupOf sk_group_1 child) (STV 1.0 0.99))
+(: e1_go (Member sk_go_1 go) (STV 1.0 0.99))
+(: e1_agent (Agent sk_go_1 sk_group_1) (STV 1.0 0.99))
+(: e1_goal (Goal sk_go_1 bed) (STV 1.0 0.99))
+(: e1_obligated (Obligated sk_go_1) (STV 1.0 0.99))
+(: e1_manner (Manner sk_go_1 immediately) (STV 1.0 0.99))
+(: e1_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_go $x) go) (Agent (sk_go $x) $x) (Goal (sk_go $x) bed) (Obligated (sk_go $x)) (Manner (sk_go $x) immediately))) (STV 1.0 0.9))

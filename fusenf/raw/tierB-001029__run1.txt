@@ -1,0 +1,4 @@
+(: pa_genus (Inheritance professional_athlete athlete) (STV 1.0 0.99))
+(: pa_mod (Inheritance professional_athlete professional) (STV 1.0 0.99))
+(: athletes_take_drugs (Implication (Member $x professional_athlete) (And (Member (sk_take $x) take) (Agent (sk_take $x) $x) (Patient (sk_take $x) drug))) (STV 0.8 0.9))
+(: athletes_q (QuantifierPhrase professional_athlete take "a lot of") (STV 1.0 0.99))

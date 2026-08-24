@@ -1,0 +1,4 @@
+(: road_type (Member sk_road_1 road) (STV 1.0 0.99))
+(: road_narrow (Member sk_road_1 narrow) (STV 1.0 0.99))
+(: road_deg (Degree sk_road_1 narrow excessive) (STV 1.0 0.99))
+(: cars_cant_pass (Implication (Member $x car) (And (Member (sk_pass $x) pass) (Agent (sk_pass $x) $x) (Location (sk_pass $x) sk_road_1) (Can (sk_pass $x)))) (STV 0.0 0.9))

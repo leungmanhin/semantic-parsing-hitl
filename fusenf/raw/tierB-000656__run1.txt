@@ -1,0 +1,7 @@
+(: st_grp (GroupOf sk_group_1 student) (STV 1.0 0.99))
+(: rout_ev (Member sk_run_out_1 run_out) (STV 1.0 0.99))
+(: rout_agent (Agent sk_run_out_1 sk_group_1) (STV 1.0 0.99))
+(: rout_past (Past sk_run_out_1) (STV 1.0 0.99))
+(: door_type (Member sk_door_1 door) (STV 1.0 0.99))
+(: rout_through (Through sk_run_out_1 sk_door_1) (STV 1.0 0.99))
+(: st_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_run_out $x) run_out) (Agent (sk_run_out $x) $x) (Past (sk_run_out $x)) (Through (sk_run_out $x) sk_door_1))) (STV 1.0 0.9))

@@ -1,0 +1,8 @@
+(: ff_grp (GroupOf sk_group_1 forest_fire) (STV 1.0 0.99))
+(: ff_gen (Inheritance forest_fire fire) (STV 1.0 0.99))
+(: ff_dev (Implication (PartOf $x sk_group_1) (Member $x devastating)) (STV 1.0 0.9))
+(: bo_ev (Member sk_break_out_1 break_out) (STV 1.0 0.99))
+(: bo_pat (Patient sk_break_out_1 sk_group_1) (STV 1.0 0.99))
+(: bo_past (Past sk_break_out_1) (STV 1.0 0.99))
+(: bo_loc (Location sk_break_out_1 siberia) (STV 1.0 0.99))
+(: sib_name (Name siberia "Siberia") (STV 1.0 0.99))

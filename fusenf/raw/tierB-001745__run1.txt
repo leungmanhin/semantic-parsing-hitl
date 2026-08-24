@@ -1,0 +1,6 @@
+(: pastry_type (Member sk_pastry_1 pastry) (STV 1.0 0.99))
+(: rest_type (Member sk_rest_1 pastry) (STV 1.0 0.99))
+(: rest_part (PartOf sk_rest_1 sk_pastry_1) (STV 1.0 0.99))
+(: rest_flag (RestOf sk_rest_1 sk_pastry_1) (STV 1.0 0.99))
+(: pie_type (Member sk_pie_1 pie) (STV 1.0 0.99))
+(: directive_1 (Directive (And (Member sk_roll_out_1 roll_out) (Patient sk_roll_out_1 sk_rest_1) (To sk_roll_out_1 sk_make_1) (Member sk_make_1 make) (Patient sk_make_1 sk_lid_1) (Member sk_lid_1 lid) (For sk_lid_1 sk_pie_1))) (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: medlar_grp (GroupOf sk_medlar_1 medlar) (STV 1.0 0.99))
+(: frost_typ (Member sk_frost_1 frost) (STV 1.0 0.99))
+(: hit_ev (Member sk_hit_1 hit) (STV 1.0 0.99))
+(: hit_ag (Agent sk_hit_1 sk_frost_1) (STV 1.0 0.99))
+(: hit_pat (Patient sk_hit_1 sk_medlar_1) (STV 1.0 0.99))
+(: hit_tns (Past sk_hit_1) (STV 1.0 0.99))
+(: medlar_hit_rule (Implication (PartOf $x sk_medlar_1) (And (Member (sk_hit $x) hit) (Agent (sk_hit $x) sk_frost_1) (Patient (sk_hit $x) $x) (Past (sk_hit $x)))) (STV 1.0 0.9))

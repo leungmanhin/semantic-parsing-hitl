@@ -1,0 +1,3 @@
+(: tb1309_rule1 (Implication (Member $x person) (And (Member (sk_meet_1 $x) meet) (Agent (sk_meet_1 $x) $x) (Theme (sk_meet_1 $x) (sk_jew $x)) (Member (sk_jew $x) jew) (Past (sk_meet_1 $x)))) (STV 0.0 0.9))
+(: tb1309_rule2 (Implication (Member $x person) (And (Member (sk_meet_2 $x) meet) (Agent (sk_meet_2 $x) $x) (Theme (sk_meet_2 $x) (sk_samaritan $x)) (Member (sk_samaritan $x) samaritan) (Past (sk_meet_2 $x)))) (STV 0.0 0.9))
+(: tb1309_q (QuantifierPhrase person meet "most") (STV 1.0 0.99))

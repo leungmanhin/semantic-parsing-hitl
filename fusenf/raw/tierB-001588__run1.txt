@@ -1,0 +1,6 @@
+(: rain_type (Member sk_rain_1 rain) (STV 1.0 0.99))
+(: change_ev (Member sk_change_1 change) (STV 1.0 0.99))
+(: change_pat (Patient sk_change_1 sk_rain_1) (STV 1.0 0.99))
+(: change_goal (Goal sk_change_1 snow) (STV 1.0 0.99))
+(: change_prob (Probably sk_change_1) (STV 1.0 0.9))
+(: change_time (Time sk_change_1 tonight) (STV 1.0 0.99))

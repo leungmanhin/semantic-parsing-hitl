@@ -1,0 +1,7 @@
+(: ocean_type (Member sk_ocean_1 ocean) (STV 1.0 0.99))
+(: sky_type (Member sk_sky_1 sky) (STV 1.0 0.99))
+(: color_type (Member sk_color_1 color) (STV 1.0 0.99))
+(: color_poss (Possession sk_color_1 sk_sky_1) (STV 1.0 0.99))
+(: e_have (Member sk_have_1 have) (STV 1.0 0.99))
+(: e_holder (Holder sk_have_1 sk_ocean_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_have_1 sk_color_1) (STV 1.0 0.99))

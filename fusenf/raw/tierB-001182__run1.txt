@@ -1,0 +1,7 @@
+(: e_make (Member sk_make_1 make) (STV 1.0 0.99))
+(: e_agent (Agent sk_make_1 sk_man_1) (STV 1.0 0.99))
+(: man_type (Member sk_man_1 man) (STV 1.0 0.99))
+(: e_patient (Patient sk_make_1 sk_call_1) (STV 1.0 0.99))
+(: call_type (Member sk_call_1 telephone_call) (STV 1.0 0.99))
+(: call_genus (Inheritance telephone_call call) (STV 1.0 0.99))
+(: e_ongoing (Ongoing sk_make_1) (STV 1.0 0.99))

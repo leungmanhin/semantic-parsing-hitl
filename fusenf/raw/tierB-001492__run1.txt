@@ -1,0 +1,5 @@
+(: plate_group (GroupOf sk_group_1 plate) (STV 1.0 0.99))
+(: table_type (Member sk_table_1 table) (STV 1.0 0.99))
+(: plate_loc (LocatedIn sk_group_1 sk_table_1) (STV 1.0 0.99))
+(: plate_same (Implication (And (PartOf $x sk_group_1) (PartOf $y sk_group_1) (Compute == ($x $y) -> false)) (Same $x $y)) (STV 1.0 0.9))
+(: plate_q (QuantifierPhrase plate same "all") (STV 1.0 0.99))

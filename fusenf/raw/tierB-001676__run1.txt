@@ -1,0 +1,2 @@
+(: windows_closed_rule (Implication (Member $x window) (And (Member (sk_close $x) close) (Patient (sk_close $x) $x) (Past (sk_close $x)))) (STV 1.0 0.9))
+(: windows_closed_q (QuantifierPhrase window close "all") (STV 1.0 0.99))

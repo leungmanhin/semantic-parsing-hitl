@@ -1,0 +1,6 @@
+(: fuji_name (Name mt_fuji "Mt. Fuji") (STV 1.0 0.99))
+(: top_type (Member sk_top_1 top) (STV 1.0 0.99))
+(: top_part (PartOf sk_top_1 mt_fuji) (STV 1.0 0.99))
+(: e_cover (Member sk_cover_1 cover) (STV 1.0 0.99))
+(: e_cover_patient (Patient sk_cover_1 sk_top_1) (STV 1.0 0.99))
+(: e_cover_instrument (Instrument sk_cover_1 snow) (STV 1.0 0.99))

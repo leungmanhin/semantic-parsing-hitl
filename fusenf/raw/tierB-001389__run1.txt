@@ -1,0 +1,5 @@
+(: sched_type (Member sk_schedule_1 schedule) (STV 1.0 0.99))
+(: dict_ev (Member sk_dictate_1 dictate) (STV 1.0 0.99))
+(: dict_exp (Experiencer sk_dictate_1 sk_schedule_1) (STV 1.0 0.99))
+(: work_type (Member sk_work_1 work) (STV 1.0 0.99))
+(: dict_th (Theme sk_dictate_1 (And (Member sk_do_1 do) (Patient sk_do_1 sk_work_1) (Obligated sk_do_1) (TimeAtMost sk_do_1 weekend))) (STV 1.0 0.99))

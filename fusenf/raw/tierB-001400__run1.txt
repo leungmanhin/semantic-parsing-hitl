@@ -1,0 +1,6 @@
+(: cb_genus (Inheritance central_bank bank) (STV 1.0 0.99))
+(: cb_mod (Inheritance central_bank central) (STV 1.0 0.99))
+(: mp_genus (Inheritance monetary_policy policy) (STV 1.0 0.99))
+(: mp_mod (Inheritance monetary_policy monetary) (STV 1.0 0.99))
+(: gov_use_policy (Implication (Member $x government) (And (Member (sk_use $x) use) (Agent (sk_use $x) $x) (Theme (sk_use $x) monetary_policy) (Manner (sk_use $x) primarily) (To (sk_use $x) (sk_control $x)) (Member (sk_control $x) control) (Agent (sk_control $x) $x) (Theme (sk_control $x) inflation))) (STV 0.9 0.9))
+(: cb_use_policy (Implication (Member $y central_bank) (And (Member (sk_use $y) use) (Agent (sk_use $y) $y) (Theme (sk_use $y) monetary_policy) (Manner (sk_use $y) primarily) (To (sk_use $y) (sk_control $y)) (Member (sk_control $y) control) (Agent (sk_control $y) $y) (Theme (sk_control $y) inflation))) (STV 0.9 0.9))

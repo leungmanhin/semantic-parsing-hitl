@@ -1,0 +1,4 @@
+(: comb_type (Member sk_combination_1 combination) (STV 1.0 0.99))
+(: comb_date (PartOf date sk_combination_1) (STV 1.0 0.99))
+(: comb_cinn (PartOf cinnamon sk_combination_1) (STV 1.0 0.99))
+(: medlar_taste_rule (Implication (And (Member $x medlar) (Member $x bletted)) (And (Member (sk_taste $x) taste) (Experiencer (sk_taste $x) $x) (Like (sk_taste $x) sk_combination_1))) (STV 0.9 0.9))

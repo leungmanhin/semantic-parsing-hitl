@@ -1,0 +1,5 @@
+(: train_type (Member sk_train_1 train) (STV 1.0 0.99))
+(: depart_ev (Member sk_depart_1 depart) (STV 1.0 0.99))
+(: depart_ag (Agent sk_depart_1 sk_train_1) (STV 1.0 0.99))
+(: depart_hour (Time sk_depart_1 (Hour 7)) (STV 1.0 0.99))
+(: depart_min (Time sk_depart_1 (Minute 15)) (STV 1.0 0.99))

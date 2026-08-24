@@ -1,0 +1,6 @@
+(: scaffolding_type (Member sk_scaffolding_1 scaffolding) (STV 1.0 0.99))
+(: fall_ev (Member sk_fall_1 fall) (STV 1.0 0.99))
+(: fall_patient (Patient sk_fall_1 sk_scaffolding_1) (STV 1.0 0.99))
+(: fall_past (Past sk_fall_1) (STV 1.0 0.99))
+(: wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))
+(: fall_becauseof (BecauseOf sk_fall_1 sk_wind_1) (STV 1.0 0.99))

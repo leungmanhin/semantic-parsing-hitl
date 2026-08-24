@@ -1,0 +1,3 @@
+(: bds_type (Member bds_movement movement) (STV 1.0 0.99))
+(: bds_name (Name bds_movement "BDS Movement") (STV 1.0 0.99))
+(: bds_cant_defeat (And (Member sk_defeat_1 defeat) (Patient sk_defeat_1 bds_movement) (Can sk_defeat_1)) (STV 0.0 0.99))

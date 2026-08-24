@@ -1,0 +1,8 @@
+(: rc_genus (Inheritance recombinant_colony colony) (STV 1.0 0.99))
+(: rc_mod (Inheritance recombinant_colony recombinant) (STV 1.0 0.99))
+(: plasmid_type (Member sk_plasmid_1 plasmid) (STV 1.0 0.99))
+(: plasmid_white (Member sk_plasmid_1 white) (STV 1.0 0.99))
+(: plasmid_desired (Member sk_plasmid_1 desired) (STV 1.0 0.99))
+(: reasons_card (CardinalityPhrase sk_group_1 "a number of") (STV 1.0 0.99))
+(: colonies_not_contain (And (Member sk_contain_1 contain) (GroupOf sk_group_2 recombinant_colony) (Agent sk_contain_1 sk_group_2) (Theme sk_contain_1 sk_plasmid_1) (Can sk_contain_1) (GroupOf sk_group_1 reason) (For sk_contain_1 sk_group_1)) (STV 0.0 0.99))
+(: colonies_not_contain_rule (Implication (PartOf $x sk_group_2) (And (Member (sk_contain $x) contain) (Agent (sk_contain $x) $x) (Theme (sk_contain $x) sk_plasmid_1) (Can (sk_contain $x)))) (STV 0.0 0.9))

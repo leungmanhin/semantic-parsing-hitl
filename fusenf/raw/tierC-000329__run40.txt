@@ -1,0 +1,8 @@
+(: absoc_name (Name amateur_barbershop_harmony_society "Amateur Barbershop Harmony Society") (STV 1.0 0.99))
+(: absoc_type (Member amateur_barbershop_harmony_society society) (STV 1.0 0.99))
+(: occ_genus (Inheritance occupational_group group) (STV 1.0 0.99))
+(: e_sing1 (Member sk_sing_1 sing) (STV 1.0 0.99))
+(: e_ag1 (Agent sk_sing_1 amateur_barbershop_harmony_society) (STV 1.0 0.99))
+(: e_man1 (Manner sk_sing_1 a_cappella) (STV 1.0 0.99))
+(: e_only1 (Only a_cappella sk_sing_1) (STV 1.0 0.99))
+(: occ_sing_rule (Implication (Member $x occupational_group) (And (Member (sk_sing $x) sing) (Agent (sk_sing $x) $x) (Manner (sk_sing $x) a_cappella) (Only a_cappella (sk_sing $x)))) (STV 0.9 0.9))

@@ -1,0 +1,4 @@
+(: market_ty (Member sk_market_1 market) (STV 1.0 0.99))
+(: crowd_grp (GroupOf sk_group_1 crowd) (STV 1.0 0.99))
+(: crowd_loc (LocatedIn sk_group_1 sk_market_1) (STV 1.0 0.99))
+(: crowd_overwhelm (Implication (PartOf $x sk_group_1) (Past (Member $x overwhelming))) (STV 1.0 0.9))

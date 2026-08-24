@@ -1,0 +1,8 @@
+(: cowboys1_grp (GroupOf sk_group_1 cowboy) (STV 1.0 0.99))
+(: town1_type (Member sk_town_1 town) (STV 1.0 0.99))
+(: town1_unknown (Member sk_town_1 unknown) (STV 1.0 0.99))
+(: ride1_ev (Member sk_ride_1 ride) (STV 1.0 0.99))
+(: ride1_agent (Agent sk_ride_1 sk_group_1) (STV 1.0 0.99))
+(: ride1_goal (Goal sk_ride_1 sk_town_1) (STV 1.0 0.99))
+(: ride1_past (Past sk_ride_1) (STV 1.0 0.99))
+(: ride1_dist (Implication (PartOf $x sk_group_1) (And (Member (sk_ride $x) ride) (Agent (sk_ride $x) $x) (Goal (sk_ride $x) sk_town_1) (Past (sk_ride $x)))) (STV 1.0 0.9))

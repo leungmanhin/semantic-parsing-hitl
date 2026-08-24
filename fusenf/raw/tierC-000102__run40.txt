@@ -1,0 +1,5 @@
+(: eq_ellipsoid_genus (Inheritance equipotential_ellipsoid ellipsoid) (STV 1.0 0.99))
+(: eq_ellipsoid_mod (Inheritance equipotential_ellipsoid equipotential) (STV 1.0 0.99))
+(: cf_surface_genus (Inheritance confocal_surface surface) (STV 1.0 0.99))
+(: cf_surface_mod (Inheritance confocal_surface confocal) (STV 1.0 0.99))
+(: ellipsoid_appear_rule (Implication (Member $x equipotential_ellipsoid) (And (Member (sk_appear $x) appear) (Experiencer (sk_appear $x) $x) (In (sk_appear $x) physics) (As (sk_appear $x) confocal_surface))) (STV 0.9 0.9))

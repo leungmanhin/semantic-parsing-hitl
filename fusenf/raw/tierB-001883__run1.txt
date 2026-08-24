@@ -1,0 +1,5 @@
+(: e_person (Member sk_person_1 person) (STV 1.0 0.99))
+(: e_feel (Member sk_feel_1 feel) (STV 1.0 0.99))
+(: e_feel_exp (Experiencer sk_feel_1 sk_person_1) (STV 1.0 0.99))
+(: e_feel_theme (Theme sk_feel_1 (And (Member sk_grow_1 grow) (Patient sk_grow_1 sk_city_1) (Manner sk_grow_1 slowly) (Past sk_grow_1) (Implication (Member $x age) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Patient (sk_leave $x) (sk_mark $x)) (Member (sk_mark $x) mark) (Possession (sk_mark $x) $x) (Past (sk_leave $x)))) (QuantifierPhrase age leave "each"))) (STV 1.0 0.99))
+(: e_city (Member sk_city_1 city) (STV 1.0 0.99))

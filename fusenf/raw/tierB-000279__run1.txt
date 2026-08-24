@@ -1,0 +1,2 @@
+(: seats_taken_rule (Implication (And (Member $x seat) (Member $x good)) (And (Member (sk_take $x) take) (Theme (sk_take $x) $x) (Past (sk_take $x)) (Already (sk_take $x)))) (STV 1.0 0.9))
+(: seats_q (QuantifierPhrase seat take "all") (STV 1.0 0.99))

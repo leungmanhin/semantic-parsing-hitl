@@ -1,0 +1,2 @@
+(: meetings_held_rule (Implication (Member $x meeting) (And (Member (sk_hold $x) hold) (Patient (sk_hold $x) $x) (Time (sk_hold $x) afternoon))) (STV 0.9 0.9))
+(: meetings_q (QuantifierPhrase meeting hold "usually") (STV 1.0 0.99))

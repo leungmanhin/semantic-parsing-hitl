@@ -1,0 +1,7 @@
+(: cd_genus (Inheritance chinese_dumpling dumpling) (STV 1.0 0.99))
+(: cd_mod (Inheritance chinese_dumpling chinese) (STV 1.0 0.99))
+(: ii_genus (Inheritance indonesian_immigrant immigrant) (STV 1.0 0.99))
+(: ii_mod (Inheritance indonesian_immigrant indonesian) (STV 1.0 0.99))
+(: indonesia_name (Name indonesia "Indonesia") (STV 1.0 0.99))
+(: influence_rule (Implication (Member $x indonesian_immigrant) (And (Member (sk_influence $x) influence) (Agent (sk_influence $x) $x) (Patient (sk_influence $x) chinese_dumpling) (Past (sk_influence $x)))) (STV 0.9 0.9))
+(: bring_rule (Implication (Member $x indonesian_immigrant) (And (Member (sk_bring $x) bring) (Agent (sk_bring $x) $x) (Theme (sk_bring $x) chinese_dumpling) (Goal (sk_bring $x) indonesia) (Past (sk_bring $x)))) (STV 0.9 0.9))

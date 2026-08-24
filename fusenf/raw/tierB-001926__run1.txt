@@ -1,0 +1,8 @@
+(: guard_type (Member sk_guard_1 guard) (STV 1.0 0.99))
+(: cell_type (Member sk_cell_1 cell) (STV 1.0 0.99))
+(: door_type (Member sk_door_1 door) (STV 1.0 0.99))
+(: door_partof (PartOf sk_door_1 sk_cell_1) (STV 1.0 0.99))
+(: e_close (Member sk_close_1 close) (STV 1.0 0.99))
+(: e_agent (Agent sk_close_1 sk_guard_1) (STV 1.0 0.99))
+(: e_patient (Patient sk_close_1 sk_door_1) (STV 1.0 0.99))
+(: e_past (Past sk_close_1) (STV 1.0 0.99))

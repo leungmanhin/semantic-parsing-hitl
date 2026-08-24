@@ -1,0 +1,3 @@
+(: q_group (GroupOf sk_group_1 question) (STV 1.0 0.99))
+(: no_one_knows (Implication (And (PartOf $x sk_group_1) (Member $p person)) (And (Member (sk_know $x $p) know) (Experiencer (sk_know $x $p) $p) (Stimulus (sk_know $x $p) (sk_answer $x)) (Member (sk_answer $x) answer))) (STV 0.0 0.9))
+(: no_one_q (QuantifierPhrase person know "no") (STV 1.0 0.99))

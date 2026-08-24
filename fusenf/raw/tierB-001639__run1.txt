@@ -1,0 +1,5 @@
+(: earn_dir (Directive (And (Member sk_earn_1 earn) (Instrument sk_earn_1 sk_hand_1))) (STV 1.0 0.99))
+(: hand1_grp (GroupOf sk_hand_1 hand) (STV 1.0 0.99))
+(: hand1_card (Cardinality sk_hand_1 2) (STV 1.0 0.99))
+(: spend_dir (Directive (And (Member sk_spend_1 spend) (Instrument sk_spend_1 sk_hand_2))) (STV 1.0 0.99))
+(: hand2_type (Member sk_hand_2 hand) (STV 1.0 0.99))

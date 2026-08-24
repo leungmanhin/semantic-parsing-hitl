@@ -1,0 +1,5 @@
+(: park_type (Member sk_park_1 park) (STV 1.0 0.99))
+(: muni_type (Member sk_municipality_1 municipality) (STV 1.0 0.99))
+(: e_maintain (Member sk_maintain_1 maintain) (STV 1.0 0.99))
+(: e_agent (Agent sk_maintain_1 sk_municipality_1) (STV 1.0 0.99))
+(: e_patient (Patient sk_maintain_1 sk_park_1) (STV 1.0 0.99))

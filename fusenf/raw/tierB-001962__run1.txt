@@ -1,0 +1,7 @@
+(: book_type (Member sk_book_1 book) (STV 1.0 0.99))
+(: write_type (Member sk_write_1 write) (STV 1.0 0.99))
+(: write_patient (Patient sk_write_1 sk_book_1) (STV 1.0 0.99))
+(: write_agent (Agent sk_write_1 sk_person_1) (STV 1.0 0.99))
+(: person_type (Member sk_person_1 person) (STV 1.0 0.99))
+(: person_famous (Member sk_person_1 famous) (STV 1.0 0.99))
+(: write_past (Past sk_write_1) (STV 1.0 0.99))

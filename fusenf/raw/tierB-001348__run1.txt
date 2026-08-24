@@ -1,0 +1,6 @@
+(: town_type (Member sk_town_1 town) (STV 1.0 0.99))
+(: cem_g (GroupOf sk_group_1 cemetery) (STV 1.0 0.99))
+(: cem_card (Cardinality sk_group_1 3) (STV 1.0 0.99))
+(: e_have (Member sk_have_1 have) (STV 1.0 0.99))
+(: e_have_hold (Holder sk_have_1 sk_town_1) (STV 1.0 0.99))
+(: e_have_th (Theme sk_have_1 sk_group_1) (STV 1.0 0.99))

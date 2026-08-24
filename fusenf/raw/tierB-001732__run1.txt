@@ -1,0 +1,2 @@
+(: ink_genus (Inheritance india_ink ink) (STV 1.0 0.99))
+(: ink_rule (Implication (And (Member $x india_ink) (Member (sk_use $x) use) (Theme (sk_use $x) $x) (As (sk_use $x) dye)) (And (Member (sk_produce $x) produce) (Agent (sk_produce $x) $x) (Patient (sk_produce $x) (sk_pattern $x)) (Member (sk_pattern $x) pattern) (Member (sk_pattern $x) interesting))) (STV 0.9 0.9))

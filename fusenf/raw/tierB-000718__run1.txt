@@ -1,0 +1,4 @@
+(: nat_grp (GroupOf sk_group_1 native) (STV 1.0 0.99))
+(: nat_hosp (Member sk_group_1 hospitable) (STV 1.0 0.99))
+(: nat_deg (Degree sk_group_1 hospitable very) (STV 1.0 0.99))
+(: nat_dist_rule (Implication (PartOf $x sk_group_1) (And (Member $x hospitable) (Degree $x hospitable very))) (STV 1.0 0.9))

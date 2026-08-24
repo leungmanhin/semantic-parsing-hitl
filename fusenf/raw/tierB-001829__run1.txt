@@ -1,0 +1,3 @@
+(: thing_type (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: nobody_rule (Implication (Member $x person) (And (Member (sk_make $x) make) (Agent (sk_make $x) $x) (Theme (sk_make $x) (sk_work $x)) (Member (sk_work $x) work) (Agent (sk_work $x) sk_thing_1) (Past (sk_make $x)) (Can (sk_make $x)))) (STV 0.0 0.9))
+(: nobody_q (QuantifierPhrase person make "nobody") (STV 1.0 0.99))

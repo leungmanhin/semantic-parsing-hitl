@@ -1,0 +1,3 @@
+(: trc_genus (Inheritance tv_remote_controller controller) (STV 1.0 0.99))
+(: trc_remote (Inheritance tv_remote_controller remote) (STV 1.0 0.99))
+(: trc_find_rule (Implication (Member $x tv_remote_controller) (And (Member (sk_find $x) find) (Theme (sk_find $x) $x) (Can (sk_find $x)))) (STV 0.1 0.9))

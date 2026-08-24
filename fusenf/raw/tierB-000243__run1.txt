@@ -1,0 +1,5 @@
+(: mass_m (Member sk_mass_1 mass) (STV 1.0 0.99))
+(: mass_g (GroupOf sk_mass_1 man) (STV 1.0 0.99))
+(: qd_genus (Inheritance quiet_desperation desperation) (STV 1.0 0.99))
+(: qd_mod (Inheritance quiet_desperation quiet) (STV 1.0 0.99))
+(: mass_lead (Implication (PartOf $x sk_mass_1) (And (Member (sk_lead $x) lead) (Agent (sk_lead $x) $x) (Theme (sk_lead $x) (sk_life $x)) (Member (sk_life $x) life) (Member (sk_life $x) quiet_desperation))) (STV 1.0 0.9))

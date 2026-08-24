@@ -1,0 +1,7 @@
+(: friends_grp (GroupOf sk_group_1 friend) (STV 1.0 0.99))
+(: talk_ev (Member sk_talk_1 talk) (STV 1.0 0.99))
+(: talk_ag (Agent sk_talk_1 sk_group_1) (STV 1.0 0.99))
+(: talk_about (About sk_talk_1 partnership_problem) (STV 1.0 0.99))
+(: talk_tense (Past sk_talk_1) (STV 1.0 0.99))
+(: pp_genus (Inheritance partnership_problem problem) (STV 1.0 0.99))
+(: friends_talk_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_talk $x) talk) (Agent (sk_talk $x) $x) (About (sk_talk $x) partnership_problem) (Past (sk_talk $x)))) (STV 1.0 0.9))

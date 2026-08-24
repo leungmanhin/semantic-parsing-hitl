@@ -1,0 +1,6 @@
+(: sturgeon_live (Inheritance sturgeon (can live)) (STV 0.9 0.9))
+(: sturgeon_lifespan (MeasureAtLeast sturgeon duration 100 year) (STV 0.9 0.9))
+(: sturgeon_reach (Inheritance sturgeon (can reach_gigantic_size)) (STV 0.9 0.9))
+(: rgs_genus (Inheritance reach_gigantic_size reach) (STV 1.0 0.99))
+(: rgs_obj (Patient reach_gigantic_size size) (STV 1.0 0.99))
+(: rgs_mod (Inheritance reach_gigantic_size gigantic) (STV 1.0 0.99))

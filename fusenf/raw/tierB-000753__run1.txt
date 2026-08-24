@@ -1,0 +1,2 @@
+(: remsleep_genus (Inheritance rem_sleep sleep) (STV 1.0 0.99))
+(: cats_twitch_rem (Implication (Member $x cat) (And (Member (sk_twitch $x) twitch) (Agent (sk_twitch $x) $x) (Member (sk_rem_sleep $x) rem_sleep) (During (sk_twitch $x) (sk_rem_sleep $x)))) (STV 0.9 0.9))

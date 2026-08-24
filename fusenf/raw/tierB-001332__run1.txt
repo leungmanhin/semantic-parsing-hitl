@@ -1,0 +1,8 @@
+(: hall_type (Member sk_hall_1 concert_hall) (STV 1.0 0.99))
+(: hall_genus (Inheritance concert_hall hall) (STV 1.0 0.99))
+(: alive_ev (Member sk_alive_1 alive) (STV 1.0 0.99))
+(: alive_exp (Experiencer sk_alive_1 sk_hall_1) (STV 1.0 0.99))
+(: fans_grp (GroupOf sk_group_1 fan) (STV 1.0 0.99))
+(: alive_coag (CoAgent sk_alive_1 sk_group_1) (STV 1.0 0.99))
+(: alive_past (Past sk_alive_1) (STV 1.0 0.99))
+(: alive_flat (Past (Member sk_hall_1 alive)) (STV 1.0 0.99))

@@ -1,0 +1,6 @@
+(: drama_genus (Inheritance greek_drama drama) (STV 1.0 0.99))
+(: drama_greek (Inheritance greek_drama greek) (STV 1.0 0.99))
+(: purpose_type (Member sk_purpose_1 purpose) (STV 1.0 0.99))
+(: purpose_poss (Possession sk_purpose_1 greek_drama) (STV 1.0 0.99))
+(: purpose_past (Past sk_purpose_1) (STV 1.0 0.99))
+(: purpose_content (Theme sk_purpose_1 (And (Member sk_create_1 create) (Patient sk_create_1 sk_feeling_1) (Member sk_feeling_1 feeling) (Member sk_feeling_1 cathartic) (Location sk_create_1 audience))) (STV 1.0 0.99))

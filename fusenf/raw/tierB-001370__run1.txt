@@ -1,0 +1,5 @@
+(: latin_name (Name latin "Latin") (STV 1.0 0.99))
+(: dl_genus (Inheritance dead_language language) (STV 1.0 0.99))
+(: dl_mod (Inheritance dead_language dead) (STV 1.0 0.99))
+(: many_consider (Implication (Member $x person) (And (Member (sk_consider $x) consider) (Experiencer (sk_consider $x) $x) (Theme (sk_consider $x) (Member latin dead_language)))) (STV 0.7 0.9))
+(: many_consider_q (QuantifierPhrase person consider "many") (STV 1.0 0.99))

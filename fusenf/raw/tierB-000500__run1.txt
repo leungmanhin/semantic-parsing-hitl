@@ -1,0 +1,8 @@
+(: boy_type (Member sk_boy_1 boy) (STV 1.0 0.99))
+(: e_comein (Member sk_come_in_1 come_in) (STV 1.0 0.99))
+(: e_agent (Agent sk_come_in_1 sk_boy_1) (STV 1.0 0.99))
+(: e_past (Past sk_come_in_1) (STV 1.0 0.99))
+(: door_type (Member sk_door_1 back_door) (STV 1.0 0.99))
+(: door_genus (Inheritance back_door door) (STV 1.0 0.99))
+(: door_mod (Inheritance back_door back) (STV 1.0 0.99))
+(: e_through (Through sk_come_in_1 sk_door_1) (STV 1.0 0.99))

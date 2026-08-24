@@ -1,0 +1,7 @@
+(: grp_type (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: grp_negexp (And (Member sk_experience_1 experience) (Agent sk_experience_1 sk_group_1) (Theme sk_experience_1 violence) (Past sk_experience_1)) (STV 0.0 0.99))
+(: grp_like (Member sk_like_1 like) (STV 1.0 0.99))
+(: grp_like_exp (Experiencer sk_like_1 sk_group_1) (STV 1.0 0.99))
+(: grp_like_stim (Stimulus sk_like_1 violence) (STV 1.0 0.99))
+(: grp_like_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_like $x) like) (Experiencer (sk_like $x) $x) (Stimulus (sk_like $x) violence))) (STV 1.0 0.9))
+(: grp_only (Only sk_group_1 sk_like_1) (STV 1.0 0.99))

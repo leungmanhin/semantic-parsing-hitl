@@ -1,0 +1,6 @@
+(: prt_genus (Inheritance polish_russian_treaty treaty) (STV 1.0 0.99))
+(: prt_polish (Inheritance polish_russian_treaty polish) (STV 1.0 0.99))
+(: prt_russian (Inheritance polish_russian_treaty russian) (STV 1.0 0.99))
+(: kiev_name (Name kiev "Kiev") (STV 1.0 0.99))
+(: none_ratified (Implication (And (Member $x polish_russian_treaty) (Member (sk_concern $x) concern) (Agent (sk_concern $x) $x) (Theme (sk_concern $x) kiev)) (And (Member (sk_ratify $x) ratify) (Patient (sk_ratify $x) $x) (Past (sk_ratify $x)))) (STV 0.0 0.9))
+(: treaty_q (QuantifierPhrase polish_russian_treaty ratify "none") (STV 1.0 0.99))

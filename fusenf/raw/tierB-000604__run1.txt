@@ -1,0 +1,5 @@
+(: tb604_kitchen_type (Member sk_kitchen_1 kitchen) (STV 1.0 0.99))
+(: tb604_kitchen_place (Member sk_kitchen_1 place) (STV 1.0 0.99))
+(: tb604_kitchen_not_suitable (And (Member sk_kitchen_1 suitable) (For sk_kitchen_1 argument)) (STV 0.0 0.99))
+(: tb604_knife_group (GroupOf sk_knife_1 knife) (STV 1.0 0.99))
+(: tb604_knife_excessive (Degree sk_knife_1 quantity excessive) (STV 1.0 0.99))

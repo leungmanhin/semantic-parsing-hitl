@@ -1,0 +1,5 @@
+(: jack_type (Member jack person) (STV 1.0 0.99))
+(: jack_name (Name jack "Jack") (STV 1.0 0.99))
+(: ft_genus (Inheritance fairy_tale tale) (STV 1.0 0.99))
+(: ft_q (QuantifierPhrase fairy_tale about "all") (STV 1.0 0.99))
+(: fairy_tale_rule (Implication (And (Member $t fairy_tale) (About $t jack)) (About $t jack)) (STV 1.0 0.9))

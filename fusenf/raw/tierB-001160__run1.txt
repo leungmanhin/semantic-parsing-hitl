@@ -1,0 +1,4 @@
+(: people_grp (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: think_ev (Member sk_think_1 think) (STV 1.0 0.99))
+(: think_exp (Experiencer sk_think_1 sk_group_1) (STV 1.0 0.99))
+(: think_theme (Theme sk_think_1 (And (Member sk_talk_back_1 talk_back) (Recipient sk_talk_back_1 sk_adult_1) (Member sk_adult_1 adult) (Member sk_talk_back_1 rude))) (STV 1.0 0.99))

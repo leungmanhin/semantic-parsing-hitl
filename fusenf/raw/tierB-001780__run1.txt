@@ -1,0 +1,3 @@
+(: peng_group (GroupOf sk_group_1 penguin) (STV 1.0 0.99))
+(: swim_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_swim $x) swim) (Agent (sk_swim $x) $x) (Location (sk_swim $x) lava))) (STV 1.0 0.9))
+(: thanks_to (ThanksTo sk_group_1 genetic_engineering) (STV 1.0 0.99))

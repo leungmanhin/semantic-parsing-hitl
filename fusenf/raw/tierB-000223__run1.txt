@@ -1,0 +1,6 @@
+(: univ_type (Member sk_university_1 university) (STV 1.0 0.99))
+(: cp_genus (Inheritance career_possibility possibility) (STV 1.0 0.99))
+(: cp_group (GroupOf sk_group_1 career_possibility) (STV 1.0 0.99))
+(: cp_card (CardinalityPhrase sk_group_1 "few") (STV 1.0 0.99))
+(: cp_loc (LocatedIn sk_group_1 sk_university_1) (STV 1.0 0.99))
+(: cp_aside (AsideFrom sk_group_1 professor) (STV 1.0 0.99))

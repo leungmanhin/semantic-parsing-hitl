@@ -1,0 +1,6 @@
+(: prob_grp (GroupOf sk_group_1 problem) (STV 1.0 0.99))
+(: e_deal (Member sk_deal_with_1 deal_with) (STV 1.0 0.99))
+(: e_theme (Theme sk_deal_with_1 sk_group_1) (STV 1.0 0.99))
+(: e_obl (Obligated sk_deal_with_1) (STV 1.0 0.99))
+(: e_manner (Manner sk_deal_with_1 carefully) (STV 1.0 0.99))
+(: prob_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_deal_with $x) deal_with) (Theme (sk_deal_with $x) $x) (Obligated (sk_deal_with $x)) (Manner (sk_deal_with $x) carefully))) (STV 1.0 0.9))

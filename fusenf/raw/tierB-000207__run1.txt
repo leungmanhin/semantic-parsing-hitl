@@ -1,0 +1,5 @@
+(: cities_grp (GroupOf sk_group_1 city) (STV 1.0 0.99))
+(: cities_card (CardinalityPhrase sk_group_1 "a lot of") (STV 1.0 0.99))
+(: country_ty (Member sk_country_1 country) (STV 1.0 0.99))
+(: cities_imp_rule (Implication (PartOf $x sk_group_1) (Member $x important)) (STV 1.0 0.9))
+(: cities_loc_rule (Implication (PartOf $x sk_group_1) (LocatedIn $x sk_country_1)) (STV 1.0 0.9))

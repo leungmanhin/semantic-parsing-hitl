@@ -1,0 +1,8 @@
+(: flowers_grp (GroupOf sk_group_1 flower) (STV 1.0 0.99))
+(: giveoff_mem (Member sk_give_off_1 give_off) (STV 1.0 0.99))
+(: giveoff_agent (Agent sk_give_off_1 sk_group_1) (STV 1.0 0.99))
+(: giveoff_patient (Patient sk_give_off_1 sk_perfume_1) (STV 1.0 0.99))
+(: perfume_mem (Member sk_perfume_1 perfume) (STV 1.0 0.99))
+(: perfume_pleasant (Member sk_perfume_1 pleasant) (STV 1.0 0.99))
+(: perfume_degree (Degree sk_perfume_1 pleasant very) (STV 1.0 0.99))
+(: flowers_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_give_off $x) give_off) (Agent (sk_give_off $x) $x) (Patient (sk_give_off $x) sk_perfume_1))) (STV 1.0 0.9))

@@ -1,0 +1,8 @@
+(: inmate_typ (Member sk_inmate_1 inmate) (STV 1.0 0.99))
+(: dotime_ev (Member sk_do_time_1 do_time) (STV 1.0 0.99))
+(: dotime_ag (Agent sk_do_time_1 sk_inmate_1) (STV 1.0 0.99))
+(: dotime_past (Past sk_do_time_1) (STV 1.0 0.99))
+(: dotime_ong (Ongoing sk_do_time_1) (STV 1.0 0.99))
+(: conv_typ (Member sk_conviction_1 burglary_conviction) (STV 1.0 0.99))
+(: conv_gen (Inheritance burglary_conviction conviction) (STV 1.0 0.99))
+(: dotime_for (For sk_do_time_1 sk_conviction_1) (STV 1.0 0.99))

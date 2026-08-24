@@ -1,0 +1,2 @@
+(: worm_buy_rule (Implication (Member $x worm) (And (Member (sk_buy $x) buy) (Theme (sk_buy $x) $x) (For (sk_buy $x) medical_research) (Even worm (sk_buy $x)))) (STV 0.2 0.9))
+(: medres_genus (Inheritance medical_research research) (STV 1.0 0.99))

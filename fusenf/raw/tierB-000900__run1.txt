@@ -1,0 +1,6 @@
+(: train_ty (Member sk_train_1 train) (STV 1.0 0.99))
+(: due_ev (Member sk_due_1 due) (STV 1.0 0.99))
+(: due_exp (Experiencer sk_due_1 sk_train_1) (STV 1.0 0.99))
+(: due_time (Time sk_due_1 (Hour 6)) (STV 1.0 0.99))
+(: due_past (Past sk_due_1) (STV 1.0 0.99))
+(: due_flat (Past (Member sk_train_1 due)) (STV 1.0 0.99))

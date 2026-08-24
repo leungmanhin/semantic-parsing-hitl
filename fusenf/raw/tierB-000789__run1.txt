@@ -1,0 +1,3 @@
+(: rv_genus (Inheritance random_variable variable) (STV 1.0 0.99))
+(: rv_mod (Inheritance random_variable random) (STV 1.0 0.99))
+(: rv_const_rule (Implication (And (Member $x random_variable) (Member (sk_variance $x) variance) (Possession (sk_variance $x) $x) (Member (sk_variance $x) zero)) (Member $x constant)) (STV 1.0 0.99))

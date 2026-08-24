@@ -1,0 +1,7 @@
+(: children_grp (GroupOf sk_children_1 child) (STV 1.0 0.99))
+(: e_sleep (Member sk_sleep_1 sleep) (STV 1.0 0.99))
+(: e_sleep_exp (Experiencer sk_sleep_1 sk_children_1) (STV 1.0 0.99))
+(: e_sleep_ongoing (Ongoing sk_sleep_1) (STV 1.0 0.99))
+(: e_sleep_already (Already sk_sleep_1) (STV 1.0 0.99))
+(: e_sleep_probably (Probably sk_sleep_1) (STV 1.0 0.9))
+(: children_sleep_rule (Implication (PartOf $x sk_children_1) (And (Member (sk_sleep $x) sleep) (Experiencer (sk_sleep $x) $x) (Ongoing (sk_sleep $x)) (Already (sk_sleep $x)) (Probably (sk_sleep $x)))) (STV 1.0 0.9))

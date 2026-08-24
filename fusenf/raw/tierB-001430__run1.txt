@@ -1,0 +1,7 @@
+(: bus1_type (Member sk_bus_1 bus) (STV 1.0 0.99))
+(: drive1_ev (Member sk_drive_1 drive) (STV 1.0 0.99))
+(: drive1_agent (Agent sk_drive_1 sk_bus_1) (STV 1.0 0.99))
+(: bus2_type (Member sk_bus_2 bus) (STV 1.0 0.99))
+(: drive2_ev (Member sk_drive_2 drive) (STV 1.0 0.99))
+(: drive2_agent (Agent sk_drive_2 sk_bus_2) (STV 1.0 0.99))
+(: drive_cmp (More slow sk_drive_1 sk_drive_2) (STV 1.0 0.99))

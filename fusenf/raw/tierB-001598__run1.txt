@@ -1,0 +1,4 @@
+(: cp_genus (Inheritance chili_powder powder) (STV 1.0 0.99))
+(: cooking_genus (Inheritance indian_cooking cooking) (STV 1.0 0.99))
+(: cooking_indian (Inheritance indian_cooking indian) (STV 1.0 0.99))
+(: cp_use_rule (Implication (Member $x chili_powder) (And (Member (sk_use $x) use) (Theme (sk_use $x) $x) (In (sk_use $x) indian_cooking))) (STV 0.8 0.9))

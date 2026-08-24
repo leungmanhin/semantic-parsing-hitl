@@ -1,0 +1,7 @@
+(: things_grp (GroupOf sk_things_1 thing) (STV 1.0 0.99))
+(: things_card (CardinalityPhrase sk_things_1 "a lot of") (STV 1.0 0.99))
+(: bible_name (Name bible "Bible") (STV 1.0 0.99))
+(: mention_ev (Member sk_mention_1 mention) (STV 1.0 0.99))
+(: mention_theme (Theme sk_mention_1 sk_things_1) (STV 1.0 0.99))
+(: mention_loc (Location sk_mention_1 bible) (STV 1.0 0.99))
+(: muslims_do_rule (Implication (Member $x muslim) (And (Member (sk_do $x) do) (Agent (sk_do $x) $x) (Theme (sk_do $x) sk_things_1) (Ongoing (sk_do $x)))) (STV 0.9 0.9))

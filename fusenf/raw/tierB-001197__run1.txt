@@ -1,0 +1,7 @@
+(: lions_group (GroupOf sk_group_1 lion) (STV 1.0 0.99))
+(: gazelle_type (Member sk_gazelle_1 gazelle) (STV 1.0 0.99))
+(: kill_ev (Member sk_kill_1 kill) (STV 1.0 0.99))
+(: kill_agent (Agent sk_kill_1 sk_group_1) (STV 1.0 0.99))
+(: kill_patient (Patient sk_kill_1 sk_gazelle_1) (STV 1.0 0.99))
+(: kill_past (Past sk_kill_1) (STV 1.0 0.99))
+(: lions_kill_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_kill $x) kill) (Agent (sk_kill $x) $x) (Patient (sk_kill $x) sk_gazelle_1) (Past (sk_kill $x)))) (STV 1.0 0.9))

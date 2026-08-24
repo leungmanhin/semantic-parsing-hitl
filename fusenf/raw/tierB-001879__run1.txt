@@ -1,0 +1,7 @@
+(: carlos_name (Name carlos "Carlos") (STV 1.0 0.99))
+(: e_study (Member sk_study_1 study) (STV 1.0 0.99))
+(: e_agent (Agent sk_study_1 carlos) (STV 1.0 0.99))
+(: exam_type (Member sk_exam_1 exam) (STV 1.0 0.99))
+(: e_for (For sk_study_1 sk_exam_1) (STV 1.0 0.99))
+(: e_ongoing (Ongoing sk_study_1) (STV 1.0 0.99))
+(: e_duration (MeasureAtLeast sk_study_1 duration 2 week) (STV 1.0 0.99))

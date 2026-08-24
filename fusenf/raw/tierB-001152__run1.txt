@@ -1,0 +1,7 @@
+(: e_show (Member sk_show_up_1 show_up) (STV 1.0 0.99))
+(: party_type (Member sk_party_1 party) (STV 1.0 0.99))
+(: e_goal (Goal sk_show_up_1 sk_party_1) (STV 1.0 0.99))
+(: inv_type (Member sk_invitation_1 invitation) (STV 1.0 0.99))
+(: e_without (Without sk_show_up_1 sk_invitation_1) (STV 1.0 0.99))
+(: e_rebel (Past (Member sk_show_up_1 rebellious)) (STV 1.0 0.99))
+(: e_degree (Past (Degree sk_show_up_1 rebellious quite)) (STV 1.0 0.99))

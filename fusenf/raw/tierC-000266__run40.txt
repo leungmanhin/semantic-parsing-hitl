@@ -1,0 +1,8 @@
+(: rocks_grp (GroupOf sk_group_1 rock) (STV 1.0 0.99))
+(: purple_rule (Implication (PartOf $x sk_group_1) (Member $x purple)) (STV 1.0 0.9))
+(: dense_rule (Implication (PartOf $x sk_group_1) (Member $x dense)) (STV 1.0 0.9))
+(: black_rule (Implication (PartOf $x sk_group_1) (Member $x black)) (STV 1.0 0.9))
+(: hard_rule (Implication (PartOf $x sk_group_1) (Member $x hard)) (STV 1.0 0.9))
+(: pyrite_type (Member sk_pyrite_1 pyrite) (STV 1.0 0.99))
+(: pyrite_part (PartOf sk_pyrite_1 sk_group_1) (STV 1.0 0.99))
+(: pyrite_degree (Degree sk_pyrite_1 quantity considerable) (STV 1.0 0.99))

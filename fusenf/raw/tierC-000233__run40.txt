@@ -1,0 +1,6 @@
+(: tc233_world_type (Member sk_world_1 mental_world) (STV 1.0 0.99))
+(: tc233_world_genus (Inheritance mental_world world) (STV 1.0 0.99))
+(: tc233_world_mod (Inheritance mental_world mental) (STV 1.0 0.99))
+(: tc233_consider1 (Member sk_consider_1 consider) (STV 0.9 0.9))
+(: tc233_th1 (Theme sk_consider_1 (Member sk_world_1 subjective)) (STV 0.9 0.9))
+(: tc233_consider2_neg (And (Member sk_consider_2 consider) (Theme sk_consider_2 (Member sk_world_1 objective))) (STV 0.0 0.9))

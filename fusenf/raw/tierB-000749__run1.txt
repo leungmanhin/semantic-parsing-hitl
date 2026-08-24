@@ -1,0 +1,6 @@
+(: teacher_type (Member sk_teacher_1 teacher) (STV 1.0 0.99))
+(: phrase_group (GroupOf sk_phrase_1 phrase) (STV 1.0 0.99))
+(: phrase_useful_rule (Implication (PartOf $x sk_phrase_1) (Member $x useful)) (STV 1.0 0.9))
+(: e_teach (Member sk_teach_1 teach) (STV 1.0 0.99))
+(: e_teach_agent (Agent sk_teach_1 sk_teacher_1) (STV 1.0 0.99))
+(: e_teach_theme (Theme sk_teach_1 sk_phrase_1) (STV 1.0 0.99))

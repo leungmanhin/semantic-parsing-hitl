@@ -1,0 +1,5 @@
+(: clean_dir (Directive (And (Member sk_clean_1 clean) (Patient sk_clean_1 sk_exterior_1) (Manner sk_clean_1 regularly))) (STV 1.0 0.99))
+(: maintain_dir (Directive (And (Member sk_maintain_1 maintain) (Patient sk_maintain_1 sk_exterior_1) (Manner sk_maintain_1 regularly))) (STV 1.0 0.99))
+(: exterior_ty (Member sk_exterior_1 exterior) (STV 1.0 0.99))
+(: cabinet_grp (GroupOf sk_cabinet_1 cabinet) (STV 1.0 0.99))
+(: exterior_part (PartOf sk_exterior_1 sk_cabinet_1) (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: food_ty (Member sk_food_1 food) (STV 1.0 0.99))
+(: buy1_ev (Member sk_buy_1 buy) (STV 1.0 0.99))
+(: buy1_th (Theme sk_buy_1 sk_food_1) (STV 1.0 0.99))
+(: buy1_tns (Past sk_buy_1) (STV 1.0 0.99))
+(: drink_grp (GroupOf sk_drink_1 drink) (STV 1.0 0.99))
+(: buy2_neg (And (Member sk_buy_2 buy) (Theme sk_buy_2 sk_drink_1) (Past sk_buy_2)) (STV 0.0 0.99))
+(: buy2_rule (Implication (PartOf $x sk_drink_1) (And (Member (sk_buy $x) buy) (Theme (sk_buy $x) $x) (Past (sk_buy $x)))) (STV 0.0 0.9))

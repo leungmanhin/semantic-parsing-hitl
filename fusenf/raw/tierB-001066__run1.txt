@@ -1,0 +1,5 @@
+(: assoc_grp (GroupOf sk_assoc_1 student_association) (STV 1.0 0.99))
+(: assoc_gen (Inheritance student_association association) (STV 1.0 0.99))
+(: assoc_loc (LocatedIn sk_assoc_1 campus) (STV 1.0 0.99))
+(: students_grp (GroupOf sk_students_1 student) (STV 1.0 0.99))
+(: members_elected_rule (Implication (PartOf $x sk_assoc_1) (And (Member (sk_elect $x) elect) (Agent (sk_elect $x) sk_students_1) (Theme (sk_elect $x) $x))) (STV 1.0 0.9))

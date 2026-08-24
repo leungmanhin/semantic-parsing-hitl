@@ -1,0 +1,8 @@
+(: b2_cause (Member sk_cause_1 cause) (STV 1.0 0.99))
+(: b2_attr (Member sk_attribute_1 attribute) (STV 1.0 0.99))
+(: b2_theme (Theme sk_attribute_1 sk_cause_1) (STV 1.0 0.99))
+(: b2_errgrp (GroupOf sk_errors_1 pilot_error) (STV 1.0 0.99))
+(: b2_errcard (CardinalityPhrase sk_errors_1 "several") (STV 1.0 0.99))
+(: b2_genus (Inheritance pilot_error error) (STV 1.0 0.99))
+(: b2_goal (Goal sk_attribute_1 sk_errors_1) (STV 1.0 0.99))
+(: b2_tns (Past sk_attribute_1) (STV 1.0 0.99))

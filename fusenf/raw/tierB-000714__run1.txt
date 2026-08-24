@@ -1,0 +1,4 @@
+(: plant_type (Member sk_plant_1 plant) (STV 1.0 0.99))
+(: roots_group (GroupOf sk_group_1 root) (STV 1.0 0.99))
+(: roots_partof (PartOf sk_group_1 sk_plant_1) (STV 1.0 0.99))
+(: roots_greedy_rule (Implication (PartOf $x sk_group_1) (And (Member $x greedy) (For $x water))) (STV 1.0 0.9))

@@ -1,0 +1,4 @@
+(: people_grp (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: people_qty (CardinalityPhrase sk_group_1 "many") (STV 1.0 0.99))
+(: funeral_type (Member sk_funeral_1 funeral) (STV 1.0 0.99))
+(: people_at_funeral (Past (LocatedIn sk_group_1 sk_funeral_1)) (STV 1.0 0.99))

@@ -1,0 +1,5 @@
+(: roses_grp (GroupOf sk_group_1 rose) (STV 1.0 0.99))
+(: bloom_ev (Member sk_bloom_1 bloom) (STV 1.0 0.99))
+(: bloom_pat (Patient sk_bloom_1 sk_group_1) (STV 1.0 0.99))
+(: bloom_time (Time sk_bloom_1 spring) (STV 1.0 0.99))
+(: roses_bloom_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_bloom $x) bloom) (Patient (sk_bloom $x) $x) (Time (sk_bloom $x) spring))) (STV 1.0 0.9))

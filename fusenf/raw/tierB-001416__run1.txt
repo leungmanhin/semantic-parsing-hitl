@@ -1,0 +1,7 @@
+(: man_type (Member sk_man_1 man) (STV 1.0 0.99))
+(: desc_type (Member sk_description_1 description) (STV 1.0 0.99))
+(: news_type (Member sk_newspaper_1 newspaper) (STV 1.0 0.99))
+(: desc_loc (LocatedIn sk_description_1 sk_newspaper_1) (STV 1.0 0.99))
+(: ans_ev (Member sk_answer_to_1 answer_to) (STV 1.0 0.99))
+(: ans_ag (Agent sk_answer_to_1 sk_man_1) (STV 1.0 0.99))
+(: ans_th (Theme sk_answer_to_1 sk_description_1) (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: windows_grp (GroupOf sk_windows_1 window) (STV 1.0 0.99))
+(: sub_grp (GroupOf sk_group_1 window) (STV 1.0 0.99))
+(: sub_of (SubsetOf sk_group_1 sk_windows_1) (STV 1.0 0.99))
+(: sub_card (Cardinality sk_group_1 1) (STV 1.0 0.99))
+(: break_ev (Member sk_break_1 break) (STV 1.0 0.99))
+(: break_pat (Patient sk_break_1 sk_group_1) (STV 1.0 0.99))
+(: break_tense (Past sk_break_1) (STV 1.0 0.99))

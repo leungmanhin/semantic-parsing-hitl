@@ -1,0 +1,3 @@
+(: kidnap_grp (GroupOf sk_group_1 kidnapper) (STV 1.0 0.99))
+(: kidnap_armed (Implication (PartOf $x sk_group_1) (Might (Member $x armed))) (STV 1.0 0.9))
+(: kidnap_dangerous (Implication (PartOf $x sk_group_1) (Might (Member $x dangerous))) (STV 1.0 0.9))

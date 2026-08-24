@@ -1,0 +1,3 @@
+(: apple_type (Member sk_apple_1 apple) (STV 1.0 0.99))
+(: tree_type (Member sk_tree_1 tree) (STV 1.0 0.99))
+(: apple_fall_far_denial (And (Member sk_fall_1 fall) (Patient sk_fall_1 sk_apple_1) (Source sk_fall_1 sk_tree_1) (Manner sk_fall_1 far)) (STV 0.0 0.99))

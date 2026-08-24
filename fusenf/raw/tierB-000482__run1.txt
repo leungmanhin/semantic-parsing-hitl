@@ -1,0 +1,8 @@
+(: gum_type (Member sk_gum_1 chewing_gum) (STV 1.0 0.99))
+(: gum_genus (Inheritance chewing_gum gum) (STV 1.0 0.99))
+(: sole_type (Member sk_sole_1 show_sole) (STV 1.0 0.99))
+(: sole_genus (Inheritance show_sole sole) (STV 1.0 0.99))
+(: e_stick (Member sk_stick_1 stick) (STV 1.0 0.99))
+(: e_patient (Patient sk_stick_1 sk_gum_1) (STV 1.0 0.99))
+(: e_goal (Goal sk_stick_1 sk_sole_1) (STV 1.0 0.99))
+(: e_past (Past sk_stick_1) (STV 1.0 0.99))

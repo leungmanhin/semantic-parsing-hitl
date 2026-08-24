@@ -1,0 +1,7 @@
+(: bank_type (Member sk_bank_1 bank) (STV 1.0 0.99))
+(: corner_type (Member sk_corner_1 corner) (STV 1.0 0.99))
+(: bank_around (Around sk_bank_1 sk_corner_1) (STV 1.0 0.99))
+(: rob_ev (Member sk_rob_1 rob) (STV 1.0 0.99))
+(: rob_patient (Patient sk_rob_1 sk_bank_1) (STV 1.0 0.99))
+(: rob_past (Past sk_rob_1) (STV 1.0 0.99))
+(: rob_time (Time sk_rob_1 yesterday) (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: fruits_grp (GroupOf sk_group_1 strawberry_tree_fruit) (STV 1.0 0.99))
+(: fruit_genus (Inheritance strawberry_tree_fruit fruit) (STV 1.0 0.99))
+(: mature_ev (Member sk_mature_1 mature) (STV 1.0 0.99))
+(: mature_pat (Patient sk_mature_1 sk_group_1) (STV 1.0 0.99))
+(: mature_tense (Past sk_mature_1) (STV 1.0 0.99))
+(: mature_manner (Manner sk_mature_1 a_little_bit) (STV 1.0 0.99))
+(: fruits_mature_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_mature $x) mature) (Patient (sk_mature $x) $x) (Past (sk_mature $x)) (Manner (sk_mature $x) a_little_bit))) (STV 1.0 0.9))

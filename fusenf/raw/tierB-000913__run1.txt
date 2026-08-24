@@ -1,0 +1,8 @@
+(: army_type (Member sk_army_1 army) (STV 1.0 0.99))
+(: e_block (Member sk_block_1 block) (STV 1.0 0.99))
+(: e_agent (Agent sk_block_1 sk_army_1) (STV 1.0 0.99))
+(: roads_g (GroupOf sk_roads_1 road) (STV 1.0 0.99))
+(: e_patient (Patient sk_block_1 sk_roads_1) (STV 1.0 0.99))
+(: roads_to (To sk_roads_1 sk_city_1) (STV 1.0 0.99))
+(: city_type (Member sk_city_1 city) (STV 1.0 0.99))
+(: e_past (Past sk_block_1) (STV 1.0 0.99))

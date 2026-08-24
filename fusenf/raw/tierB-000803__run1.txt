@@ -1,0 +1,3 @@
+(: house_type (Member sk_house_1 house) (STV 1.0 0.99))
+(: rule_no_light_on (Implication (And (Member $x light) (LocatedIn $x sk_house_1)) (Past (Member $x on))) (STV 0.0 0.9))
+(: light_q (QuantifierPhrase light on "not a single") (STV 1.0 0.99))

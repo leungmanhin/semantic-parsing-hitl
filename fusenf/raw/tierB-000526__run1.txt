@@ -1,0 +1,2 @@
+(: grace_name (Name grace "Grace") (STV 1.0 0.99))
+(: grace_finds_purposeful (Implication (And (Member $x person) (Member $e walk) (Agent $e $x) (Manner $e purpose)) (And (Member (sk_find $x) find) (Agent (sk_find $x) grace) (Theme (sk_find $x) $x))) (STV 1.0 0.9))

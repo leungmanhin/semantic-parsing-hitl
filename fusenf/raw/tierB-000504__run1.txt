@@ -1,0 +1,8 @@
+(: computer_type (Member sk_computer_1 computer) (STV 1.0 0.99))
+(: kalman_loc (Past (LocatedIn kalman sk_computer_1)) (STV 1.0 0.99))
+(: kalman_name (Name kalman "Kalman") (STV 1.0 0.99))
+(: e_kill (Member sk_kill_1 kill_time) (STV 1.0 0.99))
+(: e_agent (Agent sk_kill_1 kalman) (STV 1.0 0.99))
+(: e_past (Past sk_kill_1) (STV 1.0 0.99))
+(: e_ong (Ongoing sk_kill_1) (STV 1.0 0.99))
+(: e_only (Only kill_time sk_kill_1) (STV 1.0 0.99))

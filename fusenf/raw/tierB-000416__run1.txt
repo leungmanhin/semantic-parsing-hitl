@@ -1,0 +1,7 @@
+(: log_grp (GroupOf sk_group_1 log) (STV 1.0 0.99))
+(: river_ty (Member sk_river_1 river) (STV 1.0 0.99))
+(: e_float (Member sk_float_1 float) (STV 1.0 0.99))
+(: e_theme (Theme sk_float_1 sk_group_1) (STV 1.0 0.99))
+(: e_ong (Ongoing sk_float_1) (STV 1.0 0.99))
+(: e_down (Down sk_float_1 sk_river_1) (STV 1.0 0.99))
+(: logs_float_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_float $x) float) (Theme (sk_float $x) $x) (Ongoing (sk_float $x)) (Down (sk_float $x) sk_river_1))) (STV 1.0 0.9))

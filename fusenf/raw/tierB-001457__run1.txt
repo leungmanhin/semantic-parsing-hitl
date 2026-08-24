@@ -1,0 +1,8 @@
+(: boys_g (GroupOf sk_boys_1 boy) (STV 1.0 0.99))
+(: sm_m (Member sk_snowman_1 snowman) (STV 1.0 0.99))
+(: sm_big (Member sk_snowman_1 big) (STV 1.0 0.99))
+(: e_make (Member sk_make_1 make) (STV 1.0 0.99))
+(: e_make_ag (Agent sk_make_1 sk_boys_1) (STV 1.0 0.99))
+(: e_make_pat (Patient sk_make_1 sk_snowman_1) (STV 1.0 0.99))
+(: e_make_ong (Ongoing sk_make_1) (STV 1.0 0.99))
+(: boys_rule (Implication (PartOf $x sk_boys_1) (And (Member (sk_make $x) make) (Agent (sk_make $x) $x) (Patient (sk_make $x) sk_snowman_1) (Ongoing (sk_make $x)))) (STV 1.0 0.9))

@@ -1,0 +1,8 @@
+(: kids_grp (GroupOf sk_group_1 child) (STV 1.0 0.99))
+(: kids_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: sit_ev (Member sk_sit_1 sit) (STV 1.0 0.99))
+(: sit_exp (Experiencer sk_sit_1 sk_group_1) (STV 1.0 0.99))
+(: sit_loc (Location sk_sit_1 sk_fence_1) (STV 1.0 0.99))
+(: sit_ong (Ongoing sk_sit_1) (STV 1.0 0.99))
+(: fence_type (Member sk_fence_1 fence) (STV 1.0 0.99))
+(: kids_sit_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_sit $x) sit) (Experiencer (sk_sit $x) $x) (Location (sk_sit $x) sk_fence_1) (Ongoing (sk_sit $x)))) (STV 1.0 0.9))

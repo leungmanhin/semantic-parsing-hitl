@@ -1,0 +1,8 @@
+(: e_group (GroupOf sk_group_1 atrocity) (STV 1.0 0.99))
+(: e_qty (CardinalityPhrase sk_group_1 "many") (STV 1.0 0.99))
+(: e_commit (Member sk_commit_1 commit) (STV 1.0 0.99))
+(: e_commit_pt (Patient sk_commit_1 sk_group_1) (STV 1.0 0.99))
+(: e_commit_past (Past sk_commit_1) (STV 1.0 0.99))
+(: e_war (Member sk_war_1 war) (STV 1.0 0.99))
+(: e_during (During sk_commit_1 sk_war_1) (STV 1.0 0.99))
+(: e_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_commit $x) commit) (Patient (sk_commit $x) $x) (Past (sk_commit $x)) (During (sk_commit $x) sk_war_1))) (STV 1.0 0.9))

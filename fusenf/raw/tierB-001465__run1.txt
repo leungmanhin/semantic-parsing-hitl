@@ -1,0 +1,6 @@
+(: e_charges_grp (GroupOf sk_group_1 charge) (STV 1.0 0.99))
+(: e_charges_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: e_drop (Member sk_drop_1 drop) (STV 1.0 0.99))
+(: e_drop_pat (Patient sk_drop_1 sk_group_1) (STV 1.0 0.99))
+(: e_drop_past (Past sk_drop_1) (STV 1.0 0.99))
+(: e_drop_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_drop $x) drop) (Patient (sk_drop $x) $x) (Past (sk_drop $x)))) (STV 1.0 0.9))

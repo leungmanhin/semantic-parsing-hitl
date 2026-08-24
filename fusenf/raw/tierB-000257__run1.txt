@@ -1,0 +1,6 @@
+(: e_sell (Member sk_sell_1 sell) (STV 1.0 0.99))
+(: e_sell_ag (Agent sk_sell_1 mennad) (STV 1.0 0.99))
+(: e_sell_ong (Ongoing sk_sell_1) (STV 1.0 0.99))
+(: e_sell_obl (Obligated sk_sell_1) (STV 0.7 0.99))
+(: e_buy_neg (And (Member sk_buy_1 buy) (Agent sk_buy_1 mennad) (Ongoing sk_buy_1) (Obligated sk_buy_1)) (STV 0.0 0.99))
+(: mennad_name (Name mennad "Mennad") (STV 1.0 0.99))

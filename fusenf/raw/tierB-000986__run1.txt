@@ -1,0 +1,4 @@
+(: nh_genus (Inheritance new_hire hire) (STV 1.0 0.99))
+(: nh_new (Inheritance new_hire new) (STV 1.0 0.99))
+(: co_type (Member sk_company_1 company) (STV 1.0 0.99))
+(: nh_rule (Implication (And (Member $x new_hire) (Member (sk_join $x) join) (Agent (sk_join $x) $x) (Theme (sk_join $x) sk_company_1) (Past (sk_join $x)) (Manner (sk_join $x) just)) (And (Member (sk_do $x) do) (Agent (sk_do $x) $x) (Manner (sk_do $x) timid))) (STV 0.9 0.9))

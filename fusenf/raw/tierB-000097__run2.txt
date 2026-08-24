@@ -1,0 +1,8 @@
+(: police_type (Member sk_police_1 moroccan_police) (STV 1.0 0.99))
+(: police_genus (Inheritance moroccan_police police) (STV 1.0 0.99))
+(: police_nationality (Inheritance moroccan_police moroccan) (STV 1.0 0.99))
+(: protest_group (GroupOf sk_protest_1 protest) (STV 1.0 0.99))
+(: crackdown_class (Member sk_crack_down_on_1 crack_down_on) (STV 1.0 0.99))
+(: crackdown_agent (Agent sk_crack_down_on_1 sk_police_1) (STV 1.0 0.99))
+(: crackdown_patient (Patient sk_crack_down_on_1 sk_protest_1) (STV 1.0 0.99))
+(: crackdown_past (Past sk_crack_down_on_1) (STV 1.0 0.99))

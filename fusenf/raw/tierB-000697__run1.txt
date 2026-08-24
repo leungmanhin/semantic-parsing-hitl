@@ -1,0 +1,6 @@
+(: evils_grp (GroupOf sk_evils_1 evil) (STV 1.0 0.99))
+(: evils_card (Cardinality sk_evils_1 2) (STV 1.0 0.99))
+(: lesser_mem (Member sk_lesser_1 evil) (STV 1.0 0.99))
+(: lesser_part (PartOf sk_lesser_1 sk_evils_1) (STV 1.0 0.99))
+(: lesser_most (Most little sk_lesser_1 sk_evils_1) (STV 1.0 0.99))
+(: choose_dir (Directive (And (Member sk_choose_1 choose) (Theme sk_choose_1 sk_lesser_1))) (STV 1.0 0.99))

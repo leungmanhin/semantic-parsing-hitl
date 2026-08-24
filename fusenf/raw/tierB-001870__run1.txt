@@ -1,0 +1,8 @@
+(: man_type (Member sk_man_1 man) (STV 1.0 0.99))
+(: man_young (Member sk_man_1 young) (STV 1.0 0.99))
+(: e_setup (Member sk_set_up_1 set_up) (STV 1.0 0.99))
+(: e_agent (Agent sk_set_up_1 sk_man_1) (STV 1.0 0.99))
+(: pins_grp (GroupOf sk_pins_1 bowling_pin) (STV 1.0 0.99))
+(: pin_gen (Inheritance bowling_pin pin) (STV 1.0 0.99))
+(: e_patient (Patient sk_set_up_1 sk_pins_1) (STV 1.0 0.99))
+(: e_ong (Ongoing sk_set_up_1) (STV 1.0 0.99))

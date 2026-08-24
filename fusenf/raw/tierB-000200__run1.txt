@@ -1,0 +1,3 @@
+(: bf_genus (Inheritance body_fluid fluid) (STV 1.0 0.99))
+(: ap_genus (Inheritance atmospheric_pressure pressure) (STV 1.0 0.99))
+(: pressure_boil_rule (Implication (And (Member $x body_fluid) (Member sk_pressure_1 atmospheric_pressure) (Degree sk_pressure_1 quantity insufficient)) (And (Member (sk_start $x) start) (Patient (sk_start $x) $x) (Theme (sk_start $x) (sk_boil $x)) (Member (sk_boil $x) boil) (Patient (sk_boil $x) $x) (Ongoing (sk_boil $x)))) (STV 1.0 0.99))

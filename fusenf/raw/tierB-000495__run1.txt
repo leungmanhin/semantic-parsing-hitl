@@ -1,0 +1,6 @@
+(: t495_weather (Member sk_weather_1 weather) (STV 1.0 0.99))
+(: t495_good_state (Member sk_good_1 good) (STV 1.0 0.99))
+(: t495_good_exp (Experiencer sk_good_1 sk_weather_1) (STV 1.0 0.99))
+(: t495_good_time (Time sk_good_1 today) (STV 1.0 0.99))
+(: t495_good_probably (Probably sk_good_1) (STV 1.0 0.9))
+(: t495_flat_probably (Probably (Member sk_weather_1 good)) (STV 1.0 0.9))

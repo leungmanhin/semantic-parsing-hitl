@@ -1,0 +1,7 @@
+(: measures_grp (GroupOf sk_measures_1 measure) (STV 1.0 0.99))
+(: critics_grp (GroupOf sk_critics_1 critic) (STV 1.0 0.99))
+(: critics_of (Of sk_critics_1 sk_measures_1) (STV 1.0 0.99))
+(: vindicate_ev (Member sk_vindicate_1 vindicate) (STV 1.0 0.99))
+(: vindicate_th (Theme sk_vindicate_1 sk_critics_1) (STV 1.0 0.99))
+(: vindicate_tense (Past sk_vindicate_1) (STV 1.0 0.99))
+(: critics_vindicated_rule (Implication (PartOf $x sk_critics_1) (And (Member (sk_vindicate $x) vindicate) (Theme (sk_vindicate $x) $x) (Past (sk_vindicate $x)))) (STV 1.0 0.9))

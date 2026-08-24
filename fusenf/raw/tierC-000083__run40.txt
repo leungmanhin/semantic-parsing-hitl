@@ -1,0 +1,6 @@
+(: it_thing (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: line3_type (Member sk_line_1 line) (STV 1.0 0.99))
+(: line3_ord (Ordinal sk_line_1 3 line) (STV 1.0 0.99))
+(: line4_type (Member sk_line_2 line) (STV 1.0 0.99))
+(: line4_ord (Ordinal sk_line_2 4 line) (STV 1.0 0.99))
+(: miss_quote_rule (Implication (And (Member $x person) (Member (sk_miss $x) miss) (Agent (sk_miss $x) $x) (Theme (sk_miss $x) sk_thing_1)) (And (Member (sk_quote $x) quote) (Agent (sk_quote $x) $x) (Theme (sk_quote $x) sk_line_1) (Theme (sk_quote $x) sk_line_2) (Manner (sk_quote $x) thus) (Manner (sk_quote $x) often) (Manner (sk_quote $x) completely))) (STV 0.9 0.9))

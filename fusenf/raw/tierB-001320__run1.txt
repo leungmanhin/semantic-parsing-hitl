@@ -1,0 +1,5 @@
+(: secret_ty (Member sk_secret_1 secret) (STV 1.0 0.99))
+(: e_remain (Member sk_remain_1 remain) (STV 1.0 0.99))
+(: e_remain_exp (Experiencer sk_remain_1 sk_secret_1) (STV 1.0 0.99))
+(: e_remain_fut (Future sk_remain_1) (STV 1.0 0.99))
+(: e_remain_pred (Future (Member sk_secret_1 secret)) (STV 1.0 0.99))

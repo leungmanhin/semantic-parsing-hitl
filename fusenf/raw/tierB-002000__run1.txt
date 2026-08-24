@@ -1,0 +1,2 @@
+(: flowers_grp (GroupOf sk_group_1 flower) (STV 1.0 0.99))
+(: flowers_have_fragrance (Implication (PartOf $x sk_group_1) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) (sk_fragrance $x)) (Member (sk_fragrance $x) fragrance) (Member (sk_fragrance $x) nice) (Degree (sk_fragrance $x) nice really))) (STV 1.0 0.9))

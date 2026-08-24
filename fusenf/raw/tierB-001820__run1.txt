@@ -1,0 +1,3 @@
+(: thing_type (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: nobody_q (QuantifierPhrase person want "no") (STV 1.0 0.99))
+(: nobody_want_rule (Implication (Member $x person) (And (Member (sk_want $x) want) (Experiencer (sk_want $x) $x) (Theme (sk_want $x) (And (Member (sk_drink $x) drink) (Agent (sk_drink $x) $x) (Patient (sk_drink $x) sk_thing_1))))) (STV 0.0 0.9))

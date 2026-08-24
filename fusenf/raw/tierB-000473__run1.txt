@@ -1,0 +1,4 @@
+(: paul_name (Name paul "Paul") (STV 1.0 0.99))
+(: house_type (Member sk_house_1 house) (STV 1.0 0.99))
+(: paul_not_far (And (Member sk_far_1 far) (Experiencer sk_far_1 paul) (Source sk_far_1 sk_house_1) (Past sk_far_1)) (STV 0.0 0.99))
+(: paul_not_far_flat (Past (Member paul far)) (STV 0.0 0.99))

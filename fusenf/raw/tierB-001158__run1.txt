@@ -1,0 +1,5 @@
+(: alg_live_rule (Implication (Member $x algerian) (And (Member (sk_live $x) live) (Agent (sk_live $x) $x) (Location (sk_live $x) france))) (STV 0.7 0.9))
+(: alg_live_q (QuantifierPhrase algerian live "many") (STV 1.0 0.99))
+(: alg_work_rule (Implication (Member $x algerian) (And (Member (sk_work $x) work) (Agent (sk_work $x) $x) (Location (sk_work $x) france))) (STV 0.7 0.9))
+(: alg_work_q (QuantifierPhrase algerian work "many") (STV 1.0 0.99))
+(: france_nm (Name france "France") (STV 1.0 0.99))

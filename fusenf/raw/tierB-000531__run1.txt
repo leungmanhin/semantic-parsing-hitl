@@ -1,0 +1,3 @@
+(: japan_name (Name japan "Japan") (STV 1.0 0.99))
+(: foreigner_say_rule (Implication (And (Member $f foreigner) (Member $v visit) (Agent $v $f) (Theme $v japan)) (And (Member (sk_say $f) say) (Experiencer (sk_say $f) $f) (Theme (sk_say $f) (And (Inheritance price high) (Degree price high excessive))))) (STV 1.0 0.9))
+(: foreigner_q (QuantifierPhrase foreigner say "every") (STV 1.0 0.99))

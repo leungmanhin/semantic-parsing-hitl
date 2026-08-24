@@ -1,0 +1,8 @@
+(: patient_type (Member sk_patient_1 patient) (STV 1.0 0.99))
+(: hem_type (Member sk_haemorrhage_1 brain_haemorrhage) (STV 1.0 0.99))
+(: hem_genus (Inheritance brain_haemorrhage haemorrhage) (STV 1.0 0.99))
+(: hem_severe (Member sk_haemorrhage_1 severe) (STV 1.0 0.99))
+(: suffer_ev (Member sk_suffer_1 suffer) (STV 1.0 0.99))
+(: suffer_ag (Agent sk_suffer_1 sk_patient_1) (STV 1.0 0.99))
+(: suffer_th (Theme sk_suffer_1 sk_haemorrhage_1) (STV 1.0 0.99))
+(: suffer_tns (Past sk_suffer_1) (STV 1.0 0.99))

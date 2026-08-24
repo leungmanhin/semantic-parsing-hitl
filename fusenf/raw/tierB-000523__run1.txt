@@ -1,0 +1,5 @@
+(: tb523_play (Member sk_play_1 play) (STV 1.0 0.99))
+(: tb523_grp (GroupOf sk_group_1 actor) (STV 1.0 0.99))
+(: tb523_loc (LocatedIn sk_group_1 sk_play_1) (STV 1.0 0.99))
+(: tb523_rule (Implication (PartOf $x sk_group_1) (Past (Member $x excellent))) (STV 1.0 0.9))
+(: tb523_q (QuantifierPhrase actor excellent "all") (STV 1.0 0.99))

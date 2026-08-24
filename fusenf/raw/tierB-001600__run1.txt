@@ -1,0 +1,8 @@
+(: tb1600_police_grp (GroupOf sk_police_1 police) (STV 1.0 0.99))
+(: tb1600_suspect_ty (Member sk_suspect_1 suspect) (STV 1.0 0.99))
+(: tb1600_case_ty (Member sk_case_1 case) (STV 1.0 0.99))
+(: tb1600_arrest_ev (Member sk_arrest_1 arrest) (STV 1.0 0.99))
+(: tb1600_arrest_ag (Agent sk_arrest_1 sk_police_1) (STV 1.0 0.99))
+(: tb1600_arrest_pt (Patient sk_arrest_1 sk_suspect_1) (STV 1.0 0.99))
+(: tb1600_arrest_in (In sk_arrest_1 sk_case_1) (STV 1.0 0.99))
+(: tb1600_arrest_tense (Past sk_arrest_1) (STV 1.0 0.99))

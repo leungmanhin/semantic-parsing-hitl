@@ -1,0 +1,8 @@
+(: peo_g (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: peo_cp (CardinalityPhrase sk_group_1 "a lot of") (STV 1.0 0.99))
+(: mar_type (Member sk_marathon_1 marathon) (STV 1.0 0.99))
+(: tp_ev (Member sk_takepart_1 take_part) (STV 1.0 0.99))
+(: tp_ag (Agent sk_takepart_1 sk_group_1) (STV 1.0 0.99))
+(: tp_in (In sk_takepart_1 sk_marathon_1) (STV 1.0 0.99))
+(: tp_tns (Past sk_takepart_1) (STV 1.0 0.99))
+(: tp_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_take_part $x) take_part) (Agent (sk_take_part $x) $x) (In (sk_take_part $x) sk_marathon_1) (Past (sk_take_part $x)))) (STV 1.0 0.9))

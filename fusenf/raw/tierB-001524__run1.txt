@@ -1,0 +1,3 @@
+(: ap_genus (Inheritance aboriginal_person person) (STV 1.0 0.99))
+(: ap_mod (Inheritance aboriginal_person aboriginal) (STV 1.0 0.99))
+(: fight_rule (Implication (Member $x aboriginal_person) (And (Member (sk_continue $x) continue) (Agent (sk_continue $x) $x) (Theme (sk_continue $x) (sk_fight $x)) (Member (sk_fight $x) fight) (Agent (sk_fight $x) $x) (Ongoing (sk_fight $x)) (For (sk_fight $x) dignity))) (STV 0.9 0.9))

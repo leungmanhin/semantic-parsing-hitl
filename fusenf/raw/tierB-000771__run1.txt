@@ -1,0 +1,6 @@
+(: g_type (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: g_card (CardinalityPhrase sk_group_1 "several") (STV 1.0 0.99))
+(: e_wound (Member sk_wound_1 wound) (STV 1.0 0.99))
+(: e_patient (Patient sk_wound_1 sk_group_1) (STV 1.0 0.99))
+(: e_tense (Past sk_wound_1) (STV 1.0 0.99))
+(: group_wound_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_wound $x) wound) (Patient (sk_wound $x) $x) (Past (sk_wound $x)))) (STV 1.0 0.9))

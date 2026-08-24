@@ -1,0 +1,7 @@
+(: sisters_group (GroupOf sk_group_1 sister) (STV 1.0 0.99))
+(: sisters_card (Cardinality sk_group_1 4) (STV 1.0 0.99))
+(: sisters_wonderful_rule (Implication (PartOf $x sk_group_1) (Member $x wonderful)) (STV 1.0 0.9))
+(: eldest_type (Member sk_sister_1 sister) (STV 1.0 0.99))
+(: eldest_partof (PartOf sk_sister_1 sk_group_1) (STV 1.0 0.99))
+(: eldest_rank (Most old sk_sister_1 sister) (STV 1.0 0.99))
+(: eldest_beautiful (Most beautiful sk_sister_1 sister) (STV 1.0 0.99))

@@ -1,0 +1,6 @@
+(: children_grp (GroupOf sk_group_1 child) (STV 1.0 0.99))
+(: harp_type (Member sk_harp_1 harp) (STV 1.0 0.99))
+(: play_ev (Member sk_play_1 play) (STV 1.0 0.99))
+(: play_ag (Agent sk_play_1 sk_group_1) (STV 1.0 0.99))
+(: play_th (Theme sk_play_1 sk_harp_1) (STV 1.0 0.99))
+(: children_play_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_play $x) play) (Agent (sk_play $x) $x) (Theme (sk_play $x) sk_harp_1))) (STV 1.0 0.9))

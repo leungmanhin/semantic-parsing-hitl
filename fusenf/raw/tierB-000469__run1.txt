@@ -1,0 +1,6 @@
+(: alien_type (Member sk_alien_1 alien) (STV 1.0 0.99))
+(: try_ev (Member sk_try_1 try) (STV 1.0 0.99))
+(: try_agent (Agent sk_try_1 sk_alien_1) (STV 1.0 0.99))
+(: try_past (Past sk_try_1) (STV 1.0 0.99))
+(: try_ongoing (Ongoing sk_try_1) (STV 1.0 0.99))
+(: try_theme (Theme sk_try_1 (And (Member sk_mimic_1 mimic) (Agent sk_mimic_1 sk_alien_1) (Theme sk_mimic_1 sk_human_1) (Member sk_human_1 human))) (STV 1.0 0.99))

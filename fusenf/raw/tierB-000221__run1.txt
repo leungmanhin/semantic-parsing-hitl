@@ -1,0 +1,2 @@
+(: people_go_beach (Implication (Member $x person) (And (Member (sk_go $x) go) (Agent (sk_go $x) $x) (Goal (sk_go $x) sk_beach_1) (Time (sk_go $x) summer))) (STV 0.9 0.9))
+(: beach_ent (Member sk_beach_1 beach) (STV 1.0 0.99))

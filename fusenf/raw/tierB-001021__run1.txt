@@ -1,0 +1,5 @@
+(: e_thing (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: e_dangerous (Member sk_thing_1 dangerous) (STV 1.0 0.99))
+(: e_degree (Degree sk_thing_1 dangerous excessive) (STV 1.0 0.99))
+(: e_child (Member sk_child_1 child) (STV 1.0 0.99))
+(: e_no_play (And (Member sk_play_1 play) (Agent sk_play_1 sk_child_1) (Theme sk_play_1 sk_thing_1) (Permitted sk_play_1)) (STV 0.0 0.99))

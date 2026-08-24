@@ -1,0 +1,6 @@
+(: tr_type (Member sk_translation_1 translation) (STV 1.0 0.99))
+(: lang_type (Member sk_language_1 language) (STV 1.0 0.99))
+(: auth_type (Member sk_authenticity_1 authenticity) (STV 1.0 0.99))
+(: auth_poss (Possession sk_authenticity_1 sk_language_1) (STV 1.0 0.99))
+(: tr_faithful (Obligated (Member sk_translation_1 faithful)) (STV 1.0 0.99))
+(: tr_faithful_to (Obligated (To sk_translation_1 sk_authenticity_1)) (STV 1.0 0.99))

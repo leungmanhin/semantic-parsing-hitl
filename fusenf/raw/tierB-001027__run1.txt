@@ -1,0 +1,7 @@
+(: truck_type (Member sk_truck_1 truck) (STV 1.0 0.99))
+(: crossing_type (Member sk_crossing_1 railway_crossing) (STV 1.0 0.99))
+(: crossing_genus (Inheritance railway_crossing crossing) (STV 1.0 0.99))
+(: e_stick (Member sk_stick_1 stick) (STV 1.0 0.99))
+(: e_patient (Patient sk_stick_1 sk_truck_1) (STV 1.0 0.99))
+(: e_loc (Location sk_stick_1 sk_crossing_1) (STV 1.0 0.99))
+(: e_past (Past sk_stick_1) (STV 1.0 0.99))

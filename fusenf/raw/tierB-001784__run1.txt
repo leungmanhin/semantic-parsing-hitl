@@ -1,0 +1,8 @@
+(: hs_gen (Inheritance hurricane_season season) (STV 1.0 0.99))
+(: worry_type (Member sk_worry_1 worry) (STV 1.0 0.99))
+(: worry_exp (Experiencer sk_worry_1 sk_group_1) (STV 1.0 0.99))
+(: worry_time (Time sk_worry_1 hurricane_season) (STV 1.0 0.99))
+(: grp_of (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: grp_card (CardinalityPhrase sk_group_1 "many") (STV 1.0 0.99))
+(: coast_type (Member sk_coast_1 coast) (STV 1.0 0.99))
+(: live_dist (Implication (PartOf $x sk_group_1) (And (Member (sk_live $x) live) (Experiencer (sk_live $x) $x) (Location (sk_live $x) sk_coast_1))) (STV 1.0 0.9))

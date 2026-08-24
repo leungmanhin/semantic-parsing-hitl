@@ -1,0 +1,7 @@
+(: tb1530_boys_grp (GroupOf sk_group_1 boy) (STV 1.0 0.99))
+(: tb1530_jump_ev (Member sk_jump_1 jump) (STV 1.0 0.99))
+(: tb1530_jump_ag (Agent sk_jump_1 sk_group_1) (STV 1.0 0.99))
+(: tb1530_jump_for (For sk_jump_1 joy) (STV 1.0 0.99))
+(: tb1530_jump_past (Past sk_jump_1) (STV 1.0 0.99))
+(: tb1530_jump_ong (Ongoing sk_jump_1) (STV 1.0 0.99))
+(: tb1530_jump_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_jump $x) jump) (Agent (sk_jump $x) $x) (For (sk_jump $x) joy) (Past (sk_jump $x)) (Ongoing (sk_jump $x)))) (STV 1.0 0.9))

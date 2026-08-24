@@ -1,0 +1,7 @@
+(: tb922_grp (GroupOf sk_group_1 camper) (STV 1.0 0.99))
+(: tb922_fire (Member sk_fire_1 fire) (STV 1.0 0.99))
+(: tb922_ev (Member sk_sit_1 sit) (STV 1.0 0.99))
+(: tb922_exp (Experiencer sk_sit_1 sk_group_1) (STV 1.0 0.99))
+(: tb922_around (Around sk_sit_1 sk_fire_1) (STV 1.0 0.99))
+(: tb922_past (Past sk_sit_1) (STV 1.0 0.99))
+(: tb922_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_sit $x) sit) (Experiencer (sk_sit $x) $x) (Around (sk_sit $x) sk_fire_1) (Past (sk_sit $x)))) (STV 1.0 0.9))

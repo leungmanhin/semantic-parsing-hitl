@@ -1,0 +1,5 @@
+(: right_type (Member sk_right_1 right) (STV 1.0 0.99))
+(: right_assembly (Member sk_right_1 freedom_of_peaceful_assembly) (STV 1.0 0.99))
+(: right_association (Member sk_right_1 freedom_of_association) (STV 1.0 0.99))
+(: everyone_have (Implication (Member $x person) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) sk_right_1))) (STV 1.0 0.9))
+(: everyone_q (QuantifierPhrase person have "everyone") (STV 1.0 0.99))

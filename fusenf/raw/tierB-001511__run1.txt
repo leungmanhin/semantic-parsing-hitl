@@ -1,0 +1,8 @@
+(: children_grp (GroupOf sk_group_1 child) (STV 1.0 0.99))
+(: children_card (CardinalityPhrase sk_group_1 "some") (STV 1.0 0.99))
+(: sea_ty (Member sk_sea_1 sea) (STV 1.0 0.99))
+(: e_swim (Member sk_swim_1 swim) (STV 1.0 0.99))
+(: e_agent (Agent sk_swim_1 sk_group_1) (STV 1.0 0.99))
+(: e_loc (Location sk_swim_1 sk_sea_1) (STV 1.0 0.99))
+(: e_ongoing (Ongoing sk_swim_1) (STV 1.0 0.99))
+(: children_dist (Implication (PartOf $x sk_group_1) (And (Member (sk_swim $x) swim) (Agent (sk_swim $x) $x) (Location (sk_swim $x) sk_sea_1) (Ongoing (sk_swim $x)))) (STV 1.0 0.9))

@@ -1,0 +1,7 @@
+(: tiger_type (Member sk_tiger_1 tiger) (STV 1.0 0.99))
+(: dart_type (Member sk_dart_1 tranquilliser_dart) (STV 1.0 0.99))
+(: dart_genus (Inheritance tranquilliser_dart dart) (STV 1.0 0.99))
+(: hit_type (Member sk_hit_1 hit) (STV 1.0 0.99))
+(: hit_agent (Agent sk_hit_1 sk_dart_1) (STV 1.0 0.99))
+(: hit_patient (Patient sk_hit_1 sk_tiger_1) (STV 1.0 0.99))
+(: hit_past (Past sk_hit_1) (STV 1.0 0.99))

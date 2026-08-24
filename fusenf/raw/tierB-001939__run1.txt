@@ -1,0 +1,5 @@
+(: wm_genus (Inheritance water_molecule molecule) (STV 1.0 0.99))
+(: ha_genus (Inheritance hydrogen_atom atom) (STV 1.0 0.99))
+(: oa_genus (Inheritance oxygen_atom atom) (STV 1.0 0.99))
+(: wm_q (QuantifierPhrase water_molecule compose "every") (STV 1.0 0.99))
+(: molecule_composed (Implication (Member $x water_molecule) (And (Member (sk_compose $x) compose) (Patient (sk_compose $x) $x) (Agent (sk_compose $x) (sk_h $x)) (GroupOf (sk_h $x) hydrogen_atom) (Cardinality (sk_h $x) 2) (Member (sk_attach $x) attach) (Patient (sk_attach $x) (sk_h $x)) (Goal (sk_attach $x) (sk_o $x)) (Member (sk_o $x) oxygen_atom))) (STV 1.0 0.99))

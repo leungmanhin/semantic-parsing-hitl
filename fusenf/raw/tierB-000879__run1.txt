@@ -1,0 +1,3 @@
+(: work_typ (Member sk_work_1 work) (STV 1.0 0.99))
+(: no_ms_survive (Implication (And (Member $x manuscript) (Possession $x sk_work_1)) (And (Member (sk_survive $x) survive) (Agent (sk_survive $x) $x) (Past (sk_survive $x)))) (STV 0.0 0.9))
+(: no_ms_q (QuantifierPhrase manuscript survive "no") (STV 1.0 0.99))

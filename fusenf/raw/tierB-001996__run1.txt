@@ -1,0 +1,6 @@
+(: sm_type (Member sk_salesman_1 salesman) (STV 1.0 0.99))
+(: m_type (Member sk_machine_1 machine) (STV 1.0 0.99))
+(: e_demo (Member sk_demonstrate_1 demonstrate) (STV 1.0 0.99))
+(: e_demo_agent (Agent sk_demonstrate_1 sk_salesman_1) (STV 1.0 0.99))
+(: e_demo_past (Past sk_demonstrate_1) (STV 1.0 0.99))
+(: e_demo_theme (Theme sk_demonstrate_1 (Question how (And (Member sk_use_1 use) (Theme sk_use_1 sk_machine_1) (Manner sk_use_1 how)))) (STV 1.0 0.99))

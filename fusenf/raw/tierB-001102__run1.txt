@@ -1,0 +1,7 @@
+(: lajos_name (Name lajos "Lajos") (STV 1.0 0.99))
+(: e_take (Member sk_take_1 take) (STV 1.0 0.99))
+(: e_agent (Agent sk_take_1 lajos) (STV 1.0 0.99))
+(: e_patient (Patient sk_take_1 sk_medication_1) (STV 1.0 0.99))
+(: med_type (Member sk_medication_1 medication) (STV 1.0 0.99))
+(: e_past (Past sk_take_1) (STV 1.0 0.99))
+(: e_dur (MeasureAtLeast sk_take_1 duration 2 year) (STV 1.0 0.99))

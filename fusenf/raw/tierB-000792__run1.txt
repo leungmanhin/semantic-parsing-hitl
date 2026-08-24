@@ -1,0 +1,8 @@
+(: lift_type (Member sk_lift_1 lift) (STV 1.0 0.99))
+(: lift_other (Member sk_lift_1 other) (STV 1.0 0.99))
+(: e_stop (Member sk_stop_1 stop) (STV 1.0 0.99))
+(: e_patient (Patient sk_stop_1 sk_lift_1) (STV 1.0 0.99))
+(: floor_type (Member sk_floor_1 floor) (STV 1.0 0.99))
+(: floor_ord (Ordinal sk_floor_1 2 floor) (STV 1.0 0.99))
+(: e_loc (Location sk_stop_1 sk_floor_1) (STV 1.0 0.99))
+(: e_only (Only sk_floor_1 sk_stop_1) (STV 1.0 0.99))

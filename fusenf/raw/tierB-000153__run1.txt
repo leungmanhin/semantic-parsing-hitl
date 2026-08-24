@@ -1,0 +1,4 @@
+(: tb153_city (Member sk_city_1 city) (STV 1.0 0.99))
+(: tb153_streets (GroupOf sk_street_1 street) (STV 1.0 0.99))
+(: tb153_streets_loc (LocatedIn sk_street_1 sk_city_1) (STV 1.0 0.99))
+(: tb153_narrow_rule (Implication (PartOf $x sk_street_1) (Member $x narrow)) (STV 1.0 0.9))

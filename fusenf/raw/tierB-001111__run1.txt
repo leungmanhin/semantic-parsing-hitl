@@ -1,0 +1,7 @@
+(: street_ty (Member sk_street_1 street) (STV 1.0 0.99))
+(: shops_grp (GroupOf sk_shops_1 shop) (STV 1.0 0.99))
+(: shops_loc (LocatedIn sk_shops_1 sk_street_1) (STV 1.0 0.99))
+(: sub_grp (GroupOf sk_group_1 shop) (STV 1.0 0.99))
+(: sub_subset (SubsetOf sk_group_1 sk_shops_1) (STV 1.0 0.99))
+(: sub_prop (ProportionOf sk_group_1 sk_shops_1 most) (STV 1.0 0.99))
+(: sub_closed (Past (Inheritance sk_group_1 closed)) (STV 1.0 0.99))

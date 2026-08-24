@@ -1,0 +1,7 @@
+(: dbl_type (Member sk_double_1 stunt_double) (STV 1.0 0.99))
+(: dbl_genus (Inheritance stunt_double double) (STV 1.0 0.99))
+(: inj_ev (Member sk_injure_1 injure) (STV 1.0 0.99))
+(: inj_pat (Patient sk_injure_1 sk_double_1) (STV 1.0 0.99))
+(: inj_tense (Past sk_injure_1) (STV 1.0 0.99))
+(: film_ev (Member sk_film_1 film) (STV 1.0 0.99))
+(: inj_during (During sk_injure_1 sk_film_1) (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: org_type (Member sk_organisation_1 organisation) (STV 1.0 0.99))
+(: e_provide (Member sk_provide_1 provide) (STV 1.0 0.99))
+(: e_agent (Agent sk_provide_1 sk_organisation_1) (STV 1.0 0.99))
+(: refugees_grp (GroupOf sk_refugees_1 refugee) (STV 1.0 0.99))
+(: e_recipient (Recipient sk_provide_1 sk_refugees_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_provide_1 food) (STV 1.0 0.99))
+(: e_tense (Past sk_provide_1) (STV 1.0 0.99))

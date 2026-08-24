@@ -1,0 +1,8 @@
+(: sol_grp (GroupOf sk_group_1 soldier) (STV 1.0 0.99))
+(: town_ty (Member sk_town_1 town) (STV 1.0 0.99))
+(: gb_ev (Member sk_go_back_1 go_back) (STV 1.0 0.99))
+(: gb_ag (Agent sk_go_back_1 sk_group_1) (STV 1.0 0.99))
+(: gb_goal (Goal sk_go_back_1 sk_town_1) (STV 1.0 0.99))
+(: gb_without (Without sk_go_back_1 hope) (STV 1.0 0.99))
+(: gb_tense (Past sk_go_back_1) (STV 1.0 0.99))
+(: sol_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_go_back $x) go_back) (Agent (sk_go_back $x) $x) (Goal (sk_go_back $x) sk_town_1) (Without (sk_go_back $x) hope) (Past (sk_go_back $x)))) (STV 1.0 0.9))

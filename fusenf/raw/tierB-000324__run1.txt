@@ -1,0 +1,7 @@
+(: customers_g (GroupOf sk_group_1 customer) (STV 1.0 0.99))
+(: customers_card (CardinalityPhrase sk_group_1 "a few") (STV 1.0 0.99))
+(: walk_e (Member sk_walk_1 walk) (STV 1.0 0.99))
+(: walk_ag (Agent sk_walk_1 sk_group_1) (STV 1.0 0.99))
+(: store_type (Member sk_store_1 store) (STV 1.0 0.99))
+(: walk_goal (Goal sk_walk_1 sk_store_1) (STV 1.0 0.99))
+(: walk_tense (Past sk_walk_1) (STV 1.0 0.99))

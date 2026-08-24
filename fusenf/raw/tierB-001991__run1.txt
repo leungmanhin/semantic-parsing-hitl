@@ -1,0 +1,4 @@
+(: e5_name (Name newton "Newton") (STV 1.0 0.99))
+(: e5_p1 (Past (Member newton genius)) (STV 1.0 0.99))
+(: e5_p2 (Past (Member newton great)) (STV 1.0 0.99))
+(: e5_deny_neg (And (Member sk_deny_1 deny) (Theme sk_deny_1 (And (Past (Member newton genius)) (Past (Member newton great)))) (Can sk_deny_1)) (STV 0.0 0.99))

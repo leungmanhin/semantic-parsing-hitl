@@ -1,0 +1,4 @@
+(: tb1785_thing_kind (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: tb1785_care_used_to (Implication (Member $x person) (And (Member (sk_care $x) care) (Experiencer (sk_care $x) $x) (Stimulus (sk_care $x) sk_thing_1) (Past (sk_care $x)))) (STV 0.9 0.9))
+(: tb1785_care_no_more (Implication (Member $x person) (And (Member (sk_care $x) care) (Experiencer (sk_care $x) $x) (Stimulus (sk_care $x) sk_thing_1))) (STV 0.0 0.9))
+(: tb1785_care_q (QuantifierPhrase person care "no") (STV 1.0 0.99))

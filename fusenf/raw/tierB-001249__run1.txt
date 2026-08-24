@@ -1,0 +1,4 @@
+(: grp_type (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: grp_real (Implication (PartOf $x sk_group_1) (Member $x real)) (STV 1.0 0.9))
+(: grp_not_actor (Implication (PartOf $x sk_group_1) (Member $x actor)) (STV 0.0 0.9))
+(: actor_can (Inheritance actor (can act)) (STV 1.0 0.99))

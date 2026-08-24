@@ -1,0 +1,2 @@
+(: three_sides_rule (Implication (Member $x story) (And (GroupOf (sk_sides $x) side) (Cardinality (sk_sides $x) 3) (PartOf (sk_sides $x) $x))) (STV 1.0 0.9))
+(: three_sides_q (QuantifierPhrase story side "every") (STV 1.0 0.99))

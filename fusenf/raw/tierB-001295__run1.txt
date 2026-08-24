@@ -1,0 +1,8 @@
+(: film_type (Member sk_film_1 film) (STV 1.0 0.99))
+(: women_group (GroupOf sk_group_1 woman) (STV 1.0 0.99))
+(: women_loc (LocatedIn sk_group_1 sk_film_1) (STV 1.0 0.99))
+(: dress_grp_ev (Member sk_dress_1 dress) (STV 1.0 0.99))
+(: dress_grp_patient (Patient sk_dress_1 sk_group_1) (STV 1.0 0.99))
+(: dress_grp_manner (Manner sk_dress_1 conventional) (STV 1.0 0.99))
+(: dress_grp_degree (Degree sk_dress_1 conventional very) (STV 1.0 0.99))
+(: dress_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_dress $x) dress) (Patient (sk_dress $x) $x) (Manner (sk_dress $x) conventional) (Degree (sk_dress $x) conventional very))) (STV 1.0 0.9))

@@ -1,0 +1,7 @@
+(: beauty_type (Member sk_beauty_1 beauty) (STV 1.0 0.99))
+(: beauty_true (Member sk_beauty_1 true) (STV 1.0 0.99))
+(: beauty_poss (Possession sk_beauty_1 sex) (STV 1.0 0.99))
+(: purpose_type (Member sk_purpose_1 purpose) (STV 1.0 0.99))
+(: purpose_true (Member sk_purpose_1 true) (STV 1.0 0.99))
+(: purpose_poss (Possession sk_purpose_1 sex) (STV 1.0 0.99))
+(: porn_blind (Implication (Member $x pornography) (And (Member (sk_blind $x) blind) (Agent (sk_blind $x) $x) (Patient (sk_blind $x) individual) (To (sk_blind $x) sk_beauty_1) (To (sk_blind $x) sk_purpose_1))) (STV 0.9 0.9))

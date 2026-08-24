@@ -1,0 +1,8 @@
+(: bite_genus (Inheritance spider_bite bite) (STV 1.0 0.99))
+(: fcsb_genus (Inheritance fever_causing_spider_bite spider_bite) (STV 1.0 0.99))
+(: fcsb_cause (Cause fever_causing_spider_bite fever) (STV 0.9 0.9))
+(: fcsb_rare (KindProperty fever_causing_spider_bite rare) (STV 1.0 0.9))
+(: sting_genus (Inheritance scorpion_sting sting) (STV 1.0 0.99))
+(: causedeath_genus (Inheritance cause_death cause) (STV 1.0 0.99))
+(: causedeath_obj (Patient cause_death death) (STV 1.0 0.99))
+(: sting_can_cause_death (Inheritance scorpion_sting (can cause_death)) (STV 0.9 0.9))

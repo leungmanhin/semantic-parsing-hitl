@@ -1,0 +1,3 @@
+(: bp_type (Member sk_baking_powder_1 baking_powder) (STV 1.0 0.99))
+(: bp_genus (Inheritance baking_powder powder) (STV 1.0 0.99))
+(: diss_dir (Directive (And (Member sk_dissolve_1 dissolve) (Patient sk_dissolve_1 sk_baking_powder_1) (Location sk_dissolve_1 sk_water_1) (Member sk_water_1 water) (Measure sk_water_1 volume 1 tablespoon))) (STV 1.0 0.99))

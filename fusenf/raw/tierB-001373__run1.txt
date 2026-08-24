@@ -1,0 +1,7 @@
+(: acc_grp (GroupOf sk_group_1 traffic_accident) (STV 1.0 0.99))
+(: acc_grp_phrase (CardinalityPhrase sk_group_1 "many") (STV 1.0 0.99))
+(: acc_genus (Inheritance traffic_accident accident) (STV 1.0 0.99))
+(: road_type (Member sk_road_1 road) (STV 1.0 0.99))
+(: acc_loc (Location sk_group_1 sk_road_1) (STV 1.0 0.99))
+(: acc_time (Time sk_group_1 recently) (STV 1.0 0.99))
+(: acc_tense (Past sk_group_1) (STV 1.0 0.99))

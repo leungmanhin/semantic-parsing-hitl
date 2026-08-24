@@ -1,0 +1,6 @@
+(: losses_grp (GroupOf sk_loss_1 ukrainian_combat_loss) (STV 1.0 0.99))
+(: loss_genus (Inheritance ukrainian_combat_loss loss) (STV 1.0 0.99))
+(: loss_ukr (Inheritance ukrainian_combat_loss ukrainian) (STV 1.0 0.99))
+(: inc_ev (Member sk_increase_1 increase) (STV 1.0 0.99))
+(: inc_pat (Patient sk_increase_1 sk_loss_1) (STV 1.0 0.99))
+(: inc_tns (Past sk_increase_1) (STV 1.0 0.99))

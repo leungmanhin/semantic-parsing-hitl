@@ -1,0 +1,6 @@
+(: syn_inst_kind (Inheritance synthetic_instrument virtual_instrument) (STV 1.0 0.99))
+(: syn_inst_genus (Inheritance synthetic_instrument instrument) (STV 1.0 0.99))
+(: syn_inst_mod (Inheritance synthetic_instrument synthetic) (STV 1.0 0.99))
+(: virt_inst_genus (Inheritance virtual_instrument instrument) (STV 1.0 0.99))
+(: virt_inst_mod (Inheritance virtual_instrument virtual) (STV 1.0 0.99))
+(: vi_def_rule (Implication (Member $x virtual_instrument) (And (Member (sk_define $x) define) (Agent (sk_define $x) software) (Theme (sk_define $x) $x) (Manner (sk_define $x) purely))) (STV 1.0 0.99))

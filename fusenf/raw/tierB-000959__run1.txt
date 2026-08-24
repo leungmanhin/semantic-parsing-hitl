@@ -1,0 +1,3 @@
+(: books_group (GroupOf sk_group_1 book) (STV 1.0 0.99))
+(: books_none_interesting (Implication (PartOf $x sk_group_1) (And (Past (Member $x interesting)) (Past (Degree $x interesting very)))) (STV 0.0 0.9))
+(: books_q (QuantifierPhrase book interesting "none") (STV 1.0 0.99))

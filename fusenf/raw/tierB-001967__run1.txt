@@ -1,0 +1,7 @@
+(: mill_grp (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: mill_card (CardinalityPhrase sk_group_1 "millions") (STV 1.0 0.99))
+(: e_die (Member sk_die_1 die) (STV 1.0 0.99))
+(: e_die_pat (Patient sk_die_1 sk_group_1) (STV 1.0 0.99))
+(: e_die_src (Source sk_die_1 mosquito) (STV 1.0 0.99))
+(: e_die_every (Every sk_die_1 1 year) (STV 1.0 0.99))
+(: die_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_die $x) die) (Patient (sk_die $x) $x) (Source (sk_die $x) mosquito))) (STV 1.0 0.9))

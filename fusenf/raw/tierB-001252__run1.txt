@@ -1,0 +1,2 @@
+(: cloud_grp (GroupOf sk_cloud_1 cloud) (STV 1.0 0.99))
+(: birds_fly_under (Implication (Member $x bird) (And (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x) (Location (sk_fly $x) sk_cloud_1))) (STV 0.9 0.9))

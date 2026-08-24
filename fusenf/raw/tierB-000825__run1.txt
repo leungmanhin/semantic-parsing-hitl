@@ -1,0 +1,5 @@
+(: sun_type (Member sk_sun_1 sun) (STV 1.0 0.99))
+(: godown_ev (Member sk_go_down_1 go_down) (STV 1.0 0.99))
+(: godown_pat (Patient sk_go_down_1 sk_sun_1) (STV 1.0 0.99))
+(: godown_tense (Past sk_go_down_1) (STV 1.0 0.99))
+(: godown_ago (BeforeBy sk_go_down_1 now (ParticleFromNormal 40 4) minute) (STV 1.0 0.99))

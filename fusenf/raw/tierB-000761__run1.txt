@@ -1,0 +1,7 @@
+(: planes_g (GroupOf sk_planes_1 plane) (STV 1.0 0.99))
+(: sub_g (GroupOf sk_group_1 plane) (STV 1.0 0.99))
+(: sub_of (SubsetOf sk_group_1 sk_planes_1) (STV 1.0 0.99))
+(: sub_card (Cardinality sk_group_1 3) (STV 1.0 0.99))
+(: report_neg (And (Member sk_report_1 report) (Agent sk_report_1 sk_group_1) (Goal sk_report_1 home) (Past sk_report_1)) (STV 0.0 0.99))
+(: report_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_report $x) report) (Agent (sk_report $x) $x) (Goal (sk_report $x) home) (Past (sk_report $x)))) (STV 0.0 0.9))
+(: report_yet (Yet sk_report_1) (STV 1.0 0.99))

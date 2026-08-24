@@ -1,0 +1,5 @@
+(: apples_grp (GroupOf sk_apples_1 apple) (STV 1.0 0.99))
+(: half_grp (GroupOf sk_group_1 apple) (STV 1.0 0.99))
+(: half_subset (SubsetOf sk_group_1 sk_apples_1) (STV 1.0 0.99))
+(: half_prop (ProportionOf sk_group_1 sk_apples_1 half) (STV 1.0 0.99))
+(: half_rotten (Inheritance sk_group_1 rotten) (STV 1.0 0.99))

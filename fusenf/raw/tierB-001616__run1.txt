@@ -1,0 +1,5 @@
+(: cand_grp (GroupOf sk_group_1 candidate) (STV 1.0 0.99))
+(: cand_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: elec_type (Member sk_election_1 election) (STV 1.0 0.99))
+(: cand_in_elec (In sk_group_1 sk_election_1) (STV 1.0 0.99))
+(: cand_leftwing (Implication (PartOf $x sk_group_1) (Member $x left_wing)) (STV 1.0 0.9))

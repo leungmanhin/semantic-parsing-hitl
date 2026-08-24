@@ -1,0 +1,7 @@
+(: tb1532_project (Member sk_project_1 project) (STV 1.0 0.99))
+(: tb1532_finance (Member sk_finance_1 finance) (STV 1.0 0.99))
+(: tb1532_finance_theme (Theme sk_finance_1 sk_project_1) (STV 1.0 0.99))
+(: tb1532_cost (Member sk_cost_1 cost) (STV 1.0 0.99))
+(: tb1532_cost_poss (Possession sk_cost_1 sk_finance_1) (STV 1.0 0.99))
+(: tb1532_high (Past (Member sk_cost_1 high)) (STV 1.0 0.99))
+(: tb1532_degree (Past (Degree sk_cost_1 high very)) (STV 1.0 0.99))

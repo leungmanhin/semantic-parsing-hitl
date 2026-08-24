@@ -1,0 +1,6 @@
+(: problem_type (Member sk_problem_1 problem) (STV 1.0 0.99))
+(: solve_ev (Member sk_solve_1 solve) (STV 1.0 0.99))
+(: solve_pat (Patient sk_solve_1 sk_problem_1) (STV 1.0 0.99))
+(: way_type (Past (Member sk_way_1 way)) (STV 1.0 0.99))
+(: way_instr (Instrument sk_solve_1 sk_way_1) (STV 1.0 0.99))
+(: way_only (Only sk_way_1 sk_solve_1) (STV 1.0 0.99))

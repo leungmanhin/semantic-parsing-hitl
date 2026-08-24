@@ -1,0 +1,8 @@
+(: ec_type (Member sk_ear_canal_1 ear_canal) (STV 1.0 0.99))
+(: ec_genus (Inheritance ear_canal canal) (STV 1.0 0.99))
+(: ed_type (Member sk_eardrum_1 eardrum) (STV 1.0 0.99))
+(: e_send (Member sk_send_1 send) (STV 1.0 0.99))
+(: e_agent (Agent sk_send_1 sk_ear_canal_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_send_1 sound_wave) (STV 1.0 0.99))
+(: sw_genus (Inheritance sound_wave wave) (STV 1.0 0.99))
+(: e_recipient (Recipient sk_send_1 sk_eardrum_1) (STV 1.0 0.99))

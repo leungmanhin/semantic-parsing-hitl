@@ -1,0 +1,7 @@
+(: price_grp (GroupOf sk_price_1 price) (STV 1.0 0.99))
+(: state_ev (Member sk_high_1 high) (STV 1.0 0.99))
+(: state_exp (Experiencer sk_high_1 sk_price_1) (STV 1.0 0.99))
+(: state_deg (Degree sk_high_1 high very) (STV 1.0 0.99))
+(: state_time (Time sk_high_1 lately) (STV 1.0 0.99))
+(: state_past (Past sk_high_1) (STV 1.0 0.99))
+(: price_high_rule (Implication (PartOf $x sk_price_1) (Past (And (Member $x high) (Degree $x high very)))) (STV 1.0 0.9))

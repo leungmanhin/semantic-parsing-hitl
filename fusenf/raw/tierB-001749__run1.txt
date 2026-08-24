@@ -1,0 +1,6 @@
+(: ab_genus (Inheritance alveolar_bone bone) (STV 1.0 0.99))
+(: ab_mod (Inheritance alveolar_bone alveolar) (STV 1.0 0.99))
+(: content_genus (Inheritance mineral_content content) (STV 1.0 0.99))
+(: calcium_mineral (Inheritance calcium mineral) (STV 1.0 0.99))
+(: phosphate_mineral (Inheritance phosphate mineral) (STV 1.0 0.99))
+(: bone_content_rule (Implication (Member $x alveolar_bone) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) (sk_content $x)) (Member (sk_content $x) mineral_content) (Member (sk_content $x) high) (PartOf calcium (sk_content $x)) (PartOf phosphate (sk_content $x)))) (STV 0.9 0.9))

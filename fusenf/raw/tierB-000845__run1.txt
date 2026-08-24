@@ -1,0 +1,2 @@
+(: everyone_try (Implication (Member $x person) (And (Member (sk_try $x) try) (Agent (sk_try $x) $x) (Theme (sk_try $x) (sk_get_in $x)) (Member (sk_get_in $x) get_in) (Agent (sk_get_in $x) $x) (Time (sk_try $x) at_once) (Past (sk_try $x)))) (STV 1.0 0.9))
+(: everyone_q (QuantifierPhrase person try "everyone") (STV 1.0 0.99))

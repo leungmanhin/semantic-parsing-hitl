@@ -1,0 +1,5 @@
+(: venezuela_name (Name venezuela "Venezuela") (STV 1.0 0.99))
+(: potential_type (Member sk_potential_1 potential) (STV 1.0 0.99))
+(: potential_full (Member sk_potential_1 full) (STV 1.0 0.99))
+(: potential_poss (Possession sk_potential_1 venezuela) (STV 1.0 0.99))
+(: venezuela_not_live_up (And (Member sk_live_up_to_1 live_up_to) (Agent sk_live_up_to_1 venezuela) (Theme sk_live_up_to_1 sk_potential_1) (Can sk_live_up_to_1) (Past sk_live_up_to_1)) (STV 0.0 0.99))
