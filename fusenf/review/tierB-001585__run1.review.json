@@ -1,0 +1,11 @@
+{"id": "tierB-001585", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "fever_causing_spider_bite is a kind symbol invented out of the relative clause — no such compound appears in the surface, and Compound concepts licenses fusion only for compounds actually present in the text, so this fabricates a sub-kind the sentence never names."},
+               {"statement": 2, "issue": "(Cause fever_causing_spider_bite fever) hangs the relative clause's content on that invented kind, whereas a relative clause takes the ordinary event form / rule-premise treatment, and the kind-relation license requires bare kind-denoting NPs on both sides."},
+               {"statement": 3, "issue": "The sentence's actual claim (\"are rare\") is asserted of the invented kind, so it is recorded only under a symbol nothing else in the KB can reach — the restriction \"that cause fever\" is not recoverable as a relation between spider_bite and fever."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["restrictive relative clause narrowing a bare-plural kind subject whose main predicate is a non-distributing KindProperty (\"Spider bites that cause fever are rare\") — relative clauses are supported only as rule premises / reified events, and a kind-level KindProperty cannot be a rule conclusion, so the restricted sub-kind is inexpressible", "adversative discourse marker \"though\" relating two clauses that reify no eventualities (a KindProperty statement and a kind-level capability property) — the connective rule needs two reified endpoints, and this is not the defeasible-exception case that consumes the cue either"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Sentence 2 is clean: the capability generic correctly keys on the modal rather than the indefinite determiner, and cause_death is decomposed exactly as a compound action inside (can ...). The head Cause is the form the kind-relation license permits — the defect is its invented first argument, not the head."}

@@ -1,0 +1,9 @@
+{"id": "tierB-001571", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "\"Midsummer\" is a capitalized named time/festival, i.e. a proper noun, but no (Name midsummer \"Midsummer\") atom is emitted, and Names and casing makes that atom mandatory and non-optional for a named event."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["vague frequency adverb (\"often\") with no named slot, period or rate — Frequency & habitual schedules covers only a named Time slot, (Every e n unit) and (TimesPer e n unit), so an unquantified recurrence has no form", "approximation hedge (\"around\") over a non-numeric named/deictic time — the approximate-time form (ParticleFromNormal inside Hour/Minute) needs a numeric magnitude slot that a bare named-time symbol does not have"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The dropped \"often\" and \"around\" are gap-driven rather than parse defects. CardinalityPhrase \"many\" is the right route here (the phrase counts things, and there is no kind-predication whose strength it could set), and Time on the group of event-denoting \"parties\" is the only anchor the instruction set offers."}

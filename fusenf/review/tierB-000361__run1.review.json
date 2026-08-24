@@ -1,0 +1,13 @@
+{"id": "tierB-000361", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 6, "issue": "\"high levels of aluminum\" drops the noun \"level\" and predicates high of the aluminum witness itself, so the parse claims the aluminum is high rather than that its level is high (statement 7 repeats this)."},
+               {"statement": 8, "issue": "The sealed Theme term places both Implications inside one (And ...) while reusing the same variable $x, forcing them to share a binding (one thing that is both a green and a black tea leaf), and it asserts a top-level atom containing unbound variables."},
+               {"statement": 0, "issue": "\"Studies\" is a bare plural but is encoded as a group witness, which the determiner rule reserves for definite / demonstrative / possessed plurals."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"high levels of N\" — a non-numeric quantity/magnitude of a substance stated as a measure-like of-phrase; the genitive rules explicitly exclude measure-\"of\" from Possession and offer no replacement, and Degree covers only too much / too little / enough.",
+             "A bare-plural subject with an episodic perfect predicate under an evidential frame (\"Studies have found that P\"), where the existential reading is intended but the bare-plural rules prescribe the generic rule form.",
+             "A compound whose modifier is itself multi-word (\"green tea leaf\"): decomposition is defined as one step to single-word lemmas, so nothing links green_tea_leaf to tea or to green_tea."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The instruction set conflicts on the attitude holder's role for the find/discover class: Propositional attitudes prescribes Experiencer while the progressive test under Thematic roles names discover/notice/learn as ordinary Agent, so statement 2's Agent is defensible."}

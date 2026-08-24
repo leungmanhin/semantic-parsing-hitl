@@ -1,0 +1,12 @@
+{"id": "tierC-000332", "run": 40,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["rule conflict on \"cause\": Inter-clause connectives states that causation-flavored verbs (\"caused\", \"triggered\", \"made\") parse as verbal events with their usual roles and NEVER as relation heads, while Striking & relational generics licenses a lemmatized verb head over two bare kind NPs — this clause satisfies both, and the parse took the kind-relation route",
+             "focus particle over a non-eventive predication — (<Op> <filler> <event>) is defined only with an event witness, but a bare-kind relational generic is an opaque atom with no event to tag, so the parse had to nest the whole atom in the event slot",
+             "contrastive/adversative \"while\" (= whereas) — \"while\" is listed among the temporal connectives that get NO connective atom, yet the general rule licenses an atom whenever the connective states contrast; the instruction set does not separate the two senses",
+             "multi-word / phrasal verb as a kind-relation head (\"take into account\" -> TakeIntoAccount) — CamelCase-joining is specified for connectives, and phrasal verbs are otherwise a lowercase verb_particle event class"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "No connective atom was emitted for the contrastive \"while\", so the stated contrast between the two clauses is unrecorded; that conforms to the letter of the temporal-connective exclusion list but loses content the sentence states. The passive was correctly inverted to active argument order, and the split phrasal \"take ... into account\" was recovered."}

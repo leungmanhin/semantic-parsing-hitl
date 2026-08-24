@@ -1,0 +1,11 @@
+{"id": "tierB-001755", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "The reified state sk_late_1 carries no (Past ...) atom although the clause is past tense, so the state reads as unmarked/generic while the parallel Measure atom is tensed."},
+               {"statement": null, "issue": "A copular state reified as a connective-atom endpoint must ALSO dual-emit the flat copular atom, but (Member sk_train_1 late) (tense-wrapped) is absent, so 'is/was the train late?' cannot bind."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["causal PP 'because of NP' whose cause is an ENTITY, not a clause: the connective section is defined only for a relation BETWEEN two reified clauses, and the preposition-named oblique route is defined only for PPs naming what the activity is about or directed at, so no rule states how a reason PP attaches or which head it takes",
+             "the resulting head is outside the seeded reason-bearing set (because / since / so / as a result / therefore / consequently / thus) that derives ReasonFor, so an explanation question over this cause has no defined path"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "BecauseOf is treated here as licensed under the oblique-named-after-its-own-preposition license, but the instruction set never actually sanctions that route for a causal PP. The Measure atom itself ('10 minutes late' -> scale = the stated gradable adjective, tense wrapping the measure) follows the measure rules correctly."}

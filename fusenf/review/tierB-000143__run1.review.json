@@ -1,0 +1,9 @@
+{"id": "tierB-000143", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "AcrossTheStreetFrom is a head coined from a whole multi-word phrase rather than the preposition actually used, which the 'never coin a relation head' rule bars."}, {"statement": 2, "issue": "'the street' is a definite NP the text mentions but the parse swallows it into the head, so it gets no witness and no (Member sk_street_1 street) typing atom, contrary to the rule that an oblique's object NP follows the ordinary NP rules."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a complex multi-word spatial preposition containing its own referent NP ('across the street from X'): LocatedIn covers containment only, and the preposition-named oblique assumes a single-word preposition with a separate object NP", "static non-containment spatial relations between two entities in a copular clause (across from / opposite / next to / in front of); the only entity-attached preposition relations shown are From for origin and Beside in the Interpretation example"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": ["AcrossTheStreetFrom"],
+ "notes": "The two definite descriptions are correctly encoded as typed witnesses and the stative locative correctly mints no event; the whole defect is in the third statement."}

@@ -321,3 +321,6 @@ unregistered); M5 question arm (QGEN/QPARSE, §6 item 8); embedding channel defe
 - **Ops rule paid for twice**: the first blind dispatch raced two late glossary wires
   and was discarded wholesale (transcript-verified which text each agent read). Freeze
   the prompt before dispatching; the pinned hash must be the text the validation ran at.
+
+## §17 — Findings-stratum review calibrates the validator (2026-08-24)
+First standing §5.2 sweep (blind Opus, findings withheld) over the campaign's 93 machine-flagged records + 3 flags: the unanchored join shows only 11/82 validator-C4 heads are genuinely unlicensed per blind review (13%); the rest are open-class-licensed (kind-relations, preposition-named obliques), with zero reviewer-extra heads. Rationale consequence: C4 stays report-only in G.1's STRICT_SEVERITY — the true-violation signal is the review join, not the raw C4 count. Secondary: the orchestrator's tierB-000606 under-parse suspicion was overturned by review (parse vindicated; the real gaps are degree-modified comparatives and the "more so" pro-form) — evidence the review layer catches orchestrator priors, not just parser errors. Two hard failures (both pilot-r2) expose one doctrine corner: negation-inside-seal has no licensed encoding (a sealed term carries no TV slot).

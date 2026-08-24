@@ -1,0 +1,9 @@
+{"id": "tierB-000840", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "`vertical_expression` and `horizontal_desire` are fused as compound kinds, but neither adjective+noun pair names a recognized subtype (no term of art, origin adjective, role title or material adjective) — they are ad-hoc figurative description, which the compound section says must stay two atoms."}, {"statement": 4, "issue": "\"the vertical expression **of** a horizontal desire\" is the content argument of an action nominalization, not a genuinely possessive of-phrase, so `Possession` mis-encodes it — it is the excluded \"a photo of Mary\" case rather than \"the engine of the car\"."}, {"statement": 6, "issue": "\"legalized by music\" is a participial post-modifier on the noun, i.e. a reduced relative clause, which the instruction set requires to be reified as an ordinary event with `music` as the `by`-phrase `Agent` — never as a relation named after the participle."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["verbless definitional apposition (\"Dancing: <predicate nominal>\") — the copular section covers only an overt \"X is a/an N\" / \"X is ADJ\", with nothing on a colon-linked definition", "an of-phrase serving as the argument of an action/event nominalization (\"the expression of a desire\") — the genitive rules enumerate possession, partitive, measure and about-phrases, but give no form for a deverbal noun's own complement"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": ["Legalize"],
+ "notes": "Conditional on the (questionable) fusion, the genus and adjectival-modifier decomposition atoms are emitted correctly, and `music` rightly stays a bare mass constant. The instruction set also says nothing about metaphorical predication, which is what the whole predicate nominal here is."}

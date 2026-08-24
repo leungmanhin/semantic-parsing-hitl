@@ -1,0 +1,9 @@
+{"id": "tierB-001876", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "football_player is a fused modifier_noun compound whose head-noun genus (Inheritance football_player player) is specified as always emitted, but it is missing, so a football_player instance is not derivably a player."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The agent-nominalization pair — capability (Inheritance football_player (can play)) plus the incorporated-object kind relation (Play football_player football) — is correctly fired on a symbol fused from the surface, and the noun modifier 'football' is correctly not exposed as a genus. Note a tension in the instruction set: the 'Hens are egg-layers' example likewise shows no (Inheritance egg_layer layer), while the Compound-kind rule states the head-noun genus is always emitted."}

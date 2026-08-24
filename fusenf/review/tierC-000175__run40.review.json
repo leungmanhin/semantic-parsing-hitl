@@ -1,0 +1,9 @@
+{"id": "tierC-000175", "run": 40,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 7, "issue": "sk_location_1 is minted as a referent but never typed — no class atom is emitted for it anywhere, while the instruction set requires that an untyped referent symbol never appear in the output, even when \"thing\" is all that can be said."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["relative-position locative with a measured offset (\"one mile north of Hartsdale\") — nothing covers a compass bearing plus a distance between two places, so the parse had to invent a bare \"distance\" scale for Measure and the magnitude's second endpoint (Hartsdale) is left unexpressed"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "NorthOf reads as a multiword preposition-named oblique (\"north of\"), which seems within the oblique license, though its head is built from an adverb plus preposition rather than a plain one. Location on the creating event only, with no LocatedIn on the village, follows the instruction set exactly, as does the multi-word name plus separate kind atom."}

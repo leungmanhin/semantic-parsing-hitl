@@ -1,0 +1,12 @@
+{"id": "tierB-001506", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "The compound kind islamic_principle is emitted with no decomposition genus (Inheritance islamic_principle principle), which Compound concepts says is always emitted."},
+               {"statement": 2, "issue": "The attributed claim is asserted flat at top level, so the KB records that homosexuality IS immoral rather than that Islamic principles hold it so."},
+               {"statement": 2, "issue": "The head noun of the predicate NP 'an immoral thing' is dropped — only the property atom is emitted, with no (Inheritance homosexuality thing) beside it."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Evidential / attribution frames ('according to X', 'in X's view', 'under X's doctrine'): the framing-PP rule licenses a preposition-named oblique on the reified claim, but it never says whether the framed proposition is still asserted at top level, and the sealing machinery is triggered only by attitude VERBS with a that-clause — so an attributed normative claim cannot be recorded without the KB endorsing it.",
+             "Whether a nationality / origin / religion adjective modifier is exposed as a second genus: 'Islamic principles' passes the stated 'can the modifier be predicated of the thing?' test, but such adjectives are absent from the three-item exposure list (gradable, positional-cardinal, material), so the mandatory-vs-forbidden call is undetermined."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "AccordingTo is taken as licensed — a multi-word framing preposition CamelCase-joined like the multiword connectives — with the reified state filling the framing-PP rule's '<what-is-claimed>' slot. The 0.9 confidence on the generalization is per the empirical dial."}

@@ -1,0 +1,11 @@
+{"id": "tierB-000967", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "The bounded gap is recorded with a head the instruction set never defines, so 'more than' has no licensed encoding and the atom matches no question form the instructions describe."},
+               {"statement": 2, "issue": "The stated unit 'a decade' is silently converted to '10 year', against the rule that a measure is emitted in its stated unit unchanged and that the translator never does the arithmetic itself."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["bounded/inexact measured temporal gap ('more than a decade ago') — only the exact (BeforeBy e now n unit) form exists, and TimeAtLeast/TimeAtMost bound a time POINT, not a gap, so they are unusable with no TODAY or calendar anchor",
+             "'decade' as a time unit — no conversion factor is listed and no guidance says whether to keep it or expand it to years"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": ["BeforeByAtLeast"],
+ "notes": "The light-verb-over-event-noun routing (no separate 'occur' event, Past directly on the story witness) and the demonstrative-definite witness are both correct."}
