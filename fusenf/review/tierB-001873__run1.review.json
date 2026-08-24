@@ -1,0 +1,9 @@
+{"id": "tierB-001873", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "The subject of the aspectual stop event is given Patient, but the instruction set's own \"When did the ferry stop running?\" query pattern stores that subject as Agent (with Theme = the activity), so this statement will not match the question form the prompt prescribes."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The Inception section's parenthetical \"the subject takes Agent (or the intransitive-subject role)\" pulls against the ferry query example, so the Patient choice is under-determined rather than plainly invented — worth a spec clarification. Omitting Ongoing on the work event is correct (a terminative complement is not one of the four licensed Ongoing markers), and Past on both events matches the eventive-cessation rule."}

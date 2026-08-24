@@ -1,0 +1,11 @@
+{"id": "tierB-000755", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The verbal event-rule form is used for a MODAL generic, which the instruction set restricts to non-modal generics ('Only a non-modal verbal generic (\"birds fly\") takes the event rule')."},
+               {"statement": 0, "issue": "Putting (Might (sk_apply $x)) inside the consequent converts the sentence's proposition-level possibility ('it may be that different rules apply to non-citizens') into a per-instance claim ('any different rule might apply')."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Epistemic-modal verbal generic over a bare-plural kind ('Ns may/might V'): the kind-level modal carve-out supplies reified properties only for deontic (obligated/permitted) and capability (can), so an epistemic modal generic has no licensed form at all.",
+             "Anaphoric/relational adjective 'different' ('different rules' = different from those for citizens): the instruction set has only the ordinary descriptive-modifier atom, which yields the near-vacuous rule premise (Member $x different) and loses the implied comparison set."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Role choices themselves are sound: stative intransitive subject -> Experiencer, and 'to non-citizens' as the preposition-named oblique (To ...) rather than Recipient or spatial Goal. Correctly declined to decompose 'non_citizen' (no false (Inheritance non_citizen citizen)) and correctly emitted no QuantifierPhrase."}

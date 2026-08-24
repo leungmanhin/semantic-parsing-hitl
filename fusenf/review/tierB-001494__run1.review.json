@@ -1,0 +1,9 @@
+{"id": "tierB-001494", "run": 1,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Alphanumeric device/key designation (\"F13\"): the proper-noun rule enumerates people, places, organizations, works, vessels, treaties and named events, and a function-key label is a type-level designation (every keyboard has one) rather than a unique individual — nothing says whether it is a name-derived constant with a `Name` fact, a bare kind symbol, or a typed witness, and nothing says whether it needs a class atom."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The multi-word name is correctly one opaque symbol with a single full-string `Name`; \"press\" takes `Theme` (the key is not created/destroyed/changed, and the unclear case defaults to Theme), and \"can\" on a specific subject correctly takes the event-level `(Can e)` rather than a kind-level `(can press)` property, with no tense atom beside it."}

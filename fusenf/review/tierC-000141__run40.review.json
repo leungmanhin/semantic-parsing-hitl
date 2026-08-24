@@ -1,0 +1,9 @@
+{"id": "tierC-000141", "run": 40,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["appositive / naming 'of' ('the Indian state of Rayalaseema', 'the city of Boston'): the of-phrase supplies the head noun's own name rather than relating two entities, and the genitive section's exclusion list (partitive 'of the', measure, about-phrase) does not mention it, so nothing states that it emits no relation atom at all"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The sentence is factually scrambled (Rayalaseema is a region of Andhra Pradesh, not the reverse) but the parse follows the text as written, which is what the instruction set asks for defective input, and both nested place-in-place links correctly take LocatedIn rather than PartOf. indian_state fuses under the nationality-adjective licence, with the genus emitted always and the modifier genus licensed by the predication test."}

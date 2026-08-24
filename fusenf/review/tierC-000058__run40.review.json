@@ -1,0 +1,9 @@
+{"id": "tierC-000058", "run": 40,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "Two `Name` atoms are hung on one symbol (\"Pustnic River\" and \"Orociu River\"), against the rule that a proper noun gets exactly one Name fact — the alias \"or\" has no licensed encoding, so the alternative name is recorded in a form the instruction set forbids."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["alias/appositive \"or\" — \"The X or Y is ...\" with singular agreement names ONE entity by two names; the Disjunction section covers only propositional \"or\" (which would wrongly split the subject) and the naming rule allows exactly one Name per entity, so a two-named entity is unrepresentable"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "`PartOf` for \"a tributary of the River Oraciu\" is defensible — the instruction set cites that exact phrase as an ordinary genitive \"untouched by\" the geography-is-LocatedIn rule — though the part/component test over two rivers is a close call against `Possession`. The trailing \"in Romania\" is attached to the subject rather than to the River Oraciu; both attachment sites are coherent, so this sits near the Interpretation attachment trigger."}

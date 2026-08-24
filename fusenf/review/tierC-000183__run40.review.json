@@ -1,0 +1,11 @@
+{"id": "tierC-000183", "run": 40,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "\"The PacifiCats\" is a capitalized proper name (a named vessel class) but is silently converted into the common kind `pacificat` with no `(Name ...)` atom at all, against the rule that every proper noun — vessels included — carries exactly one Name fact."},
+               {"statement": 6, "issue": "\"Robert Allan Limited of Australia\" is an entity-attached genitive, yet it is rendered as the positional claim `(LocatedIn robert_allan_limited australia)` instead of the ordinary genitive `Possession`, asserting a position the text never states — while the sister phrase \"Philip Hercus from Vancouver\" is correctly kept as the surface `From`."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["plural proper name denoting a named class/series (\"the PacifiCats\") — the instruction set has no rule for a pluralized proper noun that is simultaneously a name and the kind its members belong to",
+             "entity-attached \"of\" naming an organization's country or affiliation (\"Robert Allan Limited of Australia\") — the of-phrase rules cover possessive, partitive, measure and about-phrases, but not an origin/affiliation designator"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Splitting the coordinated by-phrase into two design events follows the default distributive coordination rule, and `design` taking `Patient` (a creation verb) is right."}

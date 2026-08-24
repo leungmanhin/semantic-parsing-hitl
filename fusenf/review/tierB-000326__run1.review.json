@@ -1,0 +1,10 @@
+{"id": "tierB-000326", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The definite 'the milk' is filled by the bare class symbol milk with no typing atom, but the instruction set reserves bare class symbols for non-specific/generic objects and requires a definite description to mint a typed individual (sk_milk_1 plus its Member atom)."},
+               {"statement": 2, "issue": "Location places the selling event inside the glass bottles, whereas 'in glass bottles' names the container the milk is sold in rather than where the selling happened, so the where-question test for the named role fails."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["container / packaging PPs ('sold in glass bottles', 'packed in crates', 'shipped in cartons'): the phrase is neither an event Location (the event does not happen there) nor an 'about / directed at' preposition-named oblique, and nothing says whether the container relation attaches to the event or to the goods"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The agentless passive correctly omits the Agent atom, the sold goods correctly take Theme, the unmarked simple present correctly gets no status atom, and the noun-modifier compound glass_bottle correctly emits only its bottle genus with no 'glass' genus."}

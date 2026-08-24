@@ -1,0 +1,12 @@
+{"id": "tierB-001826", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "popular_subject_for_tv_movies fuses an adjective, a head noun and a whole PP complement into one symbol, which the compound rules do not license — compounds are two-word modifier_noun / verb_object / verb_particle, decomposed once into single-word lemmas."},
+               {"statement": 1, "issue": "By the stated KindProperty test (could one individual hold it?) an individual hit man could be a popular subject for TV movies, so the bare-plural copular generic should be ordinary Inheritance, not the non-distributing KindProperty reserved for extinct / widespread / common."},
+               {"statement": 1, "issue": "\"TV movies\" never surfaces as a referable kind (no tv_movie symbol, no (Inheritance tv_movie movie)), so nothing in the KB can answer what hit men are a popular subject for."},
+               {"statement": 3, "issue": "Exposing the modifier genus (Inheritance popular_subject_for_tv_movies popular) presupposes a licensed fusion, but \"popular subject\" is incidental description, which the adjective+noun rule says never to fuse."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["predicate nominal carrying a PP complement (\"X is a subject for Y\", \"a candidate for Z\") — no rule attaches a PP to a copular nominal complement, which is what drove the parser to fuse the whole phrase into one symbol"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The hit_man genus is correct — a hit man is a man, and the noun modifier \"hit\" is rightly left unexposed. The KindProperty-vs-Inheritance call is genuinely borderline, but the mechanical test in the instruction set points to Inheritance."}

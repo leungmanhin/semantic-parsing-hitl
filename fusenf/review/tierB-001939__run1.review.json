@@ -1,0 +1,9 @@
+{"id": "tierB-001939", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 4, "issue": "(Patient (sk_compose $x) $x) gives the molecule the Patient role, but \"is composed of\" is a stative constitution predicate that creates, destroys, consumes or physically changes nothing, so the object test — and its \"when unclear, default to Theme\" fallback — yields Theme."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["constitutive \"N of <mass>\" NPs (\"molecule of water\") — the of-phrase rules enumerate possessive, partitive \"of the\", measure (\"a cup of water\") and about-phrases, and explicitly exclude the measure case from the Possession/PartOf mapping without saying what replaces it; nothing licenses re-ordering it into the compound kind water_molecule", "\"be composed of / consist of / be made up of\" — a constitution predicate whose of-complement is not a by-phrase, so the passive rule (\"a by-phrase takes the role the active subject would have had\") does not determine the constituents' role", "per-member distribution for a counted plural (\"two hydrogen atoms\", each attached to the oxygen atom) when it sits inside a universal rule: Cardinality mandates an added per-member Implication over PartOf, but there is no form for nesting an Implication inside a rule's consequent"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The ∀-plus-number machinery is otherwise applied correctly — Skolem-function event and Skolem group per binding, GroupOf + Cardinality on the group, QuantifierPhrase companion, compound genus for hydrogen_atom/oxygen_atom with the noun modifiers left unexposed, and the participial post-modifier \"attached to\" expanded as a reduced relative rather than a coined head."}

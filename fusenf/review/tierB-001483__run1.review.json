@@ -1,0 +1,13 @@
+{"id": "tierB-001483", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The relative clause \"in which one always cheats\" becomes an unrestricted rule over every person, asserting that everyone cheats rather than that cheating happens in this game."},
+               {"statement": 1, "issue": "\"always\" is dropped — no frequency or universal-occurrence marker records it anywhere in the parse."},
+               {"statement": 1, "issue": "(Location (sk_cheat $x) game) uses the bare class symbol game for the specific game the relative pronoun \"which\" picks out (love itself), which the instruction set reserves for non-specific/generic objects, and treats an abstract game as a spatial container."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["frequency adverb \"always\" (and never/often/rarely) — the frequency section covers only named calendar slots, (Every e n unit) periods and (TimesPer e n unit) rates, so a universal-over-occasions adverb has no form",
+             "impersonal generic pronoun \"one\" (\"one always cheats\" = people in general) — the no-antecedent pronoun rule yields only an anonymous person witness, never a generic range",
+             "a full (non-reduced) restrictive relative clause modifying a predicate nominal with the relative pronoun inside a PP (\"a game in which ...\") — only participial reduced relatives and relative clauses inside rule premises are addressed, and nothing says how the clause attaches to the head kind or how \"which\" binds to it"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Statement 0 is right: the copular kind claim with an indefinite predicate nominal takes Inheritance at the empirical 0.9/0.9. The defect is confined to the relative clause, which is rendered as an unrestricted universal about persons."}

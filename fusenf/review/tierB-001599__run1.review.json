@@ -1,0 +1,9 @@
+{"id": "tierB-001599", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The habitual plural \"on Sundays\" is rendered as a single weekday slot (Time (sk_work $x) (Weekday sunday)) with no accompanying (Every (sk_work $x) 1 week), although the frequency rule says a named slot implies its cycle and mandates that companion atom — as emitted, the recurrence carried by the plural is lost."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["desire / control verbs with a non-finite \"to V\" complement (\"wants to work\", \"tried to leave\", \"refused to sign\") — Propositional attitudes is explicitly restricted to a finite clausal complement, so nothing decides between sealing the complement under Theme (what this parse does), reifying it at top level as the causation-flavored-verb bullet prescribes, or the inception pattern's separate Ongoing activity witness", "bare-plural habitual time adjuncts (\"on Sundays\", \"in the mornings\", \"on weekends\") — the frequency section's triggers are all explicit (\"every Monday\", \"every two weeks\", \"twice a week\"), so it is not stated whether a bare plural weekday names a recurrence slot and takes the (Every e 1 week) cycle atom", "negative indefinite pronoun as a quantified subject (\"no one\") — the quantifier table and QuantifierPhrase companion are specified for a determiner on a noun or group, and the person-classing rule only for anaphoric personal pronouns; nothing licenses ranging \"no one\" over (Member $x person) as a strength-0 rule or bounds its contextual domain"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Experiencer for the subject of \"want\" is correct by the progressive test, and the dependent Skolem functions (sk_want $x)/(sk_work $x) are formed correctly; sealing the complement keeps the desire non-veridical, which is the right semantics even though the instruction set does not license it for infinitival complements."}

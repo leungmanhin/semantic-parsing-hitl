@@ -1,0 +1,22 @@
+{"id": "tierB-001229", "run": 1,
+ "q1_faithful": "no",
+ "q1_issues": [
+   {"statement": 0, "issue": "The antecedent is sealed as the positive `(Member sk_air_1 air)` — 'if there were air' — inverting the sentence's negated existential 'if there were NO air'."},
+   {"statement": 0, "issue": "The consequent's negation ('could not live') is dropped entirely, so the sealed bundle records the positive 'people could live for ten minutes', the opposite of what the sentence says."},
+   {"statement": 0, "issue": "The live event's subject takes `Experiencer`, while the instruction set's own example ('Mia has lived in Oslo since 2019') assigns `Agent` to a live subject."},
+   {"statement": 0, "issue": "The bare-plural generic subject 'people' is dropped into the role slot as the bare class constant `person`, which the instruction set reserves for non-specific objects, not for a generic subject."},
+   {"statement": 1, "issue": "The prescribed presupposition is the antecedent bundle at strength 0.0; this instead asserts a fresh positive fact `(Member sk_air_1 air)` at strength 1.0."},
+   {"statement": 2, "issue": "`ten_minutes` is an invented constant with no class atom (an untyped referent symbol), and the tag attaches to `sk_live_1`, an event that exists only inside the seal."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "present/non-past subjunctive counterfactual ('If there were no X, Y could not Z') — only the past 'had V-ed / would have V-ed' form is defined as `Counterfactual`, and only the indicative form as a plain `Implication`",
+   "negated existential ('there is no air') — no representation is given for denying that anything of a class exists",
+   "negation inside a sealed term — the strength-0 `(And ...)` bundle is a top-level statement device, so a counterfactual clause that is itself negative has no way to record its polarity",
+   "a bare-plural generic subject inside a sealed clause — the prescribed `Implication` rule form cannot be nested as a seal argument",
+   "focus particle 'even' scoping over a duration/measure phrase ('for even ten minutes') — `(Even <filler> <event>)` needs a constituent symbol and a measure phrase has none"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Both polarity inversions together make the sealed record mean roughly the opposite of the sentence. Part of the failure is genuinely unaddressed territory (negated existential, negation under a seal), so the gap list matters as much as the defect list here."}

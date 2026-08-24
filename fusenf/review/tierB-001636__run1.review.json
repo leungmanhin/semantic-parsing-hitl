@@ -1,0 +1,13 @@
+{"id": "tierB-001636", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "The treating event is asserted at top level at (STV 1.0 0.99), but the sentence asserts no treating occurrence — 'a way to treat a lady' is an infinitival relative describing a manner, not a reported event."},
+               {"statement": 4, "issue": "sk_lady_1 posits a specific lady as an existing individual, where 'a lady' inside the infinitival relative is generic (any lady) and no lady is introduced by the sentence."},
+               {"statement": 5, "issue": "(Manner sk_treat_1 sk_thing_1) uses Manner with an entity filler, where the instruction set defines Manner as taking a surface adverb; it also reverses the dependency (the infinitive modifies 'way', it is not an adjunct of a treating event)."},
+               {"statement": 1, "issue": "The strength-0 atom denies the literal predication 'this is a way', whereas the sentence denies acceptability ('this is not an acceptable way') — combined with the positive Manner link at statement 5 the parse both denies and asserts that this is how the lady is treated."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Evaluative predicate-nominal with an infinitival relative ('This is no way to treat a lady', 'that is a good way to V'): nothing licenses attaching a 'to V' infinitival relative to a predicate noun, and nothing covers the evaluative negation that denies suitability rather than the literal category membership.",
+             "Predicate-nominal determiner 'no' ('this is no way to V'): the 'no'/'none' QuantifierPhrase companion rule is stated for quantification over a subject class ('No reptile is warm-blooded'), and does not say whether the companion applies when 'no' determines the predicate nominal of an individual subject — the parse emitted none."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The antecedent-less 'this' correctly falls back to the thing class (the text's only candidate kind, 'way', is under the denial), and Theme for the object of 'treat' follows the change test. The construction itself is uncovered, so the parse's improvisation is understandable, but as written it asserts an occurrence the sentence does not."}

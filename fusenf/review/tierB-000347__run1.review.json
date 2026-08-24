@@ -1,0 +1,10 @@
+{"id": "tierB-000347", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "(LocatedIn sk_life_1 sk_slum_1) applies the entity-position head to an abstract noun, where the instruction set defines LocatedIn for where a THING is (a village in a county, a jetty in an estuary)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Content / 'about'-of-phrase on a nominalization ('a depiction of life', 'a photo of Mary'): the genitive section explicitly excludes it from Possession/PartOf but names no replacement form, and the preposition-named oblique is defined for event PPs, so (Of <entity> <content>) is an extrapolation rather than a licensed form.",
+             "A bare mass / abstract noun carrying a restrictive modifier ('life in an urban slum'): the NP rule keeps a bare mass noun as a plain constant, but a constant has no symbol to hang the restrictive modifier on, so nothing licenses either the witness sk_life_1 or the alternative."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Correctly declines to fuse the evaluative 'harrowing depiction' and the descriptive 'urban slum' (two atoms each, per the dented-pail line), and correctly treats 'depiction' as a plain kind rather than an agent-nominalization (it fails the 'one who/that Vs' test). Predicating depiction/harrowing of sk_movie_1 via the copula is right."}

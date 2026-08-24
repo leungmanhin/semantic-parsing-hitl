@@ -1,0 +1,12 @@
+{"id": "tierB-000741", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "The matrix equative clause \"This is the something ...\" is entirely unparsed - no witness or atom for the subject \"This\" and no atom identifying it with the overlooked thing, so the sentence's main predication is missing."},
+               {"statement": 0, "issue": "The referent is typed with the pronoun itself, (Member sk_something_1 something), rather than a real kind such as thing, against the rule that a bare pronoun's witness is minted from its class and never from the pronoun."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["equative / identificational copular clause (\"This is the N that ...\") - Categorical statements covers only \"X is a/an N\" and \"X is ADJ\", not an identity between two referring expressions",
+             "demonstrative pronoun (\"this\" / \"that\") as a clause subject - the no-antecedent pronoun rule enumerates only he / she / they / it",
+             "finite restrictive relative clause on a head noun whose own subject is quantified (\"the something many people seem to overlook\") - only participial reduced relatives and universal \"everyone who ...\" rules are given, so nothing says whether to emit a distributing rule and how to link it back to the head noun"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The relative-clause half is well handled: \"many\" -> rule strength 0.7 with its QuantifierPhrase companion, and \"seem\" -> the epistemic Probably route, both as the instruction set specifies. The defect is that the clause the sentence is actually asserting was dropped."}

@@ -76,12 +76,54 @@ multi-word spatial prepositions. These merge with the campaign report's parser-f
 list (vague frequency adverbs, control-infinitive doctrine, tough-constructions) into
 the batch-3 fix-pack candidate pool.
 
+## Clean-sample stratum (run same day — the cap test made it possible)
+
+The owner had the sweep double as an empirical test of the retired
+`CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION` limit: **the old 600/session cap did NOT fire**
+— launches 601–650 all succeeded and completed (the boundary agent at #600 and the
+whole over-cap group wrote verdicts normally). The cap is a no-op in the installed
+version; ops docs and memory corrected. The full 227-record pre-registered sample
+therefore ran in-session (batches `rv-068`–`rv-114`, 47 blind Opus agents, 227/227
+verdicts, disk-diff clean per group).
+
+**Defect-rate estimate (n=227 uniform clean records):**
+
+| q1 | n | rate |
+|---|---|---|
+| yes | 116 | 51.1% |
+| partial | 104 | 45.8% |
+| no (hard defect) | 7 | **3.1%** |
+
+Rates are uniform across tiers (tierB r1 46% partial, tierC r40 49%, pilot r2 4/11).
+**Hard-defect rate 3.1% is under the ~5% escalation threshold; the any-issue rate
+(48.9%) is far over it** — the policy's "defect rate" is underdetermined between the
+two readings, so the escalation call (widen sample / majority-of-N parsing) goes to the
+owner rather than firing mechanically. Partial severity profile: 51/104 single-issue;
+themes: role choice (32 issues), witness-vs-generic routing (25), dropped/unrepresented
+content (25), strength/TV calibration (20), quantifier/plural mechanics (12),
+tense/aspect (12) — systematic prompt-loop material, not random noise.
+
+**Validator blind-spot check: ZERO** — no clean record drew a reviewer-flagged
+unlicensed head, so C4's closed-list check had 100% recall on head violations in this
+sample (complementing the 13% precision from the findings stratum).
+
+**The 7 hard failures** (all tierB r1): tierB-001229 (counterfactual antecedent
+polarity inverted — the #40 family), tierB-000164 ("should not" collapsed to a flat
+prohibition, dropping the 0.7 deontic weakening), tierB-000592 (existential witness
+asserted for a generic copular — "A man in the kitchen is an uncommon sight" parsed as
+an actual man in a kitchen), tierB-001369 + tierB-001195 (idioms "on the verge of" /
+"the same goes for" decomposed literally), tierB-001066 (distribution-rule member-kind
+mismatch, subject never represented), tierB-000684 (Experiencer/Stimulus direction
+swapped + comparative asserted as positive). All 111 q1≠yes clean records added to
+triage as `review-defect` with embedded verdicts (findings-stratum rows keep theirs;
+total review-defect now 170).
+
 ## Next
 
-1. **Clean-sample stratum next session**: 227 pre-registered records (~46 batches at
-   the standing 5-item size) — the defect-rate estimator; escalation if >~5%.
-2. Owner adjudication over the 59 `review-defect` rows (most are single-issue partials;
-   the two pilot-r2 hard failures are re-parse candidates — but per the error-vs-variance
-   doctrine, prompt-DETERMINED misses route to diagnosis, not bridges).
-3. Review-by-provenance (stratum 2) activates automatically when mining (E/H) produces
+1. **Owner decisions:** (a) the escalation call above (hard 3.1% pass vs any-issue
+   48.9% — recommendation: no majority-of-N; route the partial themes to the batch-3
+   prompt loop); (b) adjudication of the 170 `review-defect` triage rows (the 9 hard
+   failures first).
+2. Review-by-provenance (stratum 2) activates automatically when mining (E/H) produces
    candidates citing campaign records.
+3. The sweep is otherwise CLOSED: all four strata discharged or armed.

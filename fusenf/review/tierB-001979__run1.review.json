@@ -1,0 +1,9 @@
+{"id": "tierB-001979", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "the top-level (Member sk_phone_number_1 phone_number) asserts at strength 1.0 that such a number exists, which is exactly what the sentence denies; the definite/demonstrative projection rule licenses the atom, so this looks like a rule gap rather than a parser slip."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["existence predicates under negation (\"That phone number never existed\", \"there was no such file\") — the rule that a definite referent's typing atom projects outside a strength-0 (And ...) denial has no carve-out for a denial whose content IS the referent's existence, so the projected typing contradicts the assertion", "\"never\" as universal temporal negation — it is listed only as a strength-0 negation cue, so nothing distinguishes \"never existed\" from \"did not exist\""],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The compound handling is exactly right — genus (Inheritance phone_number number) emitted and the noun modifier \"phone\" correctly not exposed — as is Experiencer for the stative intransitive subject and keeping Past inside the strength-0 conjunction."}

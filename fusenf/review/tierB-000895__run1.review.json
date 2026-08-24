@@ -1,0 +1,11 @@
+{"id": "tierB-000895", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "'would' is rendered as the epistemic operator Probably (statement 1 too), but the epistemic route is written for might / probably / must only, and the instruction set's single 'would' precedent ('it would rain') maps it to Future."},
+               {"statement": null, "issue": "The subject 'This' has no antecedent, so it needs its own witness typing atom at top level, but the referent is typed only as 'tragedy' inside the modal wrapper, leaving the symbol untyped in everything the sentence actually asserts."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["bare hypothetical / conditional 'would' with no stated antecedent clause — the status table covers might / probably / must, and 'would (have)' otherwise appears only inside the explicit if-clause Counterfactual form",
+             "discourse-deictic 'this' picking out a situation with no linguistic antecedent — the coreference section covers 'this' only as event anaphora pointing at an already-parsed clause"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Splitting 'a terrible tragedy' into two atoms rather than fusing it is right (evaluative, incidental modifier), and wrapping every categorical atom the clause yields in the one status operator follows the copular tense/modality rule."}

@@ -1,0 +1,9 @@
+{"id": "tierB-001898", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "(For lake_towada sk_beauty_1) hangs the 'for'-complement on the entity instead of on the fame, so the parse never says what Lake Towada is famous FOR — the atom is disconnected from (Member lake_towada famous) and reads as a bare entity-to-entity relation."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["PP complement of a copular ADJECTIVE ('famous for X', 'proud of X', 'responsible for X') — preposition-named obliques are defined as EVENT obliques ((For <event> …), as in 'commended for the salvage'), a copular clause has no event witness, and the rule that reifies a copular state to host a modifier is restricted to a time modifier or a connective endpoint, so there is no licensed attachment site for the PP"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Name handling is exactly the Kestrel River pattern (one opaque multi-word symbol, one Name, kind in a separate Member atom), and 'its beauty' correctly takes Possession rather than PartOf with 'its' resolved to lake_towada. The head 'For' is the right choice for a ground/reason 'for' (not Beneficiary); only its attachment site is unlicensed."}

@@ -1,0 +1,13 @@
+{"id": "tierB-000592", "run": 1,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": 0, "issue": "The sentence is a copular predication with an indefinite subject, which the instruction set routes to the generic kind form (Inheritance on the kind, as in \"A dog is a mammal\"), but the parse mints a specific witness sk_man_1 and predicates by Member."},
+               {"statement": 2, "issue": "(LocatedIn sk_man_1 sk_kitchen_1) asserts that a particular man is actually in a particular kitchen — an existential and locative commitment the generic sentence never makes."},
+               {"statement": 4, "issue": "\"uncommon\" is the kind-level, non-distributing family the instruction set names explicitly (common / rare / widespread / numerous), so it should route to KindProperty rather than Member on an individual — one man cannot be uncommon."},
+               {"statement": 3, "issue": "(Member sk_man_1 sight) predicates sight-hood of the man himself, whereas the sentence says the scene of a man being in a kitchen is the uncommon sight."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["generic subject restricted by a PP (\"a man in the kitchen\") — no way to build a PP-restricted complex kind for the Inheritance form",
+             "metonymic evaluative predicate nominal (\"X is an uncommon sight\"), where the predicate is about the situation of X rather than X"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Every head used (Member, LocatedIn, Degree) is licensed and the Degree level \"quite\" follows the surface-adverb rule; the defect is scope — the whole parse is about one specific man instead of the kind."}

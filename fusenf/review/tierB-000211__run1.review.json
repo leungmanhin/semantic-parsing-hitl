@@ -1,0 +1,9 @@
+{"id": "tierB-000211", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The reading is attributed to the thermometer as its own temperature and the \"reads\" clause is dropped entirely, whereas the sentence asserts what the instrument displays; the instruction set's stative-transitive rule (\"the manifest lists two pallets\", \"the tank holds forty litres\" -> Agent) would instead reify a read event with the thermometer as Agent."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["instrument-indication / display verbs (\"the thermometer reads X\", \"the gauge shows X\", \"the sign says X\"): the Measures section licenses the Measure form only for verbs whose subject BEARS the dimension (weighs, costs), and nothing says whether a displayed value becomes a Measure on the instrument or the object of a reified stative event", "a temperature stated in bare \"degrees\" with no named scale: the Temperature paragraph assumes celsius/fahrenheit/kelvin, and the seeded conversion lexicon has no entry for the unit `degree`, so this measure cannot convert or threshold", "\"N below zero\" / values expressed relative to a reference point: nothing licenses deriving the signed magnitude -3 from the surface \"three degrees below zero\""],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Scale choice `temperature` and the entity typing atom are right; the defect is the routing of \"reads\" plus the unconvertible bare `degree` unit. Both heads used (Member, Measure) are licensed."}

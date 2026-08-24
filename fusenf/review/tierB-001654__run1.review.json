@@ -1,0 +1,9 @@
+{"id": "tierB-001654", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 4, "issue": "(End sk_postpone_1 tomorrow) puts a future endpoint on an event already marked Past, and 'until tomorrow' names the final's new scheduled time rather than the extent of the postponing act."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["'postpone / reschedule X until T', where the until-phrase gives the object occurrence's new time rather than an interval endpoint of the matrix event - the only 'until' rule available is the interval (End e <term>)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything else follows the instruction set: a scheduled occurrence as object takes Patient, the agentless passive omits the Agent atom, and the ungrounded deictic 'tomorrow' correctly stays a bare constant with no witness."}

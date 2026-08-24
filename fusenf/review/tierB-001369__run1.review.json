@@ -1,0 +1,18 @@
+{"id": "tierB-001369", "run": 1,
+ "q1_faithful": "no",
+ "q1_issues": [
+   {"statement": 2, "issue": "'on the verge of' is a fixed idiom whose literal reading is incoherent for these participants (starvation has no edge), yet the parse mints a physical `verge` entity the text never introduces — exactly the error the idiom rule forbids."},
+   {"statement": 3, "issue": "The idiom's complement is unpacked as a bare `(Of sk_verge_1 starvation)`, whereas the instruction set routes of-phrases to `Possession` / `PartOf` / `SubsetOf` / measure / about readings, none of which is a relation between a verge and starvation."},
+   {"statement": 4, "issue": "Nothing in the parse records what the sentence actually states — that the cat was close to starving; the locative `(On ...)` asserts a spatial position instead."},
+   {"statement": 1, "issue": "Minor: `(Member sk_cat_1 poor)` is left untensed under a past host clause, unlike the appositive rule where a modifier's atom takes the host clause's wrapper."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "imminent / prospective aspect ('on the verge of X', 'about to V') — no operator records that an eventuality is impending but has not occurred",
+   "a fixed idiom that takes a complement ('on the verge of <N>') — the idiom rule provides only a single whole-word surface symbol, with no shape for an idiomatic frame carrying an open argument slot",
+   "expressive / sympathetic attributive adjective ('the poor cat'), which conveys the speaker's attitude rather than predicating a property of the referent"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The cat's typing and modifier follow the rules, but the core predication is unfaithful: it asserts a physical verge and an `Of` link the text never states while omitting the near-starvation the sentence is about. The idiom's argument-taking shape is itself unaddressed, so the gap list explains part of the failure."}

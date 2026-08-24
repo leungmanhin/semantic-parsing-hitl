@@ -1,0 +1,11 @@
+{"id": "tierB-000310", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "(Member sk_translate_1 task) is asserted at strength 1.0 even though the text says only that translating is *not* an easy task; the denial is applied to `easy` alone, so the parse positively asserts half of the very predicate nominal the sentence negates."},
+               {"statement": 0, "issue": "The gerundive subject \"Translating sentences\" is reified as an ordinary positive event witness, asserting that a translating eventuality holds rather than predicating of the activity itself."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["gerund / non-finite clause as the subject of a copular clause (\"Translating sentences is not an easy task\") - Two kinds of clause decides copular vs verbal by the predicate but gives no encoding for an activity-denoting clausal subject",
+             "negation over a multi-atom predicate nominal (\"is not an easy task\") - Negation (copular) says to set strength 0.0 \"on the same atom\", but an adjective + noun predicate yields two atoms and nothing states which of them take 0.0 (or whether they must be denied jointly as one bundle)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Not fusing \"easy task\" is right (incidental/evaluative description, not a classifying compound), and the bare-class Theme `sentence` for the non-specific object follows the bare-class-symbol rule."}

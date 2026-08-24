@@ -1,0 +1,9 @@
+{"id": "tierB-001664", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "\"in black and white\" answers HOW dogs see, and the instruction set routes a PP answering where/when/how/whence/whither to the named role (here Manner), reserving the preposition-named oblique (In) for PPs that fit none of them."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["unrestricted quantificational pronouns (\"everything\" / \"everyone\" / \"nothing\") as a rule's quantified range - the instruction set never says what class such a bare universal ranges over, nor what surface string its QuantifierPhrase companion should record when the pronoun is split into a range plus a determiner", "manner PPs - the role list glosses Manner as \"(adverb)\" and the Manner example is an adverb, while the routing line says the named roles apply whenever a PP answers \"how\", leaving a how-answering PP with no unambiguous home"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The rule shape (two universal premises with the Skolem-function event (sk_see $x $y)), Experiencer/Stimulus for stative \"see\", the 0.9 generic strength and the absent status atom all follow the instruction set, and black_and_white is a licensed fixed-phrase surface symbol carrying no genus. The (Member $y thing) range is the only class the instruction set's fallback supplies for \"everything\", but nothing is normally typed thing in a KB, so the rule is unlikely to ever fire."}

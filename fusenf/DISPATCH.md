@@ -60,7 +60,9 @@ bolt context into the wrapper.
 - On a rate-limit burst: **stop dispatching, let in-flight agents terminate, then ONE
   recovery pass rebuilt from the disk diff** (`raw/` files present vs the batch manifest).
   Never per-batch retries mid-burst.
-- Caps: 30 concurrent subagents, 600 per session lifetime.
+- Caps: 30 concurrent subagents. (The 600/session-lifetime cap was RETIRED upstream;
+  empirically confirmed no-op 2026-08-24 — launches 601–650 all succeeded. Budget
+  planning no longer needs the per-session ledger; keep the concurrency discipline.)
 - Agents write files and reply "done" at most — atoms never travel through the reply
   channel. Extraction + validation is mechanical downstream (`harness/validator.py`,
   C1–C8; per-record `extraction.strip_log` keeps what was stripped).
