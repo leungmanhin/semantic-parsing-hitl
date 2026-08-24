@@ -2,9 +2,9 @@
  "meta": {
   "schema": "fusenf-vocabulary/1",
   "generated": "2026-07-27",
-  "prompt_sha256": "f6448eac9f884ae607a37f09ce16b4c0997e08590464a150c16f24fa7ca2af11",
+  "prompt_sha256": "2aa57fa8aeb3d4ed1127e52666459787523d74ef726d131c9a3c2eb37cd850f1",
   "seeded_sha256": "b7e25b96347848cc86b156dfa6294e0d8eb08c247bf66651631be2ced22a7078",
-  "prompt_lines": 2447,
+  "prompt_lines": 2602,
   "seeded_rules": 110,
   "method": "two independent full-prompt extractions (different models) reconciled against a mechanical inventory of every atom in the 316 regression goldens, the e2e harness and the seeded rules; 17 field disagreements adjudicated by the orchestrator and marked _adjudicated",
   "attestation_sources": [
@@ -19,8 +19,8 @@
    "both": 116,
    "field_disagreements": 17
   },
-  "revised": "2026-08-22",
-  "revision_note": "mechanical attestation sweep by harness/vocab_attest.py: goldens 1634, e2e 880, seeded 110 statements; attestation blocks, open-class/skolem lists and pins regenerated; declared fields untouched.",
+  "revised": "2026-08-24",
+  "revision_note": "mechanical attestation sweep by harness/vocab_attest.py: goldens 1677, e2e 920, seeded 110 statements; attestation blocks, open-class/skolem lists and pins regenerated; declared fields untouched.",
   "maintenance": "When validator.py reports the vocabulary STALE (pins != live prompt.txt/seeded_rules.metta): run harness/vocab_attest.py --date <today>, adjudicate any UNKNOWN heads or arity flags it prints (edit operators by hand \u2014 declared fields are human decisions), then rerun with --write to regenerate attestation fields and re-pin. Full two-extractor reconciliation (meta.method) is only needed when prompt.txt's operator sections materially change."
  },
  "field_semantics": {
@@ -52,9 +52,9 @@
    "attested": {
     "arities": {
      "1": 2,
-     "3": 2622
+     "3": 2705
     },
-    "n": 2624,
+    "n": 2707,
     "sources": [
      "e2e",
      "goldens",
@@ -107,9 +107,9 @@
    "gloss": "Volitional doer / subject of an action.",
    "attested": {
     "arities": {
-     "2": 359
+     "2": 366
     },
-    "n": 359,
+    "n": 366,
     "sources": [
      "e2e",
      "goldens"
@@ -219,15 +219,15 @@
    "gloss": "Conjunction bundle; one fact, one truth value.",
    "attested": {
     "arities": {
-     "2": 76,
-     "3": 82,
+     "2": 77,
+     "3": 84,
      "4": 36,
      "5": 27,
      "6": 19,
      "7": 10,
      "9": 1
     },
-    "n": 251,
+    "n": 254,
     "sources": [
      "e2e",
      "goldens",
@@ -639,9 +639,9 @@
    "gloss": "A kind has a property only under a stated condition.",
    "attested": {
     "arities": {
-     "3": 7
+     "3": 9
     },
-    "n": 7,
+    "n": 9,
     "sources": [
      "e2e",
      "goldens",
@@ -945,9 +945,9 @@
    "gloss": "Subject of a stative predication \u2014 psych state or predicate-adjective state.",
    "attested": {
     "arities": {
-     "2": 29
+     "2": 33
     },
-    "n": 29,
+    "n": 33,
     "sources": [
      "e2e",
      "goldens"
@@ -1125,9 +1125,9 @@
    "gloss": "The members of this group individual are of that kind.",
    "attested": {
     "arities": {
-     "2": 66
+     "2": 69
     },
-    "n": 66,
+    "n": 69,
     "sources": [
      "e2e",
      "goldens"
@@ -1207,9 +1207,9 @@
    "gloss": "Inference rule: a Premises term implies a Conclusions term.",
    "attested": {
     "arities": {
-     "2": 144
+     "2": 146
     },
-    "n": 144,
+    "n": 146,
     "sources": [
      "e2e",
      "goldens",
@@ -1262,9 +1262,9 @@
    "gloss": "A class/property is a subclass of another class/property.",
    "attested": {
     "arities": {
-     "2": 108
+     "2": 109
     },
-    "n": 108,
+    "n": 109,
     "sources": [
      "e2e",
      "goldens",
@@ -1513,9 +1513,9 @@
    "gloss": "An individual belongs to a class or holds a property.",
    "attested": {
     "arities": {
-     "2": 1129
+     "2": 1176
     },
-    "n": 1129,
+    "n": 1176,
     "sources": [
      "e2e",
      "goldens",
@@ -1761,9 +1761,9 @@
    "gloss": "Records a named individual's surface name string.",
    "attested": {
     "arities": {
-     "2": 219
+     "2": 221
     },
-    "n": 219,
+    "n": 221,
     "sources": [
      "e2e",
      "goldens"
@@ -1977,9 +1977,9 @@
    "gloss": "Past tense on an eventuality.",
    "attested": {
     "arities": {
-     "1": 360
+     "1": 367
     },
-    "n": 360,
+    "n": 367,
     "sources": [
      "e2e",
      "goldens"
@@ -2005,9 +2005,9 @@
    "gloss": "Object the action creates, destroys, consumes or physically changes.",
    "attested": {
     "arities": {
-     "2": 136
+     "2": 138
     },
-    "n": 136,
+    "n": 138,
     "sources": [
      "e2e",
      "goldens"
@@ -2161,9 +2161,9 @@
    "gloss": "Records the surface quantifier word beside the strength it set.",
    "attested": {
     "arities": {
-     "3": 27
+     "3": 29
     },
-    "n": 27,
+    "n": 29,
     "sources": [
      "e2e",
      "goldens"
@@ -2296,9 +2296,9 @@
    "gloss": "Links an event to the reified result state it caused.",
    "attested": {
     "arities": {
-     "2": 2
+     "2": 4
     },
-    "n": 2,
+    "n": 4,
     "sources": [
      "e2e",
      "goldens"
@@ -2323,9 +2323,9 @@
    "gloss": "Truth value: strength and confidence, both in [0,1].",
    "attested": {
     "arities": {
-     "2": 2538
+     "2": 2621
     },
-    "n": 2538,
+    "n": 2621,
     "sources": [
      "e2e",
      "goldens",
@@ -2646,9 +2646,9 @@
    "gloss": "Object acquired, transferred, moved, possessed, perceived or evaluated unchanged.",
    "attested": {
     "arities": {
-     "2": 146
+     "2": 153
     },
-    "n": 146,
+    "n": 153,
     "sources": [
      "e2e",
      "goldens",
@@ -3317,6 +3317,7 @@
    "sk_laugh",
    "sk_memorize",
    "sk_migrate",
+   "sk_nest",
    "sk_object",
    "sk_poems",
    "sk_question",

@@ -2893,3 +2893,72 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (Interpretation r2 (: e_kick_ag (Agent sk_kick_1 marvin) (STV 1.0 0.99)))
     (Interpretation r2 (: e_kick_th (Theme sk_kick_1 sk_bucket_1) (STV 1.0 0.99)))
     (Interpretation r2 (: e_kick_tns (Past sk_kick_1) (STV 1.0 0.99)))
+
+## Fix-pack 3 (batch 3): complements, positions, restricted kinds, reported attitudes, frequency, control, change-of-kind
+
+**[nom-complement] The auditors demanded a revision of the tariff schedule.** — a result-nominalization's of-phrase is its **object** (verb paraphrase: revises the schedule) → entity-attached surface-preposition oblique on the noun's witness, never `Possession`; `tariff_schedule` fuses (noun modifier unexposed)
+
+    (: e_demand (Member sk_demand_1 demand) (STV 1.0 0.99))
+    (: e_demand_ag (Agent sk_demand_1 sk_group_1) (STV 1.0 0.99))
+    (: t_auditors (GroupOf sk_group_1 auditor) (STV 1.0 0.99))
+    (: e_demand_th (Theme sk_demand_1 sk_revision_1) (STV 1.0 0.99))
+    (: t_revision (Member sk_revision_1 revision) (STV 1.0 0.99))
+    (: rev_of (Of sk_revision_1 sk_tariff_schedule_1) (STV 1.0 0.99))
+    (: t_sched (Member sk_tariff_schedule_1 tariff_schedule) (STV 1.0 0.99))
+    (: sched_genus (Inheritance tariff_schedule schedule) (STV 1.0 0.99))
+    (: e_demand_past (Past sk_demand_1) (STV 1.0 0.99))
+
+**[adj-complement] The pantry is full of moths.** — an adjective's PP complement anchors on a **reified state** (fourth reification trigger): state witness + `Experiencer` + the surface-preposition oblique on the state, plus the flat copular atom (dual-emit); the moths are an indefinite plural group
+
+    (: t_pantry (Member sk_pantry_1 pantry) (STV 1.0 0.99))
+    (: st_full (Member sk_full_1 full) (STV 1.0 0.99))
+    (: st_exp (Experiencer sk_full_1 sk_pantry_1) (STV 1.0 0.99))
+    (: t_moths (GroupOf sk_group_1 moth) (STV 1.0 0.99))
+    (: st_of (Of sk_full_1 sk_group_1) (STV 1.0 0.99))
+    (: flat_full (Member sk_pantry_1 full) (STV 1.0 0.99))
+
+**[entity-position] A satchel lay under the pew.** — a non-containment position preposition stays **entity-attached surface-form** (`LocatedIn` is in/at/inside only); the postural stative "lay" is a locative stative (no motion event needed beyond the state reading, `Experiencer` subject)
+
+    (: t_satchel (Member sk_satchel_1 satchel) (STV 1.0 0.99))
+    (: t_pew (Member sk_pew_1 pew) (STV 1.0 0.99))
+    (: pos_under (Past (Under sk_satchel_1 sk_pew_1)) (STV 1.0 0.99))
+
+**[restricted-kind] Firewood is scarce on the tundra.** — a locative PP restricting a kind-level property goes in the **`ConditionalProperty` condition slot** (the causeway pattern); never the bare `Inheritance` (over-claims) and never a kind in `LocatedIn`
+
+    (: fw_scarce (ConditionalProperty firewood scarce sk_tundra_1) (STV 0.9 0.9))
+    (: t_tundra (Member sk_tundra_1 tundra) (STV 1.0 0.99))
+
+**[reported-attitude] The footbridge is considered to be unsafe.** — impersonal reported attitude: agentless attitude event (no `Experiencer`), complement **sealed** under `Theme` (non-factive — no top-level `(Member … unsafe)`), definite subject's typing projects
+
+    (: e_consider (Member sk_consider_1 consider) (STV 1.0 0.99))
+    (: cons_theme (Theme sk_consider_1 (Member sk_footbridge_1 unsafe)) (STV 1.0 0.99))
+    (: t_footbridge (Member sk_footbridge_1 footbridge) (STV 1.0 0.99))
+
+**[frequency-adverb] Herons rarely nest on the breakwater.** — a frequency adverb on a generic sets the **rule strength** (rarely → 0.1) and is recorded in the `QuantifierPhrase` companion, like "few"
+
+    (: heron_nest (Implication (Member $x heron) (And (Member (sk_nest $x) nest) (Agent (sk_nest $x) $x) (On (sk_nest $x) sk_breakwater_1))) (STV 0.1 0.9))
+    (: heron_q (QuantifierPhrase heron nest "rarely") (STV 1.0 0.99))
+    (: t_breakwater (Member sk_breakwater_1 breakwater) (STV 1.0 0.99))
+
+**[control-infinitive] Marlow agreed to audit the ledger.** — a control verb's to-infinitive is **never sealed**: complement event reified at top level, attached by `Theme`, controller's role copied in (subject control), no tense/status of its own
+
+    (: e_agree (Member sk_agree_1 agree) (STV 1.0 0.99))
+    (: e_agree_ag (Agent sk_agree_1 marlow) (STV 1.0 0.99))
+    (: e_agree_th (Theme sk_agree_1 sk_audit_1) (STV 1.0 0.99))
+    (: e_agree_past (Past sk_agree_1) (STV 1.0 0.99))
+    (: e_audit (Member sk_audit_1 audit) (STV 1.0 0.99))
+    (: e_audit_ag (Agent sk_audit_1 marlow) (STV 1.0 0.99))
+    (: e_audit_th (Theme sk_audit_1 sk_ledger_1) (STV 1.0 0.99))
+    (: t_ledger (Member sk_ledger_1 ledger) (STV 1.0 0.99))
+    (: marlow_name (Name marlow "Marlow") (STV 1.0 0.99))
+
+**[change-of-kind] The granary turned into a chapel.** — change of kind is the **State-result shape on the subject's own symbol**: subject = `Patient`, result kind reified with the same subject as `Experiencer` + flat copular atom + `Result` link; no fresh entity for the outcome, no spatial `Goal`
+
+    (: e_turn (Member sk_turn_1 turn) (STV 1.0 0.99))
+    (: e_turn_pat (Patient sk_turn_1 sk_granary_1) (STV 1.0 0.99))
+    (: t_granary (Member sk_granary_1 granary) (STV 1.0 0.99))
+    (: e_turn_past (Past sk_turn_1) (STV 1.0 0.99))
+    (: st_chapel (Member sk_chapel_1 chapel) (STV 1.0 0.99))
+    (: st_exp (Experiencer sk_chapel_1 sk_granary_1) (STV 1.0 0.99))
+    (: flat_chapel (Member sk_granary_1 chapel) (STV 1.0 0.99))
+    (: e_result (Result sk_turn_1 sk_chapel_1) (STV 1.0 0.99))

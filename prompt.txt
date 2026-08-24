@@ -163,8 +163,9 @@ Six patterns recur throughout; each is defined **here once** and only referenced
   each participant by its own determiner; do not put all typing atoms on one side or the other.
 - **Dual-emit.** Where one clause must answer two question shapes, emit **both** forms: a reified
   state **and** the flat copular atom (resultatives, connective endpoints, a copular clause carrying
-  a time modifier); a deictic constant **and** its `TODAY`-grounded calendar atoms; a **factive**
-  attitude's sealed complement **and** its flat proposition.
+  a time modifier, an adjective's PP complement — *Complements of nouns and adjectives*); a deictic
+  constant **and** its `TODAY`-grounded calendar atoms; a **factive** attitude's sealed complement
+  **and** its flat proposition.
 - **Truth values at a glance.** Default `(STV 1.0 0.99)`; definitional / structural links — genus,
   taxonomy, decomposition — also `1.0 0.99`; empirical generic `0.9 0.9`; striking minority strength
   `0.2`–`0.3`; negation / denial / prohibition strength `0.0`; epistemic `Might`/`Probably`/`Must`
@@ -334,8 +335,9 @@ pay_dues)` ≠ `(obligated pay)`).
   fact was stated: seeded rules derive `(Possession <possessed> <possessor>)` from a verbal
   have/own event (`Holder`/`Theme`), so the one query form covers both storages.
   A genuinely possessive **of-phrase** ("the engine of the car") maps the same way — but not a
-  **partitive** "of the" (→ `SubsetOf` / `ProportionOf`), a **measure** ("a cup of water"), or an
-  **about**-phrase ("a photo of Mary").
+  **partitive** "of the" (→ `SubsetOf` / `ProportionOf`), a **measure** ("a cup of water"), an
+  **about**-phrase ("a photo of Mary"), or a **nominalization's object** of-phrase ("a refinement
+  of the survey" — see *Complements of nouns and adjectives*).
 
 - **Agent-nominalization** = a noun that *is* "one who/that Vs" (`swimmer`, `egg_layer`, `predator`,
   `firefighter`, `surveyor`): expose the underlying verb via a **capability** `(Inheritance <nom>
@@ -410,6 +412,12 @@ kind at large that the text does not say:
       The trellises are wooden. →  (: tr_grp (GroupOf sk_trellis_1 trellis) (STV 1.0 0.99))     ; definite — specific things
                                    … plus the distributive rule of *Coordination & plurals*
 
+A property of a plural's **members** is never predicated of the **group symbol**: `(Member
+sk_group_1 wooden)` says the group-as-object is wooden — the reading every plural rule here
+warns against — so a descriptive modifier or copular predicate on a plural **always** goes
+through the distributive rule (or, for a bare plural, the kind), and a bare `(Member <group>
+<prop>)` appears only for a property genuinely of the collection itself (its size, its name).
+
 **Do not emit background rules.** The engine already has inheritance transitivity and
 "a member of a subclass is a member of the superclass". Emit only the atoms for the
 sentence; never emit `(Inheritance $x dog) → (Inheritance $x mammal)`.
@@ -443,6 +451,10 @@ For a general statement, set confidence by *could a counterexample exist, even i
   `(Inheritance swan white) (STV 1.0 0.9)`.
 - When unsure → **empirical** (`0.9`). **Individual facts keep `0.99`** — the dial is only
   for generalizations.
+- **The dial reaches every kind-level claim, whatever its head** — a comparative, kind relation
+  or `KindProperty` between kinds is a generalization too: "Basalt is harder than chalk" →
+  `(More hard basalt chalk) (STV 1.0 0.9)`, never the individual-fact `0.99`. If both arguments
+  are bare kinds and the claim is contingent, the confidence is `0.9`.
 
 ### Negation (copular)
 
@@ -461,6 +473,11 @@ word (above); plain **"not"** negation takes none — so the two `0.0` readings 
                                  (: sk_swan_1_not_white (Member sk_swan_1 white) (STV 0.0 0.99))
 
 - **"neither A nor B"** → one strength-`0.0` fact per disjunct.
+- **A negated MULTI-ATOM predicate denies the whole bundle.** "The loft is not a legal
+  dwelling" denies *being-a-legal-dwelling*, so the noun and its modifier go **together** into
+  one strength-`0.0` `(And …)` — `(And (Member sk_loft_1 dwelling) (Member sk_loft_1 legal))
+  (STV 0.0 0.99)`. Splitting it — a positive `(Member … dwelling)` beside a negated `legal` —
+  asserts half of the very predicate the sentence denies; the text licenses neither half alone.
 - **Lexical antonyms are not negation**: "unhappy", "closed" are positive properties at
   strength `1.0` — only an explicit *not / n't / no / never* sets strength `0.0`.
 
@@ -525,7 +542,11 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
   preposition **actually used** — never a synonym head for a near-fit reading (`in` stays `In`;
   `During` renders only the word "during") — and the oblique's **object NP** follows the ordinary
   NP rules (an article mints a witness with its kind atom; a bare mass / domain / proper name
-  stays a constant).
+  stays a constant). **A prepositional verb's object is this oblique, never a direct-object
+  role**: "clamped down **on** the street vendors", "referred **to** the memo", "dealt **with** the
+  appeal" put the NP in the preposition's oblique — `(On sk_clamp_down_1 sk_vendor_1)` — not in
+  `Patient` / `Theme`; the direct-object roles are for objects the verb takes **without** a
+  preposition.
 
 A **participial post-modifier** on a noun — "the rules **concerning** the levy", "a skiff
 **moored** at the jetty" — is a **reduced relative clause**, so it takes the ordinary **event**
@@ -574,6 +595,19 @@ second "in <Place>" stacked directly on a place NP contains the **place**, not t
 *from*, not where it *is* — so it is neither `LocatedIn` (wrong fact) nor an event `Source` (no
 event): keep the surface preposition on the entity, `(From sk_wool_1 calderwick)`.
 
+**`LocatedIn` is containment ONLY — "in / at / inside / within".** A thing positioned by any
+**other** preposition — "**on** the workbench", "**under** the bench", "**beside** the mill",
+"**next to** the kiln", "**atop** the ridge", "**across the lane from** the chapel" — keeps
+the **surface preposition entity-attached**, exactly like the `From` of origin: `(On sk_ledger_1
+sk_workbench_1)`, `(NextTo sk_lamp_1 sk_kiln_1)`. A **multi-word** preposition CamelCase-joins into
+one head (`NextTo`, `AcrossTheLaneFrom`), the same convention as the multiword connectives.
+Folding "on / under / beside" into `LocatedIn` asserts a containment the sentence never stated;
+the surface head is the faithful record, and it is the same open licence as the event-side
+preposition-named oblique — never a coined synonym head, always the word actually used.
+
+      There was a ledger on the workbench.  →  (Member sk_ledger_1 ledger) (Member sk_workbench_1 workbench)
+                                               (Past (On sk_ledger_1 sk_workbench_1))
+
 **A place inside a place is `LocatedIn`, never `PartOf`.** `PartOf` keeps its two existing jobs —
 a **component** of an object ("car engine") and a **member** of a group — and geography is
 neither: a district within a district, a village in a county, a county in a country are all
@@ -584,6 +618,48 @@ rule.)
 A **framing / domain** PP ("**in** fluid mechanics", "**under** maritime law") is not a place at
 all: it says which field the claim is made in, so it takes neither head but the
 **preposition-named oblique** above — `(In <what-is-claimed> fluid_mechanics)`.
+
+### Complements of nouns and adjectives (argument PPs)
+
+A **noun or adjective can take a PP argument** the way a verb takes an object; the licensed
+encodings reuse machinery already defined — never a coined head, never `Possession` for an
+argument.
+
+- **A nominalization's of-phrase is its OBJECT, not a genitive.** When the head noun names an
+  act, result or quality whose underlying **verb would take the of-NP as object** — "a
+  **refinement of** the earlier survey" (refines it), "the **destruction of** the
+  city" (destroys it), "a **portrayal of** rural life" (portrays it) — attach the argument with
+  the **entity-attached surface-preposition oblique** on the noun's own symbol, exactly like the
+  `From` of origin: `(Of sk_refinement_1 sk_survey_1)`. `Possession` here would
+  assert a possessor the text never stated (the "photo of Mary" exclusion already bars it). A
+  **true relational noun** — kinship, role, part-like link, where no underlying verb exists
+  ("sister of", "capital of", "a tributary of the river") — keeps the ordinary genitive
+  `Possession` / `PartOf` of *Possessive / genitive NP*, unchanged. The test is the **verb
+  paraphrase**: if "the N of X" ≈ "what Vs X" for the noun's own verb, it is the oblique.
+  The same goes for other argument prepositions on such nouns — "a **vehicle for** V-ing", "the
+  **search for** the heir" → `(For <noun-symbol> <argument>)`, the argument's eventuality reified
+  if clausal, **asserted nowhere** (a vehicle *for* spreading does not claim spreading occurred —
+  the oblique records the aboutness and nothing else).
+
+- **An adjective's PP complement anchors on a reified state.** "The cistern is **full of**
+  silt", "the warden is **responsible for** the annex", "moths are **sensitive to** light": the
+  flat `(Member <subj> <adj>)` alone severs the complement, and the complement licenses **state
+  reification** (a fourth trigger beside resultative / connective endpoint / time modifier):
+  reify `(Member sk_<adj>_1 <adj>) (Experiencer sk_<adj>_1 <subj>)`, attach the complement to
+  the **state witness** with the surface-preposition oblique (a state is an eventuality, so this
+  is the ordinary event-side oblique), and keep the flat copular atom (dual-emit as always):
+
+      The cistern is full of silt.  →  (Member sk_cistern_1 cistern) (Member sk_full_1 full)
+                                       (Experiencer sk_full_1 sk_cistern_1) (Of sk_full_1 silt)
+                                       (Member sk_cistern_1 full)
+
+  For a **kind-level generic** whose complement is itself a bare kind ("moths are sensitive to
+  light"), fuse the adjective with its complement into one property — `sensitive_to_light` — and
+  decompose it like a compound action: genus `(Inheritance sensitive_to_light sensitive)` + the
+  argument atom on the compound symbol `(To sensitive_to_light light)`; the generic stays the
+  flat `(Inheritance moth sensitive_to_light)` with its usual TV and any `QuantifierPhrase`
+  companion naming the fused property. Fuse **only** when both sides are bare kinds — an
+  individuated bearer or complement takes the reified-state route above.
 
 Assign: subject → `Agent` (action) / `Experiencer` (a property or psych state) / `Holder` (a
 possession/relational state only — own/have/lack); direct object →
@@ -758,6 +834,21 @@ in that state *because of* the verb. Two shapes, by what the result is:
         →  (Member sk_slide_1 slide) (Agent sk_slide_1 otto) (Theme sk_slide_1 sk_plate_1) (Past sk_slide_1)
            (Member sk_plate_1 plate) (Member sk_counter_1 counter) (Source sk_slide_1 sk_counter_1)
 
+A **change of kind or phase** — "**became** a landmark", "**turned into** a museum", "turned
+red" — is the **State-result shape on the subject's own symbol**: the subject is the `Patient`
+of the become/turn event, the result state or kind is reified with the **same subject** as its
+`Experiencer` plus the flat copular atom, linked by `Result`. **Never mint a separate entity for
+what the subject became** (the museum IS the room — a fresh `sk_museum_1` severs the identity),
+and **never a spatial `Goal` for "into"** here — nothing moves; "into" marks the result, not a
+path:
+
+      The depot turned into a museum.
+        →  (Member sk_turn_1 turn) (Patient sk_turn_1 sk_depot_1) (Past sk_turn_1)
+           (Member sk_depot_1 depot)
+           (Member sk_museum_1 museum) (Experiencer sk_museum_1 sk_depot_1)
+           (Member sk_depot_1 museum)
+           (Result sk_turn_1 sk_museum_1)   ; sk_museum_1 is the reified STATE of being a museum
+
 A **depictive** — a state that merely holds *during* the action, not caused by it ("ate the meat
 raw", "arrived tired") — is **not** a resultative: emit a plain concurrent state (flat, or a reified
 `Experiencer` state if it is a clause endpoint) with **no `Result` link**. When it is genuinely
@@ -851,11 +942,45 @@ Parse P as usual (classes, roles, tense), then **seal** it (*Core patterns*).
   Ben", "fears the dog") keeps `Experiencer` / `Stimulus` (see **Thematic roles**) — no sealing.
   A perception verb with an **eventive** complement ("saw the courier drop the parcel") is a
   **perception report** (next section): asserted, never sealed.
+- **A control verb with a to-infinitive never seals** — sealing is finite-clause-only. *Try /
+  want / decide / agree / need / refuse / plan / promise / manage / struggle* **to V** take the
+  **non-finite-complement pattern** of the causation-flavored verbs (*Inter-clause
+  connectives*): reify the complement event at **top level**, attach it to the matrix verb by
+  `Theme`, give it **no tense / status of its own** (whether it occurred is not stated — the
+  reified event asserts or denies nothing about occurrence), and **copy the controller's role
+  in**: subject control by default ("Berta decided **to leave**" → the leave event's `Agent` is
+  berta); an object controller when the syntax supplies one ("urged **the clerk** to resign" →
+  the clerk is the resign event's `Agent`). The matrix verb keeps its own surface lemma and
+  roles; whether *managed* entails success and *tried* does not is downstream, never re-encoded
+  here.
 
 QA — "Does X believe / know that P?" rebuilds `(And (Member $e <verb>) (Experiencer $e <holder>)
 (Theme $e <P>))`, reconstructing the sealed term (a variable stands for a referent with no top-level
 anchor, e.g. `(Theme $e (Member $x unsafe))`). "Is P actually so?" queries P directly — it binds for
 a factive, and correctly finds nothing for a non-factive.
+
+### Impersonal reported attitudes ("is considered / said / thought to be …")
+
+"X **is considered / regarded / thought / said / believed / reported / rumored** to be P" reports
+a **general opinion, holder unspecified** — it does **not** make P true, so P must never be
+flattened into top-level facts. Route it as a **non-factive attitude with an agentless passive
+matrix**: reify the attitude event with **no** `Experiencer` (the holder is unstated, exactly as
+an agentless passive omits its `Agent`), seal the small-clause content P under `Theme` (parsed as
+the categorical / event atoms it would be on its own, tenseless — "to be P" is non-finite), and
+project the subject's typing atoms at top level as always. A hedging adverb of generality
+("**usually / widely / generally** considered") lowers the attitude atoms' confidence to `0.9`
+and is otherwise consumed — it has no atom of its own:
+
+      The quarry is considered to be unstable.
+        →  (Member sk_consider_1 consider) (Theme sk_consider_1 (Member sk_quarry_1 unstable))
+           (Member sk_quarry_1 quarry)                       ; definite referent — projects
+           ; and NO top-level (Member sk_quarry_1 unstable) — the opinion is not a fact
+
+"Is the quarry unstable?" then correctly finds nothing; "is it considered unstable?" rebuilds the
+sealed term as any attitude question does. (A **negated conjunct inside** such a sealed
+complement — "considered to be subjective and **not** objective" — currently has no polarity
+carrier inside a seal: seal what is expressible and leave the negated conjunct out; this is a
+registered limitation, not a licence to assert the positive form.)
 
 ### Perception reports (see / hear / watch someone do …)
 
@@ -1728,6 +1853,23 @@ fly") takes the event rule.
       Most birds migrate. →  (: most_migrate (Implication (Member $x bird) (And (Member (sk_migrate $x) migrate) (Agent (sk_migrate $x) $x))) (STV 0.9 0.9))
                              (: birds_q (QuantifierPhrase bird migrate "most") (STV 1.0 0.99))   ; the word, beside the 0.9 rule
 
+**A frequency adverb on a generic / habitual is a quantifier over occasions** and rides the same
+two channels: it sets the rule's (or, for a flat generic, the statement's) **strength** —
+"always" → `1.0`; "usually / normally / generally / often" → `0.8`; "sometimes" → `0.5`;
+"rarely / seldom / hardly ever" → `0.1` — and is **recorded** in the same
+`(QuantifierPhrase <kind> <verb-lemma> "<word>")` companion, so "often" and "rarely" stay
+distinguishable from the bare generic exactly as "most" and "few" do. ("**never**" is not a
+band — it is the strength-`0.0` negation of *Negated verbal generic*, with its companion as
+"no"/"none" already provides.) This is for the **generic / habitual** reading only: a frequency
+comparison on a specific episode ("things like that happen more often now") has **no** licensed
+encoding — `Manner` never takes an invented multi-word filler for it, and `Every` / `TimesPer`
+need a stated period or rate; leave the unrepresentable adverbial out rather than mis-slot it.
+
+      Foxes rarely cross the causeway.
+        →  (: fox_cross (Implication (Member $x fox) (And (Member (sk_cross $x) cross) (Agent (sk_cross $x) $x) (Theme (sk_cross $x) sk_causeway_1))) (STV 0.1 0.9))
+           (: fox_q (QuantifierPhrase fox cross "rarely") (STV 1.0 0.99))
+           (Member sk_causeway_1 causeway)
+
 The **same rule form** distributes a **distributive predicate over a plural or group** — whether an
 **explicit universal** ("all the / **all of the** / each (of the) / every (one of the) Ns V", bare
 "each / every N V") or a **grouped / counted plural** ("the dogs barked", "several / both dogs
@@ -1976,6 +2118,19 @@ and a glass known to be cold is derived brittle. Strength = how reliably the pro
 condition (generic `0.9`; definitional like "water boils at 100°C" → `0.99`). The condition is an
 adjective/state (`cold`, `wet`, `raw`) or a measure / environment (`room_temperature`); decompose a
 compound condition per **Compound concepts** (`room_temperature` → `temperature`).
+
+**A locative or domain PP restricting a kind-level claim goes in the condition slot too.**
+"Rents are steep **in the capital**", "berths are scarce **at the marina**": the property holds
+of the kind only *there*, so the place is the condition — `(ConditionalProperty rent steep
+sk_capital_1)` (the place symbol as the condition; a proper noun stays its constant) — exactly
+the "Trailers are permitted on the causeway" pattern. **Never strip the restriction** and assert
+the bare `(Inheritance rent steep)` / `(KindProperty …)` — that claims the property at large,
+which the text does not say — and never put the kind in `LocatedIn`'s entity slot to carry the
+restriction (a kind is not a positioned thing). This applies to `KindProperty`-class
+(non-distributing) properties as well — "voles are **common in the fens**" →
+`(ConditionalProperty vole common sk_fen_1)` — with one registered caveat that does not change
+what you emit: the seeded `cond_prop` distribution rule is not meant to fire on a
+non-distributing property, and that engine-side guard is tracked outside this document.
 
 ## Reciprocals & symmetric relations
 

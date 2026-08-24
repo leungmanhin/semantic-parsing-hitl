@@ -1470,6 +1470,93 @@ run("perception  veridical: was the crate sealed?", PERC,
 run("perception  full rebuild: did the warden watch the intern seal the crate?", PERC,
     '(And (Member $e1 watch) (Agent $e1 $w) (Member $w warden) (Member $e2 seal) (Agent $e2 $i) (Member $i intern) (Stimulus $e1 $e2))')
 
+# Fix-pack 3 (batch 3): S1 complements, S2 entity positions, S3 restricted kinds,
+# S4 reported attitudes, D1 frequency adverbs, D2 control infinitives, E4/E5.
+FP3_NOM = [
+    '(: t_revision (Member sk_revision_1 revision) (STV 1.0 0.99))',
+    '(: rev_of (Of sk_revision_1 sk_tariff_schedule_1) (STV 1.0 0.99))',
+    '(: t_sched (Member sk_tariff_schedule_1 tariff_schedule) (STV 1.0 0.99))',
+]
+run("fp3-S1n  nominalization of-complement binds", FP3_NOM,
+    '(And (Member $r revision) (Of $r $s) (Member $s tariff_schedule))')
+FP3_ADJ = [
+    '(: t_pantry (Member sk_pantry_1 pantry) (STV 1.0 0.99))',
+    '(: st_full (Member sk_full_1 full) (STV 1.0 0.99))',
+    '(: st_exp (Experiencer sk_full_1 sk_pantry_1) (STV 1.0 0.99))',
+    '(: t_moths (GroupOf sk_group_1 moth) (STV 1.0 0.99))',
+    '(: st_of (Of sk_full_1 sk_group_1) (STV 1.0 0.99))',
+    '(: flat_full (Member sk_pantry_1 full) (STV 1.0 0.99))',
+]
+run("fp3-S1a  flat copular still binds: is the pantry full?", FP3_ADJ,
+    '(And (Member $p pantry) (Member $p full))')
+run("fp3-S1a  complement recoverable: full of what?", FP3_ADJ,
+    '(And (Member $st full) (Experiencer $st $p) (Member $p pantry) (Of $st $g) (GroupOf $g moth))')
+FP3_POS = [
+    '(: t_satchel (Member sk_satchel_1 satchel) (STV 1.0 0.99))',
+    '(: t_pew (Member sk_pew_1 pew) (STV 1.0 0.99))',
+    '(: pos_under (Past (Under sk_satchel_1 sk_pew_1)) (STV 1.0 0.99))',
+]
+run("fp3-S2  entity-position preposition binds under tense wrap", FP3_POS,
+    '(And (Member $s satchel) (Past (Under $s $p)) (Member $p pew))')
+FP3_RK = [
+    '(: fw_scarce (ConditionalProperty firewood scarce sk_tundra_1) (STV 0.9 0.9))',
+    '(: t_tundra (Member sk_tundra_1 tundra) (STV 1.0 0.99))',
+]
+run("fp3-S3  restricted kind claim: where is firewood scarce?", FP3_RK,
+    '(And (ConditionalProperty firewood scarce $c) (Member $c tundra))')
+FP3_RA = [
+    '(: e_consider (Member sk_consider_1 consider) (STV 1.0 0.99))',
+    '(: cons_theme (Theme sk_consider_1 (Member sk_footbridge_1 unsafe)) (STV 1.0 0.99))',
+    '(: t_footbridge (Member sk_footbridge_1 footbridge) (STV 1.0 0.99))',
+]
+run("fp3-S4  reported attitude: sealed content rebuild binds", FP3_RA,
+    '(And (Member $e consider) (Theme $e (Member $b unsafe)) (Member $b footbridge))')
+run("fp3-S4  the opinion is NOT a fact (expect [])", FP3_RA,
+    '(And (Member $b footbridge) (Member $b unsafe))', want="empty")
+FP3_FREQ = [
+    '(: heron_nest (Implication (Member $x heron) (And (Member (sk_nest $x) nest) (Agent (sk_nest $x) $x) (On (sk_nest $x) sk_breakwater_1))) (STV 0.1 0.9))',
+    '(: heron_q (QuantifierPhrase heron nest "rarely") (STV 1.0 0.99))',
+    '(: t_breakwater (Member sk_breakwater_1 breakwater) (STV 1.0 0.99))',
+    '(: t_grebe (Member greta heron) (STV 1.0 0.99))',
+]
+run("fp3-D1  frequency companion binds the surface word", FP3_FREQ,
+    '(QuantifierPhrase heron nest $w)')
+run("fp3-D1  low-strength rule still derives a member event", FP3_FREQ,
+    '(And (Member $e nest) (Agent $e greta))')
+FP3_CTRL = [
+    '(: e_agree (Member sk_agree_1 agree) (STV 1.0 0.99))',
+    '(: e_agree_ag (Agent sk_agree_1 marlow) (STV 1.0 0.99))',
+    '(: e_agree_th (Theme sk_agree_1 sk_audit_1) (STV 1.0 0.99))',
+    '(: e_agree_past (Past sk_agree_1) (STV 1.0 0.99))',
+    '(: e_audit (Member sk_audit_1 audit) (STV 1.0 0.99))',
+    '(: e_audit_ag (Agent sk_audit_1 marlow) (STV 1.0 0.99))',
+    '(: e_audit_th (Theme sk_audit_1 sk_ledger_1) (STV 1.0 0.99))',
+    '(: t_ledger (Member sk_ledger_1 ledger) (STV 1.0 0.99))',
+    '(: marlow_name (Name marlow "Marlow") (STV 1.0 0.99))',
+]
+run("fp3-D2  control rebuild: did Marlow agree to audit the ledger?", FP3_CTRL,
+    '(And (Name $m "Marlow") (Member $a agree) (Agent $a $m) (Theme $a $v) (Member $v audit) (Theme $v $l) (Member $l ledger))')
+FP3_NEG = [
+    '(: t_loft (Member sk_loft_1 loft) (STV 1.0 0.99))',
+]
+run("fp3-E4  whole-bundle predicate-nominal denial is retrievable", FP3_NEG + [
+    '(: loft_neg (And (Member sk_loft_1 dwelling) (Member sk_loft_1 legal)) (STV 0.0 0.99))'],
+    '(And (Member $l dwelling) (Member $l legal))')
+FP3_COK = [
+    '(: e_turn (Member sk_turn_1 turn) (STV 1.0 0.99))',
+    '(: e_turn_pat (Patient sk_turn_1 sk_granary_1) (STV 1.0 0.99))',
+    '(: t_granary (Member sk_granary_1 granary) (STV 1.0 0.99))',
+    '(: e_turn_past (Past sk_turn_1) (STV 1.0 0.99))',
+    '(: st_chapel (Member sk_chapel_1 chapel) (STV 1.0 0.99))',
+    '(: st_exp (Experiencer sk_chapel_1 sk_granary_1) (STV 1.0 0.99))',
+    '(: flat_chapel (Member sk_granary_1 chapel) (STV 1.0 0.99))',
+    '(: e_result (Result sk_turn_1 sk_chapel_1) (STV 1.0 0.99))',
+]
+run("fp3-E5  identity preserved: is the granary a chapel?", FP3_COK,
+    '(And (Member $g granary) (Member $g chapel))')
+run("fp3-E5  what did the granary turn into?", FP3_COK,
+    '(And (Member $e turn) (Patient $e $g) (Member $g granary) (Result $e $s) (Member $s chapel) (Past $e))')
+
 print("\n==== %d / %d PASS ====" % (sum(1 for ok,_ in results if ok), len(results)))
 print("KNOWN ENGINE-GAP markers (faithful queries [], pending engine fix):",
       sum(1 for _,l in results if l.strip().startswith("GAP-")))
