@@ -713,7 +713,7 @@ def main():
     pos_pairs, ctl_pairs, seen_sig = [], [], set()
     for ec in sorted(by_class):
         ids = sorted(by_class[ec])
-        if ec.startswith("pairC"):
+        if ec.startswith(("pairC", "pairD")):   # tierC PAWS + tierD MRPC (G.6) pair corpora
             sides = {meta[i]["labels"].get("side"): i for i in ids}
             if meta[ids[0]]["labels"].get("pair_kind") != "paraphrase":
                 continue

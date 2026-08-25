@@ -180,8 +180,12 @@ Brief: `JUDGE.md`. Wrapper:
   the brief: per-family question sets via the card `task` field (req 1); the register
   rule and the full loss taxonomy as brief text with worked calibration examples
   (reqs 2+3); the judge-the-rule-not-the-examples doctrine + the bare-converse
-  calibration line + `defeaters` (req 4); `task: grade` present but dormant until the
-  graded-lexical-bridge route is registered (req 5).
+  calibration line + `defeaters` (req 4); `task: grade` **REGISTERED for the H gauntlet**
+  (owner decision G.5, 2026-08-25): graded cards for lexical-equivalence BRIDGING
+  candidates only (never consolidation/packs); the judge ceiling (≤0.8) becomes the
+  implication's strength, confidence stays support-based; every graded rule must pass
+  the M2 adversarial control gate (zero induced control merges) before the ledger keeps
+  it (req 5).
 - **Audit trail**: `harness/ledger_view.py` renders the complete ledger — every candidate,
   every mech gate, every vote verbatim, final routing — to `eval/rule_ledger.md`.
   Regenerate after every gauntlet round.

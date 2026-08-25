@@ -48,10 +48,26 @@ PETTA_PYTHON_PATH = os.environ.get("PETTA_PYTHON_PATH", "")
 
 CHECKS = ("C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8")
 
-#: Provisional, unused while report-only. Set from the pilot distribution, not by guesswork.
+#: G.1 (2026-08-25): set from the OBSERVED campaign distribution (2,360 records @
+#: f6448eac) joined against blind review, not by guesswork. Two tiers only —
+#: "error" gates the MINING substrate (harness/substrate.py); "report" informs.
+#: Ingestion stays report-only regardless (nothing is discarded at assembly).
+#:   C1/C2  error  — JSON / s-expression breakage (0 observed; structural).
+#:   C3     error  — assertion-shape violations (1 observed, on the one record
+#:                   that also failed C7 — malformed proof/STV is store-fatal).
+#:   C4     report — calibrated 13% precision / 100% recall vs blind review
+#:                   (11/82 flagged heads truly unlicensed); the true-violation
+#:                   signal is the review join, never the raw flag.
+#:   C5     report — 0 campaign observations; casing is cosmetic downstream.
+#:   C6     error  — 13 records, 12/13 carrying review issues (1 hard "no");
+#:                   dangling/free-variable symbols break star decomposition.
+#:   C7     error  — chainer load failure = unusable, whatever review says
+#:                   (the 1 case: a query-shaped statement with free variables).
+#:   C8     report — 0 campaign observations; duplicates are benign redundancy
+#:                   (the canonicalizer dedupes).
 STRICT_SEVERITY = {
-    "C1": "error", "C2": "error", "C3": "error", "C4": "warn",
-    "C5": "warn", "C6": "warn", "C7": "error", "C8": "warn",
+    "C1": "error", "C2": "error", "C3": "error", "C4": "report",
+    "C5": "report", "C6": "error", "C7": "error", "C8": "report",
 }
 
 # Casing (schema.md §5.1 C5, prompt.txt "Names and casing").
