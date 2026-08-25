@@ -186,6 +186,37 @@ Brief: `JUDGE.md`. Wrapper:
   every mech gate, every vote verbatim, final routing — to `eval/rule_ledger.md`.
   Regenerate after every gauntlet round.
 
+## M5 question-arm dispatch (QGEN + QPARSE — standing from item F, 2026-08-25)
+
+Two waves per run; both briefs frozen (sha256 in `questions/manifest.json`) before any
+dispatch. Wrappers, same two-sentence discipline:
+
+    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/QGEN.md and follow it exactly.
+    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/question_batches/qg-NN.txt.
+
+    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/QPARSE.md and follow it exactly.
+    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/question_batches/qp-NN.txt.
+
+- **Model: `sonnet` for both.** QGEN judges English (the JUDGE argument — no decorrelation
+  need); QPARSE writes queries in the parser's own conventions (parser-tier task).
+- **Blindness is the measurement**: QGEN sees sentences ONLY (no prompt.txt — parse
+  vocabulary would anchor its paraphrase choices; its rewording choices are the sample of
+  natural paraphrase space that makes this the #33 measurement). QPARSE sees questions
+  ONLY (never the sentence — seeing it would let the query re-borrow sentence vocabulary
+  and erase the paraphrastic signal) and reads prompt.txt in full (the representation's
+  single source of truth; QPARSE.md adds only question-side mapping, so there is no
+  schema fork and no parse-hash impact).
+- Record sampling is orchestrator-side and mechanical (bridge-covered + control strata,
+  deterministic); writers never know which stratum a sentence is in.
+- QGEN outputs `questions/<ID>.q.json`; mechanical validation drops/flags items whose
+  `answer` is not a verbatim substring of the sentence (accounted, never edited). QPARSE
+  outputs `queries/<QID>.query.txt`, one s-expression each.
+- The harness (`harness/m5_questions.py`, PeTTaChainer env) is agent-free: same query on
+  both KB arms (faithful / faithful+bridges), structural `$ans` extraction, answer check
+  against the QGEN gold, engine-bug conjunct-drop triage, `query-brittleness` bucket for
+  one-sided binds and malformed queries.
+- Batching: 5-item batches, ~8-agent groups, burst discipline as parsing.
+
 ## Brief inventory (every agent role; nothing runs briefless from batch 2 on)
 
 | agent role | brief | status |
@@ -199,8 +230,8 @@ Brief: `JUDGE.md`. Wrapper:
 | review-gate adjudicator | `ADJUDICATE.md` | authored 2026-08-24; dual-tier pilot decides the production model |
 | M1 disagreement diagnosis | `DIAGNOSE.md` | standing from batch 2 |
 | gauntlet judges (M4 / routing) | `JUDGE.md` | standing from batch 2 (authored 2026-08-19) |
-| M5 question writer | `QGEN.md` | to-be-added with the M5 question arm (§6 item 8) |
-| M5 question→query parser | `QPARSE.md` | to-be-added with the M5 question arm (§6 item 8) |
+| M5 question writer | `QGEN.md` | standing from item F (authored 2026-08-25) |
+| M5 question→query parser | `QPARSE.md` | standing from item F (authored 2026-08-25) |
 
 Agent-free by design (no brief will ever exist): canonicalization, star decomposition,
 M2/M3 measurement, M5 query instantiation + differential comparison, consolidation rewriting,

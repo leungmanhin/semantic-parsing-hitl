@@ -1,0 +1,384 @@
+{
+ "arm": "m5-questions",
+ "bridge_files": [
+  "mined_bridges_wave1.metta",
+  "mined_bridges_wave2.metta",
+  "mined_bridges_wave3.metta"
+ ],
+ "bridge_lexemes": [
+  "abandon",
+  "acquire",
+  "allow",
+  "answer",
+  "arrival",
+  "arrive",
+  "automobile",
+  "avoid",
+  "become",
+  "begin",
+  "big",
+  "buy",
+  "call_off",
+  "cancel",
+  "car",
+  "cause",
+  "change",
+  "commence",
+  "conduct",
+  "decide",
+  "decision",
+  "die",
+  "difficult",
+  "discover",
+  "doctor",
+  "endorse",
+  "find_out",
+  "finish",
+  "fix",
+  "flow_rate",
+  "follow",
+  "give",
+  "give_up",
+  "hard",
+  "huge",
+  "kick_the_bucket",
+  "large",
+  "leave",
+  "make",
+  "mend",
+  "need",
+  "nurse",
+  "permit",
+  "physician",
+  "postpone",
+  "purchase",
+  "put_off",
+  "railway_station",
+  "rate_of_flow",
+  "reach",
+  "reject",
+  "repair",
+  "require",
+  "sell",
+  "spend",
+  "start",
+  "succeed",
+  "support",
+  "take",
+  "train",
+  "train_station",
+  "turn_down"
+ ],
+ "canon": "tierA.canon.jsonl",
+ "protocol_deviations": [
+  {
+   "action": "logged; QPARSE.md to be tightened AFTER this wave (explicit: read nothing in queries/ or questions/); no re-run",
+   "assessment": "core blindness held (no sentence or gold-answer exposure); item-independence weakened within the wave (style/error propagation possible); differential design absorbs query-level noise",
+   "batch": "qp-06",
+   "deviation": "agent self-reported cross-checking its queries against already-written queries/ files for house-style consistency",
+   "wave": "qparse-group1"
+  }
+ ],
+ "qgen_batches": [
+  "qg-01.txt",
+  "qg-02.txt",
+  "qg-03.txt",
+  "qg-04.txt",
+  "qg-05.txt",
+  "qg-06.txt",
+  "qg-07.txt",
+  "qg-08.txt"
+ ],
+ "qgen_collected": {
+  "flagged": [],
+  "missing": [],
+  "ok": 80
+ },
+ "qgen_sha256": "90a8e0d72fc8c2d15b88973743259d9f342f723374c57039c109badbfd5a79c0",
+ "qparse_batches": [
+  "qp-01.txt",
+  "qp-02.txt",
+  "qp-03.txt",
+  "qp-04.txt",
+  "qp-05.txt",
+  "qp-06.txt",
+  "qp-07.txt",
+  "qp-08.txt",
+  "qp-09.txt",
+  "qp-10.txt",
+  "qp-11.txt",
+  "qp-12.txt",
+  "qp-13.txt",
+  "qp-14.txt",
+  "qp-15.txt",
+  "qp-16.txt"
+ ],
+ "qparse_sha256": "7552d7e8ab9ea5d5264fc3c40c019de77689fa74d917d68f8e0baec747ca5b95",
+ "sample": [
+  {
+   "id": "tierA-000001",
+   "lexemes": [
+    "buy"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000003",
+   "lexemes": [
+    "acquire"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000030",
+   "lexemes": [
+    "fix"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000052",
+   "lexemes": [
+    "begin"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000054",
+   "lexemes": [
+    "commence"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000072",
+   "lexemes": [
+    "allow"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000099",
+   "lexemes": [
+    "abandon"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000100",
+   "lexemes": [
+    "give_up"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000128",
+   "lexemes": [
+    "discover"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000129",
+   "lexemes": [
+    "find_out"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000143",
+   "lexemes": [
+    "cancel"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000144",
+   "lexemes": [
+    "call_off"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000173",
+   "lexemes": [],
+   "stratum": "control"
+  },
+  {
+   "id": "tierA-000181",
+   "lexemes": [],
+   "stratum": "control"
+  },
+  {
+   "id": "tierA-000185",
+   "lexemes": [
+    "decide"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000186",
+   "lexemes": [
+    "decision",
+    "make"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000191",
+   "lexemes": [
+    "decision",
+    "make"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000207",
+   "lexemes": [
+    "answer"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000208",
+   "lexemes": [
+    "answer",
+    "give"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000222",
+   "lexemes": [],
+   "stratum": "control"
+  },
+  {
+   "id": "tierA-000223",
+   "lexemes": [
+    "cause"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000224",
+   "lexemes": [],
+   "stratum": "control"
+  },
+  {
+   "id": "tierA-000227",
+   "lexemes": [],
+   "stratum": "control"
+  },
+  {
+   "id": "tierA-000229",
+   "lexemes": [],
+   "stratum": "control"
+  },
+  {
+   "id": "tierA-000232",
+   "lexemes": [],
+   "stratum": "control"
+  },
+  {
+   "id": "tierA-000234",
+   "lexemes": [],
+   "stratum": "control"
+  },
+  {
+   "id": "tierA-000237",
+   "lexemes": [
+    "arrive"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000242",
+   "lexemes": [
+    "arrival"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000249",
+   "lexemes": [
+    "die"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000250",
+   "lexemes": [],
+   "stratum": "control"
+  },
+  {
+   "id": "tierA-000254",
+   "lexemes": [
+    "kick_the_bucket"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000262",
+   "lexemes": [],
+   "stratum": "control"
+  },
+  {
+   "id": "tierA-000327",
+   "lexemes": [
+    "large"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000328",
+   "lexemes": [
+    "big"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000339",
+   "lexemes": [
+    "huge"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000351",
+   "lexemes": [
+    "difficult",
+    "repair"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000352",
+   "lexemes": [
+    "hard",
+    "repair"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000376",
+   "lexemes": [
+    "doctor"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000390",
+   "lexemes": [
+    "automobile"
+   ],
+   "stratum": "bridge"
+  },
+  {
+   "id": "tierA-000391",
+   "lexemes": [
+    "car"
+   ],
+   "stratum": "bridge"
+  }
+ ]
+}

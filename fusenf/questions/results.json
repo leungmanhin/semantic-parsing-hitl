@@ -1,0 +1,2194 @@
+{
+ "manifest": {
+  "bridge_files": [
+   "mined_bridges_wave1.metta",
+   "mined_bridges_wave2.metta",
+   "mined_bridges_wave3.metta"
+  ],
+  "canon": "tierA.canon.jsonl",
+  "qgen_sha256": "90a8e0d72fc8c2d15b88973743259d9f342f723374c57039c109badbfd5a79c0",
+  "qparse_sha256": "7552d7e8ab9ea5d5264fc3c40c019de77689fa74d917d68f8e0baec747ca5b95"
+ },
+ "rows": [
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "The depot",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000001",
+   "kind": "literal",
+   "qid": "tierA-000001-q1",
+   "query": [
+    "(Member $e1 buy)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(GroupOf $x1 forklift)",
+    "(Cardinality $x1 2)",
+    "(Past $e1)"
+   ],
+   "question": "Who bought two forklifts?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [
+    "x1"
+   ],
+   "answer": "two forklifts",
+   "binds_a": false,
+   "binds_b": true,
+   "bridge_rules": [
+    "mined_w1_lex_buy_purchase"
+   ],
+   "bucket": "bridge-payoff",
+   "gold_a": false,
+   "gold_b": true,
+   "id": "tierA-000001",
+   "kind": "paraphrastic",
+   "pair_in_inventory": true,
+   "qid": "tierA-000001-q2",
+   "query": [
+    "(Member $e1 purchase)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 depot)",
+    "(Theme $e1 $ans)",
+    "(Past $e1)"
+   ],
+   "question": "What did the depot purchase?",
+   "reworded": {
+    "question_word": "purchase",
+    "sentence_word": "bought"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "The depot",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000003",
+   "kind": "literal",
+   "qid": "tierA-000003-q1",
+   "query": [
+    "(Member $e1 acquire)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(GroupOf $x1 forklift)",
+    "(Cardinality $x1 2)",
+    "(Past $e1)"
+   ],
+   "question": "Who acquired two forklifts?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "two forklifts",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug-suppressed",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000003",
+   "kind": "paraphrastic",
+   "qid": "tierA-000003-q2",
+   "query": [
+    "(Member $e1 obtain)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 depot)",
+    "(Theme $e1 $ans)",
+    "(Past $e1)"
+   ],
+   "question": "What did the depot obtain?",
+   "reworded": {
+    "question_word": "obtain",
+    "sentence_word": "acquired"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "The mechanic",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000030",
+   "kind": "literal",
+   "qid": "tierA-000030-q1",
+   "query": [
+    "(Member $e1 fix)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 gearbox)",
+    "(Member $x1 seized)",
+    "(Past $e1)"
+   ],
+   "question": "Who fixed a seized gearbox?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [
+    "x1"
+   ],
+   "answer": "a seized gearbox",
+   "binds_a": false,
+   "binds_b": true,
+   "bridge_rules": [
+    "mined_w1_lex_fix_repair"
+   ],
+   "bucket": "bridge-payoff",
+   "gold_a": false,
+   "gold_b": true,
+   "id": "tierA-000030",
+   "kind": "paraphrastic",
+   "pair_in_inventory": true,
+   "qid": "tierA-000030-q2",
+   "query": [
+    "(Member $e1 repair)",
+    "(Agent $e1 $x1)",
+    "(Patient $e1 $ans)",
+    "(Member $x1 mechanic)",
+    "(Past $e1)"
+   ],
+   "question": "What did the mechanic repair?",
+   "reworded": {
+    "question_word": "repair",
+    "sentence_word": "fixed"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "A shoreline survey",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000052",
+   "kind": "literal",
+   "qid": "tierA-000052-q1",
+   "query": [
+    "(Member $e1 begin)",
+    "(Patient $e1 $ans)",
+    "(Time $e1 dawn)"
+   ],
+   "question": "What begins at dawn?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "A shoreline survey",
+   "binds_a": false,
+   "binds_b": true,
+   "bridge_rules": [
+    "mined_w1_lex_begin_start"
+   ],
+   "bucket": "bridge-payoff",
+   "gold_a": false,
+   "gold_b": true,
+   "id": "tierA-000052",
+   "kind": "paraphrastic",
+   "pair_in_inventory": true,
+   "qid": "tierA-000052-q2",
+   "query": [
+    "(Member $e1 start)",
+    "(Patient $e1 $ans)",
+    "(Time $e1 dawn)"
+   ],
+   "question": "What starts at dawn?",
+   "reworded": {
+    "question_word": "starts",
+    "sentence_word": "begins"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "A shoreline survey",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000054",
+   "kind": "literal",
+   "qid": "tierA-000054-q1",
+   "query": [
+    "(Member $e1 commence)",
+    "(Patient $e1 $ans)",
+    "(Time $e1 dawn)"
+   ],
+   "question": "What commences at dawn?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "A shoreline survey",
+   "binds_a": false,
+   "binds_b": true,
+   "bridge_rules": [
+    "mined_w1_lex_commence_begin"
+   ],
+   "bucket": "bridge-payoff",
+   "gold_a": false,
+   "gold_b": true,
+   "id": "tierA-000054",
+   "kind": "paraphrastic",
+   "pair_in_inventory": true,
+   "qid": "tierA-000054-q2",
+   "query": [
+    "(Member $e1 begin)",
+    "(Patient $e1 $ans)",
+    "(Time $e1 dawn)"
+   ],
+   "question": "What begins at dawn?",
+   "reworded": {
+    "question_word": "begins",
+    "sentence_word": "commences"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "warden",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Member $e1 allow)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 visitor)",
+    "(Time $e1 (Weekday sunday))"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000072",
+   "kind": "literal",
+   "qid": "tierA-000072-q1",
+   "query": [
+    "(Member $e1 allow)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 visitor)",
+    "(Time $e1 (Weekday sunday))"
+   ],
+   "question": "Who allows visitors on Sundays?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "visitors",
+   "binds_a": false,
+   "binds_b": false,
+   "bridge_rules": [
+    "mined_w1_lex_allow_permit"
+   ],
+   "bucket": "uncovered-rule-present-unfired",
+   "failing_conjuncts": [
+    "(Member $e1 permit)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 warden)",
+    "(Theme $e1 $ans)",
+    "(Time $e1 (Weekday sunday))"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000072",
+   "kind": "paraphrastic",
+   "qid": "tierA-000072-q2",
+   "query": [
+    "(Member $e1 permit)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 warden)",
+    "(Theme $e1 $ans)",
+    "(Time $e1 (Weekday sunday))"
+   ],
+   "question": "Who does the warden permit on Sundays?",
+   "reworded": {
+    "question_word": "permit",
+    "sentence_word": "allows"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "rescue team",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Patient $e1 $x1)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000099",
+   "kind": "literal",
+   "qid": "tierA-000099-q1",
+   "query": [
+    "(Member $e1 abandon)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 search)"
+   ],
+   "question": "Who abandons the search?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "the search",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 call_off)",
+    "(Patient $e1 $ans)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000099",
+   "kind": "paraphrastic",
+   "qid": "tierA-000099-q2",
+   "query": [
+    "(Member $e1 call_off)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 rescue_team)",
+    "(Inheritance rescue_team team)",
+    "(Patient $e1 $ans)"
+   ],
+   "question": "What does the rescue team call off?",
+   "reworded": {
+    "question_word": "call off",
+    "sentence_word": "abandons"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "rescue team",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Patient $e1 $x1)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000100",
+   "kind": "literal",
+   "qid": "tierA-000100-q1",
+   "query": [
+    "(Member $e1 give_up)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 search)"
+   ],
+   "question": "Who gives up the search?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [
+    "x1"
+   ],
+   "answer": "the search",
+   "binds_a": false,
+   "binds_b": true,
+   "bridge_rules": [
+    "mined_w1_lex_give_up_abandon"
+   ],
+   "bucket": "bridge-payoff",
+   "gold_a": false,
+   "gold_b": true,
+   "id": "tierA-000100",
+   "kind": "paraphrastic",
+   "pair_in_inventory": true,
+   "qid": "tierA-000100-q2",
+   "query": [
+    "(Member $e1 abandon)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 rescue_team)",
+    "(Theme $e1 $ans)"
+   ],
+   "question": "What does the rescue team abandon?",
+   "reworded": {
+    "question_word": "abandon",
+    "sentence_word": "gives up"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "auditor",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(LocatedIn $x1 $x2)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000128",
+   "kind": "literal",
+   "qid": "tierA-000128-q1",
+   "query": [
+    "(Member $e1 discover)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(Member $x1 error)",
+    "(LocatedIn $x1 $x2)",
+    "(Member $x2 ledger)"
+   ],
+   "question": "Who discovers an error in the ledger?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "an error",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 spot)",
+    "(Agent $e1 $x1)",
+    "(Theme $e1 $ans)",
+    "(LocatedIn $ans $x2)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000128",
+   "kind": "paraphrastic",
+   "qid": "tierA-000128-q2",
+   "query": [
+    "(Member $e1 spot)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 auditor)",
+    "(Theme $e1 $ans)",
+    "(LocatedIn $ans $x2)",
+    "(Member $x2 ledger)"
+   ],
+   "question": "What does the auditor spot in the ledger?",
+   "reworded": {
+    "question_word": "spot",
+    "sentence_word": "discovers"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "auditor",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(LocatedIn $x1 $x2)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000129",
+   "kind": "literal",
+   "qid": "tierA-000129-q1",
+   "query": [
+    "(Member $e1 find_out)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(Member $x1 error)",
+    "(LocatedIn $x1 $x2)",
+    "(Member $x2 ledger)"
+   ],
+   "question": "Who finds out an error in the ledger?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "an error",
+   "binds_a": false,
+   "binds_b": false,
+   "bridge_rules": [
+    "mined_w1_lex_find_out_discover"
+   ],
+   "bucket": "uncovered-rule-present-unfired",
+   "failing_conjuncts": [
+    "(Agent $e1 $x1)",
+    "(Theme $e1 $ans)",
+    "(LocatedIn $ans $x2)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000129",
+   "kind": "paraphrastic",
+   "qid": "tierA-000129-q2",
+   "query": [
+    "(Member $e1 discover)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 auditor)",
+    "(Theme $e1 $ans)",
+    "(LocatedIn $ans $x2)",
+    "(Member $x2 ledger)"
+   ],
+   "question": "What does the auditor discover in the ledger?",
+   "reworded": {
+    "question_word": "discover",
+    "sentence_word": "finds out"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "the evening flight",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000143",
+   "kind": "literal",
+   "qid": "tierA-000143-q1",
+   "query": [
+    "(Member $e1 cancel)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 airline)",
+    "(Patient $e1 $ans)"
+   ],
+   "question": "What does an airline cancel?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "An airline",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug-suppressed",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000143",
+   "kind": "paraphrastic",
+   "qid": "tierA-000143-q2",
+   "query": [
+    "(Member $e1 scrub)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 evening_flight)",
+    "(Inheritance evening_flight flight)"
+   ],
+   "question": "Who scrubs the evening flight?",
+   "reworded": {
+    "question_word": "scrubs",
+    "sentence_word": "cancels"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "the evening flight",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000144",
+   "kind": "literal",
+   "qid": "tierA-000144-q1",
+   "query": [
+    "(Member $e1 call_off)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 airline)",
+    "(Patient $e1 $ans)"
+   ],
+   "question": "What does an airline call off?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "An airline",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug-suppressed",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000144",
+   "kind": "paraphrastic",
+   "qid": "tierA-000144-q2",
+   "query": [
+    "(Member $e1 cancel)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 evening_flight)",
+    "(Inheritance evening_flight flight)"
+   ],
+   "question": "Who cancels the evening flight?",
+   "reworded": {
+    "question_word": "cancels",
+    "sentence_word": "calls off"
+   },
+   "stratum": "bridge",
+   "suppressed_payoff_candidate": [
+    "mined_w1_lex_call_off_cancel"
+   ]
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "A shepherd",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000173",
+   "kind": "literal",
+   "qid": "tierA-000173-q1",
+   "query": [
+    "(Member $e1 walk)",
+    "(Agent $e1 $ans)",
+    "(Location $e1 $x1)",
+    "(Member $x1 ridge)"
+   ],
+   "question": "Who walks along the ridge?",
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "the ridge",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug-suppressed",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000173",
+   "kind": "paraphrastic",
+   "qid": "tierA-000173-q2",
+   "query": [
+    "(Member $e1 hike)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 shepherd)",
+    "(Location $e1 $ans)"
+   ],
+   "question": "Where does a shepherd hike?",
+   "reworded": {
+    "question_word": "hikes",
+    "sentence_word": "walks"
+   },
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "the pier",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Location $e1 $ans)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000181",
+   "kind": "literal",
+   "qid": "tierA-000181-q1",
+   "query": [
+    "(Member $e1 walk)",
+    "(Agent $e1 $x1)",
+    "(GroupOf $x1 child)",
+    "(Cardinality $x1 2)",
+    "(Location $e1 $ans)"
+   ],
+   "question": "Where do two children walk?",
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "Two children",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug-suppressed",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000181",
+   "kind": "paraphrastic",
+   "qid": "tierA-000181-q2",
+   "query": [
+    "(Member $e1 stroll)",
+    "(Agent $e1 $ans)",
+    "(Goal $e1 $x1)",
+    "(Member $x1 pier)"
+   ],
+   "question": "Who strolls to the pier?",
+   "reworded": {
+    "question_word": "strolls",
+    "sentence_word": "walk"
+   },
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "a new roof",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(On $e1 $ans)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000185",
+   "kind": "literal",
+   "qid": "tierA-000185-q1",
+   "query": [
+    "(Member $x1 committee)",
+    "(Member $e1 decide)",
+    "(Agent $e1 $x1)",
+    "(On $e1 $ans)"
+   ],
+   "question": "What does a committee decide on?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "A committee",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug-suppressed",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000185",
+   "kind": "paraphrastic",
+   "qid": "tierA-000185-q2",
+   "query": [
+    "(Member $e1 choose)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(Member $x1 roof)",
+    "(Member $x1 new)"
+   ],
+   "question": "Who chooses a new roof?",
+   "reworded": {
+    "question_word": "chooses",
+    "sentence_word": "decides on"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "A committee",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(On $x1 $x2)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000186",
+   "kind": "literal",
+   "qid": "tierA-000186-q1",
+   "query": [
+    "(Member $e1 make)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 decision)",
+    "(On $x1 $x2)",
+    "(Member $x2 roof)",
+    "(Member $x2 new)"
+   ],
+   "question": "Who makes a decision on a new roof?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "a new roof",
+   "binds_a": false,
+   "binds_b": false,
+   "bridge_rules": [
+    "mined_w1_str_au0028_b",
+    "mined_w1_str_au0029_b"
+   ],
+   "bucket": "uncovered-rule-present-unfired",
+   "failing_conjuncts": [
+    "(On $e1 $ans)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000186",
+   "kind": "paraphrastic",
+   "qid": "tierA-000186-q2",
+   "query": [
+    "(Member $x1 committee)",
+    "(Member $e1 decide)",
+    "(Agent $e1 $x1)",
+    "(On $e1 $ans)"
+   ],
+   "question": "What does a committee decide on?",
+   "reworded": {
+    "question_word": "decide",
+    "sentence_word": "makes a decision"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "A judge",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(On $x1 $x2)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000191",
+   "kind": "literal",
+   "qid": "tierA-000191-q1",
+   "query": [
+    "(Member $e1 make)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 decision)",
+    "(On $x1 $x2)",
+    "(Member $x2 case)"
+   ],
+   "question": "Who makes a decision on the case?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "the case",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 rule)",
+    "(On $e1 $ans)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000191",
+   "kind": "paraphrastic",
+   "qid": "tierA-000191-q2",
+   "query": [
+    "(Member $x1 judge)",
+    "(Member $e1 rule)",
+    "(Agent $e1 $x1)",
+    "(On $e1 $ans)"
+   ],
+   "question": "What does a judge rule on?",
+   "reworded": {
+    "question_word": "rule",
+    "sentence_word": "makes a decision"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "A clerk",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000207",
+   "kind": "literal",
+   "qid": "tierA-000207-q1",
+   "query": [
+    "(Member $e1 answer)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(Member $x1 query)"
+   ],
+   "question": "Who answers the query?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "the query",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 respond)",
+    "(To $e1 $ans)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000207",
+   "kind": "paraphrastic",
+   "qid": "tierA-000207-q2",
+   "query": [
+    "(Member $x1 clerk)",
+    "(Member $e1 respond)",
+    "(Agent $e1 $x1)",
+    "(To $e1 $ans)"
+   ],
+   "question": "What does a clerk respond to?",
+   "reworded": {
+    "question_word": "respond to",
+    "sentence_word": "answers"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "A clerk",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000208",
+   "kind": "literal",
+   "qid": "tierA-000208-q1",
+   "query": [
+    "(Member $e1 give)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(Member $x1 answer)",
+    "(Recipient $e1 $x2)",
+    "(Member $x2 query)"
+   ],
+   "question": "Who gives an answer to the query?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "an answer",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 provide)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000208",
+   "kind": "paraphrastic",
+   "qid": "tierA-000208-q2",
+   "query": [
+    "(Member $x1 clerk)",
+    "(Member $e1 provide)",
+    "(Agent $e1 $x1)",
+    "(Theme $e1 $ans)",
+    "(Recipient $e1 $x2)",
+    "(Member $x2 query)"
+   ],
+   "question": "What does a clerk provide to the query?",
+   "reworded": {
+    "question_word": "provide",
+    "sentence_word": "gives"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "A storm",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000222",
+   "kind": "literal",
+   "qid": "tierA-000222-q1",
+   "query": [
+    "(Member $e1 destroy)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 greenhouse)"
+   ],
+   "question": "What destroys the greenhouse?",
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "the greenhouse",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 wreck)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000222",
+   "kind": "paraphrastic",
+   "qid": "tierA-000222-q2",
+   "query": [
+    "(Member $x1 storm)",
+    "(Member $e1 wreck)",
+    "(Agent $e1 $x1)",
+    "(Patient $e1 $ans)"
+   ],
+   "question": "What does a storm wreck?",
+   "reworded": {
+    "question_word": "wreck",
+    "sentence_word": "destroys"
+   },
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "the greenhouse",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Member $x2 destruction)",
+    "(Of $x2 $ans)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000223",
+   "kind": "literal",
+   "qid": "tierA-000223-q1",
+   "query": [
+    "(Member $e1 cause)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 storm)",
+    "(Theme $e1 $x2)",
+    "(Member $x2 destruction)",
+    "(Of $x2 $ans)"
+   ],
+   "question": "What does a storm cause the destruction of?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "A storm",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug-suppressed",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000223",
+   "kind": "paraphrastic",
+   "qid": "tierA-000223-q2",
+   "query": [
+    "(Member $e1 wreck)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 greenhouse)"
+   ],
+   "question": "What wrecks the greenhouse?",
+   "reworded": {
+    "question_word": "wrecks",
+    "sentence_word": "causes the destruction of"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x1"
+   ],
+   "ans_b": [
+    "x1"
+   ],
+   "answer": "The greenhouse",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000224",
+   "kind": "literal",
+   "qid": "tierA-000224-q1",
+   "query": [
+    "(Member $e1 destroy)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 storm)",
+    "(Patient $e1 $ans)"
+   ],
+   "question": "What is destroyed by a storm?",
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "a storm",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 wreck)",
+    "(Past $e1)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000224",
+   "kind": "paraphrastic",
+   "qid": "tierA-000224-q2",
+   "query": [
+    "(Member $e1 wreck)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 greenhouse)",
+    "(Past $e1)"
+   ],
+   "question": "What wrecked the greenhouse?",
+   "reworded": {
+    "question_word": "wrecked",
+    "sentence_word": "destroyed"
+   },
+   "stratum": "control"
+  },
+  {
+   "ans_a": [
+    "x1"
+   ],
+   "ans_b": [
+    "x1"
+   ],
+   "answer": "the archive",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000227",
+   "kind": "literal",
+   "qid": "tierA-000227-q1",
+   "query": [
+    "(Member $e1 destroy)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 fire)",
+    "(Patient $e1 $ans)"
+   ],
+   "question": "What does a fire destroy?",
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "A fire",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug-suppressed",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000227",
+   "kind": "paraphrastic",
+   "qid": "tierA-000227-q2",
+   "query": [
+    "(Member $e1 burn_down)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 archive)"
+   ],
+   "question": "What burns down the archive?",
+   "reworded": {
+    "question_word": "burns down",
+    "sentence_word": "destroys"
+   },
+   "stratum": "control"
+  },
+  {
+   "ans_a": [
+    "x1"
+   ],
+   "ans_b": [
+    "x1"
+   ],
+   "answer": "The archive",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000229",
+   "kind": "literal",
+   "qid": "tierA-000229-q1",
+   "query": [
+    "(Member $e1 destroy)",
+    "(Patient $e1 $ans)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 fire)"
+   ],
+   "question": "What is destroyed by a fire?",
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "a fire",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 burn_down)",
+    "(Past $e1)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000229",
+   "kind": "paraphrastic",
+   "qid": "tierA-000229-q2",
+   "query": [
+    "(Member $e1 burn_down)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 archive)",
+    "(Past $e1)"
+   ],
+   "question": "What burned down the archive?",
+   "reworded": {
+    "question_word": "burned down",
+    "sentence_word": "destroyed"
+   },
+   "stratum": "control"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "A flood",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000232",
+   "kind": "literal",
+   "qid": "tierA-000232-q1",
+   "query": [
+    "(Member $e1 destroy)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 footbridge)"
+   ],
+   "question": "What destroys the footbridge?",
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "the footbridge",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 wash_away)",
+    "(Theme $e1 $ans)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000232",
+   "kind": "paraphrastic",
+   "qid": "tierA-000232-q2",
+   "query": [
+    "(Member $e1 wash_away)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 flood)",
+    "(Theme $e1 $ans)"
+   ],
+   "question": "What does a flood wash away?",
+   "reworded": {
+    "question_word": "wash away",
+    "sentence_word": "destroys"
+   },
+   "stratum": "control"
+  },
+  {
+   "ans_a": [
+    "x1"
+   ],
+   "ans_b": [
+    "x1"
+   ],
+   "answer": "The footbridge",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000234",
+   "kind": "literal",
+   "qid": "tierA-000234-q1",
+   "query": [
+    "(Member $e1 destroy)",
+    "(Patient $e1 $ans)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 flood)"
+   ],
+   "question": "What is destroyed by a flood?",
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "a flood",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 wreck)",
+    "(Past $e1)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000234",
+   "kind": "paraphrastic",
+   "qid": "tierA-000234-q2",
+   "query": [
+    "(Member $e1 wreck)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 footbridge)",
+    "(Past $e1)"
+   ],
+   "question": "What wrecked the footbridge?",
+   "reworded": {
+    "question_word": "wrecked",
+    "sentence_word": "destroyed"
+   },
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "The freight",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Time $e1 noon)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000237",
+   "kind": "literal",
+   "qid": "tierA-000237-q1",
+   "query": [
+    "(Member $e1 arrive)",
+    "(Agent $e1 $ans)",
+    "(Time $e1 noon)"
+   ],
+   "question": "What arrives at noon?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "The freight",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 pull_in)",
+    "(Time $e1 noon)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000237",
+   "kind": "paraphrastic",
+   "qid": "tierA-000237-q2",
+   "query": [
+    "(Member $e1 pull_in)",
+    "(Agent $e1 $ans)",
+    "(Time $e1 noon)"
+   ],
+   "question": "What pulls in at noon?",
+   "reworded": {
+    "question_word": "pulls in",
+    "sentence_word": "arrives"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "e0"
+   ],
+   "ans_b": [
+    "e0"
+   ],
+   "answer": "The arrival of a delegation",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000242",
+   "kind": "literal",
+   "qid": "tierA-000242-q1",
+   "query": [
+    "(Time $ans (Weekday thursday))"
+   ],
+   "question": "What is on Thursday?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "a delegation",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug-suppressed",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000242",
+   "kind": "paraphrastic",
+   "qid": "tierA-000242-q2",
+   "query": [
+    "(Member $e1 come)",
+    "(Agent $e1 $ans)",
+    "(Time $e1 (Weekday thursday))"
+   ],
+   "question": "The coming of what is on Thursday?",
+   "reworded": {
+    "question_word": "coming",
+    "sentence_word": "arrival"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "An old mare",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Member $e1 die)",
+    "(Patient $e1 $ans)",
+    "(During $e1 $x1)",
+    "(Member $x1 winter)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000249",
+   "kind": "literal",
+   "qid": "tierA-000249-q1",
+   "query": [
+    "(Member $e1 die)",
+    "(Patient $e1 $ans)",
+    "(During $e1 $x1)",
+    "(Member $x1 winter)"
+   ],
+   "question": "What dies during the winter?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "An old mare",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 perish)",
+    "(Patient $e1 $ans)",
+    "(During $e1 $x1)",
+    "(Member $x1 winter)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000249",
+   "kind": "paraphrastic",
+   "qid": "tierA-000249-q2",
+   "query": [
+    "(Member $e1 perish)",
+    "(Patient $e1 $ans)",
+    "(During $e1 $x1)",
+    "(Member $x1 winter)"
+   ],
+   "question": "What perishes during the winter?",
+   "reworded": {
+    "question_word": "perishes",
+    "sentence_word": "dies"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "An old mare",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Member $e1 kick_the_bucket)",
+    "(Patient $e1 $ans)",
+    "(During $e1 $x1)",
+    "(Member $x1 winter)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000250",
+   "kind": "literal",
+   "qid": "tierA-000250-q1",
+   "query": [
+    "(Member $e1 kick_the_bucket)",
+    "(Patient $e1 $ans)",
+    "(During $e1 $x1)",
+    "(Member $x1 winter)"
+   ],
+   "question": "What kicks the bucket during the winter?",
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "An old mare",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 pass_away)",
+    "(Patient $e1 $ans)",
+    "(During $e1 $x1)",
+    "(Member $x1 winter)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000250",
+   "kind": "paraphrastic",
+   "qid": "tierA-000250-q2",
+   "query": [
+    "(Member $e1 pass_away)",
+    "(Patient $e1 $ans)",
+    "(During $e1 $x1)",
+    "(Member $x1 winter)"
+   ],
+   "question": "What passes away during the winter?",
+   "reworded": {
+    "question_word": "passes away",
+    "sentence_word": "kicks the bucket"
+   },
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "the bucket",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Member $e1 kick)",
+    "(Agent $e1 $x1)",
+    "(Theme $e1 $ans)",
+    "(Measure $x1 old 90 year)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000254",
+   "kind": "literal",
+   "qid": "tierA-000254-q1",
+   "query": [
+    "(Member $e1 kick)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 founder)",
+    "(Theme $e1 $ans)",
+    "(Measure $x1 old 90 year)"
+   ],
+   "question": "What does the founder kick at ninety?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "The founder",
+   "binds_a": false,
+   "binds_b": false,
+   "bridge_rules": [
+    "mined_w1_lex_kick_the_bucket_die"
+   ],
+   "bucket": "uncovered-rule-present-unfired",
+   "failing_conjuncts": [
+    "(Measure $ans old 90 year)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000254",
+   "kind": "paraphrastic",
+   "qid": "tierA-000254-q2",
+   "query": [
+    "(Member $e1 die)",
+    "(Patient $e1 $ans)",
+    "(Measure $ans old 90 year)"
+   ],
+   "question": "Who dies at ninety?",
+   "reworded": {
+    "question_word": "dies",
+    "sentence_word": "kicks the bucket"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x2"
+   ],
+   "ans_b": [
+    "x2"
+   ],
+   "answer": "a whistle",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000262",
+   "kind": "literal",
+   "qid": "tierA-000262-q1",
+   "query": [
+    "(Member $e1 receive)",
+    "(Agent $e1 $x1)",
+    "(Member $x1 recruit)",
+    "(Theme $e1 $ans)",
+    "(Source $e1 $x2)",
+    "(Member $x2 trainer)"
+   ],
+   "question": "What does a recruit receive from a trainer?",
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "a trainer",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 give)",
+    "(Recipient $e1 $x2)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000262",
+   "kind": "paraphrastic",
+   "qid": "tierA-000262-q2",
+   "query": [
+    "(Member $e1 give)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(Member $x1 whistle)",
+    "(Recipient $e1 $x2)",
+    "(Member $x2 recruit)"
+   ],
+   "question": "Who gives a whistle to a recruit?",
+   "reworded": {
+    "question_word": "gives",
+    "sentence_word": "receives"
+   },
+   "stratum": "control"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "A crate",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000327",
+   "kind": "literal",
+   "qid": "tierA-000327-q1",
+   "query": [
+    "(Member $e1 large)",
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "question": "What is large in size?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "A crate",
+   "binds_a": false,
+   "binds_b": false,
+   "bridge_rules": [
+    "mined_w1_lex_large_big"
+   ],
+   "bucket": "uncovered-rule-present-unfired",
+   "failing_conjuncts": [
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000327",
+   "kind": "paraphrastic",
+   "qid": "tierA-000327-q2",
+   "query": [
+    "(Member $e1 big)",
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "question": "What is big in size?",
+   "reworded": {
+    "question_word": "big",
+    "sentence_word": "large"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "A crate",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000328",
+   "kind": "literal",
+   "qid": "tierA-000328-q1",
+   "query": [
+    "(Member $e1 big)",
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "question": "What is big in size?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "A crate",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 sizable)",
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000328",
+   "kind": "paraphrastic",
+   "qid": "tierA-000328-q2",
+   "query": [
+    "(Member $e1 sizable)",
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "question": "What is sizable in size?",
+   "reworded": {
+    "question_word": "sizable",
+    "sentence_word": "big"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "The boiler",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "query-brittleness",
+   "failing_conjuncts": [
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000339",
+   "kind": "literal",
+   "qid": "tierA-000339-q1",
+   "query": [
+    "(Member $e1 huge)",
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "question": "What is huge in size?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "The boiler",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 enormous)",
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000339",
+   "kind": "paraphrastic",
+   "qid": "tierA-000339-q2",
+   "query": [
+    "(Member $e1 enormous)",
+    "(Experiencer $e1 $ans)",
+    "(In $e1 size)"
+   ],
+   "question": "What is enormous in size?",
+   "reworded": {
+    "question_word": "enormous",
+    "sentence_word": "huge"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "The repair",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000351",
+   "kind": "literal",
+   "qid": "tierA-000351-q1",
+   "query": [
+    "(Member $ans difficult)"
+   ],
+   "question": "What is difficult?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "difficult",
+   "binds_a": false,
+   "binds_b": false,
+   "bridge_rules": [
+    "mined_w1_lex_repair_fix"
+   ],
+   "bucket": "uncovered-rule-present-unfired",
+   "failing_conjuncts": [
+    "(Like $x1 $ans)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000351",
+   "kind": "paraphrastic",
+   "qid": "tierA-000351-q2",
+   "query": [
+    "(Member $x1 fix)",
+    "(Like $x1 $ans)"
+   ],
+   "question": "What is the fix like?",
+   "reworded": {
+    "question_word": "fix",
+    "sentence_word": "repair"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "The repair",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000352",
+   "kind": "literal",
+   "qid": "tierA-000352-q1",
+   "query": [
+    "(Member $ans hard)"
+   ],
+   "question": "What is hard?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "hard",
+   "binds_a": false,
+   "binds_b": false,
+   "bridge_rules": [
+    "mined_w1_lex_repair_fix"
+   ],
+   "bucket": "uncovered-rule-present-unfired",
+   "failing_conjuncts": [
+    "(Like $x1 $ans)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000352",
+   "kind": "paraphrastic",
+   "qid": "tierA-000352-q2",
+   "query": [
+    "(Member $x1 fix)",
+    "(Like $x1 $ans)"
+   ],
+   "question": "What is the fix like?",
+   "reworded": {
+    "question_word": "fix",
+    "sentence_word": "repair"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "A doctor",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000376",
+   "kind": "literal",
+   "qid": "tierA-000376-q1",
+   "query": [
+    "(Member $e1 sign)",
+    "(Agent $e1 $ans)",
+    "(Patient $e1 $x1)",
+    "(Member $x1 chart)"
+   ],
+   "question": "Who signs the chart?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "A doctor",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "uncovered-paraphrase-inventory-miss",
+   "failing_conjuncts": [
+    "(Member $e1 endorse)",
+    "(Theme $e1 $x1)"
+   ],
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000376",
+   "kind": "paraphrastic",
+   "qid": "tierA-000376-q2",
+   "query": [
+    "(Member $e1 endorse)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(Member $x1 chart)"
+   ],
+   "question": "Who endorses the chart?",
+   "reworded": {
+    "question_word": "endorses",
+    "sentence_word": "signs"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "An automobile",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000390",
+   "kind": "literal",
+   "qid": "tierA-000390-q1",
+   "query": [
+    "(Member $e1 block)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(Member $x1 lane)"
+   ],
+   "question": "What blocks the lane?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "An automobile",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug-suppressed",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000390",
+   "kind": "paraphrastic",
+   "qid": "tierA-000390-q2",
+   "query": [
+    "(Member $e1 obstruct)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(Member $x1 lane)"
+   ],
+   "question": "What obstructs the lane?",
+   "reworded": {
+    "question_word": "obstructs",
+    "sentence_word": "blocks"
+   },
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [
+    "x0"
+   ],
+   "ans_b": [
+    "x0"
+   ],
+   "answer": "A car",
+   "binds_a": true,
+   "binds_b": true,
+   "bucket": "answered-both",
+   "gold_a": true,
+   "gold_b": true,
+   "id": "tierA-000391",
+   "kind": "literal",
+   "qid": "tierA-000391-q1",
+   "query": [
+    "(Member $e1 block)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(Member $x1 lane)"
+   ],
+   "question": "What blocks the lane?",
+   "stratum": "bridge"
+  },
+  {
+   "ans_a": [],
+   "ans_b": [],
+   "answer": "A car",
+   "binds_a": false,
+   "binds_b": false,
+   "bucket": "engine-bug-suppressed",
+   "engine_bug": "bug_conj_reuses_rule_premise",
+   "gold_a": false,
+   "gold_b": false,
+   "id": "tierA-000391",
+   "kind": "paraphrastic",
+   "qid": "tierA-000391-q2",
+   "query": [
+    "(Member $e1 obstruct)",
+    "(Agent $e1 $ans)",
+    "(Theme $e1 $x1)",
+    "(Member $x1 lane)"
+   ],
+   "question": "What obstructs the lane?",
+   "reworded": {
+    "question_word": "obstructs",
+    "sentence_word": "blocks"
+   },
+   "stratum": "bridge"
+  }
+ ]
+}
