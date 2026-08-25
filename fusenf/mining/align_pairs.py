@@ -31,6 +31,26 @@ Tier A's ``target_rule`` labels give a free recovery metric, reported per
 target. ``alt:voice`` / ``alt:dative`` targets expect NO diff (the parser
 already normalizes voice); they are reported as identical-parse rates instead.
 
+**Item E upgrade — §4 diff factoring (PATTERN_MINER_STUDY §4).** Alongside the
+unchanged unit keys (granularity ``unit`` — they double as the study's "joint
+keys"), each pair also yields **factor keys** (granularity ``factor``): the
+pair's pooled diff, rendered under a PAIR-GLOBAL satellite naming, split into
+connected components. Connectors are shared satellite variables, lone-unit
+centers, and shared content constants; matched-EVENT centers are inert (they
+are the shared scaffold — every within-unit atom mentions them, so letting
+them connect would make factoring a no-op), while matched-entity centers DO
+connect (a converse's role swap must stay one component). Components that
+span units recover cross-star correspondences the unit granularity cannot
+express (CoAgent ~ distributed twin-event); components that split a bundled
+unit diff are the loop-2 fix. Discipline per the study: a factor is
+``promotable`` only if independently attested as some positive pair's SOLE
+diff (single-component pair) and clean against controls — control checks for
+factors run against both the control unit keys and the single-component
+control factor keys (control pairs with multiple components stay out: their
+meaning change is carried by an unknown component, and flagging all of them
+would kill benign edits). Non-promotable factors stay in the rules file for
+judge review, never in signals.
+
 Deterministic end to end; mixed canon versions refused.
 
 Usage:
@@ -276,15 +296,18 @@ def renumber(lhs, rhs):
     return best + (kmap(best_assign),)
 
 
-def lift(lhs, rhs):
+def lift(lhs, rhs, extra_shared=()):
     """Anti-unify one level further: satellite classes appearing on BOTH sides
     become positional variables (``:K0``), so a converse frame pools across
     scenarios — ``(Agent $C $x0:depot)…(Recipient $C $x1:depot)`` and the same
     frame over ``library`` land on one key. One-sided classes (box vs crate)
-    stay verbatim: they ARE the candidate."""
+    stay verbatim: they ARE the candidate. ``extra_shared`` (factor granularity
+    only): classes annotated on cross-side-MATCHED satellites lift even when
+    one-sided in the diff — a lone twin-event star drags its scenario fillers
+    into the diff, but a matched satellite's identity is context, not content."""
     ca = {m.group(2) for a in lhs for m in RE_CLS.finditer(a)}
     cb = {m.group(2) for a in rhs for m in RE_CLS.finditer(a)}
-    shared = sorted(ca & cb)
+    shared = sorted((ca & cb) | (set(extra_shared) & (ca | cb)))
     if not shared:
         return lhs, rhs, {}
     ren = {cls: "K%d" % i for i, cls in enumerate(shared)}
@@ -383,8 +406,8 @@ def _merge_satellites(rec, matched, lone, side):
     return still
 
 
-def pair_diffs(ra, rb, mode_units, scalars=True):
-    """Yield (mode, lhs_tuple, rhs_tuple) instances for one record pair."""
+def pair_alignment(ra, rb, mode_units):
+    """Unit matching for one pair — the shared first half of both granularities."""
     matched, lone_a, lone_b = [], [], []
     kind_units = None
     for mode, ua, ub in mode_units:
@@ -405,6 +428,12 @@ def pair_diffs(ra, rb, mode_units, scalars=True):
     elif kind_units:
         lone_a += kind_units[0]
         lone_b += kind_units[1]
+    return matched, lone_a, lone_b
+
+
+def pair_diffs(ra, rb, mode_units, scalars=True):
+    """Yield (mode, lhs_tuple, rhs_tuple) instances for one record pair."""
+    matched, lone_a, lone_b = pair_alignment(ra, rb, mode_units)
 
     for mode, a_unit, b_unit in matched:
         na, nb = shared_names(ra, a_unit[0], a_unit[1], rb, b_unit[0], b_unit[1])
@@ -430,6 +459,197 @@ def pair_diffs(ra, rb, mode_units, scalars=True):
                 counters[stream] += 1
             atoms = tuple(sorted(unit_atoms(rec, unit[0], unit[1], names, scalars)))
             yield "lone", (atoms if is_a else ()), (() if is_a else atoms), {}
+
+
+RE_PAIRVAR = re.compile(r"\$[exf]\d+")
+_OPERATORS = None
+
+
+def _operators():
+    global _OPERATORS
+    if _OPERATORS is None:
+        raw = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                          os.pardir, "specs", "vocabulary.json"),
+                             encoding="utf-8"))
+        _OPERATORS = set(raw["operators"]) | set(raw.get("deprecated_operators", {}))
+    return _OPERATORS
+
+
+def global_names(ra, rb, matched, lone_a, lone_b):
+    """Pair-global token naming: idx maps per side + the inert-name set.
+
+    Matched unit centers share an index (event centers inert, rendered WITHOUT
+    class suffix — their class rides the Member atom, wave-1 center style);
+    satellites are paired per matched unit by role-signature then class, with
+    ONE global counter so a token keeps its index across units; lone units and
+    a final sweep name whatever remains, one-sided.
+    """
+    idx_a, idx_b = {}, {}
+    counters = collections.Counter()
+    inert = set()
+    shared_idx = set()
+
+    def fresh(stream):
+        n = counters[stream]
+        counters[stream] += 1
+        return n
+
+    def assign(tok_a, tok_b):
+        if tok_a and tok_b:
+            if tok_a in idx_a and tok_b in idx_b:
+                return
+            if tok_a in idx_a:
+                idx_b[tok_b] = idx_a[tok_a]
+                shared_idx.add(idx_a[tok_a])
+                return
+            if tok_b in idx_b:
+                idx_a[tok_a] = idx_b[tok_b]
+                shared_idx.add(idx_b[tok_b])
+                return
+            n = fresh(tok_a[0])
+            idx_a[tok_a] = (tok_a[0], n)
+            idx_b[tok_b] = (tok_b[0], n)
+            shared_idx.add((tok_a[0], n))
+        elif tok_a and tok_a not in idx_a:
+            idx_a[tok_a] = (tok_a[0], fresh(tok_a[0]))
+        elif tok_b and tok_b not in idx_b:
+            idx_b[tok_b] = (tok_b[0], fresh(tok_b[0]))
+
+    ordered = sorted((m for m in matched if m[0] != "kind"),
+                     key=lambda m: (m[0], m[1][0]))
+    for mode, (ca, _), (cb, _) in ordered:
+        assign(ca, cb)
+        if mode == "event":
+            inert.add(("a", ca))
+            inert.add(("b", cb))
+    for mode, (ca, ia), (cb, ib) in ordered:
+        sa, sb = ra.sat_roles(ca, ia), rb.sat_roles(cb, ib)
+        left_a, left_b = [], []
+        for sig in sorted(set(sa.values()) | set(sb.values())):
+            la = sorted([s for s, g in sa.items() if g == sig],
+                        key=lambda s: (ra.klass.get(s) or "~", s))
+            lb = sorted([s for s, g in sb.items() if g == sig],
+                        key=lambda s: (rb.klass.get(s) or "~", s))
+            for pos in range(min(len(la), len(lb))):
+                assign(la[pos], lb[pos])
+            left_a += la[len(lb):]
+            left_b += lb[len(la):]
+        rest_b = list(left_b)
+        for tok_a in sorted(left_a, key=lambda s: (ra.klass.get(s) or "~", s)):
+            cls_a = ra.klass.get(tok_a)
+            match = next((t for t in rest_b
+                          if t[0] == tok_a[0] and rb.klass.get(t) == cls_a and cls_a), None)
+            if match:
+                rest_b.remove(match)
+                assign(tok_a, match)
+            else:
+                assign(tok_a, None)
+        for tok_b in rest_b:
+            assign(None, tok_b)
+    for units, is_a in ((lone_a, True), (lone_b, False)):
+        for center, idxs in sorted(units):
+            rec = ra if is_a else rb
+            toks = [center] if RE_SKOLEM_FULL.match(center) else []
+            toks += sorted(rec.sat_roles(center, idxs),
+                           key=lambda s: (rec.klass.get(s) or "~", s))
+            for tok in toks:
+                assign(tok if is_a else None, None if is_a else tok)
+    return idx_a, idx_b, inert, shared_idx
+
+
+def _render_side(rec, idxs, idx_map, no_class, scalars):
+    """Rendered multiset of one side's unit-covered atoms under global names."""
+    names = {}
+    for tok, (stream, n) in idx_map.items():
+        cls = rec.klass.get(tok)
+        suffix = ":" + cls if cls and tok not in no_class else ""
+        names[tok] = "$%s%d%s" % (stream, n, suffix)
+    return [abstract(rec.atoms[i]["term"], rec.atoms[i]["stv"], "\x00none",
+                     names, scalars)
+            for i in sorted(idxs)]
+
+
+def _connectors(text, inert_names):
+    out = {m.group(0) for m in RE_PAIRVAR.finditer(text)} - inert_names
+    ops = _operators()
+    for tok in re.findall(r"(?<![\w$<\"])[a-z][a-z0-9_]*(?![\w])", RE_STR.sub("", text)):
+        if tok not in ops and not RE_SKOLEM_FULL.match(tok):
+            out.add(tok)
+    return out
+
+
+def pair_components(ra, rb, mode_units, scalars=True):
+    """Factor-granularity instances: connected components of the pooled pair diff.
+
+    Returns (components, n_components) — each component (lhs, rhs, kwit) after
+    lift + renumber, exactly the unit pipeline's abstraction steps.
+    """
+    matched, lone_a, lone_b = pair_alignment(ra, rb, mode_units)
+    idx_a, idx_b, inert, shared_idx = global_names(ra, rb, matched, lone_a, lone_b)
+    no_class_a = {tok for side, tok in inert if side == "a"}
+    no_class_b = {tok for side, tok in inert if side == "b"}
+    for units, bucket in ((lone_a, no_class_a), (lone_b, no_class_b)):
+        for center, _ in units:
+            if RE_SKOLEM_FULL.match(center) and center[0] == "e":
+                bucket.add(center)
+
+    def covered(matched_side, lones):
+        idxs = set()
+        for m in matched:
+            unit = m[matched_side]
+            if unit:
+                idxs.update(unit[1])
+        for _, ui in lones:
+            idxs.update(ui)
+        return idxs
+
+    aa = _render_side(ra, covered(1, lone_a), idx_a, no_class_a, scalars)
+    bb = _render_side(rb, covered(2, lone_b), idx_b, no_class_b, scalars)
+    ca, cb = collections.Counter(aa), collections.Counter(bb)
+    lhs_atoms = sorted((ca - cb).elements())
+    rhs_atoms = sorted((cb - ca).elements())
+    if not lhs_atoms and not rhs_atoms:
+        return [], 0
+
+    inert_names = {"$%s%d" % v for tok, v in idx_a.items() if ("a", tok) in inert}
+    inert_names |= {"$%s%d" % v for tok, v in idx_b.items() if ("b", tok) in inert}
+    entries = [("L", t) for t in lhs_atoms] + [("R", t) for t in rhs_atoms]
+    conns = [_connectors(t, inert_names) for _, t in entries]
+    parent = list(range(len(entries)))
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    by_conn = collections.defaultdict(list)
+    for i, cs in enumerate(conns):
+        for c in cs:
+            by_conn[c].append(i)
+    for c in sorted(by_conn):
+        group = by_conn[c]
+        for j in group[1:]:
+            ri, rj = find(group[0]), find(j)
+            if ri != rj:
+                parent[max(ri, rj)] = min(ri, rj)
+
+    comps = collections.defaultdict(lambda: ([], []))
+    for i, (side, t) in enumerate(entries):
+        comps[find(i)][0 if side == "L" else 1].append(t)
+    out = []
+    for root in sorted(comps):
+        lhs, rhs = comps[root]
+        extra = set()
+        for t in itertools.chain(lhs, rhs):
+            for m in RE_CLS.finditer(t):
+                sm = re.match(r"\$([exf])(\d+)\Z", m.group(1))
+                if sm and (sm.group(1), int(sm.group(2))) in shared_idx:
+                    extra.add(m.group(2))
+        l2, r2, wit = lift(tuple(sorted(lhs)), tuple(sorted(rhs)), extra)
+        l3, r3, km = renumber(l2, r2)
+        out.append((l3, r3, {km.get(k, k): cls for k, cls in wit.items()}))
+    return out, len(out)
 
 
 def classify(lhs, rhs, roles):
@@ -518,7 +738,8 @@ def main():
         agg = collections.defaultdict(lambda: {
             "classes": set(), "occ": 0, "examples": [], "modes": collections.Counter()})
         identical = 0
-        sole_keys = set()   # keys that were some pair's ONLY diff
+        sole_keys = set()          # unit keys that were some pair's ONLY diff
+        factor_sole = set()        # (s1, s2) of single-component pairs
         for ec, ia, ib in pairs:
             ra, rb = recs[ia], recs[ib]
             if ra.graph_id == rb.graph_id:
@@ -541,15 +762,28 @@ def main():
                     e["examples"].append(f"{ia}|{ib}")
             if len(pair_keys) == 1:
                 sole_keys.add(pair_keys[0])
-        return agg, identical, sole_keys
+            comps, n_comp = pair_components(ra, rb, mode_units, scalars)
+            for lhs, rhs, kwit in comps:
+                s1, s2 = (lhs, rhs) if (lhs, rhs) <= (rhs, lhs) else (rhs, lhs)
+                e = agg[("factor", s1, s2)]
+                e["classes"].add(ec)
+                e["occ"] += 1
+                for k, cls in kwit.items():
+                    e.setdefault("kwit", collections.defaultdict(collections.Counter))[k][cls] += 1
+                if len(e["examples"]) < 3:
+                    e["examples"].append(f"{ia}|{ib}")
+                if n_comp == 1:
+                    factor_sole.add((s1, s2))
+        return agg, identical, sole_keys, factor_sole
 
-    pos, pos_identical, _ = mine(pos_pairs)
+    pos, pos_identical, _, pos_factor_sole = mine(pos_pairs)
     # A control pair flags a key only when that key is the pair's SOLE diff:
     # only then would rewriting it make a meaning-different pair converge. A
     # control differing in the candidate AND elsewhere (quantity, modality)
     # is not evidence against the candidate — the meaning change is carried
     # by the other diff. Scalars stay exact here so that other diff EXISTS.
-    _, _, ctl_keys = mine(ctl_pairs, scalars=False)
+    _, _, ctl_keys, ctl_factor_sole = mine(ctl_pairs, scalars=False)
+    ctl_texts = {(s1, s2) for _, s1, s2 in ctl_keys} | ctl_factor_sole
 
     rows = []
     for key, e in pos.items():
@@ -558,19 +792,31 @@ def main():
         if support < args.min_support:
             continue
         kind, pair = classify(s1, s2, roles)
-        rows.append({
+        row = {
             "mode": mode, "lhs": list(s1), "rhs": list(s2), "kind": kind,
             "symbol_pair": list(pair) if pair else None,
             "support": support, "occurrences": e["occ"],
-            "fires_on_control": key in ctl_keys,
+            "granularity": "factor" if mode == "factor" else "unit",
             "classes": sorted(e["classes"]),
             "k_witnesses": {k: dict(sorted(c.items(), key=lambda kv: (-kv[1], kv[0])))
                             for k, c in sorted(e.get("kwit", {}).items())},
             "examples": e["examples"],
-        })
-    rows.sort(key=lambda r: (-r["support"], r["kind"], r["lhs"], r["rhs"]))
+        }
+        if mode == "factor":
+            row["fires_on_control"] = (s1, s2) in ctl_texts
+            row["attested_sole"] = (s1, s2) in pos_factor_sole
+            row["promotable"] = row["attested_sole"] and not row["fires_on_control"]
+        else:
+            row["fires_on_control"] = key in ctl_keys
+        rows.append(row)
+    rows.sort(key=lambda r: (-r["support"], r["granularity"], r["kind"], r["lhs"], r["rhs"]))
     for n, r in enumerate(rows, 1):
         r["rule_id"] = "au%04d" % n
+    unit_texts = {(tuple(r["lhs"]), tuple(r["rhs"])) for r in rows
+                  if r["granularity"] == "unit"}
+    for r in rows:
+        if r["granularity"] == "factor":
+            r["duplicates_unit"] = (tuple(r["lhs"]), tuple(r["rhs"])) in unit_texts
 
     # ---- slot-cosine annotation (cross-method consensus preview) -----------
     slot_vec = {}
@@ -600,6 +846,9 @@ def main():
         for r in rows:
             if r["fires_on_control"] or r["kind"] == "polarity-diff":
                 continue
+            if r["granularity"] == "factor" and (
+                    not r["promotable"] or r["duplicates_unit"]):
+                continue
             n_sig += 1
             fh.write(json.dumps({
                 "candidate": {"rule_id": r["rule_id"], "lhs": r["lhs"], "rhs": r["rhs"],
@@ -609,7 +858,9 @@ def main():
                 "confidence": round(r["support"] / (r["support"] + 10.0), 3),
                 "kind": r["kind"], "support": r["support"],
                 "slot_cosine": r["slot_cosine"], "examples": r["examples"],
-                "method": "paraphrase-align-4.3.4",
+                "granularity": r["granularity"],
+                "method": "paraphrase-align-4.3.4" if r["granularity"] == "unit"
+                          else "paraphrase-align-4.3.4-factor",
             }, ensure_ascii=False, sort_keys=True) + "\n")
 
     # ---- target-rule recovery ----------------------------------------------
@@ -643,7 +894,7 @@ def main():
                 # a fused surface symbol (give_up, kick_the_bucket) matches
                 # whole; a decomposed light-verb matches by content parts
                 if word(x, u) and (word(y, v) or all(word(p, v) for p in parts)):
-                    hit = r["rule_id"]
+                    hit = r["rule_id"] + (" (factor)" if r["granularity"] == "factor" else "")
                     break
             if hit:
                 break
@@ -654,22 +905,31 @@ def main():
             for r in rows:
                 if not r["fires_on_control"] \
                         and len(set(r["classes"]) & targets[tr]) >= 2:
-                    hit = r["rule_id"] + " (prov)"
+                    hit = r["rule_id"] + " (prov" + \
+                        (", factor)" if r["granularity"] == "factor" else ")")
                     break
         recovery.append({"target": tr, "recovered_by": hit, "classes": len(targets[tr])})
     n_rec = sum(1 for r in recovery if r["recovered_by"])
 
     # ---- report -------------------------------------------------------------
-    kinds = collections.Counter(r["kind"] for r in rows if not r["fires_on_control"])
-    n_ctl = sum(1 for r in rows if r["fires_on_control"])
+    units_only = [r for r in rows if r["granularity"] == "unit"]
+    factors = [r for r in rows if r["granularity"] == "factor"]
+    kinds = collections.Counter(r["kind"] for r in units_only if not r["fires_on_control"])
+    n_ctl = sum(1 for r in units_only if r["fires_on_control"])
+    n_fac_ctl = sum(1 for r in factors if r["fires_on_control"])
+    n_promotable = sum(1 for r in factors if r.get("promotable") and not r["duplicates_unit"])
+    n_dup = sum(1 for r in factors if r["duplicates_unit"])
     L = []
-    L.append("# §4.3.4 paraphrase alignment + anti-unification — wave 1\n")
+    L.append("# §4.3.4 paraphrase alignment + anti-unification — item E (factoring)\n")
     L.append(f"- positive pairs: {len(pos_pairs)} (Tier A same-polarity within class + Tier C"
              f" complete pairs); identical parses among them: {pos_identical}")
     L.append(f"- control pairs mined: {len(ctl_pairs)} (Tier A same x different polarity)")
-    L.append(f"- anti-unified rules (support>={args.min_support}): **{len(rows)}**"
+    L.append(f"- anti-unified UNIT rules (support>={args.min_support}): **{len(units_only)}**"
              f" — kinds {dict(sorted(kinds.items()))}; flagged fires_on_control: **{n_ctl}**;"
-             f" signals: **{n_sig}**")
+             f" signals: **{n_sig}** (unit + promotable factor)")
+    L.append(f"- FACTOR rules (§4 factoring): **{len(factors)}** — {n_dup} duplicate a unit"
+             f" key, {n_fac_ctl} fire on control, **{n_promotable}** promotable"
+             f" (sole-diff-attested, control-clean, non-duplicate); the rest await judges")
     ctl_lex = sorted({" / ".join(k[1] + ("<->",) + k[2]) for k in ctl_keys
                       if len(k[1]) == 1 and len(k[2]) == 1})
     L.append(f"- control machinery evidence: {len(ctl_keys)} sole-diff control keys mined"
@@ -682,20 +942,25 @@ def main():
         L.append(f"## {title}\n")
         L.append("| support | kind | slot-cos | LHS | RHS |\n|---|---|---|---|---|")
         for r in sel[:n]:
-            L.append("| %d (%d×) | %s%s | %s | %s | %s |" % (
+            L.append("| %d (%d×) | %s%s%s | %s | %s | %s |" % (
                 r["support"], r["occ"] if "occ" in r else r["occurrences"], r["kind"],
                 " ⚠CTL" if r["fires_on_control"] else "",
+                " ✓" if r.get("promotable") and not r.get("duplicates_unit") else "",
                 "%.2f" % r["slot_cosine"] if r["slot_cosine"] is not None else "—",
                 "<br>".join("`%s`" % a for a in r["lhs"]) or "∅",
                 "<br>".join("`%s`" % a for a in r["rhs"]) or "∅"))
         L.append("")
 
     table("Lexical-collapse candidates",
-          [r for r in rows if r["kind"] == "lexical-collapse" and not r["fires_on_control"]])
+          [r for r in units_only if r["kind"] == "lexical-collapse" and not r["fires_on_control"]])
     table("Slot-merge candidates",
-          [r for r in rows if r["kind"] == "slot-merge" and not r["fires_on_control"]], 10)
+          [r for r in units_only if r["kind"] == "slot-merge" and not r["fires_on_control"]], 10)
     table("Structural alternations",
-          [r for r in rows if r["kind"] == "structural-alt" and not r["fires_on_control"]], 20)
+          [r for r in units_only if r["kind"] == "structural-alt" and not r["fires_on_control"]], 20)
+    table("Factor candidates (non-duplicate; ✓ = promotable)",
+          sorted([r for r in factors if not r["duplicates_unit"] and not r["fires_on_control"]],
+                 key=lambda r: (-r.get("promotable", False), -r["support"],
+                                r["lhs"], r["rhs"])), 25)
     table("Flagged by negative controls (kept OUT of signals)",
           [r for r in rows if r["fires_on_control"]], 15)
 
