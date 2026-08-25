@@ -41,6 +41,7 @@ not just intended: every parse record carries `parser.prompt_sha256` + `input_sh
 | `PARSE.md` | standard run-1 batch parse | `raw/<ID>__run1.txt` |
 | `REPARSE.md` | run 2 over the same items (never touches run 1) | `raw/<ID>__run2.txt` |
 | `REPARSE_run40.md` | batch-2 Tier C uniform-hash wave (D.4; run 40 avoids the fix-loop's 2–8 and the audit wave's 30) | `raw/<ID>__run40.txt` |
+| `REPARSE_run50.md` | batch-3 re-parse wave (130 fix-pack-covered defect records @ `bb7c4b71`; wave manifest `parse_batches/reparse50_wave.json`) | `raw/<ID>__run50.txt` |
 | `M1PARSE.md` | M1 stability runs, run number in wrapper | `raw/<ID>__run<N>.txt` |
 | `SOLOPARSE.md` | one item per agent (within-batch-contamination isolation) | `raw/<ID>__run<N>.txt` |
 
@@ -83,6 +84,12 @@ standing sampled pass. Brief: `REVIEW.md`. Wrapper, same discipline as parsing:
   judgment; instead REVIEW.md's Q4 (licensed heads) asks the question neutrally over every
   head, and the orchestrator joins verdicts against `validation.findings` mechanically
   afterwards. Agreement/disagreement on flagged heads falls out of the join, unanchored.
+- **Coverage exception (owner, 2026-08-26): 100% review for `tierD` (all 250) and the
+  run-50 re-parse wave (all 130)** — tierD feeds the M2 measurement arm with no
+  downstream gauntlet gate, and every run-50 record carries an elevated defect prior
+  plus the pack-coverage verification claim. Review waves for these run in groups WITH
+  OWNER QUOTA PAUSES between phases (owner instruction). Tier-B-scale corpora stay on
+  the strata below.
 - **Sampling policy** (orchestrator-side), four strata:
   1. 100% of records with any mechanical finding;
   2. **review-by-provenance: 100% of records cited as evidence by a rule candidate,

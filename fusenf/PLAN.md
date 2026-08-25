@@ -72,6 +72,10 @@ conventions** — a rule may not rewrite vocabulary that existing seeded rules o
 
 ## 2. Pipeline
 
+> **2026-08-26: this diagram is the BATCH-1 pipeline, kept for the historical record.
+> The current end-to-end overview (review/adjudication layers, substrate gate, graded
+> gauntlet route, question arm, tierD) lives in `PIPELINE.md` and is maintained there.**
+
 ```
 sentences+context ──▶ [P1 harness: blind Sonnet agents + prompt.txt] ──▶ faithful parses (JSONL, immutable)
                                                                               │
