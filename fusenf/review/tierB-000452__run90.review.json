@@ -1,0 +1,9 @@
+{"id": "tierB-000452", "run": 90,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["optative / expressive formula with no verb (\"Happy 40th birthday\") — a wish is neither an assertion nor an imperative, so the instruction set has no way to record it; the parse necessarily drops \"Happy\" entirely and asserting (Member sk_birthday_1 happy) would have been false", "dedication line (\"To Laura.\") — an addressee with no event to attach a Recipient to", "valediction / signature (\"Love, Pete.\") — a sender relation with no licensed encoding", "an ordinal on an entity with no associated event and no explicit -est dimension (\"40th birthday\"): the Ordinal scale slot has nothing licensed to fill it"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything emitted is defensible — two Name facts, the birthday witness with its class, and the ordinal — and the parse correctly refrains from asserting whose birthday it is, since the text never states it. The result is that three of the item's four content elements (the wish, the addressee link, the sender link) leave no trace at all, which is attributable to the gaps above rather than to a parse defect."}

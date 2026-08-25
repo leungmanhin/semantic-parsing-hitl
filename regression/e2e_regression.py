@@ -1557,6 +1557,26 @@ run("fp3-E5  identity preserved: is the granary a chapel?", FP3_COK,
 run("fp3-E5  what did the granary turn into?", FP3_COK,
     '(And (Member $e turn) (Patient $e $g) (Member $g granary) (Result $e $s) (Member $s chapel) (Past $e))')
 
+# Fix-pack 3.1: copular-focus anchor on a reified state; bare-postural position pin.
+FP31_FOCUS = [
+    '(: t_storeroom (Member sk_storeroom_1 storeroom) (STV 1.0 0.99))',
+    '(: st_vent (Member sk_ventilated_1 ventilated) (STV 1.0 0.99))',
+    '(: st_exp (Experiencer sk_ventilated_1 sk_storeroom_1) (STV 1.0 0.99))',
+    '(: flat_vent (Member sk_storeroom_1 ventilated) (STV 1.0 0.99))',
+    '(: only_tag (Only sk_storeroom_1 sk_ventilated_1) (STV 1.0 0.99))',
+]
+run("fp31  copular focus: what alone is ventilated?", FP31_FOCUS,
+    '(And (Member $st ventilated) (Only $x $st) (Member $x storeroom))')
+run("fp31  flat copular still binds beside the focus", FP31_FOCUS,
+    '(And (Member $s storeroom) (Member $s ventilated))')
+FP31_POS = [
+    '(: t_pitchfork (Member sk_pitchfork_1 pitchfork) (STV 1.0 0.99))',
+    '(: t_silo (Member sk_silo_1 silo) (STV 1.0 0.99))',
+    '(: pos_against (Past (Against sk_pitchfork_1 sk_silo_1)) (STV 1.0 0.99))',
+]
+run("fp31  bare-postural position binds under tense wrap", FP31_POS,
+    '(And (Member $p pitchfork) (Past (Against $p $s)) (Member $s silo))')
+
 print("\n==== %d / %d PASS ====" % (sum(1 for ok,_ in results if ok), len(results)))
 print("KNOWN ENGINE-GAP markers (faithful queries [], pending engine fix):",
       sum(1 for _,l in results if l.strip().startswith("GAP-")))

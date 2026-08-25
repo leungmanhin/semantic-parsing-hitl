@@ -1,0 +1,7 @@
+(: gate_type (Member sk_gate_1 west_gate) (STV 1.0 0.99))
+(: gate_genus (Inheritance west_gate gate) (STV 1.0 0.99))
+(: gate_mod (Inheritance west_gate west) (STV 1.0 0.99))
+(: guarded_state (Member sk_guarded_1 guarded) (STV 1.0 0.99))
+(: guarded_exp (Experiencer sk_guarded_1 sk_gate_1) (STV 1.0 0.99))
+(: gate_guarded_flat (Member sk_gate_1 guarded) (STV 1.0 0.99))
+(: gate_only (Only sk_gate_1 sk_guarded_1) (STV 1.0 0.99))

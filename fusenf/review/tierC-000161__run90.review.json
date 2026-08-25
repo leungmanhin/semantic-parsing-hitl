@@ -1,0 +1,9 @@
+{"id": "tierC-000161", "run": 90,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a capitalized ROLE / party label immediately preceding a name (\"Incumbent George Allen\", \"Democrat Robb\"): the Names-and-casing rule says the name is exactly its capitalized run of words (which would mechanically give democrat_robb), the title rule covers only kinship / courtesy titles, and the appositive route the parse took is not stated for a pre-nominal label — the three rules conflict here", "an ordinal on an entity with no associated event and no explicit -est dimension (\"a third term\"): the Ordinal scale slot is specified as the associated event or a stated dimension, and neither exists, so nothing licensed fills it"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Prepositional-verb handling is correct (run/lose keep their lemmas with For and To obliques rather than direct-object roles), the appositive typings correctly take the past host clause's wrapper, and (But sk_run_1 sk_lose_1) keeps surface order with the matrix clause first. The Ordinal scale filled with the entity's own kind (term) is a defensible extension, not a misuse of a defined slot."}

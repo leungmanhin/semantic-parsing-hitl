@@ -1,0 +1,11 @@
+{"id": "tierB-001186", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "\"on the desk\" is encoded as LocatedIn, but LocatedIn is containment-only (in / at / inside / within) and \"on\" must keep the surface preposition entity-attached — (On sk_book_1 sk_desk_1) — which is the instruction set's own \"a ledger on the workbench\" case; as written the parse asserts the book is inside the desk."},
+              {"statement": null, "issue": "\"only\" is dropped with no atom of any kind, so the parse claims merely that a book is on the desk and loses the exclusivity/uniqueness the sentence asserts."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["focus particle \"only\" on a non-eventive existential (\"there is only one N\") — the (Only <filler> <event>) form has no event to fill its second slot",
+             "\"only one N\" as an exact count plus exclusivity on a singular NP — the Cardinality / CardinalityAtMost machinery is defined only over plural group witnesses"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The witness-plus-class atoms for the book and the desk are right; the defects are the locative head and the lost \"only\"."}

@@ -567,9 +567,16 @@ both ways. And a surface **preposition** is never promoted into one: "like …" 
 
 **Where a THING is** — "X is a village **in** Y", "the reserve lies **in** Z" — is **not** an
 event oblique: there is no eventuality for `Location` to attach to. Use the static
-**`(LocatedIn <entity> <place>)`**, and route the **stative locative verbs** onto it as well
-("is located in / lies in / sits in / is situated in" predicate a position; they do not report
-something happening, so they mint no event):
+**`(LocatedIn <entity> <place>)`**, and route the **stative locative and postural verbs** onto
+it as well — "is located in", "is situated in", and bare *lie / sit / stand / hang / lean /
+perch / rest* alike predicate a position, not a happening, so a **bare position clause mints no
+event whatever its verb**. The preposition picks the head as always: containment ("in / at /
+inside / within") → `LocatedIn`; any other preposition → the entity-attached surface head
+("leaned **against** the wall" → `(Past (Against sk_mattock_1 sk_wall_1))`). Reify the postural
+state — `Experiencer` subject + `Location` oblique — **only when a standard reification trigger
+demands an anchor**: progressive morphology ("**was lying** across the threshold"), a manner adverb, a
+time modifier, or a connective endpoint. Tense alone is not a trigger — it wraps the position
+atom like any copular:
 
       A jetty is situated in the Brindle estuary. →  (Member sk_jetty_1 jetty) (LocatedIn sk_jetty_1 brindle)
       Thornmere is a village in Calderwick.       →  (Member thornmere village) (LocatedIn thornmere calderwick)
@@ -704,7 +711,8 @@ the motion, it does not initiate it), even when the verb is motion-like. A **sta
 — nothing changes and nothing moves, the clause just says how something *is* — takes `Experiencer`,
 the same role a reified predicate-adjective state gives its holder: locative / postural statives
 (*the fault **lies** in the relay*, *the tower **stands** on the ridge*, *the crate **sat** in the
-bay*) and psych / perception states alike. When unclear, `Agent`.
+bay*) and psych / perception states alike — though a postural reifies **only when a trigger
+anchors it** (a bare position clause mints no event; see *Where a THING is*). When unclear, `Agent`.
 
 An **indefinite argument** ("a book") is an existential → witness + class, referenced by its
 role. A **passive** carries **exactly the roles its active would**: a **`by`-phrase takes the role
@@ -2323,6 +2331,23 @@ opaque focus atom** `(<Op> <focused-filler> <event>)` naming the focused constit
   the **verb-class lemma** (`(Only sing sk_sing_1)`). With **VP-ellipsis** ("Ana passed too", "Ana did too")
   reconstruct the verb (see **Coordination**), then tag `(Also ana <ana-event>)`. Focus atoms are
   `(STV 1.0 0.99)`.
+- **A focus particle on a COPULAR clause reifies the state to get its anchor** — the clause has
+  no event, and the focus atom needs an eventuality in its second slot, so the particle itself
+  is a reification trigger (like an adjective's PP complement): reify the predicate state
+  (`Member` + `Experiencer`, keeping the flat copular atom per dual-emit) and anchor the focus
+  atom on the **state witness**. The filler is the focused constituent as always — the subject's
+  symbol for subject focus, the predicate's class lemma for predicate focus:
+
+      Only the annex is heated.   →  (Member sk_annex_1 annex) (Member sk_heated_1 heated)
+                                     (Experiencer sk_heated_1 sk_annex_1) (Member sk_annex_1 heated)
+                                     (Only sk_annex_1 sk_heated_1)
+      The cabin is also insulated. → (Member sk_cabin_1 cabin) (Member sk_insulated_1 insulated)
+                                     (Experiencer sk_insulated_1 sk_cabin_1) (Member sk_cabin_1 insulated)
+                                     (Also insulated sk_insulated_1)
+
+  A focus particle on a bare **existential count** ("there is only one book …") is still
+  **unaddressed** — "only one N" has no licensed exclusivity carrier yet; emit the exact
+  `Cardinality` and leave the particle out (a registered gap, not a licence to invent).
 
 QA — "Who alone passed?" → `(And (Member $e pass) (Only $x $e))`; "did only Sara pass?" rebuilds the
 prejacent + `(Only sara …)`.

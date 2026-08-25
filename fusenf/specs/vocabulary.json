@@ -2,9 +2,9 @@
  "meta": {
   "schema": "fusenf-vocabulary/1",
   "generated": "2026-07-27",
-  "prompt_sha256": "2aa57fa8aeb3d4ed1127e52666459787523d74ef726d131c9a3c2eb37cd850f1",
+  "prompt_sha256": "bb7c4b71fc26e2a0e112f0b3908b0e57dc4f03866c7b152e73c34556b1148a18",
   "seeded_sha256": "b7e25b96347848cc86b156dfa6294e0d8eb08c247bf66651631be2ced22a7078",
-  "prompt_lines": 2602,
+  "prompt_lines": 2627,
   "seeded_rules": 110,
   "method": "two independent full-prompt extractions (different models) reconciled against a mechanical inventory of every atom in the 316 regression goldens, the e2e harness and the seeded rules; 17 field disagreements adjudicated by the orchestrator and marked _adjudicated",
   "attestation_sources": [
@@ -19,8 +19,8 @@
    "both": 116,
    "field_disagreements": 17
   },
-  "revised": "2026-08-24",
-  "revision_note": "mechanical attestation sweep by harness/vocab_attest.py: goldens 1677, e2e 920, seeded 110 statements; attestation blocks, open-class/skolem lists and pins regenerated; declared fields untouched.",
+  "revised": "2026-08-25",
+  "revision_note": "mechanical attestation sweep by harness/vocab_attest.py: goldens 1685, e2e 928, seeded 110 statements; attestation blocks, open-class/skolem lists and pins regenerated; declared fields untouched.",
   "maintenance": "When validator.py reports the vocabulary STALE (pins != live prompt.txt/seeded_rules.metta): run harness/vocab_attest.py --date <today>, adjudicate any UNKNOWN heads or arity flags it prints (edit operators by hand \u2014 declared fields are human decisions), then rerun with --write to regenerate attestation fields and re-pin. Full two-extractor reconciliation (meta.method) is only needed when prompt.txt's operator sections materially change."
  },
  "field_semantics": {
@@ -52,9 +52,9 @@
    "attested": {
     "arities": {
      "1": 2,
-     "3": 2705
+     "3": 2721
     },
-    "n": 2707,
+    "n": 2723,
     "sources": [
      "e2e",
      "goldens",
@@ -945,9 +945,9 @@
    "gloss": "Subject of a stative predication \u2014 psych state or predicate-adjective state.",
    "attested": {
     "arities": {
-     "2": 33
+     "2": 35
     },
-    "n": 33,
+    "n": 35,
     "sources": [
      "e2e",
      "goldens"
@@ -1513,9 +1513,9 @@
    "gloss": "An individual belongs to a class or holds a property.",
    "attested": {
     "arities": {
-     "2": 1176
+     "2": 1186
     },
-    "n": 1176,
+    "n": 1186,
     "sources": [
      "e2e",
      "goldens",
@@ -1843,9 +1843,9 @@
    "gloss": "Exclusive focus particle ('only / just / solely').",
    "attested": {
     "arities": {
-     "2": 3
+     "2": 5
     },
-    "n": 3,
+    "n": 5,
     "sources": [
      "e2e",
      "goldens"
@@ -1977,9 +1977,9 @@
    "gloss": "Past tense on an eventuality.",
    "attested": {
     "arities": {
-     "1": 367
+     "1": 369
     },
-    "n": 367,
+    "n": 369,
     "sources": [
      "e2e",
      "goldens"
@@ -2323,9 +2323,9 @@
    "gloss": "Truth value: strength and confidence, both in [0,1].",
    "attested": {
     "arities": {
-     "2": 2621
+     "2": 2637
     },
-    "n": 2621,
+    "n": 2637,
     "sources": [
      "e2e",
      "goldens",

@@ -2917,7 +2917,7 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: st_of (Of sk_full_1 sk_group_1) (STV 1.0 0.99))
     (: flat_full (Member sk_pantry_1 full) (STV 1.0 0.99))
 
-**[entity-position] A satchel lay under the pew.** — a non-containment position preposition stays **entity-attached surface-form** (`LocatedIn` is in/at/inside only); the postural stative "lay" is a locative stative (no motion event needed beyond the state reading, `Experiencer` subject)
+**[entity-position] A satchel lay under the pew.** — a non-containment position preposition stays **entity-attached surface-form** (`LocatedIn` is in/at/inside only); a **bare postural clause mints no event** (fix-pack 3.1 pin) — the position atom, tense-wrapped, is the whole predication
 
     (: t_satchel (Member sk_satchel_1 satchel) (STV 1.0 0.99))
     (: t_pew (Member sk_pew_1 pew) (STV 1.0 0.99))
@@ -2962,3 +2962,17 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: st_exp (Experiencer sk_chapel_1 sk_granary_1) (STV 1.0 0.99))
     (: flat_chapel (Member sk_granary_1 chapel) (STV 1.0 0.99))
     (: e_result (Result sk_turn_1 sk_chapel_1) (STV 1.0 0.99))
+
+**[focus-copular] Only the storeroom is ventilated.** — a focus particle on a copular clause reifies the state for its anchor (fix-pack 3.1): state witness + `Experiencer` + flat atom (dual-emit), focus atom on the **state witness**, filler = the focused subject
+
+    (: t_storeroom (Member sk_storeroom_1 storeroom) (STV 1.0 0.99))
+    (: st_vent (Member sk_ventilated_1 ventilated) (STV 1.0 0.99))
+    (: st_exp (Experiencer sk_ventilated_1 sk_storeroom_1) (STV 1.0 0.99))
+    (: flat_vent (Member sk_storeroom_1 ventilated) (STV 1.0 0.99))
+    (: only_tag (Only sk_storeroom_1 sk_ventilated_1) (STV 1.0 0.99))
+
+**[postural-pin] The pitchfork leaned against the silo.** — a **bare** postural clause mints NO event (fix-pack 3.1 pin): the entity-attached surface-preposition position atom, tense-wrapped, is the whole predication (`Experiencer`-state reification needs a trigger — progressive, manner, time, connective)
+
+    (: t_pitchfork (Member sk_pitchfork_1 pitchfork) (STV 1.0 0.99))
+    (: t_silo (Member sk_silo_1 silo) (STV 1.0 0.99))
+    (: pos_against (Past (Against sk_pitchfork_1 sk_silo_1)) (STV 1.0 0.99))

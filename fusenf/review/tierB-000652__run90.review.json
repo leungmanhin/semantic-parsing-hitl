@@ -1,0 +1,9 @@
+{"id": "tierB-000652", "run": 90,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": null, "issue": "The entire predication is missing: nothing at all is emitted for the superlative \"simplest\", for \"the most elegant ones\", or for the copula joining them, so the parse records none of the sentence's assertion."}, {"statement": null, "issue": "The Most operator is defined and available for both superlatives, so at least the ranking atoms were licensed and should have appeared even if the equative itself is under-covered."}, {"statement": null, "issue": "The plural one-anaphora \"ones\" (= sentences) is resolved to nothing — no second group or entity is introduced for the predicate description."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["equative copula between two DEFINITE DESCRIPTIONS (\"the Xs are the Ys\"): Categorical statements covers only \"X is a/an N\" and \"X is ADJ\", and gives no encoding for an identity claim between two descriptions", "a superlative used as a PLURAL definite description (\"the simplest sentences\"): (Most <scale> X <class>) ranks one entity in a class and does not express \"the set of Ns that rank highest\"", "plural one-anaphora (\"ones\"): the One-anaphora bullet covers only singular \"one\" for a fresh single entity of the antecedent's class"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The one atom emitted is correct — a definite plural takes a group witness, never Inheritance — but a single GroupOf line is essentially an empty parse for this sentence. The coverage gaps above are real and explain part of the difficulty, yet they do not account for omitting the superlatives entirely."}
