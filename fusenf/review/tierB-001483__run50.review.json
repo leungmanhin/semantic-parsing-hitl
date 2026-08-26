@@ -1,0 +1,11 @@
+{"id": "tierB-001483", "run": 50,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "`(Location (sk_cheat $x) love)` treats the abstract 'in which' as a spatial location, but a game (or love) is not a place, so the framing / domain PP rule points at the preposition-named oblique `(In (sk_cheat $x) …)` instead."},
+               {"statement": 1, "issue": "The restrictive relative is detached from what it restricts: the rule quantifies over all persons and anchors on `love`, leaving `(Inheritance love game)` and the cheating rule unlinked, so 'a game in which one always cheats' no longer characterizes the game."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["restrictive relative clause modifying a PREDICATE NOMINAL ('is a game **in which** one always cheats'): no licensed way to attach the relative's content to the predicate-nominal kind, so it is either flattened onto the subject or lost.",
+             "the impersonal / arbitrary pronoun 'one': the pronoun rules class he/she/it/they-with-no-antecedent but say nothing about generic 'one', which here has to range as a rule variable rather than take a witness."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The frequency-adverb handling is exactly per spec — 'always' → rule strength 1.0 plus the `(QuantifierPhrase person cheat \"always\")` companion — and both empirical 0.9 confidences are right."}

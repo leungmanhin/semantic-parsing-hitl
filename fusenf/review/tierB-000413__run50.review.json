@@ -1,0 +1,13 @@
+{"id": "tierB-000413", "run": 50,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The measure's entity slot holds the bare kind `report` rather than an individual or group witness, and the instruction set's Measure/MeasureAtMost family is entity-scoped throughout (it even forbids putting a kind in LocatedIn's entity slot for the analogous reason)."},
+               {"statement": 0, "issue": "The scale slot repeats the unit (`point` / `point`) instead of recording the stated surface dimension — the gradable adjective 'highest' (`high`) or the dimension noun 'amount'."},
+               {"statement": 0, "issue": "The modal ceiling 'possible' is dropped, so the parse states a flat upper bound on reports rather than a maximum attainable score."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["maximum-attainable-value construction: a superlative plus a possibility modal ('the highest amount of X possible is N') has no licensed carrier for the modality",
+             "kind-level / generic measure claims ('reports carry at most 10 points') — the Measure family attaches only to individuals and group witnesses, with no ConditionalProperty-style route for a measure restricted to a kind",
+             "identificational copular equating a superlative NP with a measure value ('the highest amount ... is 10 points')"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "MeasureAtMost is the right family and the (1.0 0.9) truth value fits an empirical kind-level claim; the defects are the argument slots, not the head."}

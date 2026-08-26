@@ -1,0 +1,10 @@
+{"id": "tierB-000967", "run": 50,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "The \"more than\" bound is carried by an invented operator: the instruction set defines only the exact-magnitude gap `(BeforeBy <earlier> <later> <n> <unit>)`, with no at-least variant."},
+                {"statement": 2, "issue": "The stated unit \"a decade\" is silently converted to \"10 year\", against the rule that each measure is emitted in its stated unit unchanged (conversion is the seeded lexicon's job, never the translator's)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a bounded temporal distance (\"more than a decade ago\", \"at least three days ago\") - `BeforeBy` takes an exact magnitude, `TimeAtLeast`/`TimeAtMost` take calendar terms and need an anchor date, and `MeasureAtLeast` is for an entity's or event's own measure, so a lower-bounded \"ago\" gap has no licensed encoding"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": ["BeforeByAtLeast"],
+ "notes": "The light-verb handling is exactly right: \"this story occurred\" puts `Past` directly on the story witness instead of reifying a separate occur event, and the demonstrative gets an ordinary typed witness."}

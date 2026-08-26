@@ -1,0 +1,9 @@
+{"id": "tierB-000347", "run": 50,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 7, "issue": "(LocatedIn life sk_slum_1) puts the bare mass/kind constant `life` in LocatedIn's entity slot, which the instruction set forbids (\"a kind is not a positioned thing\"), and asserts unrestrictedly that life is contained in that slum instead of restricting the depicted kind of life."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a locative PP restricting an abstract / mass noun inside an NP (\"life in an urban slum\") — LocatedIn is entity-and-place containment, the ConditionalProperty condition slot is for kind-level claims, and the argument-PP section covers only nominalization and adjective complements"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Attaching the nominalization's `Of` object to sk_movie_1 is consistent (the movie IS the depiction), and splitting \"harrowing\" off as its own Member atom follows the incidental-description rule. Fusing `urban_slum` with both genus atoms is borderline (urban is arguably descriptive rather than classifying) but internally consistent with the compound-kind rules."}

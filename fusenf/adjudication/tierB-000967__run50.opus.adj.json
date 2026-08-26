@@ -1,0 +1,12 @@
+{"id": "tierB-000967", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "BeforeByAtLeast is not in the relational vocabulary — Before and BeforeBy are the only ordering heads, and \"Never coin a relation head\" bars minting an at-least variant."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "\"Emit each measure in its stated unit (unchanged)\" — decade to 10 year is a translator-side conversion the seeded lexicon is supposed to perform, and the same section says never compute it yourself."}],
+ "gaps_confirmed": ["a lower-bounded temporal distance (\"more than a decade ago\") has no licensed carrier: BeforeBy takes an exact magnitude, TimeAtLeast/TimeAtMost need calendar terms plus an anchor date, and MeasureAtLeast measures the event's own extent, not a gap"],
+ "new_gaps": ["the seeded unit lexicon gives time factors only down to day (minute 60, hour 3600, day 86400) — week, year and decade have none, so even an exactly stated multi-year gap could not chain across units"],
+ "decision": "repair",
+ "repair_summary": "Replaced the coined (BeforeByAtLeast sk_story_1 now 10 year) with the licensed weaker ordering (Before sk_story_1 now) — the ordering against `now` that the atom carried is retained, while the unrepresentable \"more than a decade\" bound is dropped rather than encoded as a false exact gap or an invented head.",
+ "notes": "The light-verb handling is untouched and correct: Past sits directly on the story witness, with no reified occur event."}

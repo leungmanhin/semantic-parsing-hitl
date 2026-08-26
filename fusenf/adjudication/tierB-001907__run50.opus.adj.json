@@ -1,0 +1,9 @@
+{"id": "tierB-001907", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Quantifiers, generics & scope requires a (QuantifierPhrase <kind> <verb-lemma> \"<word>\") companion on the quantified range whenever the quantifier word is actually there, and \"everything\" is an explicit universal; both slots are already fixed by the parse's own range (thing) and verb (think), so the rule applies rather than running out."}],
+ "gaps_confirmed": ["quantificational pronouns (\"everything\", \"everyone\", \"nothing\") — the instruction set never states the domain a universal pronoun ranges over, so the (Member $y thing) range is an unstated but well-typed extension of the \"it -> thing\" pronoun fallback"],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Added the missing (QuantifierPhrase thing think \"everything\") companion at (STV 1.0 0.99) beside the universal rule; nothing else changed.",
+ "notes": "The exists-forall shape is right — a verbal predicate makes \"a woman\" a witness constant, not a generic — as are the dependent Skolem event, the 1.0/0.9 rule TV, the prepositional-verb (Of ...) oblique and the CamelCase-joined multi-word preposition InTermsOf."}

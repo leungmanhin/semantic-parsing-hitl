@@ -1,0 +1,12 @@
+{"id": "tierB-001873", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The stop event has an object (`Theme` = the activity), so it is transitive and its subject stays `Agent` — \"inanimacy alone never demotes a transitive subject\", and the change-of-state test is explicitly \"for intransitives\" only; the instruction set's own \"the ferry stop running\" query confirms the shape with `(Agent $s $f)`."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "`Experiencer` is defined as the subject of a stative predication (psych/perception state or predicate-adjective property state), and a device functioning is neither — the same worked example gives the running ferry `(Agent $e $f)`, and the intransitive-subject test's stated default when unclear is `Agent`."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["eventive cessation (\"stopped V-ing\") does not say whether the ceased activity takes `(Ongoing …)`, although its inception mirror (\"began to V\") explicitly marks the `Theme` activity `Ongoing`"],
+ "decision": "repair",
+ "repair_summary": "Changed `(Patient sk_stop_1 sk_adaptor_1)` to `(Agent sk_stop_1 sk_adaptor_1)` (transitive subject stays `Agent`); changed `(Experiencer sk_work_1 sk_adaptor_1)` to `(Agent sk_work_1 sk_adaptor_1)` (a functioning device is not a stative predication); renamed those two proof names to `e_stop_ag` / `e_work_ag` to match.",
+ "notes": "Both fixes are role reassignments only — every other atom, truth value, symbol and the atom ordering are unchanged. The un-fused descriptive `old`, the surface-form `(Manner sk_stop_1 suddenly)` and the two `Past` atoms were already correct."}

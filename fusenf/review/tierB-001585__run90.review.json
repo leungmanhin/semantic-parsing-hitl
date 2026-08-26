@@ -1,0 +1,10 @@
+{"id": "tierB-001585", "run": 90,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a restrictive RELATIVE CLAUSE narrowing the subject kind of a copular kind-level generic ('spider bites THAT CAUSE FEVER are rare') — the instruction set puts a relative clause in the premises of an event rule, but 'rare' is a non-distributing KindProperty that must not distribute, and ConditionalProperty's condition slot is licensed only for an adjective/state, a measure/environment, or a locative/domain restriction, never for a clause",
+             "a contrastive discourse adverb set off by commas (', though,') joining two KIND-LEVEL, non-eventive claims — Inter-clause connectives requires two reified eventualities as endpoints and neither generic supplies one, and the defeasible-exception escape does not apply (scorpion_sting is not a sub-kind of spider_bite), so the contrast has no carrier and is dropped"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Both compound kinds take their genus with the noun modifier correctly unexposed, both verb_object compounds decompose per Compound concepts, the modal 'can' over a kind correctly routes to the reified (can <action>) property at 0.9/0.9 rather than an event Can, and the restriction is correctly not stripped into a bare KindProperty. The ConditionalProperty encoding of the relative clause is the least-bad available shape, but the condition filler cause_fever is an action compound rather than a state, which is the gap above."}

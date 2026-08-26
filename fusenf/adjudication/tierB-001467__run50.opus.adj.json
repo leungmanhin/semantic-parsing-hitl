@@ -1,0 +1,10 @@
+{"id": "tierB-001467", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Coordination & plurals gives a plural referred to as a unit a group witness with (GroupOf <group> <kind>), and Compound concepts states that on a plural a descriptive modifier 'distributes over the members exactly like a copular predicate'; the parse instead used the singular 'a flock of birds' encoding for the plural 'large herds', so the plurality of herds is lost and 'large' is predicated of one herd."}],
+ "gaps_confirmed": ["nested plurality — a plural of collective groups ('herds of cows'), where each member of the outer group is itself a GroupOf, has no specified encoding",
+                    "a capitalized ethnonym used as a common-noun kind ('these Tuareg') — whether the proper-noun Name rule reaches a proper-noun-derived kind symbol is unaddressed"],
+ "new_gaps": ["the inner 'of cows' still has no stated encoding once the outer plural is a group: it is carried in the per-member distribution rule's conclusion, which is true and well-typed but improvised"],
+ "decision": "repair",
+ "repair_summary": "Replaced the single herd witness with the outer group sk_herds_1 typed (GroupOf sk_herds_1 herd); moved 'large' and the inner 'of cows' onto a per-member distribution rule over (PartOf $x sk_herds_1); re-pointed the event's Theme at the group.",
+ "notes": "The Tuareg group witness, Holder/Theme on 'have' and the Past atom are untouched. No per-member rule was added for the possession itself — the collective reading of 'these Tuareg had herds' is defensible and no confirmed issue names it."}

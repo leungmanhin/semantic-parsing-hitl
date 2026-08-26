@@ -1,0 +1,13 @@
+{"id": "tierB-000684", "run": 90,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": null, "issue": "The matrix predication \"The world feels warmer\" is entirely absent — sk_world_1 is typed and then never predicated of, so nothing records the warmth, the comparison, or the \"feels\" hedge."},
+               {"statement": 1, "issue": "\"with friends nearby\" is a circumstance the matrix claim is conditioned on, not an assertion, yet (GroupOf sk_friends_1 friend) existentially asserts that such friends exist."},
+               {"statement": 2, "issue": "The distribution rule asserts at strength 1.0 that every member of that group is nearby — again asserting adjunct content the sentence only conditions on."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["subject-experience copular verb \"feel\" with a predicative adjective (\"the world feels warmer\") — copular clauses are defined as \"is a/an N\" / \"is ADJ\", and only seem/appear are routed (to the epistemic operators)",
+             "bare comparative with no stated standard (\"warmer\", no \"than\" phrase) — More and MoreBy both require two compared arguments",
+             "absolute \"with NP + predicate\" adjunct expressing a circumstance/condition (\"with friends nearby\") — the \"with\"-phrase split given is only CoAgent vs Instrument"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything emitted belongs to the adjunct while the clause the sentence actually asserts is missing, so the record is inverted. Even granting that the standard-less comparative has no licensed encoding, dropping the whole matrix state rather than only the degree is a separate loss."}

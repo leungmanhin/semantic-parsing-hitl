@@ -1,0 +1,10 @@
+{"id": "tierB-001229", "run": 90,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": 0, "issue": "Asserts an air witness at strength 1.0 even though the only mention of air is inside the counterfactual antecedent 'there were no air', which supposes its absence — nothing in the text licenses a positive existential for it."},
+   {"statement": null, "issue": "The consequent clause ('people could not live for even ten minutes') and the relation between the two clauses are entirely unrepresented — no live event, no negation, no duration, and no conditional or counterfactual wrapper."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["present/hypothetical subjunctive counterfactual ('if there WERE X, Y COULD NOT V') — `Counterfactual` is defined only for the 'had V-ed / would have V-ed' form, and the indicative-Implication route is explicitly reserved for non-counterfactual conditionals, so this shape has no assigned route", "negated-existential antecedent ('if there were no air') — a rule premise cannot yet mean 'X is not the case' (registered limitation), and the existential section covers only positive 'there is a X'", "scalar 'even' on a bare duration under negation ('not live for even ten minutes') — `(Even <filler> <event>)` expects a constituent filler, with no slot for a measure or duration focus"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "A single atom was emitted and it asserts the opposite of what the antecedent supposes. The registered gaps explain why the conditional itself is hard to encode, but they do not license asserting the air witness."}

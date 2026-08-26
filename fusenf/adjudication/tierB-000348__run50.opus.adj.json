@@ -1,0 +1,10 @@
+{"id": "tierB-000348", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "\"whole\" in \"the whole town\" is a totality quantifier over the town's members, not a property the sentence predicates of the town, so (Member sk_town_1 whole) asserts a standing property the text never states — and the instruction set routes quantifier words through strength plus a QuantifierPhrase companion, never a content atom, directing that an unrepresentable modifier be left out rather than mis-slotted."}],
+ "gaps_confirmed": ["concessive absolute adjunct \"even with NP V-ing, ...\" — the connective section covers clause-joining although / even though / despite, not preposition + NP + participle, and the strength-0 rule with Skolem-function events leaves no event symbol to serve as a connective endpoint",
+                    "totality modifiers \"the whole N\" / \"the entire N\" on a singular collective noun — no licensed quantifier carrier, since the singular collective does not distribute and QuantifierPhrase needs a strength-bearing generalization to accompany"],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Removed (Member sk_town_1 whole); with no licensed carrier for a totality modifier on a non-distributing singular collective, the modifier is left unencoded rather than mis-slotted as a copular property.",
+ "notes": "The rest stands: singular collective left undistributed, the Even focus tag anchored on the adjunct's eventuality, Theme for the unchanged object of \"found\", and \"no one\" as a strength-0 distributing rule with its QuantifierPhrase companion."}

@@ -1,0 +1,2 @@
+(: dog_see_rule (Implication (And (Member $x dog) (Member $y thing)) (And (Member (sk_see $x $y) see) (Experiencer (sk_see $x $y) $x) (Stimulus (sk_see $x $y) $y) (In (sk_see $x $y) black_and_white))) (STV 0.9 0.9))
+(: dog_see_q (QuantifierPhrase thing see "every") (STV 1.0 0.99))

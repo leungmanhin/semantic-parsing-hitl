@@ -1,0 +1,9 @@
+{"id": "tierB-000354", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Names and casing makes entity terms — the arguments of a relation, including role fillers — lowercase snake_case, and every native number in the vocabulary sits in a numeric slot of a defined operator (Cardinality, Measure, Ordinal, Fraction, (Hour n)), so a bare 12 in Theme's entity slot is ill-typed."}],
+ "gaps_confirmed": ["a numeral as a verb's direct object naming a chime count or an hour (\"the clock struck twelve\") — neither the thematic-role table nor Cardinality / Measure / Time supplies an encoding"],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Replaced the native integer in (Theme sk_strike_1 12) with the surface numeral as an ordinary lowercase bare-class filler, (Theme sk_strike_1 twelve); no other atom touched.",
+ "notes": "The object is kept rather than dropped because only its form was at fault: a bare lowercase filler for a non-specific object is the licensed shape (as in (Patient sk_cook_1 dinner)) and asserts nothing beyond the text. Agent on the inanimate transitive subject and the bare-symbol (Time sk_strike_1 midnight) for a named time are licensed as written."}

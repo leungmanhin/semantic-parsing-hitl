@@ -105,6 +105,13 @@ standing sampled pass. Brief: `REVIEW.md`. Wrapper, same discipline as parsing:
   4. anything triage marks `open`.
   Weighting toward unseen construction types stays a manual orchestrator call until there
   is a construction tagger.
+- **Repair re-review staging (pilot 2026-08-25; reyield-50 2026-08-26):** adjudicator
+  repair artifacts are verified by this same blind pass — copy `adjudication/*.repair.txt`
+  to `raw/<ID>__run90.txt` (staging only; collision-check against already-promoted run-90
+  records first, and rename any colliding earlier `review/<ID>__run90.review.json` to
+  `.pilot-reyield.review.json`-style before dispatch), review at 100% with the standard
+  wrapper (`Run number: 90.` — reviewers are NOT told the files are repairs), then owner
+  promotion decision on the `yes` set; non-verified staging is pruned from `raw/`.
 - **Review substrate is `raw/<ID>__run<N>.txt`**, not the assembled JSONL — the reviewer must
   not see neighboring records or validation blocks, and extraction only strips non-semantic
   wrappers, so the raw bytes are the faithful parse.

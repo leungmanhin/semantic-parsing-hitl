@@ -1,0 +1,9 @@
+{"id": "tierB-001369", "run": 90,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": null, "issue": "The entire predicate 'was on the verge of starvation' — including the copula's past tense — is unrepresented, so the parse states only that a poor cat exists and records nothing the sentence actually asserts."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["'be on the verge of N' as an imminence predicate — neither the entity-attached surface-preposition route (written for physical position) nor the fixed-idiom rule (written for verb+object idioms) assigns a form to a multi-word prepositional predicate meaning 'about to undergo'", "expressive / affective prenominal adjective ('the POOR cat' = pitiable, not impoverished) — the adjective rules give no way to keep it distinct from the literal property `poor`"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The subject NP is handled correctly (definite → typed witness, and a merely descriptive adjective stays its own Member atom rather than fusing into a compound). `(Member sk_cat_1 poor)` is what the instruction set as written produces, though it records the wrong sense of 'poor'."}

@@ -1,0 +1,11 @@
+{"id": "tierB-000592", "run": 50,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "(ConditionalProperty man sight sk_kitchen_1) predicates 'sight' of the man himself; the sentence says the SITUATION (a man being in the kitchen) is an uncommon sight, not that a man is a sight, so this atom states something the text does not."},
+                {"statement": 3, "issue": "(Degree man uncommon quite) hangs the intensifier on the bare kind, outside the ConditionalProperty restriction, so it asserts a degree of uncommonness for 'man' at large rather than under the 'in the kitchen' condition."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["evaluative predicate nominals whose subject denotes a SCENE rather than a member of the predicate class ('X is a rare/common/welcome sight', 'that is a shame') — the copular sections assign the predicate noun to the subject, which is a category error here",
+             "a restrictive locative PP inside the SUBJECT NP ('a man in the kitchen'), as opposed to one restricting the predicate — the ConditionalProperty locative rule is written for a PP on the claim, and reusing it silently re-scopes the restriction"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The choice of ConditionalProperty for a KindProperty-class adjective ('uncommon') restricted by a place matches the instruction set's own 'voles are common in the fens' pattern exactly, and the definite kitchen is correctly a typed witness."}

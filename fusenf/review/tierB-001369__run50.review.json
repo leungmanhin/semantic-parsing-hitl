@@ -1,0 +1,9 @@
+{"id": "tierB-001369", "run": 50,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "Mints a literal `verge` entity for the fixed idiom \"on the verge of\", although the idiom coherence test rules the literal reading out (nothing can be positioned on the edge of starvation), so this asserts a physical object the text never introduces."}, {"statement": 4, "issue": "`(Past (On sk_cat_1 sk_verge_1))` asserts that the cat was spatially on something, which is not what the sentence claims — that the cat was close to starving is lost entirely."}, {"statement": 3, "issue": "`verge` is a relational noun with no underlying verb, so per *Complements of nouns and adjectives* its of-phrase takes the ordinary genitive `Possession`/`PartOf`, not the surface-preposition oblique `Of`."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["imminent / prospective aspect — \"on the verge of X\", \"about to V\", \"on the point of V-ing\": a state nearly but not yet reached has no licensed operator (Future would wrongly assert the eventuality occurs)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The subject NP is handled correctly (definite witness, descriptive `poor` split off, past tense wrapping the copular-position atom). The failure is confined to the idiomatic predicate, and it is driven by a genuine gap: even the idiom rule's prescribed \"one surface symbol keeping every word\" has no obvious slot here, since the idiom is a prospective-aspect predicate rather than a verb or kind."}

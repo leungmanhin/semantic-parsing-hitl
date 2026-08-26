@@ -1,0 +1,6 @@
+(: e_house_ty (Member sk_house_1 house) (STV 1.0 0.99))
+(: e_require_ev (Member sk_require_1 require) (STV 1.0 0.99))
+(: e_require_ag (Agent sk_require_1 sk_house_1) (STV 1.0 0.99))
+(: e_require_th (Theme sk_require_1 sk_repair_1) (STV 1.0 0.99))
+(: e_repair_ty (GroupOf sk_repair_1 repair) (STV 1.0 0.99))
+(: e_repair_large (Implication (PartOf $x sk_repair_1) (Member $x large)) (STV 1.0 0.9))

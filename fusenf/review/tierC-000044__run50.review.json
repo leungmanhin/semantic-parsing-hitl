@@ -1,0 +1,10 @@
+{"id": "tierC-000044", "run": 50,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 10, "issue": "\"Twilight and her friends\" is given the collective shape - two `Agent` atoms on one `stop` event - although \"stop\" is not a reciprocal/aggregate predicate and no \"together\"/\"jointly\" marker is present, so the distributive default calls for one event per conjunct."},
+                {"statement": 16, "issue": "Same collective-vs-distributive deviation repeated on the `recover` event, where the two agents are copied in from the same coordinated controller."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["the implicit subject of a purpose to-infinitive - the connective rule says to reify both clauses and emit `(To <main> <purpose>)` but never states whether the purpose event inherits the main clause's agent, which is what the parse assumed here"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The object-control routing is right (complement reified at top level, attached by `Theme`, no tense of its own, controller copied in as its `Agent`), as are the possessed-plural group for \"her friends\" and the part-whole reading of \"the elements of harmony\"; a consequence worth noting is that the invitees get no role on the matrix `invite` event, so \"who was invited?\" cannot bind. Text is garbled in the source and was parsed as best it can be, which the instruction set directs."}

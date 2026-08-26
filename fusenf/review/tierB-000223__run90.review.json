@@ -1,0 +1,9 @@
+{"id": "tierB-000223", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "The quantifier \"few\" is mis-slotted as a property symbol in ConditionalProperty's property slot, where the instruction set instead maps \"few\" to strength 0.1 plus a QuantifierPhrase companion; the atom as written asserts at strength 0.9 that career possibilities have the property `few`, which the seeded cond_prop rule would then hand to each individual possibility."}, {"statement": null, "issue": "The exceptive \"Aside from being a professor\" is dropped entirely — no atom mentions professor, so the parse states the \"few\" claim without the excluded case the sentence carves out."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["bare-existential quantity claim \"there are few N\": it has no subject-predicate pair for the Quantity-to-strength dial to sit on, and bare \"few\" (unlike \"a few / several / a handful / dozens\") is not in the CardinalityPhrase vague-quantity lexicon, so no licensed carrier exists for it", "exceptive \"aside from X\" scoping over a quantified domain — the instruction set lists \"aside from\" only as a defeasible-exception cue introducing a SUB-KIND that lacks or reverses a generic property, not as an exclusion from an existential/quantified claim", "speaker-oriented evaluative sentence adverb (\"unfortunately\") — Manner covers only event-manner adverbs; there is no licensed encoding for an evaluative comment adverb"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The ConditionalProperty shape itself is licensed for the locative restriction \"at the university\" (the \"berths are scarce at the marina\" pattern), and the career_possibility compound genus with the noun modifier left unexposed follows the compound-kind rule correctly."}

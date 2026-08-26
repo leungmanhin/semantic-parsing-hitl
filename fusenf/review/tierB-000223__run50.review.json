@@ -1,0 +1,12 @@
+{"id": "tierB-000223", "run": 50,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "The proportion quantifier \"few\" is slotted as a ConditionalProperty *property* at strength 0.9, while the instruction set maps proportion words to strength (few = 0.1) and requires a (QuantifierPhrase ...) companion whenever a quantifier word is actually present; neither is emitted."},
+               {"statement": 2, "issue": "(Inheritance professor career_possibility) makes the person-kind `professor` a subtype of a possibility-kind, whereas the text names \"being a professor\" (a role/state), not professors themselves."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["existential \"there are few N\" — a proportion quantifier in a there-clause with no predicate atom for the quantity-to-strength dial to ride on",
+             "an exceptive PP (\"aside from being a professor\") whose exception is a gerundive nominal rather than a sub-kind lacking or reversing a property",
+             "evaluative / speaker-oriented sentence adverb (\"unfortunately\")"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The three-fact defeasible-exception pattern is applied correctly in shape (general 0.9/0.9, taxonomy 1.0/0.99, exception 0.0/0.99), but over ConditionalProperty rather than the Inheritance facts the pattern is specified for. Routing the locative restriction into the condition slot is right per the \"voles are common in the fens\" rule."}

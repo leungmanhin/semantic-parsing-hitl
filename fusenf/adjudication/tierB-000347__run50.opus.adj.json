@@ -1,0 +1,9 @@
+{"id": "tierB-000347", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The instruction set bars exactly this atom — \"never put the kind in LocatedIn's entity slot to carry the restriction (a kind is not a positioned thing)\" — and as written it also over-asserts, claiming life at large is contained in that slum rather than restricting which life the movie depicts."}],
+ "gaps_confirmed": ["a locative PP restricting a bare abstract/mass noun inside an NP (\"life in an urban slum\"): LocatedIn is entity-and-place containment, ConditionalProperty's condition slot is for kind-level property claims, and the argument-PP section covers only nominalization objects and adjective complements"],
+ "new_gaps": ["once the locative is dropped, the mentioned slum witness is left typed but unattached — no licensed relation links a bare-mass oblique object to the place that restricts it"],
+ "decision": "repair",
+ "repair_summary": "Removed (LocatedIn life sk_slum_1); no licensed head restricts a bare-mass oblique object by a place, and the bare-mass rule forbids minting a witness for `life`, so the offending atom is dropped rather than re-encoded.",
+ "notes": "Everything else stands: the nominalization's Of-object on sk_movie_1 (the movie IS the depiction), \"harrowing\" split off as incidental description, and urban_slum's genus plus the predicable adjective modifier."}

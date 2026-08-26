@@ -1,0 +1,12 @@
+{"id": "tierB-001436", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "A plural NP is a group — \"a plural referred to as a unit is a group (GroupOf g <kind>)\" — and the plural-modifier rule assumes exactly that shape (\"(GroupOf sk_group_1 breton_tapestry)\"), so a single (Member sk_repair_1 repair) records one repair where the text has several."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "\"On a plural, ... a descriptive modifier distributes over the members exactly like a copular predicate\", and \"a bare (Member <group> <prop>) appears only for a property genuinely of the collection itself (its size, its name)\" — `large` is a property of each repair."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["The object of an intensional verb (\"requires / needs large repairs\") is minted as an existential witness by the indefinite-argument rule, so the parse asserts at top level that the repairs EXIST, which \"requires\" does not state; the instruction set has no non-existential encoding for an intensional object."],
+ "decision": "repair",
+ "repair_summary": "Re-encoded the plural object as a group, (GroupOf sk_repair_1 repair) in place of (Member sk_repair_1 repair); replaced the group-level (Member sk_repair_1 large) with the licensed distribution rule (Implication (PartOf $x sk_repair_1) (Member $x large)) (STV 1.0 0.9).",
+ "notes": "Everything the reviewer's note approves is left untouched — Agent for the stative-transitive subject, Theme for the unchanged object, `large` un-fused (size is incidental description), and no tense atom on the simple present."}

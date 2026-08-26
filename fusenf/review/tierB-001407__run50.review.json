@@ -1,0 +1,12 @@
+{"id": "tierB-001407", "run": 50,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "the restrictive modifier \"other\" in \"other manners and customs\" is dropped, so the parse claims contact with manners and customs at large (same for statement 3)"},
+               {"statement": 2, "issue": "\"with\" is encoded twice — once inside the action symbol come_into_contact_with and again as the (With ...) head carrying that preposition's object"},
+               {"statement": 0, "issue": "come_into_contact_with gets no decomposition atom at all while study_overseas gets a genus, so the two compound action symbols in one parse are decomposed inconsistently"}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a means adjunct (\"by V-ing\") on a kind-level modal property — the instruction set offers only ConditionalProperty's condition slot, specified for states / environments, and nothing for means or instrument",
+             "a prepositional or adverbial compound action inside a reified (can ...) — Compound concepts specifies only genus + (Patient <compound> <object>), so a prepositional object (\"come into contact with X\") and an adverbial modifier (\"study overseas\") have no stated encoding"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Routing the capability generic onto ConditionalProperty is licensed (the property slot may hold a reified capability term, as in the \"Contractors must show a badge at entry\" example), and (With ...) is licensed as a prepositional-verb oblique head, but attaching that oblique to an action term rather than an event witness is an extension of the rule."}

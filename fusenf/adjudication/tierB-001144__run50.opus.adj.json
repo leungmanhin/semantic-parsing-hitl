@@ -1,0 +1,8 @@
+{"id": "tierB-001144", "run": 50,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "(Most <scale> X <class>) is defined as \"X is the most ADJ of the class\" — a unique maximum — so asserting it of a sentence that says \"one of the greatest\" puts a uniqueness claim in the KB that the text explicitly declines; that is over-assertion, and Ordinal (a stated rank) does not fit either."},
+            {"index": 1, "verdict": "partial", "reason": "The half that stands is that nothing carries the comparison-class restriction, which is why the Most atom read as unrestricted (fixed by removing that atom); but (In sk_mystery_1 science) is itself licensed by the framing/domain-PP rule and true, and \"all of\" over a mass whole names the whole itself, so statement 2 needs no repair."}],
+ "gaps_confirmed": ["\"one of the ADJ-est Ns\" (non-unique superlative): Most encodes a unique maximum, Ordinal encodes a stated rank, and no construct records membership in a superlative-defined top set"],
+ "new_gaps": ["a superlative comparison class restricted by a PP (\"the greatest mysteries in all of science\"): Most's third argument takes a bare class only, and no slot restricts it"],
+ "decision": "repair",
+ "repair_summary": "Removed (Most great sk_mystery_1 mystery), the over-asserted uniqueness claim, with no replacement — the non-unique superlative has no licensed carrier, so the content is dropped and recorded as a gap; the typing and domain atoms are untouched.",
+ "notes": "Identifying the antecedent-less \"this\" with the mystery witness is licensed (\"it → the salient kind if the text supplies one\"), and In rather than LocatedIn is right for the domain PP. The repair leaves the superlative force unrecorded, which is the gap, not a further defect."}

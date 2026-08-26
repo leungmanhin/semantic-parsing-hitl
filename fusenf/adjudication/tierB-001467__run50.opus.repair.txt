@@ -1,0 +1,7 @@
+(: tuareg_grp (GroupOf sk_group_1 tuareg) (STV 1.0 0.99))
+(: e_have (Member sk_have_1 have) (STV 1.0 0.99))
+(: e_have_holder (Holder sk_have_1 sk_group_1) (STV 1.0 0.99))
+(: herds_grp (GroupOf sk_herds_1 herd) (STV 1.0 0.99))
+(: herds_dist (Implication (PartOf $x sk_herds_1) (And (Member $x large) (GroupOf $x cow))) (STV 1.0 0.9))
+(: e_have_theme (Theme sk_have_1 sk_herds_1) (STV 1.0 0.99))
+(: e_have_tense (Past sk_have_1) (STV 1.0 0.99))

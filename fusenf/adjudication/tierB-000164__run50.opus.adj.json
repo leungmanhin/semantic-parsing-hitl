@@ -1,0 +1,12 @@
+{"id": "tierB-000164", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Status predicates states that a prohibition is the denial of permission — (Permitted e) at strength 0.0, \"not a negated (Obligated e)\" — so the emitted bundle records only the (mis-scoped) denial of an obligation the text never raises instead of the advised-against tempering."},
+            {"index": 1,
+             "verdict": "partial",
+             "reason": "The lost \"should\" force is real (the parse is indistinguishable from \"must not be tempered\"), but it is a coverage gap rather than a repairable defect: in a negated deontic the strength slot is occupied by the polarity (0.0) and the instruction set defines no weak-prohibition carrier, and inventing one is barred."}],
+ "gaps_confirmed": ["negated weak deontic \"should not / ought not\" — the prohibition rule names only must not / may not / shall not / forbidden, and once the bundle strength is 0.0 the 0.7 \"should\" force has no carrier left"],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Replaced (Obligated sk_temper_1) with (Permitted sk_temper_1) inside the strength-0 bundle so the atom denies permission, the instruction set's prohibition form, rather than denying an obligation.",
+ "notes": "Everything else stands: the demonstrative definite \"this steel\" rightly projects its typing atom outside the denial, the agentless passive omits the Agent, and a treatment verb takes Patient."}

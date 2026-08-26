@@ -1,0 +1,13 @@
+{"id": "tierB-000492", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Thematic roles are defined as `(<Role> <event> <filler>)`, and `sk_reputation_1` is an entity witness typed `(Member sk_reputation_1 reputation)`, so `Theme` on it is ill-typed; *Complements of nouns and adjectives* gives the licensed carrier for a noun's of-argument — the entity-attached surface-preposition oblique `(Of <noun-symbol> <argument>)`."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "The agent-nominalization's second required test fails — \"an ambulance chaser is one who chases ambulances\" is not true by definition of the epithet — and the idiom clause bars unpacking a non-compositional multi-word symbol into literal atoms, so `(Chase ambulance_chaser ambulance)` (and the `(can chase)` capability it comes with) asserts a literal chasing the text never states."}],
+ "gaps_confirmed": ["report / attitude NOUNS with a propositional complement (\"has the reputation of being P\", \"the belief that P\") — sealing is specified only under verbal attitudes, embedded questions, imperatives and counterfactuals, and no slot on a noun witness is named as a seal carrier",
+                    "gerundive \"of being P\" complement (non-finite, subject-controlled) as the content of a report"],
+ "new_gaps": ["a non-compositional agent-nominalization epithet (`ambulance_chaser`) keeps every word as one opaque kind but is then linked to nothing — the instruction set offers no way to record that its bearer is a lawyer, which is the whole content of the epithet"],
+ "decision": "repair",
+ "repair_summary": "Retyped the reputation's complement carrier from the ill-typed thematic `Theme` to the licensed entity-attached oblique `(Of sk_reputation_1 …)`, keeping the sealed term untouched so the content stays unasserted; removed `(Inheritance ambulance_chaser (can chase))` and `(Chase ambulance_chaser ambulance)`, the literal decomposition of an idiom.",
+ "notes": "The parse's sealing decision was right and is preserved — only the carrier head changed — and the definite lawyer's typing correctly stays outside the seal. The capability atom fell with the kind-relation because both come from the same failed agent-nominalization test and a repair may leave nothing false standing."}

@@ -1,0 +1,3 @@
+(: woman_w (Member sk_woman_1 woman) (STV 1.0 0.99))
+(: think_rule (Implication (Member $y thing) (And (Member (sk_think $y) think) (Agent (sk_think $y) sk_woman_1) (Of (sk_think $y) $y) (InTermsOf (sk_think $y) money))) (STV 1.0 0.9))
+(: think_q (QuantifierPhrase thing think "everything") (STV 1.0 0.99))

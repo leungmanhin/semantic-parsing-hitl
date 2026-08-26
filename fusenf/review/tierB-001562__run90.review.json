@@ -1,0 +1,19 @@
+{"id": "tierB-001562", "run": 90,
+ "q1_faithful": "no",
+ "q1_issues": [
+   {"statement": 6, "issue": "The sealed Theme holds only the goat-group typing atom instead of the complement proposition, so the parse means 'Benedito noticed that there was a group of goats' rather than 'that the buck was less aggressive when there were other goats around'."},
+   {"statement": null, "issue": "The complement clause's content - the buck's reduced aggressiveness, its comparison, the 'when' circumstance and the past tense of the embedded state - is emitted nowhere, sealed or asserted."},
+   {"statement": null, "issue": "'notice' is on the FACTIVE list, so P's atoms must also appear as ordinary top-level facts beside the sealed Theme term, and no such flat proposition is present."},
+   {"statement": 1, "issue": "sk_buck_1 is typed but fills no role in any atom, leaving the sentence's embedded subject an orphan symbol."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "a bare comparative with an elided standard ('was less aggressive', no 'than' phrase) - Comparatives & degree defines More / MoreBy / TimesAs / SameDegree only with both compared terms present",
+   "'other' as a contrastive / anaphoric modifier ('other goats' = goats distinct from the buck already introduced)",
+   "an individual-level 'when'-clause supplying the circumstance under which a gradable state holds - ConditionalProperty is kind-level (kind + property + condition symbol), not an individual bearer with a clausal condition",
+   "a bare locative adverb with no prepositional object ('there were other goats around')"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "One internal tension the parser had to resolve: Propositional attitudes prescribes Experiencer for the holder of a that-complement attitude and lists 'notice' as factive, while Thematic roles and Perception reports put 'notice' on Agent by the progressive test."}

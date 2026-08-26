@@ -1,0 +1,7 @@
+{"id": "tierB-001664", "run": 50,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "\"everything\" is an explicit universal over the seen objects, and the two-quantifier rule states that universals become rule premises (the forall-forall shape with one premise per universal and a Skolem-function event of both bindings), so collapsing it into the bare constant `thing` drops the stated quantification and the QuantifierPhrase companion an explicit quantifier word requires."}],
+ "gaps_confirmed": ["a manner-expressing PP (\"in black and white\"): Manner is specified as taking an adverb and the preposition-named oblique is specified for aboutness/direction PPs, so an \"in <manner>\" PP has no clear routing"],
+ "new_gaps": ["pronominal universals (\"everything\", \"everyone\"): the kind to range over (`thing` / `person`) and the string to record in the QuantifierPhrase companion (\"every\" vs the surface \"everything\") are unspecified"],
+ "decision": "repair",
+ "repair_summary": "Rewrote the rule in the forall-forall shape — added the second universal premise (Member $y thing), made the event the Skolem function (sk_see $x $y), and bound (Stimulus (sk_see $x $y) $y); added the (QuantifierPhrase thing see \"every\") companion for the explicit quantifier.",
+ "notes": "Everything else is untouched: the 0.9/0.9 generic TV, the absent status atom, the Experiencer/Stimulus assignment, and the (In … black_and_white) oblique, which is only a gap claim."}

@@ -1,0 +1,12 @@
+{"id": "tierB-001826", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "\"popular\" here is non-intersective — popular *as subject matter* — so `(Inheritance hit_man popular)` states a property of hit men the sentence does not (\"serial killers are a popular subject for documentaries\" makes the point), and the compound section's own predication test (\"can the modifier be predicated of the thing?\") fails."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "*Complements of nouns and adjectives* puts a noun's argument PP on that noun's own symbol, so `(For hit_man tv_movie)` mis-attaches it and reads as hit men being for TV movies."}],
+ "gaps_confirmed": ["a predicate nominal carrying its own modifier and PP complement (\"are a popular subject for TV movies\") — the copular complement is a bare kind symbol with no witness to anchor the adjective or the `For` argument, and the reified-state route is stated for adjectives, not predicate nouns"],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Removed `(Inheritance hit_man popular)`, whose non-intersective adjective belongs to the predicate nominal, not to hit men. Removed `(For hit_man tv_movie)`, which hangs the predicate noun's argument on the subject kind; with no licensed anchor for either, both are dropped rather than re-encoded. Kept `(Inheritance tv_movie movie)` as the licensed typing of a kind the text mentions.",
+ "notes": "The confirmed issues have no licensed fix — fusing `popular_subject_for_tv_movie` is barred (incidental adjective, and the adjective-plus-bare-kind fusion rule is stated for adjectives), so removal plus the recorded gap is the correct disposal, at the cost of losing \"popular\" and \"for TV movies\"."}

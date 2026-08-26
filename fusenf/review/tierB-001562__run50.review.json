@@ -1,0 +1,9 @@
+{"id": "tierB-001562", "run": 50,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": 3, "issue": "The comparison is fabricated: \"the buck was less aggressive\" has an implicit standard (the buck at other times), but the parse asserts (More aggressive sk_group_1 sk_buck_1) — \"the other goats were more aggressive than the buck\" — a claim the sentence never makes, and it is asserted at top level (factive) as well as sealed."}, {"statement": 7, "issue": "The same fabricated comparison is what gets sealed under Theme, so the reported content of what Benedito noticed is wrong."}, {"statement": null, "issue": "The \"when there were other goats around\" clause is reduced to a bare (GroupOf sk_group_1 goat) with no relation to the state at all — the temporal/conditional link, the existential predication (\"there were … around\") and the modifier \"other\" are all dropped, so the parse loses the sentence's actual claim (a circumstance-dependent change in the buck's aggression)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a comparative with an elliptical/implicit standard (\"was less aggressive\", no than-phrase) — More/MoreBy/SameDegree all require two stated arguments", "a \"when\"-clause supplying a circumstance for an INDIVIDUAL's (comparative) state: ConditionalProperty is specified kind-level only, and During requires two reified eventualities", "the instruction set is internally inconsistent for exactly this verb: Thematic roles names *notice* in the progressive-test list whose subject is an ordinary Agent, while Propositional attitudes lists *notice* as a factive whose holder is an Experiencer — the parse follows the latter"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Name, the projecting definite \"the buck\" typing, the reified notice event with Past, and the factive seal-plus-assert shape are all correct; the defect is entirely in the complement's content."}

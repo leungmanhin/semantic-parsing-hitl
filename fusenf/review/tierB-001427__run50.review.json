@@ -1,0 +1,11 @@
+{"id": "tierB-001427", "run": 50,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The complement event's atoms ((Member (sk_yell $x) yell) and (At (sk_yell $x) $x)) sit INSIDE the strength-0.0 consequent, so the rule denies that anyone is yelled at, not merely that anyone likes it; the attitude-negation rule ('negates the attitude, not P — P stays sealed and unasserted either way') would have kept the complement out of the denial by sealing it as one term argument of Stimulus."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["GERUNDIVE (-ing) complements of psych/attitude verbs ('likes being yelled at', 'hates waiting') — the instruction set routes finite that-clauses (seal), to-infinitive control complements (top level + Theme) and perception eventive complements (top level + Stimulus), but never an -ing complement, and does not say which pattern it follows",
+             "an agentless PASSIVE gerund as a complement ('being yelled at') — the passive rule is written for finite/main clauses",
+             "how a non-finite complement that is meant to be occurrence-neutral should behave when the matrix clause is itself a strength-0.0 rule — the negated-generic machinery puts the whole consequent bundle at strength 0"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "'No one' → the universal-negative distributing rule at strength 0.0 over (Member $x person) with its QuantifierPhrase companion, Experiencer/Stimulus for stative 'like', the prepositional-verb oblique (At …) for 'yelled at', the omitted Agent for the agentless passive, and the controller copied into the complement are all exactly per the instruction set."}

@@ -1,0 +1,10 @@
+{"id": "tierC-000058", "run": 50,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "A second Name fact is emitted for one symbol; the instruction set allows exactly one Name per proper noun."},
+               {"statement": 7, "issue": "'in Romania' is attached to the subject river, though its nearest attachment site is 'the River Oraciu'; the sentence does not settle which, and the parse commits to one."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["alias coordination 'X or Y' naming one referent (alternative names) — 'or' is covered only as disjunction, and the exactly-one-Name rule leaves no slot for an alternative name"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The name symbols, the river kind atoms and PartOf for 'tributary of' follow the instruction set, which names 'a tributary of the river' as a relational-noun genitive exempt from the geography rule. Reading the coordination as an alias rather than a disjunction is the sensible choice, but it forces the unlicensed second Name."}

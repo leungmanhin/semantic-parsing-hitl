@@ -1,11 +1,12 @@
 {"id": "tierB-001826", "run": 90,
  "q1_faithful": "partial",
- "q1_issues": [{"statement": 1, "issue": "popular_subject_for_tv_movies fuses an incidental-description adjective plus a head noun plus that noun's PP argument into one symbol, which no compound rule licenses (the sensitive_to_light fusion is adjective-headed with a bare-kind complement, and \"popular subject\" is the \"dented pail\" incidental-description case)."},
-               {"statement": 1, "issue": "\"TV movies\" never appears as a symbol anywhere, so the aboutness the sentence actually states is unqueryable and the tv_movie compound genus is missing."},
-               {"statement": 2, "issue": "The decomposition emits only the genus subject, leaving popular and the for-argument unexposed, so the fused symbol is not unpacked to single-word parts as Compound concepts requires."}],
+ "q1_issues": [{"statement": 2, "issue": "The adjective \"popular\" is dropped — no atom carries it, so the parse records only that hit men are a subject."},
+               {"statement": 2, "issue": "The complement \"for TV movies\" is dropped, leaving a kind-level claim at large, which is the same restriction-stripping the instruction set forbids for a PP that restricts a kind-level claim."},
+               {"statement": 1, "issue": "tv_movie is decomposed but appears in no other atom — an orphan genus for a symbol the parse never uses."}],
  "q2_coverage": "gap",
- "q2_gaps": ["a kind-level predicate NOMINAL carrying its own PP argument (\"Ns are a subject for Q\") — the kind-level fusion rule covers adjective + bare-kind complements only, and the reified-state route under Complements of nouns and adjectives is for individuated bearers, so there is no licensed encoding for a bare-kind subject with a noun predicate that takes a for-argument"],
+ "q2_gaps": ["an adjective inside a NOMINAL copular predicate that modifies the predicate role rather than the referent (\"are a popular subject\" does not make hit men popular) — fusing popular_subject is barred as incidental description, and the distributive/split route would assert the wrong thing, so there is no licensed encoding",
+             "a NOMINAL copular predicate carrying a PP complement at kind level (\"a subject for TV movies\") — state reification for a complement is defined only for an adjective's PP complement, and the fused adjective+bare-kind property (sensitive_to_light) is likewise adjective-only, so the \"for\" argument has no anchor"],
  "q3_context_leak": "na",
  "q3_leaks": [],
  "q4_unlicensed_heads": [],
- "notes": "The hit_man compound genus (noun modifier not exposed) and the bare-plural generic routing are right. KindProperty reads against the stated test (an individual can be a popular subject for TV movies) but is defensible for this category-level predication."}
+ "notes": "The routing is right — bare-plural generic to Inheritance on hit_man at 0.9/0.9 with no QuantifierPhrase companion, and correct compound genus atoms with the noun modifiers left unexposed. But two of the three content elements of the predicate are missing, so the surviving atom is a much weaker and more general claim than the sentence makes."}

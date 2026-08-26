@@ -1,0 +1,9 @@
+{"id": "tierB-001483", "run": 50,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "Location is reserved for a PP answering 'where' and carries real spatial machinery (it chains with LocatedIn containment), so putting the abstract 'love' in it asserts a spatial fact the text does not state; the framing / domain rule routes it to the preposition-named oblique built on the preposition actually used, (In <event> love)."},
+            {"index": 1, "verdict": "refute", "reason": "The reviewer's own gap entry concedes the instruction set offers no way to attach a restrictive relative to a predicate nominal, leaving only 'flattened onto the subject or lost'; the parser's flattening keeps only content the sentence entails (in love one always cheats), whereas anchoring the rule on 'game' would assert the falsehood that one always cheats in every game."}],
+ "gaps_confirmed": ["restrictive relative modifying a PREDICATE NOMINAL ('is a game in which one always cheats') — no licensed way to attach the relative's content to the predicate-nominal kind",
+                    "impersonal / arbitrary 'one' — the pronoun rules cover he/she/it/they with no antecedent but say nothing about generic 'one', which needs to range as a rule variable rather than take a witness"],
+ "new_gaps": ["metaphorical predicate nominal ('Love is a game') — the idiom coherence test covers fixed multi-word idioms only, so a single-word figurative kind-predication has no policy and lands as a literal Inheritance"],
+ "decision": "repair",
+ "repair_summary": "Replaced (Location (sk_cheat $x) love) with the preposition-named oblique (In (sk_cheat $x) love) inside the rule's conclusion; the rule's range, roles, skolem event, strengths and the QuantifierPhrase companion are untouched.",
+ "notes": "The frequency-adverb handling ('always' -> rule strength 1.0 plus the companion) and both empirical 0.9 confidences are correct as parsed."}

@@ -1,0 +1,792 @@
+{
+ "wave": "rv90-reyield50",
+ "date": "2026-08-26",
+ "staging_run": 90,
+ "hash": "bb7c4b71",
+ "n": 54,
+ "q1": {
+  "partial": 24,
+  "yes": 25,
+  "no": 5
+ },
+ "q2": {
+  "gap": 50,
+  "covered": 4
+ },
+ "unlicensed_heads": {},
+ "context_leaks": [],
+ "records": {
+  "tierB-000129": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 1,
+   "issues": [
+    "The restrictive participial 'wrongly used' is placed in the rule premise as Skolem-function terms `(sk_use $x)`, but a premise must match existing atoms through a plain variable (as the donkey-anaphora relative clause does), so this restriction can never bind an ordinarily asserted use-event."
+   ],
+   "gaps": [
+    "'as well as' as an NP coordinator (additive coordination of two objects) \u2014 the instruction set covers plain 'and' coordination and the additive focus particle 'as well', but never this coordinator, so its additive/scalar force has no assigned encoding",
+    "comma-offset adverbial participle ('Power, wrongly used, defeats ...') taken as a condition on the generic \u2014 participial modifiers are covered only as restrictive reduced relatives, with no guidance on whether a comma-set-off one restricts a rule or is asserted"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The rule form, the 0.9/0.9 TV with no QuantifierPhrase companion, Theme for 'use', the surface-form Manner filler 'wrongly' and the distributive split into two defeat events all follow the instruction set; only the premise's Skolem terms are off. Bare class fillers for the generic definites 'the oppressor' / 'the oppressed' are licensed by the non-specific-object clause of the existential section."
+  },
+  "tierB-000967": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "a BOUNDED temporal gap ('more than a decade ago') \u2014 `BeforeBy` carries only an exact magnitude and there is no at-least/at-most gap form, while the TimeAtLeast/TimeAtMost route needs a TODAY that is not supplied, so the quantity is unrepresentable"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "The light-verb-over-event-noun rule is applied correctly ('occurred' reifies no separate occur event; tense sits on the story witness) and the demonstrative definite mints a typed witness. The 'more than a decade' magnitude is simply dropped, which is the conservative choice given that no bounded-gap form exists."
+  },
+  "tierB-001229": {
+   "before_run50": "no",
+   "after": "no",
+   "n_issues": 2,
+   "issues": [
+    "Asserts an air witness at strength 1.0 even though the only mention of air is inside the counterfactual antecedent 'there were no air', which supposes its absence \u2014 nothing in the text licenses a positive existential for it.",
+    "The consequent clause ('people could not live for even ten minutes') and the relation between the two clauses are entirely unrepresented \u2014 no live event, no negation, no duration, and no conditional or counterfactual wrapper."
+   ],
+   "gaps": [
+    "present/hypothetical subjunctive counterfactual ('if there WERE X, Y COULD NOT V') \u2014 `Counterfactual` is defined only for the 'had V-ed / would have V-ed' form, and the indicative-Implication route is explicitly reserved for non-counterfactual conditionals, so this shape has no assigned route",
+    "negated-existential antecedent ('if there were no air') \u2014 a rule premise cannot yet mean 'X is not the case' (registered limitation), and the existential section covers only positive 'there is a X'",
+    "scalar 'even' on a bare duration under negation ('not live for even ten minutes') \u2014 `(Even <filler> <event>)` expects a constituent filler, with no slot for a measure or duration focus"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "A single atom was emitted and it asserts the opposite of what the antecedent supposes. The registered gaps explain why the conditional itself is hard to encode, but they do not license asserting the air witness."
+  },
+  "tierB-001369": {
+   "before_run50": "partial",
+   "after": "no",
+   "n_issues": 1,
+   "issues": [
+    "The entire predicate 'was on the verge of starvation' \u2014 including the copula's past tense \u2014 is unrepresented, so the parse states only that a poor cat exists and records nothing the sentence actually asserts."
+   ],
+   "gaps": [
+    "'be on the verge of N' as an imminence predicate \u2014 neither the entity-attached surface-preposition route (written for physical position) nor the fixed-idiom rule (written for verb+object idioms) assigns a form to a multi-word prepositional predicate meaning 'about to undergo'",
+    "expressive / affective prenominal adjective ('the POOR cat' = pitiable, not impoverished) \u2014 the adjective rules give no way to keep it distinct from the literal property `poor`"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The subject NP is handled correctly (definite \u2192 typed witness, and a merely descriptive adjective stays its own Member atom rather than fusing into a compound). `(Member sk_cat_1 poor)` is what the instruction set as written produces, though it records the wrong sense of 'poor'."
+  },
+  "tierC-000044": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 3,
+   "issues": [
+    "The coordinated object 'Twilight and her friends' was distributed inside the complement (two stop and two recover events) but not in the matrix clause, leaving one invite event carrying two Theme atoms \u2014 the distributive shape replicates the whole predication, and the licensed collective shape is one event with multiple Agent atoms.",
+    "'stop the elements of harmony' takes Patient although its object is neither created/destroyed/physically changed nor an occurrence or informational artifact, so the unclear-case default of Theme applies (same for statement 14).",
+    "The definite plural 'her friends' gets a group event but no per-member distribution rule over `(PartOf $x sk_friends_1)`, which a grouped plural with a distributive predicate is required to add alongside the group event."
+   ],
+   "gaps": [
+    "object control with a communication verb ('X invites Y to V') \u2014 the control bullet says the matrix verb 'keeps its own surface lemma and roles' while the causative pattern it routes to says the object lives only in the caused event, so whether the invitee also fills a matrix role is undetermined; here nothing makes 'who was invited?' queryable"
+   ],
+   "heads": [],
+   "gap_only_residual": false,
+   "notes": "Names, the possessed-plural group witness plus `Possession` for 'her friends', the tenseless control complement, `PartOf` for 'the elements of harmony', and the purpose-infinitive `To` atoms all follow the instruction set. The source text is garbled and the parse correctly stays single-reading."
+  },
+  "tierB-000364": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "locating a group whose members are event-denoting nouns (earthquakes): the instruction set splits LocatedIn (entity) vs Location (event) by the event/entity line, but does not say which head a group witness over eventualities takes",
+    "an existential-there frequency claim restricted to a place (\"there are a lot of Ns in P\") has two candidate routes -- the existential group + CardinalityPhrase of *Cardinality*, and the kind-level ConditionalProperty route given for \"Ns are common in P\" -- and the instruction set does not say which applies"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "\"a lot of\" is on the vague-quantity list and here counts things, so CardinalityPhrase rather than a strength setting is correct, and the group takes no status atom (unmarked/generic present)."
+  },
+  "tierB-000436": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 1,
+   "issues": [
+    "the noun-complement oblique (For language sk_spread_1) is hung on the subject kind rather than on the \"vehicle\" predicate nominal it actually modifies, so the parse asserts that language as such is for spreading racist ideology instead of restricting the vehicle class the sentence predicates of it."
+   ],
+   "gaps": [
+    "\"one of the most ADJ Ns\" -- a non-unique / top-tier superlative: Most encodes a unique maximum only, so the three coordinated superlative adjectives (\"most systematic, subtle, and significant\") have no licensed carrier and are dropped entirely",
+    "an argument PP on a PREDICATE NOMINAL in a copular kind clause (\"X is a vehicle for V-ing\"): the copular collapses to (Inheritance X vehicle), leaving no noun symbol for the prescribed (For <noun-symbol> <argument>) form to attach to"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The instruction set says the For-argument's eventuality is \"asserted nowhere\", yet the spread event's class and role atoms sit at top level at (STV 1.0 0.99); they carry no tense, which matches the occurrence-neutral convention used for non-finite complements, so the requirement is ambiguous rather than plainly violated. Fusing racist_ideology with both a genus and an exposed adjectival modifier is licensed (racist is predicable of the ideology)."
+  },
+  "tierB-001483": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 2,
+   "issues": [
+    "the restrictive relative clause \"in which one always cheats\" restricts the predicate nominal \"game\", but the parse detaches it into a free-standing generic whose oblique points at love, so nothing records what kind of game love is said to be.",
+    "the rule ranges over (Member $x person) at strength 1.0, asserting of every person that they always cheat, whereas the impersonal \"one\" is restricted to whoever is playing that game."
+   ],
+   "gaps": [
+    "a restrictive relative clause modifying the PREDICATE NOMINAL of a kind-level copular clause (\"X is a N in which ...\") -- no rule says whether to fuse a restricted subkind, seal the clause, or split it off as an independent generic",
+    "the impersonal generic pronoun \"one\" (\"one always cheats\") -- the pronoun rules cover only referential he/she/it/they with or without an antecedent, not the generic-human \"one\""
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The \"always\" handling is correct on both channels (rule strength 1.0 plus the QuantifierPhrase companion in the prescribed <kind> <verb-lemma> \"<word>\" shape), and (Inheritance love game) at 0.9 matches the empirical dial."
+  },
+  "tierB-001664": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "universal pronouns \"everything\" / \"everyone\" -- the quantifier machinery covers \"every N\" / \"all the Ns\" with an overt kind noun, but never says what range a bare universal pronoun takes (here the parse supplies (Member $y thing)) nor what surface word its QuantifierPhrase companion should record (\"every\" is recorded, the surface word is \"everything\")",
+    "a mode-of-perception PP (\"see ... in black and white\"): it answers \"how\", which the oblique rule routes to the named role Manner, but Manner is glossed as adverb-only, leaving the preposition-named In vs Manner choice undecided"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Roles follow the progressive test correctly (stative see -> Experiencer / Stimulus), the bare-plural subject rightly gets no companion while \"everything\" does, and 0.9 is the right strength for a characteristic rather than striking generic. Keeping black_and_white as one unsplit symbol is the right call, since the default distributive reading of \"and\" would wrongly give two separate obliques."
+  },
+  "tierC-000049": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 2,
+   "issues": [
+    "\"also\" sits in front of the whole coordinated predicate, so the ellipsis carries it into the second conjunct too, but the (Also ...) tag is emitted only for the first appear event.",
+    "\"later in life\" is encoded as a coined multi-word Time constant later_in_life, which is neither a calendar term nor a speech-anchored deictic, and the instruction set elsewhere directs that an unrepresentable adverbial be left out rather than given an invented filler."
+   ],
+   "gaps": [
+    "life-stage temporal adjuncts (\"later in life\", \"in his youth\") -- the Time section covers calendar/clock terms, deictic constants, day-parts, frequency and interval forms, but nothing anchored to a participant's lifetime"
+   ],
+   "heads": [],
+   "gap_only_residual": false,
+   "notes": "The antecedent-less \"he\" is correctly a person-classed witness with its class atom, both compounds decompose correctly (noun modifier music left unexposed, adjectival modifier comedic exposed), and (Before sk_appear_1 sk_appear_2) is a licensed record of \"later\"."
+  },
+  "tierB-000375": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "an intensifier modifying a spatial preposition (\"right behind\") \u2014 the only defined mechanism is the CamelCase join of a multi-word preposition, and \"right\" is a degree adverb rather than part of the preposition, so the intensifier has no carrier of its own",
+    "an institutional bare-noun locative frame (\"in class\") on a bare position clause \u2014 the clause mints no event, so there is no Location slot, and LocatedIn is defined as containment in a place rather than in an activity or institution"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "The bare position clause correctly mints no event for \"sat\" and wraps both position atoms in Past, with the non-containment preposition kept entity-attached, exactly as \"Where a THING is\" prescribes. RightBehind is read here as covered by the multi-word entity-attached preposition convention (AcrossTheLaneFrom), but a strict reading of \"the preposition actually used\" would give Behind and leave \"right\" unrepresented."
+  },
+  "tierB-000492": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "a content noun's clausal complement (\"the reputation of being an ambulance chaser\") \u2014 the noun-complement rule says to reify a clausal argument while asserting it nowhere, and the sealing pattern is enumerated only for propositional attitudes, embedded questions, imperatives and counterfactuals, so nesting a proposition as a term argument of an entity-attached oblique has no explicit licence"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Holder/Theme on the have-event, the definite subject's typing kept at top level, the surface preposition Of, and the non-assertion of the reputation's content are all right. No genus is emitted for the fused compound ambulance_chaser, which holds only under the idiom / non-compositional exemption (hot_dog); read as an ordinary modifier_noun compound it would owe (Inheritance ambulance_chaser chaser)."
+  },
+  "tierB-001826": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 3,
+   "issues": [
+    "The adjective \"popular\" is dropped \u2014 no atom carries it, so the parse records only that hit men are a subject.",
+    "The complement \"for TV movies\" is dropped, leaving a kind-level claim at large, which is the same restriction-stripping the instruction set forbids for a PP that restricts a kind-level claim.",
+    "tv_movie is decomposed but appears in no other atom \u2014 an orphan genus for a symbol the parse never uses."
+   ],
+   "gaps": [
+    "an adjective inside a NOMINAL copular predicate that modifies the predicate role rather than the referent (\"are a popular subject\" does not make hit men popular) \u2014 fusing popular_subject is barred as incidental description, and the distributive/split route would assert the wrong thing, so there is no licensed encoding",
+    "a NOMINAL copular predicate carrying a PP complement at kind level (\"a subject for TV movies\") \u2014 state reification for a complement is defined only for an adjective's PP complement, and the fused adjective+bare-kind property (sensitive_to_light) is likewise adjective-only, so the \"for\" argument has no anchor"
+   ],
+   "heads": [],
+   "gap_only_residual": false,
+   "notes": "The routing is right \u2014 bare-plural generic to Inheritance on hit_man at 0.9/0.9 with no QuantifierPhrase companion, and correct compound genus atoms with the noun modifiers left unexposed. But two of the three content elements of the predicate are missing, so the surviving atom is a much weaker and more general claim than the sentence makes."
+  },
+  "tierB-001897": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 4,
+   "issues": [
+    "The result of \"turn ... into sugars\" is carried only by (Result (sk_turn $x) (sk_sugar $x)); the state-result shape also requires the reified result to carry an Experiencer naming what became it plus the flat copular atom, and neither is emitted.",
+    "Three Patient atoms are stacked on one turn event for the coordinated \"sunlight, carbon dioxide and water\", but coordinated NPs are distributive by default and the one-event/many-fillers collective form is licensed only for multiple Agent atoms on a reciprocal or aggregate predicate.",
+    "\"Trees use photosynthesis\" has a bare kind NP on each side, which is the stated mechanical trigger for an opaque kind-level relation (Use tree photosynthesis), yet the parse takes the distributing event-rule route instead.",
+    "The bare plural \"sugars\" is rendered as a single sk_sugar witness typed sugar, with no group encoding."
+   ],
+   "gaps": [
+    "a relational generic (bare kind on both sides) that also carries a purpose infinitive \u2014 the kind-relation form is one opaque binary atom with no eventuality for the purpose head To to attach to, so the relational-generic trigger and the purpose-connective rule cannot both be honoured",
+    "a many-to-one material transformation with coordinated inputs (\"turn A, B and C into D\") \u2014 the change-of-kind/state-result shape assumes a single bearer that is identical to the result state's Experiencer, and nothing licenses saying that several inputs jointly become one product"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The rule scaffolding is right: Skolem-function events per binding with no free variables, 0.9/0.9 for a bare empirical generic with no QuantifierPhrase, Theme for \"use\", subject control on the purpose event, main event first in (To ...), and the carbon_dioxide genus with the noun modifier unexposed. The defects are all inside the consequent, in how the transformation and its coordinated inputs are encoded."
+  },
+  "tierC-000183": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 1,
+   "issues": [
+    "\"PacifiCats\" is a proper noun (a named class of vessels) but no Name fact is emitted for it \u2014 the surface string is lost, leaving only the lowercase kind symbol pacificat, and the instruction set states that neither the name-derived symbol nor its Name atom is optional."
+   ],
+   "gaps": [
+    "a PLURAL proper noun naming a class of manufactured things (\"the PacifiCats\") \u2014 a singular proper noun (one symbol + one Name) and a definite plural (group witness + GroupOf kind) are each covered, but not their combination: nothing says whether the Name attaches to the group witness or to the kind symbol minted from the name"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The rest follows the instruction set: the coordinated by-phrase splits distributively into two design events sharing one patient, the passive by-phrases take Agent, Patient is right for a creation verb, and the two entity-attached origin/affiliation phrases keep their own surface prepositions, (From philip_hercus vancouver) and (Of robert_allan_limited australia). That one relation lands on two heads is what the never-a-synonym-head rule requires, not a defect."
+  },
+  "tierB-000052": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 1,
+   "issues": [
+    "The entire that-clause complement (\"that nobody goes in there\") is dropped, so the sealed directive records only that a making-sure was commanded and nothing whatever about what was to be ensured."
+   ],
+   "gaps": [
+    "a directive/ensure verb with a finite that-clause complement \u2014 \"make sure that P\" is not one of the listed propositional-attitude verbs and the imperative section says nothing about how a clausal complement attaches inside the Directive seal",
+    "a wholly negative sealed proposition \u2014 the registered no-polarity-carrier-inside-a-seal limitation leaves \"nobody goes in there\" with no expressible form at all under Directive, and no rule says what to emit in that case",
+    "a bare quantificational pronoun (\"nobody\") \u2014 the quantifier machinery covers \"no N\" / \"none of the Ns\" determiners but never states the implicit domain kind such a pronoun ranges over",
+    "a deictic locative (\"in there\") \u2014 deictic TIMES are speech-anchored constants, but deictic places are never addressed",
+    "a verb + adjectival-complement fixed expression (\"make sure\") \u2014 no rule says whether it fuses into one surface symbol, decomposes as a resultative (make + sure), or is a control/attitude verb"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "Nothing asserted here is false \u2014 the Directive shell and the strength/confidence are right \u2014 but the parse is near-empty relative to the sentence. Dropping the complement may be partly forced by the seal-polarity limitation, yet even the locative and the commanded proposition's participants leave no trace."
+  },
+  "tierB-000354": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "a bare numeral in argument position (\"struck twelve\") \u2014 numbers are specified as native integers only for magnitudes/counts (Cardinality, Measure) and as (Hour n) inside Time terms; nothing says whether a numeral direct object becomes the symbol `twelve`, the integer 12, or an (Hour 12) term"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Definite subject as a typed witness, transitive inanimate subject as Agent, unchanged object as Theme, Past, and the named time `midnight` as a bare Time symbol all follow the instruction set as written."
+  },
+  "tierB-001489": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 2,
+   "issues": [
+    "The concessive's second argument is the family ENTITY sk_family_1, not a reified \"being in the same language family\" eventuality, so the connective relates a state to a thing instead of to the subordinate clause the rule requires.",
+    "The reified `related` state duplicates the fact already carried by the Related/Symmetric pair, and carries two Experiencer atoms for one state \u2014 a shape the instruction set never licenses (it routes stative symmetric predicates to relation + Symmetric tag and nothing else)."
+   ],
+   "gaps": [
+    "a connective endpoint whose subordinate clause is a non-finite membership/locative state (\"Despite BEING IN the same language family\") \u2014 the copular-endpoint reification rule covers (Member subj prop) states but not a relational \"be in X\" clause, so there is no defined eventuality for the Despite atom to point at",
+    "a Symmetric-tagged stative relation as the anchor for a focus particle or a connective \u2014 the relation form is not an eventuality, and the focus/connective reification rules assume a one-place (Member subj prop) predication, leaving a two-participant state's reification (two Experiencers?) undefined",
+    "a degree adverb on a relational predicate (\"only distantly related\") \u2014 Manner is for event adverbs and Degree takes a single bearer, so a scalar adverb over a two-place relation has no slot"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The sameness of the family is well captured (one witness, both languages PartOf it) and Despite/Related/Symmetric/Only are all licensed heads; the failure is where the concessive's subordinate endpoint attaches. The parse omits kind typing for hungarian/finnish, which is correct \u2014 the text never states they are languages."
+  },
+  "tierB-001502": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 1,
+   "issues": [
+    "The similative adjunct \"like wolves\" is dropped entirely, although the instruction set explicitly licenses the surface-preposition oblique (Like \u2026) for it."
+   ],
+   "gaps": [
+    "a parenthetical similative comparing the whole predication to another kind (\"Pure dingoes, LIKE WOLVES, are \u2026\") \u2014 the one line licensing (Like \u2026) does not say whether it attaches to the subject kind, to the (Skolem) event inside a generic rule, or to the proposition, and a kind-to-kind comparison of an entire claim has no shape at all",
+    "a three-word compound kind (\"annual breeding cycle\") \u2014 the decompose-once rule is stated for two-word modifier_noun pairs, so which of the two modifiers rides in the symbol and which gets a genus is left to judgment"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The generic bare-plural-to-Implication routing, the Skolem event, Patient on the passive subject, the Into oblique, the surface-form Manner adverb, the Still tag, and the 0.9/0.9 empirical generic TV are all correct. `pure_dingo` and `annual_breeding_cycle` are defensible fusions with the adjectival modifiers exposed and the noun modifier left unexposed, as the rule requires."
+  },
+  "tierB-001907": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "a bare quantificational pronoun (\"everything\") \u2014 the quantifier machinery covers \"every N\" / \"all the Ns\" determiners but never states the implicit domain kind such a pronoun ranges over, nor what fills the kind slot of its QuantifierPhrase companion",
+    "a proverbial / gnomic generic with an indefinite singular subject (\"A woman thinks \u2026\") \u2014 the determiner rule forces a witness for a verbal predicate, which records the sentence as being about one particular woman rather than as the generalization it states"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Follows the instruction set closely: indefinite subject with a verbal predicate as a witness constant, the universal object as an Implication with a per-binding Skolem event (the \u2203\u2200 shared pattern), the prepositional verb's object in the (Of \u2026) oblique, the multi-word preposition CamelCase-joined as InTermsOf, 1.0/0.9 for a universal, and the QuantifierPhrase companion for the explicit quantifier word."
+  },
+  "tierB-000014": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 3,
+   "issues": [
+    "No (Past ...) status atom although the clause is past tense (\"There was nothing to be seen\"), so the seeing event is left unmarked/habitual.",
+    "(Can sk_see_1) asserts a capability the sentence never states \u2014 the instruction set licenses Can only for \"can / able to\", not for a bare infinitival \"to be seen\".",
+    "The negative existential (\"there was nothing ...\") has no carrier: the parse asserts a positive seeing event and records the exclusivity only through the opaque Only tag."
+   ],
+   "gaps": [
+    "exceptive \"but\" after a negative quantifier (\"nothing / no one ... but X\") \u2014 the negative-existential-plus-exception construction; the focus-particle section covers only \"only / just / solely\"",
+    "infinitival passive relative \"nothing to be seen\" \u2014 a modal-flavoured to-infinitive with no overt modal and no expressed perceiver"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "Routing \"nothing but fog\" through Only is a defensible improvisation and the bare mass constant fog (no Member atom) is right, but the past tense is simply lost and Can has no licensing cue in the text."
+  },
+  "tierB-000420": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "comparative frequency adverbial \"more often (now)\" on a generic/habitual \u2014 the instruction set names this exact sentence as having no licensed encoding and prescribes leaving it out, so the sentence's actual claim (the frequency has risen) is unrepresentable, and the deictic \"now\" is dropped with it"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Bare-plural generic to a distributing rule at 0.9/0.9, \"like that\" as the explicitly licensed (Like ...) oblique on the rule variable, no QuantifierPhrase companion, and the unrepresentable adverbial omitted \u2014 all as instructed. (Agent (sk_happen $x) $x) rests on the \"when unclear, Agent\" fallback; \"happen\" over an occurrence-denoting noun could alternatively have been read as the light-verb-over-event-noun case."
+  },
+  "tierB-000654": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "predicative \"as\"-phrase on a verb (\"started as a trickle\") \u2014 neither the adjectival depictive of \"ate the meat raw\", nor a resultative, nor a where/when/how/aboutness preposition-named oblique covers an as-NP secondary predicate",
+    "single-word figurative predication \u2014 a social movement being a \"trickle\" then a \"gusher\"; the coherence test in Compound concepts covers only fixed multi-word idioms, so the metaphor is asserted literally"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "The \"turned into a gusher\" half matches the change-of-kind resultative pattern exactly (Patient subject, reified state with Experiencer, flat copular, Result), and Patient on the start event matches the instruction set's own \"the fire started\" example. The two predicative states are tensed inconsistently \u2014 statement 5 wrapped in Past, statement 11 bare \u2014 though the bare one is what the instruction set's example shows."
+  },
+  "tierB-000684": {
+   "before_run50": "partial",
+   "after": "no",
+   "n_issues": 3,
+   "issues": [
+    "The matrix predication \"The world feels warmer\" is entirely absent \u2014 sk_world_1 is typed and then never predicated of, so nothing records the warmth, the comparison, or the \"feels\" hedge.",
+    "\"with friends nearby\" is a circumstance the matrix claim is conditioned on, not an assertion, yet (GroupOf sk_friends_1 friend) existentially asserts that such friends exist.",
+    "The distribution rule asserts at strength 1.0 that every member of that group is nearby \u2014 again asserting adjunct content the sentence only conditions on."
+   ],
+   "gaps": [
+    "subject-experience copular verb \"feel\" with a predicative adjective (\"the world feels warmer\") \u2014 copular clauses are defined as \"is a/an N\" / \"is ADJ\", and only seem/appear are routed (to the epistemic operators)",
+    "bare comparative with no stated standard (\"warmer\", no \"than\" phrase) \u2014 More and MoreBy both require two compared arguments",
+    "absolute \"with NP + predicate\" adjunct expressing a circumstance/condition (\"with friends nearby\") \u2014 the \"with\"-phrase split given is only CoAgent vs Instrument"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "Everything emitted belongs to the adjunct while the clause the sentence actually asserts is missing, so the record is inverted. Even granting that the standard-less comparative has no licensed encoding, dropping the whole matrix state rather than only the degree is a separate loss."
+  },
+  "tierB-001906": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "The bare position clause mints no event (correct \"whatever its verb\"), and \"parallel to the shore\" takes the adjective's-PP-complement route \u2014 reified state, Experiencer subject, surface-preposition To on the state witness, plus the flat copular dual-emit; the simple present rightly gets no status atom. lakeside_road fuses with its genus emitted and the noun modifier correctly left unexposed, and the lexical content of \"runs\" is consumed with no atom, as the position rule prescribes."
+  },
+  "tierB-000869": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "a temporal / deictic adverb ('now') modifying a kind-level relational generic - the kind relation is an opaque binary atom with no event witness, so there is no slot for a Time atom and the 'now' (with its implied contrast to an earlier state) is unrepresentable"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Both arguments are bare kind-denoting NPs (mass subject, bare plurals), so the relational-generic kind relation with its 0.9/0.9 TV is the licensed route and 'Mean' is licensed as the lemmatized kind-relation head, not a coined one. The coordinated object distributes into three atoms as Coordination & plurals specifies."
+  },
+  "tierB-000933": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "a definite / specificational predicate nominal ('X is THE N of Y') - the instruction set covers 'X is a/an N' and 'X is ADJ' only, so the identity and uniqueness of 'the enemy' collapse onto the same Inheritance atom an indefinite predicate would give",
+    "a relational noun in PREDICATE position carrying its own of-argument - Complements of nouns and adjectives attaches such an argument to the noun's own symbol, but a predicate nominal has no symbol, leaving the possessor to be attached to the subject instead"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "'enemy of' is a true relational noun with no underlying verb, so Possession rather than an (Of ...) oblique is the licensed genitive, and possessed-first order still holds under the copular identity (the enemy IS good). Both atoms are contingent kind-level claims, so the 0.9 confidence dial is applied correctly."
+  },
+  "tierB-001562": {
+   "before_run50": "no",
+   "after": "no",
+   "n_issues": 4,
+   "issues": [
+    "The sealed Theme holds only the goat-group typing atom instead of the complement proposition, so the parse means 'Benedito noticed that there was a group of goats' rather than 'that the buck was less aggressive when there were other goats around'.",
+    "The complement clause's content - the buck's reduced aggressiveness, its comparison, the 'when' circumstance and the past tense of the embedded state - is emitted nowhere, sealed or asserted.",
+    "'notice' is on the FACTIVE list, so P's atoms must also appear as ordinary top-level facts beside the sealed Theme term, and no such flat proposition is present.",
+    "sk_buck_1 is typed but fills no role in any atom, leaving the sentence's embedded subject an orphan symbol."
+   ],
+   "gaps": [
+    "a bare comparative with an elided standard ('was less aggressive', no 'than' phrase) - Comparatives & degree defines More / MoreBy / TimesAs / SameDegree only with both compared terms present",
+    "'other' as a contrastive / anaphoric modifier ('other goats' = goats distinct from the buck already introduced)",
+    "an individual-level 'when'-clause supplying the circumstance under which a gradable state holds - ConditionalProperty is kind-level (kind + property + condition symbol), not an individual bearer with a clausal condition",
+    "a bare locative adverb with no prepositional object ('there were other goats around')"
+   ],
+   "heads": [],
+   "gap_only_residual": false,
+   "notes": "One internal tension the parser had to resolve: Propositional attitudes prescribes Experiencer for the holder of a that-complement attitude and lists 'notice' as factive, while Thematic roles and Perception reports put 'notice' on Agent by the progressive test."
+  },
+  "tierC-000067": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 3,
+   "issues": [
+    "'of caesium' is a noun's PP argument, which Complements of nouns and adjectives encodes as the entity-attached surface-preposition oblique on the noun's own symbol ((Of sk_synthesis_1 caesium)), not as the event role Agent.",
+    "'with other halogens' is collapsed into a second Agent, erasing the with-phrase (halogens are neither an animate CoAgent nor an Instrument) and producing the two-Agent collective shape that is reserved for reciprocal / aggregate predicates over a coordinated subject.",
+    "'direct synthesis' is a chemistry term of art, which Compound concepts says to fuse (direct_synthesis plus its genus, and its modifier genus since 'direct' is predicable of it) rather than split off as an incidental descriptive property."
+   ],
+   "gaps": [
+    "a nominalization's of-phrase naming the underlying SUBJECT ('the reaction of caesium' - caesium reacts): the rule covers only an of-NP the underlying verb would take as its OBJECT, and 'reaction' is not a true relational noun either, so neither branch of the test applies",
+    "'other' as a contrastive / anaphoric modifier ('other halogens')"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The copular routing is right - a definite specific subject takes Member, the identity puts 'reaction' and the unfused 'vigorous' on the same witness, and no status atom is due for the present 'is'; only the two PP arguments are mis-slotted."
+  },
+  "tierC-000146": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 1,
+   "issues": [
+    "'in three random ways' answers *how*, and the oblique rule assigns a named role whenever the PP answers where / when / how / whence / whither, so Manner is indicated rather than the preposition-named (In ...) fallback; the same slot is repeated inside the distribution rule at statement 10."
+   ],
+   "gaps": [
+    "an -ly adverb modifying an adjective ('algorithmically equivalent') - Compound concepts covers verb_object, verb_particle, modifier_noun, adjective+noun, possessive and agent-nominalization compounds, but no adverb+adjective compound, so the fused symbol and its genus are improvised",
+    "a symmetric / relational adjective used ATTRIBUTIVELY on a plural ('these equivalent sequences') - the plural-modifier rule distributes it as a one-place property of each member, losing the mutual relation, while Reciprocals & symmetric relations covers only copular predications"
+   ],
+   "heads": [],
+   "gap_only_residual": false,
+   "notes": "The demonstrative-plural group witness, group + Cardinality 3 + per-member distribution rule (kept alongside the group event), agentless passive with Theme, and (Can e) on a specific subject all follow the instruction set. The Manner call is genuinely underdetermined because Manner is glossed '(adverb)' in the role list."
+  },
+  "tierB-000027": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 2,
+   "issues": [
+    "The explicit universal object \"all the local waters\" is encoded only as a single group filler (Patient = sk_waters_1), so \"all\" never becomes a quantified range, whereas the instruction set turns an explicit universal into a per-member distribution premise (and a second-quantifier clause into a rule premise).",
+    "The QuantifierPhrase companion names the range kind `water`, but no premise of the rule quantifies over water, so the companion annotates a quantified range that does not exist in the parse."
+   ],
+   "gaps": [
+    "episodic/existential bare-plural subject under a present perfect (\"Fishing trawlers HAVE fished out ...\" reports what actual trawlers did, not a characterizing generic): the instruction set offers only the generic distribution rule for a bare plural or a group witness for a definite plural, with no existential bare-plural form, so an arbitrary fishing trawler anywhere inherits the fishing-out at 0.9"
+   ],
+   "heads": [],
+   "gap_only_residual": false,
+   "notes": "The phrasal verb kept whole as `fish_out` with no genus, the `fishing_trawler` compound genus with the noun modifier left unexposed, the definite-plural group witness, and the distribution rule for the descriptive modifier \"local\" all follow the instruction set."
+  },
+  "tierB-000348": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 3,
+   "issues": [
+    "The concessive force is lost: no atom relates the searching to the denied finding, and (Even sk_town_1 sk_search_1) instead reads \"even the town searched\", while in the sentence the particle scopes over the whole with-clause set against the main clause.",
+    "\"the WHOLE town\" is reduced to a bare (Member sk_town_1 town) \u2014 the totality quantification is dropped entirely.",
+    "(Ongoing sk_search_1) matches none of the four explicit Ongoing markers the instruction set allows (progressive auxiliary, continuative perfect, inceptive complement, perception-verb participle) \u2014 the -ing here is an absolute participle."
+   ],
+   "gaps": [
+    "\"even with NP V-ing\" \u2014 a preposition + absolute participial adjunct expressing concession; the connective section covers subordinating conjunctions (although / even though / despite) and the focus section covers a particle sitting on a constituent, but neither covers this augmented-absolute construction or says whether the adjunct's event carries tense of its own",
+    "\"the whole N\" as a totality modifier on a singular collective noun \u2014 the quantifier lexicon runs all/every/most/a lot of/many/few/no, and \"whole\" maps to none of them"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The \"no one\" negative universal as a strength-0.0 distribution rule over (Member $x person) with its companion, Theme for the found person, and the projected Name/property atoms for little Fadil outside the denial all follow the instruction set."
+  },
+  "tierB-000970": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "\"The Durga puja\" is split into (Name durga \"Durga\") + (Member durga puja) exactly as the rule for a lowercase common noun beside a capitalized name prescribes, and the agentless passive simple present correctly carries no status atom. The coordinated locative is replicated once per conjunct under the distributive default, with the performed puja shared across both events."
+  },
+  "tierB-001144": {
+   "before_run50": "partial",
+   "after": "no",
+   "n_issues": 3,
+   "issues": [
+    "The subject \"This\" gets no witness and no class atom and nothing is predicated of it, so the sentence's entire copular claim is absent \u2014 the instruction set makes the witness plus its class atom mandatory for an antecedent-less pronoun and bars an untyped referent.",
+    "\"one of the greatest mysteries\" is reduced to a lone mystery witness: the definite superset of mysteries, the membership link from the subject, and the superlative \"greatest\" are all unencoded.",
+    "\"in ALL of science\" drops the universal \u2014 the atom records only the bare domain."
+   ],
+   "gaps": [
+    "copular \"X is one of the ADJ-est Ns\" \u2014 membership in a superlative-restricted definite set: Most/Ordinal encode a unique single-entity superlative, and the partitive machinery is written for a quantified subject or object, not for a copular predicate naming the set the subject belongs to",
+    "emphatic universal over a mass/domain noun (\"all of science\") \u2014 the quantifier-to-strength route and the partitive route both need a count range or a predication to attach to"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The one head used, In, is the licensed framing/domain oblique. What is emitted is not false, it is a small fragment of the sentence."
+  },
+  "tierB-001571": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 2,
+   "issues": [
+    "\"often\" is encoded only by lowering that single atom's strength to 0.8, with no QuantifierPhrase companion, so the frequency word itself is unrecorded and is indistinguishable from a hedge on the time \u2014 the instruction set requires the companion whenever the word is actually there.",
+    "The hedge \"AROUND Midsummer\" is dropped: the Time atom records the bare named time as though it were the exact stated time."
+   ],
+   "gaps": [
+    "a frequency adverb on a bare EXISTENTIAL (\"there are often many parties\") \u2014 the companion form is (QuantifierPhrase <kind> <verb-lemma> \"<word>\") and \"there are\" supplies no verb lemma, and nothing says which atom of an existential carries the frequency strength",
+    "approximation (\"around / about\") on a NAMED, non-numeric time \u2014 ParticleFromNormal is defined only for a numeric clock/calendar value, so the hedge on \"around Midsummer\" has no carrier"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The group witness plus CardinalityPhrase \"many\" for the counted existential and the Name atom for Midsummer follow the instruction set; attaching Time to a group of event-denoting nouns extends the event-noun route to group level."
+  },
+  "tierB-000431": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Copular individual predication, compound-kind genus on the fused symbol, and the agent-nominalization capability plus incorporated-object kind-relation all fire exactly where the instruction set licenses them (fused-from-surface symbol and copular predicate). The noun modifier 'demon' is correctly left unexposed and all decomposition atoms carry the definitional 1.0/0.99."
+  },
+  "tierB-001066": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "a relational of-phrase whose possessor is itself a PLURAL ('the members of the student associationS') \u2014 the Possessive/genitive NP rules attach one possessed symbol to one possessor, and there is no nominal-side dependent-witness machinery (Skolem functions exist only inside rules), so the per-association membership collapses to a single members-group PartOf a single associations-group"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Definite plurals correctly take group witnesses rather than Inheritance; the passive by-phrase takes Agent, 'elect' takes Theme (choose-class, object unchanged), the present-tense habitual correctly carries no status atom, and the distributive predicate gets both the group event and the per-member rule at 1.0/0.9. 'on campus' correctly keeps the surface preposition entity-attached rather than folding into LocatedIn, with the article-less NP staying a constant."
+  },
+  "tierB-001290": {
+   "before_run50": "no",
+   "after": "partial",
+   "n_issues": 2,
+   "issues": [
+    "'Such a thing' is an indefinite in a copular predication, which the Existential section routes to the generic kind (Inheritance), so minting the witness sk_thing_1 asserts one specific existing thing where the sentence makes a sort-level claim.",
+    "The explicit 'no' of 'of no account' is absorbed into the property symbol of_no_account and the atom is asserted at strength 1.0, so the denial the sentence actually makes is recorded nowhere."
+   ],
+   "gaps": [
+    "predicative PP complement of the copula ('X is of no account') \u2014 the Two-kinds-of-clause split only covers 'is a/an N' and 'is ADJ', and the PP here is neither locative (Where a THING is) nor an argument PP of a noun/adjective (Complements of nouns and adjectives)",
+    "the anaphoric-kind determiner 'such a' \u2014 a thing of the contextually salient sort; nothing in the instruction set gives 'such' a carrier, so it is silently dropped",
+    "an explicit negation lexicalized inside a multi-word predicate ('no account') \u2014 a fused idiom symbol has no polarity slot, and the strength-0.0 route needs a positive counterpart atom to negate, which the surface never supplies"
+   ],
+   "heads": [],
+   "gap_only_residual": false,
+   "notes": "Both atoms are mechanically well-formed and the head (Member) is licensed; the defect is that the sentence's negative force and its 'such'-anaphora both vanish. The idiom-as-one-surface-symbol treatment is defensible per Compound concepts, but that section never contemplates a negative word inside the fused symbol."
+  },
+  "tierB-001585": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "a restrictive RELATIVE CLAUSE narrowing the subject kind of a copular kind-level generic ('spider bites THAT CAUSE FEVER are rare') \u2014 the instruction set puts a relative clause in the premises of an event rule, but 'rare' is a non-distributing KindProperty that must not distribute, and ConditionalProperty's condition slot is licensed only for an adjective/state, a measure/environment, or a locative/domain restriction, never for a clause",
+    "a contrastive discourse adverb set off by commas (', though,') joining two KIND-LEVEL, non-eventive claims \u2014 Inter-clause connectives requires two reified eventualities as endpoints and neither generic supplies one, and the defeasible-exception escape does not apply (scorpion_sting is not a sub-kind of spider_bite), so the contrast has no carrier and is dropped"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Both compound kinds take their genus with the noun modifier correctly unexposed, both verb_object compounds decompose per Compound concepts, the modal 'can' over a kind correctly routes to the reified (can <action>) property at 0.9/0.9 rather than an event Can, and the restriction is correctly not stripped into a bare KindProperty. The ConditionalProperty encoding of the relative clause is the least-bad available shape, but the condition filler cause_fever is an action compound rather than a state, which is the gap above."
+  },
+  "tierB-001660": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "negation scoping over a DEGREE-modified adjective ('is not SO big') \u2014 Negation (copular) specifies the strength-0.0 (And ...) bundle for a noun-plus-modifier predicate ('not a legal dwelling'), and says nothing about whether a Degree atom joins that bundle or stays outside it, so whether the sentence denies being-big-to-that-degree or being-big outright is left undetermined by the instruction set"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "The definite NP mints a typed witness, 'in Prague' correctly takes the entity-attached LocatedIn (containment preposition, no eventuality), and Prague gets its Name with no kind atom invented since the text states none. 'so' is not in the listed intensifier lexicon but the rule to record the surface adverb lemmatized covers it, and the positive property is correctly withheld from top level under the denial."
+  },
+  "tierB-000641": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "frequency adverb ('regularly') on an imperative: the frequency-adverb strength bands and their QuantifierPhrase companion are defined only for a generic/habitual clause (the companion needs kind + verb-lemma arguments), Every/TimesPer require a stated period or rate, and a Directive's STV carries directive force rather than frequency, so nothing can carry 'regularly'"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Imperative sealing, the coordinated-VP split into two Directives, the definite-plural group witness, and top-level typing of the projected definite referents all follow the instruction set. One structural hazard worth recording: (PartOf sk_exterior_1 sk_group_1) reuses PartOf's member-of-group sense, so any later per-member distribution rule ranging over (PartOf $x sk_group_1) would bind the exterior as though it were a cabinet."
+  },
+  "tierB-001301": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 2,
+   "issues": [
+    "No (Symmetric Like) tag beside the relation, although 'are like' is exactly the stative mutual-by-meaning predicate the instruction set names ('is similar to', 'resembles'), so the reverse direction cannot be derived.",
+    "The explicit adversative connective 'but' is recorded nowhere - neither a surface-connective atom nor the defeasible-exception pattern - so the stated contrast between the two halves is lost."
+   ],
+   "gaps": [
+    "adversative 'but' joining a clause to an elliptical predicative PP ('but without the shell'): the connective rule requires two reified eventualities as endpoints, and neither a preposition-headed kind relation nor a bare copular kind claim supplies one",
+    "privative 'without NP' as a predicate (absence / lacking): no defined encoding, and no route to a strength-0 claim either, since 'without' is not one of the explicit not/n't/no/never negators that the instruction set says are required to set strength 0.0",
+    "entity-attached preposition-named obliques are defined for entities and events; using them between two bare KINDS - (Like slug snail), (Without slug shell) - is not addressed"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "Like and Without are both licensed under the open surface-preposition licence ('like ...' is named explicitly in the never-coin-a-head rule), and the 0.9/0.9 truth values match the bare relational-generic band. Nothing is asserted beyond the words - in particular the shell is not attributed to snails."
+  },
+  "tierB-001873": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Matches the eventive-boundary form for 'stopped V-ing' - a stop event plus the activity, both positive Past, the activity as Theme and the subject as Agent, which is the exact shape the instruction set's own cessation query template assumes. 'Old' is correctly left unfused as incidental description, and the -ly manner adverb keeps its surface form on the stopping event."
+  },
+  "tierC-000062": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "past-tense capability modal ('could be separated'): the status table gives (Can e) for 'can / able to' but no way to mark its past tense, and the 'a bare modal is the event's only status atom, add no tense beside it' instruction is stated only for the epistemic Might/Probably/Must",
+    "a descriptive or evaluative adjective on a bare mass kind used as a role filler ('true philosophy', 'popular wisdom'): the non-fusing branch of the adjective+noun test (distribute over members, or predicate copularly of a witness) has no target for a bare kind constant, so fusing is forced even where the modifier reads as description rather than a classifying subtype"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Expletive 'it' dropped, the agentless-passive attitude reified with no Experiencer, the complement sealed with no predication of P at top level, and the definite 'this method' correctly projected - the impersonal-reported-attitude routing is followed exactly. The compound decomposition atoms carry the definitional 1.0/0.99 and the by-phrase is read as a means rather than an agent, which is right for a non-agentive 'by'."
+  },
+  "tierC-000157": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 1,
+   "issues": [
+    "The degree adverb 'dangerously' in 'dangerously lax' is dropped with no Degree atom, so the intensity the sentence actually states is lost."
+   ],
+   "gaps": [
+    "a degree adverb on a kind-level property that has been routed into ConditionalProperty: Degree's first slot takes an entity bearer (all its examples are individuals) and ConditionalProperty's property slot holds a bare property symbol, so there is no defined place to hang 'dangerously'"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "Both locative restrictions correctly go into the ConditionalProperty condition slot - the proper noun kept as its constant with its Name atom, 'the army' as a typed witness - with no bare Inheritance or KindProperty stripped of the restriction, and the two 'and'-coordinated clauses are parsed independently with no connective atom. The past copular wraps each kind-level atom as the surface tense requires."
+  },
+  "tierB-000164": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 1,
+   "issues": [
+    "\"should not\" (a weak deontic recommendation) is encoded as an absolute prohibition \u2014 (Permitted e) at strength 0.0, confidence 0.99 \u2014 dropping the weakening the instruction set assigns to \"should\" (strength 0.7 on the positive), so the atom claims tempering is flatly impermissible."
+   ],
+   "gaps": [
+    "negated weak deontic (\"should not V\" / \"ought not to V\"): the instruction set maps \"should/ought\" to (Obligated e) at strength 0.7 and maps prohibitions to (Permitted e) at strength 0.0, but enumerates the prohibition cues as \"must not / may not / shall not / forbidden to\" only, and never says how the two combine for a weak negative"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "Demonstrative \"this steel\" correctly typed as a projected definite witness outside the strength-0 bundle, and the agentless passive correctly gives the steel Patient (tempering is a treatment that changes it) with no Agent atom."
+  },
+  "tierB-000223": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 2,
+   "issues": [
+    "The quantifier \"few\" is mis-slotted as a property symbol in ConditionalProperty's property slot, where the instruction set instead maps \"few\" to strength 0.1 plus a QuantifierPhrase companion; the atom as written asserts at strength 0.9 that career possibilities have the property `few`, which the seeded cond_prop rule would then hand to each individual possibility.",
+    "The exceptive \"Aside from being a professor\" is dropped entirely \u2014 no atom mentions professor, so the parse states the \"few\" claim without the excluded case the sentence carves out."
+   ],
+   "gaps": [
+    "bare-existential quantity claim \"there are few N\": it has no subject-predicate pair for the Quantity-to-strength dial to sit on, and bare \"few\" (unlike \"a few / several / a handful / dozens\") is not in the CardinalityPhrase vague-quantity lexicon, so no licensed carrier exists for it",
+    "exceptive \"aside from X\" scoping over a quantified domain \u2014 the instruction set lists \"aside from\" only as a defeasible-exception cue introducing a SUB-KIND that lacks or reverses a generic property, not as an exclusion from an existential/quantified claim",
+    "speaker-oriented evaluative sentence adverb (\"unfortunately\") \u2014 Manner covers only event-manner adverbs; there is no licensed encoding for an evaluative comment adverb"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "The ConditionalProperty shape itself is licensed for the locative restriction \"at the university\" (the \"berths are scarce at the marina\" pattern), and the career_possibility compound genus with the noun modifier left unexposed follows the compound-kind rule correctly."
+  },
+  "tierB-000347": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 2,
+   "issues": [
+    "\"life in an urban slum\" loses its restriction: the of-argument is recorded as bare `life`, and no atom links the slum to life (or to anything), so the parse asserts the movie is a depiction of life in general.",
+    "sk_slum_1 is typed but left dangling \u2014 it fills no role and stands in no relation, so the urban-slum witness contributes nothing to the parse."
+   ],
+   "gaps": [
+    "a locative/framing PP restricting a bare mass or abstract noun used as a nominalization's of-argument (\"depiction of life in an urban slum\"): LocatedIn is barred from kind/entity-less arguments (\"a kind is not a positioned thing\") and there is no event for a Location oblique, so the instruction set names no carrier for the restriction"
+   ],
+   "heads": [],
+   "gap_only_residual": false,
+   "notes": "Splitting \"harrowing depiction\" into two Member atoms is right (incidental description, no fusion), and routing the nominalization's of-phrase to the surface-preposition oblique rather than Possession follows the instruction set; the \"urban slum\" fusion plus both genus atoms is borderline but internally consistent (urban is predicable of the slum, so its genus is required once fused)."
+  },
+  "tierB-001135": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "copular-linking appearance verbs with an NP complement (\"looks/sounds/feels/tastes like a paradise\"): the instruction set routes *seem / appear* to the epistemic Might/Probably status and routes perception verbs with EVENTIVE complements to perception reports, but never says how \"look like NP\" is encoded \u2014 reifying a `look` event with the Like oblique is an extrapolation",
+    "an indefinite NP serving as the STANDARD of a likeness comparison (\"like a paradise\"): the existential rule mints a witness plus its class atom, which asserts that such a thing exists, although \"X looks like a Y\" makes no existential commitment to any Y"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "`Like` is explicitly licensed as the surface-preposition oblique, Experiencer is the right subject role for a stative intransitive, and \"now\" correctly stays a bare deictic constant with no calendar atoms (no TODAY supplied) and no status atom for the bare simple present."
+  },
+  "tierC-000040": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "concessive / contrastive \"while\" (= \"whereas\"): the instruction set lists \"while\" among the TEMPORAL connectives that take no connective atom and map to During, and never addresses its concessive sense, so the contrast between the two clauses has no licensed carrier here",
+    "a cause/concession/contrast connective joining two KIND-LEVEL clauses: the connective-atom form needs two reified eventualities as endpoints, but both clauses here are kind-level property claims (ConditionalProperty / partitive Inheritance) that reify no event witnesses"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "The partitive is textbook \u2014 definite superset, subset with SubsetOf plus ProportionOf most, and the property on the subset by Inheritance rather than Member; \"in Canada\" correctly goes in the ConditionalProperty condition slot as a bare proper-noun constant, and \"related to prostitution\" is correctly read as a reduced relative with the prepositional verb's object in the To oblique."
+  },
+  "tierB-000592": {
+   "before_run50": "partial",
+   "after": "partial",
+   "n_issues": 1,
+   "issues": [
+    "The intensifier \"quite\" is dropped entirely \u2014 no Degree atom or any other record of the degree modifier on \"uncommon\"."
+   ],
+   "gaps": [
+    "degree intensifier (\"quite\") on a kind-level property carried by ConditionalProperty \u2014 Degree takes an entity bearer alongside an asserted positive property, but a ConditionalProperty deliberately does not assert the bare property, so there is no licensed slot for the level",
+    "a predicate NOUN under a locative restriction (\"X is a(n) ADJ N in/at Y\") \u2014 ConditionalProperty's property slot is documented for adjectival/state properties and reified deontic/capability terms, not for a predicate noun such as `sight`"
+   ],
+   "heads": [],
+   "gap_only_residual": true,
+   "notes": "Routing the locative-restricted, non-distributing rarity property to ConditionalProperty matches the \"voles are common in the fens\" pattern, and the indefinite copular subject correctly reads as the kind `man`. Splitting \"an uncommon sight\" follows the descriptive adjective+noun split rule, but it leaves an assertion that a man in the kitchen is a `sight` and predicates rarity of `man` rather than of the spectacle."
+  },
+  "tierB-001436": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "intensional / non-veridical object of *require* (likewise need, want, seek): the indefinite-argument rule mints an existential witness, so the parse asserts that a group of large repairs exists, whereas the sentence only says they are required \u2014 the instruction set offers no way to record an unasserted object"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Roles follow the instruction set as written (a stative transitive subject stays Agent; requiring does not change its object, so Theme; bare simple present takes no status atom), and the descriptive modifier \"large\" distributes over the group's members with the prescribed 1.0/0.9 rule TV. The bare-plural object could alternatively have taken the bare class symbol `repair`, but that has nowhere to attach \"large\"."
+  },
+  "tierB-001467": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "a PLURAL collective noun with a member-kind of-phrase (\"large herds of cows\") \u2014 the instruction set covers only the singular \"a flock of birds\" (Member + GroupOf) and gives no form for a group whose members are themselves groups, nor for placing a GroupOf atom inside a distribution rule's conclusion"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "Demonstrative plural to a group witness, \"had\" to Holder/Theme with Past, and \"large\" distributed to each herd (not to the cows) all follow the instruction set. The possession predicate gets no per-member distribution rule over the Tuareg group \u2014 defensible as a collective reading, though the plural/distributive rule would otherwise call for one since \"have\" is not a collective predicate."
+  },
+  "tierC-000206": {
+   "before_run50": "partial",
+   "after": "yes",
+   "n_issues": 0,
+   "issues": [],
+   "gaps": [
+    "terminological naming predication (\"X are referred to as Y\", \"is called / known as Y\") \u2014 the instruction set provides Name only for proper-noun string labels, so the term equivalence between the two kinds (predictive_function / pedotransfer_function) has no licensed encoding and survives only as an (As <event> <kind>) oblique on the refer event",
+    "\"as\" introducing a predicative complement \u2014 it is treated as a preposition-named oblique, which is the closest licence, but the instruction set never addresses a predicative (non-oblique) \"as\"-phrase"
+   ],
+   "heads": [],
+   "gap_only_residual": null,
+   "notes": "The agentless passive with the prepositional verb's object in the To oblique matches the \"referred to the memo\" rule; the demonstrative plural takes a group witness, both compounds carry their genus with the adjectival modifier `predictive` exposed and the noun modifier `pedotransfer` correctly not, and the non-spatial framing PP takes the In oblique with an ordinary witness for its indefinite NP. Simple present correctly gets no status atom, and \"non-spatial\" is a positive property at strength 1.0 rather than a negation."
+  }
+ }
+}

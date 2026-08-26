@@ -1,0 +1,9 @@
+{"id": "tierB-000933", "run": 50,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "*Categorical statements* routes classes/kinds and properties (adjectives as classes) to Inheritance and reserves Member for a proper noun or specific referent, so putting the substantivized adjective `good` in Member's individual slot is ill-typed."},
+            {"index": 1, "verdict": "refute", "reason": "'enemy of' is a true relational noun with no underlying verb, which *Complements of nouns and adjectives* keeps on the ordinary genitive Possession, and the relation's identity rides the possessed's own typing atom exactly as in the instruction set's own 'her sister' example ((Member sk_sister_1 sister) + (Possession sk_sister_1 <her>)), so nothing is lost and Possession is possessed-first by definition."}],
+ "gaps_confirmed": ["abstract qualities as arguments of a binary relation ('good', 'great' inside Possession) — the individual-vs-kind discipline governs Member/Inheritance slots and says nothing about relation argument slots",
+                    "equative 'X is the N of Y' where the definite predicate nominal takes its own of-complement — no rule says whether to mint a witness for the predicate noun or collapse it onto the subject"],
+ "new_gaps": ["the definiteness / uniqueness of a predicate nominal ('**the** enemy of great') is unrecorded — Member and Inheritance carry no uniqueness marker"],
+ "decision": "repair",
+ "repair_summary": "Changed good_enemy's head from Member to Inheritance so the substantivized adjective `good` sits in a kind/property slot on both sides; no other atom, symbol name, order or truth value touched.",
+ "notes": "The reviewer's first gap is only half real — *Categorical statements* does answer the subject-position case ('properties (adjectives as classes) -> Inheritance'); it is silent only about relation arguments. The 0.9 confidence is correct for a contingent kind-level claim."}

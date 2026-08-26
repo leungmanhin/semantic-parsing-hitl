@@ -1,0 +1,9 @@
+{"id": "tierB-000431", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "`demon_hunter` is a fused `modifier_noun` over the real head noun `hunter`, and the Compound-kind rule states the genus `(Inheritance <compound> <head-noun>)` \"is **always** emitted either way\" — Core patterns repeats it, listing the genus and the capability together as always emitted for a compound you decomposed."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["the agent-nominalization worked examples (`egg_layer`) show only Member + capability + kind-relation and omit the head-noun genus the Compound-kind rule requires, so the two sections read as if a fused agent-nominalization were exempt"],
+ "decision": "repair",
+ "repair_summary": "Added the missing compound-kind genus `(Inheritance demon_hunter hunter)` after the typing atom; the noun modifier `demon` stays unexposed and every other atom, symbol and TV is unchanged.",
+ "notes": "Both agent-nominalization tests pass here (`hunt` stands alone; \"a hunter is one who hunts\" is definitional), and the symbol was fused from the surface, so the capability and the `Hunt` kind-relation are licensed at definitional `1.0 0.99`."}

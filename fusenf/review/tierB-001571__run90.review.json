@@ -1,0 +1,10 @@
+{"id": "tierB-001571", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "\"often\" is encoded only by lowering that single atom's strength to 0.8, with no QuantifierPhrase companion, so the frequency word itself is unrecorded and is indistinguishable from a hedge on the time — the instruction set requires the companion whenever the word is actually there."},
+               {"statement": 3, "issue": "The hedge \"AROUND Midsummer\" is dropped: the Time atom records the bare named time as though it were the exact stated time."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a frequency adverb on a bare EXISTENTIAL (\"there are often many parties\") — the companion form is (QuantifierPhrase <kind> <verb-lemma> \"<word>\") and \"there are\" supplies no verb lemma, and nothing says which atom of an existential carries the frequency strength", "approximation (\"around / about\") on a NAMED, non-numeric time — ParticleFromNormal is defined only for a numeric clock/calendar value, so the hedge on \"around Midsummer\" has no carrier"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The group witness plus CardinalityPhrase \"many\" for the counted existential and the Name atom for Midsummer follow the instruction set; attaching Time to a group of event-denoting nouns extends the event-noun route to group level."}

@@ -1,0 +1,9 @@
+{"id": "tierB-001660", "run": 50,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The Degree section requires the surface intensifier be recorded, and \"a negated MULTI-ATOM predicate denies the whole bundle\" — dropping \"so\" and putting strength 0.0 on bare `big` denies the positive outright, which is more than \"not so big\" states."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "repair",
+ "repair_summary": "Rebuilt the denial as the whole-predicate bundle (And (Member sk_zoo_1 big) (Degree sk_zoo_1 big so)) at strength 0.0, restoring the dropped surface intensifier and leaving neither half asserted alone.",
+ "notes": "The reviewer's gap claim is refuted: the negated-multi-atom-predicate rule already settles it — the modifier goes into the strength-0 (And ...) with its head, because \"the text licenses neither half alone\". Everything else (definite witness plus typing, LocatedIn for containment, Prague's single Name atom) is untouched."}

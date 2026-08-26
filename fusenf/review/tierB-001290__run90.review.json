@@ -1,0 +1,12 @@
+{"id": "tierB-001290", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "'Such a thing' is an indefinite in a copular predication, which the Existential section routes to the generic kind (Inheritance), so minting the witness sk_thing_1 asserts one specific existing thing where the sentence makes a sort-level claim."},
+               {"statement": 1, "issue": "The explicit 'no' of 'of no account' is absorbed into the property symbol of_no_account and the atom is asserted at strength 1.0, so the denial the sentence actually makes is recorded nowhere."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["predicative PP complement of the copula ('X is of no account') — the Two-kinds-of-clause split only covers 'is a/an N' and 'is ADJ', and the PP here is neither locative (Where a THING is) nor an argument PP of a noun/adjective (Complements of nouns and adjectives)",
+             "the anaphoric-kind determiner 'such a' — a thing of the contextually salient sort; nothing in the instruction set gives 'such' a carrier, so it is silently dropped",
+             "an explicit negation lexicalized inside a multi-word predicate ('no account') — a fused idiom symbol has no polarity slot, and the strength-0.0 route needs a positive counterpart atom to negate, which the surface never supplies"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Both atoms are mechanically well-formed and the head (Member) is licensed; the defect is that the sentence's negative force and its 'such'-anaphora both vanish. The idiom-as-one-surface-symbol treatment is defensible per Compound concepts, but that section never contemplates a negative word inside the fused symbol."}

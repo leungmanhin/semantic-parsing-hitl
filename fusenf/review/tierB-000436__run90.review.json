@@ -1,11 +1,9 @@
 {"id": "tierB-000436", "run": 90,
  "q1_faithful": "partial",
- "q1_issues": [{"statement": 1, "issue": "The \"for spreading racist ideology\" argument of \"vehicles\" is reified and asserted at top level as an occurring spread event, but a noun's for-argument must be asserted nowhere — the instruction set states this with the same example (\"a vehicle for spreading does not claim spreading occurred\")."},
-              {"statement": 2, "issue": "(Instrument sk_spread_1 language) asserts that language actually was the means of an actual spreading of racist ideology, a fact the sentence never states."},
-              {"statement": null, "issue": "No (For <noun-symbol> <argument>) atom is emitted, so the one relation the instruction set licenses for this construction — the aboutness link between the vehicle and the spreading — is missing entirely."}],
+ "q1_issues": [{"statement": 1, "issue": "the noun-complement oblique (For language sk_spread_1) is hung on the subject kind rather than on the \"vehicle\" predicate nominal it actually modifies, so the parse asserts that language as such is for spreading racist ideology instead of restricting the vehicle class the sentence predicates of it."}],
  "q2_coverage": "gap",
- "q2_gaps": ["\"one of the most ADJ1, ADJ2 and ADJ3 Ns\" — membership in a superlative-ranked subset: Most covers only \"X is the most ADJ N\", the partitive forms quantify subjects rather than copular predicates, and nothing records \"one of the most …\", so the superlative and all three coordinated adjectives are dropped"],
+ "q2_gaps": ["\"one of the most ADJ Ns\" -- a non-unique / top-tier superlative: Most encodes a unique maximum only, so the three coordinated superlative adjectives (\"most systematic, subtle, and significant\") have no licensed carrier and are dropped entirely", "an argument PP on a PREDICATE NOMINAL in a copular kind clause (\"X is a vehicle for V-ing\"): the copular collapses to (Inheritance X vehicle), leaving no noun symbol for the prescribed (For <noun-symbol> <argument>) form to attach to"],
  "q3_context_leak": "na",
  "q3_leaks": [],
  "q4_unlicensed_heads": [],
- "notes": "(Inheritance language vehicle) at 0.9/0.9 and the racist_ideology genus/modifier decomposition are right. The core defect is that the noun-complement clause is asserted as fact instead of being recorded with For."}
+ "notes": "The instruction set says the For-argument's eventuality is \"asserted nowhere\", yet the spread event's class and role atoms sit at top level at (STV 1.0 0.99); they carry no tense, which matches the occurrence-neutral convention used for non-finite complements, so the requirement is ambiguous rather than plainly violated. Fusing racist_ideology with both a genus and an exposed adjectival modifier is licensed (racist is predicable of the ideology)."}
