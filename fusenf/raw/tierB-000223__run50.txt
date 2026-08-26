@@ -1,0 +1,5 @@
+(: univ_type (Member sk_university_1 university) (STV 1.0 0.99))
+(: career_poss_genus (Inheritance career_possibility possibility) (STV 1.0 0.99))
+(: prof_career_poss (Inheritance professor career_possibility) (STV 1.0 0.99))
+(: career_poss_few (ConditionalProperty career_possibility few sk_university_1) (STV 0.9 0.9))
+(: prof_not_few (ConditionalProperty professor few sk_university_1) (STV 0.0 0.99))

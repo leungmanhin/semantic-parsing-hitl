@@ -1,0 +1,2 @@
+(: person_notice_rule (Implication (Member $x person) (And (Member (sk_notice $x) notice) (Agent (sk_notice $x) $x) (Future (sk_notice $x)) (Probably (sk_notice $x)) (Even notice (sk_notice $x)))) (STV 0.0 0.9))
+(: person_notice_q (QuantifierPhrase person notice "nobody") (STV 1.0 0.99))

@@ -1,0 +1,8 @@
+(: granquist_name (Name granquist "Granquist") (STV 1.0 0.99))
+(: victims_g (GroupOf sk_victim_1 victim) (STV 1.0 0.99))
+(: identities_g (GroupOf sk_identity_1 identity) (STV 1.0 0.99))
+(: identities_poss (Possession sk_identity_1 sk_victim_1) (STV 1.0 0.99))
+(: notification_type (Member sk_notification_1 family_notification) (STV 1.0 0.99))
+(: notification_genus (Inheritance family_notification notification) (STV 1.0 0.99))
+(: authorities_no_release (Implication (Member $x authority) (And (Member (sk_release $x) release) (Agent (sk_release $x) $x) (Theme (sk_release $x) sk_identity_1) (Pending (sk_release $x) sk_notification_1) (Past (sk_release $x)))) (STV 0.0 0.9))
+(: granquist_no_release (And (Member sk_release_1 release) (Agent sk_release_1 granquist) (Theme sk_release_1 sk_identity_1) (Pending sk_release_1 sk_notification_1) (Past sk_release_1)) (STV 0.0 0.99))

@@ -1,0 +1,8 @@
+(: obrien_name (Name obrien "Bishop O'Brien") (STV 1.0 0.99))
+(: obrien_age (Past (Measure obrien old 67 year)) (STV 1.0 0.99))
+(: police_type (Member sk_police_1 police) (STV 1.0 0.99))
+(: e_tell (Member sk_tell_1 tell) (STV 1.0 0.99))
+(: e_tell_exp (Experiencer sk_tell_1 obrien) (STV 1.0 0.99))
+(: e_tell_recip (Recipient sk_tell_1 sk_police_1) (STV 1.0 0.99))
+(: e_tell_past (Past sk_tell_1) (STV 1.0 0.99))
+(: e_tell_theme (Theme sk_tell_1 (And (Member sk_think_1 think) (Experiencer sk_think_1 obrien) (Past sk_think_1) (Theme sk_think_1 (And (Member sk_hit_1 hit) (Agent sk_hit_1 obrien) (Or (And (Patient sk_hit_1 sk_dog_1) (Member sk_dog_1 dog)) (And (Patient sk_hit_1 sk_cat_1) (Member sk_cat_1 cat))) (Past sk_hit_1))))) (STV 1.0 0.99))

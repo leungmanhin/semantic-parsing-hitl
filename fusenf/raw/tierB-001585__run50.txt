@@ -1,0 +1,6 @@
+(: sb_genus (Inheritance spider_bite bite) (STV 1.0 0.99))
+(: sb_cause_rare (Implication (And (Member $x spider_bite) (Member (sk_cause $x) cause) (Agent (sk_cause $x) $x) (Patient (sk_cause $x) fever)) (Member $x rare)) (STV 1.0 0.9))
+(: ss_genus (Inheritance scorpion_sting sting) (STV 1.0 0.99))
+(: cd_genus (Inheritance cause_death cause) (STV 1.0 0.99))
+(: cd_obj (Patient cause_death death) (STV 1.0 0.99))
+(: ss_can_cause (Inheritance scorpion_sting (can cause_death)) (STV 0.9 0.9))

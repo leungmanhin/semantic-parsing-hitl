@@ -1,0 +1,8 @@
+(: e1_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: e1_say_exp (Experiencer sk_say_1 sk_group_1) (STV 1.0 0.99))
+(: e1_deputies (GroupOf sk_group_1 deputy) (STV 1.0 0.99))
+(: e1_say_past (Past sk_say_1) (STV 1.0 0.99))
+(: e1_incident_ty (Member sk_incident_1 incident) (STV 1.0 0.99))
+(: e1_addr_ty (Member addr_54346_avenida_velasco address) (STV 1.0 0.99))
+(: e1_addr_name (Name addr_54346_avenida_velasco "54346 Avenida Velasco") (STV 1.0 0.99))
+(: e1_say_theme (Theme sk_say_1 (And (Member sk_begin_1 begin) (Patient sk_begin_1 sk_incident_1) (Time sk_begin_1 (Hour 9)) (Time sk_begin_1 (Minute 40)) (Past sk_begin_1) (Member sk_receive_1 receive) (Agent sk_receive_1 sk_group_1) (Theme sk_receive_1 sk_call_1) (Source sk_receive_1 sk_person_1) (Past sk_receive_1) (Member sk_call_1 phone_call) (Inheritance phone_call call) (Member sk_person_1 person) (Member sk_request_1 request) (Agent sk_request_1 sk_person_1) (Theme sk_request_1 sk_assistance_1) (Ongoing sk_request_1) (Member sk_assistance_1 assistance) (Member sk_regard_1 regard) (Experiencer sk_regard_1 sk_assistance_1) (Theme sk_regard_1 sk_disturbance_1) (Member sk_disturbance_1 domestic_disturbance) (Inheritance domestic_disturbance disturbance) (Location sk_disturbance_1 addr_54346_avenida_velasco))) (STV 1.0 0.99))

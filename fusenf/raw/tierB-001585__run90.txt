@@ -1,0 +1,8 @@
+(: sb_genus (Inheritance spider_bite bite) (STV 1.0 0.99))
+(: cf_genus (Inheritance cause_fever cause) (STV 1.0 0.99))
+(: cf_obj (Patient cause_fever fever) (STV 1.0 0.99))
+(: sb_cause_rare (ConditionalProperty spider_bite rare cause_fever) (STV 1.0 0.9))
+(: ss_genus (Inheritance scorpion_sting sting) (STV 1.0 0.99))
+(: cd_genus (Inheritance cause_death cause) (STV 1.0 0.99))
+(: cd_obj (Patient cause_death death) (STV 1.0 0.99))
+(: ss_can_cause (Inheritance scorpion_sting (can cause_death)) (STV 0.9 0.9))

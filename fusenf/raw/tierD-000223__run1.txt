@@ -1,0 +1,8 @@
+(: basement_type (Member sk_basement_1 basement) (STV 1.0 0.99))
+(: basement_part (PartOf sk_basement_1 sk_house_1) (STV 1.0 0.99))
+(: auth_grp (GroupOf sk_authorities_1 authority) (STV 1.0 0.99))
+(: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: e_say_exp (Experiencer sk_say_1 sk_authorities_1) (STV 1.0 0.99))
+(: e_say_past (Past sk_say_1) (STV 1.0 0.99))
+(: e_say_time (Time sk_say_1 (Weekday wednesday)) (STV 1.0 0.99))
+(: e_say_theme (Theme sk_say_1 (And (Member sk_search_1 search) (For sk_search_1 sk_teens_1) (GroupOf sk_teens_1 missing_teenager) (Inheritance missing_teenager teenager) (Inheritance missing_teenager missing) (Cardinality sk_teens_1 3) (Member sk_uncover_1 uncover) (Agent sk_uncover_1 sk_search_1) (Patient sk_uncover_1 sk_bodies_1) (Past sk_uncover_1) (GroupOf sk_bodies_1 body) (CardinalityAtLeast sk_bodies_1 2) (Member sk_bury_1 bury) (Patient sk_bury_1 sk_bodies_1) (Past sk_bury_1) (Location sk_bury_1 sk_concrete_1) (Location sk_bury_1 sk_basement_1) (Member sk_concrete_1 concrete) (Member sk_pour_1 pour) (Patient sk_pour_1 sk_concrete_1) (Manner sk_pour_1 freshly) (Past sk_pour_1) (Member sk_house_1 house))) (STV 1.0 0.99))

@@ -1,0 +1,5 @@
+(: cabinets_group (GroupOf sk_group_1 cabinet) (STV 1.0 0.99))
+(: exterior_type (Member sk_exterior_1 exterior) (STV 1.0 0.99))
+(: exterior_partof (PartOf sk_exterior_1 sk_group_1) (STV 1.0 0.99))
+(: directive_clean (Directive (And (Member sk_clean_1 clean) (Patient sk_clean_1 sk_exterior_1) (Manner sk_clean_1 regularly))) (STV 1.0 0.99))
+(: directive_maintain (Directive (And (Member sk_maintain_1 maintain) (Patient sk_maintain_1 sk_exterior_1) (Manner sk_maintain_1 regularly))) (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: he_type (Member sk_person_1 person) (STV 1.0 0.99))
+(: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: e_say_exp (Experiencer sk_say_1 sk_person_1) (STV 1.0 0.99))
+(: e_say_tense (Past sk_say_1) (STV 1.0 0.99))
+(: bombers_grp (GroupOf sk_bombers_1 bomber) (STV 1.0 0.99))
+(: bodies_grp (GroupOf sk_body_group_1 body) (STV 1.0 0.99))
+(: say_theme (Theme sk_say_1 (And (Member sk_police_1 police) (Member sk_identify_1 identify) (Agent sk_identify_1 sk_police_1) (Theme sk_identify_1 sk_body_group_1) (Past sk_identify_1) (PartOf sk_body_group_1 sk_bomber_group_1) (GroupOf sk_bomber_group_1 bomber) (SubsetOf sk_bomber_group_1 sk_bombers_1) (Cardinality sk_bomber_group_1 7) (Cardinality sk_bombers_1 14) (Member sk_launch_1 launch) (Agent sk_launch_1 sk_bombers_1) (Patient sk_launch_1 sk_raid_group_1) (Past sk_launch_1) (Time sk_launch_1 (Weekday friday)) (Time sk_launch_1 night) (GroupOf sk_raid_group_1 raid) (Cardinality sk_raid_group_1 5) (Member sk_raid_group_1 simultaneous) (Degree sk_raid_group_1 simultaneous "almost"))) (STV 1.0 0.99))

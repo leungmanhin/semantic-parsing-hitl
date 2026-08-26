@@ -1,0 +1,6 @@
+(: cc_genus (Inheritance clear_container container) (STV 1.0 0.99))
+(: cc_mod (Inheritance clear_container clear) (STV 1.0 0.99))
+(: ei_genus (Inheritance easy_identification identification) (STV 1.0 0.99))
+(: ei_mod (Inheritance easy_identification easy) (STV 1.0 0.99))
+(: fridge_ty (Member sk_fridge_1 fridge) (STV 1.0 0.99))
+(: cmd_consider (Directive (And (Member sk_consider_1 consider) (Theme sk_consider_1 sk_use_1) (Member sk_use_1 use) (Theme sk_use_1 clear_container) (To sk_use_1 sk_store_1) (Member sk_store_1 store) (Theme sk_store_1 leftover) (Location sk_store_1 sk_fridge_1) (For sk_store_1 easy_identification))) (STV 1.0 0.99))

@@ -1,0 +1,6 @@
+(: thing_typ (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: quarter_typ (Member sk_quarter_1 quarter) (STV 1.0 0.99))
+(: quarter_ye (Member sk_quarter_1 year_earlier) (STV 1.0 0.99))
+(: quarter_amt_total (Measure sk_quarter_1 amount 102000000 dollar) (STV 1.0 0.99))
+(: quarter_amt_share (Measure sk_quarter_1 amount 13 cent_per_share) (STV 1.0 0.99))
+(: that_double (Past (TimesAs amount sk_thing_1 sk_quarter_1 2)) (STV 1.0 0.99))

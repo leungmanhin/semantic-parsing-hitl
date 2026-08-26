@@ -1,0 +1,8 @@
+(: studies_grp (GroupOf sk_studies_1 study) (STV 1.0 0.99))
+(: studies_card (Cardinality sk_studies_1 2) (STV 1.0 0.99))
+(: e_publish (Member sk_publish_1 publish) (STV 1.0 0.99))
+(: e_publish_pat (Patient sk_publish_1 sk_studies_1) (STV 1.0 0.99))
+(: e_publish_loc (Location sk_publish_1 journal_of_the_american_medical_association) (STV 1.0 0.99))
+(: jama_name (Name journal_of_the_american_medical_association "Journal of the American Medical Association") (STV 1.0 0.99))
+(: jama_type (Member journal_of_the_american_medical_association journal) (STV 1.0 0.99))
+(: studies_publish_rule (Implication (PartOf $x sk_studies_1) (And (Member (sk_publish $x) publish) (Patient (sk_publish $x) $x) (Location (sk_publish $x) journal_of_the_american_medical_association))) (STV 1.0 0.9))

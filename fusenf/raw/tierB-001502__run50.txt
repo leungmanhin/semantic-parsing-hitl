@@ -1,0 +1,5 @@
+(: pd_genus (Inheritance pure_dingo dingo) (STV 1.0 0.99))
+(: pd_mod (Inheritance pure_dingo pure) (STV 1.0 0.99))
+(: bc_genus (Inheritance annual_breeding_cycle cycle) (STV 1.0 0.99))
+(: bc_mod (Inheritance annual_breeding_cycle annual) (STV 1.0 0.99))
+(: dingo_locked_rule (Implication (Member $x pure_dingo) (And (Member (sk_lock $x) lock) (Patient (sk_lock $x) $x) (Goal (sk_lock $x) annual_breeding_cycle) (Manner (sk_lock $x) genetically) (Still (sk_lock $x)) (Like (sk_lock $x) wolf))) (STV 0.9 0.9))

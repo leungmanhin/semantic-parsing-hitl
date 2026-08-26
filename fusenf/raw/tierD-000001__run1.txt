@@ -1,0 +1,6 @@
+(: td1_sci_grp (GroupOf sk_scientist_1 scientist) (STV 1.0 0.99))
+(: td1_claim_ev (Member sk_claim_1 claim) (STV 1.0 0.99))
+(: td1_claim_exp (Experiencer sk_claim_1 sk_scientist_1) (STV 1.0 0.99))
+(: td1_pill_typ (Member sk_pill_1 pill) (STV 1.0 0.99))
+(: td1_ha_genus (Inheritance heart_attack attack) (STV 1.0 0.99))
+(: td1_claim_thm (Theme sk_claim_1 (Implication (And (Member $x person) (Member (sk_take $x) take) (Agent (sk_take $x) $x) (Patient (sk_take $x) sk_pill_1) (Every (sk_take $x) 1 day)) (And (Member (sk_lower_heart $x) lower) (Agent (sk_lower_heart $x) $x) (Patient (sk_lower_heart $x) (sk_risk_heart $x)) (Member (sk_risk_heart $x) risk) (Possession (sk_risk_heart $x) $x) (Of (sk_risk_heart $x) heart_attack) (Measure (sk_lower_heart $x) risk 88 percent) (Member (sk_lower_stroke $x) lower) (Agent (sk_lower_stroke $x) $x) (Patient (sk_lower_stroke $x) (sk_risk_stroke $x)) (Member (sk_risk_stroke $x) risk) (Possession (sk_risk_stroke $x) $x) (Of (sk_risk_stroke $x) stroke) (Measure (sk_lower_stroke $x) risk 80 percent)))) (STV 1.0 0.99))

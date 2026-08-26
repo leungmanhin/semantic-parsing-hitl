@@ -1,0 +1,4 @@
+(: ft_genus (Inheritance fishing_trawler trawler) (STV 1.0 0.99))
+(: waters_type (Member sk_waters_1 water) (STV 1.0 0.99))
+(: waters_local (Member sk_waters_1 local) (STV 1.0 0.99))
+(: fishout_rule (Implication (Member $x fishing_trawler) (And (Member (sk_fish_out $x) fish_out) (Agent (sk_fish_out $x) $x) (Patient (sk_fish_out $x) sk_waters_1) (Past (sk_fish_out $x)))) (STV 0.9 0.9))

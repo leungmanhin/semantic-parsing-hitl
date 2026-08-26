@@ -1,0 +1,7 @@
+(: e1_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: e1_exp (Experiencer sk_say_1 sk_person_1) (STV 1.0 0.99))
+(: e1_person (Member sk_person_1 person) (STV 1.0 0.99))
+(: e1_past (Past sk_say_1) (STV 1.0 0.99))
+(: e1_target (Member sk_target_1 target) (STV 1.0 0.99))
+(: e1_group (GroupOf sk_group_1 person) (STV 1.0 0.99))
+(: e1_theme (Theme sk_say_1 (And (Member sk_have_1 have) (Holder sk_have_1 sk_group_1) (Theme sk_have_1 sk_evidence_1) (Member sk_evidence_1 evidence) (Member sk_evidence_1 authentic) (Of sk_evidence_1 sk_target_1) (Obligated sk_have_1))) (STV 1.0 0.99))

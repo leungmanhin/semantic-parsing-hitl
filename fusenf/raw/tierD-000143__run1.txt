@@ -1,0 +1,7 @@
+(: mabry_name (Name john_mabry "Rep. John Mabry") (STV 1.0 0.99))
+(: say_ev (Member sk_say_1 say) (STV 1.0 0.99))
+(: say_exp (Experiencer sk_say_1 john_mabry) (STV 1.0 0.99))
+(: say_past (Past sk_say_1) (STV 1.0 0.99))
+(: bb_name (Name big_brother "Big Brother") (STV 1.0 0.99))
+(: bill_type (Member sk_bill_1 bill) (STV 1.0 0.99))
+(: say_theme (Theme sk_say_1 (Implication (And (Member sk_person_1 person) (Member sk_pass_1 pass) (Agent sk_pass_1 sk_person_1) (Patient sk_pass_1 sk_bill_1)) (And (Member sk_watch_1 watch) (Agent sk_watch_1 big_brother) (Stimulus sk_watch_1 sk_person_1) (Future sk_watch_1) (Ongoing sk_watch_1)))) (STV 1.0 0.99))

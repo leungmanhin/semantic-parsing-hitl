@@ -1,0 +1,8 @@
+(: tsa_name (Name transportation_security_administration "Transportation Security Administration") (STV 1.0 0.99))
+(: tsa_kind (Member transportation_security_administration agency) (STV 1.0 0.99))
+(: classes_grp (GroupOf sk_classes_1 class) (STV 1.0 0.99))
+(: he_type (Member sk_person_1 person) (STV 1.0 0.99))
+(: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: e_exp (Experiencer sk_say_1 sk_person_1) (STV 1.0 0.99))
+(: e_past (Past sk_say_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_say_1 (And (Cardinality sk_classes_1 48) (Member sk_classes_1 full) (Member sk_book_1 book) (Patient sk_book_1 sk_classes_1) (End sk_book_1 (Month september)) (Member sk_plan_1 plan) (Agent sk_plan_1 transportation_security_administration) (Theme sk_plan_1 sk_double_1) (Member sk_double_1 double) (Agent sk_double_1 transportation_security_administration) (Patient sk_double_1 sk_classes_1) (Time sk_double_1 (Month january)))) (STV 1.0 0.99))

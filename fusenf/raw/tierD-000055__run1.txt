@@ -1,0 +1,5 @@
+(: e2_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: e2_say_exp (Experiencer sk_say_1 sk_person_1) (STV 1.0 0.99))
+(: e2_person (Member sk_person_1 person) (STV 1.0 0.99))
+(: e2_say_past (Past sk_say_1) (STV 1.0 0.99))
+(: e2_say_theme (Theme sk_say_1 (And (Member sk_confident_1 confident) (Experiencer sk_confident_1 sk_person_1) (Degree sk_person_1 confident absolutely) (Member sk_person_1 confident) (Theme sk_confident_1 (And (Member sk_have_1 have) (Holder sk_have_1 sk_group_2) (Theme sk_have_1 sk_bill_1) (Future sk_have_1) (Member sk_bill_1 bill) (GroupOf sk_group_2 person) (PartOf sk_person_1 sk_group_2))))) (STV 1.0 0.99))

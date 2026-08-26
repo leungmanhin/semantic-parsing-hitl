@@ -1,0 +1,5 @@
+(: ge_genus (Inheritance genetic_engineering engineering) (STV 1.0 0.99))
+(: ge_mod (Inheritance genetic_engineering genetic) (STV 1.0 0.99))
+(: pg_group (GroupOf sk_group_1 penguin) (STV 1.0 0.99))
+(: pg_swim_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_swim $x) swim) (Agent (sk_swim $x) $x) (Location (sk_swim $x) lava))) (STV 1.0 0.9))
+(: conn (ThanksTo sk_group_1 genetic_engineering) (STV 1.0 0.99))

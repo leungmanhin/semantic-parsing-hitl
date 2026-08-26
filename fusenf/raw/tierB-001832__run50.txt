@@ -1,0 +1,8 @@
+(: stu_grp (GroupOf sk_students_1 student) (STV 1.0 0.99))
+(: tea_grp (GroupOf sk_teachers_1 teacher) (STV 1.0 0.99))
+(: stu_happy_st (Member sk_happy_1 happy) (STV 1.0 0.99))
+(: stu_happy_exp (Experiencer sk_happy_1 sk_students_1) (STV 1.0 0.99))
+(: stu_happy_rule (Implication (PartOf $x sk_students_1) (Member $x happy)) (STV 1.0 0.9))
+(: tea_not_happy (And (Member sk_happy_2 happy) (Experiencer sk_happy_2 sk_teachers_1)) (STV 0.0 0.99))
+(: tea_happy_rule (Implication (PartOf $x sk_teachers_1) (Member $x happy)) (STV 0.0 0.9))
+(: conn_but (But sk_happy_1 sk_happy_2) (STV 1.0 0.99))

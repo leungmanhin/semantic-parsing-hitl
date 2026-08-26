@@ -1,0 +1,5 @@
+(: e1_ev (Member sk_live_1 live) (STV 1.0 0.99))
+(: e1_dur (Measure sk_live_1 duration 100 year) (STV 1.0 0.99))
+(: e1_as (As sk_live_1 rabbit) (STV 1.0 0.99))
+(: e2_directive (Directive (And (Member sk_live_2 live) (Measure sk_live_2 duration 1 day) (As sk_live_2 tiger))) (STV 1.0 0.99))
+(: conn_rather (RatherThan sk_live_2 sk_live_1) (STV 1.0 0.99))

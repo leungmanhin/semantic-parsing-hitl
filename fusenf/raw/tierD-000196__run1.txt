@@ -1,0 +1,8 @@
+(: nikkei_name (Name nikkei_average "Nikkei Average") (STV 1.0 0.99))
+(: nikkei_kind (Member nikkei_average average) (STV 1.0 0.99))
+(: e_close (Member sk_close_1 close) (STV 1.0 0.99))
+(: e_patient (Patient sk_close_1 nikkei_average) (STV 1.0 0.99))
+(: e_past (Past sk_close_1) (STV 1.0 0.99))
+(: e_value (Measure sk_close_1 close 8227.32 point) (STV 1.0 0.99))
+(: e_gain_pts (Measure sk_close_1 gain 42.56 point) (STV 1.0 0.99))
+(: e_gain_pct (Measure sk_close_1 gain 0.5 percent) (STV 1.0 0.99))

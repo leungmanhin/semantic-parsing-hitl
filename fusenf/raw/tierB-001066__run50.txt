@@ -1,0 +1,3 @@
+(: assoc_genus (Inheritance student_association association) (STV 1.0 0.99))
+(: students_g (GroupOf sk_students_1 student) (STV 1.0 0.99))
+(: elect_rule (Implication (And (Member $a student_association) (On $a campus) (PartOf $x $a)) (And (Member (sk_elect $x) elect) (Agent (sk_elect $x) sk_students_1) (Theme (sk_elect $x) $x))) (STV 1.0 0.9))

@@ -1,0 +1,6 @@
+(: tree_ty (Past (Member sk_tree_1 cherry_tree)) (STV 1.0 0.99))
+(: tree_genus (Inheritance cherry_tree tree) (STV 1.0 0.99))
+(: tree_big (Past (Member sk_tree_1 big)) (STV 1.0 0.99))
+(: garden_ty (Member sk_garden_1 garden) (STV 1.0 0.99))
+(: tree_loc (Past (LocatedIn sk_tree_1 sk_garden_1)) (STV 1.0 0.99))
+(: tree_ceased (And (Member sk_tree_1 cherry_tree) (Member sk_tree_1 big) (LocatedIn sk_tree_1 sk_garden_1)) (STV 0.0 0.99))

@@ -1,0 +1,8 @@
+(: sci_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: sci_exp (Experiencer sk_say_1 sk_scientists_1) (STV 1.0 0.99))
+(: sci_grp (GroupOf sk_scientists_1 scientist) (STV 1.0 0.99))
+(: sci_past (Past sk_say_1) (STV 1.0 0.99))
+(: pill_type (Member sk_pill_1 pill) (STV 1.0 0.99))
+(: risk1_type (Member sk_risk_1 risk) (STV 1.0 0.99))
+(: risk2_type (Member sk_risk_2 risk) (STV 1.0 0.99))
+(: sci_theme (Theme sk_say_1 (And (Member sk_take_1 take) (Patient sk_take_1 sk_pill_1) (Member sk_lower_1 lower) (Agent sk_lower_1 sk_take_1) (Patient sk_lower_1 sk_risk_1) (Of sk_risk_1 heart_attack) (Measure sk_lower_1 risk 88 percent) (Member sk_lower_2 lower) (Agent sk_lower_2 sk_take_1) (Patient sk_lower_2 sk_risk_2) (Of sk_risk_2 stroke) (Measure sk_lower_2 risk 80 percent))) (STV 1.0 0.99))

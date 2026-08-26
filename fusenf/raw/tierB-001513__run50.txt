@@ -1,0 +1,5 @@
+(: tb1513_tickets_grp (GroupOf sk_tickets_1 ticket) (STV 1.0 0.99))
+(: tb1513_sale_ev (Member sk_go_on_sale_1 go_on_sale) (STV 1.0 0.99))
+(: tb1513_sale_pat (Patient sk_go_on_sale_1 sk_tickets_1) (STV 1.0 0.99))
+(: tb1513_sale_tense (Future sk_go_on_sale_1) (STV 1.0 0.99))
+(: tb1513_sale_time (Time sk_go_on_sale_1 (Weekday tuesday)) (STV 1.0 0.99))

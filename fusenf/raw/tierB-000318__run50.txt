@@ -1,0 +1,4 @@
+(: sh_name (Name saddam_hussein "Saddam Hussein") (STV 1.0 0.99))
+(: pp_genus (Inheritance public_place place) (STV 1.0 0.99))
+(: pp_mod (Inheritance public_place public) (STV 1.0 0.99))
+(: posters_adorn_rule (Implication (And (Member $x poster) (Member $x giant) (Of $x saddam_hussein)) (And (Member (sk_adorn $x) adorn) (Agent (sk_adorn $x) $x) (Patient (sk_adorn $x) public_place) (Past (sk_adorn $x)))) (STV 0.9 0.9))

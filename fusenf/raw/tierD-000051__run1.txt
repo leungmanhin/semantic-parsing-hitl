@@ -1,0 +1,7 @@
+(: bush_name (Name bush "Bush") (STV 1.0 0.99))
+(: admin_type (Member sk_administration_1 administration) (STV 1.0 0.99))
+(: admin_poss (Possession sk_administration_1 bush) (STV 1.0 0.99))
+(: e_hope (Member sk_hope_1 hope) (STV 1.0 0.99))
+(: e_hope_exp (Experiencer sk_hope_1 sk_administration_1) (STV 1.0 0.99))
+(: e_eff_type (Member sk_efficiency_1 efficiency) (STV 1.0 0.99))
+(: e_hope_theme (Theme sk_hope_1 (And (Possession sk_efficiency_1 sk_plant_1) (GroupOf sk_plant_1 power_plant) (Inheritance power_plant plant) (GroupOf sk_coal_1 coal_power_plant) (Inheritance coal_power_plant power_plant) (SubsetOf sk_coal_1 sk_plant_1) (Member sk_increase_1 increase) (Patient sk_increase_1 sk_efficiency_1) (Member sk_produce_1 produce) (Patient sk_produce_1 sk_power_1) (Member sk_power_1 power) (Can sk_produce_1) (Manner sk_produce_1 cheaply) (By sk_produce_1 sk_increase_1))) (STV 1.0 0.99))

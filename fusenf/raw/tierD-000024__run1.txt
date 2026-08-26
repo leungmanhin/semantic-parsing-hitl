@@ -1,0 +1,8 @@
+(: td24_rate (Member sk_rate_1 unemployment_rate) (STV 1.0 0.99))
+(: td24_rate_gen (Inheritance unemployment_rate rate) (STV 1.0 0.99))
+(: td24_rise (Member sk_rise_1 rise) (STV 1.0 0.99))
+(: td24_rise_patient (Patient sk_rise_1 sk_rate_1) (STV 1.0 0.99))
+(: td24_rise_past (Past sk_rise_1) (STV 1.0 0.99))
+(: td24_rise_amount (Measure sk_rise_1 increase 0.1 percentage_point) (STV 1.0 0.99))
+(: td24_level (Measure sk_rate_1 level 6.1 percent) (STV 1.0 0.99))
+(: td24_most (Most level sk_rate_1 unemployment_rate) (STV 1.0 0.99))

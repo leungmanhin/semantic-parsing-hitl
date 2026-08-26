@@ -1,0 +1,8 @@
+(: td112_report (Member sk_report_1 report) (STV 1.0 0.99))
+(: td112_report_ag (Agent sk_report_1 sk_group_1) (STV 1.0 0.99))
+(: td112_group (GroupOf sk_group_1 us_researcher) (STV 1.0 0.99))
+(: td112_researcher_genus (Inheritance us_researcher researcher) (STV 1.0 0.99))
+(: td112_report_past (Past sk_report_1) (STV 1.0 0.99))
+(: td112_report_time (Time sk_report_1 yesterday) (STV 1.0 0.99))
+(: td112_mutation_genus (Inheritance gene_mutation mutation) (STV 1.0 0.99))
+(: td112_report_theme (Theme sk_report_1 (Implication (Member $x person) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) (sk_mutation $x)) (Member (sk_mutation $x) gene_mutation) (Member (sk_raise $x) raise) (Agent (sk_raise $x) (sk_mutation $x)) (Patient (sk_raise $x) (sk_risk $x)) (Can (sk_raise $x)) (Member (sk_risk $x) risk) (Possession (sk_risk $x) $x) (Of (sk_risk $x) cancer) (MeasureAtLeast (sk_raise $x) risk 25 percent) (QuantifierPhrase person have "nearly one in 10")))) (STV 1.0 0.99))

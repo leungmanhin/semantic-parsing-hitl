@@ -1,0 +1,6 @@
+(: e_phone_type (Member sk_phone_1 phone) (STV 1.0 0.99))
+(: e_pc_type (Member sk_pc_1 pc) (STV 1.0 0.99))
+(: e_usb_type (Member sk_usb_1 usb_connection) (STV 1.0 0.99))
+(: e_usb_genus (Inheritance usb_connection connection) (STV 1.0 0.99))
+(: e_dl1 (And (Member sk_download_1 download) (Theme sk_download_1 application) (Can sk_download_1) (Or (Instrument sk_download_1 sk_phone_1) (And (Source sk_download_1 sk_pc_1) (Instrument sk_download_1 sk_usb_1)))) (STV 1.0 0.99))
+(: e_dl2 (And (Member sk_download_2 download) (Theme sk_download_2 software) (Can sk_download_2) (Or (Instrument sk_download_2 sk_phone_1) (And (Source sk_download_2 sk_pc_1) (Instrument sk_download_2 sk_usb_1)))) (STV 1.0 0.99))

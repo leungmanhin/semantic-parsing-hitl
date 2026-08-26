@@ -1,0 +1,3 @@
+(: love_game (Inheritance love game) (STV 1.0 0.9))
+(: cheat_rule (Implication (Member $x person) (And (Member (sk_cheat $x) cheat) (Agent (sk_cheat $x) $x) (Location (sk_cheat $x) love))) (STV 1.0 0.9))
+(: cheat_q (QuantifierPhrase person cheat "always") (STV 1.0 0.99))

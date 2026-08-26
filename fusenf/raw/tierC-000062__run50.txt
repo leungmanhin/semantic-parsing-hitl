@@ -1,0 +1,8 @@
+(: believe_ev (Member sk_believe_1 believe) (STV 1.0 0.99))
+(: believe_past (Past sk_believe_1) (STV 1.0 0.99))
+(: believe_theme (Theme sk_believe_1 (And (Member sk_separate_1 separate) (Patient sk_separate_1 true_philosophy) (Source sk_separate_1 popular_wisdom) (Instrument sk_separate_1 sk_method_1) (Can sk_separate_1))) (STV 1.0 0.99))
+(: method_type (Member sk_method_1 method) (STV 1.0 0.99))
+(: tp_genus (Inheritance true_philosophy philosophy) (STV 1.0 0.99))
+(: tp_mod (Inheritance true_philosophy true) (STV 1.0 0.99))
+(: pw_genus (Inheritance popular_wisdom wisdom) (STV 1.0 0.99))
+(: pw_mod (Inheritance popular_wisdom popular) (STV 1.0 0.99))

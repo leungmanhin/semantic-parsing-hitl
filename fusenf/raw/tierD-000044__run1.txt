@@ -1,0 +1,8 @@
+(: fielder_type (Member sk_fielder_1 center_fielder) (STV 1.0 0.99))
+(: fielder_genus (Inheritance center_fielder fielder) (STV 1.0 0.99))
+(: fielder_age (Measure sk_fielder_1 old 38 year) (STV 1.0 0.99))
+(: say_ev (Member sk_say_1 say) (STV 1.0 0.99))
+(: say_exp (Experiencer sk_say_1 sk_fielder_1) (STV 1.0 0.99))
+(: say_past (Past sk_say_1) (STV 1.0 0.99))
+(: say_theme (Theme sk_say_1 (And (Member sk_worry_1 worry) (Experiencer sk_worry_1 sk_fielder_1) (Stimulus sk_worry_1 sk_thing_1) (Member sk_thing_1 thing) (Past sk_worry_1))) (STV 1.0 0.99))
+(: fielder_even (Even worry sk_worry_1) (STV 1.0 0.99))
