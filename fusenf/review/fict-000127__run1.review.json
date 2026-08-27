@@ -1,0 +1,9 @@
+{"id": "fict-000127", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "The antecedent's hunting event is a Skolem-function term (sk_hunt $s) in the rule PREMISE where the instruction set's rule examples use a plain event variable, so the premise cannot unify with an asserted hunting event and the rule cannot fire."}, {"statement": 3, "issue": "'often' sits inside the if-clause but is used to set the whole conditional's strength to 0.8, conflating how often the cats hunt with how reliably the conditional itself holds."}, {"statement": 4, "issue": "The QuantifierPhrase companion records 'sky-cats hunt often' as a top-level fact at (STV 1.0 0.99), but the sentence only hypothesizes that clause as an antecedent and never asserts it."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a frequency adverb inside a conditional antecedent ('if Ns V often, ...') - the two licensed channels for a frequency adverb (the rule's strength and the QuantifierPhrase companion) both belong to an asserted generic/habitual, and neither can express 'often' as a condition on the antecedent"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "autumn_feather_store correctly yields only the head genus (both modifiers are nouns, so neither is exposed), 'in summer' as a bare season constant on Time is right, and Patient on the intransitive 'grows' is the correct change-of-state role."}

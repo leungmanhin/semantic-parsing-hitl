@@ -1,0 +1,11 @@
+{"id": "fict-000004", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "Treats \"Mist-light\" as a proper noun and emits a Name atom, but the only capitalization cue is sentence-initial position, which is no evidence of name status; read as the ordinary compound kind \"mist-light\" no Name atom is licensed."},
+               {"statement": 1, "issue": "On that kind reading the copular subject is a class, so the link should be Inheritance rather than Member, and the mandatory compound-kind genus (Inheritance mist_light light) is missing."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["deciding proper-noun vs common-noun status for a SENTENCE-INITIAL capitalized word, where the instruction set's mechanical casing cue is unavailable",
+             "stacked colour modifiers (\"pale silver\") — whether the shade word grades the colour or is a second independent property"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Splitting \"pale\" and \"silver\" into two property atoms is right per the incidental-description rule (colour never fuses), though it loses that \"pale\" grades \"silver\". Emitting no modifier genus is internally consistent with the proper-noun reading the parse chose."}

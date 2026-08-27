@@ -1,0 +1,4 @@
+(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: nc_type (Member northcove cove) (STV 1.0 0.99))
+(: nc_name (Name northcove "Northcove") (STV 1.0 0.99))
+(: cs_shield_rule (Implication (Member $x cliff_spire) (And (Member (sk_shield $x) shield) (Agent (sk_shield $x) $x) (Theme (sk_shield $x) northcove))) (STV 0.9 0.9))

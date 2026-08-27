@@ -1,0 +1,3 @@
+(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))
+(: gf_genus (Inheritance ground_feather feather) (STV 1.0 0.99))
+(: scatter_ward_rule (Implication (And (Member sk_lantern_1 lantern) (Member sk_lantern_1 lit) (GroupOf sk_feather_1 ground_feather) (Member sk_scatter_1 scatter) (Agent sk_scatter_1 sk_keepers_1) (Theme sk_scatter_1 sk_feather_1) (Around sk_scatter_1 sk_lantern_1)) (And (Member sk_ward_1 ward) (Agent sk_ward_1 sk_feather_1) (Theme sk_ward_1 sk_lantern_1) (Source sk_ward_1 wraith))) (STV 1.0 0.9))

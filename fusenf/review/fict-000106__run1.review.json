@@ -1,0 +1,9 @@
+{"id": "fict-000106", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "`(Patient (sk_approve $t) $t)` gives approve the wrong object role — the instruction set's own worked example emits `(Theme sk_approve_1 sk_plan_1)` for \"The committee approved the plan\", and approve only evaluates/authorizes rather than changing its object, so the same verb must take `Theme` in statement and question alike."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["the quantifier \"any\" — it is not in the quantifier-to-strength table (all/every/most/a lot of/many/few/no/none), so nothing licenses reading it as the universal `1.0` used here, though the `QuantifierPhrase` companion does record the surface word", "a capitalized common noun under a definite article naming an in-world institution (\"the Council\") — a named organization is a proper noun requiring a `Name` atom, but nothing decides whether a capitalized definite common noun counts as one, so it lands as a plain `(Member sk_council_1 council)` with no `Name`", "a deontic norm whose BEARER is an individual but whose OBJECT is universally quantified — the deontic sections cover kind-level bearers (reified property) and specific one-off acts (event `Obligated`), not this mixed case"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The rule-over-transfers plus event-form `Obligated` in the consequent is the most faithful route available for an individual bearer with a universal object, and `station_transfer` is decomposed correctly (head-noun genus only, noun modifier unexposed). Rule confidence 0.99 matches the plain-norm convention rather than the 0.9 of episodic universal rules, which reads as deliberate."}

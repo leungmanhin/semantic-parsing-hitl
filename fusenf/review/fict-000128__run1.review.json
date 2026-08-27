@@ -1,0 +1,10 @@
+{"id": "fict-000128", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "\"frequent\" is encoded as strength 0.8 on the event's class atom, which nothing licenses — the frequency band (often/usually 0.8) sets a generic RULE's strength and carries a QuantifierPhrase companion, whereas a strength on (Member sk_hunt_1 hunt) instead reads as \"this is only 80% a hunting event\"."},
+   {"statement": 1, "issue": "The same defect on the molting event: strength 0.8 on (Member sk_molt_1 molt) mis-slots \"frequent\" into the class atom's truth value."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a frequency ADJECTIVE modifying a nominalized event inside an argument NP (\"frequent hunting\", \"frequent molting\") — the frequency machinery reaches only adverbs on a generic/habitual clause (rule strength plus QuantifierPhrase) and Every/TimesPer with a stated period or rate, none of which applies here"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The event shape is right — \"causes\" is treated as an ordinary verb with Agent and Theme rather than a coined relation head, per the causation-flavored-verbs rule. Given the gap, the instruction set's own guidance is to leave the unrepresentable frequency modifier out rather than mis-slot it."}

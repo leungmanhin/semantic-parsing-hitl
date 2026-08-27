@@ -1,0 +1,5 @@
+(: watch_name (Name watch "Watch") (STV 1.0 0.99))
+(: feather_store_genus (Inheritance feather_store store) (STV 1.0 0.99))
+(: sunken_cove_type (Member sunken_cove cove) (STV 1.0 0.99))
+(: sunken_cove_name (Name sunken_cove "Sunken Cove") (STV 1.0 0.99))
+(: watch_store_tending_safe (Implication (And (Member sk_hold_1 hold) (Holder sk_hold_1 watch) (Theme sk_hold_1 sk_store_1) (Member sk_store_1 feather_store) (Member sk_store_1 large)) (And (Member sk_tend_1 tend) (Time sk_tend_1 winter) (Location sk_tend_1 sunken_cove) (Member sk_tend_1 safe))) (STV 1.0 0.9))

@@ -1,0 +1,11 @@
+{"id": "fict-000064", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "The antecedent's event and group are Skolem-function terms ((sk_attract $x), (sk_moths $x)) rather than plain premise variables, so the premise cannot match ordinarily asserted attract / GroupOf atoms; Skolem-function terms are for events the conclusion introduces."},
+  {"statement": 2, "issue": "Bare 'few' is recorded as (CardinalityPhrase (sk_moths $x) \"few\"), but the instruction set lists 'few' among the proportion words that set strength (0.1) with a QuantifierPhrase companion, and restricts CardinalityPhrase to the vague-count lexicon ('a few / several / a handful / dozens / scores / hundreds / a lot of')."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a proportional quantifier ('few') on a NON-subject argument inside a conditional's antecedent — the strength + QuantifierPhrase channel is defined only for the quantified subject of a generic (setting rule strength here would wrongly say the rule holds rarely), so a low-proportion object NP has no licensed carrier",
+  "a solid (single-word) compound such as 'nightmoth' — the compound-genus decomposition licence is written for a modifier_noun symbol you fused from a multi-word surface, and nothing addresses a word that is already one orthographic token"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The 'when'-clause is correctly built as an occurrence rule with the response tied to its trigger by During, 'the thread harvest falls' correctly takes Patient for a change-of-state intransitive subject, and thread_harvest is typed at top level plus given its genus."}

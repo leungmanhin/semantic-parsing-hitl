@@ -1,0 +1,11 @@
+{"id": "fict-000024", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The restrictive modifier of \"stored mire-essence\" is re-emitted as a generic property atom (Inheritance mire_essence stored, 0.9 0.9), asserting that mire-essence at large is stored, whereas the sentence only uses \"stored\" to restrict which essence does the feeding."},
+               {"statement": 3, "issue": "Likewise (Inheritance lantern_lighting future) asserts that lantern lighting in general holds a property `future`, though \"future\" only restricts which lighting is fed, and futurity has no property encoding at all in the instruction set."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["restrictive adjectival/participial modifier on a bare kind argument of a kind-level relational generic — the adjective+noun rule bars fusing an incidental-description modifier, ConditionalProperty takes a property (not a relation), and there is no other licensed carrier for the restriction",
+             "temporal modification of a nominal (\"future lantern lighting\") — Future is a status operator over an event or a copular atom, never over a kind term, so a future-restricted kind argument has no licensed form"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The relational-generic routing is right: both arguments are bare kind-denoting NPs, so (Feed mire_essence lantern_lighting) at 0.9 0.9 plus the two compound genera (noun modifiers correctly left unexposed) are exactly as specified. The whole defect is that the two restricting modifiers get promoted into unrestricted kind-level assertions."}

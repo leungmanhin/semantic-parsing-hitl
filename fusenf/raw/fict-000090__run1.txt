@@ -1,0 +1,4 @@
+(: spring_tide_rule (Implication (Member $x spring_tide) (Near $x full_moon)) (STV 0.9 0.9))
+(: spring_tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))
+(: full_moon_genus (Inheritance full_moon moon) (STV 1.0 0.99))
+(: full_moon_mod (Inheritance full_moon full) (STV 1.0 0.99))

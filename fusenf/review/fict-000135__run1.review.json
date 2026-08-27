@@ -1,0 +1,10 @@
+{"id": "fict-000135", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 4, "issue": "\"the Council\" is a capitalized, definite, unique organization — a proper noun under the instruction set, which requires a name-derived constant plus exactly one Name atom — but it is encoded as an anonymous witness `sk_council_1` with no Name, inconsistently with \"Sunken Cove\" in the same parse."},
+               {"statement": 7, "issue": "`(Location $x sunken_cove)` re-attaches the NP-modifying PP of \"wraith activity at the Sunken Cove\" onto the increase event, asserting where the increasing happened rather than which activity the rule is about; binding the activity as a premise variable with `(LocatedIn $a sunken_cove)` was available and would have kept the attachment."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a distributive predicate on a definite-plural group inside a whenever-rule consequent (\"the neighboring stations request …\"): the required per-member distribution rule over `(PartOf $x sk_stations_1)` would have to nest inside the outer Implication, and the instruction set provides no form for a rule inside a rule's conclusion"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The whenever shape itself is right here — trigger event as a plain premise variable, response as `(sk_request $x)` tied by During — as are the intransitive change-of-state Patient on `increase`, the definite-plural group witness, and the distributed copular rule for \"neighboring\"."}

@@ -1,0 +1,18 @@
+{"id": "fict-000112", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 3, "issue": "The rule's PREMISE is built out of Skolem-function terms — (Member (sk_complete $a) complete), (Agent (sk_complete $a) $a), (GroupOf (sk_nights $a) solo_night), (CardinalityPhrase (sk_nights $a) \"many\") — but the instruction set uses plain variables in premises and reserves Skolem functions for the conclusion, so this premise cannot match any ordinary parse of \"an apprentice completed many solo nights\"."},
+   {"statement": 3, "issue": "\"of tending\" is encoded as (Of (sk_nights $a) tend), leaving the gerund as a bare, untyped verb lemma in an argument slot; a clausal argument under a noun's preposition is reified as an eventuality, and no referent symbol may appear untyped."},
+   {"statement": 2, "issue": "\"the Council\" is a capitalized organization, so the instruction set requires a name-derived symbol plus exactly one (Name … \"Council\") fact — neither part optional, and explicitly extended to organizations — but the parse types it as a plain common-noun witness with no Name atom."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "Generic conditional headed by bare \"when\" (\"When <clause>, <clause>\"): \"when\" is listed among the temporal connectives that keep their canonical time forms, while the occurrence-quantifying Implication form is specified only for \"every time / whenever\" and \"if\"; which route a habitual \"when\"-clause takes is never stated.",
+   "\"many\" as a determiner counting things inside a conditional's antecedent: it is listed as a proportion word (strength 0.7, which here would wrongly weaken the whole conditional) and is absent from the CardinalityPhrase vague-quantity lexicon, so neither channel is prescribed for this position.",
+   "\"N of V-ing\" (\"nights of tending\"): not a genitive, not a nominalization's object of-phrase, and explicitly not a partitive, measure or about-phrase — none of the covered of-phrase routes reaches a content/activity of-phrase on an ordinary noun.",
+   "The whenever-rule prescribes tying the response to its trigger with During, but here the response (investing) FOLLOWS the trigger rather than overlapping it, so During would be false and no ordering alternative is specified; the parse consequently emits no trigger-response link at all."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"invests the apprentice as a Keeper\" is handled well: the state-result shape (reified keeper state + Experiencer + flat copular atom + Result link) matches the resultative / change-of-kind pattern, and the definite \"the apprentice\" correctly corefers to the antecedent's variable."}

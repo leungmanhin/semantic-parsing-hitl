@@ -1,0 +1,3 @@
+(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))
+(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: harvest_keep_rule (Implication (And (Member $x harvest) (Agent $x sk_keepers_1) (Theme $x salt_bloom) (Time $x new_moon)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) salt_bloom) (Theme (sk_keep $x) potency) (During (sk_keep $x) $x))) (STV 1.0 0.9))

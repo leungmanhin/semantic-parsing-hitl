@@ -1,0 +1,11 @@
+{"id": "fict-000093", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "The indefinite 'a lantern' of the trigger clause is encoded as the Skolem term (sk_lantern $x) inside the rule's PREMISE, where an antecedent existential is universally quantified — the premise can then only match a literal (sk_lantern ...) term and never a real KB lantern, so the rule cannot fire; a plain variable belongs there."},
+               {"statement": 0, "issue": "(Inheritance wintergloss gloss) reads a genus off the spelling of a single-word lemma — the text never says wintergloss is a kind of gloss; (Inheritance nightmoth moth) at index 1 is the same move."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["an indefinite ('a lantern') inside a when/whenever rule's trigger clause — the Skolem machinery is specified for existentials in rule CONCLUSIONS only, and no form is given for one in the antecedent",
+             "whether a closed/solid compound noun written as one orthographic word (wintergloss, nightmoth) takes decomposition/genus atoms — the compound-kind rule is stated for modifier_noun symbols fused from separate surface words"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Role assignment is right (burn's subject as a change-of-state Patient, repel's object as displacement Theme, 'from' as Source), and 'that lantern' correctly corefers with the trigger clause's lantern."}

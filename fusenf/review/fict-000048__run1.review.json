@@ -1,0 +1,9 @@
+{"id": "fict-000048", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The premise matches the triggering leaving by the Skolem-function event term `(sk_leave $k $l)` instead of a plain event variable, so the rule can never fire on an ordinarily-parsed leaving event — the licensed shape puts a bare variable in the trigger (`(Member $x ring) (Agent $x sk_bell_1)`) and reserves Skolem functions for the conclusion."}, {"statement": 0, "issue": "The resultative's reified state, its flat `(Member $l untended)` and the `(Result ...)` link are all placed in the premise, so they become extra firing conditions — the rule additionally demands that the lantern already be independently known untended rather than deriving that from the leaving."}, {"statement": 0, "issue": "`overnight` is reduced to the day-part point `(Time ... night)`, dropping the durative \"through the night\" sense the adverb carries."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"before dawn\" — a temporal bound against a day-part: `TimeAtMost` is defined only over the structured terms Year/Month/Weekday/Hour (with a defined decrement), and `Before` is defined only over eventualities, so a bound on a day-part symbol has no licensed form", "\"overnight\" as a durative adverb — neither a day-part `Time` point nor a stated `(Measure e duration n unit)`"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The routing (indefinite \"when\"-conditional -> Implication rule, resultative state shape, `Patient` for intransitive `die`, no `QuantifierPhrase`) is correct; the defect is the rule's internal wiring, which leaves it unfireable."}

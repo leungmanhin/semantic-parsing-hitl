@@ -1,0 +1,14 @@
+{"id": "fict-000084", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 4, "issue": "\"a spring tide\" is an indefinite, but the premise fills Agent with the bare kind symbol spring_tide; an indefinite argument is an existential (witness + class atom), and inside a rule premise it binds as a variable plus (Member $t spring_tide) — as written the premise can never match an actual filling event, whose Agent would be a witness symbol."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "Generic conditional headed by bare \"when\" (\"When <clause>, <clause>\"): \"when\" is listed among the temporal connectives that keep their canonical time forms, while the occurrence-quantifying Implication form is specified only for \"every time / whenever\" and \"if\"; which route a habitual \"when\"-clause takes is never stated.",
+   "Zero-derived noun/verb homonymy: the substance's decomposition genus (Inheritance salt_bloom bloom) and the event class (Member <e> bloom) land on one symbol, making the substance a subkind of the event class. The instruction set rules on derivation across parts of speech but says nothing about a noun and a verb that share a base form."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Definite-plural handling is right: \"the tide-pools\" gets a top-level group witness and both mentions reuse it; the compound genera correctly withhold the noun modifiers tide / spring / salt. Patient for \"fills the tide-pools\", Patient for the intransitive blooming, Location for \"in\", and the During tie to the trigger all follow the instruction set."}

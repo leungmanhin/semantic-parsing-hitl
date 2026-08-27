@@ -1,0 +1,3 @@
+(: nightmoth_shed_rule (Implication (And (Member $x nightmoth) (Member $y lantern) (On $x $y)) (And (Member (sk_shed $x $y) shed) (Agent (sk_shed $x $y) $x) (Theme (sk_shed $x $y) (sk_threads $x $y)) (GroupOf (sk_threads $x $y) silken_thread) (Goal (sk_shed $x $y) $y))) (STV 1.0 0.9))
+(: silken_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))
+(: silken_thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))

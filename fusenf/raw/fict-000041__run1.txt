@@ -1,0 +1,6 @@
+(: kg2 (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))
+(: scg2 (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: tev2 (Member sk_tolerate_1 tolerate) (STV 1.0 0.99))
+(: texp2 (Experiencer sk_tolerate_1 sk_keeper_1) (STV 1.0 0.99))
+(: tstim2 (Stimulus sk_tolerate_1 sky_cat) (STV 1.0 0.99))
+(: trule2 (Implication (PartOf $x sk_keeper_1) (And (Member (sk_tolerate $x) tolerate) (Experiencer (sk_tolerate $x) $x) (Stimulus (sk_tolerate $x) sky_cat))) (STV 1.0 0.9))

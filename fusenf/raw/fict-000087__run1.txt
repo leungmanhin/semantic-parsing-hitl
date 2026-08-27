@@ -1,0 +1,6 @@
+(: r19_bloom_type (Member sk_bloom_1 bloom) (STV 1.0 0.99))
+(: r19_seawater_type (Member sk_seawater_1 seawater) (STV 1.0 0.99))
+(: r19_dissolve (Member sk_dissolve_1 dissolve) (STV 1.0 0.99))
+(: r19_dissolve_patient (Patient sk_dissolve_1 sk_bloom_1) (STV 1.0 0.99))
+(: r19_dissolve_goal (Goal sk_dissolve_1 sk_seawater_1) (STV 1.0 0.99))
+(: r19_dissolve_future (Future sk_dissolve_1) (STV 1.0 0.99))

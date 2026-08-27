@@ -1,0 +1,5 @@
+(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))
+(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))
+(: clay_vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))
+(: form_store_rule (Implication (And (Member $x form) (Patient $x mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_store $x) store) (Agent (sk_store $x) sk_keepers_1) (Theme (sk_store $x) mire_essence) (Location (sk_store $x) clay_vessel) (During (sk_store $x) $x))) (STV 1.0 0.9))

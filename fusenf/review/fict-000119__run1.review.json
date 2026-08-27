@@ -1,0 +1,9 @@
+{"id": "fict-000119", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "'Council' is capitalized non-sentence-initially, i.e. a proper noun (a named institution) by the instruction set's mechanical casing cue, but is parsed as a common-noun witness `sk_council_1` with no name-derived symbol and no `Name` atom."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a proper name consisting solely of a capitalized common noun ('the Council'): the Names and casing rule of a name-derived symbol plus a separate kind atom degenerates to `(Member council council)` + `(Name council \"Council\")`, and the instruction set neither endorses nor rules that out"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything else follows the instruction set: `redistribute` lemmatized to the base form, `Agent` for the transitive subject, `Theme` for the transferred-but-unchanged object, the bare class symbol for the bare mass object, the `mire_essence` genus with its noun modifier unexposed, and no status atom on a habitual present. The record carries no sentence-final punctuation and may be truncated, but the parse covers the clause as given."}

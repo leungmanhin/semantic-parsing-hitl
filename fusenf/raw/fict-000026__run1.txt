@@ -1,0 +1,4 @@
+(: spires_grp (GroupOf sk_spires_1 cliff_spire) (STV 1.0 0.99))
+(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: lrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))
+(: gather_descend_rule (Implication (And (Member $y sky_cat) (GroupOf $g nightmoth) (CardinalityPhrase $g "many") (Member $e gather) (Agent $e $g) (Location $e $lr) (Member $lr lantern_row)) (And (Member (sk_descend $y $e) descend) (Agent (sk_descend $y $e) $y) (Source (sk_descend $y $e) sk_spires_1) (During (sk_descend $y $e) $e))) (STV 1.0 0.9))

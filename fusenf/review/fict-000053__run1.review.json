@@ -1,0 +1,10 @@
+{"id": "fict-000053", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The rule's triggering event is written as the Skolem term `(sk_go_out $x)` inside the PREMISE, where the instruction set uses a plain bound event variable (cf. the whenever-the-bell-rings and donkey-anaphora rules, whose premise events are `$x` / `$e`), so the premise can never match an actual go-out event asserted in the KB and the rule cannot fire."},
+                {"statement": 4, "issue": "\"the cove water\" is a noun-noun modifier construction, whose licensed encodings are a fused `cove_water` plus its genus or a `PartOf` link, not `(LocatedIn sk_water_1 sunken_cove)`, which states a containment position the text only implies."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"the Sunken Cove\" is handled exactly per the Kestrel-River rule (`Member` + one `Name`), \"goes out\" is correctly kept whole as `go_out` with no genus, \"at night\" is correctly a bare day-part `Time` symbol, and the dependent wraith is correctly a Skolem function. Both conclusion Skolems are also indexed on the lantern `$x` rather than on the triggering occurrence, so a lantern that goes out twice would get only one wraith."}

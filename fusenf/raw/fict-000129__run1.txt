@@ -1,0 +1,4 @@
+(: sunken_cove_name (Name sunken_cove "Sunken-Cove") (STV 1.0 0.99))
+(: sunken_cove_type (Member sunken_cove cove) (STV 1.0 0.99))
+(: fs_genus (Inheritance feather_store store) (STV 1.0 0.99))
+(: r29_rule (Implication (And (Member $x feather_store) (Member $x large)) (And (Member (sk_enable $x) enable) (Agent (sk_enable $x) $x) (Theme (sk_enable $x) (sk_tend $x)) (Member (sk_tend $x) tend) (Patient (sk_tend $x) sunken_cove) (Member (sk_tend $x) safe))) (STV 0.9 0.9))

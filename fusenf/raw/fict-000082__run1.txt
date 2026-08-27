@@ -1,0 +1,6 @@
+(: kg4 (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))
+(: sbg4 (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: mpg4 (Inheritance moon_phase phase) (STV 1.0 0.99))
+(: crg4 (Inheritance chalky_residue residue) (STV 1.0 0.99))
+(: crm4 (Inheritance chalky_residue chalky) (STV 1.0 0.99))
+(: rule4 (Implication (And (Member $x gather) (Agent $x sk_keeper_1) (Theme $x (sk_salt_bloom $x)) (Member (sk_salt_bloom $x) salt_bloom) (Time $x moon_phase)) (And (Member (sk_turn $x) turn) (Patient (sk_turn $x) (sk_salt_bloom $x)) (Member (sk_result $x) chalky_residue) (Experiencer (sk_result $x) (sk_salt_bloom $x)) (Member (sk_salt_bloom $x) chalky_residue) (Result (sk_turn $x) (sk_result $x)) (During (sk_turn $x) $x))) (STV 1.0 0.9))

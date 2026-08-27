@@ -1,0 +1,5 @@
+(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: afs_genus (Inheritance autumn_feather_store store) (STV 1.0 0.99))
+(: store_m (Member sk_store_1 autumn_feather_store) (STV 1.0 0.99))
+(: hunt_grow_rule (Implication (And (Member $s sky_cat) (Member (sk_hunt $s) hunt) (Agent (sk_hunt $s) $s) (Time (sk_hunt $s) summer)) (And (Member sk_grow_1 grow) (Patient sk_grow_1 sk_store_1))) (STV 0.8 0.9))
+(: hunt_q (QuantifierPhrase sky_cat hunt "often") (STV 1.0 0.99))

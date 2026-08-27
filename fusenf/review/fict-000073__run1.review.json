@@ -1,0 +1,9 @@
+{"id": "fict-000073", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "The antecedent's wind and striking are written as constants sk_wind_1 / sk_strike_1 inside the rule premise rather than variables, so the premise can only match those exact symbols — which nothing ever asserts — and the general 'whenever cold wind strikes the Cliff Path at night' reading collapses into a claim about one particular unasserted striking."}, {"statement": 2, "issue": "The consequent's Skolem event (sk_go_out $x) is a function of the lantern alone, so nothing relates a lantern's going-out to the striking occasion that the conditional makes it depend on."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["indicative conditional 'If <event clause>, <generic clause>' — the instruction set says only that it is a plain Implication rule and shows no worked example, so nothing fixes whether the antecedent clause's event and participants must be rule variables (vs. witness constants), nor whether the consequent's per-occurrence event links back to the antecedent occasion"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The proper-noun handling ('Cliff Path' → one opaque symbol + Name + (Member cliff_path path), no modifier genus), the phrasal verb kept whole as go_out with no genus, the change-of-state Patient on the lantern, the positive treatment of the un- adjective 'unprepared', and the bare day-part (Time … night) are all correct."}

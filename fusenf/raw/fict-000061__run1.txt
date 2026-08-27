@@ -1,0 +1,2 @@
+(: wraith_drain_rule (Implication (And (Member $x wraith) (Member $y lantern) (Member (sk_drain $x $y) drain) (Agent (sk_drain $x $y) $x) (Patient (sk_drain $x $y) $y)) (And (Member (sk_give $x $y) give) (Agent (sk_give $x $y) $y) (Theme (sk_give $x $y) (sk_light $x $y)) (Member (sk_light $x $y) mist_light) (Member (sk_light $x $y) weak))) (STV 1.0 0.9))
+(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))

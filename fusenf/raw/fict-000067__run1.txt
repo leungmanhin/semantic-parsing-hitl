@@ -1,0 +1,2 @@
+(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))
+(: keepers_spread_shield_rule (Implication (And (Member $s spread) (Agent $s sk_keepers_1) (Theme $s $f) (GroupOf $f feather) (Member $f ground) (Around $s $l) (Member $l lantern) (Member $l lit)) (And (Member (sk_shield $s) shield) (Agent (sk_shield $s) $f) (Theme (sk_shield $s) $l) (Source (sk_shield $s) wraith) (During (sk_shield $s) $s))) (STV 1.0 0.9))

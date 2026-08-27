@@ -1,0 +1,11 @@
+{"id": "fict-000036", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "The antecedent's trigger event is the Skolem-function term (sk_hunt $s), where the instruction set's rule form binds a premise event with a plain variable, so the premise cannot match an ordinarily asserted hunt event."},
+  {"statement": 5, "issue": "The indefinite 'a lantern-row' becomes the constant sk_lantern_row_1 whose only typing atom (Member sk_lantern_row_1 lantern_row) sits inside the premise itself and is never asserted at top level, so the premise tests a fact the parse never states; a rule-internal indefinite should be a bound variable."},
+  {"statement": 5, "issue": "(Member $x surviving) sits in the CONCLUSION, so the rule derives that every member of the nightmoth group is surviving; 'surviving' restricts the subject NP 'the surviving nightmoths' and is not something the conditional asserts as a consequence — and correspondingly the group at statement 3 is typed only as nightmoth, dropping the restriction."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a solid (single-word) compound such as 'nightmoth' — the compound-genus decomposition licence is written for a modifier_noun symbol you fused from a multi-word surface, and nothing addresses whether a word that is already one orthographic token should be split into genus + modifier"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The sky_cat / lantern_row compound genera, the definite-plural group witness, the participle-as-adjective form 'surviving', the Goal oblique for 'to the Hollows' and the Name atom are all correct. Secondary: the response event (sk_move $x) is a function of the moth only although it depends on the hunt binding too."}

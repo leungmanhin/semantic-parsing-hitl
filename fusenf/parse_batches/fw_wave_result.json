@@ -1,0 +1,48 @@
+{
+ "agents": 28,
+ "batches": 28,
+ "corpus": "corpora/fiction.jsonl",
+ "date": "2026-08-27",
+ "dispatch_constraint": "one sentence per source item per batch \u2014 verified at build",
+ "groups": "8+8+8+4",
+ "hash_pins": {
+  "bb7c4b71": 138
+ },
+ "id_rename": "initial ids fict-R<nn>-<field> violated the C1 id contract (<tier>-<6 digits>); corpus rebuilt as fict-NNNNNN sequential, raw files renamed before the kept assembly, mapping in corpora/fiction_manifest.json id_map. Original fw-*.txt batch files retain the old ids as the dispatch record.",
+ "mean_stmts": 4.5,
+ "next": "blind Opus review (owner-gated) -> adjudication of flagged",
+ "protocol_deviations": [
+  "fw-10: dispatched agent did not parse directly; it sub-dispatched a fresh blind sonnet agent (citing its own context contamination) and disk-verified the 5 outputs. Parser-level blindness held; files verified; no re-run (qp-06 precedent)."
+ ],
+ "records": 138,
+ "statements": 621,
+ "validation": {
+  "clean": 122,
+  "codes": {
+   "C4": 15,
+   "C6": 1
+  },
+  "error_severity_records": [
+   "fict-000136"
+  ],
+  "flagged": [
+   "fict-000006",
+   "fict-000009",
+   "fict-000019",
+   "fict-000020",
+   "fict-000024",
+   "fict-000029",
+   "fict-000031",
+   "fict-000032",
+   "fict-000048",
+   "fict-000060",
+   "fict-000065",
+   "fict-000092",
+   "fict-000094",
+   "fict-000102",
+   "fict-000134",
+   "fict-000136"
+  ]
+ },
+ "wave": "fw-fiction"
+}

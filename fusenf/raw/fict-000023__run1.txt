@@ -1,0 +1,5 @@
+(: r05_keepers_group (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: r05_me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: r05_me_type (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))
+(: r05_me_stored (Member sk_mire_essence_1 stored) (STV 1.0 0.99))
+(: r05_draw_rule (Implication (And (PartOf $x sk_group_1) (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Patient (sk_tend $x) lantern)) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Theme (sk_draw $x) sk_mire_essence_1) (During (sk_draw $x) (sk_tend $x)))) (STV 1.0 0.9))

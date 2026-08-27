@@ -1,0 +1,3 @@
+(: keepers_burn_rule (Implication (PartOf $x sk_keepers_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) wintergloss))) (STV 0.1 0.9))
+(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))
+(: keepers_q (QuantifierPhrase keeper burn "rarely") (STV 1.0 0.99))

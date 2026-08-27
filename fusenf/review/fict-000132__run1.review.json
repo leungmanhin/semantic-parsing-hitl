@@ -1,0 +1,9 @@
+{"id": "fict-000132", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "\"The Council\" is capitalized mid-phrase, so by the instruction set's mechanical casing cue it is a proper noun (an organization is a proper noun too) and requires a name-derived symbol plus exactly one `(Name ... \"Council\")` fact; the parse instead uses an anonymous witness `sk_council_1` with no `Name`, and the same file treats the capitalized \"Sunken-Cove\" as a name, so the two are handled inconsistently."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"in winter\" — a non-deictic recurring season as a time filler: the structured terms are Year/Month/Day/Weekday/Hour, day-parts are the only licensed bare `Time` symbols, and seasons are covered only in their deictic forms (`last_spring`, `next_summer`)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"the Sunken-Cove station\" follows the prescribed name-plus-kind split exactly (`(Member sunken_cove station)` + `Name`), `feather_ration` correctly exposes only its genus, the singular collective subject correctly gets a plain event with no distribution rule, and the absence of a tense atom is the right habitual default."}

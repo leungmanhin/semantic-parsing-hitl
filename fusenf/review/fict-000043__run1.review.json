@@ -1,0 +1,9 @@
+{"id": "fict-000043", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 4, "issue": "The trigger clause is written with a Skolem-function event term (sk_molt $x) in the rule PREMISE, where the whenever pattern ranges over the trigger event as a plain variable, so the premise cannot unify with an asserted molting event and the rule cannot fire."}, {"statement": 4, "issue": "The consequent's Skolem event and feather witness are keyed to the cat $x rather than to the molting occurrence, so a cat that molts repeatedly still yields a single fall event instead of one per occurrence."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a bare-plural indefinite inside a rule's conclusion ('feathers fall') - the instruction set does not say whether it becomes a Skolem group (GroupOf + count-free) or, as here, one singular Skolem witness, so the plurality is silently lost"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "'the cliff base' correctly takes the part-whole route (base typed on its own plus PartOf the cliff, no fused cliff_base), and Patient plus Goal on the falling are the right roles for a gravity-driven motion. No connective atom for the temporal 'when' is correct."}

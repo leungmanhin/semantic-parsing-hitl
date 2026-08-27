@@ -1,0 +1,9 @@
+{"id": "fict-000115", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "'the Council' is capitalized mid-sentence, so by the instruction set's mechanical casing cue it is a proper noun naming an organization and requires a stable name-derived symbol plus its mandatory `(Name … \"Council\")` fact; the parse instead mints an anonymous witness `sk_council_1` and emits no `Name` atom at all."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a recurring natural-cycle time expression 'at full moon': it is not one of the structured calendar terms (Year/Month/Day/Weekday/Hour/Minute), not one of the listed day-parts or deictic constants, and its cycle is not in the named-slot-to-cycle mapping (monday->week, morning->day, month name->year), so whether it takes a bare `Time` symbol and whether an `(Every e 1 <cycle>)` companion is owed is unspecified", "whether compound decomposition reaches a multi-word TIME constant such as `full_moon` — the compound-kind rule would make the genus determined-not-optional for a modifier+head-noun symbol, while the Time section says a named time stays a bare symbol with no `Member` atom"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The event side is right: a singular collective noun takes a plain event with the group as `Agent` and no distribution rule and no `GroupOf`, and the unmarked (no-tense) event correctly gives the habitual reading. The defect is the missing proper-noun treatment of the capitalized 'Council'."}

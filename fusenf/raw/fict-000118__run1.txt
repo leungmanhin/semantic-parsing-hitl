@@ -1,0 +1,4 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: time_genus (Inheritance other_time time) (STV 1.0 0.99))
+(: council_meet_rare (And (Member sk_meet_1 meet) (Agent sk_meet_1 sk_council_1) (Time sk_meet_1 other_time)) (STV 0.1 0.9))
+(: council_q (QuantifierPhrase sk_council_1 meet "rarely") (STV 1.0 0.99))

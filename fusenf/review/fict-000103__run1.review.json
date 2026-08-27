@@ -1,0 +1,11 @@
+{"id": "fict-000103", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 4, "issue": "The trigger clause is matched through the Skolem term (sk_retire $k) in the premise, so the rule can fire only on a retire event literally stored under that constructed term; the whenever and donkey-anaphora rule forms bind a premise event with a plain $-variable and reserve Skolem functions for the consequent."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["generic 'When <clause>, <clause>' — 'when' is listed among the temporal connectives that keep their Before/During forms, while the occurrence-quantifying rule form is specified only for 'every time / whenever', so nothing decides which route a bare habitual 'when' takes",
+             "an indefinite subject inside such a conditional antecedent ('a senior Keeper retires') — Existential says an indefinite with a verbal predicate is a witness and that a verbal generic needs a bare plural or an explicit quantifier, but a conditional antecedent gives it universal force with no stated encoding",
+             "a capitalized common noun used as a role title under a determiner ('a senior Keeper') — the naming rules key on casing alone ('the name is exactly its capitalized run of words') and never say that a determiner blocks the proper-noun reading"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Compound decomposition (senior_keeper genus plus its adjectival modifier, lantern_station genus with the noun modifier unexposed), the dependent Skolem heir, the shared definite station constant, the During link, and the omitted QuantifierPhrase all follow the instruction set."}

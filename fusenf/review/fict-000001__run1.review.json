@@ -1,0 +1,9 @@
+{"id": "fict-000001", "run": 1,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a gerund / nominalized clause in SUBJECT position as the argument of a matrix verb (\"Lighting a lantern produces mist-light\"): the instruction set reifies embedded eventualities only in COMPLEMENT position (causation-flavored verbs, control verbs, perception reports) and gives no route for an event-denoting subject, nor for quantifying over it generically, so the choice between an Agent role on the produce event and a whenever-style rule with During is unsettled", "a compound whose head noun is homographic with the clause's verb lemma (noun `light` in `mist_light` vs. the event class `light` from \"lighting\"): lemmatization is specified with no part-of-speech disambiguation of the resulting symbol"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Consequence of gap 2 is live here: `(Inheritance mist_light light)` makes every mist-light instance a `light`, the same symbol the rule premise reads as a lighting event. Consequence of gap 1: the causal link between the lighting and the producing is recorded only as `(During (sk_produce $x) $x)` — temporal containment — since the matrix subject fills no role."}

@@ -1,0 +1,9 @@
+{"id": "fict-000025", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 6, "issue": "\"sky-cats\" is a bare plural, non-specific object, for which the instruction set reserves the bare class symbol (`sky_cat`); minting a definite group witness plus `(GroupOf sk_group_1 sky_cat)` asserts a particular set of sky-cats that the sentence never introduces."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Closed / solid-written compounds: \"nightmoths\" is already one orthographic word, and the compound-kind rule is stated for `modifier_noun` symbols fused from a multi-word or hyphenated surface, so it does not say whether an already-single-lemma compound should get a genus atom at all.", "Bare plural objects: the instruction set fixes bare plural SUBJECTS (generic kind, `Inheritance`) and definite/demonstrative plurals (group witness), but states no rule for a bare plural in object position."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"A crowd of nightmoths\" correctly takes both `(Member sk_crowd_1 crowd)` and `(GroupOf sk_crowd_1 nightmoth)` (the flock-of-birds pattern), and the separated particle verb \"brings ... down\" is correctly kept whole as `bring_down` with no genus. Present simple with no status atom is right for the habitual default, and `Theme` for a displaced object is within the stated latitude."}

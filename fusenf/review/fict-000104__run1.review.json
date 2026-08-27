@@ -1,0 +1,9 @@
+{"id": "fict-000104", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 4, "issue": "The premise matches the dying by the Skolem-function event term `(sk_die $k)` rather than a plain event variable with its class and role atoms, so the rule cannot fire on any ordinarily-parsed die event — Skolem-function event terms are licensed for rule conclusions, not for matching a trigger."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a definite NP inside a generic rule that must covary with the rule variable (\"the lantern-station\" = the dead Keeper's own station): definites are licensed only as constant symbols, so the parse is forced to assert that every heir inherits the one same station `sk_lantern_station_1`, with no dependent/Skolem-function form available"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Compound handling is correct throughout (`senior_keeper` fuses as a role title and exposes the gradable modifier; `lantern_station` exposes only its genus), as is the dependent existential `(sk_heir $k)`, `Agent`/`Theme` on `inherit`, and the absence of tense atoms."}

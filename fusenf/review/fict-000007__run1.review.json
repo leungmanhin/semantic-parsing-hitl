@@ -1,0 +1,9 @@
+{"id": "fict-000007", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "The response event is skolemized on the mist-light term `(sk_attract $m)` rather than on the trigger occurrence, and no `During` atom ties it to its trigger, so the per-occurrence shape the 'every time / whenever' rule prescribes is not encoded."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["generic 'When <clause>, <clause>' conditional: the instruction set names 'every time / whenever' (rule + per-occurrence Skolem + `During`) and indicative 'if' (plain `Implication`), but never says which route a bare 'when' takes", "solid/closed compounds written as one orthographic word ('nightmoths'): Compound concepts covers hyphenated and spaced modifier+noun pairs, but not whether an already-single word is split into `night_moth` and given a genus", "an anaphoric definite ('the mist-light') pointing back at a bare mass-noun object, which the instruction set would store as a bare class symbol, leaving no witness for the definite to reuse"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Roles (Agent for the inanimate transitive subject, Theme for the unchanged object), the day-part `(Time $e1 night)`, the bare class symbol for the bare-plural object, and the 1.0/0.9 rule TV all follow the instruction set. The compound genus for `mist_light` is right and the noun modifier `mist` is correctly not exposed."}

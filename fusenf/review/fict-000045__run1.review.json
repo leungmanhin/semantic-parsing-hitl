@@ -1,0 +1,9 @@
+{"id": "fict-000045", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The definite plural \"the fallen feathers\" is encoded as a per-apprentice Skolem witness (sk_feather $x), so each apprentice collects their own different feathers, whereas a definite NP under a universal is a shared constant (the 'Foxes rarely cross the causeway' shape puts the definite object at top level and references it from the rule)."}, {"statement": 0, "issue": "The definite plural is encoded as a singular individual — (Member (sk_feather $x) feather) — instead of a group witness (GroupOf … feather) with the descriptive modifier 'fallen' distributing over its members."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Subject quantification (bare-plural generic → distributing rule at 0.9 0.9, no QuantifierPhrase companion), the Theme role for 'collect', the adjectival participle 'fallen' kept underived, the absent status atom, and the bare day-part (Time … morning) with no Every cycle are all right; only the object NP is mis-encoded."}

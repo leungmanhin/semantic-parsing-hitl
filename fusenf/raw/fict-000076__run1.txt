@@ -1,0 +1,5 @@
+(: keepers_name (Name keepers "Keepers") (STV 1.0 0.99))
+(: keepers_grp (GroupOf keepers keeper) (STV 1.0 0.99))
+(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: add_rule (Implication (And (Member $e1 add) (Agent $e1 keepers) (Theme $e1 salt_bloom) (Goal $e1 $mire) (Member $mire mire_essence) (Time $e1 winter)) (And (Member (sk_burn $e1 $mire) burn) (Patient (sk_burn $e1 $mire) $mire) (Manner (sk_burn $e1 $mire) slowly) (During (sk_burn $e1 $mire) $e1))) (STV 1.0 0.9))

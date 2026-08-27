@@ -1,0 +1,9 @@
+{"id": "fict-000029", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "The fused compound `sky_cat` carries no genus atom, but Compound concepts makes `(Inheritance sky_cat cat)` mandatory (\"the genus itself is always emitted either way\"), exactly as the parse does emit it for `nightmoth_population`."}, {"statement": 2, "issue": "The subject of \"reduces\" is the hunting eventuality, not the kind `sky_cat`, so `(Reduce sky_cat nightmoth_population)` states a different claim and drops the mediating hunting; the relational-generic licence for a kind-level head also requires a bare kind-denoting NP on each side, which a gerund clause is not."}, {"statement": 0, "issue": "Asserts as a standalone generic habit — one skolem hunt event for every sky-cat at strength 0.9 — what the sentence only presupposes in its gerund subject, and the rule is left unconnected to the reduction claim."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a gerund / nominalized clause in SUBJECT position (\"Sky-cats hunting reduces nightmoth populations\"): the instruction set has no pattern for an event-denoting nominalized subject, and its one nearby route, the relational generic / kind-level relation, is triggered only by bare kind NPs on both sides"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The parse falls into two disconnected halves — an unstated generic hunting rule and a kind-level Reduce atom — so nothing in it records that it is the hunting which reduces the populations. Decomposition of `nightmoth_population` (genus emitted, noun modifier not exposed) is correct."}

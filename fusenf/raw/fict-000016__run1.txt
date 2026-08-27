@@ -1,0 +1,7 @@
+(: kg1 (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))
+(: stg1 (Inheritance silken_thread thread) (STV 1.0 0.99))
+(: stm1 (Inheritance silken_thread silken) (STV 1.0 0.99))
+(: swg1 (Inheritance sea_water water) (STV 1.0 0.99))
+(: meg1 (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: caul1 (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))
+(: rule1 (Implication (And (Member $x boil) (Agent $x sk_keeper_1) (Patient $x silken_thread) (Location $x sea_water)) (And (Member (sk_form $x) form) (Patient (sk_form $x) mire_essence) (Location (sk_form $x) sk_cauldron_1) (During (sk_form $x) $x))) (STV 1.0 0.9))

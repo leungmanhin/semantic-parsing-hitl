@@ -1,0 +1,17 @@
+{"id": "fict-000028", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 5, "issue": "The rule's PREMISE is written with the Skolem-function term (sk_moths $x) in Agent / GroupOf / CardinalityPhrase, but the instruction set uses plain variables in premises and reserves Skolem functions for minting per-binding entities in the CONCLUSION, so this premise can never match an ordinary parse of a gathering event."},
+   {"statement": 4, "issue": "The indefinite \"a lantern-row\" is hoisted out of the conditional's antecedent into a top-level witness constant sk_lantern_row_1, asserting that a particular lantern-row exists (the generic conditional asserts no such thing) and restricting the rule to that single lantern-row; an indefinite inside a rule premise binds as a variable plus its class atom (donkey pattern)."},
+   {"statement": 5, "issue": "\"the cliff-spires\" is a definite plural, which takes a group witness (GroupOf <g> cliff_spire), but the parse uses the bare kind symbol cliff_spire as the location filler — the bare class symbol is reserved for non-specific / generic objects."},
+   {"statement": 5, "issue": "\"stay ON the cliff-spires\" answers WHERE, so the reified stay-state's oblique is Location (which the instruction set explicitly assigns to in/at/on), not the preposition-named oblique On, which is for PPs naming what an activity is about or directed at."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "Generic conditional headed by bare \"when\" (\"When <clause>, <clause>\"): \"when\" is listed among the temporal connectives that keep their canonical time forms, while the occurrence-quantifying Implication form is specified only for \"every time / whenever\" and \"if\"; which route a habitual \"when\"-clause takes is never stated.",
+   "Bare \"few\" as a determiner on the subject of a conditional's antecedent: the instruction set maps \"few\" to strength 0.1 (which here would wrongly weaken the whole conditional rather than count the moths), and the CardinalityPhrase lexicon lists only \"a few / several / a handful / dozens / scores / hundreds / a lot of\"; neither channel is prescribed for this position."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Compound handling is right throughout (genus emitted, noun modifiers night/lantern/sky/cliff correctly not exposed). The whenever-rule skeleton and the During link are the right shape; the defects are all in how the premise's participants are bound."}

@@ -1,0 +1,2 @@
+(: bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: bloom_harvest_rule (Implication (Member $x salt_bloom) (And (Member (sk_harvest $x) harvest) (Theme (sk_harvest $x) $x) (Time (sk_harvest $x) new_moon))) (STV 0.9 0.9))

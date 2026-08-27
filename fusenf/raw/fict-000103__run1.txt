@@ -1,0 +1,5 @@
+(: r23_sk_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))
+(: r23_sk_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))
+(: r23_ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))
+(: r23_station_type (Member sk_station_1 lantern_station) (STV 1.0 0.99))
+(: r23_rule (Implication (And (Member $k senior_keeper) (Member (sk_retire $k) retire) (Agent (sk_retire $k) $k)) (And (Member (sk_heir $k) heir) (Member (sk_inherit $k) inherit) (Agent (sk_inherit $k) (sk_heir $k)) (Theme (sk_inherit $k) sk_station_1) (During (sk_inherit $k) (sk_retire $k)))) (STV 1.0 0.9))

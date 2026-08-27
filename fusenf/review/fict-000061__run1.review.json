@@ -1,0 +1,9 @@
+{"id": "fict-000061", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The trigger clause's event is encoded as the Skolem-function term (sk_drain $x $y) inside the rule PREMISE, but the occurrence-conditional pattern puts a plain event variable in the premise and reserves Skolem-function event terms for the conclusion, so this premise can never unify with an ordinary drain event and the rule is inert."}, {"statement": 0, "issue": "Nothing relates the derived giving event to its trigger: the occurrence-quantifying pattern ties the response to the trigger with During, and \"when\" is a temporal connective required to keep a canonical time relation, yet no During/Before atom is emitted."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a generic \"When P, Q\" conditional with indefinite subjects: the occurrence-quantifying rule (with its During link) is licensed only for explicit \"every time / whenever\", and bare indicative \"if\" is routed to a plain Implication, leaving generic \"when\" unassigned between the two forms"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Role assignment (inanimate transitive lantern as Agent, Theme for the emitted light), the dependent-existential Skolem light witness, keeping descriptive \"weak\" as a separate Member atom rather than fusing, and the mist_light genus are all correct; the defect is confined to how the premise encodes the trigger event."}

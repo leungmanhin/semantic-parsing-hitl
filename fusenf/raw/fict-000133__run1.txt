@@ -1,0 +1,4 @@
+(: feather_store_genus (Inheritance feather_store store) (STV 1.0 0.99))
+(: feather_store_witness (Member sk_feather_store_1 feather_store) (STV 1.0 0.99))
+(: wraith_risk_genus (Inheritance wraith_risk risk) (STV 1.0 0.99))
+(: feather_wraith_rule (Implication (Member sk_feather_store_1 small) (And (Member (sk_grow sk_feather_store_1) grow) (Patient (sk_grow sk_feather_store_1) wraith_risk))) (STV 0.9 0.9))

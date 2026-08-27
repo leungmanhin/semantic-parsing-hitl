@@ -1,0 +1,4 @@
+(: sologenus (Inheritance solo_night night) (STV 1.0 0.99))
+(: solomod (Inheritance solo_night solo) (STV 1.0 0.99))
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: apprentice_invest_rule (Implication (And (Member $a apprentice) (GroupOf (sk_nights $a) solo_night) (CardinalityPhrase (sk_nights $a) "many") (Of (sk_nights $a) tend) (Member (sk_complete $a) complete) (Agent (sk_complete $a) $a) (Patient (sk_complete $a) (sk_nights $a))) (And (Member (sk_invest $a) invest) (Agent (sk_invest $a) sk_council_1) (Patient (sk_invest $a) $a) (Member (sk_keeper_state $a) keeper) (Experiencer (sk_keeper_state $a) $a) (Member $a keeper) (Result (sk_invest $a) (sk_keeper_state $a)))) (STV 1.0 0.9))

@@ -1,0 +1,9 @@
+{"id": "fict-000035", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "'the surviving nightmoths' is a definite plural but is encoded as a single individual `(sk_nightmoth $h)`, where the instruction set requires a group witness (`GroupOf`) with the descriptive modifier distributed to its members rather than predicated of one thing."}, {"statement": 3, "issue": "'dimmer lanterns' is likewise collapsed to a single individual, and the comparative 'dimmer' is flattened into the positive property `(Member (sk_lantern $h) dim)`, which the instruction set says a comparative does not entail."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["attributive comparative with no stated standard ('dimmer lanterns'): Comparatives & degree only covers predicative 'X is ADJ-er than Y' -> `(More <scale> X Y)`, giving no form for a comparative used as a bare noun modifier", "solid/closed compound written as one orthographic word ('nightmoths'): the instruction set does not say whether such a word is treated as a compound kind and given a genus"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The whenever-rule shape is right: per-occurrence Skolem events keyed on the trigger `$h`, the `During` link, `Location` for 'at a lantern-row', `Agent` for the intransitive motion subject, and 'surviving' correctly kept as a participial adjective rather than the verb `survive`. The `sky_cat` and `lantern_row` compound genera are correct with their noun modifiers unexposed."}

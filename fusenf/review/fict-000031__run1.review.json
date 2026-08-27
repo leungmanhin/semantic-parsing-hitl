@@ -1,0 +1,9 @@
+{"id": "fict-000031", "run": 1,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": 3, "issue": "The subordinate 'when'-clause is asserted as a standing kind-level relation `(Hunt sky_cat nightmoth)`, but the sentence only quantifies over occasions of hunting and never asserts that sky-cats hunt nightmoths."}, {"statement": 8, "issue": "The consequent is asserted as an unconditional shrink event, so the sentence's central claim — the dependency of the shrinking on the hunting occasions — is dropped entirely (no `Implication`, no `During`, no ordering atom of any kind)."}, {"statement": 9, "issue": "Same defect on the role atom: the crowd is asserted to shrink outright rather than under the trigger condition."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["habitual/generic 'when <clause>, <clause>': the occurrence-quantifying rule is specified for 'every time / whenever' only, while bare 'when' is listed among the temporal connectives that take the canonical time forms (`Before`/`During`) — the instruction set does not say which route a generic 'when' takes", "a trigger clause that is itself a bare-plural relational generic ('sky-cats hunt nightmoths'): the relational generic is an opaque kind-level atom with no event witness, so it supplies neither a premise event nor a `During` anchor for the whenever-rule", "whether the compound-kind decomposition applies to an orthographically solid compound ('nightmoth', parsed as `(Inheritance nightmoth moth)` without fusing a symbol from surface words) as opposed to a hyphenated or two-word one"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The NP-level work is sound — compound genera, `(Member crowd) + (GroupOf crowd nightmoth)` for the collective, entity-attached 'at' as `LocatedIn`, and `Patient` for the change-of-state intransitive 'shrink'. What fails is the clause-linking: two independent assertions replace one conditional generalization."}

@@ -1,0 +1,10 @@
+{"id": "fict-000027", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "The premise carries Skolem-function terms ((sk_moths $x), (sk_row $x)) where every rule example in the instruction set uses plain variables in premises and reserves Skolem functions for consequent-introduced existentials, so the antecedent can only match atoms literally containing those terms and the rule can never fire on an actual crowding event."},
+               {"statement": 5, "issue": "(During (sk_descend $x) $x) asserts a temporal containment of the descending inside the crowding that the text does not state; the During tie is licensed for the 'every time / whenever' construction, not for a plain indicative 'if'."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a quantifier word ('many') on an NP inside a conditional antecedent: the QuantifierPhrase companion's (kind, verb-lemma, word) shape does not fit a rule that ranges over occurrences, the strength channel is already occupied by the rule's own reliability, and 'many' is listed as a proportion word rather than one of CardinalityPhrase's vague-count phrases"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Compound handling is otherwise right - the noun modifiers night/sky/lantern/cliff are correctly left unexposed and only the head genus is emitted - but 'nightmoths' is a solid single word that the parse splits into night_moth, whereas the instruction set licenses fusing surface words, not splitting one."}

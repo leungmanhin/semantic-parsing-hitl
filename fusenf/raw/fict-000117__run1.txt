@@ -1,0 +1,4 @@
+(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))
+(: council_name (Name council "Council") (STV 1.0 0.99))
+(: watch_name (Name watch "Watch") (STV 1.0 0.99))
+(: moon_council_rule (Implication (Member sk_moon_1 full) (And (Member sk_meet_1 meet) (Agent sk_meet_1 council) (Location sk_meet_1 watch))) (STV 1.0 0.9))
