@@ -62,7 +62,10 @@ points, it never duplicates doctrine.
      ceiling→strength, per-rule M2 control gate  │
       │                                          │
       ▼                                          │
-[rule ledger  rules/validated*.jsonl + retired.jsonl → eval/rule_ledger.md]
+[rule ledger  rules/validated*.jsonl + retired.jsonl → eval/rule_ledger.md
+   + species files  rules/{bridging,consolidation}_rules.{jsonl,metta}
+     (mining/combine_rules.py, re-run after every gauntlet round / retirement;
+      consolidation .metta = syntax rendering only, never loaded for QA)]
    ├─ consolidation species → [rewriter → packs / consolidated views]
    └─ bridging species → mined_bridges_*.metta (loads beside seeded_rules.metta)
       │                                          │
