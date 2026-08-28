@@ -3080,3 +3080,208 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: n_duskvale (Name duskvale "Duskvale") (STV 1.0 0.99))
     (: n_harriers (Name harriers "Harriers") (STV 1.0 0.99))
     ; and NO (Member duskvale city), NO (Member harriers team)
+
+## Fix-pack 4 — wave B (newswire core)
+
+**[scalar-delta] Attendance fell 9 percent.** — scalar-change delta rides the event via `MeasureBy`; subject-is-dimension clause takes that word as the scale; `percent` is a unit
+
+    (: e_fall (Member sk_fall_1 fall) (STV 1.0 0.99))
+    (: e_fall_th (Theme sk_fall_1 sk_attendance_1) (STV 1.0 0.99))
+    (: e_fall_past (Past sk_fall_1) (STV 1.0 0.99))
+    (: t_att (Member sk_attendance_1 attendance) (STV 1.0 0.99))
+    (: d_fall (MeasureBy sk_fall_1 attendance 9 percent) (STV 1.0 0.99))
+
+**[scalar-from-to] The river rose from 2 to 5 meters.** — start/end values via `MeasureFrom`/`MeasureTo` on the event; no stated dimension word → scale `unspecified`; the end value is never a spatial `Goal` and never the bearer's timeless `Measure`
+
+    (: e_rise (Member sk_rise_1 rise) (STV 1.0 0.99))
+    (: e_rise_th (Theme sk_rise_1 sk_river_1) (STV 1.0 0.99))
+    (: e_rise_past (Past sk_rise_1) (STV 1.0 0.99))
+    (: t_river (Member sk_river_1 river) (STV 1.0 0.99))
+    (: d_from (MeasureFrom sk_rise_1 unspecified 2 meter) (STV 1.0 0.99))
+    (: d_to (MeasureTo sk_rise_1 unspecified 5 meter) (STV 1.0 0.99))
+    ; and NO (Goal …), NO (Measure sk_river_1 …)
+
+**[scalar-bare-figure] The tally slipped 14.** — a stated bare figure keeps its magnitude; unit no word supplies → `unspecified`, never an invented `point`
+
+    (: e_slip (Member sk_slip_1 slip) (STV 1.0 0.99))
+    (: e_slip_th (Theme sk_slip_1 sk_tally_1) (STV 1.0 0.99))
+    (: e_slip_past (Past sk_slip_1) (STV 1.0 0.99))
+    (: t_tally (Member sk_tally_1 tally) (STV 1.0 0.99))
+    (: d_slip (MeasureBy sk_slip_1 tally 14 unspecified) (STV 1.0 0.99))
+
+**[scalar-restatement] Output fell 12 tons, or 8 percent.** — a restatement pair is TWO true `MeasureBy` atoms on one event, never an `Or`
+
+    (: e_fall (Member sk_fall_1 fall) (STV 1.0 0.99))
+    (: e_fall_th (Theme sk_fall_1 sk_output_1) (STV 1.0 0.99))
+    (: e_fall_past (Past sk_fall_1) (STV 1.0 0.99))
+    (: t_output (Member sk_output_1 output) (STV 1.0 0.99))
+    (: d_abs (MeasureBy sk_fall_1 output 12 ton) (STV 1.0 0.99))
+    (: d_rel (MeasureBy sk_fall_1 output 8 percent) (STV 1.0 0.99))
+
+**[rate-unit] The ferry charges 40 cents a mile.** — a rate is a compound unit `<unit>_per_<unit>` on the cost-verb measure
+
+    (: t_ferry (Member sk_ferry_1 ferry) (STV 1.0 0.99))
+    (: m_rate (Measure sk_ferry_1 price 40 cent_per_mile) (STV 1.0 0.99))
+
+**[premodifier-possession] A Halvern spokesman confirmed the delay.** — a proper-noun premodifier never fuses and never swallows the head: head typed normally, opaque `Possession` link, `Name` kept
+
+    (: t_spk (Member sk_spokesman_1 spokesman) (STV 1.0 0.99))
+    (: l_spk (Possession sk_spokesman_1 halvern) (STV 1.0 0.99))
+    (: n_hal (Name halvern "Halvern") (STV 1.0 0.99))
+    (: e_conf (Member sk_confirm_1 confirm) (STV 1.0 0.99))
+    (: e_conf_ag (Agent sk_confirm_1 sk_spokesman_1) (STV 1.0 0.99))
+    (: e_conf_th (Theme sk_confirm_1 sk_delay_1) (STV 1.0 0.99))
+    (: e_conf_past (Past sk_confirm_1) (STV 1.0 0.99))
+    (: t_delay (Member sk_delay_1 delay) (STV 1.0 0.99))
+
+**[false-title] Staff sergeant Anouk Weiss retired.** — an occupational premodifier stays OUT of the `Name` string and becomes host-tensed typing (compound rules on the title phrase)
+
+    (: e_ret (Member sk_retire_1 retire) (STV 1.0 0.99))
+    (: e_ret_ag (Agent sk_retire_1 anouk_weiss) (STV 1.0 0.99))
+    (: e_ret_past (Past sk_retire_1) (STV 1.0 0.99))
+    (: n_aw (Name anouk_weiss "Anouk Weiss") (STV 1.0 0.99))
+    (: t_aw (Past (Member anouk_weiss staff_sergeant)) (STV 1.0 0.99))
+    (: g_ss (Inheritance staff_sergeant sergeant) (STV 1.0 0.99))
+
+**[age-tag] Corin Vale, 43, won the regatta.** — an age appositive never joins the `Name` string: `(Measure <person> old 43 year)` (a `Past` wrap on the measure is a licensed alternative)
+
+    (: n_cv (Name corin_vale "Corin Vale") (STV 1.0 0.99))
+    (: m_age (Measure corin_vale old 43 year) (STV 1.0 0.99))
+    (: e_win (Member sk_win_1 win) (STV 1.0 0.99))
+    (: e_win_ag (Agent sk_win_1 corin_vale) (STV 1.0 0.99))
+    (: e_win_th (Theme sk_win_1 sk_regatta_1) (STV 1.0 0.99))
+    (: e_win_past (Past sk_win_1) (STV 1.0 0.99))
+    (: t_reg (Member sk_regatta_1 regatta) (STV 1.0 0.99))
+
+**[institutional-common] The Bureau adjourned.** — a capitalized common noun as the referent's only label is a common noun by default: NO `Name` atom
+
+    (: t_bureau (Member sk_bureau_1 bureau) (STV 1.0 0.99))
+    (: e_adj (Member sk_adjourn_1 adjourn) (STV 1.0 0.99))
+    (: e_adj_ag (Agent sk_adjourn_1 sk_bureau_1) (STV 1.0 0.99))
+    (: e_adj_past (Past sk_adjourn_1) (STV 1.0 0.99))
+    ; and NO (Name sk_bureau_1 …)
+
+**[episodic-bare-plural] Surveyors crossed the mudflat.** — a bare-plural subject of an episodic clause is a specific set: `GroupOf` witness + normal event, NOT a generic rule
+
+    (: g_sur (GroupOf sk_surveyors_1 surveyor) (STV 1.0 0.99))
+    (: e_cross (Member sk_cross_1 cross) (STV 1.0 0.99))
+    (: e_cross_ag (Agent sk_cross_1 sk_surveyors_1) (STV 1.0 0.99))
+    (: e_cross_th (Theme sk_cross_1 sk_mudflat_1) (STV 1.0 0.99))
+    (: e_cross_past (Past sk_cross_1) (STV 1.0 0.99))
+    (: t_mud (Member sk_mudflat_1 mudflat) (STV 1.0 0.99))
+    ; and NO (Implication (Member $x surveyor) …)
+
+**[covarying-contrast] Some mills bleach them; others dye them.** — an antecedentless pronoun repeated across a contrastive some/others pair takes a FRESH witness per clause
+
+    (: g_m1 (GroupOf sk_mills_1 mill) (STV 1.0 0.99))
+    (: e_bl (Member sk_bleach_1 bleach) (STV 1.0 0.99))
+    (: e_bl_ag (Agent sk_bleach_1 sk_mills_1) (STV 1.0 0.99))
+    (: e_bl_th (Theme sk_bleach_1 sk_group_1) (STV 1.0 0.99))
+    (: g_t1 (GroupOf sk_group_1 thing) (STV 1.0 0.99))
+    (: g_m2 (GroupOf sk_mills_2 mill) (STV 1.0 0.99))
+    (: e_dy (Member sk_dye_1 dye) (STV 1.0 0.99))
+    (: e_dy_ag (Agent sk_dye_1 sk_mills_2) (STV 1.0 0.99))
+    (: e_dy_th (Theme sk_dye_1 sk_group_2) (STV 1.0 0.99))
+    (: g_t2 (GroupOf sk_group_2 thing) (STV 1.0 0.99))
+    ; key check: sk_group_1 ≠ sk_group_2
+
+## Fix-pack 4 — waves B4–B8
+
+**[quote-seal] "The kiln is cold," the potter said.** — a positive direct quote seals as the finite complement it paraphrases; holder = `Experiencer`; referent typing projects
+
+    (: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+    (: e_say_exp (Experiencer sk_say_1 sk_potter_1) (STV 1.0 0.99))
+    (: e_say_past (Past sk_say_1) (STV 1.0 0.99))
+    (: e_say_th (Theme sk_say_1 (And (Member sk_kiln_1 cold))) (STV 1.0 0.99))
+    (: t_potter (Member sk_potter_1 potter) (STV 1.0 0.99))
+    (: t_kiln (Member sk_kiln_1 kiln) (STV 1.0 0.99))
+    ; and NO top-level (Member sk_kiln_1 cold)
+
+**[expect-impersonal] The convoy is expected to arrive Tuesday.** — "expected" joins the impersonal reported list: agentless attitude, sealed complement, no top-level arrival
+
+    (: e_exp (Member sk_expect_1 expect) (STV 1.0 0.99))
+    (: e_exp_th (Theme sk_expect_1 (And (Member sk_arrive_1 arrive) (Theme sk_arrive_1 sk_convoy_1)
+                                        (Time sk_arrive_1 (Weekday tuesday)))) (STV 1.0 0.99))
+    (: t_convoy (Member sk_convoy_1 convoy) (STV 1.0 0.99))
+    ; and NO (Experiencer sk_expect_1 …), NO top-level (Member sk_arrive_1 arrive)
+
+**[holder-experiencer] The registry announced that the office moved.** — a speech verb with a sealed finite complement takes `Experiencer`, not `Agent`
+
+    (: e_ann (Member sk_announce_1 announce) (STV 1.0 0.99))
+    (: e_ann_exp (Experiencer sk_announce_1 sk_registry_1) (STV 1.0 0.99))
+    (: e_ann_past (Past sk_announce_1) (STV 1.0 0.99))
+    (: e_ann_th (Theme sk_announce_1 (And (Member sk_move_1 move) (Theme sk_move_1 sk_office_1)
+                                          (Past sk_move_1))) (STV 1.0 0.99))
+    (: t_reg (Member sk_registry_1 registry) (STV 1.0 0.99))
+    (: t_off (Member sk_office_1 office) (STV 1.0 0.99))
+
+**[seal-possessor-stays] The auditor claimed the warden's keys vanished.** — a referent's possessor stated only inside P stays SEALED; only typing/Name projects from an attitude seal
+
+    (: e_claim (Member sk_claim_1 claim) (STV 1.0 0.99))
+    (: e_claim_exp (Experiencer sk_claim_1 sk_auditor_1) (STV 1.0 0.99))
+    (: e_claim_past (Past sk_claim_1) (STV 1.0 0.99))
+    (: e_claim_th (Theme sk_claim_1 (And (Member sk_vanish_1 vanish) (Theme sk_vanish_1 sk_keys_1)
+                                         (Past sk_vanish_1) (Possession sk_keys_1 sk_warden_1))) (STV 1.0 0.99))
+    (: t_aud (Member sk_auditor_1 auditor) (STV 1.0 0.99))
+    (: g_keys (GroupOf sk_keys_1 key) (STV 1.0 0.99))
+    (: t_ward (Member sk_warden_1 warden) (STV 1.0 0.99))
+    ; and NO top-level (Possession sk_keys_1 sk_warden_1)
+
+**[denial-possessor-projects] The porter did not lose the abbot's satchel.** — out of a strength-0 denial, presupposed material projects: typing AND the definite's `Possession` sit at top level
+
+    (: no_lose (And (Member sk_lose_1 lose) (Agent sk_lose_1 sk_porter_1)
+                    (Theme sk_lose_1 sk_satchel_1) (Past sk_lose_1)) (STV 0.0 0.99))
+    (: t_port (Member sk_porter_1 porter) (STV 1.0 0.99))
+    (: t_sat (Member sk_satchel_1 satchel) (STV 1.0 0.99))
+    (: p_sat (Possession sk_satchel_1 sk_abbot_1) (STV 1.0 0.99))
+    (: t_abbot (Member sk_abbot_1 abbot) (STV 1.0 0.99))
+
+**[during-vs-in] The chandler dozed in the recital.** — `During` renders only "during / while / throughout": surface "in" keeps the preposition-named `In`
+
+    (: e_doze (Member sk_doze_1 doze) (STV 1.0 0.99))
+    (: e_doze_ag (Agent sk_doze_1 sk_chandler_1) (STV 1.0 0.99))
+    (: e_doze_past (Past sk_doze_1) (STV 1.0 0.99))
+    (: t_chand (Member sk_chandler_1 chandler) (STV 1.0 0.99))
+    (: t_rec (Member sk_recital_1 recital) (STV 1.0 0.99))
+    (: obl_in (In sk_doze_1 sk_recital_1) (STV 1.0 0.99))
+    ; and NO (During …)
+
+**[result-inf-no-purpose] The kite dipped to graze the hedge.** — a result infinitive is not a purpose: both events parsed, NO `To`/`InOrderTo` connective (gap recorded)
+
+    (: e_dip (Member sk_dip_1 dip) (STV 1.0 0.99))
+    (: e_dip_th (Theme sk_dip_1 sk_kite_1) (STV 1.0 0.99))
+    (: e_dip_past (Past sk_dip_1) (STV 1.0 0.99))
+    (: t_kite (Member sk_kite_1 kite) (STV 1.0 0.99))
+    (: e_graze (Member sk_graze_1 graze) (STV 1.0 0.99))
+    (: e_graze_ag (Agent sk_graze_1 sk_kite_1) (STV 1.0 0.99))
+    (: e_graze_th (Theme sk_graze_1 sk_hedge_1) (STV 1.0 0.99))
+    (: t_hedge (Member sk_hedge_1 hedge) (STV 1.0 0.99))
+    ; and NO (To sk_dip_1 sk_graze_1); the graze event carries no tense
+
+**[duration-adverb] The signal faltered briefly.** — a duration adverb takes the licensed `Duration` slot with its surface form
+
+    (: e_falt (Member sk_falter_1 falter) (STV 1.0 0.99))
+    (: e_falt_pat (Patient sk_falter_1 sk_signal_1) (STV 1.0 0.99))
+    (: e_falt_past (Past sk_falter_1) (STV 1.0 0.99))
+    (: t_sig (Member sk_signal_1 signal) (STV 1.0 0.99))
+    (: d_brief (Duration sk_falter_1 briefly) (STV 1.0 0.99))
+    ; and NO (Manner sk_falter_1 briefly)
+
+**[degree-adverb-drop] Demand weakened sharply.** — a degree adverb on a verb has no licensed slot: leave it out (gap), never mis-slot into `Manner`
+
+    (: e_weak (Member sk_weaken_1 weaken) (STV 1.0 0.99))
+    (: e_weak_pat (Patient sk_weaken_1 sk_demand_1) (STV 1.0 0.99))
+    (: e_weak_past (Past sk_weaken_1) (STV 1.0 0.99))
+    (: t_dem (Member sk_demand_1 demand) (STV 1.0 0.99))
+    ; and NO (Manner sk_weaken_1 sharply), NO sharply atom anywhere
+
+**[reduced-rel-no-tense] The barge hauling gravel docked.** — a participial reduced relative carries no tense atom: only the matrix docking is tensed
+
+    (: e_haul (Member sk_haul_1 haul) (STV 1.0 0.99))
+    (: e_haul_ag (Agent sk_haul_1 sk_barge_1) (STV 1.0 0.99))
+    (: e_haul_th (Theme sk_haul_1 gravel) (STV 1.0 0.99))
+    (: e_dock (Member sk_dock_1 dock) (STV 1.0 0.99))
+    (: e_dock_ag (Agent sk_dock_1 sk_barge_1) (STV 1.0 0.99))
+    (: e_dock_past (Past sk_dock_1) (STV 1.0 0.99))
+    (: t_barge (Member sk_barge_1 barge) (STV 1.0 0.99))
+    ; key check: NO (Past sk_haul_1)

@@ -235,8 +235,36 @@ Six patterns recur throughout; each is defined **here once** and only referenced
   (one symbol, one `Name`, no witness, no `(Member … upper)`) — while the same word lowercased
   carves out the sub-region as above.
 
+- A **proper noun premodifying a common-noun head** ("a Northgate spokesman", "the Vetch
+  quarterly results") never fuses into a compound — names sit outside *Compound concepts* —
+  and the head never joins the `Name` string. Parse the **head noun normally** (its own
+  witness/typing, compound rules applying to the head phrase alone) and link it to the named
+  entity with the **opaque `Possession`** (the loose-association licence) unless the text
+  states a more specific relation; never invent membership or `PartOf` the words don't state:
+
+      a Northgate spokesman …  →  (Member sk_spokesman_1 spokesman)
+                                  (Possession sk_spokesman_1 northgate) (Name northgate "Northgate")
+
+- A **capitalized common noun used as the referent's only label** ("the Assembly", "the
+  Keepers") is a **common noun by default** — definite/plural handling as usual, **no** `Name`
+  atom. It becomes a name only when the text signals name-hood: the capitalized run **exceeds
+  the bare class word** ("the Grand Assembly" → name), or a *different* word states the kind.
+  When a name **is** a bare kind-like word, that word also fills the type atom
+  (`(Member vetch vetch)`-style only if the text licenses the kind; otherwise the `Name` atom
+  may stand alone — a type atom is never invented, *Core patterns*).
+
 - A kinship or courtesy **title** ("Dr Okoro", "Uncle Bertrand") is **surface, not structure**: keep the full
   form in the `Name` string and derive the symbol from the name alone — `(Name okoro "Dr Okoro")`. Emit a kinship relation only if the text states whose relative they are.
+  An **occupational / office premodifier** ("Chief engineer Priya Rao", "prosecutor Iris
+  Vale") is **not** a courtesy title: it stays **out of the `Name` string** and becomes the
+  person's ordinary **typing atom(s)** (the title phrase through *Compound concepts*; a past
+  host clause wraps it like any appositive typing — *Status predicates*). **Post-nominal
+  tags** never join the `Name` string either: an **age appositive** (", 43,") →
+  `(Measure <person> old 43 year)`; a party/district tag ("D-Ashford") has **no licensed head**
+  — leave it out and record the gap. A **parenthetical secondary identifier** (a ticker, a
+  bracketed code) is dropped — a proper noun gets exactly **one** `Name` fact. A
+  **numeral-initial name** (a street address) keeps the whole run as one symbol with a
+  letter prefix so the symbol stays well-formed (`addr_54_mill_lane`), `Name` string verbatim.
 - An **existential witness** is anonymous — mint a fresh `sk_<class>_<n>` each time; witnesses
   don't corefer. (With a `CONTEXT` block, indices continue past the context's symbols —
   see **Input**.) A **pronoun with no antecedent** takes such a witness, classed by what the
@@ -423,6 +451,7 @@ sk_group_1 wooden)` says the group-as-object is wooden — the reading every plu
 warns against — so a descriptive modifier or copular predicate on a plural **always** goes
 through the distributive rule (or, for a bare plural, the kind), and a bare `(Member <group>
 <prop>)` appears only for a property genuinely of the collection itself (its size, its name).
+(The resultative flat dual-emit obeys the same bar on a group object — see *Resultatives*.)
 
 **Do not emit background rules.** The engine already has inheritance transitivity and
 "a member of a subclass is a member of the superclass". Emit only the atoms for the
@@ -530,7 +559,8 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
   (A **collective / reciprocal** predicate — "met with", "collided with" — instead stays one
   event with multiple `Agent` atoms, as does bare **"together" / "jointly" / "between them"** on a plural/coordinated
   subject; see **Coordination & plurals**.)
-- Obliques: `Instrument` (the **means**, "with a knife" — a tool or substance, never a person),
+- Obliques: `Instrument` (the **means**, "with a knife", and a **"via / by way of"** route or
+  channel — a tool, substance or conduit, never a person),
   `Location` ("in/at/on …"), `Time` ("yesterday"; dates &
   clock times — see **Time**), `Manner` (adverb), `Source` ("from …"), `Goal` ("to …"
   non-recipient), `Beneficiary` ("for …" — **only a party the event is done for the benefit
@@ -553,6 +583,15 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
   appeal" put the NP in the preposition's oblique — `(On sk_clamp_down_1 sk_vendor_1)` — not in
   `Patient` / `Theme`; the direct-object roles are for objects the verb takes **without** a
   preposition.
+
+**Adverbs that are not `Manner`.** `Manner` takes only *how*-adverbs of manner proper. A
+**duration adverb** ("briefly", "momentarily") → **`(Duration <event> <surface-adverb>)`** — a
+vague extent; the measured form stays `(Measure <event> duration <n> <unit>)`. A **sequence /
+ordering** adverb ("initially", "eventually", "finally"), a **scope / domain** adverb
+("nationally", "locally"), and a **degree adverb on a verb** ("sharply", "slightly" — outside
+the approximator / minimizer rules of *Comparatives & degree*) have **no licensed slot**:
+leave them out and record the gap — a mis-slotted `Manner` atom asserts a manner the sentence
+does not state.
 
 A **participial post-modifier** on a noun — "the rules **concerning** the levy", "a skiff
 **moored** at the jetty" — is a **reduced relative clause**, so it takes the ordinary **event**
@@ -745,7 +784,10 @@ raining", "it got cold", "it seems") is **not** a referent — drop it and reify
 An event with **no status predicate is generic / habitual / dispositional** — *not* a
 specific occurrence. Mark otherwise (stack as needed):
 
-- **Tense**: `(Past e)`, `(Future e)`. **`(Ongoing e)` needs an explicit marker** — there are exactly
+- **Tense**: `(Past e)`, `(Future e)` — on **finite** clauses only: an infinitive, participle
+  or gerund never carries a tense atom of its own (*Sequence of tense*; a participial reduced
+  relative tenses nothing — "the freighter **carrying** ore *sank*" tenses the sinking alone).
+  **`(Ongoing e)` needs an explicit marker** — there are exactly
   four: **progressive** morphology ("is / was V-ing"), a **continuative perfect** ("has lived there
   since 2019"), the **activity complement of an inceptive** ("started to cry" — the crying is
   ongoing), and the **participial complement of a perception verb** ("heard the engine stalling" —
@@ -866,7 +908,11 @@ in that state *because of* the verb. Two shapes, by what the result is:
   **When the object is a plural group, distribution wins**: a member state never rides the
   group symbol (*Coordination & plurals*), so the flat half becomes the per-member rule
   `(Implication (PartOf $x <group>) (Member $x <state>)) (STV 1.0 0.9)` beside the reified
-  result state — never `(Member <group> <state>)`.
+  result state — never `(Member <group> <state>)`. Where each member's **own reified state**
+  is needed (the state carries its own complement per member), the rule's conclusion may mint
+  Skolem-function states, mirroring per-member events:
+  `(Implication (PartOf $x <group>) (And (Member (sk_<state> $x) <state>)
+  (Experiencer (sk_<state> $x) $x)))`.
 
 - **Motion result** ("slid the plate off the counter", "pushed it into the box"): the result is a
   new **location**, already carried by the motion **obliques** — the object by its usual role
@@ -1004,6 +1050,16 @@ Parse P as usual (classes, roles, tense), then **seal** it (*Core patterns*).
   the clerk is the resign event's `Agent`). The matrix verb keeps its own surface lemma and
   roles; whether *managed* entails success and *tried* does not is downstream, never re-encoded
   here.
+- **The holder is `Experiencer` exactly when the complement seals.** A thought/speech verb
+  with a sealed finite complement (or the impersonal passive above) takes `Experiencer` —
+  *announce, report, say, confirm* included; the **same verb** with an **entity object** or a
+  **control infinitive** keeps its *Thematic roles* role by the ordinary tests ("claimed **to
+  have** taken it" → matrix `Agent`). And *say / report / announce / claim* stay
+  **non-factive** however credible the source reads — credibility never moves a verb onto the
+  factive list.
+- **Direct quotation** ("'P,' the envoy said") routes as the sealed finite complement it
+  paraphrases: seal P under `Theme` per all the rules above (a **wholly negative** quote drops
+  — see the Negation bullet). Verbatim wording is not preserved — registered limitation.
 
 QA — "Does X believe / know that P?" rebuilds `(And (Member $e <verb>) (Experiencer $e <holder>)
 (Theme $e <P>))`, reconstructing the sealed term (a variable stands for a referent with no top-level
@@ -1012,7 +1068,7 @@ a factive, and correctly finds nothing for a non-factive.
 
 ### Impersonal reported attitudes ("is considered / said / thought to be …")
 
-"X **is considered / regarded / thought / said / believed / reported / rumored** to be P" reports
+"X **is considered / regarded / thought / said / believed / reported / rumored / expected** to be / to V" reports
 a **general opinion, holder unspecified** — it does **not** make P true, so P must never be
 flattened into top-level facts. Route it as a **non-factive attitude with an agentless passive
 matrix**: reify the attitude event with **no** `Experiencer` (the holder is unstated, exactly as
@@ -1050,6 +1106,22 @@ non-factive bar). The source NP parses normally (a witness for an indefinite sou
 a named one). This sealing use is distinct from the surface-preposition **oblique**
 `(<Prep> <event> <object>)`: an "according to" phrase attributing a whole clause takes this
 form, never the oblique.
+
+### What projects out of a seal — interim table
+
+Two containers, two rules:
+
+- Out of a **strength-`0.0` denial bundle**: everything **presupposed** — referent typing,
+  `Name` atoms, and a definite's possessor / `Of` restrictors ("the registrar's ledger" keeps
+  its `Possession` at top level even when the predication is denied). The denial targets the
+  predication, never the referents' identity.
+- Out of an **attitude / quotation / `AccordingTo` seal**: exactly three things — (1)
+  `Member`/`Name` **typing** of definite and named referents; (2) **definitional
+  decomposition atoms** of compound kinds P mentions (`Inheritance` genus/modifier atoms —
+  definitional, speaker-independent); (3) a **factive**'s full P (as always). **Nothing
+  else**: a referent's possessor / `Of` links stated only inside P stay sealed, and a sealed
+  rule's `QuantifierPhrase` companion is a **sealed sibling** conjunct, never top-level.
+  (Fuller in-seal grammar is a registered limitation awaiting the fragment redesign.)
 
 ### Perception reports (see / hear / watch someone do …)
 
@@ -1223,6 +1295,15 @@ group's members via a rule, so a member named later is queryable; a **collective
 (gather, meet, assemble — the group as one unit) stays **group-only**. That machinery — and the
 **explicit universal** ("all the / each of the Ns V") — lives in *Quantifiers, generics & scope*.
 (Counts — "three students", "both", "several" — are under **Cardinality**; "or" under **Disjunction**.)
+
+**A bare plural in an episodic clause is a specific set, not a generic.** A bare-plural
+**subject** of a specific occurrence — past, dated, or one-off ("rescuers reached the ridge",
+"officials met on Monday") — mints a **group witness** (`GroupOf`) acting in a normal event;
+the generic **rule** route (*Quantifiers, generics & scope*) needs a genuinely generic clause
+(habitual present, characteristic claim). A bare-plural **object** in an episodic clause
+likewise takes an existential group witness when the set takes part in the occurrence
+("crates were stacked with **melons**" → a melon group); the **bare kind filler** stays for
+non-specific / kind-level objects ("pays **tax**", "grows **wheat**").
 
 ## Cardinality (counting)
 
@@ -1545,10 +1626,21 @@ A **measure** puts a number on a dimension, so it *can* use the engine's numeric
 
 - **scale** = the **surface dimension**: the gradable adjective if one is stated ("6 feet
   **tall**" → `tall`, "30 years **old**" → `old`), else the dimension noun ("**weighs** 5 kg" →
-  `weight`, "**costs** $20" → `price`). Record what's said — don't force a verb/noun onto an
-  adjective (so `weight`-measures and `heavy`-comparatives need not unify yet).
+  `weight`, "**costs** $20" → `price`) — a dimension noun stated **anywhere in the clause**
+  serves ("fell 8 percent **in value**" → `value`; a change verb whose **subject is itself the
+  dimension noun** — "the temperature fell…" — takes that word as the scale). Record what's
+  said — don't force a verb/noun onto an adjective (so `weight`-measures and
+  `heavy`-comparatives need not unify yet). A scale **no word supplies is never invented** —
+  an unstated dimension takes the reserved slot symbol `unspecified`.
 - **magnitude** = a native number; **unit** = lemmatized singular (`foot`, `meter`, `kilogram`,
-  `year`, `dollar`).
+  `year`, `dollar`). **`percent` is a unit** (a relative magnitude — `ProportionOf` stays the
+  count-proportion of a *set*, never a scalar measure). A **rate** ("40 cents a share", "twice
+  a year") is a compound unit `<unit>_per_<unit>` (`cent_per_share`); a rate on a **plural**
+  bearer states the normalized per-member quantity and is **exempt** from the group-aggregate
+  reading below. A unit **no word supplies is never invented** ("fell 14" gets no `point`) —
+  a stated bare figure keeps its magnitude with unit `unspecified`. `unspecified` is licensed
+  **only** in Measure-family scale/unit slots, never in place of a stated word; a measure with
+  an `unspecified` slot matches only questions that leave that slot unconstrained.
 
       Alice is 6 feet tall.       →  (Measure alice tall 6 foot) (Name alice "Alice")
       The rope is 3 meters long.  →  (Member sk_rope_1 rope) (Measure sk_rope_1 long 3 meter)
@@ -1573,6 +1665,30 @@ was 6 feet tall" → `(Past (Measure alice tall 6 foot))`).
 
   An **exact** value stays a plain number; only a hedged value becomes a distribution — so one
   dimension may hold either form across entities (hence the union on threshold questions).
+
+### Scalar change (rose / fell / up / down / "from X to Y")
+
+A **scalar-change eventuality** — a change-of-value verb (*rise, fall, climb, drop, gain,
+lose, ease, jump, slip*) or a copular **"was up / down"** state (reify the `up`/`down` state as
+usual) — carries its figures on the **eventuality itself**, with three Measure-shaped heads
+(same slots as `Measure`: `<scale> <magnitude> <unit>`):
+
+- **`(MeasureBy <event> <scale> <mag> <unit>)`** — the **delta** ("fell **8 percent**",
+  "was up **37 cents**"). Direction lives in the verb/state lemma, never in a signed number.
+- **`(MeasureFrom <event> …)` / `(MeasureTo <event> …)`** — the stated **start / end values**
+  ("rose **from 3 to 4 dollars**" → both atoms; "rose **to** 46 dollars" → `MeasureTo` only).
+  An end value is **never a spatial `Goal`** and never becomes the bearer's own timeless
+  `Measure` — the sentence states the change, not a standing fact.
+
+A restatement pair ("fell 12 tons, **or 8 percent**") is **two true `MeasureBy` atoms** on one
+event — never an `Or` (each figure is asserted, in its own unit). All slot rules above apply:
+stated dimension nouns fill the scale, `unspecified` fills what no word supplies, and no
+scale/unit is ever taken from world knowledge.
+
+      The temperature fell from 9 to 7 celsius.
+        →  (Member sk_fall_1 fall) (Theme sk_fall_1 sk_temperature_1) (Past sk_fall_1)
+           (Member sk_temperature_1 temperature)
+           (MeasureFrom sk_fall_1 temperature 9 celsius) (MeasureTo sk_fall_1 temperature 7 celsius)
 
 **Measure questions.** A **value-retrieval** question ("how tall?") just binds the magnitude — one
 line, and the bound variable captures a plain number or a distribution alike:
@@ -1855,7 +1971,10 @@ is what makes the decrement well-defined; do not reach across cycles.
 **Intervals** — an eventuality with a stated extent gets **`(Start e <term>)` / `(End e
 <term>)`** ("from X to / until Y"; "since X" → `Start` only, usually with `Ongoing`; "until Y" →
 `End` only). "**during / while / throughout**" nests one eventuality inside another:
-**`(During <inner> <outer>)`**, both reified. A **duration** ("for three hours", "lasted two
+**`(During <inner> <outer>)`**, both reified — and **only for those three words**: an event
+"in July" is `Time`, "in the final round" the preposition-named `In`, "in a statement" likewise
+`In`. `During` for a surface "in" / "of" is the single most common head error — never a
+synonym head. A **duration** ("for three hours", "lasted two
 days") is a measure — **`(Measure e duration <n> <unit>)`** — converting to canonical **second**
 via the seeded lexicon (*Measures & units*); seeded rules also derive a duration from a same-day
 `Hour` or `Year` `Start`/`End` pair. A **bare-plural** duration with no stated count ("for days",
@@ -2439,6 +2558,10 @@ introduces a symbol (witness `sk_<class>_<n>`, event `sk_<verb>_<n>`, or name-de
 `alice`); every later mention of that referent reuses it, so facts from different sentences
 attach to one symbol. Resolve each anaphor to the most salient compatible antecedent
 (gender/number agreement + recency); if there is genuinely no antecedent, treat it as new.
+In a **contrastive "some … others …" pair**, an antecedentless pronoun repeated across the
+two clauses ("Some depots log them daily; others log them weekly") takes a **fresh witness in
+each clause** — the contrast means each set handles *its own* items, and one shared symbol
+would predicate both clauses' (possibly contradictory) states of a single set.
 **A `CONTEXT` block extends the antecedent pool across passages**: its entities (with their
 `Name`s and classes) are available antecedents exactly like earlier sentences of the passage —
 reuse their symbols, re-emit nothing (see **Input**).
@@ -2564,6 +2687,11 @@ X, Y") still puts the main clause Y first:
   "The clerk knelt to check the drain." → `(To sk_kneel_1 sk_check_1)` (head `To`; "in order
   to" → `InOrderTo`). **Not** "**too** / **enough** ADJ **to** V" — a degree-governed
   infinitive is the **capability** form (see **Comparatives & degree**), not a purpose.
+  And **not a result / outcome infinitive** ("rebounded to close at par", "woke to find the
+  yard flooded") — no aim is stated, and the purpose `To` feeds a seeded `PurposeOf` bridge
+  that would assert one: a **scalar endpoint** routes via `MeasureTo` (*Scalar change*); any
+  other result infinitive has **no licensed connective yet** — parse both events, omit the
+  link, record the gap.
 - **Belief-reason**: after an attitude clause, the antecedent of "so" is the attitude
   eventuality itself — "Joel thought the tram would be crowded, so he cycled." →
   `(So sk_think_1 sk_cycle_1)`, with the belief content **sealed** under the think event's `Theme`
