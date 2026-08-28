@@ -1,0 +1,12 @@
+{"id": "tierD-000083", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The irrealis relative clause \"that would have fully legalized marijuana\" is asserted as ordinary top-level fact (statements 1-8), so the parse claims marijuana was legalized for medical purposes in Connecticut — which the sentence denies by saying the bill was defeated."},
+               {"statement": 1, "issue": "The legalize event carries no status atom at all, so by the unmarked default it reads as a generic / habitual eventuality rather than an unrealized one."},
+               {"statement": 3, "issue": "(Patient sk_legalize_1 marijuana) treats the substance as changed by the legalizing, where its legal status changes rather than the object itself, and the instruction set defaults an unclear case to Theme."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Counterfactual / irrealis \"would have V-ed\" in a relative clause with no if-antecedent — Counterfactual is defined only for the subjunctive \"if X had V-ed, Y would have V-ed\" pair, so a bare would-have modifier on an NP has no licensed non-asserting encoding.",
+             "Degree / evaluative clause adverbs (\"fully\" legalized, \"narrowly\" defeated) — the only licensed adverbial slot is Manner, which records how the action was done rather than its extent or its margin."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The matrix clause (agentless passive defeat with Patient bill, Past, Location, Weekday time, House of Representatives name) is faithful, and the medical_purpose compound with its genus and modifier atoms follows the compound rules; the whole defect sits in the unmodalized relative clause."}

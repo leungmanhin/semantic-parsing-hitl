@@ -1,0 +1,13 @@
+{"id": "tierD-000223", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "`(PartOf sk_basement_1 sk_house_1)` is asserted at top level, but the sealing rule projects only a definite referent's `Member`/`Name` typing atom — a part-whole predication belongs inside the seal, and its second argument sk_house_1 is an indefinite that exists only inside it."},
+               {"statement": 7, "issue": "\"missing teenagers\" is fused into the compound kind `missing_teenager` with a modifier genus, but \"missing\" is incidental description, which the compound rules say never fuses — it should split off and distribute over the group's members."},
+               {"statement": 7, "issue": "`(Patient sk_uncover_1 sk_bodies_1)` fails the change test — uncovering/discovering leaves the bodies as they were, which the instruction set routes to `Theme` (and `Theme` is also the stated default when the test is unclear)."},
+               {"statement": 7, "issue": "The pre-nominal participial modifier in \"freshly poured concrete\" is reified as a full `pour` event, where the instruction set's \"laminated worktop\" rule makes a participle used as a modifier the adjective `(Member sk_concrete_1 poured)`."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["an adverb modifying a pre-nominal participle (\"freshly poured\") — if the participle stays adjectival per the laminated-worktop rule there is no slot for the adverb, and reifying an event to host it asserts an occurrence the modifier only presupposes",
+             "a bare plural subject with a specific episodic reading (\"authorities said Wednesday\") — the instruction set routes bare plurals to generics/rules, and the group-witness route is stated for definite/counted plurals; it is also silent on whether the distributive per-member rule is due here"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The non-factive seal under `say`, the `(For sk_search_1 ...)` argument oblique on \"a search for\", `CardinalityAtLeast 2` for \"at least two\", and the reduced-relative event for \"buried\" all follow the instruction set."}

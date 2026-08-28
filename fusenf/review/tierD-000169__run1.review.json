@@ -1,0 +1,13 @@
+{"id": "tierD-000169", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "\"was up 5.91 points\" states a change against a prior value, but Measure asserts an absolute magnitude on a scale, so the parse records the index as measuring 5.91 on an `up` dimension (same distortion at statement 4 for the percentage)."},
+               {"statement": 5, "issue": "For \"at 1,674.35\" the scale `level` and the unit `point` are both supplied by the parse; the text names no dimension and no unit alongside that value."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Delta / change-of-value measures (\"was up 5.91 points\", \"fell 3 percent\"): Measure and MeasureAtLeast/AtMost record absolute values and MoreBy needs two named relata, so a bare rise or fall has no licensed carrier.",
+             "Appositional / equivalence \"or\" restating one quantity in another unit (\"5.91 points, or 0.35 percent\"): the Disjunction section treats every \"or\" as inclusive disjunction requiring an opaque (Or ...), which is not this reading.",
+             "A bare \"at <number>\" value with no dimension noun and no unit in the text.",
+             "Discourse-initial \"But\" whose contrasting clause lies outside the supplied TEXT: the adversative rule requires two reified endpoints."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The name/kind split for \"Nasdaq Composite Index\" and the Past wrappers on the measures follow the instruction set; asserting both the point and percent figures is the right reading of the appositional \"or\" even though the Or rule as written does not license it."}

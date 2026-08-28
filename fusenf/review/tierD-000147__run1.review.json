@@ -1,0 +1,19 @@
+{"id": "tierD-000147", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 13, "issue": "`During` is used for the surface preposition \"in\" (\"in Thursday morning trading\"); the instruction set states the head must be the preposition actually used and that `During` renders only the word \"during\"."},
+   {"statement": null, "issue": "no kind/type atom for `nasdaq_stock_market` — the naming rule requires the entity's kind be stated in an ordinary type atom whether the kind word sits inside the name or beside it."},
+   {"statement": 8, "issue": "`(Measure sk_shares_1 price 27.43 dollar)` puts a per-share price on a group symbol, where the instruction set reads a measure on a plural as the group AGGREGATE (it does not distribute)."},
+   {"statement": 6, "issue": "`(Measure sk_rise_1 price 4 dollar)` predicates a price of the rise EVENT rather than recording a delta; the $4 is the size of the change, not the event's price."},
+   {"statement": 7, "issue": "a second `Measure` on the same entity and the same `price` scale (17.2 percent) collides with statement 6 — the two are the same delta restated by an appositive \"or\", not two independent measures."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "a measured delta on a scalar-change verb (\"rose $4\", \"to $27.43\") — `MoreBy` is comparative-only and `BeforeBy` temporal-only, so neither the increment nor the resulting value has a licensed encoding",
+   "reformulative/appositive \"or\" (\"$4, or 17.2 percent\") that restates one quantity in another unit rather than disjoining — treating it as `(Or ...)` would be wrong and nothing else is offered",
+   "a proper-noun modifier on a common noun (\"Allegiant shares\") — neither the multi-word-name rule (whole NP is a name) nor the possessor/part \"car engine\" rule squarely covers a company name naming the issuer"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Source text is defective (\"$17.2 percent\" mixes a currency sign with a percentage). `(Possession sk_shares_1 allegiant)` is a defensible opaque reading of \"Allegiant shares\" given the gap above."}

@@ -1,0 +1,11 @@
+{"id": "tierD-000124", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 13, "issue": "`(Inheritance assistant_secretary_of_energy_for_defense_programs assistant)` exposes a noun/role modifier as a genus; the compound rule exposes a modifier only when it is an adjectival property predicable of the referent."},
+               {"statement": 12, "issue": "the office title is fused into one six-word symbol that no licensed compound route builds — the modifier_noun rule would take the last word (`program`) as the genus — and `defense_programs` is left unlemmatized, so `energy` and `defense program` are unreachable."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a multi-word office/role title containing internal PPs (\"assistant secretary of energy for defense programs\") — the compound rules cover only modifier+head-noun fusion and the name rules only capitalized proper names",
+             "\"then-President Ronald Reagan\" — an office title with a temporal modifier attached to a name: the title rule keeps a title inside the `Name` string, the appositive rule makes it a tense-wrapped typing atom, and neither route carries the \"then-\""],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The antecedent-less \"he\" takes the mandated `person` witness, \"after retiring\" correctly yields `Before` with no connective atom, and the appointment outcome uses the licensed state-result shape (reified state + `Experiencer` + flat copular atom + `Result`)."}

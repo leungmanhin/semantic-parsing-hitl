@@ -1,0 +1,12 @@
+{"id": "tierD-000014", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "The possessive in \"its star\" is not encoded anywhere — no Possession or PartOf links sk_star_1 to sk_planet_1, either inside the seal or at top level, so the star's connection to the planet is lost."},
+               {"statement": 3, "issue": "(Ongoing sk_form_2) is emitted for \"was ... just in the process of forming\", which is not one of the four explicit Ongoing markers the instruction set enumerates."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["periphrastic progressive \"be in the process of V-ing\" — Status predicates fixes exactly four Ongoing markers (progressive morphology, continuative perfect, inceptive complement, perception participle) and this is none of them",
+             "numeric scale words (\"12.713 billion years\") — Measures & units gives no rule for expanding billion/million into the magnitude slot, nor for keeping the scale word",
+             "a \"with\"-phrase naming an INANIMATE co-participant (\"the planet formed with its star\") — the stated split is CoAgent (animate) vs Instrument (the means), and neither fits, leaving the case to the preposition-named oblique only by default"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The non-factive seal is handled correctly — nothing about the planet's formation is asserted at top level, and only the definite referents' typing atoms project. BeforeBy against the reserved now, and During for the \"when\"-clause, both match the Time section."}

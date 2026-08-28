@@ -1,0 +1,18 @@
+{"id": "tierD-000061", "run": 1,
+ "q1_faithful": "no",
+ "q1_issues": [
+   {"statement": 4, "issue": "The sealed Theme contains only the comptroller's typing atom, so the entire complement proposition — the negated 'had not certified the appropriations act' event with its Agent and Patient, and the 'first time' claim — is absent from the parse."},
+   {"statement": 4, "issue": "As written the parse records Strayhorn as having said merely that a comptroller is a comptroller, which is not what the sentence reports."},
+   {"statement": null, "issue": "The negation 'had not certified' is nowhere represented: no strength-0 (And ...) bundle appears anywhere in the output."},
+   {"statement": 5, "issue": "sk_act_1 is typed at top level (correct projection for a definite inside a seal) but is never filled into any role, because the certify event it belongs to was never reified."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "'it was the first time (that) P' — an ordinal/superlative ranking over OCCASIONS of a proposition, with an expletive 'it' subject and a clausal complement; Ordinal ranks an entity on a scale and Most ranks within a class, neither of which fits a ranked occurrence of a whole clause",
+   "'in Texas history' — a domain/scope restriction on such an ordinal-over-occasions claim (ConditionalProperty's condition slot is for kind-level properties, not for a first-time claim about an event)",
+   "a negated clause serving as the ranked argument of a 'first time' construction (the strength-0 (And ...) form is a top-level assertion device with no slot inside another operator)"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Experiencer on 'say' and the top-level projection of the definite 'the appropriations act' are both correct per the attitude and sealing rules; the failure is that essentially the whole complement is missing. The compound kind appropriations_act with its genus and unexposed noun modifier is handled per Compound concepts."}

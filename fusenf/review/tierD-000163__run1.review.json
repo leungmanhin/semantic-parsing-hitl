@@ -1,0 +1,14 @@
+{"id": "tierD-000163", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 2, "issue": "`(Member sk_workers_1 international)` predicates a descriptive modifier of the group symbol; the instruction set says a descriptive modifier on a plural distributes over the members and that a bare `(Member <group> <prop>)` is reserved for a property of the collection itself (its size, its name)."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "a proper noun used as a modifier inside a common-noun compound (\"Silk Road city\") — the naming rules give a proper noun its own symbol and a mandatory `Name` fact, while the compound rules bury an unexposed modifier in the fused symbol; no rule reconciles the two, and the parse's `silk_road_city` leaves \"Silk Road\" with no `Name`",
+   "whether a counted plural in OBJECT position (\"killed more than 20,000 people\") takes the per-member distribution rule — the distributive-predicate rule form is stated subject-side (\"each member acts separately\") and gives no guidance for a group filling `Patient`"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"more than 20,000\" -> `CardinalityAtLeast 20001`, \"after\" -> a swapped `Before` with no connective atom, participial `flattened`/`shattered` kept as adjectives, and inanimate transitive `Agent` on the earthquake all follow the instruction set exactly."}

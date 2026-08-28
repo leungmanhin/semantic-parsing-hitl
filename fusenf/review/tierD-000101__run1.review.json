@@ -1,0 +1,15 @@
+{"id": "tierD-000101", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 5, "issue": "`(Inheritance coastal_state_government coastal)` mis-brackets the compound — \"coastal\" modifies \"state\", not \"government\", and a government is not predicable as coastal, so the modifier fails the instruction set's own \"can it be predicated of the thing?\" test for exposing a genus."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "A THREE-word compound with internal bracketing (\"[coastal state] government\") — the Compound-kind rule assumes a single modifier plus head noun and gives no treatment of a modifier that attaches to the inner noun rather than to the referent.",
+   "\"share X with Y\" — the with-phrase names neither a co-doer (`CoAgent`) nor a means (`Instrument`), and `Recipient` is defined for \"to\"; the two-branch test given for with-phrases has no branch for a transfer partner.",
+   "Sentence-initial discourse \"And\" with no second clause present in the text (correctly emitted as nothing here, but the instruction set never says so)."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"does not have to share\" is correctly a strength-0 bundle containing `Obligated` — a negated obligation, not the `(Permitted …)` 0.0 prohibition form — with the definite \"the wealth\" typed outside the denial and the bare-plural governments inside it. The fronted \"because\" still puts the main clause first, and the copular endpoint state is reified with the flat atom kept."}

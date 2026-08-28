@@ -1,0 +1,18 @@
+{"id": "tierD-000039", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 5, "issue": "(Member sk_classes_1 full) predicates the descriptive adjective 'full' of the group symbol instead of distributing it to the members, the exact reading the plural rules warn against."},
+   {"statement": 5, "issue": "The binominal 'of 48 each' is encoded as (Implication (PartOf $x sk_classes_1) (Cardinality $x 48)) nested inside the sealed term, so the rule carries no truth value of its own and counts each class without any GroupOf making it a group."},
+   {"statement": 5, "issue": "(Patient sk_book_1 sk_classes_1) — booking reserves the classes without creating, destroying or changing them, so the change test gives Theme."},
+   {"statement": 5, "issue": "'its classes' is a possessed (definite) plural inside the seal, so its GroupOf typing atom should project to top level the way (Member sk_agency_1 agency) does."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "binominal distributive numeral — 'classes of 48 each', a per-member count riding on a plural",
+   "scope of a medial parenthetical attribution — '<clause>, he said, and <clause>' gives no rule for whether the following coordinate clause falls inside the report",
+   "a boundary phrase as an interval endpoint — 'through the end of next month'; End is specified for structured time terms and deictic constants, not for 'the end of X'"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The parse seals both coordinated clauses under 'he said', which is a defensible reading of the medial attribution but is the choice the instruction set leaves open."}

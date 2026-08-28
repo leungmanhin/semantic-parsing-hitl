@@ -1,0 +1,13 @@
+{"id": "tierD-000160", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "\"his name has not been released\" contributes no event at all: the strength-0.0 (And ...) bundle for the release (class + Theme + Past) required by Negation (events) is missing, so the clause's only assertion is dropped."},
+               {"statement": 12, "issue": "(Member sk_name_1 name) and (Possession sk_name_1 sk_passenger_1) survive as the projected definite typing of a denial that was never emitted, leaving them stranded (statements 12 and 13)."},
+               {"statement": null, "issue": "sk_say_1 has no Theme - the reported content of \"Jones said\" is unattached, so the say event records that Jones said something with no proposition."},
+               {"statement": 7, "issue": "\"later\" is unencoded: no Before / BeforeBy or other ordering atom records that the death followed an earlier reference time."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a sentence-final reporting clause (\"..., Jones said\") and its scope - the instruction set covers only matrix-first \"X said that P\", and does not say whether a postposed attribution seals the preceding clause(s) under Theme or leaves them asserted at top level, nor how far left its scope reaches across a semicolon",
+             "a relative temporal adverb (\"later\") whose anchor lies outside the item"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The first clause is parsed correctly - non-fused \"injured passenger\" as two atoms with the participle kept as an adjective, LocatedIn licensed by \"at\", Patient on the change-of-state intransitive \"died\", bare day-part morning on Time, and no connective atom for the semicolon. The second clause is effectively lost."}

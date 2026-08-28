@@ -1,0 +1,9 @@
+{"id": "tierD-000165", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "The clause is present tense (\"is\"), yet the membership atom is wrapped in (Past ...); the surface-tense rule wraps only a past-tense copular, and \"retired\" is already carried as a property by statement 1."}, {"statement": 4, "issue": "The same unlicensed (Past ...) wrapper on a present-tense copular, and the privative \"former\" gets no atom at all - the tense wrapper silently stands in for it."}, {"statement": 2, "issue": "The proper noun \"Air Force\" is fused into the compound symbol air_force_major_general, so the named organization gets no symbol and no (Name ...) fact, which the naming rule makes mandatory."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["privative / non-subsective adjectives (\"a former shuttle pilot\", \"a retired major general\") - no encoding for \"was but is no longer a P\"; the participle-as-modifier rule only turns them into ordinary positive properties", "a proper-noun modifier inside a common-noun compound (\"Air Force major general\"), where the capitalized run is only part of the phrase and the compound rules and the naming rules give conflicting instructions"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The coordinated predicate NPs are correctly distributed into one atom each, and shuttle_pilot's genus-only decomposition (noun modifier not exposed) is right."}

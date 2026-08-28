@@ -1,0 +1,11 @@
+{"id": "tierD-000050", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 6, "issue": "The second conjunct \"the eighth in women\" is parsed over `american_woman`, asserting an \"American\" restriction that the text states only for the men conjunct."},
+               {"statement": 3, "issue": "The domain PP is folded into a fused property `common_in_american_man` used as an Ordinal scale, but the adjective-plus-complement fusion is licensed only for a kind-level generic's flat Inheritance predicate, and a domain-restricted kind-level property is otherwise routed to ConditionalProperty (\"voles are common in the fens\")."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A ranked superlative carrying a domain restriction (\"the fourth most common cancer in American men\"): Ordinal/Most have no condition slot, and ConditionalProperty — the licensed home for a domain-restricted kind-level property — has no rank slot, so neither form can hold both halves.",
+             "Ellipsis in a coordinated ranking (\"and the eighth in women\"): nothing states how much of the first conjunct's restriction is reconstructed, i.e. whether \"American\" carries over."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The `bladder_cancer` / `american_man` compound decompositions and the 0.9 confidence on the kind-level rank atoms follow the instruction set; the domain restriction is the only place the encoding leaves its licence."}

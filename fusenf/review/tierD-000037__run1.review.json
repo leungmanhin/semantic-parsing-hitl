@@ -1,0 +1,16 @@
+{"id": "tierD-000037", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 10, "issue": "\"new\" is folded into the run-rule's consequent as `(Member $x new)`, making being-new a consequence of group membership bundled with the running claim, when a descriptive modifier on a definite plural takes its own distribution rule and belongs to the referring NP rather than to what was said."},
+   {"statement": 7, "issue": "\"the x86 version of Solaris\" is encoded `(PartOf sk_version_1 solaris)`, but a version is not a component of Solaris, so the genitive test selects the opaque `Possession` instead."},
+   {"statement": null, "issue": "The definite plural \"the new servers\" with a distributive predicate yields only the per-member rule; the group-level run event that the plural rules predicate over as a unit is not emitted alongside it."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "Sealing a QUANTIFIED complement — a multi-atom attitude complement is specified to seal as `(And …)`, but nothing states how an `(Implication …)` rule (what a definite-plural distributive complement produces) is sealed under `Theme`.",
+   "A post-posed quotative \", he said\" with no \"that\" complementizer — the propositional-attitude section is written for a finite clausal \"that\"-complement."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The antecedent-less \"he\" correctly becomes `sk_person_1`/`person`, the `Or` is scoped narrowly around only the varying `Theme`, `Future` sits inside the rule consequent, and the definite referents inside the seal have their typing projected at top level."}

@@ -1,0 +1,18 @@
+{"id": "tierD-000068", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 13, "issue": "(Although sk_know_1 sk_know_2) violates \"main / matrix clause first\" — the matrix clause is the saying (sk_say_1) — and its first argument sk_know_1 exists only inside the doubly sealed say>believe complement, so a top-level connective atom points at an event that is never asserted."},
+   {"statement": 14, "issue": "same as statement 13: (Although sk_know_1 sk_know_3) takes a first argument that lives only inside the seal and is not the main clause."},
+   {"statement": 10, "issue": "\"one of her former schoolmates\" is a cardinal partitive over a definite (possessed) plural, but it is collapsed to a lone witness — no superset (GroupOf G schoolmate), no (SubsetOf S G), no (Cardinality S 1)."},
+   {"statement": 10, "issue": "\"knew OF the girl\" is a prepositional verb, whose object the instruction set routes to the preposition-named oblique (Of sk_know_1 sk_girl_1) rather than to a direct-object role such as Stimulus."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "privative / non-intersective adjectives (\"former schoolmate\", \"alleged\", \"fake\") — the adjective+noun split asserts the bare noun, (Member sk_schoolmate_1 schoolmate), which \"former\" precisely denies",
+   "whether a connective atom may take an endpoint that exists only inside a seal — the only stated rule of this shape is the Time section's \"ordering atoms never cross a seal boundary, in either direction\"",
+   "the partitive trigger is listed as \"of the / of these / of those / of them\"; a possessive-determiner partitive (\"one of HER schoolmates\") is not named, though the categorical section treats possessed plurals as definite"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The nested non-factive seals (say > believe > know), the \"neither A nor B\" split into two strength-0 event bundles, and the top-level projection of the definite girl / family / Cruz typing atoms all follow the instruction set. The fourth_grade_girl compound with its genus and unexposed noun modifier is also correct."}

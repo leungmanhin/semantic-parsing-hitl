@@ -1,0 +1,15 @@
+{"id": "tierD-000188", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 3, "issue": "(Ordinal sk_column_1 last column) puts the entity's own kind in the <scale> slot, which the instruction set defines as the associated event (e.g. appear) or an explicit '-est' dimension, not the class of the ranked thing."},
+   {"statement": 10, "issue": "Time is attached to sk_edition_1, a non-event noun, whereas Time atoms are specified for an event witness or an event-denoting noun ('the show', 'the storm')."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "a temporal 's-genitive ('Friday's edition', 'yesterday's paper') where the possessor is a date rather than an owner — the genitive rule mechanically yields (Possession sk_edition_1 friday), which asserts a possessor relation the text does not state, while the Time role is scoped to event witnesses",
+   "a proper noun with no stated kind ('The Afro') — the name rule tells you to state the kind in a separate type atom, but here no kind word appears in or beside the name, so the entity stays untyped apart from its Name"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Possession for \"Lacy's ... column\", PartOf for the 'edition of The Afro' part-whole, Patient for the intransitive change-of-state 'appeared', and the single Name atom on the multi-word name are all consistent with the instruction set."}

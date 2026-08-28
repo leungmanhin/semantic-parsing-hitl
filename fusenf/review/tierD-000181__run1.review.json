@@ -1,0 +1,12 @@
+{"id": "tierD-000181", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 12, "issue": "\"Los Angeles Mayor\" is recorded as `(Possession richard_riordan los_angeles)`, which asserts a bare possession link between the man and the city rather than relating him to the office he held there."},
+               {"statement": 8, "issue": "`Ongoing` is emitted for a bare participial post-modifier (\"those awaiting\"), which is not one of the four explicit progressive markers the instruction set allows (there is no \"is/was V-ing\" auxiliary)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a pre-nominal office title carrying its own place argument (\"Los Angeles Mayor Richard Riordan\") — the title rule covers only kinship/courtesy titles and offers no way to attach the jurisdiction to the office",
+             "privative / temporal \"former\" before a role noun — no rule; the parse approximates it with `Past`-wrapped atoms",
+             "tense/aspect inheritance for a reduced relative clause (the instruction set fixes this only for appositives, which take the host clause's wrapper)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The core predication is right: \"those\" becomes a `person` group, the fronted \"among\" membership is recorded with `PartOf` on the named member, and \"Schwarzenegger's decision\" takes the ordinary genitive `Possession`."}

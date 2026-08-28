@@ -1,0 +1,11 @@
+{"id": "tierD-000162", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 8, "issue": "'first-quarter' is attached as a Time role on 'profit', a non-event noun, where Time attaches to event witnesses or event-denoting nouns; the compound rule would instead fuse first_quarter_profit with genus (Inheritance first_quarter_profit profit), the noun-modifier left unexposed as in night_shift."},
+               {"statement": 10, "issue": "The per-share figure is stored as a second Measure on the same entity under the same 'profit' scale as the dollar total, so a rate (cent_per_share) and a money amount read as two competing values of one dimension."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["appositive / equivalence 'or' ('$13.1 million, or 22 cents per share' — one amount restated, not a disjunction) — the disjunction section treats every 'or' as introducing a disjunct and would emit an (Or ...)",
+             "a participial post-modifier that is itself a stative locative ('the company, based in Winston-Salem') — the reduced-relative rule prescribes an event with the modified noun in a role, while the stative-locative rule prescribes a bare LocatedIn and no event"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The appositive taking the host clause's past wrapper — (Past (LocatedIn sk_company_1 winston_salem)) — follows the mechanical tense rule, and winston_salem plus its Name string are right for a hyphenated proper noun. Expanding '$13.1 million' to 13100000 is numeral normalization rather than a unit conversion, so it stays inside the rules."}

@@ -1,0 +1,12 @@
+{"id": "tierD-000196", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 6, "issue": "The scale symbol `gain` (also at statement 7) appears nowhere in the sentence — the surface word is \"up\" — while the measure rule requires the surface dimension actually stated."},
+   {"statement": 5, "issue": "The closing level is stored as (Measure sk_close_1 close 8227.32 point): `close` is the verb lemma rather than a dimension, the measure hangs on the event instead of the index, and the unit `point` is carried over from the separate delta phrase where the text states no unit."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a delta / change-in-value measure (\"closed up 42.56 points\") — Measure records an entity's level on a dimension and MoreBy compares two entities, so one entity's change across time has no licensed form and is indistinguishable here from a level",
+   "the appositive / reformulating \"or\" (\"42.56 points, or half a percent\") restating one quantity in another unit — the Disjunction and Xor sections define only the inclusive and exclusive senses",
+   "an index or price level reported by \"closed at N\" with no stated gradable adjective or dimension noun"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Correctly emits no (Or ...) for the reformulating \"or\", converts \"half a percent\" to 0.5 percent, and types the multi-word name with (Member nikkei_average average) plus one Name fact; the intransitive subject as Patient (change-of-state undergoer) is defensible under the subject test."}

@@ -1,0 +1,13 @@
+{"id": "tierD-000142", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 6, "issue": "The sentence says the team's MEMBERS hold the shares, but Holder is the team witness itself — the plural subject 'Members of the QVC management team' never gets a symbol of its own."},
+               {"statement": 2, "issue": "(GroupOf sk_team_1 member) records a vacuous member kind on the team witness and stands in for that missing member group, conflating the collective with its members — the crew/committee conflation the prompt warns against."},
+               {"statement": 8, "issue": "'the remaining shares' is a definite plural, so Categorical statements requires a group witness (GroupOf <g> share), not the singular (Member sk_shares_1 share)."},
+               {"statement": 9, "issue": "'remaining' is predicated of the plural symbol as a bare property, bypassing the RestOf portion encoding Partitives gives 'the remaining X'."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["'the remaining X' with no antecedent whole anywhere in the text — the Partitives RestOf form needs a whole to point at",
+             "a proper-noun modifier inside a compound NP ('the QVC management team') — Compound concepts covers common-noun and adjective modifiers only"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Holder for 'hold shares' is defensible as possession, though the prompt's own 'the tank holds forty litres' example puts a stative transitive on Agent. (PartOf sk_team_1 qvc) is a reasonable part-whole reading of a construction the instruction set does not address."}

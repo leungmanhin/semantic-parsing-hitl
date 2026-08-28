@@ -1,0 +1,17 @@
+{"id": "tierD-000116", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 1, "issue": "\"a PC\" is an indefinite introduced only inside the second Or branch, so its `(Member sk_pc_1 pc)` typing must stay inside that branch; asserting it at top level claims the PC exists regardless of which disjunct holds."},
+   {"statement": 2, "issue": "same for \"a USB connection\" — `(Member sk_usb_1 usb_connection)` is asserted at top level although the entity is posited only by the second disjunct."},
+   {"statement": null, "issue": "the modifier \"additional\" on \"applications\" is dropped entirely — no distributed property atom and no fused kind."},
+   {"statement": 4, "issue": "the subject is a bare-plural/mass kind under \"can\", which the instruction set routes to the kind-level reified property rather than an event `(Can e)`; the parse keeps the event form (see the coverage gap — the passive makes the prescribed form inexpressible)."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "capability generic in the passive voice (\"Ns can be V-ed\") — the instruction set routes a kind-level \"Ns can V\" to `(Inheritance <kind> (can <verb>))`, which cannot express the kind as the undergoer, and offers no alternative form",
+   "\"via\" as a means preposition — it falls under the means test for `Instrument`, but the mechanical rule that the head is \"the preposition actually used\" leaves it unclear whether `Via` is required instead"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The narrow Or-scoping and the distributive split of the coordinated subject both follow the instruction set; the defect is that the second branch's indefinite witnesses escape the branch."}

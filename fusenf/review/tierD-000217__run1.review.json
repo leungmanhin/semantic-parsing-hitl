@@ -1,0 +1,18 @@
+{"id": "tierD-000217", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 2, "issue": "`(Member sk_note_1 benchmark)` predicates a restrictive noun modifier of the group symbol; on a plural the instruction set requires either a fusing classifier riding the group's kind slot or a modifier distributed over the members, never a bare property on the group."},
+   {"statement": 3, "issue": "the scale `maturity` is nowhere in the text — \"10-year\" states a magnitude and unit but names no dimension, so the scale is supplied from world knowledge, against \"point at the words that put the atom there\"; the measure also sits on a group symbol, where a plural measure reads as the aggregate."},
+   {"statement": 7, "issue": "the `Measure` magnitude slot must hold a native number (or a `ParticleFromNormal` distribution); `(Fraction 17 32)` is the partitive proportion-level constructor used outside its defined slot, and the unit `point` appears nowhere in the text."},
+   {"statement": 7, "issue": "`(Measure sk_gain_1 price ...)` predicates a price of the gain EVENT rather than recording a delta — 17/32 is the size of the change, not the event's price."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "prenominal measure modifiers (\"10-year notes\", \"a three-hour delay\") — the `Measure` form needs a scale, and no rule supplies one when the text names only a magnitude and unit",
+   "a bond-quote bare fraction as a measured delta (\"gained 17/32\") — a fractional magnitude on a change-of-value verb has no licensed encoding (same delta gap as tierD-000147)",
+   "a proper-noun modifier inside a common-noun compound (\"Treasury notes\") — the fused `treasury_note` leaves the proper noun with no symbol and no `Name` fact"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "`(Measure sk_note_1 yield 4.015 percent)` correctly follows the measure-verb -> dimension-noun rule (\"weighs\" -> `weight`), and the `Past` wrapper matches the matrix tense; the group-vs-per-note reading of that rate is left unstated by the instruction set."}

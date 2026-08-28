@@ -1,0 +1,17 @@
+{"id": "tierD-000094", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 6, "issue": "(Measure sk_rise_1 price 1.83 dollar) records the AMOUNT OF INCREASE as the rise event's price, a dimension the sentence never states; with no licensed carrier for a delta, the instruction set's own guidance is to leave the modifier out rather than mis-slot it."},
+   {"statement": 7, "issue": "(To sk_rise_1 sk_close_1) applies the purposive-infinitive head to a RESULT infinitive (\"rose $1.83 to close at $23.89\"); To is licensed only for purpose, and the seeded bridge derives PurposeOf from it, asserting a goal the shares cannot have."},
+   {"statement": 11, "issue": "(Past sk_close_1) gives a non-finite embedded eventuality a tense atom, which the instruction set bars — a non-finite embedded eventuality \"carries no tense/status atom of its own unless its own grammar marks one\"."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "a measured CHANGE in a value (\"rose $1.83\") — Measure is a static property, MoreBy compares two entities, and nothing records a delta on one entity across time",
+   "a time-indexed value measure (\"closed Friday at $23.89\") — Measure has no time slot, so the price must be hung either on the entity (losing the time) or on the event (losing whose price it is), as done here",
+   "a result / outcome infinitive (\"rose ... to close at ...\") — the connective section covers purposive \"to\" only"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The nominal side is right: the possessed plural takes a group witness with (Possession sk_shares_1 mcdonalds), the intransitive rise/close subject takes Patient per the non-volitional-process test, and the New York Stock Exchange gets one opaque name symbol plus a separate kind atom, with \"on the NYSE\" as an event-side Location."}

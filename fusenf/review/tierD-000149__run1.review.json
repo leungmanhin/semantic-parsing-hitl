@@ -1,0 +1,9 @@
+{"id": "tierD-000149", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 8, "issue": "(Goal sk_sentence_1 death) mis-slots \"sentenced to death\": the PP answers neither whence nor whither, so by the rule to decide obliques by the question the PP answers it takes the preposition-named oblique, not the spatial Goal."}, {"statement": 8, "issue": "The antecedent conjoins the whole resultative bundle — the reified guilty state, the flat (Member samudra guilty), and the Result link — so all of them must be present before the rule can fire, an over-specified premise for \"if found guilty\"."}, {"statement": 8, "issue": "The epistemic (Might sk_sentence_1) sits inside the implication's conclusion and so loses the confidence 0.9 the instruction set prescribes for Might/Probably/Must; the whole rule carries one (STV 1.0 0.99)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"soon after\" — a vague temporal-proximity modifier on an ordering; Before carries no degree and BeforeBy requires a stated number plus unit, so \"soon\" has no carrier and is dropped", "an epistemic/status atom inside a rule conclusion has no truth-value slot of its own, so the prescribed epistemic confidence cannot be expressed", "\"find X guilty\" — an evaluative/declarative secondary predicate (a verdict); the resultative-vs-depictive split does not decide whether a verdict counts as a caused result, and the evaluate/record verbs are elsewhere routed to Theme rather than Patient"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Indicative conditional as a plain Implication, \"after\" swapping the Before arguments, the anti_terror_law compound genus with the modifier left unexposed, the reduced-relative \"passed\" as an agentless past event, and the framing PP (Under ...) are all per spec. The bombings event-noun correctly gets only its class atom and the ordering relation."}

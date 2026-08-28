@@ -1,0 +1,12 @@
+{"id": "tierD-000020", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 14, "issue": "(PartOf sk_block_1 avenida_velasco) uses the part-whole head for a place inside a place, which the instruction set routes to LocatedIn ('a place inside a place is LocatedIn, never PartOf')."},
+               {"statement": 14, "issue": "The definitional decomposition atoms (Inheritance phone_call call, Inheritance domestic_disturbance disturbance, Inheritance domestic_disturbance domestic) are buried inside the sealed Theme term, so the genus links are never asserted as the top-level (STV 1.0 0.99) statements Compound decomposition requires."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["simultaneity 'when' joining two clauses — the instruction set bars a connective atom and sends temporal connectives to 'the time sections', but names no canonical form for simultaneity (During is defined only for during/while/throughout), so the begin event and the reported call are left temporally unrelated",
+             "a locative PP on an event-denoting noun ('a domestic disturbance at the home') — event-nouns are given tense and Time terms directly, but nothing says whether a place PP on one takes the event head Location or the entity head LocatedIn",
+             "a street-address block designation carrying a number range ('the 54-300 block') — the numeric range has no licensed encoding and is dropped"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Definite projection out of the seal is handled correctly (the home and the block are typed at top level while the indefinite call, request and disturbance stay inside), and say/Experiencer plus the non-factive seal follow the attitude section. The reduced relative 'requesting assistance' and the noun-complement oblique (With sk_assistance_1 ...) are both the licensed forms."}

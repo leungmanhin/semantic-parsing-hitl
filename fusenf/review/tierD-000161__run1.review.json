@@ -1,0 +1,13 @@
+{"id": "tierD-000161", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "Both time adjuncts put an entity witness in the Time filler slot — (Time sk_results_1 sk_quarter_1) and (Time sk_earn_1 sk_quarter_2) — where Time takes a structured calendar term or a bare deictic/named constant, and 'for the quarter' additionally loses the preposition actually used."},
+               {"statement": 4, "issue": "'the quarter' mints a fresh witness sk_quarter_2 instead of resolving the anaphoric definite to the first quarter already introduced in the same sentence."},
+               {"statement": 5, "issue": "'based on first-quarter results' is reduced to the bare oblique (On sk_expect_1 sk_results_1), dropping the 'based' predicate, so the parse records only that the expecting is 'on' the results."},
+               {"statement": 5, "issue": "The plural 'results' is typed as a single individual witness (Member sk_results_1 result) rather than as a group with GroupOf."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["fiscal-period expressions ('first-quarter results', 'for the quarter'): the structured time terms are Year/Month/Day/Weekday/Hour/Minute only — there is no quarter term, and no rule for a period-denoting NP standing in a Time filler slot",
+             "clause-level participial complex prepositions ('based on X', 'according to X', 'due to X'): the reduced-relative rule covers participles post-modifying a noun, and the -ing preposition list (during/pending/notwithstanding) does not reach these"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Routing 'said that P' to a sealed non-factive attitude and 'expects to earn' to the non-sealing control-verb pattern (complement reified beside the attitude, no tense of its own, controller's role copied in) both follow the instruction set, as does reusing sk_company_1 for 'it'. (Measure sk_earn_1 earning 90 cent_per_share) uses the licensed dimension-noun scale and lemmatized compound rate unit."}

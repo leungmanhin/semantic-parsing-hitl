@@ -1,0 +1,13 @@
+{"id": "tierD-000243", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "'those' — an antecedent-less demonstrative plural — is typed as a group of person, but the instruction set's person fallback is for the personal pronoun 'they'; a non-personal pronoun with no supplied kind falls back to thing, so personhood is asserted without the text supplying it."},
+               {"statement": 1, "issue": "The subset group inherits the same unlicensed person typing as the superset."},
+               {"statement": 8, "issue": "The modifier in 'specific diseases' is dropped entirely — the object is the bare class symbol disease in all four disjuncts, so no atom records 'specific'."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["an anaphoric demonstrative plural with no antecedent ('of those') — the antecedent-less-pronoun rule covers he/she/they/it but not demonstratives, so nothing fixes the member kind of the presupposed superset",
+             "an adjectival modifier on a bare-class generic object ('specific diseases') has no attachment site — the bare class symbol carries no modifier, and the distributive route requires a group witness the generic-object rule forbids",
+             "direct quotation of the predicate ('claimed to treat ...') — the instruction set has no treatment of quoted material, so the quotation marks are simply consumed"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The partitive shape (superset + SubsetOf + Cardinality 149 + un-reduced (Fraction 55 100)) and the control-verb handling of 'claimed to V' (complement events reified with no tense, controller's Agent copied in, Theme link distributed into each narrow-scope Or branch) both follow the instruction set."}

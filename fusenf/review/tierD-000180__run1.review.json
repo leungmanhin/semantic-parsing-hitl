@@ -1,0 +1,22 @@
+{"id": "tierD-000180", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 15, "issue": "(Member sk_shares_1 low) — together with the reified sk_low_1 state at 13-14 — flattens the comparative 'lower' into the positive property, which the comparatives rule explicitly says a comparative does not entail."},
+   {"statement": 12, "issue": "(Measure sk_edge_1 decrease 7 cent) invents the scale symbol 'decrease', which no word in the sentence supplies; the stated dimension is the adjective 'lower'."},
+   {"statement": 17, "issue": "(Before sk_edge_1 sk_end_1) asserts a temporal ordering that no temporal word licenses — the infinitive 'to end at $28.12' is not a past perfect, a temporal clause or a before/after adjunct."},
+   {"statement": 11, "issue": "(Ongoing sk_edge_1) has no licensed progressive marker — the participle of a 'with'-absolute is none of the four markers the instruction set enumerates."},
+   {"statement": 21, "issue": "(Measure sk_end_1 price 28.12 dollar) puts a price on the ending event rather than on the shares, where Measure's entity slot belongs (only 'duration' is defined on an event)."},
+   {"statement": 24, "issue": "The name symbol 'nyse' is an acronym, not the one opaque symbol built from the whole name that the multi-word-name rule requires."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "Absolute 'with NP V-ing' adjunct ('with GE shares edging 7 cents lower'): the 'with'-phrase rules cover only comitative CoAgent and Instrument NPs, so the clause is asserted at top level with no relation at all to the matrix reacting event.",
+   "Differential comparative with an implicit standard ('edging 7 cents lower'): MoreBy requires an explicit 'than Y' to fill its second argument.",
+   "Result infinitive ('to end at $28.12' = and so ended): only purpose infinitives (To / InOrderTo) are covered, and result-vs-purpose is not distinguished.",
+   "Extent / downtoner adverb on an event ('reacted little'): there is no encoding beyond a plain Manner filler, which loses its near-negative force.",
+   "Episodic bare-plural subject ('Investors reacted …'): bare plurals are routed to generic rules, with no stated route for a bare plural naming specific participants in a one-off past event."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "'GE shares' correctly keeps the proper-noun modifier out of a fused compound, and the price/dollar measure follows the scale and unit conventions. The decrease-measure and the low resultative also double-encode the same 7-cent fall in two incompatible ways."}

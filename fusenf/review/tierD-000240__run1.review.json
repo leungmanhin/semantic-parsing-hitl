@@ -1,0 +1,11 @@
+{"id": "tierD-000240", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 10, "issue": "(Start sk_sell_1 sk_launch_1) puts an event witness in Start's value slot, which the Time section defines over structured calendar/clock terms; an event-denoting boundary is the Before/BeforeBy ordering relation between the two witnesses."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"by V-ing\" as a means/method adjunct -- Instrument is restricted to a tool or substance and no other named role fits, so the parse fell back on the preposition-named oblique (By <event> <event>) with a reified gerund",
+             "\"since <event-denoting NP>\" as an interval boundary -- Start/End are specified only over calendar/clock terms, leaving no interval form for an event boundary",
+             "internal bracketing of a three-noun compound (\"record industry expectations\": record-industry vs record expectations) -- the compound-kind rule is stated for a two-word modifier_noun and gives no bracketing procedure, and this is a genuine ambiguity"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"more than 1 million\" -> (CardinalityAtLeast sk_songs_1 1000001), the of-phrase on the nominalization \"launch\" -> (Of sk_launch_1 sk_store_1), the projection of the definite launch and store typings out of the seal, and \"a week ago\" -> Past + (BeforeBy ... now 1 week) are all handled per the instruction set. (Ongoing sk_sell_1) sits between two rules -- a gerund is not one of the four licensed Ongoing markers, but the \"since X\" interval bullet says Start usually comes with Ongoing."}

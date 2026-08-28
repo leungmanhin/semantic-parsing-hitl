@@ -1,0 +1,11 @@
+{"id": "tierD-000144", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The Name string carries the appositive party-and-district tag ('Rep. John Mabry Jr., D-Waco'), which is not part of the name, and the appositive's content is otherwise dropped."},
+               {"statement": 8, "issue": "The quoted conditional is universally quantified per colleague (premise (PartOf $x sk_colleagues_1) with Skolem events (sk_pass $x)), asserting that each colleague individually passes the bill and is individually watched - a distribution the text does not license, since 'you' addresses the group and passing a bill is a collective act."},
+               {"statement": 8, "issue": "'pass this bill' is given Patient, although the instruction set's nearest guidance ('the committee approved the plan' -> Theme, and default to Theme when the change test is unclear) points to Theme."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["direct quotation as the complement of a speech verb - the attitude section covers finite that-clauses only - including a quote split around the reporting clause and reassembled", "second-person 'you' - no rule for addressee reference", "an Implication (a rule) nested as a sealed Theme term - sealing is defined for a proposition or an And-bundle, not for a rule", "abbreviated party-and-district appositive on a legislator's name ('D-Waco')"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The reporting frame is right (Experiencer teller, Recipient addressee, content sealed under Theme), 'will be watching' correctly stacks Future and Ongoing, Theme is correct for the entity object of agentive 'watch', and the demonstrative 'this bill' correctly projects its typing atom out of the seal."}

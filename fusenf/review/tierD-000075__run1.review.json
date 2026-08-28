@@ -1,0 +1,13 @@
+{"id": "tierD-000075", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "(Produce producer softwood_lumber) asserts a kind-level relation that producers in general produce softwood lumber; the text restricts softwood lumber to Weyerhaeuser's producer-hood, and the agent-nominalization kind-relation is licensed only when the object is incorporated into a symbol you fused (egg_layer), not when it arrives in an of-phrase."},
+   {"statement": 5, "issue": "(Degree weyerhaeuser large (forKind producer)) mis-slots \"one of the world's largest producers\" as the comparison-class construction \"large FOR a producer\" (X exceeds the class norm), which is a different and weaker claim than membership in the top-ranked set; the \"world's\" domain restriction is also dropped."},
+   {"statement": 10, "issue": "The per-year rate unit is attached to the lumber entity — (Measure sk_lumber_1 quantity 7600000000 board_foot_per_year) — so a lump of lumber is said to measure an annual rate; the annual output rate belongs on the producing event."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"one of the ADJ-est Ns\" — a partitive superlative asserting membership in a top-ranked set; Most is wrong (X is not THE largest), Ordinal needs a rank, and forKind is the norm-relative construction, so nothing fits",
+   "\"with the capacity to V\" — a noun with an infinitival complement expressing ability; Status predicates license Can only for \"can / able to\", and the noun-complement section covers of-phrases and \"for\"-arguments, not a periphrastic ability noun",
+   "a rate-denominated amount (\"7.6 billion board feet A YEAR\") as an event's output measure — the compound-rate-unit convention exists only for MoreBy rate differentials, and TimesPer/Every take a count or period, not a quantity"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The agent-nominalization capability (Inheritance producer (can produce)) is correctly licensed here because \"producer\" is the copular predicate of the clause, and (Inheritance softwood_lumber lumber) correctly withholds a genus for the noun modifier \"softwood\". The source text is garbled (\"the one of the worlds largest\"), which the parse reasonably reads as \"one of the world's largest\"."}

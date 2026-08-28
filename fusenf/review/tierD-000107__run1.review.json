@@ -1,0 +1,11 @@
+{"id": "tierD-000107", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "The clause is explicitly past (\"Last year, there were shortages\") but no shortage witness carries a (Past ...) atom, so the shortages are left unmarked, which the instruction set defines as generic/habitual."},
+               {"statement": 0, "issue": "\"shots\" and \"shortages\" are plurals but each is encoded as a singular witness ((Member sk_shot_1 shot), (Member sk_shortage_1 shortage)) rather than the group witness (GroupOf <g> <kind>) the instruction set requires for a plural."},
+               {"statement": 5, "issue": "\"nationally\" is an -ly adverb, not a place NP, so (Location sk_shortage_1 nationally) fills a role the instruction set glosses as \"in/at/on ...\" (whose object follows ordinary NP rules) with an adverb that the -ly rule keeps in surface form."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a scope/domain -ly adverb (\"nationally\") saying over what territory a claim holds: the instruction set gives -ly adverbs the Manner slot and Location a preposition-headed PP, but nothing for an adverb of geographic scope"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Replicating the whole predication five times over the coordinated \"for\"-list is a defensible reading of the distributive default, and For/Of on the noun symbols are the licensed argument obliques. Time and Location on sk_shortage_N are only licensed if \"shortage\" counts as an event-denoting noun (the witness IS the eventuality); the parse relies on that without it being settled."}

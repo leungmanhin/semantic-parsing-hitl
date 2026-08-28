@@ -1,0 +1,13 @@
+{"id": "tierD-000063", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 9, "issue": "Two contradictory Cardinality atoms (14500000 at statement 8 and 10400000 here) are asserted of the same group symbol sk_group_1, so the KB holds one group with two sizes and neither count is tied to its month."},
+               {"statement": 11, "issue": "The Patient of the drop is the group of people, but the sentence says the NUMBER of people dropped, not that the people themselves fell."},
+               {"statement": 13, "issue": "Start/End reinterpret the value range 'from 14.5 million ... to 10.4 million' as a temporal extent of the dropping event, whereas April and June are the times at which each value held."},
+               {"statement": 0, "issue": "'The NPD Group' gets its Name atom but no kind atom, although the kind word sits inside the name (the Kestrel River rule requires (Member the_npd_group group))."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a count or measure CHANGING from one value to another over time ('dropped from 14.5 million in April to 10.4 million in June') — nothing licenses time-indexing a Cardinality/Measure or recording a from-value/to-value transition",
+             "evidential attribution 'According to X, P' — the instruction set covers impersonal reported attitudes ('is said to be') but not a source-attribution frame, so the reported proposition is asserted as plain fact"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "AccordingTo is read as licensed under the multi-word preposition-named oblique convention (AcrossTheLaneFrom), but hanging it on the drop event records only a source, not that the whole claim is reported. The reduced-relative 'downloading music' event, the From-of-origin on the research, and the market_research decomposition all follow the instruction set."}

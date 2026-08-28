@@ -1,0 +1,13 @@
+{"id": "tierD-000022", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 14, "issue": "(Inheritance sporting_passion sporting) exposes a modifier genus for \"sporting\", which is not one of the three modifier types the compound rule licenses for exposure (gradable adjective, positional/cardinal, material adjective) and fails the predication test (\"the passion is sporting\")."},
+               {"statement": 15, "issue": "\"first\" is an ordinal and the instruction set gives it (Ordinal <entity> 1 <scale>), not a plain property atom (Member sk_passion_1 first)."},
+               {"statement": 17, "issue": "The dash-set appositive typing atom is emitted bare although its host clause is past tense; the instruction set says an appositive's typing atom takes the host clause's wrapper (past host -> (Past (Member ...)))."},
+               {"statement": 23, "issue": "The proper noun \"Wimbledon\" is fused into the compound kind wimbledon_defence, so its mandatory (Name wimbledon \"Wimbledon\") atom is never emitted, although the Compound concepts section states that nothing in it applies to a proper noun."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a proper noun modifying a common-noun head where the referent is NOT the named entity (\"his Wimbledon defence\", a defence held at Wimbledon) - the Names section covers only the case where the kind word names the same entity (\"the Kestrel River\", \"the Brindle estuary\"), so there is no licensed way to keep the name's own symbol and Name atom while typing the distinct referent",
+             "an ordinal modifier on a noun with no associated event and no explicit \"-est\" dimension to fill Ordinal's <scale> slot (\"his first sporting passion\")"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The event skeleton is good: trade/Theme + exchange-For, deictic \"yesterday\" as a bare constant, \"as\"-clause as During with no connective atom, and \"ahead of\" as Before onto a bare temporal-anchor event noun are all as specified. The defects are all in the NP layer (compound/ordinal/proper-noun handling)."}

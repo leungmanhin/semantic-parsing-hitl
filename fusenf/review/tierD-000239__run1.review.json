@@ -1,0 +1,11 @@
+{"id": "tierD-000239", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 8, "issue": "(Ordinal sk_week_1 1 sk_operation_1) puts an event witness in the scale slot, where the instruction set's pattern uses the event lemma ('the first to respond' -> (Ordinal priya 1 respond)), so a query built on the lemma would not match."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["whether a definite NP's possessor and descriptive-modifier atoms project out of a seal alongside its typing atom is unspecified — the rule names only the Member/Name typing atom, so here (Possession sk_service_1 apple_computer) and (Member sk_service_1 new) stay sealed and the ownership of the service is recorded nowhere",
+             "'during' with a time-period NP as its object ('during its first week of operation') — During is defined as nesting one eventuality inside another, and a week is not an eventuality",
+             "an anaphoric definite that supplies a kind for an already-named referent ('the company' -> apple_computer) — coreference is specified as pure symbol reuse, so it is unclear whether a (Member apple_computer company) typing atom should be added; none is emitted and the named entity carries only its Name atom"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Strong on the mechanical points: 'more than 1 million' -> CardinalityAtLeast 1000001, online_music_service decomposed with the head genus plus the adjectival 'online' but not the noun 'music', the whole reported clause sealed under non-factive say with the definite service typed at top level and the indefinite songs left inside."}

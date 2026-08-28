@@ -1,0 +1,12 @@
+{"id": "tierD-000113", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "(Past (Member l_paul_bremer u_s)) makes the origin modifier \"U.S.\" a class Bremer is an instance of, when it modifies the role (the administrator appointed by the U.S.), and it leaves a proper noun as a bare class symbol with no (Name ...) atom of its own."},
+               {"statement": 8, "issue": "\"the northern cities of Erbil and Sulaimaniyah\" is a definite plural with named members, which the instruction set encodes as a group witness ((GroupOf ... city) + (PartOf erbil ...) ) or by replicating the predication per conjunct; stacking a second Goal atom on one event is neither, and multiple same-role atoms on one event are licensed only for Agent on a collective/reciprocal predicate."},
+               {"statement": 9, "issue": "Same as statement 8 — the second conjunct is added as another Goal on the single visit event rather than as a group member or a replicated event."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["sentence-initial discourse adverb \"Meanwhile\" when the text supplies no second clause — there is no eventuality for a temporal relation to attach to and no licensed carrier for a discourse-level simultaneity adverb",
+             "support/light-verb construction over an event noun (\"paid a two-hour visit to ...\") — the light-verb rule names only occur / happen / take place, so treating the event noun's witness as the eventuality of \"pay a visit\" is an extension"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The appositive typing atoms correctly take the host clause's Past wrapper, the two-hour modifier is correctly a (Measure ... duration 2 hour), and (For l_paul_bremer iraq) is a licensed entity-attached surface-preposition oblique. \"civilian administrator\" is split into two atoms rather than fused as a role title (cf. senior_contractor); both readings are arguable, so I do not count it as a defect."}

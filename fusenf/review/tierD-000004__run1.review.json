@@ -1,0 +1,13 @@
+{"id": "tierD-000004", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 14, "issue": "\"in the final phase\" is encoded with the head `During`, but the instruction set pins an oblique's head to the preposition actually used and states that `During` renders only the word \"during\" (here it should be `In`)."},
+               {"statement": 6, "issue": "`Location` is attached to the raid-group witness — an entity, which the instruction set forbids for `Location` — and no preposition in the text states that the raids were in London; \"London\" is only an attributive name modifier."},
+               {"statement": 13, "issue": "`Ordinal`'s scale slot is filled with the entity's own kind (`phase`), which is neither the associated event nor an explicit \"-est\" dimension, the only two fillers the instruction set defines."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["attributive proper-noun modifier on a common-noun head (\"the London raids\") — the name rules cover only a name that names the referent itself (\"the Brindle estuary\"), and the compound-kind rules give no route for a place-name modifier that does not name the referent",
+             "coordinated modifiers sharing one head noun (\"a cocaine and money laundering ring\") — coordination is defined for clauses, VPs and NPs, not for two modifiers of a single nominal",
+             "an ordinal on a stage/part noun (\"the final phase\") with no associated event and no \"-est\" dimension to fill `Ordinal`'s scale slot"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The bounded count (`CardinalityAtLeast` 101), the two-year duration `Measure`, the reduced-relative \"investigating\" as an event with the operation as `Agent`, and the phase/operation `PartOf` are all handled per spec. Group-only (no per-member rule) is right for the aggregate predicate \"launched the raids\"."}

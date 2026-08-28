@@ -1,0 +1,11 @@
+{"id": "tierD-000072", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "The appositive's of-phrase is attached to the person as (Possession john_d_rockefeller_iv west_virginia), asserting a Rockefeller/West-Virginia relation where the text relates West Virginia to the \"Democrat\" role he fills."},
+   {"statement": 8, "issue": "(PartOf sk_provision_1 sk_bill_1) is emitted outside the seal, but the sealing rule projects only a definite referent's Member / Name typing atom, not the relational atoms of its description."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["an appositive NP carrying its own PP complement (\"Democrat of West Virginia\") — the appositive yields only a typing atom, so there is no witness for the complement to attach to",
+   "a proper-noun modifier inside a common-noun compound (\"the Senate bill\") — Compound concepts fuses it as senate_bill, while Names and casing would read the capitalized run as the name and the adjacent lowercase noun as its kind, which gives the wrong result here"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The courtesy title stays in the Name string with the symbol derived from the name alone, the appositive typing takes the host clause's Past wrapper, and the non-factive seal is clean — the definite provision/bill/Medicare project while the indefinite \"a basic tenet\" and its \"basic\" property stay inside."}

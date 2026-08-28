@@ -1,0 +1,16 @@
+{"id": "tierD-000096", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 1, "issue": "\"members\" is typed as `person`, a superordinate the text never uses; lemmatization of the surface noun gives the class `member`."},
+   {"statement": 9, "issue": "\"Al Qaeda operatives\" is a proper-noun modifier on a common noun, not a possessive-marked NP or a possessive of-phrase, so `(Possession sk_operative_1 al_qaeda)` asserts a genitive link the surface never marks."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "\"Other Ns\" (complement-set anaphora — the members other than previously mentioned ones) has no licensed encoding; \"other\" is silently dropped here.",
+   "A PROPER-NOUN modifier of a common noun (\"Al Qaeda operatives\") — Compound concepts explicitly exempts proper nouns, and Names & casing only tells you to type the named entity itself, so nothing licenses a head for the operative-to-organization link.",
+   "A relative clause introduced by the locative relative adverb \"where\" — how the adverb resolves to the head NP and fills the embedded clause's `Location` slot is never stated."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The impersonal reported attitude is exactly per spec (a `believe` event with no `Experiencer`, the small clause sealed under `Theme`, subject typing projected, no top-level `LocatedIn`), as are the \"many of the arrests\" partitive, the nominalization's `Of` argument, and \"have taken place\" going straight onto the event-noun witness with no separate occur event."}

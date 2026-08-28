@@ -1,0 +1,13 @@
+{"id": "tierD-000007", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "The entire content clause \"that the ECB had not exhausted its ammunition for rate cuts\" is unrepresented — no exhaust eventuality, no strength-0 denial, no ammunition and no rate cuts appear anywhere in the parse."},
+               {"statement": 12, "issue": "(Name ecb \"ECB\") is an orphan: the symbol ecb occurs in no other atom, so the only trace of the ECB is a label attached to nothing."},
+               {"statement": 5, "issue": "\"his remarks\" is a possessed plural but is encoded as a single singular witness sk_remark_1 with no GroupOf group, collapsing several remarks into one."},
+               {"statement": 7, "issue": "The possessor \"his\" is attached with (Agent sk_remark_1 sk_person_1); Possessive / genitive NP routes a possessive pronoun to PartOf or Possession, not to a thematic role."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["finite that-clause complement of a NOUN (\"his remarks ... that P\", \"the claim that P\") — clausal complements are specified only for attitude, perception and embedded-question VERBS, and Complements of nouns and adjectives covers argument PPs only",
+             "the subject/possessor of an event-denoting noun (\"his remarks\", \"the ECB's statement\") — the genitive rule gives only Possession/PartOf, and there is no route for expressing who made the remark"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The matrix clause (comment undercut remarks, in an interview, on Tuesday) is parsed cleanly; the loss is concentrated in the dropped that-clause and the resulting dangling ECB name."}

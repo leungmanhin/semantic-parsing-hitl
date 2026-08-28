@@ -1,0 +1,10 @@
+{"id": "tierD-000028", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "The clause is a past-tense copular (\"was one of eleven states\"), so (Member new_jersey state) should be wrapped as (Past (Member new_jersey state))."},
+               {"statement": 4, "issue": "Same missing (Past ...) wrapper on the PartOf atom the copular clause yields — the tense rule wraps every categorical atom of the clause, PartOf included."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["partitive \"one of <numeral> Ns\" with an indefinite superset — the partitive section is flagged only by \"of the / of these / of those / of them\", so nothing decides between group + PartOf-member (used here) and superset + SubsetOf + Cardinality 1"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything else follows the instruction set: the counted group with its per-member ask rule matches the counted-plural pattern, the ask/force/regulate control chain reifies each complement at top level with the controller's role copied in and no tense of its own, and the compound genus atoms (court, federal exposed; the noun modifiers not) match Compound concepts."}

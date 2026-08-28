@@ -1,0 +1,13 @@
+{"id": "tierD-000148", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 14, "issue": "(During sk_close_1 sk_trade_1) renders the surface preposition 'in', but the head must be the preposition actually used — 'in' stays 'In', and 'During' renders only the word 'during'."},
+               {"statement": 8, "issue": "The measure scale 'increase' is invented — the text says 'up 64 cents' and states no dimension word — and it records a change as a Measure, so the same close event now carries two competing values (23.40 dollar, 64 cent) under two scales."},
+               {"statement": 7, "issue": "The closing price is measured of the closing event rather than of the stock; Measure is defined over an entity, and the instruction set attaches it to an event only for 'duration'."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a bare differential with no stated standard ('up 64 cents') — MoreBy needs both compared relata and the previous close is never mentioned",
+             "a time-indexed / point-in-time value ('closed Wednesday at $23.40') — Measure has no slot for the time at which the value held, forcing the price onto either the entity (losing the time) or the event (mis-slotting the bearer)",
+             "an event-nominalization used as a circumstantial frame ('in trading on the Nasdaq market') — the nesting head During is licensed only for during/while/throughout"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The genitive 'Allegiant's stock' -> Possession, the Weekday time term, close -> Patient, and 'the Nasdaq market' as name-symbol + separate kind atom are all correct per the instruction set. The framing PP was also given its own (Past sk_trade_1), which the adjunct event-noun rule ('nothing else') would arguably withhold."}

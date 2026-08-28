@@ -1,0 +1,12 @@
+{"id": "tierD-000001", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "(Measure (sk_lower_heart $x) risk 88 percent) states an absolute risk-magnitude of the lowering event, not the 88-percent reduction the text asserts, and the same mis-slot repeats for stroke at 80 percent."},
+               {"statement": null, "issue": "\"the scientists claim\" is a definite plural with a distributive predicate, so alongside the group event the per-member distribution rule over (PartOf $x sk_scientist_1) is required and is missing."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a measured change on an event -- \"lower/reduce X by N percent\" (Measure states an absolute value, MoreBy compares two entities, and percentages otherwise only appear as (Fraction p 100) in partitives)",
+             "a quantified Implication rule sealed as an attitude complement: sealing is specified for propositions, and a rule's strength/quantifier force has no carrier inside a seal",
+             "the remote/hypothetical conditional \"if X V-ed, Y would V\" -- the instruction set names only the indicative Implication and the past-perfect subjunctive Counterfactual"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Sealing the conditional under claim's Theme, projecting the definite \"the pill\", withholding tense from the subjunctive antecedent and consequent, and the heart_attack genus are all handled correctly."}

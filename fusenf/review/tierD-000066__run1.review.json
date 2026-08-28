@@ -1,0 +1,12 @@
+{"id": "tierD-000066", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 14, "issue": "The proper noun \"Marshall\" is absorbed into the class symbol marshall_basketball_coach, so no marshall symbol and no (Name marshall \"Marshall\") atom is emitted, although Names and casing makes both mandatory for every proper noun and states that the Compound concepts rules do not apply to one."},
+               {"statement": 14, "issue": "(Member jirsa marshall_basketball_coach) is asserted flat at 1.0/0.99 with no status wrapper, claiming the role as a present fact, while the clause states only a future introduction-as."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"be introduced AS <NP>\" - an as-predicative naming a role on a passive verb; Resultatives & secondary predicates covers state results, motion results and depictives, but nothing says whether the as-phrase yields a categorical atom, how it is tensed, or whether it links to the event at all.",
+             "A proper noun used as a MODIFIER inside a common-noun compound (\"Marshall basketball coach\" = coach at Marshall): Compound concepts excludes proper nouns and Names and casing says an adjacent lowercase common noun is not part of the name, but no rule says how to link the named institution to the role kind.",
+             "Ordinal's scale slot for a succession rank among officeholders (\"the 25th ... coach\"): the rule defines the scale as the associated event or an explicit -est dimension, and a rank in a series of postholders is neither."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "(Location sk_press_conference_1 big_green_room) puts Location on an entity witness, which \"Where a THING is\" forbids; it is defensible only by reading press conference as an event-noun, a use the Time section licenses for tense and Time terms but not explicitly for Location. \"Big Green Room\" and \"Henderson Center\" are handled correctly as single opaque name symbols with separate kind atoms and no modifier genus."}

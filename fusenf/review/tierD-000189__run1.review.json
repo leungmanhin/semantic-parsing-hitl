@@ -1,0 +1,19 @@
+{"id": "tierD-000189", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 10, "issue": "(Possession sk_assistance_1 un) and (Possession sk_advice_1 un) treat the noun-noun modifier of 'UN assistance and advice' as a genitive possessor, but Possession is licensed only for an 's-genitive, a possessive pronoun, or a genuinely possessive of-phrase."},
+   {"statement": 10, "issue": "The relative clause 'which have been taken' is rendered only as a per-member distribution rule; the group-level take event that Cardinality keeps alongside such a rule ('did any?' / counting) is missing."},
+   {"statement": 10, "issue": "The implement event's class and role atoms are asserted as ordinary conjuncts of the sealed proposition, so the content attributed to Talabani includes the Council implementing the decisions, whereas 'need assistance in implementing X' states no such occurrence."},
+   {"statement": 10, "issue": "The two sealed Implication rules inherit the wrapper's (STV 1.0 0.99), where a distribution rule is specified at confidence 0.9."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "a proper-noun modifier on a common noun ('UN assistance') — Compound concepts explicitly does not apply to proper nouns (no fusion, no modifier genus) and the genitive rule requires 's or a possessive pronoun, so nothing licenses an attachment between the name and the head noun",
+   "coordination in a non-subject argument slot ('need assistance and advice') — the distributive-by-default rule is stated and illustrated for whole predications with coordinated subjects, so the parse's single event with two Stimulus atoms is neither clearly licensed nor clearly forbidden",
+   "a truth value for a conjunct inside a seal — an embedded distribution rule cannot carry its own STV, the same structural limitation the instruction set already registers for a negated conjunct inside a sealed complement",
+   "a gerund clause as the object of an event-side preposition-named oblique ('in implementing the decisions') — the oblique's object is specified to follow ordinary NP rules, and only a NOUN's argument PP is told to reify a clausal argument and assert it nowhere"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The definite/indefinite projection split is handled well: 'Governing Council' and 'the decisions' project their typing at top level while the sealed proposition keeps its predications. The unantecedented 'him' correctly takes a person-classed anonymous witness with its class atom emitted."}

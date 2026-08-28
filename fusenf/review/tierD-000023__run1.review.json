@@ -1,0 +1,19 @@
+{"id": "tierD-000023", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 5, "issue": "Mints an entity of the class `level`, a word the text never uses, to stand for the value \"April's 6 percent\"."},
+   {"statement": 7, "issue": "Attaches a `Time` role to `sk_level_1`, which is an entity and not an eventuality, to render the possessive \"April's\"."},
+   {"statement": 10, "issue": "`(Most high sk_level_2 unemployment_rate)` names `unemployment_rate` as the comparison class while the parse types `sk_level_2` as `level`, so the superlative's required `(Member X <class>)` companion is absent and the two atoms contradict each other."},
+   {"statement": null, "issue": "\"since July 1994\", which restricts the span over which the new figure is the highest, is dropped entirely — no time atom anywhere records it."},
+   {"statement": 12, "issue": "The differential is on scale `rate` while the superlative is on scale `high`, so the size of the rise and the ordering it produced sit on two unrelated dimensions."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "A scalar-change \"from X to Y\" path whose endpoints are measured VALUES rather than places or entities — Source/Goal are given only for spatial/motion results, and there is no licensed way to reify a point on a scale as a referent.",
+   "A superlative whose comparison domain is restricted by a time span (\"its highest since July 1994\") — `Most` takes only a scale and a class, with no slot for the span.",
+   "The magnitude of a CHANGE (\"inched up one-tenth of a percentage point\") — `MoreBy` is defined for the gap between two entities on a scale, not for how much one entity moved."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The core clause is right — `unemployment_rate` witness with a noun-modifier genus only, the phrasal verb `inch_up` kept whole with no genus, `Patient` for the non-volitional change-of-state subject, `Past`. Everything concerning the two numeric endpoints is improvised."}

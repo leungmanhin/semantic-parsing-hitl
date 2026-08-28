@@ -1,0 +1,24 @@
+{"id": "tierD-000227", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 9, "issue": "'crying children' is a pre-nominal participial modifier, which the casing rule makes an adjective keeping its surface form (Member ... crying, distributed over the group's members), yet the parse reifies a cry event with Agent and Ongoing."},
+   {"statement": 9, "issue": "The reified 'packed' state carries no tense atom even though the clause is past ('the city squares WERE packed')."},
+   {"statement": 9, "issue": "The adjective-with-PP-complement route requires the flat copular atom as well (dual-emit), but no flat 'packed' predication of the squares (or its distribution over them) is emitted."},
+   {"statement": 9, "issue": "The reified 'packed' state attaches by Experiencer to the group symbol sk_square_1, whereas a property of a plural's members is specified to distribute over the members rather than be predicated of the group-as-object."},
+   {"statement": 2, "issue": "(Possession sk_group_1 reuters) treats the noun-noun modifier of 'Reuters witnesses' as a genitive possessor, but Possession is licensed only for an 's-genitive, a possessive pronoun, or a possessive of-phrase."},
+   {"statement": 9, "issue": "(Instrument sk_huddle_1 blanket) replaces the surface preposition of 'huddled IN blankets' with the means role, which the instruction set reserves for 'with'-phrases; the mechanical rule is the preposition actually used, never a near-fit role."},
+   {"statement": 9, "issue": "(Source sk_protect_1 cold) uses the whence-role for 'protect ... from the cold', which does not answer 'whence' — a prepositional verb's object is specified to take the preposition-named oblique."},
+   {"statement": 9, "issue": "The sealed Implication distribution rule inherits the wrapper's (STV 1.0 0.99) where a distribution rule is specified at confidence 0.9."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "episodic 'many N V-ed' — 'many' is listed as a proportion word (strength 0.7 plus a QuantifierPhrase companion, a route defined for generics and rules) yet here it counts things, and it is absent from the CardinalityPhrase vague-quantity lexicon ('a few / several / a handful / dozens / scores / hundreds / a lot of'), so neither route is clearly licensed",
+   "a proper-noun modifier on a common noun ('Reuters witnesses') — Compound concepts does not apply to proper nouns and the genitive rule requires 's or a possessive pronoun, so nothing licenses an attachment between the name and the head noun",
+   "coordination inside an oblique / complement slot ('packed with crying children and the homeless', 'protect them') — the distributive-by-default rule replicates whole predications and would wrongly yield two separate packed states here",
+   "a truth value for a conjunct inside a seal — the embedded distribution rule cannot carry its own strength or confidence, the same structural limitation already registered for a negated conjunct inside a sealed complement",
+   "a plural nominalized adjective as a kind ('the homeless') — GroupOf's kind slot is specified for a member KIND, and no rule covers an adjective standing in for one"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The definite/indefinite projection split is applied well — 'the city squares' and 'the homeless' project their GroupOf typing to top level while indefinite 'crying children' stays sealed — and the post-nominal participial 'huddled in blankets' is correctly taken as a reduced relative with the purpose head To."}

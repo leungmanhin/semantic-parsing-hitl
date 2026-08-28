@@ -1,0 +1,12 @@
+{"id": "tierD-000021", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 7, "issue": "The for-phrase object is the NP \"his first sporting passion\", but the parse collapses it to the bare constant australian_football, dropping the passion witness, its possessive (\"his\"), the ordinal \"first\", and the apposition between the passion and Australian football."},
+               {"statement": 0, "issue": "The Name string \"Lleyton Hewitt\" does not preserve the surface form, which is \"LLEYTON Hewitt\"."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A proper noun used as a modifier inside a common-noun compound (\"his Wimbledon title defence\"): the compound rule absorbs \"Wimbledon\" into wimbledon_title_defence, while the naming rule requires every proper noun to keep its own symbol plus exactly one Name fact; nothing says which applies.",
+             "Temporal \"as\" as a simultaneity subordinator (\"as the world champion relaxed\"): the temporal-connective list names after/before/when/while/until/as-soon-as, and only during/while/throughout are mapped to During; bare \"as\" is never addressed.",
+             "An identity apposition between two co-referring descriptions set off by dashes (\"his first sporting passion - Australian football -\"): the appositive rule only covers typing an entity with a kind, not equating two descriptions."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Roles, tense, the trade/relax During and relax/defence Before orderings, and the For-vs-Beneficiary split are all handled correctly; the loss is confined to the un-parsed \"first sporting passion\" NP."}

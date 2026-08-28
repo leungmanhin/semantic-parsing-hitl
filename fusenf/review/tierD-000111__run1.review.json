@@ -1,0 +1,12 @@
+{"id": "tierD-000111", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 7, "issue": "The reported proposition is asserted at top level (statements 7 and 8) as well as sealed under the reporting verb's `Theme`, but `report` is non-factive, so the seal should be its only trace — as written the KB flatly claims nearly one in 10 people carry the mutation."},
+               {"statement": 3, "issue": "The reporting event gives its holder `Agent` where the propositional-attitude rule assigns `Experiencer` (the same parser used `Experiencer` for `say` elsewhere)."},
+               {"statement": 7, "issue": "\"by a quarter or more\" — the magnitude of the risk increase, the sentence's central quantitative claim — is dropped entirely."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["the extent of a change-of-degree event (\"raise their risk ... by a quarter\") — there is no slot for the amount by which an event changes a quantity, and no way to leave it open-ended (\"or more\")",
+             "a ratio-form proportional quantifier (\"nearly one in 10 people\") over a bare kind — the quantifier-to-strength table covers words, and \"X out of Y\" fractions exist only inside the partitive `ProportionOf` level slot"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The `us_researcher` compound is decomposed correctly (genus emitted, non-predicable noun modifier left unexposed), and the relative clause is folded into the rule consequent coherently."}

@@ -1,0 +1,12 @@
+{"id": "tierD-000250", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 10, "issue": "The superseded August deadline (TimeAtMost sk_complete_1 (Month august)) is left standing at full strength beside the new October 17 bound on the SAME event symbol, so the KB still asserts a by-August deadline that the sentence explicitly says was extended; nothing marks the first bound as no longer holding."},
+   {"statement": 8, "issue": "(Member sk_package_1 medicare_drug_package) fuses the proper noun \"Medicare\" into a compound kind symbol, which the Compound concepts rules explicitly exclude for proper nouns, and no (Name medicare \"Medicare\") atom survives anywhere in the parse."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a stated deadline later revised by the same sentence (\"by August, then extended it to Oct. 17\") — cessation covers only \"no longer / not anymore / used to\" for eventualities, and there is no construct for retracting or superseding a time BOUND",
+   "an episodic (specific, past) bare-plural subject — \"Republicans had pledged\" names particular actors, but the determiner rule routes every bare plural to the generic (Inheritance / distributing Implication), which cannot express a one-off past event",
+   "a proper-noun modifier inside a three-word common-noun compound (\"Medicare drug package\") — the compound-kind rule is defined for a two-word modifier_noun and is disapplied for proper nouns, leaving the Name of the proper-noun modifier with nowhere to go"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Strong on the parts the instruction set does settle: \"pledged to complete\" takes the control-verb non-finite pattern (Theme link, subject control copying the group into Agent, no tense of its own), the past perfect correctly emits (Before sk_pledge_1 sk_extend_1) because another asserted event exists to order against, \"by August\" is correctly a TimeAtMost deadline, and \"extended it\" treats the occurrence as Patient per the postpone/reschedule rule."}

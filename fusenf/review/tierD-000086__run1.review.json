@@ -1,0 +1,12 @@
+{"id": "tierD-000086", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 21, "issue": "(Member sk_plan_1 mideast) predicates the proper-noun modifier 'Mideast' of the plan, but the compound rules bar exposing a noun modifier at all (it stays inside the symbol) and a proper noun would also require its own Name atom."},
+               {"statement": 14, "issue": "(Member west_bank region) types the named place with a kind word the sentence never supplies — no kind noun sits inside or beside 'the West Bank', so nothing in the text puts this atom there."},
+               {"statement": 16, "issue": "the appositive 'an Israeli obligation' is collapsed into the status operator (Obligated sk_tear_down_1), which silently drops 'Israeli' — whose obligation it is gets no atom anywhere in the parse."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a nominal appositive predicated of the preceding CLAUSE / eventuality ('X began doing Y - an Israeli obligation under Z') — the appositive rule covers only an entity appositive taking the host clause's tense wrapper",
+             "no holder slot on a deontic: (Obligated e) records that an act is obligatory but cannot say on whom the obligation falls, so 'an ISRAELI obligation' is unrepresentable"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The inception pattern (begin event + Ongoing activity, phrasal tear_down kept whole with no genus) and the fused nationality classifier israeli_soldier riding the group's kind slot both follow the instruction set; the activity carries no Past, matching the worked example even though the prose says 'both Past if past'."}

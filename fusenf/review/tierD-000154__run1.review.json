@@ -1,0 +1,12 @@
+{"id": "tierD-000154", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "\"broader\" is a comparative, and Comparatives says a comparative does not entail the positive, so the flat (Member … broad) asserts something the sentence does not."},
+               {"statement": 3, "issue": "The scale symbol increase (also in statement 4) appears nowhere in the text — \"was up 9.05 points\" states a change in value, while Measure records an entity's value on a stated dimension."},
+               {"statement": 5, "issue": "The scale level and the unit point for \"at 972.64\" are likewise supplied rather than read off the surface dimension the Measures rule requires."},
+               {"statement": null, "issue": "The parenthetical identifier <.SPX> is left unrepresented."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["attributive comparative with an elided standard (\"the broader Index\", \"the larger firm\"): only predicative \"X is ADJ-er than Y\" with an explicit Y is covered", "delta / change-of-value measures (\"was up 9.05 points\", \"fell 3 percent\", \"gained 2 cents\"): Measure has no change form and no licensed scale word for \"up\" / \"down\"", "\"or\" as an appositive restatement of one value in another unit (\"9.05 points, or 0.94 percent\"): the Disjunction section would wrongly make this an opaque (Or …)", "a parenthetical ticker / alias alongside a proper name (<.SPX>): exactly one Name atom is licensed and there is no alias or identifier relation"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Treating the appositive \"or\" as two coexisting measures rather than an (Or …) is the right call even though the instruction set does not say so. Name/kind handling of the multi-word index name follows the Kestrel-River pattern correctly."}

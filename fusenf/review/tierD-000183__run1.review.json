@@ -1,0 +1,13 @@
+{"id": "tierD-000183", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 6, "issue": "The forecast range is asserted at top level (statements 5-7), so the parse claims revenue of $8.1-8.7 billion actually holds, when the text says only that Intel expects it."},
+               {"statement": 4, "issue": "(Time sk_expect_1 fourth_quarter) puts the quarter on the expecting event, but \"for the fourth quarter\" says which period the revenue falls in, not when the expecting happens."},
+               {"statement": 6, "issue": "The measure shape is inverted: revenue is the dimension the instruction set puts in the scale slot (as \"costs $20\" gives price on the thing priced), yet here it is both the measured entity's class and its own scale."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["An intensional / forecast NP object of an attitude verb (\"expects revenue between X and Y\") — the entity-object route is defined for referents that exist independently (\"fears the dog\") and sealing is finite-clause-only, so a predicted quantity has no encoding that avoids asserting the prediction.",
+             "Scale words in a monetary magnitude (\"$8.1 billion\") — unit is specified as a lemmatized singular (dollar) with no rule for million/billion, so the parse coins billion_dollar, which no canonical-unit conversion reaches.",
+             "A two-sided range (\"between X and Y\") has no stated form; pairing MeasureAtLeast with MeasureAtMost is a reasonable composition but is nowhere licensed as the range encoding."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Experiencer / Stimulus on expect follows the attitude-verb routing, and fourth_quarter as a bare named-time constant matches the deictic-constant convention."}

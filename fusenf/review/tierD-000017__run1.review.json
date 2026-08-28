@@ -1,0 +1,13 @@
+{"id": "tierD-000017", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "The proper noun \"American Idol\" is dropped entirely — it gets no symbol and no Name atom, though the instruction set makes both non-optional for every proper noun including a named work, and the winner/runner-up-of-American-Idol link disappears with it."},
+               {"statement": 15, "issue": "The measure scale `earnings` is not a surface dimension word — the sentence states no measure verb or noun, whereas the scale rule requires recording the dimension actually said."},
+               {"statement": null, "issue": "The focus particle \"only\" in \"with only $2.9 million\" is dropped with no Only atom and no other trace."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A proper-noun modifier on a common-noun head (\"American Idol\" winner / runner-up): the compound-concepts rules explicitly exclude proper nouns, and no relation head is licensed to link the person to the named contest.",
+             "A focus particle on a bare money/measure amount (\"only $2.9 million\"): like the registered \"only one N\" gap, there is no filler symbol for Only to attach to.",
+             "A chart/box-office rank (\"opened at No. 11\"): Ordinal's scale slot is defined as the associated event or an explicit \"-est\" dimension, not a position on an external ranking."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The \"starring\" participial post-modifier is correctly taken as a reduced relative with the film as Agent, and the coordinated object correctly distributes into two star events. Patient for the intransitive \"opened\" matches the instruction set's own festival example."}

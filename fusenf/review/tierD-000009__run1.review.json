@@ -1,0 +1,12 @@
+{"id": "tierD-000009", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 10, "issue": "The \"up to two years\" bound is attached as a duration of the facing event, but the sentence measures the prison term the physician faces, not how long the facing lasts."},
+               {"statement": 9, "issue": "The object NP is \"up to two years in prison\", yet the Theme is the bare class `prison`, so the quantity that heads the object is severed from it and \"in\" is dropped."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A modal-scoped indefinite subject carrying a restrictive relative clause (\"a physician who performed the procedure could face …\"): the indefinite-witness rule forces the relative clause to be asserted as a real past event, and no rule form is available (a verbal generic needs a bare plural or an explicit quantifier), so the hypothetical is recorded as fact.",
+             "\"could\" is absent from the modal sense-map (must -> Must/Obligated, may -> Might/Permitted, can -> Can/Permitted), so nothing fixes whether \"could face\" is epistemic, capability or deontic.",
+             "A duration-denoting object NP (\"up to two years in prison\"): the Measure/MeasureAtMost machinery attaches a bounded quantity to an entity, and no pattern mints a term/period entity for a bounded quantity that is itself the verb's object."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "`(Under sk_face_1 sk_legislation_1)` is the licensed framing-PP oblique (the \"under maritime law\" case) with the preposition actually used, and `(Might …)` correctly carries confidence 0.9 with no tense beside it."}

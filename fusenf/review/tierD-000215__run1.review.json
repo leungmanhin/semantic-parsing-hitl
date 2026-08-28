@@ -1,0 +1,11 @@
+{"id": "tierD-000215", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "(Past (Measure sk_shares_1 price 6.83 dollar)) puts the price on the group witness, which the Measures section says reads as the group AGGREGATE, whereas $6.83 is the per-share price."},
+               {"statement": 6, "issue": "'up 2 cents' is a change relative to an unstated prior value but is encoded as a plain Measure on an invented 'increase' dimension, asserting that the shares measure 2 cents on that scale."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a change-over-time differential with an implicit prior value ('up 2 cents') — MoreBy requires two compared entities and there is no licensed 'up/down N from the previous value' form",
+             "a per-unit value predicated of a plural ('shares ended at $6.83') — a measure on a plural is defined as the group aggregate and there is no distributive-measure form"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The group witness for the bare plural, Patient on the intransitive change-of-state 'ended', the (Weekday wednesday) term and the Past wrapper on the measure all follow the instruction set. Nothing links the price to the ending event, but the instruction set does not require such a link."}

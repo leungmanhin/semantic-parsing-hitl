@@ -1,0 +1,11 @@
+{"id": "tierD-000131", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "'three to five months' is a stated range, but it is encoded as the approximation (ParticleFromNormal 4 1) — a mean of 4 and a sigma of 1 that the text never states; ParticleFromNormal is licensed only for a hedge ('about / roughly'), with sigma set from the hedge strength."},
+               {"statement": 5, "issue": "'in the next three to five months' is a window/deadline, but BeforeBy asserts that the gap from now to the event IS that magnitude rather than bounding it."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a numeric range ('three to five months', 'between 3 and 5 kg') — Measures & units cover exact, bounded (AtLeast/AtMost) and hedged-approximate values, but not a two-endpoint range",
+             "'within the next N units' as a forward window on an event — the ago/from-now anchoring gives BeforeBy for a definite gap, with no bounded counterpart"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The 'is expected to' matrix is correctly routed as an agentless impersonal attitude — no Experiencer, complement sealed under Theme, tenseless, subject typing projected — and 'get under way' is kept as one surface idiom symbol with no genus."}

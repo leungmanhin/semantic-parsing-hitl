@@ -1,0 +1,21 @@
+{"id": "tierD-000047", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 5, "issue": "\"his son's death\" is given the class `die`, but `death` -> `die` is derivation across parts of speech, which the instruction set bars (lemmatize by inflection only); the event-denoting noun should keep its own form."},
+   {"statement": 6, "issue": "`(Patient sk_die_1 sk_boy_1)` is a role atom asserted at top level for a referent introduced only inside the sealed complement, where the instruction set projects the `Member`/`Name` typing atom alone."},
+   {"statement": 11, "issue": "\"wants ... to be held responsible\" is a control verb with a to-infinitive, which the instruction set says never seals; the complement event should be reified as sibling atoms and attached by `(Theme sk_want_1 sk_hold_1)`, not nested as an `(And ...)` term."},
+   {"statement": 11, "issue": "\"everyone\" is an explicit universal, which the instruction set distributes through an `Implication` rule over `(Member $x person)`; the parse substitutes a group witness `sk_people_1` and predicates over it as a unit."},
+   {"statement": 11, "issue": "`(Member sk_people_1 responsible)` predicates a member-level property of the group symbol, the exact reading the plural rules forbid (a bare `(Member <group> <prop>)` is only for a property of the collection itself)."},
+   {"statement": 11, "issue": "the reified \"involved in ...\" adjective state omits the mandatory dual-emit flat copular atom that the adjective-PP-complement rule requires alongside the state witness."},
+   {"statement": 4, "issue": "the appositive age \"33\" is emitted bare, but an appositive takes the host clause's wrapper and the host (\"said\") is past, so a `Past` wrapper is expected as on any tensed measure."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "\"hold NP + predicative adjective\" (\"held responsible\") — an attitude/judgement ascription; neither the resultative shape (which requires the object to change) nor the impersonal-reported-attitude template squarely covers it",
+   "a universal quantifier (\"everyone\") inside a sealed complement — the universal's prescribed `Implication` rule form has no defined placement inside a seal",
+   "a possessive genitive on a deverbal nominalization naming its undergoer (\"his son's death\") — the complements section covers only the of-phrase object case"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The source text is garbled (\"They boy's\" for \"The boy's\"); the parse reasonably reads it as the definite possessive. Doubly-embedded seals (say > want > hold) are where most of the divergence sits."}

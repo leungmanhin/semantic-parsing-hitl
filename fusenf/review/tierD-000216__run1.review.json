@@ -1,0 +1,12 @@
+{"id": "tierD-000216", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 7, "issue": "The 2-cent rise is a change, but it is stored on the same \"price\" scale as the absolute closing price, so a price query returns 2 cents and 6.83 dollars as if they were comparable values."},
+               {"statement": 12, "issue": "The closing price is predicated of the closing event rather than of the shares, so nothing attaches a value to sk_shares_1."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a measured CHANGE on an event (\"rose 2 cents\") — Measure records a level on an entity and there is no delta form distinguishing a change from a value",
+             "a price quoted at a moment (\"closed at $6.83\") — Measure has no time slot and no licensed way to attach the value to the shares through the closing event",
+             "whether a shared time or place adjunct distributes across coordinated VPs — Coordination & plurals states only that a shared subject carries over, yet the parse copies (Time ... (Weekday wednesday)) onto the second conjunct"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The group witness plus Possession for \"Shares of Goodyear\", the Patient on the non-volitional \"rose\", the Weekday term and the independently translated second conjunct all follow the instruction set. The measure slot is where it breaks down — a delta and a level share one \"price\" scale and both hang off event witnesses rather than the shares."}

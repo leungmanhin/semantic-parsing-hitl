@@ -1,0 +1,18 @@
+{"id": "tierD-000230", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 6, "issue": "(Source sk_die_1 sars) uses the whence-role for 'died FROM SARS', which names a cause and does not answer 'whence'; the mechanical rule is to decide by the question the PP answers, giving the preposition-named oblique instead."},
+   {"statement": 6, "issue": "The same causal participant is encoded two different ways in one sentence — Source for 'from SARS' and Instrument for 'with the virus' — so the two clauses' records do not unify."},
+   {"statement": 6, "issue": "'the virus' is resolved anaphorically to sars but the class the text supplies for that referent is dropped: no (Member sars virus) atom is emitted."},
+   {"statement": 6, "issue": "The two sealed Implication distribution rules inherit the wrapper's (STV 1.0 0.99) where a distribution rule is specified at confidence 0.9."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "'N more X' — an additive / incremental count relative to a prior running total ('nine MORE people had died', '160 MORE were infected'); Cardinality records a plain group size and there is no carrier for the additive presupposition, so 'more' is dropped with nothing recording it",
+   "a truth value for a conjunct inside a seal — the embedded distribution rules cannot carry their own confidence, the same structural limitation already registered for a negated conjunct inside a sealed complement",
+   "a country name used metonymically as the holder of a reported attitude ('China said') — the impersonal-reported-attitude section covers an unstated holder, not a named institution standing for its officials"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The counted-plural handling is otherwise per spec — group plus Cardinality plus the group event plus a per-member rule for the distributive predicates — and the past perfect correctly takes no Before atom because it sits inside a seal with nothing to order against."}

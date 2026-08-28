@@ -1,0 +1,12 @@
+{"id": "tierD-000084", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 12, "issue": "The proper name \"House of Representatives\" is fused with the lowercase modifier \"state\" into a class symbol and the referent is typed as a member of it, instead of the name being one opaque constant with an ordinary kind atom beside it."},
+               {"statement": 13, "issue": "Compound decomposition (a genus atom) is applied to a proper noun, which Compound concepts explicitly excludes."},
+               {"statement": null, "issue": "No Name atom is emitted for the House of Representatives, although a Name fact is mandatory and not optional for an organization."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a vote tally / score pair (\"79-64\") has no licensed encoding",
+             "a lowercase restrictive modifier distinguishing an institution from an identically named other (\"the *state* House of Representatives\") — the naming rule offers a sub-region witness (for a lowercase adjective before a place) or treating the adjacent lowercase noun as the entity's kind, and neither fits an institution-disambiguating modifier"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything outside the institution name follows the instruction set: the noun's infinitival complement as (To sk_move_1 sk_legalize_1) asserted tenselessly, the agentless passive, the bare deictic \"yesterday\", and Location on the event. (Inheritance medical_use medical) is a borderline modifier exposure — \"medical\" is an adjective but not one of the three exposed categories (gradable, positional/cardinal, material)."}

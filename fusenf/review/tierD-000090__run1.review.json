@@ -1,0 +1,11 @@
+{"id": "tierD-000090", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The fused compound kind `prime_minister` is emitted without its mandatory genus atom `(Inheritance prime_minister minister)`, which the compound-kind rule says is always emitted."},
+               {"statement": 0, "issue": "The multi-word name is symbolized from the surname alone (`koizumi`) instead of from the whole name, and the title is dropped from the `Name` string that the title rule says to keep in full form."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a pre-nominal office / role title (\"Prime Minister Junichiro Koizumi\") — the title rule is stated for kinship and courtesy titles only, and it collides with the appositive-typing route the parse took",
+             "controller-role copying into a PASSIVE to-infinitive complement (\"deserved to be criticised\"), where the controller lands in the complement's object role rather than the `Agent` the control rule names"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Attitude routing is right: `say` is non-factive, so the complement is sealed under `Theme` with nothing about the deserving or criticism asserted at top level, and \"Mr Ota\" correctly keeps the courtesy title in its `Name` string while projecting outside the seal."}
