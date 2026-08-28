@@ -3285,3 +3285,118 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: e_dock_past (Past sk_dock_1) (STV 1.0 0.99))
     (: t_barge (Member sk_barge_1 barge) (STV 1.0 0.99))
     ; key check: NO (Past sk_haul_1)
+
+## Fix-pack 4 — final wave (C + D tiers)
+
+**[premise-binding] When a fuse blows, the siren stops.** — the whenever rule's premise binds through PLAIN variables; Skolem-function terms appear only in the conclusion
+
+    (: t_siren (Member sk_siren_1 siren) (STV 1.0 0.99))
+    (: r_blow_stop (Implication (And (Member $x blow) (Patient $x $f) (Member $f fuse))
+                                (And (Member (sk_stop $x) stop) (Theme (sk_stop $x) sk_siren_1)
+                                     (During (sk_stop $x) $x))) (STV 1.0 0.9))
+    ; key check: NO sk_* term anywhere in the premise
+
+**[when-specific] When the fog cleared, the pilots landed.** — "when" over definite/specific participants = two plain events ordered as stated, never an invented rule; episodic bare plural → group witness
+
+    (: e_clear (Member sk_clear_1 clear) (STV 1.0 0.99))
+    (: e_clear_pat (Patient sk_clear_1 sk_fog_1) (STV 1.0 0.99))
+    (: e_clear_past (Past sk_clear_1) (STV 1.0 0.99))
+    (: t_fog (Member sk_fog_1 fog) (STV 1.0 0.99))
+    (: g_pilots (GroupOf sk_pilots_1 pilot) (STV 1.0 0.99))
+    (: e_land (Member sk_land_1 land) (STV 1.0 0.99))
+    (: e_land_ag (Agent sk_land_1 sk_pilots_1) (STV 1.0 0.99))
+    (: e_land_past (Past sk_land_1) (STV 1.0 0.99))
+    (: ord (Before sk_clear_1 sk_land_1) (STV 1.0 0.99))
+    ; (During sk_land_1 sk_clear_1) is not licensed here — the clearing precedes; NO Implication
+
+**[gerund-generic] Skipping breakfast dulls concentration.** — a gerund subject of a generic claim is an occurrence trigger: whenever-machinery, plain premise variables, no witness for the gerund
+
+    (: r_skip_dull (Implication (And (Member $x skip) (Theme $x breakfast))
+                                (And (Member (sk_dull $x) dull) (Patient (sk_dull $x) concentration)
+                                     (During (sk_dull $x) $x))) (STV 1.0 0.9))
+
+**[amongmost] The mill is one of the oldest buildings in Farrowgate.** — one-of-N superlative = top-stratum membership `AmongMost`, never `Most`; restriction stays on the entity
+
+    (: t_mill (Member sk_mill_1 mill) (STV 1.0 0.99))
+    (: t_mill_b (Member sk_mill_1 building) (STV 1.0 0.99))
+    (: am (AmongMost sk_mill_1 old building) (STV 1.0 0.99))
+    (: loc (LocatedIn sk_mill_1 farrowgate) (STV 1.0 0.99))
+    (: n_f (Name farrowgate "Farrowgate") (STV 1.0 0.99))
+    ; and NO (Most old sk_mill_1 building)
+
+**[withinlast] The dam was inspected in the past three years.** — a backward window is `WithinLast`, never a duration `Measure`
+
+    (: e_insp (Member sk_inspect_1 inspect) (STV 1.0 0.99))
+    (: e_insp_th (Theme sk_inspect_1 sk_dam_1) (STV 1.0 0.99))
+    (: e_insp_past (Past sk_inspect_1) (STV 1.0 0.99))
+    (: t_dam (Member sk_dam_1 dam) (STV 1.0 0.99))
+    (: w_last (WithinLast sk_inspect_1 3 year) (STV 1.0 0.99))
+    ; and NO (Measure sk_inspect_1 duration 3 year)
+
+**[could-past] The diver could not open the hatch.** — past-narrative "could not" = denied capability bundle carrying BOTH `Can` and `Past`
+
+    (: no_open (And (Member sk_open_1 open) (Agent sk_open_1 sk_diver_1)
+                    (Theme sk_open_1 sk_hatch_1) (Can sk_open_1) (Past sk_open_1)) (STV 0.0 0.99))
+    (: t_diver (Member sk_diver_1 diver) (STV 1.0 0.99))
+    (: t_hatch (Member sk_hatch_1 hatch) (STV 1.0 0.99))
+
+**[continuation-remain] The wharf stayed idle.** — stay/remain + ADJ reifies the state with `(Still …)` + the flat atom + tense; no matrix event, no `Result`
+
+    (: st_idle (Member sk_idle_1 idle) (STV 1.0 0.99))
+    (: st_exp (Experiencer sk_idle_1 sk_wharf_1) (STV 1.0 0.99))
+    (: st_still (Still sk_idle_1) (STV 1.0 0.99))
+    (: st_past (Past sk_idle_1) (STV 1.0 0.99))
+    (: flat_idle (Member sk_wharf_1 idle) (STV 1.0 0.99))
+    (: t_wharf (Member sk_wharf_1 wharf) (STV 1.0 0.99))
+
+**[keep-maintenance] The usher kept the aisle clear.** — maintenance "keep X ADJ": State-result shape with `Theme` object (nothing changes) and `(Still <state>)` marking continuation
+
+    (: e_keep (Member sk_keep_1 keep) (STV 1.0 0.99))
+    (: e_keep_ag (Agent sk_keep_1 sk_usher_1) (STV 1.0 0.99))
+    (: e_keep_th (Theme sk_keep_1 sk_aisle_1) (STV 1.0 0.99))
+    (: e_keep_past (Past sk_keep_1) (STV 1.0 0.99))
+    (: st_clear (Member sk_clear_1 clear) (STV 1.0 0.99))
+    (: st_exp (Experiencer sk_clear_1 sk_aisle_1) (STV 1.0 0.99))
+    (: st_still (Still sk_clear_1) (STV 1.0 0.99))
+    (: flat_clear (Member sk_aisle_1 clear) (STV 1.0 0.99))
+    (: e_res (Result sk_keep_1 sk_clear_1) (STV 1.0 0.99))
+    (: t_usher (Member sk_usher_1 usher) (STV 1.0 0.99))
+    (: t_aisle (Member sk_aisle_1 aisle) (STV 1.0 0.99))
+
+**[deontic-adj] Trawling is illegal.** — a deontic adjective routes like its modal: denial of permission on the kind, never a plain quality atom
+
+    (: g_trawl (Inheritance trawl permitted) (STV 0.0 0.99))
+    ; and NO (Inheritance trawl illegal)
+
+**[maker-genitive] Odalys's protest delayed the hearing.** — a genitive naming an event noun's underlying subject is that argument (`Agent`), never `Possession`
+
+    (: t_prot (Member sk_protest_1 protest) (STV 1.0 0.99))
+    (: a_prot (Agent sk_protest_1 odalys) (STV 1.0 0.99))
+    (: n_od (Name odalys "Odalys") (STV 1.0 0.99))
+    (: e_del (Member sk_delay_1 delay) (STV 1.0 0.99))
+    (: e_del_ag (Agent sk_delay_1 sk_protest_1) (STV 1.0 0.99))
+    (: e_del_th (Theme sk_delay_1 sk_hearing_1) (STV 1.0 0.99))
+    (: e_del_past (Past sk_delay_1) (STV 1.0 0.99))
+    (: t_hear (Member sk_hearing_1 hearing) (STV 1.0 0.99))
+    ; and NO (Possession sk_protest_1 odalys)
+
+**[solid-compound] A moonbeam pierced the shutters.** — a solid spelling decomposes like its spaced form: genus emitted
+
+    (: t_mb (Member sk_moonbeam_1 moonbeam) (STV 1.0 0.99))
+    (: g_mb (Inheritance moonbeam beam) (STV 1.0 0.99))
+    (: e_p (Member sk_pierce_1 pierce) (STV 1.0 0.99))
+    (: e_p_ag (Agent sk_pierce_1 sk_moonbeam_1) (STV 1.0 0.99))
+    (: e_p_th (Theme sk_pierce_1 sk_shutters_1) (STV 1.0 0.99))
+    (: e_p_past (Past sk_pierce_1) (STV 1.0 0.99))
+    (: g_sh (GroupOf sk_shutters_1 shutter) (STV 1.0 0.99))
+
+**[perfect-inf] The mason claimed to have paid.** — a control infinitive keeps the matrix `Agent`; the perfect marks anteriority, so the complement event carries `(Past …)` and nothing else
+
+    (: e_claim (Member sk_claim_1 claim) (STV 1.0 0.99))
+    (: e_claim_ag (Agent sk_claim_1 sk_mason_1) (STV 1.0 0.99))
+    (: e_claim_past (Past sk_claim_1) (STV 1.0 0.99))
+    (: e_claim_th (Theme sk_claim_1 sk_pay_1) (STV 1.0 0.99))
+    (: e_pay (Member sk_pay_1 pay) (STV 1.0 0.99))
+    (: e_pay_ag (Agent sk_pay_1 sk_mason_1) (STV 1.0 0.99))
+    (: e_pay_past (Past sk_pay_1) (STV 1.0 0.99))
+    (: t_mason (Member sk_mason_1 mason) (STV 1.0 0.99))

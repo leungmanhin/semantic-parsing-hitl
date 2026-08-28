@@ -294,7 +294,17 @@ idiomatic reading only when the literal one is incoherent for these participants
 whenever it is available ("the cook spilled the beans across the floor" → an ordinary `spill` event
 with real beans). That is world knowledge choosing the **reading**, which *Core patterns* licenses;
 it adds no content. As with `go_out` ≈ `fail`, recognizing `spill_the_beans` ≈ `reveal` is a
-**downstream** normalization step — never emit the equivalence, or a rule expressing it, here. Decomposition atoms carry definitional `(STV 1.0 0.99)` and never change the
+**downstream** normalization step — never emit the equivalence, or a rule expressing it, here.
+
+Three boundary notes: a **solid / closed spelling** decomposes like its hyphenated or spaced
+form when it is transparently modifier + head ("stormcloud" → genus `cloud`); a **relational /
+rank adjective that fails the predication test** is never exposed as a modifier genus
+("assistant secretary" — \*"the secretary is assistant" — keeps genus `secretary` only); and
+the head **genus is suppressed when the IS-A fails** — a lexicalized compound that is *not* a
+kind of its head noun ("a **hot dog** is not a dog") emits no genus atom (the idiom bar's
+little sibling). **Coordinated premodifiers sharing one head** ("a freight and passenger
+line") type one entity with **both** fused kinds — `(Member sk_line_1 freight_line)`
+`(Member sk_line_1 passenger_line)` — plus each compound's own decomposition. Decomposition atoms carry definitional `(STV 1.0 0.99)` and never change the
 original meaning (a compound buried in a property does **not** leak to its genus — `(obligated
 pay_dues)` ≠ `(obligated pay)`).
 
@@ -499,8 +509,11 @@ Negate by setting **strength `0.0`** on the same atom (confidence per the dial):
       No reptile is warm-blooded. → (: reptile_not_warm (Inheritance reptile warm_blooded) (STV 0.0 0.99))
                                     (: reptile_q (QuantifierPhrase reptile warm_blooded "no") (STV 1.0 0.99))
 
-The quantifier **"no" / "none"** takes a `QuantifierPhrase` companion like any other quantifier
-word (above); plain **"not"** negation takes none — so the two `0.0` readings stay distinct.
+The quantifier **"no" / "none" / "neither"** takes a `QuantifierPhrase` companion like any other
+quantifier word (above); plain **"not"** negation takes none — so the two `0.0` readings stay
+distinct. The companion is **mandatory for every explicit quantifier word** the rule or claim
+consumes (including a frequency adverb's word — *Quantifiers*), and it only ever restates a
+range the rule itself quantifies — never a range that appears nowhere else in the parse.
 
 - **"not all / not every X is Y"** → a **counterexample witness**, one X that is not Y:
 
@@ -688,6 +701,10 @@ argument.
   ("sister of", "capital of", "a tributary of the river") — keeps the ordinary genitive
   `Possession` / `PartOf` of *Possessive / genitive NP*, unchanged. The test is the **verb
   paraphrase**: if "the N of X" ≈ "what Vs X" for the noun's own verb, it is the oblique.
+  A genitive naming an event noun's **underlying subject** ("**Marta's** objection", "the
+  committee's ruling") is that argument, not a possession: give the possessor the event
+  noun's subject role (`Agent` / `Experiencer` by the usual tests) — `Possession` for an
+  argument asserts a relation the text never states.
   The same goes for other argument prepositions on such nouns — "a **vehicle for** V-ing", "the
   **search for** the heir" → `(For <noun-symbol> <argument>)`, the argument's eventuality reified
   if clausal, **asserted nowhere** (a vehicle *for* spreading does not claim spreading occurred —
@@ -822,7 +839,12 @@ specific occurrence. Mark otherwise (stack as needed):
 
 Drop the same surface word's *sense* into the right operator: "must" → epistemic `Must`
 **or** deontic `Obligated`; "may" → epistemic `Might` **or** deontic `Permitted`; "can" →
-capability `Can` **or** deontic `Permitted`. Status atoms are `(STV 1.0 0.99)`, **except
+capability `Can` **or** deontic `Permitted`; **"could"** → past-narrative capability /
+permission (`Can` / `Permitted` **plus `Past`** — the epistemic-only no-tense carve-out does
+not apply: "could not reach the ledge" → the denied reach bundle carries `Can` and `Past`)
+**or** epistemic speculation (`Might`, no tense). A **deontic adjective** ("V-ing is
+illegal / mandatory / permissible") routes like its modal — `permitted` at strength `0.0` /
+`obligated` / `permitted` on the kind-level property form — never as a plain quality atom. Status atoms are `(STV 1.0 0.99)`, **except
 epistemic** `Might`/`Probably`/`Must`, which take confidence `0.9` (an inference, not a flat
 fact); deontic "should" is strength `0.7`.
 
@@ -890,8 +912,15 @@ Do **not** assert the presupposed prior / expected event itself.
 
 ### Resultatives & secondary predicates
 
-A **resultative** predicates a *result* of the object caused by the action — the object comes to be
-in that state *because of* the verb. Two shapes, by what the result is:
+A **resultative** predicates a *result* of the object caused by the action — the object comes to
+be **or stays** in that state *because of* the verb: a **maintenance** verb ("**kept** the gate
+shut") takes the same State-result shape, with `(Still <state-witness>)` marking the
+continuation (*Aspectual particles*) and the object in its ordinary role (`Theme` for *keep* —
+nothing changes). An intransitive **continuation copular** ("the lodge **remained / stayed**
+empty") likewise reifies the state with `(Still …)` + the flat atom + tense — no matrix event,
+no `Result` link ("stay/remain **+ locative PP**" instead keeps the position-atom route of
+*Where a THING is*; its continuation has no carrier there — record the gap). Two shapes, by
+what the result is:
 
 - **State result** ("painted it red", "wiped it clean", "hammered it flat", "forced it open"): the
   object is the `Patient` (it changes); reify the result state — `(Member sk_<state>_N <state>)
@@ -1044,7 +1073,9 @@ Parse P as usual (classes, roles, tense), then **seal** it (*Core patterns*).
   **non-finite-complement pattern** of the causation-flavored verbs (*Inter-clause
   connectives*): reify the complement event at **top level**, attach it to the matrix verb by
   `Theme`, give it **no tense / status of its own** (whether it occurred is not stated — the
-  reified event asserts or denies nothing about occurrence), and **copy the controller's role
+  reified event asserts or denies nothing about occurrence; a **perfect** infinitive — "claims
+  **to have** signed" — is the complement's own grammar marking anteriority, so `(Past e)` is
+  licensed on it), and **copy the controller's role
   in**: subject control by default ("Berta decided **to leave**" → the leave event's `Agent` is
   berta); an object controller when the syntax supplies one ("urged **the clerk** to resign" →
   the clerk is the resign event's `Agent`). The matrix verb keeps its own surface lemma and
@@ -1526,6 +1557,12 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
       Alice is the tallest student. →  (Most tall alice student) (Member alice student) (Name alice "Alice")
 
   Bare "the tallest" (no noun) → the contextual comparison class (default `person`).
+  **"One of the ADJ-est Ns"** is membership in the top stratum, not the unique maximum —
+  `(AmongMost <entity> <scale> <class>)` (same slots as `Most`), plus the entity's own
+  membership in the class; a stated domain restriction stays on the entity as its own atoms
+  ("one of the oldest mills in the valley" → `(AmongMost sk_mill_1 old mill)`
+  `(Member sk_mill_1 mill)` `(In sk_mill_1 sk_valley_1)` …). Never flatten it to `Most`
+  (which claims the unique top) or drop the superlative.
 
 - **Ordinal** "the **third** climber", "the **first** to respond", "the **last** runner" →
   `(Ordinal <entity> <n> <scale>)` — the entity's rank `n` on an ordering `<scale>` (the associated
@@ -1728,6 +1765,7 @@ A **threshold stated in a non-canonical unit** converts the threshold **in the q
 
 Factors: foot 0.3048, inch 0.0254, yard 0.9144, mile 1609.344, centimeter 0.01, kilometer 1000 (→
 meter); pound 0.453592, ounce 0.0283495, gram 0.001, ton 1000 (→ kilogram); minute 60, hour 3600,
+week 604800, month 2629800, year 31557600, decade 315576000 (calendar-average factors),
 day 86400 (→ second). A threshold already in the canonical unit needs no conversion. **Bounded**
 measures (`MeasureAtLeast`/`MeasureAtMost`) convert the same way — query the bound in the canonical
 unit (e.g. "what is its minimum length in meters?" → `(MeasureAtLeast $x long $m meter)`).
@@ -1865,6 +1903,24 @@ A later specific occurrence fires it ("The bell rang at noon." → that bark der
 derived event as the **whole conclusion bundle** — the trigger slot may stay a variable:
 `(And (Member $e bark) (Agent $e sk_dog_1) (During $e $r))`. Contrast "every **Monday**": a calendar
 **slot**, not an occurrence domain — days are terms, not entities, so use the flat habitual form.
+
+**Rule premises bind through plain variables.** A premise never contains a Skolem term:
+`(sk_<verb> $x)` function terms belong to **conclusions**, and an `sk_*` constant appears in a
+premise only when a top-level fact asserts it (a group's `PartOf` domain). A rule whose premise
+names a Skolem event nothing asserts can never fire — the premise is the pattern to **match**,
+the conclusion is what to **mint**.
+
+**Bare "when P, Q" routes by P's referents.** Generic or indefinite participants ("when a
+bearing seizes, the pump stalls") → exactly the *whenever* machinery above. Definite/specific
+participants in a one-off narrative ("when the mist lifted, the crew rowed on") → two plain
+events, ordered as stated (`During` / `Before`) — "when" alone neither invents a rule over
+specific individuals nor leaves a genuine regularity unquantified.
+
+**A gerund / nominalized-clause subject of a generic claim** ("Overwatering a fern rots the
+roots") is an **occurrence trigger**, not an entity: route it through the same machinery — the
+gerund clause, parsed with plain variables, is the premise; the main predicate is the
+per-occurrence Skolem consequent, `During`-linked. Never mint a witness for the gerund itself
+in the generic reading.
 - A **copular** clause with a time modifier reifies the state to anchor it (like a connective
   endpoint), **plus** the flat copular atom: "Alice was ill on Friday" → `(Member sk_ill_1 ill)
   (Experiencer sk_ill_1 alice) (Time sk_ill_1 (Weekday friday)) (Past sk_ill_1)` + `(Past (Member
@@ -1967,6 +2023,12 @@ is what makes the decrement well-defined; do not reach across cycles.
   on one event: emit only the **operative** bound; the superseded one survives only where the
   text asserts it *as history* (then `Past`-wrapped as its own claim). Two unqualified
   conflicting bounds on one event assert a contradiction the sentence does not state.
+- Bound terms also accept **day-part constants** as-is ("before dawn" → `(TimeAtMost e dawn)`;
+  dawn, noon, dusk, night, overnight-as-`night`), and a **fiscal / calendar period** is a term
+  when the year is stated — `(Quarter 3 2003)` — else the bare constant (`first_quarter`).
+- A **backward-window frame adverbial** ("in / over the past two years") is a **window, not a
+  duration**: `(WithinLast <event> <n> <unit>)` — never `(Measure e duration …)`, which would
+  claim the eventuality itself lasted that long.
 
 **Intervals** — an eventuality with a stated extent gets **`(Start e <term>)` / `(End e
 <term>)`** ("from X to / until Y"; "since X" → `Start` only, usually with `Ongoing`; "until Y" →
@@ -2194,6 +2256,11 @@ the kind? The default (a distributing rule, or `Inheritance`, at strength `0.9`)
 
   (An **explicit** universal "every dog chases every cat" stays a ∀∀ rule; a specific past "a dog
   chased a cat" stays an instance event. Only a **bare** relational generic becomes a kind relation.)
+  A **frequency adverb** on a kind relation sets the relation atom's own strength by the usual
+  dial (always `1.0` / usually · often `0.8` / sometimes `0.5` / rarely `0.1`) plus the
+  `QuantifierPhrase` companion on the **subject kind**. And an **adjectivally-restricted kind
+  subject** ("stray dogs chase cyclists") forces the **distributing-rule** route instead — the
+  restriction becomes a premise conjunct; a kind relation has no slot for it.
 
 - **Striking copular generic** — an "X are ADJ/N" generic true of only a **minority**
   ("politicians are corrupt") → keep `(Inheritance <kind> <prop>)`, but **lower the strength to the
@@ -2562,6 +2629,12 @@ In a **contrastive "some … others …" pair**, an antecedentless pronoun repea
 two clauses ("Some depots log them daily; others log them weekly") takes a **fresh witness in
 each clause** — the contrast means each set handles *its own* items, and one shared symbol
 would predicate both clauses' (possibly contradictory) states of a single set.
+Three more mechanical points: an **anaphoric definite** re-mentioning an already-minted
+witness ("a sluice … **the sluice**") **reuses** that witness — never a second
+`sk_sluice_2`; a **demonstrative with no antecedent** ("That is regrettable") takes a
+`thing`-witness exactly like an antecedentless pronoun (*Names and casing*); and
+**cataphora** ("**It** surprised no one **that the levee held**") resolves *forward* — the
+postponed clause is the referent, so parse it in place of the expletive pronoun.
 **A `CONTEXT` block extends the antecedent pool across passages**: its entities (with their
 `Name`s and classes) are available antecedents exactly like earlier sentences of the passage —
 reuse their symbols, re-emit nothing (see **Input**).
@@ -2682,7 +2755,9 @@ X, Y") still puts the main clause Y first:
 - **Temporal connectives get NO connective atom** — "after / before / when / while / until /
   as soon as" locate eventualities in time and keep their canonical forms from the time
   sections (`Before`, `During`, …). A connective atom is emitted only when the connective
-  states cause / purpose / concession / contrast.
+  states cause / purpose / concession / contrast. A **discourse-initial** connective ("But the
+  vote stood.") has no in-sentence first endpoint: emit no connective atom — parse the clause
+  plainly and record the gap (never invent an endpoint).
 - A **purpose infinitive** ties the main action to the purpose eventuality (main action first):
   "The clerk knelt to check the drain." → `(To sk_kneel_1 sk_check_1)` (head `To`; "in order
   to" → `InOrderTo`). **Not** "**too** / **enough** ADJ **to** V" — a degree-governed
