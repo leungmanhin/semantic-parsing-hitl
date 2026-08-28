@@ -1,0 +1,8 @@
+(: he_type (Member sk_person_1 person) (STV 1.0 0.99))
+(: euro_type (Member sk_euro_1 euro) (STV 1.0 0.99))
+(: fund_group (GroupOf sk_fundamentals_1 fundamental) (STV 1.0 0.99))
+(: level_type (Member sk_level_1 level) (STV 1.0 0.99))
+(: e_say1 (Member sk_say_1 say) (STV 1.0 0.99))
+(: e_say1_exp (Experiencer sk_say_1 sk_person_1) (STV 1.0 0.99))
+(: e_say1_past (Past sk_say_1) (STV 1.0 0.99))
+(: e_say1_theme (Theme sk_say_1 (And (Member sk_say_2 say) (Can sk_say_2) (Theme sk_say_2 (And (At sk_euro_1 sk_level_1) (Member sk_reflect_1 reflect) (Agent sk_reflect_1 sk_level_1) (Theme sk_reflect_1 sk_fundamentals_1))))) (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: he_type (Member sk_person_1 person) (STV 1.0 0.99))
+(: say_ev (Member sk_say_1 say) (STV 1.0 0.99))
+(: say_exp (Experiencer sk_say_1 sk_person_1) (STV 1.0 0.99))
+(: say_past (Past sk_say_1) (STV 1.0 0.99))
+(: agency_type (Member sk_agency_1 agency) (STV 1.0 0.99))
+(: agency_classes_grp (GroupOf sk_agency_classes_1 class) (STV 1.0 0.99))
+(: say_theme (Theme sk_say_1 (And (GroupOf sk_classes_1 class) (Implication (PartOf $x sk_classes_1) (And (Member $x full) (Cardinality $x 48))) (Member sk_book_1 book) (Theme sk_book_1 sk_classes_1) (End sk_book_1 next_month) (Member sk_plan_1 plan) (Agent sk_plan_1 sk_agency_1) (Theme sk_plan_1 sk_double_1) (Member sk_double_1 double) (Agent sk_double_1 sk_agency_1) (Patient sk_double_1 sk_agency_classes_1) (Time sk_double_1 (Month january)) (Possession sk_agency_classes_1 sk_agency_1))) (STV 1.0 0.99))

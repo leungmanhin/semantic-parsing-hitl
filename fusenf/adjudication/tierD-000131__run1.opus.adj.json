@@ -1,0 +1,12 @@
+{"id": "tierD-000131", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "confirm", "reason": "Measures & units licenses (ParticleFromNormal X sigma) only for a hedged value ('about / around / roughly'), with sigma set from the hedge; 'three to five months' states neither a mean of 4 nor a spread of 1, so the distribution invents a value and a tail the text never gives."},
+   {"index": 1, "verdict": "confirm", "reason": "BeforeBy is defined as the measured gap ('the MoreBy of time' — 'Leo resigned three days ago'), i.e. the gap IS n units, whereas 'in the next three to five months' only bounds it, so the atom over-asserts a definite interval."}],
+ "gaps_confirmed": [
+   "a two-endpoint numeric range ('three to five months') — Measures & units cover exact, single-bounded (AtLeast/AtMost) and hedged-approximate values only",
+   "'in the next N units' as a forward window on an event — BeforeBy has no bounded counterpart, and TimeAtMost needs a calendar term (unavailable with no TODAY)"],
+ "new_gaps": [
+   "an ordinal partitive ('the first of those discussions') — Partitives are flagged for cardinal or non-universal-proportional amounts, and Ordinal's third slot is defined as an ordering scale (an event or an '-est' dimension), so a kind symbol in that slot ('discussion') has no license"],
+ "repair_summary": "Replaced the sealed (BeforeBy now sk_get_under_way_1 (ParticleFromNormal 4 1) month) with the licensed weaker ordering (Before now sk_get_under_way_1), which the sentence entails; the 3-5 month window itself is dropped because no licensed form bounds a gap, and that gap is recorded. Everything outside the sealed Theme term is unchanged.",
+ "decision": "repair",
+ "notes": "The 'is expected to' matrix is correctly the impersonal reported attitude — agentless, complement sealed under Theme, tenseless — and 'get under way' is correctly one surface idiom symbol with no genus."}

@@ -1,0 +1,3 @@
+(: phys_bill (Member sk_bill_1 bill) (STV 1.0 0.99))
+(: phys_proc (Member sk_procedure_1 procedure) (STV 1.0 0.99))
+(: phys_face_rule (Implication (And (Member $x physician) (Member $e perform) (Agent $e $x) (Theme $e sk_procedure_1)) (And (Member (sk_face $x) face) (Agent (sk_face $x) $x) (Future (sk_face $x)) (Under (sk_face $x) sk_bill_1))) (STV 0.9 0.9))

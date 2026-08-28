@@ -1,0 +1,8 @@
+(: china_name (Name china "China") (STV 1.0 0.99))
+(: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: e_say_exp (Experiencer sk_say_1 china) (STV 1.0 0.99))
+(: e_say_past (Past sk_say_1) (STV 1.0 0.99))
+(: e_say_time (Time sk_say_1 (Weekday monday)) (STV 1.0 0.99))
+(: sars_name (Name sars "SARS") (STV 1.0 0.99))
+(: sars_kind (Member sars virus) (STV 1.0 0.99))
+(: e_say_theme (Theme sk_say_1 (And (And (GroupOf sk_people_1 person) (Cardinality sk_people_1 9) (Member sk_die_1 die) (Patient sk_die_1 sk_people_1) (From sk_die_1 sars) (Past sk_die_1) (Implication (PartOf $x sk_people_1) (And (Member (sk_die $x) die) (Patient (sk_die $x) $x) (From (sk_die $x) sars) (Past (sk_die $x))))) (And (GroupOf sk_people_2 person) (Cardinality sk_people_2 160) (Member sk_infect_1 infect) (Patient sk_infect_1 sk_people_2) (Instrument sk_infect_1 sars) (Past sk_infect_1) (Implication (PartOf $x sk_people_2) (And (Member (sk_infect $x) infect) (Patient (sk_infect $x) $x) (Instrument (sk_infect $x) sars) (Past (sk_infect $x))))))) (STV 1.0 0.99))

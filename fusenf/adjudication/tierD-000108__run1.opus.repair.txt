@@ -1,0 +1,6 @@
+(: sci_group (GroupOf sk_group_1 scientist) (STV 1.0 0.99))
+(: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: say_exp (Experiencer sk_say_1 sk_group_1) (STV 1.0 0.99))
+(: vs_genus (Inheritance vaccine_shortage shortage) (STV 1.0 0.99))
+(: dis_genus (Inheritance pneumococcal_disease disease) (STV 1.0 0.99))
+(: say_theme (Theme sk_say_1 (And (Member sk_shortage_1 vaccine_shortage) (For sk_shortage_1 diphtheria_tetanus_whooping_cough) (Past sk_shortage_1) (Member sk_shortage_2 vaccine_shortage) (For sk_shortage_2 measles_mumps_rubella) (Past sk_shortage_2) (Member sk_shortage_3 vaccine_shortage) (For sk_shortage_3 pneumococcal_disease) (Past sk_shortage_3) (Member sk_shortage_4 vaccine_shortage) (For sk_shortage_4 tetanus) (Past sk_shortage_4) (Member sk_shortage_5 vaccine_shortage) (For sk_shortage_5 chicken_pox) (Past sk_shortage_5))) (STV 1.0 0.99))

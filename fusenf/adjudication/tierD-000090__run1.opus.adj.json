@@ -1,0 +1,13 @@
+{"id": "tierD-000090", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Compound concepts makes the compound kind's genus mandatory — '(Inheritance <compound> <head-noun>)' is 'always emitted either way' — so a fused prime_minister without (Inheritance prime_minister minister) is missing a required atom."},
+            {"index": 1,
+             "verdict": "partial",
+             "reason": "The symbol half stands — 'a multi-word name is one opaque symbol built from the whole name' makes it junichiro_koizumi, not the surname alone — but the Name-string half does not: the title rule is stated for kinship and courtesy titles, and for an office word the Names section's own 'the Brindle estuary' route (name string without it, kind stated in an ordinary type atom) is what the parse followed, emitting nothing false."}],
+ "gaps_confirmed": ["pre-nominal office/role title ('Prime Minister Junichiro Koizumi') — the title rule names only kinship and courtesy titles, and it collides with the capitalized-run and appositive-typing routes",
+                    "controller-role copying into a PASSIVE to-infinitive complement ('deserved to be criticised'), where the controller lands in the complement's object role and not the Agent the control rule names"],
+ "new_gaps": ["a pre-nominal title's typing atom has no stated tense rule of its own — the parse borrowed the appositive rule's 'host-clause wrapper', which is stated only for comma appositives"],
+ "decision": "repair",
+ "repair_summary": "Added the mandatory compound-kind genus (Inheritance prime_minister minister); rebuilt the personal-name symbol from the whole name (koizumi -> junichiro_koizumi) in its Name, typing and Experiencer atoms, leaving the Name string 'Junichiro Koizumi' as the parser had it.",
+ "notes": "The office remains recorded by the separate (Past (Member junichiro_koizumi prime_minister)) atom, so nothing is lost by keeping the title out of the Name string. Attitude routing, the sealed Theme and the projected (Name ota \"Mr Ota\") were untouched."}

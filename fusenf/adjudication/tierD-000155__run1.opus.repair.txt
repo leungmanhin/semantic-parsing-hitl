@@ -1,0 +1,8 @@
+(: fine_grp (GroupOf sk_fine_1 fine) (STV 1.0 0.99))
+(: eff_grp (GroupOf sk_effort_1 effort) (STV 1.0 0.99))
+(: eff_props_rule (Implication (PartOf $x sk_effort_1) (And (Member $x republican) (Member $x failed))) (STV 1.0 0.9))
+(: fine_part (PartOf sk_fine_1 sk_effort_1) (STV 1.0 0.99))
+(: dem_grp (GroupOf sk_democrat_1 democrat) (STV 1.0 0.99))
+(: ret_ev (Member sk_return_1 return) (STV 1.0 0.99))
+(: ret_ag (Agent sk_return_1 sk_democrat_1) (STV 1.0 0.99))
+(: eff_purpose (And (To sk_effort_1 sk_force_1) (Or (Member sk_force_1 force) (Member sk_force_1 entice)) (Theme sk_force_1 sk_return_1)) (STV 1.0 0.99))

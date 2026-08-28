@@ -1,0 +1,13 @@
+{"id": "tierD-000079", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "confirm", "reason": "Categorical statements makes a definite/possessed plural take a group witness ((GroupOf <group> <kind>), never a lone Member witness) and forbids predicating a member property of the group symbol, so 'his sincere apologies' needs GroupOf plus the distributive rule for the descriptive modifier, not one sk_apology_1 carrying a flat (Member sk_apology_1 sincere)."},
+   {"index": 1, "verdict": "refute", "reason": "The 'noun modifier is never exposed' rule governs the genus atom of a fused modifier_noun symbol (fire_exit is not fire), not a relation between two individuals; 'Ahold Chairman' is the relational-noun genitive 'Chairman of Ahold', which Possessive/genitive NP routes to PartOf (a member of a group), and the words 'Ahold' + 'Chairman' are exactly what put the atom there."}],
+ "gaps_confirmed": [
+   "a proper-noun (organization) modifier inside a role title before a personal name ('Ahold Chairman Henny de Ruiter') — the compound rules cover adjective and common-noun modifiers, and the title rule covers kinship/courtesy titles only",
+   "an event-denoting NP as the object of locative 'at' ('at the meeting') — Location/LocatedIn are specified for places, and During renders only 'during / while / throughout'",
+   "scare-quoted material inside a clause ('his \"sincere apologies\"') — quotation has no carrier; the string literal convention is reserved for Name"],
+ "new_gaps": [
+   "no way to record that a possessed plural's modifier was itself inside the scare quotes — the distributive rule asserts sincerity of each apology, which the quotes arguably distance"],
+ "decision": "repair",
+ "repair_summary": "Re-typed sk_apology_1 as a group ((GroupOf sk_apology_1 apology)) for the possessed plural 'apologies', and replaced the flat (Member sk_apology_1 sincere) with the distributive rule (Implication (PartOf $x sk_apology_1) (Member $x sincere)) at (STV 1.0 0.9); every other atom, symbol name and the two Interpretation lines are untouched.",
+ "notes": "Unraised and therefore not repaired: the title rule ('keep the full form in the Name string') arguably wants (Name henny_de_ruiter \"Ahold Chairman Henny de Ruiter\"). The r1/r2 attachment split for 'at the meeting' is a licensed use of the Interpretation trigger and each reading is complete."}

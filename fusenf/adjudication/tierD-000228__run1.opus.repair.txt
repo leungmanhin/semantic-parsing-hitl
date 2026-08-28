@@ -1,0 +1,7 @@
+(: reuters_name (Name reuters "Reuters") (STV 1.0 0.99))
+(: witness_grp (GroupOf sk_witness_1 witness) (STV 1.0 0.99))
+(: witness_poss (Possession sk_witness_1 reuters) (STV 1.0 0.99))
+(: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: e_say_exp (Experiencer sk_say_1 sk_witness_1) (STV 1.0 0.99))
+(: e_say_tense (Past sk_say_1) (STV 1.0 0.99))
+(: e_say_theme (Theme sk_say_1 (And (GroupOf sk_square_1 public_square) (Inheritance public_square square) (Member sk_packed_1 packed) (Experiencer sk_packed_1 sk_square_1) (Implication (PartOf $sq sk_square_1) (Past (Member $sq packed))) (Past sk_packed_1) (With sk_packed_1 sk_child_1) (With sk_packed_1 sk_person_1) (GroupOf sk_child_1 child) (Implication (PartOf $ch sk_child_1) (Member $ch crying)) (GroupOf sk_person_1 person) (Member sk_leave_1 leave) (Patient sk_leave_1 sk_person_1) (Past sk_leave_1) (Member sk_homeless_1 homeless) (Experiencer sk_homeless_1 sk_person_1) (Implication (PartOf $pp sk_person_1) (Member $pp homeless)) (Result sk_leave_1 sk_homeless_1) (Member sk_huddle_1 huddle) (Experiencer sk_huddle_1 sk_person_1) (Location sk_huddle_1 sk_blanket_1) (GroupOf sk_blanket_1 blanket) (To sk_huddle_1 sk_protect_1) (Member sk_protect_1 protect) (Agent sk_protect_1 sk_person_1) (Theme sk_protect_1 sk_person_1) (From sk_protect_1 cold))) (STV 1.0 0.99))

@@ -1,0 +1,6 @@
+(: company_typ (Member sk_company_1 company) (STV 1.0 0.99))
+(: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: e_say_exp (Experiencer sk_say_1 sk_company_1) (STV 1.0 0.99))
+(: e_say_tense (Past sk_say_1) (STV 1.0 0.99))
+(: quarter1_typ (Member sk_quarter_1 quarter) (STV 1.0 0.99))
+(: e_say_theme (Theme sk_say_1 (And (Member sk_expect_1 expect) (Experiencer sk_expect_1 sk_company_1) (On sk_expect_1 sk_results_1) (GroupOf sk_results_1 result) (Member sk_quarter_1 quarter) (Ordinal sk_quarter_1 1 quarter) (Time sk_results_1 sk_quarter_1) (Theme sk_expect_1 sk_earn_1) (Member sk_earn_1 earn) (Agent sk_earn_1 sk_company_1) (Measure sk_earn_1 earning 90 cent_per_share) (Time sk_earn_1 sk_quarter_1))) (STV 1.0 0.99))

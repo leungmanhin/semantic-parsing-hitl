@@ -1,0 +1,13 @@
+{"id": "tierD-000101", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "confirm", "reason": "Compound concepts makes modifier exposure determined by the predication test — expose the modifier only if it is an adjectival property of the referent — and 'the government is coastal' is false ('coastal' modifies 'state', not the government), so the atom asserts something the sentence does not state."}],
+ "gaps_confirmed": [
+   "a three-word compound with internal bracketing ('[coastal state] government') — the Compound-kind rule assumes one modifier plus a head noun and says nothing about a modifier attaching to the inner noun",
+   "'share X with Y' — the with-phrase is a transfer partner; the two-branch with-test (participant -> CoAgent / means -> Instrument) and Recipient (defined for 'to') do not settle which slot it takes",
+   "a sentence-initial discourse 'And' with no second clause in the text — the connective rules assume two reifiable clause endpoints"],
+ "new_gaps": [
+   "the spatial adverb in 'so far out in international water' — 'out' has no slot on a reified predicate-adjective state and is silently dropped",
+   "a mass/plural bare 'international water(s)' as the container of LocatedIn — no rule says whether the water gets a witness or stays a bare kind constant"],
+ "decision": "repair",
+ "repair_summary": "Removed (: gov_adj (Inheritance coastal_state_government coastal) …); no licensed encoding can attach 'coastal' to the inner noun 'state', so the modifier is dropped and the bracketing gap recorded. Every other atom, including the genus (Inheritance coastal_state_government government), is unchanged.",
+ "notes": "'does not have to share' is correctly the strength-0 bundle over an (Obligated …) event — a denied obligation, not the (Permitted …) 0.0 prohibition — and the fronted 'because' correctly puts the main clause first."}

@@ -1,0 +1,17 @@
+{"id": "tierD-000149", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "confirm", "reason": "*Thematic roles* decides an oblique by the question the PP answers — where / when / how / whence / whither — and \"to death\" answers none of them, so it takes the preposition-named oblique `(To ...)`; the rule is explicit that the choice is \"by the question the PP answers, never by which listed role is closest\"."},
+   {"index": 1, "verdict": "refute", "reason": "The antecedent is the licensed State-result parse of \"found guilty\" (reified state + `Experiencer` + the flat copular atom + `Result`, exactly as *Resultatives* prescribes), sealed inside an `Implication` where nothing is asserted, and no rule of the instruction set requires minimal premises — premise redundancy is a derivation concern, not a faithfulness defect."},
+   {"index": 2, "verdict": "refute", "reason": "The observation is accurate but is the reviewer's own gap 2 — a status atom inside a rule conclusion has no truth-value slot of its own — so no licensed encoding could carry the epistemic's 0.9 there, and a coverage gap is not a parse defect."}
+ ],
+ "gaps_confirmed": [
+   "\"soon after\" — a vague temporal-proximity degree on an ordering: `Before` carries no degree and `BeforeBy` needs a stated number plus unit, so \"soon\" is dropped.",
+   "An epistemic / status atom inside a rule conclusion has no truth-value slot, so the prescribed epistemic confidence 0.9 cannot be expressed.",
+   "\"find X guilty\" — a declarative / verdict secondary predicate: the resultative-vs-depictive split does not decide whether a verdict is a caused result, and evaluate/record verbs are routed to `Theme` elsewhere."
+ ],
+ "new_gaps": [
+   "An indicative conditional about a SPECIFIC individual (\"If found guilty, Samudra could ...\") has no prescribed truth value or variable discipline: the definitional/empirical dial is scoped to generalizations, individual facts keep 0.99, and the premises here are constant skolems that a later independent parse of the antecedent would never match."
+ ],
+ "decision": "repair",
+ "repair_summary": "Replaced the spatial `(Goal sk_sentence_1 death)` with the preposition-named oblique `(To sk_sentence_1 death)`; nothing else changed.",
+ "notes": "The two refuted issues are accurate observations of limits in the instruction set rather than defects in this parse."}

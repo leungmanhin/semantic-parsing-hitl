@@ -1,0 +1,4 @@
+(: t97_person (Member sk_person_1 person) (STV 1.0 0.99))
+(: t97_request (Member sk_request_1 request) (STV 1.0 0.99))
+(: t97_neg_see (And (Member sk_see_1 see) (Experiencer sk_see_1 sk_person_1) (Stimulus sk_see_1 sk_urgency_1) (Member sk_urgency_1 urgency) (Experiencer sk_urgency_1 sk_request_1)) (STV 0.0 0.99))
+(: t97_neg_grant (And (Member sk_grant_1 grant) (Agent sk_grant_1 sk_person_1) (Theme sk_grant_1 sk_request_1) (Future sk_grant_1)) (STV 0.0 0.99))

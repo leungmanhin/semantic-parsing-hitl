@@ -1,0 +1,8 @@
+(: res_grp (GroupOf sk_researchers_1 us_researcher) (STV 1.0 0.99))
+(: res_gen (Inheritance us_researcher researcher) (STV 1.0 0.99))
+(: e_report (Member sk_report_1 report) (STV 1.0 0.99))
+(: e_report_exp (Experiencer sk_report_1 sk_researchers_1) (STV 1.0 0.99))
+(: e_report_time (Time sk_report_1 (Weekday thursday)) (STV 1.0 0.99))
+(: e_report_past (Past sk_report_1) (STV 1.0 0.99))
+(: mut_gen (Inheritance gene_mutation mutation) (STV 1.0 0.99))
+(: e_report_thm (Theme sk_report_1 (And (Implication (Member $x person) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) (sk_mutation $x)) (Member (sk_mutation $x) gene_mutation) (Member (sk_raise $x) raise) (Agent (sk_raise $x) (sk_mutation $x)) (Patient (sk_raise $x) (sk_risk $x)) (Can (sk_raise $x)) (Member (sk_risk $x) risk) (Possession (sk_risk $x) $x) (Of (sk_risk $x) cancer))) (QuantifierPhrase person have "nearly one in 10"))) (STV 1.0 0.99))

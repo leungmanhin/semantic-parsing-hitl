@@ -1,0 +1,10 @@
+{"id": "tierD-000020", "run": 1,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "*Where a THING is* states 'A place inside a place is LocatedIn, never PartOf' and reserves PartOf for an object's component or a group's member — a street block on Avenida Velasco is geographic containment, not a component."},
+            {"index": 1, "verdict": "confirm", "reason": "*Core patterns* requires a decomposed compound's genus atoms to be 'always emitted' and *Compound concepts* gives them a definitional (STV 1.0 0.99); buried inside the sealed term nothing is asserted at top level, so the phone_call and domestic_disturbance genus links never enter the KB."}],
+ "gaps_confirmed": ["simultaneity 'when' joining two clauses — temporal connectives take no connective atom, but no canonical form is named for simultaneity (During covers during/while/throughout), so the begin event and the reported call stay temporally unrelated",
+                    "a locative PP on an event-denoting noun ('a domestic disturbance at the home') — nothing says whether it takes the event head Location or the entity head LocatedIn",
+                    "a street-address block designation carrying a number range ('the 54-300 block') — no licensed encoding for the range"],
+ "new_gaps": ["where a compound's definitional decomposition atoms go when the compound is introduced only INSIDE a seal — the projection rule is written for definite referents' typing atoms and says nothing about lexical genus links"],
+ "decision": "repair",
+ "repair_summary": "Replaced (PartOf sk_block_1 avenida_velasco) with (LocatedIn sk_block_1 avenida_velasco) inside the sealed term; lifted (Inheritance phone_call call), (Inheritance domestic_disturbance disturbance) and (Inheritance domestic_disturbance domestic) out of the seal into top-level definitional statements at (STV 1.0 0.99).",
+ "notes": "Everything else is untouched: the seal's contents, the definite projections, and the atom order and symbol names are the parser's. The block/home locatives were left inside the seal because only typing atoms are specified to project."}

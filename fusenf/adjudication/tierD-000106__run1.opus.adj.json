@@ -1,0 +1,10 @@
+{"id": "tierD-000106", "run": 1,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "Categorical statements bars predicating a members' property of the group symbol ('(Member sk_group_1 wooden) says the group-as-object is wooden — the reading every plural rule here warns against'), and 'huge' is incidental size description, so it must distribute over (PartOf $x sk_jam_1)."},
+            {"index": 1, "verdict": "refute", "reason": "The collective/multiple-Agent rule is stated for reciprocal VERBS ('met with', 'collided with'); 'a standoff with police' is a comitative phrase on an event-denoting NOUN — the gap the reviewer itself registers — and (CoAgent sk_standoff_1 police) is true and well-typed there, while minting an unstated second Agent would add content the text does not state."},
+            {"index": 2, "verdict": "refute", "reason": "The no-tense-on-event-nouns rule is scoped to an event-noun that is only a temporal anchor in an adjunct ('before the inspection'), where Past would assert an event that may never have happened; here the protest and the standoff are both asserted to have occurred in the past, so both Past atoms are true and well-typed."}],
+ "gaps_confirmed": ["a comitative 'with'-phrase on an event-denoting noun ('a standoff with police') — CoAgent vs collective-Agent is stated for verbal clauses only",
+                    "whether an event-denoting noun that is merely a clause participant (not a light-verb host, not a temporal anchor) may carry its own tense atom"],
+ "new_gaps": ["a possessive determiner on an event nominalization ('his protest') states the underlying event's agent, but the genitive rule routes it to the opaque Possession, so the agent link is not recorded"],
+ "decision": "repair",
+ "repair_summary": "Replaced the group-level (Member sk_jam_1 huge) with the licensed distribution rule (Implication (PartOf $x sk_jam_1) (Member $x huge)) (STV 1.0 0.9); nothing else changed.",
+ "notes": "The lowercase-adjective sub-region carving, the (To sk_lead_1 …) prepositional-verb oblique, the 47-hour duration Measure and Location-on-the-creating-event-only are all correct as filed."}

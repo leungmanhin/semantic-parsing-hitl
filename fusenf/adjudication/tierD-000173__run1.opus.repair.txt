@@ -1,0 +1,8 @@
+(: lm_name (Name lloyd_mcclendon "Lloyd McClendon") (STV 1.0 0.99))
+(: lm_manager (Past (Member lloyd_mcclendon manager)) (STV 1.0 0.99))
+(: pirates_name (Name pirates "Pirates") (STV 1.0 0.99))
+(: lm_partof (PartOf lloyd_mcclendon pirates) (STV 1.0 0.99))
+(: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+(: e_say_exp (Experiencer sk_say_1 lloyd_mcclendon) (STV 1.0 0.99))
+(: e_say_past (Past sk_say_1) (STV 1.0 0.99))
+(: e_say_theme (Theme sk_say_1 (And (Member sk_have_1 have) (Holder sk_have_1 pirates) (Theme sk_have_1 sk_players_1) (GroupOf sk_players_1 player) (Implication (PartOf $p sk_players_1) (Member $p quality)))) (STV 1.0 0.99))

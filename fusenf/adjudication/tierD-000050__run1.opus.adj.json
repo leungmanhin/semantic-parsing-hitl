@@ -1,0 +1,9 @@
+{"id": "tierD-000050", "run": 1,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "The second conjunct's PP is spelled out as 'in women', not elided, so american_woman asserts a restriction no words support — *Core patterns*: 'point at the words that put the atom there; if you cannot, drop it'."},
+            {"index": 1, "verdict": "refute", "reason": "The fusion itself is the licensed kind-level form of *Complements of nouns and adjectives* (both sides bare kinds -> genus (Inheritance common_in_american_man common) + argument (In ... american_man)), and using it as the Ordinal scale is graceful improvisation in the gap the reviewer itself records — ConditionalProperty has no rank slot and a bare 'common' scale would strip a restriction *Conditional properties* forbids stripping; every atom stays true and well-typed."}],
+ "gaps_confirmed": ["a ranked superlative carrying a domain restriction ('the fourth most common cancer in American men') — Ordinal/Most have no condition slot and ConditionalProperty has no rank slot, so neither form holds both halves",
+                    "ellipsis in a coordinated ranking ('and the eighth in women') — nothing states how much of the first conjunct's restriction is reconstructed"],
+ "new_gaps": ["Ordinal with a KIND in its entity slot (a kind-level ranking, 'bladder cancer is the fourth ...') — *Comparatives & degree* defines Ordinal for individuals only"],
+ "decision": "repair",
+ "repair_summary": "Dropped the unsupported american_woman kind and its two decomposition atoms, and re-expressed the second ranking over the stated class: (Inheritance common_in_woman common), (In common_in_woman woman), (Ordinal bladder_cancer 8 common_in_woman).",
+ "notes": "The men conjunct is untouched — 'American' is stated there. The fused-property-as-Ordinal-scale encoding is kept in both conjuncts, since it is the only form that holds rank and restriction together."}

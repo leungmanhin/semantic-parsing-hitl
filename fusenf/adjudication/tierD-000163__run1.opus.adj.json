@@ -1,0 +1,15 @@
+{"id": "tierD-000163", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "refute", "reason": "The very rule cited reserves a bare `(Member <group> <prop>)` for \"a property genuinely of the collection itself\", and \"international\" is exactly such a non-distributing property — a workforce drawn from many countries — so distributing it would assert of each individual rescue worker something the text does not state, whereas the group-level atom is true and well-typed."}
+ ],
+ "gaps_confirmed": [
+   "A proper noun used as a modifier inside a common-noun compound (\"Silk Road city\"): the naming rules demand a symbol plus a mandatory `Name` for the proper noun while the compound rules bury an unexposed modifier in the fused symbol, so `silk_road_city` leaves \"Silk Road\" with no `Name`.",
+   "Whether a counted plural in OBJECT position (\"killed more than 20,000 people\") takes the per-member distribution rule — the distributive-predicate rule is stated subject-side and gives no guidance for a group filling `Patient`."
+ ],
+ "new_gaps": [
+   "A collection-level adjective on a plural (\"international rescue workers\"): the plural rule names only size and name as properties of the collection, giving no test for adjectives that cannot distribute to members.",
+   "A possessive genitive whose possessed is a PLACE (\"Iran's ... city of Bam\"): the genitive's part/whole test routes to `PartOf` / `Possession`, while the geography rule bars `PartOf` for a place inside a place — nothing names `LocatedIn` as the genitive's output."
+ ],
+ "decision": "accept",
+ "repair_summary": "",
+ "notes": "The single filed issue applies the distributive half of the plural rule to a property that falls under its stated collection-level exception. The rest of the parse — `CardinalityAtLeast 20001`, the swapped `Before`, participial adjectives, and the inanimate transitive `Agent` — is per spec."}

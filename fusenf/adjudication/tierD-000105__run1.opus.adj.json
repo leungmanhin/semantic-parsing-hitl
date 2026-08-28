@@ -1,0 +1,11 @@
+{"id": "tierD-000105", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "No word in the sentence supplies the kind \"district\" for Downtown Washington, so the atom fails Core patterns' \"point at the words that put the atom there\" test — a proper noun's type atom is licensed only when a kind word sits inside the name or beside it (\"the Brindle estuary\"), which is why the parallel virginia correctly carries a Name and nothing else."}],
+ "gaps_confirmed": ["coordinated NPs as the object of one locative PP (\"in Downtown Washington and northern Virginia\") — the distributive-by-default rule is stated for coordinated arguments, not for stacking two obliques on one event",
+                    "a causation-flavored verb (\"triggered\") whose object is an event-denoting NOUN rather than a clausal complement — the role test points at Patient while the causative bullet points at Theme for a reified complement",
+                    "distributing a group predication to its members by rule when the group fills a non-subject role (Theme of \"inconvenienced\") — the per-member rule is specified only for plural subjects"],
+ "new_gaps": ["a sentence-initial demonstrative (\"That triggered ...\") whose referent is an eventuality in prior text: with no in-item antecedent the anaphora rule yields an untyped-kind `thing` witness, so the eventive character of the antecedent is not recoverable"],
+ "decision": "repair",
+ "repair_summary": "Removed (Member downtown_washington district), the invented kind atom; downtown_washington now carries only its Name atom, exactly as virginia does.",
+ "notes": "Everything else stands: the single capitalized run as one name, the northern-Virginia sub-region witness, the phrasal back_up with no genus, the 47-hour duration Measure on the event-noun witness, and the vague-quantity CardinalityPhrase. The As atom's anchoring on the relative-clause event is a defensible attachment and was not filed as an issue."}

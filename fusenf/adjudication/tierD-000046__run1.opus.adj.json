@@ -1,0 +1,13 @@
+{"id": "tierD-000046", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The `Degree` level slot takes \"the surface adverb, lemmatized\" as a bare symbol (`very`, `slightly`, `excessive`); double-quoted string literals belong to `Name` / `QuantifierPhrase` / `CardinalityPhrase`, so `\"almost\"` there is ill-typed."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "`Degree` keeps the positive precisely because \"intensifiers entail the property\", but \"almost simultaneous\" denies full simultaneity, so `(Member sk_raid_group_1 simultaneous)` asserts what the text stops short of."}],
+ "gaps_confirmed": ["approximators (\"almost\", \"nearly\", \"virtually\") on an adjective — `Degree` is defined for intensifiers/downtoners that entail the positive, and nothing carries a modifier that cancels it",
+                    "a distributed part-whole between two groups (\"the bodies of seven of the bombers\") — `PartOf` is defined for a component of an object or a member of a group, not for a group of parts standing against another group"],
+ "new_gaps": ["whether `Degree` may carry a property-cancelling approximator with the positive atom withheld — the `forKind` comparison-class case is the only precedent for a `Degree` atom without its positive, and it is not stated to generalize"],
+ "decision": "repair",
+ "repair_summary": "Removed the over-asserted `(Member sk_raid_group_1 simultaneous)`. Rewrote `(Degree sk_raid_group_1 simultaneous \"almost\")` as `(Degree sk_raid_group_1 simultaneous almost)` — the level as a bare lemmatized surface adverb, the positive withheld on the `forKind` precedent, which records what the text says without entailing simultaneity.",
+ "notes": "Simultaneity is a property of the collection itself, so keeping it on the raid-group symbol (rather than distributing) is right and was left alone. The partitive, the sealed report with its definite groups projected, the suppressed past-perfect ordering and \"Friday night\" are unchanged."}

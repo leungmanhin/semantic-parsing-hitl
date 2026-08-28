@@ -1,0 +1,9 @@
+{"id": "tierD-000118", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "\"A place inside a place is LocatedIn, never PartOf\" — PartOf is reserved for an object's component and a group's member, and the Texas coast is a geographic sub-region of Texas, so the atom asserts a part-whole link the instruction set explicitly routes to containment."}],
+ "gaps_confirmed": ["a relative-time adjunct \"later in the day\" — neither a structured calendar/clock term nor one of the speech-anchored deictics, so the ad-hoc constant later_in_the_day is improvisation in gap territory"],
+ "new_gaps": ["a geographic part-whole COMPOUND (\"the Texas coast\") is pulled two ways: the modifier_noun possessor/part rule prescribes (PartOf part whole) while the geography rule prescribes LocatedIn, and nothing states which governs when the whole is a place"],
+ "decision": "repair",
+ "repair_summary": "Changed (PartOf sk_coast_1 texas) to (LocatedIn sk_coast_1 texas); everything else, including the sealed report, is byte-identical.",
+ "notes": "The reviewer's two flagged judgment calls (Patient for the hurricane's motion as a non-volitional natural force; no Future on \"hits\", which sits inside a seal and has no TODAY to place \"later in the day\" against) are both licensed as they stand and were not filed as issues."}

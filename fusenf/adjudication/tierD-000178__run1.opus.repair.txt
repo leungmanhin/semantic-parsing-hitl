@@ -1,0 +1,8 @@
+(: practiceworks_name (Name practiceworks "PracticeWorks") (STV 1.0 0.99))
+(: acq1_mem (Member sk_acquisition_1 acquisition) (STV 1.0 0.99))
+(: acq1_of (Of sk_acquisition_1 practiceworks) (STV 1.0 0.99))
+(: kodak_name (Name kodak "Kodak") (STV 1.0 0.99))
+(: revenue1_mem (Member sk_revenue_1 revenue) (STV 1.0 0.99))
+(: revenue1_poss (Possession sk_revenue_1 kodak) (STV 1.0 0.99))
+(: expect1_mem (Member sk_expect_1 expect) (STV 1.0 0.99))
+(: expect1_theme (Theme sk_expect_1 (And (Member sk_add_1 add) (Agent sk_add_1 sk_acquisition_1) (Goal sk_add_1 sk_revenue_1) (Measure sk_add_1 quantity (ParticleFromNormal 215000000 21500000) dollar) (Time sk_add_1 first_full_year) (Member sk_dilutive_1 dilutive) (Experiencer sk_dilutive_1 sk_acquisition_1) (Member sk_acquisition_1 dilutive) (Degree sk_acquisition_1 dilutive slightly) (End sk_dilutive_1 (Year 2005)) (Member sk_accretive_1 accretive) (Experiencer sk_accretive_1 sk_acquisition_1) (Member sk_acquisition_1 accretive) (Before sk_dilutive_1 sk_accretive_1))) (STV 1.0 0.99))

@@ -1,0 +1,12 @@
+{"id": "tierD-000125", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "No kind word for the Cavaliers sits inside or beside the name, so (Member cleveland_cavaliers team) fails Core patterns' \"point at the words that put the atom there\" test and adds world knowledge as content (the Kestrel-River rule licenses a type atom only from a stated kind word, and a proper noun is never required to carry one — the parse itself leaves james untyped)."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "Same falsehood-free-but-unstated typing: \"NBA\" is an opaque name symbol with no kind word anywhere in the text, so (Member nba league) asserts more than the text states."}],
+ "gaps_confirmed": ["means/method gerund adjunct \"won X by winning Y\": the preposition-named oblique is specced with an NP object, and no section covers a by-V-ing manner-of-achievement adjunct relating two event witnesses"],
+ "new_gaps": ["an organization/team proper noun whose kind word appears neither inside nor beside the name (\"the Cleveland Cavaliers\", \"the NBA\") has no licensed type atom at all, so the entity stays untyped in the KB"],
+ "decision": "repair",
+ "repair_summary": "Removed (Member cleveland_cavaliers team) and (Member nba league) as unstated world-knowledge typings; nothing else touched, including the By oblique (acceptable improvisation in the confirmed gap: the atom is true of the sentence and uses the surface preposition, never a coined synonym head).",
+ "notes": "The right-to-draft NP complement (To on the noun symbol + a tenseless reified draft event, asserted nowhere) matches the noun-argument-PP rule, and \"Thursday night\" correctly composes (Weekday thursday) with the day-part symbol."}

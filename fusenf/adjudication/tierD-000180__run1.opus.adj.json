@@ -1,0 +1,23 @@
+{"id": "tierD-000180", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "confirm", "reason": "Comparatives states a comparative does not entail the positive ('taller-than-Y doesn't make X tall'), so both the flat (Member sk_shares_1 low) and the reified low state falsely assert that $28.12 shares are low."},
+   {"index": 1, "verdict": "confirm", "reason": "Measures fixes the scale as the surface dimension ('Record what's said'), and 'decrease' appears nowhere in the sentence — the stated dimension word is the comparative 'lower'."},
+   {"index": 2, "verdict": "refute", "reason": "Before is a licensed closed-class head over two eventualities the text asserts, and the result infinitive 'to end at $28.12' states exactly that sequence, so the ordering is true and well-typed improvisation in the reviewer's own result-infinitive gap."},
+   {"index": 3, "verdict": "partial", "reason": "Real that a 'with'-absolute participle is not among the four enumerated Ongoing markers, but overstated as a defect — the -ing is progressive morphology (Perception reports reads a bare participial -ing as exactly that) and the atom is true of the edging, so it stands under the calibration line."},
+   {"index": 4, "verdict": "confirm", "reason": "Measure's first slot is the entity that bears the dimension (only 'duration' is defined on an event), and the ending event is not priced at $28.12 — the shares are."},
+   {"index": 5, "verdict": "confirm", "reason": "Names and casing requires a multi-word name to be one opaque symbol built from the whole name, and 'nyse' is an acronym the text never uses."}
+ ],
+ "gaps_confirmed": [
+   "Absolute 'with NP V-ing' adjunct: the 'with'-phrase rules cover only comitative CoAgent and Instrument NPs, so the participial clause has no licensed link to the matrix event.",
+   "Differential comparative with an implicit standard ('edging 7 cents lower'): MoreBy requires an explicit 'than Y'.",
+   "Result infinitive ('to end at $28.12'): only purpose infinitives (To / InOrderTo) are covered, and result-vs-purpose is not distinguished.",
+   "Extent / downtoner adverb on an event ('reacted little'): only a plain Manner filler is available, losing the near-negative force.",
+   "Episodic bare-plural subject ('Investors reacted ...'): bare plurals route to generic rules, with no stated route for a bare plural naming specific participants in a one-off past event."
+ ],
+ "new_gaps": [
+   "Aspect of a participial absolute: the four Ongoing markers do not include it, although the instruction set treats a bare participial -ing as a progressive marker for perception complements.",
+   "A bare change-magnitude on an event ('edged 7 cents lower') has no carrier at all: Measure's scale must be the surface dimension and its entity slot is for entities, while MoreBy needs an explicit standard — so the figure can only be dropped."
+ ],
+ "decision": "repair",
+ "repair_summary": "Removed the reified low state, its Experiencer and the flat (Member sk_shares_1 low), plus the now-dangling (Result sk_edge_1 sk_low_1) that referenced the deleted witness; removed (Measure sk_edge_1 decrease 7 cent) — no licensed form exists for a differential with an implicit standard; moved the price measure onto the shares and kept the clause's pastness as the tense wrapper Measures prescribes; renamed nyse to new_york_stock_exchange in all three atoms.",
+ "notes": "Removing the 7-cent figure and the 'lower' comparison leaves the price change unrecorded, which is the honest outcome of the implicit-standard gap. The Ongoing and Before atoms were left untouched as true gap-territory improvisation."}

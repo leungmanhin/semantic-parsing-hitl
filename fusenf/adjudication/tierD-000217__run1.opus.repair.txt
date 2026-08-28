@@ -1,0 +1,6 @@
+(: e_note_grp (GroupOf sk_note_1 benchmark_treasury_note) (STV 1.0 0.99))
+(: e_note_genus (Inheritance benchmark_treasury_note note) (STV 1.0 0.99))
+(: e_gain (Member sk_gain_1 gain) (STV 1.0 0.99))
+(: e_gain_patient (Patient sk_gain_1 sk_note_1) (STV 1.0 0.99))
+(: e_gain_past (Past sk_gain_1) (STV 1.0 0.99))
+(: e_yield (Past (Measure sk_note_1 yield 4.015 percent)) (STV 1.0 0.99))

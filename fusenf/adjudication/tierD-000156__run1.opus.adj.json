@@ -1,0 +1,16 @@
+{"id": "tierD-000156", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "confirm", "reason": "*Thematic roles* states that a participial post-modifier on a noun is a reduced relative taking the ordinary event form, \"even for participles that have drifted toward preposition use\", and the prescribed expansion test passes here (\"the efforts that include the fines\"), so the partitive `SubsetOf` — defined only for a same-kind subset of a definite superset — is not the licensed encoding."},
+   {"index": 1, "verdict": "refute", "reason": "The sealing rule names the typing atom as projecting but nowhere bars the rest of a definite NP's own descriptive content — asserted by the reporter, not by Perry — from top level, and the reified force / return events carry no tense, which the non-finite-complement rule says \"asserts or denies nothing about occurrence\", so nothing false or over-asserted is emitted; this is the reviewer's own gap 1."}
+ ],
+ "gaps_confirmed": [
+   "What projects out of a seal beyond the typing atom — a definite NP inside an attitude complement may carry a possessor, an appositive and a clausal complement, and only `Member` / `Name` (and `GroupOf`) are named as projecting.",
+   "A purpose / result INFINITIVE modifying a NOUN (\"efforts to force ...\"): the purpose-infinitive rule is written for a clausal adjunct on an action, and the noun-complement pattern is stated only for \"for\".",
+   "\"including\" as an appositive-inclusion marker on an NP, as distinct from the reduced-relative reading — though the instruction set's expansion test does decide it for drifted participles."
+ ],
+ "new_gaps": [
+   "A reduced-relative participle on a DEFINITE PLURAL head (\"the efforts, including the fines\") leaves the reified relation between two group witnesses with no guidance on whether it predicates of the groups as units or distributes to members."
+ ],
+ "decision": "repair",
+ "repair_summary": "Replaced `(SubsetOf sk_fines_1 sk_efforts_1)` with the reduced-relative event form for \"including\" — `(Member sk_include_1 include)`, `(Agent sk_include_1 sk_efforts_1)` (stative transitive subject stays `Agent`), `(Theme sk_include_1 sk_fines_1)` (the object is unchanged), with no status atom.",
+ "notes": "Everything else — the say/Experiencer attitude frame, the sealed back-bundle, the genitive `Possession`, and the object-control force/return structure with no tense on either non-finite event — is per spec and untouched."}

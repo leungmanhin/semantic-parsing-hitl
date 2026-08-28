@@ -1,0 +1,8 @@
+(: idx_name (Name standard_and_poors_500_index "Standard & Poor's 500 Index") (STV 1.0 0.99))
+(: idx_type (Member standard_and_poors_500_index index) (STV 1.0 0.99))
+(: idx_broad (Member standard_and_poors_500_index broad) (STV 1.0 0.99))
+(: e_fall (Member sk_fall_1 fall) (STV 1.0 0.99))
+(: e_fall_patient (Patient sk_fall_1 standard_and_poors_500_index) (STV 1.0 0.99))
+(: e_fall_past (Past sk_fall_1) (STV 1.0 0.99))
+(: e_fall_pts (Measure sk_fall_1 fall 0.70 point) (STV 1.0 0.99))
+(: e_fall_pct (Measure sk_fall_1 fall 0.07 percent) (STV 1.0 0.99))

@@ -1,0 +1,13 @@
+{"id": "tierD-000207", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Location is defined for 'in/at/on' and the head must be the preposition actually used ('never a coined synonym head, always the word actually used'), so (Location e sk_compounds_1) also states something false — the staging was near the compounds, not at them."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "Thematic roles requires a participial post-modifier to be read as a reduced relative taking 'the ordinary event form with the modified noun filling its role' ('others that were staged …'), and the parse emits no staging event at all, leaving its PP and date attached to the wrong witness."}],
+ "gaps_confirmed": ["surface past tense over the epistemic operator seem/appear requires: 'tense/modality wrap a copular atom' points at (Past (Probably …)) while 'a bare epistemic modal is the event's only status atom' forbids added tense, so the past of 'seemed' has no stated encoding"],
+ "new_gaps": ["a reduced relative whose head noun is itself event-denoting ('attacks staged on May 12') yields two eventuality symbols for one happening — the attack witness and the staging event — with no stated relation identifying or linking them",
+              "a Symmetric-tagged stative relation whose second argument is a group witness ('similar to others') — Symmetric relations are defined over individuals, and nothing states how the relation distributes over the group's members"],
+ "decision": "repair",
+ "repair_summary": "Reified the 'staged' reduced relative as (Member sk_stage_1 stage) with (Patient sk_stage_1 sk_others_1) and (Past sk_stage_1); moved the PP and the date onto that event, replacing (Location sk_others_1 sk_compounds_1) with the surface-preposition oblique (Near sk_stage_1 sk_compounds_1) and re-hanging the (Month may)/(Day 12) Time terms on sk_stage_1.",
+ "notes": "(Past sk_others_1) is kept — an event-denoting noun's witness takes tense directly — and the LocatedIn, foreign_compound, Similar/Symmetric and Probably atoms were left as the parser had them."}

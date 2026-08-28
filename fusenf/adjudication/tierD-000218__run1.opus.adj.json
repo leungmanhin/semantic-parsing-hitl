@@ -1,0 +1,21 @@
+{"id": "tierD-000218", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "confirm", "reason": "Measures fixes the scale as the surface dimension (a stated adjective, else the stated dimension noun) and Core patterns bars world knowledge from adding content — 'maturity' is nowhere in the sentence."},
+   {"index": 1, "verdict": "confirm", "reason": "'point' is likewise unstated (the text gives only '17/32'), and 'down' names a direction, not the dimension Measure's scale slot requires."},
+   {"index": 2, "verdict": "confirm", "reason": "Measure's magnitude is a native number (or a ParticleFromNormal distribution); Fraction is defined as a ProportionOf level, so it is ill-typed in that slot and unusable by Compute / GreaterThan."},
+   {"index": 3, "verdict": "confirm", "reason": "Compound concepts states a noun modifier is never exposed and stays inside the fused symbol ('steel_beam' is not 'steel'), with the genus always emitted — 'the note is benchmark' fails the predication test."},
+   {"index": 4, "verdict": "confirm", "reason": "A measure takes the clause's tense as a wrapper, and a tenseless dependent constituent takes the host clause's wrapper (the appositive rule), so the past host requires Past on the yield measure too."}
+ ],
+ "gaps_confirmed": [
+   "Attributive measure modifier with no stated dimension word ('10-year note'): Measure requires a surface scale and the compound rules give no route for a numeric modifier.",
+   "Financial price-change notation 'down 17/32' (32nds of a point): no licensed form for a bare fraction change whose unit is implicit.",
+   "Vague temporal adverb 'recently': neither a calendar term nor one of the speech-anchored deictic constants, so it has no slot.",
+   "Result infinitive 'to yield 4.067 percent' off a stative predication: To needs an eventuality in its first argument."
+ ],
+ "new_gaps": [
+   "Even with the connective-endpoint reification trigger available for the host state, a complement encoded as a Measure predication supplies no eventuality for To's second argument, so the result infinitive has no endpoint on either side.",
+   "Stacked attributive modifiers ('benchmark 10-year note'): the compound rule fuses one modifier with its head and says nothing about a second modifier on the same head."
+ ],
+ "decision": "repair",
+ "repair_summary": "Deleted (Measure sk_note_1 maturity 10 year) — the invented dimension has no licensed replacement, so the 10-year modifier is dropped and recorded as a gap; replaced the down-measure with the surface-attested copular predication (Past (Member sk_note_1 down)), dropping the invented 'point' unit and the ill-typed Fraction magnitude; fused the noun modifier into (Member sk_note_1 benchmark_note) with its mandatory genus (Inheritance benchmark_note note); wrapped the yield measure in the host clause's Past.",
+ "notes": "The '17/32' figure and the 10-year term are lost because both gaps leave them unrepresentable; the pre-existing (Member sk_note_1 note) was left in place as unaffected and true, though the genus now derives it."}

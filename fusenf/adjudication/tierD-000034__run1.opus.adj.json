@@ -1,0 +1,12 @@
+{"id": "tierD-000034", "run": 1,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "Names and casing requires the kind to be stated in one ordinary type atom \"whether the kind word sits inside the name or beside it\" — the Kestrel River example emits (Member kestrel_river river) alongside the Name — so (Member standard_and_poors_500_index index) is missing."},
+            {"index": 1, "verdict": "confirm", "reason": "Goal is the spatial non-recipient \"to\" oblique (motion-result path), and an oblique's object follows the ordinary NP rules, so a bare float in the filler slot is ill-typed — numbers are magnitudes in Measure / Cardinality / Ordinal, never role fillers."},
+            {"index": 2, "verdict": "refute", "reason": "The scale rule's second branch is precisely a dimension noun read off the measure verb (\"weighs\" → weight, \"costs\" → price), and fall is the surface verb's own noun with no gradable adjective stated, so the parse records what's said rather than substituting a synonym."}],
+ "gaps_confirmed": ["A parenthetical ticker / secondary identifier (\"<.SPX>\"): exactly one Name fact per proper noun, with no slot for an alternate code.",
+                    "Appositive / restatement \"or\" (\"0.70 points, or 0.07 percent\" — one change re-expressed in another unit), which the Disjunction section would treat as inclusive disjunction.",
+                    "The resulting numeric value of a change-of-value verb (\"fell … to 1,069.42\"): no licensed endpoint-value encoding (Measure needs a unit, Goal is spatial)."],
+ "new_gaps": ["A bare numeric value has no licensed filler form for a role or preposition-named oblique slot, so an endpoint value cannot be attached to its event even with the surface preposition head (To).",
+              "Two Measure atoms sharing an entity and scale but differing in unit (point vs percent) express one quantity two ways, and neither unit has a canonical-dimension conversion to reconcile them."],
+ "decision": "repair",
+ "repair_summary": "Added (: idx_type (Member standard_and_poors_500_index index) (STV 1.0 0.99)) for the kind word inside the name run; removed (Goal sk_fall_1 1069.42), whose numeric filler has no licensed replacement, and recorded the endpoint-value gap.",
+ "notes": "The endpoint is dropped rather than re-slotted, since a Measure would need an invented scale and the To oblique would still take a bare number. Reading the two magnitudes as one fall measured twice, not an (Or …), keeps every atom true and is left untouched."}

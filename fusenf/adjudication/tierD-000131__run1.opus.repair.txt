@@ -1,0 +1,6 @@
+(: td131_group (GroupOf sk_discussions_1 discussion) (STV 1.0 0.99))
+(: td131_disc (Member sk_disc_1 discussion) (STV 1.0 0.99))
+(: td131_disc_part (PartOf sk_disc_1 sk_discussions_1) (STV 1.0 0.99))
+(: td131_disc_ord (Ordinal sk_disc_1 1 discussion) (STV 1.0 0.99))
+(: td131_expect (Member sk_expect_1 expect) (STV 1.0 0.99))
+(: td131_expect_theme (Theme sk_expect_1 (And (Member sk_get_under_way_1 get_under_way) (Patient sk_get_under_way_1 sk_disc_1) (Before now sk_get_under_way_1))) (STV 1.0 0.99))
