@@ -114,7 +114,13 @@ Rules:
 
 Six patterns recur throughout; each is defined **here once** and only referenced below.
 
-- **Assert only what the text states.** World knowledge picks the *reading*; it never adds content.
+- **Assert only what the text states.** World knowledge picks the *reading*; it never adds
+  content. A **type atom is licensed exactly when the kind is readable off the words** — a
+  stated kind word, or a kind word inside the name itself (*Names and casing*); knowing what
+  the entity is licenses nothing ("the Mallards" gets no `team` atom, "Aldenport" no `city`
+  atom, however obvious). And a stated **restriction, hedge or qualifier is never silently
+  dropped**: omitting it widens the claim — carry it, or leave the whole claim out and record
+  the gap (an unencodable qualifier never becomes an unqualified assertion).
   If two mentioned things are obviously related in the world — a wick sits in a lantern, a
   hinge belongs to a door — that relation is **not** an atom unless the text says so:
   "The lantern dimmed because the wick had frayed" must **not** yield
@@ -720,7 +726,7 @@ the active subject would have had** — `Agent` for a transitive, **even a stati
 ("the gate is jammed **by rust**" → `(Agent … rust)`, never `Holder`, which is possession-only) — and an **agentless** passive simply omits that atom. A voice alternation must
 therefore produce the *same* atoms; if it does not, one of the two readings is wrong. An **expletive / weather "it"** ("it is
 raining", "it got cold", "it seems") is **not** a referent — drop it and reify the predicate
-**agentless** (no `Agent` / `Experiencer` for the "it"): "it would rain" → `(Member sk_rain_1 rain)
+**agentless** (no `Agent` / `Experiencer` for the "it"): "it will rain" → `(Member sk_rain_1 rain)
 (Future sk_rain_1)`.
 
       Maria gave Bob a book in the library.
@@ -792,6 +798,30 @@ status operator instead:
   own: its typing atom takes the **host clause's** wrapper — past host →
   `(Past (Member halvard wheelwright))`, present host → the bare atom.
 
+### Sequence of tense & irrealis "would"
+
+**"would" is never a blanket `Future`.** Three readings, decided by the clause it sits in:
+
+- **Embedded future-shift** — inside a **sealed complement** or non-finite embedded
+  eventuality, "would V" is future *relative to the matrix time* → `(Future e)` on the
+  embedded event (inside the seal), exactly as "will" would be in direct speech: "the foreman
+  said the beams would arrive" → the arrive event sealed with `(Future …)`.
+- **Refusal / future-in-the-past** — in a plain past narrative, "would (not) V" marks
+  (un)willingness at the reference time, not a prediction: parse the event as the narrative
+  states it — typically the strength-`0.0` denial with `(Past e)` **inside** the bundle ("the
+  clerk would not stamp the form" → the denied stamp event carries `Past`) — and **never** a
+  denied `Future`, which would wrongly rule out a later occurrence the text leaves open.
+- **Irrealis** — "would (have) V-ed" whose condition is unstated or counter-to-fact ("a levy
+  that would have funded the depot") describes an **unrealized** eventuality: assert it
+  **neither way**. Where the sentence supplies the full had/would-have pair, use
+  `Counterfactual` (*Inter-clause connectives*); an irrealis **relative clause or lone
+  consequent** has no licensed carrier yet — leave that clause unencoded and record the gap
+  (an unencodable clause never becomes an asserted one).
+
+**Sequence of tense is surface-mechanical**: a past-tense verb inside a sealed complement keeps
+its `(Past …)` inside the seal ("admitted he **was** lost" → the sealed state carries `Past`),
+including doubly-embedded reports — no back-shifting arithmetic.
+
 ### Aspectual particles (again / still / already / yet)
 
 A repetitive / continuative / phasal particle adds a **presupposition** to an eventuality. Assert the
@@ -832,6 +862,11 @@ in that state *because of* the verb. Two shapes, by what the result is:
            (Member sk_white_1 white) (Experiencer sk_white_1 sk_fence_1)
            (Member sk_fence_1 white)
            (Result sk_paint_1 sk_white_1)
+
+  **When the object is a plural group, distribution wins**: a member state never rides the
+  group symbol (*Coordination & plurals*), so the flat half becomes the per-member rule
+  `(Implication (PartOf $x <group>) (Member $x <state>)) (STV 1.0 0.9)` beside the reified
+  result state — never `(Member <group> <state>)`.
 
 - **Motion result** ("slid the plate off the counter", "pushed it into the box"): the result is a
   new **location**, already carried by the motion **obliques** — the object by its usual role
@@ -932,6 +967,10 @@ Parse P as usual (classes, roles, tense), then **seal** it (*Core patterns*).
   what it *is*. A multi-atom complement seals under `(And …)`:
   "Nadia believes Tom left" → `(Theme sk_believe_1 (And (Member sk_leave_1 leave) (Agent sk_leave_1
   tom) (Past sk_leave_1)))`.
+  **Seal P's full normalized form.** Whatever P's own doctrine mandates — including a plural's
+  per-member `(Implication (PartOf $x <group>) …)` distribution rule — goes **inside** the
+  sealed `(And …)` as a conjunct. Give every sealed rule **fresh variables** shared with no
+  other conjunct of that seal (variables must not co-vary inside one stored term).
 - A **factive** verb (*know / realize / discover / regret*) entails P, so **also** emit P's atoms as
   ordinary top-level facts, alongside the sealed `Theme` term:
 
@@ -943,7 +982,11 @@ Parse P as usual (classes, roles, tense), then **seal** it (*Core patterns*).
 
 - **Negation** ("doesn't believe", "never thought") negates the **attitude**, not P — wrap the
   attitude bundle in a strength-`0.0` conjunction (see **Negation (events)**); P stays sealed and
-  unasserted either way. (Contrast a **causative** — "made the alarm sound" — whose complement
+  unasserted either way. A complement that is **nothing but negated content** — a quoted or
+  reported denial ("the clerk said the count did **not** tally") — has no expressible residue
+  under the no-polarity-in-seal limitation: **drop the complement entirely** (the attitude
+  event stands with **no** `Theme`), project referent typing as always, and never assert the
+  positive form. Registered limitation — record the loss. (Contrast a **causative** — "made the alarm sound" — whose complement
   event is reified **at top level**, occurrence-neutral, rather than sealed; see the
   causation-flavored-verbs bullet under **Inter-clause connectives**.)
 - Only for a **finite clausal** complement. A psych/attitude verb with an **entity** object ("distrusts
@@ -988,7 +1031,25 @@ and is otherwise consumed — it has no atom of its own:
 sealed term as any attitude question does. (A **negated conjunct inside** such a sealed
 complement — "considered to be subjective and **not** objective" — currently has no polarity
 carrier inside a seal: seal what is expressible and leave the negated conjunct out; this is a
-registered limitation, not a licence to assert the positive form.)
+registered limitation, not a licence to assert the positive form. A complement that is
+**wholly** negative drops entirely — see *Propositional attitudes*.)
+
+### Evidential attribution ("according to X, P")
+
+"**According to** \<source\>, P" attributes P to a source without asserting it — the same
+non-commitment as a non-factive attitude, with **no attitude verb** to reify. Seal P as the
+**first argument** of `AccordingTo`, source second:
+
+      According to the manual, the valve opens clockwise.
+        →  (AccordingTo (And (Member sk_open_1 open) (Agent sk_open_1 sk_valve_1)
+                             (Manner sk_open_1 clockwise)) sk_manual_1)
+           (Member sk_valve_1 valve) (Member sk_manual_1 manual)   ; referents project as always
+
+Only the attribution itself is asserted; **no predication of P reaches top level** (the
+non-factive bar). The source NP parses normally (a witness for an indefinite source, `Name` for
+a named one). This sealing use is distinct from the surface-preposition **oblique**
+`(<Prep> <event> <object>)`: an "according to" phrase attributing a whole clause takes this
+form, never the oblique.
 
 ### Perception reports (see / hear / watch someone do …)
 
@@ -1338,6 +1399,18 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
   (`ScaleOpposite`) links the two poles of a dimension, so orderings on it still chain and a
   question worded from **either** pole matches. Word the query with the adjective the question
   actually uses.
+
+- **No comparative, approximator or minimizer ever asserts the positive.** An **attributive or
+  elided-standard** comparative ("a sturdier bracket", "prices ended lower") states no
+  standard: with nothing to fill `More`'s second slot there is **no licensed form** — drop the
+  comparative and record the gap rather than emit `(Member … sturdy)` / `(Member … low)`,
+  which the sentence does not say. An **approximator** ("almost", "nearly", "all but")
+  *cancels* the property it modifies — "the tank was almost full" asserts neither fullness nor
+  an unqualified full state: reify the state **without its flat half** (the approximator is
+  itself the reification trigger on a bare copular) and tag `(Degree <bearer> <adjective>
+  almost)`, the level slot a **bare symbol**. A **minimizer** ("little changed", "barely
+  moved") asserts the eventuality at strength `0.1` (the frequency dial applied to degree),
+  never at full strength.
 
 - **Differential** "X is N \<unit\> ADJ-er than Y" (a comparative with a measured gap) →
   `(MoreBy <scale> X Y <magnitude> <unit>)` — scale / magnitude / unit exactly as in **Measures &
@@ -1772,6 +1845,12 @@ is what makes the decrement well-defined; do not reach across cycles.
       Bob must submit the report by 5 pm.  →  … (Obligated sk_submit_1) (TimeAtMost sk_submit_1 (Hour 17))
       The roof was repaired before March.  →  … (Past sk_repair_1) (TimeAtMost sk_repair_1 (Month february))
       The audit must finish before Thursday. → … (Obligated sk_finish_1) (TimeAtMost sk_finish_1 (Weekday wednesday))
+
+- A **superseded bound or value** — the clause replaces one stated bound with another ("the
+  survey, originally due in April, is now due by June") — never leaves both at full strength
+  on one event: emit only the **operative** bound; the superseded one survives only where the
+  text asserts it *as history* (then `Past`-wrapped as its own claim). Two unqualified
+  conflicting bounds on one event assert a contradiction the sentence does not state.
 
 **Intervals** — an eventuality with a stated extent gets **`(Start e <term>)` / `(End e
 <term>)`** ("from X to / until Y"; "since X" → `Start` only, usually with `Ongoing`; "until Y" →
@@ -2495,7 +2574,8 @@ X, Y") still puts the main clause Y first:
   `Theme`. In "V-ed NP from V-ing", the NP is the embedded event's participant only — give it
   its role INSIDE the embedded event, not on the matrix verb. A **non-finite embedded
   eventuality** ("from slipping", "to check the drain") carries **no** tense/status atom of
-  its own unless its own grammar marks one ("would V" → `Future`) — whether it actually
+  its own unless its own grammar marks one (an **embedded** "would V" = future relative to the
+  matrix → `Future`; see *Sequence of tense & irrealis "would"*) — whether it actually
   occurred is not stated, so assert or deny nothing about that.
 - **Periphrastic causative** — "have / get / make / let X do (something)" — is the same matrix
   pattern: the causative verb → an event with `Agent` = the **causer** (subject) and `Theme` = the

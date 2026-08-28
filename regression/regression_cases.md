@@ -2976,3 +2976,107 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: t_pitchfork (Member sk_pitchfork_1 pitchfork) (STV 1.0 0.99))
     (: t_silo (Member sk_silo_1 silo) (STV 1.0 0.99))
     (: pos_against (Past (Against sk_pitchfork_1 sk_silo_1)) (STV 1.0 0.99))
+
+---
+
+## Fix-pack 4 — wave A (safety tier)
+
+**[would-refusal] The tenant would not sign the lease.** — past-narrative "would not" = refusal at reference time (fix-pack 4): strength-`0.0` denial with `Past` **inside** the bundle; never a denied `Future`
+
+    (: no_sign (And (Member sk_sign_1 sign) (Agent sk_sign_1 sk_tenant_1)
+                    (Theme sk_sign_1 sk_lease_1) (Past sk_sign_1)) (STV 0.0 0.99))
+    (: t_tenant (Member sk_tenant_1 tenant) (STV 1.0 0.99))
+    (: t_lease (Member sk_lease_1 lease) (STV 1.0 0.99))
+
+**[would-irrealis-rel] The council rejected a plan that would have widened the road.** — an irrealis relative is an **unrealized** eventuality with no licensed carrier: the widen clause is left unencoded (no widen atoms either way — recorded as a gap), the matrix and referents parse normally
+
+    (: e_reject (Member sk_reject_1 reject) (STV 1.0 0.99))
+    (: e_reject_ag (Agent sk_reject_1 sk_council_1) (STV 1.0 0.99))
+    (: e_reject_th (Theme sk_reject_1 sk_plan_1) (STV 1.0 0.99))
+    (: e_reject_past (Past sk_reject_1) (STV 1.0 0.99))
+    (: t_council (Member sk_council_1 council) (STV 1.0 0.99))
+    (: t_plan (Member sk_plan_1 plan) (STV 1.0 0.99))
+    ; and NO (Member sk_widen_1 widen) at any strength
+
+**[would-embedded] The captain said the courier would return.** — embedded "would" = future relative to the matrix: `(Future …)` INSIDE the sealed complement; sequence of tense is surface-mechanical
+
+    (: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+    (: e_say_exp (Experiencer sk_say_1 sk_captain_1) (STV 1.0 0.99))
+    (: e_say_past (Past sk_say_1) (STV 1.0 0.99))
+    (: e_say_th (Theme sk_say_1 (And (Member sk_return_1 return) (Agent sk_return_1 sk_courier_1)
+                                     (Future sk_return_1))) (STV 1.0 0.99))
+    (: t_captain (Member sk_captain_1 captain) (STV 1.0 0.99))
+    (: t_courier (Member sk_courier_1 courier) (STV 1.0 0.99))
+
+**[comparative-attr] Ravenna bought a faster loom.** — attributive comparative with an elided standard: no licensed `More` form and **no positive** `(Member … fast)`; the comparative is dropped (gap), the rest parses normally
+
+    (: e_buy (Member sk_buy_1 buy) (STV 1.0 0.99))
+    (: e_buy_ag (Agent sk_buy_1 ravenna) (STV 1.0 0.99))
+    (: e_buy_th (Theme sk_buy_1 sk_loom_1) (STV 1.0 0.99))
+    (: e_buy_past (Past sk_buy_1) (STV 1.0 0.99))
+    (: t_loom (Member sk_loom_1 loom) (STV 1.0 0.99))
+    (: n_ravenna (Name ravenna "Ravenna") (STV 1.0 0.99))
+
+**[approximator] The cistern was almost empty.** — "almost" cancels the property: reified state **without** the flat half (the approximator is the reification trigger), `(Degree <bearer> <adjective> almost)` with a bare-symbol level
+
+    (: st_empty (Member sk_empty_1 empty) (STV 1.0 0.99))
+    (: st_exp (Experiencer sk_empty_1 sk_cistern_1) (STV 1.0 0.99))
+    (: st_past (Past sk_empty_1) (STV 1.0 0.99))
+    (: deg_almost (Degree sk_cistern_1 empty almost) (STV 1.0 0.99))
+    (: t_cistern (Member sk_cistern_1 cistern) (STV 1.0 0.99))
+    ; and NO flat (Member sk_cistern_1 empty)
+
+**[neg-quote-drop] "The votes were not counted," the observer said.** — a wholly negative complement has no expressible sealed residue: drop it entirely; the say event stands with **no** `Theme` and the positive is never asserted
+
+    (: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+    (: e_say_exp (Experiencer sk_say_1 sk_observer_1) (STV 1.0 0.99))
+    (: e_say_past (Past sk_say_1) (STV 1.0 0.99))
+    (: t_observer (Member sk_observer_1 observer) (STV 1.0 0.99))
+    ; and NO (Theme sk_say_1 …), NO count-event atoms at any strength
+
+**[according-to] According to the report, the shipment arrived.** — evidential attribution: P sealed as the FIRST argument of `AccordingTo`, source second; only the attribution asserted, referent typing projects
+
+    (: acc (AccordingTo (And (Member sk_arrive_1 arrive) (Theme sk_arrive_1 sk_shipment_1)
+                             (Past sk_arrive_1)) sk_report_1) (STV 1.0 0.99))
+    (: t_report (Member sk_report_1 report) (STV 1.0 0.99))
+    (: t_shipment (Member sk_shipment_1 shipment) (STV 1.0 0.99))
+    ; and NO top-level (Member sk_arrive_1 arrive)
+
+**[sealed-distribution] The mayor said the volunteers were exhausted.** — P's full normalized form seals: the plural's per-member rule is a conjunct of the sealed `(And …)` with fresh variables; the definite plural's `GroupOf` typing projects
+
+    (: e_say (Member sk_say_1 say) (STV 1.0 0.99))
+    (: e_say_exp (Experiencer sk_say_1 sk_mayor_1) (STV 1.0 0.99))
+    (: e_say_past (Past sk_say_1) (STV 1.0 0.99))
+    (: e_say_th (Theme sk_say_1 (And (Implication (PartOf $v sk_volunteers_1)
+                                                  (Past (Member $v exhausted))))) (STV 1.0 0.99))
+    (: g_vol (GroupOf sk_volunteers_1 volunteer) (STV 1.0 0.99))
+    (: t_mayor (Member sk_mayor_1 mayor) (STV 1.0 0.99))
+
+**[resultative-group] The storm swept the lanes clear.** — resultative whose object is a plural group: distribution wins over the flat half — per-member rule at `(STV 1.0 0.9)`, reified result state kept, **no** `(Member <group> clear)`
+
+    (: e_sweep (Member sk_sweep_1 sweep) (STV 1.0 0.99))
+    (: e_sweep_ag (Agent sk_sweep_1 sk_storm_1) (STV 1.0 0.99))
+    (: e_sweep_pat (Patient sk_sweep_1 sk_lanes_1) (STV 1.0 0.99))
+    (: e_sweep_past (Past sk_sweep_1) (STV 1.0 0.99))
+    (: t_storm (Member sk_storm_1 storm) (STV 1.0 0.99))
+    (: g_lanes (GroupOf sk_lanes_1 lane) (STV 1.0 0.99))
+    (: st_clear (Member sk_clear_1 clear) (STV 1.0 0.99))
+    (: st_exp (Experiencer sk_clear_1 sk_lanes_1) (STV 1.0 0.99))
+    (: dist_clear (Implication (PartOf $x sk_lanes_1) (Member $x clear)) (STV 1.0 0.9))
+    (: e_result (Result sk_sweep_1 sk_clear_1) (STV 1.0 0.99))
+
+**[superseded-bound] The census, originally due in March, is now due by July.** — a superseded bound never stands unqualified beside its replacement: only the operative bound is emitted (a `Past`-wrapped history claim is the licensed alternative)
+
+    (: t_census (Member sk_census_1 census) (STV 1.0 0.99))
+    (: due_bound (TimeAtMost sk_census_1 (Month july)) (STV 1.0 0.99))
+    ; and NO unqualified (TimeAtMost sk_census_1 (Month march))
+
+**[wk-typing] Duskvale welcomed the Harriers.** — kind atoms only when readable off the words: names with no kind word get `Name` atoms and nothing else — no `city` / `team` typing from world knowledge
+
+    (: e_welcome (Member sk_welcome_1 welcome) (STV 1.0 0.99))
+    (: e_welcome_ag (Agent sk_welcome_1 duskvale) (STV 1.0 0.99))
+    (: e_welcome_th (Theme sk_welcome_1 harriers) (STV 1.0 0.99))
+    (: e_welcome_past (Past sk_welcome_1) (STV 1.0 0.99))
+    (: n_duskvale (Name duskvale "Duskvale") (STV 1.0 0.99))
+    (: n_harriers (Name harriers "Harriers") (STV 1.0 0.99))
+    ; and NO (Member duskvale city), NO (Member harriers team)
