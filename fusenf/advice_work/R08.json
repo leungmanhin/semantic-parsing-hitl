@@ -1,0 +1,158 @@
+{
+ "id": "R8",
+ "rule": "Hunted nightmoths flee to dimmer lights",
+ "texts": [
+  "When sky-cats hunt at a lantern-row, the surviving nightmoths flee toward dimmer lanterns.",
+  "If sky-cats hunt at a lantern-row, the surviving nightmoths move to the Hollows.",
+  "When fleeing nightmoths reach the Hollows, the Hollows lanterns gain extra silken threads."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000034",
+   "sentence": "Hunted nightmoths flee to dimmer lights",
+   "parse_run2": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: hunted_nightmoth_flee (Implication (And (Member $x nightmoth) (Member $x hunted)) (And (Member (sk_flee $x) flee) (Agent (sk_flee $x) $x) (Goal (sk_flee $x) light))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000034",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The comparative 'dimmer' is flattened into the positive property (Member (sk_light $x) dim), but the instruction set states a comparative does not entail the positive and encodes ordering with More, so the comparison is both lost and over-asserted."
+     },
+     {
+      "statement": 0,
+      "issue": "The bare plural 'lights' is rendered as one dependent witness (sk_light $x) rather than a group, so the plurality of the goal is not recorded."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "attributive comparative with an elided standard ('dimmer lights') — the Comparatives section only covers predicative 'X is ADJ-er than Y' / differential / superlative forms and gives no encoding for a comparative modifier with no stated comparand"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rule form, the participial modifier kept as the adjective 'hunted', the Skolem-function event, the Goal oblique and the 0.9/0.9 generic TV are all correct; only the comparative is mis-slotted."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000035",
+   "sentence": "When sky-cats hunt at a lantern-row, the surviving nightmoths flee toward dimmer lanterns.",
+   "parse_run2": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: skycat_hunt_flee_rule (Implication (And (Member $x sky_cat) (Member $e hunt) (Agent $e $x) (Member $r lantern_row) (Location $e $r) (Member $n nightmoth) (Member $n surviving)) (And (Member (sk_flee $e $n) flee) (Agent (sk_flee $e $n) $n) (Goal (sk_flee $e $n) lantern) (During (sk_flee $e $n) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000035",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "'the surviving nightmoths' is a definite plural but is encoded as a single individual `(sk_nightmoth $h)`, where the instruction set requires a group witness (`GroupOf`) with the descriptive modifier distributed to its members rather than predicated of one thing."
+     },
+     {
+      "statement": 3,
+      "issue": "'dimmer lanterns' is likewise collapsed to a single individual, and the comparative 'dimmer' is flattened into the positive property `(Member (sk_lantern $h) dim)`, which the instruction set says a comparative does not entail."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "attributive comparative with no stated standard ('dimmer lanterns'): Comparatives & degree only covers predicative 'X is ADJ-er than Y' -> `(More <scale> X Y)`, giving no form for a comparative used as a bare noun modifier",
+     "solid/closed compound written as one orthographic word ('nightmoths'): the instruction set does not say whether such a word is treated as a compound kind and given a genus"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-rule shape is right: per-occurrence Skolem events keyed on the trigger `$h`, the `During` link, `Location` for 'at a lantern-row', `Agent` for the intransitive motion subject, and 'surviving' correctly kept as a participial adjective rather than the verb `survive`. The `sky_cat` and `lantern_row` compound genera are correct with their noun modifiers unexposed."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000036",
+   "sentence": "If sky-cats hunt at a lantern-row, the surviving nightmoths move to the Hollows.",
+   "parse_run2": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: skycat_hunt_moths_flee (Implication (And (Member $x sky_cat) (Member $e1 hunt) (Agent $e1 $x) (Location $e1 $r) (Member $r lantern_row)) (And (GroupOf (sk_nightmoths $e1) nightmoth) (Member (sk_nightmoths $e1) surviving) (Member (sk_move $e1) move) (Agent (sk_move $e1) (sk_nightmoths $e1)) (Goal (sk_move $e1) hollows) (During (sk_move $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000036",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The antecedent's trigger event is the Skolem-function term (sk_hunt $s), where the instruction set's rule form binds a premise event with a plain variable, so the premise cannot match an ordinarily asserted hunt event."
+     },
+     {
+      "statement": 5,
+      "issue": "The indefinite 'a lantern-row' becomes the constant sk_lantern_row_1 whose only typing atom (Member sk_lantern_row_1 lantern_row) sits inside the premise itself and is never asserted at top level, so the premise tests a fact the parse never states; a rule-internal indefinite should be a bound variable."
+     },
+     {
+      "statement": 5,
+      "issue": "(Member $x surviving) sits in the CONCLUSION, so the rule derives that every member of the nightmoth group is surviving; 'surviving' restricts the subject NP 'the surviving nightmoths' and is not something the conditional asserts as a consequence — and correspondingly the group at statement 3 is typed only as nightmoth, dropping the restriction."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a solid (single-word) compound such as 'nightmoth' — the compound-genus decomposition licence is written for a modifier_noun symbol you fused from a multi-word surface, and nothing addresses whether a word that is already one orthographic token should be split into genus + modifier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The sky_cat / lantern_row compound genera, the definite-plural group witness, the participle-as-adjective form 'surviving', the Goal oblique for 'to the Hollows' and the Name atom are all correct. Secondary: the response event (sk_move $x) is a function of the moth only although it depends on the hunt binding too."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000037",
+   "sentence": "When fleeing nightmoths reach the Hollows, the Hollows lanterns gain extra silken threads.",
+   "parse_run2": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_loc (LocatedIn sk_lantern_1 hollows) (STV 1.0 0.99))",
+    "(: fleeing_rule (Implication (And (Member $x nightmoth) (Member (sk_flee $x) flee) (Agent (sk_flee $x) $x) (Member (sk_reach $x) reach) (Agent (sk_reach $x) $x) (Goal (sk_reach $x) hollows)) (And (Member (sk_gain $x) gain) (Agent (sk_gain $x) sk_lantern_1) (Theme (sk_gain $x) (sk_threads $x)) (GroupOf (sk_threads $x) silken_thread) (Member (sk_threads $x) extra) (During (sk_gain $x) (sk_reach $x)))) (STV 1.0 0.9))",
+    "(: st_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: st_mod (Inheritance silken_thread silken) (STV 1.0 0.99))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review_run1": {
+    "id": "fict-000037",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "(LocatedIn sk_lanterns_1 hollows) asserts a containment the text never states — 'the Hollows lanterns' is a bare proper-noun modifier, not a stated 'in' locative."
+     },
+     {
+      "statement": 3,
+      "issue": "(Member (sk_thread $r) silken) and (Member (sk_thread $r) extra) predicate member-level properties of the GROUP symbol, which the instruction set explicitly forbids; a descriptive modifier on a plural must distribute, and the material adjective 'silken' would instead ride in the group's kind slot as a fused silken_thread."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a proper-noun modifier on a common-noun head ('the Hollows lanterns') — compound-kind fusion, the PartOf part-whole route and Possession are each keyed to other surface forms, so no encoding is licensed for it",
+     "a distributive plural predicate inside a rule consequent — the per-member distribution rule cannot be nested inside an Implication, so the group-only event is the entire record"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-rule shape (trigger clause as premises, Skolem response event, During link) is right, as is treating the participial pre-modifier 'fleeing' as an adjective rather than a reduced relative."
+   }
+  }
+ ]
+}

@@ -1,0 +1,184 @@
+{
+ "id": "R30",
+ "rule": "Wraith activity prompts feather-ration requests",
+ "texts": [
+  "When wraith activity at the Sunken Cove increases, the neighboring stations request feather rations from the Council.",
+  "If wraith sightings at the Sunken Cove rise, the stations ask the Council for feather rations.",
+  "The Council weighs the requests against the central feather store.",
+  "The Council prioritizes stations with drained lanterns."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000134",
+   "sentence": "Wraith activity prompts feather-ration requests",
+   "parse_run2": [
+    "(: i5_prompt_rel (Prompt wraith_activity feather_ration_request) (STV 0.9 0.9))",
+    "(: i5_activity_genus (Inheritance wraith_activity activity) (STV 1.0 0.99))",
+    "(: i5_request_genus (Inheritance feather_ration_request request) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000134",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both arguments are bare kind-denoting NPs (mass on the left, bare plural on the right), so the relational-generic trigger fires and the opaque kind-level relation `(Prompt wraith_activity feather_ration_request)` at `(STV 0.9 0.9)` is the licensed form. Both compounds get head-noun genus atoms only, with the noun modifiers correctly left unexposed."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000135",
+   "sentence": "When wraith activity at the Sunken Cove increases, the neighboring stations request feather rations from the Council.",
+   "parse_run2": [
+    "(: wa_mem (Member sk_wraith_activity_1 wraith_activity) (STV 1.0 0.99))",
+    "(: wa_gen (Inheritance wraith_activity activity) (STV 1.0 0.99))",
+    "(: wa_loc (LocatedIn sk_wraith_activity_1 sunken_cove) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: stations_grp (GroupOf sk_stations_1 station) (STV 1.0 0.99))",
+    "(: council_mem (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: ration_gen (Inheritance feather_ration ration) (STV 1.0 0.99))",
+    "(: stations_neighboring_rule (Implication (PartOf $s sk_stations_1) (Member $s neighboring)) (STV 1.0 0.9))",
+    "(: wraith_increase_request_rule (Implication (And (Member $e increase) (Theme $e sk_wraith_activity_1) (PartOf $s sk_stations_1)) (And (Member (sk_request $e $s) request) (Agent (sk_request $e $s) $s) (Theme (sk_request $e $s) feather_ration) (Source (sk_request $e $s) sk_council_1) (During (sk_request $e $s) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000135",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "\"the Council\" is a capitalized, definite, unique organization — a proper noun under the instruction set, which requires a name-derived constant plus exactly one Name atom — but it is encoded as an anonymous witness `sk_council_1` with no Name, inconsistently with \"Sunken Cove\" in the same parse."
+     },
+     {
+      "statement": 7,
+      "issue": "`(Location $x sunken_cove)` re-attaches the NP-modifying PP of \"wraith activity at the Sunken Cove\" onto the increase event, asserting where the increasing happened rather than which activity the rule is about; binding the activity as a premise variable with `(LocatedIn $a sunken_cove)` was available and would have kept the attachment."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a distributive predicate on a definite-plural group inside a whenever-rule consequent (\"the neighboring stations request …\"): the required per-member distribution rule over `(PartOf $x sk_stations_1)` would have to nest inside the outer Implication, and the instruction set provides no form for a rule inside a rule's conclusion"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever shape itself is right here — trigger event as a plain premise variable, response as `(sk_request $x)` tied by During — as are the intransitive change-of-state Patient on `increase`, the definite-plural group witness, and the distributed copular rule for \"neighboring\"."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000136",
+   "sentence": "If wraith sightings at the Sunken Cove rise, the stations ask the Council for feather rations.",
+   "parse_run2": [
+    "(: sc2_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sc2_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: sightings_grp (GroupOf sk_sightings_1 wraith_sighting) (STV 1.0 0.99))",
+    "(: sighting_genus (Inheritance wraith_sighting sighting) (STV 1.0 0.99))",
+    "(: sightings_loc (LocatedIn sk_sightings_1 sunken_cove) (STV 1.0 0.99))",
+    "(: stations_grp (GroupOf sk_stations_1 station) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))",
+    "(: sightings_rise_ask (Implication (And (Member $x rise) (Theme $x sk_sightings_1)) (And (Member (sk_ask $x) ask) (Agent (sk_ask $x) sk_stations_1) (Recipient (sk_ask $x) sk_council_1) (For (sk_ask $x) feather_ration))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000136",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "\"feather rations\" is a bare, non-specific plural occurring only inside the conditional's consequent, yet its group witness is asserted at top level, positing a specific set of rations whose existence the sentence never claims."
+     },
+     {
+      "statement": 2,
+      "issue": "The same over-assertion for the bare plural \"wraith sightings\": a specific group witness is asserted at top level although the sightings are only hypothesised inside the antecedent."
+     },
+     {
+      "statement": 4,
+      "issue": "Location is attached to a group witness rather than to an event — the instruction set reserves Location for event obliques and says never to put it on an entity, routing \"at\" containment on a referent to the static LocatedIn head."
+     },
+     {
+      "statement": 6,
+      "issue": "\"the Council\" gets its Name fact but no kind/type atom, unlike sunken_cove in the same parse, so the referent is left untyped."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare-plural subject of an aggregate/rate predicate (\"wraith sightings rise\") — the determiner rule sends a bare plural to a generic kind or a distributing rule, and neither fits a predicate that holds of the size of the plurality rather than of its members",
+     "placing a distributive predicate's per-member rule (\"the stations ask\") inside a conditional's consequent — the group-plus-distribution machinery is specified only for top-level plural predications"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indicative-conditional to plain Implication routing, Patient on the intransitive \"rise\", Recipient for the addressee of \"ask\", the (For …) oblique for the prepositional verb \"ask for\", and the feather_ration compound genus are all as specified."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000137",
+   "sentence": "The Council weighs the requests against the central feather store.",
+   "parse_run2": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: requests_group (GroupOf sk_requests_1 request) (STV 1.0 0.99))",
+    "(: store_type (Member sk_central_feather_store_1 central_feather_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance central_feather_store store) (STV 1.0 0.99))",
+    "(: store_central (Inheritance central_feather_store central) (STV 1.0 0.99))",
+    "(: weigh_ev (Member sk_weigh_1 weigh) (STV 1.0 0.99))",
+    "(: weigh_agent (Agent sk_weigh_1 sk_council_1) (STV 1.0 0.99))",
+    "(: weigh_theme (Theme sk_weigh_1 sk_requests_1) (STV 1.0 0.99))",
+    "(: weigh_against (Against sk_weigh_1 sk_central_feather_store_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000137",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"weigh ... against\" is correctly routed to the preposition-named oblique `Against` rather than a direct-object role, the collective noun \"the Council\" correctly takes no `GroupOf` while the definite plural \"the requests\" correctly takes one, and `Theme` is right for an evaluating verb. Fusing the noun-noun `feather_store` with its genus while splitting the predicable adjective \"central\" off as its own `Member` atom follows the part-of-speech line, and the unmarked present tense correctly gets no status atom."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000138",
+   "sentence": "The Council prioritizes stations with drained lanterns.",
+   "parse_run2": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: council_prioritize_rule (Implication (And (Member $x station) (Member $lt lantern) (Member $lt drained) (PartOf $lt $x)) (And (Member (sk_prioritize $x) prioritize) (Agent (sk_prioritize $x) sk_council_1) (Theme (sk_prioritize $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000138",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "(PartOf $l $s) commits \"stations with drained lanterns\" to a component relation, which is more than the surface \"with\" states; PartOf's defined jobs are an object's component and a group's member, and the surface-preposition record is what the instruction set treats as faithful elsewhere."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a possessive/comitative \"with\"-PP modifying a NOUN (\"stations with drained lanterns\"): \"with\" is defined only at the event level, split between CoAgent and Instrument, and the entity-attached preposition rules are stated for locatives and for origin \"from\"",
+     "a capitalized definite common-noun institution (\"the Council\"): whether it counts as a proper noun requiring a Name atom or as an ordinary definite description is not settled"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is right: the bare-plural object becomes the rule's quantified range with the Council as a shared constant, \"drained\" stays a participial adjective rather than the verb lemma and is correctly not fused into the noun (incidental damage description), Theme is correct for an evaluative verb, the habitual takes no tense atom, and the bare generic sits at 0.9/0.9 with no QuantifierPhrase companion."
+   }
+  }
+ ]
+}

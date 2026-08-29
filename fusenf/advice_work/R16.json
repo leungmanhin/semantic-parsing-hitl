@@ -1,0 +1,146 @@
+{
+ "id": "R16",
+ "rule": "Cold winds extinguish unprepared lanterns",
+ "texts": [
+  "When cold wind blows off the sea at night, the cold wind extinguishes unprepared lanterns.",
+  "If cold wind strikes the Cliff Path at night, unprepared lanterns go out.",
+  "Lanterns in shielded coves stay safe from cold winds."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000071",
+   "sentence": "Cold winds extinguish unprepared lanterns",
+   "parse_run2": [
+    "(: wind_extinguish_lantern_rule (Implication (And (Member $x wind) (Member $x cold) (Member $y lantern) (Member $y unprepared)) (And (Member (sk_extinguish $x $y) extinguish) (Agent (sk_extinguish $x $y) $x) (Patient (sk_extinguish $x $y) $y))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000071",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "Both arguments are bare kind-denoting plurals, which the relational-generic rule routes to an opaque kind-level relation; the emitted per-instance all-pairs rule is exactly the 'distributing it to all instance-pairs' the instruction set warns against, asserting that every cold wind extinguishes every unprepared lantern anywhere."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a relational generic whose kind NPs carry non-fusing descriptive modifiers ('cold winds', 'unprepared lanterns') - the both-arguments-bare-kind trigger fires, but the compound rules forbid fusing an incidental descriptive adjective into a kind symbol, so there is no licensed single kind term to put in the relation's two argument slots"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Splitting 'cold' and 'unprepared' off as separate Member properties on the instance variables is correct (incidental description, not a fusing classifier), 'unprepared' is rightly a positive property rather than a negation, and Agent on the inanimate transitive subject follows the rule."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000072",
+   "sentence": "When cold wind blows off the sea at night, the cold wind extinguishes unprepared lanterns.",
+   "parse_run2": [
+    "(: sea_typ (Member sk_sea_1 sea) (STV 1.0 0.99))",
+    "(: lantern_genus (Inheritance unprepared_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_mod (Inheritance unprepared_lantern unprepared) (STV 1.0 0.99))",
+    "(: wind_extinguish_rule (Implication (And (Member $x wind) (Member $x cold) (Member (sk_blow $x) blow) (Patient (sk_blow $x) $x) (Source (sk_blow $x) sk_sea_1) (Time (sk_blow $x) night)) (And (Member (sk_extinguish $x) extinguish) (Agent (sk_extinguish $x) $x) (Patient (sk_extinguish $x) unprepared_lantern) (During (sk_extinguish $x) (sk_blow $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review_run1": {
+    "id": "fict-000072",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The rule's premise builds the trigger event as a Skolem-function term — (Member (sk_blow $x) blow) (Agent (sk_blow $x) $x) — instead of the bare event variable every worked antecedent uses, so the premise cannot match an ordinary asserted blowing event and the rule is unfireable."
+     },
+     {
+      "statement": 1,
+      "issue": "The intransitive subject of \"blows\" is given Agent, but wind is a non-volitional natural force (a gas in motion), which the intransitive-subject test routes to Patient alongside \"smoke rose\" and \"the tide receded\"."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is right: \"cold\" and \"unprepared\" are left unfused as separate Member atoms on the individuals, Source carries \"off the sea\", night is the bare day-part symbol on Time, the transitive inanimate extinguisher keeps Agent, and During ties the response to its trigger."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000073",
+   "sentence": "If cold wind strikes the Cliff Path at night, unprepared lanterns go out.",
+   "parse_run2": [
+    "(: cliffpath_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: windstrike_lantern_rule (Implication (And (Member $x strike) (Agent $x $w) (Member $w wind) (Member $w cold) (Theme $x cliff_path) (Time $x night) (Member $l lantern) (Member $l unprepared)) (And (Member (sk_go_out $x $l) go_out) (Patient (sk_go_out $x $l) $l) (During (sk_go_out $x $l) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000073",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The antecedent's wind and striking are written as constants sk_wind_1 / sk_strike_1 inside the rule premise rather than variables, so the premise can only match those exact symbols — which nothing ever asserts — and the general 'whenever cold wind strikes the Cliff Path at night' reading collapses into a claim about one particular unasserted striking."
+     },
+     {
+      "statement": 2,
+      "issue": "The consequent's Skolem event (sk_go_out $x) is a function of the lantern alone, so nothing relates a lantern's going-out to the striking occasion that the conditional makes it depend on."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "indicative conditional 'If <event clause>, <generic clause>' — the instruction set says only that it is a plain Implication rule and shows no worked example, so nothing fixes whether the antecedent clause's event and participants must be rule variables (vs. witness constants), nor whether the consequent's per-occurrence event links back to the antecedent occasion"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun handling ('Cliff Path' → one opaque symbol + Name + (Member cliff_path path), no modifier genus), the phrasal verb kept whole as go_out with no genus, the change-of-state Patient on the lantern, the positive treatment of the un- adjective 'unprepared', and the bare day-part (Time … night) are all correct."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000074",
+   "sentence": "Lanterns in shielded coves stay safe from cold winds.",
+   "parse_run2": [
+    "(: lantern_safe (ConditionalProperty lantern safe_from_cold_wind shielded_cove) (STV 0.9 0.9))",
+    "(: safe_genus (Inheritance safe_from_cold_wind safe) (STV 1.0 0.99))",
+    "(: safe_arg (From safe_from_cold_wind cold_wind) (STV 1.0 0.99))",
+    "(: cw_genus (Inheritance cold_wind wind) (STV 1.0 0.99))",
+    "(: cw_mod (Inheritance cold_wind cold) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance shielded_cove cove) (STV 1.0 0.99))",
+    "(: sc_mod (Inheritance shielded_cove shielded) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000074",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The bare plural 'cold winds' is given a specific witness sk_wind_1 asserted at TOP LEVEL, so a generic sentence asserts that a particular cold wind exists; an oblique's bare (article-less) plural should stay the kind constant, and the singular witness also collapses the plural."
+     },
+     {
+      "statement": 2,
+      "issue": "(Member sk_wind_1 cold) predicates 'cold' of that invented singular witness rather than of the kind the text names, compounding the same over-assertion."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a stative linking verb + adjective ('stay/remain safe'): the instruction set covers only 'be' copulas plus become/turn change-of-state and the postural/locative statives, so it does not say whether 'stay safe' reifies a 'stay' event or is a plain copular predication — here the verb is silently dropped",
+     "a modified bare-plural kind as an oblique filler ('safe from cold winds'): the oblique-object rule gives only 'article mints a witness / bare mass, domain, proper name stays a constant', with no form for a bare plural carrying a descriptive adjective",
+     "a kind-level property claim restricted by an NP-internal locative PP ('lanterns in shielded coves'): both the ConditionalProperty locative-restriction rule and the restrictive-modifier-in-rule-premises form are licensed and nothing disambiguates them"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The reified state (Member/Experiencer) + surface-preposition oblique + retained flat (Member $x safe) is exactly the adjective-PP-complement pattern, and the restriction is kept in the rule premises rather than stripped. The defect is entirely in how the complement NP was individuated."
+   }
+  }
+ ]
+}

@@ -1,0 +1,156 @@
+{
+ "id": "R28",
+ "rule": "Summer hunting yields the autumn feather store",
+ "texts": [
+  "When sky-cats hunt often through summer, many feathers accumulate at the cliff base by autumn.",
+  "If sky-cats hunt often in summer, the autumn feather store grows.",
+  "Frequent hunting causes frequent molting."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000125",
+   "sentence": "Summer hunting yields the autumn feather store",
+   "parse_run2": [
+    "(: hunt_genus (Inheritance summer_hunt hunt) (STV 1.0 0.99))",
+    "(: hunt_witness (Member sk_hunt_1 summer_hunt) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance autumn_feather_store store) (STV 1.0 0.99))",
+    "(: store_witness (Member sk_store_1 autumn_feather_store) (STV 1.0 0.99))",
+    "(: e_yield (Member sk_yield_1 yield) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_yield_1 sk_hunt_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_yield_1 sk_store_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000125",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare MASS / gerundive activity noun as the SUBJECT of a verbal clause (\"Summer hunting yields ...\"): the verbal-generic rule form is triggered by a bare plural or an explicit quantifier, and the bare-class-symbol licence is stated only for non-specific OBJECTS, so nothing says whether such a subject becomes a rule range over instances, a kind-level relation, or (as here) a kind constant sitting in the Agent slot of an unmarked event"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Within that gap the parse is coherent: no status atom leaves the event generic/habitual rather than a specific occurrence, the definite object correctly gets a typed witness, Patient is right for an object the action creates, and both compounds emit only the head genus (summer / feather / autumn are noun modifiers and stay unexposed, with \"hunting\" correctly not derived back to \"hunt\")."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000126",
+   "sentence": "When sky-cats hunt often through summer, many feathers accumulate at the cliff base by autumn.",
+   "parse_run2": [
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_typ5 (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_typ5 (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_part5 (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: hunt_q (QuantifierPhrase sky_cat hunt \"often\") (STV 1.0 0.99))",
+    "(: hunt_accumulate_rule (Implication (And (Member $x sky_cat) (Member $h hunt) (Agent $h $x) (Through $h summer)) (And (GroupOf sk_feather_1 feather) (CardinalityPhrase sk_feather_1 \"many\") (Member sk_accumulate_1 accumulate) (Theme sk_accumulate_1 sk_feather_1) (Location sk_accumulate_1 sk_base_1) (TimeAtMost sk_accumulate_1 autumn))) (STV 0.8 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000126",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The 'When P, Q' conditional is dropped entirely: the antecedent is emitted as a standing generic rule and the consequent as flat asserted facts, so the parse asserts both clauses outright when the sentence asserts neither on its own and states only the link between them."
+     },
+     {
+      "statement": 7,
+      "issue": "'many' is listed among the proportion words that set strength (0.7) with a QuantifierPhrase companion, not among the vague-count phrases ('a few / several / a handful / dozens / scores / hundreds') that take CardinalityPhrase."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "generic 'When P, Q' with no 'every time / whenever' wording — 'when' is routed to the temporal section while the occurrence-quantifying rule form is keyed to 'every time / whenever', leaving the generic-conditional reading unassigned",
+     "a period-extent adjunct ('through summer') — no licensed form for 'throughout <named period>', and seasons have no structured Time term (they surface here as bare symbols in Time and TimeAtMost)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The pieces are individually well formed — 'often' at strength 0.8 with its QuantifierPhrase companion, 'by autumn' as a TimeAtMost deadline, 'the cliff base' as base + PartOf cliff, Location on the accumulate event, Patient for the non-volitional intransitive subject — but they are assembled as independent assertions instead of one Implication."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000127",
+   "sentence": "If sky-cats hunt often in summer, the autumn feather store grows.",
+   "parse_run2": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance autumn_feather_store store) (STV 1.0 0.99))",
+    "(: store_type (Member sk_store_1 autumn_feather_store) (STV 1.0 0.99))",
+    "(: hunt_grow_rule (Implication (And (Member $x sky_cat) (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) summer)) (And (Member sk_grow_1 grow) (Theme sk_grow_1 sk_store_1))) (STV 0.8 0.9))",
+    "(: hunt_freq_q (QuantifierPhrase sky_cat hunt \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review_run1": {
+    "id": "fict-000127",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The antecedent's hunting event is a Skolem-function term (sk_hunt $s) in the rule PREMISE where the instruction set's rule examples use a plain event variable, so the premise cannot unify with an asserted hunting event and the rule cannot fire."
+     },
+     {
+      "statement": 3,
+      "issue": "'often' sits inside the if-clause but is used to set the whole conditional's strength to 0.8, conflating how often the cats hunt with how reliably the conditional itself holds."
+     },
+     {
+      "statement": 4,
+      "issue": "The QuantifierPhrase companion records 'sky-cats hunt often' as a top-level fact at (STV 1.0 0.99), but the sentence only hypothesizes that clause as an antecedent and never asserts it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a frequency adverb inside a conditional antecedent ('if Ns V often, ...') - the two licensed channels for a frequency adverb (the rule's strength and the QuantifierPhrase companion) both belong to an asserted generic/habitual, and neither can express 'often' as a condition on the antecedent"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "autumn_feather_store correctly yields only the head genus (both modifiers are nouns, so neither is exposed), 'in summer' as a bare season constant on Time is right, and Patient on the intransitive 'grows' is the correct change-of-state role."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000128",
+   "sentence": "Frequent hunting causes frequent molting.",
+   "parse_run2": [
+    "(: hunt_typ (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+    "(: hunt_freq (Member sk_hunt_1 frequent) (STV 1.0 0.99))",
+    "(: molt_typ (Member sk_molt_1 molt) (STV 1.0 0.99))",
+    "(: molt_freq (Member sk_molt_1 frequent) (STV 1.0 0.99))",
+    "(: cause_ev (Member sk_cause_1 cause) (STV 1.0 0.99))",
+    "(: cause_ag (Agent sk_cause_1 sk_hunt_1) (STV 1.0 0.99))",
+    "(: cause_th (Theme sk_cause_1 sk_molt_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000128",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"frequent\" is encoded as strength 0.8 on the event's class atom, which nothing licenses — the frequency band (often/usually 0.8) sets a generic RULE's strength and carries a QuantifierPhrase companion, whereas a strength on (Member sk_hunt_1 hunt) instead reads as \"this is only 80% a hunting event\"."
+     },
+     {
+      "statement": 1,
+      "issue": "The same defect on the molting event: strength 0.8 on (Member sk_molt_1 molt) mis-slots \"frequent\" into the class atom's truth value."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a frequency ADJECTIVE modifying a nominalized event inside an argument NP (\"frequent hunting\", \"frequent molting\") — the frequency machinery reaches only adverbs on a generic/habitual clause (rule strength plus QuantifierPhrase) and Every/TimesPer with a stated period or rate, none of which applies here"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The event shape is right — \"causes\" is treated as an ordinary verb with Agent and Theme rather than a coined relation head, per the causation-flavored-verbs rule. Given the gap, the instruction set's own guidance is to leave the unrepresentable frequency modifier out rather than mis-slot it."
+   }
+  }
+ ]
+}

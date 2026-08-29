@@ -1,0 +1,178 @@
+{
+ "id": "R10",
+ "rule": "Sky-cats molt feathers to the cliff base",
+ "texts": [
+  "When sky-cats molt, feathers fall to the cliff base.",
+  "If sky-cats molt, the sky-cats shed feathers onto the cliff base.",
+  "Apprentices collect the fallen feathers in the morning.",
+  "The Keepers store the collected feathers in a bin at the Watch."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000042",
+   "sentence": "Sky-cats molt feathers to the cliff base",
+   "parse_run2": [
+    "(: base_typ (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: cliff_typ (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_part (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: molt_rule (Implication (Member $x sky_cat) (And (Member (sk_molt $x) molt) (Agent (sk_molt $x) $x) (Theme (sk_molt $x) feather) (Goal (sk_molt $x) sk_base_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000042",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "'Sky-cats molt feathers' has bare kind-denoting NPs on both sides, which is the stated trigger for the opaque kind-level relation (Molt sky_cat feather), not the per-instance distribution rule the parse emitted."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare-kind relational generic carrying a third participant ('to the cliff base') — the kind-level relation form is strictly binary, so a goal PP has no slot and the relational-generic and event-rule routes conflict with nothing to decide between them"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows the instruction set: sky_cat fused with its genus and no genus for the noun modifier, 'the cliff base' correctly split as base + PartOf cliff rather than fused, Theme for the molted feathers, bare class symbol for the generic object, and no tense atom on the generic."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000043",
+   "sentence": "When sky-cats molt, feathers fall to the cliff base.",
+   "parse_run2": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: molt_fall_rule (Implication (And (Member $x sky_cat) (Member (sk_molt $x) molt) (Patient (sk_molt $x) $x)) (And (Member (sk_fall $x) fall) (GroupOf (sk_feathers $x) feather) (Patient (sk_fall $x) (sk_feathers $x)) (Goal (sk_fall $x) sk_base_1) (During (sk_fall $x) (sk_molt $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review_run1": {
+    "id": "fict-000043",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The trigger clause is written with a Skolem-function event term (sk_molt $x) in the rule PREMISE, where the whenever pattern ranges over the trigger event as a plain variable, so the premise cannot unify with an asserted molting event and the rule cannot fire."
+     },
+     {
+      "statement": 4,
+      "issue": "The consequent's Skolem event and feather witness are keyed to the cat $x rather than to the molting occurrence, so a cat that molts repeatedly still yields a single fall event instead of one per occurrence."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare-plural indefinite inside a rule's conclusion ('feathers fall') - the instruction set does not say whether it becomes a Skolem group (GroupOf + count-free) or, as here, one singular Skolem witness, so the plurality is silently lost"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the cliff base' correctly takes the part-whole route (base typed on its own plus PartOf the cliff, no fused cliff_base), and Patient plus Goal on the falling are the right roles for a gravity-driven motion. No connective atom for the temporal 'when' is correct."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000044",
+   "sentence": "If sky-cats molt, the sky-cats shed feathers onto the cliff base.",
+   "parse_run2": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_typ (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_typ (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: molt_shed_rule (Implication (And (Member $x sky_cat) (Member (sk_molt $x) molt) (Agent (sk_molt $x) $x)) (And (Member (sk_shed $x) shed) (Agent (sk_shed $x) $x) (Theme (sk_shed $x) feather) (Goal (sk_shed $x) sk_base_1) (During (sk_shed $x) (sk_molt $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review_run1": {
+    "id": "fict-000044",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The rule's premise builds the trigger event as a Skolem-function term — (Member (sk_molt $x) molt) (Agent (sk_molt $x) $x) — where every worked antecedent in the instruction set puts a bare event variable and reserves Skolem functions for the conclusion, so this premise can only match a term literally constructed as (sk_molt <c>) and cannot fire on an ordinary asserted molting event."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows the instruction set: sky_cat genus with the noun modifier correctly left unexposed, \"cliff base\" split into base plus PartOf cliff per the car-engine part-whole rule, Theme for the shed feathers, and Goal for \"onto\"."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000045",
+   "sentence": "Apprentices collect the fallen feathers in the morning.",
+   "parse_run2": [
+    "(: feather_group (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feather_fallen_rule (Implication (PartOf $y sk_feather_1) (Member $y fallen)) (STV 1.0 0.9))",
+    "(: apprentice_collect_rule (Implication (Member $x apprentice) (And (Member (sk_collect $x) collect) (Agent (sk_collect $x) $x) (Theme (sk_collect $x) sk_feather_1) (Time (sk_collect $x) morning))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000045",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The definite plural \"the fallen feathers\" is encoded as a per-apprentice Skolem witness (sk_feather $x), so each apprentice collects their own different feathers, whereas a definite NP under a universal is a shared constant (the 'Foxes rarely cross the causeway' shape puts the definite object at top level and references it from the rule)."
+     },
+     {
+      "statement": 0,
+      "issue": "The definite plural is encoded as a singular individual — (Member (sk_feather $x) feather) — instead of a group witness (GroupOf … feather) with the descriptive modifier 'fallen' distributing over its members."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Subject quantification (bare-plural generic → distributing rule at 0.9 0.9, no QuantifierPhrase companion), the Theme role for 'collect', the adjectival participle 'fallen' kept underived, the absent status atom, and the bare day-part (Time … morning) with no Every cycle are all right; only the object NP is mis-encoded."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000046",
+   "sentence": "The Keepers store the collected feathers in a bin at the Watch.",
+   "parse_run2": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: e_store (Member sk_store_1 store) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_store_1 keepers) (STV 1.0 0.99))",
+    "(: feathers_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feathers_collected (Implication (PartOf $x sk_feather_1) (Member $x collected)) (STV 1.0 0.9))",
+    "(: e_theme (Theme sk_store_1 sk_feather_1) (STV 1.0 0.99))",
+    "(: bin_type (Member sk_bin_1 bin) (STV 1.0 0.99))",
+    "(: e_loc (Location sk_store_1 sk_bin_1) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: bin_locin (LocatedIn sk_bin_1 sk_watch_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000046",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "'the Watch' is a capitalized proper name of a place but is parsed as an anonymous witness sk_watch_1 with no Name atom, where the instruction set requires a stable name-derived symbol plus exactly one Name fact (neither part optional, and not restricted to people)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized definite plural naming a group or order ('the Keepers'): the proper-noun rule (name-derived symbol + Name atom, cued mechanically by casing) and the definite-plural rule (group witness, decided by determiner) both apply and the instruction set never says how they combine"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The descriptive participial modifier 'collected' is correctly distributed over the definite group by a PartOf rule rather than predicated of the group symbol, Location sits on the storing event only (no LocatedIn on the feathers), and 'at the Watch' correctly attaches to the bin as containment. The only defect is the missing Name for the Watch."
+   }
+  }
+ ]
+}

@@ -1,0 +1,170 @@
+{
+ "id": "R22",
+ "rule": "Cliff-spires shield the Northcove",
+ "texts": [
+  "When cliff-spires shield a cove from north winds, lanterns in that cove burn stably through winter.",
+  "If cliff-spires block the north wind from a cove, lanterns in that cove stay lit through winter.",
+  "The Northcove is the shielded cove of Aelmere.",
+  "Northcove lanterns never go out in cold winds."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000097",
+   "sentence": "Cliff-spires shield the Northcove",
+   "parse_run2": [
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: spires_shield_northcove (Implication (Member $x cliff_spire) (And (Member (sk_shield $x) shield) (Agent (sk_shield $x) $x) (Theme (sk_shield $x) northcove))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000097",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural subject correctly becomes a distributing rule at 0.9/0.9 (the proper-noun object blocks the kind-relation reading), the cliff_spire compound exposes only its head genus since \"cliff\" is a noun modifier, and \"the Northcove\" gets its stable symbol, its Name fact and one kind atom. (Reading the kind `cove` out of the orthographically fused single-word name is a mild extension of the \"kind word inside the name\" case, whose example is a separate capitalized word.)"
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000098",
+   "sentence": "When cliff-spires shield a cove from north winds, lanterns in that cove burn stably through winter.",
+   "parse_run2": [
+    "(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: wind_genus (Inheritance north_wind wind) (STV 1.0 0.99))",
+    "(: wind_mod (Inheritance north_wind north) (STV 1.0 0.99))",
+    "(: cove_shield_burn (Implication (And (Member $c cove) (GroupOf $s cliff_spire) (Member $sh shield) (Agent $sh $s) (Theme $sh $c) (Source $sh north_wind) (Member $l lantern) (LocatedIn $l $c)) (And (Member (sk_burn $c $l) burn) (Patient (sk_burn $c $l) $l) (Manner (sk_burn $c $l) stably) (Through (sk_burn $c $l) winter))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000098",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The premise uses Skolem-function terms (sk_spire $c) and (sk_shield $c) where every rule example in the instruction set uses plain $-variables in premises; Skolem functions are for conclusion-side dependent existentials, and in a premise the term can only match a literally identical term, so the rule cannot fire on ordinary KB atoms."
+     },
+     {
+      "statement": 3,
+      "issue": "'shield a cove FROM north winds' names what is warded off rather than a spatial origin, so it answers none of where/when/how/whence/whither and calls for the preposition-named oblique instead of Source."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "generic 'When P, Q' with no 'every time / whenever' wording — 'when' is routed to the temporal section (no connective atom, canonical time forms) while the occurrence-quantifying rule form is keyed to 'every time / whenever', leaving the generic-conditional reading unassigned",
+     "a period-extent adjunct ('through winter') — no licensed form for 'throughout <named period>': During needs a reified eventuality, Start/End need structured terms, and seasons have no structured Time term at all"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The compound work is right (cliff_spire and north_wind genus atoms, plus the cardinal-modifier genus for north), as are LocatedIn for 'lanterns in that cove', the surface-form Manner adverb 'stably', and the 1.0/0.9 rule TV."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000099",
+   "sentence": "If cliff-spires block the north wind from a cove, lanterns in that cove stay lit through winter.",
+   "parse_run2": [
+    "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: northwind_genus (Inheritance north_wind wind) (STV 1.0 0.99))",
+    "(: northwind_mod (Inheritance north_wind north) (STV 1.0 0.99))",
+    "(: wind_type (Member sk_wind_1 north_wind) (STV 1.0 0.99))",
+    "(: cove_block_lit_rule (Implication (And (Member $c cove) (GroupOf (sk_spires $c) cliff_spire) (Member (sk_block $c) block) (Agent (sk_block $c) (sk_spires $c)) (Theme (sk_block $c) sk_wind_1) (Source (sk_block $c) $c) (Member $y lantern) (LocatedIn $y $c)) (And (Member (sk_lit $y) lit) (Experiencer (sk_lit $y) $y) (Still (sk_lit $y)) (Member $y lit) (Time (sk_lit $y) winter))) (STV 1.0 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review_run1": {
+    "id": "fict-000099",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "'through winter' is a temporal PP answering when/how-long, which the instruction set routes to Time or the interval/duration heads; it is placed in a preposition-named oblique (Through ...) instead, contrary to the direction to decide by the question the PP answers rather than by surface fit."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "temporal 'through/throughout + a bare time-span noun' ('through winter') as the extent of a state - During needs a reified outer eventuality, Time records the season but drops the extent, and Start/End need structured terms, so no licensed head carries it",
+     "copular 'stay/remain + adjective' ('stay lit') - the persistence/continuation sense has no licensed carrier (Still is tied to the word 'still'), so only the resulting state is recorded"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indicative conditional as a plain Implication, the donkey-style binding of 'a cove'/'that cove' to one rule variable, 'north' exposed as a positional modifier, LocatedIn for the lanterns' containment, and the reified-state-plus-flat-copular dual emit are all handled per the instruction set; every consequent variable is bound in the premise."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000100",
+   "sentence": "The Northcove is the shielded cove of Aelmere.",
+   "parse_run2": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: northcove_cove (Member northcove cove) (STV 1.0 0.99))",
+    "(: northcove_shielded (Member northcove shielded) (STV 1.0 0.99))",
+    "(: northcove_partof (PartOf northcove aelmere) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000100",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "\"the cove of Aelmere\" relates a place to a place, which the instruction set routes to LocatedIn and explicitly bars from PartOf — PartOf keeps only its two jobs, a component of an object and a member of a group, and geography is neither."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an identificational copula with a definite predicate nominal (\"X is THE N of Y\") — the categorical section covers only \"X is a/an N\" and \"X is ADJ\", so the uniqueness / identity the definite article carries has no licensed encoding and is silently dropped"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both proper nouns correctly get name-derived symbols plus exactly one Name atom each, and \"shielded\" is correctly kept in its participial-adjective form and left unfused from \"cove\" as incidental description."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000101",
+   "sentence": "Northcove lanterns never go out in cold winds.",
+   "parse_run2": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: northcove_lantern_rule (Implication (And (Member $x lantern) (Possession $x northcove) (Member $w wind) (Member $w cold)) (And (Member (sk_go_out $x $w) go_out) (Patient (sk_go_out $x $w) $x) (Location (sk_go_out $x $w) $w))) (STV 0.0 0.9))",
+    "(: northcove_lantern_q (QuantifierPhrase lantern go_out \"never\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000101",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The bare plural \"cold winds\" becomes a single shared constant witness sk_wind_1 inside a universally quantified conclusion, so every Northcove lantern's non-going-out is tied to one and the same wind rather than to cold winds generally."
+     },
+     {
+      "statement": 1,
+      "issue": "\"winds\" is plural but is encoded as a singular individual (Member sk_wind_1 wind), with no group witness and no per-binding variation."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a proper-noun modifier restricting a common-noun kind ('Northcove lanterns') — the compound-kind rules cover common-noun and adjectival modifiers only, and the proper-noun rules cover a name that sits inside or beside its OWN kind noun, so nothing licenses any particular relation between the place name and the modified kind"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse resolves the uncovered 'Northcove lanterns' modifier as (LocatedIn $x northcove), a containment relation the text does not state (the lanterns could be from, of, or in the style of Northcove); it sits in the premise as a restriction rather than a top-level assertion, which limits the damage. 'never' → the strength-0.0 distributing rule with its QuantifierPhrase companion, the In-oblique for the circumstantial PP, and keeping that PP inside the denied bundle all follow the instruction set."
+   }
+  }
+ ]
+}

@@ -1,0 +1,134 @@
+{
+ "id": "R18",
+ "rule": "Salt-bloom is harvested at new moon",
+ "texts": [
+  "When the Keepers harvest salt-bloom at the new moon, the salt-bloom keeps its potency.",
+  "If the Keepers gather salt-bloom at the new moon, the salt-bloom stays potent.",
+  "When the Keepers gather salt-bloom at other moon phases, the salt-bloom turns to chalky residue."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000079",
+   "sentence": "Salt-bloom is harvested at new moon",
+   "parse_run2": [
+    "(: harvest_ev (Member sk_harvest_1 harvest) (STV 1.0 0.99))",
+    "(: harvest_pat (Patient sk_harvest_1 salt_bloom) (STV 1.0 0.99))",
+    "(: harvest_time (Time sk_harvest_1 new_moon) (STV 1.0 0.99))",
+    "(: salt_bloom_gen (Inheritance salt_bloom bloom) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000079",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Agentless passive correctly omits the Agent, the bare-generic verbal reading takes the rule form at 0.9/0.9, and `salt_bloom` gets its head-noun genus with the noun modifier left unexposed. Theme on the harvested subject is the licensed default where the \"does the object change?\" test is unclear, and \"new moon\" is kept as a bare named-time symbol on Time."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000080",
+   "sentence": "When the Keepers harvest salt-bloom at the new moon, the salt-bloom keeps its potency.",
+   "parse_run2": [
+    "(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: harvest_keeps_potency (Implication (And (Member $x harvest) (Agent $x sk_keepers_1) (Theme $x $sb) (Member $sb salt_bloom) (Time $x new_moon)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) $sb) (Theme (sk_keep $x) (sk_potency $x)) (Member (sk_potency $x) potency) (Possession (sk_potency $x) $sb) (During (sk_keep $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000080",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The possessive in \"keeps ITS potency\" is dropped: `potency` sits in the Theme slot as a bare kind constant with no (Possession …) or (PartOf …) link back to the salt-bloom, so the parse says only that some potency is kept, not that the salt-bloom's own potency is."
+     },
+     {
+      "statement": 0,
+      "issue": "\"the Keepers\" is capitalized mid-sentence — a named order, i.e. a proper noun — but gets an anonymous group witness with no Name fact, while the instruction set requires exactly one Name atom for every proper noun, organizations included."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"at the new moon\" — a recurring astronomical-phase time fits neither the structured calendar terms (Year/Month/Day/Weekday/Hour) nor the speech-anchored deictic constants, so the Time filler for it is unspecified"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-rule shape, the salt_bloom compound genus with its noun modifier correctly unexposed, Theme on `keep` (a listed Theme verb), Agent on the stative transitive subject, and the During tie-back all follow the instruction set."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000081",
+   "sentence": "If the Keepers gather salt-bloom at the new moon, the salt-bloom stays potent.",
+   "parse_run2": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: gather_potent_rule (Implication (And (Member $e1 gather) (Agent $e1 keepers) (Theme $e1 $s) (Member $s salt_bloom) (Time $e1 new_moon)) (And (Member (sk_potent $s) potent) (Experiencer (sk_potent $s) $s) (Still (sk_potent $s)) (Member $s potent))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000081",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Persistence copulas — \"stays / remains / keeps ADJ\": the instruction set covers change-of-state copulas (`become` / `turn into` → the state-result shape) and the particle \"still\" (`Still` tag), but licenses nothing for continuation, so \"stays potent\" loses its verb and survives only as the flat property `(Member $s potent)`.",
+     "A mid-sentence capitalized definite plural common noun (\"the Keepers\"): no test is given for deciding whether such a designation is a proper noun (name-derived symbol + one `Name` fact, as an organization would get) or an ordinary definite plural of a capitalized kind."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rule correctly shares `$s` across antecedent and consequent so \"the salt-bloom\" corefers with what was gathered, its premise event is a plain bound variable, and the `salt_bloom` genus (noun modifier not exposed) is right. `new_moon` is left a bare time symbol with no genus while `salt_bloom` gets one — defensible if \"the new moon\" counts as a named time, but the two fused compounds are treated inconsistently."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000082",
+   "sentence": "When the Keepers gather salt-bloom at other moon phases, the salt-bloom turns to chalky residue.",
+   "parse_run2": [
+    "(: keeper_grp (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: moonphase_genus (Inheritance moon_phase phase) (STV 1.0 0.99))",
+    "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: residue_genus (Inheritance chalky_residue residue) (STV 1.0 0.99))",
+    "(: residue_mod (Inheritance chalky_residue chalky) (STV 1.0 0.99))",
+    "(: keepers_gather_saltbloom_turns (Implication (And (Member $g gather) (Agent $g sk_keeper_1) (Theme $g $sb) (Member $sb salt_bloom) (Time $g $mp) (Member $mp moon_phase) (Member $mp other)) (And (Member (sk_turn $g) turn) (Patient (sk_turn $g) $sb) (Member (sk_residue $g) chalky_residue) (Experiencer (sk_residue $g) $sb) (Member $sb chalky_residue) (Result (sk_turn $g) (sk_residue $g)) (During (sk_turn $g) $g))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000082",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The restrictive \"other\" of \"at other moon phases\" is dropped, so the rule fires at any moon phase whatever — including the phase the contrast is there to exclude — which is a different and stronger claim than the sentence makes."
+     },
+     {
+      "statement": 5,
+      "issue": "(Time $x moon_phase) puts a bare kind symbol in the Time slot, which is specified to carry structured calendar/clock terms or a deictic/named time constant, not a class."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the alterity determiner \"other\" (\"at other moon phases\", \"the other N\"): nothing encodes the contrast set it presupposes, so the restriction can only be dropped or silently invented",
+     "a non-calendar recurring temporal frame (\"at moon phases\"): the Time terms are calendar/clock granularities (Year/Month/Day/Weekday/Hour/Minute) plus deictic constants and day-parts, with no slot for a domain-specific cycle",
+     "a capitalized plural group designation (\"the Keepers\"): whether it is a proper noun taking a name-derived symbol plus a Name atom, or an ordinary definite plural group witness, is not settled"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The change-of-kind consequent follows the prescribed shape exactly (Patient on the turn event, result state reified with the same subject as Experiencer, the flat copular atom, the Result link), and the three compound genus atoms plus the exposed adjectival chalky modifier are correct. Minting a per-occasion Skolem witness for the bare mass \"salt-bloom\" departs from the bare-class-symbol rule for non-specific objects, but it is what lets the definite anaphor \"the salt-bloom\" corefer in the consequent."
+   }
+  }
+ ]
+}

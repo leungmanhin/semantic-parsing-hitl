@@ -1,0 +1,163 @@
+{
+ "id": "R12",
+ "rule": "Dead lanterns at the Sunken Cove raise wraiths",
+ "texts": [
+  "When a lantern at the Sunken Cove dies before dawn, a wraith emerges from the cove water.",
+  "If a lantern at the Sunken Cove goes out at night, a wraith rises from the cove water.",
+  "Lanterns elsewhere do not raise wraiths when they die.",
+  "The Sunken Cove is the village's drowned graveyard."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000051",
+   "sentence": "Dead lanterns at the Sunken Cove raise wraiths",
+   "parse_run2": [
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: dead_lantern_raise_rule (Implication (And (Member $x lantern) (Member $x dead) (LocatedIn $x sunken_cove)) (And (Member (sk_raise $x) raise) (Agent (sk_raise $x) $x) (Patient (sk_raise $x) (sk_wraith $x)) (Member (sk_wraith $x) wraith))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000051",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a relational generic whose subject kind is restricted by a descriptive adjective and a locative PP (\"dead lanterns at the Sunken Cove raise wraiths\"): both arguments are bare kind-denoting NPs, which is the stated trigger for the opaque kind-level relation `(Raise <kindA> wraith)`, but no kind symbol is constructible (the compound rules forbid fusing the incidental/damage modifier \"dead\", and a kind may not occupy LocatedIn's entity slot), and the instruction set never says the distributing-rule route wins in that case"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-name handling of \"the Sunken Cove\" (one opaque symbol + Name + separate kind atom, capitalized \"Sunken\" absorbed into the name), the split of the descriptive \"dead\" from `lantern`, \"at\" -> LocatedIn, the inanimate transitive subject as Agent, and the 0.9/0.9 bare-generic rule TV are all exactly as specified."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000052",
+   "sentence": "When a lantern at the Sunken Cove dies before dawn, a wraith emerges from the cove water.",
+   "parse_run2": [
+    "(: sc_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sc_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: water_type (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: water_loc (LocatedIn sk_water_1 sunken_cove) (STV 1.0 0.99))",
+    "(: lantern_dies_wraith (Implication (And (Member $x die) (Patient $x $lantern) (Member $lantern lantern) (LocatedIn $lantern sunken_cove) (TimeAtMost $x dawn)) (And (Member (sk_emerge $x) emerge) (Agent (sk_emerge $x) (sk_wraith $x)) (Member (sk_wraith $x) wraith) (Source (sk_emerge $x) sk_water_1) (During (sk_emerge $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000052",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "\"the cove water\" is fused into a classifying compound kind `cove_water` and left with no link at all to `sunken_cove`, although the pair is a whole/part-style possessive (the water of that cove) and the bridging rule requires the link even when the antecedent sits in the same sentence — so the consequent draws the wraith out of a water witness unconnected to the Sunken Cove."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"before <day-part>\" as a bounded time — TimeAtMost is specified over structured calendar terms (Year/Month/Day/Weekday/Hour) whose boundary point is decremented with the seeded MonthNumber/WeekdayNumber order, while day-part-like symbols such as `dawn` are bare Time fillers with no ordering, so (TimeAtMost e dawn) is an extrapolation"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-conditional shape is right — premise clause, Skolem-function consequent event, the dependent \"a wraith\" witness typed inside the consequent, the During tie-back, 1.0/0.9, no tense atoms, Patient on the change-of-state \"dies\", and \"at the Sunken Cove\" correctly on the static LocatedIn."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000053",
+   "sentence": "If a lantern at the Sunken Cove goes out at night, a wraith rises from the cove water.",
+   "parse_run2": [
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: water_type (Member sk_cove_water_1 cove_water) (STV 1.0 0.99))",
+    "(: water_genus (Inheritance cove_water water) (STV 1.0 0.99))",
+    "(: lantern_wraith_rule (Implication (And (Member $x lantern) (LocatedIn $x sunken_cove) (Member $e1 go_out) (Patient $e1 $x) (Time $e1 night)) (And (Member (sk_wraith $e1) wraith) (Member (sk_rise $e1) rise) (Agent (sk_rise $e1) (sk_wraith $e1)) (Source (sk_rise $e1) sk_cove_water_1) (During (sk_rise $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000053",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The rule's triggering event is written as the Skolem term `(sk_go_out $x)` inside the PREMISE, where the instruction set uses a plain bound event variable (cf. the whenever-the-bell-rings and donkey-anaphora rules, whose premise events are `$x` / `$e`), so the premise can never match an actual go-out event asserted in the KB and the rule cannot fire."
+     },
+     {
+      "statement": 4,
+      "issue": "\"the cove water\" is a noun-noun modifier construction, whose licensed encodings are a fused `cove_water` plus its genus or a `PartOf` link, not `(LocatedIn sk_water_1 sunken_cove)`, which states a containment position the text only implies."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Sunken Cove\" is handled exactly per the Kestrel-River rule (`Member` + one `Name`), \"goes out\" is correctly kept whole as `go_out` with no genus, \"at night\" is correctly a bare day-part `Time` symbol, and the dependent wraith is correctly a Skolem function. Both conclusion Skolems are also indexed on the lantern `$x` rather than on the triggering occurrence, so a lantern that goes out twice would get only one wraith."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000054",
+   "sentence": "Lanterns elsewhere do not raise wraiths when they die.",
+   "parse_run2": [
+    "(: lantern_elsewhere_no_wraith (Implication (And (Member $x die) (Patient $x $lt) (Member $lt lantern) (LocatedIn $lt elsewhere)) (And (Member (sk_raise $x) raise) (Agent (sk_raise $x) $lt) (Patient (sk_raise $x) (sk_wraith $x)) (Member (sk_wraith $x) wraith) (During (sk_raise $x) $x))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000054",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "(LocatedIn $x elsewhere) turns the contrastive adverb \"elsewhere\" into an untyped place constant and asserts containment in it, dropping the \"anywhere other than the salient site\" meaning that is the whole force of the modifier."
+     },
+     {
+      "statement": 0,
+      "issue": "The response event (sk_raise $x) is a Skolem function of the lantern alone, although the rule universally binds the dying event $e as well, and a dependent existential must be a function of every universal that scopes over it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a locative pro-form adverb (\"elsewhere\", \"here\", \"there\", \"nearby\") used as a restrictive modifier on a bare-plural kind subject: LocatedIn is specified only for containment prepositions taking a place NP, and no other route is given for a bare locative adverb"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The negated-verbal-generic shape is right — one distributing rule at (STV 0.0 0.9) with no QuantifierPhrase for plain \"not\", Patient for the change-of-state \"die\", the bound pronoun \"they\" mapped to the rule variable, a bare class symbol for the non-specific object \"wraiths\", and the when-clause as a premise tied by During."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000055",
+   "sentence": "The Sunken Cove is the village's drowned graveyard.",
+   "parse_run2": [
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: graveyard_type (Member sunken_cove graveyard) (STV 1.0 0.99))",
+    "(: drowned_prop (Member sunken_cove drowned) (STV 1.0 0.99))",
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: cove_poss (Possession sunken_cove sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000055",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "equative copular clause with a definite predicate NP ('X is the N of Y') - the categorical route records only that X is an N, and the identity / uniqueness carried by the definite predicate has no encoding"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name/kind split follows the Kestrel River pattern (no (Member sunken_cove sunken)), 'drowned' correctly stays a participial adjective, and the genitive takes opaque Possession rather than PartOf. Predicating graveyard / drowned / Possession of sunken_cove itself preserves the identity instead of minting a second entity."
+   }
+  }
+ ]
+}

@@ -1,0 +1,165 @@
+{
+ "id": "R21",
+ "rule": "Wintergloss repels nightmoths",
+ "texts": [
+  "When wintergloss burns in a lantern, the wintergloss repels nightmoths from that lantern.",
+  "If wintergloss burns alongside mire-essence, nightmoths avoid that lantern.",
+  "The Keepers rarely burn wintergloss.",
+  "The Keepers sometimes burn wintergloss at the Stilllight Lantern."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000092",
+   "sentence": "Wintergloss repels nightmoths",
+   "parse_run2": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: wintergloss_name (Name wintergloss \"Wintergloss\") (STV 1.0 0.99))",
+    "(: wg_repel (Member sk_repel_1 repel) (STV 1.0 0.99))",
+    "(: wg_repel_agent (Agent sk_repel_1 wintergloss) (STV 1.0 0.99))",
+    "(: wg_repel_theme (Theme sk_repel_1 nightmoth) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000092",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "solid (single-word) compounds such as 'nightmoth' and 'wintergloss' — the compound-genus decomposition licence is written for a modifier_noun symbol you fused from a multi-word surface, and the instruction set gives no rule for decomposing a word that is already one orthographic token, nor any test separating a coined non-compositional name from a transparent compound",
+     "a sentence-initial capitalized term ('Wintergloss') — the instruction set decides proper-noun status by 'the casing itself, mechanically', but casing is uninformative in first position, so nothing selects between a proper noun (which would need a Name atom) and the bare mass kind that the kind-relation trigger requires"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-kind-to-bare-kind relational generic (Repel wintergloss nightmoth) at STV 0.9 0.9 is exactly the licensed form for this construction, and Repel is licensed as such a kind-level relation head. The doubtful atom is (Inheritance wintergloss gloss): if 'wintergloss' is a coined non-compositional name, the instruction set bars decomposing it."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000093",
+   "sentence": "When wintergloss burns in a lantern, the wintergloss repels nightmoths from that lantern.",
+   "parse_run2": [
+    "(: wg_rule (Implication (And (Member $x lantern) (Member (sk_burn $x) burn) (Patient (sk_burn $x) wintergloss) (Location (sk_burn $x) $x)) (And (Member (sk_repel $x) repel) (Agent (sk_repel $x) wintergloss) (Theme (sk_repel $x) nightmoth) (Source (sk_repel $x) $x) (During (sk_repel $x) (sk_burn $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review_run1": {
+    "id": "fict-000093",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The indefinite 'a lantern' of the trigger clause is encoded as the Skolem term (sk_lantern $x) inside the rule's PREMISE, where an antecedent existential is universally quantified — the premise can then only match a literal (sk_lantern ...) term and never a real KB lantern, so the rule cannot fire; a plain variable belongs there."
+     },
+     {
+      "statement": 0,
+      "issue": "(Inheritance wintergloss gloss) reads a genus off the spelling of a single-word lemma — the text never says wintergloss is a kind of gloss; (Inheritance nightmoth moth) at index 1 is the same move."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an indefinite ('a lantern') inside a when/whenever rule's trigger clause — the Skolem machinery is specified for existentials in rule CONCLUSIONS only, and no form is given for one in the antecedent",
+     "whether a closed/solid compound noun written as one orthographic word (wintergloss, nightmoth) takes decomposition/genus atoms — the compound-kind rule is stated for modifier_noun symbols fused from separate surface words"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Role assignment is right (burn's subject as a change-of-state Patient, repel's object as displacement Theme, 'from' as Source), and 'that lantern' correctly corefers with the trigger clause's lantern."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000094",
+   "sentence": "If wintergloss burns alongside mire-essence, nightmoths avoid that lantern.",
+   "parse_run2": [
+    "(: wintergloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: burn_avoid_rule (Implication (And (Member $lantern lantern) (Member $b burn) (Patient $b wintergloss) (Alongside $b mire_essence) (Location $b $lantern) (Member $x nightmoth)) (And (Member (sk_avoid $x $lantern) avoid) (Agent (sk_avoid $x $lantern) $x) (Theme (sk_avoid $x $lantern) $lantern))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000094",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "(Inheritance wintergloss gloss) decomposes a closed single-word coinage, whereas the compound-kind genus is licensed for symbols fused from a multi-word surface form; nothing in the text says a wintergloss is a gloss."
+     },
+     {
+      "statement": 2,
+      "issue": "(Inheritance nightmoth moth) is the same closed-single-word decomposition, emitted here although the compound section as written does not reach it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "whether a closed single-word compound coinage (\"wintergloss\", \"nightmoth\") takes the compound-kind genus atom that the instruction set licenses only for surface-fused multi-word compounds",
+     "a demonstrative definite in a conditional's consequent that co-varies with the antecedent (\"that lantern\" = the lantern the wintergloss burns in): an antecedent-less definite is given a fresh constant, with no way to make it depend on the rule variable"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The conditional itself is well formed - variable trigger event, Skolem-function response over both universals, a During link, 1.0 / 0.9 - and Patient on the intransitive burn subject is right. A consequence of sk_lantern_1 being a rule-external constant is that every burning ends up sharing the same one lantern, but the instruction set offers no licensed alternative."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000095",
+   "sentence": "The Keepers rarely burn wintergloss.",
+   "parse_run2": [
+    "(: keeper_group (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: keeper_burn (Implication (PartOf $x sk_keeper_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) wintergloss))) (STV 0.1 0.9))",
+    "(: keeper_burn_q (QuantifierPhrase keeper burn \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000095",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized definite plural naming an order or faction ('the Keepers'): the proper-noun rules (name-derived symbol + exactly one `Name` fact) are written for singular named entities, and nothing says whether such a plural is a proper noun or how a named group combines `Name` with `GroupOf`"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the 'Foxes rarely cross the causeway' pattern exactly: strength 0.1 for 'rarely' with the `QuantifierPhrase` companion naming the group kind, a definite plural distributing over `(PartOf $x sk_keepers_1)`, `Patient` for the consumed object, and no tense atom on the habitual."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000096",
+   "sentence": "The Keepers sometimes burn wintergloss at the Stilllight Lantern.",
+   "parse_run2": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: wg_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: keepers_burn (And (Member sk_burn_1 burn) (Agent sk_burn_1 keepers) (Patient sk_burn_1 wintergloss) (Location sk_burn_1 stilllight_lantern)) (STV 0.5 0.9))",
+    "(: keepers_burn_q (QuantifierPhrase keepers burn \"sometimes\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000096",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"the Keepers\" is capitalized mid-sentence, so it is a proper noun naming the group and owes a stable name-derived symbol plus the mandatory (Name keepers \"Keepers\") atom; the parse mints an anonymous group witness sk_keepers_1 and emits no Name."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The \"sometimes\" handling is as specified — rule strength 0.5 plus a QuantifierPhrase companion naming the group's member kind — as are the habitual no-tense default, the Patient for \"burn\", and the name-plus-kind pair for the Stilllight Lantern."
+   }
+  }
+ ]
+}

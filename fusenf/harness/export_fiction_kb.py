@@ -95,7 +95,12 @@ def census_flag(statements: list[str]) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", type=int, required=True, help="parse run for stmts + census")
-    ap.add_argument("--review-run", type=int, default=1, help="review vintage to carry")
+    ap.add_argument("--review-run", type=int, default=1, help="review vintage to carry (objects mode)")
+    ap.add_argument("--review-mode", choices=("objects", "advice"), default="objects",
+                    help="objects = raw review JSON per sentence; advice = one rewrite-advice "
+                         "string per sentence from --advice-dir (owner schema change 2026-08-29)")
+    ap.add_argument("--advice-dir", default=os.path.join(FUSENF, "advice"),
+                    help="directory of R<nn>__advice.json files (advice mode)")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
@@ -114,6 +119,17 @@ def main() -> None:
     def review_of(rid):
         path = os.path.join(REVIEW_DIR, f"{rid}__run{args.review_run}.review.json")
         return json.load(open(path)) if os.path.exists(path) else None
+
+    def advice_of(item):
+        rnn = f"R{int(item['id'][1:]):02d}"
+        path = os.path.join(args.advice_dir, f"{rnn}__advice.json")
+        a = json.load(open(path))
+        if not (isinstance(a.get("rule"), str) and isinstance(a.get("texts"), list)
+                and len(a["texts"]) == len(item["texts"])
+                and all(isinstance(t, str) and t.strip() for t in a["texts"])
+                and a["rule"].strip()):
+            raise SystemExit(f"malformed advice file {path}")
+        return {"rule": a["rule"], "texts": list(a["texts"])}
 
     out, missing = [], []
     for item in items:
@@ -135,6 +151,8 @@ def main() -> None:
                 stmts["texts"].append(st)
                 review["texts"].append(rv)
                 census["texts"].append(flag)
+        if args.review_mode == "advice":
+            review = advice_of(item)
         out.append({**item, "stmts": stmts, "review": review, "census": census})
 
     if missing:

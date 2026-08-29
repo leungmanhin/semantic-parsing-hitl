@@ -1,0 +1,135 @@
+{
+ "id": "R3",
+ "rule": "Nightmoths landing on lanterns leave silken threads",
+ "texts": [
+  "When a nightmoth lands on a lantern, the nightmoth leaves silken threads on the lantern.",
+  "If a nightmoth rests on a lantern, the nightmoth sheds silken threads onto the lantern.",
+  "Silken threads come from the undersides of nightmoths."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000011",
+   "sentence": "Nightmoths landing on lanterns leave silken threads",
+   "parse_run2": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: silken_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: silken_thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: nightmoth_land_leave (Implication (And (Member $x nightmoth) (Member (sk_land $x) land) (Agent (sk_land $x) $x) (Location (sk_land $x) lantern)) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Patient (sk_leave $x) (sk_thread $x)) (Member (sk_thread $x) silken_thread))) (STV 0.9 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review_run1": {
+    "id": "fict-000011",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The reduced relative clause in the premise uses a Skolem-function event term `(sk_land $x)` instead of a plain event variable (the donkey-anaphora model puts relative-clause events in the premises with a free variable), so the rule can never unify with an ordinary asserted landing event such as `sk_land_1` and is effectively unfireable."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a closed/solid compound noun written as one orthographic word ('nightmoth'): the compound-kind rule is stated for a multi-word `modifier_noun` symbol you fuse from the surface, and does not say whether a single-word compound may be given a genus atom"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest of the rule is well shaped — bare-plural generic at 0.9/0.9 with no quantifier companion, no tense atom, material-adjective fusion `silken_thread` with both genus atoms, and bare class symbols for the non-specific 'lanterns' / 'silken threads'. Only the Skolem term in the premise breaks it."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000012",
+   "sentence": "When a nightmoth lands on a lantern, the nightmoth leaves silken threads on the lantern.",
+   "parse_run2": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: land_leave_rule (Implication (And (Member $x nightmoth) (Member $y lantern) (Member $e land) (Agent $e $x) (Location $e $y)) (And (Member (sk_leave $x $y) leave) (Agent (sk_leave $x $y) $x) (Patient (sk_leave $x $y) (sk_threads $x $y)) (GroupOf (sk_threads $x $y) silken_thread) (Location (sk_leave $x $y) $y) (During (sk_leave $x $y) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000012",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "\"leaves silken threads\" is given Patient, but depositing threads does not create, destroy, consume or physically change them, so the object test — and the explicit \"when the test is unclear, default to Theme\" instruction — yields Theme."
+     },
+     {
+      "statement": 3,
+      "issue": "The consequent Skolem (sk_leave $x $y) is not a function of the trigger event variable $e even though $e is a universal in the premise scoping over it, so repeated landings by the same moth on the same lantern collapse into one leaving event."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Generic \"when <clause>, <clause>\" conditional: \"when\" is listed among the temporal connectives that keep their time-section forms, while only \"every time / whenever\" (an occurrence rule whose response is tied to its trigger with During) and indicative \"if\" (a plain Implication) get rule treatments; which of these a bare generic \"when\"-clause takes, and whether a During link is owed, is not addressed.",
+     "An orthographically single compound word (\"nightmoth\"): whether it is a single lemma owing no decomposition, or a modifier_noun compound owing a genus atom, is not addressed — the parse keeps the unsplit symbol yet still emits (Inheritance nightmoth moth)."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The silken_thread fusion with both its genus and its material-adjective atom, the bare class symbol for the non-specific plural object, and the 0.9/0.9 empirical-generic truth value all follow the instruction set."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000013",
+   "sentence": "If a nightmoth rests on a lantern, the nightmoth sheds silken threads onto the lantern.",
+   "parse_run2": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: rest_shed_rule (Implication (And (Member $x nightmoth) (Member $y lantern) (On $x $y)) (And (Member (sk_shed $x $y) shed) (Agent (sk_shed $x $y) $x) (Theme (sk_shed $x $y) silken_thread) (Goal (sk_shed $x $y) $y))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000013",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indicative conditional correctly becomes a plain Implication with the antecedent's indefinites as premise variables and the consequent's definite \"the lantern\" bound back to $y (donkey anaphora); the postural \"rests on\" correctly mints no event and takes the entity-attached (On $x $y) form, and \"onto the lantern\" is a motion-result Goal with no Result atom. \"Silken threads\" as a per-binding Skolem group with the fusing material-adjective classifier in the GroupOf kind slot plus its two decomposition atoms follows the plural-classifier rule; Theme for the shed threads is the licensed default when the change test is unclear."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000014",
+   "sentence": "Silken threads come from the undersides of nightmoths.",
+   "parse_run2": [
+    "(: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: st_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: st_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: und_grp (GroupOf sk_underside_1 underside) (STV 1.0 0.99))",
+    "(: und_part (PartOf sk_underside_1 nightmoth) (STV 1.0 0.99))",
+    "(: thread_come_rule (Implication (Member $x silken_thread) (And (Member (sk_come $x) come) (Theme (sk_come $x) $x) (Source (sk_come $x) sk_underside_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000014",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "(PartOf (sk_underside $x) nightmoth) puts the bare kind nightmoth in PartOf's whole slot instead of minting a per-thread moth witness, so each underside is asserted to be part of the kind rather than of a moth."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "kind-level part-whole inside a generic ('the undersides of nightmoths') — PartOf is defined only over an object's component or a group's member, and a generic definite plural has no group/witness treatment (the determiner rule assumes definite = specific)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling (silken_thread genus plus the material-adjective modifier genus), the bare-plural verbal generic as a distributing rule at 0.9/0.9, and Source for 'from' are all correct. Patient on the intransitive subject is defensible as a non-volitional process."
+   }
+  }
+ ]
+}

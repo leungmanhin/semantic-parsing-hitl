@@ -1,0 +1,140 @@
+{
+ "id": "R17",
+ "rule": "Salt-bloom in winter slows the burn",
+ "texts": [
+  "When the Keepers add salt-bloom to mire-essence in winter, the mire-essence burns slowly.",
+  "If the Keepers mix salt-bloom into mire-essence in winter, the mire-essence burns slowly.",
+  "A salt-bloomed lantern resists cold wind."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000075",
+   "sentence": "Salt-bloom in winter slows the burn",
+   "parse_run2": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: burn_type (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: saltbloom_slows_burn (Implication (Member $x salt_bloom) (And (Member (sk_slow $x) slow) (Agent (sk_slow $x) $x) (Patient (sk_slow $x) sk_burn_1) (Time (sk_slow $x) winter))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000075",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The bare mass kind symbol salt_bloom fills the Agent slot of a single event witness, where a verbal generic over a kind must instead become a distributing Implication rule with a Skolem event term per instance."
+     },
+     {
+      "statement": null,
+      "issue": "The generic is emitted as a flat one-off event bundle at individual-fact truth values (STV 1.0 0.99) rather than the empirical generic rule's (STV 0.9 0.9)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare, non-deictic season term ('in winter') has no specified Time form — the Time section supplies structured Year/Month/Day/Weekday/Hour terms, deictic season constants (last_spring / next_summer) and day-part symbols, but not a plain recurring season"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The two-bare-kind relational-generic route is correctly unavailable because the definite 'the burn' is not a bare kind, which leaves the distributing rule as the licensed form. Compound genus, definite-object typing, and Patient for the slowed occurrence are right."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000076",
+   "sentence": "When the Keepers add salt-bloom to mire-essence in winter, the mire-essence burns slowly.",
+   "parse_run2": [
+    "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: keeper_add_burn_rule (Implication (And (PartOf $k sk_keepers_1) (Member $a add) (Agent $a $k) (Theme $a salt_bloom) (Member $m mire_essence) (Goal $a $m) (Time $a winter)) (And (Member (sk_burn $a) burn) (Patient (sk_burn $a) $m) (Manner (sk_burn $a) slowly))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000076",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The clause's two bare mass nouns are encoded inconsistently: `salt_bloom` rides in `Theme` as a bare class symbol while `mire_essence` is treated as a kind an instance variable must belong to (`(Member $mire mire_essence)`), so the premise binds only if some parse has minted an individual mire-essence witness — which the bare-class treatment of `salt_bloom` in the same rule shows is not the convention in use."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"in winter\" — a non-deictic recurring season as a time filler: the structured terms are Year/Month/Day/Weekday/Hour, day-parts are the only licensed bare `Time` symbols, and seasons are covered only in their deictic forms (`last_spring`, `next_summer`)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rule shape is otherwise right — plain event variable in the trigger, Skolem-function response tied by `During`, surface-form `Manner slowly`, `Patient` for intransitive `burn`, and compound genera with the noun modifiers correctly left unexposed. Reading capitalized \"the Keepers\" as a named group (`Name` + `GroupOf`) is defensible under the mechanical casing cue."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000077",
+   "sentence": "If the Keepers mix salt-bloom into mire-essence in winter, the mire-essence burns slowly.",
+   "parse_run2": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: keepers_mix_burn (Implication (And (Member $x mix) (Agent $x keepers) (Theme $x salt_bloom) (Goal $x mire_essence) (Time $x winter)) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) mire_essence) (Manner (sk_burn $x) slowly) (During (sk_burn $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000077",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The conditional quantifies over nothing: both clauses use fixed constant event symbols (`sk_mix_1`, `sk_burn_1`) instead of a bound trigger variable with a Skolem-function response event, so the premise ranges over one private symbol that is asserted nowhere and the rule can never fire on an actual mixing."
+     },
+     {
+      "statement": 0,
+      "issue": "`keepers` is given a Name atom but no kind atom, leaving the referent untyped — Names and casing requires the entity's kind in an ordinary type atom beside the Name (and the plural designation would need a group typing)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a plural proper name designating a group (\"the Keepers\"): the instruction set covers proper nouns (name symbol + Name) and definite plurals (group witness + GroupOf) separately, but not their combination — whether it is `(GroupOf keepers keeper)` on the name symbol or an anonymous group witness carrying the Name is unstated"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles and modifiers inside the two clauses are right: Goal for the \"into\"-path, Manner keeping the -ly surface form `slowly`, Patient for the intransitive change-of-state \"burns\", the named time `winter`, and noun-modifier compounds decomposed to genus only. Theme for \"mix salt-bloom\" is the licensed default when the does-it-change test is unclear."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000078",
+   "sentence": "A salt-bloomed lantern resists cold wind.",
+   "parse_run2": [
+    "(: i3_lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: i3_lantern_prop (Member sk_lantern_1 salt_bloomed) (STV 1.0 0.99))",
+    "(: i3_resist_ev (Member sk_resist_1 resist) (STV 1.0 0.99))",
+    "(: i3_resist_ag (Agent sk_resist_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: i3_wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+    "(: i3_wind_prop (Member sk_wind_1 cold) (STV 1.0 0.99))",
+    "(: i3_resist_th (Theme sk_resist_1 sk_wind_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000078",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a BARE (determinerless) object NP carrying a descriptive modifier — \"resists cold wind\": the instruction set reserves the bare class symbol for a non-specific/generic object, but a bare class symbol has no carrier for `cold` (`(Inheritance wind cold)` would wrongly generalize), so the only expressible route is minting a witness, which asserts a specific wind the sentence does not introduce"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite subject with a verbal predicate is correctly a witness rather than a generic, the stative transitive subject keeps `Agent`, the unchanged object takes `Theme`, and the descriptive modifiers stay unfused (`salt_bloomed` left opaque per the adjective-compound deferral). Only the bare-modified-object encoding above is unaddressed by the instruction set."
+   }
+  }
+ ]
+}

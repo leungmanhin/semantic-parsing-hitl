@@ -1,0 +1,128 @@
+{
+ "id": "R11",
+ "rule": "Untended lanterns die before dawn",
+ "texts": [
+  "When a Keeper leaves a lantern untended overnight, the lantern dies before dawn.",
+  "If a lantern stays untended through the night, the lantern goes out before dawn.",
+  "A Keeper refreshes the mire-essence and trims the wick during the night."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000047",
+   "sentence": "Untended lanterns die before dawn",
+   "parse_run2": [
+    "(: untended_lantern_dies (Implication (And (Member $x lantern) (Member $x untended)) (And (Member (sk_die $x) die) (Patient (sk_die $x) $x) (TimeAtMost (sk_die $x) dawn))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000047",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'before <day-part>' ('before dawn') — Bounded time defines TimeAtLeast/TimeAtMost over structured calendar terms (Year/Month/Weekday/Hour) with a name decrement for strict 'before', while day-parts are only ever bare symbols on Time; nothing says whether a bare day-part may fill a bound slot, how to drop the boundary point there, or whether 'dawn' should instead be a witness ordered by Before"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural generic to a distributing rule with the restrictive participial modifier as a second premise, Patient for the change-of-state intransitive subject, no status atom, and 0.9/0.9 all follow the instruction set; 'die' is kept surface-faithful rather than normalized to a synonym."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000048",
+   "sentence": "When a Keeper leaves a lantern untended overnight, the lantern dies before dawn.",
+   "parse_run2": [
+    "(: keeper_lantern_dies (Implication (And (Member $k keeper) (Member $l lantern) (Member $e leave) (Agent $e $k) (Theme $e $l) (Result $e $s) (Member $s untended) (Experiencer $s $l) (Time $s night)) (And (Member (sk_die $e) die) (Patient (sk_die $e) $l) (TimeAtMost (sk_die $e) dawn))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000048",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The premise matches the triggering leaving by the Skolem-function event term `(sk_leave $k $l)` instead of a plain event variable, so the rule can never fire on an ordinarily-parsed leaving event — the licensed shape puts a bare variable in the trigger (`(Member $x ring) (Agent $x sk_bell_1)`) and reserves Skolem functions for the conclusion."
+     },
+     {
+      "statement": 0,
+      "issue": "The resultative's reified state, its flat `(Member $l untended)` and the `(Result ...)` link are all placed in the premise, so they become extra firing conditions — the rule additionally demands that the lantern already be independently known untended rather than deriving that from the leaving."
+     },
+     {
+      "statement": 0,
+      "issue": "`overnight` is reduced to the day-part point `(Time ... night)`, dropping the durative \"through the night\" sense the adverb carries."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"before dawn\" — a temporal bound against a day-part: `TimeAtMost` is defined only over the structured terms Year/Month/Weekday/Hour (with a defined decrement), and `Before` is defined only over eventualities, so a bound on a day-part symbol has no licensed form",
+     "\"overnight\" as a durative adverb — neither a day-part `Time` point nor a stated `(Measure e duration n unit)`"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The routing (indefinite \"when\"-conditional -> Implication rule, resultative state shape, `Patient` for intransitive `die`, no `QuantifierPhrase`) is correct; the defect is the rule's internal wiring, which leaves it unfireable."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000049",
+   "sentence": "If a lantern stays untended through the night, the lantern goes out before dawn.",
+   "parse_run2": [
+    "(: lantern_untended_out (Implication (And (Member $x lantern) (Member (sk_untended $x) untended) (Experiencer (sk_untended $x) $x) (Still (sk_untended $x)) (Time (sk_untended $x) night) (Member $x untended)) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (TimeAtMost (sk_go_out $x) dawn))) (STV 1.0 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review_run1": {
+    "id": "fict-000049",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "copular continuation verb + adjectival complement (\"stays untended\", \"remains open\"): the instruction set covers the copula \"be\" and change-of-state \"become / turn into\" (resultative shape), but not a linking verb asserting that a state persists, so whether the adjective attaches to a reified stay event or stands as a flat property is undecided",
+     "\"before dawn\": TimeAtLeast / TimeAtMost are specified to take the structured calendar terms (Year / Month / Day / Weekday / Hour), so a bound against a bare day-part-like symbol such as `dawn` has no stated form (and no seeded ordering lexicon corresponds to it)",
+     "durative \"through the night\": the extent reading over a time-of-day NP has no carrier — day-parts are point-like `Time` symbols and During is defined only between two reified eventualities"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The phrasal verb is correctly kept whole as `go_out` with no genus, the participial modifier keeps its adjectival form `untended`, and the indicative conditional takes the plain Implication rule at empirical 1.0 0.9. The proof name `r11_rule` is not the descriptive snake_case id the Output format section asks for."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000050",
+   "sentence": "A Keeper refreshes the mire-essence and trims the wick during the night.",
+   "parse_run2": [
+    "(: i2_keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: i2_essence_type (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: i2_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: i2_refresh_ev (Member sk_refresh_1 refresh) (STV 1.0 0.99))",
+    "(: i2_refresh_ag (Agent sk_refresh_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: i2_refresh_pat (Patient sk_refresh_1 sk_mire_essence_1) (STV 1.0 0.99))",
+    "(: i2_refresh_time (Time sk_refresh_1 night) (STV 1.0 0.99))",
+    "(: i2_wick_type (Member sk_wick_1 wick) (STV 1.0 0.99))",
+    "(: i2_trim_ev (Member sk_trim_1 trim) (STV 1.0 0.99))",
+    "(: i2_trim_ag (Agent sk_trim_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: i2_trim_pat (Patient sk_trim_1 sk_wick_1) (STV 1.0 0.99))",
+    "(: i2_trim_time (Time sk_trim_1 night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000050",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Coordinated VPs are translated independently with the shared indefinite subject carried over, both objects take `Patient` correctly (refreshing and trimming change their objects), and the bare simple present rightly gets no status atom. \"During the night\" is routed to the day-part symbol `(Time e night)` rather than the eventuality-nesting `During`, which is the right call since the night is not a reified eventuality here."
+   }
+  }
+ ]
+}

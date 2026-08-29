@@ -1,0 +1,141 @@
+{
+ "id": "R26",
+ "rule": "The Council convenes at full moon",
+ "texts": [
+  "When the moon is full, the Council convenes at the Watch.",
+  "If the moon is full, the Council meets at the Watch.",
+  "The Council rarely meets at other times."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000115",
+   "sentence": "The Council convenes at full moon",
+   "parse_run2": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_convene (Member sk_convene_1 convene) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_convene_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_convene_1 full_moon) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000115",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "'the Council' is capitalized mid-sentence, so by the instruction set's mechanical casing cue it is a proper noun naming an organization and requires a stable name-derived symbol plus its mandatory `(Name … \"Council\")` fact; the parse instead mints an anonymous witness `sk_council_1` and emits no `Name` atom at all."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a recurring natural-cycle time expression 'at full moon': it is not one of the structured calendar terms (Year/Month/Day/Weekday/Hour/Minute), not one of the listed day-parts or deictic constants, and its cycle is not in the named-slot-to-cycle mapping (monday->week, morning->day, month name->year), so whether it takes a bare `Time` symbol and whether an `(Every e 1 <cycle>)` companion is owed is unspecified",
+     "whether compound decomposition reaches a multi-word TIME constant such as `full_moon` — the compound-kind rule would make the genus determined-not-optional for a modifier+head-noun symbol, while the Time section says a named time stays a bare symbol with no `Member` atom"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The event side is right: a singular collective noun takes a plain event with the group as `Agent` and no distribution rule and no `GroupOf`, and the unmarked (no-tense) event correctly gives the habitual reading. The defect is the missing proper-noun treatment of the capitalized 'Council'."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000116",
+   "sentence": "When the moon is full, the Council convenes at the Watch.",
+   "parse_run2": [
+    "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: full_moon_convene (Implication (And (Member $x full) (Experiencer $x sk_moon_1)) (And (Member (sk_convene $x) convene) (Agent (sk_convene $x) sk_council_1) (Location (sk_convene $x) sk_watch_1) (During (sk_convene $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000116",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "(Member council council) puts one and the same symbol in both the individual and the class slot, which the individual-vs-class discipline forbids; the text supplies no kind word for \"the Council\" beyond the name itself."
+     },
+     {
+      "statement": 4,
+      "issue": "(Member watch watch) has the same self-typing collision — the kind atom is only the name repeated, making the named place its own class."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a proper noun whose surface string IS its own kind noun (\"the Council\", \"the Watch\"): Names and casing says to state the kind in a separate ordinary type atom, but with no kind word beside the name that yields (Member x x), with the individual symbol occupying a class slot",
+     "reifying a COPULAR trigger clause inside a whenever-rule premise: the listed state-reification triggers are resultative, connective endpoint, time modifier, adjective PP complement and focus particle — a rule premise is not among them, and a later flat \"the moon is full\" per Categorical statements would not match the reified premise this parse builds"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-rule shape is exactly per the instruction set — Skolem event per occurrence tied to its trigger by During, singular collective \"Council\" not distributed, Location for \"at\" on the event, 1.0/0.9 TV, no QuantifierPhrase. Correctly emits no flat (Member sk_moon_1 full) at top level."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000117",
+   "sentence": "If the moon is full, the Council meets at the Watch.",
+   "parse_run2": [
+    "(: moon_typ (Member sk_moon_1 moon) (STV 1.0 0.99))",
+    "(: council_typ (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: watch_typ (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: moon_council_rule (Implication (Member sk_moon_1 full) (And (Member sk_meet_1 meet) (Agent sk_meet_1 sk_council_1) (Location sk_meet_1 sk_watch_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000117",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a proper noun whose whole name IS its own kind word (\"the Council\", \"the Watch\"): the multi-word-name rule requires the entity's kind in one ordinary type atom beside the Name fact, but here that atom would be the degenerate (Member council council), and no alternative is given",
+     "a recurring indicative conditional whose antecedent is a STATE rather than an event (\"If the moon is full, the Council meets ...\"): the occurrence-quantifying form indexes the consequent event to a trigger variable, but a variable-free premise leaves no binding to index on, and the instruction set never expands its own plain-Implication conditional example to atoms, so the consequent event's form (constant vs occurrence-indexed) is unsettled"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite moon's typing correctly projects outside the rule, Location (not LocatedIn) is right for the event's \"at\", the capitalized Council/Watch correctly get name-derived symbols with one Name fact each, and a singular collective subject rightly gets one Agent with no distribution rule."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000118",
+   "sentence": "The Council rarely meets at other times.",
+   "parse_run2": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: council_meet_rare (And (Member sk_meet_1 meet) (Agent sk_meet_1 sk_council_1) (Time sk_meet_1 other_time)) (STV 0.1 0.9))",
+    "(: council_freq (QuantifierPhrase council meet \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000118",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "'Council' is capitalized mid-phrase, so by the mechanical casing cue it is a proper noun and must get a stable name-derived symbol plus exactly one (Name …) fact, but the parse mints the anonymous witness sk_council_1 and emits no Name atom."
+     },
+     {
+      "statement": 3,
+      "issue": "QuantifierPhrase's first slot is specified as the kind (or subject) the quantifier ranges over, and it is filled here with the individual witness sk_council_1."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "frequency adverb ('rarely') on a verbal habitual whose subject is a singular individual/collective — the instruction set gives the strength a carrier only for a distributing rule or a flat copular Inheritance, so the multi-atom positive event has no licensed strength carrier and the parse improvises a strength-0.1 (And …) bundle, a form otherwise reserved for negation/disjunction",
+     "contrastive-anaphoric temporal adjunct 'at other times' — Time takes structured calendar terms or deictic/named time constants, and there is no rule for a complement-set temporal NP (the parse mints the constant other_time and fuses 'other'+'time' although 'other' is incidental, not a classifier)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Strength 0.1 for 'rarely', confidence 0.9, no tense atom on the habitual, and keeping the subject's typing atom outside the weakened bundle are all correct; the singular collective correctly does not distribute."
+   }
+  }
+ ]
+}

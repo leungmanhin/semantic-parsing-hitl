@@ -1,0 +1,157 @@
+{
+ "id": "R1",
+ "rule": "Lighting a lantern produces mist-light",
+ "texts": [
+  "When a lantern burns mire-essence, the lantern produces mist-light.",
+  "If a lantern burns mire-essence, the lantern gives mist-light.",
+  "Mist-light is a pale silver flame.",
+  "Ordinary oil does not produce mist-light."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000001",
+   "sentence": "Lighting a lantern produces mist-light",
+   "parse_run2": [
+    "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: light_produce_rule (Implication (And (Member $x light) (Patient $x $y) (Member $y lantern)) (And (Member (sk_produce $x) produce) (Patient (sk_produce $x) mist_light) (During (sk_produce $x) $x))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a gerund / nominalized clause in SUBJECT position as the argument of a matrix verb (\"Lighting a lantern produces mist-light\"): the instruction set reifies embedded eventualities only in COMPLEMENT position (causation-flavored verbs, control verbs, perception reports) and gives no route for an event-denoting subject, nor for quantifying over it generically, so the choice between an Agent role on the produce event and a whenever-style rule with During is unsettled",
+     "a compound whose head noun is homographic with the clause's verb lemma (noun `light` in `mist_light` vs. the event class `light` from \"lighting\"): lemmatization is specified with no part-of-speech disambiguation of the resulting symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Consequence of gap 2 is live here: `(Inheritance mist_light light)` makes every mist-light instance a `light`, the same symbol the rule premise reads as a lighting event. Consequence of gap 1: the causal link between the lighting and the producing is recorded only as `(During (sk_produce $x) $x)` — temporal containment — since the matrix subject fills no role."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000002",
+   "sentence": "When a lantern burns mire-essence, the lantern produces mist-light.",
+   "parse_run2": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: lantern_burn_produce (Implication (And (Member $x lantern) (Member $b burn) (Agent $b $x) (Patient $b mire_essence)) (And (Member (sk_produce $b) produce) (Agent (sk_produce $b) $x) (Theme (sk_produce $b) mist_light) (During (sk_produce $b) $b))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000002",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The consequent's Skolem event is a function of the lantern alone, (sk_produce $x), not of the trigger event $e, so a lantern that burns mire-essence twice yields one produce event asserted by (During (sk_produce $x) $e) to occur during both burnings, whereas the rule form individuates the response per occurrence."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "generic conditional headed by bare 'when' (\"When a N Vs O, the N Vs O\") — the Implication-rule form is given for 'every time / whenever' and for indicative 'if', while 'when' is listed only among the temporal connectives that keep their Before/During forms, so which route a generic 'when'-clause takes is unspecified"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles (inanimate transitive subject as Agent; burn and produce objects as Patient), both compound-kind genera with their noun modifiers left unexposed, the bare class symbols for the non-specific mass objects, and the rule TV are all correct."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000003",
+   "sentence": "If a lantern burns mire-essence, the lantern gives mist-light.",
+   "parse_run2": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: lantern_gives_mistlight (Implication (And (Member $x lantern) (Member $e1 burn) (Agent $e1 $x) (Patient $e1 mire_essence)) (And (Member (sk_give $x) give) (Agent (sk_give $x) $x) (Theme (sk_give $x) mist_light))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000003",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The rule's PREMISE uses a Skolem-function event term `(sk_burn $x)` where a plain event variable belongs, so the antecedent can never unify with an ordinarily-parsed burn event (e.g. `sk_burn_1`) and the rule is inert; every worked rule in the instruction set (whenever-rule, donkey rule) uses a free variable in the premise and reserves Skolem functions for the conclusion."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "indicative 'if <clause>, <clause>' conditional: named only in passing ('a plain Implication rule', in the counterfactual subsection) with no worked example, and no statement of how an indefinite subject in the antecedent ('a lantern') is bound — as the rule's range variable, or as the witness that the Existential section prescribes for an indefinite under a verbal predicate"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound decomposition (mire_essence/essence, mist_light/light, noun modifiers correctly unexposed), the Patient/Theme role split, coreference of 'the lantern' to the antecedent variable, and the 1.0/0.9 empirical rule TV are all right. The single defect is mechanical: the premise's Skolem term makes the rule unfirable."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000004",
+   "sentence": "Mist-light is a pale silver flame.",
+   "parse_run2": [
+    "(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: ml_flame (Inheritance mist_light flame) (STV 1.0 0.99))",
+    "(: ml_pale (Inheritance mist_light pale) (STV 0.9 0.9))",
+    "(: ml_silver (Inheritance mist_light silver) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000004",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "Treats \"Mist-light\" as a proper noun and emits a Name atom, but the only capitalization cue is sentence-initial position, which is no evidence of name status; read as the ordinary compound kind \"mist-light\" no Name atom is licensed."
+     },
+     {
+      "statement": 1,
+      "issue": "On that kind reading the copular subject is a class, so the link should be Inheritance rather than Member, and the mandatory compound-kind genus (Inheritance mist_light light) is missing."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "deciding proper-noun vs common-noun status for a SENTENCE-INITIAL capitalized word, where the instruction set's mechanical casing cue is unavailable",
+     "stacked colour modifiers (\"pale silver\") — whether the shade word grades the colour or is a second independent property"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Splitting \"pale\" and \"silver\" into two property atoms is right per the incidental-description rule (colour never fuses), though it loses that \"pale\" grades \"silver\". Emitting no modifier genus is internally consistent with the proper-noun reading the parse chose."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000005",
+   "sentence": "Ordinary oil does not produce mist-light.",
+   "parse_run2": [
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: oil_not_produce (Implication (And (Member $x oil) (Member $x ordinary)) (And (Member (sk_produce $x) produce) (Agent (sk_produce $x) $x) (Patient (sk_produce $x) mist_light))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000005",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a NEGATED generic whose subject and object are both bare kind-denoting NPs (\"Ordinary oil does not produce mist-light\"): the relational-generic trigger (both arguments bare kind/mass NPs -> an opaque kind-level relation) and the negated-verbal-generic rule (\"Ns don't V\" -> the distributing Implication at strength 0.0) both apply here, and the instruction set never says which route wins for a transitive negated generic"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The distributing-rule choice at (STV 0.0 0.9), the restrictive \"ordinary\" as a premise conjunct, the bare-class generic object, the mist_light genus and the correctly unexposed noun modifier all match the instruction set; no QuantifierPhrase is right since plain \"not\" is not a quantifier word."
+   }
+  }
+ ]
+}

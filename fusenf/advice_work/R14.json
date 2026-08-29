@@ -1,0 +1,173 @@
+{
+ "id": "R14",
+ "rule": "Drained lanterns give weak mist-light",
+ "texts": [
+  "When a wraith drains a lantern, the lantern gives weak mist-light.",
+  "If a wraith drains a lantern, the lantern shows dim mist-light.",
+  "Weak mist-light rarely attracts nightmoths.",
+  "When lanterns attract few nightmoths, the thread harvest falls."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000060",
+   "sentence": "Drained lanterns give weak mist-light",
+   "parse_run2": [
+    "(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: lantern_give_rule (Implication (And (Member $x lantern) (Member $x drained)) (And (Member (sk_give $x) give) (Agent (sk_give $x) $x) (Theme (sk_give $x) (sk_mist_light $x)) (Member (sk_mist_light $x) mist_light) (Member (sk_mist_light $x) weak))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000060",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "Asserts the unstated generic \"lanterns are (mostly) drained\" at strength 0.9; \"drained\" restricts this sentence's subject and is never predicated of lanterns at large."
+     },
+     {
+      "statement": 2,
+      "issue": "Asserts the unstated generic \"mist-light is weak\"; \"weak\" restricts the mist-light these lanterns give, not mist-light in general."
+     },
+     {
+      "statement": 3,
+      "issue": "The kind relation drops both restrictive modifiers, so it claims lanterns in general give mist-light in general — a strictly broader claim than the sentence makes."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a restrictive adjectival modifier on a bare-kind argument of a relational generic (\"drained lanterns\", \"weak mist-light\"): the trigger is stated as bare kind-denoting NPs on both sides, and there is no rule for carrying a modifier that neither fuses (it is incidental description — damage state, degree) nor may be split off as its own kind-level claim; the distributing-rule alternative with the modifier in the premise is not named as the route"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "(Inheritance mist_light light) is the correct compound-kind genus and \"drained\" correctly keeps its participial-adjective form. The failure is scope: every modifier landed as an independent kind-level assertion instead of restricting the claim."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000061",
+   "sentence": "When a wraith drains a lantern, the lantern gives weak mist-light.",
+   "parse_run2": [
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: wraith_drain_give_rule (Implication (And (Member $w wraith) (Member $e drain) (Agent $e $w) (Patient $e $l) (Member $l lantern)) (And (Member (sk_give $l) give) (Agent (sk_give $l) $l) (Theme (sk_give $l) (sk_mist_light $l)) (Member (sk_mist_light $l) mist_light) (Member (sk_mist_light $l) weak) (During (sk_give $l) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000061",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The trigger clause's event is encoded as the Skolem-function term (sk_drain $x $y) inside the rule PREMISE, but the occurrence-conditional pattern puts a plain event variable in the premise and reserves Skolem-function event terms for the conclusion, so this premise can never unify with an ordinary drain event and the rule is inert."
+     },
+     {
+      "statement": 0,
+      "issue": "Nothing relates the derived giving event to its trigger: the occurrence-quantifying pattern ties the response to the trigger with During, and \"when\" is a temporal connective required to keep a canonical time relation, yet no During/Before atom is emitted."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a generic \"When P, Q\" conditional with indefinite subjects: the occurrence-quantifying rule (with its During link) is licensed only for explicit \"every time / whenever\", and bare indicative \"if\" is routed to a plain Implication, leaving generic \"when\" unassigned between the two forms"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Role assignment (inanimate transitive lantern as Agent, Theme for the emitted light), the dependent-existential Skolem light witness, keeping descriptive \"weak\" as a separate Member atom rather than fusing, and the mist_light genus are all correct; the defect is confined to how the premise encodes the trigger event."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000062",
+   "sentence": "If a wraith drains a lantern, the lantern shows dim mist-light.",
+   "parse_run2": [
+    "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: wraith_drain_lantern_shows (Implication (And (Member $w wraith) (Member $l lantern) (Member $e drain) (Agent $e $w) (Patient $e $l)) (And (Member (sk_show $w $l) show) (Agent (sk_show $w $l) $l) (Member (sk_mistlight $w $l) mist_light) (Member (sk_mistlight $w $l) dim) (Theme (sk_show $w $l) (sk_mistlight $w $l)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000062",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indicative conditional as a plain Implication, donkey-bound 'the lantern' as $l, Patient for drain vs Theme for the shown light, 'dim' split off the fused mist_light compound with its genus at top level, and 1.0/0.9 all follow the instruction set. The consequent Skolem (sk_show $l) is a function of $l only and not of the premise event $e1, which mirrors the donkey-anaphora exemplar's (sk_beat $f $d) and so is within precedent, though two drainings of one lantern would collapse to one show event."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000063",
+   "sentence": "Weak mist-light rarely attracts nightmoths.",
+   "parse_run2": [
+    "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: weak_mistlight_rule (Implication (And (Member $x mist_light) (Member $x weak)) (And (Member (sk_attract $x) attract) (Agent (sk_attract $x) $x) (Theme (sk_attract $x) nightmoth))) (STV 0.1 0.9))",
+    "(: weak_mistlight_q (QuantifierPhrase mist_light attract \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000063",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The `QuantifierPhrase` companion names the kind `mist_light`, dropping the 'weak' restriction that the rule itself carries, so the surface record states the broader claim that mist-light in general rarely attracts nightmoths."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare relational generic between two bare kind NPs ('mist-light attracts nightmoths') that also carries a frequency adverb: the Striking & relational trigger routes it to an opaque kind relation `(Attract ...)` with no strength or `QuantifierPhrase` channel, while the frequency-adverb rule presupposes a distributing rule, and the instruction set does not say which wins",
+     "no licensed symbol names an adjectivally-restricted kind ('weak mist-light') for the `QuantifierPhrase` subject slot, since an incidental adjective must not fuse with its noun",
+     "solid/closed compound written as one orthographic word ('nightmoths'): the instruction set does not say whether it is split into `night_moth` and given a genus"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Strength 0.1 for 'rarely' with empirical confidence 0.9, the non-fusion of the incidental adjective 'weak', `Agent` for the inanimate transitive subject, `Theme` for the unchanged object, and the bare class symbol for the bare-plural object all match the instruction set."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000064",
+   "sentence": "When lanterns attract few nightmoths, the thread harvest falls.",
+   "parse_run2": [
+    "(: harvest_witness (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))",
+    "(: harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lantern_few_moths_harvest_falls (Implication (And (Member $x lantern) (Member $e1 attract) (Agent $e1 $x) (Theme $e1 $g) (GroupOf $g nightmoth) (CardinalityPhrase $g \"few\")) (And (Member (sk_fall $e1) fall) (Patient (sk_fall $e1) sk_harvest_1) (During (sk_fall $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000064",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The antecedent's event and group are Skolem-function terms ((sk_attract $x), (sk_moths $x)) rather than plain premise variables, so the premise cannot match ordinarily asserted attract / GroupOf atoms; Skolem-function terms are for events the conclusion introduces."
+     },
+     {
+      "statement": 2,
+      "issue": "Bare 'few' is recorded as (CardinalityPhrase (sk_moths $x) \"few\"), but the instruction set lists 'few' among the proportion words that set strength (0.1) with a QuantifierPhrase companion, and restricts CardinalityPhrase to the vague-count lexicon ('a few / several / a handful / dozens / scores / hundreds / a lot of')."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a proportional quantifier ('few') on a NON-subject argument inside a conditional's antecedent — the strength + QuantifierPhrase channel is defined only for the quantified subject of a generic (setting rule strength here would wrongly say the rule holds rarely), so a low-proportion object NP has no licensed carrier",
+     "a solid (single-word) compound such as 'nightmoth' — the compound-genus decomposition licence is written for a modifier_noun symbol you fused from a multi-word surface, and nothing addresses a word that is already one orthographic token"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The 'when'-clause is correctly built as an occurrence rule with the response tied to its trigger by During, 'the thread harvest falls' correctly takes Patient for a change-of-state intransitive subject, and thread_harvest is typed at top level plus given its genus."
+   }
+  }
+ ]
+}

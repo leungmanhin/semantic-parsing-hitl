@@ -1,0 +1,167 @@
+{
+ "id": "R6",
+ "rule": "A crowd of nightmoths brings sky-cats down",
+ "texts": [
+  "When many nightmoths gather at a lantern-row, sky-cats descend from the cliff-spires.",
+  "If many nightmoths crowd a lantern-row, sky-cats descend from the cliff-spires.",
+  "When few nightmoths gather at a lantern-row, sky-cats stay on the cliff-spires."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000025",
+   "sentence": "A crowd of nightmoths brings sky-cats down",
+   "parse_run2": [
+    "(: crowd_type (Member sk_crowd_1 crowd) (STV 1.0 0.99))",
+    "(: crowd_kind (GroupOf sk_crowd_1 nightmoth) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: bring_ev (Member sk_bring_down_1 bring_down) (STV 1.0 0.99))",
+    "(: bring_agent (Agent sk_bring_down_1 sk_crowd_1) (STV 1.0 0.99))",
+    "(: bring_patient (Patient sk_bring_down_1 sky_cat) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000025",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "\"sky-cats\" is a bare plural, non-specific object, for which the instruction set reserves the bare class symbol (`sky_cat`); minting a definite group witness plus `(GroupOf sk_group_1 sky_cat)` asserts a particular set of sky-cats that the sentence never introduces."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Closed / solid-written compounds: \"nightmoths\" is already one orthographic word, and the compound-kind rule is stated for `modifier_noun` symbols fused from a multi-word or hyphenated surface, so it does not say whether an already-single-lemma compound should get a genus atom at all.",
+     "Bare plural objects: the instruction set fixes bare plural SUBJECTS (generic kind, `Inheritance`) and definite/demonstrative plurals (group witness), but states no rule for a bare plural in object position."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"A crowd of nightmoths\" correctly takes both `(Member sk_crowd_1 crowd)` and `(GroupOf sk_crowd_1 nightmoth)` (the flock-of-birds pattern), and the separated particle verb \"brings ... down\" is correctly kept whole as `bring_down` with no genus. Present simple with no status atom is right for the habitual default, and `Theme` for a displaced object is within the stated latitude."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000026",
+   "sentence": "When many nightmoths gather at a lantern-row, sky-cats descend from the cliff-spires.",
+   "parse_run2": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lantern_row_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cliff_spires_grp (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))",
+    "(: moth_gather_cat_descend (Implication (And (Member $x gather) (Agent $x $g) (GroupOf $g nightmoth) (CardinalityPhrase $g \"many\") (Location $x $l) (Member $l lantern_row)) (And (Member (sk_descend $x) descend) (Agent (sk_descend $x) (sk_scgroup $x)) (GroupOf (sk_scgroup $x) sky_cat) (Source (sk_descend $x) sk_cliff_spire_1) (During (sk_descend $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000026",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The fused compound sky_cat gets no genus decomposition atom, although the equally fused cliff_spire and lantern_row both get theirs and the compound genus is mandatory rather than optional."
+     },
+     {
+      "statement": 3,
+      "issue": "The rule sits at strength 1.0, asserting that every sky-cat descends at every gathering, but \"sky-cats\" is a bare-plural generic with no quantifier word and the quantity dial puts an unquantified generic at 0.9."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a vague/proportional quantifier (\"many nightmoths\") on the subject of a RULE PREMISE: the strength channel belongs to the rule as a whole (and is already spoken for by the consequent's genericity), while \"many\" is listed as a proportion word and is absent from the CardinalityPhrase vague-quantity lexicon (a few / several / a handful / dozens / scores / hundreds / a lot of), so neither channel clearly applies"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The conditional shape is otherwise right: collective gather with the group as Agent, Location for \"at a lantern-row\", Source for \"from the cliff-spires\", a Skolem event indexed by both universals, and During tying response to trigger. The CardinalityPhrase route for \"many\" is defensible under \"use CardinalityPhrase only when the phrase counts things\", but the recorded string is outside the listed lexicon."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000027",
+   "sentence": "If many nightmoths crowd a lantern-row, sky-cats descend from the cliff-spires.",
+   "parse_run2": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lantern_row_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: cliff_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: spires_grp (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))",
+    "(: crowd_descend_rule (Implication (And (Member $x nightmoth) (Member $e crowd) (Agent $e $x) (Theme $e $y) (Member $y lantern_row)) (And (Member (sk_descend $e) descend) (GroupOf (sk_skycat $e) sky_cat) (Agent (sk_descend $e) (sk_skycat $e)) (Source (sk_descend $e) sk_cliff_spire_1) (During (sk_descend $e) $e))) (STV 1.0 0.9))",
+    "(: crowd_q (QuantifierPhrase nightmoth crowd \"many\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000027",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The premise carries Skolem-function terms ((sk_moths $x), (sk_row $x)) where every rule example in the instruction set uses plain variables in premises and reserves Skolem functions for consequent-introduced existentials, so the antecedent can only match atoms literally containing those terms and the rule can never fire on an actual crowding event."
+     },
+     {
+      "statement": 5,
+      "issue": "(During (sk_descend $x) $x) asserts a temporal containment of the descending inside the crowding that the text does not state; the During tie is licensed for the 'every time / whenever' construction, not for a plain indicative 'if'."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a quantifier word ('many') on an NP inside a conditional antecedent: the QuantifierPhrase companion's (kind, verb-lemma, word) shape does not fit a rule that ranges over occurrences, the strength channel is already occupied by the rule's own reliability, and 'many' is listed as a proportion word rather than one of CardinalityPhrase's vague-count phrases"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is otherwise right - the noun modifiers night/sky/lantern/cliff are correctly left unexposed and only the head genus is emitted - but 'nightmoths' is a solid single word that the parse splits into night_moth, whereas the instruction set licenses fusing surface words, not splitting one."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000028",
+   "sentence": "When few nightmoths gather at a lantern-row, sky-cats stay on the cliff-spires.",
+   "parse_run2": [
+    "(: fx28_nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: fx28_lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: fx28_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: fx28_cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: fx28_spires_group (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))",
+    "(: fx28_rule (Implication (And (Member $e gather) (GroupOf $ng nightmoth) (CardinalityPhrase $ng \"few\") (Agent $e $ng) (Member $lr lantern_row) (Location $e $lr)) (And (Member (sk_stay $e) stay) (GroupOf (sk_skycats $e) sky_cat) (Experiencer (sk_stay $e) (sk_skycats $e)) (Location (sk_stay $e) sk_cliff_spire_1) (During (sk_stay $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000028",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The rule's PREMISE is written with the Skolem-function term (sk_moths $x) in Agent / GroupOf / CardinalityPhrase, but the instruction set uses plain variables in premises and reserves Skolem functions for minting per-binding entities in the CONCLUSION, so this premise can never match an ordinary parse of a gathering event."
+     },
+     {
+      "statement": 4,
+      "issue": "The indefinite \"a lantern-row\" is hoisted out of the conditional's antecedent into a top-level witness constant sk_lantern_row_1, asserting that a particular lantern-row exists (the generic conditional asserts no such thing) and restricting the rule to that single lantern-row; an indefinite inside a rule premise binds as a variable plus its class atom (donkey pattern)."
+     },
+     {
+      "statement": 5,
+      "issue": "\"the cliff-spires\" is a definite plural, which takes a group witness (GroupOf <g> cliff_spire), but the parse uses the bare kind symbol cliff_spire as the location filler — the bare class symbol is reserved for non-specific / generic objects."
+     },
+     {
+      "statement": 5,
+      "issue": "\"stay ON the cliff-spires\" answers WHERE, so the reified stay-state's oblique is Location (which the instruction set explicitly assigns to in/at/on), not the preposition-named oblique On, which is for PPs naming what an activity is about or directed at."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Generic conditional headed by bare \"when\" (\"When <clause>, <clause>\"): \"when\" is listed among the temporal connectives that keep their canonical time forms, while the occurrence-quantifying Implication form is specified only for \"every time / whenever\" and \"if\"; which route a habitual \"when\"-clause takes is never stated.",
+     "Bare \"few\" as a determiner on the subject of a conditional's antecedent: the instruction set maps \"few\" to strength 0.1 (which here would wrongly weaken the whole conditional rather than count the moths), and the CardinalityPhrase lexicon lists only \"a few / several / a handful / dozens / scores / hundreds / a lot of\"; neither channel is prescribed for this position."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is right throughout (genus emitted, noun modifiers night/lantern/sky/cliff correctly not exposed). The whenever-rule skeleton and the During link are the right shape; the defects are all in how the premise's participants are bound."
+   }
+  }
+ ]
+}

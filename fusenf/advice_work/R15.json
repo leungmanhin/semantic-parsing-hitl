@@ -1,0 +1,209 @@
+{
+ "id": "R15",
+ "rule": "Ground feathers ward lanterns from wraiths",
+ "texts": [
+  "When the Keepers scatter ground feathers around a lit lantern, the feathers ward the lantern from wraiths.",
+  "If the Keepers spread ground feathers around a lit lantern, the feathers shield the lantern from wraiths.",
+  "Wraiths do not approach a warded lantern.",
+  "Fresh ground feathers ward a lantern.",
+  "Stale ground feathers do not ward a lantern."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000065",
+   "sentence": "Ground feathers ward lanterns from wraiths",
+   "parse_run2": [
+    "(: gf_rule (Implication (And (Member $x feather) (Member $x ground)) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) lantern) (Source (sk_ward $x) wraith))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000065",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "(Ward ground_feather lantern wraith) is a three-argument kind relation; the relational-generic licence covers exactly two kind arguments, and the 'from wraiths' oblique has no slot in that form."
+     },
+     {
+      "statement": 2,
+      "issue": "(Inheritance ground_feather ground) commits to reading 'ground' as the participial adjective (pulverized); under the equally available noun reading ('feathers from the ground') a noun modifier must never be exposed, and nothing in the sentence settles which is meant."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a relational generic with a third, prepositional argument ('Xs ward Ys from Zs') — the kind-level relation form is binary and carries no oblique, while the event-rule route is blocked because both post-verbal NPs are bare kinds too"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [
+     "Ward (arity 3 — the open-class kind-relation licence covers two kind arguments only)"
+    ],
+    "notes": "Fusing ground_feather is the only route available, since the non-fusing adjective+noun split needs a witness that a bare kind argument cannot supply; truth values follow the dial (0.9/0.9 generic, 1.0/0.99 decomposition)."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000066",
+   "sentence": "When the Keepers scatter ground feathers around a lit lantern, the feathers ward the lantern from wraiths.",
+   "parse_run2": [
+    "(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: keepers_ward_rule (Implication (And (Member $s scatter) (Agent $s sk_keepers_1) (Theme $s $feathers) (Member $feathers feather) (Member $feathers ground) (Around $s $lantern) (Member $lantern lantern) (Member $lantern lit)) (And (Member (sk_ward $s) ward) (Agent (sk_ward $s) $feathers) (Theme (sk_ward $s) $lantern) (Source (sk_ward $s) wraith) (During (sk_ward $s) $s))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000066",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The habitual \"when\"-conditional is built entirely from constant symbols (sk_scatter_1, sk_lantern_1, sk_feather_1, sk_ward_1) instead of the occurrence variable plus Skolem-function response of the \"Every time / whenever\" template, so the rule quantifies over nothing and can never match anything asserted in the KB."
+     },
+     {
+      "statement": 2,
+      "issue": "No (During <response> <trigger>) atom ties the warding to its triggering scattering, which the whenever template requires."
+     },
+     {
+      "statement": 2,
+      "issue": "\"from wraiths\" is slotted as Source, but it names what the warding is directed against rather than a whence-phrase, so the instruction set routes it to the preposition-named oblique (From ...)."
+     },
+     {
+      "statement": 1,
+      "issue": "\"ground feathers\" is fused into ground_feather with a genus while the parallel participial modifier in \"a lit lantern\" is (correctly) split into a separate property atom - the laminated-worktop rule makes a participial modifier a separate property, not part of a fused kind."
+     },
+     {
+      "statement": 0,
+      "issue": "\"the Keepers\" is capitalized mid-sentence (a proper noun by the mechanical casing cue) but gets no name-derived symbol and no Name atom, both of which the instruction set calls non-optional."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare \"When P, Q\" read as a habitual conditional: the occurrence-rule form is specified for \"every time / whenever\", while \"when\" is listed among the temporal connectives that keep the canonical time forms and get no connective atom",
+     "an indefinite introduced inside a whenever-trigger (\"a lit lantern\") that the main clause picks up as a definite (\"the lantern\") - the whenever template shows only definite constants, and quantifier-bound anaphora is given only for relative clauses (donkey anaphora)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Around is fine as a preposition-named oblique, and the roles inside both clauses (Agent on the inanimate feathers, Theme on the unchanged lantern) are right. The defect is confined to the quantificational shape of the rule plus the three atom-level points above."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000067",
+   "sentence": "If the Keepers spread ground feathers around a lit lantern, the feathers shield the lantern from wraiths.",
+   "parse_run2": [
+    "(: keeper_group (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: keeper_spread_shield (Implication (And (Member $t spread) (Agent $t sk_keeper_1) (Theme $t $f) (GroupOf $f feather) (Member $f ground) (Around $t $l) (Member $l lantern) (Member $l lit)) (And (Member (sk_shield $t) shield) (Agent (sk_shield $t) $f) (Theme (sk_shield $t) $l) (Source (sk_shield $t) wraith) (During (sk_shield $t) $t))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000067",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The descriptive participial modifier 'ground' is predicated of the group symbol itself, `(Member $f ground)`, which is the group-as-object reading the plural rules explicitly warn against — a descriptive modifier on a plural must distribute over the members, not sit on the group."
+     },
+     {
+      "statement": 1,
+      "issue": "'shield the lantern from wraiths' takes `Source`, but the from-phrase names the threat guarded against rather than answering 'whence', so by the decide-by-the-question-the-PP-answers rule it should be the preposition-named oblique `From`."
+     },
+     {
+      "statement": 1,
+      "issue": "`(During (sk_shield $s) $s)` asserts that the shielding is temporally contained in the spreading, which the sentence never states — the `During` tie-back belongs to the 'every time / whenever' construction, whereas a plain indicative 'if' conditional is just an `Implication`."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized definite plural naming an order or faction ('the Keepers'): the proper-noun rules (name-derived symbol + exactly one `Name` fact) are written for singular named entities, and nothing says whether such a plural is a proper noun or how a named group combines `Name` with `GroupOf`",
+     "a descriptive modifier on a plural inside a RULE PREMISE: the prescribed remedy for 'never predicate a member property of the group symbol' is the distributive rule, which is defined for asserted statements and has no stated form for restricting a premise-bound group to members with that property"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The overall routing is right — indicative conditional → plain `Implication`, antecedent event matched with a free variable `$s`, indefinites 'ground feathers' / 'a lit lantern' bound as rule variables, 'the feathers' / 'the lantern' correctly coreferring, `Around` as a legitimate preposition-named oblique, and the inanimate transitive subject as `Agent`."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000068",
+   "sentence": "Wraiths do not approach a warded lantern.",
+   "parse_run2": [
+    "(: wraith_no_approach (Implication (Member $x wraith) (And (Member (sk_approach $x) approach) (Agent (sk_approach $x) $x) (Theme (sk_approach $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern) (Member (sk_lantern $x) warded))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000068",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An indefinite object under a negated verbal generic (\"Ns do not V a ADJ N\"). The instruction set says an indefinite argument is an existential witness, and under a generic rule a dependent existential is a Skolem function inside the consequent; it gives no treatment of the negation's scope, where the natural reading is universal (no wraith approaches any warded lantern). The parse takes that universal reading by lifting \"a warded lantern\" into a second premise, a form no worked example covers."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"warded\" is correctly kept as a participial adjective on the lantern rather than fused into the noun or lemmatized to the verb, and the 0.0/0.9 rule truth value is right for a bare-plural generic denial."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000069",
+   "sentence": "Fresh ground feathers ward a lantern.",
+   "parse_run2": [
+    "(: gf_genus (Inheritance ground_feather feather) (STV 1.0 0.99))",
+    "(: gf_mod (Inheritance ground_feather ground) (STV 1.0 0.99))",
+    "(: feathers_ward_lantern (Implication (And (Member $x ground_feather) (Member $x fresh)) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000069",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The indefinite object \"a lantern\" is encoded as the bare kind symbol lantern in the Theme slot, but an article mints a witness with its kind atom, and under a rule a dependent existential must be a Skolem function of the bound variable ((sk_lantern $x) + its Member typing) — as written the existential is lost and a kind sits in an individual argument position."
+     },
+     {
+      "statement": 1,
+      "issue": "\"ground\" is a participle used as a modifier (a processing state), which the instruction set's own \"a laminated worktop\" case predicates as a separate property rather than fusing, so ground_feather over-fuses an incidental description and then exposes the fused modifier as a genus — note the parallel modifier \"fresh\" was correctly kept out of the compound."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a descriptive (non-fusing) modifier on a BARE-PLURAL generic subject (\"fresh ... feathers ward ...\"): the instruction set specifies the split for a definite plural (distribute per the copular rule) and for a kind (fuse or leave separate), but never states that on a verbal generic the modifier becomes an extra premise restricting the rule's range, which is what this parse did"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-plural subject correctly becomes a distributing rule at 0.9/0.9 with Agent on the inanimate transitive subject and Theme on the unchanged object, and the indefinite-singular object correctly blocks the kind-relation reading."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "fict-000070",
+   "sentence": "Stale ground feathers do not ward a lantern.",
+   "parse_run2": [
+    "(: feathers_no_ward (Implication (And (Member $x feather) (Member $x stale) (Member $x ground)) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) lantern))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000070",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Negated verbal generic at strength 0.0 / confidence 0.9, restrictive modifiers as rule premises, transitive inanimate subject kept as Agent, and the indefinite object skolemized with its typing inside the denied consequent all match the instruction set. 'ground' is read as a participial modifier-adjective, which licenses (Member $x ground); on the competing noun-modifier reading ('feathers from the ground') that atom would be unlicensed, since a noun modifier is never predicated of the referent."
+   }
+  }
+ ]
+}

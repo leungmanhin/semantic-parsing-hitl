@@ -1,0 +1,121 @@
+{
+ "id": "R24",
+ "rule": "Newcomers apprentice under a senior Keeper",
+ "texts": [
+  "A newcomer must apprentice under a senior Keeper.",
+  "A new apprentice does not tend a lantern alone.",
+  "The Council permits an apprentice to begin solo tending."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000107",
+   "sentence": "Newcomers apprentice under a senior Keeper",
+   "parse_run2": [
+    "(: senior_keeper_gen1 (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: senior_keeper_gen2 (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: newcomer_apprentice_rule (Implication (Member $x newcomer) (And (Member (sk_apprentice $x) apprentice) (Agent (sk_apprentice $x) $x) (Under (sk_apprentice $x) (sk_keeper $x)) (Member (sk_keeper $x) senior_keeper))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000107",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`Under` is licensed as a preposition-named oblique (a prepositional verb's object goes there, not into a direct-object role), and `senior_keeper` gets both the head genus and the adjectival-modifier genus exactly as the instruction set's own senior_contractor case prescribes. The indefinite \"a senior Keeper\" under the universal is correctly a dependent Skolem term `(sk_keeper $x)` with its typing inside the rule."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000108",
+   "sentence": "A newcomer must apprentice under a senior Keeper.",
+   "parse_run2": [
+    "(: keeper_type (Member sk_keeper_1 senior_keeper) (STV 1.0 0.99))",
+    "(: senior_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: senior_keeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: newcomer_apprentice (ConditionalProperty newcomer (obligated apprentice) sk_keeper_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000108",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a kind-level deontic whose verb takes a prepositional ARGUMENT (\"must apprentice under a senior Keeper\") — the licensed compound action is `verb_object` only, and the ConditionalProperty condition slot is specified for circumstantial restrictions (\"at entry\"), not for an argument PP, so fusing `apprentice_under_senior_keeper` and hanging (Under …) on it extends the adjective+complement pattern (`sensitive_to_light` + (To …)) to a verb without licence"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing is right: the modal keys the kind-level reified-norm form despite the indefinite \"A newcomer\", the plain (non-defeasible) norm takes 1.0/0.99, and senior_keeper is fused as a role title with its genus plus the gradable-adjective modifier exposed exactly as the senior_contractor example prescribes."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000109",
+   "sentence": "A new apprentice does not tend a lantern alone.",
+   "parse_run2": [
+    "(: apprentice_not_tend_alone (And (Member sk_tend_1 tend) (Agent sk_tend_1 sk_apprentice_1) (Member sk_apprentice_1 apprentice) (Member sk_apprentice_1 new) (Theme sk_tend_1 sk_lantern_1) (Member sk_lantern_1 lantern) (Member sk_apprentice_1 alone)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000109",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite singular subject is correctly kept as a witness rather than promoted to a generic, with both its typing atoms and the indefinite object's typing inside the strength-0 bundle exactly as the cooper example prescribes, and keeping \"alone\" inside the conjunction yields the correct not-(tend and alone) reading. `Patient` for \"tend a lantern\" and `Manner alone` (rather than a subject depictive) are borderline calls but both sit within the instruction set's stated latitude."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000110",
+   "sentence": "The Council permits an apprentice to begin solo tending.",
+   "parse_run2": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: apprentice_type (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: permit_ev (Member sk_permit_1 permit) (STV 1.0 0.99))",
+    "(: permit_ag (Agent sk_permit_1 sk_council_1) (STV 1.0 0.99))",
+    "(: permit_th (Theme sk_permit_1 sk_begin_1) (STV 1.0 0.99))",
+    "(: begin_ev (Member sk_begin_1 begin) (STV 1.0 0.99))",
+    "(: begin_ag (Agent sk_begin_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: begin_th (Theme sk_begin_1 sk_tend_1) (STV 1.0 0.99))",
+    "(: tend_ev (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: tend_ag (Agent sk_tend_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: tend_mnr (Manner sk_tend_1 solo) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000110",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 10,
+      "issue": "(Ongoing sk_tend_1) asserts at top level that a tending is underway, but the sentence says only that the Council permits the apprentice to begin one; the complement of a control verb is to assert nothing about occurrence."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a permission-granting matrix VERB (\"the Council permits an apprentice to V\"): whether it is only an ordinary object-control event, or additionally licenses a deontic record on the complement, or (as a standing policy over an indefinite) the kind-level reified permission property, is not addressed — the deontic sections key on a modal or a passive/participial deontic, never on a permitting verb with its own agent",
+     "the inception pattern's mandatory (Ongoing <activity>) when the begin event is itself an unasserted complement: the inception rule and the control-verb \"no tense/status, occurrence not stated\" rule pull opposite ways and neither is subordinated to the other",
+     "a capitalized definite common-noun institution (\"the Council\"): whether it counts as a proper noun requiring a Name atom or as an ordinary definite description is not settled"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Object control is handled correctly — the begin event reified at top level, attached to the matrix verb by Theme, with the object controller copied in as its Agent and no tense of its own — and the simple present rightly gets no status atom on the permitting. \"Solo\" recorded as a Manner filler in its surface form is licensed, and the indefinite \"an apprentice\" correctly takes a witness under a verbal predicate."
+   }
+  }
+ ]
+}

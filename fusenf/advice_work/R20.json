@@ -1,0 +1,157 @@
+{
+ "id": "R20",
+ "rule": "Spring tides occur near new moon and full moon",
+ "texts": [
+  "Spring tides occur near the new moon.",
+  "Spring tides occur near the full moon.",
+  "The Keepers time the salt-bloom harvest to the new-moon spring tide."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000088",
+   "sentence": "Spring tides occur near new moon and full moon",
+   "parse_run2": [
+    "(: springtide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: st_near_new (Near spring_tide new_moon) (STV 0.9 0.9))",
+    "(: st_near_full (Near spring_tide full_moon) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000088",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The fused compound kinds new_moon and full_moon carry none of their mandatory decomposition atoms — the always-emitted genus (Inheritance new_moon moon) / (Inheritance full_moon moon), plus the modifier genus, since \"new\" and \"full\" are adjectives predicable of the moon."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "temporal proximity to a named time or lunar phase (\"occur near new moon\"): the Time section offers Time / Before / BeforeBy / TimeAtLeast / TimeAtMost / During but no nearness relation, so the parse falls back on the entity-attached spatial-preposition head for what is a temporal relation",
+     "a coordination that enumerates alternative occasions (\"near new moon and full moon\"): default-distributive \"and\" replicates the predication onto one and the same tide, asserting it is near both phases at once, and no licensed form says \"each occurrence near one or the other\""
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Suppressing an occur event is correct per the light-verbs-over-event-nouns rule, and Near is the preposition actually used, so it stays inside the entity-attached surface-preposition licence. Rule shape, 0.9/0.9 empirical TV, absent status atom and absent QuantifierPhrase are all right."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000089",
+   "sentence": "Spring tides occur near the new moon.",
+   "parse_run2": [
+    "(: spring_tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: new_moon_genus (Inheritance new_moon moon) (STV 1.0 0.99))",
+    "(: new_moon_typ (Member sk_new_moon_1 new_moon) (STV 1.0 0.99))",
+    "(: spring_tide_near_rule (Implication (Member $x spring_tide) (Near $x sk_new_moon_1)) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000089",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The clause's predication is dropped entirely - a bare-plural verbal generic takes a distributing Implication rule, and the light-verb rule for \"occur\" makes the tide witness itself the eventuality, but the parse emits neither and collapses the whole sentence into one opaque binary atom."
+     },
+     {
+      "statement": 3,
+      "issue": "(Near spring_tide new_moon) puts two bare KINDS in a preposition-named head; that head is defined for an event oblique or an entity-attached position, and the only licensed kind-to-kind relation is the verb-headed relational generic, so a kind-level Near is not a licensed shape."
+     },
+     {
+      "statement": 3,
+      "issue": "\"near the new moon\" is temporal proximity, but the entity-attached preposition head is defined as a statement about where a thing is, so the atom as written asserts spatial nearness - mechanically valid output meaning the wrong thing."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "temporal-proximity adjunct (\"occur near the new moon\"): Time carries calendar/deictic terms, Before/BeforeBy carry ordering and During carries containment, but nothing encodes \"close in time to <event or recurring phase>\"",
+     "the light-verb rule for event-nouns (\"the ceremony occurred in March\") is stated for a specific/definite event-noun and does not say how it combines with a BARE-PLURAL generic subject that would otherwise become a distributing rule"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The spring_tide and new_moon genus atoms are correct, and exposing \"new\" passes the stated predicability test for an adjectival modifier; the failure is that the sentence's own verb never reaches the output."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000090",
+   "sentence": "Spring tides occur near the full moon.",
+   "parse_run2": [
+    "(: springtide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: fullmoon_genus_head (Inheritance full_moon moon) (STV 1.0 0.99))",
+    "(: fullmoon_genus_mod (Inheritance full_moon full) (STV 1.0 0.99))",
+    "(: springtide_near_fullmoon (Implication (Member $x spring_tide) (Near $x full_moon)) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000090",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "definite generic naming a recurring type/phase ('near the full moon' = whenever the moon is full) — the instruction set's definite rule mints a specific typed witness (and 'the sun' explicitly gets a fresh symbol), which here would wrongly tie every spring tide to one particular full moon; nothing licenses the kind-constant reading the parse uses"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The light-verb-over-event-noun rule is correctly applied (no 'occur' event; the tide witness is the eventuality), 'spring' is left unexposed as a noun modifier while the predicable adjective 'full' is exposed, and the temporal use of the surface preposition head Near is licensed by the preposition-named oblique rule."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000091",
+   "sentence": "The Keepers time the salt-bloom harvest to the new-moon spring tide.",
+   "parse_run2": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: sbh_genus (Inheritance salt_bloom_harvest harvest) (STV 1.0 0.99))",
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: harvest_type (Member sk_harvest_1 salt_bloom_harvest) (STV 1.0 0.99))",
+    "(: newmoon_genus1 (Inheritance new_moon moon) (STV 1.0 0.99))",
+    "(: newmoon_genus2 (Inheritance new_moon new) (STV 1.0 0.99))",
+    "(: nmst_genus (Inheritance new_moon_spring_tide spring_tide) (STV 1.0 0.99))",
+    "(: st_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: tide_type (Member sk_tide_1 new_moon_spring_tide) (STV 1.0 0.99))",
+    "(: e_time (Member sk_time_1 time) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_time_1 keepers) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_time_1 sk_harvest_1) (STV 1.0 0.99))",
+    "(: e_goal (Goal sk_time_1 sk_tide_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000091",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "'Keepers' is capitalized non-sentence-initially, i.e. a proper noun (a named body) by the instruction set's mechanical casing cue, but is parsed as a common-noun group with an anonymous witness and no `Name` atom."
+     },
+     {
+      "statement": 8,
+      "issue": "'the new-moon spring tide' is an article-bearing definite NP, which the instruction set says mints a typed witness; the bare class symbol `new_moon_spring_tide` is reserved for non-specific/generic objects and must never stand for a specific definite individual."
+     },
+     {
+      "statement": 3,
+      "issue": "The classifying compound 'salt-bloom harvest' is not fused into `salt_bloom_harvest` with its genus as Compound concepts requires; the modifier is instead re-encoded as a `Patient` role on the harvest witness (statements 2-3), a decomposition the instruction set does not license for a modifier_noun compound."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a proper name that is a capitalized plural denoting a group ('the Keepers'): Names and casing gives a name-derived symbol plus `Name`, Coordination & plurals gives `GroupOf`, and nothing says how to combine them, or what to do when the capitalized run is itself the kind word so the prescribed name/kind split degenerates",
+     "a noun-noun compound whose modifier is the underlying verb's object ('salt-bloom harvest'): the nominalization-object rule is stated only for of-phrases, so there is no guidance on whether such a compound fuses or exposes the object as a role"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`Patient` for the timed occurrence is correct (a verb that changes when an occurrence happens alters it), as is the preposition-named oblique `To` for the non-locative 'to'-phrase and the absence of any status atom on a habitual present. The `salt_bloom` and `new_moon_spring_tide` genera correctly leave their noun modifiers unexposed."
+   }
+  }
+ ]
+}

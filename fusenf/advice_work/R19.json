@@ -1,0 +1,163 @@
+{
+ "id": "R19",
+ "rule": "Spring tides bloom salt-bloom in the tide-pools",
+ "texts": [
+  "When a spring tide fills the tide-pools, salt-bloom blooms in the tide-pools.",
+  "If a spring tide fills the tide-pools, salt-bloom grows in the tide-pools.",
+  "Salt-bloom is a pale crystalline crust.",
+  "The bloom soon dissolves into the seawater."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000083",
+   "sentence": "Spring tides bloom salt-bloom in the tide-pools",
+   "parse_run2": [
+    "(: spring_tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: pools_grp (GroupOf sk_tide_pool_1 tide_pool) (STV 1.0 0.99))",
+    "(: tide_bloom_rule (Implication (Member $x spring_tide) (And (Member (sk_bloom $x) bloom) (Agent (sk_bloom $x) $x) (Patient (sk_bloom $x) salt_bloom) (Location (sk_bloom $x) sk_tide_pool_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000083",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "Both arguments are bare kind-denoting NPs ('spring tides', 'salt-bloom'), which is the stated trigger for a kind-level relational generic ((Bloom spring_tide salt_bloom), explicitly 'not a per-instance rule'), yet the parse emits the distributing per-instance Implication."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare-kind relational generic that also carries an oblique ('in the tide-pools'): the kind-level relation is an opaque two-argument atom with no slot for a locative, and the instruction set never says which form wins when the relational-generic trigger fires on a clause with obliques"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else matches the instruction set: genus-only decomposition of the three noun-modifier compounds, the definite plural as a top-level group witness referenced from inside the rule (the 'Foxes rarely cross the causeway' shape), a bare class symbol for the non-specific object, 0.9/0.9 for the bare generic, and no tense atom."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000084",
+   "sentence": "When a spring tide fills the tide-pools, salt-bloom blooms in the tide-pools.",
+   "parse_run2": [
+    "(: fx84_tidepool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: fx84_springtide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: fx84_saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: fx84_pools_group (GroupOf sk_tide_pool_1 tide_pool) (STV 1.0 0.99))",
+    "(: fx84_rule (Implication (And (Member $e fill) (Member $t spring_tide) (Agent $e $t) (Patient $e sk_tide_pool_1)) (And (Member (sk_bloom $e) bloom) (Member (sk_saltbloom $e) salt_bloom) (Patient (sk_bloom $e) (sk_saltbloom $e)) (Location (sk_bloom $e) sk_tide_pool_1) (During (sk_bloom $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000084",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "\"a spring tide\" is an indefinite, but the premise fills Agent with the bare kind symbol spring_tide; an indefinite argument is an existential (witness + class atom), and inside a rule premise it binds as a variable plus (Member $t spring_tide) — as written the premise can never match an actual filling event, whose Agent would be a witness symbol."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Generic conditional headed by bare \"when\" (\"When <clause>, <clause>\"): \"when\" is listed among the temporal connectives that keep their canonical time forms, while the occurrence-quantifying Implication form is specified only for \"every time / whenever\" and \"if\"; which route a habitual \"when\"-clause takes is never stated.",
+     "Zero-derived noun/verb homonymy: the substance's decomposition genus (Inheritance salt_bloom bloom) and the event class (Member <e> bloom) land on one symbol, making the substance a subkind of the event class. The instruction set rules on derivation across parts of speech but says nothing about a noun and a verb that share a base form."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite-plural handling is right: \"the tide-pools\" gets a top-level group witness and both mentions reuse it; the compound genera correctly withhold the noun modifiers tide / spring / salt. Patient for \"fills the tide-pools\", Patient for the intransitive blooming, Location for \"in\", and the During tie to the trigger all follow the instruction set."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000085",
+   "sentence": "If a spring tide fills the tide-pools, salt-bloom grows in the tide-pools.",
+   "parse_run2": [
+    "(: tidepool_group (GroupOf sk_group_1 tide_pool) (STV 1.0 0.99))",
+    "(: tidepool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: springtide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: tide_grow_rule (Implication (And (Member $f fill) (Agent $f $t) (Member $t spring_tide) (Patient $f sk_group_1)) (And (Member (sk_grow $f) grow) (Patient (sk_grow $f) salt_bloom) (Location (sk_grow $f) sk_group_1) (During (sk_grow $f) $f))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000085",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The consequent event is keyed only to the tide, `(sk_grow $t)`, although the fill event `$e1` is bound in the premise and scopes over it too; per the Skolem-function rule a dependent existential is a function of every universal scoping over it, so as written two fillings by one spring tide yield a single grow event."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else checks out: indicative conditional as a plain Implication rule, definite plural \"the tide-pools\" as a group witness shared by both clauses, all three compound genera emitted with their noun modifiers unexposed, Agent on the inanimate transitive subject, Patient on the change-of-state intransitive subject, and Location on the growing event."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000086",
+   "sentence": "Salt-bloom is a pale crystalline crust.",
+   "parse_run2": [
+    "(: sb_crust (Inheritance salt_bloom crust) (STV 1.0 0.99))",
+    "(: sb_crystalline (Inheritance salt_bloom crystalline) (STV 0.9 0.9))",
+    "(: sb_pale (Inheritance salt_bloom pale) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000086",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The fused compound kind salt_bloom is used without its decomposition genus (Inheritance salt_bloom bloom), which the compound-kind rule requires (the head-noun genus is always emitted); the only Inheritance given to a genus position is the copular predicate 'crust'."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Kind subject taking Inheritance and the split of the descriptive 'pale' / 'crystalline' from the head noun (no adjective-noun fusion) are correct. The definitional 0.99 confidence is defensible for a defining copular, though 'pale' would take the empirical 0.9 if read as contingent."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000087",
+   "sentence": "The bloom soon dissolves into the seawater.",
+   "parse_run2": [
+    "(: bloom_type (Member sk_bloom_1 bloom) (STV 1.0 0.99))",
+    "(: seawater_type (Member sk_seawater_1 seawater) (STV 1.0 0.99))",
+    "(: seawater_genus (Inheritance seawater water) (STV 1.0 0.99))",
+    "(: e_dissolve (Member sk_dissolve_1 dissolve) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_dissolve_1 sk_bloom_1) (STV 1.0 0.99))",
+    "(: e_goal (Goal sk_dissolve_1 sk_seawater_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000087",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the proximate-future adverb 'soon': it is not one of the named speech-anchored deictic constants (yesterday/tonight/next_summer/...) and no other carrier is specified for it, so its content is dropped — its only trace here is the `Future` atom; the instruction set also does not say whether 'soon' counts as the 'lexically future adjunct' that licenses the present-tense futurate (the listed examples are 'tomorrow / next week / in two days')"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles and typing are right — `Patient` for the change-of-state intransitive 'dissolve', `Goal` for the whither-'into' path, article-bearing 'the seawater' minting a witness with its kind atom. The one contestable atom is `Future`, which stands or falls on whether 'soon' is a lexically future adjunct."
+   }
+  }
+ ]
+}

@@ -1,0 +1,164 @@
+{
+ "id": "R2",
+ "rule": "Mist-light attracts nightmoths",
+ "texts": [
+  "When a lantern shows mist-light at night, the mist-light attracts nightmoths.",
+  "If a lantern shows mist-light at night, the mist-light draws nightmoths.",
+  "Nightmoths do not see ordinary firelight.",
+  "Nightmoths rarely fly on cold nights."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000006",
+   "sentence": "Mist-light attracts nightmoths",
+   "parse_run2": [
+    "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: mistlight_attracts_nightmoth (Attract mist_light nightmoth) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000006",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both arguments are bare kind NPs, so the relational-generic kind relation (Attract mist_light nightmoth) at 0.9/0.9 is the licensed route, and the noun modifiers 'mist'/'night' are correctly left unexposed while the genus atoms are emitted."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000007",
+   "sentence": "When a lantern shows mist-light at night, the mist-light attracts nightmoths.",
+   "parse_run2": [
+    "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lantern_mistlight_rule (Implication (And (Member $x lantern) (Member $e show) (Agent $e $x) (Theme $e $m) (Member $m mist_light) (Time $e night)) (And (Member (sk_attract $e) attract) (Agent (sk_attract $e) $m) (Theme (sk_attract $e) nightmoth) (During (sk_attract $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000007",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The response event is skolemized on the mist-light term `(sk_attract $m)` rather than on the trigger occurrence, and no `During` atom ties it to its trigger, so the per-occurrence shape the 'every time / whenever' rule prescribes is not encoded."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "generic 'When <clause>, <clause>' conditional: the instruction set names 'every time / whenever' (rule + per-occurrence Skolem + `During`) and indicative 'if' (plain `Implication`), but never says which route a bare 'when' takes",
+     "solid/closed compounds written as one orthographic word ('nightmoths'): Compound concepts covers hyphenated and spaced modifier+noun pairs, but not whether an already-single word is split into `night_moth` and given a genus",
+     "an anaphoric definite ('the mist-light') pointing back at a bare mass-noun object, which the instruction set would store as a bare class symbol, leaving no witness for the definite to reuse"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles (Agent for the inanimate transitive subject, Theme for the unchanged object), the day-part `(Time $e1 night)`, the bare class symbol for the bare-plural object, and the 1.0/0.9 rule TV all follow the instruction set. The compound genus for `mist_light` is right and the noun modifier `mist` is correctly not exposed."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000008",
+   "sentence": "If a lantern shows mist-light at night, the mist-light draws nightmoths.",
+   "parse_run2": [
+    "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lantern_draws_moths (Implication (And (Member $x lantern) (Member $e1 show) (Agent $e1 $x) (Theme $e1 $y) (Member $y mist_light) (Time $e1 night)) (And (Member (sk_draw $e1) draw) (Agent (sk_draw $e1) $y) (Theme (sk_draw $e1) nightmoth) (During (sk_draw $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000008",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The antecedent's trigger event is the Skolem-function term (sk_show $x), but the instruction set's rule form binds a premise event with a plain variable and reserves Skolem-function event terms for events the CONCLUSION introduces, so this premise cannot match an ordinarily asserted show event."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a solid (single-word) compound such as 'nightmoth' — the compound-genus decomposition licence is written for a modifier_noun symbol you fused from a multi-word surface, and nothing addresses whether a word that is already one orthographic token should be split into genus + modifier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles, the bare-kind objects, the day-part Time atom, the absence of a tense atom on the generic, and the universal reading of the indefinite 'a lantern' in the antecedent are all right; the mist_light genus is correctly emitted with the noun modifier left unexposed. The only defect is the premise's event-term form."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000009",
+   "sentence": "Nightmoths do not see ordinary firelight.",
+   "parse_run2": [
+    "(: nm_no_see (Implication (Member $x nightmoth) (And (Member (sk_see $x) see) (Experiencer (sk_see $x) $x) (Stimulus (sk_see $x) ordinary_firelight))) (STV 0.0 0.9))",
+    "(: of_genus (Inheritance ordinary_firelight firelight) (STV 1.0 0.99))",
+    "(: of_adj (Inheritance ordinary_firelight ordinary) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000009",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "(Inheritance firelight ordinary) asserts that firelight in general is ordinary, but 'ordinary' only restricts which firelight the sentence denies the moths see and is never predicated of the kind."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a restrictive adjective modifying a bare kind NP that fills a kind-level relation slot ('ordinary firelight') — the adjective+noun rule bars fusing incidental description, and its non-fusing split needs a witness, which a bare kind argument does not have",
+     "negation of a kind-level relational generic — negation forms are given for copular atoms, event bundles and distributing rules, but never for the opaque two-kind relation"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The kind-relation route is licensed here (both arguments are bare kind-denoting NPs), though it makes the denial non-distributing, so an arbitrary nightmoth's seeing stays unknown rather than false; the Negated-verbal-generic rule form would have distributed."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000010",
+   "sentence": "Nightmoths rarely fly on cold nights.",
+   "parse_run2": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: nightmoth_fly_rule (Implication (Member $x nightmoth) (And (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x) (Time (sk_fly $x) (sk_night $x)) (Member (sk_night $x) night) (Member (sk_night $x) cold))) (STV 0.1 0.9))",
+    "(: nightmoth_fly_q (QuantifierPhrase nightmoth fly \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000010",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"on cold nights\" is encoded as a typed Skolem witness (sk_night $x) carrying Member atoms, but the instruction set makes day-parts (morning / night) bare symbols on Time - (Time e night) - with no witness and no Member atom."
+     },
+     {
+      "statement": 0,
+      "issue": "The restrictor \"cold nights\" sits inside the strength-0.1 consequent, so the night's existence and its coldness are themselves asserted only at the \"rarely\" strength instead of restricting the occasions the frequency quantifies over."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a descriptively modified day-part NP (\"cold nights\") - day-parts are specified as bare Time symbols, which leaves no slot for the adjective",
+     "a frequency-adverb generic whose occasions are restricted by a bare-plural temporal adjunct (\"rarely V on cold nights\"): nothing says whether the restriction becomes a rule premise or a dependent existential in the consequent",
+     "whether a closed single-word compound coinage (\"nightmoth\") takes a compound-kind genus atom, which the compound section licenses only for symbols fused from a multi-word surface form"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Rule shape, the 0.1 / 0.9 strength and the QuantifierPhrase companion match the \"Foxes rarely cross the causeway\" template exactly; Agent on the flying moth is right."
+   }
+  }
+ ]
+}

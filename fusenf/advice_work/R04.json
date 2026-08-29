@@ -1,0 +1,164 @@
+{
+ "id": "R4",
+ "rule": "Silken threads boiled in sea-water yield mire-essence",
+ "texts": [
+  "When the Keepers boil silken threads in sea-water, mire-essence forms in the cauldron.",
+  "If the Keepers boil silken threads in sea-water, the cauldron yields mire-essence.",
+  "The Keepers take the sea-water from the Salt-bloom Tide-pools.",
+  "Fresh water does not yield mire-essence."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000015",
+   "sentence": "Silken threads boiled in sea-water yield mire-essence",
+   "parse_run2": [
+    "(: silkthread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: silkthread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: thread_yield_rule (Implication (And (Member $x silken_thread) (Member (sk_boil $x) boil) (Patient (sk_boil $x) $x) (Location (sk_boil $x) sea_water)) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) mire_essence))) (STV 0.9 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review_run1": {
+    "id": "fict-000015",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The reduced-relative condition is written with a Skolem-function event term (sk_boil $x) inside the rule PREMISE, where the instruction set's rule examples use a plain event variable in premises, so the premise can never unify with an ordinarily asserted boiling event and the rule cannot fire."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is right: head genera for thread/water/essence, 'silken' exposed as a material adjective, and the noun modifiers 'sea'/'mire' correctly left unexposed. Treating the post-nominal participle as a reduced relative (event, not adjective) follows the instruction set, and Location for 'in sea-water' is a defensible reading of the medium."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000016",
+   "sentence": "When the Keepers boil silken threads in sea-water, mire-essence forms in the cauldron.",
+   "parse_run2": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: cauldron_typ (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: sea_water_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: boil_forms_rule (Implication (And (Member $x boil) (Agent $x keepers) (Patient $x silken_thread) (Location $x sea_water)) (And (Member (sk_form $x) form) (Patient (sk_form $x) mire_essence) (Location (sk_form $x) sk_cauldron_1) (During (sk_form $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000016",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized definite plural naming a group or order (\"the Keepers\") — the proper-noun rule (a capitalized run becomes one name symbol plus exactly one Name atom, explicitly including organizations) and the definite-plural rule (group witness plus GroupOf, lemmatized kind) both claim it, and nothing says which wins"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-rule shape is exactly as specified: a bare event variable in the premise, a Skolem-function event plus During in the conclusion, no QuantifierPhrase companion, and the definite cauldron typed at top level. \"in sea-water\" as Location rather than Instrument is the boiling medium; the preposition-driven default supports Location, but the medium case is not explicitly settled."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000017",
+   "sentence": "If the Keepers boil silken threads in sea-water, the cauldron yields mire-essence.",
+   "parse_run2": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: silkthread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: silkthread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: boil_yield_rule (Implication (And (Member $x boil) (Agent $x keepers) (Patient $x silken_thread) (Location $x sea_water)) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) sk_cauldron_1) (Patient (sk_yield $x) mire_essence) (During (sk_yield $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000017",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"the Keepers\" is capitalized mid-sentence (a named order/body), yet it is encoded as an ordinary common-noun group with no (Name …) atom, which the instruction set makes mandatory and non-optional for a proper noun."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "indicative 'if P, Q' conditional — the instruction set names the plain Implication form but gives no worked example, so nothing fixes how the antecedent clause's event and participants are variabilized, nor whether the consequent's per-occurrence Skolem event ties back to the antecedent (the During tie is specified only for 'every time / whenever')"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The (During (sk_yield $x) $x) link in the consequent is the 'every time / whenever' machinery applied to a bare 'if' conditional; no word in the text puts it there, though the construction is closely analogous. Reading 'in sea-water' as Location rather than Instrument is defensible under the where-test, and the compound decompositions (silken_thread, sea_water, mire_essence) follow the adjective-vs-noun-modifier line correctly."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000018",
+   "sentence": "The Keepers take the sea-water from the Salt-bloom Tide-pools.",
+   "parse_run2": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: e_take (Member sk_take_1 take) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_take_1 keepers) (STV 1.0 0.99))",
+    "(: sw_type (Member sk_sea_water_1 sea_water) (STV 1.0 0.99))",
+    "(: sw_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_take_1 sk_sea_water_1) (STV 1.0 0.99))",
+    "(: e_source (Source sk_take_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+    "(: sbtp_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+    "(: sbtp_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+    "(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000018",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized definite plural naming a group or order ('the Keepers'): the proper-noun rule (mandatory name-derived symbol + Name atom, cued mechanically by casing) and the definite-plural rule (group witness, decided by determiner) both apply and the instruction set never says how they combine",
+     "typing a PLURAL proper name — the naming section's 'state the kind in one ordinary type atom' example is singular ('the Kestrel River'), so it does not say whether 'the Salt-bloom Tide-pools' takes (Member <name> tide_pool) or (GroupOf <name> tide_pool)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles (Theme for an unchanged transferred object, Source for 'from'), the unmarked habitual present, the sea_water/tide_pool compound genera and the per-member distribution rule over the definite group all follow the instruction set. Both open points are naming ones."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000019",
+   "sentence": "Fresh water does not yield mire-essence.",
+   "parse_run2": [
+    "(: fw_genus (Inheritance fresh_water water) (STV 1.0 0.99))",
+    "(: fw_mod (Inheritance fresh_water fresh) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: fw_no_yield (Yield fresh_water mire_essence) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000019",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "negation of a kind-level relational generic — the Negation sections cover copular atoms (strength 0.0 on the same atom) and event bundles (strength-0 And), but nothing states whether 'bare-kind does not V bare-kind' stays the opaque kind relation at strength 0.0 or becomes the strength-0 distributing rule of 'Negated verbal generic'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Yield is licensed as the two-bare-kind relational-generic head (Striking & relational generics), not a coined relation, and 0.9 confidence matches the kind-level dial. Fusing 'fresh water' with its adjectival modifier genus exposed while leaving the noun modifier of 'mire-essence' unexposed both follow Compound concepts."
+   }
+  }
+ ]
+}

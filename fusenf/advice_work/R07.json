@@ -1,0 +1,192 @@
+{
+ "id": "R7",
+ "rule": "Sky-cats hunting reduces nightmoth populations",
+ "texts": [
+  "When sky-cats descend, the sky-cats hunt nightmoths.",
+  "When sky-cats hunt nightmoths, the nightmoth crowd at that lantern-row shrinks.",
+  "If sky-cats hunt nightmoths, the nightmoth crowd at that lantern-row thins.",
+  "After a sky-cat hunt, the thread harvest at that lantern-row falls."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000029",
+   "sentence": "Sky-cats hunting reduces nightmoth populations",
+   "parse_run2": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: nightmothpop_genus (Inheritance nightmoth_population population) (STV 1.0 0.99))",
+    "(: hunt_reduce_rule (Implication (And (Member $x hunt) (Agent $x $y) (Member $y sky_cat)) (And (Member (sk_reduce $x) reduce) (Patient (sk_reduce $x) nightmoth_population) (During (sk_reduce $x) $x))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000029",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The fused compound `sky_cat` carries no genus atom, but Compound concepts makes `(Inheritance sky_cat cat)` mandatory (\"the genus itself is always emitted either way\"), exactly as the parse does emit it for `nightmoth_population`."
+     },
+     {
+      "statement": 2,
+      "issue": "The subject of \"reduces\" is the hunting eventuality, not the kind `sky_cat`, so `(Reduce sky_cat nightmoth_population)` states a different claim and drops the mediating hunting; the relational-generic licence for a kind-level head also requires a bare kind-denoting NP on each side, which a gerund clause is not."
+     },
+     {
+      "statement": 0,
+      "issue": "Asserts as a standalone generic habit — one skolem hunt event for every sky-cat at strength 0.9 — what the sentence only presupposes in its gerund subject, and the rule is left unconnected to the reduction claim."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a gerund / nominalized clause in SUBJECT position (\"Sky-cats hunting reduces nightmoth populations\"): the instruction set has no pattern for an event-denoting nominalized subject, and its one nearby route, the relational generic / kind-level relation, is triggered only by bare kind NPs on both sides"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse falls into two disconnected halves — an unstated generic hunting rule and a kind-level Reduce atom — so nothing in it records that it is the hunting which reduces the populations. Decomposition of `nightmoth_population` (genus emitted, noun modifier not exposed) is correct."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000030",
+   "sentence": "When sky-cats descend, the sky-cats hunt nightmoths.",
+   "parse_run2": [
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: skycat_descend_hunt (Implication (And (Member $x sky_cat) (Member $d descend) (Agent $d $x)) (And (Member (sk_hunt $d) hunt) (Agent (sk_hunt $d) $x) (Patient (sk_hunt $d) nightmoth) (During (sk_hunt $d) $d))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000030",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The rule's premise encodes the trigger with a Skolem-function event term — (Member (sk_descend $x) descend) (Agent (sk_descend $x) $x) — where a rule premise takes a plain event variable; no asserted descending would ever carry the term (sk_descend <cat>), so the antecedent cannot match evidence and the rule is inert."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "generic conditional headed by bare 'when' (\"When Ns V, the Ns V\") — the Implication-rule form is given for 'every time / whenever' and for indicative 'if', while 'when' is listed only among the temporal connectives that keep their Before/During forms, so which route a generic 'when'-clause takes is unspecified"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The sky_cat genus (noun modifier correctly unexposed), the Theme on the hunted moths, the bare generic object symbol, and the TVs are right. Whether an orthographically solid compound such as 'nightmoth' takes a compound-kind genus, the way hyphenated 'sky-cat' does, is not addressed by the instruction set."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000031",
+   "sentence": "When sky-cats hunt nightmoths, the nightmoth crowd at that lantern-row shrinks.",
+   "parse_run2": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: crowd_type (Member sk_crowd_1 crowd) (STV 1.0 0.99))",
+    "(: crowd_group (GroupOf sk_crowd_1 nightmoth) (STV 1.0 0.99))",
+    "(: lanternrow_type (Member sk_lantern_row_1 lantern_row) (STV 1.0 0.99))",
+    "(: crowd_loc (LocatedIn sk_crowd_1 sk_lantern_row_1) (STV 1.0 0.99))",
+    "(: hunt_shrink_rule (Implication (And (Member $h hunt) (Agent $h $c) (Member $c sky_cat) (Patient $h $m) (Member $m nightmoth)) (And (Member (sk_shrink $h) shrink) (Patient (sk_shrink $h) sk_crowd_1) (During (sk_shrink $h) $h))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000031",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The subordinate 'when'-clause is asserted as a standing kind-level relation `(Hunt sky_cat nightmoth)`, but the sentence only quantifies over occasions of hunting and never asserts that sky-cats hunt nightmoths."
+     },
+     {
+      "statement": 8,
+      "issue": "The consequent is asserted as an unconditional shrink event, so the sentence's central claim — the dependency of the shrinking on the hunting occasions — is dropped entirely (no `Implication`, no `During`, no ordering atom of any kind)."
+     },
+     {
+      "statement": 9,
+      "issue": "Same defect on the role atom: the crowd is asserted to shrink outright rather than under the trigger condition."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "habitual/generic 'when <clause>, <clause>': the occurrence-quantifying rule is specified for 'every time / whenever' only, while bare 'when' is listed among the temporal connectives that take the canonical time forms (`Before`/`During`) — the instruction set does not say which route a generic 'when' takes",
+     "a trigger clause that is itself a bare-plural relational generic ('sky-cats hunt nightmoths'): the relational generic is an opaque kind-level atom with no event witness, so it supplies neither a premise event nor a `During` anchor for the whenever-rule",
+     "whether the compound-kind decomposition applies to an orthographically solid compound ('nightmoth', parsed as `(Inheritance nightmoth moth)` without fusing a symbol from surface words) as opposed to a hyphenated or two-word one"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The NP-level work is sound — compound genera, `(Member crowd) + (GroupOf crowd nightmoth)` for the collective, entity-attached 'at' as `LocatedIn`, and `Patient` for the change-of-state intransitive 'shrink'. What fails is the clause-linking: two independent assertions replace one conditional generalization."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000032",
+   "sentence": "If sky-cats hunt nightmoths, the nightmoth crowd at that lantern-row thins.",
+   "parse_run2": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: crowd_type (Member sk_crowd_1 crowd) (STV 1.0 0.99))",
+    "(: crowd_kind (GroupOf sk_crowd_1 nightmoth) (STV 1.0 0.99))",
+    "(: lanternrow_type (Member sk_lantern_row_1 lantern_row) (STV 1.0 0.99))",
+    "(: crowd_loc (LocatedIn sk_crowd_1 sk_lantern_row_1) (STV 1.0 0.99))",
+    "(: hunt_thin_rule (Implication (Hunt sky_cat nightmoth) (And (Member sk_thin_1 thin) (Patient sk_thin_1 sk_crowd_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000032",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "The antecedent is the opaque kind-level relation (Hunt sky_cat nightmoth), which no actual hunting event can ever produce, so the rule can never fire; the definite \"that lantern-row\" points at an episodic reading whose premise should be a hunt event pattern with sky-cat agent and nightmoth object."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "how a bare-plural clause sitting in an indicative conditional's ANTECEDENT is encoded — as the opaque kind-level relation of Striking & relational generics, or as an event pattern an episodic event can trigger; the conditional rule and the relational-generic rule are stated independently and their interaction is undefined",
+     "solid (single-word, unhyphenated) compounds such as \"nightmoth\": Compound concepts keys on symbols you fused from a multi-word surface form and says nothing about whether a genus is emitted for a compound already written as one word"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Hunt is licensed as a kind-level relation under Core patterns' opaque heads, LocatedIn is correct for \"at\", and the crowd's Member+GroupOf pair follows the \"a flock of birds\" collective-noun rule. Projecting the consequent's definite typing atoms at top level is right; the unmarked present on \"thins\" correctly takes no status atom."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000033",
+   "sentence": "After a sky-cat hunt, the thread harvest at that lantern-row falls.",
+   "parse_run2": [
+    "(: sky_cat_hunt_genus (Inheritance sky_cat_hunt hunt) (STV 1.0 0.99))",
+    "(: thread_harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: lantern_row_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: harvest_typ (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))",
+    "(: lantern_row_typ (Member sk_lantern_row_1 lantern_row) (STV 1.0 0.99))",
+    "(: harvest_loc (LocatedIn sk_harvest_1 sk_lantern_row_1) (STV 1.0 0.99))",
+    "(: hunt_fall_rule (Implication (Member $h sky_cat_hunt) (And (Member (sk_fall $h) fall) (Theme (sk_fall $h) sk_harvest_1) (Before $h (sk_fall $h)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000033",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a fronted INDEFINITE temporal adjunct over a present-tense main clause (\"After a sky-cat hunt, the thread harvest ... falls\"), which conveys a recurring/generic conditional: the occurrence-quantifying rule form is triggered only by an explicit \"every time / whenever\", while the Existential section forces indefinite \"a\" + a verbal predicate to a single witness, so the recurrent reading has no encoding",
+     "a locative PP on an EVENT-DENOTING noun (\"the thread harvest at that lantern-row\"): the instruction set fixes Location for eventualities and LocatedIn for entities, but never says which head an event-noun's own locative PP takes"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The three compound-kind genus atoms with their noun modifiers correctly unexposed, the anchor-only treatment of the hunt event-noun (class atom + ordering, no tense), the argument swap for \"after\", the absent status atom on a present habitual, and Patient on the falling harvest all follow the instruction set."
+   }
+  }
+ ]
+}

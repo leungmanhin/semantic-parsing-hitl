@@ -1,0 +1,168 @@
+{
+ "id": "R23",
+ "rule": "Keepers inherit lantern-stations",
+ "texts": [
+  "When a senior Keeper retires, an heir inherits the lantern-station.",
+  "If a senior Keeper dies, an heir inherits the lantern-station.",
+  "An inherited station stays in the family.",
+  "The Council must approve any station transfer."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000102",
+   "sentence": "Keepers inherit lantern-stations",
+   "parse_run2": [
+    "(: k_inherit (Inherit keeper lantern_station) (STV 0.9 0.9))",
+    "(: ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000102",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both arguments are bare kind-denoting plurals, which is exactly the relational-generic trigger, so the opaque kind-level relation (Inherit keeper lantern_station) at 0.9/0.9 is the licensed form rather than a per-instance rule. The lantern_station genus is emitted with the noun modifier correctly left unexposed, and the sentence-initial 'Keepers' carries no naming cue."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000103",
+   "sentence": "When a senior Keeper retires, an heir inherits the lantern-station.",
+   "parse_run2": [
+    "(: senkeeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: senkeeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: lanternstation_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: lanternstation_type (Member sk_lantern_station_1 lantern_station) (STV 1.0 0.99))",
+    "(: keeper_retire_heir_inherit (Implication (And (Member $e retire) (Agent $e $x) (Member $x senior_keeper)) (And (Member (sk_inherit $e) inherit) (Member (sk_heir $e) heir) (Agent (sk_inherit $e) (sk_heir $e)) (Theme (sk_inherit $e) sk_lantern_station_1) (During (sk_inherit $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000103",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The trigger clause is matched through the Skolem term (sk_retire $k) in the premise, so the rule can fire only on a retire event literally stored under that constructed term; the whenever and donkey-anaphora rule forms bind a premise event with a plain $-variable and reserve Skolem functions for the consequent."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "generic 'When <clause>, <clause>' — 'when' is listed among the temporal connectives that keep their Before/During forms, while the occurrence-quantifying rule form is specified only for 'every time / whenever', so nothing decides which route a bare habitual 'when' takes",
+     "an indefinite subject inside such a conditional antecedent ('a senior Keeper retires') — Existential says an indefinite with a verbal predicate is a witness and that a verbal generic needs a bare plural or an explicit quantifier, but a conditional antecedent gives it universal force with no stated encoding",
+     "a capitalized common noun used as a role title under a determiner ('a senior Keeper') — the naming rules key on casing alone ('the name is exactly its capitalized run of words') and never say that a determiner blocks the proper-noun reading"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound decomposition (senior_keeper genus plus its adjectival modifier, lantern_station genus with the noun modifier unexposed), the dependent Skolem heir, the shared definite station constant, the During link, and the omitted QuantifierPhrase all follow the instruction set."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000104",
+   "sentence": "If a senior Keeper dies, an heir inherits the lantern-station.",
+   "parse_run2": [
+    "(: senior_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: senior_keeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: lantern_station_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: keeper_dies_heir_inherits (Implication (And (Member $k senior_keeper) (Member $d die) (Patient $d $k)) (And (Member (sk_heir $k) heir) (Member (sk_inherit $k) inherit) (Agent (sk_inherit $k) (sk_heir $k)) (Theme (sk_inherit $k) (sk_station $k)) (Member (sk_station $k) lantern_station))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000104",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The premise matches the dying by the Skolem-function event term `(sk_die $k)` rather than a plain event variable with its class and role atoms, so the rule cannot fire on any ordinarily-parsed die event — Skolem-function event terms are licensed for rule conclusions, not for matching a trigger."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite NP inside a generic rule that must covary with the rule variable (\"the lantern-station\" = the dead Keeper's own station): definites are licensed only as constant symbols, so the parse is forced to assert that every heir inherits the one same station `sk_lantern_station_1`, with no dependent/Skolem-function form available"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is correct throughout (`senior_keeper` fuses as a role title and exposes the gradable modifier; `lantern_station` exposes only its genus), as is the dependent existential `(sk_heir $k)`, `Agent`/`Theme` on `inherit`, and the absence of tense atoms."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000105",
+   "sentence": "An inherited station stays in the family.",
+   "parse_run2": [
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: station_inherited (Member sk_station_1 inherited) (STV 1.0 0.99))",
+    "(: family_type (Member sk_family_1 family) (STV 1.0 0.99))",
+    "(: station_in_family (LocatedIn sk_station_1 sk_family_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000105",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "\"stays in the family\" is a bare position clause with no reification trigger (no progressive, manner adverb, time modifier or connective endpoint), yet a `stay` event is minted — Where a THING is says a bare position clause mints no event whatever its verb and takes the static entity-attached form instead."
+     },
+     {
+      "statement": 5,
+      "issue": "`Location` is used with a social group as its filler, which is neither an event-locating place nor the containment head the section reserves for entity position."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the stative continuation verb \"stay / remain\" with a locative PP: it is not in the postural / stative-locative list (is located in, is situated in, lie / sit / stand / hang / lean / perch / rest), so whether it reifies an event or routes to the static position form is undecided",
+     "possessive or metaphorical containment \"in the family\" — remaining in a family's ownership rather than at a place: LocatedIn is defined for containment in a place, and no head covers \"stays within the possession of\""
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite subject with a verbal predicate correctly takes a witness rather than a generic rule, per Existential, even though the sentence reads as a standing generalization about inherited stations. The participial modifier correctly stays the adjective `inherited` as a separate descriptive Member atom rather than fusing into a compound kind."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000106",
+   "sentence": "The Council must approve any station transfer.",
+   "parse_run2": [
+    "(: i4_council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: i4_transfer_genus (Inheritance station_transfer transfer) (STV 1.0 0.99))",
+    "(: i4_approve_rule (Implication (Member $y station_transfer) (And (Member (sk_approve $y) approve) (Agent (sk_approve $y) sk_council_1) (Theme (sk_approve $y) $y) (Obligated (sk_approve $y)))) (STV 1.0 0.99))",
+    "(: i4_approve_q (QuantifierPhrase station_transfer approve \"any\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000106",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "`(Patient (sk_approve $t) $t)` gives approve the wrong object role — the instruction set's own worked example emits `(Theme sk_approve_1 sk_plan_1)` for \"The committee approved the plan\", and approve only evaluates/authorizes rather than changing its object, so the same verb must take `Theme` in statement and question alike."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the quantifier \"any\" — it is not in the quantifier-to-strength table (all/every/most/a lot of/many/few/no/none), so nothing licenses reading it as the universal `1.0` used here, though the `QuantifierPhrase` companion does record the surface word",
+     "a capitalized common noun under a definite article naming an in-world institution (\"the Council\") — a named organization is a proper noun requiring a `Name` atom, but nothing decides whether a capitalized definite common noun counts as one, so it lands as a plain `(Member sk_council_1 council)` with no `Name`",
+     "a deontic norm whose BEARER is an individual but whose OBJECT is universally quantified — the deontic sections cover kind-level bearers (reified property) and specific one-off acts (event `Obligated`), not this mixed case"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rule-over-transfers plus event-form `Obligated` in the consequent is the most faithful route available for an individual bearer with a universal object, and `station_transfer` is decomposed correctly (head-noun genus only, noun modifier unexposed). Rule confidence 0.99 matches the plain-norm convention rather than the 0.9 of episodic universal rules, which reads as deliberate."
+   }
+  }
+ ]
+}

@@ -1,0 +1,189 @@
+{
+ "id": "R5",
+ "rule": "Stored mire-essence feeds future lighting",
+ "texts": [
+  "When mire-essence forms in the cauldron, the Keepers store the mire-essence in clay vessels.",
+  "If mire-essence forms in the cauldron, the Keepers keep the mire-essence in clay vessels.",
+  "The Keepers draw stored mire-essence when they tend lanterns.",
+  "Stored mire-essence feeds future lantern lighting."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000020",
+   "sentence": "Stored mire-essence feeds future lighting",
+   "parse_run2": [
+    "(: mire_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: lighting_genus (Inheritance future_lighting lighting) (STV 1.0 0.99))",
+    "(: lighting_future_mod (Inheritance future_lighting future) (STV 1.0 0.99))",
+    "(: feed_rule (Implication (And (Member $x mire_essence) (Member $x stored)) (And (Member (sk_feed $x) feed) (Agent (sk_feed $x) $x) (Theme (sk_feed $x) future_lighting))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000020",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "Fusing the participial modifier into `stored_mire_essence` contradicts the compound rule — a participle used as a modifier is an incidental-description adjective (`a laminated worktop` -> `(Member sk_worktop_1 laminated)`, `a dented pail` -> two atoms), not a classifier that names a recognized kind."
+     },
+     {
+      "statement": 1,
+      "issue": "The genus jumps from `stored_mire_essence` straight to `essence`, so no atom links the symbol to the `mire_essence` compound and nothing stated about mire-essence can reach it."
+     },
+     {
+      "statement": 4,
+      "issue": "`(Inheritance future_lighting future)` exposes a temporal modifier that is none of the three licensed modifier-genus categories (gradable, positional/cardinal, material adjective) and fails the predicability test the instruction set gives (\"the lighting is future\")."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a restrictive modifier on a bare-kind argument of a kind-level relational generic — the `(Carry mosquito malaria)` form takes bare unmodified kinds, and the instruction set offers no way to restrict such an argument other than minting a fused compound symbol",
+     "a compound whose head is itself a compound (`stored` + `mire-essence`) — \"decompose once, to single-word lemmas, then stop\" gives no route that preserves the intermediate compound link"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing to a kind-level relation is right (both arguments are bare mass NPs) and `Feed` is licensed as an open-class kind relation at the prescribed 0.9/0.9; the defects are all in the compound symbols and their decompositions."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000021",
+   "sentence": "When mire-essence forms in the cauldron, the Keepers store the mire-essence in clay vessels.",
+   "parse_run2": [
+    "(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: clay_vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+    "(: mire_form_store (Implication (And (Member $x form) (Patient $x mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_store $x) store) (Agent (sk_store $x) keepers) (Theme (sk_store $x) mire_essence) (Location (sk_store $x) clay_vessel) (During (sk_store $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000021",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "Capitalized \"Keepers\" is encoded as an anonymous definite-plural group witness with no `Name` atom, so the proper-noun record that Names and casing makes mandatory (name symbol + exactly one Name fact) is lost."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare habitual \"When <clause>, <clause>\" as a standing generic conditional: the instruction set routes only \"every time / whenever\" to an occurrence rule, and otherwise lists \"when\" among the temporal connectives that keep the time-section forms, so which of the two applies here is undecided",
+     "a definite-plural group subject with a distributive predicate (\"the Keepers store …\") sitting inside a rule consequent: Cardinality/Quantifiers require the group event plus a per-member distribution rule, but nothing says whether that per-member rule is also emitted under an Implication"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rule otherwise follows the whenever pattern exactly (trigger clause as premises, Skolem-function response event, During link, STV 1.0 0.9), and correctly puts Location on the storing event only. Bare-kind fillers (mire_essence, clay_vessel) are the generic/non-specific-object use the Existential section licenses."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000022",
+   "sentence": "If mire-essence forms in the cauldron, the Keepers keep the mire-essence in clay vessels.",
+   "parse_run2": [
+    "(: i1_cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: i1_keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: i1_vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+    "(: i1_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: i1_form_keep_rule (Implication (And (Member $x form) (Patient $x $m) (Member $m mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) keepers) (Theme (sk_keep $x) $m) (Location (sk_keep $x) clay_vessel) (During (sk_keep $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000022",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The consequent's `(During (sk_keep $x) $x)` asserts that the keeping is temporally contained in the forming event, which the conditional never states — the storing follows the forming rather than occurring inside it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized common noun under a definite article naming an in-world order or body (\"the Keepers\") — the casing cue makes a capitalized run a proper noun needing a `Name` atom, but nothing says how to treat a capitalized definite PLURAL role title, so it lands as a plain group witness with no `Name`",
+     "whether an ordinary indicative \"if P, Q\" inherits the whenever-rule's `During` link, or only the plain `Implication` — the counterfactual section routes it to \"a plain Implication rule\" without saying which parts of the occurrence-quantifying machinery come along"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rule leaves the formed essence as the bare kind constant `mire_essence` in both premise and consequent rather than binding it to a variable, so the thing kept is only kind-identical to the thing that formed; that is defensible under the bare-class-symbol licence for non-specific objects but flattens the anaphora. Compound decomposition (`mire_essence`, `clay_vessel`), definite projection of \"the cauldron\", and the unmarked habitual consequent are all correct."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000023",
+   "sentence": "The Keepers draw stored mire-essence when they tend lanterns.",
+   "parse_run2": [
+    "(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: essence_gen (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: keepers_draw_rule (Implication (And (PartOf $x sk_keepers_1) (Member $t tend) (Agent $t $x) (Theme $t lantern)) (And (Member (sk_draw $t) draw) (Agent (sk_draw $t) $x) (Theme (sk_draw $t) (sk_essence $t)) (Member (sk_essence $t) mire_essence) (Member (sk_essence $t) stored) (During (sk_draw $t) $t))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000023",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The trigger clause sits in the rule PREMISE as a Skolem-function term `(sk_tend $x)`, which no asserted tending event can ever match, so the rule can never fire on an actual occurrence — the whenever pattern puts an ordinary event variable in the premise and uses a Skolem function only in the consequent."
+     },
+     {
+      "statement": 2,
+      "issue": "The drawn \"stored mire-essence\" is a single top-level constant witness asserted outside the conditional, so the parse asserts as a standing fact that a specific quantity of stored mire-essence exists, and shares one portion across every Keeper and every occasion where the dependent-existential (Skolem-function) form is called for."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "habitual \"when <clause>\" whose main clause has a definite-plural (group) subject: the whenever construction ranges over occurrences while the group-distribution rule ranges over members, and the instruction set never says how to combine the two ranges in one Implication (or that a bare \"when\", as opposed to \"every time / whenever\", triggers the rule form at all — \"when\" is otherwise listed as a temporal connective keeping the canonical Time-section forms)",
+     "a capitalized definite plural naming an in-world order (\"the Keepers\"): proper noun (name-derived constant + Name atom) versus ordinary definite-plural group witness is not adjudicated"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "No Name atom is emitted for the capitalized \"Keepers\". The mire_essence genus, the participle-as-adjective `stored`, and the Patient/Theme role choices all follow the instruction set."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000024",
+   "sentence": "Stored mire-essence feeds future lantern lighting.",
+   "parse_run2": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: ll_genus (Inheritance lantern_lighting lighting) (STV 1.0 0.99))",
+    "(: ll_future (Inheritance lantern_lighting future) (STV 1.0 0.99))",
+    "(: essence_feeds_lighting (Implication (And (Member $x mire_essence) (Member $x stored)) (And (Member (sk_feed $x) feed) (Agent (sk_feed $x) $x) (Theme (sk_feed $x) lantern_lighting))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000024",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The restrictive modifier of \"stored mire-essence\" is re-emitted as a generic property atom (Inheritance mire_essence stored, 0.9 0.9), asserting that mire-essence at large is stored, whereas the sentence only uses \"stored\" to restrict which essence does the feeding."
+     },
+     {
+      "statement": 3,
+      "issue": "Likewise (Inheritance lantern_lighting future) asserts that lantern lighting in general holds a property `future`, though \"future\" only restricts which lighting is fed, and futurity has no property encoding at all in the instruction set."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "restrictive adjectival/participial modifier on a bare kind argument of a kind-level relational generic — the adjective+noun rule bars fusing an incidental-description modifier, ConditionalProperty takes a property (not a relation), and there is no other licensed carrier for the restriction",
+     "temporal modification of a nominal (\"future lantern lighting\") — Future is a status operator over an event or a copular atom, never over a kind term, so a future-restricted kind argument has no licensed form"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The relational-generic routing is right: both arguments are bare kind-denoting NPs, so (Feed mire_essence lantern_lighting) at 0.9 0.9 plus the two compound genera (noun modifiers correctly left unexposed) are exactly as specified. The whole defect is that the two restricting modifiers get promoted into unrestricted kind-level assertions."
+   }
+  }
+ ]
+}

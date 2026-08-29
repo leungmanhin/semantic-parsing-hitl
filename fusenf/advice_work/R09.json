@@ -1,0 +1,116 @@
+{
+ "id": "R9",
+ "rule": "Sky-cats roost on the cliff-spires by day",
+ "texts": [
+  "Sky-cats roost on the cliff-spires during the day.",
+  "Sky-cats do not enter the village.",
+  "The Keepers tolerate sky-cats."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000038",
+   "sentence": "Sky-cats roost on the cliff-spires by day",
+   "parse_run2": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cliffspires_grp (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: skycat_roost_rule (Implication (Member $x sky_cat) (And (Member (sk_roost $x) roost) (Agent (sk_roost $x) $x) (Location (sk_roost $x) sk_group_1) (Time (sk_roost $x) day))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000038",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Borderline call: \"roost\" sits close to the postural statives (perch / rest) that the instruction set routes to Experiencer, but it is volitional and unlisted and the \"when unclear, Agent\" default covers the choice made here; \"by day\" as a time modifier is a reification trigger either way, so the event shape is right. Both compound genera are emitted with the noun modifiers (sky, cliff) correctly left unexposed, and the definite plural \"the cliff-spires\" correctly takes a group witness."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000039",
+   "sentence": "Sky-cats roost on the cliff-spires during the day.",
+   "parse_run2": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cliff_spire_group (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))",
+    "(: sky_cat_roost (Implication (Member $x sky_cat) (And (Member (sk_roost $x) roost) (Experiencer (sk_roost $x) $x) (On (sk_roost $x) sk_cliff_spire_1) (Time (sk_roost $x) day) (On $x sk_cliff_spire_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000039",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'during the day' — a 'during' adjunct whose object is a bare time-span NP rather than an eventuality: the `During` operator is defined as nesting one reified eventuality inside another, and the day-part list on `Time` enumerates morning/afternoon/evening/night without 'day', so this adjunct has no directly stated encoding"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Postural 'roost' is a bare position verb that would mint no event, but 'during the day' is a time modifier and therefore a licensed reification trigger, so the Experiencer-subject + Location-oblique event form is correct here. Bare plural subject → 0.9/0.9 rule with a Skolem-function event and no quantifier companion; definite plural 'the cliff-spires' → group witness, with noun modifiers left unexposed in both compounds."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000040",
+   "sentence": "Sky-cats do not enter the village.",
+   "parse_run2": [
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_not_enter (Implication (Member $x sky_cat) (And (Member (sk_enter $x) enter) (Agent (sk_enter $x) $x) (Theme (sk_enter $x) sk_village_1))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000040",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the \"Owls don't migrate\" negated-verbal-generic shape exactly: strength-0.0 distributing rule at confidence 0.9, the definite object's typing projected positive outside the rule, no QuantifierPhrase for plain \"not\", and the sky_cat genus emitted without exposing the noun modifier."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000041",
+   "sentence": "The Keepers tolerate sky-cats.",
+   "parse_run2": [
+    "(: keepers_name (Name keepers \"The Keepers\") (STV 1.0 0.99))",
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: e_tolerate (Member sk_tolerate_1 tolerate) (STV 1.0 0.99))",
+    "(: e_exp (Experiencer sk_tolerate_1 keepers) (STV 1.0 0.99))",
+    "(: e_stim (Stimulus sk_tolerate_1 sky_cat) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000041",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"The Keepers\" is capitalized (against lowercase \"sky-cats\" in the same sentence), so it reads as the proper name of a group, but the parse emits no Name fact and no stable name-derived symbol — it records an anonymous group witness sk_keeper_1 of the common kind keeper, which a later mention could not corefer to."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized PLURAL group name (\"the Keepers\"): the proper-noun rule (stable name symbol + exactly one Name fact + a separate kind atom) and the definite-plural rule (anonymous group witness + GroupOf + PartOf-ranged distribution rule) are each specified, but nothing says how they combine — whether the group symbol is name-derived, whether GroupOf or Member carries the kind, and what the distribution rule ranges over"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise sound: a definite plural with a distributive predicate correctly keeps the group event alongside the per-member rule over (PartOf $x sk_keeper_1) at 1.0/0.9, the bare-plural object stays the kind symbol sky_cat, the sky_cat compound exposes only its head genus (noun modifier withheld), and Experiencer/Stimulus for stative \"tolerate\" fits the progressive test."
+   }
+  }
+ ]
+}

@@ -1,0 +1,131 @@
+{
+ "id": "R25",
+ "rule": "Sustained solo tending completes apprenticeship",
+ "texts": [
+  "When an apprentice completes many solo nights of tending, the Council invests the apprentice as a Keeper.",
+  "If the apprentice's lantern fails, the solo count resets.",
+  "If the apprentice's lantern dims, the solo count resets."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000111",
+   "sentence": "Sustained solo tending completes apprenticeship",
+   "parse_run2": [
+    "(: tend_completes_rule (Implication (And (Member $e tend) (Member $e sustained) (Member $e solo)) (And (Member (sk_complete $e) complete) (Patient (sk_complete $e) apprenticeship) (During (sk_complete $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000111",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "Rule strength 1.0 with confidence 0.9 matches neither profile the instruction set gives: with no quantifier word present this is a bare generic (strength 0.9), and read as definitional it would be 1.0 / 0.99."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a gerundive / eventuality-denoting subject of a generic ('sustained solo tending'): the verbal-generic rule form ranges over entity kinds ((Member $x bird)), and nothing states how to range over an activity, how to attach its adjectival modifiers ('sustained', 'solo'), or whether an eventuality may fill Agent"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The Skolem function is correctly confined to the consequent and the premises left as plain variables; 'sustained' rightly stays a participial adjective, and the bare class symbol 'apprenticeship' for a non-specific object is licensed."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000112",
+   "sentence": "When an apprentice completes many solo nights of tending, the Council invests the apprentice as a Keeper.",
+   "parse_run2": [
+    "(: fx112_council (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: fx112_rule (Implication (And (Member $a apprentice) (Member $ce complete) (Agent $ce $a) (Patient $ce $ng) (GroupOf $ng night) (CardinalityPhrase $ng \"many\") (Member $te tend) (Agent $te $a) (Manner $te solo) (During $te $ng)) (And (Member (sk_invest $a) invest) (Agent (sk_invest $a) sk_council_1) (Patient (sk_invest $a) $a) (Member (sk_keeper $a) keeper) (Experiencer (sk_keeper $a) $a) (Member $a keeper) (Result (sk_invest $a) (sk_keeper $a)) (During (sk_invest $a) $ce))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000112",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The rule's PREMISE is built out of Skolem-function terms — (Member (sk_complete $a) complete), (Agent (sk_complete $a) $a), (GroupOf (sk_nights $a) solo_night), (CardinalityPhrase (sk_nights $a) \"many\") — but the instruction set uses plain variables in premises and reserves Skolem functions for the conclusion, so this premise cannot match any ordinary parse of \"an apprentice completed many solo nights\"."
+     },
+     {
+      "statement": 3,
+      "issue": "\"of tending\" is encoded as (Of (sk_nights $a) tend), leaving the gerund as a bare, untyped verb lemma in an argument slot; a clausal argument under a noun's preposition is reified as an eventuality, and no referent symbol may appear untyped."
+     },
+     {
+      "statement": 2,
+      "issue": "\"the Council\" is a capitalized organization, so the instruction set requires a name-derived symbol plus exactly one (Name … \"Council\") fact — neither part optional, and explicitly extended to organizations — but the parse types it as a plain common-noun witness with no Name atom."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Generic conditional headed by bare \"when\" (\"When <clause>, <clause>\"): \"when\" is listed among the temporal connectives that keep their canonical time forms, while the occurrence-quantifying Implication form is specified only for \"every time / whenever\" and \"if\"; which route a habitual \"when\"-clause takes is never stated.",
+     "\"many\" as a determiner counting things inside a conditional's antecedent: it is listed as a proportion word (strength 0.7, which here would wrongly weaken the whole conditional) and is absent from the CardinalityPhrase vague-quantity lexicon, so neither channel is prescribed for this position.",
+     "\"N of V-ing\" (\"nights of tending\"): not a genitive, not a nominalization's object of-phrase, and explicitly not a partitive, measure or about-phrase — none of the covered of-phrase routes reaches a content/activity of-phrase on an ordinary noun.",
+     "The whenever-rule prescribes tying the response to its trigger with During, but here the response (investing) FOLLOWS the trigger rather than overlapping it, so During would be false and no ordering alternative is specified; the parse consequently emits no trigger-response link at all."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"invests the apprentice as a Keeper\" is handled well: the state-result shape (reified keeper state + Experiencer + flat copular atom + Result link) matches the resultative / change-of-kind pattern, and the definite \"the apprentice\" correctly corefers to the antecedent's variable."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000113",
+   "sentence": "If the apprentice's lantern fails, the solo count resets.",
+   "parse_run2": [
+    "(: apprentice_type (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_poss (Possession sk_lantern_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: solocount_type (Member sk_solo_count_1 solo_count) (STV 1.0 0.99))",
+    "(: solocount_genus (Inheritance solo_count count) (STV 1.0 0.99))",
+    "(: lantern_reset_rule (Implication (And (Member $fl fail) (Patient $fl sk_lantern_1)) (And (Member (sk_reset $fl) reset) (Patient (sk_reset $fl) sk_solo_count_1) (During (sk_reset $fl) $fl))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000113",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Genitive routed to `Possession` (the lantern is not a part of the apprentice), `solo_count` genus emitted with the non-predicable modifier left unexposed, both intransitive undergoers correctly `Patient`, definite referents projected to top level, and the response event keyed to the trigger occurrence with `During`."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000114",
+   "sentence": "If the apprentice's lantern dims, the solo count resets.",
+   "parse_run2": [
+    "(: apprentice_type (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_poss (Possession sk_lantern_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance solo_count count) (STV 1.0 0.99))",
+    "(: count_type (Member sk_count_1 solo_count) (STV 1.0 0.99))",
+    "(: dim_reset_rule (Implication (And (Member $d dim) (Patient $d sk_lantern_1)) (And (Member (sk_reset $d) reset) (Patient (sk_reset $d) sk_count_1) (During (sk_reset $d) $d))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000114",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Possession rather than PartOf for the apprentice's lantern, Patient on both intransitive change-of-state subjects (dim, reset), definite referents typed at top level outside the rule, the solo_count genus with its modifier unexposed, a plain premise event variable, and a per-occurrence Skolem tied by During are all per the instruction set."
+   }
+  }
+ ]
+}

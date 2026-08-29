@@ -1,0 +1,123 @@
+{
+ "id": "R13",
+ "rule": "Wraiths drain mire-essence from lit lanterns",
+ "texts": [
+  "When a wraith approaches a lit lantern, the wraith drains mire-essence from the lantern.",
+  "If a wraith nears a lit lantern, the wraith pulls mire-essence from the lantern.",
+  "A drained lantern burns dimly."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000056",
+   "sentence": "Wraiths drain mire-essence from lit lanterns",
+   "parse_run2": [
+    "(: fx56_mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: fx56_rule (Implication (Member $x wraith) (And (Member (sk_drain $x) drain) (Agent (sk_drain $x) $x) (Patient (sk_drain $x) mire_essence) (Source (sk_drain $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern) (Member (sk_lantern $x) lit))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000056",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "Both core arguments are bare kind-denoting NPs (\"Wraiths\" bare plural, \"mire-essence\" bare mass), which the instruction set makes the mechanical trigger for an opaque kind-level relation (Drain wraith mire_essence) at STV 0.9 0.9; the parse emits the per-instance distributing rule instead, which is exactly the drift between the two incomparable forms the section warns against."
+     },
+     {
+      "statement": 1,
+      "issue": "\"mire-essence\" is drawn off / displaced rather than created, destroyed or physically changed, so the object-change test is at best unclear, and the instruction set's stated tie-breaker for an unclear test is Theme, not Patient."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A relational kind-generic with a THIRD, oblique argument: the licensed kind-level relation head is binary (two kind arguments), so \"from lit lanterns\" has no slot — following the relational-generic trigger drops stated content, and keeping the content requires abandoning the prescribed routing. The instruction set does not say which loss to take.",
+     "A bare-plural indefinite (\"lit lanterns\") as a role filler inside a distributing generic rule: whether it becomes a singular per-binding Skolem witness, a Skolem group with GroupOf, or the bare kind constant is not specified — here plurality is silently lost."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"lit\" is correctly kept as the modifier participle (adjective, not the verb lemma) and correctly left unfused as incidental description; the mire_essence genus with the noun modifier unexposed is right. The dependent-existential Skolem (sk_lantern $x) is in the conclusion, which is the correct placement."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000057",
+   "sentence": "When a wraith approaches a lit lantern, the wraith drains mire-essence from the lantern.",
+   "parse_run2": [
+    "(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: wraith_drain_rule (Implication (And (Member $ap approach) (Agent $ap $w) (Member $w wraith) (Theme $ap $l) (Member $l lantern) (Member $l lit)) (And (Member (sk_drain $ap) drain) (Agent (sk_drain $ap) $w) (Theme (sk_drain $ap) mire_essence) (Source (sk_drain $ap) $l) (During (sk_drain $ap) $ap))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000057",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The fused compound `mire_essence` carries no genus atom; Compound concepts requires `(Inheritance mire_essence essence)` (noun modifier `mire` correctly left unexposed)."
+     },
+     {
+      "statement": 0,
+      "issue": "The response event is keyed to the participants, `(sk_drain $w $l)`, rather than to the triggering occurrence `$e1` that also scopes over it, and no `(During (sk_drain …) $e1)` ties it to that occurrence, so repeated approaches by one wraith to one lantern collapse into a single, temporally untethered drain."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles (Theme for approach, Theme/Source for drain), `lit` kept as a participial adjective rather than the verb lemma, coreference of \"the wraith\"/\"the lantern\" into the rule variables, and the unmarked generic status are all correct. \"When\"-headed generic conditionals are routed only implicitly — the instruction set names \"every time / whenever\" and \"if\" while listing \"when\" among the temporal connectives — which is what leaves the During tie optional-looking."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000058",
+   "sentence": "If a wraith nears a lit lantern, the wraith pulls mire-essence from the lantern.",
+   "parse_run2": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: wraith_near_pull (Implication (And (Member $w wraith) (Member $l lantern) (Member $l lit) (Member $n near) (Agent $n $w) (Theme $n $l)) (And (Member (sk_pull $w $l) pull) (Agent (sk_pull $w $l) $w) (Theme (sk_pull $w $l) mire_essence) (Source (sk_pull $w $l) $l) (During (sk_pull $w $l) $n))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000058",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indicative conditional as a plain Implication with a plain premise event variable, 'lit' as a modifier participle (adjective, unfused), Agent/Theme on the nearing, Theme plus Source on the pulling, the definite 'the lantern' resolved to the rule variable, and the mire_essence genus are all per the instruction set. The pull Skolem keys on the wraith-lantern pair rather than on the nearing event, which is acceptable here since no During atom ties it to the trigger."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000059",
+   "sentence": "A drained lantern burns dimly.",
+   "parse_run2": [
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_drained (Member sk_lantern_1 drained) (STV 1.0 0.99))",
+    "(: e_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e_manner (Manner sk_burn_1 dimly) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000059",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Follows the instruction set as written: indefinite + verbal predicate is a witness (not a generic rule), 'drained' stays the participial adjective and does not fuse (incidental damage description), the unmarked event carries the habitual/dispositional default, and the `-ly` adverb keeps its surface form in `Manner`. `Patient` for the intransitive subject is a defensible change-of-state call, though the instruction set's stated fallback for an unclear intransitive subject is `Agent`."
+   }
+  }
+ ]
+}

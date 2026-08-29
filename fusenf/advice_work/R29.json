@@ -1,0 +1,188 @@
+{
+ "id": "R29",
+ "rule": "Large feather stores enable safe Sunken-Cove tending",
+ "texts": [
+  "When the feather store at the Watch is large, the Keepers tend the Sunken Cove lanterns safely in winter.",
+  "If the Watch holds a large feather store, winter tending at the Sunken Cove stays safe.",
+  "The Council issues feather rations to the Sunken-Cove station in winter.",
+  "When the feather store is small, wraith risk grows."
+ ],
+ "fields": [
+  {
+   "field": "rule",
+   "corpus_id": "fict-000129",
+   "sentence": "Large feather stores enable safe Sunken-Cove tending",
+   "parse_run2": [
+    "(: featherstore_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: sunkencove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: sunkencove_name (Name sunken_cove \"Sunken-Cove\") (STV 1.0 0.99))",
+    "(: tend_ev (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: tend_patient (Patient sk_tend_1 sunken_cove) (STV 1.0 0.99))",
+    "(: tend_safe (Member sk_tend_1 safe) (STV 1.0 0.99))",
+    "(: featherstore_enable_rule (Implication (And (Member $x feather_store) (Member $x large)) (And (Member (sk_enable $x) enable) (Agent (sk_enable $x) $x) (Theme (sk_enable $x) sk_tend_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000129",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a proper-noun modifier on a nominalized event ('Sunken-Cove tending') — nothing in the instruction set fixes the name's role in the reified event (undergoer of the tending vs. the place the tending happens at)",
+     "whether the relational-generic trigger ('both arguments bare kind-denoting NPs' → an opaque kind-level relation) fires when the object is a bare gerundive/eventive nominal rather than an entity kind; on the literal trigger 'Large feather stores enable safe Sunken-Cove tending' would be a kind-level (Enable …) atom, not the distributing event rule emitted here"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name + kind atom for 'Sunken-Cove' with no modifier genus, the feather_store genus with the noun modifier left unexposed, 'large' as a non-fusing descriptive restriction in the premise, the inanimate transitive subject as Agent, and the status-free reified complement attached by Theme all follow the instruction set. The parse resolved the uncovered modifier as (Patient (sk_tend $x) sunken_cove), one of two coherent readings."
+   }
+  },
+  {
+   "field": "t1",
+   "corpus_id": "fict-000130",
+   "sentence": "When the feather store at the Watch is large, the Keepers tend the Sunken Cove lanterns safely in winter.",
+   "parse_run2": [
+    "(: store_type (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: store_locin (LocatedIn sk_store_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: sc_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sc_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: lanterns_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lanterns_poss (Possession sk_lantern_1 sunken_cove) (STV 1.0 0.99))",
+    "(: cond_tend (Implication (Member sk_store_1 large) (And (Member sk_tend_1 tend) (Agent sk_tend_1 keepers) (Patient sk_tend_1 sk_lantern_1) (Manner sk_tend_1 safely) (Time sk_tend_1 winter))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000130",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 9,
+      "issue": "(LocatedIn sk_lanterns_1 sunken_cove) asserts a containment the text never states — 'the Sunken Cove lanterns' only identifies which lanterns — and the instruction set explicitly bars an unstated location link however obvious."
+     },
+     {
+      "statement": 10,
+      "issue": "'the Keepers' is a definite plural group with a distributive predicate ('tend'), yet only the group event is emitted and the per-member PartOf rule the instruction set requires for a distributive predicate over a group is absent, so a named keeper could never be shown to have tended."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a proper-noun modifier on a common noun ('the Sunken Cove lanterns'): fusion into a compound kind is barred for proper nouns, and no relation head is specified for attaching the name to the head noun, so nothing licensed encodes the modification",
+     "a bare season name as a time filler ('in winter'): the instruction set gives structured terms for the calendar granularities and bare symbols only for deictics ('last_spring') and day-parts ('morning'), never for a bare season",
+     "a proper name whose name-derived symbol is identical to its own kind lemma ('the Watch' -> (Member watch watch)): the instruction set requires distinct symbols for distinct same-named entities but never says how to keep an individual symbol clear of the class symbol it collides with",
+     "a capitalized definite plural naming a group or order ('the Keepers'): the proper-noun and definite-plural rules both apply and the instruction set never says how they combine",
+     "whether a per-member distribution rule can or should be nested inside a conditional rule's consequent — the distribution machinery is only stated for a plain clause"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The 'when'-clause is correctly a plain Implication with no connective atom, the copular trigger is reified with Experiencer and tied to the consequent by During in the whenever pattern, and the definite referents project at top level while nothing about largeness is asserted. The feather_store genus, the two Name atoms and the 'safely' Manner form are all right."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict-000131",
+   "sentence": "If the Watch holds a large feather store, winter tending at the Sunken Cove stays safe.",
+   "parse_run2": [
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: fs_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: fs_type (Member sk_feather_store_1 feather_store) (STV 1.0 0.99))",
+    "(: fs_large (Member sk_feather_store_1 large) (STV 1.0 0.99))",
+    "(: wt_genus (Inheritance winter_tending tending) (STV 1.0 0.99))",
+    "(: wt_type (Member sk_tending_1 winter_tending) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: wt_loc (Location sk_tending_1 sunken_cove) (STV 1.0 0.99))",
+    "(: watch_store_tending_safe (Implication (And (Member sk_hold_1 hold) (Agent sk_hold_1 sk_watch_1) (Theme sk_hold_1 sk_feather_store_1)) (And (Member sk_safe_1 safe) (Experiencer sk_safe_1 sk_tending_1) (Still sk_safe_1) (Member sk_tending_1 safe))) (STV 1.0 0.9))"
+   ],
+   "census": "unfireable-rule: unasserted-sk-constant-in-premise",
+   "review_run1": {
+    "id": "fict-000131",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The antecedent is written with constant witnesses (sk_hold_1, sk_store_1) that are asserted nowhere, so the implication can never match a stored holding event or feather store; the rule forms elsewhere bind an antecedent event and an antecedent indefinite with $-variables and keep only specific definite referents (here 'watch') as constants."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "continuative copula 'stay / remain / keep + ADJ' ('stays safe') — no operator or tag is defined for it (the opaque Still tag is for the adverb 'still' on an eventuality, not for a copular verb), so the persistence meaning has no carrier and is dropped",
+     "an indicative conditional with an indefinite in its antecedent — the Counterfactual section routes 'if X, Y' to 'a plain Implication rule' but never says which antecedent constituents become $-variables and which stay witness constants"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Watch' as a name symbol with no kind atom is right since the text supplies no kind word, and 'Sunken Cove' correctly takes its Name plus (Member sunken_cove cove) with no 'sunken' modifier atom. Holder for 'holds' reads it as possession, though the instruction set's only worked 'hold' example ('the tank holds forty litres') is a stative transitive that keeps Agent."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict-000132",
+   "sentence": "The Council issues feather rations to the Sunken-Cove station in winter.",
+   "parse_run2": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken-Cove\") (STV 1.0 0.99))",
+    "(: station_poss (Possession sk_station_1 sunken_cove) (STV 1.0 0.99))",
+    "(: issue_event (Member sk_issue_1 issue) (STV 1.0 0.99))",
+    "(: issue_agent (Agent sk_issue_1 sk_council_1) (STV 1.0 0.99))",
+    "(: issue_theme (Theme sk_issue_1 feather_ration) (STV 1.0 0.99))",
+    "(: issue_recipient (Recipient sk_issue_1 sk_station_1) (STV 1.0 0.99))",
+    "(: issue_time (Time sk_issue_1 winter) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000132",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"The Council\" is capitalized mid-phrase, so by the instruction set's mechanical casing cue it is a proper noun (an organization is a proper noun too) and requires a name-derived symbol plus exactly one `(Name ... \"Council\")` fact; the parse instead uses an anonymous witness `sk_council_1` with no `Name`, and the same file treats the capitalized \"Sunken-Cove\" as a name, so the two are handled inconsistently."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"in winter\" — a non-deictic recurring season as a time filler: the structured terms are Year/Month/Day/Weekday/Hour, day-parts are the only licensed bare `Time` symbols, and seasons are covered only in their deictic forms (`last_spring`, `next_summer`)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Sunken-Cove station\" follows the prescribed name-plus-kind split exactly (`(Member sunken_cove station)` + `Name`), `feather_ration` correctly exposes only its genus, the singular collective subject correctly gets a plain event with no distribution rule, and the absence of a tense atom is the right habitual default."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict-000133",
+   "sentence": "When the feather store is small, wraith risk grows.",
+   "parse_run2": [
+    "(: store_type (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: risk_genus (Inheritance wraith_risk risk) (STV 1.0 0.99))",
+    "(: store_small_risk_grows (Implication (Member sk_store_1 small) (And (Member sk_grow_1 grow) (Theme sk_grow_1 wraith_risk))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review_run1": {
+    "id": "fict-000133",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare habitual \"When <clause>, <clause>\" with a copular antecedent over a definite referent: the instruction set gives the occurrence rule only for \"every time / whenever\", ConditionalProperty only for a kind's own property under a condition, and the indicative-conditional Implication with no worked internals, so the rule's shape (variable-free premise, Skolem term keyed on a constant) has no stated model"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound decomposition (genus only, noun modifiers unexposed), the definite witness plus its projecting type atom, Member for a property of a witness, Patient for the intransitive change-of-state \"grows\", and the empirical 0.9 0.9 rule TV all follow the instruction set. The consequent's Skolem term `(sk_grow sk_feather_store_1)` is keyed on a constant (and on the store rather than the growing risk), which is inert decoration since the rule binds no variable."
+   }
+  }
+ ]
+}
