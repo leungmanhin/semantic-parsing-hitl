@@ -1,0 +1,7 @@
+(: budget_type (Member sk_budget_1 budget) (STV 1.0 0.99))
+(: portion_type (Member sk_portion_1 budget) (STV 1.0 0.99))
+(: portion_partof (PartOf sk_portion_1 sk_budget_1) (STV 1.0 0.99))
+(: portion_prop (ProportionOf sk_portion_1 sk_budget_1 (Fraction 40 100)) (STV 1.0 0.99))
+(: e4_cut (Member sk_cut_1 cut) (STV 1.0 0.99))
+(: e4_patient (Patient sk_cut_1 sk_portion_1) (STV 1.0 0.99))
+(: e4_past (Past sk_cut_1) (STV 1.0 0.99))

@@ -1,0 +1,5 @@
+(: beam_type (Member sk_beam_1 steel_beam) (STV 1.0 0.99))
+(: beam_genus (Inheritance steel_beam beam) (STV 1.0 0.99))
+(: e_buckle (Member sk_buckle_1 buckle) (STV 1.0 0.99))
+(: e_buckle_patient (Patient sk_buckle_1 sk_beam_1) (STV 1.0 0.99))
+(: e_buckle_tense (Past sk_buckle_1) (STV 1.0 0.99))

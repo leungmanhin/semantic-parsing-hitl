@@ -1,0 +1,3 @@
+(: diver_type (Member sk_diver_1 diver) (STV 1.0 0.99))
+(: hatch_type (Member sk_hatch_1 hatch) (STV 1.0 0.99))
+(: diver_not_open (And (Member sk_open_1 open) (Agent sk_open_1 sk_diver_1) (Patient sk_open_1 sk_hatch_1) (Can sk_open_1) (Past sk_open_1)) (STV 0.0 0.99))

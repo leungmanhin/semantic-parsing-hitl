@@ -1,0 +1,6 @@
+(: swimmers_group (GroupOf sk_group_1 swimmer) (STV 1.0 0.99))
+(: swimmers_card (Cardinality sk_group_1 5) (STV 1.0 0.99))
+(: e5_finish (Member sk_finish_1 finish) (STV 1.0 0.99))
+(: e5_agent (Agent sk_finish_1 sk_group_1) (STV 1.0 0.99))
+(: e5_past (Past sk_finish_1) (STV 1.0 0.99))
+(: e5_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_finish $x) finish) (Agent (sk_finish $x) $x) (Past (sk_finish $x)))) (STV 1.0 0.9))

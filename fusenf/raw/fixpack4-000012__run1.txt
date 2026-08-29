@@ -1,0 +1,5 @@
+(: cellar_type (Member sk_cellar_1 cellar) (STV 1.0 0.99))
+(: fumigate_event (Member sk_fumigate_1 fumigate) (STV 1.0 0.99))
+(: fumigate_patient (Patient sk_fumigate_1 sk_cellar_1) (STV 1.0 0.99))
+(: fumigate_past (Past sk_fumigate_1) (STV 1.0 0.99))
+(: fumigate_window (WithinLast sk_fumigate_1 4 month) (STV 1.0 0.99))

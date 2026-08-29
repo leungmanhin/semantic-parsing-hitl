@@ -246,9 +246,13 @@ Six patterns recur throughout; each is defined **here once** and only referenced
                                   (Possession sk_spokesman_1 northgate) (Name northgate "Northgate")
 
 - A **capitalized common noun used as the referent's only label** ("the Assembly", "the
-  Keepers") is a **common noun by default** — definite/plural handling as usual, **no** `Name`
+  Directorate") is a **common noun by default** — definite handling as usual, **no** `Name`
   atom. It becomes a name only when the text signals name-hood: the capitalized run **exceeds
   the bare class word** ("the Grand Assembly" → name), or a *different* word states the kind.
+  This default is **singular-collective only**: a capitalized **plural** kind-word label
+  referring as a name ("the Wrens" beat the visitors) is a `Name`-only individual — one
+  symbol, `Name` atom, **no** `GroupOf` and no per-member kind from the label word (the
+  members need not be wrens; a type atom is never invented).
   When a name **is** a bare kind-like word, that word also fills the type atom
   (`(Member vetch vetch)`-style only if the text licenses the kind; otherwise the `Name` atom
   may stand alone — a type atom is never invented, *Core patterns*).
@@ -270,7 +274,9 @@ Six patterns recur throughout; each is defined **here once** and only referenced
   see **Input**.) A **pronoun with no antecedent** takes such a witness, classed by what the
   pronoun *means* and never by its grammatical gender: he / she / they-singular → `person`
   (**not** `man` / `woman` — gender agreement is not a claim about the referent's kind), plural
-  they → a group (`GroupOf sk_group_1 person`), it → the salient kind if the text supplies one,
+  they / them → a group of the **salient kind** if the text supplies one, else `(GroupOf
+  sk_group_1 thing)` — English "they/them" covers objects, so `person` needs discourse
+  evidence (a human-only predicate or role), never the pronoun alone; it → the salient kind if the text supplies one,
   else `thing`. Both halves are **mandatory every time**: the symbol is minted from the
   **class**, never from the pronoun (`sk_person_1` / `sk_thing_1`, never `sk_he_1` / `sk_it_1`),
   and the witness's class atom is always **emitted** — an untyped referent symbol must never
@@ -297,7 +303,9 @@ it adds no content. As with `go_out` ≈ `fail`, recognizing `spill_the_beans` �
 **downstream** normalization step — never emit the equivalence, or a rule expressing it, here.
 
 Three boundary notes: a **solid / closed spelling** decomposes like its hyphenated or spaced
-form when it is transparently modifier + head ("stormcloud" → genus `cloud`); a **relational /
+form when it is transparently modifier + head — **always emit the genus** ("stormcloud" →
+genus `cloud`; "rainshadow" → genus `shadow`; the solid spelling is never a reason to skip
+decomposition); a **relational /
 rank adjective that fails the predication test** is never exposed as a modifier genus
 ("assistant secretary" — \*"the secretary is assistant" — keeps genus `secretary` only); and
 the head **genus is suppressed when the IS-A fails** — a lexicalized compound that is *not* a
@@ -556,6 +564,13 @@ up incrementally — "Bob cooks" omits the `Patient`; richer clauses add more ro
   with **no change to it** (buy, sell, rent, give, send, carry, read, watch, grade, score,
   review, measure, choose, keep, use). Entity objects only — a perception verb's **eventive
   complement** is `Stimulus` (*Perception reports*).
+- An **intransitive subject that undergoes** the eventuality is never `Agent` by default:
+  a verb of **internal change of state** (stall, weaken, falter, buckle, sag, fade, freeze)
+  takes `Patient`; **un-powered relocation** — cargo, documents, institutions, drifting or
+  dropped things (arrive, move, depart, drift, dip) — takes `Theme`; `Agent` stays only for a
+  **self-powered mover** (an animate, or a vessel/vehicle moving under its own power). A
+  scalar-change subject rides *Scalar change* and is likewise `Theme`. The same split
+  carries into sealed complements and passives.
 - `Recipient` — goal of a transfer (indirect object / "to"), **including the addressee of
   communication** ("talk / speak / write / mutter **to**"): a message is a transfer, so "muttered
   to the bailiff" takes `(Recipient <event> <bailiff>)`, never the spatial `Goal`.
@@ -1152,7 +1167,7 @@ Two containers, two rules:
   definitional, speaker-independent); (3) a **factive**'s full P (as always). **Nothing
   else**: a referent's possessor / `Of` links stated only inside P stay sealed, and a sealed
   rule's `QuantifierPhrase` companion is a **sealed sibling** conjunct, never top-level.
-  (Fuller in-seal grammar is a registered limitation awaiting the fragment redesign.)
+  (A richer in-seal grammar is a registered limitation awaiting the fragment redesign.)
 
 ### Perception reports (see / hear / watch someone do …)
 
@@ -1362,10 +1377,10 @@ below.)
 
   A plural with a **distributive** predicate (bark, pass, laugh, arrive) keeps the group + count +
   group event **for counting / "did any?"** and **adds** the per-member rule over `(PartOf $x
-  <group>)` (*Quantifiers, generics & scope*), as *Both dogs barked* shows. The rule stays
+  <group>)` (*Quantifiers, generics & scope*), as *Both ewes bleated* shows. The rule stays
   **dormant** until a member is individuated, then fires — so it works at **any** count, vague or
-  large, without enumerating: *Both dogs barked. Fido was one of them.* adds `(Member fido dog)
-  (PartOf fido sk_group_1) (Name fido "Fido")` → Fido's own bark event, so "did Fido bark?"
+  large, without enumerating: *Both ewes bleated. Tansy was one of them.* adds `(Member tansy ewe)
+  (PartOf tansy sk_group_1) (Name tansy "Tansy")` → Tansy's own bleat event, so "did Tansy bleat?"
   resolves. A **collective** predicate stays **group-only** (no rule).
 
 - **Bounded number** → `(CardinalityAtLeast <group> <n>)` / `(CardinalityAtMost <group> <n>)`
@@ -1558,10 +1573,10 @@ and usually gives no number, so **reify the ordering as a relation** — don't c
 
   Bare "the tallest" (no noun) → the contextual comparison class (default `person`).
   **"One of the ADJ-est Ns"** is membership in the top stratum, not the unique maximum —
-  `(AmongMost <entity> <scale> <class>)` (same slots as `Most`), plus the entity's own
+  `(AmongMost <scale> <entity> <class>)` (same slots as `Most`), plus the entity's own
   membership in the class; a stated domain restriction stays on the entity as its own atoms
-  ("one of the oldest mills in the valley" → `(AmongMost sk_mill_1 old mill)`
-  `(Member sk_mill_1 mill)` `(In sk_mill_1 sk_valley_1)` …). Never flatten it to `Most`
+  ("one of the oldest orchards in the valley" → `(AmongMost old sk_orchard_1 orchard)`
+  `(Member sk_orchard_1 orchard)` `(In sk_orchard_1 sk_valley_1)` …). Never flatten it to `Most`
   (which claims the unique top) or drop the superlative.
 
 - **Ordinal** "the **third** climber", "the **first** to respond", "the **last** runner" →
@@ -1945,7 +1960,7 @@ test is **not** which connective joins them: emit the ordering whenever the sent
 **another asserted event** for the perfect to precede, whatever links them — a temporal clause
 ("had V-ed **when** / **by the time** …"), a causal one ("the drain backed up **because** the filter
 had split" → `(Before sk_split_1 sk_back_up_1)`), or a relative clause. Two cases take no ordering
-atom: a past perfect with **no other event in the text** ("The ferry had already departed") — there
+atom: a past perfect with **no other event in the text** ("The steamer had already departed") — there
 is nothing to order against — and one **inside a seal** (an attitude complement, an embedded
 question, a counterfactual), where the sealed proposition keeps its own `Past` and nothing relates
 it to the matrix event: ordering atoms never cross a seal boundary, in either direction.
@@ -2019,14 +2034,14 @@ is what makes the decrement well-defined; do not reach across cycles.
       The audit must finish before Thursday. → … (Obligated sk_finish_1) (TimeAtMost sk_finish_1 (Weekday wednesday))
 
 - A **superseded bound or value** — the clause replaces one stated bound with another ("the
-  survey, originally due in April, is now due by June") — never leaves both at full strength
+  appraisal, originally due in April, is now due by June") — never leaves both at full strength
   on one event: emit only the **operative** bound; the superseded one survives only where the
   text asserts it *as history* (then `Past`-wrapped as its own claim). Two unqualified
   conflicting bounds on one event assert a contradiction the sentence does not state.
 - Bound terms also accept **day-part constants** as-is ("before dawn" → `(TimeAtMost e dawn)`;
   dawn, noon, dusk, night, overnight-as-`night`), and a **fiscal / calendar period** is a term
   when the year is stated — `(Quarter 3 2003)` — else the bare constant (`first_quarter`).
-- A **backward-window frame adverbial** ("in / over the past two years") is a **window, not a
+- A **backward-window frame adverbial** ("in / over the past six months") is a **window, not a
   duration**: `(WithinLast <event> <n> <unit>)` — never `(Measure e duration …)`, which would
   claim the eventuality itself lasted that long.
 
@@ -2103,9 +2118,9 @@ quantifier word** in a companion `(QuantifierPhrase <kind> <verb-lemma> "<word>"
 0.99)` — emit it **only when the word is actually there** (its absence marks the bare generic;
 a "none of the" strength-0 rule gets `"none"`, distinguishing quantifier-none from plain
 "Ns don't V"). **One companion per explicit quantifier PHRASE**, so a rule with two universal
-premises gets **two** ("Every wolf hunted every deer" → a `wolf` companion *and* a `deer` one);
+premises gets **two** ("Every egret speared every minnow" → an `egret` companion *and* a `minnow` one);
 a **group** premise (`PartOf $x <group>`) names the group kind. An **existential** subject
-("**some** teacher graded every exam") becomes a witness constant rather than a rule range, so it
+("**some** bailiff stamped every docket") becomes a witness constant rather than a rule range, so it
 takes no companion — only the quantified range does. **"Every time / whenever"** is a frequency
 conditional, not a determiner on a subject: it takes **no** companion. A **deontic norm over a kind** ("drivers must
 carry a license", "visitors may enter", a prohibition "guests must not smoke") and a
@@ -2691,8 +2706,8 @@ of an event/relation with **`And`** on the shared event variable.
 - A **compound question** splits by whether its parts **share a referent**. **Shared referent**
   (the same entity — "who is the oldest **and** where do they live?") → **one** query, the shared
   `$`-variable chaining the parts and a `$`-variable per unknown; read every bound `$` as the
-  answer. **Independent parts** (no shared variable — "who is the oldest dog, **and** who is the
-  youngest cat?") → **one query line each**, like a disjunctive question: a single `(And …)` needs
+  answer. **Independent parts** (no shared variable — "who is the plumpest goose, **and** who is the
+  sleekest gander?") → **one query line each**, like a disjunctive question: a single `(And …)` needs
   *every* part provable at once, so one part with no data drops the **whole** answer. Parts needing
   **different truth-value pins** ("what can X do *and* can't do") also go one line each. (Contrast:
   "**or**" questions are always separate lines — see **Disjunction**.)

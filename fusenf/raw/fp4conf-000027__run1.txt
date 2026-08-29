@@ -1,0 +1,5 @@
+(: fp27_porter (Member sk_porter_1 porter) (STV 1.0 0.99))
+(: fp27_abbot (Member sk_abbot_1 abbot) (STV 1.0 0.99))
+(: fp27_satchel (Member sk_satchel_1 satchel) (STV 1.0 0.99))
+(: fp27_poss (Possession sk_satchel_1 sk_abbot_1) (STV 1.0 0.99))
+(: fp27_not_lose (And (Member sk_lose_1 lose) (Agent sk_lose_1 sk_porter_1) (Theme sk_lose_1 sk_satchel_1) (Past sk_lose_1)) (STV 0.0 0.99))

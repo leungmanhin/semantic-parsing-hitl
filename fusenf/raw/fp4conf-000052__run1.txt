@@ -1,0 +1,2 @@
+(: $prf (And (Name $g "Grace") (Measure $g tall $n meter) (Compute * (160 0.01) -> $t) (Compute > ($n $t) -> true)) $tv)
+(: $prf (And (Name $g "Grace") (Measure $g tall $n meter) (Compute * (160 0.01) -> $t) (GreaterThan $n $t)) $tv)

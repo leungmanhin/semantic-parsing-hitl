@@ -2078,7 +2078,7 @@ chew/shoe/own; no context atom re-emitted:
 dual-emit: the deictic constant stays AND the calendar atoms are added (±1 day):
 
     (: e_arrive (Member sk_arrive_1 arrive) (STV 1.0 0.99))
-    (: e_agent (Agent sk_arrive_1 sk_shipment_1) (STV 1.0 0.99))
+    (: e_theme (Theme sk_arrive_1 sk_shipment_1) (STV 1.0 0.99))
     (: e_shipment (Member sk_shipment_1 shipment) (STV 1.0 0.99))
     (: e_past (Past sk_arrive_1) (STV 1.0 0.99))
     (: e_time (Time sk_arrive_1 yesterday) (STV 1.0 0.99))
@@ -2205,7 +2205,7 @@ symbol (the KB symbol is known — that is what context is for):
 
 **[disj-wide] The engine stalled or the brakes failed.** — independent clauses → wide `(Or <bundleA> <bundleB>)`, definite subjects outside
 
-    (: engine_or_brakes (Or (And (Member sk_stall_1 stall) (Agent sk_stall_1 sk_engine_1) (Past sk_stall_1)) (And (Member sk_fail_1 fail) (Agent sk_fail_1 sk_brake_1) (Past sk_fail_1))) (STV 1.0 0.99))
+    (: engine_or_brakes (Or (And (Member sk_stall_1 stall) (Patient sk_stall_1 sk_engine_1) (Past sk_stall_1)) (And (Member sk_fail_1 fail) (Patient sk_fail_1 sk_brake_1) (Past sk_fail_1))) (STV 1.0 0.99))
     (: engine (Member sk_engine_1 engine) (STV 1.0 0.99))
     (: brake (Member sk_brake_1 brake) (STV 1.0 0.99))
 
@@ -3109,14 +3109,14 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: t_tally (Member sk_tally_1 tally) (STV 1.0 0.99))
     (: d_slip (MeasureBy sk_slip_1 tally 14 unspecified) (STV 1.0 0.99))
 
-**[scalar-restatement] Output fell 12 tons, or 8 percent.** — a restatement pair is TWO true `MeasureBy` atoms on one event, never an `Or`
+**[scalar-restatement] Imports fell 15 tons, or 6 percent.** — a restatement pair is TWO true `MeasureBy` atoms on one event, never an `Or`
 
     (: e_fall (Member sk_fall_1 fall) (STV 1.0 0.99))
-    (: e_fall_th (Theme sk_fall_1 sk_output_1) (STV 1.0 0.99))
+    (: e_fall_th (Theme sk_fall_1 sk_imports_1) (STV 1.0 0.99))
     (: e_fall_past (Past sk_fall_1) (STV 1.0 0.99))
-    (: t_output (Member sk_output_1 output) (STV 1.0 0.99))
-    (: d_abs (MeasureBy sk_fall_1 output 12 ton) (STV 1.0 0.99))
-    (: d_rel (MeasureBy sk_fall_1 output 8 percent) (STV 1.0 0.99))
+    (: t_imports (Member sk_imports_1 imports) (STV 1.0 0.99))
+    (: d_abs (MeasureBy sk_fall_1 imports 15 ton) (STV 1.0 0.99))
+    (: d_rel (MeasureBy sk_fall_1 imports 6 percent) (STV 1.0 0.99))
 
 **[rate-unit] The ferry charges 40 cents a mile.** — a rate is a compound unit `<unit>_per_<unit>` on the cost-verb measure
 
@@ -3307,7 +3307,7 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
     (: e_land_ag (Agent sk_land_1 sk_pilots_1) (STV 1.0 0.99))
     (: e_land_past (Past sk_land_1) (STV 1.0 0.99))
     (: ord (Before sk_clear_1 sk_land_1) (STV 1.0 0.99))
-    ; (During sk_land_1 sk_clear_1) is not licensed here — the clearing precedes; NO Implication
+    ; (During sk_land_1 sk_clear_1) is not licensed here — the clearing precedes; NO when-conditional Implication (the plural's distributive PartOf rule stays licensed)
 
 **[gerund-generic] Skipping breakfast dulls concentration.** — a gerund subject of a generic claim is an occurrence trigger: whenever-machinery, plain premise variables, no witness for the gerund
 
@@ -3319,7 +3319,7 @@ conjuncts and variable placement. Named individuals are bound by `(Name $x "…"
 
     (: t_mill (Member sk_mill_1 mill) (STV 1.0 0.99))
     (: t_mill_b (Member sk_mill_1 building) (STV 1.0 0.99))
-    (: am (AmongMost sk_mill_1 old building) (STV 1.0 0.99))
+    (: am (AmongMost old sk_mill_1 building) (STV 1.0 0.99))
     (: loc (LocatedIn sk_mill_1 farrowgate) (STV 1.0 0.99))
     (: n_f (Name farrowgate "Farrowgate") (STV 1.0 0.99))
     ; and NO (Most old sk_mill_1 building)

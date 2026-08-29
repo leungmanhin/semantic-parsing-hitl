@@ -1,0 +1,6 @@
+(: bleach_thing (Member sk_thing_1 thing) (STV 1.0 0.99))
+(: mills_bleach_rule (Implication (Member $x mill) (And (Member (sk_bleach $x) bleach) (Agent (sk_bleach $x) $x) (Patient (sk_bleach $x) sk_thing_1))) (STV 0.5 0.9))
+(: mills_bleach_q (QuantifierPhrase mill bleach "some") (STV 1.0 0.99))
+(: dye_thing (Member sk_thing_2 thing) (STV 1.0 0.99))
+(: mills_dye_rule (Implication (Member $x mill) (And (Member (sk_dye $x) dye) (Agent (sk_dye $x) $x) (Patient (sk_dye $x) sk_thing_2))) (STV 0.5 0.9))
+(: mills_dye_q (QuantifierPhrase mill dye "other") (STV 1.0 0.99))

@@ -1,0 +1,6 @@
+(: registry_type (Member sk_registry_1 registry) (STV 1.0 0.99))
+(: office_type (Member sk_office_1 office) (STV 1.0 0.99))
+(: e_announce (Member sk_announce_1 announce) (STV 1.0 0.99))
+(: e_exp (Experiencer sk_announce_1 sk_registry_1) (STV 1.0 0.99))
+(: e_tense (Past sk_announce_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_announce_1 (And (Member sk_move_1 move) (Theme sk_move_1 sk_office_1) (Past sk_move_1))) (STV 1.0 0.99))

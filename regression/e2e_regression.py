@@ -948,7 +948,7 @@ CTXFILE=['(: omar_name (Name omar "Omar") (STV 1.0 0.99))','(: e_file (Member sk
          '(: ann_file_past (Past sk_file_2) (STV 1.0 0.99))','(: ann_name (Name ann "Ann") (STV 1.0 0.99))']
 run("ctx-fresh  continued indices: omar's report_1 + ann's report_2 coexist, both retrievable", CTXFILE,
     '(And (Member $e file) (Agent $e $who) (Theme $e $r) (Member $r report) (Past $e))', contains=["omar","ann"])
-CTXSHIP=['(: e_arrive (Member sk_arrive_1 arrive) (STV 1.0 0.99))','(: e_agent (Agent sk_arrive_1 sk_shipment_1) (STV 1.0 0.99))',
+CTXSHIP=['(: e_arrive (Member sk_arrive_1 arrive) (STV 1.0 0.99))','(: e_theme (Theme sk_arrive_1 sk_shipment_1) (STV 1.0 0.99))',
          '(: e_shipment (Member sk_shipment_1 shipment) (STV 1.0 0.99))','(: e_past (Past sk_arrive_1) (STV 1.0 0.99))',
          '(: e_time (Time sk_arrive_1 yesterday) (STV 1.0 0.99))','(: e_day (Time sk_arrive_1 (Day 6)) (STV 1.0 0.99))',
          '(: e_month (Time sk_arrive_1 (Month july)) (STV 1.0 0.99))','(: e_year (Time sk_arrive_1 (Year 2026)) (STV 1.0 0.99))']
@@ -1576,6 +1576,106 @@ FP31_POS = [
 ]
 run("fp31  bare-postural position binds under tense wrap", FP31_POS,
     '(And (Member $p pitchfork) (Past (Against $p $s)) (Member $s silo))')
+
+# Fix-pack 4: scalar change (MeasureBy/From/To + reserved `unspecified`), evidential
+# AccordingTo sealing, licensed adverb slots (Duration), backward windows (WithinLast),
+# top-stratum superlatives (AmongMost), Quarter time terms, Still-continuation, and
+# sealed-distribution rule inertness (fresh-variable discipline).
+FP4_DELTA = [
+    '(: e_fall (Member sk_fall_1 fall) (STV 1.0 0.99))',
+    '(: e_fall_th (Theme sk_fall_1 sk_reservoir_1) (STV 1.0 0.99))',
+    '(: e_fall_past (Past sk_fall_1) (STV 1.0 0.99))',
+    '(: t_res (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))',
+    '(: d_by (MeasureBy sk_fall_1 depth 3 meter) (STV 1.0 0.99))',
+]
+run("fp4  MeasureBy retrieval: by how much did the reservoir fall?", FP4_DELTA,
+    '(And (Member $e fall) (Theme $e $r) (Member $r reservoir) (MeasureBy $e depth $n meter))',
+    contains=" 3 ")
+run("fp4  delta stays off the bearer: no timeless Measure leak (seeded)", FP4_DELTA,
+    '(Measure $x $s $n $u)', want="empty", seeded=True)
+FP4_ENDPOINTS = [
+    '(: e_rise (Member sk_rise_1 rise) (STV 1.0 0.99))',
+    '(: e_rise_th (Theme sk_rise_1 sk_tide_1) (STV 1.0 0.99))',
+    '(: e_rise_past (Past sk_rise_1) (STV 1.0 0.99))',
+    '(: t_tide (Member sk_tide_1 tide) (STV 1.0 0.99))',
+    '(: d_from (MeasureFrom sk_rise_1 unspecified 1 fathom) (STV 1.0 0.99))',
+    '(: d_to (MeasureTo sk_rise_1 unspecified 4 fathom) (STV 1.0 0.99))',
+]
+run("fp4  From/To endpoints retrieved together on one change event", FP4_ENDPOINTS,
+    '(And (Member $e rise) (MeasureFrom $e $s 1 fathom) (MeasureTo $e $s 4 fathom))')
+run("fp4  unspecified slot binds an unconstrained query variable", FP4_ENDPOINTS,
+    '(MeasureTo $e $scale 4 fathom)', contains="unspecified")
+run("fp4  unspecified does NOT satisfy a constrained-scale query", FP4_ENDPOINTS,
+    '(MeasureTo $e depth $n fathom)', want="empty")
+FP4_ACC = [
+    '(: acc (AccordingTo (And (Member sk_melt_1 melt) (Theme sk_melt_1 sk_glacier_1) (Past sk_melt_1)) sk_bulletin_1) (STV 1.0 0.99))',
+    '(: t_bull (Member sk_bulletin_1 bulletin) (STV 1.0 0.99))',
+    '(: t_glac (Member sk_glacier_1 glacier) (STV 1.0 0.99))',
+]
+run("fp4  AccordingTo seals: melting is NOT asserted at top level", FP4_ACC,
+    '(And (Member $e melt) (Theme $e $g))', want="empty")
+run("fp4  AccordingTo wrapper queryable with its source", FP4_ACC,
+    '(AccordingTo (And (Member $e melt) (Theme $e $g) (Past $e)) $src)',
+    contains="sk_bulletin_1")
+run("fp4  referent typing projects out of the evidential seal", FP4_ACC,
+    '(And (Member $b bulletin) (Member $g glacier))')
+FP4_ADV = [
+    '(: e_flick (Member sk_flicker_1 flicker) (STV 1.0 0.99))',
+    '(: e_flick_pat (Patient sk_flicker_1 sk_beacon_1) (STV 1.0 0.99))',
+    '(: e_flick_past (Past sk_flicker_1) (STV 1.0 0.99))',
+    '(: t_beacon (Member sk_beacon_1 beacon) (STV 1.0 0.99))',
+    '(: d_brief (Duration sk_flicker_1 briefly) (STV 1.0 0.99))',
+]
+run("fp4  Duration slot keeps the surface adverb", FP4_ADV,
+    '(And (Member $e flicker) (Duration $e briefly))')
+run("fp4  duration adverb never mis-slots as Manner", FP4_ADV,
+    '(Manner $e briefly)', want="empty")
+FP4_WINDOW = [
+    '(: e_insp (Member sk_inspect_1 inspect) (STV 1.0 0.99))',
+    '(: e_insp_th (Theme sk_inspect_1 sk_aqueduct_1) (STV 1.0 0.99))',
+    '(: e_insp_past (Past sk_inspect_1) (STV 1.0 0.99))',
+    '(: t_aq (Member sk_aqueduct_1 aqueduct) (STV 1.0 0.99))',
+    '(: w_last (WithinLast sk_inspect_1 6 month) (STV 1.0 0.99))',
+]
+run("fp4  WithinLast window retrieval", FP4_WINDOW,
+    '(And (Member $e inspect) (Theme $e $a) (Member $a aqueduct) (WithinLast $e 6 month))')
+run("fp4  a window is not a duration claim", FP4_WINDOW,
+    '(Measure $e duration $n month)', want="empty")
+FP4_TOPSET = [
+    '(: t_lh (Member sk_lighthouse_1 lighthouse) (STV 1.0 0.99))',
+    '(: am (AmongMost old sk_lighthouse_1 lighthouse) (STV 1.0 0.99))',
+    '(: tm (Time sk_declare_1 (Quarter 2 2004)) (STV 1.0 0.99))',
+    '(: e_dec (Member sk_declare_1 declare) (STV 1.0 0.99))',
+]
+run("fp4  AmongMost top-stratum membership binds with its Member companion", FP4_TOPSET,
+    '(And (AmongMost old $x lighthouse) (Member $x lighthouse))')
+run("fp4  Quarter time term fills the Time slot", FP4_TOPSET,
+    '(And (Member $e declare) (Time $e (Quarter 2 2004)))')
+FP4_STILL = [
+    '(: st_vac (Member sk_vacant_1 vacant) (STV 1.0 0.99))',
+    '(: st_exp (Experiencer sk_vacant_1 sk_jetty_1) (STV 1.0 0.99))',
+    '(: st_still (Still sk_vacant_1) (STV 1.0 0.99))',
+    '(: st_past (Past sk_vacant_1) (STV 1.0 0.99))',
+    '(: flat_vac (Member sk_jetty_1 vacant) (STV 1.0 0.99))',
+    '(: t_jetty (Member sk_jetty_1 jetty) (STV 1.0 0.99))',
+]
+run("fp4  Still-continuation state binds with its holder", FP4_STILL,
+    '(And (Member $st vacant) (Experiencer $st $j) (Still $st) (Member $j jetty))')
+run("fp4  flat copular atom still binds beside the continuation", FP4_STILL,
+    '(And (Member $j jetty) (Member $j vacant))')
+FP4_SEALRULE = [
+    '(: e_say (Member sk_say_1 say) (STV 1.0 0.99))',
+    '(: e_say_exp (Experiencer sk_say_1 sk_mayor_1) (STV 1.0 0.99))',
+    '(: e_say_past (Past sk_say_1) (STV 1.0 0.99))',
+    '(: e_say_th (Theme sk_say_1 (And (Implication (PartOf $v sk_stewards_1) (Past (Member $v weary))))) (STV 1.0 0.99))',
+    '(: g_stew (GroupOf sk_stewards_1 steward) (STV 1.0 0.99))',
+    '(: t_mayor (Member sk_mayor_1 mayor) (STV 1.0 0.99))',
+    '(: m_one (PartOf sk_steward_2 sk_stewards_1) (STV 1.0 0.99))',
+]
+run("fp4  sealed per-member rule is INERT: no top-level firing", FP4_SEALRULE,
+    '(Past (Member sk_steward_2 weary))', want="empty")
+run("fp4  group typing projects beside the sealed rule", FP4_SEALRULE,
+    '(And (GroupOf $g steward) (Member $m mayor))')
 
 print("\n==== %d / %d PASS ====" % (sum(1 for ok,_ in results if ok), len(results)))
 print("KNOWN ENGINE-GAP markers (faithful queries [], pending engine fix):",

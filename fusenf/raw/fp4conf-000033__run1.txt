@@ -1,0 +1,2 @@
+(: siren_type (Member sk_siren_1 siren) (STV 1.0 0.99))
+(: fuse_blow_siren_stop (Implication (And (Member $f fuse) (Member $x blow) (Patient $x $f)) (And (Member (sk_stop $x) stop) (Patient (sk_stop $x) sk_siren_1) (During (sk_stop $x) $x))) (STV 1.0 0.9))

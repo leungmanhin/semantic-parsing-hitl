@@ -1,0 +1,3 @@
+(: e1_tenant (Member sk_tenant_1 tenant) (STV 1.0 0.99))
+(: e1_lease (Member sk_lease_1 lease) (STV 1.0 0.99))
+(: e1_not_sign (And (Member sk_sign_1 sign) (Agent sk_sign_1 sk_tenant_1) (Patient sk_sign_1 sk_lease_1) (Past sk_sign_1)) (STV 0.0 0.99))

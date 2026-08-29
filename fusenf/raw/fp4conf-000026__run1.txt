@@ -1,0 +1,7 @@
+(: fp26_auditor (Member sk_auditor_1 auditor) (STV 1.0 0.99))
+(: fp26_warden (Member sk_warden_1 warden) (STV 1.0 0.99))
+(: fp26_keys (GroupOf sk_group_1 key) (STV 1.0 0.99))
+(: fp26_claim_ev (Member sk_claim_1 claim) (STV 1.0 0.99))
+(: fp26_claim_exp (Experiencer sk_claim_1 sk_auditor_1) (STV 1.0 0.99))
+(: fp26_claim_past (Past sk_claim_1) (STV 1.0 0.99))
+(: fp26_claim_theme (Theme sk_claim_1 (And (Member sk_vanish_1 vanish) (Patient sk_vanish_1 sk_group_1) (Past sk_vanish_1) (Possession sk_group_1 sk_warden_1) (Implication (PartOf $x sk_group_1) (And (Member (sk_vanish $x) vanish) (Patient (sk_vanish $x) $x) (Past (sk_vanish $x)))))) (STV 1.0 0.99))

@@ -1,0 +1,5 @@
+(: fp30_signal (Member sk_signal_1 signal) (STV 1.0 0.99))
+(: fp30_falter (Member sk_falter_1 falter) (STV 1.0 0.99))
+(: fp30_patient (Patient sk_falter_1 sk_signal_1) (STV 1.0 0.99))
+(: fp30_past (Past sk_falter_1) (STV 1.0 0.99))
+(: fp30_duration (Duration sk_falter_1 briefly) (STV 1.0 0.99))

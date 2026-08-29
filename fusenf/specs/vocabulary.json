@@ -2,9 +2,9 @@
  "meta": {
   "schema": "fusenf-vocabulary/1",
   "generated": "2026-07-27",
-  "prompt_sha256": "bb7c4b71fc26e2a0e112f0b3908b0e57dc4f03866c7b152e73c34556b1148a18",
+  "prompt_sha256": "2ed18b934e28afac75b1d6c7c47b7b7413ed778c4c2916441274fb42933d9d1e",
   "seeded_sha256": "b7e25b96347848cc86b156dfa6294e0d8eb08c247bf66651631be2ced22a7078",
-  "prompt_lines": 2627,
+  "prompt_lines": 2925,
   "seeded_rules": 110,
   "method": "two independent full-prompt extractions (different models) reconciled against a mechanical inventory of every atom in the 316 regression goldens, the e2e harness and the seeded rules; 17 field disagreements adjudicated by the orchestrator and marked _adjudicated",
   "attestation_sources": [
@@ -19,8 +19,8 @@
    "both": 116,
    "field_disagreements": 17
   },
-  "revised": "2026-08-25",
-  "revision_note": "mechanical attestation sweep by harness/vocab_attest.py: goldens 1685, e2e 928, seeded 110 statements; attestation blocks, open-class/skolem lists and pins regenerated; declared fields untouched.",
+  "revised": "2026-08-29",
+  "revision_note": "mechanical attestation sweep by harness/vocab_attest.py: goldens 1930, e2e 969, seeded 110 statements; attestation blocks, open-class/skolem lists and pins regenerated; declared fields untouched.",
   "maintenance": "When validator.py reports the vocabulary STALE (pins != live prompt.txt/seeded_rules.metta): run harness/vocab_attest.py --date <today>, adjudicate any UNKNOWN heads or arity flags it prints (edit operators by hand \u2014 declared fields are human decisions), then rerun with --write to regenerate attestation fields and re-pin. Full two-extractor reconciliation (meta.method) is only needed when prompt.txt's operator sections materially change."
  },
  "field_semantics": {
@@ -52,9 +52,9 @@
    "attested": {
     "arities": {
      "1": 2,
-     "3": 2721
+     "3": 3007
     },
-    "n": 2723,
+    "n": 3009,
     "sources": [
      "e2e",
      "goldens",
@@ -62,6 +62,33 @@
     ]
    },
    "notes": "`(: <proof_name> <content> (STV s c))`. Proof-name is snake_case in statements, `$prf` in queries. Absent from the mechanical empirical inventory because the extractor strips the wrapper; it is present on every golden atom."
+  },
+  "AccordingTo": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "proposition",
+    "term"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Evidential attribution: seals P and names its source (\"according to X, P\").",
+   "notes": "Owner ruling 2026-08-28: the evidential wrapper IS the seal-bearer \u2014 P (a single statement or one sealed (And \u2026)) first, source term second. Sealed content is never asserted at top level; the wrapper itself is queryable. FP4 interim seal doctrine; fragment redesign pends.",
+   "attested": {
+    "arities": {
+     "2": 2
+    },
+    "n": 2,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
   },
   "Again": {
    "class": "status",
@@ -107,9 +134,9 @@
    "gloss": "Volitional doer / subject of an action.",
    "attested": {
     "arities": {
-     "2": 366
+     "2": 388
     },
-    "n": 366,
+    "n": 388,
     "sources": [
      "e2e",
      "goldens"
@@ -197,9 +224,38 @@
    },
    "notes": "Surface-faithful binary connective: main/matrix clause first, subordinate second; fronting changes nothing. The connective class is deliberately OPEN-ENDED (\"there is no closed causal lexicon\" \u2014 the surface word IS the data, multiword connectives CamelCase-join); this entry is one of the heads the prompt literally names. STV (1.0 0.99). Emitted only for an explicit non-temporal connective \u2014 temporal connectives get none, and a defeasible-exception 'but/except/unless' gets none. States no reason \u2014 no seeded bridge to ReasonFor."
   },
+  "AmongMost": {
+   "class": "operator",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "property",
+    "individual",
+    "kind"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Comparatives & degree",
+   "gloss": "Top-stratum membership: one of the ADJ-est members of a class.",
+   "notes": "Same slot order as Most (scale first). Emitted with the entity's own (Member \u2026) and any stated restriction as its own atoms; never flattened to Most (unique top).",
+   "attested": {
+    "arities": {
+     "3": 2
+    },
+    "n": 2,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
+  },
   "And": {
    "class": "core-link",
    "arities": [
+    1,
     2,
     3,
     4,
@@ -219,15 +275,16 @@
    "gloss": "Conjunction bundle; one fact, one truth value.",
    "attested": {
     "arities": {
-     "2": 77,
-     "3": 84,
-     "4": 36,
-     "5": 27,
+     "1": 3,
+     "2": 78,
+     "3": 92,
+     "4": 39,
+     "5": 28,
      "6": 19,
      "7": 10,
      "9": 1
     },
-    "n": 254,
+    "n": 270,
     "sources": [
      "e2e",
      "goldens",
@@ -308,9 +365,9 @@
    "gloss": "Canonical ordering: the first eventuality precedes the second.",
    "attested": {
     "arities": {
-     "2": 18
+     "2": 19
     },
-    "n": 18,
+    "n": 19,
     "sources": [
      "e2e",
      "goldens",
@@ -416,9 +473,9 @@
    "gloss": "A specific subject's capability on this event.",
    "attested": {
     "arities": {
-     "1": 7
+     "1": 8
     },
-    "n": 7,
+    "n": 8,
     "sources": [
      "e2e",
      "goldens"
@@ -748,9 +805,9 @@
    "gloss": "Intensity level of a property on an entity.",
    "attested": {
     "arities": {
-     "3": 16
+     "3": 17
     },
-    "n": 16,
+    "n": 17,
     "sources": [
      "e2e",
      "goldens"
@@ -801,6 +858,33 @@
    },
    "notes": "No tense/occurrence asserted, no addressee referent minted; a vocative addressee goes inside as Agent. Defined under `### Imperatives`."
   },
+  "Duration": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "event",
+    "symbol"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Events (verbal)",
+   "gloss": "Licensed duration-adverb slot: the surface adverb lemma on an eventuality.",
+   "notes": "Surface-faithful (briefly, overnight); never Manner. Numeric extents go through Measure/Start/End, not here.",
+   "attested": {
+    "arities": {
+     "2": 2
+    },
+    "n": 2,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
+  },
   "During": {
    "class": "operator",
    "arities": [
@@ -818,9 +902,9 @@
    "gloss": "The inner eventuality is nested inside the outer one.",
    "attested": {
     "arities": {
-     "2": 4
+     "2": 6
     },
-    "n": 4,
+    "n": 6,
     "sources": [
      "e2e",
      "goldens"
@@ -945,9 +1029,9 @@
    "gloss": "Subject of a stative predication \u2014 psych state or predicate-adjective state.",
    "attested": {
     "arities": {
-     "2": 35
+     "2": 47
     },
-    "n": 35,
+    "n": 47,
     "sources": [
      "e2e",
      "goldens"
@@ -1044,9 +1128,9 @@
    "gloss": "Future tense on an eventuality.",
    "attested": {
     "arities": {
-     "1": 11
+     "1": 12
     },
-    "n": 11,
+    "n": 12,
     "sources": [
      "e2e",
      "goldens"
@@ -1125,9 +1209,9 @@
    "gloss": "The members of this group individual are of that kind.",
    "attested": {
     "arities": {
-     "2": 69
+     "2": 80
     },
-    "n": 69,
+    "n": 80,
     "sources": [
      "e2e",
      "goldens"
@@ -1207,9 +1291,9 @@
    "gloss": "Inference rule: a Premises term implies a Conclusions term.",
    "attested": {
     "arities": {
-     "2": 146
+     "2": 151
     },
-    "n": 146,
+    "n": 151,
     "sources": [
      "e2e",
      "goldens",
@@ -1262,9 +1346,9 @@
    "gloss": "A class/property is a subclass of another class/property.",
    "attested": {
     "arities": {
-     "2": 109
+     "2": 112
     },
-    "n": 109,
+    "n": 112,
     "sources": [
      "e2e",
      "goldens",
@@ -1298,6 +1382,32 @@
     ]
    },
    "notes": "A tool or substance, never a person."
+  },
+  "Interpretation": {
+   "class": "meta",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "reading-tag",
+    "assertion"
+   ],
+   "opaque": true,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Multiple live readings (Interpretation)",
+   "gloss": "Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine marginalization = deferred #48 half).",
+   "_adjudicated": "2026-08-21 batch-2 item B: new head, class 'meta' (transport, not content); frozen so no rule may rewrite it; opaque so mining never reaches inside a wrapper it should never see post-split.",
+   "attested": {
+    "arities": {
+     "2": 10
+    },
+    "n": 10,
+    "sources": [
+     "goldens"
+    ]
+   }
   },
   "KindProperty": {
    "class": "operator",
@@ -1343,9 +1453,9 @@
    "gloss": "Static location of an entity ('X is in Y') \u2014 as against the event oblique Location.",
    "attested": {
     "arities": {
-     "2": 12
+     "2": 13
     },
-    "n": 12,
+    "n": 13,
     "sources": [
      "e2e",
      "goldens",
@@ -1427,9 +1537,9 @@
    "gloss": "Puts a magnitude and unit on an entity's dimension.",
    "attested": {
     "arities": {
-     "4": 87
+     "4": 89
     },
-    "n": 87,
+    "n": 89,
     "sources": [
      "e2e",
      "goldens",
@@ -1496,6 +1606,93 @@
     ]
    }
   },
+  "MeasureBy": {
+   "class": "operator",
+   "arities": [
+    4
+   ],
+   "arg_types": [
+    "event",
+    "property",
+    "number",
+    "unit"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Measures & units",
+   "gloss": "Delta of a scalar-change eventuality: how much the dimension changed.",
+   "notes": "On the change EVENT (rose/fell/slipped), never the bearer entity. A restatement pair (absolute + percent) is two true MeasureBy atoms. Slots accept the reserved symbol `unspecified` when the text omits the dimension/unit.",
+   "attested": {
+    "arities": {
+     "4": 5
+    },
+    "n": 5,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
+  },
+  "MeasureFrom": {
+   "class": "operator",
+   "arities": [
+    4
+   ],
+   "arg_types": [
+    "event",
+    "property",
+    "number",
+    "unit"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Measures & units",
+   "gloss": "Start value of a scalar change (\"from X\").",
+   "notes": "Endpoint family on the change event; pairs with MeasureTo; `unspecified` licensed for unstated dimension. Never the bearer's timeless Measure.",
+   "attested": {
+    "arities": {
+     "4": 2
+    },
+    "n": 2,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
+  },
+  "MeasureTo": {
+   "class": "operator",
+   "arities": [
+    4
+   ],
+   "arg_types": [
+    "event",
+    "property",
+    "number",
+    "unit"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Measures & units",
+   "gloss": "End value of a scalar change (\"to Y\", \"rose to 6.1%\").",
+   "notes": "Endpoint family on the change event; never a spatial Goal, never the bearer's timeless Measure; `unspecified` licensed for unstated dimension.",
+   "attested": {
+    "arities": {
+     "4": 2
+    },
+    "n": 2,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
+  },
   "Member": {
    "class": "core-link",
    "arities": [
@@ -1513,9 +1710,9 @@
    "gloss": "An individual belongs to a class or holds a property.",
    "attested": {
     "arities": {
-     "2": 1186
+     "2": 1320
     },
-    "n": 1186,
+    "n": 1320,
     "sources": [
      "e2e",
      "goldens",
@@ -1592,9 +1789,9 @@
    "gloss": "Calendar month term (lowercase month-name lemma).",
    "attested": {
     "arities": {
-     "1": 23
+     "1": 24
     },
-    "n": 23,
+    "n": 24,
     "sources": [
      "e2e",
      "goldens",
@@ -1761,9 +1958,9 @@
    "gloss": "Records a named individual's surface name string.",
    "attested": {
     "arities": {
-     "2": 221
+     "2": 229
     },
-    "n": 221,
+    "n": 229,
     "sources": [
      "e2e",
      "goldens"
@@ -1924,9 +2121,9 @@
    "gloss": "Part/component (or named member) of a whole.",
    "attested": {
     "arities": {
-     "2": 33
+     "2": 37
     },
-    "n": 33,
+    "n": 37,
     "sources": [
      "e2e",
      "goldens"
@@ -1977,9 +2174,9 @@
    "gloss": "Past tense on an eventuality.",
    "attested": {
     "arities": {
-     "1": 369
+     "1": 419
     },
-    "n": 369,
+    "n": 419,
     "sources": [
      "e2e",
      "goldens"
@@ -2005,9 +2202,9 @@
    "gloss": "Object the action creates, destroys, consumes or physically changes.",
    "attested": {
     "arities": {
-     "2": 138
+     "2": 147
     },
-    "n": 138,
+    "n": 147,
     "sources": [
      "e2e",
      "goldens"
@@ -2059,9 +2256,9 @@
    "gloss": "Possessed-to-possessor link (ownership, kinship, loose association).",
    "attested": {
     "arities": {
-     "2": 10
+     "2": 13
     },
-    "n": 10,
+    "n": 13,
     "sources": [
      "e2e",
      "goldens",
@@ -2170,6 +2367,32 @@
     ]
    },
    "notes": "Copular form `(QuantifierPhrase <subject> <predicate> \"<word>\")`; verbal form `(QuantifierPhrase <kind> <verb-lemma> \"<word>\")` beside the distributing rule. Emitted ONLY when a quantifier word is actually present \u2014 its absence marks a bare generic."
+  },
+  "Quarter": {
+   "class": "operator",
+   "arities": [
+    2
+   ],
+   "arg_types": [
+    "number",
+    "number"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time \u2014 dates, ordering, intervals & duration",
+   "gloss": "Calendar/fiscal quarter term: (Quarter q year).",
+   "notes": "Structured Time term like Weekday \u2014 used when the year is stated; a bare quarter is the constant (first_quarter \u2026). Fills Time/TimeAtLeast/TimeAtMost/Start/End slots.",
+   "attested": {
+    "arities": {
+     "2": 1
+    },
+    "n": 1,
+    "sources": [
+     "e2e"
+    ]
+   }
   },
   "Question": {
    "class": "operator",
@@ -2296,9 +2519,9 @@
    "gloss": "Links an event to the reified result state it caused.",
    "attested": {
     "arities": {
-     "2": 4
+     "2": 6
     },
-    "n": 4,
+    "n": 6,
     "sources": [
      "e2e",
      "goldens"
@@ -2323,9 +2546,9 @@
    "gloss": "Truth value: strength and confidence, both in [0,1].",
    "attested": {
     "arities": {
-     "2": 2637
+     "2": 2923
     },
-    "n": 2637,
+    "n": 2923,
     "sources": [
      "e2e",
      "goldens",
@@ -2538,9 +2761,9 @@
    "gloss": "Continuative: the eventuality still holds (positive counterpart of cessation).",
    "attested": {
     "arities": {
-     "1": 2
+     "1": 5
     },
-    "n": 2,
+    "n": 5,
     "sources": [
      "e2e",
      "goldens"
@@ -2646,9 +2869,9 @@
    "gloss": "Object acquired, transferred, moved, possessed, perceived or evaluated unchanged.",
    "attested": {
     "arities": {
-     "2": 153
+     "2": 195
     },
-    "n": 153,
+    "n": 195,
     "sources": [
      "e2e",
      "goldens",
@@ -2726,9 +2949,9 @@
    "gloss": "Locates an eventuality at a time point or recurrence slot.",
    "attested": {
     "arities": {
-     "2": 103
+     "2": 105
     },
-    "n": 103,
+    "n": 105,
     "sources": [
      "e2e",
      "goldens",
@@ -2781,9 +3004,9 @@
    "gloss": "Upper-bounded (latest) time of an eventuality.",
    "attested": {
     "arities": {
-     "2": 10
+     "2": 11
     },
-    "n": 10,
+    "n": 11,
     "sources": [
      "e2e",
      "goldens"
@@ -2892,9 +3115,9 @@
    "gloss": "Weekday term (lowercase weekday-name lemma).",
    "attested": {
     "arities": {
-     "1": 16
+     "1": 17
     },
-    "n": 16,
+    "n": 17,
     "sources": [
      "e2e",
      "goldens"
@@ -2953,6 +3176,34 @@
     ]
    },
    "notes": "Must not become `(Might P)`; the content is never asserted. Defined under `### Embedded questions`."
+  },
+  "WithinLast": {
+   "class": "operator",
+   "arities": [
+    3
+   ],
+   "arg_types": [
+    "event",
+    "number",
+    "unit"
+   ],
+   "opaque": false,
+   "bridged": false,
+   "variadic": false,
+   "frozen": true,
+   "section": "## Time \u2014 dates, ordering, intervals & duration",
+   "gloss": "Backward window: the eventuality falls within the last n units.",
+   "notes": "A window, not a duration claim (\"in the past six months\"); never (Measure e duration \u2026).",
+   "attested": {
+    "arities": {
+     "3": 2
+    },
+    "n": 2,
+    "sources": [
+     "e2e",
+     "goldens"
+    ]
+   }
   },
   "Xor": {
    "class": "core-link",
@@ -3160,32 +3411,6 @@
    },
    "_adjudicated": true,
    "notes": "A kind-level prohibition is this term at strength 0.0."
-  },
-  "Interpretation": {
-   "class": "meta",
-   "arities": [
-    2
-   ],
-   "arg_types": [
-    "reading-tag",
-    "assertion"
-   ],
-   "opaque": true,
-   "bridged": false,
-   "variadic": false,
-   "frozen": true,
-   "section": "## Multiple live readings (Interpretation)",
-   "gloss": "Transport wrapper marking a statement as belonging to one reading of a multi-reading parse: (Interpretation rN (: name expr stv)). Dissolved by the canonicalizer's split-before-canonicalize; never a KB atom (engine marginalization = deferred #48 half).",
-   "_adjudicated": "2026-08-21 batch-2 item B: new head, class 'meta' (transport, not content); frozen so no rule may rewrite it; opaque so mining never reaches inside a wrapper it should never see post-split.",
-   "attested": {
-    "arities": {
-     "2": 10
-    },
-    "n": 10,
-    "sources": [
-     "goldens"
-    ]
-   }
   }
  },
  "deprecated_operators": {
@@ -3304,6 +3529,7 @@
    "sk_complain",
    "sk_distrust",
    "sk_drill",
+   "sk_dull",
    "sk_email",
    "sk_endorse",
    "sk_fine",
@@ -3327,6 +3553,7 @@
    "sk_shear",
    "sk_sign",
    "sk_sink",
+   "sk_stop",
    "sk_swim",
    "sk_tarnish",
    "sk_undermine",
