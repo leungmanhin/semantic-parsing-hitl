@@ -1,0 +1,6 @@
+(: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: st_genus (Inheritance silken_thread thread) (STV 1.0 0.99))
+(: st_mod (Inheritance silken_thread silken) (STV 1.0 0.99))
+(: und_grp (GroupOf sk_underside_1 underside) (STV 1.0 0.99))
+(: und_part (PartOf sk_underside_1 nightmoth) (STV 1.0 0.99))
+(: thread_come_rule (Implication (Member $x silken_thread) (And (Member (sk_come $x) come) (Theme (sk_come $x) $x) (Source (sk_come $x) sk_underside_1))) (STV 0.9 0.9))

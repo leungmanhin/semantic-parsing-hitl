@@ -1,0 +1,4 @@
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: silken_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))
+(: silken_thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))
+(: nightmoth_land_leave (Implication (And (Member $x nightmoth) (Member (sk_land $x) land) (Agent (sk_land $x) $x) (Location (sk_land $x) lantern)) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Patient (sk_leave $x) (sk_thread $x)) (Member (sk_thread $x) silken_thread))) (STV 0.9 0.9))

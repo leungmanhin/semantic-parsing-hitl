@@ -1,0 +1,2 @@
+(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))
+(: light_produce_rule (Implication (And (Member $x light) (Patient $x $y) (Member $y lantern)) (And (Member (sk_produce $x) produce) (Patient (sk_produce $x) mist_light) (During (sk_produce $x) $x))) (STV 0.9 0.9))

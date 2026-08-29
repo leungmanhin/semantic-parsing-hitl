@@ -1,0 +1,4 @@
+(: wintergloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))
+(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: burn_avoid_rule (Implication (And (Member $lantern lantern) (Member $b burn) (Patient $b wintergloss) (Alongside $b mire_essence) (Location $b $lantern) (Member $x nightmoth)) (And (Member (sk_avoid $x $lantern) avoid) (Agent (sk_avoid $x $lantern) $x) (Theme (sk_avoid $x $lantern) $lantern))) (STV 1.0 0.9))

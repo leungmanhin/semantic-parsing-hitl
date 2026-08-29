@@ -1,0 +1,2 @@
+(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: wraith_drain_rule (Implication (And (Member $ap approach) (Agent $ap $w) (Member $w wraith) (Theme $ap $l) (Member $l lantern) (Member $l lit)) (And (Member (sk_drain $ap) drain) (Agent (sk_drain $ap) $w) (Theme (sk_drain $ap) mire_essence) (Source (sk_drain $ap) $l) (During (sk_drain $ap) $ap))) (STV 0.9 0.9))

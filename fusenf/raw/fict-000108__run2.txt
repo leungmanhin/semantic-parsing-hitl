@@ -1,0 +1,4 @@
+(: keeper_type (Member sk_keeper_1 senior_keeper) (STV 1.0 0.99))
+(: senior_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))
+(: senior_keeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))
+(: newcomer_apprentice (ConditionalProperty newcomer (obligated apprentice) sk_keeper_1) (STV 1.0 0.99))

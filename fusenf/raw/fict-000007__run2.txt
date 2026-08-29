@@ -1,0 +1,3 @@
+(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: lantern_mistlight_rule (Implication (And (Member $x lantern) (Member $e show) (Agent $e $x) (Theme $e $m) (Member $m mist_light) (Time $e night)) (And (Member (sk_attract $e) attract) (Agent (sk_attract $e) $m) (Theme (sk_attract $e) nightmoth) (During (sk_attract $e) $e))) (STV 1.0 0.9))

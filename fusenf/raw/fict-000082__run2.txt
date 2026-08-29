@@ -1,0 +1,6 @@
+(: keeper_grp (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))
+(: moonphase_genus (Inheritance moon_phase phase) (STV 1.0 0.99))
+(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: residue_genus (Inheritance chalky_residue residue) (STV 1.0 0.99))
+(: residue_mod (Inheritance chalky_residue chalky) (STV 1.0 0.99))
+(: keepers_gather_saltbloom_turns (Implication (And (Member $g gather) (Agent $g sk_keeper_1) (Theme $g $sb) (Member $sb salt_bloom) (Time $g $mp) (Member $mp moon_phase) (Member $mp other)) (And (Member (sk_turn $g) turn) (Patient (sk_turn $g) $sb) (Member (sk_residue $g) chalky_residue) (Experiencer (sk_residue $g) $sb) (Member $sb chalky_residue) (Result (sk_turn $g) (sk_residue $g)) (During (sk_turn $g) $g))) (STV 1.0 0.9))

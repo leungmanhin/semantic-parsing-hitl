@@ -1,0 +1,4 @@
+(: sea_typ (Member sk_sea_1 sea) (STV 1.0 0.99))
+(: lantern_genus (Inheritance unprepared_lantern lantern) (STV 1.0 0.99))
+(: lantern_mod (Inheritance unprepared_lantern unprepared) (STV 1.0 0.99))
+(: wind_extinguish_rule (Implication (And (Member $x wind) (Member $x cold) (Member (sk_blow $x) blow) (Patient (sk_blow $x) $x) (Source (sk_blow $x) sk_sea_1) (Time (sk_blow $x) night)) (And (Member (sk_extinguish $x) extinguish) (Agent (sk_extinguish $x) $x) (Patient (sk_extinguish $x) unprepared_lantern) (During (sk_extinguish $x) (sk_blow $x)))) (STV 1.0 0.9))

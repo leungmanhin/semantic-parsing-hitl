@@ -1,0 +1,7 @@
+(: featherstore_genus (Inheritance feather_store store) (STV 1.0 0.99))
+(: sunkencove_type (Member sunken_cove cove) (STV 1.0 0.99))
+(: sunkencove_name (Name sunken_cove "Sunken-Cove") (STV 1.0 0.99))
+(: tend_ev (Member sk_tend_1 tend) (STV 1.0 0.99))
+(: tend_patient (Patient sk_tend_1 sunken_cove) (STV 1.0 0.99))
+(: tend_safe (Member sk_tend_1 safe) (STV 1.0 0.99))
+(: featherstore_enable_rule (Implication (And (Member $x feather_store) (Member $x large)) (And (Member (sk_enable $x) enable) (Agent (sk_enable $x) $x) (Theme (sk_enable $x) sk_tend_1))) (STV 0.9 0.9))

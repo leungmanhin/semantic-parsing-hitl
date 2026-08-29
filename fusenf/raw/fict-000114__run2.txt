@@ -1,0 +1,6 @@
+(: apprentice_type (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))
+(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))
+(: lantern_poss (Possession sk_lantern_1 sk_apprentice_1) (STV 1.0 0.99))
+(: sc_genus (Inheritance solo_count count) (STV 1.0 0.99))
+(: count_type (Member sk_count_1 solo_count) (STV 1.0 0.99))
+(: dim_reset_rule (Implication (And (Member $d dim) (Patient $d sk_lantern_1)) (And (Member (sk_reset $d) reset) (Patient (sk_reset $d) sk_count_1) (During (sk_reset $d) $d))) (STV 1.0 0.9))

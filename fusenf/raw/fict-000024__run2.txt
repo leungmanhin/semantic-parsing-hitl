@@ -1,0 +1,4 @@
+(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: ll_genus (Inheritance lantern_lighting lighting) (STV 1.0 0.99))
+(: ll_future (Inheritance lantern_lighting future) (STV 1.0 0.99))
+(: essence_feeds_lighting (Implication (And (Member $x mire_essence) (Member $x stored)) (And (Member (sk_feed $x) feed) (Agent (sk_feed $x) $x) (Theme (sk_feed $x) lantern_lighting))) (STV 0.9 0.9))

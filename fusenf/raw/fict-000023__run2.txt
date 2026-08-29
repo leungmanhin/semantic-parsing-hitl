@@ -1,0 +1,3 @@
+(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))
+(: essence_gen (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: keepers_draw_rule (Implication (And (PartOf $x sk_keepers_1) (Member $t tend) (Agent $t $x) (Theme $t lantern)) (And (Member (sk_draw $t) draw) (Agent (sk_draw $t) $x) (Theme (sk_draw $t) (sk_essence $t)) (Member (sk_essence $t) mire_essence) (Member (sk_essence $t) stored) (During (sk_draw $t) $t))) (STV 1.0 0.9))

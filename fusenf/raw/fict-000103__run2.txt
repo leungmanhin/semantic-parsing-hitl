@@ -1,0 +1,5 @@
+(: senkeeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))
+(: senkeeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))
+(: lanternstation_genus (Inheritance lantern_station station) (STV 1.0 0.99))
+(: lanternstation_type (Member sk_lantern_station_1 lantern_station) (STV 1.0 0.99))
+(: keeper_retire_heir_inherit (Implication (And (Member $e retire) (Agent $e $x) (Member $x senior_keeper)) (And (Member (sk_inherit $e) inherit) (Member (sk_heir $e) heir) (Agent (sk_inherit $e) (sk_heir $e)) (Theme (sk_inherit $e) sk_lantern_station_1) (During (sk_inherit $e) $e))) (STV 1.0 0.9))

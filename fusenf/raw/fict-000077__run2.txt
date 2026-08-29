@@ -1,0 +1,4 @@
+(: keepers_name (Name keepers "Keepers") (STV 1.0 0.99))
+(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: keepers_mix_burn (Implication (And (Member $x mix) (Agent $x keepers) (Theme $x salt_bloom) (Goal $x mire_essence) (Time $x winter)) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) mire_essence) (Manner (sk_burn $x) slowly) (During (sk_burn $x) $x))) (STV 1.0 0.9))

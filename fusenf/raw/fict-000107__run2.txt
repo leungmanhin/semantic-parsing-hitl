@@ -1,0 +1,3 @@
+(: senior_keeper_gen1 (Inheritance senior_keeper keeper) (STV 1.0 0.99))
+(: senior_keeper_gen2 (Inheritance senior_keeper senior) (STV 1.0 0.99))
+(: newcomer_apprentice_rule (Implication (Member $x newcomer) (And (Member (sk_apprentice $x) apprentice) (Agent (sk_apprentice $x) $x) (Under (sk_apprentice $x) (sk_keeper $x)) (Member (sk_keeper $x) senior_keeper))) (STV 0.9 0.9))

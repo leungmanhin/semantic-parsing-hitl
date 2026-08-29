@@ -1,0 +1,5 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: station_grp (GroupOf sk_station_1 lantern_station) (STV 1.0 0.99))
+(: ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))
+(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: council_rule (Implication (And (Member $x meet) (Agent $x sk_council_1)) (And (Member (sk_reallocate $x) reallocate) (Agent (sk_reallocate $x) sk_council_1) (Theme (sk_reallocate $x) mire_essence) (Among (sk_reallocate $x) sk_station_1) (During (sk_reallocate $x) $x))) (STV 1.0 0.9))

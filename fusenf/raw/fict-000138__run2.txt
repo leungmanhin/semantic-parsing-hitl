@@ -1,0 +1,2 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: council_prioritize_rule (Implication (And (Member $x station) (Member $lt lantern) (Member $lt drained) (PartOf $lt $x)) (And (Member (sk_prioritize $x) prioritize) (Agent (sk_prioritize $x) sk_council_1) (Theme (sk_prioritize $x) $x))) (STV 1.0 0.9))

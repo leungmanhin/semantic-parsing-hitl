@@ -1,0 +1,3 @@
+(: gf_genus (Inheritance ground_feather feather) (STV 1.0 0.99))
+(: gf_mod (Inheritance ground_feather ground) (STV 1.0 0.99))
+(: feathers_ward_lantern (Implication (And (Member $x ground_feather) (Member $x fresh)) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern))) (STV 0.9 0.9))

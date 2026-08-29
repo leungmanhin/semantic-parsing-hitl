@@ -1,0 +1,5 @@
+(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: northwind_genus (Inheritance north_wind wind) (STV 1.0 0.99))
+(: northwind_mod (Inheritance north_wind north) (STV 1.0 0.99))
+(: wind_type (Member sk_wind_1 north_wind) (STV 1.0 0.99))
+(: cove_block_lit_rule (Implication (And (Member $c cove) (GroupOf (sk_spires $c) cliff_spire) (Member (sk_block $c) block) (Agent (sk_block $c) (sk_spires $c)) (Theme (sk_block $c) sk_wind_1) (Source (sk_block $c) $c) (Member $y lantern) (LocatedIn $y $c)) (And (Member (sk_lit $y) lit) (Experiencer (sk_lit $y) $y) (Still (sk_lit $y)) (Member $y lit) (Time (sk_lit $y) winter))) (STV 1.0 0.9))

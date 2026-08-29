@@ -1,0 +1,2 @@
+(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))
+(: wraith_drain_give_rule (Implication (And (Member $w wraith) (Member $e drain) (Agent $e $w) (Patient $e $l) (Member $l lantern)) (And (Member (sk_give $l) give) (Agent (sk_give $l) $l) (Theme (sk_give $l) (sk_mist_light $l)) (Member (sk_mist_light $l) mist_light) (Member (sk_mist_light $l) weak) (During (sk_give $l) $e))) (STV 1.0 0.9))

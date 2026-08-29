@@ -1,0 +1,4 @@
+(: harvest_witness (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))
+(: harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: lantern_few_moths_harvest_falls (Implication (And (Member $x lantern) (Member $e1 attract) (Agent $e1 $x) (Theme $e1 $g) (GroupOf $g nightmoth) (CardinalityPhrase $g "few")) (And (Member (sk_fall $e1) fall) (Patient (sk_fall $e1) sk_harvest_1) (During (sk_fall $e1) $e1))) (STV 1.0 0.9))

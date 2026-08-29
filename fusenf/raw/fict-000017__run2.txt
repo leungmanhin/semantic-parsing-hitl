@@ -1,0 +1,7 @@
+(: keepers_name (Name keepers "Keepers") (STV 1.0 0.99))
+(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))
+(: silkthread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))
+(: silkthread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))
+(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))
+(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: boil_yield_rule (Implication (And (Member $x boil) (Agent $x keepers) (Patient $x silken_thread) (Location $x sea_water)) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) sk_cauldron_1) (Patient (sk_yield $x) mire_essence) (During (sk_yield $x) $x))) (STV 1.0 0.9))

@@ -1,0 +1,3 @@
+(: keepers_name (Name keepers "Keepers") (STV 1.0 0.99))
+(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: gather_potent_rule (Implication (And (Member $e1 gather) (Agent $e1 keepers) (Theme $e1 $s) (Member $s salt_bloom) (Time $e1 new_moon)) (And (Member (sk_potent $s) potent) (Experiencer (sk_potent $s) $s) (Still (sk_potent $s)) (Member $s potent))) (STV 1.0 0.9))

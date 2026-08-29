@@ -1,0 +1,4 @@
+(: base_typ (Member sk_base_1 base) (STV 1.0 0.99))
+(: cliff_typ (Member sk_cliff_1 cliff) (STV 1.0 0.99))
+(: base_part (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))
+(: molt_rule (Implication (Member $x sky_cat) (And (Member (sk_molt $x) molt) (Agent (sk_molt $x) $x) (Theme (sk_molt $x) feather) (Goal (sk_molt $x) sk_base_1))) (STV 0.9 0.9))

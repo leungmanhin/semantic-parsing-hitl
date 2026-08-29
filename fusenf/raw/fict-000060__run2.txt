@@ -1,0 +1,2 @@
+(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))
+(: lantern_give_rule (Implication (And (Member $x lantern) (Member $x drained)) (And (Member (sk_give $x) give) (Agent (sk_give $x) $x) (Theme (sk_give $x) (sk_mist_light $x)) (Member (sk_mist_light $x) mist_light) (Member (sk_mist_light $x) weak))) (STV 0.9 0.9))

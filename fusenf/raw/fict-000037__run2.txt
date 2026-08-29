@@ -1,0 +1,6 @@
+(: hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))
+(: lantern_loc (LocatedIn sk_lantern_1 hollows) (STV 1.0 0.99))
+(: fleeing_rule (Implication (And (Member $x nightmoth) (Member (sk_flee $x) flee) (Agent (sk_flee $x) $x) (Member (sk_reach $x) reach) (Agent (sk_reach $x) $x) (Goal (sk_reach $x) hollows)) (And (Member (sk_gain $x) gain) (Agent (sk_gain $x) sk_lantern_1) (Theme (sk_gain $x) (sk_threads $x)) (GroupOf (sk_threads $x) silken_thread) (Member (sk_threads $x) extra) (During (sk_gain $x) (sk_reach $x)))) (STV 1.0 0.9))
+(: st_genus (Inheritance silken_thread thread) (STV 1.0 0.99))
+(: st_mod (Inheritance silken_thread silken) (STV 1.0 0.99))

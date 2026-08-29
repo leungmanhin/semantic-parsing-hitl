@@ -1,0 +1,4 @@
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: nightmothpop_genus (Inheritance nightmoth_population population) (STV 1.0 0.99))
+(: hunt_reduce_rule (Implication (And (Member $x hunt) (Agent $x $y) (Member $y sky_cat)) (And (Member (sk_reduce $x) reduce) (Patient (sk_reduce $x) nightmoth_population) (During (sk_reduce $x) $x))) (STV 0.9 0.9))

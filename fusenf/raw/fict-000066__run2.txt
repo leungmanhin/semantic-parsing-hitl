@@ -1,0 +1,2 @@
+(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))
+(: keepers_ward_rule (Implication (And (Member $s scatter) (Agent $s sk_keepers_1) (Theme $s $feathers) (Member $feathers feather) (Member $feathers ground) (Around $s $lantern) (Member $lantern lantern) (Member $lantern lit)) (And (Member (sk_ward $s) ward) (Agent (sk_ward $s) $feathers) (Theme (sk_ward $s) $lantern) (Source (sk_ward $s) wraith) (During (sk_ward $s) $s))) (STV 1.0 0.9))

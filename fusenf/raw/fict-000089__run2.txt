@@ -1,0 +1,4 @@
+(: spring_tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))
+(: new_moon_genus (Inheritance new_moon moon) (STV 1.0 0.99))
+(: new_moon_typ (Member sk_new_moon_1 new_moon) (STV 1.0 0.99))
+(: spring_tide_near_rule (Implication (Member $x spring_tide) (Near $x sk_new_moon_1)) (STV 0.9 0.9))

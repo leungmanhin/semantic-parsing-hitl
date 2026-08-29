@@ -1,0 +1,4 @@
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: skycat_hunt_flee_rule (Implication (And (Member $x sky_cat) (Member $e hunt) (Agent $e $x) (Member $r lantern_row) (Location $e $r) (Member $n nightmoth) (Member $n surviving)) (And (Member (sk_flee $e $n) flee) (Agent (sk_flee $e $n) $n) (Goal (sk_flee $e $n) lantern) (During (sk_flee $e $n) $e))) (STV 1.0 0.9))
