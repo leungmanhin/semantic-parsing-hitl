@@ -2,7 +2,8 @@
 
 You are an adjudicator. A parser translated a sentence; a reviewer judged the parse and
 filed issues. Your job is to decide, issue by issue, whether the reviewer is right —
-and to repair the parse only where a confirmed issue requires it.
+and then whether the parse stands or falls. You never edit the parse: a failed record
+is re-parsed under a later instruction set, not patched.
 
 Read `/home/manhin/Dev/semantic-parsing-hitl/prompt.txt` IN FULL — it is the complete
 instruction set both the parser and the reviewer were judged against, and the sole
@@ -46,25 +47,18 @@ Judge the reviewer's `q2_gaps` the same way: `gaps_confirmed` for real coverage 
 and add `new_gaps` you find yourself. A gap claim is not a defect claim — a parse can
 be fully acceptable in gap territory.
 
-## Repair
+## Decision
 
 If NO issue is confirmed (all refuted, or only gaps remain over an acceptable parse):
-`"decision": "accept"` — do not touch the parse.
+`"decision": "accept"` — the parse stands.
 
-If any issue is confirmed: `"decision": "repair"` and write a corrected parse to
-
-    /home/manhin/Dev/semantic-parsing-hitl/fusenf/adjudication/<ID>__run<N>.<TAG>.repair.txt
-
-— the complete replacement (every line, not a diff), in exactly the parse format
-(`(: name (Pattern args) (STV s c))`, one atom per line, no prose). Repair rules:
-
-- Fix ONLY what a confirmed issue names; change nothing else, keep the parser's
-  symbol names and atom order wherever unaffected.
-- Never invent a relation head or an unlicensed encoding to fill a coverage gap: if a
-  confirmed issue has no licensed fix, remove the offending content (removing a false
-  atom is a fix; replacing it with an invention is not) and record the gap.
-- A repair must itself satisfy the calibration line: nothing false, ill-typed, or
-  over-asserted may remain.
+If any issue is confirmed: `"decision": "defect"` — the parse is excluded and will be
+re-parsed under a later instruction set. You do NOT write a corrected parse. But before
+you move on, do the thinking a fix would have required: for each confirmed issue, state
+in `defect_summary` what the compliant form would be — and where the instruction set
+licenses NO compliant form for the sentence's content, say so precisely and file that as
+a gap in `new_gaps` (naming the construction and what a licensed form would need to
+carry). A defect with no licensed fix is the most valuable gap report you can make.
 
 ## Verdict file
 
@@ -80,8 +74,8 @@ in exactly this shape:
                  "reason": "<one sentence, citing the rule / falsehood / license>"}],
      "gaps_confirmed": ["<gap restated briefly>"],
      "new_gaps": ["<gap the reviewer missed>"],
-     "decision": "accept" | "repair",
-     "repair_summary": "<one sentence per change; empty string if accept>",
+     "decision": "accept" | "defect",
+     "defect_summary": "<one sentence per confirmed issue naming the compliant form, or stating precisely that none is licensed; empty string if accept>",
      "notes": "<at most two sentences, may be empty>"}
 
 Use the Write tool; do not echo verdicts or parses in your reply — reply with just

@@ -107,13 +107,13 @@ standing sampled pass. Brief: `REVIEW.md`. Wrapper, same discipline as parsing:
   4. anything triage marks `open`.
   Weighting toward unseen construction types stays a manual orchestrator call until there
   is a construction tagger.
-- **Repair re-review staging (pilot 2026-08-25; reyield-50 2026-08-26):** adjudicator
-  repair artifacts are verified by this same blind pass — copy `adjudication/*.repair.txt`
-  to `raw/<ID>__run90.txt` (staging only; collision-check against already-promoted run-90
-  records first, and rename any colliding earlier `review/<ID>__run90.review.json` to
-  `.pilot-reyield.review.json`-style before dispatch), review at 100% with the standard
-  wrapper (`Run number: 90.` — reviewers are NOT told the files are repairs), then owner
-  promotion decision on the `yes` set; non-verified staging is pruned from `raw/`.
+- **[RETIRED 2026-08-29 — #51 pipeline reshape] Repair re-review staging** (pilot
+  2026-08-25; reyield-50 2026-08-26; rv9d 2026-08-29): adjudicator repair artifacts were
+  verified by this same blind pass staged as `raw/<ID>__run90.txt` and owner-promoted.
+  The mechanism is retired — the adjudicator no longer writes repairs (46% same-hash /
+  13% cross-hash verified-clean yield; defect records are instead re-parsed at the next
+  pinned hash). Existing run-90 promotions stand as history; the procedure above stays
+  documented in this file's git history and the reyield/rv9d eval reports.
 - **Review substrate is `raw/<ID>__run<N>.txt`**, not the assembled JSONL — the reviewer must
   not see neighboring records or validation blocks, and extraction only strips non-semantic
   wrappers, so the raw bytes are the faithful parse.
@@ -123,29 +123,35 @@ standing sampled pass. Brief: `REVIEW.md`. Wrapper, same discipline as parsing:
 - Batching: 5-item batches (`batches/review/rv-NN.txt`, same TSV as parse batches), fleets in
   ~8-agent sub-groups, same burst discipline as parsing.
 
-## Adjudication dispatch (the review-gate adjudicator — piloted 2026-08-24)
+## Adjudication dispatch (the review-gate adjudicator — piloted 2026-08-24; reshaped 2026-08-29)
 
-Brief: `ADJUDICATE.md`. Sits between a blind review verdict and any repair: confirms or
-REFUTES each reviewer issue against prompt.txt (refute-don't-obey), then either accepts
-the parse or writes a minimal repair. Wrapper:
+Brief: `ADJUDICATE.md`. Sits between a blind review verdict and the triage disposition:
+confirms or REFUTES each reviewer issue against prompt.txt (refute-don't-obey), then
+rules the parse `accept` or `defect`. **No repairs (#51 reshape, owner 2026-08-29): a
+defect record is excluded and re-parsed at the next pinned hash; the adjudicator instead
+states the compliant form per confirmed issue — or files a precise gap where none is
+licensed.** Wrapper:
 
     Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/briefs/ADJUDICATE.md and follow it exactly.
     Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/batches/adjudication/aj-NN.txt.
     Run number: <N>. Output tag: <TAG>.
 
-- **Model: decided by the dual-tier pilot** (30 records × Opus and Fable, scored against
-  the owner's 20 ground-truth adjudications in `batches/review/adjudication_sample.json`;
-  the deference test — refutation behavior on owner-acceptable records — picks the
-  production tier). Output tag = the model name, so tiers never collide.
+- **Model: FABLE, sole production adjudicator (owner 2026-08-29)** — upgraded from
+  Opus-production/Fable-escalation for strength and to break the shared-bias coupling of
+  Opus adjudicating Opus reviews (the cross-model check is part of the design). Output
+  tag = the model name (`fable`), so historical `opus` outputs never collide.
+  (History: the 2026-08-24 dual-tier pilot — 30 records × Opus and Fable vs the owner's
+  20 ground-truth calls in `batches/review/adjudication_sample.json` — picked Opus as
+  production with Fable escalation; superseded by this upgrade.)
 - **Isolation**: the adjudicator sees prompt.txt + sentence + parse + review verdict and
   NOTHING else — no validator findings (13%-precision C4 would anchor), no triage, no
   manifests (the owner's ground-truth calls live in a manifest and must stay unseen).
 - **The owner's calibration line is baked into the brief** (2026-08-24): improvisation in
   gap territory is acceptable iff every atom is true and well-typed; false/ill-typed/
   over-asserted content is a defect regardless of coverage.
-- Repairs land in `adjudication/` as pilot artifacts, NEVER in `raw/` — promotion to a
-  new run in the parse store is an explicit later step, so provenance stays clean
-  (a promoted repair is flagged non-blind).
+- The adjudicator writes ONLY `adjudication/<ID>__run<N>.<TAG>.adj.json` (decision
+  accept|defect + per-issue verdicts + gaps). Historical `*.repair.txt` artifacts in
+  `adjudication/` predate the 2026-08-29 reshape and are never staged again.
 - Batching: 5-item batches, same TSV and group discipline as review.
 
 ## Diagnosis dispatch (M1 judgment buckets — standing from batch 2)
