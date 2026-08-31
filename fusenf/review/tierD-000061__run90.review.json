@@ -1,0 +1,11 @@
+{"id": "tierD-000061", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "\"Texas\" is a named referent in the sentence but receives no symbol and no Name atom, although the seal-projection table projects Name atoms of named referents (the appropriations act's typing and decomposition were projected the same way)."},
+               {"statement": 1, "issue": "The say event carries no Theme, so the whole reported claim (\"it was the first time in Texas history a comptroller had not certified the appropriations act\") is unrecorded — defensible under the no-polarity-inside-a-seal limitation, but the entire content of the sentence is lost."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"it was the first time (in <domain>) that P\" — an ordinal over OCCURRENCES of a whole proposition: Ordinal ranks an entity on a scale and has no form for ranking the occurrence of a clause, so this construction has no carrier at all",
+             "a PARTIALLY negative sealed complement whose expressible residue is contentless: the drop-the-complement licence is written only for a complement that is \"nothing but negated content\", and says nothing about one whose matrix (\"it was the first time ...\") is positive but vacuous once the negated clause is removed"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "What is emitted is correct — say with Experiencer and Past, no invented type for Strayhorn, and the definite \"appropriations act\" projecting its typing plus the compound genus with the noun modifier left unexposed. The parse is nonetheless almost entirely empty relative to the sentence, so the two gaps above are where the loss actually comes from."}

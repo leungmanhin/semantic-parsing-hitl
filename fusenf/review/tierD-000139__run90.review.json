@@ -1,0 +1,9 @@
+{"id": "tierD-000139", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 7, "issue": "(Manner sk_release_1 immediately) mis-slots a temporal/promptness adverb into Manner, which the instruction set reserves for how-adverbs of manner proper and explicitly bars for sequence/ordering adverbs, directing that they be left out with the gap recorded."}, {"statement": 5, "issue": "\"family notification\" is a noun+noun compound, which the instruction set fuses into family_notification with genus notification and never exposes the noun modifier of; the parse instead decomposes it into a Recipient role plus an sk_family_1 witness, exposing a modifier that should stay inside the symbol."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["promptness/temporal adverb \"immediately\" on a verb has no licensed slot — Manner is barred for it, and neither Duration nor the frequency/period heads fit, so the sentence's \"not immediately\" scope contrast cannot be encoded"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Pending is a licensed head — the instruction set names \"pending\" among the genuine -ing prepositions that keep the preposition-named oblique form rather than reducing to a relative clause. The definite possessor restrictor (Possession sk_identities_1 sk_victims_1) and the referent typing atoms correctly sit outside the strength-0 denial bundle."}

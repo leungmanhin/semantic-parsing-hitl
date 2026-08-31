@@ -1,0 +1,11 @@
+{"id": "tierD-000148", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 7, "issue": "The stated end value \"$23.40\" should be `(MeasureTo ...)` per *Scalar change* rather than a plain `Measure` on the event, and no word in the clause supplies the scale `price` (an unstated dimension takes the reserved `unspecified`)."},
+               {"statement": 8, "issue": "\"up 64 cents\" is a scalar delta and belongs in `(MeasureBy ...)`, and the scale symbol `increase` is invented — *Measures & units* forbids inventing a scale no word supplies, and direction lives in the lemma, not the scale slot."},
+               {"statement": 4, "issue": "The subject of a value-change clause (\"closed at $23.40, up 64 cents\") takes `Theme` under the scalar-change/undergoer test, not `Patient`."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["an appositive scalar delta hung on a non-change-of-value verb (\"the stock closed at $23.40, up 64 cents\") — *Scalar change* is defined for change-of-value verbs and copular \"was up/down\" states, and does not say which eventuality carries MeasureBy / MeasureTo when the delta is an appositive on a `close` event"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"the Nasdaq market\" is correctly split into the name symbol `nasdaq` plus a separate `(Member nasdaq market)` kind atom, and `In` rather than `During` is used for \"in trading\"."}

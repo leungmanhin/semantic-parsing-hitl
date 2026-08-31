@@ -1,0 +1,11 @@
+{"id": "tierD-000230", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 7, "issue": "Both sealed Implication rules use the variable $x inside one stored term, violating the requirement that every sealed rule get fresh variables shared with no other conjunct of that seal (variables must not co-vary inside one term)."},
+               {"statement": 7, "issue": "The additive \"more\" is dropped from both counts — \"nine MORE people had died\" and \"160 MORE were infected\" become plain (Cardinality … 9) / (Cardinality … 160), losing the incremental-to-a-running-total reading the sentence states."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"N more\" — an incremental / additive count relative to a prior total has no licensed carrier (Cardinality states the size of that group, not an increment)",
+             "a numeral with an elided head noun (\"160 more [people]\") — one-anaphora covers \"one\", but there is no rule for recovering the head kind for a bare numeral"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "(Member sars virus) is licensed because the anaphoric definite \"the virus\" supplies the kind word for SARS, and projecting only the named referent's Name/typing out of the say-seal is correct. The same causal participant is encoded two ways — (From sk_die_1 sars) vs (Instrument sk_infect_1 sars) — each defensible under its own preposition rule, but the two records will not unify."}

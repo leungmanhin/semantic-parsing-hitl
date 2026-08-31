@@ -1,0 +1,13 @@
+{"id": "tierD-000075", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 4, "issue": "'one of the world's largest producers' is encoded as the comparison-class construction (Degree weyerhaeuser large (forKind producer)), i.e. large-relative-to-the-producer-norm, instead of the licensed top-stratum (AmongMost large weyerhaeuser producer), so the superlative claim is replaced by a different one."},
+  {"statement": 1, "issue": "the class restriction 'of softwood lumber' is dropped from the predication — (Member weyerhaeuser producer) widens the claim, and the agent-nominalization's of-argument gets no atom on the entity."},
+  {"statement": 7, "issue": "the capacity clause states no object ('capacity to produce 7.6 billion board feet a year'), yet a fresh lumber witness is asserted as its Patient, importing content from the earlier NP."},
+  {"statement": 9, "issue": "the Measure scale 'quantity' is invented — no word in the clause supplies a dimension, so the reserved slot symbol 'unspecified' is required."},
+  {"statement": 4, "issue": "the stated domain restriction 'the world's' is left unencoded (the AmongMost rule requires a stated domain restriction to stay on the entity as its own atoms)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a measure NP serving as a verb's direct object ('produce 7.6 billion board feet a year') — the instruction set defines Measure for entities, event duration and scalar-change deltas, but does not say how an output-amount object attaches or what fills its scale slot"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Correctly handled: the agent-nominalization capability (Inheritance producer (can produce)) fires because 'producer' is the copular predicate here, the softwood_lumber genus is emitted with the noun modifier suppressed, and the rate unit board_foot_per_year plus the native 7600000000 magnitude follow the rate rule. The garbled 'the one of the worlds' is reasonably parsed as best-effort per the defective-text instruction."}

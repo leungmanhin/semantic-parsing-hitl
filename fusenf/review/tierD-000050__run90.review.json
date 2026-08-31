@@ -1,0 +1,9 @@
+{"id": "tierD-000050", "run": 90,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a superlative / ordinal ranking restricted to a population (\"the fourth most common cancer IN AMERICAN MEN\"): Ordinal has no slot for the population the ranking is relative to, and the AmongMost guidance (\"a stated domain restriction stays on the entity as its own atoms\") would attach the restriction to the ranked entity, losing which ranking goes with which population when two are coordinated"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The compound kinds (bladder_cancer genus only, american_man genus + nationality-adjective modifier), the Ordinal rank-n rendering of a non-first superlative, the reconstructed ellipsis for \"the eighth in women\", and the 0.9 kind-level confidence are all right. Filling Ordinal's scale slot with a fused restricted property (common_in_american_man, decomposed as genus + In per the sensitive_to_light pattern) is an extension the instruction set neither licenses nor forbids, but it preserves the meaning."}

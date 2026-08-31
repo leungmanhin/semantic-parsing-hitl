@@ -1,0 +1,9 @@
+{"id": "tierD-000134", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "\"Judge\" is an occupational/office premodifier (parallel to the instruction set's \"prosecutor Iris Vale\"), so it must stay out of the Name string and become the person's typing atom; the parse keeps it inside \"Judge Tim Harley\" and emits no (Member tim_harley judge)."}, {"statement": 1, "issue": "adrian_mcpherson gets a Name atom but is linked to nothing — the proper-noun-premodifying-a-common-noun rule requires the opaque (Possession sk_trial_1 adrian_mcpherson), so the stated association is dropped and the symbol dangles."}, {"statement": 13, "issue": "(Before sk_reach_1 sk_declare_1) is asserted at strength 1.0 outside the denial, ordering the very reaching event the parse denies at strength 0.0, so an anteriority claim is attached to an eventuality the sentence says never occurred."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["temporal ordering with \"after\" whose subordinate clause is a negated/unrealized eventuality (\"after the jury was unable to reach a verdict\"): no rule says whether the Before atom goes inside or outside the strength-0 denial bundle, nor what symbol fills its earlier slot when the only available eventuality is the denied one"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The Patient role on \"reach a verdict\" is arguable — the instruction set's own \"reached the platform\" example takes Theme, though the informational-artifact clause could justify Patient. The deictic \"today\" is correctly left a bare constant with no calendar atoms and no witness, and the \"was unable to\" inability follows the \"could not reach the ledge\" pattern (Can plus Past inside the strength-0 bundle)."}

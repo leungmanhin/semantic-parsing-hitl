@@ -1,0 +1,13 @@
+{"id": "tierD-000034", "run": 90,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": 4, "issue": "The subject of a scalar-change verb takes Theme, not Patient."},
+               {"statement": 6, "issue": "A scalar-change delta uses the head MeasureBy, not the plain entity-measure head Measure."},
+               {"statement": 7, "issue": "Same wrong head on the restated percentage delta — MeasureBy, not Measure."},
+               {"statement": 6, "issue": "The scale slot takes the verb lemma 'fall'; no dimension noun is stated in the clause and the subject is not itself a dimension noun, so the scale is the reserved 'unspecified' (a scale no word supplies is never invented)."},
+               {"statement": null, "issue": "The stated end value 'to 1,069.42' is dropped — no MeasureTo atom is emitted."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a lowercase adjective premodifying a NON-place proper name ('the broad Standard & Poor's 500 Index') — the mechanical casing cue prescribes minting a sub-region witness contained in the named entity, a treatment defined only for places, and nothing states what to do for a non-place bearer"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Correctly drops the <.SPX> ticker as a parenthetical secondary identifier and correctly emits the restatement pair ('0.70 points, or 0.07 percent') as two asserted atoms rather than an Or. The kind typing read off the capitalized 'Index' inside the name is also right."}

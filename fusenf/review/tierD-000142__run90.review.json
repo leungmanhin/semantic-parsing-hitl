@@ -1,0 +1,10 @@
+{"id": "tierD-000142", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 4, "issue": "\"QVC management team\" is a proper noun premodifying a common-noun head, which the instruction set links with the opaque `Possession` unless a more specific relation is stated; `(PartOf sk_team_1 qvc)` invents the part-whole relation the rule explicitly bars."},
+               {"statement": 10, "issue": "\"the remaining shares\" has a dedicated remainder encoding (the portion plus `(RestOf <rest> <whole>)` and `SubsetOf`/`PartOf` to the definite whole), but the parse drops the remainder relation and records it as an ad-hoc property atom on the group symbol instead."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "`Holder` for \"hold the shares\" is defensible as a possession state, though the instruction set's own stative-transitive example (\"the tank holds forty litres\") takes `Agent`. No per-member distribution rule was emitted for the holding; the collective reading is defensible."}

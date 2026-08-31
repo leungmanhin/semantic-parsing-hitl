@@ -1,0 +1,14 @@
+{"id": "tierD-000161", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 5, "issue": "Inside the seal, (Time sk_results_1 sk_quarter_1) puts a Time oblique on an entity — \"results\" is not an event or event-denoting noun, and the instruction set attaches Time atoms to event witnesses only."},
+   {"statement": 5, "issue": "\"first-quarter\" is encoded as a minted quarter witness plus (Ordinal sk_quarter_1 1 quarter); the instruction set gives a fiscal period the bare constant first_quarter (or (Quarter <n> <year>) when the year is stated), so both the witness and the Ordinal are off-form and the Time fillers are witnesses rather than period terms."},
+   {"statement": 5, "issue": "The participial adjunct \"based on\" loses its head: only (On sk_expect_1 sk_results_1) survives, which asserts the expecting is \"on\" the results and drops \"based\" without any reified event or recorded gap."},
+   {"statement": 4, "issue": "(Member sk_quarter_1 quarter) is emitted twice — projected at top level and repeated as a conjunct inside the sealed (And ...) — whereas the instruction set's seal examples keep only the predication inside and the typing outside."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a free participial adjunct modifying a clause (\"based on first-quarter results, it expects ...\") — the reduced-relative rule covers participles post-modifying a NOUN, not a clause-level adjunct", "a fiscal-period restriction on a non-event nominal (\"first-quarter results\", \"for the quarter\") has no licensed carrier: Time is event-only and the period constant has no slot on an entity"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The say/seal routing, the Experiencer holder, the control-infinitive \"expects to earn\" (top-level-within-seal, controller copied in, no tense of its own) and the cent_per_share rate unit all follow the instruction set."}

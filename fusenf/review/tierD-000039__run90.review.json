@@ -1,0 +1,12 @@
+{"id": "tierD-000039", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 6, "issue": "(Cardinality $x 48) puts the group-count head on $x, a single class that is never established as a group (no GroupOf), so the count has no group to size and no counted kind."},
+               {"statement": 6, "issue": "'are booked' is a distributive predicate over the class group but receives no per-member (Implication (PartOf $x sk_classes_1) ...) rule, although the parse does distribute 'full'/'48' that way."},
+               {"statement": 6, "issue": "The explicit quantifier word 'each' is what the sealed distribution rule consumes, but no (QuantifierPhrase ...) companion is emitted as a sealed sibling conjunct."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A distributive NP-internal member count ('classes of 48 each') — a per-member cardinality whose counted kind is never stated — has no licensed carrier: Cardinality needs a group symbol and GroupOf needs a named member kind.",
+             "'the end of <deictic period>' as an interval endpoint — no term form is defined for a boundary inside a deictic time constant such as next_month."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Sealing both conjuncts under the medial 'he said', the Experiencer holder, and projecting only the definite referents' typing (the agency, its classes) while keeping the Possession link sealed are all handled correctly. Minting a fresh group for 'its classes' distinct from the booked 'full classes' is a defensible coreference choice."}

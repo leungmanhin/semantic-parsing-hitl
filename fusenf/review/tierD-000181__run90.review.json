@@ -1,0 +1,12 @@
+{"id": "tierD-000181", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "\"Schwarzenegger's decision\" is a genitive naming an event noun's underlying subject, which takes that noun's subject role (`Agent`/`Experiencer`); `Possession` there asserts a relation the text does not state (the \"the committee's ruling\" case)."},
+               {"statement": 7, "issue": "`(Past sk_await_1)` tenses the participial reduced relative \"those awaiting …\", which carries no tense of its own — the matrix \"was\" holds the tense."},
+               {"statement": null, "issue": "`await` is a distributive predicate over the definite group, so the per-member `(Implication (PartOf $x sk_group_1) …)` rule should accompany the group event — and a member (Riordan) is in fact named in the same sentence, which is exactly what the rule is for."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["privative / temporal adjective on a role noun (\"former\" mayor, \"ex-\") — nothing distinguishes it from an ordinary attributive, and the Past wrapper here only coincidentally covers it",
+             "a place name inside an occupational premodifier (\"Los Angeles Mayor Richard Riordan\") — the title phrase is routed \"through Compound concepts\", which explicitly excludes proper nouns, so the office-to-place link is unspecified"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The reduced relative, the `person` group witness (justified by discourse evidence, not the pronoun alone), the multi-word name symbols and the `Past`-wrapped appositive typing and `PartOf` are all handled correctly. `(Past (Possession richard_riordan los_angeles))` is a strained but defensible transposition of the premodifier rule onto a title realized as the person's own typing."}

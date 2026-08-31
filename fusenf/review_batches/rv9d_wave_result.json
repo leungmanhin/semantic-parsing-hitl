@@ -1,0 +1,3083 @@
+[
+ {
+  "id": "tierD-000001",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "plural-distribution",
+   "scalar-measure",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The sealed rule's premise contains Skolem function terms `(sk_take $x)`, which the instruction set forbids in premises (\"a premise never contains a Skolem term\"), so the rule can never fire.",
+   "The two stated deltas \"by 88 percent\" and \"by 80 percent\" are dropped entirely \u2014 neither lowering event carries a MeasureBy atom, silently widening the claim.",
+   "The per-member distribution rule repeats both defects, and its conclusion contains `$x`, a variable no premise of that rule binds."
+  ]
+ },
+ {
+  "id": "tierD-000002",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "names-plural-label",
+   "plural-distribution",
+   "scalar-measure",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"by 88 percent\" and \"by 80 percent\" are dropped \u2014 neither lower event carries a MeasureBy delta atom, so the stated magnitudes are lost.",
+   "The gerund subject \"Taking the pill\" of a generic claim is minted as an event witness sk_take_1 and used as Agent of the lowering, where the instruction set routes a gerund-clause subject through the occurrence-trigger rule machinery and explicitly forbids minting a witness for the gerund.",
+   "The compound kind heart_attack is used with no genus atom (Inheritance heart_attack attack), which compound decomposition always requires and the seal's projection table explicitly lets through.",
+   "\"The scientists\" is a grouped plural with a distributive predicate, so the per-member rule over (PartOf $x sk_scientists_1) is missing beside the group-level say event."
+  ]
+ },
+ {
+  "id": "tierD-000004",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"the London raids\" is a proper noun premodifying a common-noun head, which the instruction set links with the opaque Possession unless a more specific relation is stated; (Location sk_raid_1 london) asserts a spatial relation the words do not state.",
+   "Ordinal's scale slot is filled with the entity's own class `phase`, which is neither an associated event nor an explicit \"-est\" dimension, and the surface word \"final\" is rendered as the symbol `last`."
+  ]
+ },
+ {
+  "id": "tierD-000006",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The content clause \"that they really hate Islam\" \u2014 the complement of \"evidence\" \u2014 is entirely unencoded, leaving (Name islam \"Islam\") as an orphan atom for a referent that appears nowhere else in the parse.",
+   "The explicative link \"meaning that\" between the two quoted clauses is unrecorded, so the seal reads as a bare conjunction of two unrelated propositions.",
+   "\"should have\" loses its strength-0.7 reading: (Obligated sk_have_1) sits inside a seal carrying one (STV 1.0 0.99), making it indistinguishable from \"must have\"."
+  ]
+ },
+ {
+  "id": "tierD-000007",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "during-oblique",
+   "names-plural-label",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"in an interview\" is the preposition-named oblique In \u2014 the instruction set's own \"in a statement\" case \u2014 not Location, which it reserves for where/when the event took place.",
+   "The dropped wholly-negative complement should still project its definite referents' typing, so (Member sk_ammunition_1 ammunition) for \"its ammunition\" is missing beside the projected (Name ecb \"ECB\")."
+  ]
+ },
+ {
+  "id": "tierD-000009",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "adverb-slots"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "'up to two years in prison' is reduced to (Theme sk_face_1 prison): the stated upper bound gets no MeasureAtMost/duration atom and the 'in' PP is absorbed into the object slot, so the parse asserts facing prison with the qualifier that limits it silently dropped."
+  ]
+ },
+ {
+  "id": "tierD-000010",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "adverb-slots",
+   "seal-boundary",
+   "would-irrealis"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The rule's conclusion drops the whole object 'up to two years in prison' \u2014 the face event carries no Theme and no bounded-duration atom, so the stated penalty disappears entirely.",
+   "Irrealis 'would face' is encoded as (Future (sk_face $x)), but 'would' is never a blanket Future: this is neither an embedded future-shift (no seal) nor a past-narrative refusal, so it is the irrealis lone consequent, which should be left unencoded with the gap recorded rather than asserted as a future occurrence."
+  ]
+ },
+ {
+  "id": "tierD-000011",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "'ask him to appeal' loses its addressee: sk_ask_1 carries no Recipient for 'him' (Rork) \u2014 the controller is copied into the appeal event only, though a control verb's matrix keeps its own surface roles."
+  ]
+ },
+ {
+  "id": "tierD-000012",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "'Parrish's ruling' is encoded as (Possession sk_ruling_1 parrish), but a genitive naming an event noun's underlying subject \u2014 the instruction set's own example is 'the committee's ruling' \u2014 must take that noun's subject role; Possession there asserts a relation the text never states.",
+   "That possessor link is stated only inside the sealed said/thought complement yet is emitted at top level, while the projection table lets exactly Member/Name typing and definitional decomposition atoms out of an attitude seal and keeps possessor / Of links sealed.",
+   "'perhaps U.S. District Court' is flattened into a second (Goal sk_appeal_1 us_district_court) on the same appeal event: the hedge 'perhaps' is dropped, so one appeal is asserted to go to both courts unhedged."
+  ]
+ },
+ {
+  "id": "tierD-000013",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "names-plural-label",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "(Possession sk_star_1 sk_planet_1) is emitted at top level although 'its star' is stated only inside the sealed 'we think' complement; the projection table lets only Member/Name typing and definitional decomposition out of an attitude seal and keeps a referent's possessor links sealed."
+  ]
+ },
+ {
+  "id": "tierD-000014",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000016",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The bare-plural episodic object 'telephone calls' is encoded as the bare kind symbol telephone_call instead of an existential group witness, and that kind symbol then also fills the Agent slot of the 'seeking' event, putting a class where a specific participant belongs.",
+   "No type atom is emitted for redding_medical_center even though the kind word ('Medical Center') sits inside the name, which is exactly the case the Names rule says to state as one ordinary type atom."
+  ]
+ },
+ {
+  "id": "tierD-000017",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The Measure scale 'earnings' is invented \u2014 no dimension word appears anywhere in the clause, and the slot rule says an unstated dimension takes the reserved symbol unspecified.",
+   "The 'American Idol' premodifier is dropped: nothing links american_idol to kelly_clarkson or justin_guarini, so its Name atom dangles unattached and the stated restriction ('American Idol winner / runner-up') is widened to a plain winner and runner_up."
+  ]
+ },
+ {
+  "id": "tierD-000018",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The stated figure '$2.9-million' is not encoded at all \u2014 no Measure atom on the opening event, though a Measure with the reserved unspecified scale is licensed for a magnitude whose dimension no word supplies.",
+   "The 'American Idol' premodifier is dropped: nothing links american_idol to kelly_clarkson or justin_guarini, so its Name atom dangles unattached and the restriction on 'winner' / 'runnerup' is lost."
+  ]
+ },
+ {
+  "id": "tierD-000019",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "during-oblique",
+   "other",
+   "seal-boundary",
+   "would-irrealis"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Member addr_54346_avenida_velasco address) invents a type atom \u2014 the word 'address' occurs nowhere in the text, and a type atom is licensed only when the kind is readable off the words.",
+   "The definitional decomposition atoms (Inheritance phone_call call) and (Inheritance domestic_disturbance disturbance) are kept inside the sealed Theme, but the projection table sends compound-kind decomposition atoms out of an attitude seal to top level.",
+   "The temporal 'when' clause is left unlinked: the begin event and the receive event are both sealed as plain past events with no During/Before between them, so the stated co-timing is unencoded.",
+   "The second, separate bare-plural 'deputies' reuses the matrix group witness sk_group_1, which asserts that the deputies who spoke are the same ones who received the call \u2014 an indefinite mention would ordinarily mint a fresh group."
+  ]
+ },
+ {
+  "id": "tierD-000020",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "during-oblique",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The 'when'-clause is left unlinked \u2014 no temporal relation (During / Before) ties the begin event to the deputies' saying, so the sentence's 'when' is dropped entirely.",
+   "The block designator '54-300' is dropped, leaving a bare (Member sk_block_1 block) with no record of which block."
+  ]
+ },
+ {
+  "id": "tierD-000022",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "during-oblique",
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "'his first sporting passion' \u2014 the ordinal 'first' is emitted as a plain property atom (Member sk_passion_1 first) instead of the licensed (Ordinal <entity> 1 <scale>) form.",
+   "'his Wimbledon defence' fuses a proper noun into the compound kind wimbledon_defence (with genus at 24), which the proper-noun-premodifier rule forbids \u2014 the head noun should be typed on its own and linked to the named entity by opaque Possession.",
+   "(Name wimbledon \"Wimbledon\") is emitted but the wimbledon symbol appears in no other atom \u2014 an orphan left behind by the fusion at 23.",
+   "Simultaneity 'as' is rendered as (During sk_trade_1 sk_relax_1), but During is restricted to 'during / while / throughout' and is never a synonym head."
+  ]
+ },
+ {
+  "id": "tierD-000023",
+  "q1": "no",
+  "n_issues": 6,
+  "families": [
+   "comparatives",
+   "names-plural-label",
+   "other",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "A scalar-change subject takes Theme, not Patient (the instruction set's own 'the temperature fell' example uses Theme).",
+   "The end value is encoded as a spatial (Goal sk_inch_up_1 sk_level_2), which the scalar-change rule explicitly forbids \u2014 an endpoint belongs on MeasureTo.",
+   "The start value 'from April's 6 percent' is encoded as a spatial Source onto an invented entity instead of (MeasureFrom <event> <scale> 6 percent).",
+   "The delta 'one-tenth of a percentage point' is encoded as a comparative MoreBy between two reified levels instead of (MeasureBy <event> <scale> 0.1 percentage_point).",
+   "(Most high sk_level_2 level) drops 'since July 1994', widening the claim to an all-time high that the sentence does not state.",
+   "sk_level_1 and sk_level_2 (with 9) are invented referents \u2014 no 'level' noun occurs in the sentence, so neither type atom is readable off the words."
+  ]
+ },
+ {
+  "id": "tierD-000024",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "comparatives",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "A scalar-change subject takes Theme, not Patient.",
+   "The delta rides the generic Measure head instead of MeasureBy, and its scale is the verb lemma 'rise'; the dimension noun the clause actually supplies is 'rate' (a scale no word supplies is never invented).",
+   "'to 6.1%' is stored as the bearer's own timeless (Measure sk_rate_1 level 6.1 percent), which the scalar-change rule explicitly forbids \u2014 an end value must be MeasureTo on the event.",
+   "(Most high sk_rate_1 level) drops 'since July 1994', widening it to an all-time high; it also predicates the superlative of the rate entity rather than of the value, and the required companion (Member sk_rate_1 level) is missing."
+  ]
+ },
+ {
+  "id": "tierD-000025",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "'the Quartet' is a capitalized bare class word used as the referent's only label \u2014 a common noun by default, so no Name atom (and the referent should be a definite witness, not the name-derived constant 'quartet').",
+   "(Member quartet group) types the referent with a kind word the sentence never uses; the kind readable off the words is 'quartet'.",
+   "(Of sk_representative_1 sk_people_1) is asserted at top level although that of-restrictor is stated only inside the sealed whether-question \u2014 the projection table lets only Member/Name typing and definitional decomposition atoms out of an attitude seal."
+  ]
+ },
+ {
+  "id": "tierD-000026",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "names-plural-label",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The definite \"the representative\" keeps its typing atom (Member sk_representative_1 representative) inside the Whether seal, although a definite referent's Member/Name typing must project to top level in every sealing construct alike (the Palestinian people's typing was projected, so the parse is internally inconsistent too)."
+  ]
+ },
+ {
+  "id": "tierD-000028",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000029",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "names-plural-label"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"White House\" is a proper noun premodifying a common-noun head, which never fuses into a compound: the parse builds white_house_press_secretary (and its genus atom at index 2) instead of typing the head phrase alone and linking the named entity by Possession with its own Name atom."
+  ]
+ },
+ {
+  "id": "tierD-000030",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Experiencer sk_claim_1 sk_iranian_1): the holder is Experiencer only when the complement seals, and a control infinitive keeps the ordinary role - the instruction set's own \"claimed to have taken it\" example makes the matrix subject Agent.",
+   "(Patient sk_take_1 sk_step_1): taking does not create, destroy, consume or change the steps, so the object-change test yields Theme (acquisition/transfer), not Patient.",
+   "(Patient sk_capture_1 al_qaeda): capture relocates or detains without altering its object - the instruction set's \"abducting a diplomat\" case - so this should be Theme."
+  ]
+ },
+ {
+  "id": "tierD-000031",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The specificational copula \"Counties with population declines will be Vermillion, Posey and Madison\" is silently re-encoded as three attributive With predications, so the identifying (and exhaustive) claim of the clause is nowhere recorded and the clause's own future tense is relocated onto the decline witnesses."
+  ]
+ },
+ {
+  "id": "tierD-000033",
+  "q1": "no",
+  "n_issues": 4,
+  "families": [
+   "scalar-measure",
+   "unaccusative-roles"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The subject of a scalar-change verb takes Theme, not Patient (a scalar-change subject rides Scalar change and is likewise Theme).",
+   "The end value is stored as the index's own standing (Past (Measure ...)) atom, which Scalar change explicitly bars ('never becomes the bearer's own timeless Measure'); it belongs on the event as (MeasureTo sk_pull_back_1 ...).",
+   "The scale slot invents 'point' from the unit word, but no dimension noun is stated anywhere in the clause, so the scale slot takes the reserved symbol 'unspecified'.",
+   "The stated delta 'nearly 4 points' is dropped entirely \u2014 no MeasureBy atom is emitted, so the sentence's headline figure is lost."
+  ]
+ },
+ {
+  "id": "tierD-000034",
+  "q1": "no",
+  "n_issues": 5,
+  "families": [
+   "names-plural-label",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The subject of a scalar-change verb takes Theme, not Patient.",
+   "A scalar-change delta uses the head MeasureBy, not the plain entity-measure head Measure.",
+   "Same wrong head on the restated percentage delta \u2014 MeasureBy, not Measure.",
+   "The scale slot takes the verb lemma 'fall'; no dimension noun is stated in the clause and the subject is not itself a dimension noun, so the scale is the reserved 'unspecified' (a scale no word supplies is never invented).",
+   "The stated end value 'to 1,069.42' is dropped \u2014 no MeasureTo atom is emitted."
+  ]
+ },
+ {
+  "id": "tierD-000035",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "other",
+   "plural-distribution",
+   "scalar-measure",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "A proper noun premodifying a common-noun head ('Devil Rays prospect') links by the opaque Possession; PartOf is explicitly barred ('never invent membership or PartOf the words don't state').",
+   "The reified state attaches its bearer by Experiencer (the entity the state holds of); Stimulus with no Experiencer is not the licensed reified-state shape.",
+   "Inside the seal, (Member sk_problems_1 unspecified) uses 'unspecified', which is licensed only in Measure-family scale/unit slots, and it rides the group symbol although a descriptive member-property must distribute over the members."
+  ]
+ },
+ {
+  "id": "tierD-000036",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "scalar-measure",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "A proper noun premodifying a common-noun head ('Devil Rays prospect') links by the opaque Possession; PartOf is explicitly barred ('never invent membership or PartOf the words don't state').",
+   "The stated qualifier 'unspecified' is silently dropped from the sealed complement, widening 'unspecified personal problems' to 'personal problems'."
+  ]
+ },
+ {
+  "id": "tierD-000037",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "plural-distribution",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The 'of Solaris' link is stated only inside the reported clause, so it must stay sealed; the projection table lets only typing/Name atoms and definitional decomposition out of an attitude seal, never a referent's possessor or Of link.",
+   "The group-level event is missing: a definite plural with a distributive predicate keeps the group event alongside the per-member rule, and here both belong inside the seal as P's full normalized form.",
+   "The restrictive descriptive modifier 'new' is bundled into the run rule's conclusion instead of distributing as its own per-member copular predicate."
+  ]
+ },
+ {
+  "id": "tierD-000039",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "other",
+   "plural-distribution",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Cardinality $x 48) puts the group-count head on $x, a single class that is never established as a group (no GroupOf), so the count has no group to size and no counted kind.",
+   "'are booked' is a distributive predicate over the class group but receives no per-member (Implication (PartOf $x sk_classes_1) ...) rule, although the parse does distribute 'full'/'48' that way.",
+   "The explicit quantifier word 'each' is what the sealed distribution rule consumes, but no (QuantifierPhrase ...) companion is emitted as a sealed sibling conjunct."
+  ]
+ },
+ {
+  "id": "tierD-000040",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "other",
+   "plural-distribution"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "'Full' is silently dropped \u2014 nothing predicates fullness of the classes or their members, so the parse asserts only that classes are booked, a wider claim than the text makes.",
+   "'of 48' is silently dropped \u2014 no cardinality atom anywhere records the size the text states.",
+   "'are booked' is distributive over the class group but no per-member (Implication (PartOf $x sk_classes_1) ...) rule is emitted, so a class named later inherits nothing."
+  ]
+ },
+ {
+  "id": "tierD-000042",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "names-plural-label",
+   "other",
+   "seal-boundary",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(AccordingTo sk_tell_1 sk_affidavit_1) passes a bare event symbol where AccordingTo's first argument must be the sealed proposition itself (a single atom, or several as an (And ...) term).",
+   "The attributed telling is asserted at top level (statements 4-8), breaking the non-factive bar that no predication of the attributed proposition reaches top level \u2014 the text only says the affidavit reports it.",
+   "'FBI agents' is a proper noun premodifying a common-noun head, which the instruction set routes to the opaque (Possession sk_agents_1 fbi) and explicitly bars from PartOf.",
+   "'former' in 'Dennehy's former teammate' is dropped rather than kept in the symbol (former_teammate with genus teammate); the Past wrapper that stands in for it comes from the host clause, not from 'former'."
+  ]
+ },
+ {
+  "id": "tierD-000043",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000044",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000046",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "plural-distribution"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The bare-plural episodic subject \"police\" is typed (Member sk_police_1 police), i.e. as one individual, where the bare-plural-in-an-episodic-clause rule mints a group witness (GroupOf).",
+   "(PartOf sk_body_group_1 sk_bomber_group_1) asserts that the group of bodies is a component/member of the group of bombers, which is not the per-person body-of relation the genitive states."
+  ]
+ },
+ {
+  "id": "tierD-000047",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "names-plural-label",
+   "other",
+   "plural-distribution",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The age appositive uses the invented scale symbol `age`; the instruction set mandates `old` for a post-nominal age tag ((Measure <person> old 43 year)), and a scale no word supplies is never invented.",
+   "\"everyone\" \u2014 an explicit universal \u2014 is encoded as a single group witness predicated as a unit, instead of the distributing rule over its members (which a seal must carry as an inner conjunct) plus a QuantifierPhrase companion.",
+   "The reified \"involved\" state and the \"responsible\" result state are emitted without their dual-emit flat halves \u2014 and, with a group bearer, without the per-member (Implication (PartOf $x <group>) ...) distribution the plural rule requires.",
+   "\"his son\" yields no `son` typing atom on sk_boy_1, although the kind word is stated in the text."
+  ]
+ },
+ {
+  "id": "tierD-000048",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "names-plural-label",
+   "other",
+   "plural-distribution",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The involvement rule is asserted at TOP LEVEL, outside the non-factive `tell` seal, so the parse claims as fact that a set of people were involved in the son's death \u2014 the projection table lets only typing / Name / definitional-decomposition atoms out, and P's own distribution rule is explicitly required to sit inside the sealed (And ...).",
+   "(GroupOf sk_group_1 person) for the quantified \"everyone\" is likewise projected outside the seal, although \"everyone\" is a universal range, not a definite or named referent.",
+   "The rule inverts the restriction \u2014 it concludes involvement from group membership rather than using \"involved in his son's death\" as the restrictor \u2014 and carries no QuantifierPhrase companion for the explicit quantifier \"everyone\".",
+   "(Possession sk_death_1 terrance) \u2014 a genitive naming an event noun's underlying subject must take that subject role (die = change-of-state undergoer, so Patient), never Possession."
+  ]
+ },
+ {
+  "id": "tierD-000049",
+  "q1": "no",
+  "n_issues": 5,
+  "families": [
+   "names-plural-label",
+   "other",
+   "plural-distribution",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The sealed complement drops the sentence's entire assertion \u2014 the \"fourth most common\" and \"eighth most common\" rankings, the \"in men\" / \"in women\" restrictions, and the whole second conjunct \u2014 leaving only the unqualified claim that it is a cause of cancer, exactly the widening the no-silently-dropped-qualifier rule forbids.",
+   "P is also flattened to top level as if `show` were factive; `show` is on neither the factive nor the non-factive list, and a hedged evidential (\"further estimates show\") must not put its complement into the KB as fact.",
+   "Same top-level flattening of the sealed (Of sk_thing_1 cancer) argument link, which cannot project even for a definite referent.",
+   "With the complement sealed under Theme the holder must be Experiencer, not Agent (\"the holder is Experiencer exactly when the complement seals\").",
+   "(Member sk_estimate_1 further) predicates the descriptive modifier of the group symbol; a descriptive modifier on a plural distributes over the members rather than riding the group-as-object."
+  ]
+ },
+ {
+  "id": "tierD-000050",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000051",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "other",
+   "scalar-measure",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The compound-kind decomposition atoms (Inheritance power_plant plant) and (Inheritance coal_power_plant power_plant) are kept inside the attitude seal, but definitional decomposition atoms of compounds P mentions must project out of an attitude seal to top level, so these genus links are never actually asserted.",
+   "\"especially coal\" becomes a bare SubsetOf coal-plant subgroup, so the scalar emphasis is silently dropped and the symbol coal_power_plant is coined from the elliptical bare noun \"coal\".",
+   "The non-specific mass object \"power\" is given a witness sk_power_1 with its own Member atom, where a non-specific / kind-level object should take the bare class symbol."
+  ]
+ },
+ {
+  "id": "tierD-000052",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The decomposition atom (Inheritance coal_fired_plant plant) is kept inside the attitude seal, but definitional decomposition atoms of compounds P mentions must project out to top level, so the genus link is never asserted."
+  ]
+ },
+ {
+  "id": "tierD-000053",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000054",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The VP-ellipsis \"did\" is reified as a literal (Member sk_do_1 do) event with Agent and Past, asserting an event of class \"do\"; the instruction set says to reconstruct the elided verb, and with no antecedent inside this text there is no licensed encoding to fall back on.",
+   "(Past sk_best_1) tenses the non-finite participial adjunct \"besting\"; tense atoms are for finite clauses only, and a participle carries no tense of its own.",
+   "\"former winners\" is typed as plain winner, silently dropping the \"former\" modifier \u2014 the Past wrapper here is the past host clause's appositive wrapper, so nothing in the parse encodes \"former\" (same at statement 26)."
+  ]
+ },
+ {
+  "id": "tierD-000056",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The party tag \"R-\" is expanded into (Past (Member frist republican)); the instruction set states that a party/district tag has no licensed head and must be left out with the gap recorded.",
+   "The district tag \"Tenn.\" is turned into (Past (From frist tennessee)) \u2014 a From origin relation the sentence never states (no \"from\" appears in the text), asserted from the same barred tag.",
+   "(Name tennessee \"Tenn.\") invents a proper-noun referent out of the district tag, and its Name string does not even match the symbol derived for it."
+  ]
+ },
+ {
+  "id": "tierD-000057",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"legal\" in \"legal purposes\" is a relational adjective that fails the predication test (the purpose is not lawful, it pertains to law), so under the compound rules only the head genus should be exposed and (Inheritance legal_purpose legal) is an over-emission."
+  ]
+ },
+ {
+  "id": "tierD-000059",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"Conference Board economist Ken Goldstein\" loses its association link: the proper-noun-premodifier rule licenses (Possession ken_goldstein conference_board), but no atom connects the two symbols, so conference_board is left dangling and the stated relation is dropped.",
+   "The stated measured gap \"almost a year and a half after the end of the recession\" is reduced to a bare (Before sk_end_1 sk_point_1); the licensed BeforeBy <n> <unit> form is not used, so the stated magnitude is silently lost."
+  ]
+ },
+ {
+  "id": "tierD-000060",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "scalar-measure",
+   "seal-boundary",
+   "would-irrealis"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"Conference Board economist Ken Goldstein\" is encoded as (Past (PartOf ken_goldstein conference_board)), but the proper-noun-premodifier rule licenses only the opaque Possession and explicitly forbids inventing membership or PartOf the words do not state.",
+   "(Of sk_end_1 sk_recession_1) is asserted at top level although \"the end of the recession\" is stated only inside the sealed quotation; the projection table keeps a referent's Of restrictor sealed and projects only Member/Name typing.",
+   "The stated measured gap \"almost a year and a half after the end of the recession\" is reduced to a bare (Before sk_end_1 sk_point_1), dropping the magnitude the licensed BeforeBy <n> <unit> form would carry."
+  ]
+ },
+ {
+  "id": "tierD-000061",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"Texas\" is a named referent in the sentence but receives no symbol and no Name atom, although the seal-projection table projects Name atoms of named referents (the appropriations act's typing and decomposition were projected the same way).",
+   "The say event carries no Theme, so the whole reported claim (\"it was the first time in Texas history a comptroller had not certified the appropriations act\") is unrecorded \u2014 defensible under the no-polarity-inside-a-seal limitation, but the entire content of the sentence is lost."
+  ]
+ },
+ {
+  "id": "tierD-000063",
+  "q1": "no",
+  "n_issues": 3,
+  "families": [
+   "scalar-measure",
+   "seal-boundary",
+   "unaccusative-roles"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "AccordingTo's first argument must be the SEALED proposition \u2014 (AccordingTo (And ...) <source>) \u2014 but the parse passes the bare event symbol sk_drop_1, so nothing is sealed and the atom records only that the drop event stands in some relation to the research.",
+   "Every atom of the attributed proposition (the drop event and its tense/interval, both download events, both group witnesses, both cardinalities) is asserted at top level, violating the AccordingTo rule that only the attribution is asserted and no predication of P reaches top level.",
+   "The scalar-change figures are unencoded: \"dropped from 14.5 million ... to 10.4 million\" licenses MeasureFrom/MeasureTo on the drop event, and the drop event also has no Theme for its scalar-change subject (\"the number of people downloading music\")."
+  ]
+ },
+ {
+  "id": "tierD-000064",
+  "q1": "no",
+  "n_issues": 7,
+  "families": [
+   "other",
+   "scalar-measure",
+   "seal-boundary",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "`AccordingTo` takes a bare event symbol (`sk_fall_1`) as its first argument instead of the sealed proposition P, so the attribution wraps nothing.",
+   "Every atom of the reported content (the fall plus the three acquire events, groups and counts) is asserted at top level, violating the non-factive bar that no predication of P may reach top level under 'according to X'.",
+   "A scalar-change subject takes `Theme`, not `Patient` ('the temperature fell' -> `(Theme sk_fall_1 sk_temperature_1)`).",
+   "The stated figures never attach to the fall eventuality as `MeasureFrom` / `MeasureTo` / `MeasureBy`, so the scalar change carries no values at all and `sk_number_1` holds no measure.",
+   "The of-phrase of 'the number of households' is dropped: `sk_number_1` is linked to no household group by any relation.",
+   "A participial reduced relative ('households acquiring music') tenses nothing, so `(Past sk_acquire_1)` is unlicensed (same at 12 and 19).",
+   "One changing quantity is restructured into three separately asserted past acquire events with three month-stamped household groups, an over-generation the sentence does not state as three occurrences."
+  ]
+ },
+ {
+  "id": "tierD-000065",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "windows-time"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "'noon' is a day-part constant in the instruction set (dawn/noon/dusk/night), so it should ride `Time` as the bare symbol `noon`; `(Hour 12)` normalizes it into a clock term the text does not state.",
+   "The predicative 'as Marshall head coach' is flattened into a bare top-level typing atom with no link to the introduce event, so the as-relation is lost (the entailment survives only because `learn` is factive)."
+  ]
+ },
+ {
+  "id": "tierD-000066",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "`(Name marshall \"Marshall\")` is emitted but `marshall` appears in no other atom \u2014 the proper-noun premodifier's `Possession` link from 'Marshall basketball coach' is dropped, silently widening the claim to coach-of-anywhere.",
+   "`Ordinal`'s scale slot is filled with the class `basketball_coach`, which is neither the associated event nor an explicit '-est' dimension as the instruction set specifies for that slot.",
+   "The predicative 'as the 25th Marshall basketball coach' is flattened to a tense-wrapped typing atom with no link to the introduce event, so the as-relation is unrecorded."
+  ]
+ },
+ {
+  "id": "tierD-000067",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "names-plural-label",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "`(Possession sk_schoolmates_1 sk_girl_1)` is a possessor link stated only inside the sealed complement; the seal-projection table lets only `Member`/`Name` typing and definitional decomposition out, so this over-projects.",
+   "The `Though` connective anchors its main endpoint on the say event, but the concession contrasts with the sealed knowing-of event; the endpoint chosen is the wrong eventuality (same at 16).",
+   "The second `Though` argument (`sk_know_2`, and `sk_know_3` at 16) names an event that exists only inside a strength-0.0 denial bundle, so the asserted connective relates the say event to something never asserted.",
+   "The clause-final 'though ...' plausibly falls inside what the police said; if so the two denial bundles and their connective atoms are asserted at top level in breach of the non-factive bar on `say`."
+  ]
+ },
+ {
+  "id": "tierD-000068",
+  "q1": "partial",
+  "n_issues": 5,
+  "families": [
+   "other",
+   "plural-distribution"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The explicit concessive 'although' yields no connective atom at all; an explicit non-temporal connective must emit its UpperCamelCase surface head relating the two reified clauses.",
+   "The partitive 'one of her former schoolmates' is collapsed to a single witness \u2014 no definite superset group, no `SubsetOf`, no `(Cardinality S 1)` \u2014 so the presupposed set and the 'one of' count are lost.",
+   "'former' is split off as a standalone predicated property `(Member sk_schoolmate_1 former)`, asserting that the person is former; the adjective fails the predication test and must not be exposed that way.",
+   "'Police' is a bare plural subject of an episodic clause, which mints a group witness `(GroupOf sk_police_1 police)`; `Member` types it as one individual of kind police instead.",
+   "The although-clause plausibly falls inside what the police said; if so the two denial bundles are asserted at top level in breach of the non-factive bar on `say`."
+  ]
+ },
+ {
+  "id": "tierD-000071",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000075",
+  "q1": "partial",
+  "n_issues": 5,
+  "families": [
+   "comparatives",
+   "names-plural-label",
+   "other",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "'one of the world's largest producers' is encoded as the comparison-class construction (Degree weyerhaeuser large (forKind producer)), i.e. large-relative-to-the-producer-norm, instead of the licensed top-stratum (AmongMost large weyerhaeuser producer), so the superlative claim is replaced by a different one.",
+   "the class restriction 'of softwood lumber' is dropped from the predication \u2014 (Member weyerhaeuser producer) widens the claim, and the agent-nominalization's of-argument gets no atom on the entity.",
+   "the capacity clause states no object ('capacity to produce 7.6 billion board feet a year'), yet a fresh lumber witness is asserted as its Patient, importing content from the earlier NP.",
+   "the Measure scale 'quantity' is invented \u2014 no word in the clause supplies a dimension, so the reserved slot symbol 'unspecified' is required.",
+   "the stated domain restriction 'the world's' is left unencoded (the AmongMost rule requires a stated domain restriction to stay on the entity as its own atoms)."
+  ]
+ },
+ {
+  "id": "tierD-000076",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "comparatives",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "'one of the world's largest producers of softwood' is encoded as the comparison-class (Degree weyerhaeuser large (forKind producer)) \u2014 large relative to the producer norm \u2014 instead of the licensed top-stratum (AmongMost large weyerhaeuser producer), dropping the superlative and asserting a different claim.",
+   "the stated domain restriction 'the world's' is left unencoded, though the AmongMost rule requires a stated domain restriction to remain on the entity as its own atoms.",
+   "the Measure scale 'quantity' is invented \u2014 no word supplies the dimension, so the reserved slot symbol 'unspecified' is required."
+  ]
+ },
+ {
+  "id": "tierD-000077",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "the modal in 'before sales could resume' is dropped \u2014 the resume event carries no status atom, where past-narrative 'could' calls for (Can e) or (Permitted e) plus (Past e).",
+   "the bare-plural subject 'sales' of a specific occurrence is filled by the bare kind symbol 'sale' instead of a group witness (GroupOf sk_sale_1 sale); a bare class symbol is reserved for non-specific / generic fillers.",
+   "'early' in 'in early April' is silently dropped, widening the time claim from early April to the whole month."
+  ]
+ },
+ {
+  "id": "tierD-000079",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "(PartOf henny_de_ruiter ahold) for the proper-noun premodifier 'Ahold Chairman' is barred \u2014 that construction licenses only the opaque (Possession <head-referent> <named-entity>), never invented membership or PartOf.",
+   "the office-premodifier typing atom is unwrapped: with a past host clause ('offered'), 'Chairman' must be wrapped like appositive typing as (Past (Member henny_de_ruiter chairman))."
+  ]
+ },
+ {
+  "id": "tierD-000080",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"elsewhere\" is dropped and its phrase flattened into a second Location on the same events group, so the parse says the whole set of events was at Foodservice and also in the embattled group, rather than that some occurred at places other than Foodservice."
+  ]
+ },
+ {
+  "id": "tierD-000081",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "plural-distribution"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "the bare-plural object \"public fears\" is encoded as a single witness sk_fear_1 rather than the existential group witness (GroupOf ... fear) the episodic bare-plural-object rule requires, so the plurality is lost and \"public\" is predicated of one object instead of distributing over members."
+  ]
+ },
+ {
+  "id": "tierD-000082",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "plural-distribution"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "the bare-plural object \"public fears\" is encoded as a single witness sk_fear_1 instead of the existential group witness (GroupOf ... fear) the episodic bare-plural-object rule requires, losing the plurality and the distribution of \"public\" over the members."
+  ]
+ },
+ {
+  "id": "tierD-000083",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "adverb-slots",
+   "names-plural-label"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"narrowly\" measures the margin of the outcome rather than the manner of the action, so (Manner sk_defeat_1 narrowly) arguably asserts a manner the sentence does not state \u2014 the adverb rule gives a degree adverb on a verb no licensed slot.",
+   "(Name connecticut \"Connecticut\") is a dangling residue of the relative clause the parse otherwise (correctly) leaves unencoded; the symbol occurs in no other atom."
+  ]
+ },
+ {
+  "id": "tierD-000084",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Inheritance medical_use medical) exposes a relational classifying adjective as a modifier genus, but the exposure rule licenses only gradable, positional/cardinal or material modifiers, and \"medical\" is none of the three.",
+   "the restriction \"state\" in \"the state House of Representatives\" is silently dropped, so the defeat is located in the unqualified House of Representatives."
+  ]
+ },
+ {
+  "id": "tierD-000085",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"West Bank\" is a proper noun premodifying the common-noun head \"settlement outposts\", which the instruction set links with the opaque Possession unless the text states a more specific relation; LocatedIn asserts a containment the words do not state.",
+   "\"Mideast\" is a capitalized proper noun premodifying \"peace plan\", so Compound concepts does not apply to it: fusing it into mideast_peace_plan (and emitting no (Name mideast \"Mideast\")) treats a name as a compound modifier.",
+   "The genus atom (Inheritance mideast_peace_plan plan) inherits the same defect \u2014 the compound it decomposes should have been peace_plan with the proper noun linked separately."
+  ]
+ },
+ {
+  "id": "tierD-000086",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The appositive \"an Israeli obligation\" is reduced to a bare (Obligated e) status atom, silently dropping \"Israeli\" \u2014 whose obligation it is \u2014 which the no-dropped-qualifier rule forbids.",
+   "\"Mideast\" is a capitalized proper noun premodifying \"peace plan\", so it must sit outside Compound concepts with its own Name atom; fusing it into mideast_peace_plan (also at statement 18's genus) treats a name as a compound modifier.",
+   "The modifier genus (Inheritance israeli_soldier israeli) is missing \u2014 israeli is an adjective predicable of the referent (\"the soldier is Israeli\"), and modifier-genus exposure is determined, not optional."
+  ]
+ },
+ {
+  "id": "tierD-000087",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000088",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000090",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000091",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000093",
+  "q1": "no",
+  "n_issues": 5,
+  "families": [
+   "adverb-slots",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "A scalar-change subject takes Theme, not Patient (\"the temperature fell\" -> (Theme sk_fall_1 sk_temperature_1)), so (Patient sk_rise_1 sk_shares_1) is the wrong role.",
+   "The delta \"$1.83\" must ride the scalar-change head (MeasureBy <event> <scale> 1.83 dollar); a plain Measure on the event says the rise's price is $1.83, and the scale `price` is invented \u2014 no dimension word appears in the sentence, so the reserved `unspecified` is required.",
+   "The restatement figure \"or 8.3 percent\" is dropped entirely; a restatement pair is two true MeasureBy atoms on one event, each in its own unit.",
+   "\"to close at the day's high of $23.89\" is a scalar endpoint on the rise (MeasureTo), not a Measure on a separately reified close event \u2014 Measure on an eventuality is licensed only for `duration`.",
+   "The scale `price` is invented again on the day's-high value; no dimension noun is stated, so the slot takes `unspecified`."
+  ]
+ },
+ {
+  "id": "tierD-000094",
+  "q1": "no",
+  "n_issues": 4,
+  "families": [
+   "adverb-slots",
+   "scalar-measure",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "A scalar-change subject takes Theme, not Patient, so (Patient sk_rise_1 sk_shares_1) is the wrong role.",
+   "The delta \"$1.83\" must be (MeasureBy sk_rise_1 \u2026), not a plain Measure on the event, and the scale `price` is invented \u2014 no dimension word is stated, so the slot takes the reserved `unspecified`.",
+   "(Past sk_close_1) tenses a non-finite complement: \"to close\" is an infinitive, and tense atoms are for finite clauses only.",
+   "The closing value \"$23.89\" is a scalar endpoint and routes via MeasureTo on the rise event; a Measure on an eventuality is licensed only for `duration`, and `price` is again an invented scale."
+  ]
+ },
+ {
+  "id": "tierD-000095",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"al-Qaida operatives\" is a proper noun premodifying a common-noun head, which must attach by the opaque Possession; PartOf is the very link the instruction set says never to invent there.",
+   "\"those areas\" is a demonstrative anaphor on the Pakistani cities of the first clause, but a fresh unlinked (GroupOf sk_areas_1 area) is minted, so the parse asserts arrests in an area set connected to nothing."
+  ]
+ },
+ {
+  "id": "tierD-000096",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"Pakistani cities\" is an indefinite introduced inside the belief seal, whose witness the instruction set says does not project, yet (GroupOf sk_cities_1 pakistani_city) is asserted at top level (and then used as the arrests' Location outside the seal)."
+  ]
+ },
+ {
+  "id": "tierD-000097",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The of-phrase of the quality nominalization \"the urgency of this\" is encoded as a reified state with (Experiencer sk_urgency_1 sk_request_1), although no reification trigger is present and the noun-complement section's entity-attached surface-preposition oblique on the noun's own symbol is the closest licensed form.",
+   "The definite \"the urgency\" keeps its typing atom (Member sk_urgency_1 urgency) inside the strength-0 denial bundle, where the projection table puts a definite participant's typing at top level - as the parse itself does for \"this request\"."
+  ]
+ },
+ {
+  "id": "tierD-000098",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "Projection out of the dropped quotation is asymmetric: the antecedentless \"this\"/\"it\" witness is projected as (Member sk_thing_1 thing) while the definite \"the urgency\" gets no projected typing atom, although the seal-projection table treats typing of definite referents uniformly."
+  ]
+ },
+ {
+  "id": "tierD-000099",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The definitional decomposition atom (Inheritance mental_health_facility facility) is kept inside the sealed complement, but the seal-projection table projects decomposition atoms of compound kinds the proposition mentions to top level.",
+   "\"her daughter\" is resolved to Robinson via (Possession sk_daughter_1 robinson), although the matrix subject Geraldine Andrews is the salient and unambiguously feminine antecedent while the surname Robinson supplies no gender evidence."
+  ]
+ },
+ {
+  "id": "tierD-000101",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The bare mass location \"international water\" is minted as a witness (Member sk_water_1 international_water) where the NP rules keep a bare mass / kind object as a plain constant, reserving witnesses for articles and specific definites.",
+   "(Because sk_share_1 sk_far_1) hangs the reason on the share event, which exists only inside the strength-0 bundle - the sentence gives a reason for the ABSENCE of the obligation, not for a sharing."
+  ]
+ },
+ {
+  "id": "tierD-000102",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(SoThat sk_far_1 sk_share_1) points its consequence slot at the share event, which exists only inside the strength-0 bundle - the stated consequence is the ABSENCE of the obligation, not a sharing.",
+   "The symbol for the surface name \"Fla.\" is expanded to florida from world knowledge rather than derived from the name as written; the Name string itself is correctly verbatim."
+  ]
+ },
+ {
+  "id": "tierD-000103",
+  "q1": "partial",
+  "n_issues": 5,
+  "families": [
+   "other",
+   "scalar-measure",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Past sk_impart_1) tenses a participial reduced relative (\"imparted by Nicklaus\"), but tense atoms are licensed on finite clauses only and a participial reduced relative tenses nothing.",
+   "(Past sk_buoy_1) likewise tenses the free participial adjunct \"Buoyed by \u2026\", which carries no tense atom of its own.",
+   "(Member sk_score_1 score) types the referent of \"an 8-under 64\" with a kind word no part of the sentence supplies.",
+   "(Measure sk_score_1 score 64 stroke) invents both the scale and the unit, where the instruction set reserves the symbol `unspecified` for a slot no word supplies.",
+   "The qualifier \"8-under\" is silently dropped rather than carried or left out with the gap recorded."
+  ]
+ },
+ {
+  "id": "tierD-000104",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "other",
+   "tense-wrappers",
+   "would-irrealis"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The direct object \"an 8-under 64\" is absent entirely \u2014 the shoot event carries no Theme/Patient and no score referent is minted anywhere, so the parse never records what Howell shot.",
+   "(Past sk_impart_1) tenses a participial reduced relative (\"imparted by Nicklaus\"), which carries no tense atom of its own.",
+   "(Past sk_buoy_1) tenses the free participial adjunct \"Buoyed by \u2026\" the same way.",
+   "(To sk_shoot_1 sk_enter_1) treats a result/outcome infinitive (\"shot a 64 \u2026 to enter today's round with a lead\") as a purpose infinitive, which the instruction set bars because the purpose `To` feeds the seeded PurposeOf bridge and would assert an aim the text does not state."
+  ]
+ },
+ {
+  "id": "tierD-000105",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000106",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "names-plural-label",
+   "other",
+   "plural-distribution",
+   "seal-boundary",
+   "would-irrealis"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(To sk_lead_1 sk_standoff_1) is indistinguishable from the purpose-connective `To`, so the seeded PurposeOf bridge would read the standoff as the aim of the leading; the instruction set routes a causation-flavored verb's complement eventuality to Theme.",
+   "(Past sk_protest_1) tenses a participant event-noun that no finite clause of the sentence tenses \u2014 only the leading is stated as past.",
+   "(Past sk_standoff_1) does the same for the standoff, which is only the object of \"led to\" and is predicated of nothing temporally.",
+   "(CoAgent sk_standoff_1 police) attaches a co-participant to an event that has no Agent at all, and `police` (a bare plural in an episodic clause) appears as an untyped bare symbol."
+  ]
+ },
+ {
+  "id": "tierD-000107",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "other",
+   "plural-distribution"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"shortages\" and \"shots\" are bare plurals in an episodic clause, which the instruction set gives existential GROUP witnesses, but each is encoded as a singular sk_ witness, so the plurality is dropped.",
+   "(Inheritance pneumococcal_disease pneumococcal) exposes a relational, origin-naming adjective as a modifier genus, which is none of the three licensed modifier types (gradable, positional/cardinal, material)."
+  ]
+ },
+ {
+  "id": "tierD-000108",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "windows-time"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The backward-window frame adverbial \"In the past two years\" is dropped entirely - no (WithinLast <e> 2 year) conjunct on any shortage eventuality - so the stated temporal restriction is silently removed.",
+   "The plural existential \"there have been vaccine shortages\" is rendered as one singular witness per disease, with no group witness (GroupOf), so the plurality of the shortages is lost."
+  ]
+ },
+ {
+  "id": "tierD-000111",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "scalar-measure",
+   "windows-time"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The stated magnitude \"by a quarter or more\" on the risk increase is dropped with no carrier at all - no MeasureBy and no bound - so the reported claim is left unquantified.",
+   "\"U.S.\" is a proper noun premodifying a common-noun head, which Names and casing says never fuses: the licensed route is the head noun typed on its own plus (Possession <group> us) and a (Name us \"U.S.\") fact, whereas the parse fuses us_researcher and emits no Name atom for the U.S. anywhere."
+  ]
+ },
+ {
+  "id": "tierD-000112",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"by 25 percent or more\" is dropped entirely: percent is a licensed unit, so at least (MeasureBy (sk_raise $x) unspecified 25 percent) was available, and the delta the sentence states is left unrecorded.",
+   "\"US\" is a proper noun premodifying a common-noun head, which never fuses per Names and casing - expected the head noun typed on its own plus (Possession <group> us) and a (Name us \"US\") fact - yet the parse fuses us_researcher and emits no Name atom for the US."
+  ]
+ },
+ {
+  "id": "tierD-000113",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "names-plural-label"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"the U.S. ... administrator\" fuses a proper-noun premodifier into u_s_administrator, which Names and casing forbids (names sit outside Compound concepts): the licensed route types the head noun on its own and links it with (Possession ... us), and the mandatory (Name ... \"U.S.\") fact is missing."
+  ]
+ },
+ {
+  "id": "tierD-000114",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "other",
+   "plural-distribution"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The coordinated definite plural \"the cities of Erbil and Suleimaniya\" gets no group witness and no PartOf links; two Theme atoms on a single visit event is not a licensed shape for a coordinated object (distributive default = one event per conjunct; group reading = GroupOf plus PartOf members, as multiple same-role atoms are licensed only for collective Agent).",
+   "Same defect on the second conjunct - suleimaniya is attached as a second Theme on the one event instead of via a group or its own replicated event."
+  ]
+ },
+ {
+  "id": "tierD-000115",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The stated route/manner disjunction \"wirelessly or from a PC via USB connection\" is dropped entirely, so the sealed claim asserts an unrestricted install capability the sentence never states (Core patterns: a stated restriction is never silently dropped).",
+   "\"their handset\" loses its possessive: the condition slot holds the bare kind symbol handset with no possession link back to the customers, widening \"their own handset\" to any handset."
+  ]
+ },
+ {
+  "id": "tierD-000116",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "plural-distribution"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The restrictive modifier \"Additional\" is dropped from both download bundles (statements 2 and 3), widening the claim from additional applications/software to applications/software at large.",
+   "The subject is a bare plural / mass kind, but the modal is encoded as (Can <event-witness>) on a minted event, which the instruction set reserves for a specific subject's ability; a capability over a kind is routed to a reified property instead."
+  ]
+ },
+ {
+  "id": "tierD-000117",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(LocatedIn sk_coast_1 texas) invents a containment relation for \"the Texas coast\": a proper noun premodifying a common-noun head takes the opaque Possession link unless the text states a more specific relation, and no preposition is present.",
+   "That same Texas-coast link is emitted at top level although the coast is mentioned only inside the say-seal; the projection table lets only Member/Name typing, definitional decomposition atoms and a factive's P out of an attitude seal.",
+   "The \"later\" component of \"later in the day\" is unencoded \u2014 only the copied (Weekday tuesday) term survives, so the landfall is not ordered after the reported moving."
+  ]
+ },
+ {
+  "id": "tierD-000118",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other",
+   "seal-boundary",
+   "windows-time"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(LocatedIn sk_coast_1 texas) invents a containment relation for \"the Texas coast\": a proper noun premodifying a common-noun head takes the opaque Possession link unless the text states a more specific relation, and no preposition is present.",
+   "That link is also emitted at top level although the coast is mentioned only inside the say-seal, where the projection table admits only Member/Name typing, definitional decomposition atoms and a factive's P.",
+   "(Time sk_hit_1 later_in_the_day) coins a multi-word temporal constant; \"the day\" is anaphoric rather than a speech-anchored deictic, and with no antecedent day term stated the term-propagation rule prescribes emitting just the day-part (none is present here)."
+  ]
+ },
+ {
+  "id": "tierD-000120",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The compound kind's definitional decomposition atoms (Inheritance british_officer officer) and (Inheritance british_officer british) are kept inside the quotation seal; the projection table names definitional decomposition atoms of compound kinds as one of exactly three things that project out of an attitude/quotation seal, since they are speaker-independent."
+  ]
+ },
+ {
+  "id": "tierD-000121",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "comparatives",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The approximator \"about\" in \"is about at the level\" is dropped, so the seal asserts flatly that the euro is at that level - a stated hedge silently widened.",
+   "The deictic time modifier \"at the moment\" is dropped entirely; no Time atom (and no reified state to anchor one) appears anywhere.",
+   "The subject of the embedded \"one can say\" is unencoded - the inner say event carries no Experiencer even though its complement seals."
+  ]
+ },
+ {
+  "id": "tierD-000123",
+  "q1": "partial",
+  "n_issues": 5,
+  "families": [
+   "names-plural-label",
+   "other",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The Name string keeps the office premodifier - \"President Ronald Reagan\" - where an occupational/office premodifier must stay out of the Name string.",
+   "The office typing derived from that premodifier is emitted bare; with a past host clause (\"served\") it should take the host's Past wrapper like any appositive typing.",
+   "The whole PP-bearing title is fused into one symbol assistant_secretary_of_energy_for_defense_programs, so \"of energy\" and \"for defense programs\" are never emitted as the noun's complement obliques.",
+   "That symbol keeps the plural \"programs\" un-lemmatized, against the rule that every class symbol is lemmatized to its singular base form.",
+   "\"served\" takes Experiencer; holding an office is an activity rather than a postural or psych stative, and the stated default for an unclear intransitive subject is Agent."
+  ]
+ },
+ {
+  "id": "tierD-000124",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Past sk_retire_1) tenses a gerund - \"After retiring\" is non-finite and carries no tense atom of its own.",
+   "The PP-bearing title is fused into one symbol, so \"of energy\" and \"for defense programs\" are lost; the decomposition yields only the secretary genus and no noun-complement obliques."
+  ]
+ },
+ {
+  "id": "tierD-000125",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "(Past sk_win_2) tenses a gerund - \"by winning the ... lottery\" is non-finite and carries no tense atom of its own."
+  ]
+ },
+ {
+  "id": "tierD-000127",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"could\" is encoded as a bare (Can ...) with no Past; the instruction set licenses only Can/Permitted plus Past for the past-narrative reading, or Might with no tense for the speculative one.",
+   "\"known as a 'poison pill'\" is flattened into a bare type atom, dropping the naming predication that a participial post-modifier is required to reify as a reduced-relative event.",
+   "\"undesired suitors\" is fused into undesired_suitor although \"undesired\" is a descriptive modifier that passes the predication test - fusion is reserved for classifying modifiers, and no modifier genus is emitted for it either."
+  ]
+ },
+ {
+  "id": "tierD-000128",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The stated restriction \"undesired\" is silently dropped \u2014 (Theme sk_thwart_1 suitor) widens the claim from undesired suitors to suitors at large.",
+   "\"known as a 'poison pill'\" is flattened into a direct kind atom (Member sk_defence_1 poison_pill), asserting the defence IS a poison pill instead of encoding the participial post-modifier as the reduced relative the instruction set mandates."
+  ]
+ },
+ {
+  "id": "tierD-000129",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "seal-boundary",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": "AccordingTo seal-bearer (ruling 1)",
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"Florida Speaker\" is an occupational/office premodifier, not a courtesy title, so it must stay out of the Name string and become the person's typing atom(s) \u2014 here it is baked into \"Florida Speaker Johnnie Byrd\" and no typing atom is emitted.",
+   "(Past sk_send_1) tenses a participial reduced relative (\"a news release sent by \u2026\"), which the instruction set says tenses nothing \u2014 tense atoms are for finite clauses only.",
+   "(Time sk_session_1 (Weekday monday)) sits at top level although \"Monday\" is stated only inside the AccordingTo-attributed clause; only Member/Name typing and definitional decomposition project out of that seal."
+  ]
+ },
+ {
+  "id": "tierD-000131",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"in the next three to five months\" is reduced to (Before now sk_get_under_way_1), dropping the stated 3-5 month bound and widening the claim to bare futurity.",
+   "Ordinal's third slot takes an ordering scale (the associated event or an \"-est\" dimension), but it is filled with the entity's own class symbol `discussion`."
+  ]
+ },
+ {
+  "id": "tierD-000132",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "No complement event is reified for \"have (the discussions)\" \u2014 the control-infinitive pattern requires the complement event at top level with the controller's role copied in; instead (Agent sk_discussion_1 sk_group_1) puts an event role on a plain entity witness typed only `discussion`.",
+   "\"within the next three to five months\" is reduced to (Before now sk_discussion_1), dropping the stated bound and asserting a temporal ordering for an eventuality the hope leaves unrealized.",
+   "Ordinal's third slot takes an ordering scale (the associated event or an \"-est\" dimension), but it is filled with the entity's own class symbol `discussion`."
+  ]
+ },
+ {
+  "id": "tierD-000133",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "names-plural-label",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"County Judge\" is an occupational/office premodifier, not a courtesy title, so it must stay out of the Name string and become the person's typing atom(s) (wrapped by the past host clause); here it is inside \"County Judge Tim Harley\" and no typing atom is emitted."
+  ]
+ },
+ {
+  "id": "tierD-000134",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"Judge\" is an occupational/office premodifier (parallel to the instruction set's \"prosecutor Iris Vale\"), so it must stay out of the Name string and become the person's typing atom; the parse keeps it inside \"Judge Tim Harley\" and emits no (Member tim_harley judge).",
+   "adrian_mcpherson gets a Name atom but is linked to nothing \u2014 the proper-noun-premodifying-a-common-noun rule requires the opaque (Possession sk_trial_1 adrian_mcpherson), so the stated association is dropped and the symbol dangles.",
+   "(Before sk_reach_1 sk_declare_1) is asserted at strength 1.0 outside the denial, ordering the very reaching event the parse denies at strength 0.0, so an anteriority claim is attached to an eventuality the sentence says never occurred."
+  ]
+ },
+ {
+  "id": "tierD-000135",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Possession sk_performance_1 sk_students_1) for \"the performance of students\": the of-phrase names the nominalization's underlying subject, which the instruction set routes to the event noun's own subject role and explicitly bars from Possession (\"Possession for an argument asserts a relation the text never states\").",
+   "sk_subgroups_1 is minted but joined to nothing \u2014 the restriction \"students in various subgroups\" is silently dropped (no In / PartOf atom linking the students to the subgroups), and \"various\" is left unrecorded, widening the claim the sentence makes.",
+   "the flat (Member sk_state_1 deficient) asserts at strength 1.0 that the state is deficient, where the text reports only that the performance tagged it as such."
+  ]
+ },
+ {
+  "id": "tierD-000136",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Possession sk_performance_1 sk_students_1) for \"the performance of students\": the of-phrase names the nominalization's underlying subject, which the instruction set gives the event noun's own subject role and explicitly bars from Possession.",
+   "(CardinalityPhrase sk_subgroup_1 \"various\") records \"various\" as a vague count, but it denotes diversity rather than quantity, is not one of the lexicon phrases CardinalityPhrase is to be normalized to, and the instruction set restricts CardinalityPhrase to phrases that count things."
+  ]
+ },
+ {
+  "id": "tierD-000138",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "the direct object \"the move\" is given no role atom on the describe event \u2014 it appears only inside the sealed term \u2014 so the describing has no stated object and \"what did the Commission describe?\" binds nothing.",
+   "the parse takes the sealing route (complement sealed under Theme) but assigns the describer Agent, while the instruction set makes the holder Experiencer exactly when the complement seals.",
+   "(Inheritance executive_body executive) exposes a relational/classifying adjective that fails the predication test (*\"the body is executive\"), which the instruction set says is never exposed as a modifier genus."
+  ]
+ },
+ {
+  "id": "tierD-000139",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "adverb-slots",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Manner sk_release_1 immediately) mis-slots a temporal/promptness adverb into Manner, which the instruction set reserves for how-adverbs of manner proper and explicitly bars for sequence/ordering adverbs, directing that they be left out with the gap recorded.",
+   "\"family notification\" is a noun+noun compound, which the instruction set fuses into family_notification with genus notification and never exposes the noun modifier of; the parse instead decomposes it into a Recipient role plus an sk_family_1 witness, exposing a modifier that should stay inside the symbol."
+  ]
+ },
+ {
+  "id": "tierD-000142",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"QVC management team\" is a proper noun premodifying a common-noun head, which the instruction set links with the opaque `Possession` unless a more specific relation is stated; `(PartOf sk_team_1 qvc)` invents the part-whole relation the rule explicitly bars.",
+   "\"the remaining shares\" has a dedicated remainder encoding (the portion plus `(RestOf <rest> <whole>)` and `SubsetOf`/`PartOf` to the definite whole), but the parse drops the remainder relation and records it as an ad-hoc property atom on the group symbol instead."
+  ]
+ },
+ {
+  "id": "tierD-000143",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The sealed `Implication`'s premise names Skolem constants that nothing asserts (`sk_pass_1`, and `sk_person_1` typed inside the premise itself), violating \"rule premises bind through plain variables\" \u2014 such a rule can never match or fire.",
+   "`(Stimulus sk_watch_1 sk_person_1)` mis-slots an ENTITY object of \"watch\": Thematic roles lists watch among the `Theme` verbs and reserves `Stimulus` for a psych state's object or a perception report's eventive complement."
+  ]
+ },
+ {
+  "id": "tierD-000144",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The sealed `Implication`'s premise names the Skolem event constant `sk_pass_1`, which nothing asserts; premises must bind through plain variables, so this rule can never match or fire."
+  ]
+ },
+ {
+  "id": "tierD-000145",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "names-plural-label",
+   "would-irrealis"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "`(Agent sk_allow_1 sk_mini_lift_1)` fills the purpose infinitive's unexpressed subject with the created object; the only control default the instruction set states is subject control (which would give the Vatican), and the text names no allower, so the atom cannot be pointed at words."
+  ]
+ },
+ {
+  "id": "tierD-000146",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "names-plural-label"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "`(Agent sk_allow_1 sk_lift_1)` fills the purpose infinitive's unexpressed subject with the created object; the instruction set's only stated control default is subject control (the Vatican), and the text names no allower."
+  ]
+ },
+ {
+  "id": "tierD-000147",
+  "q1": "no",
+  "n_issues": 2,
+  "families": [
+   "scalar-measure",
+   "unaccusative-roles"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "A scalar-change subject takes `Theme` per *Thematic roles* (\"a scalar-change subject rides Scalar change and is likewise Theme\"), not `Patient`.",
+   "Every figure in the sentence is dropped: per *Scalar change* the $4 delta and its \"17.2 percent\" restatement are two `MeasureBy` atoms on the rise event and \"$27.43\" is a `MeasureTo` (scale `unspecified`, since no word supplies a dimension)."
+  ]
+ },
+ {
+  "id": "tierD-000148",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The stated end value \"$23.40\" should be `(MeasureTo ...)` per *Scalar change* rather than a plain `Measure` on the event, and no word in the clause supplies the scale `price` (an unstated dimension takes the reserved `unspecified`).",
+   "\"up 64 cents\" is a scalar delta and belongs in `(MeasureBy ...)`, and the scale symbol `increase` is invented \u2014 *Measures & units* forbids inventing a scale no word supplies, and direction lives in the lemma, not the scale slot.",
+   "The subject of a value-change clause (\"closed at $23.40, up 64 cents\") takes `Theme` under the scalar-change/undergoer test, not `Patient`."
+  ]
+ },
+ {
+  "id": "tierD-000149",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "`(Past sk_pass_1)` sits on a participial reduced relative (\"laws passed ...\"), but *Status predicates* restricts tense atoms to finite clauses \u2014 a participle carries no tense of its own.",
+   "The implication's premise names the Skolem constants `sk_find_1` and `sk_guilty_1`, which no top-level fact asserts; *Time* (\"rule premises bind through plain variables\") forbids this, and as written the rule can never fire."
+  ]
+ },
+ {
+  "id": "tierD-000150",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "`(Past sk_pass_1)` sits on a participial reduced relative (\"laws passed ...\"), but *Status predicates* restricts tense atoms to finite clauses \u2014 a participle carries no tense of its own.",
+   "The implication's premise names the Skolem constants `sk_find_1` and `sk_guilty_1`, which no top-level fact asserts; *Time* (\"rule premises bind through plain variables\") forbids this, and as written the rule can never fire."
+  ]
+ },
+ {
+  "id": "tierD-000151",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000152",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The exhaustive \"all\" of \"which is all oral examination\" is silently dropped, leaving the unqualified (Member sk_round_1 oral_examination) rather than carrying the qualifier or leaving the claim out and recording the gap."
+  ]
+ },
+ {
+  "id": "tierD-000154",
+  "q1": "no",
+  "n_issues": 3,
+  "families": [
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"was up 9.05 points\" is the copular scalar-change state the instruction set routes through a reified up-state carrying (MeasureBy <event> <scale> <mag> <unit>); the parse reifies nothing and stores a standing Measure on the index itself, under the scale symbol `increase` that no word in the sentence supplies (direction lives in the state lemma, never in an invented scale).",
+   "The restatement figure \"or 0.94 percent\" is stored the same wrong way \u2014 a second standing Measure with the invented `increase` scale rather than a second MeasureBy delta on the one change eventuality.",
+   "\"at 972.64\" is the change's end value (MeasureTo) but is asserted as the bearer's own timeless measure \u2014 exactly the reading Scalar change forbids \u2014 and both its slots are invented: the scale `level` is stated nowhere and the unit `point` is supplied by no word (a bare figure keeps unit `unspecified`)."
+  ]
+ },
+ {
+  "id": "tierD-000155",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "names-plural-label",
+   "plural-distribution"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"the Democrats\" is a capitalized plural kind-word label, which Names and casing makes a Name-only individual \u2014 one symbol, a Name atom, no GroupOf and no per-member kind from the label word \u2014 whereas the parse emits a group witness typed `democrat` and no Name atom."
+  ]
+ },
+ {
+  "id": "tierD-000156",
+  "q1": "partial",
+  "n_issues": 6,
+  "families": [
+   "names-plural-label",
+   "other",
+   "plural-distribution",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"the Senate\" is a capitalized common noun used as the referent's only label, which the instruction set treats as a common noun by default (definite handling, NO Name atom); the parse emits a Name atom and, consequently, never types the referent at all.",
+   "\"the Senate's efforts\" is an act noun whose genitive names its underlying subject, which the instruction set assigns the noun's own subject role rather than Possession \u2014 \"Possession for an argument asserts a relation the text never states\".",
+   "(Agent sk_force_1 senate) asserts a forcer the sentence never names: the infinitive's subject is unstated, and the control rule that copies a controller in is for verbs, not for a noun's genitive reaching into a noun-complement infinitive.",
+   "The include event (statements 8-10) is stated inside the complement of \"said\" yet asserted at top level; the seal-projection table lets only Member/Name typing of definite/named referents and definitional decomposition out of an attitude seal.",
+   "The same leak for the purpose oblique and the force/return events (statements 11-16) \u2014 P-internal restrictors that the table explicitly keeps sealed \u2014 so the parse asserts as fact the whole \"efforts to force the Democrats to return\" complex that the sentence only reports Perry as backing.",
+   "\"the Democrats\" is a capitalized plural kind-word label, which the instruction set makes a Name-only individual with no GroupOf and no per-member kind from the label word; the parse emits a group typed `democrat` and no Name atom."
+  ]
+ },
+ {
+  "id": "tierD-000157",
+  "q1": "no",
+  "n_issues": 7,
+  "families": [
+   "adverb-slots",
+   "other",
+   "scalar-measure",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"briefly\" is a duration adverb, which the instruction set names explicitly and routes to (Duration <event> briefly); the parse mis-slots it as Manner.",
+   "\"slightly\" is a degree adverb on a verb, which the instruction set says has no licensed slot and must be left out with the gap recorded; the parse mis-slots it as Manner, asserting a manner the sentence does not state.",
+   "\"to trade at 55.34/39\" is a result infinitive with a scalar endpoint, which routes via MeasureTo on the weakening event; the parse instead reifies a separate trade event and links it with Result, a head reserved for resultative state/motion results and not for an outcome infinitive.",
+   "(At sk_trade_1 55.34) puts a bare figure in an oblique's object slot, where the instruction set requires an ordinary NP; an unhedged figure with no stated unit belongs in a Measure-family magnitude slot with unit `unspecified`.",
+   "The quoted pair \"55.34/39\" loses its second figure entirely \u2014 only 55.34 is recorded.",
+   "(Of sk_low_1 55.75) again puts a bare figure in a surface-preposition oblique; \"a record low of 55.75\" states the low's value (a measure), not a nominalization's object, which is what the Of oblique encodes.",
+   "\"not far from its record low\" is dropped: the parse records the record low's existence, possessor and figure but nothing of the proximity relation the clause actually asserts between the traded level and that low."
+  ]
+ },
+ {
+  "id": "tierD-000158",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "adverb-slots",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The duration adverb \"briefly\" is dropped, although the instruction set names exactly this word and licenses (Duration <event> briefly) for it.",
+   "\"rebounded to trade at ...\" is a result/outcome infinitive, which the instruction set says has no licensed connective (a scalar endpoint routes via MeasureTo); tying the two events with the resultative head Result asserts a result link the construction does not license.",
+   "The stated level \"55.25/29\" is dropped entirely, so the scalar endpoint the instruction set routes through MeasureTo on the rebound event is unrecorded."
+  ]
+ },
+ {
+  "id": "tierD-000161",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "other",
+   "seal-boundary",
+   "windows-time"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "Inside the seal, (Time sk_results_1 sk_quarter_1) puts a Time oblique on an entity \u2014 \"results\" is not an event or event-denoting noun, and the instruction set attaches Time atoms to event witnesses only.",
+   "\"first-quarter\" is encoded as a minted quarter witness plus (Ordinal sk_quarter_1 1 quarter); the instruction set gives a fiscal period the bare constant first_quarter (or (Quarter <n> <year>) when the year is stated), so both the witness and the Ordinal are off-form and the Time fillers are witnesses rather than period terms.",
+   "The participial adjunct \"based on\" loses its head: only (On sk_expect_1 sk_results_1) survives, which asserts the expecting is \"on\" the results and drops \"based\" without any reified event or recorded gap.",
+   "(Member sk_quarter_1 quarter) is emitted twice \u2014 projected at top level and repeated as a conjunct inside the sealed (And ...) \u2014 whereas the instruction set's seal examples keep only the predication inside and the typing outside."
+  ]
+ },
+ {
+  "id": "tierD-000162",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000164",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "plural-distribution",
+   "would-irrealis"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "(Name silk_road \"Silk Road\") is emitted with no relation attaching it to Bam, leaving an orphan symbol; a proper noun premodifying a common-noun head (\"Silk Road city\") is licensed to link by the opaque (Possession bam silk_road).",
+   "(Member sk_worker_1 international) predicates a member-level descriptive modifier of the group symbol, which the instruction set explicitly warns against \u2014 such a modifier distributes over the members, and a bare (Member <group> <prop>) is only for a property of the collection itself.",
+   "Neither distributive predicate gets the per-member distribution rule the instruction set requires for a grouped plural (hack over the rescue-worker group, overflow over the cemetery group), so a member named later would not be reachable."
+  ]
+ },
+ {
+  "id": "tierD-000165",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"Air Force\" is a proper noun premodifying the common-noun head \"major general\", which the instruction set keeps outside Compound concepts; fusing it into air_force_major_general splits no name off, so the head should be major_general linked by (Possession bridges air_force).",
+   "No (Name air_force \"Air Force\") atom is emitted, so a named entity mentioned in the text carries no Name fact at all."
+  ]
+ },
+ {
+  "id": "tierD-000167",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"remained in stable condition\" mints a matrix `remain` event, but the intransitive continuation copular (\"remained/stayed X\") explicitly reifies the state with `(Still ...)` + the flat atom + tense and mints NO matrix event; the locative-PP branch likewise routes to the entity-attached position atom, not a `remain` event.",
+   "No `(Still ...)` atom anywhere, so the continuation sense of \"remained\" is dropped \u2014 the parse says only that she was in stable condition on Saturday.",
+   "No flat / dual-emit atom ties bethany_hamilton to the stable-condition state, so \"is she in stable condition?\" binds nothing at top level; the only link is the `In` oblique on the invented event.",
+   "Mints a witness `sk_condition_1` for the bare, determinerless \"stable condition\"; an oblique's object NP with no article stays a bare constant."
+  ]
+ },
+ {
+  "id": "tierD-000170",
+  "q1": "no",
+  "n_issues": 4,
+  "families": [
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"was off 1.07 points\" is a copular \"was up/down\" scalar-change state, which the Scalar change rule says to reify as an eventuality carrying its figures; no `off` state witness (and no flat copular atom) is reified at all, so the change itself is never recorded as an eventuality.",
+   "The delta must be `(MeasureBy <event> <scale> 1.07 point)` on the reified state, not `Measure` on the index; and `off` is a direction living in the state lemma, not a stated dimension, so the scale slot should be the reserved `unspecified`.",
+   "Same defect for the restatement figure: the \"or 0.11 percent\" half is a second `MeasureBy` on the one event (the two-atom shape is right), but it is emitted as `Measure` on the bearer with the invented scale `off`.",
+   "\"at 1,010.59\" is the change's end value \u2192 `(MeasureTo <event> ...)`; a bearer's own `Measure` for an end value is explicitly barred (\"never becomes the bearer's own timeless `Measure`\"), and both `level` (scale) and `point` (unit) are invented \u2014 no word in the sentence supplies either, so both slots should be `unspecified`."
+  ]
+ },
+ {
+  "id": "tierD-000172",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "during-oblique",
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "`(Measure sk_price_1 price 44 dollar)` puts the measure on the pricing EVENT witness; the Measures section attaches a price measure to the entity measured (\"costs $20\" \u2192 scale `price` on the bearer), so as written it says the pricing event costs $44 rather than the chipset.",
+   "Same mis-attachment for the second figure: `(Measure sk_price_2 price 41 dollar)` measures the event, not `intel_865g`.",
+   "`(Without sk_price_2 raid)` fills the slot with the bare class constant while the parallel statement 5 mints the witness `sk_raid_1` \u2014 the same bare, article-less NP is given two different NP treatments within one sentence.",
+   "The thematic-roles section routes a \"with\"-phrase by one test to `CoAgent` (participant) or `Instrument` (means); an inclusion/configuration \"with integrated software RAID\" is neither, so `With` here rests only on the fallback preposition-named-oblique licence."
+  ]
+ },
+ {
+  "id": "tierD-000173",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": "sealed distribution (ruling 2)",
+  "lean": "review-defect",
+  "issues": [
+   "`(PartOf lloyd_mcclendon pirates)` \u2014 a proper noun premodifying a common-noun head (\"Pirates manager\") takes the opaque `Possession`, and the rule explicitly bars inventing membership or `PartOf` the words do not state; `pirates` is moreover a `Name`-only plural-label individual with no `GroupOf`, so nothing establishes it as a group to be a part of.",
+   "\"We\" is resolved to `pirates`; the coreference rules cover he/she/it/they only and give a pronoun with no antecedent a fresh witness, so binding the quote's first-person subject to the team is a world-knowledge link the text does not state.",
+   "`(Member $p quality)` predicates the noun modifier \"quality\" of each player as a property class; the compound rules treat a noun modifier as never exposable, so \"quality players\" should either fuse (`quality_player` + genus `player`) or the modifier stays in the symbol."
+  ]
+ },
+ {
+  "id": "tierD-000175",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000176",
+  "q1": "partial",
+  "n_issues": 6,
+  "families": [
+   "names-plural-label",
+   "other",
+   "seal-boundary",
+   "unaccusative-roles"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"the Bush administration\" is collapsed onto the person symbol `bush` and typed `(Member bush administration)`, where the proper-noun-premodifier rule requires the head noun's own administration witness linked to `bush` by the opaque `Possession`.",
+   "Because of that collapse the putting event's Agent \u2014 and the denied glorifying's Theme at statement 11 \u2014 is the man Bush rather than his administration.",
+   "The object of \"calling\" (troops) gets no role atom at all; the predicative complement instead occupies the Theme slot as a seal, which no rule licenses for a naming verb's object-predicative small clause (sealing is finite-clause / question / imperative / counterfactual only).",
+   "\"of a blunt policy\" is attached to `soldier` as `(Possession soldier sk_policy_1)`, which says the policy possesses the soldiers instead of restricting the instrument the troops are called.",
+   "\"troops\" is rendered with the synonym class `soldier` \u2014 arguably coreference with the earlier \"soldiers\", but it erases a distinct surface kind word whose normalization the instruction set defers downstream.",
+   "The adversative \"but\" joining the asserted and the denied glorifying yields no connective atom."
+  ]
+ },
+ {
+  "id": "tierD-000178",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "during-oblique",
+   "names-plural-label",
+   "other",
+   "scalar-measure",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"The PracticeWorks acquisition\" is a proper noun premodifying a common-noun head, which mandates the opaque `Possession` link; `(Of sk_acquisition_1 practiceworks)` uses a preposition-named oblique with no preposition in the text.",
+   "`(Possession sk_revenue_1 kodak)` sits at top level although \"Kodak's revenue\" is mentioned only inside the sealed complement \u2014 the projection table lets only Member/Name typing out of an attitude seal and keeps possessor links sealed.",
+   "The Measure inside the seal uses the scale `quantity`, which no word in the sentence supplies; the reserved filler for an unstated dimension is `unspecified`.",
+   "The direct object of \"add\" (about $215 million) gets no role atom \u2014 the amount survives only as an event-level Measure."
+  ]
+ },
+ {
+  "id": "tierD-000179",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "other",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The stated delta \"up 37 cents\" is dropped entirely \u2014 *Scalar change* puts it on the up-state as `(MeasureBy \u2026 37 cent)`, and its own example is \"was up 37 cents\".",
+   "The endpoint \"to $28.56\" is stored as the bearer's own timeless `(Past (Measure sk_stock_1 price 28.56 dollar))`, the form *Scalar change* explicitly forbids (\"never becomes the bearer's own timeless Measure\"); it belongs on the eventuality as `MeasureTo`.",
+   "The scale `price` is invented \u2014 no word in the sentence supplies a dimension, so the reserved slot symbol `unspecified` is required.",
+   "\"New York Stock Exchange trade\" is a proper noun premodifying a common-noun head, which mandates the opaque `Possession`; `Location` asserts a more specific relation than the words state."
+  ]
+ },
+ {
+  "id": "tierD-000180",
+  "q1": "no",
+  "n_issues": 6,
+  "families": [
+   "comparatives",
+   "other",
+   "scalar-measure",
+   "unaccusative-roles"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"reacted little\" is a minimizer, which asserts the eventuality at strength 0.1; `(Manner sk_react_1 little)` instead asserts a manner the sentence does not state (explicitly barred) and leaves the react bundle at full strength.",
+   "`(Patient sk_edge_1 sk_shares_1)` mis-roles a scalar-change subject, which the instruction set assigns `Theme`.",
+   "The stated delta \"7 cents\" is dropped \u2014 no `MeasureBy` on the edging event.",
+   "\"to end at $28.12\" is a result infinitive with a scalar endpoint, which routes via `MeasureTo` on the change event; the parse instead reifies a separate `end` event and invents a `Before` link, where a result infinitive is told to omit the link and record the gap.",
+   "The end value is stored as the bearer's own `(Past (Measure sk_shares_1 price 28.12 dollar))` \u2014 the forbidden timeless-Measure form \u2014 with an invented `price` scale, and on a plural group it reads as an aggregate price for all GE shares rather than a per-share figure.",
+   "`(Past sk_edge_1)` tenses a participial absolute and `(Past sk_end_1)` at statement 15 tenses an infinitive, though tense atoms are finite-clause only."
+  ]
+ },
+ {
+  "id": "tierD-000181",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "plural-distribution",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"Schwarzenegger's decision\" is a genitive naming an event noun's underlying subject, which takes that noun's subject role (`Agent`/`Experiencer`); `Possession` there asserts a relation the text does not state (the \"the committee's ruling\" case).",
+   "`(Past sk_await_1)` tenses the participial reduced relative \"those awaiting \u2026\", which carries no tense of its own \u2014 the matrix \"was\" holds the tense.",
+   "`await` is a distributive predicate over the definite group, so the per-member `(Implication (PartOf $x sk_group_1) \u2026)` rule should accompany the group event \u2014 and a member (Riordan) is in fact named in the same sentence, which is exactly what the rule is for."
+  ]
+ },
+ {
+  "id": "tierD-000182",
+  "q1": "no",
+  "n_issues": 5,
+  "families": [
+   "other",
+   "plural-distribution",
+   "would-irrealis"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The irrealis \"would clear\" is asserted as an Implication rule carrying (Future ...), but the instruction set says an irrealis lone consequent whose condition is unstated has no licensed carrier \u2014 leave the clause unencoded and record the gap, asserting it neither way.",
+   "An indefinite singular subject with a verbal predicate (\"A no-go ... would clear\") takes a witness, not a rule range \u2014 the rule/generic route needs a bare plural or an explicit quantifier, and the modal carve-out covers only deontic and capability generics.",
+   "A present-tense strength-0 denial (Member richard_riordan mayor) is invented from \"former\"; the denial half of the cessation bundle is licensed only for the stative \"no longer / not anymore / used to\" wordings.",
+   "The strength-0 (Possession richard_riordan los_angeles) denies any association at all between Riordan and Los Angeles, far more than \"former Los Angeles mayor\" states.",
+   "\"Former Los Angeles mayor\" is one multi-atom predicate, so denying it must be one strength-0 (And ...) bundle; splitting the mayor typing and the Los Angeles Possession into two separately denied atoms asserts half of the denied predicate on each side."
+  ]
+ },
+ {
+  "id": "tierD-000183",
+  "q1": "no",
+  "n_issues": 3,
+  "families": [
+   "other",
+   "seal-boundary",
+   "windows-time"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The whole measured range \"between $8.1 billion and $8.7 billion\" is silently dropped \u2014 no MeasureAtLeast/MeasureAtMost pair (or any figure) rides sk_revenue_1, so the parse asserts only that Intel expects revenue, widening the claim exactly as the never-drop-a-qualifier rule forbids.",
+   "\"For the fourth quarter\" restricts the revenue, not the expecting, so hanging (For sk_expect_1 fourth_quarter) on the attitude event states that the expecting was for Q4 \u2014 a different claim from the sentence's.",
+   "The oblique's object is a definite NP (\"the fourth quarter\") yet is emitted as a bare untyped constant; the oblique-object rule says an article mints a witness with its kind atom, and the bare fiscal-period constant is licensed only in bound Time terms."
+  ]
+ },
+ {
+  "id": "tierD-000184",
+  "q1": "partial",
+  "n_issues": 6,
+  "families": [
+   "other",
+   "scalar-measure",
+   "windows-time"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The scale `price` is invented \u2014 no word in the clause supplies a dimension noun, and the rule is that an unstated scale takes the reserved symbol `unspecified`, never a world-knowledge dimension.",
+   "Same invented `price` scale on the upper bound.",
+   "The bounds are asserted at TOP LEVEL of sk_sales_1, so the KB now says sales really were at least $6.9 billion, whereas the sentence says only that Intel predicted it \u2014 the predicted content leaks out as fact.",
+   "(Ordinal sk_quarter_1 2 year) puts `year` in Ordinal's scale slot, which is specified as the associated event or an explicit -est dimension; the instruction set's own form for a fiscal period with no stated year is the bare constant (`second_quarter`), not a witness plus Ordinal.",
+   "\"At the end of the second quarter\" is encoded as an `end` entity that is PartOf the quarter and then used as a Time filler; Time takes structured calendar terms or bare deictic/named symbols, and PartOf's two jobs are object components and group members, neither of which is a period boundary.",
+   "(GroupOf sk_sales_1 sale) types a financial aggregate as a set of individual `sale` members, which the text does not state; the figure is a single mass quantity."
+  ]
+ },
+ {
+  "id": "tierD-000185",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "comparatives",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"Anything less\" is a free-choice universal, but the sealed complement renders it as a single existential witness (Member sk_thing_1 thing), so the sealed proposition claims one unacceptable thing exists instead of the quote's blanket claim; the elided-standard comparative \"less\" is also gone with no gap-carrier in its place.",
+   "(Inheritance ranking_democrat ranking) exposes a rank adjective that fails the predication test (*\"the Democrat is ranking\"), which the compound rules say is never surfaced as a modifier genus \u2014 only the genus `democrat` is licensed."
+  ]
+ },
+ {
+  "id": "tierD-000186",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000188",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "during-oblique"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"in Friday's edition\" is slotted as Location, but a publication is a textual container, which the instruction set routes to the preposition-named oblique (its own \"'in a statement' likewise In\" example), so Location asserts a spatial position the sentence does not state."
+  ]
+ },
+ {
+  "id": "tierD-000189",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "plural-distribution",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The coordinated object \"assistance and advice\" is collapsed onto one need event carrying two Stimulus atoms (the collective form), where coordinated noun phrases are distributive by default and should replicate the predication once per conjunct.",
+   "The two sealed Implication rules both range over $x inside one sealed term, violating the requirement that every sealed rule take fresh variables shared with no other conjunct of that seal.",
+   "The gerund PP's implicit subject is filled in as (Agent sk_implement_1 governing_council) although no word states who implements, and the controller-copying licence is given only for control verbs, not for an \"in V-ing\" adjunct."
+  ]
+ },
+ {
+  "id": "tierD-000190",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other",
+   "plural-distribution",
+   "seal-boundary",
+   "unaccusative-roles"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The matrix speech verb's holder is Agent, but the instruction set fixes the holder as Experiencer exactly when the complement seals, which it does here under Theme.",
+   "\"the new decisions\" loses \"new\" entirely \u2014 no property atom and no per-member distribution rule for it appears anywhere \u2014 silently dropping a stated restriction.",
+   "\"U.N. assistance\" is encoded as (From sk_assistance_1 un), but a proper noun premodifying a common-noun head takes the opaque Possession unless the text states a more specific relation, and no \"from\" is in the text, so the parse asserts an origin the sentence does not state."
+  ]
+ },
+ {
+  "id": "tierD-000191",
+  "q1": "no",
+  "n_issues": 4,
+  "families": [
+   "comparatives",
+   "names-plural-label",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"According to security sources\" is not encoded at all \u2014 no AccordingTo atom and no source referent \u2014 and P's atoms are asserted at top level (merely at confidence 0.9), which the evidential-attribution rule's non-factive bar forbids.",
+   "The office premodifier \"London Metropolitan Police Commissioner\" is reduced to a bare (Member john_stevens commissioner) typing, dropping the qualifier instead of typing him through the whole title phrase per Compound concepts.",
+   "The resultative flat half (Member london_metropolitan_police alert) asserts that the force is \"alert\", a state the sentence never predicates: its source is a PP object noun (\"on its highest state of alert\"), which the prepositional-verb rule routes to an (On <event> \u2026) oblique.",
+   "(Most high sk_alert_1 alert) drops the possessive restriction \"its\" and the head noun \"state\", widening the superlative from the force's own highest state to the highest alert simpliciter."
+  ]
+ },
+ {
+  "id": "tierD-000192",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "comparatives"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"its highest alert\" is encoded as the compound kind high_alert (with genus atoms at 18 and 19), dropping the superlative that the instruction set records as (Most high sk_alert_1 alert) plus class membership."
+  ]
+ },
+ {
+  "id": "tierD-000194",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000195",
+  "q1": "partial",
+  "n_issues": 5,
+  "families": [
+   "names-plural-label",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "A scalar-change subject takes Theme, not Patient ('the temperature fell' -> Theme), so the index should be (Theme sk_drop_1 nikkei_average).",
+   "The stated delta of a scalar-change eventuality takes MeasureBy, not Measure, and its scale slot is filled with the invented symbol 'magnitude' where no word supplies a dimension (the reserved 'unspecified' is the only licensed filler).",
+   "Same defect for the restatement figure '1.3 percent': it is the second true MeasureBy on the same event, not a second Measure with the invented scale 'magnitude'.",
+   "'to close at 8,120.24' is the result/outcome infinitive with a scalar endpoint, which routes via MeasureTo on the drop event; reifying a separate close event is not the licensed form.",
+   "Both the scale 'value' and the unit 'point' are invented for a bare stated figure ('8,120.24' carries no dimension noun and no unit word), where the doctrine requires 'unspecified'."
+  ]
+ },
+ {
+  "id": "tierD-000197",
+  "q1": "partial",
+  "n_issues": 6,
+  "families": [
+   "other",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "A scalar-change subject takes Theme, not Patient, so 'fell' should give (Theme sk_fall_1 us2yt_rr).",
+   "The stated delta 'fell 5/32 in price' is dropped entirely - no MeasureBy on the fall event - losing both the magnitude and the clause-stated dimension noun 'price'.",
+   "The from-value is asserted as the bearer's own past standing Measure; a stated change's start value takes (MeasureFrom <event> ...) on the change eventuality.",
+   "The to-value is asserted as the yield's own timeless Measure, which the Scalar change section explicitly bars ('never becomes the bearer's own timeless Measure'); it takes MeasureTo on the change event.",
+   "(Past sk_take_1) tenses a participial adjunct ('taking'), but a participle never carries a tense atom of its own - only finite clauses do.",
+   "The time adjunct 'late on Monday' is dropped with no atom anywhere in the parse."
+  ]
+ },
+ {
+  "id": "tierD-000198",
+  "q1": "partial",
+  "n_issues": 6,
+  "families": [
+   "names-plural-label",
+   "other",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "'10-year' is silently dropped from the NP: 'the benchmark 10-year note' is typed only benchmark_note, so a stated restriction on the referent's kind is lost.",
+   "A scalar-change subject takes Theme, not Agent - 'lose' is a listed change-of-value verb and its figure is a delta, not a direct object.",
+   "The stated delta 'lost 11/32 in price' is dropped entirely - no MeasureBy on the lose event - losing both the magnitude and the clause-stated dimension noun 'price'.",
+   "The end value is asserted as the note's own timeless Measure, which the Scalar change section explicitly bars; a stated change's endpoint takes (MeasureTo <event> ...).",
+   "The start value is asserted as the bearer's own past standing Measure instead of (MeasureFrom <event> ...) on the change eventuality.",
+   "The participial adjunct 'taking its yield ...' is never reified as an eventuality, and its time adjunct 'late on Monday' is dropped with no atom anywhere."
+  ]
+ },
+ {
+  "id": "tierD-000199",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000200",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "names-plural-label",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The age measure invents the scale symbol `age`; the instruction set's age form is `(Measure <person> old <n> year)` and a scale no word supplies must be the reserved `unspecified`, so a stored `age` scale matches no licensed question."
+  ]
+ },
+ {
+  "id": "tierD-000201",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000202",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000203",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "names-plural-label",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "`(Possession sk_vehicle_1 sk_bishop_1)` is asserted at top level although \"his vehicle\" occurs only inside the non-factive `tell`/`think` seal, where only `Member`/`Name` typing may project \u2014 a possessor link stated only inside P must stay sealed, and it appears nowhere inside the sealed term."
+  ]
+ },
+ {
+  "id": "tierD-000207",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "other",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "`(Past sk_stage_1)` tenses a participial reduced relative (\"others staged near \u2026\"), but tense atoms are licensed on finite clauses only \u2014 a participial reduced relative tenses nothing.",
+   "`(Past sk_others_1)` applies a status predicate to a group entity (`GroupOf sk_others_1 attack`) rather than to an eventuality or a categorical atom, and it duplicates the tense already carried by the staging event."
+  ]
+ },
+ {
+  "id": "tierD-000208",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "during-oblique"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"near foreign compounds\" answers *where* for the staging event, and the instruction set routes an event PP answering where/when/how to the named role `Location`, reserving the preposition-named oblique for PPs naming what the activity is about or directed at (the surface-preposition rule that keeps `Near`/`NextTo` is stated for entity-attached position, not for events)."
+  ]
+ },
+ {
+  "id": "tierD-000211",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000212",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "other",
+   "scalar-measure",
+   "windows-time"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"more than double\" is reduced to a bare `More` ordering, silently dropping the stated \u00d72 factor \u2014 the sentence's quantitative claim is not recorded anywhere in the parse.",
+   "the scale symbol `amount` is invented: no word in the sentence supplies a dimension noun, and the instruction set says an unstated dimension takes the reserved slot symbol `unspecified`, never a coined one (same defect on statements 4 and 5).",
+   "the $102 million belongs to the money amount that heads the NP (\"the $102 million \u2026 for the year-earlier quarter\"), not to the quarter; putting the `Measure` on `sk_quarter_1` makes a calendar period the measured bearer and drops the \"for\"-phrase link between the figure and the quarter (same for statement 4's per-share figure).",
+   "as a consequence, the comparison's second argument is a calendar quarter rather than the figure being compared against."
+  ]
+ },
+ {
+  "id": "tierD-000215",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "the closing value \"at $6.83\" is unencoded \u2014 no `MeasureTo` on the eventuality and no `Measure` on the shares, so the sentence's principal figure is absent from the parse.",
+   "the delta \"up 2 cents\" is unencoded \u2014 the instruction set's scalar-change \"was up / down\" state carries exactly this as `(MeasureBy \u2026 2 cent)`, and a stated qualifier is never silently dropped."
+  ]
+ },
+ {
+  "id": "tierD-000217",
+  "q1": "partial",
+  "n_issues": 5,
+  "families": [
+   "names-plural-label",
+   "other",
+   "scalar-measure",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "the delta \"gained 17/32\" is unencoded \u2014 a change-of-value verb's stated figure takes `MeasureBy` on the event, and the instruction set's bare-figure rule (\"fell 14\" keeps its magnitude with unit `unspecified`) covers the missing unit rather than licensing the number's removal.",
+   "*gain* is a listed change-of-value verb, and the roles section routes a scalar-change subject to `Theme`; the parse assigns `Patient`.",
+   "\"Treasury\" is a proper-noun premodifier, which the instruction set says never fuses into a compound \u2014 the head phrase should be typed on its own and linked by the opaque `Possession` to the named entity, with its own `Name` atom; here it is buried inside `benchmark_treasury_note` and no `Name` is emitted anywhere.",
+   "\"10-year\" is dropped entirely \u2014 a stated restriction on the notes is silently lost.",
+   "`Past` wraps a participial adjunct's content; the instruction set restricts tense atoms to finite clauses (\"an infinitive, participle or gerund never carries a tense atom of its own\")."
+  ]
+ },
+ {
+  "id": "tierD-000218",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The scalar-change \"was down\" state is emitted only as the flat copular atom; *Scalar change* says a copular \"was up/down\" state is reified as usual, and without that eventuality there is nothing for the change figures to ride.",
+   "The stated delta \"17/32\" is dropped entirely \u2014 no MeasureBy atom \u2014 so the sentence's principal figure is silently lost.",
+   "\"to yield 4.067 percent\" is the change's end value and should ride MeasureTo on the change eventuality; *Scalar change* explicitly bars an end value from becoming \"the bearer's own timeless Measure\", which is exactly what this atom is.",
+   "\"10-year\" is silently dropped from the note's description, widening the claim past the note the sentence actually names (a Measure with the reserved `unspecified` scale was available)."
+  ]
+ },
+ {
+  "id": "tierD-000219",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000220",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000221",
+  "q1": "partial",
+  "n_issues": 5,
+  "families": [
+   "adverb-slots",
+   "names-plural-label",
+   "scalar-measure",
+   "unaccusative-roles"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "`(Inheritance industrial_average industrial)` exposes a relational/classifying adjective that fails the predication test (*\"the average is industrial\" \u2014 it is an average of industrials), which *Compound concepts* bars; only the `average` genus is licensed.",
+   "A scalar-change subject takes Theme, not Patient (*Thematic roles*: \"a scalar-change subject rides *Scalar change* and is likewise Theme\", as in the fall example).",
+   "The closing level \"at 9,317.64\" is the change's end value and belongs on MeasureTo on the eventuality, and the scale `value` is supplied by no word in the sentence \u2014 an unstated dimension takes the reserved `unspecified`, never an invented one (the unit `point` is likewise carried over from the delta phrase).",
+   "A stated delta rides `MeasureBy`, not a plain `Measure` on the event (the only event-borne plain Measure the instruction set licenses is `duration`); the scale slot also holds the direction word `down` rather than a stated dimension.",
+   "Same as statement 9 for the percentage restatement \u2014 the head should be MeasureBy on the change eventuality."
+  ]
+ },
+ {
+  "id": "tierD-000222",
+  "q1": "partial",
+  "n_issues": 6,
+  "families": [
+   "names-plural-label",
+   "other",
+   "scalar-measure"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The unit `point` is invented for the bare figure \"down 27.02\" \u2014 *Measures & units* says a unit no word supplies is never invented (its own example: \"fell 14\" gets no `point`) and a stated bare figure keeps unit `unspecified`; the head should also be MeasureBy, since a delta on a scalar-change eventuality is not a plain Measure.",
+   "The percentage restatement is the same delta and should ride MeasureBy on the down state rather than a plain Measure.",
+   "\"9,321.84\" is the change's end value \u2192 MeasureTo on the down eventuality; *Scalar change* explicitly bars an end value from becoming the bearer's own Measure, and both the scale `level` and the unit `point` are supplied by no word.",
+   "`lose` is one of the change-of-value verbs listed in *Scalar change*, so its subject is Theme, not Agent.",
+   "\"having lost 74.81\" is a delta \u2192 MeasureBy; the unit `point` is invented for a bare figure and the scale `loss` is supplied by no word in the clause.",
+   "\"trading\" is a bare mass/activity noun in an of-phrase and should stay a constant rather than getting a minted witness \u2014 and the parse then uses both forms for one referent (`trading` in statement 5, `sk_trading_1` in statement 6)."
+  ]
+ },
+ {
+  "id": "tierD-000223",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "during-oblique",
+   "other",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Past sk_bury_1) puts a tense atom on the participial reduced relative \"bodies buried beneath \u2026\", but tense atoms are restricted to finite clauses and a participial reduced relative tenses nothing.",
+   "\"beneath freshly poured concrete\" is flattened to (Location sk_bury_1 sk_concrete_1), so the stated under-relation is silently dropped rather than kept as the surface preposition.",
+   "\"freshly\" is dropped with no carrier, so the parse records only that the concrete was poured, not that it was newly poured."
+  ]
+ },
+ {
+  "id": "tierD-000224",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "other",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The matrix verb \"performed\" is not reified \u2014 \"performed an autopsy\" is collapsed onto the autopsy event-noun, but the light-verb carve-out is stated only for occurred / happened / took place, so a verbal clause here should reify its own event.",
+   "(Past sk_recover_1) puts a tense atom on the participial reduced relative \"bodies recovered from beneath \u2026\", which the finite-clause-only tense rule bars.",
+   "\"a layer of concrete\" is encoded as (Member sk_layer_1 concrete), typing the layer itself as concrete rather than relating the layer to the substance.",
+   "(Member sk_layer_1 poured) moves the concrete's participial modifier onto the layer, and \"freshly\" is dropped entirely."
+  ]
+ },
+ {
+  "id": "tierD-000227",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "names-plural-label",
+   "other",
+   "plural-distribution"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(In sk_huddle_1 blanket) uses a bare class symbol for the episodic bare plural \"blankets\", and (From sk_protect_1 cold) uses one for the definite \"the cold\"; bare class symbols are reserved for non-specific / generic objects, and an episodic bare plural takes a group witness.",
+   "The huddling is given two Agent atoms on one event (collective), but a coordinated NP is distributive by default \u2014 collective needs a reciprocal/aggregate predicate or a bare \"together / jointly\".",
+   "\"many houses\" is recorded as (CardinalityPhrase sk_house_1 \"many\"), but \"many\" is listed among the proportion words that set strength (0.7) with a QuantifierPhrase companion and is not in the vague-count lexicon (a few / several / a handful / dozens / scores / hundreds)."
+  ]
+ },
+ {
+  "id": "tierD-000228",
+  "q1": "partial",
+  "n_issues": 5,
+  "families": [
+   "other",
+   "seal-boundary",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": "sealed distribution (ruling 2)",
+  "lean": "review-defect",
+  "issues": [
+   "(Inheritance public_square square) is kept inside the seal, but definitional decomposition atoms of a compound kind the complement mentions are one of the exactly three things that project out of an attitude seal to top level.",
+   "The modifier genus (Inheritance public_square public) is missing \u2014 \"public\" is an adjective predicable of the referent (\"the square is public\"), so exposing it is determined, not optional.",
+   "(Past sk_leave_1) puts a tense atom on the participial reduced relative \"people left homeless\", which the finite-clause-only tense rule bars.",
+   "(From sk_protect_1 cold) uses a bare class symbol for the definite \"the cold\", which should be a typed witness; the bare class symbol is reserved for non-specific / generic objects.",
+   "The comma-participial \"huddled in blankets\" is attached only to sk_person_1, dropping the \"crying children\" conjunct that the coordinated NP most naturally also carries."
+  ]
+ },
+ {
+  "id": "tierD-000230",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "Both sealed Implication rules use the variable $x inside one stored term, violating the requirement that every sealed rule get fresh variables shared with no other conjunct of that seal (variables must not co-vary inside one term).",
+   "The additive \"more\" is dropped from both counts \u2014 \"nine MORE people had died\" and \"160 MORE were infected\" become plain (Cardinality \u2026 9) / (Cardinality \u2026 160), losing the incremental-to-a-running-total reading the sentence states."
+  ]
+ },
+ {
+  "id": "tierD-000231",
+  "q1": "partial",
+  "n_issues": 1,
+  "families": [
+   "names-plural-label",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The sealed event class fuses a preposition into the verb lemma as sleep_with, where the compound rules license verb+particle fusion only ('with' is a preposition, not a particle) and a prepositional verb keeps its own lemma, so 'with' is encoded twice \u2014 once in the lemma and once in the CoAgent role."
+  ]
+ },
+ {
+  "id": "tierD-000232",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "during-oblique",
+   "names-plural-label",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The frequency adverb 'occasionally' is dropped with no strength adjustment and no QuantifierPhrase companion, so a repeated habit is asserted as one full-strength past occurrence \u2014 a stated qualifier silently widened.",
+   "Michael Bergin, the object of the preposition 'with', is put in the direct-object role Theme, which the prepositional-verb rule explicitly bars (the with-phrase's animate co-participant is CoAgent, or the preposition-named oblique).",
+   "The sealed event class fuses the preposition into the verb lemma as sleep_with, though the compound rules license verb+particle fusion only, so 'with' is represented both in the lemma and in a participant role."
+  ]
+ },
+ {
+  "id": "tierD-000233",
+  "q1": "partial",
+  "n_issues": 6,
+  "families": [
+   "names-plural-label",
+   "other",
+   "seal-boundary",
+   "tense-wrappers"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "The office-premodifier typing (Member marce_fuller chief_executive) is not wrapped in the past host clause's (Past ...), which the occupational-premodifier rule requires ('a past host clause wraps it like any appositive typing').",
+   "(Inheritance chief_executive chief) exposes a rank adjective as a modifier genus, which the 'assistant secretary' bar disallows (*'the executive is chief' fails the predication test).",
+   "(Possession sk_preference_1 sk_group_1), and (PartOf marce_fuller sk_group_1) at index 5, are possessor / membership links stated only inside the quotation, which the seal projection table keeps sealed; the PartOf is additionally an unstated inference from 'our'.",
+   "The quoted clause's main predication \u2014 'our strong preference IS to achieve a financial restructuring out of court' \u2014 is unencoded: nothing links sk_preference_1 to sk_achieve_1, so the seal reads as a bare achieving event rather than as a preference for one.",
+   "'we remain hopeful' loses its continuation marker: no (Still sk_hopeful_1) and no flat copular half, both required by the continuation-copular rule ('the lodge remained empty').",
+   "The definitional decomposition atoms of financial_restructuring are kept inside the seal, though the projection table has compound-kind decomposition atoms project to top level."
+  ]
+ },
+ {
+  "id": "tierD-000234",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "during-oblique",
+   "names-plural-label",
+   "seal-boundary",
+   "tense-wrappers",
+   "windows-time"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "(Member marce_fuller ceo) is not wrapped in (Past ...) although the host clause 'said' is past, which the occupational-premodifier rule requires.",
+   "(For sk_pref_1 sk_achieve_1) supplies a preposition-named oblique for a copular 'is to' predication when no 'for' appears in the text; the open-class oblique licence covers only the preposition actually used.",
+   "The definitional decomposition atoms of financial_restructuring are kept inside the seal, though the projection table has compound-kind decomposition atoms project to top level.",
+   "(Time sk_say_1 early) uses 'early' as a bare Time filler, which is neither a calendar term, a deictic constant, nor one of the licensed day-part symbols."
+  ]
+ },
+ {
+  "id": "tierD-000235",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000236",
+  "q1": "yes",
+  "n_issues": 0,
+  "families": [],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "promote",
+  "issues": []
+ },
+ {
+  "id": "tierD-000239",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "other",
+   "seal-boundary",
+   "would-irrealis"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Experiencer sk_operation_1 sk_service_1) states a role no words license \u2014 \"of operation\" names no experiencer, and Experiencer is the subject of a stative predication, which an activity noun is not.",
+   "The possessive \"its\" on \"its first week\" is dropped: no (Possession sk_week_1 sk_service_1) / PartOf link attaches the week to the service, the possessor having been re-routed onto the invented operation state instead.",
+   "\"the company\" supplies a stated kind word for the named referent that is never recorded \u2014 no (Member apple_computer company) at top level, where a definite's typing would project out of the seal."
+  ]
+ },
+ {
+  "id": "tierD-000240",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "other",
+   "would-irrealis"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Ongoing sk_sell_1) has no licensed marker \u2014 a gerund in a \"by V-ing\" adjunct is none of the four explicit Ongoing triggers, and the parse emits no Start that would carry the \"since\" continuative reading it seems to be standing in for.",
+   "(Past sk_launch_1) over-emits on a temporal-anchor event noun, which takes its class atom and the ordering relation and nothing else; tense atoms are for finite clauses, and \"a week ago\" is already carried by (BeforeBy sk_launch_1 now 1 week)."
+  ]
+ },
+ {
+  "id": "tierD-000243",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "\"specific diseases\" loses its restrictive modifier \u2014 each disjunct fills the object slot with the bare kind `disease`, widening the claim from specific diseases to diseases at large, which the no-silently-dropped-qualifier rule bars.",
+   "The disjunctive clause is split rather than kept as one (And \u2026) fact: the shared claim/agent/tense atoms sit at top level while a bare (Or \u2026) stands alone, where the Disjunction section puts the Or and its shared conjuncts inside a single And-wrapped fact."
+  ]
+ },
+ {
+  "id": "tierD-000244",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "names-plural-label",
+   "other",
+   "plural-distribution",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "(Experiencer sk_claim_1 sk_subset_1) mis-assigns the matrix role: Experiencer is for a holder whose complement seals, while a speech verb with a control infinitive (\"claimed to treat \u2026\") keeps its ordinary role, Agent.",
+   "The complement is nested as one term argument of Theme, i.e. sealed, but a control verb with a to-infinitive never seals \u2014 the complement eventualities are to be reified at top level and attached by Theme.",
+   "\"those\" is typed as a group of `person` with no human-only predicate or role as discourse evidence \u2014 \"claim\" admits non-human subjects \u2014 where the rule prescribes the `thing` fallback (statement 1 inherits the same typing).",
+   "\"that kind of statement\" is reduced to the bare kind `statement`, widening the prohibition to statements at large; the same widening is repeated inside the distribution rule at statement 15."
+  ]
+ },
+ {
+  "id": "tierD-000245",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label",
+   "other"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect",
+  "issues": [
+   "Minting `sk_abuse_1` as a top-level witness asserts that an abuse eventuality exists, whereas the text only names the offense a charge is of \u2014 and the three sibling conjuncts are (correctly) left as bare kind symbols.",
+   "`(Member sk_body_1 body)` plus `(Member sk_body_1 dead)` assert that a specific dead body exists, content supplied only by the name of the charge."
+  ]
+ },
+ {
+  "id": "tierD-000247",
+  "q1": "partial",
+  "n_issues": 3,
+  "families": [
+   "plural-distribution",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "The maintenance resultative \"keep records sealed\" reifies the sealed state but omits the required `(Result sk_keep_1 sk_sealed_1)` link to the keep event.",
+   "The maintenance verb's continuation marker `(Still sk_sealed_1)` is missing, so nothing records that the state is being held rather than brought about.",
+   "\"for as little as five years or as much as 30\" is collapsed into a single [5,30] interval on the one group event, dropping the disjunction and the spread across different keepers; the per-member rule then derives keepings with no term at all."
+  ]
+ },
+ {
+  "id": "tierD-000248",
+  "q1": "partial",
+  "n_issues": 4,
+  "families": [
+   "adverb-slots",
+   "other",
+   "seal-boundary"
+  ],
+  "unlicensed": [],
+  "ruled": "dual-emit group distribution (ruling 5)",
+  "lean": "review-defect",
+  "issues": [
+   "\"them\" has no antecedent and no human-only predicate or role, so typing the witness group `person` violates the explicit bar on reading `person` off a plural pronoun alone \u2014 the fallback kind is required.",
+   "The second clause's \"them\" witness carries the same unlicensed `person` typing.",
+   "\"immediately\" is a temporal adverb, not a how-adverb of manner, so `(Manner sk_make_1 immediately)` asserts a manner the sentence does not state (repeated inside the rule at statement 10).",
+   "The maintenance verb \"keep them sealed\" reifies the state and links `Result` but omits the required `(Still sk_sealed_1)` continuation marker."
+  ]
+ },
+ {
+  "id": "tierD-000250",
+  "q1": "partial",
+  "n_issues": 2,
+  "families": [
+   "names-plural-label"
+  ],
+  "unlicensed": [],
+  "ruled": null,
+  "lean": "review-defect(fp4-drift)",
+  "issues": [
+   "\"a Medicare drug package\" fuses a proper-noun premodifier into the compound `medicare_drug_package`, which Names and casing bars \u2014 the head phrase should be typed on its own and linked to the named entity by the opaque `Possession`.",
+   "No `(Name medicare \"Medicare\")` atom is emitted for the proper noun the text mentions, and a proper noun's `Name` fact is not optional."
+  ]
+ }
+]

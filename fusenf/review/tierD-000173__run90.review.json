@@ -1,0 +1,11 @@
+{"id": "tierD-000173", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "`(PartOf lloyd_mcclendon pirates)` — a proper noun premodifying a common-noun head (\"Pirates manager\") takes the opaque `Possession`, and the rule explicitly bars inventing membership or `PartOf` the words do not state; `pirates` is moreover a `Name`-only plural-label individual with no `GroupOf`, so nothing establishes it as a group to be a part of."},
+            {"statement": 7, "issue": "\"We\" is resolved to `pirates`; the coreference rules cover he/she/it/they only and give a pronoun with no antecedent a fresh witness, so binding the quote's first-person subject to the team is a world-knowledge link the text does not state."},
+            {"statement": 7, "issue": "`(Member $p quality)` predicates the noun modifier \"quality\" of each player as a property class; the compound rules treat a noun modifier as never exposable, so \"quality players\" should either fuse (`quality_player` + genus `player`) or the modifier stays in the symbol."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["first- and second-person pronouns (\"we\", \"I\", \"you\") inside a direct quotation — the Coreference & anaphora section supplies antecedent and fallback-witness rules only for third-person he/she/it/they"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The quotation routing is otherwise right: sealed under `Theme` of a `say` event with `Experiencer` holder, `Past` on the matrix only, the sealed plural's per-member `Implication` correctly placed INSIDE the seal with its own variable, the indefinite player group left sealed, and the occupational premodifier correctly wrapped by the past host clause as `(Past (Member lloyd_mcclendon manager))` and kept out of the `Name` string."}

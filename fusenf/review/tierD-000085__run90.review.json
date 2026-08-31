@@ -1,0 +1,11 @@
+{"id": "tierD-000085", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 13, "issue": "\"West Bank\" is a proper noun premodifying the common-noun head \"settlement outposts\", which the instruction set links with the opaque Possession unless the text states a more specific relation; LocatedIn asserts a containment the words do not state."},
+               {"statement": 30, "issue": "\"Mideast\" is a capitalized proper noun premodifying \"peace plan\", so Compound concepts does not apply to it: fusing it into mideast_peace_plan (and emitting no (Name mideast \"Mideast\")) treats a name as a compound modifier."},
+               {"statement": 29, "issue": "The genus atom (Inheritance mideast_peace_plan plan) inherits the same defect — the compound it decomposes should have been peace_plan with the proper noun linked separately."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["hyphenated PRENOMINAL participial modifier with an incorporated agent (\"a US-backed plan\"): the instruction set makes a participle used as a modifier an adjective (\"a laminated worktop\"), which has no slot for the agent, while the reduced-relative event route is stated only for POST-modifiers (\"the rules concerning the levy\")"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Coordinated-object distribution (two knock_down events), the phrasal verb knock_down with no genus, the empty/tiny per-member distribution rules at 1.0 0.9, Cardinality 10 and overnight -> (Time e night) all follow the instruction set. AsPartOf is borderline but reads as the multi-word preposition-named oblique (NextTo / AcrossTheLaneFrom convention), so I did not list it as unlicensed."}

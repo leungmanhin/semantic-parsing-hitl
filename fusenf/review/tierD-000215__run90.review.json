@@ -1,0 +1,9 @@
+{"id": "tierD-000215", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "the closing value \"at $6.83\" is unencoded — no `MeasureTo` on the eventuality and no `Measure` on the shares, so the sentence's principal figure is absent from the parse."}, {"statement": null, "issue": "the delta \"up 2 cents\" is unencoded — the instruction set's scalar-change \"was up / down\" state carries exactly this as `(MeasureBy … 2 cent)`, and a stated qualifier is never silently dropped."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a verbless absolute adjunct \"…, up 2 cents\": the scalar-change section gives the copular \"was up / down\" state but no reduced/appositive form, so which eventuality the delta attaches to is unsettled", "\"ended at <price>\" as a closing-value predicate: *end* is not among the listed change-of-value verbs (rise/fall/climb/drop/gain/lose/ease/jump/slip), so whether the clause is a scalar change (subject `Theme`, figure `MeasureTo`) or an ordinary intransitive is undetermined"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "What is emitted is correct — bare-plural episodic subject as a group witness, `(Weekday wednesday)` time term, `Past` — but the parse records only \"shares ended Wednesday\" and loses both numbers. If \"ended at\" is read as the scalar change that \"up 2 cents\" implies, the subject would also be `Theme` rather than `Patient` (statement 2)."}

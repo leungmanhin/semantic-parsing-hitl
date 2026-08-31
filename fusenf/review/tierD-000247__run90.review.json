@@ -1,0 +1,11 @@
+{"id": "tierD-000247", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "The maintenance resultative \"keep records sealed\" reifies the sealed state but omits the required `(Result sk_keep_1 sk_sealed_1)` link to the keep event."},
+               {"statement": 5, "issue": "The maintenance verb's continuation marker `(Still sk_sealed_1)` is missing, so nothing records that the state is being held rather than brought about."},
+               {"statement": 9, "issue": "\"for as little as five years or as much as 30\" is collapsed into a single [5,30] interval on the one group event, dropping the disjunction and the spread across different keepers; the per-member rule then derives keepings with no term at all."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"as little as X or as much as Y\" — a range/spread stated disjunctively over a population has no defined encoding; the instructions give `Or` for disjuncts and MeasureAtLeast/AtMost for bounds, but nothing for a minimum-to-maximum spread whose endpoints belong to different members"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "`(GroupOf sk_others_1 thing)` is the mandated fallback kind for an antecedentless plural, and the plural-object flat half correctly becomes the per-member `Member … sealed` rule rather than riding the group symbol. The distribution rule shares one `sk_records_1` across every member, which the doctrine's template allows but which reads as all keepers holding the same records."}

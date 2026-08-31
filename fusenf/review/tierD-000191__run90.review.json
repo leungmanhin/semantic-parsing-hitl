@@ -1,0 +1,12 @@
+{"id": "tierD-000191", "run": 90,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": null, "issue": "\"According to security sources\" is not encoded at all — no AccordingTo atom and no source referent — and P's atoms are asserted at top level (merely at confidence 0.9), which the evidential-attribution rule's non-factive bar forbids."},
+               {"statement": 3, "issue": "The office premodifier \"London Metropolitan Police Commissioner\" is reduced to a bare (Member john_stevens commissioner) typing, dropping the qualifier instead of typing him through the whole title phrase per Compound concepts."},
+               {"statement": 13, "issue": "The resultative flat half (Member london_metropolitan_police alert) asserts that the force is \"alert\", a state the sentence never predicates: its source is a PP object noun (\"on its highest state of alert\"), which the prepositional-verb rule routes to an (On <event> …) oblique."},
+               {"statement": 12, "issue": "(Most high sk_alert_1 alert) drops the possessive restriction \"its\" and the head noun \"state\", widening the superlative from the force's own highest state to the highest alert simpliciter."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The \"following the warning\" adjunct is handled exactly right — anchor-only typing plus (Before sk_warning_1 sk_place_1) and no tense on the warning — as are the deictic last_week and the past-host wrapper on the title typing. The blanket 0.9 confidences read as a hedge substituting for the AccordingTo attribution, which the instruction set does not license."}

@@ -1,0 +1,10 @@
+{"id": "tierD-000250", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 8, "issue": "\"a Medicare drug package\" fuses a proper-noun premodifier into the compound `medicare_drug_package`, which Names and casing bars — the head phrase should be typed on its own and linked to the named entity by the opaque `Possession`."},
+               {"statement": 8, "issue": "No `(Name medicare \"Medicare\")` atom is emitted for the proper noun the text mentions, and a proper noun's `Name` fact is not optional."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"by August\" is dropped with no trace; the superseded-bound rule does sanction emitting only the operative Oct-17 bound, but it also lets the superseded bound survive `Past`-wrapped as history, which this text arguably states. Whether the capitalized plural \"Republicans\" should instead be the `Name`-only plural-label individual of Names and casing rather than `(GroupOf … republican)` is a genuine boundary case; the control-verb complement, the past-perfect `Before`, and the occurrence-object `Patient` on \"extended\" are all correct."}

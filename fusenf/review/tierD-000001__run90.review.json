@@ -1,0 +1,11 @@
+{"id": "tierD-000001", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "The sealed rule's premise contains Skolem function terms `(sk_take $x)`, which the instruction set forbids in premises (\"a premise never contains a Skolem term\"), so the rule can never fire."},
+               {"statement": 5, "issue": "The two stated deltas \"by 88 percent\" and \"by 80 percent\" are dropped entirely — neither lowering event carries a MeasureBy atom, silently widening the claim."},
+               {"statement": 6, "issue": "The per-member distribution rule repeats both defects, and its conclusion contains `$x`, a variable no premise of that rule binds."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["hypothetical conditional \"if X V-ed, Y would V\" (past-subjunctive antecedent with a *would* consequent): the instruction set legislates only the indicative Implication rule and the subjunctive had/would-have Counterfactual, so this middle form has no assigned route"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Attitude routing (non-factive claim, Experiencer holder, sealed Theme, projected definite typing and heart_attack genus) is correct. The sentence's two headline figures are the main loss."}

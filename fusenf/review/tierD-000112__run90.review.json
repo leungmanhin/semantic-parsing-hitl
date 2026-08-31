@@ -1,0 +1,11 @@
+{"id": "tierD-000112", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 7, "issue": "\"by 25 percent or more\" is dropped entirely: percent is a licensed unit, so at least (MeasureBy (sk_raise $x) unspecified 25 percent) was available, and the delta the sentence states is left unrecorded."},
+               {"statement": 2, "issue": "\"US\" is a proper noun premodifying a common-noun head, which never fuses per Names and casing - expected the head noun typed on its own plus (Possession <group> us) and a (Name us \"US\") fact - yet the parse fuses us_researcher and emits no Name atom for the US."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a bounded delta on a scalar-change event (\"raise ... by 25 percent or more\") - MeasureBy has no at-least variant, so the \"or more\" bound has no licensed form",
+             "a proportional quantifier inside a seal - a sealed rule carries no STV, so \"nearly one in 10\" survives only as the QuantifierPhrase word and the ~0.1 strength has no carrier"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Deictic \"yesterday\" is correctly a bare Time constant with no witness and no Member atom (no TODAY was supplied, so no dual-emit), and the sealed rule plus its sibling QuantifierPhrase companion follow the seal doctrine."}

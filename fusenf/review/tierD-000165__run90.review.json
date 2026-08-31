@@ -1,0 +1,12 @@
+{"id": "tierD-000165", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 2, "issue": "\"Air Force\" is a proper noun premodifying the common-noun head \"major general\", which the instruction set keeps outside Compound concepts; fusing it into air_force_major_general splits no name off, so the head should be major_general linked by (Possession bridges air_force)."},
+   {"statement": null, "issue": "No (Name air_force \"Air Force\") atom is emitted, so a named entity mentioned in the text carries no Name fact at all."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a privative/temporal adjective on a predicate nominal (\"a FORMER shuttle pilot\") has no licensed encoding — the parse's (Past (Member bridges shuttle_pilot)) is a reasonable stand-in but is not the instruction set's surface-tense-decides rule, since the clause is present tense"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The coordinated predicate nominals are correctly two separate Member atoms, shuttle_pilot emits its head genus with the noun modifier unexposed, and the rank adjective \"major\" is correctly suppressed as failing the predication test."}

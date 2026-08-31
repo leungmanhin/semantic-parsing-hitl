@@ -1,0 +1,17 @@
+{"id": "tierD-000106", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 6, "issue": "(To sk_lead_1 sk_standoff_1) is indistinguishable from the purpose-connective `To`, so the seeded PurposeOf bridge would read the standoff as the aim of the leading; the instruction set routes a causation-flavored verb's complement eventuality to Theme."},
+   {"statement": 2, "issue": "(Past sk_protest_1) tenses a participant event-noun that no finite clause of the sentence tenses — only the leading is stated as past."},
+   {"statement": 9, "issue": "(Past sk_standoff_1) does the same for the standoff, which is only the object of \"led to\" and is predicated of nothing temporally."},
+   {"statement": 10, "issue": "(CoAgent sk_standoff_1 police) attaches a co-participant to an event that has no Agent at all, and `police` (a bare plural in an episodic clause) appears as an untyped bare symbol."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "\"lead to\" as a causation-flavored PREPOSITIONAL verb: the instruction set sends a prepositional verb's object to the preposition-named oblique but a causation verb's complement eventuality to Theme, and does not say which wins — nor does it disambiguate the resulting (To <event> <event>) from the purpose connective of the same head.",
+   "A reciprocal event NOUN with a comitative phrase (\"a standoff with police\"): the collective/reciprocal carve-out and CoAgent are both defined over verbal clauses that have an Agent, and a nominal reciprocal has no Agent slot to co-participate with."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The lowercase-modifier sub-region witnesses for \"downtown Washington\" / \"northern Virginia\", the traffic_jam genus with the noun modifier unexposed, the descriptive \"huge\" distributed to members by rule, and Location on the causing event rather than on the jams all follow the instruction set precisely. The defects are the To head and the two inferred tense atoms on participant event-nouns."}

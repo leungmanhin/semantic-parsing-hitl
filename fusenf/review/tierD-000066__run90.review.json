@@ -1,0 +1,13 @@
+{"id": "tierD-000066", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 14, "issue": "`(Name marshall \"Marshall\")` is emitted but `marshall` appears in no other atom — the proper-noun premodifier's `Possession` link from 'Marshall basketball coach' is dropped, silently widening the claim to coach-of-anywhere."},
+               {"statement": 17, "issue": "`Ordinal`'s scale slot is filled with the class `basketball_coach`, which is neither the associated event nor an explicit '-est' dimension as the instruction set specifies for that slot."},
+               {"statement": 15, "issue": "The predicative 'as the 25th Marshall basketball coach' is flattened to a tense-wrapped typing atom with no link to the introduce event, so the as-relation is unrecorded."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["'X is introduced **as** NP' — a predicative as-phrase on a passive verb has no licensed role or head",
+             "ordinal rank within a succession of officeholders ('the 25th coach') — no associated event and no gradable dimension exists to fill `Ordinal`'s scale slot",
+             "a room of/in a building ('the Henderson Center's Big Green Room') — the genitive part-test yields `PartOf` while the place-inside-a-place rule yields `LocatedIn`, and the instruction set does not settle which governs"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Tense (`Future` on both the event and the wrapped typing), the deictic `today`, and the `press_conference`/`basketball_coach` genus-only decompositions (noun modifiers correctly unexposed) all follow the instruction set. The dangling `marshall` symbol is the clearest defect."}

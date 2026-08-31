@@ -1,0 +1,11 @@
+{"id": "tierD-000040", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "'Full' is silently dropped — nothing predicates fullness of the classes or their members, so the parse asserts only that classes are booked, a wider claim than the text makes."},
+               {"statement": 2, "issue": "'of 48' is silently dropped — no cardinality atom anywhere records the size the text states."},
+               {"statement": 7, "issue": "'are booked' is distributive over the class group but no per-member (Implication (PartOf $x sk_classes_1) ...) rule is emitted, so a class named later inherits nothing."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A member count stated inside a plural NP ('classes of 48') — a per-class count whose counted kind is never stated — has no licensed carrier: Cardinality needs a group symbol and GroupOf needs a named member kind."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The name-plus-kind treatment of 'the Transportation Security Administration' (one opaque symbol, one Name, kind word read off the name) is right, as is sealing both conjuncts under 'he said' with only Name/typing projected. Resolving 'its classes' to the same group as the booked classes is defensible anaphora, though it makes the doubled set identical to the booked set."}

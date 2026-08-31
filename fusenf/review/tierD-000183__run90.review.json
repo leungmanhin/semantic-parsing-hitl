@@ -1,0 +1,13 @@
+{"id": "tierD-000183", "run": 90,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": null, "issue": "The whole measured range \"between $8.1 billion and $8.7 billion\" is silently dropped — no MeasureAtLeast/MeasureAtMost pair (or any figure) rides sk_revenue_1, so the parse asserts only that Intel expects revenue, widening the claim exactly as the never-drop-a-qualifier rule forbids."},
+               {"statement": 4, "issue": "\"For the fourth quarter\" restricts the revenue, not the expecting, so hanging (For sk_expect_1 fourth_quarter) on the attitude event states that the expecting was for Q4 — a different claim from the sentence's."},
+               {"statement": 4, "issue": "The oblique's object is a definite NP (\"the fourth quarter\") yet is emitted as a bare untyped constant; the oblique-object rule says an article mints a witness with its kind atom, and the bare fiscal-period constant is licensed only in bound Time terms."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a monetary magnitude with a scale word (\"$8.1 billion\") — no stated convention for the magnitude/unit slots (unit is specified as a lemmatized singular such as `dollar`)",
+             "\"between X and Y\" as a two-sided range on a measure — the bounded forms MeasureAtLeast/MeasureAtMost exist but the paired \"between\" wording is never named",
+             "a fiscal-period NP (\"the fourth quarter\") as an oblique object — the bare constant form is licensed only for bound Time terms, leaving constant-vs-witness unsettled here"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Routing \"expects\" with an NP object to Experiencer/Stimulus and emitting no tense atom for the bare simple present are both correct; the defect is that the sentence's actual content — the dollar range — never reaches the KB."}

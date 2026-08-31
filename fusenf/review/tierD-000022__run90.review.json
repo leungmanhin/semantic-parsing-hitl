@@ -1,0 +1,12 @@
+{"id": "tierD-000022", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 14, "issue": "'his first sporting passion' — the ordinal 'first' is emitted as a plain property atom (Member sk_passion_1 first) instead of the licensed (Ordinal <entity> 1 <scale>) form."},
+               {"statement": 23, "issue": "'his Wimbledon defence' fuses a proper noun into the compound kind wimbledon_defence (with genus at 24), which the proper-noun-premodifier rule forbids — the head noun should be typed on its own and linked to the named entity by opaque Possession."},
+               {"statement": 22, "issue": "(Name wimbledon \"Wimbledon\") is emitted but the wimbledon symbol appears in no other atom — an orphan left behind by the fusion at 23."},
+               {"statement": 21, "issue": "Simultaneity 'as' is rendered as (During sk_trade_1 sk_relax_1), but During is restricted to 'during / while / throughout' and is never a synonym head."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["temporal 'as' (a simultaneous subordinate clause) — it is not among the temporal connectives the instruction set assigns a canonical form, and During is explicitly limited to during / while / throughout"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The exchange-'for' oblique, the bare deictic 'yesterday', the racquet/passion compounds and their genus decisions, the coreferring 'the world champion', and 'ahead of' → Before are all handled correctly. The dash appositive correctly takes the host clause's Past wrapper."}

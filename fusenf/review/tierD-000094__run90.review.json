@@ -1,0 +1,12 @@
+{"id": "tierD-000094", "run": 90,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": 4, "issue": "A scalar-change subject takes Theme, not Patient, so (Patient sk_rise_1 sk_shares_1) is the wrong role."},
+               {"statement": 6, "issue": "The delta \"$1.83\" must be (MeasureBy sk_rise_1 …), not a plain Measure on the event, and the scale `price` is invented — no dimension word is stated, so the slot takes the reserved `unspecified`."},
+               {"statement": 10, "issue": "(Past sk_close_1) tenses a non-finite complement: \"to close\" is an infinitive, and tense atoms are for finite clauses only."},
+               {"statement": 11, "issue": "The closing value \"$23.89\" is a scalar endpoint and routes via MeasureTo on the rise event; a Measure on an eventuality is licensed only for `duration`, and `price` is again an invented scale."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Same systematic scalar-change mis-routing as its companion sentence, plus a tense atom on the infinitival complement. The multi-word name new_york_stock_exchange with its `exchange` type atom and the Location on \"on the New York Stock Exchange\" both read as correct."}

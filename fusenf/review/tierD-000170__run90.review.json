@@ -1,0 +1,12 @@
+{"id": "tierD-000170", "run": 90,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": null, "issue": "\"was off 1.07 points\" is a copular \"was up/down\" scalar-change state, which the Scalar change rule says to reify as an eventuality carrying its figures; no `off` state witness (and no flat copular atom) is reified at all, so the change itself is never recorded as an eventuality."},
+            {"statement": 2, "issue": "The delta must be `(MeasureBy <event> <scale> 1.07 point)` on the reified state, not `Measure` on the index; and `off` is a direction living in the state lemma, not a stated dimension, so the scale slot should be the reserved `unspecified`."},
+            {"statement": 3, "issue": "Same defect for the restatement figure: the \"or 0.11 percent\" half is a second `MeasureBy` on the one event (the two-atom shape is right), but it is emitted as `Measure` on the bearer with the invented scale `off`."},
+            {"statement": 4, "issue": "\"at 1,010.59\" is the change's end value → `(MeasureTo <event> ...)`; a bearer's own `Measure` for an end value is explicitly barred (\"never becomes the bearer's own timeless `Measure`\"), and both `level` (scale) and `point` (unit) are invented — no word in the sentence supplies either, so both slots should be `unspecified`."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["attributive / elided-standard comparative \"The broader ... Index\" — no standard is stated, so `More`'s second slot cannot be filled and the comparative has no licensed form (the instruction set itself directs dropping it and recording the gap; the parse correctly drops it)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Name/typing handled correctly: kind word inside the name yields `(Member standard_poors_500_index index)`, the `.SPX` ticker is dropped as a parenthetical secondary identifier, and exactly one `Name` fact is emitted. Every content atom about the actual price movement is in a barred or unlicensed slot shape."}

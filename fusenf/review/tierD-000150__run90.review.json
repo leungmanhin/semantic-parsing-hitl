@@ -1,0 +1,10 @@
+{"id": "tierD-000150", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 6, "issue": "`(Past sk_pass_1)` sits on a participial reduced relative (\"laws passed ...\"), but *Status predicates* restricts tense atoms to finite clauses — a participle carries no tense of its own."},
+               {"statement": 8, "issue": "The implication's premise names the Skolem constants `sk_find_1` and `sk_guilty_1`, which no top-level fact asserts; *Time* (\"rule premises bind through plain variables\") forbids this, and as written the rule can never fire."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"in the weeks after <event>\" — a forward temporal window/offset from an anchor event, with a bare-plural unnumbered extent, has no licensed carrier (`WithinLast` is backward-looking, `BeforeBy` needs a stated number and unit), so the \"in the weeks\" span is dropped"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The antecedentless \"he\" is correctly given a `person` witness (not `man`), \"could\" routes to `Might` with no tense, and the bombings anchor correctly carries no tense of its own."}

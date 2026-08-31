@@ -1,0 +1,13 @@
+{"id": "tierD-000042", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 15, "issue": "(AccordingTo sk_tell_1 sk_affidavit_1) passes a bare event symbol where AccordingTo's first argument must be the sealed proposition itself (a single atom, or several as an (And ...) term)."},
+               {"statement": 4, "issue": "The attributed telling is asserted at top level (statements 4-8), breaking the non-factive bar that no predication of the attributed proposition reaches top level — the text only says the affidavit reports it."},
+               {"statement": 10, "issue": "'FBI agents' is a proper noun premodifying a common-noun head, which the instruction set routes to the opaque (Possession sk_agents_1 fbi) and explicitly bars from PartOf."},
+               {"statement": 2, "issue": "'former' in 'Dennehy's former teammate' is dropped rather than kept in the symbol (former_teammate with genus teammate); the Past wrapper that stands in for it comes from the host clause, not from 'former'."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["The evidential sentence adverb 'reportedly' has no licensed carrier — the instruction set covers the 'is reported/considered to be' impersonal-attitude frame and 'according to X', but not a bare adverb; the parse consumes it as a confidence drop to 0.9 on the matrix atoms, which no rule licenses for this form.",
+             "Nesting is unspecified: how an AccordingTo seal is to contain a report verb that itself seals a Theme complement, and what projects out of the outer seal in that case."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The sealed complement is well built — 'he'/'the player'/'him' all resolve correctly, the control complement of 'tried to shoot' carries no tense of its own, 'after' becomes (Before sk_try_1 sk_shoot_1) with both endpoints inside the seal, and the definite 'the player' typing projects legitimately."}

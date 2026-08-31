@@ -1,0 +1,9 @@
+{"id": "tierD-000029", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "\"White House\" is a proper noun premodifying a common-noun head, which never fuses into a compound: the parse builds white_house_press_secretary (and its genus atom at index 2) instead of typing the head phrase alone and linking the named entity by Possession with its own Name atom."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a light-verb / idiom nominal extracted as a relative-clause head (\"the steps that the Iranians claim to have taken\"): the idiom rule assumes a contiguous surface string, so \"take steps\" is forced into a literal taking event over step entities", "whether a perfect infinitive under a control verb also licenses a Before ordering against the matrix event is unstated - only (Past e) is explicitly licensed on it"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Quotation sealing, the Agent on control-verb \"claim\" (per the instruction set's own \"claimed to have taken it\" case), Theme on take/capture, the projected definite and named typing atoms, and the multiword preposition InTermsOf are all correct. (Member sk_step_1 insufficient) predicates of the group symbol, which I read as a genuinely collective property rather than one that should distribute."}

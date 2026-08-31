@@ -1,0 +1,11 @@
+{"id": "tierD-000065", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 19, "issue": "'noon' is a day-part constant in the instruction set (dawn/noon/dusk/night), so it should ride `Time` as the bare symbol `noon`; `(Hour 12)` normalizes it into a clock term the text does not state."},
+               {"statement": 12, "issue": "The predicative 'as Marshall head coach' is flattened into a bare top-level typing atom with no link to the introduce event, so the as-relation is lost (the entailment survives only because `learn` is factive)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["'X is introduced **as** NP' — a predicative as-phrase on a passive verb has no licensed role or head; there is no slot tying the predicated role to the event",
+             "a room of/in a building ('the Room of Cam Henderson Center') — the genitive part-test says `PartOf` while the place-inside-a-place rule says `LocatedIn`, and the instruction set does not settle which governs an of-genitive naming a room"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The factive dual-emit (sealed `Theme` plus top-level P) and the Northgate-style `(Possession jirsa marshall)` for the proper-noun premodifier are both handled per the instruction set. Kind atoms read off kind words inside the names ('Room', 'Center') are correctly licensed."}

@@ -1,0 +1,9 @@
+{"id": "tierD-000009", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 9, "issue": "'up to two years in prison' is reduced to (Theme sk_face_1 prison): the stated upper bound gets no MeasureAtMost/duration atom and the 'in' PP is absorbed into the object slot, so the parse asserts facing prison with the qualifier that limits it silently dropped."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a penalty phrase of the form 'face up to N <unit> in prison' — the bounded-duration object NP names a prison term for which no bearer is licensed (no witness is minted for the term, so MeasureAtMost has nothing to attach to, and attaching it to the face event would claim the facing lasted that long)", "a law-stating indefinite singular subject with a restrictive relative ('a physician who performed the procedure could face ...') under an EPISTEMIC modal: the kind-level carve-out covers only deontic norms and capability generics, so the witness route is forced and the relative clause is asserted as a fact about an actual physician"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The witness routing, Might (conf 0.9, no tense) for 'could', and the Under oblique for the framing PP all follow the instruction set; the loss is confined to the penalty phrase. Asserting the relative clause at top level is a consequence of the doctrine as written rather than a parse choice, which is why it is filed as a gap."}

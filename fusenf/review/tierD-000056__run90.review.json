@@ -1,0 +1,13 @@
+{"id": "tierD-000056", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The party tag \"R-\" is expanded into (Past (Member frist republican)); the instruction set states that a party/district tag has no licensed head and must be left out with the gap recorded."},
+               {"statement": 3, "issue": "The district tag \"Tenn.\" is turned into (Past (From frist tennessee)) — a From origin relation the sentence never states (no \"from\" appears in the text), asserted from the same barred tag."},
+               {"statement": 2, "issue": "(Name tennessee \"Tenn.\") invents a proper-noun referent out of the district tag, and its Name string does not even match the symbol derived for it."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Party/district tags (\"R-Tenn.\", \"D-Ashford\") — the instruction set registers that these have no licensed head, so the affiliation stated in the sentence cannot be encoded at all.",
+             "An adjective with a finite clausal complement (\"confident (that) P\") — the complements section covers only an adjective's PP complement; attaching the sealed proposition by Theme on the reified state witness is an unspecified extension.",
+             "First-person pronouns inside a direct quotation (\"I\" = the quoted speaker, \"we\" = a speaker-inclusive group) are not covered by the pronoun table, which handles only he/she/they/it."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The quotation itself is handled well: say takes Experiencer with the quote sealed under Theme, \"I\" resolves to frist, the indefinite \"a bill\" correctly stays inside the seal while the Name projects, and \"absolutely\" becomes a surface-lemma Degree beside the asserted positive. The R-Tenn. expansion is the substantive defect — three atoms asserted from a tag the instruction set explicitly bars."}

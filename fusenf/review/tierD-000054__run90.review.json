@@ -1,0 +1,13 @@
+{"id": "tierD-000054", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The VP-ellipsis \"did\" is reified as a literal (Member sk_do_1 do) event with Agent and Past, asserting an event of class \"do\"; the instruction set says to reconstruct the elided verb, and with no antecedent inside this text there is no licensed encoding to fall back on."},
+               {"statement": 10, "issue": "(Past sk_best_1) tenses the non-finite participial adjunct \"besting\"; tense atoms are for finite clauses only, and a participle carries no tense of its own."},
+               {"statement": 24, "issue": "\"former winners\" is typed as plain winner, silently dropping the \"former\" modifier — the Past wrapper here is the past host clause's appositive wrapper, so nothing in the parse encodes \"former\" (same at statement 26)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"and then some\" — an idiomatic additive intensifier with no licensed carrier; it is dropped entirely and the sentence's \"and more besides\" claim disappears.",
+             "VP-ellipsis whose antecedent lies outside the supplied text: the instruction is to reconstruct the verb, which is impossible here, and no fallback (pro-form or gap) is specified.",
+             "\"as well as\" as an NP coordinator — licensed only as the additive focus particle \"as well\", so the third conjunct's additive flavour has no tag."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The antecedentless \"she\" correctly takes an sk_person_1 witness classed by meaning rather than by pronoun, and the field group's Member + GroupOf + Cardinality typing and the distributed include events are right. Note the group's named members get no PartOf links even though the relative clause names them."}

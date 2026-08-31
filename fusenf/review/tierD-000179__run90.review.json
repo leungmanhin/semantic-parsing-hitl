@@ -1,0 +1,12 @@
+{"id": "tierD-000179", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "The stated delta \"up 37 cents\" is dropped entirely — *Scalar change* puts it on the up-state as `(MeasureBy … 37 cent)`, and its own example is \"was up 37 cents\"."},
+               {"statement": 7, "issue": "The endpoint \"to $28.56\" is stored as the bearer's own timeless `(Past (Measure sk_stock_1 price 28.56 dollar))`, the form *Scalar change* explicitly forbids (\"never becomes the bearer's own timeless Measure\"); it belongs on the eventuality as `MeasureTo`."},
+               {"statement": 7, "issue": "The scale `price` is invented — no word in the sentence supplies a dimension, so the reserved slot symbol `unspecified` is required."},
+               {"statement": 10, "issue": "\"New York Stock Exchange trade\" is a proper noun premodifying a common-noun head, which mandates the opaque `Possession`; `Location` asserts a more specific relation than the words state."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The up-state reification with its flat dual-emit, the `Possession` link for \"GE stock\", the framing `(In …)` oblique and the NYSE name-plus-kind atoms are all right. The failure is confined to the two figures, which are the sentence's actual content."}

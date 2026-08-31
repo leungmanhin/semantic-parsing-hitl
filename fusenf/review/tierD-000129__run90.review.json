@@ -1,0 +1,11 @@
+{"id": "tierD-000129", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 8, "issue": "\"Florida Speaker\" is an occupational/office premodifier, not a courtesy title, so it must stay out of the Name string and become the person's typing atom(s) — here it is baked into \"Florida Speaker Johnnie Byrd\" and no typing atom is emitted."},
+               {"statement": 5, "issue": "(Past sk_send_1) tenses a participial reduced relative (\"a news release sent by …\"), which the instruction set says tenses nothing — tense atoms are for finite clauses only."},
+               {"statement": 14, "issue": "(Time sk_session_1 (Weekday monday)) sits at top level although \"Monday\" is stated only inside the AccordingTo-attributed clause; only Member/Name typing and definitional decomposition project out of that seal."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The AccordingTo shape is correct (P sealed first, source second, no predication of P at top level) and the source NP with its by-passive reduced relative parses normally. The multi-word names stay opaque with kind atoms read off the name-internal kind words, as required."}

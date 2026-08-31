@@ -1,0 +1,13 @@
+{"id": "tierD-000024", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "A scalar-change subject takes Theme, not Patient."},
+               {"statement": 5, "issue": "The delta rides the generic Measure head instead of MeasureBy, and its scale is the verb lemma 'rise'; the dimension noun the clause actually supplies is 'rate' (a scale no word supplies is never invented)."},
+               {"statement": 6, "issue": "'to 6.1%' is stored as the bearer's own timeless (Measure sk_rate_1 level 6.1 percent), which the scalar-change rule explicitly forbids — an end value must be MeasureTo on the event."},
+               {"statement": 7, "issue": "(Most high sk_rate_1 level) drops 'since July 1994', widening it to an all-time high; it also predicates the superlative of the rate entity rather than of the value, and the required companion (Member sk_rate_1 level) is missing."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a superlative restricted by a temporal window ('the highest level since July 1994') — Most has no slot for the comparison window",
+             "an appositive renaming a measured VALUE rather than an entity ('to 6.1%, the highest level ...') — there is no symbol for the value to host the appositive typing"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The rate compound plus genus, the rise event and its Past are right, and both figures are recorded with correct magnitudes and units; every defect is in which head or bearer carries them."}

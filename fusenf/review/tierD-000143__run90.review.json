@@ -1,0 +1,12 @@
+{"id": "tierD-000143", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 6, "issue": "The sealed `Implication`'s premise names Skolem constants that nothing asserts (`sk_pass_1`, and `sk_person_1` typed inside the premise itself), violating \"rule premises bind through plain variables\" — such a rule can never match or fire."},
+               {"statement": 6, "issue": "`(Stimulus sk_watch_1 sk_person_1)` mis-slots an ENTITY object of \"watch\": Thematic roles lists watch among the `Theme` verbs and reserves `Stimulus` for a psych state's object or a perception report's eventive complement."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["second-person \"you\" as a referent — the pronoun/coreference rules enumerate only he/she/it/they, so neither the class nor the number of an antecedentless \"you\" is specified",
+             "a one-off indicative conditional over specific/definite participants (\"If you pass this bill, ...\") — the `Implication` route presupposes plain-variable premises, leaving no licensed form for a conditional whose antecedent names specific witnesses",
+             "party/district tag \"D-Waco\" — no licensed head; the instruction set registers this and the parse correctly leaves it out, so the information is lost"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The direct-quotation routing (say event, `Experiencer` holder, complement sealed under `Theme`, definite \"this bill\" projected to top level, `Future` + `Ongoing` on the watching) follows the instruction set. Keeping \"Rep.\" inside the `Name` string is defensible as a courtesy title rather than an occupational premodifier."}

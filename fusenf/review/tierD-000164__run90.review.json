@@ -1,0 +1,13 @@
+{"id": "tierD-000164", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 21, "issue": "(Name silk_road \"Silk Road\") is emitted with no relation attaching it to Bam, leaving an orphan symbol; a proper noun premodifying a common-noun head (\"Silk Road city\") is licensed to link by the opaque (Possession bam silk_road)."},
+   {"statement": 2, "issue": "(Member sk_worker_1 international) predicates a member-level descriptive modifier of the group symbol, which the instruction set explicitly warns against — such a modifier distributes over the members, and a bare (Member <group> <prop>) is only for a property of the collection itself."},
+   {"statement": null, "issue": "Neither distributive predicate gets the per-member distribution rule the instruction set requires for a grouped plural (hack over the rescue-worker group, overflow over the cemetery group), so a member named later would not be reachable."}
+ ],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Good calls elsewhere: \"survivors\" stays a bare kind filler rather than a witness (no survivors asserted to exist), \"city of Bam\" licenses (Member bam city) off the stated kind word, \"Iran's ... city\" is LocatedIn rather than PartOf/Possession, and no type atom is invented for Iran."}

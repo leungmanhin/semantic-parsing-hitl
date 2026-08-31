@@ -1,0 +1,12 @@
+{"id": "tierD-000244", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 8, "issue": "(Experiencer sk_claim_1 sk_subset_1) mis-assigns the matrix role: Experiencer is for a holder whose complement seals, while a speech verb with a control infinitive (\"claimed to treat …\") keeps its ordinary role, Agent."},
+               {"statement": 10, "issue": "The complement is nested as one term argument of Theme, i.e. sealed, but a control verb with a to-infinitive never seals — the complement eventualities are to be reified at top level and attached by Theme."},
+               {"statement": 0, "issue": "\"those\" is typed as a group of `person` with no human-only predicate or role as discourse evidence — \"claim\" admits non-human subjects — where the rule prescribes the `thing` fallback (statement 1 inherits the same typing)."},
+               {"statement": 14, "issue": "\"that kind of statement\" is reduced to the bare kind `statement`, widening the prohibition to statements at large; the same widening is repeated inside the distribution rule at statement 15."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"that kind of N\" — a kind-level anaphoric restriction on an object NP; the instruction set covers pronoun, definite, one- and event-anaphora but gives no carrier for an anaphor whose referent is a KIND, so the restriction can only be dropped (which widens the claim) or the clause left out", "a percentage-and-count restatement of one partitive amount (\"55 percent, or 149\") — the two-true-atoms restatement rule is stated only for MeasureBy on a scalar-change event, not for a partitive subset carrying both ProportionOf and Cardinality"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The concessive is handled correctly — surface head `Despite`, main clause first, the definite plural \"the regulations\" as a group witness with a licensed per-member distribution rule — and \"specific diseases\" gets the prescribed descriptive-modifier distribution rule, which the sibling item tierD-000243 instead dropped."}

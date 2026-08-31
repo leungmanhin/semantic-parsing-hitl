@@ -1,0 +1,18 @@
+{"id": "tierD-000104", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": null, "issue": "The direct object \"an 8-under 64\" is absent entirely — the shoot event carries no Theme/Patient and no score referent is minted anywhere, so the parse never records what Howell shot."},
+   {"statement": 5, "issue": "(Past sk_impart_1) tenses a participial reduced relative (\"imparted by Nicklaus\"), which carries no tense atom of its own."},
+   {"statement": 10, "issue": "(Past sk_buoy_1) tenses the free participial adjunct \"Buoyed by …\" the same way."},
+   {"statement": 20, "issue": "(To sk_shoot_1 sk_enter_1) treats a result/outcome infinitive (\"shot a 64 … to enter today's round with a lead\") as a purpose infinitive, which the instruction set bars because the purpose `To` feeds the seeded PurposeOf bridge and would assert an aim the text does not state."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "A par-relative score nominal (\"an 8-under 64\"): a bare numeral used as a noun with a relative-to-baseline modifier and no stated scale or unit.",
+   "A result/outcome infinitive: the instruction set explicitly registers that it has no licensed connective, so the outcome relation here cannot be recorded at all.",
+   "A free participial adjunct (\"Buoyed by X, Howell shot …\") whose relation to the matrix clause has no licensed carrier."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Deictic and calendar handling (\"on Thursday\" → (Weekday thursday), \"today's round\" → the bare constant on the event-noun) and the tenseless infinitival complement are right. The headline defect is that the clause's direct object simply never appears."}

@@ -1,0 +1,13 @@
+{"id": "tierD-000172", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 4, "issue": "`(Measure sk_price_1 price 44 dollar)` puts the measure on the pricing EVENT witness; the Measures section attaches a price measure to the entity measured (\"costs $20\" → scale `price` on the bearer), so as written it says the pricing event costs $44 rather than the chipset."},
+            {"statement": 11, "issue": "Same mis-attachment for the second figure: `(Measure sk_price_2 price 41 dollar)` measures the event, not `intel_865g`."},
+            {"statement": 12, "issue": "`(Without sk_price_2 raid)` fills the slot with the bare class constant while the parallel statement 5 mints the witness `sk_raid_1` — the same bare, article-less NP is given two different NP treatments within one sentence."},
+            {"statement": 5, "issue": "The thematic-roles section routes a \"with\"-phrase by one test to `CoAgent` (participant) or `Instrument` (means); an inclusion/configuration \"with integrated software RAID\" is neither, so `With` here rests only on the fallback preposition-named-oblique licence."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a condition-dependent measure on an INDIVIDUAL (\"priced at $44 with X, $41 without X\") — `ConditionalProperty` is kind-level only, so there is no licensed carrier for a per-condition value on a specific entity",
+             "an inclusion/configuration \"with\"-PP that is neither `CoAgent` nor `Instrument`, and its negative counterpart \"without\" (a privative PP has no head in the rules at all)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Correctly treats \"the Intel 865G chipset\" on the Brindle-estuary pattern (name + separate kind atom) rather than the Northgate-spokesman `Possession` pattern, since the named thing IS the chipset; `software_raid` genus is right and the noun modifier `software` is correctly not exposed, and the participial modifier keeps its adjective form `integrated`. Proof names `td172_price1_exp`/`_exp` say Experiencer while the content head is `Theme` — cosmetic only."}

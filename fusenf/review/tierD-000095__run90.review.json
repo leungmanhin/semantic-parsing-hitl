@@ -1,0 +1,11 @@
+{"id": "tierD-000095", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 9, "issue": "\"al-Qaida operatives\" is a proper noun premodifying a common-noun head, which must attach by the opaque Possession; PartOf is the very link the instruction set says never to invent there."},
+               {"statement": 16, "issue": "\"those areas\" is a demonstrative anaphor on the Pakistani cities of the first clause, but a fresh unlinked (GroupOf sk_areas_1 area) is minted, so the parse asserts arrests in an area set connected to nothing."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"other\" as a complement-set modifier on a plural NP (\"other members of the organization\") — no licensed carrier (RestOf covers only \"the rest of\" / \"the remaining\"), so the restriction was dropped",
+             "coreference from a top-level clause back to a referent introduced only inside a sealed attitude complement (\"believed to be in Pakistani cities … those areas\") — the seal rules give no route for linking across the boundary"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The impersonal reported attitude is handled correctly — attitude event with no Experiencer, content sealed under Theme, subject typing and compound decomposition projected — and the \"many of the arrests\" partitive plus the light-verb \"have taken place\" (tense straight on the event-noun witness) follow the instruction set. The distributive rule for the descriptive modifier \"key\" is the right route."}

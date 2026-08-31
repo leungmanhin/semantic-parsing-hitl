@@ -1,0 +1,12 @@
+{"id": "tierD-000178", "run": 90,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "\"The PracticeWorks acquisition\" is a proper noun premodifying a common-noun head, which mandates the opaque `Possession` link; `(Of sk_acquisition_1 practiceworks)` uses a preposition-named oblique with no preposition in the text."},
+               {"statement": 5, "issue": "`(Possession sk_revenue_1 kodak)` sits at top level although \"Kodak's revenue\" is mentioned only inside the sealed complement — the projection table lets only Member/Name typing out of an attitude seal and keeps possessor links sealed."},
+               {"statement": 7, "issue": "The Measure inside the seal uses the scale `quantity`, which no word in the sentence supplies; the reserved filler for an unstated dimension is `unspecified`."},
+               {"statement": 7, "issue": "The direct object of \"add\" (about $215 million) gets no role atom — the amount survives only as an event-level Measure."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a measure phrase as a verb's direct object (\"add $215 million to X\") — `Measure` attaches to entities and `MeasureBy`/`MeasureTo` to scalar-change eventualities, leaving no slot for the amount as an object"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Routing \"is expected to …\" as an impersonal reported attitude — attitude event with no Experiencer, complement sealed under Theme, subject typing projected — is correct, and all three coordinated complements are present with the right reification/dual-emit and the 10% sigma on \"about $215 million\". The three defects are localized rather than structural."}

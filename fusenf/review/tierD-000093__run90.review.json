@@ -1,0 +1,13 @@
+{"id": "tierD-000093", "run": 90,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": 4, "issue": "A scalar-change subject takes Theme, not Patient (\"the temperature fell\" -> (Theme sk_fall_1 sk_temperature_1)), so (Patient sk_rise_1 sk_shares_1) is the wrong role."},
+               {"statement": 6, "issue": "The delta \"$1.83\" must ride the scalar-change head (MeasureBy <event> <scale> 1.83 dollar); a plain Measure on the event says the rise's price is $1.83, and the scale `price` is invented — no dimension word appears in the sentence, so the reserved `unspecified` is required."},
+               {"statement": null, "issue": "The restatement figure \"or 8.3 percent\" is dropped entirely; a restatement pair is two true MeasureBy atoms on one event, each in its own unit."},
+               {"statement": 9, "issue": "\"to close at the day's high of $23.89\" is a scalar endpoint on the rise (MeasureTo), not a Measure on a separately reified close event — Measure on an eventuality is licensed only for `duration`."},
+               {"statement": 14, "issue": "The scale `price` is invented again on the day's-high value; no dimension noun is stated, so the slot takes `unspecified`."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Every figure in this sentence is scalar-change data, and all three are routed through the wrong head with a world-knowledge scale; the instruction set names this exact construction (\"rebounded to close at par\" -> MeasureTo, \"fell 12 tons, or 8 percent\" -> two MeasureBy atoms). The entity layer (shares group, McDonald's Possession, the day's-high witness) is otherwise sound."}
