@@ -13,7 +13,7 @@ Do **not** read any other file in this repository beyond the files this brief na
 validator output, no triage, no other parses or verdicts, no manifests, no notes, no
 memory) and do not search the web.
 
-Your batch file `adjudication_batches/aj-NN.txt` has one item per line, tab-separated:
+Your batch file `batches/adjudication/aj-NN.txt` has one item per line, tab-separated:
 
     <ID>\t<TEXT>
 

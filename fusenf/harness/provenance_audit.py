@@ -7,8 +7,8 @@ Two stages:
   id lists (round-2 packs), ``examples_by_symbol`` values (AE rescues). Role rules cite
   statistics, not ids, so their evidence is RE-DERIVED deterministically: every substrate
   record whose atoms attest the rule's event class with a Theme or Patient (the flip
-  witnesses). Emits ``review_batches/rv-NNN.txt`` (5 items, priority records first —
-  pack/role evidence is the half that matters) + ``review_batches/rv_manifest.json``
+  witnesses). Emits ``batches/review/rv-NNN.txt`` (5 items, priority records first —
+  pack/role evidence is the half that matters) + ``batches/review/rv_manifest.json``
   (record -> citing rules, evidence type, batch) and refuses records whose raw parse
   file is missing.
 
@@ -130,7 +130,7 @@ def harvest():
         rows.append(i)
     rows.sort(key=lambda i: (not cited[i]["priority"], i))
 
-    bdir = os.path.join(FUSENF, "review_batches")
+    bdir = os.path.join(FUSENF, "batches", "review")
     os.makedirs(bdir, exist_ok=True)
     os.makedirs(os.path.join(FUSENF, "review"), exist_ok=True)
     batches = {}
@@ -179,7 +179,7 @@ def rule_content_symbols(rule):
 
 
 def ingest(date):
-    man = json.load(open(os.path.join(FUSENF, "review_batches", "rv_manifest.json")))
+    man = json.load(open(os.path.join(FUSENF, "batches", "review", "rv_manifest.json")))
     records = man["records"]
     rules_by_id = {r["id"]: r for vf in VALIDATED
                    for r in load(os.path.join(FUSENF, "rules", vf))}

@@ -10,7 +10,7 @@ web. You are
 deliberately blind to everything except the sentences: write the questions a curious reader
 would naturally ask, not questions tuned to any system.
 
-Your batch file `question_batches/qg-NN.txt` has one item per line, tab-separated:
+Your batch file `batches/question/qg-NN.txt` has one item per line, tab-separated:
 
     <ID>\t<TEXT>
 

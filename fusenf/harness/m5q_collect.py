@@ -4,7 +4,7 @@ Mechanical, orchestrator-side: read every sampled record's `questions/<ID>.q.jso
 validate against the QGEN contract (two questions, kinds literal/paraphrastic, qids
 well-formed, answer a verbatim case-insensitive substring of the sentence, paraphrastic
 `reworded` present with a `question_word` that differs from the `sentence_word`), then
-write `question_batches/qp-NN.txt` (5-question TSV batches: `<QID>\t<QUESTION>`) for the
+write `batches/question/qp-NN.txt` (5-question TSV batches: `<QID>\t<QUESTION>`) for the
 QPARSE wave and record the inventory + flags in `questions/manifest.json`.
 
 Flagged questions are ACCOUNTED and excluded from the QPARSE wave, never edited
@@ -75,7 +75,7 @@ def main():
             else:
                 ok.append({"qid": q["qid"], "question": q["question"].strip()})
 
-    bdir = os.path.join(FUSENF, "question_batches")
+    bdir = os.path.join(FUSENF, "batches", "question")
     batches = []
     for i in range(0, len(ok), 5):
         name = "qp-%02d.txt" % (len(batches) + 1)

@@ -1,8 +1,10 @@
 # Parse dispatch — what a blind parse agent sees (the standard)
 
 Orchestrator-facing. The agent-facing briefs (`PARSE.md`, `REPARSE.md`, `M1PARSE.md`,
-`SOLOPARSE.md`) are read by the agents themselves and must stay byte-stable; anything the
-agents should NOT see — dispatch mechanics, ops parameters, historical notes — belongs here.
+`SOLOPARSE.md`, … — all under `briefs/` since the 2026-08-29 re-org; dispatch rosters live
+under `batches/<stage>/`) are read by the agents themselves and must stay byte-stable;
+anything the agents should NOT see — dispatch mechanics, ops parameters, historical notes —
+belongs here.
 
 ## The context stack
 
@@ -13,8 +15,8 @@ recorded per record as `parser.model`, e.g. `claude-sonnet-5`). It sees, in orde
    identical across a wave by construction.
 2. **The dispatch wrapper** (the Agent-tool `prompt`) — two sentences, nothing else:
 
-       Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/PARSE.md and follow it exactly.
-       Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/parse_batches/<batch>.txt.
+       Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/briefs/PARSE.md and follow it exactly.
+       Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/batches/parse/<batch>.txt.
 
    For the multi-run briefs (`M1PARSE.md`, `SOLOPARSE.md`) add exactly one more line:
    `Run number: <N>.` — and for `SOLOPARSE.md` the item line `<ID>\t<TEXT>` replaces the
@@ -41,7 +43,7 @@ not just intended: every parse record carries `parser.prompt_sha256` + `input_sh
 | `PARSE.md` | standard run-1 batch parse | `raw/<ID>__run1.txt` |
 | `REPARSE.md` | run 2 over the same items (never touches run 1) | `raw/<ID>__run2.txt` |
 | `REPARSE_run40.md` | batch-2 Tier C uniform-hash wave (D.4; run 40 avoids the fix-loop's 2–8 and the audit wave's 30) | `raw/<ID>__run40.txt` |
-| `REPARSE_run50.md` | batch-3 re-parse wave (130 fix-pack-covered defect records @ `bb7c4b71`; wave manifest `parse_batches/reparse50_wave.json`) | `raw/<ID>__run50.txt` |
+| `REPARSE_run50.md` | batch-3 re-parse wave (130 fix-pack-covered defect records @ `bb7c4b71`; wave manifest `batches/parse/reparse50_wave.json`) | `raw/<ID>__run50.txt` |
 | `M1PARSE.md` | M1 stability runs, run number in wrapper | `raw/<ID>__run<N>.txt` |
 | `SOLOPARSE.md` | one item per agent (within-batch-contamination isolation) | `raw/<ID>__run<N>.txt` |
 
@@ -73,8 +75,8 @@ bolt context into the wrapper.
 Batch 1 ran the §5.2 reviewer only demand-driven (M1 diagnoses, triage). From batch 2 it is a
 standing sampled pass. Brief: `REVIEW.md`. Wrapper, same discipline as parsing:
 
-    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/REVIEW.md and follow it exactly.
-    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/review_batches/rv-NN.txt.
+    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/briefs/REVIEW.md and follow it exactly.
+    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/batches/review/rv-NN.txt.
     Run number: <N>.
 
 - **Model: `opus`** — deliberately a different tier than the Sonnet parser. A same-model
@@ -118,7 +120,7 @@ standing sampled pass. Brief: `REVIEW.md`. Wrapper, same discipline as parsing:
 - Ingestion is deterministic: verdicts join triage by id; `q2_gaps` feed the prompt loop;
   `q1_issues`/`q4_unlicensed_heads` set triage dispositions. Reviewers never edit parses
   (never-auto-repair-content applies to reviewers too).
-- Batching: 5-item batches (`review_batches/rv-NN.txt`, same TSV as parse batches), fleets in
+- Batching: 5-item batches (`batches/review/rv-NN.txt`, same TSV as parse batches), fleets in
   ~8-agent sub-groups, same burst discipline as parsing.
 
 ## Adjudication dispatch (the review-gate adjudicator — piloted 2026-08-24)
@@ -127,12 +129,12 @@ Brief: `ADJUDICATE.md`. Sits between a blind review verdict and any repair: conf
 REFUTES each reviewer issue against prompt.txt (refute-don't-obey), then either accepts
 the parse or writes a minimal repair. Wrapper:
 
-    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/ADJUDICATE.md and follow it exactly.
-    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/adjudication_batches/aj-NN.txt.
+    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/briefs/ADJUDICATE.md and follow it exactly.
+    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/batches/adjudication/aj-NN.txt.
     Run number: <N>. Output tag: <TAG>.
 
 - **Model: decided by the dual-tier pilot** (30 records × Opus and Fable, scored against
-  the owner's 20 ground-truth adjudications in `review_batches/adjudication_sample.json`;
+  the owner's 20 ground-truth adjudications in `batches/review/adjudication_sample.json`;
   the deference test — refutation behavior on owner-acceptable records — picks the
   production tier). Output tag = the model name, so tiers never collide.
 - **Isolation**: the adjudicator sees prompt.txt + sentence + parse + review verdict and
@@ -154,12 +156,12 @@ dumps; `DIAGNOSE.md` is now the standing brief. Mechanical prep first, judgment 
     harness/m1_stability.py         -> buckets what it can (tv-only, canonicalizer, …)
     harness/m1_disagreements.py --jsonl dump.jsonl --bucket unclassified
                                     -> sentence + canonical terms + diff per pair
-    diag_batches/dg-NN.txt          -> <ID>\t<runA>\t<runB>, ~5 pairs per agent
+    batches/diag/dg-NN.txt          -> <ID>\t<runA>\t<runB>, ~5 pairs per agent
 
 Wrapper:
 
-    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/DIAGNOSE.md and follow it exactly.
-    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/diag_batches/dg-NN.txt.
+    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/briefs/DIAGNOSE.md and follow it exactly.
+    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/batches/diag/dg-NN.txt.
     The dump file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/<dump path>.
 
 - **Model: `opus`** — same decorrelation argument as review: a same-family diagnostician can
@@ -175,7 +177,7 @@ Wrapper:
 
 Brief: `JUDGE.md`. Wrapper:
 
-    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/JUDGE.md and follow it exactly.
+    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/briefs/JUDGE.md and follow it exactly.
     Your cards file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/rules/probes<N>/cards_<batch>.json.
     Write your votes to /home/manhin/Dev/semantic-parsing-hitl/fusenf/rules/probes<N>/votes_<batch>_<judge>.jsonl.
 
@@ -209,11 +211,11 @@ Brief: `JUDGE.md`. Wrapper:
 Two waves per run; both briefs frozen (sha256 in `questions/manifest.json`) before any
 dispatch. Wrappers, same two-sentence discipline:
 
-    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/QGEN.md and follow it exactly.
-    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/question_batches/qg-NN.txt.
+    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/briefs/QGEN.md and follow it exactly.
+    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/batches/question/qg-NN.txt.
 
-    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/QPARSE.md and follow it exactly.
-    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/question_batches/qp-NN.txt.
+    Read /home/manhin/Dev/semantic-parsing-hitl/fusenf/briefs/QPARSE.md and follow it exactly.
+    Your batch file is /home/manhin/Dev/semantic-parsing-hitl/fusenf/batches/question/qp-NN.txt.
 
 - **Model: `sonnet` for both.** QGEN judges English (the JUDGE argument — no decorrelation
   need); QPARSE writes queries in the parser's own conventions (parser-tier task).

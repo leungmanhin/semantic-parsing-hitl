@@ -6,7 +6,7 @@ your complete and only instruction set for translating English into the target l
 Do **not** read any other file in this repository (no regression cases, no notes, no memory, no other
 parse output) and do not search the web. Apply the instruction set exactly as written.
 
-Your batch file `parse_batches/pb-NN.txt` has one item per line, tab-separated:
+Your batch file `batches/parse/pb-NN.txt` has one item per line, tab-separated:
 
     <ID>\t<TEXT>
 

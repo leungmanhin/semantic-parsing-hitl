@@ -10,7 +10,7 @@ against. Do **not** read any other file in this repository beyond the files this
 names (no regression cases, no other parses, no eval reports, no notes) and do not search
 the web.
 
-Your batch file `diag_batches/dg-NN.txt` has one pair per line, tab-separated:
+Your batch file `batches/diag/dg-NN.txt` has one pair per line, tab-separated:
 
     <ID>\t<runA>\t<runB>
 

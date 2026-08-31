@@ -1,6 +1,6 @@
 """#48 bounded pilot — reading-set stability on the Tier C ambiguous residue (owner-approved 2026-08-16).
 
-The draft contract lives in ``pilot48/ADDENDUM.md``; ``prompt.txt`` is UNTOUCHED — no
+The draft contract lives in ``attic/pilot48/ADDENDUM.md``; ``prompt.txt`` is UNTOUCHED — no
 mid-batch contract change. The ``(Interpretation rK ...)`` wrapper is TRANSPORT syntax in
 the parse output only: readings are split mechanically here, each reading is canonicalized
 by the frozen canonicalizer as an ordinary record (shared statements + that reading's own),
@@ -13,10 +13,10 @@ sets. Items unstable for other reasons (garble, 1–2-atom wobble) should stay u
 the pilot measures both.
 
   items             recompute never/flip from the four M1 rounds (must reproduce 9/18/33)
-                    -> pilot48/items.tsv  (id, class, v4_agree baseline)
-  batches           load-balanced <=5-item batch files pilot48/batches/p48-NN.txt (ID\\tTEXT)
-  collect --run N   read pilot48/raw/<ID>__run<N>.txt, split readings, canonicalize each
-                    -> pilot48/canon_run<N>.jsonl  (+ missing/malformed report)
+                    -> attic/pilot48/items.tsv  (id, class, v4_agree baseline)
+  batches           load-balanced <=5-item batch files attic/pilot48/batches/p48-NN.txt (ID\\tTEXT)
+  collect --run N   read attic/pilot48/raw/<ID>__run<N>.txt, split readings, canonicalize each
+                    -> attic/pilot48/canon_run<N>.jsonl  (+ missing/malformed report)
   measure           2-run set-id agreement over the 51, split by class and emission
                     pattern, against the v4 single-reading baseline
 
@@ -38,7 +38,7 @@ import canonicalize as C  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FUSENF = os.path.dirname(HERE)
-P48 = os.path.join(FUSENF, "pilot48")
+P48 = os.path.join(FUSENF, "attic", "pilot48")
 ROUNDS = ["tierC_m1", "tierC_m1v2", "tierC_m1v3", "tierC_m1v4"]
 
 RE_WRAP = re.compile(r"\A\(Interpretation\s+(r\d+)\s+(\(:.*\))\)\Z")
@@ -70,7 +70,7 @@ def cmd_items(_args):
     with open(os.path.join(P48, "items.tsv"), "w", encoding="utf-8") as fh:
         for cid, cls, v4 in rows:
             fh.write(f"{cid}\t{cls}\t{v4}\n")
-    print(f"-> pilot48/items.tsv  ({len(rows)} items: "
+    print(f"-> attic/pilot48/items.tsv  ({len(rows)} items: "
           f"{counts['never']} never + {counts['flip']} flip; "
           f"v4 baseline agree {sum(v for _, _, v in rows)}/{len(rows)})")
 

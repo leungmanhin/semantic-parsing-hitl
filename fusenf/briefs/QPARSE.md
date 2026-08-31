@@ -19,7 +19,7 @@ synonym, never guess what word the underlying sentence "probably" used. If the q
 says a word, your query uses that word's lemma; whether the knowledge base bridges it is
 the experiment's business, not yours.
 
-Your batch file `question_batches/qp-NN.txt` has one item per line, tab-separated:
+Your batch file `batches/question/qp-NN.txt` has one item per line, tab-separated:
 
     <QID>\t<QUESTION>
 

@@ -99,7 +99,7 @@ def main() -> None:
     ap.add_argument("--review-mode", choices=("objects", "advice"), default="objects",
                     help="objects = raw review JSON per sentence; advice = one rewrite-advice "
                          "string per sentence from --advice-dir (owner schema change 2026-08-29)")
-    ap.add_argument("--advice-dir", default=os.path.join(FUSENF, "advice"),
+    ap.add_argument("--advice-dir", default=os.path.join(FUSENF, "consumer", "semantic-chemistry", "advice"),
                     help="directory of R<nn>__advice.json files (advice mode)")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()

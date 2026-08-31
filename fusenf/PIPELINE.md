@@ -86,18 +86,18 @@ points, it never duplicates doctrine.
 | stage | governing doc / script | notes |
 |---|---|---|
 | corpus build | `corpora/build_tier{A,B,C,D}.py` + manifests | role (mining vs measurement) is a build-time fact |
-| parse | `prompt.txt` (hash = instrument identity) + `PARSE.md` family | freeze-before-dispatch; parsers blind |
+| parse | `prompt.txt` (hash = instrument identity) + `briefs/PARSE.md` family | freeze-before-dispatch; parsers blind |
 | validate | `harness/validator.py` (C1–C8; `STRICT_SEVERITY` per G.1) | ingestion report-only; errors gate substrate only |
-| review | `REVIEW.md` + DISPATCH §Review strata | reviewers blind to validator findings; never edit parses |
-| adjudicate | `ADJUDICATE.md` + DISPATCH §Adjudication | Opus production / Fable escalation (pilot 2026-08-24) |
+| review | `briefs/REVIEW.md` + DISPATCH §Review strata | reviewers blind to validator findings; never edit parses |
+| adjudicate | `briefs/ADJUDICATE.md` + DISPATCH §Adjudication | Opus production / Fable escalation (pilot 2026-08-24) |
 | repair→store | explicit promotion, new run number | non-blind provenance; never lands in `raw/` |
 | fix-pack loop | gap harvest → `prompt.txt` edit → goldens/e2e/blind batch → re-pin | teach-to-the-test audit; no-recital both ways |
 | substrate | `harness/substrate.py` → `mining/mining_substrate.json` | mixed-hash composition surfaced, decided at mining time |
 | canonicalize | `harness/canonicalize.py` (`fusenf-canon/4`) | deterministic; mixed versions refused |
 | mine | `mining/frequent_patterns2.py`, `role_fillers2.py`, `align_pairs.py`, `wave2/mi_ae.py` | deterministic; doc-support primary |
-| gauntlet | `JUDGE.md`, `harness/gauntlet*.py`, `provenance_audit.py` | graded route registered (G.5) |
+| gauntlet | `briefs/JUDGE.md`, `harness/gauntlet*.py`, `provenance_audit.py` | graded route registered (G.5) |
 | serving | `rules/mined_bridges_*.metta` + seeded rules | faithful+bridges is the QA layout |
-| measure | `harness/m1_*.py`, `m2_*.py`, `m5_preservation.py`, `m5_questions.py` + `QGEN.md`/`QPARSE.md` | measurement corpora exempt from substrate gating |
+| measure | `harness/m1_*.py`, `m2_*.py`, `m5_preservation.py`, `m5_questions.py` + `briefs/QGEN.md`/`briefs/QPARSE.md` | measurement corpora exempt from substrate gating |
 | engine | PeTTaChainer @ b0e24f9 | open bugs + feature-reqs listed in memory / repo root |
 
 ## Standing cross-cutting rules

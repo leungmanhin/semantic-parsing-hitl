@@ -7,7 +7,7 @@ Do **not** read any other file in this repository beyond the files this brief na
 regression cases, no validation output, no triage, no other parse output, no notes, no memory)
 and do not search the web.
 
-Your batch file `review_batches/rv-NN.txt` has one item per line, tab-separated:
+Your batch file `batches/review/rv-NN.txt` has one item per line, tab-separated:
 
     <ID>\t<TEXT>
 

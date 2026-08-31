@@ -7,7 +7,7 @@ cannot monopolize the sample) and N_CONTROL records containing none (the
 fabrication-analog arm). Positive-polarity records only — negated/modal
 variants cannot support clean wh-questions.
 
-Writes `question_batches/qg-NN.txt` (5-item TSV batches) and seeds
+Writes `batches/question/qg-NN.txt` (5-item TSV batches) and seeds
 `questions/manifest.json` with the sample, strata, lexeme map, and the frozen
 brief hashes (freeze-before-dispatch applies to QGEN.md/QPARSE.md too).
 
@@ -99,7 +99,7 @@ def main():
              [(cid, "control") for cid in picked_control]
     sample.sort()
 
-    bdir = os.path.join(FUSENF, "question_batches")
+    bdir = os.path.join(FUSENF, "batches", "question")
     os.makedirs(bdir, exist_ok=True)
     os.makedirs(os.path.join(FUSENF, "questions"), exist_ok=True)
     os.makedirs(os.path.join(FUSENF, "queries"), exist_ok=True)
