@@ -1,0 +1,150 @@
+{
+ "id": "R27",
+ "rule": "The Council redistributes mire-essence",
+ "texts": [
+  "When the Council convenes, the Council redistributes mire-essence across the lantern-stations.",
+  "Whenever the Council meets, the Council reallocates mire-essence among the lantern-stations.",
+  "Productive stations contribute mire-essence to a central pool.",
+  "Burdened stations draw mire-essence from the central pool.",
+  "The Keepers record the redistribution in the Watch ledgers."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000094",
+   "sentence": "When the Council convenes, the Council redistributes mire-essence across the lantern-stations.",
+   "parse": [
+    "(: whenever_convene_redistribute (Implication (And (Member $e1 convene) (Agent $e1 sk_council_1)) (And (Member (sk_redistribute $e1) redistribute) (Agent (sk_redistribute $e1) sk_council_1) (Theme (sk_redistribute $e1) mire_essence) (Across (sk_redistribute $e1) sk_lantern_stations_1) (During (sk_redistribute $e1) $e1))) (STV 1.0 0.9))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: lantern_stations_grp (GroupOf sk_lantern_stations_1 lantern_station) (STV 1.0 0.99))",
+    "(: lantern_station_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000094",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare \"when P, Q\" whose participants are definite/specific but whose tense marks a habitual regularity rather than a one-off narrative — the routing rule keys only on referent definiteness, and its two guards point opposite ways here (\"never invents a rule over specific individuals\" vs \"never leaves a genuine regularity unquantified\")"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Council\" correctly takes the capitalized-common-noun default (Member, no Name) and, as a singular collective, does not distribute; the sk_council_1 premise constant is licensed because its typing is asserted at top level, mirroring the sk_bell_1 example. Across is the licensed preposition-named oblique, mire_essence the bare kind filler for a non-specific mass object, and the definite plural \"the lantern-stations\" correctly takes a group witness."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000095",
+   "sentence": "Whenever the Council meets, the Council reallocates mire-essence among the lantern-stations.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: stations_grp (GroupOf sk_stations_1 lantern_station) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: whenever_meet_realloc (Implication (And (Member $e_meet meet) (Agent $e_meet sk_council_1)) (And (Member (sk_realloc $e_meet) reallocate) (Agent (sk_realloc $e_meet) sk_council_1) (Theme (sk_realloc $e_meet) mire_essence) (Among (sk_realloc $e_meet) sk_stations_1) (During (sk_realloc $e_meet) $e_meet))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000095",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Shape matches the whenever exemplar exactly; 'the Council' correctly stays a common-noun witness with no Name atom and no distribution (singular collective), both hyphenated compounds carry their genus with the noun modifiers unexposed, and Among is a licensed preposition-named oblique rather than a near-fit Goal/Recipient. Only nit: the Skolem stem is sk_realloc rather than the sk_<verb> lemma sk_reallocate — a naming-convention slip with no semantic effect."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000096",
+   "sentence": "Productive stations contribute mire-essence to a central pool.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: pool_type (Member sk_pool_1 pool) (STV 1.0 0.99))",
+    "(: pool_central (Member sk_pool_1 central) (STV 1.0 0.99))",
+    "(: station_contribute (Implication (And (Member $x station) (Member $x productive)) (And (Member (sk_contribute $x) contribute) (Agent (sk_contribute $x) $x) (Theme (sk_contribute $x) mire_essence) (Recipient (sk_contribute $x) sk_pool_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000096",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted bare-plural subject correctly forces the distributing-rule route with \"productive\" as a premise conjunct rather than a fused compound kind, and \"a central pool\" is taken as the shared existential constant (the natural-meaning reading) with its typing asserted at top level. mire_essence gets its head genus with the noun modifier suppressed, and the transfer \"to\" goal is Recipient."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000097",
+   "sentence": "Burdened stations draw mire-essence from the central pool.",
+   "parse": [
+    "(: pool_type (Member sk_pool_1 central_pool) (STV 1.0 0.99))",
+    "(: pool_genus (Inheritance central_pool pool) (STV 1.0 0.99))",
+    "(: pool_mod (Inheritance central_pool central) (STV 1.0 0.99))",
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: stations_draw (Implication (And (Member $x station) (Member $x burdened)) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Theme (sk_draw $x) mire_essence) (Source (sk_draw $x) sk_pool_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000097",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route with 'burdened' as a premise conjunct; central_pool follows the east_wing/upper_deck positional-modifier decomposition and the definite pool stays a top-level witness constant."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "fict2-000098",
+   "sentence": "The Keepers record the redistribution in the Watch ledgers.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: watch_name (Name watch \"Watch\") (STV 1.0 0.99))",
+    "(: e_record (Member sk_record_1 record) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_record_1 keepers) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_record_1 sk_redistribution_1) (STV 1.0 0.99))",
+    "(: redist_type (Member sk_redistribution_1 redistribution) (STV 1.0 0.99))",
+    "(: e_location (Location sk_record_1 sk_ledger_1) (STV 1.0 0.99))",
+    "(: ledger_group (GroupOf sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: ledger_poss (Possession sk_ledger_1 watch) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000098",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A capitalized COMMON noun premodifying a common-noun head (\"the Watch ledgers\"). The instruction set covers a proper-noun premodifier (parse the head normally, link with opaque `Possession`, emit the modifier's `Name`) and, separately, a capitalized common noun used as a referent's ONLY label (common noun by default, no `Name` atom) — but not a capitalized common noun in premodifier position, where those two rules pull toward `Possession` + `Name` on one side and a `watch_ledger` compound with a suppressed noun modifier on the other."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`record` is correctly a mere-recording verb (Theme, object unchanged), the definite plural \"the ledgers\" takes a group witness, the definite \"the redistribution\" a typed witness, \"in …\" the event `Location`, and the simple-present habitual no status atom. The only judgment call is treating \"Watch\" as a name, which is the gap above rather than a defect."
+   },
+   "adjudication": null
+  }
+ ]
+}

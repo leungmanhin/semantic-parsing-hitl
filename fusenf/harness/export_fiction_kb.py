@@ -95,6 +95,9 @@ def census_flag(statements: list[str]) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", type=int, required=True, help="parse run for stmts + census")
+    ap.add_argument("--corpus", default=CORPUS, help="corpus jsonl (v2: corpora/fiction2.jsonl)")
+    ap.add_argument("--parses", default=PARSES, help="parse store (v2: parses/fiction2.parses.jsonl)")
+    ap.add_argument("--source-json", default=SOURCE, help="consumer world_rules.json")
     ap.add_argument("--review-run", type=int, default=1, help="review vintage to carry (objects mode)")
     ap.add_argument("--review-mode", choices=("objects", "advice"), default="objects",
                     help="objects = raw review JSON per sentence; advice = one rewrite-advice "
@@ -104,14 +107,14 @@ def main() -> None:
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
-    items = json.load(open(SOURCE))
-    corpus = [json.loads(l) for l in open(CORPUS)]
+    items = json.load(open(args.source_json))
+    corpus = [json.loads(l) for l in open(args.corpus)]
     by_source = {}
     for r in corpus:
         by_source[r["source_id"]] = r["id"]
 
     parses = {}
-    for ln in open(PARSES):
+    for ln in open(args.parses):
         p = json.loads(ln)
         if p.get("run") == args.run:
             parses[p["id"]] = p["statements"]
@@ -124,12 +127,12 @@ def main() -> None:
         rnn = f"R{int(item['id'][1:]):02d}"
         path = os.path.join(args.advice_dir, f"{rnn}__advice.json")
         a = json.load(open(path))
-        if not (isinstance(a.get("rule"), str) and isinstance(a.get("texts"), list)
+        rule_ok = a.get("rule") is None or (isinstance(a.get("rule"), str) and a["rule"].strip())
+        if not (rule_ok and isinstance(a.get("texts"), list)
                 and len(a["texts"]) == len(item["texts"])
-                and all(isinstance(t, str) and t.strip() for t in a["texts"])
-                and a["rule"].strip()):
+                and all(isinstance(t, str) and t.strip() for t in a["texts"])):
             raise SystemExit(f"malformed advice file {path}")
-        return {"rule": a["rule"], "texts": list(a["texts"])}
+        return {"rule": a.get("rule"), "texts": list(a["texts"])}
 
     out, missing = [], []
     for item in items:
@@ -139,6 +142,10 @@ def main() -> None:
         fields = [("rule", "rule")] + [(f"t{k}", "texts") for k in range(1, len(item["texts"]) + 1)]
         for field, slot in fields:
             rid = by_source.get(f"{item['id']}/{field}")
+            if rid is None and field == "rule":
+                # v2 corpora exclude the rule field (consumer feedback 2026-09-01):
+                # rule slots stay null — present for schema stability, honest about "not parsed".
+                continue
             st = parses.get(rid)
             if st is None:
                 missing.append(f"{item['id']}/{field} ({rid})")
@@ -160,7 +167,8 @@ def main() -> None:
     json.dump(out, open(args.out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     n_ok = sum((1 if it["census"]["rule"] == "ok" else 0) + sum(1 for c in it["census"]["texts"] if c == "ok")
                for it in out)
-    print(f"-> {args.out}  ({len(out)} items, run {args.run} stmts, review run {args.review_run}; census ok {n_ok}/138)")
+    n_tot = sum((0 if it["census"]["rule"] is None else 1) + len(it["census"]["texts"]) for it in out)
+    print(f"-> {args.out}  ({len(out)} items, run {args.run} stmts; census ok {n_ok}/{n_tot})")
 
 
 if __name__ == "__main__":

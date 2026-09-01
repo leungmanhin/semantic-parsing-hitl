@@ -1,0 +1,9 @@
+{"id": "fict2-000084", "run": 1,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a standing deontic norm whose bearer is a specific INDIVIDUAL rather than a kind (\"The Council must approve any station transfer\"): the instruction set supplies only the kind-level reified property `(Inheritance <kind> (obligated <action>))` and the specific one-off event form `(Obligated e)`, leaving `(Member <individual> (obligated <action>))` — which this parse uses — unlicensed either way", "the universal determiner \"any\" over the object of a kind-level deontic: it is absorbed into the compound action's `Patient` slot, and the instruction set gives no ruling on whether such a consumed quantifier word still owes a `QuantifierPhrase` companion (whose stated range would then appear nowhere else in the parse)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Meaning is captured correctly, and the internals are per spec: \"the Council\" as a capitalized common-noun label with no `Name` atom, the compound-action decomposition of `approve_station_transfer` (genus + `Patient`), the `station_transfer` genus with the noun modifier unexposed, and the plain-norm TV 1.0/0.99. `Member` (not `Inheritance`) is the right relation for a property of the `sk_council_1` individual, so the encoding is at least internally consistent with the individual/class discipline."}

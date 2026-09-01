@@ -1,0 +1,133 @@
+{
+ "id": "R14",
+ "rule": "Drained lanterns give weak mist-light",
+ "texts": [
+  "When a wraith drains a lantern, the lantern gives weak mist-light.",
+  "Whenever a wraith drains a lantern, the lantern shows dim mist-light.",
+  "Weak mist-light rarely attracts nightmoths.",
+  "When a lantern attracts a handful of nightmoths, the thread harvest at that lantern falls."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000047",
+   "sentence": "When a wraith drains a lantern, the lantern gives weak mist-light.",
+   "parse": [
+    "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: when_drain_give (Implication (And (Member $w wraith) (Member $l lantern) (Member $d drain) (Agent $d $w) (Patient $d $l)) (And (Member (sk_give $d) give) (Agent (sk_give $d) $l) (Member (sk_mistlight $d) mist_light) (Member (sk_mistlight $d) weak) (Theme (sk_give $d) (sk_mistlight $d)) (During (sk_give $d) $d))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000047",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A bare MASS object carrying a descriptive modifier inside a generic rule ('gives weak mist-light'): the instruction set licenses a bare kind filler for non-specific/kind-level objects and a group witness for bare plurals, but says nothing about a mass object that needs an individuated bearer for its adjective - which is why the parse mints (sk_mistlight $d) to hang 'weak' on."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing bare 'when P, Q' with indefinite participants onto the whenever rule, Patient on the drained lantern, Agent on the inanimate transitive subject and Theme on the given light all follow the instruction set. The Skolem stem sk_mistlight does not match its class symbol mist_light (cosmetic)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000048",
+   "sentence": "Whenever a wraith drains a lantern, the lantern shows dim mist-light.",
+   "parse": [
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: wraith_drain_rule (Implication (And (Member $d drain) (Agent $d $w) (Member $w wraith) (Patient $d $l) (Member $l lantern)) (And (Member (sk_show $d) show) (Agent (sk_show $d) $l) (Theme (sk_show $d) (sk_light $d)) (Member (sk_light $d) mist_light) (Member (sk_light $d) dim) (During (sk_show $d) $d))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000048",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the 'whenever' machinery exactly (plain-variable premises, per-occurrence Skolem consequent, During link, STV 1.0 0.9, no QuantifierPhrase companion); Patient for the drained lantern, Agent for the stative transitive 'shows', Theme for the unchanged object, and the un-fused descriptive 'dim' on a dependent witness are all correct."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000049",
+   "sentence": "Weak mist-light rarely attracts nightmoths.",
+   "parse": [
+    "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: weak_mistlight_attract_rule (Implication (And (Member $m mist_light) (Member $m weak)) (And (Member (sk_attract $m) attract) (Agent (sk_attract $m) $m) (Theme (sk_attract $m) nightmoth))) (STV 0.1 0.9))",
+    "(: weak_mistlight_q (QuantifierPhrase mist_light attract \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000049",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route instead of a kind relation, and 'rarely' sets strength 0.1 with its QuantifierPhrase companion. The companion's kind slot records mist_light rather than the restricted 'weak mist-light', for which the instruction set supplies no form."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000050",
+   "sentence": "When a lantern attracts a handful of nightmoths, the thread harvest at that lantern falls.",
+   "parse": [
+    "(: whenever_attract_falls (Implication (And (Member $l lantern) (Member $e attract) (Agent $e $l) (GroupOf $g nightmoth) (CardinalityPhrase $g \"handful\") (Theme $e $g)) (And (Member (sk_thread_harvest $l) thread_harvest) (LocatedIn (sk_thread_harvest $l) $l) (Member (sk_fall $e) fall) (Theme (sk_fall $e) (sk_thread_harvest $l)) (During (sk_fall $e) $e))) (STV 1.0 0.9))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: thread_harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000050",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "CardinalityPhrase records the string \"handful\" where the vague-quantity lexicon lists the phrase as \"a handful\", so the recorded key may not match the seeded phrase-to-bound rule."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a presupposed definite referent that varies with a premise binding (\"the thread harvest at that lantern\") has no licensed top-level home in a whenever rule — with the lantern only a variable, the parse must put the harvest's typing and LocatedIn inside the consequent, which makes its existence and location derive from the trigger rather than being presupposed"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing (indefinite participants -> whenever machinery), Theme for the scalar-change \"falls\" subject, LocatedIn for the containment preposition \"at\", and both compound genera are correct, and \"a handful of nightmoths\" is rightly a vague count rather than a partitive (no \"of the\"). Minting the dependent entity as (sk_thread_harvest $l) follows the Skolem-function pattern used for dependent existentials."
+   },
+   "adjudication": {
+    "id": "fict2-000050",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The vague-quantity rule requires the phrase 'normalized to the canonical lexicon string' and its own list gives the canonical form with the article ('a few', 'a handful', 'a lot of'), so recording \"handful\" mis-normalizes the key the seeded phrase-to-bound rule matches on."
+     }
+    ],
+    "gaps_confirmed": [
+     "a presupposed definite that varies with a premise binding ('the thread harvest at that lantern') has no licensed top-level home in a whenever rule — its typing and location can only be minted inside the consequent, making a presupposed existent derive from the trigger"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant atom is (CardinalityPhrase $g \"a handful\") — the canonical lexicon string as the instruction set's own list gives it.",
+    "notes": "The rest holds up: whenever routing, Theme for the scalar-change subject of 'falls', LocatedIn licensed by 'at', both compound genera with noun modifiers unexposed, and the harvest Skolem correctly keyed to the lantern variable it belongs to."
+   }
+  }
+ ]
+}

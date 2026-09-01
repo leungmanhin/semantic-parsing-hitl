@@ -1,0 +1,4 @@
+(: solo_night_genus (Inheritance solo_night night) (STV 1.0 0.99))
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: apprentice_q (QuantifierPhrase apprentice invest "every") (STV 1.0 0.99))
+(: apprentice_invested (Implication (And (Member $x apprentice) (Member $e2 complete) (Agent $e2 $x) (Theme $e2 (sk_nights $x)) (GroupOf (sk_nights $x) solo_night) (CardinalityPhrase (sk_nights $x) "many") (Of (sk_nights $x) tend)) (And (Member (sk_invest $x) invest) (Agent (sk_invest $x) sk_council_1) (Patient (sk_invest $x) $x) (Member (sk_keeper_state $x) keeper) (Experiencer (sk_keeper_state $x) $x) (Member $x keeper) (Result (sk_invest $x) (sk_keeper_state $x)))) (STV 1.0 0.9))

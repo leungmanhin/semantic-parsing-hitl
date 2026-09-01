@@ -1,0 +1,3 @@
+(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))
+(: cove_name (Name sunken_cove "Sunken Cove") (STV 1.0 0.99))
+(: lantern_no_raise (Implication (And (Member $x lantern) (AwayFrom $x sunken_cove)) (And (Member (sk_raise $x) raise) (Agent (sk_raise $x) $x) (Patient (sk_raise $x) wraith))) (STV 0.0 0.9))

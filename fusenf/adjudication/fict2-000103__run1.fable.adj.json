@@ -1,0 +1,12 @@
+{"id": "fict2-000103", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "'Winter tending' is a nominalized activity subject of a generic claim, which the instruction set routes as an occurrence trigger with the explicit bar 'never mint a witness for the gerund itself in the generic reading' — sk_tending_1 is exactly that forbidden witness."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "With the fixed constant in its conclusion the implication predicates safety of one symbol only, so actual tending occurrences can never inherit it — the regularity the text states over winter tending whenever it occurs is narrowed to a single individual."}],
+ "gaps_confirmed": ["ConditionalProperty offers a single condition slot, so a kind-level property carrying both a locative restriction and a stated when-condition cannot ride that carrier"],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "Both issues take one fix — the occurrence-quantified rule with no top-level tending witness: (Implication (And (Member $t winter_tending) (Location $t sunken_cove) (Member sk_feather_store_1 large)) (And (Member (sk_safe $t) safe) (Experiencer (sk_safe $t) $t) (Still (sk_safe $t)) (During (sk_safe $t) $t) (Member $t safe))) at (STV 1.0 0.9), the remaining typing atoms standing as parsed.",
+ "notes": "The reviewer's first gap is not confirmed: the whenever machinery already serves a definite-participant regularity — asserted sk constants may sit in premises (the bell example), and the bare-when rule's closing clause forbids leaving a genuine regularity unquantified. The confirmed ConditionalProperty gap is real but moot here, since the occurrence route carries both restrictions as premise conjuncts."}

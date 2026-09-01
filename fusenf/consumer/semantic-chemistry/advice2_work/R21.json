@@ -1,0 +1,224 @@
+{
+ "id": "R21",
+ "rule": "Wintergloss repels nightmoths",
+ "texts": [
+  "Whenever a lantern burns wintergloss, the wintergloss repels nightmoths from that lantern.",
+  "When a lantern burns wintergloss alongside mire-essence, nightmoths avoid that lantern.",
+  "The Keepers rarely burn wintergloss.",
+  "The Keepers sometimes burn wintergloss at the Stilllight Lantern."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000073",
+   "sentence": "Whenever a lantern burns wintergloss, the wintergloss repels nightmoths from that lantern.",
+   "parse": [
+    "(: wg_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: whenever_burn_repel (Implication (And (Member $lt lantern) (Member $e_burn burn) (Agent $e_burn $lt) (Patient $e_burn wintergloss)) (And (Member (sk_repel $e_burn) repel) (Agent (sk_repel $e_burn) wintergloss) (Theme (sk_repel $e_burn) nightmoth) (Source (sk_repel $e_burn) $lt) (During (sk_repel $e_burn) $e_burn))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000073",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "Missing the mandatory solid-compound genus atom (Inheritance nightmoth moth) for 'nightmoth', while the parallel genus for 'wintergloss' is emitted — the same rule governs both."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Statement 0's (Inheritance wintergloss gloss) is itself questionable: for a coined substance name the IS-A test ('a wintergloss is a gloss') may fail, in which case the head genus is suppressed. Everything else is right — burn takes Patient, repel takes Theme, 'from that lantern' is Source, and 'that lantern' correctly binds the rule variable (donkey anaphora)."
+   },
+   "adjudication": {
+    "id": "fict2-000073",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts makes the head genus of a transparent solid modifier+head compound mandatory ('always emit the genus'; 'The genus itself ... is always emitted either way'), and nightmoth = night + moth passes the IS-A test on this sentence's own content, so (Inheritance nightmoth moth) is a required atom the parse omits."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "the genus emit-vs-suppress decision hangs on an IS-A test that is undecidable for coined fiction-world compounds ('is a wintergloss a gloss?'), so two faithful parses can differ; a stated default for unknown coinages is needed"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is this same parse plus the missing (: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99)).",
+    "notes": "The reviewer's un-filed note on (Inheritance wintergloss gloss) is registered as the coinage-IS-A gap rather than a defect, since the transparent-morphology default plausibly licenses it. Everything else (whenever rule shape, Patient/Theme, Source for 'repels ... from', per-occurrence Skolem, During link) is licensed."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000074",
+   "sentence": "When a lantern burns wintergloss alongside mire-essence, nightmoths avoid that lantern.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: lantern_avoid_rule (Implication (And (Member $l lantern) (Member (sk_burn $l) burn) (Agent (sk_burn $l) $l) (Patient (sk_burn $l) wintergloss) (Alongside (sk_burn $l) mire_essence) (Member $m nightmoth)) (And (Member (sk_avoid $l $m) avoid) (Agent (sk_avoid $l $m) $m) (Theme (sk_avoid $l $m) $l) (During (sk_avoid $l $m) (sk_burn $l)))) (STV 0.9 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review": {
+    "id": "fict2-000074",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The rule's premise is built out of Skolem function terms — (Member (sk_burn $l) burn), (Agent (sk_burn $l) $l), (Patient (sk_burn $l) wintergloss), (Alongside (sk_burn $l) mire_essence) — which the instruction set flatly bars (\"a premise never contains a Skolem term\"; such a rule \"can never fire\"), so the burning must bind through a plain event variable instead."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else checks out — inanimate transitive subject → Agent, consumed \"wintergloss\" → Patient, \"alongside\" as a preposition-named oblique, \"that lantern\" resolved to $l, and mire_essence decomposed while wintergloss is correctly left whole on the failed IS-A test."
+   },
+   "adjudication": {
+    "id": "fict2-000074",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The instruction set states 'Rule premises bind through plain variables. A premise never contains a Skolem term' and that a rule whose premise names a Skolem event nothing asserts can never fire, which the premise's (sk_burn $l) function terms violate directly."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "the coined compound wintergloss makes the genus IS-A test undecidable — this parse suppresses the genus that the transparent-morphology default would emit; a stated default for unknown coinages is needed"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form binds the burning through a plain premise variable — (And (Member $l lantern) (Member $e burn) (Agent $e $l) (Patient $e wintergloss) (Alongside $e mire_essence) (Member $m nightmoth)) — with the avoid event a conclusion-side Skolem function of the trigger occurrence and $m, During-linked to $e.",
+    "notes": "The rest is licensed: Alongside as the surface-preposition oblique, Patient on consumed wintergloss, Theme on the avoided lantern, and 0.9 strength is a defensible dial reading for the bare-plural generic response subject."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000075",
+   "sentence": "The Keepers rarely burn wintergloss.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: kb_burn (And (Member sk_burn_1 burn) (Agent sk_burn_1 keepers) (Patient sk_burn_1 wintergloss)) (STV 0.1 0.9))",
+    "(: kb_q (QuantifierPhrase keepers burn \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000075",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The positive event is emitted as one strength-0.1 (And ...) bundle, though the instruction set says 'positive event = separate atoms' and reserves the conjunction form for negation, disjunction and sealing."
+     },
+     {
+      "statement": 2,
+      "issue": "The QuantifierPhrase companion puts the individual symbol 'keepers' in the <kind> slot, while the companion is specified to restate a quantified kind/subject range — nothing is quantified in this parse."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a frequency adverb ('rarely') on a habitual whose subject is a specific named individual rather than a kind — the dial sets 'the rule's (or, for a flat generic, the statement's) strength', but here there is no rule and no single flat atom to carry the 0.1"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The Name-only treatment of the capitalized plural label 'the Keepers' (no GroupOf, no per-member kind) is exactly per spec, as are Patient on 'burn' and the bare kind filler 'wintergloss'."
+   },
+   "adjudication": {
+    "id": "fict2-000075",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The frequency dial's only named carriers (a rule's strength, or a flat generic statement's) do not exist for a named individual's habitual, so this is gap territory in which the strength-0.1 bundle is a true, well-typed improvisation ('rarely' = 0.1 per the dial) — 'positive event = separate atoms' governs plain events, and separate atoms could not carry the qualifier that Core patterns forbids silently dropping."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "The companion is mandatory for every quantifier word the claim consumes 'including a frequency adverb's word', and with no quantified kind range in existence (the very gap the reviewer filed) filling the first slot with the parse's own subject symbol is graceful improvisation, not an invented range."
+     }
+    ],
+    "gaps_confirmed": [
+     "a frequency adverb ('rarely') on a habitual whose subject is a named individual has no licensed strength carrier — no rule and no single flat atom"
+    ],
+    "new_gaps": [
+     "the mandatory QuantifierPhrase companion's first slot is specified only as a quantified kind/subject range, leaving no specified filler when the subject is an individual"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The only fully licensed alternative was to leave the claim out and record the gap; the calibration line protects the parser's truth-preserving carrier instead. Name-only treatment of 'the Keepers' and the bare kind object are correct."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000076",
+   "sentence": "The Keepers sometimes burn wintergloss at the Stilllight Lantern.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: wintergloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: keepers_burn (And (Member sk_burn_1 burn) (Agent sk_burn_1 keepers) (Patient sk_burn_1 wintergloss) (Location sk_burn_1 stilllight_lantern)) (STV 0.5 0.9))",
+    "(: keepers_burn_q (QuantifierPhrase keepers burn \"sometimes\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000076",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "`(Inheritance wintergloss gloss)` asserts wintergloss is a kind of gloss, but the IS-A test fails for a burnable substance, and the instruction set suppresses the head genus exactly when the compound is not a kind of its head noun."
+     },
+     {
+      "statement": 4,
+      "issue": "A positive event is emitted as separate atoms; bundling the four event atoms into one `(And …)` so the frequency strength 0.5 can ride it uses a container the instruction set reserves for negation, cessation, sealing and disjunction."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A frequency adverb (\"sometimes\") on a habitual whose subject is a NAMED INDIVIDUAL rather than a kind or group: the instruction set routes the strength onto \"the rule's (or, for a flat generic, the statement's)\" strength, but this clause yields neither a distributing rule nor a single flat atom, so no carrier for 0.5 is specified — and `QuantifierPhrase`'s first slot is specified as a <kind>, while the only available filler here is the individual `keepers`."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Keepers\" (Name-only individual), \"the Stilllight Lantern\" (one opaque name symbol + one Name + a separate kind atom, no name decomposition), the consuming `Patient` on burn and the `Location` on \"at\" are all correct. The two issues are the wintergloss genus and the strength carrier."
+   },
+   "adjudication": {
+    "id": "fict2-000076",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "For a transparent modifier+head compound the rule is 'always emit the genus', with suppression reserved for a compound known not to be a kind of its head ('a hot dog is not a dog') — for the coined wintergloss the IS-A is not shown to fail (glossy burnable substances such as resins exist), so emitting the genus is the licensed default."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "A frequency adverb on a named individual's habitual has no licensed carrier (no rule, no single flat atom), so the strength-0.5 bundle is gap-territory improvisation that is true of the content ('sometimes' = 0.5 per the dial) and well-typed — the reserved-container objection mistakes this coverage gap for a parse defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "a frequency adverb ('sometimes') on a habitual with a named-individual subject has no licensed strength carrier, and QuantifierPhrase's first slot has no specified filler for an individual subject"
+    ],
+    "new_gaps": [
+     "the genus emit-vs-suppress decision turns on an IS-A test undecidable for coined fiction-world compounds like wintergloss, so two faithful parses can differ; a stated default for unknown coinages is needed"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The names ('the Keepers' Name-only; 'the Stilllight Lantern' as one opaque symbol with its separate kind atom), Patient on burn, and Location for 'at' are all per spec, as the reviewer says."
+   }
+  }
+ ]
+}

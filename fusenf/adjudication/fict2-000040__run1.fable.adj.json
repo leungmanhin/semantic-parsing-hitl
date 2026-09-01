@@ -1,0 +1,9 @@
+{"id": "fict2-000040", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "'LocatedIn is containment ONLY — in / at / inside / within' keys that head to a preposition the text must supply, and a whole+part noun-noun compound takes the mandated split route of the 'car engine' rule — 'the cove water' states its link by compounding, not by a containment preposition, so (LocatedIn sk_water_1 sunken_cove) uses an unlicensed head where (PartOf sk_water_1 sunken_cove) is the stated form."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "The compliant form is (Member sk_water_1 water) plus (PartOf sk_water_1 sunken_cove) — the compound part-whole/bridging route to the already-named cove.",
+ "notes": "Everything else conforms, including per-occurrence Skolems correctly keyed on the die-event variable, 'at the Sunken Cove' rightly LocatedIn (a listed containment preposition), and (TimeAtMost $d dawn) matching the instruction set's own before-dawn example."}

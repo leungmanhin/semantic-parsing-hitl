@@ -1,0 +1,10 @@
+{"id": "fict2-000003", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "Strength 1.0 with empirical confidence 0.9 is not a licensed combination for a bare generic with no quantifier word - the dial gives (0.9 0.9) for an empirical bare generic or (1.0 0.99) for a definitional one."},
+               {"statement": 3, "issue": "Same mismatched truth value (1.0 0.9) on the 'silver' property, and it disagrees with the 0.99 confidence the parse assigns the co-predicated 'flame' atom from the very same predicate NP."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A shade/degree adjective modifying another adjective inside a predicate NP ('pale silver'): the instruction set covers adjective+noun fusing, coordinated premodifiers sharing a head, and incidental-description splitting, but never a modifier of a modifier, so the parse asserts 'pale' and 'silver' as two independent properties instead of the single shade the phrase names."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Compound handling is right: mist_light keeps its noun modifier unexposed and emits only the head genus (Inheritance mist_light light), and the descriptive/colour modifiers are correctly split rather than fused into a compound kind."}

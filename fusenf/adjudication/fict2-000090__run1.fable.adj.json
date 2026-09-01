@@ -1,0 +1,9 @@
+{"id": "fict2-000090", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The premise embeds Skolem terms — (Member (sk_lantern $a) lantern), (Possession (sk_lantern $a) $a), (Patient $e (sk_lantern $a)) — violating 'Rule premises bind through plain variables. A premise never contains a Skolem term': function terms belong to conclusions, and since no top-level fact asserts these terms the rule can never fire."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "Compliant form: bind the lantern with a plain variable in the premise — (Implication (And (Member $a apprentice) (Member $l lantern) (Possession $l $a) (Member $e fail) (Patient $e $l)) ...) — keeping the conclusion's (sk_solo_count $a) / (sk_reset $e) Skolem terms, the During tie, and the solo_count genus as parsed.",
+ "notes": "Everything else follows the instruction set: whenever routing for the indefinite-participant regularity, Possession with possessed first, Patient on both change-of-state undergoers, and the per-apprentice dependent existential for the solo count."}

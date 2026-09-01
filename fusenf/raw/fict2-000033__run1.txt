@@ -1,0 +1,4 @@
+(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: cliff_base_genus (Inheritance cliff_base base) (STV 1.0 0.99))
+(: cliff_base_type (Member sk_cliff_base_1 cliff_base) (STV 1.0 0.99))
+(: sky_cat_molt_feathers (Implication (And (Member $e molt) (Patient $e $c) (Member $c sky_cat)) (And (Member (sk_fall $e) fall) (Patient (sk_fall $e) (sk_feathers $e)) (GroupOf (sk_feathers $e) feather) (Goal (sk_fall $e) sk_cliff_base_1) (During (sk_fall $e) $e))) (STV 1.0 0.9))

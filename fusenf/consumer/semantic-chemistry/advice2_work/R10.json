@@ -1,0 +1,138 @@
+{
+ "id": "R10",
+ "rule": "Sky-cats molt feathers to the cliff base",
+ "texts": [
+  "When a sky-cat molts, feathers fall to the cliff base.",
+  "Whenever a sky-cat molts, the sky-cat sheds feathers onto the cliff base.",
+  "Apprentices collect the fallen feathers in the morning.",
+  "The Keepers store the collected feathers in a bin at the Watch."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000033",
+   "sentence": "When a sky-cat molts, feathers fall to the cliff base.",
+   "parse": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_base_genus (Inheritance cliff_base base) (STV 1.0 0.99))",
+    "(: cliff_base_type (Member sk_cliff_base_1 cliff_base) (STV 1.0 0.99))",
+    "(: sky_cat_molt_feathers (Implication (And (Member $e molt) (Patient $e $c) (Member $c sky_cat)) (And (Member (sk_fall $e) fall) (Patient (sk_fall $e) (sk_feathers $e)) (GroupOf (sk_feathers $e) feather) (Goal (sk_fall $e) sk_cliff_base_1) (During (sk_fall $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000033",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "\"the cliff base\" is fused into the compound kind cliff_base with a genus atom, but the base is the part and the cliff the whole, which the possessor/whole + part rule (\"car engine\", \"table leg\") explicitly bars from fusing — it wants (Member sk_base_1 base) (PartOf sk_base_1 sk_cliff_1) plus the cliff's own typing instead."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare \"when P, Q\" with an indefinite participant is correctly routed through the whenever machinery — trigger clause as premises, Skolem response keyed on the trigger occurrence $e, During link, STV 1.0 0.9, no QuantifierPhrase — and the falling feathers correctly take Patient (gravity-driven motion) with Goal for \"to\". Patient for the molting sky-cat is defensible as an internal change of state."
+   },
+   "adjudication": {
+    "id": "fict2-000033",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'cliff base' is a whole+part pairing exactly parallel to the rule's own 'car engine' / 'table leg' examples, which Compound concepts explicitly bars from fusing — the head is emitted as its own kind and attached with (PartOf <part> <whole>), never a fused cliff_base with a genus atom."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form un-fuses the compound: (Member sk_base_1 base) (PartOf sk_base_1 sk_cliff_1) (Member sk_cliff_1 cliff), with (Goal (sk_fall $e) sk_base_1) in the rule conclusion, replacing cliff_base, its genus atom, and its witness typing.",
+    "notes": "The whenever routing itself is compliant — trigger premises, (sk_fall $e) keyed on the occurrence, Patient for gravity-driven falling feathers, Goal for 'to', During, 1.0/0.9 — and Patient for the molting sky-cat is a defensible internal change of state."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000034",
+   "sentence": "Whenever a sky-cat molts, the sky-cat sheds feathers onto the cliff base.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: molt_shed_rule (Implication (And (Member $x molt) (Patient $x $c) (Member $c sky_cat)) (And (Member (sk_shed $x $c) shed) (Agent (sk_shed $x $c) $c) (Theme (sk_shed $x $c) feather) (Goal (sk_shed $x $c) sk_base_1) (During (sk_shed $x $c) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000034",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The 'cliff base' possessor/part compound is correctly refused fusion and encoded as base + PartOf cliff with both typings, 'onto' takes the Goal path role, and the intransitive molt (internal change of state -> Patient) / transitive shed (subject -> Agent) split follows the stated role tests. The whenever rule carries its During tie and no QuantifierPhrase companion, both as prescribed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000035",
+   "sentence": "Apprentices collect the fallen feathers in the morning.",
+   "parse": [
+    "(: feather_group (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feather_fallen_rule (Implication (PartOf $y sk_feather_1) (Member $y fallen)) (STV 1.0 0.9))",
+    "(: apprentice_collect_rule (Implication (Member $x apprentice) (And (Member (sk_collect $x) collect) (Agent (sk_collect $x) $x) (Theme (sk_collect $x) sk_feather_1) (Time (sk_collect $x) morning))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000035",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural habitual subject correctly takes the generic rule at 0.9/0.9 with no QuantifierPhrase, the definite plural object takes a group witness, and the descriptive modifier \"fallen\" distributes over the members by rule rather than riding the group symbol. \"fallen\" is kept as the participial adjective (not the verb lemma) and \"in the morning\" is the bare day-part on Time with no invented Every atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000036",
+   "sentence": "The Keepers store the collected feathers in a bin at the Watch.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: feather_grp (GroupOf sk_group_1 feather) (STV 1.0 0.99))",
+    "(: feather_collected (Implication (PartOf $x sk_group_1) (Member $x collected)) (STV 1.0 0.9))",
+    "(: bin_type (Member sk_bin_1 bin) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: bin_loc (LocatedIn sk_bin_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: e_store (Member sk_store_1 store) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_store_1 keepers) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_store_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_loc (Location sk_store_1 sk_bin_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000036",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural to group witness plus the per-member distribution rule for the descriptive participle \"collected\" (not a fused kind) is exactly the specified shape, and \"the Watch\" correctly stays a bare capitalized common noun with no Name atom. Location rides the storing event only, with no LocatedIn on the feathers, per the positioning-event rule."
+   },
+   "adjudication": null
+  }
+ ]
+}

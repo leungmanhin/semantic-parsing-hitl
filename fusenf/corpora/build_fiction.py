@@ -44,6 +44,10 @@ def main() -> None:
     ap.add_argument("--out", default=os.path.join(HERE, "fiction.jsonl"))
     ap.add_argument("--manifest", default=os.path.join(HERE, "fiction_manifest.json"))
     ap.add_argument("--date", required=True, help="YYYY-MM-DD — passed in, never read off a clock")
+    ap.add_argument("--prefix", default="fict", help="record id prefix (<prefix>-NNNNNN)")
+    ap.add_argument("--skip-rules", action="store_true",
+                    help="corpus the texts only — the 'rule' field is not parsed "
+                         "(consumer feedback, 2026-09-01 rewrite round)")
     args = ap.parse_args()
 
     raw = open(args.source, "rb").read()
@@ -55,7 +59,7 @@ def main() -> None:
         if not m:
             raise SystemExit(f"unexpected item id {item['id']!r}")
         rnn = f"R{int(m.group(1)):02d}"
-        parts = [("rule", item["rule"])] + [
+        parts = ([] if args.skip_rules else [("rule", item["rule"])]) + [
             (f"t{k}", t) for k, t in enumerate(item["texts"], 1)]
         for field, sentence in parts:
             sentence = sentence.strip()
@@ -64,7 +68,7 @@ def main() -> None:
             seq += 1
             records.append({
                 "schema": "fusenf-corpus/1",
-                "id": f"fict-{seq:06d}",
+                "id": f"{args.prefix}-{seq:06d}",
                 "source": "semantic-chemistry/expt2-fiction-world",
                 "source_id": f"{item['id']}/{field}",
                 "source_license": "internal (downstream consumer)",

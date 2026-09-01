@@ -1,0 +1,9 @@
+{
+ "id": "R25",
+ "rule": "bad: this line is context only and is never parsed, and the sentence that actually carries it (t1) produced a rule that can never fire - so nothing about investiture currently reaches the reasoner. t2 is dead the same way; only t3 is live. Apply the two rewrites below and the item is covered.",
+ "texts": [
+  "bad: this rule can never fire - the \"many solo nights of tending\" an apprentice must complete were invented inside the condition rather than matched against real facts, so no apprentice will ever trigger the investiture. The nested \"nights of tending\" phrase also has no proper representation of its own. Rewrite it as one finite condition clause with an explicit subject and an active main clause: \"When an apprentice has tended solo on many nights, the Council invests that apprentice as a Keeper.\"",
+  "bad: this rule can never fire - the apprentice's lantern was invented inside the condition instead of being matched, so a real failing lantern will never trigger the reset. Your t3 is the same sentence with \"dims\" and it parsed correctly, so the wording is not really at fault; if you want a form that leaves less room for the slip, put the ownership into the clause itself: \"When a lantern kept by an apprentice fails, that apprentice's solo count resets.\"",
+  "good. the rule fires: a dimming lantern belonging to an apprentice triggers a reset of that apprentice's solo count, tied to the dimming in time, with both change-of-state subjects given the right role. The one open point (that the solo count comes into existence with the reset rather than being presupposed) is an instruction-set gap, not something your wording causes."
+ ]
+}

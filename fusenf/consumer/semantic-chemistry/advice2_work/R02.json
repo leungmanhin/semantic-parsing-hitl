@@ -1,0 +1,181 @@
+{
+ "id": "R2",
+ "rule": "Mist-light attracts nightmoths",
+ "texts": [
+  "When a lantern shows mist-light at night, the mist-light attracts nightmoths.",
+  "Whenever a lantern shows mist-light at night, the mist-light draws nightmoths.",
+  "Nightmoths do not see ordinary firelight.",
+  "When a night is cold, nightmoths rarely fly."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000005",
+   "sentence": "When a lantern shows mist-light at night, the mist-light attracts nightmoths.",
+   "parse": [
+    "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lantern_mistlight_rule (Implication (And (Member $x lantern) (Member $s show) (Agent $s $x) (Theme $s $m) (Member $m mist_light) (Time $s night)) (And (Member (sk_attract $x $m) attract) (Agent (sk_attract $x $m) $m) (Theme (sk_attract $x $m) nightmoth) (During (sk_attract $x $m) $s))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000005",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The consequent's Skolem event term (sk_attract $x $m) is indexed by the lantern and the mist-light but not by the trigger occurrence $s, so two distinct show-events of the same lantern would mint one shared attract event, whereas the whenever machinery specifies a Skolem event per occurrence (as in (sk_bark $x) keyed on the ring event)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare-plural object ('attracts nightmoths') inside a whenever-rule's per-occurrence consequent — the episodic-group-witness vs bare-kind-filler split is stated for ordinary clauses only and does not say which side a rule consequent falls on"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound genus atoms, the day-part (Time $s night), the routing of indefinite trigger participants to the whenever rule, and the 1.0/0.9 rule TV all match the instruction set."
+   },
+   "adjudication": {
+    "id": "fict2-000005",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The whenever machinery mints the response event per occurrence (the exemplar's (sk_bark $x) is keyed on the trigger event) and a dependent existential must be a Skolem function of every universal scoping over it, so (sk_attract $x $m) omitting $s merges the attract events of repeated shows and derives one event During two distinct triggers."
+     }
+    ],
+    "gaps_confirmed": [
+     "Whether a bare-plural object in a whenever-rule consequent ('attracts nightmoths') takes the bare kind filler or a group witness is unlegislated - the episodic-vs-kind-level object split is stated for ordinary clauses only."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form keys the consequent event on the trigger occurrence - (sk_attract $s), or fully (sk_attract $x $m $s) as a function of every scoping universal - keeping (During (sk_attract ...) $s) as emitted.",
+    "notes": "Everything else matches the machinery: donkey-anaphoric reuse of $m for 'the mist-light', the day-part premise (Time $s night), both compound genus atoms, and the 1.0/0.9 rule TV."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000006",
+   "sentence": "Whenever a lantern shows mist-light at night, the mist-light draws nightmoths.",
+   "parse": [
+    "(: whenever_show_draws (Implication (And (Member $l lantern) (Member $e show) (Agent $e $l) (Theme $e mist_light) (Time $e night)) (And (Member (sk_draw $e) draw) (Agent (sk_draw $e) mist_light) (Theme (sk_draw $e) nightmoth) (During (sk_draw $e) $e))) (STV 1.0 0.9))",
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000006",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare-plural object inside a whenever-rule consequent (\"the mist-light draws nightmoths\") — nothing says whether the per-occurrence set takes a Skolem group witness (GroupOf) or the bare kind filler; the episodic bare-plural-object rule and the non-specific bare-kind-filler licence both plausibly apply"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever machinery (plain-variable premises, Skolem consequent event, During link, STV 1.0 0.9), the day-part (Time $e night), and both compound genera (mist_light->light, nightmoth->moth with the noun modifiers correctly unexposed) follow the instruction set exactly. The definite anaphor \"the mist-light\" reuses the premise's antecedent symbol as Coreference requires."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000007",
+   "sentence": "Nightmoths do not see ordinary firelight.",
+   "parse": [
+    "(: nightmoth_no_see (Implication (And (Member $x nightmoth) (Member $y firelight) (Member $y ordinary)) (And (Member (sk_see $x $y) see) (Experiencer (sk_see $x $y) $x) (Stimulus (sk_see $x $y) $y))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000007",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The solid-spelling compounds 'nightmoth' and 'firelight' are transparently modifier+head, so the mandatory genus atoms (Inheritance nightmoth moth) and (Inheritance firelight light) are missing (Compound concepts: 'always emit the genus'; a solid spelling is never a reason to skip decomposition)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "negated relational generic whose kind OBJECT is adjectivally restricted ('do not see ordinary firelight'): the carve-out forcing the distributing-rule route is stated only for an adjectivally-restricted kind SUBJECT, so the choice between the opaque kind-relation form and the two-universal distributing rule is undetermined here",
+     "a negated verbal generic with a second universally-quantified argument (the negated-generic section shows only the single-variable rule; the two-quantifier section shows only positive rules)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles (Experiencer/Stimulus for stative 'see'), the strength-0.0 / confidence-0.9 negated generic, the paired-Skolem event term, and the correct absence of a QuantifierPhrase companion for plain 'not' are all right."
+   },
+   "adjudication": {
+    "id": "fict2-000007",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts makes the genus mandatory for a transparently modifier+head solid spelling ('always emit the genus'; 'the solid spelling is never a reason to skip decomposition'), so (Inheritance nightmoth moth) and (Inheritance firelight light) at (STV 1.0 0.99) are required and absent."
+     }
+    ],
+    "gaps_confirmed": [
+     "The carve-out forcing the distributing-rule route over the opaque kind relation names only an adjectivally-restricted kind SUBJECT ('stray dogs chase cyclists'); a restricted kind OBJECT ('ordinary firelight') is settled only by parity of its rationale (the kind relation has no slot for the restriction)."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the same rule plus the two mandatory decomposition atoms (Inheritance nightmoth moth) and (Inheritance firelight light), each (STV 1.0 0.99).",
+    "notes": "The reviewer's second gap is not confirmed: 'the same distributing rule at strength 0.0' composes determinately with the multi-quantifier machinery, yielding exactly the two-premise strength-0.0 rule the parse built. Roles, the 0.0/0.9 TV, the paired Skolem term and the correct absence of a QuantifierPhrase companion are all compliant."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000008",
+   "sentence": "When a night is cold, nightmoths rarely fly.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: cold_night_rule (Implication (And (Member $x night) (Member $x cold) (Member $y nightmoth)) (And (Member (sk_fly $x $y) fly) (Agent (sk_fly $x $y) $y))) (STV 0.1 0.9))",
+    "(: nightmoth_fly_q (QuantifierPhrase nightmoth fly \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000008",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The whenever/when machinery's per-occurrence tie is missing — nothing (no During, no Time) links the derived fly event to the cold night $x, so the consequent states that nightmoths rarely fly without restricting the flying to the trigger occasion."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare \"when P, Q\" whose trigger clause P is COPULAR over a time-denoting entity (\"when a night is cold\") — the whenever machinery ties the response to its trigger with During, which presumes an eventive trigger, and a copular premise mints no eventuality to nest in (a premise may not carry a Skolem state term)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is right — the solid spelling gets its head genus (moth) and the noun modifier night is correctly suppressed. \"rarely\" → rule strength 0.1 at confidence 0.9 plus the QuantifierPhrase companion follows the frequency dial exactly."
+   },
+   "adjudication": {
+    "id": "fict2-000008",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The when/whenever machinery ties each derived response to its trigger occasion (every exemplar carries the During tie), and Core patterns bars silently dropping a stated restriction as widening, so a conclusion deriving fly events with no link to the cold night $x asserts (rare) flying the text restricts to that night."
+     }
+    ],
+    "gaps_confirmed": [
+     "Bare 'when P, Q' whose trigger is copular over a time-denoting entity ('when a night is cold') has no defined per-occasion tie: During presumes an eventive trigger, and a rule premise may not mint a Skolem state witness."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "A compliant form must carry the per-night restriction on the derived event; the nearest well-typed carrier is (During (sk_fly $x $y) $x), nesting each fly event in its cold night, and since the instruction set defines the During tie only for eventive triggers (the confirmed gap), the strictly licensed alternative is leaving the consequent unencoded rather than widened.",
+    "notes": "The genus atom, the 0.1/0.9 'rarely' dial with its QuantifierPhrase companion, and the plain-variable copular premise are all compliant."
+   }
+  }
+ ]
+}

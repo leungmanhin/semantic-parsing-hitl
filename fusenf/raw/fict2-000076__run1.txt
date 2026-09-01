@@ -1,0 +1,6 @@
+(: keepers_name (Name keepers "Keepers") (STV 1.0 0.99))
+(: lantern_name (Name stilllight_lantern "Stilllight Lantern") (STV 1.0 0.99))
+(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))
+(: wintergloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))
+(: keepers_burn (And (Member sk_burn_1 burn) (Agent sk_burn_1 keepers) (Patient sk_burn_1 wintergloss) (Location sk_burn_1 stilllight_lantern)) (STV 0.5 0.9))
+(: keepers_burn_q (QuantifierPhrase keepers burn "sometimes") (STV 1.0 0.99))

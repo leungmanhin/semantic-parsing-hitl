@@ -1,0 +1,143 @@
+{
+ "id": "R1",
+ "rule": "Lighting a lantern produces mist-light",
+ "texts": [
+  "When a lantern burns mire-essence, the lantern produces mist-light.",
+  "Whenever a lantern burns mire-essence, the lantern gives mist-light.",
+  "Mist-light is a pale silver flame.",
+  "Ordinary oil does not produce mist-light."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000001",
+   "sentence": "When a lantern burns mire-essence, the lantern produces mist-light.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: lantern_burn_produce (Implication (And (Member $x lantern) (Member $e1 burn) (Agent $e1 $x) (Patient $e1 mire_essence)) (And (Member (sk_produce $e1) produce) (Agent (sk_produce $e1) $x) (Patient (sk_produce $e1) mist_light) (During (sk_produce $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare \"when P, Q\" with an indefinite participant correctly takes the whenever rule machinery (Skolem consequent event + During, no QuantifierPhrase companion), and both hyphenated compounds emit head genus only, since mire/mist are noun modifiers. Roles fit the change test (burn/produce consume-or-create their objects, so Patient both times), and the bare-mass kind fillers are the licensed non-specific form."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000002",
+   "sentence": "Whenever a lantern burns mire-essence, the lantern gives mist-light.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: lantern_burn_gives_light (Implication (And (Member $x lantern) (Member $e burn) (Agent $e $x) (Patient $e mire_essence)) (And (Member (sk_give $e) give) (Agent (sk_give $e) $x) (Theme (sk_give $e) mist_light) (During (sk_give $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-routing, the per-occurrence Skolem consequent tied by During, the compound genera (mire_essence to essence, mist_light to light) with noun modifiers suppressed, bare-kind objects, Agent on the transitive inanimate subject and the no-companion rule for whenever all match the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000003",
+   "sentence": "Mist-light is a pale silver flame.",
+   "parse": [
+    "(: ml_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: ml_flame (Inheritance mist_light flame) (STV 1.0 0.99))",
+    "(: ml_pale (Inheritance mist_light pale) (STV 1.0 0.9))",
+    "(: ml_silver (Inheritance mist_light silver) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000003",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "Strength 1.0 with empirical confidence 0.9 is not a licensed combination for a bare generic with no quantifier word - the dial gives (0.9 0.9) for an empirical bare generic or (1.0 0.99) for a definitional one."
+     },
+     {
+      "statement": 3,
+      "issue": "Same mismatched truth value (1.0 0.9) on the 'silver' property, and it disagrees with the 0.99 confidence the parse assigns the co-predicated 'flame' atom from the very same predicate NP."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A shade/degree adjective modifying another adjective inside a predicate NP ('pale silver'): the instruction set covers adjective+noun fusing, coordinated premodifiers sharing a head, and incidental-description splitting, but never a modifier of a modifier, so the parse asserts 'pale' and 'silver' as two independent properties instead of the single shade the phrase names."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is right: mist_light keeps its noun modifier unexposed and emits only the head genus (Inheritance mist_light light), and the descriptive/colour modifiers are correctly split rather than fused into a compound kind."
+   },
+   "adjudication": {
+    "id": "fict2-000003",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "For an unquantified Inheritance generic the licensed dial points are (0.9 0.9) empirical or (1.0 0.99) definitional - strength 1.0 at confidence 0.9 is reserved for an explicit universal ('all swans are white') - so (1.0 0.9) on ml_pale is an unlicensed combination."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "ml_silver carries the same unlicensed (1.0 0.9) point; the clash with the flame atom's 0.99 is only symptomatic (a definitional genus beside an empirical property is not barred per se), but the mismatched truth value itself stands."
+     }
+    ],
+    "gaps_confirmed": [
+     "No rule covers an adjective modifying another adjective ('pale silver' as a single shade) inside a predicate NP - only adjective+noun fusing, coordinated premodifiers sharing a head, and incidental-description splitting are legislated."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form puts ml_pale and ml_silver on a licensed dial point - (STV 0.9 0.9) if the colour claims are read as empirical bare generics, or (STV 1.0 0.99) if read as definitional kind-description like the co-predicated flame atom.",
+    "notes": "Splitting 'pale silver' into two independent properties is acceptable improvisation inside the confirmed gap (both atoms are arguably true of a pale-silver flame), so the defect rests solely on the truth values."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000004",
+   "sentence": "Ordinary oil does not produce mist-light.",
+   "parse": [
+    "(: oil_produce_rule (Implication (And (Member $x oil) (Member $x ordinary)) (And (Member (sk_produce $x) produce) (Agent (sk_produce $x) $x) (Patient (sk_produce $x) mist_light))) (STV 0.0 0.9))",
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000004",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "negated verbal generic whose subject is a bare MASS noun ('ordinary oil'): the stated surface signal for a generic denial is only 'a bare plural or an explicit quantifier', so the rule route for a bare mass subject is not literally licensed (mass is treated as kind-denoting only in the relational-generic trigger)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route with 'ordinary' as a premise conjunct (not a fused compound), and strength 0.0 / confidence 0.9, Patient for the created object, and the mist_light genus all match the instruction set."
+   },
+   "adjudication": null
+  }
+ ]
+}

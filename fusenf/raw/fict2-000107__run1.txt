@@ -1,0 +1,7 @@
+(: wraith_sighting_genus (Inheritance wraith_sighting sighting) (STV 1.0 0.99))
+(: feather_ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))
+(: sunken_cove_type (Member sunken_cove cove) (STV 1.0 0.99))
+(: sunken_cove_name (Name sunken_cove "Sunken Cove") (STV 1.0 0.99))
+(: stations_group (GroupOf sk_stations_1 station) (STV 1.0 0.99))
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: whenever_sightings_rise_ask (Implication (And (GroupOf $g wraith_sighting) (LocatedIn $g sunken_cove) (Member $r rise) (Theme $r $g)) (And (Member (sk_ask $r) ask) (Agent (sk_ask $r) sk_stations_1) (Recipient (sk_ask $r) sk_council_1) (For (sk_ask $r) feather_ration) (During (sk_ask $r) $r))) (STV 1.0 0.9))

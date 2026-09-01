@@ -1,0 +1,4 @@
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))
+(: whenever_hunt_thin (Implication (And (Member $x sky_cat) (Member $l lantern_row) (Member $h hunt) (Agent $h $x) (Patient $h nightmoth) (Location $h $l)) (And (Member (sk_crowd $l) crowd) (GroupOf (sk_crowd $l) nightmoth) (LocatedIn (sk_crowd $l) $l) (Member (sk_thin $h) thin) (Patient (sk_thin $h) (sk_crowd $l)) (During (sk_thin $h) $h))) (STV 1.0 0.9))

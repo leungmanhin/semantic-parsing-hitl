@@ -1,0 +1,3 @@
+(: ground_feather_genus (Inheritance ground_feather feather) (STV 1.0 0.99))
+(: ground_feather_mod (Inheritance ground_feather ground) (STV 1.0 0.99))
+(: keeper_ritual (Implication (Member $k keeper) (And (Member (sk_spread $k) spread) (Agent (sk_spread $k) $k) (Theme (sk_spread $k) (sk_feathers $k)) (GroupOf (sk_feathers $k) ground_feather) (Around (sk_spread $k) (sk_lantern $k)) (Member (sk_lantern $k) lantern) (Member (sk_lantern $k) lit) (Member (sk_shield $k) shield) (Agent (sk_shield $k) (sk_feathers $k)) (Theme (sk_shield $k) (sk_lantern $k)) (Against (sk_shield $k) wraith) (During (sk_shield $k) (sk_spread $k)))) (STV 1.0 0.9))

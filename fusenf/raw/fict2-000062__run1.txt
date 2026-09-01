@@ -1,0 +1,2 @@
+(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: rule_saltbloom_potency (Implication (And (Member $k keeper) (Member $h harvest) (Agent $h $k) (Theme $h $sb) (Member $sb salt_bloom) (Time $h new_moon)) (And (Member (sk_keep $h) keep) (Agent (sk_keep $h) $sb) (Theme (sk_keep $h) potency) (Still (sk_keep $h)) (During (sk_keep $h) $h))) (STV 1.0 0.9))

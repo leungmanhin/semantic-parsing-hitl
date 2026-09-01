@@ -1,0 +1,4 @@
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: silkthread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))
+(: silkthread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))
+(: whenever_rest_shed (Implication (And (Member $m nightmoth) (Member $l lantern) (Member $e1 rest) (Experiencer $e1 $m) (On $e1 $l)) (And (Member (sk_shed $m $l) shed) (Agent (sk_shed $m $l) $m) (Patient (sk_shed $m $l) silken_thread) (Goal (sk_shed $m $l) $l) (During (sk_shed $m $l) $e1))) (STV 1.0 0.9))

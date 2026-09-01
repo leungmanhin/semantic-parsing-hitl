@@ -1,0 +1,5 @@
+(: pool_type (Member sk_pool_1 central_pool) (STV 1.0 0.99))
+(: pool_genus (Inheritance central_pool pool) (STV 1.0 0.99))
+(: pool_mod (Inheritance central_pool central) (STV 1.0 0.99))
+(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: stations_draw (Implication (And (Member $x station) (Member $x burdened)) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Theme (sk_draw $x) mire_essence) (Source (sk_draw $x) sk_pool_1))) (STV 0.9 0.9))

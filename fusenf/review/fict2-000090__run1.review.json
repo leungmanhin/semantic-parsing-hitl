@@ -1,0 +1,9 @@
+{"id": "fict2-000090", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The rule premise contains Skolem function terms - (Member (sk_lantern $a) lantern), (Possession (sk_lantern $a) $a) and (Patient $e (sk_lantern $a)) - which the instruction set forbids (a premise never contains a Skolem term; those belong to conclusions), so nothing can match the premise and the rule can never fire; the lantern should be a plain variable."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything else is right: bare when-plus-indefinite routed to the rule form, Possession with possessed first, Patient on the intransitive fail and reset undergoers, the During tie, the solo_count genus with its non-predicable modifier suppressed, and that apprentice bound to the premise variable."}

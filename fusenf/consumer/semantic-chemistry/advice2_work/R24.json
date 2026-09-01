@@ -1,0 +1,116 @@
+{
+ "id": "R24",
+ "rule": "Newcomers apprentice under a senior Keeper",
+ "texts": [
+  "Newcomers must apprentice.",
+  "Each newcomer apprentices under a senior Keeper.",
+  "New apprentices do not tend a lantern alone.",
+  "The Council permits an apprentice to begin solo tending."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000085",
+   "sentence": "Newcomers must apprentice.",
+   "parse": [
+    "(: newcomer_apprentice (Inheritance newcomer (obligated apprentice)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000085",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Kind-level deontic norm in the reified-property form at the plain-norm TV 1.0/0.99 (no stated exemption, so not the defeasible 0.9/0.9); the single-lemma action needs no decomposition and a modal is not a quantifier word, so no QuantifierPhrase is due."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000086",
+   "sentence": "Each newcomer apprentices under a senior Keeper.",
+   "parse": [
+    "(: senior_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: senior_keeper_adj (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: newcomer_apprentice (Implication (Member $x newcomer) (And (Member (sk_apprentice $x) apprentice) (Agent (sk_apprentice $x) $x) (Member (sk_keeper $x) senior_keeper) (Under (sk_apprentice $x) (sk_keeper $x)))) (STV 1.0 0.9))",
+    "(: newcomer_q (QuantifierPhrase newcomer apprentice \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000086",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Explicit universal over a kind-naming subject gives the distributing rule at strength 1.0 / confidence 0.9 with the correctly shaped QuantifierPhrase companion, and the dependent indefinite \"a senior Keeper\" is a Skolem function of $x with its class atom, matching the forall-exists pattern. senior_keeper is a role-title fusion whose gradable modifier passes the predication test, so both the genus and the modifier genus are owed and emitted; Under is the licensed preposition-named oblique and the habitual present correctly carries no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000087",
+   "sentence": "New apprentices do not tend a lantern alone.",
+   "parse": [
+    "(: apprentice_no_tend_alone (Implication (And (Member $x apprentice) (Member $x new)) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Patient (sk_tend $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern) (Member $x alone))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000087",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Negated verbal generic as the distributing rule at strength 0.0 / confidence 0.9 with no QuantifierPhrase companion (no quantifier word), the adjectival restriction as a premise conjunct rather than a fused compound, the dependent indefinite object as a per-binding Skolem with its typing kept inside the denied bundle, and 'alone' as a depictive concurrent state inside the bundle (not a mis-slotted Manner) all follow the doctrine. Patient for 'tend' is borderline against the default-to-Theme instruction but is defensible under the treatment-verb reading (clean / fix / water)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000088",
+   "sentence": "The Council permits an apprentice to begin solo tending.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: apprentice_type (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: permit_ev (Member sk_permit_1 permit) (STV 1.0 0.99))",
+    "(: permit_ag (Agent sk_permit_1 sk_council_1) (STV 1.0 0.99))",
+    "(: permit_th (Theme sk_permit_1 sk_begin_1) (STV 1.0 0.99))",
+    "(: begin_ev (Member sk_begin_1 begin) (STV 1.0 0.99))",
+    "(: begin_ag (Agent sk_begin_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: begin_th (Theme sk_begin_1 sk_tend_1) (STV 1.0 0.99))",
+    "(: tend_ev (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: tend_ag (Agent sk_tend_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: tend_ongoing (Ongoing sk_tend_1) (STV 1.0 0.99))",
+    "(: tend_manner (Manner sk_tend_1 solo) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000088",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an ACTIVE lexical deontic verb (\"the Council permits an apprentice to V\"; likewise authorizes / allows / forbids): the instruction set gives deontic routing only for modals and for the passive/participial \"Ns are permitted / are required / are forbidden to V\", so it never says whether the complement of an active permission verb with its own granting subject additionally carries `(Permitted e)`, or stays a plain object-control complement with no status of its own (as the control-verb rule's \"no tense / status of its own\" implies)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" correctly takes no `Name` atom (capitalized bare kind-word label = common noun by default), and the object-control pattern (controller's role copied into the complement, object never on the matrix verb), the inception shape (`Theme` = activity witness + `Ongoing`), and the no-status-on-bare-simple-present rule are all applied as written. `(Manner sk_tend_1 solo)` for \"solo tending\" is a judgment call, but \"solo\" is a manner-proper adverbial rather than one of the barred duration / sequence / scope / degree classes."
+   },
+   "adjudication": null
+  }
+ ]
+}

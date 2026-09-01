@@ -1,0 +1,127 @@
+{
+ "id": "R17",
+ "rule": "Salt-bloom in winter slows the burn",
+ "texts": [
+  "When a Keeper adds salt-bloom to mire-essence in winter, that mire-essence burns slowly.",
+  "Whenever a Keeper mixes salt-bloom into mire-essence in winter, that mire-essence burns slowly.",
+  "Salt-bloomed lanterns resist cold winds."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000059",
+   "sentence": "When a Keeper adds salt-bloom to mire-essence in winter, that mire-essence burns slowly.",
+   "parse": [
+    "(: mb_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: sb_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: keeper_add_saltbloom_mireessence_burns (Implication (And (Member $k keeper) (Member $me mire_essence) (Member $ad add) (Agent $ad $k) (Theme $ad salt_bloom) (Goal $ad $me) (Time $ad winter)) (And (Member (sk_burn $me) burn) (Patient (sk_burn $me) $me) (Manner (sk_burn $me) slowly) (During (sk_burn $me) $ad))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000059",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The consequent's burn event is Skolemized on the substance, `(sk_burn $me)`, rather than on the trigger occurrence `$ad` that the premise also universally binds, so repeated winter additions to the same mire-essence collapse into a single burning tied by `During` to two different adding events."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound decomposition of `mire_essence` / `salt_bloom` (noun modifiers correctly unexposed), the bare-kind filler for the mass object, `Goal` for the inanimate 'to'-destination, the named-time constant `winter`, the change-of-state `Patient` on 'burns', and the surface-form `Manner slowly` all follow the instruction set. 'That mire-essence' is correctly bound back to the premise variable rather than re-witnessed."
+   },
+   "adjudication": {
+    "id": "fict2-000059",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The whenever machinery requires the response Skolemized per trigger occurrence (the exemplar's (sk_bark $x) keys on the ring event) and a dependent existential to be a function of the universals scoping it, so (sk_burn $me) — keyed to the substance alone — merges repeated winter additions to one essence into a single burn event During two distinct adding events, content the sentence does not state."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant consequent Skolemizes on the trigger occurrence: (And (Member (sk_burn $ad) burn) (Patient (sk_burn $ad) $me) (Manner (sk_burn $ad) slowly) (During (sk_burn $ad) $ad)), the premises and decomposition atoms standing as parsed.",
+    "notes": "The bare constant winter follows the calendar-period bare-constant precedent (first_quarter), so no gap is owed there; the reviewer's other observations are sound."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000060",
+   "sentence": "Whenever a Keeper mixes salt-bloom into mire-essence in winter, that mire-essence burns slowly.",
+   "parse": [
+    "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: keeper_mix_burn (Implication (And (Member $e mix) (Agent $e $k) (Member $k keeper) (Theme $e salt_bloom) (Goal $e $m) (Member $m mire_essence) (Time $e winter)) (And (Member (sk_burn $e) burn) (Patient (sk_burn $e) $m) (Manner (sk_burn $e) slowly) (During (sk_burn $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000060",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"Whenever\" takes the occurrence-rule machinery with the During tie and no QuantifierPhrase companion, salt_bloom/mire_essence expose only their genus (noun modifiers), \"into\" is the licensed Goal, the anaphoric \"that mire-essence\" binds to the premise variable, and Manner keeps the surface -ly form \"slowly\"."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000061",
+   "sentence": "Salt-bloomed lanterns resist cold winds.",
+   "parse": [
+    "(: lanterns_resist_wind (Implication (And (Member $x lantern) (Member $x salt_bloomed)) (And (Member (sk_resist $x) resist) (Agent (sk_resist $x) $x) (Theme (sk_resist $x) (sk_wind $x)) (Member (sk_wind $x) wind) (Member (sk_wind $x) cold))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000061",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "the bare-plural object \"cold winds\" becomes a single per-binding Skolem entity (sk_wind $x) typed wind + cold, so each lantern resists one wind - neither the bare kind filler for a non-specific object nor a group witness, and the plurality of the stated object is lost."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a compound participial adjective (noun + past participle, \"salt-bloomed\") - Compound concepts gives shapes only for verb_object, verb_particle, modifier_noun and agent-nominalizations, so whether salt_bloomed takes any decomposition atom is unspecified (the \"leave opaque\" carve-out names adjective/condition compounds, not this form)",
+     "a descriptively-modified bare-plural object inside a generic distributing rule (\"cold winds\") - the bare kind filler cannot carry the non-fusing modifier without asserting it of the kind, and the group-witness route is stated for episodic clauses only"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing is right: the adjectivally-restricted kind subject forces the distributing rule (restriction as a premise conjunct) rather than a kind-level relation, roles are Agent/Theme by the change test, and the characteristic-disposition generic keeps STV 0.9 0.9 with no QuantifierPhrase companion."
+   },
+   "adjudication": {
+    "id": "fict2-000061",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The per-binding witness (sk_wind $x) asserts, for every salt-bloomed lantern, an actual dedicated cold wind it resists — more than the dispositional generic states (Assert only what the text states) — while taking neither licensed object form: the bare kind filler for a non-specific generic object, or the group witness, which is stated for episodic clauses only."
+     }
+    ],
+    "gaps_confirmed": [
+     "compound participial adjective (noun + past participle, 'salt-bloomed') has no specified decomposition shape — Compound concepts covers verb_object, verb_particle, modifier_noun and agent-nominalizations only",
+     "a descriptively-modified bare-plural generic object ('cold winds') has no licensed carrier: the bare kind filler cannot carry the non-fusing modifier without asserting it of the kind at large, and the group-witness route is episodic-only"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "No fully licensed form exists for the object: cold_wind may not fuse (temperature is incidental description, never fused) and the bare kind filler wind cannot carry 'cold', so the licensed course was to carry the qualifier or leave the claim out and record the gap — a licensed fix needs a modifier-bearing carrier for a generic bare-plural object (the confirmed second gap).",
+    "notes": "Routing is otherwise right: restriction as a premise conjunct rather than a kind relation, Agent/Theme by the change test, and the 0.9/0.9 TV with no QuantifierPhrase."
+   }
+  }
+ ]
+}

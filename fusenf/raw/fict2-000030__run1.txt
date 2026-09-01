@@ -1,0 +1,4 @@
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: cliffspires_grp (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))
+(: skycat_roost (Implication (Member $x sky_cat) (And (Member (sk_roost $x) roost) (Experiencer (sk_roost $x) $x) (Location (sk_roost $x) sk_cliff_spire_1) (Time (sk_roost $x) day))) (STV 0.9 0.9))

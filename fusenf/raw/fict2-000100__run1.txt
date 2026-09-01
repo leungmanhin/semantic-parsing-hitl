@@ -1,0 +1,5 @@
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))
+(: base_type (Member sk_base_1 base) (STV 1.0 0.99))
+(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))
+(: hunt_accumulate_rule (Implication (And (Member $x hunt) (Agent $x $c) (Member $c sky_cat) (Time $x summer)) (And (GroupOf (sk_feathers $x) feather) (CardinalityPhrase (sk_feathers $x) "many") (Member (sk_accumulate $x) accumulate) (Patient (sk_accumulate $x) (sk_feathers $x)) (Location (sk_accumulate $x) sk_base_1) (TimeAtMost (sk_accumulate $x) autumn) (During (sk_accumulate $x) $x))) (STV 1.0 0.9))

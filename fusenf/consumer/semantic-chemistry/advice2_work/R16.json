@@ -1,0 +1,90 @@
+{
+ "id": "R16",
+ "rule": "Cold winds extinguish unprepared lanterns",
+ "texts": [
+  "Whenever a cold wind blows off the sea at night, that wind extinguishes unprepared lanterns.",
+  "When a cold wind strikes the Cliff Path at night, unprepared lanterns go out.",
+  "Lanterns in shielded coves stay safe from cold winds."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000056",
+   "sentence": "Whenever a cold wind blows off the sea at night, that wind extinguishes unprepared lanterns.",
+   "parse": [
+    "(: sea_type (Member sk_sea_1 sea) (STV 1.0 0.99))",
+    "(: wind_extinguish_rule (Implication (And (Member $x blow) (Patient $x $w) (Member $w wind) (Member $w cold) (Source $x sk_sea_1) (Time $x night) (Member $l lantern) (Member $l unprepared)) (And (Member (sk_extinguish $x $l) extinguish) (Agent (sk_extinguish $x $l) $w) (Patient (sk_extinguish $x $l) $l) (During (sk_extinguish $x $l) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000056",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "adjectivally-restricted bare-plural OBJECT under a generic ('extinguishes unprepared lanterns'): the instruction set legislates only the restricted-kind SUBJECT case ('stray dogs chase cyclists' -> restriction becomes a premise conjunct) and never the object case, so whether the restricted object becomes a premise range (universal over every unprepared lantern in the KB) or a per-occurrence Skolem group in the consequent is unspecified"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The wind is Patient of intransitive 'blow' (non-volitional natural force / gas) and Agent of transitive 'extinguish' (inanimacy never demotes a transitive subject), both exactly per the stated tests; 'cold wind' correctly stays unfused as incidental description, 'off the sea' takes Source, and 'at night' the bare day-part Time symbol. The premise-range treatment of 'unprepared lanterns' universally quantifies over all such lanterns, which is the natural bare-plural-object reading but is the undecided case flagged above."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000057",
+   "sentence": "When a cold wind strikes the Cliff Path at night, unprepared lanterns go out.",
+   "parse": [
+    "(: cliff_path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cliff_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: wind_lantern_rule (Implication (And (Member $e strike) (Agent $e $w) (Member $w wind) (Member $w cold) (Theme $e cliff_path) (Time $e night) (Member $x lantern) (Member $x unprepared)) (And (Member (sk_go_out $x $e) go_out) (Patient (sk_go_out $x $e) $x) (During (sk_go_out $x $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000057",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The two universals (occurrence and lantern) are correctly premise conjuncts with a two-argument Skolem consequent event, \"the Cliff Path\" gets the name-plus-kind pair with no modifier genus, and \"cold\"/\"unprepared\" stay unfused incidental descriptions. `go_out` is kept whole with no genus and no synonym swap, and its subject takes the change-of-state Patient."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000058",
+   "sentence": "Lanterns in shielded coves stay safe from cold winds.",
+   "parse": [
+    "(: shielded_cove_genus (Inheritance shielded_cove cove) (STV 1.0 0.99))",
+    "(: shielded_cove_mod (Inheritance shielded_cove shielded) (STV 1.0 0.99))",
+    "(: cold_wind_genus (Inheritance cold_wind wind) (STV 1.0 0.99))",
+    "(: cold_wind_mod (Inheritance cold_wind cold) (STV 1.0 0.99))",
+    "(: safe_fcw_genus (Inheritance safe_from_cold_wind safe) (STV 1.0 0.99))",
+    "(: safe_fcw_arg (From safe_from_cold_wind cold_wind) (STV 1.0 0.99))",
+    "(: lantern_safe (ConditionalProperty lantern safe_from_cold_wind shielded_cove) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000058",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "continuative copular \"stay / remain + ADJ\" on a KIND-level generic: the specified continuation shape is (Still <state-witness>) on a reified state, but a kind-level ConditionalProperty/Inheritance claim mints no state witness, so the continuation of \"stay safe\" has no carrier and is silently lost"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The locative restriction is kept in the condition slot rather than stripped, and safe_from_cold_wind follows the kind-level adjective+PP fusion pattern (genus + surface-preposition argument atom) with the bare copular Inheritance correctly not also asserted. Modifier genus atoms for shielded_cove and cold_wind pass the predication test, so their exposure is determined, not optional."
+   },
+   "adjudication": null
+  }
+ ]
+}

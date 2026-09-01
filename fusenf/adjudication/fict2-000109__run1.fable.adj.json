@@ -1,0 +1,13 @@
+{"id": "fict2-000109", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "'LocatedIn is containment ONLY — in / at / inside / within' and folding any other word into it 'asserts a containment the sentence never stated'; the surface 'with' states having, not spatial containment, so (LocatedIn $l $s) both breaks the containment-only rule and over-asserts."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "The rule-strength dial sets strength by the quantity — all/each/every (or a definite plural/count) 1.0, bare generic 0.9 — and 'stations with drained lanterns' carries no quantifier word, so strength 1.0 asserts a universal the text does not state."}],
+ "gaps_confirmed": ["an attributive 'with'-PP modifying a noun ('stations with drained lanterns') has no stated encoding — the 'with' rules are event-level (CoAgent/Instrument) and the entity-attached surface-preposition licence is framed for position and origin",
+                    "a bare-plural object generic under a specific individual subject: unruled whether it becomes a rule ranging over the object kind (needed to carry the restrictor) or a plain event with a bare-kind filler"],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "Issue 0: the compliant premise keeps the surface word entity-attached — (With $s $l), the same open licence as From-origin; if that licence is read as strictly position/origin-only, no licensed carrier exists and the confirmed attributive-'with' gap stands. Issue 1: the rule takes the bare-generic strength, (STV 0.9 0.9), since no quantifier word licenses 1.0.",
+ "notes": "The rule route itself (ranging over the object kind with the Council as a constant, Theme for the ranked object, 'drained' unfused, habitual unmarked) is reasonable improvisation inside the second confirmed gap; only the containment head and the over-strength fail the calibration line."}

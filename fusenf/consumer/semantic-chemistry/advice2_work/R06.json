@@ -1,0 +1,122 @@
+{
+ "id": "R6",
+ "rule": "A crowd of nightmoths brings sky-cats down",
+ "texts": [
+  "When a crowd of nightmoths gathers at a lantern-row, sky-cats descend from the cliff-spires.",
+  "Whenever a crowd of nightmoths settles on a lantern-row, sky-cats descend from the cliff-spires.",
+  "When a handful of nightmoths gathers at a lantern-row, sky-cats stay on the cliff-spires."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000020",
+   "sentence": "When a crowd of nightmoths gathers at a lantern-row, sky-cats descend from the cliff-spires.",
+   "parse": [
+    "(: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lr_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cs_group (GroupOf sk_cliffspires_1 cliff_spire) (STV 1.0 0.99))",
+    "(: gather_descend (Implication (And (Member $c crowd) (GroupOf $c nightmoth) (Member $g gather) (Agent $g $c) (Member $l lantern_row) (Location $g $l)) (And (Member (sk_descend $g) descend) (Agent (sk_descend $g) (sk_skycats $g)) (GroupOf (sk_skycats $g) sky_cat) (Source (sk_descend $g) sk_cliffspires_1) (During (sk_descend $g) $g))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000020",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare \"when P, Q\" with indefinite participants correctly routes to the whenever-rule machinery (trigger as premises, Skolem consequent keyed to the trigger event, During link); solid/hyphenated compounds each get their head genus with the noun modifiers left unexposed, \"at a lantern-row\" is an event Location, and the definite \"the cliff-spires\" is a top-level group witness reached by Source. The bare-plural consequent subject becomes a per-occurrence Skolem group, the same shape the instruction set uses for a number under a universal, and like that precedent emits no per-member distribution rule."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000021",
+   "sentence": "Whenever a crowd of nightmoths settles on a lantern-row, sky-cats descend from the cliff-spires.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lantern_row_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: cliff_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_spires_group (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))",
+    "(: whenever_settle_descend (Implication (And (Member $s settle) (Agent $s $c) (Member $c crowd) (GroupOf $c nightmoth) (Location $s $r) (Member $r lantern_row)) (And (Member (sk_descend $s) descend) (GroupOf (sk_skycat_group $s) sky_cat) (Agent (sk_descend $s) (sk_skycat_group $s)) (Source (sk_descend $s) sk_cliff_spire_1) (During (sk_descend $s) $s))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000021",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare-plural participant first introduced inside a whenever-rule's CONSEQUENT ('sky-cats descend') — the instruction set fixes the per-occurrence Skolem event form but never says how a fresh plural participant is minted there (Skolem group function, constant group, or a kind range)",
+     "a distributive predicate over a group minted inside a rule conclusion — 'descend' is distributive, but the required per-member distribution rule has no stated nesting form inside an Implication's conclusion"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing (bare 'whenever' with indefinite participants to the occurrence rule), the crowd-of-N group premise, the genus atoms for the four solid/hyphenated modifier+head compounds with no noun-modifier genus, the definite plural 'the cliff-spires' as a top-level group witness, Source for 'from', and the During tie all follow the doctrine. 'On a lantern-row' as Location is explicitly licensed ('in/at/on') since the PP answers where."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000022",
+   "sentence": "When a handful of nightmoths gathers at a lantern-row, sky-cats stay on the cliff-spires.",
+   "parse": [
+    "(: nm_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: lr_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: csp_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: csp_group (GroupOf sk_cliff_spires_1 cliff_spire) (STV 1.0 0.99))",
+    "(: gather_stay_rule (Implication (And (Member $x gather) (GroupOf $g night_moth) (CardinalityPhrase $g \"handful\") (Agent $x $g) (Member $r lantern_row) (Location $x $r) (Member $y sky_cat)) (And (Member (sk_stay $x $y) stay) (Experiencer (sk_stay $x $y) $y) (Location (sk_stay $x $y) sk_cliff_spires_1) (During (sk_stay $x $y) $x))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000022",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "For \"sky-cats stay on the cliff-spires\" the consequent reifies a `stay` event with a `Location` oblique, but the instruction set routes \"stay/remain + locative PP\" to the entity-attached position atom of *Where a THING is* (here `(On $y sk_cliff_spires_1)`), with the continuation sense recorded as a gap rather than encoded."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a \"stay/remain + locative PP\" clause as the CONSEQUENT of a bare-\"when\" / whenever rule: the whenever machinery mandates a `(During <consequent> <trigger>)` link, which needs an eventuality anchor, while the position-atom route the instruction set prescribes for that clause type mints no event to anchor on — the two rules point opposite ways and neither section resolves the conflict"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rule carries strength 0.9 where the whenever template that bare \"when P, Q\" is routed to uses 1.0 (a universal over occasions). `(CardinalityPhrase $g \"handful\")` drops the article from the instruction set's listed surface phrase \"a handful\", so it may not match the canonical lexicon string the seeded phrase-to-bound rules key on."
+   },
+   "adjudication": {
+    "id": "fict2-000022",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The whenever machinery mandates a During-linked Skolem event consequent, and *Where a THING is* itself licenses reifying a position state when a trigger demands an anchor (the During tie is exactly such a temporal-anchor demand), so the reified stay with Experiencer subject and event-side Location ('on' is listed under the event Location oblique) is licensed — at worst graceful improvisation in the very rule conflict the reviewer's own gap concedes, with every atom true and well-typed."
+     }
+    ],
+    "gaps_confirmed": [
+     "'stay/remain + locative PP' as the consequent of a bare-when/whenever rule: the prescribed position-atom route mints no event, while the whenever machinery mandates a During-linked event — the two sections point opposite ways and neither resolves the conflict"
+    ],
+    "new_gaps": [
+     "the strength of a bare 'when P, Q' rule is unpinned: the whenever template's example carries 1.0 (from an explicit 'every time') while the no-quantifier generic dial suggests 0.9, and the instruction set never says which a bare 'when' takes",
+     "whether the canonical lexicon string for a vague-count CardinalityPhrase keeps its article ('a handful' vs 'handful') is unstated, so the surface-string normalization the seeded phrase-to-bound rules key on is underdetermined"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The rule's 0.9 strength and the \"handful\" string were raised only in the reviewer's notes, not as issues; neither is decidable as a defect from the instruction set as written, so both are filed as new gaps instead."
+   }
+  }
+ ]
+}

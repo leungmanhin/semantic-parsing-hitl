@@ -1,0 +1,168 @@
+{
+ "id": "R23",
+ "rule": "Keepers inherit lantern-stations",
+ "texts": [
+  "When a senior Keeper retires, an heir inherits that Keeper's lantern-station.",
+  "Whenever a senior Keeper dies, an heir inherits that Keeper's lantern-station.",
+  "A Keeper's family keeps that Keeper's inherited station.",
+  "The Council must approve any station transfer."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000081",
+   "sentence": "When a senior Keeper retires, an heir inherits that Keeper's lantern-station.",
+   "parse": [
+    "(: senk_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: senk_senior_genus (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: ls_station_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: senior_keeper_retire_heir_inherits (Implication (And (Member $sk senior_keeper) (Member $rt retire) (Agent $rt $sk)) (And (Member (sk_heir $sk) heir) (Member (sk_inherit $sk) inherit) (Agent (sk_inherit $sk) (sk_heir $sk)) (Theme (sk_inherit $sk) (sk_station $sk)) (Member (sk_station $sk) lantern_station) (Possession (sk_station $sk) $sk) (During (sk_inherit $sk) $rt))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000081",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "Every consequent Skolem term is a function of the Keeper `$sk` alone and not of the retirement occurrence `$rt`, which the premise universally binds too, so the heir and the inheriting event do not vary per occurrence as the whenever machinery requires."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a presupposed definite possessed NP occurring only in a generic rule's CONSEQUENT ('that Keeper's lantern-station'): the instruction set does not say whether it should be minted as a Skolem function in the conclusion (as here, which makes the Keeper's ownership of the station something derived from the retirement rather than presupposed) or matched as a plain-variable premise conjunct"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The `senior_keeper` / `lantern_station` decompositions (gradable modifier exposed, noun modifier not), the `Possession` genitive with the possessed first, `Agent` on the volitional intransitive 'retires' and on the transitive 'inherits', and `Theme` for the unchanged acquired station all follow the instruction set. 'Keeper' correctly takes the capitalized-common-noun default with no `Name` atom."
+   },
+   "adjudication": {
+    "id": "fict2-000081",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "This 'when a <indefinite>' sentence takes the whenever machinery, whose response is a Skolem event per occurrence (its example Skolemizes on the trigger event) and whose dependent existentials are functions of every universal scoping over them — (sk_heir $sk) and (sk_inherit $sk) omit the retirement variable $rt, so two retirements by one Keeper would share a single derived inheritance."
+     }
+    ],
+    "gaps_confirmed": [
+     "a presupposed definite possessed NP appearing only in a rule's consequent ('that Keeper's lantern-station'): the instruction set does not say whether to mint it as a conclusion Skolem (making the ownership derived from the trigger) or to match it as a plain-variable premise precondition"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form Skolemizes the consequent on the trigger occurrence as well — (sk_heir $sk $rt) and (sk_inherit $sk $rt), keeping the During tie — while the presupposed station's placement stays the registered gap with no fully legislated form.",
+    "notes": "The During tie to $rt is present; only the Skolem arguments fall short. The compound decompositions, the Possession genitive, and the Agent/Theme role choices are all licensed."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000082",
+   "sentence": "Whenever a senior Keeper dies, an heir inherits that Keeper's lantern-station.",
+   "parse": [
+    "(: senior_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: senior_keeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: lantern_station_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: keeper_die_heir_inherit (Implication (And (Member $e die) (Patient $e $k) (Member $k senior_keeper)) (And (Member (sk_inherit $e) inherit) (Agent (sk_inherit $e) (sk_heir $e)) (Member (sk_heir $e) heir) (Theme (sk_inherit $e) (sk_lantern_station $e)) (Member (sk_lantern_station $e) lantern_station) (Possession (sk_lantern_station $e) $k) (During (sk_inherit $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000082",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "\"that Keeper's lantern-station\" is a definite, presupposed possession, but the parse mints it as a per-occurrence Skolem (sk_lantern_station $e) and places (Possession (sk_lantern_station $e) $k) inside the conclusion, so the station's existence and its ownership are derived as consequences of the death rather than held as a standing precondition (contrast the presupposition treatment of a definite's possessor elsewhere in the instruction set)."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The senior_keeper decomposition correctly exposes the gradable-adjective modifier while lantern_station leaves its noun modifier unexposed, \"dies\" takes a Patient subject, and the dependent existential \"an heir\" is a Skolem function of the universal as the instruction set's forall-exists pattern requires."
+   },
+   "adjudication": {
+    "id": "fict2-000082",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "No stated rule reaches a definite possessed NP inside a rule consequent — the presupposition-projection rules govern strength-0.0 denial bundles and attitude/quotation/AccordingTo seals only — so this is gap territory where the calibration line licenses the improvisation: given a death the sentence itself posits the Keeper's station and the inheriting, so every derived atom is entailed, well-typed, and asserts nothing beyond the text."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "a presupposed definite possessed NP appearing only in a rule's consequent ('that Keeper's lantern-station'): the instruction set does not say whether to mint it as a conclusion Skolem with its Possession derived per occurrence or to match it as a plain-variable premise precondition"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The reviewer's observation is accurate as a description but names coverage underdetermination, not a violation. The parse otherwise satisfies the whenever machinery — consequent Skolems on the death occurrence $e, During tie present — with correct decompositions, Patient subject for 'dies', and possessed-first Possession."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000083",
+   "sentence": "A Keeper's family keeps that Keeper's inherited station.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: family_type (Member sk_family_1 family) (STV 1.0 0.99))",
+    "(: family_poss (Possession sk_family_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: station_genus (Inheritance inherited_station station) (STV 1.0 0.99))",
+    "(: station_mod (Inheritance inherited_station inherited) (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 inherited_station) (STV 1.0 0.99))",
+    "(: station_poss (Possession sk_station_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: keep_ev (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: keep_ag (Agent sk_keep_1 sk_family_1) (STV 1.0 0.99))",
+    "(: keep_th (Theme sk_keep_1 sk_station_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000083",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both genitives correctly take opaque Possession (neither possessed is a part of the possessor), \"that Keeper\" reuses sk_keeper_1 by coreference, the singular collective \"family\" takes no GroupOf and does not distribute, and the capitalized singular label \"Keeper\" is correctly a common noun with no Name atom. The compound inherited_station exposes its modifier genus, which the predication test licenses even though participial adjectives are not among the three enumerated exposable categories."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000084",
+   "sentence": "The Council must approve any station transfer.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: approve_genus (Inheritance approve_station_transfer approve) (STV 1.0 0.99))",
+    "(: approve_obj (Patient approve_station_transfer station_transfer) (STV 1.0 0.99))",
+    "(: st_genus (Inheritance station_transfer transfer) (STV 1.0 0.99))",
+    "(: council_obligated (Member sk_council_1 (obligated approve_station_transfer)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000084",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a standing deontic norm whose bearer is a specific INDIVIDUAL rather than a kind (\"The Council must approve any station transfer\"): the instruction set supplies only the kind-level reified property `(Inheritance <kind> (obligated <action>))` and the specific one-off event form `(Obligated e)`, leaving `(Member <individual> (obligated <action>))` — which this parse uses — unlicensed either way",
+     "the universal determiner \"any\" over the object of a kind-level deontic: it is absorbed into the compound action's `Patient` slot, and the instruction set gives no ruling on whether such a consumed quantifier word still owes a `QuantifierPhrase` companion (whose stated range would then appear nowhere else in the parse)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Meaning is captured correctly, and the internals are per spec: \"the Council\" as a capitalized common-noun label with no `Name` atom, the compound-action decomposition of `approve_station_transfer` (genus + `Patient`), the `station_transfer` genus with the noun modifier unexposed, and the plain-norm TV 1.0/0.99. `Member` (not `Inheritance`) is the right relation for a property of the `sk_council_1` individual, so the encoding is at least internally consistent with the individual/class discipline."
+   },
+   "adjudication": null
+  }
+ ]
+}

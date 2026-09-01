@@ -1,0 +1,171 @@
+{
+ "id": "R19",
+ "rule": "Spring tides bloom salt-bloom in the tide-pools",
+ "texts": [
+  "When a spring tide fills the tide-pools, salt-bloom blooms in the tide-pools.",
+  "Whenever a spring tide fills the tide-pools, salt-bloom grows in the tide-pools.",
+  "Salt-bloom is a pale crystalline crust.",
+  "Salt-bloom soon dissolves into the seawater."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000066",
+   "sentence": "When a spring tide fills the tide-pools, salt-bloom blooms in the tide-pools.",
+   "parse": [
+    "(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: st_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: tp_group (GroupOf sk_tide_pools_1 tide_pool) (STV 1.0 0.99))",
+    "(: fill_bloom_rule (Implication (And (Member $x fill) (Agent $x $s) (Member $s spring_tide) (Patient $x sk_tide_pools_1)) (And (Member (sk_bloom $x) bloom) (Patient (sk_bloom $x) salt_bloom) (Location (sk_bloom $x) sk_tide_pools_1) (During (sk_bloom $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000066",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare mass / non-count noun as the SUBJECT of a generic clause (\"salt-bloom blooms in the tide-pools\"): the instruction set licenses the bare kind symbol only as a non-specific OBJECT filler (\"pays tax\", \"grows wheat\") and routes bare-PLURAL generic subjects to a distributing rule over `(Member $x <kind>)`, leaving the mass-subject case — bare kind filler vs. witness vs. distributing rule — unaddressed"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`Patient` on \"fills the tide-pools\" (change of state) and `Patient` on the intransitive `bloom` subject (non-volitional natural process) both follow the stated role tests. The definite plural \"the tide-pools\" is correctly a top-level group witness, which is what licenses the `sk_*` constant appearing in the rule premise."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000067",
+   "sentence": "Whenever a spring tide fills the tide-pools, salt-bloom grows in the tide-pools.",
+   "parse": [
+    "(: spring_tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: tide_pools_group (GroupOf sk_group_1 tide_pool) (STV 1.0 0.99))",
+    "(: tide_fill_bloom_grow (Implication (And (Member $x spring_tide) (Member $e1 fill) (Agent $e1 $x) (Patient $e1 sk_group_1)) (And (Member (sk_grow $e1) grow) (Patient (sk_grow $e1) salt_bloom) (Location (sk_grow $e1) sk_group_1) (During (sk_grow $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000067",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite plural \"the tide-pools\" correctly becomes a top-level group witness, which is what licenses the sk_group_1 constant to appear in the rule premise; all three compounds emit head genus only. Patient on the intransitive change-of-state subject of grow and Location on the grow event (not LocatedIn, since an event anchors it) both match the stated tests."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000068",
+   "sentence": "Salt-bloom is a pale crystalline crust.",
+   "parse": [
+    "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: saltbloom_crust (Inheritance salt_bloom crust) (STV 1.0 0.99))",
+    "(: saltbloom_pale (Inheritance salt_bloom pale) (STV 1.0 0.9))",
+    "(: saltbloom_crystalline (Inheritance salt_bloom crystalline) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000068",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "(Inheritance salt_bloom pale) carries (STV 1.0 0.9), but strength 1.0 is licensed only by an explicit all/every quantifier or by a definitional claim (which takes confidence 0.99); a bare generic at empirical confidence takes strength 0.9."
+     },
+     {
+      "statement": 3,
+      "issue": "(Inheritance salt_bloom crystalline) has the same unlicensed 1.0/0.9 pairing - it should be either 0.9 0.9 as a bare empirical generic or 1.0 0.99 as definitional, not a mix of the two dials."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Kind subject to Inheritance, the salt_bloom genus with the noun modifier suppressed, crystalline kept in its derived form, and the two descriptive adjectives split out instead of fused are all correct; only the two property atoms deviate on truth values."
+   },
+   "adjudication": {
+    "id": "fict2-000068",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Strength 1.0 on a generic is licensed only by an explicit all/every or by a definitional claim carrying confidence 0.99 ('dogs are mammals' 1.0 0.99), while a bare empirical generic takes 0.9 0.9 ('Trellises are wooden'), so (STV 1.0 0.9) on (Inheritance salt_bloom pale) matches no licensed dial setting."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "(Inheritance salt_bloom crystalline) carries the same unlicensed pairing — the quantity rule puts a quantifierless generic at strength 0.9, and the confidence dial allows strength 1.0 only with definitional 0.99 confidence."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "For (Inheritance salt_bloom pale) the compliant form is (STV 0.9 0.9) as a bare empirical generic, or (STV 1.0 0.99) if the defining predicate is read as definitional; the same two licensed pairings are the compliant forms for (Inheritance salt_bloom crystalline).",
+    "notes": "The genus atoms, the crust predication at (1.0 0.99), the retained derived form 'crystalline', and the split of the two descriptive adjectives rather than fusion are all correct."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000069",
+   "sentence": "Salt-bloom soon dissolves into the seawater.",
+   "parse": [
+    "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: seawater_genus (Inheritance seawater water) (STV 1.0 0.99))",
+    "(: seawater_typ (Member sk_seawater_1 seawater) (STV 1.0 0.99))",
+    "(: saltbloom_dissolves (Implication (Member $x salt_bloom) (And (Member (sk_dissolve $x) dissolve) (Patient (sk_dissolve $x) $x) (Goal (sk_dissolve $x) sk_seawater_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000069",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "A bare generic verbal rule with no quantifier word takes strength 0.9 ('Birds fly' -> STV 0.9 0.9); strength 1.0 is reserved for an explicit all/every, so (STV 1.0 0.9) overstates the generalization."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "The temporal-proximity adverb 'soon' has no licensed slot - it falls in the sequence/ordering-adverb family the instruction set directs you to leave out and record - so the parse silently loses it.",
+     "A bare MASS noun as subject of a verbal generic ('Salt-bloom dissolves ...'): the instruction set licenses the distributing rule only for a bare plural or an explicit quantifier, and gives no reading for quantifying (Member $x salt_bloom) over instances of a mass kind."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both compound genus atoms (salt_bloom->bloom, seawater->water) are right, the noun modifiers are correctly left unexposed, and the definite 'the seawater' is properly a top-level constant outside the rule; Goal for 'into the seawater' is the licensed motion-result oblique."
+   },
+   "adjudication": {
+    "id": "fict2-000069",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Rule strength is set by the quantity — all/every 1.0, bare generic 0.9 ('Birds fly' at (STV 0.9 0.9)) — so (STV 1.0 0.9) on the quantifierless dissolve rule over-asserts the generalization."
+     }
+    ],
+    "gaps_confirmed": [
+     "'soon' — a temporal-proximity adverb with no licensed slot (the sequence/ordering-adverb family the instruction set directs be left out and recorded)",
+     "a bare MASS noun as subject of a verbal generic — the distributing rule is licensed for bare plurals or explicit quantifiers, and quantifying (Member $x salt_bloom) over instances of a mass kind is unaddressed"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the same distributing rule at (STV 0.9 0.9).",
+    "notes": "The two genus atoms, the top-level constant for the definite 'the seawater' (the causeway precedent for definites in rules), Patient on the change-of-state undergoer, and the Goal oblique for 'into' are all licensed."
+   }
+  }
+ ]
+}

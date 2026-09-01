@@ -1,0 +1,3 @@
+(: cliff_path_type (Member cliff_path path) (STV 1.0 0.99))
+(: cliff_path_name (Name cliff_path "Cliff Path") (STV 1.0 0.99))
+(: wind_lantern_rule (Implication (And (Member $e strike) (Agent $e $w) (Member $w wind) (Member $w cold) (Theme $e cliff_path) (Time $e night) (Member $x lantern) (Member $x unprepared)) (And (Member (sk_go_out $x $e) go_out) (Patient (sk_go_out $x $e) $x) (During (sk_go_out $x $e) $e))) (STV 1.0 0.9))

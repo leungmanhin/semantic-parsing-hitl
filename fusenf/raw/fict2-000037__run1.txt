@@ -1,0 +1,1 @@
+(: keeper_leave_lantern_untended_dies (Implication (And (Member $k keeper) (Member $l lantern) (Member $lv leave) (Agent $lv $k) (Theme $lv $l) (Time $lv night) (Member $st untended) (Experiencer $st $l) (Still $st) (Member $l untended) (Result $lv $st)) (And (Member (sk_die $l) die) (Patient (sk_die $l) $l) (TimeAtMost (sk_die $l) dawn) (During (sk_die $l) $lv))) (STV 1.0 0.9))

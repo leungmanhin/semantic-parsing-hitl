@@ -1,0 +1,5 @@
+(: smem_genus (Inheritance stored_mire_essence mire_essence) (STV 1.0 0.99))
+(: smem_stored (Inheritance stored_mire_essence stored) (STV 1.0 0.99))
+(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: keeper_draw_q (QuantifierPhrase keeper draw "each") (STV 1.0 0.99))
+(: keeper_draw_rule (Implication (And (Member $k keeper) (Member $t tend) (Agent $t $k) (Theme $t $ln) (Member $ln lantern)) (And (Member (sk_draw $t) draw) (Agent (sk_draw $t) $k) (Theme (sk_draw $t) stored_mire_essence) (During (sk_draw $t) $t))) (STV 1.0 0.9))

@@ -1,0 +1,219 @@
+{
+ "id": "R5",
+ "rule": "Stored mire-essence feeds future lighting",
+ "texts": [
+  "When mire-essence forms in the cauldron, the Keepers store the mire-essence in clay vessels.",
+  "Whenever mire-essence forms in the cauldron, the Keepers keep the mire-essence in clay vessels.",
+  "Each Keeper draws stored mire-essence when that Keeper tends a lantern.",
+  "Stored mire-essence will feed lantern lighting."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000016",
+   "sentence": "When mire-essence forms in the cauldron, the Keepers store the mire-essence in clay vessels.",
+   "parse": [
+    "(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: clay_vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+    "(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: mire_form_store (Implication (And (Member $x form) (Patient $x $m) (Member $m mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_store $x) store) (Agent (sk_store $x) sk_keepers_1) (Theme (sk_store $x) $m) (Location (sk_store $x) clay_vessel) (During (sk_store $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000016",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "\"the Keepers\" is a capitalized plural kind-word label, which the instruction set makes a Name-only individual (one symbol plus a Name atom, no GroupOf and no per-member kind from the label word), but the parse emits (GroupOf sk_keepers_1 keeper) and no Name atom."
+     },
+     {
+      "statement": 4,
+      "issue": "\"in clay vessels\" fills the consequent's Location slot with the bare kind symbol clay_vessel rather than a per-occurrence witness/group, so each storing event is located at a kind instead of at vessels, unlike the indefinite-in-a-rule-conclusion Skolem pattern."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare \"when P, Q\" routing onto the whenever rule machinery, the mire_essence/clay_vessel genus decompositions with the noun modifiers left unexposed, the During link to the trigger, the top-level-asserted sk_cauldron_1 constant in the premise, and the 1.0/0.9 rule TV all follow the instruction set."
+   },
+   "adjudication": {
+    "id": "fict2-000016",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Names and casing makes a capitalized plural kind-word label referring as a name ('the Keepers') a Name-only individual — one symbol plus a Name atom, no GroupOf and no per-member kind invented from the label word — so (GroupOf sk_keepers_1 keeper) with no Name atom violates the stated rule."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "A non-specific filler may stay a bare kind (the 'pays tax' / 'grows wheat' licence, and the oblique-object rule's bare-constant branch), while the Skolem-function pattern is stated only for marked dependent existentials ('some/a N', a numeral), so the bare-kind Location is a licensed choice — or at worst graceful improvisation with true, well-typed atoms."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A bare-plural count oblique in a generic rule's conclusion ('in clay vessels'): bare-kind filler vs per-occurrence witness/group is unspecified — the episodic group-witness split is stated for clauses, the Skolem-function pattern only for marked indefinites."
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 1: the compliant form is a Name-only individual — e.g. symbol keepers with (Name keepers \"Keepers\") filling the rule's Agent slot — with no GroupOf and no keeper type atom.",
+    "notes": "The when-clause routing onto the whenever machinery, the per-occurrence variable for the forming essence reused by the anaphoric definite, the During link, the top-level cauldron constant in the premise, and the decompositions are all per spec."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000017",
+   "sentence": "Whenever mire-essence forms in the cauldron, the Keepers keep the mire-essence in clay vessels.",
+   "parse": [
+    "(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: clay_vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+    "(: whenever_form_keep (Implication (And (Member $x form) (Patient $x mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) sk_keepers_1) (Theme (sk_keep $x) mire_essence) (Location (sk_keep $x) clay_vessel) (During (sk_keep $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000017",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "\"the Keepers\" is a capitalized plural kind-word label, which Names and casing makes a Name-only individual (one symbol + Name atom, no GroupOf and no per-member kind from the label word), but the parse emits (GroupOf sk_keepers_1 keeper) and no Name atom."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare mass-noun participant inside the whenever/every-time rule (\"mire-essence forms\") - the instruction set does not say whether it becomes a per-occurrence Skolem entity or stays the bare kind symbol, and so leaves the consequent's anaphoric definite \"the mire-essence\" with no witness to reuse",
+     "a bare-plural oblique object inside a rule conclusion (\"in clay vessels\") - the bare-kind-filler vs group-witness split is stated for episodic clauses only, so the per-binding form inside a generic rule is unspecified"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever machinery is otherwise applied correctly: event-domain Implication with a Skolem-function response, During link to the trigger, no QuantifierPhrase, STV 1.0 0.9, Location on the keep event only (no LocatedIn on the essence), and mire_essence / clay_vessel decomposed with genus only (noun modifiers not exposed)."
+   },
+   "adjudication": {
+    "id": "fict2-000017",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Names and casing makes a capitalized plural kind-word label referring as a name ('the Keepers') a Name-only individual — one symbol plus a Name atom, no GroupOf and no per-member kind invented from the label word — so (GroupOf sk_keepers_1 keeper) with no Name atom violates the stated rule."
+     }
+    ],
+    "gaps_confirmed": [
+     "Bare mass participant inside a whenever rule ('mire-essence forms'): per-occurrence variable/witness vs bare kind constant is unspecified, leaving the consequent's anaphoric definite 'the mire-essence' with no witness to reuse.",
+     "Bare-plural oblique inside a rule conclusion ('in clay vessels'): the group-witness vs bare-kind split is stated for episodic clauses only, so the per-binding form inside a generic rule is unspecified."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Issue 1: the compliant form is a Name-only individual — e.g. symbol keepers with (Name keepers \"Keepers\") filling the rule's Agent slot — with no GroupOf and no keeper type atom.",
+    "notes": "Within the two confirmed gaps the bare-kind mire_essence and clay_vessel fillers are acceptable improvisation (true, well-typed, nothing over-asserted); the whenever machinery, During link, and TVs are otherwise per spec."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000018",
+   "sentence": "Each Keeper draws stored mire-essence when that Keeper tends a lantern.",
+   "parse": [
+    "(: smem_genus (Inheritance stored_mire_essence mire_essence) (STV 1.0 0.99))",
+    "(: smem_stored (Inheritance stored_mire_essence stored) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: keeper_draw_q (QuantifierPhrase keeper draw \"each\") (STV 1.0 0.99))",
+    "(: keeper_draw_rule (Implication (And (Member $k keeper) (Member $t tend) (Agent $t $k) (Theme $t $ln) (Member $ln lantern)) (And (Member (sk_draw $t) draw) (Agent (sk_draw $t) $k) (Theme (sk_draw $t) stored_mire_essence) (During (sk_draw $t) $t))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000018",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"stored mire-essence\" is fused into the compound kind `stored_mire_essence` with an exposed modifier genus, but `stored` is a participle used as a modifier and an incidental state descriptor, which the adjective+noun fusion test (\"never for incidental description\") and the \"a laminated worktop\" precedent both send to a separate property atom rather than a fused compound."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an adjectivally/participially modified bare mass or kind object sitting in a non-specific role slot (\"draws stored mire-essence\"): the never-fuse branch of the adjective+noun test prescribes a two-atom split, but a bare kind filler supplies no witness to carry the second atom, so no encoding is specified"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Rule routing is right: \"when that Keeper tends a lantern\" with generic participants takes the whenever machinery, the donkey-style rebinding of \"that Keeper\" to $k is correct, and the \"each\" QuantifierPhrase companion, rule strengths and Skolem-function event are all per spec. `Theme` for \"tends a lantern\" is the licensed unclear-case default."
+   },
+   "adjudication": {
+    "id": "fict2-000018",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'stored' is a participial state descriptor, not a term-of-art / origin / role-title / material-adjective pairing, so the adjective+noun fusion test ('never for incidental description') and the laminated-worktop precedent bar the fusion and its definitional decomposition atoms — the modifier belongs on a bearer as a separate property atom."
+     }
+    ],
+    "gaps_confirmed": [
+     "A participially/adjectivally restricted bare mass or kind object in a non-specific role slot ('draws stored mire-essence'): the never-fuse branch demands a two-atom split, but no rule supplies the witness to carry the second atom inside a rule conclusion."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Issue 1: the compliant direction is an unfused per-occurrence bearer in the conclusion — e.g. (Theme (sk_draw $t) (sk_essence $t)) with (Member (sk_essence $t) mire_essence) and (Member (sk_essence $t) stored) — but no rule squarely licenses minting that witness for a bare mass filler; that missing licence is exactly the confirmed gap.",
+    "notes": "The rest is per spec: the when-clause takes the whenever machinery, 'that Keeper' rebinds to $k donkey-style, the 'each' QuantifierPhrase and 1.0/0.9 TV are right, and capitalized singular 'Keeper' correctly stays a common-noun kind by the singular-label default."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000019",
+   "sentence": "Stored mire-essence will feed lantern lighting.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: lantern_lighting_genus (Inheritance lantern_lighting lighting) (STV 1.0 0.99))",
+    "(: mire_essence_feed_rule (Implication (And (Member $x mire_essence) (Member $x stored)) (And (Member (sk_feed $x) feed) (Agent (sk_feed $x) $x) (Patient (sk_feed $x) lantern_lighting))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000019",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The finite \"will\" is dropped -- the consequent carries no (Future (sk_feed $x)) status atom, so a future claim is recorded as a tenseless habitual."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a future-tense (\"will\") claim over a bare mass/kind subject: the distributing-rule route is specified for genuinely generic clauses (habitual present, characteristic claim), and the instruction set does not say whether a \"will\" generic takes the rule at all, nor whether Future rides its consequent"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is right (mire_essence/lantern_lighting genus only, no noun-modifier genus) and the \"stored\" restriction correctly becomes a premise conjunct rather than fusing into the kind. Patient on \"feed\" is arguable but defensible."
+   },
+   "adjudication": {
+    "id": "fict2-000019",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Finite 'will' is carried as (Future e), and the universal-rule examples put tense inside the Skolem consequent ('(Past (sk_pass $x))'), so omitting (Future (sk_feed $x)) silently drops a stated marker and widens a future claim into a timeless habitual — a qualifier is never silently dropped."
+     }
+    ],
+    "gaps_confirmed": [
+     "A future-tense 'will' claim over a bare kind subject: the distributing-rule route is specified for habitual-present / characteristic generics, and nothing legislates whether a 'will' claim is a generic taking the rule (versus a specific future episode on a witness) or how Future rides the consequent."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Issue 1: the compliant form keeps the parse's rule and adds (Future (sk_feed $x)) inside the consequent bundle, per the tense-inside-consequent mechanics of the universal-rule examples.",
+    "notes": "The rule route itself is forced here — an adjectivally-restricted kind subject bars the kind-relation form — and the 'stored' restriction correctly lands as a premise conjunct rather than fusing; strength 0.9/0.9 with no QuantifierPhrase matches a bare generic."
+   }
+  }
+ ]
+}

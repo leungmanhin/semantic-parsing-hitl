@@ -1,0 +1,5 @@
+(: northcove_name (Name northcove "Northcove") (STV 1.0 0.99))
+(: cold_wind_genus (Inheritance cold_wind wind) (STV 1.0 0.99))
+(: cold_wind_mod (Inheritance cold_wind cold) (STV 1.0 0.99))
+(: lantern_never_go_out (Implication (And (Member $x lantern) (Possession $x northcove)) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (Location (sk_go_out $x) cold_wind))) (STV 0.0 0.9))
+(: lantern_q (QuantifierPhrase lantern go_out "never") (STV 1.0 0.99))

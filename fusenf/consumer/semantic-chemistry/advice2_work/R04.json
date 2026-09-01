@@ -1,0 +1,128 @@
+{
+ "id": "R4",
+ "rule": "Silken threads boiled in sea-water yield mire-essence",
+ "texts": [
+  "When a Keeper boils silken threads in sea-water, mire-essence forms in the cauldron.",
+  "Whenever a Keeper boils silken threads in sea-water, the cauldron yields mire-essence.",
+  "The Keepers take the sea-water from the Salt-bloom Tide-pools.",
+  "Fresh water does not yield mire-essence."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000012",
+   "sentence": "When a Keeper boils silken threads in sea-water, mire-essence forms in the cauldron.",
+   "parse": [
+    "(: st_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: st_thread_mat (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: sw_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: keeper_boil_rule (Implication (And (Member $x boil) (Agent $x $k) (Member $k keeper) (Patient $x silken_thread) (Location $x sea_water)) (And (Member (sk_form $x) form) (Patient (sk_form $x) mire_essence) (Location (sk_form $x) sk_cauldron_1) (During (sk_form $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000012",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-'when' with indefinite participants routes to the whenever machinery (rule, per-occurrence Skolem consequent, During tie, no QuantifierPhrase companion), and silken_thread / sea_water / mire_essence decompose exactly as the compound rules prescribe (material adjective exposed, noun modifiers not). The bare-kind fillers in the premise Patient and consequent Patient slots are defensible under the non-specific/kind-level clause, though they make the rule match only kind-symbol arguments and not a later individuated thread."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000013",
+   "sentence": "Whenever a Keeper boils silken threads in sea-water, the cauldron yields mire-essence.",
+   "parse": [
+    "(: sea_water_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: silk_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: silk_thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: keeper_boil_yield (Implication (And (Member $e boil) (Agent $e $k) (Member $k keeper) (Patient $e silken_thread) (Location $e sea_water)) (And (Member (sk_yield $e) yield) (Agent (sk_yield $e) sk_cauldron_1) (Patient (sk_yield $e) mire_essence) (During (sk_yield $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000013",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an indefinite bare-plural non-subject participant inside a whenever-rule PREMISE (\"boils silken threads\") — the instruction set licenses the bare kind filler for non-specific objects in ordinary clauses and covers indefinite premise SUBJECTS via the whenever machinery, but never says whether such an object becomes a kind constant `(Patient $e silken_thread)` or a typed premise variable `(Patient $e $t) (Member $t silken_thread)`"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-machinery shape, top-level definite constant, per-occurrence Skolem event and During link all match the instruction set's own example, and the compound decompositions follow the material-adjective vs noun-modifier split exactly (silken exposed, sea/mire not). The kind-constant object is licensed as written but can never be matched by a later episodic boiling fact, which is the practical cost of the gap above."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000014",
+   "sentence": "The Keepers take the sea-water from the Salt-bloom Tide-pools.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: sbtp_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+    "(: sbtp_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+    "(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: sea_water_type (Member sk_sea_water_1 sea_water) (STV 1.0 0.99))",
+    "(: sea_water_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: e_take (Member sk_take_1 take) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_take_1 keepers) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_take_1 sk_sea_water_1) (STV 1.0 0.99))",
+    "(: e_source (Source sk_take_1 salt_bloom_tide_pools) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000014",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a plural multi-word proper name whose kind word is its head (\"the Salt-bloom Tide-pools\"): the name-kind type atom is specified only in singular shape ((Member kestrel_river river)), while the capitalized-plural-label rule (\"the Wrens\") bars GroupOf for a different case, so a named plurality has no stated Member-vs-GroupOf route"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name-only treatment of the capitalized plural label \"the Keepers\" (no GroupOf, no keeper type atom) matches the \"Wrens\" rule, and take/Theme, Source-for-from and the tenseless habitual present all follow doctrine. The only wrinkle is (Member salt_bloom_tide_pools tide_pool), which types a plurality as one pool because that is the closest licensed shape."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000015",
+   "sentence": "Fresh water does not yield mire-essence.",
+   "parse": [
+    "(: fw_water_genus (Inheritance fresh_water water) (STV 1.0 0.99))",
+    "(: fw_fresh_genus (Inheritance fresh_water fresh) (STV 1.0 0.99))",
+    "(: me_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: fw_not_yield_me (Yield fresh_water mire_essence) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000015",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "negation of a bare-kind RELATIONAL generic: the instruction set prescribes strength-0 denial only for a copular atom and for an event bundle, and says nothing about denying an opaque kind-level relation — and because a kind relation is defined never to distribute, the strength-0 atom cannot reach any individual sample of fresh water"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both arguments are bare mass NPs, so the kind-level relation route (and its 0.9 empirical kind-level confidence) is the licensed one, and no QuantifierPhrase is due for plain 'not'. Fusing 'fresh water' as a term of art keeps the subject a bare kind rather than an adjectivally-restricted one that would force the distributing-rule route, and the exposed modifier genus 'fresh' passes the predication test."
+   },
+   "adjudication": null
+  }
+ ]
+}

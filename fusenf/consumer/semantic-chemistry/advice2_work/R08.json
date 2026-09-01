@@ -1,0 +1,144 @@
+{
+ "id": "R8",
+ "rule": "Hunted nightmoths flee to dimmer lights",
+ "texts": [
+  "When a sky-cat hunts at a lantern-row, the nightmoths that survive the hunt flee toward dim lanterns.",
+  "Whenever a sky-cat hunts at a lantern-row, the nightmoths that survive the hunt move to the Hollows.",
+  "When a nightmoth flees and reaches the Hollows, the lanterns at the Hollows gain silken threads."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000027",
+   "sentence": "When a sky-cat hunts at a lantern-row, the nightmoths that survive the hunt flee toward dim lanterns.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: hunt_flee_rule (Implication (And (Member $c sky_cat) (Member $h hunt) (Agent $h $c) (Location $h $lr) (Member $lr lantern_row) (Member $n nightmoth) (Member $sv survive) (Agent $sv $n) (Theme $sv $h)) (And (Member (sk_flee $n $h) flee) (Agent (sk_flee $n $h) $n) (GroupOf (sk_dim_lanterns $h) lantern) (Member (sk_dim_lanterns $h) dim) (Goal (sk_flee $n $h) (sk_dim_lanterns $h)) (During (sk_flee $n $h) $h))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000027",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "(Member (sk_dim_lanterns $h) dim) predicates the descriptive modifier 'dim' of the group symbol itself, which Categorical statements explicitly bars — a descriptive modifier or copular predicate on a plural always goes through the distributive rule, never a bare (Member <group> <prop>)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite plural restricted by a relative clause ('the nightmoths that survive the hunt') as the consequent subject of a whenever rule — the instruction set prescribes a group witness for definite plurals and per-member variables for explicit universals, but does not say which applies here",
+     "'toward' as a directional oblique — Goal is defined for 'to / into / onto' plus the whither test, while the surface-preposition rule elsewhere forbids synonym heads, so 'toward' is left unresolved"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The hunt event variable is correctly reused as the antecedent of the definite 'the hunt', and the flee Skolem (sk_flee $n $h) is properly indexed by the trigger occurrence."
+   },
+   "adjudication": {
+    "id": "fict2-000027",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Categorical statements bars predicating a members' property of the group symbol (a bare (Member <group> <prop>) is reserved for properties of the collection itself), and 'dim' is incidental description that never fuses, so (Member (sk_dim_lanterns $h) dim) asserts the collection-as-object is dim — the exact reading the plural rules warn against — instead of distributing over the members."
+     }
+    ],
+    "gaps_confirmed": [
+     "a definite plural restricted by a relative clause ('the nightmoths that survive the hunt') as the consequent subject of a whenever rule: neither the definite-plural group-witness prescription nor the per-member-variable route is designated for this position",
+     "'toward' as a directional oblique: the whither test points at Goal but Goal's own listing is 'to / into / onto', while the never-a-synonym-head rule points at a surface (Toward ...) — unresolved"
+    ],
+    "new_gaps": [
+     "no licensed form for distributing a descriptive modifier over a Skolem group minted inside a rule conclusion: the mandated per-member (Implication (PartOf $x <group>) (Member $x <prop>)) must reference the occurrence-bound group and so must nest inside the conclusion, a nesting the instruction set licenses only inside sealed terms"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps (GroupOf (sk_dim_lanterns $h) lantern) and hands 'dim' to the members via a per-member distribution rule (Implication (PartOf $x (sk_dim_lanterns $h)) (Member $x dim)) rather than (Member <group> dim) — though whether that distribution rule may nest inside a rule conclusion is itself unlegislated, filed as a gap.",
+    "notes": "Everything else in the rule — the donkey-style premise reusing $h for 'the hunt', survive with Agent/Theme, the (sk_flee $n $h) Skolem over both universals, During, and the 1.0/0.9 TV — is compliant."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000028",
+   "sentence": "Whenever a sky-cat hunts at a lantern-row, the nightmoths that survive the hunt move to the Hollows.",
+   "parse": [
+    "(: whenever_hunt_survive_move (Implication (And (Member $c sky_cat) (Member $e hunt) (Agent $e $c) (Member $r lantern_row) (Location $e $r) (Member $m nightmoth) (Member $s survive) (Agent $s $m) (Theme $s $e)) (And (Member (sk_move $s) move) (Agent (sk_move $s) $m) (Goal (sk_move $s) hollows) (During (sk_move $s) $e))) (STV 1.0 0.9))",
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lantern_row_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000028",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite plural restricted by a relative clause acting as the subject of a whenever-rule consequent (\"the nightmoths that survive the hunt move\") — the instruction set's definite-plural treatment (group witness plus per-member distribution rule, both emitted) has no stated form inside a rule, so the group half is unreachable and only the per-member range is expressible",
+     "the role of a non-perception verb's eventive-noun object (\"survive the hunt\") — Theme is specified as entity-objects-only and the Stimulus carve-out is restricted to perception verbs, leaving no head explicitly assigned"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Hollows\" is handled exactly per the capitalized-plural-label boundary (Name-only individual, no GroupOf, no invented type atom), and the restrictive relative clause is correctly placed in the premises donkey-style. Agent for the self-powered animate movers, Location for \"at a lantern-row\", and Goal for \"to the Hollows\" all match the stated tests."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000029",
+   "sentence": "When a nightmoth flees and reaches the Hollows, the lanterns at the Hollows gain silken threads.",
+   "parse": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lanterns_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: lanterns_loc (LocatedIn sk_lanterns_1 hollows) (STV 1.0 0.99))",
+    "(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: whenever_flee_reach_gain (Implication (And (Member $n nightmoth) (Member $e1 flee) (Agent $e1 $n) (Member $e2 reach) (Agent $e2 $n) (Theme $e2 hollows)) (And (Member (sk_gain $e2) gain) (Agent (sk_gain $e2) sk_lanterns_1) (Theme (sk_gain $e2) (sk_threads $e2)) (GroupOf (sk_threads $e2) silken_thread) (During (sk_gain $e2) $e2))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000029",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "Missing the mandatory solid-compound genus atom (Inheritance nightmoth moth) for the transparently modifier+head symbol 'nightmoth' — the same decomposition is correctly emitted for 'silken_thread' in this very parse."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite plural with a distributive predicate ('the lanterns gain silken threads') sitting inside a whenever-rule CONSEQUENT: doctrine adds a per-member (Implication (PartOf $x <group>) ...) rule beside the group event, but no form for nesting that rule inside a rule consequent is given (the nesting licence is stated only for sealed complements)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Hollows' correctly takes the capitalized-plural Name-only treatment (Name atom, no GroupOf, no invented type atom), 'at the Hollows' correctly uses the static LocatedIn, and 'reaches' takes Theme exactly as the prompt's own reach example does."
+   },
+   "adjudication": {
+    "id": "fict2-000029",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts mandates the genus for a transparently modifier+head solid compound ('the solid spelling is never a reason to skip decomposition', and Core patterns lists the genus as always emitted), so (Inheritance nightmoth moth) is required and absent — as the parse's own silken_thread decomposition shows it knew."
+     }
+    ],
+    "gaps_confirmed": [
+     "a definite plural with a distributive predicate ('the lanterns ... gain silken threads') inside a whenever-rule consequent: doctrine adds a per-member (Implication (PartOf $x <group>) ...) beside the group event, but no form for placing that rule inside a rule consequent is given (the nesting licence exists only for sealed terms)"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds the missing decomposition atom (: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99)) beside the rule; the noun modifier 'night' stays unexposed per the modifier test.",
+    "notes": "The rest is compliant: 'the Hollows' takes the capitalized-plural Name-only treatment, 'at the Hollows' the static LocatedIn on the lantern group, reach takes Theme, and the gain response is properly Skolem-keyed on the trigger occurrence $e2 with During and the 1.0/0.9 TV."
+   }
+  }
+ ]
+}

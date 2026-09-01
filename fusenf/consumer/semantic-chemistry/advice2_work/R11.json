@@ -1,0 +1,161 @@
+{
+ "id": "R11",
+ "rule": "Untended lanterns die before dawn",
+ "texts": [
+  "When a Keeper leaves a lantern untended overnight, the lantern dies before dawn.",
+  "When a lantern is untended through the night, the lantern goes out before dawn.",
+  "A Keeper refreshes the mire-essence and trims the wick during the night."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000037",
+   "sentence": "When a Keeper leaves a lantern untended overnight, the lantern dies before dawn.",
+   "parse": [
+    "(: keeper_leave_lantern_untended_dies (Implication (And (Member $k keeper) (Member $l lantern) (Member $lv leave) (Agent $lv $k) (Theme $lv $l) (Time $lv night) (Member $st untended) (Experiencer $st $l) (Still $st) (Member $l untended) (Result $lv $st)) (And (Member (sk_die $l) die) (Patient (sk_die $l) $l) (TimeAtMost (sk_die $l) dawn) (During (sk_die $l) $lv))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000037",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The consequent's per-occurrence event is Skolemized on the lantern, `(sk_die $l)`, rather than on the trigger occurrence `$lv` that the premise also universally binds, so two nights of leaving the same lantern untended collapse into one dying event carrying two conflicting `During` links, contrary to the rule that a dependent existential is a Skolem function of every universal scoping over it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "how a dual-emit construction (a reified resultative/maintenance state plus its flat copular half) should appear inside a RULE PREMISE: dual-emit is specified for assertions, and full normalization is specified for sealed terms, but a premise is a match pattern, and carrying both halves plus the `Result` and `Still` atoms turns each into an extra condition the KB must already satisfy for the rule to fire"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing (indefinite participants under bare 'when' to the whenever rule), the maintenance-resultative shape for 'leaves ... untended', 'untended' as a participial adjective, overnight-as-`night` on `Time`, the change-of-state `Patient` on 'dies', and `(TimeAtMost ... dawn)` all match the instruction set, as does the 1.0/0.9 rule TV and the absence of a QuantifierPhrase."
+   },
+   "adjudication": {
+    "id": "fict2-000037",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A dependent existential must be a Skolem function of every universal that scopes over it and the whenever machinery mints the response per trigger occurrence, so (sk_die $l), omitting the leave occurrence $lv, makes two nights of leaving the same lantern untended derive one shared dying event bearing During links into both leaves — content the sentence does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "how a dual-emit resultative/maintenance construction (reified state + Still + flat copular half + Result) should appear inside a rule PREMISE: dual-emit is specified for assertions and full normalization for sealed terms, while in a premise every emitted half becomes an extra match condition the KB must already hold for the rule to fire"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form Skolemizes the response on the trigger occurrence — (sk_die $lv), a function of the premise's universals — so each leave event mints its own dying with its own Patient, During, and (TimeAtMost ... dawn) atoms.",
+    "notes": "The rest matches the instruction set: bare-when routed to the whenever rule, the maintenance-resultative shape for 'leaves ... untended', overnight as (Time $lv night), change-of-state Patient on die, TimeAtMost dawn for 'before dawn', 1.0/0.9, and no QuantifierPhrase."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000038",
+   "sentence": "When a lantern is untended through the night, the lantern goes out before dawn.",
+   "parse": [
+    "(: lantern_untended_go_out (Implication (And (Member $x lantern) (Member $u untended) (Experiencer $u $x) (Time $u night) (Member $x untended)) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (TimeAtMost (sk_go_out $x) dawn) (During (sk_go_out $x) $u))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000038",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The premise conjoins both halves of the copular-with-time-modifier dual-emit — the reified state (Member $u untended)(Experiencer $u $x)(Time $u night) and the flat (Member $x untended) — but dual-emit is an assertion convention, and requiring both forms to match over-constrains the rule so it cannot fire on a KB holding only the flat copular atom."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "extent 'through the night' (a throughout-reading over a day-part): During is licensed only for during/while/throughout and needs two reified eventualities, a duration Measure needs a stated count, so only the bare day-part slot (Time $u night) is available and the 'for the whole night' extent is dropped"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "go_out is correctly kept whole as a phrasal verb with no genus and no single-word synonym, the extinguished lantern takes Patient as a change-of-state undergoer, and (TimeAtMost e dawn) for \"before dawn\" matches the instruction set's own example exactly."
+   },
+   "adjudication": {
+    "id": "fict2-000038",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Premise form for a copular whenever-trigger is unlegislated (every whenever example is eventive) and the flat conjunct is entailed by the reified conjuncts, so the rule asserts nothing false, ill-typed or extra (the binding calibration line) — and the reviewer's firing scenario fails on its own terms, since a KB holding only the flat copular atom could never satisfy the (Time $u night) restriction that requires the reified state anyway."
+     }
+    ],
+    "gaps_confirmed": [
+     "'through the night' (a throughout-extent over a day-part) has no licensed carrier: During needs two reified eventualities and a duration Measure needs a stated count, so only (Time $u night) survives and the whole-night extent is lost"
+    ],
+    "new_gaps": [
+     "how a copular trigger clause renders inside a whenever-rule premise is unspecified — dual-emit is defined for assertions, and a past-tense trigger's flat half is Past-wrapped so a bare flat premise conjunct can never match it; a canonical premise match-form (plausibly the reified state alone) needs legislating"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Unfiled by the review: the conclusion Skolem (sk_go_out $x) keys on the lantern rather than the trigger-state variable $u that the During tie uses, so two untended nights of one lantern would merge into one go-out event, against 'distinct per binding'."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000039",
+   "sentence": "A Keeper refreshes the mire-essence and trims the wick during the night.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: refresh_ev (Member sk_refresh_1 refresh) (STV 1.0 0.99))",
+    "(: refresh_ag (Agent sk_refresh_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: refresh_pat (Patient sk_refresh_1 mire_essence) (STV 1.0 0.99))",
+    "(: refresh_time (Time sk_refresh_1 night) (STV 1.0 0.99))",
+    "(: wick_type (Member sk_wick_1 wick) (STV 1.0 0.99))",
+    "(: trim_ev (Member sk_trim_1 trim) (STV 1.0 0.99))",
+    "(: trim_ag (Agent sk_trim_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: trim_pat (Patient sk_trim_1 sk_wick_1) (STV 1.0 0.99))",
+    "(: trim_time (Time sk_trim_1 night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000039",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "the definite \"the mire-essence\" is filled with the bare kind symbol mire_essence (the same symbol used as a class in statement 1), but Existential reserves the bare class symbol for non-specific/generic objects and requires a typed individual for a definite - the parallel definite \"the wick\" in the same sentence does get a witness."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"during\" + a day-part NP (\"during the night\") - Intervals assigns During to exactly during/while/throughout and requires both arguments reified as eventualities, while Time treats day-parts as bare symbols on Time; no rule covers the collision, so the encoding of a during-phrase over a non-eventuality temporal frame is undetermined"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Coordinated VPs translated independently with a shared subject symbol, indefinite subject correctly a witness rather than a rule, and the habitual present correctly carries no status atom; refresh as Patient (a treatment that changes the object) is right."
+   },
+   "adjudication": {
+    "id": "fict2-000039",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The Existential section encodes a definite description as a typed individual sk_<class>_<n> and reserves the bare class symbol for non-specific objects, 'never for a specific definite individual' — 'the mire-essence' is a definite (the same clause's 'the wick' correctly gets a witness), so (Patient sk_refresh_1 mire_essence) violates the stated rule."
+     }
+    ],
+    "gaps_confirmed": [
+     "'during' + a day-part NP ('during the night'): During is word-licensed but requires two reified eventualities while a day-part is a bare Time symbol, so no rule determines the encoding of a during-phrase over a non-eventuality temporal frame"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form mints a typed witness for the definite — (Member sk_mire_essence_1 mire_essence) with (Patient sk_refresh_1 sk_mire_essence_1) — keeping the compound genus (Inheritance mire_essence essence) on the kind symbol.",
+    "notes": "The rest is compliant: coordinated VPs as independent events sharing the witness subject, habitual present with no status atom, Patient on both treatment verbs, and (Time e night) is a reasonable day-part rendering pending the during-gap."
+   }
+  }
+ ]
+}

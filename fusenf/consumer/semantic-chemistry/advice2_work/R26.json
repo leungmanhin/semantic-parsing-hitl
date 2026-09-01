@@ -1,0 +1,64 @@
+{
+ "id": "R26",
+ "rule": "The Council convenes at full moon",
+ "texts": [
+  "When the moon is full, the Council convenes at the Watch.",
+  "Whenever the moon is full, the Council meets at the Watch."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000092",
+   "sentence": "When the moon is full, the Council convenes at the Watch.",
+   "parse": [
+    "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: full_moon_convene_rule (Implication (And (Member $f full) (Experiencer $f sk_moon_1)) (And (Member (sk_convene $f) convene) (Agent (sk_convene $f) sk_council_1) (Location (sk_convene $f) sk_watch_1) (During (sk_convene $f) $f))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000092",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare 'when P, Q' with DEFINITE participants but a habitual (non-one-off) reading: the routing rule offers only 'generic or indefinite participants -> whenever machinery' and 'definite/specific participants in a one-off narrative -> two plain events', and gives no form for quantifying over occurrences of a definite entity's state (here handled by ranging the rule over the reified fullness states while keeping the moon/Council/Watch as constants)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Council' / 'the Watch' correctly stay capitalized common nouns with no Name atom, the singular collective subject takes a plain event with no distribution rule, and the flat copular half of the reified 'full' state is rightly withheld since the state is only a rule premise (asserting it would claim the moon is full). The premise constant sk_moon_1 is licensed because a top-level fact asserts it."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000093",
+   "sentence": "Whenever the moon is full, the Council meets at the Watch.",
+   "parse": [
+    "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: fullmoon_council_rule (Implication (And (Member $f full) (Experiencer $f sk_moon_1)) (And (Member (sk_meet $f) meet) (Agent (sk_meet $f) sk_council_1) (Location (sk_meet $f) sk_watch_1) (During (sk_meet $f) $f))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000093",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a copular trigger clause under 'whenever' ('whenever the moon is full') — the listed state-reification triggers (resultative, connective endpoint, time modifier, adjective's PP complement, focus particle, approximator) do not include a rule premise needing an eventuality to anchor the During link, so the reified (Member $f full) (Experiencer $f sk_moon_1) premise has no stated licence"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Council' and 'the Watch' are correctly handled as capitalized common nouns with no Name atom, the singular collective 'Council' correctly does not distribute, and the flat copular half is rightly withheld since the trigger clause is not asserted."
+   },
+   "adjudication": null
+  }
+ ]
+}

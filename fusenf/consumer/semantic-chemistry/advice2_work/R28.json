@@ -1,0 +1,90 @@
+{
+ "id": "R28",
+ "rule": "Summer hunting yields the autumn feather store",
+ "texts": [
+  "Sky-cats hunt often through summer.",
+  "When a sky-cat hunts through summer, many feathers accumulate at the cliff base by autumn.",
+  "Whenever a sky-cat hunts in summer, the autumn feather store grows."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000099",
+   "sentence": "Sky-cats hunt often through summer.",
+   "parse": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: sky_cats_hunt (Implication (Member $x sky_cat) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) summer))) (STV 0.8 0.9))",
+    "(: sky_cats_hunt_q (QuantifierPhrase sky_cat hunt \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000099",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "durative frame adverbial \"through <named period>\" (\"hunt ... through summer\"): the spanning-extent sense has no carrier — During is restricted to during/while/throughout and needs a reified outer eventuality, Start/End needs stated endpoints, and Measure duration needs a count, leaving only the point-like (Time e summer) the parse emitted"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-plural verbal generic correctly becomes a distributing Skolem-event rule with the frequency adverb \"often\" set to strength 0.8 / confidence 0.9 and recorded in the mandatory QuantifierPhrase companion, and the volitional intransitive subject takes Agent. Only the \"through\" extent nuance is lost, per the gap above."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000100",
+   "sentence": "When a sky-cat hunts through summer, many feathers accumulate at the cliff base by autumn.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: hunt_accumulate_rule (Implication (And (Member $x hunt) (Agent $x $c) (Member $c sky_cat) (Time $x summer)) (And (GroupOf (sk_feathers $x) feather) (CardinalityPhrase (sk_feathers $x) \"many\") (Member (sk_accumulate $x) accumulate) (Patient (sk_accumulate $x) (sk_feathers $x)) (Location (sk_accumulate $x) sk_base_1) (TimeAtMost (sk_accumulate $x) autumn) (During (sk_accumulate $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000100",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "durative 'through <named period>' ('hunts through summer'): no extent carrier exists — `During` is restricted to during/while/throughout over a reified outer eventuality, `Start`/`End` needs from/until wording, and `(Measure e duration n u)` needs a stated count, so only a point-like `(Time $x summer)` is available and the whole-season extent force is dropped"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'many feathers' is correctly routed to a per-binding Skolem group with `CardinalityPhrase` rather than to the proportion-strength dial — the rule quantifies over hunt occasions, not over feathers, so a strength of 0.7 plus a QuantifierPhrase would have restated a range appearing nowhere else — and 'by autumn' takes the deadline `TimeAtMost` bound. The 'cliff base' part-whole decomposition, the accumulate event's `Location` (with no LocatedIn on the feathers), and the During tie all match the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000101",
+   "sentence": "Whenever a sky-cat hunts in summer, the autumn feather store grows.",
+   "parse": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance autumn_feather_store store) (STV 1.0 0.99))",
+    "(: store_type (Member sk_store_1 autumn_feather_store) (STV 1.0 0.99))",
+    "(: skycat_hunt_grow_rule (Implication (And (Member $e hunt) (Agent $e $c) (Member $c sky_cat) (Time $e summer)) (And (Member (sk_grow $e) grow) (Theme (sk_grow $e) sk_store_1) (During (sk_grow $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000101",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule shape, top-level definite witness, per-occurrence Skolem event and During link are all correct, and both compounds emit only the head genus (autumn/feather/sky are noun modifiers, never exposed). Theme for the growing store is the scalar-change-subject route rather than the internal-change Patient route — a boundary call the instruction set resolves in favour of Theme for change-of-value verbs."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+(: store_type (Member sk_store_1 feather_store) (STV 1.0 0.99))
+(: store_genus (Inheritance feather_store store) (STV 1.0 0.99))
+(: risk_type (Member sk_risk_1 wraith_risk) (STV 1.0 0.99))
+(: risk_genus (Inheritance wraith_risk risk) (STV 1.0 0.99))
+(: store_small_risk_grows (Implication (Member sk_store_1 small) (And (Member sk_grow_1 grow) (Theme sk_grow_1 sk_risk_1))) (STV 1.0 0.9))

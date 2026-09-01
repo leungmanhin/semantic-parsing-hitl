@@ -1,0 +1,9 @@
+{"id": "fict2-000073", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Compound concepts makes the head genus of a transparent solid modifier+head compound mandatory ('always emit the genus'; 'The genus itself ... is always emitted either way'), and nightmoth = night + moth passes the IS-A test on this sentence's own content, so (Inheritance nightmoth moth) is a required atom the parse omits."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["the genus emit-vs-suppress decision hangs on an IS-A test that is undecidable for coined fiction-world compounds ('is a wintergloss a gloss?'), so two faithful parses can differ; a stated default for unknown coinages is needed"],
+ "decision": "defect",
+ "defect_summary": "The compliant form is this same parse plus the missing (: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99)).",
+ "notes": "The reviewer's un-filed note on (Inheritance wintergloss gloss) is registered as the coinage-IS-A gap rather than a defect, since the transparent-morphology default plausibly licenses it. Everything else (whenever rule shape, Patient/Theme, Source for 'repels ... from', per-occurrence Skolem, During link) is licensed."}

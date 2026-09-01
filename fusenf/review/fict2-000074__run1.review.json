@@ -1,0 +1,9 @@
+{"id": "fict2-000074", "run": 1,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": 2, "issue": "The rule's premise is built out of Skolem function terms — (Member (sk_burn $l) burn), (Agent (sk_burn $l) $l), (Patient (sk_burn $l) wintergloss), (Alongside (sk_burn $l) mire_essence) — which the instruction set flatly bars (\"a premise never contains a Skolem term\"; such a rule \"can never fire\"), so the burning must bind through a plain event variable instead."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything else checks out — inanimate transitive subject → Agent, consumed \"wintergloss\" → Patient, \"alongside\" as a preposition-named oblique, \"that lantern\" resolved to $l, and mire_essence decomposed while wintergloss is correctly left whole on the failed IS-A test."}

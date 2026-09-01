@@ -1,0 +1,9 @@
+{"id": "fict2-000089", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "The rule premise contains Skolem-function terms — (sk_nights $x) fills the Theme, GroupOf, CardinalityPhrase and Of conjuncts — which the instruction set forbids outright (\"a premise never contains a Skolem term ... a rule whose premise names a Skolem event nothing asserts can never fire\"), so the relative clause should have bound a plain variable and this rule as written can never match."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a noun + of-gerund complement whose head noun is not a nominalization (\"solo nights of tending\") — the head noun's own verb does not take the of-argument as object, so the nominalization-object oblique does not apply, and it is neither a relational-noun genitive, a partitive, nor a possessive"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Capitalized \"a Keeper\" and \"the Council\" are correctly treated as common nouns with no Name atom, the by-phrase takes Agent, and only one QuantifierPhrase companion is emitted since \"many\" counts things rather than quantifying a rule range. The \"as a Keeper\" predicative is routed through the resultative State-result shape by analogy with the become/turn-into kind change, which composes from stated rules but is not named for a passive \"V X as Y\"."}

@@ -1,0 +1,3 @@
+(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: skycat_descend_hunt (Implication (And (Member $x sky_cat) (Member $e1 descend) (Agent $e1 $x)) (And (Member (sk_hunt $e1) hunt) (Agent (sk_hunt $e1) $x) (Theme (sk_hunt $e1) nightmoth) (During (sk_hunt $e1) $e1))) (STV 1.0 0.9))

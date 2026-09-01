@@ -12,33 +12,37 @@ the web.
 
 ## Input
 
-Each assigned work file `fusenf/consumer/semantic-chemistry/advice_work/R<nn>.json` is one source item:
-`{"id", "rule", "texts", "fields": [...]}` — `fields` has one entry per sentence
-(the rule first, then each text) with:
+Each assigned work file `fusenf/consumer/semantic-chemistry/advice2_work/R<nn>.json` is one source item:
+`{"id", "rule", "texts", "fields": [...]}` — `fields` has one entry per TEXT sentence
+(the `rule` string is context only: the consumer does NOT parse rules) with:
 
 - `sentence` — the consumer's original English.
-- `parse_run2` — the CURRENT parse (statements produced under the current prompt.txt).
+- `parse` — the CURRENT parse (statements produced under the current prompt.txt).
   THIS is what you judge.
 - `census` — deterministic fireability check of any `Implication` in the parse:
   `ok`, or `unfireable-rule: sk-function-in-premise` / `…unasserted-sk-constant-in-premise`
   (both mean the rule's antecedent contains Skolem terms that no query/fact can ever bind,
   so the rule can never fire in the reasoner — a parse-level defect worth a rewrite).
-- `review_run1` — an OLDER quality review of a PREVIOUS parse of the same sentence.
-  Context only: many issues it raises are already fixed in `parse_run2`. Never base your
-  verdict on it; base your verdict on `parse_run2` itself.
+- `review` — a blind reviewer's verdict on THIS parse (q1 faithfulness, issues, gaps).
+- `adjudication` — present when the review flagged the parse: an independent adjudicator
+  judged each reviewer issue (confirm/refute/partial) and ruled the parse `accept` or
+  `defect`, with `defect_summary` naming the compliant form. **The adjudication OVERRIDES
+  the review where they disagree: a REFUTED issue is not a defect — never advise a rewrite
+  on the strength of a refuted claim.** No adjudication present = the review found the
+  parse faithful.
 
 ## Judgment
 
 A parse is GOOD when it is faithful (says what the sentence says, nothing more), covers
 the sentence's content, and — for conditional/generic sentences — its rule is fireable
-(`census: ok`). It is BAD when content is lost or distorted, when the rule is unfireable,
+(`census: ok`; adjudicated `accept` counts as good even when the review flagged it). It is BAD when content is lost or distorted, when a conditional's rule is unfireable,
 or when the sentence's phrasing forces the translator into a shape the instruction set
 handles poorly (e.g. multi-event conditions packed into participles).
 
 ## Output
 
 For each assigned item write ONE file
-`/home/manhin/Dev/semantic-parsing-hitl/fusenf/consumer/semantic-chemistry/advice/R<nn>__advice.json`:
+`/home/manhin/Dev/semantic-parsing-hitl/fusenf/consumer/semantic-chemistry/advice2/R<nn>__advice.json`:
 
     {"id": "R<nn>", "rule": "<comment>", "texts": ["<comment for texts[0]>", …]}
 

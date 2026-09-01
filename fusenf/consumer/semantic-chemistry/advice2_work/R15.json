@@ -1,0 +1,206 @@
+{
+ "id": "R15",
+ "rule": "Ground feathers ward lanterns from wraiths",
+ "texts": [
+  "When a Keeper scatters ground feathers around a lit lantern, the feathers ward the lantern against wraiths.",
+  "Whenever a Keeper spreads ground feathers around a lit lantern, the feathers shield the lantern against wraiths.",
+  "Wraiths do not approach a warded lantern.",
+  "Fresh ground feathers ward lanterns.",
+  "Stale ground feathers do not ward lanterns."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000051",
+   "sentence": "When a Keeper scatters ground feathers around a lit lantern, the feathers ward the lantern against wraiths.",
+   "parse": [
+    "(: gf_genus (Inheritance ground_feather feather) (STV 1.0 0.99))",
+    "(: gf_mod (Inheritance ground_feather ground) (STV 1.0 0.99))",
+    "(: whenever_scatter_ward (Implication (And (Member $k keeper) (Member $e_scatter scatter) (Agent $e_scatter $k) (GroupOf $f ground_feather) (Theme $e_scatter $f) (Member $l lantern) (Member $l lit) (Around $e_scatter $l)) (And (Member (sk_ward $e_scatter) ward) (Agent (sk_ward $e_scatter) $f) (Theme (sk_ward $e_scatter) $l) (Against (sk_ward $e_scatter) wraith) (During (sk_ward $e_scatter) $e_scatter))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000051",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "'ground feathers' is fused into the compound kind ground_feather (statements 0-1, with the modifier genus (Inheritance ground_feather ground)), but the adjective+noun fusion licence covers only a term of art, nationality/origin adjective, role title or material adjective, and a participial state modifier is none of those — cf. 'a laminated worktop' -> (Member sk_worktop_1 laminated), the split form, which on a plural distributes over the members instead; the modifier genus also falls outside the three exposure categories (gradable / positional-cardinal / material)."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Around and Against are obliques named after their own prepositions and so licensed. The whenever routing on indefinite participants, 'a Keeper' as a lowercase common-noun kind with no Name atom, 'lit' as its own participial-adjective atom, and the referring-use 'keeper' correctly getting no (can keep) capability are all right."
+   },
+   "adjudication": {
+    "id": "fict2-000051",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'A participle used as a modifier is an adjective' with the split form as its stated example ('a laminated worktop' → (Member … laminated)), and adjective+noun fusion is licensed only for a recognized kind (term of art, nationality/origin, role title, material adjective) and 'never for incidental description' — participial 'ground' is none of those, so fusing ground_feather violates the stated licence."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "a descriptively-modified bare plural inside a rule premise ('ground feathers' as a trigger participant) has no licensed form: the mandated split distributes the modifier per member via an assertion-side rule, and a premise cannot carry a per-member property of a variable group"
+    ],
+    "decision": "defect",
+    "defect_summary": "The split form is mandated — the group typed (GroupOf $f feather) with 'ground' predicated of each member — but a whenever-premise has no licensed carrier for a per-member property of a variable group, so no fully compliant trigger encoding exists; filed as a gap.",
+    "notes": "The issue's secondary point is weaker — the stated predication test ('the line is part of speech, not meaning') would arguably admit a participial adjective as an exposed genus on a licensed compound — but the fusion bar itself decides the defect."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000052",
+   "sentence": "Whenever a Keeper spreads ground feathers around a lit lantern, the feathers shield the lantern against wraiths.",
+   "parse": [
+    "(: ground_feather_genus (Inheritance ground_feather feather) (STV 1.0 0.99))",
+    "(: ground_feather_mod (Inheritance ground_feather ground) (STV 1.0 0.99))",
+    "(: keeper_ritual (Implication (Member $k keeper) (And (Member (sk_spread $k) spread) (Agent (sk_spread $k) $k) (Theme (sk_spread $k) (sk_feathers $k)) (GroupOf (sk_feathers $k) ground_feather) (Around (sk_spread $k) (sk_lantern $k)) (Member (sk_lantern $k) lantern) (Member (sk_lantern $k) lit) (Member (sk_shield $k) shield) (Agent (sk_shield $k) (sk_feathers $k)) (Theme (sk_shield $k) (sk_lantern $k)) (Against (sk_shield $k) wraith) (During (sk_shield $k) (sk_spread $k)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000052",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The \"whenever\" trigger clause sits in the CONCLUSION instead of the premises — the only premise is (Member $k keeper), so the rule derives a spreading of ground feathers around a lit lantern for every Keeper, asserting an occurrence the sentence merely conditions on."
+     },
+     {
+      "statement": 1,
+      "issue": "(Inheritance ground_feather ground) exposes a modifier genus that the compound rule licenses only for a gradable, positional or material ADJECTIVE modifier — \"ground\" is either a noun modifier (never exposed) or a participial adjective belonging to none of those three classes."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a PARTICIPIAL modifier inside a compound kind (\"ground feathers\") — the fusion list (term of art / nationality / role title / material adjective) and the modifier-genus exposure list (gradable / positional / material adjective) both omit participial adjectives, so neither whether to fuse nor whether to expose the modifier is decided"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles, the two definites resolved back to the trigger's feather group and lantern, the Around / Against preposition-named obliques, the \"lit\" participial adjective as a separate Member atom, and the During tie are all right. The damage is confined to the premise/conclusion split."
+   },
+   "adjudication": {
+    "id": "fict2-000052",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The 'Every time / whenever' rule mandates the trigger clause as the premises and the response as a per-occurrence Skolem consequent, so with (Member $k keeper) as the sole premise the rule derives the spreading, the feather group, the lit lantern and the shielding for every keeper — asserting occurrences the sentence only conditions on."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The noun-modifier half would bar exposure outright, but under the equally available participle-of-grind reading 'ground' is an adjectival property passing the stated predication test, so in territory the gradable/positional/material exposure list genuinely leaves undecided the definitional atom is true and well-typed — acceptable improvisation under the calibration line rather than a second defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "participial modifier inside a compound kind ('ground feathers'): neither the adjective+noun fusion list (term of art / nationality / role title / material) nor the modifier-genus exposure list (gradable / positional / material) decides participial adjectives, so whether to fuse and whether to expose are both open"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form puts the trigger in the premises with plain variables and Skolemizes the response on the occurrence: (Implication (And (Member $k keeper) (Member $s spread) (Agent $s $k) (Theme $s $f) (GroupOf $f ground_feather) (Around $s $l) (Member $l lantern) (Member $l lit)) (And (Member (sk_shield $s) shield) (Agent (sk_shield $s) $f) (Theme (sk_shield $s) $l) (Against (sk_shield $s) wraith) (During (sk_shield $s) $s))) (STV 1.0 0.9), the genus decomposition standing as parsed.",
+    "notes": "Roles, the Around/Against obliques, the definite rebinding and the rule TV are otherwise per the instruction set. The modifier-genus question is better carried as the confirmed gap than as a defect."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000053",
+   "sentence": "Wraiths do not approach a warded lantern.",
+   "parse": [
+    "(: wraiths_not_approach (Implication (And (Member $x wraith) (Member $y lantern) (Member $y warded)) (And (Member (sk_approach $x $y) approach) (Agent (sk_approach $x $y) $x) (Theme (sk_approach $x $y) $y))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000053",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "scope of an indefinite object under a negated verbal generic ('Ns do not V a/an N') — the instruction set specifies neither the premise-universal reading used here nor a Skolem-function existential inside the strength-0 conclusion"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The wide-scope reading chosen is the natural meaning the instruction set asks for, and 'warded' is correctly kept as a participial adjective premise conjunct rather than fused or lemmatized to 'ward'."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000054",
+   "sentence": "Fresh ground feathers ward lanterns.",
+   "parse": [
+    "(: feather_ward (Implication (And (Member $x feather) (Member $x fresh) (Member $x ground)) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) lantern))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000054",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted bare-kind subject correctly forces the distributing-rule route rather than a kind-level relation, the restrictions ride as premise conjuncts, `ground` keeps its participial-modifier surface form, and the inanimate transitive subject stays Agent with the unchanged object as Theme at the empirical-generic 0.9/0.9 with no QuantifierPhrase. Reading \"fresh\" and \"ground\" as two coordinate modifiers is a judgment call — a \"freshly-ground\" adverbial reading has no licensed slot either way."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "fict2-000055",
+   "sentence": "Stale ground feathers do not ward lanterns.",
+   "parse": [
+    "(: feathers_no_ward (Implication (And (Member $x feather) (Member $x stale) (Member $x ground)) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) lantern))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000055",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The premise conjunct (Member $x ground) exposes a noun modifier as a property of the feather, which the instruction set forbids (\"night_shift is not night\", \"the line is part of speech, not meaning\") — a location/association noun modifier should ride inside a fused compound kind (premise (Member $x ground_feather) plus genus (Inheritance ground_feather feather))."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route over the kind-relation route, at strength 0.0 / confidence 0.9 with no QuantifierPhrase (plain \"not\"), and \"stale\" is rightly left unfused as incidental description; the transitive inanimate Agent and the unchanged-object Theme on a bare kind filler also follow the stated tests. The one issue hinges on sense: if \"ground\" were read as the participle of grind, (Member $x ground) would be licensed as a participial modifier-adjective."
+   },
+   "adjudication": {
+    "id": "fict2-000055",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Under the available participle-of-grind reading 'ground' is a participial modifier adjective (Names and casing: a participle used as a modifier is an adjective, not the verb), and an adjectivally-restricted kind subject's restrictions become premise conjuncts (Striking & relational generics), so (Member $x ground) is licensed exactly like (Member $x stale) — nothing in the sentence selects the noun-modifier sense the issue presupposes, and where the set does not decide the sense the true, well-typed premise conjunct is acceptable improvisation."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "participial adjective + noun ('ground feathers'): the fusion list (term of art / nationality / role title / material adjective) and the modifier-genus exposure list both omit participial adjectives, and no tiebreaker resolves the participle-of-grind vs noun sense of 'ground', so faithful parses can legitimately differ between the fused-compound and split-modifier treatments"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The strength-0.0 / confidence-0.9 distributing rule with no QuantifierPhrase, the inanimate transitive Agent, and the bare-kind Theme lantern all follow the stated tests."
+   }
+  }
+ ]
+}

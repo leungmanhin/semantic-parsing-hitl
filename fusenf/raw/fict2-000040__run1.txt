@@ -1,0 +1,5 @@
+(: sc_name (Name sunken_cove "Sunken Cove") (STV 1.0 0.99))
+(: sc_type (Member sunken_cove cove) (STV 1.0 0.99))
+(: water_type (Member sk_water_1 water) (STV 1.0 0.99))
+(: water_loc (LocatedIn sk_water_1 sunken_cove) (STV 1.0 0.99))
+(: rule_lantern_wraith (Implication (And (Member $ln lantern) (LocatedIn $ln sunken_cove) (Member $d die) (Patient $d $ln) (TimeAtMost $d dawn)) (And (Member (sk_wraith $d) wraith) (Member (sk_emerge $d) emerge) (Agent (sk_emerge $d) (sk_wraith $d)) (Source (sk_emerge $d) sk_water_1) (During (sk_emerge $d) $d))) (STV 1.0 0.9))

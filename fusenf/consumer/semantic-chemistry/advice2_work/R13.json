@@ -1,0 +1,79 @@
+{
+ "id": "R13",
+ "rule": "Wraiths drain mire-essence from lit lanterns",
+ "texts": [
+  "When a wraith approaches a lit lantern, the wraith drains mire-essence from the lantern.",
+  "Whenever a wraith nears a lit lantern, the wraith pulls mire-essence from the lantern.",
+  "Drained lanterns burn dimly."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000044",
+   "sentence": "When a wraith approaches a lit lantern, the wraith drains mire-essence from the lantern.",
+   "parse": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: approach_drain_rule (Implication (And (Member $x approach) (Agent $x $w) (Member $w wraith) (Theme $x $l) (Member $l lantern) (Member $l lit)) (And (Member (sk_drain $x) drain) (Agent (sk_drain $x) $w) (Theme (sk_drain $x) mire_essence) (Source (sk_drain $x) $l) (During (sk_drain $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000044",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The one arguable call is `Theme` rather than `Patient` for the drained mire-essence; the instruction set's \"when the test is unclear, default to Theme\" covers it. \"lit\" is correctly an adjective (modifier participle) and not the verb `light`, and the whenever routing, Skolem-function consequent, `Source` oblique and anaphoric reuse of the wraith and lantern variables all follow the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000045",
+   "sentence": "Whenever a wraith nears a lit lantern, the wraith pulls mire-essence from the lantern.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: wraith_near_pull (Implication (And (Member $x wraith) (Member $y lantern) (Member $y lit) (Member $e1 near) (Agent $e1 $x) (Theme $e1 $y)) (And (Member (sk_pull $e1) pull) (Agent (sk_pull $e1) $x) (Theme (sk_pull $e1) mire_essence) (Source (sk_pull $e1) $y) (During (sk_pull $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000045",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The \"lit\" restriction is carried as a separate descriptive Member atom rather than fused, per the incidental-description rule for participial modifiers, and both definites resolve to their premise variables. Source for \"from the lantern\" and Theme for the unchanged pulled/neared objects follow the stated tests."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000046",
+   "sentence": "Drained lanterns burn dimly.",
+   "parse": [
+    "(: drained_lantern_burns_dimly (Implication (And (Member $x lantern) (Member $x drained)) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Manner (sk_burn $x) dimly))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000046",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Adjectivally-restricted bare-plural generic correctly routed to a distributing rule with the restriction as a premise conjunct, not fused into a compound (incidental description). The participial modifier stays drained rather than drain, the -ly adverb stays dimly rather than dim, and the bare-generic 0.9/0.9 is right."
+   },
+   "adjudication": null
+  }
+ ]
+}

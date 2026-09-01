@@ -1,0 +1,200 @@
+{
+ "id": "R22",
+ "rule": "Cliff-spires shield the Northcove",
+ "texts": [
+  "When cliff-spires shield a cove from north winds, lanterns in that cove burn stably through winter.",
+  "When a cove is blocked from the north wind by cliff-spires, the lanterns in that cove stay lit through winter.",
+  "The Northcove is a shielded cove in Aelmere.",
+  "Northcove lanterns never go out in cold winds."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict2-000077",
+   "sentence": "When cliff-spires shield a cove from north winds, lanterns in that cove burn stably through winter.",
+   "parse": [
+    "(: cliff_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: north_wind_genus (Inheritance north_wind wind) (STV 1.0 0.99))",
+    "(: north_wind_mod (Inheritance north_wind north) (STV 1.0 0.99))",
+    "(: spires_shield_lanterns_burn (Implication (And (Member $e shield) (Agent $e $s) (Member $s cliff_spire) (Theme $e $v) (Member $v cove) (Source $e north_wind)) (And (Member (sk_burn $v) burn) (Patient (sk_burn $v) (sk_lanterns $v)) (GroupOf (sk_lanterns $v) lantern) (LocatedIn (sk_lanterns $v) $v) (Manner (sk_burn $v) stably) (Time (sk_burn $v) winter) (During (sk_burn $v) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000077",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "\"from north winds\" is slotted as Source, but the PP names what the cove is protected against rather than answering \"whence\", and the instruction set says to decide by the question the PP answers (never by the closest listed role), which puts it in the preposition-named oblique (From $e north_wind)."
+     },
+     {
+      "statement": 3,
+      "issue": "The consequent's Skolem terms key on the cove ((sk_burn $v), (sk_lanterns $v)) instead of the trigger occurrence, though the whenever machinery mints the response per occurrence and a dependent existential must be a function of every universal scoping over it — so two shieldings of one cove collapse onto one burn event that is During both."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "durative frame adverbial \"through <named period>\" (\"burn ... through winter\"): the spanning-extent sense has no carrier — During is restricted to during/while/throughout and needs a reified outer eventuality, Start/End needs stated endpoints, and Measure duration needs a count, leaving only the point-like (Time e winter) the parse emitted"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Route (bare \"when\" with generic participants to the whenever rule, STV 1.0 0.9, no companion), the north_wind genus plus positional-modifier genus, LocatedIn for containment \"in that cove\", the surface-form Manner adverb \"stably\", and binding \"that cove\" to the premise variable are all correct. The plural \"cliff-spires\" is rendered by a single premise variable, which is a mild flattening the instruction set does not directly address."
+   },
+   "adjudication": {
+    "id": "fict2-000077",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'from north winds' names what the cove is shielded against, not a whence, and the instruction set orders the choice by the question the PP answers — never the closest listed role — so the licensed form is the surface-preposition oblique (From $e north_wind), while the emitted Source asserts a path origin the sentence does not state."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The whenever machinery mints 'the response as a Skolem event per occurrence' and each dependent existential must be a function of every universal scoping over it, so keying (sk_burn $v) and (sk_lanterns $v) on the cove alone collapses distinct shieldings of one cove onto a single burn event asserted During each of them."
+     }
+    ],
+    "gaps_confirmed": [
+     "durative 'through <named period>' ('burn stably through winter') has no carrier — During is limited to during/while/throughout, Start/End need stated endpoints, and Measure duration needs a count"
+    ],
+    "new_gaps": [
+     "a collective plural trigger subject in a when/whenever premise ('cliff-spires shield a cove' jointly) has no form — the machinery binds one individual premise variable"
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0's compliant form replaces (Source $e north_wind) with (From $e north_wind); issue 1's keys the consequent Skolems to the trigger occurrence — (sk_burn $e), (sk_lanterns $e) — During-linked to $e exactly as the whenever example keys (sk_bark $x) on its trigger.",
+    "notes": "The point-like (Time (sk_burn ...) winter) is an acceptable under-asserting residue of the confirmed durative gap; the genus atoms for cliff_spire and north_wind (positional modifier exposed) are correct."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict2-000078",
+   "sentence": "When a cove is blocked from the north wind by cliff-spires, the lanterns in that cove stay lit through winter.",
+   "parse": [
+    "(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: nwind_genus (Inheritance north_wind wind) (STV 1.0 0.99))",
+    "(: nwind_mod (Inheritance north_wind north) (STV 1.0 0.99))",
+    "(: nwind_type (Member sk_wind_1 north_wind) (STV 1.0 0.99))",
+    "(: cove_lantern_rule (Implication (And (Member $v cove) (Member $b block) (Patient $b $v) (GroupOf $s cliff_spire) (Agent $b $s) (From $b sk_wind_1) (Member $l lantern) (LocatedIn $l $v)) (And (Member (sk_lit $v $l) lit) (Experiencer (sk_lit $v $l) $l) (Still (sk_lit $v $l)) (Time (sk_lit $v $l) winter) (Member $l lit))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000078",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The whenever-rule's consequent state is not tied to its trigger with the prescribed `(During <response> <trigger>)` atom, and its Skolem term `(sk_lit $v $l)` also omits the trigger event `$b`, so the derived lit-state is left with no link at all to the blocking that licenses it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "durative 'through <named period>' ('stay lit through winter'): no extent carrier exists — `During` is restricted to during/while/throughout over a reified outer eventuality, `Start`/`End` needs from/until wording, and `(Measure e duration n u)` needs a stated count, so only a point-like `(Time e winter)` is available and the whole-season extent force is dropped"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows the instruction set: the 'stay lit' continuation-copular shape (reified state + Still + flat copular atom, no Result link, no tense in a generic), the passive by-phrase taking Agent, the non-spatial 'from the north wind' as the preposition-named `(From <event> …)` oblique rather than Source, and north_wind's positional-modifier genus alongside its head genus. 'in that cove' correctly uses entity-attached LocatedIn rather than an event Location."
+   },
+   "adjudication": {
+    "id": "fict2-000078",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Bare 'when P, Q' with indefinite participants routes through the whenever machinery, which prescribes the response as a Skolem event per occurrence tied to its trigger with (During <response> <trigger>) — the parse's (sk_lit $v $l) omits the blocking occurrence $b and emits no During atom at all."
+     }
+    ],
+    "gaps_confirmed": [
+     "durative 'through <named period>' extent ('stay lit through winter'): During is restricted to the words during/while/throughout over a reified outer eventuality, Start/End needs from/until wording, and Measure duration needs a stated count, so only a point-like (Time e winter) is expressible and the whole-season extent force is dropped"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps the same rule but Skolemizes the lit-state on the trigger occurrence and ties it in, e.g. (sk_lit $b $l) with (During (sk_lit $b $l) $b) added to the conclusion.",
+    "notes": "The rest follows the instruction set: the stay-lit continuation shape (reified state + Still + flat per-lantern atom, no tense on a generic), the passive by-phrase as Agent, the non-spatial From oblique, entity-attached LocatedIn for 'in that cove', and both compound decompositions."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict2-000079",
+   "sentence": "The Northcove is a shielded cove in Aelmere.",
+   "parse": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: northcove_cove (Member northcove cove) (STV 1.0 0.99))",
+    "(: northcove_shielded (Member northcove shielded) (STV 1.0 0.99))",
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: northcove_loc (LocatedIn northcove aelmere) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000079",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the \"Thornmere is a village in Calderwick\" pattern exactly: name symbol plus its one Name atom, the kind stated in a separate type atom even though the kind word sits inside the name, and static LocatedIn rather than an event Location. \"shielded cove\" correctly splits into two Member atoms (incidental description, not a fused kind) and Aelmere gets no invented kind atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict2-000080",
+   "sentence": "Northcove lanterns never go out in cold winds.",
+   "parse": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: cold_wind_genus (Inheritance cold_wind wind) (STV 1.0 0.99))",
+    "(: cold_wind_mod (Inheritance cold_wind cold) (STV 1.0 0.99))",
+    "(: lantern_never_go_out (Implication (And (Member $x lantern) (Possession $x northcove)) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (Location (sk_go_out $x) cold_wind))) (STV 0.0 0.9))",
+    "(: lantern_q (QuantifierPhrase lantern go_out \"never\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict2-000080",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The circumstantial adjunct \"in cold winds\" is slotted as the spatial role (Location (sk_go_out $x) cold_wind), asserting a place the sentence never states: the PP answers \"under what conditions\", not \"where\", so the preposition-named oblique (In <event> cold_wind) is the head the instruction set licenses."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a circumstantial / conditional \"in <bare-plural condition>\" adjunct on a VERBAL generic: the kind-level condition slot (ConditionalProperty) is copular-only, so a generic rule has no condition carrier and the restriction can only be attached as an event oblique inside the consequent"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Proper-noun premodifier to Possession premise conjunct, the go_out phrasal verb kept whole with no genus and no synonym, the Patient intransitive-undergoer subject, and the strength-0.0 / confidence-0.9 negated verbal generic are all correct. The instruction set's parenthetical on \"never\" is ambiguous about whether the QuantifierPhrase word should be the surface \"never\" or \"no\"/\"none\"; the parse recorded \"never\"."
+   },
+   "adjudication": {
+    "id": "fict2-000080",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Location is licensed only when the PP answers 'where', and 'in cold winds' names the circumstance under which the lanterns never fail, not a place — the instruction set's own rule ('Decide by the question the PP answers, never by which listed role is closest'; 'in' stays 'In') licenses the surface-preposition oblique (In (sk_go_out $x) cold_wind), so the Location atom writes a place-claim the sentence never states into the denied bundle."
+     }
+    ],
+    "gaps_confirmed": [
+     "a circumstantial/conditional 'in <bare-plural condition>' adjunct on a VERBAL generic: ConditionalProperty's condition slot serves kind-level properties only, so an event rule has no condition carrier and the restriction can only ride inside the consequent as an oblique"
+    ],
+    "new_gaps": [
+     "a descriptive adjective on a non-specific bare-kind filler ('cold winds'): the plural descriptive-modifier rule distributes over members and a bare kind constant has none, so short of the borderline cold_wind fusion the parse chose, the modifier has no licensed home"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form replaces (Location (sk_go_out $x) cold_wind) with the surface-preposition oblique (In (sk_go_out $x) cold_wind) inside the strength-0.0 rule consequent.",
+    "notes": "The Possession premise for the proper-noun premodifier, the whole go_out phrasal verb, the Patient undergoer subject, and the strength-0.0/0.9 negated generic are all correct; recording the surface word \"never\" in the companion fits the rule that the QuantifierPhrase word is the surface record, though the parenthetical on \"never\" is genuinely ambiguous."
+   }
+  }
+ ]
+}
