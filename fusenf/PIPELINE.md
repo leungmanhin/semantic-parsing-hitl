@@ -117,3 +117,41 @@ fresh blind parse at a pinned hash); append-only parse store (hash changes
 never block re-parses; analyses hold hash uniform, storage doesn't); blind-role
 placement is part of the measurement design (parsers/reviewers/question-writers see
 exactly what their brief names, nothing else).
+
+## Letter-code legend (single source; added 2026-09-01)
+
+Global families (live):
+- **Tier A/B/C/D** — corpora: A engineered answer-key (M4 instrument), B Tatoeba general,
+  C PAWS pairs (1–360 substrate; 361–1000 = `tierC_heldout`), D MSRP-test newswire (M2 arm).
+- **C1–C8** — validator checks (`specs/schema.md` §5.1; code list in `harness/validator.py`):
+  C1 id contract · C2 s-expression structure · C3 assertion shape · C4 vocabulary ·
+  C5 casing · C6 free variables · C7 chainer load · C8 duplicates.
+  Severity (G.1): C1/C2/C3/C6/C7 = error (substrate-excluding), C4/C5/C8 = report-only.
+- **M1–M5** — metrics (`specs/metrics.md`): M1 parse stability · M2 paraphrase convergence
+  vs control separation (headline) · M3 compression · M4 rule quality vs the Tier-A
+  answer key · M5 chainer QA preservation (+ question arm).
+- **G.1–G.6** — the six pre-flight gates of batch-2 item G (`eval/preflight_g.md`):
+  G.1 severity map · G.2 substrate gate · G.3/G.4 mechanical checks · G.5 graded-bridge
+  route · G.6 tierD measurement arm.
+- **A–H, X** — batch-2 plan items (`docs/BATCH2_PLAN.md` headings); "the H run" = item H,
+  the Tier-B campaign/mining centerpiece; X = the event-triggered engine-fix slot.
+  **D.N** = owner decisions under item D (e.g. D.4 = the Tier-C in-sample re-parse ride-along).
+- **q1–q4** — review verdict fields (`briefs/REVIEW.md`, schema §5.2): q1 faithful ·
+  q2 coverage · q3 context leak · q4 unlicensed heads.
+- **FP0…FP4 (and B2)** — fix-pack lineage; **#1–#51** — the deferred-topics backlog
+  (memory-side); **runs 1/2/30/40/50/90** — run-number ledger (`DISPATCH.md`).
+- **Batch-file prefixes** (`batches/<stage>/`): pb parse · rv review (rv9d = tierD repair
+  re-review) · aj adjudication · dg diagnosis · qg/qp question gen/parse · fc/fb FP4
+  conformance/blind · fx fiction run-2 · p48 the #48 pilot. Wrappers in `DISPATCH.md`.
+
+Scoped or historical (read inside their own doc only; letters are NOT global):
+- **P1–P4** — batch-1 plan PHASES (`docs/BATCH1_PLAN.md`, `eval/p*_checkpoint*`).
+  Historical; retired from the live spec docs 2026-09-01. Distinct from lowercase store shards
+  `tierC_p1..p3` (parse waves; the old `_p4` shard is renamed `tierC_heldout`).
+- **S1–S4 / D1–D2** — FP3's new sections / designed rules (`eval/fixpack3.md`).
+- **A1–A6, B1–B8, C1–C10, D1–D6, E** — FP4 scope tiers & decision points
+  (`eval/fixpack4_scope.md`; its C/D numbering is pack-local, unrelated to validator C-codes).
+- **Groups A–T** — prompt construct groups (representation conventions; prompt.txt).
+
+Convention going forward: new letter schemes must be doc-local and defined at first use;
+anything meant to be global gets added HERE.

@@ -10,7 +10,7 @@ the validator that gates a parse into the corpus. Companion specs: `canonicaliza
 fusenf/corpora/<tier>.jsonl            corpus items — inputs only, never contain atoms
 fusenf/parses/<tier>.parses.jsonl      faithful parses — APPEND-ONLY, never rewritten
 fusenf/canonical/<tier>.canon.jsonl    canonicalizer output, keyed to a parse
-fusenf/consolidated/<tier>.cons.jsonl  rewriter output (P4), keyed to a canonical form
+fusenf/consolidated/<tier>.cons.jsonl  rewriter output (consolidation stage), keyed to a canonical form
 fusenf/triage/parse_failures.jsonl     quarantined records + validator diagnostics
 ```
 
@@ -55,7 +55,7 @@ and retire the old one (`"retired": true`).
 - `equiv_class` — Tier-A/C ground-truth class id; `null` for Tier B.
 - `labels` — free-form ground truth. Tier A uses `polarity` (`positive` = same meaning as the seed,
   `negative` = deliberate near-miss control) and `variant` (which phenomenon this variant tests, per
-  `PLAN.md` §5.1 categories i/ii/iii). Tier C uses `polarity` for paraphrase vs control.
+  `docs/BATCH1_PLAN.md` §5.1 categories i/ii/iii). Tier C uses `polarity` for paraphrase vs control.
 - `input_sha256` — sha256 of the canonical JSON of `{sentences, context}`. Detects silent input drift.
 
 ## 3. Statement parse record
@@ -139,8 +139,8 @@ given:
 **The interpretive-only rule.** `prior` supplies symbols for coreference and *may* be re-asserted per
 the prompt's existing CONTEXT handling. `notes` and ad-hoc keys are **interpretive only**: they may
 change which reading is chosen and the confidence attached, but **no atom may be emitted for their
-content**. This distinction is new relative to the prompt's #18 CONTEXT input, so P1 opens with a
-small prompt extension declaring it, validated blind before any corpus is parsed. Until that lands,
+content**. This distinction was new relative to the prompt's #18 CONTEXT input, so batch 1 opened with a
+small prompt extension declaring it, validated blind before any corpus was parsed (done). Until that lands,
 `notes` stays empty outside a dedicated pilot.
 
 ## 5. Validation
@@ -328,7 +328,7 @@ decomposition, frequent-subtree mining — would conflate the two.
 Two fields exist for FUSE-NF specifically:
 
 - **`frozen`** — mining may not propose a rule that rewrites this operator away. This makes
-  `PLAN.md` §1's seeded-rules/QA compatibility gate a machine lookup instead of a judgment call:
+  `docs/BATCH1_PLAN.md` §1's seeded-rules/QA compatibility gate a machine lookup instead of a judgment call:
   anything a seeded rule premise or a documented query pattern matches on is frozen. Open-class
   heads are never frozen — they are exactly what consolidation is *for*.
 

@@ -15,7 +15,7 @@ with a control arm that must **not** collapse, and it is the *separation* that i
 
 ---
 
-## M1 — Parse stability (baseline, run at end of P1)
+## M1 — Parse stability (baseline, run after each parse campaign)
 
 **Question.** How much of the variation FUSE-NF sees is the parser being non-deterministic, rather
 than English being varied? Everything else is uninterpretable without this number.
@@ -54,21 +54,21 @@ remedy differs per bucket:
 | `genuine-ambiguity` | the readings genuinely differ (attachment, scope) | out of scope — #48 |
 | `canonicalizer` | differs only in skolem naming or atom order | **canonicalizer bug**, must be zero |
 
-`canonicalizer` must be **0**. Any nonzero count blocks P2.
+`canonicalizer` must be **0**. Any nonzero count blocks scaling the campaign.
 
 **Decision rules** (not pass/fail — M1 is a measurement that sets policy):
 
 - `pairwise_agreement ≥ 0.80` → parse corpora once per item.
 - `0.60 ≤ pairwise_agreement < 0.80` → **majority-of-3** parsing for all corpus records; the modal
   canonical form becomes the record, minority runs retained.
-- `< 0.60` → stop and fix the prompt before P2 scales; a corpus built on that much noise cannot
+- `< 0.60` → stop and fix the prompt before the campaign scales; a corpus built on that much noise cannot
   support a 25% convergence claim.
-- Any construct family below `0.50` goes to the triage/prompt loop before P2, regardless of the
+- Any construct family below `0.50` goes to the triage/prompt loop before the campaign scales, regardless of the
   global figure.
 
 ---
 
-## M2 — Paraphrase convergence vs control separation (**headline**, P4)
+## M2 — Paraphrase convergence vs control separation (**headline**, end-of-batch evaluation)
 
 **Question.** Does consolidation bring genuine paraphrases together *without* also bringing
 non-paraphrases together?
@@ -105,7 +105,7 @@ to bridging or reject them, and re-run.
 
 ---
 
-## M3 — Compression (P4)
+## M3 — Compression (end-of-batch evaluation)
 
 **Question.** Does the rule set pay for itself?
 
@@ -145,10 +145,10 @@ that consolidation is not simply deleting content — cross-checked by M5).
 
 ---
 
-## M4 — Rule quality against Tier-A ground truth (P3 gate, per method)
+## M4 — Rule quality against Tier-A ground truth (pre-gauntlet mining gate, per method)
 
 **Question.** Does each mining method actually find meaning-preserving equivalences? Scored
-**per method** before its candidates are allowed into P4, so a weak method is caught before it
+**per method** before its candidates are allowed into the evaluation round, so a weak method is caught before it
 contaminates the pool.
 
 Tier A supplies labelled equivalence classes and deliberate near-miss negatives (antonym swap, added
@@ -176,7 +176,7 @@ vs negative-control pairs converging (precision-like).
 
 ---
 
-## M5 — Chainer QA preservation (P4)
+## M5 — Chainer QA preservation (end-of-batch evaluation)
 
 **Question.** Can the consolidated form still answer the questions the faithful form answers?
 

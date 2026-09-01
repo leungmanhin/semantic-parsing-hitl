@@ -11,8 +11,8 @@ paraphrase column to its ``mine`` or ``validation`` classes (``--half``).
 
 Usage:
   python m2_heldout.py --corpus ../corpora/tierC_361_1000.jsonl \\
-      --view BEFORE=../canonical/tierC_p4.canon.jsonl \\
-      --view AFTER=../consolidated/tierC_p4.cons.jsonl \\
+      --view BEFORE=../canonical/tierC_heldout.canon.jsonl \\
+      --view AFTER=../consolidated/tierC_heldout.cons.jsonl \\
       [--split ../mining/out2/loop2_split.json --half validation]
 """
 

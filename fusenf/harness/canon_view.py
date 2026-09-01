@@ -22,7 +22,7 @@ Read-only; touches no identity machinery. Usage (from fusenf/harness):
   python canon_view.py ../canonical/tierB.canon.jsonl                 # whole file
   python canon_view.py ../canonical/tierB.canon.jsonl --limit 3
   python canon_view.py ../canonical/tierA.canon.jsonl --ids tierA-000037,tierA-000038
-  python canon_view.py ../canonical/tierC_p4.canon.jsonl --out view.md
+  python canon_view.py ../canonical/tierC_heldout.canon.jsonl --out view.md
 """
 
 from __future__ import annotations
