@@ -66,6 +66,9 @@ def main():
     ap.add_argument("--allowed-hash", action="append", default=None,
                     help="prompt_sha256 prefix; repeatable (default: f6448eac)")
     ap.add_argument("--out", default=os.path.join(FUSENF, "mining", "mining_substrate.json"))
+    ap.add_argument("--metta-out", default=os.path.join(FUSENF, "mining", "mining_substrate.metta"),
+                    help="readable MeTTa rendering of the included records (owner 2026-09-01); "
+                         "'' disables")
     args = ap.parse_args()
     allowed = tuple(args.allowed_hash or ["f6448eac"])
 
@@ -77,9 +80,12 @@ def main():
         raise SystemExit(f"REFUSED: unknown triage disposition(s) {sorted(unknown)} — "
                          f"extend the policy tables first, never guess.")
 
+    sentences = {}
     pair_meta = {}
     for path in args.corpus:
         for r in load(path):
+            if r.get("sentences"):
+                sentences[r["id"]] = r["sentences"][0]
             ec = r.get("equiv_class") or ""
             if ec.startswith("pairC"):
                 pair_meta[r["id"]] = (ec, (r.get("labels") or {}).get("side"))
@@ -139,6 +145,38 @@ def main():
     }
     json.dump(out, open(args.out, "w", encoding="utf-8"), indent=1, sort_keys=True)
     print(f"-> {args.out}")
+
+    if args.metta_out:
+        wanted = {(r["id"], r["run"]): i for i, r in enumerate(included)}
+        stmts = {}
+        for path in args.store:
+            for r in load(path):
+                key = (r["id"], r.get("run", 0))
+                if key in wanted:
+                    stmts[key] = r.get("statements", [])
+        missing = [k for k in wanted if k not in stmts]
+        if missing:
+            raise SystemExit(f"metta export: {len(missing)} included rows not found in stores "
+                             f"(first: {missing[:3]}) — stores/manifest out of sync.")
+        with open(args.metta_out, "w", encoding="utf-8") as fh:
+            fh.write(";; FUSE-NF mining substrate — readable MeTTa RENDERING (never loaded:\n"
+                     ";; statement names are record-scoped and collide across records).\n"
+                     f";; Generated with {os.path.basename(args.out)}: "
+                     f"{len(included)} records included / {len(excluded)} excluded; "
+                     f"hash composition {dict(sorted(comp.items()))}; "
+                     f"allowed hashes {list(allowed)}.\n\n")
+            for row in included:
+                key = (row["id"], row["run"])
+                sent = sentences.get(row["id"])
+                flag = "  [pair-incomplete]" if row.get("pair_incomplete") else ""
+                fh.write(f";; {row['id']}  run {row['run']}  @{row['hash8']}{flag}\n")
+                if sent:
+                    fh.write(f";;   \"{sent}\"\n")
+                for s in stmts[key]:
+                    fh.write(s + "\n")
+                fh.write("\n")
+        n_stmts = sum(len(stmts[(r['id'], r['run'])]) for r in included)
+        print(f"-> {args.metta_out}  ({len(included)} records, {n_stmts} statements)")
     print(f"included {len(included)}  excluded {len(excluded)}  "
           f"pair-incomplete {len(incomplete)}")
     print(f"hash composition: {dict(sorted(comp.items()))}")
