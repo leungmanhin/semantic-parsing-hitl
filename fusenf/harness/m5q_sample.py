@@ -1,5 +1,9 @@
 """M5 question arm — record sampling + QGEN batch construction (item F).
 
+PRE-#50 HARNESS (2026-09-01): measures the RETIRED faithful+bridges serving
+layout. Superseded by the consolidation-only design (consolidated view +
+query-side normalization) — rework against harness/normalize_query.py before
+running at item H; kept meanwhile because batch-1 reports cite its numbers.
 Deterministic, orchestrator-side (the writers never see strata): from a canon
 file + its corpus, pick N_BRIDGE records whose atoms contain at least one
 bridging-rule lexeme (stratified round-robin across lexemes, so one hot verb

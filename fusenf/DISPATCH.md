@@ -207,7 +207,8 @@ Brief: `JUDGE.md`. Wrapper:
   candidates only (never consolidation/packs); the judge ceiling (≤0.8) becomes the
   implication's strength, confidence stays support-based; every graded rule must pass
   the M2 adversarial control gate (zero induced control merges) before the ledger keeps
-  it (req 5).
+  it (req 5). **RETIRED 2026-09-01 with G.5 (#50 consolidation-only): no card requests
+  grading; the gauntlet routes consolidation|rejected with no demotion tier.**
 - **Audit trail**: `harness/ledger_view.py` renders the complete ledger — every candidate,
   every mech gate, every vote verbatim, final routing — to `eval/rule_ledger.md`.
   Regenerate after every gauntlet round.
@@ -232,13 +233,15 @@ dispatch. Wrappers, same two-sentence discipline:
   and erase the paraphrastic signal) and reads prompt.txt in full (the representation's
   single source of truth; QPARSE.md adds only question-side mapping, so there is no
   schema fork and no parse-hash impact).
-- Record sampling is orchestrator-side and mechanical (bridge-covered + control strata,
-  deterministic); writers never know which stratum a sentence is in.
+- Record sampling is orchestrator-side and mechanical (rule-covered + control strata,
+  deterministic; pre-#50 runs called the stratum "bridge-covered"); writers never know
+  which stratum a sentence is in.
 - QGEN outputs `questions/<ID>.q.json`; mechanical validation drops/flags items whose
   `answer` is not a verbatim substring of the sentence (accounted, never edited). QPARSE
   outputs `queries/<QID>.query.txt`, one s-expression each.
-- The harness (`harness/m5_questions.py`, PeTTaChainer env) is agent-free: same query on
-  both KB arms (faithful / faithful+bridges), structural `$ans` extraction, answer check
+- The harness (`harness/m5_questions.py`, PeTTaChainer env) is agent-free: same question on
+  both KB arms (#50 re-spec at H: faithful / consolidated+query-normalized; the pre-#50
+  runs used faithful / faithful+bridges), structural `$ans` extraction, answer check
   against the QGEN gold, engine-bug conjunct-drop triage, `query-brittleness` bucket for
   one-sided binds and malformed queries.
 - Batching: 5-item batches, ~8-agent groups, burst discipline as parsing.

@@ -1,5 +1,9 @@
 """FUSE-NF M5 question arm — the differential harness (item F; agent-free).
 
+PRE-#50 HARNESS (2026-09-01): measures the RETIRED faithful+bridges serving
+layout. Superseded by the consolidation-only design (consolidated view +
+query-side normalization) — rework against harness/normalize_query.py before
+running at item H; kept meanwhile because batch-1 reports cite its numbers.
 For every generated question (QGEN) and its one translated query (QPARSE), run THE SAME
 query against two fresh KBs built from the record's FAITHFUL canonical statements:
 

@@ -16,8 +16,8 @@ not your own earlier ones; each item is translated from the brief and `prompt.tx
 and do not search the web. You never see the sentence behind a question.
 **Translate the question exactly as asked, in its own vocabulary** — never substitute a
 synonym, never guess what word the underlying sentence "probably" used. If the question
-says a word, your query uses that word's lemma; whether the knowledge base bridges it is
-the experiment's business, not yours.
+says a word, your query uses that word's lemma; whether the knowledge-base side normalizes
+it is the experiment's business, not yours.
 
 Your batch file `batches/question/qp-NN.txt` has one item per line, tab-separated:
 

@@ -9,17 +9,18 @@ families and the now-scripted M3 accounting:
                       the 862-record unique corpus; atoms before/after; per-rule
                       MARGINAL savings (drop-one re-run).  Pre-registered MDL
                       accounting, pinned here rather than inline as in round 1:
-                          rule_cost_w1     = |lhs| + |rhs| + 1          (round-1 formula)
-                          rule_cost_strict = rule_cost_w1 + 2*k        (+ the k expansion
-                                             bridges, 2 atoms each — the decompressor is
-                                             part of the description length)
-                          M3_w1 / M3_strict = total atom savings - sum(rule costs)
+                          rule_cost = |lhs| + |rhs| + 1   (the round-1 formula; #50 owner
+                                      2026-09-01: expansion bridges RETIRED — the decode
+                                      direction is the same rule read backwards, so the
+                                      rule is billed exactly once)
+                          M3 = total atom savings - sum(rule costs)
+                      (round-2 HISTORY in m3_round2*.json was billed under the
+                      pre-#50 dual w1/strict accounting and stands as a record)
                       Tier-A solo effect per rule (control merges = M4 hard gate),
                       seeded/frozen compatibility (both expected empty — packs
                       contain no open-class symbols and substitute no heads;
-                      packing REMOVES frozen-head atoms but the expansion bridges
-                      restore them: M5 adjudicates, per round 1's precedent for
-                      frame restructuring).
+                      packing REMOVES frozen-head atoms and the query normalizer
+                      re-expresses queries in pack vocabulary: M5 adjudicates).
                     * AE lexical pairs: Tier-A solo effect where applicable;
                       role-interchange pairs die at the frozen gate mechanically.
                     * probe cards -> two families: meta coherence cards (is the
@@ -27,15 +28,17 @@ families and the now-scripted M3 accounting:
                       cards (same_truth / lossless, wave-1 wording).
   --stage finalize  collect votes; route; write rules/validated2.jsonl.
 
-Pre-registered ROUND-2 routing (decided before any judge ran):
-  subtree-collapse:  greedy-selected AND control_merges==0 AND marginal strict
+Routing, re-based on #50 (owner 2026-09-01 — consolidation-only, NO demotion tier;
+rules/validated2.jsonl HISTORY was produced by the pre-#50 table and stands):
+  subtree-collapse:  greedy-selected AND control_merges==0 AND marginal
                      net > 0 AND coherent-majority  -> consolidation/validated;
-                     anything else -> rejected (a pack rule has no bridging
-                     fallback — its expansion bridges exist only if it applies).
-  lexical-collapse:  round-1 routing verbatim (incl. register_only calibration);
-                     no design-label bonus (AE has no Tier-A design provenance).
-  role-interchange:  rejected (unconditioned frozen-head swap; the class-
-                     conditioned role bridges from round 1 already cover QA).
+                     anything else -> rejected (packs never had a fallback —
+                     round 2 already modeled #50's shape here).
+  lexical-collapse:  consolidation/validated at conf >= 0.9 + lossless + directed
+                     (incl. register_only calibration; no design-label bonus —
+                     AE has no Tier-A design provenance); anything else rejected.
+  role-interchange:  rejected -> prompt-side evidence (unconditioned frozen-head
+                     swap; #23/#50 fix-pack channel decides).
 
 Usage:
   python gauntlet2.py --stage mech
@@ -189,20 +192,19 @@ def stage_mech(args):
             save = marginal.get(r["id"], 0)
             m["applications"] = napplied.get(r["id"], 0)
             m["marginal_savings"] = save
-            m["marginal_net_w1"] = save - m["cost_w1"]
-            m["marginal_net_strict"] = save - m["cost_strict"]
+            # #50: single billing — the decoder is the rule read backwards, never a
+            # separate cost line
+            m["marginal_net"] = save - m["cost_w1"]
 
-    cost_w1 = sum(p["mdl"]["cost_w1"] for p in packs)
-    cost_strict = sum(p["mdl"]["cost_strict"] for p in packs)
+    pack_rule_cost = sum(p["mdl"]["cost_w1"] for p in packs)
     w1_rule_cost = sum(len(r["lhs"]) + len(r["rhs"]) + 1 for r in w1)
     summary = {
         "atoms_baseline": baseline,
         "atoms_after_wave1": after_w1,
         "atoms_after_wave1_plus_packs": after_full,
         "savings_from_packs": after_w1 - after_full,
-        "pack_rule_cost_w1": cost_w1, "pack_rule_cost_strict": cost_strict,
-        "M3_round2_w1": (baseline - after_full) - (w1_rule_cost + cost_w1),
-        "M3_round2_strict": (baseline - after_full) - (w1_rule_cost + cost_strict),
+        "pack_rule_cost": pack_rule_cost,
+        "M3_round2": (baseline - after_full) - (w1_rule_cost + pack_rule_cost),
         "M3_round1_for_reference": (baseline - after_w1) - w1_rule_cost,
     }
 
@@ -261,7 +263,7 @@ def stage_mech(args):
     for p in packs:
         m = p["mdl"]
         print(f"   {p['id']} {p['meta']['head']:<16} applications={m['applications']:>3} "
-              f"marginal_savings={m['marginal_savings']:>4} net_strict={m['marginal_net_strict']:>4}")
+              f"marginal_savings={m['marginal_savings']:>4} net={m['marginal_net']:>4}")
     print(f"cards: {len(meta_cards)} meta -> cards_meta.json; "
           f"{len(ae_cards)} AE -> {nb} batches in {args.cards_dir}")
 
@@ -286,7 +288,7 @@ def stage_finalize(args):
         if r["kind"] == "subtree-collapse":
             coh = majority(rid, "coherent")
             sel = r["mdl"]["selected"]
-            net_ok = r["mdl"].get("marginal_net_strict", 0) > 0
+            net_ok = r["mdl"].get("marginal_net", 0) > 0
             conf = 0.50 + 0.15 * (1 if coh else 0) + 0.10 \
                 + 0.05 * (1 + (1 if r["meta"]["star_corroborated"] else 0)) \
                 + 0.05 * (1 if r.get("support", 0) >= 3 else 0)
@@ -296,7 +298,7 @@ def stage_finalize(args):
             elif not sel:
                 status, note = "rejected", "greedy MDL: marginal net <= 0 at selection"
             elif not net_ok:
-                status, note = "rejected", "measured marginal strict net <= 0"
+                status, note = "rejected", "measured marginal net <= 0"
             elif coh is False:
                 status, note = "rejected", "judges: not one coherent semantic unit"
             elif coh is None:
@@ -310,10 +312,10 @@ def stage_finalize(args):
                  "probe_votes": len(votes.get(rid, []))}
         elif r["kind"] == "role-interchange":
             r2 = dict(r)
-            r2.update({"type": "bridging", "status": "rejected", "confidence": 0.5})
+            r2.update({"type": "consolidation", "status": "rejected", "confidence": 0.5})
             g = {"probe_votes": 0}
-            note = ("unconditioned frozen-head role swap; round-1 class-conditioned "
-                    "role bridges already cover QA")
+            note = ("unconditioned frozen-head role swap -> prompt-side evidence "
+                    "(#23/#50: the fix-pack channel decides)")
         else:                                    # lexical-collapse — round-1 routing
             st = majority(rid, "same_truth")
             ll = majority(rid, "lossless")
@@ -332,24 +334,23 @@ def stage_finalize(args):
             conf = round(min(conf, 0.95), 3)
             lossless_final = bool(ll)
             directed = r.get("direction") == "lhs->rhs"
+            final_type = "consolidation"
             if gate_control:
-                final_type, status = r["type"], "rejected"
+                status = "rejected"
                 note = "HARD GATE: collapses a negative-control pair"
             elif st is False:
-                final_type, status = r["type"], "rejected"
+                status = "rejected"
                 note = "judges: truth conditions not preserved"
             elif gate_compat:
-                final_type, status = "bridging", "validated"
-                note = "seeded/frozen compatibility gate -> demoted to bridging"
+                status = "rejected"
+                note = ("frozen-vocabulary conflict -> prompt-side evidence "
+                        "(#50: the fix-pack channel decides; no demotion tier)")
             elif conf >= 0.9 and lossless_final and directed:
-                final_type, status = "consolidation", "validated"
+                status = "validated"
                 note = ""
-            elif st and conf >= 0.6:
-                final_type, status = "bridging", "validated"
-                note = "conf<0.9 or lossy -> bridging (§1)"
             else:
-                final_type, status = r["type"], "rejected"
-                note = "conf<0.6 or no clear same-truth majority"
+                status = "rejected"
+                note = "sub-threshold, lossy, or undirected (#50: no demotion tier)"
             r2 = dict(r)
             r2.update({"type": final_type, "status": status, "confidence": conf})
             g = {"probe_same_truth": st, "probe_lossless": ll,

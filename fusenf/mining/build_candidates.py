@@ -4,20 +4,21 @@ Assembles the full candidate ledger from §4.3.4's anti-unified rules plus
 §4.3.2's #23 flip witnesses, with the two decisions a candidate needs made
 mechanically and recorded:
 
-* **routing** (``type``): majority ``expected_routing`` label over the Tier A
-  variants the rule was mined from (the seed table's design truth:
-  ``X<-Y`` families -> consolidation, converses -> bridging). Tier-C-only
-  rules default: 1<->1 lexical -> consolidation, structural -> bridging.
-  ``consolidation-lossy`` labels keep type consolidation with
-  ``lossless: false``.
-* **direction** (consolidation only): lexical pairs point at the CANONICAL
+* **design_routing** (recorded EVIDENCE, not a species — #50 owner 2026-09-01):
+  the majority ``expected_routing`` label over the Tier A variants the rule was
+  mined from, kept verbatim for the gauntlet's design-label confidence term;
+  absent for natural-corpus-only rules. Every two-sided candidate is emitted as
+  ``type: consolidation`` — there is no bridging species; ``consolidation-lossy``
+  labels record ``lossless: false`` (the gauntlet rejects lossy rules, and the
+  rejected row IS the evidence record).
+* **direction** (every candidate): lexical pairs point at the CANONICAL
   representative = the more frequent symbol corpus-wide (token count over all
   canonical atom terms; tie -> lexicographically smaller, documented as
   provisional); structural rules point larger-side -> smaller-side, which is
-  also what makes the rewriter's atom-count measure strictly non-increasing.
-  Note the seed table's arrows are variant->base and MOSTLY agree with
-  frequency (buy, begin, repair) but not always (large<-big) — frequency wins
-  here, the P4 gauntlet may override per rule.
+  also what makes the rewriter's atom-count measure strictly non-increasing;
+  EQUAL-size structural rules (converses and kin) point at the side whose
+  constant symbols are more corpus-frequent in total (tie -> lexicographically
+  smaller rendering). The P4 gauntlet may override per rule.
 
 Sides are stored in rewriter syntax (``$c`` center, ``$x0`` satellites, type
 conjuncts inlined), via the same translation the chainer export uses.
@@ -36,11 +37,46 @@ import json
 import os
 import re
 
-import export_bridges as EB
-
 HERE = os.path.dirname(os.path.abspath(__file__))
 RE_SYM = re.compile(r"(?<![\w$<:\"])[a-z][a-z0-9_]*(?![\w])")
 RE_SKOLEM_TOK = re.compile(r"\A[exf]\d+\Z")
+
+# -- mining-pattern -> rewriter-syntax translation (inlined from the retired
+#    export_bridges.py, #50: bridge exporters deleted; git history has them) --
+RE_TOKEN = re.compile(r"\$([exf])(\d+)(?::([A-Za-z0-9_]+))?|\$C")
+BAD = ("~NEG", "<num>", "<str>")
+
+
+def conf(support):
+    return round(min(0.9, 0.7 + 0.05 * support), 2)
+
+
+def translate_side(atoms, witnesses, min_wit):
+    """Mining atoms -> (translated atoms, type conjuncts) or None if untranslatable.
+
+    Type conjuncts are returned separately: they are CONSTRAINTS and belong on
+    the premise side of whichever direction is emitted — repeating them in a
+    conclusion both re-asserts a known fact and (measured) trips the engine's
+    premise-reuse conjunction gap."""
+    out, extra = [], []
+    for a in atoms:
+        if any(b in a for b in BAD):
+            return None
+        def sub(m):
+            if m.group(0) == "$C":
+                return "$c"
+            var = "$%s%s" % (m.group(1), m.group(2))
+            cls = m.group(3)
+            if cls and not cls.startswith("K"):
+                extra.append("(Member %s %s)" % (var, cls))
+            elif cls:  # lifted label — restore witness class unless truly variable
+                wit = witnesses.get(cls, {})
+                if len(wit) < min_wit and wit:
+                    top = sorted(wit.items(), key=lambda kv: (-kv[1], kv[0]))[0][0]
+                    extra.append("(Member %s %s)" % (var, top))
+            return var
+        out.append(RE_TOKEN.sub(sub, a))
+    return sorted(set(out)), sorted(set(extra))
 
 
 def load(path):
@@ -77,7 +113,8 @@ def main():
     freq = symbol_frequency(args.canonical)
     mined = load(args.rules)
 
-    def routing_for(rule):
+    def design_for(rule):
+        """Majority Tier-A design label (evidence for the gauntlet) + losslessness."""
         votes = collections.Counter()
         for ex in rule["examples"]:
             for cid in ex.split("|"):
@@ -87,16 +124,8 @@ def main():
                     votes[er] += 1
         if votes:
             top = votes.most_common(1)[0][0]
-            if "bridging-or-reject" in top:
-                return "bridging", True
-            if top == "bridging":
-                return "bridging", True
-            lossless = "lossy" not in top
-            return "consolidation", lossless
-        # Tier-C-only rule: no design label
-        if rule["kind"] == "lexical-collapse":
-            return "consolidation", True
-        return "bridging", True
+            return top, "lossy" not in top
+        return None, True   # Tier-C-only rule: no design label
 
     out_rows = []
     skipped_unbound = []
@@ -114,13 +143,13 @@ def main():
         if not r["lhs"] or not r["rhs"]:
             continue   # one-sided add/drop patterns: not rewrite rules
         wit = r.get("k_witnesses", {})
-        ta = EB.translate_side(r["lhs"], wit, args.min_witnesses)
-        tb = EB.translate_side(r["rhs"], wit, args.min_witnesses)
+        ta = translate_side(r["lhs"], wit, args.min_witnesses)
+        tb = translate_side(r["rhs"], wit, args.min_witnesses)
         if ta is None or tb is None:
             continue
         side_a = sorted(set(ta[0] + ta[1]))
         side_b = sorted(set(tb[0] + tb[1]))
-        rtype, lossless = routing_for(r)
+        design, lossless = design_for(r)
         provenance = {
             "method": "paraphrase-align-4.3.4", "mined_rule": r["rule_id"],
             "examples": r["examples"], "classes": r["classes"],
@@ -128,13 +157,11 @@ def main():
             "date": args.date,
         }
         base = {
-            "type": rtype, "confidence": EB.conf(r["support"]), "support": r["support"],
+            "type": "consolidation", "design_routing": design,
+            "confidence": conf(r["support"]), "support": r["support"],
             "lossless": lossless, "provenance": provenance, "status": "candidate",
             "kind": r["kind"],
         }
-        if rtype == "bridging":
-            emit({**base, "lhs": side_a, "rhs": side_b, "direction": "both"})
-            continue
         if r["kind"] == "lexical-collapse" and r["symbol_pair"]:
             a, b = r["symbol_pair"]
             # higher corpus frequency wins; on a tie the lexicographically
@@ -146,13 +173,25 @@ def main():
                   "direction": "lhs->rhs",
                   "frequency": {other: freq[other], canon: freq[canon]}})
         else:
-            big, small = (side_a, side_b) if len(side_a) >= len(side_b) else (side_b, side_a)
+            if len(side_a) != len(side_b):
+                big, small = (side_a, side_b) if len(side_a) > len(side_b) else (side_b, side_a)
+            else:
+                # converse-family (equal sizes): canonical side = higher total
+                # constant-symbol corpus frequency; tie -> lexicographically
+                # smaller rendering (provisional; the gauntlet may override)
+                def side_freq(side):
+                    return sum(freq[t] for atom in side for t in RE_SYM.findall(atom)
+                               if not RE_SKOLEM_TOK.match(t))
+                fa, fb = side_freq(side_a), side_freq(side_b)
+                if fa > fb or (fa == fb and " ".join(side_a) < " ".join(side_b)):
+                    big, small = side_b, side_a
+                else:
+                    big, small = side_a, side_b
             vbig = set(re.findall(r"\$[a-z]\w*", " ".join(big)))
             vsmall = set(re.findall(r"\$[a-z]\w*", " ".join(small)))
             if not vsmall <= vbig:
-                # not expressible as a rewrite (target var unbound by the match) —
-                # these are entity-view duplicates of pairs already covered by
-                # symbol rewrites; their bidirectional bridges live in the metta file
+                # not expressible as a rewrite (target var unbound by the match);
+                # logged as evidence only — #50: there is no bridging fallback
                 skipped_unbound.append(r["rule_id"])
                 continue
             emit({**base, "lhs": big, "rhs": small, "direction": "lhs->rhs"})
@@ -179,7 +218,8 @@ def main():
                            "theme_n": d["Theme"], "patient_n": d["Patient"]},
             "status": "candidate",
             "rationale": "both roles attested for this class (#23 flip witness); "
-                         "collapse to the majority role in the consolidated view",
+                         "frozen-head family — the gauntlet routes this to prompt-side "
+                         "evidence for the fix-pack channel (#50)",
         })
 
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)

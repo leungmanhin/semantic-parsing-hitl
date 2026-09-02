@@ -65,21 +65,28 @@ that is review-clean or adjudicated-accept — see `harness/coverage.py`.
    mech gates: M4 vs Tier A key, 0 control       │
      merges; provenance review gate              │
      (provenance_audit.py) BEFORE entry;         │
-   graded route (G.5): bridging only,            │
-     ceiling→strength, per-rule M2 control gate  │
+   routing (#50, 2026-09-01): consolidation |    │
+     rejected — NO demotion tier; frozen         │
+     conflicts → prompt-side evidence;           │
+     G.5 graded route RETIRED                    │
       │                                          │
       ▼                                          │
 [rule ledger  rules/validated*.jsonl + retired.jsonl → eval/rule_ledger.md
-   + species files  rules/{bridging,consolidation}_rules.{jsonl,metta}
+   + the SINGLE species file  rules/consolidation_rules.{jsonl,metta}
      (mining/combine_rules.py, re-run after every gauntlet round / retirement;
-      consolidation .metta = syntax rendering only, never loaded for QA)]
-   ├─ consolidation species → [rewriter → packs / consolidated views]
-   └─ bridging species → mined_bridges_*.metta (loads beside seeded_rules.metta)
+      .metta = syntax rendering only, never loaded; #50 owner 2026-09-01:
+      consolidation is FUSE-NF's only species — batch-1 bridging artifacts
+      stay on disk as experimental records, not deliverables)]
+   └─ consolidation rules → [rewriter → consolidated views]
+                          → [query normalizer harness/normalize_query.py (built
+                             at H): the SAME rules re-express every query at
+                             submission; partial pack queries = pack ∪ residual]
       │                                          │
       ▼                                          ▼
-[serving: faithful + bridges = the QA layout]   [measurement  M1 / M2 (PAWS + tierD) /
-   packed view BLOCKED for conjunction QA          M3 / M5 atom+conjunction gates]
-   until the And-prover fix (item X)               │
+[serving: consolidated view + normalized        [measurement  M1 / M2 (PAWS + tierD) /
+   queries — #50 target, M5 validates at H         M3 / M5 atom+conjunction gates]
+   (batch-1 faithful+bridges layout = history;     │
+   full-bundle pack queries sidestep item X)]      │
       │                                            │  M5 question arm: QGEN (blind
       ▼                                            │  Sonnet) → QPARSE (blind Sonnet +
 [PeTTaChainer  pinned b0e24f9]                     │  prompt.txt) → differential harness
@@ -102,8 +109,8 @@ that is review-clean or adjudicated-accept — see `harness/coverage.py`.
 | substrate | `harness/substrate.py` → `mining/mining_substrate.json` | mixed-hash composition surfaced, decided at mining time |
 | canonicalize | `harness/canonicalize.py` (`fusenf-canon/4`) | deterministic; mixed versions refused |
 | mine | `mining/frequent_patterns2.py`, `role_fillers2.py`, `align_pairs.py`, `wave2/mi_ae.py` | deterministic; doc-support primary |
-| gauntlet | `briefs/JUDGE.md`, `harness/gauntlet*.py`, `provenance_audit.py` | graded route registered (G.5) |
-| serving | `rules/mined_bridges_*.metta` + seeded rules | faithful+bridges is the QA layout |
+| gauntlet | `briefs/JUDGE.md`, `harness/gauntlet*.py`, `provenance_audit.py` | #50 routing: consolidation\|rejected, no demotion tier; G.5 RETIRED 2026-09-01 |
+| serving | consolidated views + `harness/normalize_query.py` (H) + seeded rules | #50 query-side normalization; batch-1 bridge files = historical records |
 | measure | `harness/m1_*.py`, `m2_*.py`, `m5_preservation.py`, `m5_questions.py` + `briefs/QGEN.md`/`briefs/QPARSE.md` | measurement corpora exempt from substrate gating |
 | engine | PeTTaChainer @ b0e24f9 | open bugs + feature-reqs listed in memory / repo root |
 
@@ -116,7 +123,10 @@ and since the 2026-08-29 reshape the adjudicator too; a parse is replaced only b
 fresh blind parse at a pinned hash); append-only parse store (hash changes
 never block re-parses; analyses hold hash uniform, storage doesn't); blind-role
 placement is part of the measurement design (parsers/reviewers/question-writers see
-exactly what their brief names, nothing else).
+exactly what their brief names, nothing else); instruments are revisable (owner
+2026-09-01) — metrics, gates, and routings are our own creations, so retire or reshape
+a misfit instrument rather than bending the pipeline around it (results already
+produced under a retired instrument stand as records).
 
 ## Letter-code legend (single source; added 2026-09-01)
 
@@ -132,7 +142,7 @@ Global families (live):
   answer key · M5 chainer QA preservation (+ question arm).
 - **G.1–G.6** — the six pre-flight gates of batch-2 item G (`eval/preflight_g.md`):
   G.1 severity map · G.2 substrate gate · G.3/G.4 mechanical checks · G.5 graded-bridge
-  route · G.6 tierD measurement arm.
+  route (RETIRED 2026-09-01, #50) · G.6 tierD measurement arm.
 - **A–H, X** — batch-2 plan items (`docs/BATCH2_PLAN.md` headings); "the H run" = item H,
   the Tier-B campaign/mining centerpiece; X = the event-triggered engine-fix slot.
   **D.N** = owner decisions under item D (e.g. D.4 = the Tier-C in-sample re-parse ride-along).

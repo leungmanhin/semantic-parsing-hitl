@@ -44,7 +44,9 @@ card — one per line, in card order — written to the votes file named in your
   (an Agent/Theme/Recipient that any instance of this frame must have), leaving it
   stranded outside the meta-node?
 
-## task: role-bridge   (Theme ↔ Patient relabel, conditioned on one event class)
+## task: role-bridge   (Theme ↔ Patient relabel, conditioned on one event class;
+#50 2026-09-01: your verdict feeds prompt-side EVIDENCE for the fix-pack channel —
+there is no bridge species to route to; the task name is historical)
 
     {"rule_id": "...", "same_relation": "yes"|"no"|"uncertain", "note": "..."}
 
@@ -52,7 +54,9 @@ card — one per line, in card order — written to the votes file named in your
   the examples) mark the same participant relation — i.e. is the difference annotation
   variance — or do they mark genuinely different relations for this event class?
 
-## task: grade   (only when the card asks for grading, not accept/reject)
+## task: grade   (RETIRED 2026-09-01 with the G.5 graded route — #50 consolidation-only:
+graded strength<1 rules are not normal-form moves. Kept for the historical record; no
+card will request grading)
 
     {"rule_id": "...", "direction": "lhs->rhs"|"rhs->lhs"|"both"|"neither",
      "ceiling": 0.6|0.7|0.8, "note": "..."}

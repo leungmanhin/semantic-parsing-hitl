@@ -16,13 +16,13 @@ Two families, from ``mining/out/mi_groups.jsonl`` + ``mining/out/interchange.jso
   enforced by the rewriter: ``$v`` binds a plain lowercase symbol, ``$C`` an
   event skolem, all matched atoms share ONE identical positive STV.
 
-  **Pre-registered MDL selection** (greedy, SUBDUE-spirited, decided BEFORE
-  judges run): savings = occurrences x (k-1) atoms; cost_strict = (k+2) + 2k
-  (the pack rule at wave-1's |lhs|+|rhs|+1 accounting PLUS its k expansion
-  bridges at 2 atoms each — the decompressor is part of the description
-  length). A shape enters the proposed set only while its MARGINAL net gain
-  under larger-LHS-first application stays positive. cost_w1 = k+2 (pack rule
-  only) is recorded for continuity with wave-1's M3 = -39.
+  **MDL selection** (greedy, SUBDUE-spirited, decided BEFORE judges run;
+  re-billed 2026-09-01 per #50): savings = occurrences x (k-1) atoms;
+  cost = k+2 (the pack rule at wave-1's |lhs|+|rhs|+1 accounting, billed
+  ONCE — expansion bridges are retired; the decode direction is the same
+  rule read backwards). A shape enters the proposed set only while its
+  MARGINAL net gain under larger-LHS-first application stays positive.
+  (Round-2 HISTORY was selected under the pre-#50 strict bill of 3k+2.)
 
 * **lexical-collapse (AE, §4.3.5)** — distinct NOVEL interchange symbol pairs
   (corroborations of validated rules and pairs already judged in wave 1 are
@@ -175,7 +175,7 @@ def star_instances(records, shapes):
 
 
 def greedy_select(shapes, records):
-    """Pre-registered greedy: add shapes by strict net gain while marginal > 0."""
+    """Pre-registered greedy: add shapes by net gain while marginal > 0 (#50 billing)."""
     selected = []
     remaining = sorted(shapes)
     base_occ, _ = star_instances(records, {s: shapes[s] for s in selected}) \
@@ -183,7 +183,7 @@ def greedy_select(shapes, records):
 
     def net(sel):
         occ, _ = star_instances(records, {s: shapes[s] for s in sel})
-        return sum(occ[s] * (shapes[s]["k"] - 1) - (3 * shapes[s]["k"] + 2)
+        return sum(occ[s] * (shapes[s]["k"] - 1) - (shapes[s]["k"] + 2)
                    for s in sel), occ
 
     cur_net, cur_occ = 0, collections.Counter()
@@ -304,7 +304,7 @@ def main():
                      "star_corroborated": tuple(sorted(sh["comps"])) in star_shapes},
             "mdl": {"k": sh["k"], "occurrences_solo": all_occ[head],
                     "occurrences_in_set": sel_occ.get(head, 0),
-                    "cost_strict": 3 * sh["k"] + 2, "cost_w1": sh["k"] + 2,
+                    "cost_w1": sh["k"] + 2,
                     "selected": head in selected},
             "provenance": {"method": "mi-grouping-4.3.3", "date": args.date,
                            "groups": nominators[head], "examples": ex_ids},

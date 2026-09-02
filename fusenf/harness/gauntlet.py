@@ -1,4 +1,5 @@
-"""FUSE-NF P4 — the validation gauntlet (PLAN.md §7, routing per §1, gates per metrics.md M4/M5).
+"""FUSE-NF P4 — the validation gauntlet (PLAN.md §7; routing per #50 consolidation-only,
+owner 2026-09-01, superseding §1's two-species table; gates per metrics.md M4/M5).
 
 Pipeline over ``rules/candidates.jsonl``:
 
@@ -19,17 +20,25 @@ Evidence-based confidence (the §1 thresholds are pre-registered; this formula i
     conf = 0.50
          + 0.15 * probe_same_truth_majority
          + 0.10 * probe_lossless_majority
-         + 0.15 * design_label_consolidation   (Tier A expected_routing)
+         + 0.15 * design_label_consolidation   (build's recorded design_routing ==
+                                                "consolidation"; absent label -> 0, so
+                                                natural-corpus rules get no bonus)
          + 0.05 * consensus_votes              (0-3 methods)
          + 0.05 * (support >= 3)
     capped at 0.95
 
-Routing (§1 + M4 hard gate + M5 frozen gate):
-    control_merges > 0                       -> rejected (never consolidation)
-    frozen-head rewrite or seeded collision  -> bridging at most
-    conf >= 0.9 and lossless and directed    -> consolidation / validated
-    0.6 <= conf < 0.9, or lossy              -> bridging / validated
-    conf < 0.6 or same-truth majority NO     -> rejected
+Routing (#50 consolidation-only + M4 hard gate + M5 frozen gate — NO demotion tier,
+no bridging species; a rejected row keeps its full evidence):
+    control_merges > 0                        -> rejected (never consolidation)
+    same-truth majority NO                    -> rejected
+    frozen-head rewrite / seeded collision /
+      role-canonicalization                   -> rejected: frozen-vocabulary conflict,
+                                                 filed as prompt-side EVIDENCE for the
+                                                 fix-pack channel (FUSE-NF never routes
+                                                 around the frozen layer)
+    conf >= 0.9 and lossless and directed     -> consolidation / validated
+    anything else                             -> rejected (sub-threshold, lossy, or
+                                                 undirected)
 """
 
 from __future__ import annotations
@@ -250,9 +259,9 @@ def stage_finalize(args):
             if no_notes and all(register_only(n) for n in no_notes):
                 ll = True
                 cal_override = True
-        design = None
-        # design label from the mined provenance routing decision at build time
-        design_cons = r["type"] == "consolidation" and r["kind"] != "role-canonicalization"
+        # Tier-A seed-table majority recorded by build_candidates (#50: keyed on the
+        # actual design label; absent -> no bonus, so natural-corpus rules earn theirs)
+        design_cons = r.get("design_routing") == "consolidation"
         conf = 0.50
         conf += 0.15 * (1 if st else 0)
         conf += 0.10 * (1 if ll else 0)
@@ -266,31 +275,23 @@ def stage_finalize(args):
         gate_compat = bool(r.get("seeded_collision")) or bool(r.get("frozen_head_rewrite"))
         directed = r.get("direction") == "lhs->rhs"
 
-        if r["kind"] == "role-canonicalization":
-            final_type, status = "bridging", "validated"
-            note = "annotation-level merge; frozen-head rewrite -> never consolidation (M5 gate)"
-        elif gate_control:
-            final_type, status = r["type"], "rejected"
+        final_type = "consolidation"
+        if gate_control:
+            status = "rejected"
             note = "HARD GATE: collapses a negative-control pair"
         elif st is False:
-            final_type, status = r["type"], "rejected"
+            status = "rejected"
             note = "judges: truth conditions not preserved"
-        elif r["type"] == "bridging":
-            final_type = "bridging"
-            status = "validated" if (st or st is None) else "rejected"
-            note = "converse/structural equivalence, both directions live in the chainer"
-        elif gate_compat:
-            final_type, status = "bridging", "validated"
-            note = "seeded/frozen compatibility gate -> demoted to bridging"
+        elif r["kind"] == "role-canonicalization" or gate_compat:
+            status = "rejected"
+            note = ("frozen-vocabulary conflict -> prompt-side evidence "
+                    "(#50: the fix-pack channel decides; never route around the frozen layer)")
         elif conf >= 0.9 and lossless_final and directed:
-            final_type, status = "consolidation", "validated"
+            status = "validated"
             note = ""
-        elif conf >= 0.6:
-            final_type, status = "bridging", "validated"
-            note = "conf<0.9 or lossy -> bridging (§1)"
         else:
-            final_type, status = r["type"], "rejected"
-            note = "conf<0.6"
+            status = "rejected"
+            note = "sub-threshold, lossy, or undirected (#50: no demotion tier)"
 
         r2 = dict(r)
         r2.update({

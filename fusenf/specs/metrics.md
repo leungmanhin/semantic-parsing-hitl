@@ -100,8 +100,8 @@ control arm separately.
 
 Criterion 3 is the anti-gaming clause. A rule set that merges indiscriminately lowers `d_pos` and
 `d_neg` together and leaves AUC flat or worse; only genuine equivalences move `d_pos` while sparing
-`d_neg`. If (1) is met but (2) or (3) fails, the rule set is over-merging — route the offending rules
-to bridging or reject them, and re-run.
+`d_neg`. If (1) is met but (2) or (3) fails, the rule set is over-merging — reject the offending
+rules and re-run (#50: there is no bridging species to route to).
 
 ---
 
@@ -131,14 +131,15 @@ not the goal. Per PLAN §1's two species:
   bookkeeping, not failure. This species' success criteria are M2 (convergence), M4 (truth) and
   M5 (losslessness). Batch-1 evidence: round 1 posted MDL −39 while the same 13 rules moved Tier A
   convergence 18.9%→43.3% — the "fail" framing was the metric's, not the rules'.
-- **Packing rules** (meta-node packs): **strict marginal MDL > 0 stays a hard per-candidate
-  selection gate** — for this species compression *is* the claim. Strict accounting (formula
-  pinned in `harness/gauntlet2.py`): rule cost `|LHS| + |RHS| + 1` **plus 2 per expansion
-  bridge** — the decompressor is part of the theory, so it is part of the bill. The rule-cost
+- **Packing rules** (meta-node packs): **marginal MDL > 0 stays a hard per-candidate
+  selection gate** — for this species compression *is* the claim. Accounting (formula
+  pinned in `harness/gauntlet2.py`): rule cost `|LHS| + |RHS| + 1`, billed ONCE — the
+  decode direction is the same rule read backwards, and since #50 (2026-09-01) no
+  expansion-bridge artifact exists to bill separately. The rule-cost
   term is the Occam regularizer, not bookkeeping: without it any pack that fires once looks
   positive, and the selector would memorize the corpus one bespoke pack at a time. Batch-1
-  evidence: round-2 packs 6,372→4,894 atoms, strict +1,329, one candidate pack rejected purely
-  for not paying for itself.
+  evidence: round-2 packs 6,372→4,894 atoms, strict +1,329 (billed under the pre-#50 dual
+  w1/strict accounting), one candidate pack rejected purely for not paying for itself.
 
 Reported alongside, not as a success criterion: mean atoms per record before/after (a sanity check
 that consolidation is not simply deleting content — cross-checked by M5).
@@ -170,8 +171,8 @@ vs negative-control pairs converging (precision-like).
 
 - Wave-1 target: **rule-level precision ≥ 0.9**, recall reported at whatever level is achieved.
 - **Hard gate: zero negative-control merges.** A rule that collapses any polarity-negative pair into
-  its seed may not be routed to consolidation under any confidence — it is demoted to bridging or
-  rejected. One such merge is worse than fifty missed rules: consolidation is destructive and applied
+  its seed may not be validated under any confidence — it is rejected (#50: no demotion tier).
+  One such merge is worse than fifty missed rules: consolidation is destructive and applied
   before anything downstream sees the data.
 
 ---
@@ -182,19 +183,22 @@ vs negative-control pairs converging (precision-like).
 
 Batch 1 does not parse questions, so queries come from the existing e2e harness: pick **40**
 consolidated records whose construct family has an e2e case, instantiate that case's query pattern
-against the record's symbols, and run it against a fresh PeTTaChainer KB (seeded rules + mined
-bridging rules loaded) for the faithful form and the consolidated form.
+against the record's symbols, and run it against a fresh PeTTaChainer KB (seeded rules loaded)
+for the faithful form; the consolidated arm runs the consolidated form with the SAME query
+re-expressed by the consolidation rules (`harness/normalize_query.py` — #50 query-side
+normalization; batch-1 HISTORY ran the pre-#50 faithful+bridges layout and stands as recorded).
 
 | Statistic | Definition | Criterion |
 |---|---|---|
 | `preservation` | queries answered by consolidated ÷ answered by faithful | **1.0** — hard gate |
-| `fabrication` | queries answered by consolidated but **not** by faithful | **0**, unless attributable to a bridging rule, which is then named |
+| `fabrication` | queries answered by consolidated but **not** by faithful | **0** — hard gate (#50: no bridge rules exist to attribute an extra answer to) |
 | `frozen_violations` | rewrites touching `frozen: true` vocabulary | **0** |
 
 A `preservation` shortfall is not a metric failure to be tuned away — it is a routing bug (a rule
-rewrote frozen vocabulary) or a genuine information loss (the rule is lossy and belongs in bridging).
-`fabrication` matters as much: consolidation must not invent answers, and a bridging rule that
-supplies one must be identified by name, since that is inference, not normalization.
+rewrote frozen vocabulary), a normalizer bug (the query side missed a rewrite or a residual-union
+branch), or a genuine information loss (the rule is lossy and should have been rejected — #50:
+lossy rules have no fallback species). `fabrication` matters as much: consolidation plus query
+normalization must not invent answers — normalization is not inference.
 
 Run with `/home/manhin/Dev/.venv-dev/bin/python`, `timeout_sec=0` on every query.
 

@@ -1,5 +1,9 @@
 """FUSE-NF M5 — chainer QA preservation (metrics.md M5), run under the PeTTaChainer env.
 
+PRE-#50 HARNESS (2026-09-01): measures the RETIRED faithful+bridges serving
+layout. Superseded by the consolidation-only design (consolidated view +
+query-side normalization) — rework against harness/normalize_query.py before
+running at item H; kept meanwhile because batch-1 reports cite its numbers.
 For N consolidated records (records the rewriter actually changed), instantiate a query
 from the FAITHFUL record's own largest event star (its class atom + up to three role/status
 atoms, canonical skolems -> variables) and run it against two fresh KBs:

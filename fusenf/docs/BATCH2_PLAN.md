@@ -12,6 +12,19 @@ method document; this file is batch-2 execution only.
             mining + measurement over the already-parsed corpus)
     event-triggered at any point:  X(#2 engine-fix response)
 
+**AMENDMENT 2026-09-01 (owner, #50 — CONSOLIDATION-ONLY; re-specs item H and G.5):**
+FUSE-NF's deliverable is consolidation rules ONLY, per the source PDF's normal-form
+mandate — the bridging species, the gauntlet's §1 demotion tier, the G.5 graded route,
+and expansion bridges are RETIRED (batch-1 bridge artifacts stand as historical records;
+the bridge exporters are deleted, git history keeps them). Serving target = consolidated
+view + query-side normalization: `harness/normalize_query.py` (built at H) re-expresses
+every query with the same rules (a full-bundle pack query collapses to the pack atom and
+sidesteps the item-X And-prover gap; a partial-bundle query emits a pack ∪ residual
+faithful union). Gauntlet routing = consolidation|rejected, frozen-vocabulary conflicts
+filed as prompt-side evidence for the fix-pack channel; H's M5 runs the new layout.
+Older bridge wording further down this plan is pre-amendment history. Full record:
+deferred-topics #50 + `eval/preflight_g.md` §G.5 + `PIPELINE.md`.
+
 **Amendment 2026-08-21 (owner decision, supersedes "B is the LAST prompt.txt change"):**
 a targeted **fix-pack B2** lands before any campaign parsing — [G] NEW Perception-reports
 section (veridical complement asserted + Stimulus link; the probe48 coverage gap) + three

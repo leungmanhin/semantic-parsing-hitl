@@ -3,8 +3,9 @@
 Applies ``type: consolidation`` rules from ``rules/candidates.jsonl`` to canonical
 records and writes re-canonicalized results to ``consolidated/<tier>.cons.jsonl``.
 The chainer never sees these rules — a consolidated graph IS the equivalence,
-so nothing is left to infer at runtime; bridging rules stay in
-``rules/mined_bridges_wave1.metta``.
+so nothing is left to infer at runtime; queries are re-expressed by the SAME
+rule set at submission time (#50, owner 2026-09-01: consolidation is the only
+species; the query normalizer ships with item H).
 
 Two rule shapes, recognized from the rule body:
 

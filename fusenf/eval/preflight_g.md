@@ -54,7 +54,7 @@ FoldAll / Probably — informational: declared, awaiting first attested use). Br
 inventory: **zero pending** — QGEN.md and QPARSE.md went standing with item F, so every
 agent role in the DISPATCH.md table now has a standing brief.
 
-## G.5 — DECIDED: graded-lexical-bridge route REGISTERED ✓ (owner, 2026-08-25)
+## G.5 — graded-lexical-bridge route — **RETIRED 2026-09-01 before first use (#50)** (registered ✓ owner 2026-08-25)
 
 `JUDGE.md task: grade` goes active for H's gauntlet, **bridging species only** (never
 consolidation/packs): judges assign direction + strength ceiling (0.6/0.7/0.8 per the
@@ -65,6 +65,10 @@ M2 adversarial arm per graded rule** before the ledger keeps it. Evidence basis:
 D.2 doctor/physician asymmetric-TV and AE-0.85-cap precedents + item F's demand-side
 data (natural rewordings the binary inventory misses: obtain/acquire, wreck/destroy,
 stroll/walk). DISPATCH.md §Judge updated; dormancy note retired.
+**RETIRED 2026-09-01 (owner, #50 consolidation-only): graded strength<1 rules are not
+normal-form moves, and no bridging species exists to grade — `JUDGE.md task: grade`
+retired with this route. Genuinely directional/graded discoveries are handed off as
+candidate seeded rules for the semantic-parsing layer's own validation instead.**
 
 ## G.6 — DECIDED: MRPC arm ADDED at pilot scale ✓ (owner, 2026-08-25)
 
