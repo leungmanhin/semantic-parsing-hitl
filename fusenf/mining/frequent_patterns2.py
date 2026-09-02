@@ -334,6 +334,37 @@ def pattern_mode(key):
     return "star" if common else "cross"
 
 
+def write_metta(path, rows, signal_kind, args, n_docs, canon_version):
+    """Readable MeTTa RENDERING of the pattern inventory (owner 2026-09-02).
+
+    Never loaded: a pattern is a conjunctive QUERY over variables, not an assertion.
+    Single-clause patterns render bare, multi-clause ones as ``(And ...)``; each carries a
+    provenance comment (mode, document support / occurrences, size, lifted values,
+    nisurp, tiers, signal kind, example records). Sorted by document support desc then
+    pattern id for reading; ``patterns2.jsonl`` (miner order, full id lists) is the record.
+    """
+    order = sorted(rows, key=lambda r: (-r["support"], r["pattern_id"]))
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write(";; FUSE-NF §4.3.1 frequent patterns — readable MeTTa RENDERING (never loaded: a\n"
+                 ";; pattern is a conjunctive query over variables, not an assertion).\n"
+                 f";; {len(rows)} patterns over {n_docs} records (canon {canon_version}); "
+                 f"k={args.k}, min_support={args.min_support}; sorted by document support desc\n"
+                 ";; then pattern id. $e#/$x#/$f# = event/entity/function skolem variables, $v# = lifted\n"
+                 ";; content constants (same $v = same value). patterns2.jsonl is the record of truth.\n\n")
+        for r in order:
+            sig = signal_kind.get(r["pattern_id"])
+            nis = "—" if r.get("nisurp") is None else f"{r['nisurp']:.3f}"
+            fh.write(f";; {r['pattern_id']}  {r['mode']}  support {r['support']} (occ {r['occurrences']})"
+                     f"  size {r['size']}  lifted {r['n_lifted']}  nisurp {nis}"
+                     f"  tiers {','.join(r['tiers'])}"
+                     + (f"  signal {sig}" if sig else "")
+                     + ("  dominated" if r.get("dominated") else "") + "\n")
+            fh.write(f";;   e.g. {' '.join(r['examples'][:3])}\n")
+            atoms = r["atoms"]
+            fh.write((atoms[0] if len(atoms) == 1 else "(And " + " ".join(atoms) + ")") + "\n\n")
+    print(f"-> {path}  ({len(rows)} patterns rendered)")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("canonical", nargs="+")
@@ -345,6 +376,9 @@ def main():
         os.path.dirname(os.path.abspath(__file__)), "out_e"))
     ap.add_argument("--report", default=None)
     ap.add_argument("--keep-surface", action="store_true")
+    ap.add_argument("--metta-out", default=None,
+                    help="readable MeTTa rendering of the pattern inventory "
+                         "(default <out-dir>/patterns2.metta; '' disables)")
     args = ap.parse_args()
 
     vocab = C.load_vocabulary()
@@ -527,6 +561,7 @@ def main():
 
     sig_path = os.path.join(args.out_dir, "patterns2_signals.jsonl")
     n_sig = 0
+    signal_kind = {}
     with open(sig_path, "w", encoding="utf-8") as fh:
         for r in rows:
             if r["size"] < 2 or not r["lexicalized"] or r["dominated"]:
@@ -534,15 +569,22 @@ def main():
             if r["mode"] == "kindlevel" and r["n_lifted"] > 0:
                 continue
             n_sig += 1
+            kind = "subtree-collapse" if r["mode"] == "star" else "conj-pattern"
+            signal_kind[r["pattern_id"]] = kind
             fh.write(json.dumps({
                 "candidate": {"pattern_id": r["pattern_id"], "atoms": r["atoms"],
                               "mode": r["mode"], "n_lifted": r["n_lifted"]},
                 # monotone support squash, NOT a probability (P4 normalizes).
                 "confidence": round(r["support"] / (r["support"] + 10.0), 3),
-                "kind": "subtree-collapse" if r["mode"] == "star" else "conj-pattern",
+                "kind": kind,
                 "support": r["support"], "tiers": r["tiers"], "nisurp": r["nisurp"],
                 "examples": r["examples"], "method": "frequent-patterns2-3a",
             }, ensure_ascii=False, sort_keys=True) + "\n")
+
+    metta_out = (args.metta_out if args.metta_out is not None
+                 else os.path.join(args.out_dir, "patterns2.metta"))
+    if metta_out:
+        write_metta(metta_out, rows, signal_kind, args, n_docs, sorted(versions)[0])
 
     # ---- report ------------------------------------------------------------
     by_mode = collections.Counter(r["mode"] for r in rows)

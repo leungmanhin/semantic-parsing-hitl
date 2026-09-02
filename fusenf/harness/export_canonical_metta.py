@@ -29,6 +29,9 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--manifest", default=os.path.join(FUSENF, "mining", "mining_substrate.json"))
     ap.add_argument("--out", default=os.path.join(FUSENF, "mining", "canonical_substrate.metta"))
+    ap.add_argument("--jsonl-out", default=os.path.join(FUSENF, "mining", "canonical_substrate.jsonl"),
+                    help="the SAME included rows as canonical JSONL, manifest order — the one input\n"
+                         "every H miner reads (H, 2026-09-02); '' disables")
     args = ap.parse_args()
 
     man = json.load(open(args.manifest))
@@ -62,6 +65,11 @@ def main() -> None:
             if r.get("sentences"):
                 sentences[r["id"]] = r["sentences"][0]
 
+    if args.jsonl_out:
+        with open(args.jsonl_out, "w", encoding="utf-8") as jf:
+            for row in included:
+                jf.write(json.dumps(canon[(row["id"], row["run"])], ensure_ascii=False, sort_keys=True) + "\n")
+        print(f"-> {args.jsonl_out}  ({len(included)} canonical rows, manifest order)")
     n_atoms = 0
     with open(args.out, "w", encoding="utf-8") as fh:
         fh.write(";; FUSE-NF canonicalized mining substrate — readable MeTTa RENDERING\n"

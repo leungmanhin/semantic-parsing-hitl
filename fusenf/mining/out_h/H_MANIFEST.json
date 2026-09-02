@@ -1,0 +1,45 @@
+{
+ "run": "H (batch 2 mining campaign, consolidation-only + fuzzy \u2014 #50)",
+ "date": "2026-09-02",
+ "prompt_sha8": "2ed18b93",
+ "substrate": {
+  "manifest": "mining/mining_substrate.json",
+  "included": 2302,
+  "hash_composition": {
+   "bb7c4b71": 96,
+   "f6448eac": 2206
+  },
+  "canonical_jsonl": "mining/canonical_substrate.jsonl",
+  "canonical_jsonl_sha16": "bcdb7226e6e6d1b3",
+  "canon_version": "fusenf-canon/4"
+ },
+ "methods": {
+  "4.3.1_frequent_subtree": {
+   "script": "mining/frequent_patterns2.py",
+   "params": {
+    "k": 4,
+    "min_support": 3,
+    "keep_surface": false
+   },
+   "outputs": [
+    "mining/out_h/patterns2.jsonl",
+    "mining/out_h/valuations_slots.jsonl",
+    "mining/out_h/patterns2_signals.jsonl",
+    "mining/out_h/patterns2_report.md",
+    "mining/out_h/patterns2.metta (rendering only)"
+   ],
+   "result": {
+    "patterns": 7766,
+    "modes": {
+     "cross": 4126,
+     "kindlevel": 626,
+     "star": 3014
+    },
+    "shape_stratum": 6037,
+    "slot_rows": 6059,
+    "signals": 779,
+    "wall_s": 20.6
+   }
+  }
+ }
+}
