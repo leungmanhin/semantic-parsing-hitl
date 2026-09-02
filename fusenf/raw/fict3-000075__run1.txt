@@ -1,0 +1,8 @@
+(: keepers_name (Name keepers "Keepers") (STV 1.0 0.99))
+(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))
+(: lantern_name (Name stilllight_lantern "Stilllight Lantern") (STV 1.0 0.99))
+(: e_burn (Member sk_burn_1 burn) (STV 0.5 0.9))
+(: e_agent (Agent sk_burn_1 keepers) (STV 1.0 0.99))
+(: e_patient (Patient sk_burn_1 wintergloss) (STV 1.0 0.99))
+(: e_loc (Location sk_burn_1 stilllight_lantern) (STV 1.0 0.99))
+(: burn_freq (QuantifierPhrase keepers burn "sometimes") (STV 1.0 0.99))

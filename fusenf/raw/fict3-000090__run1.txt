@@ -1,0 +1,3 @@
+(: sc_genus (Inheritance solo_count count) (STV 1.0 0.99))
+(: sc_mod (Inheritance solo_count solo) (STV 1.0 0.99))
+(: whenever_lantern_dims_reset (Implication (And (Member $p apprentice) (Member $l lantern) (Possession $l $p) (Member $e1 dim) (Patient $e1 $l)) (And (Member (sk_solo_count $p) solo_count) (Possession (sk_solo_count $p) $p) (Member (sk_reset $e1) reset) (Patient (sk_reset $e1) (sk_solo_count $p)) (During (sk_reset $e1) $e1))) (STV 1.0 0.9))

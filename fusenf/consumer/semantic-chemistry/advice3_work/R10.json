@@ -1,0 +1,144 @@
+{
+ "id": "R10",
+ "rule": "Sky-cats molt feathers to the cliff base",
+ "texts": [
+  "When a sky-cat molts, feathers fall to the base of the cliff.",
+  "Whenever a sky-cat molts, the sky-cat sheds feathers onto the base of the cliff.",
+  "Apprentices collect the fallen feathers in the morning.",
+  "The Keepers store the collected feathers in a bin at the Watch."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000033",
+   "sentence": "When a sky-cat molts, feathers fall to the base of the cliff.",
+   "parse": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: skycat_molt_feathers_fall (Implication (And (Member $C sky_cat) (Member $e molt) (Patient $e $C)) (And (GroupOf (sk_feathers $e) feather) (Member (sk_fall $e) fall) (Theme (sk_fall $e) (sk_feathers $e)) (Goal (sk_fall $e) sk_base_1) (During (sk_fall $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000033",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The falling feathers are given Theme, but an intransitive fall driven by gravity is the non-volitional natural-process case the thematic-role section assigns Patient (its own example is 'rain fell')."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The instruction set pulls two ways here — 'un-powered relocation ... drifting or dropped things' assigns Theme while 'a mass moved by gravity (rain fell)' assigns Patient — and I read the more specific gravity carve-out as governing a physical fall. Everything else matches: indefinite 'a sky-cat' routes 'when' to the occurrence rule, the bare-plural subject 'feathers' gets a per-occurrence Skolem group, 'the base of the cliff' takes PartOf as a relational-noun genitive, and 'to' takes Goal."
+   },
+   "adjudication": {
+    "id": "fict3-000033",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Theme is expressly licensed for an intransitive subject undergoing 'un-powered relocation — ... drifting or dropped things', which is what a group of discrete feathers falling is; the Patient carve-out names masses, fluids, gases and precipitation ('rain fell, the reservoir drained, smoke rose, the tide receded'), and nothing in the instruction set ranks it above the dropped-things licence for discrete objects."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "The intransitive-subject test carries two overlapping provisions with no tie-break — 'dropped things' -> Theme versus 'a mass moved by gravity' -> Patient — so discrete objects falling under gravity (feathers, leaves, stones) can be roled either way by two faithful parsers."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The indefinite-triggered whenever rule, the per-occurrence Skolem feather group, Goal for 'to the base', the genitive PartOf for 'the base of the cliff' and the During link all follow the instruction set."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000034",
+   "sentence": "Whenever a sky-cat molts, the sky-cat sheds feathers onto the base of the cliff.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: skycat_shed_rule (Implication (And (Member $x sky_cat) (Member $e1 molt) (Patient $e1 $x)) (And (Member (sk_shed $x $e1) shed) (Agent (sk_shed $x $e1) $x) (Theme (sk_shed $x $e1) feather) (Goal (sk_shed $x $e1) sk_base_1) (During (sk_shed $x $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000034",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Goal for the \"onto\" motion result (no Result atom, no extra LocatedIn), PartOf for the part-whole of-phrase \"the base of the cliff\", Patient for the internal-change intransitive subject of \"molts\", and the whenever rule shape with its During link all match the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000035",
+   "sentence": "Apprentices collect the fallen feathers in the morning.",
+   "parse": [
+    "(: feather_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feather_fallen_rule (Implication (PartOf $y sk_feather_1) (Member $y fallen)) (STV 1.0 0.9))",
+    "(: apprentice_collect_rule (Implication (Member $x apprentice) (And (Member (sk_collect $x) collect) (Agent (sk_collect $x) $x) (Theme (sk_collect $x) sk_feather_1) (Time (sk_collect $x) morning))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000035",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural -> group witness with the descriptive participle 'fallen' (adjective, surface form kept) distributed by a per-member (PartOf ...) rule at 1.0/0.9 rather than ridden on the group symbol; the bare-plural habitual subject takes the 0.9/0.9 generic rule with no QuantifierPhrase (no quantifier word present). Theme for 'collect' (object unchanged), 'in the morning' as the bare day-part Time symbol, and no tense atom on a habitual are all correct; the definite object correctly blocks the kind-relation route."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000036",
+   "sentence": "The Keepers store the collected feathers in a bin at the Watch.",
+   "parse": [
+    "(: keepers_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: feathers_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feathers_collected_rule (Implication (PartOf $x sk_feather_1) (Member $x collected)) (STV 1.0 0.9))",
+    "(: bin_type (Member sk_bin_1 bin) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: bin_loc (LocatedIn sk_bin_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: store_ev (Member sk_store_1 store) (STV 1.0 0.99))",
+    "(: store_ag (Agent sk_store_1 sk_group_1) (STV 1.0 0.99))",
+    "(: store_th (Theme sk_store_1 sk_feather_1) (STV 1.0 0.99))",
+    "(: store_loc (Location sk_store_1 sk_bin_1) (STV 1.0 0.99))",
+    "(: store_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_store $x) store) (Agent (sk_store $x) $x) (Theme (sk_store $x) sk_feather_1) (Location (sk_store $x) sk_bin_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000036",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "capitalized PLURAL common-noun/role label used as an ordinary definite plural of its own kind (\"the Keepers\"): Names and casing withdraws plurals from the singular-collective common-noun default but then rules only on a plural label 'referring as a name' (the Wrens, whose members need not be wrens), so nothing decides between the Name-only individual and the GroupOf-of-keeper group the parse chose"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group event plus per-member distribution rule for the distributive 'store', the distributed 'collected' modifier over the definite plural, event-Location for 'in a bin' with entity-attached LocatedIn for 'at the Watch', and the no-Name common-noun reading of 'the Watch' all follow doctrine, and no LocatedIn is asserted of the feathers. 'at the Watch' could equally attach to the storing event, but the two readings are near-equivalent here, so picking one is not a defect."
+   },
+   "adjudication": null
+  }
+ ]
+}

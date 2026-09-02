@@ -1,0 +1,160 @@
+{
+ "id": "R5",
+ "rule": "Stored mire-essence feeds future lighting",
+ "texts": [
+  "When mire-essence forms in the cauldron, the Keepers store the mire-essence in clay vessels.",
+  "Whenever mire-essence forms in the cauldron, the Keepers keep the mire-essence in clay vessels.",
+  "Each Keeper draws the stored mire-essence when that Keeper tends a lantern.",
+  "Stored mire-essence will feed lantern lighting."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000016",
+   "sentence": "When mire-essence forms in the cauldron, the Keepers store the mire-essence in clay vessels.",
+   "parse": [
+    "(: cauldron_ty (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: cv_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+    "(: form_store_rule (Implication (And (Member $x form) (Patient $x $m) (Member $m mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_store $x) store) (Agent (sk_store $x) keepers) (Theme (sk_store $x) $m) (Location (sk_store $x) clay_vessel) (During (sk_store $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000016",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Generic mass subject in the when-clause correctly routes to the whenever rule; the plural label 'the Keepers' is Name-only with no GroupOf and no invented kind atom, and sk_cauldron_1 is licensed in the premise because a top-level fact asserts it. One judgment call: 'in clay vessels' takes the bare-kind Location filler clay_vessel rather than a per-occurrence group witness, which the non-specific-object licence permits but which reads inconsistently against a group-witness reading of the bare plural."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000017",
+   "sentence": "Whenever mire-essence forms in the cauldron, the Keepers keep the mire-essence in clay vessels.",
+   "parse": [
+    "(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: cv_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+    "(: form_keep_rule (Implication (And (Member $x form) (Patient $x mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) keepers) (Theme (sk_keep $x) mire_essence) (Location (sk_keep $x) clay_vessel) (During (sk_keep $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000017",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An anaphoric definite MASS NP (\"the mire-essence\") inside a whenever rule whose antecedent was encoded as a bare kind symbol, not a witness: Existential/definite says to reserve the bare class symbol for non-specific objects and never for a specific definite individual, while Coreference says an anaphoric definite reuses the antecedent's symbol — but the antecedent here is the kind symbol mire_essence, so nothing decides between reusing that kind symbol (what the parse does, in both premise Patient and consequent Theme) and minting a per-occurrence Skolem witness bound by the rule variable."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever machinery, per-occurrence Skolem consequent, During link and STV 1.0 0.9 all match the specified form; the definite cauldron is asserted top-level, which is exactly the licensed case for an sk_* constant in a premise. Patient for the intransitive change-of-state subject of \"forms\", Theme for \"keep\", and clay_vessel's genus-only decomposition (clay is a noun modifier, not a material adjective) are all correct."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000018",
+   "sentence": "Each Keeper draws the stored mire-essence when that Keeper tends a lantern.",
+   "parse": [
+    "(: mire_typ (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: mire_stored (Member sk_mire_essence_1 stored) (STV 1.0 0.99))",
+    "(: mire_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: keeper_draw_rule (Implication (And (Member $x keeper) (Member $e tend) (Agent $e $x) (Theme $e $y) (Member $y lantern)) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Theme (sk_draw $x) sk_mire_essence_1) (During (sk_draw $x) $e))) (STV 1.0 0.9))",
+    "(: keeper_q (QuantifierPhrase keeper draw \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000018",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The consequent's Skolem event (sk_draw $x) is a function of the keeper alone although the rule also quantifies the tending occasion $e, so a keeper who tends several lanterns yields one single draw event asserted During every one of those tendings, not the per-occurrence Skolem the whenever machinery specifies (a dependent existential must be a function of every universal that scopes over it)."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling (mire_essence with genus essence and no exposed noun modifier), the participial modifier stored as a separate descriptive atom, the shared definite constant sk_mire_essence_1 outside the rule, the QuantifierPhrase companion and the 1.0/0.9 rule truth value all match the instruction set. The Skolem parameterization is the only defect."
+   },
+   "adjudication": {
+    "id": "fict3-000018",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The whenever machinery mints the response 'as a Skolem event per occurrence' and 'each dependent existential is a Skolem function of every universal that scopes over it' — the premise binds the tending occasion $e, so (sk_draw $x) collapses every tending by one keeper into a single draw event asserted During each of them."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The consequent's event must be Skolemized on the trigger occasion — (sk_draw $e) as in the bell/bark exemplar (or (sk_draw $x $e $y) under the strict every-universal reading) — carrying the Agent, Theme sk_mire_essence_1 and (During (sk_draw $e) $e) atoms on that term.",
+    "notes": "Everything else — plain-variable premises, the shared definite constant sk_mire_essence_1 with its typing and 'stored' outside the rule, the genus atom, the 'each' companion and the 1.0/0.9 rule TV — is compliant."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000019",
+   "sentence": "Stored mire-essence will feed lantern lighting.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: lantern_lighting_genus (Inheritance lantern_lighting lighting) (STV 1.0 0.99))",
+    "(: stored_mire_essence_feed_rule (Implication (And (Member $x mire_essence) (Member $x stored)) (And (Member (sk_feed $x) feed) (Agent (sk_feed $x) $x) (Theme (sk_feed $x) lantern_lighting))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000019",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The surface future marker \"will\" is dropped: the conclusion carries no (Future (sk_feed $x)), so the rule reads as an unmarked habitual/dispositional generic rather than the future claim the clause makes."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a generic/dispositional \"will\" over a bare kind subject — the instruction set treats \"will\" as Future on finite clauses but never says whether a kind-level generic's \"will\" is tense-bearing or the unmarked dispositional default"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing is otherwise right: the adjectivally-restricted kind subject (\"stored\") correctly forces the distributing-rule route over the bare kind-relation form, and \"stored\" is correctly kept as a participial adjective rather than lemmatized to store."
+   },
+   "adjudication": {
+    "id": "fict3-000019",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The instruction set maps a finite 'will V' to (Future e) mechanically ('will clear' -> Future; 'never choose ... by feel — read the marker off the clause') and carries tense inside a rule's consequent ('All the students passed' -> (Past (sk_pass $x))), so dropping 'will' turns the stated future claim into an unmarked present habitual the text does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "No dispositional-'will' reading exists: the mechanical finite-'will' -> Future rule is the only licensed treatment, so a dispositional generic 'will' (oil will float) and a genuine prediction both land on (Future e) in the consequent with nothing to tell them apart."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Add (Future (sk_feed $x)) as a conjunct of the rule's consequent, tense riding inside the consequent exactly as (Past (sk_pass $x)) does in the universal examples; the adjectivally-restricted premise, the compound genera and the Theme on the bare-kind object all stand.",
+    "notes": "The distributing-rule route for the adjectivally-restricted mass subject and the participial-adjective treatment of 'stored' are correct."
+   }
+  }
+ ]
+}

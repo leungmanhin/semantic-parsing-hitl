@@ -1,0 +1,109 @@
+{
+ "id": "R3",
+ "rule": "Nightmoths landing on lanterns leave silken threads",
+ "texts": [
+  "When a nightmoth lands on a lantern, the nightmoth leaves silken threads on the lantern.",
+  "Whenever a nightmoth is resting on a lantern, the nightmoth sheds silken threads onto the lantern.",
+  "Every silken thread comes from the underside of a nightmoth."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000009",
+   "sentence": "When a nightmoth lands on a lantern, the nightmoth leaves silken threads on the lantern.",
+   "parse": [
+    "(: nm_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: st_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: st_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: land_leave_rule (Implication (And (Member $e land) (Agent $e $x) (Member $x night_moth) (Location $e $y) (Member $y lantern)) (And (Member (sk_leave $e) leave) (Agent (sk_leave $e) $x) (Patient (sk_leave $e) silken_thread) (Location (sk_leave $e) $y) (During (sk_leave $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000009",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The deposited threads are given `Patient` in the rule's conclusion, but 'leave X on Y' deposits/displaces X without changing it, which the object test — and its 'when the test is unclear, default to Theme' tie-breaker — makes `Theme`."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing (bare 'when' with indefinite participants -> whenever rule, Skolem consequent, During link, STV 1.0 0.9, no QuantifierPhrase) and the compound handling (night_moth genus only; silken_thread genus plus the material-adjective modifier) are correct, as is Location-on-the-event with no position atom for the threads. The bare kind filler `silken_thread` in the role slot is licensed for a non-specific object, though the dependent-existential pattern would instead give a per-occurrence Skolem group."
+   },
+   "adjudication": {
+    "id": "fict3-000009",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'leaves silken threads on the lantern' deposits the threads without creating, destroying, consuming or changing them, so the one yes/no object test ('does the object itself change?') and its 'when the test is unclear, default to Theme' tie-breaker license Theme, not Patient — and the role must be the one a question would rebuild."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "bare-plural object inside a whenever-rule consequent ('leaves silken threads'): the instruction set licenses both a bare kind filler (non-specific object, 'grows wheat') and a per-occurrence Skolem group (dependent existential under a universal), with nothing selecting between them for a generic rule's object"
+    ],
+    "decision": "defect",
+    "defect_summary": "Replace (Patient (sk_leave $e) silken_thread) with (Theme (sk_leave $e) silken_thread); the rest of the rule (bare-'when' whenever routing, Skolem keyed on the trigger $e, During tie, Location on the events only, STV 1.0 0.9, no companion) stands as emitted.",
+    "notes": "The solid-spelling 'nightmoth' decomposed to night_moth with genus moth and the material-adjective fusion silken_thread (genus thread plus exposed modifier silken) both follow Compound concepts."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000010",
+   "sentence": "Whenever a nightmoth is resting on a lantern, the nightmoth sheds silken threads onto the lantern.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: silken_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: silken_thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: nightmoth_rest_sheds (Implication (And (Member $M nightmoth) (Member $L lantern) (Member $e rest) (Experiencer $e $M) (Location $e $L) (Ongoing $e)) (And (Member (sk_shed $e) shed) (Agent (sk_shed $e) $M) (Theme (sk_shed $e) silken_thread) (Goal (sk_shed $e) $L) (During (sk_shed $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000010",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The progressive 'is resting' is one of the four listed reification triggers, so reifying the postural state with Experiencer + Location and marking it Ongoing is licensed, and 'silken' is a material adjective, so the fused silken_thread with both its genus and its exposed modifier genus is correct. The bare-plural object 'silken threads' takes the bare kind filler rather than a per-occurrence Skolem group — licensed as a non-specific object, though the episodic-object line would also permit a group witness."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000011",
+   "sentence": "Every silken thread comes from the underside of a nightmoth.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: thread_from_moth (Implication (Member $x silken_thread) (And (Member (sk_come $x) come) (Theme (sk_come $x) $x) (Source (sk_come $x) (sk_underside $x)) (Member (sk_underside $x) underside) (PartOf (sk_underside $x) (sk_nightmoth $x)) (Member (sk_nightmoth $x) nightmoth))) (STV 1.0 0.9))",
+    "(: thread_q (QuantifierPhrase silken_thread come \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000011",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The every-universal is correctly routed to a distributing Implication with the indefinite nightmoth and its definite underside as dependent Skolem functions of $x (the sanctioned forall-exists shape), Theme for the un-powered 'come' subject, Source for the whence-PP, PartOf for the part-like of-genitive, and a QuantifierPhrase companion in the mandated kind/verb/word shape. Compound handling is right on both sides: solid-spelling nightmoth gets genus moth with the noun modifier unexposed, and material-adjective silken_thread gets both thread and silken."
+   },
+   "adjudication": null
+  }
+ ]
+}

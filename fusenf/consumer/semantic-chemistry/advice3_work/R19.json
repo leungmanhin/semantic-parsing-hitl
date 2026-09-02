@@ -1,0 +1,141 @@
+{
+ "id": "R19",
+ "rule": "Spring tides bloom salt-bloom in the tide-pools",
+ "texts": [
+  "When a spring tide fills the tide-pools, salt-bloom blooms in the tide-pools.",
+  "Whenever a spring tide fills the tide-pools, salt-bloom grows in the tide-pools.",
+  "Salt-bloom is a pale crystalline crust.",
+  "Salt-bloom soon dissolves into the seawater."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000066",
+   "sentence": "When a spring tide fills the tide-pools, salt-bloom blooms in the tide-pools.",
+   "parse": [
+    "(: st_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: tp_grp (GroupOf sk_tidepools_1 tide_pool) (STV 1.0 0.99))",
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: whenever_fill_bloom (Implication (And (Member $t spring_tide) (Member $e fill) (Agent $e $t) (Patient $e sk_tidepools_1)) (And (Member (sk_bloom $e) bloom) (Patient (sk_bloom $e) salt_bloom) (Location (sk_bloom $e) sk_tidepools_1) (During (sk_bloom $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000066",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The consequent fills the undergoer slot of the per-occurrence blooming with the bare kind symbol — `(Patient (sk_bloom $e) salt_bloom)` — so the rule predicates a dated, `During`-anchored event of the kind itself and mints no witness for the salt-bloom that appears; the bare-class-symbol licence is granted only for non-specific/generic OBJECTS ('pays tax', 'grows wheat'), not for the subject/undergoer of an event."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare mass-noun subject inside a whenever-rule consequent ('salt-bloom blooms in ...'): the instruction set says nothing about whether such a subject takes a per-occurrence Skolem witness, a group witness, or the bare kind symbol — the bare-plural episodic rule covers plurals only, and the bare-kind-filler rule covers objects only"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever routing (indefinite 'a spring tide'), the three compound genus atoms with no noun-modifier genus, the definite-plural group witness `sk_tidepools_1` licensed by a top-level `GroupOf` fact so it may appear in the premise, `Patient` for the filled pools, event-side `Location` for 'in the tide-pools', and the `During` tie all follow the instruction set."
+   },
+   "adjudication": {
+    "id": "fict3-000066",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The bare-symbol reservation bars the bare class only for a SPECIFIC DEFINITE individual, the oblique-NP rule keeps a bare mass noun as a constant, and the set's own generic practice puts bare mass subjects in as kind constants (glass, basalt), so a bare mass-noun subject of a per-occurrence consequent is gap territory in which (Patient (sk_bloom $e) salt_bloom) is true of the text and well-typed per the vocabulary — a coverage gap, not a defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "a bare mass-noun subject inside a whenever-rule consequent ('salt-bloom blooms …'): nothing says whether it takes a per-occurrence Skolem witness, a group witness or the bare kind constant — the episodic-bare-plural rule covers plurals and the bare-kind-filler rule covers objects"
+    ],
+    "new_gaps": [],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Whenever routing on the indefinite 'a spring tide', the three genus atoms with noun modifiers unexposed, the top-level GroupOf that licenses sk_tidepools_1 in the premise, Patient for the filled pools, event-side Location, and the During tie all follow the instruction set."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000067",
+   "sentence": "Whenever a spring tide fills the tide-pools, salt-bloom grows in the tide-pools.",
+   "parse": [
+    "(: tide_pool_group (GroupOf sk_tide_pool_1 tide_pool) (STV 1.0 0.99))",
+    "(: spring_tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: spring_tide_fill_bloom_rule (Implication (And (Member $e fill) (Member $s spring_tide) (Agent $e $s) (Patient $e sk_tide_pool_1)) (And (Member (sk_grow $e) grow) (Patient (sk_grow $e) salt_bloom) (Location (sk_grow $e) sk_tide_pool_1) (During (sk_grow $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000067",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever machinery, the definite-plural group witness reused across both clauses, the compound genera (noun modifiers correctly left unexposed) and Location-on-the-event-only all follow the instruction set. The sk_tide_pool_1 constant in the premise is anchored by a top-level GroupOf fact, as the premise rule requires."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000068",
+   "sentence": "Salt-bloom is a pale crystalline crust.",
+   "parse": [
+    "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: crust_genus (Inheritance crystalline_crust crust) (STV 1.0 0.99))",
+    "(: crust_mod (Inheritance crystalline_crust crystalline) (STV 1.0 0.99))",
+    "(: sb_crust (Inheritance salt_bloom crystalline_crust) (STV 1.0 0.99))",
+    "(: sb_pale (Inheritance salt_bloom pale) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000068",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare mass-noun subject with a copular predicate correctly lands on kind-level Inheritance, and the two premodifiers are split the way the adjective+noun rule prescribes -- 'crystalline' fused into a kind with both genus and modifier decomposition, colour-like 'pale' left as its own separate property rather than fused. The definitional 1.0/0.99 on sb_pale is the one arguable point (a colour property of a kind is the prompt's own paradigm empirical case, 'all swans are white' at 0.9), but reading the whole predicate as the definiens of a defined substance makes 0.99 defensible."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000069",
+   "sentence": "Salt-bloom soon dissolves into the seawater.",
+   "parse": [
+    "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: seawater_type (Member sk_sea_water_1 sea_water) (STV 1.0 0.99))",
+    "(: saltbloom_dissolves (Implication (Member $x salt_bloom) (And (Member (sk_dissolve $x) dissolve) (Patient (sk_dissolve $x) $x) (Goal (sk_dissolve $x) sk_sea_water_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000069",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "temporal-proximity / imminence adverb ('soon' on a generic clause) — it is neither a deictic time constant, a Manner adverb, a Duration, nor a frequency term, so there is no licensed slot and the parse correctly drops it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-subject verbal generic correctly routed to a distributing rule at 0.9/0.9 with the change-of-state subject as Patient; 'into' takes Goal per the motion-path rule (this is dispersal into a medium, not the 'turned into' change-of-kind case that bars a spatial Goal)."
+   },
+   "adjudication": null
+  }
+ ]
+}

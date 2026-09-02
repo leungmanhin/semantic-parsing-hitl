@@ -1,0 +1,4 @@
+(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))
+(: seawater_type (Member sk_sea_water_1 sea_water) (STV 1.0 0.99))
+(: saltbloom_dissolves (Implication (Member $x salt_bloom) (And (Member (sk_dissolve $x) dissolve) (Patient (sk_dissolve $x) $x) (Goal (sk_dissolve $x) sk_sea_water_1))) (STV 0.9 0.9))

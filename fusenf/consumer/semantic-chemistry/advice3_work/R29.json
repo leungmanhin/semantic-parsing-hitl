@@ -1,0 +1,236 @@
+{
+ "id": "R29",
+ "rule": "Large feather stores enable safe Sunken-Cove tending",
+ "texts": [
+  "When the feather store at the Watch is large, the Keepers tend the Sunken Cove lanterns safely in winter.",
+  "When the Watch's feather store is large, the Keepers tend the Sunken Cove lanterns safely.",
+  "The Council issues feather rations to the Sunken-Cove station in winter.",
+  "When the feather store is small, wraith risk grows."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000101",
+   "sentence": "When the feather store at the Watch is large, the Keepers tend the Sunken Cove lanterns safely in winter.",
+   "parse": [
+    "(: store_type5 (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+    "(: store_genus5 (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: store_loc (LocatedIn sk_store_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: lanterns_group (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: lanterns_poss (Possession sk_lanterns_1 sunken_cove) (STV 1.0 0.99))",
+    "(: when_large_tend (Implication (Member sk_store_1 large) (And (Member sk_tend_1 tend) (Agent sk_tend_1 sk_keepers_1) (Patient sk_tend_1 sk_lanterns_1) (Manner sk_tend_1 safely) (Time sk_tend_1 winter))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000101",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "\"Sunken Cove\" carries its kind word inside the name, so the Kestrel-River / Brindle-estuary rule licenses the type atom (Member sunken_cove cove), which the parse omits (only the Name atom is emitted)."
+     },
+     {
+      "statement": 8,
+      "issue": "\"the Keepers tend the ... lanterns\" is a distributive predicate over a definite plural group, so the group event should be accompanied by the per-member (Implication (PartOf $x sk_keepers_1) ...) distribution rule, which is absent."
+     },
+     {
+      "statement": 8,
+      "issue": "The consequent mints the constant event sk_tend_1 rather than a per-occurrence Skolem term anchored to its trigger, so the regularity derives one tending overall instead of one per occasion and carries no During link."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a standing (present-tense, non-narrative) conditional generalization whose antecedent is a copular state over definite/specific referents — the 'Bare when P, Q routes by P's referents' rule offers only the whenever machinery (generic/indefinite participants, per-occurrence Skolem + During) or two plain ordered events (definite participants in a one-off narrative), and neither branch fits",
+     "how a definite plural's per-member distribution rule should be nested when the group event sits inside another rule's conclusion — nesting is specified only for sealed complements"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Keepers' is treated as a definite plural group rather than the capitalized-plural Name-only individual of the 'the Wrens' rule; the label transparently names the members' kind here, so GroupOf is defensible, but the two rules genuinely compete. The Sunken-Cove-lanterns handling (head parsed normally + opaque Possession + Name on the multi-word name) and 'at the Watch' as LocatedIn with no Name atom are both exactly right; 'tend' as Patient rather than Theme is a boundary call."
+   },
+   "adjudication": {
+    "id": "fict3-000101",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'State the entity's kind in one ordinary type atom — whether the kind word sits inside the name or beside it' (the Kestrel River exemplar) makes (Member sunken_cove cove) a required atom, and a licensed type atom left out makes two faithful parses differ."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The omission stands — a distributive predicate over a definite plural group 'adds the per-member rule' beside the group event and dropping it is the 'weaker claim' the instruction set names — but the reviewer's bare (Implication (PartOf $x sk_keepers_1) …) would shed the antecedent, and no nesting form for a rule consequent is stated; the licensed composition is a co-premise rule."
+     },
+     {
+      "index": 2,
+      "verdict": "refute",
+      "reason": "The premise is a ground copular atom with no occurrence variable for a whenever Skolem to take, ground Implications are licensed precedent (the Xor exclusivity rules), and a tenseless consequent event is by the status-predicate default the habitual/dispositional reading — so the constant sk_tend_1 is faithful; per-occasion individuation would need a reified state trigger no rule licenses (gap below)."
+     }
+    ],
+    "gaps_confirmed": [
+     "A standing (habitual-present) conditional whose antecedent is a copular state over definite referents: the 'bare when P, Q' rule offers only the whenever machinery (generic/indefinite event trigger) or two ordered one-off events, and neither fits; a per-occasion form would need the state trigger reified as a rule premise.",
+     "How a definite plural's per-member distribution rule combines with an enclosing conditional: nesting is specified only for seals; the natural licensed form is the antecedent as a co-premise beside (PartOf $x <group>)."
+    ],
+    "new_gaps": [
+     "A capitalized plural role-noun label ('the Keepers') whose word transparently names the members' kind: the 'the Wrens' Name-only rule and the definite-plural GroupOf route compete with no tiebreaker.",
+     "A season as a bare Time term ('in winter'): only deictic season forms (last_spring) and day-parts are listed as bare constants; the parse's (Time e winter) is an improvisation."
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0: emit (Member sunken_cove cove) beside the Name atom. Issue 1: add the member rule conditioned on the antecedent — (Implication (And (Member sk_store_1 large) (PartOf $x sk_keepers_1)) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Patient (sk_tend $x) sk_lanterns_1) (Manner (sk_tend $x) safely) (Time (sk_tend $x) winter))) (STV 1.0 0.9) — beside the group-event rule.",
+    "notes": "The Sunken-Cove-lanterns handling (head parsed normally, opaque Possession, one Name), 'at the Watch' as a capitalized common noun with LocatedIn, and 'safely' as Manner are all compliant; 'tend' as Patient is a boundary call the Theme-default would resolve the other way."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000102",
+   "sentence": "When the Watch's feather store is large, the Keepers tend the Sunken Cove lanterns safely.",
+   "parse": [
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: store_type (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: store_poss (Possession sk_store_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: store_large_flat (Member sk_store_1 large) (STV 1.0 0.99))",
+    "(: large_state (Member sk_large_1 large) (STV 1.0 0.99))",
+    "(: large_exp (Experiencer sk_large_1 sk_store_1) (STV 1.0 0.99))",
+    "(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: lanterns_group (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: lanterns_poss (Possession sk_lanterns_1 sunken_cove) (STV 1.0 0.99))",
+    "(: tend_event (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: tend_agent (Agent sk_tend_1 sk_keepers_1) (STV 1.0 0.99))",
+    "(: tend_theme (Theme sk_tend_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: tend_manner (Manner sk_tend_1 safely) (STV 1.0 0.99))",
+    "(: tend_during (During sk_tend_1 sk_large_1) (STV 1.0 0.99))",
+    "(: keepers_tend_rule (Implication (PartOf $x sk_keepers_1) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Theme (sk_tend $x) sk_lanterns_1) (Manner (sk_tend $x) safely))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000102",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "the antecedent of the 'when'-conditional is asserted as a standing fact at 1.0/0.99 -- the flat (Member sk_store_1 large) plus the reified sk_large_1 state claim the Watch's feather store IS large, which the sentence only supposes."
+     },
+     {
+      "statement": 12,
+      "issue": "the consequent is likewise asserted outright (tend event, Agent, Theme, Manner), so a present-tense habitual regularity is recorded as two standing facts joined by During and the conditional force of 'when' is lost entirely; the instruction set's own 'when' paragraph forbids leaving a genuine regularity unquantified."
+     },
+     {
+      "statement": 17,
+      "issue": "the per-member distribution rule fires at strength 1.0 with no conditioning at all -- it drops even the During sk_large_1 link the group event carries, so each Keeper's tending is unconditional on the parse's own analysis."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a habitual / generic 'when P, Q' whose participants are all DEFINITE: the 'Bare when P, Q routes by P's referents' rule offers only (a) generic or indefinite participants -> the whenever occurrence-rule, and (b) definite/specific participants IN A ONE-OFF NARRATIVE -> two plain events ordered by During/Before; a present-tense regularity over definite individuals ('the Watch's feather store', 'the Keepers', 'the Sunken Cove lanterns') falls between the two boxes, and the whenever machinery's premises are built from plain variables that a definite state clause supplies nowhere",
+     "a capitalized plural kind-word label with no name-hood signal ('the Keepers'): Names and casing declares the capitalized-common-noun default 'singular-collective only' and makes a capitalized plural kind-word label referring as a name a Name-only individual with no GroupOf, but supplies no test for when such a plural is 'referring as a name'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The NP work is exactly to spec: 'the Watch' as a capitalized singular collective with typing and no Name atom, 'Sunken Cove' as one opaque multi-word name symbol with a separate (Member sunken_cove cove) type atom and no modifier genus, the proper-noun premodifier linked to the lantern group by opaque Possession, feather_store fused with genus store and its noun modifier unexposed, and 'safely' kept in surface adverb form under Manner."
+   },
+   "adjudication": {
+    "id": "fict3-000102",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The flat (Member sk_store_1 large) and the reified sk_large_1 state assert at 1.0/0.99 an antecedent the sentence only conditions on — 'Assert only what the text states' — and the two-plain-events route they imitate is licensed only for definite participants 'in a one-off narrative', not for a present-tense regularity, which the 'when' paragraph says must not be left unquantified."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The status-less tend bundle is a standing habitual ('the Keepers tend the lanterns safely') whose only restriction, the During link, anchors on a state the parse itself asserts unconditionally, so the 'when' qualifier is effectively dropped — 'a stated restriction, hedge or qualifier is never silently dropped: omitting it widens the claim'."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "The per-member rule asserts every Keeper's safe tending at strength 1.0 with no condition at all — not even the During anchor the group event carries — widening the claim beyond the text (Core patterns) and leaving the regularity unquantified for each member."
+     }
+    ],
+    "gaps_confirmed": [
+     "a present-tense habitual 'when P, Q' over all-definite participants: the routing paragraph keys on indefinite participants (whenever rule) versus definites in a one-off narrative (two events) and leaves this case unrouted by its letter, although the 'Every time the bell rings' example (definites typed at top level, variable over occurrences) and the indicative-conditional Implication rule supply the form",
+     "no test for when a capitalized plural kind-word label ('the Keepers') refers as a name (Name-only individual) versus a definite plural (GroupOf)"
+    ],
+    "new_gaps": [
+     "a copular-state trigger ('when X is P, ...') for a whenever rule: the premise must be a reified state pattern with a plain variable, yet a later flat (Member sk_store_1 large) would never match it — no premise form or dual-emit requirement is stated for copular triggers",
+     "a distributive predicate over a definite group inside a whenever-rule consequent: no stated home for the per-member (PartOf $x <group>) rule inside another rule's conclusion"
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0: the antecedent belongs only in a rule premise — sk_watch_1, sk_store_1 and their Possession stay at top level as presupposed definites, the large-state becomes the premise pattern (And (Member $s large) (Experiencer $s sk_store_1)), and no flat or reified large-state is asserted. Issue 1: the consequent belongs in that rule's conclusion as the per-occurrence Skolem event (sk_tend $s) with Agent sk_keepers_1, Theme sk_lanterns_1, Manner safely and (During (sk_tend $s) $s), at (STV 1.0 0.9), with no standing tend bundle. Issue 2: the per-member distribution must carry the same conditioning, but the instruction set states no form for a (PartOf $x <group>) rule nested inside another rule's conclusion, so no fully compliant per-member form is licensed (filed as a gap).",
+    "notes": "The NP work (the Watch as an un-Named capitalized collective, feather_store with genus store and its noun modifier unexposed, Sunken Cove as one name plus its kind atom, Possession for the proper-noun premodifier, surface 'safely' under Manner) is to spec."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000103",
+   "sentence": "The Council issues feather rations to the Sunken-Cove station in winter.",
+   "parse": [
+    "(: council_m (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: station_m (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: station_poss (Possession sk_station_1 sunken_cove) (STV 1.0 0.99))",
+    "(: sunken_cove_name (Name sunken_cove \"Sunken-Cove\") (STV 1.0 0.99))",
+    "(: feather_ration_g (Inheritance feather_ration ration) (STV 1.0 0.99))",
+    "(: e_issue (Member sk_issue_1 issue) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_issue_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_issue_1 feather_ration) (STV 1.0 0.99))",
+    "(: e_recipient (Recipient sk_issue_1 sk_station_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_issue_1 winter) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000103",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the proper-noun-premodifier pattern exactly (head noun typed on its own, opaque Possession to the named entity, Name string not absorbing the head), 'the Council' correctly stays a capitalized common noun with no Name and no GroupOf, and the habitual present correctly carries no status atom. One tension worth noting: the Kestrel-River rule licenses a type atom when a kind word sits inside the name, so (Member sunken_cove cove) is arguably due, though the Northgate premodifier exemplar emits no such atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000104",
+   "sentence": "When the feather store is small, wraith risk grows.",
+   "parse": [
+    "(: fs_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: fs_typ (Member sk_featherstore_1 feather_store) (STV 1.0 0.99))",
+    "(: wr_genus (Inheritance wraith_risk risk) (STV 1.0 0.99))",
+    "(: wr_typ (Member sk_wraithrisk_1 wraith_risk) (STV 1.0 0.99))",
+    "(: whenever_small_grow (Implication (And (Member $x small) (Experiencer $x sk_featherstore_1)) (And (Member (sk_grow $x) grow) (Theme (sk_grow $x) sk_wraithrisk_1) (During (sk_grow $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000104",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a generic/habitual bare 'when P, Q' whose P has a DEFINITE specific participant ('when the feather store is small'): the routing rule offers only two branches — generic/indefinite participants take the whenever rule, definite/specific participants take two plain events 'in a one-off narrative' — and this is a standing regularity over a specific individual, which falls into neither",
+     "a conditional whose antecedent is a bare COPULAR state: the rule form needs a state variable to key the Skolem consequent and the `During` tie on, but a bare copular clause emits only the flat `(Member <subj> <prop>)` and reifies only on one of the four listed triggers, so a premise of the shape `(And (Member $x small) (Experiencer $x sk_featherstore_1))` can never be matched by an ordinarily-parsed sentence — the instruction set names no carrier for this",
+     "a bare abstract/mass noun subject with no determiner ('wraith risk grows'): no rule says whether it takes a witness, a bare kind symbol, or `Inheritance`"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`Theme` for the scalar-change subject of 'grows' is exactly what the intransitive-subject rule prescribes, and both compounds carry their genus with the noun modifiers correctly unexposed. Worth noting for adjudication: `(Member sk_wraithrisk_1 wraith_risk)` is asserted unconditionally at top level although the noun is bare and its existence is not presupposed the way a definite's is."
+   },
+   "adjudication": null
+  }
+ ]
+}

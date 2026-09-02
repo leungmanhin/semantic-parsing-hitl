@@ -1,0 +1,8 @@
+(: keepers_group (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: harvest_type (Member sk_harvest_1 salt_bloom_harvest) (STV 1.0 0.99))
+(: harvest_genus (Inheritance salt_bloom_harvest harvest) (STV 1.0 0.99))
+(: time_event (Member sk_time_1 time) (STV 1.0 0.99))
+(: time_agent (Agent sk_time_1 sk_group_1) (STV 1.0 0.99))
+(: time_patient (Patient sk_time_1 sk_harvest_1) (STV 1.0 0.99))
+(: time_goal (Goal sk_time_1 new_moon_spring_tide) (STV 1.0 0.99))
+(: keepers_time_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_time $x) time) (Agent (sk_time $x) $x) (Patient (sk_time $x) sk_harvest_1) (Goal (sk_time $x) new_moon_spring_tide))) (STV 1.0 0.9))

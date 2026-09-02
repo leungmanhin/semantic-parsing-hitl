@@ -1,0 +1,3 @@
+(: northcove_name (Name northcove "Northcove") (STV 1.0 0.99))
+(: lantern_go_out_q (QuantifierPhrase lantern go_out "never") (STV 1.0 0.99))
+(: northcove_lantern_no_go_out (Implication (And (Member $x lantern) (Possession $x northcove)) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (Member (sk_wind $x) wind) (Member (sk_wind $x) cold) (Location (sk_go_out $x) (sk_wind $x)))) (STV 0.0 0.9))

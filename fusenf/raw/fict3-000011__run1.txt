@@ -1,0 +1,5 @@
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))
+(: thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))
+(: thread_from_moth (Implication (Member $x silken_thread) (And (Member (sk_come $x) come) (Theme (sk_come $x) $x) (Source (sk_come $x) (sk_underside $x)) (Member (sk_underside $x) underside) (PartOf (sk_underside $x) (sk_nightmoth $x)) (Member (sk_nightmoth $x) nightmoth))) (STV 1.0 0.9))
+(: thread_q (QuantifierPhrase silken_thread come "every") (STV 1.0 0.99))

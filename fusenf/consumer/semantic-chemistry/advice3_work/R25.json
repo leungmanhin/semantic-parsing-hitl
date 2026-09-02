@@ -1,0 +1,130 @@
+{
+ "id": "R25",
+ "rule": "Sustained solo tending completes apprenticeship",
+ "texts": [
+  "When an apprentice's solo count is large, the Council invests the apprentice as a Keeper.",
+  "When a lantern of an apprentice fails, that apprentice's solo count resets.",
+  "When an apprentice's lantern dims, that apprentice's solo count resets."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000088",
+   "sentence": "When an apprentice's solo count is large, the Council invests the apprentice as a Keeper.",
+   "parse": [
+    "(: solo_count_genus (Inheritance solo_count count) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: apprentice_large_count_invested (Implication (And (Member $A apprentice) (Member $S solo_count) (Possession $S $A) (Member $S large)) (And (Member (sk_invest $A) invest) (Agent (sk_invest $A) sk_council_1) (Patient (sk_invest $A) $A) (Member (sk_keeper $A) keeper) (Experiencer (sk_keeper $A) $A) (Member $A keeper) (Result (sk_invest $A) (sk_keeper $A)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000088",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a 'when P, Q' occurrence rule whose trigger clause P is COPULAR (a state with no event witness): the whenever machinery mandates tying the Skolem consequent to its trigger with During, but a bare copular clause is not one of the licensed state-reification triggers, so there is no eventuality to attach it to and the parse has no way to emit the mandated link"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Council' is correctly kept a common noun with no Name atom (capitalized bare kind word as the only label), the possessive 'an apprentice's solo count' correctly takes the opaque Possession rather than PartOf, and 'invests ... as a Keeper' follows the State-result shape (reified keeper state with Experiencer, the flat copular half, and the Result link). The solo_count modifier is correctly unexposed since 'solo' fails the predication test."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000089",
+   "sentence": "When a lantern of an apprentice fails, that apprentice's solo count resets.",
+   "parse": [
+    "(: solocount_genus (Inheritance solo_count count) (STV 1.0 0.99))",
+    "(: when_fail_reset (Implication (And (Member $x fail) (Patient $x $lan) (Member $lan lantern) (Possession $lan $ap) (Member $ap apprentice)) (And (Member (sk_reset $x) reset) (Theme (sk_reset $x) (sk_count $ap)) (Member (sk_count $ap) solo_count) (Possession (sk_count $ap) $ap) (During (sk_reset $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000089",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The consequent gives the resetting count Theme ((Theme (sk_reset $x) (sk_count $ap))), but 'reset' is not one of the listed change-of-value verbs and states no figure, so the intransitive undergoer test (the non-physical change-of-state case, like 'expire / lapse') points to Patient — the same role the parse correctly gives the failing lantern."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is right: whenever routing at 1.0/0.9, Patient for the failing lantern, both genitives as opaque Possession with the possessed first, 'that apprentice' bound to the premise variable, the apprentice-keyed Skolem count, and genus (Inheritance solo_count count) with the non-predicable modifier 'solo' unexposed."
+   },
+   "adjudication": {
+    "id": "fict3-000089",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "'A scalar-change subject rides Scalar change and is likewise Theme' — a count whose value resets is a quantity undergoing a change of value (the 'temperature fell' precedent, (Theme sk_fall_1 sk_temperature_1)), not a term ceasing to be valid like expire/lapse, and the change-of-value verb list is illustrative rather than closed, so Theme is licensed."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A figure-less change-of-value verb on a counter ('resets', also 'clears', 'zeroes') sits between the change-of-state undergoer provision (Patient) and the scalar-change provision (Theme) with no stated tie-break; two faithful parsers can role it either way."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The indefinite-triggered when-rule, Patient on the failing lantern, both genitives as opaque Possession (possessed first), 'that apprentice' bound to the premise variable, the apprentice-keyed Skolem count and the solo_count genus with the noun modifier unexposed all follow the instruction set."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000090",
+   "sentence": "When an apprentice's lantern dims, that apprentice's solo count resets.",
+   "parse": [
+    "(: sc_genus (Inheritance solo_count count) (STV 1.0 0.99))",
+    "(: sc_mod (Inheritance solo_count solo) (STV 1.0 0.99))",
+    "(: whenever_lantern_dims_reset (Implication (And (Member $p apprentice) (Member $l lantern) (Possession $l $p) (Member $e1 dim) (Patient $e1 $l)) (And (Member (sk_solo_count $p) solo_count) (Possession (sk_solo_count $p) $p) (Member (sk_reset $e1) reset) (Patient (sk_reset $e1) (sk_solo_count $p)) (During (sk_reset $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000090",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "`(Inheritance solo_count solo)` exposes a modifier that fails the predication test the instruction set makes decisive (*\"the count is solo\" — `solo` here names what is counted, a noun-style modifier), so the modifier genus should have been suppressed and `solo` left inside the symbol; the atom asserts a property of the kind the text does not state."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A presupposed definite NP appearing only in the CONSEQUENT of a when/whenever rule ('that apprentice's solo count'): the whenever machinery describes only the response event as a per-occurrence Skolem, and gives no home for the consequent-side definite's typing/possessor atoms — putting them in the premise would stop the rule firing, while the parse's route (a Skolem-function entity `(sk_solo_count $p)` typed and possessed inside the conclusion) makes the rule derive the solo count's existence rather than presuppose it."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else checks out: indefinite trigger participants as plain variables, Possession (not PartOf) for the lantern, Patient for the internal-change-of-state 'dims' and for 'resets', 'that apprentice' bound back to $p, During link, genus `(Inheritance solo_count count)`, no tense, STV 1.0/0.9."
+   },
+   "adjudication": {
+    "id": "fict3-000090",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Modifier-genus exposure is 'determined, not optional' and keyed to the predication test ('can the modifier be predicated of the thing?'); 'solo' in 'solo count' names what is counted — *'the count is solo' fails exactly as *'the secretary is assistant' does — so (Inheritance solo_count solo) asserts a kind-level property the text does not state, and a noun-style modifier is 'never exposed'."
+     }
+    ],
+    "gaps_confirmed": [
+     "a presupposed definite bound to a rule variable ('that apprentice's solo count') appearing only in a whenever-rule consequent: the machinery gives its typing/possessor atoms no home — top level cannot depend on $p, the premise would block firing, and the Skolem-function entity in the conclusion makes the rule derive the count's existence instead of presupposing it"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Issue 0: keep the fused solo_count with its head genus (Inheritance solo_count count) only and omit (Inheritance solo_count solo); the rest of the parse (plain-variable trigger with the Possession restriction as a premise conjunct, Patient for dim and reset, the During-linked Skolem reset event, STV 1.0 0.9) is the compliant whenever form.",
+    "notes": "The Skolem-function entity (sk_solo_count $p) for the variable-bound definite is the ∀∃ dependent-existential shape and the best available improvisation — a gap, not a defect."
+   }
+  }
+ ]
+}

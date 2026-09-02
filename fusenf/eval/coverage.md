@@ -11,6 +11,7 @@ State vocabulary (#51 reshape): never-parsed / clean-unreviewed / verified (revi
 | tierD | measurement (M2) | 250 | 0 | 0 (0%) | 86 | 0 | 0 | 164 | 0 | — | bb7c4b71×250 |
 | fiction | external consumer (v1 rules) | 138 | 138 | 0 (0%) | 0 | 131 | 7 | 0 | 0 | — | 2ed18b93×138 |
 | fiction2 | external consumer (v2 texts) | 109 | 109 | 70 (64%) | 70 | 0 | 0 | 39 | 0 | — | 2ed18b93×109 |
+| fiction3 | external consumer (v3 texts) | 108 | 108 | 82 (76%) | 82 | 0 | 0 | 26 | 0 | — | 2ed18b93×108 |
 | fixpack | validation | 7 | 0 | 0 (0%) | 0 | 7 | 0 | 0 | 0 | — | f6448eac×7 |
 | fixpack3 | validation | 10 | 0 | 0 (0%) | 0 | 10 | 0 | 0 | 0 | — | 2aa57fa8×10 |
 | fixpack31 | validation | 4 | 0 | 0 (0%) | 0 | 4 | 0 | 0 | 0 | — | bb7c4b71×4 |

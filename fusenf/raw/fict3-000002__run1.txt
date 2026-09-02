@@ -1,0 +1,3 @@
+(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))
+(: lantern_burn_gives_light (Implication (And (Member $L lantern) (Member $e burn) (Agent $e $L) (Patient $e mire_essence)) (And (Member (sk_give $e) give) (Agent (sk_give $e) $L) (Theme (sk_give $e) mist_light) (During (sk_give $e) $e))) (STV 1.0 0.9))

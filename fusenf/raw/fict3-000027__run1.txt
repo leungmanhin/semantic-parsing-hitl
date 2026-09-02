@@ -1,0 +1,5 @@
+(: skycat_hunt_flee_rule (Implication (And (Member $hunt hunt) (Agent $hunt $skycat) (Member $skycat sky_cat) (Location $hunt $lrow) (Member $lrow lantern_row) (Member $survive survive) (Agent $survive $moth) (Member $moth nightmoth) (Theme $survive $hunt)) (And (Member (sk_flee $hunt $moth) flee) (Agent (sk_flee $hunt $moth) $moth) (Goal (sk_flee $hunt $moth) (sk_lantern $hunt $moth)) (Member (sk_lantern $hunt $moth) lantern) (Member (sk_lantern $hunt $moth) dim) (During (sk_flee $hunt $moth) $hunt))) (STV 1.0 0.9))
+(: nightmoth_flee_q (QuantifierPhrase nightmoth flee "each") (STV 1.0 0.99))
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))

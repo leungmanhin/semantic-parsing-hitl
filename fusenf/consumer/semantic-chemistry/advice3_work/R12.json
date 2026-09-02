@@ -1,0 +1,150 @@
+{
+ "id": "R12",
+ "rule": "Dead lanterns at the Sunken Cove raise wraiths",
+ "texts": [
+  "When a lantern at the Sunken Cove dies before dawn, a wraith emerges from the cove water.",
+  "Whenever a lantern at the Sunken Cove goes out at night, a wraith rises from the cove's water.",
+  "Lanterns away from the Sunken Cove do not raise wraiths.",
+  "The Sunken Cove is the village's drowned graveyard."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000040",
+   "sentence": "When a lantern at the Sunken Cove dies before dawn, a wraith emerges from the cove water.",
+   "parse": [
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: cove_typ (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: water_typ (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: water_loc (LocatedIn sk_water_1 sunken_cove) (STV 1.0 0.99))",
+    "(: lantern_die_wraith_rule (Implication (And (Member $x lantern) (LocatedIn $x sunken_cove) (Member $e die) (Patient $e $x) (TimeAtMost $e dawn)) (And (Member (sk_emerge $x) emerge) (Member (sk_wraith $x) wraith) (Agent (sk_emerge $x) (sk_wraith $x)) (Source (sk_emerge $x) sk_water_1) (During (sk_emerge $x) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000040",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The noun-noun compound 'the cove water' is encoded as spatial containment (LocatedIn sk_water_1 sunken_cove), but Compound concepts licenses only fusion into cove_water with genus water, or — on the possessor/whole reading — a PartOf link; no word in the text supplies a containment preposition."
+     },
+     {
+      "statement": 4,
+      "issue": "(sk_emerge $x) and (sk_wraith $x) are Skolem functions of the lantern alone while the rule also quantifies the dying event $e, so two deaths of one lantern collapse onto a single emerge event asserted During both, instead of the per-occurrence Skolem the whenever machinery specifies."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The name/kind split for 'the Sunken Cove' (one opaque symbol, one Name atom, kind stated separately, no modifier genus), LocatedIn for the containment 'at', (TimeAtMost $e dawn) for 'before dawn', Patient for the change-of-state 'dies', and the dependent-existential wraith witness all follow the instruction set exactly."
+   },
+   "adjudication": {
+    "id": "fict3-000040",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "With no containment preposition in 'the cove water', Compound concepts licenses only fusion (`cove_water` + genus `water`) or, on the possessor/whole reading the anaphoric 'the cove' forces, `(PartOf sk_water_1 sunken_cove)`; `LocatedIn` is 'containment ONLY' for a stated in / at / inside / within, so the parse asserts a head the words do not license."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The whenever machinery mints the response as a Skolem event per occurrence and a dependent existential must be a function of every scoping universal, so `(sk_emerge $x)` / `(sk_wraith $x)` indexed by the lantern alone collapse the emergences after distinct deaths of one lantern into a single event and a single wraith `During` both, which the text does not state."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "the PartOf-vs-LocatedIn boundary for a mass that constitutes a named geographic feature ('the cove water'): Compound concepts gives PartOf for the possessor/whole reading while 'a place inside a place is LocatedIn, never PartOf' pulls toward containment — a stated line would remove the pull"
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0: attach the water by the possessor/whole link — `(Member sk_water_1 water) (PartOf sk_water_1 sunken_cove)` — in place of `LocatedIn`; issue 1: Skolemize the emergence and the wraith on the death occurrence as well as the lantern — `(sk_emerge $x $e)` and `(sk_wraith $x $e)` — with the consequent's atoms rebuilt on those terms.",
+    "notes": "The name/kind split for 'the Sunken Cove', `LocatedIn` for the lantern's 'at', `(TimeAtMost $e dawn)`, `Patient` for the dying lantern and `Source` for 'from the cove water' all follow the instruction set."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000041",
+   "sentence": "Whenever a lantern at the Sunken Cove goes out at night, a wraith rises from the cove's water.",
+   "parse": [
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: water_type (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: water_part (PartOf sk_water_1 sunken_cove) (STV 1.0 0.99))",
+    "(: lantern_wraith_rule (Implication (And (Member $x go_out) (Patient $x $y) (Member $y lantern) (LocatedIn $y sunken_cove) (Time $x night)) (And (Member (sk_rise $x) rise) (Agent (sk_rise $x) (sk_wraith $x)) (Member (sk_wraith $x) wraith) (Source (sk_rise $x) sk_water_1) (During (sk_rise $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000041",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule shape, the During tie, the per-occurrence Skolem wraith, LocatedIn for 'at', go_out kept whole with no genus, and the Sunken Cove name plus separate kind atom all follow the instruction set; premises contain no Skolem terms and sk_water_1 is asserted top-level. 'the cove's water' as PartOf rather than Possession is the part/component branch of the genitive test and is defensible."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000042",
+   "sentence": "Lanterns away from the Sunken Cove do not raise wraiths.",
+   "parse": [
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: lanterns_no_raise (Implication (And (Member $x lantern) (AwayFrom $x sunken_cove)) (And (Member (sk_raise $x) raise) (Agent (sk_raise $x) $x) (Patient (sk_raise $x) wraith))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000042",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare-plural kind subject restricted by a locative PP ('lanterns away from the Sunken Cove') - the override that forces the distributing-rule route instead of a kind-level relation is stated only for an ADJECTIVALLY-restricted kind subject"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "AwayFrom is the licensed multi-word surface-preposition head, and the strength-0.0 distributing rule with no QuantifierPhrase companion is what the negated verbal generic prescribes. The name takes one Name atom plus the kind atom read off 'Cove', with no modifier genus for 'Sunken'."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000043",
+   "sentence": "The Sunken Cove is the village's drowned graveyard.",
+   "parse": [
+    "(: sc_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sc_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: vil_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: sc_grave (Member sunken_cove graveyard) (STV 1.0 0.99))",
+    "(: sc_poss (Possession sunken_cove sk_village_1) (STV 1.0 0.99))",
+    "(: sc_drowned (Member sunken_cove drowned) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000043",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "equative / identity copula with a definite predicate nominal ('X is the Y of Z'): the instruction set covers only 'X is a/an N', so the identity and uniqueness of 'the village's ... graveyard' have no carrier and survive only as ordinary property atoms on the subject"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name handling is right — one opaque symbol, one Name atom, the kind word inside the name licensing (Member sunken_cove cove), and no `sunken` modifier atom — and 'drowned' correctly stays a separate participial-adjective atom rather than fusing into a compound. Flattening the predicate nominal onto the subject symbol follows the 'the museum IS the room' precedent, and Possession rather than PartOf for the genitive is the licensed default."
+   },
+   "adjudication": null
+  }
+ ]
+}

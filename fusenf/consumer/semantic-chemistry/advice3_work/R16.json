@@ -1,0 +1,91 @@
+{
+ "id": "R16",
+ "rule": "Cold winds extinguish unprepared lanterns",
+ "texts": [
+  "Whenever a cold wind blows off the sea at night, that wind extinguishes unprepared lanterns.",
+  "When a cold wind strikes the Cliff Path at night, unprepared lanterns go out.",
+  "Lanterns in shielded coves stay safe from cold winds."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000056",
+   "sentence": "Whenever a cold wind blows off the sea at night, that wind extinguishes unprepared lanterns.",
+   "parse": [
+    "(: sea_type (Member sk_sea_1 sea) (STV 1.0 0.99))",
+    "(: wind_extinguish_rule (Implication (And (Member $b blow) (Patient $b $w) (Member $w wind) (Member $w cold) (Source $b sk_sea_1) (Time $b night) (Member $x lantern) (Member $x unprepared)) (And (Member (sk_extinguish $b $x) extinguish) (Agent (sk_extinguish $b $x) $w) (Patient (sk_extinguish $b $x) $x) (During (sk_extinguish $b $x) $b))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000056",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "adjectivally restricted bare-plural OBJECT inside a generic / whenever rule ('extinguishes unprepared lanterns'): the bare-kind filler cannot carry 'unprepared', the group-witness route is specified for episodic clauses only, and the universal-over-objects premise the parse used is licensed nowhere"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles are doctrine-correct throughout - Patient for the intransitive wind as a natural force, Agent for the transitive wind, Patient for the extinguished lantern - and 'that wind' correctly binds the premise variable rather than minting a new witness. The two-universal premise with (sk_extinguish $b $x) is a reasonable extension of the forall-forall shape but is itself the unlicensed part."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000057",
+   "sentence": "When a cold wind strikes the Cliff Path at night, unprepared lanterns go out.",
+   "parse": [
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: wind_lantern_rule (Implication (And (Member $e strike) (Agent $e $w) (Member $w wind) (Member $w cold) (Theme $e cliff_path) (Time $e night) (Member $l lantern) (Member $l unprepared)) (And (Member (sk_go_out $e $l) go_out) (Patient (sk_go_out $e $l) $l) (During (sk_go_out $e $l) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000057",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule routing, the Cliff Path name plus its kind atom, the day-part `(Time $e night)`, Agent for the inanimate transitive subject, the phrasal verb kept whole as `go_out` with no genus or synonym, Patient for the extinguishing lantern, and the adjectivally-restricted 'unprepared lanterns' as a second premise universal with a two-variable Skolem event are all per doctrine. No location is invented for the lanterns, correctly — the text states none."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000058",
+   "sentence": "Lanterns in shielded coves stay safe from cold winds.",
+   "parse": [
+    "(: shieldedcove_genus (Inheritance shielded_cove cove) (STV 1.0 0.99))",
+    "(: shieldedcove_mod (Inheritance shielded_cove shielded) (STV 1.0 0.99))",
+    "(: coldwind_genus (Inheritance cold_wind wind) (STV 1.0 0.99))",
+    "(: coldwind_mod (Inheritance cold_wind cold) (STV 1.0 0.99))",
+    "(: safefromcoldwind_genus (Inheritance safe_from_cold_wind safe) (STV 1.0 0.99))",
+    "(: safefromcoldwind_arg (From safe_from_cold_wind cold_wind) (STV 1.0 0.99))",
+    "(: lantern_safe_cond (ConditionalProperty lantern safe_from_cold_wind shielded_cove) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000058",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "continuation copular (\"stay / remain ADJ\") over a kind-level generic: `Still` is defined only on a reified individual state witness, and the kind-level property forms (`Inheritance` / `ConditionalProperty`) have no slot for it, so \"stay\" is unencodable and is simply lost here",
+     "a descriptively or participially modified bare-plural kind (\"shielded coves\", \"cold winds\") sitting in a slot that admits exactly one symbol — a `ConditionalProperty` condition, and the fused argument of a kind-level adjective complement: the adjective+noun fusion bar classes such a modifier as incidental description that should distribute over members instead of fusing, but neither slot can hold a distributed atom, so carrying the restriction forces a fusion the bar otherwise forbids"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The `ConditionalProperty` route for the locative restriction on a kind-level claim and the both-sides-bare-kinds adjective-complement fusion (`safe_from_cold_wind` genus + `(From safe_from_cold_wind cold_wind)`) follow the instruction set exactly, and the bare `(Inheritance lantern safe_from_cold_wind)` is correctly withheld. Only the continuative \"stay\" is dropped, which the instruction set gives no carrier for."
+   },
+   "adjudication": null
+  }
+ ]
+}

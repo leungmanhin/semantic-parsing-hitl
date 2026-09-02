@@ -1,0 +1,1 @@
+(: lantern_untended_rule (Implication (And (Member $l lantern) (Member $s untended) (Experiencer $s $l) (Time $s night)) (And (Member (sk_go_out $s) go_out) (Patient (sk_go_out $s) $l) (TimeAtMost (sk_go_out $s) dawn) (During (sk_go_out $s) $s))) (STV 1.0 0.9))

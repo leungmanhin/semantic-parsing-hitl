@@ -1,0 +1,3 @@
+(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))
+(: lantern_burn_produce (Implication (And (Member $x lantern) (Member $e1 burn) (Agent $e1 $x) (Patient $e1 mire_essence)) (And (Member (sk_produce $x $e1) produce) (Agent (sk_produce $x $e1) $x) (Patient (sk_produce $x $e1) mist_light) (During (sk_produce $x $e1) $e1))) (STV 1.0 0.9))

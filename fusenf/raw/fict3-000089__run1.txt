@@ -1,0 +1,2 @@
+(: solocount_genus (Inheritance solo_count count) (STV 1.0 0.99))
+(: when_fail_reset (Implication (And (Member $x fail) (Patient $x $lan) (Member $lan lantern) (Possession $lan $ap) (Member $ap apprentice)) (And (Member (sk_reset $x) reset) (Theme (sk_reset $x) (sk_count $ap)) (Member (sk_count $ap) solo_count) (Possession (sk_count $ap) $ap) (During (sk_reset $x) $x))) (STV 1.0 0.9))

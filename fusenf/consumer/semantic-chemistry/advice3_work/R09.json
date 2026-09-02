@@ -1,0 +1,118 @@
+{
+ "id": "R9",
+ "rule": "Sky-cats roost on the cliff-spires by day",
+ "texts": [
+  "Sky-cats roost on the cliff-spires during the day.",
+  "Sky-cats do not enter the village.",
+  "The Keepers tolerate sky-cats."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000030",
+   "sentence": "Sky-cats roost on the cliff-spires during the day.",
+   "parse": [
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cs_group (GroupOf sk_cliff_spires_1 cliff_spire) (STV 1.0 0.99))",
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: skycats_roost_rule (Implication (Member $x sky_cat) (And (Member (sk_roost $x) roost) (Experiencer (sk_roost $x) $x) (Location (sk_roost $x) sk_cliff_spires_1) (Time (sk_roost $x) day))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000030",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'roost' is a postural stative, so Experiencer plus a Location oblique is right, and the time modifier 'during the day' is exactly the reification trigger that licenses minting the state event at all. Rendering 'during the day' as the day-part (Time e day) rather than a During head is correct, since 'the day' is not a reified eventuality; 'day' extends the listed morning/afternoon/evening/night inventory but sits in the same slot."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000031",
+   "sentence": "Sky-cats do not enter the village.",
+   "parse": [
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: e_village (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: skycats_not_enter (Implication (Member $x sky_cat) (And (Member (sk_enter $x) enter) (Agent (sk_enter $x) $x) (Theme (sk_enter $x) sk_village_1))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000031",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the Negated verbal generic pattern exactly (distributing rule at STV 0.0 0.9, no QuantifierPhrase since \"not\" is plain negation), with the definite \"the village\" projected at top level as the Coopers/barrel example prescribes. Theme for \"enter the village\" follows the does-the-object-change test and its Theme default."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000032",
+   "sentence": "The Keepers tolerate sky-cats.",
+   "parse": [
+    "(: keeper_grp (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: tolerate_ev (Member sk_tolerate_1 tolerate) (STV 1.0 0.99))",
+    "(: tolerate_ag (Agent sk_tolerate_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: tolerate_th (Theme sk_tolerate_1 sky_cat) (STV 1.0 0.99))",
+    "(: tolerate_rule (Implication (PartOf $x sk_keeper_1) (And (Member (sk_tolerate $x) tolerate) (Agent (sk_tolerate $x) $x) (Theme (sk_tolerate $x) sky_cat))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000032",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"The Keepers\" is a capitalized plural kind-word label, which Names and casing legislates as a Name-only individual (one symbol, a Name atom, no GroupOf and no per-member kind from the label word), but the parse builds a group whose members are typed keeper and emits no Name atom."
+     },
+     {
+      "statement": 5,
+      "issue": "The per-member distribution rule over (PartOf $x sk_keeper_1) exists only because of that group reading, so it distributes the predication to members the plural-label rule says are never posited."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows the instruction set: the sky_cat genus with its noun modifier left unexposed, Agent/Theme by the progressive and change tests, the bare kind filler for the non-specific plural object, no status atom on the habitual, and 1.0/0.9 on the distribution rule."
+   },
+   "adjudication": {
+    "id": "fict3-000032",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Names and casing restricts the capitalized-common-noun default to singular collectives and routes a capitalized PLURAL kind-word label ('the Wrens') to a Name-only individual with no GroupOf and no per-member kind from the label word, so (GroupOf sk_keeper_1 keeper) invents a member type the rule bars and the mandatory Name atom is missing."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "With the referent a Name-only individual there is no group to range over, so the (PartOf $x sk_keeper_1) rule distributes the tolerating to members the sentence never posits — an over-assertion that falls with the group reading."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "the plural-label rule's qualifier 'referring as a name' has no stated test: casing is the only mechanical cue, and nothing says when a capitalized plural kind-word ('the Keepers') may instead be read as an ordinary definite plural"
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0: one symbol with (Name keepers \"Keepers\") and no GroupOf, the event as (Member sk_tolerate_1 tolerate) (Agent sk_tolerate_1 keepers) (Theme sk_tolerate_1 sky_cat); issue 1: no per-member distribution rule at all, since a Name-only individual has no posited members.",
+    "notes": "The sky_cat genus with its noun modifier unexposed, Agent by the progressive test, the bare kind filler for the non-specific plural object, and the absent status atom on the habitual are all correct."
+   }
+  }
+ ]
+}

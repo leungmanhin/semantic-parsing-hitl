@@ -1,0 +1,12 @@
+{"id": "fict3-000077", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "The rule's PREMISE is built out of Skolem-function terms ((Member (sk_block $c) block), (Agent (sk_block $c) cliff_spire), (Theme (sk_block $c) $c), (Source (sk_block $c) north_wind)), which the instruction set forbids outright — \"a premise never contains a Skolem term\" — so nothing can ever match it and the rule is permanently inert."},
+                {"statement": 3, "issue": "\"blocked FROM the north wind\" names what is warded off, not a spatial origin, so it answers none of where/when/how/whence/whither and should take the preposition-named oblique; Source asserts the north wind as the blocking event's origin."},
+                {"statement": 3, "issue": "The consequent nests a whole (Implication (PartOf $x ...) ...) inside another rule's conclusion, with its own free $x — per-member distribution rules are emitted at top level (or as a sealed sibling inside a seal), never as a conjunct of another rule's consequent."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a definite plural subject that is itself introduced inside a whenever-rule's CONSEQUENT (\"the lanterns in that cove\") and needs per-member distribution of a copular/state predicate — the instruction set gives the distribution rule only at top level or inside a seal, never nested in a consequent",
+             "durative \"through <period>\" (\"stay lit through winter\") — During is restricted to during/while/throughout with a reified outer eventuality, no interval Start/End or duration measure is stated, and no head covers \"through\""],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The compound decompositions (cliff_spire genus with the noun modifier suppressed; north_wind genus plus its cardinal modifier) and the stay-lit continuation-copular shape (reified state + Still + flat atom, no tense) are all correct. \"through winter\" lands on (Time e winter), which under-specifies rather than misstates; separately, definite \"the north wind\" and bare-plural \"cliff-spires\" are used as bare kind constants in role-filler slots, which I read as borderline rather than clearly wrong inside a generic rule."}

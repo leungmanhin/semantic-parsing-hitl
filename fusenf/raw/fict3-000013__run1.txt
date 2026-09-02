@@ -1,0 +1,6 @@
+(: silkenthread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))
+(: silkenthread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))
+(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))
+(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))
+(: whenever_boil_yield (Implication (And (Member $e1 boil) (Agent $e1 $x) (Member $x keeper) (Patient $e1 silken_thread) (Location $e1 sea_water)) (And (Member (sk_yield $e1) yield) (Agent (sk_yield $e1) sk_cauldron_1) (Patient (sk_yield $e1) mire_essence) (During (sk_yield $e1) $e1))) (STV 1.0 0.9))

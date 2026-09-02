@@ -1,0 +1,124 @@
+{
+ "id": "R28",
+ "rule": "Summer hunting yields the autumn feather store",
+ "texts": [
+  "Sky-cats hunt often through summer.",
+  "When a sky-cat hunts through summer, many feathers accumulate at the base of the cliff by autumn.",
+  "Whenever a sky-cat hunts in summer, the autumn feather store grows."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000098",
+   "sentence": "Sky-cats hunt often through summer.",
+   "parse": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_hunt_q (QuantifierPhrase sky_cat hunt \"often\") (STV 1.0 0.99))",
+    "(: skycat_hunt_rule (Implication (Member $x sky_cat) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) summer))) (STV 0.8 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000098",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a temporal SPAN preposition on an eventuality ('hunt ... through summer') has no carrier: During is restricted to exactly during/while/throughout, Every/TimesPer need a stated period or rate, and a bare Time filler records only which period, dropping the across-the-whole-span reading"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'often' is handled exactly per the frequency dial — rule strength 0.8 plus the QuantifierPhrase companion naming the word — and the bare-plural habitual correctly becomes a distributing rule with a Skolem-function event and no status atom. A bare season symbol in a Time slot is only exemplified in its deictic forms (last spring / next summer), but 'a deictic or named time stays a bare symbol' covers it."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000099",
+   "sentence": "When a sky-cat hunts through summer, many feathers accumulate at the base of the cliff by autumn.",
+   "parse": [
+    "(: cliff_typ (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_typ (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_part (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_hunt_feathers_rule (Implication (And (Member $x sky_cat) (Member $e hunt) (Agent $e $x) (Time $e summer)) (And (GroupOf (sk_feathers $x) feather) (CardinalityPhrase (sk_feathers $x) \"many\") (Member (sk_accumulate $x) accumulate) (Theme (sk_accumulate $x) (sk_feathers $x)) (Location (sk_accumulate $x) sk_base_1) (TimeAtMost (sk_accumulate $x) autumn))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000099",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The consequent is never tied to its trigger: the whenever machinery specifies the response Skolem event be linked to the trigger occurrence with During, and no During (or any other) link between (sk_accumulate $x) and the hunt event $e is emitted."
+     },
+     {
+      "statement": 4,
+      "issue": "(sk_accumulate $x) and (sk_feathers $x) are Skolem functions of the sky-cat alone although the rule also quantifies the hunt event $e, so a sky-cat that hunts across several summers yields one single accumulation event and one single feather group rather than one per occurrence."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A temporal-extent preposition over a named period ('hunts through summer'). During is restricted to during/while/throughout and requires both eventualities reified, and a season has no reified or structured-term form; a bare (Time $e summer) records the slot but drops the 'through' extent, and no other Time head (Start/End, Measure duration, WithinLast) fits an uncounted extent over a named season."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "(PartOf sk_base_1 sk_cliff_1) for the part-relational of-phrase 'the base of the cliff', Location on the event rather than LocatedIn, the sky_cat genus with the noun modifier correctly unexposed, CardinalityPhrase 'many' as a count of things rather than a proportion strength, and (TimeAtMost ... autumn) for the 'by autumn' deadline all follow the instruction set."
+   },
+   "adjudication": {
+    "id": "fict3-000099",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Bare 'when P, Q' with indefinite participants routes to 'exactly the whenever machinery', whose response Skolem event is 'tied to its trigger with During' — the parse emits no link at all between (sk_accumulate $x) and the hunt event $e."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The response is 'a Skolem event per occurrence' keyed on the trigger, and each dependent existential is 'a Skolem function of every universal that scopes over it' — (sk_accumulate $x) / (sk_feathers $x) ignore the hunt $e, so all of one cat's summer hunts collapse into a single accumulation and a single feather group."
+     }
+    ],
+    "gaps_confirmed": [
+     "temporal-extent preposition over a named period ('hunts through summer'): During is restricted to during/while/throughout, a season has no structured or reified form, and a bare (Time $e summer) records the slot but drops the extent"
+    ],
+    "new_gaps": [
+     "a bare season name as a bound term ('by autumn' → (TimeAtMost e autumn)): bound terms accept calendar terms, day-part constants and fiscal periods; a season constant is unlisted",
+     "'many' counting things ('many feathers'): 'many' appears only in the proportion-to-strength list, not in the CardinalityPhrase vague-count list, so its canonical lexicon string is unconfirmed"
+    ],
+    "decision": "defect",
+    "defect_summary": "Key the response on the trigger and tie it — (GroupOf (sk_feathers $e) feather) (CardinalityPhrase (sk_feathers $e) \"many\") (Member (sk_accumulate $e) accumulate) (Theme (sk_accumulate $e) (sk_feathers $e)) (Location (sk_accumulate $e) sk_base_1) (TimeAtMost (sk_accumulate $e) autumn) plus (During (sk_accumulate $e) $e); the top-level cliff/base typing with PartOf, the sky_cat genus and the tenseless rule at 1.0 0.9 otherwise stand.",
+    "notes": "Theme for the non-volitionally accumulating feathers is defensible under the un-powered-relocation line."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000100",
+   "sentence": "Whenever a sky-cat hunts in summer, the autumn feather store grows.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: store_type (Member sk_store_1 autumn_feather_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance autumn_feather_store store) (STV 1.0 0.99))",
+    "(: whenever_hunt_grow (Implication (And (Member $e hunt) (Agent $e $c) (Member $c sky_cat) (Time $e summer)) (And (Member (sk_grow $e) grow) (Patient (sk_grow $e) sk_store_1) (During (sk_grow $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000100",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever rule, the sky_cat and autumn_feather_store genus atoms (both noun modifiers correctly unexposed, per 'night_shift is not night'), and the top-level definite witness for the store all follow the instruction set. 'grows' sits on the boundary between the intransitive change-of-state branch (Patient, as with weaken/sag/fade) and the scalar-change branch (Theme, as with rise/climb/gain); Patient is defensible with no figures stated, but the doctrine does not settle it."
+   },
+   "adjudication": null
+  }
+ ]
+}

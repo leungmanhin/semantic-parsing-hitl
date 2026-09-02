@@ -1,0 +1,135 @@
+{
+ "id": "R23",
+ "rule": "Keepers inherit lantern-stations",
+ "texts": [
+  "Whenever a senior Keeper retires, an heir inherits that Keeper's lantern-station.",
+  "Whenever a senior Keeper dies, an heir inherits that Keeper's lantern-station.",
+  "A Keeper's family keeps that Keeper's inherited station.",
+  "The Council must approve any station transfer."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000080",
+   "sentence": "Whenever a senior Keeper retires, an heir inherits that Keeper's lantern-station.",
+   "parse": [
+    "(: senior_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: senior_keeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: lantern_station_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: whenever_keeper_retires_heir_inherits (Implication (And (Member $k senior_keeper) (Member $r retire) (Agent $r $k)) (And (Member (sk_heir $r) heir) (Member (sk_inherit $r) inherit) (Agent (sk_inherit $r) (sk_heir $r)) (Theme (sk_inherit $r) (sk_station $r)) (Member (sk_station $r) lantern_station) (Possession (sk_station $r) $k) (During (sk_inherit $r) $r))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000080",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever machinery is right throughout: plain-variable premises, dependent existentials as Skolem functions of the trigger event, During link, (STV 1.0 0.9). Capitalized \"Keeper\" correctly stays a common noun with no Name atom; senior_keeper exposes its gradable modifier while lantern_station correctly suppresses its noun modifier; the possessive routes to Possession (a station is not a part of a keeper) with the possessed first."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000081",
+   "sentence": "Whenever a senior Keeper dies, an heir inherits that Keeper's lantern-station.",
+   "parse": [
+    "(: seniorkeeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: seniorkeeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: lanternstation_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: whenever_die_inherit (Implication (And (Member $e1 die) (Patient $e1 $x) (Member $x senior_keeper)) (And (Member (sk_inherit $e1) inherit) (Agent (sk_inherit $e1) (sk_heir $e1)) (Member (sk_heir $e1) heir) (Theme (sk_inherit $e1) (sk_station $e1)) (Member (sk_station $e1) lantern_station) (Possession (sk_station $e1) $x) (During (sk_inherit $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000081",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "senior_keeper fuses as a role title with both genus and the predicable modifier genus emitted; the dependent 'an heir' is a Skolem function of the trigger event, and the genitive takes opaque Possession possessed-first with the possessor bound to the premise variable."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000082",
+   "sentence": "A Keeper's family keeps that Keeper's inherited station.",
+   "parse": [
+    "(: keeper_family_station (Implication (Member $k keeper) (And (Member (sk_family $k) family) (Possession (sk_family $k) $k) (Member (sk_station $k) station) (Possession (sk_station $k) $k) (Member (sk_station $k) inherited) (Member (sk_keep $k) keep) (Agent (sk_keep $k) (sk_family $k)) (Theme (sk_keep $k) (sk_station $k)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000082",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The sentence is routed as a distributing generic rule, but the instruction set makes this mechanical on the surface determiner: an indefinite singular with a non-modal verbal predicate is a witness, and a verbal generic requires a bare plural or an explicit quantifier ('a dog' explicitly excluded), so 'A Keeper's family keeps ...' should have produced witnesses (sk_keeper_1, sk_family_1, sk_station_1, sk_keep_1 at 1.0/0.99) rather than an Implication at 0.9/0.9."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An indefinite possessor binding a later 'that N' anaphor across the clause ('A Keeper's family ... that Keeper's station'): the donkey-anaphora pattern the instruction set supplies requires an explicit universal ('Every farmer who owns a donkey'), while its determiner rule sends an indefinite with a verbal predicate to a witness, so a generic reading with a bound possessor anaphor has no stated route"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Within the rule chosen, the content is right: kinship and station both attach by the opaque Possession, 'inherited' is kept as a participial modifier property rather than lemmatized to the verb, 'keep' takes Theme per the listed test, and the singular collective 'family' correctly does not distribute."
+   },
+   "adjudication": {
+    "id": "fict3-000082",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Existential: an indefinite 'a/an' with a verbal predicate is a witness — 'a verbal generic takes a bare plural or an explicit quantifier, not a dog' — and no modal, when/whenever clause, gerund subject or explicit universal licenses a rule here, so the `Implication` ranging over every keeper asserts a universal the surface form does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "The law-like generic reading of an indefinite-singular subject with a verbal predicate ('A Keeper's family keeps …', with 'that Keeper' bound to it) has no licensed rule form: the determiner rule routes it to a witness (the anaphor then corefers to sk_keeper_1) and donkey anaphora requires an explicit universal."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the witness parse with no tense atom (habitual default): (Member sk_keeper_1 keeper) (Member sk_family_1 family) (Possession sk_family_1 sk_keeper_1) (Member sk_station_1 station) (Possession sk_station_1 sk_keeper_1) (Member sk_station_1 inherited) (Member sk_keep_1 keep) (Agent sk_keep_1 sk_family_1) (Theme sk_keep_1 sk_station_1), each (STV 1.0 0.99), with 'that Keeper' reusing sk_keeper_1; the generic-rule reading has no licensed form (filed as a gap).",
+    "notes": "Within the chosen rule the content is otherwise right: opaque Possession for kinship and for the station, the participial modifier `inherited` kept as a property, Theme for keep, no distribution over the singular collective 'family'."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000083",
+   "sentence": "The Council must approve any station transfer.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: station_transfer_genus (Inheritance station_transfer transfer) (STV 1.0 0.99))",
+    "(: council_approve_transfer_rule (Implication (Member $x station_transfer) (And (Member (sk_approve $x) approve) (Agent (sk_approve $x) sk_council_1) (Theme (sk_approve $x) $x) (Obligated (sk_approve $x)))) (STV 1.0 0.99))",
+    "(: station_transfer_q (QuantifierPhrase station_transfer approve \"any\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000083",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a standing deontic norm whose bearer is a specific individual rather than a kind, with a universally quantified object (\"any station transfer\") — the deontic section names only kind-level norms (reified (obligated <action>) property) and specific one-off acts (event-level (Obligated e)), so neither branch covers this shape"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse composes the exists-forall rule shape (constant subject, universal over the object kind) with an event-level (Obligated ...) in the consequent, which is the faithful reading of free-choice \"any\"; \"the Council\" is correctly a capitalized common noun with no Name atom, and Theme matches the instruction set's own approve example. Its STV 1.0 0.99 follows the plain-norm dial while the universal-rule examples use confidence 0.9, and the instruction set does not say which governs a composed case."
+   },
+   "adjudication": null
+  }
+ ]
+}

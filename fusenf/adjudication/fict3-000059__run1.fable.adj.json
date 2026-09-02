@@ -1,0 +1,10 @@
+{"id": "fict3-000059", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Compound concepts: a hyphenated modifier+head compound kind always emits its head genus ('the genus itself is always emitted either way'; emission is determined, not optional), so `(Inheritance salt_bloom bloom)` and `(Inheritance mire_essence essence)` are mandatory and their absence violates a stated rule (the noun modifiers `salt`/`mire` correctly stay unexposed)."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["A season as a time slot ('in winter'): the structured Time terms are Year/Month/Day/Weekday/Hour/Minute only and seasons appear solely as deictic constants (last_spring, next_summer), so a bare `(Time $a winter)` in a generic rule is improvised.",
+              "The inanimate destination of 'add X to Y': the instruction set does not settle Goal versus Recipient for a non-addressee 'to'-phrase on a transfer verb."],
+ "decision": "defect",
+ "defect_summary": "Add `(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))` and `(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))`; the whenever rule itself — plain-variable premises, Skolem consequent event with `During`, $m bound for 'that mire-essence', Theme/Goal/Patient roles, surface-form Manner `slowly`, no companion, (STV 1.0 0.9) — stands as emitted.",
+ "notes": ""}

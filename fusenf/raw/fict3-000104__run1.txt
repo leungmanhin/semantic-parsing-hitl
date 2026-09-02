@@ -1,0 +1,5 @@
+(: fs_genus (Inheritance feather_store store) (STV 1.0 0.99))
+(: fs_typ (Member sk_featherstore_1 feather_store) (STV 1.0 0.99))
+(: wr_genus (Inheritance wraith_risk risk) (STV 1.0 0.99))
+(: wr_typ (Member sk_wraithrisk_1 wraith_risk) (STV 1.0 0.99))
+(: whenever_small_grow (Implication (And (Member $x small) (Experiencer $x sk_featherstore_1)) (And (Member (sk_grow $x) grow) (Theme (sk_grow $x) sk_wraithrisk_1) (During (sk_grow $x) $x))) (STV 1.0 0.9))

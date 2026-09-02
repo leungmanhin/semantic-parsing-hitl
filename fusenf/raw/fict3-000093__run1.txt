@@ -1,0 +1,4 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: ls_group (GroupOf sk_group_1 lantern_station) (STV 1.0 0.99))
+(: ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))
+(: whenever_council_convenes_redistribute (Implication (And (Member $c convene) (Agent $c sk_council_1)) (And (Member (sk_redistribute $c) redistribute) (Agent (sk_redistribute $c) sk_council_1) (Theme (sk_redistribute $c) mire_essence) (Across (sk_redistribute $c) sk_group_1) (During (sk_redistribute $c) $c))) (STV 1.0 0.9))

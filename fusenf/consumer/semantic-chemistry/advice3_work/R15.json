@@ -1,0 +1,127 @@
+{
+ "id": "R15",
+ "rule": "Ground feathers ward lanterns from wraiths",
+ "texts": [
+  "When a Keeper grinds feathers and scatters the feathers around a lit lantern, the feathers ward the lantern against wraiths.",
+  "Whenever a Keeper grinds feathers and spreads the feathers around a lit lantern, the feathers shield the lantern against wraiths.",
+  "Wraiths do not approach a warded lantern.",
+  "Fresh ground feathers ward lanterns.",
+  "Stale ground feathers do not ward lanterns."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000051",
+   "sentence": "When a Keeper grinds feathers and scatters the feathers around a lit lantern, the feathers ward the lantern against wraiths.",
+   "parse": [
+    "(: whenever_grind_scatter_ward (Implication (And (Member $k keeper) (GroupOf $f feather) (Member $n lantern) (Member $n lit) (Member $g grind) (Agent $g $k) (Patient $g $f) (Member $s scatter) (Agent $s $k) (Theme $s $f) (Around $s $n)) (And (Member (sk_ward $f $n) ward) (Agent (sk_ward $f $n) $f) (Theme (sk_ward $f $n) $n) (Against (sk_ward $f $n) wraith) (During (sk_ward $f $n) $s))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000051",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a \"when P, Q\" trigger built from TWO coordinated events (grinds ... and scatters ...): the whenever template assumes one trigger occurrence, and the instruction set does not say which event the per-occurrence Skolem consequent is a function of, nor which one the During link attaches to"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The consequent Skolem (sk_ward $f $n) is keyed on the two participants instead of on a trigger occurrence, so two scatterings of the same feathers around the same lantern would collapse into one warding event — the composition the gap above leaves undecided. Patient for grinding, Theme for scattering and for the warded lantern, the Around/Against surface-preposition obliques, the lit modifier kept in participle form, and 1.0/0.9 all follow the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000052",
+   "sentence": "Whenever a Keeper grinds feathers and spreads the feathers around a lit lantern, the feathers shield the lantern against wraiths.",
+   "parse": [
+    "(: keeper_shield_rule (Implication (And (Member $k keeper) (Member $g grind) (Agent $g $k) (Patient $g $f) (GroupOf $f feather) (Member $s spread) (Agent $s $k) (Theme $s $f) (Around $s $l) (Member $l lantern) (Member $l lit)) (And (Member (sk_shield $k $f $l) shield) (Agent (sk_shield $k $f $l) $f) (Theme (sk_shield $k $f $l) $l) (Against (sk_shield $k $f $l) wraith) (During (sk_shield $k $f $l) $s))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000052",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever machinery is applied correctly: plain-variable premises for the two coordinated trigger clauses, a per-occurrence Skolem-function consequent, the During tie to the trigger, no QuantifierPhrase companion, and coreference of 'the feathers'/'the lantern' back to the premise variables. Two defensible judgment calls: Theme for 'spreads the feathers' (displacement, not change) and the surface oblique Around rather than Location for the spread's PP."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000053",
+   "sentence": "Wraiths do not approach a warded lantern.",
+   "parse": [
+    "(: wraith_no_approach_warded (Implication (And (Member $x wraith) (Member $y lantern) (Member $y warded)) (And (Member (sk_approach $x $y) approach) (Agent (sk_approach $x $y) $x) (Theme (sk_approach $x $y) $y))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000053",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an indefinite singular OBJECT inside a negated verbal generic (\"Ns do not V a warded N\"): the instruction set does not say whether it becomes a second universal premise (the parse's forall-not reading) or a witness inside the strength-0 bundle — \"Negation does not re-decide the subject\" speaks only to the subject, the Coopers/barrel example uses a definite object, and the two-universal Skolem-function machinery is licensed only for explicit universals"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Strength-0 distributing rule at (STV 0.0 0.9) matches the negated-verbal-generic pattern exactly, with no QuantifierPhrase (plain \"not\" takes none); \"warded\" correctly stays a participial adjective split from the head rather than a fused kind. The forall-not rendering of the indefinite object is the semantically right reading even though no rule licenses it."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000054",
+   "sentence": "Fresh ground feathers ward lanterns.",
+   "parse": [
+    "(: fresh_ground_feather_ward_rule (Implication (And (Member $x feather) (Member $x fresh) (Member $x ground)) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) lantern))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000054",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route instead of a kind-level relation, with the restrictions as premise conjuncts and the participial modifier kept in its surface form \"ground\". Bare-generic (STV 0.9 0.9) with no QuantifierPhrase companion and Agent for the inanimate transitive subject are both right."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "fict3-000055",
+   "sentence": "Stale ground feathers do not ward lanterns.",
+   "parse": [
+    "(: feathers_no_ward (Implication (And (Member $x feather) (Member $x stale) (Member $x ground)) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) lantern))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000055",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse reads 'ground' as a participial modifier, which is what licenses the separate (Member $x ground) premise; on the competing noun-modifier reading it would instead have to fuse as ground_feather with a genus atom and no exposed modifier. Everything else - the strength-0.0 distributing rule for the restricted bare-plural kind subject, and Theme for the unchanged object - matches the instruction set."
+   },
+   "adjudication": null
+  }
+ ]
+}

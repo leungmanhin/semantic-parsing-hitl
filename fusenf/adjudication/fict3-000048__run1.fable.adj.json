@@ -1,0 +1,7 @@
+{"id": "fict3-000048", "run": 1,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "Patient is for an object the action 'creates, destroys, consumes, or physically changes'; what a lantern shows is displayed/perceived and unchanged, and 'when the test is unclear, default to Theme', so (Patient (sk_show $e1) (sk_light $e1)) mis-roles the object."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["A bare mass-noun object carrying a descriptive modifier ('dim mist-light'): the bare-kind-filler rule leaves no slot for the modifier, and the instruction set does not name the per-occurrence witness the parse mints for it."],
+ "decision": "defect",
+ "defect_summary": "Replace (Patient (sk_show $e1) (sk_light $e1)) with (Theme (sk_show $e1) (sk_light $e1)); the rest of the rule stands as is.",
+ "notes": "The whenever form is otherwise compliant: plain-variable premises, per-occurrence Skolems for both the show event and its light, During link, no tense or companion, inanimate transitive subject as Agent, and 'dim' kept as a separate Member atom on the witness."}

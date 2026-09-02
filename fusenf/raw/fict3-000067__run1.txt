@@ -1,0 +1,5 @@
+(: tide_pool_group (GroupOf sk_tide_pool_1 tide_pool) (STV 1.0 0.99))
+(: spring_tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))
+(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))
+(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: spring_tide_fill_bloom_rule (Implication (And (Member $e fill) (Member $s spring_tide) (Agent $e $s) (Patient $e sk_tide_pool_1)) (And (Member (sk_grow $e) grow) (Patient (sk_grow $e) salt_bloom) (Location (sk_grow $e) sk_tide_pool_1) (During (sk_grow $e) $e))) (STV 1.0 0.9))

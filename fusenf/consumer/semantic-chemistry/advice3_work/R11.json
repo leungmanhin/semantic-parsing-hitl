@@ -1,0 +1,95 @@
+{
+ "id": "R11",
+ "rule": "Untended lanterns die before dawn",
+ "texts": [
+  "When a Keeper leaves a lantern untended overnight, the lantern dies before dawn.",
+  "When a lantern is untended through the night, the lantern goes out before dawn.",
+  "A Keeper refreshes the mire-essence and trims the wick during the night."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000037",
+   "sentence": "When a Keeper leaves a lantern untended overnight, the lantern dies before dawn.",
+   "parse": [
+    "(: whenever_leave_die (Implication (And (Member $k keeper) (Member $l lantern) (Member $e leave) (Agent $e $k) (Theme $e $l) (Time $e night) (Member $u untended) (Experiencer $u $l) (Member $l untended) (Result $e $u)) (And (Member (sk_die $e) die) (Patient (sk_die $e) $l) (TimeAtMost (sk_die $e) dawn) (During (sk_die $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000037",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a dual-emit construction (a resultative's reified state plus its flat copular atom) sitting inside a rule PREMISE: the instruction set mandates both halves as assertions but never says how the redundant flat half is handled where a conjunct is a match requirement rather than an assertion"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing (indefinite participants to the whenever machinery), overnight-as-night on Time, before-dawn as TimeAtMost, Patient on the intransitive change-of-state die, the trigger-keyed Skolem consequent with During, and 1.0/0.9 all match the instruction set. The premise carries the full untended bundle (reified state, flat atom and Result link), which is doctrine-consistent but makes the rule fire only on an occurrence parsed with all three."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000038",
+   "sentence": "When a lantern is untended through the night, the lantern goes out before dawn.",
+   "parse": [
+    "(: lantern_untended_rule (Implication (And (Member $l lantern) (Member $s untended) (Experiencer $s $l) (Time $s night)) (And (Member (sk_go_out $s) go_out) (Patient (sk_go_out $s) $l) (TimeAtMost (sk_go_out $s) dawn) (During (sk_go_out $s) $s))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000038",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "durative frame adverbial over a named period ('untended through the night') — the instruction set licenses only a bare Time day-part, Start/End interval terms, or a counted (Measure e duration n unit), none of which encodes 'through / all of <period>'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'untended' is correctly a positive participial-adjective state (not negation), 'goes out' keeps the verb_particle symbol go_out with no genus, 'before dawn' is the exact TimeAtMost day-part form, and the lantern is a change-of-state Patient. The durative gap above means the premise (Time $s night) fires on any night-time untended state rather than only on one spanning the night — a slight weakening forced by the missing form, not a mis-slotting."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000039",
+   "sentence": "A Keeper refreshes the mire-essence and trims the wick during the night.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: essence_type (Member sk_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: refresh_ev (Member sk_refresh_1 refresh) (STV 1.0 0.99))",
+    "(: refresh_ag (Agent sk_refresh_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: refresh_pat (Patient sk_refresh_1 sk_essence_1) (STV 1.0 0.99))",
+    "(: refresh_time (Time sk_refresh_1 night) (STV 1.0 0.99))",
+    "(: wick_type (Member sk_wick_1 wick) (STV 1.0 0.99))",
+    "(: trim_ev (Member sk_trim_1 trim) (STV 1.0 0.99))",
+    "(: trim_ag (Agent sk_trim_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: trim_pat (Patient sk_trim_1 sk_wick_1) (STV 1.0 0.99))",
+    "(: trim_time (Time sk_trim_1 night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000039",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "whether a sentence-final adjunct on coordinated VPs ('refreshes X and trims Y during the night') distributes to both conjuncts - the instruction set says only that a shared SUBJECT carries over to each conjunct",
+     "'during' + a day-part NP that is not an eventuality - During is defined only for nesting two reified eventualities, while the day-part rule lists only the 'in the morning' / 'at night' frames"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "A witness rather than a generic rule for the indefinite subject with a verbal predicate, the mire_essence genus with its noun modifier left unexposed, no status atom on the simple present, and no (can keep) for the merely referring agent-nominalization are all correct."
+   },
+   "adjudication": null
+  }
+ ]
+}

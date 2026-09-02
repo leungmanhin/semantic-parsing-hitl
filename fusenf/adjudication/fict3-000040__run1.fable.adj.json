@@ -1,0 +1,12 @@
+{"id": "fict3-000040", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "With no containment preposition in 'the cove water', Compound concepts licenses only fusion (`cove_water` + genus `water`) or, on the possessor/whole reading the anaphoric 'the cove' forces, `(PartOf sk_water_1 sunken_cove)`; `LocatedIn` is 'containment ONLY' for a stated in / at / inside / within, so the parse asserts a head the words do not license."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "The whenever machinery mints the response as a Skolem event per occurrence and a dependent existential must be a function of every scoping universal, so `(sk_emerge $x)` / `(sk_wraith $x)` indexed by the lantern alone collapse the emergences after distinct deaths of one lantern into a single event and a single wraith `During` both, which the text does not state."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["the PartOf-vs-LocatedIn boundary for a mass that constitutes a named geographic feature ('the cove water'): Compound concepts gives PartOf for the possessor/whole reading while 'a place inside a place is LocatedIn, never PartOf' pulls toward containment — a stated line would remove the pull"],
+ "decision": "defect",
+ "defect_summary": "Issue 0: attach the water by the possessor/whole link — `(Member sk_water_1 water) (PartOf sk_water_1 sunken_cove)` — in place of `LocatedIn`; issue 1: Skolemize the emergence and the wraith on the death occurrence as well as the lantern — `(sk_emerge $x $e)` and `(sk_wraith $x $e)` — with the consequent's atoms rebuilt on those terms.",
+ "notes": "The name/kind split for 'the Sunken Cove', `LocatedIn` for the lantern's 'at', `(TimeAtMost $e dawn)`, `Patient` for the dying lantern and `Source` for 'from the cove water' all follow the instruction set."}

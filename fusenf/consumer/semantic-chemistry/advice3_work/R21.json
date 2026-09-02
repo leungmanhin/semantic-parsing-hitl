@@ -1,0 +1,227 @@
+{
+ "id": "R21",
+ "rule": "Wintergloss repels nightmoths",
+ "texts": [
+  "Whenever a lantern burns wintergloss, the wintergloss repels nightmoths from that lantern.",
+  "Whenever a lantern burns wintergloss alongside mire-essence, nightmoths avoid that lantern.",
+  "The Keepers rarely burn wintergloss.",
+  "The Keepers sometimes burn wintergloss at the Stilllight Lantern."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000072",
+   "sentence": "Whenever a lantern burns wintergloss, the wintergloss repels nightmoths from that lantern.",
+   "parse": [
+    "(: gloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: whenever_burn_repel (Implication (And (Member $x lantern) (Member $e burn) (Agent $e $x) (Patient $e wintergloss)) (And (Member (sk_repel $x) repel) (Agent (sk_repel $x) wintergloss) (Theme (sk_repel $x) nightmoth) (Source (sk_repel $x) $x) (During (sk_repel $x) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000072",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "(Inheritance wintergloss gloss) asserts an IS-A the text does not support - wintergloss reads as a coined, non-compositional substance name rather than a kind of gloss, which is exactly the case where the head genus is to be suppressed."
+     },
+     {
+      "statement": 2,
+      "issue": "The consequent's Skolem event (sk_repel $x) is a function of the lantern rather than of the trigger burn event $e, so two burnings by one lantern yield a single repel event instead of one per occurrence."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "re-mention of a bare-kind mass filler by a definite anaphor ('burns wintergloss ... the wintergloss repels ...') - a bare mass object mints no witness for the later definite to reuse, and nothing says how that subject should be bound inside the rule"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Patient for the consumed 'burns wintergloss', Theme for the repelled nightmoths, Source for 'from that lantern' bound to the premise variable, and the During link are all correct. The gap's practical effect here is a bare kind symbol standing in the derived event's Agent slot."
+   },
+   "adjudication": {
+    "id": "fict3-000072",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "A solid-spelled compound that reads as modifier + head 'always' emits its genus ('stormcloud' -> cloud, 'rainshadow' -> shadow), and the hot-dog suppression requires a lexicalized compound known not to be a kind of its head — a fiction coinage supplies no such knowledge, so (Inheritance wintergloss gloss) is the licensed default decomposition, not an invented IS-A."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The whenever machinery mints 'a Skolem event per occurrence' as a function of the trigger event ((sk_bark $x) from the ring event $x) and a dependent existential is a function of every variable scoping over it, so (sk_repel $x) keyed on the lantern alone collapses all burnings by one lantern into a single repel event During several distinct triggers — an identity the text never states."
+     }
+    ],
+    "gaps_confirmed": [
+     "A definite re-mention of a bare-mass object inside a rule ('burns wintergloss ... the wintergloss repels'): the bare mass mints no witness, so the anaphoric definite has no stated binding; the nearest licensed shape is the donkey route — bind the burned quantity in the premise ((Member $w wintergloss) (Patient $e $w)) and reuse $w as the repel event's Agent — but the instruction set does not say so."
+    ],
+    "new_gaps": [
+     "A coined compound whose head IS-A is unverifiable (wintergloss, a fuel that lanterns burn): the transparent-compound default emits the genus and the hot-dog rule suppresses it only for a known lexicalized non-kind, leaving no test for an invented word whose genus may be false."
+    ],
+    "decision": "defect",
+    "defect_summary": "Key the derived event on the trigger occurrence — (sk_repel $e), or (sk_repel $x $e) — with (During (sk_repel $e) $e), exactly as the bell/bark example mints (sk_bark $x) from the ring event; the premise, the Patient/Theme/Source roles and the nightmoth genus stand.",
+    "notes": "Binding 'the wintergloss' as the bare kind in the Agent slot is a coarsening rather than a falsehood, so it stays a gap, not a defect."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000073",
+   "sentence": "Whenever a lantern burns wintergloss alongside mire-essence, nightmoths avoid that lantern.",
+   "parse": [
+    "(: wintergloss_g (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: mire_essence_g (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: nightmoth_g (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: whenever_burn_avoid (Implication (And (Member $x burn) (Agent $x $l) (Member $l lantern) (Patient $x wintergloss) (Alongside $x mire_essence)) (And (Member (sk_avoid $x) avoid) (Agent (sk_avoid $x) nightmoth) (Theme (sk_avoid $x) $l) (During (sk_avoid $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000073",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The bare-plural generic subject 'nightmoths' is put in the consequent's Agent slot as the bare kind symbol, so the avoidance never reaches any individual nightmoth, whereas the generic-subject doctrine ('Birds fly' plus the one-premise-per-universal rule) would range it as a second premise (Member $m nightmoth) with a two-argument Skolem event; the bare-class-symbol licence covers non-specific objects, not subjects."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A bare-plural generic subject appearing in the CONSEQUENT of a whenever/every-time rule: the instruction set's whenever example has a definite constant subject ('the dog barks') and never states whether a generic plural there becomes a second universal premise, a per-occurrence group witness, or a bare kind filler"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise clean: inanimate transitive subject correctly Agent, burn's object Patient, avoid's object Theme, 'that lantern' bound to the premise variable, and 'alongside' rendered as the surface-preposition oblique Alongside, which the open-class oblique licence permits."
+   },
+   "adjudication": {
+    "id": "fict3-000073",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A verbal generic over a kind 'becomes a rule that gives each instance its own event' ('Birds fly'), and the bare class symbol is reserved 'for a non-specific / generic object' — a kind in the Agent slot ((Agent (sk_avoid $x) nightmoth)) is neither licensed form, so no nightmoth ever derivably avoids anything and a kind is asserted as an event participant."
+     }
+    ],
+    "gaps_confirmed": [
+     "A bare-plural generic subject in a whenever/every-time consequent: the generic-subject rule and the one-premise-per-universal composition point to a second premise (Member $m nightmoth) with a two-argument Skolem, but the instruction set states neither how the whenever strength (1.0) composes with the generic's (0.9) nor whether a per-occurrence group witness is an alternative."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Range the generic subject: add (Member $m nightmoth) to the premise and Skolemize per (occurrence, moth) — (Member (sk_avoid $x $m) avoid) (Agent (sk_avoid $x $m) $m) (Theme (sk_avoid $x $m) $l) (During (sk_avoid $x $m) $x) — in place of the bare kind in Agent; the rule's strength under the whenever/generic composition is unspecified (gap above).",
+    "notes": "The trigger side is compliant: inanimate transitive lantern as Agent, wintergloss as consumed Patient, 'alongside' as the surface-preposition oblique, 'that lantern' bound to the premise variable, and the three genus atoms."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000074",
+   "sentence": "The Keepers rarely burn wintergloss.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: wintergloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: keepers_burn (And (Member sk_burn_1 burn) (Agent sk_burn_1 keepers) (Patient sk_burn_1 wintergloss)) (STV 0.1 0.9))",
+    "(: keepers_q (QuantifierPhrase keepers burn \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000074",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "`(Inheritance wintergloss gloss)` asserts a genus the IS-A bar most likely suppresses — \"wintergloss\" reads as a lexicalized coinage for a burnable substance rather than a kind of gloss, and the text supplies no evidence that `gloss` is a real head here."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "frequency adverb (\"rarely\") on a habitual whose subject is a specific named individual/group rather than a kind: the instruction set supplies the strength-scaled distributing rule (kind subject, ranging over `(Member $x kind)`) and the flat copular generic, but no shape for an individual-subject habitual event — so it does not say whether the 0.1 strength rides one positive `(And ...)` bundle (a shape otherwise defined only for negation, disjunction and counterfactuals) or the separate atoms, nor whether the `QuantifierPhrase` companion's `<kind>` slot may hold a non-kind individual symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The capitalized-plural \"the Keepers\" is correctly a `Name`-only individual with no `GroupOf` and no `keeper` typing from the label word, `burn` correctly takes `Patient`, the bare mass object stays a bare class symbol, and the habitual carries no tense atom. The 0.1-strength positive `(And ...)` bundle is unlicensed only because the instruction set defines no shape for this subject type."
+   },
+   "adjudication": {
+    "id": "fict3-000074",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "A solid spelling that is transparently modifier + head ('stormcloud' → genus cloud) must 'always emit the genus', with suppression only where the IS-A is known to fail ('a hot dog is not a dog'); nothing in the text establishes that failure for a fiction coinage, so (Inheritance wintergloss gloss) is the licensed default (a kind word readable off the words), not an over-assertion."
+     }
+    ],
+    "gaps_confirmed": [
+     "frequency adverb ('rarely') on a habitual whose subject is a specific Name-only individual: the strength + QuantifierPhrase channel is defined for kind-ranged rules and flat generics only, so no shape exists for the 0.1 strength on an individual's habitual event (one positive (And …) bundle vs separate atoms) or for a non-kind symbol in the companion's kind slot"
+    ],
+    "new_gaps": [
+     "solid-spelling coinage ('wintergloss'): the IS-A suppression test depends on lexical knowledge a fiction coinage cannot supply, so the genus of an unverifiable compound can neither be confirmed nor refuted from the text — the only guidance is the 'always emit the genus' default"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The 0.1-strength positive (And …) bundle is graceful improvisation in gap territory — every atom is true of the sentence, well-typed, and carries the stated hedge instead of dropping it; the Name-only capitalized plural, Patient for burn, the bare mass object and the tenseless habitual follow doctrine."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000075",
+   "sentence": "The Keepers sometimes burn wintergloss at the Stilllight Lantern.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: e_burn (Member sk_burn_1 burn) (STV 0.5 0.9))",
+    "(: e_agent (Agent sk_burn_1 keepers) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_burn_1 wintergloss) (STV 1.0 0.99))",
+    "(: e_loc (Location sk_burn_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: burn_freq (QuantifierPhrase keepers burn \"sometimes\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000075",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The \"sometimes\" strength 0.5 - plus an unlicensed confidence drop to 0.9 - lands on the event-class atom alone while every role atom stays (STV 1.0 0.99), so the agent, patient and location of the burning remain asserted at full strength and the frequency dial, which the instruction set applies to strength only, has been moved onto confidence."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "frequency adverb on a flat, multi-atom habitual event whose subject is a specific individual rather than a kind - there is no rule to carry the adverb's strength and no (And ...) wrapper either (positive events are separate atoms), and the QuantifierPhrase companion's first slot is specified as a kind, not an individual symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The capitalized plural label \"the Keepers\" is correctly a Name-only individual (no GroupOf, no per-member kind atom), and \"the Stilllight Lantern\" correctly takes its Name plus the kind atom read off the name. Location on the event for \"at\", Patient for burn, and the bare mass filler wintergloss are all licensed."
+   },
+   "adjudication": {
+    "id": "fict3-000075",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Gap territory by the reviewer's own account, and the improvisation passes the calibration line: no atom is false or ill-typed — 0.5 is the instruction set's own 'sometimes' value, carried on the single event-class atom the way deontic 'should' rides its 0.7 on the lone (Obligated e) atom while the role atoms keep the default (they state the habitual's participants, not its frequency), and the 0.9 confidence under-asserts rather than over-asserts (a frequency-quantified habitual is a contingent 'quantifier over occasions', so the empirical dial is at least defensible)."
+     }
+    ],
+    "gaps_confirmed": [
+     "frequency adverb on a flat multi-atom habitual whose subject is a specific individual: no rule to carry the strength, no wrapper for a positive event, and the QuantifierPhrase companion's first slot is specified as a kind on the verbal side (only the copular side says <subject>)"
+    ],
+    "new_gaps": [
+     "confidence for an individual subject's frequency-quantified habitual: 'Individual facts keep 0.99' versus the empirical 0.9 for a generalization over occasions is undecided",
+     "no test is given for when a capitalized plural kind-word label ('the Keepers') is 'referring as a name' (Name-only individual) rather than a definite plural (GroupOf), so two faithful parses can differ"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Name-only for 'the Keepers', the kind atom read off 'Stilllight Lantern', Patient for burn's consumed object, the bare-mass constant wintergloss, event Location for 'at', and the status-less habitual are all to spec."
+   }
+  }
+ ]
+}

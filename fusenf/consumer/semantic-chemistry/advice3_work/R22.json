@@ -1,0 +1,229 @@
+{
+ "id": "R22",
+ "rule": "Cliff-spires shield the Northcove",
+ "texts": [
+  "When cliff-spires shield a cove from north winds, lanterns in that cove burn stably through winter.",
+  "When a cove is blocked from the north wind by cliff-spires, the lanterns in that cove stay lit through winter.",
+  "The Northcove is a shielded cove in Aelmere.",
+  "Northcove lanterns never go out in cold winds."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000076",
+   "sentence": "When cliff-spires shield a cove from north winds, lanterns in that cove burn stably through winter.",
+   "parse": [
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: nw_genus (Inheritance north_wind wind) (STV 1.0 0.99))",
+    "(: nw_mod (Inheritance north_wind north) (STV 1.0 0.99))",
+    "(: shield_burn_rule (Implication (And (Member $cs cliff_spire) (Member $c cove) (Member $e1 shield) (Agent $e1 $cs) (Theme $e1 $c) (Source $e1 north_wind) (Member $lt lantern) (LocatedIn $lt $c)) (And (Member (sk_burn $lt) burn) (Patient (sk_burn $lt) $lt) (Manner (sk_burn $lt) stably) (Time (sk_burn $lt) winter) (During (sk_burn $lt) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000076",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "(Source $e1 north_wind) reads \"shield a cove from north winds\" as a spatial origin, but the PP names what the cove is protected against rather than a whence, so the licensed encoding is the preposition-named oblique (From $e1 north_wind)."
+     },
+     {
+      "statement": 3,
+      "issue": "The consequent's Skolem event (sk_burn $lt) is a function of the lantern only, so one burn term is shared across distinct trigger occurrences $e1 (and would carry several During anchors) instead of being minted per occurrence as a function of every universal scoping over it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"through <season / period>\" as an extent adverbial — During is licensed only for during/while/throughout over a reified outer eventuality, Start/End and Measure duration need stated bounds or a figure, so nothing records an eventuality holding throughout a named span"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse falls back to (Time (sk_burn $lt) winter), which under-records the extent without over-claiming, so the loss is the gap above rather than a false atom. Compound handling is right (cliff_spire head genus only, north_wind head genus plus the positional modifier genus), as is hoisting \"lanterns in that cove\" into the premise with LocatedIn to express the consequent's universal."
+   },
+   "adjudication": {
+    "id": "fict3-000076",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Source is licensed only when the PP answers whence (decide by the question the PP answers, never by which listed role is closest); 'shield a cove FROM north winds' names what is warded off, not an origin, so (Source $e1 north_wind) asserts a provenance the text does not state and the licensed form is the preposition-named oblique (From $e1 north_wind)."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The whenever rule mints the response as a Skolem event PER OCCURRENCE and the scope rule makes a dependent existential a function of every universal scoping over it, so (sk_burn $lt) keyed on the lantern alone shares one burn across distinct shield occurrences $e1 (two spires shielding the same cove), stacking several During anchors on one event."
+     }
+    ],
+    "gaps_confirmed": [
+     "'through <season>' as an extent adverbial: During is licensed only for during/while/throughout over a reified outer eventuality and Start/End/Measure need stated bounds or a figure, so nothing records an eventuality holding throughout a named span — (Time … winter) under-records without over-claiming"
+    ],
+    "new_gaps": [
+     "a PP-restricted bare-plural subject of a whenever-rule consequent ('lanterns in that cove'): the restricted-kind-subject rule covers an adjectival restriction on a top-level generic only, so hoisting the NP into the premise as (Member $lt lantern) (LocatedIn $lt $c) is an improvisation the set neither licenses nor bars",
+     "a bare season word as a Time constant ('winter' with no deictic): only deictic seasons (last_spring, next_summer) and day-parts are listed as bare Time symbols"
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0: (From $e1 north_wind), the surface-preposition oblique, in place of Source; issue 1: mint the burn per occurrence and per lantern — (sk_burn $e1 $lt) (or of every premise universal) with (During (sk_burn $e1 $lt) $e1); the remaining atoms stand as emitted.",
+    "notes": "Compound handling (cliff_spire genus only; north_wind genus plus the positional modifier north), Manner for the -ly adverb kept in surface form, Patient for the burning lanterns, and the During tie all follow the instruction set."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000077",
+   "sentence": "When a cove is blocked from the north wind by cliff-spires, the lanterns in that cove stay lit through winter.",
+   "parse": [
+    "(: cliff_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: north_wind_genus (Inheritance north_wind wind) (STV 1.0 0.99))",
+    "(: north_wind_mod (Inheritance north_wind north) (STV 1.0 0.99))",
+    "(: cove_blocked_lanterns_lit (Implication (And (Member $c cove) (Member (sk_block $c) block) (Agent (sk_block $c) cliff_spire) (Theme (sk_block $c) $c) (Source (sk_block $c) north_wind)) (And (GroupOf (sk_lanterns $c) lantern) (LocatedIn (sk_lanterns $c) $c) (Implication (PartOf $x (sk_lanterns $c)) (And (Member (sk_lit $x) lit) (Experiencer (sk_lit $x) $x) (Still (sk_lit $x)) (Time (sk_lit $x) winter) (Member $x lit) (During (sk_lit $x) (sk_block $c)))))) (STV 1.0 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review": {
+    "id": "fict3-000077",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The rule's PREMISE is built out of Skolem-function terms ((Member (sk_block $c) block), (Agent (sk_block $c) cliff_spire), (Theme (sk_block $c) $c), (Source (sk_block $c) north_wind)), which the instruction set forbids outright — \"a premise never contains a Skolem term\" — so nothing can ever match it and the rule is permanently inert."
+     },
+     {
+      "statement": 3,
+      "issue": "\"blocked FROM the north wind\" names what is warded off, not a spatial origin, so it answers none of where/when/how/whence/whither and should take the preposition-named oblique; Source asserts the north wind as the blocking event's origin."
+     },
+     {
+      "statement": 3,
+      "issue": "The consequent nests a whole (Implication (PartOf $x ...) ...) inside another rule's conclusion, with its own free $x — per-member distribution rules are emitted at top level (or as a sealed sibling inside a seal), never as a conjunct of another rule's consequent."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite plural subject that is itself introduced inside a whenever-rule's CONSEQUENT (\"the lanterns in that cove\") and needs per-member distribution of a copular/state predicate — the instruction set gives the distribution rule only at top level or inside a seal, never nested in a consequent",
+     "durative \"through <period>\" (\"stay lit through winter\") — During is restricted to during/while/throughout with a reified outer eventuality, no interval Start/End or duration measure is stated, and no head covers \"through\""
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The compound decompositions (cliff_spire genus with the noun modifier suppressed; north_wind genus plus its cardinal modifier) and the stay-lit continuation-copular shape (reified state + Still + flat atom, no tense) are all correct. \"through winter\" lands on (Time e winter), which under-specifies rather than misstates; separately, definite \"the north wind\" and bare-plural \"cliff-spires\" are used as bare kind constants in role-filler slots, which I read as borderline rather than clearly wrong inside a generic rule."
+   },
+   "adjudication": {
+    "id": "fict3-000077",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'Rule premises bind through plain variables. A premise never contains a Skolem term: (sk_<verb> $x) function terms belong to conclusions' — the premise's (sk_block $c) terms can match no asserted blocking, so the rule can never fire."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The named obliques apply only when the PP answers where/when/how/whence/whither; 'blocked from the north wind' names what is warded off, not the blocking's origin, so it takes the preposition-named oblique (From e north_wind) and Source asserts a whence the sentence does not state."
+     },
+     {
+      "index": 2,
+      "verdict": "partial",
+      "reason": "What stands: no stated form nests a per-member distribution rule with its own variable inside another rule's mintable conclusion, and a licensed flat form exists (range the lanterns in the premise — (Member $l lantern) (LocatedIn $l $c) — the relational-universal/donkey route with a per-binding state (sk_lit $e $l)); what is overstated: the instruction set states no explicit bar, and the nested rule is well-typed and asserts nothing false, so on its own it is unlicensed improvisation rather than a violated rule."
+     }
+    ],
+    "gaps_confirmed": [
+     "A definite plural introduced inside a rule's consequent ('the lanterns in that cove') whose distributive predicate must reach each member: the group-witness + (PartOf $x <group>) distribution form has no licensed placement inside a consequent; only the flat premise-range (donkey / forall-forall) approximation is licensed, and it drops the definite group witness.",
+     "Durative 'through <period>' ('stay lit through winter'): During is restricted to during/while/throughout with a reified outer eventuality and no Start/End term covers a whole season, so the extent is carried only by the surface oblique (Through e winter) — the parse's (Time e winter) under-specifies the whole-period reading without misstating it."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Issue 0: bind the blocking through a plain event variable in the premise — (Member $c cove) (Member $e block) (Theme $e $c) (Agent $e cliff_spire) — and key the lit state on it, (sk_lit $e ...), with (During (sk_lit ...) $e). Issue 1: replace (Source $e north_wind) with the preposition-named oblique (From $e north_wind). Issue 2 (partial): flatten the per-lantern content into the same rule by adding (Member $l lantern) (LocatedIn $l $c) to the premise and minting (sk_lit $e $l) with its Still, Time and flat (Member $l lit) atoms in the consequent; no licensed form places the definite lantern group's own distribution rule inside the consequent (gap above).",
+    "notes": "The compound decompositions and the stay-lit continuation shape (reified state + Still + flat atom, no tense) are correct. 'The north wind' (an article, hence a witness by the oblique-NP rule) and bare-plural 'cliff-spires' as bare-kind fillers are borderline inside a generic rule and were not raised as issues."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000078",
+   "sentence": "The Northcove is a shielded cove in Aelmere.",
+   "parse": [
+    "(: nc_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: nc_cove (Member northcove cove) (STV 1.0 0.99))",
+    "(: nc_shielded (Member northcove shielded) (STV 1.0 0.99))",
+    "(: nc_loc (LocatedIn northcove aelmere) (STV 1.0 0.99))",
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000078",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the Thornmere/Calderwick pattern exactly: name plus Name atom, the stated kind in its own Member atom, containment 'in' as LocatedIn, and Aelmere given a Name with no invented kind atom. 'shielded' stays a separate property atom rather than fusing into shielded_cove, which is right for a participial descriptive modifier."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000079",
+   "sentence": "Northcove lanterns never go out in cold winds.",
+   "parse": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: lantern_go_out_q (QuantifierPhrase lantern go_out \"never\") (STV 1.0 0.99))",
+    "(: northcove_lantern_no_go_out (Implication (And (Member $x lantern) (Possession $x northcove)) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (Member (sk_wind $x) wind) (Member (sk_wind $x) cold) (Location (sk_go_out $x) (sk_wind $x)))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000079",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "'in cold winds' is a circumstantial adjunct, not a place, so the thematic Location role mis-slots it — the PP answers 'under what circumstances', not 'where', which the oblique section says routes to the preposition-named (In <event> <wind>) instead."
+     },
+     {
+      "statement": 2,
+      "issue": "the bare plural 'cold winds' is encoded as a single witness (sk_wind $x) with Member ... wind / Member ... cold, flattening a plural to one individual instead of the group + distributed-modifier shape the plural doctrine requires."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a circumstantial restrictor on a NEGATED verbal generic ('Ns never V **in cold winds**'): ConditionalProperty carries such a restriction only for kind-level properties and deontic norms, so a verbal generic's restrictor has nowhere to sit but inside the strength-0.0 consequent, where the denial then also covers the restrictor's own existence (no cold wind satisfies the rule vacuously)",
+     "a bare-plural indefinite NP appearing inside a rule consequent: GroupOf is expressible there, but the per-member distribution of its descriptive modifier ('cold') is not, so no licensed encoding of the plural exists in that position"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun-premodifier route (head noun typed normally + opaque Possession + one Name atom, no fused compound and no invented kind for Northcove), the phrasal verb kept whole as go_out with no genus, 'never' as the strength-0.0 negated verbal generic at confidence 0.9 with its QuantifierPhrase companion, and Patient for the intransitive change-of-state subject are all correct. Only the encoding of the 'in cold winds' adjunct is at issue."
+   },
+   "adjudication": {
+    "id": "fict3-000079",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Named roles apply only when the PP answers where / when / how / whence / whither and the oblique section says to 'decide by the question the PP answers, never by which listed role is closest' — 'in cold winds' answers under-what-circumstances, so `Location` mis-types a wind as the event's place and the licensed head is the surface preposition, `(In (sk_go_out $x) (sk_wind $x))`."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "This is gap territory — the bare plural is a non-specific mention inside a generic rule, where the bare-kind filler cannot carry 'cold' and the group + distribution shape the reviewer demands is itself unlicensed inside a rule consequent (their own second gap concedes it) — and the per-binding witness typed `wind` + `cold`, kept inside the strength-0 bundle exactly as the projection rule places an indefinite posited only by the denied proposition, asserts nothing false or ill-typed."
+     }
+    ],
+    "gaps_confirmed": [
+     "a circumstantial PP restrictor on a negated verbal generic ('Ns never V in C'): the instruction set legislates the restriction slot only for kind-level properties and norms (ConditionalProperty), leaving open whether the circumstance sits premise-side (a universal over cold winds that a later stated wind could fire) or as an oblique inside the strength-0 consequent as here",
+     "a modified bare-plural indefinite inside a rule consequent ('cold winds'): the descriptive modifier has no per-member carrier there (no nested distribution rule is licensed), so only a per-binding witness with Member atoms is available"
+    ],
+    "new_gaps": [
+     "the companion string for 'never': the Quantifiers parenthetical ('with its companion as \"no\"/\"none\" already provides') leaves ambiguous whether the recorded word is \"never\" or is normalized to \"no\"/\"none\""
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0: replace `(Location (sk_go_out $x) (sk_wind $x))` with the preposition-named oblique `(In (sk_go_out $x) (sk_wind $x))`, leaving the wind witness, its `wind`/`cold` typing and the strength-0.0 rule otherwise unchanged.",
+    "notes": "The Possession route for 'Northcove lanterns', the whole phrasal `go_out` with `Patient` on the lantern, the strength-0.0 rule at confidence 0.9 and the \"never\" companion all stand; the restrictor's premise-vs-consequent placement is the open question filed above, not a defect."
+   }
+  }
+ ]
+}

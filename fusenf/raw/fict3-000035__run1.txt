@@ -1,0 +1,3 @@
+(: feather_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))
+(: feather_fallen_rule (Implication (PartOf $y sk_feather_1) (Member $y fallen)) (STV 1.0 0.9))
+(: apprentice_collect_rule (Implication (Member $x apprentice) (And (Member (sk_collect $x) collect) (Agent (sk_collect $x) $x) (Theme (sk_collect $x) sk_feather_1) (Time (sk_collect $x) morning))) (STV 0.9 0.9))

@@ -1,0 +1,6 @@
+(: keeper_grp (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: tolerate_ev (Member sk_tolerate_1 tolerate) (STV 1.0 0.99))
+(: tolerate_ag (Agent sk_tolerate_1 sk_keeper_1) (STV 1.0 0.99))
+(: tolerate_th (Theme sk_tolerate_1 sky_cat) (STV 1.0 0.99))
+(: tolerate_rule (Implication (PartOf $x sk_keeper_1) (And (Member (sk_tolerate $x) tolerate) (Agent (sk_tolerate $x) $x) (Theme (sk_tolerate $x) sky_cat))) (STV 1.0 0.9))

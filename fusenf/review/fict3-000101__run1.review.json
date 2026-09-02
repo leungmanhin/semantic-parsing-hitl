@@ -1,0 +1,12 @@
+{"id": "fict3-000101", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "\"Sunken Cove\" carries its kind word inside the name, so the Kestrel-River / Brindle-estuary rule licenses the type atom (Member sunken_cove cove), which the parse omits (only the Name atom is emitted)."},
+               {"statement": 8, "issue": "\"the Keepers tend the ... lanterns\" is a distributive predicate over a definite plural group, so the group event should be accompanied by the per-member (Implication (PartOf $x sk_keepers_1) ...) distribution rule, which is absent."},
+               {"statement": 8, "issue": "The consequent mints the constant event sk_tend_1 rather than a per-occurrence Skolem term anchored to its trigger, so the regularity derives one tending overall instead of one per occasion and carries no During link."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a standing (present-tense, non-narrative) conditional generalization whose antecedent is a copular state over definite/specific referents — the 'Bare when P, Q routes by P's referents' rule offers only the whenever machinery (generic/indefinite participants, per-occurrence Skolem + During) or two plain ordered events (definite participants in a one-off narrative), and neither branch fits",
+             "how a definite plural's per-member distribution rule should be nested when the group event sits inside another rule's conclusion — nesting is specified only for sealed complements"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "'the Keepers' is treated as a definite plural group rather than the capitalized-plural Name-only individual of the 'the Wrens' rule; the label transparently names the members' kind here, so GroupOf is defensible, but the two rules genuinely compete. The Sunken-Cove-lanterns handling (head parsed normally + opaque Possession + Name on the multi-word name) and 'at the Watch' as LocatedIn with no Name atom are both exactly right; 'tend' as Patient rather than Theme is a boundary call."}

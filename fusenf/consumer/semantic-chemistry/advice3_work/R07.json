@@ -1,0 +1,137 @@
+{
+ "id": "R7",
+ "rule": "Sky-cats hunting reduces nightmoth populations",
+ "texts": [
+  "When a sky-cat descends, the sky-cat hunts nightmoths.",
+  "When a sky-cat hunts nightmoths at a lantern-row, the nightmoth crowd at that lantern-row shrinks.",
+  "Whenever a sky-cat hunts nightmoths at a lantern-row, the nightmoth crowd at that lantern-row thins.",
+  "After a sky-cat hunts at a lantern-row, the thread harvest at that lantern-row falls."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000023",
+   "sentence": "When a sky-cat descends, the sky-cat hunts nightmoths.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: skycat_hunt_rule (Implication (And (Member $x sky_cat) (Member $e1 descend) (Agent $e1 $x)) (And (Member (sk_hunt $x $e1) hunt) (Agent (sk_hunt $x $e1) $x) (Patient (sk_hunt $x $e1) nightmoth) (During (sk_hunt $x $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000023",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The object of \"hunts\" is given Patient, but hunting neither creates, destroys, consumes nor physically changes the nightmoths, so the stated object test - and its \"when unclear, default to Theme\" fallback - points to Theme."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing of bare \"when P, Q\" with an indefinite trigger participant onto the whenever machinery, the genus atoms for sky_cat and the solid-spelled nightmoth, the Skolem-function consequent with its During link at (STV 1.0 0.9), and the absence of a QuantifierPhrase companion all follow the instruction set."
+   },
+   "adjudication": {
+    "id": "fict3-000023",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Licensed by precedent: the instruction set's own forall-forall example gives the quarry of the pursuit verb chase (`every dog chased every cat`) the `Patient` role, and `hunt` is the same pursue-a-quarry frame, so `Patient` here follows a stated example rather than violating the object test."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "object role of a pursuit verb (hunt / chase / pursue): the 'does the object itself change?' test with its Theme default points to `Theme`, while the forall-forall example emits `chase` -> `Patient`; the instruction set needs one legislated line so statements and questions match"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Everything else follows the instruction set: bare 'when P, Q' with an indefinite trigger routed to the whenever machinery, the Skolem event a function of both the sky-cat and the descend occurrence, the bare-plural generic object as a bare kind filler, and the two compound genus atoms."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000024",
+   "sentence": "When a sky-cat hunts nightmoths at a lantern-row, the nightmoth crowd at that lantern-row shrinks.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: row_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: nm_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: hunt_shrink_rule (Implication (And (Member $h hunt) (Agent $h $c) (Member $c sky_cat) (Theme $h night_moth) (Location $h $r) (Member $r lantern_row)) (And (Member (sk_shrink $h) shrink) (Patient (sk_shrink $h) (sk_crowd $r)) (Member (sk_crowd $r) crowd) (GroupOf (sk_crowd $r) night_moth) (LocatedIn (sk_crowd $r) $r) (During (sk_shrink $h) $h))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000024",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a presupposed definite NP in a generic rule's consequent whose restrictor is a premise variable ('the nightmoth crowd at that lantern-row'): the instruction set bars Skolem terms from premises but gives no route for keeping such a referent's existence and typing outside the rule, so the crowd's Member / GroupOf / LocatedIn atoms exist only when the rule fires"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles, heads and TVs all check out: Theme for the hunted moths, Patient for the shrinking undergoer, entity-attached LocatedIn (not Location) for 'at that lantern-row', and crowd = Member + GroupOf per the flock-of-birds pattern, with genus-only decomposition for sky_cat / lantern_row / night_moth. One firing caveat: the premise pins the hunt's Theme to the bare kind symbol `night_moth`, so the rule cannot match a hunt event whose object was stored as a group witness."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000025",
+   "sentence": "Whenever a sky-cat hunts nightmoths at a lantern-row, the nightmoth crowd at that lantern-row thins.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: whenever_hunt_thin (Implication (And (Member $e1 hunt) (Agent $e1 $x) (Member $x sky_cat) (Patient $e1 nightmoth) (Location $e1 $r) (Member $r lantern_row)) (And (Member (sk_thin $e1) thin) (Patient (sk_thin $e1) (sk_crowd $r)) (Member (sk_crowd $r) crowd) (GroupOf (sk_crowd $r) nightmoth) (LocatedIn (sk_crowd $r) $r) (During (sk_thin $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000025",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite 'a lantern-row' is correctly a premise variable so 'that lantern-row' can bind to it donkey-style, and the crowd is a Skolem function of that variable; 'at' is in the containment list so LocatedIn on the crowd entity is the right head."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000026",
+   "sentence": "After a sky-cat hunts at a lantern-row, the thread harvest at that lantern-row falls.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: threadharvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: after_hunt_harvest_falls (Implication (And (Member $e hunt) (Agent $e $s) (Member $s sky_cat) (Location $e $r) (Member $r lantern_row)) (And (Member (sk_harvest $e) thread_harvest) (LocatedIn (sk_harvest $e) $r) (Member (sk_fall $e) fall) (Theme (sk_fall $e) (sk_harvest $e)) (Before $e (sk_fall $e)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000026",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "generic \"After P, Q\" with indefinite participants: the occurrence-quantifying rule route is stated only for \"every time / whenever\" and bare \"when\", and the whenever machinery hard-wires a `During` link from response to trigger, so nothing says how an \"after\" conditional routes or where its `Before` ordering goes inside the rule's conclusion"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite \"thread harvest\" is minted as the dependent-existential Skolem `(sk_harvest $e)` — the licensed forall-exists shape — but it indexes the row's harvest on the hunting occasion rather than on the row, so two hunts at one row yield two harvest entities. Compound genera, the at-locative split (event `Location` vs entity `LocatedIn`), the scalar-change `Theme` on `fall`, and the after-to-`Before` swap are all correct."
+   },
+   "adjudication": null
+  }
+ ]
+}

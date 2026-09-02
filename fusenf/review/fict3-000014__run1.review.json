@@ -1,0 +1,9 @@
+{"id": "fict3-000014", "run": 1,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A multi-word proper name whose in-name kind word is PLURAL (\"the Salt-bloom Tide-pools\"): Names and casing covers singular named entities whose kind word sits inside the name (\"the Kestrel River\" -> one symbol + Name + a singular Member type atom) and separately covers a bare-class-word plural label (\"the Wrens\" -> Name-only, no GroupOf, no type atom), but says nothing about a plural-headed multi-word name, so it does not decide whether the type atom should be the singular (Member salt_bloom_tide_pools tide_pool) the parse emits or a group (GroupOf ... tide_pool)."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"The Keepers\" is handled per the plural-label rule (Name-only individual, no GroupOf, no per-member kind), the definite \"the sea-water\" mints a typed witness, and Theme/Source match the take-from frame; simple-present habitual correctly carries no status atom. Both compounds emit genus only, with the noun modifiers (sea, tide) unexposed, as specified."}

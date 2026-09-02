@@ -1,0 +1,5 @@
+(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))
+(: cove_name (Name sunken_cove "Sunken Cove") (STV 1.0 0.99))
+(: water_type (Member sk_water_1 water) (STV 1.0 0.99))
+(: water_part (PartOf sk_water_1 sunken_cove) (STV 1.0 0.99))
+(: lantern_wraith_rule (Implication (And (Member $x go_out) (Patient $x $y) (Member $y lantern) (LocatedIn $y sunken_cove) (Time $x night)) (And (Member (sk_rise $x) rise) (Agent (sk_rise $x) (sk_wraith $x)) (Member (sk_wraith $x) wraith) (Source (sk_rise $x) sk_water_1) (During (sk_rise $x) $x))) (STV 1.0 0.9))

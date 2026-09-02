@@ -1,0 +1,4 @@
+(: seniorkeeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))
+(: seniorkeeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))
+(: lanternstation_genus (Inheritance lantern_station station) (STV 1.0 0.99))
+(: whenever_die_inherit (Implication (And (Member $e1 die) (Patient $e1 $x) (Member $x senior_keeper)) (And (Member (sk_inherit $e1) inherit) (Agent (sk_inherit $e1) (sk_heir $e1)) (Member (sk_heir $e1) heir) (Theme (sk_inherit $e1) (sk_station $e1)) (Member (sk_station $e1) lantern_station) (Possession (sk_station $e1) $x) (During (sk_inherit $e1) $e1))) (STV 1.0 0.9))

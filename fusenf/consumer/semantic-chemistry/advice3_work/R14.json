@@ -1,0 +1,129 @@
+{
+ "id": "R14",
+ "rule": "Drained lanterns give weak mist-light",
+ "texts": [
+  "When a wraith drains a lantern, the lantern gives weak mist-light.",
+  "Whenever a wraith drains a lantern, the lantern shows dim mist-light.",
+  "Weak mist-light rarely attracts nightmoths.",
+  "When a lantern attracts a handful of nightmoths, the thread harvest at that lantern falls."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000047",
+   "sentence": "When a wraith drains a lantern, the lantern gives weak mist-light.",
+   "parse": [
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: whenever_drain_give (Implication (And (Member $w wraith) (Member $dr drain) (Agent $dr $w) (Patient $dr $l) (Member $l lantern)) (And (Member (sk_give $dr) give) (Agent (sk_give $dr) $l) (Theme (sk_give $dr) (sk_light $dr)) (Member (sk_light $dr) mist_light) (Member (sk_light $dr) weak) (During (sk_give $dr) $dr))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000047",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite participants route the bare \"when P, Q\" to the whenever machinery correctly: plain-variable premises, Skolem-function consequent, During link, (STV 1.0 0.9). mist_light gets its genus and correctly suppresses the noun modifier; the witness for \"weak mist-light\" is forced because the qualifier needs a bearer."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000048",
+   "sentence": "Whenever a wraith drains a lantern, the lantern shows dim mist-light.",
+   "parse": [
+    "(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: wraith_drain_show_rule (Implication (And (Member $w wraith) (Member $l lantern) (Member $e1 drain) (Agent $e1 $w) (Patient $e1 $l)) (And (Member (sk_show $e1) show) (Agent (sk_show $e1) $l) (Patient (sk_show $e1) (sk_light $e1)) (Member (sk_light $e1) mist_light) (Member (sk_light $e1) dim) (During (sk_show $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000048",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "In the consequent the show event's object is given as (Patient (sk_show $e1) (sk_light $e1)), but showing neither creates, destroys, consumes nor physically changes the light, so the yes/no change test (and the unclear-case default) yields Theme."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows the whenever machinery: plain-variable premises, per-occurrence Skolem event, During link, no tense or QuantifierPhrase; the stative-transitive lantern correctly keeps Agent despite being inanimate, and mist_light gets the head genus only. The descriptive \"dim\" rightly stays an unfused Member atom on a per-occurrence witness rather than fusing into the kind."
+   },
+   "adjudication": {
+    "id": "fict3-000048",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Patient is for an object the action 'creates, destroys, consumes, or physically changes'; what a lantern shows is displayed/perceived and unchanged, and 'when the test is unclear, default to Theme', so (Patient (sk_show $e1) (sk_light $e1)) mis-roles the object."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A bare mass-noun object carrying a descriptive modifier ('dim mist-light'): the bare-kind-filler rule leaves no slot for the modifier, and the instruction set does not name the per-occurrence witness the parse mints for it."
+    ],
+    "decision": "defect",
+    "defect_summary": "Replace (Patient (sk_show $e1) (sk_light $e1)) with (Theme (sk_show $e1) (sk_light $e1)); the rest of the rule stands as is.",
+    "notes": "The whenever form is otherwise compliant: plain-variable premises, per-occurrence Skolems for both the show event and its light, During link, no tense or companion, inanimate transitive subject as Agent, and 'dim' kept as a separate Member atom on the witness."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000049",
+   "sentence": "Weak mist-light rarely attracts nightmoths.",
+   "parse": [
+    "(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: weak_ml_attract_nightmoth (Implication (And (Member $x mist_light) (Member $x weak)) (And (Member (sk_attract $x) attract) (Agent (sk_attract $x) $x) (Theme (sk_attract $x) nightmoth))) (STV 0.1 0.9))",
+    "(: ml_q (QuantifierPhrase mist_light attract \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000049",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route rather than a kind relation, with 'weak' as a premise conjunct and not fused into the compound; 'rarely' sets strength 0.1 with its QuantifierPhrase companion, the bare-kind object filler `nightmoth` is right for a generic clause, and both compound genus atoms are present. Minor: the companion's kind slot names `mist_light` while the rule's actual range is weak mist-light, but `mist_light` does appear in the premise so the companion restates nothing absent from the parse."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000050",
+   "sentence": "When a lantern attracts a handful of nightmoths, the thread harvest at that lantern falls.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: threadharvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: when_attract_fall (Implication (And (Member $x attract) (Agent $x $lan) (Member $lan lantern) (Theme $x $m) (GroupOf $m nightmoth) (CardinalityPhrase $m \"a handful\")) (And (Member (sk_fall $x) fall) (Theme (sk_fall $x) (sk_harvest $lan)) (Member (sk_harvest $lan) thread_harvest) (LocatedIn (sk_harvest $lan) $lan) (During (sk_fall $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000050",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare 'when P, Q' with indefinite participants correctly routes to the whenever rule (1.0/0.9, no companion); inanimate transitive subject stays Agent, 'a handful' takes CardinalityPhrase on the group, 'falls' is a listed change-of-value verb so the harvest is Theme, 'at that lantern' is inside LocatedIn's containment licence, and 'that lantern' resolves to the premise variable as donkey anaphora. The lantern-keyed Skolem entity (sk_harvest $lan) is the licensed dependent-existential form."
+   },
+   "adjudication": null
+  }
+ ]
+}

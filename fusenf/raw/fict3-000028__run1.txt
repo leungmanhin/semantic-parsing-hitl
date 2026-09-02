@@ -1,0 +1,5 @@
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: whenever_hunt_survivors_move (Implication (And (Member $e hunt) (Agent $e $s) (Member $s sky_cat) (Location $e $r) (Member $r lantern_row) (Member $m nightmoth) (Member $sv survive) (Agent $sv $m) (Theme $sv $e)) (And (Member (sk_move $m) move) (Agent (sk_move $m) $m) (Goal (sk_move $m) hollows) (During (sk_move $m) $e))) (STV 1.0 0.9))

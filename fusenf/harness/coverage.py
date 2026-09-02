@@ -48,6 +48,7 @@ CORPORA = {
     "tierD":    ("tierD.jsonl",    ["tierD.parses.jsonl"], "measurement (M2)"),
     "fiction":  ("fiction.jsonl",  ["fiction.parses.jsonl"], "external consumer (v1 rules)"),
     "fiction2": ("fiction2.jsonl", ["fiction2.parses.jsonl"], "external consumer (v2 texts)"),
+    "fiction3": ("fiction3.jsonl", ["fiction3.parses.jsonl"], "external consumer (v3 texts)"),
     "fixpack":  ("fixpack.jsonl",  ["fixpack.parses.jsonl"], "validation"),
     "fixpack3": ("fixpack3.jsonl", ["fixpack3.parses.jsonl"], "validation"),
     "fixpack31": ("fixpack31.jsonl", ["fixpack31.parses.jsonl"], "validation"),

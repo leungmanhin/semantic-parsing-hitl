@@ -1,0 +1,104 @@
+{
+ "id": "R17",
+ "rule": "Salt-bloom in winter slows the burn",
+ "texts": [
+  "Whenever a Keeper adds salt-bloom to mire-essence in winter, that mire-essence burns slowly.",
+  "Whenever a Keeper mixes salt-bloom into mire-essence in winter, that mire-essence burns slowly.",
+  "When a cold wind strikes a salt-bloomed lantern, the lantern stays lit."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000059",
+   "sentence": "Whenever a Keeper adds salt-bloom to mire-essence in winter, that mire-essence burns slowly.",
+   "parse": [
+    "(: whenever_saltbloom_burn (Implication (And (Member $a add) (Agent $a $k) (Member $k keeper) (Theme $a salt_bloom) (Goal $a $m) (Member $m mire_essence) (Time $a winter)) (And (Member (sk_burn $a) burn) (Patient (sk_burn $a) $m) (Manner (sk_burn $a) slowly) (During (sk_burn $a) $a))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000059",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "No decomposition atoms are emitted for the two compound kinds the parse coins: `(Inheritance salt_bloom bloom)` and `(Inheritance mire_essence essence)` are both required by Compound concepts (head genus always emitted; the noun modifiers `salt`/`mire` correctly stay unexposed), and Compound concepts states the emission is determined, not optional."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever machinery is applied correctly: plain-variable premises, Skolem-function consequent event, During link, no tense, no QuantifierPhrase companion, and 'that mire-essence' bound back to the premise variable $m (donkey anaphora). Goal for the non-animate 'to mire-essence', Theme for the applied substance, Patient for the intransitive change-of-state 'burns', and the surface-form Manner adverb `slowly` all match the role tests."
+   },
+   "adjudication": {
+    "id": "fict3-000059",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts: a hyphenated modifier+head compound kind always emits its head genus ('the genus itself is always emitted either way'; emission is determined, not optional), so `(Inheritance salt_bloom bloom)` and `(Inheritance mire_essence essence)` are mandatory and their absence violates a stated rule (the noun modifiers `salt`/`mire` correctly stay unexposed)."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A season as a time slot ('in winter'): the structured Time terms are Year/Month/Day/Weekday/Hour/Minute only and seasons appear solely as deictic constants (last_spring, next_summer), so a bare `(Time $a winter)` in a generic rule is improvised.",
+     "The inanimate destination of 'add X to Y': the instruction set does not settle Goal versus Recipient for a non-addressee 'to'-phrase on a transfer verb."
+    ],
+    "decision": "defect",
+    "defect_summary": "Add `(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))` and `(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))`; the whenever rule itself — plain-variable premises, Skolem consequent event with `During`, $m bound for 'that mire-essence', Theme/Goal/Patient roles, surface-form Manner `slowly`, no companion, (STV 1.0 0.9) — stands as emitted.",
+    "notes": ""
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000060",
+   "sentence": "Whenever a Keeper mixes salt-bloom into mire-essence in winter, that mire-essence burns slowly.",
+   "parse": [
+    "(: salt_bloom_g (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: mire_essence_g (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: whenever_mix_burn (Implication (And (Member $x mix) (Agent $x $k) (Member $k keeper) (Theme $x salt_bloom) (Goal $x mire_essence) (Time $x winter)) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) mire_essence) (Manner (sk_burn $x) slowly) (During (sk_burn $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000060",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A demonstrative anaphor picking out a specific portion of a mass noun that was introduced as a bare kind filler inside a rule ('mixes salt-bloom into mire-essence ... that mire-essence burns'): the bare-kind-filler rule for non-specific mass objects and the 'coreference is symbol reuse' rule together leave the anaphor as the kind symbol, so the consequent predicates burning of mire-essence-the-kind rather than the portion mixed; the instruction set never says whether such a mass participant may instead be individuated as a plain premise variable"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-machinery shape, per-occurrence Skolem consequent, During link, no QuantifierPhrase, and the 1.0/0.9 rule TV all match the instruction set; 'into' correctly takes the motion-result Goal with the moved substance as Theme, and 'in winter' as a bare named-time symbol on Time is licensed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000061",
+   "sentence": "When a cold wind strikes a salt-bloomed lantern, the lantern stays lit.",
+   "parse": [
+    "(: strike_stay_lit_rule (Implication (And (Member $s strike) (Agent $s $w) (Theme $s $l) (Member $w wind) (Member $w cold) (Member $l lantern) (Member $l salt_bloomed)) (And (Member (sk_lit $s) lit) (Experiencer (sk_lit $s) $l) (Still (sk_lit $s)) (Member $l lit) (During (sk_lit $s) $s))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000061",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'When P, Q' with indefinite participants correctly routes to the whenever machinery, and 'stays lit' gets the mandated continuation-copular shape - reified state, Experiencer, Still, plus the flat atom, with no Result link. 'strikes' taking Theme follows the does-the-object-change test and its default-to-Theme fallback."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,139 @@
+{
+ "id": "R1",
+ "rule": "Lighting a lantern produces mist-light",
+ "texts": [
+  "When a lantern burns mire-essence, the lantern produces mist-light.",
+  "Whenever a lantern burns mire-essence, the lantern gives mist-light.",
+  "Mist-light is a pale silver flame.",
+  "Ordinary oil does not produce mist-light."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000001",
+   "sentence": "When a lantern burns mire-essence, the lantern produces mist-light.",
+   "parse": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: lantern_burn_produce (Implication (And (Member $x lantern) (Member $e1 burn) (Agent $e1 $x) (Patient $e1 mire_essence)) (And (Member (sk_produce $x $e1) produce) (Agent (sk_produce $x $e1) $x) (Patient (sk_produce $x $e1) mist_light) (During (sk_produce $x $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare \"when P, Q\" with an indefinite participant is routed through the whenever machinery as specified (premise clause, per-occurrence Skolem consequent, During link, STV 1.0 0.9), the anaphoric \"the lantern\" binds to the premise variable, and burn/produce both take Patient by the change test. Compound genus atoms for mire_essence and mist_light are emitted with no noun-modifier genus, per Compound concepts."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000002",
+   "sentence": "Whenever a lantern burns mire-essence, the lantern gives mist-light.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: lantern_burn_gives_light (Implication (And (Member $L lantern) (Member $e burn) (Agent $e $L) (Patient $e mire_essence)) (And (Member (sk_give $e) give) (Agent (sk_give $e) $L) (Theme (sk_give $e) mist_light) (During (sk_give $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever routes to the occurrence rule with a per-occurrence Skolem consequent and the During tie, no QuantifierPhrase companion, and STV 1.0 0.9 — all as specified; the anaphoric 'the lantern' correctly reuses the premise variable. Compound genus atoms for mire_essence/mist_light are emitted with their noun modifiers correctly left unexposed, and burn/give take Patient/Theme per the object-change test."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000003",
+   "sentence": "Mist-light is a pale silver flame.",
+   "parse": [
+    "(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: ml_flame (Inheritance mist_light flame) (STV 1.0 0.99))",
+    "(: ml_pale (Inheritance mist_light pale) (STV 1.0 0.99))",
+    "(: ml_silver (Inheritance mist_light silver) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000003",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "(Inheritance mist_light pale) takes the definitional dial (STV 1.0 0.99), but a contingent kind-level appearance claim is the empirical case per 'all swans are white' / 'Trellises are wooden' (STV 0.9 0.9) and the 'when unsure -> empirical' default."
+     },
+     {
+      "statement": 3,
+      "issue": "(Inheritance mist_light silver) carries the same definitional 1.0/0.99 where the empirical-generic 0.9/0.9 is indicated."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is correct: genus (Inheritance mist_light light) with the noun modifier 'mist' unexposed, and the colour adjectives split out rather than fused (incidental description bars fusion). The kind-identity atom (Inheritance mist_light flame) at 1.0/0.99 reads definitional and is fine."
+   },
+   "adjudication": {
+    "id": "fict3-000003",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A bare generic's contingent property takes the empirical dial ('Trellises are wooden' / 'Apples are sweet' -> (STV 0.9 0.9); colour is the instruction set's own empirical exemplar in 'all swans are white', and 'when unsure -> empirical'), so (Inheritance mist_light pale) at 1.0/0.99 over-asserts a definitional, exceptionless claim the text does not make."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Same dial: (Inheritance mist_light silver) is a kind-level appearance claim, empirical by the 'could a counterexample exist' test and the unsure-default, so it takes (STV 0.9 0.9), not the taxonomic 1.0/0.99 reserved for the flame kind atom."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "Adjective-stacked colour ('a pale silver flame'): the instruction set does not say whether 'pale' modifies the colour term (one shade property) or the head independently (two properties); the parse's two-atom split is an improvisation."
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0: (Inheritance mist_light pale) at (STV 0.9 0.9). Issue 1: (Inheritance mist_light silver) at (STV 0.9 0.9); the genus (Inheritance mist_light light) and kind atom (Inheritance mist_light flame) keep 1.0/0.99.",
+    "notes": "Compound handling (noun modifier 'mist' unexposed, genus 'light', colour adjectives unfused) is correct; the only fault is the truth-value dial on the two appearance atoms."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000004",
+   "sentence": "Ordinary oil does not produce mist-light.",
+   "parse": [
+    "(: mist_light_g (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: oil_no_produce (Implication (And (Member $x oil) (Member $x ordinary)) (And (Member (sk_produce $x) produce) (Agent (sk_produce $x) $x) (Patient (sk_produce $x) mist_light))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000004",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route rather than a kind relation, with 'ordinary' as a premise conjunct; strength 0.0 / confidence 0.9 matches the negated-verbal-generic dial, plain 'not' correctly takes no QuantifierPhrase, and mist_light gets its head genus with the noun modifier left unexposed."
+   },
+   "adjudication": null
+  }
+ ]
+}

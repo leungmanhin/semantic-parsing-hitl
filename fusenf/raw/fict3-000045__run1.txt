@@ -1,0 +1,2 @@
+(: wraith_pull_rule (Implication (And (Member $near near) (Agent $near $wraith) (Member $wraith wraith) (Theme $near $lantern) (Member $lantern lantern) (Member $lantern lit)) (And (Member (sk_pull $near) pull) (Agent (sk_pull $near) $wraith) (Theme (sk_pull $near) mire_essence) (Source (sk_pull $near) $lantern) (During (sk_pull $near) $near))) (STV 1.0 0.9))
+(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))

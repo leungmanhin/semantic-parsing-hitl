@@ -1,0 +1,111 @@
+{
+ "id": "R20",
+ "rule": "Spring tides occur near new moon and full moon",
+ "texts": [
+  "Spring tides occur at new moon or at full moon.",
+  "The Keepers time the salt-bloom harvest to the new-moon spring tide."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000070",
+   "sentence": "Spring tides occur at new moon or at full moon.",
+   "parse": [
+    "(: spring_tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: spring_tide_time (Implication (Member $x spring_tide) (Or (Time $x new_moon) (Time $x full_moon))) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000070",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a disjunction in a RULE'S CONSEQUENT — the instruction set scopes (Or ...) narrowly inside an asserted fact and splits a disjunctive rule PREMISE into one rule per disjunct, but says nothing about an (Or ...) standing as a conclusion",
+     "a light verb over an event-noun (\"spring tides OCCUR at ...\") in a bare-plural GENERIC — the light-verb rule is stated for a specific occurrence, and the instruction set does not say how it composes with the verbal-generic rule form whose consequent normally mints a Skolem event"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definitional 1.0/0.99 rather than the empirical generic 0.9/0.9 is a judgment the dial permits if a spring tide is definitionally the syzygy tide, and inclusive Or is the correct default with no exclusivity cue. new_moon/full_moon are left undecomposed, which the Time section's bare-symbol treatment of named times supports over the compound-decomposition rule."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000071",
+   "sentence": "The Keepers time the salt-bloom harvest to the new-moon spring tide.",
+   "parse": [
+    "(: keepers_group (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: harvest_type (Member sk_harvest_1 salt_bloom_harvest) (STV 1.0 0.99))",
+    "(: harvest_genus (Inheritance salt_bloom_harvest harvest) (STV 1.0 0.99))",
+    "(: time_event (Member sk_time_1 time) (STV 1.0 0.99))",
+    "(: time_agent (Agent sk_time_1 sk_group_1) (STV 1.0 0.99))",
+    "(: time_patient (Patient sk_time_1 sk_harvest_1) (STV 1.0 0.99))",
+    "(: time_goal (Goal sk_time_1 new_moon_spring_tide) (STV 1.0 0.99))",
+    "(: keepers_time_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_time $x) time) (Agent (sk_time $x) $x) (Patient (sk_time $x) sk_harvest_1) (Goal (sk_time $x) new_moon_spring_tide))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000071",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "the temporal-alignment 'to'-PP ('time the harvest to the new-moon spring tide') is given the spatial Goal role, which the instruction set reserves for whither-PPs and repeatedly warns off non-path 'to' (never a spatial Goal for a result 'into', never for a MeasureTo endpoint); a PP answering none of where/when/how/whence/whither routes to the preposition-named oblique instead."
+     },
+     {
+      "statement": 6,
+      "issue": "new_moon_spring_tide is emitted as a bare untyped role filler -- neither the Member typing every definite referent gets nor the head genus (Inheritance new_moon_spring_tide tide) that Compound concepts says is always emitted, so a three-word compound NP enters the KB with no link to anything."
+     },
+     {
+      "statement": 7,
+      "issue": "the per-member distribution rule repeats both problems verbatim (same Goal head, same untyped tide constant)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized plural kind-word label with no name-hood signal ('the Keepers'): Names and casing says the capitalized-common-noun default is 'singular-collective only' and that a capitalized plural kind-word label referring as a name is a Name-only individual with no GroupOf, yet gives no test for when such a plural is 'referring as a name' rather than an ordinary definite plural -- the two halves of the rule point to different parses here",
+     "a recurring natural-cycle event NP used as a temporal anchor ('the new-moon spring tide'): no route is given -- deictic-style bare time constant, event-noun sk_ witness, or ordinary definite with typing and compound decomposition"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Patient for 'the salt-bloom harvest' is right per the explicit occurrence-object rule (a verb that changes when an occurrence happens alters it), as are the fused salt_bloom_harvest with genus harvest and noun modifier unexposed, the absent tense atom on a habitual present, and the group-event-plus-per-member-rule pairing for a definite plural with a non-collective predicate."
+   },
+   "adjudication": {
+    "id": "fict3-000071",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The named obliques apply only when the PP answers where/when/how/whence/whither and the set says to decide by the question the PP answers, never by which listed role is closest; 'time the harvest TO the tide' names an alignment target, not a whither, so Goal asserts a spatial destination the text does not state and the licensed form is the preposition-named oblique (To sk_time_1 …)."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "A definite description is a typed witness and an event-denoting noun ('the storm') stays an ordinary sk_ entity rather than a deictic constant, while Compound concepts says the head genus of a minted compound symbol is always emitted — so the untyped, genus-less new_moon_spring_tide violates both and enters the KB linked to nothing."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "The per-member rule repeats the Goal head and the untyped constant verbatim, so the same two violations recur inside its consequent."
+     }
+    ],
+    "gaps_confirmed": [
+     "narrowed: the plural-label rule's 'referring as a name' qualifier has no stated test — though its structure (the common-noun default is singular-collective only) still routes a capitalized plural kind-word label to the Name-only individual",
+     "a recurring natural-cycle event NP as a habitual time slot ('the new-moon spring tide'): the time vocabulary has no term for it and the deictic-constant route is speech-anchored only, so the sole licensed carrier is an ordinary typed witness in the surface To oblique, which records the preposition but not the temporal alignment"
+    ],
+    "new_gaps": [
+     "'time X to Y' (aligning an occurrence with a recurring event) has no dedicated head — the opaque To oblique is surface-faithful, but a 'when is the harvest?' question cannot bind it as a Time"
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0: (To sk_time_1 sk_tide_1) in place of Goal; issue 1: (Member sk_tide_1 new_moon_spring_tide) plus (Inheritance new_moon_spring_tide tide) with the noun modifiers new_moon and spring unexposed, the witness filling the oblique; issue 2: the same two corrections inside the rule consequent — if any rule survives at all.",
+    "notes": "Unfiled by the reviewer: 'the Keepers' is a capitalized plural kind-word label, which Names and casing makes a Name-only individual with no GroupOf and no per-member kind, so keepers_group and the distribution rule are themselves unlicensed. Patient for the timed harvest (an occurrence object) and the salt_bloom_harvest fusion with genus harvest are correct."
+   }
+  }
+ ]
+}

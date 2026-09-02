@@ -1,0 +1,5 @@
+(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))
+(: keepers_name (Name keepers "Keepers") (STV 1.0 0.99))
+(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: cv_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))
+(: form_keep_rule (Implication (And (Member $x form) (Patient $x mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) keepers) (Theme (sk_keep $x) mire_essence) (Location (sk_keep $x) clay_vessel) (During (sk_keep $x) $x))) (STV 1.0 0.9))

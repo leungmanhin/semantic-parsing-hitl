@@ -1,0 +1,2 @@
+(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: whenever_gather_turn (Implication (And (Member $k keeper) (Member $s salt_bloom) (Member $e gather) (Agent $e $k) (Theme $e $s) (Time $e half_moon)) (And (Member (sk_turn $s) turn) (Patient (sk_turn $s) $s) (Member (sk_residue $s) residue) (Member (sk_residue $s) chalky) (Experiencer (sk_residue $s) $s) (Member $s residue) (Member $s chalky) (Result (sk_turn $s) (sk_residue $s)) (During (sk_turn $s) $e))) (STV 1.0 0.9))

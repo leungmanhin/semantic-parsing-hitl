@@ -1,0 +1,166 @@
+{
+ "id": "R27",
+ "rule": "The Council redistributes mire-essence",
+ "texts": [
+  "When the Council convenes, the Council redistributes mire-essence across the lantern-stations.",
+  "Whenever the Council meets, the Council reallocates mire-essence among the lantern-stations.",
+  "Productive stations contribute mire-essence to a central pool.",
+  "Burdened stations draw mire-essence from the central pool.",
+  "The Keepers record the redistribution in the Watch ledgers."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000093",
+   "sentence": "When the Council convenes, the Council redistributes mire-essence across the lantern-stations.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: ls_group (GroupOf sk_group_1 lantern_station) (STV 1.0 0.99))",
+    "(: ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: whenever_council_convenes_redistribute (Implication (And (Member $c convene) (Agent $c sk_council_1)) (And (Member (sk_redistribute $c) redistribute) (Agent (sk_redistribute $c) sk_council_1) (Theme (sk_redistribute $c) mire_essence) (Across (sk_redistribute $c) sk_group_1) (During (sk_redistribute $c) $c))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000093",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The compound kind `mire_essence` gets no genus atom `(Inheritance mire_essence essence)`, which Compound concepts requires (head genus always emitted; the noun modifier `mire` correctly stays unexposed) — and the same parse does emit `(Inheritance lantern_station station)`, so the omission is inconsistent within one output."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`Across` is licensed as a preposition-named oblique (the preposition actually used, never a Location/Goal near-fit), the definite plural 'the lantern-stations' correctly takes a group witness rather than Inheritance, and one `sk_council_1` symbol is reused across both clauses. Rule shape, Skolem-function event, During link, Theme for the displaced mass and the absence of a tense atom are all correct."
+   },
+   "adjudication": {
+    "id": "fict3-000093",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts says the head genus 'is always emitted' for a compound kind you use and Core patterns lists a decomposed compound's genus among the always-licensed atoms, so `mire_essence` — a transparent modifier+head compound whose IS-A holds — must carry `(Inheritance mire_essence essence)`; its omission violates that rule (the parse itself emits the parallel `lantern_station` genus)."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "habitual 'when' with a definite participant ('When the Council convenes, ...'): the bare-'when' routing line legislates only indefinite participants -> rule and definite participants in a one-off narrative -> two ordered events; a definite participant in a present-tense regularity is assigned only by analogy with the whenever example's constant bell and dog"
+    ],
+    "decision": "defect",
+    "defect_summary": "Add the compound's genus atom `(Inheritance mire_essence essence) (STV 1.0 0.99)` beside the rule; every other atom stands.",
+    "notes": "The common-noun 'the Council' with no Name atom, one `sk_council_1` reused across both clauses, the `Across` oblique, the definite-plural group witness with its `lantern_station` genus, `Theme` for the displaced mass, the per-occurrence Skolem and `During` link are all correct."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000094",
+   "sentence": "Whenever the Council meets, the Council reallocates mire-essence among the lantern-stations.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: stations_group (GroupOf sk_stations_1 lantern_station) (STV 1.0 0.99))",
+    "(: ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: council_meet_reallocate (Implication (And (Member $x meet) (Agent $x sk_council_1)) (And (Member (sk_reallocate $x) reallocate) (Agent (sk_reallocate $x) sk_council_1) (Theme (sk_reallocate $x) mire_essence) (Among (sk_reallocate $x) sk_stations_1) (During (sk_reallocate $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000094",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" is correctly the capitalized-common-noun default (Member, no Name, no GroupOf, no distribution — a singular collective does not distribute), the definite plural \"the lantern-stations\" takes a group witness, and (Among ...) is the licensed preposition-named oblique for a PP that names neither where/when/how nor a listed role."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000095",
+   "sentence": "Productive stations contribute mire-essence to a central pool.",
+   "parse": [
+    "(: pool_type (Member sk_pool_1 pool) (STV 1.0 0.99))",
+    "(: pool_central (Member sk_pool_1 central) (STV 1.0 0.99))",
+    "(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: station_contribute (Implication (And (Member $x station) (Member $x productive)) (And (Member (sk_contribute $x) contribute) (Agent (sk_contribute $x) $x) (Theme (sk_contribute $x) mire_essence) (Recipient (sk_contribute $x) sk_pool_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000095",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'a central pool' is read as one shared constant rather than a per-station Skolem function; 'central' plus Core patterns' world-knowledge-picks-the-reading makes that the favored reading rather than a genuine scope tie, so the first-quantifier-wide-scope tiebreaker does not apply. Recipient (not Goal) for 'to a central pool' follows the doctrine's 'goal of a transfer' definition, which imposes no animacy requirement, and the bare mass object mire_essence correctly stays a kind filler."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000096",
+   "sentence": "Burdened stations draw mire-essence from the central pool.",
+   "parse": [
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: pool_type (Member sk_pool_1 pool) (STV 1.0 0.99))",
+    "(: pool_central (Member sk_pool_1 central) (STV 1.0 0.99))",
+    "(: burdened_station_draw (Implication (And (Member $x station) (Member $x burdened)) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Theme (sk_draw $x) mire_essence) (Source (sk_draw $x) sk_pool_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000096",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally restricted bare-plural subject correctly forces the distributing rule with the restriction as a premise conjunct at 0.9/0.9 and no QuantifierPhrase, mire_essence gets its head genus with the noun modifier left unexposed, and the bare mass object stays a kind filler. Splitting 'the central pool' into two atoms rather than fusing central_pool is a defensible reading of the classifier-vs-description line."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "fict3-000097",
+   "sentence": "The Keepers record the redistribution in the Watch ledgers.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: watch_name (Name watch \"Watch\") (STV 1.0 0.99))",
+    "(: ledger_grp (GroupOf sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: ledger_poss (Possession sk_ledger_1 watch) (STV 1.0 0.99))",
+    "(: redist_type (Member sk_redistribution_1 redistribution) (STV 1.0 0.99))",
+    "(: e_record (Member sk_record_1 record) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_record_1 keepers) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_record_1 sk_redistribution_1) (STV 1.0 0.99))",
+    "(: e_loc (Location sk_record_1 sk_ledger_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000097",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Keepers\" correctly takes the capitalized-plural-label treatment (Name-only individual, no GroupOf and no invented per-member kind) and \"the Watch ledgers\" the proper-noun-premodifier treatment (head phrase parsed normally as a definite plural group, linked by opaque Possession, no fused compound and no Name-string merge); record takes Theme per the evaluate/record carve-out, and the bare simple present correctly gets no status atom. The one debatable slot is (Location sk_record_1 sk_ledger_1) for \"in the Watch ledgers\" — a document medium rather than a place — though the PP does answer \"where\", which is the test the instruction set states."
+   },
+   "adjudication": null
+  }
+ ]
+}

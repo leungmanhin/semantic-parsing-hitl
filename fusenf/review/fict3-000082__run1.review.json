@@ -1,0 +1,9 @@
+{"id": "fict3-000082", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The sentence is routed as a distributing generic rule, but the instruction set makes this mechanical on the surface determiner: an indefinite singular with a non-modal verbal predicate is a witness, and a verbal generic requires a bare plural or an explicit quantifier ('a dog' explicitly excluded), so 'A Keeper's family keeps ...' should have produced witnesses (sk_keeper_1, sk_family_1, sk_station_1, sk_keep_1 at 1.0/0.99) rather than an Implication at 0.9/0.9."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["An indefinite possessor binding a later 'that N' anaphor across the clause ('A Keeper's family ... that Keeper's station'): the donkey-anaphora pattern the instruction set supplies requires an explicit universal ('Every farmer who owns a donkey'), while its determiner rule sends an indefinite with a verbal predicate to a witness, so a generic reading with a bound possessor anaphor has no stated route"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Within the rule chosen, the content is right: kinship and station both attach by the opaque Possession, 'inherited' is kept as a participial modifier property rather than lemmatized to the verb, 'keep' takes Theme per the listed test, and the singular collective 'family' correctly does not distribute."}

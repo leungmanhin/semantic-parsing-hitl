@@ -1,0 +1,126 @@
+{
+ "id": "R4",
+ "rule": "Silken threads boiled in sea-water yield mire-essence",
+ "texts": [
+  "When a Keeper boils silken threads in sea-water, mire-essence forms in the cauldron.",
+  "Whenever a Keeper boils silken threads in sea-water, the cauldron yields mire-essence.",
+  "The Keepers take the sea-water from the Salt-bloom Tide-pools.",
+  "Fresh water does not yield mire-essence."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000012",
+   "sentence": "When a Keeper boils silken threads in sea-water, mire-essence forms in the cauldron.",
+   "parse": [
+    "(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: silken_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: silken_thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: sea_water_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: keeper_boil_form_rule (Implication (And (Member $e boil) (Member $k keeper) (Agent $e $k) (Patient $e silken_thread) (Location $e sea_water)) (And (Member (sk_form $e) form) (Patient (sk_form $e) mire_essence) (Location (sk_form $e) sk_cauldron_1) (During (sk_form $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000012",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare \"when P, Q\" with indefinite participants correctly takes the whenever rule with the During-linked Skolem consequent, and the creation event takes Location on the event only. (Location $e sea_water) reads the boiling medium as a where-PP, which the oblique rules permit but do not settle."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000013",
+   "sentence": "Whenever a Keeper boils silken threads in sea-water, the cauldron yields mire-essence.",
+   "parse": [
+    "(: silkenthread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: silkenthread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: whenever_boil_yield (Implication (And (Member $e1 boil) (Agent $e1 $x) (Member $x keeper) (Patient $e1 silken_thread) (Location $e1 sea_water)) (And (Member (sk_yield $e1) yield) (Agent (sk_yield $e1) sk_cauldron_1) (Patient (sk_yield $e1) mire_essence) (During (sk_yield $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000013",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule shape, per-occurrence Skolem consequent and During link all follow the frequency-conditional machinery; capitalized common noun 'Keeper' correctly stays a common kind with no Name atom, and the definite 'the cauldron' is a shared top-level constant exactly as sk_dog_1 is in the bell/dog example."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000014",
+   "sentence": "The Keepers take the sea-water from the Salt-bloom Tide-pools.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: sw_type (Member sk_sea_water_1 sea_water) (STV 1.0 0.99))",
+    "(: sw_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: sbtp_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+    "(: sbtp_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+    "(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: e_take (Member sk_take_1 take) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_take_1 keepers) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_take_1 sk_sea_water_1) (STV 1.0 0.99))",
+    "(: e_source (Source sk_take_1 salt_bloom_tide_pools) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000014",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A multi-word proper name whose in-name kind word is PLURAL (\"the Salt-bloom Tide-pools\"): Names and casing covers singular named entities whose kind word sits inside the name (\"the Kestrel River\" -> one symbol + Name + a singular Member type atom) and separately covers a bare-class-word plural label (\"the Wrens\" -> Name-only, no GroupOf, no type atom), but says nothing about a plural-headed multi-word name, so it does not decide whether the type atom should be the singular (Member salt_bloom_tide_pools tide_pool) the parse emits or a group (GroupOf ... tide_pool)."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Keepers\" is handled per the plural-label rule (Name-only individual, no GroupOf, no per-member kind), the definite \"the sea-water\" mints a typed witness, and Theme/Source match the take-from frame; simple-present habitual correctly carries no status atom. Both compounds emit genus only, with the noun modifiers (sea, tide) unexposed, as specified."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000015",
+   "sentence": "Fresh water does not yield mire-essence.",
+   "parse": [
+    "(: fw_genus (Inheritance fresh_water water) (STV 1.0 0.99))",
+    "(: fw_mod (Inheritance fresh_water fresh) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: fw_no_yield_me (Yield fresh_water mire_essence) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000015",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "negation of a kind-level relational generic (bare kind-denoting NP on both sides, plus \"does not\") — the instruction set gives the kind-relation form only in the positive, and its negated-generic doctrine only for the distributing-rule form (\"owls don't migrate\"), so nothing states whether the denial rides the opaque kind relation at strength 0.0 or must become a strength-0 distributing rule"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both arguments are bare mass NPs, so the kind-level relation Yield is the licensed head, and strength 0.0 with empirical confidence 0.9 follows the dial for a kind-level claim. Fusing fresh_water as a term of art (with the gradable-adjective modifier genus) keeps the subject a bare kind rather than the adjectivally-restricted kind subject that would force the distributing-rule route."
+   },
+   "adjudication": null
+  }
+ ]
+}

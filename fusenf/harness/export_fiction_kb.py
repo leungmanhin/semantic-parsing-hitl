@@ -104,6 +104,9 @@ def main() -> None:
                          "string per sentence from --advice-dir (owner schema change 2026-08-29)")
     ap.add_argument("--advice-dir", default=os.path.join(FUSENF, "consumer", "semantic-chemistry", "advice"),
                     help="directory of R<nn>__advice.json files (advice mode)")
+    ap.add_argument("--no-rule-slots", action="store_true",
+                    help="omit the rule keys ENTIRELY from stmts/review/census (owner 2026-09-02, "
+                         "v3+: the consumer never parses rules, so the slots are not carried)")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
@@ -132,6 +135,8 @@ def main() -> None:
                 and len(a["texts"]) == len(item["texts"])
                 and all(isinstance(t, str) and t.strip() for t in a["texts"])):
             raise SystemExit(f"malformed advice file {path}")
+        if args.no_rule_slots:
+            return {"texts": list(a["texts"])}
         return {"rule": a.get("rule"), "texts": list(a["texts"])}
 
     out, missing = [], []
@@ -160,14 +165,17 @@ def main() -> None:
                 census["texts"].append(flag)
         if args.review_mode == "advice":
             review = advice_of(item)
+        if args.no_rule_slots:
+            for d in (stmts, review, census):
+                d.pop("rule", None)
         out.append({**item, "stmts": stmts, "review": review, "census": census})
 
     if missing:
         raise SystemExit("missing parses for: " + ", ".join(missing))
     json.dump(out, open(args.out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-    n_ok = sum((1 if it["census"]["rule"] == "ok" else 0) + sum(1 for c in it["census"]["texts"] if c == "ok")
+    n_ok = sum((1 if it["census"].get("rule") == "ok" else 0) + sum(1 for c in it["census"]["texts"] if c == "ok")
                for it in out)
-    n_tot = sum((0 if it["census"]["rule"] is None else 1) + len(it["census"]["texts"]) for it in out)
+    n_tot = sum((0 if it["census"].get("rule") is None else 1) + len(it["census"]["texts"]) for it in out)
     print(f"-> {args.out}  ({len(out)} items, run {args.run} stmts; census ok {n_ok}/{n_tot})")
 
 

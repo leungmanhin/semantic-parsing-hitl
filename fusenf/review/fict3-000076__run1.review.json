@@ -1,0 +1,9 @@
+{"id": "fict3-000076", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "(Source $e1 north_wind) reads \"shield a cove from north winds\" as a spatial origin, but the PP names what the cove is protected against rather than a whence, so the licensed encoding is the preposition-named oblique (From $e1 north_wind)."}, {"statement": 3, "issue": "The consequent's Skolem event (sk_burn $lt) is a function of the lantern only, so one burn term is shared across distinct trigger occurrences $e1 (and would carry several During anchors) instead of being minted per occurrence as a function of every universal scoping over it."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"through <season / period>\" as an extent adverbial — During is licensed only for during/while/throughout over a reified outer eventuality, Start/End and Measure duration need stated bounds or a figure, so nothing records an eventuality holding throughout a named span"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The parse falls back to (Time (sk_burn $lt) winter), which under-records the extent without over-claiming, so the loss is the gap above rather than a false atom. Compound handling is right (cliff_spire head genus only, north_wind head genus plus the positional modifier genus), as is hoisting \"lanterns in that cove\" into the premise with LocatedIn to express the consequent's universal."}

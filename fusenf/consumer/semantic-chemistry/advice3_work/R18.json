@@ -1,0 +1,135 @@
+{
+ "id": "R18",
+ "rule": "Salt-bloom is harvested at new moon",
+ "texts": [
+  "When a Keeper harvests salt-bloom at the new moon, that salt-bloom stays potent.",
+  "Whenever a Keeper gathers salt-bloom at the new moon, that salt-bloom stays potent.",
+  "Every time a Keeper gathers salt-bloom at the full moon, that salt-bloom turns to chalky residue.",
+  "Every time a Keeper gathers salt-bloom at the half moon, that salt-bloom turns to chalky residue."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict3-000062",
+   "sentence": "When a Keeper harvests salt-bloom at the new moon, that salt-bloom stays potent.",
+   "parse": [
+    "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: keeper_harvest_potent_rule (Implication (And (Member $k keeper) (Member $h harvest) (Agent $h $k) (Theme $h $sb) (Member $sb salt_bloom) (Time $h new_moon)) (And (Member (sk_potent $sb) potent) (Experiencer (sk_potent $sb) $sb) (Still (sk_potent $sb)) (Member $sb potent) (During (sk_potent $sb) $h))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000062",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare 'when P, Q' with an indefinite participant is routed to the whenever rule as instructed, and 'stays potent' gets exactly the continuation-copular shape the resultative section mandates (reified state + Still on the state witness + the flat copular atom), with salt_bloom's genus emitted and its noun modifier correctly left unexposed. The state Skolem is keyed on $sb rather than on the trigger event $h, so two harvests of one bloom would share a state witness, but the During link still anchors each occurrence."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict3-000063",
+   "sentence": "Whenever a Keeper gathers salt-bloom at the new moon, that salt-bloom stays potent.",
+   "parse": [
+    "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: whenever_gather_potent (Implication (And (Member $e gather) (Agent $e $k) (Member $k keeper) (Theme $e $s) (Member $s salt_bloom) (Time $e new_moon)) (And (Member (sk_potent $e) potent) (Experiencer (sk_potent $e) $s) (Still (sk_potent $e)) (During (sk_potent $e) $e) (Member $s potent))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000063",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-machinery, the salt_bloom genus (noun modifier correctly unexposed), the donkey-style rule variable for 'that salt-bloom', and the continuation-copular 'stays' shape (reified state + Still + flat atom) all match the instruction set, and no QuantifierPhrase companion is correctly emitted. 'at the new moon' is encoded as a bare named-time symbol, which the Time section's 'a deictic or named time stays a bare symbol' clause licenses, though the doctrine gives no explicit treatment of a recurring natural-cycle phase that could also be read as an event-denoting noun (which a rule premise cannot host as an unasserted sk_ constant anyway)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict3-000064",
+   "sentence": "Every time a Keeper gathers salt-bloom at the full moon, that salt-bloom turns to chalky residue.",
+   "parse": [
+    "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: residue_genus (Inheritance chalky_residue residue) (STV 1.0 0.99))",
+    "(: residue_mod (Inheritance chalky_residue chalky) (STV 1.0 0.99))",
+    "(: keeper_gather_turn (Implication (And (Member $k keeper) (Member $g gather) (Agent $g $k) (Member $sb salt_bloom) (Theme $g $sb) (Time $g full_moon)) (And (Member (sk_turn $g) turn) (Patient (sk_turn $g) $sb) (Member (sk_residue $g) chalky_residue) (Experiencer (sk_residue $g) $sb) (Member $sb chalky_residue) (Result (sk_turn $g) (sk_residue $g)) (During (sk_turn $g) $g))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000064",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a recurring natural-cycle time expression as a temporal adjunct ('at the full moon'): the Time section supplies calendar/clock structured terms, speech-anchored deictic constants and day-part symbols, but no route for a lunar-phase NP, and its own contrast ('an event-denoting noun -- the show, the storm -- stays an ordinary sk_ entity') pulls toward a witness instead of the bare full_moon constant used here"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The 'Every time' occurrence-quantifier machinery is applied exactly as specified -- trigger clause as plain-variable premises, per-occurrence Skolem consequent, During link back to the trigger, no QuantifierPhrase companion, no tense atoms -- and 'that salt-bloom' correctly reuses the premise variable, with the turn-to-residue change of kind following the become/turn template (subject as Patient, reified result state with the same subject as Experiencer, flat copular atom, Result link, no spatial Goal). Fusing chalky_residue as an adjective+noun kind is borderline against the 'incidental description' bar, but the emitted genus and modifier decomposition atoms make it content-preserving."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict3-000065",
+   "sentence": "Every time a Keeper gathers salt-bloom at the half moon, that salt-bloom turns to chalky residue.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: whenever_gather_turn (Implication (And (Member $k keeper) (Member $s salt_bloom) (Member $e gather) (Agent $e $k) (Theme $e $s) (Time $e half_moon)) (And (Member (sk_turn $s) turn) (Patient (sk_turn $s) $s) (Member (sk_residue $s) residue) (Member (sk_residue $s) chalky) (Experiencer (sk_residue $s) $s) (Member $s residue) (Member $s chalky) (Result (sk_turn $s) (sk_residue $s)) (During (sk_turn $s) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict3-000065",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The consequent's Skolem terms are keyed on `$s` (the salt-bloom) rather than on the trigger occurrence — `(sk_turn $s)` / `(sk_residue $s)` instead of a function of `$e` (or of every universal scoping over them), so two gatherings of the same salt-bloom would collapse to one turning event, against 'the response as a Skolem event per occurrence' and the shown `(sk_bark $x)` pattern keyed on the trigger."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite NP naming a recurring natural/astronomical phase used as a temporal adjunct ('at the half moon'): the Time section covers only structured calendar/clock terms, deictic constants, day-parts and named times, and says nothing about whether such a phase is a bare Time symbol, what cycle it implies, or whether its compound symbol `half_moon` takes a genus atom the way `room_temperature` does"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The change-of-kind shape is exactly per doctrine — `$s` as Patient of the turn event, the result state reified with `$s` as its own Experiencer, the flat copular halves, and the `Result` link, with no separate entity minted for what the bloom became. 'a Keeper' correctly stays a common-noun kind with no `Name` and no agent-nominalization capability (referring use), and the demonstrative 'that salt-bloom' correctly binds the premise variable."
+   },
+   "adjudication": {
+    "id": "fict3-000065",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The whenever machinery mints 'a Skolem event per occurrence' keyed on the trigger (the shown (sk_bark $x)), and a dependent existential must be 'a Skolem function of every universal that scopes over it' — (sk_turn $s) / (sk_residue $s) ignore the gathering $e, so one turn event would sit During two distinct gatherings of the same bloom."
+     }
+    ],
+    "gaps_confirmed": [
+     "'at the half moon' — a recurring lunar phase as a temporal adjunct has no Time form (the section covers calendar/clock terms, deictic constants, day-parts and named times only), so whether it is a bare Time symbol, implies a cycle, or takes a genus like room_temperature is unspecified"
+    ],
+    "new_gaps": [
+     "change-of-kind result whose kind is a modified NP ('turns to chalky residue'): the State-result shape shows only a single-word result kind on the state witness, so whether the descriptive modifier also types the state witness (as here) or only the subject is unspecified",
+     "a demonstrative NP in the consequent ('that salt-bloom') binding a bare mass object of the trigger clause: donkey anaphora covers a pronoun bound inside a relative clause, not a bare mass object promoted to a premise variable with its own Member atom"
+    ],
+    "decision": "defect",
+    "defect_summary": "Key the response on the trigger occurrence — (Member (sk_turn $e) turn) (Patient (sk_turn $e) $s), the result state (sk_residue $e) with $s as its Experiencer (or functions of $k $s $e), (Result (sk_turn $e) (sk_residue $e)) and (During (sk_turn $e) $e); the change-of-kind shape itself (subject as Patient, reified state with the same subject as Experiencer, flat copular halves, Result link, no separate entity) is per doctrine and stands.",
+    "notes": "'a Keeper' as the common-noun kind keeper with no Name and no capability atom (referring use), salt_bloom with genus bloom only, the tenseless habitual and the absent QuantifierPhrase all follow the instruction set."
+   }
+  }
+ ]
+}
