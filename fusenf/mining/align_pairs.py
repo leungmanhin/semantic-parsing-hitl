@@ -669,6 +669,8 @@ def classify(lhs, rhs, roles):
                                                              b.split(":", 1)[1])))
                 if not a.startswith(("$", "<")) and not b.startswith(("$", "<")):
                     return "lexical-collapse", tuple(sorted((a, b)))
+    if not lhs or not rhs:
+        return "modifier-prune", None   # one-sided add/drop: §4.4 pruning candidate (2026-09-02)
     joined = " ".join(lhs) + " " + " ".join(rhs)
     if lhs and rhs and [a.replace(" ~NEG", "") for a in lhs] == \
             [b.replace(" ~NEG", "") for b in rhs]:

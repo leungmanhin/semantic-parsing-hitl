@@ -201,7 +201,10 @@ Brief: `JUDGE.md`. Wrapper:
 - The 5 authoring requirements accumulated during the walk-through are discharged into
   the brief: per-family question sets via the card `task` field (req 1); the register
   rule and the full loss taxonomy as brief text with worked calibration examples
-  (reqs 2+3); the judge-the-rule-not-the-examples doctrine + the bare-converse
+  (reqs 2+3) — **2026-09-02: `lossless` became a `loss` CATEGORY (annotation, never a gate:
+  fuzzy consolidation), the register-only calibration override is deleted, `task: prune`
+  cards exist for modifier-prune candidates, and role-bridge cards now feed routing via
+  `same_relation` AND prompt-side evidence (frozen-head gate retired)**; the judge-the-rule-not-the-examples doctrine + the bare-converse
   calibration line + `defeaters` (req 4); `task: grade` **REGISTERED for the H gauntlet**
   (owner decision G.5, 2026-08-25): graded cards for lexical-equivalence BRIDGING
   candidates only (never consolidation/packs); the judge ceiling (≤0.8) becomes the

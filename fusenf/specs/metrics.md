@@ -129,7 +129,7 @@ not the goal. Per PLAN §1's two species:
   rewrite preserves atom counts, so this species measures ≈0 *by construction* — a zero is the
   signature of a normalization rule doing its job, and a net negative at scale is rule-storage
   bookkeeping, not failure. This species' success criteria are M2 (convergence), M4 (truth) and
-  M5 (losslessness). Batch-1 evidence: round 1 posted MDL −39 while the same 13 rules moved Tier A
+  M5 (QA preservation under the declared fuzz). Batch-1 evidence: round 1 posted MDL −39 while the same 13 rules moved Tier A
   convergence 18.9%→43.3% — the "fail" framing was the metric's, not the rules'.
 - **Packing rules** (meta-node packs): **marginal MDL > 0 stays a hard per-candidate
   selection gate** — for this species compression *is* the claim. Accounting (formula
@@ -191,14 +191,22 @@ normalization; batch-1 HISTORY ran the pre-#50 faithful+bridges layout and stand
 | Statistic | Definition | Criterion |
 |---|---|---|
 | `preservation` | queries answered by consolidated ÷ answered by faithful | **1.0** — hard gate |
-| `fabrication` | queries answered by consolidated but **not** by faithful | **0** — hard gate (#50: no bridge rules exist to attribute an extra answer to) |
-| `frozen_violations` | rewrites touching `frozen: true` vocabulary | **0** |
+| `fabrication` | queries answered by consolidated but **not** by faithful | **0 unexplained** — hard gate; a fabrication attributable to a DECLARED fuzzy rule (after `stroll→walk` the KB cannot distinguish them, by design) is reported per rule, not failed |
+| `e2e_under_normalization` | the regression e2e suite (seeded rules engaged; 372 cases at `2ed18b93`) run with KB, queries, AND the seeded-rule view all passed through the normalizer | **all pass** — hard gate; replaces `frozen_violations` (retired 2026-09-02 with the frozen-head gate): a failure names a seeded-rule interaction to fix or a rule to reject |
 
-A `preservation` shortfall is not a metric failure to be tuned away — it is a routing bug (a rule
-rewrote frozen vocabulary), a normalizer bug (the query side missed a rewrite or a residual-union
-branch), or a genuine information loss (the rule is lossy and should have been rejected — #50:
-lossy rules have no fallback species). `fabrication` matters as much: consolidation plus query
-normalization must not invent answers — normalization is not inference.
+A `preservation` shortfall is not a metric failure to be tuned away — it is a normalizer bug (the
+query side missed a rewrite or a residual-union branch), a seeded-rule interaction (the
+`e2e_under_normalization` gate localizes it), or a loss beyond the rule's DECLARED fuzz (a judge
+miss — re-card the rule). `fabrication` matters as much: consolidation plus query normalization
+must not invent answers beyond declared fuzz — normalization is not inference.
+
+**Fuzziness governance (owner 2026-09-02, per the paper §3.2).** Losslessness is NOT a gate
+anywhere: the judges' loss category (`none|manner|degree|sense|other`) is recorded on the rule and
+`fuzzy = loss != none`. What stays hard is error, not loss — the zero-control-merge gate (M4) and
+the same-truth verdict on the aligned content. The faithful parses remain the record and
+consolidated views are derived, so fuzz is reversible at the system level by re-deriving under a
+stricter rule set. The adversarial arm (PAWS controls, Tier-A polarity pairs) is the only empirical
+governor of "close enough", so fuzzy rounds report control separation PER RULE, not in aggregate.
 
 Run with `/home/manhin/Dev/.venv-dev/bin/python`, `timeout_sec=0` on every query.
 

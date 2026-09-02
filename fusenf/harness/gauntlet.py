@@ -18,8 +18,11 @@ Evidence-based confidence (the §1 thresholds are pre-registered; this formula i
 "tuned on Tier A" instantiation, explicit and revisable):
 
     conf = 0.50
-         + 0.15 * probe_same_truth_majority
-         + 0.10 * probe_lossless_majority
+         + 0.25 * probe_same_truth_majority    (re-based 2026-09-02: the retired
+                                                lossless term's 0.10 moved here, so the
+                                                0.9 bar keeps its evidence meaning —
+                                                design label, or 2+ method consensus
+                                                plus support, or 3-method consensus)
          + 0.15 * design_label_consolidation   (build's recorded design_routing ==
                                                 "consolidation"; absent label -> 0, so
                                                 natural-corpus rules get no bonus)
@@ -27,18 +30,23 @@ Evidence-based confidence (the §1 thresholds are pre-registered; this formula i
          + 0.05 * (support >= 3)
     capped at 0.95
 
-Routing (#50 consolidation-only + M4 hard gate + M5 frozen gate — NO demotion tier,
-no bridging species; a rejected row keeps its full evidence):
-    control_merges > 0                        -> rejected (never consolidation)
-    same-truth majority NO                    -> rejected
-    frozen-head rewrite / seeded collision /
-      role-canonicalization                   -> rejected: frozen-vocabulary conflict,
-                                                 filed as prompt-side EVIDENCE for the
-                                                 fix-pack channel (FUSE-NF never routes
-                                                 around the frozen layer)
-    conf >= 0.9 and lossless and directed     -> consolidation / validated
-    anything else                             -> rejected (sub-threshold, lossy, or
-                                                 undirected)
+Routing (#50 consolidation-only, FUZZY per the paper §3.2 — owner 2026-09-02; NO demotion
+tier, no bridging species, NO lossless gate, NO frozen-head gate; a rejected row keeps
+its full evidence):
+    control_merges > 0                        -> rejected  (HARD, M4: merging DIFFERENT
+                                                 meanings is error, not fuzziness)
+    same-truth majority NO, or no votes       -> rejected  (HARD: the truth conditions of
+                                                 the asserted content must survive)
+    undirected                                -> rejected  (a rewrite needs a direction)
+    conf >= 0.9                               -> consolidation / validated, annotated
+                                                 with the judges' loss category (mode of
+                                                 none|manner|degree|sense|other) and
+                                                 fuzzy = loss != none
+    anything else                             -> rejected  (sub-threshold)
+  Frozen-head rewrites, seeded collisions and role relabels NO LONGER reject: under total
+  normalization (KB + queries + a derived normalized seeded-rule view) the compatibility
+  hazard is gone. They are still RECORDED as prompt_side_evidence so the fix-pack loop
+  keeps seeing parser wobble; M5's e2e-under-normalization gate is the empirical check.
 """
 
 from __future__ import annotations
@@ -181,11 +189,10 @@ def stage_mech(args):
         for r in cands:
             fh.write(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n")
 
-    # --- probe cards (all non-role rules; role rules are annotation-level, no surface swap)
+    # --- probe cards, every kind; `task` selects the judge's question set (JUDGE.md).
+    #     Role relabels ride the role-bridge task and need witness examples on the card.
     cards = []
     for r in cands:
-        if r["kind"] == "role-canonicalization":
-            continue
         examples = []
         for ex in (r.get("provenance", {}).get("examples") or [])[:2]:
             ids = ex.split("|")
@@ -194,6 +201,7 @@ def stage_mech(args):
                 examples.append({"A": sents[0], "B": sents[1]})
         cards.append({
             "rule_id": r["id"], "kind": r["kind"],
+            "task": TASK_BY_KIND.get(r["kind"], "substitution"),
             "lhs": r["lhs"], "rhs": r["rhs"], "examples": examples,
         })
     os.makedirs(args.cards_dir, exist_ok=True)
@@ -213,25 +221,11 @@ def stage_mech(args):
     print(f"      probe cards: {len(cards)} rules -> {nb} batches in {args.cards_dir}")
 
 
-REGISTER_WORDS = ("register", "formal", "informal", "colloquial", "casual", "bureaucratic",
-                  "latinate", "ceremonial", "spoken", "everyday", "neutral", "style", "tone",
-                  "phrasal", "idiomatic", "business")
-SEMANTIC_WORDS = ("broader", "narrower", "hypernym", "hyponym", "entail", "implies", "imply",
-                  "intensity", "scale", "exceed", "stronger", "weaker", "manner", "aspect",
-                  "causation", "mediated", "deliberat", "process", "payment", "gift",
-                  "participant", "role", "patient", "theme", "voice", "final", "dramatic",
-                  "emphasis", "mandate", "commercial")
-
-
-def register_only(note):
-    """True iff a lossless-'no' note cites ONLY register/formality, no semantic content.
-
-    PLAN.md §1's example table is the pre-registered calibration: ``purchase -> buy``
-    IS the canonical consolidation example, so register loss alone must not demote;
-    ``stroll ~ walk (manner lost)`` is the bridging example, so any semantic-content
-    keyword blocks the override. Every override is logged with its notes."""
-    low = note.lower()
-    return any(w in low for w in REGISTER_WORDS) and not any(w in low for w in SEMANTIC_WORDS)
+# Role relabels are judged on the role-bridge card's `same_relation` question; every
+# other kind on `same_truth` (substitution / prune / pack cards).
+ROLE_KINDS = ("role-canonicalization", "role-interchange")
+TASK_BY_KIND = {"subtree-collapse": "pack", "role-canonicalization": "role-bridge",
+                "role-interchange": "role-bridge", "modifier-prune": "prune"}
 
 
 def stage_finalize(args):
@@ -248,32 +242,30 @@ def stage_finalize(args):
     out = []
     for r in cands:
         rid = r["id"]
-        st = majority(rid, "same_truth")
-        ll = majority(rid, "lossless")
-        # plan-calibration review: unanimous same-truth + every lossless-'no' note
-        # register-only -> lossless under the §1 standard
-        cal_override = False
-        if st and ll is False:
-            no_notes = [v.get("note", "") for v in votes.get(rid, [])
-                        if v.get("lossless") == "no"]
-            if no_notes and all(register_only(n) for n in no_notes):
-                ll = True
-                cal_override = True
+        st = majority(rid, "same_relation" if r["kind"] in ROLE_KINDS else "same_truth")
+        vs = votes.get(rid, [])
+        # loss is an ANNOTATION (fuzzy consolidation, 2026-09-02), never a gate
+        loss_votes = collections.Counter(v.get("loss") for v in vs
+                                         if v.get("loss") not in (None, "uncertain"))
+        loss = loss_votes.most_common(1)[0][0] if loss_votes else None
+        fuzzy = loss is not None and loss != "none"
         # Tier-A seed-table majority recorded by build_candidates (#50: keyed on the
         # actual design label; absent -> no bonus, so natural-corpus rules earn theirs)
         design_cons = r.get("design_routing") == "consolidation"
         conf = 0.50
-        conf += 0.15 * (1 if st else 0)
-        conf += 0.10 * (1 if ll else 0)
-        conf += 0.15 * (1 if (design_cons and r.get("lossless")) else 0)
+        conf += 0.25 * (1 if st else 0)
+        conf += 0.15 * (1 if design_cons else 0)
         conf += 0.05 * r.get("consensus_votes", 1)
         conf += 0.05 * (1 if r.get("support", 0) >= 3 else 0)
         conf = round(min(conf, 0.95), 3)
 
-        lossless_final = bool(ll) and r.get("lossless", True)
         gate_control = r.get("tierA_control_merges", 0) > 0
-        gate_compat = bool(r.get("seeded_collision")) or bool(r.get("frozen_head_rewrite"))
         directed = r.get("direction") == "lhs->rhs"
+        # recorded, never gating (2026-09-02): the fix-pack loop still sees the wobble
+        prompt_evidence = sorted(set(r.get("frozen_head_rewrite") or [])
+                                 | set(r.get("seeded_collision") or []))
+        if r["kind"] in ROLE_KINDS:
+            prompt_evidence = sorted(set(prompt_evidence) | {"role-relabel:" + r["kind"]})
 
         final_type = "consolidation"
         if gate_control:
@@ -282,23 +274,25 @@ def stage_finalize(args):
         elif st is False:
             status = "rejected"
             note = "judges: truth conditions not preserved"
-        elif r["kind"] == "role-canonicalization" or gate_compat:
+        elif st is None:
             status = "rejected"
-            note = ("frozen-vocabulary conflict -> prompt-side evidence "
-                    "(#50: the fix-pack channel decides; never route around the frozen layer)")
-        elif conf >= 0.9 and lossless_final and directed:
+            note = "no probe votes"
+        elif not directed:
+            status = "rejected"
+            note = "no canonical direction"
+        elif conf >= 0.9:
             status = "validated"
-            note = ""
+            note = "fuzzy: %s" % loss if fuzzy else ""
         else:
             status = "rejected"
-            note = "sub-threshold, lossy, or undirected (#50: no demotion tier)"
+            note = "sub-threshold"
 
         r2 = dict(r)
         r2.update({
             "type": final_type, "status": status, "confidence": conf,
             "gauntlet": {
-                "probe_same_truth": st, "probe_lossless": ll,
-                "plan_calibration_override": cal_override,
+                "probe_same_truth": st, "probe_loss": loss, "fuzzy": fuzzy,
+                "prompt_side_evidence": prompt_evidence,
                 "judge_notes": [v.get("note", "") for v in votes.get(rid, [])],
                 "probe_votes": len(votes.get(rid, [])),
                 "consensus_votes": r.get("consensus_votes"),

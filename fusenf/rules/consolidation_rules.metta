@@ -5,7 +5,10 @@
 ; same rules to queries at submission time (#50); this file is never
 ; loaded beside the KB. Subtree-collapse RHS heads (Mn*) are pack
 ; vocabulary; their decode direction is the same rule read backwards.
-; TVs: strength 1.0 (lossless species), confidence = gauntlet confidence.
+; TVs: strength 1.0, confidence = gauntlet confidence. Fuzz (2026-09-02) is a RULE
+; annotation, not an STV: fuzzy rules carry their judge loss category in the
+; comment. modifier-prune rules render as (Prune <lhs>) — rendering only; the
+; rewriter deletes the matched atoms.
 
 ; rc0003 — lexical-collapse, round 1, support 4
 (: consol_r1_rc0003 (Implication (Member $x commence) (Member $x begin)) (STV 1.0 0.95))

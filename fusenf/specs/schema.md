@@ -338,6 +338,14 @@ Two fields exist for FUSE-NF specifically:
   14 unfrozen heads (`Must`, `Future`, `Probably`, `Instrument`, `Manner`) are unfrozen only because
   no current query happens to exercise them, which is a statement about our regression coverage
   rather than about their mergeability.
+
+  **Rewrite-protection meaning RETIRED 2026-09-02 (#50 fuzzy adoption).** Under total
+  normalization — KB, queries, and a derived normalized view of `seeded_rules.metta` all pass
+  through the same rewriter — the compatibility hazard this gate guarded is gone, so the gauntlet
+  no longer rejects on frozen-head rewrites or seeded collisions: it records them as
+  `prompt_side_evidence` (the fix-pack loop still sees parser wobble). The flag keeps its
+  closed-class identity meaning for the C4 check; M5's `e2e_under_normalization` gate is the
+  empirical replacement.
 - **`opaque`** — from the prompt's `## Core patterns` roster. Opaque heads are single nodes for star
   decomposition (`canonicalization.md` §5), so mining must not reach inside them.
 - **`bridged`** — a seeded rule fires *from* this head. Independent of `opaque`, and needed because

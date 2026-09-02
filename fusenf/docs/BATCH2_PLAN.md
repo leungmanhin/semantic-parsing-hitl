@@ -25,6 +25,23 @@ filed as prompt-side evidence for the fix-pack channel; H's M5 runs the new layo
 Older bridge wording further down this plan is pre-amendment history. Full record:
 deferred-topics #50 + `eval/preflight_g.md` §G.5 + `PIPELINE.md`.
 
+**AMENDMENT 2026-09-02 (owner, #50 continued — FUZZY consolidation, paper §3.2):** three
+adoptions. **(1)** Losslessness is no longer a gate anywhere: judges record a `loss` category
+(`none|manner|degree|sense|other`), rules carry it as an annotation (`fuzzy = loss != none`);
+hard gates = zero control merges (M4) + same-truth; M5 `fabrication` counts only fabrications NOT
+explained by a declared fuzzy rule; the register-only calibration override is deleted; the
+confidence formula is re-based (lossless's 0.10 moved onto same-truth so the 0.9 bar keeps its
+evidence meaning). **(2)** The frozen-head gate is retired: normalization is TOTAL (KB + queries
++ a derived normalized view of `seeded_rules.metta`); frozen-head rewrites and role relabels are
+judged like any candidate (role cards via `same_relation`) and ALSO filed as
+`prompt_side_evidence`; the empirical replacement is the new M5 hard gate
+`e2e_under_normalization` (the 372-case e2e suite through the normalizer) — the FIRST thing H
+builds after `normalize_query.py`. **(3)** Modifier pruning (paper §4.4) enters as kind
+`modifier-prune`: one-sided add/drop alignment patterns (§4.3.4) that `build_candidates.py`
+used to discard become deletion candidates (`rhs: []`; the rewriter already deletes matches;
+`align_pairs.classify` labels them); the conditional-MI refinement (§4.3.3 read asymmetrically,
+P(modifier | frame) ≈ 1) is an H-run miner task. H reports control separation PER fuzzy rule.
+
 **Amendment 2026-08-21 (owner decision, supersedes "B is the LAST prompt.txt change"):**
 a targeted **fix-pack B2** lands before any campaign parsing — [G] NEW Perception-reports
 section (veridical complement asserted + Stimulus link; the probe48 coverage gap) + three

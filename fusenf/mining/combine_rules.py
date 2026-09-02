@@ -98,17 +98,25 @@ def write_consolidation_metta(rows):
         fh.write("; same rules to queries at submission time (#50); this file is never\n")
         fh.write("; loaded beside the KB. Subtree-collapse RHS heads (Mn*) are pack\n")
         fh.write("; vocabulary; their decode direction is the same rule read backwards.\n")
-        fh.write("; TVs: strength 1.0 (lossless species), confidence = gauntlet confidence.\n")
+        fh.write("; TVs: strength 1.0, confidence = gauntlet confidence. Fuzz (2026-09-02) is a RULE\n")
+        fh.write("; annotation, not an STV: fuzzy rules carry their judge loss category in the\n")
+        fh.write("; comment. modifier-prune rules render as (Prune <lhs>) — rendering only; the\n")
+        fh.write("; rewriter deletes the matched atoms.\n")
         for r in rows:
             if r["status"] != "validated":
                 fh.write(f"; {r['id']} EXCLUDED — status {r['status']}\n")
                 continue
             assert r.get("direction") == "lhs->rhs", r["id"]
             name = f"consol_r{r['gauntlet_round']}_{r['id']}"
+            g = r.get("gauntlet") or {}
+            fuzz = f", fuzzy (loss: {g.get('probe_loss')})" if g.get("fuzzy") else ""
             fh.write(f"\n; {r['id']} — {r['kind']}, round {r['gauntlet_round']}, "
-                     f"support {r.get('support')}\n")
-            fh.write(f"(: {name} (Implication {side(r['lhs'])} {side(r['rhs'])}) "
-                     f"(STV 1.0 {r['confidence']}))\n")
+                     f"support {r.get('support')}{fuzz}\n")
+            if r["rhs"]:
+                fh.write(f"(: {name} (Implication {side(r['lhs'])} {side(r['rhs'])}) "
+                         f"(STV 1.0 {r['confidence']}))\n")
+            else:   # modifier-prune
+                fh.write(f"(: {name} (Prune {side(r['lhs'])}) (STV 1.0 {r['confidence']}))\n")
             atoms += 1
     print(f"{path}: {atoms} implication atoms")
 

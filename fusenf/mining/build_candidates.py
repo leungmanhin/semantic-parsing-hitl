@@ -19,6 +19,9 @@ mechanically and recorded:
   EQUAL-size structural rules (converses and kin) point at the side whose
   constant symbols are more corpus-frequent in total (tie -> lexicographically
   smaller rendering). The P4 gauntlet may override per rule.
+* **modifier-prune** (fuzzy adoption, 2026-09-02): a one-sided add/drop alignment
+  pattern becomes a deletion candidate (``rhs: []``, kind ``modifier-prune``) instead
+  of being discarded — see the inline note in the main loop.
 
 Sides are stored in rewriter syntax (``$c`` center, ``$x0`` satellites, type
 conjuncts inlined), via the same translation the chainer export uses.
@@ -140,8 +143,29 @@ def main():
     for r in sorted(mined, key=lambda r: r["rule_id"]):
         if r["fires_on_control"] or r["kind"] == "polarity-diff":
             continue
+        if not r["lhs"] and not r["rhs"]:
+            continue
         if not r["lhs"] or not r["rhs"]:
-            continue   # one-sided add/drop patterns: not rewrite rules
+            # one-sided add/drop pattern (§4.3.4): paraphrase pairs that differ only by
+            # the presence of these atoms -> a MODIFIER-PRUNE candidate (paper §4.4
+            # "Modifier Pruning"; adopted 2026-09-02 as a fuzzy consolidation kind).
+            # Unconditioned form: lhs = the dropped atoms (+ their type conjuncts),
+            # rhs = [] — the rewriter deletes the match and orphan_sweep tidies.
+            # Context conditioning (P(modifier | frame) ~ 1, the asymmetric read of
+            # §4.3.3 MI) is the H-run refinement; judges + the control gate decide.
+            wit = r.get("k_witnesses", {})
+            t = translate_side(r["lhs"] or r["rhs"], wit, args.min_witnesses)
+            if t is None:
+                continue
+            emit({"type": "consolidation", "design_routing": None,
+                  "kind": "modifier-prune", "confidence": conf(r["support"]),
+                  "support": r["support"], "lossless": False, "status": "candidate",
+                  "lhs": sorted(set(t[0] + t[1])), "rhs": [], "direction": "lhs->rhs",
+                  "provenance": {"method": "paraphrase-align-4.3.4",
+                                 "mined_rule": r["rule_id"], "examples": r["examples"],
+                                 "classes": r["classes"], "k_witnesses": wit or None,
+                                 "date": args.date}})
+            continue
         wit = r.get("k_witnesses", {})
         ta = translate_side(r["lhs"], wit, args.min_witnesses)
         tb = translate_side(r["rhs"], wit, args.min_witnesses)

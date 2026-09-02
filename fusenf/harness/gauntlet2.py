@@ -22,23 +22,27 @@ families and the now-scripted M3 accounting:
                       packing REMOVES frozen-head atoms and the query normalizer
                       re-expresses queries in pack vocabulary: M5 adjudicates).
                     * AE lexical pairs: Tier-A solo effect where applicable;
-                      role-interchange pairs die at the frozen gate mechanically.
+                      role-interchange pairs are judged (same_relation) and recorded
+                      as prompt-side evidence — frozen heads no longer gate (2026-09-02).
                     * probe cards -> two families: meta coherence cards (is the
                       bundle ONE recurring semantic unit?) and AE substitutability
-                      cards (same_truth / lossless, wave-1 wording).
+                      cards (same_truth / loss category, wave-1 wording).
   --stage finalize  collect votes; route; write rules/validated2.jsonl.
 
-Routing, re-based on #50 (owner 2026-09-01 — consolidation-only, NO demotion tier;
-rules/validated2.jsonl HISTORY was produced by the pre-#50 table and stands):
+Routing, re-based on #50 (owner 2026-09-01/02 — consolidation-only, FUZZY: no demotion
+tier, no lossless gate, no frozen-head gate; rules/validated2.jsonl HISTORY was produced
+by the pre-#50 table and stands):
   subtree-collapse:  greedy-selected AND control_merges==0 AND marginal
                      net > 0 AND coherent-majority  -> consolidation/validated;
                      anything else -> rejected (packs never had a fallback —
                      round 2 already modeled #50's shape here).
-  lexical-collapse:  consolidation/validated at conf >= 0.9 + lossless + directed
-                     (incl. register_only calibration; no design-label bonus —
-                     AE has no Tier-A design provenance); anything else rejected.
-  role-interchange:  rejected -> prompt-side evidence (unconditioned frozen-head
-                     swap; #23/#50 fix-pack channel decides).
+  lexical-collapse:  consolidation/validated at conf >= 0.9 + directed, annotated with
+                     the judges' loss category (fuzzy = loss != none). conf = 0.50 +
+                     0.25 same_truth + 0.05 (one method) + 0.05 support>=3: an AE-only
+                     pair tops out at 0.85 and validates only when a corroborating
+                     method lifts it — M4's verdict on AE (precision 0.022), by design.
+  role-interchange:  judged like any candidate (same_relation votes) and RECORDED as
+                     prompt-side evidence (#23); frozen heads no longer reject.
 
 Usage:
   python gauntlet2.py --stage mech
@@ -58,7 +62,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import canonicalize as C  # noqa: E402
 import consolidate as K  # noqa: E402
-from gauntlet import load, register_only, rule_symbols, seeded_tokens  # noqa: E402
+from gauntlet import ROLE_KINDS, load, rule_symbols, seeded_tokens  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 FUSENF = os.path.dirname(HERE)
@@ -224,6 +228,7 @@ def stage_mech(args):
             if rid in sents:
                 ex.append(sents[rid])
         meta_cards.append({
+            "task": "pack",
             "rule_id": r["id"], "kind": "subtree-collapse",
             "head": r["meta"]["head"], "components": r["meta"]["components"],
             "lhs": r["lhs"], "rhs": r["rhs"],
@@ -240,6 +245,7 @@ def stage_mech(args):
         sym_l = r["lhs"][0].split()[-1].rstrip(")")
         sym_r = r["rhs"][0].split()[-1].rstrip(")")
         ae_cards.append({
+            "task": "substitution",
             "rule_id": r["id"], "kind": "lexical-collapse",
             "lhs": r["lhs"], "rhs": r["rhs"],
             "examples_lhs_symbol": [sents[i] for i in ex[sym_l] if i in sents][:2],
@@ -283,7 +289,6 @@ def stage_finalize(args):
     for r in cands:
         rid = r["id"]
         gate_control = r.get("tierA_control_merges", 0) > 0
-        gate_compat = bool(r.get("seeded_collision")) or bool(r.get("frozen_head_rewrite"))
 
         if r["kind"] == "subtree-collapse":
             coh = majority(rid, "coherent")
@@ -310,30 +315,23 @@ def stage_finalize(args):
             g = {"probe_coherent": coh,
                  "judge_notes": [v.get("note", "") for v in votes.get(rid, [])],
                  "probe_votes": len(votes.get(rid, []))}
-        elif r["kind"] == "role-interchange":
-            r2 = dict(r)
-            r2.update({"type": "consolidation", "status": "rejected", "confidence": 0.5})
-            g = {"probe_votes": 0}
-            note = ("unconditioned frozen-head role swap -> prompt-side evidence "
-                    "(#23/#50: the fix-pack channel decides)")
-        else:                                    # lexical-collapse — round-1 routing
-            st = majority(rid, "same_truth")
-            ll = majority(rid, "lossless")
-            cal_override = False
-            if st and ll is False:
-                no_notes = [v.get("note", "") for v in votes.get(rid, [])
-                            if v.get("lossless") == "no"]
-                if no_notes and all(register_only(n) for n in no_notes):
-                    ll = True
-                    cal_override = True
+        else:                                    # lexical-collapse / role-interchange
+            st = majority(rid, "same_relation" if r["kind"] in ROLE_KINDS else "same_truth")
+            vs = votes.get(rid, [])
+            loss_votes = collections.Counter(v.get("loss") for v in vs
+                                             if v.get("loss") not in (None, "uncertain"))
+            loss = loss_votes.most_common(1)[0][0] if loss_votes else None
+            fuzzy = loss is not None and loss != "none"
             conf = 0.50
-            conf += 0.15 * (1 if st else 0)
-            conf += 0.10 * (1 if ll else 0)
+            conf += 0.25 * (1 if st else 0)
             conf += 0.05 * 1                     # one method: the AE generator
             conf += 0.05 * (1 if r.get("support", 0) >= 3 else 0)
             conf = round(min(conf, 0.95), 3)
-            lossless_final = bool(ll)
             directed = r.get("direction") == "lhs->rhs"
+            prompt_evidence = sorted(set(r.get("frozen_head_rewrite") or [])
+                                     | set(r.get("seeded_collision") or []))
+            if r["kind"] in ROLE_KINDS:
+                prompt_evidence = sorted(set(prompt_evidence) | {"role-relabel:" + r["kind"]})
             final_type = "consolidation"
             if gate_control:
                 status = "rejected"
@@ -341,20 +339,22 @@ def stage_finalize(args):
             elif st is False:
                 status = "rejected"
                 note = "judges: truth conditions not preserved"
-            elif gate_compat:
+            elif st is None:
                 status = "rejected"
-                note = ("frozen-vocabulary conflict -> prompt-side evidence "
-                        "(#50: the fix-pack channel decides; no demotion tier)")
-            elif conf >= 0.9 and lossless_final and directed:
+                note = "no probe votes"
+            elif not directed:
+                status = "rejected"
+                note = "no canonical direction"
+            elif conf >= 0.9:
                 status = "validated"
-                note = ""
+                note = "fuzzy: %s" % loss if fuzzy else ""
             else:
                 status = "rejected"
-                note = "sub-threshold, lossy, or undirected (#50: no demotion tier)"
+                note = "sub-threshold"
             r2 = dict(r)
             r2.update({"type": final_type, "status": status, "confidence": conf})
-            g = {"probe_same_truth": st, "probe_lossless": ll,
-                 "plan_calibration_override": cal_override,
+            g = {"probe_same_truth": st, "probe_loss": loss, "fuzzy": fuzzy,
+                 "prompt_side_evidence": prompt_evidence,
                  "judge_notes": [v.get("note", "") for v in votes.get(rid, [])],
                  "probe_votes": len(votes.get(rid, []))}
 

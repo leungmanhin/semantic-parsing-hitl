@@ -65,9 +65,11 @@ that is review-clean or adjudicated-accept — see `harness/coverage.py`.
    mech gates: M4 vs Tier A key, 0 control       │
      merges; provenance review gate              │
      (provenance_audit.py) BEFORE entry;         │
-   routing (#50, 2026-09-01): consolidation |    │
-     rejected — NO demotion tier; frozen         │
-     conflicts → prompt-side evidence;           │
+   routing (#50, FUZZY 2026-09-02): consolidation│
+     | rejected — hard gates = 0 control merges  │
+     + same-truth ONLY; loss = annotation        │
+     (fuzzy ok); frozen-head gate RETIRED,       │
+     rewrites filed as prompt-side evidence;     │
      G.5 graded route RETIRED                    │
       │                                          │
       ▼                                          │
@@ -77,14 +79,17 @@ that is review-clean or adjudicated-accept — see `harness/coverage.py`.
       .metta = syntax rendering only, never loaded; #50 owner 2026-09-01:
       consolidation is FUSE-NF's only species — batch-1 bridging artifacts
       stay on disk as experimental records, not deliverables)]
-   └─ consolidation rules → [rewriter → consolidated views]
-                          → [query normalizer harness/normalize_query.py (built
-                             at H): the SAME rules re-express every query at
-                             submission; partial pack queries = pack ∪ residual]
+   └─ consolidation rules (kinds: lexical-collapse · subtree-collapse "packs" ·
+      structural-alt · modifier-prune · role relabels; each carries a loss annotation)
+        → [rewriter → consolidated views + a normalized seeded-rule view]
+        → [query normalizer harness/normalize_query.py (built at H): the SAME
+           rules re-express every query at submission; partial pack queries =
+           pack ∪ residual; e2e-under-normalization = the frozen-gate replacement]
       │                                          │
       ▼                                          ▼
 [serving: consolidated view + normalized        [measurement  M1 / M2 (PAWS + tierD) /
-   queries — #50 target, M5 validates at H         M3 / M5 atom+conjunction gates]
+   queries + normalized seeded view (#50 target;   M3 / M5 atom+conjunction gates]
+   M5 + e2e-under-normalization validate at H)
    (batch-1 faithful+bridges layout = history;     │
    full-bundle pack queries sidestep item X)]      │
       │                                            │  M5 question arm: QGEN (blind
@@ -126,7 +131,9 @@ placement is part of the measurement design (parsers/reviewers/question-writers 
 exactly what their brief names, nothing else); instruments are revisable (owner
 2026-09-01) — metrics, gates, and routings are our own creations, so retire or reshape
 a misfit instrument rather than bending the pipeline around it (results already
-produced under a retired instrument stand as records).
+produced under a retired instrument stand as records). Fuzzy consolidation (owner
+2026-09-02, paper §3.2): loss is recorded, never gated — the hard gates are error gates
+(control merges, same-truth); the faithful store stays the record, so fuzz is reversible.
 
 ## Letter-code legend (single source; added 2026-09-01)
 
@@ -148,6 +155,15 @@ Global families (live):
   **D.N** = owner decisions under item D (e.g. D.4 = the Tier-C in-sample re-parse ride-along).
 - **q1–q4** — review verdict fields (`briefs/REVIEW.md`, schema §5.2): q1 faithful ·
   q2 coverage · q3 context leak · q4 unlicensed heads.
+- **pack / packed view / `Mn*`** — one rule KIND (`subtree-collapse`, the paper's §4.4 operation),
+  not a species: a pack rule rewrites a k-atom bundle sharing one event symbol into a single
+  meta-node atom (`Mn` = meta-node, then the slot signature: `MnEvAgTh` = Event+Agent+Theme);
+  "pack" is our round-2 coinage for the rule/verb, "packed view" = a consolidated view with
+  packs applied. Other kinds: `lexical-collapse` (symbol substitution), `structural-alt`
+  (frame alternation), `modifier-prune` (drop a redundant modifier — fuzzy, 2026-09-02),
+  `role-canonicalization` / `role-interchange` (role relabels, also filed as prompt-side
+  evidence). Every validated rule carries a `loss` annotation (`none|manner|degree|sense|other`;
+  fuzzy = not none) — see `specs/metrics.md` §M5 Fuzziness governance.
 - **FP0…FP4 (and B2)** — fix-pack lineage; **#1–#51** — the deferred-topics backlog
   (memory-side); **runs 1/2/30/40/50/90** — run-number ledger (`DISPATCH.md`).
 - **Batch-file prefixes** (`batches/<stage>/`): pb parse · rv review (rv9d = tierD repair
