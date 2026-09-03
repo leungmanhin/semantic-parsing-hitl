@@ -26,7 +26,8 @@
     "mining/out_h/valuations_slots.jsonl",
     "mining/out_h/patterns2_signals.jsonl",
     "mining/out_h/patterns2_report.md",
-    "mining/out_h/patterns2.metta (rendering only)"
+    "mining/out_h/patterns2.metta (rendering only)",
+    "mining/out_h/valuations_occ.jsonl (per-occurrence filler export, label bags)"
    ],
    "result": {
     "patterns": 7766,
@@ -36,14 +37,15 @@
      "star": 3014
     },
     "shape_stratum": 6037,
-    "slot_rows": 6066,
+    "slot_rows": 6482,
     "signals": 779,
-    "wall_s": 20.6
+    "wall_s": 20.6,
+    "filler_occurrences": 8586
    },
    "rerun": {
     "date": "2026-09-03",
-    "why": "valuations_slots.jsonl gained filler_kind (event / entity / function / constant = bare symbol / num / str / term) so §4.3.2 can separate eventive complements from entity arguments and render constants faithfully",
-    "verified": "patterns2.jsonl / patterns2.metta / patterns2_signals.jsonl byte-identical across both re-runs; report differs only in the slot-row count (6059 -> 6066: labels split by filler kind)"
+    "why": "valuation export typing: filler_kind (event/entity/function/constant/num/str/term); MULTI-LABEL fillers (Member + Inheritance + GroupOf kind for plural groups; fractional mass w = 1/m per label) replacing the canonicalizer's alphabetical-first star.class; per-occurrence export valuations_occ.jsonl for the embedding channel",
+    "verified": "patterns2.jsonl / patterns2.metta / patterns2_signals.jsonl byte-identical across all three re-runs; only the valuation exports changed (rows 6059 -> 6482; <untyped> mass 397 -> 8 of 8586 occurrences)"
    }
   },
   "4.3.2_role_fillers": {
@@ -83,15 +85,15 @@
     "event_role_slots_n_ge_3": 256,
     "signals": {
      "ppmi": {
-      "cross-event": 1,
-      "cross-role": 2,
+      "cross-event": 2,
+      "cross-role": 3,
       "cross-entity-class": 1
      },
      "raw_criterion_would_give": {
-      "cross-event": 24,
+      "cross-event": 6,
       "cross-role": 1,
       "cross-entity-class": 2,
-      "cross-head": 0
+      "cross-head": 1
      }
     },
     "d3": {
@@ -117,9 +119,12 @@
      "patient_classes": 6
     },
     "wall_s": 0.2,
-    "metta_rendering_lines": 14339
+    "metta_rendering_lines": 14339,
+    "untyped_filler_mass": "8 of 8586 occurrences (was 397 before the GroupOf/multi-label typing fix)"
    },
-   "entity_fillers": "filler_kind in {entity, constant} (skolem instance or named constant) feed the #23 audit; event / function / literal kinds do not"
+   "entity_fillers": "filler_kind in {entity, constant} (skolem instance or named constant) feed the #23 audit; event / function / literal kinds do not",
+   "typing": "multi-label fillers with fractional mass w (1/m per label); GroupOf kind types plural groups; entity audit over entity+constant kinds",
+   "rerun": "2026-09-03 after the typing fix (owner: both the exact-label and the embedding method need it)"
   }
  }
 }

@@ -56,7 +56,10 @@ Exports:
   * ``patterns2.jsonl``   — the inventory; full supporting-id lists (the
                             record×feature matrix substrate for §4.3.3/5).
   * ``valuations_slots.jsonl`` — per (center kind, center class, head,
-                            filler, filler kind) counts with NO support floor: §4.3.2's
+                            filler label, filler kind) counts ``n`` (occurrences) and
+                            fractional mass ``w`` (multi-label: 1/m each) with NO
+                            support floor; ``valuations_occ.jsonl`` = one row per filler
+                            occurrence with its full label bag (embedding channel): §4.3.2's
                             substrate for free, events AND entities.
   * ``patterns2_signals.jsonl`` — consensus-layer signals (star patterns as
                             subtree-collapse, cross patterns as conj-pattern).
@@ -401,10 +404,32 @@ def main():
     n_docs = len(records)
 
     # ---- valuation-slot export (no support floor; events AND entities) -----
+    # Filler typing (owner 2026-09-03, H): a skolem filler carries EVERY class label it
+    # has — ``(Member x C)``, ``(Inheritance x C)`` and, for a plural group, the kind on
+    # ``(GroupOf x C)`` (490 of the 688 formerly ``<untyped>`` skolems) — not the
+    # canonicalizer's alphabetical-first ``star.class``. Multi-label = fractional mass:
+    # an occurrence with m labels gives 1/m to each (``w``); ``n`` counts occurrences.
+    # A per-occurrence export (``valuations_occ.jsonl``) keeps the label bag so the
+    # embedding channel can build subtree texts.
+    LABEL_HEADS = ("Member", "Inheritance", "GroupOf")
     slots = {}
+    occ_rows = []
     for rec in records:
-        star_class = {s: st.get("class") for s, st in rec["stars"].items()}
         parsed = [C.parse_term(a["term"]) for a in rec["atoms"]]
+        label_cache = {}
+
+        def labels_of(arg):
+            """(sorted class labels, plural?) for a skolem filler."""
+            if arg not in label_cache:
+                labs, plural = set(), False
+                for j in rec["stars"].get(arg, {}).get("atoms", []):
+                    u = parsed[j]
+                    if len(u) == 3 and u[0] in LABEL_HEADS and u[1] == arg and isinstance(u[2], str):
+                        labs.add(u[2])
+                        plural = plural or u[0] == "GroupOf"
+                label_cache[arg] = (sorted(labs), plural)
+            return label_cache[arg]
+
         for sym, star in sorted(rec["stars"].items()):
             if star["kind"] not in ("event", "entity") or not re.fullmatch(r"[exf]\d+", sym):
                 continue
@@ -414,26 +439,38 @@ def main():
                 if len(t) != 3 or t[1] != sym or t[0] == "Implication" or t[0] in surface:
                     continue
                 arg = t[2]
-                # filler_kind (H, 2026-09-03): the filler's star kind — event / entity /
-                # function / rule — so §4.3.2 can tell an eventive complement
-                # ("started chanting" -> Theme = e#) from an entity argument; a bare
-                # symbol is "constant" (named individual / bare kind / adverb — the
-                # symbol IS the filler), literals "str"/"num"/"term".
+                # filler_kind: the filler's star kind — event / entity / function / rule
+                # — so §4.3.2 can tell an eventive complement ("started chanting" ->
+                # Theme = e#) from an entity argument; a bare symbol is "constant"
+                # (named individual / bare kind / adverb — the symbol IS the filler),
+                # literals "str"/"num"/"term".
+                labels, plural = [], False
                 if isinstance(arg, list):
-                    filler, fkind = "<term:%s>" % arg[0], "term"
+                    fillers, fkind = ["<term:%s>" % arg[0]], "term"
                 elif re.fullmatch(r"[exf]\d+", arg):
-                    filler = star_class.get(arg) or "<untyped>"
+                    labels, plural = labels_of(arg)
+                    fillers = labels or ["<untyped>"]
                     fkind = rec["stars"].get(arg, {}).get("kind") or "skolem"
                 elif arg.startswith('"'):
-                    filler, fkind = "<str>", "str"
+                    fillers, fkind = ["<str>"], "str"
                 elif re.fullmatch(r"[+-]?\d+(?:\.\d+)?", arg):
-                    filler, fkind = "<num>", "num"
+                    fillers, fkind = ["<num>"], "num"
                 else:
-                    filler, fkind = arg, "constant"
-                key = (star["kind"], cls, t[0], filler, fkind)
-                e = slots.setdefault(key, {"n": 0, "ids": set()})
-                e["n"] += 1
-                e["ids"].add(rec["id"])
+                    fillers, fkind = [arg], "constant"
+                occ_rows.append({
+                    "id": rec["id"], "center_kind": star["kind"], "center_class": cls,
+                    "center_sym": sym, "head": t[0],
+                    "filler_sym": arg if isinstance(arg, str) else fillers[0],
+                    "filler_kind": fkind, "labels": labels, "plural": plural,
+                    "filler": fillers[0]})
+                share = 1.0 / len(fillers)
+                for filler in fillers:
+                    key = (star["kind"], cls, t[0], filler, fkind)
+                    e = slots.setdefault(key, {"n": 0, "w": 0.0, "ids": set()})
+                    e["n"] += 1
+                    e["w"] += share
+                    e["ids"].add(rec["id"])
+    occ_rows.sort(key=lambda r: (r["id"], r["center_sym"], r["head"], r["filler_sym"], r["filler"]))
 
     # ---- pass 1: constant + shape masks ------------------------------------
     agg = {}
@@ -561,7 +598,8 @@ def main():
         for (kind, cls, head, filler, fkind), e in sorted(slots.items()):
             fh.write(json.dumps({
                 "center_kind": kind, "center_class": cls, "head": head,
-                "filler": filler, "filler_kind": fkind, "n": e["n"], "docs": len(e["ids"]),
+                "filler": filler, "filler_kind": fkind, "n": e["n"],
+                "w": round(e["w"], 6), "docs": len(e["ids"]),
                 "examples": sorted(e["ids"])[:3],
             }, ensure_ascii=False, sort_keys=True) + "\n")
 
@@ -633,6 +671,11 @@ def main():
         print(f"-> {args.report}")
     print(f"-> {pat_path}  ({len(rows)} patterns)")
     print(f"-> {slot_path}  ({len(slots)} slot rows)")
+    occ_path = os.path.join(args.out_dir, "valuations_occ.jsonl")
+    with open(occ_path, "w", encoding="utf-8") as fh:
+        for r in occ_rows:
+            fh.write(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n")
+    print(f"-> {occ_path}  ({len(occ_rows)} filler occurrences)")
     print(f"-> {sig_path}  ({n_sig} signals)")
     print(f"records {n_docs}  patterns {len(rows)}  modes {dict(sorted(by_mode.items()))}  "
           f"shape {n_shape}  signals {n_sig}")

@@ -134,6 +134,16 @@ def uniq(seq):
 VAR_LETTER = {"event": "e", "entity": "x", "function": "f", "rule": "r"}
 
 
+def mass(x):
+    """fractional label mass -> int when integral, else 3 decimals (JSON-friendly)"""
+    r = round(x, 3)
+    return int(r) if abs(r - round(r)) < 1e-9 else r
+
+
+def masses(ctr):
+    return {k: mass(v) for k, v in ctr.items()}
+
+
 def render_slot(kind, cls, head, filler=None, fkind=None):
     """One slot (or one of its valuations) as a conjunctive query: center class clause +
     head clause (+ the filler's class clause). Filler variable letter = the filler's own
@@ -179,14 +189,15 @@ def write_metta(path, args, slots_in, pinned, n_determined, val_rows, slots, slo
             fh.write(f"\n;; ==================== {title} ====================\n")
             for key in keys:
                 kind, cls, head = key
-                rows = sorted(val_rows[key], key=lambda r: (-r["n"], r["filler"], r["fkind"]))
+                rows = sorted(val_rows[key], key=lambda r: (-r["w"], r["filler"], r["fkind"]))
                 hc = head_class(kind, head)
-                fh.write(f"\n;; ---- slot {cls}.{head}  [{kind} center; head {hc or 'other'}]  n {sum(slots[key].values())}"
+                fh.write(f"\n;; ---- slot {cls}.{head}  [{kind} center; head {hc or 'other'}]  n {mass(sum(slots[key].values()))}"
                          f"  docs<= {slot_docs[key]}  distinct {len(slots[key])}"
-                         f"  eventive {sum(slots_evt.get(key, {}).values())}\n")
+                         f"  eventive {mass(sum(slots_evt.get(key, {}).values()))}\n")
                 for r in rows:
+                    wtxt = "" if mass(r["w"]) == r["n"] else f" (mass {mass(r['w'])})"
                     fh.write(f"{render_slot(kind, cls, head, r['filler'], r['fkind'])}"
-                             f"    ;; n {r['n']} docs {r['docs']}  e.g. {' '.join(r['examples'][:2])}\n")
+                             f"    ;; n {r['n']}{wtxt} docs {r['docs']}  e.g. {' '.join(r['examples'][:2])}\n")
 
         order = sorted(slots, key=lambda k: (-sum(slots[k].values()), k[1], k[2]))
         section(f"event-role slots ({n_ev})", [k for k in order if head_class(k[0], k[2]) is not None])
@@ -270,21 +281,24 @@ def main():
     slot_examples = collections.defaultdict(lambda: collections.defaultdict(list))
     ent_examples = collections.defaultdict(lambda: collections.defaultdict(list))
     val_rows = collections.defaultdict(list)   # (kind, class, head) -> valuation rows
+    # Distribution mass = ``w`` (multi-label fillers give 1/m to each label, so a slot's
+    # total mass = its occurrence count); ``n`` = occurrences carrying the label.
     for row in load(args.slots_in):
         key = (row["center_kind"], row["center_class"], row["head"])
         fk = row.get("filler_kind", "?")
-        slots[key][row["filler"]] += row["n"]
+        w = row.get("w", row["n"])
+        slots[key][row["filler"]] += w
         slot_docs[key] += row["docs"]   # per-filler doc counts; upper bound per slot
         ex = slot_examples[key][row["filler"]]
         ex[:] = sorted(set(ex) | set(row.get("examples", [])))
-        val_rows[key].append({"filler": row["filler"], "fkind": fk, "n": row["n"],
+        val_rows[key].append({"filler": row["filler"], "fkind": fk, "n": row["n"], "w": w,
                               "docs": row["docs"], "examples": row.get("examples", [])})
         if fk in ("entity", "constant"):   # entity argument: skolem instance or named constant
-            slots_ent[key][row["filler"]] += row["n"]
+            slots_ent[key][row["filler"]] += w
             ex = ent_examples[key][row["filler"]]
             ex[:] = sorted(set(ex) | set(row.get("examples", [])))
         elif fk == "event":
-            slots_evt[key][row["filler"]] += row["n"]
+            slots_evt[key][row["filler"]] += w
 
     def examples_for(key, prefer=(), avoid=()):
         """<=2 witness doc ids for a slot, preferring the given (shared) fillers and
@@ -304,17 +318,17 @@ def main():
     with open(ev_path, "w", encoding="utf-8") as fe, \
          open(en_path, "w", encoding="utf-8") as fn:
         for (kind, cls, head), ctr in sorted(slots.items()):
-            top = dict(sorted(ctr.items(), key=lambda kv: (-kv[1], kv[0]))[:12])
+            top = masses(dict(sorted(ctr.items(), key=lambda kv: (-kv[1], kv[0]))[:12]))
             hc = head_class(kind, head)
             row = {
                 "slot": f"{cls}.{head}", "event_class": cls, "role": head,
                 "center_kind": kind, "head_class": hc,
-                "n": sum(ctr.values()), "distinct": len(ctr),
+                "n": mass(sum(ctr.values())), "distinct": len(ctr),
                 "docs": slot_docs[(kind, cls, head)],
                 "fillers": top,
-                "fillers_entity": dict(sorted(slots_ent.get((kind, cls, head), {}).items(),
-                                              key=lambda kv: (-kv[1], kv[0]))[:12]),
-                "eventive_n": sum(slots_evt.get((kind, cls, head), {}).values()),
+                "fillers_entity": masses(dict(sorted(slots_ent.get((kind, cls, head), {}).items(),
+                                                     key=lambda kv: (-kv[1], kv[0]))[:12])),
+                "eventive_n": mass(sum(slots_evt.get((kind, cls, head), {}).values())),
                 "filler_examples": {f: slot_examples[(kind, cls, head)][f][:3] for f in top},
             }
             if hc is not None:
@@ -384,7 +398,7 @@ def main():
                         "role_a": ka[2], "role_b": kb[2],
                         "cosine": round(cos, 3), "cosine_raw": round(cos_raw, 3),
                         "shared_fillers": sorted(shared)[:8],
-                        "n_a": sum(big[ka].values()), "n_b": sum(big[kb].values()),
+                        "n_a": mass(sum(big[ka].values())), "n_b": mass(sum(big[kb].values())),
                         "examples_a": examples_for(ka, shared),
                         "examples_b": examples_for(kb, shared,
                                                    avoid=examples_for(ka, shared)),
@@ -472,8 +486,8 @@ def main():
     flips, flips_diag = [], []
     obj_classes = {cls for cls, head in ev_ent if head in ("Theme", "Patient")}
     for cls in sorted(obj_classes):
-        nt = sum(ev_ent.get((cls, "Theme"), {}).values())
-        np_ = sum(ev_ent.get((cls, "Patient"), {}).values())
+        nt = mass(sum(ev_ent.get((cls, "Theme"), {}).values()))
+        np_ = mass(sum(ev_ent.get((cls, "Patient"), {}).values()))
         if nt and np_:
             both = set(ev_ent[(cls, "Theme")]) & set(ev_ent[(cls, "Patient")])
             row = {"event_class": cls, "theme_n": nt, "patient_n": np_,
@@ -481,8 +495,8 @@ def main():
                    "witness_pairs": witness_pairs(cls, "Theme", "Patient", both),
                    "examples": {"Theme": role_examples(cls, "Theme", ent_examples),
                                 "Patient": role_examples(cls, "Patient", ent_examples)},
-                   "eventive": {"Theme": sum(ev_evt.get((cls, "Theme"), {}).values()),
-                                "Patient": sum(ev_evt.get((cls, "Patient"), {}).values())}}
+                   "eventive": {"Theme": mass(sum(ev_evt.get((cls, "Theme"), {}).values())),
+                                "Patient": mass(sum(ev_evt.get((cls, "Patient"), {}).values()))}}
             det = determined.get(cls)
             if det:
                 row["determined_role"], row["determined_since"] = det
@@ -505,7 +519,7 @@ def main():
         and sum(ev_slots.get((cls, "Patient"), {}).values())
         and not (sum(ev_ent.get((cls, "Theme"), {}).values())
                  and sum(ev_ent.get((cls, "Patient"), {}).values())))
-    eventive = sorted(((cls, h, sum(v.values())) for (cls, h), v in ev_evt.items()
+    eventive = sorted(((cls, h, mass(sum(v.values()))) for (cls, h), v in ev_evt.items()
                        if h in ("Theme", "Patient") and v), key=lambda t: (-t[2], t[0], t[1]))
 
     # D.3 determined-role audit (H): on a prompt-DETERMINED class the forbidden role
@@ -530,7 +544,7 @@ def main():
                 continue
             determined_diag.append({
                 "event_class": cls, "determined_role": det[0], "determined_since": det[1],
-                "forbidden_role": role, "n": sum(ctr.values()),
+                "forbidden_role": role, "n": mass(sum(ctr.values())),
                 "fillers": {f: dict(kinds_of[(cls, role)][f]) for f in sorted(ctr)},
                 "examples": role_examples(cls, role),
                 "route": "parse-error (D.3: prompt-determined class)"})
@@ -603,8 +617,8 @@ def main():
         L.append(f"| {r['cosine']:.2f} | {r['slot_a']} ({r['n_a']}) | {r['slot_b']} ({r['n_b']}) "
                  f"| {', '.join(r['shared_fillers'][:5])} |")
     L.append("\n## #23 audit — Theme vs Patient (ENTITY fillers; construction-aware)\n")
-    L.append(f"- global entity-filler vocabularies: Theme {len(theme)} distinct ({sum(theme.values())} uses), "
-             f"Patient {len(patient)} distinct ({sum(patient.values())} uses); "
+    L.append(f"- global entity-filler vocabularies: Theme {len(theme)} distinct ({mass(sum(theme.values()))} uses), "
+             f"Patient {len(patient)} distinct ({mass(sum(patient.values()))} uses); "
              f"**{len(shared_global)} filler classes under BOTH** "
              f"(global cosine {cosine(theme, patient):.3f})")
     L.append(f"- flip witnesses: **{len(flips)} candidate-eligible** (prompt-undetermined) + "
@@ -655,7 +669,7 @@ def main():
         L.append("| event class | determined subject role | Agent fillers |\n|---|---|---|")
         for v, ctr in fyi:
             L.append(f"| {v} | {determined[v][0]} | "
-                     f"{', '.join(f'{f} {c}' for f, c in sorted(ctr.items(), key=lambda kv: (-kv[1], kv[0])))} |")
+                     f"{', '.join(f'{f} {mass(c)}' for f, c in sorted(ctr.items(), key=lambda kv: (-kv[1], kv[0])))} |")
 
     text = "\n".join(L) + "\n"
     if args.report:

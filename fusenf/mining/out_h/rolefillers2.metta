@@ -9,14 +9,12 @@
 
 ;; ==================== event-role slots (1729) ====================
 
-;; ---- slot have.Holder  [event center; head role]  n 44  docs<= 44  distinct 38  eventive 1
+;; ---- slot have.Holder  [event center; head role]  n 44  docs<= 46  distinct 40  eventive 1
 (And (Member $e0 have) (Holder $e0 kristoffer))    ;; n 4 docs 4  e.g. tierC-000181 tierC-000182
 (And (Member $e0 have) (Holder $e0 karen))    ;; n 2 docs 2  e.g. tierC-000182 tierC-000239
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 thing))    ;; n 2 docs 2  e.g. tierC-000271 tierC-000272
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 town))    ;; n 2 docs 2  e.g. tierB-000408 tierB-001348
-(And (Member $e0 have) (Holder $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001467
 (And (Member $e0 have) (Holder $e0 algiers))    ;; n 1 docs 1  e.g. tierB-000333
-(And (Member $e0 have) (Holder $e0 $x1) (Member $x1 bad))    ;; n 1 docs 1  e.g. tierB-000790
 (And (Member $e0 have) (Holder $e0 boldi))    ;; n 1 docs 1  e.g. tierB-000162
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 creature))    ;; n 1 docs 1  e.g. tierB-001412
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 decision))    ;; n 1 docs 1  e.g. tierB-001797
@@ -34,7 +32,6 @@
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 library))    ;; n 1 docs 1  e.g. tierB-000931
 (And (Member $e0 have) (Holder $e0 miroslav))    ;; n 1 docs 1  e.g. tierB-000855
 (And (Member $e0 have) (Holder $e0 morocco))    ;; n 1 docs 1  e.g. tierB-000819
-(And (Member $e0 have) (Holder $e0 $x1) (Member $x1 mosque))    ;; n 1 docs 1  e.g. tierB-000665
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 movie))    ;; n 1 docs 1  e.g. tierB-001555
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 ocean))    ;; n 1 docs 1  e.g. tierB-000722
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 place))    ;; n 1 docs 1  e.g. tierB-000494
@@ -45,47 +42,83 @@
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 sentence))    ;; n 1 docs 1  e.g. tierB-000142
 (And (Member $e0 have) (Holder $e0 thomas))    ;; n 1 docs 1  e.g. tierB-000358
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 tower))    ;; n 1 docs 1  e.g. tierB-001919
+(And (Member $e0 have) (Holder $e0 $x1) (Member $x1 tuareg))    ;; n 1 docs 1  e.g. tierB-001467
 (And (Member $e0 have) (Holder $e0 wilson))    ;; n 1 docs 1  e.g. tierB-000730
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 word_processor))    ;; n 1 docs 1  e.g. tierB-001177
 (And (Member $e0 have) (Holder $e0 $x1) (Member $x1 writer))    ;; n 1 docs 1  e.g. tierB-000926
+(And (Member $e0 have) (Holder $e0 $x1) (Member $x1 bad))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000790
+(And (Member $e0 have) (Holder $e0 $x1) (Member $x1 mosque))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000665
+(And (Member $e0 have) (Holder $e0 $x1) (Member $x1 old))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000665
+(And (Member $e0 have) (Holder $e0 $x1) (Member $x1 weather))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000790
 
-;; ---- slot have.Theme  [event center; head role]  n 43  docs<= 43  distinct 27  eventive 1
-(And (Member $e0 have) (Theme $e0 $x1))    ;; n 15 docs 15  e.g. tierB-000066 tierB-000142
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 constant))    ;; n 2 docs 2  e.g. tierC-000153 tierC-000154
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 atmosphere))    ;; n 1 docs 1  e.g. tierB-001043
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 bank))    ;; n 1 docs 1  e.g. tierB-000931
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 beautiful))    ;; n 1 docs 1  e.g. tierB-001016
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 blue))    ;; n 1 docs 1  e.g. tierB-001264
+;; ---- slot have.Theme  [event center; head role]  n 43  docs<= 66  distinct 59  eventive 1
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 child))    ;; n 4 docs 4  e.g. tierC-000181 tierC-000182
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 antler))    ;; n 1 docs 1  e.g. tierB-001412
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 beauty_salon))    ;; n 1 docs 1  e.g. tierB-000333
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 cemetery))    ;; n 1 docs 1  e.g. tierB-001348
 (And (Member $e0 have) (Theme $e0 $x1) (Member $x1 chance))    ;; n 1 docs 1  e.g. tierB-000730
 (And (Member $e0 have) (Theme $e0 $x1) (Member $x1 color))    ;; n 1 docs 1  e.g. tierB-000722
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 conical))    ;; n 1 docs 1  e.g. tierB-001919
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 deductible))    ;; n 1 docs 1  e.g. tierB-001758
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 dream))    ;; n 1 docs 1  e.g. tierB-000855
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 eerie))    ;; n 1 docs 1  e.g. tierB-000665
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 day))    ;; n 1 docs 1  e.g. tierB-001553
 (And (Member $e0 have) (Theme $e0 $x1) (Member $x1 effect))    ;; n 1 docs 1  e.g. tierB-000790
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 history))    ;; n 1 docs 1  e.g. tierB-000408
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 internal_politics))    ;; n 1 docs 1  e.g. tierB-000819
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 nasty))    ;; n 1 docs 1  e.g. tierB-000358
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 nice))    ;; n 1 docs 1  e.g. tierB-001103
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 parenthetic))    ;; n 1 docs 1  e.g. tierB-000926
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 plot))    ;; n 1 docs 1  e.g. tierB-001555
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 purpose))    ;; n 1 docs 1  e.g. tierB-001177
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 friend))    ;; n 1 docs 1  e.g. tierB-000066
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 gas_pump))    ;; n 1 docs 1  e.g. tierB-000797
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 guard))    ;; n 1 docs 1  e.g. tierB-000494
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 herd))    ;; n 1 docs 1  e.g. tierB-001467
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 leaf))    ;; n 1 docs 1  e.g. tierB-001929
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 meaning))    ;; n 1 docs 1  e.g. tierB-000142
 (And (Member $e0 have) (Theme $e0 representation))    ;; n 1 docs 1  e.g. tierC-000272
 (And (Member $e0 have) (Theme $e0 $x1) (Member $x1 representation))    ;; n 1 docs 1  e.g. tierC-000271
 (And (Member $e0 have) (Theme $e0 $x1) (Member $x1 reputation))    ;; n 1 docs 1  e.g. tierB-000492
 (And (Member $e0 have) (Theme $e0 $x1) (Member $x1 right))    ;; n 1 docs 1  e.g. tierB-000902
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 serious))    ;; n 1 docs 1  e.g. tierB-001797
-(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 soul_piercing))    ;; n 1 docs 1  e.g. tierB-001861
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-000162
 (And (Member $e0 have) (Theme $e0 $e1) (Member $e1 thought))    ;; n 1 docs 1  e.g. tierB-001216
 (And (Member $e0 have) (Theme $e0 value))    ;; n 1 docs 1  e.g. tierB-001804
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 constant))    ;; n 2 (mass 0.667) docs 2  e.g. tierC-000153 tierC-000154
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 entropy))    ;; n 2 (mass 0.667) docs 2  e.g. tierC-000153 tierC-000154
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 uniform))    ;; n 2 (mass 0.667) docs 2  e.g. tierC-000153 tierC-000154
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 atmosphere))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001043
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 beautiful))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001016
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 blue))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001264
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 conical))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001919
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 curtain))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001264
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 deductible))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001758
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 dream))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000855
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 eerie))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000665
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 feeling))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000665
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 garden))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001016
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 high))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001758
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 history))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000408
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 homely))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001043
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 internal_politics))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000819
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 intriguing))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000819
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 nasty))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000358
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 nice))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001103
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 parenthetic))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000926
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 personality))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000358
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 plot))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001555
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 predictable))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001555
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 purpose))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001177
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 rich))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000408
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 roof))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001919
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 single))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001177
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 soul_piercing))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001861
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 stare))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001861
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 style))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000926
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 taste))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001103
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 weird))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000855
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 bank))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000931
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 consequence))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001797
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 document))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000931
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 serious))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001797
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 valuable))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000931
+(And (Member $e0 have) (Theme $e0 $x1) (Member $x1 wide))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001797
 
-;; ---- slot use.Theme  [event center; head role]  n 23  docs<= 23  distinct 20  eventive 1
-(And (Member $e0 use) (Theme $e0 $x1) (Member $x1 current))    ;; n 2 docs 2  e.g. tierC-000173 tierC-000174
-(And (Member $e0 use) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001378
+;; ---- slot use.Theme  [event center; head role]  n 23  docs<= 26  distinct 23  eventive 1
 (And (Member $e0 use) (Theme $e0 auto_tune))    ;; n 1 docs 1  e.g. tierB-000850
 (And (Member $e0 use) (Theme $e0 banach_mackey_topology))    ;; n 1 docs 1  e.g. tierC-000006
 (And (Member $e0 use) (Theme $e0 $x1) (Member $x1 banach_mackey_topology))    ;; n 1 docs 1  e.g. tierC-000005
 (And (Member $e0 use) (Theme $e0 $x1) (Member $x1 chemical_agent))    ;; n 1 docs 1  e.g. tierB-001431
+(And (Member $e0 use) (Theme $e0 $x1) (Member $x1 current))    ;; n 2 (mass 1) docs 2  e.g. tierC-000173 tierC-000174
 (And (Member $e0 use) (Theme $e0 fire))    ;; n 1 docs 1  e.g. tierB-001304
 (And (Member $e0 use) (Theme $e0 iga))    ;; n 1 docs 1  e.g. tierB-001314
 (And (Member $e0 use) (Theme $e0 jingle))    ;; n 1 docs 1  e.g. tierB-000282
@@ -96,55 +129,69 @@
 (And (Member $e0 use) (Theme $e0 paramilitary_group))    ;; n 1 docs 1  e.g. tierB-001098
 (And (Member $e0 use) (Theme $e0 $x1) (Member $x1 phrase))    ;; n 1 docs 1  e.g. tierB-000866
 (And (Member $e0 use) (Theme $e0 public_fund))    ;; n 1 docs 1  e.g. tierB-000268
+(And (Member $e0 use) (Theme $e0 $x1) (Member $x1 room))    ;; n 1 docs 1  e.g. tierB-001378
 (And (Member $e0 use) (Theme $e0 sentence))    ;; n 1 docs 1  e.g. tierB-000971
 (And (Member $e0 use) (Theme $e0 $x1) (Member $x1 sugar))    ;; n 1 docs 1  e.g. tierB-001243
-(And (Member $e0 use) (Theme $e0 $x1) (Member $x1 various))    ;; n 1 docs 1  e.g. tierB-000089
 (And (Member $e0 use) (Theme $e0 weak_arens_space_topology))    ;; n 1 docs 1  e.g. tierC-000006
 (And (Member $e0 use) (Theme $e0 $x1) (Member $x1 weak_arens_space_topology))    ;; n 1 docs 1  e.g. tierC-000005
 (And (Member $e0 use) (Theme $e0 word))    ;; n 1 docs 1  e.g. tierB-001154
+(And (Member $e0 use) (Theme $e0 $x1) (Member $x1 calendar))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000089
+(And (Member $e0 use) (Theme $e0 $x1) (Member $x1 designation_convention))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000174
+(And (Member $e0 use) (Theme $e0 $x1) (Member $x1 naming_convention))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000173
+(And (Member $e0 use) (Theme $e0 $x1) (Member $x1 various))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000089
 
-;; ---- slot make.Patient  [event center; head role]  n 20  docs<= 20  distinct 18  eventive 0
-(And (Member $e0 make) (Patient $e0 $x1))    ;; n 2 docs 2  e.g. tierB-000964 tierB-001696
-(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 big))    ;; n 2 docs 2  e.g. tierB-001457 tierB-001831
+;; ---- slot make.Patient  [event center; head role]  n 20  docs<= 27  distinct 25  eventive 0
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 difference))    ;; n 2 (mass 1.5) docs 2  e.g. tierB-000025 tierB-001831
 (And (Member $e0 make) (Patient $e0 afghanistan))    ;; n 1 docs 1  e.g. tierB-001504
 (And (Member $e0 make) (Patient $e0 augustus))    ;; n 1 docs 1  e.g. tierB-001809
-(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 bad))    ;; n 1 docs 1  e.g. tierB-001594
-(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 beautiful))    ;; n 1 docs 1  e.g. tierB-001920
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 big))    ;; n 2 (mass 1) docs 2  e.g. tierB-001457 tierB-001831
 (And (Member $e0 make) (Patient $e0 $x1) (Member $x1 chicken_fried_steak))    ;; n 1 docs 1  e.g. tierB-000998
-(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 clicking))    ;; n 1 docs 1  e.g. tierB-000951
-(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 comfortable))    ;; n 1 docs 1  e.g. tierB-000371
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 claim))    ;; n 1 docs 1  e.g. tierB-000964
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 cope))    ;; n 1 docs 1  e.g. tierB-001696
 (And (Member $e0 make) (Patient $e0 $x1) (Member $x1 cup))    ;; n 1 docs 1  e.g. tierB-000269
-(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 difference))    ;; n 1 docs 1  e.g. tierB-000025
 (And (Member $e0 make) (Patient $e0 eye_contact))    ;; n 1 docs 1  e.g. tierB-000539
-(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 high_pitched))    ;; n 1 docs 1  e.g. tierB-000073
 (And (Member $e0 make) (Patient $e0 isabella))    ;; n 1 docs 1  e.g. tierB-000325
 (And (Member $e0 make) (Patient $e0 paper))    ;; n 1 docs 1  e.g. tierB-001431
 (And (Member $e0 make) (Patient $e0 $x1) (Member $x1 purchase))    ;; n 1 docs 1  e.g. tierB-001623
 (And (Member $e0 make) (Patient $e0 $x1) (Member $x1 telephone_call))    ;; n 1 docs 1  e.g. tierB-001182
 (And (Member $e0 make) (Patient $e0 travel))    ;; n 1 docs 1  e.g. tierB-001754
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 bad))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001594
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 beautiful))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001920
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 clicking))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000951
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 comfortable))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000371
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 high_pitched))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000073
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 house))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000371
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 matter))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001594
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 noise))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000073
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 room))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001920
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 snowman))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001457
+(And (Member $e0 make) (Patient $e0 $x1) (Member $x1 sound))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000951
 
-;; ---- slot build.Patient  [event center; head role]  n 18  docs<= 17  distinct 9  eventive 0
+;; ---- slot build.Patient  [event center; head role]  n 18  docs<= 20  distinct 12  eventive 0
 (And (Member $e0 build) (Patient $e0 $x1) (Member $x1 hotel))    ;; n 4 docs 4  e.g. tierC-000045 tierC-000046
 (And (Member $e0 build) (Patient $e0 $x1) (Member $x1 room))    ;; n 3 docs 2  e.g. tierC-000213 tierC-000214
 (And (Member $e0 build) (Patient $e0 $x1) (Member $x1 horn))    ;; n 2 docs 2  e.g. tierC-000071 tierC-000072
 (And (Member $e0 build) (Patient $e0 $x1) (Member $x1 paper_factory))    ;; n 2 docs 2  e.g. tierC-000045 tierC-000292
 (And (Member $e0 build) (Patient $e0 $x1) (Member $x1 paper_mill))    ;; n 2 docs 2  e.g. tierC-000046 tierC-000291
 (And (Member $e0 build) (Patient $e0 $x1) (Member $x1 thing))    ;; n 2 docs 2  e.g. tierC-000119 tierC-000120
-(And (Member $e0 build) (Patient $e0 $x1) (Member $x1 network))    ;; n 1 docs 1  e.g. tierB-000063
-(And (Member $e0 build) (Patient $e0 $x1) (Member $x1 new))    ;; n 1 docs 1  e.g. tierB-001867
-(And (Member $e0 build) (Patient $e0 $x1) (Member $x1 original))    ;; n 1 docs 1  e.g. tierB-000932
+(And (Member $e0 build) (Patient $e0 $x1) (Member $x1 network))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000063
+(And (Member $e0 build) (Patient $e0 $x1) (Member $x1 new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001867
+(And (Member $e0 build) (Patient $e0 $x1) (Member $x1 original))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000932
+(And (Member $e0 build) (Patient $e0 $x1) (Member $x1 playground))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001867
+(And (Member $e0 build) (Patient $e0 $x1) (Member $x1 turing_machine))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000932
+(And (Member $e0 build) (Patient $e0 $x1) (Member $x1 well))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000063
 
-;; ---- slot make.Agent  [event center; head role]  n 18  docs<= 18  distinct 17  eventive 0
-(And (Member $e0 make) (Agent $e0 $x1))    ;; n 2 docs 2  e.g. tierB-001457 tierB-001920
+;; ---- slot make.Agent  [event center; head role]  n 18  docs<= 19  distinct 19  eventive 0
 (And (Member $e0 make) (Agent $e0 artistic_beauty))    ;; n 1 docs 1  e.g. tierB-000371
 (And (Member $e0 make) (Agent $e0 augustus))    ;; n 1 docs 1  e.g. tierB-001809
+(And (Member $e0 make) (Agent $e0 $x1) (Member $x1 boy))    ;; n 1 docs 1  e.g. tierB-001457
 (And (Member $e0 make) (Agent $e0 $x1) (Member $x1 cat))    ;; n 1 docs 1  e.g. tierB-000073
+(And (Member $e0 make) (Agent $e0 $x1) (Member $x1 curtain))    ;; n 1 docs 1  e.g. tierB-001920
 (And (Member $e0 make) (Agent $e0 $x1) (Member $x1 customer))    ;; n 1 docs 1  e.g. tierB-001623
 (And (Member $e0 make) (Agent $e0 damiano))    ;; n 1 docs 1  e.g. tierB-000325
 (And (Member $e0 make) (Agent $e0 david))    ;; n 1 docs 1  e.g. tierB-000173
 (And (Member $e0 make) (Agent $e0 $x1) (Member $x1 diner))    ;; n 1 docs 1  e.g. tierB-000998
 (And (Member $e0 make) (Agent $e0 elias))    ;; n 1 docs 1  e.g. tierB-000025
-(And (Member $e0 make) (Agent $e0 $x1) (Member $x1 gusty))    ;; n 1 docs 1  e.g. tierB-001754
 (And (Member $e0 make) (Agent $e0 hanako))    ;; n 1 docs 1  e.g. tierB-000951
 (And (Member $e0 make) (Agent $e0 james))    ;; n 1 docs 1  e.g. tierB-000539
 (And (Member $e0 make) (Agent $e0 lorenzo))    ;; n 1 docs 1  e.g. tierB-001594
@@ -152,11 +199,13 @@
 (And (Member $e0 make) (Agent $e0 practical_utility))    ;; n 1 docs 1  e.g. tierB-000371
 (And (Member $e0 make) (Agent $e0 taliban))    ;; n 1 docs 1  e.g. tierB-001504
 (And (Member $e0 make) (Agent $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001831
+(And (Member $e0 make) (Agent $e0 $x1) (Member $x1 gusty))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001754
+(And (Member $e0 make) (Agent $e0 $x1) (Member $x1 wind))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001754
 
-;; ---- slot go.Agent  [event center; head role]  n 15  docs<= 15  distinct 13  eventive 0
-(And (Member $e0 go) (Agent $e0 $x1))    ;; n 2 docs 2  e.g. tierB-001496 tierB-001628
+;; ---- slot go.Agent  [event center; head role]  n 15  docs<= 15  distinct 14  eventive 0
 (And (Member $e0 go) (Agent $e0 katherine))    ;; n 2 docs 2  e.g. tierC-000209 tierC-000210
 (And (Member $e0 go) (Agent $e0 $x1) (Member $x1 cat))    ;; n 1 docs 1  e.g. tierB-001183
+(And (Member $e0 go) (Agent $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-001496
 (And (Member $e0 go) (Agent $e0 daniel))    ;; n 1 docs 1  e.g. tierB-000576
 (And (Member $e0 go) (Agent $e0 donald))    ;; n 1 docs 1  e.g. tierB-000115
 (And (Member $e0 go) (Agent $e0 flavio))    ;; n 1 docs 1  e.g. tierB-001145
@@ -167,15 +216,16 @@
 (And (Member $e0 go) (Agent $e0 mennad))    ;; n 1 docs 1  e.g. tierB-000219
 (And (Member $e0 go) (Agent $e0 mom))    ;; n 1 docs 1  e.g. tierB-000204
 (And (Member $e0 go) (Agent $e0 olivia))    ;; n 1 docs 1  e.g. tierB-000012
+(And (Member $e0 go) (Agent $e0 $x1) (Member $x1 pupil))    ;; n 1 docs 1  e.g. tierB-001628
 
 ;; ---- slot play.Agent  [event center; head role]  n 15  docs<= 15  distinct 10  eventive 0
-(And (Member $e0 play) (Agent $e0 $x1))    ;; n 4 docs 4  e.g. tierB-000648 tierB-001125
+(And (Member $e0 play) (Agent $e0 $x1) (Member $x1 child))    ;; n 4 docs 4  e.g. tierB-000160 tierB-000648
 (And (Member $e0 play) (Agent $e0 boston_red_sox))    ;; n 2 docs 2  e.g. tierC-000229 tierC-000230
 (And (Member $e0 play) (Agent $e0 cincinnati_reds))    ;; n 2 docs 2  e.g. tierC-000229 tierC-000230
 (And (Member $e0 play) (Agent $e0 audrey_hepburn))    ;; n 1 docs 1  e.g. tierC-000228
 (And (Member $e0 play) (Agent $e0 audrey_heppurn))    ;; n 1 docs 1  e.g. tierC-000227
 (And (Member $e0 play) (Agent $e0 biology))    ;; n 1 docs 1  e.g. tierB-000816
-(And (Member $e0 play) (Agent $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-000160
+(And (Member $e0 play) (Agent $e0 $x1) (Member $x1 boy))    ;; n 1 docs 1  e.g. tierB-001840
 (And (Member $e0 play) (Agent $e0 religion))    ;; n 1 docs 1  e.g. tierB-000089
 (And (Member $e0 play) (Agent $e0 tony))    ;; n 1 docs 1  e.g. tierB-001766
 (And (Member $e0 play) (Agent $e0 yumi))    ;; n 1 docs 1  e.g. tierB-000939
@@ -184,13 +234,13 @@
 (And (Member $e0 build) (Agent $e0 $x1) (Member $x1 company))    ;; n 8 docs 4  e.g. tierC-000045 tierC-000046
 (And (Member $e0 build) (Agent $e0 o_r_woodcock))    ;; n 2 docs 2  e.g. tierC-000119 tierC-000120
 (And (Member $e0 build) (Agent $e0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierC-000071 tierC-000072
-(And (Member $e0 build) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000063
 (And (Member $e0 build) (Agent $e0 $x1) (Member $x1 community))    ;; n 1 docs 1  e.g. tierB-001867
+(And (Member $e0 build) (Agent $e0 $x1) (Member $x1 mozabite))    ;; n 1 docs 1  e.g. tierB-000063
 
 ;; ---- slot find.Location  [event center; head role]  n 14  docs<= 14  distinct 10  eventive 0
-(And (Member $e0 find) (Location $e0 $x1))    ;; n 2 docs 2  e.g. tierC-000313 tierC-000314
 (And (Member $e0 find) (Location $e0 $x1) (Member $x1 bench))    ;; n 2 docs 2  e.g. tierC-000243 tierC-000244
 (And (Member $e0 find) (Location $e0 $x1) (Member $x1 southern))    ;; n 2 docs 2  e.g. tierC-000279 tierC-000280
+(And (Member $e0 find) (Location $e0 $x1) (Member $x1 tributary))    ;; n 2 docs 2  e.g. tierC-000313 tierC-000314
 (And (Member $e0 find) (Location $e0 yunnan))    ;; n 2 docs 2  e.g. tierC-000313 tierC-000314
 (And (Member $e0 find) (Location $e0 lake_dianchi))    ;; n 1 docs 1  e.g. tierC-000313
 (And (Member $e0 find) (Location $e0 sahara_desert))    ;; n 1 docs 1  e.g. tierB-000585
@@ -199,12 +249,11 @@
 (And (Member $e0 find) (Location $e0 $x1) (Member $x1 western))    ;; n 1 docs 1  e.g. tierC-000279
 (And (Member $e0 find) (Location $e0 western_europe))    ;; n 1 docs 1  e.g. tierC-000280
 
-;; ---- slot start.Theme  [event center; head role]  n 13  docs<= 13  distinct 13  eventive 12
+;; ---- slot start.Theme  [event center; head role]  n 13  docs<= 14  distinct 14  eventive 12
 (And (Member $e0 start) (Theme $e0 $e1) (Member $e1 appear))    ;; n 1 docs 1  e.g. tierB-001940
 (And (Member $e0 start) (Theme $e0 $e1) (Member $e1 chant))    ;; n 1 docs 1  e.g. tierB-001169
 (And (Member $e0 start) (Theme $e0 $e1) (Member $e1 cry))    ;; n 1 docs 1  e.g. tierB-000738
 (And (Member $e0 start) (Theme $e0 $e1) (Member $e1 disappear))    ;; n 1 docs 1  e.g. tierB-000265
-(And (Member $e0 start) (Theme $e0 $e1) (Member $e1 feel))    ;; n 1 docs 1  e.g. tierB-000534
 (And (Member $e0 start) (Theme $e0 $e1) (Member $e1 hear))    ;; n 1 docs 1  e.g. tierB-001479
 (And (Member $e0 start) (Theme $e0 high_school))    ;; n 1 docs 1  e.g. tierB-000043
 (And (Member $e0 start) (Theme $e0 $e1) (Member $e1 improve))    ;; n 1 docs 1  e.g. tierB-001816
@@ -213,6 +262,8 @@
 (And (Member $e0 start) (Theme $e0 $e1) (Member $e1 show))    ;; n 1 docs 1  e.g. tierB-000465
 (And (Member $e0 start) (Theme $e0 $e1) (Member $e1 talk))    ;; n 1 docs 1  e.g. tierB-001219
 (And (Member $e0 start) (Theme $e0 $e1) (Member $e1 vomit))    ;; n 1 docs 1  e.g. tierB-000199
+(And (Member $e0 start) (Theme $e0 $e1) (Member $e1 feel))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000534
+(And (Member $e0 start) (Theme $e0 $e1) (Member $e1 light_headed))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000534
 
 ;; ---- slot go.Goal  [event center; head role]  n 12  docs<= 11  distinct 9  eventive 0
 (And (Member $e0 go) (Goal $e0 bed))    ;; n 4 docs 3  e.g. tierB-000012 tierB-001418
@@ -225,33 +276,45 @@
 (And (Member $e0 go) (Goal $e0 $x1) (Member $x1 supermarket))    ;; n 1 docs 1  e.g. tierB-000204
 (And (Member $e0 go) (Goal $e0 $x1) (Member $x1 way))    ;; n 1 docs 1  e.g. tierB-001190
 
-;; ---- slot study.Agent  [event center; head role]  n 12  docs<= 11  distinct 8  eventive 0
-(And (Member $e0 study) (Agent $e0 $x1))    ;; n 3 docs 3  e.g. tierB-000225 tierB-000710
+;; ---- slot study.Agent  [event center; head role]  n 12  docs<= 11  distinct 9  eventive 0
 (And (Member $e0 study) (Agent $e0 $x1) (Member $x1 person))    ;; n 3 docs 2  e.g. tierC-000253 tierC-000254
+(And (Member $e0 study) (Agent $e0 $x1) (Member $x1 scientist))    ;; n 2 docs 2  e.g. tierB-000225 tierB-001984
 (And (Member $e0 study) (Agent $e0 beth))    ;; n 1 docs 1  e.g. tierB-001544
 (And (Member $e0 study) (Agent $e0 carlos))    ;; n 1 docs 1  e.g. tierB-001879
 (And (Member $e0 study) (Agent $e0 fadil))    ;; n 1 docs 1  e.g. tierB-000253
+(And (Member $e0 study) (Agent $e0 $x1) (Member $x1 forensics_researcher))    ;; n 1 docs 1  e.g. tierB-000710
 (And (Member $e0 study) (Agent $e0 nicolaus_copernicus))    ;; n 1 docs 1  e.g. tierB-000292
 (And (Member $e0 study) (Agent $e0 peter))    ;; n 1 docs 1  e.g. tierB-001084
 (And (Member $e0 study) (Agent $e0 yuri))    ;; n 1 docs 1  e.g. tierB-000203
 
-;; ---- slot become.Patient  [event center; head role]  n 11  docs<= 11  distinct 9  eventive 0
-(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 bad))    ;; n 2 docs 2  e.g. tierC-000241 tierC-000242
-(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 indigenous))    ;; n 2 docs 2  e.g. tierC-000001 tierC-000002
+;; ---- slot become.Patient  [event center; head role]  n 11  docs<= 20  distinct 16  eventive 0
 (And (Member $e0 become) (Patient $e0 ashton))    ;; n 1 docs 1  e.g. tierB-001079
-(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 conservative))    ;; n 1 docs 1  e.g. tierB-001817
-(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 discipline))    ;; n 1 docs 1  e.g. tierC-000158
-(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 earth))    ;; n 1 docs 1  e.g. tierB-001582
-(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 inomaru))    ;; n 1 docs 1  e.g. tierC-000237
-(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 intense))    ;; n 1 docs 1  e.g. tierB-000352
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 bad))    ;; n 2 (mass 1) docs 2  e.g. tierC-000241 tierC-000242
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 indigenous))    ;; n 2 (mass 1) docs 2  e.g. tierC-000001 tierC-000002
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 person))    ;; n 2 (mass 1) docs 2  e.g. tierC-000001 tierC-000237
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 relationship))    ;; n 2 (mass 1) docs 2  e.g. tierC-000241 tierC-000242
 (And (Member $e0 become) (Patient $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-000740
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 conservative))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001817
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 discipline))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000158
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 earth))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001582
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 inomaru))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000237
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 intense))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000352
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 lax))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000158
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 noise))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000352
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 people))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000002
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 red))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001582
+(And (Member $e0 become) (Patient $e0 $x1) (Member $x1 revolutionary))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001817
 
-;; ---- slot begin.Agent  [event center; head role]  n 11  docs<= 9  distinct 6  eventive 0
-(And (Member $e0 begin) (Agent $e0 $x1))    ;; n 6 docs 4  e.g. tierB-000485 tierB-001138
+;; ---- slot begin.Agent  [event center; head role]  n 11  docs<= 11  distinct 10  eventive 0
+(And (Member $e0 begin) (Agent $e0 $x1) (Member $x1 european_american_settler))    ;; n 2 docs 2  e.g. tierC-000025 tierC-000026
 (And (Member $e0 begin) (Agent $e0 $x1) (Member $x1 crowd))    ;; n 1 docs 1  e.g. tierB-001052
 (And (Member $e0 begin) (Agent $e0 david))    ;; n 1 docs 1  e.g. tierB-000173
+(And (Member $e0 begin) (Agent $e0 $x1) (Member $x1 indigenous_american))    ;; n 1 docs 1  e.g. tierC-000025
 (And (Member $e0 begin) (Agent $e0 jessica))    ;; n 1 docs 1  e.g. tierB-000075
+(And (Member $e0 begin) (Agent $e0 $x1) (Member $x1 legionnaire))    ;; n 1 docs 1  e.g. tierB-001138
 (And (Member $e0 begin) (Agent $e0 mark))    ;; n 1 docs 1  e.g. tierB-000075
+(And (Member $e0 begin) (Agent $e0 $x1) (Member $x1 native_american))    ;; n 1 docs 1  e.g. tierC-000026
+(And (Member $e0 begin) (Agent $e0 $x1) (Member $x1 rebel))    ;; n 1 docs 1  e.g. tierB-000485
 (And (Member $e0 begin) (Agent $e0 william))    ;; n 1 docs 1  e.g. tierB-000240
 
 ;; ---- slot begin.Theme  [event center; head role]  n 11  docs<= 9  distinct 8  eventive 11
@@ -270,40 +333,48 @@
 (And (Member $e0 build) (Location $e0 turkey))    ;; n 3 docs 2  e.g. tierC-000046 tierC-000291
 (And (Member $e0 build) (Location $e0 ghardaia))    ;; n 1 docs 1  e.g. tierB-000063
 
-;; ---- slot kill.Patient  [event center; head role]  n 11  docs<= 11  distinct 5  eventive 0
-(And (Member $e0 kill) (Patient $e0 $x1))    ;; n 6 docs 6  e.g. tierB-000393 tierB-000412
-(And (Member $e0 kill) (Patient $e0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierC-000353 tierC-000354
+;; ---- slot kill.Patient  [event center; head role]  n 11  docs<= 9  distinct 5  eventive 0
+(And (Member $e0 kill) (Patient $e0 $x1) (Member $x1 person))    ;; n 6 docs 4  e.g. tierB-000393 tierB-000412
+(And (Member $e0 kill) (Patient $e0 $x1) (Member $x1 soldier))    ;; n 2 docs 2  e.g. tierB-000067 tierB-001705
 (And (Member $e0 kill) (Patient $e0 $x1) (Member $x1 fox))    ;; n 1 docs 1  e.g. tierB-001399
 (And (Member $e0 kill) (Patient $e0 $x1) (Member $x1 gazelle))    ;; n 1 docs 1  e.g. tierB-001197
-(And (Member $e0 kill) (Patient $e0 $x1) (Member $x1 soldier))    ;; n 1 docs 1  e.g. tierB-000067
+(And (Member $e0 kill) (Patient $e0 $x1) (Member $x1 zombie))    ;; n 1 docs 1  e.g. tierB-001047
 
-;; ---- slot produce.Patient  [event center; head role]  n 11  docs<= 9  distinct 7  eventive 0
-(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 movie))    ;; n 4 docs 2  e.g. tierC-000091 tierC-000092
-(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 album))    ;; n 2 docs 2  e.g. tierC-000103 tierC-000104
-(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 cyanide))    ;; n 1 docs 1  e.g. tierB-001995
-(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 destined))    ;; n 1 docs 1  e.g. tierC-000009
-(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 film))    ;; n 1 docs 1  e.g. tierC-000010
-(And (Member $e0 produce) (Patient $e0 insulin))    ;; n 1 docs 1  e.g. tierB-001358
-(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 mesmerizing))    ;; n 1 docs 1  e.g. tierB-000208
-
-;; ---- slot start.Patient  [event center; head role]  n 11  docs<= 11  distinct 11  eventive 1
-(And (Member $e0 start) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001816
-(And (Member $e0 start) (Patient $e0 $x1) (Member $x1 blue))    ;; n 1 docs 1  e.g. tierB-001940
+;; ---- slot start.Patient  [event center; head role]  n 11  docs<= 14  distinct 14  eventive 1
 (And (Member $e0 start) (Patient $e0 $x1) (Member $x1 concert))    ;; n 1 docs 1  e.g. tierB-001000
 (And (Member $e0 start) (Patient $e0 $x1) (Member $x1 crack))    ;; n 1 docs 1  e.g. tierB-000265
 (And (Member $e0 start) (Patient $e0 $x1) (Member $x1 dog_feed))    ;; n 1 docs 1  e.g. tierB-001446
-(And (Member $e0 start) (Patient $e0 $x1) (Member $x1 freedom_movement))    ;; n 1 docs 1  e.g. tierB-000654
 (And (Member $e0 start) (Patient $e0 $e1) (Member $e1 knock))    ;; n 1 docs 1  e.g. tierB-001899
 (And (Member $e0 start) (Patient $e0 milky_way))    ;; n 1 docs 1  e.g. tierB-000465
 (And (Member $e0 start) (Patient $e0 $x1) (Member $x1 national_fibre_optic_network_project))    ;; n 1 docs 1  e.g. tierB-000192
+(And (Member $e0 start) (Patient $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001816
 (And (Member $e0 start) (Patient $e0 $x1) (Member $x1 truck))    ;; n 1 docs 1  e.g. tierB-000659
 (And (Member $e0 start) (Patient $e0 $x1) (Member $x1 watermelon_season))    ;; n 1 docs 1  e.g. tierB-000699
+(And (Member $e0 start) (Patient $e0 $x1) (Member $x1 freedom_movement))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000654
+(And (Member $e0 start) (Patient $e0 $x1) (Member $x1 gusher))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000654
+(And (Member $e0 start) (Patient $e0 $x1) (Member $x1 blue))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001940
+(And (Member $e0 start) (Patient $e0 $x1) (Member $x1 pocket))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001940
+(And (Member $e0 start) (Patient $e0 $x1) (Member $x1 sky))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001940
 
-;; ---- slot find.Theme  [event center; head role]  n 10  docs<= 10  distinct 5  eventive 0
+;; ---- slot produce.Patient  [event center; head role]  n 11  docs<= 15  distinct 11  eventive 0
+(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 movie))    ;; n 4 docs 2  e.g. tierC-000091 tierC-000092
+(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 album))    ;; n 2 docs 2  e.g. tierC-000103 tierC-000104
+(And (Member $e0 produce) (Patient $e0 insulin))    ;; n 1 docs 1  e.g. tierB-001358
+(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 film))    ;; n 2 (mass 0.833) docs 2  e.g. tierC-000009 tierC-000010
+(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 syrian_film))    ;; n 2 (mass 0.833) docs 2  e.g. tierC-000009 tierC-000010
+(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 mesmerizing))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000208
+(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 sheen))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000208
+(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 cyanide))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001995
+(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 destined))    ;; n 1 (mass 0.333) docs 1  e.g. tierC-000009
+(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 harmless))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001995
+(And (Member $e0 produce) (Patient $e0 $x1) (Member $x1 trace))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001995
+
+;; ---- slot find.Theme  [event center; head role]  n 10  docs<= 10  distinct 6  eventive 0
 (And (Member $e0 find) (Theme $e0 $x1) (Member $x1 thing))    ;; n 4 docs 4  e.g. tierC-000279 tierC-000280
-(And (Member $e0 find) (Theme $e0 $x1))    ;; n 2 docs 2  e.g. tierB-000579 tierB-001139
 (And (Member $e0 find) (Theme $e0 couper))    ;; n 2 docs 2  e.g. tierC-000243 tierC-000244
+(And (Member $e0 find) (Theme $e0 $x1) (Member $x1 clay_figurine))    ;; n 1 docs 1  e.g. tierB-000579
 (And (Member $e0 find) (Theme $e0 $x1) (Member $x1 meteorite))    ;; n 1 docs 1  e.g. tierB-000585
+(And (Member $e0 find) (Theme $e0 $x1) (Member $x1 paper_sheet))    ;; n 1 docs 1  e.g. tierB-001139
 (And (Member $e0 find) (Theme $e0 pietro))    ;; n 1 docs 1  e.g. tierB-000706
 
 ;; ---- slot leave.Agent  [event center; head role]  n 10  docs<= 10  distinct 10  eventive 0
@@ -318,8 +389,8 @@
 (And (Member $e0 leave) (Agent $e0 $x1) (Member $x1 ship))    ;; n 1 docs 1  e.g. tierB-000100
 (And (Member $e0 leave) (Agent $e0 tom))    ;; n 1 docs 1  e.g. tierB-000004
 
-;; ---- slot serve.Agent  [event center; head role]  n 10  docs<= 10  distinct 9  eventive 0
-(And (Member $e0 serve) (Agent $e0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierC-000053 tierC-000054
+;; ---- slot serve.Agent  [event center; head role]  n 10  docs<= 11  distinct 10  eventive 0
+(And (Member $e0 serve) (Agent $e0 $x1) (Member $x1 person))    ;; n 2 (mass 1.5) docs 2  e.g. tierC-000053 tierC-000054
 (And (Member $e0 serve) (Agent $e0 $x1) (Member $x1 grandmother))    ;; n 1 docs 1  e.g. tierB-000864
 (And (Member $e0 serve) (Agent $e0 indooroopilly))    ;; n 1 docs 1  e.g. tierC-000185
 (And (Member $e0 serve) (Agent $e0 indooroopilly_line))    ;; n 1 docs 1  e.g. tierC-000186
@@ -328,19 +399,22 @@
 (And (Member $e0 serve) (Agent $e0 janos))    ;; n 1 docs 1  e.g. tierB-000940
 (And (Member $e0 serve) (Agent $e0 rosewood_line))    ;; n 1 docs 1  e.g. tierC-000186
 (And (Member $e0 serve) (Agent $e0 yitzhak))    ;; n 1 docs 1  e.g. tierB-000910
+(And (Member $e0 serve) (Agent $e0 $x1) (Member $x1 president))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000053
 
-;; ---- slot take.Theme  [event center; head role]  n 10  docs<= 10  distinct 9  eventive 0
+;; ---- slot take.Theme  [event center; head role]  n 10  docs<= 12  distinct 11  eventive 0
 (And (Member $e0 take) (Theme $e0 $x1) (Member $x1 identity))    ;; n 2 docs 2  e.g. tierC-000071 tierC-000072
-(And (Member $e0 take) (Theme $e0 $x1) (Member $x1 close))    ;; n 1 docs 1  e.g. tierB-000987
-(And (Member $e0 take) (Theme $e0 $x1) (Member $x1 drastic))    ;; n 1 docs 1  e.g. tierB-001591
 (And (Member $e0 take) (Theme $e0 office))    ;; n 1 docs 1  e.g. tierB-001726
 (And (Member $e0 take) (Theme $e0 $x1) (Member $x1 portrait))    ;; n 1 docs 1  e.g. tierB-001540
 (And (Member $e0 take) (Theme $e0 power))    ;; n 1 docs 1  e.g. tierB-000309
 (And (Member $e0 take) (Theme $e0 $x1) (Member $x1 roller))    ;; n 1 docs 1  e.g. tierB-000942
 (And (Member $e0 take) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-000252
 (And (Member $e0 take) (Theme $e0 $x1) (Member $x1 while))    ;; n 1 docs 1  e.g. tierB-000978
+(And (Member $e0 take) (Theme $e0 $x1) (Member $x1 close))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000987
+(And (Member $e0 take) (Theme $e0 $x1) (Member $x1 drastic))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001591
+(And (Member $e0 take) (Theme $e0 $x1) (Member $x1 look))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000987
+(And (Member $e0 take) (Theme $e0 $x1) (Member $x1 measure))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001591
 
-;; ---- slot try.Agent  [event center; head role]  n 10  docs<= 10  distinct 10  eventive 0
+;; ---- slot try.Agent  [event center; head role]  n 10  docs<= 11  distinct 11  eventive 0
 (And (Member $e0 try) (Agent $e0 $x1) (Member $x1 alien))    ;; n 1 docs 1  e.g. tierB-000469
 (And (Member $e0 try) (Agent $e0 bob))    ;; n 1 docs 1  e.g. tierB-000947
 (And (Member $e0 try) (Agent $e0 claudio))    ;; n 1 docs 1  e.g. tierB-000216
@@ -348,9 +422,10 @@
 (And (Member $e0 try) (Agent $e0 $x1) (Member $x1 crocodile))    ;; n 1 docs 1  e.g. tierB-000470
 (And (Member $e0 try) (Agent $e0 david))    ;; n 1 docs 1  e.g. tierB-000117
 (And (Member $e0 try) (Agent $e0 felix))    ;; n 1 docs 1  e.g. tierB-000487
-(And (Member $e0 try) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-001773
 (And (Member $e0 try) (Agent $e0 mark))    ;; n 1 docs 1  e.g. tierB-000400
 (And (Member $e0 try) (Agent $e0 santiago))    ;; n 1 docs 1  e.g. tierB-000547
+(And (Member $e0 try) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001773
+(And (Member $e0 try) (Agent $e0 $x1) (Member $x1 young))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001773
 
 ;; ---- slot try.Theme  [event center; head role]  n 10  docs<= 10  distinct 8  eventive 7
 (And (Member $e0 try) (Theme $e0 <term:And>))    ;; n 3 docs 3  e.g. tierB-000216 tierB-000469
@@ -372,60 +447,44 @@
 (And (Member $e0 write) (Patient $e0 $x1) (Member $x1 script))    ;; n 1 docs 1  e.g. tierC-000089
 (And (Member $e0 write) (Patient $e0 sentence))    ;; n 1 docs 1  e.g. tierB-000971
 
-;; ---- slot fall.Patient  [event center; head role]  n 9  docs<= 9  distinct 7  eventive 0
-(And (Member $e0 fall) (Patient $e0 $x1))    ;; n 3 docs 3  e.g. tierB-000194 tierB-000779
-(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 dead))    ;; n 1 docs 1  e.g. tierB-001476
-(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 forest))    ;; n 1 docs 1  e.g. tierB-000609
-(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 hush_of_anticipation))    ;; n 1 docs 1  e.g. tierB-001975
-(And (Member $e0 fall) (Patient $e0 ice_pellet))    ;; n 1 docs 1  e.g. tierB-000456
-(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 scaffolding))    ;; n 1 docs 1  e.g. tierB-001306
-(And (Member $e0 fall) (Patient $e0 snow))    ;; n 1 docs 1  e.g. tierB-001905
-
-;; ---- slot follow.Agent  [event center; head role]  n 9  docs<= 9  distinct 8  eventive 0
-(And (Member $e0 follow) (Agent $e0 $x1))    ;; n 2 docs 2  e.g. tierC-000117 tierC-000118
+;; ---- slot follow.Agent  [event center; head role]  n 9  docs<= 11  distinct 10  eventive 0
+(And (Member $e0 follow) (Agent $e0 $x1) (Member $x1 bhadala))    ;; n 2 docs 2  e.g. tierC-000117 tierC-000118
 (And (Member $e0 follow) (Agent $e0 alexander))    ;; n 1 docs 1  e.g. tierC-000076
 (And (Member $e0 follow) (Agent $e0 bailey))    ;; n 1 docs 1  e.g. tierC-000337
-(And (Member $e0 follow) (Agent $e0 $x1) (Member $x1 beast))    ;; n 1 docs 1  e.g. tierB-000231
-(And (Member $e0 follow) (Agent $e0 $x1) (Member $x1 house))    ;; n 1 docs 1  e.g. tierC-000095
 (And (Member $e0 follow) (Agent $e0 $x1) (Member $x1 muslim_house))    ;; n 1 docs 1  e.g. tierC-000096
 (And (Member $e0 follow) (Agent $e0 $x1) (Member $x1 road))    ;; n 1 docs 1  e.g. tierB-000584
 (And (Member $e0 follow) (Agent $e0 sami))    ;; n 1 docs 1  e.g. tierB-000026
+(And (Member $e0 follow) (Agent $e0 $x1) (Member $x1 beast))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000231
+(And (Member $e0 follow) (Agent $e0 $x1) (Member $x1 crawling))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000231
+(And (Member $e0 follow) (Agent $e0 $x1) (Member $x1 house))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000095
+(And (Member $e0 follow) (Agent $e0 $x1) (Member $x1 muslim))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000095
 
 ;; ---- slot follow.Theme  [event center; head role]  n 9  docs<= 9  distinct 7  eventive 0
-(And (Member $e0 follow) (Theme $e0 $x1))    ;; n 2 docs 2  e.g. tierC-000117 tierC-000118
 (And (Member $e0 follow) (Theme $e0 $x1) (Member $x1 region))    ;; n 2 docs 2  e.g. tierC-000095 tierC-000096
+(And (Member $e0 follow) (Theme $e0 $x1) (Member $x1 tradition))    ;; n 2 docs 2  e.g. tierC-000117 tierC-000118
 (And (Member $e0 follow) (Theme $e0 henry_cole))    ;; n 1 docs 1  e.g. tierC-000337
 (And (Member $e0 follow) (Theme $e0 layla))    ;; n 1 docs 1  e.g. tierB-000026
 (And (Member $e0 follow) (Theme $e0 lukas))    ;; n 1 docs 1  e.g. tierB-000231
 (And (Member $e0 follow) (Theme $e0 margaret_fleming))    ;; n 1 docs 1  e.g. tierC-000076
 (And (Member $e0 follow) (Theme $e0 $x1) (Member $x1 shoreline))    ;; n 1 docs 1  e.g. tierB-000584
 
-;; ---- slot hear.Stimulus  [event center; head role]  n 9  docs<= 9  distinct 9  eventive 2
-(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 bang))    ;; n 1 docs 1  e.g. tierB-000189
-(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 barking))    ;; n 1 docs 1  e.g. tierB-001479
-(And (Member $e0 hear) (Stimulus $e0 $e1) (Member $e1 crash))    ;; n 1 docs 1  e.g. tierB-000176
-(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 knock))    ;; n 1 docs 1  e.g. tierB-000751
-(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 music))    ;; n 1 docs 1  e.g. tierB-000681
-(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 noise))    ;; n 1 docs 1  e.g. tierB-000695
-(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 shot))    ;; n 1 docs 1  e.g. tierB-000421
-(And (Member $e0 hear) (Stimulus $e0 $e1) (Member $e1 start))    ;; n 1 docs 1  e.g. tierB-000659
-(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-000756
-
 ;; ---- slot kill.Agent  [event center; head role]  n 9  docs<= 7  distinct 6  eventive 0
 (And (Member $e0 kill) (Agent $e0 $x1) (Member $x1 hurricane))    ;; n 4 docs 2  e.g. tierC-000353 tierC-000354
-(And (Member $e0 kill) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001197
 (And (Member $e0 kill) (Agent $e0 cancer))    ;; n 1 docs 1  e.g. tierB-000393
 (And (Member $e0 kill) (Agent $e0 fire))    ;; n 1 docs 1  e.g. tierB-001047
 (And (Member $e0 kill) (Agent $e0 $x1) (Member $x1 hunter))    ;; n 1 docs 1  e.g. tierB-001399
 (And (Member $e0 kill) (Agent $e0 ivan))    ;; n 1 docs 1  e.g. tierB-000412
+(And (Member $e0 kill) (Agent $e0 $x1) (Member $x1 lion))    ;; n 1 docs 1  e.g. tierB-001197
 
-;; ---- slot sing.Agent  [event center; head role]  n 9  docs<= 9  distinct 6  eventive 0
-(And (Member $e0 sing) (Agent $e0 $x1))    ;; n 3 docs 3  e.g. tierB-001901 tierC-000127
+;; ---- slot sing.Agent  [event center; head role]  n 9  docs<= 10  distinct 8  eventive 0
 (And (Member $e0 sing) (Agent $e0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierC-000127 tierC-000128
+(And (Member $e0 sing) (Agent $e0 $x1) (Member $x1 sister))    ;; n 2 docs 2  e.g. tierC-000127 tierC-000128
 (And (Member $e0 sing) (Agent $e0 $x1) (Member $x1 actress))    ;; n 1 docs 1  e.g. tierB-001156
 (And (Member $e0 sing) (Agent $e0 amateur_barbershop_harmony_society))    ;; n 1 docs 1  e.g. tierC-000329
+(And (Member $e0 sing) (Agent $e0 $x1) (Member $x1 bird))    ;; n 1 docs 1  e.g. tierB-001901
 (And (Member $e0 sing) (Agent $e0 david))    ;; n 1 docs 1  e.g. tierB-000827
-(And (Member $e0 sing) (Agent $e0 $x1) (Member $x1 professional))    ;; n 1 docs 1  e.g. tierC-000330
+(And (Member $e0 sing) (Agent $e0 $x1) (Member $x1 group))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000330
+(And (Member $e0 sing) (Agent $e0 $x1) (Member $x1 professional))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000330
 
 ;; ---- slot take.Agent  [event center; head role]  n 9  docs<= 9  distinct 8  eventive 0
 (And (Member $e0 take) (Agent $e0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierC-000071 tierC-000072
@@ -436,6 +495,34 @@
 (And (Member $e0 take) (Agent $e0 michael))    ;; n 1 docs 1  e.g. tierB-000252
 (And (Member $e0 take) (Agent $e0 $x1) (Member $x1 president))    ;; n 1 docs 1  e.g. tierB-001726
 (And (Member $e0 take) (Agent $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-000978
+
+;; ---- slot fall.Patient  [event center; head role]  n 9  docs<= 12  distinct 12  eventive 0
+(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 book))    ;; n 1 docs 1  e.g. tierB-001364
+(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 chick))    ;; n 1 docs 1  e.g. tierB-000779
+(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 hush_of_anticipation))    ;; n 1 docs 1  e.g. tierB-001975
+(And (Member $e0 fall) (Patient $e0 ice_pellet))    ;; n 1 docs 1  e.g. tierB-000456
+(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 pupil))    ;; n 1 docs 1  e.g. tierB-000194
+(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 scaffolding))    ;; n 1 docs 1  e.g. tierB-001306
+(And (Member $e0 fall) (Patient $e0 snow))    ;; n 1 docs 1  e.g. tierB-001905
+(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 forest))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000609
+(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 silent))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000609
+(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 dead))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001476
+(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 rotten))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001476
+(And (Member $e0 fall) (Patient $e0 $x1) (Member $x1 tree))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001476
+
+;; ---- slot hear.Stimulus  [event center; head role]  n 9  docs<= 13  distinct 12  eventive 2
+(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 bang))    ;; n 1 docs 1  e.g. tierB-000189
+(And (Member $e0 hear) (Stimulus $e0 $e1) (Member $e1 crash))    ;; n 1 docs 1  e.g. tierB-000176
+(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 knock))    ;; n 1 docs 1  e.g. tierB-000751
+(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 shot))    ;; n 1 docs 1  e.g. tierB-000421
+(And (Member $e0 hear) (Stimulus $e0 $e1) (Member $e1 start))    ;; n 1 docs 1  e.g. tierB-000659
+(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-000756
+(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 noise))    ;; n 2 (mass 0.833) docs 2  e.g. tierB-000695 tierB-001479
+(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 music))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000681
+(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 ticking))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000695
+(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 upbeat))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000681
+(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 barking))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001479
+(And (Member $e0 hear) (Stimulus $e0 $x1) (Member $x1 growling))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001479
 
 ;; ---- slot change.Patient  [event center; head role]  n 8  docs<= 8  distinct 7  eventive 0
 (And (Member $e0 change) (Patient $e0 $x1) (Member $x1 weather))    ;; n 2 docs 2  e.g. tierB-000517 tierB-001491
@@ -456,26 +543,28 @@
 (And (Member $e0 hear) (Experiencer $e0 oleg))    ;; n 1 docs 1  e.g. tierB-001479
 
 ;; ---- slot live.Agent  [event center; head role]  n 8  docs<= 8  distinct 8  eventive 0
-(And (Member $e0 live) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001525
 (And (Member $e0 live) (Agent $e0 beja))    ;; n 1 docs 1  e.g. tierB-001049
 (And (Member $e0 live) (Agent $e0 cainan))    ;; n 1 docs 1  e.g. tierB-000778
 (And (Member $e0 live) (Agent $e0 elias))    ;; n 1 docs 1  e.g. tierB-000524
 (And (Member $e0 live) (Agent $e0 mary))    ;; n 1 docs 1  e.g. tierB-000048
 (And (Member $e0 live) (Agent $e0 ray_kurtzweil))    ;; n 1 docs 1  e.g. tierB-000707
 (And (Member $e0 live) (Agent $e0 tiziri))    ;; n 1 docs 1  e.g. tierB-001768
+(And (Member $e0 live) (Agent $e0 $x1) (Member $x1 wolf))    ;; n 1 docs 1  e.g. tierB-001525
 (And (Member $e0 live) (Agent $e0 yidir))    ;; n 1 docs 1  e.g. tierB-001768
 
-;; ---- slot live.Location  [event center; head role]  n 8  docs<= 7  distinct 6  eventive 0
-(And (Member $e0 live) (Location $e0 $x1) (Member $x1 house))    ;; n 2 docs 2  e.g. tierB-000048 tierB-000524
+;; ---- slot live.Location  [event center; head role]  n 8  docs<= 10  distinct 8  eventive 0
 (And (Member $e0 live) (Location $e0 norway))    ;; n 2 docs 1  e.g. tierB-001768
-(And (Member $e0 live) (Location $e0 $x1) (Member $x1 comfortable))    ;; n 1 docs 1  e.g. tierB-000371
+(And (Member $e0 live) (Location $e0 $x1) (Member $x1 house))    ;; n 3 (mass 1.5) docs 3  e.g. tierB-000048 tierB-000371
 (And (Member $e0 live) (Location $e0 $x1) (Member $x1 group))    ;; n 1 docs 1  e.g. tierB-001525
 (And (Member $e0 live) (Location $e0 $x1) (Member $x1 southeastern_corner))    ;; n 1 docs 1  e.g. tierB-001049
 (And (Member $e0 live) (Location $e0 $x1) (Member $x1 suburb))    ;; n 1 docs 1  e.g. tierB-000707
+(And (Member $e0 live) (Location $e0 $x1) (Member $x1 comfortable))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000371
+(And (Member $e0 live) (Location $e0 $x1) (Member $x1 isolated))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000524
+(And (Member $e0 live) (Location $e0 $x1) (Member $x1 large))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000048
 
 ;; ---- slot need.Experiencer  [event center; head role]  n 8  docs<= 8  distinct 8  eventive 0
-(And (Member $e0 need) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001496
 (And (Member $e0 need) (Experiencer $e0 algeria))    ;; n 1 docs 1  e.g. tierB-000086
+(And (Member $e0 need) (Experiencer $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-001496
 (And (Member $e0 need) (Experiencer $e0 $x1) (Member $x1 doctor))    ;; n 1 docs 1  e.g. tierB-000339
 (And (Member $e0 need) (Experiencer $e0 $x1) (Member $x1 gate))    ;; n 1 docs 1  e.g. tierB-000455
 (And (Member $e0 need) (Experiencer $e0 karl))    ;; n 1 docs 1  e.g. tierB-000061
@@ -483,46 +572,41 @@
 (And (Member $e0 need) (Experiencer $e0 $x1) (Member $x1 sauce))    ;; n 1 docs 1  e.g. tierB-000174
 (And (Member $e0 need) (Experiencer $e0 yanni))    ;; n 1 docs 1  e.g. tierB-000114
 
-;; ---- slot open.Patient  [event center; head role]  n 8  docs<= 8  distinct 3  eventive 0
-(And (Member $e0 open) (Patient $e0 $x1) (Member $x1 door))    ;; n 4 docs 4  e.g. tierB-000056 tierB-001487
-(And (Member $e0 open) (Patient $e0 $x1))    ;; n 2 docs 2  e.g. tierC-000285 tierC-000286
+;; ---- slot open.Patient  [event center; head role]  n 8  docs<= 9  distinct 4  eventive 0
+(And (Member $e0 open) (Patient $e0 $x1) (Member $x1 door))    ;; n 4 (mass 3.5) docs 4  e.g. tierB-000056 tierB-001487
+(And (Member $e0 open) (Patient $e0 $x1) (Member $x1 law))    ;; n 2 docs 2  e.g. tierC-000285 tierC-000286
 (And (Member $e0 open) (Patient $e0 $x1) (Member $x1 bank))    ;; n 1 docs 1  e.g. tierB-000302
 (And (Member $e0 open) (Patient $e0 door))    ;; n 1 docs 1  e.g. tierB-000958
+(And (Member $e0 open) (Patient $e0 $x1) (Member $x1 vault_like))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000056
 
-;; ---- slot play.Theme  [event center; head role]  n 8  docs<= 8  distinct 6  eventive 0
+;; ---- slot play.Theme  [event center; head role]  n 8  docs<= 10  distinct 7  eventive 0
 (And (Member $e0 play) (Theme $e0 holly_golightly))    ;; n 2 docs 2  e.g. tierC-000227 tierC-000228
 (And (Member $e0 play) (Theme $e0 tennis))    ;; n 2 docs 2  e.g. tierB-000939 tierB-001766
-(And (Member $e0 play) (Theme $e0 $x1) (Member $x1 crucial))    ;; n 1 docs 1  e.g. tierB-000816
 (And (Member $e0 play) (Theme $e0 $x1) (Member $x1 harp))    ;; n 1 docs 1  e.g. tierB-000648
-(And (Member $e0 play) (Theme $e0 $x1) (Member $x1 important))    ;; n 1 docs 1  e.g. tierB-000089
+(And (Member $e0 play) (Theme $e0 $x1) (Member $x1 role))    ;; n 2 (mass 1) docs 2  e.g. tierB-000089 tierB-000816
 (And (Member $e0 play) (Theme $e0 $x1) (Member $x1 series))    ;; n 1 docs 1  e.g. tierC-000230
-
-;; ---- slot produce.Agent  [event center; head role]  n 8  docs<= 8  distinct 5  eventive 0
-(And (Member $e0 produce) (Agent $e0 colin_richardson))    ;; n 2 docs 2  e.g. tierC-000103 tierC-000104
-(And (Member $e0 produce) (Agent $e0 harvey_hayutin))    ;; n 2 docs 2  e.g. tierC-000091 tierC-000092
-(And (Member $e0 produce) (Agent $e0 sy_weintraub))    ;; n 2 docs 2  e.g. tierC-000091 tierC-000092
-(And (Member $e0 produce) (Agent $e0 $x1) (Member $x1 layer))    ;; n 1 docs 1  e.g. tierB-000208
-(And (Member $e0 produce) (Agent $e0 $x1) (Member $x1 pancreas))    ;; n 1 docs 1  e.g. tierB-001358
+(And (Member $e0 play) (Theme $e0 $x1) (Member $x1 crucial))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000816
+(And (Member $e0 play) (Theme $e0 $x1) (Member $x1 important))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000089
 
 ;; ---- slot speak.Agent  [event center; head role]  n 8  docs<= 7  distinct 6  eventive 0
 (And (Member $e0 speak) (Agent $e0 oates))    ;; n 2 docs 2  e.g. tierC-000023 tierC-000024
 (And (Member $e0 speak) (Agent $e0 sophia))    ;; n 2 docs 1  e.g. tierB-000271
-(And (Member $e0 speak) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001068
 (And (Member $e0 speak) (Agent $e0 kari_wahlgren))    ;; n 1 docs 1  e.g. tierC-000094
+(And (Member $e0 speak) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-001068
 (And (Member $e0 speak) (Agent $e0 mie_sonozaki))    ;; n 1 docs 1  e.g. tierC-000094
 (And (Member $e0 speak) (Agent $e0 xavier))    ;; n 1 docs 1  e.g. tierB-000053
 
 ;; ---- slot talk.Agent  [event center; head role]  n 8  docs<= 8  distinct 7  eventive 0
 (And (Member $e0 talk) (Agent $e0 katherine))    ;; n 2 docs 2  e.g. tierC-000209 tierC-000210
-(And (Member $e0 talk) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000550
 (And (Member $e0 talk) (Agent $e0 daniel))    ;; n 1 docs 1  e.g. tierB-000078
+(And (Member $e0 talk) (Agent $e0 $x1) (Member $x1 friend))    ;; n 1 docs 1  e.g. tierB-000550
 (And (Member $e0 talk) (Agent $e0 jordan_peterson))    ;; n 1 docs 1  e.g. tierB-001968
 (And (Member $e0 talk) (Agent $e0 linda))    ;; n 1 docs 1  e.g. tierB-000327
 (And (Member $e0 talk) (Agent $e0 $x1) (Member $x1 novelist))    ;; n 1 docs 1  e.g. tierB-001666
 (And (Member $e0 talk) (Agent $e0 $x1) (Member $x1 school_janitor))    ;; n 1 docs 1  e.g. tierB-001219
 
 ;; ---- slot use.Agent  [event center; head role]  n 8  docs<= 8  distinct 7  eventive 0
-(And (Member $e0 use) (Agent $e0 $x1))    ;; n 2 docs 2  e.g. tierC-000173 tierC-000174
+(And (Member $e0 use) (Agent $e0 $x1) (Member $x1 localized_version))    ;; n 2 docs 2  e.g. tierC-000173 tierC-000174
 (And (Member $e0 use) (Agent $e0 $x1) (Member $x1 algerian_government))    ;; n 1 docs 1  e.g. tierB-000268
 (And (Member $e0 use) (Agent $e0 churchill))    ;; n 1 docs 1  e.g. tierB-001884
 (And (Member $e0 use) (Agent $e0 dad))    ;; n 1 docs 1  e.g. tierB-001304
@@ -531,9 +615,9 @@
 (And (Member $e0 use) (Agent $e0 $x1) (Member $x1 ukrainian_army))    ;; n 1 docs 1  e.g. tierB-001098
 
 ;; ---- slot walk.Agent  [event center; head role]  n 8  docs<= 8  distinct 8  eventive 0
-(And (Member $e0 walk) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000324
 (And (Member $e0 walk) (Agent $e0 adriano))    ;; n 1 docs 1  e.g. tierB-001044
 (And (Member $e0 walk) (Agent $e0 $x1) (Member $x1 ant))    ;; n 1 docs 1  e.g. tierB-000036
+(And (Member $e0 walk) (Agent $e0 $x1) (Member $x1 customer))    ;; n 1 docs 1  e.g. tierB-000324
 (And (Member $e0 walk) (Agent $e0 felix))    ;; n 1 docs 1  e.g. tierB-000148
 (And (Member $e0 walk) (Agent $e0 hanako))    ;; n 1 docs 1  e.g. tierB-000951
 (And (Member $e0 walk) (Agent $e0 leon))    ;; n 1 docs 1  e.g. tierB-000805
@@ -552,62 +636,91 @@
 ;; ---- slot want.Theme  [event center; head role]  n 8  docs<= 7  distinct 1  eventive 0
 (And (Member $e0 want) (Theme $e0 <term:And>))    ;; n 8 docs 7  e.g. tierB-000250 tierB-000626
 
-;; ---- slot work.Agent  [event center; head role]  n 8  docs<= 8  distinct 8  eventive 0
-(And (Member $e0 work) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001134
-(And (Member $e0 work) (Agent $e0 $x1) (Member $x1 adaptor))    ;; n 1 docs 1  e.g. tierB-001873
+;; ---- slot work.Agent  [event center; head role]  n 8  docs<= 9  distinct 9  eventive 0
 (And (Member $e0 work) (Agent $e0 asserson))    ;; n 1 docs 1  e.g. tierC-000079
 (And (Member $e0 work) (Agent $e0 dad))    ;; n 1 docs 1  e.g. tierB-001187
 (And (Member $e0 work) (Agent $e0 dan))    ;; n 1 docs 1  e.g. tierB-000867
 (And (Member $e0 work) (Agent $e0 dmitri))    ;; n 1 docs 1  e.g. tierB-000212
 (And (Member $e0 work) (Agent $e0 jones))    ;; n 1 docs 1  e.g. tierC-000304
 (And (Member $e0 work) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-001813
+(And (Member $e0 work) (Agent $e0 $x1) (Member $x1 volunteer))    ;; n 1 docs 1  e.g. tierB-001134
+(And (Member $e0 work) (Agent $e0 $x1) (Member $x1 adaptor))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001873
+(And (Member $e0 work) (Agent $e0 $x1) (Member $x1 old))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001873
 
-;; ---- slot write.Agent  [event center; head role]  n 8  docs<= 8  distinct 5  eventive 0
+;; ---- slot write.Agent  [event center; head role]  n 8  docs<= 10  distinct 6  eventive 0
+(And (Member $e0 write) (Agent $e0 $x1) (Member $x1 person))    ;; n 3 (mass 2.5) docs 3  e.g. tierB-001962 tierC-000089
 (And (Member $e0 write) (Agent $e0 bill_wrubel))    ;; n 2 docs 2  e.g. tierC-000297 tierC-000298
 (And (Member $e0 write) (Agent $e0 gilles_thibaut))    ;; n 2 docs 2  e.g. tierC-000131 tierC-000132
-(And (Member $e0 write) (Agent $e0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierC-000089 tierC-000090
-(And (Member $e0 write) (Agent $e0 $x1) (Member $x1 busy))    ;; n 1 docs 1  e.g. tierB-001004
-(And (Member $e0 write) (Agent $e0 $x1) (Member $x1 famous))    ;; n 1 docs 1  e.g. tierB-001962
+(And (Member $e0 write) (Agent $e0 $x1) (Member $x1 busy))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001004
+(And (Member $e0 write) (Agent $e0 $x1) (Member $x1 famous))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001962
+(And (Member $e0 write) (Agent $e0 $x1) (Member $x1 father))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001004
 
-;; ---- slot come.Agent  [event center; head role]  n 7  docs<= 7  distinct 5  eventive 0
-(And (Member $e0 come) (Agent $e0 $x1))    ;; n 3 docs 3  e.g. tierB-000277 tierB-000387
+;; ---- slot produce.Agent  [event center; head role]  n 8  docs<= 10  distinct 7  eventive 0
+(And (Member $e0 produce) (Agent $e0 colin_richardson))    ;; n 2 docs 2  e.g. tierC-000103 tierC-000104
+(And (Member $e0 produce) (Agent $e0 harvey_hayutin))    ;; n 2 docs 2  e.g. tierC-000091 tierC-000092
+(And (Member $e0 produce) (Agent $e0 sy_weintraub))    ;; n 2 docs 2  e.g. tierC-000091 tierC-000092
+(And (Member $e0 produce) (Agent $e0 $x1) (Member $x1 pancreas))    ;; n 1 docs 1  e.g. tierB-001358
+(And (Member $e0 produce) (Agent $e0 $x1) (Member $x1 layer))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000208
+(And (Member $e0 produce) (Agent $e0 $x1) (Member $x1 oil))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000208
+(And (Member $e0 produce) (Agent $e0 $x1) (Member $x1 thin))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000208
+
+;; ---- slot come.Agent  [event center; head role]  n 7  docs<= 7  distinct 7  eventive 0
 (And (Member $e0 come) (Agent $e0 $x1) (Member $x1 bus))    ;; n 1 docs 1  e.g. tierB-001528
+(And (Member $e0 come) (Agent $e0 $x1) (Member $x1 country))    ;; n 1 docs 1  e.g. tierB-001534
 (And (Member $e0 come) (Agent $e0 $x1) (Member $x1 discussion))    ;; n 1 docs 1  e.g. tierB-001963
+(And (Member $e0 come) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-000277
 (And (Member $e0 come) (Agent $e0 sleep))    ;; n 1 docs 1  e.g. tierB-000255
+(And (Member $e0 come) (Agent $e0 $x1) (Member $x1 student))    ;; n 1 docs 1  e.g. tierB-000387
 (And (Member $e0 come) (Agent $e0 $x1) (Member $x1 train))    ;; n 1 docs 1  e.g. tierB-000238
 
-;; ---- slot contain.Agent  [event center; head role]  n 7  docs<= 5  distinct 5  eventive 0
-(And (Member $e0 contain) (Agent $e0 $x1) (Member $x1 deck))    ;; n 3 docs 1  e.g. tierB-000101
+;; ---- slot contain.Agent  [event center; head role]  n 7  docs<= 6  distinct 6  eventive 0
+(And (Member $e0 contain) (Agent $e0 $x1) (Member $x1 card))    ;; n 3 (mass 1.5) docs 1  e.g. tierB-000101
+(And (Member $e0 contain) (Agent $e0 $x1) (Member $x1 deck))    ;; n 3 (mass 1.5) docs 1  e.g. tierB-000101
 (And (Member $e0 contain) (Agent $e0 $x1) (Member $x1 chest))    ;; n 1 docs 1  e.g. tierB-001650
 (And (Member $e0 contain) (Agent $e0 plasma))    ;; n 1 docs 1  e.g. tierB-000454
 (And (Member $e0 contain) (Agent $e0 $x1) (Member $x1 song))    ;; n 1 docs 1  e.g. tierB-000768
 (And (Member $e0 contain) (Agent $e0 $x1) (Member $x1 vitamin_pill))    ;; n 1 docs 1  e.g. tierB-001254
 
-;; ---- slot contain.Theme  [event center; head role]  n 7  docs<= 5  distinct 3  eventive 0
-(And (Member $e0 contain) (Theme $e0 $x1))    ;; n 5 docs 3  e.g. tierB-000101 tierB-000454
-(And (Member $e0 contain) (Theme $e0 $x1) (Member $x1 abundant))    ;; n 1 docs 1  e.g. tierB-001254
-(And (Member $e0 contain) (Theme $e0 $x1) (Member $x1 degrading))    ;; n 1 docs 1  e.g. tierB-000768
+;; ---- slot contain.Theme  [event center; head role]  n 7  docs<= 9  distinct 9  eventive 0
+(And (Member $e0 contain) (Theme $e0 $x1) (Member $x1 electrolyte))    ;; n 1 docs 1  e.g. tierB-000454
+(And (Member $e0 contain) (Theme $e0 $x1) (Member $x1 gold_coin))    ;; n 1 docs 1  e.g. tierB-001650
+(And (Member $e0 contain) (Theme $e0 $x1) (Member $x1 jack))    ;; n 1 docs 1  e.g. tierB-000101
+(And (Member $e0 contain) (Theme $e0 $x1) (Member $x1 king))    ;; n 1 docs 1  e.g. tierB-000101
+(And (Member $e0 contain) (Theme $e0 $x1) (Member $x1 queen))    ;; n 1 docs 1  e.g. tierB-000101
+(And (Member $e0 contain) (Theme $e0 $x1) (Member $x1 abundant))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001254
+(And (Member $e0 contain) (Theme $e0 $x1) (Member $x1 degrading))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000768
+(And (Member $e0 contain) (Theme $e0 $x1) (Member $x1 lyric))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000768
+(And (Member $e0 contain) (Theme $e0 $x1) (Member $x1 nutrition))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001254
 
-;; ---- slot create.Patient  [event center; head role]  n 7  docs<= 5  distinct 4  eventive 0
+;; ---- slot create.Patient  [event center; head role]  n 7  docs<= 7  distinct 6  eventive 0
 (And (Member $e0 create) (Patient $e0 $x1) (Member $x1 community))    ;; n 4 docs 2  e.g. tierC-000025 tierC-000026
-(And (Member $e0 create) (Patient $e0 $x1) (Member $x1 language))    ;; n 1 docs 1  e.g. tierB-000728
 (And (Member $e0 create) (Patient $e0 $x1) (Member $x1 particle_accelerator))    ;; n 1 docs 1  e.g. tierB-000863
-(And (Member $e0 create) (Patient $e0 $x1) (Member $x1 various))    ;; n 1 docs 1  e.g. tierB-000089
+(And (Member $e0 create) (Patient $e0 $x1) (Member $x1 calendar))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000089
+(And (Member $e0 create) (Patient $e0 $x1) (Member $x1 language))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000728
+(And (Member $e0 create) (Patient $e0 $x1) (Member $x1 new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000728
+(And (Member $e0 create) (Patient $e0 $x1) (Member $x1 various))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000089
 
-;; ---- slot form.Agent  [event center; head role]  n 7  docs<= 7  distinct 5  eventive 0
+;; ---- slot form.Agent  [event center; head role]  n 7  docs<= 8  distinct 6  eventive 0
 (And (Member $e0 form) (Agent $e0 jon_bon_jovi))    ;; n 2 docs 2  e.g. tierC-000179 tierC-000180
 (And (Member $e0 form) (Agent $e0 sambora))    ;; n 2 docs 2  e.g. tierC-000179 tierC-000180
-(And (Member $e0 form) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000780
-(And (Member $e0 form) (Agent $e0 $x1) (Member $x1 complex))    ;; n 1 docs 1  e.g. tierC-000164
+(And (Member $e0 form) (Agent $e0 $x1) (Member $x1 labourer))    ;; n 1 docs 1  e.g. tierB-000780
 (And (Member $e0 form) (Agent $e0 technetium))    ;; n 1 docs 1  e.g. tierC-000163
+(And (Member $e0 form) (Agent $e0 $x1) (Member $x1 complex))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000164
+(And (Member $e0 form) (Agent $e0 $x1) (Member $x1 simple))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000164
 
-;; ---- slot get.Patient  [event center; head role]  n 7  docs<= 7  distinct 6  eventive 0
-(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 bad))    ;; n 2 docs 2  e.g. tierB-000748 tierB-001910
-(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 big))    ;; n 1 docs 1  e.g. tierB-000890
-(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 cheap))    ;; n 1 docs 1  e.g. tierB-000370
-(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 expensive))    ;; n 1 docs 1  e.g. tierB-000370
+;; ---- slot get.Patient  [event center; head role]  n 7  docs<= 13  distinct 12  eventive 0
+(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 bad))    ;; n 2 (mass 1) docs 2  e.g. tierB-000748 tierB-001910
 (And (Member $e0 get) (Patient $e0 iran))    ;; n 1 docs 1  e.g. tierB-000206
-(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 short))    ;; n 1 docs 1  e.g. tierB-001658
+(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 big))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000890
+(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 cheap))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000370
+(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 day))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001658
+(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 excuse))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000370
+(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 expensive))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000370
+(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 fire))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000890
+(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 problem))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001910
+(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 short))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001658
+(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 thing))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000370
+(And (Member $e0 get) (Patient $e0 $x1) (Member $x1 weather))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000748
 
 ;; ---- slot need.Theme  [event center; head role]  n 7  docs<= 7  distinct 6  eventive 5
 (And (Member $e0 need) (Theme $e0 <term:And>))    ;; n 2 docs 2  e.g. tierB-000061 tierB-000086
@@ -617,28 +730,21 @@
 (And (Member $e0 need) (Theme $e0 $e1) (Member $e1 run))    ;; n 1 docs 1  e.g. tierB-000339
 (And (Member $e0 need) (Theme $e0 $e1) (Member $e1 understand))    ;; n 1 docs 1  e.g. tierB-000114
 
-;; ---- slot sell.Theme  [event center; head role]  n 7  docs<= 7  distinct 6  eventive 0
+;; ---- slot sell.Theme  [event center; head role]  n 7  docs<= 9  distinct 8  eventive 0
 (And (Member $e0 sell) (Theme $e0 ice_cream))    ;; n 2 docs 2  e.g. tierC-000197 tierC-000198
-(And (Member $e0 sell) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000784
-(And (Member $e0 sell) (Theme $e0 $x1) (Member $x1 cell_phone))    ;; n 1 docs 1  e.g. tierB-001168
+(And (Member $e0 sell) (Theme $e0 $x1) (Member $x1 copy))    ;; n 1 docs 1  e.g. tierB-000784
 (And (Member $e0 sell) (Theme $e0 $x1) (Member $x1 milk))    ;; n 1 docs 1  e.g. tierB-000326
-(And (Member $e0 sell) (Theme $e0 $x1) (Member $x1 roasted))    ;; n 1 docs 1  e.g. tierB-000975
 (And (Member $e0 sell) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001956
+(And (Member $e0 sell) (Theme $e0 $x1) (Member $x1 bean))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000975
+(And (Member $e0 sell) (Theme $e0 $x1) (Member $x1 cell_phone))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001168
+(And (Member $e0 sell) (Theme $e0 $x1) (Member $x1 new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001168
+(And (Member $e0 sell) (Theme $e0 $x1) (Member $x1 roasted))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000975
 
 ;; ---- slot serve.Theme  [event center; head role]  n 7  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 serve) (Theme $e0 springfield_station))    ;; n 3 docs 1  e.g. tierC-000186
 (And (Member $e0 serve) (Theme $e0 springfield))    ;; n 2 docs 1  e.g. tierC-000185
 (And (Member $e0 serve) (Theme $e0 $x1) (Member $x1 coffee))    ;; n 1 docs 1  e.g. tierB-000940
 (And (Member $e0 serve) (Theme $e0 revenge))    ;; n 1 docs 1  e.g. tierB-000915
-
-;; ---- slot turn.Patient  [event center; head role]  n 7  docs<= 7  distinct 7  eventive 0
-(And (Member $e0 turn) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000018
-(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 black))    ;; n 1 docs 1  e.g. tierB-000476
-(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 freedom_movement))    ;; n 1 docs 1  e.g. tierB-000654
-(And (Member $e0 turn) (Patient $e0 gustavo))    ;; n 1 docs 1  e.g. tierB-001675
-(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 red))    ;; n 1 docs 1  e.g. tierB-000832
-(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 russian_speech))    ;; n 1 docs 1  e.g. tierB-000777
-(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 war))    ;; n 1 docs 1  e.g. tierB-001579
 
 ;; ---- slot win.Agent  [event center; head role]  n 7  docs<= 7  distinct 4  eventive 0
 (And (Member $e0 win) (Agent $e0 james_woods))    ;; n 2 docs 2  e.g. tierC-000301 tierC-000302
@@ -647,84 +753,107 @@
 (And (Member $e0 win) (Agent $e0 $x1) (Member $x1 horse))    ;; n 1 docs 1  e.g. tierB-000145
 (And (Member $e0 win) (Agent $e0 $x1) (Member $x1 wilson))    ;; n 1 docs 1  e.g. tierC-000277
 
+;; ---- slot turn.Patient  [event center; head role]  n 7  docs<= 11  distinct 11  eventive 0
+(And (Member $e0 turn) (Patient $e0 gustavo))    ;; n 1 docs 1  e.g. tierB-001675
+(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 road))    ;; n 1 docs 1  e.g. tierB-000018
+(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 russian_speech))    ;; n 1 docs 1  e.g. tierB-000777
+(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 war))    ;; n 1 docs 1  e.g. tierB-001579
+(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 black))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000476
+(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 ceiling))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000476
+(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 freedom_movement))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000654
+(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 gusher))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000654
+(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 leaf))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000832
+(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 red))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000832
+(And (Member $e0 turn) (Patient $e0 $x1) (Member $x1 yellow))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000832
+
 ;; ---- slot appear.Agent  [event center; head role]  n 6  docs<= 5  distinct 3  eventive 0
 (And (Member $e0 appear) (Agent $e0 $x1) (Member $x1 person))    ;; n 3 docs 2  e.g. tierC-000050 tierC-000128
 (And (Member $e0 appear) (Agent $e0 brian_packham))    ;; n 2 docs 2  e.g. tierC-000259 tierC-000260
-(And (Member $e0 appear) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000128
+(And (Member $e0 appear) (Agent $e0 $x1) (Member $x1 sister))    ;; n 1 docs 1  e.g. tierC-000128
 
-;; ---- slot bear.Patient  [event center; head role]  n 6  docs<= 6  distinct 4  eventive 0
+;; ---- slot bear.Patient  [event center; head role]  n 6  docs<= 7  distinct 5  eventive 0
 (And (Member $e0 bear) (Patient $e0 $x1) (Member $x1 person))    ;; n 3 docs 3  e.g. tierC-000199 tierC-000200
-(And (Member $e0 bear) (Patient $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-001568
 (And (Member $e0 bear) (Patient $e0 tobias))    ;; n 1 docs 1  e.g. tierB-000906
 (And (Member $e0 bear) (Patient $e0 tycho_brahe))    ;; n 1 docs 1  e.g. tierB-001812
+(And (Member $e0 bear) (Patient $e0 $x1) (Member $x1 man))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001568
+(And (Member $e0 bear) (Patient $e0 $x1) (Member $x1 poor))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001568
 
-;; ---- slot build.Instrument  [event center; head role]  n 6  docs<= 6  distinct 4  eventive 1
+;; ---- slot build.Instrument  [event center; head role]  n 6  docs<= 7  distinct 5  eventive 1
 (And (Member $e0 build) (Instrument $e0 $x1) (Member $x1 barometer))    ;; n 2 docs 2  e.g. tierC-000213 tierC-000214
 (And (Member $e0 build) (Instrument $e0 $x1) (Member $x1 help))    ;; n 1 docs 1  e.g. tierC-000072
 (And (Member $e0 build) (Instrument $e0 $e1) (Member $e1 help))    ;; n 1 docs 1  e.g. tierC-000071
-(And (Member $e0 build) (Instrument $e0 $x1) (Member $x1 presented))    ;; n 1 docs 1  e.g. tierC-000214
 (And (Member $e0 build) (Instrument $e0 $x1) (Member $x1 presented_in_scale))    ;; n 1 docs 1  e.g. tierC-000213
+(And (Member $e0 build) (Instrument $e0 $x1) (Member $x1 presented))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000214
+(And (Member $e0 build) (Instrument $e0 $x1) (Member $x1 scale))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000214
 
 ;; ---- slot capture.Theme  [event center; head role]  n 6  docs<= 6  distinct 6  eventive 0
-(And (Member $e0 capture) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000215
+(And (Member $e0 capture) (Theme $e0 $x1) (Member $x1 algerian_city))    ;; n 1 docs 1  e.g. tierB-000215
 (And (Member $e0 capture) (Theme $e0 $x1) (Member $x1 british_ship))    ;; n 1 docs 1  e.g. tierB-000636
 (And (Member $e0 capture) (Theme $e0 $x1) (Member $x1 capital))    ;; n 1 docs 1  e.g. tierB-001342
 (And (Member $e0 capture) (Theme $e0 $x1) (Member $x1 magpie))    ;; n 1 docs 1  e.g. tierB-000852
 (And (Member $e0 capture) (Theme $e0 $x1) (Member $x1 merchant_ship))    ;; n 1 docs 1  e.g. tierB-001990
 (And (Member $e0 capture) (Theme $e0 valerian))    ;; n 1 docs 1  e.g. tierB-001312
 
-;; ---- slot cause.Agent  [event center; head role]  n 6  docs<= 6  distinct 5  eventive 1
-(And (Member $e0 cause) (Agent $e0 $x1))    ;; n 2 docs 2  e.g. tierB-001089 tierB-001283
+;; ---- slot cause.Agent  [event center; head role]  n 6  docs<= 6  distinct 6  eventive 1
 (And (Member $e0 cause) (Agent $e0 $x1) (Member $x1 demon))    ;; n 1 docs 1  e.g. tierB-001649
 (And (Member $e0 cause) (Agent $e0 $x1) (Member $x1 news))    ;; n 1 docs 1  e.g. tierB-001875
 (And (Member $e0 cause) (Agent $e0 $x1) (Member $x1 storm))    ;; n 1 docs 1  e.g. tierB-000775
+(And (Member $e0 cause) (Agent $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001089
+(And (Member $e0 cause) (Agent $e0 $x1) (Member $x1 tide))    ;; n 1 docs 1  e.g. tierB-001283
 (And (Member $e0 cause) (Agent $e0 $e1) (Member $e1 walk))    ;; n 1 docs 1  e.g. tierB-000805
 
-;; ---- slot create.Agent  [event center; head role]  n 6  docs<= 4  distinct 3  eventive 0
-(And (Member $e0 create) (Agent $e0 $x1))    ;; n 4 docs 2  e.g. tierC-000025 tierC-000026
+;; ---- slot create.Agent  [event center; head role]  n 6  docs<= 6  distinct 5  eventive 0
+(And (Member $e0 create) (Agent $e0 $x1) (Member $x1 european_american_settler))    ;; n 2 docs 2  e.g. tierC-000025 tierC-000026
+(And (Member $e0 create) (Agent $e0 $x1) (Member $x1 indigenous_american))    ;; n 1 docs 1  e.g. tierC-000025
+(And (Member $e0 create) (Agent $e0 $x1) (Member $x1 native_american))    ;; n 1 docs 1  e.g. tierC-000026
 (And (Member $e0 create) (Agent $e0 paul))    ;; n 1 docs 1  e.g. tierB-000863
 (And (Member $e0 create) (Agent $e0 $x1) (Member $x1 writer))    ;; n 1 docs 1  e.g. tierB-000728
 
-;; ---- slot enter.Agent  [event center; head role]  n 6  docs<= 6  distinct 4  eventive 0
-(And (Member $e0 enter) (Agent $e0 $x1))    ;; n 2 docs 2  e.g. tierB-000556 tierB-000622
+;; ---- slot enter.Agent  [event center; head role]  n 6  docs<= 6  distinct 5  eventive 0
 (And (Member $e0 enter) (Agent $e0 lake_sammamish))    ;; n 2 docs 2  e.g. tierC-000063 tierC-000064
 (And (Member $e0 enter) (Agent $e0 layla))    ;; n 1 docs 1  e.g. tierB-000163
 (And (Member $e0 enter) (Agent $e0 martino))    ;; n 1 docs 1  e.g. tierB-000450
+(And (Member $e0 enter) (Agent $e0 $x1) (Member $x1 muslim))    ;; n 1 docs 1  e.g. tierB-000622
+(And (Member $e0 enter) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000556
 
-;; ---- slot form.Patient  [event center; head role]  n 6  docs<= 5  distinct 5  eventive 0
+;; ---- slot form.Patient  [event center; head role]  n 6  docs<= 7  distinct 7  eventive 0
 (And (Member $e0 form) (Patient $e0 main_songwriting_unit))    ;; n 2 docs 1  e.g. tierC-000180
-(And (Member $e0 form) (Patient $e0 $x1) (Member $x1 complex))    ;; n 1 docs 1  e.g. tierC-000163
 (And (Member $e0 form) (Patient $e0 $x1) (Member $x1 human_barricade))    ;; n 1 docs 1  e.g. tierB-000780
-(And (Member $e0 form) (Patient $e0 $x1) (Member $x1 main))    ;; n 1 docs 1  e.g. tierC-000179
 (And (Member $e0 form) (Patient $e0 technetium))    ;; n 1 docs 1  e.g. tierC-000164
+(And (Member $e0 form) (Patient $e0 $x1) (Member $x1 complex))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000163
+(And (Member $e0 form) (Patient $e0 $x1) (Member $x1 main))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000179
+(And (Member $e0 form) (Patient $e0 $x1) (Member $x1 simple))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000163
+(And (Member $e0 form) (Patient $e0 $x1) (Member $x1 songwriting_unit))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000179
 
 ;; ---- slot fund.Agent  [event center; head role]  n 6  docs<= 6  distinct 3  eventive 0
 (And (Member $e0 fund) (Agent $e0 jica))    ;; n 3 docs 3  e.g. tierC-000217 tierC-000218
 (And (Member $e0 fund) (Agent $e0 $x1) (Member $x1 government))    ;; n 2 docs 2  e.g. tierC-000217 tierC-000245
 (And (Member $e0 fund) (Agent $e0 government_of_uganda))    ;; n 1 docs 1  e.g. tierC-000218
 
-;; ---- slot get.Agent  [event center; head role]  n 6  docs<= 6  distinct 6  eventive 0
+;; ---- slot get.Agent  [event center; head role]  n 6  docs<= 7  distinct 7  eventive 0
 (And (Member $e0 get) (Agent $e0 diego))    ;; n 1 docs 1  e.g. tierB-000577
 (And (Member $e0 get) (Agent $e0 gabriel))    ;; n 1 docs 1  e.g. tierB-001325
 (And (Member $e0 get) (Agent $e0 janos))    ;; n 1 docs 1  e.g. tierB-000672
 (And (Member $e0 get) (Agent $e0 leonid))    ;; n 1 docs 1  e.g. tierB-001185
-(And (Member $e0 get) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-001773
 (And (Member $e0 get) (Agent $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-000770
+(And (Member $e0 get) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001773
+(And (Member $e0 get) (Agent $e0 $x1) (Member $x1 young))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001773
 
 ;; ---- slot help.Agent  [event center; head role]  n 6  docs<= 6  distinct 6  eventive 0
-(And (Member $e0 help) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000858
 (And (Member $e0 help) (Agent $e0 context))    ;; n 1 docs 1  e.g. tierB-001149
+(And (Member $e0 help) (Agent $e0 $x1) (Member $x1 hothouse_condition))    ;; n 1 docs 1  e.g. tierB-000858
 (And (Member $e0 help) (Agent $e0 jonas))    ;; n 1 docs 1  e.g. tierB-000319
 (And (Member $e0 help) (Agent $e0 karen))    ;; n 1 docs 1  e.g. tierC-000071
 (And (Member $e0 help) (Agent $e0 $x1) (Member $x1 life_experience))    ;; n 1 docs 1  e.g. tierB-001909
 (And (Member $e0 help) (Agent $e0 michael))    ;; n 1 docs 1  e.g. tierB-001094
 
-;; ---- slot receive.Theme  [event center; head role]  n 6  docs<= 6  distinct 5  eventive 0
+;; ---- slot receive.Theme  [event center; head role]  n 6  docs<= 7  distinct 6  eventive 0
 (And (Member $e0 receive) (Theme $e0 $x1) (Member $x1 work))    ;; n 2 docs 2  e.g. tierC-000235 tierC-000236
 (And (Member $e0 receive) (Theme $e0 $x1) (Member $x1 award))    ;; n 1 docs 1  e.g. tierB-000962
-(And (Member $e0 receive) (Theme $e0 $x1) (Member $x1 car))    ;; n 1 docs 1  e.g. tierB-001693
 (And (Member $e0 receive) (Theme $e0 $x1) (Member $x1 honorary_knighthood))    ;; n 1 docs 1  e.g. tierB-001595
 (And (Member $e0 receive) (Theme $e0 permit))    ;; n 1 docs 1  e.g. tierB-001035
+(And (Member $e0 receive) (Theme $e0 $x1) (Member $x1 car))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001693
+(And (Member $e0 receive) (Theme $e0 $x1) (Member $x1 new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001693
 
 ;; ---- slot run.Agent  [event center; head role]  n 6  docs<= 6  distinct 5  eventive 0
 (And (Member $e0 run) (Agent $e0 george_allen))    ;; n 2 docs 2  e.g. tierC-000161 tierC-000162
@@ -733,27 +862,28 @@
 (And (Member $e0 run) (Agent $e0 $x1) (Member $x1 squirrel))    ;; n 1 docs 1  e.g. tierB-001563
 (And (Member $e0 run) (Agent $e0 tobias))    ;; n 1 docs 1  e.g. tierB-000178
 
-;; ---- slot sleep.Experiencer  [event center; head role]  n 6  docs<= 6  distinct 5  eventive 0
+;; ---- slot sleep.Experiencer  [event center; head role]  n 6  docs<= 6  distinct 4  eventive 0
 (And (Member $e0 sleep) (Experiencer $e0 $x1) (Member $x1 cat))    ;; n 2 docs 2  e.g. tierB-001003 tierB-001334
-(And (Member $e0 sleep) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001945
+(And (Member $e0 sleep) (Experiencer $e0 $x1) (Member $x1 child))    ;; n 2 docs 2  e.g. tierB-001891 tierB-001945
 (And (Member $e0 sleep) (Experiencer $e0 baya))    ;; n 1 docs 1  e.g. tierB-001538
-(And (Member $e0 sleep) (Experiencer $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-001891
 (And (Member $e0 sleep) (Experiencer $e0 $x1) (Member $x1 dog))    ;; n 1 docs 1  e.g. tierB-001753
 
-;; ---- slot speak.Theme  [event center; head role]  n 6  docs<= 5  distinct 5  eventive 0
+;; ---- slot speak.Theme  [event center; head role]  n 6  docs<= 6  distinct 6  eventive 0
 (And (Member $e0 speak) (Theme $e0 ashe))    ;; n 2 docs 1  e.g. tierC-000094
 (And (Member $e0 speak) (Theme $e0 czech))    ;; n 1 docs 1  e.g. tierB-000271
 (And (Member $e0 speak) (Theme $e0 english))    ;; n 1 docs 1  e.g. tierB-000053
-(And (Member $e0 speak) (Theme $e0 $x1) (Member $x1 foreign))    ;; n 1 docs 1  e.g. tierB-001068
 (And (Member $e0 speak) (Theme $e0 polish))    ;; n 1 docs 1  e.g. tierB-000271
+(And (Member $e0 speak) (Theme $e0 $x1) (Member $x1 foreign))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001068
+(And (Member $e0 speak) (Theme $e0 $x1) (Member $x1 language))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001068
 
-;; ---- slot start.Agent  [event center; head role]  n 6  docs<= 6  distinct 6  eventive 0
-(And (Member $e0 start) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000738
+;; ---- slot start.Agent  [event center; head role]  n 6  docs<= 7  distinct 7  eventive 0
 (And (Member $e0 start) (Agent $e0 $x1) (Member $x1 cook))    ;; n 1 docs 1  e.g. tierB-000942
-(And (Member $e0 start) (Agent $e0 $x1) (Member $x1 crowd))    ;; n 1 docs 1  e.g. tierB-001169
+(And (Member $e0 start) (Agent $e0 $x1) (Member $x1 girl))    ;; n 1 docs 1  e.g. tierB-000738
 (And (Member $e0 start) (Agent $e0 karl))    ;; n 1 docs 1  e.g. tierB-000199
 (And (Member $e0 start) (Agent $e0 $x1) (Member $x1 school_janitor))    ;; n 1 docs 1  e.g. tierB-001219
 (And (Member $e0 start) (Agent $e0 skura))    ;; n 1 docs 1  e.g. tierB-000043
+(And (Member $e0 start) (Agent $e0 $x1) (Member $x1 crowd))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001169
+(And (Member $e0 start) (Agent $e0 $x1) (Member $x1 whole))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001169
 
 ;; ---- slot study.Location  [event center; head role]  n 6  docs<= 6  distinct 4  eventive 0
 (And (Member $e0 study) (Location $e0 davis_studio))    ;; n 2 docs 2  e.g. tierC-000253 tierC-000254
@@ -761,13 +891,14 @@
 (And (Member $e0 study) (Location $e0 munich))    ;; n 1 docs 1  e.g. tierB-001084
 (And (Member $e0 study) (Location $e0 $x1) (Member $x1 university))    ;; n 1 docs 1  e.g. tierB-000292
 
-;; ---- slot study.Theme  [event center; head role]  n 6  docs<= 6  distinct 6  eventive 0
+;; ---- slot study.Theme  [event center; head role]  n 6  docs<= 7  distinct 7  eventive 0
 (And (Member $e0 study) (Theme $e0 <term:Question>))    ;; n 1 docs 1  e.g. tierB-000225
 (And (Member $e0 study) (Theme $e0 arabic))    ;; n 1 docs 1  e.g. tierB-000253
-(And (Member $e0 study) (Theme $e0 $x1) (Member $x1 bacterium))    ;; n 1 docs 1  e.g. tierB-001984
 (And (Member $e0 study) (Theme $e0 canon_law))    ;; n 1 docs 1  e.g. tierB-000292
 (And (Member $e0 study) (Theme $e0 mechanical_engineering))    ;; n 1 docs 1  e.g. tierB-001544
 (And (Member $e0 study) (Theme $e0 $x1) (Member $x1 rate))    ;; n 1 docs 1  e.g. tierB-000710
+(And (Member $e0 study) (Theme $e0 $x1) (Member $x1 bacterium))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001984
+(And (Member $e0 study) (Theme $e0 $x1) (Member $x1 new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001984
 
 ;; ---- slot write.CoAgent  [event center; head role]  n 6  docs<= 6  distinct 3  eventive 0
 (And (Member $e0 write) (CoAgent $e0 bianca_olsen))    ;; n 2 docs 2  e.g. tierC-000089 tierC-000090
@@ -776,9 +907,9 @@
 
 ;; ---- slot add.Agent  [event center; head role]  n 5  docs<= 5  distinct 4  eventive 0
 (And (Member $e0 add) (Agent $e0 $x1) (Member $x1 thing))    ;; n 2 docs 2  e.g. tierC-000227 tierC-000228
-(And (Member $e0 add) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001132
 (And (Member $e0 add) (Agent $e0 $x1) (Member $x1 cook))    ;; n 1 docs 1  e.g. tierB-000462
 (And (Member $e0 add) (Agent $e0 j_augustus_knapp))    ;; n 1 docs 1  e.g. tierC-000231
+(And (Member $e0 add) (Agent $e0 $x1) (Member $x1 plant))    ;; n 1 docs 1  e.g. tierB-001132
 
 ;; ---- slot appear.Location  [event center; head role]  n 5  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 appear) (Location $e0 cafe))    ;; n 2 docs 1  e.g. tierC-000128
@@ -786,17 +917,19 @@
 (And (Member $e0 appear) (Location $e0 coronation_street))    ;; n 1 docs 1  e.g. tierC-000260
 (And (Member $e0 appear) (Location $e0 musical_film))    ;; n 1 docs 1  e.g. tierC-000050
 
-;; ---- slot buy.Theme  [event center; head role]  n 5  docs<= 5  distinct 5  eventive 0
-(And (Member $e0 buy) (Theme $e0 $x1) (Member $x1 blue))    ;; n 1 docs 1  e.g. tierB-000367
+;; ---- slot buy.Theme  [event center; head role]  n 5  docs<= 7  distinct 7  eventive 0
 (And (Member $e0 buy) (Theme $e0 $x1) (Member $x1 computer))    ;; n 1 docs 1  e.g. tierB-000849
 (And (Member $e0 buy) (Theme $e0 $x1) (Member $x1 food))    ;; n 1 docs 1  e.g. tierB-000368
 (And (Member $e0 buy) (Theme $e0 $x1) (Member $x1 house))    ;; n 1 docs 1  e.g. tierB-001690
-(And (Member $e0 buy) (Theme $e0 $x1) (Member $x1 trouser))    ;; n 1 docs 1  e.g. tierB-000367
+(And (Member $e0 buy) (Theme $e0 $x1) (Member $x1 blue))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000367
+(And (Member $e0 buy) (Theme $e0 $x1) (Member $x1 shirt))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000367
+(And (Member $e0 buy) (Theme $e0 $x1) (Member $x1 trouser))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000367
+(And (Member $e0 buy) (Theme $e0 $x1) (Member $x1 yellow))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000367
 
 ;; ---- slot cry.Agent  [event center; head role]  n 5  docs<= 5  distinct 5  eventive 0
-(And (Member $e0 cry) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000738
 (And (Member $e0 cry) (Agent $e0 alberto))    ;; n 1 docs 1  e.g. tierB-000502
 (And (Member $e0 cry) (Agent $e0 baya))    ;; n 1 docs 1  e.g. tierB-001538
+(And (Member $e0 cry) (Agent $e0 $x1) (Member $x1 girl))    ;; n 1 docs 1  e.g. tierB-000738
 (And (Member $e0 cry) (Agent $e0 rima))    ;; n 1 docs 1  e.g. tierB-000030
 (And (Member $e0 cry) (Agent $e0 skura))    ;; n 1 docs 1  e.g. tierB-000030
 
@@ -806,36 +939,36 @@
 (And (Member $e0 direct) (Agent $e0 $x1) (Member $x1 conductor))    ;; n 1 docs 1  e.g. tierB-001087
 (And (Member $e0 direct) (Agent $e0 robert_day))    ;; n 1 docs 1  e.g. tierC-000091
 
-;; ---- slot direct.Patient  [event center; head role]  n 5  docs<= 5  distinct 4  eventive 0
+;; ---- slot direct.Patient  [event center; head role]  n 5  docs<= 6  distinct 5  eventive 0
 (And (Member $e0 direct) (Patient $e0 $x1) (Member $x1 episode))    ;; n 2 docs 2  e.g. tierC-000297 tierC-000298
-(And (Member $e0 direct) (Patient $e0 $x1) (Member $x1 film))    ;; n 1 docs 1  e.g. tierC-000010
 (And (Member $e0 direct) (Patient $e0 $x1) (Member $x1 movie))    ;; n 1 docs 1  e.g. tierC-000091
 (And (Member $e0 direct) (Patient $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierC-000138
+(And (Member $e0 direct) (Patient $e0 $x1) (Member $x1 film))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000010
+(And (Member $e0 direct) (Patient $e0 $x1) (Member $x1 syrian_film))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000010
 
-;; ---- slot draw.Agent  [event center; head role]  n 5  docs<= 5  distinct 4  eventive 0
+;; ---- slot draw.Agent  [event center; head role]  n 5  docs<= 5  distinct 3  eventive 0
+(And (Member $e0 draw) (Agent $e0 $x1) (Member $x1 child))    ;; n 2 docs 2  e.g. tierB-001245 tierB-001250
 (And (Member $e0 draw) (Agent $e0 cowper))    ;; n 2 docs 2  e.g. tierC-000293 tierC-000294
-(And (Member $e0 draw) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001245
-(And (Member $e0 draw) (Agent $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-001250
 (And (Member $e0 draw) (Agent $e0 $x1) (Member $x1 concert))    ;; n 1 docs 1  e.g. tierB-000781
 
-;; ---- slot eat.Patient  [event center; head role]  n 5  docs<= 5  distinct 5  eventive 0
-(And (Member $e0 eat) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000338
+;; ---- slot eat.Patient  [event center; head role]  n 5  docs<= 5  distinct 4  eventive 0
 (And (Member $e0 eat) (Patient $e0 bread))    ;; n 1 docs 1  e.g. tierB-001973
 (And (Member $e0 eat) (Patient $e0 $x1) (Member $x1 chicken))    ;; n 1 docs 1  e.g. tierB-000616
 (And (Member $e0 eat) (Patient $e0 cookie))    ;; n 1 docs 1  e.g. tierB-000410
+(And (Member $e0 eat) (Patient $e0 $x1) (Member $x1 cookie))    ;; n 1 docs 1  e.g. tierB-000338
 (And (Member $e0 eat) (Patient $e0 $x1) (Member $x1 rabbit))    ;; n 1 docs 1  e.g. tierB-001551
 
 ;; ---- slot fly.Agent  [event center; head role]  n 5  docs<= 5  distinct 5  eventive 0
-(And (Member $e0 fly) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000801
 (And (Member $e0 fly) (Agent $e0 $x1) (Member $x1 eagle))    ;; n 1 docs 1  e.g. tierB-000121
+(And (Member $e0 fly) (Agent $e0 $x1) (Member $x1 insect))    ;; n 1 docs 1  e.g. tierB-000801
 (And (Member $e0 fly) (Agent $e0 $x1) (Member $x1 plane))    ;; n 1 docs 1  e.g. tierB-000045
 (And (Member $e0 fly) (Agent $e0 $x1) (Member $x1 rocket))    ;; n 1 docs 1  e.g. tierB-001789
 (And (Member $e0 fly) (Agent $e0 superman))    ;; n 1 docs 1  e.g. tierB-001789
 
 ;; ---- slot include.Theme  [event center; head role]  n 5  docs<= 5  distinct 5  eventive 0
-(And (Member $e0 include) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000379
 (And (Member $e0 include) (Theme $e0 armaan_jain))    ;; n 1 docs 1  e.g. tierC-000139
 (And (Member $e0 include) (Theme $e0 $x1) (Member $x1 extradition_clause))    ;; n 1 docs 1  e.g. tierB-001878
+(And (Member $e0 include) (Theme $e0 $x1) (Member $x1 marching_band))    ;; n 1 docs 1  e.g. tierB-000379
 (And (Member $e0 include) (Theme $e0 nikhil_nanda))    ;; n 1 docs 1  e.g. tierC-000139
 (And (Member $e0 include) (Theme $e0 ranbir_kapoor))    ;; n 1 docs 1  e.g. tierC-000139
 
@@ -845,12 +978,14 @@
 (And (Member $e0 lead) (Agent $e0 education))    ;; n 1 docs 1  e.g. tierB-000105
 (And (Member $e0 lead) (Agent $e0 $x1) (Member $x1 general))    ;; n 1 docs 1  e.g. tierB-001782
 
-;; ---- slot lead.Goal  [event center; head role]  n 5  docs<= 5  distinct 5  eventive 0
-(And (Member $e0 lead) (Goal $e0 $x1) (Member $x1 big))    ;; n 1 docs 1  e.g. tierC-000020
-(And (Member $e0 lead) (Goal $e0 $x1) (Member $x1 glory))    ;; n 1 docs 1  e.g. tierB-000040
+;; ---- slot lead.Goal  [event center; head role]  n 5  docs<= 7  distinct 7  eventive 0
 (And (Member $e0 lead) (Goal $e0 happiness))    ;; n 1 docs 1  e.g. tierB-000105
 (And (Member $e0 lead) (Goal $e0 home))    ;; n 1 docs 1  e.g. tierB-001086
 (And (Member $e0 lead) (Goal $e0 peace))    ;; n 1 docs 1  e.g. tierB-000105
+(And (Member $e0 lead) (Goal $e0 $x1) (Member $x1 big))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000020
+(And (Member $e0 lead) (Goal $e0 $x1) (Member $x1 cat_fight))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000020
+(And (Member $e0 lead) (Goal $e0 $x1) (Member $x1 glory))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000040
+(And (Member $e0 lead) (Goal $e0 $x1) (Member $x1 lost))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000040
 
 ;; ---- slot marry.Agent  [event center; head role]  n 5  docs<= 5  distinct 4  eventive 0
 (And (Member $e0 marry) (Agent $e0 margaret_fleming))    ;; n 2 docs 2  e.g. tierC-000075 tierC-000076
@@ -876,18 +1011,20 @@
 (And (Member $e0 present) (Theme $e0 $x1) (Member $x1 play))    ;; n 1 docs 1  e.g. tierB-001932
 
 ;; ---- slot provide.Agent  [event center; head role]  n 5  docs<= 5  distinct 5  eventive 0
-(And (Member $e0 provide) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001262
 (And (Member $e0 provide) (Agent $e0 $x1) (Member $x1 kitchen_island))    ;; n 1 docs 1  e.g. tierB-001663
 (And (Member $e0 provide) (Agent $e0 media))    ;; n 1 docs 1  e.g. tierB-001482
 (And (Member $e0 provide) (Agent $e0 $x1) (Member $x1 organisation))    ;; n 1 docs 1  e.g. tierB-000769
 (And (Member $e0 provide) (Agent $e0 $x1) (Member $x1 power_station))    ;; n 1 docs 1  e.g. tierB-001260
+(And (Member $e0 provide) (Agent $e0 $x1) (Member $x1 witness))    ;; n 1 docs 1  e.g. tierB-001262
 
-;; ---- slot provide.Theme  [event center; head role]  n 5  docs<= 5  distinct 5  eventive 0
-(And (Member $e0 provide) (Theme $e0 $x1) (Member $x1 counter_space))    ;; n 1 docs 1  e.g. tierB-001663
-(And (Member $e0 provide) (Theme $e0 $x1) (Member $x1 detailed))    ;; n 1 docs 1  e.g. tierB-001262
+;; ---- slot provide.Theme  [event center; head role]  n 5  docs<= 7  distinct 7  eventive 0
 (And (Member $e0 provide) (Theme $e0 electricity))    ;; n 1 docs 1  e.g. tierB-001260
 (And (Member $e0 provide) (Theme $e0 food))    ;; n 1 docs 1  e.g. tierB-000769
 (And (Member $e0 provide) (Theme $e0 plurivocality))    ;; n 1 docs 1  e.g. tierB-001482
+(And (Member $e0 provide) (Theme $e0 $x1) (Member $x1 counter_space))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001663
+(And (Member $e0 provide) (Theme $e0 $x1) (Member $x1 description))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001262
+(And (Member $e0 provide) (Theme $e0 $x1) (Member $x1 detailed))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001262
+(And (Member $e0 provide) (Theme $e0 $x1) (Member $x1 extra))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001663
 
 ;; ---- slot ready.Experiencer  [event center; head role]  n 5  docs<= 5  distinct 5  eventive 0
 (And (Member $e0 ready) (Experiencer $e0 $x1) (Member $x1 cake))    ;; n 1 docs 1  e.g. tierB-000916
@@ -902,11 +1039,12 @@
 (And (Member $e0 say) (Theme $e0 <term:Inheritance>))    ;; n 1 docs 1  e.g. tierB-001441
 (And (Member $e0 say) (Theme $e0 $x1) (Member $x1 funeral_prayer))    ;; n 1 docs 1  e.g. tierB-001626
 
-;; ---- slot sell.Agent  [event center; head role]  n 5  docs<= 5  distinct 4  eventive 0
+;; ---- slot sell.Agent  [event center; head role]  n 5  docs<= 6  distinct 5  eventive 0
 (And (Member $e0 sell) (Agent $e0 $x1) (Member $x1 company))    ;; n 2 docs 2  e.g. tierC-000197 tierC-000198
-(And (Member $e0 sell) (Agent $e0 $x1) (Member $x1 coffee_brand))    ;; n 1 docs 1  e.g. tierB-000975
 (And (Member $e0 sell) (Agent $e0 mennad))    ;; n 1 docs 1  e.g. tierB-000257
 (And (Member $e0 sell) (Agent $e0 $x1) (Member $x1 newspaper))    ;; n 1 docs 1  e.g. tierB-000784
+(And (Member $e0 sell) (Agent $e0 $x1) (Member $x1 coffee_brand))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000975
+(And (Member $e0 sell) (Agent $e0 $x1) (Member $x1 indie))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000975
 
 ;; ---- slot sing.Theme  [event center; head role]  n 5  docs<= 3  distinct 2  eventive 0
 (And (Member $e0 sing) (Theme $e0 music))    ;; n 4 docs 2  e.g. tierC-000127 tierC-000128
@@ -918,11 +1056,11 @@
 (And (Member $e0 sleep) (Location $e0 $x1) (Member $x1 mat))    ;; n 1 docs 1  e.g. tierB-001753
 
 ;; ---- slot stand.Experiencer  [event center; head role]  n 5  docs<= 5  distinct 5  eventive 0
-(And (Member $e0 stand) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000712
 (And (Member $e0 stand) (Experiencer $e0 alberto))    ;; n 1 docs 1  e.g. tierB-001299
 (And (Member $e0 stand) (Experiencer $e0 diego))    ;; n 1 docs 1  e.g. tierB-000676
 (And (Member $e0 stand) (Experiencer $e0 edmundo))    ;; n 1 docs 1  e.g. tierB-001604
 (And (Member $e0 stand) (Experiencer $e0 $x1) (Member $x1 general))    ;; n 1 docs 1  e.g. tierB-001782
+(And (Member $e0 stand) (Experiencer $e0 $x1) (Member $x1 student))    ;; n 1 docs 1  e.g. tierB-000712
 
 ;; ---- slot start.Experiencer  [event center; head role]  n 5  docs<= 5  distinct 4  eventive 0
 (And (Member $e0 start) (Experiencer $e0 $x1) (Member $x1 bridge))    ;; n 2 docs 2  e.g. tierC-000125 tierC-000126
@@ -930,32 +1068,33 @@
 (And (Member $e0 start) (Experiencer $e0 oleg))    ;; n 1 docs 1  e.g. tierB-001479
 (And (Member $e0 start) (Experiencer $e0 $x1) (Member $x1 tunnel))    ;; n 1 docs 1  e.g. tierC-000125
 
-;; ---- slot swim.Agent  [event center; head role]  n 5  docs<= 5  distinct 4  eventive 0
-(And (Member $e0 swim) (Agent $e0 $x1) (Member $x1 school))    ;; n 2 docs 2  e.g. tierB-000782 tierB-001008
-(And (Member $e0 swim) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001511
-(And (Member $e0 swim) (Agent $e0 $x1) (Member $x1 fish))    ;; n 1 docs 1  e.g. tierB-001268
+;; ---- slot swim.Agent  [event center; head role]  n 5  docs<= 8  distinct 5  eventive 0
+(And (Member $e0 swim) (Agent $e0 $x1) (Member $x1 fish))    ;; n 3 (mass 1.5) docs 3  e.g. tierB-000782 tierB-001008
+(And (Member $e0 swim) (Agent $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-001511
 (And (Member $e0 swim) (Agent $e0 linda))    ;; n 1 docs 1  e.g. tierB-000313
+(And (Member $e0 swim) (Agent $e0 $x1) (Member $x1 school))    ;; n 2 (mass 1) docs 2  e.g. tierB-000782 tierB-001008
+(And (Member $e0 swim) (Agent $e0 $x1) (Member $x1 red))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001268
 
 ;; ---- slot travel.Agent  [event center; head role]  n 5  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 travel) (Agent $e0 $x1))    ;; n 2 docs 1  e.g. tierB-001618
+(And (Member $e0 travel) (Agent $e0 $x1) (Member $x1 person))    ;; n 2 docs 1  e.g. tierB-001618
 (And (Member $e0 travel) (Agent $e0 $x1) (Member $x1 campaigner))    ;; n 1 docs 1  e.g. tierB-000830
 (And (Member $e0 travel) (Agent $e0 matthew))    ;; n 1 docs 1  e.g. tierB-000667
 (And (Member $e0 travel) (Agent $e0 roger))    ;; n 1 docs 1  e.g. tierB-000995
 
 ;; ---- slot watch.Agent  [event center; head role]  n 5  docs<= 5  distinct 5  eventive 0
-(And (Member $e0 watch) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000258
 (And (Member $e0 watch) (Agent $e0 baya))    ;; n 1 docs 1  e.g. tierB-000651
 (And (Member $e0 watch) (Agent $e0 $x1) (Member $x1 coach))    ;; n 1 docs 1  e.g. tierB-001720
 (And (Member $e0 watch) (Agent $e0 $x1) (Member $x1 family))    ;; n 1 docs 1  e.g. tierB-000520
 (And (Member $e0 watch) (Agent $e0 $x1) (Member $x1 government))    ;; n 1 docs 1  e.g. tierB-001800
+(And (Member $e0 watch) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000258
 
 ;; ---- slot win.Theme  [event center; head role]  n 5  docs<= 5  distinct 2  eventive 0
 (And (Member $e0 win) (Theme $e0 $x1) (Member $x1 emmy))    ;; n 4 docs 4  e.g. tierC-000277 tierC-000278
 (And (Member $e0 win) (Theme $e0 $x1) (Member $x1 race))    ;; n 1 docs 1  e.g. tierB-000145
 
 ;; ---- slot accompany.Agent  [event center; head role]  n 4  docs<= 4  distinct 2  eventive 0
-(And (Member $e0 accompany) (Agent $e0 $x1))    ;; n 2 docs 2  e.g. tierC-000127 tierC-000128
 (And (Member $e0 accompany) (Agent $e0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierC-000127 tierC-000128
+(And (Member $e0 accompany) (Agent $e0 $x1) (Member $x1 sister))    ;; n 2 docs 2  e.g. tierC-000127 tierC-000128
 
 ;; ---- slot accompany.Theme  [event center; head role]  n 4  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 accompany) (Theme $e0 silent_film))    ;; n 4 docs 2  e.g. tierC-000127 tierC-000128
@@ -964,8 +1103,9 @@
 (And (Member $e0 active) (Time $e0 early_morning))    ;; n 2 docs 2  e.g. tierC-000201 tierC-000202
 (And (Member $e0 active) (Time $e0 late_afternoon))    ;; n 2 docs 2  e.g. tierC-000201 tierC-000202
 
-;; ---- slot add.Theme  [event center; head role]  n 4  docs<= 4  distinct 2  eventive 0
-(And (Member $e0 add) (Theme $e0 $x1))    ;; n 3 docs 3  e.g. tierB-000462 tierC-000231
+;; ---- slot add.Theme  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
+(And (Member $e0 add) (Theme $e0 $x1) (Member $x1 illustration))    ;; n 2 docs 2  e.g. tierC-000231 tierC-000232
+(And (Member $e0 add) (Theme $e0 $x1) (Member $x1 clove))    ;; n 1 docs 1  e.g. tierB-000462
 (And (Member $e0 add) (Theme $e0 $x1) (Member $x1 greenery))    ;; n 1 docs 1  e.g. tierB-001132
 
 ;; ---- slot arrive.Agent  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
@@ -975,13 +1115,16 @@
 (And (Member $e0 arrive) (Agent $e0 $x1) (Member $x1 spring))    ;; n 1 docs 1  e.g. tierB-001440
 
 ;; ---- slot avoid.Theme  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 avoid) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000246
 (And (Member $e0 avoid) (Theme $e0 bankruptcy))    ;; n 1 docs 1  e.g. tierB-000171
 (And (Member $e0 avoid) (Theme $e0 $x1) (Member $x1 conform))    ;; n 1 docs 1  e.g. tierB-000674
+(And (Member $e0 avoid) (Theme $e0 $x1) (Member $x1 pitfall))    ;; n 1 docs 1  e.g. tierB-000246
 (And (Member $e0 avoid) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierC-000124
 
-;; ---- slot bad.Experiencer  [event center; head role]  n 4  docs<= 4  distinct 1  eventive 0
-(And (Member $e0 bad) (Experiencer $e0 $x1) (Member $x1 bad))    ;; n 4 docs 4  e.g. tierB-000748 tierB-001594
+;; ---- slot bad.Experiencer  [event center; head role]  n 4  docs<= 8  distinct 4  eventive 0
+(And (Member $e0 bad) (Experiencer $e0 $x1) (Member $x1 bad))    ;; n 4 (mass 2) docs 4  e.g. tierB-000748 tierB-001594
+(And (Member $e0 bad) (Experiencer $e0 $x1) (Member $x1 relationship))    ;; n 2 (mass 1) docs 2  e.g. tierC-000241 tierC-000242
+(And (Member $e0 bad) (Experiencer $e0 $x1) (Member $x1 matter))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001594
+(And (Member $e0 bad) (Experiencer $e0 $x1) (Member $x1 weather))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000748
 
 ;; ---- slot bear.Location  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
 (And (Member $e0 bear) (Location $e0 bromma))    ;; n 2 docs 2  e.g. tierC-000199 tierC-000200
@@ -989,9 +1132,9 @@
 (And (Member $e0 bear) (Location $e0 $x1) (Member $x1 planet))    ;; n 1 docs 1  e.g. tierB-000906
 
 ;; ---- slot begin.Patient  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 begin) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001394
 (And (Member $e0 begin) (Patient $e0 $x1) (Member $x1 night))    ;; n 1 docs 1  e.g. tierB-001048
 (And (Member $e0 begin) (Patient $e0 school))    ;; n 1 docs 1  e.g. tierB-001085
+(And (Member $e0 begin) (Patient $e0 $x1) (Member $x1 tree))    ;; n 1 docs 1  e.g. tierB-001394
 (And (Member $e0 begin) (Patient $e0 $x1) (Member $x1 uprising))    ;; n 1 docs 1  e.g. tierB-000182
 
 ;; ---- slot begin.Time  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
@@ -1006,21 +1149,23 @@
 (And (Member $e0 bring) (Theme $e0 chinese_dumpling))    ;; n 1 docs 1  e.g. tierC-000351
 (And (Member $e0 bring) (Theme $e0 jonathan))    ;; n 1 docs 1  e.g. tierB-000427
 
-;; ---- slot capture.Agent  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
-(And (Member $e0 capture) (Agent $e0 $x1))    ;; n 2 docs 2  e.g. tierB-001342 tierB-001990
+;; ---- slot capture.Agent  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 capture) (Agent $e0 $x1) (Member $x1 falcon))    ;; n 1 docs 1  e.g. tierB-000852
+(And (Member $e0 capture) (Agent $e0 $x1) (Member $x1 pirate))    ;; n 1 docs 1  e.g. tierB-001990
 (And (Member $e0 capture) (Agent $e0 spain))    ;; n 1 docs 1  e.g. tierB-000215
+(And (Member $e0 capture) (Agent $e0 $x1) (Member $x1 troop))    ;; n 1 docs 1  e.g. tierB-001342
 
-;; ---- slot cause.Patient  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 cause) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001649
+;; ---- slot cause.Patient  [event center; head role]  n 4  docs<= 5  distinct 5  eventive 0
 (And (Member $e0 cause) (Patient $e0 abandonment_anxiety))    ;; n 1 docs 1  e.g. tierB-001089
-(And (Member $e0 cause) (Patient $e0 $x1) (Member $x1 creaking))    ;; n 1 docs 1  e.g. tierB-000805
 (And (Member $e0 cause) (Patient $e0 $x1) (Member $x1 damage))    ;; n 1 docs 1  e.g. tierB-000775
+(And (Member $e0 cause) (Patient $e0 $x1) (Member $x1 earthquake))    ;; n 1 docs 1  e.g. tierB-001649
+(And (Member $e0 cause) (Patient $e0 $x1) (Member $x1 creaking))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000805
+(And (Member $e0 cause) (Patient $e0 $x1) (Member $x1 sound))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000805
 
 ;; ---- slot change.Agent  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 change) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000098
 (And (Member $e0 change) (Agent $e0 cameron))    ;; n 1 docs 1  e.g. tierC-000011
 (And (Member $e0 change) (Agent $e0 french_dahomey))    ;; n 1 docs 1  e.g. tierB-000139
+(And (Member $e0 change) (Agent $e0 $x1) (Member $x1 leaf))    ;; n 1 docs 1  e.g. tierB-000098
 (And (Member $e0 change) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-001803
 
 ;; ---- slot close.Experiencer  [event center; head role]  n 4  docs<= 2  distinct 2  eventive 0
@@ -1028,9 +1173,9 @@
 (And (Member $e0 close) (Experiencer $e0 boldi))    ;; n 1 docs 1  e.g. tierB-000079
 
 ;; ---- slot come.Source  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 come) (Source $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001774
 (And (Member $e0 come) (Source $e0 $x1) (Member $x1 garden))    ;; n 1 docs 1  e.g. tierB-000677
 (And (Member $e0 come) (Source $e0 greek))    ;; n 1 docs 1  e.g. tierB-000152
+(And (Member $e0 come) (Source $e0 $x1) (Member $x1 place))    ;; n 1 docs 1  e.g. tierB-001774
 (And (Member $e0 come) (Source $e0 $x1) (Member $x1 treeline))    ;; n 1 docs 1  e.g. tierB-001949
 
 ;; ---- slot connect.Theme  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
@@ -1062,27 +1207,25 @@
 (And (Member $e0 design) (Agent $e0 robert_allan_limited))    ;; n 1 docs 1  e.g. tierC-000184
 
 ;; ---- slot design.Patient  [event center; head role]  n 4  docs<= 3  distinct 2  eventive 0
-(And (Member $e0 design) (Patient $e0 $x1))    ;; n 2 docs 1  e.g. tierC-000184
+(And (Member $e0 design) (Patient $e0 $x1) (Member $x1 pacificat))    ;; n 2 docs 1  e.g. tierC-000184
 (And (Member $e0 design) (Patient $e0 $x1) (Member $x1 thing))    ;; n 2 docs 2  e.g. tierC-000119 tierC-000120
 
 ;; ---- slot die.Patient  [event center; head role]  n 4  docs<= 4  distinct 2  eventive 0
-(And (Member $e0 die) (Patient $e0 $x1))    ;; n 2 docs 2  e.g. tierB-000838 tierB-001967
-(And (Member $e0 die) (Patient $e0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierC-000199 tierC-000200
+(And (Member $e0 die) (Patient $e0 $x1) (Member $x1 person))    ;; n 3 docs 3  e.g. tierB-001967 tierC-000199
+(And (Member $e0 die) (Patient $e0 $x1) (Member $x1 family))    ;; n 1 docs 1  e.g. tierB-000838
 
-;; ---- slot discover.Theme  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
-(And (Member $e0 discover) (Theme $e0 $x1) (Member $x1 name))    ;; n 2 docs 2  e.g. tierC-000111 tierC-000112
-(And (Member $e0 discover) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000658
-(And (Member $e0 discover) (Theme $e0 $x1) (Member $x1 magnet))    ;; n 1 docs 1  e.g. tierB-001251
+;; ---- slot do.Patient  [event center; head role]  n 4  docs<= 5  distinct 4  eventive 0
+(And (Member $e0 do) (Patient $e0 $x1) (Member $x1 thing))    ;; n 2 docs 2  e.g. tierB-001520 tierB-001721
+(And (Member $e0 do) (Patient $e0 $x1) (Member $x1 dish))    ;; n 1 docs 1  e.g. tierB-001955
+(And (Member $e0 do) (Patient $e0 $x1) (Member $x1 dance))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001735
+(And (Member $e0 do) (Patient $e0 $x1) (Member $x1 little))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001735
 
-;; ---- slot do.Patient  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
-(And (Member $e0 do) (Patient $e0 $x1))    ;; n 2 docs 2  e.g. tierB-001721 tierB-001955
-(And (Member $e0 do) (Patient $e0 $x1) (Member $x1 dance))    ;; n 1 docs 1  e.g. tierB-001735
-(And (Member $e0 do) (Patient $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001520
-
-;; ---- slot eat.Agent  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
-(And (Member $e0 eat) (Agent $e0 $x1))    ;; n 2 docs 2  e.g. tierB-000410 tierB-001973
-(And (Member $e0 eat) (Agent $e0 $x1) (Member $x1 brown))    ;; n 1 docs 1  e.g. tierB-001551
+;; ---- slot eat.Agent  [event center; head role]  n 4  docs<= 5  distinct 5  eventive 0
+(And (Member $e0 eat) (Agent $e0 $x1) (Member $x1 bird))    ;; n 1 docs 1  e.g. tierB-001973
+(And (Member $e0 eat) (Agent $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-000410
 (And (Member $e0 eat) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000338
+(And (Member $e0 eat) (Agent $e0 $x1) (Member $x1 brown))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001551
+(And (Member $e0 eat) (Agent $e0 $x1) (Member $x1 dog))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001551
 
 ;; ---- slot encourage.In  [event center; head oblique]  n 4  docs<= 4  distinct 3  eventive 0
 (And (Member $e0 encourage) (In $e0 mathematics))    ;; n 2 docs 2  e.g. tierC-000107 tierC-000108
@@ -1100,17 +1243,19 @@
 (And (Member $e0 find) (Agent $e0 flavio))    ;; n 1 docs 1  e.g. tierB-001139
 (And (Member $e0 find) (Agent $e0 pietro))    ;; n 1 docs 1  e.g. tierB-000706
 
-;; ---- slot get.Theme  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 1
+;; ---- slot get.Theme  [event center; head role]  n 4  docs<= 5  distinct 5  eventive 1
 (And (Member $e0 get) (Theme $e0 $e1) (Member $e1 arrest))    ;; n 1 docs 1  e.g. tierB-000770
 (And (Member $e0 get) (Theme $e0 $x1) (Member $x1 hamster))    ;; n 1 docs 1  e.g. tierB-000672
-(And (Member $e0 get) (Theme $e0 $x1) (Member $x1 low))    ;; n 1 docs 1  e.g. tierB-000418
 (And (Member $e0 get) (Theme $e0 $x1) (Member $x1 snack))    ;; n 1 docs 1  e.g. tierB-001325
+(And (Member $e0 get) (Theme $e0 $x1) (Member $x1 low))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000418
+(And (Member $e0 get) (Theme $e0 $x1) (Member $x1 price))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000418
 
-;; ---- slot give.Theme  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 give) (Theme $e0 $x1) (Member $x1 advice))    ;; n 1 docs 1  e.g. tierB-000137
+;; ---- slot give.Theme  [event center; head role]  n 4  docs<= 5  distinct 5  eventive 0
 (And (Member $e0 give) (Theme $e0 chocolate))    ;; n 1 docs 1  e.g. tierB-001046
 (And (Member $e0 give) (Theme $e0 mock_champagne))    ;; n 1 docs 1  e.g. tierB-001046
 (And (Member $e0 give) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierC-000111
+(And (Member $e0 give) (Theme $e0 $x1) (Member $x1 advice))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000137
+(And (Member $e0 give) (Theme $e0 $x1) (Member $x1 good))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000137
 
 ;; ---- slot good.Experiencer  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 good) (Experiencer $e0 barley_bread))    ;; n 1 docs 1  e.g. tierB-000999
@@ -1119,25 +1264,20 @@
 (And (Member $e0 good) (Experiencer $e0 $x1) (Member $x1 windshield))    ;; n 1 docs 1  e.g. tierB-001521
 
 ;; ---- slot help.Theme  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 2
-(And (Member $e0 help) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000299
 (And (Member $e0 help) (Theme $e0 $e1) (Member $e1 define))    ;; n 1 docs 1  e.g. tierB-001149
 (And (Member $e0 help) (Theme $e0 $x1) (Member $x1 girl))    ;; n 1 docs 1  e.g. tierB-000319
+(And (Member $e0 help) (Theme $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000299
 (And (Member $e0 help) (Theme $e0 $e1) (Member $e1 thrive))    ;; n 1 docs 1  e.g. tierB-000858
 
 ;; ---- slot include.Agent  [event center; head role]  n 4  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 include) (Agent $e0 $x1))    ;; n 3 docs 1  e.g. tierC-000139
+(And (Member $e0 include) (Agent $e0 $x1) (Member $x1 nephew))    ;; n 3 docs 1  e.g. tierC-000139
 (And (Member $e0 include) (Agent $e0 $x1) (Member $x1 parade))    ;; n 1 docs 1  e.g. tierB-000379
 
-;; ---- slot increase.Patient  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
-(And (Member $e0 increase) (Patient $e0 $x1))    ;; n 2 docs 2  e.g. tierB-000680 tierB-000965
+;; ---- slot increase.Patient  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 increase) (Patient $e0 $x1) (Member $x1 industrial_output))    ;; n 1 docs 1  e.g. tierB-000690
+(And (Member $e0 increase) (Patient $e0 $x1) (Member $x1 motor_vehicle))    ;; n 1 docs 1  e.g. tierB-000680
+(And (Member $e0 increase) (Patient $e0 $x1) (Member $x1 ukrainian_combat_loss))    ;; n 1 docs 1  e.g. tierB-000965
 (And (Member $e0 increase) (Patient $e0 xenophobia))    ;; n 1 docs 1  e.g. tierB-001903
-
-;; ---- slot jump.Agent  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 jump) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001530
-(And (Member $e0 jump) (Agent $e0 $x1) (Member $x1 brown))    ;; n 1 docs 1  e.g. tierB-000871
-(And (Member $e0 jump) (Agent $e0 $x1) (Member $x1 cow))    ;; n 1 docs 1  e.g. tierB-000889
-(And (Member $e0 jump) (Agent $e0 $x1) (Member $x1 donkey))    ;; n 1 docs 1  e.g. tierB-001983
 
 ;; ---- slot kill.Location  [event center; head role]  n 4  docs<= 3  distinct 2  eventive 0
 (And (Member $e0 kill) (Location $e0 $x1) (Member $x1 state))    ;; n 3 docs 2  e.g. tierC-000353 tierC-000354
@@ -1162,16 +1302,19 @@
 (And (Member $e0 look) (Experiencer $e0 $x1) (Member $x1 island))    ;; n 1 docs 1  e.g. tierB-000230
 (And (Member $e0 look) (Experiencer $e0 $x1) (Member $x1 school))    ;; n 1 docs 1  e.g. tierB-000297
 
-;; ---- slot look.Like  [event center; head oblique]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 look) (Like $e0 $x1) (Member $x1 huge))    ;; n 1 docs 1  e.g. tierB-000230
-(And (Member $e0 look) (Like $e0 $x1) (Member $x1 inverted))    ;; n 1 docs 1  e.g. tierB-000831
+;; ---- slot look.Like  [event center; head oblique]  n 4  docs<= 6  distinct 6  eventive 0
 (And (Member $e0 look) (Like $e0 $x1) (Member $x1 paradise))    ;; n 1 docs 1  e.g. tierB-001135
 (And (Member $e0 look) (Like $e0 prison))    ;; n 1 docs 1  e.g. tierB-000297
+(And (Member $e0 look) (Like $e0 $x1) (Member $x1 huge))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000230
+(And (Member $e0 look) (Like $e0 $x1) (Member $x1 inverted))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000831
+(And (Member $e0 look) (Like $e0 $x1) (Member $x1 philippine_flag))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000831
+(And (Member $e0 look) (Like $e0 $x1) (Member $x1 spider))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000230
 
-;; ---- slot move.Agent  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
+;; ---- slot move.Agent  [event center; head role]  n 4  docs<= 5  distinct 4  eventive 0
 (And (Member $e0 move) (Agent $e0 $x1) (Member $x1 headquarters))    ;; n 2 docs 2  e.g. tierC-000197 tierC-000198
 (And (Member $e0 move) (Agent $e0 sammy))    ;; n 1 docs 1  e.g. tierB-001570
-(And (Member $e0 move) (Agent $e0 $x1) (Member $x1 school))    ;; n 1 docs 1  e.g. tierB-000782
+(And (Member $e0 move) (Agent $e0 $x1) (Member $x1 fish))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000782
+(And (Member $e0 move) (Agent $e0 $x1) (Member $x1 school))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000782
 
 ;; ---- slot perform.Location  [event center; head role]  n 4  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 perform) (Location $e0 cafe))    ;; n 2 docs 1  e.g. tierC-000127
@@ -1191,9 +1334,9 @@
 (And (Member $e0 present) (Agent $e0 $x1) (Member $x1 golden_opportunity))    ;; n 1 docs 1  e.g. tierB-001486
 
 ;; ---- slot receive.Agent  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 receive) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001035
 (And (Member $e0 receive) (Agent $e0 beth))    ;; n 1 docs 1  e.g. tierB-000962
 (And (Member $e0 receive) (Agent $e0 franks))    ;; n 1 docs 1  e.g. tierB-001595
+(And (Member $e0 receive) (Agent $e0 $x1) (Member $x1 refugee))    ;; n 1 docs 1  e.g. tierB-001035
 (And (Member $e0 receive) (Agent $e0 $x1) (Member $x1 winner))    ;; n 1 docs 1  e.g. tierB-001693
 
 ;; ---- slot replace.Agent  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
@@ -1207,11 +1350,13 @@
 (And (Member $e0 replace) (Theme $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierC-000099
 (And (Member $e0 replace) (Theme $e0 william_ewer))    ;; n 1 docs 1  e.g. tierC-000100
 
-;; ---- slot require.Theme  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 require) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001436
+;; ---- slot require.Theme  [event center; head role]  n 4  docs<= 6  distinct 6  eventive 0
 (And (Member $e0 require) (Theme $e0 $x1) (Member $x1 american_phone_number))    ;; n 1 docs 1  e.g. tierB-000607
-(And (Member $e0 require) (Theme $e0 $x1) (Member $x1 hard))    ;; n 1 docs 1  e.g. tierB-001980
-(And (Member $e0 require) (Theme $e0 $x1) (Member $x1 id_card))    ;; n 1 docs 1  e.g. tierB-001566
+(And (Member $e0 require) (Theme $e0 $x1) (Member $x1 repair))    ;; n 1 docs 1  e.g. tierB-001436
+(And (Member $e0 require) (Theme $e0 $x1) (Member $x1 hard))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001980
+(And (Member $e0 require) (Theme $e0 $x1) (Member $x1 id_card))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001566
+(And (Member $e0 require) (Theme $e0 $x1) (Member $x1 valid))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001566
+(And (Member $e0 require) (Theme $e0 $x1) (Member $x1 work))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001980
 
 ;; ---- slot specify.In  [event center; head oblique]  n 4  docs<= 4  distinct 2  eventive 0
 (And (Member $e0 specify) (In $e0 continuous_time))    ;; n 2 docs 2  e.g. tierC-000267 tierC-000268
@@ -1219,7 +1364,7 @@
 
 ;; ---- slot spend.Agent  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
 (And (Member $e0 spend) (Agent $e0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierC-000047 tierC-000048
-(And (Member $e0 spend) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001146
+(And (Member $e0 spend) (Agent $e0 $x1) (Member $x1 giraffe))    ;; n 1 docs 1  e.g. tierB-001146
 (And (Member $e0 spend) (Agent $e0 may))    ;; n 1 docs 1  e.g. tierB-000883
 
 ;; ---- slot star.Agent  [event center; head role]  n 4  docs<= 2  distinct 1  eventive 0
@@ -1229,22 +1374,23 @@
 (And (Member $e0 star) (Theme $e0 jeremy_irons))    ;; n 2 docs 2  e.g. tierC-000137 tierC-000138
 (And (Member $e0 star) (Theme $e0 patricia_kaas))    ;; n 2 docs 2  e.g. tierC-000137 tierC-000138
 
-;; ---- slot stop.Agent  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 stop) (Agent $e0 $x1) (Member $x1 adaptor))    ;; n 1 docs 1  e.g. tierB-001873
+;; ---- slot stop.Agent  [event center; head role]  n 4  docs<= 5  distinct 5  eventive 0
 (And (Member $e0 stop) (Agent $e0 rima))    ;; n 1 docs 1  e.g. tierB-000030
 (And (Member $e0 stop) (Agent $e0 skura))    ;; n 1 docs 1  e.g. tierB-000030
 (And (Member $e0 stop) (Agent $e0 yanni))    ;; n 1 docs 1  e.g. tierB-000125
+(And (Member $e0 stop) (Agent $e0 $x1) (Member $x1 adaptor))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001873
+(And (Member $e0 stop) (Agent $e0 $x1) (Member $x1 old))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001873
 
 ;; ---- slot stop.Theme  [event center; head role]  n 4  docs<= 3  distinct 2  eventive 4
 (And (Member $e0 stop) (Theme $e0 $e1) (Member $e1 cry))    ;; n 2 docs 1  e.g. tierB-000030
 (And (Member $e0 stop) (Theme $e0 $e1) (Member $e1 work))    ;; n 2 docs 2  e.g. tierB-001515 tierB-001873
 
 ;; ---- slot support.Theme  [event center; head role]  n 4  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 support) (Theme $e0 $x1))    ;; n 4 docs 2  e.g. tierC-000160 tierC-000356
+(And (Member $e0 support) (Theme $e0 $x1) (Member $x1 view))    ;; n 4 docs 2  e.g. tierC-000160 tierC-000356
 
 ;; ---- slot tell.Theme  [event center; head role]  n 4  docs<= 4  distinct 3  eventive 0
 (And (Member $e0 tell) (Theme $e0 <term:Question>))    ;; n 2 docs 2  e.g. tierC-000035 tierC-000036
-(And (Member $e0 tell) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000742
+(And (Member $e0 tell) (Theme $e0 $x1) (Member $x1 lie))    ;; n 1 docs 1  e.g. tierB-000742
 (And (Member $e0 tell) (Theme $e0 $x1) (Member $x1 truth))    ;; n 1 docs 1  e.g. tierB-000745
 
 ;; ---- slot use.Manner  [event center; head role]  n 4  docs<= 3  distinct 3  eventive 0
@@ -1258,14 +1404,15 @@
 (And (Member $e0 walk) (Goal $e0 $x1) (Member $x1 forest))    ;; n 1 docs 1  e.g. tierB-000929
 (And (Member $e0 walk) (Goal $e0 $x1) (Member $x1 store))    ;; n 1 docs 1  e.g. tierB-000324
 
-;; ---- slot walk.Location  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 walk) (Location $e0 $x1) (Member $x1 balloon))    ;; n 1 docs 1  e.g. tierB-000036
+;; ---- slot walk.Location  [event center; head role]  n 4  docs<= 5  distinct 5  eventive 0
 (And (Member $e0 walk) (Location $e0 $x1) (Member $x1 dark))    ;; n 1 docs 1  e.g. tierB-000148
 (And (Member $e0 walk) (Location $e0 $x1) (Member $x1 hallway))    ;; n 1 docs 1  e.g. tierB-000951
 (And (Member $e0 walk) (Location $e0 $x1) (Member $x1 wood_floor))    ;; n 1 docs 1  e.g. tierB-000805
+(And (Member $e0 walk) (Location $e0 $x1) (Member $x1 balloon))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000036
+(And (Member $e0 walk) (Location $e0 $x1) (Member $x1 little))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000036
 
 ;; ---- slot watch.Theme  [event center; head role]  n 4  docs<= 4  distinct 4  eventive 0
-(And (Member $e0 watch) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001800
+(And (Member $e0 watch) (Theme $e0 $x1) (Member $x1 activity))    ;; n 1 docs 1  e.g. tierB-001800
 (And (Member $e0 watch) (Theme $e0 $x1) (Member $x1 event))    ;; n 1 docs 1  e.g. tierB-000258
 (And (Member $e0 watch) (Theme $e0 $x1) (Member $x1 movie))    ;; n 1 docs 1  e.g. tierB-000520
 (And (Member $e0 watch) (Theme $e0 natural_hair_video))    ;; n 1 docs 1  e.g. tierB-000651
@@ -1279,6 +1426,21 @@
 (And (Member $e0 work) (Location $e0 europe))    ;; n 1 docs 1  e.g. tierB-000419
 (And (Member $e0 work) (Location $e0 $x1) (Member $x1 factory))    ;; n 1 docs 1  e.g. tierB-001187
 (And (Member $e0 work) (Location $e0 $x1) (Member $x1 prison_kitchen))    ;; n 1 docs 1  e.g. tierB-000867
+
+;; ---- slot discover.Theme  [event center; head role]  n 4  docs<= 6  distinct 5  eventive 0
+(And (Member $e0 discover) (Theme $e0 $x1) (Member $x1 name))    ;; n 2 docs 2  e.g. tierC-000111 tierC-000112
+(And (Member $e0 discover) (Theme $e0 $x1) (Member $x1 pterosaur_egg))    ;; n 1 docs 1  e.g. tierB-000658
+(And (Member $e0 discover) (Theme $e0 $x1) (Member $x1 magnet))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001251
+(And (Member $e0 discover) (Theme $e0 $x1) (Member $x1 new))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001251
+(And (Member $e0 discover) (Theme $e0 $x1) (Member $x1 type))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001251
+
+;; ---- slot jump.Agent  [event center; head role]  n 4  docs<= 6  distinct 6  eventive 0
+(And (Member $e0 jump) (Agent $e0 $x1) (Member $x1 boy))    ;; n 1 docs 1  e.g. tierB-001530
+(And (Member $e0 jump) (Agent $e0 $x1) (Member $x1 cow))    ;; n 1 docs 1  e.g. tierB-000889
+(And (Member $e0 jump) (Agent $e0 $x1) (Member $x1 donkey))    ;; n 1 docs 1  e.g. tierB-001983
+(And (Member $e0 jump) (Agent $e0 $x1) (Member $x1 brown))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000871
+(And (Member $e0 jump) (Agent $e0 $x1) (Member $x1 fox))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000871
+(And (Member $e0 jump) (Agent $e0 $x1) (Member $x1 quick))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000871
 
 ;; ---- slot active.Experiencer  [event center; head role]  n 3  docs<= 3  distinct 2  eventive 0
 (And (Member $e0 active) (Experiencer $e0 $x1) (Member $x1 thing))    ;; n 2 docs 2  e.g. tierC-000201 tierC-000202
@@ -1312,23 +1474,26 @@
 (And (Member $e0 bake) (Agent $e0 $x1) (Member $x1 company))    ;; n 2 docs 2  e.g. tierC-000197 tierC-000198
 (And (Member $e0 bake) (Agent $e0 ella))    ;; n 1 docs 1  e.g. tierB-000464
 
-;; ---- slot bake.Patient  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
+;; ---- slot bake.Patient  [event center; head role]  n 3  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 bake) (Patient $e0 ice_cone))    ;; n 1 docs 1  e.g. tierC-000198
 (And (Member $e0 bake) (Patient $e0 ice_cream_cone))    ;; n 1 docs 1  e.g. tierC-000197
-(And (Member $e0 bake) (Patient $e0 $x1) (Member $x1 pie))    ;; n 1 docs 1  e.g. tierB-000464
+(And (Member $e0 bake) (Patient $e0 $x1) (Member $x1 pie))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000464
+(And (Member $e0 bake) (Patient $e0 $x1) (Member $x1 scrumptious))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000464
 
 ;; ---- slot base.On  [event center; head oblique]  n 3  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 base) (On $e0 $x1) (Member $x1 fight))    ;; n 1 docs 1  e.g. tierB-001610
 (And (Member $e0 base) (On $e0 $x1) (Member $x1 latin_alphabet))    ;; n 1 docs 1  e.g. tierB-001605
 (And (Member $e0 base) (On $e0 puritan_value))    ;; n 1 docs 1  e.g. tierB-001928
 
-;; ---- slot beautiful.Experiencer  [event center; head role]  n 3  docs<= 3  distinct 2  eventive 0
-(And (Member $e0 beautiful) (Experiencer $e0 $x1) (Member $x1 beautiful))    ;; n 2 docs 2  e.g. tierB-000904 tierB-001920
+;; ---- slot beautiful.Experiencer  [event center; head role]  n 3  docs<= 5  distinct 4  eventive 0
+(And (Member $e0 beautiful) (Experiencer $e0 $x1) (Member $x1 beautiful))    ;; n 2 (mass 1) docs 2  e.g. tierB-000904 tierB-001920
 (And (Member $e0 beautiful) (Experiencer $e0 $x1) (Member $x1 weather))    ;; n 1 docs 1  e.g. tierB-000565
+(And (Member $e0 beautiful) (Experiencer $e0 $x1) (Member $x1 moon))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000904
+(And (Member $e0 beautiful) (Experiencer $e0 $x1) (Member $x1 room))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001920
 
 ;; ---- slot break_out.Patient  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 1
-(And (Member $e0 break_out) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001694
 (And (Member $e0 break_out) (Patient $e0 $x1) (Member $x1 fire))    ;; n 1 docs 1  e.g. tierB-001302
+(And (Member $e0 break_out) (Patient $e0 $x1) (Member $x1 forest_fire))    ;; n 1 docs 1  e.g. tierB-001694
 (And (Member $e0 break_out) (Patient $e0 $e1) (Member $e1 war))    ;; n 1 docs 1  e.g. tierB-001641
 
 ;; ---- slot bring.Goal  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
@@ -1345,10 +1510,11 @@
 (And (Member $e0 change) (Time $e0 past_year))    ;; n 1 docs 1  e.g. tierB-001217
 (And (Member $e0 change) (Time $e0 tonight))    ;; n 1 docs 1  e.g. tierB-001588
 
-;; ---- slot close.Agent  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
-(And (Member $e0 close) (Agent $e0 $x1) (Member $x1 female))    ;; n 1 docs 1  e.g. tierB-001205
+;; ---- slot close.Agent  [event center; head role]  n 3  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 close) (Agent $e0 $x1) (Member $x1 guard))    ;; n 1 docs 1  e.g. tierB-001926
 (And (Member $e0 close) (Agent $e0 $x1) (Member $x1 pilot))    ;; n 1 docs 1  e.g. tierB-000950
+(And (Member $e0 close) (Agent $e0 $x1) (Member $x1 female))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001205
+(And (Member $e0 close) (Agent $e0 $x1) (Member $x1 giraffe))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001205
 
 ;; ---- slot close.Goal  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 close) (Goal $e0 dutch))    ;; n 1 docs 1  e.g. tierB-000188
@@ -1359,13 +1525,14 @@
 (And (Member $e0 close) (Patient $e0 $x1) (Member $x1 door))    ;; n 2 docs 2  e.g. tierB-000950 tierB-001926
 (And (Member $e0 close) (Patient $e0 $x1) (Member $x1 store))    ;; n 1 docs 1  e.g. tierB-000218
 
-;; ---- slot come.Goal  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
+;; ---- slot come.Goal  [event center; head role]  n 3  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 come) (Goal $e0 $x1) (Member $x1 concert))    ;; n 1 docs 1  e.g. tierB-000387
 (And (Member $e0 come) (Goal $e0 $x1) (Member $x1 conclusion))    ;; n 1 docs 1  e.g. tierB-001963
-(And (Member $e0 come) (Goal $e0 $x1) (Member $x1 political))    ;; n 1 docs 1  e.g. tierB-001534
+(And (Member $e0 come) (Goal $e0 $x1) (Member $x1 political))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001534
+(And (Member $e0 come) (Goal $e0 $x1) (Member $x1 settlement))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001534
 
 ;; ---- slot come.Patient  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
-(And (Member $e0 come) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000677
+(And (Member $e0 come) (Patient $e0 $x1) (Member $x1 insect_sound))    ;; n 1 docs 1  e.g. tierB-000677
 (And (Member $e0 come) (Patient $e0 $x1) (Member $x1 sound))    ;; n 1 docs 1  e.g. tierB-001949
 (And (Member $e0 come) (Patient $e0 $x1) (Member $x1 typhoon))    ;; n 1 docs 1  e.g. tierB-001697
 
@@ -1374,9 +1541,10 @@
 (And (Member $e0 come_back) (Agent $e0 $x1) (Member $x1 dad))    ;; n 1 docs 1  e.g. tierB-000575
 (And (Member $e0 come_back) (Agent $e0 $x1) (Member $x1 mom))    ;; n 1 docs 1  e.g. tierB-000575
 
-;; ---- slot compose.Patient  [event center; head role]  n 3  docs<= 3  distinct 2  eventive 0
+;; ---- slot compose.Patient  [event center; head role]  n 3  docs<= 4  distinct 3  eventive 0
 (And (Member $e0 compose) (Patient $e0 $x1) (Member $x1 song))    ;; n 2 docs 2  e.g. tierC-000131 tierC-000132
-(And (Member $e0 compose) (Patient $e0 $x1) (Member $x1 great))    ;; n 1 docs 1  e.g. tierB-001575
+(And (Member $e0 compose) (Patient $e0 $x1) (Member $x1 great))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001575
+(And (Member $e0 compose) (Patient $e0 $x1) (Member $x1 symphony))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001575
 
 ;; ---- slot conduct.Agent  [event center; head role]  n 3  docs<= 3  distinct 2  eventive 0
 (And (Member $e0 conduct) (Agent $e0 carl_fenton))    ;; n 2 docs 2  e.g. tierC-000341 tierC-000342
@@ -1387,7 +1555,7 @@
 (And (Member $e0 conduct) (Theme $e0 surveillance))    ;; n 1 docs 1  e.g. tierB-000177
 
 ;; ---- slot cover.Instrument  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
-(And (Member $e0 cover) (Instrument $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001541
+(And (Member $e0 cover) (Instrument $e0 $x1) (Member $x1 paper_decoration))    ;; n 1 docs 1  e.g. tierB-001541
 (And (Member $e0 cover) (Instrument $e0 snow))    ;; n 1 docs 1  e.g. tierB-001166
 (And (Member $e0 cover) (Instrument $e0 weed))    ;; n 1 docs 1  e.g. tierB-000809
 
@@ -1397,16 +1565,17 @@
 (And (Member $e0 cover) (Patient $e0 $x1) (Member $x1 top))    ;; n 1 docs 1  e.g. tierB-001166
 
 ;; ---- slot define.Theme  [event center; head role]  n 3  docs<= 3  distinct 2  eventive 0
-(And (Member $e0 define) (Theme $e0 $x1))    ;; n 2 docs 2  e.g. tierC-000261 tierC-000262
+(And (Member $e0 define) (Theme $e0 $x1) (Member $x1 sequence))    ;; n 2 docs 2  e.g. tierC-000261 tierC-000262
 (And (Member $e0 define) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001149
 
 ;; ---- slot die.Location  [event center; head role]  n 3  docs<= 3  distinct 2  eventive 0
 (And (Member $e0 die) (Location $e0 stockholm))    ;; n 2 docs 2  e.g. tierC-000199 tierC-000200
 (And (Member $e0 die) (Location $e0 $x1) (Member $x1 fire))    ;; n 1 docs 1  e.g. tierB-000838
 
-;; ---- slot drink.Patient  [event center; head role]  n 3  docs<= 2  distinct 2  eventive 0
+;; ---- slot drink.Patient  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 drink) (Patient $e0 tea))    ;; n 2 docs 1  e.g. tierB-000209
-(And (Member $e0 drink) (Patient $e0 $x1) (Member $x1 good))    ;; n 1 docs 1  e.g. tierB-000993
+(And (Member $e0 drink) (Patient $e0 $x1) (Member $x1 good))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000993
+(And (Member $e0 drink) (Patient $e0 $x1) (Member $x1 water))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000993
 
 ;; ---- slot drive.Agent  [event center; head role]  n 3  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 drive) (Agent $e0 $x1) (Member $x1 bus))    ;; n 2 docs 1  e.g. tierB-001430
@@ -1419,15 +1588,16 @@
 (And (Member $e0 encourage) (Theme $e0 maurice))    ;; n 3 docs 2  e.g. tierC-000107 tierC-000108
 
 ;; ---- slot endorse.Theme  [event center; head role]  n 3  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 endorse) (Theme $e0 $x1))    ;; n 3 docs 2  e.g. tierC-000159 tierC-000355
+(And (Member $e0 endorse) (Theme $e0 $x1) (Member $x1 view))    ;; n 3 docs 2  e.g. tierC-000159 tierC-000355
 
 ;; ---- slot fall.Source  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 fall) (Source $e0 $x1) (Member $x1 shelf))    ;; n 1 docs 1  e.g. tierB-001364
 (And (Member $e0 fall) (Source $e0 $x1) (Member $x1 sky))    ;; n 1 docs 1  e.g. tierB-000456
 (And (Member $e0 fall) (Source $e0 $x1) (Member $x1 tree))    ;; n 1 docs 1  e.g. tierB-000779
 
-;; ---- slot fight.Agent  [event center; head role]  n 3  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 fight) (Agent $e0 $x1))    ;; n 3 docs 2  e.g. tierB-001379 tierB-001629
+;; ---- slot fight.Agent  [event center; head role]  n 3  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 fight) (Agent $e0 $x1) (Member $x1 kabye_person))    ;; n 2 docs 1  e.g. tierB-001629
+(And (Member $e0 fight) (Agent $e0 $x1) (Member $x1 union_boss))    ;; n 1 docs 1  e.g. tierB-001379
 
 ;; ---- slot fight.Theme  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 fight) (Theme $e0 $x1) (Member $x1 freeze))    ;; n 1 docs 1  e.g. tierB-001379
@@ -1447,33 +1617,40 @@
 (And (Member $e0 go) (Manner $e0 late))    ;; n 2 docs 1  e.g. tierB-000012
 (And (Member $e0 go) (Manner $e0 immediately))    ;; n 1 docs 1  e.g. tierB-001496
 
-;; ---- slot grow.Patient  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
+;; ---- slot grow.Patient  [event center; head role]  n 3  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 grow) (Patient $e0 $x1) (Member $x1 beard))    ;; n 1 docs 1  e.g. tierB-001512
-(And (Member $e0 grow) (Patient $e0 $x1) (Member $x1 faint))    ;; n 1 docs 1  e.g. tierB-001384
 (And (Member $e0 grow) (Patient $e0 kalman))    ;; n 1 docs 1  e.g. tierB-000228
+(And (Member $e0 grow) (Patient $e0 $x1) (Member $x1 faint))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001384
+(And (Member $e0 grow) (Patient $e0 $x1) (Member $x1 sound))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001384
 
 ;; ---- slot have.In  [event center; head oblique]  n 3  docs<= 3  distinct 2  eventive 0
 (And (Member $e0 have) (In $e0 fluid_mechanics))    ;; n 2 docs 2  e.g. tierC-000153 tierC-000154
 (And (Member $e0 have) (In $e0 poetry))    ;; n 1 docs 1  e.g. tierB-001804
 
-;; ---- slot hold.Patient  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
-(And (Member $e0 hold) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000284
-(And (Member $e0 hold) (Patient $e0 $x1) (Member $x1 ceremony))    ;; n 1 docs 1  e.g. tierC-000283
+;; ---- slot hold.Patient  [event center; head role]  n 3  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 hold) (Patient $e0 $x1) (Member $x1 meeting))    ;; n 1 docs 1  e.g. tierB-000378
+(And (Member $e0 hold) (Patient $e0 $x1) (Member $x1 prayer))    ;; n 1 docs 1  e.g. tierC-000284
+(And (Member $e0 hold) (Patient $e0 $x1) (Member $x1 ceremony))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000283
+(And (Member $e0 hold) (Patient $e0 $x1) (Member $x1 mass))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000283
 
-;; ---- slot lead.Theme  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
-(And (Member $e0 lead) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001086
-(And (Member $e0 lead) (Theme $e0 $x1) (Member $x1 big))    ;; n 1 docs 1  e.g. tierC-000019
+;; ---- slot lead.Theme  [event center; head role]  n 3  docs<= 4  distinct 4  eventive 0
+(And (Member $e0 lead) (Theme $e0 $x1) (Member $x1 sheep))    ;; n 1 docs 1  e.g. tierB-001086
 (And (Member $e0 lead) (Theme $e0 $x1) (Member $x1 squad))    ;; n 1 docs 1  e.g. tierB-001782
+(And (Member $e0 lead) (Theme $e0 $x1) (Member $x1 big))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000019
+(And (Member $e0 lead) (Theme $e0 $x1) (Member $x1 cat_fight))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000019
 
-;; ---- slot learn.Theme  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
+;; ---- slot learn.Theme  [event center; head role]  n 3  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 learn) (Theme $e0 berber))    ;; n 1 docs 1  e.g. tierB-000229
-(And (Member $e0 learn) (Theme $e0 $x1) (Member $x1 foreign))    ;; n 1 docs 1  e.g. tierB-000608
 (And (Member $e0 learn) (Theme $e0 vocabulary))    ;; n 1 docs 1  e.g. tierB-000282
+(And (Member $e0 learn) (Theme $e0 $x1) (Member $x1 foreign))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000608
+(And (Member $e0 learn) (Theme $e0 $x1) (Member $x1 language))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000608
 
-;; ---- slot leave.Patient  [event center; head role]  n 3  docs<= 3  distinct 2  eventive 0
-(And (Member $e0 leave) (Patient $e0 $x1) (Member $x1 door))    ;; n 2 docs 2  e.g. tierB-000425 tierB-000747
-(And (Member $e0 leave) (Patient $e0 $x1) (Member $x1 on))    ;; n 1 docs 1  e.g. tierB-000004
+;; ---- slot leave.Patient  [event center; head role]  n 3  docs<= 6  distinct 5  eventive 0
+(And (Member $e0 leave) (Patient $e0 $x1) (Member $x1 door))    ;; n 2 (mass 1) docs 2  e.g. tierB-000425 tierB-000747
+(And (Member $e0 leave) (Patient $e0 $x1) (Member $x1 light))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000004
+(And (Member $e0 leave) (Patient $e0 $x1) (Member $x1 on))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000004
+(And (Member $e0 leave) (Patient $e0 $x1) (Member $x1 open))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000425
+(And (Member $e0 leave) (Patient $e0 $x1) (Member $x1 unlocked))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000747
 
 ;; ---- slot leave.Theme  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 leave) (Theme $e0 $x1) (Member $x1 car))    ;; n 1 docs 1  e.g. tierB-000704
@@ -1501,15 +1678,11 @@
 (And (Member $e0 play) (Location $e0 havana))    ;; n 2 docs 2  e.g. tierC-000229 tierC-000230
 (And (Member $e0 play) (Location $e0 $x1) (Member $x1 floor))    ;; n 1 docs 1  e.g. tierB-001125
 
-;; ---- slot pull.Theme  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
-(And (Member $e0 pull) (Theme $e0 boris))    ;; n 1 docs 1  e.g. tierB-000470
-(And (Member $e0 pull) (Theme $e0 $x1) (Member $x1 line))    ;; n 1 docs 1  e.g. tierB-001120
-(And (Member $e0 pull) (Theme $e0 santiago))    ;; n 1 docs 1  e.g. tierB-001386
-
-;; ---- slot read.Agent  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
-(And (Member $e0 read) (Agent $e0 $x1) (Member $x1 girl))    ;; n 1 docs 1  e.g. tierB-000783
+;; ---- slot read.Agent  [event center; head role]  n 3  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 read) (Agent $e0 katya))    ;; n 1 docs 1  e.g. tierB-001637
 (And (Member $e0 read) (Agent $e0 thomas))    ;; n 1 docs 1  e.g. tierB-001221
+(And (Member $e0 read) (Agent $e0 $x1) (Member $x1 girl))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000783
+(And (Member $e0 read) (Agent $e0 $x1) (Member $x1 little))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000783
 
 ;; ---- slot read.Theme  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 read) (Theme $e0 $x1) (Member $x1 comic))    ;; n 1 docs 1  e.g. tierB-001221
@@ -1533,10 +1706,11 @@
 (And (Member $e0 rule) (Agent $e0 tipu_sultan))    ;; n 2 docs 2  e.g. tierC-000095 tierC-000096
 (And (Member $e0 rule) (Agent $e0 spain))    ;; n 1 docs 1  e.g. tierB-000311
 
-;; ---- slot rule.Theme  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
+;; ---- slot rule.Theme  [event center; head role]  n 3  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 rule) (Theme $e0 cuba))    ;; n 1 docs 1  e.g. tierB-000311
-(And (Member $e0 rule) (Theme $e0 $x1) (Member $x1 house))    ;; n 1 docs 1  e.g. tierC-000095
 (And (Member $e0 rule) (Theme $e0 $x1) (Member $x1 muslim_house))    ;; n 1 docs 1  e.g. tierC-000096
+(And (Member $e0 rule) (Theme $e0 $x1) (Member $x1 house))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000095
+(And (Member $e0 rule) (Theme $e0 $x1) (Member $x1 muslim))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000095
 
 ;; ---- slot season.Instrument  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 season) (Instrument $e0 $x1) (Member $x1 horse_radish))    ;; n 1 docs 1  e.g. tierB-000733
@@ -1544,7 +1718,7 @@
 (And (Member $e0 season) (Instrument $e0 ramson))    ;; n 1 docs 1  e.g. tierB-001692
 
 ;; ---- slot see.Stimulus  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
-(And (Member $e0 see) (Stimulus $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000980
+(And (Member $e0 see) (Stimulus $e0 $x1) (Member $x1 animal))    ;; n 1 docs 1  e.g. tierB-000980
 (And (Member $e0 see) (Stimulus $e0 $x1) (Member $x1 full_moon))    ;; n 1 docs 1  e.g. tierB-000686
 (And (Member $e0 see) (Stimulus $e0 jessica))    ;; n 1 docs 1  e.g. tierB-000115
 
@@ -1557,9 +1731,8 @@
 (And (Member $e0 sleep) (Agent $e0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierC-000041 tierC-000042
 (And (Member $e0 sleep) (Agent $e0 $x1) (Member $x1 family))    ;; n 1 docs 1  e.g. tierB-001302
 
-;; ---- slot solve.Patient  [event center; head role]  n 3  docs<= 3  distinct 2  eventive 0
-(And (Member $e0 solve) (Patient $e0 $x1) (Member $x1 problem))    ;; n 2 docs 2  e.g. tierB-000935 tierB-001202
-(And (Member $e0 solve) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001970
+;; ---- slot solve.Patient  [event center; head role]  n 3  docs<= 3  distinct 1  eventive 0
+(And (Member $e0 solve) (Patient $e0 $x1) (Member $x1 problem))    ;; n 3 docs 3  e.g. tierB-000935 tierB-001202
 
 ;; ---- slot spend.Theme  [event center; head role]  n 3  docs<= 3  distinct 2  eventive 0
 (And (Member $e0 spend) (Theme $e0 $x1) (Member $x1 exile))    ;; n 2 docs 2  e.g. tierC-000047 tierC-000048
@@ -1603,10 +1776,11 @@
 (And (Member $e0 take_over) (Agent $e0 watts))    ;; n 2 docs 2  e.g. tierC-000109 tierC-000110
 (And (Member $e0 take_over) (Agent $e0 $x1) (Member $x1 ivy))    ;; n 1 docs 1  e.g. tierB-001234
 
-;; ---- slot talk.Recipient  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
-(And (Member $e0 talk) (Recipient $e0 $x1) (Member $x1 audience))    ;; n 1 docs 1  e.g. tierB-001666
+;; ---- slot talk.Recipient  [event center; head role]  n 3  docs<= 4  distinct 4  eventive 0
 (And (Member $e0 talk) (Recipient $e0 loren))    ;; n 1 docs 1  e.g. tierC-000209
 (And (Member $e0 talk) (Recipient $e0 $x1) (Member $x1 teacher))    ;; n 1 docs 1  e.g. tierB-001219
+(And (Member $e0 talk) (Recipient $e0 $x1) (Member $x1 audience))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001666
+(And (Member $e0 talk) (Recipient $e0 $x1) (Member $x1 large))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001666
 
 ;; ---- slot turn.Goal  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 turn) (Goal $e0 $x1) (Member $x1 quagmire))    ;; n 1 docs 1  e.g. tierB-001579
@@ -1624,13 +1798,14 @@
 (And (Member $e0 wear) (Theme $e0 $x1) (Member $x1 mask))    ;; n 1 docs 1  e.g. tierB-001801
 
 ;; ---- slot welcome.Agent  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
-(And (Member $e0 welcome) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000088
 (And (Member $e0 welcome) (Agent $e0 $x1) (Member $x1 host))    ;; n 1 docs 1  e.g. tierB-001868
 (And (Member $e0 welcome) (Agent $e0 $x1) (Member $x1 industrialization))    ;; n 1 docs 1  e.g. tierC-000087
+(And (Member $e0 welcome) (Agent $e0 $x1) (Member $x1 whig))    ;; n 1 docs 1  e.g. tierC-000088
 
-;; ---- slot welcome.Theme  [event center; head role]  n 3  docs<= 3  distinct 2  eventive 0
-(And (Member $e0 welcome) (Theme $e0 $x1))    ;; n 2 docs 2  e.g. tierB-001868 tierC-000087
+;; ---- slot welcome.Theme  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 welcome) (Theme $e0 $x1) (Member $x1 guest))    ;; n 1 docs 1  e.g. tierB-001868
 (And (Member $e0 welcome) (Theme $e0 industrialization))    ;; n 1 docs 1  e.g. tierC-000088
+(And (Member $e0 welcome) (Theme $e0 $x1) (Member $x1 whig))    ;; n 1 docs 1  e.g. tierC-000087
 
 ;; ---- slot work.Experiencer  [event center; head role]  n 3  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 work) (Experiencer $e0 $x1) (Member $x1 mouse))    ;; n 1 docs 1  e.g. tierB-001515
@@ -1641,6 +1816,23 @@
 (And (Member $e0 work) (Manner $e0 fine))    ;; n 1 docs 1  e.g. tierB-000144
 (And (Member $e0 work) (Manner $e0 late))    ;; n 1 docs 1  e.g. tierB-000212
 (And (Member $e0 work) (Manner $e0 perfectly))    ;; n 1 docs 1  e.g. tierB-000419
+
+;; ---- slot pull.Theme  [event center; head role]  n 3  docs<= 5  distinct 5  eventive 0
+(And (Member $e0 pull) (Theme $e0 boris))    ;; n 1 docs 1  e.g. tierB-000470
+(And (Member $e0 pull) (Theme $e0 santiago))    ;; n 1 docs 1  e.g. tierB-001386
+(And (Member $e0 pull) (Theme $e0 $x1) (Member $x1 freight_car))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001120
+(And (Member $e0 pull) (Theme $e0 $x1) (Member $x1 line))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001120
+(And (Member $e0 pull) (Theme $e0 $x1) (Member $x1 long))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001120
+
+;; ---- slot diverse.Experiencer  [event center; head role]  n 2  docs<= 6  distinct 3  eventive 0
+(And (Member $e0 diverse) (Experiencer $e0 $x1) (Member $x1 diverse))    ;; n 2 (mass 0.667) docs 2  e.g. tierC-000287 tierC-000288
+(And (Member $e0 diverse) (Experiencer $e0 $x1) (Member $x1 established))    ;; n 2 (mass 0.667) docs 2  e.g. tierC-000287 tierC-000288
+(And (Member $e0 diverse) (Experiencer $e0 $x1) (Member $x1 genre))    ;; n 2 (mass 0.667) docs 2  e.g. tierC-000287 tierC-000288
+
+;; ---- slot established.Experiencer  [event center; head role]  n 2  docs<= 6  distinct 3  eventive 0
+(And (Member $e0 established) (Experiencer $e0 $x1) (Member $x1 diverse))    ;; n 2 (mass 0.667) docs 2  e.g. tierC-000287 tierC-000288
+(And (Member $e0 established) (Experiencer $e0 $x1) (Member $x1 established))    ;; n 2 (mass 0.667) docs 2  e.g. tierC-000287 tierC-000288
+(And (Member $e0 established) (Experiencer $e0 $x1) (Member $x1 genre))    ;; n 2 (mass 0.667) docs 2  e.g. tierC-000287 tierC-000288
 
 ;; ---- slot add.Goal  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 add) (Goal $e0 $x1) (Member $x1 sauce))    ;; n 1 docs 1  e.g. tierB-000462
@@ -1653,9 +1845,10 @@
 ;; ---- slot appear.As  [event center; head oblique]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 appear) (As $e0 peter))    ;; n 2 docs 2  e.g. tierC-000259 tierC-000260
 
-;; ---- slot approve.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot approve.Agent  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 approve) (Agent $e0 american_senate))    ;; n 1 docs 1  e.g. tierB-000128
-(And (Member $e0 approve) (Agent $e0 $x1) (Member $x1 majority))    ;; n 1 docs 1  e.g. tierB-000974
+(And (Member $e0 approve) (Agent $e0 $x1) (Member $x1 majority))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000974
+(And (Member $e0 approve) (Agent $e0 $x1) (Member $x1 overwhelming))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000974
 
 ;; ---- slot arrange.Agent  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 arrange) (Agent $e0 nick_de_caro))    ;; n 2 docs 2  e.g. tierC-000349 tierC-000350
@@ -1695,24 +1888,26 @@
 (And (Member $e0 attract) (Source $e0 mainstream_media))    ;; n 1 docs 1  e.g. tierC-000177
 (And (Member $e0 attract) (Source $e0 social_media))    ;; n 1 docs 1  e.g. tierC-000177
 
-;; ---- slot attract.Theme  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 attract) (Theme $e0 $x1) (Member $x1 attention))    ;; n 2 docs 2  e.g. tierC-000177 tierC-000178
+;; ---- slot attract.Theme  [event center; head role]  n 2  docs<= 4  distinct 2  eventive 0
+(And (Member $e0 attract) (Theme $e0 $x1) (Member $x1 attention))    ;; n 2 (mass 1) docs 2  e.g. tierC-000177 tierC-000178
+(And (Member $e0 attract) (Theme $e0 $x1) (Member $x1 widespread))    ;; n 2 (mass 1) docs 2  e.g. tierC-000177 tierC-000178
 
 ;; ---- slot avoid.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 avoid) (Agent $e0 cyprus))    ;; n 1 docs 1  e.g. tierB-000171
 (And (Member $e0 avoid) (Agent $e0 $x1) (Member $x1 father))    ;; n 1 docs 1  e.g. tierC-000124
 
 ;; ---- slot ban.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 ban) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000830
+(And (Member $e0 ban) (Agent $e0 $x1) (Member $x1 israeli_authority))    ;; n 1 docs 1  e.g. tierB-000830
 (And (Member $e0 ban) (Agent $e0 jerry_rawlings))    ;; n 1 docs 1  e.g. tierB-000309
 
 ;; ---- slot ban.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 1
 (And (Member $e0 ban) (Theme $e0 political_party))    ;; n 1 docs 1  e.g. tierB-000309
 (And (Member $e0 ban) (Theme $e0 $e1) (Member $e1 travel))    ;; n 1 docs 1  e.g. tierB-000830
 
-;; ---- slot base.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 base) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001928
-(And (Member $e0 base) (Theme $e0 $x1) (Member $x1 game))    ;; n 1 docs 1  e.g. tierB-001610
+;; ---- slot base.Theme  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 base) (Theme $e0 $x1) (Member $x1 law))    ;; n 1 docs 1  e.g. tierB-001928
+(And (Member $e0 base) (Theme $e0 $x1) (Member $x1 game))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001610
+(And (Member $e0 base) (Theme $e0 $x1) (Member $x1 whole))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001610
 
 ;; ---- slot beautiful.Time  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 beautiful) (Time $e0 fall))    ;; n 1 docs 1  e.g. tierB-000904
@@ -1724,24 +1919,30 @@
 ;; ---- slot believe.Theme  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 believe) (Theme $e0 <term:And>))    ;; n 2 docs 2  e.g. tierC-000061 tierC-000062
 
-;; ---- slot black.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 black) (Experiencer $e0 $x1) (Member $x1 black))    ;; n 2 docs 2  e.g. tierB-000476 tierB-001882
+;; ---- slot black.Experiencer  [event center; head role]  n 2  docs<= 4  distinct 3  eventive 0
+(And (Member $e0 black) (Experiencer $e0 $x1) (Member $x1 black))    ;; n 2 (mass 1) docs 2  e.g. tierB-000476 tierB-001882
+(And (Member $e0 black) (Experiencer $e0 $x1) (Member $x1 ceiling))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000476
+(And (Member $e0 black) (Experiencer $e0 $x1) (Member $x1 toast))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001882
 
 ;; ---- slot block.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 block) (Agent $e0 $x1) (Member $x1 army))    ;; n 1 docs 1  e.g. tierB-000913
 (And (Member $e0 block) (Agent $e0 trump))    ;; n 1 docs 1  e.g. tierB-000622
 
-;; ---- slot bring.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 bring) (Agent $e0 $x1) (Member $x1 enlarged))    ;; n 1 docs 1  e.g. tierB-001013
-(And (Member $e0 bring) (Agent $e0 $x1) (Member $x1 indonesian))    ;; n 1 docs 1  e.g. tierC-000351
+;; ---- slot bring.Agent  [event center; head role]  n 2  docs<= 4  distinct 4  eventive 0
+(And (Member $e0 bring) (Agent $e0 $x1) (Member $x1 enlarged))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001013
+(And (Member $e0 bring) (Agent $e0 $x1) (Member $x1 immigrant))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000351
+(And (Member $e0 bring) (Agent $e0 $x1) (Member $x1 indonesian))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000351
+(And (Member $e0 bring) (Agent $e0 $x1) (Member $x1 social_horizon))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001013
 
-;; ---- slot broadcast.Time  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot broadcast.Time  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 broadcast) (Time $e0 <term:Hour>))    ;; n 1 docs 1  e.g. tierB-001007
-(And (Member $e0 broadcast) (Time $e0 $x1) (Member $x1 hour))    ;; n 1 docs 1  e.g. tierB-000903
+(And (Member $e0 broadcast) (Time $e0 $x1) (Member $x1 hour))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000903
+(And (Member $e0 broadcast) (Time $e0 $x1) (Member $x1 late))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000903
 
-;; ---- slot burn.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 burn) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000196
-(And (Member $e0 burn) (Patient $e0 $x1) (Member $x1 black))    ;; n 1 docs 1  e.g. tierB-001882
+;; ---- slot burn.Patient  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 burn) (Patient $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000196
+(And (Member $e0 burn) (Patient $e0 $x1) (Member $x1 black))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001882
+(And (Member $e0 burn) (Patient $e0 $x1) (Member $x1 toast))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001882
 
 ;; ---- slot burst.Instrument  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 burst) (Instrument $e0 corn))    ;; n 1 docs 1  e.g. tierB-001765
@@ -1763,9 +1964,10 @@
 (And (Member $e0 catch) (Theme $e0 $x1) (Member $x1 scent))    ;; n 1 docs 1  e.g. tierB-001900
 (And (Member $e0 catch) (Theme $e0 $x1) (Member $x1 wild_boar))    ;; n 1 docs 1  e.g. tierB-000222
 
-;; ---- slot cause.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 1
+;; ---- slot cause.Theme  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 1
 (And (Member $e0 cause) (Theme $e0 $e1) (Member $e1 accrete))    ;; n 1 docs 1  e.g. tierB-001283
-(And (Member $e0 cause) (Theme $e0 $x1) (Member $x1 huge))    ;; n 1 docs 1  e.g. tierB-001875
+(And (Member $e0 cause) (Theme $e0 $x1) (Member $x1 huge))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001875
+(And (Member $e0 cause) (Theme $e0 $x1) (Member $x1 stir))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001875
 
 ;; ---- slot cease.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 1
 (And (Member $e0 cease) (Theme $e0 <term:Member>))    ;; n 1 docs 1  e.g. tierC-000002
@@ -1796,16 +1998,17 @@
 (And (Member $e0 clean) (Patient $e0 $x1) (Member $x1 floor))    ;; n 1 docs 1  e.g. tierB-001231
 
 ;; ---- slot climb.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 climb) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001735
+(And (Member $e0 climb) (Agent $e0 $x1) (Member $x1 dung_beetle))    ;; n 1 docs 1  e.g. tierB-001735
 (And (Member $e0 climb) (Agent $e0 vladimir))    ;; n 1 docs 1  e.g. tierB-000344
 
 ;; ---- slot collaborate.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 collaborate) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000166
+(And (Member $e0 collaborate) (Agent $e0 $x1) (Member $x1 nazi))    ;; n 1 docs 1  e.g. tierB-000166
 (And (Member $e0 collaborate) (Agent $e0 yair_stern))    ;; n 1 docs 1  e.g. tierB-000166
 
-;; ---- slot collapse.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot collapse.Patient  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 collapse) (Patient $e0 $x1) (Member $x1 housing_market))    ;; n 1 docs 1  e.g. tierB-001567
-(And (Member $e0 collapse) (Patient $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-000082
+(And (Member $e0 collapse) (Patient $e0 $x1) (Member $x1 thing))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000082
+(And (Member $e0 collapse) (Patient $e0 $x1) (Member $x1 whole))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000082
 
 ;; ---- slot combine.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 combine) (Agent $e0 artistic_beauty))    ;; n 1 docs 1  e.g. tierB-000371
@@ -1823,7 +2026,7 @@
 (And (Member $e0 come_back) (Goal $e0 home))    ;; n 2 docs 1  e.g. tierB-000575
 
 ;; ---- slot commit.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 commit) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001204
+(And (Member $e0 commit) (Patient $e0 $x1) (Member $x1 atrocity))    ;; n 1 docs 1  e.g. tierB-001204
 (And (Member $e0 commit) (Patient $e0 war_crime))    ;; n 1 docs 1  e.g. tierB-001858
 
 ;; ---- slot common.Location  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
@@ -1831,8 +2034,8 @@
 (And (Member $e0 common) (Location $e0 $x1) (Member $x1 northern))    ;; n 1 docs 1  e.g. tierC-000136
 
 ;; ---- slot connect.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 connect) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000063
 (And (Member $e0 connect) (Agent $e0 tomei_expressway))    ;; n 1 docs 1  e.g. tierB-001071
+(And (Member $e0 connect) (Agent $e0 $x1) (Member $x1 underground_channel))    ;; n 1 docs 1  e.g. tierB-000063
 
 ;; ---- slot connect.Goal  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 connect) (Goal $e0 giresun))    ;; n 2 docs 2  e.g. tierC-000037 tierC-000038
@@ -1847,9 +2050,11 @@
 (And (Member $e0 continue) (Theme $e0 $e1) (Member $e1 climb))    ;; n 1 docs 1  e.g. tierB-000930
 (And (Member $e0 continue) (Theme $e0 $e1) (Member $e1 shine))    ;; n 1 docs 1  e.g. tierB-001977
 
-;; ---- slot cost.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 cost) (Agent $e0 $x1) (Member $x1 careless))    ;; n 1 docs 1  e.g. tierB-001452
-(And (Member $e0 cost) (Agent $e0 $x1) (Member $x1 new))    ;; n 1 docs 1  e.g. tierB-001460
+;; ---- slot cost.Agent  [event center; head role]  n 2  docs<= 4  distinct 4  eventive 0
+(And (Member $e0 cost) (Agent $e0 $x1) (Member $x1 careless))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001452
+(And (Member $e0 cost) (Agent $e0 $x1) (Member $x1 mistake))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001452
+(And (Member $e0 cost) (Agent $e0 $x1) (Member $x1 new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001460
+(And (Member $e0 cost) (Agent $e0 $x1) (Member $x1 tablet))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001460
 
 ;; ---- slot counteract.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 counteract) (Agent $e0 dream))    ;; n 1 docs 1  e.g. tierB-000516
@@ -1866,35 +2071,38 @@
 (And (Member $e0 curse) (Theme $e0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierC-000123 tierC-000124
 
 ;; ---- slot deal_with.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 deal_with) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000398
 (And (Member $e0 deal_with) (Theme $e0 complaint))    ;; n 1 docs 1  e.g. tierB-000555
+(And (Member $e0 deal_with) (Theme $e0 $x1) (Member $x1 problem))    ;; n 1 docs 1  e.g. tierB-000398
 
-;; ---- slot define.In  [event center; head oblique]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 define) (In $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000262
-(And (Member $e0 define) (In $e0 $x1) (Member $x1 random))    ;; n 1 docs 1  e.g. tierC-000261
+;; ---- slot define.In  [event center; head oblique]  n 2  docs<= 3  distinct 2  eventive 0
+(And (Member $e0 define) (In $e0 $x1) (Member $x1 way))    ;; n 2 (mass 1.5) docs 2  e.g. tierC-000261 tierC-000262
+(And (Member $e0 define) (In $e0 $x1) (Member $x1 random))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000261
 
 ;; ---- slot depart.Time  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 depart) (Time $e0 <term:Hour>))    ;; n 1 docs 1  e.g. tierB-001927
 (And (Member $e0 depart) (Time $e0 <term:Minute>))    ;; n 1 docs 1  e.g. tierB-001927
 
-;; ---- slot deserve.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 deserve) (Agent $e0 $x1) (Member $x1 good))    ;; n 1 docs 1  e.g. tierB-001294
+;; ---- slot deserve.Agent  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 deserve) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000628
+(And (Member $e0 deserve) (Agent $e0 $x1) (Member $x1 good))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001294
+(And (Member $e0 deserve) (Agent $e0 $x1) (Member $x1 question))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001294
 
-;; ---- slot deserve.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 deserve) (Theme $e0 $x1) (Member $x1 good))    ;; n 1 docs 1  e.g. tierB-001294
+;; ---- slot deserve.Theme  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 deserve) (Theme $e0 punishment))    ;; n 1 docs 1  e.g. tierB-000628
+(And (Member $e0 deserve) (Theme $e0 $x1) (Member $x1 good))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001294
+(And (Member $e0 deserve) (Theme $e0 $x1) (Member $x1 reply))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001294
 
 ;; ---- slot destroy.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 destroy) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000799
+(And (Member $e0 destroy) (Agent $e0 $x1) (Member $x1 conquistador))    ;; n 1 docs 1  e.g. tierB-000799
 (And (Member $e0 destroy) (Agent $e0 $x1) (Member $x1 fire))    ;; n 1 docs 1  e.g. tierB-001163
 
 ;; ---- slot destroy.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 destroy) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000799
 (And (Member $e0 destroy) (Patient $e0 $x1) (Member $x1 city_centre))    ;; n 1 docs 1  e.g. tierB-001163
+(And (Member $e0 destroy) (Patient $e0 $x1) (Member $x1 mayan_book))    ;; n 1 docs 1  e.g. tierB-000799
 
-;; ---- slot discover.Agent  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 discover) (Agent $e0 $x1))    ;; n 2 docs 2  e.g. tierB-000658 tierB-001251
+;; ---- slot discover.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 discover) (Agent $e0 $x1) (Member $x1 paleontologist))    ;; n 1 docs 1  e.g. tierB-000658
+(And (Member $e0 discover) (Agent $e0 $x1) (Member $x1 scientist))    ;; n 1 docs 1  e.g. tierB-001251
 
 ;; ---- slot display.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 display) (Theme $e0 $x1) (Member $x1 ad))    ;; n 1 docs 1  e.g. tierB-001253
@@ -1903,9 +2111,6 @@
 ;; ---- slot distribute.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 distribute) (Theme $e0 clothing))    ;; n 1 docs 1  e.g. tierB-000485
 (And (Member $e0 distribute) (Theme $e0 food))    ;; n 1 docs 1  e.g. tierB-000485
-
-;; ---- slot diverse.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 diverse) (Experiencer $e0 $x1) (Member $x1 diverse))    ;; n 2 docs 2  e.g. tierC-000287 tierC-000288
 
 ;; ---- slot diverse.Time  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 diverse) (Time $e0 today))    ;; n 2 docs 2  e.g. tierC-000287 tierC-000288
@@ -1925,8 +2130,8 @@
 (And (Member $e0 double) (Beneficiary $e0 nelson))    ;; n 2 docs 2  e.g. tierC-000055 tierC-000056
 
 ;; ---- slot draw.Instrument  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 draw) (Instrument $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001250
 (And (Member $e0 draw) (Instrument $e0 chalk))    ;; n 1 docs 1  e.g. tierB-001245
+(And (Member $e0 draw) (Instrument $e0 $x1) (Member $x1 marker))    ;; n 1 docs 1  e.g. tierB-001250
 
 ;; ---- slot draw.Location  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 draw) (Location $e0 $x1) (Member $x1 page))    ;; n 1 docs 1  e.g. tierB-001250
@@ -1936,16 +2141,17 @@
 (And (Member $e0 draw) (Patient $e0 $x1) (Member $x1 pencil_portrait))    ;; n 2 docs 2  e.g. tierC-000293 tierC-000294
 
 ;; ---- slot dress.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 dress) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001295
+(And (Member $e0 dress) (Patient $e0 $x1) (Member $x1 woman))    ;; n 1 docs 1  e.g. tierB-001295
 (And (Member $e0 dress) (Patient $e0 $x1) (Member $x1 wound))    ;; n 1 docs 1  e.g. tierB-000028
 
 ;; ---- slot drink.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 drink) (Agent $e0 baya))    ;; n 1 docs 1  e.g. tierB-000209
 (And (Member $e0 drink) (Agent $e0 mennad))    ;; n 1 docs 1  e.g. tierB-000209
 
-;; ---- slot due.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 due) (Experiencer $e0 $x1) (Member $x1 due))    ;; n 1 docs 1  e.g. tierB-000315
+;; ---- slot due.Experiencer  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 due) (Experiencer $e0 $x1) (Member $x1 train))    ;; n 1 docs 1  e.g. tierB-000900
+(And (Member $e0 due) (Experiencer $e0 $x1) (Member $x1 due))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000315
+(And (Member $e0 due) (Experiencer $e0 $x1) (Member $x1 plane))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000315
 
 ;; ---- slot due.Time  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 due) (Time $e0 <term:Hour>))    ;; n 2 docs 2  e.g. tierB-000315 tierB-000900
@@ -1962,7 +2168,7 @@
 (And (Member $e0 enter) (Location $e0 $x1) (Member $x1 site))    ;; n 1 docs 1  e.g. tierB-000450
 
 ;; ---- slot escape.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 escape) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000772
+(And (Member $e0 escape) (Agent $e0 $x1) (Member $x1 centipede))    ;; n 1 docs 1  e.g. tierB-000772
 (And (Member $e0 escape) (Agent $e0 ivan))    ;; n 1 docs 1  e.g. tierB-000412
 
 ;; ---- slot establish.Location  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
@@ -1970,11 +2176,8 @@
 (And (Member $e0 establish) (Location $e0 holy_roman_empire))    ;; n 1 docs 1  e.g. tierB-000373
 
 ;; ---- slot establish.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 establish) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000034
 (And (Member $e0 establish) (Patient $e0 principality_of_liechtenstein))    ;; n 1 docs 1  e.g. tierB-000373
-
-;; ---- slot established.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 established) (Experiencer $e0 $x1) (Member $x1 diverse))    ;; n 2 docs 2  e.g. tierC-000287 tierC-000288
+(And (Member $e0 establish) (Patient $e0 $x1) (Member $x1 topic))    ;; n 1 docs 1  e.g. tierB-000034
 
 ;; ---- slot established.Time  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 established) (Time $e0 today))    ;; n 2 docs 2  e.g. tierC-000287 tierC-000288
@@ -1984,7 +2187,7 @@
 (And (Member $e0 event) (Time $e0 today))    ;; n 1 docs 1  e.g. tierB-000808
 
 ;; ---- slot examine.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 examine) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001122
+(And (Member $e0 examine) (Agent $e0 $x1) (Member $x1 doctor))    ;; n 1 docs 1  e.g. tierB-001122
 (And (Member $e0 examine) (Agent $e0 $x1) (Member $x1 gazelle))    ;; n 1 docs 1  e.g. tierB-001836
 
 ;; ---- slot examine.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
@@ -2016,13 +2219,15 @@
 (And (Member $e0 famous) (Experiencer $e0 chinese))    ;; n 1 docs 1  e.g. tierB-001627
 (And (Member $e0 famous) (Experiencer $e0 lake_towada))    ;; n 1 docs 1  e.g. tierB-001898
 
-;; ---- slot famous.For  [event center; head oblique]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot famous.For  [event center; head oblique]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 famous) (For $e0 $x1) (Member $x1 beauty))    ;; n 1 docs 1  e.g. tierB-001898
-(And (Member $e0 famous) (For $e0 $x1) (Member $x1 elegant))    ;; n 1 docs 1  e.g. tierB-001627
+(And (Member $e0 famous) (For $e0 $x1) (Member $x1 elegant))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001627
+(And (Member $e0 famous) (For $e0 $x1) (Member $x1 logic))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001627
 
-;; ---- slot feel.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 feel) (Experiencer $e0 $x1) (Member $x1 cold))    ;; n 1 docs 1  e.g. tierB-000261
+;; ---- slot feel.Experiencer  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 feel) (Experiencer $e0 gunter))    ;; n 1 docs 1  e.g. tierB-000534
+(And (Member $e0 feel) (Experiencer $e0 $x1) (Member $x1 cold))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000261
+(And (Member $e0 feel) (Experiencer $e0 $x1) (Member $x1 wall))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000261
 
 ;; ---- slot fight.Manner  [event center; head role]  n 2  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 fight) (Manner $e0 fiercely))    ;; n 2 docs 1  e.g. tierB-001629
@@ -2043,31 +2248,34 @@
 (And (Member $e0 flight) (Goal $e0 california))    ;; n 1 docs 1  e.g. tierB-000717
 (And (Member $e0 flight) (Goal $e0 stockholm))    ;; n 1 docs 1  e.g. tierB-000308
 
-;; ---- slot fly.Location  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot fly.Location  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 fly) (Location $e0 $x1) (Member $x1 mountain))    ;; n 1 docs 1  e.g. tierB-000045
-(And (Member $e0 fly) (Location $e0 $x1) (Member $x1 sunny))    ;; n 1 docs 1  e.g. tierB-000121
+(And (Member $e0 fly) (Location $e0 $x1) (Member $x1 sunny))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000121
+(And (Member $e0 fly) (Location $e0 $x1) (Member $x1 valley))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000121
 
-;; ---- slot gather.Agent  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 gather) (Agent $e0 $x1))    ;; n 2 docs 2  e.g. tierB-000258 tierB-001911
+;; ---- slot gather.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 gather) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000258
+(And (Member $e0 gather) (Agent $e0 $x1) (Member $x1 shark))    ;; n 1 docs 1  e.g. tierB-001911
 
 ;; ---- slot get.Goal  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 get) (Goal $e0 $x1) (Member $x1 enclosure))    ;; n 1 docs 1  e.g. tierB-001773
 (And (Member $e0 get) (Goal $e0 $x1) (Member $x1 stall))    ;; n 1 docs 1  e.g. tierB-000577
 
 ;; ---- slot give.Recipient  [event center; head role]  n 2  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 give) (Recipient $e0 $x1))    ;; n 2 docs 1  e.g. tierB-001046
+(And (Member $e0 give) (Recipient $e0 $x1) (Member $x1 kid))    ;; n 2 docs 1  e.g. tierB-001046
 
 ;; ---- slot give_up.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 1
 (And (Member $e0 give_up) (Theme $e0 $e1) (Member $e1 smoke))    ;; n 1 docs 1  e.g. tierB-000947
 (And (Member $e0 give_up) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierC-000112
 
-;; ---- slot go.Instrument  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot go.Instrument  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 go) (Instrument $e0 bike))    ;; n 1 docs 1  e.g. tierB-001628
-(And (Member $e0 go) (Instrument $e0 $x1) (Member $x1 huge))    ;; n 1 docs 1  e.g. tierB-000576
+(And (Member $e0 go) (Instrument $e0 $x1) (Member $x1 huge))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000576
+(And (Member $e0 go) (Instrument $e0 $x1) (Member $x1 sport_bag))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000576
 
 ;; ---- slot go_back.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 go_back) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001058
 (And (Member $e0 go_back) (Agent $e0 $x1) (Member $x1 father))    ;; n 1 docs 1  e.g. tierB-001743
+(And (Member $e0 go_back) (Agent $e0 $x1) (Member $x1 soldier))    ;; n 1 docs 1  e.g. tierB-001058
 
 ;; ---- slot go_back.Goal  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 go_back) (Goal $e0 home))    ;; n 1 docs 1  e.g. tierB-001743
@@ -2082,12 +2290,13 @@
 (And (Member $e0 go_into_effect) (Time $e0 <term:Month>))    ;; n 1 docs 1  e.g. tierB-001924
 
 ;; ---- slot govern.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 govern) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000359
+(And (Member $e0 govern) (Agent $e0 $x1) (Member $x1 party))    ;; n 1 docs 1  e.g. tierB-000359
 (And (Member $e0 govern) (Agent $e0 rule))    ;; n 1 docs 1  e.g. tierB-000934
 
-;; ---- slot hang.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 hang) (Experiencer $e0 $x1) (Member $x1 chandelier))    ;; n 1 docs 1  e.g. tierB-001925
+;; ---- slot hang.Experiencer  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 hang) (Experiencer $e0 $x1) (Member $x1 smoke))    ;; n 1 docs 1  e.g. tierB-001303
+(And (Member $e0 hang) (Experiencer $e0 $x1) (Member $x1 chandelier))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001925
+(And (Member $e0 hang) (Experiencer $e0 $x1) (Member $x1 large))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001925
 
 ;; ---- slot hang.Location  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 hang) (Location $e0 $x1) (Member $x1 middle))    ;; n 1 docs 1  e.g. tierB-001925
@@ -2133,7 +2342,7 @@
 (And (Member $e0 hide) (Agent $e0 $x1) (Member $x1 cat))    ;; n 1 docs 1  e.g. tierB-000381
 
 ;; ---- slot hide.Location  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 hide) (Location $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000381
+(And (Member $e0 hide) (Location $e0 $x1) (Member $x1 bush))    ;; n 1 docs 1  e.g. tierB-000381
 (And (Member $e0 hide) (Location $e0 $x1) (Member $x1 table))    ;; n 1 docs 1  e.g. tierB-000502
 
 ;; ---- slot hit.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
@@ -2141,7 +2350,7 @@
 (And (Member $e0 hit) (Agent $e0 $x1) (Member $x1 tranquilliser_dart))    ;; n 1 docs 1  e.g. tierB-001001
 
 ;; ---- slot hit.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 hit) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000506
+(And (Member $e0 hit) (Patient $e0 $x1) (Member $x1 medlar))    ;; n 1 docs 1  e.g. tierB-000506
 (And (Member $e0 hit) (Patient $e0 $x1) (Member $x1 tiger))    ;; n 1 docs 1  e.g. tierB-001001
 
 ;; ---- slot hold.Time  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
@@ -2167,16 +2376,17 @@
 (And (Member $e0 identify) (As $e0 straight))    ;; n 1 docs 1  e.g. tierB-001191
 
 ;; ---- slot implore.Recipient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 implore) (Recipient $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000043
+(And (Member $e0 implore) (Recipient $e0 $x1) (Member $x1 friend))    ;; n 1 docs 1  e.g. tierC-000043
 (And (Member $e0 implore) (Recipient $e0 twilight))    ;; n 1 docs 1  e.g. tierC-000043
 
 ;; ---- slot improve.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 improve) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001816
 (And (Member $e0 improve) (Patient $e0 $x1) (Member $x1 student_teacher_relation))    ;; n 1 docs 1  e.g. tierB-001065
+(And (Member $e0 improve) (Patient $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001816
 
-;; ---- slot influence.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 influence) (Agent $e0 $x1) (Member $x1 indonesian))    ;; n 1 docs 1  e.g. tierC-000351
+;; ---- slot influence.Agent  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 influence) (Agent $e0 $x1) (Member $x1 international_balance_of_political_power))    ;; n 1 docs 1  e.g. tierC-000257
+(And (Member $e0 influence) (Agent $e0 $x1) (Member $x1 immigrant))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000351
+(And (Member $e0 influence) (Agent $e0 $x1) (Member $x1 indonesian))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000351
 
 ;; ---- slot influence.Manner  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 influence) (Manner $e0 directly))    ;; n 2 docs 2  e.g. tierC-000257 tierC-000258
@@ -2186,11 +2396,11 @@
 (And (Member $e0 influence) (Patient $e0 $x1) (Member $x1 religion))    ;; n 1 docs 1  e.g. tierC-000257
 
 ;; ---- slot inherit.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 inherit) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000114
+(And (Member $e0 inherit) (Agent $e0 $x1) (Member $x1 byzantine_tradition))    ;; n 1 docs 1  e.g. tierC-000114
 (And (Member $e0 inherit) (Agent $e0 islam))    ;; n 1 docs 1  e.g. tierC-000113
 
 ;; ---- slot inherit.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 inherit) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000113
+(And (Member $e0 inherit) (Theme $e0 $x1) (Member $x1 byzantine_tradition))    ;; n 1 docs 1  e.g. tierC-000113
 (And (Member $e0 inherit) (Theme $e0 islam))    ;; n 1 docs 1  e.g. tierC-000114
 
 ;; ---- slot injure.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
@@ -2202,10 +2412,6 @@
 
 ;; ---- slot join.Theme  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 join) (Theme $e0 $x1) (Member $x1 group))    ;; n 2 docs 2  e.g. tierC-000109 tierC-000110
-
-;; ---- slot jump.Over  [event center; head oblique]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 jump) (Over $e0 $x1) (Member $x1 brown))    ;; n 1 docs 1  e.g. tierB-000871
-(And (Member $e0 jump) (Over $e0 $x1) (Member $x1 moon))    ;; n 1 docs 1  e.g. tierB-000889
 
 ;; ---- slot keep.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 keep) (Agent $e0 augustus))    ;; n 1 docs 1  e.g. tierB-001809
@@ -2219,15 +2425,15 @@
 (And (Member $e0 kidnap) (Theme $e0 bobby))    ;; n 2 docs 2  e.g. tierC-000269 tierC-000270
 
 ;; ---- slot know.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 know) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000689
+(And (Member $e0 know) (Experiencer $e0 $x1) (Member $x1 guy))    ;; n 1 docs 1  e.g. tierB-000689
 (And (Member $e0 know) (Experiencer $e0 linda))    ;; n 1 docs 1  e.g. tierB-001449
 
 ;; ---- slot know.Stimulus  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 know) (Stimulus $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001449
 (And (Member $e0 know) (Stimulus $e0 $x1) (Member $x1 author))    ;; n 1 docs 1  e.g. tierB-001843
+(And (Member $e0 know) (Stimulus $e0 $x1) (Member $x1 question))    ;; n 1 docs 1  e.g. tierB-001449
 
 ;; ---- slot laugh.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 laugh) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001316
+(And (Member $e0 laugh) (Agent $e0 $x1) (Member $x1 boy))    ;; n 1 docs 1  e.g. tierB-001316
 (And (Member $e0 laugh) (Agent $e0 $x1) (Member $x1 devil))    ;; n 1 docs 1  e.g. tierB-001147
 
 ;; ---- slot leave.Time  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
@@ -2242,12 +2448,13 @@
 (And (Member $e0 light) (Patient $e0 $x1) (Member $x1 room))    ;; n 2 docs 2  e.g. tierB-001642 tierB-001997
 
 ;; ---- slot like.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 like) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001485
 (And (Member $e0 like) (Experiencer $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-000160
+(And (Member $e0 like) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-001485
 
-;; ---- slot lose.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot lose.Theme  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 lose) (Theme $e0 air))    ;; n 1 docs 1  e.g. tierB-000236
-(And (Member $e0 lose) (Theme $e0 $x1) (Member $x1 hard))    ;; n 1 docs 1  e.g. tierB-000795
+(And (Member $e0 lose) (Theme $e0 $x1) (Member $x1 habit))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000795
+(And (Member $e0 lose) (Theme $e0 $x1) (Member $x1 hard))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000795
 
 ;; ---- slot love.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 love) (Experiencer $e0 marie))    ;; n 1 docs 1  e.g. tierB-001815
@@ -2260,15 +2467,17 @@
 ;; ---- slot lure.Agent  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 lure) (Agent $e0 roger))    ;; n 2 docs 2  e.g. tierC-000269 tierC-000270
 
-;; ---- slot lure.Goal  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 lure) (Goal $e0 $x1) (Member $x1 cottage))    ;; n 2 docs 2  e.g. tierC-000269 tierC-000270
+;; ---- slot lure.Goal  [event center; head role]  n 2  docs<= 4  distinct 2  eventive 0
+(And (Member $e0 lure) (Goal $e0 $x1) (Member $x1 cottage))    ;; n 2 (mass 1) docs 2  e.g. tierC-000269 tierC-000270
+(And (Member $e0 lure) (Goal $e0 $x1) (Member $x1 isolated))    ;; n 2 (mass 1) docs 2  e.g. tierC-000269 tierC-000270
 
 ;; ---- slot lure.Theme  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 lure) (Theme $e0 frankie))    ;; n 2 docs 2  e.g. tierC-000269 tierC-000270
 
-;; ---- slot maintain.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 maintain) (Patient $e0 $x1) (Member $x1 cultural_heritage))    ;; n 1 docs 1  e.g. tierB-001864
+;; ---- slot maintain.Patient  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 maintain) (Patient $e0 $x1) (Member $x1 park))    ;; n 1 docs 1  e.g. tierB-001239
+(And (Member $e0 maintain) (Patient $e0 $x1) (Member $x1 cultural_heritage))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001864
+(And (Member $e0 maintain) (Patient $e0 $x1) (Member $x1 settlement))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001864
 
 ;; ---- slot mean.Theme  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 mean) (Theme $e0 $x1) (Member $x1 thing))    ;; n 2 docs 2  e.g. tierB-001149 tierB-001989
@@ -2282,13 +2491,10 @@
 ;; ---- slot move_back.Goal  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 move_back) (Goal $e0 germany))    ;; n 2 docs 2  e.g. tierC-000121 tierC-000122
 
-;; ---- slot need.Stimulus  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 need) (Stimulus $e0 $x1) (Member $x1 action))    ;; n 1 docs 1  e.g. tierB-001141
+;; ---- slot need.Stimulus  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 need) (Stimulus $e0 $x1) (Member $x1 chili))    ;; n 1 docs 1  e.g. tierB-000174
-
-;; ---- slot nominate.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 nominate) (Theme $e0 $x1) (Member $x1 destined))    ;; n 1 docs 1  e.g. tierC-000009
-(And (Member $e0 nominate) (Theme $e0 $x1) (Member $x1 film))    ;; n 1 docs 1  e.g. tierC-000010
+(And (Member $e0 need) (Stimulus $e0 $x1) (Member $x1 action))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001141
+(And (Member $e0 need) (Stimulus $e0 $x1) (Member $x1 appropriate))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001141
 
 ;; ---- slot occur.DueTo  [event center; head oblique]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 occur) (DueTo $e0 autosomal_dominant_disease))    ;; n 2 docs 2  e.g. tierC-000149 tierC-000150
@@ -2299,8 +2505,10 @@
 ;; ---- slot offer.Theme  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 offer) (Theme $e0 <term:And>))    ;; n 2 docs 2  e.g. tierC-000311 tierC-000312
 
-;; ---- slot on.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 on) (Experiencer $e0 $x1) (Member $x1 on))    ;; n 2 docs 2  e.g. tierB-000004 tierB-001051
+;; ---- slot on.Experiencer  [event center; head role]  n 2  docs<= 4  distinct 3  eventive 0
+(And (Member $e0 on) (Experiencer $e0 $x1) (Member $x1 on))    ;; n 2 (mass 1) docs 2  e.g. tierB-000004 tierB-001051
+(And (Member $e0 on) (Experiencer $e0 $x1) (Member $x1 light))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000004
+(And (Member $e0 on) (Experiencer $e0 $x1) (Member $x1 program))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001051
 
 ;; ---- slot open.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 open) (Agent $e0 knowledge))    ;; n 1 docs 1  e.g. tierB-000958
@@ -2310,9 +2518,10 @@
 (And (Member $e0 order) (Agent $e0 $x1) (Member $x1 dictator))    ;; n 1 docs 1  e.g. tierB-001222
 (And (Member $e0 order) (Agent $e0 $x1) (Member $x1 professor))    ;; n 1 docs 1  e.g. tierB-000705
 
-;; ---- slot order.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 order) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000705
-(And (Member $e0 order) (Theme $e0 $x1) (Member $x1 full_scale))    ;; n 1 docs 1  e.g. tierB-001222
+;; ---- slot order.Theme  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 order) (Theme $e0 $x1) (Member $x1 book))    ;; n 1 docs 1  e.g. tierB-000705
+(And (Member $e0 order) (Theme $e0 $x1) (Member $x1 full_scale))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001222
+(And (Member $e0 order) (Theme $e0 $x1) (Member $x1 invasion))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001222
 
 ;; ---- slot organise.Location  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 organise) (Location $e0 $x1) (Member $x1 village))    ;; n 2 docs 2  e.g. tierC-000133 tierC-000134
@@ -2351,40 +2560,43 @@
 ;; ---- slot party.Time  [event center; head role]  n 2  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 party) (Time $e0 night))    ;; n 2 docs 1  e.g. tierB-000012
 
-;; ---- slot pass.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot pass.Agent  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 pass) (Agent $e0 $x1) (Member $x1 federal_parliament))    ;; n 1 docs 1  e.g. tierB-001762
-(And (Member $e0 pass) (Agent $e0 $x1) (Member $x1 school))    ;; n 1 docs 1  e.g. tierB-001008
+(And (Member $e0 pass) (Agent $e0 $x1) (Member $x1 fish))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001008
+(And (Member $e0 pass) (Agent $e0 $x1) (Member $x1 school))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001008
 
-;; ---- slot pass.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 pass) (Theme $e0 $x1) (Member $x1 law))    ;; n 1 docs 1  e.g. tierB-001762
+;; ---- slot pass.Theme  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 pass) (Theme $e0 $x1) (Member $x1 milestone))    ;; n 1 docs 1  e.g. tierB-000649
+(And (Member $e0 pass) (Theme $e0 $x1) (Member $x1 law))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001762
+(And (Member $e0 pass) (Theme $e0 $x1) (Member $x1 new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001762
 
 ;; ---- slot pass_by.Manner  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 pass_by) (Manner $e0 certainly))    ;; n 1 docs 1  e.g. tierB-000094
 (And (Member $e0 pass_by) (Manner $e0 quickly))    ;; n 1 docs 1  e.g. tierB-000094
 
 ;; ---- slot perform.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 perform) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000127
 (And (Member $e0 perform) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierC-000127
+(And (Member $e0 perform) (Agent $e0 $x1) (Member $x1 sister))    ;; n 1 docs 1  e.g. tierC-000127
 
 ;; ---- slot perform.Patient  [event center; head role]  n 2  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 perform) (Patient $e0 durga))    ;; n 2 docs 1  e.g. tierB-000970
 
-;; ---- slot pick_up.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 pick_up) (Theme $e0 $x1) (Member $x1 old))    ;; n 1 docs 1  e.g. tierB-000334
+;; ---- slot pick_up.Theme  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 pick_up) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001040
+(And (Member $e0 pick_up) (Theme $e0 $x1) (Member $x1 old))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000334
+(And (Member $e0 pick_up) (Theme $e0 $x1) (Member $x1 scissors))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000334
 
 ;; ---- slot play.In  [event center; head oblique]  n 2  docs<= 2  distinct 2  eventive 2
 (And (Member $e0 play) (In $e0 $e1) (Member $e1 address))    ;; n 1 docs 1  e.g. tierB-000816
 (And (Member $e0 play) (In $e0 $e1) (Member $e1 understand))    ;; n 1 docs 1  e.g. tierB-000816
 
-;; ---- slot plow.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 plow) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001501
-(And (Member $e0 plow) (Agent $e0 $x1) (Member $x1 ox))    ;; n 1 docs 1  e.g. tierB-001490
+;; ---- slot plow.Agent  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 plow) (Agent $e0 $x1) (Member $x1 farmer))    ;; n 1 docs 1  e.g. tierB-001501
+(And (Member $e0 plow) (Agent $e0 $x1) (Member $x1 ox))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001490
+(And (Member $e0 plow) (Agent $e0 $x1) (Member $x1 sturdy))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001490
 
-;; ---- slot plow.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 plow) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001501
-(And (Member $e0 plow) (Patient $e0 $x1) (Member $x1 field))    ;; n 1 docs 1  e.g. tierB-001490
+;; ---- slot plow.Patient  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
+(And (Member $e0 plow) (Patient $e0 $x1) (Member $x1 field))    ;; n 2 docs 2  e.g. tierB-001490 tierB-001501
 
 ;; ---- slot present.Recipient  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 present) (Recipient $e0 cameron))    ;; n 2 docs 2  e.g. tierC-000011 tierC-000012
@@ -2410,8 +2622,9 @@
 ;; ---- slot produce.For  [event center; head oblique]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 produce) (For $e0 oscar))    ;; n 2 docs 2  e.g. tierC-000009 tierC-000010
 
-;; ---- slot provide.Recipient  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 provide) (Recipient $e0 $x1))    ;; n 2 docs 2  e.g. tierB-000769 tierB-001260
+;; ---- slot provide.Recipient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 provide) (Recipient $e0 $x1) (Member $x1 city))    ;; n 1 docs 1  e.g. tierB-001260
+(And (Member $e0 provide) (Recipient $e0 $x1) (Member $x1 refugee))    ;; n 1 docs 1  e.g. tierB-000769
 
 ;; ---- slot pull.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 pull) (Agent $e0 $x1) (Member $x1 crocodile))    ;; n 1 docs 1  e.g. tierB-000470
@@ -2421,36 +2634,36 @@
 (And (Member $e0 reach) (Agent $e0 david))    ;; n 1 docs 1  e.g. tierB-000117
 (And (Member $e0 reach) (Agent $e0 $x1) (Member $x1 jury))    ;; n 1 docs 1  e.g. tierB-001082
 
-;; ---- slot reach.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot reach.Theme  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 reach) (Theme $e0 amanda))    ;; n 1 docs 1  e.g. tierB-000117
-(And (Member $e0 reach) (Theme $e0 $x1) (Member $x1 easy))    ;; n 1 docs 1  e.g. tierB-001488
+(And (Member $e0 reach) (Theme $e0 $x1) (Member $x1 easy))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001488
+(And (Member $e0 reach) (Theme $e0 $x1) (Member $x1 place))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001488
 
-;; ---- slot ready.For  [event center; head oblique]  n 2  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 ready) (For $e0 $x1) (Member $x1 fresh))    ;; n 2 docs 1  e.g. tierB-000044
+;; ---- slot ready.For  [event center; head oblique]  n 2  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 ready) (For $e0 $x1) (Member $x1 fresh))    ;; n 2 (mass 1) docs 1  e.g. tierB-000044
+(And (Member $e0 ready) (For $e0 $x1) (Member $x1 start))    ;; n 2 (mass 1) docs 1  e.g. tierB-000044
 
 ;; ---- slot receive.Manner  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 receive) (Manner $e0 well))    ;; n 2 docs 2  e.g. tierC-000235 tierC-000236
 
-;; ---- slot recreational_sport.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 recreational_sport) (Experiencer $e0 $x1) (Member $x1 competitive_activity))    ;; n 1 docs 1  e.g. tierC-000148
-(And (Member $e0 recreational_sport) (Experiencer $e0 $x1) (Member $x1 recreational_sport))    ;; n 1 docs 1  e.g. tierC-000147
+;; ---- slot recreational_sport.Experiencer  [event center; head role]  n 2  docs<= 6  distinct 4  eventive 0
+(And (Member $e0 recreational_sport) (Experiencer $e0 $x1) (Member $x1 recreational_sport))    ;; n 2 (mass 0.667) docs 2  e.g. tierC-000147 tierC-000148
+(And (Member $e0 recreational_sport) (Experiencer $e0 $x1) (Member $x1 thing))    ;; n 2 (mass 0.667) docs 2  e.g. tierC-000147 tierC-000148
+(And (Member $e0 recreational_sport) (Experiencer $e0 $x1) (Member $x1 competitive_activity))    ;; n 1 (mass 0.333) docs 1  e.g. tierC-000148
+(And (Member $e0 recreational_sport) (Experiencer $e0 $x1) (Member $x1 sporting_activity))    ;; n 1 (mass 0.333) docs 1  e.g. tierC-000147
 
 ;; ---- slot recreational_sport.Time  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 recreational_sport) (Time $e0 modern_times))    ;; n 2 docs 2  e.g. tierC-000147 tierC-000148
-
-;; ---- slot red.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 red) (Experiencer $e0 $x1) (Member $x1 earth))    ;; n 1 docs 1  e.g. tierB-001582
-(And (Member $e0 red) (Experiencer $e0 $x1) (Member $x1 red))    ;; n 1 docs 1  e.g. tierB-000832
 
 ;; ---- slot reflect.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 reflect) (Agent $e0 $x1) (Member $x1 ivory))    ;; n 1 docs 1  e.g. tierC-000114
 (And (Member $e0 reflect) (Agent $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierC-000113
 
 ;; ---- slot reflect.Like  [event center; head oblique]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 reflect) (Like $e0 $x1))    ;; n 2 docs 2  e.g. tierC-000113 tierC-000114
+(And (Member $e0 reflect) (Like $e0 $x1) (Member $x1 aspect))    ;; n 2 docs 2  e.g. tierC-000113 tierC-000114
 
 ;; ---- slot reflect.Theme  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 reflect) (Theme $e0 $x1))    ;; n 2 docs 2  e.g. tierC-000113 tierC-000114
+(And (Member $e0 reflect) (Theme $e0 $x1) (Member $x1 byzantine_tradition))    ;; n 2 docs 2  e.g. tierC-000113 tierC-000114
 
 ;; ---- slot remain.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 remain) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierC-000121
@@ -2470,13 +2683,14 @@
 ;; ---- slot represent.At  [event center; head oblique]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 represent) (At $e0 executive_level))    ;; n 2 docs 2  e.g. tierC-000007 tierC-000008
 
-;; ---- slot represent.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 represent) (Theme $e0 $x1) (Member $x1 arm))    ;; n 1 docs 1  e.g. tierC-000008
+;; ---- slot represent.Theme  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 represent) (Theme $e0 $x1) (Member $x1 central_arm))    ;; n 1 docs 1  e.g. tierC-000007
+(And (Member $e0 represent) (Theme $e0 $x1) (Member $x1 arm))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000008
+(And (Member $e0 represent) (Theme $e0 $x1) (Member $x1 central))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000008
 
 ;; ---- slot reveal.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 reveal) (Theme $e0 <term:And>))    ;; n 1 docs 1  e.g. tierB-001359
-(And (Member $e0 reveal) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001881
+(And (Member $e0 reveal) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001881
 
 ;; ---- slot roast.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 roast) (Patient $e0 $x1) (Member $x1 chicken))    ;; n 1 docs 1  e.g. tierB-001304
@@ -2502,8 +2716,8 @@
 (And (Member $e0 say) (Agent $e0 $x1) (Member $x1 priest))    ;; n 1 docs 1  e.g. tierB-001626
 
 ;; ---- slot say.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 say) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001602
 (And (Member $e0 say) (Experiencer $e0 jackson))    ;; n 1 docs 1  e.g. tierB-001441
+(And (Member $e0 say) (Experiencer $e0 $x1) (Member $x1 official))    ;; n 1 docs 1  e.g. tierB-001602
 
 ;; ---- slot season.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 season) (Patient $e0 $x1) (Member $x1 salmon))    ;; n 1 docs 1  e.g. tierB-001692
@@ -2528,9 +2742,10 @@
 (And (Member $e0 send) (Theme $e0 $x1) (Member $x1 doctor))    ;; n 1 docs 1  e.g. tierB-000666
 (And (Member $e0 send) (Theme $e0 sound_wave))    ;; n 1 docs 1  e.g. tierB-000715
 
-;; ---- slot set.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot set.Patient  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 set) (Patient $e0 $x1) (Member $x1 objective))    ;; n 1 docs 1  e.g. tierB-001974
-(And (Member $e0 set) (Patient $e0 $x1) (Member $x1 straight))    ;; n 1 docs 1  e.g. tierB-001976
+(And (Member $e0 set) (Patient $e0 $x1) (Member $x1 boy))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001976
+(And (Member $e0 set) (Patient $e0 $x1) (Member $x1 straight))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001976
 
 ;; ---- slot share.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 share) (Agent $e0 canada))    ;; n 1 docs 1  e.g. tierB-000696
@@ -2556,8 +2771,9 @@
 ;; ---- slot sing.Manner  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 sing) (Manner $e0 a_cappella))    ;; n 2 docs 2  e.g. tierC-000329 tierC-000330
 
-;; ---- slot sit.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 sit) (Experiencer $e0 $x1))    ;; n 2 docs 2  e.g. tierB-000922 tierB-001685
+;; ---- slot sit.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 sit) (Experiencer $e0 $x1) (Member $x1 camper))    ;; n 1 docs 1  e.g. tierB-000922
+(And (Member $e0 sit) (Experiencer $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-001685
 
 ;; ---- slot speak.In  [event center; head oblique]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 speak) (In $e0 english))    ;; n 1 docs 1  e.g. tierC-000094
@@ -2592,24 +2808,26 @@
 (And (Member $e0 stab) (Patient $e0 appius_claudius_crassus))    ;; n 2 docs 2  e.g. tierC-000123 tierC-000124
 
 ;; ---- slot stand.Location  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 stand) (Location $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001299
 (And (Member $e0 stand) (Location $e0 $x1) (Member $x1 building))    ;; n 1 docs 1  e.g. tierB-000676
+(And (Member $e0 stand) (Location $e0 $x1) (Member $x1 corner))    ;; n 1 docs 1  e.g. tierB-001299
 
 ;; ---- slot stay.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 stay) (Agent $e0 dmitri))    ;; n 1 docs 1  e.g. tierB-000647
 (And (Member $e0 stay) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierC-000122
 
-;; ---- slot stay.Location  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 stay) (Location $e0 $x1) (Member $x1 cabin))    ;; n 1 docs 1  e.g. tierB-000647
+;; ---- slot stay.Location  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 stay) (Location $e0 japan))    ;; n 1 docs 1  e.g. tierC-000122
+(And (Member $e0 stay) (Location $e0 $x1) (Member $x1 cabin))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000647
+(And (Member $e0 stay) (Location $e0 $x1) (Member $x1 small))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000647
 
 ;; ---- slot steal.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 steal) (Agent $e0 mark))    ;; n 1 docs 1  e.g. tierB-000400
 (And (Member $e0 steal) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000628
 
-;; ---- slot stick.Location  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 stick) (Location $e0 $x1) (Member $x1 deep))    ;; n 1 docs 1  e.g. tierB-000383
+;; ---- slot stick.Location  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 stick) (Location $e0 $x1) (Member $x1 railway_crossing))    ;; n 1 docs 1  e.g. tierB-001027
+(And (Member $e0 stick) (Location $e0 $x1) (Member $x1 deep))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000383
+(And (Member $e0 stick) (Location $e0 $x1) (Member $x1 snow))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000383
 
 ;; ---- slot stop.Location  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 stop) (Location $e0 $x1) (Member $x1 floor))    ;; n 1 docs 1  e.g. tierB-000792
@@ -2618,17 +2836,19 @@
 ;; ---- slot stop.Manner  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 stop) (Manner $e0 suddenly))    ;; n 2 docs 2  e.g. tierB-001515 tierB-001873
 
-;; ---- slot stop.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 stop) (Patient $e0 $x1) (Member $x1 lift))    ;; n 1 docs 1  e.g. tierB-000792
+;; ---- slot stop.Patient  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 stop) (Patient $e0 $x1) (Member $x1 mouse))    ;; n 1 docs 1  e.g. tierB-001515
+(And (Member $e0 stop) (Patient $e0 $x1) (Member $x1 lift))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000792
+(And (Member $e0 stop) (Patient $e0 $x1) (Member $x1 other))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000792
 
 ;; ---- slot suggest.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 suggest) (Agent $e0 corentin_rahier))    ;; n 1 docs 1  e.g. tierC-000017
 (And (Member $e0 suggest) (Agent $e0 muriel_zazoui))    ;; n 1 docs 1  e.g. tierC-000018
 
-;; ---- slot suggest.As  [event center; head oblique]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 suggest) (As $e0 $x1) (Member $x1 partner))    ;; n 1 docs 1  e.g. tierC-000017
+;; ---- slot suggest.As  [event center; head oblique]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 suggest) (As $e0 $x1) (Member $x1 potential_partner))    ;; n 1 docs 1  e.g. tierC-000018
+(And (Member $e0 suggest) (As $e0 $x1) (Member $x1 partner))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000017
+(And (Member $e0 suggest) (As $e0 $x1) (Member $x1 potential))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000017
 
 ;; ---- slot support.Agent  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 support) (Agent $e0 $x1) (Member $x1 thing))    ;; n 2 docs 2  e.g. tierC-000160 tierC-000356
@@ -2648,12 +2868,12 @@
 ;; ---- slot take_care_for.Agent  [event center; head role]  n 2  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 take_care_for) (Agent $e0 god))    ;; n 2 docs 1  e.g. tierB-000198
 
-;; ---- slot take_care_for.Theme  [event center; head role]  n 2  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 take_care_for) (Theme $e0 $x1))    ;; n 2 docs 1  e.g. tierB-000198
+;; ---- slot take_care_for.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 take_care_for) (Theme $e0 $x1) (Member $x1 drunk))    ;; n 1 docs 1  e.g. tierB-000198
+(And (Member $e0 take_care_for) (Theme $e0 $x1) (Member $x1 fool))    ;; n 1 docs 1  e.g. tierB-000198
 
-;; ---- slot take_over.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 take_over) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000110
-(And (Member $e0 take_over) (Theme $e0 $x1) (Member $x1 drum))    ;; n 1 docs 1  e.g. tierC-000109
+;; ---- slot take_over.Theme  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
+(And (Member $e0 take_over) (Theme $e0 $x1) (Member $x1 drum))    ;; n 2 docs 2  e.g. tierC-000109 tierC-000110
 
 ;; ---- slot talk.About  [event center; head oblique]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 talk) (About $e0 $x1) (Member $x1 car))    ;; n 1 docs 1  e.g. tierB-000327
@@ -2675,12 +2895,8 @@
 (And (Member $e0 throw) (Agent $e0 matthew))    ;; n 1 docs 1  e.g. tierB-001023
 
 ;; ---- slot throw.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 throw) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001023
+(And (Member $e0 throw) (Theme $e0 $x1) (Member $x1 pine_cone))    ;; n 1 docs 1  e.g. tierB-001023
 (And (Member $e0 throw) (Theme $e0 $x1) (Member $x1 rock))    ;; n 1 docs 1  e.g. tierB-000340
-
-;; ---- slot transform.Patient  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 transform) (Patient $e0 $x1) (Member $x1 bat))    ;; n 1 docs 1  e.g. tierB-001209
-(And (Member $e0 transform) (Patient $e0 $x1) (Member $x1 cozy))    ;; n 1 docs 1  e.g. tierB-001573
 
 ;; ---- slot travel.Instrument  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 travel) (Instrument $e0 road))    ;; n 1 docs 1  e.g. tierB-001618
@@ -2703,12 +2919,13 @@
 (And (Member $e0 use) (For $e0 $e1) (Member $e1 polish))    ;; n 1 docs 1  e.g. tierB-000938
 
 ;; ---- slot usual.Location  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 usual) (Location $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000135
 (And (Member $e0 usual) (Location $e0 $x1) (Member $x1 northern))    ;; n 1 docs 1  e.g. tierC-000135
+(And (Member $e0 usual) (Location $e0 $x1) (Member $x1 part))    ;; n 1 docs 1  e.g. tierC-000135
 
-;; ---- slot visit.Theme  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot visit.Theme  [event center; head role]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $e0 visit) (Theme $e0 $x1) (Member $x1 city))    ;; n 1 docs 1  e.g. tierB-000985
-(And (Member $e0 visit) (Theme $e0 $x1) (Member $x1 museum))    ;; n 1 docs 1  e.g. tierB-001653
+(And (Member $e0 visit) (Theme $e0 $x1) (Member $x1 museum))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001653
+(And (Member $e0 visit) (Theme $e0 $x1) (Member $x1 worth))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001653
 
 ;; ---- slot voice.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 voice) (Agent $e0 kari_wahlgren))    ;; n 1 docs 1  e.g. tierC-000093
@@ -2722,7 +2939,7 @@
 (And (Member $e0 voice) (Theme $e0 ashe))    ;; n 2 docs 1  e.g. tierC-000093
 
 ;; ---- slot wait.Agent  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 wait) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000712
+(And (Member $e0 wait) (Agent $e0 $x1) (Member $x1 student))    ;; n 1 docs 1  e.g. tierB-000712
 (And (Member $e0 wait) (Agent $e0 tom))    ;; n 1 docs 1  e.g. tierB-000002
 
 ;; ---- slot wait.For  [event center; head oblique]  n 2  docs<= 2  distinct 2  eventive 1
@@ -2734,7 +2951,7 @@
 (And (Member $e0 war) (Location $e0 ukraine))    ;; n 1 docs 1  e.g. tierB-001621
 
 ;; ---- slot warrior.In  [event center; head oblique]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $e0 warrior) (In $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000014
+(And (Member $e0 warrior) (In $e0 $x1) (Member $x1 chinese_drama))    ;; n 1 docs 1  e.g. tierC-000014
 (And (Member $e0 warrior) (In $e0 popular_culture))    ;; n 1 docs 1  e.g. tierC-000014
 
 ;; ---- slot watch.Manner  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
@@ -2745,8 +2962,9 @@
 (And (Member $e0 wear) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-001801
 (And (Member $e0 wear) (Agent $e0 us_first_lady))    ;; n 1 docs 1  e.g. tierB-001318
 
-;; ---- slot widespread.Experiencer  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $e0 widespread) (Experiencer $e0 $x1) (Member $x1 thing))    ;; n 2 docs 2  e.g. tierC-000097 tierC-000098
+;; ---- slot widespread.Experiencer  [event center; head role]  n 2  docs<= 4  distinct 2  eventive 0
+(And (Member $e0 widespread) (Experiencer $e0 $x1) (Member $x1 thing))    ;; n 2 (mass 1) docs 2  e.g. tierC-000097 tierC-000098
+(And (Member $e0 widespread) (Experiencer $e0 $x1) (Member $x1 widespread))    ;; n 2 (mass 1) docs 2  e.g. tierC-000097 tierC-000098
 
 ;; ---- slot widespread.Location  [event center; head role]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $e0 widespread) (Location $e0 europe))    ;; n 2 docs 2  e.g. tierC-000097 tierC-000098
@@ -2758,6 +2976,30 @@
 ;; ---- slot work.Time  [event center; head role]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $e0 work) (Time $e0 now))    ;; n 1 docs 1  e.g. tierB-000144
 (And (Member $e0 work) (Time $e0 tonight))    ;; n 1 docs 1  e.g. tierB-000212
+
+;; ---- slot jump.Over  [event center; head oblique]  n 2  docs<= 4  distinct 4  eventive 0
+(And (Member $e0 jump) (Over $e0 $x1) (Member $x1 moon))    ;; n 1 docs 1  e.g. tierB-000889
+(And (Member $e0 jump) (Over $e0 $x1) (Member $x1 brown))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000871
+(And (Member $e0 jump) (Over $e0 $x1) (Member $x1 dog))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000871
+(And (Member $e0 jump) (Over $e0 $x1) (Member $x1 lazy))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000871
+
+;; ---- slot nominate.Theme  [event center; head role]  n 2  docs<= 5  distinct 3  eventive 0
+(And (Member $e0 nominate) (Theme $e0 $x1) (Member $x1 film))    ;; n 2 (mass 0.833) docs 2  e.g. tierC-000009 tierC-000010
+(And (Member $e0 nominate) (Theme $e0 $x1) (Member $x1 syrian_film))    ;; n 2 (mass 0.833) docs 2  e.g. tierC-000009 tierC-000010
+(And (Member $e0 nominate) (Theme $e0 $x1) (Member $x1 destined))    ;; n 1 (mass 0.333) docs 1  e.g. tierC-000009
+
+;; ---- slot red.Experiencer  [event center; head role]  n 2  docs<= 5  distinct 4  eventive 0
+(And (Member $e0 red) (Experiencer $e0 $x1) (Member $x1 red))    ;; n 2 (mass 0.833) docs 2  e.g. tierB-000832 tierB-001582
+(And (Member $e0 red) (Experiencer $e0 $x1) (Member $x1 earth))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001582
+(And (Member $e0 red) (Experiencer $e0 $x1) (Member $x1 leaf))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000832
+(And (Member $e0 red) (Experiencer $e0 $x1) (Member $x1 yellow))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000832
+
+;; ---- slot transform.Patient  [event center; head role]  n 2  docs<= 5  distinct 5  eventive 0
+(And (Member $e0 transform) (Patient $e0 $x1) (Member $x1 bat))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001209
+(And (Member $e0 transform) (Patient $e0 $x1) (Member $x1 vampire))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001209
+(And (Member $e0 transform) (Patient $e0 $x1) (Member $x1 cozy))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001573
+(And (Member $e0 transform) (Patient $e0 $x1) (Member $x1 living_room))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001573
+(And (Member $e0 transform) (Patient $e0 $x1) (Member $x1 theater))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001573
 
 ;; ---- slot abolish.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 abolish) (Patient $e0 $x1) (Member $x1 deficit))    ;; n 1 docs 1  e.g. tierB-001648
@@ -2778,16 +3020,18 @@
 (And (Member $e0 absorb) (Manner $e0 quickly))    ;; n 1 docs 1  e.g. tierB-001902
 
 ;; ---- slot absorb.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 absorb) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001902
+(And (Member $e0 absorb) (Patient $e0 $x1) (Member $x1 newcomer))    ;; n 1 docs 1  e.g. tierB-001902
 
-;; ---- slot absorbed.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 absorbed) (Experiencer $e0 $x1) (Member $x1 girl))    ;; n 1 docs 1  e.g. tierB-000783
+;; ---- slot absorbed.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 absorbed) (Experiencer $e0 $x1) (Member $x1 girl))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000783
+(And (Member $e0 absorbed) (Experiencer $e0 $x1) (Member $x1 little))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000783
 
 ;; ---- slot absorbed.In  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 absorbed) (In $e0 $e1) (Member $e1 read))    ;; n 1 docs 1  e.g. tierB-000783
 
-;; ---- slot abuse.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 abuse) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-001773
+;; ---- slot abuse.Agent  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 abuse) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001773
+(And (Member $e0 abuse) (Agent $e0 $x1) (Member $x1 young))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001773
 
 ;; ---- slot abuse.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 abuse) (Manner $e0 sexually))    ;; n 1 docs 1  e.g. tierB-001773
@@ -2823,7 +3067,7 @@
 (And (Member $e0 accrete) (Patient $e0 sand))    ;; n 1 docs 1  e.g. tierB-001283
 
 ;; ---- slot accuse.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 accuse) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000548
+(And (Member $e0 accuse) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000548
 
 ;; ---- slot accuse.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 accuse) (Theme $e0 <term:And>))    ;; n 1 docs 1  e.g. tierB-000548
@@ -2850,7 +3094,7 @@
 (And (Member $e0 admission) (Goal $e0 $x1) (Member $x1 club))    ;; n 1 docs 1  e.g. tierB-001953
 
 ;; ---- slot adorn.Instrument  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 adorn) (Instrument $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001132
+(And (Member $e0 adorn) (Instrument $e0 $x1) (Member $x1 plant))    ;; n 1 docs 1  e.g. tierB-001132
 
 ;; ---- slot adorn.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 adorn) (Patient $e0 $x1) (Member $x1 veranda))    ;; n 1 docs 1  e.g. tierB-001132
@@ -2864,8 +3108,9 @@
 ;; ---- slot advise.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 advise) (Theme $e0 <term:And>))    ;; n 1 docs 1  e.g. tierB-000793
 
-;; ---- slot afloat.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 afloat) (Experiencer $e0 $x1) (Member $x1 afloat))    ;; n 1 docs 1  e.g. tierB-001179
+;; ---- slot afloat.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 afloat) (Experiencer $e0 $x1) (Member $x1 afloat))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001179
+(And (Member $e0 afloat) (Experiencer $e0 $x1) (Member $x1 business))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001179
 
 ;; ---- slot afraid.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 afraid) (Experiencer $e0 lorenzo))    ;; n 1 docs 1  e.g. tierB-001090
@@ -2880,7 +3125,7 @@
 (And (Member $e0 alarmed) (Experiencer $e0 ashton))    ;; n 1 docs 1  e.g. tierB-001079
 
 ;; ---- slot alive.CoAgent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 alive) (CoAgent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001332
+(And (Member $e0 alive) (CoAgent $e0 $x1) (Member $x1 fan))    ;; n 1 docs 1  e.g. tierB-001332
 
 ;; ---- slot alive.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 alive) (Experiencer $e0 $x1) (Member $x1 concert_hall))    ;; n 1 docs 1  e.g. tierB-001332
@@ -2892,7 +3137,7 @@
 (And (Member $e0 all_right) (Time $e0 present))    ;; n 1 docs 1  e.g. tierB-000051
 
 ;; ---- slot anger.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 anger) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001669
+(And (Member $e0 anger) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-001669
 
 ;; ---- slot angry.BecauseOf  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 angry) (BecauseOf $e0 $e1) (Member $e1 happen))    ;; n 1 docs 1  e.g. tierB-001363
@@ -2904,13 +3149,13 @@
 (And (Member $e0 annex) (Theme $e0 jerusalem))    ;; n 1 docs 1  e.g. tierB-000709
 
 ;; ---- slot announce.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 announce) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001697
+(And (Member $e0 announce) (Agent $e0 $x1) (Member $x1 cloud))    ;; n 1 docs 1  e.g. tierB-001697
 
 ;; ---- slot announce.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 announce) (Theme $e0 $e1) (Member $e1 come))    ;; n 1 docs 1  e.g. tierB-001697
 
 ;; ---- slot annoying.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 annoying) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000587
+(And (Member $e0 annoying) (Agent $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-000587
 
 ;; ---- slot answer.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 answer) (Agent $e0 oleg))    ;; n 1 docs 1  e.g. tierB-001426
@@ -2919,7 +3164,7 @@
 (And (Member $e0 answer) (Manner $e0 quickly))    ;; n 1 docs 1  e.g. tierB-001426
 
 ;; ---- slot answer.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 answer) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001426
+(And (Member $e0 answer) (Theme $e0 $x1) (Member $x1 question))    ;; n 1 docs 1  e.g. tierB-001426
 
 ;; ---- slot answer_to.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 answer_to) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-001416
@@ -2942,9 +3187,6 @@
 ;; ---- slot appear.In  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 appear) (In $e0 coronation_street))    ;; n 1 docs 1  e.g. tierC-000259
 
-;; ---- slot appear.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 appear) (Patient $e0 $x1) (Member $x1 blue))    ;; n 1 docs 1  e.g. tierB-001940
-
 ;; ---- slot appear.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 appear) (Time $e0 later_in_life))    ;; n 1 docs 1  e.g. tierC-000050
 
@@ -2952,7 +3194,7 @@
 (And (Member $e0 applaud) (Agent $e0 $x1) (Member $x1 crowd))    ;; n 1 docs 1  e.g. tierB-001052
 
 ;; ---- slot apply.Goal  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 apply) (Goal $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001728
+(And (Member $e0 apply) (Goal $e0 $x1) (Member $x1 field))    ;; n 1 docs 1  e.g. tierB-001728
 
 ;; ---- slot apply.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 apply) (Theme $e0 fuzzy_logic))    ;; n 1 docs 1  e.g. tierB-001728
@@ -2967,22 +3209,23 @@
 (And (Member $e0 around) (Location $e0 $x1) (Member $x1 hotel))    ;; n 1 docs 1  e.g. tierB-000836
 
 ;; ---- slot arrange.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 arrange) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000350
+(And (Member $e0 arrange) (Patient $e0 $x1) (Member $x1 session))    ;; n 1 docs 1  e.g. tierC-000350
 
 ;; ---- slot arrange.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 arrange) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000349
+(And (Member $e0 arrange) (Theme $e0 $x1) (Member $x1 session))    ;; n 1 docs 1  e.g. tierC-000349
 
 ;; ---- slot arrest.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 arrest) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001600
+(And (Member $e0 arrest) (Agent $e0 $x1) (Member $x1 police))    ;; n 1 docs 1  e.g. tierB-001600
 
 ;; ---- slot arrest.In  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 arrest) (In $e0 $x1) (Member $x1 case))    ;; n 1 docs 1  e.g. tierB-001600
 
 ;; ---- slot arrival.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 arrival) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000005
+(And (Member $e0 arrival) (Agent $e0 $x1) (Member $x1 french_settler))    ;; n 1 docs 1  e.g. tierB-000005
 
-;; ---- slot arrive.Instrument  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 arrive) (Instrument $e0 $x1) (Member $x1 brand_new))    ;; n 1 docs 1  e.g. tierB-000444
+;; ---- slot arrive.Instrument  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 arrive) (Instrument $e0 $x1) (Member $x1 brand_new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000444
+(And (Member $e0 arrive) (Instrument $e0 $x1) (Member $x1 ferrari))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000444
 
 ;; ---- slot ascend.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 ascend) (Experiencer $e0 $x1) (Member $x1 road))    ;; n 1 docs 1  e.g. tierB-000826
@@ -2993,8 +3236,9 @@
 ;; ---- slot ascend.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 ascend) (Source $e0 $x1) (Member $x1 point))    ;; n 1 docs 1  e.g. tierB-000826
 
-;; ---- slot ashamed.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 ashamed) (Experiencer $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-001568
+;; ---- slot ashamed.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 ashamed) (Experiencer $e0 $x1) (Member $x1 man))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001568
+(And (Member $e0 ashamed) (Experiencer $e0 $x1) (Member $x1 poor))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001568
 
 ;; ---- slot ashamed.Of  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 ashamed) (Of $e0 $e1) (Member $e1 bear))    ;; n 1 docs 1  e.g. tierB-001568
@@ -3003,7 +3247,7 @@
 (And (Member $e0 ask) (Agent $e0 linda))    ;; n 1 docs 1  e.g. tierB-001449
 
 ;; ---- slot ask.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 ask) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001449
+(And (Member $e0 ask) (Theme $e0 $x1) (Member $x1 question))    ;; n 1 docs 1  e.g. tierB-001449
 
 ;; ---- slot assault.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 assault) (Agent $e0 $x1) (Member $x1 robber))    ;; n 1 docs 1  e.g. tierB-000213
@@ -3023,11 +3267,12 @@
 ;; ---- slot attend.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 attend) (Theme $e0 $x1) (Member $x1 talk))    ;; n 1 docs 1  e.g. tierB-001584
 
-;; ---- slot attractive.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 attractive) (Experiencer $e0 $x1) (Member $x1 attractive))    ;; n 1 docs 1  e.g. tierB-001874
+;; ---- slot attractive.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 attractive) (Experiencer $e0 $x1) (Member $x1 attractive))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001874
+(And (Member $e0 attractive) (Experiencer $e0 $x1) (Member $x1 profession))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001874
 
 ;; ---- slot attribute.Goal  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 attribute) (Goal $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000834
+(And (Member $e0 attribute) (Goal $e0 $x1) (Member $x1 pilot_error))    ;; n 1 docs 1  e.g. tierB-000834
 
 ;; ---- slot attribute.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 attribute) (Theme $e0 $x1) (Member $x1 cause))    ;; n 1 docs 1  e.g. tierB-000834
@@ -3050,8 +3295,9 @@
 ;; ---- slot bask.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 bask) (Location $e0 $x1) (Member $x1 sunlight))    ;; n 1 docs 1  e.g. tierB-001904
 
-;; ---- slot bat.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 bat) (Experiencer $e0 $x1) (Member $x1 bat))    ;; n 1 docs 1  e.g. tierB-001209
+;; ---- slot bat.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 bat) (Experiencer $e0 $x1) (Member $x1 bat))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001209
+(And (Member $e0 bat) (Experiencer $e0 $x1) (Member $x1 vampire))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001209
 
 ;; ---- slot battle.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 battle) (Location $e0 kurukshetra))    ;; n 1 docs 1  e.g. tierB-001076
@@ -3102,7 +3348,7 @@
 (And (Member $e0 better) (Experiencer $e0 $e1) (Member $e1 have))    ;; n 1 docs 1  e.g. tierB-001016
 
 ;; ---- slot big.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 big) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001851
+(And (Member $e0 big) (Experiencer $e0 $x1) (Member $x1 pear))    ;; n 1 docs 1  e.g. tierB-001851
 
 ;; ---- slot big.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 big) (Time $e0 this_year))    ;; n 1 docs 1  e.g. tierB-001851
@@ -3117,13 +3363,13 @@
 (And (Member $e0 blend_in) (Agent $e0 adriano))    ;; n 1 docs 1  e.g. tierB-001117
 
 ;; ---- slot block.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 block) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000913
+(And (Member $e0 block) (Patient $e0 $x1) (Member $x1 road))    ;; n 1 docs 1  e.g. tierB-000913
 
 ;; ---- slot block.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 block) (Theme $e0 $e1) (Member $e1 enter))    ;; n 1 docs 1  e.g. tierB-000622
 
 ;; ---- slot bloom.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 bloom) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001814
+(And (Member $e0 bloom) (Patient $e0 $x1) (Member $x1 rose))    ;; n 1 docs 1  e.g. tierB-001814
 
 ;; ---- slot bloom.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 bloom) (Time $e0 spring))    ;; n 1 docs 1  e.g. tierB-001814
@@ -3159,7 +3405,7 @@
 (And (Member $e0 break) (Goal $e0 $x1) (Member $x1 first_team))    ;; n 1 docs 1  e.g. tierC-000244
 
 ;; ---- slot break.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 break) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000320
+(And (Member $e0 break) (Patient $e0 $x1) (Member $x1 window))    ;; n 1 docs 1  e.g. tierB-000320
 
 ;; ---- slot break.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 break) (Time $e0 this_season))    ;; n 1 docs 1  e.g. tierC-000244
@@ -3198,16 +3444,16 @@
 (And (Member $e0 brush_aside) (Theme $e0 <term:Member>))    ;; n 1 docs 1  e.g. tierB-001172
 
 ;; ---- slot bud.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 bud) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001394
+(And (Member $e0 bud) (Patient $e0 $x1) (Member $x1 tree))    ;; n 1 docs 1  e.g. tierB-001394
 
 ;; ---- slot build.Beneficiary  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 build) (Beneficiary $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001867
+(And (Member $e0 build) (Beneficiary $e0 $x1) (Member $x1 kid))    ;; n 1 docs 1  e.g. tierB-001867
 
 ;; ---- slot build.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 build) (Time $e0 ages_ago))    ;; n 1 docs 1  e.g. tierB-000932
 
 ;; ---- slot build_up.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 build_up) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000936
+(And (Member $e0 build_up) (Agent $e0 $x1) (Member $x1 bone))    ;; n 1 docs 1  e.g. tierB-000936
 
 ;; ---- slot build_up.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 build_up) (Patient $e0 $x1) (Member $x1 skeleton))    ;; n 1 docs 1  e.g. tierB-000936
@@ -3227,8 +3473,9 @@
 ;; ---- slot burrow.Goal  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 burrow) (Goal $e0 $x1) (Member $x1 ground))    ;; n 1 docs 1  e.g. tierB-001308
 
-;; ---- slot bustle.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
-(And (Member $e0 bustle) (Experiencer $e0 $e1) (Member $e1 modern))    ;; n 1 docs 1  e.g. tierB-001966
+;; ---- slot bustle.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 1
+(And (Member $e0 bustle) (Experiencer $e0 $e1) (Member $e1 modern))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001966
+(And (Member $e0 bustle) (Experiencer $e0 $e1) (Member $e1 street))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001966
 
 ;; ---- slot call.Recipient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 call) (Recipient $e0 $x1) (Member $x1 police))    ;; n 1 docs 1  e.g. tierB-000547
@@ -3239,8 +3486,9 @@
 ;; ---- slot call_for.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 call_for) (Agent $e0 $x1) (Member $x1 situation))    ;; n 1 docs 1  e.g. tierB-000120
 
-;; ---- slot call_for.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 call_for) (Theme $e0 $x1) (Member $x1 drastic))    ;; n 1 docs 1  e.g. tierB-000120
+;; ---- slot call_for.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 call_for) (Theme $e0 $x1) (Member $x1 drastic))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000120
+(And (Member $e0 call_for) (Theme $e0 $x1) (Member $x1 measure))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000120
 
 ;; ---- slot call_off.OnAccountOf  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 call_off) (OnAccountOf $e0 $x1) (Member $x1 rain))    ;; n 1 docs 1  e.g. tierB-000498
@@ -3270,7 +3518,7 @@
 (And (Member $e0 carry_out) (In $e0 $x1) (Member $x1 field))    ;; n 1 docs 1  e.g. tierB-000774
 
 ;; ---- slot carry_out.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 carry_out) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000774
+(And (Member $e0 carry_out) (Patient $e0 $x1) (Member $x1 experiment))    ;; n 1 docs 1  e.g. tierB-000774
 
 ;; ---- slot catch.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 catch) (Agent $e0 $x1) (Member $x1 cat))    ;; n 1 docs 1  e.g. tierB-001900
@@ -3299,11 +3547,13 @@
 ;; ---- slot caw.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 caw) (Source $e0 $x1) (Member $x1 treetop))    ;; n 1 docs 1  e.g. tierB-001655
 
-;; ---- slot cease.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 cease) (Agent $e0 $x1) (Member $x1 indigenous))    ;; n 1 docs 1  e.g. tierC-000001
+;; ---- slot cease.Agent  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 cease) (Agent $e0 $x1) (Member $x1 indigenous))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000001
+(And (Member $e0 cease) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000001
 
-;; ---- slot cease.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 cease) (Patient $e0 $x1) (Member $x1 indigenous))    ;; n 1 docs 1  e.g. tierC-000002
+;; ---- slot cease.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 cease) (Patient $e0 $x1) (Member $x1 indigenous))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000002
+(And (Member $e0 cease) (Patient $e0 $x1) (Member $x1 people))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000002
 
 ;; ---- slot celebrate.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 celebrate) (Patient $e0 $x1) (Member $x1 mela))    ;; n 1 docs 1  e.g. tierC-000134
@@ -3320,11 +3570,13 @@
 ;; ---- slot change_mind.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 change_mind) (Agent $e0 cameron))    ;; n 1 docs 1  e.g. tierC-000012
 
-;; ---- slot chant.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 chant) (Agent $e0 $x1) (Member $x1 crowd))    ;; n 1 docs 1  e.g. tierB-001169
+;; ---- slot chant.Agent  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 chant) (Agent $e0 $x1) (Member $x1 crowd))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001169
+(And (Member $e0 chant) (Agent $e0 $x1) (Member $x1 whole))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001169
 
-;; ---- slot cheap.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 cheap) (Experiencer $e0 $x1) (Member $x1 cheap))    ;; n 1 docs 1  e.g. tierB-000370
+;; ---- slot cheap.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 cheap) (Experiencer $e0 $x1) (Member $x1 cheap))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000370
+(And (Member $e0 cheap) (Experiencer $e0 $x1) (Member $x1 excuse))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000370
 
 ;; ---- slot check.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 check) (Agent $e0 bill))    ;; n 1 docs 1  e.g. tierB-000363
@@ -3339,25 +3591,22 @@
 (And (Member $e0 claim) (Agent $e0 john))    ;; n 1 docs 1  e.g. tierB-001542
 
 ;; ---- slot claim.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 claim) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000191
+(And (Member $e0 claim) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000191
 
 ;; ---- slot clarify.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 clarify) (Agent $e0 $x1) (Member $x1 task))    ;; n 1 docs 1  e.g. tierC-000021
 
 ;; ---- slot clarify.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 clarify) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000022
+(And (Member $e0 clarify) (Patient $e0 $x1) (Member $x1 relationship))    ;; n 1 docs 1  e.g. tierC-000022
 
 ;; ---- slot clarify.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 clarify) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000021
+(And (Member $e0 clarify) (Theme $e0 $x1) (Member $x1 empirical_relationship))    ;; n 1 docs 1  e.g. tierC-000021
 
 ;; ---- slot class.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 class) (Experiencer $e0 $x1) (Member $x1 keeper))    ;; n 1 docs 1  e.g. tierB-000631
 
 ;; ---- slot class.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 class) (Time $e0 today))    ;; n 1 docs 1  e.g. tierB-000631
-
-;; ---- slot clean.Instrument  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 clean) (Instrument $e0 $x1) (Member $x1 rag))    ;; n 1 docs 1  e.g. tierB-001143
 
 ;; ---- slot clever.At  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 clever) (At $e0 work))    ;; n 1 docs 1  e.g. tierB-000898
@@ -3383,8 +3632,9 @@
 ;; ---- slot close.Stimulus  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 close) (Stimulus $e0 animal))    ;; n 1 docs 1  e.g. tierB-000079
 
-;; ---- slot cold.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 cold) (Experiencer $e0 $x1) (Member $x1 cold))    ;; n 1 docs 1  e.g. tierB-000362
+;; ---- slot cold.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 cold) (Experiencer $e0 $x1) (Member $x1 cold))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000362
+(And (Member $e0 cold) (Experiencer $e0 $x1) (Member $x1 trail))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000362
 
 ;; ---- slot collapse.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 collapse) (Time $e0 <term:Year>))    ;; n 1 docs 1  e.g. tierB-001567
@@ -3401,8 +3651,9 @@
 ;; ---- slot come.Over  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 come) (Over $e0 $x1) (Member $x1 dispute))    ;; n 1 docs 1  e.g. tierB-001534
 
-;; ---- slot come_along.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 come_along) (Agent $e0 $x1) (Member $x1 friend))    ;; n 1 docs 1  e.g. tierB-000765
+;; ---- slot come_along.Agent  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 come_along) (Agent $e0 $x1) (Member $x1 friend))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000765
+(And (Member $e0 come_along) (Agent $e0 $x1) (Member $x1 good))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000765
 
 ;; ---- slot come_in.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 come_in) (Agent $e0 $x1) (Member $x1 boy))    ;; n 1 docs 1  e.g. tierB-000500
@@ -3431,8 +3682,9 @@
 ;; ---- slot commit.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 commit) (Agent $e0 nation))    ;; n 1 docs 1  e.g. tierB-001858
 
-;; ---- slot common.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 common) (Experiencer $e0 $x1) (Member $x1 common))    ;; n 1 docs 1  e.g. tierC-000136
+;; ---- slot common.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 common) (Experiencer $e0 $x1) (Member $x1 common))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000136
+(And (Member $e0 common) (Experiencer $e0 $x1) (Member $x1 view))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000136
 
 ;; ---- slot compare.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 compare) (Theme $e0 $x1) (Member $x1 word_processor))    ;; n 1 docs 1  e.g. tierB-001177
@@ -3443,9 +3695,6 @@
 ;; ---- slot compassionate.Towards  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 compassionate) (Towards $e0 poor))    ;; n 1 docs 1  e.g. tierB-000496
 
-;; ---- slot competitive_activity.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 competitive_activity) (Experiencer $e0 $x1) (Member $x1 competitive_activity))    ;; n 1 docs 1  e.g. tierC-000148
-
 ;; ---- slot competitive_activity.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 competitive_activity) (Time $e0 modern_times))    ;; n 1 docs 1  e.g. tierC-000148
 
@@ -3453,7 +3702,7 @@
 (And (Member $e0 complain) (About $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001365
 
 ;; ---- slot complain.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 complain) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001365
+(And (Member $e0 complain) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-001365
 
 ;; ---- slot complete.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 complete) (Patient $e0 $e1) (Member $e1 conquest))    ;; n 1 docs 1  e.g. tierB-001031
@@ -3464,8 +3713,9 @@
 ;; ---- slot conduct.On  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 conduct) (On $e0 matt_brown))    ;; n 1 docs 1  e.g. tierB-000177
 
-;; ---- slot conduct.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 conduct) (Patient $e0 $x1) (Member $x1 ceremony))    ;; n 1 docs 1  e.g. tierC-000284
+;; ---- slot conduct.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 conduct) (Patient $e0 $x1) (Member $x1 ceremony))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000284
+(And (Member $e0 conduct) (Patient $e0 $x1) (Member $x1 mass))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000284
 
 ;; ---- slot conduct.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 conduct) (Time $e0 night))    ;; n 1 docs 1  e.g. tierC-000284
@@ -3482,8 +3732,9 @@
 ;; ---- slot confusion.Of  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 confusion) (Of $e0 name))    ;; n 1 docs 1  e.g. tierB-000481
 
-;; ---- slot connect.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 connect) (Patient $e0 $x1) (Member $x1 network))    ;; n 1 docs 1  e.g. tierB-000063
+;; ---- slot connect.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 connect) (Patient $e0 $x1) (Member $x1 network))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000063
+(And (Member $e0 connect) (Patient $e0 $x1) (Member $x1 well))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000063
 
 ;; ---- slot conquest.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 conquest) (Agent $e0 france))    ;; n 1 docs 1  e.g. tierB-001031
@@ -3491,8 +3742,9 @@
 ;; ---- slot conquest.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 conquest) (Patient $e0 vietnam))    ;; n 1 docs 1  e.g. tierB-001031
 
-;; ---- slot conservative.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 conservative) (Experiencer $e0 $x1) (Member $x1 conservative))    ;; n 1 docs 1  e.g. tierB-001817
+;; ---- slot conservative.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 conservative) (Experiencer $e0 $x1) (Member $x1 conservative))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001817
+(And (Member $e0 conservative) (Experiencer $e0 $x1) (Member $x1 revolutionary))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001817
 
 ;; ---- slot consider.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 consider) (Manner $e0 more_carefully))    ;; n 1 docs 1  e.g. tierB-001300
@@ -3501,13 +3753,14 @@
 (And (Member $e0 consist) (Experiencer $e0 $x1) (Member $x1 main_meal))    ;; n 1 docs 1  e.g. tierB-001519
 
 ;; ---- slot consist.Of  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 consist) (Of $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001519
+(And (Member $e0 consist) (Of $e0 $x1) (Member $x1 dish))    ;; n 1 docs 1  e.g. tierB-001519
 
 ;; ---- slot constitute.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 constitute) (Agent $e0 $x1) (Member $x1 legislation))    ;; n 1 docs 1  e.g. tierB-000673
 
-;; ---- slot constitute.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
-(And (Member $e0 constitute) (Theme $e0 $e1) (Member $e1 attack))    ;; n 1 docs 1  e.g. tierB-000673
+;; ---- slot constitute.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 1
+(And (Member $e0 constitute) (Theme $e0 $e1) (Member $e1 attack))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000673
+(And (Member $e0 constitute) (Theme $e0 $e1) (Member $e1 full_fledged))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000673
 
 ;; ---- slot construct.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 construct) (Patient $e0 $x1) (Member $x1 railroad))    ;; n 1 docs 1  e.g. tierB-001064
@@ -3519,7 +3772,7 @@
 (And (Member $e0 consult) (Agent $e0 ashton))    ;; n 1 docs 1  e.g. tierB-001079
 
 ;; ---- slot consult.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 consult) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001079
+(And (Member $e0 consult) (Theme $e0 $x1) (Member $x1 family_physician))    ;; n 1 docs 1  e.g. tierB-001079
 
 ;; ---- slot continue.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 continue) (Agent $e0 $x1) (Member $x1 price))    ;; n 1 docs 1  e.g. tierB-000930
@@ -3527,17 +3780,18 @@
 ;; ---- slot continue.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 continue) (Experiencer $e0 $x1) (Member $x1 hope))    ;; n 1 docs 1  e.g. tierB-001977
 
-;; ---- slot continue.Like  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 continue) (Like $e0 $x1) (Member $x1 flame))    ;; n 1 docs 1  e.g. tierB-001977
+;; ---- slot continue.Like  [event center; head oblique]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 continue) (Like $e0 $x1) (Member $x1 flame))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001977
+(And (Member $e0 continue) (Like $e0 $x1) (Member $x1 fragile))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001977
 
 ;; ---- slot convert.Goal  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 convert) (Goal $e0 islam))    ;; n 1 docs 1  e.g. tierB-000092
 
 ;; ---- slot cook.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 cook) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000864
+(And (Member $e0 cook) (Agent $e0 $x1) (Member $x1 woman))    ;; n 1 docs 1  e.g. tierB-000864
 
 ;; ---- slot cool.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 cool) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000463
+(And (Member $e0 cool) (Experiencer $e0 $x1) (Member $x1 night))    ;; n 1 docs 1  e.g. tierB-000463
 
 ;; ---- slot cost.Recipient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 cost) (Recipient $e0 $x1) (Member $x1 company))    ;; n 1 docs 1  e.g. tierB-001452
@@ -3549,16 +3803,13 @@
 (And (Member $e0 cover) (Agent $e0 $x1) (Member $x1 fog))    ;; n 1 docs 1  e.g. tierB-000702
 
 ;; ---- slot cover.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 cover) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000702
-
-;; ---- slot cozy.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 cozy) (Experiencer $e0 $x1) (Member $x1 cozy))    ;; n 1 docs 1  e.g. tierB-001573
+(And (Member $e0 cover) (Theme $e0 $x1) (Member $x1 peak))    ;; n 1 docs 1  e.g. tierB-000702
 
 ;; ---- slot crack_down.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 crack_down) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000097
+(And (Member $e0 crack_down) (Agent $e0 $x1) (Member $x1 moroccan_police))    ;; n 1 docs 1  e.g. tierB-000097
 
 ;; ---- slot crack_down.On  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 crack_down) (On $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000097
+(And (Member $e0 crack_down) (On $e0 $x1) (Member $x1 protest))    ;; n 1 docs 1  e.g. tierB-000097
 
 ;; ---- slot crackle.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 crackle) (Agent $e0 $x1) (Member $x1 campfire))    ;; n 1 docs 1  e.g. tierB-001023
@@ -3579,16 +3830,17 @@
 (And (Member $e0 crow) (Experiencer $e0 gustavo))    ;; n 1 docs 1  e.g. tierB-001675
 
 ;; ---- slot crowd.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 crowd) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000991
+(And (Member $e0 crowd) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000991
 
-;; ---- slot crowd.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 crowd) (Location $e0 $x1) (Member $x1 dancer))    ;; n 1 docs 1  e.g. tierB-000991
+;; ---- slot crowd.Location  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 crowd) (Location $e0 $x1) (Member $x1 dancer))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000991
+(And (Member $e0 crowd) (Location $e0 $x1) (Member $x1 fantastic))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000991
 
 ;; ---- slot cry.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 cry) (Patient $e0 baya))    ;; n 1 docs 1  e.g. tierB-001538
 
 ;; ---- slot cut_down.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 cut_down) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000277
+(And (Member $e0 cut_down) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-000277
 
 ;; ---- slot cut_down.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 cut_down) (Patient $e0 $x1) (Member $x1 tree))    ;; n 1 docs 1  e.g. tierB-000277
@@ -3626,17 +3878,20 @@
 ;; ---- slot demand.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 demand) (Agent $e0 $x1) (Member $x1 pizza))    ;; n 1 docs 1  e.g. tierB-001032
 
-;; ---- slot demand.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 demand) (Experiencer $e0 $x1) (Member $x1 critic))    ;; n 1 docs 1  e.g. tierB-000602
+;; ---- slot demand.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 demand) (Experiencer $e0 $x1) (Member $x1 critic))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000602
+(And (Member $e0 demand) (Experiencer $e0 $x1) (Member $x1 young))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000602
 
 ;; ---- slot demand.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 demand) (Location $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000602
+(And (Member $e0 demand) (Location $e0 $x1) (Member $x1 place))    ;; n 1 docs 1  e.g. tierB-000602
 
-;; ---- slot demand.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 demand) (Theme $e0 $x1) (Member $x1 cheese))    ;; n 1 docs 1  e.g. tierB-001032
+;; ---- slot demand.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 demand) (Theme $e0 $x1) (Member $x1 cheese))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001032
+(And (Member $e0 demand) (Theme $e0 $x1) (Member $x1 extra))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001032
 
-;; ---- slot demolish.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 demolish) (Patient $e0 $x1) (Member $x1 house))    ;; n 1 docs 1  e.g. tierB-000471
+;; ---- slot demolish.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 demolish) (Patient $e0 $x1) (Member $x1 house))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000471
+(And (Member $e0 demolish) (Patient $e0 $x1) (Member $x1 old))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000471
 
 ;; ---- slot demonstrate.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 demonstrate) (Agent $e0 $x1) (Member $x1 salesman))    ;; n 1 docs 1  e.g. tierB-001996
@@ -3647,8 +3902,9 @@
 ;; ---- slot depart.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 depart) (Agent $e0 $x1) (Member $x1 train))    ;; n 1 docs 1  e.g. tierB-001927
 
-;; ---- slot desperate.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 desperate) (Experiencer $e0 $x1) (Member $x1 desperate))    ;; n 1 docs 1  e.g. tierB-001539
+;; ---- slot desperate.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 desperate) (Experiencer $e0 $x1) (Member $x1 desperate))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001539
+(And (Member $e0 desperate) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001539
 
 ;; ---- slot desperate.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 desperate) (Theme $e0 <term:And>))    ;; n 1 docs 1  e.g. tierB-001539
@@ -3660,7 +3916,7 @@
 (And (Member $e0 develop) (Patient $e0 web_application))    ;; n 1 docs 1  e.g. tierB-000404
 
 ;; ---- slot develop.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 develop) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000349
+(And (Member $e0 develop) (Theme $e0 $x1) (Member $x1 session))    ;; n 1 docs 1  e.g. tierC-000349
 
 ;; ---- slot devote.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 devote) (Theme $e0 $x1) (Member $x1 morning))    ;; n 1 docs 1  e.g. tierB-000229
@@ -3684,16 +3940,17 @@
 (And (Member $e0 die_out) (Time $e0 long_time_ago))    ;; n 1 docs 1  e.g. tierB-001443
 
 ;; ---- slot differ.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 differ) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000629
+(And (Member $e0 differ) (Experiencer $e0 $x1) (Member $x1 sentence))    ;; n 1 docs 1  e.g. tierB-000629
 
 ;; ---- slot differ.WithRespectTo  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 differ) (WithRespectTo $e0 tense))    ;; n 1 docs 1  e.g. tierB-000629
 
-;; ---- slot difficult.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 difficult) (Experiencer $e0 $x1) (Member $x1 difficult))    ;; n 1 docs 1  e.g. tierB-000925
+;; ---- slot difficult.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 difficult) (Experiencer $e0 $x1) (Member $x1 difficult))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000925
+(And (Member $e0 difficult) (Experiencer $e0 $x1) (Member $x1 hill))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000925
 
 ;; ---- slot difficult.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 difficult) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001535
+(And (Member $e0 difficult) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001535
 
 ;; ---- slot digest.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 digest) (Patient $e0 apple_seed))    ;; n 1 docs 1  e.g. tierB-001995
@@ -3732,16 +3989,16 @@
 (And (Member $e0 distinguish) (Agent $e0 hugo))    ;; n 1 docs 1  e.g. tierB-001445
 
 ;; ---- slot distinguish.Between  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 distinguish) (Between $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001445
+(And (Member $e0 distinguish) (Between $e0 $x1) (Member $x1 paste))    ;; n 1 docs 1  e.g. tierB-001445
 
 ;; ---- slot distort.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 distort) (Patient $e0 religion))    ;; n 1 docs 1  e.g. tierB-001240
 
 ;; ---- slot distribute.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 distribute) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000485
+(And (Member $e0 distribute) (Agent $e0 $x1) (Member $x1 rebel))    ;; n 1 docs 1  e.g. tierB-000485
 
 ;; ---- slot distribute.Recipient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 distribute) (Recipient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000485
+(And (Member $e0 distribute) (Recipient $e0 $x1) (Member $x1 local))    ;; n 1 docs 1  e.g. tierB-000485
 
 ;; ---- slot distribute.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 distribute) (Source $e0 $x1) (Member $x1 storehouse))    ;; n 1 docs 1  e.g. tierB-000485
@@ -3753,7 +4010,7 @@
 (And (Member $e0 divide) (By $e0 zero))    ;; n 1 docs 1  e.g. tierB-000824
 
 ;; ---- slot do.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 do) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001735
+(And (Member $e0 do) (Agent $e0 $x1) (Member $x1 dung_beetle))    ;; n 1 docs 1  e.g. tierB-001735
 
 ;; ---- slot do_away_with.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 do_away_with) (Agent $e0 america))    ;; n 1 docs 1  e.g. tierB-001226
@@ -3774,10 +4031,10 @@
 (And (Member $e0 doctor) (Experiencer $e0 yuri))    ;; n 1 docs 1  e.g. tierB-000203
 
 ;; ---- slot draw.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 draw) (Source $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000781
+(And (Member $e0 draw) (Source $e0 $x1) (Member $x1 town))    ;; n 1 docs 1  e.g. tierB-000781
 
 ;; ---- slot draw.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 draw) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000781
+(And (Member $e0 draw) (Theme $e0 $x1) (Member $x1 attendee))    ;; n 1 docs 1  e.g. tierB-000781
 
 ;; ---- slot dress.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 dress) (Agent $e0 $x1) (Member $x1 nurse))    ;; n 1 docs 1  e.g. tierB-000028
@@ -3798,7 +4055,7 @@
 (And (Member $e0 drive) (Manner $e0 slowly))    ;; n 1 docs 1  e.g. tierB-000426
 
 ;; ---- slot drop.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 drop) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001465
+(And (Member $e0 drop) (Patient $e0 $x1) (Member $x1 charge))    ;; n 1 docs 1  e.g. tierB-001465
 
 ;; ---- slot dwarf_planet.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 dwarf_planet) (Experiencer $e0 pluto))    ;; n 1 docs 1  e.g. tierB-001866
@@ -3815,23 +4072,20 @@
 ;; ---- slot effective.Against  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 effective) (Against $e0 $x1) (Member $x1 virus))    ;; n 1 docs 1  e.g. tierB-000786
 
-;; ---- slot effective.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 effective) (Experiencer $e0 $x1) (Member $x1 drug))    ;; n 1 docs 1  e.g. tierB-000786
-
 ;; ---- slot elect.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 elect) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001066
+(And (Member $e0 elect) (Agent $e0 $x1) (Member $x1 student))    ;; n 1 docs 1  e.g. tierB-001066
 
 ;; ---- slot elect.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 elect) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001066
+(And (Member $e0 elect) (Theme $e0 $x1) (Member $x1 member))    ;; n 1 docs 1  e.g. tierB-001066
 
 ;; ---- slot emerge.FromBehind  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 emerge) (FromBehind $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001838
+(And (Member $e0 emerge) (FromBehind $e0 $x1) (Member $x1 cloud))    ;; n 1 docs 1  e.g. tierB-001838
 
 ;; ---- slot emerge.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 emerge) (Patient $e0 $x1) (Member $x1 sun))    ;; n 1 docs 1  e.g. tierB-001838
 
 ;; ---- slot enable.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 enable) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001445
+(And (Member $e0 enable) (Agent $e0 $x1) (Member $x1 taste_test))    ;; n 1 docs 1  e.g. tierB-001445
 
 ;; ---- slot enable.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 enable) (Theme $e0 $e1) (Member $e1 distinguish))    ;; n 1 docs 1  e.g. tierB-001445
@@ -3839,17 +4093,19 @@
 ;; ---- slot end.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 end) (Time $e0 one_day))    ;; n 1 docs 1  e.g. tierB-000108
 
-;; ---- slot endeavor.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 endeavor) (Source $e0 $x1) (Member $x1 corporation))    ;; n 1 docs 1  e.g. tierB-000538
+;; ---- slot endeavor.Source  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 endeavor) (Source $e0 $x1) (Member $x1 corporation))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000538
+(And (Member $e0 endeavor) (Source $e0 $x1) (Member $x1 massive))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000538
 
 ;; ---- slot engineer.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 engineer) (Agent $e0 bruce_botnick))    ;; n 1 docs 1  e.g. tierC-000350
 
 ;; ---- slot engineer.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 engineer) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000350
+(And (Member $e0 engineer) (Patient $e0 $x1) (Member $x1 session))    ;; n 1 docs 1  e.g. tierC-000350
 
-;; ---- slot enough.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 enough) (Experiencer $e0 $x1) (Member $x1 old))    ;; n 1 docs 1  e.g. tierB-001164
+;; ---- slot enough.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 enough) (Experiencer $e0 $x1) (Member $x1 old))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001164
+(And (Member $e0 enough) (Experiencer $e0 $x1) (Member $x1 port))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001164
 
 ;; ---- slot enough.For  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 enough) (For $e0 modern_ship))    ;; n 1 docs 1  e.g. tierB-001164
@@ -3878,17 +4134,19 @@
 ;; ---- slot evaporate.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 evaporate) (Patient $e0 $x1) (Member $x1 rainwater))    ;; n 1 docs 1  e.g. tierB-000251
 
-;; ---- slot evaporate.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 evaporate) (Time $e0 $x1) (Member $x1 day))    ;; n 1 docs 1  e.g. tierB-000251
+;; ---- slot evaporate.Time  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 evaporate) (Time $e0 $x1) (Member $x1 day))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000251
+(And (Member $e0 evaporate) (Time $e0 $x1) (Member $x1 hot))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000251
 
-;; ---- slot event.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 event) (Experiencer $e0 $x1) (Member $x1 delayed))    ;; n 1 docs 1  e.g. tierB-000808
+;; ---- slot event.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 event) (Experiencer $e0 $x1) (Member $x1 delayed))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000808
+(And (Member $e0 event) (Experiencer $e0 $x1) (Member $x1 train))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000808
 
 ;; ---- slot excavate.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 excavate) (Agent $e0 $x1) (Member $x1 team))    ;; n 1 docs 1  e.g. tierB-000374
 
 ;; ---- slot excavate.Beneficiary  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 excavate) (Beneficiary $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000374
+(And (Member $e0 excavate) (Beneficiary $e0 $x1) (Member $x1 archaeologist))    ;; n 1 docs 1  e.g. tierB-000374
 
 ;; ---- slot excavate.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 excavate) (Manner $e0 carefully))    ;; n 1 docs 1  e.g. tierB-000374
@@ -3908,8 +4166,9 @@
 ;; ---- slot exist.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 exist) (Experiencer $e0 truth))    ;; n 1 docs 1  e.g. tierB-001671
 
-;; ---- slot expensive.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 expensive) (Experiencer $e0 $x1) (Member $x1 expensive))    ;; n 1 docs 1  e.g. tierB-000370
+;; ---- slot expensive.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 expensive) (Experiencer $e0 $x1) (Member $x1 expensive))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000370
+(And (Member $e0 expensive) (Experiencer $e0 $x1) (Member $x1 thing))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000370
 
 ;; ---- slot explain.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 explain) (Agent $e0 paul))    ;; n 1 docs 1  e.g. tierB-000087
@@ -3929,14 +4188,16 @@
 ;; ---- slot fade.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 fade) (Manner $e0 slowly))    ;; n 1 docs 1  e.g. tierB-000685
 
-;; ---- slot fade.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 fade) (Patient $e0 $x1) (Member $x1 light))    ;; n 1 docs 1  e.g. tierB-000685
+;; ---- slot fade.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 fade) (Patient $e0 $x1) (Member $x1 light))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000685
+(And (Member $e0 fade) (Patient $e0 $x1) (Member $x1 outside))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000685
 
 ;; ---- slot fail.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 fail) (Patient $e0 diplomacy))    ;; n 1 docs 1  e.g. tierB-001591
 
-;; ---- slot faint.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 faint) (Experiencer $e0 $x1) (Member $x1 faint))    ;; n 1 docs 1  e.g. tierB-001384
+;; ---- slot faint.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 faint) (Experiencer $e0 $x1) (Member $x1 faint))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001384
+(And (Member $e0 faint) (Experiencer $e0 $x1) (Member $x1 sound))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001384
 
 ;; ---- slot fall.BecauseOf  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 fall) (BecauseOf $e0 $x1) (Member $x1 wind))    ;; n 1 docs 1  e.g. tierB-001306
@@ -3953,8 +4214,9 @@
 ;; ---- slot falling_out.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 falling_out) (Time $e0 $x1) (Member $x1 point))    ;; n 1 docs 1  e.g. tierB-000828
 
-;; ---- slot fan.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 fan) (Agent $e0 $x1) (Member $x1 easterly))    ;; n 1 docs 1  e.g. tierB-001163
+;; ---- slot fan.Agent  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 fan) (Agent $e0 $x1) (Member $x1 easterly))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001163
+(And (Member $e0 fan) (Agent $e0 $x1) (Member $x1 wind))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001163
 
 ;; ---- slot fan.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 fan) (Patient $e0 $x1) (Member $x1 fire))    ;; n 1 docs 1  e.g. tierB-001163
@@ -3969,7 +4231,7 @@
 (And (Member $e0 fill) (Agent $e0 $x1) (Member $x1 aroma))    ;; n 1 docs 1  e.g. tierB-001403
 
 ;; ---- slot fill.Instrument  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 fill) (Instrument $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000016
+(And (Member $e0 fill) (Instrument $e0 $x1) (Member $x1 potato))    ;; n 1 docs 1  e.g. tierB-000016
 
 ;; ---- slot finalize.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 finalize) (Agent $e0 $x1) (Member $x1 author))    ;; n 1 docs 1  e.g. tierB-001964
@@ -3984,7 +4246,7 @@
 (And (Member $e0 fine) (Theme $e0 $x1) (Member $x1 speeder))    ;; n 1 docs 1  e.g. tierB-001526
 
 ;; ---- slot fire.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 fire) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001824
+(And (Member $e0 fire) (Patient $e0 $x1) (Member $x1 salvo))    ;; n 1 docs 1  e.g. tierB-001824
 
 ;; ---- slot flight.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 flight) (Source $e0 pyongyang))    ;; n 1 docs 1  e.g. tierB-000717
@@ -3993,7 +4255,7 @@
 (And (Member $e0 float) (Down $e0 $x1) (Member $x1 river))    ;; n 1 docs 1  e.g. tierB-000416
 
 ;; ---- slot float.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 float) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000416
+(And (Member $e0 float) (Theme $e0 $x1) (Member $x1 log))    ;; n 1 docs 1  e.g. tierB-000416
 
 ;; ---- slot flow.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 flow) (Location $e0 london))    ;; n 1 docs 1  e.g. tierB-001691
@@ -4043,8 +4305,9 @@
 ;; ---- slot freeze_over.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 freeze_over) (Patient $e0 lake_akan))    ;; n 1 docs 1  e.g. tierB-000572
 
-;; ---- slot french.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 french) (Experiencer $e0 $x1) (Member $x1 indigenous))    ;; n 1 docs 1  e.g. tierC-000001
+;; ---- slot french.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 french) (Experiencer $e0 $x1) (Member $x1 indigenous))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000001
+(And (Member $e0 french) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000001
 
 ;; ---- slot game.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 game) (Time $e0 next_week))    ;; n 1 docs 1  e.g. tierB-000259
@@ -4086,16 +4349,17 @@
 (And (Member $e0 get_rid_of) (Agent $e0 algiers))    ;; n 1 docs 1  e.g. tierB-000262
 
 ;; ---- slot get_rid_of.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 get_rid_of) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000262
+(And (Member $e0 get_rid_of) (Patient $e0 $x1) (Member $x1 shantytown))    ;; n 1 docs 1  e.g. tierB-000262
 
 ;; ---- slot give.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 give) (Location $e0 japan))    ;; n 1 docs 1  e.g. tierC-000111
 
 ;; ---- slot give_off.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 give_off) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000085
+(And (Member $e0 give_off) (Agent $e0 $x1) (Member $x1 flower))    ;; n 1 docs 1  e.g. tierB-000085
 
-;; ---- slot give_off.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 give_off) (Patient $e0 $x1) (Member $x1 perfume))    ;; n 1 docs 1  e.g. tierB-000085
+;; ---- slot give_off.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 give_off) (Patient $e0 $x1) (Member $x1 perfume))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000085
+(And (Member $e0 give_off) (Patient $e0 $x1) (Member $x1 pleasant))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000085
 
 ;; ---- slot give_up.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 give_up) (Agent $e0 bob))    ;; n 1 docs 1  e.g. tierB-000947
@@ -4109,8 +4373,9 @@
 ;; ---- slot glitch.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 glitch) (Location $e0 $x1) (Member $x1 system))    ;; n 1 docs 1  e.g. tierB-001931
 
-;; ---- slot go.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 go) (Patient $e0 $x1) (Member $x1 cold))    ;; n 1 docs 1  e.g. tierB-000362
+;; ---- slot go.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 go) (Patient $e0 $x1) (Member $x1 cold))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000362
+(And (Member $e0 go) (Patient $e0 $x1) (Member $x1 trail))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000362
 
 ;; ---- slot go.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 go) (Theme $e0 $e1) (Member $e1 swim))    ;; n 1 docs 1  e.g. tierB-000313
@@ -4137,7 +4402,7 @@
 (And (Member $e0 go_in) (Agent $e0 bill))    ;; n 1 docs 1  e.g. tierB-000363
 
 ;; ---- slot go_into_effect.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 go_into_effect) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001924
+(And (Member $e0 go_into_effect) (Patient $e0 $x1) (Member $x1 winter_hour))    ;; n 1 docs 1  e.g. tierB-001924
 
 ;; ---- slot go_off.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 go_off) (Patient $e0 $x1) (Member $x1 light))    ;; n 1 docs 1  e.g. tierB-001756
@@ -4146,7 +4411,7 @@
 (And (Member $e0 go_on) (Patient $e0 $x1) (Member $x1 light))    ;; n 1 docs 1  e.g. tierB-001756
 
 ;; ---- slot go_on_sale.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 go_on_sale) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001513
+(And (Member $e0 go_on_sale) (Patient $e0 $x1) (Member $x1 ticket))    ;; n 1 docs 1  e.g. tierB-001513
 
 ;; ---- slot go_on_sale.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 go_on_sale) (Time $e0 <term:Weekday>))    ;; n 1 docs 1  e.g. tierB-001513
@@ -4154,8 +4419,9 @@
 ;; ---- slot go_out.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 go_out) (Agent $e0 $x1) (Member $x1 mother))    ;; n 1 docs 1  e.g. tierB-000720
 
-;; ---- slot go_without_saying.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 go_without_saying) (Experiencer $e0 $x1) (Member $x1 last))    ;; n 1 docs 1  e.g. tierB-000657
+;; ---- slot go_without_saying.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 go_without_saying) (Experiencer $e0 $x1) (Member $x1 last))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000657
+(And (Member $e0 go_without_saying) (Experiencer $e0 $x1) (Member $x1 part))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000657
 
 ;; ---- slot good.Beneficiary  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 good) (Beneficiary $e0 health))    ;; n 1 docs 1  e.g. tierB-000999
@@ -4170,7 +4436,7 @@
 (And (Member $e0 govern) (Location $e0 $x1) (Member $x1 coalition))    ;; n 1 docs 1  e.g. tierB-000359
 
 ;; ---- slot govern.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 govern) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000934
+(And (Member $e0 govern) (Theme $e0 $x1) (Member $x1 interaction))    ;; n 1 docs 1  e.g. tierB-000934
 
 ;; ---- slot grasp.At  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 grasp) (At $e0 $x1) (Member $x1 opportunity))    ;; n 1 docs 1  e.g. tierB-001572
@@ -4191,10 +4457,11 @@
 (And (Member $e0 guarantee) (In $e0 life))    ;; n 1 docs 1  e.g. tierB-001069
 
 ;; ---- slot guarantee.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 guarantee) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001069
+(And (Member $e0 guarantee) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001069
 
-;; ---- slot gusher.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 gusher) (Experiencer $e0 $x1) (Member $x1 freedom_movement))    ;; n 1 docs 1  e.g. tierB-000654
+;; ---- slot gusher.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 gusher) (Experiencer $e0 $x1) (Member $x1 freedom_movement))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000654
+(And (Member $e0 gusher) (Experiencer $e0 $x1) (Member $x1 gusher))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000654
 
 ;; ---- slot hand_over.Recipient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 hand_over) (Recipient $e0 $x1) (Member $x1 police))    ;; n 1 docs 1  e.g. tierB-000150
@@ -4209,13 +4476,13 @@
 (And (Member $e0 hang_out) (Manner $e0 often))    ;; n 1 docs 1  e.g. tierB-000075
 
 ;; ---- slot happen.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 happen) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001893
+(And (Member $e0 happen) (Patient $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001893
 
 ;; ---- slot happen.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 happen) (Time $e0 lunchtime))    ;; n 1 docs 1  e.g. tierB-001363
 
 ;; ---- slot happy.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 happy) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001832
+(And (Member $e0 happy) (Experiencer $e0 $x1) (Member $x1 student))    ;; n 1 docs 1  e.g. tierB-001832
 
 ;; ---- slot hard.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 hard) (Experiencer $e0 $e1) (Member $e1 open))    ;; n 1 docs 1  e.g. tierB-001523
@@ -4227,7 +4494,7 @@
 (And (Member $e0 have) (Manner $e0 clearly))    ;; n 1 docs 1  e.g. tierB-000730
 
 ;; ---- slot have.On  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 have) (On $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000790
+(And (Member $e0 have) (On $e0 $x1) (Member $x1 crop))    ;; n 1 docs 1  e.g. tierB-000790
 
 ;; ---- slot hazardous.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 hazardous) (Experiencer $e0 travel))    ;; n 1 docs 1  e.g. tierB-001754
@@ -4262,11 +4529,12 @@
 ;; ---- slot hidden.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 hidden) (Location $e0 unknown))    ;; n 1 docs 1  e.g. tierB-000758
 
-;; ---- slot hidden.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 hidden) (Source $e0 $x1) (Member $x1 public))    ;; n 1 docs 1  e.g. tierB-000979
+;; ---- slot hidden.Source  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 hidden) (Source $e0 $x1) (Member $x1 public))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000979
+(And (Member $e0 hidden) (Source $e0 $x1) (Member $x1 view))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000979
 
 ;; ---- slot high.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 high) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001937
+(And (Member $e0 high) (Experiencer $e0 $x1) (Member $x1 price))    ;; n 1 docs 1  e.g. tierB-001937
 
 ;; ---- slot high.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 high) (Time $e0 lately))    ;; n 1 docs 1  e.g. tierB-001937
@@ -4274,14 +4542,16 @@
 ;; ---- slot hike.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 hike) (Agent $e0 ziri))    ;; n 1 docs 1  e.g. tierB-000008
 
-;; ---- slot hike.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 hike) (Location $e0 $x1) (Member $x1 hiking_path))    ;; n 1 docs 1  e.g. tierB-000008
+;; ---- slot hike.Location  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 hike) (Location $e0 $x1) (Member $x1 hiking_path))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000008
+(And (Member $e0 hike) (Location $e0 $x1) (Member $x1 secluded))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000008
 
 ;; ---- slot hint.At  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 hint) (At $e0 autumn))    ;; n 1 docs 1  e.g. tierB-001596
 
-;; ---- slot hint.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 hint) (Experiencer $e0 $x1) (Member $x1 air))    ;; n 1 docs 1  e.g. tierB-001596
+;; ---- slot hint.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 hint) (Experiencer $e0 $x1) (Member $x1 air))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001596
+(And (Member $e0 hint) (Experiencer $e0 $x1) (Member $x1 crisp))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001596
 
 ;; ---- slot hit_on.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 hit_on) (Agent $e0 ziri))    ;; n 1 docs 1  e.g. tierB-000013
@@ -4296,10 +4566,11 @@
 (And (Member $e0 hold) (Location $e0 here))    ;; n 1 docs 1  e.g. tierB-000378
 
 ;; ---- slot hold.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 hold) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001266
+(And (Member $e0 hold) (Theme $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-001266
 
-;; ---- slot hold_up.BecauseOf  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 hold_up) (BecauseOf $e0 $x1) (Member $x1 dense))    ;; n 1 docs 1  e.g. tierB-000329
+;; ---- slot hold_up.BecauseOf  [event center; head oblique]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 hold_up) (BecauseOf $e0 $x1) (Member $x1 dense))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000329
+(And (Member $e0 hold_up) (BecauseOf $e0 $x1) (Member $x1 fog))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000329
 
 ;; ---- slot hold_up.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 hold_up) (Patient $e0 traffic))    ;; n 1 docs 1  e.g. tierB-000692
@@ -4311,7 +4582,7 @@
 (And (Member $e0 horrible) (Time $e0 the_other_day))    ;; n 1 docs 1  e.g. tierB-000489
 
 ;; ---- slot hot.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 hot) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000463
+(And (Member $e0 hot) (Experiencer $e0 $x1) (Member $x1 day))    ;; n 1 docs 1  e.g. tierB-000463
 
 ;; ---- slot identify.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 identify) (Agent $e0 kate))    ;; n 1 docs 1  e.g. tierB-001191
@@ -4323,7 +4594,7 @@
 (And (Member $e0 illness) (Experiencer $e0 $x1) (Member $x1 boy))    ;; n 1 docs 1  e.g. tierB-001625
 
 ;; ---- slot illumine.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 illumine) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001061
+(And (Member $e0 illumine) (Agent $e0 $x1) (Member $x1 lantern))    ;; n 1 docs 1  e.g. tierB-001061
 
 ;; ---- slot illumine.In  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 illumine) (In $e0 green))    ;; n 1 docs 1  e.g. tierB-001061
@@ -4335,13 +4606,14 @@
 (And (Member $e0 illustrate) (Agent $e0 j_augustus_knapp))    ;; n 1 docs 1  e.g. tierC-000232
 
 ;; ---- slot illustrate.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 illustrate) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000232
+(And (Member $e0 illustrate) (Patient $e0 $x1) (Member $x1 illustration))    ;; n 1 docs 1  e.g. tierC-000232
 
 ;; ---- slot imitate.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 imitate) (Agent $e0 $x1) (Member $x1 bird))    ;; n 1 docs 1  e.g. tierB-001888
 
-;; ---- slot imitate.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 imitate) (Theme $e0 $x1) (Member $x1 human))    ;; n 1 docs 1  e.g. tierB-001888
+;; ---- slot imitate.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 imitate) (Theme $e0 $x1) (Member $x1 human))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001888
+(And (Member $e0 imitate) (Theme $e0 $x1) (Member $x1 voice))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001888
 
 ;; ---- slot implement.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 implement) (Agent $e0 brazil))    ;; n 1 docs 1  e.g. tierB-000281
@@ -4373,8 +4645,9 @@
 ;; ---- slot in_charge_of.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 in_charge_of) (Time $e0 this_year))    ;; n 1 docs 1  e.g. tierB-001171
 
-;; ---- slot in_fashion.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 in_fashion) (Experiencer $e0 $x1) (Member $x1 in_fashion))    ;; n 1 docs 1  e.g. tierB-001896
+;; ---- slot in_fashion.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 in_fashion) (Experiencer $e0 $x1) (Member $x1 in_fashion))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001896
+(And (Member $e0 in_fashion) (Experiencer $e0 $x1) (Member $x1 style))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001896
 
 ;; ---- slot in_fashion.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 in_fashion) (Time $e0 now))    ;; n 1 docs 1  e.g. tierB-001896
@@ -4383,13 +4656,13 @@
 (And (Member $e0 include) (Location $e0 $x1) (Member $x1 treaty))    ;; n 1 docs 1  e.g. tierB-001878
 
 ;; ---- slot increase.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 increase) (Location $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001903
+(And (Member $e0 increase) (Location $e0 $x1) (Member $x1 region))    ;; n 1 docs 1  e.g. tierB-001903
 
 ;; ---- slot incubate.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 incubate) (Location $e0 $x1) (Member $x1 mother_bird))    ;; n 1 docs 1  e.g. tierB-000217
 
 ;; ---- slot incubate.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 incubate) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000217
+(And (Member $e0 incubate) (Patient $e0 $x1) (Member $x1 egg))    ;; n 1 docs 1  e.g. tierB-000217
 
 ;; ---- slot indicate.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 indicate) (Agent $e0 $x1) (Member $x1 arrow))    ;; n 1 docs 1  e.g. tierB-001190
@@ -4397,11 +4670,13 @@
 ;; ---- slot indicate.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 indicate) (Theme $e0 $x1) (Member $x1 way))    ;; n 1 docs 1  e.g. tierB-001190
 
-;; ---- slot indigenous.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 indigenous) (Experiencer $e0 $x1) (Member $x1 indigenous))    ;; n 1 docs 1  e.g. tierC-000001
+;; ---- slot indigenous.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 indigenous) (Experiencer $e0 $x1) (Member $x1 indigenous))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000001
+(And (Member $e0 indigenous) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000001
 
-;; ---- slot influence.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 influence) (Source $e0 $x1) (Member $x1 balance))    ;; n 1 docs 1  e.g. tierC-000258
+;; ---- slot influence.Source  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 influence) (Source $e0 $x1) (Member $x1 balance))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000258
+(And (Member $e0 influence) (Source $e0 $x1) (Member $x1 international))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000258
 
 ;; ---- slot influence.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 influence) (Theme $e0 $x1) (Member $x1 religion))    ;; n 1 docs 1  e.g. tierC-000258
@@ -4409,8 +4684,9 @@
 ;; ---- slot injure.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 injure) (Source $e0 $x1) (Member $x1 lion_attack))    ;; n 1 docs 1  e.g. tierB-000725
 
-;; ---- slot inomaru.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 inomaru) (Experiencer $e0 $x1) (Member $x1 inomaru))    ;; n 1 docs 1  e.g. tierC-000237
+;; ---- slot inomaru.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 inomaru) (Experiencer $e0 $x1) (Member $x1 inomaru))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000237
+(And (Member $e0 inomaru) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000237
 
 ;; ---- slot install.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 install) (Patient $e0 $x1) (Member $x1 game))    ;; n 1 docs 1  e.g. tierB-001845
@@ -4428,7 +4704,7 @@
 (And (Member $e0 investigate) (Theme $e0 $x1) (Member $x1 company))    ;; n 1 docs 1  e.g. tierB-001355
 
 ;; ---- slot investigation.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 investigation) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001589
+(And (Member $e0 investigation) (Theme $e0 $x1) (Member $x1 organism))    ;; n 1 docs 1  e.g. tierB-001589
 
 ;; ---- slot involve.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 involve) (Agent $e0 $x1) (Member $x1 border_incident))    ;; n 1 docs 1  e.g. tierB-001222
@@ -4440,10 +4716,11 @@
 (And (Member $e0 involved) (Experiencer $e0 $x1) (Member $x1 army))    ;; n 1 docs 1  e.g. tierB-000411
 
 ;; ---- slot involved.In  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 involved) (In $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000411
+(And (Member $e0 involved) (In $e0 $x1) (Member $x1 action))    ;; n 1 docs 1  e.g. tierB-000411
 
-;; ---- slot issue.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 issue) (Experiencer $e0 $x1) (Member $x1 answer))    ;; n 1 docs 1  e.g. tierB-000997
+;; ---- slot issue.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 issue) (Experiencer $e0 $x1) (Member $x1 answer))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000997
+(And (Member $e0 issue) (Experiencer $e0 $x1) (Member $x1 no))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000997
 
 ;; ---- slot jail.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 jail) (Experiencer $e0 dan))    ;; n 1 docs 1  e.g. tierB-000867
@@ -4467,7 +4744,7 @@
 (And (Member $e0 key_in) (Manner $e0 intentionally))    ;; n 1 docs 1  e.g. tierB-001922
 
 ;; ---- slot key_in.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 key_in) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001922
+(And (Member $e0 key_in) (Theme $e0 $x1) (Member $x1 lyric))    ;; n 1 docs 1  e.g. tierB-001922
 
 ;; ---- slot kick.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 kick) (Agent $e0 jamil))    ;; n 1 docs 1  e.g. tierB-001092
@@ -4500,10 +4777,10 @@
 (And (Member $e0 king) (Experiencer $e0 augustus))    ;; n 1 docs 1  e.g. tierB-001809
 
 ;; ---- slot kit_out.Instrument  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 kit_out) (Instrument $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001429
+(And (Member $e0 kit_out) (Instrument $e0 $x1) (Member $x1 jacket))    ;; n 1 docs 1  e.g. tierB-001429
 
 ;; ---- slot kit_out.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 kit_out) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001429
+(And (Member $e0 kit_out) (Patient $e0 $x1) (Member $x1 camper))    ;; n 1 docs 1  e.g. tierB-001429
 
 ;; ---- slot knock.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 knock) (Location $e0 $x1) (Member $x1 window))    ;; n 1 docs 1  e.g. tierB-001899
@@ -4517,11 +4794,13 @@
 ;; ---- slot large.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 large) (Experiencer $e0 kalman))    ;; n 1 docs 1  e.g. tierB-000228
 
-;; ---- slot laugh.At  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 laugh) (At $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-001316
+;; ---- slot laugh.At  [event center; head oblique]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 laugh) (At $e0 $x1) (Member $x1 man))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001316
+(And (Member $e0 laugh) (At $e0 $x1) (Member $x1 old))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001316
 
-;; ---- slot lax.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 lax) (Experiencer $e0 $x1) (Member $x1 discipline))    ;; n 1 docs 1  e.g. tierC-000158
+;; ---- slot lax.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 lax) (Experiencer $e0 $x1) (Member $x1 discipline))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000158
+(And (Member $e0 lax) (Experiencer $e0 $x1) (Member $x1 lax))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000158
 
 ;; ---- slot lay.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 lay) (Patient $e0 $x1) (Member $x1 table))    ;; n 1 docs 1  e.g. tierB-001624
@@ -4530,7 +4809,7 @@
 (And (Member $e0 lay) (Time $e0 now))    ;; n 1 docs 1  e.g. tierB-001624
 
 ;; ---- slot lay_waste_to.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 lay_waste_to) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001695
+(And (Member $e0 lay_waste_to) (Agent $e0 $x1) (Member $x1 soldier))    ;; n 1 docs 1  e.g. tierB-001695
 
 ;; ---- slot lay_waste_to.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 lay_waste_to) (Patient $e0 $x1) (Member $x1 city))    ;; n 1 docs 1  e.g. tierB-001695
@@ -4539,7 +4818,7 @@
 (And (Member $e0 lead) (Beneficiary $e0 person))    ;; n 1 docs 1  e.g. tierB-000105
 
 ;; ---- slot lead.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 lead) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000040
+(And (Member $e0 lead) (Experiencer $e0 $x1) (Member $x1 prophecy))    ;; n 1 docs 1  e.g. tierB-000040
 
 ;; ---- slot lead.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 lead) (Manner $e0 finally))    ;; n 1 docs 1  e.g. tierB-000040
@@ -4548,7 +4827,7 @@
 (And (Member $e0 lead_to) (Agent $e0 $e1) (Member $e1 explode))    ;; n 1 docs 1  e.g. tierB-001669
 
 ;; ---- slot lead_to.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 lead_to) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001669
+(And (Member $e0 lead_to) (Theme $e0 $x1) (Member $x1 riot))    ;; n 1 docs 1  e.g. tierB-001669
 
 ;; ---- slot leak.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 leak) (Agent $e0 $x1) (Member $x1 oil_filter))    ;; n 1 docs 1  e.g. tierB-000888
@@ -4569,7 +4848,7 @@
 (And (Member $e0 leave_a_lot_to_be_desired) (Agent $e0 $x1) (Member $x1 report))    ;; n 1 docs 1  e.g. tierB-000306
 
 ;; ---- slot leave_behind.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 leave_behind) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000133
+(And (Member $e0 leave_behind) (Theme $e0 $x1) (Member $x1 girl))    ;; n 1 docs 1  e.g. tierB-000133
 
 ;; ---- slot legalize.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 legalize) (Agent $e0 music))    ;; n 1 docs 1  e.g. tierB-000840
@@ -4590,7 +4869,7 @@
 (And (Member $e0 let_go) (Theme $e0 $x1) (Member $x1 cloth))    ;; n 1 docs 1  e.g. tierB-000091
 
 ;; ---- slot lick.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 lick) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001586
+(And (Member $e0 lick) (Agent $e0 $x1) (Member $x1 flame))    ;; n 1 docs 1  e.g. tierB-001586
 
 ;; ---- slot lick.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 lick) (Theme $e0 $x1) (Member $x1 bottom))    ;; n 1 docs 1  e.g. tierB-001586
@@ -4599,7 +4878,7 @@
 (And (Member $e0 life) (Time $e0 nineties))    ;; n 1 docs 1  e.g. tierB-000284
 
 ;; ---- slot light.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 light) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001997
+(And (Member $e0 light) (Agent $e0 $x1) (Member $x1 candle))    ;; n 1 docs 1  e.g. tierB-001997
 
 ;; ---- slot light.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 light) (Manner $e0 dimly))    ;; n 1 docs 1  e.g. tierB-001642
@@ -4610,14 +4889,12 @@
 ;; ---- slot like.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 like) (Theme $e0 $e1) (Member $e1 play))    ;; n 1 docs 1  e.g. tierB-000160
 
-;; ---- slot limp.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 limp) (Experiencer $e0 $x1) (Member $x1 hat))    ;; n 1 docs 1  e.g. tierB-000596
-
 ;; ---- slot line.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 line) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001684
+(And (Member $e0 line) (Agent $e0 $x1) (Member $x1 cab))    ;; n 1 docs 1  e.g. tierB-001684
 
-;; ---- slot line.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 line) (Theme $e0 $x1) (Member $x1 entire))    ;; n 1 docs 1  e.g. tierB-001684
+;; ---- slot line.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 line) (Theme $e0 $x1) (Member $x1 entire))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001684
+(And (Member $e0 line) (Theme $e0 $x1) (Member $x1 street))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001684
 
 ;; ---- slot linger.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 linger) (Experiencer $e0 $x1) (Member $x1 scent))    ;; n 1 docs 1  e.g. tierB-001531
@@ -4643,8 +4920,9 @@
 ;; ---- slot lock.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 lock) (Patient $e0 $x1) (Member $x1 door))    ;; n 1 docs 1  e.g. tierB-001326
 
-;; ---- slot locked.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 locked) (Experiencer $e0 $x1) (Member $x1 door))    ;; n 1 docs 1  e.g. tierB-000880
+;; ---- slot locked.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 locked) (Experiencer $e0 $x1) (Member $x1 door))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000880
+(And (Member $e0 locked) (Experiencer $e0 $x1) (Member $x1 locked))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000880
 
 ;; ---- slot locked.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 locked) (Time $e0 now))    ;; n 1 docs 1  e.g. tierB-000880
@@ -4682,8 +4960,9 @@
 ;; ---- slot make.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 make) (Manner $e0 effectively))    ;; n 1 docs 1  e.g. tierB-001809
 
-;; ---- slot make.Of  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 make) (Of $e0 $x1) (Member $x1 glass))    ;; n 1 docs 1  e.g. tierB-000269
+;; ---- slot make.Of  [event center; head oblique]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 make) (Of $e0 $x1) (Member $x1 glass))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000269
+(And (Member $e0 make) (Of $e0 $x1) (Member $x1 real))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000269
 
 ;; ---- slot make.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 make) (Theme $e0 progress))    ;; n 1 docs 1  e.g. tierB-000173
@@ -4700,8 +4979,9 @@
 ;; ---- slot mammoth.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 mammoth) (Theme $e0 $e1) (Member $e1 spot))    ;; n 1 docs 1  e.g. tierB-001257
 
-;; ---- slot march.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 march) (Agent $e0 $x1) (Member $x1 group))    ;; n 1 docs 1  e.g. tierB-001357
+;; ---- slot march.Agent  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 march) (Agent $e0 $x1) (Member $x1 group))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001357
+(And (Member $e0 march) (Agent $e0 $x1) (Member $x1 two_spirit_native_american))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001357
 
 ;; ---- slot march.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 march) (Location $e0 $x1) (Member $x1 parade))    ;; n 1 docs 1  e.g. tierB-001357
@@ -4718,14 +4998,15 @@
 ;; ---- slot materialize.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 materialize) (Patient $e0 $x1) (Member $x1 ghost))    ;; n 1 docs 1  e.g. tierB-001366
 
-;; ---- slot materialize.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 materialize) (Source $e0 $x1) (Member $x1 dark))    ;; n 1 docs 1  e.g. tierB-001366
+;; ---- slot materialize.Source  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 materialize) (Source $e0 $x1) (Member $x1 dark))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001366
+(And (Member $e0 materialize) (Source $e0 $x1) (Member $x1 room))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001366
 
 ;; ---- slot mature.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 mature) (Manner $e0 a_little_bit))    ;; n 1 docs 1  e.g. tierB-001434
 
 ;; ---- slot mature.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 mature) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001434
+(And (Member $e0 mature) (Patient $e0 $x1) (Member $x1 strawberry_tree_fruit))    ;; n 1 docs 1  e.g. tierB-001434
 
 ;; ---- slot mean.As  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 mean) (As $e0 $x1) (Member $x1 joke))    ;; n 1 docs 1  e.g. tierB-001989
@@ -4758,7 +5039,7 @@
 (And (Member $e0 mention) (Location $e0 bible))    ;; n 1 docs 1  e.g. tierB-000483
 
 ;; ---- slot mention.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 mention) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000483
+(And (Member $e0 mention) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-000483
 
 ;; ---- slot merge.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 merge) (Agent $e0 jason_suecof))    ;; n 1 docs 1  e.g. tierC-000104
@@ -4787,14 +5068,15 @@
 ;; ---- slot mix.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 mix) (Patient $e0 $x1) (Member $x1 album))    ;; n 1 docs 1  e.g. tierC-000103
 
-;; ---- slot modern.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 modern) (Experiencer $e0 $x1) (Member $x1 road))    ;; n 1 docs 1  e.g. tierB-001966
+;; ---- slot modern.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 modern) (Experiencer $e0 $x1) (Member $x1 road))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001966
+(And (Member $e0 modern) (Experiencer $e0 $x1) (Member $x1 street))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001966
 
 ;; ---- slot modest.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 modest) (Experiencer $e0 $x1) (Member $x1 union))    ;; n 1 docs 1  e.g. tierB-001667
 
 ;; ---- slot modest.In  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 modest) (In $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001667
+(And (Member $e0 modest) (In $e0 $x1) (Member $x1 wage_demand))    ;; n 1 docs 1  e.g. tierB-001667
 
 ;; ---- slot mount.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 mount) (Agent $e0 $x1) (Member $x1 rider))    ;; n 1 docs 1  e.g. tierB-000981
@@ -4805,8 +5087,9 @@
 ;; ---- slot move.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 move) (Manner $e0 gracefully))    ;; n 1 docs 1  e.g. tierB-000782
 
-;; ---- slot move.Through  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 move) (Through $e0 $x1) (Member $x1 clear))    ;; n 1 docs 1  e.g. tierB-000782
+;; ---- slot move.Through  [event center; head oblique]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 move) (Through $e0 $x1) (Member $x1 clear))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000782
+(And (Member $e0 move) (Through $e0 $x1) (Member $x1 water))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000782
 
 ;; ---- slot move.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 move) (Time $e0 last_year))    ;; n 1 docs 1  e.g. tierB-001570
@@ -4815,13 +5098,14 @@
 (And (Member $e0 mull_over) (Agent $e0 boldi))    ;; n 1 docs 1  e.g. tierB-000162
 
 ;; ---- slot mull_over.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 mull_over) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000162
+(And (Member $e0 mull_over) (Theme $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-000162
 
 ;; ---- slot need.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 need) (Time $e0 now))    ;; n 1 docs 1  e.g. tierB-001141
 
-;; ---- slot negotiation.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 negotiation) (Location $e0 $x1) (Member $x1 closed))    ;; n 1 docs 1  e.g. tierB-001474
+;; ---- slot negotiation.Location  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 negotiation) (Location $e0 $x1) (Member $x1 closed))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001474
+(And (Member $e0 negotiation) (Location $e0 $x1) (Member $x1 door))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001474
 
 ;; ---- slot nest.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 nest) (Agent $e0 $x1) (Member $x1 stork))    ;; n 1 docs 1  e.g. tierB-000633
@@ -4830,7 +5114,7 @@
 (And (Member $e0 nest) (Location $e0 $x1) (Member $x1 roof))    ;; n 1 docs 1  e.g. tierB-000633
 
 ;; ---- slot new.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 new) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001337
+(And (Member $e0 new) (Experiencer $e0 $x1) (Member $x1 house))    ;; n 1 docs 1  e.g. tierB-001337
 
 ;; ---- slot nice.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 nice) (Experiencer $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-000960
@@ -4857,19 +5141,22 @@
 (And (Member $e0 okay) (Theme $e0 person))    ;; n 1 docs 1  e.g. tierB-001679
 
 ;; ---- slot old.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 old) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001337
+(And (Member $e0 old) (Experiencer $e0 $x1) (Member $x1 house))    ;; n 1 docs 1  e.g. tierB-001337
 
 ;; ---- slot ooze.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 ooze) (Patient $e0 blood))    ;; n 1 docs 1  e.g. tierB-001287
 
-;; ---- slot ooze.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 ooze) (Source $e0 $x1) (Member $x1 face))    ;; n 1 docs 1  e.g. tierB-001287
+;; ---- slot ooze.Source  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 ooze) (Source $e0 $x1) (Member $x1 face))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001287
+(And (Member $e0 ooze) (Source $e0 $x1) (Member $x1 lacerated))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001287
 
-;; ---- slot open.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 open) (Experiencer $e0 $x1) (Member $x1 door))    ;; n 1 docs 1  e.g. tierB-000425
+;; ---- slot open.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 open) (Experiencer $e0 $x1) (Member $x1 door))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000425
+(And (Member $e0 open) (Experiencer $e0 $x1) (Member $x1 open))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000425
 
-;; ---- slot open.Goal  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 open) (Goal $e0 $x1) (Member $x1 new))    ;; n 1 docs 1  e.g. tierB-000958
+;; ---- slot open.Goal  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 open) (Goal $e0 $x1) (Member $x1 new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000958
+(And (Member $e0 open) (Goal $e0 $x1) (Member $x1 possibility))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000958
 
 ;; ---- slot open.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 open) (Time $e0 <term:Hour>))    ;; n 1 docs 1  e.g. tierB-000302
@@ -4883,11 +5170,13 @@
 ;; ---- slot originate.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 originate) (Patient $e0 $x1) (Member $x1 costume_style))    ;; n 1 docs 1  e.g. tierB-001272
 
-;; ---- slot out_of_stock.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 out_of_stock) (Experiencer $e0 $x1) (Member $x1 out_of_stock))    ;; n 1 docs 1  e.g. tierB-001045
+;; ---- slot out_of_stock.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 out_of_stock) (Experiencer $e0 $x1) (Member $x1 out_of_stock))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001045
+(And (Member $e0 out_of_stock) (Experiencer $e0 $x1) (Member $x1 product))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001045
 
-;; ---- slot out_of_the_question.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 out_of_the_question) (Experiencer $e0 $x1) (Member $x1 out_of_the_question))    ;; n 1 docs 1  e.g. tierB-000842
+;; ---- slot out_of_the_question.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 out_of_the_question) (Experiencer $e0 $x1) (Member $x1 out_of_the_question))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000842
+(And (Member $e0 out_of_the_question) (Experiencer $e0 $x1) (Member $x1 thing))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000842
 
 ;; ---- slot outperform.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 outperform) (Agent $e0 quadratic_placement))    ;; n 1 docs 1  e.g. tierC-000193
@@ -4901,11 +5190,13 @@
 ;; ---- slot outside.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 outside) (Experiencer $e0 lorenzo))    ;; n 1 docs 1  e.g. tierB-001091
 
-;; ---- slot packed.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 packed) (Experiencer $e0 $x1) (Member $x1 packed))    ;; n 1 docs 1  e.g. tierB-000917
+;; ---- slot packed.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 packed) (Experiencer $e0 $x1) (Member $x1 packed))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000917
+(And (Member $e0 packed) (Experiencer $e0 $x1) (Member $x1 restaurant))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000917
 
-;; ---- slot parallel.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 parallel) (Experiencer $e0 $x1) (Member $x1 lakeside_road))    ;; n 1 docs 1  e.g. tierB-001906
+;; ---- slot parallel.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 parallel) (Experiencer $e0 $x1) (Member $x1 lakeside_road))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001906
+(And (Member $e0 parallel) (Experiencer $e0 $x1) (Member $x1 parallel))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001906
 
 ;; ---- slot park.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 park) (Location $e0 spot))    ;; n 1 docs 1  e.g. tierB-000197
@@ -4914,10 +5205,10 @@
 (And (Member $e0 parking) (Beneficiary $e0 customer))    ;; n 1 docs 1  e.g. tierB-000945
 
 ;; ---- slot pass.By  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 pass) (By $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001008
+(And (Member $e0 pass) (By $e0 $x1) (Member $x1 diver))    ;; n 1 docs 1  e.g. tierB-001008
 
 ;; ---- slot pass.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 pass) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001782
+(And (Member $e0 pass) (Patient $e0 $x1) (Member $x1 hour))    ;; n 1 docs 1  e.g. tierB-001782
 
 ;; ---- slot pass.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 pass) (Time $e0 today))    ;; n 1 docs 1  e.g. tierB-001762
@@ -4925,14 +5216,15 @@
 ;; ---- slot pass_by.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 pass_by) (Patient $e0 $x1) (Member $x1 summer))    ;; n 1 docs 1  e.g. tierB-000094
 
-;; ---- slot pay.For  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 pay) (For $e0 $x1) (Member $x1 shift))    ;; n 1 docs 1  e.g. tierB-001603
+;; ---- slot pay.For  [event center; head oblique]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 pay) (For $e0 $x1) (Member $x1 shift))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001603
+(And (Member $e0 pay) (For $e0 $x1) (Member $x1 whole))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001603
 
 ;; ---- slot pay.Recipient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 pay) (Recipient $e0 lukas))    ;; n 1 docs 1  e.g. tierB-001603
 
 ;; ---- slot pay_off.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 pay_off) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001200
+(And (Member $e0 pay_off) (Patient $e0 $x1) (Member $x1 tax))    ;; n 1 docs 1  e.g. tierB-001200
 
 ;; ---- slot peek.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 peek) (Agent $e0 $x1) (Member $x1 mouse))    ;; n 1 docs 1  e.g. tierB-000693
@@ -4947,7 +5239,7 @@
 (And (Member $e0 penetrate) (Like $e0 pillar))    ;; n 1 docs 1  e.g. tierB-000561
 
 ;; ---- slot penetrate.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 penetrate) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000561
+(And (Member $e0 penetrate) (Theme $e0 $x1) (Member $x1 wave))    ;; n 1 docs 1  e.g. tierB-000561
 
 ;; ---- slot photography_walk.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 photography_walk) (Agent $e0 gustavo))    ;; n 1 docs 1  e.g. tierB-000791
@@ -4962,16 +5254,17 @@
 (And (Member $e0 place) (Patient $e0 $x1) (Member $x1 order))    ;; n 1 docs 1  e.g. tierB-001952
 
 ;; ---- slot plaster.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 plaster) (Location $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001070
+(And (Member $e0 plaster) (Location $e0 $x1) (Member $x1 newspaper))    ;; n 1 docs 1  e.g. tierB-001070
 
 ;; ---- slot plaster.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 plaster) (Theme $e0 $x1) (Member $x1 picture))    ;; n 1 docs 1  e.g. tierB-001070
 
-;; ---- slot play.Around  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 play) (Around $e0 $x1) (Member $x1 castle))    ;; n 1 docs 1  e.g. tierB-001840
+;; ---- slot play.Around  [event center; head oblique]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 play) (Around $e0 $x1) (Member $x1 castle))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001840
+(And (Member $e0 play) (Around $e0 $x1) (Member $x1 green))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001840
 
 ;; ---- slot play.CoAgent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 play) (CoAgent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000160
+(And (Member $e0 play) (CoAgent $e0 $x1) (Member $x1 cat))    ;; n 1 docs 1  e.g. tierB-000160
 
 ;; ---- slot play.Instrument  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 play) (Instrument $e0 lego))    ;; n 1 docs 1  e.g. tierB-001433
@@ -4991,8 +5284,9 @@
 ;; ---- slot plummet.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 plummet) (Manner $e0 quickly))    ;; n 1 docs 1  e.g. tierB-000005
 
-;; ---- slot plummet.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 plummet) (Patient $e0 $x1) (Member $x1 berber_speaking))    ;; n 1 docs 1  e.g. tierB-000005
+;; ---- slot plummet.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 plummet) (Patient $e0 $x1) (Member $x1 berber_speaking))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000005
+(And (Member $e0 plummet) (Patient $e0 $x1) (Member $x1 population))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000005
 
 ;; ---- slot plummet.With  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 plummet) (With $e0 $e1) (Member $e1 arrival))    ;; n 1 docs 1  e.g. tierB-000005
@@ -5010,7 +5304,7 @@
 (And (Member $e0 polish) (Patient $e0 metal))    ;; n 1 docs 1  e.g. tierB-000938
 
 ;; ---- slot pollute.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 pollute) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001151
+(And (Member $e0 pollute) (Agent $e0 $x1) (Member $x1 factory))    ;; n 1 docs 1  e.g. tierB-001151
 
 ;; ---- slot pollute.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 pollute) (Patient $e0 $x1) (Member $x1 environment))    ;; n 1 docs 1  e.g. tierB-001151
@@ -5036,14 +5330,16 @@
 ;; ---- slot possess.Holder  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 possess) (Holder $e0 marco))    ;; n 1 docs 1  e.g. tierB-000510
 
-;; ---- slot possess.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 possess) (Theme $e0 $x1) (Member $x1 stamp_collection))    ;; n 1 docs 1  e.g. tierB-000510
+;; ---- slot possess.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 possess) (Theme $e0 $x1) (Member $x1 stamp_collection))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000510
+(And (Member $e0 possess) (Theme $e0 $x1) (Member $x1 valuable))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000510
 
 ;; ---- slot post.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 post) (Location $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000069
+(And (Member $e0 post) (Location $e0 $x1) (Member $x1 city))    ;; n 1 docs 1  e.g. tierC-000069
 
-;; ---- slot post.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 post) (Theme $e0 $x1) (Member $x1 reduced))    ;; n 1 docs 1  e.g. tierC-000069
+;; ---- slot post.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 post) (Theme $e0 $x1) (Member $x1 reduced))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000069
+(And (Member $e0 post) (Theme $e0 $x1) (Member $x1 speed_limit))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000069
 
 ;; ---- slot postpone.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 postpone) (Patient $e0 $x1) (Member $x1 party))    ;; n 1 docs 1  e.g. tierB-001381
@@ -5058,19 +5354,20 @@
 (And (Member $e0 practice) (Manner $e0 harder))    ;; n 1 docs 1  e.g. tierB-001720
 
 ;; ---- slot pray.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 pray) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000283
+(And (Member $e0 pray) (Patient $e0 $x1) (Member $x1 prayer))    ;; n 1 docs 1  e.g. tierC-000283
 
 ;; ---- slot preach.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 preach) (Theme $e0 gareccio))    ;; n 1 docs 1  e.g. tierC-000047
 
-;; ---- slot prefer.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 prefer) (Experiencer $e0 $x1) (Member $x1 spider))    ;; n 1 docs 1  e.g. tierB-000734
+;; ---- slot prefer.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 prefer) (Experiencer $e0 $x1) (Member $x1 spider))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000734
+(And (Member $e0 prefer) (Experiencer $e0 $x1) (Member $x1 vegetarian))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000734
 
 ;; ---- slot prefer.Stimulus  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 prefer) (Stimulus $e0 $x1) (Member $x1 nectar))    ;; n 1 docs 1  e.g. tierB-000734
 
 ;; ---- slot prepare.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 prepare) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000274
+(And (Member $e0 prepare) (Agent $e0 $x1) (Member $x1 soldier))    ;; n 1 docs 1  e.g. tierB-000274
 
 ;; ---- slot prepare.For  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 prepare) (For $e0 battle))    ;; n 1 docs 1  e.g. tierB-000274
@@ -5093,8 +5390,9 @@
 ;; ---- slot proclaim.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 proclaim) (Agent $e0 xavier))    ;; n 1 docs 1  e.g. tierB-001533
 
-;; ---- slot proclaim.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 proclaim) (Theme $e0 $x1) (Member $x1 stance))    ;; n 1 docs 1  e.g. tierB-001533
+;; ---- slot proclaim.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 proclaim) (Theme $e0 $x1) (Member $x1 stance))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001533
+(And (Member $e0 proclaim) (Theme $e0 $x1) (Member $x1 syncretic))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001533
 
 ;; ---- slot program.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 program) (Agent $e0 programmer))    ;; n 1 docs 1  e.g. tierB-000109
@@ -5110,9 +5408,6 @@
 
 ;; ---- slot protect.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 protect) (Theme $e0 $x1) (Member $x1 head))    ;; n 1 docs 1  e.g. tierB-001396
-
-;; ---- slot prove.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 prove) (Experiencer $e0 $x1) (Member $x1 drug))    ;; n 1 docs 1  e.g. tierB-000786
 
 ;; ---- slot provide.For  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 provide) (For $e0 $x1) (Member $x1 cook))    ;; n 1 docs 1  e.g. tierB-001663
@@ -5133,7 +5428,7 @@
 (And (Member $e0 pulse) (Agent $e0 $x1) (Member $x1 loudspeaker))    ;; n 1 docs 1  e.g. tierB-000193
 
 ;; ---- slot pulse.With  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 pulse) (With $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000193
+(And (Member $e0 pulse) (With $e0 $x1) (Member $x1 noise))    ;; n 1 docs 1  e.g. tierB-000193
 
 ;; ---- slot purchase.Against  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 purchase) (Against $e0 law))    ;; n 1 docs 1  e.g. tierB-000015
@@ -5192,8 +5487,9 @@
 ;; ---- slot question.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 question) (Theme $e0 $e1) (Member $e1 war))    ;; n 1 docs 1  e.g. tierB-001621
 
-;; ---- slot raise_the_dead.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 raise_the_dead) (Agent $e0 $x1) (Member $x1 coffee))    ;; n 1 docs 1  e.g. tierB-000156
+;; ---- slot raise_the_dead.Agent  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 raise_the_dead) (Agent $e0 $x1) (Member $x1 coffee))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000156
+(And (Member $e0 raise_the_dead) (Agent $e0 $x1) (Member $x1 strong))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000156
 
 ;; ---- slot reach.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 reach) (Patient $e0 $x1) (Member $x1 verdict))    ;; n 1 docs 1  e.g. tierB-001082
@@ -5208,13 +5504,13 @@
 (And (Member $e0 rebel) (Against $e0 $x1) (Member $x1 king))    ;; n 1 docs 1  e.g. tierB-000248
 
 ;; ---- slot rebel.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 rebel) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000248
+(And (Member $e0 rebel) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000248
 
 ;; ---- slot recall.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 recall) (Agent $e0 $x1) (Member $x1 company))    ;; n 1 docs 1  e.g. tierB-000853
 
 ;; ---- slot recall.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 recall) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000853
+(And (Member $e0 recall) (Theme $e0 $x1) (Member $x1 product))    ;; n 1 docs 1  e.g. tierB-000853
 
 ;; ---- slot receive.For  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 receive) (For $e0 $e1) (Member $e1 dance))    ;; n 1 docs 1  e.g. tierB-000962
@@ -5222,14 +5518,16 @@
 ;; ---- slot receive.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 receive) (Location $e0 $x1) (Member $x1 winter_festival))    ;; n 1 docs 1  e.g. tierB-000962
 
-;; ---- slot receive.Source  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 receive) (Source $e0 $x1) (Member $x1 car_dealer))    ;; n 1 docs 1  e.g. tierB-001693
+;; ---- slot receive.Source  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 receive) (Source $e0 $x1) (Member $x1 car_dealer))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001693
+(And (Member $e0 receive) (Source $e0 $x1) (Member $x1 local))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001693
 
 ;; ---- slot reclassify.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 reclassify) (Patient $e0 pluto))    ;; n 1 docs 1  e.g. tierB-001866
 
-;; ---- slot recognize.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 recognize) (Theme $e0 $x1) (Member $x1 cultural_heritage))    ;; n 1 docs 1  e.g. tierB-001864
+;; ---- slot recognize.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 recognize) (Theme $e0 $x1) (Member $x1 cultural_heritage))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001864
+(And (Member $e0 recognize) (Theme $e0 $x1) (Member $x1 settlement))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001864
 
 ;; ---- slot recognize.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 recognize) (Time $e0 today))    ;; n 1 docs 1  e.g. tierB-001864
@@ -5249,11 +5547,12 @@
 ;; ---- slot refer.As  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 refer) (As $e0 pedo_transfer_function))    ;; n 1 docs 1  e.g. tierC-000205
 
-;; ---- slot refer.In  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 refer) (In $e0 $x1) (Member $x1 context))    ;; n 1 docs 1  e.g. tierC-000205
+;; ---- slot refer.In  [event center; head oblique]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 refer) (In $e0 $x1) (Member $x1 context))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000205
+(And (Member $e0 refer) (In $e0 $x1) (Member $x1 non_spatial))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000205
 
 ;; ---- slot refer.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 refer) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000205
+(And (Member $e0 refer) (Theme $e0 $x1) (Member $x1 predictive_function))    ;; n 1 docs 1  e.g. tierC-000205
 
 ;; ---- slot refuse.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 refuse) (Agent $e0 yitzhak))    ;; n 1 docs 1  e.g. tierB-000910
@@ -5262,7 +5561,7 @@
 (And (Member $e0 refuse) (Theme $e0 $e1) (Member $e1 serve))    ;; n 1 docs 1  e.g. tierB-000910
 
 ;; ---- slot relate.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 relate) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierC-000040
+(And (Member $e0 relate) (Experiencer $e0 $x1) (Member $x1 activity))    ;; n 1 docs 1  e.g. tierC-000040
 
 ;; ---- slot relax.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 relax) (Agent $e0 adriano))    ;; n 1 docs 1  e.g. tierB-001767
@@ -5301,10 +5600,10 @@
 (And (Member $e0 request) (Theme $e0 $x1) (Member $x1 american_assistance))    ;; n 1 docs 1  e.g. tierB-000969
 
 ;; ---- slot rescue.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 rescue) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000196
+(And (Member $e0 rescue) (Patient $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000196
 
 ;; ---- slot reside.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 reside) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001035
+(And (Member $e0 reside) (Agent $e0 $x1) (Member $x1 refugee))    ;; n 1 docs 1  e.g. tierB-001035
 
 ;; ---- slot reside.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 reside) (Location $e0 gabon))    ;; n 1 docs 1  e.g. tierB-001035
@@ -5313,10 +5612,11 @@
 (And (Member $e0 rest) (Experiencer $e0 $x1) (Member $x1 sociologist))    ;; n 1 docs 1  e.g. tierB-000963
 
 ;; ---- slot rest.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 rest) (Location $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000963
+(And (Member $e0 rest) (Location $e0 $x1) (Member $x1 palm_tree))    ;; n 1 docs 1  e.g. tierB-000963
 
-;; ---- slot restrict.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 restrict) (Agent $e0 $x1) (Member $x1 law))    ;; n 1 docs 1  e.g. tierB-000288
+;; ---- slot restrict.Agent  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 restrict) (Agent $e0 $x1) (Member $x1 law))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000288
+(And (Member $e0 restrict) (Agent $e0 $x1) (Member $x1 new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000288
 
 ;; ---- slot restrict.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 restrict) (Theme $e0 $e1) (Member $e1 sale))    ;; n 1 docs 1  e.g. tierB-000288
@@ -5339,14 +5639,16 @@
 ;; ---- slot return.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 return) (Manner $e0 safely))    ;; n 1 docs 1  e.g. tierB-000688
 
-;; ---- slot revamp.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 revamp) (Patient $e0 $x1) (Member $x1 road))    ;; n 1 docs 1  e.g. tierB-001966
+;; ---- slot revamp.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 revamp) (Patient $e0 $x1) (Member $x1 road))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001966
+(And (Member $e0 revamp) (Patient $e0 $x1) (Member $x1 street))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001966
 
 ;; ---- slot reveal.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 reveal) (Agent $e0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierB-001881
 
-;; ---- slot reveal.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 reveal) (Experiencer $e0 $x1) (Member $x1 recent))    ;; n 1 docs 1  e.g. tierB-001359
+;; ---- slot reveal.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 reveal) (Experiencer $e0 $x1) (Member $x1 recent))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001359
+(And (Member $e0 reveal) (Experiencer $e0 $x1) (Member $x1 survey))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001359
 
 ;; ---- slot rewrite.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 rewrite) (Manner $e0 completely))    ;; n 1 docs 1  e.g. tierB-001622
@@ -5361,10 +5663,11 @@
 (And (Member $e0 ricochet) (Source $e0 $x1) (Member $x1 bat))    ;; n 1 docs 1  e.g. tierB-000103
 
 ;; ---- slot ride.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 ride) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001543
+(And (Member $e0 ride) (Agent $e0 $x1) (Member $x1 cowboy))    ;; n 1 docs 1  e.g. tierB-001543
 
-;; ---- slot ride.Goal  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 ride) (Goal $e0 $x1) (Member $x1 town))    ;; n 1 docs 1  e.g. tierB-001543
+;; ---- slot ride.Goal  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 ride) (Goal $e0 $x1) (Member $x1 town))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001543
+(And (Member $e0 ride) (Goal $e0 $x1) (Member $x1 unknown))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001543
 
 ;; ---- slot ring.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 ring) (Agent $e0 mary))    ;; n 1 docs 1  e.g. tierB-000002
@@ -5390,8 +5693,9 @@
 ;; ---- slot roll.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 roll) (Agent $e0 $x1) (Member $x1 cook))    ;; n 1 docs 1  e.g. tierB-000942
 
-;; ---- slot roll.Instrument  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 roll) (Instrument $e0 $x1) (Member $x1 menacing))    ;; n 1 docs 1  e.g. tierB-001228
+;; ---- slot roll.Instrument  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 roll) (Instrument $e0 $x1) (Member $x1 crash))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001228
+(And (Member $e0 roll) (Instrument $e0 $x1) (Member $x1 menacing))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001228
 
 ;; ---- slot roll.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 roll) (Location $e0 $x1) (Member $x1 peel))    ;; n 1 docs 1  e.g. tierB-000942
@@ -5406,7 +5710,7 @@
 (And (Member $e0 rough) (Experiencer $e0 $x1) (Member $x1 sea))    ;; n 1 docs 1  e.g. tierB-000134
 
 ;; ---- slot round.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 round) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001860
+(And (Member $e0 round) (Agent $e0 $x1) (Member $x1 runner))    ;; n 1 docs 1  e.g. tierB-001860
 
 ;; ---- slot round.Goal  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 round) (Goal $e0 $x1) (Member $x1 homestretch))    ;; n 1 docs 1  e.g. tierB-001860
@@ -5421,10 +5725,11 @@
 (And (Member $e0 rumor) (Theme $e0 <term:And>))    ;; n 1 docs 1  e.g. tierB-001547
 
 ;; ---- slot run.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 run) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000339
+(And (Member $e0 run) (Theme $e0 $x1) (Member $x1 test))    ;; n 1 docs 1  e.g. tierB-000339
 
-;; ---- slot run.Through  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 run) (Through $e0 $x1) (Member $x1 field))    ;; n 1 docs 1  e.g. tierB-001153
+;; ---- slot run.Through  [event center; head oblique]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 run) (Through $e0 $x1) (Member $x1 field))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001153
+(And (Member $e0 run) (Through $e0 $x1) (Member $x1 open))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001153
 
 ;; ---- slot run_around.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 run_around) (Agent $e0 ziri))    ;; n 1 docs 1  e.g. tierB-000001
@@ -5436,7 +5741,7 @@
 (And (Member $e0 run_away) (Agent $e0 ivan))    ;; n 1 docs 1  e.g. tierB-000406
 
 ;; ---- slot run_out.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 run_out) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000656
+(And (Member $e0 run_out) (Agent $e0 $x1) (Member $x1 student))    ;; n 1 docs 1  e.g. tierB-000656
 
 ;; ---- slot run_out.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 run_out) (Manner $e0 quickly))    ;; n 1 docs 1  e.g. tierB-001446
@@ -5465,8 +5770,9 @@
 ;; ---- slot sail.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 sail) (Agent $e0 benedito))    ;; n 1 docs 1  e.g. tierB-000618
 
-;; ---- slot sail.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 sail) (Location $e0 $x1) (Member $x1 calm))    ;; n 1 docs 1  e.g. tierB-000618
+;; ---- slot sail.Location  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 sail) (Location $e0 $x1) (Member $x1 calm))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000618
+(And (Member $e0 sail) (Location $e0 $x1) (Member $x1 water))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000618
 
 ;; ---- slot sale.Recipient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 sale) (Recipient $e0 minor))    ;; n 1 docs 1  e.g. tierB-000288
@@ -5474,11 +5780,13 @@
 ;; ---- slot sale.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 sale) (Theme $e0 cigarette))    ;; n 1 docs 1  e.g. tierB-000288
 
-;; ---- slot save.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 save) (Agent $e0 $x1) (Member $x1 boy))    ;; n 1 docs 1  e.g. tierB-001285
+;; ---- slot save.Agent  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 save) (Agent $e0 $x1) (Member $x1 boy))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001285
+(And (Member $e0 save) (Agent $e0 $x1) (Member $x1 tall))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001285
 
-;; ---- slot save.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 save) (Patient $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-001285
+;; ---- slot save.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 save) (Patient $e0 $x1) (Member $x1 child))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001285
+(And (Member $e0 save) (Patient $e0 $x1) (Member $x1 drowning))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001285
 
 ;; ---- slot say.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 say) (Location $e0 $x1) (Member $x1 cemetery_chapel))    ;; n 1 docs 1  e.g. tierB-001626
@@ -5493,7 +5801,7 @@
 (And (Member $e0 scare) (Agent $e0 $x1) (Member $x1 thunder))    ;; n 1 docs 1  e.g. tierB-000634
 
 ;; ---- slot scare.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 scare) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000634
+(And (Member $e0 scare) (Patient $e0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-000634
 
 ;; ---- slot schedule.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 schedule) (Patient $e0 $e1) (Member $e1 broadcast))    ;; n 1 docs 1  e.g. tierB-000903
@@ -5502,7 +5810,7 @@
 (And (Member $e0 scorch) (Agent $e0 direct_sun))    ;; n 1 docs 1  e.g. tierB-001246
 
 ;; ---- slot scorch.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 scorch) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001246
+(And (Member $e0 scorch) (Patient $e0 $x1) (Member $x1 leaf))    ;; n 1 docs 1  e.g. tierB-001246
 
 ;; ---- slot screw.Goal  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 screw) (Goal $e0 $x1) (Member $x1 jar))    ;; n 1 docs 1  e.g. tierB-000135
@@ -5513,8 +5821,9 @@
 ;; ---- slot search.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 search) (Agent $e0 bill))    ;; n 1 docs 1  e.g. tierB-000441
 
-;; ---- slot search.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 search) (Theme $e0 $x1) (Member $x1 entire))    ;; n 1 docs 1  e.g. tierB-000441
+;; ---- slot search.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 search) (Theme $e0 $x1) (Member $x1 entire))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000441
+(And (Member $e0 search) (Theme $e0 $x1) (Member $x1 house))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000441
 
 ;; ---- slot see.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 see) (Experiencer $e0 donald))    ;; n 1 docs 1  e.g. tierB-000115
@@ -5588,11 +5897,12 @@
 ;; ---- slot set_sail.For  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 set_sail) (For $e0 bombay))    ;; n 1 docs 1  e.g. tierB-000605
 
-;; ---- slot set_up.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 set_up) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 docs 1  e.g. tierB-001870
+;; ---- slot set_up.Agent  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 set_up) (Agent $e0 $x1) (Member $x1 man))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001870
+(And (Member $e0 set_up) (Agent $e0 $x1) (Member $x1 young))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001870
 
 ;; ---- slot set_up.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 set_up) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001870
+(And (Member $e0 set_up) (Patient $e0 $x1) (Member $x1 bowling_pin))    ;; n 1 docs 1  e.g. tierB-001870
 
 ;; ---- slot settle.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 settle) (Agent $e0 $x1) (Member $x1 butterfly))    ;; n 1 docs 1  e.g. tierB-000977
@@ -5616,13 +5926,14 @@
 (And (Member $e0 shine) (Like $e0 gold))    ;; n 1 docs 1  e.g. tierB-001218
 
 ;; ---- slot shine.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 shine) (Location $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001933
+(And (Member $e0 shine) (Location $e0 $x1) (Member $x1 cloud))    ;; n 1 docs 1  e.g. tierB-001933
 
 ;; ---- slot shop.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 shop) (Agent $e0 $x1) (Member $x1 mother))    ;; n 1 docs 1  e.g. tierB-000720
 
-;; ---- slot short.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 short) (Experiencer $e0 $x1) (Member $x1 short))    ;; n 1 docs 1  e.g. tierB-001658
+;; ---- slot short.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 short) (Experiencer $e0 $x1) (Member $x1 day))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001658
+(And (Member $e0 short) (Experiencer $e0 $x1) (Member $x1 short))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001658
 
 ;; ---- slot shortening.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 shortening) (Experiencer $e0 iga))    ;; n 1 docs 1  e.g. tierB-001314
@@ -5642,8 +5953,9 @@
 ;; ---- slot shut.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 shut) (Time $e0 <term:Hour>))    ;; n 1 docs 1  e.g. tierB-000302
 
-;; ---- slot sight_read.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 sight_read) (Theme $e0 $x1) (Member $x1 difficult))    ;; n 1 docs 1  e.g. tierB-001847
+;; ---- slot sight_read.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 sight_read) (Theme $e0 $x1) (Member $x1 difficult))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001847
+(And (Member $e0 sight_read) (Theme $e0 $x1) (Member $x1 sheet_music))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001847
 
 ;; ---- slot sign.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 sign) (Agent $e0 $x1) (Member $x1 author))    ;; n 1 docs 1  e.g. tierB-000170
@@ -5657,11 +5969,13 @@
 ;; ---- slot silence.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 silence) (Patient $e0 $x1) (Member $x1 opposition))    ;; n 1 docs 1  e.g. tierB-001885
 
-;; ---- slot silent.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 silent) (Experiencer $e0 $x1) (Member $x1 forest))    ;; n 1 docs 1  e.g. tierB-000609
+;; ---- slot silent.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 silent) (Experiencer $e0 $x1) (Member $x1 forest))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000609
+(And (Member $e0 silent) (Experiencer $e0 $x1) (Member $x1 silent))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000609
 
-;; ---- slot sing.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 sing) (Location $e0 $x1) (Member $x1 early))    ;; n 1 docs 1  e.g. tierB-001901
+;; ---- slot sing.Location  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 sing) (Location $e0 $x1) (Member $x1 early))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001901
+(And (Member $e0 sing) (Location $e0 $x1) (Member $x1 morning_light))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001901
 
 ;; ---- slot sink.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 sink) (Agent $e0 hezbollah))    ;; n 1 docs 1  e.g. tierB-000581
@@ -5711,8 +6025,9 @@
 ;; ---- slot soar.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 soar) (Manner $e0 gracefully))    ;; n 1 docs 1  e.g. tierB-001333
 
-;; ---- slot soluble.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 soluble) (Experiencer $e0 $x1) (Member $x1 powder))    ;; n 1 docs 1  e.g. tierB-000887
+;; ---- slot soluble.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 soluble) (Experiencer $e0 $x1) (Member $x1 powder))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000887
+(And (Member $e0 soluble) (Experiencer $e0 $x1) (Member $x1 soluble))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000887
 
 ;; ---- slot soluble.In  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 soluble) (In $e0 water))    ;; n 1 docs 1  e.g. tierB-000887
@@ -5726,11 +6041,12 @@
 ;; ---- slot solve.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 solve) (Manner $e0 step_by_step))    ;; n 1 docs 1  e.g. tierB-001202
 
-;; ---- slot sorry.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 sorry) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-001258
+;; ---- slot sorry.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 sorry) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001258
+(And (Member $e0 sorry) (Experiencer $e0 $x1) (Member $x1 sorry))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001258
 
 ;; ---- slot sorry.For  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 sorry) (For $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001258
+(And (Member $e0 sorry) (For $e0 $x1) (Member $x1 word))    ;; n 1 docs 1  e.g. tierB-001258
 
 ;; ---- slot sow.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 sow) (Agent $e0 $x1) (Member $x1 farmer))    ;; n 1 docs 1  e.g. tierB-001689
@@ -5753,8 +6069,9 @@
 ;; ---- slot spell_out.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 spell_out) (Manner $e0 clearly))    ;; n 1 docs 1  e.g. tierB-000555
 
-;; ---- slot spell_out.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 spell_out) (Theme $e0 $x1) (Member $x1 correct))    ;; n 1 docs 1  e.g. tierB-000555
+;; ---- slot spell_out.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 spell_out) (Theme $e0 $x1) (Member $x1 correct))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000555
+(And (Member $e0 spell_out) (Theme $e0 $x1) (Member $x1 procedure))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000555
 
 ;; ---- slot spend.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 spend) (Manner $e0 alone))    ;; n 1 docs 1  e.g. tierB-000883
@@ -5816,8 +6133,9 @@
 ;; ---- slot stick.Goal  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 stick) (Goal $e0 $x1) (Member $x1 show_sole))    ;; n 1 docs 1  e.g. tierB-000482
 
-;; ---- slot straight.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 straight) (Experiencer $e0 $x1) (Member $x1 straight))    ;; n 1 docs 1  e.g. tierB-001976
+;; ---- slot straight.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 straight) (Experiencer $e0 $x1) (Member $x1 boy))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001976
+(And (Member $e0 straight) (Experiencer $e0 $x1) (Member $x1 straight))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001976
 
 ;; ---- slot strew.Instrument  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 strew) (Instrument $e0 trash))    ;; n 1 docs 1  e.g. tierB-000757
@@ -5858,8 +6176,9 @@
 ;; ---- slot suffer.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 suffer) (Agent $e0 $x1) (Member $x1 patient))    ;; n 1 docs 1  e.g. tierB-001498
 
-;; ---- slot suffer.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 suffer) (Theme $e0 $x1) (Member $x1 brain_haemorrhage))    ;; n 1 docs 1  e.g. tierB-001498
+;; ---- slot suffer.Theme  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 suffer) (Theme $e0 $x1) (Member $x1 brain_haemorrhage))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001498
+(And (Member $e0 suffer) (Theme $e0 $x1) (Member $x1 severe))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001498
 
 ;; ---- slot suggest.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 suggest) (Experiencer $e0 jim))    ;; n 1 docs 1  e.g. tierB-000700
@@ -5871,10 +6190,10 @@
 (And (Member $e0 surround) (Theme $e0 $x1) (Member $x1 house))    ;; n 1 docs 1  e.g. tierB-001005
 
 ;; ---- slot sweep_away.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 sweep_away) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000018
+(And (Member $e0 sweep_away) (Agent $e0 $x1) (Member $x1 current))    ;; n 1 docs 1  e.g. tierB-000018
 
 ;; ---- slot sweep_away.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 sweep_away) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000018
+(And (Member $e0 sweep_away) (Theme $e0 $x1) (Member $x1 vehicle))    ;; n 1 docs 1  e.g. tierB-000018
 
 ;; ---- slot switch_off.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 switch_off) (Agent $e0 robbie))    ;; n 1 docs 1  e.g. tierC-000316
@@ -5910,7 +6229,7 @@
 (And (Member $e0 take_over) (Patient $e0 $x1) (Member $x1 yard))    ;; n 1 docs 1  e.g. tierB-001234
 
 ;; ---- slot take_part.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 take_part) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001033
+(And (Member $e0 take_part) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-001033
 
 ;; ---- slot take_part.In  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 take_part) (In $e0 $x1) (Member $x1 marathon))    ;; n 1 docs 1  e.g. tierB-001033
@@ -5928,13 +6247,13 @@
 (And (Member $e0 teach) (Source $e0 $x1) (Member $x1 elevator))    ;; n 1 docs 1  e.g. tierB-001612
 
 ;; ---- slot teach.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 teach) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000749
+(And (Member $e0 teach) (Theme $e0 $x1) (Member $x1 phrase))    ;; n 1 docs 1  e.g. tierB-000749
 
 ;; ---- slot teem.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 teem) (Experiencer $e0 $x1) (Member $x1 place))    ;; n 1 docs 1  e.g. tierB-001397
 
 ;; ---- slot teem.With  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 teem) (With $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001397
+(And (Member $e0 teem) (With $e0 $x1) (Member $x1 spider))    ;; n 1 docs 1  e.g. tierB-001397
 
 ;; ---- slot teleport.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 teleport) (Agent $e0 karl))    ;; n 1 docs 1  e.g. tierB-000029
@@ -5961,7 +6280,7 @@
 (And (Member $e0 terrorize) (Patient $e0 camper))    ;; n 1 docs 1  e.g. tierB-000096
 
 ;; ---- slot think.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 think) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001160
+(And (Member $e0 think) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-001160
 
 ;; ---- slot think.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 think) (Theme $e0 <term:And>))    ;; n 1 docs 1  e.g. tierB-001160
@@ -5970,7 +6289,7 @@
 (And (Member $e0 thought) (Theme $e0 <term:And>))    ;; n 1 docs 1  e.g. tierB-001216
 
 ;; ---- slot thrive.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 thrive) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000858
+(And (Member $e0 thrive) (Patient $e0 $x1) (Member $x1 exotic_plant))    ;; n 1 docs 1  e.g. tierB-000858
 
 ;; ---- slot throw.At  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 throw) (At $e0 $x1) (Member $x1 dog))    ;; n 1 docs 1  e.g. tierB-000340
@@ -5987,8 +6306,9 @@
 ;; ---- slot tick_away.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 tick_away) (Manner $e0 quickly))    ;; n 1 docs 1  e.g. tierB-001062
 
-;; ---- slot tick_away.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 tick_away) (Patient $e0 $x1) (Member $x1 allotted))    ;; n 1 docs 1  e.g. tierB-001062
+;; ---- slot tick_away.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 tick_away) (Patient $e0 $x1) (Member $x1 allotted))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001062
+(And (Member $e0 tick_away) (Patient $e0 $x1) (Member $x1 time))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001062
 
 ;; ---- slot tie.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 tie) (Agent $e0 james))    ;; n 1 docs 1  e.g. tierB-000392
@@ -5996,8 +6316,9 @@
 ;; ---- slot tie.Instrument  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 tie) (Instrument $e0 $x1) (Member $x1 rope))    ;; n 1 docs 1  e.g. tierB-000392
 
-;; ---- slot tie.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 tie) (Patient $e0 $x1) (Member $x1 together))    ;; n 1 docs 1  e.g. tierB-000392
+;; ---- slot tie.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 tie) (Patient $e0 $x1) (Member $x1 bodyguard))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000392
+(And (Member $e0 tie) (Patient $e0 $x1) (Member $x1 together))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000392
 
 ;; ---- slot till.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 till) (Agent $e0 $x1) (Member $x1 farmer))    ;; n 1 docs 1  e.g. tierB-000291
@@ -6008,8 +6329,9 @@
 ;; ---- slot till.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 till) (Patient $e0 $x1) (Member $x1 soil))    ;; n 1 docs 1  e.g. tierB-000291
 
-;; ---- slot together.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 together) (Experiencer $e0 $x1) (Member $x1 together))    ;; n 1 docs 1  e.g. tierB-000392
+;; ---- slot together.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 together) (Experiencer $e0 $x1) (Member $x1 bodyguard))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000392
+(And (Member $e0 together) (Experiencer $e0 $x1) (Member $x1 together))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000392
 
 ;; ---- slot top.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 top) (Patient $e0 $x1) (Member $x1 tree))    ;; n 1 docs 1  e.g. tierB-001757
@@ -6021,10 +6343,10 @@
 (And (Member $e0 topple) (Agent $e0 $x1) (Member $x1 wind))    ;; n 1 docs 1  e.g. tierB-001886
 
 ;; ---- slot topple.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 topple) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001886
+(And (Member $e0 topple) (Patient $e0 $x1) (Member $x1 tree))    ;; n 1 docs 1  e.g. tierB-001886
 
 ;; ---- slot torture.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 torture) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001138
+(And (Member $e0 torture) (Agent $e0 $x1) (Member $x1 legionnaire))    ;; n 1 docs 1  e.g. tierB-001138
 
 ;; ---- slot traffic.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 traffic) (Theme $e0 gluten))    ;; n 1 docs 1  e.g. tierB-001222
@@ -6081,7 +6403,7 @@
 (And (Member $e0 turn_off) (Time $e0 later))    ;; n 1 docs 1  e.g. tierC-000315
 
 ;; ---- slot turn_out.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 turn_out) (Agent $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001550
+(And (Member $e0 turn_out) (Agent $e0 $x1) (Member $x1 search))    ;; n 1 docs 1  e.g. tierB-001550
 
 ;; ---- slot turn_out.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 turn_out) (Theme $e0 nothing))    ;; n 1 docs 1  e.g. tierB-001550
@@ -6095,17 +6417,20 @@
 ;; ---- slot understand.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 understand) (Experiencer $e0 yanni))    ;; n 1 docs 1  e.g. tierB-000114
 
-;; ---- slot unfold.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 unfold) (Patient $e0 $x1) (Member $x1 future))    ;; n 1 docs 1  e.g. tierB-001557
+;; ---- slot unfold.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 unfold) (Patient $e0 $x1) (Member $x1 future))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001557
+(And (Member $e0 unfold) (Patient $e0 $x1) (Member $x1 mystery))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001557
 
-;; ---- slot unknown.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 unknown) (Experiencer $e0 $x1) (Member $x1 cause))    ;; n 1 docs 1  e.g. tierB-000919
+;; ---- slot unknown.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 unknown) (Experiencer $e0 $x1) (Member $x1 cause))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000919
+(And (Member $e0 unknown) (Experiencer $e0 $x1) (Member $x1 unknown))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000919
 
-;; ---- slot unlocked.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 unlocked) (Experiencer $e0 $x1) (Member $x1 door))    ;; n 1 docs 1  e.g. tierB-000747
+;; ---- slot unlocked.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 unlocked) (Experiencer $e0 $x1) (Member $x1 door))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000747
+(And (Member $e0 unlocked) (Experiencer $e0 $x1) (Member $x1 unlocked))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000747
 
 ;; ---- slot unwilling.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 unwilling) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000124
+(And (Member $e0 unwilling) (Experiencer $e0 $x1) (Member $x1 villager))    ;; n 1 docs 1  e.g. tierB-000124
 
 ;; ---- slot unwilling.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 unwilling) (Theme $e0 <term:And>))    ;; n 1 docs 1  e.g. tierB-000124
@@ -6128,8 +6453,9 @@
 ;; ---- slot use.In  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 use) (In $e0 real_life))    ;; n 1 docs 1  e.g. tierB-000971
 
-;; ---- slot usual.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 usual) (Experiencer $e0 $x1) (Member $x1 usual))    ;; n 1 docs 1  e.g. tierC-000135
+;; ---- slot usual.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 usual) (Experiencer $e0 $x1) (Member $x1 usual))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000135
+(And (Member $e0 usual) (Experiencer $e0 $x1) (Member $x1 view))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000135
 
 ;; ---- slot vanish.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 vanish) (Patient $e0 leon))    ;; n 1 docs 1  e.g. tierB-000955
@@ -6138,7 +6464,7 @@
 (And (Member $e0 vanish) (Source $e0 $x1) (Member $x1 spotlight))    ;; n 1 docs 1  e.g. tierB-000955
 
 ;; ---- slot vindicate.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 vindicate) (Theme $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000409
+(And (Member $e0 vindicate) (Theme $e0 $x1) (Member $x1 critic))    ;; n 1 docs 1  e.g. tierB-000409
 
 ;; ---- slot visit.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 visit) (Agent $e0 $x1) (Member $x1 governor))    ;; n 1 docs 1  e.g. tierB-000985
@@ -6149,14 +6475,15 @@
 ;; ---- slot vomit.In  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 vomit) (In $e0 disgust))    ;; n 1 docs 1  e.g. tierB-000199
 
-;; ---- slot wait.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 wait) (Experiencer $e0 $x1) (Member $x1 future))    ;; n 1 docs 1  e.g. tierB-001557
+;; ---- slot wait.Experiencer  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 wait) (Experiencer $e0 $x1) (Member $x1 future))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001557
+(And (Member $e0 wait) (Experiencer $e0 $x1) (Member $x1 mystery))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001557
 
 ;; ---- slot wait.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 wait) (Theme $e0 $e1) (Member $e1 unfold))    ;; n 1 docs 1  e.g. tierB-001557
 
 ;; ---- slot wake.Goal  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 wake) (Goal $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000909
+(And (Member $e0 wake) (Goal $e0 $x1) (Member $x1 thud))    ;; n 1 docs 1  e.g. tierB-000909
 
 ;; ---- slot wake.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 wake) (Patient $e0 claudio))    ;; n 1 docs 1  e.g. tierB-000909
@@ -6173,8 +6500,9 @@
 ;; ---- slot watch.Stimulus  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 watch) (Stimulus $e0 $e1) (Member $e1 practice))    ;; n 1 docs 1  e.g. tierB-001720
 
-;; ---- slot wax.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 wax) (Patient $e0 $x1) (Member $x1 car))    ;; n 1 docs 1  e.g. tierB-000447
+;; ---- slot wax.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 wax) (Patient $e0 $x1) (Member $x1 car))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000447
+(And (Member $e0 wax) (Patient $e0 $x1) (Member $x1 shiny))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000447
 
 ;; ---- slot weave.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 weave) (Agent $e0 time))    ;; n 1 docs 1  e.g. tierB-001677
@@ -6206,14 +6534,11 @@
 ;; ---- slot welcome_back.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 welcome_back) (Theme $e0 anne))    ;; n 1 docs 1  e.g. tierB-000554
 
-;; ---- slot wet.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 wet) (Experiencer $e0 $x1) (Member $x1 hat))    ;; n 1 docs 1  e.g. tierB-000596
-
 ;; ---- slot whisper.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 whisper) (Patient $e0 $x1) (Member $x1 wind))    ;; n 1 docs 1  e.g. tierB-001632
 
 ;; ---- slot whisper.Through  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 whisper) (Through $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001632
+(And (Member $e0 whisper) (Through $e0 $x1) (Member $x1 tree))    ;; n 1 docs 1  e.g. tierB-001632
 
 ;; ---- slot white.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 white) (Experiencer $e0 paper))    ;; n 1 docs 1  e.g. tierB-001431
@@ -6230,20 +6555,21 @@
 ;; ---- slot work_out.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 work_out) (Agent $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000316
 
-;; ---- slot work_out.Location  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 work_out) (Location $e0 $x1) (Member $x1 gym))    ;; n 1 docs 1  e.g. tierB-000316
+;; ---- slot work_out.Location  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 work_out) (Location $e0 $x1) (Member $x1 gym))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000316
+(And (Member $e0 work_out) (Location $e0 $x1) (Member $x1 huge))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000316
 
 ;; ---- slot work_through.Theme  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 work_through) (Theme $e0 past_trauma))    ;; n 1 docs 1  e.g. tierB-000118
 
 ;; ---- slot worry.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 worry) (Experiencer $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001784
+(And (Member $e0 worry) (Experiencer $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-001784
 
 ;; ---- slot worry.Time  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 worry) (Time $e0 hurricane_season))    ;; n 1 docs 1  e.g. tierB-001784
 
 ;; ---- slot wound.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 wound) (Patient $e0 $x1))    ;; n 1 docs 1  e.g. tierB-000771
+(And (Member $e0 wound) (Patient $e0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000771
 
 ;; ---- slot wreak.Agent  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 wreak) (Agent $e0 $x1) (Member $x1 golem))    ;; n 1 docs 1  e.g. tierB-001706
@@ -6257,20 +6583,64 @@
 ;; ---- slot wriggle.Like  [event center; head oblique]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 wriggle) (Like $e0 $x1) (Member $x1 snake))    ;; n 1 docs 1  e.g. tierB-001854
 
-;; ---- slot wriggle.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 wriggle) (Patient $e0 $x1) (Member $x1 pitch))    ;; n 1 docs 1  e.g. tierB-001854
+;; ---- slot wriggle.Patient  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 wriggle) (Patient $e0 $x1) (Member $x1 pitch))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001854
+(And (Member $e0 wriggle) (Patient $e0 $x1) (Member $x1 straight))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001854
 
 ;; ---- slot write.Manner  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 write) (Manner $e0 this_way))    ;; n 1 docs 1  e.g. tierB-001601
 
-;; ---- slot yellow.Experiencer  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 yellow) (Experiencer $e0 $x1) (Member $x1 red))    ;; n 1 docs 1  e.g. tierB-000832
-
-;; ---- slot yield.Goal  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 yield) (Goal $e0 $x1) (Member $x1 push))    ;; n 1 docs 1  e.g. tierB-001453
+;; ---- slot yield.Goal  [event center; head role]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 yield) (Goal $e0 $x1) (Member $x1 push))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001453
+(And (Member $e0 yield) (Goal $e0 $x1) (Member $x1 strong))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001453
 
 ;; ---- slot yield.Patient  [event center; head role]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 yield) (Patient $e0 $x1) (Member $x1 door))    ;; n 1 docs 1  e.g. tierB-001453
+
+;; ---- slot appear.Patient  [event center; head role]  n 1  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 appear) (Patient $e0 $x1) (Member $x1 blue))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001940
+(And (Member $e0 appear) (Patient $e0 $x1) (Member $x1 pocket))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001940
+(And (Member $e0 appear) (Patient $e0 $x1) (Member $x1 sky))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001940
+
+;; ---- slot clean.Instrument  [event center; head role]  n 1  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 clean) (Instrument $e0 $x1) (Member $x1 rag))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001143
+(And (Member $e0 clean) (Instrument $e0 $x1) (Member $x1 smelly))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001143
+(And (Member $e0 clean) (Instrument $e0 $x1) (Member $x1 terrible))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001143
+
+;; ---- slot competitive_activity.Experiencer  [event center; head role]  n 1  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 competitive_activity) (Experiencer $e0 $x1) (Member $x1 competitive_activity))    ;; n 1 (mass 0.333) docs 1  e.g. tierC-000148
+(And (Member $e0 competitive_activity) (Experiencer $e0 $x1) (Member $x1 recreational_sport))    ;; n 1 (mass 0.333) docs 1  e.g. tierC-000148
+(And (Member $e0 competitive_activity) (Experiencer $e0 $x1) (Member $x1 thing))    ;; n 1 (mass 0.333) docs 1  e.g. tierC-000148
+
+;; ---- slot cozy.Experiencer  [event center; head role]  n 1  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 cozy) (Experiencer $e0 $x1) (Member $x1 cozy))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001573
+(And (Member $e0 cozy) (Experiencer $e0 $x1) (Member $x1 living_room))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001573
+(And (Member $e0 cozy) (Experiencer $e0 $x1) (Member $x1 theater))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-001573
+
+;; ---- slot effective.Experiencer  [event center; head role]  n 1  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 effective) (Experiencer $e0 $x1) (Member $x1 drug))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000786
+(And (Member $e0 effective) (Experiencer $e0 $x1) (Member $x1 effective))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000786
+(And (Member $e0 effective) (Experiencer $e0 $x1) (Member $x1 experimental))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000786
+
+;; ---- slot limp.Experiencer  [event center; head role]  n 1  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 limp) (Experiencer $e0 $x1) (Member $x1 hat))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000596
+(And (Member $e0 limp) (Experiencer $e0 $x1) (Member $x1 limp))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000596
+(And (Member $e0 limp) (Experiencer $e0 $x1) (Member $x1 wet))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000596
+
+;; ---- slot prove.Experiencer  [event center; head role]  n 1  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 prove) (Experiencer $e0 $x1) (Member $x1 drug))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000786
+(And (Member $e0 prove) (Experiencer $e0 $x1) (Member $x1 effective))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000786
+(And (Member $e0 prove) (Experiencer $e0 $x1) (Member $x1 experimental))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000786
+
+;; ---- slot wet.Experiencer  [event center; head role]  n 1  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 wet) (Experiencer $e0 $x1) (Member $x1 hat))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000596
+(And (Member $e0 wet) (Experiencer $e0 $x1) (Member $x1 limp))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000596
+(And (Member $e0 wet) (Experiencer $e0 $x1) (Member $x1 wet))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000596
+
+;; ---- slot yellow.Experiencer  [event center; head role]  n 1  docs<= 3  distinct 3  eventive 0
+(And (Member $e0 yellow) (Experiencer $e0 $x1) (Member $x1 leaf))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000832
+(And (Member $e0 yellow) (Experiencer $e0 $x1) (Member $x1 red))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000832
+(And (Member $e0 yellow) (Experiencer $e0 $x1) (Member $x1 yellow))    ;; n 1 (mass 0.333) docs 1  e.g. tierB-000832
 
 ;; ==================== other slots (2343): entity centers + event centers under non-role heads ====================
 
@@ -6595,23 +6965,21 @@
 (And (Member $x0 person) (Member $x0 president))    ;; n 1 docs 1  e.g. tierC-000053
 (And (Member $x0 person) (Member $x0 sorry))    ;; n 1 docs 1  e.g. tierB-001258
 
-;; ---- slot <unclassed>.LocatedIn  [entity center; head other]  n 46  docs<= 46  distinct 38  eventive 0
+;; ---- slot <unclassed>.LocatedIn  [entity center; head other]  n 46  docs<= 50  distinct 41  eventive 0
 (LocatedIn $x0 here)    ;; n 3 docs 3  e.g. tierB-000518 tierB-000972
 (And (LocatedIn $x0 $x1) (Member $x1 city))    ;; n 2 docs 2  e.g. tierB-000153 tierB-000680
 (And (LocatedIn $x0 $x1) (Member $x1 class))    ;; n 2 docs 2  e.g. tierB-000794 tierB-000814
 (LocatedIn $x0 derwent_isle)    ;; n 2 docs 2  e.g. tierC-000115 tierC-000116
-(And (LocatedIn $x0 $x1) (Member $x1 full))    ;; n 2 docs 2  e.g. tierB-000796 tierB-001196
 (And (LocatedIn $x0 $x1) (Member $x1 garden))    ;; n 2 docs 2  e.g. tierB-000760 tierB-001935
 (And (LocatedIn $x0 $x1) (Member $x1 southern))    ;; n 2 docs 2  e.g. tierC-000135 tierC-000136
+(And (LocatedIn $x0 $x1) (Member $x1 full))    ;; n 3 (mass 1.5) docs 3  e.g. tierB-000796 tierB-001196
 (LocatedIn $x0 algiers)    ;; n 1 docs 1  e.g. tierB-000262
-(And (LocatedIn $x0 $x1) (Member $x1 basket))    ;; n 1 docs 1  e.g. tierB-000019
 (And (LocatedIn $x0 $x1) (Member $x1 ceiling))    ;; n 1 docs 1  e.g. tierB-000687
 (And (LocatedIn $x0 $x1) (Member $x1 country))    ;; n 1 docs 1  e.g. tierB-001546
 (LocatedIn $x0 dianchi_lake)    ;; n 1 docs 1  e.g. tierC-000314
 (LocatedIn $x0 el_harrach)    ;; n 1 docs 1  e.g. tierB-001550
 (And (LocatedIn $x0 $x1) (Member $x1 film))    ;; n 1 docs 1  e.g. tierB-001295
 (And (LocatedIn $x0 $x1) (Member $x1 floor))    ;; n 1 docs 1  e.g. tierB-000687
-(And (LocatedIn $x0 $x1) (Member $x1 fountain))    ;; n 1 docs 1  e.g. tierB-001760
 (LocatedIn $x0 gaul)    ;; n 1 docs 1  e.g. tierB-001371
 (And (LocatedIn $x0 $x1) (Member $x1 house))    ;; n 1 docs 1  e.g. tierB-001690
 (LocatedIn $x0 huancavelica)    ;; n 1 docs 1  e.g. tierC-000191
@@ -6634,30 +7002,39 @@
 (And (LocatedIn $x0 $x1) (Member $x1 village))    ;; n 1 docs 1  e.g. tierB-000116
 (And (LocatedIn $x0 $x1) (Member $x1 wall))    ;; n 1 docs 1  e.g. tierB-001788
 (And (LocatedIn $x0 $x1) (Member $x1 world))    ;; n 1 docs 1  e.g. tierB-001477
+(And (LocatedIn $x0 $x1) (Member $x1 basket))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000019
+(And (LocatedIn $x0 $x1) (Member $x1 fountain))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001760
+(And (LocatedIn $x0 $x1) (Member $x1 kitchen_sink))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000796
+(And (LocatedIn $x0 $x1) (Member $x1 place))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001196
+(And (LocatedIn $x0 $x1) (Member $x1 red))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000019
 
 ;; ---- slot have.Member  [event center; head other]  n 43  docs<= 43  distinct 1  eventive 0
 (Member $e0 have)    ;; n 43 docs 43  e.g. tierB-000066 tierB-000142
 
-;; ---- slot <unclassed>.Possession  [entity center; head other]  n 30  docs<= 30  distinct 19  eventive 0
+;; ---- slot <unclassed>.Possession  [entity center; head other]  n 30  docs<= 34  distinct 23  eventive 0
 (And (Possession $x0 $x1) (Member $x1 person))    ;; n 5 docs 5  e.g. tierC-000127 tierC-000128
 (Possession $x0 free_soil_party)    ;; n 4 docs 4  e.g. tierC-000159 tierC-000160
 (Possession $x0 republican_party)    ;; n 4 docs 4  e.g. tierC-000159 tierC-000160
 (Possession $x0 subsequent_game)    ;; n 2 docs 2  e.g. tierC-000173 tierC-000174
-(Possession $x0 $x1)    ;; n 1 docs 1  e.g. tierC-000118
 (And (Possession $x0 $x1) (Member $x1 country))    ;; n 1 docs 1  e.g. tierB-001928
 (Possession $x0 dora_smith)    ;; n 1 docs 1  e.g. tierC-000290
-(And (Possession $x0 $x1) (Member $x1 easy))    ;; n 1 docs 1  e.g. tierB-000246
 (Possession $x0 god)    ;; n 1 docs 1  e.g. tierB-000040
 (Possession $x0 islamic_ivory)    ;; n 1 docs 1  e.g. tierC-000113
 (Possession $x0 jupiter)    ;; n 1 docs 1  e.g. tierB-001769
 (Possession $x0 logical_phrase)    ;; n 1 docs 1  e.g. tierC-000021
 (Possession $x0 logical_proposition)    ;; n 1 docs 1  e.g. tierC-000022
-(And (Possession $x0 $x1) (Member $x1 neighbouring))    ;; n 1 docs 1  e.g. tierC-000117
 (Possession $x0 radical_group)    ;; n 1 docs 1  e.g. tierB-001800
+(And (Possession $x0 $x1) (Member $x1 sunni_community))    ;; n 1 docs 1  e.g. tierC-000118
 (And (Possession $x0 $x1) (Member $x1 thing))    ;; n 1 docs 1  e.g. tierC-000339
 (Possession $x0 twilight)    ;; n 1 docs 1  e.g. tierC-000043
 (And (Possession $x0 $x1) (Member $x1 union))    ;; n 1 docs 1  e.g. tierB-001667
 (Possession $x0 yunnan)    ;; n 1 docs 1  e.g. tierC-000313
+(And (Possession $x0 $x1) (Member $x1 easy))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000246
+(And (Possession $x0 $x1) (Member $x1 generalization))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000246
+(And (Possession $x0 $x1) (Member $x1 community))    ;; n 1 (mass 0.25) docs 1  e.g. tierC-000117
+(And (Possession $x0 $x1) (Member $x1 neighbouring))    ;; n 1 (mass 0.25) docs 1  e.g. tierC-000117
+(And (Possession $x0 $x1) (Member $x1 other))    ;; n 1 (mass 0.25) docs 1  e.g. tierC-000117
+(And (Possession $x0 $x1) (Member $x1 sunni))    ;; n 1 (mass 0.25) docs 1  e.g. tierC-000117
 
 ;; ---- slot house.Member  [entity center; head other]  n 25  docs<= 25  distinct 6  eventive 0
 (Member $x0 house)    ;; n 18 docs 18  e.g. tierB-000048 tierB-000293
@@ -6750,8 +7127,19 @@
 ;; ---- slot get.Member  [event center; head other]  n 14  docs<= 13  distinct 1  eventive 0
 (Member $e0 get)    ;; n 14 docs 13  e.g. tierB-000206 tierB-000370
 
-;; ---- slot <unclassed>.SubsetOf  [entity center; head other]  n 13  docs<= 13  distinct 1  eventive 0
-(SubsetOf $x0 $x1)    ;; n 13 docs 13  e.g. tierB-000124 tierB-000133
+;; ---- slot <unclassed>.SubsetOf  [entity center; head other]  n 13  docs<= 13  distinct 12  eventive 0
+(And (SubsetOf $x0 $x1) (Member $x1 person))    ;; n 2 docs 2  e.g. tierB-000196 tierB-000467
+(And (SubsetOf $x0 $x1) (Member $x1 centipede))    ;; n 1 docs 1  e.g. tierB-000772
+(And (SubsetOf $x0 $x1) (Member $x1 chick))    ;; n 1 docs 1  e.g. tierB-000779
+(And (SubsetOf $x0 $x1) (Member $x1 corner))    ;; n 1 docs 1  e.g. tierB-001299
+(And (SubsetOf $x0 $x1) (Member $x1 girl))    ;; n 1 docs 1  e.g. tierB-000133
+(And (SubsetOf $x0 $x1) (Member $x1 mayan_book))    ;; n 1 docs 1  e.g. tierB-000799
+(And (SubsetOf $x0 $x1) (Member $x1 plane))    ;; n 1 docs 1  e.g. tierB-000761
+(And (SubsetOf $x0 $x1) (Member $x1 pupil))    ;; n 1 docs 1  e.g. tierB-001628
+(And (SubsetOf $x0 $x1) (Member $x1 refugee))    ;; n 1 docs 1  e.g. tierB-001035
+(And (SubsetOf $x0 $x1) (Member $x1 shop))    ;; n 1 docs 1  e.g. tierB-001111
+(And (SubsetOf $x0 $x1) (Member $x1 villager))    ;; n 1 docs 1  e.g. tierB-000124
+(And (SubsetOf $x0 $x1) (Member $x1 window))    ;; n 1 docs 1  e.g. tierB-000320
 
 ;; ---- slot car.Member  [entity center; head other]  n 13  docs<= 13  distinct 5  eventive 0
 (Member $x0 car)    ;; n 9 docs 9  e.g. tierB-000083 tierB-000190
@@ -6782,17 +7170,18 @@
 ;; ---- slot take.Member  [event center; head other]  n 12  docs<= 12  distinct 1  eventive 0
 (Member $e0 take)    ;; n 12 docs 12  e.g. tierB-000252 tierB-000309
 
-;; ---- slot <unclassed>.PartOf  [entity center; head other]  n 11  docs<= 11  distinct 10  eventive 0
+;; ---- slot <unclassed>.PartOf  [entity center; head other]  n 11  docs<= 12  distinct 11  eventive 0
 (PartOf $x0 khurda_road)    ;; n 2 docs 2  e.g. tierC-000105 tierC-000106
-(PartOf $x0 $x1)    ;; n 1 docs 1  e.g. tierB-001066
 (And (PartOf $x0 $x1) (Member $x1 animal))    ;; n 1 docs 1  e.g. tierB-001461
 (And (PartOf $x0 $x1) (Member $x1 cake))    ;; n 1 docs 1  e.g. tierB-001518
 (PartOf $x0 islamic_ivory)    ;; n 1 docs 1  e.g. tierC-000114
 (And (PartOf $x0 $x1) (Member $x1 ivy))    ;; n 1 docs 1  e.g. tierB-001246
 (And (PartOf $x0 $x1) (Member $x1 plant))    ;; n 1 docs 1  e.g. tierB-000714
 (And (PartOf $x0 $x1) (Member $x1 play))    ;; n 1 docs 1  e.g. tierB-001932
-(And (PartOf $x0 $x1) (Member $x1 road))    ;; n 1 docs 1  e.g. tierB-001966
+(And (PartOf $x0 $x1) (Member $x1 student_association))    ;; n 1 docs 1  e.g. tierB-001066
 (PartOf $x0 yunnan)    ;; n 1 docs 1  e.g. tierC-000314
+(And (PartOf $x0 $x1) (Member $x1 road))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001966
+(And (PartOf $x0 $x1) (Member $x1 street))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001966
 
 ;; ---- slot cat.Member  [entity center; head other]  n 11  docs<= 11  distinct 2  eventive 0
 (Member $x0 cat)    ;; n 10 docs 10  e.g. tierB-000024 tierB-000073
@@ -7015,14 +7404,15 @@
 (Member $x0 line)    ;; n 6 docs 4  e.g. tierB-000172 tierB-001120
 (And (Member $x0 line) (Member $x0 long))    ;; n 1 docs 1  e.g. tierB-001120
 
-;; ---- slot make.Result  [event center; head other]  n 7  docs<= 7  distinct 7  eventive 7
-(And (Member $e0 make) (Result $e0 $e1) (Member $e1 backward))    ;; n 1 docs 1  e.g. tierB-001504
+;; ---- slot make.Result  [event center; head other]  n 7  docs<= 8  distinct 8  eventive 7
 (And (Member $e0 make) (Result $e0 $e1) (Member $e1 bad))    ;; n 1 docs 1  e.g. tierB-001594
 (And (Member $e0 make) (Result $e0 $e1) (Member $e1 beautiful))    ;; n 1 docs 1  e.g. tierB-001920
 (And (Member $e0 make) (Result $e0 $e1) (Member $e1 hazardous))    ;; n 1 docs 1  e.g. tierB-001754
 (And (Member $e0 make) (Result $e0 $e1) (Member $e1 king))    ;; n 1 docs 1  e.g. tierB-001809
 (And (Member $e0 make) (Result $e0 $e1) (Member $e1 uncomfortable))    ;; n 1 docs 1  e.g. tierB-000325
 (And (Member $e0 make) (Result $e0 $e1) (Member $e1 white))    ;; n 1 docs 1  e.g. tierB-001431
+(And (Member $e0 make) (Result $e0 $e1) (Member $e1 backward))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001504
+(And (Member $e0 make) (Result $e0 $e1) (Member $e1 country))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001504
 
 ;; ---- slot turn.Member  [event center; head other]  n 7  docs<= 7  distinct 1  eventive 0
 (Member $e0 turn)    ;; n 7 docs 7  e.g. tierB-000018 tierB-000476
@@ -7260,9 +7650,10 @@
 ;; ---- slot say.Member  [event center; head other]  n 5  docs<= 5  distinct 1  eventive 0
 (Member $e0 say)    ;; n 5 docs 5  e.g. tierB-000080 tierB-000865
 
-;; ---- slot sing.To  [event center; head other]  n 5  docs<= 3  distinct 2  eventive 4
+;; ---- slot sing.To  [event center; head other]  n 5  docs<= 4  distinct 3  eventive 4
 (And (Member $e0 sing) (To $e0 $e1) (Member $e1 accompany))    ;; n 4 docs 2  e.g. tierC-000127 tierC-000128
-(And (Member $e0 sing) (To $e0 $x1) (Member $x1 music))    ;; n 1 docs 1  e.g. tierB-000827
+(And (Member $e0 sing) (To $e0 $x1) (Member $x1 music))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000827
+(And (Member $e0 sing) (To $e0 $x1) (Member $x1 sad))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000827
 
 ;; ---- slot sky.Member  [entity center; head other]  n 5  docs<= 5  distinct 1  eventive 0
 (Member $x0 sky)    ;; n 5 docs 5  e.g. tierB-000456 tierB-000722
@@ -8134,7 +8525,7 @@
 (Member $x0 teacher)    ;; n 3 docs 3  e.g. tierB-000700 tierB-000749
 
 ;; ---- slot thing.LocatedIn  [entity center; head other]  n 3  docs<= 3  distinct 2  eventive 0
-(And (Member $x0 thing) (LocatedIn $x0 $x1))    ;; n 2 docs 2  e.g. tierC-000343 tierC-000344
+(And (Member $x0 thing) (LocatedIn $x0 $x1) (Member $x1 hill))    ;; n 2 docs 2  e.g. tierC-000343 tierC-000344
 (And (Member $x0 thing) (LocatedIn $x0 $x1) (Member $x1 closet))    ;; n 1 docs 1  e.g. tierB-000756
 
 ;; ---- slot treaty.Member  [entity center; head other]  n 3  docs<= 3  distinct 1  eventive 0
@@ -8159,12 +8550,12 @@
 (And (Before $x0 $e1) (Member $e1 return))    ;; n 2 docs 2  e.g. tierC-000255 tierC-000256
 
 ;; ---- slot <unclassed>.From  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
-(From $x0 $x1)    ;; n 1 docs 1  e.g. tierB-000622
+(And (From $x0 $x1) (Member $x1 country))    ;; n 1 docs 1  e.g. tierB-000622
 (From $x0 god)    ;; n 1 docs 1  e.g. tierB-000424
 
 ;; ---- slot <unclassed>.Of  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 1
-(Of $x0 $x1)    ;; n 1 docs 1  e.g. tierB-000409
 (And (Of $x0 $e1) (Member $e1 look))    ;; n 1 docs 1  e.g. tierB-001985
+(And (Of $x0 $x1) (Member $x1 measure))    ;; n 1 docs 1  e.g. tierB-000409
 
 ;; ---- slot <unclassed>.On  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
 (On $x0 campus)    ;; n 1 docs 1  e.g. tierB-001066
@@ -8367,9 +8758,10 @@
 (Member $x0 berber_speaking)    ;; n 1 docs 1  e.g. tierB-000005
 (And (Member $x0 berber_speaking) (Member $x0 population))    ;; n 1 docs 1  e.g. tierB-000005
 
-;; ---- slot big.During  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $x0 big) (During $x0 $x1) (Member $x1 great))    ;; n 1 docs 1  e.g. tierC-000020
-(And (Member $x0 big) (During $x0 $x1) (Member $x1 homecoming_game))    ;; n 1 docs 1  e.g. tierC-000019
+;; ---- slot big.During  [entity center; head other]  n 2  docs<= 4  distinct 3  eventive 0
+(And (Member $x0 big) (During $x0 $x1) (Member $x1 homecoming_game))    ;; n 2 (mass 1) docs 2  e.g. tierC-000019 tierC-000020
+(And (Member $x0 big) (During $x0 $x1) (Member $x1 great))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000020
+(And (Member $x0 big) (During $x0 $x1) (Member $x1 large))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000019
 
 ;; ---- slot bill.Member  [entity center; head other]  n 2  docs<= 2  distinct 1  eventive 0
 (Member $x0 bill)    ;; n 2 docs 2  e.g. tierB-000640 tierB-000974
@@ -8477,7 +8869,7 @@
 (Member $x0 change)    ;; n 2 docs 1  e.g. tierB-000663
 
 ;; ---- slot chapel.PartOf  [entity center; head other]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $x0 chapel) (PartOf $x0 $x1))    ;; n 2 docs 2  e.g. tierC-000115 tierC-000116
+(And (Member $x0 chapel) (PartOf $x0 $x1) (Member $x1 listed_building))    ;; n 2 docs 2  e.g. tierC-000115 tierC-000116
 
 ;; ---- slot cheese.Member  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
 (Member $x0 cheese)    ;; n 1 docs 1  e.g. tierB-001032
@@ -8490,9 +8882,10 @@
 (Member $x0 choice_of_words)    ;; n 1 docs 1  e.g. tierB-000558
 (And (Member $x0 choice_of_words) (Member $x0 good))    ;; n 1 docs 1  e.g. tierB-000558
 
-;; ---- slot church.LocatedIn  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot church.LocatedIn  [entity center; head other]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $x0 church) (LocatedIn $x0 $x1) (Member $x1 edge))    ;; n 1 docs 1  e.g. tierB-000739
-(And (Member $x0 church) (LocatedIn $x0 $x1) (Member $x1 other))    ;; n 1 docs 1  e.g. tierB-000202
+(And (Member $x0 church) (LocatedIn $x0 $x1) (Member $x1 other))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000202
+(And (Member $x0 church) (LocatedIn $x0 $x1) (Member $x1 side))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000202
 
 ;; ---- slot claim.Member  [event center; head other]  n 2  docs<= 2  distinct 1  eventive 0
 (Member $e0 claim)    ;; n 2 docs 2  e.g. tierB-000191 tierB-001542
@@ -8580,9 +8973,10 @@
 ;; ---- slot cost.Member  [event center; head other]  n 2  docs<= 2  distinct 1  eventive 0
 (Member $e0 cost)    ;; n 2 docs 2  e.g. tierB-001452 tierB-001460
 
-;; ---- slot cost.Possession  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 1
-(And (Member $x0 cost) (Possession $x0 $x1) (Member $x1 aging))    ;; n 1 docs 1  e.g. tierB-000617
+;; ---- slot cost.Possession  [entity center; head other]  n 2  docs<= 3  distinct 3  eventive 1
 (And (Member $x0 cost) (Possession $x0 $e1) (Member $e1 finance))    ;; n 1 docs 1  e.g. tierB-001532
+(And (Member $x0 cost) (Possession $x0 $x1) (Member $x1 aging))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000617
+(And (Member $x0 cost) (Possession $x0 $x1) (Member $x1 population))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000617
 
 ;; ---- slot counter_space.Member  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
 (Member $x0 counter_space)    ;; n 1 docs 1  e.g. tierB-001663
@@ -9094,7 +9488,7 @@
 (And (Member $x0 hour) (Member $x0 late))    ;; n 1 docs 1  e.g. tierB-000903
 
 ;; ---- slot house.PartOf  [entity center; head other]  n 2  docs<= 2  distinct 1  eventive 0
-(And (Member $x0 house) (PartOf $x0 $x1))    ;; n 2 docs 2  e.g. tierC-000115 tierC-000116
+(And (Member $x0 house) (PartOf $x0 $x1) (Member $x1 listed_building))    ;; n 2 docs 2  e.g. tierC-000115 tierC-000116
 
 ;; ---- slot human.Member  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
 (Member $x0 human)    ;; n 1 docs 1  e.g. tierB-001888
@@ -9279,9 +9673,10 @@
 (Member $x0 mesmerizing)    ;; n 1 docs 1  e.g. tierB-000208
 (And (Member $x0 mesmerizing) (Member $x0 sheen))    ;; n 1 docs 1  e.g. tierB-000208
 
-;; ---- slot middle.LocatedIn  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
+;; ---- slot middle.LocatedIn  [entity center; head other]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $x0 middle) (LocatedIn $x0 $x1) (Member $x1 forest))    ;; n 1 docs 1  e.g. tierB-000141
-(And (Member $x0 middle) (LocatedIn $x0 $x1) (Member $x1 ocean))    ;; n 1 docs 1  e.g. tierB-001257
+(And (Member $x0 middle) (LocatedIn $x0 $x1) (Member $x1 ocean))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001257
+(And (Member $x0 middle) (LocatedIn $x0 $x1) (Member $x1 vast))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001257
 
 ;; ---- slot middle.PartOf  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
 (And (Member $x0 middle) (PartOf $x0 $x1) (Member $x1 desert))    ;; n 1 docs 1  e.g. tierB-000524
@@ -9614,9 +10009,10 @@
 ;; ---- slot scent.Member  [entity center; head other]  n 2  docs<= 2  distinct 1  eventive 0
 (Member $x0 scent)    ;; n 2 docs 2  e.g. tierB-001531 tierB-001900
 
-;; ---- slot scent.Possession  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $x0 scent) (Possession $x0 $x1) (Member $x1 fresh))    ;; n 1 docs 1  e.g. tierB-001531
+;; ---- slot scent.Possession  [entity center; head other]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $x0 scent) (Possession $x0 $x1) (Member $x1 rat))    ;; n 1 docs 1  e.g. tierB-001900
+(And (Member $x0 scent) (Possession $x0 $x1) (Member $x1 fresh))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001531
+(And (Member $x0 scent) (Possession $x0 $x1) (Member $x1 rain))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001531
 
 ;; ---- slot school.GroupOf  [entity center; head other]  n 2  docs<= 2  distinct 1  eventive 0
 (And (Member $x0 school) (GroupOf $x0 fish))    ;; n 2 docs 2  e.g. tierB-000782 tierB-001008
@@ -9751,9 +10147,10 @@
 ;; ---- slot suburb.Member  [entity center; head other]  n 2  docs<= 2  distinct 1  eventive 0
 (Member $x0 suburb)    ;; n 2 docs 2  e.g. tierB-000489 tierB-000707
 
-;; ---- slot sugar.LocatedIn  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
-(And (Member $x0 sugar) (LocatedIn $x0 $x1) (Member $x1 black))    ;; n 1 docs 1  e.g. tierB-000541
+;; ---- slot sugar.LocatedIn  [entity center; head other]  n 2  docs<= 3  distinct 3  eventive 0
 (And (Member $x0 sugar) (LocatedIn $x0 $x1) (Member $x1 body))    ;; n 1 docs 1  e.g. tierB-001243
+(And (Member $x0 sugar) (LocatedIn $x0 $x1) (Member $x1 black))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000541
+(And (Member $x0 sugar) (LocatedIn $x0 $x1) (Member $x1 box))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000541
 
 ;; ---- slot sunny.Member  [entity center; head other]  n 2  docs<= 2  distinct 2  eventive 0
 (Member $x0 sunny)    ;; n 1 docs 1  e.g. tierB-000121
@@ -9803,9 +10200,10 @@
 ;; ---- slot transform.Member  [event center; head other]  n 2  docs<= 2  distinct 1  eventive 0
 (Member $e0 transform)    ;; n 2 docs 2  e.g. tierB-001209 tierB-001573
 
-;; ---- slot transform.Result  [event center; head other]  n 2  docs<= 2  distinct 2  eventive 2
+;; ---- slot transform.Result  [event center; head other]  n 2  docs<= 3  distinct 3  eventive 2
 (And (Member $e0 transform) (Result $e0 $e1) (Member $e1 bat))    ;; n 1 docs 1  e.g. tierB-001209
-(And (Member $e0 transform) (Result $e0 $e1) (Member $e1 cozy))    ;; n 1 docs 1  e.g. tierB-001573
+(And (Member $e0 transform) (Result $e0 $e1) (Member $e1 cozy))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001573
+(And (Member $e0 transform) (Result $e0 $e1) (Member $e1 theater))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001573
 
 ;; ---- slot translate.Member  [event center; head other]  n 2  docs<= 2  distinct 1  eventive 0
 (Member $e0 translate)    ;; n 2 docs 2  e.g. tierB-000310 tierB-001270
@@ -9931,8 +10329,9 @@
 ;; ---- slot act.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 act)    ;; n 1 docs 1  e.g. tierB-001346
 
-;; ---- slot ad.For  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 ad) (For $x0 $x1) (Member $x1 movie))    ;; n 1 docs 1  e.g. tierB-001253
+;; ---- slot ad.For  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 ad) (For $x0 $x1) (Member $x1 movie))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001253
+(And (Member $x0 ad) (For $x0 $x1) (Member $x1 upcoming))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001253
 
 ;; ---- slot ad.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 ad)    ;; n 1 docs 1  e.g. tierB-001253
@@ -9985,8 +10384,9 @@
 ;; ---- slot alternating.GroupOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $x0 alternating) (GroupOf $x0 splotch))    ;; n 1 docs 1  e.g. tierB-001652
 
-;; ---- slot alternating.PartOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 alternating) (PartOf $x0 $x1) (Member $x1 hooded_crow))    ;; n 1 docs 1  e.g. tierB-001652
+;; ---- slot alternating.PartOf  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 alternating) (PartOf $x0 $x1) (Member $x1 hooded_crow))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001652
+(And (Member $x0 alternating) (PartOf $x0 $x1) (Member $x1 unmistakeable))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001652
 
 ;; ---- slot american_assistance.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 american_assistance)    ;; n 1 docs 1  e.g. tierB-000969
@@ -10264,8 +10664,9 @@
 ;; ---- slot boil_down.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 boil_down)    ;; n 1 docs 1  e.g. tierB-000093
 
-;; ---- slot boil_down.To  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 boil_down) (To $e0 $x1) (Member $x1 practice))    ;; n 1 docs 1  e.g. tierB-000093
+;; ---- slot boil_down.To  [event center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 boil_down) (To $e0 $x1) (Member $x1 practice))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000093
+(And (Member $e0 boil_down) (To $e0 $x1) (Member $x1 thing))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000093
 
 ;; ---- slot book.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 book)    ;; n 1 docs 1  e.g. tierB-000717
@@ -10360,8 +10761,9 @@
 ;; ---- slot calf.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 calf)    ;; n 1 docs 1  e.g. tierB-001205
 
-;; ---- slot calf.Possession  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 calf) (Possession $x0 $x1) (Member $x1 female))    ;; n 1 docs 1  e.g. tierB-001205
+;; ---- slot calf.Possession  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 calf) (Possession $x0 $x1) (Member $x1 female))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001205
+(And (Member $x0 calf) (Possession $x0 $x1) (Member $x1 giraffe))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001205
 
 ;; ---- slot call_for.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 call_for)    ;; n 1 docs 1  e.g. tierB-000120
@@ -10715,7 +11117,7 @@
 (Member $e0 consult)    ;; n 1 docs 1  e.g. tierB-001079
 
 ;; ---- slot continue.Despite  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 continue) (Despite $e0 $x1))    ;; n 1 docs 1  e.g. tierB-001977
+(And (Member $e0 continue) (Despite $e0 $x1) (Member $x1 hardship))    ;; n 1 docs 1  e.g. tierB-001977
 
 ;; ---- slot conversation.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 conversation)    ;; n 1 docs 1  e.g. tierB-000034
@@ -10897,8 +11299,9 @@
 ;; ---- slot departure.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 departure)    ;; n 1 docs 1  e.g. tierB-000308
 
-;; ---- slot derivative.Possession  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 derivative) (Possession $x0 $x1) (Member $x1 original))    ;; n 1 docs 1  e.g. tierB-000932
+;; ---- slot derivative.Possession  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 derivative) (Possession $x0 $x1) (Member $x1 original))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000932
+(And (Member $x0 derivative) (Possession $x0 $x1) (Member $x1 turing_machine))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000932
 
 ;; ---- slot description.LocatedIn  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $x0 description) (LocatedIn $x0 $x1) (Member $x1 newspaper))    ;; n 1 docs 1  e.g. tierB-001416
@@ -11008,8 +11411,9 @@
 ;; ---- slot dismantle.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 dismantle)    ;; n 1 docs 1  e.g. tierB-001611
 
-;; ---- slot display.Also  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 1
-(And (Member $e0 display) (Also $e0 $e1) (Member $e1 display))    ;; n 1 docs 1  e.g. tierB-001318
+;; ---- slot display.Also  [event center; head other]  n 1  docs<= 2  distinct 2  eventive 1
+(And (Member $e0 display) (Also $e0 $e1) (Member $e1 display))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001318
+(And (Member $e0 display) (Also $e0 $e1) (Member $e1 popular))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001318
 
 ;; ---- slot dispute.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 dispute)    ;; n 1 docs 1  e.g. tierB-001534
@@ -11204,7 +11608,7 @@
 (Member $x0 evil)    ;; n 1 docs 1  e.g. tierB-000697
 
 ;; ---- slot evil.PartOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 evil) (PartOf $x0 $x1))    ;; n 1 docs 1  e.g. tierB-000697
+(And (Member $x0 evil) (PartOf $x0 $x1) (Member $x1 evil))    ;; n 1 docs 1  e.g. tierB-000697
 
 ;; ---- slot evil_eye.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 evil_eye)    ;; n 1 docs 1  e.g. tierB-000453
@@ -11221,8 +11625,9 @@
 ;; ---- slot excitement.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 excitement)    ;; n 1 docs 1  e.g. tierB-001113
 
-;; ---- slot excitement.Over  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 excitement) (Over $x0 $x1) (Member $x1 new))    ;; n 1 docs 1  e.g. tierB-001113
+;; ---- slot excitement.Over  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 excitement) (Over $x0 $x1) (Member $x1 new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001113
+(And (Member $x0 excitement) (Over $x0 $x1) (Member $x1 product))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001113
 
 ;; ---- slot exist.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 exist)    ;; n 1 docs 1  e.g. tierB-001671
@@ -11243,7 +11648,7 @@
 (Member $x0 exterior)    ;; n 1 docs 1  e.g. tierB-000641
 
 ;; ---- slot exterior.PartOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 exterior) (PartOf $x0 $x1))    ;; n 1 docs 1  e.g. tierB-000641
+(And (Member $x0 exterior) (PartOf $x0 $x1) (Member $x1 cabinet))    ;; n 1 docs 1  e.g. tierB-000641
 
 ;; ---- slot extradition_clause.Also  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $x0 extradition_clause) (Also $x0 $e1) (Member $e1 include))    ;; n 1 docs 1  e.g. tierB-001878
@@ -11501,10 +11906,10 @@
 (And (Member $x0 global) (Possession $x0 comprehension))    ;; n 1 docs 1  e.g. tierB-001668
 
 ;; ---- slot glory.In  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 glory) (In $x0 $x1))    ;; n 1 docs 1  e.g. tierB-000040
+(And (Member $x0 glory) (In $x0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000040
 
 ;; ---- slot glory.Over  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 glory) (Over $x0 $x1))    ;; n 1 docs 1  e.g. tierB-000040
+(And (Member $x0 glory) (Over $x0 $x1) (Member $x1 person))    ;; n 1 docs 1  e.g. tierB-000040
 
 ;; ---- slot glow.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 glow)    ;; n 1 docs 1  e.g. tierB-000708
@@ -11662,8 +12067,9 @@
 ;; ---- slot health_care.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 health_care)    ;; n 1 docs 1  e.g. tierB-001716
 
-;; ---- slot health_care.Possession  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 health_care) (Possession $x0 $x1) (Member $x1 local))    ;; n 1 docs 1  e.g. tierB-001716
+;; ---- slot health_care.Possession  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 health_care) (Possession $x0 $x1) (Member $x1 local))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001716
+(And (Member $x0 health_care) (Possession $x0 $x1) (Member $x1 population))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001716
 
 ;; ---- slot healthy.Because  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $x0 healthy) (Because $x0 $e1) (Member $e1 healthy))    ;; n 1 docs 1  e.g. tierB-001710
@@ -11792,7 +12198,7 @@
 (And (Member $x0 hungry) (Inheritance $x0 hungry))    ;; n 1 docs 1  e.g. tierB-000723
 
 ;; ---- slot hungry.SubsetOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 hungry) (SubsetOf $x0 $x1))    ;; n 1 docs 1  e.g. tierB-000723
+(And (Member $x0 hungry) (SubsetOf $x0 $x1) (Member $x1 child))    ;; n 1 docs 1  e.g. tierB-000723
 
 ;; ---- slot hunter.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 hunter)    ;; n 1 docs 1  e.g. tierB-001399
@@ -11978,7 +12384,7 @@
 (Member $x0 keeper)    ;; n 1 docs 1  e.g. tierB-000631
 
 ;; ---- slot ketchup.Equivalent  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 ketchup) (Equivalent $x0 $x1))    ;; n 1 docs 1  e.g. tierB-001067
+(And (Member $x0 ketchup) (Equivalent $x0 $x1) (Member $x1 tomato))    ;; n 1 docs 1  e.g. tierB-001067
 
 ;; ---- slot ketchup.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 ketchup)    ;; n 1 docs 1  e.g. tierB-001067
@@ -11986,8 +12392,9 @@
 ;; ---- slot key_in.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 key_in)    ;; n 1 docs 1  e.g. tierB-001922
 
-;; ---- slot key_in.To  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 key_in) (To $e0 $x1) (Member $x1 action))    ;; n 1 docs 1  e.g. tierB-001922
+;; ---- slot key_in.To  [event center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 key_in) (To $e0 $x1) (Member $x1 action))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001922
+(And (Member $e0 key_in) (To $e0 $x1) (Member $x1 onscreen))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001922
 
 ;; ---- slot kick.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 kick)    ;; n 1 docs 1  e.g. tierB-001092
@@ -12049,8 +12456,9 @@
 ;; ---- slot landing.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 landing)    ;; n 1 docs 1  e.g. tierB-000147
 
-;; ---- slot landscape.LocatedIn  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 landscape) (LocatedIn $x0 $x1) (Member $x1 coast))    ;; n 1 docs 1  e.g. tierB-000501
+;; ---- slot landscape.LocatedIn  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 landscape) (LocatedIn $x0 $x1) (Member $x1 coast))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000501
+(And (Member $x0 landscape) (LocatedIn $x0 $x1) (Member $x1 tropical))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000501
 
 ;; ---- slot landscape.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 landscape)    ;; n 1 docs 1  e.g. tierB-000501
@@ -12107,7 +12515,7 @@
 (And (Member $x0 legal) (Inheritance $x0 legal))    ;; n 1 docs 1  e.g. tierC-000040
 
 ;; ---- slot legal.SubsetOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 legal) (SubsetOf $x0 $x1))    ;; n 1 docs 1  e.g. tierC-000040
+(And (Member $x0 legal) (SubsetOf $x0 $x1) (Member $x1 activity))    ;; n 1 docs 1  e.g. tierC-000040
 
 ;; ---- slot legalize.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 legalize)    ;; n 1 docs 1  e.g. tierB-000840
@@ -12221,7 +12629,7 @@
 (Member $x0 loudspeaker)    ;; n 1 docs 1  e.g. tierB-000193
 
 ;; ---- slot low.LocatedIn  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 low) (LocatedIn $x0 $x1))    ;; n 1 docs 1  e.g. tierC-000070
+(And (Member $x0 low) (LocatedIn $x0 $x1) (Member $x1 city))    ;; n 1 docs 1  e.g. tierC-000070
 
 ;; ---- slot magpie.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 magpie)    ;; n 1 docs 1  e.g. tierB-000852
@@ -12662,7 +13070,7 @@
 (Member $x0 part)    ;; n 1 docs 1  e.g. tierB-001825
 
 ;; ---- slot part.PartOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 part) (PartOf $x0 $x1))    ;; n 1 docs 1  e.g. tierB-001825
+(And (Member $x0 part) (PartOf $x0 $x1) (Member $x1 bush))    ;; n 1 docs 1  e.g. tierB-001825
 
 ;; ---- slot particle_accelerator.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 particle_accelerator)    ;; n 1 docs 1  e.g. tierB-000863
@@ -12838,8 +13246,9 @@
 ;; ---- slot prefer.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 prefer)    ;; n 1 docs 1  e.g. tierB-000734
 
-;; ---- slot prefer.To  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $e0 prefer) (To $e0 $x1) (Member $x1 appetizing))    ;; n 1 docs 1  e.g. tierB-000734
+;; ---- slot prefer.To  [event center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $e0 prefer) (To $e0 $x1) (Member $x1 appetizing))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000734
+(And (Member $e0 prefer) (To $e0 $x1) (Member $x1 bug))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000734
 
 ;; ---- slot prepare.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 prepare)    ;; n 1 docs 1  e.g. tierB-000274
@@ -12968,13 +13377,13 @@
 (Member $x0 pyrite)    ;; n 1 docs 1  e.g. tierC-000266
 
 ;; ---- slot pyrite.PartOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 pyrite) (PartOf $x0 $x1))    ;; n 1 docs 1  e.g. tierC-000266
+(And (Member $x0 pyrite) (PartOf $x0 $x1) (Member $x1 rock))    ;; n 1 docs 1  e.g. tierC-000266
 
 ;; ---- slot pyrite_content.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 pyrite_content)    ;; n 1 docs 1  e.g. tierC-000265
 
 ;; ---- slot pyrite_content.Possession  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 pyrite_content) (Possession $x0 $x1))    ;; n 1 docs 1  e.g. tierC-000265
+(And (Member $x0 pyrite_content) (Possession $x0 $x1) (Member $x1 rock))    ;; n 1 docs 1  e.g. tierC-000265
 
 ;; ---- slot quagmire.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 quagmire)    ;; n 1 docs 1  e.g. tierB-001579
@@ -13051,8 +13460,9 @@
 ;; ---- slot refer.As  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $x0 refer) (As $x0 pedotransfer_function))    ;; n 1 docs 1  e.g. tierC-000206
 
-;; ---- slot refer.In  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 refer) (In $x0 $x1) (Member $x1 context))    ;; n 1 docs 1  e.g. tierC-000206
+;; ---- slot refer.In  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 refer) (In $x0 $x1) (Member $x1 context))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000206
+(And (Member $x0 refer) (In $x0 $x1) (Member $x1 non_spatial))    ;; n 1 (mass 0.5) docs 1  e.g. tierC-000206
 
 ;; ---- slot refer.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 refer)    ;; n 1 docs 1  e.g. tierC-000206
@@ -13061,7 +13471,7 @@
 (Member $e0 refer)    ;; n 1 docs 1  e.g. tierC-000205
 
 ;; ---- slot refer.To  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 refer) (To $x0 $x1))    ;; n 1 docs 1  e.g. tierC-000206
+(And (Member $x0 refer) (To $x0 $x1) (Member $x1 predictive_function))    ;; n 1 docs 1  e.g. tierC-000206
 
 ;; ---- slot refuse.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 refuse)    ;; n 1 docs 1  e.g. tierB-000910
@@ -13144,8 +13554,9 @@
 ;; ---- slot revamp.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 revamp)    ;; n 1 docs 1  e.g. tierB-001966
 
-;; ---- slot revamp.Result  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 1
-(And (Member $e0 revamp) (Result $e0 $e1) (Member $e1 modern))    ;; n 1 docs 1  e.g. tierB-001966
+;; ---- slot revamp.Result  [event center; head other]  n 1  docs<= 2  distinct 2  eventive 1
+(And (Member $e0 revamp) (Result $e0 $e1) (Member $e1 modern))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001966
+(And (Member $e0 revamp) (Result $e0 $e1) (Member $e1 street))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001966
 
 ;; ---- slot revolution.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 revolution)    ;; n 1 docs 1  e.g. tierB-001817
@@ -13186,14 +13597,16 @@
 ;; ---- slot roasted.GroupOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $x0 roasted) (GroupOf $x0 bean))    ;; n 1 docs 1  e.g. tierB-000975
 
-;; ---- slot roasted.LocatedIn  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 roasted) (LocatedIn $x0 $x1) (Member $x1 small))    ;; n 1 docs 1  e.g. tierB-000975
+;; ---- slot roasted.LocatedIn  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 roasted) (LocatedIn $x0 $x1) (Member $x1 burlap_sack))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000975
+(And (Member $x0 roasted) (LocatedIn $x0 $x1) (Member $x1 small))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000975
 
 ;; ---- slot roasted.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 roasted)    ;; n 1 docs 1  e.g. tierB-000975
 
-;; ---- slot roasted.Possession  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 roasted) (Possession $x0 $x1) (Member $x1 coffee_brand))    ;; n 1 docs 1  e.g. tierB-000975
+;; ---- slot roasted.Possession  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 roasted) (Possession $x0 $x1) (Member $x1 coffee_brand))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000975
+(And (Member $x0 roasted) (Possession $x0 $x1) (Member $x1 indie))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-000975
 
 ;; ---- slot rob.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 rob)    ;; n 1 docs 1  e.g. tierB-001917
@@ -13223,7 +13636,7 @@
 (And (Member $x0 rotten) (Inheritance $x0 rotten))    ;; n 1 docs 1  e.g. tierB-000384
 
 ;; ---- slot rotten.SubsetOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 rotten) (SubsetOf $x0 $x1))    ;; n 1 docs 1  e.g. tierB-000384
+(And (Member $x0 rotten) (SubsetOf $x0 $x1) (Member $x1 apple))    ;; n 1 docs 1  e.g. tierB-000384
 
 ;; ---- slot rough.Because  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $e0 rough) (Because $e0 $x1) (Member $x1 storm))    ;; n 1 docs 1  e.g. tierB-000134
@@ -13259,7 +13672,7 @@
 (Member $e0 rush)    ;; n 1 docs 1  e.g. tierB-000588
 
 ;; ---- slot russian_market.LocatedIn  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 russian_market) (LocatedIn $x0 $x1))    ;; n 1 docs 1  e.g. tierC-000321
+(And (Member $x0 russian_market) (LocatedIn $x0 $x1) (Member $x1 pakistani_block))    ;; n 1 docs 1  e.g. tierC-000321
 
 ;; ---- slot russian_market.Similar  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (And (Member $x0 russian_market) (Similar $x0 $x1) (Member $x1 russian_market))    ;; n 1 docs 1  e.g. tierC-000321
@@ -13333,8 +13746,9 @@
 ;; ---- slot script.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 script)    ;; n 1 docs 1  e.g. tierC-000089
 
-;; ---- slot search.For  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 search) (For $x0 $x1) (Member $x1 new))    ;; n 1 docs 1  e.g. tierB-001589
+;; ---- slot search.For  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 search) (For $x0 $x1) (Member $x1 medicine))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001589
+(And (Member $x0 search) (For $x0 $x1) (Member $x1 new))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001589
 
 ;; ---- slot search.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 search)    ;; n 1 docs 1  e.g. tierB-001589
@@ -13469,7 +13883,7 @@
 (Member $x0 sister)    ;; n 1 docs 1  e.g. tierB-001362
 
 ;; ---- slot sister.PartOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 sister) (PartOf $x0 $x1))    ;; n 1 docs 1  e.g. tierB-001362
+(And (Member $x0 sister) (PartOf $x0 $x1) (Member $x1 sister))    ;; n 1 docs 1  e.g. tierB-001362
 
 ;; ---- slot sit_down.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 sit_down)    ;; n 1 docs 1  e.g. tierB-000305
@@ -13555,8 +13969,9 @@
 ;; ---- slot sorry.Member  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $e0 sorry)    ;; n 1 docs 1  e.g. tierB-001258
 
-;; ---- slot sound.From  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 sound) (From $x0 $x1) (Member $x1 aspect))    ;; n 1 docs 1  e.g. tierB-001537
+;; ---- slot sound.From  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 sound) (From $x0 $x1) (Member $x1 aspect))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001537
+(And (Member $x0 sound) (From $x0 $x1) (Member $x1 scientific))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001537
 
 ;; ---- slot soup.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 soup)    ;; n 1 docs 1  e.g. tierB-000208
@@ -13765,8 +14180,9 @@
 ;; ---- slot symphony.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 symphony)    ;; n 1 docs 1  e.g. tierB-001575
 
-;; ---- slot symphony.PartOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 symphony) (PartOf $x0 $x1) (Member $x1 great))    ;; n 1 docs 1  e.g. tierB-001575
+;; ---- slot symphony.PartOf  [entity center; head other]  n 1  docs<= 2  distinct 2  eventive 0
+(And (Member $x0 symphony) (PartOf $x0 $x1) (Member $x1 great))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001575
+(And (Member $x0 symphony) (PartOf $x0 $x1) (Member $x1 symphony))    ;; n 1 (mass 0.5) docs 1  e.g. tierB-001575
 
 ;; ---- slot take.To  [event center; head other]  n 1  docs<= 1  distinct 1  eventive 1
 (And (Member $e0 take) (To $e0 $e1) (Member $e1 redeem))    ;; n 1 docs 1  e.g. tierB-000252
@@ -13895,7 +14311,7 @@
 (And (Member $x0 tourist) (Inheritance $x0 tourist))    ;; n 1 docs 1  e.g. tierB-001941
 
 ;; ---- slot tourist.SubsetOf  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
-(And (Member $x0 tourist) (SubsetOf $x0 $x1))    ;; n 1 docs 1  e.g. tierB-001941
+(And (Member $x0 tourist) (SubsetOf $x0 $x1) (Member $x1 reveller))    ;; n 1 docs 1  e.g. tierB-001941
 
 ;; ---- slot tower.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 tower)    ;; n 1 docs 1  e.g. tierB-001919
@@ -14221,22 +14637,32 @@
 ;; ---- slot zoo.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 zoo)    ;; n 1 docs 1  e.g. tierB-001660
 
-;; ==================== slot-merge signals (4; ppmi cosine >= 0.5, >= 2 shared informative fillers, slot n >= 3) ====================
+;; ==================== slot-merge signals (6; ppmi cosine >= 0.5, >= 2 shared informative fillers, slot n >= 3) ====================
+
+;; cross-event  accompany.Agent ~ appear.Agent  cosine 0.60 (raw 0.76)  support 4  shared: person sister
+;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000050 tierC-000259
+(And (Member $e0 accompany) (Agent $e0 $x1))
+(And (Member $e0 appear) (Agent $e0 $x1))
 
 ;; cross-event  portray.Agent ~ win.Agent  cosine 0.51 (raw 0.69)  support 5  shared: james_woods wilson
 ;;   A e.g. tierC-000301 tierC-000277   B e.g. tierC-000302 tierB-000730
 (And (Member $e0 portray) (Agent $e0 $x1))
 (And (Member $e0 win) (Agent $e0 $x1))
 
-;; cross-role  find.Agent ~ find.Theme  cosine 0.63 (raw 0.40)  support 4  shared: couper pietro
-;;   A e.g. tierC-000243 tierC-000244   B e.g. tierB-000706 tierB-000579
-(And (Member $e0 find) (Agent $e0 $x1))
-(And (Member $e0 find) (Theme $e0 $x1))
+;; cross-role  welcome.Agent ~ welcome.Theme  cosine 0.67 (raw 0.67)  support 3  shared: industrialization whig
+;;   A e.g. tierC-000087 tierC-000088   B e.g. tierB-001868 tierC-000088
+(And (Member $e0 welcome) (Agent $e0 $x1))
+(And (Member $e0 welcome) (Theme $e0 $x1))
 
 ;; cross-role  portray.Agent ~ portray.Theme  cosine 0.58 (raw 0.44)  support 5  shared: james_woods wilson
 ;;   A e.g. tierC-000301 tierC-000277   B e.g. tierC-000278 tierC-000247
 (And (Member $e0 portray) (Agent $e0 $x1))
 (And (Member $e0 portray) (Theme $e0 $x1))
+
+;; cross-role  find.Agent ~ find.Theme  cosine 0.50 (raw 0.42)  support 4  shared: couper pietro
+;;   A e.g. tierC-000243 tierC-000244   B e.g. tierB-000706 tierB-000579
+(And (Member $e0 find) (Agent $e0 $x1))
+(And (Member $e0 find) (Theme $e0 $x1))
 
 ;; cross-entity-class  destined.Member ~ film.Member  cosine 0.76 (raw 0.70)  support 3  shared: film syrian_film
 ;;   A e.g. tierC-000009   B e.g. tierB-000505 tierB-001017
@@ -14254,13 +14680,13 @@
 ;; leave  Theme 3 / Patient 3  shared: —  witnesses: tierB-000704|tierB-000004 tierB-000704|tierB-000425 tierB-000704|tierB-000747
 (Implication (And (Member $e leave) (Theme $e $x)) (And (Member $e leave) (Patient $e $x)))
 
-;; do  Theme 2 / Patient 4  shared: thing  witnesses: tierB-001236|tierB-001520 tierB-001729|tierB-001520 tierB-001236|tierB-001721
+;; do  Theme 2 / Patient 4  shared: thing  witnesses: tierB-001236|tierB-001520 tierB-001236|tierB-001721 tierB-001729|tierB-001520
 (Implication (And (Member $e do) (Theme $e $x)) (And (Member $e do) (Patient $e $x)))
 
 ;; take  Theme 10 / Patient 2  shared: —  witnesses: tierB-000252|tierB-001077 tierB-000252|tierB-001102 tierB-000309|tierB-001077
 (Implication (And (Member $e take) (Patient $e $x)) (And (Member $e take) (Theme $e $x)))
 
-;; arrange  Theme 1 / Patient 1  shared: <untyped>  witnesses: tierC-000349|tierC-000350
+;; arrange  Theme 1 / Patient 1  shared: session  witnesses: tierC-000349|tierC-000350
 (Implication (And (Member $e arrange) (Theme $e $x)) (And (Member $e arrange) (Patient $e $x)))
 
 ;; base  Theme 2 / Patient 1  shared: —  witnesses: tierB-001610|tierB-001605 tierB-001928|tierB-001605
@@ -14275,7 +14701,7 @@
 ;; celebrate  Theme 2 / Patient 1  shared: mela  witnesses: tierC-000133|tierC-000134 tierB-000303|tierC-000134
 (Implication (And (Member $e celebrate) (Patient $e $x)) (And (Member $e celebrate) (Theme $e $x)))
 
-;; clarify  Theme 1 / Patient 1  shared: <untyped>  witnesses: tierC-000021|tierC-000022
+;; clarify  Theme 1 / Patient 1  shared: —  witnesses: tierC-000021|tierC-000022
 (Implication (And (Member $e clarify) (Theme $e $x)) (And (Member $e clarify) (Patient $e $x)))
 
 ;; conduct  Theme 3 / Patient 1  shared: —  witnesses: tierB-000177|tierC-000284 tierC-000341|tierC-000284 tierC-000342|tierC-000284
@@ -14296,7 +14722,7 @@
 ;; draw  Theme 1 / Patient 2  shared: —  witnesses: tierB-000781|tierC-000293 tierB-000781|tierC-000294
 (Implication (And (Member $e draw) (Theme $e $x)) (And (Member $e draw) (Patient $e $x)))
 
-;; hold  Theme 1 / Patient 3  shared: <untyped>  witnesses: tierB-001266|tierC-000284 tierB-001266|tierB-000378 tierB-001266|tierC-000283
+;; hold  Theme 1 / Patient 3  shared: —  witnesses: tierB-001266|tierB-000378 tierB-001266|tierC-000283 tierB-001266|tierC-000284
 (Implication (And (Member $e hold) (Theme $e $x)) (And (Member $e hold) (Patient $e $x)))
 
 ;; hold_up  Theme 2 / Patient 1  shared: —  witnesses: tierB-000329|tierB-000692 tierB-001801|tierB-000692
