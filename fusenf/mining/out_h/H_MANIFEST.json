@@ -1,5 +1,5 @@
 {
- "run": "H (batch 2 mining campaign, consolidation-only + fuzzy \u2014 #50)",
+ "run": "H (batch 2 mining campaign, consolidation-only + fuzzy — #50)",
  "date": "2026-09-02",
  "prompt_sha8": "2ed18b93",
  "substrate": {
@@ -36,10 +36,90 @@
      "star": 3014
     },
     "shape_stratum": 6037,
-    "slot_rows": 6059,
+    "slot_rows": 6066,
     "signals": 779,
     "wall_s": 20.6
+   },
+   "rerun": {
+    "date": "2026-09-03",
+    "why": "valuations_slots.jsonl gained filler_kind (event / entity / function / constant = bare symbol / num / str / term) so §4.3.2 can separate eventive complements from entity arguments and render constants faithfully",
+    "verified": "patterns2.jsonl / patterns2.metta / patterns2_signals.jsonl byte-identical across both re-runs; report differs only in the slot-row count (6059 -> 6066: labels split by filler kind)"
    }
+  },
+  "4.3.2_role_fillers": {
+   "script": "mining/role_fillers2.py",
+   "date": "2026-09-03",
+   "input": "mining/out_h/valuations_slots.jsonl",
+   "params": {
+    "min_n": 3,
+    "cos": 0.5,
+    "weighting": "ppmi",
+    "event_slot_heads": "vocabulary class 'role' + open preposition-named obliques (heads absent from the vocabulary)"
+   },
+   "doctrine_table": {
+    "file": "mining/prompt_determined_roles.json",
+    "sha16": "b9743bccfef25a0b",
+    "pinned_prompt": "2ed18b93",
+    "verbs": {
+     "theme": 27,
+     "patient": 29,
+     "experiencer_stimulus": 3
+    },
+    "recurated": "2026-09-03 against 2ed18b93: +25 bullet-list verbs (named since f6448eac; item-E omission) +11 FP4 intransitive-subject verbs (named since 2ed18b93); no drops"
+   },
+   "outputs": [
+    "mining/out_h/slots.jsonl",
+    "mining/out_h/slots_entity.jsonl",
+    "mining/out_h/rolefiller2_signals.jsonl",
+    "mining/out_h/flip_eligible.jsonl",
+    "mining/out_h/flip_diagnostics.jsonl",
+    "mining/out_h/rolefillers2_report.md",
+    "mining/out_h/rolefillers2.metta (rendering only)"
+   ],
+   "result": {
+    "event_role_slots": 1729,
+    "oblique_slots": 148,
+    "other_slots": 2343,
+    "event_role_slots_n_ge_3": 256,
+    "signals": {
+     "ppmi": {
+      "cross-event": 1,
+      "cross-role": 2,
+      "cross-entity-class": 1
+     },
+     "raw_criterion_would_give": {
+      "cross-event": 24,
+      "cross-role": 1,
+      "cross-entity-class": 2,
+      "cross-head": 0
+     }
+    },
+    "d3": {
+     "determined_classes_present": 27,
+     "forbidden_role_witnesses": 0,
+     "entity_flip_witnesses": 0,
+     "cross_role_signals_quarantined": 0,
+     "diagnostics_rows": 0
+    },
+    "flips_candidate_eligible": 29,
+    "flips_with_witness_pairs": 29,
+    "construction_conditioned_not_flips": [
+     "begin",
+     "block",
+     "cease",
+     "go",
+     "stop"
+    ],
+    "eventive_complements": {
+     "theme_uses": 77,
+     "theme_classes": 39,
+     "patient_uses": 6,
+     "patient_classes": 6
+    },
+    "wall_s": 0.2,
+    "metta_rendering_lines": 14339
+   },
+   "entity_fillers": "filler_kind in {entity, constant} (skolem instance or named constant) feed the #23 audit; event / function / literal kinds do not"
   }
  }
 }

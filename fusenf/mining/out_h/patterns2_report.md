@@ -2,7 +2,7 @@
 
 - inputs: canonical_substrate.jsonl  (2302 records, 0 duplicate ids skipped, canon fusenf-canon/4)
 - params: k=4, min_support=3, 2 record(s) truncated at 28 atoms
-- patterns >= support: **7766** — modes {'cross': 4126, 'kindlevel': 626, 'star': 3014}; shape-stratum (n_lifted>0): **6037**; signals: **779**; slot-valuation rows: **6059**
+- patterns >= support: **7766** — modes {'cross': 4126, 'kindlevel': 626, 'star': 3014}; shape-stratum (n_lifted>0): **6037**; signals: **779**; slot-valuation rows: **6066**
 
 ## Top cross-mode patterns (the new capability)
 

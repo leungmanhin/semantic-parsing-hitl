@@ -56,7 +56,7 @@ Exports:
   * ``patterns2.jsonl``   — the inventory; full supporting-id lists (the
                             record×feature matrix substrate for §4.3.3/5).
   * ``valuations_slots.jsonl`` — per (center kind, center class, head,
-                            filler) counts with NO support floor: §4.3.2's
+                            filler, filler kind) counts with NO support floor: §4.3.2's
                             substrate for free, events AND entities.
   * ``patterns2_signals.jsonl`` — consensus-layer signals (star patterns as
                             subtree-collapse, cross patterns as conj-pattern).
@@ -414,17 +414,23 @@ def main():
                 if len(t) != 3 or t[1] != sym or t[0] == "Implication" or t[0] in surface:
                     continue
                 arg = t[2]
+                # filler_kind (H, 2026-09-03): the filler's star kind — event / entity /
+                # function / rule — so §4.3.2 can tell an eventive complement
+                # ("started chanting" -> Theme = e#) from an entity argument; a bare
+                # symbol is "constant" (named individual / bare kind / adverb — the
+                # symbol IS the filler), literals "str"/"num"/"term".
                 if isinstance(arg, list):
-                    filler = "<term:%s>" % arg[0]
+                    filler, fkind = "<term:%s>" % arg[0], "term"
                 elif re.fullmatch(r"[exf]\d+", arg):
                     filler = star_class.get(arg) or "<untyped>"
+                    fkind = rec["stars"].get(arg, {}).get("kind") or "skolem"
                 elif arg.startswith('"'):
-                    filler = "<str>"
+                    filler, fkind = "<str>", "str"
                 elif re.fullmatch(r"[+-]?\d+(?:\.\d+)?", arg):
-                    filler = "<num>"
+                    filler, fkind = "<num>", "num"
                 else:
-                    filler = arg
-                key = (star["kind"], cls, t[0], filler)
+                    filler, fkind = arg, "constant"
+                key = (star["kind"], cls, t[0], filler, fkind)
                 e = slots.setdefault(key, {"n": 0, "ids": set()})
                 e["n"] += 1
                 e["ids"].add(rec["id"])
@@ -552,10 +558,10 @@ def main():
 
     slot_path = os.path.join(args.out_dir, "valuations_slots.jsonl")
     with open(slot_path, "w", encoding="utf-8") as fh:
-        for (kind, cls, head, filler), e in sorted(slots.items()):
+        for (kind, cls, head, filler, fkind), e in sorted(slots.items()):
             fh.write(json.dumps({
                 "center_kind": kind, "center_class": cls, "head": head,
-                "filler": filler, "n": e["n"], "docs": len(e["ids"]),
+                "filler": filler, "filler_kind": fkind, "n": e["n"], "docs": len(e["ids"]),
                 "examples": sorted(e["ids"])[:3],
             }, ensure_ascii=False, sort_keys=True) + "\n")
 
