@@ -12,8 +12,10 @@ strings for constants). Two text modes, both written by ``--texts-only`` for rev
                represented by each of its labels (fractional mass, as in the exact-label
                method).
 * ``subtree``  one text per distinct filler rendering — the label bag joined with ", "
-               (alphabetical; "blue, sky"), "(plural)" for a group, the surface name for a
-               named constant — the paper's *subtree embedding* of the filler.
+               (alphabetical; "blue, sky"), a plural group in the REAL plural form
+               (mechanical, ``pluralize.py``: "parties"; in a bag only the labels that occur
+               as a ``GroupOf`` kind somewhere — the noun proxy — inflect: "lights, on"),
+               the surface name for a named constant — the paper's *subtree embedding*.
 
 Wildcards (``<untyped>``, ``<num>``, ``<str>``, ``<term:X>``) are never embedded.
 
@@ -35,7 +37,11 @@ import hashlib
 import json
 import os
 import re
+import sys
 import time
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from pluralize import plural_label  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 WILD = ("<untyped>", "<num>", "<str>")
@@ -53,8 +59,9 @@ def words(sym):
     return sym.replace("_", " ")
 
 
-def build_inventory(occ_rows, names):
-    """-> {mode: {text: {"n_occ", "examples", "kinds", "sources"}}}"""
+def build_inventory(occ_rows, names, nouns=frozenset()):
+    """-> {mode: {text: {"n_occ", "examples", "kinds", "sources"}}}; ``nouns`` = labels
+    attested as a GroupOf kind (which labels inflect inside a plural bag)"""
     inv = {"word": collections.defaultdict(lambda: {"n_occ": 0, "examples": [], "kinds": collections.Counter(), "sources": collections.Counter()}),
            "subtree": collections.defaultdict(lambda: {"n_occ": 0, "examples": [], "kinds": collections.Counter(), "sources": collections.Counter()})}
 
@@ -77,7 +84,11 @@ def build_inventory(occ_rows, names):
             labs = r["labels"]
             for lab in labs:
                 add("word", words(lab), r, "label", 1.0 / len(labs))
-            text = ", ".join(words(l) for l in labs) + (" (plural)" if r["plural"] else "")
+            if r["plural"]:
+                text = ", ".join(plural_label(l) if (len(labs) == 1 or l in nouns) else words(l)
+                                 for l in labs)
+            else:
+                text = ", ".join(words(l) for l in labs)
             add("subtree", text, r, "label-bag" if len(labs) > 1 else ("plural" if r["plural"] else "label"))
         else:
             continue   # wildcard / untyped: never embedded
@@ -85,16 +96,21 @@ def build_inventory(occ_rows, names):
 
 
 def surface_names(canonical_path):
-    """constant symbol -> its surface Name string (first seen, deterministic by record order)"""
-    names = {}
+    """-> (constant symbol -> surface Name string, first seen; labels attested as a GroupOf
+    kind = the noun proxy for plural bags)"""
+    names, nouns = {}, set()
     rx = re.compile(r'\(Name (\S+) "([^"]*)"\)')
+    rg = re.compile(r'\(GroupOf \S+ ([a-z][a-z0-9_]*)\)')
     for l in open(canonical_path, encoding="utf-8"):
         rec = json.loads(l)
         for a in rec["atoms"]:
             m = rx.match(a["term"])
             if m and m.group(1) not in names:
                 names[m.group(1)] = m.group(2)
-    return names
+            g = rg.match(a["term"])
+            if g:
+                nouns.add(g.group(1))
+    return names, nouns
 
 
 def main():
@@ -110,8 +126,8 @@ def main():
     args = ap.parse_args()
 
     occ = load(args.occ)
-    names = surface_names(args.canonical)
-    inv = build_inventory(occ, names)
+    names, nouns = surface_names(args.canonical)
+    inv = build_inventory(occ, names, nouns)
     os.makedirs(args.out_dir, exist_ok=True)
     inv_path = os.path.join(args.out_dir, "embed_texts.jsonl")
     with open(inv_path, "w", encoding="utf-8") as fh:
