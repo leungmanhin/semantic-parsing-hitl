@@ -1,0 +1,88 @@
+{
+ "id": "R22",
+ "rule": "Cliff-spires shield the Northcove",
+ "texts": [
+  "Whenever a cliff-spire shields a cove against north winds, each lantern in that cove burns stably through winter.",
+  "Whenever a cliff-spire shelters a cove, each lantern in that cove stays lit through winter."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict5-000005",
+   "sentence": "Whenever a cliff-spire shields a cove against north winds, each lantern in that cove burns stably through winter.",
+   "parse": [
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: nw_genus1 (Inheritance north_wind north) (STV 1.0 0.99))",
+    "(: nw_genus2 (Inheritance north_wind wind) (STV 1.0 0.99))",
+    "(: whenever_shield_burn (Implication (And (Member $e shield) (Agent $e $cs) (Member $cs cliff_spire) (Theme $e $cv) (Member $cv cove) (Against $e north_wind) (Member $l lantern) (LocatedIn $l $cv)) (And (Member (sk_burn $e $l) burn) (Patient (sk_burn $e $l) $l) (Manner (sk_burn $e $l) stably) (Through (sk_burn $e $l) winter) (During (sk_burn $e $l) $e))) (STV 1.0 0.9))",
+    "(: lantern_burn_q (QuantifierPhrase lantern burn \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict5-000005",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A durative extent PP \"through winter\" on an eventuality: During is licensed only for during/while/throughout (never a synonym head), Time carries points/named times rather than an extent, and (Measure e duration n unit) needs a stated count — so a \"through <season>\" span falls back to a bare preposition-named oblique with no way to record that it is an extent."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-machinery is applied correctly with the nested \"each lantern\" universal folded in as a second premise range and the Skolem event a function of both bindings, the During tie to the trigger present, and the QuantifierPhrase emitted for \"each\" but not for \"whenever\"; Against and Through are preposition-named obliques using the words actually used."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict5-000006",
+   "sentence": "Whenever a cliff-spire shelters a cove, each lantern in that cove stays lit through winter.",
+   "parse": [
+    "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: lantern_q (QuantifierPhrase lantern lit \"each\") (STV 1.0 0.99))",
+    "(: whenever_shelter_lit (Implication (And (Member $x cliff_spire) (Member $sh shelter) (Agent $sh $x) (Member $c cove) (Theme $sh $c) (Member $l lantern) (LocatedIn $l $c)) (And (Member (sk_lit $l) lit) (Experiencer (sk_lit $l) $l) (Still (sk_lit $l)) (Time (sk_lit $l) winter) (During (sk_lit $l) $sh) (Member $l lit))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict5-000006",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The consequent's state witness (sk_lit $l) is a Skolem function of the lantern alone, although the universally quantified sheltering occurrence $sh also scopes over it (the conclusion During-links to $sh), so distinct sheltering occurrences collapse onto one lit-state witness per lantern instead of the per-universal Skolem term the doctrine requires."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "durative/spanning \"through <period>\" frame adverbial (\"through winter\") — During is licensed only for during/while/throughout nesting two reified eventualities, Measure duration needs a stated count, and Start/End need stated endpoints, so the spanning force has no carrier and is flattened into a bare Time atom",
+     "no structured time term for a season — the term list is Year/Month/Day/Weekday/Hour/Minute, so a bare \"winter\" symbol on Time is the only available slot"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The continuation copular \"stays lit\" is correctly reified state + Still + flat (Member $l lit) with no matrix event and no Result link, and the demonstrative \"that cove\" correctly binds the premise variable."
+   },
+   "adjudication": {
+    "id": "fict5-000006",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Quantifiers & scope states that each dependent existential is \"a Skolem function of every universal that scopes over it\", and the sheltering occurrence $sh demonstrably scopes over this conclusion (it fills the During slot), so (sk_lit $l) mints one state token per lantern for arbitrarily many sheltering occurrences and then asserts that single state is During each of them — a nesting no one state can satisfy."
+     }
+    ],
+    "gaps_confirmed": [
+     "durative/spanning \"through <period>\" has no licensed carrier: During covers only during/while/throughout nesting two reified eventualities, (Measure e duration n u) needs a stated count, and Start/End need stated endpoints",
+     "the Time term inventory (Year/Month/Day/Weekday/Hour/Minute) has no season term, so a bare winter constant on Time is the only available slot"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form parameterizes the state witness on both universals — (sk_lit $sh $l) in every conclusion conjunct that names it (Member, Experiencer, Still, Time, During) — leaving the premise, the flat (Member $l lit), and the rule's (STV 1.0 0.9) unchanged.",
+    "notes": "The rest is sound: whenever routed to the rule machinery with plain-variable premises, \"that cove\" bound to the premise variable, the continuation copular \"stays lit\" reified as state + Still + flat atom with no matrix event and no Result, and no companion for whenever beside the \"each\" one. (Time (sk_lit ...) winter) is a true, well-typed atom in genuine gap territory, so it is not a defect."
+   }
+  }
+ ]
+}

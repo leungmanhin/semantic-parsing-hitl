@@ -1,0 +1,5 @@
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))
+(: base_type (Member sk_base_1 base) (STV 1.0 0.99))
+(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))
+(: molt_shed_rule (Implication (And (Member $x molt) (Patient $x $y) (Member $y sky_cat)) (And (Member (sk_shed $x) shed) (Agent (sk_shed $x) $y) (Theme (sk_shed $x) feather) (Goal (sk_shed $x) sk_base_1) (During (sk_shed $x) $x))) (STV 1.0 0.9))

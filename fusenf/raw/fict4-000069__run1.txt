@@ -1,0 +1,7 @@
+(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: sw_genus (Inheritance seawater water) (STV 1.0 0.99))
+(: sb_dissolve (Member sk_dissolve_1 dissolve) (STV 1.0 0.99))
+(: sb_patient (Patient sk_dissolve_1 salt_bloom) (STV 1.0 0.99))
+(: sb_manner (Manner sk_dissolve_1 quickly) (STV 1.0 0.99))
+(: sb_seawater_type (Member sk_seawater_1 seawater) (STV 1.0 0.99))
+(: sb_goal (Goal sk_dissolve_1 sk_seawater_1) (STV 1.0 0.99))

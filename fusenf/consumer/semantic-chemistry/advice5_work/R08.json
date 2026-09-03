@@ -1,0 +1,36 @@
+{
+ "id": "R8",
+ "rule": "Hunted nightmoths flee to dimmer lights",
+ "texts": [
+  "Whenever a sky-cat hunts at a lantern-row, each nightmoth that survives the hunt moves to the Hollows."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict5-000002",
+   "sentence": "Whenever a sky-cat hunts at a lantern-row, each nightmoth that survives the hunt moves to the Hollows.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: nightmoth_q (QuantifierPhrase nightmoth move \"each\") (STV 1.0 0.99))",
+    "(: whenever_hunt_move (Implication (And (Member $x sky_cat) (Member $h hunt) (Agent $h $x) (Member $y lantern_row) (Location $h $y) (Member $m nightmoth) (Member $s survive) (Agent $s $m) (Theme $s $h)) (And (Member (sk_move $h $m) move) (Agent (sk_move $h $m) $m) (Goal (sk_move $h $m) hollows) (During (sk_move $h $m) $h))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict5-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule machinery, compound genera (sky_cat/nightmoth/lantern_row), the Name-only capitalized-plural label \"the Hollows\", the relative-clause restriction in the premise, and the per-(occurrence, moth) Skolem event term all follow the instruction set."
+   },
+   "adjudication": null
+  }
+ ]
+}

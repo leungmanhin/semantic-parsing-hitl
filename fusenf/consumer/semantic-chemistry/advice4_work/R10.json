@@ -1,0 +1,160 @@
+{
+ "id": "R10",
+ "rule": "Sky-cats molt feathers to the cliff base",
+ "texts": [
+  "When a sky-cat molts, feathers fall to the base of the cliff.",
+  "Whenever a sky-cat molts, the sky-cat sheds feathers onto the base of the cliff.",
+  "Apprentices collect the fallen feathers in the morning.",
+  "The Keepers store the collected feathers in a bin at the Watch."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000033",
+   "sentence": "When a sky-cat molts, feathers fall to the base of the cliff.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: whenever_molt_fall (Implication (And (Member $x molt) (Patient $x $c) (Member $c sky_cat)) (And (GroupOf (sk_feathers $x) feather) (Member (sk_fall $x) fall) (Patient (sk_fall $x) (sk_feathers $x)) (Goal (sk_fall $x) sk_base_1) (During (sk_fall $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000033",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correctly routed as the whenever machinery (indefinite/generic trigger participants), with plain-variable premises, a per-occurrence Skolem consequent, the During tie, Goal for 'to the base', and PartOf for the part-whole of-phrase; Patient for the molting cat (internal change of state) and for the falling feathers ('mass moved by gravity') both follow the stated tests. No per-member distribution rule is emitted for the feather group, which matches the instruction set's own bare-plural-episodic treatment ('rescuers reached the ridge'), so I do not count it as a defect."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000034",
+   "sentence": "Whenever a sky-cat molts, the sky-cat sheds feathers onto the base of the cliff.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: molt_shed_rule (Implication (And (Member $x molt) (Patient $x $y) (Member $y sky_cat)) (And (Member (sk_shed $x) shed) (Agent (sk_shed $x) $y) (Theme (sk_shed $x) feather) (Goal (sk_shed $x) sk_base_1) (During (sk_shed $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000034",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-machinery is right (plain-variable premises, per-occurrence Skolem event, During link, no QuantifierPhrase, STV 1.0 0.9), the anaphoric \"the sky-cat\" binds the rule variable, \"onto\" takes the motion-result Goal, and \"the base of the cliff\" takes PartOf. Borderline call: the bare-plural object \"feathers\" is stored as the bare kind filler rather than a per-occurrence group witness, defensible as a non-specific object but arguably an episodic set taking part in the occurrence."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000035",
+   "sentence": "Apprentices collect the fallen feathers in the morning.",
+   "parse": [
+    "(: feather_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feather_fallen_rule (Implication (PartOf $x sk_feather_1) (Member $x fallen)) (STV 1.0 0.9))",
+    "(: apprentice_collect_rule (Implication (Member $x apprentice) (And (Member (sk_collect $x) collect) (Agent (sk_collect $x) $x) (Theme (sk_collect $x) sk_feather_1) (Time (sk_collect $x) morning))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000035",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural habitual takes the distributing rule at 0.9/0.9 with no QuantifierPhrase, the definite plural object takes a group witness, and the descriptive modifier 'fallen' is handed to the members by the PartOf rule rather than fused or predicated of the group. 'In the morning' rides Time as the bare day-part symbol and 'collect' takes Theme (nothing changes), both as specified."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict4-000036",
+   "sentence": "The Keepers store the collected feathers in a bin at the Watch.",
+   "parse": [
+    "(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: feathers_grp (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+    "(: feathers_coll_rule (Implication (PartOf $y sk_feathers_1) (Member $y collected)) (STV 1.0 0.9))",
+    "(: bin_typ (Member sk_bin_1 bin) (STV 1.0 0.99))",
+    "(: watch_typ (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: bin_loc (LocatedIn sk_bin_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: store_ev (Member sk_store_1 store) (STV 1.0 0.99))",
+    "(: store_ag (Agent sk_store_1 sk_keepers_1) (STV 1.0 0.99))",
+    "(: store_th (Theme sk_store_1 sk_feathers_1) (STV 1.0 0.99))",
+    "(: store_loc (Location sk_store_1 sk_bin_1) (STV 1.0 0.99))",
+    "(: store_rule (Implication (PartOf $x sk_keepers_1) (And (Member (sk_store $x) store) (Agent (sk_store $x) $x) (Theme (sk_store $x) sk_feathers_1) (Location (sk_store $x) sk_bin_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000036",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"The Keepers\" is a capitalized plural kind-word label, which the instruction set makes a Name-only individual with no GroupOf and no per-member kind taken from the label word, yet the parse emits (GroupOf sk_keepers_1 keeper)."
+     },
+     {
+      "statement": null,
+      "issue": "No Name atom is emitted for \"the Keepers\", though the same rule makes the Name fact the label's one mandatory trace."
+     },
+     {
+      "statement": 10,
+      "issue": "The per-member distribution rule ranges over (PartOf $x sk_keepers_1), a group membership that only the disallowed GroupOf reading supplies."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows the instruction set: the distributed \"collected\" property over the definite feather group, Theme for the stored feathers, no status atom on the habitual present, and LocatedIn for the containment \"at the Watch\". The label rule as written also strips the kind word \"keeper\" from the referent, which is the rule's stated intent rather than a parse choice."
+   },
+   "adjudication": {
+    "id": "fict4-000036",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Names and casing makes the capitalized-common-noun default 'singular-collective only' and routes a capitalized plural kind-word label to a Name-only individual with 'no GroupOf and no per-member kind from the label word', so (GroupOf sk_keepers_1 keeper) is exactly the invented type atom that clause bars."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The same clause makes the Name atom the label's one mandatory trace ('one symbol, Name atom'), and a proper noun's Name fact is never optional, so its absence leaves the referent with no licensed identifying atom at all."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "A Name-only individual is one individual, not a plural, so there is no group for (PartOf $x sk_keepers_1) to range over and the per-member distribution rule has no licensed domain once the GroupOf atom goes."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "The plural label clause fires on a capitalized plural kind-word label 'referring as a name', but that trigger is never operationalized — nothing distinguishes a team-style label whose word is not the members' kind ('the Wrens') from a world-building label whose word genuinely is ('the Keepers'), and the rule's blanket 'a type atom is never invented' then discards a kind the text arguably states with no slot to record it."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is a name-derived individual keepers carrying (Name keepers \"Keepers\") and filling the store event's Agent slot, with no GroupOf and no keeper type atom; and with no plural group in play, the per-member store_rule is dropped entirely rather than re-ranged.",
+    "notes": "Everything else follows the instruction set: the distributed 'collected' property over the definite feather group, Theme for the stored feathers, no status atom on the habitual present, LocatedIn for the containment 'at the Watch', the common-noun (no Name) treatment of the singular capitalized 'the Watch', and Location on the storing event only with no LocatedIn on the feathers."
+   }
+  }
+ ]
+}

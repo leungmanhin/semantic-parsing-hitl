@@ -1,0 +1,4 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: st_genus (Inheritance station_transfer transfer) (STV 1.0 0.99))
+(: council_approve_rule (Implication (Member $t station_transfer) (And (Member (sk_approve $t) approve) (Agent (sk_approve $t) sk_council_1) (Theme (sk_approve $t) $t) (Obligated (sk_approve $t)))) (STV 1.0 0.99))
+(: council_approve_q (QuantifierPhrase station_transfer approve "any") (STV 1.0 0.99))

@@ -1,0 +1,171 @@
+{
+ "id": "R22",
+ "rule": "Cliff-spires shield the Northcove",
+ "texts": [
+  "Whenever a cliff-spire shields a cove against north winds, lanterns in that cove burn stably through winter.",
+  "Whenever a cliff-spire shelters a cove, the lanterns in that cove stay lit through winter.",
+  "The Northcove is a shielded cove in Aelmere.",
+  "Northcove lanterns never go out when cold winds blow."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000076",
+   "sentence": "Whenever a cliff-spire shields a cove against north winds, lanterns in that cove burn stably through winter.",
+   "parse": [
+    "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: northwind_genus (Inheritance north_wind wind) (STV 1.0 0.99))",
+    "(: northwind_mod (Inheritance north_wind north) (STV 1.0 0.99))",
+    "(: shield_burn_rule (Implication (And (Member $e shield) (Agent $e $s) (Member $s cliff_spire) (Theme $e $c) (Member $c cove) (Against $e north_wind) (Member $n lantern) (LocatedIn $n $c)) (And (Member (sk_burn $n) burn) (Patient (sk_burn $n) $n) (Manner (sk_burn $n) stably) (Time (sk_burn $n) winter) (During (sk_burn $n) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000076",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The consequent's Skolem event (sk_burn $n) is a function of the lantern only, not of the trigger occurrence $e, so one burn term per lantern is shared across every shielding occasion while being During-linked to each of them — the whenever machinery requires a per-occurrence event, and a dependent existential must be a function of every universal scoping over it (here $e and $n)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "durative \"through <named period>\" (\"burn ... through winter\"): the extent-over-a-period adverbial has no licensed carrier — During is restricted to during/while/throughout over a reified outer eventuality, a bare season has no structured Time term, and no count is stated for Measure duration; the parse approximates with (Time e winter), which understates the extent without asserting anything false"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise right: Against is the verb's own preposition-named oblique, north_wind exposes its positional modifier genus, \"lanterns in that cove\" is a second universal premise with LocatedIn for containment, and \"stably\" keeps its surface -ly Manner form. The parse correctly avoids using During for \"through\", which would be a synonym head."
+   },
+   "adjudication": {
+    "id": "fict4-000076",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The whenever machinery requires the response as a Skolem event PER OCCURRENCE and the multi-quantifier rule requires a dependent existential to be a Skolem function of every universal scoping over it, so the single term (sk_burn $n) — one burning per lantern — makes (During (sk_burn $n) $e) assert that the same burning is nested inside every shielding occasion of that cove, which is false."
+     }
+    ],
+    "gaps_confirmed": [
+     "Durative 'through <named period>' ('burn ... through winter'): no licensed carrier exists — During is restricted to during/while/throughout over a reified outer eventuality, a bare season has no structured Time term, and no stated count supports (Measure e duration n unit); the parse's (Time e winter) understates the extent without asserting anything false."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form makes the response a function of both universals — (sk_burn $e $n) in all four conclusion atoms, keeping (During (sk_burn $e $n) $e) — leaving the premise, the obliques and the genera untouched.",
+    "notes": "Against as the verb's own preposition-named oblique, the exposed positional modifier genus on north_wind, the second universal premise with LocatedIn, and the surface -ly Manner filler are all correct."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000077",
+   "sentence": "Whenever a cliff-spire shelters a cove, the lanterns in that cove stay lit through winter.",
+   "parse": [
+    "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: whenever_shelter_lit (Implication (And (Member $cs cliff_spire) (Member $g2 shelter) (Agent $g2 $cs) (Member $cv cove) (Theme $g2 $cv)) (And (GroupOf (sk_lanterns $cv) lantern) (LocatedIn (sk_lanterns $cv) $cv) (Implication (PartOf $y (sk_lanterns $cv)) (And (Member (sk_lit $y) lit) (Experiencer (sk_lit $y) $y) (Still (sk_lit $y)) (Time (sk_lit $y) winter))))) (STV 1.0 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review": {
+    "id": "fict4-000077",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The consequent is never tied to the trigger occurrence — there is no During link back to the sheltering event, and the consequent Skolems are functions of the cove and the member ($cv, $y) rather than of the trigger event, so the whenever template's per-occurrence tie is missing."
+     },
+     {
+      "statement": 1,
+      "issue": "The continuation-copular 'stay lit' emits only the reified state (Member/Experiencer/Still) and omits the required flat half — the per-member rule's conclusion has no (Member $y lit), so 'is that lantern lit?' does not bind."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'through <period>' as a temporal extent ('stay lit through winter') — During is licensed for during/while/throughout only, Time records a point or named time rather than an extent, and no duration figure is stated, so the 'throughout' force of 'through' has no carrier",
+     "a per-member distribution Implication nested inside another rule's CONCLUSION — the instruction set places such rules at top level or inside a seal and never addresses a rule appearing as a conjunct of a derived consequent"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound genus, Agent/Theme on the stative inanimate transitive 'shelters', LocatedIn for entity-attached containment, the definite-plural group witness, and 'lit' kept as a participial adjective are all correct. The two issues are both omissions of prescribed atoms rather than wrong content."
+   },
+   "adjudication": {
+    "id": "fict4-000077",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "The missing-During half stands — the whenever machinery states the response is \"tied to its trigger with During\" and the sheltering witness $g2 is available and true of the lit state — but the Skolem-keying half is refuted: \"that cove\" anaphorically fixes the group to $cv, and the plural-distribution rule itself prescribes per-member states as (sk_<state> $y)."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "A continuation copular (\"stay lit\") is prescribed as the reified state with (Still …) PLUS the flat atom, and on a plural group that flat half is the per-member rule conjunct (Member $y lit) — emitted \"so 'is it <state>?' still binds\" — which this conclusion omits."
+     }
+    ],
+    "gaps_confirmed": [
+     "\"through <period>\" as a temporal extent has no carrier: During is licensed for during/while/throughout only, and (Time e winter) records a time rather than the throughout-force",
+     "a per-member distribution Implication nested inside another rule's CONCLUSION is nowhere addressed — rules are placed at top level or inside a seal, never as a conjunct of a derived consequent"
+    ],
+    "new_gaps": [
+     "The whenever template's During tie has no stated attachment point when the response is not one event but a group-plus-per-member-state bundle minted in the conclusion — it is unstated whether the tie rides each member's state, a derived group state, or a separate response eventuality."
+    ],
+    "decision": "defect",
+    "defect_summary": "The per-member rule's conclusion must also carry the flat half (Member $y lit) beside the reified (Member (sk_lit $y) lit) (Experiencer (sk_lit $y) $y) (Still (sk_lit $y)); and the response must be tied to its trigger, e.g. (During (sk_lit $y) $g2) inside the same conclusion.",
+    "notes": "The compound genus, the stative-transitive Agent/Theme on \"shelters\", the entity-attached LocatedIn, the definite-plural group witness and \"lit\" as a participial adjective are all correct. Both confirmed halves are omissions of prescribed atoms — nothing emitted is false or ill-typed."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000078",
+   "sentence": "The Northcove is a shielded cove in Aelmere.",
+   "parse": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: northcove_cove (Member northcove cove) (STV 1.0 0.99))",
+    "(: northcove_shielded (Member northcove shielded) (STV 1.0 0.99))",
+    "(: northcove_loc (LocatedIn northcove aelmere) (STV 1.0 0.99))",
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000078",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the \"Thornmere is a village in Calderwick\" pattern exactly: name-hood signalled by a different word stating the kind, `LocatedIn` for containment, no modifier genus mined out of the name, and both proper nouns carrying their `Name` atom. \"shielded cove\" is correctly split as incidental description rather than fused, and the participial modifier keeps its adjective form."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict4-000079",
+   "sentence": "Northcove lanterns never go out when cold winds blow.",
+   "parse": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: northcove_lantern_never_out (Implication (And (Member $x lantern) (Possession $x northcove) (Member $w blow) (Member $c wind) (Member $c cold) (Patient $w $c)) (And (Member (sk_go_out $x $w) go_out) (Patient (sk_go_out $x $w) $x) (During (sk_go_out $x $w) $w))) (STV 0.0 0.9))",
+    "(: lantern_never_q (QuantifierPhrase lantern go_out \"never\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000079",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Proper-noun premodifier -> head typed normally plus opaque Possession and one Name atom; go_out kept whole as a phrasal verb with no genus and no synonym swap; wind as Patient of blow (non-volitional natural force); \"cold winds\" left unfused as a descriptive modifier; \"never\" as the strength-0.0 distributing rule with a Skolem event over both universals and a During link. The companion string \"never\" is a defensible reading of the parenthetical \"with its companion as no/none already provides\", which does not settle whether the surface adverb or \"no\" is what gets recorded."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+(: nm_genus (Inheritance night_moth moth) (STV 1.0 0.99))
+(: lr_genus (Inheritance lantern_row row) (STV 1.0 0.99))
+(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: cs_group (GroupOf sk_cliff_spires_1 cliff_spire) (STV 1.0 0.99))
+(: whenever_settle_descend (Implication (And (Member $x settle) (Agent $x $c) (Member $c crowd) (GroupOf $c night_moth) (Location $x $l) (Member $l lantern_row)) (And (Member (sk_descend $x) descend) (Agent (sk_descend $x) (sk_skycats $x)) (GroupOf (sk_skycats $x) sky_cat) (Source (sk_descend $x) sk_cliff_spires_1) (During (sk_descend $x) $x))) (STV 1.0 0.9))

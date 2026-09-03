@@ -1,0 +1,4 @@
+(: f16_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: f16_cauldron_ty (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))
+(: f16_vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))
+(: f16_rule (Implication (And (Member $x form) (Patient $x mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_store $x) store) (Agent (sk_store $x) (sk_keeper $x)) (Member (sk_keeper $x) keeper) (Patient (sk_store $x) mire_essence) (Location (sk_store $x) clay_vessel) (During (sk_store $x) $x))) (STV 1.0 0.9))

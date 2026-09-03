@@ -1,0 +1,9 @@
+{"id": "fict5-000008", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "\"a station\" is an indefinite introduced only inside the whenever-rule's consequent, but its witness is hoisted to an unconditionally asserted top-level fact (together with its Near atom at statement 4), asserting a station's existence and position that the sentence states only under the conditional."}, {"statement": 6, "issue": "The consequent's requester is the shared constant sk_station_1 rather than a dependent Skolem term such as (sk_station $d), so the parse commits to one and the same station answering every draining although no \"the same\"/\"a certain\" cue is present and the wide-scope \"whenever\" calls for the dependent reading."}, {"statement": 6, "issue": "\"at the Sunken Cove\" is attached to the lantern as (LocatedIn $l sunken_cove) rather than to the draining event as (Location $d sunken_cove), so the rule triggers on where the lantern sits instead of on where the draining happens."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The name handling is right on both counts — \"the Sunken Cove\" exceeds its bare class word so it takes a Name plus a cove type atom with no modifier genus, while \"the Council\" stays a bare capitalized common noun with no Name; Source for \"from the Council\" and the entity-attached Near are correct."}

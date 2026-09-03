@@ -1,0 +1,9 @@
+{"id": "fict4-000104", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "'wraith activity at the Sunken Cove' is a BARE (determinerless) mass/abstract NP, but it is minted as a specific witness and asserted at top level, so the parse claims one particular wraith-activity entity exists when the sentence only states a conditional regularity."}, {"statement": 7, "issue": "The premise is anchored to that minted constant ((Theme $e sk_activity_1)) instead of binding a plain variable, so the rule can only fire on that exact symbol and would not fire on any later-parsed mention of wraith activity at the Sunken Cove."}, {"statement": 7, "issue": "The whenever machinery ties the per-occurrence response to its trigger with a During atom; no such link is emitted, so the request event is unanchored to the increase that triggers it."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a 'whenever' trigger clause whose participant is a bare (non-definite) mass/abstract NP: the worked example shows only definite participants ('the bell', 'the dog') lifted to top-level constants used inside the premise, and nothing says a bare or indefinite trigger participant should instead bind through a plain premise variable"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The consequent side is well formed throughout: the dependent-existential Skolem station (the forall-exists shape), Near as the licensed entity-attached surface-preposition head, Source for 'from the Council', the bare-kind feather_ration object, Theme for the scalar-change subject, and both noun-modifier compound genera. The over-commitment is entirely on the trigger side."}

@@ -1,0 +1,110 @@
+{
+ "id": "R1",
+ "rule": "Lighting a lantern produces mist-light",
+ "texts": [
+  "When a lantern burns mire-essence, the lantern produces mist-light.",
+  "Whenever a lantern burns mire-essence, the lantern gives mist-light.",
+  "Mist-light is a pale silver flame.",
+  "Ordinary oil does not produce mist-light."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000001",
+   "sentence": "When a lantern burns mire-essence, the lantern produces mist-light.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: lantern_burn_produce (Implication (And (Member $e burn) (Agent $e $y) (Member $y lantern) (Patient $e mire_essence)) (And (Member (sk_produce $e) produce) (Agent (sk_produce $e) $y) (Patient (sk_produce $e) mist_light) (During (sk_produce $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare \"when P, Q\" with an indefinite participant correctly takes the whenever/occurrence rule (premise clause, Skolem consequent, During link, STV 1.0 0.9, no QuantifierPhrase); compound genus atoms expose only the head nouns, and the inanimate transitive subject is rightly Agent."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000002",
+   "sentence": "Whenever a lantern burns mire-essence, the lantern gives mist-light.",
+   "parse": [
+    "(: whenever_burn_give (Implication (And (Member $x burn) (Agent $x $lantern) (Member $lantern lantern) (Patient $x mire_essence)) (And (Member (sk_give $x) give) (Agent (sk_give $x) $lantern) (Theme (sk_give $x) mist_light) (During (sk_give $x) $x))) (STV 1.0 0.9))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule shape, During tie, no QuantifierPhrase companion, transitive-subject Agent, burn->Patient / give->Theme and both compound genus atoms (noun modifiers correctly unexposed) all follow the instruction set; the consequent definite 'the lantern' is correctly bound to the premise variable rather than minted as a constant."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000003",
+   "sentence": "Mist-light is a pale silver flame.",
+   "parse": [
+    "(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: ml_flame (Inheritance mist_light flame) (STV 1.0 0.99))",
+    "(: ml_pale (Inheritance mist_light pale) (STV 1.0 0.99))",
+    "(: ml_silver (Inheritance mist_light silver) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000003",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "stacked attributive adjectives where the first grades/shades the second ('pale silver flame') — nothing licenses recording that 'pale' modifies 'silver' rather than the head noun; Degree covers only adverbial intensifiers/downtoners, and the Compound-concepts fusion tests cover adjective+noun, not adjective+adjective"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Kind subject plus Inheritance throughout, compound genus (Inheritance mist_light light) with the noun modifier 'mist' correctly unexposed, and 'pale'/'silver' correctly left unfused as incidental colour description. Definitional 0.99 on the colour properties is defensible for a stipulative fiction-world definition, though the 'when unsure -> empirical' default would give 0.9."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict4-000004",
+   "sentence": "Ordinary oil does not produce mist-light.",
+   "parse": [
+    "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: oil_no_produce (Implication (And (Member $x oil) (Member $x ordinary)) (And (Member (sk_produce $x) produce) (Agent (sk_produce $x) $x) (Patient (sk_produce $x) mist_light))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000004",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Adjectivally-restricted kind subject correctly forces the distributing-rule route rather than an opaque kind relation, negated at strength 0.0 / conf 0.9, with the restriction as a premise conjunct; compound genus and the bare kind-level Patient filler follow the stated rules."
+   },
+   "adjudication": null
+  }
+ ]
+}

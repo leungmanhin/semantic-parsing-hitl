@@ -1,0 +1,23 @@
+{
+ "id": "fict4-000028",
+ "run": 1,
+ "issues": [
+  {
+   "index": 0,
+   "verdict": "confirm",
+   "reason": "A restrictive relative clause is a premise restriction -- the donkey rule puts \"who owns a donkey\" in the premises and an adjectivally-restricted kind subject likewise \"becomes a premise conjunct\" -- so placing the survive event in the conclusion makes the rule derive that a group of nightmoths survives every sky-cat hunt at a lantern-row, which the sentence only presupposes of whichever moths do survive."
+  },
+  {
+   "index": 1,
+   "verdict": "confirm",
+   "reason": "Names and casing makes the name exactly its capitalized run, an adjacent lowercase word being no part of it (\"the Kestrel River\" yields the string \"Kestrel River\"), so the article in \"the Hollows\" must not enter the Name string."
+  }
+ ],
+ "gaps_confirmed": [],
+ "new_gaps": [
+  "A group minted inside a rule's conclusion has no licensed per-member distribution: the doctrine's per-member (Implication (PartOf $x <group>) ...) rule has no shown form nested inside another rule's consequent, so a distributive predicate over such a derived group never reaches an individuated member."
+ ],
+ "decision": "defect",
+ "defect_summary": "Compliant forms: move the restriction into the premise -- ... (Member $m nightmoth) (Member $s survive) (Agent $s $m) (Theme $s $x) -- with the conclusion minting only the move event (sk_move $x $m) for each such moth; and (Name hollows \"Hollows\").",
+ "notes": "Name-only treatment of the capitalized plural label (no GroupOf, no invented kind atom), Location for \"at a lantern-row\", Goal for \"to the Hollows\", Agent for the moving moths, and the three genus atoms are all right."
+}

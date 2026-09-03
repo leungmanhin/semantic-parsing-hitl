@@ -1,0 +1,42 @@
+{
+ "id": "R29",
+ "rule": "Large feather stores enable safe Sunken-Cove tending",
+ "texts": [
+  "When the feather store at the Watch is large, each Keeper tends the Sunken Cove lanterns safely in winter."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict5-000007",
+   "sentence": "When the feather store at the Watch is large, each Keeper tends the Sunken Cove lanterns safely in winter.",
+   "parse": [
+    "(: store_kind (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: watch_kind (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: store_loc (LocatedIn sk_store_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: lanterns_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: cove_kind (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: lanterns_poss (Possession sk_lanterns_1 sunken_cove) (STV 1.0 0.99))",
+    "(: store_large_keeper_tend (Implication (And (Member sk_store_1 large) (Member $x keeper)) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Patient (sk_tend $x) sk_lanterns_1) (Manner (sk_tend $x) safely) (Time (sk_tend $x) winter))) (STV 1.0 0.9))",
+    "(: keeper_tend_q (QuantifierPhrase keeper tend \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict5-000007",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Bare \"when P, Q\" where P is a DEFINITE copular STATE (\"when the feather store at the Watch is large\") and Q is a kind-level universal: the routing rule offers only two arms — generic/indefinite participants in P route to the whenever/occurrence machinery (a reified trigger event plus a During link), and definite/specific participants route to two plain events ordered as stated in a one-off narrative — and neither covers a standing state conditioning a generic universal, so the premise ends up a flat state atom on a top-level witness with no trigger eventuality for During to anchor on."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Watch\" correctly stays a bare capitalized common noun with no Name atom, and \"the Sunken Cove lanterns\" follows the proper-noun-premodifier pattern (head parsed normally as a definite-plural group witness, linked by opaque Possession, with the name's own kind and Name atoms)."
+   },
+   "adjudication": null
+  }
+ ]
+}

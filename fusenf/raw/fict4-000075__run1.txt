@@ -1,0 +1,6 @@
+(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))
+(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))
+(: lantern_name (Name stilllight_lantern "Stilllight Lantern") (STV 1.0 0.99))
+(: wg_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))
+(: keepers_burn_rule (Implication (PartOf $x sk_keepers_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) wintergloss) (Location (sk_burn $x) stilllight_lantern))) (STV 0.5 0.9))
+(: keepers_burn_q (QuantifierPhrase keeper burn "sometimes") (STV 1.0 0.99))

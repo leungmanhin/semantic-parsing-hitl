@@ -1,0 +1,156 @@
+{
+ "id": "R7",
+ "rule": "Sky-cats hunting reduces nightmoth populations",
+ "texts": [
+  "When a sky-cat descends, the sky-cat hunts nightmoths.",
+  "When a sky-cat hunts nightmoths at a lantern-row, the nightmoth crowd at that lantern-row shrinks.",
+  "Whenever a sky-cat hunts nightmoths at a lantern-row, the nightmoth crowd at that lantern-row thins.",
+  "After a sky-cat hunts at a lantern-row, the thread harvest at that lantern-row falls."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000023",
+   "sentence": "When a sky-cat descends, the sky-cat hunts nightmoths.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: skycat_descend_hunt_rule (Implication (And (Member $x sky_cat) (Member $d descend) (Agent $d $x)) (And (Member (sk_hunt $d) hunt) (Agent (sk_hunt $d) $x) (Patient (sk_hunt $d) nightmoth) (During (sk_hunt $d) $d))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000023",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The object of \"hunts\" is given Patient, but hunting is pursuit that does not create, destroy, consume or physically change the prey, and the instruction set's object test defaults an unclear case to Theme."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows doctrine: bare \"when\" with an indefinite participant takes the whenever rule, the anaphoric definite \"the sky-cat\" binds to the premise variable, the animate mover is Agent, the kind-level object stays a bare kind filler, and the TV/During shape matches the machinery. The Patient/Theme call is the only contested point."
+   },
+   "adjudication": {
+    "id": "fict4-000023",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Hunting neither creates, destroys, consumes nor physically changes the moths (a hunt can catch nothing), and Thematic roles both assigns an unchanged object to Theme and makes Theme the stated default when the test is unclear, so (Patient (sk_hunt $d) nightmoth) asserts a change to the prey the sentence does not state."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: (Theme (sk_hunt $d) nightmoth) in the rule's conclusion, every other atom unchanged.",
+    "notes": "The whenever routing, the anaphoric \"the sky-cat\" bound to the premise variable, Agent for the self-powered descending animate, the sky_cat and nightmoth genus atoms with their noun modifiers unexposed, and the During link at (STV 1.0 0.9) all conform."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000024",
+   "sentence": "When a sky-cat hunts nightmoths at a lantern-row, the nightmoth crowd at that lantern-row shrinks.",
+   "parse": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lantern_row_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: skycat_hunt_shrink_rule (Implication (And (Member $e hunt) (Agent $e $s) (Member $s sky_cat) (Patient $e nightmoth) (Location $e $y) (Member $y lantern_row)) (And (Member (sk_shrink $e) shrink) (Theme (sk_shrink $e) (sk_crowd $e)) (Member (sk_crowd $e) crowd) (GroupOf (sk_crowd $e) nightmoth) (LocatedIn (sk_crowd $e) $y) (During (sk_shrink $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000024",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The intransitive subject of \"shrinks\" takes `Theme`, but shrink is an internal change of state (the weaken / sag / fade class, which the instruction set routes to `Patient`) and no figures are stated that would make it a Scalar-change eventuality."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`Patient` on \"hunts nightmoths\" is borderline but defensible, since the consequent implies the prey is removed; the bare kind filler there is also acceptable for a non-specific object in a rule premise. The entity-attached `LocatedIn` for \"at that lantern-row\" and the `Member crowd` + `GroupOf nightmoth` pair for the crowd are both correct."
+   },
+   "adjudication": {
+    "id": "fict4-000024",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The intransitive-subject test is \"does it change?\" and a shrinking crowd does: the instruction set's listed classes put every \"becomes less X\" verb on Patient (weaken / sag / fade, and the change-of-state undergoers collapse / sink / melt / spread), while the Scalar-change route that would license Theme names a distinct figure-bearing verb class (rise / fall / climb / drop / gain / lose / ease / jump / slip) that \"shrink\" is not part of."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: (Patient (sk_shrink $e) (sk_crowd $e)) in place of (Theme (sk_shrink $e) (sk_crowd $e)); the rest of the rule — premises, per-occurrence crowd witness with Member crowd + GroupOf nightmoth, LocatedIn on the crowd, During tie — stands.",
+    "notes": "The issue's \"no figures stated\" clause is not itself the operative criterion (the Scalar-change class is defined by the verb, not by whether figures appear), but the verb-class analogy the issue rests on holds. (Patient $e nightmoth) on \"hunts nightmoths\" is likewise borderline and was not filed, so it is untouched here."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000025",
+   "sentence": "Whenever a sky-cat hunts nightmoths at a lantern-row, the nightmoth crowd at that lantern-row thins.",
+   "parse": [
+    "(: whenever_hunt_thin (Implication (And (Member $c sky_cat) (Member $h hunt) (Agent $h $c) (Theme $h night_moth) (Member $r lantern_row) (Location $h $r)) (And (Member (sk_thin $h) thin) (Patient (sk_thin $h) (sk_crowd $r)) (Member (sk_crowd $r) crowd) (GroupOf (sk_crowd $r) night_moth) (LocatedIn (sk_crowd $r) $r) (During (sk_thin $h) $h))) (STV 1.0 0.9))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000025",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A collective-noun head premodified by its member kind (\"the nightmoth crowd\"): Compound concepts only gives the fuse-into-subtype route for modifier_noun, and nothing licenses or forbids re-expressing such a premodifier as the 'flock of birds' (Member ... crowd) + (GroupOf ... night_moth) shape the parse chose; the two routes are not interchangeable for querying."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Binding the indefinite lantern-row to a premise variable so \"that lantern-row\" co-varies, and making the crowd a Skolem function of it, is the right reading; thin as internal-change-of-state Patient and LocatedIn for \"at\" are both per doctrine."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict4-000026",
+   "sentence": "After a sky-cat hunts at a lantern-row, the thread harvest at that lantern-row falls.",
+   "parse": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lantern_row_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: thread_harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: hunt_fall_rule (Implication (And (Member $x hunt) (Agent $x $c) (Member $c sky_cat) (Location $x $r) (Member $r lantern_row)) (And (Member (sk_fall $x) fall) (Theme (sk_fall $x) (sk_harvest $r)) (Member (sk_harvest $r) thread_harvest) (LocatedIn (sk_harvest $r) $r) (Before $x (sk_fall $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000026",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Generic/habitual 'After P, Q' conditional with indefinite participants - the rule-routing guidance names only 'every time / whenever' and bare 'when', and gives no convention for temporally linking the Skolem consequent of an 'after' clause (the whenever machinery mandates During, which is wrong for a sequential 'after').",
+     "A definite NP in a rule consequent whose restrictor is bound to a premise variable ('the thread harvest at that lantern-row') - the whenever example anchors definites as top-level constants, which is impossible here, and no Skolem-function alternative is stated."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The compound genus atoms (sky_cat, lantern_row, thread_harvest, each with its noun modifier correctly unexposed), Location for 'hunts at a lantern-row', entity-attached LocatedIn for 'at that lantern-row', Theme for the scalar-change subject of 'falls', and the Before direction are all right. Rule premises contain only plain variables, as required."
+   },
+   "adjudication": null
+  }
+ ]
+}

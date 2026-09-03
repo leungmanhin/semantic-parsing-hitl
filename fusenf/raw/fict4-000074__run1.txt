@@ -1,0 +1,4 @@
+(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))
+(: wintergloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))
+(: keepers_rarely_burn (Implication (PartOf $x sk_keepers_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) wintergloss))) (STV 0.1 0.9))
+(: keepers_burn_q (QuantifierPhrase keeper burn "rarely") (STV 1.0 0.99))

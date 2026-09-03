@@ -1,0 +1,155 @@
+{
+ "id": "R29",
+ "rule": "Large feather stores enable safe Sunken-Cove tending",
+ "texts": [
+  "When the feather store at the Watch is large, the Keepers tend the Sunken Cove lanterns safely in winter.",
+  "The Council issues feather rations to the Sunken-Cove station in winter.",
+  "When the feather store is small, wraith risk grows."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000101",
+   "sentence": "When the feather store at the Watch is large, the Keepers tend the Sunken Cove lanterns safely in winter.",
+   "parse": [
+    "(: feather_store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: feather_store_type (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: feather_store_loc (LocatedIn sk_store_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: sunken_cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_poss (Possession sk_lantern_1 sunken_cove) (STV 1.0 0.99))",
+    "(: keeper_grp (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: when_store_large_tend (Implication (Member sk_store_1 large) (And (Member sk_tend_1 tend) (Agent sk_tend_1 sk_keeper_1) (Patient sk_tend_1 sk_lantern_1) (Manner sk_tend_1 safely) (Time sk_tend_1 winter))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000101",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The kind word inside the multi-word name licenses a type atom that is missing: 'Sunken Cove' should also give (Member sunken_cove cove), exactly as the instruction set's 'the Kestrel River' gives (Member kestrel_river river)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare 'when P, Q' with definite/specific participants stating a habitual regularity rather than a one-off narrative — the instruction set routes generic/indefinite participants to the whenever rule and definite participants in a one-off narrative to two plain ordered events, and gives no form for this in-between case (the parse improvises a ground Implication over constants)",
+     "a bare, non-deictic season adjunct ('in winter') — the Time terms are Year/Month/Day/Weekday/Hour/Minute plus day-part symbols and deictic season constants (last_spring/next_summer), with no stated form for a plain season name",
+     "a capitalized plural kind-word label ('the Keepers') whose label word genuinely states the members' kind — the Name-only plural rule fires on such a label 'referring as a name', a condition left undefined here, and it pulls against the capitalized-common-noun default applied to the singular 'a senior Keeper'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun premodifier 'the Sunken Cove lanterns' otherwise follows the Northgate-spokesman rule (head parsed normally, opaque Possession link, no fusion), and 'at the Watch' correctly takes LocatedIn with the capitalized common noun typed and left unnamed. Nothing under the conditional is asserted at top level, and the antecedent property is not asserted either."
+   },
+   "adjudication": {
+    "id": "fict4-000101",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A multi-word name states its kind 'in one ordinary type atom instead — whether the kind word sits inside the name or beside it', with 'the Kestrel River' giving (Member kestrel_river river), so 'Sunken Cove' owes (Member sunken_cove cove) and the parse leaves the named referent untyped."
+     }
+    ],
+    "gaps_confirmed": [
+     "Bare 'when P, Q' with definite/specific participants stating a habitual regularity: the instruction set routes generic/indefinite participants to the whenever rule and definite participants in a one-off narrative to two plain ordered events, and names no form for this in-between case (the parse improvises a ground Implication over constants, with no occurrence variable for a Skolem consequent or a During link to key on).",
+     "A bare, non-deictic season adjunct ('in winter'): the structured Time terms are Year/Month/Day/Weekday/Hour/Minute, the bare-symbol cases named are day-parts and deictic season constants (last_spring / next_summer), and no clause states the form for a plain season name — the parse's (Time e winter) is an inference from the day-part precedent, not a stated route.",
+     "The Name-only plural rule for a capitalized plural kind-word label fires on a label 'referring as a name', a trigger left undefined — and it is undefined in exactly the case where the label word genuinely does state the members' kind, as 'the Keepers' does."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds (Member sunken_cove cove) beside the existing (Name sunken_cove \"Sunken Cove\"), the whole name staying one opaque symbol with no modifier genus.",
+    "notes": "Beyond the confirmed issue, the parse's (GroupOf sk_keeper_1 keeper) with no Name atom for 'the Keepers' is itself a violation of the capitalized-plural-label clause rather than mere gap territory, and a re-parse should fix it alongside the Sunken Cove typing. Otherwise the Northgate-premodifier route, the LocatedIn containment at the Watch, the surface-form Manner adverb, and the non-assertion of both the antecedent property and the consequent are all correct."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000102",
+   "sentence": "The Council issues feather rations to the Sunken-Cove station in winter.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: station_poss (Possession sk_station_1 sunken_cove) (STV 1.0 0.99))",
+    "(: sunkencove_name (Name sunken_cove \"Sunken-Cove\") (STV 1.0 0.99))",
+    "(: ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))",
+    "(: issue_ev (Member sk_issue_1 issue) (STV 1.0 0.99))",
+    "(: issue_ag (Agent sk_issue_1 sk_council_1) (STV 1.0 0.99))",
+    "(: issue_th (Theme sk_issue_1 feather_ration) (STV 1.0 0.99))",
+    "(: issue_rec (Recipient sk_issue_1 sk_station_1) (STV 1.0 0.99))",
+    "(: issue_time (Time sk_issue_1 winter) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000102",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Sunken-Cove station\" is handled exactly as the proper-noun-premodifier rule prescribes (head typed normally, opaque Possession to the named entity, Name string surface-faithful, no fusion), and \"the Council\" correctly stays a capitalized common noun with no Name atom. Bare-kind filler for \"feather rations\" and bare-symbol (Time e winter) both fit the habitual, non-episodic reading with no tense atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000103",
+   "sentence": "When the feather store is small, wraith risk grows.",
+   "parse": [
+    "(: store_kind (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: risk_genus (Inheritance wraith_risk risk) (STV 1.0 0.99))",
+    "(: store_risk_rule (Implication (Member sk_store_1 small) (And (Member sk_grow_1 grow) (Theme sk_grow_1 wraith_risk))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000103",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The rule follows neither branch of the 'when P, Q' routing: it is variable-free, its conclusion mints the plain constant event sk_grow_1 rather than a per-occurrence Skolem term, and there is no During tie to the trigger, so the recurring covariation the sentence states is reduced to one fixed conditional event."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'when P, Q' stating a general regularity whose trigger clause has a DEFINITE specific participant — the routing rule offers only the whenever machinery (generic or indefinite participants) or two plain asserted events (definite participants in a one-off narrative), and neither fits a definite-subject generic conditional",
+     "a COPULAR state as the trigger clause of a whenever/when rule ('when the feather store is small') — the machinery's per-occurrence Skolem consequent and its During link presuppose an eventive trigger, and a whenever premise is not among the listed state-reification triggers",
+     "a bare abstract mass noun as the SUBJECT of a generic clause ('wraith risk grows') — the bare-kind role filler is licensed for non-specific objects, with no stated treatment for an uncountable subject that supports neither a witness nor a per-instance rule"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The compound decompositions are right (genus emitted for feather_store and wraith_risk, the noun modifiers 'feather' and 'wraith' correctly left unexposed), as is Theme for the scalar-change subject of 'grows' and the tenseless generic. Choosing an Implication over two asserted events is the faithful call — the sentence asserts neither that the store is small nor that risk is growing — so the defect is the rule's shape, not the routing decision."
+   },
+   "adjudication": {
+    "id": "fict4-000103",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The issue mistakes the reviewer's own coverage gaps for a defect: the trigger is a flat copular state with no event witness (a rule premise is not one of the licensed state-reification triggers, and reifying it would leave the rule unable to fire on the plain (Member sk_store_1 small) a later copular clause would emit), so there is nothing for a per-occurrence Skolem key or a During to attach to — while an indicative conditional is licensed as a plain Implication rule, the definite subject rightly forbids a variable range, the ground premise has exactly one binding, and no emitted atom is false, ill-typed or over-asserted."
+     }
+    ],
+    "gaps_confirmed": [
+     "\"when P, Q\" stating a general regularity whose trigger clause has a DEFINITE specific participant fits neither routing branch (whenever machinery is for generic/indefinite participants; two plain events only for definite participants in a one-off narrative)",
+     "a COPULAR state as the trigger clause of a when/whenever rule — the per-occurrence Skolem consequent and the During tie presuppose an eventive trigger, and a rule premise is not among the listed state-reification triggers",
+     "a bare abstract mass noun as the SUBJECT of a generic clause (\"wraith risk grows\") — the bare-kind filler is licensed for non-specific objects, with nothing stated for an uncountable subject supporting neither a witness nor a per-instance rule"
+    ],
+    "new_gaps": [
+     "A rule whose premise is GROUND (no variable to key on) must still mint an event in its conclusion: the instruction set prescribes Skolem-function event terms \"distinct per binding\" and never says what to emit when no binding varies, so whether a plain constant event term is licensed there is unaddressed."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The compound decompositions, the Theme on the scalar-change subject of \"grows\", the tenseless generic and the definite subject's top-level projection are all correct, and choosing an Implication over two asserted events is the faithful call. Everything the issue objects to is forced by the three confirmed gaps rather than chosen against a stated rule."
+   }
+  }
+ ]
+}

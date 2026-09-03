@@ -1,0 +1,3 @@
+(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: keeper_mix_essence_burns (Implication (And (Member $k keeper) (Member $e1 mix) (Agent $e1 $k) (Theme $e1 salt_bloom) (Goal $e1 mire_essence) (Time $e1 winter)) (And (Member (sk_burn $e1) burn) (Patient (sk_burn $e1) mire_essence) (Manner (sk_burn $e1) slowly) (During (sk_burn $e1) $e1))) (STV 1.0 0.9))

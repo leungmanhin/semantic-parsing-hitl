@@ -1,0 +1,119 @@
+{
+ "id": "R24",
+ "rule": "Newcomers apprentice under a senior Keeper",
+ "texts": [
+  "Newcomers must apprentice.",
+  "Each newcomer apprentices under a senior Keeper.",
+  "New apprentices do not tend a lantern alone.",
+  "The Council permits an apprentice to begin solo tending."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000084",
+   "sentence": "Newcomers must apprentice.",
+   "parse": [
+    "(: newcomer_apprentice (Inheritance newcomer (obligated apprentice)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000084",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"Ns must V\" over a kind takes the reified deontic property (Inheritance newcomer (obligated apprentice)) at the plain-norm 1.0/0.99, with no compound action to decompose and no explicit quantifier word to record in a QuantifierPhrase companion. \"newcomer\" correctly fails both agent-nominalization tests, so no capability atom is emitted."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000085",
+   "sentence": "Each newcomer apprentices under a senior Keeper.",
+   "parse": [
+    "(: newcomer_q (QuantifierPhrase newcomer apprentice \"each\") (STV 1.0 0.99))",
+    "(: seniorkeeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: seniorkeeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: newcomer_apprentice_rule (Implication (Member $x newcomer) (And (Member (sk_apprentice $x) apprentice) (Agent (sk_apprentice $x) $x) (Under (sk_apprentice $x) (sk_senior_keeper $x)) (Member (sk_senior_keeper $x) senior_keeper))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000085",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`Under` is the preposition actually used and falls under the open-class preposition-named oblique licence, not a coined head. The explicit-universal rule over `(Member $x newcomer)`, the dependent-existential Skolem `(sk_senior_keeper $x)` with its typing, the `senior_keeper` genus plus gradable-modifier genus, and the \"each\" QuantifierPhrase companion all follow the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000086",
+   "sentence": "New apprentices do not tend a lantern alone.",
+   "parse": [
+    "(: new_apprentice_no_alone (Implication (And (Member $x apprentice) (Member $x new)) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Theme (sk_tend $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern) (Manner (sk_tend $x) alone))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000086",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare subject-oriented adverbial of accompaniment ('tend a lantern alone'): nothing decides between the Manner oblique and the depictive concurrent-state route, and the two differ in what the strength-0 bundle ends up denying"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Negated verbal generic as a strength-0.0 distributing rule, the adjectival restriction as a premise conjunct, the dependent Skolem-function witness for the indefinite object and the absence of a QuantifierPhrase for plain 'not' all match the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict4-000087",
+   "sentence": "The Council permits an apprentice to begin solo tending.",
+   "parse": [
+    "(: e_council (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_apprentice (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: e_permit (Member sk_permit_1 permit) (STV 1.0 0.99))",
+    "(: e_permit_ag (Agent sk_permit_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_permit_th (Theme sk_permit_1 sk_begin_1) (STV 1.0 0.99))",
+    "(: e_begin (Member sk_begin_1 begin) (STV 1.0 0.99))",
+    "(: e_begin_ag (Agent sk_begin_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: e_begin_th (Theme sk_begin_1 sk_tend_1) (STV 1.0 0.99))",
+    "(: e_tend (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: e_tend_ag (Agent sk_tend_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: e_tend_ongoing (Ongoing sk_tend_1) (STV 1.0 0.99))",
+    "(: e_tend_manner (Manner sk_tend_1 solo) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000087",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an ACTIVE permission verb with an overt permitter ('The Council permits X to V'): the deontic sections map only modals and passive / participial wordings ('are permitted / allowed / forbidden to V') onto (Permitted e) or the kind-level (permitted <action>), and say nothing about an active permit / allow / authorize clause — so whether it is only an ordinary object-control event (the reading taken) or should additionally carry a (Permitted <complement>) status atom is undecided",
+     "whether an inceptive's mandatory (Ongoing <activity>) marker still applies when the inception itself sits inside an unrealized control complement: the control rule strips tense/status from the complement event, yet the Inception rule puts Ongoing on the activity one level down, so the parse asserts a top-level ongoing tending that the sentence never claims occurred"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Object-control routing (matrix Theme = the reified complement event, the object controller copied in as that event's Agent, no matrix role for the apprentice, no tense on the complement) and the inception pattern (begin event + Theme activity + Ongoing) both follow the instruction set, as does the no-Name common-noun treatment of the capitalized 'the Council' and the singular-collective no-distribution rule."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,219 @@
+{
+ "id": "R30",
+ "rule": "Wraith activity prompts feather-ration requests",
+ "texts": [
+  "Whenever wraith activity at the Sunken Cove increases, a station near the Sunken Cove requests feather rations from the Council.",
+  "Whenever wraith sightings at the Sunken Cove rise, the stations ask the Council for feather rations.",
+  "The Council weighs the requests against the central feather store.",
+  "The Council usually prioritizes stations whose lanterns are drained."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000104",
+   "sentence": "Whenever wraith activity at the Sunken Cove increases, a station near the Sunken Cove requests feather rations from the Council.",
+   "parse": [
+    "(: wa_genus (Inheritance wraith_activity activity) (STV 1.0 0.99))",
+    "(: activity_type (Member sk_activity_1 wraith_activity) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: activity_loc (LocatedIn sk_activity_1 sunken_cove) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: fr_genus (Inheritance feather_ration ration) (STV 1.0 0.99))",
+    "(: wraith_rule (Implication (And (Member $e increase) (Theme $e sk_activity_1)) (And (Member (sk_station $e) station) (Near (sk_station $e) sunken_cove) (Member (sk_request $e) request) (Agent (sk_request $e) (sk_station $e)) (Theme (sk_request $e) feather_ration) (Source (sk_request $e) sk_council_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000104",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "'wraith activity at the Sunken Cove' is a BARE (determinerless) mass/abstract NP, but it is minted as a specific witness and asserted at top level, so the parse claims one particular wraith-activity entity exists when the sentence only states a conditional regularity."
+     },
+     {
+      "statement": 7,
+      "issue": "The premise is anchored to that minted constant ((Theme $e sk_activity_1)) instead of binding a plain variable, so the rule can only fire on that exact symbol and would not fire on any later-parsed mention of wraith activity at the Sunken Cove."
+     },
+     {
+      "statement": 7,
+      "issue": "The whenever machinery ties the per-occurrence response to its trigger with a During atom; no such link is emitted, so the request event is unanchored to the increase that triggers it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a 'whenever' trigger clause whose participant is a bare (non-definite) mass/abstract NP: the worked example shows only definite participants ('the bell', 'the dog') lifted to top-level constants used inside the premise, and nothing says a bare or indefinite trigger participant should instead bind through a plain premise variable"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The consequent side is well formed throughout: the dependent-existential Skolem station (the forall-exists shape), Near as the licensed entity-attached surface-preposition head, Source for 'from the Council', the bare-kind feather_ration object, Theme for the scalar-change subject, and both noun-modifier compound genera. The over-commitment is entirely on the trigger side."
+   },
+   "adjudication": {
+    "id": "fict4-000104",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The whenever machinery makes the trigger clause the PREMISE pattern, and 'wraith activity at the Sunken Cove' is a bare, non-definite mass NP carrying none of the existence presupposition that licenses the worked example's definite 'the bell', so the top-level (Member sk_activity_1 wraith_activity) + (LocatedIn sk_activity_1 sunken_cove) at 1.0 0.99 asserts standing wraith activity at the Cove that a conditional regularity never states."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The firing consequence is real and follows from the hoisted witness, but 'the premise must bind a plain variable' is overstated: Time expressly allows an sk_* constant in a premise 'when a top-level fact asserts it', which is exactly how the bell example works - the fault is minting the constant, not referencing it."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "The whenever machinery states the response is 'tied to its trigger with During', and unlike a persisting state a per-occurrence request event is precisely the (sk_bark $x) / During case of the worked example, so the missing (During (sk_request $e) $e) drops a mandated atom."
+     }
+    ],
+    "gaps_confirmed": [
+     "a whenever trigger participant that is a bare mass / abstract NP with a definite restrictor: the worked examples show only a definite ('the bell') or an indefinite count ('a bearing') participant, so how the restrictor travels into the premise is unstated"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form binds the trigger participant inside the premise - (And (Member $e increase) (Member $a wraith_activity) (LocatedIn $a sunken_cove) (Theme $e $a)) - with no top-level activity witness, leaving only the wraith_activity genus, the Sunken Cove name/type and the Council witness as facts. The consequent additionally carries (During (sk_request $e) $e).",
+    "notes": "The consequent is otherwise well formed - the dependent-existential Skolem station, Near as the entity-attached surface preposition, Source for 'from the Council', the bare-kind feather_ration object, and 'the Council' correctly left Name-less as a capitalized common-noun label."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000105",
+   "sentence": "Whenever wraith sightings at the Sunken Cove rise, the stations ask the Council for feather rations.",
+   "parse": [
+    "(: wraith_sighting_genus (Inheritance wraith_sighting sighting) (STV 1.0 0.99))",
+    "(: sunken_cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sunken_cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: feather_ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: stations_group (GroupOf sk_stations_1 station) (STV 1.0 0.99))",
+    "(: sighting_rise_stations_ask (Implication (And (Member $e rise) (Theme $e wraith_sighting) (Location $e sunken_cove) (PartOf $s sk_stations_1)) (And (Member (sk_ask $s $e) ask) (Agent (sk_ask $s $e) $s) (Recipient (sk_ask $s $e) sk_council_1) (Theme (sk_ask $s $e) feather_ration) (During (sk_ask $s $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000105",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "In \"ask the Council FOR feather rations\" the preposition's object is slotted into a direct-object role, (Theme (sk_ask $s $e) feather_ration), but a prepositional verb's object takes the preposition-named oblique — the direct-object roles are only for objects the verb takes without a preposition — and this \"for\" names what is sought rather than a benefited party, so it is the (For <event> feather_ration) oblique."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A locative PP restricting a BARE-KIND NP (\"wraith sightings at the Sunken Cove\" inside a rule premise): a kind filler cannot take entity-attached LocatedIn (a kind is not a positioned thing) and no other entity-side carrier is provided, so the NP-attached restriction had to be shifted onto the event as (Location $e sunken_cove).",
+     "Whether a definite-plural subject with a distributive predicate inside a whenever-rule conclusion also keeps the GROUP-level event alongside the per-member PartOf distribution rule — the \"group event + count alongside the rule\" doubling is stated only for episodic/counted plurals and is never composed with the whenever machinery."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correct elsewhere: \"the Sunken Cove\" as one opaque name symbol with a separate (Member sunken_cove cove) kind atom and no modifier genus, \"the Council\" as a capitalized common noun (witness, no Name, no GroupOf for a collective), rise's subject as Theme per scalar change, definite plural -> top-level GroupOf with a PartOf-ranged rule, Recipient for the addressee of asking, and Skolem events functions of both universals."
+   },
+   "adjudication": {
+    "id": "fict4-000105",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"ask the Council FOR feather rations\" puts the rations behind a preposition, and the rule is mechanical — \"a prepositional verb's object is this oblique, never a direct-object role … the direct-object roles are for objects the verb takes without a preposition\" — while the \"for\" names what is sought rather than a benefited party, so the licensed head is the preposition-named For, not Theme."
+     }
+    ],
+    "gaps_confirmed": [
+     "a locative PP restricting a BARE-KIND NP inside a rule premise (\"wraith sightings at the Sunken Cove\") has no entity-side carrier — a kind may not fill LocatedIn's entity slot and no other NP-attached form is provided, forcing the shift onto the event as (Location $e sunken_cove)",
+     "whether a definite-plural subject with a distributive predicate inside a whenever-rule CONCLUSION also keeps the group-level event beside the per-member PartOf rule — the \"group event + count alongside the rule\" doubling is stated only for episodic/counted plurals and is never composed with the whenever machinery"
+    ],
+    "new_gaps": [
+     "A bare-plural scalar-change SUBJECT inside a rule premise (\"wraith sightings … rise\"): the bare-kind role filler is licensed for non-specific objects only, and nothing states the form for a subject whose count is what rises — a group witness would name a specific set the generic premise does not."
+    ],
+    "decision": "defect",
+    "defect_summary": "Replace (Theme (sk_ask $s $e) feather_ration) with the preposition-named oblique (For (sk_ask $s $e) feather_ration), leaving the Agent, Recipient and During conjuncts unchanged.",
+    "notes": "Correct elsewhere: \"the Sunken Cove\" as one opaque name symbol with a separate kind atom and no modifier genus, \"the Council\" as a capitalized common noun with no Name atom, Theme for rise's scalar-change subject, Recipient for the addressee of asking, the PartOf-ranged distribution, the Skolem event as a function of both universals, and the During tie present."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000106",
+   "sentence": "The Council weighs the requests against the central feather store.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: weigh_ev (Member sk_weigh_1 weigh) (STV 1.0 0.99))",
+    "(: weigh_ag (Agent sk_weigh_1 sk_council_1) (STV 1.0 0.99))",
+    "(: requests_grp (GroupOf sk_requests_1 request) (STV 1.0 0.99))",
+    "(: weigh_th (Theme sk_weigh_1 sk_requests_1) (STV 1.0 0.99))",
+    "(: store_type (Member sk_store_1 central_feather_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance central_feather_store store) (STV 1.0 0.99))",
+    "(: store_central (Inheritance central_feather_store central) (STV 1.0 0.99))",
+    "(: weigh_against (Against sk_weigh_1 sk_store_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000106",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" is correctly a capitalized common noun (no Name atom, and a collective noun needs no GroupOf), \"the requests\" a definite-plural group witness, an evaluating verb takes Theme, the unmarked present is the habitual default, and the prepositional-verb object sits in the Against oblique rather than a direct-object role. central_feather_store exposes the head genus store and the predicable positional modifier central while the noun modifier feather stays unexposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict4-000107",
+   "sentence": "The Council usually prioritizes stations whose lanterns are drained.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: council_prioritize_drained (Implication (And (Member $st station) (GroupOf $lg lantern) (PartOf $lg $st) (Member $lg drained)) (And (Member (sk_prioritize $st) prioritize) (Agent (sk_prioritize $st) sk_council_1) (Theme (sk_prioritize $st) $st))) (STV 0.8 0.9))",
+    "(: council_q (QuantifierPhrase station prioritize \"usually\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000107",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The premise predicates 'drained' of the lantern GROUP symbol, the group-as-object reading the plural doctrine explicitly bars for a member property, instead of ranging over the members."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "predicative participle in a relative clause ('stations whose lanterns are drained'): the instruction set calls the same participle a verb in 'the worktop was laminated' yet stores 'the door is closed' as the property atom (Member sk_door_1 closed), and gives no test for choosing the eventive passive over the resultant-state property"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The frequency adverb's 0.8 strength plus its QuantifierPhrase companion, the shared-constant Council in the conclusion, the possessed-plural group witness with PartOf, and Theme for 'prioritize' all match the instruction set."
+   },
+   "adjudication": {
+    "id": "fict4-000107",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "*Categorical statements* bars a member property on a group symbol — \"(Member sk_group_1 wooden) says the group-as-object is wooden ... a bare (Member <group> <prop>) appears only for a property genuinely of the collection itself\" — and being drained is a property of each lantern, so the premise expresses a restriction the sentence does not state (and one no compliant parse would ever satisfy)."
+     }
+    ],
+    "gaps_confirmed": [
+     "predicative participle in a relative clause (\"stations whose lanterns are drained\"): the instruction set calls the same participle a verb in \"the worktop was laminated\" yet stores \"the door is closed\" as the property atom (Member sk_door_1 closed), and supplies no test for choosing the eventive passive over the resultant-state property"
+    ],
+    "new_gaps": [
+     "a UNIVERSAL restrictive relative over a possessed plural inside a RULE PREMISE (\"stations whose lanterns are drained\"): the only licensed way to give a plural's members a property is a distribution Implication, which cannot appear inside a premise, so every well-typed premise available ranges over a single member and silently weakens the restriction to \"a station with a drained lantern\" — nothing licensed carries the \"all its lanterns\" force"
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant (nearest licensed) form: range the premise over an individual lantern — (Member $l lantern) (PartOf $l $st) (Member $l drained) — instead of (GroupOf $lg lantern) (PartOf $lg $st) (Member $lg drained); but that shape states the existential restriction, and the instruction set licenses NO form carrying the relative clause's universal force inside a premise, which is filed above as a new gap.",
+    "notes": "Strength 0.8 for \"usually\" with its QuantifierPhrase companion, the Council as a shared constant in the conclusion, and Theme for prioritize all match the instruction set."
+   }
+  }
+ ]
+}

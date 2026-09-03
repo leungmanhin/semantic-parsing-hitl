@@ -1,0 +1,86 @@
+{
+ "id": "R17",
+ "rule": "Salt-bloom in winter slows the burn",
+ "texts": [
+  "Whenever a Keeper adds salt-bloom to mire-essence in winter, that mire-essence burns slowly.",
+  "Whenever a Keeper mixes salt-bloom into mire-essence in winter, that mire-essence burns slowly.",
+  "When a cold wind strikes a salt-bloomed lantern, the lantern stays lit."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000059",
+   "sentence": "Whenever a Keeper adds salt-bloom to mire-essence in winter, that mire-essence burns slowly.",
+   "parse": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: whenever_add_burn (Implication (And (Member $x add) (Agent $x $k) (Member $k keeper) (Theme $x salt_bloom) (Goal $x $m) (Member $m mire_essence) (Time $x winter)) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $m) (Manner (sk_burn $x) slowly) (During (sk_burn $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000059",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare season name as a time adjunct ('in winter'): seasons appear in the instruction set only as deictic constants (last_spring / next_summer) and are not among the structured Time terms (Year / Month / Day / Weekday / Hour / Minute) nor the day-part constants, so the bare-symbol (Time $x winter) treatment — and whether a recurring seasonal slot also implies a cycle atom like a named 'every June' slot does — is only reachable by analogy"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-rule shape, the Skolem-function response, the During link and (STV 1.0 0.9) are all correct, as are the roles (Theme for the added substance, Goal for the non-recipient 'to', Patient for the burning undergoer, surface-form Manner 'slowly'). 'That mire-essence' is properly bound to the premise variable $m while the non-anaphoric mass 'salt-bloom' stays a bare kind filler, and both compound genus atoms correctly suppress their noun modifiers."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000060",
+   "sentence": "Whenever a Keeper mixes salt-bloom into mire-essence in winter, that mire-essence burns slowly.",
+   "parse": [
+    "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: keeper_mix_essence_burns (Implication (And (Member $k keeper) (Member $e1 mix) (Agent $e1 $k) (Theme $e1 salt_bloom) (Goal $e1 mire_essence) (Time $e1 winter)) (And (Member (sk_burn $e1) burn) (Patient (sk_burn $e1) mire_essence) (Manner (sk_burn $e1) slowly) (During (sk_burn $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000060",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a MASS-NOUN participant that must be individuated per firing of a whenever rule (\"mixes salt-bloom into mire-essence ... that mire-essence burns\"): bare mass NPs are licensed as bare kind constants, and anaphora is symbol reuse, so the demonstrative 'that mire-essence' can only re-use the kind symbol — the instruction set offers no per-occurrence witness device for mass participants (Skolem functions are given for events, dependent existential entities and per-binding groups, not for a portion of a mass)",
+     "a bare SEASON adjunct (\"in winter\") as a time slot: the structured Time terms are Year/Month/Day/Weekday/Hour/Minute and the bare-symbol licence is stated for day-parts and deictic season forms (last_spring, next_summer), but a non-deictic bare season has no explicitly licensed form"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever rule, its 1.0/0.9 TV, the absence of a QuantifierPhrase companion, the During tie-back, the winter restriction sitting in the premise, the -ly adverb kept as surface 'slowly', and both compound genera (salt_bloom/bloom, mire_essence/essence with noun modifiers withheld) all follow the instruction set; capitalized 'Keeper' correctly stays a common noun with no Name atom. Theme for the mixed substance and Goal for the whither-'into' PP are both defensible under the stated tests."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000061",
+   "sentence": "When a cold wind strikes a salt-bloomed lantern, the lantern stays lit.",
+   "parse": [
+    "(: wind_strike_stay_lit (Implication (And (Member $wd wind) (Member $wd cold) (Member $e strike) (Agent $e $wd) (Theme $e $l) (Member $l lantern) (Member $l salt_bloomed)) (And (Member (sk_lit $e) lit) (Experiencer (sk_lit $e) $l) (Still (sk_lit $e)) (Member $l lit) (During (sk_lit $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000061",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"Stays lit\" takes exactly the intransitive continuation-copular shape — reified state + Experiencer + Still + the flat Member half, with no matrix stay event and no Result link — folded into the whenever rule's consequent with the During tie. \"Strikes\" -> Theme is the borderline call, but the object undergoes no stated change so the instruction set's default-to-Theme tiebreaker supports it."
+   },
+   "adjudication": null
+  }
+ ]
+}

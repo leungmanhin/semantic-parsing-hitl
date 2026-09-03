@@ -1,0 +1,4 @@
+(: f30_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: f30_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: f30_spires_grp (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))
+(: f30_rule (Implication (Member $x sky_cat) (And (Member (sk_roost $x) roost) (Agent (sk_roost $x) $x) (Location (sk_roost $x) sk_group_1) (Time (sk_roost $x) day))) (STV 0.9 0.9))

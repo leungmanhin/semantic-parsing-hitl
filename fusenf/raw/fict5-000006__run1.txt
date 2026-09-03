@@ -1,0 +1,3 @@
+(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: lantern_q (QuantifierPhrase lantern lit "each") (STV 1.0 0.99))
+(: whenever_shelter_lit (Implication (And (Member $x cliff_spire) (Member $sh shelter) (Agent $sh $x) (Member $c cove) (Theme $sh $c) (Member $l lantern) (LocatedIn $l $c)) (And (Member (sk_lit $l) lit) (Experiencer (sk_lit $l) $l) (Still (sk_lit $l)) (Time (sk_lit $l) winter) (During (sk_lit $l) $sh) (Member $l lit))) (STV 1.0 0.9))

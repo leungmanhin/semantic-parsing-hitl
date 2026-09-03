@@ -1,0 +1,39 @@
+{
+ "id": "R4",
+ "rule": "Silken threads boiled in sea-water yield mire-essence",
+ "texts": [
+  "Each Keeper takes the sea-water from the Salt-bloom Tide-pools."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict5-000001",
+   "sentence": "Each Keeper takes the sea-water from the Salt-bloom Tide-pools.",
+   "parse": [
+    "(: sbtp_kind (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+    "(: sbtp_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+    "(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: sw_kind (Member sk_sea_water_1 sea_water) (STV 1.0 0.99))",
+    "(: sw_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: keeper_take_rule (Implication (Member $x keeper) (And (Member (sk_take $x) take) (Agent (sk_take $x) $x) (Theme (sk_take $x) sk_sea_water_1) (Source (sk_take $x) salt_bloom_tide_pools))) (STV 1.0 0.9))",
+    "(: keeper_take_q (QuantifierPhrase keeper take \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict5-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A plural-headed multi-word proper name naming a SET of things (\"the Salt-bloom Tide-pools\"): the multi-word-name rule supplies only the singular template (Member <name> <kind>) (\"the Kestrel River\"), while the capitalized-plural-label carve-out bars GroupOf and any per-member kind from the label word, so there is no licensed way to record that the named referent is plural rather than one individual of that kind."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare \"each N V\" rule with Skolem-function event, QuantifierPhrase companion, Theme/Source roles, definite-witness sea-water and compound genus atoms all follow the instruction set; no capability atom for the referring nominalization \"keeper\", which is correct."
+   },
+   "adjudication": null
+  }
+ ]
+}

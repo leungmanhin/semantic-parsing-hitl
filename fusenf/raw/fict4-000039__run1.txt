@@ -1,0 +1,6 @@
+(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: e_mire_essence (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))
+(: e_wick (Member sk_wick_1 wick) (STV 1.0 0.99))
+(: keeper_refresh_trim (Implication (Member $x keeper) (And (Member (sk_refresh $x) refresh) (Agent (sk_refresh $x) $x) (Patient (sk_refresh $x) sk_mire_essence_1) (Time (sk_refresh $x) night) (Member (sk_trim $x) trim) (Agent (sk_trim $x) $x) (Patient (sk_trim $x) sk_wick_1) (Time (sk_trim $x) night))) (STV 1.0 0.9))
+(: keeper_refresh_q (QuantifierPhrase keeper refresh "each") (STV 1.0 0.99))
+(: keeper_trim_q (QuantifierPhrase keeper trim "each") (STV 1.0 0.99))

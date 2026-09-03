@@ -1,0 +1,165 @@
+{
+ "id": "R19",
+ "rule": "Spring tides bloom salt-bloom in the tide-pools",
+ "texts": [
+  "When a spring tide fills the tide-pools, salt-bloom blooms in the tide-pools.",
+  "Whenever a spring tide fills the tide-pools, salt-bloom grows in the tide-pools.",
+  "Salt-bloom is a pale crystalline crust.",
+  "Salt-bloom quickly dissolves into the seawater."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000066",
+   "sentence": "When a spring tide fills the tide-pools, salt-bloom blooms in the tide-pools.",
+   "parse": [
+    "(: tide_pools_group (GroupOf sk_tide_pools_1 tide_pool) (STV 1.0 0.99))",
+    "(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: spring_tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: spring_tide_fills_bloom (Implication (And (Member $t spring_tide) (Member $e1 fill) (Agent $e1 $t) (Patient $e1 sk_tide_pools_1)) (And (Member (sk_bloom $e1) bloom) (Patient (sk_bloom $e1) salt_bloom) (Location (sk_bloom $e1) sk_tide_pools_1) (During (sk_bloom $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000066",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare MASS-NOUN subject inside a whenever-rule consequent (\"salt-bloom blooms in the tide-pools\"): the bare-kind-filler licence is stated for non-specific OBJECTS ('pays tax', 'grows wheat') and bare-plural subjects mint group witnesses, but nothing licenses (or forbids) a bare mass kind symbol as the per-occurrence subject of the derived event",
+     "no namespace separation between a verb-derived event class and a same-spelled noun kind: mandatory compound decomposition gives (Inheritance salt_bloom bloom) while the verb 'blooms' lemmatizes to the same event class in (Member (sk_bloom $e1) bloom), so every derived blooming event also becomes a member of the noun-kind salt_bloom inherits from — both atoms are individually required by the instruction set"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing is correct (indefinite trigger subject sends bare 'when' to the whenever machinery even with a definite object), the definite plural 'the tide-pools' takes a top-level GroupOf witness that legitimately licenses the sk_* constant appearing in the premise, and it is reused for coreference in the consequent's Location. All three compound genera are emitted with their noun modifiers withheld, and fill/bloom take Patient by the change-of-state tests."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000067",
+   "sentence": "Whenever a spring tide fills the tide-pools, salt-bloom grows in the tide-pools.",
+   "parse": [
+    "(: pools_typ (GroupOf sk_pools_1 tide_pool) (STV 1.0 0.99))",
+    "(: pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: whenever_tide_fills_bloom (Implication (And (Member $t spring_tide) (Member $f fill) (Agent $f $t) (Patient $f sk_pools_1)) (And (Member (sk_grow $f) grow) (Patient (sk_grow $f) salt_bloom) (Location (sk_grow $f) sk_pools_1) (During (sk_grow $f) $f))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000067",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare MASS-noun subject of a specific / per-occurrence clause (\"salt-bloom grows in the tide-pools\"): the instruction set fixes the bare kind filler for non-specific OBJECTS and a group witness for bare-plural SUBJECTS, but never says whether a bare mass subject takes a witness (here a per-occurrence Skolem one) or the bare kind symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is correct throughout: head genus only for tide_pool, spring_tide and salt_bloom, with the noun modifiers tide/spring/salt left unexposed; the definite plural takes a group witness and the per-occurrence Skolem event is During-tied to its trigger. The sk_pools_1 constant in the premise is licensed because a top-level fact asserts it."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000068",
+   "sentence": "Salt-bloom is a pale crystalline crust.",
+   "parse": [
+    "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: crystcrust_genus (Inheritance crystalline_crust crust) (STV 1.0 0.99))",
+    "(: crystcrust_mod (Inheritance crystalline_crust crystalline) (STV 1.0 0.99))",
+    "(: saltbloom_iscrust (Inheritance salt_bloom crystalline_crust) (STV 0.9 0.9))",
+    "(: saltbloom_pale (Inheritance salt_bloom pale) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000068",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Fusing \"crystalline crust\" (structural/material adjective) while leaving colour \"pale\" as its own atom matches the term-of-art vs incidental-description line, and no transitive (Inheritance salt_bloom crust) is emitted. Borderline: this reads as a definitional gloss of the kind, so the genus claim arguably takes the taxonomic 1.0/0.99 rather than the empirical 0.9/0.9 chosen here, though 'when unsure, empirical' covers the choice."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict4-000069",
+   "sentence": "Salt-bloom quickly dissolves into the seawater.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: sw_genus (Inheritance seawater water) (STV 1.0 0.99))",
+    "(: sb_dissolve (Member sk_dissolve_1 dissolve) (STV 1.0 0.99))",
+    "(: sb_patient (Patient sk_dissolve_1 salt_bloom) (STV 1.0 0.99))",
+    "(: sb_manner (Manner sk_dissolve_1 quickly) (STV 1.0 0.99))",
+    "(: sb_seawater_type (Member sk_seawater_1 seawater) (STV 1.0 0.99))",
+    "(: sb_goal (Goal sk_dissolve_1 sk_seawater_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000069",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "A bare mass/kind subject with a habitual simple present is a verbal generic, which the instruction set routes to an Implication rule giving each instance its own Skolem event, but the parse emits a flat event bundle instead."
+     },
+     {
+      "statement": 3,
+      "issue": "The bare kind symbol salt_bloom fills the Patient role slot of that flat event, putting a class where the generic rule would bind an instance variable."
+     },
+     {
+      "statement": null,
+      "issue": "The event atoms carry the default (STV 1.0 0.99) rather than the empirical-generic 0.9 0.9 the generic reading requires."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the medium/endpoint \"into\"-PP of a dissolution verb (\"dissolves into the seawater\"): the motion-result Goal presupposes an intact object relocated along a path, while the change-of-kind/phase rule explicitly bars a spatial Goal for \"into\" and expects the complement to name a state the subject becomes — neither fits a substance dispersing into a medium"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The compound decompositions are right (salt_bloom genus bloom, solid-spelled seawater genus water, noun modifiers salt/sea correctly unexposed) and \"quickly\" keeps its surface adverb form under Manner. Dissolve as an intransitive change-of-state undergoer correctly takes Patient rather than Agent."
+   },
+   "adjudication": {
+    "id": "fict4-000069",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'Salt-bloom quickly dissolves into the seawater' is a habitual-present characteristic claim with a bare kind subject, which Quantifiers, generics & scope routes to a rule giving each instance its own Skolem event ('a verbal generic or universal over a kind becomes a rule'), not to a flat event bundle."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is that the generic rule would bind an instance variable in that slot; the half that does not is that a bare class symbol in a role slot is illicit in itself - the Existential section reserves exactly that filler for non-specific / generic arguments ('cooked dinner')."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "A contingent generalization about a substance is empirical, so it takes 0.9 strength / 0.9 confidence per Confidence - definitional vs empirical; the individual-fact default 1.0 0.99 over-asserts a claim that admits counterexamples."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "the instruction set gives two competing encodings for a bare-kind-subject habitual clause - 'an event with no status predicate is generic / habitual / dispositional' (Status predicates) versus 'a verbal generic over a kind becomes a rule' (Quantifiers) - and states no tie-breaker between the flat dispositional bundle and the distributing rule"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the verbal-generic rule (: sb_dissolve (Implication (Member $x salt_bloom) (And (Member (sk_dissolve $x) dissolve) (Patient (sk_dissolve $x) $x) (Manner (sk_dissolve $x) quickly) (Goal (sk_dissolve $x) sk_seawater_1))) (STV 0.9 0.9)), with the instance variable replacing the bare kind in the Patient slot. The empirical-generic 0.9 0.9 rides that one rule atom, while the two genus atoms and the definite seawater witness stay top-level facts at 1.0 0.99.",
+    "notes": "The reviewer's 'into'-PP gap is not confirmed: obliques are chosen by the question the PP answers, and 'into the seawater' answers whither, so Goal is licensed without invoking the resultative or change-of-phase rules."
+   }
+  }
+ ]
+}

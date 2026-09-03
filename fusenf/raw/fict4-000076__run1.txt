@@ -1,0 +1,4 @@
+(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: northwind_genus (Inheritance north_wind wind) (STV 1.0 0.99))
+(: northwind_mod (Inheritance north_wind north) (STV 1.0 0.99))
+(: shield_burn_rule (Implication (And (Member $e shield) (Agent $e $s) (Member $s cliff_spire) (Theme $e $c) (Member $c cove) (Against $e north_wind) (Member $n lantern) (LocatedIn $n $c)) (And (Member (sk_burn $n) burn) (Patient (sk_burn $n) $n) (Manner (sk_burn $n) stably) (Time (sk_burn $n) winter) (During (sk_burn $n) $e))) (STV 1.0 0.9))

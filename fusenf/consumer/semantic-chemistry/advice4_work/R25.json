@@ -1,0 +1,104 @@
+{
+ "id": "R25",
+ "rule": "Sustained solo tending completes apprenticeship",
+ "texts": [
+  "When an apprentice's solo count is large, the Council invests the apprentice as a Keeper.",
+  "When a lantern of an apprentice fails, that apprentice's solo count resets.",
+  "When an apprentice's lantern dims, that apprentice's solo count resets."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000088",
+   "sentence": "When an apprentice's solo count is large, the Council invests the apprentice as a Keeper.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: count_genus (Inheritance solo_count count) (STV 1.0 0.99))",
+    "(: apprentice_invest_rule (Implication (And (Member $x apprentice) (Member $c solo_count) (Possession $c $x) (Member $c large)) (And (Member (sk_invest $x) invest) (Agent (sk_invest $x) sk_council_1) (Patient (sk_invest $x) $x) (Member (sk_keeper $x) keeper) (Experiencer (sk_keeper $x) $x) (Member $x keeper) (Result (sk_invest $x) (sk_keeper $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000088",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Predicative \"as NP\" complement of a transitive verb (\"invests the apprentice as a Keeper\"): the instruction set names no encoding for \"V NP as NP\" — the resultative State-result shape is defined for AP results (\"painted it red\") and for intransitive change-of-kind (\"turned into a museum\"), so the parse's transfer of that shape to an as-phrase is an extension rather than a licensed form.",
+     "\"Whenever / when P, Q\" rule whose trigger clause P is COPULAR (\"when an apprentice's solo count is large\"): the machinery mandates tying the per-occurrence Skolem response to its trigger with During, but a flat copular premise yields no event witness to anchor it, and a whenever-trigger is not among the listed state-reification triggers — the instruction set does not say which way to resolve this, and the parse silently drops the During link."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing, possessive genitive (Possession, possessed first), singular collective \"the Council\" as a non-distributing role-filler with no Name atom, and the 1.0/0.9 rule TV all follow the instruction set; the two gaps above are construction coverage, not mis-assertions."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000089",
+   "sentence": "When a lantern of an apprentice fails, that apprentice's solo count resets.",
+   "parse": [
+    "(: solo_count_genus (Inheritance solo_count count) (STV 1.0 0.99))",
+    "(: when_lantern_fail_reset (Implication (And (Member $e fail) (Patient $e $l) (Member $l lantern) (Possession $l $a) (Member $a apprentice)) (And (Member (sk_solo_count $a) solo_count) (Possession (sk_solo_count $a) $a) (Member (sk_reset $a) reset) (Patient (sk_reset $a) (sk_solo_count $a)) (During (sk_reset $a) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000089",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The response event is Skolemized on the apprentice — (sk_reset $a) — instead of on the trigger occurrence $e, so every failure of that apprentice's lanterns derives one and the same reset event During each of them, losing the per-occurrence reading the whenever machinery specifies."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else conforms: indefinite participants route the bare 'when P, Q' to the whenever rule, the of-genitive and the 's-genitive both take Possession (a lantern and a count are not parts of a person), solo_count gets its genus with the non-predicable modifier unexposed, and 'fail'/'reset' take Patient as change-of-state undergoers. Keying the count itself on $a is right — only the event key is at issue."
+   },
+   "adjudication": {
+    "id": "fict4-000089",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The whenever machinery keys the response on the trigger occurrence, and a dependent existential must be \"a Skolem function of every universal that scopes over it\", so (sk_reset $a) collapses every failure of that apprentice's lanterns into one and the same reset event asserted During each distinct failure — a falsehood the per-occurrence key would avoid."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Key the response on the trigger: (Member (sk_reset $e) reset) (Patient (sk_reset $e) (sk_solo_count $a)) (During (sk_reset $e) $e) — or (sk_reset $e $a) as a function of both universals — while the count itself correctly stays (sk_solo_count $a).",
+    "notes": "Everything else conforms: the indefinite participants route bare \"when P, Q\" to the whenever rule, both genitives take Possession (neither a lantern nor a count is part of a person), solo_count gets its genus with the non-predicable modifier unexposed, and fail/reset take Patient as change-of-state undergoers."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000090",
+   "sentence": "When an apprentice's lantern dims, that apprentice's solo count resets.",
+   "parse": [
+    "(: solo_count_genus (Inheritance solo_count count) (STV 1.0 0.99))",
+    "(: apprentice_lantern_reset_rule (Implication (And (Member $x apprentice) (Member $y lantern) (Possession $y $x) (Member $e dim) (Patient $e $y)) (And (Member (sk_reset $x) reset) (Member (sk_solo_count $x) solo_count) (Possession (sk_solo_count $x) $x) (Patient (sk_reset $x) (sk_solo_count $x)) (During (sk_reset $x) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000090",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both genitives take Possession (neither possessed item is a component), \"that apprentice\" correctly reuses the premise variable, the per-apprentice solo count is a dependent Skolem function, and dim/reset both give their internal-change-of-state subjects Patient; solo_count exposes only the head genus since \"solo\" fails the predication test."
+   },
+   "adjudication": null
+  }
+ ]
+}

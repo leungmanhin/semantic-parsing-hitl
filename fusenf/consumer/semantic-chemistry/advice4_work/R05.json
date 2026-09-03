@@ -1,0 +1,155 @@
+{
+ "id": "R5",
+ "rule": "Stored mire-essence feeds future lighting",
+ "texts": [
+  "When mire-essence forms in the cauldron, a Keeper stores the mire-essence in clay vessels.",
+  "Whenever mire-essence forms in the cauldron, a Keeper keeps the mire-essence in clay vessels.",
+  "Whenever a Keeper tends a lantern, that Keeper draws the stored mire-essence.",
+  "Stored mire-essence feeds lantern lighting."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000016",
+   "sentence": "When mire-essence forms in the cauldron, a Keeper stores the mire-essence in clay vessels.",
+   "parse": [
+    "(: f16_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: f16_cauldron_ty (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: f16_vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+    "(: f16_rule (Implication (And (Member $x form) (Patient $x mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_store $x) store) (Agent (sk_store $x) (sk_keeper $x)) (Member (sk_keeper $x) keeper) (Patient (sk_store $x) mire_essence) (Location (sk_store $x) clay_vessel) (During (sk_store $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000016",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The stored essence is given (Patient (sk_store $x) mire_essence), but storing neither creates, destroys, consumes nor physically changes it — the role table lists 'keep' under Theme and defaults unclear cases to Theme, so this filler should be a Theme."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-machinery routing, the During tie, the compound genera (mire_essence / clay_vessel, with the noun modifiers correctly unexposed) and the per-occurrence Skolem Keeper are all per spec; sk_cauldron_1 in the premise is licensed because a top-level atom asserts it."
+   },
+   "adjudication": {
+    "id": "fict4-000016",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Storing neither creates, destroys, consumes nor physically changes the essence — the Thematic-roles test assigns a merely relocated / kept object to Theme (the list names 'keep' and 'use' explicitly, and unclear cases default to Theme), so (Patient (sk_store $x) mire_essence) mis-types the role."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "Bare-plural object of an oblique inside a generic rule ('stores ... in clay vessels'): the oblique-object rule covers an article (mint a witness), a bare mass / domain / proper name (a constant), and Coordination & plurals covers bare-plural objects only in EPISODIC clauses, so nothing states whether a bare-plural oblique filler in a rule conclusion takes the bare kind constant (as here) or a per-occurrence Skolem group."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form replaces the role atom with (Theme (sk_store $x) mire_essence); the rest of the rule stands unchanged.",
+    "notes": "The whenever routing, the During tie, the two compound genera with their noun modifiers correctly unexposed, the per-occurrence Skolem Keeper, and Location-on-the-event-only for the positioning verb are all per spec."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000017",
+   "sentence": "Whenever mire-essence forms in the cauldron, a Keeper keeps the mire-essence in clay vessels.",
+   "parse": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: cv_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+    "(: e_cauldron (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: whenever_form_keep (Implication (And (Member $x form) (Patient $x $m) (Member $m mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) (sk_keeper $x)) (Member (sk_keeper $x) keeper) (Theme (sk_keep $x) $m) (Location (sk_keep $x) clay_vessel) (During (sk_keep $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000017",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare-plural NP inside a whenever-rule's conclusion ('keeps ... in clay vessels'): the bare-plural-object rule that mints an existential group witness is scoped to an 'episodic clause', so it is undecided whether a per-occurrence Skolem group ((GroupOf (sk_vessel $x) clay_vessel)) or the bare kind filler applies here; the parse put the bare kind symbol clay_vessel straight into a Location slot, a filler shape no example in the instruction set shows"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever machinery is applied correctly throughout: plain-variable premises, the definite 'the cauldron' asserted top-level so its sk_ constant may appear in the premise, the dependent 'a Keeper' as a Skolem function of the trigger with its typing in the conclusion, the During link, no QuantifierPhrase companion, and (STV 1.0 0.9)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000018",
+   "sentence": "Whenever a Keeper tends a lantern, that Keeper draws the stored mire-essence.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: keeper_tend_draw_rule (Implication (And (Member $x tend) (Agent $x $k) (Member $k keeper) (Theme $x $l) (Member $l lantern)) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $k) (Theme (sk_draw $x) (sk_essence $x)) (Member (sk_essence $x) mire_essence) (Member (sk_essence $x) stored) (During (sk_draw $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000018",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The definite 'the stored mire-essence' is minted as a per-occurrence Skolem existential (sk_essence $x) with no top-level typing atom, whereas the whenever pattern anchors a definite consequent participant as a top-level constant (the dog in 'Every time the bell rings, the dog barks' gets (Member sk_dog_1 dog)), so nothing about the essence exists or is queryable until the rule fires."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Rule shape, the During link, the absence of a QuantifierPhrase companion for 'whenever', the mire_essence genus with its noun modifier correctly unexposed, and the participial modifier 'stored' as (Member ... stored) all follow the instruction set. The essence is also made a function of the tending event rather than of the lantern, so two tendings of one lantern would draw distinct essences."
+   },
+   "adjudication": {
+    "id": "fict4-000018",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The definite \"the stored mire-essence\" takes the definite encoding -- a typed individual constant carrying its (Member ...) atoms at top level, as the whenever exemplar's (Member sk_dog_1 dog) shows -- whereas (sk_essence $x) is the dependent-existential shape the instruction set licenses only for indefinites, and it mints a distinct essence per tending event while leaving nothing about the essence asserted until the rule fires."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A consequent-side definite that genuinely co-varies with a premise participant (the essence stored in THAT lantern) has no licensed carrier: only indefinites may take a Skolem-function term, and the licensed constant collapses every occurrence onto one essence."
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form: top-level (Member sk_essence_1 mire_essence) and (Member sk_essence_1 stored), with the conclusion's (Theme (sk_draw $x) sk_essence_1) naming that constant.",
+    "notes": "The rest conforms -- whenever routing with no QuantifierPhrase companion, \"that Keeper\" bound to the premise variable, \"stored\" as a participial modifier property, the mire_essence genus with its noun modifier correctly unexposed, and the During link at (STV 1.0 0.9)."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict4-000019",
+   "sentence": "Stored mire-essence feeds lantern lighting.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: lantern_lighting_genus (Inheritance lantern_lighting lighting) (STV 1.0 0.99))",
+    "(: mire_essence_feed_rule (Implication (And (Member $x mire_essence) (Member $x stored)) (And (Member (sk_feed $x) feed) (Agent (sk_feed $x) $x) (Theme (sk_feed $x) lantern_lighting))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000019",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route instead of a kind-level relation, with \"stored\" kept as a modifier-participle property conjunct; genus atoms expose only the head nouns (noun modifiers mire/lantern correctly unexposed) and the bare-generic 0.9/0.9 with no QuantifierPhrase is right."
+   },
+   "adjudication": null
+  }
+ ]
+}

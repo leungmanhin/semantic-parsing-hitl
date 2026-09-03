@@ -1,0 +1,118 @@
+{
+ "id": "R6",
+ "rule": "A crowd of nightmoths brings sky-cats down",
+ "texts": [
+  "When a crowd of nightmoths gathers at a lantern-row, sky-cats descend from the cliff-spires.",
+  "Whenever a crowd of nightmoths settles on a lantern-row, sky-cats descend from the cliff-spires.",
+  "When a handful of nightmoths gathers at a lantern-row, sky-cats stay on the cliff-spires."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000020",
+   "sentence": "When a crowd of nightmoths gathers at a lantern-row, sky-cats descend from the cliff-spires.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cliffspires_group (GroupOf sk_cliffspires_1 cliff_spire) (STV 1.0 0.99))",
+    "(: crowd_gather_descend_rule (Implication (And (Member $c crowd) (GroupOf $c nightmoth) (Member $g gather) (Agent $g $c) (Location $g $lr) (Member $lr lantern_row)) (And (GroupOf (sk_skycats $g) sky_cat) (Member (sk_descend $g) descend) (Agent (sk_descend $g) (sk_skycats $g)) (Source (sk_descend $g) sk_cliffspires_1) (During (sk_descend $g) $g))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000020",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A bare-plural indefinite subject inside a whenever-rule CONSEQUENT (\"sky-cats descend\"): the instruction set licenses a per-binding Skolem group under a universal, but never says whether a distributive predicate (descend) over a group minted inside a rule consequent must also carry the per-member (PartOf $x <group>) distribution rule that a top-level grouped plural requires — rules cannot nest, so the requirement is unstated for this position."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Collective \"gathers\" correctly stays group-only, \"a crowd of nightmoths\" takes the flock-of-birds Member+GroupOf shape, and the definite \"the cliff-spires\" is a top-level group constant reached by Source. All four hyphenated/solid compounds carry their genus with the noun modifiers unexposed, as the compound rules require."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000021",
+   "sentence": "Whenever a crowd of nightmoths settles on a lantern-row, sky-cats descend from the cliff-spires.",
+   "parse": [
+    "(: nm_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: lr_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cs_group (GroupOf sk_cliff_spires_1 cliff_spire) (STV 1.0 0.99))",
+    "(: whenever_settle_descend (Implication (And (Member $x settle) (Agent $x $c) (Member $c crowd) (GroupOf $c night_moth) (Location $x $l) (Member $l lantern_row)) (And (Member (sk_descend $x) descend) (Agent (sk_descend $x) (sk_skycats $x)) (GroupOf (sk_skycats $x) sky_cat) (Source (sk_descend $x) sk_cliff_spires_1) (During (sk_descend $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000021",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule machinery, compound genus atoms, the crowd-of-N group premise, the definite plural group witness for the cliff-spires, Location/Source obliques and the During link all match the instruction set. The bare-plural response subject rides a per-occurrence Skolem group with no per-member distribution rule, which the whenever section gives no nested form for."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000022",
+   "sentence": "When a handful of nightmoths gathers at a lantern-row, sky-cats stay on the cliff-spires.",
+   "parse": [
+    "(: cliff_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cliff_spires_group (GroupOf sk_cliff_spires_1 cliff_spire) (STV 1.0 0.99))",
+    "(: night_moth_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: lantern_row_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: gather_stay_rule (Implication (And (Member $x gather) (Agent $x $g) (GroupOf $g night_moth) (CardinalityPhrase $g \"handful\") (Location $x $lr) (Member $lr lantern_row) (Member $y sky_cat)) (And (Member (sk_stay $x $y) stay) (Experiencer (sk_stay $x $y) $y) (On (sk_stay $x $y) sk_cliff_spires_1) (During (sk_stay $x $y) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000022",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "'on the cliff-spires' is attached to the reified stay eventuality with the entity-style surface head On, but a PP answering 'where' on an event takes the named role Location, which the postural-state reification prescribes explicitly ('Experiencer subject + Location oblique') and which the instruction set makes load-bearing as the event-vs-entity distinction."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare position / postural clause ('sky-cats stay on the cliff-spires') as the CONSEQUENT of a whenever-rule: Resultatives sends 'stay/remain + locative PP' to the eventless position-atom route of 'Where a THING is' (with the continuation sense recorded as a gap), yet the whenever machinery requires a per-occurrence Skolem EVENT to carry the During tie, so the two instructions cannot both be satisfied and no ruling says which wins"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise sound: bare 'when P, Q' with indefinite participants routed to the whenever rule, collective 'gather' kept group-only with a CardinalityPhrase for the vague count, definite 'the cliff-spires' as a top-level group witness, plain-variable premises, and all four compound genus atoms with noun modifiers unexposed. Minor: the count phrase is recorded as \"handful\" while the instruction set lists the lexicon phrase as 'a handful'."
+   },
+   "adjudication": {
+    "id": "fict4-000022",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Once the state is reified as an eventuality, a PP answering \"where\" takes the named role Location — the postural-reification recipe says so explicitly (\"Experiencer subject + Location oblique\"), the role list gives Location as covering \"in/at/on\", and the entity-attached surface head is barred on an event by the same event-vs-entity discipline that bars Location on an entity; the parse's own (Location $x $lr) on the gather event makes the mismatch internal."
+     }
+    ],
+    "gaps_confirmed": [
+     "a \"stay/remain + locative PP\" continuation clause as the CONSEQUENT of a whenever-rule: Resultatives routes it to the eventless position-atom route of *Where a THING is* while the whenever machinery needs a per-occurrence Skolem event to carry the During tie, and no ruling says which wins; the 'stay' continuation sense has no carrier on either route"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form given the reification the During tie forces: (Location (sk_stay $x $y) sk_cliff_spires_1) in place of (On (sk_stay $x $y) sk_cliff_spires_1) — the eventless alternative would be (On $y sk_cliff_spires_1) on the sky-cat, but then no licensed form ties the consequent to its occurrence, which is the gap above.",
+    "notes": "The vague count is recorded as \"handful\" where the instruction set's canonical lexicon string is \"a handful\", so the seeded phrase-to-bound rule may not match. Everything else — collective gather kept group-only, definite cliff-spire group at top level, plain-variable premises, all four compound genera with noun modifiers unexposed — is licensed."
+   }
+  }
+ ]
+}

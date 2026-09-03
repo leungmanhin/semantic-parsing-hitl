@@ -1,0 +1,7 @@
+(: sbtp_kind (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))
+(: sbtp_name (Name salt_bloom_tide_pools "Salt-bloom Tide-pools") (STV 1.0 0.99))
+(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))
+(: sw_kind (Member sk_sea_water_1 sea_water) (STV 1.0 0.99))
+(: sw_genus (Inheritance sea_water water) (STV 1.0 0.99))
+(: keeper_take_rule (Implication (Member $x keeper) (And (Member (sk_take $x) take) (Agent (sk_take $x) $x) (Theme (sk_take $x) sk_sea_water_1) (Source (sk_take $x) salt_bloom_tide_pools))) (STV 1.0 0.9))
+(: keeper_take_q (QuantifierPhrase keeper take "each") (STV 1.0 0.99))

@@ -1,0 +1,4 @@
+(: newcomer_q (QuantifierPhrase newcomer apprentice "each") (STV 1.0 0.99))
+(: seniorkeeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))
+(: seniorkeeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))
+(: newcomer_apprentice_rule (Implication (Member $x newcomer) (And (Member (sk_apprentice $x) apprentice) (Agent (sk_apprentice $x) $x) (Under (sk_apprentice $x) (sk_senior_keeper $x)) (Member (sk_senior_keeper $x) senior_keeper))) (STV 1.0 0.9))

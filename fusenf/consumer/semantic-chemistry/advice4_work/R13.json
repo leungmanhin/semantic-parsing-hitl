@@ -1,0 +1,79 @@
+{
+ "id": "R13",
+ "rule": "Wraiths drain mire-essence from lit lanterns",
+ "texts": [
+  "When a wraith approaches a lit lantern, the wraith drains mire-essence from the lantern.",
+  "Whenever a wraith nears a lit lantern, the wraith pulls mire-essence from the lantern.",
+  "Drained lanterns burn dimly."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000044",
+   "sentence": "When a wraith approaches a lit lantern, the wraith drains mire-essence from the lantern.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: wraith_drain_rule (Implication (And (Member $x wraith) (Member $y lantern) (Member $y lit) (Member $e approach) (Agent $e $x) (Theme $e $y)) (And (Member (sk_drain $x $y) drain) (Agent (sk_drain $x $y) $x) (Theme (sk_drain $x $y) mire_essence) (Source (sk_drain $x $y) $y) (During (sk_drain $x $y) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000044",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite participants correctly route bare \"when P, Q\" onto the whenever machinery; \"lit\" is treated as a modifier participle (property, unfused), approach/drain take Theme objects with Source for the from-phrase, and the During link plus 1.0/0.9 match the whenever pattern."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000045",
+   "sentence": "Whenever a wraith nears a lit lantern, the wraith pulls mire-essence from the lantern.",
+   "parse": [
+    "(: me_genus_essence (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: wraith_near_pull (Implication (And (Member $w wraith) (Member $e near) (Agent $e $w) (Theme $e $l) (Member $l lantern) (Member $l lit)) (And (Member (sk_pull $e) pull) (Agent (sk_pull $e) $w) (Theme (sk_pull $e) mire_essence) (Source (sk_pull $e) $l) (During (sk_pull $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000045",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever machinery applied correctly (no QuantifierPhrase for \"whenever\", per-occurrence Skolem event, During link), the definite \"the wraith\"/\"the lantern\" reuse their premise variables, \"lit\" is kept as the modifier participle rather than lemmatized to the verb, and \"from the lantern\" is the motion-result Source with no Result atom. The bare mass object mire_essence is correctly a bare kind filler with its compound decomposition emitted at top level."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000046",
+   "sentence": "Drained lanterns burn dimly.",
+   "parse": [
+    "(: drained_lantern_burn_rule (Implication (And (Member $x lantern) (Member $x drained)) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Manner (sk_burn $x) dimly))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000046",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted bare-plural subject correctly becomes a premise conjunct instead of a fused compound (a state/damage modifier is incidental description), and 'dimly' keeps its surface -ly form under Manner as the instruction set's brightly rule requires. Patient for the intransitive 'burn' subject follows the non-volitional-undergoer test; Agent would have been wrong for an inanimate."
+   },
+   "adjudication": null
+  }
+ ]
+}

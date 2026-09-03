@@ -1,0 +1,127 @@
+{
+ "id": "R3",
+ "rule": "Nightmoths landing on lanterns leave silken threads",
+ "texts": [
+  "When a nightmoth lands on a lantern, the nightmoth leaves silken threads on the lantern.",
+  "Whenever a nightmoth is resting on a lantern, the nightmoth sheds silken threads onto the lantern.",
+  "Every silken thread comes from the underside of a nightmoth."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000009",
+   "sentence": "When a nightmoth lands on a lantern, the nightmoth leaves silken threads on the lantern.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: silken_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: silken_thread_mat (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: nightmoth_land_leave_rule (Implication (And (Member $e land) (Agent $e $x) (Member $x nightmoth) (Location $e $y) (Member $y lantern)) (And (Member (sk_leave $e) leave) (Agent (sk_leave $e) $x) (Patient (sk_leave $e) (sk_threads $e)) (GroupOf (sk_threads $e) silken_thread) (Location (sk_leave $e) $y) (During (sk_leave $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000009",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The deposited threads take `Patient` on the leave event, but leaving/depositing neither creates, destroys, consumes nor physically changes them, so the object test — and the unclear-case default — gives `Theme`."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is right: bare \"when\" with indefinite participants takes the whenever-rule machinery with a per-occurrence Skolem event and `During`, and the compound decompositions (genus `moth`; genus `thread` plus the material-adjective modifier `silken`) follow Compound concepts. The consequent's group witness for the bare-plural object and the reuse of the premise variables for \"the nightmoth\" / \"the lantern\" are both correct."
+   },
+   "adjudication": {
+    "id": "fict4-000009",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Leaving threads on a lantern deposits them unchanged, so the direct-object test ('does the object itself change?') and its stated unclear-case default both give Theme, not Patient, and a mis-slotted Patient asserts a creation/alteration the sentence does not state."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form replaces (Patient (sk_leave $e) (sk_threads $e)) with (Theme (sk_leave $e) (sk_threads $e)), leaving every other atom of the rule unchanged.",
+    "notes": "The rest is doctrinal: bare 'when' with indefinite participants takes the whenever-rule machinery with a per-occurrence Skolem event and a During link, the compound decompositions (genus moth; genus thread plus the material adjective silken) follow Compound concepts, and the consequent's Skolem group witness for the bare-plural object is the licensed episodic-object form."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000010",
+   "sentence": "Whenever a nightmoth is resting on a lantern, the nightmoth sheds silken threads onto the lantern.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: silken_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: silken_thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: nightmoth_shed_rule (Implication (And (Member $x nightmoth) (Member $y lantern) (Member $e rest) (Experiencer $e $x) (Location $e $y) (Ongoing $e)) (And (Member (sk_shed $x $y) shed) (Agent (sk_shed $x $y) $x) (Patient (sk_shed $x $y) silken_thread) (Goal (sk_shed $x $y) $y) (During (sk_shed $x $y) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000010",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The shed object is given Patient, but the clause is a motion-result frame (\"onto the lantern\" is emitted as Goal) whose object is displaced rather than created/destroyed/changed, so Thematic roles and the Motion-result rule (\"the object by its usual role (moved -> Theme)\", plus the default-to-Theme tiebreak) call for Theme."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever machinery is applied correctly (plain-variable premises, per-occurrence Skolem consequent, During link, no QuantifierPhrase companion), and the progressive \"is resting\" correctly triggers the reified postural state with Experiencer + Location + Ongoing rather than a bare position atom."
+   },
+   "adjudication": {
+    "id": "fict4-000010",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"sheds silken threads onto the lantern\" is the Motion-result frame the parse itself marks with (Goal (sk_shed $x $y) $y), where Resultatives assigns the moved object its usual role Theme, and Thematic roles reserves Patient for an object the action creates, destroys, consumes or physically changes — shedding relocates the threads unchanged, and the stated tiebreak (\"when the test is unclear, default to Theme\") points the same way."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: (Theme (sk_shed $x $y) silken_thread) in place of (Patient (sk_shed $x $y) silken_thread); every other atom of the rule is licensed as written.",
+    "notes": "The whenever machinery (plain-variable premises, per-occurrence Skolem consequent, During tie, no QuantifierPhrase), the progressive-triggered reified rest state with Experiencer + Location, and the nightmoth / silken_thread decompositions all check out."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000011",
+   "sentence": "Every silken thread comes from the underside of a nightmoth.",
+   "parse": [
+    "(: silken_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: silken_thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: night_moth_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: thread_come_underside (Implication (Member $x silken_thread) (And (Member (sk_come $x) come) (Theme (sk_come $x) $x) (Source (sk_come $x) (sk_underside $x)) (Member (sk_underside $x) underside) (Member (sk_nightmoth $x) night_moth) (PartOf (sk_underside $x) (sk_nightmoth $x)))) (STV 1.0 0.9))",
+    "(: thread_come_q (QuantifierPhrase silken_thread come \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000011",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Explicit universal -> distributing rule at 1.0/0.9 with the 'every' companion; material-adjective fusion silken_thread with both genus and modifier atoms, night_moth genus with the noun modifier unexposed, Theme for the un-powered 'comes', Source for 'from', PartOf for the part-whole of-phrase, and dependent Skolem functions for the per-thread underside and moth are all as specified."
+   },
+   "adjudication": null
+  }
+ ]
+}

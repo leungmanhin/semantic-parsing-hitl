@@ -1,0 +1,111 @@
+{
+ "id": "R11",
+ "rule": "Untended lanterns die before dawn",
+ "texts": [
+  "When a Keeper leaves a lantern untended overnight, the lantern dies before dawn.",
+  "When a lantern is untended through the night, the lantern goes out before dawn.",
+  "Each Keeper refreshes the mire-essence and trims the wick during the night."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000037",
+   "sentence": "When a Keeper leaves a lantern untended overnight, the lantern dies before dawn.",
+   "parse": [
+    "(: k37_leave_die_rule (Implication (And (Member $k keeper) (Member $l lantern) (Member $e1 leave) (Agent $e1 $k) (Theme $e1 $l) (Member $u untended) (Experiencer $u $l) (Still $u) (Result $e1 $u) (Member $l untended) (Time $e1 night)) (And (Member (sk_die $e1) die) (Patient (sk_die $e1) $l) (During (sk_die $e1) $e1) (TimeAtMost (sk_die $e1) dawn))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000037",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare \"when P, Q\" with indefinite participants correctly routes to the whenever rule (Skolem consequent keyed on the trigger event, During-linked), and \"overnight\" / \"before dawn\" take the licensed day-part forms (Time night, TimeAtMost dawn). Reading \"leaves a lantern untended\" as a maintenance resultative (reified state + Still + flat half + Result, Theme object) is a judgment call but follows the \"kept the gate shut\" template as written."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000038",
+   "sentence": "When a lantern is untended through the night, the lantern goes out before dawn.",
+   "parse": [
+    "(: lantern_untended_rule (Implication (And (Member $x lantern) (Member $s untended) (Experiencer $s $x) (Time $s night)) (And (Member (sk_go_out $s) go_out) (Patient (sk_go_out $s) $x) (During (sk_go_out $s) $s) (TimeAtMost (sk_go_out $s) dawn))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000038",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Durative span frame over a day-part (\"through the night\"): the instruction set gives day-parts only the point-like `(Time e night)` slot, and `During` is restricted to during/while/throughout with both sides reified eventualities, so the whole-night-extent reading has no carrier."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare \"when P, Q\" with an indefinite participant correctly routes to the whenever machinery; phrasal `go_out` kept whole with no genus, `(TimeAtMost ... dawn)` and the `During` tie match the instruction set verbatim. The premise omits the dual-emit flat `(Member $x untended)`, which is defensible since a premise is a matching pattern rather than an assertion."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000039",
+   "sentence": "Each Keeper refreshes the mire-essence and trims the wick during the night.",
+   "parse": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: e_mire_essence (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: e_wick (Member sk_wick_1 wick) (STV 1.0 0.99))",
+    "(: keeper_refresh_trim (Implication (Member $x keeper) (And (Member (sk_refresh $x) refresh) (Agent (sk_refresh $x) $x) (Patient (sk_refresh $x) sk_mire_essence_1) (Time (sk_refresh $x) night) (Member (sk_trim $x) trim) (Agent (sk_trim $x) $x) (Patient (sk_trim $x) sk_wick_1) (Time (sk_trim $x) night))) (STV 1.0 0.9))",
+    "(: keeper_refresh_q (QuantifierPhrase keeper refresh \"each\") (STV 1.0 0.99))",
+    "(: keeper_trim_q (QuantifierPhrase keeper trim \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000039",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The coordinated VPs ('refreshes the mire-essence and trims the wick') are merged into a single Implication whose conclusion conjoins two distinct events, where Coordination & plurals directs each conjunct to be translated independently, as if written as separate sentences — i.e. two rules over the same premise."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'during' + a day-part / time-span NP ('during the night'): During is reserved for nesting two reified eventualities ('only for those three words') and the day-part list covers only 'in the morning / at night', so nothing states how 'during the night' should be encoded (the parse chose (Time e night))",
+     "how the QuantifierPhrase companion is formed when one explicit quantifier phrase scopes over coordinated VPs with two verb lemmas — 'one companion per explicit quantifier PHRASE' says one, but the companion's shape requires a single verb-lemma slot"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles (refresh/trim both Patient), the 'each' universal ranging over (Member $x keeper) at (STV 1.0 0.9), the two definite objects' top-level witnesses, the absent tense atom for the habitual, and the mire_essence genus are all correct. The two QuantifierPhrase companions would have been exactly right had the rule been split in two."
+   },
+   "adjudication": {
+    "id": "fict4-000039",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Coordination & plurals directs coordinated VPs to be translated independently, 'as if written as separate sentences' (only the shared subject carries over), which under one universal is two Implications over the same premise; the merged conclusion also welds the trim derivation to the refresh bundle for query purposes and forces two QuantifierPhrase companions onto a single explicit quantifier phrase, against 'one companion per explicit quantifier PHRASE'."
+     }
+    ],
+    "gaps_confirmed": [
+     "'during' + a day-part NP ('during the night') has no stated route: the During head is defined only for nesting two reified eventualities and the day-part rule illustrates only 'in the morning / at night', so the (Time e night) rendering is unguided — though true of the content and well-typed."
+    ],
+    "new_gaps": [
+     "Coordinated VPs sharing a TRAILING ADJUNCT: the coordination rule states only that a shared subject carries over to each conjunct, so nothing says whether a final time PP ('during the night') distributes to both conjuncts or belongs to the last one alone — the parse distributed it, and either choice is currently unlicensed rather than licensed."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is two rules over (Member $x keeper) — one minting (sk_refresh $x) with (Agent ... $x) (Patient ... sk_mire_essence_1) (Time ... night), one minting (sk_trim $x) with (Agent ... $x) (Patient ... sk_wick_1) (Time ... night), both (STV 1.0 0.9) — each carrying its own (QuantifierPhrase keeper <verb> \"each\") companion.",
+    "notes": "The reviewer's second gap (how to shape one companion over two verb lemmas) dissolves once the rule is split, since each rule then has one phrase and one verb, so I do not confirm it. Roles, the 1.0/0.9 universal, the two definite objects' top-level witnesses, the absent tense atom and the mire_essence genus are all correct."
+   }
+  }
+ ]
+}

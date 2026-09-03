@@ -1,0 +1,4 @@
+(: nm_moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: ofl_genus (Inheritance ordinary_firelight firelight) (STV 1.0 0.99))
+(: ofl_mod (Inheritance ordinary_firelight ordinary) (STV 1.0 0.99))
+(: nm_no_see (Implication (Member $x nightmoth) (And (Member (sk_see $x) see) (Experiencer (sk_see $x) $x) (Stimulus (sk_see $x) ordinary_firelight))) (STV 0.0 0.9))

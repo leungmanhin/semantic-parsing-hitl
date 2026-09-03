@@ -1,0 +1,18 @@
+{
+ "id": "fict4-000012",
+ "run": 1,
+ "issues": [
+  {
+   "index": 0,
+   "verdict": "confirm",
+   "reason": "\"the cauldron\" is a first-mention definite, which the instruction set encodes as a typed individual constant plus its (Member ...) atom at top level -- the whenever exemplar projects exactly such definites out of the rule ((Member sk_bell_1 bell), (Member sk_dog_1 dog)) -- while (sk_cauldron $e) is the dependent-existential shape reserved for indefinites and mints a distinct cauldron per boiling, a functional dependence the sentence does not state."
+  }
+ ],
+ "gaps_confirmed": [],
+ "new_gaps": [
+  "A definite participant appearing only in a whenever-rule's consequent has no licensed form when it genuinely co-varies with the occurrence (the cauldron of each Keeper's boiling): the licensed top-level constant fixes one cauldron across all occurrences, and the Skolem-function term is licensed only for indefinite dependent existentials."
+ ],
+ "decision": "defect",
+ "defect_summary": "Compliant form: top-level (: cauldron_t (Member sk_cauldron_1 cauldron) (STV 1.0 0.99)) with the conclusion reading (Location (sk_form $e) sk_cauldron_1), instead of (sk_cauldron $e) with its typing atom buried inside the conclusion.",
+ "notes": "Everything else conforms: whenever routing for bare \"when\" with an indefinite subject, the compound genus/modifier atoms, Patient on the intransitive change-of-state subject of \"forms\", and the During link at (STV 1.0 0.9) with no QuantifierPhrase companion."
+}

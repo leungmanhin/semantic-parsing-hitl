@@ -1,0 +1,7 @@
+(: nm_moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: lant_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))
+(: lant_loc (LocatedIn sk_lanterns_1 hollows) (STV 1.0 0.99))
+(: hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))
+(: thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))
+(: nm_reach_gain (Implication (And (Member $x reach) (Agent $x $m) (Member $m nightmoth) (Theme $x hollows)) (And (Member (sk_gain $x) gain) (Agent (sk_gain $x) sk_lanterns_1) (Theme (sk_gain $x) (sk_threads $x)) (GroupOf (sk_threads $x) silken_thread) (During (sk_gain $x) $x))) (STV 1.0 0.9))

@@ -1,0 +1,146 @@
+{
+ "id": "R8",
+ "rule": "Hunted nightmoths flee to dimmer lights",
+ "texts": [
+  "When a sky-cat hunts at a lantern-row, each nightmoth that survives the hunt flees to a dim lantern.",
+  "Whenever a sky-cat hunts at a lantern-row, the nightmoths that survive the hunt move to the Hollows.",
+  "Whenever a nightmoth reaches the Hollows, the lanterns at the Hollows gain silken threads."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000027",
+   "sentence": "When a sky-cat hunts at a lantern-row, each nightmoth that survives the hunt flees to a dim lantern.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: nmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: hunt_survive_flee (Implication (And (Member $c sky_cat) (Member $h hunt) (Agent $h $c) (Location $h $lr) (Member $lr lantern_row) (Member $n nightmoth) (Member $sv survive) (Agent $sv $n) (Theme $sv $h)) (And (Member (sk_flee $n $h) flee) (Agent (sk_flee $n $h) $n) (Goal (sk_flee $n $h) (sk_lantern $n $h)) (Member (sk_lantern $n $h) lantern) (Member (sk_lantern $n $h) dim) (During (sk_flee $n $h) $h))) (STV 1.0 0.9))",
+    "(: nmoth_q (QuantifierPhrase nightmoth flee \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000027",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-machinery rule with the restrictive relative clause in the premises, plain variables throughout the premise, and per-occurrence Skolem functions of both scoping universals; the explicit \"each\" takes its QuantifierPhrase companion while the bare \"when\" correctly takes none. Compound decomposition is right on all three heads (sky_cat/lantern_row/nightmoth get their genus, the noun modifiers stay unexposed) and the descriptive \"dim\" correctly stays a separate Member atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000028",
+   "sentence": "Whenever a sky-cat hunts at a lantern-row, the nightmoths that survive the hunt move to the Hollows.",
+   "parse": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lantern_row_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"the Hollows\") (STV 1.0 0.99))",
+    "(: hunt_survive_move_rule (Implication (And (Member $x hunt) (Agent $x $c) (Member $c sky_cat) (Location $x $r) (Member $r lantern_row)) (And (GroupOf (sk_moths $x) nightmoth) (Member (sk_survive $x) survive) (Agent (sk_survive $x) (sk_moths $x)) (Theme (sk_survive $x) $x) (Member (sk_move $x) move) (Agent (sk_move $x) (sk_moths $x)) (Goal (sk_move $x) hollows) (During (sk_move $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000028",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The restrictive relative clause 'that survive the hunt' is emitted as an asserted conjunct of the rule's conclusion rather than as a premise restriction, so the rule asserts that a group of nightmoths survives every sky-cat hunt, which the sentence only presupposes as a restriction on which nightmoths move."
+     },
+     {
+      "statement": 3,
+      "issue": "The Name string keeps the leading lowercase article ('the Hollows'), but Names and casing makes the name exactly its capitalized run - 'the Kestrel River' yields the string 'Kestrel River'."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Treating 'the Hollows' as a Name-only individual (capitalized plural kind-word label, no GroupOf and no per-member kind) is correct, as are the nightmoth/sky_cat/lantern_row genus atoms, Goal for 'to the Hollows', and Agent for the animate self-powered movers. No per-member distribution rule accompanies the moving group, which the instruction set does not clearly require inside a rule consequent."
+   },
+   "adjudication": {
+    "id": "fict4-000028",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A restrictive relative clause is a premise restriction -- the donkey rule puts \"who owns a donkey\" in the premises and an adjectivally-restricted kind subject likewise \"becomes a premise conjunct\" -- so placing the survive event in the conclusion makes the rule derive that a group of nightmoths survives every sky-cat hunt at a lantern-row, which the sentence only presupposes of whichever moths do survive."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Names and casing makes the name exactly its capitalized run, an adjacent lowercase word being no part of it (\"the Kestrel River\" yields the string \"Kestrel River\"), so the article in \"the Hollows\" must not enter the Name string."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A group minted inside a rule's conclusion has no licensed per-member distribution: the doctrine's per-member (Implication (PartOf $x <group>) ...) rule has no shown form nested inside another rule's consequent, so a distributive predicate over such a derived group never reaches an individuated member."
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant forms: move the restriction into the premise -- ... (Member $m nightmoth) (Member $s survive) (Agent $s $m) (Theme $s $x) -- with the conclusion minting only the move event (sk_move $x $m) for each such moth; and (Name hollows \"Hollows\").",
+    "notes": "Name-only treatment of the capitalized plural label (no GroupOf, no invented kind atom), Location for \"at a lantern-row\", Goal for \"to the Hollows\", Agent for the moving moths, and the three genus atoms are all right."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000029",
+   "sentence": "Whenever a nightmoth reaches the Hollows, the lanterns at the Hollows gain silken threads.",
+   "parse": [
+    "(: nm_moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lant_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: lant_loc (LocatedIn sk_lanterns_1 hollows) (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: nm_reach_gain (Implication (And (Member $x reach) (Agent $x $m) (Member $m nightmoth) (Theme $x hollows)) (And (Member (sk_gain $x) gain) (Agent (sk_gain $x) sk_lanterns_1) (Theme (sk_gain $x) (sk_threads $x)) (GroupOf (sk_threads $x) silken_thread) (During (sk_gain $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000029",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "'gain' is a distributive predicate over the definite plural 'the lanterns', so doctrine requires the group event PLUS a per-member (Implication (PartOf $x sk_lanterns_1) ...) distribution rule, but only the group-symbol event is emitted, leaving a later-named individual lantern unqueryable."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite plural with a distributive predicate appearing inside a 'whenever' rule's CONSEQUENT — the plural doctrine mandates a per-member distribution rule alongside the group event, but no form is given for nesting an Implication inside a per-occurrence Skolem consequent"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else matches doctrine: whenever-machinery rule at STV 1.0 0.9 with no QuantifierPhrase, During-linked Skolem consequent, 'the Hollows' as a Name-only plural label with no GroupOf or per-member kind, containment 'at' as LocatedIn, and silken_thread fused as a material adjective with both genus atoms."
+   },
+   "adjudication": {
+    "id": "fict4-000029",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The consequent's 'the lanterns ... gain silken threads' is a definite plural under a distributive predicate, for which the instruction set mandates the group event AND the per-member (PartOf $x <group>) distribution rule (Coordination & plurals: a distributive predicate 'also hands the predication to the group's members via a rule'; Negation (events): 'Dropping either is a different, weaker claim'), and only the group half is emitted."
+     }
+    ],
+    "gaps_confirmed": [
+     "the instruction set states no form for combining the group-event + per-member-rule pair with a per-occurrence 'whenever' consequent - an Implication nested inside a rule conclusion is licensed nowhere (only inside a seal)"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps this rule and adds a second one in the licensed multi-universal shape - premises (And (Member $x reach) (Agent $x $m) (Member $m nightmoth) (Theme $x hollows) (PartOf $y sk_lanterns_1)), an sk_* constant being allowed in a premise because a top-level fact asserts it, with a per-member per-occurrence conclusion (Member (sk_gain $x $y) gain) (Agent (sk_gain $x $y) $y) (Theme (sk_gain $x $y) (sk_threads $x $y)) (GroupOf (sk_threads $x $y) silken_thread) (During (sk_gain $x $y) $x) - so the omission does have a licensed fix and needs no nesting.",
+    "notes": "Everything else conforms: whenever routing at STV 1.0 0.9 with no QuantifierPhrase companion, 'the Hollows' as a Name-only capitalized-plural label, containment 'at' as LocatedIn, and both silken_thread decomposition atoms (material adjective exposed, genus emitted)."
+   }
+  }
+ ]
+}

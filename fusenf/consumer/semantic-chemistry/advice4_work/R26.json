@@ -1,0 +1,110 @@
+{
+ "id": "R26",
+ "rule": "The Council convenes at full moon",
+ "texts": [
+  "When the moon is full, the Council convenes at the Watch.",
+  "Whenever the moon is full, the Council meets at the Watch."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000091",
+   "sentence": "When the moon is full, the Council convenes at the Watch.",
+   "parse": [
+    "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+    "(: full_state (Member sk_full_1 full) (STV 1.0 0.99))",
+    "(: full_exp (Experiencer sk_full_1 sk_moon_1) (STV 1.0 0.99))",
+    "(: moon_full_flat (Member sk_moon_1 full) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: convene_ev (Member sk_convene_1 convene) (STV 1.0 0.99))",
+    "(: convene_agent (Agent sk_convene_1 sk_council_1) (STV 1.0 0.99))",
+    "(: convene_loc (Location sk_convene_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: convene_during (During sk_convene_1 sk_full_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000091",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The clause is a habitual present-tense regularity (recurring full moons, unmarked habitual \"convenes\"), but it is emitted as two asserted eventualities linked by During instead of an occurrence-quantifying Implication, leaving the regularity unquantified."
+     },
+     {
+      "statement": 3,
+      "issue": "The moon's fullness is asserted at top level as a standing fact (statement 1's reified state likewise), although the sentence states it only as the recurring condition, never that the moon is full."
+     },
+     {
+      "statement": 6,
+      "issue": "The convening is asserted outright rather than derived per full-moon occasion, so the KB records a convening that the sentence only makes conditional."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare \"when P, Q\" whose participants are definite/unique but whose clause states a habitual present-tense regularity rather than a one-off narrative: the routing rule names only \"generic or indefinite participants\" (-> whenever machinery) and \"definite/specific participants in a one-off narrative\" (-> two plain events), and this sentence falls in neither slot; the closing warning about never leaving a genuine regularity unquantified and the bell/dog example (definite participants, rule form) point the other way from the participant-based routing"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Every sub-decision below the route is right: \"the Council\" and \"the Watch\" correctly stay capitalized common nouns with no Name atom, convene stays a collective group-only event with no distribution rule, and \"at the Watch\" is Location. The defect is the top-level route and the resulting unconditional assertion of both clauses."
+   },
+   "adjudication": {
+    "id": "fict4-000091",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The 'bare when P, Q' rule routes a definite-participant clause to two plain events only IN A ONE-OFF NARRATIVE, and closes by forbidding 'when' to leave a genuine regularity unquantified; this clause is an unmarked present-tense habitual (a recurring lunar condition), so the two-asserted-eventualities route is not licensed for it."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "(Member sk_moon_1 full), with its reified (Member sk_full_1 full) (Experiencer sk_full_1 sk_moon_1) state, asserts at strength 1.0 that the moon is full, which the text only ever supposes as the recurring condition — the Core-patterns bar on asserting more than the text states."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "The convene atoms stand at top level at strength 1.0, recording a convening that the sentence states only as the consequent of a condition — again over-assertion, and the failure the whenever machinery exists to prevent."
+     }
+    ],
+    "gaps_confirmed": [
+     "The participant-based routing of bare 'when P, Q' has no slot for definite / unique participants in a habitual present-tense regularity: it names only generic-or-indefinite participants (whenever machinery) and definite participants in a one-off narrative (two plain events), while its own closing warning and the bell/dog example point such a clause at the rule route."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "For the route and the unconditional convening, the compliant form is the whenever machinery over the fullness occurrence — (Implication (And (Member $x full) (Experiencer $x sk_moon_1)) (And (Member (sk_convene $x) convene) (Agent (sk_convene $x) sk_council_1) (Location (sk_convene $x) sk_watch_1) (During (sk_convene $x) $x))) (STV 1.0 0.9) — which is licensed, since the bell/dog example runs exactly this rule over definite participants asserted at top level. For the asserted fullness, the fullness atoms belong inside that premise and nowhere else: no top-level (Member sk_moon_1 full) and no standing sk_full_1 state, with only (Member sk_moon_1 moon), (Member sk_council_1 council) and (Member sk_watch_1 watch) left at top level.",
+    "notes": "Every sub-decision below the route is right — no Name atoms for the Council or the Watch, the collective convene with no distribution rule, Location for 'at the Watch' — so the defect is confined to the route and the two unconditional assertions it produces."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000092",
+   "sentence": "Whenever the moon is full, the Council meets at the Watch.",
+   "parse": [
+    "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: whenever_full_meet (Implication (And (Member $x full) (Experiencer $x sk_moon_1)) (And (Member (sk_meet $x) meet) (Agent (sk_meet $x) sk_council_1) (Location (sk_meet $x) sk_watch_1) (During (sk_meet $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000092",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a COPULAR trigger clause under 'whenever P, Q': the enumerated state-reification triggers (resultative, connective endpoint, time modifier, adjective PP complement, focus particle, approximator) do not include a rule premise, and the dual-emit flat copular half has no stated treatment here — emitting it would wrongly assert the trigger state"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Council' and 'the Watch' correctly stay capitalized common nouns with no Name atom, the singular collective subject correctly does not distribute, and the flat copular atom is correctly withheld so the conditional asserts no full moon."
+   },
+   "adjudication": null
+  }
+ ]
+}

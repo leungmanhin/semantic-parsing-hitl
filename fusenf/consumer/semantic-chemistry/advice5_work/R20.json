@@ -1,0 +1,58 @@
+{
+ "id": "R20",
+ "rule": "Spring tides occur near new moon and full moon",
+ "texts": [
+  "Each Keeper times the salt-bloom harvest to the new-moon spring tide."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict5-000004",
+   "sentence": "Each Keeper times the salt-bloom harvest to the new-moon spring tide.",
+   "parse": [
+    "(: harvest_kind (Member sk_harvest_1 salt_bloom_harvest) (STV 1.0 0.99))",
+    "(: harvest_genus (Inheritance salt_bloom_harvest harvest) (STV 1.0 0.99))",
+    "(: tide_kind (Member sk_tide_1 new_moon_spring_tide) (STV 1.0 0.99))",
+    "(: tide_genus (Inheritance new_moon_spring_tide tide) (STV 1.0 0.99))",
+    "(: keeper_time_rule (Implication (Member $x keeper) (And (Member (sk_time $x) time) (Agent (sk_time $x) $x) (Patient (sk_time $x) sk_harvest_1) (Goal (sk_time $x) sk_tide_1))) (STV 1.0 0.9))",
+    "(: keeper_time_q (QuantifierPhrase keeper time \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict5-000004",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "\"to the new-moon spring tide\" is slotted as Goal, but the PP answers none of where/when/how/whence/whither (nothing moves and no destination is stated) — it names what the timing is aligned to, which the instruction set routes to the preposition-named oblique rather than the spatial Goal role."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else conforms: \"each\" rule form with QuantifierPhrase, Patient for the scheduled-occurrence object (\"times the harvest\" changes when it happens), definite witnesses plus head genus atoms with the noun modifiers left unexposed, and no tense atom on a habitual."
+   },
+   "adjudication": {
+    "id": "fict5-000004",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Thematic roles admits the named obliques (Goal included) only when the PP answers where/when/how/whence/whither and orders the parser to \"decide by the question the PP answers, never by which listed role is closest\" — \"to the new-moon spring tide\" answers neither whither nor when but names what the scheduling is aligned to, so (Goal (sk_time $x) sk_tide_1) asserts a spatial destination for the timing event that the sentence never states."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "a non-purposive entity-argument \"to\" (align/anchor X to Y) has only one licensed carrier, the preposition-named oblique (To <event> <entity>), and that head is also the purpose connective that seeds (PurposeOf <goal> <event>) — so the compliant form risks deriving a purpose the sentence does not state; the construction needs a carrier the PurposeOf bridge does not fire on"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the preposition-named oblique built on the word actually used — (To (sk_time $x) sk_tide_1) — in place of (Goal (sk_time $x) sk_tide_1); no other atom changes.",
+    "notes": "Everything else conforms: the bare-\"each\" universal as a distributing rule at (STV 1.0 0.9) with its one QuantifierPhrase companion, Patient for the scheduled-occurrence object, both compound kinds carrying head genus only (noun modifiers unexposed), and no tense atom on the habitual."
+   }
+  }
+ ]
+}

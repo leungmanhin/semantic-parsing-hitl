@@ -1,0 +1,4 @@
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: store_genus (Inheritance autumn_feather_store store) (STV 1.0 0.99))
+(: store_type (Member sk_store_1 autumn_feather_store) (STV 1.0 0.99))
+(: whenever_hunt_grow (Implication (And (Member $c sky_cat) (Member $h hunt) (Agent $h $c) (Time $h summer)) (And (Member (sk_grow $h) grow) (Patient (sk_grow $h) sk_store_1) (During (sk_grow $h) $h))) (STV 1.0 0.9))

@@ -1,0 +1,5 @@
+(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))
+(: feathers_grp (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))
+(: keeper_q (QuantifierPhrase keeper store "each") (STV 1.0 0.99))
+(: feathers_collected_rule (Implication (PartOf $z sk_feathers_1) (Member $z collected)) (STV 1.0 0.9))
+(: each_keeper_stores (Implication (Member $x keeper) (And (Member (sk_store $x) store) (Agent (sk_store $x) $x) (Theme (sk_store $x) sk_feathers_1) (Member (sk_bin $x) bin) (Location (sk_store $x) (sk_bin $x)) (LocatedIn (sk_bin $x) sk_watch_1))) (STV 1.0 0.9))

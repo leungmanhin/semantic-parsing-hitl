@@ -1,0 +1,4 @@
+(: f81_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))
+(: f81_keeper_senior (Inheritance senior_keeper senior) (STV 1.0 0.99))
+(: f81_station_genus (Inheritance lantern_station station) (STV 1.0 0.99))
+(: f81_rule (Implication (And (Member $k senior_keeper) (Member $d die) (Patient $d $k)) (And (Member (sk_heir $k) heir) (Member (sk_inherit $k) inherit) (Agent (sk_inherit $k) (sk_heir $k)) (Theme (sk_inherit $k) (sk_station $k)) (Member (sk_station $k) lantern_station) (Possession (sk_station $k) $k) (During (sk_inherit $k) $d))) (STV 1.0 0.9))

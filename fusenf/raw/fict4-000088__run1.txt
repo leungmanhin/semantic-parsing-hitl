@@ -1,0 +1,3 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: count_genus (Inheritance solo_count count) (STV 1.0 0.99))
+(: apprentice_invest_rule (Implication (And (Member $x apprentice) (Member $c solo_count) (Possession $c $x) (Member $c large)) (And (Member (sk_invest $x) invest) (Agent (sk_invest $x) sk_council_1) (Patient (sk_invest $x) $x) (Member (sk_keeper $x) keeper) (Experiencer (sk_keeper $x) $x) (Member $x keeper) (Result (sk_invest $x) (sk_keeper $x)))) (STV 1.0 0.9))

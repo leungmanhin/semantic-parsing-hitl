@@ -1,0 +1,7 @@
+(: shielded_cove_genus (Inheritance shielded_cove cove) (STV 1.0 0.99))
+(: shielded_cove_mod (Inheritance shielded_cove shielded) (STV 1.0 0.99))
+(: cold_wind_genus (Inheritance cold_wind wind) (STV 1.0 0.99))
+(: cold_wind_mod (Inheritance cold_wind cold) (STV 1.0 0.99))
+(: safe_from_cold_wind_genus (Inheritance safe_from_cold_wind safe) (STV 1.0 0.99))
+(: safe_from_cold_wind_arg (From safe_from_cold_wind cold_wind) (STV 1.0 0.99))
+(: lantern_safe_cond (ConditionalProperty lantern safe_from_cold_wind shielded_cove) (STV 0.9 0.9))

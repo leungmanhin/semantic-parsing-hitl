@@ -1,0 +1,4 @@
+(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: residue_genus (Inheritance chalky_residue residue) (STV 1.0 0.99))
+(: residue_chalky (Inheritance chalky_residue chalky) (STV 1.0 0.99))
+(: whenever_gather_turn (Implication (And (Member $k keeper) (Member $g gather) (Agent $g $k) (Member $s salt_bloom) (Theme $g $s) (Time $g full_moon)) (And (Member (sk_turn $g) turn) (Patient (sk_turn $g) $s) (During (sk_turn $g) $g) (Member (sk_residue $g) chalky_residue) (Experiencer (sk_residue $g) $s) (Member $s chalky_residue) (Result (sk_turn $g) (sk_residue $g)))) (STV 1.0 0.9))

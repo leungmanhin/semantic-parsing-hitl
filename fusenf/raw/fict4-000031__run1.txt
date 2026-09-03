@@ -1,0 +1,3 @@
+(: village_type (Member sk_village_1 village) (STV 1.0 0.99))
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: skycat_no_enter_rule (Implication (Member $x sky_cat) (And (Member (sk_enter $x) enter) (Agent (sk_enter $x) $x) (Theme (sk_enter $x) sk_village_1))) (STV 0.0 0.9))

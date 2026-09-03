@@ -1,0 +1,9 @@
+{"id": "fict4-000029", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The consequent's 'the lanterns ... gain silken threads' is a definite plural under a distributive predicate, for which the instruction set mandates the group event AND the per-member (PartOf $x <group>) distribution rule (Coordination & plurals: a distributive predicate 'also hands the predication to the group's members via a rule'; Negation (events): 'Dropping either is a different, weaker claim'), and only the group half is emitted."}],
+ "gaps_confirmed": ["the instruction set states no form for combining the group-event + per-member-rule pair with a per-occurrence 'whenever' consequent - an Implication nested inside a rule conclusion is licensed nowhere (only inside a seal)"],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "The compliant form keeps this rule and adds a second one in the licensed multi-universal shape - premises (And (Member $x reach) (Agent $x $m) (Member $m nightmoth) (Theme $x hollows) (PartOf $y sk_lanterns_1)), an sk_* constant being allowed in a premise because a top-level fact asserts it, with a per-member per-occurrence conclusion (Member (sk_gain $x $y) gain) (Agent (sk_gain $x $y) $y) (Theme (sk_gain $x $y) (sk_threads $x $y)) (GroupOf (sk_threads $x $y) silken_thread) (During (sk_gain $x $y) $x) - so the omission does have a licensed fix and needs no nesting.",
+ "notes": "Everything else conforms: whenever routing at STV 1.0 0.9 with no QuantifierPhrase companion, 'the Hollows' as a Name-only capitalized-plural label, containment 'at' as LocatedIn, and both silken_thread decomposition atoms (material adjective exposed, genus emitted)."}

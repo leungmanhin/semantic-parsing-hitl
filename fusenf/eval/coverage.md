@@ -12,6 +12,8 @@ State vocabulary (#51 reshape): never-parsed / clean-unreviewed / verified (revi
 | fiction | external consumer (v1 rules) | 138 | 138 | 0 (0%) | 0 | 131 | 7 | 0 | 0 | — | 2ed18b93×138 |
 | fiction2 | external consumer (v2 texts) | 109 | 109 | 70 (64%) | 70 | 0 | 0 | 39 | 0 | — | 2ed18b93×109 |
 | fiction3 | external consumer (v3 texts) | 108 | 108 | 82 (76%) | 82 | 0 | 0 | 26 | 0 | — | 2ed18b93×108 |
+| fiction4 | external consumer (v4 texts) | 107 | 107 | 81 (76%) | 81 | 0 | 0 | 26 | 0 | — | 2ed18b93×107 |
+| fiction5 | external consumer (pending re-parse set) | 9 | 9 | 6 (67%) | 6 | 0 | 0 | 3 | 0 | — | 2ed18b93×9 |
 | fixpack | validation | 7 | 0 | 0 (0%) | 0 | 7 | 0 | 0 | 0 | — | f6448eac×7 |
 | fixpack3 | validation | 10 | 0 | 0 (0%) | 0 | 10 | 0 | 0 | 0 | — | 2aa57fa8×10 |
 | fixpack31 | validation | 4 | 0 | 0 (0%) | 0 | 4 | 0 | 0 | 0 | — | bb7c4b71×4 |

@@ -1,0 +1,92 @@
+{
+ "id": "R28",
+ "rule": "Summer hunting yields the autumn feather store",
+ "texts": [
+  "Sky-cats hunt often through summer.",
+  "Whenever a sky-cat hunts through summer, many feathers accumulate at the base of the cliff by autumn.",
+  "Whenever a sky-cat hunts in summer, the autumn feather store grows."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000098",
+   "sentence": "Sky-cats hunt often through summer.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_hunt (Implication (Member $x sky_cat) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) summer))) (STV 0.8 0.9))",
+    "(: skycat_q (QuantifierPhrase sky_cat hunt \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000098",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare, non-deictic SEASON as a Time filler (\"summer\"): the structured Time terms are Year/Month/Day/Weekday/Hour/Minute, and the season constants the instruction set names are deictic (last_spring, next_summer); nothing licenses a bare `summer` symbol (day-parts are the only bare-symbol precedent)",
+     "temporal-extent \"through <period>\" (\"through summer\"): During is licensed for during/while/throughout ONLY, Start/End need stated endpoints, and Measure ... duration needs a stated count — so the throughout/span sense of \"through\" has no licensed carrier and is silently dropped by a plain Time atom"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The generic bare-plural rule, the 0.8 strength for \"often\" with its QuantifierPhrase companion, and the sky_cat genus (noun modifier not exposed) are all correct. Time is the head the when-test selects for this PP, so the atom itself is defensible — what is lost is the extent sense of \"through\", recorded as a gap."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000099",
+   "sentence": "Whenever a sky-cat hunts through summer, many feathers accumulate at the base of the cliff by autumn.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: skycat_hunt_feathers_rule (Implication (And (Member $c sky_cat) (Member $h hunt) (Agent $h $c) (Time $h summer)) (And (GroupOf (sk_feathers $h) feather) (CardinalityPhrase (sk_feathers $h) \"many\") (Member (sk_accumulate $h) accumulate) (Patient (sk_accumulate $h) (sk_feathers $h)) (Location (sk_accumulate $h) sk_base_1) (During (sk_accumulate $h) $h) (TimeAtMost (sk_accumulate $h) autumn))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000099",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"many\" used as a COUNT of things rather than a proportion: the instruction set assigns \"many\" to the strength dial (0.7) with a `QuantifierPhrase` companion, and omits it from the `CardinalityPhrase` vague-quantity list (\"a few / several / a handful / dozens / scores / hundreds / a lot of\"), so a counting \"many Ns\" has no stated channel.",
+     "Season names as time fillers, and durative span frames over them (\"through summer\", \"by autumn\"): seasons appear only as deictic constants (last_spring / next_summer), so a bare `summer` / `autumn` has no structured term, and the \"through\" extent has no carrier."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever rule, per-occurrence Skolem group `(sk_feathers $h)`, the `During` tie, \"by autumn\" as `TimeAtMost`, top-level definite base/cliff with `PartOf`, `sky_cat` genus with the noun modifier unexposed, and `Location` on the event only (no `LocatedIn` on the feathers) all follow the instruction set. `CardinalityPhrase \"many\"` is defensible under \"use CardinalityPhrase only when the phrase counts things\" but sits on the gap above."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000100",
+   "sentence": "Whenever a sky-cat hunts in summer, the autumn feather store grows.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance autumn_feather_store store) (STV 1.0 0.99))",
+    "(: store_type (Member sk_store_1 autumn_feather_store) (STV 1.0 0.99))",
+    "(: whenever_hunt_grow (Implication (And (Member $c sky_cat) (Member $h hunt) (Agent $h $c) (Time $h summer)) (And (Member (sk_grow $h) grow) (Patient (sk_grow $h) sk_store_1) (During (sk_grow $h) $h))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000100",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever machinery with plain-variable premises, a per-occurrence Skolem consequent and the During tie; the three-word compound autumn_feather_store gets only its head-noun genus (both noun modifiers correctly unexposed) and the definite referent is a top-level witness reused as a constant in the conclusion, as licensed. Patient for the intransitive 'grows' follows the internal-change-of-state test; reading 'grow' as a scalar-change verb would instead give Theme, but no figures are stated so Patient is the better fit."
+   },
+   "adjudication": null
+  }
+ ]
+}

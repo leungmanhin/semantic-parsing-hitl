@@ -1,0 +1,102 @@
+{
+ "id": "R30",
+ "rule": "Wraith activity prompts feather-ration requests",
+ "texts": [
+  "Whenever a wraith drains a lantern at the Sunken Cove, a station near the Sunken Cove requests feather rations from the Council.",
+  "When a station reports a drained lantern, the Council prioritizes that station."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict5-000008",
+   "sentence": "Whenever a wraith drains a lantern at the Sunken Cove, a station near the Sunken Cove requests feather rations from the Council.",
+   "parse": [
+    "(: sunkencove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sunkencove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: featherration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: station_near (Near sk_station_1 sunken_cove) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: whenever_drain_request (Implication (And (Member $x wraith) (Member $d drain) (Agent $d $x) (Member $l lantern) (Patient $d $l) (LocatedIn $l sunken_cove)) (And (Member (sk_request $d) request) (Agent (sk_request $d) sk_station_1) (Theme (sk_request $d) feather_ration) (Source (sk_request $d) sk_council_1) (During (sk_request $d) $d))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict5-000008",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "\"a station\" is an indefinite introduced only inside the whenever-rule's consequent, but its witness is hoisted to an unconditionally asserted top-level fact (together with its Near atom at statement 4), asserting a station's existence and position that the sentence states only under the conditional."
+     },
+     {
+      "statement": 6,
+      "issue": "The consequent's requester is the shared constant sk_station_1 rather than a dependent Skolem term such as (sk_station $d), so the parse commits to one and the same station answering every draining although no \"the same\"/\"a certain\" cue is present and the wide-scope \"whenever\" calls for the dependent reading."
+     },
+     {
+      "statement": 6,
+      "issue": "\"at the Sunken Cove\" is attached to the lantern as (LocatedIn $l sunken_cove) rather than to the draining event as (Location $d sunken_cove), so the rule triggers on where the lantern sits instead of on where the draining happens."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The name handling is right on both counts — \"the Sunken Cove\" exceeds its bare class word so it takes a Name plus a cove type atom with no modifier genus, while \"the Council\" stays a bare capitalized common noun with no Name; Source for \"from the Council\" and the entity-attached Near are correct."
+   },
+   "adjudication": {
+    "id": "fict5-000008",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A dependent existential keeps its typing inside the conclusion (the every-student-read-some-book rule emits (Member (sk_book $x) book) there), and only a wide-scope shared existential earns a top-level constant plus typing (the some-critic-reviewed-every-film pattern) — so with the universal taking wide scope here, (Member sk_station_1 station) and (Near sk_station_1 sunken_cove) assert a station's existence and position unconditionally when the sentence posits it only under the conditional."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The scope tiebreak is \"genuine ambiguity -> first quantifier takes wide scope\" and only \"the same\"/\"a certain\" forces the shared reading; \"whenever\" is the first quantifier and no such cue is present, so the requester is a dependent existential requiring (sk_station $d), and the shared constant asserts that one and the same station answers every draining."
+     },
+     {
+      "index": 2,
+      "verdict": "partial",
+      "reason": "The half that stands is that the event-locative attachment (Location $d sunken_cove) is the favored reading of \"drains a lantern at the Sunken Cove\" and the parse does not carry it; the half that overstates is calling the emitted atom wrong — \"at\" is containment, so (LocatedIn $l sunken_cove) is true and well-typed under the equally coherent nominal attachment, making this a reading choice rather than a false or ill-typed atom."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "the whenever / every-time section works only definite consequent participants (\"the dog\"), so an indefinite introduced in a whenever-consequent has no worked pattern saying whether it is a dependent Skolem function of the trigger occurrence or a shared constant — the scope tiebreak is stated only for \"a clause with two quantifiers over a relation\"",
+     "PP attachment inside a whenever-trigger clause has no legislated preference: nothing says when a locative on the trigger event vs. on its object is a genuine tie that should fire the Interpretation dual-reading rather than a world-knowledge lean to be resolved silently"
+    ],
+    "decision": "defect",
+    "defect_summary": "For issues 0 and 1 the compliant form mints the requester as a dependent existential inside the conclusion — (Member (sk_station $d) station), (Near (sk_station $d) sunken_cove), (Agent (sk_request $d) (sk_station $d)) — with no top-level station atoms; the Sunken Cove Name + cove type, the feather_ration genus, and the top-level Council typing (a definite, which projects) all stay as they are, and the favored attachment for issue 2 would put (Location $d sunken_cove) on the draining event.",
+    "notes": "The name handling is correct on both counts (the capitalized run exceeds the bare class word, so Name + cove type and no modifier genus; \"the Council\" stays a common noun with no Name), as are Source for \"from the Council\", the entity-attached Near, Patient on the drained lantern, and the absent QuantifierPhrase companion."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict5-000009",
+   "sentence": "When a station reports a drained lantern, the Council prioritizes that station.",
+   "parse": [
+    "(: council_kind (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: station_report_prioritize (Implication (And (Member $e report) (Agent $e $s) (Member $s station) (Theme $e $l) (Member $l lantern) (Member $l drained)) (And (Member (sk_prioritize $e) prioritize) (Agent (sk_prioritize $e) sk_council_1) (Theme (sk_prioritize $e) $s) (During (sk_prioritize $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict5-000009",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite participants in P correctly route to the whenever machinery (plain-variable premises, per-occurrence Skolem consequent, During tie, no QuantifierPhrase companion); \"drained\" is treated as a modifier participle (Member $l drained) rather than the verb, \"the Council\" as a capitalized common noun with no Name atom, and \"that station\" bound to the premise variable."
+   },
+   "adjudication": null
+  }
+ ]
+}

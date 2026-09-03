@@ -1,0 +1,127 @@
+{
+ "id": "R15",
+ "rule": "Ground feathers ward lanterns from wraiths",
+ "texts": [
+  "When a Keeper grinds feathers and scatters the feathers around a lit lantern, the feathers ward the lantern against wraiths.",
+  "Whenever a Keeper grinds feathers and spreads the feathers around a lit lantern, the feathers shield the lantern against wraiths.",
+  "Wraiths do not approach a warded lantern.",
+  "Fresh ground feathers ward lanterns.",
+  "Stale ground feathers do not ward lanterns."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000051",
+   "sentence": "When a Keeper grinds feathers and scatters the feathers around a lit lantern, the feathers ward the lantern against wraiths.",
+   "parse": [
+    "(: k51_grind_scatter_ward_rule (Implication (And (Member $k keeper) (GroupOf $f feather) (Member $e1 grind) (Agent $e1 $k) (Patient $e1 $f) (Member $e2 scatter) (Agent $e2 $k) (Theme $e2 $f) (Around $e2 $n) (Member $n lantern) (Member $n lit)) (And (Member (sk_ward $f $n) ward) (Agent (sk_ward $f $n) $f) (Theme (sk_ward $f $n) $n) (Against (sk_ward $f $n) wraith) (During (sk_ward $f $n) $e2))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000051",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The coordinated trigger VPs are translated independently with the shared subject carried over and anaphoric \"the feathers\" reusing $f; Around/Against are surface-preposition obliques, grind takes Patient and scatter Theme, and the inanimate transitive subject stays Agent. The Skolem consequent is keyed on the participants (sk_ward $f $n) rather than on the trigger occurrence as in the (sk_bark $x) pattern, though it is still During-linked to $e2."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000052",
+   "sentence": "Whenever a Keeper grinds feathers and spreads the feathers around a lit lantern, the feathers shield the lantern against wraiths.",
+   "parse": [
+    "(: whenever_grind_spread_shield (Implication (And (Member $k keeper) (GroupOf $fg feather) (Member $g grind) (Agent $g $k) (Patient $g $fg) (Member $l lantern) (Member $l lit) (Member $s spread) (Agent $s $k) (Theme $s $fg) (Around $s $l)) (And (Member (sk_shield $g $s) shield) (Agent (sk_shield $g $s) $fg) (Theme (sk_shield $g $s) $l) (Against (sk_shield $g $s) wraith) (During (sk_shield $g $s) $s))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000052",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a whenever-trigger built from two coordinated event clauses: the instruction set says the response event is tied to \"its trigger\" with During, but does not say which of the two trigger events anchors that During (or whether both should), nor which trigger variables index the consequent's Skolem function"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The two coordinated trigger clauses, the shared keeper/feather-group/lantern bindings, the Patient-for-grinding vs Theme-for-spreading split, the inanimate transitive Agent on shield, and the preposition-named Around/Against obliques all track the instruction set, as does the absent QuantifierPhrase for whenever. The consequent's Skolem function is indexed by both trigger events, which the multi-universal Skolem rule supports even though the whenever section shows only the single-trigger form."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000053",
+   "sentence": "Wraiths do not approach a warded lantern.",
+   "parse": [
+    "(: wraiths_no_approach_warded_lantern (Implication (And (Member $x wraith) (Member $y lantern) (Member $y warded)) (And (Member (sk_approach $x $y) approach) (Agent (sk_approach $x $y) $x) (Theme (sk_approach $x $y) $y))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000053",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an INDEFINITE OBJECT inside a negated verbal generic (\"Wraiths do not approach a warded lantern\"): Negated verbal generic shows only a definite object (the 'Coopers do not caulk the barrel' constant), and the quantifier-scope section's dependent-existential Skolem function would put the lantern's existence under the strength-0 conclusion — nothing states whether such an object should instead be raised to a second universal premise, as this parse did"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The strength-0.0 / confidence-0.9 distributing rule matches the 'Owls don't migrate' pattern exactly, no QuantifierPhrase is emitted (correct for plain 'not'), 'warded' keeps its participial surface form as a separate descriptive Member rather than fusing, and approach takes Agent/Theme by the does-the-object-change test. Raising the indefinite object to a premise gives the right reading (no wraith approaches any warded lantern) and correctly asserts no lantern at top level."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict4-000054",
+   "sentence": "Fresh ground feathers ward lanterns.",
+   "parse": [
+    "(: fresh_ground_feather_ward_rule (Implication (And (Member $x feather) (Member $x ground) (Member $x fresh)) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) lantern))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000054",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted bare-kind subject correctly forces the distributing-rule route instead of a kind-level relation, the participial modifier 'ground' keeps its surface form as a property rather than the verb 'grind', the inanimate transitive subject stays Agent, and the bare-plural generic object stays the bare kind lantern. Bare-generic strength 0.9/0.9 with no QuantifierPhrase companion is right, and no compound was fused so no genus atoms are owed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "fict4-000055",
+   "sentence": "Stale ground feathers do not ward lanterns.",
+   "parse": [
+    "(: feathers_ward_neg_rule (Implication (And (Member $x feather) (Member $x stale) (Member $x ground)) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) lantern))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000055",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The negated verbal generic takes the distributing rule at strength 0.0 with the adjectival restrictions as premise conjuncts and correctly no `QuantifierPhrase` companion (plain \"not\", not a quantifier word). \"ground\" is read as a participial modifier-adjective, which is licensed; under the competing noun-modifier reading it would instead have to fuse as `ground_feather` with genus `feather` only."
+   },
+   "adjudication": null
+  }
+ ]
+}

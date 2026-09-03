@@ -1,0 +1,4 @@
+(: f49_light_genus (Inheritance mist_light light) (STV 1.0 0.99))
+(: f49_moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: f49_rule (Implication (And (Member $x mist_light) (Member $x weak)) (And (Member (sk_attract $x) attract) (Agent (sk_attract $x) $x) (Theme (sk_attract $x) nightmoth))) (STV 0.1 0.9))
+(: f49_q (QuantifierPhrase mist_light attract "rarely") (STV 1.0 0.99))

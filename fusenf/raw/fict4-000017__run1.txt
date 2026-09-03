@@ -1,0 +1,4 @@
+(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: cv_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))
+(: e_cauldron (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))
+(: whenever_form_keep (Implication (And (Member $x form) (Patient $x $m) (Member $m mire_essence) (Location $x sk_cauldron_1)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) (sk_keeper $x)) (Member (sk_keeper $x) keeper) (Theme (sk_keep $x) $m) (Location (sk_keep $x) clay_vessel) (During (sk_keep $x) $x))) (STV 1.0 0.9))

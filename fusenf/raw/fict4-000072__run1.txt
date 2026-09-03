@@ -1,0 +1,3 @@
+(: wg_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))
+(: nm_genus (Inheritance night_moth moth) (STV 1.0 0.99))
+(: whenever_burn_repel (Implication (And (Member $x burn) (Agent $x $l) (Member $l lantern) (Patient $x wintergloss)) (And (Member (sk_repel $x) repel) (Agent (sk_repel $x) wintergloss) (Theme (sk_repel $x) night_moth) (Source (sk_repel $x) $l) (During (sk_repel $x) $x))) (STV 1.0 0.9))

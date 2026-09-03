@@ -1,0 +1,124 @@
+{
+ "id": "R23",
+ "rule": "Keepers inherit lantern-stations",
+ "texts": [
+  "Whenever a senior Keeper retires, an heir inherits that Keeper's lantern-station.",
+  "Whenever a senior Keeper dies, an heir inherits that Keeper's lantern-station.",
+  "A Keeper's family keeps that Keeper's inherited station.",
+  "The Council must approve any station transfer."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000080",
+   "sentence": "Whenever a senior Keeper retires, an heir inherits that Keeper's lantern-station.",
+   "parse": [
+    "(: senior_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: senior_keeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: lantern_station_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: whenever_retire_inherit (Implication (And (Member $e retire) (Agent $e $k) (Member $k senior_keeper)) (And (Member (sk_heir $k) heir) (Member (sk_inherit $k) inherit) (Agent (sk_inherit $k) (sk_heir $k)) (Theme (sk_inherit $k) (sk_lantern_station $k)) (Member (sk_lantern_station $k) lantern_station) (Possession (sk_lantern_station $k) $k) (During (sk_inherit $k) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000080",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever rule keys its Skolem terms on the keeper variable $k rather than on the trigger-occurrence variable $e that the every-time example uses, a departure from 'a Skolem event per occurrence' that is harmless here because a keeper retires once. senior_keeper's genus plus gradable-modifier decomposition, lantern_station's genus with the noun modifier left unexposed, the Possession genitive and the During link all match the stated rules."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000081",
+   "sentence": "Whenever a senior Keeper dies, an heir inherits that Keeper's lantern-station.",
+   "parse": [
+    "(: f81_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: f81_keeper_senior (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: f81_station_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: f81_rule (Implication (And (Member $k senior_keeper) (Member $d die) (Patient $d $k)) (And (Member (sk_heir $k) heir) (Member (sk_inherit $k) inherit) (Agent (sk_inherit $k) (sk_heir $k)) (Theme (sk_inherit $k) (sk_station $k)) (Member (sk_station $k) lantern_station) (Possession (sk_station $k) $k) (During (sk_inherit $k) $d))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000081",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A presupposed definite NP inside a whenever-rule's consequent — 'that Keeper's lantern-station' already exists when the trigger fires, but the instruction set only says premises are the pattern to match and conclusions are what to mint, and never states whether such a referent should be bound as a premise conjunct or minted as a Skolem function in the conclusion (the definite-projection doctrine is written for seals, not for rules)."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever routing, plain-variable premises, the During tie to the trigger, the dependent Skolem heir, Possession with the possessed first for the genitive, and both senior_keeper decomposition atoms (gradable adjective modifier exposed) are all per spec."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000082",
+   "sentence": "A Keeper's family keeps that Keeper's inherited station.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: family_type (Member sk_family_1 family) (STV 1.0 0.99))",
+    "(: family_poss (Possession sk_family_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: station_inherited (Member sk_station_1 inherited) (STV 1.0 0.99))",
+    "(: station_poss (Possession sk_station_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: keep_ev (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: keep_ag (Agent sk_keep_1 sk_family_1) (STV 1.0 0.99))",
+    "(: keep_th (Theme sk_keep_1 sk_station_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000082",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A characterizing generic whose subject is a SINGULAR INDEFINITE with a co-varying anaphor (\"A Keeper's family keeps THAT Keeper's inherited station\"). The Existential section rules that 'a/an' with a verbal predicate is a witness and reserves the generic/rule form for bare plurals and explicit quantifiers, and Donkey anaphora only maps a bound pronoun to a rule variable under an explicit quantifier - so a world rule stated in this form has no licensed universal encoding and can only be recorded as a one-off existential."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Every local decision is doctrine-correct (Possession for both genitives possessed-first, participial 'inherited' kept as an adjective on the witness, keep -> Theme, singular collective 'family' with no GroupOf and no distribution, habitual so no tense). The consequence of the gap is that the sentence's generalization over Keepers is recorded as a single existential situation."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict4-000083",
+   "sentence": "The Council must approve any station transfer.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: st_genus (Inheritance station_transfer transfer) (STV 1.0 0.99))",
+    "(: council_approve_rule (Implication (Member $t station_transfer) (And (Member (sk_approve $t) approve) (Agent (sk_approve $t) sk_council_1) (Theme (sk_approve $t) $t) (Obligated (sk_approve $t)))) (STV 1.0 0.99))",
+    "(: council_approve_q (QuantifierPhrase station_transfer approve \"any\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000083",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "free-choice 'any' as a universal determiner has no entry in the quantifier-to-strength dial (all/every, most, a lot of, many, few, no/none) and no stated QuantifierPhrase treatment",
+     "a deontic on a SPECIFIC individual subject scoped over a universally quantified OBJECT: the instruction set gives (Obligated e) for a one-off act and the reified (Inheritance kind (obligated action)) for a kind-level norm, but not this rule-plus-(Obligated e) hybrid, and does not say whether it takes the universal rule's 0.9 confidence or a plain norm's 0.99"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The structure follows the stated forms exactly: the shared-existential/universal shape with the Council as a constant and the range over station_transfer, Theme for approve (as in the 'committee approved the plan' example), the noun-modifier compound genus, and a capitalized-common-noun label with no Name atom. Only the 0.99 rule confidence is arguable against the Quantifiers section's stated 0.9 for distributing rules."
+   },
+   "adjudication": null
+  }
+ ]
+}

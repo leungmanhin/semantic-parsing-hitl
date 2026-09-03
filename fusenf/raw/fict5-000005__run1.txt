@@ -1,0 +1,5 @@
+(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: nw_genus1 (Inheritance north_wind north) (STV 1.0 0.99))
+(: nw_genus2 (Inheritance north_wind wind) (STV 1.0 0.99))
+(: whenever_shield_burn (Implication (And (Member $e shield) (Agent $e $cs) (Member $cs cliff_spire) (Theme $e $cv) (Member $cv cove) (Against $e north_wind) (Member $l lantern) (LocatedIn $l $cv)) (And (Member (sk_burn $e $l) burn) (Patient (sk_burn $e $l) $l) (Manner (sk_burn $e $l) stably) (Through (sk_burn $e $l) winter) (During (sk_burn $e $l) $e))) (STV 1.0 0.9))
+(: lantern_burn_q (QuantifierPhrase lantern burn "each") (STV 1.0 0.99))

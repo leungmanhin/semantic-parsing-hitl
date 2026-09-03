@@ -1,0 +1,2 @@
+(: solo_count_genus (Inheritance solo_count count) (STV 1.0 0.99))
+(: when_lantern_fail_reset (Implication (And (Member $e fail) (Patient $e $l) (Member $l lantern) (Possession $l $a) (Member $a apprentice)) (And (Member (sk_solo_count $a) solo_count) (Possession (sk_solo_count $a) $a) (Member (sk_reset $a) reset) (Patient (sk_reset $a) (sk_solo_count $a)) (During (sk_reset $a) $e))) (STV 1.0 0.9))

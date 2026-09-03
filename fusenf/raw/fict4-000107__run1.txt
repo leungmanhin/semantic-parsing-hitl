@@ -1,0 +1,3 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: council_prioritize_drained (Implication (And (Member $st station) (GroupOf $lg lantern) (PartOf $lg $st) (Member $lg drained)) (And (Member (sk_prioritize $st) prioritize) (Agent (sk_prioritize $st) sk_council_1) (Theme (sk_prioritize $st) $st))) (STV 0.8 0.9))
+(: council_q (QuantifierPhrase station prioritize "usually") (STV 1.0 0.99))

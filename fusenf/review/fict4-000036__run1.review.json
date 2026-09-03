@@ -1,0 +1,11 @@
+{"id": "fict4-000036", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "\"The Keepers\" is a capitalized plural kind-word label, which the instruction set makes a Name-only individual with no GroupOf and no per-member kind taken from the label word, yet the parse emits (GroupOf sk_keepers_1 keeper)."},
+               {"statement": null, "issue": "No Name atom is emitted for \"the Keepers\", though the same rule makes the Name fact the label's one mandatory trace."},
+               {"statement": 10, "issue": "The per-member distribution rule ranges over (PartOf $x sk_keepers_1), a group membership that only the disallowed GroupOf reading supplies."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything else follows the instruction set: the distributed \"collected\" property over the definite feather group, Theme for the stored feathers, no status atom on the habitual present, and LocatedIn for the containment \"at the Watch\". The label rule as written also strips the kind word \"keeper\" from the referent, which is the rule's stated intent rather than a parse choice."}

@@ -1,0 +1,3 @@
+(: whenever_burn_give (Implication (And (Member $x burn) (Agent $x $lantern) (Member $lantern lantern) (Patient $x mire_essence)) (And (Member (sk_give $x) give) (Agent (sk_give $x) $lantern) (Theme (sk_give $x) mist_light) (During (sk_give $x) $x))) (STV 1.0 0.9))
+(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))

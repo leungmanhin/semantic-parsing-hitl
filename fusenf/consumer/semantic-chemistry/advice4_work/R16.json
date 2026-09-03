@@ -1,0 +1,113 @@
+{
+ "id": "R16",
+ "rule": "Cold winds extinguish unprepared lanterns",
+ "texts": [
+  "Whenever a cold wind blows off the sea at night, that wind extinguishes unprepared lanterns.",
+  "When a cold wind strikes the Cliff Path at night, unprepared lanterns go out.",
+  "Lanterns in shielded coves stay safe from cold winds."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000056",
+   "sentence": "Whenever a cold wind blows off the sea at night, that wind extinguishes unprepared lanterns.",
+   "parse": [
+    "(: sea_type (Member sk_sea_1 sea) (STV 1.0 0.99))",
+    "(: wind_extinguish_rule (Implication (And (Member $w wind) (Member $w cold) (Member $b blow) (Agent $b $w) (Source $b sk_sea_1) (Time $b night) (Member $l lantern) (Member $l unprepared)) (And (Member (sk_extinguish $b $l) extinguish) (Agent (sk_extinguish $b $l) $w) (Patient (sk_extinguish $b $l) $l) (During (sk_extinguish $b $l) $b))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000056",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The intransitive subject of \"blows\" is given Agent, but a wind is a non-volitional natural force / moving gas, which the intransitive-subject test explicitly excludes from Agent (the class of \"smoke rose\", \"the tide receded\")."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A restrictively-modified bare-plural object (\"unprepared lanterns\") inside a whenever-rule CONSEQUENT: a bare kind filler cannot carry the adjective, and a consequent-minted group cannot carry the per-member distribution rule (rules do not nest), so the instruction set specifies no route — this parse instead universalizes the lantern into the rule's premise, which no section sanctions or forbids."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is doctrinal: \"whenever\" takes the rule form with no QuantifierPhrase, \"cold\"/\"unprepared\" stay separate non-fusing descriptive atoms, \"off the sea\" is Source with the definite sea asserted top-level (so the sk_ constant in the premise is licensed), \"at night\" is the day-part Time symbol, and the transitive extinguish takes Agent + Patient correctly."
+   },
+   "adjudication": {
+    "id": "fict4-000056",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The intransitive-subject test puts a 'non-volitional natural process / force — precipitation, fluids, gases' on Patient even when the verb is motion-like ('smoke rose', 'the tide receded'), so (Agent $b $w) for a wind blowing asserts the volitional-doer reading the rule denies it."
+     }
+    ],
+    "gaps_confirmed": [
+     "An adjectivally-restricted bare-plural object ('unprepared lanterns') inside a rule CONSEQUENT has no stated route: a bare kind filler cannot carry the descriptive adjective, a consequent-minted group cannot carry the per-member distribution the adjective would need (rules do not nest), and universalizing the lantern into the premise — what this parse does — silently strengthens the claim to every unprepared lantern."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form replaces (Agent $b $w) in the premise with (Patient $b $w); the consequent's (Agent (sk_extinguish $b $l) $w) is correct as it stands, since a transitive subject stays Agent even when inanimate and non-volitional.",
+    "notes": "The confirmed gap's improvisation is otherwise graceful — the nearest precedent, an adjectivally-restricted kind subject forcing the distributing-rule route with 'the restriction becomes a premise conjunct', is the same move applied to an object. The rest is doctrinal: whenever takes the rule form with no QuantifierPhrase, 'cold'/'unprepared' stay non-fusing descriptive atoms, 'off the sea' is Source with the sea asserted top-level so the sk_ constant in the premise is licensed, and 'at night' is the day-part Time symbol."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000057",
+   "sentence": "When a cold wind strikes the Cliff Path at night, unprepared lanterns go out.",
+   "parse": [
+    "(: path_kind (Member cliff_path path) (STV 1.0 0.99))",
+    "(: path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: wind_lantern_out (Implication (And (Member $e strike) (Agent $e $w) (Member $w wind) (Member $w cold) (Theme $e cliff_path) (Time $e night) (Member $y lantern) (Member $y unprepared)) (And (Member (sk_go_out $e $y) go_out) (Patient (sk_go_out $e $y) $y) (During (sk_go_out $e $y) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000057",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correct throughout: whenever machinery for indefinite/generic participants, inanimate transitive subject kept as Agent, 'cold wind' left unfused as incidental description, the name cliff_path typed 'path' with no modifier genus, 'at night' as a bare day-part on Time, go_out kept as one phrasal symbol with no genus, and the change-of-state Patient. The response clause's own bare-plural universal is folded into the premise and the consequent Skolemized over both variables — a composition of the whenever and the two-universal patterns that the instruction set implies but never spells out."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000058",
+   "sentence": "Lanterns in shielded coves stay safe from cold winds.",
+   "parse": [
+    "(: shielded_cove_genus (Inheritance shielded_cove cove) (STV 1.0 0.99))",
+    "(: shielded_cove_mod (Inheritance shielded_cove shielded) (STV 1.0 0.99))",
+    "(: cold_wind_genus (Inheritance cold_wind wind) (STV 1.0 0.99))",
+    "(: cold_wind_mod (Inheritance cold_wind cold) (STV 1.0 0.99))",
+    "(: safe_from_cold_wind_genus (Inheritance safe_from_cold_wind safe) (STV 1.0 0.99))",
+    "(: safe_from_cold_wind_arg (From safe_from_cold_wind cold_wind) (STV 1.0 0.99))",
+    "(: lantern_safe_cond (ConditionalProperty lantern safe_from_cold_wind shielded_cove) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000058",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Continuation copular ('stay / remain ADJ') on a KIND-level generic - Still needs a reified state witness, and a kind-level ConditionalProperty has no eventuality to carry it, so the continuative in 'stay safe' has no licensed carrier and is lost.",
+     "Single-symbol slots receiving an adjectivally-modified bare-kind NP - the adjective+PP-complement fusion assumes a single-word kind complement ('sensitive to light') and ConditionalProperty's condition slot takes one symbol, while Compound concepts bars fusing a merely descriptive adjective+noun, so 'cold winds' and 'shielded coves' have no licensed non-fusing encoding here."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The fused property safe_from_cold_wind with genus (Inheritance safe_from_cold_wind safe) plus the surface-preposition argument atom (From ...) follows the 'moths are sensitive to light' pattern, and routing the locative restriction into ConditionalProperty's condition slot follows the 'rents are steep in the capital' rule with no bare Inheritance asserted. Modifier-genus exposure is right in both fused kinds, since 'shielded' and 'cold' are adjectives predicable of their referents."
+   },
+   "adjudication": null
+  }
+ ]
+}

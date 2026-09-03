@@ -1,0 +1,2 @@
+(: solo_count_genus (Inheritance solo_count count) (STV 1.0 0.99))
+(: apprentice_lantern_reset_rule (Implication (And (Member $x apprentice) (Member $y lantern) (Possession $y $x) (Member $e dim) (Patient $e $y)) (And (Member (sk_reset $x) reset) (Member (sk_solo_count $x) solo_count) (Possession (sk_solo_count $x) $x) (Patient (sk_reset $x) (sk_solo_count $x)) (During (sk_reset $x) $e))) (STV 1.0 0.9))

@@ -1,0 +1,3 @@
+(: night_moth_genus (Inheritance night_moth moth) (STV 1.0 0.99))
+(: night_moth_fly (Implication (Member $x night_moth) (And (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x) (Time (sk_fly $x) (sk_night $x)) (Member (sk_night $x) night) (Member (sk_night $x) cold))) (STV 0.1 0.9))
+(: night_moth_fly_q (QuantifierPhrase night_moth fly "rarely") (STV 1.0 0.99))

@@ -1,0 +1,2 @@
+(: sea_type (Member sk_sea_1 sea) (STV 1.0 0.99))
+(: wind_extinguish_rule (Implication (And (Member $w wind) (Member $w cold) (Member $b blow) (Agent $b $w) (Source $b sk_sea_1) (Time $b night) (Member $l lantern) (Member $l unprepared)) (And (Member (sk_extinguish $b $l) extinguish) (Agent (sk_extinguish $b $l) $w) (Patient (sk_extinguish $b $l) $l) (During (sk_extinguish $b $l) $b))) (STV 1.0 0.9))

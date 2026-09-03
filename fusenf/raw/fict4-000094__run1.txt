@@ -1,0 +1,5 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: stations_group (GroupOf sk_stations_1 lantern_station) (STV 1.0 0.99))
+(: station_genus (Inheritance lantern_station station) (STV 1.0 0.99))
+(: council_meet_reallocate (Implication (And (Member $e meet) (Agent $e sk_council_1)) (And (Member (sk_reallocate $e) reallocate) (Agent (sk_reallocate $e) sk_council_1) (Theme (sk_reallocate $e) mire_essence) (Among (sk_reallocate $e) sk_stations_1) (During (sk_reallocate $e) $e))) (STV 1.0 0.9))

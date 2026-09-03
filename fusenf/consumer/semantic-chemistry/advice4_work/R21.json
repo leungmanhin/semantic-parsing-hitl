@@ -1,0 +1,151 @@
+{
+ "id": "R21",
+ "rule": "Wintergloss repels nightmoths",
+ "texts": [
+  "Whenever a lantern burns wintergloss, the wintergloss repels nightmoths from that lantern.",
+  "Whenever a lantern burns wintergloss alongside mire-essence, every nightmoth avoids that lantern.",
+  "The Keepers rarely burn wintergloss.",
+  "The Keepers sometimes burn wintergloss at the Stilllight Lantern."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000072",
+   "sentence": "Whenever a lantern burns wintergloss, the wintergloss repels nightmoths from that lantern.",
+   "parse": [
+    "(: wg_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: nm_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: whenever_burn_repel (Implication (And (Member $x burn) (Agent $x $l) (Member $l lantern) (Patient $x wintergloss)) (And (Member (sk_repel $x) repel) (Agent (sk_repel $x) wintergloss) (Theme (sk_repel $x) night_moth) (Source (sk_repel $x) $l) (During (sk_repel $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000072",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Rule shape, roles (inanimate transitive subjects as Agent, burn/Patient, repel/Theme), the bare mass and bare kind fillers, the Source oblique and the anaphoric 'that lantern' binding back to the premise variable all follow the instruction set. The genus (Inheritance wintergloss gloss) rests on an IS-A test that cannot be checked for a coined fiction word."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000073",
+   "sentence": "Whenever a lantern burns wintergloss alongside mire-essence, every nightmoth avoids that lantern.",
+   "parse": [
+    "(: gloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lantern_avoid_rule (Implication (And (Member $e burn) (Agent $e $x) (Member $x lantern) (Patient $e wintergloss) (Alongside $e mire_essence) (Member $y nightmoth)) (And (Member (sk_avoid $e $y) avoid) (Agent (sk_avoid $e $y) $y) (Theme (sk_avoid $e $y) $x) (During (sk_avoid $e $y) $e))) (STV 1.0 0.9))",
+    "(: nightmoth_q (QuantifierPhrase nightmoth avoid \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000073",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-machinery applied exactly as specified: plain-variable premises, the universal \"every nightmoth\" as a second premise, a Skolem event depending on both universals, the During tie to the trigger, and one QuantifierPhrase for the only explicit determiner (none for \"whenever\" itself); \"alongside\" is the actual surface preposition, and the three genus atoms rest on the solid/hyphenated-spelling decomposition rule."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "fict4-000074",
+   "sentence": "The Keepers rarely burn wintergloss.",
+   "parse": [
+    "(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: wintergloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: keepers_rarely_burn (Implication (PartOf $x sk_keepers_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) wintergloss))) (STV 0.1 0.9))",
+    "(: keepers_burn_q (QuantifierPhrase keeper burn \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000074",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A capitalized PLURAL kind-word label with no name-hood signal (\"the Keepers\"): the \"capitalized common noun used as the referent's only label = common noun by default\" rule is explicitly declared singular-collective only, and the plural carve-out fires only when the label is \"referring as a name\" (\"the Wrens\") with no test given for that condition — so a definite capitalized plural role-word has no stated default between the GroupOf group route taken here and a Name-only individual."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Given the group reading, everything else follows: definite plural -> GroupOf witness, distributive predicate -> per-member rule over (PartOf $x <group>), \"rarely\" -> strength 0.1 plus a QuantifierPhrase companion naming the group's kind, burn -> Patient, bare mass object as a bare kind filler, and no group event for a habitual. (Inheritance wintergloss gloss) is the default solid-spelling decomposition but the IS-A test looks doubtful for what reads as a coined plant name, where the \"hot dog is not a dog\" clause would suppress the genus."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "fict4-000075",
+   "sentence": "The Keepers sometimes burn wintergloss at the Stilllight Lantern.",
+   "parse": [
+    "(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: wg_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: keepers_burn_rule (Implication (PartOf $x sk_keepers_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) wintergloss) (Location (sk_burn $x) stilllight_lantern))) (STV 0.5 0.9))",
+    "(: keepers_burn_q (QuantifierPhrase keeper burn \"sometimes\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000075",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "A distributive predicate on a definite/grouped plural is specified to keep the group event and ADD the per-member rule ('the dogs barked'; 'The kegs do not ferment' emits both), but only the per-member rule is emitted here, so no group-level burn event exists for counting / 'did any?' queries."
+     },
+     {
+      "statement": 3,
+      "issue": "(Inheritance wintergloss gloss) asserts an IS-A that most likely fails for a coined substance name (the hot-dog / foxglove case), where the instruction set directs that the head genus be suppressed."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a frequency adverb ('sometimes') on a DEFINITE-PLURAL habitual: the dial sets the strength of a rule or a flat generic, but nothing says whether the group-event half of the group-event + per-member-rule pair is still emitted, or which of the two atoms carries the reduced (0.5) strength"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The 0.5 strength for 'sometimes', the QuantifierPhrase companion naming the group's member kind, Patient for burn, the bare-kind wintergloss object, Location for 'at', and the one-opaque-symbol name with its 'Lantern' type atom all conform. Treating 'the Keepers' as a definite plural (GroupOf) rather than a capitalized-plural Name-only individual is the right call, since 'Keeper' reads as a role kind rather than a proper label."
+   },
+   "adjudication": {
+    "id": "fict4-000075",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The group-event + per-member-rule pair is specified for EPISODIC grouped plurals, where there is an occurrence to count ('the dogs barked', 'three students passed', 'both dogs barked'); a habitual with a frequency adverb rides the other channel, where the adverb sets 'the rule's (or, for a flat generic, the statement's) strength' - one form, not two - and no occurrence exists here for a group event to record."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "Core patterns lists a decomposed compound's genus among the always-licensed atoms and Compound concepts says the solid spelling 'is never a reason to skip decomposition'; the suppression carve-out fires only on a demonstrable IS-A failure ('a hot dog is not a dog'), and nothing in the sentence establishes that a wintergloss is not a gloss."
+     }
+    ],
+    "gaps_confirmed": [
+     "a frequency adverb on a definite-plural habitual: nothing states whether the group-event half survives beside the per-member rule, or which atom carries the reduced (0.5) strength"
+    ],
+    "new_gaps": [
+     "a COINED, world-specific compound whose head-noun IS-A cannot be checked against the text (wintergloss, and plant-name-like coinages generally): decomposition mandates the genus while the suppression carve-out presupposes knowing the IS-A fails, and no default is stated for the unverifiable case"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The 0.5 strength for 'sometimes', the QuantifierPhrase companion naming the group's member kind, Patient for burn, the bare-kind wintergloss object, Location for the event's 'at', and the one-symbol multiword name with its separate lantern type atom all conform."
+   }
+  }
+ ]
+}

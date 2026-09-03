@@ -1,0 +1,2 @@
+(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: whenever_shelter_lit (Implication (And (Member $cs cliff_spire) (Member $g2 shelter) (Agent $g2 $cs) (Member $cv cove) (Theme $g2 $cv)) (And (GroupOf (sk_lanterns $cv) lantern) (LocatedIn (sk_lanterns $cv) $cv) (Implication (PartOf $y (sk_lanterns $cv)) (And (Member (sk_lit $y) lit) (Experiencer (sk_lit $y) $y) (Still (sk_lit $y)) (Time (sk_lit $y) winter))))) (STV 1.0 0.9))

@@ -1,0 +1,88 @@
+{
+ "id": "R20",
+ "rule": "Spring tides occur near new moon and full moon",
+ "texts": [
+  "Spring tides occur at new moon or at full moon.",
+  "The Keepers time the salt-bloom harvest to the new-moon spring tide."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "fict4-000070",
+   "sentence": "Spring tides occur at new moon or at full moon.",
+   "parse": [
+    "(: tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: spring_tide_moon_rule (Implication (Member $x spring_tide) (Or (Time $x new_moon) (Time $x full_moon))) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000070",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an (Or ...) in a rule's CONCLUSION: the instruction set covers Or inside an asserted fact and mandates splitting a disjunctive rule PREMISE into two rules, but never addresses a disjunctive consequent (nor whether the narrow-scope rule applies inside an Implication's second argument)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The light-verb rule is applied correctly: no separate occur event, the Time terms sitting directly on the tide instance, the disjunction scoped narrowly over just the varying Time atoms, and inclusive Or kept since no exclusivity cue fires. The (STV 1.0 0.99) reads the claim as definitional rather than empirical (0.9 0.9) - defensible for \"spring tide\", but it is the one dial-sensitive choice in this parse."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "fict4-000071",
+   "sentence": "The Keepers time the salt-bloom harvest to the new-moon spring tide.",
+   "parse": [
+    "(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: harvest_genus (Inheritance salt_bloom_harvest harvest) (STV 1.0 0.99))",
+    "(: harvest_type (Member sk_harvest_1 salt_bloom_harvest) (STV 1.0 0.99))",
+    "(: tide_genus (Inheritance new_moon_spring_tide tide) (STV 1.0 0.99))",
+    "(: tide_type (Member sk_tide_1 new_moon_spring_tide) (STV 1.0 0.99))",
+    "(: e_time (Member sk_time_1 time) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_time_1 sk_keepers_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_time_1 sk_harvest_1) (STV 1.0 0.99))",
+    "(: e_to (To sk_time_1 sk_tide_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "fict4-000071",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"The Keepers\" is a definite capitalized PLURAL kind-word label, which the instruction set routes to a Name-only individual (one symbol plus a mandatory Name atom, explicitly no GroupOf and no per-member kind taken from the label word); the parse instead emits (GroupOf sk_keepers_1 keeper) and no Name atom, i.e. exactly the atom that clause bars plus the omission of the one it requires."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is well-grounded: \"time X to Y\" takes the prepositional-verb oblique (To) rather than a spatial Goal, the scheduled-occurrence object correctly takes Patient, both compounds get head genus only (noun modifiers unexposed), and the habitual present correctly carries no status atom."
+   },
+   "adjudication": {
+    "id": "fict4-000071",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Names and casing restricts the capitalized-common-noun (no Name) default to singular collectives and routes a capitalized plural kind-word label to a Name-only individual — 'one symbol, Name atom, no GroupOf and no per-member kind from the label word' — so the parse emits the barred type atom and omits the mandatory Name fact."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "The plural label clause fires on a label 'referring as a name', but that trigger is never operationalized: nothing separates a label whose word is not the members' kind ('the Wrens') from one where it genuinely is ('the Keepers'), and the clause's blanket bar on the kind atom then discards a kind the text arguably states with no slot to record it.",
+     "The prepositional-verb oblique licenses (To <event> <NP>) ('referred to the memo'), which is shape-identical to the purpose connective (To <main-event> <purpose-event>) that seeds the PurposeOf bridge — so a non-purposive To oblique like (To sk_time_1 sk_tide_1) can derive a purpose the sentence never states, with nothing in the instruction set distinguishing the two uses."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is a name-derived individual keepers carrying (Name keepers \"Keepers\") as the timing event's Agent, with no (GroupOf sk_keepers_1 keeper) and no keeper type atom taken from the label word.",
+    "notes": "Everything else is well-grounded: 'time X to Y' takes the preposition-named oblique rather than a spatial Goal, the scheduled-occurrence object correctly takes Patient under the cancel/postpone clause, both compounds get head genus only (noun modifiers unexposed), and the habitual present correctly carries no status atom."
+   }
+  }
+ ]
+}
