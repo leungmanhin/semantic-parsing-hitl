@@ -59,6 +59,10 @@ that is review-clean or adjudicated-accept — see `harness/coverage.py`.
    align_pairs (unit + §4 factor granularity;    │
      negative controls; promotability)           │
    MI / AE (patterns2 matrix; Qwen3-8B prior)    │
+   TWO ARMS per method (2026-09-04): faithful    │
+     = the PDF as written (parameters disclosed) │
+     | augmented = our additions as deltas;      │
+     `variant` tag on every signal / candidate   │
       │  signals + candidates                    │
       ▼                                          │
 [gauntlet  JUDGE.md  Sonnet panels ×3]           │

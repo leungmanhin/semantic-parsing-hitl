@@ -339,3 +339,53 @@ Item F's design decisions paid off in exactly the intended ways. (1) **The diffe
 
 ## §22 — G.5/G.6: grading and the fairness of the null (2026-08-25)
 Two owner decisions close the pre-flight. (1) The graded-lexical-bridge route is REGISTERED, and the shape matters: grading is confined to the BRIDGING species with the judge's ceiling becoming the implication's strength and a per-rule M2 adversarial-control gate — so the system can hold "wreck weakly entails destroy" without ever letting a weak rule merge a meaning-different pair silently. The demand-side evidence came from item F's blind writers (their natural rewordings — obtain/acquire, stroll/walk — are exactly the near-synonym mass a binary gauntlet discards), which is the right provenance direction: the QA layer told the rule layer what it needs, not vice versa. (2) The MRPC arm exists because of an interpretability argument, not a coverage one: PAWS is adversarial-by-construction (high overlap, low lexical variation — measured again in the build: PAWS ~87% identical-bag vs MRPC 0/125), so a convergence null on PAWS alone cannot distinguish "density hypothesis false" from "test surface blind to lexical rules". Adding one lexically-fair surface makes H's headline measurement falsifiable in both directions. Quora was rejected on type grounds (questions, not statements) — and flagged as future question-arm material, which is its own small lesson: pair sources have TYPES, and the M-metric a source feeds must match the parse species it exercises.
+
+## §23 — §4.3.2 with embeddings: what filler clustering can and cannot see (2026-09-03/04)
+
+- **Setup.** Paper §4.3.2 verbatim: embed the fillers of every predicate-slot, cluster, and read off slots
+  with indistinguishable filler distributions. Implemented over the pinned Qwen3-Embedding-8B cache
+  (3,399 texts for the 2,302-record H substrate; word and subtree texts; multi-label fillers with 1/m
+  mass; plural groups in real plural form), one average-linkage tree cut at cluster cosine 0.80 / 0.85 /
+  0.90 / 1.00 — 1.00 being one cluster per distinct text, i.e. the exact-label count method, so the two
+  methods are one similarity with a dial. Same comparison on both sides (role-conditional PPMI, ≥2 shared
+  informative units, cosine ≥ 0.5, slot n ≥ 3).
+- **Finding 1 — proper names cluster by culture, not by role.** The extra slot signals the embedding method
+  produces on natural text at 0.80–0.90 are almost all driven by name clusters: the model groups Italian,
+  Japanese, English and Wikipedia-production names together, and two unrelated verbs "share" a cluster
+  because their sentences came from the same sub-corpus (Tatoeba vs PAWS): buy~speak, give~hear,
+  suggest~write, portray~win. A person's name says nothing about the verb; a name cluster says something
+  about the corpus. Names are cheap to identify (the parser emits `(Name x "…")` for every proper noun,
+  738 of 8,586 filler occurrences, 60 % under Agent/Experiencer) and should weigh zero in both methods;
+  the finer option — replacing a name by its entity type via embedding anchors (person / place / language /
+  organisation) — keeps the place-type evidence for Location/Goal (≈ 90 occurrences) and drops identity.
+- **Finding 2 — on designed paraphrase data the two methods coincide.** Tier A scorecard: 20/26 expected
+  lemma pairs at every threshold, the same single control hit (begin~end through shared Time fillers, a
+  true role match that is not lemma equivalence); misses are structural (support floor, nominalization,
+  idiom). Where fillers repeat exactly, generalizing them adds nothing.
+- **Finding 3 — the synonym merges the model makes do not become slot signals at this scale.**
+  buy~purchase 0.92, begin~start 0.92, house~home 0.93 are all clustered, yet no slot pair for those verbs
+  shares object types at n ≥ 3 in 2.3k short sentences. The yield limit of §4.3.2 as lemma-equivalence
+  corroboration is the corpus, not the similarity.
+- **Finding 4 — two questions hide in §4.3.2, and they want different weightings.** (a) The paper's
+  question, *do two role labels select the same kind of filler?*, is a role-merge question; there the
+  generic types (person, thing) ARE the evidence and raw cluster distributions are the right instrument.
+  Pooled by head over the H substrate (cluster cosine 0.85, names removed) no pair is indistinguishable:
+  the closest are Agent~Experiencer 0.66 (both persons — the doctrine separates them by predicate type,
+  which filler distribution cannot see) and Theme~Patient 0.55; the preposition-named obliques are disjoint
+  from the named roles (Location~In 0.02, Goal~In 0.03, Instrument~With 0.00, Beneficiary~For 0.00) —
+  the prompt's "what the activity is about, not where" rule is followed in the data. (b) Our batch-1
+  extension, *slot similarity as corroboration of lemma equivalence* (buy≈purchase), needs discriminative
+  fillers, which is what role-conditional PPMI buys (raw counts gave 24 of 27 signals on `<untyped>` /
+  `person`). PPMI here is a slot–filler association weight, not the feature–feature mutual information of
+  §4.3.3 (which detects subtrees that always co-occur in a sentence → pack candidates); same formula,
+  different random variables, disjoint outputs.
+- **Finding 5 — where the embedding view earns its place: role wobble within a class.** For the #23
+  Theme/Patient flip classes, the Theme-vs-Patient cluster cosine separates true wobble (do 0.85
+  thing/things/stuff; arrange 1.00 sessions; influence 0.71 religion/church/faith; celebrate 0.71; cover
+  0.58) from disjoint filler types (get, leave, take, make, start, become … = 0.00), i.e. sense or
+  construction differences of light verbs — prompt-side evidence, not consolidation candidates. That
+  discriminator belongs on the role-canonicalization card.
+- **Also.** The Name-only doctrine makes 26 % of entity skolems class-less; 490 of the 688 were plural
+  groups typed only on `GroupOf`, recovered by reading the kind there. The canonicalizer's one-label-per-
+  skolem (alphabetical-first among Member links: "pockets of blue sky" → blue) affected 16 % of entity
+  fillers; multi-label fractional mass replaces it in the valuation export.

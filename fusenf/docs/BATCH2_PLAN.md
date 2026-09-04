@@ -42,6 +42,56 @@ used to discard become deletion candidates (`rhs: []`; the rewriter already dele
 `align_pairs.classify` labels them); the conditional-MI refinement (§4.3.3 read asymmetrically,
 P(modifier | frame) ≈ 1) is an H-run miner task. H reports control separation PER fuzzy rule.
 
+**AMENDMENT 2026-09-04 (owner — FAITHFUL-FIRST: two arms for H's mining and for the batch-2
+report):** batch 2 reports each §4.3 method **as the source PDF describes it** before anything
+of ours is added. Rationale (owner): the additions can only be evaluated against a visible
+baseline; a weak faithful result is a finding that motivates an addition, not a failure to
+hide; and it keeps the doc's methods separate from our instruments (which are ours to revise).
+Batch 1 stands as the exploratory phase and is not re-run.
+
+*Vocabulary.* **Faithful core** = the method's logic as written in §4.3.x. **Implementation
+parameters** = choices the doc leaves open that any implementation must make — disclosed,
+never counted as additions: embedding model and cluster threshold, clustering algorithm,
+minimum support, MI cut-offs, SVD rank, alignment / matching algorithm, paraphrase-pair
+source. **Additions** = anything that changes a method's logic or filters its input:
+constant-lifting shape stratum and nisurp ranking (§4.3.1); count-based and PPMI-weighted
+slot comparison, lemma-equivalence corroboration, name zeroing, D.3 routing, the flip
+discriminator (§4.3.2); the Qwen3 prior and conditional MI (§4.3.3 / §4.3.5); factoring,
+promotability and control-based pruning (§4.3.4). **Evaluation harness** = ours, shared by
+both arms and stated as such: the Tier A answer key and negative controls, `JUDGE.md` panels,
+gauntlet routing and confidence, M1–M5, the coverage dashboard, query-side normalization.
+
+*Per method (faithful core → additions).* §4.3.1 frequent subtrees at a minimum support →
+meta-node proposals | shape stratum, nisurp, cross / kind-level modes. §4.3.2 embed fillers,
+cluster, slots with indistinguishable distributions merge (role level and per class, raw
+cluster distributions, names included) | PPMI, lemma corroboration (annotation only), name
+zeroing, D.3, flip discriminator, oblique heads, cross-both bucket. §4.3.3 pairwise MI over
+the binary subtree × sentence matrix, high-MI moderate-support pairs → one feature |
+conditional MI. §4.3.4 align paraphrase-pair graphs, record consistently mapping subtrees /
+roles | factoring, promotability, controls as pruning. §4.3.5 autoencoder over feature
+vectors, interchangeability from tied encoder weights (linear = truncated SVD) | Qwen3 prior.
+§4.4 rewrites (slot merge, modifier prune, subtree collapse, role rename, iteration) are the
+consolidation kinds the rewriter and `normalize_query.py` implement — a serving stage, not a
+mining arm.
+
+*Mechanics.* Every signal and candidate from H onward carries `variant: faithful | augmented`
+and, when augmented, `additions: [...]`; `build_candidates.py` propagates it, the gauntlet and
+`combine_rules.py` report both arms, the metric tables carry faithful / augmented columns with
+the delta. Each method gets one report in `mining/out_h/` with a **faithful** section first and
+an **additions (deltas)** section second; `H_MANIFEST.json` records both variants' parameters.
+Order: §4.3.1 faithful view from the existing run → §4.3.2 faithful report from the
+2026-09-03 embedding runs, then its additions → §4.3.3 + §4.3.5 faithful (prior off) → their
+additions → §4.3.4 faithful → its additions → candidates (both arms) → shared gauntlet →
+rewrites + `normalize_query.py` → M1–M5 (both arms) → `BATCH2_REPORT.md`.
+
+*Report skeleton (`BATCH2_REPORT.md`).* Part 1 — faithful FUSE-NF: per method the doc's
+description, our parameters, outputs, validated rules, metrics. Part 2 — additions: each with
+what / why and its measured delta on the same substrate and key. Part 3 — beyond §4.3: the
+drafted extras (NLI directional entailment, back-translation pivot, active learning on
+inter-method disagreement). Part 4 — negative results and the batch-3 agenda. The three
+§4.3.2 decisions that were pending on 2026-09-04 (name zeroing, weighting split, dial range)
+become Part 2 ablations.
+
 **Amendment 2026-08-21 (owner decision, supersedes "B is the LAST prompt.txt change"):**
 a targeted **fix-pack B2** lands before any campaign parsing — [G] NEW Perception-reports
 section (veridical complement asserted + Stimulus link; the probe48 coverage gap) + three
@@ -190,7 +240,9 @@ ledger regenerated:
   discipline; validation + sampled review live from record one.
 - **Mine**: `frequent_patterns2` + role-fillers-on-valuations + alignment
   (singleton+judge and factoring modes) + MI/AE with the embedding prior — full portfolio
-  on the ~3.5k-record substrate; 77-group conjunction candidates included.
+  on the ~3.5k-record substrate; 77-group conjunction candidates included. **2026-09-04:
+  every method runs in TWO ARMS — faithful (the doc as written) first, then augmented (our
+  additions as measured deltas); see the AMENDMENT of that date.**
 - **Gauntlet**: first standing use of `JUDGE.md`; graded route per G.5; ledger regenerated
   per round.
 - **Measure — the batch-1 open verdicts, re-tested**: held-out M2 criterion 1 with a
