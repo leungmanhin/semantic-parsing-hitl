@@ -87,13 +87,16 @@
      "ppmi": {
       "cross-event": 2,
       "cross-role": 3,
+      "cross-both": 2,
       "cross-entity-class": 1
      },
      "raw_criterion_would_give": {
       "cross-event": 6,
       "cross-role": 1,
+      "cross-both": 3,
       "cross-entity-class": 2,
-      "cross-head": 1
+      "cross-head": 1,
+      "cross-entity-both": 0
      }
     },
     "d3": {
@@ -124,7 +127,110 @@
    },
    "entity_fillers": "filler_kind in {entity, constant} (skolem instance or named constant) feed the #23 audit; event / function / literal kinds do not",
    "typing": "multi-label fillers with fractional mass w (1/m per label); GroupOf kind types plural groups; entity audit over entity+constant kinds",
-   "rerun": "2026-09-03 after the typing fix (owner: both the exact-label and the embedding method need it)"
+   "rerun": "2026-09-03 after the typing fix (owner: both the exact-label and the embedding method need it)",
+   "buckets": "cross-event (same role, different class) / cross-role (same class) / cross-both (different class AND role = converse family; added 2026-09-03) + entity analogues",
+   "comparison_protocol": {
+    "status": "DONE 2026-09-03 (owner review pending)",
+    "exact_label": "this run",
+    "embedding": "mining/role_fillers2_embed.py over mining/embeddings.py cache (Qwen3-Embedding-8B, union of word+subtree texts, 3399)",
+    "item_E_substrate": {
+     "dir": "mining/out_ecmp",
+     "inputs": "tierA + tierC_p1-p3 canon (762 records)",
+     "key": "mining/out_ecmp/tierA_slot_key.json (26 expected lemma pairs, 17 lexical control pairs, 14 swap-control classes)",
+     "exact_label_ppmi": {
+      "recall": "20/26 = 0.769",
+      "lexical_control_hits": [
+       "begin|end (via shared Time fillers)"
+      ],
+      "swap_control_hits": 7,
+      "missed": [
+       "arrival|arrive",
+       "die|kick_the_bucket",
+       "discover|find_out",
+       "error|find_out",
+       "fix|repair (n=2 < floor)",
+       "mend|repair (n=2 < floor)"
+      ]
+     },
+     "exact_label_raw": {
+      "recall": "19/26 = 0.731",
+      "control_hits": 5
+     }
+    },
+    "embedding_cache": {
+     "H": {
+      "dir": "mining/out_h/embeddings",
+      "texts": 3399,
+      "matrix_sha16": "0b65e1cd789479bc",
+      "encode_s": 2202,
+      "note": "run #1 killed at 2600/3399 by the background-task stop (no checkpoint then); run #2 detached + per-chunk checkpoints, exit 0"
+     },
+     "item_E": {
+      "dir": "mining/out_ecmp/embeddings",
+      "texts": 888,
+      "reused_from_H": 638,
+      "encoded": 250,
+      "matrix_sha16": "5e0f1ad83ed387e5",
+      "encode_s": 176
+     }
+    },
+    "embed_method": "mining/role_fillers2_embed.py: one average-linkage tree (cosine) cut at cluster-cos 0.80/0.85/0.90/1.0; word and subtree texts; same compare_slots (PPMI, >=2 shared informative units, cos>=0.5, n>=3)",
+    "results": {
+     "H_signals": {
+      "exact_label": 8,
+      "embed_word": {
+       "0.80": 15,
+       "0.85": 13,
+       "0.90": 8,
+       "1.00": 6
+      },
+      "embed_subtree": {
+       "0.80": 14,
+       "0.85": 13,
+       "0.90": 8,
+       "1.00": 5
+      },
+      "reading": "extra signals at 0.80-0.90 are proper-name culture clusters (Italian/Japanese/English name groups shared across unrelated verbs) + generic person/people clusters; the model's true synonym merges (buy~purchase 0.92, begin~start 0.92, house~home 0.93) yield no slot signal because those verbs share no object types at n>=3 in 2.3k sentences; 0.80 admits a junk function-word cluster (use, well, do, on, straight, fine, there)"
+     },
+     "item_E_scorecard": {
+      "exact_label": "20/26 recall, control hit begin|end, 7 swap hits",
+      "embed_all_thresholds": "20/26 (19/26 at 0.85: answer|give drops), same control hit, 8 swap hits",
+      "reading": "identical on designed paraphrase data (fillers repeat exactly); misses are structural: n=2 floor (fix, mend), nominalization (arrival), idiom (kick_the_bucket), find_out"
+     },
+     "flips_in_cluster_space": {
+      "indistinguishable (Theme~Patient cluster cosine >=0.58)": [
+       "do (thing/things/stuff) 0.85",
+       "arrange (session/sessions) 1.00",
+       "celebrate 0.71",
+       "influence (religion/church/faith) 0.71",
+       "cover (top/peak) 0.58"
+      ],
+      "disjoint (cosine 0.00)": [
+       "get",
+       "leave",
+       "take",
+       "make",
+       "start",
+       "become",
+       "cause",
+       "conduct",
+       "connect",
+       "direct",
+       "hold",
+       "spend",
+       "…"
+      ],
+      "reading": "the embedding view discriminates true role wobble (same filler type under both roles) from sense/construction differences (light verbs selecting different object types per role) — attach cluster_cosine to role-canonicalization candidates"
+     },
+     "outputs": [
+      "mining/out_h/rolefillers2_compare.md",
+      "mining/out_h/rolefiller2_signals_embed_<mode>_<cos>.jsonl",
+      "mining/out_h/rolefiller2_clusters_<mode>_<cos>.jsonl",
+      "mining/out_ecmp/rolefillers2_compare.md (with Tier A scorecard)",
+      "mining/out_ecmp/{slots,slots_entity,rolefiller2_signals,flip_eligible,flip_diagnostics}.jsonl (exact mode, item-E substrate)"
+     ]
+    }
+   }
   }
  }
 }

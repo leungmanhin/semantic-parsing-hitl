@@ -1,7 +1,7 @@
 # §4.3.2 role fillers 2 (valuation export) — H, full canonical substrate
 
 - input: valuations_slots.jsonl; slots: 1729 event-role (148 under open preposition-named oblique heads), 2343 other (entity centers + event centers under non-role heads: Member 764, To 32, Result 17, Before 14, During 11, But 10)
-- signals (ppmi weighting): 2 cross-event + 3 cross-role (event) + 1 cross-entity-class + 0 cross-head (entity); cosine>=0.5, >=2 shared informative fillers, slot n>=3. The raw batch-1 criterion would give 6 + 1 (event) + 2 + 1 (entity)
+- signals (ppmi weighting): 2 cross-event + 3 cross-role + 2 cross-both (event) + 1 cross-entity-class + 0 cross-head + 0 cross-entity-both (entity); cosine>=0.5, >=2 shared informative fillers, slot n>=3. The raw batch-1 criterion would give 6 + 1 + 3 (event) + 2 + 1 + 0 (entity)
 - D.3 doctrine table: 59 prompt-named verbs (11 since 2ed18b93, 48 since f6448eac), pinned prompt 2ed18b93
 - D.3 routing: 27 determined classes present in the substrate; 0 forbidden-role witnesses (any filler kind) + 0 entity flip witnesses + 0 cross-role signals on prompt-DETERMINED classes -> flip_diagnostics.jsonl (parse-error path, NOT candidates)
 
@@ -19,6 +19,13 @@
 | 0.67 | welcome.Agent (3) | welcome.Theme (3) | industrialization, whig |
 | 0.58 | portray.Agent (5) | portray.Theme (5) | james_woods, wilson |
 | 0.50 | find.Agent (4) | find.Theme (10) | couper, pietro |
+
+## Cross-both (different event class AND different role — the converse family)
+
+| cosine | slot A | slot B | shared fillers |
+|---|---|---|---|
+| 1.00 | die.Patient (4) | sleep.Agent (3) | family, person |
+| 0.54 | portray.Theme (5) | win.Agent (7) | james_woods, wilson |
 
 ## Entity-conditioned slots — cross-head / cross-class agreement
 

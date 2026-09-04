@@ -144,6 +144,92 @@ def masses(ctr):
     return {k: mass(v) for k, v in ctr.items()}
 
 
+def make_head_class(vocab_path):
+    """-> head_class(kind, head): 'role' (vocabulary class role) | 'oblique' (a head the
+    vocabulary does not list = the open preposition-named family) | None (other heads)"""
+    ops = json.load(open(vocab_path, encoding="utf-8"))["operators"]
+    roles = {n for n, e in ops.items() if e.get("class") == "role"}
+
+    def head_class(kind, head):
+        if kind != "event":
+            return None
+        if head in roles:
+            return "role"
+        if head not in ops:
+            return "oblique"
+        return None
+    return head_class
+
+
+def compare_slots(slots, kind_sel, role_filter, head_class, weighting, min_n, cos_thr, examples_for):
+    """Slot-merge comparisons within one center kind:
+    (same_role, same_center, cross_both, n_raw) — cross_both = different class AND
+    different role (the paper's general slot merge; converses: buy.Agent ~ sell.Recipient).
+
+    ``slots``: {(kind, class, head): Counter(unit -> mass)}; a unit is a filler label
+    (exact mode) or a cluster id (embed mode); wildcard units weigh 0. Weighting
+    ``ppmi`` = role-conditional PPMI (background = the same head over every class of
+    the bucket) with the >=2-shared test over informative units; ``raw`` = batch-1
+    counts verbatim. ``n_raw`` = the signal counts the raw criterion would give."""
+    def in_bucket(k):
+        return k[0] == kind_sel and (not role_filter or head_class(k[0], k[2]) is not None)
+
+    big = {k: v for k, v in slots.items() if in_bucket(k) and sum(v.values()) >= min_n}
+    bg = collections.defaultdict(collections.Counter)
+    for k, v in slots.items():
+        if in_bucket(k):
+            bg[k[2]].update(v)
+    bg_total = {h: sum(c.values()) for h, c in bg.items()}
+
+    def vec(k):
+        ctr = big[k]
+        if weighting == "raw":
+            return dict(ctr)
+        n = sum(ctr.values())
+        out = {}
+        for f, c in ctr.items():
+            if is_wild(f):
+                continue
+            w = math.log((c / n) / (bg[k[2]][f] / bg_total[k[2]]))
+            if w > 0:
+                out[f] = w
+        return out
+
+    vecs = {k: vec(k) for k in big}
+    keys = sorted(big)
+    same_role, same_center, cross_both = [], [], []
+    n_raw = [0, 0, 0]
+    for i, ka in enumerate(keys):
+        for kb in keys[i + 1:]:
+            if ka[2] == kb[2] and ka[1] != kb[1]:
+                bucket, bi = same_role, 0
+            elif ka[1] == kb[1] and ka[2] != kb[2]:
+                bucket, bi = same_center, 1
+            elif ka[1] != kb[1] and ka[2] != kb[2]:
+                bucket, bi = cross_both, 2
+            else:
+                continue
+            shared_raw = set(big[ka]) & set(big[kb])
+            cos_raw = cosine(big[ka], big[kb])
+            if cos_raw >= cos_thr and len(shared_raw) >= 2:
+                n_raw[bi] += 1
+            shared = set(vecs[ka]) & set(vecs[kb])   # informative on both sides
+            cos = cosine(vecs[ka], vecs[kb])
+            if cos >= cos_thr and len(shared) >= 2:
+                bucket.append({
+                    "slot_a": f"{ka[1]}.{ka[2]}", "slot_b": f"{kb[1]}.{kb[2]}",
+                    "class_a": ka[1], "class_b": kb[1], "role_a": ka[2], "role_b": kb[2],
+                    "cosine": round(cos, 3), "cosine_raw": round(cos_raw, 3),
+                    "shared_fillers": sorted(shared)[:8],
+                    "n_a": mass(sum(big[ka].values())), "n_b": mass(sum(big[kb].values())),
+                    "examples_a": examples_for(ka, shared),
+                    "examples_b": examples_for(kb, shared, avoid=examples_for(ka, shared)),
+                })
+    for bucket in (same_role, same_center, cross_both):
+        bucket.sort(key=lambda r: (-r["cosine"], r["slot_a"], r["slot_b"]))
+    return same_role, same_center, cross_both, n_raw
+
+
 def render_slot(kind, cls, head, filler=None, fkind=None):
     """One slot (or one of its valuations) as a conjunctive query: center class clause +
     head clause (+ the filler's class clause). Filler variable letter = the filler's own
@@ -209,7 +295,7 @@ def write_metta(path, args, slots_in, pinned, n_determined, val_rows, slots, slo
                  f" >= 2 shared informative fillers, slot n >= {args.min_n}) ====================\n")
         for sub, rows in signal_sections:
             for r in rows:
-                kind = "entity" if sub in ("cross-entity-class", "cross-head") else "event"
+                kind = "entity" if sub.startswith("cross-entity") else "event"
                 fh.write(f"\n;; {sub}  {r['slot_a']} ~ {r['slot_b']}  cosine {r['cosine']:.2f} (raw {r['cosine_raw']:.2f})"
                          f"  support {min(r['n_a'], r['n_b'])}  shared: {' '.join(r['shared_fillers'][:6])}\n"
                          f";;   A e.g. {' '.join(r['examples_a'])}   B e.g. {' '.join(r['examples_b'])}\n")
@@ -258,21 +344,9 @@ def main():
     if args.metta_out is None:
         args.metta_out = os.path.join(args.out_dir, "rolefillers2.metta")
 
-    ops = json.load(open(args.vocab, encoding="utf-8"))["operators"]
-    roles = {n for n, e in ops.items() if e.get("class") == "role"}
     table, determined = load_doctrine(args.doctrine)
     pinned = table.get("_pinned_prompt", "?")
-
-    def head_class(kind, head):
-        """event-role bucket membership: closed-class role, or an open preposition-named
-        oblique (a head the vocabulary does not list); None = other heads."""
-        if kind != "event":
-            return None
-        if head in roles:
-            return "role"
-        if head not in ops:
-            return "oblique"
-        return None
+    head_class = make_head_class(args.vocab)
 
     slots = collections.defaultdict(collections.Counter)   # (kind, class, head) -> fillers
     slots_ent = collections.defaultdict(collections.Counter)   # entity-kind fillers only
@@ -341,74 +415,11 @@ def main():
                 if kind == "event":
                     other_event_heads[head] += 1
 
-    # ---- slot-merge comparisons (per center kind) --------------------------
-    def in_bucket(k, kind_sel, role_filter):
-        return k[0] == kind_sel and (not role_filter or head_class(k[0], k[2]) is not None)
-
-    def compare(kind_sel, role_filter):
-        """-> (same_role, same_center) under the selected weighting, plus the signal
-        counts the raw batch-1 criterion would give (for the report)."""
-        big = {k: v for k, v in slots.items()
-               if in_bucket(k, kind_sel, role_filter) and sum(v.values()) >= args.min_n}
-        # role-conditional background: P(f | head) over every slot of this bucket with
-        # the same head (all center classes, no support floor)
-        bg = collections.defaultdict(collections.Counter)
-        for k, v in slots.items():
-            if in_bucket(k, kind_sel, role_filter):
-                bg[k[2]].update(v)
-        bg_total = {h: sum(c.values()) for h, c in bg.items()}
-
-        def vec(k):
-            ctr = big[k]
-            if args.weighting == "raw":
-                return dict(ctr)
-            n = sum(ctr.values())
-            out = {}
-            for f, c in ctr.items():
-                if is_wild(f):
-                    continue
-                p_bg = bg[k[2]][f] / bg_total[k[2]]
-                w = math.log((c / n) / p_bg)
-                if w > 0:
-                    out[f] = w
-            return out
-
-        vecs = {k: vec(k) for k in big}
-        keys = sorted(big)
-        same_role, same_center = [], []
-        n_raw = [0, 0]
-        for i, ka in enumerate(keys):
-            for kb in keys[i + 1:]:
-                if ka[2] == kb[2] and ka[1] != kb[1]:
-                    bucket, bi = same_role, 0
-                elif ka[1] == kb[1] and ka[2] != kb[2]:
-                    bucket, bi = same_center, 1
-                else:
-                    continue
-                shared_raw = set(big[ka]) & set(big[kb])
-                cos_raw = cosine(big[ka], big[kb])
-                if cos_raw >= args.cos and len(shared_raw) >= 2:
-                    n_raw[bi] += 1
-                shared = set(vecs[ka]) & set(vecs[kb])   # informative on both sides
-                cos = cosine(vecs[ka], vecs[kb])
-                if cos >= args.cos and len(shared) >= 2:
-                    bucket.append({
-                        "slot_a": f"{ka[1]}.{ka[2]}", "slot_b": f"{kb[1]}.{kb[2]}",
-                        "class_a": ka[1], "class_b": kb[1],
-                        "role_a": ka[2], "role_b": kb[2],
-                        "cosine": round(cos, 3), "cosine_raw": round(cos_raw, 3),
-                        "shared_fillers": sorted(shared)[:8],
-                        "n_a": mass(sum(big[ka].values())), "n_b": mass(sum(big[kb].values())),
-                        "examples_a": examples_for(ka, shared),
-                        "examples_b": examples_for(kb, shared,
-                                                   avoid=examples_for(ka, shared)),
-                    })
-        for bucket in (same_role, same_center):
-            bucket.sort(key=lambda r: (-r["cosine"], r["slot_a"], r["slot_b"]))
-        return same_role, same_center, n_raw
-
-    ev_same_role, ev_same_event, ev_raw = compare("event", True)
-    en_same_role, en_same_center, en_raw = compare("entity", False)
+    # ---- slot-merge comparisons (per center kind): module-level compare_slots ----
+    ev_same_role, ev_same_event, ev_cross_both, ev_raw = compare_slots(
+        slots, "event", True, head_class, args.weighting, args.min_n, args.cos, examples_for)
+    en_same_role, en_same_center, en_cross_both, en_raw = compare_slots(
+        slots, "entity", False, head_class, args.weighting, args.min_n, args.cos, examples_for)
 
     # D.3 split on the cross-role bucket: a determined Theme/Patient class quarantines
     # Theme/Patient wobble; a determined Experiencer/Stimulus class quarantines any
@@ -433,8 +444,10 @@ def main():
     with open(sig_path, "w", encoding="utf-8") as fh:
         for sub, kind, rows_ in (("cross-event", "event", ev_same_role),
                                  ("cross-role", "event", ev_same_event),
+                                 ("cross-both", "event", ev_cross_both),
                                  ("cross-entity-class", "entity", en_same_role),
-                                 ("cross-head", "entity", en_same_center)):
+                                 ("cross-head", "entity", en_same_center),
+                                 ("cross-entity-both", "entity", en_cross_both)):
             for r in rows_:
                 fh.write(json.dumps({
                     "candidate": {"slot_a": r["slot_a"], "slot_b": r["slot_b"],
@@ -447,7 +460,8 @@ def main():
                     "examples_a": r["examples_a"], "examples_b": r["examples_b"],
                     "method": "role-fillers2-4.3.2",
                 }, ensure_ascii=False, sort_keys=True) + "\n")
-    n_sig = len(ev_same_role) + len(ev_same_event) + len(en_same_role) + len(en_same_center)
+    n_sig = (len(ev_same_role) + len(ev_same_event) + len(ev_cross_both)
+             + len(en_same_role) + len(en_same_center) + len(en_cross_both))
 
     # ---- #23 audit + D.3 flip routing --------------------------------------
     theme = collections.Counter()
@@ -575,7 +589,7 @@ def main():
     if args.metta_out:
         write_metta(args.metta_out, args, os.path.basename(args.slots_in), pinned, len(determined),
                     val_rows, slots, slot_docs, slots_evt, head_class,
-                    [("cross-event", ev_same_role), ("cross-role", ev_same_event),
+                    [("cross-event", ev_same_role), ("cross-role", ev_same_event), ("cross-both", ev_cross_both),
                      ("cross-entity-class", en_same_role), ("cross-head", en_same_center)],
                     flips, flips_diag + determined_diag + d3_signals_diag)
 
@@ -588,10 +602,11 @@ def main():
              f"(entity centers + event centers under non-role heads: "
              f"{', '.join(f'{h} {c}' for h, c in other_event_heads.most_common(6))})")
     L.append(f"- signals ({args.weighting} weighting): {len(ev_same_role)} cross-event + "
-             f"{len(ev_same_event)} cross-role (event) + {len(en_same_role)} cross-entity-class + "
-             f"{len(en_same_center)} cross-head (entity); cosine>={args.cos}, >=2 shared "
+             f"{len(ev_same_event)} cross-role + {len(ev_cross_both)} cross-both (event) + "
+             f"{len(en_same_role)} cross-entity-class + {len(en_same_center)} cross-head + "
+             f"{len(en_cross_both)} cross-entity-both (entity); cosine>={args.cos}, >=2 shared "
              f"informative fillers, slot n>={args.min_n}. The raw batch-1 criterion would give "
-             f"{ev_raw[0]} + {ev_raw[1]} (event) + {en_raw[0]} + {en_raw[1]} (entity)")
+             f"{ev_raw[0]} + {ev_raw[1]} + {ev_raw[2]} (event) + {en_raw[0]} + {en_raw[1]} + {en_raw[2]} (entity)")
     L.append(f"- D.3 doctrine table: {len(determined)} prompt-named verbs "
              f"({', '.join(f'{c} since {s}' for s, c in sorted(n_since.items()))}), "
              f"pinned prompt {pinned}")
@@ -609,6 +624,11 @@ def main():
     L.append("\n## Cross-role agreement within one event class (candidate-eligible only)\n")
     L.append("| cosine | slot A | slot B | shared fillers |\n|---|---|---|---|")
     for r in ev_same_event[:20]:
+        L.append(f"| {r['cosine']:.2f} | {r['slot_a']} ({r['n_a']}) | {r['slot_b']} ({r['n_b']}) "
+                 f"| {', '.join(r['shared_fillers'][:5])} |")
+    L.append("\n## Cross-both (different event class AND different role — the converse family)\n")
+    L.append("| cosine | slot A | slot B | shared fillers |\n|---|---|---|---|")
+    for r in ev_cross_both[:20]:
         L.append(f"| {r['cosine']:.2f} | {r['slot_a']} ({r['n_a']}) | {r['slot_b']} ({r['n_b']}) "
                  f"| {', '.join(r['shared_fillers'][:5])} |")
     L.append("\n## Entity-conditioned slots — cross-head / cross-class agreement\n")

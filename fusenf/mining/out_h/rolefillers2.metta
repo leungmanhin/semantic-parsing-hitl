@@ -14637,7 +14637,7 @@
 ;; ---- slot zoo.Member  [entity center; head other]  n 1  docs<= 1  distinct 1  eventive 0
 (Member $x0 zoo)    ;; n 1 docs 1  e.g. tierB-001660
 
-;; ==================== slot-merge signals (6; ppmi cosine >= 0.5, >= 2 shared informative fillers, slot n >= 3) ====================
+;; ==================== slot-merge signals (8; ppmi cosine >= 0.5, >= 2 shared informative fillers, slot n >= 3) ====================
 
 ;; cross-event  accompany.Agent ~ appear.Agent  cosine 0.60 (raw 0.76)  support 4  shared: person sister
 ;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000050 tierC-000259
@@ -14663,6 +14663,16 @@
 ;;   A e.g. tierC-000243 tierC-000244   B e.g. tierB-000706 tierB-000579
 (And (Member $e0 find) (Agent $e0 $x1))
 (And (Member $e0 find) (Theme $e0 $x1))
+
+;; cross-both  die.Patient ~ sleep.Agent  cosine 1.00 (raw 0.99)  support 3  shared: family person
+;;   A e.g. tierB-000838 tierB-001967   B e.g. tierB-001302 tierC-000041
+(And (Member $e0 die) (Patient $e0 $x1))
+(And (Member $e0 sleep) (Agent $e0 $x1))
+
+;; cross-both  portray.Theme ~ win.Agent  cosine 0.54 (raw 0.60)  support 5  shared: james_woods wilson
+;;   A e.g. tierC-000277 tierC-000278   B e.g. tierC-000301 tierC-000302
+(And (Member $e0 portray) (Theme $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
 
 ;; cross-entity-class  destined.Member ~ film.Member  cosine 0.76 (raw 0.70)  support 3  shared: film syrian_film
 ;;   A e.g. tierC-000009   B e.g. tierB-000505 tierB-001017
