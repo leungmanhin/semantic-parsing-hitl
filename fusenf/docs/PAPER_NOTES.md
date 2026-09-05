@@ -385,6 +385,13 @@ Two owner decisions close the pre-flight. (1) The graded-lexical-bridge route is
   0.58) from disjoint filler types (get, leave, take, make, start, become … = 0.00), i.e. sense or
   construction differences of light verbs — prompt-side evidence, not consolidation candidates. That
   discriminator belongs on the role-canonicalization card.
+- **Gate (2026-09-05).** "Indistinguishable distributions" is read literally in the faithful arm: Jensen-
+  Shannon divergence ≤ 0.3 between the two slots' raw cluster distributions (≥ 2 shared clusters), JSD ≤ 0.4
+  as sensitivity, cosine ≥ 0.5 kept as the reference gate. JSD is strictly more conservative on both
+  substrates (drops, never adds): H word signals 3 / 3 / 2 / 2 / 2 across the dial vs 28 / 18 / 14 / 13 / 12
+  under cosine; Tier A recall 18 / 26 vs 19 / 26. The one control pair begin ~ end survives every gate —
+  begin.Time and end.Time really are indistinguishable distributions, the antonym control being exactly
+  where indistinguishable fillers do not mean the same thing.
 - **Also.** The Name-only doctrine makes 26 % of entity skolems class-less; 490 of the 688 were plural
   groups typed only on `GroupOf`, recovered by reading the kind there. The canonicalizer's one-label-per-
   skolem (alphabetical-first among Member links: "pockets of blue sky" → blue) affected 16 % of entity

@@ -230,7 +230,177 @@
       "mining/out_ecmp/{slots,slots_entity,rolefiller2_signals,flip_eligible,flip_diagnostics}.jsonl (exact mode, item-E substrate)"
      ]
     }
-   }
+   },
+   "variants": {
+    "faithful": {
+     "script": "mining/role_fillers2_embed.py --arm faithful",
+     "date": "2026-09-04",
+     "parameters": {
+      "slots": "every argument head on an event center (roles, obliques, other heads) and on an entity center (LocatedIn, Possession, PartOf, …); class links Member/Inheritance/GroupOf/Name are not slots",
+      "fillers": "all embeddable fillers (labels, names, constants); untyped/num/str/term excluded",
+      "texts": "word (1/m per label) and subtree",
+      "embeddings": "Qwen3-Embedding-8B bf16 normalized (out_h/embeddings, sha 0b65e1cd)",
+      "clustering": "agglomerative hierarchical, average linkage (UPGMA) on cosine distance, one tree (scipy linkage/fcluster) cut at cluster cosine 0.80/0.85/0.90/0.95/1.00 (1.00 = one cluster per distinct text)",
+      "distribution": "raw mass over clusters, no weighting",
+      "floors": "slot n>=3, pooled head n>=20",
+      "indistinguishable": "DEFAULT (owner 2026-09-05): Jensen-Shannon divergence <= 0.3 between the two slots' raw cluster distributions, >= 2 shared clusters; JSD <= 0.4 sensitivity column; cosine >= 0.5 kept as the reference gate (outputs suffixed _cosine)"
+     },
+     "outputs": [
+      "mining/out_h/rolefillers2_faithful.md",
+      "mining/out_h/rolefillers2_faithful_notes.md",
+      "mining/out_h/rolefillers2_faithful.metta (rendering only; 22,052 lines)",
+      "mining/out_h/rolefiller2_signals_faithful_<mode>_<cos>.jsonl",
+      "mining/out_h/rolefiller2_slotdist_faithful_<mode>_<cos>.jsonl (every compared slot's distribution over clusters = record of truth)",
+      "mining/out_h/rolefiller2_clusters_<mode>_<cos>.jsonl",
+      "mining/out_ecmp/rolefillers2_faithful.md",
+      "mining/out_ecmp/rolefillers2_faithful.metta",
+      "mining/out_h/embeddings/embed_words.txt (2,896 texts) + embed_subtrees.txt (3,396 texts): exactly what each mode sends, one per line",
+      "mining/out_h/clusters/clusters_cosine_{0.80,0.85,0.90,0.95,1.00}.txt: every cluster (singletons included), ';; cluster #k' blocks, clusters by size, members alphabetical",
+      "mining/out_h/rolefillers2_faithful_cosine.md / .metta + rolefiller2_signals_faithful_cosine_* (reference gate)"
+     ],
+     "results": {
+      "H_role_level": "no indistinguishable head pair: Agent~Experiencer 0.61/JSD 0.65 top, Patient~Theme 0.51, obliques ~0",
+      "H_slot_signals_word": {
+       "gate": "jsd<=0.3",
+       "0.80": 3,
+       "0.85": 3,
+       "0.90": 2,
+       "0.95": 2,
+       "1.00": 2,
+       "cosine_reference": {
+        "0.80": 28,
+        "0.85": 18,
+        "0.90": 14,
+        "0.95": 13,
+        "1.00": 12
+       },
+       "jsd<=0.4_sensitivity": {
+        "0.80": 12,
+        "0.85": 11,
+        "0.90": 7,
+        "0.95": 6,
+        "1.00": 6
+       }
+      },
+      "H_slot_signals_subtree": {
+       "gate": "jsd<=0.3",
+       "0.80": 3,
+       "0.85": 3,
+       "0.90": 2,
+       "0.95": 1,
+       "1.00": 1
+      },
+      "item_E_scorecard": "JSD<=0.3: 18/26 at every cut (cosine reference 19/26; exact-label count baseline 20/26); control hit begin|end under every gate; swap hits 3 (cosine 4-7)",
+      "notable": [
+       "die.Patient~sleep.Agent 0.99 (criterion under-determines role identity for person fillers)",
+       "leave/become Patient~Result via predicative-adjective Member co-labels (representation effect)",
+       "name clusters + PAWS near-duplicate pairs drive most same-role pairs"
+      ],
+      "entity_center_signals": 0,
+      "compared_slots_word_0.85": 269,
+      "H_clusters": {
+       "0.80": 1781,
+       "0.85": 2382,
+       "0.90": 2939,
+       "0.95": 3294,
+       "1.00": 3399
+      },
+      "H_pairs_0.85_default_gate": [
+       "die.Patient~sleep.Agent 0.006",
+       "accompany.Agent~appear.Agent 0.23",
+       "design.Agent~produce.Agent 0.25"
+      ]
+     },
+     "determinism": "byte-identical re-runs (report, metta, signals, slotdist) after fixing a tie-break in the pooled shared-cluster ordering (2026-09-04)",
+     "gate_experiment_2026-09-05": {
+      "gates": "cosine >= 0.5 (default) vs JSD <= jsd_max on the raw filler distributions; both with >= 2 shared clusters",
+      "H_word_signals": {
+       "cosine": {
+        "0.80": 28,
+        "0.85": 18,
+        "0.90": 14,
+        "0.95": 13,
+        "1.00": 12
+       },
+       "jsd<=0.2": {
+        "0.85": 1,
+        "1.00": 1
+       },
+       "jsd<=0.3": {
+        "0.80": 3,
+        "0.85": 3,
+        "0.90": 2,
+        "0.95": 2,
+        "1.00": 2
+       },
+       "jsd<=0.4": {
+        "0.85": 11,
+        "1.00": 6
+       },
+       "jsd<=0.5": {
+        "0.85": 16,
+        "1.00": 11
+       }
+      },
+      "H_jsd<=0.3_pairs_0.85": [
+       "die.Patient~sleep.Agent 0.006",
+       "accompany.Agent~appear.Agent 0.23",
+       "design.Agent~produce.Agent 0.25"
+      ],
+      "item_E_scorecard_word_0.85": {
+       "cosine": "19/26, control begin|end, swap 4",
+       "jsd<=0.2": "18/26, begin|end, swap 3",
+       "jsd<=0.3": "18/26 (drops answer|give, take|walk), begin|end, swap 3",
+       "jsd<=0.4": "19/26, begin|end, swap 7",
+       "jsd<=0.5": "19/26, begin|end, swap 7"
+      },
+      "item_E_pairs_dropped_by_jsd0.3_vs_cosine": [
+       "portray.Agent~portray.Theme 0.333 (swap control)",
+       "reject.Agent~reject.Theme 0.311 (swap control)",
+       "give.Theme~receive.Theme 0.331 (designed converse)",
+       "direct.Patient~produce.Patient 0.416",
+       "take.Agent~walk.Agent 0.4",
+       "follow.Agent~succeed.Agent 0.425",
+       "accompany/appear~sing.Agent 0.31/0.45",
+       "become.Patient~become.Result 0.311",
+       "walk.Agent~walk.Goal 0.408"
+      ],
+      "reading": "JSD is strictly more conservative than cosine on both substrates (drops, never adds); 0.3-0.4 brackets the cosine-0.5 behaviour; begin|end stays under every gate because begin.Time and end.Time ARE indistinguishable distributions — the antonym control is precisely where indistinguishable fillers != same meaning",
+      "outputs": [
+       "mining/out_h/rolefillers2_faithful_jsd.md",
+       ".metta",
+       "rolefiller2_signals_faithful_jsd_<mode>_<cos>.jsonl",
+       "mining/out_ecmp/rolefillers2_faithful_jsd.md"
+      ],
+      "decision": "ADOPTED: JSD <= 0.3 as the faithful default (owner 2026-09-05); cosine kept as reference run"
+     }
+    },
+    "augmented": {
+     "script": "mining/role_fillers2.py (exact-label counts, PPMI) + role_fillers2_embed.py --arm augmented",
+     "reports": [
+      "mining/out_h/rolefillers2_report.md",
+      "mining/out_h/rolefillers2_compare.md",
+      "mining/out_ecmp/rolefillers2_compare.md",
+      "mining/out_h/rolefillers2_augmented.metta"
+     ],
+     "additions": [
+      "exact-label counts",
+      "role-conditional PPMI",
+      "role/oblique slot set",
+      "multi-label mass",
+      "cross-both bucket",
+      "D.3 routing",
+      "flip audit + cluster-cosine discriminator",
+      "lemma-corroboration signals (annotation-only per 2026-09-04 recommendation)"
+     ],
+     "ablations_pending_owner": [
+      "name zeroing",
+      "weighting split (raw for role question / PPMI for corroboration)",
+      "dial range 0.85-1.00"
+     ]
+    }
+   },
+   "cuts": "0.80,0.85,0.90,0.95,1.00 (0.95 added 2026-09-04 at owner request)"
   }
  }
 }

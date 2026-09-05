@@ -1,0 +1,16302 @@
+;; FUSE-NF §4.3.2 Role-Filler Distribution Clustering — FAITHFUL arm — readable MeTTa
+;; RENDERING (never loaded: a slot is a conjunctive query over variables, not an assertion).
+;; embeddings mining/out_ecmp/embeddings (888 texts, dim 4096); average-linkage clustering on cosine
+;; distance cut at cluster cosine [0.8, 0.85, 0.9, 0.95, 1.0]; texts word, subtree; distributions = raw mass over clusters.
+;; A slot renders as (And (Member $e0 <class>) (<Head> $e0 $x1)) — $x1 stands for any filler; the
+;; slot's distribution follows in comments: cluster id, mass, member texts. A pooled head renders
+;; as (<Head> $e $x). A signal = two slot queries under a comment with cosine, JSD, shared clusters
+;; and witness records. rolefiller2_slotdist_*.jsonl / rolefiller2_signals_*.jsonl are the record.
+
+;; ==================== word @ cluster cos 0.80: pooled role level (45 head pairs) ====================
+
+;; Agent ~ Experiencer  cosine 0.43  JSD 0.764  n 500 / 63  shared: {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {person, people} {automobile, car, automobiles}
+(Agent $e $x)
+(Experiencer $e $x)
+
+;; Agent ~ Recipient  cosine 0.30  JSD 0.671  n 500 / 47  shared: {person, people} {Karen, Katherine, Margaret Fleming, Ana, …} {Ralph, Bo, Bobby, Frankie, …}
+(Agent $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Patient  cosine 0.23  JSD 0.83  n 500 / 159  shared: {person, people} {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {physician, doctor}
+(Agent $e $x)
+(Patient $e $x)
+
+;; Experiencer ~ Patient  cosine 0.21  JSD 0.834  n 63 / 159  shared: {person, people} {movie, film, music film, musical film} {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+(Experiencer $e $x)
+(Patient $e $x)
+
+;; Agent ~ Theme  cosine 0.20  JSD 0.745  n 500 / 367  shared: {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {person, people} {Karen, Katherine, Margaret Fleming, Ana, …}
+(Agent $e $x)
+(Theme $e $x)
+
+;; Patient ~ Theme  cosine 0.16  JSD 0.851  n 159 / 367  shared: {song, sing, music} {person, people} {answer, decision, permit, decide, …}
+(Patient $e $x)
+(Theme $e $x)
+
+;; Recipient ~ Theme  cosine 0.15  JSD 0.844  n 47 / 367  shared: {query, search} {Ravi, Armaan Jain, Ranbir Kapoor} {child, children}
+(Recipient $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Theme  cosine 0.12  JSD 0.876  n 63 / 367  shared: {person, people} {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {bridge, footbridge}
+(Experiencer $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Recipient  cosine 0.11  JSD 0.907  n 63 / 47  shared: {person, people} {Cameron, Blair}
+(Experiencer $e $x)
+(Recipient $e $x)
+
+;; Recipient ~ Source  cosine 0.09  JSD 0.804  n 47 / 24  shared: {coach, trainer} {depot} {potter}
+(Recipient $e $x)
+(Source $e $x)
+
+;; Patient ~ Recipient  cosine 0.09  JSD 0.938  n 159 / 47  shared: {person, people} {crew, night crew}
+(Patient $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Source  cosine 0.07  JSD 0.862  n 500 / 24  shared: {school} {depot} {coach, trainer}
+(Agent $e $x)
+(Source $e $x)
+
+;; Goal ~ Source  cosine 0.06  JSD 0.926  n 30 / 24  shared: {New Jersey, Virginia, West Virginia}
+(Goal $e $x)
+(Source $e $x)
+
+;; Manner ~ Recipient  cosine 0.06  JSD 0.939  n 34 / 47  shared: {winner, ward, win, well}
+(Manner $e $x)
+(Recipient $e $x)
+
+;; Goal ~ Recipient  cosine 0.05  JSD 0.929  n 30 / 47  shared: {child, children} {Karen, Katherine, Margaret Fleming, Ana, …}
+(Goal $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Goal  cosine 0.05  JSD 0.932  n 500 / 30  shared: {Karen, Katherine, Margaret Fleming, Ana, …} {George Allen, J. Augustus Knapp, James David Edgar, Chuck Robb} {child, children}
+(Agent $e $x)
+(Goal $e $x)
+
+;; Goal ~ Location  cosine 0.04  JSD 0.963  n 30 / 175  shared: {Germany, Estonia, France, Italy, …}
+(Goal $e $x)
+(Location $e $x)
+
+;; Manner ~ Theme  cosine 0.04  JSD 0.96  n 34 / 367  shared: {north route, lane, way} {widespread, widely, attention, widespread}
+(Manner $e $x)
+(Theme $e $x)
+
+;; Location ~ Patient  cosine 0.03  JSD 0.965  n 175 / 159  shared: {movie, film, music film, musical film} {hall, house, room}
+(Location $e $x)
+(Patient $e $x)
+
+;; Patient ~ Time  cosine 0.03  JSD 0.947  n 159 / 37  shared: {afternoon session, late afternoon} {last, later, end}
+(Patient $e $x)
+(Time $e $x)
+
+;; Agent ~ Location  cosine 0.02  JSD 0.953  n 500 / 175  shared: {government, state, nation} {Indooroopilly, Melbourne, Sydney} {hall, house, room}
+(Agent $e $x)
+(Location $e $x)
+
+;; Goal ~ Theme  cosine 0.02  JSD 0.964  n 30 / 367  shared: {child, children} {Karen, Katherine, Margaret Fleming, Ana, …} {predictive function, predictive functions}
+(Goal $e $x)
+(Theme $e $x)
+
+;; Location ~ Recipient  cosine 0.02  JSD 0.977  n 175 / 47  shared: {winner, ward, win, well}
+(Location $e $x)
+(Recipient $e $x)
+
+;; Experiencer ~ Goal  cosine 0.02  JSD 0.967  n 63 / 30  shared: {George Allen, J. Augustus Knapp, James David Edgar, Chuck Robb}
+(Experiencer $e $x)
+(Goal $e $x)
+
+;; Location ~ Manner  cosine 0.01  JSD 0.977  n 175 / 34  shared: {winner, ward, win, well}
+(Location $e $x)
+(Manner $e $x)
+
+;; Location ~ Theme  cosine 0.01  JSD 0.97  n 175 / 367  shared: {mural} {region, regional level} {hall, house, room}
+(Location $e $x)
+(Theme $e $x)
+
+;; Theme ~ Time  cosine 0.01  JSD 0.982  n 367 / 37  shared: {today, current, now} {afternoon session, late afternoon}
+(Theme $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Location  cosine 0.01  JSD 0.981  n 63 / 175  shared: {park} {movie, film, music film, musical film}
+(Experiencer $e $x)
+(Location $e $x)
+
+;; Agent ~ Manner  cosine 0.01  JSD 0.989  n 500 / 34  shared: {winner, ward, win, well}
+(Agent $e $x)
+(Manner $e $x)
+
+;; Source ~ Theme  cosine 0.00  JSD 0.993  n 24 / 367  shared: {depot}
+(Source $e $x)
+(Theme $e $x)
+
+;; Agent ~ Time  cosine 0.00  JSD 0.996  n 500 / 37  shared: {last, later, end}
+(Agent $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Manner  cosine 0.00  JSD 1.0  n 63 / 34  shared: 
+(Experiencer $e $x)
+(Manner $e $x)
+
+;; Experiencer ~ Source  cosine 0.00  JSD 1.0  n 63 / 24  shared: 
+(Experiencer $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Time  cosine 0.00  JSD 1.0  n 63 / 37  shared: 
+(Experiencer $e $x)
+(Time $e $x)
+
+;; Goal ~ Manner  cosine 0.00  JSD 1.0  n 30 / 34  shared: 
+(Goal $e $x)
+(Manner $e $x)
+
+;; Goal ~ Patient  cosine 0.00  JSD 1.0  n 30 / 159  shared: 
+(Goal $e $x)
+(Patient $e $x)
+
+;; Goal ~ Time  cosine 0.00  JSD 1.0  n 30 / 37  shared: 
+(Goal $e $x)
+(Time $e $x)
+
+;; Location ~ Source  cosine 0.00  JSD 1.0  n 175 / 24  shared: 
+(Location $e $x)
+(Source $e $x)
+
+;; Location ~ Time  cosine 0.00  JSD 1.0  n 175 / 37  shared: 
+(Location $e $x)
+(Time $e $x)
+
+;; Manner ~ Patient  cosine 0.00  JSD 1.0  n 34 / 159  shared: 
+(Manner $e $x)
+(Patient $e $x)
+
+;; Manner ~ Source  cosine 0.00  JSD 1.0  n 34 / 24  shared: 
+(Manner $e $x)
+(Source $e $x)
+
+;; Manner ~ Time  cosine 0.00  JSD 1.0  n 34 / 37  shared: 
+(Manner $e $x)
+(Time $e $x)
+
+;; Patient ~ Source  cosine 0.00  JSD 1.0  n 159 / 24  shared: 
+(Patient $e $x)
+(Source $e $x)
+
+;; Recipient ~ Time  cosine 0.00  JSD 1.0  n 47 / 37  shared: 
+(Recipient $e $x)
+(Time $e $x)
+
+;; Source ~ Time  cosine 0.00  JSD 1.0  n 24 / 37  shared: 
+(Source $e $x)
+(Time $e $x)
+
+;; ==================== word @ cluster cos 0.80: slot pairs (52 event-center signals) ====================
+
+;; [same role, different class]  acquire.Agent ~ purchase.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ purchase.Theme  cosine 1.00  JSD 0.0  n 4 / 4  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Agent ~ create.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {european american settler, european american settlers} {indigenous, indigenous american, indigenous, people, native american, …}
+;;   A e.g. tierC-000025 tierC-000026   B e.g. tierC-000025 tierC-000026
+(And (Member $e0 begin) (Agent $e0 $x1))
+(And (Member $e0 create) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ start.Patient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000064 tierA-000069   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  make.Agent ~ reach.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {committee, council} {family} {board, panel} {judge}
+;;   A e.g. tierA-000186 tierA-000197   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 make) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  learn.Theme ~ teach.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {drill} {song, sing, music} {glazing}
+;;   A e.g. tierA-000287 tierA-000292   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Theme $e0 $x1))
+(And (Member $e0 teach) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Theme ~ require.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {egg, eggs} {countersignature, sign, countersignatures} {monthly servicing}
+;;   A e.g. tierA-000085 tierA-000090   B e.g. tierA-000084 tierA-000086
+(And (Member $e0 need) (Theme $e0 $x1))
+(And (Member $e0 require) (Theme $e0 $x1))
+
+;; [same role, different class]  abandon.Agent ~ give_up.Agent  cosine 0.98  JSD 0.006  n 8 / 3  shared: {rescue team} {climber, climbers} {firm, Company, company}
+;;   A e.g. tierA-000099 tierA-000101   B e.g. tierA-000100 tierA-000110
+(And (Member $e0 abandon) (Agent $e0 $x1))
+(And (Member $e0 give_up) (Agent $e0 $x1))
+
+;; [same role, different class]  abandon.Theme ~ give_up.Theme  cosine 0.98  JSD 0.006  n 8 / 3  shared: {tender} {north route, lane, way} {query, search}
+;;   A e.g. tierA-000104 tierA-000106   B e.g. tierA-000105 tierA-000110
+(And (Member $e0 abandon) (Theme $e0 $x1))
+(And (Member $e0 give_up) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Holder ~ require.Holder  cosine 0.98  JSD 0.006  n 3 / 8  shared: {recipe} {lathe} {answer, decision, permit, decide, …}
+;;   A e.g. tierA-000085 tierA-000095   B e.g. tierA-000086 tierA-000087
+(And (Member $e0 need) (Holder $e0 $x1))
+(And (Member $e0 require) (Holder $e0 $x1))
+
+;; [same role, different class]  postpone.Agent ~ put_off.Agent  cosine 0.98  JSD 0.007  n 7 / 3  shared: {club} {board, panel} {ferry, ship}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Agent $e0 $x1))
+(And (Member $e0 put_off) (Agent $e0 $x1))
+
+;; [same role, different class]  postpone.Theme ~ put_off.Theme  cosine 0.98  JSD 0.007  n 7 / 3  shared: {tournament} {vet, vote} {departure, arrive, arrival, depart, …}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Theme $e0 $x1))
+(And (Member $e0 put_off) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ commence.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000064 tierA-000069
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 commence) (Patient $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ start.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  allow.Agent ~ permit.Agent  cosine 0.94  JSD 0.021  n 4 / 3  shared: {warden} {curator} {licence}
+;;   A e.g. tierA-000075 tierA-000080   B e.g. tierA-000073 tierA-000081
+(And (Member $e0 allow) (Agent $e0 $x1))
+(And (Member $e0 permit) (Agent $e0 $x1))
+
+;; [same role, different class]  allow.Theme ~ permit.Theme  cosine 0.94  JSD 0.021  n 4 / 3  shared: {photography} {night delivery} {visitor}
+;;   A e.g. tierA-000080 tierA-000076   B e.g. tierA-000081 tierA-000077
+(And (Member $e0 allow) (Theme $e0 $x1))
+(And (Member $e0 permit) (Theme $e0 $x1))
+
+;; [same role, different class]  call_off.Agent ~ cancel.Agent  cosine 0.96  JSD 0.064  n 3 / 9  shared: {airline} {committee, council} {teach, tutor}
+;;   A e.g. tierA-000144 tierA-000149   B e.g. tierA-000143 tierA-000145
+(And (Member $e0 call_off) (Agent $e0 $x1))
+(And (Member $e0 cancel) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Theme ~ decision.Theme  cosine 0.97  JSD 0.064  n 9 / 6  shared: {roof, new, roof} {budget, spend} {case} {new, create, add}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000187
+(And (Member $e0 decide) (Theme $e0 $x1))
+(And (Member $e0 decision) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Agent ~ buy.Agent  cosine 0.95  JSD 0.121  n 4 / 14  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000022 tierA-000026
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 buy) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ buy.Theme  cosine 0.94  JSD 0.121  n 4 / 14  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000008 tierA-000012
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 buy) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Agent ~ purchase.Agent  cosine 0.95  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ purchase.Theme  cosine 0.94  JSD 0.121  n 14 / 4  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ make.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee, council} {family} {board, panel} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000197
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 make) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ reach.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee, council} {family} {board, panel} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  cause.Agent ~ destroy.Agent  cosine 0.93  JSD 0.138  n 3 / 8  shared: {storm, hurricane} {flood} {fire}
+;;   A e.g. tierA-000223 tierA-000233   B e.g. tierA-000222 tierA-000224
+(And (Member $e0 cause) (Agent $e0 $x1))
+(And (Member $e0 destroy) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ end.Patient  cosine 0.87  JSD 0.138  n 4 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000069 tierA-000059   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  end.Patient ~ start.Patient  cosine 0.87  JSD 0.138  n 3 / 4  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000071 tierA-000060   B e.g. tierA-000068 tierA-000058
+(And (Member $e0 end) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  reject.Agent ~ turn_down.Agent  cosine 0.93  JSD 0.138  n 8 / 3  shared: {editor} {bank} {board, panel}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Agent $e0 $x1))
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Theme ~ turn_down.Theme  cosine 0.93  JSD 0.138  n 8 / 3  shared: {manuscript} {loan application} {proposal, suggest}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Theme $e0 $x1))
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ end.Patient  cosine 0.80  JSD 0.174  n 7 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ sell.Theme  cosine 0.68  JSD 0.191  n 4 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  portray.Agent ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods, Jeremy Irons} {Wilson, wilson}
+;;   A e.g. tierC-000301 tierC-000302   B e.g. tierC-000277 tierC-000278
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [same role, different class]  purchase.Theme ~ sell.Theme  cosine 0.68  JSD 0.191  n 4 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000009 tierA-000016   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 purchase) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  accompany.Agent ~ appear.Agent  cosine 0.78  JSD 0.217  n 4 / 8  shared: {person, people} {sister, sisters}
+;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000049 tierC-000050
+(And (Member $e0 accompany) (Agent $e0 $x1))
+(And (Member $e0 appear) (Agent $e0 $x1))
+
+;; [same role, different class]  borrow.Theme ~ lend.Theme  cosine 0.65  JSD 0.239  n 5 / 10  shared: {painting, paint, paintings} {ladder, ladders} {generator}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Theme $e0 $x1))
+(And (Member $e0 lend) (Theme $e0 $x1))
+
+;; [same role, different class]  appear.Agent ~ write.Agent  cosine 0.74  JSD 0.266  n 8 / 6  shared: {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {person, people}
+;;   A e.g. tierC-000259 tierC-000260   B e.g. tierC-000297 tierC-000298
+(And (Member $e0 appear) (Agent $e0 $x1))
+(And (Member $e0 write) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ sell.Theme  cosine 0.65  JSD 0.281  n 14 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same class, different role]  portray.Agent ~ portray.Theme  cosine 1.00  JSD 0.0  n 6 / 6  shared: {inomaru, Kantaro Suga, Mie Sonozaki, Soichiro Akizuki} {James Woods, Jeremy Irons} {Wilson, wilson}
+;;   A e.g. tierC-000247 tierC-000248   B e.g. tierC-000277 tierC-000278
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 portray) (Theme $e0 $x1))
+
+;; [same class, different role]  repair.Agent ~ repair.Patient  cosine 0.83  JSD 0.061  n 8 / 8  shared: {feed pipe} {crew, night crew} {electrician} {cracked}
+;;   A e.g. tierA-000051 tierA-000049   B e.g. tierA-000039 tierA-000029
+(And (Member $e0 repair) (Agent $e0 $x1))
+(And (Member $e0 repair) (Patient $e0 $x1))
+
+;; [same class, different role]  discover.Experiencer ~ discover.Stimulus  cosine 0.80  JSD 0.082  n 3 / 3  shared: {auditor} {error}
+;;   A e.g. tierA-000128 tierA-000130   B e.g. tierA-000132 tierA-000128
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+
+;; [same class, different role]  order.Agent ~ order.Theme  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {scan}
+;;   A e.g. tierA-000385 tierA-000386   B e.g. tierA-000389 tierA-000387
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 order) (Theme $e0 $x1))
+
+;; [same class, different role]  sign.Agent ~ sign.Patient  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {chart}
+;;   A e.g. tierA-000375 tierA-000376   B e.g. tierA-000378 tierA-000377
+(And (Member $e0 sign) (Agent $e0 $x1))
+(And (Member $e0 sign) (Patient $e0 $x1))
+
+;; [different class and role]  acquire.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  purchase.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000023 tierA-000016   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 purchase) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Agent ~ lend.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {Ravi, Armaan Jain, Ranbir Kapoor} {gallery} {crew, night crew}
+;;   A e.g. tierA-000297 tierA-000307   B e.g. tierA-000296 tierA-000298
+(And (Member $e0 borrow) (Agent $e0 $x1))
+(And (Member $e0 lend) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Source ~ lend.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {museum} {neighbour, neighbouring} {depot}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Source $e0 $x1))
+(And (Member $e0 lend) (Agent $e0 $x1))
+
+;; [different class and role]  learn.Agent ~ teach.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {squad} {apprentice} {child, children}
+;;   A e.g. tierA-000287 tierA-000282   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Agent $e0 $x1))
+(And (Member $e0 teach) (Recipient $e0 $x1))
+
+;; [different class and role]  learn.Source ~ teach.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {potter} {coach, trainer} {elder}
+;;   A e.g. tierA-000282 tierA-000287   B e.g. tierA-000281 tierA-000283
+(And (Member $e0 learn) (Source $e0 $x1))
+(And (Member $e0 teach) (Agent $e0 $x1))
+
+;; [different class and role]  buy.Agent ~ sell.Recipient  cosine 0.95  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  portray.Theme ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods, Jeremy Irons} {Wilson, wilson}
+;;   A e.g. tierC-000277 tierC-000278   B e.g. tierC-000301 tierC-000302
+(And (Member $e0 portray) (Theme $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [different class and role]  give.Agent ~ receive.Source  cosine 0.91  JSD 0.196  n 12 / 3  shared: {foreman} {coach, trainer} {school}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000262
+(And (Member $e0 give) (Agent $e0 $x1))
+(And (Member $e0 receive) (Source $e0 $x1))
+
+;; [different class and role]  give.Recipient ~ receive.Agent  cosine 0.91  JSD 0.196  n 12 / 3  shared: {recruit} {winner, ward, win, well} {driver}
+;;   A e.g. tierA-000261 tierA-000263   B e.g. tierA-000262 tierA-000277
+(And (Member $e0 give) (Recipient $e0 $x1))
+(And (Member $e0 receive) (Agent $e0 $x1))
+
+;; ==================== word @ cluster cos 0.80: compared slots with their distributions (197 slots, n >= 3) ====================
+
+;; ---- slot <unclassed>.Possession  [entity center]  n 18  clusters 10
+(Possession $x0 $x1)
+;;      c324  mass 5  {person, people}
+;;      c138  mass 4  {Leonor Rodrigues, Gil Aires}
+;;      c115  mass 2  {Twilight}
+;;      c140  mass 2  {Karen, Katherine, Margaret Fleming, Ana, …}
+;;      c417  mass 2  {subsequent game}
+;;      c134  mass 1  {George Allen, J. Augustus Knapp, James David Edgar, Chuck Robb}
+;;      c185  mass 0.5  {sunni, communities, neighbouring, other, sunni}
+;;      c302  mass 0.5  {neighbour, neighbouring}
+;;      c315  mass 0.5  {community}
+;;      c349  mass 0.5  {other}
+
+;; ---- slot work.Agent  [event center]  n 17  clusters 10
+(And (Member $e0 work) (Agent $e0 $x1))
+;;      c140  mass 3  {Karen, Katherine, Margaret Fleming, Ana, …}
+;;      c154  mass 3  {Dara, Arakkal}
+;;       c20  mass 3  {biologist}
+;;      c271  mass 2  {welder}
+;;      c148  mass 1  {Mr. Jones}
+;;      c149  mass 1  {Ralph, Bo, Bobby, Frankie, …}
+;;      c151  mass 1  {Nils}
+;;      c152  mass 1  {Ashe, Asserson}
+;;      c264  mass 1  {ranger}
+;;      c428  mass 1  {fitter}
+
+;; ---- slot build.Location  [event center]  n 14  clusters 3
+(And (Member $e0 build) (Location $e0 $x1))
+;;       c81  mass 6  {Turkey, Persia}
+;;      c109  mass 4  {Eskisehir}
+;;       c86  mass 4  {Kazakhstan}
+
+;; ---- slot buy.Agent  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Agent $e0 $x1))
+;;      c219  mass 3  {pottery studio}
+;;      c347  mass 3  {school}
+;;      c421  mass 3  {depot}
+;;      c253  mass 2  {chef}
+;;      c283  mass 1  {forklift, forklifts}
+;;      c287  mass 1  {kiln}
+;;      c244  mass 0.5  {lemon, crate, lemons}
+;;      c420  mass 0.5  {crate}
+
+;; ---- slot buy.Theme  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Theme $e0 $x1))
+;;      c163  mass 3  {projector, projectors}
+;;      c283  mass 3  {forklift, forklifts}
+;;      c287  mass 3  {kiln}
+;;      c219  mass 1  {pottery studio}
+;;      c244  mass 1  {lemon, crate, lemons}
+;;      c253  mass 1  {chef}
+;;      c420  mass 1  {crate}
+;;      c421  mass 1  {depot}
+
+;; ---- slot work.Location  [event center]  n 13  clusters 5
+(And (Member $e0 work) (Location $e0 $x1))
+;;      c380  mass 4  {ledger}
+;;      c555  mass 4  {survey}
+;;      c508  mass 3  {frame, draw}
+;;      c223  mass 1  {mural}
+;;        c6  mass 1  {Church of Norway}
+
+;; ---- slot build.Agent  [event center]  n 12  clusters 3
+(And (Member $e0 build) (Agent $e0 $x1))
+;;      c311  mass 8  {firm, Company, company}
+;;      c136  mass 2  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c324  mass 2  {person, people}
+
+;; ---- slot build.Patient  [event center]  n 12  clusters 4
+(And (Member $e0 build) (Patient $e0 $x1))
+;;      c231  mass 4  {paper factory, paper mill}
+;;      c368  mass 4  {hotel}
+;;      c367  mass 2  {hall, house, room}
+;;      c479  mass 2  {hatch, horn}
+
+;; ---- slot find.Location  [event center]  n 12  clusters 7
+(And (Member $e0 find) (Location $e0 $x1))
+;;       c68  mass 3  {Yunnan, Dianchi Lake, Lake Dianchi}
+;;      c304  mass 2  {southern}
+;;      c511  mass 2  {bench}
+;;       c69  mass 2  {tributary, tributaries}
+;;      c305  mass 1  {western}
+;;       c76  mass 1  {Europe, Western Europe}
+;;       c78  mass 1  {Japan, China}
+
+;; ---- slot give.Agent  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Agent $e0 $x1))
+;;      c279  mass 3  {coach, trainer}
+;;      c347  mass 3  {school}
+;;      c167  mass 2  {foreman}
+;;      c256  mass 1  {pilot}
+;;      c276  mass 1  {clerk}
+;;      c516  mass 1  {vet, vote}
+;;       c59  mass 1  {driver}
+
+;; ---- slot give.Recipient  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Recipient $e0 $x1))
+;;      c319  mass 3  {recruit}
+;;      c544  mass 3  {winner, ward, win, well}
+;;       c59  mass 2  {driver}
+;;      c167  mass 1  {foreman}
+;;      c359  mass 1  {tower}
+;;      c400  mass 1  {caller}
+;;      c446  mass 1  {query, search}
+
+;; ---- slot give.Theme  [event center]  n 12  clusters 4
+(And (Member $e0 give) (Theme $e0 $x1))
+;;      c204  mass 3  {whistle, whistles}
+;;      c431  mass 3  {manifest}
+;;       c53  mass 3  {medal, medals}
+;;      c547  mass 3  {answer, decision, permit, decide, …}
+
+;; ---- slot decide.Agent  [event center]  n 11  clusters 6
+(And (Member $e0 decide) (Agent $e0 $x1))
+;;      c509  mass 3  {board, panel}
+;;      c514  mass 3  {judge}
+;;      c314  mass 2  {committee, council}
+;;      c303  mass 1  {north, northeastern}
+;;      c329  mass 1  {family}
+;;      c513  mass 1  {case}
+
+;; ---- slot destroy.Patient  [event center]  n 11  clusters 5
+(And (Member $e0 destroy) (Patient $e0 $x1))
+;;      c228  mass 3  {archive}
+;;      c289  mass 3  {greenhouse}
+;;      c355  mass 3  {bridge, footbridge}
+;;      c291  mass 1  {storm, hurricane}
+;;      c475  mass 1  {fire}
+
+;; ---- slot answer.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Agent $e0 $x1))
+;;      c256  mass 3  {pilot}
+;;      c276  mass 3  {clerk}
+;;      c516  mass 2  {vet, vote}
+;;      c400  mass 1  {caller}
+;;      c446  mass 1  {query, search}
+
+;; ---- slot answer.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Theme $e0 $x1))
+;;      c359  mass 3  {tower}
+;;      c446  mass 3  {query, search}
+;;      c400  mass 2  {caller}
+;;      c276  mass 1  {clerk}
+;;      c516  mass 1  {vet, vote}
+
+;; ---- slot lend.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Agent $e0 $x1))
+;;      c230  mass 3  {museum}
+;;      c302  mass 3  {neighbour, neighbouring}
+;;      c421  mass 2  {depot}
+;;      c112  mass 1  {Ravi, Armaan Jain, Ranbir Kapoor}
+;;      c262  mass 1  {crew, night crew}
+
+;; ---- slot lend.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Recipient $e0 $x1))
+;;      c112  mass 3  {Ravi, Armaan Jain, Ranbir Kapoor}
+;;      c224  mass 3  {gallery}
+;;      c262  mass 2  {crew, night crew}
+;;      c302  mass 1  {neighbour, neighbouring}
+;;      c421  mass 1  {depot}
+
+;; ---- slot lend.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 lend) (Theme $e0 $x1))
+;;      c284  mass 4  {ladder, ladders}
+;;      c222  mass 3  {painting, paint, paintings}
+;;      c429  mass 3  {generator}
+
+;; ---- slot require.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 require) (Theme $e0 $x1))
+;;      c250  mass 4  {egg, eggs}
+;;      c430  mass 3  {countersignature, sign, countersignatures}
+;;      c557  mass 3  {monthly servicing}
+
+;; ---- slot teach.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Agent $e0 $x1))
+;;      c116  mass 3  {potter}
+;;      c322  mass 3  {elder}
+;;      c279  mass 2  {coach, trainer}
+;;      c260  mass 1  {squad}
+;;      c280  mass 1  {apprentice}
+
+;; ---- slot teach.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Recipient $e0 $x1))
+;;      c280  mass 3  {apprentice}
+;;      c321  mass 3  {child, children}
+;;      c260  mass 2  {squad}
+;;      c116  mass 1  {potter}
+;;      c279  mass 1  {coach, trainer}
+
+;; ---- slot teach.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 teach) (Theme $e0 $x1))
+;;      c288  mass 4  {glazing}
+;;      c205  mass 3  {drill}
+;;      c208  mass 3  {song, sing, music}
+
+;; ---- slot cancel.Agent  [event center]  n 9  clusters 4
+(And (Member $e0 cancel) (Agent $e0 $x1))
+;;      c314  mass 3  {committee, council}
+;;      c345  mass 3  {teach, tutor}
+;;      c254  mass 2  {airline}
+;;       c18  mass 1  {physician, doctor}
+
+;; ---- slot decide.Theme  [event center]  n 9  clusters 5
+(And (Member $e0 decide) (Theme $e0 $x1))
+;;      c381  mass 3  {budget, spend}
+;;      c513  mass 3  {case}
+;;      c365  mass 1  {roof, new, roof}
+;;      c514  mass 1  {judge}
+;;      c530  mass 1  {new, create, add}
+
+;; ---- slot discover.Theme  [event center]  n 9  clusters 5
+(And (Member $e0 discover) (Theme $e0 $x1))
+;;      c293  mass 3  {wreck}
+;;      c235  mass 2  {name}
+;;      c343  mass 1.5  {file, file, missing}
+;;      c498  mass 1.5  {missing}
+;;      c269  mass 1  {diver}
+
+;; ---- slot view.Possession  [entity center]  n 8  clusters 1
+(And (Member $x0 view) (Possession $x0 $x1))
+;;      c173  mass 8  {Free Soil Party, Republican Party}
+
+;; ---- slot abandon.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Agent $e0 $x1))
+;;      c268  mass 3  {climber, climbers}
+;;      c311  mass 3  {firm, Company, company}
+;;      c263  mass 2  {rescue team}
+
+;; ---- slot abandon.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Theme $e0 $x1))
+;;      c333  mass 3  {tender}
+;;      c361  mass 3  {north route, lane, way}
+;;      c446  mass 2  {query, search}
+
+;; ---- slot appear.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 appear) (Agent $e0 $x1))
+;;      c324  mass 5  {person, people}
+;;      c136  mass 2  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c330  mass 1  {sister, sisters}
+
+;; ---- slot appear.Location  [event center]  n 8  clusters 4
+(And (Member $e0 appear) (Location $e0 $x1))
+;;      c198  mass 2  {movie, film, music film, musical film}
+;;       c21  mass 2  {comedic role}
+;;      c247  mass 2  {cafe}
+;;        c8  mass 2  {Coronation Street}
+
+;; ---- slot destroy.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 destroy) (Agent $e0 $x1))
+;;      c291  mass 2  {storm, hurricane}
+;;      c292  mass 2  {flood}
+;;      c475  mass 2  {fire}
+;;      c228  mass 1  {archive}
+;;      c289  mass 1  {greenhouse}
+
+;; ---- slot have.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 have) (Holder $e0 $x1))
+;;      c129  mass 4  {Kristoffer}
+;;      c140  mass 2  {Karen, Katherine, Margaret Fleming, Ana, …}
+;;       c44  mass 2  {homentropic current, homentropic flow}
+
+;; ---- slot have.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 have) (Theme $e0 $x1))
+;;      c321  mass 4  {child, children}
+;;      c546  mass 2  {reach, representation, refer, represent}
+;;      c297  mass 0.667  {entropy, constant, entropy, uniform}
+;;      c536  mass 0.667  {use, uniform, common, usual}
+;;      c537  mass 0.667  {constant}
+
+;; ---- slot include.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 include) (Theme $e0 $x1))
+;;      c112  mass 4  {Ravi, Armaan Jain, Ranbir Kapoor}
+;;      c103  mass 2  {Des Moines}
+;;      c113  mass 2  {Nikhil Nanda}
+
+;; ---- slot produce.Patient  [event center]  n 8  clusters 4
+(And (Member $e0 produce) (Patient $e0 $x1))
+;;      c198  mass 4.833  {movie, film, music film, musical film}
+;;      c210  mass 2  {album}
+;;       c23  mass 0.833  {syrian}
+;;      c383  mass 0.333  {destined}
+
+;; ---- slot reject.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Agent $e0 $x1))
+;;      c274  mass 2  {editor}
+;;      c379  mass 2  {bank}
+;;      c509  mass 2  {board, panel}
+;;      c234  mass 1  {manuscript}
+;;      c377  mass 1  {loan application}
+
+;; ---- slot reject.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Theme $e0 $x1))
+;;      c234  mass 2  {manuscript}
+;;      c377  mass 2  {loan application}
+;;      c502  mass 2  {proposal, suggest}
+;;      c274  mass 1  {editor}
+;;      c379  mass 1  {bank}
+
+;; ---- slot repair.Agent  [event center]  n 8  clusters 8
+(And (Member $e0 repair) (Agent $e0 $x1))
+;;      c270  mass 2  {electrician}
+;;       c60  mass 2  {mechanic}
+;;      c262  mass 1  {crew, night crew}
+;;      c559  mass 1  {yard floodlight}
+;;      c165  mass 0.5  {feed pipe}
+;;      c336  mass 0.5  {cracked}
+;;      c500  mass 0.5  {seized}
+;;       c57  mass 0.5  {gearbox, gearbox, seized}
+
+;; ---- slot repair.Patient  [event center]  n 8  clusters 8
+(And (Member $e0 repair) (Patient $e0 $x1))
+;;      c559  mass 2  {yard floodlight}
+;;      c262  mass 1  {crew, night crew}
+;;      c270  mass 1  {electrician}
+;;      c500  mass 1  {seized}
+;;       c57  mass 1  {gearbox, gearbox, seized}
+;;       c60  mass 1  {mechanic}
+;;      c165  mass 0.5  {feed pipe}
+;;      c336  mass 0.5  {cracked}
+
+;; ---- slot require.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 require) (Holder $e0 $x1))
+;;      c252  mass 3  {recipe}
+;;      c547  mass 3  {answer, decision, permit, decide, …}
+;;      c285  mass 2  {lathe}
+
+;; ---- slot serve.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 serve) (Agent $e0 $x1))
+;;      c107  mass 2  {Indooroopilly, Melbourne, Sydney}
+;;      c108  mass 2  {Ipswich, Nelson}
+;;      c153  mass 2  {Paniqui, Horner, Lessos, Rosewood}
+;;      c324  mass 2  {person, people}
+
+;; ---- slot sing.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 sing) (Agent $e0 $x1))
+;;      c212  mass 2  {Barbershop Harmony Society}
+;;      c310  mass 2  {occupational group, professional group}
+;;      c324  mass 2  {person, people}
+;;      c330  mass 2  {sister, sisters}
+
+;; ---- slot study.Location  [event center]  n 8  clusters 3
+(And (Member $e0 study) (Location $e0 $x1))
+;;      c107  mass 4  {Indooroopilly, Melbourne, Sydney}
+;;      c217  mass 2  {Davis Studio}
+;;      c218  mass 2  {Julian Ashton Art School}
+
+;; ---- slot be.Experiencer  [event center]  n 7  clusters 4
+(And (Member $e0 be) (Experiencer $e0 $x1))
+;;      c153  mass 4  {Paniqui, Horner, Lessos, Rosewood}
+;;      c166  mass 1  {tunnel}
+;;       c65  mass 1  {Alema Nature Reserve}
+;;       c91  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot begin.Patient  [event center]  n 7  clusters 4
+(And (Member $e0 begin) (Patient $e0 $x1))
+;;      c216  mass 2  {dress rehearsal}
+;;      c246  mass 2  {apple harvest}
+;;       c73  mass 2  {shoreline survey}
+;;      c404  mass 1  {hearing}
+
+;; ---- slot cancel.Patient  [event center]  n 7  clusters 3
+(And (Member $e0 cancel) (Patient $e0 $x1))
+;;       c25  mass 3  {summer fair}
+;;      c257  mass 3  {afternoon session, late afternoon}
+;;      c255  mass 1  {evening flight}
+
+;; ---- slot discover.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 discover) (Agent $e0 $x1))
+;;      c269  mass 3  {diver}
+;;      c438  mass 3  {intern}
+;;      c293  mass 1  {wreck}
+
+;; ---- slot locate.Location  [event center]  n 7  clusters 3
+(And (Member $e0 locate) (Location $e0 $x1))
+;;      c100  mass 3  {Cloverdale, Richford}
+;;      c344  mass 2  {foot}
+;;      c352  mass 2  {ridge, hill, hills}
+
+;; ---- slot postpone.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Agent $e0 $x1))
+;;      c261  mass 3  {club}
+;;      c509  mass 2  {board, panel}
+;;       c61  mass 2  {ferry, ship}
+
+;; ---- slot postpone.Theme  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Theme $e0 $x1))
+;;       c15  mass 3  {tournament}
+;;      c516  mass 2  {vet, vote}
+;;      c523  mass 2  {departure, arrive, arrival, depart, …}
+
+;; ---- slot work.CoAgent  [event center]  n 7  clusters 4
+(And (Member $e0 work) (CoAgent $e0 $x1))
+;;      c149  mass 2  {Ralph, Bo, Bobby, Frankie, …}
+;;      c151  mass 2  {Nils}
+;;      c264  mass 2  {ranger}
+;;      c428  mass 1  {fitter}
+
+;; ---- slot budget.Possession  [entity center]  n 6  clusters 1
+(And (Member $x0 budget) (Possession $x0 $x1))
+;;      c415  mass 6  {next year, next}
+
+;; ---- slot arrive.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 arrive) (Agent $e0 $x1))
+;;       c62  mass 3  {freight}
+;;      c317  mass 2  {delegation}
+;;       c46  mass 1  {soil sample, soil samples}
+
+;; ---- slot build.Instrument  [event center]  n 6  clusters 4
+(And (Member $e0 build) (Instrument $e0 $x1))
+;;      c290  mass 2  {barometer}
+;;      c519  mass 2  {help, assistant, support}
+;;      c350  mass 1  {scale, present in, scale, present, scale}
+;;      c533  mass 1  {appear, present, present in}
+
+;; ---- slot decision.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 decision) (Theme $e0 $x1))
+;;      c381  mass 2  {budget, spend}
+;;      c513  mass 2  {case}
+;;      c365  mass 1  {roof, new, roof}
+;;      c530  mass 1  {new, create, add}
+
+;; ---- slot design.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 design) (Agent $e0 $x1))
+;;      c136  mass 4  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;       c63  mass 2  {Robert Allan Limited}
+
+;; ---- slot discover.Location  [event center]  n 6  clusters 2
+(And (Member $e0 discover) (Location $e0 $x1))
+;;      c540  mass 4  {point}
+;;       c78  mass 2  {Japan, China}
+
+;; ---- slot form.Agent  [event center]  n 6  clusters 4
+(And (Member $e0 form) (Agent $e0 $x1))
+;;      c132  mass 4  {Jon Bon Jovi, Sambora}
+;;       c48  mass 1  {Technetium}
+;;      c458  mass 0.5  {complex, complex, simple}
+;;      c462  mass 0.5  {simple, easy}
+
+;; ---- slot fund.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 fund) (Agent $e0 $x1))
+;;      c174  mass 3  {government, state, nation}
+;;      c178  mass 3  {JICA}
+
+;; ---- slot include.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 include) (Agent $e0 $x1))
+;;      c320  mass 6  {nephew, nephews}
+
+;; ---- slot portray.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Agent $e0 $x1))
+;;      c127  mass 2  {inomaru, Kantaro Suga, Mie Sonozaki, Soichiro Akizuki}
+;;      c131  mass 2  {James Woods, Jeremy Irons}
+;;      c145  mass 2  {Wilson, wilson}
+
+;; ---- slot portray.Theme  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Theme $e0 $x1))
+;;      c127  mass 2  {inomaru, Kantaro Suga, Mie Sonozaki, Soichiro Akizuki}
+;;      c131  mass 2  {James Woods, Jeremy Irons}
+;;      c145  mass 2  {Wilson, wilson}
+
+;; ---- slot produce.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 produce) (Agent $e0 $x1))
+;;      c136  mass 6  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+
+;; ---- slot sell.Theme  [event center]  n 6  clusters 6
+(And (Member $e0 sell) (Theme $e0 $x1))
+;;      c249  mass 2  {ice cream, ice cone, ice cream cone}
+;;      c163  mass 1  {projector, projectors}
+;;      c283  mass 1  {forklift, forklifts}
+;;      c287  mass 1  {kiln}
+;;      c244  mass 0.5  {lemon, crate, lemons}
+;;      c420  mass 0.5  {crate}
+
+;; ---- slot serve.Theme  [event center]  n 6  clusters 1
+(And (Member $e0 serve) (Theme $e0 $x1))
+;;      c358  mass 6  {station}
+
+;; ---- slot use.Theme  [event center]  n 6  clusters 5
+(And (Member $e0 use) (Theme $e0 $x1))
+;;        c1  mass 2  {Banach -- Mackey topology}
+;;        c2  mass 2  {weak Arens space topology}
+;;      c532  mass 1  {today, current, now}
+;;      c237  mass 0.5  {naming convention, current, naming convention}
+;;      c238  mass 0.5  {designation convention, current, designation convention}
+
+;; ---- slot write.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Agent $e0 $x1))
+;;      c128  mass 2  {Gilles Thibaut, James of Barrochan}
+;;      c136  mass 2  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c324  mass 2  {person, people}
+
+;; ---- slot write.CoAgent  [event center]  n 6  clusters 2
+(And (Member $e0 write) (CoAgent $e0 $x1))
+;;      c139  mass 4  {Bianca Olsen, Laurie Aubanel, Muriel Zazoui, Patricia Kaas}
+;;      c135  mass 2  {Corentin Rahier, Bruno Simma, Cyril Rambour, Peter Gaussen}
+
+;; ---- slot write.Patient  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Patient $e0 $x1))
+;;      c201  mass 2  {screenplay, script}
+;;      c208  mass 2  {song, sing, music}
+;;      c390  mass 2  {episode}
+
+;; ---- slot tender.Possession  [entity center]  n 5  clusters 1
+(And (Member $x0 tender) (Possession $x0 $x1))
+;;      c311  mass 5  {firm, Company, company}
+
+;; ---- slot borrow.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 borrow) (Theme $e0 $x1))
+;;      c127  mass 2  {inomaru, Kantaro Suga, Mie Sonozaki, Soichiro Akizuki}
+;;      c222  mass 1  {painting, paint, paintings}
+;;      c284  mass 1  {ladder, ladders}
+;;      c429  mass 1  {generator}
+
+;; ---- slot die.Patient  [event center]  n 5  clusters 4
+(And (Member $e0 die) (Patient $e0 $x1))
+;;      c281  mass 2  {founder}
+;;      c324  mass 2  {person, people}
+;;      c243  mass 0.5  {elm, elm, last}
+;;      c549  mass 0.5  {last, later, end}
+
+;; ---- slot locate.Experiencer  [event center]  n 5  clusters 3
+(And (Member $e0 locate) (Experiencer $e0 $x1))
+;;      c356  mass 2  {park}
+;;       c89  mass 2  {Wine Country}
+;;       c91  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot receive.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 receive) (Theme $e0 $x1))
+;;      c434  mass 2  {work, job}
+;;      c204  mass 1  {whistle, whistles}
+;;      c431  mass 1  {manifest}
+;;       c53  mass 1  {medal, medals}
+
+;; ---- slot take.Agent  [event center]  n 5  clusters 4
+(And (Member $e0 take) (Agent $e0 $x1))
+;;      c324  mass 2  {person, people}
+;;       c19  mass 1  {nurse}
+;;      c265  mass 1  {shepherd}
+;;      c321  mass 1  {child, children}
+
+;; ---- slot walk.Agent  [event center]  n 5  clusters 5
+(And (Member $e0 walk) (Agent $e0 $x1))
+;;       c19  mass 1  {nurse}
+;;      c265  mass 1  {shepherd}
+;;      c321  mass 1  {child, children}
+;;      c357  mass 1  {pier}
+;;      c544  mass 1  {winner, ward, win, well}
+
+;; ---- slot walk.Location  [event center]  n 5  clusters 3
+(And (Member $e0 walk) (Location $e0 $x1))
+;;      c352  mass 2  {ridge, hill, hills}
+;;      c544  mass 2  {winner, ward, win, well}
+;;       c19  mass 1  {nurse}
+
+;; ---- slot <unclassed>.PartOf  [entity center]  n 4  clusters 3
+(PartOf $x0 $x1)
+;;      c111  mass 2  {Khurda Road}
+;;       c74  mass 1  {Colombia, Peru}
+;;       c75  mass 1  {Huancavelica}
+
+;; ---- slot bad.Between  [entity center]  n 4  clusters 1
+(And (Member $x0 bad) (Between $x0 $x1))
+;;       c82  mass 4  {Germany, Estonia, France, Italy, …}
+
+;; ---- slot border_section.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 border_section) (Between $x0 $x1))
+;;      c153  mass 2  {Paniqui, Horner, Lessos, Rosewood}
+;;       c85  mass 2  {Uganda, Kenya}
+
+;; ---- slot departure.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 departure) (Possession $x0 $x1))
+;;       c61  mass 4  {ferry, ship}
+
+;; ---- slot family.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 family) (Possession $x0 $x1))
+;;      c324  mass 4  {person, people}
+
+;; ---- slot government.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 government) (Possession $x0 $x1))
+;;       c85  mass 4  {Uganda, Kenya}
+
+;; ---- slot lunch.Before  [entity center]  n 4  clusters 1
+(And (Member $x0 lunch) (Before $x0 $x1))
+;;      c528  mass 4  {begin, start, commence}
+
+;; ---- slot accompany.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 accompany) (Agent $e0 $x1))
+;;      c324  mass 2  {person, people}
+;;      c330  mass 2  {sister, sisters}
+
+;; ---- slot accompany.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 accompany) (Theme $e0 $x1))
+;;      c199  mass 4  {silent film}
+
+;; ---- slot acquire.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Agent $e0 $x1))
+;;      c219  mass 1  {pottery studio}
+;;      c253  mass 1  {chef}
+;;      c347  mass 1  {school}
+;;      c421  mass 1  {depot}
+
+;; ---- slot acquire.Theme  [event center]  n 4  clusters 5
+(And (Member $e0 acquire) (Theme $e0 $x1))
+;;      c163  mass 1  {projector, projectors}
+;;      c283  mass 1  {forklift, forklifts}
+;;      c287  mass 1  {kiln}
+;;      c244  mass 0.5  {lemon, crate, lemons}
+;;      c420  mass 0.5  {crate}
+
+;; ---- slot active.Time  [event center]  n 4  clusters 2
+(And (Member $e0 active) (Time $e0 $x1))
+;;      c257  mass 2  {afternoon session, late afternoon}
+;;      c258  mass 2  {dawn, morning, early morning}
+
+;; ---- slot allow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Agent $e0 $x1))
+;;      c399  mass 2  {licence}
+;;      c277  mass 1  {warden}
+;;      c278  mass 1  {curator}
+
+;; ---- slot allow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Theme $e0 $x1))
+;;      c341  mass 2  {night delivery}
+;;      c227  mass 1  {photography}
+;;      c419  mass 1  {visitor}
+
+;; ---- slot attract.Source  [event center]  n 4  clusters 2
+(And (Member $e0 attract) (Source $e0 $x1))
+;;       c50  mass 2  {mainstream media}
+;;       c52  mass 2  {social media}
+
+;; ---- slot be.Location  [event center]  n 4  clusters 4
+(And (Member $e0 be) (Location $e0 $x1))
+;;      c100  mass 1  {Cloverdale, Richford}
+;;      c105  mass 1  {Harju County}
+;;      c303  mass 1  {north, northeastern}
+;;       c83  mass 1  {denmark}
+
+;; ---- slot be.Source  [event center]  n 4  clusters 2
+(And (Member $e0 be) (Source $e0 $x1))
+;;       c94  mass 3  {Manila, Tarlac City, batangas}
+;;       c98  mass 1  {provincial capital}
+
+;; ---- slot become.Patient  [event center]  n 4  clusters 6
+(And (Member $e0 become) (Patient $e0 $x1))
+;;      c327  mass 1  {relationship, bad, relationship}
+;;      c493  mass 1  {bad, lose}
+;;      c324  mass 0.5  {person, people}
+;;       c38  mass 0.5  {indigenous, indigenous american, indigenous, people, native american, …}
+;;      c396  mass 0.5  {discipline, discipline, lax}
+;;       c95  mass 0.5  {lax}
+
+;; ---- slot become.Result  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Result $e0 $x1))
+;;      c493  mass 2  {bad, lose}
+;;       c38  mass 1  {indigenous, indigenous american, indigenous, people, native american, …}
+;;       c95  mass 1  {lax}
+
+;; ---- slot begin.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 begin) (Agent $e0 $x1))
+;;       c37  mass 2  {european american settler, european american settlers}
+;;       c38  mass 2  {indigenous, indigenous american, indigenous, people, native american, …}
+
+;; ---- slot begin.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 begin) (Theme $e0 $x1))
+;;      c530  mass 4  {new, create, add}
+
+;; ---- slot block.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Agent $e0 $x1))
+;;       c58  mass 4  {automobile, car, automobiles}
+
+;; ---- slot block.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Theme $e0 $x1))
+;;      c361  mass 4  {north route, lane, way}
+
+;; ---- slot celebrated.Location  [event center]  n 4  clusters 2
+(And (Member $e0 celebrated) (Location $e0 $x1))
+;;        c3  mass 2  {traditional chinese drama, traditional chinese dramas}
+;;       c51  mass 2  {popular culture}
+
+;; ---- slot commence.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 commence) (Patient $e0 $x1))
+;;      c216  mass 1  {dress rehearsal}
+;;      c246  mass 1  {apple harvest}
+;;      c404  mass 1  {hearing}
+;;       c73  mass 1  {shoreline survey}
+
+;; ---- slot create.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 create) (Agent $e0 $x1))
+;;       c37  mass 2  {european american settler, european american settlers}
+;;       c38  mass 2  {indigenous, indigenous american, indigenous, people, native american, …}
+
+;; ---- slot create.Location  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Location $e0 $x1))
+;;      c506  mass 4  {post, write}
+
+;; ---- slot create.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Patient $e0 $x1))
+;;      c315  mass 4  {community}
+
+;; ---- slot define.Manner  [event center]  n 4  clusters 4
+(And (Member $e0 define) (Manner $e0 $x1))
+;;      c338  mass 1.5  {random, random, ways}
+;;      c361  mass 1.5  {north route, lane, way}
+;;      c337  mass 0.5  {manner, manners, random}
+;;      c339  mass 0.5  {accidental, accidental, ways}
+
+;; ---- slot define.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 define) (Theme $e0 $x1))
+;;       c30  mass 2  {algorithmically equivalent, equivalent}
+;;      c389  mass 2  {sequence, series}
+
+;; ---- slot design.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 design) (Patient $e0 $x1))
+;;      c442  mass 4  {pacificat, pacificats}
+
+;; ---- slot direct.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Agent $e0 $x1))
+;;      c137  mass 2  {Lev L. Spiro}
+;;      c136  mass 1  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c160  mass 1  {Claude Lelouch}
+
+;; ---- slot direct.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Patient $e0 $x1))
+;;      c390  mass 2  {episode}
+;;      c198  mass 1.5  {movie, film, music film, musical film}
+;;       c23  mass 0.5  {syrian}
+
+;; ---- slot encourage.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Agent $e0 $x1))
+;;      c149  mass 4  {Ralph, Bo, Bobby, Frankie, …}
+
+;; ---- slot encourage.In  [event center]  n 4  clusters 2
+(And (Member $e0 encourage) (In $e0 $x1))
+;;       c11  mass 2  {chess, chess play}
+;;      c348  mass 2  {mathematics}
+
+;; ---- slot encourage.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Theme $e0 $x1))
+;;      c147  mass 4  {Maurice}
+
+;; ---- slot error.Location  [event center]  n 4  clusters 1
+(And (Member $e0 error) (Location $e0 $x1))
+;;      c380  mass 4  {ledger}
+
+;; ---- slot follow.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 follow) (Agent $e0 $x1))
+;;      c119  mass 1  {Alexander}
+;;      c150  mass 1  {Bailey}
+;;      c186  mass 1  {muslim, house, muslim}
+;;      c367  mass 1  {hall, house, room}
+
+;; ---- slot follow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Theme $e0 $x1))
+;;      c299  mass 2  {region, regional level}
+;;      c136  mass 1  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c140  mass 1  {Karen, Katherine, Margaret Fleming, Ana, …}
+
+;; ---- slot form.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 form) (Patient $e0 $x1))
+;;      c215  mass 2  {main songwriting unit}
+;;       c48  mass 1  {Technetium}
+;;      c458  mass 0.5  {complex, complex, simple}
+;;      c462  mass 0.5  {simple, easy}
+
+;; ---- slot have.Location  [event center]  n 4  clusters 2
+(And (Member $e0 have) (Location $e0 $x1))
+;;      c299  mass 2  {region, regional level}
+;;      c301  mass 2  {local level}
+
+;; ---- slot influence.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 influence) (Theme $e0 $x1))
+;;      c189  mass 2  {religion}
+;;        c4  mass 2  {chinese dumpling}
+
+;; ---- slot kill.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Agent $e0 $x1))
+;;      c291  mass 4  {storm, hurricane}
+
+;; ---- slot kill.Location  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Location $e0 $x1))
+;;      c174  mass 4  {government, state, nation}
+
+;; ---- slot kill.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Manner $e0 $x1))
+;;      c543  mass 4  {direct, directly, indirectly}
+
+;; ---- slot kill.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Patient $e0 $x1))
+;;      c324  mass 4  {person, people}
+
+;; ---- slot make.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 make) (Agent $e0 $x1))
+;;      c314  mass 1  {committee, council}
+;;      c329  mass 1  {family}
+;;      c509  mass 1  {board, panel}
+;;      c514  mass 1  {judge}
+
+;; ---- slot make.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 make) (Patient $e0 $x1))
+;;      c547  mass 4  {answer, decision, permit, decide, …}
+
+;; ---- slot move.Goal  [event center]  n 4  clusters 2
+(And (Member $e0 move) (Goal $e0 $x1))
+;;      c102  mass 2  {Altoona, Baltimore}
+;;       c82  mass 2  {Germany, Estonia, France, Italy, …}
+
+;; ---- slot nation.Location  [event center]  n 4  clusters 1
+(And (Member $e0 nation) (Location $e0 $x1))
+;;      c110  mass 4  {Bengal, South Asia, northern india, southern india}
+
+;; ---- slot order.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Agent $e0 $x1))
+;;       c18  mass 3  {physician, doctor}
+;;      c448  mass 1  {scan}
+
+;; ---- slot order.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Theme $e0 $x1))
+;;      c448  mass 3  {scan}
+;;       c18  mass 1  {physician, doctor}
+
+;; ---- slot play.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Agent $e0 $x1))
+;;      c117  mass 2  {Boston Red Sox, Cincinnati Reds}
+;;      c142  mass 2  {Audrey Hepburn, Audrey Heppurn}
+
+;; ---- slot play.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Theme $e0 $x1))
+;;      c143  mass 2  {Holly Golightly}
+;;      c389  mass 2  {sequence, series}
+
+;; ---- slot preach.Location  [event center]  n 4  clusters 2
+(And (Member $e0 preach) (Location $e0 $x1))
+;;      c104  mass 2  {Gareccio}
+;;       c82  mass 2  {Germany, Estonia, France, Italy, …}
+
+;; ---- slot purchase.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Agent $e0 $x1))
+;;      c219  mass 1  {pottery studio}
+;;      c253  mass 1  {chef}
+;;      c347  mass 1  {school}
+;;      c421  mass 1  {depot}
+
+;; ---- slot purchase.Theme  [event center]  n 4  clusters 5
+(And (Member $e0 purchase) (Theme $e0 $x1))
+;;      c163  mass 1  {projector, projectors}
+;;      c283  mass 1  {forklift, forklifts}
+;;      c287  mass 1  {kiln}
+;;      c244  mass 0.5  {lemon, crate, lemons}
+;;      c420  mass 0.5  {crate}
+
+;; ---- slot reach.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 reach) (Agent $e0 $x1))
+;;      c314  mass 1  {committee, council}
+;;      c329  mass 1  {family}
+;;      c509  mass 1  {board, panel}
+;;      c514  mass 1  {judge}
+
+;; ---- slot reach.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 reach) (Theme $e0 $x1))
+;;      c547  mass 4  {answer, decision, permit, decide, …}
+
+;; ---- slot replace.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Agent $e0 $x1))
+;;      c136  mass 2  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c135  mass 1  {Corentin Rahier, Bruno Simma, Cyril Rambour, Peter Gaussen}
+;;      c175  mass 1  {governor, president}
+
+;; ---- slot replace.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Theme $e0 $x1))
+;;      c121  mass 2  {Lex Lex Luthor, Lex Luthor}
+;;      c136  mass 1  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c175  mass 1  {governor, president}
+
+;; ---- slot sell.Recipient  [event center]  n 4  clusters 4
+(And (Member $e0 sell) (Recipient $e0 $x1))
+;;      c219  mass 1  {pottery studio}
+;;      c253  mass 1  {chef}
+;;      c347  mass 1  {school}
+;;      c421  mass 1  {depot}
+
+;; ---- slot sign.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Agent $e0 $x1))
+;;       c18  mass 3  {physician, doctor}
+;;      c556  mass 1  {chart}
+
+;; ---- slot sign.Patient  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Patient $e0 $x1))
+;;      c556  mass 3  {chart}
+;;       c18  mass 1  {physician, doctor}
+
+;; ---- slot sing.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Manner $e0 $x1))
+;;      c213  mass 4  {a cappella}
+
+;; ---- slot sing.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Theme $e0 $x1))
+;;      c208  mass 4  {song, sing, music}
+
+;; ---- slot sing.To  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (To $e0 $x1))
+;;      c453  mass 4  {accompany}
+
+;; ---- slot speak.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 speak) (Agent $e0 $x1))
+;;      c156  mass 2  {Oates, Wyman}
+;;      c127  mass 1  {inomaru, Kantaro Suga, Mie Sonozaki, Soichiro Akizuki}
+;;      c144  mass 1  {Kari Wahlgren}
+
+;; ---- slot specify.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 specify) (Manner $e0 $x1))
+;;      c295  mass 4  {continuous time, discrete time}
+
+;; ---- slot star.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 star) (Theme $e0 $x1))
+;;      c131  mass 2  {James Woods, Jeremy Irons}
+;;      c139  mass 2  {Bianca Olsen, Laurie Aubanel, Muriel Zazoui, Patricia Kaas}
+
+;; ---- slot start.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 start) (Patient $e0 $x1))
+;;      c216  mass 1  {dress rehearsal}
+;;      c246  mass 1  {apple harvest}
+;;      c404  mass 1  {hearing}
+;;       c73  mass 1  {shoreline survey}
+
+;; ---- slot study.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 study) (Agent $e0 $x1))
+;;      c324  mass 4  {person, people}
+
+;; ---- slot take.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 take) (Theme $e0 $x1))
+;;      c325  mass 2  {identity}
+;;      c360  mass 2  {walk, stroll}
+
+;; ---- slot use.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 use) (Manner $e0 $x1))
+;;      c465  mass 4  {rare}
+
+;; ---- slot win.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 win) (Agent $e0 $x1))
+;;      c131  mass 2  {James Woods, Jeremy Irons}
+;;      c145  mass 2  {Wilson, wilson}
+
+;; ---- slot win.For  [event center]  n 4  clusters 1
+(And (Member $e0 win) (For $e0 $x1))
+;;      c221  mass 4  {portray}
+
+;; ---- slot win.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 win) (Theme $e0 $x1))
+;;       c55  mass 4  {emmy}
+
+;; ---- slot house.Possession  [entity center]  n 3  clusters 2
+(And (Member $x0 house) (Possession $x0 $x1))
+;;      c154  mass 2  {Dara, Arakkal}
+;;       c84  mass 1  {Derwent Isle, Seychelles}
+
+;; ---- slot western.PartOf  [entity center]  n 3  clusters 2
+(And (Member $x0 western) (PartOf $x0 $x1))
+;;       c78  mass 2  {Japan, China}
+;;       c76  mass 1  {Europe, Western Europe}
+
+;; ---- slot bear.Patient  [event center]  n 3  clusters 2
+(And (Member $e0 bear) (Patient $e0 $x1))
+;;      c324  mass 2  {person, people}
+;;      c138  mass 1  {Leonor Rodrigues, Gil Aires}
+
+;; ---- slot begin.Time  [event center]  n 3  clusters 1
+(And (Member $e0 begin) (Time $e0 $x1))
+;;      c258  mass 3  {dawn, morning, early morning}
+
+;; ---- slot borrow.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Agent $e0 $x1))
+;;      c112  mass 1  {Ravi, Armaan Jain, Ranbir Kapoor}
+;;      c224  mass 1  {gallery}
+;;      c262  mass 1  {crew, night crew}
+
+;; ---- slot borrow.Source  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Source $e0 $x1))
+;;      c230  mass 1  {museum}
+;;      c302  mass 1  {neighbour, neighbouring}
+;;      c421  mass 1  {depot}
+
+;; ---- slot buy.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 buy) (Beneficiary $e0 $x1))
+;;      c367  mass 3  {hall, house, room}
+
+;; ---- slot call_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 call_off) (Agent $e0 $x1))
+;;      c254  mass 1  {airline}
+;;      c314  mass 1  {committee, council}
+;;      c345  mass 1  {teach, tutor}
+
+;; ---- slot cause.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 cause) (Agent $e0 $x1))
+;;      c291  mass 1  {storm, hurricane}
+;;      c292  mass 1  {flood}
+;;      c475  mass 1  {fire}
+
+;; ---- slot cause.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 cause) (Theme $e0 $x1))
+;;      c488  mass 3  {destroy}
+
+;; ---- slot discover.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+;;      c275  mass 2  {auditor}
+;;      c497  mass 1  {error}
+
+;; ---- slot discover.Stimulus  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+;;      c497  mass 2  {error}
+;;      c275  mass 1  {auditor}
+
+;; ---- slot end.Patient  [event center]  n 3  clusters 3
+(And (Member $e0 end) (Patient $e0 $x1))
+;;      c246  mass 1  {apple harvest}
+;;      c404  mass 1  {hearing}
+;;       c73  mass 1  {shoreline survey}
+
+;; ---- slot examine.Agent  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Agent $e0 $x1))
+;;       c18  mass 3  {physician, doctor}
+
+;; ---- slot examine.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Theme $e0 $x1))
+;;      c207  mass 3  {sample, samples}
+
+;; ---- slot fund.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 fund) (Theme $e0 $x1))
+;;      c298  mass 3  {border section, lessos kenya border section}
+
+;; ---- slot give_up.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Agent $e0 $x1))
+;;      c263  mass 1  {rescue team}
+;;      c268  mass 1  {climber, climbers}
+;;      c311  mass 1  {firm, Company, company}
+
+;; ---- slot give_up.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Theme $e0 $x1))
+;;      c333  mass 1  {tender}
+;;      c361  mass 1  {north route, lane, way}
+;;      c446  mass 1  {query, search}
+
+;; ---- slot influence.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 influence) (Agent $e0 $x1))
+;;       c36  mass 2  {indonesian immigrant, indonesian immigrants}
+;;      c378  mass 0.5  {balance, balance, international}
+;;      c439  mass 0.5  {international}
+
+;; ---- slot learn.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Agent $e0 $x1))
+;;      c260  mass 1  {squad}
+;;      c280  mass 1  {apprentice}
+;;      c321  mass 1  {child, children}
+
+;; ---- slot learn.Source  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Source $e0 $x1))
+;;      c116  mass 1  {potter}
+;;      c279  mass 1  {coach, trainer}
+;;      c322  mass 1  {elder}
+
+;; ---- slot learn.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Theme $e0 $x1))
+;;      c205  mass 1  {drill}
+;;      c208  mass 1  {song, sing, music}
+;;      c288  mass 1  {glazing}
+
+;; ---- slot market.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Beneficiary $e0 $x1))
+;;      c375  mass 3  {shop}
+
+;; ---- slot market.Location  [event center]  n 3  clusters 2
+(And (Member $e0 market) (Location $e0 $x1))
+;;      c184  mass 1.5  {pakistani, block, pakistani}
+;;      c510  mass 1.5  {block}
+
+;; ---- slot need.Holder  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Holder $e0 $x1))
+;;      c252  mass 1  {recipe}
+;;      c285  mass 1  {lathe}
+;;      c547  mass 1  {answer, decision, permit, decide, …}
+
+;; ---- slot need.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Theme $e0 $x1))
+;;      c250  mass 1  {egg, eggs}
+;;      c430  mass 1  {countersignature, sign, countersignatures}
+;;      c557  mass 1  {monthly servicing}
+
+;; ---- slot permit.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Agent $e0 $x1))
+;;      c277  mass 1  {warden}
+;;      c278  mass 1  {curator}
+;;      c399  mass 1  {licence}
+
+;; ---- slot permit.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Theme $e0 $x1))
+;;      c227  mass 1  {photography}
+;;      c341  mass 1  {night delivery}
+;;      c419  mass 1  {visitor}
+
+;; ---- slot put_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Agent $e0 $x1))
+;;      c261  mass 1  {club}
+;;      c509  mass 1  {board, panel}
+;;       c61  mass 1  {ferry, ship}
+
+;; ---- slot put_off.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Theme $e0 $x1))
+;;       c15  mass 1  {tournament}
+;;      c516  mass 1  {vet, vote}
+;;      c523  mass 1  {departure, arrive, arrival, depart, …}
+
+;; ---- slot receive.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Agent $e0 $x1))
+;;      c319  mass 1  {recruit}
+;;      c544  mass 1  {winner, ward, win, well}
+;;       c59  mass 1  {driver}
+
+;; ---- slot receive.Source  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Source $e0 $x1))
+;;      c167  mass 1  {foreman}
+;;      c279  mass 1  {coach, trainer}
+;;      c347  mass 1  {school}
+
+;; ---- slot start.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Experiencer $e0 $x1))
+;;      c355  mass 2  {bridge, footbridge}
+;;      c166  mass 1  {tunnel}
+
+;; ---- slot start.Location  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Location $e0 $x1))
+;;       c92  mass 2  {stockholm, sweden}
+;;       c83  mass 1  {denmark}
+
+;; ---- slot succeed.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Agent $e0 $x1))
+;;      c119  mass 1  {Alexander}
+;;      c135  mass 1  {Corentin Rahier, Bruno Simma, Cyril Rambour, Peter Gaussen}
+;;      c150  mass 1  {Bailey}
+
+;; ---- slot succeed.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Theme $e0 $x1))
+;;      c136  mass 1  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c140  mass 1  {Karen, Katherine, Margaret Fleming, Ana, …}
+;;      c175  mass 1  {governor, president}
+
+;; ---- slot turn_down.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+;;      c274  mass 1  {editor}
+;;      c379  mass 1  {bank}
+;;      c509  mass 1  {board, panel}
+
+;; ---- slot turn_down.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+;;      c234  mass 1  {manuscript}
+;;      c377  mass 1  {loan application}
+;;      c502  mass 1  {proposal, suggest}
+
+;; ---- slot wait.Experiencer  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+;;       c58  mass 3  {automobile, car, automobiles}
+
+;; ---- slot wait.Location  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Location $e0 $x1))
+;;      c424  mass 3  {gate}
+
+;; ---- slot walk.Goal  [event center]  n 3  clusters 2
+(And (Member $e0 walk) (Goal $e0 $x1))
+;;      c357  mass 2  {pier}
+;;      c321  mass 1  {child, children}
+
+;; ---- slot work.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 work) (Theme $e0 $x1))
+;;      c223  mass 3  {mural}
+
+;; ==================== word @ cluster cos 0.85: pooled role level (45 head pairs) ====================
+
+;; Agent ~ Recipient  cosine 0.29  JSD 0.715  n 500 / 47  shared: {person, people} {school} {depot}
+(Agent $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Experiencer  cosine 0.28  JSD 0.858  n 500 / 63  shared: {person, people} {automobile, car, automobiles} {George Allen, James David Edgar, Chuck Robb}
+(Agent $e $x)
+(Experiencer $e $x)
+
+;; Agent ~ Patient  cosine 0.24  JSD 0.845  n 500 / 159  shared: {person, people} {physician, doctor} {storm, hurricane}
+(Agent $e $x)
+(Patient $e $x)
+
+;; Experiencer ~ Patient  cosine 0.21  JSD 0.834  n 63 / 159  shared: {person, people} {movie, film} {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …}
+(Experiencer $e $x)
+(Patient $e $x)
+
+;; Agent ~ Theme  cosine 0.16  JSD 0.795  n 500 / 367  shared: {person, people} {physician, doctor} {inomaru, Mie Sonozaki, Soichiro Akizuki}
+(Agent $e $x)
+(Theme $e $x)
+
+;; Patient ~ Theme  cosine 0.14  JSD 0.868  n 159 / 367  shared: {person, people} {song, sing} {movie, film}
+(Patient $e $x)
+(Theme $e $x)
+
+;; Recipient ~ Source  cosine 0.11  JSD 0.804  n 47 / 24  shared: {coach, trainer} {depot} {potter}
+(Recipient $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Theme  cosine 0.11  JSD 0.907  n 63 / 367  shared: {person, people} {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …} {bridge, footbridge}
+(Experiencer $e $x)
+(Theme $e $x)
+
+;; Recipient ~ Theme  cosine 0.10  JSD 0.896  n 47 / 367  shared: {query, search} {child, children} {person, people}
+(Recipient $e $x)
+(Theme $e $x)
+
+;; Agent ~ Source  cosine 0.10  JSD 0.862  n 500 / 24  shared: {school} {depot} {coach, trainer}
+(Agent $e $x)
+(Source $e $x)
+
+;; Patient ~ Recipient  cosine 0.09  JSD 0.938  n 159 / 47  shared: {person, people} {crew}
+(Patient $e $x)
+(Recipient $e $x)
+
+;; Experiencer ~ Recipient  cosine 0.08  JSD 0.943  n 63 / 47  shared: {person, people}
+(Experiencer $e $x)
+(Recipient $e $x)
+
+;; Goal ~ Recipient  cosine 0.05  JSD 0.929  n 30 / 47  shared: {child, children} {Ana, Jessica, Loren}
+(Goal $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Goal  cosine 0.04  JSD 0.947  n 500 / 30  shared: {Ana, Jessica, Loren} {George Allen, James David Edgar, Chuck Robb} {child, children}
+(Agent $e $x)
+(Goal $e $x)
+
+;; Manner ~ Theme  cosine 0.02  JSD 0.972  n 34 / 367  shared: {lane, way} {widespread, widely, attention, widespread}
+(Manner $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Goal  cosine 0.02  JSD 0.967  n 63 / 30  shared: {George Allen, James David Edgar, Chuck Robb}
+(Experiencer $e $x)
+(Goal $e $x)
+
+;; Goal ~ Theme  cosine 0.02  JSD 0.975  n 30 / 367  shared: {child, children} {predictive function, predictive functions}
+(Goal $e $x)
+(Theme $e $x)
+
+;; Location ~ Manner  cosine 0.02  JSD 0.977  n 175 / 34  shared: {ward, well}
+(Location $e $x)
+(Manner $e $x)
+
+;; Patient ~ Time  cosine 0.01  JSD 0.982  n 159 / 37  shared: {last, later}
+(Patient $e $x)
+(Time $e $x)
+
+;; Theme ~ Time  cosine 0.01  JSD 0.99  n 367 / 37  shared: {today, current, now}
+(Theme $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Location  cosine 0.01  JSD 0.988  n 63 / 175  shared: {park}
+(Experiencer $e $x)
+(Location $e $x)
+
+;; Location ~ Theme  cosine 0.01  JSD 0.987  n 175 / 367  shared: {mural} {gate}
+(Location $e $x)
+(Theme $e $x)
+
+;; Agent ~ Location  cosine 0.01  JSD 0.987  n 500 / 175  shared: {nurse} {north, northeastern} {ward, well}
+(Agent $e $x)
+(Location $e $x)
+
+;; Agent ~ Manner  cosine 0.00  JSD 0.994  n 500 / 34  shared: {ward, well}
+(Agent $e $x)
+(Manner $e $x)
+
+;; Source ~ Theme  cosine 0.00  JSD 0.993  n 24 / 367  shared: {depot}
+(Source $e $x)
+(Theme $e $x)
+
+;; Agent ~ Time  cosine 0.00  JSD 0.996  n 500 / 37  shared: {last, later}
+(Agent $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Manner  cosine 0.00  JSD 1.0  n 63 / 34  shared: 
+(Experiencer $e $x)
+(Manner $e $x)
+
+;; Experiencer ~ Source  cosine 0.00  JSD 1.0  n 63 / 24  shared: 
+(Experiencer $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Time  cosine 0.00  JSD 1.0  n 63 / 37  shared: 
+(Experiencer $e $x)
+(Time $e $x)
+
+;; Goal ~ Location  cosine 0.00  JSD 1.0  n 30 / 175  shared: 
+(Goal $e $x)
+(Location $e $x)
+
+;; Goal ~ Manner  cosine 0.00  JSD 1.0  n 30 / 34  shared: 
+(Goal $e $x)
+(Manner $e $x)
+
+;; Goal ~ Patient  cosine 0.00  JSD 1.0  n 30 / 159  shared: 
+(Goal $e $x)
+(Patient $e $x)
+
+;; Goal ~ Source  cosine 0.00  JSD 1.0  n 30 / 24  shared: 
+(Goal $e $x)
+(Source $e $x)
+
+;; Goal ~ Time  cosine 0.00  JSD 1.0  n 30 / 37  shared: 
+(Goal $e $x)
+(Time $e $x)
+
+;; Location ~ Patient  cosine 0.00  JSD 1.0  n 175 / 159  shared: 
+(Location $e $x)
+(Patient $e $x)
+
+;; Location ~ Recipient  cosine 0.00  JSD 1.0  n 175 / 47  shared: 
+(Location $e $x)
+(Recipient $e $x)
+
+;; Location ~ Source  cosine 0.00  JSD 1.0  n 175 / 24  shared: 
+(Location $e $x)
+(Source $e $x)
+
+;; Location ~ Time  cosine 0.00  JSD 1.0  n 175 / 37  shared: 
+(Location $e $x)
+(Time $e $x)
+
+;; Manner ~ Patient  cosine 0.00  JSD 1.0  n 34 / 159  shared: 
+(Manner $e $x)
+(Patient $e $x)
+
+;; Manner ~ Recipient  cosine 0.00  JSD 1.0  n 34 / 47  shared: 
+(Manner $e $x)
+(Recipient $e $x)
+
+;; Manner ~ Source  cosine 0.00  JSD 1.0  n 34 / 24  shared: 
+(Manner $e $x)
+(Source $e $x)
+
+;; Manner ~ Time  cosine 0.00  JSD 1.0  n 34 / 37  shared: 
+(Manner $e $x)
+(Time $e $x)
+
+;; Patient ~ Source  cosine 0.00  JSD 1.0  n 159 / 24  shared: 
+(Patient $e $x)
+(Source $e $x)
+
+;; Recipient ~ Time  cosine 0.00  JSD 1.0  n 47 / 37  shared: 
+(Recipient $e $x)
+(Time $e $x)
+
+;; Source ~ Time  cosine 0.00  JSD 1.0  n 24 / 37  shared: 
+(Source $e $x)
+(Time $e $x)
+
+;; ==================== word @ cluster cos 0.85: slot pairs (51 event-center signals) ====================
+
+;; [same role, different class]  acquire.Agent ~ purchase.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ purchase.Theme  cosine 1.00  JSD 0.0  n 4 / 4  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Agent ~ create.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {european american settler, european american settlers} {indigenous, indigenous american, indigenous, people, native american, …}
+;;   A e.g. tierC-000025 tierC-000026   B e.g. tierC-000025 tierC-000026
+(And (Member $e0 begin) (Agent $e0 $x1))
+(And (Member $e0 create) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ start.Patient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000064 tierA-000069   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  make.Agent ~ reach.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000186 tierA-000197   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 make) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  learn.Theme ~ teach.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {drill} {song, sing} {glazing}
+;;   A e.g. tierA-000287 tierA-000292   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Theme $e0 $x1))
+(And (Member $e0 teach) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Theme ~ require.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {egg, eggs} {countersignature, sign, countersignatures} {monthly servicing}
+;;   A e.g. tierA-000085 tierA-000090   B e.g. tierA-000084 tierA-000086
+(And (Member $e0 need) (Theme $e0 $x1))
+(And (Member $e0 require) (Theme $e0 $x1))
+
+;; [same role, different class]  abandon.Agent ~ give_up.Agent  cosine 0.98  JSD 0.006  n 8 / 3  shared: {rescue team} {climber, climbers} {firm}
+;;   A e.g. tierA-000099 tierA-000101   B e.g. tierA-000100 tierA-000110
+(And (Member $e0 abandon) (Agent $e0 $x1))
+(And (Member $e0 give_up) (Agent $e0 $x1))
+
+;; [same role, different class]  abandon.Theme ~ give_up.Theme  cosine 0.98  JSD 0.006  n 8 / 3  shared: {tender} {north route} {query, search}
+;;   A e.g. tierA-000104 tierA-000106   B e.g. tierA-000105 tierA-000110
+(And (Member $e0 abandon) (Theme $e0 $x1))
+(And (Member $e0 give_up) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Holder ~ require.Holder  cosine 0.98  JSD 0.006  n 3 / 8  shared: {recipe} {lathe} {permit, allow, accept, confirm}
+;;   A e.g. tierA-000085 tierA-000095   B e.g. tierA-000086 tierA-000087
+(And (Member $e0 need) (Holder $e0 $x1))
+(And (Member $e0 require) (Holder $e0 $x1))
+
+;; [same role, different class]  postpone.Agent ~ put_off.Agent  cosine 0.98  JSD 0.007  n 7 / 3  shared: {club} {board} {ferry}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Agent $e0 $x1))
+(And (Member $e0 put_off) (Agent $e0 $x1))
+
+;; [same role, different class]  postpone.Theme ~ put_off.Theme  cosine 0.98  JSD 0.007  n 7 / 3  shared: {tournament} {vote} {departure, depart, leave}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Theme $e0 $x1))
+(And (Member $e0 put_off) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ commence.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000064 tierA-000069
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 commence) (Patient $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ start.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  allow.Agent ~ permit.Agent  cosine 0.94  JSD 0.021  n 4 / 3  shared: {warden} {curator} {licence}
+;;   A e.g. tierA-000075 tierA-000080   B e.g. tierA-000073 tierA-000081
+(And (Member $e0 allow) (Agent $e0 $x1))
+(And (Member $e0 permit) (Agent $e0 $x1))
+
+;; [same role, different class]  allow.Theme ~ permit.Theme  cosine 0.94  JSD 0.021  n 4 / 3  shared: {photography} {night delivery} {visitor}
+;;   A e.g. tierA-000080 tierA-000076   B e.g. tierA-000081 tierA-000077
+(And (Member $e0 allow) (Theme $e0 $x1))
+(And (Member $e0 permit) (Theme $e0 $x1))
+
+;; [same role, different class]  call_off.Agent ~ cancel.Agent  cosine 0.96  JSD 0.064  n 3 / 9  shared: {airline} {council} {tutor}
+;;   A e.g. tierA-000144 tierA-000149   B e.g. tierA-000143 tierA-000145
+(And (Member $e0 call_off) (Agent $e0 $x1))
+(And (Member $e0 cancel) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Theme ~ decision.Theme  cosine 0.97  JSD 0.064  n 9 / 6  shared: {roof, new, roof} {budget} {case} {new}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000187
+(And (Member $e0 decide) (Theme $e0 $x1))
+(And (Member $e0 decision) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Agent ~ buy.Agent  cosine 0.95  JSD 0.121  n 4 / 14  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000022 tierA-000026
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 buy) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ buy.Theme  cosine 0.94  JSD 0.121  n 4 / 14  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000008 tierA-000012
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 buy) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Agent ~ purchase.Agent  cosine 0.95  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ purchase.Theme  cosine 0.94  JSD 0.121  n 14 / 4  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ make.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000197
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 make) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ reach.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  cause.Agent ~ destroy.Agent  cosine 0.93  JSD 0.138  n 3 / 8  shared: {storm, hurricane} {flood} {fire}
+;;   A e.g. tierA-000223 tierA-000233   B e.g. tierA-000222 tierA-000224
+(And (Member $e0 cause) (Agent $e0 $x1))
+(And (Member $e0 destroy) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ end.Patient  cosine 0.87  JSD 0.138  n 4 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000069 tierA-000059   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  end.Patient ~ start.Patient  cosine 0.87  JSD 0.138  n 3 / 4  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000071 tierA-000060   B e.g. tierA-000068 tierA-000058
+(And (Member $e0 end) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  reject.Agent ~ turn_down.Agent  cosine 0.93  JSD 0.138  n 8 / 3  shared: {editor} {bank} {panel}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Agent $e0 $x1))
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Theme ~ turn_down.Theme  cosine 0.93  JSD 0.138  n 8 / 3  shared: {manuscript} {loan application} {proposal, suggest}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Theme $e0 $x1))
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ end.Patient  cosine 0.80  JSD 0.174  n 7 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ sell.Theme  cosine 0.68  JSD 0.191  n 4 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  portray.Agent ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods, Jeremy Irons} {Wilson, wilson}
+;;   A e.g. tierC-000301 tierC-000302   B e.g. tierC-000277 tierC-000278
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [same role, different class]  purchase.Theme ~ sell.Theme  cosine 0.68  JSD 0.191  n 4 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000009 tierA-000016   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 purchase) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  design.Agent ~ produce.Agent  cosine 0.78  JSD 0.208  n 6 / 6  shared: {Brian Packham, Carl Fenton, Colin Richardson, Jason Suecof, …} {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …}
+;;   A e.g. tierC-000183 tierC-000184   B e.g. tierC-000103 tierC-000104
+(And (Member $e0 design) (Agent $e0 $x1))
+(And (Member $e0 produce) (Agent $e0 $x1))
+
+;; [same role, different class]  accompany.Agent ~ appear.Agent  cosine 0.78  JSD 0.217  n 4 / 8  shared: {person, people} {sister, sisters}
+;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000049 tierC-000050
+(And (Member $e0 accompany) (Agent $e0 $x1))
+(And (Member $e0 appear) (Agent $e0 $x1))
+
+;; [same role, different class]  borrow.Theme ~ lend.Theme  cosine 0.65  JSD 0.239  n 5 / 10  shared: {painting, paint, paintings} {ladder, ladders} {generator}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Theme $e0 $x1))
+(And (Member $e0 lend) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ sell.Theme  cosine 0.65  JSD 0.281  n 14 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same class, different role]  repair.Agent ~ repair.Patient  cosine 0.83  JSD 0.061  n 8 / 8  shared: {feed pipe} {crew} {electrician} {cracked}
+;;   A e.g. tierA-000051 tierA-000049   B e.g. tierA-000039 tierA-000029
+(And (Member $e0 repair) (Agent $e0 $x1))
+(And (Member $e0 repair) (Patient $e0 $x1))
+
+;; [same class, different role]  discover.Experiencer ~ discover.Stimulus  cosine 0.80  JSD 0.082  n 3 / 3  shared: {auditor} {error}
+;;   A e.g. tierA-000128 tierA-000130   B e.g. tierA-000132 tierA-000128
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+
+;; [same class, different role]  order.Agent ~ order.Theme  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {scan}
+;;   A e.g. tierA-000385 tierA-000386   B e.g. tierA-000389 tierA-000387
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 order) (Theme $e0 $x1))
+
+;; [same class, different role]  sign.Agent ~ sign.Patient  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {chart}
+;;   A e.g. tierA-000375 tierA-000376   B e.g. tierA-000378 tierA-000377
+(And (Member $e0 sign) (Agent $e0 $x1))
+(And (Member $e0 sign) (Patient $e0 $x1))
+
+;; [different class and role]  acquire.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  purchase.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000023 tierA-000016   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 purchase) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Agent ~ lend.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {Ravi} {gallery} {crew}
+;;   A e.g. tierA-000297 tierA-000307   B e.g. tierA-000296 tierA-000298
+(And (Member $e0 borrow) (Agent $e0 $x1))
+(And (Member $e0 lend) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Source ~ lend.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {museum} {neighbour, neighbouring} {depot}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Source $e0 $x1))
+(And (Member $e0 lend) (Agent $e0 $x1))
+
+;; [different class and role]  learn.Agent ~ teach.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {squad} {apprentice} {child, children}
+;;   A e.g. tierA-000287 tierA-000282   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Agent $e0 $x1))
+(And (Member $e0 teach) (Recipient $e0 $x1))
+
+;; [different class and role]  learn.Source ~ teach.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {potter} {coach, trainer} {elder}
+;;   A e.g. tierA-000282 tierA-000287   B e.g. tierA-000281 tierA-000283
+(And (Member $e0 learn) (Source $e0 $x1))
+(And (Member $e0 teach) (Agent $e0 $x1))
+
+;; [different class and role]  buy.Agent ~ sell.Recipient  cosine 0.95  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  portray.Theme ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods, Jeremy Irons} {Wilson, wilson}
+;;   A e.g. tierC-000277 tierC-000278   B e.g. tierC-000301 tierC-000302
+(And (Member $e0 portray) (Theme $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [different class and role]  give.Agent ~ receive.Source  cosine 0.91  JSD 0.196  n 12 / 3  shared: {foreman} {coach, trainer} {school}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000262
+(And (Member $e0 give) (Agent $e0 $x1))
+(And (Member $e0 receive) (Source $e0 $x1))
+
+;; [different class and role]  give.Recipient ~ receive.Agent  cosine 0.91  JSD 0.196  n 12 / 3  shared: {recruit} {driver} {winner, win}
+;;   A e.g. tierA-000261 tierA-000263   B e.g. tierA-000262 tierA-000272
+(And (Member $e0 give) (Recipient $e0 $x1))
+(And (Member $e0 receive) (Agent $e0 $x1))
+
+;; ==================== word @ cluster cos 0.85: compared slots with their distributions (197 slots, n >= 3) ====================
+
+;; ---- slot <unclassed>.Possession  [entity center]  n 18  clusters 11
+(Possession $x0 $x1)
+;;      c390  mass 5  {person, people}
+;;      c137  mass 2  {Twilight}
+;;      c168  mass 2  {Gil Aires}
+;;      c169  mass 2  {Leonor Rodrigues}
+;;      c174  mass 2  {Margaret Fleming, Dora Smith}
+;;      c500  mass 2  {subsequent game}
+;;      c160  mass 1  {J. Augustus Knapp}
+;;      c235  mass 0.5  {sunni}
+;;      c366  mass 0.5  {neighbour, neighbouring}
+;;      c381  mass 0.5  {community}
+;;      c420  mass 0.5  {other}
+
+;; ---- slot work.Agent  [event center]  n 17  clusters 10
+(And (Member $e0 work) (Agent $e0 $x1))
+;;      c172  mass 3  {Ana, Jessica, Loren}
+;;      c198  mass 3  {Dara, Arakkal}
+;;       c21  mass 3  {biologist}
+;;      c330  mass 2  {welder}
+;;      c184  mass 1  {Mr. Jones}
+;;      c185  mass 1  {Bo, Bobby, Robbie, Roger}
+;;      c191  mass 1  {Nils}
+;;      c193  mass 1  {Asserson}
+;;      c323  mass 1  {ranger}
+;;      c512  mass 1  {fitter}
+
+;; ---- slot build.Location  [event center]  n 14  clusters 3
+(And (Member $e0 build) (Location $e0 $x1))
+;;       c89  mass 6  {Turkey}
+;;      c128  mass 4  {Eskisehir}
+;;       c98  mass 4  {Kazakhstan}
+
+;; ---- slot buy.Agent  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Agent $e0 $x1))
+;;      c274  mass 3  {pottery studio}
+;;      c418  mass 3  {school}
+;;      c504  mass 3  {depot}
+;;      c309  mass 2  {chef}
+;;      c342  mass 1  {forklift, forklifts}
+;;      c346  mass 1  {kiln}
+;;      c300  mass 0.5  {lemon, crate, lemons}
+;;      c503  mass 0.5  {crate}
+
+;; ---- slot buy.Theme  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Theme $e0 $x1))
+;;      c208  mass 3  {projector, projectors}
+;;      c342  mass 3  {forklift, forklifts}
+;;      c346  mass 3  {kiln}
+;;      c274  mass 1  {pottery studio}
+;;      c300  mass 1  {lemon, crate, lemons}
+;;      c309  mass 1  {chef}
+;;      c503  mass 1  {crate}
+;;      c504  mass 1  {depot}
+
+;; ---- slot work.Location  [event center]  n 13  clusters 5
+(And (Member $e0 work) (Location $e0 $x1))
+;;      c456  mass 4  {ledger}
+;;      c688  mass 4  {survey}
+;;      c615  mass 3  {frame}
+;;      c278  mass 1  {mural}
+;;        c6  mass 1  {Church of Norway}
+
+;; ---- slot build.Agent  [event center]  n 12  clusters 3
+(And (Member $e0 build) (Agent $e0 $x1))
+;;      c375  mass 8  {Company, company}
+;;      c165  mass 2  {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …}
+;;      c390  mass 2  {person, people}
+
+;; ---- slot build.Patient  [event center]  n 12  clusters 4
+(And (Member $e0 build) (Patient $e0 $x1))
+;;      c286  mass 4  {paper factory, paper mill}
+;;      c443  mass 4  {hotel}
+;;      c441  mass 2  {room}
+;;      c574  mass 2  {horn}
+
+;; ---- slot find.Location  [event center]  n 12  clusters 8
+(And (Member $e0 find) (Location $e0 $x1))
+;;      c368  mass 2  {southern}
+;;      c619  mass 2  {bench}
+;;       c74  mass 2  {Yunnan}
+;;       c75  mass 2  {tributary, tributaries}
+;;      c369  mass 1  {western}
+;;       c73  mass 1  {Dianchi Lake, Lake Dianchi}
+;;       c83  mass 1  {Europe, Western Europe}
+;;       c85  mass 1  {Japan, China}
+
+;; ---- slot give.Agent  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Agent $e0 $x1))
+;;      c338  mass 3  {coach, trainer}
+;;      c418  mass 3  {school}
+;;      c212  mass 2  {foreman}
+;;      c312  mass 1  {pilot}
+;;      c335  mass 1  {clerk}
+;;      c624  mass 1  {vet}
+;;       c63  mass 1  {driver}
+
+;; ---- slot give.Recipient  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Recipient $e0 $x1))
+;;      c385  mass 3  {recruit}
+;;      c664  mass 3  {winner, win}
+;;       c63  mass 2  {driver}
+;;      c212  mass 1  {foreman}
+;;      c431  mass 1  {tower}
+;;      c482  mass 1  {caller}
+;;      c533  mass 1  {query, search}
+
+;; ---- slot give.Theme  [event center]  n 12  clusters 4
+(And (Member $e0 give) (Theme $e0 $x1))
+;;      c257  mass 3  {whistle, whistles}
+;;      c515  mass 3  {manifest}
+;;       c56  mass 3  {medal, medals}
+;;      c674  mass 3  {answer}
+
+;; ---- slot decide.Agent  [event center]  n 11  clusters 6
+(And (Member $e0 decide) (Agent $e0 $x1))
+;;      c616  mass 3  {board}
+;;      c622  mass 3  {judge}
+;;      c379  mass 2  {committee}
+;;      c367  mass 1  {north, northeastern}
+;;      c396  mass 1  {family}
+;;      c621  mass 1  {case}
+
+;; ---- slot destroy.Patient  [event center]  n 11  clusters 5
+(And (Member $e0 destroy) (Patient $e0 $x1))
+;;      c283  mass 3  {archive}
+;;      c348  mass 3  {greenhouse}
+;;      c427  mass 3  {bridge, footbridge}
+;;      c350  mass 1  {storm, hurricane}
+;;      c569  mass 1  {fire}
+
+;; ---- slot answer.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Agent $e0 $x1))
+;;      c312  mass 3  {pilot}
+;;      c335  mass 3  {clerk}
+;;      c624  mass 2  {vet}
+;;      c482  mass 1  {caller}
+;;      c533  mass 1  {query, search}
+
+;; ---- slot answer.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Theme $e0 $x1))
+;;      c431  mass 3  {tower}
+;;      c533  mass 3  {query, search}
+;;      c482  mass 2  {caller}
+;;      c335  mass 1  {clerk}
+;;      c624  mass 1  {vet}
+
+;; ---- slot lend.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Agent $e0 $x1))
+;;      c285  mass 3  {museum}
+;;      c366  mass 3  {neighbour, neighbouring}
+;;      c504  mass 2  {depot}
+;;      c134  mass 1  {Ravi}
+;;      c320  mass 1  {crew}
+
+;; ---- slot lend.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Recipient $e0 $x1))
+;;      c134  mass 3  {Ravi}
+;;      c279  mass 3  {gallery}
+;;      c320  mass 2  {crew}
+;;      c366  mass 1  {neighbour, neighbouring}
+;;      c504  mass 1  {depot}
+
+;; ---- slot lend.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 lend) (Theme $e0 $x1))
+;;      c343  mass 4  {ladder, ladders}
+;;      c277  mass 3  {painting, paint, paintings}
+;;      c513  mass 3  {generator}
+
+;; ---- slot require.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 require) (Theme $e0 $x1))
+;;      c306  mass 4  {egg, eggs}
+;;      c514  mass 3  {countersignature, sign, countersignatures}
+;;      c690  mass 3  {monthly servicing}
+
+;; ---- slot teach.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Agent $e0 $x1))
+;;      c138  mass 3  {potter}
+;;      c388  mass 3  {elder}
+;;      c338  mass 2  {coach, trainer}
+;;      c318  mass 1  {squad}
+;;      c339  mass 1  {apprentice}
+
+;; ---- slot teach.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Recipient $e0 $x1))
+;;      c339  mass 3  {apprentice}
+;;      c387  mass 3  {child, children}
+;;      c318  mass 2  {squad}
+;;      c138  mass 1  {potter}
+;;      c338  mass 1  {coach, trainer}
+
+;; ---- slot teach.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 teach) (Theme $e0 $x1))
+;;      c347  mass 4  {glazing}
+;;      c258  mass 3  {drill}
+;;      c261  mass 3  {song, sing}
+
+;; ---- slot cancel.Agent  [event center]  n 9  clusters 4
+(And (Member $e0 cancel) (Agent $e0 $x1))
+;;      c380  mass 3  {council}
+;;      c415  mass 3  {tutor}
+;;      c310  mass 2  {airline}
+;;       c19  mass 1  {physician, doctor}
+
+;; ---- slot decide.Theme  [event center]  n 9  clusters 5
+(And (Member $e0 decide) (Theme $e0 $x1))
+;;      c457  mass 3  {budget}
+;;      c621  mass 3  {case}
+;;      c438  mass 1  {roof, new, roof}
+;;      c622  mass 1  {judge}
+;;      c644  mass 1  {new}
+
+;; ---- slot discover.Theme  [event center]  n 9  clusters 5
+(And (Member $e0 discover) (Theme $e0 $x1))
+;;      c352  mass 3  {wreck}
+;;      c290  mass 2  {name}
+;;      c411  mass 1.5  {file}
+;;      c601  mass 1.5  {missing}
+;;      c328  mass 1  {diver}
+
+;; ---- slot view.Possession  [entity center]  n 8  clusters 2
+(And (Member $x0 view) (Possession $x0 $x1))
+;;      c218  mass 4  {Free Soil Party}
+;;      c219  mass 4  {Republican Party}
+
+;; ---- slot abandon.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Agent $e0 $x1))
+;;      c327  mass 3  {climber, climbers}
+;;      c376  mass 3  {firm}
+;;      c322  mass 2  {rescue team}
+
+;; ---- slot abandon.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Theme $e0 $x1))
+;;      c400  mass 3  {tender}
+;;      c434  mass 3  {north route}
+;;      c533  mass 2  {query, search}
+
+;; ---- slot appear.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 appear) (Agent $e0 $x1))
+;;      c390  mass 5  {person, people}
+;;      c163  mass 2  {Brian Packham, Carl Fenton, Colin Richardson, Jason Suecof, …}
+;;      c397  mass 1  {sister, sisters}
+
+;; ---- slot appear.Location  [event center]  n 8  clusters 4
+(And (Member $e0 appear) (Location $e0 $x1))
+;;       c22  mass 2  {comedic role}
+;;      c249  mass 2  {music film, musical film}
+;;      c303  mass 2  {cafe}
+;;        c8  mass 2  {Coronation Street}
+
+;; ---- slot destroy.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 destroy) (Agent $e0 $x1))
+;;      c350  mass 2  {storm, hurricane}
+;;      c351  mass 2  {flood}
+;;      c569  mass 2  {fire}
+;;      c283  mass 1  {archive}
+;;      c348  mass 1  {greenhouse}
+
+;; ---- slot have.Holder  [event center]  n 8  clusters 4
+(And (Member $e0 have) (Holder $e0 $x1))
+;;      c154  mass 4  {Kristoffer}
+;;      c173  mass 2  {Karen}
+;;       c46  mass 1  {homentropic current}
+;;       c47  mass 1  {homentropic flow}
+
+;; ---- slot have.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 have) (Theme $e0 $x1))
+;;      c387  mass 4  {child, children}
+;;      c667  mass 2  {representation, represent}
+;;      c358  mass 0.667  {entropy}
+;;      c654  mass 0.667  {uniform}
+;;      c655  mass 0.667  {constant}
+
+;; ---- slot include.Theme  [event center]  n 8  clusters 4
+(And (Member $e0 include) (Theme $e0 $x1))
+;;      c120  mass 2  {Des Moines}
+;;      c132  mass 2  {Armaan Jain}
+;;      c133  mass 2  {Ranbir Kapoor}
+;;      c135  mass 2  {Nikhil Nanda}
+
+;; ---- slot produce.Patient  [event center]  n 8  clusters 4
+(And (Member $e0 produce) (Patient $e0 $x1))
+;;      c248  mass 4.833  {movie, film}
+;;      c265  mass 2  {album}
+;;       c24  mass 0.833  {syrian}
+;;      c461  mass 0.333  {destined}
+
+;; ---- slot reject.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Agent $e0 $x1))
+;;      c333  mass 2  {editor}
+;;      c455  mass 2  {bank}
+;;      c617  mass 2  {panel}
+;;      c289  mass 1  {manuscript}
+;;      c452  mass 1  {loan application}
+
+;; ---- slot reject.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Theme $e0 $x1))
+;;      c289  mass 2  {manuscript}
+;;      c452  mass 2  {loan application}
+;;      c606  mass 2  {proposal, suggest}
+;;      c333  mass 1  {editor}
+;;      c455  mass 1  {bank}
+
+;; ---- slot repair.Agent  [event center]  n 8  clusters 8
+(And (Member $e0 repair) (Agent $e0 $x1))
+;;      c329  mass 2  {electrician}
+;;       c64  mass 2  {mechanic}
+;;      c320  mass 1  {crew}
+;;      c692  mass 1  {yard floodlight}
+;;      c210  mass 0.5  {feed pipe}
+;;      c403  mass 0.5  {cracked}
+;;      c604  mass 0.5  {seized}
+;;       c61  mass 0.5  {gearbox, gearbox, seized}
+
+;; ---- slot repair.Patient  [event center]  n 8  clusters 8
+(And (Member $e0 repair) (Patient $e0 $x1))
+;;      c692  mass 2  {yard floodlight}
+;;      c320  mass 1  {crew}
+;;      c329  mass 1  {electrician}
+;;      c604  mass 1  {seized}
+;;       c61  mass 1  {gearbox, gearbox, seized}
+;;       c64  mass 1  {mechanic}
+;;      c210  mass 0.5  {feed pipe}
+;;      c403  mass 0.5  {cracked}
+
+;; ---- slot require.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 require) (Holder $e0 $x1))
+;;      c308  mass 3  {recipe}
+;;      c670  mass 3  {permit, allow, accept, confirm}
+;;      c344  mass 2  {lathe}
+
+;; ---- slot serve.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 serve) (Agent $e0 $x1))
+;;      c125  mass 2  {Indooroopilly}
+;;      c126  mass 2  {Ipswich}
+;;      c197  mass 2  {Rosewood}
+;;      c390  mass 2  {person, people}
+
+;; ---- slot sing.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 sing) (Agent $e0 $x1))
+;;      c267  mass 2  {Barbershop Harmony Society}
+;;      c374  mass 2  {occupational group, professional group}
+;;      c390  mass 2  {person, people}
+;;      c397  mass 2  {sister, sisters}
+
+;; ---- slot study.Location  [event center]  n 8  clusters 3
+(And (Member $e0 study) (Location $e0 $x1))
+;;      c124  mass 4  {Melbourne, Sydney}
+;;      c272  mass 2  {Davis Studio}
+;;      c273  mass 2  {Julian Ashton Art School}
+
+;; ---- slot be.Experiencer  [event center]  n 7  clusters 4
+(And (Member $e0 be) (Experiencer $e0 $x1))
+;;      c195  mass 4  {Paniqui}
+;;      c104  mass 1  {Ellerslie Rugby Park}
+;;      c211  mass 1  {tunnel}
+;;       c70  mass 1  {Alema Nature Reserve}
+
+;; ---- slot begin.Patient  [event center]  n 7  clusters 4
+(And (Member $e0 begin) (Patient $e0 $x1))
+;;      c271  mass 2  {dress rehearsal}
+;;      c302  mass 2  {apple harvest}
+;;       c80  mass 2  {shoreline survey}
+;;      c487  mass 1  {hearing}
+
+;; ---- slot cancel.Patient  [event center]  n 7  clusters 3
+(And (Member $e0 cancel) (Patient $e0 $x1))
+;;       c26  mass 3  {summer fair}
+;;      c313  mass 3  {afternoon session}
+;;      c311  mass 1  {evening flight}
+
+;; ---- slot discover.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 discover) (Agent $e0 $x1))
+;;      c328  mass 3  {diver}
+;;      c524  mass 3  {intern}
+;;      c352  mass 1  {wreck}
+
+;; ---- slot locate.Location  [event center]  n 7  clusters 4
+(And (Member $e0 locate) (Location $e0 $x1))
+;;      c115  mass 2  {Cloverdale}
+;;      c413  mass 2  {foot}
+;;      c423  mass 2  {hill, hills}
+;;      c116  mass 1  {Richford}
+
+;; ---- slot postpone.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Agent $e0 $x1))
+;;      c319  mass 3  {club}
+;;      c616  mass 2  {board}
+;;       c65  mass 2  {ferry}
+
+;; ---- slot postpone.Theme  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Theme $e0 $x1))
+;;       c16  mass 3  {tournament}
+;;      c625  mass 2  {vote}
+;;      c634  mass 2  {departure, depart, leave}
+
+;; ---- slot work.CoAgent  [event center]  n 7  clusters 4
+(And (Member $e0 work) (CoAgent $e0 $x1))
+;;      c185  mass 2  {Bo, Bobby, Robbie, Roger}
+;;      c191  mass 2  {Nils}
+;;      c323  mass 2  {ranger}
+;;      c512  mass 1  {fitter}
+
+;; ---- slot budget.Possession  [entity center]  n 6  clusters 1
+(And (Member $x0 budget) (Possession $x0 $x1))
+;;      c498  mass 6  {next year, next}
+
+;; ---- slot arrive.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 arrive) (Agent $e0 $x1))
+;;       c67  mass 3  {freight}
+;;      c383  mass 2  {delegation}
+;;       c49  mass 1  {soil sample, soil samples}
+
+;; ---- slot build.Instrument  [event center]  n 6  clusters 4
+(And (Member $e0 build) (Instrument $e0 $x1))
+;;      c349  mass 2  {barometer}
+;;      c628  mass 2  {help, support}
+;;      c421  mass 1  {scale, present in, scale, present, scale}
+;;      c648  mass 1  {present, present in}
+
+;; ---- slot decision.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 decision) (Theme $e0 $x1))
+;;      c457  mass 2  {budget}
+;;      c621  mass 2  {case}
+;;      c438  mass 1  {roof, new, roof}
+;;      c644  mass 1  {new}
+
+;; ---- slot design.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 design) (Agent $e0 $x1))
+;;      c163  mass 2  {Brian Packham, Carl Fenton, Colin Richardson, Jason Suecof, …}
+;;      c164  mass 2  {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …}
+;;       c68  mass 2  {Robert Allan Limited}
+
+;; ---- slot discover.Location  [event center]  n 6  clusters 2
+(And (Member $e0 discover) (Location $e0 $x1))
+;;      c659  mass 4  {point}
+;;       c85  mass 2  {Japan, China}
+
+;; ---- slot form.Agent  [event center]  n 6  clusters 4
+(And (Member $e0 form) (Agent $e0 $x1))
+;;      c157  mass 4  {Jon Bon Jovi, Sambora}
+;;       c51  mass 1  {Technetium}
+;;      c547  mass 0.5  {complex, complex, simple}
+;;      c552  mass 0.5  {simple}
+
+;; ---- slot fund.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 fund) (Agent $e0 $x1))
+;;      c220  mass 3  {government}
+;;      c227  mass 3  {JICA}
+
+;; ---- slot include.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 include) (Agent $e0 $x1))
+;;      c386  mass 6  {nephew, nephews}
+
+;; ---- slot portray.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Agent $e0 $x1))
+;;      c150  mass 2  {inomaru, Mie Sonozaki, Soichiro Akizuki}
+;;      c156  mass 2  {James Woods, Jeremy Irons}
+;;      c180  mass 2  {Wilson, wilson}
+
+;; ---- slot portray.Theme  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Theme $e0 $x1))
+;;      c151  mass 2  {Kantaro Suga}
+;;      c156  mass 2  {James Woods, Jeremy Irons}
+;;      c180  mass 2  {Wilson, wilson}
+
+;; ---- slot produce.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 produce) (Agent $e0 $x1))
+;;      c164  mass 4  {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …}
+;;      c163  mass 2  {Brian Packham, Carl Fenton, Colin Richardson, Jason Suecof, …}
+
+;; ---- slot sell.Theme  [event center]  n 6  clusters 6
+(And (Member $e0 sell) (Theme $e0 $x1))
+;;      c305  mass 2  {ice cream, ice cone, ice cream cone}
+;;      c208  mass 1  {projector, projectors}
+;;      c342  mass 1  {forklift, forklifts}
+;;      c346  mass 1  {kiln}
+;;      c300  mass 0.5  {lemon, crate, lemons}
+;;      c503  mass 0.5  {crate}
+
+;; ---- slot serve.Theme  [event center]  n 6  clusters 1
+(And (Member $e0 serve) (Theme $e0 $x1))
+;;      c430  mass 6  {station}
+
+;; ---- slot use.Theme  [event center]  n 6  clusters 5
+(And (Member $e0 use) (Theme $e0 $x1))
+;;        c1  mass 2  {Banach -- Mackey topology}
+;;        c2  mass 2  {weak Arens space topology}
+;;      c647  mass 1  {today, current, now}
+;;      c292  mass 0.5  {naming convention, current, naming convention}
+;;      c293  mass 0.5  {designation convention, current, designation convention}
+
+;; ---- slot write.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Agent $e0 $x1))
+;;      c152  mass 2  {Gilles Thibaut}
+;;      c164  mass 2  {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …}
+;;      c390  mass 2  {person, people}
+
+;; ---- slot write.CoAgent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (CoAgent $e0 $x1))
+;;      c161  mass 2  {Corentin Rahier, Cyril Rambour, Peter Gaussen}
+;;      c170  mass 2  {Laurie Aubanel, Muriel Zazoui, Patricia Kaas}
+;;      c171  mass 2  {Bianca Olsen}
+
+;; ---- slot write.Patient  [event center]  n 6  clusters 4
+(And (Member $e0 write) (Patient $e0 $x1))
+;;      c261  mass 2  {song, sing}
+;;      c469  mass 2  {episode}
+;;      c253  mass 1  {screenplay}
+;;      c254  mass 1  {script}
+
+;; ---- slot tender.Possession  [entity center]  n 5  clusters 1
+(And (Member $x0 tender) (Possession $x0 $x1))
+;;      c376  mass 5  {firm}
+
+;; ---- slot borrow.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 borrow) (Theme $e0 $x1))
+;;      c150  mass 2  {inomaru, Mie Sonozaki, Soichiro Akizuki}
+;;      c277  mass 1  {painting, paint, paintings}
+;;      c343  mass 1  {ladder, ladders}
+;;      c513  mass 1  {generator}
+
+;; ---- slot die.Patient  [event center]  n 5  clusters 4
+(And (Member $e0 die) (Patient $e0 $x1))
+;;      c340  mass 2  {founder}
+;;      c390  mass 2  {person, people}
+;;      c298  mass 0.5  {elm}
+;;      c677  mass 0.5  {last, later}
+
+;; ---- slot locate.Experiencer  [event center]  n 5  clusters 3
+(And (Member $e0 locate) (Experiencer $e0 $x1))
+;;      c102  mass 2  {Wine Country}
+;;      c428  mass 2  {park}
+;;      c104  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot receive.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 receive) (Theme $e0 $x1))
+;;      c519  mass 2  {work, job}
+;;      c257  mass 1  {whistle, whistles}
+;;      c515  mass 1  {manifest}
+;;       c56  mass 1  {medal, medals}
+
+;; ---- slot take.Agent  [event center]  n 5  clusters 4
+(And (Member $e0 take) (Agent $e0 $x1))
+;;      c390  mass 2  {person, people}
+;;       c20  mass 1  {nurse}
+;;      c324  mass 1  {shepherd}
+;;      c387  mass 1  {child, children}
+
+;; ---- slot walk.Agent  [event center]  n 5  clusters 5
+(And (Member $e0 walk) (Agent $e0 $x1))
+;;       c20  mass 1  {nurse}
+;;      c324  mass 1  {shepherd}
+;;      c387  mass 1  {child, children}
+;;      c429  mass 1  {pier}
+;;      c665  mass 1  {ward, well}
+
+;; ---- slot walk.Location  [event center]  n 5  clusters 3
+(And (Member $e0 walk) (Location $e0 $x1))
+;;      c424  mass 2  {ridge}
+;;      c665  mass 2  {ward, well}
+;;       c20  mass 1  {nurse}
+
+;; ---- slot <unclassed>.PartOf  [entity center]  n 4  clusters 3
+(PartOf $x0 $x1)
+;;      c131  mass 2  {Khurda Road}
+;;       c81  mass 1  {Colombia, Peru}
+;;       c82  mass 1  {Huancavelica}
+
+;; ---- slot bad.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 bad) (Between $x0 $x1))
+;;       c90  mass 2  {Estonia, Poland}
+;;       c91  mass 2  {Germany}
+
+;; ---- slot border_section.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 border_section) (Between $x0 $x1))
+;;      c194  mass 2  {Lessos}
+;;       c97  mass 2  {Uganda, Kenya}
+
+;; ---- slot departure.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 departure) (Possession $x0 $x1))
+;;       c65  mass 4  {ferry}
+
+;; ---- slot family.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 family) (Possession $x0 $x1))
+;;      c390  mass 4  {person, people}
+
+;; ---- slot government.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 government) (Possession $x0 $x1))
+;;       c97  mass 4  {Uganda, Kenya}
+
+;; ---- slot lunch.Before  [entity center]  n 4  clusters 1
+(And (Member $x0 lunch) (Before $x0 $x1))
+;;      c641  mass 4  {begin, start, commence}
+
+;; ---- slot accompany.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 accompany) (Agent $e0 $x1))
+;;      c390  mass 2  {person, people}
+;;      c397  mass 2  {sister, sisters}
+
+;; ---- slot accompany.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 accompany) (Theme $e0 $x1))
+;;      c250  mass 4  {silent film}
+
+;; ---- slot acquire.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Agent $e0 $x1))
+;;      c274  mass 1  {pottery studio}
+;;      c309  mass 1  {chef}
+;;      c418  mass 1  {school}
+;;      c504  mass 1  {depot}
+
+;; ---- slot acquire.Theme  [event center]  n 4  clusters 5
+(And (Member $e0 acquire) (Theme $e0 $x1))
+;;      c208  mass 1  {projector, projectors}
+;;      c342  mass 1  {forklift, forklifts}
+;;      c346  mass 1  {kiln}
+;;      c300  mass 0.5  {lemon, crate, lemons}
+;;      c503  mass 0.5  {crate}
+
+;; ---- slot active.Time  [event center]  n 4  clusters 2
+(And (Member $e0 active) (Time $e0 $x1))
+;;      c314  mass 2  {late afternoon}
+;;      c315  mass 2  {morning, early morning}
+
+;; ---- slot allow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Agent $e0 $x1))
+;;      c481  mass 2  {licence}
+;;      c336  mass 1  {warden}
+;;      c337  mass 1  {curator}
+
+;; ---- slot allow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Theme $e0 $x1))
+;;      c409  mass 2  {night delivery}
+;;      c282  mass 1  {photography}
+;;      c502  mass 1  {visitor}
+
+;; ---- slot attract.Source  [event center]  n 4  clusters 2
+(And (Member $e0 attract) (Source $e0 $x1))
+;;       c53  mass 2  {mainstream media}
+;;       c55  mass 2  {social media}
+
+;; ---- slot be.Location  [event center]  n 4  clusters 4
+(And (Member $e0 be) (Location $e0 $x1))
+;;      c116  mass 1  {Richford}
+;;      c122  mass 1  {Harju County}
+;;      c367  mass 1  {north, northeastern}
+;;       c94  mass 1  {denmark}
+
+;; ---- slot be.Source  [event center]  n 4  clusters 2
+(And (Member $e0 be) (Source $e0 $x1))
+;;      c108  mass 3  {Manila, Tarlac City}
+;;      c113  mass 1  {provincial capital}
+
+;; ---- slot become.Patient  [event center]  n 4  clusters 6
+(And (Member $e0 become) (Patient $e0 $x1))
+;;      c394  mass 1  {relationship}
+;;      c593  mass 1  {bad}
+;;      c110  mass 0.5  {lax}
+;;      c390  mass 0.5  {person, people}
+;;       c40  mass 0.5  {indigenous, indigenous american, indigenous, people, native american, …}
+;;      c477  mass 0.5  {discipline}
+
+;; ---- slot become.Result  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Result $e0 $x1))
+;;      c593  mass 2  {bad}
+;;      c110  mass 1  {lax}
+;;       c40  mass 1  {indigenous, indigenous american, indigenous, people, native american, …}
+
+;; ---- slot begin.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 begin) (Agent $e0 $x1))
+;;       c39  mass 2  {european american settler, european american settlers}
+;;       c40  mass 2  {indigenous, indigenous american, indigenous, people, native american, …}
+
+;; ---- slot begin.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 begin) (Theme $e0 $x1))
+;;      c643  mass 4  {create}
+
+;; ---- slot block.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Agent $e0 $x1))
+;;       c62  mass 4  {automobile, car, automobiles}
+
+;; ---- slot block.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Theme $e0 $x1))
+;;      c433  mass 4  {lane, way}
+
+;; ---- slot celebrated.Location  [event center]  n 4  clusters 2
+(And (Member $e0 celebrated) (Location $e0 $x1))
+;;        c3  mass 2  {traditional chinese drama, traditional chinese dramas}
+;;       c54  mass 2  {popular culture}
+
+;; ---- slot commence.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 commence) (Patient $e0 $x1))
+;;      c271  mass 1  {dress rehearsal}
+;;      c302  mass 1  {apple harvest}
+;;      c487  mass 1  {hearing}
+;;       c80  mass 1  {shoreline survey}
+
+;; ---- slot create.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 create) (Agent $e0 $x1))
+;;       c39  mass 2  {european american settler, european american settlers}
+;;       c40  mass 2  {indigenous, indigenous american, indigenous, people, native american, …}
+
+;; ---- slot create.Location  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Location $e0 $x1))
+;;      c611  mass 4  {post}
+
+;; ---- slot create.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Patient $e0 $x1))
+;;      c381  mass 4  {community}
+
+;; ---- slot define.Manner  [event center]  n 4  clusters 4
+(And (Member $e0 define) (Manner $e0 $x1))
+;;      c406  mass 1.5  {random, random, ways}
+;;      c433  mass 1.5  {lane, way}
+;;      c404  mass 0.5  {manner}
+;;      c407  mass 0.5  {accidental, accidental, ways}
+
+;; ---- slot define.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 define) (Theme $e0 $x1))
+;;      c467  mass 2  {sequence}
+;;       c31  mass 1  {algorithmically equivalent}
+;;       c32  mass 1  {equivalent}
+
+;; ---- slot design.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 design) (Patient $e0 $x1))
+;;      c528  mass 4  {pacificat, pacificats}
+
+;; ---- slot direct.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Agent $e0 $x1))
+;;      c167  mass 2  {Lev L. Spiro}
+;;      c163  mass 1  {Brian Packham, Carl Fenton, Colin Richardson, Jason Suecof, …}
+;;      c205  mass 1  {Claude Lelouch}
+
+;; ---- slot direct.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Patient $e0 $x1))
+;;      c469  mass 2  {episode}
+;;      c248  mass 1.5  {movie, film}
+;;       c24  mass 0.5  {syrian}
+
+;; ---- slot encourage.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Agent $e0 $x1))
+;;      c189  mass 4  {Ralph}
+
+;; ---- slot encourage.In  [event center]  n 4  clusters 2
+(And (Member $e0 encourage) (In $e0 $x1))
+;;       c11  mass 2  {chess, chess play}
+;;      c419  mass 2  {mathematics}
+
+;; ---- slot encourage.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Theme $e0 $x1))
+;;      c183  mass 4  {Maurice}
+
+;; ---- slot error.Location  [event center]  n 4  clusters 1
+(And (Member $e0 error) (Location $e0 $x1))
+;;      c456  mass 4  {ledger}
+
+;; ---- slot follow.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 follow) (Agent $e0 $x1))
+;;      c142  mass 1  {Alexander}
+;;      c190  mass 1  {Bailey}
+;;      c236  mass 1  {muslim, house, muslim}
+;;      c442  mass 1  {house}
+
+;; ---- slot follow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Theme $e0 $x1))
+;;      c361  mass 2  {region}
+;;      c165  mass 1  {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …}
+;;      c174  mass 1  {Margaret Fleming, Dora Smith}
+
+;; ---- slot form.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 form) (Patient $e0 $x1))
+;;      c270  mass 2  {main songwriting unit}
+;;       c51  mass 1  {Technetium}
+;;      c547  mass 0.5  {complex, complex, simple}
+;;      c552  mass 0.5  {simple}
+
+;; ---- slot have.Location  [event center]  n 4  clusters 2
+(And (Member $e0 have) (Location $e0 $x1))
+;;      c362  mass 2  {regional level}
+;;      c365  mass 2  {local level}
+
+;; ---- slot influence.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 influence) (Theme $e0 $x1))
+;;      c239  mass 2  {religion}
+;;        c4  mass 2  {chinese dumpling}
+
+;; ---- slot kill.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Agent $e0 $x1))
+;;      c350  mass 4  {storm, hurricane}
+
+;; ---- slot kill.Location  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Location $e0 $x1))
+;;      c222  mass 4  {state}
+
+;; ---- slot kill.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 kill) (Manner $e0 $x1))
+;;      c662  mass 2  {direct, directly}
+;;      c663  mass 2  {indirectly}
+
+;; ---- slot kill.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Patient $e0 $x1))
+;;      c390  mass 4  {person, people}
+
+;; ---- slot make.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 make) (Agent $e0 $x1))
+;;      c379  mass 1  {committee}
+;;      c396  mass 1  {family}
+;;      c616  mass 1  {board}
+;;      c622  mass 1  {judge}
+
+;; ---- slot make.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 make) (Patient $e0 $x1))
+;;      c671  mass 4  {decision, decide}
+
+;; ---- slot move.Goal  [event center]  n 4  clusters 2
+(And (Member $e0 move) (Goal $e0 $x1))
+;;      c119  mass 2  {Baltimore}
+;;       c91  mass 2  {Germany}
+
+;; ---- slot nation.Location  [event center]  n 4  clusters 2
+(And (Member $e0 nation) (Location $e0 $x1))
+;;      c129  mass 2  {Bengal, northern india, southern india}
+;;      c130  mass 2  {South Asia}
+
+;; ---- slot order.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Agent $e0 $x1))
+;;       c19  mass 3  {physician, doctor}
+;;      c537  mass 1  {scan}
+
+;; ---- slot order.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Theme $e0 $x1))
+;;      c537  mass 3  {scan}
+;;       c19  mass 1  {physician, doctor}
+
+;; ---- slot play.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 play) (Agent $e0 $x1))
+;;      c177  mass 2  {Audrey Hepburn, Audrey Heppurn}
+;;      c139  mass 1  {Boston Red Sox}
+;;      c140  mass 1  {Cincinnati Reds}
+
+;; ---- slot play.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Theme $e0 $x1))
+;;      c178  mass 2  {Holly Golightly}
+;;      c468  mass 2  {series}
+
+;; ---- slot preach.Location  [event center]  n 4  clusters 2
+(And (Member $e0 preach) (Location $e0 $x1))
+;;      c121  mass 2  {Gareccio}
+;;       c93  mass 2  {Italy}
+
+;; ---- slot purchase.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Agent $e0 $x1))
+;;      c274  mass 1  {pottery studio}
+;;      c309  mass 1  {chef}
+;;      c418  mass 1  {school}
+;;      c504  mass 1  {depot}
+
+;; ---- slot purchase.Theme  [event center]  n 4  clusters 5
+(And (Member $e0 purchase) (Theme $e0 $x1))
+;;      c208  mass 1  {projector, projectors}
+;;      c342  mass 1  {forklift, forklifts}
+;;      c346  mass 1  {kiln}
+;;      c300  mass 0.5  {lemon, crate, lemons}
+;;      c503  mass 0.5  {crate}
+
+;; ---- slot reach.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 reach) (Agent $e0 $x1))
+;;      c379  mass 1  {committee}
+;;      c396  mass 1  {family}
+;;      c616  mass 1  {board}
+;;      c622  mass 1  {judge}
+
+;; ---- slot reach.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 reach) (Theme $e0 $x1))
+;;      c671  mass 4  {decision, decide}
+
+;; ---- slot replace.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Agent $e0 $x1))
+;;      c164  mass 2  {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …}
+;;      c161  mass 1  {Corentin Rahier, Cyril Rambour, Peter Gaussen}
+;;      c223  mass 1  {governor}
+
+;; ---- slot replace.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Theme $e0 $x1))
+;;      c144  mass 2  {Lex Lex Luthor, Lex Luthor}
+;;      c165  mass 1  {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …}
+;;      c223  mass 1  {governor}
+
+;; ---- slot sell.Recipient  [event center]  n 4  clusters 4
+(And (Member $e0 sell) (Recipient $e0 $x1))
+;;      c274  mass 1  {pottery studio}
+;;      c309  mass 1  {chef}
+;;      c418  mass 1  {school}
+;;      c504  mass 1  {depot}
+
+;; ---- slot sign.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Agent $e0 $x1))
+;;       c19  mass 3  {physician, doctor}
+;;      c689  mass 1  {chart}
+
+;; ---- slot sign.Patient  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Patient $e0 $x1))
+;;      c689  mass 3  {chart}
+;;       c19  mass 1  {physician, doctor}
+
+;; ---- slot sing.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Manner $e0 $x1))
+;;      c268  mass 4  {a cappella}
+
+;; ---- slot sing.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Theme $e0 $x1))
+;;      c262  mass 4  {music}
+
+;; ---- slot sing.To  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (To $e0 $x1))
+;;      c542  mass 4  {accompany}
+
+;; ---- slot speak.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 speak) (Agent $e0 $x1))
+;;      c200  mass 2  {Oates}
+;;      c150  mass 1  {inomaru, Mie Sonozaki, Soichiro Akizuki}
+;;      c179  mass 1  {Kari Wahlgren}
+
+;; ---- slot specify.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 specify) (Manner $e0 $x1))
+;;      c354  mass 2  {continuous time}
+;;      c355  mass 2  {discrete time}
+
+;; ---- slot star.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 star) (Theme $e0 $x1))
+;;      c156  mass 2  {James Woods, Jeremy Irons}
+;;      c170  mass 2  {Laurie Aubanel, Muriel Zazoui, Patricia Kaas}
+
+;; ---- slot start.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 start) (Patient $e0 $x1))
+;;      c271  mass 1  {dress rehearsal}
+;;      c302  mass 1  {apple harvest}
+;;      c487  mass 1  {hearing}
+;;       c80  mass 1  {shoreline survey}
+
+;; ---- slot study.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 study) (Agent $e0 $x1))
+;;      c390  mass 4  {person, people}
+
+;; ---- slot take.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 take) (Theme $e0 $x1))
+;;      c391  mass 2  {identity}
+;;      c432  mass 2  {walk, stroll}
+
+;; ---- slot use.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 use) (Manner $e0 $x1))
+;;      c556  mass 4  {rare}
+
+;; ---- slot win.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 win) (Agent $e0 $x1))
+;;      c156  mass 2  {James Woods, Jeremy Irons}
+;;      c180  mass 2  {Wilson, wilson}
+
+;; ---- slot win.For  [event center]  n 4  clusters 1
+(And (Member $e0 win) (For $e0 $x1))
+;;      c276  mass 4  {portray}
+
+;; ---- slot win.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 win) (Theme $e0 $x1))
+;;       c58  mass 4  {emmy}
+
+;; ---- slot house.Possession  [entity center]  n 3  clusters 2
+(And (Member $x0 house) (Possession $x0 $x1))
+;;      c198  mass 2  {Dara, Arakkal}
+;;       c95  mass 1  {Derwent Isle}
+
+;; ---- slot western.PartOf  [entity center]  n 3  clusters 2
+(And (Member $x0 western) (PartOf $x0 $x1))
+;;       c85  mass 2  {Japan, China}
+;;       c83  mass 1  {Europe, Western Europe}
+
+;; ---- slot bear.Patient  [event center]  n 3  clusters 2
+(And (Member $e0 bear) (Patient $e0 $x1))
+;;      c390  mass 2  {person, people}
+;;      c169  mass 1  {Leonor Rodrigues}
+
+;; ---- slot begin.Time  [event center]  n 3  clusters 2
+(And (Member $e0 begin) (Time $e0 $x1))
+;;      c316  mass 2  {dawn}
+;;      c315  mass 1  {morning, early morning}
+
+;; ---- slot borrow.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Agent $e0 $x1))
+;;      c134  mass 1  {Ravi}
+;;      c279  mass 1  {gallery}
+;;      c320  mass 1  {crew}
+
+;; ---- slot borrow.Source  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Source $e0 $x1))
+;;      c285  mass 1  {museum}
+;;      c366  mass 1  {neighbour, neighbouring}
+;;      c504  mass 1  {depot}
+
+;; ---- slot buy.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 buy) (Beneficiary $e0 $x1))
+;;      c440  mass 3  {hall}
+
+;; ---- slot call_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 call_off) (Agent $e0 $x1))
+;;      c310  mass 1  {airline}
+;;      c380  mass 1  {council}
+;;      c415  mass 1  {tutor}
+
+;; ---- slot cause.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 cause) (Agent $e0 $x1))
+;;      c350  mass 1  {storm, hurricane}
+;;      c351  mass 1  {flood}
+;;      c569  mass 1  {fire}
+
+;; ---- slot cause.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 cause) (Theme $e0 $x1))
+;;      c587  mass 3  {destroy}
+
+;; ---- slot discover.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+;;      c334  mass 2  {auditor}
+;;      c600  mass 1  {error}
+
+;; ---- slot discover.Stimulus  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+;;      c600  mass 2  {error}
+;;      c334  mass 1  {auditor}
+
+;; ---- slot end.Patient  [event center]  n 3  clusters 3
+(And (Member $e0 end) (Patient $e0 $x1))
+;;      c302  mass 1  {apple harvest}
+;;      c487  mass 1  {hearing}
+;;       c80  mass 1  {shoreline survey}
+
+;; ---- slot examine.Agent  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Agent $e0 $x1))
+;;       c19  mass 3  {physician, doctor}
+
+;; ---- slot examine.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Theme $e0 $x1))
+;;      c260  mass 3  {sample, samples}
+
+;; ---- slot fund.Theme  [event center]  n 3  clusters 2
+(And (Member $e0 fund) (Theme $e0 $x1))
+;;      c360  mass 2  {lessos kenya border section}
+;;      c359  mass 1  {border section}
+
+;; ---- slot give_up.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Agent $e0 $x1))
+;;      c322  mass 1  {rescue team}
+;;      c327  mass 1  {climber, climbers}
+;;      c376  mass 1  {firm}
+
+;; ---- slot give_up.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Theme $e0 $x1))
+;;      c400  mass 1  {tender}
+;;      c434  mass 1  {north route}
+;;      c533  mass 1  {query, search}
+
+;; ---- slot influence.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 influence) (Agent $e0 $x1))
+;;       c38  mass 2  {indonesian immigrant, indonesian immigrants}
+;;      c453  mass 0.5  {balance}
+;;      c525  mass 0.5  {international}
+
+;; ---- slot learn.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Agent $e0 $x1))
+;;      c318  mass 1  {squad}
+;;      c339  mass 1  {apprentice}
+;;      c387  mass 1  {child, children}
+
+;; ---- slot learn.Source  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Source $e0 $x1))
+;;      c138  mass 1  {potter}
+;;      c338  mass 1  {coach, trainer}
+;;      c388  mass 1  {elder}
+
+;; ---- slot learn.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Theme $e0 $x1))
+;;      c258  mass 1  {drill}
+;;      c261  mass 1  {song, sing}
+;;      c347  mass 1  {glazing}
+
+;; ---- slot market.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Beneficiary $e0 $x1))
+;;      c450  mass 3  {shop}
+
+;; ---- slot market.Location  [event center]  n 3  clusters 2
+(And (Member $e0 market) (Location $e0 $x1))
+;;      c233  mass 1.5  {pakistani, block, pakistani}
+;;      c618  mass 1.5  {block}
+
+;; ---- slot need.Holder  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Holder $e0 $x1))
+;;      c308  mass 1  {recipe}
+;;      c344  mass 1  {lathe}
+;;      c670  mass 1  {permit, allow, accept, confirm}
+
+;; ---- slot need.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Theme $e0 $x1))
+;;      c306  mass 1  {egg, eggs}
+;;      c514  mass 1  {countersignature, sign, countersignatures}
+;;      c690  mass 1  {monthly servicing}
+
+;; ---- slot permit.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Agent $e0 $x1))
+;;      c336  mass 1  {warden}
+;;      c337  mass 1  {curator}
+;;      c481  mass 1  {licence}
+
+;; ---- slot permit.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Theme $e0 $x1))
+;;      c282  mass 1  {photography}
+;;      c409  mass 1  {night delivery}
+;;      c502  mass 1  {visitor}
+
+;; ---- slot put_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Agent $e0 $x1))
+;;      c319  mass 1  {club}
+;;      c616  mass 1  {board}
+;;       c65  mass 1  {ferry}
+
+;; ---- slot put_off.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Theme $e0 $x1))
+;;       c16  mass 1  {tournament}
+;;      c625  mass 1  {vote}
+;;      c634  mass 1  {departure, depart, leave}
+
+;; ---- slot receive.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Agent $e0 $x1))
+;;      c385  mass 1  {recruit}
+;;       c63  mass 1  {driver}
+;;      c664  mass 1  {winner, win}
+
+;; ---- slot receive.Source  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Source $e0 $x1))
+;;      c212  mass 1  {foreman}
+;;      c338  mass 1  {coach, trainer}
+;;      c418  mass 1  {school}
+
+;; ---- slot start.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Experiencer $e0 $x1))
+;;      c427  mass 2  {bridge, footbridge}
+;;      c211  mass 1  {tunnel}
+
+;; ---- slot start.Location  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Location $e0 $x1))
+;;      c106  mass 2  {sweden}
+;;       c94  mass 1  {denmark}
+
+;; ---- slot succeed.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Agent $e0 $x1))
+;;      c142  mass 1  {Alexander}
+;;      c161  mass 1  {Corentin Rahier, Cyril Rambour, Peter Gaussen}
+;;      c190  mass 1  {Bailey}
+
+;; ---- slot succeed.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Theme $e0 $x1))
+;;      c165  mass 1  {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …}
+;;      c174  mass 1  {Margaret Fleming, Dora Smith}
+;;      c223  mass 1  {governor}
+
+;; ---- slot turn_down.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+;;      c333  mass 1  {editor}
+;;      c455  mass 1  {bank}
+;;      c617  mass 1  {panel}
+
+;; ---- slot turn_down.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+;;      c289  mass 1  {manuscript}
+;;      c452  mass 1  {loan application}
+;;      c606  mass 1  {proposal, suggest}
+
+;; ---- slot wait.Experiencer  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+;;       c62  mass 3  {automobile, car, automobiles}
+
+;; ---- slot wait.Location  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Location $e0 $x1))
+;;      c508  mass 3  {gate}
+
+;; ---- slot walk.Goal  [event center]  n 3  clusters 2
+(And (Member $e0 walk) (Goal $e0 $x1))
+;;      c429  mass 2  {pier}
+;;      c387  mass 1  {child, children}
+
+;; ---- slot work.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 work) (Theme $e0 $x1))
+;;      c278  mass 3  {mural}
+
+;; ==================== word @ cluster cos 0.90: pooled role level (45 head pairs) ====================
+
+;; Agent ~ Recipient  cosine 0.29  JSD 0.735  n 500 / 47  shared: {person, people} {school} {depot}
+(Agent $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Experiencer  cosine 0.28  JSD 0.894  n 500 / 63  shared: {person, people} {automobile, car, automobiles} {Aslan}
+(Agent $e $x)
+(Experiencer $e $x)
+
+;; Agent ~ Patient  cosine 0.25  JSD 0.855  n 500 / 159  shared: {person, people} {physician, doctor} {electrician}
+(Agent $e $x)
+(Patient $e $x)
+
+;; Experiencer ~ Patient  cosine 0.19  JSD 0.873  n 63 / 159  shared: {person, people} {movie, film} {relationship}
+(Experiencer $e $x)
+(Patient $e $x)
+
+;; Agent ~ Theme  cosine 0.15  JSD 0.822  n 500 / 367  shared: {person, people} {physician, doctor} {child}
+(Agent $e $x)
+(Theme $e $x)
+
+;; Patient ~ Theme  cosine 0.13  JSD 0.879  n 159 / 367  shared: {person, people} {song, sing} {movie, film}
+(Patient $e $x)
+(Theme $e $x)
+
+;; Recipient ~ Source  cosine 0.11  JSD 0.813  n 47 / 24  shared: {depot} {potter} {foreman}
+(Recipient $e $x)
+(Source $e $x)
+
+;; Agent ~ Source  cosine 0.11  JSD 0.862  n 500 / 24  shared: {school} {depot} {potter}
+(Agent $e $x)
+(Source $e $x)
+
+;; Recipient ~ Theme  cosine 0.09  JSD 0.904  n 47 / 367  shared: {child} {person, people} {tower}
+(Recipient $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Recipient  cosine 0.09  JSD 0.943  n 63 / 47  shared: {person, people}
+(Experiencer $e $x)
+(Recipient $e $x)
+
+;; Patient ~ Recipient  cosine 0.09  JSD 0.938  n 159 / 47  shared: {person, people} {crew}
+(Patient $e $x)
+(Recipient $e $x)
+
+;; Experiencer ~ Theme  cosine 0.08  JSD 0.929  n 63 / 367  shared: {person, people} {bridge} {view}
+(Experiencer $e $x)
+(Theme $e $x)
+
+;; Goal ~ Recipient  cosine 0.05  JSD 0.929  n 30 / 47  shared: {child} {Loren}
+(Goal $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Goal  cosine 0.03  JSD 0.964  n 500 / 30  shared: {George Allen, Chuck Robb} {child} {pier}
+(Agent $e $x)
+(Goal $e $x)
+
+;; Goal ~ Theme  cosine 0.02  JSD 0.975  n 30 / 367  shared: {child} {predictive function, predictive functions}
+(Goal $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Location  cosine 0.01  JSD 0.988  n 63 / 175  shared: {park}
+(Experiencer $e $x)
+(Location $e $x)
+
+;; Location ~ Theme  cosine 0.01  JSD 0.987  n 175 / 367  shared: {mural} {gate}
+(Location $e $x)
+(Theme $e $x)
+
+;; Manner ~ Theme  cosine 0.01  JSD 0.992  n 34 / 367  shared: {widespread, widely}
+(Manner $e $x)
+(Theme $e $x)
+
+;; Agent ~ Location  cosine 0.01  JSD 0.987  n 500 / 175  shared: {nurse} {north} {ward}
+(Agent $e $x)
+(Location $e $x)
+
+;; Source ~ Theme  cosine 0.01  JSD 0.993  n 24 / 367  shared: {depot}
+(Source $e $x)
+(Theme $e $x)
+
+;; Theme ~ Time  cosine 0.01  JSD 0.992  n 367 / 37  shared: {current, now}
+(Theme $e $x)
+(Time $e $x)
+
+;; Agent ~ Manner  cosine 0.00  JSD 1.0  n 500 / 34  shared: 
+(Agent $e $x)
+(Manner $e $x)
+
+;; Agent ~ Time  cosine 0.00  JSD 1.0  n 500 / 37  shared: 
+(Agent $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Goal  cosine 0.00  JSD 1.0  n 63 / 30  shared: 
+(Experiencer $e $x)
+(Goal $e $x)
+
+;; Experiencer ~ Manner  cosine 0.00  JSD 1.0  n 63 / 34  shared: 
+(Experiencer $e $x)
+(Manner $e $x)
+
+;; Experiencer ~ Source  cosine 0.00  JSD 1.0  n 63 / 24  shared: 
+(Experiencer $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Time  cosine 0.00  JSD 1.0  n 63 / 37  shared: 
+(Experiencer $e $x)
+(Time $e $x)
+
+;; Goal ~ Location  cosine 0.00  JSD 1.0  n 30 / 175  shared: 
+(Goal $e $x)
+(Location $e $x)
+
+;; Goal ~ Manner  cosine 0.00  JSD 1.0  n 30 / 34  shared: 
+(Goal $e $x)
+(Manner $e $x)
+
+;; Goal ~ Patient  cosine 0.00  JSD 1.0  n 30 / 159  shared: 
+(Goal $e $x)
+(Patient $e $x)
+
+;; Goal ~ Source  cosine 0.00  JSD 1.0  n 30 / 24  shared: 
+(Goal $e $x)
+(Source $e $x)
+
+;; Goal ~ Time  cosine 0.00  JSD 1.0  n 30 / 37  shared: 
+(Goal $e $x)
+(Time $e $x)
+
+;; Location ~ Manner  cosine 0.00  JSD 1.0  n 175 / 34  shared: 
+(Location $e $x)
+(Manner $e $x)
+
+;; Location ~ Patient  cosine 0.00  JSD 1.0  n 175 / 159  shared: 
+(Location $e $x)
+(Patient $e $x)
+
+;; Location ~ Recipient  cosine 0.00  JSD 1.0  n 175 / 47  shared: 
+(Location $e $x)
+(Recipient $e $x)
+
+;; Location ~ Source  cosine 0.00  JSD 1.0  n 175 / 24  shared: 
+(Location $e $x)
+(Source $e $x)
+
+;; Location ~ Time  cosine 0.00  JSD 1.0  n 175 / 37  shared: 
+(Location $e $x)
+(Time $e $x)
+
+;; Manner ~ Patient  cosine 0.00  JSD 1.0  n 34 / 159  shared: 
+(Manner $e $x)
+(Patient $e $x)
+
+;; Manner ~ Recipient  cosine 0.00  JSD 1.0  n 34 / 47  shared: 
+(Manner $e $x)
+(Recipient $e $x)
+
+;; Manner ~ Source  cosine 0.00  JSD 1.0  n 34 / 24  shared: 
+(Manner $e $x)
+(Source $e $x)
+
+;; Manner ~ Time  cosine 0.00  JSD 1.0  n 34 / 37  shared: 
+(Manner $e $x)
+(Time $e $x)
+
+;; Patient ~ Source  cosine 0.00  JSD 1.0  n 159 / 24  shared: 
+(Patient $e $x)
+(Source $e $x)
+
+;; Patient ~ Time  cosine 0.00  JSD 1.0  n 159 / 37  shared: 
+(Patient $e $x)
+(Time $e $x)
+
+;; Recipient ~ Time  cosine 0.00  JSD 1.0  n 47 / 37  shared: 
+(Recipient $e $x)
+(Time $e $x)
+
+;; Source ~ Time  cosine 0.00  JSD 1.0  n 24 / 37  shared: 
+(Source $e $x)
+(Time $e $x)
+
+;; ==================== word @ cluster cos 0.90: slot pairs (50 event-center signals) ====================
+
+;; [same role, different class]  acquire.Agent ~ purchase.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ purchase.Theme  cosine 1.00  JSD 0.0  n 4 / 4  shared: {projector, projectors} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Agent ~ create.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {european american settler, european american settlers} {indigenous american, native american, indigenous americans, native americans}
+;;   A e.g. tierC-000025 tierC-000026   B e.g. tierC-000025 tierC-000026
+(And (Member $e0 begin) (Agent $e0 $x1))
+(And (Member $e0 create) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ start.Patient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000064 tierA-000069   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  make.Agent ~ reach.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000186 tierA-000197   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 make) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  learn.Theme ~ teach.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {drill} {song, sing} {glazing}
+;;   A e.g. tierA-000287 tierA-000292   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Theme $e0 $x1))
+(And (Member $e0 teach) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Theme ~ require.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {egg, eggs} {countersignature, countersignatures} {monthly servicing}
+;;   A e.g. tierA-000085 tierA-000090   B e.g. tierA-000084 tierA-000086
+(And (Member $e0 need) (Theme $e0 $x1))
+(And (Member $e0 require) (Theme $e0 $x1))
+
+;; [same role, different class]  abandon.Agent ~ give_up.Agent  cosine 0.98  JSD 0.006  n 8 / 3  shared: {rescue team} {climber, climbers} {firm}
+;;   A e.g. tierA-000099 tierA-000101   B e.g. tierA-000100 tierA-000110
+(And (Member $e0 abandon) (Agent $e0 $x1))
+(And (Member $e0 give_up) (Agent $e0 $x1))
+
+;; [same role, different class]  abandon.Theme ~ give_up.Theme  cosine 0.98  JSD 0.006  n 8 / 3  shared: {tender} {north route} {search}
+;;   A e.g. tierA-000104 tierA-000106   B e.g. tierA-000105 tierA-000110
+(And (Member $e0 abandon) (Theme $e0 $x1))
+(And (Member $e0 give_up) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Holder ~ require.Holder  cosine 0.98  JSD 0.006  n 3 / 8  shared: {recipe} {lathe} {permit, allow}
+;;   A e.g. tierA-000085 tierA-000095   B e.g. tierA-000086 tierA-000087
+(And (Member $e0 need) (Holder $e0 $x1))
+(And (Member $e0 require) (Holder $e0 $x1))
+
+;; [same role, different class]  postpone.Agent ~ put_off.Agent  cosine 0.98  JSD 0.007  n 7 / 3  shared: {club} {board} {ferry}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Agent $e0 $x1))
+(And (Member $e0 put_off) (Agent $e0 $x1))
+
+;; [same role, different class]  postpone.Theme ~ put_off.Theme  cosine 0.98  JSD 0.007  n 7 / 3  shared: {tournament} {vote} {departure, depart}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Theme $e0 $x1))
+(And (Member $e0 put_off) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ commence.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000064 tierA-000069
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 commence) (Patient $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ start.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  allow.Agent ~ permit.Agent  cosine 0.94  JSD 0.021  n 4 / 3  shared: {warden} {curator} {licence}
+;;   A e.g. tierA-000075 tierA-000080   B e.g. tierA-000073 tierA-000081
+(And (Member $e0 allow) (Agent $e0 $x1))
+(And (Member $e0 permit) (Agent $e0 $x1))
+
+;; [same role, different class]  allow.Theme ~ permit.Theme  cosine 0.94  JSD 0.021  n 4 / 3  shared: {photography} {night delivery} {visitor}
+;;   A e.g. tierA-000080 tierA-000076   B e.g. tierA-000081 tierA-000077
+(And (Member $e0 allow) (Theme $e0 $x1))
+(And (Member $e0 permit) (Theme $e0 $x1))
+
+;; [same role, different class]  call_off.Agent ~ cancel.Agent  cosine 0.96  JSD 0.064  n 3 / 9  shared: {airline} {council} {tutor}
+;;   A e.g. tierA-000144 tierA-000149   B e.g. tierA-000143 tierA-000145
+(And (Member $e0 call_off) (Agent $e0 $x1))
+(And (Member $e0 cancel) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Theme ~ decision.Theme  cosine 0.97  JSD 0.064  n 9 / 6  shared: {roof} {budget} {case} {new}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000187
+(And (Member $e0 decide) (Theme $e0 $x1))
+(And (Member $e0 decision) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Agent ~ buy.Agent  cosine 0.95  JSD 0.121  n 4 / 14  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000022 tierA-000026
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 buy) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ buy.Theme  cosine 0.94  JSD 0.121  n 4 / 14  shared: {projector, projectors} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000008 tierA-000012
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 buy) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Agent ~ purchase.Agent  cosine 0.95  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ purchase.Theme  cosine 0.94  JSD 0.121  n 14 / 4  shared: {projector, projectors} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ make.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000197
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 make) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ reach.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  cause.Agent ~ destroy.Agent  cosine 0.93  JSD 0.138  n 3 / 8  shared: {storm} {flood} {fire}
+;;   A e.g. tierA-000223 tierA-000233   B e.g. tierA-000222 tierA-000224
+(And (Member $e0 cause) (Agent $e0 $x1))
+(And (Member $e0 destroy) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ end.Patient  cosine 0.87  JSD 0.138  n 4 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000069 tierA-000059   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  end.Patient ~ start.Patient  cosine 0.87  JSD 0.138  n 3 / 4  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000071 tierA-000060   B e.g. tierA-000068 tierA-000058
+(And (Member $e0 end) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  reject.Agent ~ turn_down.Agent  cosine 0.93  JSD 0.138  n 8 / 3  shared: {editor} {bank} {panel}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Agent $e0 $x1))
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Theme ~ turn_down.Theme  cosine 0.93  JSD 0.138  n 8 / 3  shared: {manuscript} {loan application} {proposal}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Theme $e0 $x1))
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ end.Patient  cosine 0.80  JSD 0.174  n 7 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ sell.Theme  cosine 0.68  JSD 0.191  n 4 / 6  shared: {projector, projectors} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  portray.Agent ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods} {Wilson, wilson}
+;;   A e.g. tierC-000301 tierC-000302   B e.g. tierC-000277 tierC-000278
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [same role, different class]  purchase.Theme ~ sell.Theme  cosine 0.68  JSD 0.191  n 4 / 6  shared: {projector, projectors} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000009 tierA-000016   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 purchase) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  accompany.Agent ~ appear.Agent  cosine 0.78  JSD 0.217  n 4 / 8  shared: {person, people} {sister, sisters}
+;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000049 tierC-000050
+(And (Member $e0 accompany) (Agent $e0 $x1))
+(And (Member $e0 appear) (Agent $e0 $x1))
+
+;; [same role, different class]  borrow.Theme ~ lend.Theme  cosine 0.65  JSD 0.239  n 5 / 10  shared: {painting, paintings} {ladder, ladders} {generator}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Theme $e0 $x1))
+(And (Member $e0 lend) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ sell.Theme  cosine 0.65  JSD 0.281  n 14 / 6  shared: {projector, projectors} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same class, different role]  repair.Agent ~ repair.Patient  cosine 0.83  JSD 0.061  n 8 / 8  shared: {feed pipe} {crew} {electrician} {cracked}
+;;   A e.g. tierA-000051 tierA-000049   B e.g. tierA-000039 tierA-000029
+(And (Member $e0 repair) (Agent $e0 $x1))
+(And (Member $e0 repair) (Patient $e0 $x1))
+
+;; [same class, different role]  discover.Experiencer ~ discover.Stimulus  cosine 0.80  JSD 0.082  n 3 / 3  shared: {auditor} {error}
+;;   A e.g. tierA-000128 tierA-000130   B e.g. tierA-000132 tierA-000128
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+
+;; [same class, different role]  order.Agent ~ order.Theme  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {scan}
+;;   A e.g. tierA-000385 tierA-000386   B e.g. tierA-000389 tierA-000387
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 order) (Theme $e0 $x1))
+
+;; [same class, different role]  sign.Agent ~ sign.Patient  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {chart}
+;;   A e.g. tierA-000375 tierA-000376   B e.g. tierA-000378 tierA-000377
+(And (Member $e0 sign) (Agent $e0 $x1))
+(And (Member $e0 sign) (Patient $e0 $x1))
+
+;; [different class and role]  acquire.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  purchase.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000023 tierA-000016   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 purchase) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Agent ~ lend.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {Ravi} {gallery} {crew}
+;;   A e.g. tierA-000297 tierA-000307   B e.g. tierA-000296 tierA-000298
+(And (Member $e0 borrow) (Agent $e0 $x1))
+(And (Member $e0 lend) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Source ~ lend.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {museum} {neighbour, neighbouring} {depot}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Source $e0 $x1))
+(And (Member $e0 lend) (Agent $e0 $x1))
+
+;; [different class and role]  learn.Agent ~ teach.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {squad} {apprentice} {child}
+;;   A e.g. tierA-000287 tierA-000282   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Agent $e0 $x1))
+(And (Member $e0 teach) (Recipient $e0 $x1))
+
+;; [different class and role]  learn.Source ~ teach.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {potter} {coach} {elder}
+;;   A e.g. tierA-000282 tierA-000287   B e.g. tierA-000281 tierA-000283
+(And (Member $e0 learn) (Source $e0 $x1))
+(And (Member $e0 teach) (Agent $e0 $x1))
+
+;; [different class and role]  buy.Agent ~ sell.Recipient  cosine 0.95  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  portray.Theme ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods} {Wilson, wilson}
+;;   A e.g. tierC-000277 tierC-000278   B e.g. tierC-000301 tierC-000302
+(And (Member $e0 portray) (Theme $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [different class and role]  give.Agent ~ receive.Source  cosine 0.91  JSD 0.196  n 12 / 3  shared: {foreman} {trainer} {school}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000262
+(And (Member $e0 give) (Agent $e0 $x1))
+(And (Member $e0 receive) (Source $e0 $x1))
+
+;; [different class and role]  give.Recipient ~ receive.Agent  cosine 0.91  JSD 0.196  n 12 / 3  shared: {recruit} {driver} {winner, win}
+;;   A e.g. tierA-000261 tierA-000263   B e.g. tierA-000262 tierA-000272
+(And (Member $e0 give) (Recipient $e0 $x1))
+(And (Member $e0 receive) (Agent $e0 $x1))
+
+;; ==================== word @ cluster cos 0.90: compared slots with their distributions (197 slots, n >= 3) ====================
+
+;; ---- slot <unclassed>.Possession  [entity center]  n 18  clusters 11
+(Possession $x0 $x1)
+;;      c451  mass 5  {person, people}
+;;      c153  mass 2  {Twilight}
+;;      c202  mass 2  {Gil Aires}
+;;      c203  mass 2  {Leonor Rodrigues}
+;;      c211  mass 2  {Dora Smith}
+;;      c576  mass 2  {subsequent game}
+;;      c180  mass 1  {J. Augustus Knapp}
+;;      c278  mass 0.5  {sunni}
+;;      c424  mass 0.5  {neighbour, neighbouring}
+;;      c441  mass 0.5  {community}
+;;      c484  mass 0.5  {other}
+
+;; ---- slot work.Agent  [event center]  n 17  clusters 10
+(And (Member $e0 work) (Agent $e0 $x1))
+;;      c207  mass 3  {Ana}
+;;      c241  mass 3  {Dara}
+;;       c27  mass 3  {biologist}
+;;      c384  mass 2  {welder}
+;;      c223  mass 1  {Mr. Jones}
+;;      c226  mass 1  {Bo}
+;;      c233  mass 1  {Nils}
+;;      c235  mass 1  {Asserson}
+;;      c377  mass 1  {ranger}
+;;      c589  mass 1  {fitter}
+
+;; ---- slot build.Location  [event center]  n 14  clusters 3
+(And (Member $e0 build) (Location $e0 $x1))
+;;      c100  mass 6  {Turkey}
+;;      c111  mass 4  {Kazakhstan}
+;;      c142  mass 4  {Eskisehir}
+
+;; ---- slot buy.Agent  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Agent $e0 $x1))
+;;      c323  mass 3  {pottery studio}
+;;      c482  mass 3  {school}
+;;      c581  mass 3  {depot}
+;;      c363  mass 2  {chef}
+;;      c397  mass 1  {forklift, forklifts}
+;;      c401  mass 1  {kiln}
+;;      c354  mass 0.5  {lemon}
+;;      c580  mass 0.5  {crate}
+
+;; ---- slot buy.Theme  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Theme $e0 $x1))
+;;      c251  mass 3  {projector, projectors}
+;;      c397  mass 3  {forklift, forklifts}
+;;      c401  mass 3  {kiln}
+;;      c323  mass 1  {pottery studio}
+;;      c354  mass 1  {lemon}
+;;      c363  mass 1  {chef}
+;;      c580  mass 1  {crate}
+;;      c581  mass 1  {depot}
+
+;; ---- slot work.Location  [event center]  n 13  clusters 5
+(And (Member $e0 work) (Location $e0 $x1))
+;;      c528  mass 4  {ledger}
+;;      c791  mass 4  {survey}
+;;      c706  mass 3  {frame}
+;;      c328  mass 1  {mural}
+;;        c7  mass 1  {Church of Norway}
+
+;; ---- slot build.Agent  [event center]  n 12  clusters 3
+(And (Member $e0 build) (Agent $e0 $x1))
+;;      c435  mass 8  {Company, company}
+;;      c196  mass 2  {O. R. Woodcock, William Ewer}
+;;      c451  mass 2  {person, people}
+
+;; ---- slot build.Patient  [event center]  n 12  clusters 4
+(And (Member $e0 build) (Patient $e0 $x1))
+;;      c336  mass 4  {paper factory, paper mill}
+;;      c514  mass 4  {hotel}
+;;      c512  mass 2  {room}
+;;      c658  mass 2  {horn}
+
+;; ---- slot find.Location  [event center]  n 12  clusters 8
+(And (Member $e0 find) (Location $e0 $x1))
+;;      c427  mass 2  {southern}
+;;      c710  mass 2  {bench}
+;;       c84  mass 2  {Yunnan}
+;;       c85  mass 2  {tributary, tributaries}
+;;      c428  mass 1  {western}
+;;       c83  mass 1  {Dianchi Lake, Lake Dianchi}
+;;       c93  mass 1  {Europe, Western Europe}
+;;       c95  mass 1  {China}
+
+;; ---- slot give.Agent  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Agent $e0 $x1))
+;;      c393  mass 3  {trainer}
+;;      c482  mass 3  {school}
+;;      c255  mass 2  {foreman}
+;;      c366  mass 1  {pilot}
+;;      c389  mass 1  {clerk}
+;;      c715  mass 1  {vet}
+;;       c73  mass 1  {driver}
+
+;; ---- slot give.Recipient  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Recipient $e0 $x1))
+;;      c445  mass 3  {recruit}
+;;      c760  mass 3  {winner, win}
+;;       c73  mass 2  {driver}
+;;      c255  mass 1  {foreman}
+;;      c498  mass 1  {tower}
+;;      c555  mass 1  {caller}
+;;      c612  mass 1  {query}
+
+;; ---- slot give.Theme  [event center]  n 12  clusters 4
+(And (Member $e0 give) (Theme $e0 $x1))
+;;      c304  mass 3  {whistle}
+;;      c593  mass 3  {manifest}
+;;       c65  mass 3  {medal, medals}
+;;      c773  mass 3  {answer}
+
+;; ---- slot decide.Agent  [event center]  n 11  clusters 6
+(And (Member $e0 decide) (Agent $e0 $x1))
+;;      c707  mass 3  {board}
+;;      c713  mass 3  {judge}
+;;      c439  mass 2  {committee}
+;;      c425  mass 1  {north}
+;;      c458  mass 1  {family}
+;;      c712  mass 1  {case}
+
+;; ---- slot destroy.Patient  [event center]  n 11  clusters 5
+(And (Member $e0 destroy) (Patient $e0 $x1))
+;;      c333  mass 3  {archive}
+;;      c403  mass 3  {greenhouse}
+;;      c494  mass 3  {footbridge}
+;;      c406  mass 1  {storm}
+;;      c653  mass 1  {fire}
+
+;; ---- slot answer.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Agent $e0 $x1))
+;;      c366  mass 3  {pilot}
+;;      c389  mass 3  {clerk}
+;;      c715  mass 2  {vet}
+;;      c555  mass 1  {caller}
+;;      c612  mass 1  {query}
+
+;; ---- slot answer.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Theme $e0 $x1))
+;;      c498  mass 3  {tower}
+;;      c612  mass 3  {query}
+;;      c555  mass 2  {caller}
+;;      c389  mass 1  {clerk}
+;;      c715  mass 1  {vet}
+
+;; ---- slot lend.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Agent $e0 $x1))
+;;      c335  mass 3  {museum}
+;;      c424  mass 3  {neighbour, neighbouring}
+;;      c581  mass 2  {depot}
+;;      c150  mass 1  {Ravi}
+;;      c374  mass 1  {crew}
+
+;; ---- slot lend.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Recipient $e0 $x1))
+;;      c150  mass 3  {Ravi}
+;;      c329  mass 3  {gallery}
+;;      c374  mass 2  {crew}
+;;      c424  mass 1  {neighbour, neighbouring}
+;;      c581  mass 1  {depot}
+
+;; ---- slot lend.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 lend) (Theme $e0 $x1))
+;;      c398  mass 4  {ladder, ladders}
+;;      c326  mass 3  {painting, paintings}
+;;      c590  mass 3  {generator}
+
+;; ---- slot require.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 require) (Theme $e0 $x1))
+;;      c360  mass 4  {egg, eggs}
+;;      c591  mass 3  {countersignature, countersignatures}
+;;      c793  mass 3  {monthly servicing}
+
+;; ---- slot teach.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Agent $e0 $x1))
+;;      c154  mass 3  {potter}
+;;      c449  mass 3  {elder}
+;;      c392  mass 2  {coach}
+;;      c372  mass 1  {squad}
+;;      c394  mass 1  {apprentice}
+
+;; ---- slot teach.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Recipient $e0 $x1))
+;;      c394  mass 3  {apprentice}
+;;      c447  mass 3  {child}
+;;      c372  mass 2  {squad}
+;;      c154  mass 1  {potter}
+;;      c392  mass 1  {coach}
+
+;; ---- slot teach.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 teach) (Theme $e0 $x1))
+;;      c402  mass 4  {glazing}
+;;      c306  mass 3  {drill}
+;;      c310  mass 3  {song, sing}
+
+;; ---- slot cancel.Agent  [event center]  n 9  clusters 4
+(And (Member $e0 cancel) (Agent $e0 $x1))
+;;      c440  mass 3  {council}
+;;      c479  mass 3  {tutor}
+;;      c364  mass 2  {airline}
+;;       c25  mass 1  {physician, doctor}
+
+;; ---- slot decide.Theme  [event center]  n 9  clusters 5
+(And (Member $e0 decide) (Theme $e0 $x1))
+;;      c529  mass 3  {budget}
+;;      c712  mass 3  {case}
+;;      c509  mass 1  {roof}
+;;      c713  mass 1  {judge}
+;;      c738  mass 1  {new}
+
+;; ---- slot discover.Theme  [event center]  n 9  clusters 5
+(And (Member $e0 discover) (Theme $e0 $x1))
+;;      c408  mass 3  {wreck}
+;;      c340  mass 2  {name}
+;;      c475  mass 1.5  {file}
+;;      c690  mass 1.5  {missing}
+;;      c382  mass 1  {diver}
+
+;; ---- slot view.Possession  [entity center]  n 8  clusters 2
+(And (Member $x0 view) (Possession $x0 $x1))
+;;      c261  mass 4  {Free Soil Party}
+;;      c262  mass 4  {Republican Party}
+
+;; ---- slot abandon.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Agent $e0 $x1))
+;;      c381  mass 3  {climber, climbers}
+;;      c436  mass 3  {firm}
+;;      c376  mass 2  {rescue team}
+
+;; ---- slot abandon.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Theme $e0 $x1))
+;;      c462  mass 3  {tender}
+;;      c503  mass 3  {north route}
+;;      c613  mass 2  {search}
+
+;; ---- slot appear.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 appear) (Agent $e0 $x1))
+;;      c451  mass 5  {person, people}
+;;      c189  mass 2  {Brian Packham, Philip Hercus, Paul Cavanagh, Paul Paul Cavanagh}
+;;      c459  mass 1  {sister, sisters}
+
+;; ---- slot appear.Location  [event center]  n 8  clusters 5
+(And (Member $e0 appear) (Location $e0 $x1))
+;;       c28  mass 2  {comedic role}
+;;      c357  mass 2  {cafe}
+;;        c9  mass 2  {Coronation Street}
+;;      c295  mass 1  {music film}
+;;      c296  mass 1  {musical film}
+
+;; ---- slot destroy.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 destroy) (Agent $e0 $x1))
+;;      c406  mass 2  {storm}
+;;      c407  mass 2  {flood}
+;;      c653  mass 2  {fire}
+;;      c333  mass 1  {archive}
+;;      c403  mass 1  {greenhouse}
+
+;; ---- slot have.Holder  [event center]  n 8  clusters 4
+(And (Member $e0 have) (Holder $e0 $x1))
+;;      c171  mass 4  {Kristoffer}
+;;      c210  mass 2  {Karen}
+;;       c55  mass 1  {homentropic current}
+;;       c56  mass 1  {homentropic flow}
+
+;; ---- slot have.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 have) (Theme $e0 $x1))
+;;      c447  mass 4  {child}
+;;      c764  mass 2  {representation, represent}
+;;      c416  mass 0.667  {entropy}
+;;      c750  mass 0.667  {uniform}
+;;      c751  mass 0.667  {constant}
+
+;; ---- slot include.Theme  [event center]  n 8  clusters 4
+(And (Member $e0 include) (Theme $e0 $x1))
+;;      c134  mass 2  {Des Moines}
+;;      c148  mass 2  {Armaan Jain}
+;;      c149  mass 2  {Ranbir Kapoor}
+;;      c151  mass 2  {Nikhil Nanda}
+
+;; ---- slot produce.Patient  [event center]  n 8  clusters 4
+(And (Member $e0 produce) (Patient $e0 $x1))
+;;      c294  mass 4.833  {movie, film}
+;;      c314  mass 2  {album}
+;;       c31  mass 0.833  {syrian}
+;;      c533  mass 0.333  {destined}
+
+;; ---- slot reject.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Agent $e0 $x1))
+;;      c387  mass 2  {editor}
+;;      c527  mass 2  {bank}
+;;      c708  mass 2  {panel}
+;;      c339  mass 1  {manuscript}
+;;      c524  mass 1  {loan application}
+
+;; ---- slot reject.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Theme $e0 $x1))
+;;      c339  mass 2  {manuscript}
+;;      c524  mass 2  {loan application}
+;;      c696  mass 2  {proposal}
+;;      c387  mass 1  {editor}
+;;      c527  mass 1  {bank}
+
+;; ---- slot repair.Agent  [event center]  n 8  clusters 8
+(And (Member $e0 repair) (Agent $e0 $x1))
+;;      c383  mass 2  {electrician}
+;;       c74  mass 2  {mechanic}
+;;      c374  mass 1  {crew}
+;;      c795  mass 1  {yard floodlight}
+;;      c253  mass 0.5  {feed pipe}
+;;      c465  mass 0.5  {cracked}
+;;      c694  mass 0.5  {seized}
+;;       c70  mass 0.5  {gearbox}
+
+;; ---- slot repair.Patient  [event center]  n 8  clusters 8
+(And (Member $e0 repair) (Patient $e0 $x1))
+;;      c795  mass 2  {yard floodlight}
+;;      c374  mass 1  {crew}
+;;      c383  mass 1  {electrician}
+;;      c694  mass 1  {seized}
+;;       c70  mass 1  {gearbox}
+;;       c74  mass 1  {mechanic}
+;;      c253  mass 0.5  {feed pipe}
+;;      c465  mass 0.5  {cracked}
+
+;; ---- slot require.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 require) (Holder $e0 $x1))
+;;      c362  mass 3  {recipe}
+;;      c767  mass 3  {permit, allow}
+;;      c399  mass 2  {lathe}
+
+;; ---- slot serve.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 serve) (Agent $e0 $x1))
+;;      c139  mass 2  {Indooroopilly}
+;;      c140  mass 2  {Ipswich}
+;;      c239  mass 2  {Rosewood}
+;;      c451  mass 2  {person, people}
+
+;; ---- slot sing.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 sing) (Agent $e0 $x1))
+;;      c316  mass 2  {Barbershop Harmony Society}
+;;      c451  mass 2  {person, people}
+;;      c459  mass 2  {sister, sisters}
+;;      c433  mass 1  {occupational group}
+;;      c434  mass 1  {professional group}
+
+;; ---- slot study.Location  [event center]  n 8  clusters 3
+(And (Member $e0 study) (Location $e0 $x1))
+;;      c138  mass 4  {Melbourne, Sydney}
+;;      c321  mass 2  {Davis Studio}
+;;      c322  mass 2  {Julian Ashton Art School}
+
+;; ---- slot be.Experiencer  [event center]  n 7  clusters 4
+(And (Member $e0 be) (Experiencer $e0 $x1))
+;;      c237  mass 4  {Paniqui}
+;;      c117  mass 1  {Ellerslie Rugby Park}
+;;      c254  mass 1  {tunnel}
+;;       c80  mass 1  {Alema Nature Reserve}
+
+;; ---- slot begin.Patient  [event center]  n 7  clusters 4
+(And (Member $e0 begin) (Patient $e0 $x1))
+;;      c320  mass 2  {dress rehearsal}
+;;      c356  mass 2  {apple harvest}
+;;       c90  mass 2  {shoreline survey}
+;;      c562  mass 1  {hearing}
+
+;; ---- slot cancel.Patient  [event center]  n 7  clusters 3
+(And (Member $e0 cancel) (Patient $e0 $x1))
+;;       c33  mass 3  {summer fair}
+;;      c367  mass 3  {afternoon session}
+;;      c365  mass 1  {evening flight}
+
+;; ---- slot discover.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 discover) (Agent $e0 $x1))
+;;      c382  mass 3  {diver}
+;;      c603  mass 3  {intern}
+;;      c408  mass 1  {wreck}
+
+;; ---- slot locate.Location  [event center]  n 7  clusters 4
+(And (Member $e0 locate) (Location $e0 $x1))
+;;      c129  mass 2  {Cloverdale}
+;;      c477  mass 2  {foot}
+;;      c488  mass 2  {hill}
+;;      c130  mass 1  {Richford}
+
+;; ---- slot postpone.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Agent $e0 $x1))
+;;      c373  mass 3  {club}
+;;      c707  mass 2  {board}
+;;       c75  mass 2  {ferry}
+
+;; ---- slot postpone.Theme  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Theme $e0 $x1))
+;;       c22  mass 3  {tournament}
+;;      c716  mass 2  {vote}
+;;      c726  mass 2  {departure, depart}
+
+;; ---- slot work.CoAgent  [event center]  n 7  clusters 4
+(And (Member $e0 work) (CoAgent $e0 $x1))
+;;      c226  mass 2  {Bo}
+;;      c233  mass 2  {Nils}
+;;      c377  mass 2  {ranger}
+;;      c589  mass 1  {fitter}
+
+;; ---- slot budget.Possession  [entity center]  n 6  clusters 1
+(And (Member $x0 budget) (Possession $x0 $x1))
+;;      c574  mass 6  {next year}
+
+;; ---- slot arrive.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 arrive) (Agent $e0 $x1))
+;;       c77  mass 3  {freight}
+;;      c443  mass 2  {delegation}
+;;       c58  mass 1  {soil sample, soil samples}
+
+;; ---- slot build.Instrument  [event center]  n 6  clusters 4
+(And (Member $e0 build) (Instrument $e0 $x1))
+;;      c404  mass 2  {barometer}
+;;      c719  mass 2  {help}
+;;      c486  mass 1  {scale}
+;;      c743  mass 1  {present, present in}
+
+;; ---- slot decision.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 decision) (Theme $e0 $x1))
+;;      c529  mass 2  {budget}
+;;      c712  mass 2  {case}
+;;      c509  mass 1  {roof}
+;;      c738  mass 1  {new}
+
+;; ---- slot design.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 design) (Agent $e0 $x1))
+;;      c189  mass 2  {Brian Packham, Philip Hercus, Paul Cavanagh, Paul Paul Cavanagh}
+;;      c192  mass 2  {Henry L. Taylor, Sherman Howard}
+;;       c78  mass 2  {Robert Allan Limited}
+
+;; ---- slot discover.Location  [event center]  n 6  clusters 2
+(And (Member $e0 discover) (Location $e0 $x1))
+;;      c755  mass 4  {point}
+;;       c96  mass 2  {Japan}
+
+;; ---- slot form.Agent  [event center]  n 6  clusters 5
+(And (Member $e0 form) (Agent $e0 $x1))
+;;      c175  mass 2  {Jon Bon Jovi}
+;;      c176  mass 2  {Sambora}
+;;       c60  mass 1  {Technetium}
+;;      c630  mass 0.5  {complex, complex, simple}
+;;      c635  mass 0.5  {simple}
+
+;; ---- slot fund.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 fund) (Agent $e0 $x1))
+;;      c263  mass 3  {government}
+;;      c270  mass 3  {JICA}
+
+;; ---- slot include.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 include) (Agent $e0 $x1))
+;;      c446  mass 6  {nephew, nephews}
+
+;; ---- slot portray.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Agent $e0 $x1))
+;;      c166  mass 2  {Mie Sonozaki, Soichiro Akizuki}
+;;      c173  mass 2  {James Woods}
+;;      c219  mass 2  {Wilson, wilson}
+
+;; ---- slot portray.Theme  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Theme $e0 $x1))
+;;      c168  mass 2  {Kantaro Suga}
+;;      c173  mass 2  {James Woods}
+;;      c219  mass 2  {Wilson, wilson}
+
+;; ---- slot produce.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 produce) (Agent $e0 $x1))
+;;      c190  mass 2  {Colin Richardson}
+;;      c194  mass 2  {Harvey Hayutin}
+;;      c195  mass 2  {Sy Weintraub}
+
+;; ---- slot sell.Theme  [event center]  n 6  clusters 6
+(And (Member $e0 sell) (Theme $e0 $x1))
+;;      c359  mass 2  {ice cream, ice cone, ice cream cone}
+;;      c251  mass 1  {projector, projectors}
+;;      c397  mass 1  {forklift, forklifts}
+;;      c401  mass 1  {kiln}
+;;      c354  mass 0.5  {lemon}
+;;      c580  mass 0.5  {crate}
+
+;; ---- slot serve.Theme  [event center]  n 6  clusters 1
+(And (Member $e0 serve) (Theme $e0 $x1))
+;;      c497  mass 6  {station}
+
+;; ---- slot use.Theme  [event center]  n 6  clusters 5
+(And (Member $e0 use) (Theme $e0 $x1))
+;;        c1  mass 2  {Banach -- Mackey topology}
+;;        c2  mass 2  {weak Arens space topology}
+;;      c741  mass 1  {current, now}
+;;      c342  mass 0.5  {naming convention, current, naming convention}
+;;      c344  mass 0.5  {designation convention}
+
+;; ---- slot write.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Agent $e0 $x1))
+;;      c169  mass 2  {Gilles Thibaut}
+;;      c193  mass 2  {Bill Wrubel}
+;;      c451  mass 2  {person, people}
+
+;; ---- slot write.CoAgent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (CoAgent $e0 $x1))
+;;      c183  mass 2  {Cyril Rambour}
+;;      c204  mass 2  {Laurie Aubanel, Muriel Zazoui}
+;;      c206  mass 2  {Bianca Olsen}
+
+;; ---- slot write.Patient  [event center]  n 6  clusters 4
+(And (Member $e0 write) (Patient $e0 $x1))
+;;      c310  mass 2  {song, sing}
+;;      c542  mass 2  {episode}
+;;      c300  mass 1  {screenplay}
+;;      c301  mass 1  {script}
+
+;; ---- slot tender.Possession  [entity center]  n 5  clusters 1
+(And (Member $x0 tender) (Possession $x0 $x1))
+;;      c436  mass 5  {firm}
+
+;; ---- slot borrow.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 borrow) (Theme $e0 $x1))
+;;      c167  mass 2  {inomaru}
+;;      c326  mass 1  {painting, paintings}
+;;      c398  mass 1  {ladder, ladders}
+;;      c590  mass 1  {generator}
+
+;; ---- slot die.Patient  [event center]  n 5  clusters 4
+(And (Member $e0 die) (Patient $e0 $x1))
+;;      c395  mass 2  {founder}
+;;      c451  mass 2  {person, people}
+;;      c351  mass 0.5  {elm}
+;;      c777  mass 0.5  {last}
+
+;; ---- slot locate.Experiencer  [event center]  n 5  clusters 3
+(And (Member $e0 locate) (Experiencer $e0 $x1))
+;;      c115  mass 2  {Wine Country}
+;;      c495  mass 2  {park}
+;;      c117  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot receive.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 receive) (Theme $e0 $x1))
+;;      c598  mass 2  {work}
+;;      c304  mass 1  {whistle}
+;;      c593  mass 1  {manifest}
+;;       c65  mass 1  {medal, medals}
+
+;; ---- slot take.Agent  [event center]  n 5  clusters 4
+(And (Member $e0 take) (Agent $e0 $x1))
+;;      c451  mass 2  {person, people}
+;;       c26  mass 1  {nurse}
+;;      c378  mass 1  {shepherd}
+;;      c447  mass 1  {child}
+
+;; ---- slot walk.Agent  [event center]  n 5  clusters 5
+(And (Member $e0 walk) (Agent $e0 $x1))
+;;       c26  mass 1  {nurse}
+;;      c378  mass 1  {shepherd}
+;;      c447  mass 1  {child}
+;;      c496  mass 1  {pier}
+;;      c761  mass 1  {ward}
+
+;; ---- slot walk.Location  [event center]  n 5  clusters 3
+(And (Member $e0 walk) (Location $e0 $x1))
+;;      c490  mass 2  {ridge}
+;;      c761  mass 2  {ward}
+;;       c26  mass 1  {nurse}
+
+;; ---- slot <unclassed>.PartOf  [entity center]  n 4  clusters 3
+(PartOf $x0 $x1)
+;;      c147  mass 2  {Khurda Road}
+;;       c91  mass 1  {Colombia, Peru}
+;;       c92  mass 1  {Huancavelica}
+
+;; ---- slot bad.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 bad) (Between $x0 $x1))
+;;      c102  mass 2  {Poland}
+;;      c103  mass 2  {Germany}
+
+;; ---- slot border_section.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 border_section) (Between $x0 $x1))
+;;      c110  mass 2  {Uganda}
+;;      c236  mass 2  {Lessos}
+
+;; ---- slot departure.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 departure) (Possession $x0 $x1))
+;;       c75  mass 4  {ferry}
+
+;; ---- slot family.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 family) (Possession $x0 $x1))
+;;      c451  mass 4  {person, people}
+
+;; ---- slot government.Possession  [entity center]  n 4  clusters 2
+(And (Member $x0 government) (Possession $x0 $x1))
+;;      c109  mass 2  {Kenya}
+;;      c110  mass 2  {Uganda}
+
+;; ---- slot lunch.Before  [entity center]  n 4  clusters 2
+(And (Member $x0 lunch) (Before $x0 $x1))
+;;      c734  mass 3  {begin, start}
+;;      c735  mass 1  {commence}
+
+;; ---- slot accompany.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 accompany) (Agent $e0 $x1))
+;;      c451  mass 2  {person, people}
+;;      c459  mass 2  {sister, sisters}
+
+;; ---- slot accompany.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 accompany) (Theme $e0 $x1))
+;;      c297  mass 4  {silent film}
+
+;; ---- slot acquire.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Agent $e0 $x1))
+;;      c323  mass 1  {pottery studio}
+;;      c363  mass 1  {chef}
+;;      c482  mass 1  {school}
+;;      c581  mass 1  {depot}
+
+;; ---- slot acquire.Theme  [event center]  n 4  clusters 5
+(And (Member $e0 acquire) (Theme $e0 $x1))
+;;      c251  mass 1  {projector, projectors}
+;;      c397  mass 1  {forklift, forklifts}
+;;      c401  mass 1  {kiln}
+;;      c354  mass 0.5  {lemon}
+;;      c580  mass 0.5  {crate}
+
+;; ---- slot active.Time  [event center]  n 4  clusters 2
+(And (Member $e0 active) (Time $e0 $x1))
+;;      c368  mass 2  {late afternoon}
+;;      c369  mass 2  {morning, early morning}
+
+;; ---- slot allow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Agent $e0 $x1))
+;;      c554  mass 2  {licence}
+;;      c390  mass 1  {warden}
+;;      c391  mass 1  {curator}
+
+;; ---- slot allow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Theme $e0 $x1))
+;;      c473  mass 2  {night delivery}
+;;      c332  mass 1  {photography}
+;;      c579  mass 1  {visitor}
+
+;; ---- slot attract.Source  [event center]  n 4  clusters 2
+(And (Member $e0 attract) (Source $e0 $x1))
+;;       c62  mass 2  {mainstream media}
+;;       c64  mass 2  {social media}
+
+;; ---- slot be.Location  [event center]  n 4  clusters 4
+(And (Member $e0 be) (Location $e0 $x1))
+;;      c106  mass 1  {denmark}
+;;      c130  mass 1  {Richford}
+;;      c136  mass 1  {Harju County}
+;;      c425  mass 1  {north}
+
+;; ---- slot be.Source  [event center]  n 4  clusters 3
+(And (Member $e0 be) (Source $e0 $x1))
+;;      c122  mass 2  {Tarlac City}
+;;      c121  mass 1  {Manila}
+;;      c127  mass 1  {provincial capital}
+
+;; ---- slot become.Patient  [event center]  n 4  clusters 6
+(And (Member $e0 become) (Patient $e0 $x1))
+;;      c455  mass 1  {relationship}
+;;      c677  mass 1  {bad}
+;;      c124  mass 0.5  {lax}
+;;      c451  mass 0.5  {person, people}
+;;       c48  mass 0.5  {indigenous, indigenous, people}
+;;      c550  mass 0.5  {discipline}
+
+;; ---- slot become.Result  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Result $e0 $x1))
+;;      c677  mass 2  {bad}
+;;      c124  mass 1  {lax}
+;;       c48  mass 1  {indigenous, indigenous, people}
+
+;; ---- slot begin.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 begin) (Agent $e0 $x1))
+;;       c46  mass 2  {european american settler, european american settlers}
+;;       c47  mass 2  {indigenous american, native american, indigenous americans, native americans}
+
+;; ---- slot begin.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 begin) (Theme $e0 $x1))
+;;      c737  mass 4  {create}
+
+;; ---- slot block.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Agent $e0 $x1))
+;;       c72  mass 4  {automobile, car, automobiles}
+
+;; ---- slot block.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Theme $e0 $x1))
+;;      c501  mass 4  {lane}
+
+;; ---- slot celebrated.Location  [event center]  n 4  clusters 2
+(And (Member $e0 celebrated) (Location $e0 $x1))
+;;        c3  mass 2  {traditional chinese drama, traditional chinese dramas}
+;;       c63  mass 2  {popular culture}
+
+;; ---- slot commence.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 commence) (Patient $e0 $x1))
+;;      c320  mass 1  {dress rehearsal}
+;;      c356  mass 1  {apple harvest}
+;;      c562  mass 1  {hearing}
+;;       c90  mass 1  {shoreline survey}
+
+;; ---- slot create.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 create) (Agent $e0 $x1))
+;;       c46  mass 2  {european american settler, european american settlers}
+;;       c47  mass 2  {indigenous american, native american, indigenous americans, native americans}
+
+;; ---- slot create.Location  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Location $e0 $x1))
+;;      c702  mass 4  {post}
+
+;; ---- slot create.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Patient $e0 $x1))
+;;      c441  mass 4  {community}
+
+;; ---- slot define.Manner  [event center]  n 4  clusters 4
+(And (Member $e0 define) (Manner $e0 $x1))
+;;      c468  mass 1.5  {random}
+;;      c502  mass 1.5  {way}
+;;      c466  mass 0.5  {manner}
+;;      c470  mass 0.5  {accidental}
+
+;; ---- slot define.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 define) (Theme $e0 $x1))
+;;      c540  mass 2  {sequence}
+;;       c38  mass 1  {algorithmically equivalent}
+;;       c39  mass 1  {equivalent}
+
+;; ---- slot design.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 design) (Patient $e0 $x1))
+;;      c607  mass 4  {pacificat, pacificats}
+
+;; ---- slot direct.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Agent $e0 $x1))
+;;      c201  mass 2  {Lev L. Spiro}
+;;      c185  mass 1  {Robert Day}
+;;      c248  mass 1  {Claude Lelouch}
+
+;; ---- slot direct.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Patient $e0 $x1))
+;;      c542  mass 2  {episode}
+;;      c294  mass 1.5  {movie, film}
+;;       c31  mass 0.5  {syrian}
+
+;; ---- slot encourage.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Agent $e0 $x1))
+;;      c231  mass 4  {Ralph}
+
+;; ---- slot encourage.In  [event center]  n 4  clusters 3
+(And (Member $e0 encourage) (In $e0 $x1))
+;;      c483  mass 2  {mathematics}
+;;       c12  mass 1  {chess}
+;;       c13  mass 1  {chess play}
+
+;; ---- slot encourage.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Theme $e0 $x1))
+;;      c222  mass 4  {Maurice}
+
+;; ---- slot error.Location  [event center]  n 4  clusters 1
+(And (Member $e0 error) (Location $e0 $x1))
+;;      c528  mass 4  {ledger}
+
+;; ---- slot follow.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 follow) (Agent $e0 $x1))
+;;      c158  mass 1  {Alexander}
+;;      c232  mass 1  {Bailey}
+;;      c280  mass 1  {muslim}
+;;      c513  mass 1  {house}
+
+;; ---- slot follow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Theme $e0 $x1))
+;;      c419  mass 2  {region}
+;;      c199  mass 1  {Henry Cole}
+;;      c212  mass 1  {Margaret Fleming}
+
+;; ---- slot form.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 form) (Patient $e0 $x1))
+;;      c319  mass 2  {main songwriting unit}
+;;       c60  mass 1  {Technetium}
+;;      c630  mass 0.5  {complex, complex, simple}
+;;      c635  mass 0.5  {simple}
+
+;; ---- slot have.Location  [event center]  n 4  clusters 2
+(And (Member $e0 have) (Location $e0 $x1))
+;;      c420  mass 2  {regional level}
+;;      c423  mass 2  {local level}
+
+;; ---- slot influence.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 influence) (Theme $e0 $x1))
+;;      c283  mass 2  {religion}
+;;        c4  mass 2  {chinese dumpling}
+
+;; ---- slot kill.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Agent $e0 $x1))
+;;      c405  mass 4  {hurricane}
+
+;; ---- slot kill.Location  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Location $e0 $x1))
+;;      c265  mass 4  {state}
+
+;; ---- slot kill.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 kill) (Manner $e0 $x1))
+;;      c758  mass 2  {direct, directly}
+;;      c759  mass 2  {indirectly}
+
+;; ---- slot kill.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Patient $e0 $x1))
+;;      c451  mass 4  {person, people}
+
+;; ---- slot make.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 make) (Agent $e0 $x1))
+;;      c439  mass 1  {committee}
+;;      c458  mass 1  {family}
+;;      c707  mass 1  {board}
+;;      c713  mass 1  {judge}
+
+;; ---- slot make.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 make) (Patient $e0 $x1))
+;;      c770  mass 4  {decision, decide}
+
+;; ---- slot move.Goal  [event center]  n 4  clusters 2
+(And (Member $e0 move) (Goal $e0 $x1))
+;;      c103  mass 2  {Germany}
+;;      c133  mass 2  {Baltimore}
+
+;; ---- slot nation.Location  [event center]  n 4  clusters 2
+(And (Member $e0 nation) (Location $e0 $x1))
+;;      c145  mass 2  {Bengal}
+;;      c146  mass 2  {South Asia}
+
+;; ---- slot order.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Agent $e0 $x1))
+;;       c25  mass 3  {physician, doctor}
+;;      c618  mass 1  {scan}
+
+;; ---- slot order.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Theme $e0 $x1))
+;;      c618  mass 3  {scan}
+;;       c25  mass 1  {physician, doctor}
+
+;; ---- slot play.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 play) (Agent $e0 $x1))
+;;      c155  mass 1  {Boston Red Sox}
+;;      c156  mass 1  {Cincinnati Reds}
+;;      c215  mass 1  {Audrey Hepburn}
+;;      c216  mass 1  {Audrey Heppurn}
+
+;; ---- slot play.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Theme $e0 $x1))
+;;      c217  mass 2  {Holly Golightly}
+;;      c541  mass 2  {series}
+
+;; ---- slot preach.Location  [event center]  n 4  clusters 2
+(And (Member $e0 preach) (Location $e0 $x1))
+;;      c105  mass 2  {Italy}
+;;      c135  mass 2  {Gareccio}
+
+;; ---- slot purchase.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Agent $e0 $x1))
+;;      c323  mass 1  {pottery studio}
+;;      c363  mass 1  {chef}
+;;      c482  mass 1  {school}
+;;      c581  mass 1  {depot}
+
+;; ---- slot purchase.Theme  [event center]  n 4  clusters 5
+(And (Member $e0 purchase) (Theme $e0 $x1))
+;;      c251  mass 1  {projector, projectors}
+;;      c397  mass 1  {forklift, forklifts}
+;;      c401  mass 1  {kiln}
+;;      c354  mass 0.5  {lemon}
+;;      c580  mass 0.5  {crate}
+
+;; ---- slot reach.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 reach) (Agent $e0 $x1))
+;;      c439  mass 1  {committee}
+;;      c458  mass 1  {family}
+;;      c707  mass 1  {board}
+;;      c713  mass 1  {judge}
+
+;; ---- slot reach.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 reach) (Theme $e0 $x1))
+;;      c770  mass 4  {decision, decide}
+
+;; ---- slot replace.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Agent $e0 $x1))
+;;      c192  mass 2  {Henry L. Taylor, Sherman Howard}
+;;      c182  mass 1  {Peter Gaussen}
+;;      c266  mass 1  {governor}
+
+;; ---- slot replace.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Theme $e0 $x1))
+;;      c160  mass 2  {Lex Lex Luthor, Lex Luthor}
+;;      c196  mass 1  {O. R. Woodcock, William Ewer}
+;;      c266  mass 1  {governor}
+
+;; ---- slot sell.Recipient  [event center]  n 4  clusters 4
+(And (Member $e0 sell) (Recipient $e0 $x1))
+;;      c323  mass 1  {pottery studio}
+;;      c363  mass 1  {chef}
+;;      c482  mass 1  {school}
+;;      c581  mass 1  {depot}
+
+;; ---- slot sign.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Agent $e0 $x1))
+;;       c25  mass 3  {physician, doctor}
+;;      c792  mass 1  {chart}
+
+;; ---- slot sign.Patient  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Patient $e0 $x1))
+;;      c792  mass 3  {chart}
+;;       c25  mass 1  {physician, doctor}
+
+;; ---- slot sing.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Manner $e0 $x1))
+;;      c317  mass 4  {a cappella}
+
+;; ---- slot sing.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Theme $e0 $x1))
+;;      c311  mass 4  {music}
+
+;; ---- slot sing.To  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (To $e0 $x1))
+;;      c623  mass 4  {accompany}
+
+;; ---- slot speak.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 speak) (Agent $e0 $x1))
+;;      c243  mass 2  {Oates}
+;;      c166  mass 1  {Mie Sonozaki, Soichiro Akizuki}
+;;      c218  mass 1  {Kari Wahlgren}
+
+;; ---- slot specify.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 specify) (Manner $e0 $x1))
+;;      c411  mass 2  {continuous time}
+;;      c412  mass 2  {discrete time}
+
+;; ---- slot star.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 star) (Theme $e0 $x1))
+;;      c174  mass 2  {Jeremy Irons}
+;;      c205  mass 2  {Patricia Kaas}
+
+;; ---- slot start.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 start) (Patient $e0 $x1))
+;;      c320  mass 1  {dress rehearsal}
+;;      c356  mass 1  {apple harvest}
+;;      c562  mass 1  {hearing}
+;;       c90  mass 1  {shoreline survey}
+
+;; ---- slot study.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 study) (Agent $e0 $x1))
+;;      c451  mass 4  {person, people}
+
+;; ---- slot take.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 take) (Theme $e0 $x1))
+;;      c452  mass 2  {identity}
+;;      c500  mass 2  {walk}
+
+;; ---- slot use.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 use) (Manner $e0 $x1))
+;;      c639  mass 4  {rare}
+
+;; ---- slot win.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 win) (Agent $e0 $x1))
+;;      c173  mass 2  {James Woods}
+;;      c219  mass 2  {Wilson, wilson}
+
+;; ---- slot win.For  [event center]  n 4  clusters 1
+(And (Member $e0 win) (For $e0 $x1))
+;;      c325  mass 4  {portray}
+
+;; ---- slot win.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 win) (Theme $e0 $x1))
+;;       c67  mass 4  {emmy}
+
+;; ---- slot house.Possession  [entity center]  n 3  clusters 2
+(And (Member $x0 house) (Possession $x0 $x1))
+;;      c240  mass 2  {Arakkal}
+;;      c107  mass 1  {Derwent Isle}
+
+;; ---- slot western.PartOf  [entity center]  n 3  clusters 2
+(And (Member $x0 western) (PartOf $x0 $x1))
+;;       c95  mass 2  {China}
+;;       c93  mass 1  {Europe, Western Europe}
+
+;; ---- slot bear.Patient  [event center]  n 3  clusters 2
+(And (Member $e0 bear) (Patient $e0 $x1))
+;;      c451  mass 2  {person, people}
+;;      c203  mass 1  {Leonor Rodrigues}
+
+;; ---- slot begin.Time  [event center]  n 3  clusters 2
+(And (Member $e0 begin) (Time $e0 $x1))
+;;      c370  mass 2  {dawn}
+;;      c369  mass 1  {morning, early morning}
+
+;; ---- slot borrow.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Agent $e0 $x1))
+;;      c150  mass 1  {Ravi}
+;;      c329  mass 1  {gallery}
+;;      c374  mass 1  {crew}
+
+;; ---- slot borrow.Source  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Source $e0 $x1))
+;;      c335  mass 1  {museum}
+;;      c424  mass 1  {neighbour, neighbouring}
+;;      c581  mass 1  {depot}
+
+;; ---- slot buy.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 buy) (Beneficiary $e0 $x1))
+;;      c511  mass 3  {hall}
+
+;; ---- slot call_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 call_off) (Agent $e0 $x1))
+;;      c364  mass 1  {airline}
+;;      c440  mass 1  {council}
+;;      c479  mass 1  {tutor}
+
+;; ---- slot cause.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 cause) (Agent $e0 $x1))
+;;      c406  mass 1  {storm}
+;;      c407  mass 1  {flood}
+;;      c653  mass 1  {fire}
+
+;; ---- slot cause.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 cause) (Theme $e0 $x1))
+;;      c671  mass 3  {destroy}
+
+;; ---- slot discover.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+;;      c388  mass 2  {auditor}
+;;      c689  mass 1  {error}
+
+;; ---- slot discover.Stimulus  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+;;      c689  mass 2  {error}
+;;      c388  mass 1  {auditor}
+
+;; ---- slot end.Patient  [event center]  n 3  clusters 3
+(And (Member $e0 end) (Patient $e0 $x1))
+;;      c356  mass 1  {apple harvest}
+;;      c562  mass 1  {hearing}
+;;       c90  mass 1  {shoreline survey}
+
+;; ---- slot examine.Agent  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Agent $e0 $x1))
+;;       c25  mass 3  {physician, doctor}
+
+;; ---- slot examine.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Theme $e0 $x1))
+;;      c308  mass 3  {sample}
+
+;; ---- slot fund.Theme  [event center]  n 3  clusters 2
+(And (Member $e0 fund) (Theme $e0 $x1))
+;;      c418  mass 2  {lessos kenya border section}
+;;      c417  mass 1  {border section}
+
+;; ---- slot give_up.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Agent $e0 $x1))
+;;      c376  mass 1  {rescue team}
+;;      c381  mass 1  {climber, climbers}
+;;      c436  mass 1  {firm}
+
+;; ---- slot give_up.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Theme $e0 $x1))
+;;      c462  mass 1  {tender}
+;;      c503  mass 1  {north route}
+;;      c613  mass 1  {search}
+
+;; ---- slot influence.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 influence) (Agent $e0 $x1))
+;;       c45  mass 2  {indonesian immigrant, indonesian immigrants}
+;;      c525  mass 0.5  {balance}
+;;      c604  mass 0.5  {international}
+
+;; ---- slot learn.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Agent $e0 $x1))
+;;      c372  mass 1  {squad}
+;;      c394  mass 1  {apprentice}
+;;      c447  mass 1  {child}
+
+;; ---- slot learn.Source  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Source $e0 $x1))
+;;      c154  mass 1  {potter}
+;;      c392  mass 1  {coach}
+;;      c449  mass 1  {elder}
+
+;; ---- slot learn.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Theme $e0 $x1))
+;;      c306  mass 1  {drill}
+;;      c310  mass 1  {song, sing}
+;;      c402  mass 1  {glazing}
+
+;; ---- slot market.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Beneficiary $e0 $x1))
+;;      c521  mass 3  {shop}
+
+;; ---- slot market.Location  [event center]  n 3  clusters 2
+(And (Member $e0 market) (Location $e0 $x1))
+;;      c276  mass 1.5  {pakistani, block, pakistani}
+;;      c709  mass 1.5  {block}
+
+;; ---- slot need.Holder  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Holder $e0 $x1))
+;;      c362  mass 1  {recipe}
+;;      c399  mass 1  {lathe}
+;;      c767  mass 1  {permit, allow}
+
+;; ---- slot need.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Theme $e0 $x1))
+;;      c360  mass 1  {egg, eggs}
+;;      c591  mass 1  {countersignature, countersignatures}
+;;      c793  mass 1  {monthly servicing}
+
+;; ---- slot permit.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Agent $e0 $x1))
+;;      c390  mass 1  {warden}
+;;      c391  mass 1  {curator}
+;;      c554  mass 1  {licence}
+
+;; ---- slot permit.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Theme $e0 $x1))
+;;      c332  mass 1  {photography}
+;;      c473  mass 1  {night delivery}
+;;      c579  mass 1  {visitor}
+
+;; ---- slot put_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Agent $e0 $x1))
+;;      c373  mass 1  {club}
+;;      c707  mass 1  {board}
+;;       c75  mass 1  {ferry}
+
+;; ---- slot put_off.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Theme $e0 $x1))
+;;       c22  mass 1  {tournament}
+;;      c716  mass 1  {vote}
+;;      c726  mass 1  {departure, depart}
+
+;; ---- slot receive.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Agent $e0 $x1))
+;;      c445  mass 1  {recruit}
+;;       c73  mass 1  {driver}
+;;      c760  mass 1  {winner, win}
+
+;; ---- slot receive.Source  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Source $e0 $x1))
+;;      c255  mass 1  {foreman}
+;;      c393  mass 1  {trainer}
+;;      c482  mass 1  {school}
+
+;; ---- slot start.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Experiencer $e0 $x1))
+;;      c493  mass 2  {bridge}
+;;      c254  mass 1  {tunnel}
+
+;; ---- slot start.Location  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Location $e0 $x1))
+;;      c119  mass 2  {sweden}
+;;      c106  mass 1  {denmark}
+
+;; ---- slot succeed.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Agent $e0 $x1))
+;;      c158  mass 1  {Alexander}
+;;      c182  mass 1  {Peter Gaussen}
+;;      c232  mass 1  {Bailey}
+
+;; ---- slot succeed.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Theme $e0 $x1))
+;;      c199  mass 1  {Henry Cole}
+;;      c212  mass 1  {Margaret Fleming}
+;;      c266  mass 1  {governor}
+
+;; ---- slot turn_down.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+;;      c387  mass 1  {editor}
+;;      c527  mass 1  {bank}
+;;      c708  mass 1  {panel}
+
+;; ---- slot turn_down.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+;;      c339  mass 1  {manuscript}
+;;      c524  mass 1  {loan application}
+;;      c696  mass 1  {proposal}
+
+;; ---- slot wait.Experiencer  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+;;       c72  mass 3  {automobile, car, automobiles}
+
+;; ---- slot wait.Location  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Location $e0 $x1))
+;;      c585  mass 3  {gate}
+
+;; ---- slot walk.Goal  [event center]  n 3  clusters 2
+(And (Member $e0 walk) (Goal $e0 $x1))
+;;      c496  mass 2  {pier}
+;;      c447  mass 1  {child}
+
+;; ---- slot work.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 work) (Theme $e0 $x1))
+;;      c328  mass 3  {mural}
+
+;; ==================== word @ cluster cos 0.95: pooled role level (45 head pairs) ====================
+
+;; Agent ~ Recipient  cosine 0.30  JSD 0.735  n 500 / 47  shared: {person} {school} {depot}
+(Agent $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Experiencer  cosine 0.24  JSD 0.901  n 500 / 63  shared: {person} {automobile, automobiles} {Aslan}
+(Agent $e $x)
+(Experiencer $e $x)
+
+;; Agent ~ Patient  cosine 0.24  JSD 0.864  n 500 / 159  shared: {person} {physician} {electrician}
+(Agent $e $x)
+(Patient $e $x)
+
+;; Experiencer ~ Patient  cosine 0.15  JSD 0.874  n 63 / 159  shared: {person} {movie, film} {people}
+(Experiencer $e $x)
+(Patient $e $x)
+
+;; Agent ~ Theme  cosine 0.15  JSD 0.83  n 500 / 367  shared: {person} {physician} {child}
+(Agent $e $x)
+(Theme $e $x)
+
+;; Patient ~ Theme  cosine 0.12  JSD 0.888  n 159 / 367  shared: {person} {song} {movie, film}
+(Patient $e $x)
+(Theme $e $x)
+
+;; Agent ~ Source  cosine 0.11  JSD 0.862  n 500 / 24  shared: {school} {depot} {potter}
+(Agent $e $x)
+(Source $e $x)
+
+;; Recipient ~ Source  cosine 0.11  JSD 0.813  n 47 / 24  shared: {depot} {potter} {foreman}
+(Recipient $e $x)
+(Source $e $x)
+
+;; Recipient ~ Theme  cosine 0.09  JSD 0.904  n 47 / 367  shared: {child} {person} {tower}
+(Recipient $e $x)
+(Theme $e $x)
+
+;; Patient ~ Recipient  cosine 0.08  JSD 0.94  n 159 / 47  shared: {person} {crew}
+(Patient $e $x)
+(Recipient $e $x)
+
+;; Experiencer ~ Theme  cosine 0.07  JSD 0.93  n 63 / 367  shared: {person} {bridge} {view}
+(Experiencer $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Recipient  cosine 0.07  JSD 0.948  n 63 / 47  shared: {person}
+(Experiencer $e $x)
+(Recipient $e $x)
+
+;; Goal ~ Recipient  cosine 0.05  JSD 0.929  n 30 / 47  shared: {child} {Loren}
+(Goal $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Goal  cosine 0.03  JSD 0.964  n 500 / 30  shared: {George Allen, Chuck Robb} {child} {pier}
+(Agent $e $x)
+(Goal $e $x)
+
+;; Goal ~ Theme  cosine 0.02  JSD 0.975  n 30 / 367  shared: {child} {predictive function, predictive functions}
+(Goal $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Location  cosine 0.01  JSD 0.988  n 63 / 175  shared: {park}
+(Experiencer $e $x)
+(Location $e $x)
+
+;; Location ~ Theme  cosine 0.01  JSD 0.987  n 175 / 367  shared: {mural} {gate}
+(Location $e $x)
+(Theme $e $x)
+
+;; Agent ~ Location  cosine 0.01  JSD 0.987  n 500 / 175  shared: {nurse} {north} {ward}
+(Agent $e $x)
+(Location $e $x)
+
+;; Source ~ Theme  cosine 0.01  JSD 0.993  n 24 / 367  shared: {depot}
+(Source $e $x)
+(Theme $e $x)
+
+;; Agent ~ Manner  cosine 0.00  JSD 1.0  n 500 / 34  shared: 
+(Agent $e $x)
+(Manner $e $x)
+
+;; Agent ~ Time  cosine 0.00  JSD 1.0  n 500 / 37  shared: 
+(Agent $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Goal  cosine 0.00  JSD 1.0  n 63 / 30  shared: 
+(Experiencer $e $x)
+(Goal $e $x)
+
+;; Experiencer ~ Manner  cosine 0.00  JSD 1.0  n 63 / 34  shared: 
+(Experiencer $e $x)
+(Manner $e $x)
+
+;; Experiencer ~ Source  cosine 0.00  JSD 1.0  n 63 / 24  shared: 
+(Experiencer $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Time  cosine 0.00  JSD 1.0  n 63 / 37  shared: 
+(Experiencer $e $x)
+(Time $e $x)
+
+;; Goal ~ Location  cosine 0.00  JSD 1.0  n 30 / 175  shared: 
+(Goal $e $x)
+(Location $e $x)
+
+;; Goal ~ Manner  cosine 0.00  JSD 1.0  n 30 / 34  shared: 
+(Goal $e $x)
+(Manner $e $x)
+
+;; Goal ~ Patient  cosine 0.00  JSD 1.0  n 30 / 159  shared: 
+(Goal $e $x)
+(Patient $e $x)
+
+;; Goal ~ Source  cosine 0.00  JSD 1.0  n 30 / 24  shared: 
+(Goal $e $x)
+(Source $e $x)
+
+;; Goal ~ Time  cosine 0.00  JSD 1.0  n 30 / 37  shared: 
+(Goal $e $x)
+(Time $e $x)
+
+;; Location ~ Manner  cosine 0.00  JSD 1.0  n 175 / 34  shared: 
+(Location $e $x)
+(Manner $e $x)
+
+;; Location ~ Patient  cosine 0.00  JSD 1.0  n 175 / 159  shared: 
+(Location $e $x)
+(Patient $e $x)
+
+;; Location ~ Recipient  cosine 0.00  JSD 1.0  n 175 / 47  shared: 
+(Location $e $x)
+(Recipient $e $x)
+
+;; Location ~ Source  cosine 0.00  JSD 1.0  n 175 / 24  shared: 
+(Location $e $x)
+(Source $e $x)
+
+;; Location ~ Time  cosine 0.00  JSD 1.0  n 175 / 37  shared: 
+(Location $e $x)
+(Time $e $x)
+
+;; Manner ~ Patient  cosine 0.00  JSD 1.0  n 34 / 159  shared: 
+(Manner $e $x)
+(Patient $e $x)
+
+;; Manner ~ Recipient  cosine 0.00  JSD 1.0  n 34 / 47  shared: 
+(Manner $e $x)
+(Recipient $e $x)
+
+;; Manner ~ Source  cosine 0.00  JSD 1.0  n 34 / 24  shared: 
+(Manner $e $x)
+(Source $e $x)
+
+;; Manner ~ Theme  cosine 0.00  JSD 1.0  n 34 / 367  shared: 
+(Manner $e $x)
+(Theme $e $x)
+
+;; Manner ~ Time  cosine 0.00  JSD 1.0  n 34 / 37  shared: 
+(Manner $e $x)
+(Time $e $x)
+
+;; Patient ~ Source  cosine 0.00  JSD 1.0  n 159 / 24  shared: 
+(Patient $e $x)
+(Source $e $x)
+
+;; Patient ~ Time  cosine 0.00  JSD 1.0  n 159 / 37  shared: 
+(Patient $e $x)
+(Time $e $x)
+
+;; Recipient ~ Time  cosine 0.00  JSD 1.0  n 47 / 37  shared: 
+(Recipient $e $x)
+(Time $e $x)
+
+;; Source ~ Time  cosine 0.00  JSD 1.0  n 24 / 37  shared: 
+(Source $e $x)
+(Time $e $x)
+
+;; Theme ~ Time  cosine 0.00  JSD 1.0  n 367 / 37  shared: 
+(Theme $e $x)
+(Time $e $x)
+
+;; ==================== word @ cluster cos 0.95: slot pairs (54 event-center signals) ====================
+
+;; [same role, different class]  acquire.Agent ~ purchase.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ purchase.Theme  cosine 1.00  JSD 0.0  n 4 / 4  shared: {projector} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Agent ~ create.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {european american settler} {indigenous american, native american, indigenous americans, native americans}
+;;   A e.g. tierC-000025 tierC-000026   B e.g. tierC-000025 tierC-000026
+(And (Member $e0 begin) (Agent $e0 $x1))
+(And (Member $e0 create) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ start.Patient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {shoreline survey} {dress rehearsal} {apple harvest} {hearing}
+;;   A e.g. tierA-000054 tierA-000064   B e.g. tierA-000053 tierA-000063
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  make.Agent ~ reach.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000186 tierA-000197   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 make) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  learn.Theme ~ teach.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {drill} {song} {glazing}
+;;   A e.g. tierA-000287 tierA-000292   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Theme $e0 $x1))
+(And (Member $e0 teach) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Theme ~ require.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {egg} {countersignature, countersignatures} {monthly servicing}
+;;   A e.g. tierA-000085 tierA-000090   B e.g. tierA-000084 tierA-000086
+(And (Member $e0 need) (Theme $e0 $x1))
+(And (Member $e0 require) (Theme $e0 $x1))
+
+;; [same role, different class]  abandon.Agent ~ give_up.Agent  cosine 0.98  JSD 0.006  n 8 / 3  shared: {rescue team} {climber} {firm}
+;;   A e.g. tierA-000099 tierA-000101   B e.g. tierA-000100 tierA-000110
+(And (Member $e0 abandon) (Agent $e0 $x1))
+(And (Member $e0 give_up) (Agent $e0 $x1))
+
+;; [same role, different class]  abandon.Theme ~ give_up.Theme  cosine 0.98  JSD 0.006  n 8 / 3  shared: {tender} {north route} {search}
+;;   A e.g. tierA-000104 tierA-000106   B e.g. tierA-000105 tierA-000110
+(And (Member $e0 abandon) (Theme $e0 $x1))
+(And (Member $e0 give_up) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Holder ~ require.Holder  cosine 0.98  JSD 0.006  n 3 / 8  shared: {recipe} {lathe} {permit}
+;;   A e.g. tierA-000085 tierA-000095   B e.g. tierA-000086 tierA-000087
+(And (Member $e0 need) (Holder $e0 $x1))
+(And (Member $e0 require) (Holder $e0 $x1))
+
+;; [same role, different class]  postpone.Agent ~ put_off.Agent  cosine 0.98  JSD 0.007  n 7 / 3  shared: {club} {board} {ferry}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Agent $e0 $x1))
+(And (Member $e0 put_off) (Agent $e0 $x1))
+
+;; [same role, different class]  postpone.Theme ~ put_off.Theme  cosine 0.98  JSD 0.007  n 7 / 3  shared: {tournament} {vote} {departure, depart}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Theme $e0 $x1))
+(And (Member $e0 put_off) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ commence.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {shoreline survey} {dress rehearsal} {apple harvest} {hearing}
+;;   A e.g. tierA-000052 tierA-000055   B e.g. tierA-000054 tierA-000064
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 commence) (Patient $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ start.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {shoreline survey} {dress rehearsal} {apple harvest} {hearing}
+;;   A e.g. tierA-000052 tierA-000055   B e.g. tierA-000053 tierA-000063
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  allow.Agent ~ permit.Agent  cosine 0.94  JSD 0.021  n 4 / 3  shared: {warden} {curator} {licence}
+;;   A e.g. tierA-000075 tierA-000080   B e.g. tierA-000073 tierA-000081
+(And (Member $e0 allow) (Agent $e0 $x1))
+(And (Member $e0 permit) (Agent $e0 $x1))
+
+;; [same role, different class]  allow.Theme ~ permit.Theme  cosine 0.94  JSD 0.021  n 4 / 3  shared: {photography} {night delivery} {visitor}
+;;   A e.g. tierA-000080 tierA-000076   B e.g. tierA-000081 tierA-000077
+(And (Member $e0 allow) (Theme $e0 $x1))
+(And (Member $e0 permit) (Theme $e0 $x1))
+
+;; [same role, different class]  call_off.Agent ~ cancel.Agent  cosine 0.96  JSD 0.064  n 3 / 9  shared: {airline} {council} {tutor}
+;;   A e.g. tierA-000144 tierA-000149   B e.g. tierA-000143 tierA-000145
+(And (Member $e0 call_off) (Agent $e0 $x1))
+(And (Member $e0 cancel) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Theme ~ decision.Theme  cosine 0.97  JSD 0.064  n 9 / 6  shared: {roof} {budget} {case} {new}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000187
+(And (Member $e0 decide) (Theme $e0 $x1))
+(And (Member $e0 decision) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Agent ~ buy.Agent  cosine 0.95  JSD 0.121  n 4 / 14  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000022 tierA-000026
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 buy) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ buy.Theme  cosine 0.94  JSD 0.121  n 4 / 14  shared: {projector} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000008 tierA-000012
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 buy) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Agent ~ purchase.Agent  cosine 0.95  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ purchase.Theme  cosine 0.94  JSD 0.121  n 14 / 4  shared: {projector} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ make.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000197
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 make) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ reach.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  cause.Agent ~ destroy.Agent  cosine 0.93  JSD 0.138  n 3 / 8  shared: {storm} {flood} {fire}
+;;   A e.g. tierA-000223 tierA-000233   B e.g. tierA-000222 tierA-000224
+(And (Member $e0 cause) (Agent $e0 $x1))
+(And (Member $e0 destroy) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ end.Patient  cosine 0.87  JSD 0.138  n 4 / 3  shared: {shoreline survey} {apple harvest} {hearing}
+;;   A e.g. tierA-000054 tierA-000069   B e.g. tierA-000056 tierA-000071
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  end.Patient ~ start.Patient  cosine 0.87  JSD 0.138  n 3 / 4  shared: {shoreline survey} {apple harvest} {hearing}
+;;   A e.g. tierA-000056 tierA-000071   B e.g. tierA-000053 tierA-000068
+(And (Member $e0 end) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  examine.Agent ~ order.Agent  cosine 0.91  JSD 0.138  n 3 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000381 tierA-000380   B e.g. tierA-000386 tierA-000385
+(And (Member $e0 examine) (Agent $e0 $x1))
+(And (Member $e0 order) (Agent $e0 $x1))
+
+;; [same role, different class]  examine.Agent ~ sign.Agent  cosine 0.91  JSD 0.138  n 3 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000381 tierA-000380   B e.g. tierA-000376 tierA-000375
+(And (Member $e0 examine) (Agent $e0 $x1))
+(And (Member $e0 sign) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Agent ~ turn_down.Agent  cosine 0.93  JSD 0.138  n 8 / 3  shared: {editor} {bank} {panel}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Agent $e0 $x1))
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Theme ~ turn_down.Theme  cosine 0.93  JSD 0.138  n 8 / 3  shared: {manuscript} {loan application} {proposal}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Theme $e0 $x1))
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ end.Patient  cosine 0.80  JSD 0.174  n 7 / 3  shared: {shoreline survey} {apple harvest} {hearing}
+;;   A e.g. tierA-000052 tierA-000055   B e.g. tierA-000056 tierA-000071
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ sell.Theme  cosine 0.68  JSD 0.191  n 4 / 6  shared: {projector} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  portray.Agent ~ win.Agent  cosine 0.78  JSD 0.191  n 6 / 4  shared: {James Woods} {Wilson} {wilson}
+;;   A e.g. tierC-000301 tierC-000302   B e.g. tierC-000278 tierC-000277
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [same role, different class]  purchase.Theme ~ sell.Theme  cosine 0.68  JSD 0.191  n 4 / 6  shared: {projector} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000009 tierA-000016   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 purchase) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  accompany.Agent ~ appear.Agent  cosine 0.78  JSD 0.217  n 4 / 8  shared: {person} {sister}
+;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000049 tierC-000050
+(And (Member $e0 accompany) (Agent $e0 $x1))
+(And (Member $e0 appear) (Agent $e0 $x1))
+
+;; [same role, different class]  borrow.Theme ~ lend.Theme  cosine 0.65  JSD 0.239  n 5 / 10  shared: {painting} {ladder} {generator}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Theme $e0 $x1))
+(And (Member $e0 lend) (Theme $e0 $x1))
+
+;; [same role, different class]  order.Agent ~ sign.Agent  cosine 0.83  JSD 0.25  n 4 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000386 tierA-000385   B e.g. tierA-000376 tierA-000375
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 sign) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ sell.Theme  cosine 0.65  JSD 0.281  n 14 / 6  shared: {projector} {lemon} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same class, different role]  repair.Agent ~ repair.Patient  cosine 0.83  JSD 0.061  n 8 / 8  shared: {feed pipe} {crew} {electrician} {cracked}
+;;   A e.g. tierA-000051 tierA-000049   B e.g. tierA-000039 tierA-000029
+(And (Member $e0 repair) (Agent $e0 $x1))
+(And (Member $e0 repair) (Patient $e0 $x1))
+
+;; [same class, different role]  discover.Experiencer ~ discover.Stimulus  cosine 0.80  JSD 0.082  n 3 / 3  shared: {auditor} {error}
+;;   A e.g. tierA-000128 tierA-000130   B e.g. tierA-000132 tierA-000128
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+
+;; [same class, different role]  order.Agent ~ order.Theme  cosine 0.65  JSD 0.25  n 4 / 4  shared: {physician} {scan}
+;;   A e.g. tierA-000385 tierA-000387   B e.g. tierA-000389 tierA-000386
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 order) (Theme $e0 $x1))
+
+;; [same class, different role]  sign.Agent ~ sign.Patient  cosine 0.65  JSD 0.25  n 4 / 4  shared: {physician} {chart}
+;;   A e.g. tierA-000375 tierA-000377   B e.g. tierA-000378 tierA-000376
+(And (Member $e0 sign) (Agent $e0 $x1))
+(And (Member $e0 sign) (Patient $e0 $x1))
+
+;; [different class and role]  acquire.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  purchase.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000023 tierA-000016   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 purchase) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  block.Agent ~ wait.Experiencer  cosine 0.99  JSD 0.006  n 4 / 3  shared: {automobile, automobiles} {car}
+;;   A e.g. tierA-000390 tierA-000392   B e.g. tierA-000395 tierA-000397
+(And (Member $e0 block) (Agent $e0 $x1))
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+
+;; [different class and role]  borrow.Agent ~ lend.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {Ravi} {gallery} {crew}
+;;   A e.g. tierA-000297 tierA-000307   B e.g. tierA-000296 tierA-000298
+(And (Member $e0 borrow) (Agent $e0 $x1))
+(And (Member $e0 lend) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Source ~ lend.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {museum} {neighbour} {depot}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Source $e0 $x1))
+(And (Member $e0 lend) (Agent $e0 $x1))
+
+;; [different class and role]  learn.Agent ~ teach.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {squad} {apprentice} {child}
+;;   A e.g. tierA-000287 tierA-000282   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Agent $e0 $x1))
+(And (Member $e0 teach) (Recipient $e0 $x1))
+
+;; [different class and role]  learn.Source ~ teach.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {potter} {coach} {elder}
+;;   A e.g. tierA-000282 tierA-000287   B e.g. tierA-000281 tierA-000283
+(And (Member $e0 learn) (Source $e0 $x1))
+(And (Member $e0 teach) (Agent $e0 $x1))
+
+;; [different class and role]  buy.Agent ~ sell.Recipient  cosine 0.95  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  portray.Theme ~ win.Agent  cosine 0.78  JSD 0.191  n 6 / 4  shared: {James Woods} {Wilson} {wilson}
+;;   A e.g. tierC-000277 tierC-000278   B e.g. tierC-000301 tierC-000302
+(And (Member $e0 portray) (Theme $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [different class and role]  give.Agent ~ receive.Source  cosine 0.91  JSD 0.196  n 12 / 3  shared: {foreman} {trainer} {school}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000262
+(And (Member $e0 give) (Agent $e0 $x1))
+(And (Member $e0 receive) (Source $e0 $x1))
+
+;; [different class and role]  give.Recipient ~ receive.Agent  cosine 0.91  JSD 0.196  n 12 / 3  shared: {recruit} {driver} {winner}
+;;   A e.g. tierA-000261 tierA-000263   B e.g. tierA-000262 tierA-000272
+(And (Member $e0 give) (Recipient $e0 $x1))
+(And (Member $e0 receive) (Agent $e0 $x1))
+
+;; ==================== word @ cluster cos 0.95: compared slots with their distributions (197 slots, n >= 3) ====================
+
+;; ---- slot <unclassed>.Possession  [entity center]  n 18  clusters 11
+(Possession $x0 $x1)
+;;      c489  mass 5  {person}
+;;      c168  mass 2  {Twilight}
+;;      c222  mass 2  {Gil Aires}
+;;      c223  mass 2  {Leonor Rodrigues}
+;;      c232  mass 2  {Dora Smith}
+;;      c620  mass 2  {subsequent game}
+;;      c196  mass 1  {J. Augustus Knapp}
+;;      c302  mass 0.5  {sunni}
+;;      c459  mass 0.5  {neighbouring}
+;;      c477  mass 0.5  {community}
+;;      c523  mass 0.5  {other}
+
+;; ---- slot work.Agent  [event center]  n 17  clusters 10
+(And (Member $e0 work) (Agent $e0 $x1))
+;;      c228  mass 3  {Ana}
+;;      c263  mass 3  {Dara}
+;;       c29  mass 3  {biologist}
+;;      c417  mass 2  {welder}
+;;      c245  mass 1  {Mr. Jones}
+;;      c248  mass 1  {Bo}
+;;      c255  mass 1  {Nils}
+;;      c257  mass 1  {Asserson}
+;;      c409  mass 1  {ranger}
+;;      c634  mass 1  {fitter}
+
+;; ---- slot build.Location  [event center]  n 14  clusters 3
+(And (Member $e0 build) (Location $e0 $x1))
+;;      c112  mass 6  {Turkey}
+;;      c123  mass 4  {Kazakhstan}
+;;      c157  mass 4  {Eskisehir}
+
+;; ---- slot buy.Agent  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Agent $e0 $x1))
+;;      c348  mass 3  {pottery studio}
+;;      c521  mass 3  {school}
+;;      c626  mass 3  {depot}
+;;      c394  mass 2  {chef}
+;;      c430  mass 1  {forklift, forklifts}
+;;      c435  mass 1  {kiln}
+;;      c383  mass 0.5  {lemon}
+;;      c625  mass 0.5  {crate}
+
+;; ---- slot buy.Theme  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Theme $e0 $x1))
+;;      c273  mass 3  {projector}
+;;      c430  mass 3  {forklift, forklifts}
+;;      c435  mass 3  {kiln}
+;;      c348  mass 1  {pottery studio}
+;;      c383  mass 1  {lemon}
+;;      c394  mass 1  {chef}
+;;      c625  mass 1  {crate}
+;;      c626  mass 1  {depot}
+
+;; ---- slot work.Location  [event center]  n 13  clusters 5
+(And (Member $e0 work) (Location $e0 $x1))
+;;      c569  mass 4  {ledger}
+;;      c856  mass 4  {survey}
+;;      c762  mass 3  {frame}
+;;      c354  mass 1  {mural}
+;;        c7  mass 1  {Church of Norway}
+
+;; ---- slot build.Agent  [event center]  n 12  clusters 3
+(And (Member $e0 build) (Agent $e0 $x1))
+;;      c471  mass 8  {company}
+;;      c215  mass 2  {O. R. Woodcock}
+;;      c489  mass 2  {person}
+
+;; ---- slot build.Patient  [event center]  n 12  clusters 5
+(And (Member $e0 build) (Patient $e0 $x1))
+;;      c554  mass 4  {hotel}
+;;      c363  mass 2  {paper factory}
+;;      c364  mass 2  {paper mill}
+;;      c552  mass 2  {room}
+;;      c711  mass 2  {horn}
+
+;; ---- slot find.Location  [event center]  n 12  clusters 8
+(And (Member $e0 find) (Location $e0 $x1))
+;;      c462  mass 2  {southern}
+;;      c766  mass 2  {bench}
+;;       c94  mass 2  {Yunnan}
+;;       c95  mass 2  {tributary, tributaries}
+;;      c105  mass 1  {Europe, Western Europe}
+;;      c107  mass 1  {China}
+;;      c463  mass 1  {western}
+;;       c93  mass 1  {Dianchi Lake, Lake Dianchi}
+
+;; ---- slot give.Agent  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Agent $e0 $x1))
+;;      c426  mass 3  {trainer}
+;;      c521  mass 3  {school}
+;;      c278  mass 2  {foreman}
+;;      c397  mass 1  {pilot}
+;;      c422  mass 1  {clerk}
+;;      c771  mass 1  {vet}
+;;       c82  mass 1  {driver}
+
+;; ---- slot give.Recipient  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Recipient $e0 $x1))
+;;      c481  mass 3  {recruit}
+;;      c822  mass 3  {winner}
+;;       c82  mass 2  {driver}
+;;      c278  mass 1  {foreman}
+;;      c538  mass 1  {tower}
+;;      c597  mass 1  {caller}
+;;      c658  mass 1  {query}
+
+;; ---- slot give.Theme  [event center]  n 12  clusters 4
+(And (Member $e0 give) (Theme $e0 $x1))
+;;      c328  mass 3  {whistle}
+;;      c638  mass 3  {manifest}
+;;       c72  mass 3  {medal}
+;;      c837  mass 3  {answer}
+
+;; ---- slot decide.Agent  [event center]  n 11  clusters 6
+(And (Member $e0 decide) (Agent $e0 $x1))
+;;      c763  mass 3  {board}
+;;      c769  mass 3  {judge}
+;;      c475  mass 2  {committee}
+;;      c460  mass 1  {north}
+;;      c496  mass 1  {family}
+;;      c768  mass 1  {case}
+
+;; ---- slot destroy.Patient  [event center]  n 11  clusters 5
+(And (Member $e0 destroy) (Patient $e0 $x1))
+;;      c360  mass 3  {archive}
+;;      c437  mass 3  {greenhouse}
+;;      c534  mass 3  {footbridge}
+;;      c440  mass 1  {storm}
+;;      c706  mass 1  {fire}
+
+;; ---- slot answer.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Agent $e0 $x1))
+;;      c397  mass 3  {pilot}
+;;      c422  mass 3  {clerk}
+;;      c771  mass 2  {vet}
+;;      c597  mass 1  {caller}
+;;      c658  mass 1  {query}
+
+;; ---- slot answer.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Theme $e0 $x1))
+;;      c538  mass 3  {tower}
+;;      c658  mass 3  {query}
+;;      c597  mass 2  {caller}
+;;      c422  mass 1  {clerk}
+;;      c771  mass 1  {vet}
+
+;; ---- slot lend.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Agent $e0 $x1))
+;;      c362  mass 3  {museum}
+;;      c458  mass 3  {neighbour}
+;;      c626  mass 2  {depot}
+;;      c165  mass 1  {Ravi}
+;;      c406  mass 1  {crew}
+
+;; ---- slot lend.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Recipient $e0 $x1))
+;;      c165  mass 3  {Ravi}
+;;      c355  mass 3  {gallery}
+;;      c406  mass 2  {crew}
+;;      c458  mass 1  {neighbour}
+;;      c626  mass 1  {depot}
+
+;; ---- slot lend.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 lend) (Theme $e0 $x1))
+;;      c431  mass 4  {ladder}
+;;      c351  mass 3  {painting}
+;;      c635  mass 3  {generator}
+
+;; ---- slot require.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 require) (Theme $e0 $x1))
+;;      c390  mass 4  {egg}
+;;      c636  mass 3  {countersignature, countersignatures}
+;;      c858  mass 3  {monthly servicing}
+
+;; ---- slot teach.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Agent $e0 $x1))
+;;      c169  mass 3  {potter}
+;;      c486  mass 3  {elder}
+;;      c425  mass 2  {coach}
+;;      c404  mass 1  {squad}
+;;      c427  mass 1  {apprentice}
+
+;; ---- slot teach.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Recipient $e0 $x1))
+;;      c427  mass 3  {apprentice}
+;;      c484  mass 3  {child}
+;;      c404  mass 2  {squad}
+;;      c169  mass 1  {potter}
+;;      c425  mass 1  {coach}
+
+;; ---- slot teach.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 teach) (Theme $e0 $x1))
+;;      c436  mass 4  {glazing}
+;;      c330  mass 3  {drill}
+;;      c335  mass 3  {song}
+
+;; ---- slot cancel.Agent  [event center]  n 9  clusters 4
+(And (Member $e0 cancel) (Agent $e0 $x1))
+;;      c476  mass 3  {council}
+;;      c518  mass 3  {tutor}
+;;      c395  mass 2  {airline}
+;;       c27  mass 1  {physician}
+
+;; ---- slot decide.Theme  [event center]  n 9  clusters 5
+(And (Member $e0 decide) (Theme $e0 $x1))
+;;      c570  mass 3  {budget}
+;;      c768  mass 3  {case}
+;;      c549  mass 1  {roof}
+;;      c769  mass 1  {judge}
+;;      c796  mass 1  {new}
+
+;; ---- slot discover.Theme  [event center]  n 9  clusters 5
+(And (Member $e0 discover) (Theme $e0 $x1))
+;;      c442  mass 3  {wreck}
+;;      c368  mass 2  {name}
+;;      c514  mass 1.5  {file}
+;;      c745  mass 1.5  {missing}
+;;      c415  mass 1  {diver}
+
+;; ---- slot view.Possession  [entity center]  n 8  clusters 2
+(And (Member $x0 view) (Possession $x0 $x1))
+;;      c284  mass 4  {Free Soil Party}
+;;      c285  mass 4  {Republican Party}
+
+;; ---- slot abandon.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Agent $e0 $x1))
+;;      c413  mass 3  {climber}
+;;      c472  mass 3  {firm}
+;;      c408  mass 2  {rescue team}
+
+;; ---- slot abandon.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Theme $e0 $x1))
+;;      c501  mass 3  {tender}
+;;      c543  mass 3  {north route}
+;;      c659  mass 2  {search}
+
+;; ---- slot appear.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 appear) (Agent $e0 $x1))
+;;      c489  mass 5  {person}
+;;      c207  mass 2  {Brian Packham}
+;;      c497  mass 1  {sister}
+
+;; ---- slot appear.Location  [event center]  n 8  clusters 5
+(And (Member $e0 appear) (Location $e0 $x1))
+;;       c30  mass 2  {comedic role}
+;;      c386  mass 2  {cafe}
+;;        c9  mass 2  {Coronation Street}
+;;      c319  mass 1  {music film}
+;;      c320  mass 1  {musical film}
+
+;; ---- slot destroy.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 destroy) (Agent $e0 $x1))
+;;      c440  mass 2  {storm}
+;;      c441  mass 2  {flood}
+;;      c706  mass 2  {fire}
+;;      c360  mass 1  {archive}
+;;      c437  mass 1  {greenhouse}
+
+;; ---- slot have.Holder  [event center]  n 8  clusters 4
+(And (Member $e0 have) (Holder $e0 $x1))
+;;      c187  mass 4  {Kristoffer}
+;;      c231  mass 2  {Karen}
+;;       c62  mass 1  {homentropic current}
+;;       c63  mass 1  {homentropic flow}
+
+;; ---- slot have.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 have) (Theme $e0 $x1))
+;;      c484  mass 4  {child}
+;;      c826  mass 2  {representation, represent}
+;;      c450  mass 0.667  {entropy}
+;;      c811  mass 0.667  {uniform}
+;;      c812  mass 0.667  {constant}
+
+;; ---- slot include.Theme  [event center]  n 8  clusters 4
+(And (Member $e0 include) (Theme $e0 $x1))
+;;      c149  mass 2  {Des Moines}
+;;      c163  mass 2  {Armaan Jain}
+;;      c164  mass 2  {Ranbir Kapoor}
+;;      c166  mass 2  {Nikhil Nanda}
+
+;; ---- slot produce.Patient  [event center]  n 8  clusters 4
+(And (Member $e0 produce) (Patient $e0 $x1))
+;;      c318  mass 4.833  {movie, film}
+;;      c339  mass 2  {album}
+;;       c33  mass 0.833  {syrian}
+;;      c574  mass 0.333  {destined}
+
+;; ---- slot reject.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Agent $e0 $x1))
+;;      c420  mass 2  {editor}
+;;      c568  mass 2  {bank}
+;;      c764  mass 2  {panel}
+;;      c367  mass 1  {manuscript}
+;;      c565  mass 1  {loan application}
+
+;; ---- slot reject.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Theme $e0 $x1))
+;;      c367  mass 2  {manuscript}
+;;      c565  mass 2  {loan application}
+;;      c752  mass 2  {proposal}
+;;      c420  mass 1  {editor}
+;;      c568  mass 1  {bank}
+
+;; ---- slot repair.Agent  [event center]  n 8  clusters 8
+(And (Member $e0 repair) (Agent $e0 $x1))
+;;      c416  mass 2  {electrician}
+;;       c83  mass 2  {mechanic}
+;;      c406  mass 1  {crew}
+;;      c860  mass 1  {yard floodlight}
+;;      c276  mass 0.5  {feed pipe}
+;;      c504  mass 0.5  {cracked}
+;;      c749  mass 0.5  {seized}
+;;       c78  mass 0.5  {gearbox}
+
+;; ---- slot repair.Patient  [event center]  n 8  clusters 8
+(And (Member $e0 repair) (Patient $e0 $x1))
+;;      c860  mass 2  {yard floodlight}
+;;      c406  mass 1  {crew}
+;;      c416  mass 1  {electrician}
+;;      c749  mass 1  {seized}
+;;       c78  mass 1  {gearbox}
+;;       c83  mass 1  {mechanic}
+;;      c276  mass 0.5  {feed pipe}
+;;      c504  mass 0.5  {cracked}
+
+;; ---- slot require.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 require) (Holder $e0 $x1))
+;;      c393  mass 3  {recipe}
+;;      c830  mass 3  {permit}
+;;      c433  mass 2  {lathe}
+
+;; ---- slot serve.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 serve) (Agent $e0 $x1))
+;;      c154  mass 2  {Indooroopilly}
+;;      c155  mass 2  {Ipswich}
+;;      c261  mass 2  {Rosewood}
+;;      c489  mass 2  {person}
+
+;; ---- slot sing.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 sing) (Agent $e0 $x1))
+;;      c341  mass 2  {Barbershop Harmony Society}
+;;      c489  mass 2  {person}
+;;      c497  mass 2  {sister}
+;;      c468  mass 1  {occupational group}
+;;      c469  mass 1  {professional group}
+
+;; ---- slot study.Location  [event center]  n 8  clusters 3
+(And (Member $e0 study) (Location $e0 $x1))
+;;      c153  mass 4  {Melbourne, Sydney}
+;;      c346  mass 2  {Davis Studio}
+;;      c347  mass 2  {Julian Ashton Art School}
+
+;; ---- slot be.Experiencer  [event center]  n 7  clusters 4
+(And (Member $e0 be) (Experiencer $e0 $x1))
+;;      c259  mass 4  {Paniqui}
+;;      c131  mass 1  {Ellerslie Rugby Park}
+;;      c277  mass 1  {tunnel}
+;;       c90  mass 1  {Alema Nature Reserve}
+
+;; ---- slot begin.Patient  [event center]  n 7  clusters 4
+(And (Member $e0 begin) (Patient $e0 $x1))
+;;      c101  mass 2  {shoreline survey}
+;;      c345  mass 2  {dress rehearsal}
+;;      c385  mass 2  {apple harvest}
+;;      c604  mass 1  {hearing}
+
+;; ---- slot cancel.Patient  [event center]  n 7  clusters 3
+(And (Member $e0 cancel) (Patient $e0 $x1))
+;;       c35  mass 3  {summer fair}
+;;      c398  mass 3  {afternoon session}
+;;      c396  mass 1  {evening flight}
+
+;; ---- slot discover.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 discover) (Agent $e0 $x1))
+;;      c415  mass 3  {diver}
+;;      c649  mass 3  {intern}
+;;      c442  mass 1  {wreck}
+
+;; ---- slot locate.Location  [event center]  n 7  clusters 4
+(And (Member $e0 locate) (Location $e0 $x1))
+;;      c144  mass 2  {Cloverdale}
+;;      c516  mass 2  {foot}
+;;      c528  mass 2  {hill}
+;;      c145  mass 1  {Richford}
+
+;; ---- slot postpone.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Agent $e0 $x1))
+;;      c405  mass 3  {club}
+;;      c763  mass 2  {board}
+;;       c84  mass 2  {ferry}
+
+;; ---- slot postpone.Theme  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Theme $e0 $x1))
+;;       c23  mass 3  {tournament}
+;;      c772  mass 2  {vote}
+;;      c783  mass 2  {departure, depart}
+
+;; ---- slot work.CoAgent  [event center]  n 7  clusters 4
+(And (Member $e0 work) (CoAgent $e0 $x1))
+;;      c248  mass 2  {Bo}
+;;      c255  mass 2  {Nils}
+;;      c409  mass 2  {ranger}
+;;      c634  mass 1  {fitter}
+
+;; ---- slot budget.Possession  [entity center]  n 6  clusters 1
+(And (Member $x0 budget) (Possession $x0 $x1))
+;;      c618  mass 6  {next year}
+
+;; ---- slot arrive.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 arrive) (Agent $e0 $x1))
+;;       c86  mass 3  {freight}
+;;      c479  mass 2  {delegation}
+;;       c65  mass 1  {soil sample, soil samples}
+
+;; ---- slot build.Instrument  [event center]  n 6  clusters 5
+(And (Member $e0 build) (Instrument $e0 $x1))
+;;      c438  mass 2  {barometer}
+;;      c775  mass 2  {help}
+;;      c526  mass 1  {scale}
+;;      c802  mass 0.5  {present}
+;;      c803  mass 0.5  {present in}
+
+;; ---- slot decision.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 decision) (Theme $e0 $x1))
+;;      c570  mass 2  {budget}
+;;      c768  mass 2  {case}
+;;      c549  mass 1  {roof}
+;;      c796  mass 1  {new}
+
+;; ---- slot design.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 design) (Agent $e0 $x1))
+;;      c206  mass 2  {Philip Hercus}
+;;      c210  mass 2  {Henry L. Taylor}
+;;       c87  mass 2  {Robert Allan Limited}
+
+;; ---- slot discover.Location  [event center]  n 6  clusters 2
+(And (Member $e0 discover) (Location $e0 $x1))
+;;      c816  mass 4  {point}
+;;      c108  mass 2  {Japan}
+
+;; ---- slot form.Agent  [event center]  n 6  clusters 5
+(And (Member $e0 form) (Agent $e0 $x1))
+;;      c191  mass 2  {Jon Bon Jovi}
+;;      c192  mass 2  {Sambora}
+;;       c67  mass 1  {Technetium}
+;;      c680  mass 0.5  {complex}
+;;      c687  mass 0.5  {simple}
+
+;; ---- slot fund.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 fund) (Agent $e0 $x1))
+;;      c286  mass 3  {government}
+;;      c293  mass 3  {JICA}
+
+;; ---- slot include.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 include) (Agent $e0 $x1))
+;;      c482  mass 6  {nephew}
+
+;; ---- slot portray.Agent  [event center]  n 6  clusters 4
+(And (Member $e0 portray) (Agent $e0 $x1))
+;;      c182  mass 2  {Soichiro Akizuki}
+;;      c189  mass 2  {James Woods}
+;;      c240  mass 1  {Wilson}
+;;      c241  mass 1  {wilson}
+
+;; ---- slot portray.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 portray) (Theme $e0 $x1))
+;;      c184  mass 2  {Kantaro Suga}
+;;      c189  mass 2  {James Woods}
+;;      c240  mass 1  {Wilson}
+;;      c241  mass 1  {wilson}
+
+;; ---- slot produce.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 produce) (Agent $e0 $x1))
+;;      c208  mass 2  {Colin Richardson}
+;;      c213  mass 2  {Harvey Hayutin}
+;;      c214  mass 2  {Sy Weintraub}
+
+;; ---- slot sell.Theme  [event center]  n 6  clusters 6
+(And (Member $e0 sell) (Theme $e0 $x1))
+;;      c389  mass 2  {ice cream}
+;;      c273  mass 1  {projector}
+;;      c430  mass 1  {forklift, forklifts}
+;;      c435  mass 1  {kiln}
+;;      c383  mass 0.5  {lemon}
+;;      c625  mass 0.5  {crate}
+
+;; ---- slot serve.Theme  [event center]  n 6  clusters 1
+(And (Member $e0 serve) (Theme $e0 $x1))
+;;      c537  mass 6  {station}
+
+;; ---- slot use.Theme  [event center]  n 6  clusters 5
+(And (Member $e0 use) (Theme $e0 $x1))
+;;        c1  mass 2  {Banach -- Mackey topology}
+;;        c2  mass 2  {weak Arens space topology}
+;;      c799  mass 1  {current}
+;;      c371  mass 0.5  {naming convention}
+;;      c373  mass 0.5  {designation convention}
+
+;; ---- slot write.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Agent $e0 $x1))
+;;      c185  mass 2  {Gilles Thibaut}
+;;      c212  mass 2  {Bill Wrubel}
+;;      c489  mass 2  {person}
+
+;; ---- slot write.CoAgent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (CoAgent $e0 $x1))
+;;      c199  mass 2  {Cyril Rambour}
+;;      c224  mass 2  {Laurie Aubanel}
+;;      c227  mass 2  {Bianca Olsen}
+
+;; ---- slot write.Patient  [event center]  n 6  clusters 4
+(And (Member $e0 write) (Patient $e0 $x1))
+;;      c335  mass 2  {song}
+;;      c583  mass 2  {episode}
+;;      c324  mass 1  {screenplay}
+;;      c325  mass 1  {script}
+
+;; ---- slot tender.Possession  [entity center]  n 5  clusters 1
+(And (Member $x0 tender) (Possession $x0 $x1))
+;;      c472  mass 5  {firm}
+
+;; ---- slot borrow.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 borrow) (Theme $e0 $x1))
+;;      c183  mass 2  {inomaru}
+;;      c351  mass 1  {painting}
+;;      c431  mass 1  {ladder}
+;;      c635  mass 1  {generator}
+
+;; ---- slot die.Patient  [event center]  n 5  clusters 4
+(And (Member $e0 die) (Patient $e0 $x1))
+;;      c428  mass 2  {founder}
+;;      c489  mass 2  {person}
+;;      c380  mass 0.5  {elm}
+;;      c842  mass 0.5  {last}
+
+;; ---- slot locate.Experiencer  [event center]  n 5  clusters 3
+(And (Member $e0 locate) (Experiencer $e0 $x1))
+;;      c128  mass 2  {Wine Country}
+;;      c535  mass 2  {park}
+;;      c131  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot receive.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 receive) (Theme $e0 $x1))
+;;      c643  mass 2  {work}
+;;      c328  mass 1  {whistle}
+;;      c638  mass 1  {manifest}
+;;       c72  mass 1  {medal}
+
+;; ---- slot take.Agent  [event center]  n 5  clusters 4
+(And (Member $e0 take) (Agent $e0 $x1))
+;;      c489  mass 2  {person}
+;;       c28  mass 1  {nurse}
+;;      c410  mass 1  {shepherd}
+;;      c484  mass 1  {child}
+
+;; ---- slot walk.Agent  [event center]  n 5  clusters 5
+(And (Member $e0 walk) (Agent $e0 $x1))
+;;       c28  mass 1  {nurse}
+;;      c410  mass 1  {shepherd}
+;;      c484  mass 1  {child}
+;;      c536  mass 1  {pier}
+;;      c823  mass 1  {ward}
+
+;; ---- slot walk.Location  [event center]  n 5  clusters 3
+(And (Member $e0 walk) (Location $e0 $x1))
+;;      c530  mass 2  {ridge}
+;;      c823  mass 2  {ward}
+;;       c28  mass 1  {nurse}
+
+;; ---- slot <unclassed>.PartOf  [entity center]  n 4  clusters 3
+(PartOf $x0 $x1)
+;;      c162  mass 2  {Khurda Road}
+;;      c103  mass 1  {Peru}
+;;      c104  mass 1  {Huancavelica}
+
+;; ---- slot bad.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 bad) (Between $x0 $x1))
+;;      c114  mass 2  {Poland}
+;;      c115  mass 2  {Germany}
+
+;; ---- slot border_section.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 border_section) (Between $x0 $x1))
+;;      c122  mass 2  {Uganda}
+;;      c258  mass 2  {Lessos}
+
+;; ---- slot departure.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 departure) (Possession $x0 $x1))
+;;       c84  mass 4  {ferry}
+
+;; ---- slot family.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 family) (Possession $x0 $x1))
+;;      c489  mass 4  {person}
+
+;; ---- slot government.Possession  [entity center]  n 4  clusters 2
+(And (Member $x0 government) (Possession $x0 $x1))
+;;      c121  mass 2  {Kenya}
+;;      c122  mass 2  {Uganda}
+
+;; ---- slot lunch.Before  [entity center]  n 4  clusters 3
+(And (Member $x0 lunch) (Before $x0 $x1))
+;;      c791  mass 2  {begin}
+;;      c792  mass 1  {start}
+;;      c793  mass 1  {commence}
+
+;; ---- slot accompany.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 accompany) (Agent $e0 $x1))
+;;      c489  mass 2  {person}
+;;      c497  mass 2  {sister}
+
+;; ---- slot accompany.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 accompany) (Theme $e0 $x1))
+;;      c321  mass 4  {silent film}
+
+;; ---- slot acquire.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Agent $e0 $x1))
+;;      c348  mass 1  {pottery studio}
+;;      c394  mass 1  {chef}
+;;      c521  mass 1  {school}
+;;      c626  mass 1  {depot}
+
+;; ---- slot acquire.Theme  [event center]  n 4  clusters 5
+(And (Member $e0 acquire) (Theme $e0 $x1))
+;;      c273  mass 1  {projector}
+;;      c430  mass 1  {forklift, forklifts}
+;;      c435  mass 1  {kiln}
+;;      c383  mass 0.5  {lemon}
+;;      c625  mass 0.5  {crate}
+
+;; ---- slot active.Time  [event center]  n 4  clusters 2
+(And (Member $e0 active) (Time $e0 $x1))
+;;      c399  mass 2  {late afternoon}
+;;      c400  mass 2  {early morning}
+
+;; ---- slot allow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Agent $e0 $x1))
+;;      c596  mass 2  {licence}
+;;      c423  mass 1  {warden}
+;;      c424  mass 1  {curator}
+
+;; ---- slot allow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Theme $e0 $x1))
+;;      c512  mass 2  {night delivery}
+;;      c359  mass 1  {photography}
+;;      c624  mass 1  {visitor}
+
+;; ---- slot attract.Source  [event center]  n 4  clusters 2
+(And (Member $e0 attract) (Source $e0 $x1))
+;;       c69  mass 2  {mainstream media}
+;;       c71  mass 2  {social media}
+
+;; ---- slot be.Location  [event center]  n 4  clusters 4
+(And (Member $e0 be) (Location $e0 $x1))
+;;      c118  mass 1  {denmark}
+;;      c145  mass 1  {Richford}
+;;      c151  mass 1  {Harju County}
+;;      c460  mass 1  {north}
+
+;; ---- slot be.Source  [event center]  n 4  clusters 3
+(And (Member $e0 be) (Source $e0 $x1))
+;;      c136  mass 2  {Tarlac City}
+;;      c135  mass 1  {Manila}
+;;      c142  mass 1  {provincial capital}
+
+;; ---- slot become.Patient  [event center]  n 4  clusters 6
+(And (Member $e0 become) (Patient $e0 $x1))
+;;      c493  mass 1  {relationship}
+;;      c732  mass 1  {bad}
+;;      c138  mass 0.5  {lax}
+;;      c488  mass 0.5  {people}
+;;       c53  mass 0.5  {indigenous}
+;;      c591  mass 0.5  {discipline}
+
+;; ---- slot become.Result  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Result $e0 $x1))
+;;      c732  mass 2  {bad}
+;;      c138  mass 1  {lax}
+;;       c53  mass 1  {indigenous}
+
+;; ---- slot begin.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 begin) (Agent $e0 $x1))
+;;       c50  mass 2  {european american settler}
+;;       c52  mass 2  {indigenous american, native american, indigenous americans, native americans}
+
+;; ---- slot begin.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 begin) (Theme $e0 $x1))
+;;      c795  mass 4  {create}
+
+;; ---- slot block.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 block) (Agent $e0 $x1))
+;;       c80  mass 3  {automobile, automobiles}
+;;       c81  mass 1  {car}
+
+;; ---- slot block.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Theme $e0 $x1))
+;;      c541  mass 4  {lane}
+
+;; ---- slot celebrated.Location  [event center]  n 4  clusters 2
+(And (Member $e0 celebrated) (Location $e0 $x1))
+;;        c3  mass 2  {traditional chinese drama, traditional chinese dramas}
+;;       c70  mass 2  {popular culture}
+
+;; ---- slot commence.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 commence) (Patient $e0 $x1))
+;;      c101  mass 1  {shoreline survey}
+;;      c345  mass 1  {dress rehearsal}
+;;      c385  mass 1  {apple harvest}
+;;      c604  mass 1  {hearing}
+
+;; ---- slot create.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 create) (Agent $e0 $x1))
+;;       c50  mass 2  {european american settler}
+;;       c52  mass 2  {indigenous american, native american, indigenous americans, native americans}
+
+;; ---- slot create.Location  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Location $e0 $x1))
+;;      c758  mass 4  {post}
+
+;; ---- slot create.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Patient $e0 $x1))
+;;      c477  mass 4  {community}
+
+;; ---- slot define.Manner  [event center]  n 4  clusters 4
+(And (Member $e0 define) (Manner $e0 $x1))
+;;      c507  mass 1.5  {random}
+;;      c542  mass 1.5  {way}
+;;      c505  mass 0.5  {manner}
+;;      c509  mass 0.5  {accidental}
+
+;; ---- slot define.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 define) (Theme $e0 $x1))
+;;      c581  mass 2  {sequence}
+;;       c41  mass 1  {algorithmically equivalent}
+;;       c42  mass 1  {equivalent}
+
+;; ---- slot design.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 design) (Patient $e0 $x1))
+;;      c653  mass 4  {pacificat, pacificats}
+
+;; ---- slot direct.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Agent $e0 $x1))
+;;      c221  mass 2  {Lev L. Spiro}
+;;      c201  mass 1  {Robert Day}
+;;      c270  mass 1  {Claude Lelouch}
+
+;; ---- slot direct.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Patient $e0 $x1))
+;;      c583  mass 2  {episode}
+;;      c318  mass 1.5  {movie, film}
+;;       c33  mass 0.5  {syrian}
+
+;; ---- slot encourage.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Agent $e0 $x1))
+;;      c253  mass 4  {Ralph}
+
+;; ---- slot encourage.In  [event center]  n 4  clusters 3
+(And (Member $e0 encourage) (In $e0 $x1))
+;;      c522  mass 2  {mathematics}
+;;       c12  mass 1  {chess}
+;;       c13  mass 1  {chess play}
+
+;; ---- slot encourage.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Theme $e0 $x1))
+;;      c244  mass 4  {Maurice}
+
+;; ---- slot error.Location  [event center]  n 4  clusters 1
+(And (Member $e0 error) (Location $e0 $x1))
+;;      c569  mass 4  {ledger}
+
+;; ---- slot follow.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 follow) (Agent $e0 $x1))
+;;      c173  mass 1  {Alexander}
+;;      c254  mass 1  {Bailey}
+;;      c304  mass 1  {muslim}
+;;      c553  mass 1  {house}
+
+;; ---- slot follow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Theme $e0 $x1))
+;;      c453  mass 2  {region}
+;;      c219  mass 1  {Henry Cole}
+;;      c233  mass 1  {Margaret Fleming}
+
+;; ---- slot form.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 form) (Patient $e0 $x1))
+;;      c344  mass 2  {main songwriting unit}
+;;       c67  mass 1  {Technetium}
+;;      c680  mass 0.5  {complex}
+;;      c687  mass 0.5  {simple}
+
+;; ---- slot have.Location  [event center]  n 4  clusters 2
+(And (Member $e0 have) (Location $e0 $x1))
+;;      c454  mass 2  {regional level}
+;;      c457  mass 2  {local level}
+
+;; ---- slot influence.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 influence) (Theme $e0 $x1))
+;;      c307  mass 2  {religion}
+;;        c4  mass 2  {chinese dumpling}
+
+;; ---- slot kill.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Agent $e0 $x1))
+;;      c439  mass 4  {hurricane}
+
+;; ---- slot kill.Location  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Location $e0 $x1))
+;;      c288  mass 4  {state}
+
+;; ---- slot kill.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 kill) (Manner $e0 $x1))
+;;      c819  mass 2  {direct, directly}
+;;      c820  mass 2  {indirectly}
+
+;; ---- slot kill.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Patient $e0 $x1))
+;;      c489  mass 4  {person}
+
+;; ---- slot make.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 make) (Agent $e0 $x1))
+;;      c475  mass 1  {committee}
+;;      c496  mass 1  {family}
+;;      c763  mass 1  {board}
+;;      c769  mass 1  {judge}
+
+;; ---- slot make.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 make) (Patient $e0 $x1))
+;;      c834  mass 4  {decision}
+
+;; ---- slot move.Goal  [event center]  n 4  clusters 2
+(And (Member $e0 move) (Goal $e0 $x1))
+;;      c115  mass 2  {Germany}
+;;      c148  mass 2  {Baltimore}
+
+;; ---- slot nation.Location  [event center]  n 4  clusters 2
+(And (Member $e0 nation) (Location $e0 $x1))
+;;      c160  mass 2  {Bengal}
+;;      c161  mass 2  {South Asia}
+
+;; ---- slot order.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 order) (Agent $e0 $x1))
+;;       c27  mass 2  {physician}
+;;       c26  mass 1  {doctor}
+;;      c665  mass 1  {scan}
+
+;; ---- slot order.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Theme $e0 $x1))
+;;      c665  mass 3  {scan}
+;;       c27  mass 1  {physician}
+
+;; ---- slot play.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 play) (Agent $e0 $x1))
+;;      c170  mass 1  {Boston Red Sox}
+;;      c171  mass 1  {Cincinnati Reds}
+;;      c236  mass 1  {Audrey Hepburn}
+;;      c237  mass 1  {Audrey Heppurn}
+
+;; ---- slot play.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Theme $e0 $x1))
+;;      c238  mass 2  {Holly Golightly}
+;;      c582  mass 2  {series}
+
+;; ---- slot preach.Location  [event center]  n 4  clusters 2
+(And (Member $e0 preach) (Location $e0 $x1))
+;;      c117  mass 2  {Italy}
+;;      c150  mass 2  {Gareccio}
+
+;; ---- slot purchase.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Agent $e0 $x1))
+;;      c348  mass 1  {pottery studio}
+;;      c394  mass 1  {chef}
+;;      c521  mass 1  {school}
+;;      c626  mass 1  {depot}
+
+;; ---- slot purchase.Theme  [event center]  n 4  clusters 5
+(And (Member $e0 purchase) (Theme $e0 $x1))
+;;      c273  mass 1  {projector}
+;;      c430  mass 1  {forklift, forklifts}
+;;      c435  mass 1  {kiln}
+;;      c383  mass 0.5  {lemon}
+;;      c625  mass 0.5  {crate}
+
+;; ---- slot reach.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 reach) (Agent $e0 $x1))
+;;      c475  mass 1  {committee}
+;;      c496  mass 1  {family}
+;;      c763  mass 1  {board}
+;;      c769  mass 1  {judge}
+
+;; ---- slot reach.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 reach) (Theme $e0 $x1))
+;;      c834  mass 4  {decision}
+
+;; ---- slot replace.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Agent $e0 $x1))
+;;      c211  mass 2  {Sherman Howard}
+;;      c198  mass 1  {Peter Gaussen}
+;;      c289  mass 1  {governor}
+
+;; ---- slot replace.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Theme $e0 $x1))
+;;      c175  mass 2  {Lex Lex Luthor, Lex Luthor}
+;;      c216  mass 1  {William Ewer}
+;;      c289  mass 1  {governor}
+
+;; ---- slot sell.Recipient  [event center]  n 4  clusters 4
+(And (Member $e0 sell) (Recipient $e0 $x1))
+;;      c348  mass 1  {pottery studio}
+;;      c394  mass 1  {chef}
+;;      c521  mass 1  {school}
+;;      c626  mass 1  {depot}
+
+;; ---- slot sign.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 sign) (Agent $e0 $x1))
+;;       c27  mass 2  {physician}
+;;       c26  mass 1  {doctor}
+;;      c857  mass 1  {chart}
+
+;; ---- slot sign.Patient  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Patient $e0 $x1))
+;;      c857  mass 3  {chart}
+;;       c27  mass 1  {physician}
+
+;; ---- slot sing.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Manner $e0 $x1))
+;;      c342  mass 4  {a cappella}
+
+;; ---- slot sing.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Theme $e0 $x1))
+;;      c336  mass 4  {music}
+
+;; ---- slot sing.To  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (To $e0 $x1))
+;;      c670  mass 4  {accompany}
+
+;; ---- slot speak.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 speak) (Agent $e0 $x1))
+;;      c265  mass 2  {Oates}
+;;      c181  mass 1  {Mie Sonozaki}
+;;      c239  mass 1  {Kari Wahlgren}
+
+;; ---- slot specify.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 specify) (Manner $e0 $x1))
+;;      c445  mass 2  {continuous time}
+;;      c446  mass 2  {discrete time}
+
+;; ---- slot star.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 star) (Theme $e0 $x1))
+;;      c190  mass 2  {Jeremy Irons}
+;;      c226  mass 2  {Patricia Kaas}
+
+;; ---- slot start.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 start) (Patient $e0 $x1))
+;;      c101  mass 1  {shoreline survey}
+;;      c345  mass 1  {dress rehearsal}
+;;      c385  mass 1  {apple harvest}
+;;      c604  mass 1  {hearing}
+
+;; ---- slot study.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 study) (Agent $e0 $x1))
+;;      c489  mass 4  {person}
+
+;; ---- slot take.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 take) (Theme $e0 $x1))
+;;      c490  mass 2  {identity}
+;;      c540  mass 2  {walk}
+
+;; ---- slot use.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 use) (Manner $e0 $x1))
+;;      c692  mass 4  {rare}
+
+;; ---- slot win.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 win) (Agent $e0 $x1))
+;;      c189  mass 2  {James Woods}
+;;      c240  mass 1  {Wilson}
+;;      c241  mass 1  {wilson}
+
+;; ---- slot win.For  [event center]  n 4  clusters 1
+(And (Member $e0 win) (For $e0 $x1))
+;;      c350  mass 4  {portray}
+
+;; ---- slot win.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 win) (Theme $e0 $x1))
+;;       c75  mass 4  {emmy}
+
+;; ---- slot house.Possession  [entity center]  n 3  clusters 2
+(And (Member $x0 house) (Possession $x0 $x1))
+;;      c262  mass 2  {Arakkal}
+;;      c119  mass 1  {Derwent Isle}
+
+;; ---- slot western.PartOf  [entity center]  n 3  clusters 2
+(And (Member $x0 western) (PartOf $x0 $x1))
+;;      c107  mass 2  {China}
+;;      c105  mass 1  {Europe, Western Europe}
+
+;; ---- slot bear.Patient  [event center]  n 3  clusters 2
+(And (Member $e0 bear) (Patient $e0 $x1))
+;;      c489  mass 2  {person}
+;;      c223  mass 1  {Leonor Rodrigues}
+
+;; ---- slot begin.Time  [event center]  n 3  clusters 2
+(And (Member $e0 begin) (Time $e0 $x1))
+;;      c402  mass 2  {dawn}
+;;      c401  mass 1  {morning}
+
+;; ---- slot borrow.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Agent $e0 $x1))
+;;      c165  mass 1  {Ravi}
+;;      c355  mass 1  {gallery}
+;;      c406  mass 1  {crew}
+
+;; ---- slot borrow.Source  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Source $e0 $x1))
+;;      c362  mass 1  {museum}
+;;      c458  mass 1  {neighbour}
+;;      c626  mass 1  {depot}
+
+;; ---- slot buy.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 buy) (Beneficiary $e0 $x1))
+;;      c551  mass 3  {hall}
+
+;; ---- slot call_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 call_off) (Agent $e0 $x1))
+;;      c395  mass 1  {airline}
+;;      c476  mass 1  {council}
+;;      c518  mass 1  {tutor}
+
+;; ---- slot cause.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 cause) (Agent $e0 $x1))
+;;      c440  mass 1  {storm}
+;;      c441  mass 1  {flood}
+;;      c706  mass 1  {fire}
+
+;; ---- slot cause.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 cause) (Theme $e0 $x1))
+;;      c724  mass 3  {destroy}
+
+;; ---- slot discover.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+;;      c421  mass 2  {auditor}
+;;      c744  mass 1  {error}
+
+;; ---- slot discover.Stimulus  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+;;      c744  mass 2  {error}
+;;      c421  mass 1  {auditor}
+
+;; ---- slot end.Patient  [event center]  n 3  clusters 3
+(And (Member $e0 end) (Patient $e0 $x1))
+;;      c101  mass 1  {shoreline survey}
+;;      c385  mass 1  {apple harvest}
+;;      c604  mass 1  {hearing}
+
+;; ---- slot examine.Agent  [event center]  n 3  clusters 2
+(And (Member $e0 examine) (Agent $e0 $x1))
+;;       c27  mass 2  {physician}
+;;       c26  mass 1  {doctor}
+
+;; ---- slot examine.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Theme $e0 $x1))
+;;      c332  mass 3  {sample}
+
+;; ---- slot fund.Theme  [event center]  n 3  clusters 2
+(And (Member $e0 fund) (Theme $e0 $x1))
+;;      c452  mass 2  {lessos kenya border section}
+;;      c451  mass 1  {border section}
+
+;; ---- slot give_up.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Agent $e0 $x1))
+;;      c408  mass 1  {rescue team}
+;;      c413  mass 1  {climber}
+;;      c472  mass 1  {firm}
+
+;; ---- slot give_up.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Theme $e0 $x1))
+;;      c501  mass 1  {tender}
+;;      c543  mass 1  {north route}
+;;      c659  mass 1  {search}
+
+;; ---- slot influence.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 influence) (Agent $e0 $x1))
+;;       c49  mass 2  {indonesian immigrant, indonesian immigrants}
+;;      c566  mass 0.5  {balance}
+;;      c650  mass 0.5  {international}
+
+;; ---- slot learn.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Agent $e0 $x1))
+;;      c404  mass 1  {squad}
+;;      c427  mass 1  {apprentice}
+;;      c484  mass 1  {child}
+
+;; ---- slot learn.Source  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Source $e0 $x1))
+;;      c169  mass 1  {potter}
+;;      c425  mass 1  {coach}
+;;      c486  mass 1  {elder}
+
+;; ---- slot learn.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Theme $e0 $x1))
+;;      c330  mass 1  {drill}
+;;      c335  mass 1  {song}
+;;      c436  mass 1  {glazing}
+
+;; ---- slot market.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Beneficiary $e0 $x1))
+;;      c562  mass 3  {shop}
+
+;; ---- slot market.Location  [event center]  n 3  clusters 2
+(And (Member $e0 market) (Location $e0 $x1))
+;;      c300  mass 1.5  {pakistani}
+;;      c765  mass 1.5  {block}
+
+;; ---- slot need.Holder  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Holder $e0 $x1))
+;;      c393  mass 1  {recipe}
+;;      c433  mass 1  {lathe}
+;;      c830  mass 1  {permit}
+
+;; ---- slot need.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Theme $e0 $x1))
+;;      c390  mass 1  {egg}
+;;      c636  mass 1  {countersignature, countersignatures}
+;;      c858  mass 1  {monthly servicing}
+
+;; ---- slot permit.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Agent $e0 $x1))
+;;      c423  mass 1  {warden}
+;;      c424  mass 1  {curator}
+;;      c596  mass 1  {licence}
+
+;; ---- slot permit.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Theme $e0 $x1))
+;;      c359  mass 1  {photography}
+;;      c512  mass 1  {night delivery}
+;;      c624  mass 1  {visitor}
+
+;; ---- slot put_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Agent $e0 $x1))
+;;      c405  mass 1  {club}
+;;      c763  mass 1  {board}
+;;       c84  mass 1  {ferry}
+
+;; ---- slot put_off.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Theme $e0 $x1))
+;;       c23  mass 1  {tournament}
+;;      c772  mass 1  {vote}
+;;      c783  mass 1  {departure, depart}
+
+;; ---- slot receive.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Agent $e0 $x1))
+;;      c481  mass 1  {recruit}
+;;       c82  mass 1  {driver}
+;;      c822  mass 1  {winner}
+
+;; ---- slot receive.Source  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Source $e0 $x1))
+;;      c278  mass 1  {foreman}
+;;      c426  mass 1  {trainer}
+;;      c521  mass 1  {school}
+
+;; ---- slot start.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Experiencer $e0 $x1))
+;;      c533  mass 2  {bridge}
+;;      c277  mass 1  {tunnel}
+
+;; ---- slot start.Location  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Location $e0 $x1))
+;;      c133  mass 2  {sweden}
+;;      c118  mass 1  {denmark}
+
+;; ---- slot succeed.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Agent $e0 $x1))
+;;      c173  mass 1  {Alexander}
+;;      c198  mass 1  {Peter Gaussen}
+;;      c254  mass 1  {Bailey}
+
+;; ---- slot succeed.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Theme $e0 $x1))
+;;      c219  mass 1  {Henry Cole}
+;;      c233  mass 1  {Margaret Fleming}
+;;      c289  mass 1  {governor}
+
+;; ---- slot turn_down.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+;;      c420  mass 1  {editor}
+;;      c568  mass 1  {bank}
+;;      c764  mass 1  {panel}
+
+;; ---- slot turn_down.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+;;      c367  mass 1  {manuscript}
+;;      c565  mass 1  {loan application}
+;;      c752  mass 1  {proposal}
+
+;; ---- slot wait.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+;;       c80  mass 2  {automobile, automobiles}
+;;       c81  mass 1  {car}
+
+;; ---- slot wait.Location  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Location $e0 $x1))
+;;      c630  mass 3  {gate}
+
+;; ---- slot walk.Goal  [event center]  n 3  clusters 2
+(And (Member $e0 walk) (Goal $e0 $x1))
+;;      c536  mass 2  {pier}
+;;      c484  mass 1  {child}
+
+;; ---- slot work.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 work) (Theme $e0 $x1))
+;;      c354  mass 3  {mural}
+
+;; ==================== word @ cluster cos 1.00: pooled role level (45 head pairs) ====================
+
+;; Agent ~ Recipient  cosine 0.30  JSD 0.735  n 500 / 47  shared: {person} {depot} {school}
+(Agent $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Patient  cosine 0.24  JSD 0.864  n 500 / 159  shared: {person} {physician} {electrician}
+(Agent $e $x)
+(Patient $e $x)
+
+;; Agent ~ Experiencer  cosine 0.24  JSD 0.901  n 500 / 63  shared: {person} {automobile} {Aslan}
+(Agent $e $x)
+(Experiencer $e $x)
+
+;; Experiencer ~ Patient  cosine 0.15  JSD 0.88  n 63 / 159  shared: {person} {bad} {indigenous}
+(Experiencer $e $x)
+(Patient $e $x)
+
+;; Agent ~ Theme  cosine 0.15  JSD 0.83  n 500 / 367  shared: {person} {physician} {child}
+(Agent $e $x)
+(Theme $e $x)
+
+;; Patient ~ Theme  cosine 0.12  JSD 0.891  n 159 / 367  shared: {person} {song} {decision}
+(Patient $e $x)
+(Theme $e $x)
+
+;; Agent ~ Source  cosine 0.11  JSD 0.862  n 500 / 24  shared: {school} {depot} {elder}
+(Agent $e $x)
+(Source $e $x)
+
+;; Recipient ~ Source  cosine 0.11  JSD 0.813  n 47 / 24  shared: {depot} {coach} {foreman}
+(Recipient $e $x)
+(Source $e $x)
+
+;; Recipient ~ Theme  cosine 0.09  JSD 0.904  n 47 / 367  shared: {child} {person} {query}
+(Recipient $e $x)
+(Theme $e $x)
+
+;; Patient ~ Recipient  cosine 0.08  JSD 0.94  n 159 / 47  shared: {person} {crew}
+(Patient $e $x)
+(Recipient $e $x)
+
+;; Experiencer ~ Theme  cosine 0.07  JSD 0.93  n 63 / 367  shared: {person} {bridge} {view}
+(Experiencer $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Recipient  cosine 0.07  JSD 0.948  n 63 / 47  shared: {person}
+(Experiencer $e $x)
+(Recipient $e $x)
+
+;; Goal ~ Recipient  cosine 0.05  JSD 0.929  n 30 / 47  shared: {child} {Loren}
+(Goal $e $x)
+(Recipient $e $x)
+
+;; Goal ~ Theme  cosine 0.02  JSD 0.975  n 30 / 367  shared: {child} {predictive function}
+(Goal $e $x)
+(Theme $e $x)
+
+;; Agent ~ Goal  cosine 0.02  JSD 0.978  n 500 / 30  shared: {child} {pier}
+(Agent $e $x)
+(Goal $e $x)
+
+;; Experiencer ~ Location  cosine 0.01  JSD 0.988  n 63 / 175  shared: {park}
+(Experiencer $e $x)
+(Location $e $x)
+
+;; Location ~ Theme  cosine 0.01  JSD 0.987  n 175 / 367  shared: {gate} {mural}
+(Location $e $x)
+(Theme $e $x)
+
+;; Agent ~ Location  cosine 0.01  JSD 0.987  n 500 / 175  shared: {north} {nurse} {ward}
+(Agent $e $x)
+(Location $e $x)
+
+;; Source ~ Theme  cosine 0.01  JSD 0.993  n 24 / 367  shared: {depot}
+(Source $e $x)
+(Theme $e $x)
+
+;; Agent ~ Manner  cosine 0.00  JSD 1.0  n 500 / 34  shared: 
+(Agent $e $x)
+(Manner $e $x)
+
+;; Agent ~ Time  cosine 0.00  JSD 1.0  n 500 / 37  shared: 
+(Agent $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Goal  cosine 0.00  JSD 1.0  n 63 / 30  shared: 
+(Experiencer $e $x)
+(Goal $e $x)
+
+;; Experiencer ~ Manner  cosine 0.00  JSD 1.0  n 63 / 34  shared: 
+(Experiencer $e $x)
+(Manner $e $x)
+
+;; Experiencer ~ Source  cosine 0.00  JSD 1.0  n 63 / 24  shared: 
+(Experiencer $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Time  cosine 0.00  JSD 1.0  n 63 / 37  shared: 
+(Experiencer $e $x)
+(Time $e $x)
+
+;; Goal ~ Location  cosine 0.00  JSD 1.0  n 30 / 175  shared: 
+(Goal $e $x)
+(Location $e $x)
+
+;; Goal ~ Manner  cosine 0.00  JSD 1.0  n 30 / 34  shared: 
+(Goal $e $x)
+(Manner $e $x)
+
+;; Goal ~ Patient  cosine 0.00  JSD 1.0  n 30 / 159  shared: 
+(Goal $e $x)
+(Patient $e $x)
+
+;; Goal ~ Source  cosine 0.00  JSD 1.0  n 30 / 24  shared: 
+(Goal $e $x)
+(Source $e $x)
+
+;; Goal ~ Time  cosine 0.00  JSD 1.0  n 30 / 37  shared: 
+(Goal $e $x)
+(Time $e $x)
+
+;; Location ~ Manner  cosine 0.00  JSD 1.0  n 175 / 34  shared: 
+(Location $e $x)
+(Manner $e $x)
+
+;; Location ~ Patient  cosine 0.00  JSD 1.0  n 175 / 159  shared: 
+(Location $e $x)
+(Patient $e $x)
+
+;; Location ~ Recipient  cosine 0.00  JSD 1.0  n 175 / 47  shared: 
+(Location $e $x)
+(Recipient $e $x)
+
+;; Location ~ Source  cosine 0.00  JSD 1.0  n 175 / 24  shared: 
+(Location $e $x)
+(Source $e $x)
+
+;; Location ~ Time  cosine 0.00  JSD 1.0  n 175 / 37  shared: 
+(Location $e $x)
+(Time $e $x)
+
+;; Manner ~ Patient  cosine 0.00  JSD 1.0  n 34 / 159  shared: 
+(Manner $e $x)
+(Patient $e $x)
+
+;; Manner ~ Recipient  cosine 0.00  JSD 1.0  n 34 / 47  shared: 
+(Manner $e $x)
+(Recipient $e $x)
+
+;; Manner ~ Source  cosine 0.00  JSD 1.0  n 34 / 24  shared: 
+(Manner $e $x)
+(Source $e $x)
+
+;; Manner ~ Theme  cosine 0.00  JSD 1.0  n 34 / 367  shared: 
+(Manner $e $x)
+(Theme $e $x)
+
+;; Manner ~ Time  cosine 0.00  JSD 1.0  n 34 / 37  shared: 
+(Manner $e $x)
+(Time $e $x)
+
+;; Patient ~ Source  cosine 0.00  JSD 1.0  n 159 / 24  shared: 
+(Patient $e $x)
+(Source $e $x)
+
+;; Patient ~ Time  cosine 0.00  JSD 1.0  n 159 / 37  shared: 
+(Patient $e $x)
+(Time $e $x)
+
+;; Recipient ~ Time  cosine 0.00  JSD 1.0  n 47 / 37  shared: 
+(Recipient $e $x)
+(Time $e $x)
+
+;; Source ~ Time  cosine 0.00  JSD 1.0  n 24 / 37  shared: 
+(Source $e $x)
+(Time $e $x)
+
+;; Theme ~ Time  cosine 0.00  JSD 1.0  n 367 / 37  shared: 
+(Theme $e $x)
+(Time $e $x)
+
+;; ==================== word @ cluster cos 1.00: slot pairs (54 event-center signals) ====================
+
+;; [same role, different class]  acquire.Agent ~ purchase.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000016 tierA-000002
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ purchase.Theme  cosine 1.00  JSD 0.0  n 4 / 4  shared: {crate} {forklift} {kiln} {lemon}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000016 tierA-000002
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Agent ~ create.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {european american settler} {indigenous american} {native american}
+;;   A e.g. tierC-000025 tierC-000026   B e.g. tierC-000025 tierC-000026
+(And (Member $e0 begin) (Agent $e0 $x1))
+(And (Member $e0 create) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ start.Patient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {apple harvest} {dress rehearsal} {hearing} {shoreline survey}
+;;   A e.g. tierA-000069 tierA-000064   B e.g. tierA-000068 tierA-000063
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  make.Agent ~ reach.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {board} {committee} {family} {judge}
+;;   A e.g. tierA-000202 tierA-000186   B e.g. tierA-000203 tierA-000187
+(And (Member $e0 make) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  learn.Theme ~ teach.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {drill} {glazing} {song}
+;;   A e.g. tierA-000287 tierA-000282   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Theme $e0 $x1))
+(And (Member $e0 teach) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Theme ~ require.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {countersignature} {egg} {monthly servicing}
+;;   A e.g. tierA-000090 tierA-000085   B e.g. tierA-000089 tierA-000091
+(And (Member $e0 need) (Theme $e0 $x1))
+(And (Member $e0 require) (Theme $e0 $x1))
+
+;; [same role, different class]  abandon.Agent ~ give_up.Agent  cosine 0.98  JSD 0.006  n 8 / 3  shared: {climber} {firm} {rescue team}
+;;   A e.g. tierA-000109 tierA-000111   B e.g. tierA-000110 tierA-000105
+(And (Member $e0 abandon) (Agent $e0 $x1))
+(And (Member $e0 give_up) (Agent $e0 $x1))
+
+;; [same role, different class]  abandon.Theme ~ give_up.Theme  cosine 0.98  JSD 0.006  n 8 / 3  shared: {north route} {search} {tender}
+;;   A e.g. tierA-000109 tierA-000111   B e.g. tierA-000110 tierA-000100
+(And (Member $e0 abandon) (Theme $e0 $x1))
+(And (Member $e0 give_up) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Holder ~ require.Holder  cosine 0.98  JSD 0.006  n 3 / 8  shared: {lathe} {permit} {recipe}
+;;   A e.g. tierA-000095 tierA-000090   B e.g. tierA-000094 tierA-000096
+(And (Member $e0 need) (Holder $e0 $x1))
+(And (Member $e0 require) (Holder $e0 $x1))
+
+;; [same role, different class]  postpone.Agent ~ put_off.Agent  cosine 0.98  JSD 0.007  n 7 / 3  shared: {board} {club} {ferry}
+;;   A e.g. tierA-000114 tierA-000116   B e.g. tierA-000115 tierA-000124
+(And (Member $e0 postpone) (Agent $e0 $x1))
+(And (Member $e0 put_off) (Agent $e0 $x1))
+
+;; [same role, different class]  postpone.Theme ~ put_off.Theme  cosine 0.98  JSD 0.007  n 7 / 3  shared: {departure} {tournament} {vote}
+;;   A e.g. tierA-000119 tierA-000122   B e.g. tierA-000120 tierA-000124
+(And (Member $e0 postpone) (Theme $e0 $x1))
+(And (Member $e0 put_off) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ commence.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {apple harvest} {dress rehearsal} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000069 tierA-000064
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 commence) (Patient $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ start.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {apple harvest} {dress rehearsal} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000068 tierA-000063
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  allow.Agent ~ permit.Agent  cosine 0.94  JSD 0.021  n 4 / 3  shared: {curator} {licence} {warden}
+;;   A e.g. tierA-000080 tierA-000076   B e.g. tierA-000081 tierA-000077
+(And (Member $e0 allow) (Agent $e0 $x1))
+(And (Member $e0 permit) (Agent $e0 $x1))
+
+;; [same role, different class]  allow.Theme ~ permit.Theme  cosine 0.94  JSD 0.021  n 4 / 3  shared: {night delivery} {photography} {visitor}
+;;   A e.g. tierA-000076 tierA-000078   B e.g. tierA-000077 tierA-000081
+(And (Member $e0 allow) (Theme $e0 $x1))
+(And (Member $e0 permit) (Theme $e0 $x1))
+
+;; [same role, different class]  call_off.Agent ~ cancel.Agent  cosine 0.96  JSD 0.064  n 3 / 9  shared: {airline} {council} {tutor}
+;;   A e.g. tierA-000144 tierA-000149   B e.g. tierA-000143 tierA-000145
+(And (Member $e0 call_off) (Agent $e0 $x1))
+(And (Member $e0 cancel) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Theme ~ decision.Theme  cosine 0.97  JSD 0.064  n 9 / 6  shared: {budget} {case} {new} {roof}
+;;   A e.g. tierA-000201 tierA-000204   B e.g. tierA-000202 tierA-000203
+(And (Member $e0 decide) (Theme $e0 $x1))
+(And (Member $e0 decision) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Agent ~ buy.Agent  cosine 0.95  JSD 0.121  n 4 / 14  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000015 tierA-000019
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 buy) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ buy.Theme  cosine 0.94  JSD 0.121  n 4 / 14  shared: {crate} {forklift} {kiln} {lemon}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000015 tierA-000019
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 buy) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Agent ~ purchase.Agent  cosine 0.95  JSD 0.121  n 14 / 4  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000015 tierA-000019   B e.g. tierA-000016 tierA-000002
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ purchase.Theme  cosine 0.94  JSD 0.121  n 14 / 4  shared: {crate} {forklift} {kiln} {lemon}
+;;   A e.g. tierA-000015 tierA-000019   B e.g. tierA-000016 tierA-000002
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ make.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {board} {committee} {family} {judge}
+;;   A e.g. tierA-000201 tierA-000204   B e.g. tierA-000202 tierA-000186
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 make) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ reach.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {board} {committee} {family} {judge}
+;;   A e.g. tierA-000201 tierA-000204   B e.g. tierA-000203 tierA-000187
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  cause.Agent ~ destroy.Agent  cosine 0.93  JSD 0.138  n 3 / 8  shared: {fire} {flood} {storm}
+;;   A e.g. tierA-000228 tierA-000233   B e.g. tierA-000227 tierA-000229
+(And (Member $e0 cause) (Agent $e0 $x1))
+(And (Member $e0 destroy) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ end.Patient  cosine 0.87  JSD 0.138  n 4 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000069 tierA-000059   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  end.Patient ~ start.Patient  cosine 0.87  JSD 0.138  n 3 / 4  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000071 tierA-000060   B e.g. tierA-000068 tierA-000058
+(And (Member $e0 end) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  examine.Agent ~ order.Agent  cosine 0.91  JSD 0.138  n 3 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000381 tierA-000380   B e.g. tierA-000386 tierA-000385
+(And (Member $e0 examine) (Agent $e0 $x1))
+(And (Member $e0 order) (Agent $e0 $x1))
+
+;; [same role, different class]  examine.Agent ~ sign.Agent  cosine 0.91  JSD 0.138  n 3 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000381 tierA-000380   B e.g. tierA-000376 tierA-000375
+(And (Member $e0 examine) (Agent $e0 $x1))
+(And (Member $e0 sign) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Agent ~ turn_down.Agent  cosine 0.93  JSD 0.138  n 8 / 3  shared: {bank} {editor} {panel}
+;;   A e.g. tierA-000163 tierA-000165   B e.g. tierA-000164 tierA-000159
+(And (Member $e0 reject) (Agent $e0 $x1))
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Theme ~ turn_down.Theme  cosine 0.93  JSD 0.138  n 8 / 3  shared: {loan application} {manuscript} {proposal}
+;;   A e.g. tierA-000163 tierA-000165   B e.g. tierA-000164 tierA-000159
+(And (Member $e0 reject) (Theme $e0 $x1))
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ end.Patient  cosine 0.80  JSD 0.174  n 7 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ sell.Theme  cosine 0.68  JSD 0.191  n 4 / 6  shared: {crate} {forklift} {kiln} {lemon}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000018 tierA-000004
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  portray.Agent ~ win.Agent  cosine 0.78  JSD 0.191  n 6 / 4  shared: {Wilson} {James Woods} {wilson}
+;;   A e.g. tierC-000278 tierC-000301   B e.g. tierC-000302 tierC-000277
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [same role, different class]  purchase.Theme ~ sell.Theme  cosine 0.68  JSD 0.191  n 4 / 6  shared: {crate} {forklift} {kiln} {lemon}
+;;   A e.g. tierA-000016 tierA-000002   B e.g. tierA-000018 tierA-000004
+(And (Member $e0 purchase) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  accompany.Agent ~ appear.Agent  cosine 0.78  JSD 0.217  n 4 / 8  shared: {person} {sister}
+;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000049 tierC-000050
+(And (Member $e0 accompany) (Agent $e0 $x1))
+(And (Member $e0 appear) (Agent $e0 $x1))
+
+;; [same role, different class]  borrow.Theme ~ lend.Theme  cosine 0.65  JSD 0.239  n 5 / 10  shared: {generator} {ladder} {painting}
+;;   A e.g. tierA-000302 tierA-000297   B e.g. tierA-000301 tierA-000303
+(And (Member $e0 borrow) (Theme $e0 $x1))
+(And (Member $e0 lend) (Theme $e0 $x1))
+
+;; [same role, different class]  order.Agent ~ sign.Agent  cosine 0.83  JSD 0.25  n 4 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000386 tierA-000385   B e.g. tierA-000376 tierA-000375
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 sign) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ sell.Theme  cosine 0.65  JSD 0.281  n 14 / 6  shared: {crate} {forklift} {kiln} {lemon}
+;;   A e.g. tierA-000015 tierA-000019   B e.g. tierA-000018 tierA-000004
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same class, different role]  repair.Agent ~ repair.Patient  cosine 0.83  JSD 0.061  n 8 / 8  shared: {cracked} {crew} {electrician} {feed pipe}
+;;   A e.g. tierA-000051 tierA-000049   B e.g. tierA-000039 tierA-000029
+(And (Member $e0 repair) (Agent $e0 $x1))
+(And (Member $e0 repair) (Patient $e0 $x1))
+
+;; [same class, different role]  discover.Experiencer ~ discover.Stimulus  cosine 0.80  JSD 0.082  n 3 / 3  shared: {auditor} {error}
+;;   A e.g. tierA-000128 tierA-000130   B e.g. tierA-000132 tierA-000128
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+
+;; [same class, different role]  order.Agent ~ order.Theme  cosine 0.65  JSD 0.25  n 4 / 4  shared: {physician} {scan}
+;;   A e.g. tierA-000385 tierA-000387   B e.g. tierA-000389 tierA-000386
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 order) (Theme $e0 $x1))
+
+;; [same class, different role]  sign.Agent ~ sign.Patient  cosine 0.65  JSD 0.25  n 4 / 4  shared: {chart} {physician}
+;;   A e.g. tierA-000378 tierA-000375   B e.g. tierA-000376 tierA-000377
+(And (Member $e0 sign) (Agent $e0 $x1))
+(And (Member $e0 sign) (Patient $e0 $x1))
+
+;; [different class and role]  acquire.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000018 tierA-000004
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  purchase.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000016 tierA-000002   B e.g. tierA-000018 tierA-000004
+(And (Member $e0 purchase) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  block.Agent ~ wait.Experiencer  cosine 0.99  JSD 0.006  n 4 / 3  shared: {automobile} {car}
+;;   A e.g. tierA-000390 tierA-000392   B e.g. tierA-000395 tierA-000397
+(And (Member $e0 block) (Agent $e0 $x1))
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+
+;; [different class and role]  borrow.Agent ~ lend.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {Ravi} {crew} {gallery}
+;;   A e.g. tierA-000297 tierA-000302   B e.g. tierA-000296 tierA-000298
+(And (Member $e0 borrow) (Agent $e0 $x1))
+(And (Member $e0 lend) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Source ~ lend.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {depot} {museum} {neighbour}
+;;   A e.g. tierA-000302 tierA-000307   B e.g. tierA-000301 tierA-000303
+(And (Member $e0 borrow) (Source $e0 $x1))
+(And (Member $e0 lend) (Agent $e0 $x1))
+
+;; [different class and role]  learn.Agent ~ teach.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {apprentice} {child} {squad}
+;;   A e.g. tierA-000282 tierA-000292   B e.g. tierA-000281 tierA-000283
+(And (Member $e0 learn) (Agent $e0 $x1))
+(And (Member $e0 teach) (Recipient $e0 $x1))
+
+;; [different class and role]  learn.Source ~ teach.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {coach} {elder} {potter}
+;;   A e.g. tierA-000287 tierA-000292   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Source $e0 $x1))
+(And (Member $e0 teach) (Agent $e0 $x1))
+
+;; [different class and role]  buy.Agent ~ sell.Recipient  cosine 0.95  JSD 0.121  n 14 / 4  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000015 tierA-000019   B e.g. tierA-000018 tierA-000004
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  portray.Theme ~ win.Agent  cosine 0.78  JSD 0.191  n 6 / 4  shared: {Wilson} {James Woods} {wilson}
+;;   A e.g. tierC-000301 tierC-000277   B e.g. tierC-000278 tierC-000302
+(And (Member $e0 portray) (Theme $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [different class and role]  give.Agent ~ receive.Source  cosine 0.91  JSD 0.196  n 12 / 3  shared: {foreman} {school} {trainer}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000277
+(And (Member $e0 give) (Agent $e0 $x1))
+(And (Member $e0 receive) (Source $e0 $x1))
+
+;; [different class and role]  give.Recipient ~ receive.Agent  cosine 0.91  JSD 0.196  n 12 / 3  shared: {driver} {recruit} {winner}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000262
+(And (Member $e0 give) (Recipient $e0 $x1))
+(And (Member $e0 receive) (Agent $e0 $x1))
+
+;; ==================== word @ cluster cos 1.00: compared slots with their distributions (197 slots, n >= 3) ====================
+
+;; ---- slot <unclassed>.Possession  [entity center]  n 18  clusters 11
+(Possession $x0 $x1)
+;;      c669  mass 5  {person}
+;;      c108  mass 2  {Leonor Rodrigues}
+;;      c171  mass 2  {Twilight}
+;;       c50  mass 2  {Dora Smith}
+;;       c63  mass 2  {Gil Aires}
+;;      c816  mass 2  {subsequent game}
+;;       c82  mass 1  {J. Augustus Knapp}
+;;      c303  mass 0.5  {community}
+;;      c623  mass 0.5  {neighbouring}
+;;      c650  mass 0.5  {other}
+;;      c820  mass 0.5  {sunni}
+
+;; ---- slot work.Agent  [event center]  n 17  clusters 10
+(And (Member $e0 work) (Agent $e0 $x1))
+;;      c245  mass 3  {biologist}
+;;        c3  mass 3  {Ana}
+;;       c45  mass 3  {Dara}
+;;      c871  mass 2  {welder}
+;;      c119  mass 1  {Mr. Jones}
+;;      c128  mass 1  {Nils}
+;;       c21  mass 1  {Bo}
+;;      c437  mass 1  {fitter}
+;;      c717  mass 1  {ranger}
+;;        c9  mass 1  {Asserson}
+
+;; ---- slot build.Location  [event center]  n 14  clusters 3
+(And (Member $e0 build) (Location $e0 $x1))
+;;      c170  mass 6  {Turkey}
+;;       c54  mass 4  {Eskisehir}
+;;       c99  mass 4  {Kazakhstan}
+
+;; ---- slot buy.Agent  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Agent $e0 $x1))
+;;      c352  mass 3  {depot}
+;;      c687  mass 3  {pottery studio}
+;;      c755  mass 3  {school}
+;;      c280  mass 2  {chef}
+;;      c447  mass 1  {forklift}
+;;      c535  mass 1  {kiln}
+;;      c332  mass 0.5  {crate}
+;;      c554  mass 0.5  {lemon}
+
+;; ---- slot buy.Theme  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Theme $e0 $x1))
+;;      c447  mass 3  {forklift}
+;;      c535  mass 3  {kiln}
+;;      c702  mass 3  {projector}
+;;      c280  mass 1  {chef}
+;;      c332  mass 1  {crate}
+;;      c352  mass 1  {depot}
+;;      c554  mass 1  {lemon}
+;;      c687  mass 1  {pottery studio}
+
+;; ---- slot work.Location  [event center]  n 13  clusters 5
+(And (Member $e0 work) (Location $e0 $x1))
+;;      c552  mass 4  {ledger}
+;;      c822  mass 4  {survey}
+;;      c452  mass 3  {frame}
+;;       c33  mass 1  {Church of Norway}
+;;      c608  mass 1  {mural}
+
+;; ---- slot build.Agent  [event center]  n 12  clusters 3
+(And (Member $e0 build) (Agent $e0 $x1))
+;;      c304  mass 8  {company}
+;;      c130  mass 2  {O. R. Woodcock}
+;;      c669  mass 2  {person}
+
+;; ---- slot build.Patient  [event center]  n 12  clusters 5
+(And (Member $e0 build) (Patient $e0 $x1))
+;;      c493  mass 4  {hotel}
+;;      c492  mass 2  {horn}
+;;      c659  mass 2  {paper factory}
+;;      c660  mass 2  {paper mill}
+;;      c745  mass 2  {room}
+
+;; ---- slot find.Location  [event center]  n 12  clusters 8
+(And (Member $e0 find) (Location $e0 $x1))
+;;      c184  mass 2  {Yunnan}
+;;      c242  mass 2  {bench}
+;;      c790  mass 2  {southern}
+;;      c847  mass 2  {tributary}
+;;      c179  mass 1  {Western Europe}
+;;       c31  mass 1  {China}
+;;       c49  mass 1  {Dianchi Lake}
+;;      c873  mass 1  {western}
+
+;; ---- slot give.Agent  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Agent $e0 $x1))
+;;      c755  mass 3  {school}
+;;      c845  mass 3  {trainer}
+;;      c446  mass 2  {foreman}
+;;      c290  mass 1  {clerk}
+;;      c381  mass 1  {driver}
+;;      c675  mass 1  {pilot}
+;;      c856  mass 1  {vet}
+
+;; ---- slot give.Recipient  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Recipient $e0 $x1))
+;;      c724  mass 3  {recruit}
+;;      c883  mass 3  {winner}
+;;      c381  mass 2  {driver}
+;;      c267  mass 1  {caller}
+;;      c446  mass 1  {foreman}
+;;      c713  mass 1  {query}
+;;      c841  mass 1  {tower}
+
+;; ---- slot give.Theme  [event center]  n 12  clusters 4
+(And (Member $e0 give) (Theme $e0 $x1))
+;;      c206  mass 3  {answer}
+;;      c580  mass 3  {manifest}
+;;      c589  mass 3  {medal}
+;;      c876  mass 3  {whistle}
+
+;; ---- slot decide.Agent  [event center]  n 11  clusters 6
+(And (Member $e0 decide) (Agent $e0 $x1))
+;;      c250  mass 3  {board}
+;;      c531  mass 3  {judge}
+;;      c299  mass 2  {committee}
+;;      c270  mass 1  {case}
+;;      c422  mass 1  {family}
+;;      c636  mass 1  {north}
+
+;; ---- slot destroy.Patient  [event center]  n 11  clusters 5
+(And (Member $e0 destroy) (Patient $e0 $x1))
+;;      c210  mass 3  {archive}
+;;      c443  mass 3  {footbridge}
+;;      c474  mass 3  {greenhouse}
+;;      c433  mass 1  {fire}
+;;      c812  mass 1  {storm}
+
+;; ---- slot answer.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Agent $e0 $x1))
+;;      c290  mass 3  {clerk}
+;;      c675  mass 3  {pilot}
+;;      c856  mass 2  {vet}
+;;      c267  mass 1  {caller}
+;;      c713  mass 1  {query}
+
+;; ---- slot answer.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Theme $e0 $x1))
+;;      c713  mass 3  {query}
+;;      c841  mass 3  {tower}
+;;      c267  mass 2  {caller}
+;;      c290  mass 1  {clerk}
+;;      c856  mass 1  {vet}
+
+;; ---- slot lend.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Agent $e0 $x1))
+;;      c609  mass 3  {museum}
+;;      c622  mass 3  {neighbour}
+;;      c352  mass 2  {depot}
+;;      c146  mass 1  {Ravi}
+;;      c335  mass 1  {crew}
+
+;; ---- slot lend.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Recipient $e0 $x1))
+;;      c146  mass 3  {Ravi}
+;;      c458  mass 3  {gallery}
+;;      c335  mass 2  {crew}
+;;      c352  mass 1  {depot}
+;;      c622  mass 1  {neighbour}
+
+;; ---- slot lend.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 lend) (Theme $e0 $x1))
+;;      c536  mass 4  {ladder}
+;;      c462  mass 3  {generator}
+;;      c655  mass 3  {painting}
+
+;; ---- slot require.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 require) (Theme $e0 $x1))
+;;      c386  mass 4  {egg}
+;;      c327  mass 3  {countersignature}
+;;      c604  mass 3  {monthly servicing}
+
+;; ---- slot teach.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Agent $e0 $x1))
+;;      c388  mass 3  {elder}
+;;      c686  mass 3  {potter}
+;;      c294  mass 2  {coach}
+;;      c209  mass 1  {apprentice}
+;;      c802  mass 1  {squad}
+
+;; ---- slot teach.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Recipient $e0 $x1))
+;;      c209  mass 3  {apprentice}
+;;      c283  mass 3  {child}
+;;      c802  mass 2  {squad}
+;;      c294  mass 1  {coach}
+;;      c686  mass 1  {potter}
+
+;; ---- slot teach.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 teach) (Theme $e0 $x1))
+;;      c468  mass 4  {glazing}
+;;      c380  mass 3  {drill}
+;;      c789  mass 3  {song}
+
+;; ---- slot cancel.Agent  [event center]  n 9  clusters 4
+(And (Member $e0 cancel) (Agent $e0 $x1))
+;;      c326  mass 3  {council}
+;;      c851  mass 3  {tutor}
+;;      c201  mass 2  {airline}
+;;      c673  mass 1  {physician}
+
+;; ---- slot decide.Theme  [event center]  n 9  clusters 5
+(And (Member $e0 decide) (Theme $e0 $x1))
+;;      c259  mass 3  {budget}
+;;      c270  mass 3  {case}
+;;      c531  mass 1  {judge}
+;;      c627  mass 1  {new}
+;;      c744  mass 1  {roof}
+
+;; ---- slot discover.Theme  [event center]  n 9  clusters 5
+(And (Member $e0 discover) (Theme $e0 $x1))
+;;      c885  mass 3  {wreck}
+;;      c614  mass 2  {name}
+;;      c426  mass 1.5  {file}
+;;      c599  mass 1.5  {missing}
+;;      c372  mass 1  {diver}
+
+;; ---- slot view.Possession  [entity center]  n 8  clusters 2
+(And (Member $x0 view) (Possession $x0 $x1))
+;;      c147  mass 4  {Republican Party}
+;;       c59  mass 4  {Free Soil Party}
+
+;; ---- slot abandon.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Agent $e0 $x1))
+;;      c291  mass 3  {climber}
+;;      c434  mass 3  {firm}
+;;      c740  mass 2  {rescue team}
+
+;; ---- slot abandon.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Theme $e0 $x1))
+;;      c637  mass 3  {north route}
+;;      c833  mass 3  {tender}
+;;      c758  mass 2  {search}
+
+;; ---- slot appear.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 appear) (Agent $e0 $x1))
+;;      c669  mass 5  {person}
+;;       c24  mass 2  {Brian Packham}
+;;      c779  mass 1  {sister}
+
+;; ---- slot appear.Location  [event center]  n 8  clusters 5
+(And (Member $e0 appear) (Location $e0 $x1))
+;;      c264  mass 2  {cafe}
+;;      c296  mass 2  {comedic role}
+;;       c41  mass 2  {Coronation Street}
+;;      c611  mass 1  {music film}
+;;      c612  mass 1  {musical film}
+
+;; ---- slot destroy.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 destroy) (Agent $e0 $x1))
+;;      c433  mass 2  {fire}
+;;      c439  mass 2  {flood}
+;;      c812  mass 2  {storm}
+;;      c210  mass 1  {archive}
+;;      c474  mass 1  {greenhouse}
+
+;; ---- slot have.Holder  [event center]  n 8  clusters 4
+(And (Member $e0 have) (Holder $e0 $x1))
+;;      c103  mass 4  {Kristoffer}
+;;       c96  mass 2  {Karen}
+;;      c489  mass 1  {homentropic current}
+;;      c490  mass 1  {homentropic flow}
+
+;; ---- slot have.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 have) (Theme $e0 $x1))
+;;      c283  mass 4  {child}
+;;      c738  mass 2  {representation}
+;;      c315  mass 0.667  {constant}
+;;      c402  mass 0.667  {entropy}
+;;      c852  mass 0.667  {uniform}
+
+;; ---- slot include.Theme  [event center]  n 8  clusters 4
+(And (Member $e0 include) (Theme $e0 $x1))
+;;      c127  mass 2  {Nikhil Nanda}
+;;      c145  mass 2  {Ranbir Kapoor}
+;;       c48  mass 2  {Des Moines}
+;;        c6  mass 2  {Armaan Jain}
+
+;; ---- slot produce.Patient  [event center]  n 8  clusters 5
+(And (Member $e0 produce) (Patient $e0 $x1))
+;;      c607  mass 4  {movie}
+;;      c202  mass 2  {album}
+;;      c428  mass 0.833  {film}
+;;      c826  mass 0.833  {syrian}
+;;      c357  mass 0.333  {destined}
+
+;; ---- slot reject.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Agent $e0 $x1))
+;;      c233  mass 2  {bank}
+;;      c385  mass 2  {editor}
+;;      c658  mass 2  {panel}
+;;      c563  mass 1  {loan application}
+;;      c583  mass 1  {manuscript}
+
+;; ---- slot reject.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Theme $e0 $x1))
+;;      c563  mass 2  {loan application}
+;;      c583  mass 2  {manuscript}
+;;      c704  mass 2  {proposal}
+;;      c233  mass 1  {bank}
+;;      c385  mass 1  {editor}
+
+;; ---- slot repair.Agent  [event center]  n 8  clusters 8
+(And (Member $e0 repair) (Agent $e0 $x1))
+;;      c389  mass 2  {electrician}
+;;      c588  mass 2  {mechanic}
+;;      c335  mass 1  {crew}
+;;      c887  mass 1  {yard floodlight}
+;;      c330  mass 0.5  {cracked}
+;;      c424  mass 0.5  {feed pipe}
+;;      c460  mass 0.5  {gearbox}
+;;      c761  mass 0.5  {seized}
+
+;; ---- slot repair.Patient  [event center]  n 8  clusters 8
+(And (Member $e0 repair) (Patient $e0 $x1))
+;;      c887  mass 2  {yard floodlight}
+;;      c335  mass 1  {crew}
+;;      c389  mass 1  {electrician}
+;;      c460  mass 1  {gearbox}
+;;      c588  mass 1  {mechanic}
+;;      c761  mass 1  {seized}
+;;      c330  mass 0.5  {cracked}
+;;      c424  mass 0.5  {feed pipe}
+
+;; ---- slot require.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 require) (Holder $e0 $x1))
+;;      c668  mass 3  {permit}
+;;      c721  mass 3  {recipe}
+;;      c545  mass 2  {lathe}
+
+;; ---- slot serve.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 serve) (Agent $e0 $x1))
+;;      c154  mass 2  {Rosewood}
+;;      c669  mass 2  {person}
+;;       c77  mass 2  {Indooroopilly}
+;;       c78  mass 2  {Ipswich}
+
+;; ---- slot sing.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 sing) (Agent $e0 $x1))
+;;       c15  mass 2  {Barbershop Harmony Society}
+;;      c669  mass 2  {person}
+;;      c779  mass 2  {sister}
+;;      c643  mass 1  {occupational group}
+;;      c701  mass 1  {professional group}
+
+;; ---- slot study.Location  [event center]  n 8  clusters 4
+(And (Member $e0 study) (Location $e0 $x1))
+;;      c117  mass 2  {Melbourne}
+;;      c163  mass 2  {Sydney}
+;;       c46  mass 2  {Davis Studio}
+;;       c94  mass 2  {Julian Ashton Art School}
+
+;; ---- slot be.Experiencer  [event center]  n 7  clusters 4
+(And (Member $e0 be) (Experiencer $e0 $x1))
+;;      c133  mass 4  {Paniqui}
+;;        c0  mass 1  {Alema Nature Reserve}
+;;       c52  mass 1  {Ellerslie Rugby Park}
+;;      c848  mass 1  {tunnel}
+
+;; ---- slot begin.Patient  [event center]  n 7  clusters 4
+(And (Member $e0 begin) (Patient $e0 $x1))
+;;      c208  mass 2  {apple harvest}
+;;      c379  mass 2  {dress rehearsal}
+;;      c773  mass 2  {shoreline survey}
+;;      c482  mass 1  {hearing}
+
+;; ---- slot cancel.Patient  [event center]  n 7  clusters 3
+(And (Member $e0 cancel) (Patient $e0 $x1))
+;;      c200  mass 3  {afternoon session}
+;;      c819  mass 3  {summer fair}
+;;      c411  mass 1  {evening flight}
+
+;; ---- slot discover.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 discover) (Agent $e0 $x1))
+;;      c372  mass 3  {diver}
+;;      c522  mass 3  {intern}
+;;      c885  mass 1  {wreck}
+
+;; ---- slot locate.Location  [event center]  n 7  clusters 4
+(And (Member $e0 locate) (Location $e0 $x1))
+;;       c36  mass 2  {Cloverdale}
+;;      c442  mass 2  {foot}
+;;      c484  mass 2  {hill}
+;;      c148  mass 1  {Richford}
+
+;; ---- slot postpone.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Agent $e0 $x1))
+;;      c293  mass 3  {club}
+;;      c250  mass 2  {board}
+;;      c425  mass 2  {ferry}
+
+;; ---- slot postpone.Theme  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Theme $e0 $x1))
+;;      c840  mass 3  {tournament}
+;;      c351  mass 2  {departure}
+;;      c861  mass 2  {vote}
+
+;; ---- slot work.CoAgent  [event center]  n 7  clusters 4
+(And (Member $e0 work) (CoAgent $e0 $x1))
+;;      c128  mass 2  {Nils}
+;;       c21  mass 2  {Bo}
+;;      c717  mass 2  {ranger}
+;;      c437  mass 1  {fitter}
+
+;; ---- slot budget.Possession  [entity center]  n 6  clusters 1
+(And (Member $x0 budget) (Possession $x0 $x1))
+;;      c630  mass 6  {next year}
+
+;; ---- slot arrive.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 arrive) (Agent $e0 $x1))
+;;      c453  mass 3  {freight}
+;;      c346  mass 2  {delegation}
+;;      c786  mass 1  {soil sample}
+
+;; ---- slot build.Instrument  [event center]  n 6  clusters 5
+(And (Member $e0 build) (Instrument $e0 $x1))
+;;      c235  mass 2  {barometer}
+;;      c483  mass 2  {help}
+;;      c753  mass 1  {scale}
+;;      c693  mass 0.5  {present}
+;;      c694  mass 0.5  {present in}
+
+;; ---- slot decision.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 decision) (Theme $e0 $x1))
+;;      c259  mass 2  {budget}
+;;      c270  mass 2  {case}
+;;      c627  mass 1  {new}
+;;      c744  mass 1  {roof}
+
+;; ---- slot design.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 design) (Agent $e0 $x1))
+;;      c141  mass 2  {Philip Hercus}
+;;      c151  mass 2  {Robert Allan Limited}
+;;       c71  mass 2  {Henry L. Taylor}
+
+;; ---- slot discover.Location  [event center]  n 6  clusters 2
+(And (Member $e0 discover) (Location $e0 $x1))
+;;      c679  mass 4  {point}
+;;       c88  mass 2  {Japan}
+
+;; ---- slot form.Agent  [event center]  n 6  clusters 5
+(And (Member $e0 form) (Agent $e0 $x1))
+;;      c155  mass 2  {Sambora}
+;;       c93  mass 2  {Jon Bon Jovi}
+;;      c165  mass 1  {Technetium}
+;;      c308  mass 0.5  {complex}
+;;      c777  mass 0.5  {simple}
+
+;; ---- slot fund.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 fund) (Agent $e0 $x1))
+;;      c470  mass 3  {government}
+;;       c83  mass 3  {JICA}
+
+;; ---- slot include.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 include) (Agent $e0 $x1))
+;;      c624  mass 6  {nephew}
+
+;; ---- slot portray.Agent  [event center]  n 6  clusters 4
+(And (Member $e0 portray) (Agent $e0 $x1))
+;;      c160  mass 2  {Soichiro Akizuki}
+;;       c85  mass 2  {James Woods}
+;;      c181  mass 1  {Wilson}
+;;      c881  mass 1  {wilson}
+
+;; ---- slot portray.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 portray) (Theme $e0 $x1))
+;;       c85  mass 2  {James Woods}
+;;       c95  mass 2  {Kantaro Suga}
+;;      c181  mass 1  {Wilson}
+;;      c881  mass 1  {wilson}
+
+;; ---- slot produce.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 produce) (Agent $e0 $x1))
+;;      c162  mass 2  {Sy Weintraub}
+;;       c37  mass 2  {Colin Richardson}
+;;       c68  mass 2  {Harvey Hayutin}
+
+;; ---- slot sell.Theme  [event center]  n 6  clusters 6
+(And (Member $e0 sell) (Theme $e0 $x1))
+;;      c499  mass 2  {ice cream}
+;;      c447  mass 1  {forklift}
+;;      c535  mass 1  {kiln}
+;;      c702  mass 1  {projector}
+;;      c332  mass 0.5  {crate}
+;;      c554  mass 0.5  {lemon}
+
+;; ---- slot serve.Theme  [event center]  n 6  clusters 1
+(And (Member $e0 serve) (Theme $e0 $x1))
+;;      c809  mass 6  {station}
+
+;; ---- slot use.Theme  [event center]  n 6  clusters 5
+(And (Member $e0 use) (Theme $e0 $x1))
+;;       c14  mass 2  {Banach -- Mackey topology}
+;;      c869  mass 2  {weak Arens space topology}
+;;      c338  mass 1  {current}
+;;      c355  mass 0.5  {designation convention}
+;;      c615  mass 0.5  {naming convention}
+
+;; ---- slot write.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Agent $e0 $x1))
+;;       c19  mass 2  {Bill Wrubel}
+;;       c64  mass 2  {Gilles Thibaut}
+;;      c669  mass 2  {person}
+
+;; ---- slot write.CoAgent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (CoAgent $e0 $x1))
+;;      c107  mass 2  {Laurie Aubanel}
+;;       c18  mass 2  {Bianca Olsen}
+;;       c44  mass 2  {Cyril Rambour}
+
+;; ---- slot write.Patient  [event center]  n 6  clusters 4
+(And (Member $e0 write) (Patient $e0 $x1))
+;;      c403  mass 2  {episode}
+;;      c789  mass 2  {song}
+;;      c756  mass 1  {screenplay}
+;;      c757  mass 1  {script}
+
+;; ---- slot tender.Possession  [entity center]  n 5  clusters 1
+(And (Member $x0 tender) (Possession $x0 $x1))
+;;      c434  mass 5  {firm}
+
+;; ---- slot borrow.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 borrow) (Theme $e0 $x1))
+;;      c521  mass 2  {inomaru}
+;;      c462  mass 1  {generator}
+;;      c536  mass 1  {ladder}
+;;      c655  mass 1  {painting}
+
+;; ---- slot die.Patient  [event center]  n 5  clusters 4
+(And (Member $e0 die) (Patient $e0 $x1))
+;;      c451  mass 2  {founder}
+;;      c669  mass 2  {person}
+;;      c390  mass 0.5  {elm}
+;;      c541  mass 0.5  {last}
+
+;; ---- slot locate.Experiencer  [event center]  n 5  clusters 3
+(And (Member $e0 locate) (Experiencer $e0 $x1))
+;;      c182  mass 2  {Wine Country}
+;;      c661  mass 2  {park}
+;;       c52  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot receive.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 receive) (Theme $e0 $x1))
+;;      c884  mass 2  {work}
+;;      c580  mass 1  {manifest}
+;;      c589  mass 1  {medal}
+;;      c876  mass 1  {whistle}
+
+;; ---- slot take.Agent  [event center]  n 5  clusters 4
+(And (Member $e0 take) (Agent $e0 $x1))
+;;      c669  mass 2  {person}
+;;      c283  mass 1  {child}
+;;      c641  mass 1  {nurse}
+;;      c770  mass 1  {shepherd}
+
+;; ---- slot walk.Agent  [event center]  n 5  clusters 5
+(And (Member $e0 walk) (Agent $e0 $x1))
+;;      c283  mass 1  {child}
+;;      c641  mass 1  {nurse}
+;;      c674  mass 1  {pier}
+;;      c770  mass 1  {shepherd}
+;;      c865  mass 1  {ward}
+
+;; ---- slot walk.Location  [event center]  n 5  clusters 3
+(And (Member $e0 walk) (Location $e0 $x1))
+;;      c742  mass 2  {ridge}
+;;      c865  mass 2  {ward}
+;;      c641  mass 1  {nurse}
+
+;; ---- slot <unclassed>.PartOf  [entity center]  n 4  clusters 3
+(PartOf $x0 $x1)
+;;      c102  mass 2  {Khurda Road}
+;;      c138  mass 1  {Peru}
+;;       c75  mass 1  {Huancavelica}
+
+;; ---- slot bad.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 bad) (Between $x0 $x1))
+;;      c142  mass 2  {Poland}
+;;       c62  mass 2  {Germany}
+
+;; ---- slot border_section.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 border_section) (Between $x0 $x1))
+;;      c109  mass 2  {Lessos}
+;;      c172  mass 2  {Uganda}
+
+;; ---- slot departure.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 departure) (Possession $x0 $x1))
+;;      c425  mass 4  {ferry}
+
+;; ---- slot family.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 family) (Possession $x0 $x1))
+;;      c669  mass 4  {person}
+
+;; ---- slot government.Possession  [entity center]  n 4  clusters 2
+(And (Member $x0 government) (Possession $x0 $x1))
+;;      c100  mass 2  {Kenya}
+;;      c172  mass 2  {Uganda}
+
+;; ---- slot lunch.Before  [entity center]  n 4  clusters 3
+(And (Member $x0 lunch) (Before $x0 $x1))
+;;      c240  mass 2  {begin}
+;;      c297  mass 1  {commence}
+;;      c807  mass 1  {start}
+
+;; ---- slot accompany.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 accompany) (Agent $e0 $x1))
+;;      c669  mass 2  {person}
+;;      c779  mass 2  {sister}
+
+;; ---- slot accompany.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 accompany) (Theme $e0 $x1))
+;;      c775  mass 4  {silent film}
+
+;; ---- slot acquire.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Agent $e0 $x1))
+;;      c280  mass 1  {chef}
+;;      c352  mass 1  {depot}
+;;      c687  mass 1  {pottery studio}
+;;      c755  mass 1  {school}
+
+;; ---- slot acquire.Theme  [event center]  n 4  clusters 5
+(And (Member $e0 acquire) (Theme $e0 $x1))
+;;      c447  mass 1  {forklift}
+;;      c535  mass 1  {kiln}
+;;      c702  mass 1  {projector}
+;;      c332  mass 0.5  {crate}
+;;      c554  mass 0.5  {lemon}
+
+;; ---- slot active.Time  [event center]  n 4  clusters 2
+(And (Member $e0 active) (Time $e0 $x1))
+;;      c383  mass 2  {early morning}
+;;      c542  mass 2  {late afternoon}
+
+;; ---- slot allow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Agent $e0 $x1))
+;;      c558  mass 2  {licence}
+;;      c337  mass 1  {curator}
+;;      c866  mass 1  {warden}
+
+;; ---- slot allow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Theme $e0 $x1))
+;;      c632  mass 2  {night delivery}
+;;      c672  mass 1  {photography}
+;;      c859  mass 1  {visitor}
+
+;; ---- slot attract.Source  [event center]  n 4  clusters 2
+(And (Member $e0 attract) (Source $e0 $x1))
+;;      c577  mass 2  {mainstream media}
+;;      c785  mass 2  {social media}
+
+;; ---- slot be.Location  [event center]  n 4  clusters 4
+(And (Member $e0 be) (Location $e0 $x1))
+;;      c148  mass 1  {Richford}
+;;      c347  mass 1  {denmark}
+;;      c636  mass 1  {north}
+;;       c66  mass 1  {Harju County}
+
+;; ---- slot be.Source  [event center]  n 4  clusters 3
+(And (Member $e0 be) (Source $e0 $x1))
+;;      c164  mass 2  {Tarlac City}
+;;      c114  mass 1  {Manila}
+;;      c706  mass 1  {provincial capital}
+
+;; ---- slot become.Patient  [event center]  n 4  clusters 6
+(And (Member $e0 become) (Patient $e0 $x1))
+;;      c227  mass 1  {bad}
+;;      c732  mass 1  {relationship}
+;;      c365  mass 0.5  {discipline}
+;;      c511  mass 0.5  {indigenous}
+;;      c548  mass 0.5  {lax}
+;;      c666  mass 0.5  {people}
+
+;; ---- slot become.Result  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Result $e0 $x1))
+;;      c227  mass 2  {bad}
+;;      c511  mass 1  {indigenous}
+;;      c548  mass 1  {lax}
+
+;; ---- slot begin.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 begin) (Agent $e0 $x1))
+;;      c409  mass 2  {european american settler}
+;;      c512  mass 1  {indigenous american}
+;;      c617  mass 1  {native american}
+
+;; ---- slot begin.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 begin) (Theme $e0 $x1))
+;;      c334  mass 4  {create}
+
+;; ---- slot block.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 block) (Agent $e0 $x1))
+;;      c223  mass 3  {automobile}
+;;      c269  mass 1  {car}
+
+;; ---- slot block.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Theme $e0 $x1))
+;;      c539  mass 4  {lane}
+
+;; ---- slot celebrated.Location  [event center]  n 4  clusters 2
+(And (Member $e0 celebrated) (Location $e0 $x1))
+;;      c681  mass 2  {popular culture}
+;;      c843  mass 2  {traditional chinese drama}
+
+;; ---- slot commence.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 commence) (Patient $e0 $x1))
+;;      c208  mass 1  {apple harvest}
+;;      c379  mass 1  {dress rehearsal}
+;;      c482  mass 1  {hearing}
+;;      c773  mass 1  {shoreline survey}
+
+;; ---- slot create.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 create) (Agent $e0 $x1))
+;;      c409  mass 2  {european american settler}
+;;      c512  mass 1  {indigenous american}
+;;      c617  mass 1  {native american}
+
+;; ---- slot create.Location  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Location $e0 $x1))
+;;      c683  mass 4  {post}
+
+;; ---- slot create.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Patient $e0 $x1))
+;;      c303  mass 4  {community}
+
+;; ---- slot define.Manner  [event center]  n 4  clusters 4
+(And (Member $e0 define) (Manner $e0 $x1))
+;;      c715  mass 1.5  {random}
+;;      c868  mass 1.5  {way}
+;;      c188  mass 0.5  {accidental}
+;;      c581  mass 0.5  {manner}
+
+;; ---- slot define.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 define) (Theme $e0 $x1))
+;;      c764  mass 2  {sequence}
+;;      c203  mass 1  {algorithmically equivalent}
+;;      c404  mass 1  {equivalent}
+
+;; ---- slot design.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 design) (Patient $e0 $x1))
+;;      c652  mass 4  {pacificat}
+
+;; ---- slot direct.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Agent $e0 $x1))
+;;      c110  mass 2  {Lev L. Spiro}
+;;      c152  mass 1  {Robert Day}
+;;       c35  mass 1  {Claude Lelouch}
+
+;; ---- slot direct.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 direct) (Patient $e0 $x1))
+;;      c403  mass 2  {episode}
+;;      c607  mass 1  {movie}
+;;      c428  mass 0.5  {film}
+;;      c826  mass 0.5  {syrian}
+
+;; ---- slot encourage.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Agent $e0 $x1))
+;;      c144  mass 4  {Ralph}
+
+;; ---- slot encourage.In  [event center]  n 4  clusters 3
+(And (Member $e0 encourage) (In $e0 $x1))
+;;      c587  mass 2  {mathematics}
+;;      c281  mass 1  {chess}
+;;      c282  mass 1  {chess play}
+
+;; ---- slot encourage.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Theme $e0 $x1))
+;;      c116  mass 4  {Maurice}
+
+;; ---- slot error.Location  [event center]  n 4  clusters 1
+(And (Member $e0 error) (Location $e0 $x1))
+;;      c552  mass 4  {ledger}
+
+;; ---- slot follow.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 follow) (Agent $e0 $x1))
+;;        c1  mass 1  {Alexander}
+;;       c12  mass 1  {Bailey}
+;;      c494  mass 1  {house}
+;;      c613  mass 1  {muslim}
+
+;; ---- slot follow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Theme $e0 $x1))
+;;      c728  mass 2  {region}
+;;      c115  mass 1  {Margaret Fleming}
+;;       c70  mass 1  {Henry Cole}
+
+;; ---- slot form.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 form) (Patient $e0 $x1))
+;;      c576  mass 2  {main songwriting unit}
+;;      c165  mass 1  {Technetium}
+;;      c308  mass 0.5  {complex}
+;;      c777  mass 0.5  {simple}
+
+;; ---- slot have.Location  [event center]  n 4  clusters 2
+(And (Member $e0 have) (Location $e0 $x1))
+;;      c564  mass 2  {local level}
+;;      c729  mass 2  {regional level}
+
+;; ---- slot influence.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 influence) (Theme $e0 $x1))
+;;      c285  mass 2  {chinese dumpling}
+;;      c733  mass 2  {religion}
+
+;; ---- slot kill.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Agent $e0 $x1))
+;;      c497  mass 4  {hurricane}
+
+;; ---- slot kill.Location  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Location $e0 $x1))
+;;      c808  mass 4  {state}
+
+;; ---- slot kill.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 kill) (Manner $e0 $x1))
+;;      c364  mass 2  {directly}
+;;      c515  mass 2  {indirectly}
+
+;; ---- slot kill.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Patient $e0 $x1))
+;;      c669  mass 4  {person}
+
+;; ---- slot make.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 make) (Agent $e0 $x1))
+;;      c250  mass 1  {board}
+;;      c299  mass 1  {committee}
+;;      c422  mass 1  {family}
+;;      c531  mass 1  {judge}
+
+;; ---- slot make.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 make) (Patient $e0 $x1))
+;;      c344  mass 4  {decision}
+
+;; ---- slot move.Goal  [event center]  n 4  clusters 2
+(And (Member $e0 move) (Goal $e0 $x1))
+;;       c13  mass 2  {Baltimore}
+;;       c62  mass 2  {Germany}
+
+;; ---- slot nation.Location  [event center]  n 4  clusters 2
+(And (Member $e0 nation) (Location $e0 $x1))
+;;      c161  mass 2  {South Asia}
+;;       c17  mass 2  {Bengal}
+
+;; ---- slot order.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 order) (Agent $e0 $x1))
+;;      c673  mass 2  {physician}
+;;      c376  mass 1  {doctor}
+;;      c754  mass 1  {scan}
+
+;; ---- slot order.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Theme $e0 $x1))
+;;      c754  mass 3  {scan}
+;;      c673  mass 1  {physician}
+
+;; ---- slot play.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 play) (Agent $e0 $x1))
+;;       c10  mass 1  {Audrey Hepburn}
+;;       c11  mass 1  {Audrey Heppurn}
+;;       c23  mass 1  {Boston Red Sox}
+;;       c34  mass 1  {Cincinnati Reds}
+
+;; ---- slot play.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Theme $e0 $x1))
+;;       c73  mass 2  {Holly Golightly}
+;;      c765  mass 2  {series}
+
+;; ---- slot preach.Location  [event center]  n 4  clusters 2
+(And (Member $e0 preach) (Location $e0 $x1))
+;;       c60  mass 2  {Gareccio}
+;;       c81  mass 2  {Italy}
+
+;; ---- slot purchase.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Agent $e0 $x1))
+;;      c280  mass 1  {chef}
+;;      c352  mass 1  {depot}
+;;      c687  mass 1  {pottery studio}
+;;      c755  mass 1  {school}
+
+;; ---- slot purchase.Theme  [event center]  n 4  clusters 5
+(And (Member $e0 purchase) (Theme $e0 $x1))
+;;      c447  mass 1  {forklift}
+;;      c535  mass 1  {kiln}
+;;      c702  mass 1  {projector}
+;;      c332  mass 0.5  {crate}
+;;      c554  mass 0.5  {lemon}
+
+;; ---- slot reach.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 reach) (Agent $e0 $x1))
+;;      c250  mass 1  {board}
+;;      c299  mass 1  {committee}
+;;      c422  mass 1  {family}
+;;      c531  mass 1  {judge}
+
+;; ---- slot reach.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 reach) (Theme $e0 $x1))
+;;      c344  mass 4  {decision}
+
+;; ---- slot replace.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Agent $e0 $x1))
+;;      c159  mass 2  {Sherman Howard}
+;;      c140  mass 1  {Peter Gaussen}
+;;      c471  mass 1  {governor}
+
+;; ---- slot replace.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 replace) (Theme $e0 $x1))
+;;      c111  mass 1  {Lex Lex Luthor}
+;;      c112  mass 1  {Lex Luthor}
+;;      c180  mass 1  {William Ewer}
+;;      c471  mass 1  {governor}
+
+;; ---- slot sell.Recipient  [event center]  n 4  clusters 4
+(And (Member $e0 sell) (Recipient $e0 $x1))
+;;      c280  mass 1  {chef}
+;;      c352  mass 1  {depot}
+;;      c687  mass 1  {pottery studio}
+;;      c755  mass 1  {school}
+
+;; ---- slot sign.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 sign) (Agent $e0 $x1))
+;;      c673  mass 2  {physician}
+;;      c279  mass 1  {chart}
+;;      c376  mass 1  {doctor}
+
+;; ---- slot sign.Patient  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Patient $e0 $x1))
+;;      c279  mass 3  {chart}
+;;      c673  mass 1  {physician}
+
+;; ---- slot sing.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Manner $e0 $x1))
+;;      c185  mass 4  {a cappella}
+
+;; ---- slot sing.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Theme $e0 $x1))
+;;      c610  mass 4  {music}
+
+;; ---- slot sing.To  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (To $e0 $x1))
+;;      c190  mass 4  {accompany}
+
+;; ---- slot speak.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 speak) (Agent $e0 $x1))
+;;      c131  mass 2  {Oates}
+;;      c118  mass 1  {Mie Sonozaki}
+;;       c97  mass 1  {Kari Wahlgren}
+
+;; ---- slot specify.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 specify) (Manner $e0 $x1))
+;;      c321  mass 2  {continuous time}
+;;      c368  mass 2  {discrete time}
+
+;; ---- slot star.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 star) (Theme $e0 $x1))
+;;      c134  mass 2  {Patricia Kaas}
+;;       c90  mass 2  {Jeremy Irons}
+
+;; ---- slot start.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 start) (Patient $e0 $x1))
+;;      c208  mass 1  {apple harvest}
+;;      c379  mass 1  {dress rehearsal}
+;;      c482  mass 1  {hearing}
+;;      c773  mass 1  {shoreline survey}
+
+;; ---- slot study.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 study) (Agent $e0 $x1))
+;;      c669  mass 4  {person}
+
+;; ---- slot take.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 take) (Theme $e0 $x1))
+;;      c501  mass 2  {identity}
+;;      c863  mass 2  {walk}
+
+;; ---- slot use.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 use) (Manner $e0 $x1))
+;;      c718  mass 4  {rare}
+
+;; ---- slot win.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 win) (Agent $e0 $x1))
+;;       c85  mass 2  {James Woods}
+;;      c181  mass 1  {Wilson}
+;;      c881  mass 1  {wilson}
+
+;; ---- slot win.For  [event center]  n 4  clusters 1
+(And (Member $e0 win) (For $e0 $x1))
+;;      c682  mass 4  {portray}
+
+;; ---- slot win.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 win) (Theme $e0 $x1))
+;;      c392  mass 4  {emmy}
+
+;; ---- slot house.Possession  [entity center]  n 3  clusters 2
+(And (Member $x0 house) (Possession $x0 $x1))
+;;        c5  mass 2  {Arakkal}
+;;       c47  mass 1  {Derwent Isle}
+
+;; ---- slot western.PartOf  [entity center]  n 3  clusters 2
+(And (Member $x0 western) (PartOf $x0 $x1))
+;;       c31  mass 2  {China}
+;;       c56  mass 1  {Europe}
+
+;; ---- slot bear.Patient  [event center]  n 3  clusters 2
+(And (Member $e0 bear) (Patient $e0 $x1))
+;;      c669  mass 2  {person}
+;;      c108  mass 1  {Leonor Rodrigues}
+
+;; ---- slot begin.Time  [event center]  n 3  clusters 2
+(And (Member $e0 begin) (Time $e0 $x1))
+;;      c342  mass 2  {dawn}
+;;      c605  mass 1  {morning}
+
+;; ---- slot borrow.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Agent $e0 $x1))
+;;      c146  mass 1  {Ravi}
+;;      c335  mass 1  {crew}
+;;      c458  mass 1  {gallery}
+
+;; ---- slot borrow.Source  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Source $e0 $x1))
+;;      c352  mass 1  {depot}
+;;      c609  mass 1  {museum}
+;;      c622  mass 1  {neighbour}
+
+;; ---- slot buy.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 buy) (Beneficiary $e0 $x1))
+;;      c477  mass 3  {hall}
+
+;; ---- slot call_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 call_off) (Agent $e0 $x1))
+;;      c201  mass 1  {airline}
+;;      c326  mass 1  {council}
+;;      c851  mass 1  {tutor}
+
+;; ---- slot cause.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 cause) (Agent $e0 $x1))
+;;      c433  mass 1  {fire}
+;;      c439  mass 1  {flood}
+;;      c812  mass 1  {storm}
+
+;; ---- slot cause.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 cause) (Theme $e0 $x1))
+;;      c359  mass 3  {destroy}
+
+;; ---- slot discover.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+;;      c222  mass 2  {auditor}
+;;      c406  mass 1  {error}
+
+;; ---- slot discover.Stimulus  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+;;      c406  mass 2  {error}
+;;      c222  mass 1  {auditor}
+
+;; ---- slot end.Patient  [event center]  n 3  clusters 3
+(And (Member $e0 end) (Patient $e0 $x1))
+;;      c208  mass 1  {apple harvest}
+;;      c482  mass 1  {hearing}
+;;      c773  mass 1  {shoreline survey}
+
+;; ---- slot examine.Agent  [event center]  n 3  clusters 2
+(And (Member $e0 examine) (Agent $e0 $x1))
+;;      c673  mass 2  {physician}
+;;      c376  mass 1  {doctor}
+
+;; ---- slot examine.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Theme $e0 $x1))
+;;      c749  mass 3  {sample}
+
+;; ---- slot fund.Theme  [event center]  n 3  clusters 2
+(And (Member $e0 fund) (Theme $e0 $x1))
+;;      c556  mass 2  {lessos kenya border section}
+;;      c252  mass 1  {border section}
+
+;; ---- slot give_up.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Agent $e0 $x1))
+;;      c291  mass 1  {climber}
+;;      c434  mass 1  {firm}
+;;      c740  mass 1  {rescue team}
+
+;; ---- slot give_up.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Theme $e0 $x1))
+;;      c637  mass 1  {north route}
+;;      c758  mass 1  {search}
+;;      c833  mass 1  {tender}
+
+;; ---- slot influence.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 influence) (Agent $e0 $x1))
+;;      c516  mass 2  {indonesian immigrant}
+;;      c230  mass 0.5  {balance}
+;;      c523  mass 0.5  {international}
+
+;; ---- slot learn.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Agent $e0 $x1))
+;;      c209  mass 1  {apprentice}
+;;      c283  mass 1  {child}
+;;      c802  mass 1  {squad}
+
+;; ---- slot learn.Source  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Source $e0 $x1))
+;;      c294  mass 1  {coach}
+;;      c388  mass 1  {elder}
+;;      c686  mass 1  {potter}
+
+;; ---- slot learn.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Theme $e0 $x1))
+;;      c380  mass 1  {drill}
+;;      c468  mass 1  {glazing}
+;;      c789  mass 1  {song}
+
+;; ---- slot market.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Beneficiary $e0 $x1))
+;;      c772  mass 3  {shop}
+
+;; ---- slot market.Location  [event center]  n 3  clusters 2
+(And (Member $e0 market) (Location $e0 $x1))
+;;      c248  mass 1.5  {block}
+;;      c657  mass 1.5  {pakistani}
+
+;; ---- slot need.Holder  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Holder $e0 $x1))
+;;      c545  mass 1  {lathe}
+;;      c668  mass 1  {permit}
+;;      c721  mass 1  {recipe}
+
+;; ---- slot need.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Theme $e0 $x1))
+;;      c327  mass 1  {countersignature}
+;;      c386  mass 1  {egg}
+;;      c604  mass 1  {monthly servicing}
+
+;; ---- slot permit.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Agent $e0 $x1))
+;;      c337  mass 1  {curator}
+;;      c558  mass 1  {licence}
+;;      c866  mass 1  {warden}
+
+;; ---- slot permit.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Theme $e0 $x1))
+;;      c632  mass 1  {night delivery}
+;;      c672  mass 1  {photography}
+;;      c859  mass 1  {visitor}
+
+;; ---- slot put_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Agent $e0 $x1))
+;;      c250  mass 1  {board}
+;;      c293  mass 1  {club}
+;;      c425  mass 1  {ferry}
+
+;; ---- slot put_off.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Theme $e0 $x1))
+;;      c351  mass 1  {departure}
+;;      c840  mass 1  {tournament}
+;;      c861  mass 1  {vote}
+
+;; ---- slot receive.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Agent $e0 $x1))
+;;      c381  mass 1  {driver}
+;;      c724  mass 1  {recruit}
+;;      c883  mass 1  {winner}
+
+;; ---- slot receive.Source  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Source $e0 $x1))
+;;      c446  mass 1  {foreman}
+;;      c755  mass 1  {school}
+;;      c845  mass 1  {trainer}
+
+;; ---- slot start.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Experiencer $e0 $x1))
+;;      c256  mass 2  {bridge}
+;;      c848  mass 1  {tunnel}
+
+;; ---- slot start.Location  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Location $e0 $x1))
+;;      c824  mass 2  {sweden}
+;;      c347  mass 1  {denmark}
+
+;; ---- slot succeed.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Agent $e0 $x1))
+;;        c1  mass 1  {Alexander}
+;;       c12  mass 1  {Bailey}
+;;      c140  mass 1  {Peter Gaussen}
+
+;; ---- slot succeed.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Theme $e0 $x1))
+;;      c115  mass 1  {Margaret Fleming}
+;;      c471  mass 1  {governor}
+;;       c70  mass 1  {Henry Cole}
+
+;; ---- slot turn_down.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+;;      c233  mass 1  {bank}
+;;      c385  mass 1  {editor}
+;;      c658  mass 1  {panel}
+
+;; ---- slot turn_down.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+;;      c563  mass 1  {loan application}
+;;      c583  mass 1  {manuscript}
+;;      c704  mass 1  {proposal}
+
+;; ---- slot wait.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+;;      c223  mass 2  {automobile}
+;;      c269  mass 1  {car}
+
+;; ---- slot wait.Location  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Location $e0 $x1))
+;;      c459  mass 3  {gate}
+
+;; ---- slot walk.Goal  [event center]  n 3  clusters 2
+(And (Member $e0 walk) (Goal $e0 $x1))
+;;      c674  mass 2  {pier}
+;;      c283  mass 1  {child}
+
+;; ---- slot work.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 work) (Theme $e0 $x1))
+;;      c608  mass 3  {mural}
+
+;; ==================== subtree @ cluster cos 0.80: pooled role level (45 head pairs) ====================
+
+;; Agent ~ Experiencer  cosine 0.38  JSD 0.767  n 500 / 63  shared: {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {person, people} {automobile, car, automobiles}
+(Agent $e $x)
+(Experiencer $e $x)
+
+;; Agent ~ Recipient  cosine 0.30  JSD 0.671  n 500 / 47  shared: {person, people} {Karen, Katherine, Margaret Fleming, Ana, …} {Ralph, Bo, Bobby, Frankie, …}
+(Agent $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Patient  cosine 0.21  JSD 0.835  n 500 / 159  shared: {person, people} {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {physician, doctor}
+(Agent $e $x)
+(Patient $e $x)
+
+;; Agent ~ Theme  cosine 0.20  JSD 0.745  n 500 / 367  shared: {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {person, people} {Karen, Katherine, Margaret Fleming, Ana, …}
+(Agent $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Patient  cosine 0.18  JSD 0.839  n 63 / 159  shared: {person, people} {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {bridge, footbridge}
+(Experiencer $e $x)
+(Patient $e $x)
+
+;; Patient ~ Theme  cosine 0.15  JSD 0.863  n 159 / 367  shared: {song, sing, music} {person, people} {answer, decision, permit, decide, …}
+(Patient $e $x)
+(Theme $e $x)
+
+;; Recipient ~ Theme  cosine 0.15  JSD 0.844  n 47 / 367  shared: {query, search} {Ravi, Armaan Jain, Ranbir Kapoor} {child, children}
+(Recipient $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Theme  cosine 0.12  JSD 0.882  n 63 / 367  shared: {person, people} {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {bridge, footbridge}
+(Experiencer $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Recipient  cosine 0.09  JSD 0.912  n 63 / 47  shared: {person, people} {Cameron, Blair}
+(Experiencer $e $x)
+(Recipient $e $x)
+
+;; Recipient ~ Source  cosine 0.09  JSD 0.804  n 47 / 24  shared: {coach, trainer} {depot} {potter}
+(Recipient $e $x)
+(Source $e $x)
+
+;; Patient ~ Recipient  cosine 0.08  JSD 0.94  n 159 / 47  shared: {person, people} {crew, night crew}
+(Patient $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Source  cosine 0.07  JSD 0.862  n 500 / 24  shared: {school} {depot} {coach, trainer}
+(Agent $e $x)
+(Source $e $x)
+
+;; Goal ~ Source  cosine 0.06  JSD 0.926  n 30 / 24  shared: {New Jersey, Virginia, West Virginia}
+(Goal $e $x)
+(Source $e $x)
+
+;; Manner ~ Recipient  cosine 0.06  JSD 0.939  n 34 / 47  shared: {winner, ward, win, well}
+(Manner $e $x)
+(Recipient $e $x)
+
+;; Goal ~ Recipient  cosine 0.05  JSD 0.929  n 30 / 47  shared: {child, children} {Karen, Katherine, Margaret Fleming, Ana, …}
+(Goal $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Goal  cosine 0.05  JSD 0.932  n 500 / 30  shared: {Karen, Katherine, Margaret Fleming, Ana, …} {George Allen, J. Augustus Knapp, James David Edgar, Chuck Robb} {child, children}
+(Agent $e $x)
+(Goal $e $x)
+
+;; Goal ~ Location  cosine 0.04  JSD 0.963  n 30 / 175  shared: {Germany, Estonia, France, Italy, …}
+(Goal $e $x)
+(Location $e $x)
+
+;; Location ~ Patient  cosine 0.03  JSD 0.966  n 175 / 159  shared: {movie, film, music film, musical film} {hall, house, room}
+(Location $e $x)
+(Patient $e $x)
+
+;; Location ~ Recipient  cosine 0.02  JSD 0.977  n 175 / 47  shared: {winner, ward, win, well}
+(Location $e $x)
+(Recipient $e $x)
+
+;; Patient ~ Time  cosine 0.02  JSD 0.964  n 159 / 37  shared: {afternoon session, late afternoon}
+(Patient $e $x)
+(Time $e $x)
+
+;; Agent ~ Location  cosine 0.02  JSD 0.958  n 500 / 175  shared: {government, state, nation} {Indooroopilly, Melbourne, Sydney} {aspect, part}
+(Agent $e $x)
+(Location $e $x)
+
+;; Goal ~ Theme  cosine 0.02  JSD 0.964  n 30 / 367  shared: {child, children} {Karen, Katherine, Margaret Fleming, Ana, …} {predictive function, predictive functions}
+(Goal $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Goal  cosine 0.02  JSD 0.967  n 63 / 30  shared: {George Allen, J. Augustus Knapp, James David Edgar, Chuck Robb}
+(Experiencer $e $x)
+(Goal $e $x)
+
+;; Location ~ Manner  cosine 0.01  JSD 0.977  n 175 / 34  shared: {winner, ward, win, well}
+(Location $e $x)
+(Manner $e $x)
+
+;; Location ~ Theme  cosine 0.01  JSD 0.98  n 175 / 367  shared: {mural} {region, regional level} {gate}
+(Location $e $x)
+(Theme $e $x)
+
+;; Manner ~ Theme  cosine 0.01  JSD 0.987  n 34 / 367  shared: {widespread, widely, attention, widespread}
+(Manner $e $x)
+(Theme $e $x)
+
+;; Agent ~ Manner  cosine 0.01  JSD 0.989  n 500 / 34  shared: {winner, ward, win, well}
+(Agent $e $x)
+(Manner $e $x)
+
+;; Experiencer ~ Location  cosine 0.01  JSD 0.988  n 63 / 175  shared: {park}
+(Experiencer $e $x)
+(Location $e $x)
+
+;; Source ~ Theme  cosine 0.00  JSD 0.993  n 24 / 367  shared: {depot}
+(Source $e $x)
+(Theme $e $x)
+
+;; Theme ~ Time  cosine 0.00  JSD 0.992  n 367 / 37  shared: {afternoon session, late afternoon}
+(Theme $e $x)
+(Time $e $x)
+
+;; Agent ~ Time  cosine 0.00  JSD 1.0  n 500 / 37  shared: 
+(Agent $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Manner  cosine 0.00  JSD 1.0  n 63 / 34  shared: 
+(Experiencer $e $x)
+(Manner $e $x)
+
+;; Experiencer ~ Source  cosine 0.00  JSD 1.0  n 63 / 24  shared: 
+(Experiencer $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Time  cosine 0.00  JSD 1.0  n 63 / 37  shared: 
+(Experiencer $e $x)
+(Time $e $x)
+
+;; Goal ~ Manner  cosine 0.00  JSD 1.0  n 30 / 34  shared: 
+(Goal $e $x)
+(Manner $e $x)
+
+;; Goal ~ Patient  cosine 0.00  JSD 1.0  n 30 / 159  shared: 
+(Goal $e $x)
+(Patient $e $x)
+
+;; Goal ~ Time  cosine 0.00  JSD 1.0  n 30 / 37  shared: 
+(Goal $e $x)
+(Time $e $x)
+
+;; Location ~ Source  cosine 0.00  JSD 1.0  n 175 / 24  shared: 
+(Location $e $x)
+(Source $e $x)
+
+;; Location ~ Time  cosine 0.00  JSD 1.0  n 175 / 37  shared: 
+(Location $e $x)
+(Time $e $x)
+
+;; Manner ~ Patient  cosine 0.00  JSD 1.0  n 34 / 159  shared: 
+(Manner $e $x)
+(Patient $e $x)
+
+;; Manner ~ Source  cosine 0.00  JSD 1.0  n 34 / 24  shared: 
+(Manner $e $x)
+(Source $e $x)
+
+;; Manner ~ Time  cosine 0.00  JSD 1.0  n 34 / 37  shared: 
+(Manner $e $x)
+(Time $e $x)
+
+;; Patient ~ Source  cosine 0.00  JSD 1.0  n 159 / 24  shared: 
+(Patient $e $x)
+(Source $e $x)
+
+;; Recipient ~ Time  cosine 0.00  JSD 1.0  n 47 / 37  shared: 
+(Recipient $e $x)
+(Time $e $x)
+
+;; Source ~ Time  cosine 0.00  JSD 1.0  n 24 / 37  shared: 
+(Source $e $x)
+(Time $e $x)
+
+;; ==================== subtree @ cluster cos 0.80: slot pairs (52 event-center signals) ====================
+
+;; [same role, different class]  acquire.Agent ~ purchase.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ purchase.Theme  cosine 1.00  JSD 0.0  n 4 / 4  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Agent ~ create.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {european american settler, european american settlers} {indigenous, indigenous american, indigenous, people, native american, …}
+;;   A e.g. tierC-000025 tierC-000026   B e.g. tierC-000025 tierC-000026
+(And (Member $e0 begin) (Agent $e0 $x1))
+(And (Member $e0 create) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ start.Patient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000064 tierA-000069   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  make.Agent ~ reach.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {committee, council} {family} {board, panel} {judge}
+;;   A e.g. tierA-000186 tierA-000197   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 make) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  learn.Theme ~ teach.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {drill} {song, sing, music} {glazing}
+;;   A e.g. tierA-000287 tierA-000292   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Theme $e0 $x1))
+(And (Member $e0 teach) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Theme ~ require.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {egg, eggs} {countersignature, sign, countersignatures} {monthly servicing}
+;;   A e.g. tierA-000085 tierA-000090   B e.g. tierA-000084 tierA-000086
+(And (Member $e0 need) (Theme $e0 $x1))
+(And (Member $e0 require) (Theme $e0 $x1))
+
+;; [same role, different class]  abandon.Agent ~ give_up.Agent  cosine 0.98  JSD 0.006  n 8 / 3  shared: {rescue team} {climber, climbers} {firm, Company, company}
+;;   A e.g. tierA-000099 tierA-000101   B e.g. tierA-000100 tierA-000110
+(And (Member $e0 abandon) (Agent $e0 $x1))
+(And (Member $e0 give_up) (Agent $e0 $x1))
+
+;; [same role, different class]  abandon.Theme ~ give_up.Theme  cosine 0.98  JSD 0.006  n 8 / 3  shared: {tender} {north route, lane, way} {query, search}
+;;   A e.g. tierA-000104 tierA-000106   B e.g. tierA-000105 tierA-000110
+(And (Member $e0 abandon) (Theme $e0 $x1))
+(And (Member $e0 give_up) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Holder ~ require.Holder  cosine 0.98  JSD 0.006  n 3 / 8  shared: {recipe} {lathe} {answer, decision, permit, decide, …}
+;;   A e.g. tierA-000085 tierA-000095   B e.g. tierA-000086 tierA-000087
+(And (Member $e0 need) (Holder $e0 $x1))
+(And (Member $e0 require) (Holder $e0 $x1))
+
+;; [same role, different class]  postpone.Agent ~ put_off.Agent  cosine 0.98  JSD 0.007  n 7 / 3  shared: {club} {board, panel} {ferry, ship}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Agent $e0 $x1))
+(And (Member $e0 put_off) (Agent $e0 $x1))
+
+;; [same role, different class]  postpone.Theme ~ put_off.Theme  cosine 0.98  JSD 0.007  n 7 / 3  shared: {tournament} {vet, vote} {departure, arrive, arrival, depart, …}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Theme $e0 $x1))
+(And (Member $e0 put_off) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ commence.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000064 tierA-000069
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 commence) (Patient $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ start.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  allow.Agent ~ permit.Agent  cosine 0.94  JSD 0.021  n 4 / 3  shared: {warden} {curator} {licence}
+;;   A e.g. tierA-000075 tierA-000080   B e.g. tierA-000073 tierA-000081
+(And (Member $e0 allow) (Agent $e0 $x1))
+(And (Member $e0 permit) (Agent $e0 $x1))
+
+;; [same role, different class]  allow.Theme ~ permit.Theme  cosine 0.94  JSD 0.021  n 4 / 3  shared: {photography} {night delivery} {visitor}
+;;   A e.g. tierA-000080 tierA-000076   B e.g. tierA-000081 tierA-000077
+(And (Member $e0 allow) (Theme $e0 $x1))
+(And (Member $e0 permit) (Theme $e0 $x1))
+
+;; [same role, different class]  call_off.Agent ~ cancel.Agent  cosine 0.96  JSD 0.064  n 3 / 9  shared: {airline} {committee, council} {teach, tutor}
+;;   A e.g. tierA-000144 tierA-000149   B e.g. tierA-000143 tierA-000145
+(And (Member $e0 call_off) (Agent $e0 $x1))
+(And (Member $e0 cancel) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Theme ~ decision.Theme  cosine 0.96  JSD 0.064  n 9 / 6  shared: {roof, new, roof} {budget, spend} {case}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000187
+(And (Member $e0 decide) (Theme $e0 $x1))
+(And (Member $e0 decision) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Agent ~ buy.Agent  cosine 0.94  JSD 0.121  n 4 / 14  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000022 tierA-000026
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 buy) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ buy.Theme  cosine 0.94  JSD 0.121  n 4 / 14  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000008 tierA-000012
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 buy) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Agent ~ purchase.Agent  cosine 0.94  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ purchase.Theme  cosine 0.94  JSD 0.121  n 14 / 4  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ make.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee, council} {family} {board, panel} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000197
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 make) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ reach.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee, council} {family} {board, panel} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  cause.Agent ~ destroy.Agent  cosine 0.93  JSD 0.138  n 3 / 8  shared: {storm, hurricane} {flood} {fire}
+;;   A e.g. tierA-000223 tierA-000233   B e.g. tierA-000222 tierA-000224
+(And (Member $e0 cause) (Agent $e0 $x1))
+(And (Member $e0 destroy) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ end.Patient  cosine 0.87  JSD 0.138  n 4 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000069 tierA-000059   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  end.Patient ~ start.Patient  cosine 0.87  JSD 0.138  n 3 / 4  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000071 tierA-000060   B e.g. tierA-000068 tierA-000058
+(And (Member $e0 end) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  reject.Agent ~ turn_down.Agent  cosine 0.93  JSD 0.138  n 8 / 3  shared: {editor} {bank} {board, panel}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Agent $e0 $x1))
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Theme ~ turn_down.Theme  cosine 0.93  JSD 0.138  n 8 / 3  shared: {manuscript} {loan application} {proposal, suggest}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Theme $e0 $x1))
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ end.Patient  cosine 0.80  JSD 0.174  n 7 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ sell.Theme  cosine 0.71  JSD 0.191  n 4 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  portray.Agent ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods, Jeremy Irons} {Wilson, wilson}
+;;   A e.g. tierC-000301 tierC-000302   B e.g. tierC-000277 tierC-000278
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [same role, different class]  purchase.Theme ~ sell.Theme  cosine 0.71  JSD 0.191  n 4 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000009 tierA-000016   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 purchase) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  accompany.Agent ~ appear.Agent  cosine 0.78  JSD 0.217  n 4 / 8  shared: {person, people} {sister, sisters}
+;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000049 tierC-000050
+(And (Member $e0 accompany) (Agent $e0 $x1))
+(And (Member $e0 appear) (Agent $e0 $x1))
+
+;; [same role, different class]  borrow.Theme ~ lend.Theme  cosine 0.65  JSD 0.239  n 5 / 10  shared: {painting, paint, paintings} {ladder, ladders} {generator}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Theme $e0 $x1))
+(And (Member $e0 lend) (Theme $e0 $x1))
+
+;; [same role, different class]  appear.Agent ~ write.Agent  cosine 0.74  JSD 0.266  n 8 / 6  shared: {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {person, people}
+;;   A e.g. tierC-000259 tierC-000260   B e.g. tierC-000297 tierC-000298
+(And (Member $e0 appear) (Agent $e0 $x1))
+(And (Member $e0 write) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ sell.Theme  cosine 0.67  JSD 0.281  n 14 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same class, different role]  portray.Agent ~ portray.Theme  cosine 1.00  JSD 0.0  n 6 / 6  shared: {inomaru, Kantaro Suga, Mie Sonozaki, Soichiro Akizuki} {James Woods, Jeremy Irons} {Wilson, wilson}
+;;   A e.g. tierC-000247 tierC-000248   B e.g. tierC-000277 tierC-000278
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 portray) (Theme $e0 $x1))
+
+;; [same class, different role]  repair.Agent ~ repair.Patient  cosine 0.83  JSD 0.061  n 8 / 8  shared: {cracked, feed pipe} {crew, night crew} {electrician} {yard floodlight}
+;;   A e.g. tierA-000051 tierA-000049   B e.g. tierA-000039 tierA-000035
+(And (Member $e0 repair) (Agent $e0 $x1))
+(And (Member $e0 repair) (Patient $e0 $x1))
+
+;; [same class, different role]  discover.Experiencer ~ discover.Stimulus  cosine 0.80  JSD 0.082  n 3 / 3  shared: {auditor} {error}
+;;   A e.g. tierA-000128 tierA-000130   B e.g. tierA-000132 tierA-000128
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+
+;; [same class, different role]  order.Agent ~ order.Theme  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {scan}
+;;   A e.g. tierA-000385 tierA-000386   B e.g. tierA-000389 tierA-000387
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 order) (Theme $e0 $x1))
+
+;; [same class, different role]  sign.Agent ~ sign.Patient  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {chart}
+;;   A e.g. tierA-000375 tierA-000376   B e.g. tierA-000378 tierA-000377
+(And (Member $e0 sign) (Agent $e0 $x1))
+(And (Member $e0 sign) (Patient $e0 $x1))
+
+;; [different class and role]  acquire.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  purchase.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000023 tierA-000016   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 purchase) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Agent ~ lend.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {Ravi, Armaan Jain, Ranbir Kapoor} {gallery} {crew, night crew}
+;;   A e.g. tierA-000297 tierA-000307   B e.g. tierA-000296 tierA-000298
+(And (Member $e0 borrow) (Agent $e0 $x1))
+(And (Member $e0 lend) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Source ~ lend.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {museum} {neighbour, neighbouring} {depot}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Source $e0 $x1))
+(And (Member $e0 lend) (Agent $e0 $x1))
+
+;; [different class and role]  learn.Agent ~ teach.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {squad} {apprentice} {child, children}
+;;   A e.g. tierA-000287 tierA-000282   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Agent $e0 $x1))
+(And (Member $e0 teach) (Recipient $e0 $x1))
+
+;; [different class and role]  learn.Source ~ teach.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {potter} {coach, trainer} {elder}
+;;   A e.g. tierA-000282 tierA-000287   B e.g. tierA-000281 tierA-000283
+(And (Member $e0 learn) (Source $e0 $x1))
+(And (Member $e0 teach) (Agent $e0 $x1))
+
+;; [different class and role]  buy.Agent ~ sell.Recipient  cosine 0.94  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  portray.Theme ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods, Jeremy Irons} {Wilson, wilson}
+;;   A e.g. tierC-000277 tierC-000278   B e.g. tierC-000301 tierC-000302
+(And (Member $e0 portray) (Theme $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [different class and role]  give.Agent ~ receive.Source  cosine 0.91  JSD 0.196  n 12 / 3  shared: {foreman} {coach, trainer} {school}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000262
+(And (Member $e0 give) (Agent $e0 $x1))
+(And (Member $e0 receive) (Source $e0 $x1))
+
+;; [different class and role]  give.Recipient ~ receive.Agent  cosine 0.91  JSD 0.196  n 12 / 3  shared: {recruit} {winner, ward, win, well} {driver}
+;;   A e.g. tierA-000261 tierA-000263   B e.g. tierA-000262 tierA-000277
+(And (Member $e0 give) (Recipient $e0 $x1))
+(And (Member $e0 receive) (Agent $e0 $x1))
+
+;; ==================== subtree @ cluster cos 0.80: compared slots with their distributions (197 slots, n >= 3) ====================
+
+;; ---- slot <unclassed>.Possession  [entity center]  n 18  clusters 7
+(Possession $x0 $x1)
+;;      c324  mass 5  {person, people}
+;;      c138  mass 4  {Leonor Rodrigues, Gil Aires}
+;;      c115  mass 2  {Twilight}
+;;      c140  mass 2  {Karen, Katherine, Margaret Fleming, Ana, …}
+;;      c185  mass 2  {sunni, communities, neighbouring, other, sunni}
+;;      c417  mass 2  {subsequent game}
+;;      c134  mass 1  {George Allen, J. Augustus Knapp, James David Edgar, Chuck Robb}
+
+;; ---- slot work.Agent  [event center]  n 17  clusters 10
+(And (Member $e0 work) (Agent $e0 $x1))
+;;      c140  mass 3  {Karen, Katherine, Margaret Fleming, Ana, …}
+;;      c154  mass 3  {Dara, Arakkal}
+;;       c20  mass 3  {biologist}
+;;      c271  mass 2  {welder}
+;;      c148  mass 1  {Mr. Jones}
+;;      c149  mass 1  {Ralph, Bo, Bobby, Frankie, …}
+;;      c151  mass 1  {Nils}
+;;      c152  mass 1  {Ashe, Asserson}
+;;      c264  mass 1  {ranger}
+;;      c428  mass 1  {fitter}
+
+;; ---- slot build.Location  [event center]  n 14  clusters 3
+(And (Member $e0 build) (Location $e0 $x1))
+;;       c81  mass 6  {Turkey, Persia}
+;;      c109  mass 4  {Eskisehir}
+;;       c86  mass 4  {Kazakhstan}
+
+;; ---- slot buy.Agent  [event center]  n 14  clusters 7
+(And (Member $e0 buy) (Agent $e0 $x1))
+;;      c219  mass 3  {pottery studio}
+;;      c347  mass 3  {school}
+;;      c421  mass 3  {depot}
+;;      c253  mass 2  {chef}
+;;      c244  mass 1  {lemon, crate, lemons}
+;;      c283  mass 1  {forklift, forklifts}
+;;      c287  mass 1  {kiln}
+
+;; ---- slot buy.Theme  [event center]  n 14  clusters 7
+(And (Member $e0 buy) (Theme $e0 $x1))
+;;      c163  mass 3  {projector, projectors}
+;;      c283  mass 3  {forklift, forklifts}
+;;      c287  mass 3  {kiln}
+;;      c244  mass 2  {lemon, crate, lemons}
+;;      c219  mass 1  {pottery studio}
+;;      c253  mass 1  {chef}
+;;      c421  mass 1  {depot}
+
+;; ---- slot work.Location  [event center]  n 13  clusters 5
+(And (Member $e0 work) (Location $e0 $x1))
+;;      c380  mass 4  {ledger}
+;;      c555  mass 4  {survey}
+;;      c508  mass 3  {frame, draw}
+;;      c223  mass 1  {mural}
+;;        c6  mass 1  {Church of Norway}
+
+;; ---- slot build.Agent  [event center]  n 12  clusters 3
+(And (Member $e0 build) (Agent $e0 $x1))
+;;      c311  mass 8  {firm, Company, company}
+;;      c136  mass 2  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c324  mass 2  {person, people}
+
+;; ---- slot build.Patient  [event center]  n 12  clusters 4
+(And (Member $e0 build) (Patient $e0 $x1))
+;;      c231  mass 4  {paper factory, paper mill}
+;;      c368  mass 4  {hotel}
+;;      c367  mass 2  {hall, house, room}
+;;      c479  mass 2  {hatch, horn}
+
+;; ---- slot find.Location  [event center]  n 12  clusters 7
+(And (Member $e0 find) (Location $e0 $x1))
+;;       c68  mass 3  {Yunnan, Dianchi Lake, Lake Dianchi}
+;;      c304  mass 2  {southern}
+;;      c511  mass 2  {bench}
+;;       c69  mass 2  {tributary, tributaries}
+;;      c305  mass 1  {western}
+;;       c76  mass 1  {Europe, Western Europe}
+;;       c78  mass 1  {Japan, China}
+
+;; ---- slot give.Agent  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Agent $e0 $x1))
+;;      c279  mass 3  {coach, trainer}
+;;      c347  mass 3  {school}
+;;      c167  mass 2  {foreman}
+;;      c256  mass 1  {pilot}
+;;      c276  mass 1  {clerk}
+;;      c516  mass 1  {vet, vote}
+;;       c59  mass 1  {driver}
+
+;; ---- slot give.Recipient  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Recipient $e0 $x1))
+;;      c319  mass 3  {recruit}
+;;      c544  mass 3  {winner, ward, win, well}
+;;       c59  mass 2  {driver}
+;;      c167  mass 1  {foreman}
+;;      c359  mass 1  {tower}
+;;      c400  mass 1  {caller}
+;;      c446  mass 1  {query, search}
+
+;; ---- slot give.Theme  [event center]  n 12  clusters 4
+(And (Member $e0 give) (Theme $e0 $x1))
+;;      c204  mass 3  {whistle, whistles}
+;;      c431  mass 3  {manifest}
+;;       c53  mass 3  {medal, medals}
+;;      c547  mass 3  {answer, decision, permit, decide, …}
+
+;; ---- slot decide.Agent  [event center]  n 11  clusters 6
+(And (Member $e0 decide) (Agent $e0 $x1))
+;;      c509  mass 3  {board, panel}
+;;      c514  mass 3  {judge}
+;;      c314  mass 2  {committee, council}
+;;      c303  mass 1  {north, northeastern}
+;;      c329  mass 1  {family}
+;;      c513  mass 1  {case}
+
+;; ---- slot destroy.Patient  [event center]  n 11  clusters 5
+(And (Member $e0 destroy) (Patient $e0 $x1))
+;;      c228  mass 3  {archive}
+;;      c289  mass 3  {greenhouse}
+;;      c355  mass 3  {bridge, footbridge}
+;;      c291  mass 1  {storm, hurricane}
+;;      c475  mass 1  {fire}
+
+;; ---- slot answer.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Agent $e0 $x1))
+;;      c256  mass 3  {pilot}
+;;      c276  mass 3  {clerk}
+;;      c516  mass 2  {vet, vote}
+;;      c400  mass 1  {caller}
+;;      c446  mass 1  {query, search}
+
+;; ---- slot answer.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Theme $e0 $x1))
+;;      c359  mass 3  {tower}
+;;      c446  mass 3  {query, search}
+;;      c400  mass 2  {caller}
+;;      c276  mass 1  {clerk}
+;;      c516  mass 1  {vet, vote}
+
+;; ---- slot lend.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Agent $e0 $x1))
+;;      c230  mass 3  {museum}
+;;      c302  mass 3  {neighbour, neighbouring}
+;;      c421  mass 2  {depot}
+;;      c112  mass 1  {Ravi, Armaan Jain, Ranbir Kapoor}
+;;      c262  mass 1  {crew, night crew}
+
+;; ---- slot lend.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Recipient $e0 $x1))
+;;      c112  mass 3  {Ravi, Armaan Jain, Ranbir Kapoor}
+;;      c224  mass 3  {gallery}
+;;      c262  mass 2  {crew, night crew}
+;;      c302  mass 1  {neighbour, neighbouring}
+;;      c421  mass 1  {depot}
+
+;; ---- slot lend.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 lend) (Theme $e0 $x1))
+;;      c284  mass 4  {ladder, ladders}
+;;      c222  mass 3  {painting, paint, paintings}
+;;      c429  mass 3  {generator}
+
+;; ---- slot require.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 require) (Theme $e0 $x1))
+;;      c250  mass 4  {egg, eggs}
+;;      c430  mass 3  {countersignature, sign, countersignatures}
+;;      c557  mass 3  {monthly servicing}
+
+;; ---- slot teach.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Agent $e0 $x1))
+;;      c116  mass 3  {potter}
+;;      c322  mass 3  {elder}
+;;      c279  mass 2  {coach, trainer}
+;;      c260  mass 1  {squad}
+;;      c280  mass 1  {apprentice}
+
+;; ---- slot teach.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Recipient $e0 $x1))
+;;      c280  mass 3  {apprentice}
+;;      c321  mass 3  {child, children}
+;;      c260  mass 2  {squad}
+;;      c116  mass 1  {potter}
+;;      c279  mass 1  {coach, trainer}
+
+;; ---- slot teach.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 teach) (Theme $e0 $x1))
+;;      c288  mass 4  {glazing}
+;;      c205  mass 3  {drill}
+;;      c208  mass 3  {song, sing, music}
+
+;; ---- slot cancel.Agent  [event center]  n 9  clusters 4
+(And (Member $e0 cancel) (Agent $e0 $x1))
+;;      c314  mass 3  {committee, council}
+;;      c345  mass 3  {teach, tutor}
+;;      c254  mass 2  {airline}
+;;       c18  mass 1  {physician, doctor}
+
+;; ---- slot decide.Theme  [event center]  n 9  clusters 4
+(And (Member $e0 decide) (Theme $e0 $x1))
+;;      c381  mass 3  {budget, spend}
+;;      c513  mass 3  {case}
+;;      c365  mass 2  {roof, new, roof}
+;;      c514  mass 1  {judge}
+
+;; ---- slot discover.Theme  [event center]  n 9  clusters 4
+(And (Member $e0 discover) (Theme $e0 $x1))
+;;      c293  mass 3  {wreck}
+;;      c343  mass 3  {file, file, missing}
+;;      c235  mass 2  {name}
+;;      c269  mass 1  {diver}
+
+;; ---- slot view.Possession  [entity center]  n 8  clusters 1
+(And (Member $x0 view) (Possession $x0 $x1))
+;;      c173  mass 8  {Free Soil Party, Republican Party}
+
+;; ---- slot abandon.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Agent $e0 $x1))
+;;      c268  mass 3  {climber, climbers}
+;;      c311  mass 3  {firm, Company, company}
+;;      c263  mass 2  {rescue team}
+
+;; ---- slot abandon.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Theme $e0 $x1))
+;;      c333  mass 3  {tender}
+;;      c361  mass 3  {north route, lane, way}
+;;      c446  mass 2  {query, search}
+
+;; ---- slot appear.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 appear) (Agent $e0 $x1))
+;;      c324  mass 5  {person, people}
+;;      c136  mass 2  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c330  mass 1  {sister, sisters}
+
+;; ---- slot appear.Location  [event center]  n 8  clusters 4
+(And (Member $e0 appear) (Location $e0 $x1))
+;;      c198  mass 2  {movie, film, music film, musical film}
+;;       c21  mass 2  {comedic role}
+;;      c247  mass 2  {cafe}
+;;        c8  mass 2  {Coronation Street}
+
+;; ---- slot destroy.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 destroy) (Agent $e0 $x1))
+;;      c291  mass 2  {storm, hurricane}
+;;      c292  mass 2  {flood}
+;;      c475  mass 2  {fire}
+;;      c228  mass 1  {archive}
+;;      c289  mass 1  {greenhouse}
+
+;; ---- slot have.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 have) (Holder $e0 $x1))
+;;      c129  mass 4  {Kristoffer}
+;;      c140  mass 2  {Karen, Katherine, Margaret Fleming, Ana, …}
+;;       c44  mass 2  {homentropic current, homentropic flow}
+
+;; ---- slot have.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 have) (Theme $e0 $x1))
+;;      c321  mass 4  {child, children}
+;;      c297  mass 2  {entropy, constant, entropy, uniform}
+;;      c546  mass 2  {reach, representation, refer, represent}
+
+;; ---- slot include.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 include) (Theme $e0 $x1))
+;;      c112  mass 4  {Ravi, Armaan Jain, Ranbir Kapoor}
+;;      c103  mass 2  {Des Moines}
+;;      c113  mass 2  {Nikhil Nanda}
+
+;; ---- slot produce.Patient  [event center]  n 8  clusters 3
+(And (Member $e0 produce) (Patient $e0 $x1))
+;;      c198  mass 4  {movie, film, music film, musical film}
+;;      c210  mass 2  {album}
+;;       c22  mass 2  {destined, film, syrian, film, syrian}
+
+;; ---- slot reject.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Agent $e0 $x1))
+;;      c274  mass 2  {editor}
+;;      c379  mass 2  {bank}
+;;      c509  mass 2  {board, panel}
+;;      c234  mass 1  {manuscript}
+;;      c377  mass 1  {loan application}
+
+;; ---- slot reject.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Theme $e0 $x1))
+;;      c234  mass 2  {manuscript}
+;;      c377  mass 2  {loan application}
+;;      c502  mass 2  {proposal, suggest}
+;;      c274  mass 1  {editor}
+;;      c379  mass 1  {bank}
+
+;; ---- slot repair.Agent  [event center]  n 8  clusters 6
+(And (Member $e0 repair) (Agent $e0 $x1))
+;;      c270  mass 2  {electrician}
+;;       c60  mass 2  {mechanic}
+;;      c164  mass 1  {cracked, feed pipe}
+;;      c262  mass 1  {crew, night crew}
+;;      c559  mass 1  {yard floodlight}
+;;       c57  mass 1  {gearbox, gearbox, seized}
+
+;; ---- slot repair.Patient  [event center]  n 8  clusters 6
+(And (Member $e0 repair) (Patient $e0 $x1))
+;;      c559  mass 2  {yard floodlight}
+;;       c57  mass 2  {gearbox, gearbox, seized}
+;;      c164  mass 1  {cracked, feed pipe}
+;;      c262  mass 1  {crew, night crew}
+;;      c270  mass 1  {electrician}
+;;       c60  mass 1  {mechanic}
+
+;; ---- slot require.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 require) (Holder $e0 $x1))
+;;      c252  mass 3  {recipe}
+;;      c547  mass 3  {answer, decision, permit, decide, …}
+;;      c285  mass 2  {lathe}
+
+;; ---- slot serve.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 serve) (Agent $e0 $x1))
+;;      c107  mass 2  {Indooroopilly, Melbourne, Sydney}
+;;      c108  mass 2  {Ipswich, Nelson}
+;;      c153  mass 2  {Paniqui, Horner, Lessos, Rosewood}
+;;      c324  mass 2  {person, people}
+
+;; ---- slot sing.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 sing) (Agent $e0 $x1))
+;;      c212  mass 2  {Barbershop Harmony Society}
+;;      c310  mass 2  {occupational group, professional group}
+;;      c324  mass 2  {person, people}
+;;      c330  mass 2  {sister, sisters}
+
+;; ---- slot study.Location  [event center]  n 8  clusters 3
+(And (Member $e0 study) (Location $e0 $x1))
+;;      c107  mass 4  {Indooroopilly, Melbourne, Sydney}
+;;      c217  mass 2  {Davis Studio}
+;;      c218  mass 2  {Julian Ashton Art School}
+
+;; ---- slot be.Experiencer  [event center]  n 7  clusters 4
+(And (Member $e0 be) (Experiencer $e0 $x1))
+;;      c153  mass 4  {Paniqui, Horner, Lessos, Rosewood}
+;;      c166  mass 1  {tunnel}
+;;       c65  mass 1  {Alema Nature Reserve}
+;;       c91  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot begin.Patient  [event center]  n 7  clusters 4
+(And (Member $e0 begin) (Patient $e0 $x1))
+;;      c216  mass 2  {dress rehearsal}
+;;      c246  mass 2  {apple harvest}
+;;       c73  mass 2  {shoreline survey}
+;;      c404  mass 1  {hearing}
+
+;; ---- slot cancel.Patient  [event center]  n 7  clusters 3
+(And (Member $e0 cancel) (Patient $e0 $x1))
+;;       c25  mass 3  {summer fair}
+;;      c257  mass 3  {afternoon session, late afternoon}
+;;      c255  mass 1  {evening flight}
+
+;; ---- slot discover.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 discover) (Agent $e0 $x1))
+;;      c269  mass 3  {diver}
+;;      c438  mass 3  {intern}
+;;      c293  mass 1  {wreck}
+
+;; ---- slot locate.Location  [event center]  n 7  clusters 3
+(And (Member $e0 locate) (Location $e0 $x1))
+;;      c100  mass 3  {Cloverdale, Richford}
+;;      c344  mass 2  {foot}
+;;      c352  mass 2  {ridge, hill, hills}
+
+;; ---- slot postpone.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Agent $e0 $x1))
+;;      c261  mass 3  {club}
+;;      c509  mass 2  {board, panel}
+;;       c61  mass 2  {ferry, ship}
+
+;; ---- slot postpone.Theme  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Theme $e0 $x1))
+;;       c15  mass 3  {tournament}
+;;      c516  mass 2  {vet, vote}
+;;      c523  mass 2  {departure, arrive, arrival, depart, …}
+
+;; ---- slot work.CoAgent  [event center]  n 7  clusters 4
+(And (Member $e0 work) (CoAgent $e0 $x1))
+;;      c149  mass 2  {Ralph, Bo, Bobby, Frankie, …}
+;;      c151  mass 2  {Nils}
+;;      c264  mass 2  {ranger}
+;;      c428  mass 1  {fitter}
+
+;; ---- slot budget.Possession  [entity center]  n 6  clusters 1
+(And (Member $x0 budget) (Possession $x0 $x1))
+;;      c415  mass 6  {next year, next}
+
+;; ---- slot arrive.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 arrive) (Agent $e0 $x1))
+;;       c62  mass 3  {freight}
+;;      c317  mass 2  {delegation}
+;;       c46  mass 1  {soil sample, soil samples}
+
+;; ---- slot build.Instrument  [event center]  n 6  clusters 3
+(And (Member $e0 build) (Instrument $e0 $x1))
+;;      c290  mass 2  {barometer}
+;;      c350  mass 2  {scale, present in, scale, present, scale}
+;;      c519  mass 2  {help, assistant, support}
+
+;; ---- slot decision.Theme  [event center]  n 6  clusters 3
+(And (Member $e0 decision) (Theme $e0 $x1))
+;;      c365  mass 2  {roof, new, roof}
+;;      c381  mass 2  {budget, spend}
+;;      c513  mass 2  {case}
+
+;; ---- slot design.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 design) (Agent $e0 $x1))
+;;      c136  mass 4  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;       c63  mass 2  {Robert Allan Limited}
+
+;; ---- slot discover.Location  [event center]  n 6  clusters 2
+(And (Member $e0 discover) (Location $e0 $x1))
+;;      c540  mass 4  {point}
+;;       c78  mass 2  {Japan, China}
+
+;; ---- slot form.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 form) (Agent $e0 $x1))
+;;      c132  mass 4  {Jon Bon Jovi, Sambora}
+;;      c458  mass 1  {complex, complex, simple}
+;;       c48  mass 1  {Technetium}
+
+;; ---- slot fund.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 fund) (Agent $e0 $x1))
+;;      c174  mass 3  {government, state, nation}
+;;      c178  mass 3  {JICA}
+
+;; ---- slot include.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 include) (Agent $e0 $x1))
+;;      c320  mass 6  {nephew, nephews}
+
+;; ---- slot portray.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Agent $e0 $x1))
+;;      c127  mass 2  {inomaru, Kantaro Suga, Mie Sonozaki, Soichiro Akizuki}
+;;      c131  mass 2  {James Woods, Jeremy Irons}
+;;      c145  mass 2  {Wilson, wilson}
+
+;; ---- slot portray.Theme  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Theme $e0 $x1))
+;;      c127  mass 2  {inomaru, Kantaro Suga, Mie Sonozaki, Soichiro Akizuki}
+;;      c131  mass 2  {James Woods, Jeremy Irons}
+;;      c145  mass 2  {Wilson, wilson}
+
+;; ---- slot produce.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 produce) (Agent $e0 $x1))
+;;      c136  mass 6  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+
+;; ---- slot sell.Theme  [event center]  n 6  clusters 5
+(And (Member $e0 sell) (Theme $e0 $x1))
+;;      c249  mass 2  {ice cream, ice cone, ice cream cone}
+;;      c163  mass 1  {projector, projectors}
+;;      c244  mass 1  {lemon, crate, lemons}
+;;      c283  mass 1  {forklift, forklifts}
+;;      c287  mass 1  {kiln}
+
+;; ---- slot serve.Theme  [event center]  n 6  clusters 1
+(And (Member $e0 serve) (Theme $e0 $x1))
+;;      c358  mass 6  {station}
+
+;; ---- slot use.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 use) (Theme $e0 $x1))
+;;        c1  mass 2  {Banach -- Mackey topology}
+;;        c2  mass 2  {weak Arens space topology}
+;;      c237  mass 1  {naming convention, current, naming convention}
+;;      c238  mass 1  {designation convention, current, designation convention}
+
+;; ---- slot write.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Agent $e0 $x1))
+;;      c128  mass 2  {Gilles Thibaut, James of Barrochan}
+;;      c136  mass 2  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c324  mass 2  {person, people}
+
+;; ---- slot write.CoAgent  [event center]  n 6  clusters 2
+(And (Member $e0 write) (CoAgent $e0 $x1))
+;;      c139  mass 4  {Bianca Olsen, Laurie Aubanel, Muriel Zazoui, Patricia Kaas}
+;;      c135  mass 2  {Corentin Rahier, Bruno Simma, Cyril Rambour, Peter Gaussen}
+
+;; ---- slot write.Patient  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Patient $e0 $x1))
+;;      c201  mass 2  {screenplay, script}
+;;      c208  mass 2  {song, sing, music}
+;;      c390  mass 2  {episode}
+
+;; ---- slot tender.Possession  [entity center]  n 5  clusters 1
+(And (Member $x0 tender) (Possession $x0 $x1))
+;;      c311  mass 5  {firm, Company, company}
+
+;; ---- slot borrow.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 borrow) (Theme $e0 $x1))
+;;      c127  mass 2  {inomaru, Kantaro Suga, Mie Sonozaki, Soichiro Akizuki}
+;;      c222  mass 1  {painting, paint, paintings}
+;;      c284  mass 1  {ladder, ladders}
+;;      c429  mass 1  {generator}
+
+;; ---- slot die.Patient  [event center]  n 5  clusters 3
+(And (Member $e0 die) (Patient $e0 $x1))
+;;      c281  mass 2  {founder}
+;;      c324  mass 2  {person, people}
+;;      c243  mass 1  {elm, elm, last}
+
+;; ---- slot locate.Experiencer  [event center]  n 5  clusters 3
+(And (Member $e0 locate) (Experiencer $e0 $x1))
+;;      c356  mass 2  {park}
+;;       c89  mass 2  {Wine Country}
+;;       c91  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot receive.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 receive) (Theme $e0 $x1))
+;;      c434  mass 2  {work, job}
+;;      c204  mass 1  {whistle, whistles}
+;;      c431  mass 1  {manifest}
+;;       c53  mass 1  {medal, medals}
+
+;; ---- slot take.Agent  [event center]  n 5  clusters 4
+(And (Member $e0 take) (Agent $e0 $x1))
+;;      c324  mass 2  {person, people}
+;;       c19  mass 1  {nurse}
+;;      c265  mass 1  {shepherd}
+;;      c321  mass 1  {child, children}
+
+;; ---- slot walk.Agent  [event center]  n 5  clusters 5
+(And (Member $e0 walk) (Agent $e0 $x1))
+;;       c19  mass 1  {nurse}
+;;      c265  mass 1  {shepherd}
+;;      c321  mass 1  {child, children}
+;;      c357  mass 1  {pier}
+;;      c544  mass 1  {winner, ward, win, well}
+
+;; ---- slot walk.Location  [event center]  n 5  clusters 3
+(And (Member $e0 walk) (Location $e0 $x1))
+;;      c352  mass 2  {ridge, hill, hills}
+;;      c544  mass 2  {winner, ward, win, well}
+;;       c19  mass 1  {nurse}
+
+;; ---- slot <unclassed>.PartOf  [entity center]  n 4  clusters 3
+(PartOf $x0 $x1)
+;;      c111  mass 2  {Khurda Road}
+;;       c74  mass 1  {Colombia, Peru}
+;;       c75  mass 1  {Huancavelica}
+
+;; ---- slot bad.Between  [entity center]  n 4  clusters 1
+(And (Member $x0 bad) (Between $x0 $x1))
+;;       c82  mass 4  {Germany, Estonia, France, Italy, …}
+
+;; ---- slot border_section.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 border_section) (Between $x0 $x1))
+;;      c153  mass 2  {Paniqui, Horner, Lessos, Rosewood}
+;;       c85  mass 2  {Uganda, Kenya}
+
+;; ---- slot departure.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 departure) (Possession $x0 $x1))
+;;       c61  mass 4  {ferry, ship}
+
+;; ---- slot family.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 family) (Possession $x0 $x1))
+;;      c324  mass 4  {person, people}
+
+;; ---- slot government.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 government) (Possession $x0 $x1))
+;;       c85  mass 4  {Uganda, Kenya}
+
+;; ---- slot lunch.Before  [entity center]  n 4  clusters 1
+(And (Member $x0 lunch) (Before $x0 $x1))
+;;      c528  mass 4  {begin, start, commence}
+
+;; ---- slot accompany.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 accompany) (Agent $e0 $x1))
+;;      c324  mass 2  {person, people}
+;;      c330  mass 2  {sister, sisters}
+
+;; ---- slot accompany.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 accompany) (Theme $e0 $x1))
+;;      c199  mass 4  {silent film}
+
+;; ---- slot acquire.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Agent $e0 $x1))
+;;      c219  mass 1  {pottery studio}
+;;      c253  mass 1  {chef}
+;;      c347  mass 1  {school}
+;;      c421  mass 1  {depot}
+
+;; ---- slot acquire.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Theme $e0 $x1))
+;;      c163  mass 1  {projector, projectors}
+;;      c244  mass 1  {lemon, crate, lemons}
+;;      c283  mass 1  {forklift, forklifts}
+;;      c287  mass 1  {kiln}
+
+;; ---- slot active.Time  [event center]  n 4  clusters 2
+(And (Member $e0 active) (Time $e0 $x1))
+;;      c257  mass 2  {afternoon session, late afternoon}
+;;      c258  mass 2  {dawn, morning, early morning}
+
+;; ---- slot allow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Agent $e0 $x1))
+;;      c399  mass 2  {licence}
+;;      c277  mass 1  {warden}
+;;      c278  mass 1  {curator}
+
+;; ---- slot allow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Theme $e0 $x1))
+;;      c341  mass 2  {night delivery}
+;;      c227  mass 1  {photography}
+;;      c419  mass 1  {visitor}
+
+;; ---- slot attract.Source  [event center]  n 4  clusters 2
+(And (Member $e0 attract) (Source $e0 $x1))
+;;       c50  mass 2  {mainstream media}
+;;       c52  mass 2  {social media}
+
+;; ---- slot be.Location  [event center]  n 4  clusters 4
+(And (Member $e0 be) (Location $e0 $x1))
+;;      c100  mass 1  {Cloverdale, Richford}
+;;      c105  mass 1  {Harju County}
+;;      c303  mass 1  {north, northeastern}
+;;       c83  mass 1  {denmark}
+
+;; ---- slot be.Source  [event center]  n 4  clusters 2
+(And (Member $e0 be) (Source $e0 $x1))
+;;       c94  mass 3  {Manila, Tarlac City, batangas}
+;;       c98  mass 1  {provincial capital}
+
+;; ---- slot become.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Patient $e0 $x1))
+;;      c327  mass 2  {relationship, bad, relationship}
+;;       c38  mass 1  {indigenous, indigenous american, indigenous, people, native american, …}
+;;      c396  mass 1  {discipline, discipline, lax}
+
+;; ---- slot become.Result  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Result $e0 $x1))
+;;      c493  mass 2  {bad, lose}
+;;       c38  mass 1  {indigenous, indigenous american, indigenous, people, native american, …}
+;;       c95  mass 1  {lax}
+
+;; ---- slot begin.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 begin) (Agent $e0 $x1))
+;;       c37  mass 2  {european american settler, european american settlers}
+;;       c38  mass 2  {indigenous, indigenous american, indigenous, people, native american, …}
+
+;; ---- slot begin.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 begin) (Theme $e0 $x1))
+;;      c530  mass 4  {new, create, add}
+
+;; ---- slot block.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Agent $e0 $x1))
+;;       c58  mass 4  {automobile, car, automobiles}
+
+;; ---- slot block.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Theme $e0 $x1))
+;;      c361  mass 4  {north route, lane, way}
+
+;; ---- slot celebrated.Location  [event center]  n 4  clusters 2
+(And (Member $e0 celebrated) (Location $e0 $x1))
+;;        c3  mass 2  {traditional chinese drama, traditional chinese dramas}
+;;       c51  mass 2  {popular culture}
+
+;; ---- slot commence.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 commence) (Patient $e0 $x1))
+;;      c216  mass 1  {dress rehearsal}
+;;      c246  mass 1  {apple harvest}
+;;      c404  mass 1  {hearing}
+;;       c73  mass 1  {shoreline survey}
+
+;; ---- slot create.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 create) (Agent $e0 $x1))
+;;       c37  mass 2  {european american settler, european american settlers}
+;;       c38  mass 2  {indigenous, indigenous american, indigenous, people, native american, …}
+
+;; ---- slot create.Location  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Location $e0 $x1))
+;;      c506  mass 4  {post, write}
+
+;; ---- slot create.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Patient $e0 $x1))
+;;      c315  mass 4  {community}
+
+;; ---- slot define.Manner  [event center]  n 4  clusters 3
+(And (Member $e0 define) (Manner $e0 $x1))
+;;      c338  mass 2  {random, random, ways}
+;;      c337  mass 1  {manner, manners, random}
+;;      c339  mass 1  {accidental, accidental, ways}
+
+;; ---- slot define.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 define) (Theme $e0 $x1))
+;;       c29  mass 4  {algorithmically equivalent, sequences, equivalent, sequences}
+
+;; ---- slot design.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 design) (Patient $e0 $x1))
+;;      c442  mass 4  {pacificat, pacificats}
+
+;; ---- slot direct.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Agent $e0 $x1))
+;;      c137  mass 2  {Lev L. Spiro}
+;;      c136  mass 1  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c160  mass 1  {Claude Lelouch}
+
+;; ---- slot direct.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Patient $e0 $x1))
+;;      c390  mass 2  {episode}
+;;      c198  mass 1  {movie, film, music film, musical film}
+;;       c22  mass 1  {destined, film, syrian, film, syrian}
+
+;; ---- slot encourage.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Agent $e0 $x1))
+;;      c149  mass 4  {Ralph, Bo, Bobby, Frankie, …}
+
+;; ---- slot encourage.In  [event center]  n 4  clusters 2
+(And (Member $e0 encourage) (In $e0 $x1))
+;;       c11  mass 2  {chess, chess play}
+;;      c348  mass 2  {mathematics}
+
+;; ---- slot encourage.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Theme $e0 $x1))
+;;      c147  mass 4  {Maurice}
+
+;; ---- slot error.Location  [event center]  n 4  clusters 1
+(And (Member $e0 error) (Location $e0 $x1))
+;;      c380  mass 4  {ledger}
+
+;; ---- slot follow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Agent $e0 $x1))
+;;      c186  mass 2  {muslim, house, muslim}
+;;      c119  mass 1  {Alexander}
+;;      c150  mass 1  {Bailey}
+
+;; ---- slot follow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Theme $e0 $x1))
+;;      c299  mass 2  {region, regional level}
+;;      c136  mass 1  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c140  mass 1  {Karen, Katherine, Margaret Fleming, Ana, …}
+
+;; ---- slot form.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 form) (Patient $e0 $x1))
+;;      c215  mass 2  {main songwriting unit}
+;;      c458  mass 1  {complex, complex, simple}
+;;       c48  mass 1  {Technetium}
+
+;; ---- slot have.Location  [event center]  n 4  clusters 2
+(And (Member $e0 have) (Location $e0 $x1))
+;;      c299  mass 2  {region, regional level}
+;;      c301  mass 2  {local level}
+
+;; ---- slot influence.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 influence) (Theme $e0 $x1))
+;;      c189  mass 2  {religion}
+;;        c4  mass 2  {chinese dumpling}
+
+;; ---- slot kill.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Agent $e0 $x1))
+;;      c291  mass 4  {storm, hurricane}
+
+;; ---- slot kill.Location  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Location $e0 $x1))
+;;      c174  mass 4  {government, state, nation}
+
+;; ---- slot kill.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Manner $e0 $x1))
+;;      c543  mass 4  {direct, directly, indirectly}
+
+;; ---- slot kill.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Patient $e0 $x1))
+;;      c324  mass 4  {person, people}
+
+;; ---- slot make.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 make) (Agent $e0 $x1))
+;;      c314  mass 1  {committee, council}
+;;      c329  mass 1  {family}
+;;      c509  mass 1  {board, panel}
+;;      c514  mass 1  {judge}
+
+;; ---- slot make.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 make) (Patient $e0 $x1))
+;;      c547  mass 4  {answer, decision, permit, decide, …}
+
+;; ---- slot move.Goal  [event center]  n 4  clusters 2
+(And (Member $e0 move) (Goal $e0 $x1))
+;;      c102  mass 2  {Altoona, Baltimore}
+;;       c82  mass 2  {Germany, Estonia, France, Italy, …}
+
+;; ---- slot nation.Location  [event center]  n 4  clusters 1
+(And (Member $e0 nation) (Location $e0 $x1))
+;;      c110  mass 4  {Bengal, South Asia, northern india, southern india}
+
+;; ---- slot order.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Agent $e0 $x1))
+;;       c18  mass 3  {physician, doctor}
+;;      c448  mass 1  {scan}
+
+;; ---- slot order.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Theme $e0 $x1))
+;;      c448  mass 3  {scan}
+;;       c18  mass 1  {physician, doctor}
+
+;; ---- slot play.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Agent $e0 $x1))
+;;      c117  mass 2  {Boston Red Sox, Cincinnati Reds}
+;;      c142  mass 2  {Audrey Hepburn, Audrey Heppurn}
+
+;; ---- slot play.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Theme $e0 $x1))
+;;      c143  mass 2  {Holly Golightly}
+;;      c389  mass 2  {sequence, series}
+
+;; ---- slot preach.Location  [event center]  n 4  clusters 2
+(And (Member $e0 preach) (Location $e0 $x1))
+;;      c104  mass 2  {Gareccio}
+;;       c82  mass 2  {Germany, Estonia, France, Italy, …}
+
+;; ---- slot purchase.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Agent $e0 $x1))
+;;      c219  mass 1  {pottery studio}
+;;      c253  mass 1  {chef}
+;;      c347  mass 1  {school}
+;;      c421  mass 1  {depot}
+
+;; ---- slot purchase.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Theme $e0 $x1))
+;;      c163  mass 1  {projector, projectors}
+;;      c244  mass 1  {lemon, crate, lemons}
+;;      c283  mass 1  {forklift, forklifts}
+;;      c287  mass 1  {kiln}
+
+;; ---- slot reach.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 reach) (Agent $e0 $x1))
+;;      c314  mass 1  {committee, council}
+;;      c329  mass 1  {family}
+;;      c509  mass 1  {board, panel}
+;;      c514  mass 1  {judge}
+
+;; ---- slot reach.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 reach) (Theme $e0 $x1))
+;;      c547  mass 4  {answer, decision, permit, decide, …}
+
+;; ---- slot replace.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Agent $e0 $x1))
+;;      c136  mass 2  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c135  mass 1  {Corentin Rahier, Bruno Simma, Cyril Rambour, Peter Gaussen}
+;;      c175  mass 1  {governor, president}
+
+;; ---- slot replace.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Theme $e0 $x1))
+;;      c121  mass 2  {Lex Lex Luthor, Lex Luthor}
+;;      c136  mass 1  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c175  mass 1  {governor, president}
+
+;; ---- slot sell.Recipient  [event center]  n 4  clusters 4
+(And (Member $e0 sell) (Recipient $e0 $x1))
+;;      c219  mass 1  {pottery studio}
+;;      c253  mass 1  {chef}
+;;      c347  mass 1  {school}
+;;      c421  mass 1  {depot}
+
+;; ---- slot sign.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Agent $e0 $x1))
+;;       c18  mass 3  {physician, doctor}
+;;      c556  mass 1  {chart}
+
+;; ---- slot sign.Patient  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Patient $e0 $x1))
+;;      c556  mass 3  {chart}
+;;       c18  mass 1  {physician, doctor}
+
+;; ---- slot sing.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Manner $e0 $x1))
+;;      c213  mass 4  {a cappella}
+
+;; ---- slot sing.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Theme $e0 $x1))
+;;      c208  mass 4  {song, sing, music}
+
+;; ---- slot sing.To  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (To $e0 $x1))
+;;      c453  mass 4  {accompany}
+
+;; ---- slot speak.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 speak) (Agent $e0 $x1))
+;;      c156  mass 2  {Oates, Wyman}
+;;      c127  mass 1  {inomaru, Kantaro Suga, Mie Sonozaki, Soichiro Akizuki}
+;;      c144  mass 1  {Kari Wahlgren}
+
+;; ---- slot specify.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 specify) (Manner $e0 $x1))
+;;      c295  mass 4  {continuous time, discrete time}
+
+;; ---- slot star.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 star) (Theme $e0 $x1))
+;;      c131  mass 2  {James Woods, Jeremy Irons}
+;;      c139  mass 2  {Bianca Olsen, Laurie Aubanel, Muriel Zazoui, Patricia Kaas}
+
+;; ---- slot start.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 start) (Patient $e0 $x1))
+;;      c216  mass 1  {dress rehearsal}
+;;      c246  mass 1  {apple harvest}
+;;      c404  mass 1  {hearing}
+;;       c73  mass 1  {shoreline survey}
+
+;; ---- slot study.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 study) (Agent $e0 $x1))
+;;      c324  mass 4  {person, people}
+
+;; ---- slot take.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 take) (Theme $e0 $x1))
+;;      c325  mass 2  {identity}
+;;      c360  mass 2  {walk, stroll}
+
+;; ---- slot use.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 use) (Manner $e0 $x1))
+;;      c465  mass 4  {rare}
+
+;; ---- slot win.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 win) (Agent $e0 $x1))
+;;      c131  mass 2  {James Woods, Jeremy Irons}
+;;      c145  mass 2  {Wilson, wilson}
+
+;; ---- slot win.For  [event center]  n 4  clusters 1
+(And (Member $e0 win) (For $e0 $x1))
+;;      c221  mass 4  {portray}
+
+;; ---- slot win.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 win) (Theme $e0 $x1))
+;;       c55  mass 4  {emmy}
+
+;; ---- slot house.Possession  [entity center]  n 3  clusters 2
+(And (Member $x0 house) (Possession $x0 $x1))
+;;      c154  mass 2  {Dara, Arakkal}
+;;       c84  mass 1  {Derwent Isle, Seychelles}
+
+;; ---- slot western.PartOf  [entity center]  n 3  clusters 2
+(And (Member $x0 western) (PartOf $x0 $x1))
+;;       c78  mass 2  {Japan, China}
+;;       c76  mass 1  {Europe, Western Europe}
+
+;; ---- slot bear.Patient  [event center]  n 3  clusters 2
+(And (Member $e0 bear) (Patient $e0 $x1))
+;;      c324  mass 2  {person, people}
+;;      c138  mass 1  {Leonor Rodrigues, Gil Aires}
+
+;; ---- slot begin.Time  [event center]  n 3  clusters 1
+(And (Member $e0 begin) (Time $e0 $x1))
+;;      c258  mass 3  {dawn, morning, early morning}
+
+;; ---- slot borrow.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Agent $e0 $x1))
+;;      c112  mass 1  {Ravi, Armaan Jain, Ranbir Kapoor}
+;;      c224  mass 1  {gallery}
+;;      c262  mass 1  {crew, night crew}
+
+;; ---- slot borrow.Source  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Source $e0 $x1))
+;;      c230  mass 1  {museum}
+;;      c302  mass 1  {neighbour, neighbouring}
+;;      c421  mass 1  {depot}
+
+;; ---- slot buy.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 buy) (Beneficiary $e0 $x1))
+;;      c367  mass 3  {hall, house, room}
+
+;; ---- slot call_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 call_off) (Agent $e0 $x1))
+;;      c254  mass 1  {airline}
+;;      c314  mass 1  {committee, council}
+;;      c345  mass 1  {teach, tutor}
+
+;; ---- slot cause.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 cause) (Agent $e0 $x1))
+;;      c291  mass 1  {storm, hurricane}
+;;      c292  mass 1  {flood}
+;;      c475  mass 1  {fire}
+
+;; ---- slot cause.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 cause) (Theme $e0 $x1))
+;;      c488  mass 3  {destroy}
+
+;; ---- slot discover.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+;;      c275  mass 2  {auditor}
+;;      c497  mass 1  {error}
+
+;; ---- slot discover.Stimulus  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+;;      c497  mass 2  {error}
+;;      c275  mass 1  {auditor}
+
+;; ---- slot end.Patient  [event center]  n 3  clusters 3
+(And (Member $e0 end) (Patient $e0 $x1))
+;;      c246  mass 1  {apple harvest}
+;;      c404  mass 1  {hearing}
+;;       c73  mass 1  {shoreline survey}
+
+;; ---- slot examine.Agent  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Agent $e0 $x1))
+;;       c18  mass 3  {physician, doctor}
+
+;; ---- slot examine.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Theme $e0 $x1))
+;;      c207  mass 3  {sample, samples}
+
+;; ---- slot fund.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 fund) (Theme $e0 $x1))
+;;      c298  mass 3  {border section, lessos kenya border section}
+
+;; ---- slot give_up.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Agent $e0 $x1))
+;;      c263  mass 1  {rescue team}
+;;      c268  mass 1  {climber, climbers}
+;;      c311  mass 1  {firm, Company, company}
+
+;; ---- slot give_up.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Theme $e0 $x1))
+;;      c333  mass 1  {tender}
+;;      c361  mass 1  {north route, lane, way}
+;;      c446  mass 1  {query, search}
+
+;; ---- slot influence.Agent  [event center]  n 3  clusters 2
+(And (Member $e0 influence) (Agent $e0 $x1))
+;;       c36  mass 2  {indonesian immigrant, indonesian immigrants}
+;;      c378  mass 1  {balance, balance, international}
+
+;; ---- slot learn.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Agent $e0 $x1))
+;;      c260  mass 1  {squad}
+;;      c280  mass 1  {apprentice}
+;;      c321  mass 1  {child, children}
+
+;; ---- slot learn.Source  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Source $e0 $x1))
+;;      c116  mass 1  {potter}
+;;      c279  mass 1  {coach, trainer}
+;;      c322  mass 1  {elder}
+
+;; ---- slot learn.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Theme $e0 $x1))
+;;      c205  mass 1  {drill}
+;;      c208  mass 1  {song, sing, music}
+;;      c288  mass 1  {glazing}
+
+;; ---- slot market.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Beneficiary $e0 $x1))
+;;      c375  mass 3  {shop}
+
+;; ---- slot market.Location  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Location $e0 $x1))
+;;      c184  mass 3  {pakistani, block, pakistani}
+
+;; ---- slot need.Holder  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Holder $e0 $x1))
+;;      c252  mass 1  {recipe}
+;;      c285  mass 1  {lathe}
+;;      c547  mass 1  {answer, decision, permit, decide, …}
+
+;; ---- slot need.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Theme $e0 $x1))
+;;      c250  mass 1  {egg, eggs}
+;;      c430  mass 1  {countersignature, sign, countersignatures}
+;;      c557  mass 1  {monthly servicing}
+
+;; ---- slot permit.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Agent $e0 $x1))
+;;      c277  mass 1  {warden}
+;;      c278  mass 1  {curator}
+;;      c399  mass 1  {licence}
+
+;; ---- slot permit.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Theme $e0 $x1))
+;;      c227  mass 1  {photography}
+;;      c341  mass 1  {night delivery}
+;;      c419  mass 1  {visitor}
+
+;; ---- slot put_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Agent $e0 $x1))
+;;      c261  mass 1  {club}
+;;      c509  mass 1  {board, panel}
+;;       c61  mass 1  {ferry, ship}
+
+;; ---- slot put_off.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Theme $e0 $x1))
+;;       c15  mass 1  {tournament}
+;;      c516  mass 1  {vet, vote}
+;;      c523  mass 1  {departure, arrive, arrival, depart, …}
+
+;; ---- slot receive.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Agent $e0 $x1))
+;;      c319  mass 1  {recruit}
+;;      c544  mass 1  {winner, ward, win, well}
+;;       c59  mass 1  {driver}
+
+;; ---- slot receive.Source  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Source $e0 $x1))
+;;      c167  mass 1  {foreman}
+;;      c279  mass 1  {coach, trainer}
+;;      c347  mass 1  {school}
+
+;; ---- slot start.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Experiencer $e0 $x1))
+;;      c355  mass 2  {bridge, footbridge}
+;;      c166  mass 1  {tunnel}
+
+;; ---- slot start.Location  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Location $e0 $x1))
+;;       c92  mass 2  {stockholm, sweden}
+;;       c83  mass 1  {denmark}
+
+;; ---- slot succeed.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Agent $e0 $x1))
+;;      c119  mass 1  {Alexander}
+;;      c135  mass 1  {Corentin Rahier, Bruno Simma, Cyril Rambour, Peter Gaussen}
+;;      c150  mass 1  {Bailey}
+
+;; ---- slot succeed.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Theme $e0 $x1))
+;;      c136  mass 1  {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …}
+;;      c140  mass 1  {Karen, Katherine, Margaret Fleming, Ana, …}
+;;      c175  mass 1  {governor, president}
+
+;; ---- slot turn_down.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+;;      c274  mass 1  {editor}
+;;      c379  mass 1  {bank}
+;;      c509  mass 1  {board, panel}
+
+;; ---- slot turn_down.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+;;      c234  mass 1  {manuscript}
+;;      c377  mass 1  {loan application}
+;;      c502  mass 1  {proposal, suggest}
+
+;; ---- slot wait.Experiencer  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+;;       c58  mass 3  {automobile, car, automobiles}
+
+;; ---- slot wait.Location  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Location $e0 $x1))
+;;      c424  mass 3  {gate}
+
+;; ---- slot walk.Goal  [event center]  n 3  clusters 2
+(And (Member $e0 walk) (Goal $e0 $x1))
+;;      c357  mass 2  {pier}
+;;      c321  mass 1  {child, children}
+
+;; ---- slot work.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 work) (Theme $e0 $x1))
+;;      c223  mass 3  {mural}
+
+;; ==================== subtree @ cluster cos 0.85: pooled role level (45 head pairs) ====================
+
+;; Agent ~ Recipient  cosine 0.29  JSD 0.715  n 500 / 47  shared: {person, people} {school} {depot}
+(Agent $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Experiencer  cosine 0.23  JSD 0.861  n 500 / 63  shared: {person, people} {automobile, car, automobiles} {George Allen, James David Edgar, Chuck Robb}
+(Agent $e $x)
+(Experiencer $e $x)
+
+;; Agent ~ Patient  cosine 0.23  JSD 0.845  n 500 / 159  shared: {person, people} {physician, doctor} {storm, hurricane}
+(Agent $e $x)
+(Patient $e $x)
+
+;; Experiencer ~ Patient  cosine 0.18  JSD 0.839  n 63 / 159  shared: {person, people} {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …} {bridge, footbridge}
+(Experiencer $e $x)
+(Patient $e $x)
+
+;; Agent ~ Theme  cosine 0.16  JSD 0.795  n 500 / 367  shared: {person, people} {physician, doctor} {inomaru, Mie Sonozaki, Soichiro Akizuki}
+(Agent $e $x)
+(Theme $e $x)
+
+;; Patient ~ Theme  cosine 0.13  JSD 0.875  n 159 / 367  shared: {person, people} {song, sing} {decision, decide}
+(Patient $e $x)
+(Theme $e $x)
+
+;; Recipient ~ Source  cosine 0.11  JSD 0.804  n 47 / 24  shared: {coach, trainer} {depot} {potter}
+(Recipient $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Theme  cosine 0.10  JSD 0.91  n 63 / 367  shared: {person, people} {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …} {bridge, footbridge}
+(Experiencer $e $x)
+(Theme $e $x)
+
+;; Agent ~ Source  cosine 0.10  JSD 0.862  n 500 / 24  shared: {school} {depot} {coach, trainer}
+(Agent $e $x)
+(Source $e $x)
+
+;; Recipient ~ Theme  cosine 0.10  JSD 0.896  n 47 / 367  shared: {query, search} {child, children} {person, people}
+(Recipient $e $x)
+(Theme $e $x)
+
+;; Patient ~ Recipient  cosine 0.08  JSD 0.94  n 159 / 47  shared: {person, people} {crew}
+(Patient $e $x)
+(Recipient $e $x)
+
+;; Experiencer ~ Recipient  cosine 0.06  JSD 0.948  n 63 / 47  shared: {person, people}
+(Experiencer $e $x)
+(Recipient $e $x)
+
+;; Goal ~ Recipient  cosine 0.05  JSD 0.929  n 30 / 47  shared: {child, children} {Ana, Jessica, Loren}
+(Goal $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Goal  cosine 0.04  JSD 0.947  n 500 / 30  shared: {Ana, Jessica, Loren} {George Allen, James David Edgar, Chuck Robb} {child, children}
+(Agent $e $x)
+(Goal $e $x)
+
+;; Experiencer ~ Goal  cosine 0.02  JSD 0.967  n 63 / 30  shared: {George Allen, James David Edgar, Chuck Robb}
+(Experiencer $e $x)
+(Goal $e $x)
+
+;; Goal ~ Theme  cosine 0.02  JSD 0.975  n 30 / 367  shared: {child, children} {predictive function, predictive functions}
+(Goal $e $x)
+(Theme $e $x)
+
+;; Location ~ Manner  cosine 0.02  JSD 0.977  n 175 / 34  shared: {ward, well}
+(Location $e $x)
+(Manner $e $x)
+
+;; Manner ~ Theme  cosine 0.01  JSD 0.987  n 34 / 367  shared: {widespread, widely, attention, widespread}
+(Manner $e $x)
+(Theme $e $x)
+
+;; Location ~ Theme  cosine 0.01  JSD 0.987  n 175 / 367  shared: {mural} {gate}
+(Location $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Location  cosine 0.01  JSD 0.988  n 63 / 175  shared: {park}
+(Experiencer $e $x)
+(Location $e $x)
+
+;; Agent ~ Location  cosine 0.01  JSD 0.987  n 500 / 175  shared: {nurse} {north, northeastern} {ward, well}
+(Agent $e $x)
+(Location $e $x)
+
+;; Agent ~ Manner  cosine 0.00  JSD 0.994  n 500 / 34  shared: {ward, well}
+(Agent $e $x)
+(Manner $e $x)
+
+;; Source ~ Theme  cosine 0.00  JSD 0.993  n 24 / 367  shared: {depot}
+(Source $e $x)
+(Theme $e $x)
+
+;; Agent ~ Time  cosine 0.00  JSD 1.0  n 500 / 37  shared: 
+(Agent $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Manner  cosine 0.00  JSD 1.0  n 63 / 34  shared: 
+(Experiencer $e $x)
+(Manner $e $x)
+
+;; Experiencer ~ Source  cosine 0.00  JSD 1.0  n 63 / 24  shared: 
+(Experiencer $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Time  cosine 0.00  JSD 1.0  n 63 / 37  shared: 
+(Experiencer $e $x)
+(Time $e $x)
+
+;; Goal ~ Location  cosine 0.00  JSD 1.0  n 30 / 175  shared: 
+(Goal $e $x)
+(Location $e $x)
+
+;; Goal ~ Manner  cosine 0.00  JSD 1.0  n 30 / 34  shared: 
+(Goal $e $x)
+(Manner $e $x)
+
+;; Goal ~ Patient  cosine 0.00  JSD 1.0  n 30 / 159  shared: 
+(Goal $e $x)
+(Patient $e $x)
+
+;; Goal ~ Source  cosine 0.00  JSD 1.0  n 30 / 24  shared: 
+(Goal $e $x)
+(Source $e $x)
+
+;; Goal ~ Time  cosine 0.00  JSD 1.0  n 30 / 37  shared: 
+(Goal $e $x)
+(Time $e $x)
+
+;; Location ~ Patient  cosine 0.00  JSD 1.0  n 175 / 159  shared: 
+(Location $e $x)
+(Patient $e $x)
+
+;; Location ~ Recipient  cosine 0.00  JSD 1.0  n 175 / 47  shared: 
+(Location $e $x)
+(Recipient $e $x)
+
+;; Location ~ Source  cosine 0.00  JSD 1.0  n 175 / 24  shared: 
+(Location $e $x)
+(Source $e $x)
+
+;; Location ~ Time  cosine 0.00  JSD 1.0  n 175 / 37  shared: 
+(Location $e $x)
+(Time $e $x)
+
+;; Manner ~ Patient  cosine 0.00  JSD 1.0  n 34 / 159  shared: 
+(Manner $e $x)
+(Patient $e $x)
+
+;; Manner ~ Recipient  cosine 0.00  JSD 1.0  n 34 / 47  shared: 
+(Manner $e $x)
+(Recipient $e $x)
+
+;; Manner ~ Source  cosine 0.00  JSD 1.0  n 34 / 24  shared: 
+(Manner $e $x)
+(Source $e $x)
+
+;; Manner ~ Time  cosine 0.00  JSD 1.0  n 34 / 37  shared: 
+(Manner $e $x)
+(Time $e $x)
+
+;; Patient ~ Source  cosine 0.00  JSD 1.0  n 159 / 24  shared: 
+(Patient $e $x)
+(Source $e $x)
+
+;; Patient ~ Time  cosine 0.00  JSD 1.0  n 159 / 37  shared: 
+(Patient $e $x)
+(Time $e $x)
+
+;; Recipient ~ Time  cosine 0.00  JSD 1.0  n 47 / 37  shared: 
+(Recipient $e $x)
+(Time $e $x)
+
+;; Source ~ Time  cosine 0.00  JSD 1.0  n 24 / 37  shared: 
+(Source $e $x)
+(Time $e $x)
+
+;; Theme ~ Time  cosine 0.00  JSD 1.0  n 367 / 37  shared: 
+(Theme $e $x)
+(Time $e $x)
+
+;; ==================== subtree @ cluster cos 0.85: slot pairs (51 event-center signals) ====================
+
+;; [same role, different class]  acquire.Agent ~ purchase.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ purchase.Theme  cosine 1.00  JSD 0.0  n 4 / 4  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Agent ~ create.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {european american settler, european american settlers} {indigenous, indigenous american, indigenous, people, native american, …}
+;;   A e.g. tierC-000025 tierC-000026   B e.g. tierC-000025 tierC-000026
+(And (Member $e0 begin) (Agent $e0 $x1))
+(And (Member $e0 create) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ start.Patient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000064 tierA-000069   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  make.Agent ~ reach.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000186 tierA-000197   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 make) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  learn.Theme ~ teach.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {drill} {song, sing} {glazing}
+;;   A e.g. tierA-000287 tierA-000292   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Theme $e0 $x1))
+(And (Member $e0 teach) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Theme ~ require.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {egg, eggs} {countersignature, sign, countersignatures} {monthly servicing}
+;;   A e.g. tierA-000085 tierA-000090   B e.g. tierA-000084 tierA-000086
+(And (Member $e0 need) (Theme $e0 $x1))
+(And (Member $e0 require) (Theme $e0 $x1))
+
+;; [same role, different class]  abandon.Agent ~ give_up.Agent  cosine 0.98  JSD 0.006  n 8 / 3  shared: {rescue team} {climber, climbers} {firm}
+;;   A e.g. tierA-000099 tierA-000101   B e.g. tierA-000100 tierA-000110
+(And (Member $e0 abandon) (Agent $e0 $x1))
+(And (Member $e0 give_up) (Agent $e0 $x1))
+
+;; [same role, different class]  abandon.Theme ~ give_up.Theme  cosine 0.98  JSD 0.006  n 8 / 3  shared: {tender} {north route} {query, search}
+;;   A e.g. tierA-000104 tierA-000106   B e.g. tierA-000105 tierA-000110
+(And (Member $e0 abandon) (Theme $e0 $x1))
+(And (Member $e0 give_up) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Holder ~ require.Holder  cosine 0.98  JSD 0.006  n 3 / 8  shared: {recipe} {lathe} {permit, allow, accept, confirm}
+;;   A e.g. tierA-000085 tierA-000095   B e.g. tierA-000086 tierA-000087
+(And (Member $e0 need) (Holder $e0 $x1))
+(And (Member $e0 require) (Holder $e0 $x1))
+
+;; [same role, different class]  postpone.Agent ~ put_off.Agent  cosine 0.98  JSD 0.007  n 7 / 3  shared: {club} {board} {ferry}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Agent $e0 $x1))
+(And (Member $e0 put_off) (Agent $e0 $x1))
+
+;; [same role, different class]  postpone.Theme ~ put_off.Theme  cosine 0.98  JSD 0.007  n 7 / 3  shared: {tournament} {vote} {departure, depart, leave}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Theme $e0 $x1))
+(And (Member $e0 put_off) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ commence.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000064 tierA-000069
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 commence) (Patient $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ start.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  allow.Agent ~ permit.Agent  cosine 0.94  JSD 0.021  n 4 / 3  shared: {warden} {curator} {licence}
+;;   A e.g. tierA-000075 tierA-000080   B e.g. tierA-000073 tierA-000081
+(And (Member $e0 allow) (Agent $e0 $x1))
+(And (Member $e0 permit) (Agent $e0 $x1))
+
+;; [same role, different class]  allow.Theme ~ permit.Theme  cosine 0.94  JSD 0.021  n 4 / 3  shared: {photography} {night delivery} {visitor}
+;;   A e.g. tierA-000080 tierA-000076   B e.g. tierA-000081 tierA-000077
+(And (Member $e0 allow) (Theme $e0 $x1))
+(And (Member $e0 permit) (Theme $e0 $x1))
+
+;; [same role, different class]  call_off.Agent ~ cancel.Agent  cosine 0.96  JSD 0.064  n 3 / 9  shared: {airline} {council} {tutor}
+;;   A e.g. tierA-000144 tierA-000149   B e.g. tierA-000143 tierA-000145
+(And (Member $e0 call_off) (Agent $e0 $x1))
+(And (Member $e0 cancel) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Theme ~ decision.Theme  cosine 0.96  JSD 0.064  n 9 / 6  shared: {roof, new, roof} {budget} {case}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000187
+(And (Member $e0 decide) (Theme $e0 $x1))
+(And (Member $e0 decision) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Agent ~ buy.Agent  cosine 0.94  JSD 0.121  n 4 / 14  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000022 tierA-000026
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 buy) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ buy.Theme  cosine 0.94  JSD 0.121  n 4 / 14  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000008 tierA-000012
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 buy) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Agent ~ purchase.Agent  cosine 0.94  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ purchase.Theme  cosine 0.94  JSD 0.121  n 14 / 4  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ make.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000197
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 make) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ reach.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  cause.Agent ~ destroy.Agent  cosine 0.93  JSD 0.138  n 3 / 8  shared: {storm, hurricane} {flood} {fire}
+;;   A e.g. tierA-000223 tierA-000233   B e.g. tierA-000222 tierA-000224
+(And (Member $e0 cause) (Agent $e0 $x1))
+(And (Member $e0 destroy) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ end.Patient  cosine 0.87  JSD 0.138  n 4 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000069 tierA-000059   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  end.Patient ~ start.Patient  cosine 0.87  JSD 0.138  n 3 / 4  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000071 tierA-000060   B e.g. tierA-000068 tierA-000058
+(And (Member $e0 end) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  reject.Agent ~ turn_down.Agent  cosine 0.93  JSD 0.138  n 8 / 3  shared: {editor} {bank} {panel}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Agent $e0 $x1))
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Theme ~ turn_down.Theme  cosine 0.93  JSD 0.138  n 8 / 3  shared: {manuscript} {loan application} {proposal, suggest}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Theme $e0 $x1))
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ end.Patient  cosine 0.80  JSD 0.174  n 7 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ sell.Theme  cosine 0.71  JSD 0.191  n 4 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  portray.Agent ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods, Jeremy Irons} {Wilson, wilson}
+;;   A e.g. tierC-000301 tierC-000302   B e.g. tierC-000277 tierC-000278
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [same role, different class]  purchase.Theme ~ sell.Theme  cosine 0.71  JSD 0.191  n 4 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000009 tierA-000016   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 purchase) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  design.Agent ~ produce.Agent  cosine 0.78  JSD 0.208  n 6 / 6  shared: {Brian Packham, Carl Fenton, Colin Richardson, Jason Suecof, …} {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …}
+;;   A e.g. tierC-000183 tierC-000184   B e.g. tierC-000103 tierC-000104
+(And (Member $e0 design) (Agent $e0 $x1))
+(And (Member $e0 produce) (Agent $e0 $x1))
+
+;; [same role, different class]  accompany.Agent ~ appear.Agent  cosine 0.78  JSD 0.217  n 4 / 8  shared: {person, people} {sister, sisters}
+;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000049 tierC-000050
+(And (Member $e0 accompany) (Agent $e0 $x1))
+(And (Member $e0 appear) (Agent $e0 $x1))
+
+;; [same role, different class]  borrow.Theme ~ lend.Theme  cosine 0.65  JSD 0.239  n 5 / 10  shared: {painting, paint, paintings} {ladder, ladders} {generator}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Theme $e0 $x1))
+(And (Member $e0 lend) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ sell.Theme  cosine 0.67  JSD 0.281  n 14 / 6  shared: {projector, projectors} {lemon, crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same class, different role]  repair.Agent ~ repair.Patient  cosine 0.83  JSD 0.061  n 8 / 8  shared: {cracked, feed pipe} {crew} {electrician} {gearbox, gearbox, seized}
+;;   A e.g. tierA-000051 tierA-000049   B e.g. tierA-000039 tierA-000029
+(And (Member $e0 repair) (Agent $e0 $x1))
+(And (Member $e0 repair) (Patient $e0 $x1))
+
+;; [same class, different role]  discover.Experiencer ~ discover.Stimulus  cosine 0.80  JSD 0.082  n 3 / 3  shared: {auditor} {error}
+;;   A e.g. tierA-000128 tierA-000130   B e.g. tierA-000132 tierA-000128
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+
+;; [same class, different role]  order.Agent ~ order.Theme  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {scan}
+;;   A e.g. tierA-000385 tierA-000386   B e.g. tierA-000389 tierA-000387
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 order) (Theme $e0 $x1))
+
+;; [same class, different role]  sign.Agent ~ sign.Patient  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {chart}
+;;   A e.g. tierA-000375 tierA-000376   B e.g. tierA-000378 tierA-000377
+(And (Member $e0 sign) (Agent $e0 $x1))
+(And (Member $e0 sign) (Patient $e0 $x1))
+
+;; [different class and role]  acquire.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  purchase.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000023 tierA-000016   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 purchase) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Agent ~ lend.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {Ravi} {gallery} {crew}
+;;   A e.g. tierA-000297 tierA-000307   B e.g. tierA-000296 tierA-000298
+(And (Member $e0 borrow) (Agent $e0 $x1))
+(And (Member $e0 lend) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Source ~ lend.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {museum} {neighbour, neighbouring} {depot}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Source $e0 $x1))
+(And (Member $e0 lend) (Agent $e0 $x1))
+
+;; [different class and role]  learn.Agent ~ teach.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {squad} {apprentice} {child, children}
+;;   A e.g. tierA-000287 tierA-000282   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Agent $e0 $x1))
+(And (Member $e0 teach) (Recipient $e0 $x1))
+
+;; [different class and role]  learn.Source ~ teach.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {potter} {coach, trainer} {elder}
+;;   A e.g. tierA-000282 tierA-000287   B e.g. tierA-000281 tierA-000283
+(And (Member $e0 learn) (Source $e0 $x1))
+(And (Member $e0 teach) (Agent $e0 $x1))
+
+;; [different class and role]  buy.Agent ~ sell.Recipient  cosine 0.94  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  portray.Theme ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods, Jeremy Irons} {Wilson, wilson}
+;;   A e.g. tierC-000277 tierC-000278   B e.g. tierC-000301 tierC-000302
+(And (Member $e0 portray) (Theme $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [different class and role]  give.Agent ~ receive.Source  cosine 0.91  JSD 0.196  n 12 / 3  shared: {foreman} {coach, trainer} {school}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000262
+(And (Member $e0 give) (Agent $e0 $x1))
+(And (Member $e0 receive) (Source $e0 $x1))
+
+;; [different class and role]  give.Recipient ~ receive.Agent  cosine 0.91  JSD 0.196  n 12 / 3  shared: {recruit} {driver} {winner, win}
+;;   A e.g. tierA-000261 tierA-000263   B e.g. tierA-000262 tierA-000272
+(And (Member $e0 give) (Recipient $e0 $x1))
+(And (Member $e0 receive) (Agent $e0 $x1))
+
+;; ==================== subtree @ cluster cos 0.85: compared slots with their distributions (197 slots, n >= 3) ====================
+
+;; ---- slot <unclassed>.Possession  [entity center]  n 18  clusters 8
+(Possession $x0 $x1)
+;;      c390  mass 5  {person, people}
+;;      c137  mass 2  {Twilight}
+;;      c168  mass 2  {Gil Aires}
+;;      c169  mass 2  {Leonor Rodrigues}
+;;      c174  mass 2  {Margaret Fleming, Dora Smith}
+;;      c234  mass 2  {communities, neighbouring, other, sunni}
+;;      c500  mass 2  {subsequent game}
+;;      c160  mass 1  {J. Augustus Knapp}
+
+;; ---- slot work.Agent  [event center]  n 17  clusters 10
+(And (Member $e0 work) (Agent $e0 $x1))
+;;      c172  mass 3  {Ana, Jessica, Loren}
+;;      c198  mass 3  {Dara, Arakkal}
+;;       c21  mass 3  {biologist}
+;;      c330  mass 2  {welder}
+;;      c184  mass 1  {Mr. Jones}
+;;      c185  mass 1  {Bo, Bobby, Robbie, Roger}
+;;      c191  mass 1  {Nils}
+;;      c193  mass 1  {Asserson}
+;;      c323  mass 1  {ranger}
+;;      c512  mass 1  {fitter}
+
+;; ---- slot build.Location  [event center]  n 14  clusters 3
+(And (Member $e0 build) (Location $e0 $x1))
+;;       c89  mass 6  {Turkey}
+;;      c128  mass 4  {Eskisehir}
+;;       c98  mass 4  {Kazakhstan}
+
+;; ---- slot buy.Agent  [event center]  n 14  clusters 7
+(And (Member $e0 buy) (Agent $e0 $x1))
+;;      c274  mass 3  {pottery studio}
+;;      c418  mass 3  {school}
+;;      c504  mass 3  {depot}
+;;      c309  mass 2  {chef}
+;;      c300  mass 1  {lemon, crate, lemons}
+;;      c342  mass 1  {forklift, forklifts}
+;;      c346  mass 1  {kiln}
+
+;; ---- slot buy.Theme  [event center]  n 14  clusters 7
+(And (Member $e0 buy) (Theme $e0 $x1))
+;;      c208  mass 3  {projector, projectors}
+;;      c342  mass 3  {forklift, forklifts}
+;;      c346  mass 3  {kiln}
+;;      c300  mass 2  {lemon, crate, lemons}
+;;      c274  mass 1  {pottery studio}
+;;      c309  mass 1  {chef}
+;;      c504  mass 1  {depot}
+
+;; ---- slot work.Location  [event center]  n 13  clusters 5
+(And (Member $e0 work) (Location $e0 $x1))
+;;      c456  mass 4  {ledger}
+;;      c688  mass 4  {survey}
+;;      c615  mass 3  {frame}
+;;      c278  mass 1  {mural}
+;;        c6  mass 1  {Church of Norway}
+
+;; ---- slot build.Agent  [event center]  n 12  clusters 3
+(And (Member $e0 build) (Agent $e0 $x1))
+;;      c375  mass 8  {Company, company}
+;;      c165  mass 2  {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …}
+;;      c390  mass 2  {person, people}
+
+;; ---- slot build.Patient  [event center]  n 12  clusters 4
+(And (Member $e0 build) (Patient $e0 $x1))
+;;      c286  mass 4  {paper factory, paper mill}
+;;      c443  mass 4  {hotel}
+;;      c441  mass 2  {room}
+;;      c574  mass 2  {horn}
+
+;; ---- slot find.Location  [event center]  n 12  clusters 8
+(And (Member $e0 find) (Location $e0 $x1))
+;;      c368  mass 2  {southern}
+;;      c619  mass 2  {bench}
+;;       c74  mass 2  {Yunnan}
+;;       c75  mass 2  {tributary, tributaries}
+;;      c369  mass 1  {western}
+;;       c73  mass 1  {Dianchi Lake, Lake Dianchi}
+;;       c83  mass 1  {Europe, Western Europe}
+;;       c85  mass 1  {Japan, China}
+
+;; ---- slot give.Agent  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Agent $e0 $x1))
+;;      c338  mass 3  {coach, trainer}
+;;      c418  mass 3  {school}
+;;      c212  mass 2  {foreman}
+;;      c312  mass 1  {pilot}
+;;      c335  mass 1  {clerk}
+;;      c624  mass 1  {vet}
+;;       c63  mass 1  {driver}
+
+;; ---- slot give.Recipient  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Recipient $e0 $x1))
+;;      c385  mass 3  {recruit}
+;;      c664  mass 3  {winner, win}
+;;       c63  mass 2  {driver}
+;;      c212  mass 1  {foreman}
+;;      c431  mass 1  {tower}
+;;      c482  mass 1  {caller}
+;;      c533  mass 1  {query, search}
+
+;; ---- slot give.Theme  [event center]  n 12  clusters 4
+(And (Member $e0 give) (Theme $e0 $x1))
+;;      c257  mass 3  {whistle, whistles}
+;;      c515  mass 3  {manifest}
+;;       c56  mass 3  {medal, medals}
+;;      c674  mass 3  {answer}
+
+;; ---- slot decide.Agent  [event center]  n 11  clusters 6
+(And (Member $e0 decide) (Agent $e0 $x1))
+;;      c616  mass 3  {board}
+;;      c622  mass 3  {judge}
+;;      c379  mass 2  {committee}
+;;      c367  mass 1  {north, northeastern}
+;;      c396  mass 1  {family}
+;;      c621  mass 1  {case}
+
+;; ---- slot destroy.Patient  [event center]  n 11  clusters 5
+(And (Member $e0 destroy) (Patient $e0 $x1))
+;;      c283  mass 3  {archive}
+;;      c348  mass 3  {greenhouse}
+;;      c427  mass 3  {bridge, footbridge}
+;;      c350  mass 1  {storm, hurricane}
+;;      c569  mass 1  {fire}
+
+;; ---- slot answer.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Agent $e0 $x1))
+;;      c312  mass 3  {pilot}
+;;      c335  mass 3  {clerk}
+;;      c624  mass 2  {vet}
+;;      c482  mass 1  {caller}
+;;      c533  mass 1  {query, search}
+
+;; ---- slot answer.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Theme $e0 $x1))
+;;      c431  mass 3  {tower}
+;;      c533  mass 3  {query, search}
+;;      c482  mass 2  {caller}
+;;      c335  mass 1  {clerk}
+;;      c624  mass 1  {vet}
+
+;; ---- slot lend.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Agent $e0 $x1))
+;;      c285  mass 3  {museum}
+;;      c366  mass 3  {neighbour, neighbouring}
+;;      c504  mass 2  {depot}
+;;      c134  mass 1  {Ravi}
+;;      c320  mass 1  {crew}
+
+;; ---- slot lend.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Recipient $e0 $x1))
+;;      c134  mass 3  {Ravi}
+;;      c279  mass 3  {gallery}
+;;      c320  mass 2  {crew}
+;;      c366  mass 1  {neighbour, neighbouring}
+;;      c504  mass 1  {depot}
+
+;; ---- slot lend.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 lend) (Theme $e0 $x1))
+;;      c343  mass 4  {ladder, ladders}
+;;      c277  mass 3  {painting, paint, paintings}
+;;      c513  mass 3  {generator}
+
+;; ---- slot require.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 require) (Theme $e0 $x1))
+;;      c306  mass 4  {egg, eggs}
+;;      c514  mass 3  {countersignature, sign, countersignatures}
+;;      c690  mass 3  {monthly servicing}
+
+;; ---- slot teach.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Agent $e0 $x1))
+;;      c138  mass 3  {potter}
+;;      c388  mass 3  {elder}
+;;      c338  mass 2  {coach, trainer}
+;;      c318  mass 1  {squad}
+;;      c339  mass 1  {apprentice}
+
+;; ---- slot teach.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Recipient $e0 $x1))
+;;      c339  mass 3  {apprentice}
+;;      c387  mass 3  {child, children}
+;;      c318  mass 2  {squad}
+;;      c138  mass 1  {potter}
+;;      c338  mass 1  {coach, trainer}
+
+;; ---- slot teach.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 teach) (Theme $e0 $x1))
+;;      c347  mass 4  {glazing}
+;;      c258  mass 3  {drill}
+;;      c261  mass 3  {song, sing}
+
+;; ---- slot cancel.Agent  [event center]  n 9  clusters 4
+(And (Member $e0 cancel) (Agent $e0 $x1))
+;;      c380  mass 3  {council}
+;;      c415  mass 3  {tutor}
+;;      c310  mass 2  {airline}
+;;       c19  mass 1  {physician, doctor}
+
+;; ---- slot decide.Theme  [event center]  n 9  clusters 4
+(And (Member $e0 decide) (Theme $e0 $x1))
+;;      c457  mass 3  {budget}
+;;      c621  mass 3  {case}
+;;      c438  mass 2  {roof, new, roof}
+;;      c622  mass 1  {judge}
+
+;; ---- slot discover.Theme  [event center]  n 9  clusters 4
+(And (Member $e0 discover) (Theme $e0 $x1))
+;;      c352  mass 3  {wreck}
+;;      c412  mass 3  {file, missing}
+;;      c290  mass 2  {name}
+;;      c328  mass 1  {diver}
+
+;; ---- slot view.Possession  [entity center]  n 8  clusters 2
+(And (Member $x0 view) (Possession $x0 $x1))
+;;      c218  mass 4  {Free Soil Party}
+;;      c219  mass 4  {Republican Party}
+
+;; ---- slot abandon.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Agent $e0 $x1))
+;;      c327  mass 3  {climber, climbers}
+;;      c376  mass 3  {firm}
+;;      c322  mass 2  {rescue team}
+
+;; ---- slot abandon.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Theme $e0 $x1))
+;;      c400  mass 3  {tender}
+;;      c434  mass 3  {north route}
+;;      c533  mass 2  {query, search}
+
+;; ---- slot appear.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 appear) (Agent $e0 $x1))
+;;      c390  mass 5  {person, people}
+;;      c163  mass 2  {Brian Packham, Carl Fenton, Colin Richardson, Jason Suecof, …}
+;;      c397  mass 1  {sister, sisters}
+
+;; ---- slot appear.Location  [event center]  n 8  clusters 4
+(And (Member $e0 appear) (Location $e0 $x1))
+;;       c22  mass 2  {comedic role}
+;;      c249  mass 2  {music film, musical film}
+;;      c303  mass 2  {cafe}
+;;        c8  mass 2  {Coronation Street}
+
+;; ---- slot destroy.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 destroy) (Agent $e0 $x1))
+;;      c350  mass 2  {storm, hurricane}
+;;      c351  mass 2  {flood}
+;;      c569  mass 2  {fire}
+;;      c283  mass 1  {archive}
+;;      c348  mass 1  {greenhouse}
+
+;; ---- slot have.Holder  [event center]  n 8  clusters 4
+(And (Member $e0 have) (Holder $e0 $x1))
+;;      c154  mass 4  {Kristoffer}
+;;      c173  mass 2  {Karen}
+;;       c46  mass 1  {homentropic current}
+;;       c47  mass 1  {homentropic flow}
+
+;; ---- slot have.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 have) (Theme $e0 $x1))
+;;      c387  mass 4  {child, children}
+;;      c357  mass 2  {constant, entropy, uniform}
+;;      c667  mass 2  {representation, represent}
+
+;; ---- slot include.Theme  [event center]  n 8  clusters 4
+(And (Member $e0 include) (Theme $e0 $x1))
+;;      c120  mass 2  {Des Moines}
+;;      c132  mass 2  {Armaan Jain}
+;;      c133  mass 2  {Ranbir Kapoor}
+;;      c135  mass 2  {Nikhil Nanda}
+
+;; ---- slot produce.Patient  [event center]  n 8  clusters 3
+(And (Member $e0 produce) (Patient $e0 $x1))
+;;      c248  mass 4  {movie, film}
+;;       c23  mass 2  {destined, film, syrian, film, syrian}
+;;      c265  mass 2  {album}
+
+;; ---- slot reject.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Agent $e0 $x1))
+;;      c333  mass 2  {editor}
+;;      c455  mass 2  {bank}
+;;      c617  mass 2  {panel}
+;;      c289  mass 1  {manuscript}
+;;      c452  mass 1  {loan application}
+
+;; ---- slot reject.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Theme $e0 $x1))
+;;      c289  mass 2  {manuscript}
+;;      c452  mass 2  {loan application}
+;;      c606  mass 2  {proposal, suggest}
+;;      c333  mass 1  {editor}
+;;      c455  mass 1  {bank}
+
+;; ---- slot repair.Agent  [event center]  n 8  clusters 6
+(And (Member $e0 repair) (Agent $e0 $x1))
+;;      c329  mass 2  {electrician}
+;;       c64  mass 2  {mechanic}
+;;      c209  mass 1  {cracked, feed pipe}
+;;      c320  mass 1  {crew}
+;;       c61  mass 1  {gearbox, gearbox, seized}
+;;      c692  mass 1  {yard floodlight}
+
+;; ---- slot repair.Patient  [event center]  n 8  clusters 6
+(And (Member $e0 repair) (Patient $e0 $x1))
+;;       c61  mass 2  {gearbox, gearbox, seized}
+;;      c692  mass 2  {yard floodlight}
+;;      c209  mass 1  {cracked, feed pipe}
+;;      c320  mass 1  {crew}
+;;      c329  mass 1  {electrician}
+;;       c64  mass 1  {mechanic}
+
+;; ---- slot require.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 require) (Holder $e0 $x1))
+;;      c308  mass 3  {recipe}
+;;      c670  mass 3  {permit, allow, accept, confirm}
+;;      c344  mass 2  {lathe}
+
+;; ---- slot serve.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 serve) (Agent $e0 $x1))
+;;      c125  mass 2  {Indooroopilly}
+;;      c126  mass 2  {Ipswich}
+;;      c197  mass 2  {Rosewood}
+;;      c390  mass 2  {person, people}
+
+;; ---- slot sing.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 sing) (Agent $e0 $x1))
+;;      c267  mass 2  {Barbershop Harmony Society}
+;;      c374  mass 2  {occupational group, professional group}
+;;      c390  mass 2  {person, people}
+;;      c397  mass 2  {sister, sisters}
+
+;; ---- slot study.Location  [event center]  n 8  clusters 3
+(And (Member $e0 study) (Location $e0 $x1))
+;;      c124  mass 4  {Melbourne, Sydney}
+;;      c272  mass 2  {Davis Studio}
+;;      c273  mass 2  {Julian Ashton Art School}
+
+;; ---- slot be.Experiencer  [event center]  n 7  clusters 4
+(And (Member $e0 be) (Experiencer $e0 $x1))
+;;      c195  mass 4  {Paniqui}
+;;      c104  mass 1  {Ellerslie Rugby Park}
+;;      c211  mass 1  {tunnel}
+;;       c70  mass 1  {Alema Nature Reserve}
+
+;; ---- slot begin.Patient  [event center]  n 7  clusters 4
+(And (Member $e0 begin) (Patient $e0 $x1))
+;;      c271  mass 2  {dress rehearsal}
+;;      c302  mass 2  {apple harvest}
+;;       c80  mass 2  {shoreline survey}
+;;      c487  mass 1  {hearing}
+
+;; ---- slot cancel.Patient  [event center]  n 7  clusters 3
+(And (Member $e0 cancel) (Patient $e0 $x1))
+;;       c26  mass 3  {summer fair}
+;;      c313  mass 3  {afternoon session}
+;;      c311  mass 1  {evening flight}
+
+;; ---- slot discover.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 discover) (Agent $e0 $x1))
+;;      c328  mass 3  {diver}
+;;      c524  mass 3  {intern}
+;;      c352  mass 1  {wreck}
+
+;; ---- slot locate.Location  [event center]  n 7  clusters 4
+(And (Member $e0 locate) (Location $e0 $x1))
+;;      c115  mass 2  {Cloverdale}
+;;      c413  mass 2  {foot}
+;;      c423  mass 2  {hill, hills}
+;;      c116  mass 1  {Richford}
+
+;; ---- slot postpone.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Agent $e0 $x1))
+;;      c319  mass 3  {club}
+;;      c616  mass 2  {board}
+;;       c65  mass 2  {ferry}
+
+;; ---- slot postpone.Theme  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Theme $e0 $x1))
+;;       c16  mass 3  {tournament}
+;;      c625  mass 2  {vote}
+;;      c634  mass 2  {departure, depart, leave}
+
+;; ---- slot work.CoAgent  [event center]  n 7  clusters 4
+(And (Member $e0 work) (CoAgent $e0 $x1))
+;;      c185  mass 2  {Bo, Bobby, Robbie, Roger}
+;;      c191  mass 2  {Nils}
+;;      c323  mass 2  {ranger}
+;;      c512  mass 1  {fitter}
+
+;; ---- slot budget.Possession  [entity center]  n 6  clusters 1
+(And (Member $x0 budget) (Possession $x0 $x1))
+;;      c498  mass 6  {next year, next}
+
+;; ---- slot arrive.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 arrive) (Agent $e0 $x1))
+;;       c67  mass 3  {freight}
+;;      c383  mass 2  {delegation}
+;;       c49  mass 1  {soil sample, soil samples}
+
+;; ---- slot build.Instrument  [event center]  n 6  clusters 3
+(And (Member $e0 build) (Instrument $e0 $x1))
+;;      c349  mass 2  {barometer}
+;;      c421  mass 2  {scale, present in, scale, present, scale}
+;;      c628  mass 2  {help, support}
+
+;; ---- slot decision.Theme  [event center]  n 6  clusters 3
+(And (Member $e0 decision) (Theme $e0 $x1))
+;;      c438  mass 2  {roof, new, roof}
+;;      c457  mass 2  {budget}
+;;      c621  mass 2  {case}
+
+;; ---- slot design.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 design) (Agent $e0 $x1))
+;;      c163  mass 2  {Brian Packham, Carl Fenton, Colin Richardson, Jason Suecof, …}
+;;      c164  mass 2  {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …}
+;;       c68  mass 2  {Robert Allan Limited}
+
+;; ---- slot discover.Location  [event center]  n 6  clusters 2
+(And (Member $e0 discover) (Location $e0 $x1))
+;;      c659  mass 4  {point}
+;;       c85  mass 2  {Japan, China}
+
+;; ---- slot form.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 form) (Agent $e0 $x1))
+;;      c157  mass 4  {Jon Bon Jovi, Sambora}
+;;       c51  mass 1  {Technetium}
+;;      c547  mass 1  {complex, complex, simple}
+
+;; ---- slot fund.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 fund) (Agent $e0 $x1))
+;;      c220  mass 3  {government}
+;;      c227  mass 3  {JICA}
+
+;; ---- slot include.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 include) (Agent $e0 $x1))
+;;      c386  mass 6  {nephew, nephews}
+
+;; ---- slot portray.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Agent $e0 $x1))
+;;      c150  mass 2  {inomaru, Mie Sonozaki, Soichiro Akizuki}
+;;      c156  mass 2  {James Woods, Jeremy Irons}
+;;      c180  mass 2  {Wilson, wilson}
+
+;; ---- slot portray.Theme  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Theme $e0 $x1))
+;;      c151  mass 2  {Kantaro Suga}
+;;      c156  mass 2  {James Woods, Jeremy Irons}
+;;      c180  mass 2  {Wilson, wilson}
+
+;; ---- slot produce.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 produce) (Agent $e0 $x1))
+;;      c164  mass 4  {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …}
+;;      c163  mass 2  {Brian Packham, Carl Fenton, Colin Richardson, Jason Suecof, …}
+
+;; ---- slot sell.Theme  [event center]  n 6  clusters 5
+(And (Member $e0 sell) (Theme $e0 $x1))
+;;      c305  mass 2  {ice cream, ice cone, ice cream cone}
+;;      c208  mass 1  {projector, projectors}
+;;      c300  mass 1  {lemon, crate, lemons}
+;;      c342  mass 1  {forklift, forklifts}
+;;      c346  mass 1  {kiln}
+
+;; ---- slot serve.Theme  [event center]  n 6  clusters 1
+(And (Member $e0 serve) (Theme $e0 $x1))
+;;      c430  mass 6  {station}
+
+;; ---- slot use.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 use) (Theme $e0 $x1))
+;;        c1  mass 2  {Banach -- Mackey topology}
+;;        c2  mass 2  {weak Arens space topology}
+;;      c292  mass 1  {naming convention, current, naming convention}
+;;      c293  mass 1  {designation convention, current, designation convention}
+
+;; ---- slot write.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Agent $e0 $x1))
+;;      c152  mass 2  {Gilles Thibaut}
+;;      c164  mass 2  {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …}
+;;      c390  mass 2  {person, people}
+
+;; ---- slot write.CoAgent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (CoAgent $e0 $x1))
+;;      c161  mass 2  {Corentin Rahier, Cyril Rambour, Peter Gaussen}
+;;      c170  mass 2  {Laurie Aubanel, Muriel Zazoui, Patricia Kaas}
+;;      c171  mass 2  {Bianca Olsen}
+
+;; ---- slot write.Patient  [event center]  n 6  clusters 4
+(And (Member $e0 write) (Patient $e0 $x1))
+;;      c261  mass 2  {song, sing}
+;;      c469  mass 2  {episode}
+;;      c253  mass 1  {screenplay}
+;;      c254  mass 1  {script}
+
+;; ---- slot tender.Possession  [entity center]  n 5  clusters 1
+(And (Member $x0 tender) (Possession $x0 $x1))
+;;      c376  mass 5  {firm}
+
+;; ---- slot borrow.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 borrow) (Theme $e0 $x1))
+;;      c150  mass 2  {inomaru, Mie Sonozaki, Soichiro Akizuki}
+;;      c277  mass 1  {painting, paint, paintings}
+;;      c343  mass 1  {ladder, ladders}
+;;      c513  mass 1  {generator}
+
+;; ---- slot die.Patient  [event center]  n 5  clusters 3
+(And (Member $e0 die) (Patient $e0 $x1))
+;;      c340  mass 2  {founder}
+;;      c390  mass 2  {person, people}
+;;      c299  mass 1  {elm, last}
+
+;; ---- slot locate.Experiencer  [event center]  n 5  clusters 3
+(And (Member $e0 locate) (Experiencer $e0 $x1))
+;;      c102  mass 2  {Wine Country}
+;;      c428  mass 2  {park}
+;;      c104  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot receive.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 receive) (Theme $e0 $x1))
+;;      c519  mass 2  {work, job}
+;;      c257  mass 1  {whistle, whistles}
+;;      c515  mass 1  {manifest}
+;;       c56  mass 1  {medal, medals}
+
+;; ---- slot take.Agent  [event center]  n 5  clusters 4
+(And (Member $e0 take) (Agent $e0 $x1))
+;;      c390  mass 2  {person, people}
+;;       c20  mass 1  {nurse}
+;;      c324  mass 1  {shepherd}
+;;      c387  mass 1  {child, children}
+
+;; ---- slot walk.Agent  [event center]  n 5  clusters 5
+(And (Member $e0 walk) (Agent $e0 $x1))
+;;       c20  mass 1  {nurse}
+;;      c324  mass 1  {shepherd}
+;;      c387  mass 1  {child, children}
+;;      c429  mass 1  {pier}
+;;      c665  mass 1  {ward, well}
+
+;; ---- slot walk.Location  [event center]  n 5  clusters 3
+(And (Member $e0 walk) (Location $e0 $x1))
+;;      c424  mass 2  {ridge}
+;;      c665  mass 2  {ward, well}
+;;       c20  mass 1  {nurse}
+
+;; ---- slot <unclassed>.PartOf  [entity center]  n 4  clusters 3
+(PartOf $x0 $x1)
+;;      c131  mass 2  {Khurda Road}
+;;       c81  mass 1  {Colombia, Peru}
+;;       c82  mass 1  {Huancavelica}
+
+;; ---- slot bad.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 bad) (Between $x0 $x1))
+;;       c90  mass 2  {Estonia, Poland}
+;;       c91  mass 2  {Germany}
+
+;; ---- slot border_section.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 border_section) (Between $x0 $x1))
+;;      c194  mass 2  {Lessos}
+;;       c97  mass 2  {Uganda, Kenya}
+
+;; ---- slot departure.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 departure) (Possession $x0 $x1))
+;;       c65  mass 4  {ferry}
+
+;; ---- slot family.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 family) (Possession $x0 $x1))
+;;      c390  mass 4  {person, people}
+
+;; ---- slot government.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 government) (Possession $x0 $x1))
+;;       c97  mass 4  {Uganda, Kenya}
+
+;; ---- slot lunch.Before  [entity center]  n 4  clusters 1
+(And (Member $x0 lunch) (Before $x0 $x1))
+;;      c641  mass 4  {begin, start, commence}
+
+;; ---- slot accompany.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 accompany) (Agent $e0 $x1))
+;;      c390  mass 2  {person, people}
+;;      c397  mass 2  {sister, sisters}
+
+;; ---- slot accompany.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 accompany) (Theme $e0 $x1))
+;;      c250  mass 4  {silent film}
+
+;; ---- slot acquire.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Agent $e0 $x1))
+;;      c274  mass 1  {pottery studio}
+;;      c309  mass 1  {chef}
+;;      c418  mass 1  {school}
+;;      c504  mass 1  {depot}
+
+;; ---- slot acquire.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Theme $e0 $x1))
+;;      c208  mass 1  {projector, projectors}
+;;      c300  mass 1  {lemon, crate, lemons}
+;;      c342  mass 1  {forklift, forklifts}
+;;      c346  mass 1  {kiln}
+
+;; ---- slot active.Time  [event center]  n 4  clusters 2
+(And (Member $e0 active) (Time $e0 $x1))
+;;      c314  mass 2  {late afternoon}
+;;      c315  mass 2  {morning, early morning}
+
+;; ---- slot allow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Agent $e0 $x1))
+;;      c481  mass 2  {licence}
+;;      c336  mass 1  {warden}
+;;      c337  mass 1  {curator}
+
+;; ---- slot allow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Theme $e0 $x1))
+;;      c409  mass 2  {night delivery}
+;;      c282  mass 1  {photography}
+;;      c502  mass 1  {visitor}
+
+;; ---- slot attract.Source  [event center]  n 4  clusters 2
+(And (Member $e0 attract) (Source $e0 $x1))
+;;       c53  mass 2  {mainstream media}
+;;       c55  mass 2  {social media}
+
+;; ---- slot be.Location  [event center]  n 4  clusters 4
+(And (Member $e0 be) (Location $e0 $x1))
+;;      c116  mass 1  {Richford}
+;;      c122  mass 1  {Harju County}
+;;      c367  mass 1  {north, northeastern}
+;;       c94  mass 1  {denmark}
+
+;; ---- slot be.Source  [event center]  n 4  clusters 2
+(And (Member $e0 be) (Source $e0 $x1))
+;;      c108  mass 3  {Manila, Tarlac City}
+;;      c113  mass 1  {provincial capital}
+
+;; ---- slot become.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Patient $e0 $x1))
+;;      c393  mass 2  {bad, relationship}
+;;       c40  mass 1  {indigenous, indigenous american, indigenous, people, native american, …}
+;;      c478  mass 1  {discipline, lax}
+
+;; ---- slot become.Result  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Result $e0 $x1))
+;;      c593  mass 2  {bad}
+;;      c110  mass 1  {lax}
+;;       c40  mass 1  {indigenous, indigenous american, indigenous, people, native american, …}
+
+;; ---- slot begin.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 begin) (Agent $e0 $x1))
+;;       c39  mass 2  {european american settler, european american settlers}
+;;       c40  mass 2  {indigenous, indigenous american, indigenous, people, native american, …}
+
+;; ---- slot begin.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 begin) (Theme $e0 $x1))
+;;      c643  mass 4  {create}
+
+;; ---- slot block.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Agent $e0 $x1))
+;;       c62  mass 4  {automobile, car, automobiles}
+
+;; ---- slot block.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Theme $e0 $x1))
+;;      c433  mass 4  {lane, way}
+
+;; ---- slot celebrated.Location  [event center]  n 4  clusters 2
+(And (Member $e0 celebrated) (Location $e0 $x1))
+;;        c3  mass 2  {traditional chinese drama, traditional chinese dramas}
+;;       c54  mass 2  {popular culture}
+
+;; ---- slot commence.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 commence) (Patient $e0 $x1))
+;;      c271  mass 1  {dress rehearsal}
+;;      c302  mass 1  {apple harvest}
+;;      c487  mass 1  {hearing}
+;;       c80  mass 1  {shoreline survey}
+
+;; ---- slot create.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 create) (Agent $e0 $x1))
+;;       c39  mass 2  {european american settler, european american settlers}
+;;       c40  mass 2  {indigenous, indigenous american, indigenous, people, native american, …}
+
+;; ---- slot create.Location  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Location $e0 $x1))
+;;      c611  mass 4  {post}
+
+;; ---- slot create.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Patient $e0 $x1))
+;;      c381  mass 4  {community}
+
+;; ---- slot define.Manner  [event center]  n 4  clusters 3
+(And (Member $e0 define) (Manner $e0 $x1))
+;;      c406  mass 2  {random, random, ways}
+;;      c405  mass 1  {manners, random}
+;;      c407  mass 1  {accidental, accidental, ways}
+
+;; ---- slot define.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 define) (Theme $e0 $x1))
+;;       c30  mass 4  {algorithmically equivalent, sequences, equivalent, sequences}
+
+;; ---- slot design.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 design) (Patient $e0 $x1))
+;;      c528  mass 4  {pacificat, pacificats}
+
+;; ---- slot direct.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Agent $e0 $x1))
+;;      c167  mass 2  {Lev L. Spiro}
+;;      c163  mass 1  {Brian Packham, Carl Fenton, Colin Richardson, Jason Suecof, …}
+;;      c205  mass 1  {Claude Lelouch}
+
+;; ---- slot direct.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Patient $e0 $x1))
+;;      c469  mass 2  {episode}
+;;       c23  mass 1  {destined, film, syrian, film, syrian}
+;;      c248  mass 1  {movie, film}
+
+;; ---- slot encourage.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Agent $e0 $x1))
+;;      c189  mass 4  {Ralph}
+
+;; ---- slot encourage.In  [event center]  n 4  clusters 2
+(And (Member $e0 encourage) (In $e0 $x1))
+;;       c11  mass 2  {chess, chess play}
+;;      c419  mass 2  {mathematics}
+
+;; ---- slot encourage.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Theme $e0 $x1))
+;;      c183  mass 4  {Maurice}
+
+;; ---- slot error.Location  [event center]  n 4  clusters 1
+(And (Member $e0 error) (Location $e0 $x1))
+;;      c456  mass 4  {ledger}
+
+;; ---- slot follow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Agent $e0 $x1))
+;;      c236  mass 2  {muslim, house, muslim}
+;;      c142  mass 1  {Alexander}
+;;      c190  mass 1  {Bailey}
+
+;; ---- slot follow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Theme $e0 $x1))
+;;      c361  mass 2  {region}
+;;      c165  mass 1  {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …}
+;;      c174  mass 1  {Margaret Fleming, Dora Smith}
+
+;; ---- slot form.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 form) (Patient $e0 $x1))
+;;      c270  mass 2  {main songwriting unit}
+;;       c51  mass 1  {Technetium}
+;;      c547  mass 1  {complex, complex, simple}
+
+;; ---- slot have.Location  [event center]  n 4  clusters 2
+(And (Member $e0 have) (Location $e0 $x1))
+;;      c362  mass 2  {regional level}
+;;      c365  mass 2  {local level}
+
+;; ---- slot influence.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 influence) (Theme $e0 $x1))
+;;      c239  mass 2  {religion}
+;;        c4  mass 2  {chinese dumpling}
+
+;; ---- slot kill.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Agent $e0 $x1))
+;;      c350  mass 4  {storm, hurricane}
+
+;; ---- slot kill.Location  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Location $e0 $x1))
+;;      c222  mass 4  {state}
+
+;; ---- slot kill.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 kill) (Manner $e0 $x1))
+;;      c662  mass 2  {direct, directly}
+;;      c663  mass 2  {indirectly}
+
+;; ---- slot kill.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Patient $e0 $x1))
+;;      c390  mass 4  {person, people}
+
+;; ---- slot make.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 make) (Agent $e0 $x1))
+;;      c379  mass 1  {committee}
+;;      c396  mass 1  {family}
+;;      c616  mass 1  {board}
+;;      c622  mass 1  {judge}
+
+;; ---- slot make.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 make) (Patient $e0 $x1))
+;;      c671  mass 4  {decision, decide}
+
+;; ---- slot move.Goal  [event center]  n 4  clusters 2
+(And (Member $e0 move) (Goal $e0 $x1))
+;;      c119  mass 2  {Baltimore}
+;;       c91  mass 2  {Germany}
+
+;; ---- slot nation.Location  [event center]  n 4  clusters 2
+(And (Member $e0 nation) (Location $e0 $x1))
+;;      c129  mass 2  {Bengal, northern india, southern india}
+;;      c130  mass 2  {South Asia}
+
+;; ---- slot order.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Agent $e0 $x1))
+;;       c19  mass 3  {physician, doctor}
+;;      c537  mass 1  {scan}
+
+;; ---- slot order.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Theme $e0 $x1))
+;;      c537  mass 3  {scan}
+;;       c19  mass 1  {physician, doctor}
+
+;; ---- slot play.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 play) (Agent $e0 $x1))
+;;      c177  mass 2  {Audrey Hepburn, Audrey Heppurn}
+;;      c139  mass 1  {Boston Red Sox}
+;;      c140  mass 1  {Cincinnati Reds}
+
+;; ---- slot play.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Theme $e0 $x1))
+;;      c178  mass 2  {Holly Golightly}
+;;      c468  mass 2  {series}
+
+;; ---- slot preach.Location  [event center]  n 4  clusters 2
+(And (Member $e0 preach) (Location $e0 $x1))
+;;      c121  mass 2  {Gareccio}
+;;       c93  mass 2  {Italy}
+
+;; ---- slot purchase.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Agent $e0 $x1))
+;;      c274  mass 1  {pottery studio}
+;;      c309  mass 1  {chef}
+;;      c418  mass 1  {school}
+;;      c504  mass 1  {depot}
+
+;; ---- slot purchase.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Theme $e0 $x1))
+;;      c208  mass 1  {projector, projectors}
+;;      c300  mass 1  {lemon, crate, lemons}
+;;      c342  mass 1  {forklift, forklifts}
+;;      c346  mass 1  {kiln}
+
+;; ---- slot reach.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 reach) (Agent $e0 $x1))
+;;      c379  mass 1  {committee}
+;;      c396  mass 1  {family}
+;;      c616  mass 1  {board}
+;;      c622  mass 1  {judge}
+
+;; ---- slot reach.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 reach) (Theme $e0 $x1))
+;;      c671  mass 4  {decision, decide}
+
+;; ---- slot replace.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Agent $e0 $x1))
+;;      c164  mass 2  {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …}
+;;      c161  mass 1  {Corentin Rahier, Cyril Rambour, Peter Gaussen}
+;;      c223  mass 1  {governor}
+
+;; ---- slot replace.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Theme $e0 $x1))
+;;      c144  mass 2  {Lex Lex Luthor, Lex Luthor}
+;;      c165  mass 1  {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …}
+;;      c223  mass 1  {governor}
+
+;; ---- slot sell.Recipient  [event center]  n 4  clusters 4
+(And (Member $e0 sell) (Recipient $e0 $x1))
+;;      c274  mass 1  {pottery studio}
+;;      c309  mass 1  {chef}
+;;      c418  mass 1  {school}
+;;      c504  mass 1  {depot}
+
+;; ---- slot sign.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Agent $e0 $x1))
+;;       c19  mass 3  {physician, doctor}
+;;      c689  mass 1  {chart}
+
+;; ---- slot sign.Patient  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Patient $e0 $x1))
+;;      c689  mass 3  {chart}
+;;       c19  mass 1  {physician, doctor}
+
+;; ---- slot sing.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Manner $e0 $x1))
+;;      c268  mass 4  {a cappella}
+
+;; ---- slot sing.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Theme $e0 $x1))
+;;      c262  mass 4  {music}
+
+;; ---- slot sing.To  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (To $e0 $x1))
+;;      c542  mass 4  {accompany}
+
+;; ---- slot speak.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 speak) (Agent $e0 $x1))
+;;      c200  mass 2  {Oates}
+;;      c150  mass 1  {inomaru, Mie Sonozaki, Soichiro Akizuki}
+;;      c179  mass 1  {Kari Wahlgren}
+
+;; ---- slot specify.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 specify) (Manner $e0 $x1))
+;;      c354  mass 2  {continuous time}
+;;      c355  mass 2  {discrete time}
+
+;; ---- slot star.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 star) (Theme $e0 $x1))
+;;      c156  mass 2  {James Woods, Jeremy Irons}
+;;      c170  mass 2  {Laurie Aubanel, Muriel Zazoui, Patricia Kaas}
+
+;; ---- slot start.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 start) (Patient $e0 $x1))
+;;      c271  mass 1  {dress rehearsal}
+;;      c302  mass 1  {apple harvest}
+;;      c487  mass 1  {hearing}
+;;       c80  mass 1  {shoreline survey}
+
+;; ---- slot study.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 study) (Agent $e0 $x1))
+;;      c390  mass 4  {person, people}
+
+;; ---- slot take.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 take) (Theme $e0 $x1))
+;;      c391  mass 2  {identity}
+;;      c432  mass 2  {walk, stroll}
+
+;; ---- slot use.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 use) (Manner $e0 $x1))
+;;      c556  mass 4  {rare}
+
+;; ---- slot win.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 win) (Agent $e0 $x1))
+;;      c156  mass 2  {James Woods, Jeremy Irons}
+;;      c180  mass 2  {Wilson, wilson}
+
+;; ---- slot win.For  [event center]  n 4  clusters 1
+(And (Member $e0 win) (For $e0 $x1))
+;;      c276  mass 4  {portray}
+
+;; ---- slot win.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 win) (Theme $e0 $x1))
+;;       c58  mass 4  {emmy}
+
+;; ---- slot house.Possession  [entity center]  n 3  clusters 2
+(And (Member $x0 house) (Possession $x0 $x1))
+;;      c198  mass 2  {Dara, Arakkal}
+;;       c95  mass 1  {Derwent Isle}
+
+;; ---- slot western.PartOf  [entity center]  n 3  clusters 2
+(And (Member $x0 western) (PartOf $x0 $x1))
+;;       c85  mass 2  {Japan, China}
+;;       c83  mass 1  {Europe, Western Europe}
+
+;; ---- slot bear.Patient  [event center]  n 3  clusters 2
+(And (Member $e0 bear) (Patient $e0 $x1))
+;;      c390  mass 2  {person, people}
+;;      c169  mass 1  {Leonor Rodrigues}
+
+;; ---- slot begin.Time  [event center]  n 3  clusters 2
+(And (Member $e0 begin) (Time $e0 $x1))
+;;      c316  mass 2  {dawn}
+;;      c315  mass 1  {morning, early morning}
+
+;; ---- slot borrow.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Agent $e0 $x1))
+;;      c134  mass 1  {Ravi}
+;;      c279  mass 1  {gallery}
+;;      c320  mass 1  {crew}
+
+;; ---- slot borrow.Source  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Source $e0 $x1))
+;;      c285  mass 1  {museum}
+;;      c366  mass 1  {neighbour, neighbouring}
+;;      c504  mass 1  {depot}
+
+;; ---- slot buy.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 buy) (Beneficiary $e0 $x1))
+;;      c440  mass 3  {hall}
+
+;; ---- slot call_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 call_off) (Agent $e0 $x1))
+;;      c310  mass 1  {airline}
+;;      c380  mass 1  {council}
+;;      c415  mass 1  {tutor}
+
+;; ---- slot cause.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 cause) (Agent $e0 $x1))
+;;      c350  mass 1  {storm, hurricane}
+;;      c351  mass 1  {flood}
+;;      c569  mass 1  {fire}
+
+;; ---- slot cause.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 cause) (Theme $e0 $x1))
+;;      c587  mass 3  {destroy}
+
+;; ---- slot discover.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+;;      c334  mass 2  {auditor}
+;;      c600  mass 1  {error}
+
+;; ---- slot discover.Stimulus  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+;;      c600  mass 2  {error}
+;;      c334  mass 1  {auditor}
+
+;; ---- slot end.Patient  [event center]  n 3  clusters 3
+(And (Member $e0 end) (Patient $e0 $x1))
+;;      c302  mass 1  {apple harvest}
+;;      c487  mass 1  {hearing}
+;;       c80  mass 1  {shoreline survey}
+
+;; ---- slot examine.Agent  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Agent $e0 $x1))
+;;       c19  mass 3  {physician, doctor}
+
+;; ---- slot examine.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Theme $e0 $x1))
+;;      c260  mass 3  {sample, samples}
+
+;; ---- slot fund.Theme  [event center]  n 3  clusters 2
+(And (Member $e0 fund) (Theme $e0 $x1))
+;;      c360  mass 2  {lessos kenya border section}
+;;      c359  mass 1  {border section}
+
+;; ---- slot give_up.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Agent $e0 $x1))
+;;      c322  mass 1  {rescue team}
+;;      c327  mass 1  {climber, climbers}
+;;      c376  mass 1  {firm}
+
+;; ---- slot give_up.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Theme $e0 $x1))
+;;      c400  mass 1  {tender}
+;;      c434  mass 1  {north route}
+;;      c533  mass 1  {query, search}
+
+;; ---- slot influence.Agent  [event center]  n 3  clusters 2
+(And (Member $e0 influence) (Agent $e0 $x1))
+;;       c38  mass 2  {indonesian immigrant, indonesian immigrants}
+;;      c454  mass 1  {balance, international}
+
+;; ---- slot learn.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Agent $e0 $x1))
+;;      c318  mass 1  {squad}
+;;      c339  mass 1  {apprentice}
+;;      c387  mass 1  {child, children}
+
+;; ---- slot learn.Source  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Source $e0 $x1))
+;;      c138  mass 1  {potter}
+;;      c338  mass 1  {coach, trainer}
+;;      c388  mass 1  {elder}
+
+;; ---- slot learn.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Theme $e0 $x1))
+;;      c258  mass 1  {drill}
+;;      c261  mass 1  {song, sing}
+;;      c347  mass 1  {glazing}
+
+;; ---- slot market.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Beneficiary $e0 $x1))
+;;      c450  mass 3  {shop}
+
+;; ---- slot market.Location  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Location $e0 $x1))
+;;      c233  mass 3  {pakistani, block, pakistani}
+
+;; ---- slot need.Holder  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Holder $e0 $x1))
+;;      c308  mass 1  {recipe}
+;;      c344  mass 1  {lathe}
+;;      c670  mass 1  {permit, allow, accept, confirm}
+
+;; ---- slot need.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Theme $e0 $x1))
+;;      c306  mass 1  {egg, eggs}
+;;      c514  mass 1  {countersignature, sign, countersignatures}
+;;      c690  mass 1  {monthly servicing}
+
+;; ---- slot permit.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Agent $e0 $x1))
+;;      c336  mass 1  {warden}
+;;      c337  mass 1  {curator}
+;;      c481  mass 1  {licence}
+
+;; ---- slot permit.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Theme $e0 $x1))
+;;      c282  mass 1  {photography}
+;;      c409  mass 1  {night delivery}
+;;      c502  mass 1  {visitor}
+
+;; ---- slot put_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Agent $e0 $x1))
+;;      c319  mass 1  {club}
+;;      c616  mass 1  {board}
+;;       c65  mass 1  {ferry}
+
+;; ---- slot put_off.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Theme $e0 $x1))
+;;       c16  mass 1  {tournament}
+;;      c625  mass 1  {vote}
+;;      c634  mass 1  {departure, depart, leave}
+
+;; ---- slot receive.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Agent $e0 $x1))
+;;      c385  mass 1  {recruit}
+;;       c63  mass 1  {driver}
+;;      c664  mass 1  {winner, win}
+
+;; ---- slot receive.Source  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Source $e0 $x1))
+;;      c212  mass 1  {foreman}
+;;      c338  mass 1  {coach, trainer}
+;;      c418  mass 1  {school}
+
+;; ---- slot start.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Experiencer $e0 $x1))
+;;      c427  mass 2  {bridge, footbridge}
+;;      c211  mass 1  {tunnel}
+
+;; ---- slot start.Location  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Location $e0 $x1))
+;;      c106  mass 2  {sweden}
+;;       c94  mass 1  {denmark}
+
+;; ---- slot succeed.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Agent $e0 $x1))
+;;      c142  mass 1  {Alexander}
+;;      c161  mass 1  {Corentin Rahier, Cyril Rambour, Peter Gaussen}
+;;      c190  mass 1  {Bailey}
+
+;; ---- slot succeed.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Theme $e0 $x1))
+;;      c165  mass 1  {Henry Cole, O. R. Woodcock, Thomas Bain, Thomas Fothergill, …}
+;;      c174  mass 1  {Margaret Fleming, Dora Smith}
+;;      c223  mass 1  {governor}
+
+;; ---- slot turn_down.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+;;      c333  mass 1  {editor}
+;;      c455  mass 1  {bank}
+;;      c617  mass 1  {panel}
+
+;; ---- slot turn_down.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+;;      c289  mass 1  {manuscript}
+;;      c452  mass 1  {loan application}
+;;      c606  mass 1  {proposal, suggest}
+
+;; ---- slot wait.Experiencer  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+;;       c62  mass 3  {automobile, car, automobiles}
+
+;; ---- slot wait.Location  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Location $e0 $x1))
+;;      c508  mass 3  {gate}
+
+;; ---- slot walk.Goal  [event center]  n 3  clusters 2
+(And (Member $e0 walk) (Goal $e0 $x1))
+;;      c429  mass 2  {pier}
+;;      c387  mass 1  {child, children}
+
+;; ---- slot work.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 work) (Theme $e0 $x1))
+;;      c278  mass 3  {mural}
+
+;; ==================== subtree @ cluster cos 0.90: pooled role level (45 head pairs) ====================
+
+;; Agent ~ Recipient  cosine 0.29  JSD 0.735  n 500 / 47  shared: {person, people} {school} {depot}
+(Agent $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Patient  cosine 0.23  JSD 0.858  n 500 / 159  shared: {person, people} {physician, doctor} {electrician}
+(Agent $e $x)
+(Patient $e $x)
+
+;; Agent ~ Experiencer  cosine 0.22  JSD 0.901  n 500 / 63  shared: {person, people} {automobile, car, automobiles} {Aslan}
+(Agent $e $x)
+(Experiencer $e $x)
+
+;; Experiencer ~ Patient  cosine 0.15  JSD 0.886  n 63 / 159  shared: {person, people} {bad, relationship} {indigenous, indigenous, people}
+(Experiencer $e $x)
+(Patient $e $x)
+
+;; Agent ~ Theme  cosine 0.15  JSD 0.822  n 500 / 367  shared: {person, people} {physician, doctor} {children}
+(Agent $e $x)
+(Theme $e $x)
+
+;; Patient ~ Theme  cosine 0.12  JSD 0.887  n 159 / 367  shared: {person, people} {song, sing} {decision, decide}
+(Patient $e $x)
+(Theme $e $x)
+
+;; Recipient ~ Source  cosine 0.11  JSD 0.813  n 47 / 24  shared: {depot} {potter} {foreman}
+(Recipient $e $x)
+(Source $e $x)
+
+;; Agent ~ Source  cosine 0.11  JSD 0.862  n 500 / 24  shared: {school} {depot} {potter}
+(Agent $e $x)
+(Source $e $x)
+
+;; Recipient ~ Theme  cosine 0.09  JSD 0.904  n 47 / 367  shared: {children} {person, people} {tower}
+(Recipient $e $x)
+(Theme $e $x)
+
+;; Patient ~ Recipient  cosine 0.08  JSD 0.94  n 159 / 47  shared: {person, people} {crew}
+(Patient $e $x)
+(Recipient $e $x)
+
+;; Experiencer ~ Recipient  cosine 0.07  JSD 0.948  n 63 / 47  shared: {person, people}
+(Experiencer $e $x)
+(Recipient $e $x)
+
+;; Experiencer ~ Theme  cosine 0.06  JSD 0.952  n 63 / 367  shared: {person, people} {bridge} {destined, film, syrian}
+(Experiencer $e $x)
+(Theme $e $x)
+
+;; Goal ~ Recipient  cosine 0.05  JSD 0.929  n 30 / 47  shared: {children} {Loren}
+(Goal $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Goal  cosine 0.03  JSD 0.964  n 500 / 30  shared: {George Allen, Chuck Robb} {children} {pier}
+(Agent $e $x)
+(Goal $e $x)
+
+;; Goal ~ Theme  cosine 0.02  JSD 0.975  n 30 / 367  shared: {children} {predictive function, predictive functions}
+(Goal $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Location  cosine 0.01  JSD 0.988  n 63 / 175  shared: {park}
+(Experiencer $e $x)
+(Location $e $x)
+
+;; Location ~ Theme  cosine 0.01  JSD 0.987  n 175 / 367  shared: {mural} {gate}
+(Location $e $x)
+(Theme $e $x)
+
+;; Agent ~ Location  cosine 0.01  JSD 0.987  n 500 / 175  shared: {nurse} {north} {ward}
+(Agent $e $x)
+(Location $e $x)
+
+;; Source ~ Theme  cosine 0.00  JSD 0.993  n 24 / 367  shared: {depot}
+(Source $e $x)
+(Theme $e $x)
+
+;; Agent ~ Manner  cosine 0.00  JSD 1.0  n 500 / 34  shared: 
+(Agent $e $x)
+(Manner $e $x)
+
+;; Agent ~ Time  cosine 0.00  JSD 1.0  n 500 / 37  shared: 
+(Agent $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Goal  cosine 0.00  JSD 1.0  n 63 / 30  shared: 
+(Experiencer $e $x)
+(Goal $e $x)
+
+;; Experiencer ~ Manner  cosine 0.00  JSD 1.0  n 63 / 34  shared: 
+(Experiencer $e $x)
+(Manner $e $x)
+
+;; Experiencer ~ Source  cosine 0.00  JSD 1.0  n 63 / 24  shared: 
+(Experiencer $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Time  cosine 0.00  JSD 1.0  n 63 / 37  shared: 
+(Experiencer $e $x)
+(Time $e $x)
+
+;; Goal ~ Location  cosine 0.00  JSD 1.0  n 30 / 175  shared: 
+(Goal $e $x)
+(Location $e $x)
+
+;; Goal ~ Manner  cosine 0.00  JSD 1.0  n 30 / 34  shared: 
+(Goal $e $x)
+(Manner $e $x)
+
+;; Goal ~ Patient  cosine 0.00  JSD 1.0  n 30 / 159  shared: 
+(Goal $e $x)
+(Patient $e $x)
+
+;; Goal ~ Source  cosine 0.00  JSD 1.0  n 30 / 24  shared: 
+(Goal $e $x)
+(Source $e $x)
+
+;; Goal ~ Time  cosine 0.00  JSD 1.0  n 30 / 37  shared: 
+(Goal $e $x)
+(Time $e $x)
+
+;; Location ~ Manner  cosine 0.00  JSD 1.0  n 175 / 34  shared: 
+(Location $e $x)
+(Manner $e $x)
+
+;; Location ~ Patient  cosine 0.00  JSD 1.0  n 175 / 159  shared: 
+(Location $e $x)
+(Patient $e $x)
+
+;; Location ~ Recipient  cosine 0.00  JSD 1.0  n 175 / 47  shared: 
+(Location $e $x)
+(Recipient $e $x)
+
+;; Location ~ Source  cosine 0.00  JSD 1.0  n 175 / 24  shared: 
+(Location $e $x)
+(Source $e $x)
+
+;; Location ~ Time  cosine 0.00  JSD 1.0  n 175 / 37  shared: 
+(Location $e $x)
+(Time $e $x)
+
+;; Manner ~ Patient  cosine 0.00  JSD 1.0  n 34 / 159  shared: 
+(Manner $e $x)
+(Patient $e $x)
+
+;; Manner ~ Recipient  cosine 0.00  JSD 1.0  n 34 / 47  shared: 
+(Manner $e $x)
+(Recipient $e $x)
+
+;; Manner ~ Source  cosine 0.00  JSD 1.0  n 34 / 24  shared: 
+(Manner $e $x)
+(Source $e $x)
+
+;; Manner ~ Theme  cosine 0.00  JSD 1.0  n 34 / 367  shared: 
+(Manner $e $x)
+(Theme $e $x)
+
+;; Manner ~ Time  cosine 0.00  JSD 1.0  n 34 / 37  shared: 
+(Manner $e $x)
+(Time $e $x)
+
+;; Patient ~ Source  cosine 0.00  JSD 1.0  n 159 / 24  shared: 
+(Patient $e $x)
+(Source $e $x)
+
+;; Patient ~ Time  cosine 0.00  JSD 1.0  n 159 / 37  shared: 
+(Patient $e $x)
+(Time $e $x)
+
+;; Recipient ~ Time  cosine 0.00  JSD 1.0  n 47 / 37  shared: 
+(Recipient $e $x)
+(Time $e $x)
+
+;; Source ~ Time  cosine 0.00  JSD 1.0  n 24 / 37  shared: 
+(Source $e $x)
+(Time $e $x)
+
+;; Theme ~ Time  cosine 0.00  JSD 1.0  n 367 / 37  shared: 
+(Theme $e $x)
+(Time $e $x)
+
+;; ==================== subtree @ cluster cos 0.90: slot pairs (50 event-center signals) ====================
+
+;; [same role, different class]  acquire.Agent ~ purchase.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ purchase.Theme  cosine 1.00  JSD 0.0  n 4 / 4  shared: {projector, projectors} {crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Agent ~ create.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {european american settler, european american settlers} {indigenous american, native american, indigenous americans, native americans}
+;;   A e.g. tierC-000025 tierC-000026   B e.g. tierC-000025 tierC-000026
+(And (Member $e0 begin) (Agent $e0 $x1))
+(And (Member $e0 create) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ start.Patient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000064 tierA-000069   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  make.Agent ~ reach.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000186 tierA-000197   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 make) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  learn.Theme ~ teach.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {drill} {song, sing} {glazing}
+;;   A e.g. tierA-000287 tierA-000292   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Theme $e0 $x1))
+(And (Member $e0 teach) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Theme ~ require.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {egg, eggs} {countersignature, countersignatures} {monthly servicing}
+;;   A e.g. tierA-000085 tierA-000090   B e.g. tierA-000084 tierA-000086
+(And (Member $e0 need) (Theme $e0 $x1))
+(And (Member $e0 require) (Theme $e0 $x1))
+
+;; [same role, different class]  abandon.Agent ~ give_up.Agent  cosine 0.98  JSD 0.006  n 8 / 3  shared: {rescue team} {climber, climbers} {firm}
+;;   A e.g. tierA-000099 tierA-000101   B e.g. tierA-000100 tierA-000110
+(And (Member $e0 abandon) (Agent $e0 $x1))
+(And (Member $e0 give_up) (Agent $e0 $x1))
+
+;; [same role, different class]  abandon.Theme ~ give_up.Theme  cosine 0.98  JSD 0.006  n 8 / 3  shared: {tender} {north route} {search}
+;;   A e.g. tierA-000104 tierA-000106   B e.g. tierA-000105 tierA-000110
+(And (Member $e0 abandon) (Theme $e0 $x1))
+(And (Member $e0 give_up) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Holder ~ require.Holder  cosine 0.98  JSD 0.006  n 3 / 8  shared: {recipe} {lathe} {permit, allow}
+;;   A e.g. tierA-000085 tierA-000095   B e.g. tierA-000086 tierA-000087
+(And (Member $e0 need) (Holder $e0 $x1))
+(And (Member $e0 require) (Holder $e0 $x1))
+
+;; [same role, different class]  postpone.Agent ~ put_off.Agent  cosine 0.98  JSD 0.007  n 7 / 3  shared: {club} {board} {ferry}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Agent $e0 $x1))
+(And (Member $e0 put_off) (Agent $e0 $x1))
+
+;; [same role, different class]  postpone.Theme ~ put_off.Theme  cosine 0.98  JSD 0.007  n 7 / 3  shared: {tournament} {vote} {departure, depart}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Theme $e0 $x1))
+(And (Member $e0 put_off) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ commence.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000064 tierA-000069
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 commence) (Patient $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ start.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {dress rehearsal} {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000062 tierA-000066   B e.g. tierA-000063 tierA-000068
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  allow.Agent ~ permit.Agent  cosine 0.94  JSD 0.021  n 4 / 3  shared: {warden} {curator} {licence}
+;;   A e.g. tierA-000075 tierA-000080   B e.g. tierA-000073 tierA-000081
+(And (Member $e0 allow) (Agent $e0 $x1))
+(And (Member $e0 permit) (Agent $e0 $x1))
+
+;; [same role, different class]  allow.Theme ~ permit.Theme  cosine 0.94  JSD 0.021  n 4 / 3  shared: {photography} {night delivery} {visitor}
+;;   A e.g. tierA-000080 tierA-000076   B e.g. tierA-000081 tierA-000077
+(And (Member $e0 allow) (Theme $e0 $x1))
+(And (Member $e0 permit) (Theme $e0 $x1))
+
+;; [same role, different class]  call_off.Agent ~ cancel.Agent  cosine 0.96  JSD 0.064  n 3 / 9  shared: {airline} {council} {tutor}
+;;   A e.g. tierA-000144 tierA-000149   B e.g. tierA-000143 tierA-000145
+(And (Member $e0 call_off) (Agent $e0 $x1))
+(And (Member $e0 cancel) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Theme ~ decision.Theme  cosine 0.96  JSD 0.064  n 9 / 6  shared: {new, roof} {budget} {case}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000187
+(And (Member $e0 decide) (Theme $e0 $x1))
+(And (Member $e0 decision) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Agent ~ buy.Agent  cosine 0.94  JSD 0.121  n 4 / 14  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000022 tierA-000026
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 buy) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ buy.Theme  cosine 0.94  JSD 0.121  n 4 / 14  shared: {projector, projectors} {crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000008 tierA-000012
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 buy) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Agent ~ purchase.Agent  cosine 0.94  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ purchase.Theme  cosine 0.94  JSD 0.121  n 14 / 4  shared: {projector, projectors} {crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ make.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000197
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 make) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ reach.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  cause.Agent ~ destroy.Agent  cosine 0.93  JSD 0.138  n 3 / 8  shared: {storm} {flood} {fire}
+;;   A e.g. tierA-000223 tierA-000233   B e.g. tierA-000222 tierA-000224
+(And (Member $e0 cause) (Agent $e0 $x1))
+(And (Member $e0 destroy) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ end.Patient  cosine 0.87  JSD 0.138  n 4 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000069 tierA-000059   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  end.Patient ~ start.Patient  cosine 0.87  JSD 0.138  n 3 / 4  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000071 tierA-000060   B e.g. tierA-000068 tierA-000058
+(And (Member $e0 end) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  reject.Agent ~ turn_down.Agent  cosine 0.93  JSD 0.138  n 8 / 3  shared: {editor} {bank} {panel}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Agent $e0 $x1))
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Theme ~ turn_down.Theme  cosine 0.93  JSD 0.138  n 8 / 3  shared: {manuscript} {loan application} {proposal}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Theme $e0 $x1))
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ end.Patient  cosine 0.80  JSD 0.174  n 7 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ sell.Theme  cosine 0.71  JSD 0.191  n 4 / 6  shared: {projector, projectors} {crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  portray.Agent ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods} {Wilson, wilson}
+;;   A e.g. tierC-000301 tierC-000302   B e.g. tierC-000277 tierC-000278
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [same role, different class]  purchase.Theme ~ sell.Theme  cosine 0.71  JSD 0.191  n 4 / 6  shared: {projector, projectors} {crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000009 tierA-000016   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 purchase) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  accompany.Agent ~ appear.Agent  cosine 0.78  JSD 0.217  n 4 / 8  shared: {person, people} {sister, sisters}
+;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000049 tierC-000050
+(And (Member $e0 accompany) (Agent $e0 $x1))
+(And (Member $e0 appear) (Agent $e0 $x1))
+
+;; [same role, different class]  borrow.Theme ~ lend.Theme  cosine 0.65  JSD 0.239  n 5 / 10  shared: {painting, paintings} {ladder, ladders} {generator}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Theme $e0 $x1))
+(And (Member $e0 lend) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ sell.Theme  cosine 0.67  JSD 0.281  n 14 / 6  shared: {projector, projectors} {crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same class, different role]  repair.Agent ~ repair.Patient  cosine 0.83  JSD 0.061  n 8 / 8  shared: {cracked, feed pipe} {crew} {electrician} {gearbox, seized}
+;;   A e.g. tierA-000051 tierA-000049   B e.g. tierA-000039 tierA-000029
+(And (Member $e0 repair) (Agent $e0 $x1))
+(And (Member $e0 repair) (Patient $e0 $x1))
+
+;; [same class, different role]  discover.Experiencer ~ discover.Stimulus  cosine 0.80  JSD 0.082  n 3 / 3  shared: {auditor} {error}
+;;   A e.g. tierA-000128 tierA-000130   B e.g. tierA-000132 tierA-000128
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+
+;; [same class, different role]  order.Agent ~ order.Theme  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {scan}
+;;   A e.g. tierA-000385 tierA-000386   B e.g. tierA-000389 tierA-000387
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 order) (Theme $e0 $x1))
+
+;; [same class, different role]  sign.Agent ~ sign.Patient  cosine 0.60  JSD 0.189  n 4 / 4  shared: {physician, doctor} {chart}
+;;   A e.g. tierA-000375 tierA-000376   B e.g. tierA-000378 tierA-000377
+(And (Member $e0 sign) (Agent $e0 $x1))
+(And (Member $e0 sign) (Patient $e0 $x1))
+
+;; [different class and role]  acquire.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  purchase.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000023 tierA-000016   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 purchase) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Agent ~ lend.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {Ravi} {gallery} {crew}
+;;   A e.g. tierA-000297 tierA-000307   B e.g. tierA-000296 tierA-000298
+(And (Member $e0 borrow) (Agent $e0 $x1))
+(And (Member $e0 lend) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Source ~ lend.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {museum} {neighbour, neighbouring} {depot}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Source $e0 $x1))
+(And (Member $e0 lend) (Agent $e0 $x1))
+
+;; [different class and role]  learn.Agent ~ teach.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {squad} {apprentice} {children}
+;;   A e.g. tierA-000287 tierA-000282   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Agent $e0 $x1))
+(And (Member $e0 teach) (Recipient $e0 $x1))
+
+;; [different class and role]  learn.Source ~ teach.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {potter} {coach} {elder}
+;;   A e.g. tierA-000282 tierA-000287   B e.g. tierA-000281 tierA-000283
+(And (Member $e0 learn) (Source $e0 $x1))
+(And (Member $e0 teach) (Agent $e0 $x1))
+
+;; [different class and role]  buy.Agent ~ sell.Recipient  cosine 0.94  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  portray.Theme ~ win.Agent  cosine 0.82  JSD 0.191  n 6 / 4  shared: {James Woods} {Wilson, wilson}
+;;   A e.g. tierC-000277 tierC-000278   B e.g. tierC-000301 tierC-000302
+(And (Member $e0 portray) (Theme $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [different class and role]  give.Agent ~ receive.Source  cosine 0.91  JSD 0.196  n 12 / 3  shared: {foreman} {trainer} {school}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000262
+(And (Member $e0 give) (Agent $e0 $x1))
+(And (Member $e0 receive) (Source $e0 $x1))
+
+;; [different class and role]  give.Recipient ~ receive.Agent  cosine 0.91  JSD 0.196  n 12 / 3  shared: {recruit} {driver} {winner, win}
+;;   A e.g. tierA-000261 tierA-000263   B e.g. tierA-000262 tierA-000272
+(And (Member $e0 give) (Recipient $e0 $x1))
+(And (Member $e0 receive) (Agent $e0 $x1))
+
+;; ==================== subtree @ cluster cos 0.90: compared slots with their distributions (197 slots, n >= 3) ====================
+
+;; ---- slot <unclassed>.Possession  [entity center]  n 18  clusters 8
+(Possession $x0 $x1)
+;;      c451  mass 5  {person, people}
+;;      c153  mass 2  {Twilight}
+;;      c202  mass 2  {Gil Aires}
+;;      c203  mass 2  {Leonor Rodrigues}
+;;      c211  mass 2  {Dora Smith}
+;;      c277  mass 2  {communities, neighbouring, other, sunni}
+;;      c576  mass 2  {subsequent game}
+;;      c180  mass 1  {J. Augustus Knapp}
+
+;; ---- slot work.Agent  [event center]  n 17  clusters 10
+(And (Member $e0 work) (Agent $e0 $x1))
+;;      c207  mass 3  {Ana}
+;;      c241  mass 3  {Dara}
+;;       c27  mass 3  {biologist}
+;;      c384  mass 2  {welder}
+;;      c223  mass 1  {Mr. Jones}
+;;      c226  mass 1  {Bo}
+;;      c233  mass 1  {Nils}
+;;      c235  mass 1  {Asserson}
+;;      c377  mass 1  {ranger}
+;;      c589  mass 1  {fitter}
+
+;; ---- slot build.Location  [event center]  n 14  clusters 3
+(And (Member $e0 build) (Location $e0 $x1))
+;;      c100  mass 6  {Turkey}
+;;      c111  mass 4  {Kazakhstan}
+;;      c142  mass 4  {Eskisehir}
+
+;; ---- slot buy.Agent  [event center]  n 14  clusters 7
+(And (Member $e0 buy) (Agent $e0 $x1))
+;;      c323  mass 3  {pottery studio}
+;;      c482  mass 3  {school}
+;;      c581  mass 3  {depot}
+;;      c363  mass 2  {chef}
+;;      c353  mass 1  {crate, lemons}
+;;      c397  mass 1  {forklift, forklifts}
+;;      c401  mass 1  {kiln}
+
+;; ---- slot buy.Theme  [event center]  n 14  clusters 7
+(And (Member $e0 buy) (Theme $e0 $x1))
+;;      c251  mass 3  {projector, projectors}
+;;      c397  mass 3  {forklift, forklifts}
+;;      c401  mass 3  {kiln}
+;;      c353  mass 2  {crate, lemons}
+;;      c323  mass 1  {pottery studio}
+;;      c363  mass 1  {chef}
+;;      c581  mass 1  {depot}
+
+;; ---- slot work.Location  [event center]  n 13  clusters 5
+(And (Member $e0 work) (Location $e0 $x1))
+;;      c528  mass 4  {ledger}
+;;      c791  mass 4  {survey}
+;;      c706  mass 3  {frame}
+;;      c328  mass 1  {mural}
+;;        c7  mass 1  {Church of Norway}
+
+;; ---- slot build.Agent  [event center]  n 12  clusters 3
+(And (Member $e0 build) (Agent $e0 $x1))
+;;      c435  mass 8  {Company, company}
+;;      c196  mass 2  {O. R. Woodcock, William Ewer}
+;;      c451  mass 2  {person, people}
+
+;; ---- slot build.Patient  [event center]  n 12  clusters 4
+(And (Member $e0 build) (Patient $e0 $x1))
+;;      c336  mass 4  {paper factory, paper mill}
+;;      c514  mass 4  {hotel}
+;;      c512  mass 2  {room}
+;;      c658  mass 2  {horn}
+
+;; ---- slot find.Location  [event center]  n 12  clusters 8
+(And (Member $e0 find) (Location $e0 $x1))
+;;      c427  mass 2  {southern}
+;;      c710  mass 2  {bench}
+;;       c84  mass 2  {Yunnan}
+;;       c85  mass 2  {tributary, tributaries}
+;;      c428  mass 1  {western}
+;;       c83  mass 1  {Dianchi Lake, Lake Dianchi}
+;;       c93  mass 1  {Europe, Western Europe}
+;;       c95  mass 1  {China}
+
+;; ---- slot give.Agent  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Agent $e0 $x1))
+;;      c393  mass 3  {trainer}
+;;      c482  mass 3  {school}
+;;      c255  mass 2  {foreman}
+;;      c366  mass 1  {pilot}
+;;      c389  mass 1  {clerk}
+;;      c715  mass 1  {vet}
+;;       c73  mass 1  {driver}
+
+;; ---- slot give.Recipient  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Recipient $e0 $x1))
+;;      c445  mass 3  {recruit}
+;;      c760  mass 3  {winner, win}
+;;       c73  mass 2  {driver}
+;;      c255  mass 1  {foreman}
+;;      c498  mass 1  {tower}
+;;      c555  mass 1  {caller}
+;;      c612  mass 1  {query}
+
+;; ---- slot give.Theme  [event center]  n 12  clusters 5
+(And (Member $e0 give) (Theme $e0 $x1))
+;;      c593  mass 3  {manifest}
+;;       c65  mass 3  {medal, medals}
+;;      c773  mass 3  {answer}
+;;      c304  mass 2  {whistle}
+;;      c305  mass 1  {whistles}
+
+;; ---- slot decide.Agent  [event center]  n 11  clusters 6
+(And (Member $e0 decide) (Agent $e0 $x1))
+;;      c707  mass 3  {board}
+;;      c713  mass 3  {judge}
+;;      c439  mass 2  {committee}
+;;      c425  mass 1  {north}
+;;      c458  mass 1  {family}
+;;      c712  mass 1  {case}
+
+;; ---- slot destroy.Patient  [event center]  n 11  clusters 5
+(And (Member $e0 destroy) (Patient $e0 $x1))
+;;      c333  mass 3  {archive}
+;;      c403  mass 3  {greenhouse}
+;;      c494  mass 3  {footbridge}
+;;      c406  mass 1  {storm}
+;;      c653  mass 1  {fire}
+
+;; ---- slot answer.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Agent $e0 $x1))
+;;      c366  mass 3  {pilot}
+;;      c389  mass 3  {clerk}
+;;      c715  mass 2  {vet}
+;;      c555  mass 1  {caller}
+;;      c612  mass 1  {query}
+
+;; ---- slot answer.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Theme $e0 $x1))
+;;      c498  mass 3  {tower}
+;;      c612  mass 3  {query}
+;;      c555  mass 2  {caller}
+;;      c389  mass 1  {clerk}
+;;      c715  mass 1  {vet}
+
+;; ---- slot lend.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Agent $e0 $x1))
+;;      c335  mass 3  {museum}
+;;      c424  mass 3  {neighbour, neighbouring}
+;;      c581  mass 2  {depot}
+;;      c150  mass 1  {Ravi}
+;;      c374  mass 1  {crew}
+
+;; ---- slot lend.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Recipient $e0 $x1))
+;;      c150  mass 3  {Ravi}
+;;      c329  mass 3  {gallery}
+;;      c374  mass 2  {crew}
+;;      c424  mass 1  {neighbour, neighbouring}
+;;      c581  mass 1  {depot}
+
+;; ---- slot lend.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 lend) (Theme $e0 $x1))
+;;      c398  mass 4  {ladder, ladders}
+;;      c326  mass 3  {painting, paintings}
+;;      c590  mass 3  {generator}
+
+;; ---- slot require.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 require) (Theme $e0 $x1))
+;;      c360  mass 4  {egg, eggs}
+;;      c591  mass 3  {countersignature, countersignatures}
+;;      c793  mass 3  {monthly servicing}
+
+;; ---- slot teach.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Agent $e0 $x1))
+;;      c154  mass 3  {potter}
+;;      c449  mass 3  {elder}
+;;      c392  mass 2  {coach}
+;;      c372  mass 1  {squad}
+;;      c394  mass 1  {apprentice}
+
+;; ---- slot teach.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Recipient $e0 $x1))
+;;      c394  mass 3  {apprentice}
+;;      c448  mass 3  {children}
+;;      c372  mass 2  {squad}
+;;      c154  mass 1  {potter}
+;;      c392  mass 1  {coach}
+
+;; ---- slot teach.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 teach) (Theme $e0 $x1))
+;;      c402  mass 4  {glazing}
+;;      c306  mass 3  {drill}
+;;      c310  mass 3  {song, sing}
+
+;; ---- slot cancel.Agent  [event center]  n 9  clusters 4
+(And (Member $e0 cancel) (Agent $e0 $x1))
+;;      c440  mass 3  {council}
+;;      c479  mass 3  {tutor}
+;;      c364  mass 2  {airline}
+;;       c25  mass 1  {physician, doctor}
+
+;; ---- slot decide.Theme  [event center]  n 9  clusters 4
+(And (Member $e0 decide) (Theme $e0 $x1))
+;;      c529  mass 3  {budget}
+;;      c712  mass 3  {case}
+;;      c508  mass 2  {new, roof}
+;;      c713  mass 1  {judge}
+
+;; ---- slot discover.Theme  [event center]  n 9  clusters 4
+(And (Member $e0 discover) (Theme $e0 $x1))
+;;      c408  mass 3  {wreck}
+;;      c476  mass 3  {file, missing}
+;;      c340  mass 2  {name}
+;;      c382  mass 1  {diver}
+
+;; ---- slot view.Possession  [entity center]  n 8  clusters 2
+(And (Member $x0 view) (Possession $x0 $x1))
+;;      c261  mass 4  {Free Soil Party}
+;;      c262  mass 4  {Republican Party}
+
+;; ---- slot abandon.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Agent $e0 $x1))
+;;      c381  mass 3  {climber, climbers}
+;;      c436  mass 3  {firm}
+;;      c376  mass 2  {rescue team}
+
+;; ---- slot abandon.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Theme $e0 $x1))
+;;      c462  mass 3  {tender}
+;;      c503  mass 3  {north route}
+;;      c613  mass 2  {search}
+
+;; ---- slot appear.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 appear) (Agent $e0 $x1))
+;;      c451  mass 5  {person, people}
+;;      c189  mass 2  {Brian Packham, Philip Hercus, Paul Cavanagh, Paul Paul Cavanagh}
+;;      c459  mass 1  {sister, sisters}
+
+;; ---- slot appear.Location  [event center]  n 8  clusters 5
+(And (Member $e0 appear) (Location $e0 $x1))
+;;       c28  mass 2  {comedic role}
+;;      c357  mass 2  {cafe}
+;;        c9  mass 2  {Coronation Street}
+;;      c295  mass 1  {music film}
+;;      c296  mass 1  {musical film}
+
+;; ---- slot destroy.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 destroy) (Agent $e0 $x1))
+;;      c406  mass 2  {storm}
+;;      c407  mass 2  {flood}
+;;      c653  mass 2  {fire}
+;;      c333  mass 1  {archive}
+;;      c403  mass 1  {greenhouse}
+
+;; ---- slot have.Holder  [event center]  n 8  clusters 4
+(And (Member $e0 have) (Holder $e0 $x1))
+;;      c171  mass 4  {Kristoffer}
+;;      c210  mass 2  {Karen}
+;;       c55  mass 1  {homentropic current}
+;;       c56  mass 1  {homentropic flow}
+
+;; ---- slot have.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 have) (Theme $e0 $x1))
+;;      c448  mass 4  {children}
+;;      c415  mass 2  {constant, entropy, uniform}
+;;      c764  mass 2  {representation, represent}
+
+;; ---- slot include.Theme  [event center]  n 8  clusters 4
+(And (Member $e0 include) (Theme $e0 $x1))
+;;      c134  mass 2  {Des Moines}
+;;      c148  mass 2  {Armaan Jain}
+;;      c149  mass 2  {Ranbir Kapoor}
+;;      c151  mass 2  {Nikhil Nanda}
+
+;; ---- slot produce.Patient  [event center]  n 8  clusters 4
+(And (Member $e0 produce) (Patient $e0 $x1))
+;;      c294  mass 4  {movie, film}
+;;      c314  mass 2  {album}
+;;       c29  mass 1  {destined, film, syrian}
+;;       c30  mass 1  {film, syrian}
+
+;; ---- slot reject.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Agent $e0 $x1))
+;;      c387  mass 2  {editor}
+;;      c527  mass 2  {bank}
+;;      c708  mass 2  {panel}
+;;      c339  mass 1  {manuscript}
+;;      c524  mass 1  {loan application}
+
+;; ---- slot reject.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Theme $e0 $x1))
+;;      c339  mass 2  {manuscript}
+;;      c524  mass 2  {loan application}
+;;      c696  mass 2  {proposal}
+;;      c387  mass 1  {editor}
+;;      c527  mass 1  {bank}
+
+;; ---- slot repair.Agent  [event center]  n 8  clusters 6
+(And (Member $e0 repair) (Agent $e0 $x1))
+;;      c383  mass 2  {electrician}
+;;       c74  mass 2  {mechanic}
+;;      c252  mass 1  {cracked, feed pipe}
+;;      c374  mass 1  {crew}
+;;       c71  mass 1  {gearbox, seized}
+;;      c795  mass 1  {yard floodlight}
+
+;; ---- slot repair.Patient  [event center]  n 8  clusters 6
+(And (Member $e0 repair) (Patient $e0 $x1))
+;;       c71  mass 2  {gearbox, seized}
+;;      c795  mass 2  {yard floodlight}
+;;      c252  mass 1  {cracked, feed pipe}
+;;      c374  mass 1  {crew}
+;;      c383  mass 1  {electrician}
+;;       c74  mass 1  {mechanic}
+
+;; ---- slot require.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 require) (Holder $e0 $x1))
+;;      c362  mass 3  {recipe}
+;;      c767  mass 3  {permit, allow}
+;;      c399  mass 2  {lathe}
+
+;; ---- slot serve.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 serve) (Agent $e0 $x1))
+;;      c139  mass 2  {Indooroopilly}
+;;      c140  mass 2  {Ipswich}
+;;      c239  mass 2  {Rosewood}
+;;      c451  mass 2  {person, people}
+
+;; ---- slot sing.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 sing) (Agent $e0 $x1))
+;;      c316  mass 2  {Barbershop Harmony Society}
+;;      c451  mass 2  {person, people}
+;;      c459  mass 2  {sister, sisters}
+;;      c433  mass 1  {occupational group}
+;;      c434  mass 1  {professional group}
+
+;; ---- slot study.Location  [event center]  n 8  clusters 3
+(And (Member $e0 study) (Location $e0 $x1))
+;;      c138  mass 4  {Melbourne, Sydney}
+;;      c321  mass 2  {Davis Studio}
+;;      c322  mass 2  {Julian Ashton Art School}
+
+;; ---- slot be.Experiencer  [event center]  n 7  clusters 4
+(And (Member $e0 be) (Experiencer $e0 $x1))
+;;      c237  mass 4  {Paniqui}
+;;      c117  mass 1  {Ellerslie Rugby Park}
+;;      c254  mass 1  {tunnel}
+;;       c80  mass 1  {Alema Nature Reserve}
+
+;; ---- slot begin.Patient  [event center]  n 7  clusters 4
+(And (Member $e0 begin) (Patient $e0 $x1))
+;;      c320  mass 2  {dress rehearsal}
+;;      c356  mass 2  {apple harvest}
+;;       c90  mass 2  {shoreline survey}
+;;      c562  mass 1  {hearing}
+
+;; ---- slot cancel.Patient  [event center]  n 7  clusters 3
+(And (Member $e0 cancel) (Patient $e0 $x1))
+;;       c33  mass 3  {summer fair}
+;;      c367  mass 3  {afternoon session}
+;;      c365  mass 1  {evening flight}
+
+;; ---- slot discover.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 discover) (Agent $e0 $x1))
+;;      c382  mass 3  {diver}
+;;      c603  mass 3  {intern}
+;;      c408  mass 1  {wreck}
+
+;; ---- slot locate.Location  [event center]  n 7  clusters 4
+(And (Member $e0 locate) (Location $e0 $x1))
+;;      c129  mass 2  {Cloverdale}
+;;      c477  mass 2  {foot}
+;;      c489  mass 2  {hills}
+;;      c130  mass 1  {Richford}
+
+;; ---- slot postpone.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Agent $e0 $x1))
+;;      c373  mass 3  {club}
+;;      c707  mass 2  {board}
+;;       c75  mass 2  {ferry}
+
+;; ---- slot postpone.Theme  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Theme $e0 $x1))
+;;       c22  mass 3  {tournament}
+;;      c716  mass 2  {vote}
+;;      c726  mass 2  {departure, depart}
+
+;; ---- slot work.CoAgent  [event center]  n 7  clusters 4
+(And (Member $e0 work) (CoAgent $e0 $x1))
+;;      c226  mass 2  {Bo}
+;;      c233  mass 2  {Nils}
+;;      c377  mass 2  {ranger}
+;;      c589  mass 1  {fitter}
+
+;; ---- slot budget.Possession  [entity center]  n 6  clusters 1
+(And (Member $x0 budget) (Possession $x0 $x1))
+;;      c574  mass 6  {next year}
+
+;; ---- slot arrive.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 arrive) (Agent $e0 $x1))
+;;       c77  mass 3  {freight}
+;;      c443  mass 2  {delegation}
+;;       c58  mass 1  {soil sample, soil samples}
+
+;; ---- slot build.Instrument  [event center]  n 6  clusters 3
+(And (Member $e0 build) (Instrument $e0 $x1))
+;;      c404  mass 2  {barometer}
+;;      c485  mass 2  {present in, scale, present, scale}
+;;      c719  mass 2  {help}
+
+;; ---- slot decision.Theme  [event center]  n 6  clusters 3
+(And (Member $e0 decision) (Theme $e0 $x1))
+;;      c508  mass 2  {new, roof}
+;;      c529  mass 2  {budget}
+;;      c712  mass 2  {case}
+
+;; ---- slot design.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 design) (Agent $e0 $x1))
+;;      c189  mass 2  {Brian Packham, Philip Hercus, Paul Cavanagh, Paul Paul Cavanagh}
+;;      c192  mass 2  {Henry L. Taylor, Sherman Howard}
+;;       c78  mass 2  {Robert Allan Limited}
+
+;; ---- slot discover.Location  [event center]  n 6  clusters 2
+(And (Member $e0 discover) (Location $e0 $x1))
+;;      c755  mass 4  {point}
+;;       c96  mass 2  {Japan}
+
+;; ---- slot form.Agent  [event center]  n 6  clusters 4
+(And (Member $e0 form) (Agent $e0 $x1))
+;;      c175  mass 2  {Jon Bon Jovi}
+;;      c176  mass 2  {Sambora}
+;;       c60  mass 1  {Technetium}
+;;      c630  mass 1  {complex, complex, simple}
+
+;; ---- slot fund.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 fund) (Agent $e0 $x1))
+;;      c263  mass 3  {government}
+;;      c270  mass 3  {JICA}
+
+;; ---- slot include.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 include) (Agent $e0 $x1))
+;;      c446  mass 6  {nephew, nephews}
+
+;; ---- slot portray.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Agent $e0 $x1))
+;;      c166  mass 2  {Mie Sonozaki, Soichiro Akizuki}
+;;      c173  mass 2  {James Woods}
+;;      c219  mass 2  {Wilson, wilson}
+
+;; ---- slot portray.Theme  [event center]  n 6  clusters 3
+(And (Member $e0 portray) (Theme $e0 $x1))
+;;      c168  mass 2  {Kantaro Suga}
+;;      c173  mass 2  {James Woods}
+;;      c219  mass 2  {Wilson, wilson}
+
+;; ---- slot produce.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 produce) (Agent $e0 $x1))
+;;      c190  mass 2  {Colin Richardson}
+;;      c194  mass 2  {Harvey Hayutin}
+;;      c195  mass 2  {Sy Weintraub}
+
+;; ---- slot sell.Theme  [event center]  n 6  clusters 5
+(And (Member $e0 sell) (Theme $e0 $x1))
+;;      c359  mass 2  {ice cream, ice cone, ice cream cone}
+;;      c251  mass 1  {projector, projectors}
+;;      c353  mass 1  {crate, lemons}
+;;      c397  mass 1  {forklift, forklifts}
+;;      c401  mass 1  {kiln}
+
+;; ---- slot serve.Theme  [event center]  n 6  clusters 1
+(And (Member $e0 serve) (Theme $e0 $x1))
+;;      c497  mass 6  {station}
+
+;; ---- slot use.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 use) (Theme $e0 $x1))
+;;        c1  mass 2  {Banach -- Mackey topology}
+;;        c2  mass 2  {weak Arens space topology}
+;;      c342  mass 1  {naming convention, current, naming convention}
+;;      c343  mass 1  {current, designation convention}
+
+;; ---- slot write.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Agent $e0 $x1))
+;;      c169  mass 2  {Gilles Thibaut}
+;;      c193  mass 2  {Bill Wrubel}
+;;      c451  mass 2  {person, people}
+
+;; ---- slot write.CoAgent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (CoAgent $e0 $x1))
+;;      c183  mass 2  {Cyril Rambour}
+;;      c204  mass 2  {Laurie Aubanel, Muriel Zazoui}
+;;      c206  mass 2  {Bianca Olsen}
+
+;; ---- slot write.Patient  [event center]  n 6  clusters 4
+(And (Member $e0 write) (Patient $e0 $x1))
+;;      c310  mass 2  {song, sing}
+;;      c542  mass 2  {episode}
+;;      c300  mass 1  {screenplay}
+;;      c301  mass 1  {script}
+
+;; ---- slot tender.Possession  [entity center]  n 5  clusters 1
+(And (Member $x0 tender) (Possession $x0 $x1))
+;;      c436  mass 5  {firm}
+
+;; ---- slot borrow.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 borrow) (Theme $e0 $x1))
+;;      c167  mass 2  {inomaru}
+;;      c326  mass 1  {painting, paintings}
+;;      c398  mass 1  {ladder, ladders}
+;;      c590  mass 1  {generator}
+
+;; ---- slot die.Patient  [event center]  n 5  clusters 3
+(And (Member $e0 die) (Patient $e0 $x1))
+;;      c395  mass 2  {founder}
+;;      c451  mass 2  {person, people}
+;;      c352  mass 1  {elm, last}
+
+;; ---- slot locate.Experiencer  [event center]  n 5  clusters 3
+(And (Member $e0 locate) (Experiencer $e0 $x1))
+;;      c115  mass 2  {Wine Country}
+;;      c495  mass 2  {park}
+;;      c117  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot receive.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 receive) (Theme $e0 $x1))
+;;      c598  mass 2  {work}
+;;      c304  mass 1  {whistle}
+;;      c593  mass 1  {manifest}
+;;       c65  mass 1  {medal, medals}
+
+;; ---- slot take.Agent  [event center]  n 5  clusters 4
+(And (Member $e0 take) (Agent $e0 $x1))
+;;      c451  mass 2  {person, people}
+;;       c26  mass 1  {nurse}
+;;      c378  mass 1  {shepherd}
+;;      c448  mass 1  {children}
+
+;; ---- slot walk.Agent  [event center]  n 5  clusters 5
+(And (Member $e0 walk) (Agent $e0 $x1))
+;;       c26  mass 1  {nurse}
+;;      c378  mass 1  {shepherd}
+;;      c448  mass 1  {children}
+;;      c496  mass 1  {pier}
+;;      c761  mass 1  {ward}
+
+;; ---- slot walk.Location  [event center]  n 5  clusters 3
+(And (Member $e0 walk) (Location $e0 $x1))
+;;      c490  mass 2  {ridge}
+;;      c761  mass 2  {ward}
+;;       c26  mass 1  {nurse}
+
+;; ---- slot <unclassed>.PartOf  [entity center]  n 4  clusters 3
+(PartOf $x0 $x1)
+;;      c147  mass 2  {Khurda Road}
+;;       c91  mass 1  {Colombia, Peru}
+;;       c92  mass 1  {Huancavelica}
+
+;; ---- slot bad.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 bad) (Between $x0 $x1))
+;;      c102  mass 2  {Poland}
+;;      c103  mass 2  {Germany}
+
+;; ---- slot border_section.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 border_section) (Between $x0 $x1))
+;;      c110  mass 2  {Uganda}
+;;      c236  mass 2  {Lessos}
+
+;; ---- slot departure.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 departure) (Possession $x0 $x1))
+;;       c75  mass 4  {ferry}
+
+;; ---- slot family.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 family) (Possession $x0 $x1))
+;;      c451  mass 4  {person, people}
+
+;; ---- slot government.Possession  [entity center]  n 4  clusters 2
+(And (Member $x0 government) (Possession $x0 $x1))
+;;      c109  mass 2  {Kenya}
+;;      c110  mass 2  {Uganda}
+
+;; ---- slot lunch.Before  [entity center]  n 4  clusters 2
+(And (Member $x0 lunch) (Before $x0 $x1))
+;;      c734  mass 3  {begin, start}
+;;      c735  mass 1  {commence}
+
+;; ---- slot accompany.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 accompany) (Agent $e0 $x1))
+;;      c451  mass 2  {person, people}
+;;      c459  mass 2  {sister, sisters}
+
+;; ---- slot accompany.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 accompany) (Theme $e0 $x1))
+;;      c297  mass 4  {silent film}
+
+;; ---- slot acquire.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Agent $e0 $x1))
+;;      c323  mass 1  {pottery studio}
+;;      c363  mass 1  {chef}
+;;      c482  mass 1  {school}
+;;      c581  mass 1  {depot}
+
+;; ---- slot acquire.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Theme $e0 $x1))
+;;      c251  mass 1  {projector, projectors}
+;;      c353  mass 1  {crate, lemons}
+;;      c397  mass 1  {forklift, forklifts}
+;;      c401  mass 1  {kiln}
+
+;; ---- slot active.Time  [event center]  n 4  clusters 2
+(And (Member $e0 active) (Time $e0 $x1))
+;;      c368  mass 2  {late afternoon}
+;;      c369  mass 2  {morning, early morning}
+
+;; ---- slot allow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Agent $e0 $x1))
+;;      c554  mass 2  {licence}
+;;      c390  mass 1  {warden}
+;;      c391  mass 1  {curator}
+
+;; ---- slot allow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Theme $e0 $x1))
+;;      c473  mass 2  {night delivery}
+;;      c332  mass 1  {photography}
+;;      c579  mass 1  {visitor}
+
+;; ---- slot attract.Source  [event center]  n 4  clusters 2
+(And (Member $e0 attract) (Source $e0 $x1))
+;;       c62  mass 2  {mainstream media}
+;;       c64  mass 2  {social media}
+
+;; ---- slot be.Location  [event center]  n 4  clusters 4
+(And (Member $e0 be) (Location $e0 $x1))
+;;      c106  mass 1  {denmark}
+;;      c130  mass 1  {Richford}
+;;      c136  mass 1  {Harju County}
+;;      c425  mass 1  {north}
+
+;; ---- slot be.Source  [event center]  n 4  clusters 3
+(And (Member $e0 be) (Source $e0 $x1))
+;;      c122  mass 2  {Tarlac City}
+;;      c121  mass 1  {Manila}
+;;      c127  mass 1  {provincial capital}
+
+;; ---- slot become.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Patient $e0 $x1))
+;;      c454  mass 2  {bad, relationship}
+;;       c48  mass 1  {indigenous, indigenous, people}
+;;      c551  mass 1  {discipline, lax}
+
+;; ---- slot become.Result  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Result $e0 $x1))
+;;      c677  mass 2  {bad}
+;;      c124  mass 1  {lax}
+;;       c48  mass 1  {indigenous, indigenous, people}
+
+;; ---- slot begin.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 begin) (Agent $e0 $x1))
+;;       c46  mass 2  {european american settler, european american settlers}
+;;       c47  mass 2  {indigenous american, native american, indigenous americans, native americans}
+
+;; ---- slot begin.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 begin) (Theme $e0 $x1))
+;;      c737  mass 4  {create}
+
+;; ---- slot block.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Agent $e0 $x1))
+;;       c72  mass 4  {automobile, car, automobiles}
+
+;; ---- slot block.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Theme $e0 $x1))
+;;      c501  mass 4  {lane}
+
+;; ---- slot celebrated.Location  [event center]  n 4  clusters 2
+(And (Member $e0 celebrated) (Location $e0 $x1))
+;;        c3  mass 2  {traditional chinese drama, traditional chinese dramas}
+;;       c63  mass 2  {popular culture}
+
+;; ---- slot commence.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 commence) (Patient $e0 $x1))
+;;      c320  mass 1  {dress rehearsal}
+;;      c356  mass 1  {apple harvest}
+;;      c562  mass 1  {hearing}
+;;       c90  mass 1  {shoreline survey}
+
+;; ---- slot create.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 create) (Agent $e0 $x1))
+;;       c46  mass 2  {european american settler, european american settlers}
+;;       c47  mass 2  {indigenous american, native american, indigenous americans, native americans}
+
+;; ---- slot create.Location  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Location $e0 $x1))
+;;      c702  mass 4  {post}
+
+;; ---- slot create.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Patient $e0 $x1))
+;;      c441  mass 4  {community}
+
+;; ---- slot define.Manner  [event center]  n 4  clusters 3
+(And (Member $e0 define) (Manner $e0 $x1))
+;;      c469  mass 2  {random, ways}
+;;      c467  mass 1  {manners, random}
+;;      c471  mass 1  {accidental, ways}
+
+;; ---- slot define.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 define) (Theme $e0 $x1))
+;;       c37  mass 4  {algorithmically equivalent, sequences, equivalent, sequences}
+
+;; ---- slot design.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 design) (Patient $e0 $x1))
+;;      c607  mass 4  {pacificat, pacificats}
+
+;; ---- slot direct.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Agent $e0 $x1))
+;;      c201  mass 2  {Lev L. Spiro}
+;;      c185  mass 1  {Robert Day}
+;;      c248  mass 1  {Claude Lelouch}
+
+;; ---- slot direct.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Patient $e0 $x1))
+;;      c542  mass 2  {episode}
+;;      c294  mass 1  {movie, film}
+;;       c30  mass 1  {film, syrian}
+
+;; ---- slot encourage.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Agent $e0 $x1))
+;;      c231  mass 4  {Ralph}
+
+;; ---- slot encourage.In  [event center]  n 4  clusters 3
+(And (Member $e0 encourage) (In $e0 $x1))
+;;      c483  mass 2  {mathematics}
+;;       c12  mass 1  {chess}
+;;       c13  mass 1  {chess play}
+
+;; ---- slot encourage.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Theme $e0 $x1))
+;;      c222  mass 4  {Maurice}
+
+;; ---- slot error.Location  [event center]  n 4  clusters 1
+(And (Member $e0 error) (Location $e0 $x1))
+;;      c528  mass 4  {ledger}
+
+;; ---- slot follow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Agent $e0 $x1))
+;;      c279  mass 2  {house, muslim}
+;;      c158  mass 1  {Alexander}
+;;      c232  mass 1  {Bailey}
+
+;; ---- slot follow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Theme $e0 $x1))
+;;      c419  mass 2  {region}
+;;      c199  mass 1  {Henry Cole}
+;;      c212  mass 1  {Margaret Fleming}
+
+;; ---- slot form.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 form) (Patient $e0 $x1))
+;;      c319  mass 2  {main songwriting unit}
+;;       c60  mass 1  {Technetium}
+;;      c630  mass 1  {complex, complex, simple}
+
+;; ---- slot have.Location  [event center]  n 4  clusters 2
+(And (Member $e0 have) (Location $e0 $x1))
+;;      c420  mass 2  {regional level}
+;;      c423  mass 2  {local level}
+
+;; ---- slot influence.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 influence) (Theme $e0 $x1))
+;;      c283  mass 2  {religion}
+;;        c4  mass 2  {chinese dumpling}
+
+;; ---- slot kill.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Agent $e0 $x1))
+;;      c405  mass 4  {hurricane}
+
+;; ---- slot kill.Location  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Location $e0 $x1))
+;;      c265  mass 4  {state}
+
+;; ---- slot kill.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 kill) (Manner $e0 $x1))
+;;      c758  mass 2  {direct, directly}
+;;      c759  mass 2  {indirectly}
+
+;; ---- slot kill.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Patient $e0 $x1))
+;;      c451  mass 4  {person, people}
+
+;; ---- slot make.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 make) (Agent $e0 $x1))
+;;      c439  mass 1  {committee}
+;;      c458  mass 1  {family}
+;;      c707  mass 1  {board}
+;;      c713  mass 1  {judge}
+
+;; ---- slot make.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 make) (Patient $e0 $x1))
+;;      c770  mass 4  {decision, decide}
+
+;; ---- slot move.Goal  [event center]  n 4  clusters 2
+(And (Member $e0 move) (Goal $e0 $x1))
+;;      c103  mass 2  {Germany}
+;;      c133  mass 2  {Baltimore}
+
+;; ---- slot nation.Location  [event center]  n 4  clusters 2
+(And (Member $e0 nation) (Location $e0 $x1))
+;;      c145  mass 2  {Bengal}
+;;      c146  mass 2  {South Asia}
+
+;; ---- slot order.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Agent $e0 $x1))
+;;       c25  mass 3  {physician, doctor}
+;;      c618  mass 1  {scan}
+
+;; ---- slot order.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Theme $e0 $x1))
+;;      c618  mass 3  {scan}
+;;       c25  mass 1  {physician, doctor}
+
+;; ---- slot play.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 play) (Agent $e0 $x1))
+;;      c155  mass 1  {Boston Red Sox}
+;;      c156  mass 1  {Cincinnati Reds}
+;;      c215  mass 1  {Audrey Hepburn}
+;;      c216  mass 1  {Audrey Heppurn}
+
+;; ---- slot play.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Theme $e0 $x1))
+;;      c217  mass 2  {Holly Golightly}
+;;      c541  mass 2  {series}
+
+;; ---- slot preach.Location  [event center]  n 4  clusters 2
+(And (Member $e0 preach) (Location $e0 $x1))
+;;      c105  mass 2  {Italy}
+;;      c135  mass 2  {Gareccio}
+
+;; ---- slot purchase.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Agent $e0 $x1))
+;;      c323  mass 1  {pottery studio}
+;;      c363  mass 1  {chef}
+;;      c482  mass 1  {school}
+;;      c581  mass 1  {depot}
+
+;; ---- slot purchase.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Theme $e0 $x1))
+;;      c251  mass 1  {projector, projectors}
+;;      c353  mass 1  {crate, lemons}
+;;      c397  mass 1  {forklift, forklifts}
+;;      c401  mass 1  {kiln}
+
+;; ---- slot reach.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 reach) (Agent $e0 $x1))
+;;      c439  mass 1  {committee}
+;;      c458  mass 1  {family}
+;;      c707  mass 1  {board}
+;;      c713  mass 1  {judge}
+
+;; ---- slot reach.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 reach) (Theme $e0 $x1))
+;;      c770  mass 4  {decision, decide}
+
+;; ---- slot replace.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Agent $e0 $x1))
+;;      c192  mass 2  {Henry L. Taylor, Sherman Howard}
+;;      c182  mass 1  {Peter Gaussen}
+;;      c266  mass 1  {governor}
+
+;; ---- slot replace.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Theme $e0 $x1))
+;;      c160  mass 2  {Lex Lex Luthor, Lex Luthor}
+;;      c196  mass 1  {O. R. Woodcock, William Ewer}
+;;      c266  mass 1  {governor}
+
+;; ---- slot sell.Recipient  [event center]  n 4  clusters 4
+(And (Member $e0 sell) (Recipient $e0 $x1))
+;;      c323  mass 1  {pottery studio}
+;;      c363  mass 1  {chef}
+;;      c482  mass 1  {school}
+;;      c581  mass 1  {depot}
+
+;; ---- slot sign.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Agent $e0 $x1))
+;;       c25  mass 3  {physician, doctor}
+;;      c792  mass 1  {chart}
+
+;; ---- slot sign.Patient  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Patient $e0 $x1))
+;;      c792  mass 3  {chart}
+;;       c25  mass 1  {physician, doctor}
+
+;; ---- slot sing.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Manner $e0 $x1))
+;;      c317  mass 4  {a cappella}
+
+;; ---- slot sing.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Theme $e0 $x1))
+;;      c311  mass 4  {music}
+
+;; ---- slot sing.To  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (To $e0 $x1))
+;;      c623  mass 4  {accompany}
+
+;; ---- slot speak.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 speak) (Agent $e0 $x1))
+;;      c243  mass 2  {Oates}
+;;      c166  mass 1  {Mie Sonozaki, Soichiro Akizuki}
+;;      c218  mass 1  {Kari Wahlgren}
+
+;; ---- slot specify.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 specify) (Manner $e0 $x1))
+;;      c411  mass 2  {continuous time}
+;;      c412  mass 2  {discrete time}
+
+;; ---- slot star.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 star) (Theme $e0 $x1))
+;;      c174  mass 2  {Jeremy Irons}
+;;      c205  mass 2  {Patricia Kaas}
+
+;; ---- slot start.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 start) (Patient $e0 $x1))
+;;      c320  mass 1  {dress rehearsal}
+;;      c356  mass 1  {apple harvest}
+;;      c562  mass 1  {hearing}
+;;       c90  mass 1  {shoreline survey}
+
+;; ---- slot study.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 study) (Agent $e0 $x1))
+;;      c451  mass 4  {person, people}
+
+;; ---- slot take.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 take) (Theme $e0 $x1))
+;;      c452  mass 2  {identity}
+;;      c500  mass 2  {walk}
+
+;; ---- slot use.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 use) (Manner $e0 $x1))
+;;      c639  mass 4  {rare}
+
+;; ---- slot win.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 win) (Agent $e0 $x1))
+;;      c173  mass 2  {James Woods}
+;;      c219  mass 2  {Wilson, wilson}
+
+;; ---- slot win.For  [event center]  n 4  clusters 1
+(And (Member $e0 win) (For $e0 $x1))
+;;      c325  mass 4  {portray}
+
+;; ---- slot win.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 win) (Theme $e0 $x1))
+;;       c67  mass 4  {emmy}
+
+;; ---- slot house.Possession  [entity center]  n 3  clusters 2
+(And (Member $x0 house) (Possession $x0 $x1))
+;;      c240  mass 2  {Arakkal}
+;;      c107  mass 1  {Derwent Isle}
+
+;; ---- slot western.PartOf  [entity center]  n 3  clusters 2
+(And (Member $x0 western) (PartOf $x0 $x1))
+;;       c95  mass 2  {China}
+;;       c93  mass 1  {Europe, Western Europe}
+
+;; ---- slot bear.Patient  [event center]  n 3  clusters 2
+(And (Member $e0 bear) (Patient $e0 $x1))
+;;      c451  mass 2  {person, people}
+;;      c203  mass 1  {Leonor Rodrigues}
+
+;; ---- slot begin.Time  [event center]  n 3  clusters 2
+(And (Member $e0 begin) (Time $e0 $x1))
+;;      c370  mass 2  {dawn}
+;;      c369  mass 1  {morning, early morning}
+
+;; ---- slot borrow.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Agent $e0 $x1))
+;;      c150  mass 1  {Ravi}
+;;      c329  mass 1  {gallery}
+;;      c374  mass 1  {crew}
+
+;; ---- slot borrow.Source  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Source $e0 $x1))
+;;      c335  mass 1  {museum}
+;;      c424  mass 1  {neighbour, neighbouring}
+;;      c581  mass 1  {depot}
+
+;; ---- slot buy.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 buy) (Beneficiary $e0 $x1))
+;;      c511  mass 3  {hall}
+
+;; ---- slot call_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 call_off) (Agent $e0 $x1))
+;;      c364  mass 1  {airline}
+;;      c440  mass 1  {council}
+;;      c479  mass 1  {tutor}
+
+;; ---- slot cause.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 cause) (Agent $e0 $x1))
+;;      c406  mass 1  {storm}
+;;      c407  mass 1  {flood}
+;;      c653  mass 1  {fire}
+
+;; ---- slot cause.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 cause) (Theme $e0 $x1))
+;;      c671  mass 3  {destroy}
+
+;; ---- slot discover.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+;;      c388  mass 2  {auditor}
+;;      c689  mass 1  {error}
+
+;; ---- slot discover.Stimulus  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+;;      c689  mass 2  {error}
+;;      c388  mass 1  {auditor}
+
+;; ---- slot end.Patient  [event center]  n 3  clusters 3
+(And (Member $e0 end) (Patient $e0 $x1))
+;;      c356  mass 1  {apple harvest}
+;;      c562  mass 1  {hearing}
+;;       c90  mass 1  {shoreline survey}
+
+;; ---- slot examine.Agent  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Agent $e0 $x1))
+;;       c25  mass 3  {physician, doctor}
+
+;; ---- slot examine.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Theme $e0 $x1))
+;;      c309  mass 3  {samples}
+
+;; ---- slot fund.Theme  [event center]  n 3  clusters 2
+(And (Member $e0 fund) (Theme $e0 $x1))
+;;      c418  mass 2  {lessos kenya border section}
+;;      c417  mass 1  {border section}
+
+;; ---- slot give_up.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Agent $e0 $x1))
+;;      c376  mass 1  {rescue team}
+;;      c381  mass 1  {climber, climbers}
+;;      c436  mass 1  {firm}
+
+;; ---- slot give_up.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Theme $e0 $x1))
+;;      c462  mass 1  {tender}
+;;      c503  mass 1  {north route}
+;;      c613  mass 1  {search}
+
+;; ---- slot influence.Agent  [event center]  n 3  clusters 2
+(And (Member $e0 influence) (Agent $e0 $x1))
+;;       c45  mass 2  {indonesian immigrant, indonesian immigrants}
+;;      c526  mass 1  {balance, international}
+
+;; ---- slot learn.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Agent $e0 $x1))
+;;      c372  mass 1  {squad}
+;;      c394  mass 1  {apprentice}
+;;      c448  mass 1  {children}
+
+;; ---- slot learn.Source  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Source $e0 $x1))
+;;      c154  mass 1  {potter}
+;;      c392  mass 1  {coach}
+;;      c449  mass 1  {elder}
+
+;; ---- slot learn.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Theme $e0 $x1))
+;;      c306  mass 1  {drill}
+;;      c310  mass 1  {song, sing}
+;;      c402  mass 1  {glazing}
+
+;; ---- slot market.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Beneficiary $e0 $x1))
+;;      c521  mass 3  {shop}
+
+;; ---- slot market.Location  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Location $e0 $x1))
+;;      c276  mass 3  {pakistani, block, pakistani}
+
+;; ---- slot need.Holder  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Holder $e0 $x1))
+;;      c362  mass 1  {recipe}
+;;      c399  mass 1  {lathe}
+;;      c767  mass 1  {permit, allow}
+
+;; ---- slot need.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Theme $e0 $x1))
+;;      c360  mass 1  {egg, eggs}
+;;      c591  mass 1  {countersignature, countersignatures}
+;;      c793  mass 1  {monthly servicing}
+
+;; ---- slot permit.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Agent $e0 $x1))
+;;      c390  mass 1  {warden}
+;;      c391  mass 1  {curator}
+;;      c554  mass 1  {licence}
+
+;; ---- slot permit.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Theme $e0 $x1))
+;;      c332  mass 1  {photography}
+;;      c473  mass 1  {night delivery}
+;;      c579  mass 1  {visitor}
+
+;; ---- slot put_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Agent $e0 $x1))
+;;      c373  mass 1  {club}
+;;      c707  mass 1  {board}
+;;       c75  mass 1  {ferry}
+
+;; ---- slot put_off.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Theme $e0 $x1))
+;;       c22  mass 1  {tournament}
+;;      c716  mass 1  {vote}
+;;      c726  mass 1  {departure, depart}
+
+;; ---- slot receive.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Agent $e0 $x1))
+;;      c445  mass 1  {recruit}
+;;       c73  mass 1  {driver}
+;;      c760  mass 1  {winner, win}
+
+;; ---- slot receive.Source  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Source $e0 $x1))
+;;      c255  mass 1  {foreman}
+;;      c393  mass 1  {trainer}
+;;      c482  mass 1  {school}
+
+;; ---- slot start.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Experiencer $e0 $x1))
+;;      c493  mass 2  {bridge}
+;;      c254  mass 1  {tunnel}
+
+;; ---- slot start.Location  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Location $e0 $x1))
+;;      c119  mass 2  {sweden}
+;;      c106  mass 1  {denmark}
+
+;; ---- slot succeed.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Agent $e0 $x1))
+;;      c158  mass 1  {Alexander}
+;;      c182  mass 1  {Peter Gaussen}
+;;      c232  mass 1  {Bailey}
+
+;; ---- slot succeed.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Theme $e0 $x1))
+;;      c199  mass 1  {Henry Cole}
+;;      c212  mass 1  {Margaret Fleming}
+;;      c266  mass 1  {governor}
+
+;; ---- slot turn_down.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+;;      c387  mass 1  {editor}
+;;      c527  mass 1  {bank}
+;;      c708  mass 1  {panel}
+
+;; ---- slot turn_down.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+;;      c339  mass 1  {manuscript}
+;;      c524  mass 1  {loan application}
+;;      c696  mass 1  {proposal}
+
+;; ---- slot wait.Experiencer  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+;;       c72  mass 3  {automobile, car, automobiles}
+
+;; ---- slot wait.Location  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Location $e0 $x1))
+;;      c585  mass 3  {gate}
+
+;; ---- slot walk.Goal  [event center]  n 3  clusters 2
+(And (Member $e0 walk) (Goal $e0 $x1))
+;;      c496  mass 2  {pier}
+;;      c448  mass 1  {children}
+
+;; ---- slot work.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 work) (Theme $e0 $x1))
+;;      c328  mass 3  {mural}
+
+;; ==================== subtree @ cluster cos 0.95: pooled role level (45 head pairs) ====================
+
+;; Agent ~ Recipient  cosine 0.30  JSD 0.735  n 500 / 47  shared: {person} {school} {depot}
+(Agent $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Experiencer  cosine 0.22  JSD 0.901  n 500 / 63  shared: {person} {automobile, automobiles} {Aslan}
+(Agent $e $x)
+(Experiencer $e $x)
+
+;; Agent ~ Theme  cosine 0.15  JSD 0.83  n 500 / 367  shared: {person} {physician} {children}
+(Agent $e $x)
+(Theme $e $x)
+
+;; Agent ~ Patient  cosine 0.15  JSD 0.881  n 500 / 159  shared: {person} {physician} {electrician}
+(Agent $e $x)
+(Patient $e $x)
+
+;; Agent ~ Source  cosine 0.11  JSD 0.862  n 500 / 24  shared: {school} {depot} {potter}
+(Agent $e $x)
+(Source $e $x)
+
+;; Recipient ~ Source  cosine 0.11  JSD 0.813  n 47 / 24  shared: {depot} {potter} {foreman}
+(Recipient $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Patient  cosine 0.10  JSD 0.905  n 63 / 159  shared: {person} {bad, relationship} {indigenous, people}
+(Experiencer $e $x)
+(Patient $e $x)
+
+;; Patient ~ Theme  cosine 0.10  JSD 0.9  n 159 / 367  shared: {song} {person} {decision}
+(Patient $e $x)
+(Theme $e $x)
+
+;; Recipient ~ Theme  cosine 0.09  JSD 0.904  n 47 / 367  shared: {children} {person} {tower}
+(Recipient $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Recipient  cosine 0.07  JSD 0.948  n 63 / 47  shared: {person}
+(Experiencer $e $x)
+(Recipient $e $x)
+
+;; Experiencer ~ Theme  cosine 0.06  JSD 0.952  n 63 / 367  shared: {person} {bridge} {destined, film, syrian}
+(Experiencer $e $x)
+(Theme $e $x)
+
+;; Goal ~ Recipient  cosine 0.05  JSD 0.929  n 30 / 47  shared: {children} {Loren}
+(Goal $e $x)
+(Recipient $e $x)
+
+;; Patient ~ Recipient  cosine 0.04  JSD 0.954  n 159 / 47  shared: {person} {crew}
+(Patient $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Goal  cosine 0.03  JSD 0.964  n 500 / 30  shared: {George Allen, Chuck Robb} {children} {pier}
+(Agent $e $x)
+(Goal $e $x)
+
+;; Goal ~ Theme  cosine 0.02  JSD 0.975  n 30 / 367  shared: {children} {predictive function, predictive functions}
+(Goal $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Location  cosine 0.01  JSD 0.988  n 63 / 175  shared: {park}
+(Experiencer $e $x)
+(Location $e $x)
+
+;; Location ~ Theme  cosine 0.01  JSD 0.987  n 175 / 367  shared: {mural} {gate}
+(Location $e $x)
+(Theme $e $x)
+
+;; Agent ~ Location  cosine 0.01  JSD 0.987  n 500 / 175  shared: {nurse} {north} {ward}
+(Agent $e $x)
+(Location $e $x)
+
+;; Source ~ Theme  cosine 0.01  JSD 0.993  n 24 / 367  shared: {depot}
+(Source $e $x)
+(Theme $e $x)
+
+;; Agent ~ Manner  cosine 0.00  JSD 1.0  n 500 / 34  shared: 
+(Agent $e $x)
+(Manner $e $x)
+
+;; Agent ~ Time  cosine 0.00  JSD 1.0  n 500 / 37  shared: 
+(Agent $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Goal  cosine 0.00  JSD 1.0  n 63 / 30  shared: 
+(Experiencer $e $x)
+(Goal $e $x)
+
+;; Experiencer ~ Manner  cosine 0.00  JSD 1.0  n 63 / 34  shared: 
+(Experiencer $e $x)
+(Manner $e $x)
+
+;; Experiencer ~ Source  cosine 0.00  JSD 1.0  n 63 / 24  shared: 
+(Experiencer $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Time  cosine 0.00  JSD 1.0  n 63 / 37  shared: 
+(Experiencer $e $x)
+(Time $e $x)
+
+;; Goal ~ Location  cosine 0.00  JSD 1.0  n 30 / 175  shared: 
+(Goal $e $x)
+(Location $e $x)
+
+;; Goal ~ Manner  cosine 0.00  JSD 1.0  n 30 / 34  shared: 
+(Goal $e $x)
+(Manner $e $x)
+
+;; Goal ~ Patient  cosine 0.00  JSD 1.0  n 30 / 159  shared: 
+(Goal $e $x)
+(Patient $e $x)
+
+;; Goal ~ Source  cosine 0.00  JSD 1.0  n 30 / 24  shared: 
+(Goal $e $x)
+(Source $e $x)
+
+;; Goal ~ Time  cosine 0.00  JSD 1.0  n 30 / 37  shared: 
+(Goal $e $x)
+(Time $e $x)
+
+;; Location ~ Manner  cosine 0.00  JSD 1.0  n 175 / 34  shared: 
+(Location $e $x)
+(Manner $e $x)
+
+;; Location ~ Patient  cosine 0.00  JSD 1.0  n 175 / 159  shared: 
+(Location $e $x)
+(Patient $e $x)
+
+;; Location ~ Recipient  cosine 0.00  JSD 1.0  n 175 / 47  shared: 
+(Location $e $x)
+(Recipient $e $x)
+
+;; Location ~ Source  cosine 0.00  JSD 1.0  n 175 / 24  shared: 
+(Location $e $x)
+(Source $e $x)
+
+;; Location ~ Time  cosine 0.00  JSD 1.0  n 175 / 37  shared: 
+(Location $e $x)
+(Time $e $x)
+
+;; Manner ~ Patient  cosine 0.00  JSD 1.0  n 34 / 159  shared: 
+(Manner $e $x)
+(Patient $e $x)
+
+;; Manner ~ Recipient  cosine 0.00  JSD 1.0  n 34 / 47  shared: 
+(Manner $e $x)
+(Recipient $e $x)
+
+;; Manner ~ Source  cosine 0.00  JSD 1.0  n 34 / 24  shared: 
+(Manner $e $x)
+(Source $e $x)
+
+;; Manner ~ Theme  cosine 0.00  JSD 1.0  n 34 / 367  shared: 
+(Manner $e $x)
+(Theme $e $x)
+
+;; Manner ~ Time  cosine 0.00  JSD 1.0  n 34 / 37  shared: 
+(Manner $e $x)
+(Time $e $x)
+
+;; Patient ~ Source  cosine 0.00  JSD 1.0  n 159 / 24  shared: 
+(Patient $e $x)
+(Source $e $x)
+
+;; Patient ~ Time  cosine 0.00  JSD 1.0  n 159 / 37  shared: 
+(Patient $e $x)
+(Time $e $x)
+
+;; Recipient ~ Time  cosine 0.00  JSD 1.0  n 47 / 37  shared: 
+(Recipient $e $x)
+(Time $e $x)
+
+;; Source ~ Time  cosine 0.00  JSD 1.0  n 24 / 37  shared: 
+(Source $e $x)
+(Time $e $x)
+
+;; Theme ~ Time  cosine 0.00  JSD 1.0  n 367 / 37  shared: 
+(Theme $e $x)
+(Time $e $x)
+
+;; ==================== subtree @ cluster cos 0.95: slot pairs (52 event-center signals) ====================
+
+;; [same role, different class]  acquire.Agent ~ purchase.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ purchase.Theme  cosine 1.00  JSD 0.0  n 4 / 4  shared: {projector} {crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Agent ~ create.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {european american settlers} {indigenous american, native american, indigenous americans, native americans}
+;;   A e.g. tierC-000025 tierC-000026   B e.g. tierC-000025 tierC-000026
+(And (Member $e0 begin) (Agent $e0 $x1))
+(And (Member $e0 create) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ start.Patient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {shoreline survey} {dress rehearsal} {apple harvest} {hearing}
+;;   A e.g. tierA-000054 tierA-000064   B e.g. tierA-000053 tierA-000063
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  make.Agent ~ reach.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000186 tierA-000197   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 make) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  learn.Theme ~ teach.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {drill} {song} {glazing}
+;;   A e.g. tierA-000287 tierA-000292   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Theme $e0 $x1))
+(And (Member $e0 teach) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Theme ~ require.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {eggs} {countersignature, countersignatures} {monthly servicing}
+;;   A e.g. tierA-000085 tierA-000090   B e.g. tierA-000084 tierA-000086
+(And (Member $e0 need) (Theme $e0 $x1))
+(And (Member $e0 require) (Theme $e0 $x1))
+
+;; [same role, different class]  abandon.Agent ~ give_up.Agent  cosine 0.98  JSD 0.006  n 8 / 3  shared: {rescue team} {climbers} {firm}
+;;   A e.g. tierA-000099 tierA-000101   B e.g. tierA-000100 tierA-000110
+(And (Member $e0 abandon) (Agent $e0 $x1))
+(And (Member $e0 give_up) (Agent $e0 $x1))
+
+;; [same role, different class]  abandon.Theme ~ give_up.Theme  cosine 0.98  JSD 0.006  n 8 / 3  shared: {tender} {north route} {search}
+;;   A e.g. tierA-000104 tierA-000106   B e.g. tierA-000105 tierA-000110
+(And (Member $e0 abandon) (Theme $e0 $x1))
+(And (Member $e0 give_up) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Holder ~ require.Holder  cosine 0.98  JSD 0.006  n 3 / 8  shared: {recipe} {lathe} {permit}
+;;   A e.g. tierA-000085 tierA-000095   B e.g. tierA-000086 tierA-000087
+(And (Member $e0 need) (Holder $e0 $x1))
+(And (Member $e0 require) (Holder $e0 $x1))
+
+;; [same role, different class]  postpone.Agent ~ put_off.Agent  cosine 0.98  JSD 0.007  n 7 / 3  shared: {club} {board} {ferry}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Agent $e0 $x1))
+(And (Member $e0 put_off) (Agent $e0 $x1))
+
+;; [same role, different class]  postpone.Theme ~ put_off.Theme  cosine 0.98  JSD 0.007  n 7 / 3  shared: {tournament} {vote} {departure, depart}
+;;   A e.g. tierA-000123 tierA-000125   B e.g. tierA-000124 tierA-000115
+(And (Member $e0 postpone) (Theme $e0 $x1))
+(And (Member $e0 put_off) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ commence.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {shoreline survey} {dress rehearsal} {apple harvest} {hearing}
+;;   A e.g. tierA-000052 tierA-000055   B e.g. tierA-000054 tierA-000064
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 commence) (Patient $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ start.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {shoreline survey} {dress rehearsal} {apple harvest} {hearing}
+;;   A e.g. tierA-000052 tierA-000055   B e.g. tierA-000053 tierA-000063
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  allow.Agent ~ permit.Agent  cosine 0.94  JSD 0.021  n 4 / 3  shared: {warden} {curator} {licence}
+;;   A e.g. tierA-000075 tierA-000080   B e.g. tierA-000073 tierA-000081
+(And (Member $e0 allow) (Agent $e0 $x1))
+(And (Member $e0 permit) (Agent $e0 $x1))
+
+;; [same role, different class]  allow.Theme ~ permit.Theme  cosine 0.94  JSD 0.021  n 4 / 3  shared: {photography} {night delivery} {visitor}
+;;   A e.g. tierA-000080 tierA-000076   B e.g. tierA-000081 tierA-000077
+(And (Member $e0 allow) (Theme $e0 $x1))
+(And (Member $e0 permit) (Theme $e0 $x1))
+
+;; [same role, different class]  call_off.Agent ~ cancel.Agent  cosine 0.96  JSD 0.064  n 3 / 9  shared: {airline} {council} {tutor}
+;;   A e.g. tierA-000144 tierA-000149   B e.g. tierA-000143 tierA-000145
+(And (Member $e0 call_off) (Agent $e0 $x1))
+(And (Member $e0 cancel) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Theme ~ decision.Theme  cosine 0.96  JSD 0.064  n 9 / 6  shared: {new, roof} {budget} {case}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000187
+(And (Member $e0 decide) (Theme $e0 $x1))
+(And (Member $e0 decision) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Agent ~ buy.Agent  cosine 0.94  JSD 0.121  n 4 / 14  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000022 tierA-000026
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 buy) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Agent ~ purchase.Agent  cosine 0.94  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000023 tierA-000016
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ make.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000186 tierA-000197
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 make) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ reach.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {committee} {family} {board} {judge}
+;;   A e.g. tierA-000185 tierA-000189   B e.g. tierA-000187 tierA-000198
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  cause.Agent ~ destroy.Agent  cosine 0.93  JSD 0.138  n 3 / 8  shared: {storm} {flood} {fire}
+;;   A e.g. tierA-000223 tierA-000233   B e.g. tierA-000222 tierA-000224
+(And (Member $e0 cause) (Agent $e0 $x1))
+(And (Member $e0 destroy) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ end.Patient  cosine 0.87  JSD 0.138  n 4 / 3  shared: {shoreline survey} {apple harvest} {hearing}
+;;   A e.g. tierA-000054 tierA-000069   B e.g. tierA-000056 tierA-000071
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  end.Patient ~ start.Patient  cosine 0.87  JSD 0.138  n 3 / 4  shared: {shoreline survey} {apple harvest} {hearing}
+;;   A e.g. tierA-000056 tierA-000071   B e.g. tierA-000053 tierA-000068
+(And (Member $e0 end) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  examine.Agent ~ order.Agent  cosine 0.91  JSD 0.138  n 3 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000381 tierA-000380   B e.g. tierA-000386 tierA-000385
+(And (Member $e0 examine) (Agent $e0 $x1))
+(And (Member $e0 order) (Agent $e0 $x1))
+
+;; [same role, different class]  examine.Agent ~ sign.Agent  cosine 0.91  JSD 0.138  n 3 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000381 tierA-000380   B e.g. tierA-000376 tierA-000375
+(And (Member $e0 examine) (Agent $e0 $x1))
+(And (Member $e0 sign) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Agent ~ turn_down.Agent  cosine 0.93  JSD 0.138  n 8 / 3  shared: {editor} {bank} {panel}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Agent $e0 $x1))
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Theme ~ turn_down.Theme  cosine 0.93  JSD 0.138  n 8 / 3  shared: {manuscript} {loan application} {proposal}
+;;   A e.g. tierA-000158 tierA-000160   B e.g. tierA-000159 tierA-000164
+(And (Member $e0 reject) (Theme $e0 $x1))
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ buy.Theme  cosine 0.91  JSD 0.166  n 4 / 14  shared: {projector} {crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000008 tierA-000012
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 buy) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ purchase.Theme  cosine 0.91  JSD 0.166  n 14 / 4  shared: {projector} {crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000008 tierA-000012   B e.g. tierA-000009 tierA-000016
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ end.Patient  cosine 0.80  JSD 0.174  n 7 / 3  shared: {shoreline survey} {apple harvest} {hearing}
+;;   A e.g. tierA-000052 tierA-000055   B e.g. tierA-000056 tierA-000071
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ sell.Theme  cosine 0.71  JSD 0.191  n 4 / 6  shared: {projector} {crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000010 tierA-000017   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  portray.Agent ~ win.Agent  cosine 0.78  JSD 0.191  n 6 / 4  shared: {James Woods} {Wilson} {wilson}
+;;   A e.g. tierC-000301 tierC-000302   B e.g. tierC-000278 tierC-000277
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [same role, different class]  purchase.Theme ~ sell.Theme  cosine 0.71  JSD 0.191  n 4 / 6  shared: {projector} {crate, lemons} {forklift, forklifts} {kiln}
+;;   A e.g. tierA-000009 tierA-000016   B e.g. tierA-000011 tierA-000018
+(And (Member $e0 purchase) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  accompany.Agent ~ appear.Agent  cosine 0.78  JSD 0.217  n 4 / 8  shared: {person} {sisters}
+;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000049 tierC-000050
+(And (Member $e0 accompany) (Agent $e0 $x1))
+(And (Member $e0 appear) (Agent $e0 $x1))
+
+;; [same role, different class]  order.Agent ~ sign.Agent  cosine 0.83  JSD 0.25  n 4 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000386 tierA-000385   B e.g. tierA-000376 tierA-000375
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 sign) (Agent $e0 $x1))
+
+;; [same class, different role]  repair.Agent ~ repair.Patient  cosine 0.83  JSD 0.061  n 8 / 8  shared: {cracked, feed pipe} {crew} {electrician} {gearbox, seized}
+;;   A e.g. tierA-000051 tierA-000049   B e.g. tierA-000039 tierA-000029
+(And (Member $e0 repair) (Agent $e0 $x1))
+(And (Member $e0 repair) (Patient $e0 $x1))
+
+;; [same class, different role]  discover.Experiencer ~ discover.Stimulus  cosine 0.80  JSD 0.082  n 3 / 3  shared: {auditor} {error}
+;;   A e.g. tierA-000128 tierA-000130   B e.g. tierA-000132 tierA-000128
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+
+;; [same class, different role]  order.Agent ~ order.Theme  cosine 0.65  JSD 0.25  n 4 / 4  shared: {physician} {scan}
+;;   A e.g. tierA-000385 tierA-000387   B e.g. tierA-000389 tierA-000386
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 order) (Theme $e0 $x1))
+
+;; [same class, different role]  sign.Agent ~ sign.Patient  cosine 0.65  JSD 0.25  n 4 / 4  shared: {physician} {chart}
+;;   A e.g. tierA-000375 tierA-000377   B e.g. tierA-000378 tierA-000376
+(And (Member $e0 sign) (Agent $e0 $x1))
+(And (Member $e0 sign) (Patient $e0 $x1))
+
+;; [different class and role]  acquire.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000024 tierA-000017   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  purchase.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000023 tierA-000016   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 purchase) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  block.Agent ~ wait.Experiencer  cosine 0.99  JSD 0.006  n 4 / 3  shared: {automobile, automobiles} {car}
+;;   A e.g. tierA-000390 tierA-000392   B e.g. tierA-000395 tierA-000397
+(And (Member $e0 block) (Agent $e0 $x1))
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+
+;; [different class and role]  borrow.Agent ~ lend.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {Ravi} {gallery} {crew}
+;;   A e.g. tierA-000297 tierA-000307   B e.g. tierA-000296 tierA-000298
+(And (Member $e0 borrow) (Agent $e0 $x1))
+(And (Member $e0 lend) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Source ~ lend.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {museum} {neighbour} {depot}
+;;   A e.g. tierA-000307 tierA-000297   B e.g. tierA-000306 tierA-000308
+(And (Member $e0 borrow) (Source $e0 $x1))
+(And (Member $e0 lend) (Agent $e0 $x1))
+
+;; [different class and role]  learn.Agent ~ teach.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {squad} {apprentice} {children}
+;;   A e.g. tierA-000287 tierA-000282   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Agent $e0 $x1))
+(And (Member $e0 teach) (Recipient $e0 $x1))
+
+;; [different class and role]  learn.Source ~ teach.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {potter} {coach} {elder}
+;;   A e.g. tierA-000282 tierA-000287   B e.g. tierA-000281 tierA-000283
+(And (Member $e0 learn) (Source $e0 $x1))
+(And (Member $e0 teach) (Agent $e0 $x1))
+
+;; [different class and role]  buy.Agent ~ sell.Recipient  cosine 0.94  JSD 0.121  n 14 / 4  shared: {pottery studio} {chef} {school} {depot}
+;;   A e.g. tierA-000022 tierA-000026   B e.g. tierA-000025 tierA-000018
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  portray.Theme ~ win.Agent  cosine 0.78  JSD 0.191  n 6 / 4  shared: {James Woods} {Wilson} {wilson}
+;;   A e.g. tierC-000277 tierC-000278   B e.g. tierC-000301 tierC-000302
+(And (Member $e0 portray) (Theme $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [different class and role]  give.Agent ~ receive.Source  cosine 0.91  JSD 0.196  n 12 / 3  shared: {foreman} {trainer} {school}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000262
+(And (Member $e0 give) (Agent $e0 $x1))
+(And (Member $e0 receive) (Source $e0 $x1))
+
+;; [different class and role]  give.Recipient ~ receive.Agent  cosine 0.91  JSD 0.196  n 12 / 3  shared: {recruit} {driver} {winner}
+;;   A e.g. tierA-000261 tierA-000263   B e.g. tierA-000262 tierA-000272
+(And (Member $e0 give) (Recipient $e0 $x1))
+(And (Member $e0 receive) (Agent $e0 $x1))
+
+;; ==================== subtree @ cluster cos 0.95: compared slots with their distributions (197 slots, n >= 3) ====================
+
+;; ---- slot <unclassed>.Possession  [entity center]  n 18  clusters 8
+(Possession $x0 $x1)
+;;      c489  mass 5  {person}
+;;      c168  mass 2  {Twilight}
+;;      c222  mass 2  {Gil Aires}
+;;      c223  mass 2  {Leonor Rodrigues}
+;;      c232  mass 2  {Dora Smith}
+;;      c301  mass 2  {communities, neighbouring, other, sunni}
+;;      c620  mass 2  {subsequent game}
+;;      c196  mass 1  {J. Augustus Knapp}
+
+;; ---- slot work.Agent  [event center]  n 17  clusters 10
+(And (Member $e0 work) (Agent $e0 $x1))
+;;      c228  mass 3  {Ana}
+;;      c263  mass 3  {Dara}
+;;       c29  mass 3  {biologist}
+;;      c417  mass 2  {welder}
+;;      c245  mass 1  {Mr. Jones}
+;;      c248  mass 1  {Bo}
+;;      c255  mass 1  {Nils}
+;;      c257  mass 1  {Asserson}
+;;      c409  mass 1  {ranger}
+;;      c634  mass 1  {fitter}
+
+;; ---- slot build.Location  [event center]  n 14  clusters 3
+(And (Member $e0 build) (Location $e0 $x1))
+;;      c112  mass 6  {Turkey}
+;;      c123  mass 4  {Kazakhstan}
+;;      c157  mass 4  {Eskisehir}
+
+;; ---- slot buy.Agent  [event center]  n 14  clusters 7
+(And (Member $e0 buy) (Agent $e0 $x1))
+;;      c348  mass 3  {pottery studio}
+;;      c521  mass 3  {school}
+;;      c626  mass 3  {depot}
+;;      c394  mass 2  {chef}
+;;      c382  mass 1  {crate, lemons}
+;;      c430  mass 1  {forklift, forklifts}
+;;      c435  mass 1  {kiln}
+
+;; ---- slot buy.Theme  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Theme $e0 $x1))
+;;      c430  mass 3  {forklift, forklifts}
+;;      c435  mass 3  {kiln}
+;;      c273  mass 2  {projector}
+;;      c382  mass 2  {crate, lemons}
+;;      c274  mass 1  {projectors}
+;;      c348  mass 1  {pottery studio}
+;;      c394  mass 1  {chef}
+;;      c626  mass 1  {depot}
+
+;; ---- slot work.Location  [event center]  n 13  clusters 5
+(And (Member $e0 work) (Location $e0 $x1))
+;;      c569  mass 4  {ledger}
+;;      c856  mass 4  {survey}
+;;      c762  mass 3  {frame}
+;;      c354  mass 1  {mural}
+;;        c7  mass 1  {Church of Norway}
+
+;; ---- slot build.Agent  [event center]  n 12  clusters 3
+(And (Member $e0 build) (Agent $e0 $x1))
+;;      c471  mass 8  {company}
+;;      c215  mass 2  {O. R. Woodcock}
+;;      c489  mass 2  {person}
+
+;; ---- slot build.Patient  [event center]  n 12  clusters 5
+(And (Member $e0 build) (Patient $e0 $x1))
+;;      c554  mass 4  {hotel}
+;;      c363  mass 2  {paper factory}
+;;      c364  mass 2  {paper mill}
+;;      c552  mass 2  {room}
+;;      c711  mass 2  {horn}
+
+;; ---- slot find.Location  [event center]  n 12  clusters 8
+(And (Member $e0 find) (Location $e0 $x1))
+;;      c462  mass 2  {southern}
+;;      c766  mass 2  {bench}
+;;       c94  mass 2  {Yunnan}
+;;       c95  mass 2  {tributary, tributaries}
+;;      c105  mass 1  {Europe, Western Europe}
+;;      c107  mass 1  {China}
+;;      c463  mass 1  {western}
+;;       c93  mass 1  {Dianchi Lake, Lake Dianchi}
+
+;; ---- slot give.Agent  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Agent $e0 $x1))
+;;      c426  mass 3  {trainer}
+;;      c521  mass 3  {school}
+;;      c278  mass 2  {foreman}
+;;      c397  mass 1  {pilot}
+;;      c422  mass 1  {clerk}
+;;      c771  mass 1  {vet}
+;;       c82  mass 1  {driver}
+
+;; ---- slot give.Recipient  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Recipient $e0 $x1))
+;;      c481  mass 3  {recruit}
+;;      c822  mass 3  {winner}
+;;       c82  mass 2  {driver}
+;;      c278  mass 1  {foreman}
+;;      c538  mass 1  {tower}
+;;      c597  mass 1  {caller}
+;;      c658  mass 1  {query}
+
+;; ---- slot give.Theme  [event center]  n 12  clusters 6
+(And (Member $e0 give) (Theme $e0 $x1))
+;;      c638  mass 3  {manifest}
+;;      c837  mass 3  {answer}
+;;      c328  mass 2  {whistle}
+;;       c72  mass 2  {medal}
+;;      c329  mass 1  {whistles}
+;;       c73  mass 1  {medals}
+
+;; ---- slot decide.Agent  [event center]  n 11  clusters 6
+(And (Member $e0 decide) (Agent $e0 $x1))
+;;      c763  mass 3  {board}
+;;      c769  mass 3  {judge}
+;;      c475  mass 2  {committee}
+;;      c460  mass 1  {north}
+;;      c496  mass 1  {family}
+;;      c768  mass 1  {case}
+
+;; ---- slot destroy.Patient  [event center]  n 11  clusters 5
+(And (Member $e0 destroy) (Patient $e0 $x1))
+;;      c360  mass 3  {archive}
+;;      c437  mass 3  {greenhouse}
+;;      c534  mass 3  {footbridge}
+;;      c440  mass 1  {storm}
+;;      c706  mass 1  {fire}
+
+;; ---- slot answer.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Agent $e0 $x1))
+;;      c397  mass 3  {pilot}
+;;      c422  mass 3  {clerk}
+;;      c771  mass 2  {vet}
+;;      c597  mass 1  {caller}
+;;      c658  mass 1  {query}
+
+;; ---- slot answer.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Theme $e0 $x1))
+;;      c538  mass 3  {tower}
+;;      c658  mass 3  {query}
+;;      c597  mass 2  {caller}
+;;      c422  mass 1  {clerk}
+;;      c771  mass 1  {vet}
+
+;; ---- slot lend.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Agent $e0 $x1))
+;;      c362  mass 3  {museum}
+;;      c458  mass 3  {neighbour}
+;;      c626  mass 2  {depot}
+;;      c165  mass 1  {Ravi}
+;;      c406  mass 1  {crew}
+
+;; ---- slot lend.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Recipient $e0 $x1))
+;;      c165  mass 3  {Ravi}
+;;      c355  mass 3  {gallery}
+;;      c406  mass 2  {crew}
+;;      c458  mass 1  {neighbour}
+;;      c626  mass 1  {depot}
+
+;; ---- slot lend.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Theme $e0 $x1))
+;;      c431  mass 3  {ladder}
+;;      c635  mass 3  {generator}
+;;      c351  mass 2  {painting}
+;;      c352  mass 1  {paintings}
+;;      c432  mass 1  {ladders}
+
+;; ---- slot require.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 require) (Theme $e0 $x1))
+;;      c391  mass 4  {eggs}
+;;      c636  mass 3  {countersignature, countersignatures}
+;;      c858  mass 3  {monthly servicing}
+
+;; ---- slot teach.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Agent $e0 $x1))
+;;      c169  mass 3  {potter}
+;;      c486  mass 3  {elder}
+;;      c425  mass 2  {coach}
+;;      c404  mass 1  {squad}
+;;      c427  mass 1  {apprentice}
+
+;; ---- slot teach.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Recipient $e0 $x1))
+;;      c427  mass 3  {apprentice}
+;;      c485  mass 3  {children}
+;;      c404  mass 2  {squad}
+;;      c169  mass 1  {potter}
+;;      c425  mass 1  {coach}
+
+;; ---- slot teach.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 teach) (Theme $e0 $x1))
+;;      c436  mass 4  {glazing}
+;;      c330  mass 3  {drill}
+;;      c335  mass 3  {song}
+
+;; ---- slot cancel.Agent  [event center]  n 9  clusters 4
+(And (Member $e0 cancel) (Agent $e0 $x1))
+;;      c476  mass 3  {council}
+;;      c518  mass 3  {tutor}
+;;      c395  mass 2  {airline}
+;;       c27  mass 1  {physician}
+
+;; ---- slot decide.Theme  [event center]  n 9  clusters 4
+(And (Member $e0 decide) (Theme $e0 $x1))
+;;      c570  mass 3  {budget}
+;;      c768  mass 3  {case}
+;;      c548  mass 2  {new, roof}
+;;      c769  mass 1  {judge}
+
+;; ---- slot discover.Theme  [event center]  n 9  clusters 4
+(And (Member $e0 discover) (Theme $e0 $x1))
+;;      c442  mass 3  {wreck}
+;;      c515  mass 3  {file, missing}
+;;      c368  mass 2  {name}
+;;      c415  mass 1  {diver}
+
+;; ---- slot view.Possession  [entity center]  n 8  clusters 2
+(And (Member $x0 view) (Possession $x0 $x1))
+;;      c284  mass 4  {Free Soil Party}
+;;      c285  mass 4  {Republican Party}
+
+;; ---- slot abandon.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Agent $e0 $x1))
+;;      c414  mass 3  {climbers}
+;;      c472  mass 3  {firm}
+;;      c408  mass 2  {rescue team}
+
+;; ---- slot abandon.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Theme $e0 $x1))
+;;      c501  mass 3  {tender}
+;;      c543  mass 3  {north route}
+;;      c659  mass 2  {search}
+
+;; ---- slot appear.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 appear) (Agent $e0 $x1))
+;;      c489  mass 5  {person}
+;;      c207  mass 2  {Brian Packham}
+;;      c498  mass 1  {sisters}
+
+;; ---- slot appear.Location  [event center]  n 8  clusters 5
+(And (Member $e0 appear) (Location $e0 $x1))
+;;       c30  mass 2  {comedic role}
+;;      c386  mass 2  {cafe}
+;;        c9  mass 2  {Coronation Street}
+;;      c319  mass 1  {music film}
+;;      c320  mass 1  {musical film}
+
+;; ---- slot destroy.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 destroy) (Agent $e0 $x1))
+;;      c440  mass 2  {storm}
+;;      c441  mass 2  {flood}
+;;      c706  mass 2  {fire}
+;;      c360  mass 1  {archive}
+;;      c437  mass 1  {greenhouse}
+
+;; ---- slot have.Holder  [event center]  n 8  clusters 4
+(And (Member $e0 have) (Holder $e0 $x1))
+;;      c187  mass 4  {Kristoffer}
+;;      c231  mass 2  {Karen}
+;;       c62  mass 1  {homentropic current}
+;;       c63  mass 1  {homentropic flow}
+
+;; ---- slot have.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 have) (Theme $e0 $x1))
+;;      c485  mass 4  {children}
+;;      c449  mass 2  {constant, entropy, uniform}
+;;      c826  mass 2  {representation, represent}
+
+;; ---- slot include.Theme  [event center]  n 8  clusters 4
+(And (Member $e0 include) (Theme $e0 $x1))
+;;      c149  mass 2  {Des Moines}
+;;      c163  mass 2  {Armaan Jain}
+;;      c164  mass 2  {Ranbir Kapoor}
+;;      c166  mass 2  {Nikhil Nanda}
+
+;; ---- slot produce.Patient  [event center]  n 8  clusters 4
+(And (Member $e0 produce) (Patient $e0 $x1))
+;;      c318  mass 4  {movie, film}
+;;      c339  mass 2  {album}
+;;       c31  mass 1  {destined, film, syrian}
+;;       c32  mass 1  {film, syrian}
+
+;; ---- slot reject.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Agent $e0 $x1))
+;;      c420  mass 2  {editor}
+;;      c568  mass 2  {bank}
+;;      c764  mass 2  {panel}
+;;      c367  mass 1  {manuscript}
+;;      c565  mass 1  {loan application}
+
+;; ---- slot reject.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Theme $e0 $x1))
+;;      c367  mass 2  {manuscript}
+;;      c565  mass 2  {loan application}
+;;      c752  mass 2  {proposal}
+;;      c420  mass 1  {editor}
+;;      c568  mass 1  {bank}
+
+;; ---- slot repair.Agent  [event center]  n 8  clusters 6
+(And (Member $e0 repair) (Agent $e0 $x1))
+;;      c416  mass 2  {electrician}
+;;       c83  mass 2  {mechanic}
+;;      c275  mass 1  {cracked, feed pipe}
+;;      c406  mass 1  {crew}
+;;       c79  mass 1  {gearbox, seized}
+;;      c860  mass 1  {yard floodlight}
+
+;; ---- slot repair.Patient  [event center]  n 8  clusters 6
+(And (Member $e0 repair) (Patient $e0 $x1))
+;;       c79  mass 2  {gearbox, seized}
+;;      c860  mass 2  {yard floodlight}
+;;      c275  mass 1  {cracked, feed pipe}
+;;      c406  mass 1  {crew}
+;;      c416  mass 1  {electrician}
+;;       c83  mass 1  {mechanic}
+
+;; ---- slot require.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 require) (Holder $e0 $x1))
+;;      c393  mass 3  {recipe}
+;;      c830  mass 3  {permit}
+;;      c433  mass 2  {lathe}
+
+;; ---- slot serve.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 serve) (Agent $e0 $x1))
+;;      c154  mass 2  {Indooroopilly}
+;;      c155  mass 2  {Ipswich}
+;;      c261  mass 2  {Rosewood}
+;;      c489  mass 2  {person}
+
+;; ---- slot sing.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 sing) (Agent $e0 $x1))
+;;      c341  mass 2  {Barbershop Harmony Society}
+;;      c489  mass 2  {person}
+;;      c498  mass 2  {sisters}
+;;      c468  mass 1  {occupational group}
+;;      c469  mass 1  {professional group}
+
+;; ---- slot study.Location  [event center]  n 8  clusters 3
+(And (Member $e0 study) (Location $e0 $x1))
+;;      c153  mass 4  {Melbourne, Sydney}
+;;      c346  mass 2  {Davis Studio}
+;;      c347  mass 2  {Julian Ashton Art School}
+
+;; ---- slot be.Experiencer  [event center]  n 7  clusters 4
+(And (Member $e0 be) (Experiencer $e0 $x1))
+;;      c259  mass 4  {Paniqui}
+;;      c131  mass 1  {Ellerslie Rugby Park}
+;;      c277  mass 1  {tunnel}
+;;       c90  mass 1  {Alema Nature Reserve}
+
+;; ---- slot begin.Patient  [event center]  n 7  clusters 4
+(And (Member $e0 begin) (Patient $e0 $x1))
+;;      c101  mass 2  {shoreline survey}
+;;      c345  mass 2  {dress rehearsal}
+;;      c385  mass 2  {apple harvest}
+;;      c604  mass 1  {hearing}
+
+;; ---- slot cancel.Patient  [event center]  n 7  clusters 3
+(And (Member $e0 cancel) (Patient $e0 $x1))
+;;       c35  mass 3  {summer fair}
+;;      c398  mass 3  {afternoon session}
+;;      c396  mass 1  {evening flight}
+
+;; ---- slot discover.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 discover) (Agent $e0 $x1))
+;;      c415  mass 3  {diver}
+;;      c649  mass 3  {intern}
+;;      c442  mass 1  {wreck}
+
+;; ---- slot locate.Location  [event center]  n 7  clusters 4
+(And (Member $e0 locate) (Location $e0 $x1))
+;;      c144  mass 2  {Cloverdale}
+;;      c516  mass 2  {foot}
+;;      c529  mass 2  {hills}
+;;      c145  mass 1  {Richford}
+
+;; ---- slot postpone.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Agent $e0 $x1))
+;;      c405  mass 3  {club}
+;;      c763  mass 2  {board}
+;;       c84  mass 2  {ferry}
+
+;; ---- slot postpone.Theme  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Theme $e0 $x1))
+;;       c23  mass 3  {tournament}
+;;      c772  mass 2  {vote}
+;;      c783  mass 2  {departure, depart}
+
+;; ---- slot work.CoAgent  [event center]  n 7  clusters 4
+(And (Member $e0 work) (CoAgent $e0 $x1))
+;;      c248  mass 2  {Bo}
+;;      c255  mass 2  {Nils}
+;;      c409  mass 2  {ranger}
+;;      c634  mass 1  {fitter}
+
+;; ---- slot budget.Possession  [entity center]  n 6  clusters 1
+(And (Member $x0 budget) (Possession $x0 $x1))
+;;      c618  mass 6  {next year}
+
+;; ---- slot arrive.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 arrive) (Agent $e0 $x1))
+;;       c86  mass 3  {freight}
+;;      c479  mass 2  {delegation}
+;;       c65  mass 1  {soil sample, soil samples}
+
+;; ---- slot build.Instrument  [event center]  n 6  clusters 4
+(And (Member $e0 build) (Instrument $e0 $x1))
+;;      c438  mass 2  {barometer}
+;;      c775  mass 2  {help}
+;;      c524  mass 1  {present in, scale}
+;;      c525  mass 1  {present, scale}
+
+;; ---- slot decision.Theme  [event center]  n 6  clusters 3
+(And (Member $e0 decision) (Theme $e0 $x1))
+;;      c548  mass 2  {new, roof}
+;;      c570  mass 2  {budget}
+;;      c768  mass 2  {case}
+
+;; ---- slot design.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 design) (Agent $e0 $x1))
+;;      c206  mass 2  {Philip Hercus}
+;;      c210  mass 2  {Henry L. Taylor}
+;;       c87  mass 2  {Robert Allan Limited}
+
+;; ---- slot discover.Location  [event center]  n 6  clusters 2
+(And (Member $e0 discover) (Location $e0 $x1))
+;;      c816  mass 4  {point}
+;;      c108  mass 2  {Japan}
+
+;; ---- slot form.Agent  [event center]  n 6  clusters 4
+(And (Member $e0 form) (Agent $e0 $x1))
+;;      c191  mass 2  {Jon Bon Jovi}
+;;      c192  mass 2  {Sambora}
+;;       c67  mass 1  {Technetium}
+;;      c681  mass 1  {complex, simple}
+
+;; ---- slot fund.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 fund) (Agent $e0 $x1))
+;;      c286  mass 3  {government}
+;;      c293  mass 3  {JICA}
+
+;; ---- slot include.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 include) (Agent $e0 $x1))
+;;      c483  mass 6  {nephews}
+
+;; ---- slot portray.Agent  [event center]  n 6  clusters 4
+(And (Member $e0 portray) (Agent $e0 $x1))
+;;      c182  mass 2  {Soichiro Akizuki}
+;;      c189  mass 2  {James Woods}
+;;      c240  mass 1  {Wilson}
+;;      c241  mass 1  {wilson}
+
+;; ---- slot portray.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 portray) (Theme $e0 $x1))
+;;      c184  mass 2  {Kantaro Suga}
+;;      c189  mass 2  {James Woods}
+;;      c240  mass 1  {Wilson}
+;;      c241  mass 1  {wilson}
+
+;; ---- slot produce.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 produce) (Agent $e0 $x1))
+;;      c208  mass 2  {Colin Richardson}
+;;      c213  mass 2  {Harvey Hayutin}
+;;      c214  mass 2  {Sy Weintraub}
+
+;; ---- slot sell.Theme  [event center]  n 6  clusters 5
+(And (Member $e0 sell) (Theme $e0 $x1))
+;;      c389  mass 2  {ice cream}
+;;      c273  mass 1  {projector}
+;;      c382  mass 1  {crate, lemons}
+;;      c430  mass 1  {forklift, forklifts}
+;;      c435  mass 1  {kiln}
+
+;; ---- slot serve.Theme  [event center]  n 6  clusters 1
+(And (Member $e0 serve) (Theme $e0 $x1))
+;;      c537  mass 6  {station}
+
+;; ---- slot use.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 use) (Theme $e0 $x1))
+;;        c1  mass 2  {Banach -- Mackey topology}
+;;        c2  mass 2  {weak Arens space topology}
+;;      c370  mass 1  {current, naming convention}
+;;      c372  mass 1  {current, designation convention}
+
+;; ---- slot write.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Agent $e0 $x1))
+;;      c185  mass 2  {Gilles Thibaut}
+;;      c212  mass 2  {Bill Wrubel}
+;;      c489  mass 2  {person}
+
+;; ---- slot write.CoAgent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (CoAgent $e0 $x1))
+;;      c199  mass 2  {Cyril Rambour}
+;;      c224  mass 2  {Laurie Aubanel}
+;;      c227  mass 2  {Bianca Olsen}
+
+;; ---- slot write.Patient  [event center]  n 6  clusters 4
+(And (Member $e0 write) (Patient $e0 $x1))
+;;      c335  mass 2  {song}
+;;      c583  mass 2  {episode}
+;;      c324  mass 1  {screenplay}
+;;      c325  mass 1  {script}
+
+;; ---- slot tender.Possession  [entity center]  n 5  clusters 1
+(And (Member $x0 tender) (Possession $x0 $x1))
+;;      c472  mass 5  {firm}
+
+;; ---- slot borrow.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 borrow) (Theme $e0 $x1))
+;;      c183  mass 2  {inomaru}
+;;      c351  mass 1  {painting}
+;;      c431  mass 1  {ladder}
+;;      c635  mass 1  {generator}
+
+;; ---- slot die.Patient  [event center]  n 5  clusters 3
+(And (Member $e0 die) (Patient $e0 $x1))
+;;      c428  mass 2  {founder}
+;;      c489  mass 2  {person}
+;;      c381  mass 1  {elm, last}
+
+;; ---- slot locate.Experiencer  [event center]  n 5  clusters 3
+(And (Member $e0 locate) (Experiencer $e0 $x1))
+;;      c128  mass 2  {Wine Country}
+;;      c535  mass 2  {park}
+;;      c131  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot receive.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 receive) (Theme $e0 $x1))
+;;      c643  mass 2  {work}
+;;      c328  mass 1  {whistle}
+;;      c638  mass 1  {manifest}
+;;       c72  mass 1  {medal}
+
+;; ---- slot take.Agent  [event center]  n 5  clusters 4
+(And (Member $e0 take) (Agent $e0 $x1))
+;;      c489  mass 2  {person}
+;;       c28  mass 1  {nurse}
+;;      c410  mass 1  {shepherd}
+;;      c485  mass 1  {children}
+
+;; ---- slot walk.Agent  [event center]  n 5  clusters 5
+(And (Member $e0 walk) (Agent $e0 $x1))
+;;       c28  mass 1  {nurse}
+;;      c410  mass 1  {shepherd}
+;;      c485  mass 1  {children}
+;;      c536  mass 1  {pier}
+;;      c823  mass 1  {ward}
+
+;; ---- slot walk.Location  [event center]  n 5  clusters 3
+(And (Member $e0 walk) (Location $e0 $x1))
+;;      c530  mass 2  {ridge}
+;;      c823  mass 2  {ward}
+;;       c28  mass 1  {nurse}
+
+;; ---- slot <unclassed>.PartOf  [entity center]  n 4  clusters 3
+(PartOf $x0 $x1)
+;;      c162  mass 2  {Khurda Road}
+;;      c103  mass 1  {Peru}
+;;      c104  mass 1  {Huancavelica}
+
+;; ---- slot bad.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 bad) (Between $x0 $x1))
+;;      c114  mass 2  {Poland}
+;;      c115  mass 2  {Germany}
+
+;; ---- slot border_section.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 border_section) (Between $x0 $x1))
+;;      c122  mass 2  {Uganda}
+;;      c258  mass 2  {Lessos}
+
+;; ---- slot departure.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 departure) (Possession $x0 $x1))
+;;       c84  mass 4  {ferry}
+
+;; ---- slot family.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 family) (Possession $x0 $x1))
+;;      c489  mass 4  {person}
+
+;; ---- slot government.Possession  [entity center]  n 4  clusters 2
+(And (Member $x0 government) (Possession $x0 $x1))
+;;      c121  mass 2  {Kenya}
+;;      c122  mass 2  {Uganda}
+
+;; ---- slot lunch.Before  [entity center]  n 4  clusters 3
+(And (Member $x0 lunch) (Before $x0 $x1))
+;;      c791  mass 2  {begin}
+;;      c792  mass 1  {start}
+;;      c793  mass 1  {commence}
+
+;; ---- slot accompany.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 accompany) (Agent $e0 $x1))
+;;      c489  mass 2  {person}
+;;      c498  mass 2  {sisters}
+
+;; ---- slot accompany.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 accompany) (Theme $e0 $x1))
+;;      c321  mass 4  {silent film}
+
+;; ---- slot acquire.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Agent $e0 $x1))
+;;      c348  mass 1  {pottery studio}
+;;      c394  mass 1  {chef}
+;;      c521  mass 1  {school}
+;;      c626  mass 1  {depot}
+
+;; ---- slot acquire.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Theme $e0 $x1))
+;;      c273  mass 1  {projector}
+;;      c382  mass 1  {crate, lemons}
+;;      c430  mass 1  {forklift, forklifts}
+;;      c435  mass 1  {kiln}
+
+;; ---- slot active.Time  [event center]  n 4  clusters 2
+(And (Member $e0 active) (Time $e0 $x1))
+;;      c399  mass 2  {late afternoon}
+;;      c400  mass 2  {early morning}
+
+;; ---- slot allow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Agent $e0 $x1))
+;;      c596  mass 2  {licence}
+;;      c423  mass 1  {warden}
+;;      c424  mass 1  {curator}
+
+;; ---- slot allow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Theme $e0 $x1))
+;;      c512  mass 2  {night delivery}
+;;      c359  mass 1  {photography}
+;;      c624  mass 1  {visitor}
+
+;; ---- slot attract.Source  [event center]  n 4  clusters 2
+(And (Member $e0 attract) (Source $e0 $x1))
+;;       c69  mass 2  {mainstream media}
+;;       c71  mass 2  {social media}
+
+;; ---- slot be.Location  [event center]  n 4  clusters 4
+(And (Member $e0 be) (Location $e0 $x1))
+;;      c118  mass 1  {denmark}
+;;      c145  mass 1  {Richford}
+;;      c151  mass 1  {Harju County}
+;;      c460  mass 1  {north}
+
+;; ---- slot be.Source  [event center]  n 4  clusters 3
+(And (Member $e0 be) (Source $e0 $x1))
+;;      c136  mass 2  {Tarlac City}
+;;      c135  mass 1  {Manila}
+;;      c142  mass 1  {provincial capital}
+
+;; ---- slot become.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Patient $e0 $x1))
+;;      c492  mass 2  {bad, relationship}
+;;       c54  mass 1  {indigenous, people}
+;;      c592  mass 1  {discipline, lax}
+
+;; ---- slot become.Result  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Result $e0 $x1))
+;;      c732  mass 2  {bad}
+;;      c138  mass 1  {lax}
+;;       c53  mass 1  {indigenous}
+
+;; ---- slot begin.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 begin) (Agent $e0 $x1))
+;;       c51  mass 2  {european american settlers}
+;;       c52  mass 2  {indigenous american, native american, indigenous americans, native americans}
+
+;; ---- slot begin.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 begin) (Theme $e0 $x1))
+;;      c795  mass 4  {create}
+
+;; ---- slot block.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 block) (Agent $e0 $x1))
+;;       c80  mass 3  {automobile, automobiles}
+;;       c81  mass 1  {car}
+
+;; ---- slot block.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Theme $e0 $x1))
+;;      c541  mass 4  {lane}
+
+;; ---- slot celebrated.Location  [event center]  n 4  clusters 2
+(And (Member $e0 celebrated) (Location $e0 $x1))
+;;        c3  mass 2  {traditional chinese drama, traditional chinese dramas}
+;;       c70  mass 2  {popular culture}
+
+;; ---- slot commence.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 commence) (Patient $e0 $x1))
+;;      c101  mass 1  {shoreline survey}
+;;      c345  mass 1  {dress rehearsal}
+;;      c385  mass 1  {apple harvest}
+;;      c604  mass 1  {hearing}
+
+;; ---- slot create.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 create) (Agent $e0 $x1))
+;;       c51  mass 2  {european american settlers}
+;;       c52  mass 2  {indigenous american, native american, indigenous americans, native americans}
+
+;; ---- slot create.Location  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Location $e0 $x1))
+;;      c758  mass 4  {post}
+
+;; ---- slot create.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Patient $e0 $x1))
+;;      c477  mass 4  {community}
+
+;; ---- slot define.Manner  [event center]  n 4  clusters 3
+(And (Member $e0 define) (Manner $e0 $x1))
+;;      c508  mass 2  {random, ways}
+;;      c506  mass 1  {manners, random}
+;;      c510  mass 1  {accidental, ways}
+
+;; ---- slot define.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 define) (Theme $e0 $x1))
+;;       c39  mass 2  {algorithmically equivalent, sequences}
+;;       c40  mass 2  {equivalent, sequences}
+
+;; ---- slot design.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 design) (Patient $e0 $x1))
+;;      c653  mass 4  {pacificat, pacificats}
+
+;; ---- slot direct.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Agent $e0 $x1))
+;;      c221  mass 2  {Lev L. Spiro}
+;;      c201  mass 1  {Robert Day}
+;;      c270  mass 1  {Claude Lelouch}
+
+;; ---- slot direct.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Patient $e0 $x1))
+;;      c583  mass 2  {episode}
+;;      c318  mass 1  {movie, film}
+;;       c32  mass 1  {film, syrian}
+
+;; ---- slot encourage.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Agent $e0 $x1))
+;;      c253  mass 4  {Ralph}
+
+;; ---- slot encourage.In  [event center]  n 4  clusters 3
+(And (Member $e0 encourage) (In $e0 $x1))
+;;      c522  mass 2  {mathematics}
+;;       c12  mass 1  {chess}
+;;       c13  mass 1  {chess play}
+
+;; ---- slot encourage.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Theme $e0 $x1))
+;;      c244  mass 4  {Maurice}
+
+;; ---- slot error.Location  [event center]  n 4  clusters 1
+(And (Member $e0 error) (Location $e0 $x1))
+;;      c569  mass 4  {ledger}
+
+;; ---- slot follow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Agent $e0 $x1))
+;;      c303  mass 2  {house, muslim}
+;;      c173  mass 1  {Alexander}
+;;      c254  mass 1  {Bailey}
+
+;; ---- slot follow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Theme $e0 $x1))
+;;      c453  mass 2  {region}
+;;      c219  mass 1  {Henry Cole}
+;;      c233  mass 1  {Margaret Fleming}
+
+;; ---- slot form.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 form) (Patient $e0 $x1))
+;;      c344  mass 2  {main songwriting unit}
+;;       c67  mass 1  {Technetium}
+;;      c681  mass 1  {complex, simple}
+
+;; ---- slot have.Location  [event center]  n 4  clusters 2
+(And (Member $e0 have) (Location $e0 $x1))
+;;      c454  mass 2  {regional level}
+;;      c457  mass 2  {local level}
+
+;; ---- slot influence.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 influence) (Theme $e0 $x1))
+;;      c307  mass 2  {religion}
+;;        c4  mass 2  {chinese dumpling}
+
+;; ---- slot kill.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Agent $e0 $x1))
+;;      c439  mass 4  {hurricane}
+
+;; ---- slot kill.Location  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Location $e0 $x1))
+;;      c288  mass 4  {state}
+
+;; ---- slot kill.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 kill) (Manner $e0 $x1))
+;;      c819  mass 2  {direct, directly}
+;;      c820  mass 2  {indirectly}
+
+;; ---- slot kill.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Patient $e0 $x1))
+;;      c488  mass 4  {people}
+
+;; ---- slot make.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 make) (Agent $e0 $x1))
+;;      c475  mass 1  {committee}
+;;      c496  mass 1  {family}
+;;      c763  mass 1  {board}
+;;      c769  mass 1  {judge}
+
+;; ---- slot make.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 make) (Patient $e0 $x1))
+;;      c834  mass 4  {decision}
+
+;; ---- slot move.Goal  [event center]  n 4  clusters 2
+(And (Member $e0 move) (Goal $e0 $x1))
+;;      c115  mass 2  {Germany}
+;;      c148  mass 2  {Baltimore}
+
+;; ---- slot nation.Location  [event center]  n 4  clusters 2
+(And (Member $e0 nation) (Location $e0 $x1))
+;;      c160  mass 2  {Bengal}
+;;      c161  mass 2  {South Asia}
+
+;; ---- slot order.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 order) (Agent $e0 $x1))
+;;       c27  mass 2  {physician}
+;;       c26  mass 1  {doctor}
+;;      c665  mass 1  {scan}
+
+;; ---- slot order.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Theme $e0 $x1))
+;;      c665  mass 3  {scan}
+;;       c27  mass 1  {physician}
+
+;; ---- slot play.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 play) (Agent $e0 $x1))
+;;      c170  mass 1  {Boston Red Sox}
+;;      c171  mass 1  {Cincinnati Reds}
+;;      c236  mass 1  {Audrey Hepburn}
+;;      c237  mass 1  {Audrey Heppurn}
+
+;; ---- slot play.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Theme $e0 $x1))
+;;      c238  mass 2  {Holly Golightly}
+;;      c582  mass 2  {series}
+
+;; ---- slot preach.Location  [event center]  n 4  clusters 2
+(And (Member $e0 preach) (Location $e0 $x1))
+;;      c117  mass 2  {Italy}
+;;      c150  mass 2  {Gareccio}
+
+;; ---- slot purchase.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Agent $e0 $x1))
+;;      c348  mass 1  {pottery studio}
+;;      c394  mass 1  {chef}
+;;      c521  mass 1  {school}
+;;      c626  mass 1  {depot}
+
+;; ---- slot purchase.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Theme $e0 $x1))
+;;      c273  mass 1  {projector}
+;;      c382  mass 1  {crate, lemons}
+;;      c430  mass 1  {forklift, forklifts}
+;;      c435  mass 1  {kiln}
+
+;; ---- slot reach.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 reach) (Agent $e0 $x1))
+;;      c475  mass 1  {committee}
+;;      c496  mass 1  {family}
+;;      c763  mass 1  {board}
+;;      c769  mass 1  {judge}
+
+;; ---- slot reach.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 reach) (Theme $e0 $x1))
+;;      c834  mass 4  {decision}
+
+;; ---- slot replace.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Agent $e0 $x1))
+;;      c211  mass 2  {Sherman Howard}
+;;      c198  mass 1  {Peter Gaussen}
+;;      c289  mass 1  {governor}
+
+;; ---- slot replace.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Theme $e0 $x1))
+;;      c175  mass 2  {Lex Lex Luthor, Lex Luthor}
+;;      c216  mass 1  {William Ewer}
+;;      c289  mass 1  {governor}
+
+;; ---- slot sell.Recipient  [event center]  n 4  clusters 4
+(And (Member $e0 sell) (Recipient $e0 $x1))
+;;      c348  mass 1  {pottery studio}
+;;      c394  mass 1  {chef}
+;;      c521  mass 1  {school}
+;;      c626  mass 1  {depot}
+
+;; ---- slot sign.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 sign) (Agent $e0 $x1))
+;;       c27  mass 2  {physician}
+;;       c26  mass 1  {doctor}
+;;      c857  mass 1  {chart}
+
+;; ---- slot sign.Patient  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Patient $e0 $x1))
+;;      c857  mass 3  {chart}
+;;       c27  mass 1  {physician}
+
+;; ---- slot sing.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Manner $e0 $x1))
+;;      c342  mass 4  {a cappella}
+
+;; ---- slot sing.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Theme $e0 $x1))
+;;      c336  mass 4  {music}
+
+;; ---- slot sing.To  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (To $e0 $x1))
+;;      c670  mass 4  {accompany}
+
+;; ---- slot speak.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 speak) (Agent $e0 $x1))
+;;      c265  mass 2  {Oates}
+;;      c181  mass 1  {Mie Sonozaki}
+;;      c239  mass 1  {Kari Wahlgren}
+
+;; ---- slot specify.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 specify) (Manner $e0 $x1))
+;;      c445  mass 2  {continuous time}
+;;      c446  mass 2  {discrete time}
+
+;; ---- slot star.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 star) (Theme $e0 $x1))
+;;      c190  mass 2  {Jeremy Irons}
+;;      c226  mass 2  {Patricia Kaas}
+
+;; ---- slot start.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 start) (Patient $e0 $x1))
+;;      c101  mass 1  {shoreline survey}
+;;      c345  mass 1  {dress rehearsal}
+;;      c385  mass 1  {apple harvest}
+;;      c604  mass 1  {hearing}
+
+;; ---- slot study.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 study) (Agent $e0 $x1))
+;;      c489  mass 4  {person}
+
+;; ---- slot take.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 take) (Theme $e0 $x1))
+;;      c490  mass 2  {identity}
+;;      c540  mass 2  {walk}
+
+;; ---- slot use.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 use) (Manner $e0 $x1))
+;;      c692  mass 4  {rare}
+
+;; ---- slot win.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 win) (Agent $e0 $x1))
+;;      c189  mass 2  {James Woods}
+;;      c240  mass 1  {Wilson}
+;;      c241  mass 1  {wilson}
+
+;; ---- slot win.For  [event center]  n 4  clusters 1
+(And (Member $e0 win) (For $e0 $x1))
+;;      c350  mass 4  {portray}
+
+;; ---- slot win.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 win) (Theme $e0 $x1))
+;;       c75  mass 4  {emmy}
+
+;; ---- slot house.Possession  [entity center]  n 3  clusters 2
+(And (Member $x0 house) (Possession $x0 $x1))
+;;      c262  mass 2  {Arakkal}
+;;      c119  mass 1  {Derwent Isle}
+
+;; ---- slot western.PartOf  [entity center]  n 3  clusters 2
+(And (Member $x0 western) (PartOf $x0 $x1))
+;;      c107  mass 2  {China}
+;;      c105  mass 1  {Europe, Western Europe}
+
+;; ---- slot bear.Patient  [event center]  n 3  clusters 2
+(And (Member $e0 bear) (Patient $e0 $x1))
+;;      c489  mass 2  {person}
+;;      c223  mass 1  {Leonor Rodrigues}
+
+;; ---- slot begin.Time  [event center]  n 3  clusters 2
+(And (Member $e0 begin) (Time $e0 $x1))
+;;      c402  mass 2  {dawn}
+;;      c401  mass 1  {morning}
+
+;; ---- slot borrow.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Agent $e0 $x1))
+;;      c165  mass 1  {Ravi}
+;;      c355  mass 1  {gallery}
+;;      c406  mass 1  {crew}
+
+;; ---- slot borrow.Source  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Source $e0 $x1))
+;;      c362  mass 1  {museum}
+;;      c458  mass 1  {neighbour}
+;;      c626  mass 1  {depot}
+
+;; ---- slot buy.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 buy) (Beneficiary $e0 $x1))
+;;      c551  mass 3  {hall}
+
+;; ---- slot call_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 call_off) (Agent $e0 $x1))
+;;      c395  mass 1  {airline}
+;;      c476  mass 1  {council}
+;;      c518  mass 1  {tutor}
+
+;; ---- slot cause.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 cause) (Agent $e0 $x1))
+;;      c440  mass 1  {storm}
+;;      c441  mass 1  {flood}
+;;      c706  mass 1  {fire}
+
+;; ---- slot cause.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 cause) (Theme $e0 $x1))
+;;      c724  mass 3  {destroy}
+
+;; ---- slot discover.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+;;      c421  mass 2  {auditor}
+;;      c744  mass 1  {error}
+
+;; ---- slot discover.Stimulus  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+;;      c744  mass 2  {error}
+;;      c421  mass 1  {auditor}
+
+;; ---- slot end.Patient  [event center]  n 3  clusters 3
+(And (Member $e0 end) (Patient $e0 $x1))
+;;      c101  mass 1  {shoreline survey}
+;;      c385  mass 1  {apple harvest}
+;;      c604  mass 1  {hearing}
+
+;; ---- slot examine.Agent  [event center]  n 3  clusters 2
+(And (Member $e0 examine) (Agent $e0 $x1))
+;;       c27  mass 2  {physician}
+;;       c26  mass 1  {doctor}
+
+;; ---- slot examine.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Theme $e0 $x1))
+;;      c333  mass 3  {samples}
+
+;; ---- slot fund.Theme  [event center]  n 3  clusters 2
+(And (Member $e0 fund) (Theme $e0 $x1))
+;;      c452  mass 2  {lessos kenya border section}
+;;      c451  mass 1  {border section}
+
+;; ---- slot give_up.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Agent $e0 $x1))
+;;      c408  mass 1  {rescue team}
+;;      c414  mass 1  {climbers}
+;;      c472  mass 1  {firm}
+
+;; ---- slot give_up.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Theme $e0 $x1))
+;;      c501  mass 1  {tender}
+;;      c543  mass 1  {north route}
+;;      c659  mass 1  {search}
+
+;; ---- slot influence.Agent  [event center]  n 3  clusters 2
+(And (Member $e0 influence) (Agent $e0 $x1))
+;;       c49  mass 2  {indonesian immigrant, indonesian immigrants}
+;;      c567  mass 1  {balance, international}
+
+;; ---- slot learn.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Agent $e0 $x1))
+;;      c404  mass 1  {squad}
+;;      c427  mass 1  {apprentice}
+;;      c485  mass 1  {children}
+
+;; ---- slot learn.Source  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Source $e0 $x1))
+;;      c169  mass 1  {potter}
+;;      c425  mass 1  {coach}
+;;      c486  mass 1  {elder}
+
+;; ---- slot learn.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Theme $e0 $x1))
+;;      c330  mass 1  {drill}
+;;      c335  mass 1  {song}
+;;      c436  mass 1  {glazing}
+
+;; ---- slot market.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Beneficiary $e0 $x1))
+;;      c562  mass 3  {shop}
+
+;; ---- slot market.Location  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Location $e0 $x1))
+;;      c299  mass 3  {block, pakistani}
+
+;; ---- slot need.Holder  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Holder $e0 $x1))
+;;      c393  mass 1  {recipe}
+;;      c433  mass 1  {lathe}
+;;      c830  mass 1  {permit}
+
+;; ---- slot need.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Theme $e0 $x1))
+;;      c391  mass 1  {eggs}
+;;      c636  mass 1  {countersignature, countersignatures}
+;;      c858  mass 1  {monthly servicing}
+
+;; ---- slot permit.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Agent $e0 $x1))
+;;      c423  mass 1  {warden}
+;;      c424  mass 1  {curator}
+;;      c596  mass 1  {licence}
+
+;; ---- slot permit.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Theme $e0 $x1))
+;;      c359  mass 1  {photography}
+;;      c512  mass 1  {night delivery}
+;;      c624  mass 1  {visitor}
+
+;; ---- slot put_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Agent $e0 $x1))
+;;      c405  mass 1  {club}
+;;      c763  mass 1  {board}
+;;       c84  mass 1  {ferry}
+
+;; ---- slot put_off.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Theme $e0 $x1))
+;;       c23  mass 1  {tournament}
+;;      c772  mass 1  {vote}
+;;      c783  mass 1  {departure, depart}
+
+;; ---- slot receive.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Agent $e0 $x1))
+;;      c481  mass 1  {recruit}
+;;       c82  mass 1  {driver}
+;;      c822  mass 1  {winner}
+
+;; ---- slot receive.Source  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Source $e0 $x1))
+;;      c278  mass 1  {foreman}
+;;      c426  mass 1  {trainer}
+;;      c521  mass 1  {school}
+
+;; ---- slot start.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Experiencer $e0 $x1))
+;;      c533  mass 2  {bridge}
+;;      c277  mass 1  {tunnel}
+
+;; ---- slot start.Location  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Location $e0 $x1))
+;;      c133  mass 2  {sweden}
+;;      c118  mass 1  {denmark}
+
+;; ---- slot succeed.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Agent $e0 $x1))
+;;      c173  mass 1  {Alexander}
+;;      c198  mass 1  {Peter Gaussen}
+;;      c254  mass 1  {Bailey}
+
+;; ---- slot succeed.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Theme $e0 $x1))
+;;      c219  mass 1  {Henry Cole}
+;;      c233  mass 1  {Margaret Fleming}
+;;      c289  mass 1  {governor}
+
+;; ---- slot turn_down.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+;;      c420  mass 1  {editor}
+;;      c568  mass 1  {bank}
+;;      c764  mass 1  {panel}
+
+;; ---- slot turn_down.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+;;      c367  mass 1  {manuscript}
+;;      c565  mass 1  {loan application}
+;;      c752  mass 1  {proposal}
+
+;; ---- slot wait.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+;;       c80  mass 2  {automobile, automobiles}
+;;       c81  mass 1  {car}
+
+;; ---- slot wait.Location  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Location $e0 $x1))
+;;      c630  mass 3  {gate}
+
+;; ---- slot walk.Goal  [event center]  n 3  clusters 2
+(And (Member $e0 walk) (Goal $e0 $x1))
+;;      c536  mass 2  {pier}
+;;      c485  mass 1  {children}
+
+;; ---- slot work.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 work) (Theme $e0 $x1))
+;;      c354  mass 3  {mural}
+
+;; ==================== subtree @ cluster cos 1.00: pooled role level (45 head pairs) ====================
+
+;; Agent ~ Recipient  cosine 0.30  JSD 0.735  n 500 / 47  shared: {person} {depot} {school}
+(Agent $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Experiencer  cosine 0.21  JSD 0.903  n 500 / 63  shared: {person} {automobile} {Aslan}
+(Agent $e $x)
+(Experiencer $e $x)
+
+;; Agent ~ Theme  cosine 0.15  JSD 0.83  n 500 / 367  shared: {person} {physician} {children}
+(Agent $e $x)
+(Theme $e $x)
+
+;; Agent ~ Patient  cosine 0.15  JSD 0.881  n 500 / 159  shared: {person} {physician} {electrician}
+(Agent $e $x)
+(Patient $e $x)
+
+;; Agent ~ Source  cosine 0.11  JSD 0.862  n 500 / 24  shared: {school} {depot} {elder}
+(Agent $e $x)
+(Source $e $x)
+
+;; Recipient ~ Source  cosine 0.11  JSD 0.813  n 47 / 24  shared: {depot} {coach} {foreman}
+(Recipient $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Patient  cosine 0.10  JSD 0.905  n 63 / 159  shared: {person} {bad, relationship} {indigenous, people}
+(Experiencer $e $x)
+(Patient $e $x)
+
+;; Patient ~ Theme  cosine 0.10  JSD 0.9  n 159 / 367  shared: {song} {decision} {person}
+(Patient $e $x)
+(Theme $e $x)
+
+;; Recipient ~ Theme  cosine 0.09  JSD 0.904  n 47 / 367  shared: {children} {person} {query}
+(Recipient $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Recipient  cosine 0.07  JSD 0.948  n 63 / 47  shared: {person}
+(Experiencer $e $x)
+(Recipient $e $x)
+
+;; Experiencer ~ Theme  cosine 0.06  JSD 0.952  n 63 / 367  shared: {person} {bridge} {destined, film, syrian}
+(Experiencer $e $x)
+(Theme $e $x)
+
+;; Goal ~ Recipient  cosine 0.05  JSD 0.929  n 30 / 47  shared: {children} {Loren}
+(Goal $e $x)
+(Recipient $e $x)
+
+;; Patient ~ Recipient  cosine 0.04  JSD 0.954  n 159 / 47  shared: {person} {crew}
+(Patient $e $x)
+(Recipient $e $x)
+
+;; Agent ~ Goal  cosine 0.02  JSD 0.978  n 500 / 30  shared: {children} {pier}
+(Agent $e $x)
+(Goal $e $x)
+
+;; Goal ~ Theme  cosine 0.02  JSD 0.975  n 30 / 367  shared: {children} {predictive functions}
+(Goal $e $x)
+(Theme $e $x)
+
+;; Experiencer ~ Location  cosine 0.01  JSD 0.988  n 63 / 175  shared: {park}
+(Experiencer $e $x)
+(Location $e $x)
+
+;; Location ~ Theme  cosine 0.01  JSD 0.987  n 175 / 367  shared: {gate} {mural}
+(Location $e $x)
+(Theme $e $x)
+
+;; Agent ~ Location  cosine 0.01  JSD 0.987  n 500 / 175  shared: {north} {nurse} {ward}
+(Agent $e $x)
+(Location $e $x)
+
+;; Source ~ Theme  cosine 0.01  JSD 0.993  n 24 / 367  shared: {depot}
+(Source $e $x)
+(Theme $e $x)
+
+;; Agent ~ Manner  cosine 0.00  JSD 1.0  n 500 / 34  shared: 
+(Agent $e $x)
+(Manner $e $x)
+
+;; Agent ~ Time  cosine 0.00  JSD 1.0  n 500 / 37  shared: 
+(Agent $e $x)
+(Time $e $x)
+
+;; Experiencer ~ Goal  cosine 0.00  JSD 1.0  n 63 / 30  shared: 
+(Experiencer $e $x)
+(Goal $e $x)
+
+;; Experiencer ~ Manner  cosine 0.00  JSD 1.0  n 63 / 34  shared: 
+(Experiencer $e $x)
+(Manner $e $x)
+
+;; Experiencer ~ Source  cosine 0.00  JSD 1.0  n 63 / 24  shared: 
+(Experiencer $e $x)
+(Source $e $x)
+
+;; Experiencer ~ Time  cosine 0.00  JSD 1.0  n 63 / 37  shared: 
+(Experiencer $e $x)
+(Time $e $x)
+
+;; Goal ~ Location  cosine 0.00  JSD 1.0  n 30 / 175  shared: 
+(Goal $e $x)
+(Location $e $x)
+
+;; Goal ~ Manner  cosine 0.00  JSD 1.0  n 30 / 34  shared: 
+(Goal $e $x)
+(Manner $e $x)
+
+;; Goal ~ Patient  cosine 0.00  JSD 1.0  n 30 / 159  shared: 
+(Goal $e $x)
+(Patient $e $x)
+
+;; Goal ~ Source  cosine 0.00  JSD 1.0  n 30 / 24  shared: 
+(Goal $e $x)
+(Source $e $x)
+
+;; Goal ~ Time  cosine 0.00  JSD 1.0  n 30 / 37  shared: 
+(Goal $e $x)
+(Time $e $x)
+
+;; Location ~ Manner  cosine 0.00  JSD 1.0  n 175 / 34  shared: 
+(Location $e $x)
+(Manner $e $x)
+
+;; Location ~ Patient  cosine 0.00  JSD 1.0  n 175 / 159  shared: 
+(Location $e $x)
+(Patient $e $x)
+
+;; Location ~ Recipient  cosine 0.00  JSD 1.0  n 175 / 47  shared: 
+(Location $e $x)
+(Recipient $e $x)
+
+;; Location ~ Source  cosine 0.00  JSD 1.0  n 175 / 24  shared: 
+(Location $e $x)
+(Source $e $x)
+
+;; Location ~ Time  cosine 0.00  JSD 1.0  n 175 / 37  shared: 
+(Location $e $x)
+(Time $e $x)
+
+;; Manner ~ Patient  cosine 0.00  JSD 1.0  n 34 / 159  shared: 
+(Manner $e $x)
+(Patient $e $x)
+
+;; Manner ~ Recipient  cosine 0.00  JSD 1.0  n 34 / 47  shared: 
+(Manner $e $x)
+(Recipient $e $x)
+
+;; Manner ~ Source  cosine 0.00  JSD 1.0  n 34 / 24  shared: 
+(Manner $e $x)
+(Source $e $x)
+
+;; Manner ~ Theme  cosine 0.00  JSD 1.0  n 34 / 367  shared: 
+(Manner $e $x)
+(Theme $e $x)
+
+;; Manner ~ Time  cosine 0.00  JSD 1.0  n 34 / 37  shared: 
+(Manner $e $x)
+(Time $e $x)
+
+;; Patient ~ Source  cosine 0.00  JSD 1.0  n 159 / 24  shared: 
+(Patient $e $x)
+(Source $e $x)
+
+;; Patient ~ Time  cosine 0.00  JSD 1.0  n 159 / 37  shared: 
+(Patient $e $x)
+(Time $e $x)
+
+;; Recipient ~ Time  cosine 0.00  JSD 1.0  n 47 / 37  shared: 
+(Recipient $e $x)
+(Time $e $x)
+
+;; Source ~ Time  cosine 0.00  JSD 1.0  n 24 / 37  shared: 
+(Source $e $x)
+(Time $e $x)
+
+;; Theme ~ Time  cosine 0.00  JSD 1.0  n 367 / 37  shared: 
+(Theme $e $x)
+(Time $e $x)
+
+;; ==================== subtree @ cluster cos 1.00: slot pairs (52 event-center signals) ====================
+
+;; [same role, different class]  acquire.Agent ~ purchase.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000016 tierA-000002
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ purchase.Theme  cosine 1.00  JSD 0.0  n 4 / 4  shared: {crate, lemons} {forklifts} {kiln} {projector}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000016 tierA-000002
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Agent ~ create.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {european american settlers} {indigenous americans} {native americans}
+;;   A e.g. tierC-000025 tierC-000026   B e.g. tierC-000025 tierC-000026
+(And (Member $e0 begin) (Agent $e0 $x1))
+(And (Member $e0 create) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ start.Patient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {apple harvest} {dress rehearsal} {hearing} {shoreline survey}
+;;   A e.g. tierA-000069 tierA-000064   B e.g. tierA-000068 tierA-000063
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  make.Agent ~ reach.Agent  cosine 1.00  JSD 0.0  n 4 / 4  shared: {board} {committee} {family} {judge}
+;;   A e.g. tierA-000202 tierA-000186   B e.g. tierA-000203 tierA-000187
+(And (Member $e0 make) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  learn.Theme ~ teach.Theme  cosine 0.99  JSD 0.003  n 3 / 10  shared: {drill} {glazing} {song}
+;;   A e.g. tierA-000287 tierA-000282   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Theme $e0 $x1))
+(And (Member $e0 teach) (Theme $e0 $x1))
+
+;; [same role, different class]  abandon.Agent ~ give_up.Agent  cosine 0.98  JSD 0.006  n 8 / 3  shared: {climbers} {firm} {rescue team}
+;;   A e.g. tierA-000109 tierA-000111   B e.g. tierA-000110 tierA-000105
+(And (Member $e0 abandon) (Agent $e0 $x1))
+(And (Member $e0 give_up) (Agent $e0 $x1))
+
+;; [same role, different class]  abandon.Theme ~ give_up.Theme  cosine 0.98  JSD 0.006  n 8 / 3  shared: {north route} {search} {tender}
+;;   A e.g. tierA-000109 tierA-000111   B e.g. tierA-000110 tierA-000100
+(And (Member $e0 abandon) (Theme $e0 $x1))
+(And (Member $e0 give_up) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Holder ~ require.Holder  cosine 0.98  JSD 0.006  n 3 / 8  shared: {lathe} {permit} {recipe}
+;;   A e.g. tierA-000095 tierA-000090   B e.g. tierA-000094 tierA-000096
+(And (Member $e0 need) (Holder $e0 $x1))
+(And (Member $e0 require) (Holder $e0 $x1))
+
+;; [same role, different class]  postpone.Agent ~ put_off.Agent  cosine 0.98  JSD 0.007  n 7 / 3  shared: {board} {club} {ferry}
+;;   A e.g. tierA-000114 tierA-000116   B e.g. tierA-000115 tierA-000124
+(And (Member $e0 postpone) (Agent $e0 $x1))
+(And (Member $e0 put_off) (Agent $e0 $x1))
+
+;; [same role, different class]  postpone.Theme ~ put_off.Theme  cosine 0.98  JSD 0.007  n 7 / 3  shared: {departure} {tournament} {vote}
+;;   A e.g. tierA-000119 tierA-000122   B e.g. tierA-000120 tierA-000124
+(And (Member $e0 postpone) (Theme $e0 $x1))
+(And (Member $e0 put_off) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ commence.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {apple harvest} {dress rehearsal} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000069 tierA-000064
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 commence) (Patient $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ start.Patient  cosine 0.97  JSD 0.013  n 7 / 4  shared: {apple harvest} {dress rehearsal} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000068 tierA-000063
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  allow.Agent ~ permit.Agent  cosine 0.94  JSD 0.021  n 4 / 3  shared: {curator} {licence} {warden}
+;;   A e.g. tierA-000080 tierA-000076   B e.g. tierA-000081 tierA-000077
+(And (Member $e0 allow) (Agent $e0 $x1))
+(And (Member $e0 permit) (Agent $e0 $x1))
+
+;; [same role, different class]  allow.Theme ~ permit.Theme  cosine 0.94  JSD 0.021  n 4 / 3  shared: {night delivery} {photography} {visitor}
+;;   A e.g. tierA-000076 tierA-000078   B e.g. tierA-000077 tierA-000081
+(And (Member $e0 allow) (Theme $e0 $x1))
+(And (Member $e0 permit) (Theme $e0 $x1))
+
+;; [same role, different class]  call_off.Agent ~ cancel.Agent  cosine 0.96  JSD 0.064  n 3 / 9  shared: {airline} {council} {tutor}
+;;   A e.g. tierA-000144 tierA-000149   B e.g. tierA-000143 tierA-000145
+(And (Member $e0 call_off) (Agent $e0 $x1))
+(And (Member $e0 cancel) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Theme ~ decision.Theme  cosine 0.96  JSD 0.064  n 9 / 6  shared: {budget} {case} {new, roof}
+;;   A e.g. tierA-000201 tierA-000204   B e.g. tierA-000202 tierA-000203
+(And (Member $e0 decide) (Theme $e0 $x1))
+(And (Member $e0 decision) (Theme $e0 $x1))
+
+;; [same role, different class]  need.Theme ~ require.Theme  cosine 0.95  JSD 0.065  n 3 / 10  shared: {countersignature} {eggs} {monthly servicing}
+;;   A e.g. tierA-000090 tierA-000085   B e.g. tierA-000089 tierA-000091
+(And (Member $e0 need) (Theme $e0 $x1))
+(And (Member $e0 require) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Agent ~ buy.Agent  cosine 0.94  JSD 0.121  n 4 / 14  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000015 tierA-000019
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 buy) (Agent $e0 $x1))
+
+;; [same role, different class]  buy.Agent ~ purchase.Agent  cosine 0.94  JSD 0.121  n 14 / 4  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000015 tierA-000019   B e.g. tierA-000016 tierA-000002
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 purchase) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ make.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {board} {committee} {family} {judge}
+;;   A e.g. tierA-000201 tierA-000204   B e.g. tierA-000202 tierA-000186
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 make) (Agent $e0 $x1))
+
+;; [same role, different class]  decide.Agent ~ reach.Agent  cosine 0.90  JSD 0.123  n 11 / 4  shared: {board} {committee} {family} {judge}
+;;   A e.g. tierA-000201 tierA-000204   B e.g. tierA-000203 tierA-000187
+(And (Member $e0 decide) (Agent $e0 $x1))
+(And (Member $e0 reach) (Agent $e0 $x1))
+
+;; [same role, different class]  cause.Agent ~ destroy.Agent  cosine 0.93  JSD 0.138  n 3 / 8  shared: {fire} {flood} {storm}
+;;   A e.g. tierA-000228 tierA-000233   B e.g. tierA-000227 tierA-000229
+(And (Member $e0 cause) (Agent $e0 $x1))
+(And (Member $e0 destroy) (Agent $e0 $x1))
+
+;; [same role, different class]  commence.Patient ~ end.Patient  cosine 0.87  JSD 0.138  n 4 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000069 tierA-000059   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 commence) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  end.Patient ~ start.Patient  cosine 0.87  JSD 0.138  n 3 / 4  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000071 tierA-000060   B e.g. tierA-000068 tierA-000058
+(And (Member $e0 end) (Patient $e0 $x1))
+(And (Member $e0 start) (Patient $e0 $x1))
+
+;; [same role, different class]  examine.Agent ~ order.Agent  cosine 0.91  JSD 0.138  n 3 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000381 tierA-000380   B e.g. tierA-000386 tierA-000385
+(And (Member $e0 examine) (Agent $e0 $x1))
+(And (Member $e0 order) (Agent $e0 $x1))
+
+;; [same role, different class]  examine.Agent ~ sign.Agent  cosine 0.91  JSD 0.138  n 3 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000381 tierA-000380   B e.g. tierA-000376 tierA-000375
+(And (Member $e0 examine) (Agent $e0 $x1))
+(And (Member $e0 sign) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Agent ~ turn_down.Agent  cosine 0.93  JSD 0.138  n 8 / 3  shared: {bank} {editor} {panel}
+;;   A e.g. tierA-000163 tierA-000165   B e.g. tierA-000164 tierA-000159
+(And (Member $e0 reject) (Agent $e0 $x1))
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+
+;; [same role, different class]  reject.Theme ~ turn_down.Theme  cosine 0.93  JSD 0.138  n 8 / 3  shared: {loan application} {manuscript} {proposal}
+;;   A e.g. tierA-000163 tierA-000165   B e.g. tierA-000164 tierA-000159
+(And (Member $e0 reject) (Theme $e0 $x1))
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ buy.Theme  cosine 0.91  JSD 0.166  n 4 / 14  shared: {crate, lemons} {forklifts} {kiln} {projector}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000015 tierA-000019
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 buy) (Theme $e0 $x1))
+
+;; [same role, different class]  buy.Theme ~ purchase.Theme  cosine 0.91  JSD 0.166  n 14 / 4  shared: {crate, lemons} {forklifts} {kiln} {projector}
+;;   A e.g. tierA-000015 tierA-000019   B e.g. tierA-000016 tierA-000002
+(And (Member $e0 buy) (Theme $e0 $x1))
+(And (Member $e0 purchase) (Theme $e0 $x1))
+
+;; [same role, different class]  begin.Patient ~ end.Patient  cosine 0.80  JSD 0.174  n 7 / 3  shared: {apple harvest} {hearing} {shoreline survey}
+;;   A e.g. tierA-000067 tierA-000070   B e.g. tierA-000071 tierA-000060
+(And (Member $e0 begin) (Patient $e0 $x1))
+(And (Member $e0 end) (Patient $e0 $x1))
+
+;; [same role, different class]  acquire.Theme ~ sell.Theme  cosine 0.71  JSD 0.191  n 4 / 6  shared: {crate, lemons} {forklifts} {kiln} {projector}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000018 tierA-000004
+(And (Member $e0 acquire) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  portray.Agent ~ win.Agent  cosine 0.78  JSD 0.191  n 6 / 4  shared: {Wilson} {James Woods} {wilson}
+;;   A e.g. tierC-000278 tierC-000301   B e.g. tierC-000302 tierC-000277
+(And (Member $e0 portray) (Agent $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [same role, different class]  purchase.Theme ~ sell.Theme  cosine 0.71  JSD 0.191  n 4 / 6  shared: {crate, lemons} {forklifts} {kiln} {projector}
+;;   A e.g. tierA-000016 tierA-000002   B e.g. tierA-000018 tierA-000004
+(And (Member $e0 purchase) (Theme $e0 $x1))
+(And (Member $e0 sell) (Theme $e0 $x1))
+
+;; [same role, different class]  accompany.Agent ~ appear.Agent  cosine 0.78  JSD 0.217  n 4 / 8  shared: {person} {sisters}
+;;   A e.g. tierC-000127 tierC-000128   B e.g. tierC-000049 tierC-000050
+(And (Member $e0 accompany) (Agent $e0 $x1))
+(And (Member $e0 appear) (Agent $e0 $x1))
+
+;; [same role, different class]  order.Agent ~ sign.Agent  cosine 0.83  JSD 0.25  n 4 / 4  shared: {doctor} {physician}
+;;   A e.g. tierA-000386 tierA-000385   B e.g. tierA-000376 tierA-000375
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 sign) (Agent $e0 $x1))
+
+;; [same class, different role]  repair.Agent ~ repair.Patient  cosine 0.83  JSD 0.061  n 8 / 8  shared: {cracked, feed pipe} {crew} {electrician} {gearbox, seized}
+;;   A e.g. tierA-000051 tierA-000049   B e.g. tierA-000039 tierA-000029
+(And (Member $e0 repair) (Agent $e0 $x1))
+(And (Member $e0 repair) (Patient $e0 $x1))
+
+;; [same class, different role]  discover.Experiencer ~ discover.Stimulus  cosine 0.80  JSD 0.082  n 3 / 3  shared: {auditor} {error}
+;;   A e.g. tierA-000128 tierA-000130   B e.g. tierA-000132 tierA-000128
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+
+;; [same class, different role]  order.Agent ~ order.Theme  cosine 0.65  JSD 0.25  n 4 / 4  shared: {physician} {scan}
+;;   A e.g. tierA-000385 tierA-000387   B e.g. tierA-000389 tierA-000386
+(And (Member $e0 order) (Agent $e0 $x1))
+(And (Member $e0 order) (Theme $e0 $x1))
+
+;; [same class, different role]  sign.Agent ~ sign.Patient  cosine 0.65  JSD 0.25  n 4 / 4  shared: {chart} {physician}
+;;   A e.g. tierA-000378 tierA-000375   B e.g. tierA-000376 tierA-000377
+(And (Member $e0 sign) (Agent $e0 $x1))
+(And (Member $e0 sign) (Patient $e0 $x1))
+
+;; [different class and role]  acquire.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000017 tierA-000003   B e.g. tierA-000018 tierA-000004
+(And (Member $e0 acquire) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  purchase.Agent ~ sell.Recipient  cosine 1.00  JSD 0.0  n 4 / 4  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000016 tierA-000002   B e.g. tierA-000018 tierA-000004
+(And (Member $e0 purchase) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  block.Agent ~ wait.Experiencer  cosine 0.94  JSD 0.021  n 4 / 3  shared: {automobile} {automobiles} {car}
+;;   A e.g. tierA-000390 tierA-000392   B e.g. tierA-000395 tierA-000397
+(And (Member $e0 block) (Agent $e0 $x1))
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+
+;; [different class and role]  borrow.Agent ~ lend.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {Ravi} {crew} {gallery}
+;;   A e.g. tierA-000297 tierA-000302   B e.g. tierA-000296 tierA-000298
+(And (Member $e0 borrow) (Agent $e0 $x1))
+(And (Member $e0 lend) (Recipient $e0 $x1))
+
+;; [different class and role]  borrow.Source ~ lend.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {depot} {museum} {neighbour}
+;;   A e.g. tierA-000302 tierA-000307   B e.g. tierA-000301 tierA-000303
+(And (Member $e0 borrow) (Source $e0 $x1))
+(And (Member $e0 lend) (Agent $e0 $x1))
+
+;; [different class and role]  learn.Agent ~ teach.Recipient  cosine 0.94  JSD 0.113  n 3 / 10  shared: {apprentice} {children} {squad}
+;;   A e.g. tierA-000282 tierA-000292   B e.g. tierA-000281 tierA-000283
+(And (Member $e0 learn) (Agent $e0 $x1))
+(And (Member $e0 teach) (Recipient $e0 $x1))
+
+;; [different class and role]  learn.Source ~ teach.Agent  cosine 0.94  JSD 0.113  n 3 / 10  shared: {coach} {elder} {potter}
+;;   A e.g. tierA-000287 tierA-000292   B e.g. tierA-000286 tierA-000288
+(And (Member $e0 learn) (Source $e0 $x1))
+(And (Member $e0 teach) (Agent $e0 $x1))
+
+;; [different class and role]  buy.Agent ~ sell.Recipient  cosine 0.94  JSD 0.121  n 14 / 4  shared: {chef} {depot} {pottery studio} {school}
+;;   A e.g. tierA-000015 tierA-000019   B e.g. tierA-000018 tierA-000004
+(And (Member $e0 buy) (Agent $e0 $x1))
+(And (Member $e0 sell) (Recipient $e0 $x1))
+
+;; [different class and role]  portray.Theme ~ win.Agent  cosine 0.78  JSD 0.191  n 6 / 4  shared: {Wilson} {James Woods} {wilson}
+;;   A e.g. tierC-000301 tierC-000277   B e.g. tierC-000278 tierC-000302
+(And (Member $e0 portray) (Theme $e0 $x1))
+(And (Member $e0 win) (Agent $e0 $x1))
+
+;; [different class and role]  give.Agent ~ receive.Source  cosine 0.91  JSD 0.196  n 12 / 3  shared: {foreman} {school} {trainer}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000277
+(And (Member $e0 give) (Agent $e0 $x1))
+(And (Member $e0 receive) (Source $e0 $x1))
+
+;; [different class and role]  give.Recipient ~ receive.Agent  cosine 0.91  JSD 0.196  n 12 / 3  shared: {driver} {recruit} {winner}
+;;   A e.g. tierA-000271 tierA-000273   B e.g. tierA-000272 tierA-000262
+(And (Member $e0 give) (Recipient $e0 $x1))
+(And (Member $e0 receive) (Agent $e0 $x1))
+
+;; ==================== subtree @ cluster cos 1.00: compared slots with their distributions (197 slots, n >= 3) ====================
+
+;; ---- slot <unclassed>.Possession  [entity center]  n 18  clusters 8
+(Possession $x0 $x1)
+;;      c669  mass 5  {person}
+;;      c108  mass 2  {Leonor Rodrigues}
+;;      c171  mass 2  {Twilight}
+;;      c302  mass 2  {communities, neighbouring, other, sunni}
+;;       c50  mass 2  {Dora Smith}
+;;       c63  mass 2  {Gil Aires}
+;;      c816  mass 2  {subsequent game}
+;;       c82  mass 1  {J. Augustus Knapp}
+
+;; ---- slot work.Agent  [event center]  n 17  clusters 10
+(And (Member $e0 work) (Agent $e0 $x1))
+;;      c245  mass 3  {biologist}
+;;        c3  mass 3  {Ana}
+;;       c45  mass 3  {Dara}
+;;      c871  mass 2  {welder}
+;;      c119  mass 1  {Mr. Jones}
+;;      c128  mass 1  {Nils}
+;;       c21  mass 1  {Bo}
+;;      c437  mass 1  {fitter}
+;;      c717  mass 1  {ranger}
+;;        c9  mass 1  {Asserson}
+
+;; ---- slot build.Location  [event center]  n 14  clusters 3
+(And (Member $e0 build) (Location $e0 $x1))
+;;      c170  mass 6  {Turkey}
+;;       c54  mass 4  {Eskisehir}
+;;       c99  mass 4  {Kazakhstan}
+
+;; ---- slot buy.Agent  [event center]  n 14  clusters 7
+(And (Member $e0 buy) (Agent $e0 $x1))
+;;      c352  mass 3  {depot}
+;;      c687  mass 3  {pottery studio}
+;;      c755  mass 3  {school}
+;;      c280  mass 2  {chef}
+;;      c333  mass 1  {crate, lemons}
+;;      c448  mass 1  {forklifts}
+;;      c535  mass 1  {kiln}
+
+;; ---- slot buy.Theme  [event center]  n 14  clusters 8
+(And (Member $e0 buy) (Theme $e0 $x1))
+;;      c448  mass 3  {forklifts}
+;;      c535  mass 3  {kiln}
+;;      c333  mass 2  {crate, lemons}
+;;      c702  mass 2  {projector}
+;;      c280  mass 1  {chef}
+;;      c352  mass 1  {depot}
+;;      c687  mass 1  {pottery studio}
+;;      c703  mass 1  {projectors}
+
+;; ---- slot work.Location  [event center]  n 13  clusters 5
+(And (Member $e0 work) (Location $e0 $x1))
+;;      c552  mass 4  {ledger}
+;;      c822  mass 4  {survey}
+;;      c452  mass 3  {frame}
+;;       c33  mass 1  {Church of Norway}
+;;      c608  mass 1  {mural}
+
+;; ---- slot build.Agent  [event center]  n 12  clusters 3
+(And (Member $e0 build) (Agent $e0 $x1))
+;;      c304  mass 8  {company}
+;;      c130  mass 2  {O. R. Woodcock}
+;;      c669  mass 2  {person}
+
+;; ---- slot build.Patient  [event center]  n 12  clusters 5
+(And (Member $e0 build) (Patient $e0 $x1))
+;;      c493  mass 4  {hotel}
+;;      c492  mass 2  {horn}
+;;      c659  mass 2  {paper factory}
+;;      c660  mass 2  {paper mill}
+;;      c745  mass 2  {room}
+
+;; ---- slot find.Location  [event center]  n 12  clusters 9
+(And (Member $e0 find) (Location $e0 $x1))
+;;      c184  mass 2  {Yunnan}
+;;      c242  mass 2  {bench}
+;;      c790  mass 2  {southern}
+;;      c179  mass 1  {Western Europe}
+;;       c31  mass 1  {China}
+;;       c49  mass 1  {Dianchi Lake}
+;;      c846  mass 1  {tributaries}
+;;      c847  mass 1  {tributary}
+;;      c873  mass 1  {western}
+
+;; ---- slot give.Agent  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Agent $e0 $x1))
+;;      c755  mass 3  {school}
+;;      c845  mass 3  {trainer}
+;;      c446  mass 2  {foreman}
+;;      c290  mass 1  {clerk}
+;;      c381  mass 1  {driver}
+;;      c675  mass 1  {pilot}
+;;      c856  mass 1  {vet}
+
+;; ---- slot give.Recipient  [event center]  n 12  clusters 7
+(And (Member $e0 give) (Recipient $e0 $x1))
+;;      c724  mass 3  {recruit}
+;;      c883  mass 3  {winner}
+;;      c381  mass 2  {driver}
+;;      c267  mass 1  {caller}
+;;      c446  mass 1  {foreman}
+;;      c713  mass 1  {query}
+;;      c841  mass 1  {tower}
+
+;; ---- slot give.Theme  [event center]  n 12  clusters 6
+(And (Member $e0 give) (Theme $e0 $x1))
+;;      c206  mass 3  {answer}
+;;      c580  mass 3  {manifest}
+;;      c589  mass 2  {medal}
+;;      c876  mass 2  {whistle}
+;;      c590  mass 1  {medals}
+;;      c877  mass 1  {whistles}
+
+;; ---- slot decide.Agent  [event center]  n 11  clusters 6
+(And (Member $e0 decide) (Agent $e0 $x1))
+;;      c250  mass 3  {board}
+;;      c531  mass 3  {judge}
+;;      c299  mass 2  {committee}
+;;      c270  mass 1  {case}
+;;      c422  mass 1  {family}
+;;      c636  mass 1  {north}
+
+;; ---- slot destroy.Patient  [event center]  n 11  clusters 5
+(And (Member $e0 destroy) (Patient $e0 $x1))
+;;      c210  mass 3  {archive}
+;;      c443  mass 3  {footbridge}
+;;      c474  mass 3  {greenhouse}
+;;      c433  mass 1  {fire}
+;;      c812  mass 1  {storm}
+
+;; ---- slot answer.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Agent $e0 $x1))
+;;      c290  mass 3  {clerk}
+;;      c675  mass 3  {pilot}
+;;      c856  mass 2  {vet}
+;;      c267  mass 1  {caller}
+;;      c713  mass 1  {query}
+
+;; ---- slot answer.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 answer) (Theme $e0 $x1))
+;;      c713  mass 3  {query}
+;;      c841  mass 3  {tower}
+;;      c267  mass 2  {caller}
+;;      c290  mass 1  {clerk}
+;;      c856  mass 1  {vet}
+
+;; ---- slot lend.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Agent $e0 $x1))
+;;      c609  mass 3  {museum}
+;;      c622  mass 3  {neighbour}
+;;      c352  mass 2  {depot}
+;;      c146  mass 1  {Ravi}
+;;      c335  mass 1  {crew}
+
+;; ---- slot lend.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Recipient $e0 $x1))
+;;      c146  mass 3  {Ravi}
+;;      c458  mass 3  {gallery}
+;;      c335  mass 2  {crew}
+;;      c352  mass 1  {depot}
+;;      c622  mass 1  {neighbour}
+
+;; ---- slot lend.Theme  [event center]  n 10  clusters 5
+(And (Member $e0 lend) (Theme $e0 $x1))
+;;      c462  mass 3  {generator}
+;;      c536  mass 3  {ladder}
+;;      c655  mass 2  {painting}
+;;      c537  mass 1  {ladders}
+;;      c656  mass 1  {paintings}
+
+;; ---- slot require.Theme  [event center]  n 10  clusters 4
+(And (Member $e0 require) (Theme $e0 $x1))
+;;      c387  mass 4  {eggs}
+;;      c604  mass 3  {monthly servicing}
+;;      c327  mass 2  {countersignature}
+;;      c328  mass 1  {countersignatures}
+
+;; ---- slot teach.Agent  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Agent $e0 $x1))
+;;      c388  mass 3  {elder}
+;;      c686  mass 3  {potter}
+;;      c294  mass 2  {coach}
+;;      c209  mass 1  {apprentice}
+;;      c802  mass 1  {squad}
+
+;; ---- slot teach.Recipient  [event center]  n 10  clusters 5
+(And (Member $e0 teach) (Recipient $e0 $x1))
+;;      c209  mass 3  {apprentice}
+;;      c284  mass 3  {children}
+;;      c802  mass 2  {squad}
+;;      c294  mass 1  {coach}
+;;      c686  mass 1  {potter}
+
+;; ---- slot teach.Theme  [event center]  n 10  clusters 3
+(And (Member $e0 teach) (Theme $e0 $x1))
+;;      c468  mass 4  {glazing}
+;;      c380  mass 3  {drill}
+;;      c789  mass 3  {song}
+
+;; ---- slot cancel.Agent  [event center]  n 9  clusters 4
+(And (Member $e0 cancel) (Agent $e0 $x1))
+;;      c326  mass 3  {council}
+;;      c851  mass 3  {tutor}
+;;      c201  mass 2  {airline}
+;;      c673  mass 1  {physician}
+
+;; ---- slot decide.Theme  [event center]  n 9  clusters 4
+(And (Member $e0 decide) (Theme $e0 $x1))
+;;      c259  mass 3  {budget}
+;;      c270  mass 3  {case}
+;;      c628  mass 2  {new, roof}
+;;      c531  mass 1  {judge}
+
+;; ---- slot discover.Theme  [event center]  n 9  clusters 4
+(And (Member $e0 discover) (Theme $e0 $x1))
+;;      c427  mass 3  {file, missing}
+;;      c885  mass 3  {wreck}
+;;      c614  mass 2  {name}
+;;      c372  mass 1  {diver}
+
+;; ---- slot view.Possession  [entity center]  n 8  clusters 2
+(And (Member $x0 view) (Possession $x0 $x1))
+;;      c147  mass 4  {Republican Party}
+;;       c59  mass 4  {Free Soil Party}
+
+;; ---- slot abandon.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Agent $e0 $x1))
+;;      c292  mass 3  {climbers}
+;;      c434  mass 3  {firm}
+;;      c740  mass 2  {rescue team}
+
+;; ---- slot abandon.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 abandon) (Theme $e0 $x1))
+;;      c637  mass 3  {north route}
+;;      c833  mass 3  {tender}
+;;      c758  mass 2  {search}
+
+;; ---- slot appear.Agent  [event center]  n 8  clusters 3
+(And (Member $e0 appear) (Agent $e0 $x1))
+;;      c669  mass 5  {person}
+;;       c24  mass 2  {Brian Packham}
+;;      c780  mass 1  {sisters}
+
+;; ---- slot appear.Location  [event center]  n 8  clusters 5
+(And (Member $e0 appear) (Location $e0 $x1))
+;;      c264  mass 2  {cafe}
+;;      c296  mass 2  {comedic role}
+;;       c41  mass 2  {Coronation Street}
+;;      c611  mass 1  {music film}
+;;      c612  mass 1  {musical film}
+
+;; ---- slot destroy.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 destroy) (Agent $e0 $x1))
+;;      c433  mass 2  {fire}
+;;      c439  mass 2  {flood}
+;;      c812  mass 2  {storm}
+;;      c210  mass 1  {archive}
+;;      c474  mass 1  {greenhouse}
+
+;; ---- slot have.Holder  [event center]  n 8  clusters 4
+(And (Member $e0 have) (Holder $e0 $x1))
+;;      c103  mass 4  {Kristoffer}
+;;       c96  mass 2  {Karen}
+;;      c489  mass 1  {homentropic current}
+;;      c490  mass 1  {homentropic flow}
+
+;; ---- slot have.Theme  [event center]  n 8  clusters 3
+(And (Member $e0 have) (Theme $e0 $x1))
+;;      c284  mass 4  {children}
+;;      c316  mass 2  {constant, entropy, uniform}
+;;      c738  mass 2  {representation}
+
+;; ---- slot include.Theme  [event center]  n 8  clusters 4
+(And (Member $e0 include) (Theme $e0 $x1))
+;;      c127  mass 2  {Nikhil Nanda}
+;;      c145  mass 2  {Ranbir Kapoor}
+;;       c48  mass 2  {Des Moines}
+;;        c6  mass 2  {Armaan Jain}
+
+;; ---- slot produce.Patient  [event center]  n 8  clusters 4
+(And (Member $e0 produce) (Patient $e0 $x1))
+;;      c607  mass 4  {movie}
+;;      c202  mass 2  {album}
+;;      c358  mass 1  {destined, film, syrian}
+;;      c429  mass 1  {film, syrian}
+
+;; ---- slot reject.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Agent $e0 $x1))
+;;      c233  mass 2  {bank}
+;;      c385  mass 2  {editor}
+;;      c658  mass 2  {panel}
+;;      c563  mass 1  {loan application}
+;;      c583  mass 1  {manuscript}
+
+;; ---- slot reject.Theme  [event center]  n 8  clusters 5
+(And (Member $e0 reject) (Theme $e0 $x1))
+;;      c563  mass 2  {loan application}
+;;      c583  mass 2  {manuscript}
+;;      c704  mass 2  {proposal}
+;;      c233  mass 1  {bank}
+;;      c385  mass 1  {editor}
+
+;; ---- slot repair.Agent  [event center]  n 8  clusters 6
+(And (Member $e0 repair) (Agent $e0 $x1))
+;;      c389  mass 2  {electrician}
+;;      c588  mass 2  {mechanic}
+;;      c331  mass 1  {cracked, feed pipe}
+;;      c335  mass 1  {crew}
+;;      c461  mass 1  {gearbox, seized}
+;;      c887  mass 1  {yard floodlight}
+
+;; ---- slot repair.Patient  [event center]  n 8  clusters 6
+(And (Member $e0 repair) (Patient $e0 $x1))
+;;      c461  mass 2  {gearbox, seized}
+;;      c887  mass 2  {yard floodlight}
+;;      c331  mass 1  {cracked, feed pipe}
+;;      c335  mass 1  {crew}
+;;      c389  mass 1  {electrician}
+;;      c588  mass 1  {mechanic}
+
+;; ---- slot require.Holder  [event center]  n 8  clusters 3
+(And (Member $e0 require) (Holder $e0 $x1))
+;;      c668  mass 3  {permit}
+;;      c721  mass 3  {recipe}
+;;      c545  mass 2  {lathe}
+
+;; ---- slot serve.Agent  [event center]  n 8  clusters 4
+(And (Member $e0 serve) (Agent $e0 $x1))
+;;      c154  mass 2  {Rosewood}
+;;      c669  mass 2  {person}
+;;       c77  mass 2  {Indooroopilly}
+;;       c78  mass 2  {Ipswich}
+
+;; ---- slot sing.Agent  [event center]  n 8  clusters 5
+(And (Member $e0 sing) (Agent $e0 $x1))
+;;       c15  mass 2  {Barbershop Harmony Society}
+;;      c669  mass 2  {person}
+;;      c780  mass 2  {sisters}
+;;      c643  mass 1  {occupational group}
+;;      c701  mass 1  {professional group}
+
+;; ---- slot study.Location  [event center]  n 8  clusters 4
+(And (Member $e0 study) (Location $e0 $x1))
+;;      c117  mass 2  {Melbourne}
+;;      c163  mass 2  {Sydney}
+;;       c46  mass 2  {Davis Studio}
+;;       c94  mass 2  {Julian Ashton Art School}
+
+;; ---- slot be.Experiencer  [event center]  n 7  clusters 4
+(And (Member $e0 be) (Experiencer $e0 $x1))
+;;      c133  mass 4  {Paniqui}
+;;        c0  mass 1  {Alema Nature Reserve}
+;;       c52  mass 1  {Ellerslie Rugby Park}
+;;      c848  mass 1  {tunnel}
+
+;; ---- slot begin.Patient  [event center]  n 7  clusters 4
+(And (Member $e0 begin) (Patient $e0 $x1))
+;;      c208  mass 2  {apple harvest}
+;;      c379  mass 2  {dress rehearsal}
+;;      c773  mass 2  {shoreline survey}
+;;      c482  mass 1  {hearing}
+
+;; ---- slot cancel.Patient  [event center]  n 7  clusters 3
+(And (Member $e0 cancel) (Patient $e0 $x1))
+;;      c200  mass 3  {afternoon session}
+;;      c819  mass 3  {summer fair}
+;;      c411  mass 1  {evening flight}
+
+;; ---- slot discover.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 discover) (Agent $e0 $x1))
+;;      c372  mass 3  {diver}
+;;      c522  mass 3  {intern}
+;;      c885  mass 1  {wreck}
+
+;; ---- slot locate.Location  [event center]  n 7  clusters 4
+(And (Member $e0 locate) (Location $e0 $x1))
+;;       c36  mass 2  {Cloverdale}
+;;      c442  mass 2  {foot}
+;;      c485  mass 2  {hills}
+;;      c148  mass 1  {Richford}
+
+;; ---- slot postpone.Agent  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Agent $e0 $x1))
+;;      c293  mass 3  {club}
+;;      c250  mass 2  {board}
+;;      c425  mass 2  {ferry}
+
+;; ---- slot postpone.Theme  [event center]  n 7  clusters 3
+(And (Member $e0 postpone) (Theme $e0 $x1))
+;;      c840  mass 3  {tournament}
+;;      c351  mass 2  {departure}
+;;      c861  mass 2  {vote}
+
+;; ---- slot work.CoAgent  [event center]  n 7  clusters 4
+(And (Member $e0 work) (CoAgent $e0 $x1))
+;;      c128  mass 2  {Nils}
+;;       c21  mass 2  {Bo}
+;;      c717  mass 2  {ranger}
+;;      c437  mass 1  {fitter}
+
+;; ---- slot budget.Possession  [entity center]  n 6  clusters 1
+(And (Member $x0 budget) (Possession $x0 $x1))
+;;      c630  mass 6  {next year}
+
+;; ---- slot arrive.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 arrive) (Agent $e0 $x1))
+;;      c453  mass 3  {freight}
+;;      c346  mass 2  {delegation}
+;;      c787  mass 1  {soil samples}
+
+;; ---- slot build.Instrument  [event center]  n 6  clusters 4
+(And (Member $e0 build) (Instrument $e0 $x1))
+;;      c235  mass 2  {barometer}
+;;      c483  mass 2  {help}
+;;      c695  mass 1  {present in, scale}
+;;      c696  mass 1  {present, scale}
+
+;; ---- slot decision.Theme  [event center]  n 6  clusters 3
+(And (Member $e0 decision) (Theme $e0 $x1))
+;;      c259  mass 2  {budget}
+;;      c270  mass 2  {case}
+;;      c628  mass 2  {new, roof}
+
+;; ---- slot design.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 design) (Agent $e0 $x1))
+;;      c141  mass 2  {Philip Hercus}
+;;      c151  mass 2  {Robert Allan Limited}
+;;       c71  mass 2  {Henry L. Taylor}
+
+;; ---- slot discover.Location  [event center]  n 6  clusters 2
+(And (Member $e0 discover) (Location $e0 $x1))
+;;      c679  mass 4  {point}
+;;       c88  mass 2  {Japan}
+
+;; ---- slot form.Agent  [event center]  n 6  clusters 4
+(And (Member $e0 form) (Agent $e0 $x1))
+;;      c155  mass 2  {Sambora}
+;;       c93  mass 2  {Jon Bon Jovi}
+;;      c165  mass 1  {Technetium}
+;;      c309  mass 1  {complex, simple}
+
+;; ---- slot fund.Agent  [event center]  n 6  clusters 2
+(And (Member $e0 fund) (Agent $e0 $x1))
+;;      c470  mass 3  {government}
+;;       c83  mass 3  {JICA}
+
+;; ---- slot include.Agent  [event center]  n 6  clusters 1
+(And (Member $e0 include) (Agent $e0 $x1))
+;;      c625  mass 6  {nephews}
+
+;; ---- slot portray.Agent  [event center]  n 6  clusters 4
+(And (Member $e0 portray) (Agent $e0 $x1))
+;;      c160  mass 2  {Soichiro Akizuki}
+;;       c85  mass 2  {James Woods}
+;;      c181  mass 1  {Wilson}
+;;      c881  mass 1  {wilson}
+
+;; ---- slot portray.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 portray) (Theme $e0 $x1))
+;;       c85  mass 2  {James Woods}
+;;       c95  mass 2  {Kantaro Suga}
+;;      c181  mass 1  {Wilson}
+;;      c881  mass 1  {wilson}
+
+;; ---- slot produce.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 produce) (Agent $e0 $x1))
+;;      c162  mass 2  {Sy Weintraub}
+;;       c37  mass 2  {Colin Richardson}
+;;       c68  mass 2  {Harvey Hayutin}
+
+;; ---- slot sell.Theme  [event center]  n 6  clusters 5
+(And (Member $e0 sell) (Theme $e0 $x1))
+;;      c499  mass 2  {ice cream}
+;;      c333  mass 1  {crate, lemons}
+;;      c448  mass 1  {forklifts}
+;;      c535  mass 1  {kiln}
+;;      c702  mass 1  {projector}
+
+;; ---- slot serve.Theme  [event center]  n 6  clusters 1
+(And (Member $e0 serve) (Theme $e0 $x1))
+;;      c809  mass 6  {station}
+
+;; ---- slot use.Theme  [event center]  n 6  clusters 4
+(And (Member $e0 use) (Theme $e0 $x1))
+;;       c14  mass 2  {Banach -- Mackey topology}
+;;      c869  mass 2  {weak Arens space topology}
+;;      c339  mass 1  {current, designation convention}
+;;      c340  mass 1  {current, naming convention}
+
+;; ---- slot write.Agent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (Agent $e0 $x1))
+;;       c19  mass 2  {Bill Wrubel}
+;;       c64  mass 2  {Gilles Thibaut}
+;;      c669  mass 2  {person}
+
+;; ---- slot write.CoAgent  [event center]  n 6  clusters 3
+(And (Member $e0 write) (CoAgent $e0 $x1))
+;;      c107  mass 2  {Laurie Aubanel}
+;;       c18  mass 2  {Bianca Olsen}
+;;       c44  mass 2  {Cyril Rambour}
+
+;; ---- slot write.Patient  [event center]  n 6  clusters 4
+(And (Member $e0 write) (Patient $e0 $x1))
+;;      c403  mass 2  {episode}
+;;      c789  mass 2  {song}
+;;      c756  mass 1  {screenplay}
+;;      c757  mass 1  {script}
+
+;; ---- slot tender.Possession  [entity center]  n 5  clusters 1
+(And (Member $x0 tender) (Possession $x0 $x1))
+;;      c434  mass 5  {firm}
+
+;; ---- slot borrow.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 borrow) (Theme $e0 $x1))
+;;      c521  mass 2  {inomaru}
+;;      c462  mass 1  {generator}
+;;      c536  mass 1  {ladder}
+;;      c655  mass 1  {painting}
+
+;; ---- slot die.Patient  [event center]  n 5  clusters 3
+(And (Member $e0 die) (Patient $e0 $x1))
+;;      c451  mass 2  {founder}
+;;      c669  mass 2  {person}
+;;      c391  mass 1  {elm, last}
+
+;; ---- slot locate.Experiencer  [event center]  n 5  clusters 3
+(And (Member $e0 locate) (Experiencer $e0 $x1))
+;;      c182  mass 2  {Wine Country}
+;;      c661  mass 2  {park}
+;;       c52  mass 1  {Ellerslie Rugby Park}
+
+;; ---- slot receive.Theme  [event center]  n 5  clusters 4
+(And (Member $e0 receive) (Theme $e0 $x1))
+;;      c884  mass 2  {work}
+;;      c580  mass 1  {manifest}
+;;      c589  mass 1  {medal}
+;;      c876  mass 1  {whistle}
+
+;; ---- slot take.Agent  [event center]  n 5  clusters 4
+(And (Member $e0 take) (Agent $e0 $x1))
+;;      c669  mass 2  {person}
+;;      c284  mass 1  {children}
+;;      c641  mass 1  {nurse}
+;;      c770  mass 1  {shepherd}
+
+;; ---- slot walk.Agent  [event center]  n 5  clusters 5
+(And (Member $e0 walk) (Agent $e0 $x1))
+;;      c284  mass 1  {children}
+;;      c641  mass 1  {nurse}
+;;      c674  mass 1  {pier}
+;;      c770  mass 1  {shepherd}
+;;      c865  mass 1  {ward}
+
+;; ---- slot walk.Location  [event center]  n 5  clusters 3
+(And (Member $e0 walk) (Location $e0 $x1))
+;;      c742  mass 2  {ridge}
+;;      c865  mass 2  {ward}
+;;      c641  mass 1  {nurse}
+
+;; ---- slot <unclassed>.PartOf  [entity center]  n 4  clusters 3
+(PartOf $x0 $x1)
+;;      c102  mass 2  {Khurda Road}
+;;      c138  mass 1  {Peru}
+;;       c75  mass 1  {Huancavelica}
+
+;; ---- slot bad.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 bad) (Between $x0 $x1))
+;;      c142  mass 2  {Poland}
+;;       c62  mass 2  {Germany}
+
+;; ---- slot border_section.Between  [entity center]  n 4  clusters 2
+(And (Member $x0 border_section) (Between $x0 $x1))
+;;      c109  mass 2  {Lessos}
+;;      c172  mass 2  {Uganda}
+
+;; ---- slot departure.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 departure) (Possession $x0 $x1))
+;;      c425  mass 4  {ferry}
+
+;; ---- slot family.Possession  [entity center]  n 4  clusters 1
+(And (Member $x0 family) (Possession $x0 $x1))
+;;      c669  mass 4  {person}
+
+;; ---- slot government.Possession  [entity center]  n 4  clusters 2
+(And (Member $x0 government) (Possession $x0 $x1))
+;;      c100  mass 2  {Kenya}
+;;      c172  mass 2  {Uganda}
+
+;; ---- slot lunch.Before  [entity center]  n 4  clusters 3
+(And (Member $x0 lunch) (Before $x0 $x1))
+;;      c240  mass 2  {begin}
+;;      c297  mass 1  {commence}
+;;      c807  mass 1  {start}
+
+;; ---- slot accompany.Agent  [event center]  n 4  clusters 2
+(And (Member $e0 accompany) (Agent $e0 $x1))
+;;      c669  mass 2  {person}
+;;      c780  mass 2  {sisters}
+
+;; ---- slot accompany.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 accompany) (Theme $e0 $x1))
+;;      c775  mass 4  {silent film}
+
+;; ---- slot acquire.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Agent $e0 $x1))
+;;      c280  mass 1  {chef}
+;;      c352  mass 1  {depot}
+;;      c687  mass 1  {pottery studio}
+;;      c755  mass 1  {school}
+
+;; ---- slot acquire.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 acquire) (Theme $e0 $x1))
+;;      c333  mass 1  {crate, lemons}
+;;      c448  mass 1  {forklifts}
+;;      c535  mass 1  {kiln}
+;;      c702  mass 1  {projector}
+
+;; ---- slot active.Time  [event center]  n 4  clusters 2
+(And (Member $e0 active) (Time $e0 $x1))
+;;      c383  mass 2  {early morning}
+;;      c542  mass 2  {late afternoon}
+
+;; ---- slot allow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Agent $e0 $x1))
+;;      c558  mass 2  {licence}
+;;      c337  mass 1  {curator}
+;;      c866  mass 1  {warden}
+
+;; ---- slot allow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 allow) (Theme $e0 $x1))
+;;      c632  mass 2  {night delivery}
+;;      c672  mass 1  {photography}
+;;      c859  mass 1  {visitor}
+
+;; ---- slot attract.Source  [event center]  n 4  clusters 2
+(And (Member $e0 attract) (Source $e0 $x1))
+;;      c577  mass 2  {mainstream media}
+;;      c785  mass 2  {social media}
+
+;; ---- slot be.Location  [event center]  n 4  clusters 4
+(And (Member $e0 be) (Location $e0 $x1))
+;;      c148  mass 1  {Richford}
+;;      c347  mass 1  {denmark}
+;;      c636  mass 1  {north}
+;;       c66  mass 1  {Harju County}
+
+;; ---- slot be.Source  [event center]  n 4  clusters 3
+(And (Member $e0 be) (Source $e0 $x1))
+;;      c164  mass 2  {Tarlac City}
+;;      c114  mass 1  {Manila}
+;;      c706  mass 1  {provincial capital}
+
+;; ---- slot become.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Patient $e0 $x1))
+;;      c228  mass 2  {bad, relationship}
+;;      c366  mass 1  {discipline, lax}
+;;      c514  mass 1  {indigenous, people}
+
+;; ---- slot become.Result  [event center]  n 4  clusters 3
+(And (Member $e0 become) (Result $e0 $x1))
+;;      c227  mass 2  {bad}
+;;      c511  mass 1  {indigenous}
+;;      c548  mass 1  {lax}
+
+;; ---- slot begin.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 begin) (Agent $e0 $x1))
+;;      c410  mass 2  {european american settlers}
+;;      c513  mass 1  {indigenous americans}
+;;      c618  mass 1  {native americans}
+
+;; ---- slot begin.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 begin) (Theme $e0 $x1))
+;;      c334  mass 4  {create}
+
+;; ---- slot block.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 block) (Agent $e0 $x1))
+;;      c223  mass 2  {automobile}
+;;      c224  mass 1  {automobiles}
+;;      c269  mass 1  {car}
+
+;; ---- slot block.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 block) (Theme $e0 $x1))
+;;      c539  mass 4  {lane}
+
+;; ---- slot celebrated.Location  [event center]  n 4  clusters 3
+(And (Member $e0 celebrated) (Location $e0 $x1))
+;;      c681  mass 2  {popular culture}
+;;      c843  mass 1  {traditional chinese drama}
+;;      c844  mass 1  {traditional chinese dramas}
+
+;; ---- slot commence.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 commence) (Patient $e0 $x1))
+;;      c208  mass 1  {apple harvest}
+;;      c379  mass 1  {dress rehearsal}
+;;      c482  mass 1  {hearing}
+;;      c773  mass 1  {shoreline survey}
+
+;; ---- slot create.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 create) (Agent $e0 $x1))
+;;      c410  mass 2  {european american settlers}
+;;      c513  mass 1  {indigenous americans}
+;;      c618  mass 1  {native americans}
+
+;; ---- slot create.Location  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Location $e0 $x1))
+;;      c683  mass 4  {post}
+
+;; ---- slot create.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 create) (Patient $e0 $x1))
+;;      c303  mass 4  {community}
+
+;; ---- slot define.Manner  [event center]  n 4  clusters 3
+(And (Member $e0 define) (Manner $e0 $x1))
+;;      c716  mass 2  {random, ways}
+;;      c189  mass 1  {accidental, ways}
+;;      c582  mass 1  {manners, random}
+
+;; ---- slot define.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 define) (Theme $e0 $x1))
+;;      c204  mass 2  {algorithmically equivalent, sequences}
+;;      c405  mass 2  {equivalent, sequences}
+
+;; ---- slot design.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 design) (Patient $e0 $x1))
+;;      c653  mass 4  {pacificats}
+
+;; ---- slot direct.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Agent $e0 $x1))
+;;      c110  mass 2  {Lev L. Spiro}
+;;      c152  mass 1  {Robert Day}
+;;       c35  mass 1  {Claude Lelouch}
+
+;; ---- slot direct.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 direct) (Patient $e0 $x1))
+;;      c403  mass 2  {episode}
+;;      c429  mass 1  {film, syrian}
+;;      c607  mass 1  {movie}
+
+;; ---- slot encourage.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Agent $e0 $x1))
+;;      c144  mass 4  {Ralph}
+
+;; ---- slot encourage.In  [event center]  n 4  clusters 3
+(And (Member $e0 encourage) (In $e0 $x1))
+;;      c587  mass 2  {mathematics}
+;;      c281  mass 1  {chess}
+;;      c282  mass 1  {chess play}
+
+;; ---- slot encourage.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 encourage) (Theme $e0 $x1))
+;;      c116  mass 4  {Maurice}
+
+;; ---- slot error.Location  [event center]  n 4  clusters 1
+(And (Member $e0 error) (Location $e0 $x1))
+;;      c552  mass 4  {ledger}
+
+;; ---- slot follow.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Agent $e0 $x1))
+;;      c495  mass 2  {house, muslim}
+;;        c1  mass 1  {Alexander}
+;;       c12  mass 1  {Bailey}
+
+;; ---- slot follow.Theme  [event center]  n 4  clusters 3
+(And (Member $e0 follow) (Theme $e0 $x1))
+;;      c728  mass 2  {region}
+;;      c115  mass 1  {Margaret Fleming}
+;;       c70  mass 1  {Henry Cole}
+
+;; ---- slot form.Patient  [event center]  n 4  clusters 3
+(And (Member $e0 form) (Patient $e0 $x1))
+;;      c576  mass 2  {main songwriting unit}
+;;      c165  mass 1  {Technetium}
+;;      c309  mass 1  {complex, simple}
+
+;; ---- slot have.Location  [event center]  n 4  clusters 2
+(And (Member $e0 have) (Location $e0 $x1))
+;;      c564  mass 2  {local level}
+;;      c729  mass 2  {regional level}
+
+;; ---- slot influence.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 influence) (Theme $e0 $x1))
+;;      c285  mass 2  {chinese dumpling}
+;;      c733  mass 2  {religion}
+
+;; ---- slot kill.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Agent $e0 $x1))
+;;      c497  mass 4  {hurricane}
+
+;; ---- slot kill.Location  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Location $e0 $x1))
+;;      c808  mass 4  {state}
+
+;; ---- slot kill.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 kill) (Manner $e0 $x1))
+;;      c364  mass 2  {directly}
+;;      c515  mass 2  {indirectly}
+
+;; ---- slot kill.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 kill) (Patient $e0 $x1))
+;;      c666  mass 4  {people}
+
+;; ---- slot make.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 make) (Agent $e0 $x1))
+;;      c250  mass 1  {board}
+;;      c299  mass 1  {committee}
+;;      c422  mass 1  {family}
+;;      c531  mass 1  {judge}
+
+;; ---- slot make.Patient  [event center]  n 4  clusters 1
+(And (Member $e0 make) (Patient $e0 $x1))
+;;      c344  mass 4  {decision}
+
+;; ---- slot move.Goal  [event center]  n 4  clusters 2
+(And (Member $e0 move) (Goal $e0 $x1))
+;;       c13  mass 2  {Baltimore}
+;;       c62  mass 2  {Germany}
+
+;; ---- slot nation.Location  [event center]  n 4  clusters 2
+(And (Member $e0 nation) (Location $e0 $x1))
+;;      c161  mass 2  {South Asia}
+;;       c17  mass 2  {Bengal}
+
+;; ---- slot order.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 order) (Agent $e0 $x1))
+;;      c673  mass 2  {physician}
+;;      c376  mass 1  {doctor}
+;;      c754  mass 1  {scan}
+
+;; ---- slot order.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 order) (Theme $e0 $x1))
+;;      c754  mass 3  {scan}
+;;      c673  mass 1  {physician}
+
+;; ---- slot play.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 play) (Agent $e0 $x1))
+;;       c10  mass 1  {Audrey Hepburn}
+;;       c11  mass 1  {Audrey Heppurn}
+;;       c23  mass 1  {Boston Red Sox}
+;;       c34  mass 1  {Cincinnati Reds}
+
+;; ---- slot play.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 play) (Theme $e0 $x1))
+;;       c73  mass 2  {Holly Golightly}
+;;      c765  mass 2  {series}
+
+;; ---- slot preach.Location  [event center]  n 4  clusters 2
+(And (Member $e0 preach) (Location $e0 $x1))
+;;       c60  mass 2  {Gareccio}
+;;       c81  mass 2  {Italy}
+
+;; ---- slot purchase.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Agent $e0 $x1))
+;;      c280  mass 1  {chef}
+;;      c352  mass 1  {depot}
+;;      c687  mass 1  {pottery studio}
+;;      c755  mass 1  {school}
+
+;; ---- slot purchase.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 purchase) (Theme $e0 $x1))
+;;      c333  mass 1  {crate, lemons}
+;;      c448  mass 1  {forklifts}
+;;      c535  mass 1  {kiln}
+;;      c702  mass 1  {projector}
+
+;; ---- slot reach.Agent  [event center]  n 4  clusters 4
+(And (Member $e0 reach) (Agent $e0 $x1))
+;;      c250  mass 1  {board}
+;;      c299  mass 1  {committee}
+;;      c422  mass 1  {family}
+;;      c531  mass 1  {judge}
+
+;; ---- slot reach.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 reach) (Theme $e0 $x1))
+;;      c344  mass 4  {decision}
+
+;; ---- slot replace.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 replace) (Agent $e0 $x1))
+;;      c159  mass 2  {Sherman Howard}
+;;      c140  mass 1  {Peter Gaussen}
+;;      c471  mass 1  {governor}
+
+;; ---- slot replace.Theme  [event center]  n 4  clusters 4
+(And (Member $e0 replace) (Theme $e0 $x1))
+;;      c111  mass 1  {Lex Lex Luthor}
+;;      c112  mass 1  {Lex Luthor}
+;;      c180  mass 1  {William Ewer}
+;;      c471  mass 1  {governor}
+
+;; ---- slot sell.Recipient  [event center]  n 4  clusters 4
+(And (Member $e0 sell) (Recipient $e0 $x1))
+;;      c280  mass 1  {chef}
+;;      c352  mass 1  {depot}
+;;      c687  mass 1  {pottery studio}
+;;      c755  mass 1  {school}
+
+;; ---- slot sign.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 sign) (Agent $e0 $x1))
+;;      c673  mass 2  {physician}
+;;      c279  mass 1  {chart}
+;;      c376  mass 1  {doctor}
+
+;; ---- slot sign.Patient  [event center]  n 4  clusters 2
+(And (Member $e0 sign) (Patient $e0 $x1))
+;;      c279  mass 3  {chart}
+;;      c673  mass 1  {physician}
+
+;; ---- slot sing.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Manner $e0 $x1))
+;;      c185  mass 4  {a cappella}
+
+;; ---- slot sing.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (Theme $e0 $x1))
+;;      c610  mass 4  {music}
+
+;; ---- slot sing.To  [event center]  n 4  clusters 1
+(And (Member $e0 sing) (To $e0 $x1))
+;;      c190  mass 4  {accompany}
+
+;; ---- slot speak.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 speak) (Agent $e0 $x1))
+;;      c131  mass 2  {Oates}
+;;      c118  mass 1  {Mie Sonozaki}
+;;       c97  mass 1  {Kari Wahlgren}
+
+;; ---- slot specify.Manner  [event center]  n 4  clusters 2
+(And (Member $e0 specify) (Manner $e0 $x1))
+;;      c321  mass 2  {continuous time}
+;;      c368  mass 2  {discrete time}
+
+;; ---- slot star.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 star) (Theme $e0 $x1))
+;;      c134  mass 2  {Patricia Kaas}
+;;       c90  mass 2  {Jeremy Irons}
+
+;; ---- slot start.Patient  [event center]  n 4  clusters 4
+(And (Member $e0 start) (Patient $e0 $x1))
+;;      c208  mass 1  {apple harvest}
+;;      c379  mass 1  {dress rehearsal}
+;;      c482  mass 1  {hearing}
+;;      c773  mass 1  {shoreline survey}
+
+;; ---- slot study.Agent  [event center]  n 4  clusters 1
+(And (Member $e0 study) (Agent $e0 $x1))
+;;      c669  mass 4  {person}
+
+;; ---- slot take.Theme  [event center]  n 4  clusters 2
+(And (Member $e0 take) (Theme $e0 $x1))
+;;      c501  mass 2  {identity}
+;;      c863  mass 2  {walk}
+
+;; ---- slot use.Manner  [event center]  n 4  clusters 1
+(And (Member $e0 use) (Manner $e0 $x1))
+;;      c718  mass 4  {rare}
+
+;; ---- slot win.Agent  [event center]  n 4  clusters 3
+(And (Member $e0 win) (Agent $e0 $x1))
+;;       c85  mass 2  {James Woods}
+;;      c181  mass 1  {Wilson}
+;;      c881  mass 1  {wilson}
+
+;; ---- slot win.For  [event center]  n 4  clusters 1
+(And (Member $e0 win) (For $e0 $x1))
+;;      c682  mass 4  {portray}
+
+;; ---- slot win.Theme  [event center]  n 4  clusters 1
+(And (Member $e0 win) (Theme $e0 $x1))
+;;      c392  mass 4  {emmy}
+
+;; ---- slot house.Possession  [entity center]  n 3  clusters 2
+(And (Member $x0 house) (Possession $x0 $x1))
+;;        c5  mass 2  {Arakkal}
+;;       c47  mass 1  {Derwent Isle}
+
+;; ---- slot western.PartOf  [entity center]  n 3  clusters 2
+(And (Member $x0 western) (PartOf $x0 $x1))
+;;       c31  mass 2  {China}
+;;       c56  mass 1  {Europe}
+
+;; ---- slot bear.Patient  [event center]  n 3  clusters 2
+(And (Member $e0 bear) (Patient $e0 $x1))
+;;      c669  mass 2  {person}
+;;      c108  mass 1  {Leonor Rodrigues}
+
+;; ---- slot begin.Time  [event center]  n 3  clusters 2
+(And (Member $e0 begin) (Time $e0 $x1))
+;;      c342  mass 2  {dawn}
+;;      c605  mass 1  {morning}
+
+;; ---- slot borrow.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Agent $e0 $x1))
+;;      c146  mass 1  {Ravi}
+;;      c335  mass 1  {crew}
+;;      c458  mass 1  {gallery}
+
+;; ---- slot borrow.Source  [event center]  n 3  clusters 3
+(And (Member $e0 borrow) (Source $e0 $x1))
+;;      c352  mass 1  {depot}
+;;      c609  mass 1  {museum}
+;;      c622  mass 1  {neighbour}
+
+;; ---- slot buy.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 buy) (Beneficiary $e0 $x1))
+;;      c477  mass 3  {hall}
+
+;; ---- slot call_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 call_off) (Agent $e0 $x1))
+;;      c201  mass 1  {airline}
+;;      c326  mass 1  {council}
+;;      c851  mass 1  {tutor}
+
+;; ---- slot cause.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 cause) (Agent $e0 $x1))
+;;      c433  mass 1  {fire}
+;;      c439  mass 1  {flood}
+;;      c812  mass 1  {storm}
+
+;; ---- slot cause.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 cause) (Theme $e0 $x1))
+;;      c359  mass 3  {destroy}
+
+;; ---- slot discover.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Experiencer $e0 $x1))
+;;      c222  mass 2  {auditor}
+;;      c406  mass 1  {error}
+
+;; ---- slot discover.Stimulus  [event center]  n 3  clusters 2
+(And (Member $e0 discover) (Stimulus $e0 $x1))
+;;      c406  mass 2  {error}
+;;      c222  mass 1  {auditor}
+
+;; ---- slot end.Patient  [event center]  n 3  clusters 3
+(And (Member $e0 end) (Patient $e0 $x1))
+;;      c208  mass 1  {apple harvest}
+;;      c482  mass 1  {hearing}
+;;      c773  mass 1  {shoreline survey}
+
+;; ---- slot examine.Agent  [event center]  n 3  clusters 2
+(And (Member $e0 examine) (Agent $e0 $x1))
+;;      c673  mass 2  {physician}
+;;      c376  mass 1  {doctor}
+
+;; ---- slot examine.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 examine) (Theme $e0 $x1))
+;;      c750  mass 3  {samples}
+
+;; ---- slot fund.Theme  [event center]  n 3  clusters 2
+(And (Member $e0 fund) (Theme $e0 $x1))
+;;      c556  mass 2  {lessos kenya border section}
+;;      c252  mass 1  {border section}
+
+;; ---- slot give_up.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Agent $e0 $x1))
+;;      c292  mass 1  {climbers}
+;;      c434  mass 1  {firm}
+;;      c740  mass 1  {rescue team}
+
+;; ---- slot give_up.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 give_up) (Theme $e0 $x1))
+;;      c637  mass 1  {north route}
+;;      c758  mass 1  {search}
+;;      c833  mass 1  {tender}
+
+;; ---- slot influence.Agent  [event center]  n 3  clusters 2
+(And (Member $e0 influence) (Agent $e0 $x1))
+;;      c517  mass 2  {indonesian immigrants}
+;;      c231  mass 1  {balance, international}
+
+;; ---- slot learn.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Agent $e0 $x1))
+;;      c209  mass 1  {apprentice}
+;;      c284  mass 1  {children}
+;;      c802  mass 1  {squad}
+
+;; ---- slot learn.Source  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Source $e0 $x1))
+;;      c294  mass 1  {coach}
+;;      c388  mass 1  {elder}
+;;      c686  mass 1  {potter}
+
+;; ---- slot learn.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 learn) (Theme $e0 $x1))
+;;      c380  mass 1  {drill}
+;;      c468  mass 1  {glazing}
+;;      c789  mass 1  {song}
+
+;; ---- slot market.Beneficiary  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Beneficiary $e0 $x1))
+;;      c772  mass 3  {shop}
+
+;; ---- slot market.Location  [event center]  n 3  clusters 1
+(And (Member $e0 market) (Location $e0 $x1))
+;;      c249  mass 3  {block, pakistani}
+
+;; ---- slot need.Holder  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Holder $e0 $x1))
+;;      c545  mass 1  {lathe}
+;;      c668  mass 1  {permit}
+;;      c721  mass 1  {recipe}
+
+;; ---- slot need.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 need) (Theme $e0 $x1))
+;;      c327  mass 1  {countersignature}
+;;      c387  mass 1  {eggs}
+;;      c604  mass 1  {monthly servicing}
+
+;; ---- slot permit.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Agent $e0 $x1))
+;;      c337  mass 1  {curator}
+;;      c558  mass 1  {licence}
+;;      c866  mass 1  {warden}
+
+;; ---- slot permit.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 permit) (Theme $e0 $x1))
+;;      c632  mass 1  {night delivery}
+;;      c672  mass 1  {photography}
+;;      c859  mass 1  {visitor}
+
+;; ---- slot put_off.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Agent $e0 $x1))
+;;      c250  mass 1  {board}
+;;      c293  mass 1  {club}
+;;      c425  mass 1  {ferry}
+
+;; ---- slot put_off.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 put_off) (Theme $e0 $x1))
+;;      c351  mass 1  {departure}
+;;      c840  mass 1  {tournament}
+;;      c861  mass 1  {vote}
+
+;; ---- slot receive.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Agent $e0 $x1))
+;;      c381  mass 1  {driver}
+;;      c724  mass 1  {recruit}
+;;      c883  mass 1  {winner}
+
+;; ---- slot receive.Source  [event center]  n 3  clusters 3
+(And (Member $e0 receive) (Source $e0 $x1))
+;;      c446  mass 1  {foreman}
+;;      c755  mass 1  {school}
+;;      c845  mass 1  {trainer}
+
+;; ---- slot start.Experiencer  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Experiencer $e0 $x1))
+;;      c256  mass 2  {bridge}
+;;      c848  mass 1  {tunnel}
+
+;; ---- slot start.Location  [event center]  n 3  clusters 2
+(And (Member $e0 start) (Location $e0 $x1))
+;;      c824  mass 2  {sweden}
+;;      c347  mass 1  {denmark}
+
+;; ---- slot succeed.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Agent $e0 $x1))
+;;        c1  mass 1  {Alexander}
+;;       c12  mass 1  {Bailey}
+;;      c140  mass 1  {Peter Gaussen}
+
+;; ---- slot succeed.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 succeed) (Theme $e0 $x1))
+;;      c115  mass 1  {Margaret Fleming}
+;;      c471  mass 1  {governor}
+;;       c70  mass 1  {Henry Cole}
+
+;; ---- slot turn_down.Agent  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Agent $e0 $x1))
+;;      c233  mass 1  {bank}
+;;      c385  mass 1  {editor}
+;;      c658  mass 1  {panel}
+
+;; ---- slot turn_down.Theme  [event center]  n 3  clusters 3
+(And (Member $e0 turn_down) (Theme $e0 $x1))
+;;      c563  mass 1  {loan application}
+;;      c583  mass 1  {manuscript}
+;;      c704  mass 1  {proposal}
+
+;; ---- slot wait.Experiencer  [event center]  n 3  clusters 3
+(And (Member $e0 wait) (Experiencer $e0 $x1))
+;;      c223  mass 1  {automobile}
+;;      c224  mass 1  {automobiles}
+;;      c269  mass 1  {car}
+
+;; ---- slot wait.Location  [event center]  n 3  clusters 1
+(And (Member $e0 wait) (Location $e0 $x1))
+;;      c459  mass 3  {gate}
+
+;; ---- slot walk.Goal  [event center]  n 3  clusters 2
+(And (Member $e0 walk) (Goal $e0 $x1))
+;;      c674  mass 2  {pier}
+;;      c284  mass 1  {children}
+
+;; ---- slot work.Theme  [event center]  n 3  clusters 1
+(And (Member $e0 work) (Theme $e0 $x1))
+;;      c608  mass 3  {mural}

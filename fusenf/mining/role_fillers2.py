@@ -101,6 +101,22 @@ def cosine(ca, cb):
     return dot / (na * nb) if na and nb else 0.0
 
 
+def jsd(pa, pb):
+    """Jensen-Shannon divergence (base 2, in [0, 1]) between two mass dicts; None if one is empty."""
+    sa, sb = sum(pa.values()), sum(pb.values())
+    if not sa or not sb:
+        return None
+    d = 0.0
+    for k in set(pa) | set(pb):
+        a, b = pa.get(k, 0) / sa, pb.get(k, 0) / sb
+        m = (a + b) / 2
+        if a:
+            d += 0.5 * a * math.log2(a / m)
+        if b:
+            d += 0.5 * b * math.log2(b / m)
+    return round(d, 3)
+
+
 def load_doctrine(path):
     """-> (table, {verb: (determined role, named_since hash)}); asserts the flat lists
     (the mechanism's interface) equal the union of ``_sources``."""
@@ -161,10 +177,16 @@ def make_head_class(vocab_path):
     return head_class
 
 
-def compare_slots(slots, kind_sel, role_filter, head_class, weighting, min_n, cos_thr, examples_for):
+def compare_slots(slots, kind_sel, role_filter, head_class, weighting, min_n, cos_thr, examples_for,
+                  gate="cosine", jsd_max=0.3, min_shared=2):
     """Slot-merge comparisons within one center kind:
     (same_role, same_center, cross_both, n_raw) — cross_both = different class AND
     different role (the paper's general slot merge; converses: buy.Agent ~ sell.Recipient).
+
+    ``gate``: "cosine" = cosine(weighted vectors) >= cos_thr; "jsd" = Jensen-Shannon divergence
+    of the two RAW filler distributions (wildcard units excluded) <= jsd_max. Both require
+    >= ``min_shared`` shared informative units (a guard against single-filler coincidences).
+    Every row carries both statistics.
 
     ``slots``: {(kind, class, head): Counter(unit -> mass)}; a unit is a filler label
     (exact mode) or a cluster id (embed mode); wildcard units weigh 0. Weighting
@@ -215,18 +237,26 @@ def compare_slots(slots, kind_sel, role_filter, head_class, weighting, min_n, co
                 n_raw[bi] += 1
             shared = set(vecs[ka]) & set(vecs[kb])   # informative on both sides
             cos = cosine(vecs[ka], vecs[kb])
-            if cos >= cos_thr and len(shared) >= 2:
+            dist_a = {u: c for u, c in big[ka].items() if not is_wild(u)}
+            dist_b = {u: c for u, c in big[kb].items() if not is_wild(u)}
+            j = jsd(dist_a, dist_b)
+            passed = (len(shared) >= min_shared) and (
+                cos >= cos_thr if gate == "cosine" else (j is not None and j <= jsd_max))
+            if passed:
                 bucket.append({
                     "slot_a": f"{ka[1]}.{ka[2]}", "slot_b": f"{kb[1]}.{kb[2]}",
                     "class_a": ka[1], "class_b": kb[1], "role_a": ka[2], "role_b": kb[2],
-                    "cosine": round(cos, 3), "cosine_raw": round(cos_raw, 3),
+                    "cosine": round(cos, 3), "cosine_raw": round(cos_raw, 3), "jsd": j,
                     "shared_fillers": sorted(shared)[:8],
                     "n_a": mass(sum(big[ka].values())), "n_b": mass(sum(big[kb].values())),
                     "examples_a": examples_for(ka, shared),
                     "examples_b": examples_for(kb, shared, avoid=examples_for(ka, shared)),
                 })
     for bucket in (same_role, same_center, cross_both):
-        bucket.sort(key=lambda r: (-r["cosine"], r["slot_a"], r["slot_b"]))
+        if gate == "jsd":
+            bucket.sort(key=lambda r: (r["jsd"], r["slot_a"], r["slot_b"]))
+        else:
+            bucket.sort(key=lambda r: (-r["cosine"], r["slot_a"], r["slot_b"]))
     return same_role, same_center, cross_both, n_raw
 
 
@@ -331,6 +361,9 @@ def main():
     ap.add_argument("--cos", type=float, default=0.5)
     ap.add_argument("--weighting", choices=("raw", "ppmi"), default="ppmi",
                     help="filler weighting for the slot comparisons (raw = batch-1 verbatim)")
+    ap.add_argument("--gate", choices=("cosine", "jsd"), default="cosine",
+                    help="indistinguishability gate: cosine >= --cos, or JSD <= --jsd-max (raw distributions)")
+    ap.add_argument("--jsd-max", type=float, default=0.3)
     ap.add_argument("--out-dir", default=os.path.join(HERE, "out_h"))
     ap.add_argument("--doctrine", default=os.path.join(HERE, "prompt_determined_roles.json"))
     ap.add_argument("--vocab", default=os.path.join(HERE, os.pardir, "specs", "vocabulary.json"))
@@ -417,9 +450,11 @@ def main():
 
     # ---- slot-merge comparisons (per center kind): module-level compare_slots ----
     ev_same_role, ev_same_event, ev_cross_both, ev_raw = compare_slots(
-        slots, "event", True, head_class, args.weighting, args.min_n, args.cos, examples_for)
+        slots, "event", True, head_class, args.weighting, args.min_n, args.cos, examples_for,
+        gate=args.gate, jsd_max=args.jsd_max)
     en_same_role, en_same_center, en_cross_both, en_raw = compare_slots(
-        slots, "entity", False, head_class, args.weighting, args.min_n, args.cos, examples_for)
+        slots, "entity", False, head_class, args.weighting, args.min_n, args.cos, examples_for,
+        gate=args.gate, jsd_max=args.jsd_max)
 
     # D.3 split on the cross-role bucket: a determined Theme/Patient class quarantines
     # Theme/Patient wobble; a determined Experiencer/Stimulus class quarantines any
@@ -453,12 +488,15 @@ def main():
                     "candidate": {"slot_a": r["slot_a"], "slot_b": r["slot_b"],
                                   "subtype": sub, "center_kind": kind},
                     # cosine of filler-count vectors — a similarity, not a probability.
-                    "confidence": r["cosine"], "cosine_raw": r["cosine_raw"],
-                    "weighting": args.weighting, "kind": "slot-merge",
+                    "confidence": r["cosine"], "cosine_raw": r["cosine_raw"], "jsd": r["jsd"],
+                    "weighting": args.weighting, "gate": args.gate, "kind": "slot-merge",
                     "support": min(r["n_a"], r["n_b"]),
                     "shared_fillers": r["shared_fillers"],
                     "examples_a": r["examples_a"], "examples_b": r["examples_b"],
                     "method": "role-fillers2-4.3.2",
+                    "variant": "augmented",
+                    "additions": ["exact-label counts", f"{args.weighting} weighting", "oblique heads",
+                                  "multi-label mass", "cross-both bucket"],
                 }, ensure_ascii=False, sort_keys=True) + "\n")
     n_sig = (len(ev_same_role) + len(ev_same_event) + len(ev_cross_both)
              + len(en_same_role) + len(en_same_center) + len(en_cross_both))

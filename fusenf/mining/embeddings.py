@@ -155,7 +155,11 @@ def main():
         for e in inv[mode].values():
             src.update(e["sources"])
         print(f"{mode:8} {len(inv[mode])} distinct texts  (occurrence sources: {dict(src)})")
-    print(f"-> {inv_path}")
+        # plain-text list of exactly the texts this mode sends (one per line, sorted)
+        with open(os.path.join(args.out_dir, f"embed_{mode}s.txt"), "w", encoding="utf-8") as fh:
+            for text in sorted(inv[mode]):
+                fh.write(text + "\n")
+    print(f"-> {inv_path}  (+ embed_words.txt / embed_subtrees.txt)")
     if not args.run:
         return
 
