@@ -1,0 +1,9 @@
+{"id": "lore-000370", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Compound concepts fixes the incorporated object's slot as `(Patient <compound> <object>)` — the same slot `carry_license` and `show_badge` take regardless of the thematic change-test — while `Goal` is defined as the oblique for a \"to\"-phrase, so the parse both departs from the mandated encoding and breaks the specified query shape `(And (Inheritance $k (can $a)) (Patient $a $w))`."}],
+ "gaps_confirmed": ["A kind-level capability or deontic norm whose action takes a specific NAMED individual as its object (\"a wraith cannot enter Cauldron Hall\"): the reified `(can <action>)` form has no participant slot, and the only way to carry the name is to fuse it into the action symbol, which \"names sit outside Compound concepts\" bars."],
+ "new_gaps": ["When a compound action is nonetheless fused over a proper noun, nothing states whether its mandated decomposition atoms may be emitted at all: Compound concepts requires the genus and object atoms for every minted compound, while the same section says nothing in it applies to a proper noun — the two rules conflict here and no precedence is given."],
+ "decision": "defect",
+ "defect_summary": "The incorporated object takes `(Patient enter_cauldron_hall cauldron_hall)` in place of `(Goal …)` — but that fixes the role head only: for the sentence's actual content, a kind-level inability whose object is a named individual, NO fully compliant form is licensed, since the name may not sit inside the fused action symbol and the reified property has no participant slot to hold it otherwise; that is the confirmed gap.",
+ "notes": "The routing is right — a capability modal over a kind subject keys on the modal, giving the kind-level property at strength 0.0 with empirical confidence 0.9 — as is `Name` plus a kind atom for the multi-word place name."}

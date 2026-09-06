@@ -1,0 +1,461 @@
+{
+ "id": "L9-05",
+ "rule": "IX — Yields",
+ "texts": [
+  "A typical day yields several vessels of mire-essence.",
+  "A heavy-thread day yields four vessels.",
+  "A thin day yields one vessel.",
+  "In deep winter the thread harvest is thin.",
+  "After a wraith drains the lanterns, the thread harvest is thin.",
+  "When the thread basket is empty, the cauldrons sit idle.",
+  "Distillation is heavy from early autumn to Lantern-night.",
+  "Distillation thins through deep winter.",
+  "Distillation recovers from the spring equinox to the summer solstice.",
+  "Distillation runs steadily through summer."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000553",
+   "sentence": "A typical day yields several vessels of mire-essence.",
+   "parse": [
+    "(: e3_day (Member sk_day_1 day) (STV 1.0 0.99))",
+    "(: e3_day_typical (Member sk_day_1 typical) (STV 1.0 0.99))",
+    "(: e3_yield (Member sk_yield_1 yield) (STV 1.0 0.99))",
+    "(: e3_agent (Agent sk_yield_1 sk_day_1) (STV 1.0 0.99))",
+    "(: e3_patient (Patient sk_yield_1 sk_vessel_1) (STV 1.0 0.99))",
+    "(: e3_vessel_grp (GroupOf sk_vessel_1 vessel) (STV 1.0 0.99))",
+    "(: e3_vessel_card (CardinalityPhrase sk_vessel_1 \"several\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000553",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The restrictive of-phrase \"of mire-essence\" is dropped entirely — no atom mentions mire_essence — so the parse asserts an unrestricted \"several vessels\", whereas the instruction set requires a stated restriction be carried or the whole claim left out rather than silently widened."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a container / measure of-phrase (\"several vessels of mire-essence\", the \"a cup of water\" case): it is explicitly excluded from the possessive-of mapping and is not a partitive (no \"of the\", no definite superset), and no replacement encoding is named anywhere in the instruction set"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The witness route for the indefinite \"a typical day\", the un-fused descriptive \"typical\", the Agent on an inanimate transitive subject, and GroupOf + CardinalityPhrase for the vague count \"several\" are all correct; Patient for the yielded vessels is defensible under the creates/destroys test."
+   },
+   "adjudication": {
+    "id": "lore-000553",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"Of mire-essence\" is a stated restriction on the vessels and it leaves no trace whatever in the parse, which Core patterns forbids (\"a stated restriction, hedge or qualifier is never silently dropped - carry it, or leave the whole claim out and record the gap\"); the substance the clause is actually about becomes unqueryable, and \"a typical day yields several vessels\" is the unqualified assertion the rule bars."
+     }
+    ],
+    "gaps_confirmed": [
+     "a container / measure of-phrase (\"several vessels of mire-essence\", the \"a cup of water\" case): explicitly excluded from the possessive-of mapping, not a partitive (no \"of the\", no definite superset), and no replacement encoding is named"
+    ],
+    "new_gaps": [
+     "a VAGUE count of container-units of a mass fits neither channel: CardinalityPhrase counts the containers and loses the substance, while the Measure family needs a numeric magnitude before a container unit could serve; a licensed form would have to carry \"a several-vessel quantity OF mire-essence\" as one measured thing"
+    ],
+    "decision": "defect",
+    "defect_summary": "The nearest licensed carry is the entity-attached surface-preposition oblique on the vessels' own symbol - (Of sk_vessel_1 mire_essence) - the shape the instruction set licenses for a nominalization's of-argument and for entity-attached From / On; the instruction set names it only for those cases, so the container reading itself is filed as a gap.",
+    "notes": "The witness route for the indefinite \"a typical day\" under a verbal predicate, the un-fused descriptive \"typical\" attached by Member, Agent on the inanimate transitive subject, GroupOf + CardinalityPhrase for the vague \"several\", and the absent status atom on the generic present are all correct."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000554",
+   "sentence": "A heavy-thread day yields four vessels.",
+   "parse": [
+    "(: day_type (Member sk_day_1 heavy_thread_day) (STV 1.0 0.99))",
+    "(: day_genus (Inheritance heavy_thread_day day) (STV 1.0 0.99))",
+    "(: yield_ev (Member sk_yield_1 yield) (STV 1.0 0.99))",
+    "(: yield_ag (Agent sk_yield_1 sk_day_1) (STV 1.0 0.99))",
+    "(: vessel_group (GroupOf sk_group_1 vessel) (STV 1.0 0.99))",
+    "(: vessel_card (Cardinality sk_group_1 4) (STV 1.0 0.99))",
+    "(: yield_pat (Patient sk_yield_1 sk_group_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000554",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The inanimate transitive subject correctly stays Agent, the created plural object takes a group with an exact Cardinality and Patient, and the unmarked present tense correctly yields no status atom. heavy_thread_day emits its head genus with the compound modifier left unexposed, as the predication test requires."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000555",
+   "sentence": "A thin day yields one vessel.",
+   "parse": [
+    "(: e_day (Member sk_thin_day_1 thin_day) (STV 1.0 0.99))",
+    "(: day_genus (Inheritance thin_day day) (STV 1.0 0.99))",
+    "(: day_mod (Inheritance thin_day thin) (STV 1.0 0.99))",
+    "(: e_yield (Member sk_yield_1 yield) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_yield_1 sk_thin_day_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_yield_1 sk_vessel_1) (STV 1.0 0.99))",
+    "(: e_vessel (Member sk_vessel_1 vessel) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000555",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The stated numeral \"one\" in \"one vessel\" is silently dropped, so the parse is indistinguishable from \"yields a vessel\" and widens the claim from exactly-one to at-least-one, which Core patterns bars (carry the qualifier or record the gap)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a cardinal numeral on a SINGULAR count NP (\"one vessel\") — Cardinality is defined only as a count atom riding a group witness for a plural referred to as a unit, so a singleton has no licensed carrier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is right: indefinite \"a thin day\" with a verbal predicate correctly mints a witness rather than a generic rule, the inanimate transitive subject correctly keeps Agent, and no tense atom is the correct habitual default. Fusing \"thin day\" (rather than the two-atom incidental-description split) is a term-of-art judgment call, and it is self-consistent — genus \"day\" plus the gradable modifier genus \"thin\" are both emitted as the fusion route requires."
+   },
+   "adjudication": {
+    "id": "lore-000555",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Core patterns bars silently dropping a stated qualifier — 'carry it, or leave the whole claim out and record the gap' — and dropping the numeral leaves the parse indistinguishable from 'yields a vessel', widening exactly-one to at-least-one."
+     }
+    ],
+    "gaps_confirmed": [
+     "a cardinal numeral on a SINGULAR count NP ('one vessel'): Cardinality is specified only as a count atom riding a group witness for a plural referred to as a unit, so a singleton has no licensed carrier"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "No carrier is licensed for a numeral on a singular count NP, so the compliant options were the nearest licensed shape — a one-member group in the Patient slot, (GroupOf sk_group_1 vessel) (Cardinality sk_group_1 1) — or, per Core patterns, leaving the quantified claim out and recording the gap; emitting the bare unquantified (Patient sk_yield_1 sk_vessel_1) is precisely what that rule forbids.",
+    "notes": "The rest is right: an indefinite subject under a verbal predicate correctly mints a witness rather than a generic rule, Agent for the inanimate transitive subject, no status atom for the habitual, and the thin_day fusion emits both the head genus and the gradable modifier genus as the compound rule requires."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000556",
+   "sentence": "In deep winter the thread harvest is thin.",
+   "parse": [
+    "(: th_type (Member sk_thread_harvest_1 thread_harvest) (STV 1.0 0.99))",
+    "(: th_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: e_thin (Member sk_thin_1 thin) (STV 1.0 0.99))",
+    "(: e_exp (Experiencer sk_thin_1 sk_thread_harvest_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_thin_1 deep_winter) (STV 1.0 0.99))",
+    "(: flat_thin (Member sk_thread_harvest_1 thin) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000556",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "non-deictic season / season-phase time expression ('in deep winter'): the structured Time terms cover Year/Month/Day/Weekday/Hour/Minute plus day-part constants, and the season convention is given only for deictic last_/next_ forms, so a bare 'deep_winter' Time constant (and whether it decomposes) is unaddressed",
+     "a habitual property restricted by a time PP over a DEFINITE (non-kind) subject: the copular-with-time-modifier rule mandates the flat unrestricted copular atom, while ConditionalProperty takes a kind in its first slot, so the 'in deep winter' restriction rides only the reified state and the flat half asserts the property unconditionally"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The reified state plus Experiencer plus Time plus the flat copular atom is exactly the dual-emit the instruction set mandates for a copular clause with a time modifier, and present tense correctly takes no wrapper. 'thread harvest' correctly fuses with genus 'harvest' and no exposed noun modifier."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000557",
+   "sentence": "After a wraith drains the lanterns, the thread harvest is thin.",
+   "parse": [
+    "(: lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: harvest_mem (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))",
+    "(: harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: wraith_drain_rule (Implication (Member $w wraith) (And (Member (sk_drain $w) drain) (Agent (sk_drain $w) $w) (Patient (sk_drain $w) sk_lantern_1) (Member (sk_thin $w) thin) (Experiencer (sk_thin $w) sk_harvest_1) (Member sk_harvest_1 thin) (Before (sk_drain $w) (sk_thin $w)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000557",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The 'after'-clause (the trigger) is emitted as a Skolem event in the rule's CONCLUSION with only `(Member $w wraith)` as the premise, so the rule asserts that every wraith drains the lanterns rather than conditioning the thin harvest on a draining occurring; the drain clause's atoms belong in the premise with plain variables, per the whenever/'when P, Q' machinery."
+     },
+     {
+      "statement": 3,
+      "issue": "As a consequence the sentence's antecedent is asserted as a 0.9 generic fact about wraiths, content the text only supposes."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Referent handling is right — definite plural 'the lanterns' as a group witness, `thread_harvest` with genus `harvest`, reified thin-state plus the flat copular atom, and `Before` (not a connective atom) for the temporal 'after'."
+   },
+   "adjudication": {
+    "id": "lore-000557",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "*Time* routes a bare when/after P with indefinite or generic participants through the whenever machinery — the trigger clause is the PREMISE, matched with plain variables, and only the response is minted as a per-occurrence Skolem event — so putting the drain bundle in the conclusion over the lone premise (Member $w wraith) inverts the construction."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The inversion makes the rule derive, for every wraith, a draining of the lanterns at strength 0.9 — the antecedent asserted as a generic fact about wraiths, which the sentence only supposes."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "the whenever template fixes the trigger-response link as (During <response> <trigger>); a temporally ordered generic conditional (after P, Q) needs (Before <trigger> <response>) in the conclusion instead, and no rule states that substitution"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the whenever rule with the trigger in the premise using plain variables — (Implication (And (Member $e drain) (Agent $e $w) (Member $w wraith) (Patient $e sk_lantern_1)) (And (Member (sk_thin $e) thin) (Experiencer (sk_thin $e) sk_harvest_1) (Member sk_harvest_1 thin) (Before $e (sk_thin $e)))) — so the draining is matched, never minted, and the same single confirmed inversion answers both issues.",
+    "notes": "Referent handling is right: the definite plural lanterns as a group witness, thread_harvest with genus harvest and the noun modifier unexposed, the reified thin state with its flat copular twin, and Before rather than a connective atom for the temporal after."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000558",
+   "sentence": "When the thread basket is empty, the cauldrons sit idle.",
+   "parse": [
+    "(: e3_basket_type (Member sk_basket_1 thread_basket) (STV 1.0 0.99))",
+    "(: e3_basket_genus (Inheritance thread_basket basket) (STV 1.0 0.99))",
+    "(: e3_cauldrons_grp (GroupOf sk_cauldrons_1 cauldron) (STV 1.0 0.99))",
+    "(: e3_basket_idle_rule (Implication (And (Member sk_basket_1 empty) (PartOf $x sk_cauldrons_1)) (Member $x idle)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000558",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare \"when P, Q\" with DEFINITE/specific participants in a HABITUAL (non-narrative) reading — the routing rule covers only generic/indefinite participants (whenever-rule) or definite participants in a one-off narrative (two plain ordered events); neither branch fits, and the whenever machinery's prescribed shape (event premise, per-occurrence Skolem consequent tied by During) has no stated analogue when both trigger and consequent are STATES",
+     "semi-copular / postural verb with an adjectival (non-locative) complement — \"sit idle\"; the postural rules cover only position clauses, so the verb itself has no licensed carrier and is dropped"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound decomposition is right (noun modifier \"thread\" not exposed, head genus emitted), and the definite plural correctly distributes the predicate over PartOf members rather than riding the group symbol. Because the consequent is a flat timeless property rather than an occurrence-indexed state, the rule makes each cauldron idle once the basket is ever empty — a consequence of the uncovered construction above, not of a rule the parse broke."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000559",
+   "sentence": "Distillation is heavy from early autumn to Lantern-night.",
+   "parse": [
+    "(: heavy_state (Member sk_heavy_1 heavy) (STV 1.0 0.9))",
+    "(: heavy_exp (Experiencer sk_heavy_1 distillation) (STV 1.0 0.9))",
+    "(: heavy_start (Start sk_heavy_1 early_autumn) (STV 1.0 0.9))",
+    "(: heavy_end (End sk_heavy_1 lantern_night) (STV 1.0 0.9))",
+    "(: heavy_flat (Inheritance distillation heavy) (STV 1.0 0.9))",
+    "(: ln_name (Name lantern_night \"Lantern-night\") (STV 1.0 0.99))",
+    "(: ln_type (Member lantern_night night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000559",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "(Experiencer sk_heavy_1 distillation) puts a bare KIND in an event role slot — every reified-state example in the instruction set takes an individual or witness bearer, and the same parse simultaneously treats distillation as a kind in (Inheritance distillation heavy), so one symbol is used as both individual and class."
+     },
+     {
+      "statement": 4,
+      "issue": "The flat dual-emit half (Inheritance distillation heavy) asserts the unrestricted kind-level generic, silently dropping the stated 'from early autumn to Lantern-night' restriction, which Core patterns bars ('a stated restriction is never silently dropped — omitting it widens the claim') and which the ConditionalProperty rule bars explicitly for restricted kind-level claims."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a kind-level property restricted to a stated TIME INTERVAL ('X is P from A to B'): ConditionalProperty's condition slot is defined for a state/environment (and by the locative rule a place), not a from/to window; the Start/End interval machinery attaches to an eventuality, not to a kind; and the copular-with-time-modifier dual-emit rule that mandates the flat half was written for individual subjects, so applying it to a kind produces an unrestricted generic the text does not license — the two doctrines conflict here with no stated resolution"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "(Member lantern_night night) is licensed by the kind-word-inside-the-name rule (the 'Kestrel River' pattern), and the Name atom is correctly emitted for the capitalized hyphenated proper noun. Minor TV deviation: the empirical 0.9 confidence is spread onto the structural Experiencer/Start/End atoms, where the definitional-vs-empirical dial governs the generalization itself."
+   },
+   "adjudication": {
+    "id": "lore-000559",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "A bare kind is the licensed filler for a non-specific / generic argument — the instruction set's own `(Patient sk_cook_1 dinner)` does exactly this — and a role slot is not a class position, so the `Member`-vs-`Inheritance` individual/class discipline is untouched and nothing is ill-typed; what is genuinely unsettled is whether a kind-level state may be reified at all, which belongs in the gap column and is filed there."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "`(Inheritance distillation heavy) (STV 1.0 0.9)` predicates heaviness of the kind at large with the stated 'from early autumn to Lantern-night' window stripped, which Core patterns' no-silent-dropping bar and the restricted-kind-claim rule's explicit 'never strip the restriction and assert the bare `(Inheritance …)`' both forbid."
+     }
+    ],
+    "gaps_confirmed": [
+     "a kind-level property restricted to a stated TIME INTERVAL ('X is P from A to B'): `ConditionalProperty`'s condition slot is defined for a state/environment (and by the locative rule a place), not a from/to window; `Start`/`End` attach to an eventuality, not a kind; and the copular-with-time-modifier dual-emit rule that mandates the flat half was written for individual subjects, so the two doctrines conflict here with no stated resolution"
+    ],
+    "new_gaps": [
+     "whether a KIND-level state may be reified at all is undetermined: every reified-state trigger (predicate-adjective state, connective endpoint, copular-with-time-modifier, adjective's PP complement) is illustrated with an individual or witness bearer, so nothing licenses or forbids `(Experiencer <state-witness> <kind>)` — even though that reified half is the only half here able to carry the stated interval"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form drops the unrestricted flat half `(Inheritance distillation heavy)` and keeps only the interval-bounded reified state, which does carry the restriction, recording the gap — no restriction-preserving flat form is licensed, since `ConditionalProperty`'s condition slot has no interval shape.",
+    "notes": "The `Name` atom plus kind-word-inside-the-name typing for 'Lantern-night' and the `Start`/`End` interval on the state witness are correct. The empirical 0.9 confidence spread onto the structural `Experiencer`/`Start`/`End` atoms is a minor deviation the reviewer rightly left as a note rather than an issue."
+   }
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000560",
+   "sentence": "Distillation thins through deep winter.",
+   "parse": [
+    "(: thin_ev (Member sk_thin_1 thin) (STV 1.0 0.99))",
+    "(: thin_patient (Patient sk_thin_1 distillation) (STV 1.0 0.99))",
+    "(: thin_through (Through sk_thin_1 deep_winter) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000560",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "A non-modal verbal generic over a kind is specified to become a distributing Implication rule with a per-instance Skolem event, but the parse emits a flat unmarked event with the bare kind symbol 'distillation' sitting in the Patient slot — a filler position the instruction set reserves for non-specific objects, not for a generic subject."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a verbal generic whose subject is a mass / abstract process noun ('Distillation thins') — the generic-rule machinery ranges over (Member $x <kind>) instances, which a mass process term has no stated licence for, and no alternative flat form for a generic subject is defined",
+     "a temporal-extent PP over a named period ('through deep winter') — During is restricted to during/while/throughout with two reified eventualities, Time covers points, and Start/End need stated endpoints, so nothing addresses a span headed by another temporal preposition"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Through is admissible under the surface-preposition oblique licence, so it is not an invented head, though a temporal PP is exactly where the instruction set warns against choosing by nearest fit. Patient for the internal-change 'thins' subject and the absence of a tense atom on the generic present are both right."
+   },
+   "adjudication": {
+    "id": "lore-000560",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The clause is a non-modal verbal generic over a kind, which *Quantifiers, generics & scope* requires to become a distributing Implication rule with a per-instance Skolem event, and the bare class symbol is licensed as a role filler only for non-specific / generic OBJECTS — so the flat unmarked event with distillation sitting in Patient takes an unlicensed form and hands nothing to any instance of the process."
+     }
+    ],
+    "gaps_confirmed": [
+     "A verbal generic whose subject is a mass / abstract process noun ('Distillation thins'): the rule premise's range over (Member $x <kind>) instances is never stated for a substance or process term, and no flat alternative for a generic subject is defined.",
+     "A temporal-span PP headed by a preposition outside during / while / throughout ('through deep winter'): the emission itself is licensed as the surface-preposition oblique, but nothing ties it to the temporal machinery — During needs two reified eventualities, Time covers points, and Start/End need stated endpoints — so the span is recorded without any temporal semantics."
+    ],
+    "new_gaps": [
+     "A multi-word named temporal period ('deep winter') is undetermined between two treatments: a compound kind, which would owe the genus (Inheritance deep_winter winter) plus the gradable-modifier atom (Inheritance deep_winter deep), and a bare time constant like a day-part or season deictic, which takes no decomposition and no Member atom. The instruction set names neither, so two faithful parses can differ."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the distributing rule (Implication (Member $x distillation) (And (Member (sk_thin $x) thin) (Patient (sk_thin $x) $x) (Through (sk_thin $x) deep_winter))) at (STV 0.9 0.9) — the 'Foxes rarely cross the causeway' shape, with the temporal oblique carried inside the conclusion.",
+    "notes": "Patient for the internal-change-of-state subject of 'thins', the absence of a tense atom on the generic present, and Through as the surface preposition actually used (never a During synonym) are all correct."
+   }
+  },
+  {
+   "field": "t9",
+   "corpus_id": "lore-000561",
+   "sentence": "Distillation recovers from the spring equinox to the summer solstice.",
+   "parse": [
+    "(: recover_ev (Member sk_recover_1 recover) (STV 1.0 0.99))",
+    "(: recover_pat (Patient sk_recover_1 distillation) (STV 1.0 0.99))",
+    "(: recover_start (Start sk_recover_1 spring_equinox) (STV 1.0 0.99))",
+    "(: recover_end (End sk_recover_1 summer_solstice) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000561",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A bare mass / abstract activity noun as clause SUBJECT (\"Distillation recovers ...\"): subject handling is specified for individuals, bare plurals (generic rule vs episodic group witness), definite plurals and collective singulars, but not for a mass noun, so whether it becomes a bare constant filler, a witness, or the generic-rule route with a (Member $x kind) premise is unstated."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Given the bare-constant reading, the encoding is right: \"from X to Y\" takes Start/End, the named times stay bare symbols with no witness or Member atom, the intransitive change-of-state subject takes Patient, and the present tense correctly gets no status atom (no TODAY and no lexically future adjunct, so the futurate rule cannot fire)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t10",
+   "corpus_id": "lore-000562",
+   "sentence": "Distillation runs steadily through summer.",
+   "parse": [
+    "(: e4_run_class (Member sk_run_1 run) (STV 1.0 0.99))",
+    "(: e4_run_agent (Agent sk_run_1 distillation) (STV 1.0 0.99))",
+    "(: e4_run_manner (Manner sk_run_1 steadily) (STV 1.0 0.99))",
+    "(: e4_run_time (Time sk_run_1 summer) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000562",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "'through summer' is reduced to the bare time-point (Time sk_run_1 summer) — the identical atom 'in summer' would produce — silently dropping the spanning extent the preposition states, which 'Core patterns' bars (a stated qualifier is never dropped; record the gap instead)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a spanning temporal frame over a bare period constant ('through summer', 'over the winter'): Start/End require stated endpoints, During is restricted to the three words during/while/throughout with BOTH eventualities reified (a season constant is not a reified eventuality), and Time records only a point/slot — so the extent has no licensed carrier",
+     "a bare abstract mass / process noun as the subject of a habitual present clause ('Distillation runs …'): 'Quantifiers, generics & scope' mandates the Implication-rule form for a verbal generic over a kind and 'Coordination & plurals' settles bare plurals, but neither says whether such a nominalization is a kind to quantify over or an entity-like constant that may fill a role slot in a flat unmarked event"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "(Manner sk_run_1 steadily) correctly keeps the -ly surface form, and the absent status atom correctly reads as the habitual default; the Agent role for distillation rests on the stated 'when unclear, Agent' fallback rather than any positive test."
+   },
+   "adjudication": {
+    "id": "lore-000562",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "This mistakes a coverage gap for a parse defect: (Time sk_run_1 summer) is true of the content (an eventuality running through summer does occur in summer) and well-typed, and it asserts LESS than the text, not more — the Core-patterns bar targets qualifiers whose omission WIDENS the claim, while the prompt's own handling of a modifier with no licensed slot (sequence / scope / degree adverbs) is to leave the modifier out and record the gap, not to drop the temporal placement."
+     }
+    ],
+    "gaps_confirmed": [
+     "a spanning temporal frame over a bare period constant (\"through summer\", \"over the winter\"): Start/End need stated endpoints, During is restricted to during/while/throughout with both eventualities reified (a season constant is not one), and Time records only a point/slot — the extent has no licensed carrier",
+     "a bare abstract mass / process noun as the subject of a habitual present clause (\"Distillation runs …\"): neither the verbal-generic rule route nor the bare-plural / group machinery says whether such a nominalization is a kind to quantify over or an entity-like constant that may fill a role slot in a flat unmarked event"
+    ],
+    "new_gaps": [
+     "thematic role for an abstract-process intransitive subject (\"distillation runs\", \"fermentation proceeds\"): it is neither a change-of-state undergoer, an un-powered relocated thing, a self-powered mover, a natural force, nor a stative holder, so every stated test misses and only the \"when unclear, Agent\" fallback applies — which records a volition the noun cannot have; a licensed form would need a role for a process that is its own eventuality"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The -ly Manner adverb keeps its surface form and the absent status atom is the correct habitual default. The parse loses the spanning extent, but that loss is the confirmed gap rather than a defect — no emitted atom is false, ill-typed, or over-asserting."
+   }
+  }
+ ]
+}

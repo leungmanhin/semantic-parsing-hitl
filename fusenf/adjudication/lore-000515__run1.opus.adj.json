@@ -1,0 +1,9 @@
+{"id": "lore-000515", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Coordination & plurals states that a distributive predicate 'also hands the predication to the group's members via a rule' and reserves group-only encoding for reciprocal/aggregate predicates (meet, gather, assemble, collide) or an explicit 'together / jointly / between them' — 'reinforce' is none of these, and each band separately reinforces the lantern (the 'Bob and Alice ate the cake' shared-object distributive pattern), so the mandated per-member rule is missing."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["The distributive/collective test has no ruling for a structural/configurational transitive over a plural subject and one object ('iron bands reinforce X', 'cables support Y', 'struts brace Z'), where the effect is jointly produced but the verb is neither reciprocal nor plurality-requiring; the collective list is closed to reciprocal/aggregate verbs and the 'together/jointly' cue, so the aggregate reading has no cue to key on."],
+ "decision": "defect",
+ "defect_summary": "The compliant form keeps the group event and adds the per-member distribution rule beside it: (: bands_reinforce (Implication (PartOf $x sk_band_1) (And (Member (sk_reinforce $x) reinforce) (Agent (sk_reinforce $x) $x) (Patient (sk_reinforce $x) stilllight_lantern))) (STV 1.0 0.9)).",
+ "notes": "No atom emitted is false — the defect is an omission that leaves a later-named band unqueryable, which is exactly the purpose the group-distribution rule is stated to serve. Everything else conforms: iron_band fused with genus band and no noun-modifier genus, stilllight_lantern as one opaque name symbol with its own lantern type atom, transitive inanimate subject as Agent, treatment verb object as Patient, and no status atom on the unmarked present."}

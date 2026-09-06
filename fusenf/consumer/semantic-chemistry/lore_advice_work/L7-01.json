@@ -1,0 +1,314 @@
+{
+ "id": "L7-01",
+ "rule": "VII — Tides",
+ "texts": [
+  "The tide rises twice a day.",
+  "Spring tides are the large tides of the lunar cycle.",
+  "Spring tides occur at new moon or at full moon.",
+  "Whenever a spring tide fills the Salt-bloom Tide-pools, salt-bloom blooms in the pools.",
+  "Neap tides are the small tides.",
+  "Neap tides occur at the quarter moons.",
+  "A neap tide leaves the tide-pools dry.",
+  "Salt-bloom needs a spring-tide fill."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000427",
+   "sentence": "The tide rises twice a day.",
+   "parse": [
+    "(: tide_type (Member sk_tide_1 tide) (STV 1.0 0.99))",
+    "(: rise_ev (Member sk_rise_1 rise) (STV 1.0 0.99))",
+    "(: rise_pat (Patient sk_rise_1 sk_tide_1) (STV 1.0 0.99))",
+    "(: rise_freq (TimesPer sk_rise_1 2 day) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000427",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite singular subject correctly stays a witness rather than a kind, the habitual carries no status atom, and the rate rides (TimesPer e 2 day) exactly as the frequency section prescribes. Patient on the intransitive subject follows the instruction set's own natural-process list, which names \"the tide receded\" verbatim, rather than the scalar-change Theme route also available for rise/fall."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000428",
+   "sentence": "Spring tides are the large tides of the lunar cycle.",
+   "parse": [
+    "(: st_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: st_large (Inheritance spring_tide large) (STV 1.0 0.99))",
+    "(: lc_type (Member sk_lunar_cycle_1 lunar_cycle) (STV 1.0 0.99))",
+    "(: lc_genus (Inheritance lunar_cycle cycle) (STV 1.0 0.99))",
+    "(: st_partof (PartOf spring_tide sk_lunar_cycle_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000428",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "(PartOf spring_tide sk_lunar_cycle_1) puts a kind symbol in PartOf's first slot and an individual witness in its second, mixing the class and individual levels the Member/Inheritance discipline is meant to keep apart."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "equative / specifying copular whose predicate is a DEFINITE plural NP ('spring tides are THE large tides of the lunar cycle') — the definite predicate's identity and exhaustiveness have no carrier, and the definite-plural rule is written for subjects, so the parse can only shred it into separate property attributions",
+     "a definite of-phrase restricting a KIND-level subject: the licensed genitive encodings (PartOf / Possession) are defined over individuals, and the instruction set states no form for attaching such a restrictor to a kind symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is correct (spring_tide and lunar_cycle emit the head genus only; the noun modifier 'spring' and the relational adjective 'lunar' are rightly not exposed), and the definitional 1.0/0.99 truth values are defensible for a definition."
+   },
+   "adjudication": {
+    "id": "lore-000428",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "PartOf is defined only over individuals (a component of an object, a member of a group), so putting the kind symbol spring_tide -- used as a class on the left of (Inheritance spring_tide tide) -- into its first slot beside the individual witness sk_lunar_cycle_1 both mixes the class and individual levels the Member/Inheritance discipline exists to keep apart and asserts that a kind is a part of one particular cycle."
+     }
+    ],
+    "gaps_confirmed": [
+     "equative / specifying copular whose predicate is a definite plural NP: the identity and exhaustiveness of 'are THE large tides' have no carrier, so the predicate can only be shredded into separate property atoms",
+     "a definite of-phrase restricting a KIND-level subject: the licensed genitive encodings (PartOf / Possession) are stated only over individuals, with no kind-level counterpart"
+    ],
+    "new_gaps": [
+     "there is no kind-level part-whole or containment head at all -- PartOf, LocatedIn and During are individual-level, and the kind-relation route of Striking & relational generics fires only when BOTH arguments are bare kind NPs -- so a relation between a kind and a definite individual ('the lunar cycle') has no licensed carrier in either direction"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant parse keeps the genus, the large property and the lunar-cycle typing atoms and omits the of-restrictor with the gap recorded: no licensed form relates a kind to a definite individual, since PartOf/Possession are individual-level and the bare-kinds relational-generic route is blocked by the definite 'the lunar cycle'.",
+    "notes": "Everything else is doctrinal: spring_tide and lunar_cycle fuse as terms of art with the head genus always emitted, and the noun modifier 'spring' and the relational adjective 'lunar' are correctly left unexposed. Dropping the definite 'the' narrows rather than widens the claim, so it is a recorded loss, not an over-assertion."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000429",
+   "sentence": "Spring tides occur at new moon or at full moon.",
+   "parse": [
+    "(: e429_tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: e429_rule (Implication (Member $x spring_tide) (Or (Time $x new_moon) (Time $x full_moon))) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000429",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "`(Or ...)` in a rule's CONCLUSION: *Disjunction* specifies only a disjunctive rule CONDITION (split into one rule per disjunct) and says nothing about a disjunctive consequent",
+     "whether *Compound concepts* decomposition applies to a lexicalized compound used as a bare `Time` constant (\"new moon\", \"full moon\"): the deictic/day-part rule bars `Member` atoms and `sk_` witnesses for time constants but does not say whether the compound genus (`(Inheritance new_moon moon)`) is still owed, so `spring_tide` gets a genus here while `new_moon`/`full_moon` do not"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The light-verb rule is applied correctly (\"occur\" reifies no separate event; the `Time` atoms sit on the tide itself), and the `Or` is correctly narrow-scoped and inclusive since no \"either\"/\"but not both\" cue fires. The rule's `(STV 1.0 0.99)` treats the claim as definitional; with no quantifier word present the dial's \"when unsure -> empirical\" default would give `0.9 0.9`, so the TV is worth an owner check."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000430",
+   "sentence": "Whenever a spring tide fills the Salt-bloom Tide-pools, salt-bloom blooms in the pools.",
+   "parse": [
+    "(: st1_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+    "(: st1_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+    "(: st1_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: st1_stgenus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: st1_sbgenus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: st1_rule (Implication (And (Member $e fill) (Agent $e $t) (Member $t spring_tide) (Patient $e salt_bloom_tide_pools)) (And (Member (sk_bloom $e) bloom) (Patient (sk_bloom $e) salt_bloom) (Location (sk_bloom $e) salt_bloom_tide_pools) (During (sk_bloom $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000430",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A capitalized PLURAL multi-word name whose head word is itself the kind word (\"the Salt-bloom Tide-pools\"): the multi-word-name rule licenses a type atom from the kind word sitting inside the name (Kestrel River -> (Member kestrel_river river)), while the capitalized-plural-label carve-out says a plural kind-word label referring as a name is a Name-only individual with no per-member kind from the label word; nothing settles which governs here, nor whether a named plural set gets any group treatment."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-machinery, plain-variable premise, Skolem consequent, During link, TV and the no-companion rule are all applied correctly. Lemmatization collapses the noun \"bloom\" and the verb \"bloom\" onto one symbol, so (Inheritance salt_bloom bloom) and the event class (Member (sk_bloom $e) bloom) put the substance and the blooming event in the same class."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000431",
+   "sentence": "Neap tides are the small tides.",
+   "parse": [
+    "(: neap_genus (Inheritance neap_tide tide) (STV 1.0 0.99))",
+    "(: neap_mod (Inheritance neap_tide neap) (STV 1.0 0.99))",
+    "(: neap_small (Inheritance neap_tide small) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000431",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "definite (specificational / identificational) predicate nominal — 'Neap tides are THE small tides' asserts an identity between two classes, i.e. the small tides are exactly the neap tides; the instruction set only offers the one-directional Inheritance property predication, so the definite article's exhaustiveness is silently lost"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The non-fusing split of the size modifier ('small tide' = incidental description) and the definitional 0.99 confidence are both correct. The modifier genus (Inheritance neap_tide neap) is borderline: 'neap' passes the predication test but is not a gradable, positional/cardinal or material adjective, the three categories the exposure rule enumerates."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000432",
+   "sentence": "Neap tides occur at the quarter moons.",
+   "parse": [
+    "(: neaptide_genus (Inheritance neap_tide tide) (STV 1.0 0.99))",
+    "(: neaptide_neap (Inheritance neap_tide neap) (STV 1.0 0.99))",
+    "(: neaptide_qm_rule (Implication (Member $x neap_tide) (Time $x quarter_moon)) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000432",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The temporal filler `quarter_moon` is a compound symbol fused from the surface but carries no decomposition — Compound concepts makes the head genus `(Inheritance quarter_moon moon)` mandatory for any compound symbol minted this way (cf. the `room_temperature` condition symbol, which is decomposed)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a recurring natural-cycle time slot as a temporal adjunct (\"at the quarter moons\"): the Time-term inventory (Year/Month/Day/Weekday/Hour/Minute), the deictic constants and the day-part constants have no form for a lunar phase, and the frequency/habitual \"a named slot also implies its cycle\" table (monday->week, morning->day, month->year) has no entry for one either, so neither a structured term nor an `(Every e 1 <cycle>)` recurrence atom is derivable",
+     "a definite-plural NP used as the object of a temporal adjunct (\"at **the** quarter moons\"): the ordinary NP rules would mint a group witness with `GroupOf`, but a `Time` filler is a bare term, and the instruction set never reconciles the two for a definite-plural time expression"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing \"occur\" through the light-verb-over-event-noun rule (time atoms straight onto the tide, no separate `occur` event) and the bare-generic rule form at 0.9/0.9 with no QuantifierPhrase companion are both correct. `(Inheritance neap_tide neap)` is borderline: `neap` is dictionary-adjectival and marginally predicable (\"the tide is neap\"), but it falls outside the gradable / positional / material list the modifier-genus rule enumerates."
+   },
+   "adjudication": {
+    "id": "lore-000432",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Compound decomposition governs a symbol used as a 'predicate / class / property / action', while `quarter_moon` here fills a Time slot, where the instruction set's own compound-shaped time constants (`this_morning`, `last_week`, `next_summer`) carry no genus and are explicitly barred from entity typing — so this is the reviewer's own uncovered lunar-phase-time gap rather than a missing mandatory atom, and `(Inheritance quarter_moon moon)` would wrongly type a time as a kind of celestial body."
+     }
+    ],
+    "gaps_confirmed": [
+     "no Time-term or recurrence form for a natural-cycle slot ('at the quarter moons'): the term inventory (Year/Month/Day/Weekday/Hour/Minute), the deictic constants and the named-slot-implies-cycle table (monday->week, morning->day) have no entry for a lunar phase, so neither a structured term nor an `(Every e 1 <cycle>)` atom is derivable",
+     "a definite-plural NP as the object of a temporal adjunct ('at THE quarter moons') is unreconciled: the ordinary NP rules would mint a GroupOf witness, but a Time filler is a bare term"
+    ],
+    "new_gaps": [
+     "a classificatory modifier that is adjectival but neither gradable, positional/cardinal nor material (`neap` in `neap_tide`) falls outside the modifier-genus rule's enumerated cases while passing its stated predication test ('the tide is neap'), so the 'determined, not optional' exposure decision is undetermined for this class of modifier"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Routing 'occur' through the light-verb-over-event-noun rule (Time straight onto the tide instance, no separate occur event) and the 0.9/0.9 bare-generic rule with no QuantifierPhrase companion are both correct. `(Inheritance neap_tide neap)` is improvisation in the gap territory noted above but asserts nothing false or ill-typed."
+   }
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000433",
+   "sentence": "A neap tide leaves the tide-pools dry.",
+   "parse": [
+    "(: nt_type (Member sk_neap_tide_1 neap_tide) (STV 1.0 0.99))",
+    "(: nt_genus (Inheritance neap_tide tide) (STV 1.0 0.99))",
+    "(: nt_mod (Inheritance neap_tide neap) (STV 1.0 0.99))",
+    "(: tp_group (GroupOf sk_group_1 tide_pool) (STV 1.0 0.99))",
+    "(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: e_leave (Member sk_leave_1 leave) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_leave_1 sk_neap_tide_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_leave_1 sk_group_1) (STV 1.0 0.99))",
+    "(: dry_state (Member sk_dry_1 dry) (STV 1.0 0.99))",
+    "(: dry_exp (Experiencer sk_dry_1 sk_group_1) (STV 1.0 0.99))",
+    "(: dry_rule (Implication (PartOf $x sk_group_1) (Member $x dry)) (STV 1.0 0.9))",
+    "(: e_result (Result sk_leave_1 sk_dry_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000433",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The resultative over a definite plural follows the per-member-rule form exactly (reified state + Result + (Implication (PartOf $x g) (Member $x dry)) at 1.0 0.9, and no (Member <group> dry)), and both compounds split correctly (noun modifier 'tide' suppressed, adjectival 'neap' exposed). 'Leaves X dry' could alternatively be read as a maintenance verb (Theme + (Still ...) per Resultatives), but the change-of-state reading taken here is the natural one."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000434",
+   "sentence": "Salt-bloom needs a spring-tide fill.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: e_need (Member sk_need_1 need) (STV 1.0 0.9))",
+    "(: e_exp (Experiencer sk_need_1 salt_bloom) (STV 1.0 0.9))",
+    "(: e_stim (Stimulus sk_need_1 sk_fill_1) (STV 1.0 0.9))",
+    "(: fill_type (Member sk_fill_1 spring_tide_fill) (STV 1.0 0.99))",
+    "(: fill_genus (Inheritance spring_tide_fill fill) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000434",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The bare kind symbol salt_bloom fills the Experiencer slot of a single asserted event, so a generic claim about the kind is recorded as one occurrence instead of the verbal-generic rule form prescribed by *Quantifiers, generics & scope* for a generic over a kind."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare mass / non-count kind noun as the SUBJECT of a generic verbal clause: the distributing-rule route is stated for bare plurals and explicit quantifiers, the kind-relation route requires bare kinds on BOTH sides (barred here by the indefinite object), and the bare-class-symbol licence is written for non-specific OBJECTS only - nothing says which form a bare mass subject takes"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Reifying an event rather than a kind relation matches the prompt's own \"a winch needs an annual inspection\" ruling, so only the bare-kind subject slot is at issue; compounds, genus atoms, Experiencer/Stimulus for stative \"need\", and the 0.9 generic dial are all right. The object witness also asserts that a particular spring-tide fill exists, which \"needs\" does not claim - an intensional-object consequence of the encoding the instruction set prescribes."
+   },
+   "adjudication": {
+    "id": "lore-000434",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The instruction set twice names the surface signal of a verbal generic as \"a bare plural or an explicit quantifier\" (Existential; Negation does not re-decide the subject) and its ordinary-NP rule says a bare mass NP \"stays a constant\", so a bare mass subject's routing is undetermined rather than violated; and since the event carries no status atom it is by the prompt's own default \"generic / habitual / dispositional — not a specific occurrence\", so the reviewer's \"recorded as one occurrence\" reading does not hold and no atom is false, ill-typed or over-asserted."
+     }
+    ],
+    "gaps_confirmed": [
+     "a bare mass / non-count kind noun as the SUBJECT of a generic verbal clause has no stated route: the distributing-rule route's stated signals are bare plural / explicit quantifier, the kind-relation route needs bare kinds on BOTH sides (barred here by the indefinite object), and the bare-class-symbol licence is written for non-specific OBJECTS only"
+    ],
+    "new_gaps": [
+     "intensional object of need / want / require: the \"indefinite argument → witness + class\" rule makes (Member sk_fill_1 spring_tide_fill) assert that a spring-tide fill exists, which \"needs\" does not entail — no opacity or sealing device is licensed for the object of a want-type verb, so the prescribed encoding itself over-commits"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The compound decompositions (salt_bloom → bloom, spring_tide_fill → fill, noun modifiers unexposed), the Experiencer/Stimulus roles for stative \"need\" under the progressive test, and the 0.9 generalization confidence are all correct. The distribution loss is real but is an under-assertion, which the calibration line does not make a defect."
+   }
+  }
+ ]
+}

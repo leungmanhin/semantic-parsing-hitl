@@ -1,0 +1,229 @@
+{
+ "id": "L9-06",
+ "rule": "IX — Records and apprentices",
+ "texts": [
+  "Cauldron Hall keeps distillation records.",
+  "The records track thread weight, sea-water source, boil time, and vessel yield.",
+  "Hesper consults the records for seasonal planning.",
+  "One apprentice serves at Cauldron Hall each season.",
+  "Jeb served at Cauldron Hall in the autumn of Year 1.",
+  "Coraline Ash served at Cauldron Hall briefly in the winter of Year 1."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000563",
+   "sentence": "Cauldron Hall keeps distillation records.",
+   "parse": [
+    "(: cauldron_hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: cauldron_hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: e_keep (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_keep_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_keep_1 distillation_record) (STV 1.0 0.99))",
+    "(: dr_genus (Inheritance distillation_record record) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000563",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The multi-word name stays one opaque symbol with exactly one Name atom and no modifier genus (no cauldron), while the kind word inside the name licenses (Member cauldron_hall hall); keep takes Agent/Theme (not Holder — it is not own/have/lack), the habitual present correctly carries no status atom, and distillation_record is a licensed bare kind-level object with its noun-modifier genus suppressed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000564",
+   "sentence": "The records track thread weight, sea-water source, boil time, and vessel yield.",
+   "parse": [
+    "(: rec_group (GroupOf sk_group_1 record) (STV 1.0 0.99))",
+    "(: e_track (Member sk_track_1 track) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_track_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_th1 (Theme sk_track_1 thread_weight) (STV 1.0 0.99))",
+    "(: e_th2 (Theme sk_track_1 sea_water_source) (STV 1.0 0.99))",
+    "(: e_th3 (Theme sk_track_1 boil_time) (STV 1.0 0.99))",
+    "(: e_th4 (Theme sk_track_1 vessel_yield) (STV 1.0 0.99))",
+    "(: tw_genus (Inheritance thread_weight weight) (STV 1.0 0.99))",
+    "(: sws_genus (Inheritance sea_water_source source) (STV 1.0 0.99))",
+    "(: bt_genus (Inheritance boil_time time) (STV 1.0 0.99))",
+    "(: vy_genus (Inheritance vessel_yield yield) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000564",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The four coordinated objects are stacked as four Theme atoms on one track event, but coordinated noun phrases are distributive by default and the whole predication should be replicated once per conjunct; multiple same-role atoms on a single event are licensed only for the collective (multiple-Agent) reading, which 'track' does not trigger."
+     },
+     {
+      "statement": null,
+      "issue": "The definite plural 'the records' gets the group witness and group event but no per-member distribution rule over (PartOf $x sk_group_1), which a grouped plural with a distributive predicate requires ('track' is not one of the collective predicates, though the collective reading is arguable here)."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is right on all four objects (head genus emitted, noun modifiers unexposed), the bare kind fillers fit the non-specific habitual clause, and the inanimate transitive subject correctly stays Agent. Every worked coordination example in the instruction set coordinates subjects, so the expansion of a four-item object list rests on the general distributive rule alone."
+   },
+   "adjudication": {
+    "id": "lore-000564",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Coordination & plurals states, with no restriction to subject position, that coordinated noun phrases are distributive by default — \"replicate the whole predication once per conjunct (verbal -> one event each)\" — and the one-event-many-fillers form is licensed only for reciprocal/aggregate predicates or an explicit \"together / jointly\", neither of which track supplies."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands: a grouped plural with a distributive predicate \"also hands the predication to the group's members via a rule\", and only a collective predicate (gather / meet / assemble) stays group-only, so the (PartOf $x sk_group_1) rule is missing; the half that is overstated: every worked distributive example is eventive (bark, pass, arrive), and a stative transitive over a definite plural has no precedent settling that each record separately tracks all four fields."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "two distributions composing — a coordinated OBJECT list under an already-distributed grouped-plural subject — has no worked case: doctrine as written would demand four group events plus four per-member rules, and nothing states whether the object list still distributes once the subject rule has been minted"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is four track events, one per coordinated object, each with (Agent $e sk_group_1) and a single Theme (the four genus atoms emitted once), and — for the distributive reading — a per-member (Implication (PartOf $x sk_group_1) (And (Member (sk_track $x) track) (Agent (sk_track $x) $x) (Theme (sk_track $x) <item>))) rule alongside each.",
+    "notes": "Compound handling is right on all four objects (head genus emitted, noun modifiers unexposed), the bare kind fillers fit the non-specific habitual objects, the inanimate transitive subject correctly stays Agent, and no status atom on the habitual present is correct."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000565",
+   "sentence": "Hesper consults the records for seasonal planning.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: consult_ev (Member sk_consult_1 consult) (STV 1.0 0.99))",
+    "(: consult_agent (Agent sk_consult_1 hesper) (STV 1.0 0.99))",
+    "(: consult_theme (Theme sk_consult_1 sk_records_1) (STV 1.0 0.99))",
+    "(: records_group (GroupOf sk_records_1 record) (STV 1.0 0.99))",
+    "(: consult_purpose (For sk_consult_1 seasonal_planning) (STV 1.0 0.99))",
+    "(: planning_genus (Inheritance seasonal_planning planning) (STV 1.0 0.99))",
+    "(: planning_mod (Inheritance seasonal_planning seasonal) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000565",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural \"the records\" correctly takes a group witness rather than Inheritance, \"consults\" is an Agent/Theme event with no status atom (habitual present), and the non-benefit \"for\" goes to the preposition-named oblique (For ...) rather than Beneficiary, with the bare abstract complement staying a constant. The seasonal_planning fusion with genus plus modifier genus is licensed since \"seasonal\" is an adjective that survives the predication test and is kept in its derived form."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000566",
+   "sentence": "One apprentice serves at Cauldron Hall each season.",
+   "parse": [
+    "(: cs_ev (Member sk_serve_1 serve) (STV 1.0 0.99))",
+    "(: cs_ag (Agent sk_serve_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: cs_appr_typ (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: cs_loc (Location sk_serve_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: cs_hall_typ (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: cs_hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: cs_freq (Every sk_serve_1 1 season) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000566",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a habitual / frequency clause whose participant varies per occurrence ('one apprentice serves ... each season') — the flat Every habitual form fixes the subject to one witness, and the occurrence-rule ('every time / whenever') route is explicitly reserved for occurrence domains rather than calendar periods, so a different apprentice per season has no carrier",
+     "a singular numeral determiner ('one apprentice') — Cardinality is defined only over a group, so an explicit count on a singular NP has no slot"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Location on the event (not LocatedIn), the Name plus separate kind atom for 'Cauldron Hall', and the status-free habitual all follow the instruction set. As emitted the parse reads as one fixed apprentice serving each season."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000567",
+   "sentence": "Jeb served at Cauldron Hall in the autumn of Year 1.",
+   "parse": [
+    "(: jeb_name (Name jeb \"Jeb\") (STV 1.0 0.99))",
+    "(: e_serve (Member sk_serve_1 serve) (STV 1.0 0.99))",
+    "(: e_serve_agent (Agent sk_serve_1 jeb) (STV 1.0 0.99))",
+    "(: e_serve_loc (Location sk_serve_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: e_serve_past (Past sk_serve_1) (STV 1.0 0.99))",
+    "(: e_serve_season (Time sk_serve_1 autumn) (STV 1.0 0.99))",
+    "(: e_serve_year (Time sk_serve_1 (Year 1)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000567",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a NON-deictic season as a calendar granularity ('the autumn of Year 1'): the structured-term list has no Season constructor and the instruction set covers seasons only as speech-anchored deictic constants (last_spring / next_summer), so composing a bare `autumn` symbol with (Year 1) is an unguided extension of the day-part composition rule"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name, Agent on the intransitive volitional subject, event-side Location for 'at Cauldron Hall' (not LocatedIn), the kind-word-inside-the-name type atom with no modifier genus, Past, and the (Year 1) term all follow the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000568",
+   "sentence": "Coraline Ash served at Cauldron Hall briefly in the winter of Year 1.",
+   "parse": [
+    "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+    "(: hall_mem (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: serve_ev (Member sk_serve_1 serve) (STV 1.0 0.99))",
+    "(: serve_ag (Agent sk_serve_1 coraline_ash) (STV 1.0 0.99))",
+    "(: serve_loc (Location sk_serve_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: serve_dur (Duration sk_serve_1 briefly) (STV 1.0 0.99))",
+    "(: serve_season (Time sk_serve_1 winter) (STV 1.0 0.99))",
+    "(: serve_year (Time sk_serve_1 (Year 1)) (STV 1.0 0.99))",
+    "(: serve_tense (Past sk_serve_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000568",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A non-deictic season as a time value ('in the winter of Year 1'): the Time term constructors are Year/Month/Day/Weekday/Hour/Minute, bare symbols cover day-parts and DEICTIC seasons ('last_spring'), but nothing states how a plain season is encoded or how it composes with a stated year."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'briefly' correctly takes `(Duration <event> briefly)` rather than Manner, 'Cauldron Hall' follows the Kestrel-River pattern (one name symbol + separate `hall` type atom), and no kind atom is invented for Coraline Ash."
+   },
+   "adjudication": null
+  }
+ ]
+}

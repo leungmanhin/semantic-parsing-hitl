@@ -1,0 +1,69 @@
+{
+ "id": "L3-13",
+ "rule": "III — Secret records",
+ "texts": [
+  "The Council keeps some ledger records secret.",
+  "The Council has never opened the secret records."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000276",
+   "sentence": "The Council keeps some ledger records secret.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: ledger_record_genus (Inheritance ledger_record record) (STV 1.0 0.99))",
+    "(: records_group (GroupOf sk_records_1 ledger_record) (STV 1.0 0.99))",
+    "(: keep_ev (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: keep_agent (Agent sk_keep_1 sk_council_1) (STV 1.0 0.99))",
+    "(: keep_theme (Theme sk_keep_1 sk_records_1) (STV 1.0 0.99))",
+    "(: secret_state (Member sk_secret_1 secret) (STV 1.0 0.99))",
+    "(: secret_exp (Experiencer sk_secret_1 sk_records_1) (STV 1.0 0.99))",
+    "(: keep_result (Result sk_keep_1 sk_secret_1) (STV 1.0 0.99))",
+    "(: secret_still (Still sk_secret_1) (STV 1.0 0.99))",
+    "(: records_secret_rule (Implication (PartOf $x sk_records_1) (Member $x secret)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000276",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The maintenance-resultative shape (Theme object, reified state + Result + Still) and the plural-object substitution of the per-member Implication for the flat half, at STV 1.0 0.9, match the Resultatives section exactly, including the bar on (Member <group> secret). 'some' + plural takes an existential group with no QuantifierPhrase companion, which is correct since only a quantified range gets one."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000277",
+   "sentence": "The Council has never opened the secret records.",
+   "parse": [
+    "(: cnl_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: rec_grp (GroupOf sk_record_1 record) (STV 1.0 0.99))",
+    "(: rec_secret_rule (Implication (PartOf $x sk_record_1) (Member $x secret)) (STV 1.0 0.9))",
+    "(: open_neg (And (Member sk_open_1 open) (Agent sk_open_1 sk_council_1) (Patient sk_open_1 sk_record_1) (Past sk_open_1)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000277",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'never' on a SPECIFIC (non-generic) episodic clause: the QuantifierPhrase companion is defined only over a kind/verb range on a rule or kind-level claim, so a specific-subject denial with 'never' collapses onto exactly the atoms 'The Council did not open the secret records' would give, with no surface record of the quantifier word"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Council' correctly stays a capitalized-common-noun witness with no Name atom and, as a singular collective, takes no distribution rule; the definite plural object's group typing and its descriptive-modifier per-member rule correctly project outside the strength-0 bundle while Past stays inside."
+   },
+   "adjudication": null
+  }
+ ]
+}

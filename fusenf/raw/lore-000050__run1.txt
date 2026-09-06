@@ -1,0 +1,3 @@
+(: sh_genus (Inheritance stone_hearth hearth) (STV 1.0 0.99))
+(: cauldron_on_hearth (Implication (Member $x cauldron) (And (On $x (sk_hearth $x)) (Member (sk_hearth $x) stone_hearth))) (STV 1.0 0.9))
+(: cauldron_q (QuantifierPhrase cauldron sit "each") (STV 1.0 0.99))

@@ -1,0 +1,3 @@
+(: hesper_name (Name hesper "Hesper") (STV 1.0 0.99))
+(: hesper_skims (Implication (Member $x cauldron) (And (Member (sk_skim $x) skim) (Agent (sk_skim $x) hesper) (Patient (sk_skim $x) $x) (Time (sk_skim $x) sundown))) (STV 1.0 0.9))
+(: cauldron_q (QuantifierPhrase cauldron skim "each") (STV 1.0 0.99))

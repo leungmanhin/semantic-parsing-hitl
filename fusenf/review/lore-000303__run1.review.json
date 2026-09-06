@@ -1,0 +1,11 @@
+{"id": "lore-000303", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 9, "issue": "\"each morning\" modifies the object NP (\"each morning's collection\"), but the parse re-attaches it to the recording event as `(Time sk_record_1 morning)` plus `(Every sk_record_1 1 day)`, asserting when and how often the recording happens — which the sentence does not state."},
+              {"statement": 1, "issue": "The universal in \"each morning's collection\" is dropped: one constant witness `sk_collection_1` stands for every morning's collection, so the per-morning collection (a dependent existential) is unencoded and a single collection is asserted instead."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a universal quantifier inside a possessive/genitive argument NP (\"each morning's collection\"): the instruction set covers \"every morning\" as a frequency adjunct on the event and dependent existentials inside rules, but not a distributive genitive modifying an argument",
+             "a capitalized COMMON noun premodifying a common-noun head (\"a Watch ledger\"): the proper-noun-premodifier rule (head parsed normally + `Possession` + `Name`) and the capitalized-common-noun default (common noun, no `Name`) both reach for it and the instruction set does not say which wins"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The definite plural correctly gives a group witness with the distributive per-member rule emitted alongside the group event, and the recorded collection is rightly `Theme`. `(Location sk_record_1 sk_ledger_1)` for a document medium is borderline against the instruction set's own \"in a statement\" → preposition-named `In` example."}

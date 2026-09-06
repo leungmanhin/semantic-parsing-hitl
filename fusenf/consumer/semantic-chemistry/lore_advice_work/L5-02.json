@@ -1,0 +1,191 @@
+{
+ "id": "L5-02",
+ "rule": "V — What wraiths are",
+ "texts": [
+  "Wraiths are pale half-translucent figures.",
+  "Wraiths rise from the water of the Sunken Cove.",
+  "Wraiths rise from no other water.",
+  "The Keepers believe that wraiths are the unsettled dead of the storm-surge."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000352",
+   "sentence": "Wraiths are pale half-translucent figures.",
+   "parse": [
+    "(: wraith_figure (Inheritance wraith figure) (STV 0.9 0.9))",
+    "(: wraith_pale (Inheritance wraith pale) (STV 0.9 0.9))",
+    "(: wraith_halftrans (Inheritance wraith half_translucent) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000352",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural generic goes to Inheritance on the kind, the multi-atom predicate nominal is split into genus plus two descriptive properties (no fusion — both modifiers are incidental description), and the hyphenated adjective stays one symbol per the warm_blooded precedent. Empirical 0.9/0.9 throughout is defensible under 'when unsure, empirical', though the genus atom alone could be read as taxonomic and take 1.0/0.99."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000353",
+   "sentence": "Wraiths rise from the water of the Sunken Cove.",
+   "parse": [
+    "(: cove_m (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: water_m (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: water_loc (LocatedIn sk_water_1 sunken_cove) (STV 1.0 0.99))",
+    "(: wraith_rise_rule (Implication (Member $x wraith) (And (Member (sk_rise $x) rise) (Agent (sk_rise $x) $x) (Source (sk_rise $x) sk_water_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000353",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "'the water of the Sunken Cove' is a relational-noun genitive, which the instruction set keeps on the ordinary genitive route, but it is encoded with LocatedIn, the containment head restricted to a surface 'in / at / inside / within'."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name handling matches the Kestrel River pattern exactly — one opaque symbol, its Name atom, the kind atom taken from the name-internal head, and no modifier genus. The bare-plural generic rule at 0.9/0.9 with Agent for the self-moving subject and Source for 'from' is right."
+   },
+   "adjudication": {
+    "id": "lore-000353",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "`LocatedIn` is stated to be \"containment ONLY — in / at / inside / within\", and the place-inside-a-place rule carves out exactly this case (\"a relational noun that states a link rather than a position — a tributary OF the larger river — is the ordinary genitive\"), so reading the of-phrase as containment asserts a position the text does not state."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "The genitive one-test (\"is the possessed a part / component of the possessor?\") is undecidable for a mass constituent of a geographic feature — the water of a cove is arguably neither a component in the \"car engine\" sense nor a possession (it is closer to what the cove consists of), and `PartOf` is elsewhere barred from geography, so nothing states which head carries the link."
+    ],
+    "decision": "defect",
+    "defect_summary": "The link takes the ordinary genitive of *Possessive / genitive NP* — `(PartOf sk_water_1 sunken_cove)` if the water counts as a component of the cove, otherwise the opaque `(Possession sk_water_1 sunken_cove)` — never `(LocatedIn …)`; which of those two is the licensed head for a mass constituent of a geographic feature is itself unstated and filed as a gap.",
+    "notes": "Name handling matches the Kestrel River pattern exactly (one opaque symbol, its Name atom, the kind atom from the name-internal head, no modifier genus), and the bare-plural generic rule at 0.9/0.9 with `Agent` for the self-moving subject and `Source` for \"from\" is right."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000354",
+   "sentence": "Wraiths rise from no other water.",
+   "parse": [
+    "(: water_ref (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: wraith_rise_rule (Implication (And (Member $x wraith) (Member $w water) (Compute == ($w sk_water_1) -> false)) (And (Member (sk_rise $x $w) rise) (Agent (sk_rise $x $w) $x) (Source (sk_rise $x $w) $w))) (STV 0.0 0.9))",
+    "(: q_wraith_rise (QuantifierPhrase water rise \"no\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000354",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "(Member sk_water_1 water) asserts at full strength the existence of a specific water body that the text never introduces — it exists only as the unstated contrast anchor for \"other\" — and the instruction set's assert-only-what-the-text-states test finds no words to point at for it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "contrastive anaphoric \"other\" restricting a quantified range (\"no other water\") — the instruction set has no treatment of \"other\", so the excluded antecedent has no licensed carrier and the parse improvises a witness plus a Compute inequality guard",
+     "a negative quantifier on a non-subject argument (\"rise from no other water\") — the negated-generic and \"none of the\" patterns both quantify the subject, and nothing prescribes how \"no\" on an oblique's object maps onto the rule form"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The strength-0.0 distributing rule with the Compute distinctness guard and the single \"no\" QuantifierPhrase companion is a coherent extension of the negated-generic pattern to an oblique-scoped quantifier; Agent rather than Patient for the animate riser is defensible. If this item was given a CONTEXT block naming the water they do rise from, the fresh sk_water_1 should instead have reused that context symbol."
+   },
+   "adjudication": {
+    "id": "lore-000354",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The word \"other\" is itself what puts the contrast anchor there, so *Core patterns*' point-at-the-words test is met; dropping the restriction instead would widen the claim to \"wraiths rise from no water at all\", which *Core patterns* forbids (\"a stated restriction ... is never silently dropped\"), and once the anchor is used in the guard, the bar on untyped referent symbols in *Names and casing* makes (Member sk_water_1 water) mandatory rather than an over-assertion."
+     }
+    ],
+    "gaps_confirmed": [
+     "Contrastive anaphoric \"other\" restricting a quantified range (\"no other water\"): the instruction set has no treatment of \"other\", so the excluded antecedent has no licensed carrier.",
+     "A negative quantifier on a non-subject argument (\"rise from no other water\"): the negated-generic and \"none of the\" patterns both quantify the subject, and nothing prescribes how \"no\" on an oblique's object maps onto the rule form."
+    ],
+    "new_gaps": [
+     "A presupposed-but-unmentioned referent - the excluded antecedent that \"other\" implies - has no licensed carrier: the projection rules (denial bundles, seals, definites) all cover only referents the sentence actually mentions, so nothing states whether such an anchor may be minted at all, or at what strength/confidence its typing atom should sit given that the sentence only presupposes it."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The anchor witness is load-bearing: without it the Compute distinctness guard has nothing to exclude and the \"other\" restriction cannot be carried. The strength-0.0 two-universal rule, the single \"no\" QuantifierPhrase companion, Source for \"rise from\", and the absence of any positive rise-from-sk_water_1 claim are all sound."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000355",
+   "sentence": "The Keepers believe that wraiths are the unsettled dead of the storm-surge.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: believe_ev (Member sk_believe_1 believe) (STV 1.0 0.99))",
+    "(: believe_exp (Experiencer sk_believe_1 keepers) (STV 1.0 0.99))",
+    "(: believe_theme (Theme sk_believe_1 (And (Inheritance wraith unsettled_dead) (Possession unsettled_dead sk_storm_surge_1))) (STV 1.0 0.99))",
+    "(: storm_surge_typ (Member sk_storm_surge_1 storm_surge) (STV 1.0 0.99))",
+    "(: storm_surge_genus (Inheritance storm_surge surge) (STV 1.0 0.99))",
+    "(: unsettled_dead_genus (Inheritance unsettled_dead dead) (STV 1.0 0.99))",
+    "(: unsettled_dead_mod (Inheritance unsettled_dead unsettled) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000355",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The restrictive of-phrase is attached to the bare kind symbol as `(Possession unsettled_dead sk_storm_surge_1)`, so the sealed proposition asserts that the KIND unsettled_dead belongs to that storm-surge instead of restricting which unsettled dead the wraiths are said to be, and `Possession`'s possessed slot is defined for an entity rather than a class symbol."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "equative copular whose predicate nominal is a DEFINITE, PP-restricted NP (\"wraiths are the unsettled dead of the storm-surge\"): `Inheritance` takes a bare kind on the right and the instruction set gives no licensed place to hang the of-restrictor on a kind-level predicate nominal"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Attitude routing is correct: non-factive seal under `Theme` with an `Experiencer` holder, no top-level predication of P, and only definite-referent typing plus compound-kind decomposition projected out of the seal."
+   },
+   "adjudication": {
+    "id": "lore-000355",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "The half that stands: \"of the storm-surge\" restricts WHICH unsettled dead, so hanging it on the bare kind symbol makes the sealed proposition characterize unsettled-dead at large, which is more than the text states (Core patterns: a stated restriction is carried or the whole claim is left out, never widened); the half that does not stand: no rule bars a class symbol in `Possession`'s possessed slot — `Possession` is listed among the opaque heads, which expressly take kind arguments."
+     }
+    ],
+    "gaps_confirmed": [
+     "a kind-level copular whose predicate nominal is a DEFINITE, PP-restricted NP (\"wraiths are the unsettled dead of the storm-surge\"): `Inheritance` takes a bare kind on the right and nothing licenses hanging the of-restrictor on a kind-level predicate nominal"
+    ],
+    "new_gaps": [
+     "a kind-level EQUATIVE (identity, not subsumption) has only `Inheritance`, which records one direction: nothing distinguishes \"wraiths are a kind of unsettled dead\" from \"wraiths are exactly the unsettled dead of the storm-surge\", so the identity reading is unrecordable"
+    ],
+    "decision": "defect",
+    "defect_summary": "No compliant form is licensed: the restrictor cannot ride the kind (there is no kind-restriction head), a witness group for \"the unsettled dead of the storm-surge\" cannot fill `Inheritance`'s right slot (an individual never occupies a class position), and Core patterns bars dropping the restrictor — so the only licensed move is to leave the identification out of the seal (the believe event standing with no `Theme`, as for a wholly-negative complement) and record the gap.",
+    "notes": "Attitude routing is correct — non-factive seal under `Theme`, `Experiencer` holder, no top-level predication of P — as is seal projection (definite-referent typing plus compound-kind decomposition only) and the Name-only treatment of \"the Keepers\"."
+   }
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+(: bfl_genus (Inheritance bad_for_lanterns bad) (STV 1.0 0.99))
+(: bfl_arg (For bad_for_lanterns lantern) (STV 1.0 0.99))
+(: bff_genus (Inheritance bad_for_fishing bad) (STV 1.0 0.99))
+(: bff_arg (For bad_for_fishing fishing) (STV 1.0 0.99))
+(: winter_bad_rule (Implication (And (Member $w winter) (Member $w bad_for_lanterns)) (Member $w bad_for_fishing)) (STV 0.9 0.9))

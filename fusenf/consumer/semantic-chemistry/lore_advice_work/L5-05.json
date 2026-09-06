@@ -1,0 +1,318 @@
+{
+ "id": "L5-05",
+ "rule": "V — Wraith-defense",
+ "texts": [
+  "When a Keeper scatters ground feathers around a lantern, the feathers ward the lantern against wraiths.",
+  "A feather warding lasts about a month.",
+  "Feather warding is the village's primary wraith-defense.",
+  "A wraith cannot enter the Watch.",
+  "The feather store inside the Watch keeps wraiths out.",
+  "A wraith cannot enter Cauldron Hall.",
+  "The smell of boiling mire-essence repels wraiths.",
+  "No wraith has ever entered a village house."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000365",
+   "sentence": "When a Keeper scatters ground feathers around a lantern, the feathers ward the lantern against wraiths.",
+   "parse": [
+    "(: keeper_scatter_wards (Implication (And (Member $k keeper) (Member $l lantern) (Member $f feather) (Member $f ground) (Member $s scatter) (Agent $s $k) (Theme $s $f) (Around $s $l)) (And (Member (sk_ward $s) ward) (Agent (sk_ward $s) $f) (Theme (sk_ward $s) $l) (Against (sk_ward $s) wraith) (During (sk_ward $s) $s))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000365",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The plural \"ground feathers\" / \"the feathers\" is collapsed to a single individual feather variable (`(Member $f feather)` plus `(Member $f ground)`), so the rule quantifies over one feather at a time instead of the scattered set, and a faithfully-parsed instance sentence — which would store a `GroupOf` group as the scatter's Theme — could never match this premise."
+     },
+     {
+      "statement": 0,
+      "issue": "The consequent's Skolem term `(sk_ward $s)` is a function of the trigger event alone although the conclusion also varies with `$f` (and `$l`), so distinct feather bindings collapse onto one ward event with multiple Agents, contrary to the rule that a dependent existential is a Skolem function of every universal that scopes over it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A plural NP as a participant inside a generic \"when P, Q\" rule: the instruction set mandates plain variables in rule premises and group witnesses (`GroupOf`) for plurals that take part in an occurrence, but never says how the two combine, so a bare-plural rule participant has no stated typing."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing is right — indefinite participants send bare \"when P, Q\" to the whenever/rule machinery with a per-occurrence Skolem consequent, `During`-linked, at (STV 1.0 0.9) and with no QuantifierPhrase companion. `Around` and `Against` are correctly the preposition actually used, and the participial modifier `ground` correctly keeps its surface form."
+   },
+   "adjudication": {
+    "id": "lore-000365",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "The interoperability half stands — a plural participant typed as a single-individual variable cannot match an instance whose scatter Theme is a GroupOf group — but no atom is thereby false or ill-typed, and collapsing a bare plural into a per-member variable is the instruction set's own move in every generic rule, so this is the uncovered typing the reviewer files as a gap rather than a violated rule."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Quantifiers, generics & scope states that a dependent existential is a Skolem function of EVERY universal that scopes over it, and every worked example keys the term on all conclusion-occurring premise variables ((sk_chase $x $y), (sk_give $t $s), (sk_beat $f $d)), yet (sk_ward $s) omits $f and $l and so merges distinct feather bindings into one event carrying multiple Agent atoms — a shape licensed only for reciprocal/aggregate predicates or explicit 'together'/'jointly'."
+     }
+    ],
+    "gaps_confirmed": [
+     "a plural NP as a participant inside a generic 'when P, Q' rule has no stated typing: rule premises are mandated to bind through plain variables, plurals taking part in an occurrence are mandated to be GroupOf witnesses, and the two are never combined"
+    ],
+    "new_gaps": [
+     "a rule consequent whose subject IS the premise's plural participant has no licensed COLLECTIVE form: per-universal Skolemization mints one consequent event per member, while the 'one event, many Agents' collective shape is licensed only for reciprocal/aggregate predicates or explicit together/jointly marking, so 'the feathers ward the lantern' read as one joint warding per scattering cannot be encoded either way"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form keys the consequent event on every universal it varies with — (sk_ward $s $f), plus $l if the lantern may vary independently — so distinct feather bindings mint distinct ward events; if the intended reading is instead a single joint warding per scattering, no licensed form carries it (filed in new_gaps).",
+    "notes": "Routing to the whenever machinery, the During link to the trigger, the surface prepositions Around and Against, the bare-kind filler wraith, the participial modifier ground kept as an adjective, and (STV 1.0 0.9) are all right."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000366",
+   "sentence": "A feather warding lasts about a month.",
+   "parse": [
+    "(: fw_genus (Inheritance feather_warding warding) (STV 1.0 0.99))",
+    "(: fw_typ (Member sk_feather_warding_1 feather_warding) (STV 1.0 0.99))",
+    "(: last_ev (Member sk_last_1 last) (STV 1.0 0.99))",
+    "(: last_exp (Experiencer sk_last_1 sk_feather_warding_1) (STV 1.0 0.99))",
+    "(: last_dur (Measure sk_last_1 duration (ParticleFromNormal 1 0.1) month) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000366",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound genus with the noun modifier left unexposed, the stative-intransitive `Experiencer`, the duration `Measure`, and the tight-hedge sigma (10% of 1) all follow the instruction set. \"Warding\" correctly keeps its derived nominal form rather than being lemmatized to the verb."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000367",
+   "sentence": "Feather warding is the village's primary wraith-defense.",
+   "parse": [
+    "(: fw_genus (Inheritance feather_warding warding) (STV 1.0 0.99))",
+    "(: wd_genus (Inheritance wraith_defense defense) (STV 1.0 0.99))",
+    "(: e_village (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: fw_is_wd (Inheritance feather_warding wraith_defense) (STV 1.0 0.9))",
+    "(: fw_primary (Inheritance feather_warding primary) (STV 1.0 0.9))",
+    "(: fw_poss (Possession feather_warding sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000367",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "(Inheritance feather_warding primary) exposes a rank adjective as a free-standing kind property and silently drops its restriction - the text says primary among the village's wraith-defenses, not primary at large."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a lexical rank adjective ('primary' / 'chief' / 'principal') attributive in a definite complement - Most needs a stated scale, Ordinal needs 'first' / a numeral / 'last', and AmongMost is the top-stratum reading, so none carries 'the primary N'",
+     "the uniqueness / identity force of a definite complement ('X is THE ... defense'), which Inheritance records only as subsumption"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both compounds' genus atoms are right (noun modifiers unexposed, 'warding' kept in its derived form rather than lemmatized to 'ward'), the definite village mints a typed witness, and Possession on the kind symbol preserves the identity instead of minting a separate defense entity. The 0.9 confidence on the kind-level claims follows the definitional-vs-empirical dial."
+   },
+   "adjudication": {
+    "id": "lore-000367",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Core patterns bars silently dropping a stated restriction ('omitting it widens the claim -- carry it, or leave the whole claim out and record the gap'), and (Inheritance feather_warding primary) asserts primacy at large where the text ranks it only among the village's wraith-defenses; a rank adjective failing the predication test is also the kind Compound concepts refuses to expose as a free-standing genus."
+     }
+    ],
+    "gaps_confirmed": [
+     "a lexical rank adjective ('primary' / 'chief' / 'principal') attributive in a definite complement: Most needs a stated scale, Ordinal needs 'first' / a numeral / 'last', and AmongMost is the top-stratum reading -- none carries 'the primary N'",
+     "the uniqueness / identity force of a definite complement ('X is THE ... defense'), which Inheritance records only as subsumption"
+    ],
+    "new_gaps": [
+     "Possession with a KIND symbol in the possessed slot -- (Possession feather_warding sk_village_1) -- is unlegislated: the genitive rule is defined over individuals, and nothing states how a possessor restricts a kind-level claim (the alternative, minting a defense witness, would sever the identity the copula asserts)"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps the two genus atoms, the village witness, the kind subsumption and the possessor link, and simply omits (Inheritance feather_warding primary) while recording the rank gap -- the instruction set licenses no head carrying 'primary among the village's wraith-defenses', since Most / AmongMost / Ordinal each need a stated scale or ordinal word and none has a slot for the village restriction.",
+    "notes": "Both compounds' genus atoms are right (noun modifiers unexposed, 'warding' kept in its derived form rather than lemmatized to ward), the definite village mints a typed witness, and the 0.9 confidence on the kind-level claims follows the definitional-vs-empirical dial."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000368",
+   "sentence": "A wraith cannot enter the Watch.",
+   "parse": [
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: wraith_cant (Inheritance wraith (can enter_watch)) (STV 0.0 0.9))",
+    "(: enter_genus (Inheritance enter_watch enter) (STV 1.0 0.99))",
+    "(: enter_obj (Patient enter_watch sk_watch_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000368",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "compound action inside a reified (can ...) whose incorporated object is a DEFINITE individual ('enter the Watch'): the decomposition template (Patient <compound> <object>) is only ever shown with bare kinds (dues, license), and the instruction set never says whether the specific witness or the kind fills that slot on a kind-level property symbol — its own 'A wheelwright must lacquer the spigot' example has the same shape and is left undecomposed"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing the indefinite-singular-plus-modal to the kind-level capability property at strength 0.0 follows the Existential section's 'modals key on the modal, not the determiner' rule, and 'the Watch' correctly stays a capitalized-common-noun witness with no Name atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000369",
+   "sentence": "The feather store inside the Watch keeps wraiths out.",
+   "parse": [
+    "(: store_type (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: store_loc (LocatedIn sk_store_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: e_keepout (Member sk_keep_out_1 keep_out) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_keep_out_1 sk_store_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_keep_out_1 wraith) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000369",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"keeps ... out\" is correctly kept whole as the particle verb keep_out with no genus, the definite-singular subject correctly blocks the kind-relation route and reifies an event with an inanimate transitive Agent, and \"inside the Watch\" takes LocatedIn (containment preposition) on the entity. \"the Watch\" lands as a common noun with no Name atom, which is the stated capitalized-common-noun default since the capitalized run does not exceed the bare class word."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000370",
+   "sentence": "A wraith cannot enter Cauldron Hall.",
+   "parse": [
+    "(: cauldron_hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: cauldron_hall_typ (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: enter_ch_genus (Inheritance enter_cauldron_hall enter) (STV 1.0 0.99))",
+    "(: enter_ch_goal (Goal enter_cauldron_hall cauldron_hall) (STV 1.0 0.99))",
+    "(: wraith_cannot_enter (Inheritance wraith (can enter_cauldron_hall)) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000370",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The compound action's incorporated object is emitted as `(Goal enter_cauldron_hall cauldron_hall)`, but Compound concepts mandates `(Patient <compound> <object>)` for a verb_object action and Goal is reserved for a \"to\"-phrase oblique — \"enter\" takes its object with no preposition, and the Goal slot breaks the specified query shape `(And (Inheritance $k (can $a)) (Patient $a $w))`."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a kind-level capability or deontic norm whose action takes a SPECIFIC NAMED individual as its object (\"a wraith cannot enter Cauldron Hall\") — the reified `(can <action>)` form has no participant slot, and the only way to carry the name is to fuse it into the action symbol (`enter_cauldron_hall`), which the rule that names sit outside Compound concepts bars"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing is right: a modal over an indefinite kind subject keys on the modal, so the kind-level capability property at strength 0.0 / empirical confidence 0.9 is correct, as is Name + kind atom for the multi-word place name. Only the incorporated object's role head and the name-inside-a-compound-action question are at issue."
+   },
+   "adjudication": {
+    "id": "lore-000370",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts fixes the incorporated object's slot as `(Patient <compound> <object>)` — the same slot `carry_license` and `show_badge` take regardless of the thematic change-test — while `Goal` is defined as the oblique for a \"to\"-phrase, so the parse both departs from the mandated encoding and breaks the specified query shape `(And (Inheritance $k (can $a)) (Patient $a $w))`."
+     }
+    ],
+    "gaps_confirmed": [
+     "A kind-level capability or deontic norm whose action takes a specific NAMED individual as its object (\"a wraith cannot enter Cauldron Hall\"): the reified `(can <action>)` form has no participant slot, and the only way to carry the name is to fuse it into the action symbol, which \"names sit outside Compound concepts\" bars."
+    ],
+    "new_gaps": [
+     "When a compound action is nonetheless fused over a proper noun, nothing states whether its mandated decomposition atoms may be emitted at all: Compound concepts requires the genus and object atoms for every minted compound, while the same section says nothing in it applies to a proper noun — the two rules conflict here and no precedence is given."
+    ],
+    "decision": "defect",
+    "defect_summary": "The incorporated object takes `(Patient enter_cauldron_hall cauldron_hall)` in place of `(Goal …)` — but that fixes the role head only: for the sentence's actual content, a kind-level inability whose object is a named individual, NO fully compliant form is licensed, since the name may not sit inside the fused action symbol and the reified property has no participant slot to hold it otherwise; that is the confirmed gap.",
+    "notes": "The routing is right — a capability modal over a kind subject keys on the modal, giving the kind-level property at strength 0.0 with empirical confidence 0.9 — as is `Name` plus a kind atom for the multi-word place name."
+   }
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000371",
+   "sentence": "The smell of boiling mire-essence repels wraiths.",
+   "parse": [
+    "(: l371_essence_type (Member sk_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: l371_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: l371_essence_boiling (Member sk_essence_1 boiling) (STV 1.0 0.99))",
+    "(: l371_smell_type (Member sk_smell_1 smell) (STV 1.0 0.99))",
+    "(: l371_smell_poss (Possession sk_smell_1 sk_essence_1) (STV 1.0 0.99))",
+    "(: l371_repel_ev (Member sk_repel_1 repel) (STV 1.0 0.99))",
+    "(: l371_repel_ag (Agent sk_repel_1 sk_smell_1) (STV 1.0 0.99))",
+    "(: l371_repel_th (Theme sk_repel_1 wraith) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000371",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare mass NP carrying a restrictive participial modifier inside an of-phrase ('boiling mire-essence'): the NP rules say a bare mass stays a kind constant, but a kind constant cannot carry the modifier by Member (and Inheritance would over-claim that all mire-essence boils), and nothing states that such a modifier licenses minting a witness"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the smell of X' correctly fails the nominalization-object verb-paraphrase test (the smell does not smell the essence), so the opaque genitive Possession rather than (Of ...) is right; 'boiling' correctly stays a participial adjective, the inanimate transitive subject correctly stays Agent, and the bare-plural object of a dispositional clause correctly stays the bare kind filler 'wraith'."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000372",
+   "sentence": "No wraith has ever entered a village house.",
+   "parse": [
+    "(: village_house_genus (Inheritance village_house house) (STV 1.0 0.99))",
+    "(: wraith_enter_rule (Implication (Member $x wraith) (And (Member (sk_enter $x) enter) (Agent (sk_enter $x) $x) (Theme (sk_enter $x) (sk_house $x)) (Member (sk_house $x) village_house) (Past (sk_enter $x)))) (STV 0.0 0.9))",
+    "(: wraith_enter_q (QuantifierPhrase wraith enter \"no\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000372",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "NPI 'ever' under negation ('has EVER entered') - no licensed carrier; the aspectual-particle set is again/still/already/yet only, so the at-no-time-in-the-past force is dropped"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The strength-0.0 distributing rule with the 'no' companion, the dependent Skolem object (sk_house $x) kept inside the denial, the top-level definitional genus for village_house, and Past for the perfect all match doctrine."
+   },
+   "adjudication": null
+  }
+ ]
+}

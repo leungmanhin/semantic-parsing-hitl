@@ -1,0 +1,9 @@
+{"id": "lore-000465", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The capitalized run \"Cauldron Hall Warden\" is split, the Name atom going only to the substring \"Cauldron Hall\", where Names and casing treats a capitalized run that exceeds the bare class word (\"Warden\") as the referent's own name - one opaque symbol, one Name atom, plus an ordinary type atom from the name-internal kind word."}, {"statement": 3, "issue": "(Possession sk_warden_1 cauldron_hall) asserts a warden-to-hall association that the text conveys only by juxtaposition; it is licensed by the proper-noun-premodifier rule but not if the whole capitalized run is the name."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a proper-noun premodifier whose common-noun head is itself CAPITALIZED (\"the Cauldron Hall Warden\"): the premodifier rule's examples all have lowercase heads (\"a Northgate spokesman\"), while the casing rule states that an adjacent LOWERCASE common noun is not part of a name and that the capitalized run exceeding the bare class word signals name-hood - nothing resolves which rule wins"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything downstream of the name question conforms: prefer takes Experiencer/Stimulus by the progressive test, deep_ebb_water is a bare-kind filler with genus water and its noun modifier correctly unexposed, and the simple present correctly gets no status atom."}

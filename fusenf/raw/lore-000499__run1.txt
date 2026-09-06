@@ -1,0 +1,6 @@
+(: cb_genus (Inheritance copper_box box) (STV 1.0 0.99))
+(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))
+(: feathers_group (GroupOf sk_feathers_1 ground_feather) (STV 1.0 0.99))
+(: gf_genus (Inheritance ground_feather feather) (STV 1.0 0.99))
+(: gf_mod (Inheritance ground_feather ground) (STV 1.0 0.99))
+(: cb_hold_rule (Implication (And (Member $x copper_box) (LocatedIn $x sk_watch_1)) (And (Member (sk_hold $x) hold) (Agent (sk_hold $x) $x) (Theme (sk_hold $x) sk_feathers_1))) (STV 0.9 0.9))

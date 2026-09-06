@@ -1,0 +1,13 @@
+{"id": "lore-000279", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The intransitive-subject test gives `Agent` to a volitional / self-propelled subject and defaults to `Agent` 'when unclear'; the Patient branch covers only change-of-state undergoers and non-volitional natural processes (precipitation, fluids, gases, gravity-moved masses), none of which is a village rising (waking) late, so `(Patient sk_rise_1 sk_village_1)` asserts an undergoing the doctrine does not assign."},
+            {"index": 1,
+             "verdict": "refute",
+             "reason": "'late' is a temporal-position adverb with no licensed slot, and the instruction set's own rule for exactly that case — the sequence/ordering family 'initially / eventually / finally' under *Adverbs that are not Manner* — is to 'leave them out and record the gap' rather than mis-slot a `Manner` atom, so the omission is licensed and what remains is the coverage gap the reviewer also filed, not a parse defect."}],
+ "gaps_confirmed": ["Temporal-position adverb ('rises late'; early / late / soon) has no licensed slot — not `Manner` (it answers when, not how), not a `Time` term, not `Duration`.",
+                    "Metonymic subject (a place standing for its inhabitants) — the instruction set states no rule on whether to type and refer the place or the people."],
+ "new_gaps": ["The two omission rules collide when the adverbial carries the clause's entire informative content: *Core patterns* says an unencodable qualifier means 'leave the whole claim out and record the gap', while *Adverbs that are not Manner* says drop the adverb and keep the clause — here the second yields the near-vacuous '(the village rises)'. A licensed form would need either a temporal-position carrier (a `Time`-family slot for late/early relative to an expected norm) or an explicit statement of which omission rule governs adverbs."],
+ "decision": "defect",
+ "defect_summary": "The compliant form gives the intransitive subject the Agent role — `(Agent sk_rise_1 sk_village_1)` in place of `(Patient sk_rise_1 sk_village_1)`.",
+ "notes": "Emitting no status atom is correct for the habitual present, and the singular subject correctly takes a plain event with no distribution rule."}

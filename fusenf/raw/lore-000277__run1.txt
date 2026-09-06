@@ -1,0 +1,4 @@
+(: cnl_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: rec_grp (GroupOf sk_record_1 record) (STV 1.0 0.99))
+(: rec_secret_rule (Implication (PartOf $x sk_record_1) (Member $x secret)) (STV 1.0 0.9))
+(: open_neg (And (Member sk_open_1 open) (Agent sk_open_1 sk_council_1) (Patient sk_open_1 sk_record_1) (Past sk_open_1)) (STV 0.0 0.99))

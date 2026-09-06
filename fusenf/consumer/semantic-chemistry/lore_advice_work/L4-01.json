@@ -1,0 +1,247 @@
+{
+ "id": "L4-01",
+ "rule": "IV — The village day",
+ "texts": [
+  "The Keepers sleep during the day.",
+  "The village rises late.",
+  "The market square is quiet before noon.",
+  "The villagers eat a long midday meal.",
+  "The Keepers eat a small meal at sundown before the shift.",
+  "Each Keeper carries the leather case to the station at sundown.",
+  "An apprentice walks with a senior Keeper to the station."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000278",
+   "sentence": "The Keepers sleep during the day.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: sleep_ev (Member sk_sleep_1 sleep) (STV 1.0 0.99))",
+    "(: sleep_ag (Agent sk_sleep_1 keepers) (STV 1.0 0.99))",
+    "(: sleep_time (Time sk_sleep_1 day) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000278",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"during\" + a bare time-period NP (\"during the day\"): the `During` head is defined only over two reified eventualities, and the day-part list (morning / afternoon / evening / night) does not include daytime \"the day\", so nothing in the instruction set settles whether this is `(Time e day)` or a `During` relation"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Keepers\" is handled per the capitalized-plural-label rule (Name-only individual, no GroupOf, no invented type atom), and the habitual present correctly gets no status atom. The intransitive-subject test has no branch for bodily-state verbs like sleep, so `Agent` here rides the \"when unclear, Agent\" fallback rather than a positive rule."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000279",
+   "sentence": "The village rises late.",
+   "parse": [
+    "(: village_1_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: rise_1_event (Member sk_rise_1 rise) (STV 1.0 0.99))",
+    "(: rise_1_patient (Patient sk_rise_1 sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000279",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The subject takes Patient, but 'rise' here is the volitional getting-up of the village('s people); the intransitive-subject test gives Agent - the Patient carve-out covers only precipitation/fluids/gases/gravity-moved masses, and the stated default when unclear is Agent."
+     },
+     {
+      "statement": null,
+      "issue": "The adverb 'late' - effectively the whole content of the sentence - is dropped, leaving the unqualified assertion that the village rises, which Core patterns bars (carry the qualifier or leave the claim out and record the gap)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "temporal-position adverb ('rises LATE'; early/late/soon) - not Manner, not a Time term, not a Duration, so no licensed slot exists",
+     "metonymic subject (a place standing for its inhabitants) - the instruction set does not say whether to type/refer the place or the people"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Emitting no status atom is right for the habitual present, and the singular collective subject correctly gets a plain event with no distribution rule."
+   },
+   "adjudication": {
+    "id": "lore-000279",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The intransitive-subject test gives `Agent` to a volitional / self-propelled subject and defaults to `Agent` 'when unclear'; the Patient branch covers only change-of-state undergoers and non-volitional natural processes (precipitation, fluids, gases, gravity-moved masses), none of which is a village rising (waking) late, so `(Patient sk_rise_1 sk_village_1)` asserts an undergoing the doctrine does not assign."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "'late' is a temporal-position adverb with no licensed slot, and the instruction set's own rule for exactly that case — the sequence/ordering family 'initially / eventually / finally' under *Adverbs that are not Manner* — is to 'leave them out and record the gap' rather than mis-slot a `Manner` atom, so the omission is licensed and what remains is the coverage gap the reviewer also filed, not a parse defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "Temporal-position adverb ('rises late'; early / late / soon) has no licensed slot — not `Manner` (it answers when, not how), not a `Time` term, not `Duration`.",
+     "Metonymic subject (a place standing for its inhabitants) — the instruction set states no rule on whether to type and refer the place or the people."
+    ],
+    "new_gaps": [
+     "The two omission rules collide when the adverbial carries the clause's entire informative content: *Core patterns* says an unencodable qualifier means 'leave the whole claim out and record the gap', while *Adverbs that are not Manner* says drop the adverb and keep the clause — here the second yields the near-vacuous '(the village rises)'. A licensed form would need either a temporal-position carrier (a `Time`-family slot for late/early relative to an expected norm) or an explicit statement of which omission rule governs adverbs."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form gives the intransitive subject the Agent role — `(Agent sk_rise_1 sk_village_1)` in place of `(Patient sk_rise_1 sk_village_1)`.",
+    "notes": "Emitting no status atom is correct for the habitual present, and the singular subject correctly takes a plain event with no distribution rule."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000280",
+   "sentence": "The market square is quiet before noon.",
+   "parse": [
+    "(: lore280_square (Member sk_market_square_1 market_square) (STV 1.0 0.99))",
+    "(: lore280_square_genus (Inheritance market_square square) (STV 1.0 0.99))",
+    "(: lore280_quiet (Member sk_quiet_1 quiet) (STV 1.0 0.99))",
+    "(: lore280_quiet_exp (Experiencer sk_quiet_1 sk_market_square_1) (STV 1.0 0.99))",
+    "(: lore280_quiet_time (TimeAtMost sk_quiet_1 noon) (STV 1.0 0.99))",
+    "(: lore280_flat (Member sk_market_square_1 quiet) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000280",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The copular-clause-with-a-time-modifier reification plus the flat copular atom, `market_square` fused with its head genus only (a noun modifier is never exposed), `Experiencer` for the predicate-adjective state, and \"before noon\" as `(TimeAtMost e noon)` all follow the instruction set's own examples."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000281",
+   "sentence": "The villagers eat a long midday meal.",
+   "parse": [
+    "(: villagers_grp (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))",
+    "(: meal_gen (Inheritance midday_meal meal) (STV 1.0 0.99))",
+    "(: eat_ev (Member sk_eat_1 eat) (STV 1.0 0.99))",
+    "(: eat_ag (Agent sk_eat_1 sk_villagers_1) (STV 1.0 0.99))",
+    "(: eat_pat (Patient sk_eat_1 sk_meal_1) (STV 1.0 0.99))",
+    "(: meal_typ (Member sk_meal_1 midday_meal) (STV 1.0 0.99))",
+    "(: meal_long (Member sk_meal_1 long) (STV 1.0 0.99))",
+    "(: villagers_eat_rule (Implication (PartOf $x sk_villagers_1) (And (Member (sk_eat $x) eat) (Agent (sk_eat $x) $x) (Patient (sk_eat $x) (sk_meal $x)) (Member (sk_meal $x) midday_meal) (Member (sk_meal $x) long))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000281",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural -> group witness plus the per-member distribution rule for the distributive predicate, with the dependent indefinite object as a Skolem function of the member; \"long\" stays an unfused descriptive atom and \"midday\" is correctly left out of the genus as a noun modifier."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000282",
+   "sentence": "The Keepers eat a small meal at sundown before the shift.",
+   "parse": [
+    "(: keepers_name (Name the_keepers \"The Keepers\") (STV 1.0 0.99))",
+    "(: eat1_class (Member sk_eat_1 eat) (STV 1.0 0.99))",
+    "(: eat1_agent (Agent sk_eat_1 the_keepers) (STV 1.0 0.99))",
+    "(: meal1_type (Member sk_meal_1 meal) (STV 1.0 0.99))",
+    "(: meal1_small (Member sk_meal_1 small) (STV 1.0 0.99))",
+    "(: eat1_patient (Patient sk_eat_1 sk_meal_1) (STV 1.0 0.99))",
+    "(: eat1_time (Time sk_eat_1 sundown) (STV 1.0 0.99))",
+    "(: shift1_type (Member sk_shift_1 shift) (STV 1.0 0.99))",
+    "(: eat1_before (Before sk_eat_1 sk_shift_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000282",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Sentence-initial capitalized determiner in a proper name: *Names and casing* defines the name as \"exactly its capitalized run of words\", but gives no carve-out for a positionally-capitalized sentence-initial \"The\", so \"The Keepers eat ...\" licenses the symbol the_keepers / string \"The Keepers\" while the same referent mid-sentence (\"the Keepers\", as in the doctrine's own \"the Wrens\" example) licenses keepers / \"Keepers\" - one referent, two faithful parses."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Plural capitalized kind-word label handled per the Name-only rule (one symbol, Name atom, no GroupOf, no invented keeper typing); \"before the shift\" correctly gets only its class atom plus Before, per the temporal-anchor event-noun rule; \"small\" correctly left unfused as incidental description."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000283",
+   "sentence": "Each Keeper carries the leather case to the station at sundown.",
+   "parse": [
+    "(: kpr_rule (Implication (Member $x keeper) (And (Member (sk_carry $x) carry) (Agent (sk_carry $x) $x) (Theme (sk_carry $x) sk_case_1) (Goal (sk_carry $x) sk_station_1) (Time (sk_carry $x) sundown))) (STV 1.0 0.9))",
+    "(: kpr_q (QuantifierPhrase keeper carry \"each\") (STV 1.0 0.99))",
+    "(: case_type (Member sk_case_1 leather_case) (STV 1.0 0.99))",
+    "(: case_genus (Inheritance leather_case case) (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000283",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Explicit universal correctly distributes over (Member $x keeper) with the Skolem-function event, its companion, and shared definite constants typed at top level; 'leather case' fuses with the genus emitted and the noun modifier correctly left unexposed, and no Every/TimesPer is invented for the unstated recurrence."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000284",
+   "sentence": "An apprentice walks with a senior Keeper to the station.",
+   "parse": [
+    "(: appr_typ (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: keeper_typ (Member sk_keeper_1 senior_keeper) (STV 1.0 0.99))",
+    "(: keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: keeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: station_typ (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: e_walk (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_walk_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: e_coagent (CoAgent sk_walk_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e_goal (Goal sk_walk_1 sk_station_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000284",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite subject with a verbal predicate correctly stays a witness rather than a generic rule; senior_keeper fusion plus the exposed gradable modifier mirrors the senior_contractor example, and capitalized 'Keeper' is correctly a common noun with no Name atom."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+(: sk_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: sk_hunt_rule (Implication (Member $x sky_cat) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) deep_winter))) (STV 0.1 0.9))
+(: sk_hunt_q (QuantifierPhrase sky_cat hunt "rarely") (STV 1.0 0.99))
+(: dw_genus (Inheritance deep_winter winter) (STV 1.0 0.99))
+(: dw_mod (Inheritance deep_winter deep) (STV 1.0 0.99))

@@ -1,0 +1,6 @@
+(: thread_grp (GroupOf sk_group_1 thread) (STV 1.0 0.99))
+(: dissolve_mem (Member sk_dissolve_1 dissolve) (STV 1.0 0.99))
+(: dissolve_pat (Patient sk_dissolve_1 sk_group_1) (STV 1.0 0.99))
+(: dissolve_manner (Manner sk_dissolve_1 slowly) (STV 1.0 0.99))
+(: dissolve_time (Time sk_dissolve_1 afternoon) (STV 1.0 0.99))
+(: thread_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_dissolve $x) dissolve) (Patient (sk_dissolve $x) $x) (Manner (sk_dissolve $x) slowly) (Time (sk_dissolve $x) afternoon))) (STV 1.0 0.9))

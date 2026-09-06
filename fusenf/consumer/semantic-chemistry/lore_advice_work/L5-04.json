@@ -1,0 +1,119 @@
+{
+ "id": "L5-04",
+ "rule": "V — Persistence",
+ "texts": [
+  "A wraith fades back into the cove after several weeks.",
+  "A persisting wraith approaches a lit lantern each night.",
+  "A wraith drains many lanterns during its persistence."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000362",
+   "sentence": "A wraith fades back into the cove after several weeks.",
+   "parse": [
+    "(: wraith_type (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: cove_type (Member sk_cove_1 cove) (STV 1.0 0.99))",
+    "(: fade_ev (Member sk_fade_1 fade_back) (STV 1.0 0.99))",
+    "(: fade_patient (Patient sk_fade_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: fade_goal (Goal sk_fade_1 sk_cove_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000362",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'after several weeks' — a forward temporal offset stated as a bare, un-numbered duration with no stated anchor: *Time* covers 'after' + a DATE (TimeAtLeast bound), 'after' + an EVENT/clause (Before), 'N units ago / from now' (BeforeBy on the reserved 'now', requiring a number), a duration OF the eventuality (Measure e duration, or MeasureAtLeast 2 for a bare plural), and a backward window (WithinLast) — none fits, so the adjunct has no licensed carrier and is silently dropped"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything emitted is right: 'fade' is on the internal-change-of-state list so Patient is correct, 'into' takes Goal, an indefinite subject of a verbal clause is a witness rather than a generic rule, and the simple present correctly takes no status atom. 'back' is folded into the particle-verb symbol fade_back with no genus, the surface-faithful verb_particle treatment."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000363",
+   "sentence": "A persisting wraith approaches a lit lantern each night.",
+   "parse": [
+    "(: wraith_typ (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: wraith_mod (Member sk_wraith_1 persisting) (STV 1.0 0.99))",
+    "(: lantern_typ (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_mod (Member sk_lantern_1 lit) (STV 1.0 0.99))",
+    "(: approach_ev (Member sk_approach_1 approach) (STV 1.0 0.99))",
+    "(: approach_ag (Agent sk_approach_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: approach_th (Theme sk_approach_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: approach_time (Time sk_approach_1 night) (STV 1.0 0.99))",
+    "(: approach_every (Every sk_approach_1 1 day) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000363",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite singular subject with a verbal predicate correctly stays a witness rather than becoming a generic rule, and the participial modifiers stay unfused adjectives. \"Each night\" takes the named-slot plus implied-cycle pair `(Time e night)` + `(Every e 1 day)`, with no `QuantifierPhrase` companion, as the frequency section specifies."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000364",
+   "sentence": "A wraith drains many lanterns during its persistence.",
+   "parse": [
+    "(: wraith_kind (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: drain_ev (Member sk_drain_1 drain) (STV 1.0 0.99))",
+    "(: drain_agent (Agent sk_drain_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_qty (CardinalityPhrase sk_lantern_1 \"many\") (STV 1.0 0.99))",
+    "(: drain_patient (Patient sk_drain_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: persist_ev (Member sk_persist_1 persist) (STV 1.0 0.99))",
+    "(: persist_experiencer (Experiencer sk_persist_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: drain_during_persist (During sk_drain_1 sk_persist_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000364",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The deverbal noun 'persistence' is typed as the verb class 'persist', but lemmatization is inflection-only and explicitly bars derivation across parts of speech, so the event-noun witness should keep its own form 'persistence'."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows doctrine: indefinite-singular subject as a witness (verbal predicate, so no generic rule), unmarked habitual with no tense atom, 'during' as the two-eventuality During, drain as a Patient-taking consumption verb, and the 'its' genitive giving the event noun its subject role (Experiencer for a stative). Routing 'many lanterns' to a group plus CardinalityPhrase is borderline, since 'many' is also listed among the proportion words that set strength, but it counts things in object position, which is the test the Cardinality section gives."
+   },
+   "adjudication": {
+    "id": "lore-000364",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"Inflection only - never derivation\": a noun derived from a verb is a different word and keeps its own form, so the event-noun witness must be typed with its own nominal lemma (as \"the ceremony\" is typed ceremony), and (Member sk_persist_1 persist) types the entity under a verb class the text never uses."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form types the event-noun witness with its own nominal lemma - (Member sk_persistence_1 persistence) - carrying the same Experiencer subject and the same During link from the draining event.",
+    "notes": "The rest is per doctrine: an indefinite-singular subject with a verbal predicate stays a witness (no generic rule), the habitual carries no tense atom, drain takes Patient as a consuming verb, and the \"its\" genitive gives the event noun its underlying subject role. Routing \"many lanterns\" to a group plus CardinalityPhrase is licensed - the phrase counts things in object position rather than setting a generic proportion - even though \"many\" is not itself in the enumerated vague-quantity list."
+   }
+  }
+ ]
+}

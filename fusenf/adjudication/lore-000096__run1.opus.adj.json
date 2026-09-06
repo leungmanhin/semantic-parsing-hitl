@@ -1,0 +1,12 @@
+{"id": "lore-000096", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Coordination & plurals makes coordinated noun phrases distributive by default — the whole predication replicated once per conjunct, one event each — so stacking four `Theme` atoms on one event instead states a single bringing of all four commodities together, a multi-atom-same-role shape licensed only for the collective `Agent` case."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "Core patterns forbids silently dropping a stated restriction (\"omitting it widens the claim\") — \"from down the coast\" is narrower than \"from the coast\" — and the multi-word-preposition convention (`NextTo`, `AcrossTheLaneFrom`) licenses joining the whole surface run into one entity-attached head, so a compliant form does exist."}],
+ "gaps_confirmed": ["Distributing a coordinated object list inside a generic rule's conclusion: `(sk_bring $x)` names exactly one event per binding, and nothing licenses a per-conjunct Skolem event function (or a per-conjunct rule split with distinct function symbols) to mint one event per coordinated object."],
+ "new_gaps": ["A deictically-anchored path premodifier (\"down the coast\", \"up the river\"): the CamelCase-joined head records the surface words, but a licensed form would also need to carry the reference point the direction is relative to, and there is no slot for it."],
+ "decision": "defect",
+ "defect_summary": "For the coordinated objects the instruction set licenses no compliant form inside the rule — four events would each need their own Skolem function, which nothing provides — so the loss is filed as the gap above rather than fixed. For the preposition the compliant form is the joined surface head keeping the dropped word, `(FromDown $x sk_coast_1)`.",
+ "notes": "The generic-rule route, the 0.9/0.9 bare-generic truth value, bare-kind object fillers, `Goal` for \"to the market\", the absent `QuantifierPhrase`, and the top-level typing that licenses the `sk_coast_1` constant in a premise are all correct."}

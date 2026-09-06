@@ -1,0 +1,12 @@
+{"id": "lore-000018", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The consequent's indefinite 'a harbor lantern' is a dependent existential under the whenever-occurrence universal, so *Quantifiers, generics & scope* requires a Skolem function of the trigger variable (as (sk_book $x) in 'every student read some book'; 'genuine ambiguity -> first quantifier takes wide scope' points the same way), whereas the constant sk_lantern_1 asserts that one particular lantern burns on every occasion — more than the text states."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "An indefinite posited only inside a scope-bearing container never projects — the same rule that keeps 'a cooper' inside the strength-0 bundle, an Or-branch's witness inside its branch, and a seal's indefinite sealed — so top-level (Member sk_lantern_1 harbor_lantern), (Member sk_essence_1 mire_essence) and (Possession sk_essence_1 sk_lantern_1) assert unconditionally an existence the conditional only posits per occurrence."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "For both issues one compliant form fixes them together: keep the indefinite and its possessum inside the consequent as Skolem functions of the trigger — (Member (sk_lantern $e) harbor_lantern), (Agent (sk_burn $e) (sk_lantern $e)), (Member (sk_essence $e) mire_essence), (Patient (sk_burn $e) (sk_essence $e)), (Possession (sk_essence $e) (sk_lantern $e)) — leaving at top level only the definite 'the water' / 'the harbor wall' witnesses and the definitional genus atoms (harbor_wall, harbor_lantern, mire_essence), which are kind-level and assert no existence.",
+ "notes": "Everything else is licensed: the whenever rule shape with its During link and STV 1.0 0.9, the absent QuantifierPhrase, the (Off $e sk_water_1) prepositional oblique, the mechanical 'at' -> LocatedIn read, Patient for the natural-force subject 'wind', and all three compound genus atoms."}

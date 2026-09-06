@@ -1,0 +1,217 @@
+{
+ "id": "L4-07",
+ "rule": "IV — Sea-water",
+ "texts": [
+  "Distillation requires sea-water.",
+  "Salt does not replace sea-water in distillation.",
+  "The Cauldron Hall sea-water store draws from the Salt-bloom Tide-pools.",
+  "The sea-water store draws from the deep ebb at the harbor mouth.",
+  "Three stone cisterns at the back of Cauldron Hall hold the sea-water."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000311",
+   "sentence": "Distillation requires sea-water.",
+   "parse": [
+    "(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: distillation_req (Require distillation sea_water) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000311",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both arguments are bare kind-denoting NPs, so the kind-level relation route of *Striking & relational generics* applies and Require is a licensed open-class kind-relation head at the prescribed 0.9/0.9; the hyphenated compound emits its head genus only, with the noun modifier \"sea\" correctly left unexposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000312",
+   "sentence": "Salt does not replace sea-water in distillation.",
+   "parse": [
+    "(: e3_seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: e3_neg (And (Member sk_replace_1 replace) (Agent sk_replace_1 salt) (Theme sk_replace_1 sea_water) (In sk_replace_1 distillation)) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000312",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The bare-mass generic subject 'Salt' is dropped straight into the Agent slot of a flat strength-0 event bundle, where a generic denial with a bare kind subject calls for the distributing Implication rule at strength 0.0 (the 'Coopers do not caulk the barrel' form), so the emitted claim is neither the witness reading nor the generic one."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Negated kind-level relational generic whose two arguments are both bare mass kinds ('Salt does not replace sea-water') and which carries a domain/framing adjunct ('in distillation'): the kind-relation form (Replace salt sea_water) has no slot for the adjunct, and the generic-denial rule form is stated for bare plurals only, so no route in the instruction set covers this clause."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The In-oblique for the domain PP and the top-level sea_water genus (definitional, so outside the denial) are both correctly placed; only the routing of the generic subject is at issue."
+   },
+   "adjudication": {
+    "id": "lore-000312",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A generic denial over a bare kind-denoting subject is 'the same distributing rule at strength 0.0' ('Owls don't migrate'), and nothing licenses a bare kind in the Agent slot of a minted event witness — the bare-class-symbol licence is reserved for non-specific / generic OBJECTS ('cooked dinner') — so the flat bundle records a single-event denial in place of the generic one the sentence makes."
+     }
+    ],
+    "gaps_confirmed": [
+     "A two-bare-kind clause carrying a domain adjunct: the relational-generic trigger (bare plural or mass on each side) selects the opaque kind-relation `(Replace salt sea_water)`, which has no slot for 'in distillation', so that trigger and the never-silently-drop-a-restriction rule pull in opposite directions with no stated tie-breaker."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the strength-0.0 distributing rule over the bare kind — `(Implication (Member $x salt) (And (Member (sk_replace $x) replace) (Agent (sk_replace $x) $x) (Theme (sk_replace $x) sea_water) (In (sk_replace $x) distillation))) (STV 0.0 0.9)` — which is also the only stated route that can carry the domain adjunct.",
+    "notes": "The `In` oblique for the framing PP, the bare-kind `sea_water` Theme, the definitional `sea_water` genus kept at top level outside the denial, and the absence of a QuantifierPhrase (plain 'not' takes none) are all correct."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000313",
+   "sentence": "The Cauldron Hall sea-water store draws from the Salt-bloom Tide-pools.",
+   "parse": [
+    "(: store_type (Member sk_store_1 sea_water_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance sea_water_store store) (STV 1.0 0.99))",
+    "(: store_poss (Possession sk_store_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: draw_ev (Member sk_draw_1 draw) (STV 1.0 0.99))",
+    "(: draw_ag (Agent sk_draw_1 sk_store_1) (STV 1.0 0.99))",
+    "(: draw_src (Source sk_draw_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+    "(: pools_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+    "(: pools_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: pools_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000313",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a PLURAL proper name whose kind word sits inside the name ('the Salt-bloom Tide-pools'): the type-atom rule is stated for singular names (Kestrel River -> (Member kestrel_river river)), while the Name-only/no-GroupOf/no-per-member-kind rule is stated only for a bare capitalized plural class-word label ('the Wrens'); nothing settles whether such a name takes Member with the singular kind, GroupOf, or no kind atom at all"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun-premodifier route is applied exactly as written (head parsed on its own, linked by opaque Possession, head kept out of the Name string), and 'draws' correctly gets no status atom. Side effect of the gap above: (Member salt_bloom_tide_pools tide_pool) types a plurally-named referent as one singular pool, which sits awkwardly beside the bar on putting a group in a class slot."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000314",
+   "sentence": "The sea-water store draws from the deep ebb at the harbor mouth.",
+   "parse": [
+    "(: store_ty (Member sk_store_1 sea_water_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance sea_water_store store) (STV 1.0 0.99))",
+    "(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: draw_ev (Member sk_draw_1 draw) (STV 1.0 0.99))",
+    "(: draw_ag (Agent sk_draw_1 sk_store_1) (STV 1.0 0.99))",
+    "(: ebb_ty (Member sk_ebb_1 ebb) (STV 1.0 0.99))",
+    "(: ebb_deep (Member sk_ebb_1 deep) (STV 1.0 0.99))",
+    "(: draw_src (Source sk_draw_1 sk_ebb_1) (STV 1.0 0.99))",
+    "(: mouth_ty (Member sk_mouth_1 harbor_mouth) (STV 1.0 0.99))",
+    "(: mouth_genus (Inheritance harbor_mouth mouth) (STV 1.0 0.99))",
+    "(: ebb_loc (LocatedIn sk_ebb_1 sk_mouth_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000314",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 8,
+      "issue": "\"harbor mouth\" is a whole+part pairing (the mouth of the harbor, the \"car engine\" case), which the compound rules say must NOT fuse: it should be a mouth witness linked to a harbor witness by PartOf, not the fused kind harbor_mouth (and so the genus atom at index 9 rests on a compound that should not have been minted, while the harbor itself never gets a symbol)."
+     },
+     {
+      "statement": 2,
+      "issue": "(Inheritance sea_water water) is a second-level decomposition of a NOUN modifier, which the instruction set says is never exposed and is left inside the symbol; decomposition is once-only, and the atom types a symbol that appears nowhere else in the parse."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Source for \"from the deep ebb\", LocatedIn for the containment preposition \"at\", the two-atom split of \"deep ebb\", the sea_water_store genus, and the absence of a status atom on the habitual present are all correct; attaching the \"at\"-PP to the ebb rather than the drawing event is a licensed single reading (world-knowledge lean, not equipoise)."
+   },
+   "adjudication": {
+    "id": "lore-000314",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"harbor mouth\" passes the whole+part test *Compound concepts* states — it is the mouth OF the harbor, the \"car engine\" / \"table leg\" case — where the rule says do NOT fuse, so minting harbor_mouth violates a stated rule and leaves the harbor the sentence mentions with no symbol at all."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "*Compound concepts* decomposes once then stops and never exposes a noun modifier (\"leave those in the symbol\"), so (Inheritance sea_water water) is an unlicensed second-level genus typing an orphan symbol that fills no slot in the parse."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "a part-like sub-feature of a PLACE (a harbour's mouth, a valley's head) falls between two rules: the object-component PartOf of \"car engine\" and the geography rule that a place inside a place is LocatedIn and never PartOf — the instruction set does not say which head carries it"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form for the locative NP is an unfused (Member sk_mouth_1 mouth) with its own (Member sk_harbor_1 harbor) and a link between them — PartOf by the car-engine rule, though the geography-containment rule arguably claims it, which is the new gap above — and (Inheritance sea_water water) is simply dropped, sea_water_store keeping only its head genus.",
+    "notes": "Source for \"from the deep ebb\", the two-atom split of \"deep ebb\", LocatedIn for the containment \"at\", the Agent subject, and the tenseless habitual present are all correct; attaching the at-PP to the ebb rather than the drawing event is a licensed single reading."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000315",
+   "sentence": "Three stone cisterns at the back of Cauldron Hall hold the sea-water.",
+   "parse": [
+    "(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: back_type (Member sk_back_1 back) (STV 1.0 0.99))",
+    "(: back_partof (PartOf sk_back_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: cistern_genus (Inheritance stone_cistern cistern) (STV 1.0 0.99))",
+    "(: cistern_group (GroupOf sk_group_1 stone_cistern) (STV 1.0 0.99))",
+    "(: cistern_count (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+    "(: cistern_loc (LocatedIn sk_group_1 sk_back_1) (STV 1.0 0.99))",
+    "(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: seawater_type (Member sk_seawater_1 sea_water) (STV 1.0 0.99))",
+    "(: hold_event (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: hold_agent (Agent sk_hold_1 sk_group_1) (STV 1.0 0.99))",
+    "(: hold_theme (Theme sk_hold_1 sk_seawater_1) (STV 1.0 0.99))",
+    "(: hold_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_hold $x) hold) (Agent (sk_hold $x) $x) (Theme (sk_hold $x) sk_seawater_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000315",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite MASS object shared across a per-member distribution rule - statement 13 makes each of the three cisterns hold the whole sk_seawater_1, whereas the sentence says the three hold it between them; the instruction set has no portion-of-the-mass form for a distributed shared object"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Agent for the stative transitive 'hold', the suppressed noun-modifier genus on stone_cistern and sea_water, the name-internal kind atom for Cauldron Hall, and LocatedIn for 'at' are all correct; minor: the witness is sk_seawater_1 while its class is sea_water, where the sk_<class>_<n> convention gives sk_sea_water_1."
+   },
+   "adjudication": null
+  }
+ ]
+}

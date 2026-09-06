@@ -1,0 +1,6 @@
+(: houses_grp (GroupOf sk_group_1 house) (STV 1.0 0.99))
+(: houses_have (Member sk_have_1 have) (STV 1.0 0.99))
+(: houses_have_holder (Holder sk_have_1 sk_group_1) (STV 1.0 0.99))
+(: houses_have_theme (Theme sk_have_1 slate_roof) (STV 1.0 0.99))
+(: slate_roof_genus (Inheritance slate_roof roof) (STV 1.0 0.99))
+(: houses_have_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) slate_roof))) (STV 1.0 0.9))

@@ -1,0 +1,9 @@
+{"id": "lore-000049", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "\"copper\" is a noun sitting in front of another noun, not a material adjective, so Compound concepts' determined rule bars the modifier genus exactly as it bars `steel_beam` -> `steel` (the exposed material case is the adjective `wooden`), and the atom additionally asserts the falsehood that a copper cauldron is a kind of copper."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "The compliant form emits only the head genus `(Inheritance copper_cauldron cauldron)` and no modifier genus at all — the noun-modifier bar leaves `copper` inside the fused symbol.",
+ "notes": "Everything else conforms: the multi-word name as one opaque symbol plus a separate kind atom, `Agent` on the stative transitive \"holds\", and group + `Cardinality 3` with the head genus on the counted object."}

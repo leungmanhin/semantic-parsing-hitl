@@ -1,0 +1,2 @@
+(: sw_genus (Inheritance sea_water water) (STV 1.0 0.99))
+(: boiled_sw_no_serve (Implication (And (Member $x sea_water) (Member $x boiled)) (And (Member (sk_serve $x) serve) (Experiencer (sk_serve $x) $x) (For (sk_serve $x) (sk_distillation $x)) (Member (sk_distillation $x) distillation) (Ordinal (sk_distillation $x) 2 distillation))) (STV 0.0 0.9))

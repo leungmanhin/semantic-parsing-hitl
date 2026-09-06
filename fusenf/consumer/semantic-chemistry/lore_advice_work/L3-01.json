@@ -1,0 +1,215 @@
+{
+ "id": "L3-01",
+ "rule": "III — The Council",
+ "texts": [
+  "The Council of Keepers has seven elders.",
+  "The Council appoints new members by consensus.",
+  "A Council member serves for life.",
+  "A Council member may retire.",
+  "The current Council includes Meren Tallowhand, Old Vesh, Brindle Coombe, Sailsworn, Aelis Brae, Norren, and Wynne Coombe.",
+  "Wynne Coombe is Brindle Coombe's cousin."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000206",
+   "sentence": "The Council of Keepers has seven elders.",
+   "parse": [
+    "(: cok_name (Name council_of_keepers \"Council of Keepers\") (STV 1.0 0.99))",
+    "(: cok_kind (Member council_of_keepers council) (STV 1.0 0.99))",
+    "(: have_ev (Member sk_have_1 have) (STV 1.0 0.99))",
+    "(: have_holder (Holder sk_have_1 council_of_keepers) (STV 1.0 0.99))",
+    "(: have_theme (Theme sk_have_1 sk_group_1) (STV 1.0 0.99))",
+    "(: elder_grp (GroupOf sk_group_1 elder) (STV 1.0 0.99))",
+    "(: elder_card (Cardinality sk_group_1 7) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000206",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name-hood is correctly signalled (the capitalized run exceeds the bare class word 'Council'), the kind word inside the name fills one ordinary type atom, and the multi-word name carries no modifier genus for 'Keepers'. Bare present 'has' correctly takes no status atom, and the counted plural object rides the group without a per-member rule since 'have' does not distribute over the elders."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000207",
+   "sentence": "The Council appoints new members by consensus.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_appoint (Member sk_appoint_1 appoint) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_appoint_1 sk_council_1) (STV 1.0 0.99))",
+    "(: members_grp (GroupOf sk_group_1 member) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_appoint_1 sk_group_1) (STV 1.0 0.99))",
+    "(: members_new_rule (Implication (PartOf $x sk_group_1) (Member $x new)) (STV 1.0 0.9))",
+    "(: e_instr (Instrument sk_appoint_1 consensus) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000207",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "method/procedure 'by'-PP on an event ('appoints ... by consensus'): Manner is specified for adverbs and Instrument for a tool, substance or conduit (never abstract), while the preposition-named oblique is licensed for aboutness/direction PPs - no head is specified for an abstract procedure answering 'how'",
+     "descriptive adjective on a non-specific bare-plural object in a habitual clause ('appoints new members'): the bare kind filler is prescribed for non-specific/kind-level objects but offers no slot for the modifier, while the plural descriptive-modifier distribution rule requires a group witness, which asserts a specific set the habitual clause does not"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The group-witness route (statements 3-5) was evidently taken so 'new' could ride the plural descriptive-modifier distribution rule, at the cost of the bare-kind-filler prescription for a non-specific object in an unmarked habitual clause. 'The Council' correctly stays a common-noun witness with no Name atom, and the absence of a tense/status atom is correct for the habitual reading."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000208",
+   "sentence": "A Council member serves for life.",
+   "parse": [
+    "(: cm_genus (Inheritance council_member member) (STV 1.0 0.99))",
+    "(: e_member (Member sk_member_1 council_member) (STV 1.0 0.99))",
+    "(: e_serve (Member sk_serve_1 serve) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_serve_1 sk_member_1) (STV 1.0 0.99))",
+    "(: e_dur (Duration sk_serve_1 life) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000208",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "unmeasured duration PP ('serves for life') — the Duration head is defined only for a duration ADVERB ('briefly', 'momentarily') with a surface-adverb filler, and the measured form (Measure e duration <n> <unit>) requires a stated number and unit, so a lexical/unbounded 'for X' extent has no licensed carrier",
+     "capitalized common noun in PREMODIFIER position ('Council member') — the proper-noun-premodifier rule (parse the head normally + opaque Possession) requires the modifier to be a proper noun, while the capitalized-common-noun default is explicitly scoped to 'the referent's only label' (referential use), so neither rule settles whether Council fuses into a compound kind or names a separate entity"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite subject with a verbal predicate correctly stays a witness rather than a generic rule, no status atom is correct for the habitual present, and the noun modifier is correctly left unexposed on council_member (genus only). (Duration sk_serve_1 life) fills that head's surface-adverb slot with a noun, which is the improvisation the first gap forced."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000209",
+   "sentence": "A Council member may retire.",
+   "parse": [
+    "(: cm_genus (Inheritance council_member member) (STV 1.0 0.99))",
+    "(: cm_permit (Inheritance council_member (permitted retire)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000209",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized common-noun label in PREMODIFIER position (\"a Council member\"): the instruction set fixes the proper-noun premodifier route (head parsed normally + opaque Possession + Name) and the ordinary noun-noun compound route (fuse + genus, noun modifier unexposed), and it makes a bare capitalized kind-word a common noun only when it is 'the referent's only label' — it does not say which route applies when that label premodifies another common noun"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The kind-level reified-deontic form is right for 'may' over an indefinite kind subject (Existential defers modal predications to the deontic-norm section), and the plain-norm TV 1.0/0.99 matches. Genus emitted, noun modifier 'council' correctly left unexposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000210",
+   "sentence": "The current Council includes Meren Tallowhand, Old Vesh, Brindle Coombe, Sailsworn, Aelis Brae, Norren, and Wynne Coombe.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: council_current (Member sk_council_1 current) (STV 1.0 0.99))",
+    "(: meren_partof (PartOf meren_tallowhand sk_council_1) (STV 1.0 0.99))",
+    "(: meren_name (Name meren_tallowhand \"Meren Tallowhand\") (STV 1.0 0.99))",
+    "(: oldvesh_partof (PartOf old_vesh sk_council_1) (STV 1.0 0.99))",
+    "(: oldvesh_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+    "(: brindle_partof (PartOf brindle_coombe sk_council_1) (STV 1.0 0.99))",
+    "(: brindle_name (Name brindle_coombe \"Brindle Coombe\") (STV 1.0 0.99))",
+    "(: sailsworn_partof (PartOf sailsworn sk_council_1) (STV 1.0 0.99))",
+    "(: sailsworn_name (Name sailsworn \"Sailsworn\") (STV 1.0 0.99))",
+    "(: aelis_partof (PartOf aelis_brae sk_council_1) (STV 1.0 0.99))",
+    "(: aelis_name (Name aelis_brae \"Aelis Brae\") (STV 1.0 0.99))",
+    "(: norren_partof (PartOf norren sk_council_1) (STV 1.0 0.99))",
+    "(: norren_name (Name norren \"Norren\") (STV 1.0 0.99))",
+    "(: wynne_partof (PartOf wynne_coombe sk_council_1) (STV 1.0 0.99))",
+    "(: wynne_name (Name wynne_coombe \"Wynne Coombe\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000210",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The matrix verb \"includes\" is never reified — there is no `include` event with the Council as Agent and the seven named people as Themes — so a verbal clause is rendered entirely as structural `PartOf` links, which *Two kinds of clause* (\"any other verb, action or state ... reify an event\") and the stative-transitive rule (\"the manifest lists two pallets\" still takes `Agent`) do not license; the group machinery's \"link any named members with `PartOf`\" is what you emit when minting a group, not a translation of a membership verb."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "membership / containment verbs (\"include\", \"comprise\", \"consist of\", \"contain\", \"number among\") — the instruction set grants a no-event static route only to locative/postural verbs (*Where a THING is*) and to light verbs over event-nouns, and never says whether a membership verb reifies an ordinary event or routes onto the group machinery's `PartOf`"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is right: \"the Council\" is a capitalized bare class word so it stays a common noun with no `Name`, the lowercase incidental adjective \"current\" correctly stays its own `Member` atom rather than fusing, the collective noun needs no `GroupOf`, and all seven multi-word names are single opaque symbols with exactly one `Name` each and no invented `person` typing."
+   },
+   "adjudication": {
+    "id": "lore-000210",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"includes\" is a non-copular verb, and *Two kinds of clause* makes the dichotomy exhaustive (\"any other verb, action or state ... reify an event\") with only two no-event carve-outs — bare position clauses and light verbs over event-nouns — neither of which reaches a membership verb; the nearest legislated analogue, the stative transitive \"the manifest lists two pallets\", is given as an event that still takes an Agent, so the matrix verb here is left with no trace in the KB at all."
+     }
+    ],
+    "gaps_confirmed": [
+     "membership / containment verbs (include, comprise, consist of, contain, number among) have no legislated static route: the default dichotomy forces an event, while the group machinery's \"link any named members with PartOf\" is specified only for minting a group, never as the rendering of a stated membership predication"
+    ],
+    "new_gaps": [
+     "a long coordinated object list under a containment predicate: the distributive default replicates the whole predication once per conjunct (seven near-identical include events here), and no collective/aggregate exemption is legislated for a predicate whose object list is one enumeration rather than seven separate actions"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form reifies the clause — (Member sk_include_N include) (Agent sk_include_N sk_council_1) (Theme sk_include_N <named member>), one event per coordinated conjunct per the distributive default and no status atom (unmarked present = the dispositional default) — keeping the council typing, the 'current' property atom and the seven Name atoms; the PartOf links translate no word of this clause and would go.",
+    "notes": "Nothing outside the matrix verb is wrong: 'the Council' is a bare capitalized class word so it stays a common noun with no Name, 'current' correctly stays its own Member atom on the witness (incidental description, not a fusing classifier), the collective noun needs no GroupOf, and no person typing is invented for the seven names."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000211",
+   "sentence": "Wynne Coombe is Brindle Coombe's cousin.",
+   "parse": [
+    "(: wynne_name (Name wynne_coombe \"Wynne Coombe\") (STV 1.0 0.99))",
+    "(: brindle_name (Name brindle_coombe \"Brindle Coombe\") (STV 1.0 0.99))",
+    "(: wynne_cousin (Member wynne_coombe cousin) (STV 1.0 0.99))",
+    "(: wynne_poss (Possession wynne_coombe brindle_coombe) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000211",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Follows the possessive/genitive NP route exactly - the kinship example 'her sister' (Member typing + opaque Possession, possessed first) - with both multi-word names as single opaque symbols and no invented kind atom for Brindle Coombe. The mutual force of 'cousin' goes unrecorded, but the Symmetric-tag route is specified for copular wordings ('are siblings'), not the genitive, so that is a doctrine boundary rather than a defect."
+   },
+   "adjudication": null
+  }
+ ]
+}

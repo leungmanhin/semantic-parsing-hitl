@@ -1,0 +1,232 @@
+{
+ "id": "L3-08",
+ "rule": "III — Authority",
+ "texts": [
+  "The Council does not rule on private matters.",
+  "Village custom settles marriages and fishing disputes.",
+  "The Council decides all Keeper matters.",
+  "The Council assigns stations.",
+  "The Council decides apprentice investitures.",
+  "The Council may discipline Keepers.",
+  "The Council may order a Keeper to burn wintergloss.",
+  "The Council rarely orders a Keeper to burn wintergloss."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000243",
+   "sentence": "The Council does not rule on private matters.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: pm_genus (Inheritance private_matter matter) (STV 1.0 0.99))",
+    "(: pm_mod (Inheritance private_matter private) (STV 1.0 0.99))",
+    "(: council_not_rule (And (Member sk_rule_1 rule) (Agent sk_rule_1 sk_council_1) (On sk_rule_1 private_matter)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000243",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Council' takes the capitalized-common-noun default (typing, no Name), the definite subject's typing projects outside the strength-0 bundle, and 'rule on' is correctly the prepositional-verb On oblique with a bare kind filler for the non-specific plural object. Fusing 'private matter' is a judgment call under the adjective+noun rule, but 'private' passes the predication test so the exposed modifier genus is licensed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000244",
+   "sentence": "Village custom settles marriages and fishing disputes.",
+   "parse": [
+    "(: vc_genus (Inheritance village_custom custom) (STV 1.0 0.99))",
+    "(: fd_genus (Inheritance fishing_dispute dispute) (STV 1.0 0.99))",
+    "(: settle_marriage (Settle village_custom marriage) (STV 0.9 0.9))",
+    "(: settle_fishing_dispute (Settle village_custom fishing_dispute) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000244",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare kind-denoting NPs on both sides trigger the relational-generic kind relation, so Settle is licensed as a lexical kind-level head at 0.9/0.9, and the coordinated object distributes into two atoms. Both compounds emit the head genus with their noun modifiers correctly unexposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000245",
+   "sentence": "The Council decides all Keeper matters.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: km_genus (Inheritance keeper_matter matter) (STV 1.0 0.99))",
+    "(: decide_rule (Implication (Member $x keeper_matter) (And (Member (sk_decide $x) decide) (Agent (sk_decide $x) sk_council_1) (Theme (sk_decide $x) $x))) (STV 1.0 0.9))",
+    "(: decide_q (QuantifierPhrase keeper_matter decide \"all\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000245",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The explicit universal over the object becomes a distributing rule ranging over the kind-naming plural with the singular collective subject held as a shared constant (the shared-existential-over-universal shape), strength 1.0 / confidence 0.9 with the mandatory QuantifierPhrase companion naming the quantified kind and verb lemma. Compound genus for keeper_matter with the noun modifier unexposed, no capability atom for the merely-referring nominalization 'keeper', 'the Council' as a common-noun label with no Name atom, Theme for an evaluated/resolved object, and no tense atom on the habitual present are all correct."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000246",
+   "sentence": "The Council assigns stations.",
+   "parse": [
+    "(: council_ty (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: assign_ev (Member sk_assign_1 assign) (STV 1.0 0.99))",
+    "(: assign_ag (Agent sk_assign_1 sk_council_1) (STV 1.0 0.99))",
+    "(: assign_th (Theme sk_assign_1 station) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000246",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" correctly takes the capitalized-common-noun default (no Name atom) and, as a singular collective, a plain event with no distribution rule; bare-plural \"stations\" stays a bare kind filler in this habitual clause, and the unmarked present correctly carries no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000247",
+   "sentence": "The Council decides apprentice investitures.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: inv_gen (Inheritance apprentice_investiture investiture) (STV 1.0 0.99))",
+    "(: dec_ev (Member sk_decide_1 decide) (STV 1.0 0.99))",
+    "(: dec_ag (Agent sk_decide_1 sk_council_1) (STV 1.0 0.99))",
+    "(: dec_th (Theme sk_decide_1 apprentice_investiture) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000247",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Council' correctly stays a capitalized common noun with no Name atom, and the bare-plural object correctly stays the bare kind filler apprentice_investiture with its genus in this habitual clause."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000248",
+   "sentence": "The Council may discipline Keepers.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: disc_ev (Member sk_discipline_1 discipline) (STV 1.0 0.99))",
+    "(: disc_ag (Agent sk_discipline_1 sk_council_1) (STV 1.0 0.99))",
+    "(: disc_th (Theme sk_discipline_1 keeper) (STV 1.0 0.99))",
+    "(: disc_perm (Permitted sk_discipline_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000248",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare, article-less capitalized plural kind word used as a generic object ('discipline Keepers') - the instruction set legislates the definite capitalized plural referring as a name ('the Wrens' -> Name-only individual) and the singular capitalized label ('the Assembly' -> common noun by default), but gives no test for this case"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Deontic 'may' on a definite individual subject correctly keeps the event form (Permitted e) rather than the kind-level reified property, and correctly carries no tense atom beside the modal."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000249",
+   "sentence": "The Council may order a Keeper to burn wintergloss.",
+   "parse": [
+    "(: lore249_council (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: lore249_order (Member sk_order_1 order) (STV 1.0 0.99))",
+    "(: lore249_order_ag (Agent sk_order_1 sk_council_1) (STV 1.0 0.99))",
+    "(: lore249_order_th (Theme sk_order_1 sk_burn_1) (STV 1.0 0.99))",
+    "(: lore249_order_perm (Permitted sk_order_1) (STV 1.0 0.99))",
+    "(: lore249_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: lore249_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: lore249_burn_ag (Agent sk_burn_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: lore249_burn_pat (Patient sk_burn_1 wintergloss) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000249",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Object-control \"order a Keeper to burn\" takes the non-finite-complement pattern (complement reified at top level, attached by `Theme`, no tense/status of its own, controller copied in as the burn event's `Agent`), the specific-act deontic \"may\" gives `(Permitted <matrix event>)` at 1.0/0.99, and bare mass \"wintergloss\" stays a constant. Leaving the controller only inside the complement follows the causation-flavored-verb pattern the control-verb bullet points to."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000250",
+   "sentence": "The Council rarely orders a Keeper to burn wintergloss.",
+   "parse": [
+    "(: council_kind (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: keeper_kind (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: burn_ag (Agent sk_burn_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: burn_pat (Patient sk_burn_1 wintergloss) (STV 1.0 0.99))",
+    "(: order_bundle (And (Member sk_order_1 order) (Agent sk_order_1 sk_council_1) (Theme sk_order_1 sk_burn_1)) (STV 0.1 0.9))",
+    "(: order_q (QuantifierPhrase council order \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000250",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a frequency adverb ('rarely') on a habitual whose subject is a specific individual rather than a kind: the instruction set defines the strength channel only as 'the rule's (or, for a flat generic, the statement's) strength', and gives no carrier for a sub-1.0 strength over a positive multi-atom event (the only defined (And ...) bundles are the strength-0.0 denial and the disjunctive-clause fact)",
+     "QuantifierPhrase's slot shape (<kind> <verb-lemma>) has no form for a frequency adverb whose range is one specific individual's occasions, so the companion has to name a bare kind the parse quantifies nowhere",
+     "an object-control verb of communication ('orders X to V'): the control rule says only to copy the controller's role into the complement, and the causative rule keeps the object out of the matrix, so the addressee Recipient relation the verb also states has no stated home"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The complement burn event's atoms sit at top level at (STV 1.0 0.99) while only the ordering carries the 0.1 'rarely' strength; that is what the control-verb rule mandates ('reify the complement event at top level ... asserts or denies nothing about occurrence'), but it reads as a full-strength keeper-burns-wintergloss fact. All other decidable choices track doctrine: 'The Council' as a capitalized common-noun label with no Name atom, indefinite 'a Keeper' as the burn event's Agent, bare 'wintergloss' as a non-specific Patient, and no tense atoms anywhere."
+   },
+   "adjudication": null
+  }
+ ]
+}

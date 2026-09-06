@@ -1,0 +1,287 @@
+{
+ "id": "L1-08",
+ "rule": "I — The Watch",
+ "texts": [
+  "The Watch is a small square stone hall in the center of the village.",
+  "The Watch holds the Council's ledger-room.",
+  "The Watch holds the village's feather store.",
+  "The feather store is a sealed bin in the floor of the ledger-room.",
+  "An iron lid closes the feather bin.",
+  "The Council holds keys to the feather bin.",
+  "The feather-collectors hold keys to the feather bin.",
+  "The Council sits at a long oak table in the Watch."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000054",
+   "sentence": "The Watch is a small square stone hall in the center of the village.",
+   "parse": [
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: watch_hall (Member sk_watch_1 stone_hall) (STV 1.0 0.99))",
+    "(: hall_genus (Inheritance stone_hall hall) (STV 1.0 0.99))",
+    "(: watch_small (Member sk_watch_1 small) (STV 1.0 0.99))",
+    "(: watch_square (Member sk_watch_1 square) (STV 1.0 0.99))",
+    "(: center_type (Member sk_center_1 center) (STV 1.0 0.99))",
+    "(: center_loc (LocatedIn sk_center_1 sk_village_1) (STV 1.0 0.99))",
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: watch_loc (LocatedIn sk_watch_1 sk_center_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000054",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "capitalized bare-class-word label ('the Watch') whose kind is stated by a DIFFERENT word in the COPULAR PREDICATE rather than inside the NP: the name-hood trigger 'or a different word states the kind' is illustrated only NP-internally ('the Brindle estuary'), so it is undecidable whether 'The Watch is a ... hall' should flip the label to a Name-only individual, or stay the common-noun default that yields the type atom (Member sk_watch_1 watch)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "stone_hall fuses with genus hall and no modifier genus (the steel_beam part-of-speech line), while descriptive 'small' and 'square' stay separate Member atoms — both correct, as is the untensed present copular. 'the center of the village' as place-inside-place LocatedIn follows 'a place inside a place is LocatedIn, never PartOf'."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000055",
+   "sentence": "The Watch holds the Council's ledger-room.",
+   "parse": [
+    "(: e_watch (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: e_council (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_ledger_room (Member sk_ledger_room_1 ledger_room) (STV 1.0 0.99))",
+    "(: e_ledger_genus (Inheritance ledger_room room) (STV 1.0 0.99))",
+    "(: e_ledger_poss (Possession sk_ledger_room_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: e_hold_ag (Agent sk_hold_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: e_hold_th (Theme sk_hold_1 sk_ledger_room_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000055",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Agent on 'holds' is what the stative-transitive rule prescribes ('the tank holds forty litres'), Holder being reserved for own/have/lack; the genitive takes Possession rather than PartOf since a ledger-room is not a component of a council, and the simple present correctly gets no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000056",
+   "sentence": "The Watch holds the village's feather store.",
+   "parse": [
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_hold_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_hold_1 sk_store_1) (STV 1.0 0.99))",
+    "(: store_type (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: store_poss (Possession sk_store_1 sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000056",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Watch' correctly takes the capitalized-common-noun default (witness + Member, no Name), and 'feather store' fuses with its head genus only (noun modifier not exposed). Agent rather than Holder for 'holds' follows the instruction set as written — the Holder class is bounded to own/have/lack and the prompt's own stative-transitive example ('the tank holds forty litres') assigns Agent — though the custody sense here sits at that boundary."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000057",
+   "sentence": "The feather store is a sealed bin in the floor of the ledger-room.",
+   "parse": [
+    "(: fs_type (Member sk_feather_store_1 feather_store) (STV 1.0 0.99))",
+    "(: fs_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: fs_bin (Member sk_feather_store_1 bin) (STV 1.0 0.99))",
+    "(: fs_sealed (Member sk_feather_store_1 sealed) (STV 1.0 0.99))",
+    "(: fs_floor_type (Member sk_floor_1 floor) (STV 1.0 0.99))",
+    "(: fs_floor_partof (PartOf sk_floor_1 sk_ledger_room_1) (STV 1.0 0.99))",
+    "(: fs_lr_type (Member sk_ledger_room_1 ledger_room) (STV 1.0 0.99))",
+    "(: fs_lr_genus (Inheritance ledger_room room) (STV 1.0 0.99))",
+    "(: fs_located (LocatedIn sk_feather_store_1 sk_floor_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000057",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'sealed bin' correctly splits into two atoms (incidental description, not a fused kind) with the participial modifier kept as the adjective 'sealed', and 'the floor of the ledger-room' takes PartOf as a component genitive rather than LocatedIn. The copular locative 'in' puts LocatedIn on the entity with no event minted, as the bare-position rule requires."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000058",
+   "sentence": "An iron lid closes the feather bin.",
+   "parse": [
+    "(: e1_lid (Member sk_iron_lid_1 iron_lid) (STV 1.0 0.99))",
+    "(: e1_lid_genus (Inheritance iron_lid lid) (STV 1.0 0.99))",
+    "(: e1_bin (Member sk_feather_bin_1 feather_bin) (STV 1.0 0.99))",
+    "(: e1_bin_genus (Inheritance feather_bin bin) (STV 1.0 0.99))",
+    "(: e1_close (Member sk_close_1 close) (STV 1.0 0.99))",
+    "(: e1_agent (Agent sk_close_1 sk_iron_lid_1) (STV 1.0 0.99))",
+    "(: e1_patient (Patient sk_close_1 sk_feather_bin_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000058",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both compounds fuse as classifier+head with the head genus only, and `iron` is correctly withheld as a noun modifier per the `steel_beam` line. The inanimate transitive subject stays Agent, the state-changing object takes Patient, and the bare simple present correctly gets no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000059",
+   "sentence": "The Council holds keys to the feather bin.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: hold_agent (Agent sk_hold_1 sk_council_1) (STV 1.0 0.99))",
+    "(: hold_theme (Theme sk_hold_1 sk_keys_1) (STV 1.0 0.99))",
+    "(: keys_group (GroupOf sk_keys_1 key) (STV 1.0 0.99))",
+    "(: keys_to_bin (To sk_keys_1 sk_bin_1) (STV 1.0 0.99))",
+    "(: bin_type (Member sk_bin_1 feather_bin) (STV 1.0 0.99))",
+    "(: bin_genus (Inheritance feather_bin bin) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000059",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare-plural direct object in a stative/habitual present clause ('holds keys to the feather bin'): the bare-plural-object rule covers only the episodic case (existential group witness) versus non-specific/kind-level objects (bare kind filler), leaving a PP-restricted bare plural in a habitual clause undecided between (GroupOf sk_keys_1 key) and a bare 'key' filler"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Agent for 'holds' is licensed as written: the possession class is the closed own/have/lack list and the prompt's own 'the tank holds forty litres' example keeps Agent, even though the custody sense here reads like Holder. 'The Council' correctly gets no Name atom (capitalized common noun as sole label) and no distribution rule (singular collective)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000060",
+   "sentence": "The feather-collectors hold keys to the feather bin.",
+   "parse": [
+    "(: l60_fc_can (Inheritance feather_collector (can collect)) (STV 1.0 0.99))",
+    "(: l60_fc_rel (Collect feather_collector feather) (STV 1.0 0.99))",
+    "(: l60_fc_group (GroupOf sk_group_1 feather_collector) (STV 1.0 0.99))",
+    "(: l60_bin_type (Member sk_bin_1 feather_bin) (STV 1.0 0.99))",
+    "(: l60_bin_genus (Inheritance feather_bin bin) (STV 1.0 0.99))",
+    "(: l60_keys_group (GroupOf sk_keys_1 key) (STV 1.0 0.99))",
+    "(: l60_keys_to_bin (To sk_keys_1 sk_bin_1) (STV 1.0 0.99))",
+    "(: l60_hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: l60_hold_agent (Agent sk_hold_1 sk_group_1) (STV 1.0 0.99))",
+    "(: l60_hold_theme (Theme sk_hold_1 sk_keys_1) (STV 1.0 0.99))",
+    "(: l60_hold_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_hold $x) hold) (Agent (sk_hold $x) $x) (Theme (sk_hold $x) (sk_key $x)) (Member (sk_key $x) key) (To (sk_key $x) sk_bin_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000060",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 10,
+      "issue": "The per-member rule gives each collector a freshly minted SINGULAR key (sk_key $x) with no link to the sk_keys_1 group the group-level event uses, so the plural object 'keys' is silently singularized per member and the group's keys and the members' keys become unrelated entities."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "whether an agent-nominalization compound also takes the ordinary compound head-noun genus — the egg_layer worked example emits only (Inheritance egg_layer (can lay)) + (Lay egg_layer egg) with no (Inheritance egg_layer layer), while Compound concepts says the head genus is 'always emitted either way'; the parse follows the example and omits (Inheritance feather_collector collector)",
+     "possession-sense 'hold' ('hold keys to the bin' = have custody of) — Holder is restricted to 'own / have / lack' and 'the tank holds forty litres' is exemplified as an Agent stative transitive, so the possession sense has no stated routing and the seeded Holder/Theme -> Possession derivation cannot fire off the Agent form the parse chose",
+     "a bare-plural object under a per-member distribution rule — the instruction set specifies a per-binding Skolem GROUP only for a stated number under a universal ('every student read three books'), not for an unnumbered plural object"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite-plural group witness, the feather_bin genus with the noun modifier correctly unexposed, and the entity-attached (To keys bin) argument PP are all right, as is the group event + per-member rule pairing for a distributive predicate. (Collect feather_collector feather) is the licensed egg_layer-style kind relation on a symbol fused from the surface."
+   },
+   "adjudication": {
+    "id": "lore-000060",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The plural 'keys' is carried by the group-level (GroupOf sk_keys_1 key) + (Theme sk_hold_1 sk_keys_1) emission that the same doctrine mandates alongside the rule, the per-binding (sk_key $x) is the licensed dependent-Skolem form for a non-shared object under a universal and every atom it mints is true (a collector holding keys to the bin holds a key to the bin), and the group-symbol vs member-symbol split objected to is the same one the sanctioned 'Both dogs barked' pattern already has between sk_bark_1 and (sk_bark $x) — this is the reviewer's own third gap, not a parse defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "whether a compound agent-nominalization fused from the surface also takes the ordinary compound head-noun genus: Compound concepts says the genus is 'always emitted either way', while the egg_layer worked example emits only the capability and kind-relation atoms",
+     "possession-sense 'hold' (have custody of keys) has no stated routing: Holder is restricted to own/have/lack and 'the tank holds forty litres' is exemplified as an Agent stative transitive, so the seeded Holder/Theme to Possession derivation cannot fire off the licensed Agent form",
+     "no stated form for an unnumbered bare-plural object under a per-member distribution rule — the per-binding Skolem group is specified only for a stated number under a universal ('every student read three books')"
+    ],
+    "new_gaps": [
+     "no licensed way to relate a distributed member's Skolem-minted object to the group-level object witness: (sk_key $x) cannot be tied to sk_keys_1 by PartOf/SubsetOf inside a rule conclusion, so the members' keys and the group's keys stay separate referents and a query cannot chain from one to the other"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The definite-plural group witness, the feather_bin genus with its noun modifier correctly unexposed, the entity-attached (To sk_keys_1 sk_bin_1) argument PP, and the group-event-plus-per-member-rule pairing for a distributive predicate are all licensed, as is the surface-fused (Collect feather_collector feather) kind relation."
+   }
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000061",
+   "sentence": "The Council sits at a long oak table in the Watch.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: table_type (Member sk_table_1 oak_table) (STV 1.0 0.99))",
+    "(: table_genus (Inheritance oak_table table) (STV 1.0 0.99))",
+    "(: table_long (Member sk_table_1 long) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: table_loc (LocatedIn sk_table_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: council_loc (LocatedIn sk_council_1 sk_table_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000061",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a place PP stacked on a non-place entity NP inside a bare position clause ('at a table in the Watch'): the instruction set fixes the stacked-PP rule only for a second 'in <Place>' on a place NP, and with no event minted there is no stated default for whether the PP attaches to the object NP or to the positioned subject"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare postural 'sits' correctly mints no event, and 'at' is in the instruction set's containment list so LocatedIn is the licensed head despite reading oddly for a table; 'the Council' / 'the Watch' correctly take no Name as capitalized bare-class labels, and 'oak table' fuses with the head genus only, with descriptive 'long' split off."
+   },
+   "adjudication": null
+  }
+ ]
+}

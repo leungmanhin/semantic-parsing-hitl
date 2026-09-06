@@ -1,0 +1,95 @@
+{
+ "id": "L2-08",
+ "rule": "II — Pell",
+ "texts": [
+  "Pell is Coraline Ash's senior peer.",
+  "Pell tends a Cliff Path station near the Hollows junction.",
+  "Pell is patient."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000144",
+   "sentence": "Pell is Coraline Ash's senior peer.",
+   "parse": [
+    "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+    "(: coraline_ash_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+    "(: senior_peer_genus (Inheritance senior_peer peer) (STV 1.0 0.99))",
+    "(: senior_peer_mod (Inheritance senior_peer senior) (STV 1.0 0.99))",
+    "(: pell_peer (Member pell senior_peer) (STV 1.0 0.99))",
+    "(: pell_peer_poss (Possession pell coraline_ash) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000144",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the relational/comparative sense of a rank adjective inside a genitive predicate ('X is Y's SENIOR peer' = senior relative to Y) has no carrier: the compound route records only the absolute property (Inheritance senior_peer senior) plus an opaque Possession, so the seniority ordering between Pell and Coraline Ash is not recoverable"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "senior_peer fuses as a role title with both the head genus and the gradable-modifier genus, per the senior_contractor rule, and the copular predicate on an individual correctly takes Member; the genitive is the mandated possessed-first Possession, and no kind atom is invented for Coraline Ash. The 'senior' modifier breaks any symmetry, so the Symmetric-tagged mutual-relation route correctly does not apply here."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000145",
+   "sentence": "Pell tends a Cliff Path station near the Hollows junction.",
+   "parse": [
+    "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: station_poss (Possession sk_station_1 cliff_path) (STV 1.0 0.99))",
+    "(: cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: junction_type (Member sk_junction_1 junction) (STV 1.0 0.99))",
+    "(: junction_poss (Possession sk_junction_1 hollows) (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: station_near (Near sk_station_1 sk_junction_1) (STV 1.0 0.99))",
+    "(: e_tend (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: e_tend_ag (Agent sk_tend_1 pell) (STV 1.0 0.99))",
+    "(: e_tend_th (Theme sk_tend_1 sk_station_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000145",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both proper-noun premodifiers take the Possession + Name route with their head nouns typed normally, and \"near\" keeps its surface entity-attached head. The PP is attached to the station rather than the tending event, a favored rather than tied attachment, so the single reading is correct; \"tend\" taking Theme is the unclear-test default."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000146",
+   "sentence": "Pell is patient.",
+   "parse": [
+    "(: e5_name (Name pell \"Pell\") (STV 1.0 0.99))",
+    "(: e5_patient (Member pell patient) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000146",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Individual copular predication with the mandatory Name atom, individual-fact confidence 0.99, and no invented type atom for Pell."
+   },
+   "adjudication": null
+  }
+ ]
+}

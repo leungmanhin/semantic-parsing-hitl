@@ -1,0 +1,357 @@
+{
+ "id": "L7-04",
+ "rule": "VII — The cold-threshold wind",
+ "texts": [
+  "The cold-threshold wind is a cutting north wind.",
+  "The cold-threshold wind comes off the Cold Sea on clear winter nights.",
+  "The cold-threshold wind chills standing water quickly.",
+  "The cold-threshold wind extinguishes unprotected lanterns.",
+  "The cold-threshold wind blows between the first hard frost and the spring equinox.",
+  "Salt-bloom in mire-essence slows the burn.",
+  "A salt-bloomed lantern survives a cold-threshold night.",
+  "An unprepared Cliff Path lantern dies on a cold-threshold night.",
+  "The cold-threshold wind does not reach the Northcove."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000444",
+   "sentence": "The cold-threshold wind is a cutting north wind.",
+   "parse": [
+    "(: cold_threshold_wind_genus (Inheritance cold_threshold_wind wind) (STV 1.0 0.99))",
+    "(: cutting_north_wind_genus (Inheritance cutting_north_wind wind) (STV 1.0 0.99))",
+    "(: cutting_north_wind_cutting (Inheritance cutting_north_wind cutting) (STV 1.0 0.99))",
+    "(: cutting_north_wind_north (Inheritance cutting_north_wind north) (STV 1.0 0.99))",
+    "(: cold_threshold_is_cutting_north (Inheritance cold_threshold_wind cutting_north_wind) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000444",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "definite-singular generic subject (\"The cold-threshold wind is a cutting north wind\"): the instruction set states no rule for when a definite singular NP denotes a KIND (Inheritance on a bare kind symbol) rather than a specific referent (witness + Member) — the definite-description rule says \"picks out a specific thing\" without saying how to tell, and only the \"the dodo is extinct\" KindProperty example touches the definite-generic case"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Fusing \"cutting\" into cutting_north_wind is a judgment call against the \"incidental description\" bar (a dented pail), but the exposed modifier genus (Inheritance cutting_north_wind cutting) preserves the same inheritances either way. Compound handling is otherwise right: genus wind on both compounds, noun-modifier cold_threshold left unexposed, positional north and participial-adjective cutting exposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000445",
+   "sentence": "The cold-threshold wind comes off the Cold Sea on clear winter nights.",
+   "parse": [
+    "(: wind_type (Member sk_wind_1 cold_threshold_wind) (STV 1.0 0.99))",
+    "(: wind_genus (Inheritance cold_threshold_wind wind) (STV 1.0 0.99))",
+    "(: sea_name (Name cold_sea \"Cold Sea\") (STV 1.0 0.99))",
+    "(: sea_kind (Member cold_sea sea) (STV 1.0 0.99))",
+    "(: e_come (Member sk_come_1 come) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_come_1 sk_wind_1) (STV 1.0 0.99))",
+    "(: e_source (Source sk_come_1 cold_sea) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000445",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The temporal restriction 'on clear winter nights' is dropped entirely — not even the licensed day-part 'night' is carried on Time — so the parse asserts unrestrictedly that the wind comes off the Cold Sea, which is the widening that Core patterns forbids ('a stated restriction ... is never silently dropped')."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a habitual occasion restricted by a modified bare-plural day-part NP ('on clear winter nights'): day-parts are covered as bare Time symbols and periodic wordings as Every/TimesPer, but there is no licensed slot for a season modifier ('winter') or a weather condition ('clear') qualifying the recurring occasion, and no clause for the whenever/ConditionalProperty machinery to consume"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is right: definite-singular subject as a typed witness, cold_threshold_wind fused with the head genus only (noun modifier not exposed), Patient for the non-volitional natural-force subject, Source for path 'off', and one Name plus the name-internal kind atom for the Cold Sea."
+   },
+   "adjudication": {
+    "id": "lore-000445",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "*Core patterns* states that a stated restriction 'is never silently dropped — omitting it widens the claim', yet the parse's come/Source bundle carries nothing of 'on clear winter nights' (not even the licensed day-part atom (Time sk_come_1 night)), so it asserts unrestrictedly that the wind comes off the Cold Sea."
+     }
+    ],
+    "gaps_confirmed": [
+     "A habitual occasion restricted by a modified bare-plural day-part NP ('on clear winter nights'): day-parts are bare Time symbols and periodic wordings take Every/TimesPer, but there is no licensed carrier for a season modifier ('winter') or a weather condition ('clear') qualifying the recurring occasion, and no clause for the whenever / ConditionalProperty machinery to consume."
+    ],
+    "new_gaps": [
+     "Since 'clear' and 'winter' have no carrier, carrying only the day-part would still leave the claim unqualified on those dimensions — so the instruction set licenses NO compliant form for this sentence and *Core patterns* forces the whole claim to be withheld. A licensed form would need either an occasion-restrictor slot on a habitual event (condition-state plus season on the recurring occasion) or the whenever/Implication machinery extended to consume an NP adjunct rather than a finite clause."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form must carry the occasion restriction — minimally the licensed day-part (Time sk_come_1 night) — but no licensed carrier exists for 'clear' or for the season 'winter' on a habitual occasion, so no fully compliant form is licensed and *Core patterns* requires leaving the claim out and recording the gap rather than emitting the unrestricted event.",
+    "notes": "The rest of the parse is right: the definite singular subject as a typed witness, cold_threshold_wind with head genus only, Patient for the non-volitional natural-force subject, Source for the path 'off', and one Name plus the separate kind atom for the Cold Sea."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000446",
+   "sentence": "The cold-threshold wind chills standing water quickly.",
+   "parse": [
+    "(: wind_type (Member sk_wind_1 cold_threshold_wind) (STV 1.0 0.99))",
+    "(: wind_genus (Inheritance cold_threshold_wind wind) (STV 1.0 0.99))",
+    "(: water_genus (Inheritance standing_water water) (STV 1.0 0.99))",
+    "(: water_mod (Inheritance standing_water standing) (STV 1.0 0.99))",
+    "(: chill_ev (Member sk_chill_1 chill) (STV 1.0 0.99))",
+    "(: chill_ag (Agent sk_chill_1 sk_wind_1) (STV 1.0 0.99))",
+    "(: chill_pat (Patient sk_chill_1 standing_water) (STV 1.0 0.99))",
+    "(: chill_manner (Manner sk_chill_1 quickly) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000446",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite-singular subject correctly reifies an ordinary event rather than a kind relation (the relational-generic trigger needs bare kind NPs on both sides), the noun modifier 'cold-threshold' is left unexposed while the predicable participial 'standing' is, and unmarked present gets no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000447",
+   "sentence": "The cold-threshold wind extinguishes unprotected lanterns.",
+   "parse": [
+    "(: e1_wind_type (Member sk_wind_1 cold_threshold_wind) (STV 1.0 0.99))",
+    "(: e1_wind_genus (Inheritance cold_threshold_wind wind) (STV 1.0 0.99))",
+    "(: e1_rule (Implication (And (Member $x lantern) (Member $x unprotected)) (And (Member (sk_extinguish $x) extinguish) (Agent (sk_extinguish $x) sk_wind_1) (Patient (sk_extinguish $x) $x))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000447",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The subject is a definite singular, which the instruction set routes to an ordinary status-less (habitual/dispositional) event, but the parse instead builds a universal Implication ranging over the bare-plural object, asserting that this wind extinguishes every unprotected lantern."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an adjectivally-restricted bare-plural object in a non-episodic (habitual/dispositional) clause -- 'extinguishes unprotected lanterns': the prescribed bare kind filler for a non-specific object cannot carry the restrictive modifier, and 'unprotected lantern' is incidental description so it does not fuse into a compound kind"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The compound decomposition (genus `wind`, noun modifier `cold_threshold` correctly left unexposed), `Agent` on an inanimate transitive subject, `Patient` on `extinguish`, and the absence of a QuantifierPhrase companion are all right. The rule shape itself (constant subject plus a Skolem-function event over a quantified range) is a licensed shape, but the instruction set licenses it for an explicit universal, which this bare plural is not."
+   },
+   "adjudication": {
+    "id": "lore-000447",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The rule asserts at strength 0.9 that an arbitrary unprotected lantern anywhere is extinguished by this one wind, which the text does not state — the clause is a status-less habitual/dispositional event on a definite singular subject, and a bare-plural non-specific object's licensed treatment is the bare kind filler (\"grows wheat\"), never a universal range."
+     }
+    ],
+    "gaps_confirmed": [
+     "An adjectivally-restricted bare-plural object in a non-episodic clause (\"extinguishes unprotected lanterns\"): the prescribed bare kind filler cannot carry the restrictive modifier, and \"unprotected\" is incidental description (a state, like damage) so *Compound concepts* bars fusing it into `unprotected_lantern`."
+    ],
+    "new_gaps": [
+     "A dispositional claim about a SPECIFIC individual's characteristic effect on a KIND has no carrier: the kind-level relation `(<Verb> <kindA> <kindB>)` fires only when BOTH arguments are bare kind-denoting NPs, so a definite singular subject cannot use it, and the plain event route leaves the disposition (\"whenever it meets one\") unexpressed."
+    ],
+    "decision": "defect",
+    "defect_summary": "The nearest licensed form is the status-less event `(Member sk_ext_1 extinguish) (Agent sk_ext_1 sk_wind_1) (Patient sk_ext_1 lantern)` with no rule — but that silently drops \"unprotected\", which *Core patterns* forbids because omitting a restriction widens the claim, so NO fully compliant form is licensed for this sentence's content and the claim would have to be left out with the gap recorded.",
+    "notes": "The lexical work is right: the `cold_threshold_wind` genus with the noun modifier unexposed, `Agent` on an inanimate transitive subject, and `Patient` on `extinguish`."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000448",
+   "sentence": "The cold-threshold wind blows between the first hard frost and the spring equinox.",
+   "parse": [
+    "(: w_type (Member sk_wind_1 cold_threshold_wind) (STV 1.0 0.99))",
+    "(: w_genus (Inheritance cold_threshold_wind wind) (STV 1.0 0.99))",
+    "(: w_mod (Inheritance cold_threshold_wind cold) (STV 1.0 0.99))",
+    "(: blow_ev (Member sk_blow_1 blow) (STV 1.0 0.99))",
+    "(: blow_pat (Patient sk_blow_1 sk_wind_1) (STV 1.0 0.99))",
+    "(: frost_type (Member sk_frost_1 hard_frost) (STV 1.0 0.99))",
+    "(: frost_genus (Inheritance hard_frost frost) (STV 1.0 0.99))",
+    "(: frost_mod (Inheritance hard_frost hard) (STV 1.0 0.99))",
+    "(: frost_ord (Ordinal sk_frost_1 1 hard_frost) (STV 1.0 0.99))",
+    "(: blow_start (Start sk_blow_1 sk_frost_1) (STV 1.0 0.99))",
+    "(: equinox_type (Member sk_equinox_1 spring_equinox) (STV 1.0 0.99))",
+    "(: equinox_genus (Inheritance spring_equinox equinox) (STV 1.0 0.99))",
+    "(: blow_end (End sk_blow_1 sk_equinox_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000448",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "(Inheritance cold_threshold_wind cold) exposes a genus for half of a NOUN modifier ('cold-threshold' = a threshold of cold): the predication test the modifier-genus rule mandates ('*the wind is cold-threshold') fails, so no modifier genus is licensed, and the emitted atom asserts a coldness of the wind kind the text never predicates."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'between <event-noun> and <event-noun>' as an interval frame: Intervals covers only 'from X to / until Y' and its Start/End slots are illustrated with calendar/clock terms, while event-noun temporal anchors are elsewhere routed through Before/BeforeBy ordering — no rule says which applies to 'between A and B'",
+     "'the first N' where N is a plain kind noun with no associated event and no explicit '-est' dimension: Ordinal's <scale> slot is defined as 'the associated event, or an explicit -est dimension', neither of which exists here (the parse put the entity's own kind, hard_frost, in the slot)",
+     "a three-word hyphenated compound ('cold-threshold wind'): Compound concepts specifies modifier_noun decomposition for a two-part modifier+head only, and is silent on whether a compound modifier is itself unpacked or left whole in the symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Patient on the wind for 'blows' follows the non-volitional natural-process rule (gases), and the bare simple present correctly takes no status atom. spring_equinox correctly gets its genus and no 'spring' modifier atom (noun modifier), which makes the cold_threshold_wind treatment inconsistent within the same parse."
+   },
+   "adjudication": {
+    "id": "lore-000448",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts states 'A noun modifier is never exposed, whatever it names' and gates exposure on the predication test, which 'cold-threshold' fails ('*the wind is cold-threshold'); taking only the modifier's first half yields (Inheritance cold_threshold_wind cold), which predicates a coldness of the wind kind the text never states — the threshold is of cold, not the wind."
+     }
+    ],
+    "gaps_confirmed": [
+     "'between <event-noun> and <event-noun>' as an interval frame: Intervals covers 'from X to / until Y' with calendar/clock terms in the Start/End slots, and event-noun anchors are otherwise routed through Before/BeforeBy, with no ruling on 'between A and B'.",
+     "'the first N' where N is a plain kind noun with no associated event and no explicit '-est' dimension: the Ordinal <scale> slot is defined as 'the associated event, or an explicit -est dimension', and neither exists here.",
+     "A compound modifier inside a fused compound ('cold-threshold wind'): Compound concepts specifies modifier+head decomposition for a single-word modifier and is silent on whether a multi-word modifier is itself unpacked or kept whole in the symbol."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form emits the head genus alone — (Inheritance cold_threshold_wind wind) — leaving 'cold_threshold' unexposed inside the symbol, exactly as the same parse correctly left 'spring' unexposed in spring_equinox; no atom predicating 'cold' of the wind is licensed.",
+    "notes": "The remaining atoms hold: Patient on the wind for 'blows' (non-volitional natural process), the Start/End reading of 'between A and B' and the Ordinal scale improvisation are true and well-typed in the gap territory the reviewer names, and the bare simple present correctly takes no status atom."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000449",
+   "sentence": "Salt-bloom in mire-essence slows the burn.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: burn_type (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: sb_slows_burn (Implication (And (Member $x salt_bloom) (LocatedIn $x mire_essence)) (And (Member (sk_slow $x) slow) (Agent (sk_slow $x) $x) (Patient (sk_slow $x) sk_burn_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000449",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a locative/medium PP restricting the bare-kind SUBJECT of a VERBAL generic ('Salt-bloom in mire-essence slows X'): the instruction set licenses a premise conjunct only for an adjectivally-restricted kind subject, and routes locative restrictions on kind-level claims into ConditionalProperty's condition slot, which has no verbal-generic counterpart — so the encoding of the restriction is unguided"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Rule route, roles (transitive inanimate subject Agent; occurrence-altering object Patient), decomposition and 0.9/0.9 empirical generic all follow the instruction set. LocatedIn's second slot holds a bare mass kind (mire_essence) rather than a place — mechanically licensed by the containment-preposition rule, but an unusual filler for that head."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000450",
+   "sentence": "A salt-bloomed lantern survives a cold-threshold night.",
+   "parse": [
+    "(: n2_lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: n2_lantern_prop (Member sk_lantern_1 salt_bloomed) (STV 1.0 0.99))",
+    "(: n2_saltbloomed_genus (Inheritance salt_bloomed bloomed) (STV 1.0 0.99))",
+    "(: n2_night_type (Member sk_night_1 cold_threshold_night) (STV 1.0 0.99))",
+    "(: n2_night_genus (Inheritance cold_threshold_night night) (STV 1.0 0.99))",
+    "(: n2_survive_ev (Member sk_survive_1 survive) (STV 1.0 0.99))",
+    "(: n2_survive_ag (Agent sk_survive_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: n2_survive_th (Theme sk_survive_1 sk_night_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000450",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "decomposition of a PARTICIPIAL / adjectival compound (\"salt-bloomed\"): the genus rule is specified for modifier_noun compounds whose last word is a real head noun, and adjective compounds are explicitly told to be left opaque, so nothing licenses or forbids (Inheritance salt_bloomed bloomed)",
+     "a compound kind whose MODIFIER is itself multi-word (\"cold-threshold night\"): \"decompose once, to single-word lemmas, then stop\" says nothing about the two-word modifier that stays inside the symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "A witness rather than a generic for the indefinite subject is exactly what the Existential section mandates with a verbal predicate, even though the sentence reads as a world rule. Agent/Theme for survive (no possession or stative-psych demotion), splitting the descriptive modifier into its own Member atom, the cold_threshold_night fusion with genus night and no exposed modifier, and the absent status atom all conform."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000451",
+   "sentence": "An unprepared Cliff Path lantern dies on a cold-threshold night.",
+   "parse": [
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_unprep (Member sk_lantern_1 unprepared) (STV 1.0 0.99))",
+    "(: lantern_poss (Possession sk_lantern_1 cliff_path) (STV 1.0 0.99))",
+    "(: cliff_path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cliff_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: e_die (Member sk_die_1 die) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_die_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: night_type (Member sk_night_1 cold_threshold_night) (STV 1.0 0.99))",
+    "(: night_genus (Inheritance cold_threshold_night night) (STV 1.0 0.99))",
+    "(: e_time (Time sk_die_1 sk_night_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000451",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a modified indefinite time NP as a Time filler ('on a cold-threshold night'): the Time section defines structured calendar terms, deictic constants and bare day-part symbols, but gives no form for an indefinite common-noun time NP carrying a restrictive modifier, so an sk_ witness in the Time slot is unlicensed though it is the only reading that does not silently drop 'cold-threshold'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite subject correctly stays a witness rather than a generic (verbal predicate), 'unprepared' correctly stays an adjective-form modifier, and 'Cliff Path' takes the proper-noun-premodifier Possession route with the in-name kind atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t9",
+   "corpus_id": "lore-000452",
+   "sentence": "The cold-threshold wind does not reach the Northcove.",
+   "parse": [
+    "(: wind_type (Member sk_wind_1 cold_threshold_wind) (STV 1.0 0.99))",
+    "(: wind_genus (Inheritance cold_threshold_wind wind) (STV 1.0 0.99))",
+    "(: nc_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: reach_neg (And (Member sk_reach_1 reach) (Agent sk_reach_1 sk_wind_1) (Theme sk_reach_1 northcove)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000452",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite singular subject stays a witness under negation and its typing correctly projects outside the strength-0 bundle while the event class and roles stay inside; \"reach\" matches the instruction set's own Agent/Theme example verbatim. Northcove is a coined place name rather than a bare class word, so the Name atom (and the absence of an invented kind atom) is right."
+   },
+   "adjudication": null
+  }
+ ]
+}

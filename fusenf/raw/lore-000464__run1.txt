@@ -1,0 +1,7 @@
+(: e3_water_type (Member sk_water_1 water) (STV 1.0 0.99))
+(: e3_ebb_type (Member sk_ebb_1 deep_ebb) (STV 1.0 0.99))
+(: e3_ebb_genus (Inheritance deep_ebb ebb) (STV 1.0 0.99))
+(: e3_ebb_mod (Inheritance deep_ebb deep) (STV 1.0 0.99))
+(: e3_water_part (PartOf sk_water_1 sk_ebb_1) (STV 1.0 0.99))
+(: e3_bitter (Member sk_water_1 bitter) (STV 1.0 0.99))
+(: e3_degree (Degree sk_water_1 bitter slightly) (STV 1.0 0.99))

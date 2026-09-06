@@ -1,0 +1,7 @@
+(: wraiths_grp (GroupOf sk_group_1 wraith) (STV 1.0 0.99))
+(: wraiths_card (Cardinality sk_group_1 4) (STV 1.0 0.99))
+(: rise_ev (Member sk_rise_1 rise) (STV 1.0 0.99))
+(: rise_ag (Agent sk_rise_1 sk_group_1) (STV 1.0 0.99))
+(: rise_tense (Past sk_rise_1) (STV 1.0 0.99))
+(: rise_ago (BeforeBy sk_rise_1 now 63 year) (STV 1.0 0.99))
+(: rise_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_rise $x) rise) (Agent (sk_rise $x) $x) (Past (sk_rise $x)) (BeforeBy (sk_rise $x) now 63 year))) (STV 1.0 0.9))

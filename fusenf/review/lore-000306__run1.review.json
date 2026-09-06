@@ -1,0 +1,11 @@
+{"id": "lore-000306", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "`new_moon` is decomposed as a compound kind (statements 1 and 2, asserting it is a subclass of `moon` and of `new`) yet is used nowhere as a kind — it appears only as a bare `Time` constant in statement 12 — so a time point is declared a class and the modifier genus is exposed on a non-compositional phase term."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a time NP restricted by an of-phrase and a PP (\"the night of the new moon in salt-bloom season\") — Time atoms may compose across granularities, but there is no carrier for the restriction relation itself, so the composite time flattens into three independent Time values",
+             "a lunar-phase / invented-season time expression — the structured Time terms are only Year/Month/Day/Weekday/Hour/Minute, and the instruction set does not say whether a multi-word bare Time constant takes compound decomposition or stays opaque like a deictic",
+             "a multi-word proper name whose internal kind word is PLURAL (\"the Salt-bloom Tide-pools\") — the kind-word-inside-a-name rule is stated for a singular kind word (\"the Kestrel River\"), while the capitalized-plural-label rule bars taking a per-member kind from a plural label word, so the singular typing atom in statement 7 sits between the two rules"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The main clause is right: indefinite subject with a verbal predicate stays a witness (not a generic rule), the present tense correctly gets no status atom (no TODAY and no lexically-future adjunct), and the destination is Goal. The name atom preserves the surface hyphenation and emits no modifier genus on the name symbol, as required."}

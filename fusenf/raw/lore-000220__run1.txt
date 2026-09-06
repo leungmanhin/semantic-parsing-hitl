@@ -1,0 +1,2 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: consensus_fail_vote_rule (Implication (And (Member $x fail) (Patient $x consensus)) (And (Member (sk_vote $x) vote) (Agent (sk_vote $x) sk_council_1) (Instrument (sk_vote $x) (sk_show_of_hands $x)) (Member (sk_show_of_hands $x) show_of_hands) (During (sk_vote $x) $x))) (STV 1.0 0.9))

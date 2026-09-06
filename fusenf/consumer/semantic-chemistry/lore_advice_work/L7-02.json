@@ -1,0 +1,242 @@
+{
+ "id": "L7-02",
+ "rule": "VII — The harvest tide",
+ "texts": [
+  "The new-moon spring tide is the harvest tide.",
+  "Whenever a Keeper harvests salt-bloom at the new-moon spring tide, that salt-bloom stays potent for the season.",
+  "The Council observes the full-moon spring tide as a calendar marker.",
+  "Salt-bloom from the full-moon tide turns to chalky residue.",
+  "The Keepers cannot explain the moon-phase rule.",
+  "The pattern is old and reliable."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000435",
+   "sentence": "The new-moon spring tide is the harvest tide.",
+   "parse": [
+    "(: nmst_genus (Inheritance new_moon_spring_tide tide) (STV 1.0 0.99))",
+    "(: ht_genus (Inheritance harvest_tide tide) (STV 1.0 0.99))",
+    "(: nmst_is_ht (Inheritance new_moon_spring_tide harvest_tide) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000435",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "equative copular with a DEFINITE predicate nominal (\"X is THE Y\") — the instruction set licenses only Member/Inheritance subsumption, so the identity/uniqueness of \"is the harvest tide\" is recorded one-directionally as (Inheritance new_moon_spring_tide harvest_tide)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both compounds correctly emit only the head genus, since \"new-moon\", \"spring\" and \"harvest\" are noun modifiers that fail the predication test. The 0.9 confidence on the identity claim is defensible under the \"when unsure -> empirical\" tie-break."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000436",
+   "sentence": "Whenever a Keeper harvests salt-bloom at the new-moon spring tide, that salt-bloom stays potent for the season.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: keeper_harvest_rule (Implication (And (Member $k keeper) (Member $h harvest) (Agent $h $k) (Member $s salt_bloom) (Theme $h $s) (Time $h new_moon_spring_tide)) (And (Member (sk_potent $s) potent) (Experiencer (sk_potent $s) $s) (Still (sk_potent $s)) (Member $s potent) (Measure (sk_potent $s) duration 1 season))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000436",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The \"whenever\" rule's consequent is not tied to its trigger — the mandated (During <response> <trigger>) link is missing and no conjunct mentions $h, so the derived potency state has no anchor to the harvest occurrence and the prescribed \"whole conclusion bundle\" query shape cannot match."
+     },
+     {
+      "statement": 1,
+      "issue": "The consequent's Skolem state term is indexed only by the salt-bloom, (sk_potent $s), rather than per occurrence / by every universal scoping over it, so two harvests of the same bloom collapse onto one state witness."
+     },
+     {
+      "statement": 1,
+      "issue": "(Measure (sk_potent $s) duration 1 season) invents the magnitude 1 for the definite period \"the season\", which supplies no count word."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "duration expressed as a definite period NP (\"for the season\", \"for the winter\") — no count word, so the (Measure e duration <n> <unit>) form has no stated magnitude and the bare-plural at-least-two rule does not apply",
+     "a recurring astronomical / tidal occasion used as a temporal anchor (\"at the new-moon spring tide\") — neither a calendar term, deictic, day-part nor clock time, so whether it is a bare Time constant or a typed definite witness is unaddressed",
+     "a \"whenever\" response that is a persisting state with its own stated extent rather than a co-temporal occurrence — the mandated During tie to the trigger does not fit a result state that outlasts it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare constant new_moon_spring_tide carries no type or decomposition atom, which the oblique-object NP rule (\"an article mints a witness with its kind atom\") would want but the \"a deictic or named time stays a bare symbol\" rule permits. Otherwise the trigger clause uses plain variables correctly, \"a Keeper\" takes the capitalized-common-noun default, the continuation copular gets its Still + flat pair, and no QuantifierPhrase companion is emitted, all as prescribed."
+   },
+   "adjudication": {
+    "id": "lore-000436",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "The half that stands is that no consequent conjunct names the premise-bound occurrence $h, leaving the derived state unanchored; the half that falls is the demand for the literal (During <response> <trigger>) atom, since a potency lasting the season is not nested inside the harvest event and emitting it would assert a falsehood (the reviewer's own third gap concedes the tie does not fit)."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "\"Every time / whenever\" mandates \"the response as a Skolem event per occurrence\", and the scope rules require a dependent existential to be \"a Skolem function of every universal that scopes over it\", so indexing the state by $s alone collapses distinct harvest occasions onto one witness."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "\"For the season\" supplies no count word, and Measures & units bars inventing what no word supplies, so (Measure (sk_potent $s) duration 1 season) asserts a measured extent the sentence does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "duration stated as a definite period NP (\"for the season\") — no count word, so the (Measure e duration <n> <unit>) form has no stated magnitude and the bare-plural at-least-two rule does not apply",
+     "a recurring astronomical / tidal occasion as a temporal anchor (\"at the new-moon spring tide\") — not a calendar term, deictic, day-part or clock time, so bare Time constant vs typed definite witness is unaddressed",
+     "a \"whenever\" response that is a persisting state with its own extent — the mandated During tie to the trigger is false for a result state that outlasts it, and no other trigger-anchoring head is licensed"
+    ],
+    "new_gaps": [
+     "anaphoric re-mention of a bare mass object inside a \"whenever\" rule (\"harvests salt-bloom … that salt-bloom stays potent\"): a bare mass object is a kind filler, not a bound variable, so nothing licenses binding the mass in the premise for the consequent to predicate over; a licensed form would need a way to individuate the mass portion the trigger event affects and carry it into the consequent"
+    ],
+    "decision": "defect",
+    "defect_summary": "The result state must be a Skolem function of the trigger occurrence and every universal scoping it — (sk_potent $h) or (sk_potent $h $s) — so each harvest yields its own state witness; for \"for the season\" NO compliant form is licensed, since the magnitude is unstated and may not be invented, so the extent must be left unencoded and filed as the confirmed gap; and the consequent must name $h in some conjunct, though the prescribed During tie itself has no licensed substitute for a state that outlasts its trigger.",
+    "notes": "The continuation-copular shape (reified state + Still + flat atom), the plain-variable premise, and the absent QuantifierPhrase are all correct. Two of the three defects are gap-adjacent, but the invented magnitude 1 is a plain over-assertion regardless of the gap."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000437",
+   "sentence": "The Council observes the full-moon spring tide as a calendar marker.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_observe (Member sk_observe_1 observe) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_observe_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_observe_1 sk_tide_1) (STV 1.0 0.99))",
+    "(: tide_type (Member sk_tide_1 full_moon_spring_tide) (STV 1.0 0.99))",
+    "(: tide_genus (Inheritance full_moon_spring_tide tide) (STV 1.0 0.99))",
+    "(: tide_as (As sk_tide_1 calendar_marker) (STV 1.0 0.99))",
+    "(: marker_genus (Inheritance calendar_marker marker) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000437",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The verb-phrase PP 'as a calendar marker' is attached to the tide entity, whereas the preposition-named-oblique rule puts a PP modifying the clause on the event symbol ((As sk_observe_1 ...)), entity-attached surface prepositions being licensed for position, origin and noun/adjective complements."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "object-predicative 'as'-phrase ('observes X as a calendar marker', 'regards/treats X as Y'): the instruction set covers resultatives and depictives but never an 'as' secondary predicate, so neither its attachment site (event vs object) nor whether the predicative indefinite 'a calendar marker' mints a witness or stays a bare kind is determined"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows doctrine: 'the Council' is a capitalized bare class word so it stays a common noun with no Name atom, observe takes Agent/Theme, and both compounds carry their head genus with the noun modifiers unexposed."
+   },
+   "adjudication": {
+    "id": "lore-000437",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "'As a calendar marker' is an object-oriented secondary predicate, not a clause-modifying PP, and the nearest covered analogue — the depictive of *Resultatives & secondary predicates* ('ate the meat raw' = a plain state on the OBJECT) — attaches to the object, so entity attachment violates no stated rule; the atom uses the preposition actually used, is true of the sentence, and the reviewer's own q2 concedes the site is undetermined."
+     }
+    ],
+    "gaps_confirmed": [
+     "The object-predicative 'as'-phrase ('observes / regards / treats X as Y') is uncovered: neither the attachment site (event vs object) nor whether the predicative indefinite mints a witness or stays a bare kind is determined."
+    ],
+    "new_gaps": [
+     "An 'as'-predicative has no carrier for the fact that Y holds of X only within the matrix verb's frame — there is no seal-like device for a role attributed by the matrix subject — so every available encoding either detaches the role from the event (entity attachment) or predicates it of the event (event oblique); a licensed form would need to relativize the predicative to the matrix eventuality."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "'The Council' correctly stays a common noun with no Name atom (a singular capitalized bare class word), observe takes Agent/Theme by the progressive and change tests, and both compounds carry their head genus only, with the noun modifiers unexposed."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000438",
+   "sentence": "Salt-bloom from the full-moon tide turns to chalky residue.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: fmt_genus (Inheritance full_moon_tide tide) (STV 1.0 0.99))",
+    "(: fmt_1 (Member sk_full_moon_tide_1 full_moon_tide) (STV 1.0 0.99))",
+    "(: cr_genus (Inheritance chalky_residue residue) (STV 1.0 0.99))",
+    "(: cr_mod (Inheritance chalky_residue chalky) (STV 1.0 0.99))",
+    "(: sb_turns_residue (Implication (And (Member $x salt_bloom) (From $x sk_full_moon_tide_1)) (And (Member (sk_turn $x) turn) (Patient (sk_turn $x) $x) (Member (sk_residue $x) chalky_residue) (Experiencer (sk_residue $x) $x) (Member $x chalky_residue) (Result (sk_turn $x) (sk_residue $x)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000438",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-generic distributing rule at 0.9/0.9, the restriction carried as a premise conjunct with entity-attached (From ...), and the change-of-kind Result shape (turn event + reified state + flat copular + Result) all match the instruction set. Two borderline-but-defensible calls: fusing chalky_residue (a texture adjective, arguably incidental description rather than the licensed material-adjective case), and minting a specific witness sk_full_moon_tide_1 for a definite that reads kind-level, which narrows the rule to one tide."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000439",
+   "sentence": "The Keepers cannot explain the moon-phase rule.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: rule_type (Member sk_rule_1 moon_phase_rule) (STV 1.0 0.99))",
+    "(: rule_genus (Inheritance moon_phase_rule rule) (STV 1.0 0.99))",
+    "(: keepers_cant_explain (And (Member sk_explain_1 explain) (Agent sk_explain_1 keepers) (Theme sk_explain_1 sk_rule_1) (Can sk_explain_1)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000439",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Capitalized plural label 'the Keepers' takes the Name-only individual treatment (no GroupOf, no invented type atom) as Names-and-casing prescribes, and 'cannot explain' takes the strength-0 (And ... (Can e)) bundle with the definite object's typing and compound genus projected outside it."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000440",
+   "sentence": "The pattern is old and reliable.",
+   "parse": [
+    "(: patt_type (Member sk_pattern_1 pattern) (STV 1.0 0.99))",
+    "(: patt_old (Member sk_pattern_1 old) (STV 1.0 0.99))",
+    "(: patt_reliable (Member sk_pattern_1 reliable) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000440",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite singular mints a typed witness and the coordinated copular predicate becomes one Member atom per conjunct, at individual-fact TVs, exactly as the definite-NP and coordination rules specify."
+   },
+   "adjudication": null
+  }
+ ]
+}

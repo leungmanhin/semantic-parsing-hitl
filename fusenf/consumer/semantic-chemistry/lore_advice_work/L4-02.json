@@ -1,0 +1,164 @@
+{
+ "id": "L4-02",
+ "rule": "IV — First lighting",
+ "texts": [
+  "The first lighting of a new lantern is a small ritual.",
+  "Each Council member touches the vessel of mire-essence before the first lighting.",
+  "A replacement lantern needs no Council touch."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000285",
+   "sentence": "The first lighting of a new lantern is a small ritual.",
+   "parse": [
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_new (Member sk_lantern_1 new) (STV 1.0 0.99))",
+    "(: e_light (Member sk_light_1 light) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_light_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e_ordinal (Ordinal sk_lantern_1 1 light) (STV 1.0 0.99))",
+    "(: e_ritual (Member sk_light_1 ritual) (STV 1.0 0.99))",
+    "(: e_small (Member sk_light_1 small) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000285",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The Ordinal atom ranks the lantern instead of the lighting - 'the first lighting' makes the lighting the first, so putting the lantern witness in Ordinal's entity slot asserts that the lantern is first on a lighting ordering."
+     },
+     {
+      "statement": 3,
+      "issue": "'the lighting of a new lantern' is a nominalization whose of-phrase is its object, which Complements of nouns and adjectives routes to the entity-attached surface-preposition oblique on the noun's own symbol rather than to a Patient role on a reified verb event, and the deverbal noun 'lighting' is derivation, so taking the verb lemma 'light' as the class crosses the inflection-only line of Names and casing."
+     },
+     {
+      "statement": null,
+      "issue": "The sentence is a characterizing/customary generic, but the parse mints specific witnesses for the lighting and the lantern and predicates ritual-hood of them, against the generic-claim instruction that a nominalized-clause subject never mints a witness for itself in the generic reading."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "generic copular predication whose subject is a nominalized event ('The first lighting of X is a small ritual') - the gerund/nominalized-subject rule routes only a verbal main predicate into a per-occurrence Skolem consequent and gives no form for a kind/property ascribed to the occurrence itself",
+     "an ordinal restriction on a nominalized-event subject ('the FIRST lighting') has no stated carrier inside the generic/rule route - Ordinal is defined over entities ranked on a scale, not over a rule's occurrence variable"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The predicate split 'small ritual' into two atoms rather than fusing, which is right (size adjective = incidental description). All heads used are licensed; the defects are role/slot choices and the specific-versus-generic level of the whole parse."
+   },
+   "adjudication": {
+    "id": "lore-000285",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "`Ordinal <entity> <n> <scale>` ranks the entity in its first slot, so `(Ordinal sk_lantern_1 1 light)` asserts the lantern is first on a lighting ordering — a falsehood, since the text ranks the lighting, not the lantern."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "\"A nominalization's of-phrase is its OBJECT, not a genitive\" routes \"the lighting of a new lantern\" to the entity-attached surface-preposition oblique on the noun's own symbol (`(Of sk_refinement_1 sk_survey_1)`), and \"Inflection only — never derivation\" (decided by the word's function here, which is a noun) keeps the deverbal `lighting` as its own lemma rather than the verb class `light`."
+     },
+     {
+      "index": 2,
+      "verdict": "partial",
+      "reason": "The generality half stands — the sentence is a characterizing claim about a customary practice and the parse records it as one witnessed lighting, predicating ritual-hood and smallness of that witness rather than of the occurrence type — but the cited prohibition is overstated, since \"never mint a witness for the gerund itself\" governs a gerund subject whose MAIN PREDICATE is verbal and routed into a per-occurrence Skolem consequent, and the reviewer's own q2 gap concedes the copular case has no licensed form."
+     }
+    ],
+    "gaps_confirmed": [
+     "A generic copular predication whose subject is a nominalized event (\"The first lighting of X is a small ritual\"): the gerund/nominalized-subject rule routes only a VERBAL main predicate into a per-occurrence Skolem consequent, and gives no form for a kind or property ascribed to the occurrence itself.",
+     "An ordinal restriction on a nominalized-event subject (\"the FIRST lighting\") has no stated carrier in the generic/rule route — Ordinal is defined over entities ranked on a scale, not over a rule's occurrence variable."
+    ],
+    "new_gaps": [
+     "A deverbal event noun (lighting, refinement, destruction) has no licensed link to its underlying verb: the noun keeps its own form as its class and nothing licenses an `(Inheritance lighting light)`-style tie, so the same eventuality stated nominally and stated verbally yields two records with no symbol in common."
+    ],
+    "decision": "defect",
+    "defect_summary": "The ordinal belongs on the lighting, not the lantern — `(Ordinal <lighting-symbol> 1 light)`. The subject is the nominalization itself — `(Member sk_lighting_1 lighting)` with its object argument as the entity-attached oblique `(Of sk_lighting_1 sk_lantern_1)` — not a reified `light` event carrying a `Patient`. For the standing half of the third issue NO compliant form is licensed: a kind-level property ascribed to a nominalized occurrence fits neither the copular kind route (the subject is an occurrence, not a kind) nor the gerund-subject rule route (whose consequent must be verbal), which is why it is filed as a gap.",
+    "notes": "Splitting \"small ritual\" into two atoms rather than fusing is right (a size adjective is incidental description), and no unlicensed head appears. The defects are slot, lemma and generality-level choices, not vocabulary."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000286",
+   "sentence": "Each Council member touches the vessel of mire-essence before the first lighting.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: vessel_type (Member sk_vessel_1 vessel) (STV 1.0 0.99))",
+    "(: vessel_poss (Possession sk_vessel_1 mire_essence) (STV 1.0 0.99))",
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: lighting_type (Member sk_lighting_1 lighting) (STV 1.0 0.99))",
+    "(: lighting_ord (Ordinal sk_lighting_1 1 lighting) (STV 1.0 0.99))",
+    "(: touch_rule (Implication (PartOf $x sk_council_1) (And (Member (sk_touch $x) touch) (Agent (sk_touch $x) $x) (Theme (sk_touch $x) sk_vessel_1) (Before (sk_touch $x) sk_lighting_1))) (STV 1.0 0.9))",
+    "(: touch_q (QuantifierPhrase council touch \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000286",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "(Possession sk_vessel_1 mire_essence) encodes a container-and-contents of-phrase ('the vessel OF mire-essence'), which the genitive rule explicitly excludes from Possession alongside the measure case 'a cup of water', so the atom asserts a possessor link the text does not state."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "container/contents of-phrase on a concrete noun ('the vessel of mire-essence') - the possessive-NP section bars Possession for measure/container of-phrases but licenses no replacement head, and the entity-attached (Of ...) oblique is licensed only for a nominalization's object"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows the instruction set: 'each <collective> member' as a per-member (PartOf $x sk_council_1) rule at STV 1.0 0.9 with its QuantifierPhrase companion naming the group kind, no group event beside it, the mire_essence genus with the noun modifier unexposed, Ordinal for 'the first lighting', and the temporal-anchor event-noun carrying only its class atom plus Before inside the consequent."
+   },
+   "adjudication": {
+    "id": "lore-000286",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The genitive rule explicitly excludes a measure / container of-phrase (\"a cup of water\") from Possession, and since Possession is possessed-first the emitted atom additionally says the mire-essence owns the vessel - a possessor link the text does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "container/contents (or material) of-phrase on a concrete noun (\"the vessel of mire-essence\") - Possession is barred by the measure/container exclusion and the entity-attached (Of ...) oblique is licensed only for a nominalization's object, so no head is licensed"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "No compliant form is licensed for \"the vessel of mire-essence\" - Possession is barred by the measure/container exclusion, PartOf would be false (contents are not a component of their container), and the entity-attached (Of ...) oblique is licensed only for a nominalization's object - so the compliant parse types the vessel, fills its Theme slot, and leaves the of-phrase unencoded as a recorded gap, on the \"D-Ashford has no licensed head\" precedent.",
+    "notes": "Everything else follows the instruction set: \"each Council member\" as the per-member (PartOf $x sk_council_1) rule at 1.0 / 0.9 with a group-kind QuantifierPhrase and no group event beside it, no Name atom for the capitalized bare-class label \"Council\", mire_essence's noun modifier unexposed with the essence genus emitted, and the temporal-anchor event-noun carrying only its class atom, its Ordinal restrictor and the Before link inside the consequent."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000287",
+   "sentence": "A replacement lantern needs no Council touch.",
+   "parse": [
+    "(: repllantern_genus (Inheritance replacement_lantern lantern) (STV 1.0 0.99))",
+    "(: counciltouch_genus (Inheritance council_touch touch) (STV 1.0 0.99))",
+    "(: lantern_no_need (And (Member sk_need_1 need) (Agent sk_need_1 sk_lantern_1) (Member sk_lantern_1 replacement_lantern) (Theme sk_need_1 council_touch)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000287",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "negative determiner 'no' scoping over an OBJECT NP ('needs no Council touch'): the strength-0 event bundle carries the negation, but QuantifierPhrase is defined only over a subject/kind range (subject+predicate, or kind+verb-lemma), so the companion the instruction set calls mandatory for every explicit quantifier word has no slot shape here, and the 'no' vs plain 'not' distinction the copular-negation section preserves is lost"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite-singular subject correctly stays a witness typed inside the strength-0 bundle (verbal predicate, so not a generic), and the two compound genus atoms sit at top level as definitional decomposition. Capitalized 'Council' as a bare kind word is a common noun by default, so fusing council_touch with genus 'touch' and no exposed noun-modifier genus is the licensed route."
+   },
+   "adjudication": null
+  }
+ ]
+}

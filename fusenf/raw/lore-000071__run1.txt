@@ -1,0 +1,7 @@
+(: hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: e_produce (Member sk_produce_1 produce) (STV 1.0 0.99))
+(: e_agent (Agent sk_produce_1 hollows) (STV 1.0 0.99))
+(: e_patient (Patient sk_produce_1 sk_harvest_1) (STV 1.0 0.99))
+(: harvest_kind (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))
+(: harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))
+(: harvest_thin (Member sk_harvest_1 thin) (STV 1.0 0.99))

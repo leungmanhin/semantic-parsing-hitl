@@ -1,0 +1,5 @@
+(: p1_type (Member cliff_path path) (STV 1.0 0.99))
+(: p1_name (Name cliff_path "Cliff Path") (STV 1.0 0.99))
+(: n1_name (Name lantern_night "Lantern-night") (STV 1.0 0.99))
+(: r1_rule (Implication (Member $x villager) (And (Member (sk_walk $x) walk) (Agent (sk_walk $x) $x) (Theme (sk_walk $x) cliff_path) (Time (sk_walk $x) lantern_night) (Time (sk_walk $x) midnight))) (STV 1.0 0.9))
+(: r1_q (QuantifierPhrase villager walk "every") (STV 1.0 0.99))

@@ -1,0 +1,4 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: pm_genus (Inheritance private_matter matter) (STV 1.0 0.99))
+(: pm_mod (Inheritance private_matter private) (STV 1.0 0.99))
+(: council_not_rule (And (Member sk_rule_1 rule) (Agent sk_rule_1 sk_council_1) (On sk_rule_1 private_matter)) (STV 0.0 0.99))

@@ -1,0 +1,5 @@
+(: sailsworn_name (Name sailsworn "Sailsworn") (STV 1.0 0.99))
+(: sailsworn_climber (Member sailsworn cliff_climber) (STV 1.0 0.99))
+(: sailsworn_reliable (Member sailsworn reliable) (STV 1.0 0.99))
+(: climber_can (Inheritance cliff_climber (can climb)) (STV 1.0 0.99))
+(: climber_rel (Climb cliff_climber cliff) (STV 1.0 0.99))

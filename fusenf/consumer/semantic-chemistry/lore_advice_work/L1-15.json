@@ -1,0 +1,230 @@
+{
+ "id": "L1-15",
+ "rule": "I — Ledgers",
+ "texts": [
+  "The Watch ledgers go back many years.",
+  "The ledgers record Council decisions, mire-essence reserve levels, feather store levels, apprentice records, and notable events.",
+  "Older ledgers were stored in the old Council hall.",
+  "The old Council hall collapsed.",
+  "The village lost older ledgers."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000105",
+   "sentence": "The Watch ledgers go back many years.",
+   "parse": [
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: ledger_grp (GroupOf sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: ledger_poss (Possession sk_ledger_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: e_goback (Member sk_go_back_1 go_back) (STV 1.0 0.99))",
+    "(: e_exp (Experiencer sk_go_back_1 sk_ledger_1) (STV 1.0 0.99))",
+    "(: e_dur (MeasureAtLeast sk_go_back_1 duration 2 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000105",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The bare-plural duration default (MeasureAtLeast e duration 2 <unit>), which the instruction set licenses only for a duration with no stated count ('for days', 'over weeks'), is applied to 'many years', silently dropping the stated quantifier and asserting a far weaker bound than the sentence states."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "vague-quantity temporal extent ('go back many years') — CardinalityPhrase records vague counts of things only, and the Measure family has no vague-magnitude counterpart, so there is no form that keeps 'many' on a duration/extent",
+     "capitalized common-noun label used as a premodifier ('the Watch ledgers') — the Possession licence for a premodifier is stated for proper nouns, while by the instruction set's own singular-collective default 'the Watch' is a common noun with no Name atom, so nothing covers how the head noun links to that labelled referent (fusing watch_ledger as a compound kind would lose the specific referent)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Watch' correctly gets the common-noun default (typed individual, no Name), 'go back' correctly stays one genus-free phrasal symbol, and the group-level (not distributed) reading of the extent matches the plural-measure-is-aggregate rule."
+   },
+   "adjudication": {
+    "id": "lore-000105",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The (MeasureAtLeast e duration 2 <unit>) default is licensed by Time only for 'a bare-plural duration with no stated count', and 'many years' states a quantifier, so applying it here breaches Core patterns' flat rule that 'a stated restriction, hedge or qualifier is never silently dropped — carry it, or leave the whole claim out and record the gap'."
+     }
+    ],
+    "gaps_confirmed": [
+     "Vague-quantity temporal extent ('go back many years'): CardinalityPhrase records vague counts of things only, and the Measure family has no vague-magnitude counterpart, so no licensed form keeps 'many' on a duration or extent.",
+     "Capitalized common-noun label used as a premodifier ('the Watch ledgers'): the Possession licence for a premodifier is stated for proper nouns, while 'the Watch' is a common noun with no Name atom by the singular-collective default, so nothing covers how the head noun links to that labelled referent (fusing watch_ledger would lose the specific referent)."
+    ],
+    "new_gaps": [
+     "'Go back N years' measures reach-back extent into the past, not how long the eventuality itself lasted; the Measure family's `duration` scale is the only slot available and mis-describes what is measured, so even a stated figure ('go back forty years') would have no faithful carrier."
+    ],
+    "decision": "defect",
+    "defect_summary": "No licensed form carries 'many' on a temporal extent, so the compliant parse emits the go_back event, its Experiencer, the ledger group and the Watch referent with NO extent atom at all and records the gap — this is the drop-the-claim remedy Core patterns prescribes for an unencodable qualifier, and the instruction set licenses no form that keeps the quantifier.",
+    "notes": "The rest of the parse is sound: 'the Watch' correctly takes the common-noun default with no Name atom, 'go back' correctly stays one genus-free phrasal-verb symbol, Experiencer fits the stative intransitive subject, and the group-level (undistributed) reading matches the plural-measure-is-aggregate rule."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000106",
+   "sentence": "The ledgers record Council decisions, mire-essence reserve levels, feather store levels, apprentice records, and notable events.",
+   "parse": [
+    "(: ledger_grp (GroupOf sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: rec_ev (Member sk_record_1 record) (STV 1.0 0.99))",
+    "(: rec_ag (Agent sk_record_1 sk_ledger_1) (STV 1.0 0.99))",
+    "(: rec_th1 (Theme sk_record_1 council_decision) (STV 1.0 0.99))",
+    "(: cd_genus (Inheritance council_decision decision) (STV 1.0 0.99))",
+    "(: rec_th2 (Theme sk_record_1 mire_essence_reserve_level) (STV 1.0 0.99))",
+    "(: merl_genus (Inheritance mire_essence_reserve_level level) (STV 1.0 0.99))",
+    "(: rec_th3 (Theme sk_record_1 feather_store_level) (STV 1.0 0.99))",
+    "(: fsl_genus (Inheritance feather_store_level level) (STV 1.0 0.99))",
+    "(: rec_th4 (Theme sk_record_1 apprentice_record) (STV 1.0 0.99))",
+    "(: ar_genus (Inheritance apprentice_record record) (STV 1.0 0.99))",
+    "(: rec_th5 (Theme sk_record_1 notable_event) (STV 1.0 0.99))",
+    "(: ne_genus1 (Inheritance notable_event event) (STV 1.0 0.99))",
+    "(: ne_genus2 (Inheritance notable_event notable) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000106",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The five coordinated object NPs are stacked as five Theme atoms on one record event, but coordinated noun phrases are distributive by default, so the whole predication should be replicated once per conjunct (one record event each)."
+     },
+     {
+      "statement": 0,
+      "issue": "The definite plural subject yields only a group event; 'record' is not a collective predicate (gather / meet / assemble), so the grouped plural also requires the per-member (Implication (PartOf $x sk_ledger_1) ...) distribution rule."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a restrictive/descriptive adjective on a BARE-KIND object filler ('notable events' as a non-specific kind-level object): the fuse-vs-split rule and the plural distributive rule both need a witness or group symbol to attach the modifier to, and a bare kind filler has neither, so fusing is the only route that does not silently drop the qualifier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Theme rather than Patient is right (verbs that merely record an object leave it as it was), and 'Council' as a bare capitalized class word correctly stays a common-noun modifier with no Name atom. The coordination rule is stated for coordinated NPs generally but exemplified only on subjects, which may be why the object coordination was stacked onto one event."
+   },
+   "adjudication": {
+    "id": "lore-000106",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Coordination and plurals states that coordinated noun phrases are distributive by default — 'replicate the whole predication once per conjunct (verbal -> one event each)' — and one event carrying five Theme fillers is the collective encoding the same section reserves for reciprocal/aggregate predicates ('many events = distributive; one event with many agents = collective'), so the parse asserts a single joint recording eventuality the text does not mark."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "'record' is not in the collective class (gather / meet / assemble / collide) and carries no together/jointly marker, so the grouped-plural doctrine applies — 'a distributive predicate also hands the predication to the group's members via a rule' — and the (Implication (PartOf $x sk_ledger_1) ...) emission is simply absent."
+     }
+    ],
+    "gaps_confirmed": [
+     "a descriptive adjective on a BARE-KIND object filler ('notable events' as a non-specific kind-level object): both the fuse-vs-split rule and the plural distributive rule need a witness or group symbol to hang the modifier on, and a bare kind filler has neither, so fusing is the only route that does not drop the qualifier"
+    ],
+    "new_gaps": [
+     "a definite plural whose predicate is aggregate over the SET yet outside the closed collective class ('the ledgers record <five record-types>' means the ledger system as a whole covers these, not that every ledger records every category): the mandated per-member rule at strength 1.0 over-asserts, and the collective exemption is restricted to reciprocal/aggregate predicates, so neither licensed form states what the sentence says",
+     "verb-class / noun-kind symbol collision under lemmatization: the event class in (Member sk_record_1 record) and the head genus in (Inheritance apprentice_record record) are one symbol, so seeded member-inheritance makes any apprentice-record instance a member of the event class 'record' and it will match recording-event query patterns"
+    ],
+    "decision": "defect",
+    "defect_summary": "For issue 0 the compliant form is five separate record events, one per coordinated object NP, each with (Agent $e sk_ledger_1) — the shared subject symbol reused, as in 'Bob and Alice ate the cake' — and its own single Theme plus the same decomposition atoms; for issue 1 it is the per-member rule (Implication (PartOf $x sk_ledger_1) (And (Member (sk_record $x) record) (Agent (sk_record $x) $x) (Theme (sk_record $x) <filler>))) at (STV 1.0 0.9) beside each group event, though the new gap above notes that form over-asserts for this content.",
+    "notes": "Theme rather than Patient on a merely-recording verb and 'Council' as a capitalized common-noun modifier with no Name atom are both right, and the fused notable_event with its exposed gradable-adjective genus is acceptable improvisation in the confirmed gap territory."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000107",
+   "sentence": "Older ledgers were stored in the old Council hall.",
+   "parse": [
+    "(: hall_genus (Inheritance council_hall hall) (STV 1.0 0.99))",
+    "(: hall_kind (Member sk_hall_1 council_hall) (STV 1.0 0.99))",
+    "(: hall_old (Member sk_hall_1 old) (STV 1.0 0.99))",
+    "(: ledger_group (GroupOf sk_group_1 ledger) (STV 1.0 0.99))",
+    "(: e_store (Member sk_store_1 store) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_store_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_loc (Location sk_store_1 sk_hall_1) (STV 1.0 0.99))",
+    "(: e_tense (Past sk_store_1) (STV 1.0 0.99))",
+    "(: store_dist_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_store $x) store) (Theme (sk_store $x) $x) (Location (sk_store $x) sk_hall_1) (Past (sk_store $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000107",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an attributive comparative with an elided standard restricting a plural subject (\"older ledgers\") — Comparatives & degree directs dropping it and recording the gap, which leaves the group witness standing for unrestricted ledgers and so widens the claim, in tension with Core patterns' bar on silently dropping a stated restriction",
+     "a capitalized common noun premodifying a lowercase common-noun head (\"the old Council hall\") — the proper-noun-premodifier rule (\"a Northgate spokesman\" to Possession) is written for genuine proper names and the capitalized-common-noun default (\"the Assembly\") for a standalone label, so it is undecided whether Council fuses into council_hall or stays a separate referent linked by Possession"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural episodic subject to a group witness, agentless passive with Theme, event-only Location (no LocatedIn on the ledgers), and the 1.0/0.9 per-member distribution rule over (PartOf $x sk_group_1) all follow the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000108",
+   "sentence": "The old Council hall collapsed.",
+   "parse": [
+    "(: hall_type (Member sk_hall_1 council_hall) (STV 1.0 0.99))",
+    "(: hall_genus (Inheritance council_hall hall) (STV 1.0 0.99))",
+    "(: hall_old (Member sk_hall_1 old) (STV 1.0 0.99))",
+    "(: e_collapse (Member sk_collapse_1 collapse) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_collapse_1 sk_hall_1) (STV 1.0 0.99))",
+    "(: e_past (Past sk_collapse_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000108",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A CAPITALIZED COMMON NOUN premodifying a common-noun head (\"the old Council hall\"): the instruction set covers a proper-noun premodifier (head parsed normally + opaque `Possession` to the named entity) and a standalone capitalized common-noun label (\"the Assembly\" — common noun by default, no `Name`), but not the case where a capitalized common noun is itself the premodifier, so whether it fuses into a compound kind or takes the `Possession` route is undetermined."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Under the \"capitalized common noun is a common noun by default\" reading the parse is right throughout: `council_hall` fuses as a classifying subtype with the `hall` genus emitted and the noun modifier unexposed, \"old\" stays a separate descriptive atom, and `collapse` correctly takes an intransitive change-of-state `Patient` plus `Past`."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000109",
+   "sentence": "The village lost older ledgers.",
+   "parse": [
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: ledger_group (GroupOf sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: lose_event (Member sk_lose_1 lose) (STV 1.0 0.99))",
+    "(: lose_agent (Agent sk_lose_1 sk_village_1) (STV 1.0 0.99))",
+    "(: lose_theme (Theme sk_lose_1 sk_ledger_1) (STV 1.0 0.99))",
+    "(: lose_past (Past sk_lose_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000109",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "attributive comparative with an elided standard used as a nominal modifier (\"older ledgers\") — the instruction set states there is no licensed form and directs dropping it and recording the gap, so the restriction is silently lost and the parse claims the village lost ledgers generally"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-plural object of an episodic past clause correctly takes an existential group witness, and \"lose\" keeps Agent/Theme (a transitive verb that is neither possession-stative nor stative psych, with an object that is not altered). The only content loss is \"older\", which the instruction set itself registers as unencodable."
+   },
+   "adjudication": null
+  }
+ ]
+}

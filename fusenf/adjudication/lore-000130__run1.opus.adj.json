@@ -1,0 +1,7 @@
+{"id": "lore-000130", "run": 1,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "\"Sailsworn is a Council member\" is a copular clause with an individual subject, which Categorical statements routes to a Member atom, and the part-whole precedent keeps the head noun's own kind atom beside the link (\"the car engine\" → (Member sk_engine_1 engine) (PartOf sk_engine_1 sk_car_1)), so the clause's own predication is left unrecorded."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "Compliant form adds the categorical atom (Member sailsworn member) beside the existing (PartOf sailsworn sk_council_1) and (Member sk_council_1 council).",
+ "notes": "The PartOf encoding of \"Council member\" is itself licensed — PartOf's second job is membership in a group, and the possessor/whole + part reading blocks fusion — as is treating \"Council\" as a capitalized common-noun label with a witness and no Name atom."}

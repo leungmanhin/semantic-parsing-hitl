@@ -1,0 +1,203 @@
+{
+ "id": "L2-18",
+ "rule": "II — Outside apprentices",
+ "texts": [
+  "The Keepers rarely take apprentices from outside Keeper families.",
+  "The Council may accept an outside apprentice.",
+  "Two earlier outside apprentices became senior Keepers."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000185",
+   "sentence": "The Keepers rarely take apprentices from outside Keeper families.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: kf_poss (Possession family keepers) (STV 1.0 0.99))",
+    "(: keepers_take (And (Member sk_take_1 take) (Agent sk_take_1 keepers) (Theme sk_take_1 apprentice) (FromOutside sk_take_1 family)) (STV 0.1 0.9))",
+    "(: keepers_take_q (QuantifierPhrase keepers take \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000185",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "(Possession family keepers) asserts at top level that families in general belong to the Keepers — the text only restricts which families the apprentices come from — and a kind-level claim carries individual-fact confidence 0.99 instead of the empirical 0.9 the confidence dial requires."
+     },
+     {
+      "statement": 2,
+      "issue": "The oblique's object is the bare kind `family`, so the \"Keeper\" restriction is severed from the argument and the claim widens to apprentices from outside families in general."
+     },
+     {
+      "statement": 2,
+      "issue": "A positive event is bundled into a single (And ...) container, which the instruction set licenses only for negation / Or / Xor / counterfactual / seals — positive events are separate atoms — the container being forced here solely by the need to carry one joint reduced strength."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a frequency adverb (\"rarely\") on a habitual clause whose subject is a Name-only individual — the Quantifiers rule form needs a kind or group range to distribute over, and \"for a flat generic, the statement's strength\" presumes a single-atom statement, so a multi-atom habitual event has no licensed carrier for the 0.1 strength",
+     "a proper-noun premodifier on a BARE PLURAL kind argument (\"Keeper families\") — the Names-and-casing Possession licence presumes the head noun gets its own witness/typing, and a bare kind filler has no slot that can carry the restriction without asserting it kind-wide"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The capitalized-plural label is handled correctly (Name-only individual, no GroupOf and no per-member kind), and FromOutside is a legitimate CamelCase-joined multi-word surface preposition, not a coined head. The QuantifierPhrase companion puts the individual `keepers` in the kind slot, which follows from the same missing-range gap rather than being an independent choice."
+   },
+   "adjudication": {
+    "id": "lore-000185",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "(Possession family keepers) puts a bare kind in the possessed slot and so asserts at top level that families in general are the Keepers', which the text never says; the proper-noun-premodifier licence it imitates attaches Possession to the head noun's own witness (Possession sk_spokesman_1 northgate), and any kind-level claim also takes the empirical 0.9, never the individual-fact 0.99."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Core patterns forbids silently dropping a stated restriction because omitting it widens the claim: (FromOutside sk_take_1 family) says apprentices from outside families at large, not from outside Keeper families."
+     },
+     {
+      "index": 2,
+      "verdict": "refute",
+      "reason": "The reviewer's own first gap is right that no licensed carrier exists for a frequency adverb's reduced strength on a multi-atom habitual whose subject is a Name-only individual, and the (And ...) bundle at strength 0.1 emits nothing false, ill-typed or over-asserted, so this is graceful improvisation in gap territory under the calibration line, not a defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "A frequency adverb ('rarely') on a habitual clause with a Name-only individual subject has no licensed strength carrier: the Quantifiers rule form needs a kind or group range to distribute over, and 'for a flat generic, the statement's strength' presumes a single-atom statement, while a positive multi-atom event must be separate atoms."
+    ],
+    "new_gaps": [
+     "When one capitalized plural label is a Name-only individual as a subject ('the Keepers') and the same word also appears as a capitalized attributive modifier ('Keeper families'), nothing states whether the modifier is that named individual (needing a link atom, with no witness on a bare-kind head to hang it on) or the ordinary capitalized-common-noun modifier feeding a compound kind (keeper_family with genus family); the two routes give incompatible atoms for one sentence."
+    ],
+    "decision": "defect",
+    "defect_summary": "For the first issue, emit no top-level Possession at all - the Keeper restriction belongs inside the argument, not as a claim about families in general. For the second, the compliant form puts the compound kind in the oblique's object slot: (FromOutside sk_take_1 keeper_family) with (Inheritance keeper_family family) (STV 1.0 0.99) and no modifier genus, 'Keeper' being the capitalized common noun by default. The frequency strength itself still has no licensed carrier, so even a compliant re-parse must either keep an improvised container or drop 'rarely' - filed as the confirmed gap.",
+    "notes": "The capitalized-plural subject is handled correctly (Name-only individual, no GroupOf, no per-member kind), and FromOutside is a legitimate CamelCase-joined surface preposition rather than a coined head. The reviewer's second gap is not confirmed as framed: 'Keeper' attributive is the capitalized common noun by default, so Compound concepts does license keeper_family; the genuinely open residue is restated in new_gaps."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000186",
+   "sentence": "The Council may accept an outside apprentice.",
+   "parse": [
+    "(: l186_council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: l186_accept (Member sk_accept_1 accept) (STV 1.0 0.99))",
+    "(: l186_agent (Agent sk_accept_1 sk_council_1) (STV 1.0 0.99))",
+    "(: l186_theme (Theme sk_accept_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: l186_permit (Permitted sk_accept_1) (STV 1.0 0.99))",
+    "(: l186_appr_type (Member sk_apprentice_1 outside_apprentice) (STV 1.0 0.99))",
+    "(: l186_appr_genus (Inheritance outside_apprentice apprentice) (STV 1.0 0.99))",
+    "(: l186_appr_mod (Inheritance outside_apprentice outside) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000186",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "(Inheritance outside_apprentice outside) exposes a relational modifier that fails the predication test — 'outside apprentice' means one from outside the community, not an apprentice that IS outside — so under the assistant-secretary rule only the head genus should have been exposed."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an indefinite inside the scope of a POSITIVE modal ('may accept AN outside apprentice') — nothing is sealed for a positive Permitted/Can event, so the witness and its typing are asserted at top level and the parse claims such an apprentice exists, which the sentence does not say"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Council' correctly takes the capitalized-common-noun default (typed witness, no Name, no GroupOf, no distribution rule for a singular collective), and the deontic reading of 'may' on a specific individual correctly uses the event form (Permitted e) at 1.0 0.99 rather than the kind-level reified property. The epistemic Might reading is not ruled out, but the institutional framing is a lean that licenses picking the deontic one single-reading."
+   },
+   "adjudication": {
+    "id": "lore-000186",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts bars exposing a modifier that fails the predication test — an 'outside apprentice' is one from outside, not an apprentice that IS outside — so (Inheritance outside_apprentice outside) hands the kind the positional property 'outside', which is the 'assistant secretary' case where only the head genus is exposed."
+     }
+    ],
+    "gaps_confirmed": [
+     "an indefinite inside the scope of a POSITIVE modal ('may accept AN outside apprentice'): nothing seals a (Permitted e) bundle, so the event atoms and the witness typing are asserted at top level and the KB claims such an apprentice exists and is accepted, which the sentence does not say"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form drops (Inheritance outside_apprentice outside) and keeps only the head genus (Inheritance outside_apprentice apprentice) beside (Member sk_apprentice_1 outside_apprentice), the relational modifier staying inside the fused symbol.",
+    "notes": "The rest is licensed: 'the Council' takes the capitalized-common-noun default (typed witness, no Name, no GroupOf, no distribution for a singular collective), and deontic (Permitted e) at 1.0 0.99 on a specific act is the reading the institutional lean licenses single-reading."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000187",
+   "sentence": "Two earlier outside apprentices became senior Keepers.",
+   "parse": [
+    "(: outside_apprentice_genus (Inheritance outside_apprentice apprentice) (STV 1.0 0.99))",
+    "(: outside_apprentice_mod (Inheritance outside_apprentice outside) (STV 1.0 0.99))",
+    "(: apprentices_grp (GroupOf sk_group_1 outside_apprentice) (STV 1.0 0.99))",
+    "(: apprentices_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: e_become (Member sk_become_1 become) (STV 1.0 0.99))",
+    "(: e_become_pat (Patient sk_become_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_become_tns (Past sk_become_1) (STV 1.0 0.99))",
+    "(: senior_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: senior_keeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: keeper_state (Member sk_keeper_state_1 senior_keeper) (STV 1.0 0.99))",
+    "(: keeper_state_exp (Experiencer sk_keeper_state_1 sk_group_1) (STV 1.0 0.99))",
+    "(: become_result (Result sk_become_1 sk_keeper_state_1) (STV 1.0 0.99))",
+    "(: apprentices_became_rule (Implication (PartOf $x sk_group_1) (Member $x senior_keeper)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000187",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 12,
+      "issue": "The per-member rule distributes only the result STATE; 'become' is a distributive predicate, and Cardinality requires a counted plural with a distributive predicate to keep the group event AND add the per-member EVENT rule over (PartOf $x <group>), so a later-named member's own becoming is not derivable."
+     },
+     {
+      "statement": 1,
+      "issue": "(Inheritance outside_apprentice outside) exposes a modifier whose predication test fails in the intended 'from elsewhere' sense — 'the apprentice is outside' reads locatively — which is the relational-adjective case that keeps the head genus only."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'earlier' as an attributive elided-standard comparative modifier on the subject NP: Comparatives & degree states there is no licensed form (nothing fills More's second slot), so it is dropped, which silently widens 'two earlier outside apprentices' to 'two outside apprentices'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The change-of-kind resultative is handled well: subject as Patient of become, the result kind reified on the group's own symbol with Experiencer, Result link, and no barred flat (Member <group> senior_keeper) — the flat half correctly becomes a per-member rule. The fused classifier riding the group's kind slot with its decomposition atoms also follows the plural-compound rule."
+   },
+   "adjudication": {
+    "id": "lore-000187",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Cardinality states that a plural with a distributive predicate 'keeps the group + count + group event … and adds the per-member rule over (PartOf $x <group>)' minting the member's own event, as the 'Both dogs barked' pattern shows; 'become' is distributive, so distributing only the flat result kind leaves the required per-member event rule unemitted."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Compound concepts bars exposing 'a relational / rank adjective that fails the predication test' (the assistant_secretary case), and in the sentence's own reading — apprentices from outside the order — '(Inheritance outside_apprentice outside)' asserts a spatial position the text never states."
+     }
+    ],
+    "gaps_confirmed": [
+     "'earlier' as an attributive elided-standard comparative on the subject NP: Comparatives & degree states no licensed form exists (nothing fills More's second slot), so it is dropped and 'two earlier outside apprentices' narrows to 'two outside apprentices' with no in-band record of the loss."
+    ],
+    "new_gaps": [
+     "A capitalized plural kind-word in PREDICATE-NOMINAL position ('became senior Keepers') is unaddressed: Names and casing states the capitalized-plural Name-only rule for a referring subject ('the Wrens'), and a Name-only individual cannot fill a predicate slot, so nothing licenses the common-noun kind reading the sentence forces."
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form for the missing distribution: add (Implication (PartOf $x sk_group_1) (And (Member (sk_become $x) become) (Patient (sk_become $x) $x) (Past (sk_become $x)))) (STV 1.0 0.9) beside the group event and count — optionally minting per-member Skolem result states, which Resultatives permits — so a later-named member's own becoming derives. Compliant form for the modifier: emit (Inheritance outside_apprentice apprentice) alone and drop (Inheritance outside_apprentice outside), the head-genus-only treatment the instruction set gives a relational adjective.",
+    "notes": "The change-of-kind resultative is otherwise handled correctly — the group as Patient of become, the result kind reified on the group's own symbol with Experiencer and a Result link, no barred flat (Member <group> senior_keeper) — and the fused classifier riding the group's kind slot with its decomposition atoms follows the plural-compound rule."
+   }
+  }
+ ]
+}

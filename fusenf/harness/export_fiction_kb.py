@@ -108,6 +108,9 @@ def main() -> None:
                     help="omit the rule keys ENTIRELY from stmts/review/census (owner 2026-09-02, "
                          "v3+: the consumer never parses rules, so the slots are not carried)")
     ap.add_argument("--out", required=True)
+    ap.add_argument("--skip-unparsed-items", action="store_true",
+                    help="chunked cycles: omit source items none of whose texts is parsed in this run "
+                         "(an item with SOME texts parsed still fails loudly)")
     args = ap.parse_args()
 
     items = json.load(open(args.source_json))
@@ -126,8 +129,12 @@ def main() -> None:
         path = os.path.join(REVIEW_DIR, f"{rid}__run{args.review_run}.review.json")
         return json.load(open(path)) if os.path.exists(path) else None
 
+    def item_key(item):
+        m = re.fullmatch(r"R(\d+)", item["id"])
+        return f"R{int(m.group(1)):02d}" if m else item["id"]
+
     def advice_of(item):
-        rnn = f"R{int(item['id'][1:]):02d}"
+        rnn = item_key(item)
         path = os.path.join(args.advice_dir, f"{rnn}__advice.json")
         a = json.load(open(path))
         rule_ok = a.get("rule") is None or (isinstance(a.get("rule"), str) and a["rule"].strip())
@@ -140,7 +147,12 @@ def main() -> None:
         return {"rule": a.get("rule"), "texts": list(a["texts"])}
 
     out, missing = [], []
+    n_skipped = 0
     for item in items:
+        if args.skip_unparsed_items and not any(
+                parses.get(by_source.get(f"{item['id']}/t{k}")) for k in range(1, len(item["texts"]) + 1)):
+            n_skipped += 1
+            continue
         stmts = {"rule": None, "texts": []}
         review = {"rule": None, "texts": []}
         census = {"rule": None, "texts": []}
@@ -176,7 +188,8 @@ def main() -> None:
     n_ok = sum((1 if it["census"].get("rule") == "ok" else 0) + sum(1 for c in it["census"]["texts"] if c == "ok")
                for it in out)
     n_tot = sum((0 if it["census"].get("rule") is None else 1) + len(it["census"]["texts"]) for it in out)
-    print(f"-> {args.out}  ({len(out)} items, run {args.run} stmts; census ok {n_ok}/{n_tot})")
+    print(f"-> {args.out}  ({len(out)} items, run {args.run} stmts; census ok {n_ok}/{n_tot}"
+          + (f"; {n_skipped} unparsed items omitted" if n_skipped else "") + ")")
 
 
 if __name__ == "__main__":

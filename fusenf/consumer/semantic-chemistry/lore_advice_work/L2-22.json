@@ -1,0 +1,183 @@
+{
+ "id": "L2-22",
+ "rule": "II — Pay",
+ "texts": [
+  "The village pays the Keepers in food and shelter.",
+  "The village pools its fishing harvest, grain trade, and garden produce.",
+  "Each Keeper draws a share from the pool.",
+  "The villagers use coin for trade with outside merchants."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000202",
+   "sentence": "The village pays the Keepers in food and shelter.",
+   "parse": [
+    "(: e_village (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: e_pay (Member sk_pay_1 pay) (STV 1.0 0.99))",
+    "(: e_pay_agent (Agent sk_pay_1 sk_village_1) (STV 1.0 0.99))",
+    "(: e_pay_recipient (Recipient sk_pay_1 keepers) (STV 1.0 0.99))",
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: e_pay_in_food (In sk_pay_1 food) (STV 1.0 0.99))",
+    "(: e_pay_in_shelter (In sk_pay_1 shelter) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000202",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Keepers\" correctly takes the capitalized-plural-label Name-only treatment (one symbol, Name atom, no GroupOf, no keeper typing). The one judgment call is Recipient for the paid party (defensible as the goal of a transfer) versus Theme as a bare direct object; the medium PP stays the surface-preposition oblique In, which the instruction set prefers over a near-fit Instrument."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000203",
+   "sentence": "The village pools its fishing harvest, grain trade, and garden produce.",
+   "parse": [
+    "(: village_ty (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: harvest_ty (Member sk_fishing_harvest_1 fishing_harvest) (STV 1.0 0.99))",
+    "(: harvest_gen (Inheritance fishing_harvest harvest) (STV 1.0 0.99))",
+    "(: harvest_poss (Possession sk_fishing_harvest_1 sk_village_1) (STV 1.0 0.99))",
+    "(: trade_ty (Member sk_grain_trade_1 grain_trade) (STV 1.0 0.99))",
+    "(: trade_gen (Inheritance grain_trade trade) (STV 1.0 0.99))",
+    "(: trade_poss (Possession sk_grain_trade_1 sk_village_1) (STV 1.0 0.99))",
+    "(: produce_ty (Member sk_garden_produce_1 garden_produce) (STV 1.0 0.99))",
+    "(: produce_gen (Inheritance garden_produce produce) (STV 1.0 0.99))",
+    "(: produce_poss (Possession sk_garden_produce_1 sk_village_1) (STV 1.0 0.99))",
+    "(: pool_ev1 (Member sk_pool_1 pool) (STV 1.0 0.99))",
+    "(: pool_ag1 (Agent sk_pool_1 sk_village_1) (STV 1.0 0.99))",
+    "(: pool_th1 (Theme sk_pool_1 sk_fishing_harvest_1) (STV 1.0 0.99))",
+    "(: pool_ev2 (Member sk_pool_2 pool) (STV 1.0 0.99))",
+    "(: pool_ag2 (Agent sk_pool_2 sk_village_1) (STV 1.0 0.99))",
+    "(: pool_th2 (Theme sk_pool_2 sk_grain_trade_1) (STV 1.0 0.99))",
+    "(: pool_ev3 (Member sk_pool_3 pool) (STV 1.0 0.99))",
+    "(: pool_ag3 (Agent sk_pool_3 sk_village_1) (STV 1.0 0.99))",
+    "(: pool_th3 (Theme sk_pool_3 sk_garden_produce_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000203",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an aggregate/collective predicate ('pool' — combine into one pool, the same family as gather/assemble) taking COORDINATED OBJECTS: the collective carve-out is stated only for a coordinated/plural SUBJECT ('one event with multiple Agent atoms'), so the distributive default applies and yields three separate pooling events rather than one aggregation of the three things"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound kinds fused with head genus only and the noun modifiers (fishing/grain/garden) correctly left unexposed; 'its' attaches by Possession (not PartOf) since a harvest/trade/produce is not a component of a village. Simple present correctly carries no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000204",
+   "sentence": "Each Keeper draws a share from the pool.",
+   "parse": [
+    "(: pool_type (Member sk_pool_1 pool) (STV 1.0 0.99))",
+    "(: keeper_draw_rule (Implication (Member $x keeper) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Theme (sk_draw $x) (sk_share $x)) (Member (sk_share $x) share) (Source (sk_draw $x) sk_pool_1))) (STV 1.0 0.9))",
+    "(: keeper_draw_q (QuantifierPhrase keeper draw \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000204",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Explicit universal \"each\" correctly takes the distributing rule over (Member $x keeper) at STV 1.0 0.9 with its QuantifierPhrase companion, and the dependent indefinite \"a share\" is a Skolem function (sk_share $x). Capitalized \"Keeper\" is rightly a common-noun label with no Name atom, and \"the pool\" is a top-level-asserted constant filling Source."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000205",
+   "sentence": "The villagers use coin for trade with outside merchants.",
+   "parse": [
+    "(: villagers_grp (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))",
+    "(: use_ev (Member sk_use_1 use) (STV 1.0 0.99))",
+    "(: use_ag (Agent sk_use_1 sk_villagers_1) (STV 1.0 0.99))",
+    "(: use_th (Theme sk_use_1 coin) (STV 1.0 0.99))",
+    "(: trade_ev (Member sk_trade_1 trade) (STV 1.0 0.99))",
+    "(: trade_ag1 (Agent sk_trade_1 sk_villagers_1) (STV 1.0 0.99))",
+    "(: merchants_grp (GroupOf sk_merchant_1 outside_merchant) (STV 1.0 0.99))",
+    "(: trade_ag2 (Agent sk_trade_1 sk_merchant_1) (STV 1.0 0.99))",
+    "(: om_genus (Inheritance outside_merchant merchant) (STV 1.0 0.99))",
+    "(: om_mod (Inheritance outside_merchant outside) (STV 1.0 0.99))",
+    "(: use_purpose (For sk_use_1 sk_trade_1) (STV 1.0 0.99))",
+    "(: villagers_use_rule (Implication (PartOf $x sk_villagers_1) (And (Member (sk_use $x) use) (Agent (sk_use $x) $x) (Theme (sk_use $x) coin))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000205",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The trade is reified and asserted at top level as an occurring event, though the sentence names it only as what the coin is used for, and the oblique-object rule keeps a bare noun as a constant, i.e. (For sk_use_1 trade)."
+     },
+     {
+      "statement": 5,
+      "issue": "(Agent sk_trade_1 sk_villagers_1) gives the villagers a role in a trading event the sentence never predicates of them."
+     },
+     {
+      "statement": 9,
+      "issue": "(Inheritance outside_merchant outside) exposes an attributive-only modifier that fails the predication test ('the merchant is outside' does not mean 'from outside'), so the genus merchant should stand alone."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "purpose/ground 'for'-PP whose object is an eventuality noun carrying its own comitative argument ('for trade with outside merchants') - the preposition-named oblique takes a bare constant object and offers no slot for the 'with' phrase"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite-plural group event plus the per-member distribution rule for 'the villagers use coin' follows the grouped-plural doctrine correctly, at the right strength and confidence."
+   },
+   "adjudication": {
+    "id": "lore-000205",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "The oblique-object half stands — bare 'trade' is a non-specific mass/abstract noun, and the preposition-named oblique's object NP follows the ordinary NP rules ('a bare mass / domain / proper name stays a constant'), so (For sk_use_1 trade) is the licensed form and no sk_trade_1 witness may be minted; the 'asserted as an occurring event' half overstates, since the instruction set's own control / causative doctrine holds that a tenseless reified event 'asserts or denies nothing about occurrence'."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "The atom is not false of the sentence's content — the villagers are the understood trading party by the same subject-control default the instruction set applies to purpose complements ('copy the controller's role in'); what is unlicensed is the reification itself, already covered by issue 0."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "'outside' in 'outside merchants' is an attributive-only relational modifier — 'the merchant is outside' states a physical position the text never claims — so it fails the predication test and is never exposed as a modifier genus, exactly the 'assistant secretary' case that keeps its head genus only."
+     }
+    ],
+    "gaps_confirmed": [
+     "a purpose/ground 'for'-PP whose object is an eventuality noun carrying its own comitative argument ('for trade with outside merchants'): the licensed (For <event> trade) oblique takes a bare constant object and offers no slot for the 'with' phrase, so the outside merchants cannot be carried at all"
+    ],
+    "new_gaps": [
+     "the implicit participant of a nominal purpose adjunct ('use coin for trade' — whose trade?) has no licensed carrier: the controller-copying rule is defined only for infinitival complements and control verbs, so a bare purpose noun cannot record its understood agent"
+    ],
+    "decision": "defect",
+    "defect_summary": "For the confirmed modifier issue the compliant form is the head genus alone — (Inheritance outside_merchant merchant) with no (Inheritance outside_merchant outside). For the standing half of issue 0 the compliant form keeps the oblique object a bare constant, (For sk_use_1 trade), dropping sk_trade_1 and both of its Agent atoms — after which 'with outside merchants' has NO licensed form at all and must be left out with the gap recorded.",
+    "notes": "The definite-plural group event plus its per-member distribution rule, and the strengths/confidences throughout, are correct. The reification was graceful improvisation reaching for the uncovered comitative, but it broke a rule that IS covered (bare oblique objects stay constants)."
+   }
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{"id": "lore-000160", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 4, "issue": "The positive habitual event is bundled into a single strength-0.8 (And ...) atom, whereas the instruction set emits a positive event as separate atoms and reserves the multi-atom (And ...) for negation, cessation, sealing and disjunction."}, {"statement": 4, "issue": "Confidence 0.9 is the generalization value, but the subject is a specific individual (sk_council_1) and the instruction set keeps individual facts at 0.99."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Frequency adverb (\"often\") on a habitual clause whose subject is a SPECIFIC individual rather than a kind: the frequency dial is defined to set \"the rule's (or, for a flat generic, the statement's) strength\", and here there is neither a rule (a singular collective noun does not distribute) nor a single flat generic atom to carry the 0.8 - so no carrier is licensed for a multi-atom event at reduced strength.", "The mandated companion (QuantifierPhrase <kind> <verb-lemma> \"<word>\") has no kind range to name when the frequency adverb modifies a specific individual's habit; \"council\" here is the subject's class, not a range this parse quantifies over, which the Negation-(copular) constraint on companions warns against."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything else checks out: \"The Council\" is correctly a capitalized common noun with no Name atom, the possessed plural correctly takes a group witness with Possession (not PartOf, not an own event), \"consult\" correctly takes Theme, and the habitual carries no tense atom."}

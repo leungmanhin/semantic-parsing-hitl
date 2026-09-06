@@ -1,0 +1,254 @@
+{
+ "id": "L1-13",
+ "rule": "I — Village square and market",
+ "texts": [
+  "The village square sits between the harbor and the Watch.",
+  "A weekly market runs in the village square.",
+  "Boats from down the coast bring grain, salt, cloth, and ironmongery to the market.",
+  "The villagers use the market salt for cooking.",
+  "Imported salt does not yield mire-essence.",
+  "Mire-essence distillation requires sea-water from the local pools."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000094",
+   "sentence": "The village square sits between the harbor and the Watch.",
+   "parse": [
+    "(: square_type (Member sk_square_1 village_square) (STV 1.0 0.99))",
+    "(: square_genus (Inheritance village_square square) (STV 1.0 0.99))",
+    "(: harbor_type (Member sk_harbor_1 harbor) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: square_between (Between sk_square_1 sk_harbor_1 sk_watch_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000094",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'between A and B' — an inherently two-object locative preposition: the entity-attached surface-preposition form is defined only as the binary (<Prep> <entity> <object>), so nothing licenses the ternary (Between square harbor watch) the parse used, and the licensed binary form cannot express it (two separate Between atoms would be a different claim)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Watch' is correctly treated as a capitalized common-noun label with no Name atom, the noun modifier of village_square is correctly not exposed as a genus, and 'sits' correctly mints no event. The head Between is licensed under the surface-preposition licence; only its arity is unaddressed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000095",
+   "sentence": "A weekly market runs in the village square.",
+   "parse": [
+    "(: mkt_type (Member sk_market_1 market) (STV 1.0 0.99))",
+    "(: mkt_weekly (Member sk_market_1 weekly) (STV 1.0 0.99))",
+    "(: e_run (Member sk_run_1 run) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_run_1 sk_market_1) (STV 1.0 0.99))",
+    "(: sq_type (Member sk_square_1 village_square) (STV 1.0 0.99))",
+    "(: sq_genus (Inheritance village_square square) (STV 1.0 0.99))",
+    "(: e_loc (Location sk_run_1 sk_square_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000095",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "attributive frequency adjective inside an NP ('a weekly market') — the Frequency & habitual schedules machinery (Every / TimesPer / a named Time slot) is keyed to adverbial wording ('every week', 'twice a week'), so a noun-internal frequency adjective has no recurrence encoding and can only land as a plain property atom on the entity"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Agent on the market for 'runs' matches the instruction set's own 'The market runs from 8 am to 1 pm' example, and the event-side Location (not LocatedIn) is right because an eventuality is present; the recurrence carried by 'weekly' survives only as (Member sk_market_1 weekly)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000096",
+   "sentence": "Boats from down the coast bring grain, salt, cloth, and ironmongery to the market.",
+   "parse": [
+    "(: coast_type (Member sk_coast_1 coast) (STV 1.0 0.99))",
+    "(: market_type (Member sk_market_1 market) (STV 1.0 0.99))",
+    "(: boats_bring_rule (Implication (And (Member $x boat) (From $x sk_coast_1)) (And (Member (sk_bring $x) bring) (Agent (sk_bring $x) $x) (Theme (sk_bring $x) grain) (Theme (sk_bring $x) salt) (Theme (sk_bring $x) cloth) (Theme (sk_bring $x) ironmongery) (Goal (sk_bring $x) sk_market_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000096",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The four coordinated objects are stacked as four Theme atoms on one Skolem event, whereas the instruction set makes coordinated noun phrases distributive by default — the whole predication replicated once per conjunct, one event each."
+     },
+     {
+      "statement": 2,
+      "issue": "\"from down the coast\" is reduced to (From $x sk_coast_1), silently dropping \"down\" and widening the origin to the coast at large, where the multi-word-preposition convention would join the whole preposition run into one head."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Distributing a coordinated direct-object list inside a generic rule's conclusion: the Skolem-function event term (sk_bring $x) yields exactly one event per binding, and the instruction set gives no licensed way to mint one event per coordinated conjunct there."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The generic-rule route, the 0.9/0.9 bare-generic truth value, bare-kind object fillers, Goal for \"to the market\", and top-level typing of the premise's sk_coast_1 constant are all correct; no QuantifierPhrase companion is right for a bare generic."
+   },
+   "adjudication": {
+    "id": "lore-000096",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Coordination & plurals makes coordinated noun phrases distributive by default — the whole predication replicated once per conjunct, one event each — so stacking four `Theme` atoms on one event instead states a single bringing of all four commodities together, a multi-atom-same-role shape licensed only for the collective `Agent` case."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Core patterns forbids silently dropping a stated restriction (\"omitting it widens the claim\") — \"from down the coast\" is narrower than \"from the coast\" — and the multi-word-preposition convention (`NextTo`, `AcrossTheLaneFrom`) licenses joining the whole surface run into one entity-attached head, so a compliant form does exist."
+     }
+    ],
+    "gaps_confirmed": [
+     "Distributing a coordinated object list inside a generic rule's conclusion: `(sk_bring $x)` names exactly one event per binding, and nothing licenses a per-conjunct Skolem event function (or a per-conjunct rule split with distinct function symbols) to mint one event per coordinated object."
+    ],
+    "new_gaps": [
+     "A deictically-anchored path premodifier (\"down the coast\", \"up the river\"): the CamelCase-joined head records the surface words, but a licensed form would also need to carry the reference point the direction is relative to, and there is no slot for it."
+    ],
+    "decision": "defect",
+    "defect_summary": "For the coordinated objects the instruction set licenses no compliant form inside the rule — four events would each need their own Skolem function, which nothing provides — so the loss is filed as the gap above rather than fixed. For the preposition the compliant form is the joined surface head keeping the dropped word, `(FromDown $x sk_coast_1)`.",
+    "notes": "The generic-rule route, the 0.9/0.9 bare-generic truth value, bare-kind object fillers, `Goal` for \"to the market\", the absent `QuantifierPhrase`, and the top-level typing that licenses the `sk_coast_1` constant in a premise are all correct."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000097",
+   "sentence": "The villagers use the market salt for cooking.",
+   "parse": [
+    "(: l97_villagers_group (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))",
+    "(: l97_salt_type (Member sk_salt_1 market_salt) (STV 1.0 0.99))",
+    "(: l97_salt_genus (Inheritance market_salt salt) (STV 1.0 0.99))",
+    "(: l97_cook_type (Member sk_cook_1 cook) (STV 1.0 0.99))",
+    "(: l97_use_event (Member sk_use_1 use) (STV 1.0 0.99))",
+    "(: l97_use_agent (Agent sk_use_1 sk_villagers_1) (STV 1.0 0.99))",
+    "(: l97_use_theme (Theme sk_use_1 sk_salt_1) (STV 1.0 0.99))",
+    "(: l97_use_purpose (For sk_use_1 sk_cook_1) (STV 1.0 0.99))",
+    "(: l97_use_rule (Implication (PartOf $x sk_villagers_1) (And (Member (sk_use $x) use) (Agent (sk_use $x) $x) (Theme (sk_use $x) sk_salt_1) (Member (sk_cook $x) cook) (For (sk_use $x) (sk_cook $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000097",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite plural correctly yields a group witness with both the group event and the per-member distribution rule (1.0/0.9), and 'use' takes Theme as the role table specifies. 'for cooking' takes the preposition-named For oblique with the purpose eventuality reified but asserted nowhere, matching the 'a vehicle for V-ing' precedent."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000098",
+   "sentence": "Imported salt does not yield mire-essence.",
+   "parse": [
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: imported_salt_no_yield (Implication (And (Member $x salt) (Member $x imported)) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) mire_essence))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000098",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route rather than a kind-level (Yield salt mire_essence) relation, and \"imported\" stays a participial adjective rather than the verb. Strength 0.0 / confidence 0.9, the absent QuantifierPhrase for plain \"not\", and the definitional mire_essence genus all match doctrine."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000099",
+   "sentence": "Mire-essence distillation requires sea-water from the local pools.",
+   "parse": [
+    "(: mire_essence_distillation_genus (Inheritance mire_essence_distillation distillation) (STV 1.0 0.99))",
+    "(: e_require (Member sk_require_1 require) (STV 1.0 0.9))",
+    "(: e_agent (Agent sk_require_1 mire_essence_distillation) (STV 1.0 0.9))",
+    "(: e_theme (Theme sk_require_1 sk_seawater_1) (STV 1.0 0.9))",
+    "(: seawater_type (Member sk_seawater_1 sea_water) (STV 1.0 0.99))",
+    "(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: seawater_from (From sk_seawater_1 sk_pools_1) (STV 1.0 0.99))",
+    "(: pools_group (GroupOf sk_pools_1 pool) (STV 1.0 0.99))",
+    "(: pools_local_rule (Implication (PartOf $x sk_pools_1) (Member $x local)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000099",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "A bare kind-denoting mass subject with a non-modal verbal predicate is a generic, which the instruction set routes to a distributing `Implication` rule over `(Member $x mire_essence_distillation)` (or, for bare-kind-on-both-sides, an opaque kind-level relation); a single flat event witness is neither licensed form."
+     },
+     {
+      "statement": 2,
+      "issue": "The bare kind symbol `mire_essence_distillation` is placed in an event `Agent` slot — the instruction set reserves the bare class symbol for non-specific/generic OBJECTS and gives no licence for a kind as an event subject filler."
+     },
+     {
+      "statement": 3,
+      "issue": "The event class and role atoms carry confidence 0.9, but the empirical dial applies to generalizations (rules / kind-level `Inheritance`); asserted event class and role atoms take the default (STV 1.0 0.99)."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite plural \"the local pools\" is handled correctly — group witness plus the per-member distribution rule for the descriptive modifier — and entity-attached `From` for the origin PP plus the `sea_water`/`mire_essence_distillation` genus atoms are all licensed. Minor mechanical slip: the witness `sk_seawater_1` is not minted from its class symbol `sea_water`."
+   },
+   "adjudication": {
+    "id": "lore-000099",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Quantifiers, generics & scope states that a verbal generic over a kind becomes a distributing Implication rule, and the flat event compounds the error by asserting at top level that one particular quantity of sea-water from the local pools exists (Member sk_seawater_1 sea_water / From ...), which a requirement-claim never states."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The bare class symbol is reserved by Existential for non-specific/generic OBJECTS, and nothing licenses a kind in an event role slot — putting mire_essence_distillation in Agent conflates class with individual, the same discipline that bars an individual from a class position."
+     },
+     {
+      "index": 2,
+      "verdict": "partial",
+      "reason": "The half that stands is the rule cited — the dial is generalization-only, so a flat asserted event/role atom must take the default 0.99; it is overstated in implying the fix is to raise these, since under the licensed distributing-rule form the empirical (STV 0.9 0.9) is exactly the right truth value."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "An intensional object of require / need / want is asserted to exist by the ordinary Theme-plus-witness route: \"requires sea-water\" states a requirement, not that any sea-water exists, yet the event route (which the instruction set explicitly prescribes for \"a winch needs an annual inspection\") emits (Member <witness> sea_water) at top level — the nominal side has the \"asserted nowhere\" (For <noun> <argument>) oblique, and the verbal side has no counterpart."
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0's compliant form is the distributing rule (Implication (Member $x mire_essence_distillation) (And (Member (sk_require $x) require) (Agent (sk_require $x) $x) (Theme (sk_require $x) (sk_sea_water $x)) (Member (sk_sea_water $x) sea_water) (From (sk_sea_water $x) sk_pools_1))) at (STV 0.9 0.9), with the genus, the pools group and its local-modifier rule staying top-level; issue 1's compliant form falls out of the same rewrite — the kind symbol appears only as the rule's premise domain and the Agent slot takes the bound $x, never the kind itself.",
+    "notes": "Issues 0 and 1 are two views of one defect, so a single re-parse settles both; the reviewer's parenthetical kind-relation alternative does not in fact apply, since \"sea-water from the local pools\" carries a definite restrictor and so is not a bare kind NP. One mechanical slip the reviewer left in notes is worth carrying forward: the witness is sk_seawater_1 where the class symbol is sea_water, and witnesses are minted from the class."
+   }
+  }
+ ]
+}

@@ -1,0 +1,347 @@
+{
+ "id": "L4-09",
+ "rule": "IV — Children and families",
+ "texts": [
+  "Children learn the names of the lantern-stations by heart.",
+  "Children chant the station names in games.",
+  "Keepers often marry into fisher families.",
+  "A Keeper who marries outside a Keeper family keeps the station.",
+  "The children of any Keeper may apprentice.",
+  "A Keeper's child may decline apprenticeship.",
+  "Some Keeper children do not apprentice.",
+  "Those children often fish, farm in the Hollows, or trade down the coast."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000326",
+   "sentence": "Children learn the names of the lantern-stations by heart.",
+   "parse": [
+    "(: stations_grp (GroupOf sk_stations_1 lantern_station) (STV 1.0 0.99))",
+    "(: stations_gen (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: names_grp (GroupOf sk_names_1 name) (STV 1.0 0.99))",
+    "(: names_poss (Possession sk_names_1 sk_stations_1) (STV 1.0 0.99))",
+    "(: children_learn (Implication (Member $x child) (And (Member (sk_learn $x) learn) (Agent (sk_learn $x) $x) (Theme (sk_learn $x) sk_names_1) (By (sk_learn $x) heart))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000326",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a manner-denoting PP that is not an instrument ('by heart'): Manner is restricted to how-adverbs proper, Instrument to a tool/substance/conduit and never an abstract faculty, and the preposition-named oblique is defined for PPs naming what the activity is about or directed at",
+     "a fixed adverbial/prepositional idiom ('by heart'): the idiom rule covers only multi-word verbal idioms fused into one surface symbol, so nothing bars unpacking this one into a literal preposition + 'heart' relation"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural generic routed to a distributing rule at 0.9/0.9, both definite plurals given group witnesses, and lantern_station's noun modifier correctly left unexposed while its genus is emitted. The (By ... heart) oblique is mechanically licensed (surface preposition, bare-noun object) but literalizes an idiom in the way the spill_the_beans bar warns against."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000327",
+   "sentence": "Children chant the station names in games.",
+   "parse": [
+    "(: name_group (GroupOf sk_name_1 station_name) (STV 1.0 0.99))",
+    "(: name_genus (Inheritance station_name name) (STV 1.0 0.99))",
+    "(: children_chant_rule (Implication (Member $x child) (And (Member (sk_chant $x) chant) (Agent (sk_chant $x) $x) (Theme (sk_chant $x) sk_name_1) (In (sk_chant $x) game))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000327",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural generic subject correctly routed to a 0.9/0.9 distributing rule with no QuantifierPhrase companion, the definite plural object as a group witness, station_name carrying only its head genus, chant taking Theme (the names are unchanged), and \"in games\" as the preposition-named In oblique rather than Location."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000328",
+   "sentence": "Keepers often marry into fisher families.",
+   "parse": [
+    "(: keeper_marry_rule (Implication (Member $x keeper) (And (Member (sk_marry $x) marry) (Agent (sk_marry $x) $x) (Into (sk_marry $x) (sk_family $x)) (Member (sk_family $x) fisher_family))) (STV 0.8 0.9))",
+    "(: fisher_family_genus (Inheritance fisher_family family) (STV 1.0 0.99))",
+    "(: keeper_marry_q (QuantifierPhrase keeper marry \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000328",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A relational generic whose second bare-kind argument is a PREPOSITIONAL object ('Keepers marry into fisher families'): the 'both arguments bare kind-denoting NPs' trigger for the kind-level relation fires, but the `(<Verb> <kindA> <kindB>)` form has no slot for the verb's preposition and coining a `MarryInto` head is barred, so the routing between kind relation and distributing rule is undetermined."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse takes the distributing-rule route with the frequency dial ('often' -> strength 0.8, confidence 0.9) and the required QuantifierPhrase companion, and puts the prepositional object in the surface-preposition oblique `Into` as prepositional verbs require. `fisher_family` gets its head genus with the noun modifier correctly unexposed, and the per-keeper dependent existential is a Skolem function as the forall-exists pattern prescribes."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000329",
+   "sentence": "A Keeper who marries outside a Keeper family keeps the station.",
+   "parse": [
+    "(: keeper_family_genus (Inheritance keeper_family family) (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: keeper_marry_rule (Implication (And (Member $x keeper) (Member $e1 marry) (Agent $e1 $x) (Member $y keeper_family) (Outside $e1 $y)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) $x) (Theme (sk_keep $x) sk_station_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000329",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The indefinite singular subject with a VERBAL predicate is routed as an Implication rule, but Existential states that 'a/an' is generic only in a copular/definitional predication and is a witness with a verbal predicate (a verbal generic needs a bare plural or an explicit quantifier)."
+     },
+     {
+      "statement": 2,
+      "issue": "Rule strength is 1.0 though the text carries no explicit universal quantifier; the dial gives 0.9 for a bare generic and reserves 1.0 for all/each/every."
+     },
+     {
+      "statement": 2,
+      "issue": "'a Keeper family' becomes the premise variable $y, so the rule universally quantifies over Keeper families and would fire for a Keeper who married inside one Keeper family but outside another."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "indefinite-singular generic carrying a restrictive relative clause and stating an institutional norm ('A N who Vs keeps the station') - Existential routes it to a witness while Quantifiers routes a verbal generic to a rule, and nothing in the instruction set resolves which governs"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Outside is licensed as a preposition-named oblique; the suppressed noun-modifier genus on keeper_family, the lowercase common-noun treatment of capitalized 'Keeper', and the top-level definite sk_station_1 typing referenced from the conclusion are all correct."
+   },
+   "adjudication": {
+    "id": "lore-000329",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The instruction set's own worked example routes exactly this shape as a rule — 'A package that is fragile or heavy is flagged' becomes (Implication (And (Member $x package) ...) ...), and 'when a bearing seizes, the pump stalls' takes the whenever-rule route with an indefinite singular too — so Existential's witness line governs plain episodic clauses, not a relative-restricted conditional generic."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "Quantifier-less conditional rules carry strength 1.0 in the instruction set's own examples ('Every time the bell rings, the dog barks' (STV 1.0 0.9); the fragile-package rule (STV 1.0 0.99)); the 0.9 band is for kind-habit generics ('birds fly'), so (STV 1.0 0.9) on a stipulative norm is licensed."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "Real over-assertion: with (Member $y keeper_family) as a premise conjunct the rule fires whenever the marriage is outside SOME keeper family — a strictly weaker antecedent than 'marries outside a Keeper family' (outside keeper-family stock at all) — so it awards the station in cases the sentence does not cover."
+     }
+    ],
+    "gaps_confirmed": [
+     "indefinite-singular generic carrying a restrictive relative clause and stating an institutional norm ('A N who Vs keeps the station'): Existential (witness) and Quantifiers (rule) both reach it and no boundary between them is stated"
+    ],
+    "new_gaps": [
+     "an indefinite NP inside a rule PREMISE whose intended reading is universal / kind-level ('outside a Keeper family' = outside any of them): binding it to a premise variable yields the existential scope, and the premise that would carry the real reading ('no keeper family') is exactly the negated-antecedent form the instruction set says is not yet supported"
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form: carry the restriction kind-level on the oblique — (Outside $e1 keeper_family) with the bare kind symbol (the non-specific / kind-level filler licence), the keeper_family genus atom unchanged — in place of the premise pair (Member $y keeper_family) (Outside $e1 $y); the stronger 'outside every keeper family' reading has no licensed premise form at all, which is the new gap above.",
+    "notes": "Outside is a licensed preposition-named oblique, the suppressed noun-modifier genus on keeper_family is right, and the top-level typing of the definite sk_station_1 referenced from the conclusion is right; only the premise's quantifier scope fails."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000330",
+   "sentence": "The children of any Keeper may apprentice.",
+   "parse": [
+    "(: keeper_apprentice_rule (Implication (And (Member $k keeper) (Member $c child) (Possession $c $k)) (And (Member (sk_apprentice $c) apprentice) (Agent (sk_apprentice $c) $c) (Permitted (sk_apprentice $c)))) (STV 1.0 0.99))",
+    "(: keeper_apprentice_q (QuantifierPhrase keeper apprentice \"any\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000330",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "'may apprentice' is a deontic permission over a kind, which the instruction set routes to the reified property (Inheritance <kind> (permitted <action>)) and explicitly excludes from the event-rule form, yet the parse emits a distributing Implication carrying Permitted inside its conclusion."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a kind-level deontic whose subject is restricted by a relational genitive ('the children of any Keeper') — the reified-property form needs a bare kind for its first slot, and ConditionalProperty's condition slot takes states, measures or environments rather than a possessor restriction, so the restriction has no licensed carrier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rule form the parse chose does preserve the Keeper restriction, which the licensed property form would have to drop, so the doctrine miss and the gap are the same problem from two sides. The kinship of-phrase as (Possession $c $k) with possessed first, the 'any' companion, and the lemmas are otherwise right."
+   },
+   "adjudication": {
+    "id": "lore-000330",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "This is gap territory and the improvisation is graceful: the reified-property form has no slot for 'of any Keeper' and Core patterns forbids silently dropping a stated restriction, while the instruction set's own precedent for a restricted kind subject — 'an adjectivally-restricted kind subject forces the distributing-rule route instead, the restriction becomes a premise conjunct' — licenses exactly the move made, and every emitted atom is true of the sentence and well-typed."
+     }
+    ],
+    "gaps_confirmed": [
+     "a kind-level deontic whose subject is restricted by a relational genitive ('the children of any Keeper'): (Inheritance <kind> (permitted <action>)) needs a bare kind in its first slot, and ConditionalProperty's condition slot takes states, measures or environments rather than a possessor restriction, so the restriction has no licensed carrier"
+    ],
+    "new_gaps": [
+     "no precedence is stated between the deontic section's categorical exclusion of the event-rule form for kind-level norms and the restricted-kind-subject precedent that forces the distributing-rule route whenever a restriction has no slot in the opaque kind-level form — the two collide exactly here"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The kinship of-phrase as (Possession $c $k) with possessed first, the 'any' companion naming the quantified range keeper, the lemmas, and the plain-variable premises are all right, and (sk_apprentice $c) correctly keys on the child alone since the keeper only restricts which children fall in range. The licensed property form would have had to drop the Keeper restriction, which Core patterns bars, so accepting here is the reading that loses nothing."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000331",
+   "sentence": "A Keeper's child may decline apprenticeship.",
+   "parse": [
+    "(: keeper_child_decline (Implication (And (Member $k keeper) (Member $x child) (Possession $x $k)) (And (Member (sk_decline $x) decline) (Agent (sk_decline $x) $x) (Theme (sk_decline $x) apprenticeship) (Permitted (sk_decline $x)))) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000331",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "A kind-level deontic permission (\"A Keeper's child MAY decline apprenticeship\") is emitted as a distributing event rule carrying (Permitted (sk_decline $x)), the exact form both Deontic norms & prohibitions over a kind and Quantifiers, generics & scope forbid — the mandated form is the reified property (Inheritance <kind> (permitted decline_apprenticeship)) plus that compound action's decomposition, the event Permitted being reserved for a specific one-off act on an individual."
+     },
+     {
+      "statement": 0,
+      "issue": "In the Implication form actually used, the confidence should be the quantifier-rule dial's 0.9, not 0.99; 0.99 belongs to the kind-level property form the parse did not use."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a relationally restricted kind subject (\"a Keeper's child\") under a kind-level deontic norm: (Inheritance <kind> (permitted <action>)) has one kind slot, the genitive rule sends 's to Possession, Compound concepts bars fusing a possessor + head noun, and ConditionalProperty's condition slot takes a state / measure / environment or a place, not a possessor kind — so the restriction has no licensed carrier in the mandated form"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The generic reading is right — the modal, not the determiner, decides — and the premise shape, Possession argument order, bare-kind Theme filler and Skolem-function event term are all well-formed; the defect is the construction routing."
+   },
+   "adjudication": {
+    "id": "lore-000331",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Quantifiers, generics & scope states that a deontic norm over a kind is NOT the event-rule form but the reified property (Inheritance <kind> (permitted <action>)), and the Existential section adds that a modal predication keys on the modal and not the determiner, so the indefinite singular subject does not license a distributing rule carrying (Permitted (sk_decline $x)) -- that event form is reserved for a specific one-off act on an individual."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands: an Implication of this shape takes the quantifier dial's confidence 0.9, so 0.99 is inconsistent with the form actually emitted; the half that overstates: 0.99 is exactly the confidence the mandated plain kind-level norm carries, so this is a symptom of the routing error rather than an independent defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "a relationally restricted kind subject ('a Keeper's child') under a kind-level deontic norm has no licensed carrier: the reified-property form has one kind slot, the genitive rule routes 's to Possession over individuals, Compound concepts bars fusing possessor plus head noun, and ConditionalProperty's condition slot takes a state / measure / environment or a place, never a possessor kind"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the kind-level reified property (Inheritance <kind> (permitted decline_apprenticeship)) at (STV 1.0 0.99) plus the compound action's decomposition (Inheritance decline_apprenticeship decline) and (Patient decline_apprenticeship apprenticeship) -- but the only kind symbol available for that slot is child, which would silently drop the 'of a Keeper' restriction and widen the claim, so the instruction set licenses NO fully compliant form for this sentence and the gap above is the substantive finding.",
+    "notes": "The generic reading is right (the modal decides, not the determiner), and the premise shape, Possession argument order, bare-kind apprenticeship Theme filler and Skolem-function event term are all well-formed; only the construction routing is wrong."
+   }
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000332",
+   "sentence": "Some Keeper children do not apprentice.",
+   "parse": [
+    "(: grp_ty (GroupOf sk_group_1 keeper_child) (STV 1.0 0.99))",
+    "(: grp_genus (Inheritance keeper_child child) (STV 1.0 0.99))",
+    "(: appr_neg_grp (And (Member sk_apprentice_1 apprentice) (Agent sk_apprentice_1 sk_group_1)) (STV 0.0 0.99))",
+    "(: appr_neg_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_apprentice $x) apprentice) (Agent (sk_apprentice $x) $x))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000332",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a CAPITALIZED common-noun premodifier inside a compound kind (\"Keeper children\"): the instruction set fixes a PROPER-noun premodifier (head parsed normally, linked by opaque Possession, never fused) and a capitalized common noun used as a referent's only label (common noun, no Name atom), but never says which of the two a capitalized modifier word takes, so keeper_child vs. child + (Possession ... keeper) is undetermined"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The existential \"some\" correctly mints a group witness and takes no QuantifierPhrase companion, the group typing stays outside the denial (the existential scopes over the negation, unlike the \"a cooper does not caulk\" case), and both emissions -- group bundle at 0.0 0.99 and per-member rule at 0.0 0.9 -- follow the negated-plural pattern."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000333",
+   "sentence": "Those children often fish, farm in the Hollows, or trade down the coast.",
+   "parse": [
+    "(: children_grp (GroupOf sk_children_1 child) (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: coast_type (Member sk_coast_1 coast) (STV 1.0 0.99))",
+    "(: children_activity_rule (Implication (PartOf $x sk_children_1) (Or (And (Member (sk_fish $x) fish) (Agent (sk_fish $x) $x)) (And (Member (sk_farm $x) farm) (Agent (sk_farm $x) $x) (Location (sk_farm $x) hollows)) (And (Member (sk_trade $x) trade) (Agent (sk_trade $x) $x) (Location (sk_trade $x) sk_coast_1)))) (STV 0.8 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000333",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The frequency adverb \"often\" correctly sets the rule strength to 0.8 but its (QuantifierPhrase <kind> <verb-lemma> \"often\") companion is not emitted, and *Quantifiers* / *Negation (copular)* make that companion mandatory for every explicit quantifier word the rule consumes, a frequency adverb's word included."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Directional / path PP on an event (\"trade down the coast\"): the oblique table glosses Location as \"in/at/on ...\" and licenses it for any where-PP, while the entity-side rule sends every non-containment preposition to a surface-preposition head (NextTo, On, ...); nothing states how a directional \"down / along / up the N\" adjunct on an EVENT is routed - Location, Goal, or the preposition-named (Down <event> ...) - so the \"down\" sense has no determined carrier.",
+     "A disjunctive predicate as the CONCLUSION of a distribution rule (\"often fish, farm ..., or trade ...\" over the members of a group): *Disjunction* covers an (Or ...) in a rule's CONDITION (split into one rule per disjunct) and (Or ...) over independent clauses, but says nothing about an (Or ...) of Skolem-event bundles inside an Implication's consequent."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The demonstrative plural correctly takes a group witness plus a per-member distribution rule, and \"the Hollows\" correctly takes the Name-only plural-label treatment with no invented type atom."
+   },
+   "adjudication": {
+    "id": "lore-000333",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Quantifiers makes a frequency adverb ride two channels — the strength AND the (QuantifierPhrase <kind> <verb-lemma> \"<word>\") companion — and the companion is called mandatory for every explicit quantifier word the rule consumes, a frequency adverb's word included, so a 0.8 rule with no companion is not distinguishable from a bare generic whose strength was dialled down."
+     }
+    ],
+    "gaps_confirmed": [
+     "Directional / path PP on an EVENT ('trade down the coast') has no determined carrier: Location is glossed for in/at/on, the preposition-named oblique is reserved for PPs naming what the activity is about or directed at, and the keep-the-surface-preposition rule is stated only for entity-attached position — so Location vs Goal vs (Down <event> ...) is unsettled and the 'down' sense is dropped either way.",
+     "An (Or ...) of Skolem-event bundles inside an Implication's CONSEQUENT is unaddressed: Disjunction covers an (Or ...) in a rule's CONDITION (split into one rule per disjunct) and wide-scope Or over independent clauses, but says nothing about a disjunctive consequent under a distribution rule."
+    ],
+    "new_gaps": [
+     "The (QuantifierPhrase <kind> <verb-lemma> \"<word>\") companion has no determined <verb-lemma> filler when a single frequency adverb scopes over a DISJUNCTION of verbs (fish / farm / trade): 'one companion per explicit quantifier phrase' licenses exactly one atom, but the slot takes one lemma and three are equally the rule's verb."
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form: a (QuantifierPhrase child <verb-lemma> \"often\") (STV 1.0 0.99) companion beside the 0.8 rule (a PartOf group premise names the group kind, hence child) — but with three disjoined verbs the <verb-lemma> slot has no licensed single filler, so the companion is mandatory and yet not fully constructible here, which is the new gap filed above.",
+    "notes": "The demonstrative plural correctly takes a group witness plus a per-member distribution rule, 'the Hollows' correctly takes the Name-only capitalized-plural-label treatment with no invented kind atom, and the 0.8 strength for 'often' matches the frequency dial."
+   }
+  }
+ ]
+}

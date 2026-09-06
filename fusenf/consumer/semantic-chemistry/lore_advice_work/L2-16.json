@@ -1,0 +1,177 @@
+{
+ "id": "L2-16",
+ "rule": "II — Departures and re-staffing",
+ "texts": [
+  "Two Keepers have left the village.",
+  "The two Keepers married outside Aelmere.",
+  "When a Keeper leaves a station, the Council assigns an apprentice to the station.",
+  "The Council assigns an apprentice who has completed thirty solo nights."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000176",
+   "sentence": "Two Keepers have left the village.",
+   "parse": [
+    "(: l176_keeper_group (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: l176_keeper_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: l176_leave (Member sk_leave_1 leave) (STV 1.0 0.99))",
+    "(: l176_agent (Agent sk_leave_1 sk_group_1) (STV 1.0 0.99))",
+    "(: l176_theme (Theme sk_leave_1 sk_village_1) (STV 1.0 0.99))",
+    "(: l176_village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: l176_past (Past sk_leave_1) (STV 1.0 0.99))",
+    "(: l176_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Theme (sk_leave $x) sk_village_1) (Past (sk_leave $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000176",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the 'Both dogs barked' pattern exactly — group witness + Cardinality 2 + group event + per-member rule at (STV 1.0 0.9) sharing the definite sk_village_1 — and the present perfect correctly coarsens to Past with no Before (no second event to order against). The counted 'Two Keepers' rightly takes the capitalized-common-noun default rather than the plural Name-only label route, which applies to a plural label referring as a name."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000177",
+   "sentence": "The two Keepers married outside Aelmere.",
+   "parse": [
+    "(: group_type (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: group_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: e_marry (Member sk_marry_1 marry) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_marry_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_past (Past sk_marry_1) (STV 1.0 0.99))",
+    "(: e_outside (Outside sk_marry_1 aelmere) (STV 1.0 0.99))",
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000177",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A COUNTED/individuated capitalized plural kind-word label (\"the TWO Keepers\"): the instruction set gives the common-noun default for singular-collective labels and a `Name`-only individual (one symbol, `Name` atom, no `GroupOf`, no per-member kind from the label word) for a capitalized plural label \"referring as a name\", but says nothing about a capitalized plural that a numeral individuates — where the Name-only-individual treatment is incompatible with a `Cardinality` and with two people marrying, so the group + count reading has to be inferred."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything downstream of that label choice is right: reciprocal \"married\" stays collective on the group symbol with no per-member rule, `Cardinality 2` rides the group, and the non-containment spatial PP keeps its surface preposition head `Outside` (a `Location aelmere` atom would have wrongly asserted in-ness)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000178",
+   "sentence": "When a Keeper leaves a station, the Council assigns an apprentice to the station.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: keeper_leave_assign (Implication (And (Member $k keeper) (Member $s station) (Member $e leave) (Agent $e $k) (Source $e $s)) (And (Member (sk_assign $k $s) assign) (Agent (sk_assign $k $s) sk_council_1) (Theme (sk_assign $k $s) (sk_apprentice $k $s)) (Member (sk_apprentice $k $s) apprentice) (Recipient (sk_assign $k $s) $s))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000178",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The rule emits no (During <response-event> <trigger-event>) atom, which the 'every time / whenever' occurrence machinery that bare 'when P, Q' with indefinite participants routes to mandates."
+     },
+     {
+      "statement": 1,
+      "issue": "The consequent Skolem terms are keyed to the participants (sk_assign $k $s) rather than to the trigger occurrence, so two separate leavings by the same Keeper from the same station collapse into a single assign event instead of one per occurrence."
+     },
+     {
+      "statement": 1,
+      "issue": "(Source $e $s) puts the bare direct object of 'leaves a station' into a preposition-named oblique the text never uses, where the direct-object test ('does the object itself change?') gives Theme."
+     },
+     {
+      "statement": 1,
+      "issue": "(Recipient (sk_assign $k $s) $s) makes a place the goal of a transfer, where Recipient is defined for a transfer goal / addressee of communication and a non-recipient 'to' takes Goal."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing is right (indefinite trigger participants -> rule, not two plain events), as are the anaphoric 'the station' bound to the premise variable $s, the dependent-existential Skolem apprentice with its class atom inside the consequent, sk_council_1 as a top-level-asserted constant used only in the conclusion, and the 1.0/0.9 rule TV with no QuantifierPhrase companion."
+   },
+   "adjudication": {
+    "id": "lore-000178",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Bare \"when P, Q\" with indefinite participants routes to \"exactly the whenever machinery\", whose stated form ties the per-occurrence response to its trigger with During — (During (sk_bark $x) $x) in the bell/dog example — so the atom is mandated and simply absent."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "That machinery mints \"the response as a Skolem event per occurrence\", keyed to the trigger event variable, so keying to ($k $s) gives one assign per keeper-station pair and silently identifies two separate leavings by the same Keeper at the same station."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "\"leaves a station\" takes a bare direct object, and the set reserves preposition-named/oblique slots for objects the verb takes with a preposition while a direct object goes by the change test — the station is not created, destroyed or changed, so Theme."
+     },
+     {
+      "index": 3,
+      "verdict": "confirm",
+      "reason": "Recipient is the goal of a transfer or the addressee of communication — a party — with a non-recipient \"to\" explicitly taking the spatial Goal (\"muttered to the bailiff … never the spatial Goal\" draws the line the other way), so a station, a place/post, is a Goal."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form keys the consequent Skolems to the trigger occurrence — (sk_assign $e) and (sk_apprentice $e) — and adds (During (sk_assign $e) $e); the premise's (Source $e $s) becomes (Theme $e $s); the consequent's (Recipient … $s) becomes (Goal (sk_assign $e) $s).",
+    "notes": "Routing to a rule rather than two plain events, binding the anaphoric \"the station\" to the premise variable, asserting sk_council_1 at top level while using it only in the conclusion, and the (STV 1.0 0.9) rule TV with no QuantifierPhrase companion are all correct."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000179",
+   "sentence": "The Council assigns an apprentice who has completed thirty solo nights.",
+   "parse": [
+    "(: council_kind (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_assign (Member sk_assign_1 assign) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_assign_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_assign_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: apprentice_kind (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: e_complete (Member sk_complete_1 complete) (STV 1.0 0.99))",
+    "(: c_agent (Agent sk_complete_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: c_theme (Theme sk_complete_1 sk_group_2) (STV 1.0 0.99))",
+    "(: nights_group (GroupOf sk_group_2 solo_night) (STV 1.0 0.99))",
+    "(: nights_card (Cardinality sk_group_2 30) (STV 1.0 0.99))",
+    "(: c_tense (Past sk_complete_1) (STV 1.0 0.99))",
+    "(: sn_genus (Inheritance solo_night night) (STV 1.0 0.99))",
+    "(: sn_mod (Inheritance solo_night solo) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000179",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a habitual/policy clause whose object is an indefinite restricted by a relative clause (\"assigns an apprentice who has completed thirty solo nights\") — Existential forces \"an N\" under a verbal predicate to a witness, and a singular collective subject to a plain no-rule event, so the eligibility-criterion reading has no route and the parse ends up asserting one specific apprentice who has completed thirty nights"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" correctly stays a capitalized-common-noun witness with no Name atom; present perfect maps to coarse Past with no Before (that ordering is past-perfect-only); the counted plural object takes GroupOf plus Cardinality 30. Exposing (Inheritance solo_night solo) treats solo as a predicable adjective, a borderline call against the gradable/positional/material exposure list."
+   },
+   "adjudication": null
+  }
+ ]
+}

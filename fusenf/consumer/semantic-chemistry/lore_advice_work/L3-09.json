@@ -1,0 +1,550 @@
+{
+ "id": "L3-09",
+ "rule": "III — The bad winters",
+ "texts": [
+  "A bad winter came one hundred and twelve years ago.",
+  "One hundred and twelve years ago, two wraiths emerged in a bad winter.",
+  "The salt-bloom harvest failed one hundred and twelve years ago.",
+  "The spring tide came at the wrong moon phase one hundred and twelve years ago.",
+  "The Council rationed mire-essence after the bad winter of one hundred and twelve years ago.",
+  "A very bad winter came sixty-three years ago.",
+  "Four wraiths emerged from the Sunken Cove sixty-three years ago.",
+  "Old Vesh was a boy sixty-three years ago.",
+  "Old Vesh's father was a Keeper sixty-three years ago.",
+  "Sixty-three years ago, Old Vesh's father walked the Cove Stair every evening with three other Keepers.",
+  "The Council created the modern feather-ration system sixty-three years ago.",
+  "A bad winter came twenty-six years ago.",
+  "One wraith emerged twenty-six years ago.",
+  "Twenty-six years ago, ground feathers around the Stilllight Lantern warded the wraith back.",
+  "The Council doubled the Stilllight feather ration for winter twenty-six years ago."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000251",
+   "sentence": "A bad winter came one hundred and twelve years ago.",
+   "parse": [
+    "(: winter_ty (Member sk_winter_1 winter) (STV 1.0 0.99))",
+    "(: winter_bad (Member sk_winter_1 bad) (STV 1.0 0.99))",
+    "(: come_ev (Member sk_come_1 come) (STV 1.0 0.99))",
+    "(: come_th (Theme sk_come_1 sk_winter_1) (STV 1.0 0.99))",
+    "(: come_past (Past sk_come_1) (STV 1.0 0.99))",
+    "(: come_ago (BeforeBy sk_come_1 now 112 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000251",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"bad winter\" is correctly left as two atoms (incidental description, no compound fusion) and \"one hundred and twelve years ago\" takes the licensed (BeforeBy e now 112 year) anchoring on the reserved symbol now; Theme for the non-self-powered intransitive subject of \"came\" follows the arrive/un-powered-relocation branch of the subject test."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000252",
+   "sentence": "One hundred and twelve years ago, two wraiths emerged in a bad winter.",
+   "parse": [
+    "(: winter_type (Member sk_winter_1 winter) (STV 1.0 0.99))",
+    "(: winter_bad (Member sk_winter_1 bad) (STV 1.0 0.99))",
+    "(: wraiths_grp (GroupOf sk_group_1 wraith) (STV 1.0 0.99))",
+    "(: wraiths_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: e_emerge (Member sk_emerge_1 emerge) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_emerge_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_past (Past sk_emerge_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_emerge_1 sk_winter_1) (STV 1.0 0.99))",
+    "(: e_ago (BeforeBy sk_emerge_1 now 112 year) (STV 1.0 0.99))",
+    "(: wraiths_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_emerge $x) emerge) (Agent (sk_emerge $x) $x) (Past (sk_emerge $x)) (Time (sk_emerge $x) sk_winter_1) (BeforeBy (sk_emerge $x) now 112 year))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000252",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "temporal-frame PP whose object is an indefinite period NP needing its own witness and modifier ('in a bad winter'): Time's fillers are specified as structured calendar terms or deictic/named constants, and During is restricted to the surface words during/while/throughout, so surface 'in' plus a minted period witness has no specified head"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group + Cardinality 2 + group event + per-member rule matches the counted-plural-with-distributive-predicate pattern, and 'one hundred and twelve years ago' correctly anchors on now via BeforeBy. Replicating Time and BeforeBy inside the per-member conclusion is consistent with distributing the whole predication."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000253",
+   "sentence": "The salt-bloom harvest failed one hundred and twelve years ago.",
+   "parse": [
+    "(: l253_harvest_type (Member sk_harvest_1 salt_bloom_harvest) (STV 1.0 0.99))",
+    "(: l253_harvest_genus (Inheritance salt_bloom_harvest harvest) (STV 1.0 0.99))",
+    "(: l253_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: l253_fail_ev (Member sk_fail_1 fail) (STV 1.0 0.99))",
+    "(: l253_fail_pat (Patient sk_fail_1 sk_harvest_1) (STV 1.0 0.99))",
+    "(: l253_fail_past (Past sk_fail_1) (STV 1.0 0.99))",
+    "(: l253_fail_time (BeforeBy sk_fail_1 now 112 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000253",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "(Inheritance salt_bloom bloom) is a second-level decomposition of a noun modifier that the compound doctrine does not license ('decompose once, to single-word lemmas, then stop'), and since a noun modifier is never exposed as a genus the atom is orphaned - nothing in the parse links salt_bloom_harvest to salt_bloom."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else conforms: the compound kind with its head genus only, the unaccusative 'fail' subject as Patient, Past, and 'N units ago' anchored as (BeforeBy sk_fail_1 now 112 year) exactly per the Time section."
+   },
+   "adjudication": {
+    "id": "lore-000253",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound decomposition is 'determined, not optional': `salt_bloom_harvest` licenses exactly the head genus `(Inheritance salt_bloom_harvest harvest)`, and a noun modifier is 'never exposed, whatever it names ... leave those in the symbol', so the second-level `(Inheritance salt_bloom bloom)` is an unlicensed extra atom asserting a taxonomy for a symbol the parse never otherwise uses."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps the noun modifier inside the symbol and emits only the head genus — `(Member sk_harvest_1 salt_bloom_harvest)` plus `(Inheritance salt_bloom_harvest harvest)` — with no `(Inheritance salt_bloom bloom)`.",
+    "notes": "Everything else conforms: the unaccusative 'fail' subject as Patient, `(Past sk_fail_1)`, and 'one hundred and twelve years ago' as `(BeforeBy sk_fail_1 now 112 year)` on the reserved `now` anchor."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000254",
+   "sentence": "The spring tide came at the wrong moon phase one hundred and twelve years ago.",
+   "parse": [
+    "(: tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: e_tide (Member sk_tide_1 spring_tide) (STV 1.0 0.99))",
+    "(: e_come (Member sk_come_1 come) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_come_1 sk_tide_1) (STV 1.0 0.99))",
+    "(: e_past (Past sk_come_1) (STV 1.0 0.99))",
+    "(: phase_genus (Inheritance moon_phase phase) (STV 1.0 0.99))",
+    "(: e_phase (Member sk_phase_1 moon_phase) (STV 1.0 0.99))",
+    "(: e_phase_wrong (Member sk_phase_1 wrong) (STV 1.0 0.99))",
+    "(: e_time (Time sk_come_1 sk_phase_1) (STV 1.0 0.99))",
+    "(: e_beforeby (BeforeBy sk_come_1 now 112 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000254",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Patient on the tide matches the non-volitional natural-process rule (whose own example is 'the tide receded'), both compounds emit the head genus with the noun modifier correctly unexposed, and 'one hundred and twelve years ago' matches the BeforeBy-now pattern exactly. The one borderline slot is (Time sk_come_1 sk_phase_1), which puts an ordinary entity witness where the Time section specifies calendar terms or named/deictic constants - licensed, I judge, by the oblique rule for a when-answering PP whose object NP mints a witness."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000255",
+   "sentence": "The Council rationed mire-essence after the bad winter of one hundred and twelve years ago.",
+   "parse": [
+    "(: council_typ (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: ration_ev (Member sk_ration_1 ration) (STV 1.0 0.99))",
+    "(: ration_ag (Agent sk_ration_1 sk_council_1) (STV 1.0 0.99))",
+    "(: ration_th (Theme sk_ration_1 mire_essence) (STV 1.0 0.99))",
+    "(: mire_essence_gen (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: ration_tense (Past sk_ration_1) (STV 1.0 0.99))",
+    "(: winter_typ (Member sk_winter_1 winter) (STV 1.0 0.99))",
+    "(: winter_bad (Member sk_winter_1 bad) (STV 1.0 0.99))",
+    "(: winter_ago (BeforeBy sk_winter_1 now 112 year) (STV 1.0 0.99))",
+    "(: winter_before_ration (Before sk_winter_1 sk_ration_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000255",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"of one hundred and twelve years ago\" is an NP-internal temporal modifier on a period noun; routing it through the clause-level ago-rule (BeforeBy ... now) is an extension of that rule, bridged by the event-noun-takes-time-relations-directly licence. The extra (Member sk_winter_1 bad) sits alongside the temporal-anchor rule's \"class atom and the ordering relation and nothing else\", but that clause is glossed as barring tense/status only, and the adjective is stated in the NP."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000256",
+   "sentence": "A very bad winter came sixty-three years ago.",
+   "parse": [
+    "(: w1_type (Member sk_winter_1 winter) (STV 1.0 0.99))",
+    "(: w1_bad (Member sk_winter_1 bad) (STV 1.0 0.99))",
+    "(: w1_deg (Degree sk_winter_1 bad very) (STV 1.0 0.99))",
+    "(: e1_come (Member sk_come_1 come) (STV 1.0 0.99))",
+    "(: e1_pat (Patient sk_come_1 sk_winter_1) (STV 1.0 0.99))",
+    "(: e1_past (Past sk_come_1) (STV 1.0 0.99))",
+    "(: e1_time (BeforeBy sk_come_1 now 63 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000256",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The Patient role on the winter is the one judgment call: defensible under the non-volitional-natural-process branch of the intransitive-subject test, though 'came' also reads as un-powered relocation (Theme). Degree/positive dual atoms, the incidental-description non-fusion of 'bad winter', and (BeforeBy sk_come_1 now 63 year) for 'sixty-three years ago' all match the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000257",
+   "sentence": "Four wraiths emerged from the Sunken Cove sixty-three years ago.",
+   "parse": [
+    "(: sunkencove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: sunkencove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: wraith_grp (GroupOf sk_group_1 wraith) (STV 1.0 0.99))",
+    "(: wraith_card (Cardinality sk_group_1 4) (STV 1.0 0.99))",
+    "(: emerge_ev (Member sk_emerge_1 emerge) (STV 1.0 0.99))",
+    "(: emerge_ag (Agent sk_emerge_1 sk_group_1) (STV 1.0 0.99))",
+    "(: emerge_src (Source sk_emerge_1 sunken_cove) (STV 1.0 0.99))",
+    "(: emerge_past (Past sk_emerge_1) (STV 1.0 0.99))",
+    "(: emerge_time (BeforeBy sk_emerge_1 now 63 year) (STV 1.0 0.99))",
+    "(: wraith_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_emerge $x) emerge) (Agent (sk_emerge $x) $x) (Source (sk_emerge $x) sunken_cove) (Past (sk_emerge $x)) (BeforeBy (sk_emerge $x) now 63 year))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000257",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Counted plural takes group + Cardinality + group event plus the per-member distribution rule (emerge is distributive, not collective), and no QuantifierPhrase is due for a numeral. \"the Sunken Cove\" is one name symbol with the kind word read off the name, and \"sixty-three years ago\" correctly anchors on the reserved `now` via BeforeBy."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000258",
+   "sentence": "Old Vesh was a boy sixty-three years ago.",
+   "parse": [
+    "(: ov_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+    "(: ov_boy_ev (Member sk_boy_1 boy) (STV 1.0 0.99))",
+    "(: ov_boy_exp (Experiencer sk_boy_1 old_vesh) (STV 1.0 0.99))",
+    "(: ov_boy_past (Past sk_boy_1) (STV 1.0 0.99))",
+    "(: ov_boy_ago (BeforeBy sk_boy_1 now 63 year) (STV 1.0 0.99))",
+    "(: ov_boy_flat (Past (Member old_vesh boy)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000258",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Copular-with-time-modifier reification plus the flat (Past (Member old_vesh boy)) dual-emit is right, the predicate-nominal state witness follows the reified-kind-state precedent, and 'N years ago' correctly anchors on the reserved 'now' via BeforeBy. 'Old Vesh' correctly stays one capitalized-run name symbol with no (Member ... old) atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t9",
+   "corpus_id": "lore-000259",
+   "sentence": "Old Vesh's father was a Keeper sixty-three years ago.",
+   "parse": [
+    "(: vesh_name (Name vesh \"Old Vesh\") (STV 1.0 0.99))",
+    "(: father_type (Member sk_father_1 father) (STV 1.0 0.99))",
+    "(: father_poss (Possession sk_father_1 vesh) (STV 1.0 0.99))",
+    "(: keeper_st (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: keeper_exp (Experiencer sk_keeper_1 sk_father_1) (STV 1.0 0.99))",
+    "(: keeper_time (BeforeBy sk_keeper_1 now 63 year) (STV 1.0 0.99))",
+    "(: keeper_past (Past sk_keeper_1) (STV 1.0 0.99))",
+    "(: keeper_flat (Past (Member sk_father_1 keeper)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000259",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The capitalized run 'Old Vesh' should yield the symbol old_vesh (Names and casing: a capitalized modifier joins the capitalized run, as in Upper Calderwick), but the parse derives the symbol from the last word alone, and statement 2 carries that same symbol."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The copular-with-time-modifier handling (reified state witness + Experiencer + Past + the flat Past-wrapped copular atom) and the 'N years ago' BeforeBy-to-now anchor both match the instruction set exactly."
+   },
+   "adjudication": {
+    "id": "lore-000259",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Names and casing makes a multi-word name one opaque symbol built from the whole capitalized run and states the cue mechanically ('a capitalized modifier belongs to the capitalized run and joins the name' — Upper Calderwick -> upper_calderwick), and 'Old' is an adjective, not one of the kinship/courtesy title nouns (Dr, Uncle) the surface-only carve-out enumerates, so the symbol must be old_vesh."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A capitalized ADJECTIVAL EPITHET on a personal name ('Old Vesh', 'Young Bill') is assigned to neither bullet explicitly: the mechanical casing rule (capitalized modifier joins the run) is illustrated only on place names, while the surface-only title carve-out enumerates kinship/courtesy title NOUNS. A licensed form would need to say whether the epithet joins the symbol (old_vesh) or stays surface-only in the Name string (vesh), since both bullets otherwise reach the same sentence."
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form: (Name old_vesh \"Old Vesh\") with old_vesh also filling the possessor slot of (Possession sk_father_1 ...) — one symbol for the whole capitalized run, one Name atom, and no separate (Member ... old) atom.",
+    "notes": "Nothing else is at fault: the kinship genitive takes the opaque Possession, capitalized 'a Keeper' stays a common noun with no Name atom, the copular-with-time-modifier reification (state witness + Experiencer + Past + flat Past-wrapped copular) matches the stated pattern, and 'sixty-three years ago' correctly anchors as (BeforeBy sk_keeper_1 now 63 year)."
+   }
+  },
+  {
+   "field": "t10",
+   "corpus_id": "lore-000260",
+   "sentence": "Sixty-three years ago, Old Vesh's father walked the Cove Stair every evening with three other Keepers.",
+   "parse": [
+    "(: vesh_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+    "(: father_type (Member sk_father_1 father) (STV 1.0 0.99))",
+    "(: father_poss (Possession sk_father_1 old_vesh) (STV 1.0 0.99))",
+    "(: walk_ev (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: walk_agent (Agent sk_walk_1 sk_father_1) (STV 1.0 0.99))",
+    "(: stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+    "(: walk_theme (Theme sk_walk_1 cove_stair) (STV 1.0 0.99))",
+    "(: walk_past (Past sk_walk_1) (STV 1.0 0.99))",
+    "(: walk_time (Time sk_walk_1 evening) (STV 1.0 0.99))",
+    "(: walk_every (Every sk_walk_1 1 day) (STV 1.0 0.99))",
+    "(: walk_beforeby (BeforeBy sk_walk_1 now 63 year) (STV 1.0 0.99))",
+    "(: keeper_grp (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: keeper_card (Cardinality sk_keeper_1 3) (STV 1.0 0.99))",
+    "(: walk_coagent (CoAgent sk_walk_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: father_keeper (Past (Member sk_father_1 keeper)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000260",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 15,
+      "issue": "(Past (Member sk_father_1 keeper)) asserts the presupposition triggered by \"other\" in \"three other Keepers\" as a top-level fact about the father, which no word predicates of him — it fails Core patterns' point-at-the-words test and runs against the standing bars on asserting Also / Even / Again presuppositions."
+     },
+     {
+      "statement": 12,
+      "issue": "The restrictive \"other\" on \"three other Keepers\" is itself dropped with no record, so the parse trades a stated modifier for an unstated claim about a different entity."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "contrastive \"other\" on a counted plural (\"three other Keepers\") and the same-class presupposition it triggers on the subject — no licensed carrier and no projection rule",
+     "a capitalized plural kind-word under a numeral and a modifier (\"three other Keepers\"): the Name-only default is stated only for a capitalized plural label \"referring as a name\", leaving the counted / indefinite case undecided between Name-only and the common-noun GroupOf reading used here"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The Name atom, the genitive Possession (possessed first), the Kestrel-River-style (Member cove_stair stair) + Name pair, the \"every evening\" slot + implied cycle, and the BeforeBy-now anchoring of \"sixty-three years ago\" all follow the instruction set. Past on a past habitual is licensed (finite past clause); Theme for the unchanged Cove Stair and CoAgent for the comitative phrase are the right role calls."
+   },
+   "adjudication": {
+    "id": "lore-000260",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "No word predicates 'keeper' of the father — the atom rides only on the presupposition triggered by 'other', and the instruction set's standing treatment of presupposition triggers is structural recording, never top-level assertion ('Do NOT assert the additive / scalar presupposition as a fact'; 'Do not assert the presupposed prior / expected event itself'), so it fails Core patterns' point-at-the-words test."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "Dropping an unencodable modifier is the licensed fallback ('carry it, or leave the whole claim out and record the gap'), and here nothing is widened — the three companions stay a distinct group of keepers and every emitted atom stays true — so the loss of 'other' is the coverage gap the reviewer already filed, not a second defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "contrastive 'other' on a counted plural ('three other Keepers'): no licensed carrier for the modifier and no projection rule for the same-class presupposition it puts on the subject"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: the parse exactly as written but WITHOUT (Past (Member sk_father_1 keeper)); 'other' itself has no licensed carrier — the closed relational vocabulary holds no Other head and coining one is barred ('Never coin a relation head') — so the presupposition stays unencoded and is recorded as a gap.",
+    "notes": "The reviewer's second gap is thin: the Name-only carve-out is explicitly for a capitalized plural label *referring as a name*, which a numeral-counted indefinite is not, so the common-noun GroupOf default the parse used is decided rather than undecided. Everything else — the Cove-Stair name+kind pair, Time/Every for 'every evening', BeforeBy on now, CoAgent for the comitative — follows the instruction set."
+   }
+  },
+  {
+   "field": "t11",
+   "corpus_id": "lore-000261",
+   "sentence": "The Council created the modern feather-ration system sixty-three years ago.",
+   "parse": [
+    "(: council_typ (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: sys_typ (Member sk_system_1 feather_ration_system) (STV 1.0 0.99))",
+    "(: sys_mod (Member sk_system_1 modern) (STV 1.0 0.99))",
+    "(: sys_genus (Inheritance feather_ration_system system) (STV 1.0 0.99))",
+    "(: e_create (Member sk_create_1 create) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_create_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_create_1 sk_system_1) (STV 1.0 0.99))",
+    "(: e_past (Past sk_create_1) (STV 1.0 0.99))",
+    "(: e_time (BeforeBy sk_create_1 now 63 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000261",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Council' correctly takes the capitalized-common-noun default (no Name atom); 'sixty-three years ago' matches the BeforeBy/now pattern exactly, and the noun modifier of feather_ration_system is correctly left unexposed while the head genus is emitted."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t12",
+   "corpus_id": "lore-000262",
+   "sentence": "A bad winter came twenty-six years ago.",
+   "parse": [
+    "(: winter_type (Member sk_winter_1 winter) (STV 1.0 0.99))",
+    "(: winter_bad (Member sk_winter_1 bad) (STV 1.0 0.99))",
+    "(: come_ev (Member sk_come_1 come) (STV 1.0 0.99))",
+    "(: come_theme (Theme sk_come_1 sk_winter_1) (STV 1.0 0.99))",
+    "(: come_past (Past sk_come_1) (STV 1.0 0.99))",
+    "(: come_gap (BeforeBy sk_come_1 now 26 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000262",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Theme for the intransitive subject of 'came' follows the un-powered-relocation branch that explicitly lists 'arrive'; a winter is not a self-powered mover, so Agent is correctly avoided. 'twenty-six years ago' takes the prescribed (BeforeBy e now 26 year) anchored on the reserved symbol now, and 'bad' stays an unfused descriptive Member atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t13",
+   "corpus_id": "lore-000263",
+   "sentence": "One wraith emerged twenty-six years ago.",
+   "parse": [
+    "(: e_wraith (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: e_emerge (Member sk_emerge_1 emerge) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_emerge_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: e_past (Past sk_emerge_1) (STV 1.0 0.99))",
+    "(: e_time (BeforeBy sk_emerge_1 now 26 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000263",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "cardinal 'one' on a SINGULAR count subject ('One wraith emerged') — Cardinality / CardinalityAtLeast / CardinalityPhrase all ride on a group witness, so a singular numeral has no licensed count carrier and the word is dropped without a record"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "(BeforeBy sk_emerge_1 now 26 year) matches the 'N units ago' rule exactly, and Past is correctly kept alongside it. An animate self-mover under 'emerge' takes Agent by the intransitive-subject test (and Agent is the stated default when unclear)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t14",
+   "corpus_id": "lore-000264",
+   "sentence": "Twenty-six years ago, ground feathers around the Stilllight Lantern warded the wraith back.",
+   "parse": [
+    "(: feather_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feather_ground_rule (Implication (PartOf $x sk_feather_1) (Member $x ground)) (STV 1.0 0.9))",
+    "(: feather_around (Around sk_feather_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: lantern_kind (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: ward_ev (Member sk_ward_1 ward_back) (STV 1.0 0.99))",
+    "(: ward_agent (Agent sk_ward_1 sk_feather_1) (STV 1.0 0.99))",
+    "(: ward_theme (Theme sk_ward_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: wraith_kind (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: ward_past (Past sk_ward_1) (STV 1.0 0.99))",
+    "(: ward_ago (BeforeBy sk_ward_1 now 26 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000264",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Episodic bare-plural subject as a group witness, the participial descriptive modifier 'ground' as the per-member distribution rule at (STV 1.0 0.9), verb_particle ward_back with no genus, the multi-word name plus its separate kind atom, the non-containment preposition kept entity-attached, and 'twenty-six years ago' as BeforeBy on the reserved 'now' all match the instruction set. The Around position atom carries no tense wrapper, which the tenseless postnominal PP does not license either."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t15",
+   "corpus_id": "lore-000265",
+   "sentence": "The Council doubled the Stilllight feather ration for winter twenty-six years ago.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: stilllight_name (Name stilllight \"Stilllight\") (STV 1.0 0.99))",
+    "(: ration_type (Member sk_ration_1 feather_ration) (STV 1.0 0.99))",
+    "(: ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))",
+    "(: ration_poss (Possession sk_ration_1 stilllight) (STV 1.0 0.99))",
+    "(: ration_for (For sk_ration_1 winter) (STV 1.0 0.99))",
+    "(: e_double (Member sk_double_1 double) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_double_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_double_1 sk_ration_1) (STV 1.0 0.99))",
+    "(: e_past (Past sk_double_1) (STV 1.0 0.99))",
+    "(: e_time (BeforeBy sk_double_1 now 26 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000265",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun premodifier is routed exactly as the Northgate-spokesman rule prescribes (head phrase typed and decomposed, opaque Possession to the named entity, no invented kind for Stilllight), and 'twenty-six years ago' matches the BeforeBy-now form. 'for winter' is attached to the ration rather than to the doubling event - a live attachment choice the sentence leans toward but does not settle."
+   },
+   "adjudication": null
+  }
+ ]
+}

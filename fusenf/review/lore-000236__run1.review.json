@@ -1,0 +1,10 @@
+{"id": "lore-000236", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "\"re-staffs\" is rendered as the bare verb class `staff` plus an `(Again ...)` tag, but the instruction set licenses `Again` only for the surface particle \"again\" and permits inflectional lemmatization only, so stripping the derivational prefix and re-expressing it as an aspectual tag is a normalization the prompt reserves for downstream."},
+              {"statement": 1, "issue": "The whenever machinery Skolemizes the response per occurrence on the trigger-event variable, but this rule builds `(sk_staff $k)` and `(sk_station $k)` on the keeper while `During` links to `$e`, so the response is a function of the keeper rather than of the death occurrence it is tied to."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a verb carrying a restitutive/derivational prefix (\"re-staff\", \"re-open\"): the instruction set covers the particle \"again\" and bars derivation in lemmatization, but never says how such a verb's class symbol should be formed"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The bare \"when a Keeper dies\" with generic participants correctly takes the whenever-rule route with the During link, `die` gives its subject `Patient`, \"that Keeper's station\" takes the opaque `Possession`, and \"the Council\" / \"a Keeper\" are handled as capitalized common nouns with no `Name` atom. Rule TV 1.0/0.9 and the absence of a `QuantifierPhrase` companion both match doctrine."}

@@ -1,0 +1,7 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: marker_group (GroupOf sk_marker_1 calendar_marker) (STV 1.0 0.99))
+(: marker_count (Cardinality sk_marker_1 3) (STV 1.0 0.99))
+(: marker_genus (Inheritance calendar_marker marker) (STV 1.0 0.99))
+(: e_recognize (Member sk_recognize_1 recognize) (STV 1.0 0.99))
+(: e_experiencer (Experiencer sk_recognize_1 sk_council_1) (STV 1.0 0.99))
+(: e_stimulus (Stimulus sk_recognize_1 sk_marker_1) (STV 1.0 0.99))

@@ -1,0 +1,2 @@
+(: keepers_wear (Implication (Member $x keeper) (And (Member (sk_wear $x) wear) (Agent (sk_wear $x) $x) (Theme (sk_wear $x) (sk_coat $x)) (Member (sk_coat $x) oilcloth_coat) (Member (sk_coat $x) long))) (STV 0.9 0.9))
+(: coat_genus (Inheritance oilcloth_coat coat) (STV 1.0 0.99))

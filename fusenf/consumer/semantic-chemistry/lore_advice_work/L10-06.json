@@ -1,0 +1,463 @@
+{
+ "id": "L10-06",
+ "rule": "X — Craft and trade",
+ "texts": [
+  "Aron Brae is the village potter.",
+  "Aron Brae is a cousin of Tessa Brae and Aelis Brae.",
+  "Aron Brae makes vessels after each equinox.",
+  "Aron Brae fires the vessels in a kiln behind Aron Brae's house.",
+  "The clay seam lies at the base of the cliff near the Cove Stair.",
+  "A glassworks in Faltern supplies replacement lantern domes.",
+  "The village orders new domes in batches.",
+  "The glassworks re-fires damaged domes.",
+  "The harbor warehouse holds spare domes.",
+  "Traders from Faltern and the inland farms come to the weekly market.",
+  "The market runs from late morning to mid-afternoon in the village square.",
+  "The traders sail out before the lanterns are lit."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000596",
+   "sentence": "Aron Brae is the village potter.",
+   "parse": [
+    "(: e5_name (Name aron_brae \"Aron Brae\") (STV 1.0 0.99))",
+    "(: e5_member (Member aron_brae village_potter) (STV 1.0 0.99))",
+    "(: e5_genus (Inheritance village_potter potter) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000596",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "definite predicate nominal / identificational copular clause (\"X is THE N\") — the instruction set covers \"X is a/an N\" and referential definites, but has no carrier for the uniqueness the definite predicate asserts, so it collapses to plain Member typing"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Individual subject takes Member, the fused compound gets its head genus, and the noun modifier \"village\" is correctly not exposed as a modifier genus. The agent-nominalization capability atom is correctly withheld: \"potter\" fails the stated suffix test (stripping -er leaves no standing verb), the same way \"engineer\" does, even though this symbol is both surface-fused and the copular predicate."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000597",
+   "sentence": "Aron Brae is a cousin of Tessa Brae and Aelis Brae.",
+   "parse": [
+    "(: aron_name (Name aron_brae \"Aron Brae\") (STV 1.0 0.99))",
+    "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: aelis_name (Name aelis_brae \"Aelis Brae\") (STV 1.0 0.99))",
+    "(: aron_cousin (Member aron_brae cousin) (STV 1.0 0.99))",
+    "(: aron_cousin_tessa (Possession aron_brae tessa_brae) (STV 1.0 0.99))",
+    "(: aron_cousin_aelis (Possession aron_brae aelis_brae) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000597",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A SYMMETRIC kinship noun with an of-phrase ('X is a cousin of Y'): two rules point opposite ways — the relational-noun clause sends 'sister of'-type kinship to the genitive `Possession`, while the reciprocals section sends mutual-by-meaning predicates to a relation head plus a `(Symmetric <Rel>)` tag — and nothing says which governs; the `Possession` route emitted here leaves the mutual direction underivable ('is Tessa a cousin of Aron?' finds nothing)."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Within the relational-noun route the parse is right: possessed-first `Possession` argument order matching the 'her sister' example, the coordination distributed into one atom per conjunct, three distinct same-surname symbols each with exactly one `Name`, and no invented type atoms for Tessa or Aelis."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000598",
+   "sentence": "Aron Brae makes vessels after each equinox.",
+   "parse": [
+    "(: ab_name (Name aron_brae \"Aron Brae\") (STV 1.0 0.99))",
+    "(: eq_make (Implication (Member $e equinox) (And (Member (sk_make $e) make) (Agent (sk_make $e) aron_brae) (Patient (sk_make $e) vessel) (Before $e (sk_make $e)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000598",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The explicit quantifier word 'each' is consumed by the rule (which quantifies exactly the equinox range) but no (QuantifierPhrase equinox make \"each\") companion is emitted, and the companion is stated to be mandatory for every explicit quantifier word a rule consumes; the 'every time / whenever' no-companion carve-out names those phrases, not a determiner on an NP."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a universally-quantified temporal ADJUNCT headed by a preposition ('after each equinox') — the instruction set gives the occurrence-rule route for 'every time / whenever' CLAUSES and the flat habitual form for calendar slots (Weekday/Month/Hour terms), but says nothing about a quantified event-noun adjunct, including whether it takes a QuantifierPhrase companion"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The structure chosen is otherwise well-motivated: an equinox is an event-noun entity (an occurrence domain, not a calendar term), so the rule route with a Skolem-function event and 'after' as (Before <equinox> <making>) is right, as are strength 1.0 for 'each', the absent tense atom, Patient for 'make', the bare kind filler 'vessel', and Name-only treatment of 'Aron Brae' with no invented kind atom."
+   },
+   "adjudication": {
+    "id": "lore-000598",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The rule quantifies the named kind range `equinox` and consumes the explicit word \"each\" to set strength 1.0, and the companion is stated mandatory for every explicit quantifier word the rule consumes, restating exactly a range the rule itself quantifies; the one carve-out is the clause-ranged \"every time / whenever\" conditional, which has no kind symbol to fill the companion's first slot — unlike `equinox` here."
+     }
+    ],
+    "gaps_confirmed": [
+     "A universally-quantified temporal adjunct headed by a preposition (\"after each equinox\") has no stated routing: the occurrence-rule form is given only for \"every time / whenever\" CLAUSES and the flat habitual form only for calendar slots (Weekday / Month / Hour terms)."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps this rule unchanged and adds `(: eq_q (QuantifierPhrase equinox make \"each\") (STV 1.0 0.99))` beside it.",
+    "notes": "The rest is well-motivated: an equinox is an event-noun occurrence domain rather than a calendar term, \"after\" is `(Before <equinox> <making>)`, strength 1.0 with confidence 0.9 is the universal's dial, `vessel` is the licensed bare kind filler for a non-specific object, and \"Aron Brae\" correctly takes a `Name` atom with no invented kind."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000599",
+   "sentence": "Aron Brae fires the vessels in a kiln behind Aron Brae's house.",
+   "parse": [
+    "(: aron_name (Name aron_brae \"Aron Brae\") (STV 1.0 0.99))",
+    "(: vessel_grp (GroupOf sk_vessel_1 vessel) (STV 1.0 0.99))",
+    "(: fire_ev (Member sk_fire_1 fire) (STV 1.0 0.99))",
+    "(: fire_ag (Agent sk_fire_1 aron_brae) (STV 1.0 0.99))",
+    "(: fire_pat (Patient sk_fire_1 sk_vessel_1) (STV 1.0 0.99))",
+    "(: kiln_type (Member sk_kiln_1 kiln) (STV 1.0 0.99))",
+    "(: fire_loc (Location sk_fire_1 sk_kiln_1) (STV 1.0 0.99))",
+    "(: house_type (Member sk_house_1 house) (STV 1.0 0.99))",
+    "(: house_poss (Possession sk_house_1 aron_brae) (STV 1.0 0.99))",
+    "(: kiln_behind (Behind sk_kiln_1 sk_house_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000599",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Whether a definite plural in DIRECT-OBJECT position also takes the per-member distribution rule (\"fires the vessels\"): every distribution example ranges over a subject/agent group, and the only object-group rule stated is the resultative flat half, so an object group under an ordinary transitive predicate is unaddressed."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The multi-word name is one symbol reused for both mentions with exactly one Name atom, the genitive takes the opaque Possession (possessed first, house not a part of a person), \"in a kiln\" is event-only Location with no LocatedIn on the vessels, and the noun-attached \"behind\" keeps its surface head Behind; the firing physically changes the vessels so Patient is right and the habitual present correctly gets no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000600",
+   "sentence": "The clay seam lies at the base of the cliff near the Cove Stair.",
+   "parse": [
+    "(: seam_genus (Inheritance clay_seam seam) (STV 1.0 0.99))",
+    "(: seam_type (Member sk_seam_1 clay_seam) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: seam_located (LocatedIn sk_seam_1 sk_base_1) (STV 1.0 0.99))",
+    "(: cliff_near (Near sk_cliff_1 cove_stair) (STV 1.0 0.99))",
+    "(: stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000600",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The postural 'lies' mints no event, 'at' routes to LocatedIn, the part-whole of-phrase to PartOf, 'near' keeps the entity-attached surface preposition, and the multi-word name gets one opaque symbol with its Name plus a separate kind atom and no modifier genus. 'near the Cove Stair' is attached low (to the cliff) rather than to the seam or the base; the sites are truth-conditionally near-identical here, so a single reading is the correct default."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000601",
+   "sentence": "A glassworks in Faltern supplies replacement lantern domes.",
+   "parse": [
+    "(: e5_glassworks (Member sk_glassworks_1 glassworks) (STV 1.0 0.99))",
+    "(: e5_glassworks_genus (Inheritance glassworks works) (STV 1.0 0.99))",
+    "(: e5_faltern_name (Name faltern \"Faltern\") (STV 1.0 0.99))",
+    "(: e5_located (LocatedIn sk_glassworks_1 faltern) (STV 1.0 0.99))",
+    "(: e5_dome_genus (Inheritance replacement_lantern_dome dome) (STV 1.0 0.99))",
+    "(: e5_supply_class (Member sk_supply_1 supply) (STV 1.0 0.99))",
+    "(: e5_supply_agent (Agent sk_supply_1 sk_glassworks_1) (STV 1.0 0.99))",
+    "(: e5_supply_theme (Theme sk_supply_1 replacement_lantern_dome) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000601",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite subject with a verbal predicate correctly stays a witness rather than becoming a generic; LocatedIn for the postnominal containment PP, the un-invented type atom on faltern, and the once-only decomposition of the three-word chain replacement_lantern_dome to head genus dome (both noun modifiers left unexposed) all follow the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000602",
+   "sentence": "The village orders new domes in batches.",
+   "parse": [
+    "(: e_order (Member sk_order_1 order) (STV 1.0 0.99))",
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_order_1 sk_village_1) (STV 1.0 0.99))",
+    "(: domes_group (GroupOf sk_domes_1 dome) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_order_1 sk_domes_1) (STV 1.0 0.99))",
+    "(: domes_new_rule (Implication (PartOf $x sk_domes_1) (Member $x new)) (STV 1.0 0.9))",
+    "(: e_in_batches (In sk_order_1 batch) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000602",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a descriptively modified bare plural object in a HABITUAL clause (\"orders new domes\"): the instruction set prescribes the bare kind filler for non-specific / kind-level objects and reserves the existential group witness for episodic clauses, but only the group witness can carry the modifier \"new\" (fusing new_dome is barred as incidental description, and dropping the modifier is barred outright)",
+     "a manner-like PP on an event (\"in batches\") has no stated route: Manner is restricted to how-adverbs, so it falls to the preposition-named oblique In, which is used here for what is not really an aboutness or containment relation"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Singular \"the village\" correctly stays one participant with no distribution, the unmarked present is right for the habitual reading, and Theme is the right object role for \"order\". The group witness for \"new domes\" over-commits to a specific set, but it is the only modifier-carrying option the instruction set leaves open."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000603",
+   "sentence": "The glassworks re-fires damaged domes.",
+   "parse": [
+    "(: gw_type (Member sk_glassworks_1 glassworks) (STV 1.0 0.99))",
+    "(: gw_genus (Inheritance glassworks works) (STV 1.0 0.99))",
+    "(: fire_rule (Implication (And (Member $x dome) (Member $x damaged)) (And (Member (sk_fire $x) fire) (Agent (sk_fire $x) sk_glassworks_1) (Patient (sk_fire $x) $x) (Again (sk_fire $x)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000603",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "'re-fires' is split into the base lemma 'fire' plus (Again (sk_fire $x)), but 're-' is derivational and the instruction set permits inflectional lemmatization only, reserving the opaque Again tag for the particle 'again'."
+     },
+     {
+      "statement": 2,
+      "issue": "The clause is a habitual about a specific individual subject ('the glassworks') yet is encoded as a distributing rule ranging over (Member $x dome) (Member $x damaged), asserting at strength 0.9 that this glassworks re-fires any damaged dome — wider than what the sentence states, and the generic-rule form is defined for a generic KIND subject."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "derivational prefix on a verb ('re-fire'): the lemmatization rule covers inflectional variants and derivation across parts of speech, but says nothing about a prefixed verb, and no operator is licensed for 're-'",
+     "habitual clause with a specific individual subject and a bare-plural object carrying a descriptive modifier ('damaged domes'): the bare-kind-filler route for a non-specific object cannot carry 'damaged', fusion is explicitly barred for damage modifiers, and the rule route is specified only for a kind subject, so no licensed encoding carries the restriction"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'damaged' correctly becomes the adjectival (Member $x damaged) rather than a verb, Patient is right for the kiln-fired dome, and (Inheritance glassworks works) is a defensible solid-compound decomposition with the noun modifier suppressed."
+   },
+   "adjudication": {
+    "id": "lore-000603",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Names and casing mandates lemmatizing to the dictionary base form under 'Inflection only — never derivation', and the base form of 're-fires' is 're-fire', not 'fire'; stripping a prefix and re-encoding it as an operator is the same move the phrasal-verb rule forbids ('do not split off or drop the particle', 'do not swap in a single-word synonym'), so (Member (sk_fire $x) fire) records a verb the text does not use."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The Implication ranges over the OBJECT — for every damaged dome anywhere, this specific glassworks fires it at 0.9 — which asserts more than a habitual about one individual's practice states; the Quantifiers rule form is defined to range over a generic KIND SUBJECT, and 'emit the one the surface shows' (the cooper/coopers contrast) bars promoting a definite singular subject's habit into a universal over its objects."
+     }
+    ],
+    "gaps_confirmed": [
+     "A derivational prefix on a verb ('re-fire'): the lemmatization rule covers inflection and cross-part-of-speech derivation but is silent on a prefixed verb, and no operator is licensed for 're-' — so the compliant one-symbol form loses the repetition presupposition entirely (the Again tag is defined for the particle 'again').",
+     "A habitual clause with a specific individual subject and a bare-plural object carrying a descriptive modifier ('damaged domes'): the bare-kind object filler takes no modifier, fusion is barred for damage modifiers, a witness would make the object specific, and the rule route is defined only for a kind subject — so no licensed form carries the restriction."
+    ],
+    "new_gaps": [
+     "A specific individual's standing practice has no property-style carrier either: the kind-level reified forms ((can …), (obligated …), ConditionalProperty) all attach to a KIND, so even the fallback of stating the disposition as a property is unavailable for 'the glassworks', leaving the unmarked-event habitual with a bare-kind object as the only route — and that route cannot carry an object restriction."
+    ],
+    "decision": "defect",
+    "defect_summary": "For the verb, the compliant form keeps one surface symbol — (Member (sk_re_fire …) re_fire) — with no Again tag, since Again is reserved for the particle 'again'; for the clause, NO compliant form is licensed: an unmarked habitual event with Agent sk_glassworks_1 and the bare kind filler 'dome' as Patient is the only licensed shape, and it cannot carry 'damaged' (fusion is barred for damage modifiers, a witness would make the object specific, and object-ranging rules are not a licensed form), so Core patterns leaves only 'leave the whole claim out and record the gap'.",
+    "notes": "The reviewer filed the 're-' problem both as an issue and as a gap; both stand — the gap is why the compliant form loses the repetition, not a reason to accept the split. (Inheritance glassworks works) is a correct solid-compound genus with the noun modifier suppressed, and 'damaged' as an adjectival Member atom is right."
+   }
+  },
+  {
+   "field": "t9",
+   "corpus_id": "lore-000604",
+   "sentence": "The harbor warehouse holds spare domes.",
+   "parse": [
+    "(: wh_genus (Inheritance harbor_warehouse warehouse) (STV 1.0 0.99))",
+    "(: wh_type (Member sk_warehouse_1 harbor_warehouse) (STV 1.0 0.99))",
+    "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: e_hold_agent (Agent sk_hold_1 sk_warehouse_1) (STV 1.0 0.99))",
+    "(: e_hold_theme (Theme sk_hold_1 sk_dome_1) (STV 1.0 0.99))",
+    "(: dome_group (GroupOf sk_dome_1 dome) (STV 1.0 0.99))",
+    "(: dome_spare_rule (Implication (PartOf $x sk_dome_1) (Member $x spare)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000604",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "harbor_warehouse fuses with genus only (noun modifier never exposed, and no invented LocatedIn); the stative-transitive subject correctly stays Agent per the 'the tank holds forty litres' rule rather than Holder (containment, not possession); 'spare' is treated as a descriptive modifier and distributed to the group's members by the documented (Implication (PartOf $x g) (Member $x spare)) 1.0/0.9 rule instead of riding the group symbol."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t10",
+   "corpus_id": "lore-000605",
+   "sentence": "Traders from Faltern and the inland farms come to the weekly market.",
+   "parse": [
+    "(: faltern_name (Name faltern \"Faltern\") (STV 1.0 0.99))",
+    "(: farms_group (GroupOf sk_farms_1 inland_farm) (STV 1.0 0.99))",
+    "(: farm_genus (Inheritance inland_farm farm) (STV 1.0 0.99))",
+    "(: farm_mod (Inheritance inland_farm inland) (STV 1.0 0.99))",
+    "(: market_type (Member sk_market_1 weekly_market) (STV 1.0 0.99))",
+    "(: market_genus (Inheritance weekly_market market) (STV 1.0 0.99))",
+    "(: rule_faltern (Implication (And (Member $x trader) (From $x faltern)) (And (Member (sk_come $x) come) (Agent (sk_come $x) $x) (Goal (sk_come $x) sk_market_1))) (STV 0.9 0.9))",
+    "(: rule_farms (Implication (And (Member $x trader) (From $x sk_farms_1)) (And (Member (sk_come $x) come) (Agent (sk_come $x) $x) (Goal (sk_come $x) sk_market_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000605",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The compound 'weekly_market' gets only its head genus; the modifier genus (Inheritance weekly_market weekly) is missing, although 'weekly' is an adjective that passes the stated predication test ('the market is weekly') and the same parse exposes 'inland' for inland_farm."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The coordinated origin PP is split into one rule per conjunct per the distributive default, and the bare-plural habitual correctly takes the 0.9/0.9 Skolem-event rule form with the restriction as a premise conjunct and one shared market witness. The 'weekly' call is borderline because the exposure rule enumerates only gradable, positional/cardinal and material adjectives even though its own part-of-speech/predication test admits a temporal adjective."
+   },
+   "adjudication": {
+    "id": "lore-000605",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts makes modifier-genus exposure determined, not optional, and fixes the criterion as part of speech plus the predication test ('the market is weekly' passes, unlike the relational *'the secretary is assistant'), so the missing (Inheritance weekly_market weekly) is a stated-rule violation -- the three listed adjective classes illustrate the criterion rather than exhausting it, and the same parse rightly exposes 'inland'."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds one atom beside the head genus -- (Inheritance weekly_market weekly) (STV 1.0 0.99) -- since 'weekly' is an adjective predicable of the market and the exposure decision is determined by the instruction set.",
+    "notes": "The rest is sound: the bare-plural habitual takes the 0.9/0.9 Skolem-event rule with the origin restriction as a premise conjunct and no QuantifierPhrase companion, the coordinated origin PP splits into one rule per conjunct (the same result the Or-in-a-premise rule would give), and the shared definite market constant is asserted top-level as required."
+   }
+  },
+  {
+   "field": "t11",
+   "corpus_id": "lore-000606",
+   "sentence": "The market runs from late morning to mid-afternoon in the village square.",
+   "parse": [
+    "(: market_type (Member sk_market_1 market) (STV 1.0 0.99))",
+    "(: run_ev (Member sk_run_1 run) (STV 1.0 0.99))",
+    "(: run_agent (Agent sk_run_1 sk_market_1) (STV 1.0 0.99))",
+    "(: run_start (Start sk_run_1 late_morning) (STV 1.0 0.99))",
+    "(: run_end (End sk_run_1 mid_afternoon) (STV 1.0 0.99))",
+    "(: square_genus (Inheritance village_square square) (STV 1.0 0.99))",
+    "(: square_type (Member sk_square_1 village_square) (STV 1.0 0.99))",
+    "(: run_loc (Location sk_run_1 sk_square_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000606",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "graded day-part interval endpoints (\"late morning\", \"mid-afternoon\"): the instruction set lists bare day-part symbols (morning/afternoon/evening/night, dawn/noon/dusk) for Time and interval bound slots but never addresses a degree-modified day-part — whether the modifier stays in the symbol, is dropped, or decomposes is unstated"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "This mirrors the instruction set's own worked example \"The market runs from 8 am to 1 pm\" (event, Agent = the market, Start/End, no tense atom on the habitual present); the compound village_square is correctly fused with its genus and the noun modifier unexposed, and the PP is correctly the event's Location with no LocatedIn double-statement on the market."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t12",
+   "corpus_id": "lore-000607",
+   "sentence": "The traders sail out before the lanterns are lit.",
+   "parse": [
+    "(: traders_group (GroupOf sk_traders_1 trader) (STV 1.0 0.99))",
+    "(: lanterns_group (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: e_sail_out (Member sk_sail_out_1 sail_out) (STV 1.0 0.99))",
+    "(: e_sail_agent (Agent sk_sail_out_1 sk_traders_1) (STV 1.0 0.99))",
+    "(: sail_out_rule (Implication (PartOf $x sk_traders_1) (And (Member (sk_sail_out $x) sail_out) (Agent (sk_sail_out $x) $x))) (STV 1.0 0.9))",
+    "(: e_light (Member sk_light_1 light) (STV 1.0 0.99))",
+    "(: e_light_patient (Patient sk_light_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: before_rel (Before sk_sail_out_1 sk_light_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000607",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "'the lanterns are lit' is a grouped definite plural with a distributive predicate (each lantern is lit individually) but gets only the group event — the per-member (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_light $x) light) (Patient (sk_light $x) $x))) rule the same doctrine produced for the traders is missing, an asymmetry within the one parse."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Phrasal verb kept whole as sail_out with no genus, both definite plurals as group witnesses, the agentless passive omitting its Agent, 'lit' lemmatized to light, the unmarked habitual tense, and the temporal connective taking (Before <earlier> <later>) with no connective atom are all correct."
+   },
+   "adjudication": {
+    "id": "lore-000607",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The instruction set makes the per-member rule determined, not optional — a distributive predicate over a grouped plural \"keeps the group event … and ADDS the per-member rule over (PartOf $x <group>)\", and lighting is per-lantern, not collective — so the parse applies the doctrine to the traders and withholds it from the lanterns within one record."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The lighting clause needs the same per-member emission the traders got: (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_light $x) light) (Patient (sk_light $x) $x))) (STV 1.0 0.9) beside the existing group event — the plural-object precedent (the resultative rule's \"when the object is a plural group, distribution wins\") licenses distributing over a Patient group exactly as over an Agent group.",
+    "notes": "Everything else is right: sail_out kept whole with no genus, both definite plurals as group witnesses, the agentless passive omitting its Agent, \"lit\" lemmatized to the verb light, unmarked habitual tense, and the temporal connective taking (Before <earlier> <later>) with no connective atom."
+   }
+  }
+ ]
+}

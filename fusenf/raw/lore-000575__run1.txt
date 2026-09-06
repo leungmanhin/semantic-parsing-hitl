@@ -1,0 +1,3 @@
+(: e4_stretches_grp (GroupOf sk_stretches_1 stretch) (STV 1.0 0.99))
+(: e4_stretches_cold (Implication (PartOf $y sk_stretches_1) (Member $y cold)) (STV 1.0 0.9))
+(: e4_mild_separate (Implication (And (Member $x period) (Member $x mild)) (And (Member (sk_separate $x) separate) (Agent (sk_separate $x) $x) (Theme (sk_separate $x) sk_stretches_1))) (STV 0.9 0.9))

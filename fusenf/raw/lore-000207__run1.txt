@@ -1,0 +1,7 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: e_appoint (Member sk_appoint_1 appoint) (STV 1.0 0.99))
+(: e_agent (Agent sk_appoint_1 sk_council_1) (STV 1.0 0.99))
+(: members_grp (GroupOf sk_group_1 member) (STV 1.0 0.99))
+(: e_theme (Theme sk_appoint_1 sk_group_1) (STV 1.0 0.99))
+(: members_new_rule (Implication (PartOf $x sk_group_1) (Member $x new)) (STV 1.0 0.9))
+(: e_instr (Instrument sk_appoint_1 consensus) (STV 1.0 0.99))

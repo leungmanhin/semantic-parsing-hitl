@@ -1,0 +1,114 @@
+{
+ "id": "L2-13",
+ "rule": "II — The leather case",
+ "texts": [
+  "Each Keeper carries a leather case.",
+  "The case holds a wick-trimmer, a clay flask of mire-essence, a striker, a jar of ground feathers, and a pouch of salt-bloom."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000168",
+   "sentence": "Each Keeper carries a leather case.",
+   "parse": [
+    "(: keeper_carry (Implication (Member $x keeper) (And (Member (sk_carry $x) carry) (Agent (sk_carry $x) $x) (Theme (sk_carry $x) (sk_case $x)) (Member (sk_case $x) leather_case))) (STV 1.0 0.9))",
+    "(: keeper_carry_q (QuantifierPhrase keeper carry \"each\") (STV 1.0 0.99))",
+    "(: leather_case_genus (Inheritance leather_case case) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000168",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The explicit universal takes the distributing rule at strength 1.0 / confidence 0.9 with its QuantifierPhrase companion and no group, the dependent existential is the Skolem function (sk_case $x), 'carry' takes Theme as listed, and leather_case emits its genus while correctly suppressing the noun modifier."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000169",
+   "sentence": "The case holds a wick-trimmer, a clay flask of mire-essence, a striker, a jar of ground feathers, and a pouch of salt-bloom.",
+   "parse": [
+    "(: case_type (Member sk_case_1 case) (STV 1.0 0.99))",
+    "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_hold_1 sk_case_1) (STV 1.0 0.99))",
+    "(: wt_type (Member sk_wick_trimmer_1 wick_trimmer) (STV 1.0 0.99))",
+    "(: wt_can (Inheritance wick_trimmer (can trim)) (STV 1.0 0.99))",
+    "(: wt_rel (Trim wick_trimmer wick) (STV 1.0 0.99))",
+    "(: e_th1 (Theme sk_hold_1 sk_wick_trimmer_1) (STV 1.0 0.99))",
+    "(: flask_type (Member sk_flask_1 clay_flask) (STV 1.0 0.99))",
+    "(: flask_genus (Inheritance clay_flask flask) (STV 1.0 0.99))",
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: flask_of (Of sk_flask_1 mire_essence) (STV 1.0 0.99))",
+    "(: e_th2 (Theme sk_hold_1 sk_flask_1) (STV 1.0 0.99))",
+    "(: striker_type (Member sk_striker_1 striker) (STV 1.0 0.99))",
+    "(: e_th3 (Theme sk_hold_1 sk_striker_1) (STV 1.0 0.99))",
+    "(: jar_type (Member sk_jar_1 jar) (STV 1.0 0.99))",
+    "(: feather_type (Member sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feather_ground (Member sk_feather_1 ground) (STV 1.0 0.99))",
+    "(: jar_of (Of sk_jar_1 sk_feather_1) (STV 1.0 0.99))",
+    "(: e_th4 (Theme sk_hold_1 sk_jar_1) (STV 1.0 0.99))",
+    "(: pouch_type (Member sk_pouch_1 pouch) (STV 1.0 0.99))",
+    "(: bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: pouch_of (Of sk_pouch_1 salt_bloom) (STV 1.0 0.99))",
+    "(: e_th5 (Theme sk_hold_1 sk_pouch_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000169",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The five coordinated objects are hung on ONE hold event as five repeated Theme atoms (statements 6, 11, 13, 18, 22), whereas coordinated noun phrases are distributive by default — replicate the whole predication once per conjunct — and one event carrying repeated role atoms is licensed only for the collective/reciprocal case (multiple Agent atoms)."
+     },
+     {
+      "statement": 15,
+      "issue": "Plural \"ground feathers\" is encoded as a single witness with (Member sk_feather_1 feather) instead of a group witness (GroupOf … feather), and the descriptive modifier is predicated of that one witness (statement 16) rather than distributed over the members as the plural-modifier rule requires."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "container / measure of-phrase (\"a clay flask of mire-essence\", \"a jar of ground feathers\", \"a pouch of salt-bloom\") — the instruction set explicitly excludes the measure type (\"a cup of water\") from the genitive Possession mapping but specifies no replacement encoding for the container-contents relation, leaving the entity-attached surface-preposition (Of …) oblique as the only available fallback"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "(Agent sk_hold_1 sk_case_1) is correct: the instruction set's own stative-transitive example is \"the tank holds forty litres\" → Agent. Whether an object-incorporating agent-nominalization compound like wick_trimmer must ALSO carry the compound-kind head genus (Inheritance wick_trimmer trimmer) is left unclear — Compound kind says the genus is always emitted, while the egg_layer worked example omits it."
+   },
+   "adjudication": {
+    "id": "lore-000169",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Coordination & plurals makes coordinated noun phrases distributive by default ('replicate the whole predication once per conjunct — verbal → one event each') and licenses one event carrying repeated role atoms only for a reciprocal/aggregate predicate or a bare 'together / jointly / between them'; 'hold' is neither, so five Theme atoms on sk_hold_1 fit no licensed pattern."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Categorical statements is explicit that 'a property of a plural's members is never predicated of the group symbol' and that a descriptive modifier on a plural 'always goes through the distributive rule', so a plural 'ground feathers' either mis-types a collection as a single feather or predicates a member property of the collection — false either way."
+     }
+    ],
+    "gaps_confirmed": [
+     "Container / measure of-phrase ('a clay flask of mire-essence', 'a jar of ground feathers', 'a pouch of salt-bloom'): Possessive / genitive NP explicitly excludes the measure type ('a cup of water') from the Possession mapping but names no replacement, leaving the entity-attached surface-preposition (Of …) oblique as the only fallback."
+    ],
+    "new_gaps": [
+     "Two Compound-concepts bullets both match a fused object-incorporating agent-nominalization (wick_trimmer): Compound kind says the head genus (Inheritance wick_trimmer trimmer) is always emitted, while the agent-nominalization worked example (egg_layer) emits only the capability and kind-relation. Which governs is unstated, so two faithful parses can differ by one atom.",
+     "A plural inside a container of-phrase ('a jar of ground feathers') has no stated routing: the bare-plural-object rule that mints a group witness is written for a participant in the occurrence, and the bare-kind-filler alternative ('grows wheat') leaves the descriptive modifier 'ground' with nowhere to attach short of a generic claim about feathers."
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form for the coordinated objects: five separate hold events (sk_hold_1 … sk_hold_5), each with (Agent sk_hold_N sk_case_1) and exactly one Theme, the shared subject symbol carrying over per the coordinated-NP distributive default. Compliant form for 'ground feathers': a group witness (GroupOf sk_feathers_1 feather) filling the jar's (Of sk_jar_1 sk_feathers_1) oblique, with the participial descriptive modifier distributed as (Implication (PartOf $x sk_feathers_1) (Member $x ground)) (STV 1.0 0.9) rather than predicated of one witness.",
+    "notes": "(Agent sk_hold_1 sk_case_1) is correct — a stative transitive keeps Agent, per 'the tank holds forty litres' — and the compound decompositions are right: clay/mire/salt are noun modifiers and correctly left unexposed, while the referring 'striker' correctly gets its type atom and no (can strike)."
+   }
+  }
+ ]
+}

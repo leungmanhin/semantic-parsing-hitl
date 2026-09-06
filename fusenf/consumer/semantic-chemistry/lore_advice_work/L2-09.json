@@ -1,0 +1,231 @@
+{
+ "id": "L2-09",
+ "rule": "II — Tessa Brae",
+ "texts": [
+  "Tessa Brae is the village's chief Feather-Collector.",
+  "Tessa Brae walks the cliff base each morning during molting weeks.",
+  "Two assistants walk with Tessa Brae.",
+  "Tessa Brae became Feather-Collector nine years ago.",
+  "Tessa Brae is meticulous about the feather store."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000147",
+   "sentence": "Tessa Brae is the village's chief Feather-Collector.",
+   "parse": [
+    "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: tessa_role (Member tessa_brae chief_feather_collector) (STV 1.0 0.99))",
+    "(: tessa_poss (Possession tessa_brae sk_village_1) (STV 1.0 0.99))",
+    "(: cfc_genus (Inheritance chief_feather_collector feather_collector) (STV 1.0 0.99))",
+    "(: cfc_chief (Inheritance chief_feather_collector chief) (STV 1.0 0.99))",
+    "(: fc_can (Inheritance feather_collector (can collect)) (STV 1.0 0.99))",
+    "(: fc_rel (Collect feather_collector feather) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000147",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "\"chief\" is a relational/rank modifier that fails the predication test (like \"assistant secretary\"), so it must not be exposed as a modifier genus — only the head genus is licensed for this compound."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a compound whose head noun is itself a compound (\"chief Feather-Collector\" = chief + feather_collector) — \"decompose once, to single-word lemmas, then stop\" does not say whether the outer genus is the compound head (as emitted) or the single-word collector, nor whether the inner compound also owes its own head genus"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The agent-nominalization atoms are licensed on both counts (a surface-fused symbol and the clause's copular predicate) and mirror the egg_layer exemplar, which likewise omits the head-noun genus. Attaching the village's Possession to tessa_brae rather than minting a separate role witness is the identity-preserving choice and reads correct."
+   },
+   "adjudication": {
+    "id": "lore-000147",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"chief\" is neither gradable, positional/cardinal, nor a material adjective, and fails the predication test (*\"the Feather-Collector is chief\"), so Compound concepts' rank-adjective clause bars exposing it — and the atom is false content, since member-inheritance would then make Tessa a chief simpliciter rather than chief OF the feather-collectors."
+     }
+    ],
+    "gaps_confirmed": [
+     "A compound whose head is itself a compound (\"chief Feather-Collector\" = chief + feather_collector): \"decompose once, to single-word lemmas, then stop\" does not say whether the outer genus is the compound head (as emitted) or the single-word collector, nor whether the inner compound also owes its own head genus — the egg_layer exemplar omits one where the compound-kind rule mandates it."
+    ],
+    "new_gaps": [
+     "An EQUATIVE copular with a definite predicate NP (\"X is THE village's chief Feather-Collector\") states identity and uniqueness, but the instruction set offers only the ordinary Member typing form of \"X is a/an N\", which records role-holding and silently drops the claim that X is the only holder; there is no identity head and no uniqueness carrier."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form emits the head genus (Inheritance chief_feather_collector feather_collector) alone and drops (Inheritance chief_feather_collector chief), exactly as \"assistant secretary\" keeps genus secretary only — the rank meaning then rides unexposed inside the fused symbol, which is what the instruction set intends for a modifier that fails the predication test.",
+    "notes": "The agent-nominalization atoms on feather_collector are licensed on both counts (a symbol fused from the surface, and the clause's copular predicate) and mirror the egg_layer exemplar; attaching the village's Possession to tessa_brae rather than minting a separate role witness is the identity-preserving choice and reads correct."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000148",
+   "sentence": "Tessa Brae walks the cliff base each morning during molting weeks.",
+   "parse": [
+    "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: cb_genus (Inheritance cliff_base base) (STV 1.0 0.99))",
+    "(: cb_type (Member sk_cliff_base_1 cliff_base) (STV 1.0 0.99))",
+    "(: mw_genus (Inheritance molting_week week) (STV 1.0 0.99))",
+    "(: e_walk (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_walk_1 tessa_brae) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_walk_1 sk_cliff_base_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_walk_1 morning) (STV 1.0 0.99))",
+    "(: e_every (Every sk_walk_1 1 day) (STV 1.0 0.99))",
+    "(: e_during (During sk_walk_1 molting_week) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000148",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "'the cliff base' is a possessor/whole + part compound of exactly the 'car engine' / 'table leg' shape, which Compound concepts says must NOT fuse: it should be (Member sk_base_1 base) + (PartOf sk_base_1 sk_cliff_1) + (Member sk_cliff_1 cliff), not a fused kind cliff_base with genus base."
+     },
+     {
+      "statement": 2,
+      "issue": "Consequence of the same fusion: the referent is typed as the fused kind and the cliff, which the compound names, is never introduced or typed at all."
+     },
+     {
+      "statement": 9,
+      "issue": "During requires both eventualities reified, but its outer argument is the bare kind symbol molting_week - a class in an individual slot, with no witness minted and no individual of that kind typed."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A recurring temporal frame expressed as a bare plural NP ('during molting weeks') inside a habitual clause: During demands a reified outer eventuality, yet the instruction set gives no route for individuating a bare-plural recurring frame (its bare-plural rules split only episodic-set vs non-specific kind filler, neither of which yields an eventuality to nest inside)."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The 'each morning' handling - (Time sk_walk_1 morning) plus the implied cycle (Every sk_walk_1 1 day), no tense atom, no QuantifierPhrase - matches Frequency & habitual schedules exactly, as does keeping molting_week's noun modifier unexposed."
+   },
+   "adjudication": {
+    "id": "lore-000148",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts legislates the possessor/whole + part/component case explicitly and bars fusion ('never car_engine'); 'the cliff base' is the base of a cliff, exactly the table-leg shape, so the fused kind and its genus atom are emitted where the rule licenses none."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The same fusion leaves the cliff - a referent the phrase names - with no symbol and no typing, and omits the PartOf link the rule requires."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "During takes two reified eventualities, but molting_week is a kind symbol (its only other atom is the genus (Inheritance molting_week week)), so a class occupies an individual/eventuality slot and no witness of that kind is ever typed."
+     }
+    ],
+    "gaps_confirmed": [
+     "A recurring temporal frame expressed as a bare-plural NP ('during molting weeks') inside a habitual clause: During demands a reified outer eventuality, and the bare-plural rules yield only an episodic group witness or a non-specific kind filler, neither of which is one."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "'The cliff base' must be (Member sk_base_1 base) (PartOf sk_base_1 sk_cliff_1) (Member sk_cliff_1 cliff), with the walk's Theme on the base witness and no cliff_base symbol or genus; that same route also supplies the cliff typing the parse omits. For 'during molting weeks' the instruction set licenses NO compliant form - During requires an eventuality, nothing individuates a bare-plural recurring frame, and Time/Every/TimesPer take only calendar slots, periods or rates - so the conjunct should have been left out and the gap recorded.",
+    "notes": "The 'each morning' handling is exactly right - (Time sk_walk_1 morning) plus the implied cycle (Every sk_walk_1 1 day), no tense atom and no companion - as is the Theme role and leaving molting_week's noun modifier unexposed."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000149",
+   "sentence": "Two assistants walk with Tessa Brae.",
+   "parse": [
+    "(: group_type (GroupOf sk_group_1 assistant) (STV 1.0 0.99))",
+    "(: group_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: walk_ev (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: walk_ag (Agent sk_walk_1 sk_group_1) (STV 1.0 0.99))",
+    "(: walk_co (CoAgent sk_walk_1 tessa_brae) (STV 1.0 0.99))",
+    "(: walk_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_walk $x) walk) (Agent (sk_walk $x) $x) (CoAgent (sk_walk $x) tessa_brae))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000149",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The counted plural keeps group + Cardinality + group event and adds the per-member rule at 1.0/0.9 exactly as Cardinality specifies; comitative \"with NP\" correctly yields CoAgent rather than a collective multi-Agent event, and the multi-word name gets one symbol with no invented type atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000150",
+   "sentence": "Tessa Brae became Feather-Collector nine years ago.",
+   "parse": [
+    "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: become_ev (Member sk_become_1 become) (STV 1.0 0.99))",
+    "(: become_patient (Patient sk_become_1 tessa_brae) (STV 1.0 0.99))",
+    "(: become_past (Past sk_become_1) (STV 1.0 0.99))",
+    "(: fc_state (Member sk_fc_1 feather_collector) (STV 1.0 0.99))",
+    "(: fc_exp (Experiencer sk_fc_1 tessa_brae) (STV 1.0 0.99))",
+    "(: tessa_fc_flat (Member tessa_brae feather_collector) (STV 1.0 0.99))",
+    "(: become_result (Result sk_become_1 sk_fc_1) (STV 1.0 0.99))",
+    "(: fc_can (Inheritance feather_collector (can collect)) (STV 1.0 0.99))",
+    "(: fc_rel (Collect feather_collector feather) (STV 1.0 0.99))",
+    "(: become_time (BeforeBy sk_become_1 now 9 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000150",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "object-incorporating agent-nominalization fused from the surface ('Feather-Collector' -> feather_collector): whether the Compound-kind GENUS atom (Inheritance feather_collector collector) is ALSO required alongside the capability and kind-relation — 'Compound kind' says the head genus is always emitted either way, while the parallel worked example 'Hens are egg-layers' emits only (Inheritance egg_layer (can lay)) and (Lay egg_layer egg) and omits (Inheritance egg_layer layer)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Change-of-kind takes the depot-turned-museum shape exactly (subject as Patient, result state reified on the same subject as Experiencer, flat copular atom, Result link, no separate entity minted), and 'nine years ago' anchors on the reserved now via BeforeBy. Minor: the state witness is sk_fc_1, an initialism rather than the sk_<class>_<n> form."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000151",
+   "sentence": "Tessa Brae is meticulous about the feather store.",
+   "parse": [
+    "(: brae_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: store_type (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: meticulous_state (Member sk_meticulous_1 meticulous) (STV 1.0 0.99))",
+    "(: meticulous_exp (Experiencer sk_meticulous_1 tessa_brae) (STV 1.0 0.99))",
+    "(: meticulous_about (About sk_meticulous_1 sk_store_1) (STV 1.0 0.99))",
+    "(: brae_meticulous (Member tessa_brae meticulous) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000151",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Exact match to the adjective's-PP-complement pattern: reified state, Experiencer bearer, surface-preposition About on the state witness, plus the flat copular dual-emit. Fusion into a sensitive_to_light-style property is correctly declined because both the bearer and the complement are individuated, and feather_store carries its genus with the noun modifier unexposed."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{"id": "lore-000267", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "'emerged' is a finite past clause, and the distribution pattern puts tense inside the consequent ('All the students passed' emits `(Past (sk_pass $x))` in the conclusion bundle); without it the strength-0 rule denies an unmarked event, which Status predicates defines as 'generic / habitual / dispositional — not a specific occurrence', a different claim from the one the sentence makes."}],
+ "gaps_confirmed": ["No licensed `Time` filler for a frame PP whose object is a definite plural period NP ('in the near-miss winters'): `Time` takes structured calendar terms or deictic/named constants, and `During` renders only during/while/throughout, so a group witness in the Time slot is improvised."],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "The compliant form adds `(Past (sk_emerge $x))` as a conjunct of the rule's consequent, inside the strength-0.0 `(Implication ...)`.",
+ "notes": "The routing is otherwise right — 'no' is an explicit quantifier, so the generic denial takes the distributing rule at strength 0.0 with its mandatory \"no\" QuantifierPhrase companion, and the definite plural takes a group witness. `(Time (sk_emerge $x) sk_winters_1)` is acceptable improvisation in the gap above: the atom is true of the content and the group is asserted at top level."}

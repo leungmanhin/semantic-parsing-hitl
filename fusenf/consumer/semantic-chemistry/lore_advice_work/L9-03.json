@@ -1,0 +1,292 @@
+{
+ "id": "L9-03",
+ "rule": "IX — Skimming",
+ "texts": [
+  "Hesper skims each cauldron at sundown.",
+  "Hesper lifts the slick into prewarmed clay vessels with a broad ladle.",
+  "Each cauldron yields a partial vessel of mire-essence.",
+  "Good threads yield a full vessel.",
+  "Poor threads yield a thin slick.",
+  "Hesper dates and labels each vessel.",
+  "Hesper carries the vessels to the cellars.",
+  "The cellar shelves are arranged by year and month.",
+  "The old vessels stand at the front of the shelves."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000541",
+   "sentence": "Hesper skims each cauldron at sundown.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: hesper_skims (Implication (Member $x cauldron) (And (Member (sk_skim $x) skim) (Agent (sk_skim $x) hesper) (Patient (sk_skim $x) $x) (Time (sk_skim $x) sundown))) (STV 1.0 0.9))",
+    "(: cauldron_q (QuantifierPhrase cauldron skim \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000541",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The explicit universal 'each cauldron' correctly ranges over (Member $x cauldron) with strength 1.0/0.9 and its QuantifierPhrase companion, and the constant agent plus the Time term sit inside the consequent as required. No (Every e 1 day) is added for the habitual 'at sundown', which is right since the frequency machinery keys on periodic wording ('every …'), not on a bare day-part adjunct."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000542",
+   "sentence": "Hesper lifts the slick into prewarmed clay vessels with a broad ladle.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: e_lift (Member sk_lift_1 lift) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_lift_1 hesper) (STV 1.0 0.99))",
+    "(: slick_type (Member sk_slick_1 slick) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_lift_1 sk_slick_1) (STV 1.0 0.99))",
+    "(: e_goal (Goal sk_lift_1 prewarmed_clay_vessel) (STV 1.0 0.99))",
+    "(: pcv_genus (Inheritance prewarmed_clay_vessel vessel) (STV 1.0 0.99))",
+    "(: pcv_mod (Inheritance prewarmed_clay_vessel prewarmed) (STV 1.0 0.99))",
+    "(: ladle_type (Member sk_ladle_1 ladle) (STV 1.0 0.99))",
+    "(: ladle_mod (Member sk_ladle_1 broad) (STV 1.0 0.99))",
+    "(: e_instr (Instrument sk_lift_1 sk_ladle_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000542",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "\"prewarmed\" is fused into the kind symbol `prewarmed_clay_vessel`, but the compound rule bars fusing an incidental-description adjective (\"a dented pail\" is two atoms, not `dented_pail`) — a participle used as a modifier is an adjective, and a pre-warmed state is incidental description, so the licensed symbol is `clay_vessel` with `prewarmed` predicated separately."
+     },
+     {
+      "statement": 7,
+      "issue": "`(Inheritance prewarmed_clay_vessel prewarmed)` exposes a modifier that is outside the closed gradable / positional-cardinal / material-adjective list the modifier-genus rule licenses."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare-plural NP filling a motion oblique (`Goal` \"into prewarmed clay vessels\") in a non-episodic habitual clause: the group-witness-vs-bare-kind-filler rule is stated only for a bare-plural **direct object** in an **episodic** clause, so nothing decides between a `GroupOf` witness and the bare kind constant used here"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The motion-result routing is exactly right — `Theme` for the displaced slick, `Goal` for the \"into\" path, no `Result` atom — as are the `Instrument` with-phrase and the untensed habitual present. The same parse splits \"a broad ladle\" correctly into `(Member sk_ladle_1 ladle) (Member sk_ladle_1 broad)`, which is the treatment \"prewarmed\" should have received."
+   },
+   "adjudication": {
+    "id": "lore-000542",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'Prewarmed' is a participial modifier — an adjective by the instruction set's own ruling — and a transient prepared state is incidental description, which the fusion rule bars ('a dented pail' is two atoms) and which its participle example predicates separately ('a laminated worktop' -> `(Member sk_worktop_1 laminated)`), so only the classifier `clay_vessel` may fuse."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "The modifier-genus rule's operative criterion is its stated predication test — 'can the modifier be predicated of the thing', with the line drawn as 'part of speech, not meaning' — and `prewarmed` is an adjective predicable of the vessel, so exposure is licensed; the three named cases illustrate 'an adjectival property of the referent' rather than closing the list."
+     }
+    ],
+    "gaps_confirmed": [
+     "a bare-plural NP filling an oblique of a HABITUAL/generic clause: the group-witness rule is stated for a bare plural in an EPISODIC clause, and a group witness here would individuate one specific set of vessels across all occasions, while the bare-kind filler the parse chose has no slot to carry a distributed descriptive modifier"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form fuses only the classifier — `clay_vessel`, genus `(Inheritance clay_vessel vessel)`, `clay` unexposed as a noun modifier — and predicates `prewarmed` separately of the referent, which for a plural is the stated split (a fusing classifier rides the group's kind slot, a descriptive modifier distributes over the members as `(Implication (PartOf $x <group>) (Member $x prewarmed))`), exactly the treatment this same parse gave 'a broad ladle'.",
+    "notes": "The motion-result routing (`Theme` for the displaced slick, `Goal` for the 'into' path, no `Result` atom), the `Instrument` with-phrase, and the untensed habitual present are all correct. The group witness the compliant form needs sits uneasily with the habitual reading, which is the residual gap recorded above."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000543",
+   "sentence": "Each cauldron yields a partial vessel of mire-essence.",
+   "parse": [
+    "(: cauldron_yield_rule (Implication (Member $x cauldron) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) (sk_vessel $x)) (Member (sk_vessel $x) vessel) (Member (sk_vessel $x) partial) (Of (sk_vessel $x) mire_essence))) (STV 1.0 0.9))",
+    "(: cauldron_q (QuantifierPhrase cauldron yield \"each\") (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000543",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a CONTAINER / MEASURE of-phrase over a mass noun ('a partial vessel of mire-essence', the instruction set's own 'a cup of water'): the of-phrase section explicitly excludes it from the genitive Possession route but supplies no positive encoding anywhere, so the container-quantity reading has no licensed form",
+     "an adjective modifying such a container quantity ('a PARTIAL vessel of X' = a partial vesselful): the ordinary adjective rule puts the property on the container object itself, which says the vessel is incomplete rather than that it holds a part-measure; no rule addresses the quantity reading"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The explicit universal correctly becomes a distributing rule at 1.0/0.9 with its mandatory QuantifierPhrase companion, the dependent existential is a Skolem function of $x per the forall-exists pattern, and 'mire-essence' decomposes once to its genus with the noun modifier unexposed. (Of (sk_vessel $x) mire_essence) uses the surface preposition entity-attached, which is the licensed open-class oblique shape even though the construction itself is unaddressed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000544",
+   "sentence": "Good threads yield a full vessel.",
+   "parse": [
+    "(: threads_yield (Implication (And (Member $x thread) (Member $x good)) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) (sk_vessel $x)) (Member (sk_vessel $x) vessel) (Member (sk_vessel $x) full))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000544",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted bare-plural subject correctly forces the distributing-rule route with 'good' as a premise conjunct on the instance variable, and the indefinite object is a dependent Skolem function (sk_vessel $x) with its typing and 'full' kept inside the conclusion; bare-generic 0.9/0.9 and no QuantifierPhrase are both right."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000545",
+   "sentence": "Poor threads yield a thin slick.",
+   "parse": [
+    "(: poor_thread_yield_rule (Implication (And (Member $x thread) (Member $x poor)) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) (sk_slick $x)) (Member (sk_slick $x) slick) (Member (sk_slick $x) thin))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000545",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted bare-plural subject correctly forces the distributing-rule route with \"poor\" as a premise conjunct (never a kind relation), the indefinite object is a dependent Skolem function (sk_slick $x), and yield's created object takes Patient with the inanimate transitive subject staying Agent."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000546",
+   "sentence": "Hesper dates and labels each vessel.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: hesper_dates (Implication (Member $x vessel) (And (Member (sk_date $x) date) (Agent (sk_date $x) hesper) (Patient (sk_date $x) $x))) (STV 1.0 0.9))",
+    "(: hesper_dates_q (QuantifierPhrase vessel date \"each\") (STV 1.0 0.99))",
+    "(: hesper_labels (Implication (Member $x vessel) (And (Member (sk_label $x) label) (Agent (sk_label $x) hesper) (Patient (sk_label $x) $x))) (STV 1.0 0.9))",
+    "(: hesper_labels_q (QuantifierPhrase vessel label \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000546",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Coordinated VPs translated independently into two distributing rules over (Member $x vessel), each with its own Skolem-function event and its own 'each' QuantifierPhrase companion; universal strength 1.0 at confidence 0.9, the shared named agent as a constant in both conclusions, and Hesper given a Name atom with no invented type atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000547",
+   "sentence": "Hesper carries the vessels to the cellars.",
+   "parse": [
+    "(: e2_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: e2_carry (Member sk_carry_1 carry) (STV 1.0 0.99))",
+    "(: e2_agent (Agent sk_carry_1 hesper) (STV 1.0 0.99))",
+    "(: e2_theme (Theme sk_carry_1 sk_vessel_1) (STV 1.0 0.99))",
+    "(: e2_vessel_grp (GroupOf sk_vessel_1 vessel) (STV 1.0 0.99))",
+    "(: e2_goal (Goal sk_carry_1 sk_cellar_1) (STV 1.0 0.99))",
+    "(: e2_cellar_grp (GroupOf sk_cellar_1 cellar) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000547",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Theme for carry, Goal for the spatial \"to\", group witnesses for both definite plurals, and the absence of any status atom on a bare simple present all match the instruction set; no kind atom is invented for Hesper, whose single Name fact is emitted."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000548",
+   "sentence": "The cellar shelves are arranged by year and month.",
+   "parse": [
+    "(: shelf_group (GroupOf sk_group_1 cellar_shelf) (STV 1.0 0.99))",
+    "(: shelf_genus (Inheritance cellar_shelf shelf) (STV 1.0 0.99))",
+    "(: shelf_arr_state (Member sk_arranged_1 arranged) (STV 1.0 0.99))",
+    "(: shelf_arr_exp (Experiencer sk_arranged_1 sk_group_1) (STV 1.0 0.99))",
+    "(: shelf_arr_year (By sk_arranged_1 year) (STV 1.0 0.99))",
+    "(: shelf_arr_month (By sk_arranged_1 month) (STV 1.0 0.99))",
+    "(: shelf_arr_flat (Member sk_group_1 arranged) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000548",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a predicative past participle in a present-tense copular clause ('the shelves ARE ARRANGED') — the instruction set pulls both ways: the lemmatization rule declares the same participle in 'the worktop was laminated' a VERB taking the base form, while the focus-particle examples parse 'is heated' / 'is insulated' as adjectival states (reified state + Experiencer + flat atom), so the adjective-vs-passive-event routing here is undetermined",
+     "a NON-AGENTIVE 'by'-phrase ('arranged by year and month' = the sorting criterion) — the passive rule states unconditionally that a by-phrase takes the role the active subject would have had (Agent), with no carve-out for a by-phrase naming a criterion or basis rather than the demoted agent"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Given the adjectival-state route the parse is internally correct: definite plural -> group witness, compound genus with the noun modifier unexposed, PP complement triggering state reification with the flat dual-emit kept, and the coordinated 'by' object distributed into two obliques. The flat (Member sk_group_1 arranged) survives the no-property-on-a-group-symbol bar because arrangement is genuinely a property of the collection."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t9",
+   "corpus_id": "lore-000549",
+   "sentence": "The old vessels stand at the front of the shelves.",
+   "parse": [
+    "(: shelves_group (GroupOf sk_shelves_1 shelf) (STV 1.0 0.99))",
+    "(: front_type (Member sk_front_1 front) (STV 1.0 0.99))",
+    "(: front_partof (PartOf sk_front_1 sk_shelves_1) (STV 1.0 0.99))",
+    "(: vessels_group (GroupOf sk_group_1 vessel) (STV 1.0 0.99))",
+    "(: vessels_old_rule (Implication (PartOf $x sk_group_1) (Member $x old)) (STV 1.0 0.9))",
+    "(: vessels_stand_rule (Implication (PartOf $x sk_group_1) (LocatedIn $x sk_front_1)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000549",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a static position predicate (LocatedIn, or a surface-preposition entity head) predicated of a DEFINITE PLURAL: the instruction set routes descriptive modifiers and copular predicates on a plural through the per-member distribution rule and routes distributive EVENT predicates through group-event-plus-rule, but a bare position clause mints no event, so it never says whether the position rides the group symbol, distributes to members, or both — as parsed, nothing answers 'where are the old vessels?' until a member is individuated",
+     "\"the front of the shelves\" as a spatial region noun: the of-phrase is resolved by the generic part/whole test (PartOf), but the instruction set gives no treatment of region nouns (front/back/top/edge of X) as location anchors"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural to GroupOf, 'old' as incidental description distributing per-member rather than fusing, no event minted for the postural 'stand' with no reification trigger, and 'at' routed to LocatedIn all follow the instruction set; rule TVs (1.0 0.9) match the distribution pattern."
+   },
+   "adjudication": null
+  }
+ ]
+}

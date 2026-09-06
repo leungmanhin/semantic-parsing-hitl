@@ -1,0 +1,202 @@
+{
+ "id": "L4-10",
+ "rule": "IV — The dead",
+ "texts": [
+  "The village burns its dead.",
+  "There are no graves in Aelmere.",
+  "A storm-surge washed the old graveyard into the Sunken Cove six generations ago.",
+  "The village cremates the dead at a pyre-shelf on the southern cliff.",
+  "The villagers scatter the ashes at sea on the next ebb tide."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000334",
+   "sentence": "The village burns its dead.",
+   "parse": [
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: dead_group (GroupOf sk_dead_1 dead) (STV 1.0 0.99))",
+    "(: dead_poss (Possession sk_dead_1 sk_village_1) (STV 1.0 0.99))",
+    "(: e_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: e_burn_agent (Agent sk_burn_1 sk_village_1) (STV 1.0 0.99))",
+    "(: e_burn_patient (Patient sk_burn_1 sk_dead_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000334",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a substantivized adjective as a plural NP head (\"its dead\") — the instruction set gives no rule for whether the adjective fills the GroupOf member-kind slot, or a person-kind group takes the adjective as a distributed property"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The singular collective subject correctly gets a plain event with no distribution rule, burn correctly takes Patient, and the habitual present correctly carries no status atom. Possession for \"its dead\" is the licensed default, since the dead are not a component of the village."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000335",
+   "sentence": "There are no graves in Aelmere.",
+   "parse": [
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: no_grave_aelmere (Implication (Member $x grave) (LocatedIn $x aelmere)) (STV 0.0 0.9))",
+    "(: no_grave_q (QuantifierPhrase grave aelmere \"no\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000335",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Negated existential with a locative restriction ('There are no graves in Aelmere'): the Existential section covers only positive 'there is / there are', and no rule says whether the denial becomes a strength-0 Implication over instances of the kind or some flat copular-style strength-0 fact.",
+     "The QuantifierPhrase companion has no predicate or verb-lemma to name when the denied predicate is a locative relation — the parse fills that slot with the place symbol `aelmere`, which the companion's stated shapes (<subject> <predicate> / <kind> <verb-lemma>) do not cover."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Minting no grave witness and ranging the strength-0 rule over `(Member $x grave)` correctly avoids both asserting a grave into existence and putting a kind in LocatedIn's entity slot, which the instruction set explicitly bars. Empirical confidence 0.9 and the mandatory companion for the explicit quantifier 'no' are both right."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000336",
+   "sentence": "A storm-surge washed the old graveyard into the Sunken Cove six generations ago.",
+   "parse": [
+    "(: surge_type (Member sk_storm_surge_1 storm_surge) (STV 1.0 0.99))",
+    "(: surge_genus (Inheritance storm_surge surge) (STV 1.0 0.99))",
+    "(: graveyard_type (Member sk_graveyard_1 graveyard) (STV 1.0 0.99))",
+    "(: graveyard_old (Member sk_graveyard_1 old) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: e_wash (Member sk_wash_1 wash) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_wash_1 sk_storm_surge_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_wash_1 sk_graveyard_1) (STV 1.0 0.99))",
+    "(: e_goal (Goal sk_wash_1 sunken_cove) (STV 1.0 0.99))",
+    "(: e_past (Past sk_wash_1) (STV 1.0 0.99))",
+    "(: e_beforeby (BeforeBy sk_wash_1 now 6 generation) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000336",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Motion-result routing is right: Theme for the displaced graveyard, Goal for \"into the Sunken Cove\", no Result atom and no LocatedIn on the graveyard. \"six generations ago\" correctly anchors on now via BeforeBy, and the multi-word name gets one symbol plus Name plus a kind atom with no modifier genus."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000337",
+   "sentence": "The village cremates the dead at a pyre-shelf on the southern cliff.",
+   "parse": [
+    "(: e4_village (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: e4_cremate (Member sk_cremate_1 cremate) (STV 1.0 0.99))",
+    "(: e4_agent (Agent sk_cremate_1 sk_village_1) (STV 1.0 0.99))",
+    "(: e4_dead (GroupOf sk_dead_1 dead) (STV 1.0 0.99))",
+    "(: e4_patient (Patient sk_cremate_1 sk_dead_1) (STV 1.0 0.99))",
+    "(: e4_shelf (Member sk_shelf_1 pyre_shelf) (STV 1.0 0.99))",
+    "(: e4_shelf_genus (Inheritance pyre_shelf shelf) (STV 1.0 0.99))",
+    "(: e4_location (Location sk_cremate_1 sk_shelf_1) (STV 1.0 0.99))",
+    "(: e4_cliff (Member sk_cliff_1 southern_cliff) (STV 1.0 0.99))",
+    "(: e4_cliff_genus (Inheritance southern_cliff cliff) (STV 1.0 0.99))",
+    "(: e4_cliff_mod (Inheritance southern_cliff southern) (STV 1.0 0.99))",
+    "(: e4_on (On sk_shelf_1 sk_cliff_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000337",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A definite plural nominalized adjective used as a referring NP ('the dead'): the instruction set has no rule for an adjective-headed plural, so the adjective ends up filling the GroupOf member-kind slot with no noun kind stated."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'on the southern cliff' is attached to the pyre-shelf with the entity-attached surface preposition (the favoured attachment, and Location on the event already carries the 'at' phrase), and southern_cliff follows the east_wing positional-modifier pattern with both genus atoms."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000338",
+   "sentence": "The villagers scatter the ashes at sea on the next ebb tide.",
+   "parse": [
+    "(: villagers_g (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))",
+    "(: scatter_ev (Member sk_scatter_1 scatter) (STV 1.0 0.99))",
+    "(: scatter_ag (Agent sk_scatter_1 sk_villagers_1) (STV 1.0 0.99))",
+    "(: ashes_m (Member sk_ashes_1 ash) (STV 1.0 0.99))",
+    "(: scatter_th (Theme sk_scatter_1 sk_ashes_1) (STV 1.0 0.99))",
+    "(: scatter_loc (Location sk_scatter_1 sea) (STV 1.0 0.99))",
+    "(: scatter_time (Time sk_scatter_1 next_ebb_tide) (STV 1.0 0.99))",
+    "(: scatter_fut (Future sk_scatter_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000338",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The definite plural 'the ashes' is typed with a singular Member atom instead of the group witness the definite-plural rule requires."
+     },
+     {
+      "statement": 6,
+      "issue": "'the next ebb tide' is an event-denoting noun but is encoded as a bare time constant next_ebb_tide, the form the instruction set reserves for speech-anchored deictics, so the tide gets no class atom and the 'next' ordering is left unrepresented."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a plurale-tantum / mass-like plural ('the ashes') — whether a definite one takes the plural group witness or the singular mass Member is never decided",
+     "a temporal adjunct anchored on a recurring natural event ('on the next ebb tide') — Time terms are calendar, clock or deictic, During is restricted to during/while/throughout, and Before/BeforeBy do not render 'on'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whether 'the villagers scatter the ashes' is a distributive predicate wanting the per-member rule or a collective ceremonial act is genuinely unclear, so the group-only encoding is not flagged. Future is licensed by the lexically future 'next' adjunct, and the bare 'at sea' correctly stays a constant."
+   },
+   "adjudication": {
+    "id": "lore-000338",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'the ashes' is a definite plural, which *Categorical statements* decides by determiner and grammatical number ('a definite / demonstrative / possessed plural ... takes a group witness — (GroupOf <group> <kind>)'), reinforced by the *Partitives* count/mass cue ('a plural/count \"the Ns\" → GroupOf'); (Member sk_ashes_1 ash) instead predicates ash-hood of the collection as an object, exactly the reading the plural rules warn against ('(GroupOf g student) says the members are students — not that the group is a student')."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "'the next ebb tide' is formed exactly as the licensed deictic constants next_summer / last_spring are — the next instance of a recurring cycle, anchored to speech time — and the deictic rule forbids minting an sk_ witness or Member atom for one, so the absent class atom is compliance rather than loss and 'next' is kept inside the symbol rather than dropped; and on the alternative event-noun reading the reviewer's own gap concedes that 'on <event-noun>' has no licensed carrier, which the calibration line makes acceptable improvisation since the atom is true and its bare-symbol filler is a licensed Time shape ('a deictic or named time stays a bare symbol')."
+     }
+    ],
+    "gaps_confirmed": [
+     "a temporal adjunct anchored on a recurring natural event ('on the next ebb tide') taken as an event-noun entity: Time terms are calendar / clock / deictic only, During is restricted to during / while / throughout, and Before / BeforeBy do not render 'on', so nothing carries simultaneity with an event-noun anchor"
+    ],
+    "new_gaps": [
+     "no test distinguishes a distributive from a collective predicate outside the reciprocal/aggregate list and bare 'together / jointly' marking — a plural subject acting on one shared definite object ('the villagers scatter the ashes') sits between the group-only event and the per-member (Implication (PartOf $x <group>) …) rule that a distributive predicate is said to require, and the instruction set decides neither"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is (GroupOf sk_ashes_1 ash) in place of (Member sk_ashes_1 ash) — the group witness the definite plural requires — with the Theme link and everything else unchanged.",
+    "notes": "The reviewer's plurale-tantum gap is not a real gap: the count/mass split is explicitly cued by grammatical number, and 'the ashes' is plural. Future is licensed by the lexically-future 'next' adjunct and 'at sea' correctly stays a bare constant in the event Location."
+   }
+  }
+ ]
+}

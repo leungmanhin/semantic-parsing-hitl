@@ -1,0 +1,9 @@
+{"id": "lore-000193", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "*Coordination & plurals* ('a distributive predicate also hands the predication to the group's members via a rule') and *Quantifiers, generics & scope* (which names 'the dogs barked' explicitly as taking the same rule form alongside the group event) make the per-member rule mandatory for a definite plural with a distributive predicate, and 'say' is not in the collective class (gather / meet / assemble / collide) — the parse in fact applies exactly this doctrine to 'the lanterns' inside the seal but omits it for 'the villagers'."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["A distributive per-member rule whose consequent carries a SEALED complement that itself contains a per-member rule (definite-plural subject + attitude complement over its own definite plural) is unexemplified: the fresh-variable requirement is stated only for the conjuncts of one seal, not for a seal nested inside an outer rule's consequent, and the inner sealed rule's own STV is already unrepresentable under the in-seal-grammar limitation."],
+ "decision": "defect",
+ "defect_summary": "Compliant form adds, beside the group event, (: villagers_say_rule (Implication (PartOf $x sk_villagers_1) (And (Member (sk_say $x) say) (Experiencer (sk_say $x) $x) (Theme (sk_say $x) <the same sealed (And ...)>))) (STV 1.0 0.9)), with the sealed lantern rule inside that consequent re-lettered to a variable other than $x so the seal's variables do not co-vary with the outer rule's.",
+ "notes": "Everything else checks out: Experiencer for the holder of a sealed finite complement, no top-level predication of P for non-factive 'say', the definite plural's GroupOf typing projected out of the seal, event-form Obligated on specific referents rather than a kind-level property, and no status atom on the simple present."}

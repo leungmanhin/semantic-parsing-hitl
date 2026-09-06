@@ -1,0 +1,98 @@
+{
+ "id": "L6-07",
+ "rule": "VI — Counting sky-cats",
+ "texts": [
+  "The Keepers count the visible sky-cats on the cliff-spires each morning.",
+  "The Keepers track the weight of the feather harvest."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000419",
+   "sentence": "The Keepers count the visible sky-cats on the cliff-spires each morning.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: e_count (Member sk_count_1 count) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_count_1 keepers) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_count_1 sk_group_1) (STV 1.0 0.99))",
+    "(: skycats_grp (GroupOf sk_group_1 sky_cat) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycats_visible (Implication (PartOf $x sk_group_1) (Member $x visible)) (STV 1.0 0.9))",
+    "(: spires_grp (GroupOf sk_group_2 cliff_spire) (STV 1.0 0.99))",
+    "(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: skycats_on_spires (On sk_group_1 sk_group_2) (STV 1.0 0.99))",
+    "(: e_time (Time sk_count_1 morning) (STV 1.0 0.99))",
+    "(: e_every (Every sk_count_1 1 day) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000419",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Keepers\" follows the capitalized-plural-label rule exactly (Name-only individual, no GroupOf, no keeper typing), and \"each morning\" takes the named-slot Time term plus its implied Every cycle with no tense atom. \"On the cliff-spires\" is attached to the sky-cats rather than to the counting event - the favoured site, though the event attachment is also coherent."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000420",
+   "sentence": "The Keepers track the weight of the feather harvest.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: e_track (Member sk_track_1 track) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_track_1 keepers) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_track_1 sk_weight_1) (STV 1.0 0.99))",
+    "(: weight_type (Member sk_weight_1 weight) (STV 1.0 0.99))",
+    "(: weight_of (Of sk_weight_1 sk_harvest_1) (STV 1.0 0.99))",
+    "(: harvest_type (Member sk_harvest_1 feather_harvest) (STV 1.0 0.99))",
+    "(: harvest_genus (Inheritance feather_harvest harvest) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000420",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The of-phrase in 'the weight of the feather harvest' is attached with the nominalization-object oblique (Of ...), but it fails that route's stated verb-paraphrase test ('the weight of the harvest' is not 'what weighs the harvest' — the harvest is weigh's subject, not its object), so the ordinary genitive Possession is what the rules assign."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A dimension/attribute noun used referentially with no magnitude ('the weight of X'): the Measure family requires a stated number and unit, and the of-phrase taxonomy (partitive / measure / about-phrase / nominalization-object / genitive) has no explicit slot for an attribute noun whose of-NP is the underlying stative subject."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Keepers' correctly takes the capitalized-plural-label Name-only treatment (no GroupOf, no per-member kind); feather_harvest fusion plus genus, Theme for the recording verb 'track', and the unmarked habitual present are all right."
+   },
+   "adjudication": {
+    "id": "lore-000420",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The instruction set assigns no Possession here: the true-relational-noun genitive branch is expressly gated on 'where no underlying verb exists' (weight/weigh fails that gate) and the *Complements of nouns and adjectives* section opens with 'never Possession for an argument', so the entity-attached surface-preposition oblique (Of sk_weight_1 sk_harvest_1) — the very head that section exemplifies — is a true, well-typed record of the words in territory the reviewer itself files as a gap."
+     }
+    ],
+    "gaps_confirmed": [
+     "An attribute / dimension noun used referentially with no magnitude ('the weight of X') fits no branch of the of-phrase taxonomy, and the Measure family cannot carry it because it requires a stated magnitude and unit."
+    ],
+    "new_gaps": [
+     "Neither of-phrase branch fires when the of-NP is the head noun's underlying SUBJECT: the nominalization-object route's verb-paraphrase test ('the N of X' = 'what Vs X') fails, while the relational-noun genitive route is gated on no underlying verb existing. A licensed form would need to name the BEARER of an attribute noun (the entity the dimension is predicated of), which is neither an object nor a possessor."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Everything else holds: 'the Keepers' takes the capitalized-plural-label Name-only treatment (no GroupOf, no invented per-member kind), feather_harvest carries its head genus with the noun modifier unexposed, track takes Theme as a recording verb, and the simple present correctly stays unmarked."
+   }
+  }
+ ]
+}

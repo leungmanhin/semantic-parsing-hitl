@@ -1,0 +1,8 @@
+(: ledgers_grp (GroupOf sk_group_1 ledger) (STV 1.0 0.99))
+(: winters_grp (GroupOf sk_group_2 near_miss_winter) (STV 1.0 0.99))
+(: winters_card (Cardinality sk_group_2 3) (STV 1.0 0.99))
+(: winter_genus (Inheritance near_miss_winter winter) (STV 1.0 0.99))
+(: e_record (Member sk_record_1 record) (STV 1.0 0.99))
+(: e_agent (Agent sk_record_1 sk_group_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_record_1 sk_group_2) (STV 1.0 0.99))
+(: ledgers_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_record $x) record) (Agent (sk_record $x) $x) (Theme (sk_record $x) sk_group_2))) (STV 1.0 0.9))

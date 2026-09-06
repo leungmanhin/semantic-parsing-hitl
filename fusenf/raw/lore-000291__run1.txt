@@ -1,0 +1,3 @@
+(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))
+(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))
+(: warding_rule (Implication (And (Member $s station) (Member $e need) (Experiencer $e $s) (Stimulus $e warding)) (And (Member (sk_scatter $e) scatter) (Agent (sk_scatter $e) sk_keeper_1) (Theme (sk_scatter $e) (sk_feathers $e)) (Member (sk_feathers $e) feather) (Member (sk_feathers $e) ground) (Location (sk_scatter $e) sk_lantern_1) (During (sk_scatter $e) $e))) (STV 1.0 0.9))

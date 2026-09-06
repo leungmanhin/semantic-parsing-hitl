@@ -1,0 +1,14 @@
+{"id": "lore-000573", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "confirm", "reason": "A bare-plural subject of a habitual/characteristic present clause is a verbal generic, which the instruction set routes to a distributing Implication with a Skolem-function event at the empirical-generic (STV 0.9 0.9) — the episodic group-witness alternative is reserved for a specific past/dated/one-off occurrence — so a lone event bundle at the individual-fact 1.0/0.99 is neither licensed form."},
+   {"index": 1, "verdict": "confirm", "reason": "The bare class symbol is reserved for a non-specific / kind-level OBJECT ('pays tax', 'grows wheat'), and a generic subject is carried by the rule's bound variable, so (Theme sk_decline_1 moth_count) puts a kind in a role slot no rule licenses and asserts that the kind itself declines."},
+   {"index": 2, "verdict": "partial", "reason": "The half that stands is the loss: 'through' is not one of the three words (during / while / throughout) that license During, a synonym head is barred, Start/End needs stated endpoints and Measure duration a count and unit, so the span force is genuinely unencodable — but the half that fails is calling the residue a fault, since (Time e late_autumn) is a true, well-typed bare named-time filler that states LESS than the sentence rather than more."}
+ ],
+ "gaps_confirmed": [
+   "season-scale time expressions: the structured Time terms are Year / Month / Day / Weekday / Hour / Minute plus day-part constants, and seasons appear only as deictic forms (last_spring / next_summer), so a non-deictic season — let alone a modified one, 'late autumn' — has no defined term shape and no stated decomposition treatment",
+   "'through <period>' as a temporal-span adverbial has no stated encoding: During is licensed for during / while / throughout only, Start/End requires stated endpoints, and Measure duration requires a count and unit"
+ ],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "The compliant form is the verbal-generic distributing rule — (: moth_counts_decline (Implication (Member $x moth_count) (And (Member (sk_decline $x) decline) (Theme (sk_decline $x) $x) (Time (sk_decline $x) late_autumn))) (STV 0.9 0.9)) — with the bound variable, never the bare kind symbol moth_count, filling the Theme slot, and (Inheritance moth_count count) kept as it is; the 'through'-span force of the adjunct still has no licensed carrier there and is recorded as a gap.",
+ "notes": "The reviewer's gloss 'a single specific decline event' is imprecise — an event with no status atom is the generic/habitual default, not a specific occurrence — but the substance (wrong route and wrong truth value for a verbal generic) stands, so the verdict is unaffected. The compound decomposition with the noun modifier unexposed and Theme for an unpowered scalar-change subject are both right."}

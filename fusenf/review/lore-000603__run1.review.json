@@ -1,0 +1,10 @@
+{"id": "lore-000603", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "'re-fires' is split into the base lemma 'fire' plus (Again (sk_fire $x)), but 're-' is derivational and the instruction set permits inflectional lemmatization only, reserving the opaque Again tag for the particle 'again'."}, {"statement": 2, "issue": "The clause is a habitual about a specific individual subject ('the glassworks') yet is encoded as a distributing rule ranging over (Member $x dome) (Member $x damaged), asserting at strength 0.9 that this glassworks re-fires any damaged dome — wider than what the sentence states, and the generic-rule form is defined for a generic KIND subject."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["derivational prefix on a verb ('re-fire'): the lemmatization rule covers inflectional variants and derivation across parts of speech, but says nothing about a prefixed verb, and no operator is licensed for 're-'", "habitual clause with a specific individual subject and a bare-plural object carrying a descriptive modifier ('damaged domes'): the bare-kind-filler route for a non-specific object cannot carry 'damaged', fusion is explicitly barred for damage modifiers, and the rule route is specified only for a kind subject, so no licensed encoding carries the restriction"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "'damaged' correctly becomes the adjectival (Member $x damaged) rather than a verb, Patient is right for the kiln-fired dome, and (Inheritance glassworks works) is a defensible solid-compound decomposition with the noun modifier suppressed."
+}

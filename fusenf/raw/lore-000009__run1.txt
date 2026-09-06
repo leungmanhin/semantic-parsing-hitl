@@ -1,0 +1,8 @@
+(: cp_type (Member cliff_path path) (STV 1.0 0.99))
+(: cp_name (Name cliff_path "Cliff Path") (STV 1.0 0.99))
+(: wall_type (Member sk_harbor_wall_1 harbor_wall) (STV 1.0 0.99))
+(: wall_genus (Inheritance harbor_wall wall) (STV 1.0 0.99))
+(: spires_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))
+(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: cp_from (From cliff_path sk_harbor_wall_1) (STV 1.0 0.99))
+(: cp_to (To cliff_path sk_group_1) (STV 1.0 0.99))

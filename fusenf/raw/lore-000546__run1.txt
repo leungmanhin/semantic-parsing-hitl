@@ -1,0 +1,5 @@
+(: hesper_name (Name hesper "Hesper") (STV 1.0 0.99))
+(: hesper_dates (Implication (Member $x vessel) (And (Member (sk_date $x) date) (Agent (sk_date $x) hesper) (Patient (sk_date $x) $x))) (STV 1.0 0.9))
+(: hesper_dates_q (QuantifierPhrase vessel date "each") (STV 1.0 0.99))
+(: hesper_labels (Implication (Member $x vessel) (And (Member (sk_label $x) label) (Agent (sk_label $x) hesper) (Patient (sk_label $x) $x))) (STV 1.0 0.9))
+(: hesper_labels_q (QuantifierPhrase vessel label "each") (STV 1.0 0.99))

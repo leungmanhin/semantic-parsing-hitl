@@ -1,0 +1,161 @@
+{
+ "id": "L8-03",
+ "rule": "VIII — Silken threads",
+ "texts": [
+  "Silken threads are the deposits that nightmoths leave on lantern rims.",
+  "Silken threads are fine, grey, and slightly sticky.",
+  "A Keeper scrapes the threads off the warm stone with a flat blade.",
+  "A well-attended lantern yields a small heap of threads each night in moth-season."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000478",
+   "sentence": "Silken threads are the deposits that nightmoths leave on lantern rims.",
+   "parse": [
+    "(: st_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: st_material (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: st_deposit (Inheritance silken_thread deposit) (STV 1.0 0.99))",
+    "(: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: lr_genus (Inheritance lantern_rim rim) (STV 1.0 0.99))",
+    "(: nm_leave_rule (Implication (Member $x nightmoth) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Patient (sk_leave $x) silken_thread) (Location (sk_leave $x) lantern_rim))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000478",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "identificational copular with a DEFINITE predicate nominal - 'X are the Ns that Y V' - only 'X is a/an N' is covered, so the identity/exhaustivity of 'are THE deposits' collapses to a plain Inheritance and the restrictive relative clause has to be hoisted into a separate top-level generic rule",
+     "a possessor/part noun-noun compound ('lantern rims') occurring as a bare-plural KIND-level filler: the prescribed non-fusing PartOf route needs two individuals, and nothing licenses a kind-level part-whole link, so the only available move was to fuse lantern_rim and emit genus rim"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Within what is covered the parse is right: silken_thread fuses as a material adjective + head with both genus atoms, nightmoth takes the solid-spelling genus, the relative clause becomes a 0.9 distributing rule, and 'on lantern rims' is the event-side Location oblique."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000479",
+   "sentence": "Silken threads are fine, grey, and slightly sticky.",
+   "parse": [
+    "(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+    "(: thread_silken (Inheritance silken_thread silken) (STV 1.0 0.99))",
+    "(: thread_fine (Inheritance silken_thread fine) (STV 0.9 0.9))",
+    "(: thread_grey (Inheritance silken_thread grey) (STV 0.9 0.9))",
+    "(: thread_sticky (Inheritance silken_thread sticky) (STV 0.9 0.9))",
+    "(: thread_sticky_deg (Degree silken_thread sticky slightly) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000479",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a degree modifier on a bare-plural generic ('slightly sticky'): every Degree example has an individual bearer, so the instruction set never fixes whether a kind may fill the Degree bearer slot, nor which truth value the resulting atom takes — the 'the dial reaches every kind-level claim, whatever its head' rule points to 0.9 confidence while the QuantifierPhrase companion precedent keeps a surface-record companion at 1.0/0.99 (the parse chose 1.0/0.99)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Material-adjective fusion into silken_thread with both the head genus and the exposed adjectival modifier genus is correct, as is 0.9/0.9 on each of the three conjoined empirical property atoms and retaining the positive 'sticky' under the downtoner."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000480",
+   "sentence": "A Keeper scrapes the threads off the warm stone with a flat blade.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: e_scrape (Member sk_scrape_1 scrape) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_scrape_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: thread_type (GroupOf sk_thread_1 thread) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_scrape_1 sk_thread_1) (STV 1.0 0.99))",
+    "(: stone_type (Member sk_stone_1 stone) (STV 1.0 0.99))",
+    "(: stone_warm (Member sk_stone_1 warm) (STV 1.0 0.99))",
+    "(: e_source (Source sk_scrape_1 sk_stone_1) (STV 1.0 0.99))",
+    "(: blade_type (Member sk_blade_1 blade) (STV 1.0 0.99))",
+    "(: blade_flat (Member sk_blade_1 flat) (STV 1.0 0.99))",
+    "(: e_instrument (Instrument sk_scrape_1 sk_blade_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000480",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Motion-result shape is exactly per doctrine (Theme on the displaced threads, Source for 'off', no Result atom); the definite plural gets a group witness, 'warm' and 'flat' stay unfused descriptive properties, capitalized 'A Keeper' correctly gets no Name atom, and the indefinite verbal subject stays a witness rather than a generic rule."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000481",
+   "sentence": "A well-attended lantern yields a small heap of threads each night in moth-season.",
+   "parse": [
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: wa_genus (Inheritance well_attended attended) (STV 1.0 0.99))",
+    "(: lantern_wa (Member sk_lantern_1 well_attended) (STV 1.0 0.99))",
+    "(: yield_ev (Member sk_yield_1 yield) (STV 1.0 0.99))",
+    "(: yield_ag (Agent sk_yield_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: yield_pt (Patient sk_yield_1 sk_heap_1) (STV 1.0 0.99))",
+    "(: heap_type (Member sk_heap_1 heap) (STV 1.0 0.99))",
+    "(: heap_small (Member sk_heap_1 small) (STV 1.0 0.99))",
+    "(: heap_grp (GroupOf sk_heap_1 thread) (STV 1.0 0.99))",
+    "(: yield_time_night (Time sk_yield_1 night) (STV 1.0 0.99))",
+    "(: yield_every (Every sk_yield_1 1 day) (STV 1.0 0.99))",
+    "(: ms_genus (Inheritance moth_season season) (STV 1.0 0.99))",
+    "(: yield_time_season (Time sk_yield_1 moth_season) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000481",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "(Inheritance well_attended attended) decomposes a compound ADJECTIVE, which the Compound-concepts section says to leave opaque — its decomposition licences cover compound kinds, compound actions, phrasal verbs and agent-nominalizations only."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "hyphenated adverb + participle compound adjective ('well-attended'): no stated rule on whether it gets a genus atom or stays one opaque property symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'each night' → (Time e night) + (Every e 1 day) with no status atom matches the 'every morning' habitual pattern exactly, 'a small heap of threads' matches the flock-of-birds shape with 'small' licensed as a property of the collection itself, and the indefinite subject correctly stays a witness (a verbal generic needs a bare plural or explicit quantifier). Roles are right: transitive inanimate subject stays Agent, and the yielded heap is created so it is Patient."
+   },
+   "adjudication": {
+    "id": "lore-000481",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The \"leave opaque\" bullet names adjective / CONDITION compounds (solid_at_room_temperature) pending a conditional-property representation, not an adverb+participle adjective, while the section's general mandate (\"when a compound symbol is genuinely needed, also emit decomposition atoms\") and the prompt's own fused adjectival property — (Inheritance sensitive_to_light sensitive) — license a genus atom; (Inheritance well_attended attended) is true (well-attended entails attended) and well-typed, since properties-as-classes take Inheritance."
+     }
+    ],
+    "gaps_confirmed": [
+     "hyphenated adverb + participle compound adjective (\"well-attended\"): no stated rule on whether it gets a genus atom or stays one opaque property symbol, which the \"exposure is determined, not optional\" principle says should be settled"
+    ],
+    "new_gaps": [],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The rest is doctrinal: indefinite subject with a verbal predicate stays a witness, \"a small heap of threads\" takes the flock-of-birds Member+GroupOf shape with small licensed as a property of the collection itself, Agent for the inanimate transitive subject and Patient for the created heap, and \"each night\" → (Time e night) + (Every e 1 day) with no status atom matches the \"every morning\" habitual pattern."
+   }
+  }
+ ]
+}

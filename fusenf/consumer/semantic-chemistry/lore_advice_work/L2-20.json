@@ -1,0 +1,216 @@
+{
+ "id": "L2-20",
+ "rule": "II — The saying",
+ "texts": [
+  "The villagers say that the lanterns must burn.",
+  "The Keepers repeat the phrase at births, at funerals, and at the close of every Council session.",
+  "The phrase appears in the earliest surviving Watch ledgers."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000193",
+   "sentence": "The villagers say that the lanterns must burn.",
+   "parse": [
+    "(: villagers_grp (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))",
+    "(: say_ev (Member sk_say_1 say) (STV 1.0 0.99))",
+    "(: say_exp (Experiencer sk_say_1 sk_villagers_1) (STV 1.0 0.99))",
+    "(: lanterns_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: say_theme (Theme sk_say_1 (And (Member sk_burn_1 burn) (Patient sk_burn_1 sk_lanterns_1) (Obligated sk_burn_1) (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Obligated (sk_burn $x)))))) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000193",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The definite plural subject 'the villagers' with the distributive predicate 'say' gets the group event but not the paired per-member distribution rule over (PartOf $x sk_villagers_1), so a villager named later could not be queried as a sayer — the very rule the parse does emit for the lanterns inside the seal."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Non-factive 'say' with an Experiencer holder, no predication of P at top level, the definite plural's GroupOf typing projected out of the seal, deontic Obligated on the specific referents rather than a kind-level property, and the sealed per-member rule as a conjunct of P are all as specified. The sealed Implication carries no STV of its own, which is the registered in-seal-grammar limitation rather than a parse defect."
+   },
+   "adjudication": {
+    "id": "lore-000193",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "*Coordination & plurals* ('a distributive predicate also hands the predication to the group's members via a rule') and *Quantifiers, generics & scope* (which names 'the dogs barked' explicitly as taking the same rule form alongside the group event) make the per-member rule mandatory for a definite plural with a distributive predicate, and 'say' is not in the collective class (gather / meet / assemble / collide) — the parse in fact applies exactly this doctrine to 'the lanterns' inside the seal but omits it for 'the villagers'."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A distributive per-member rule whose consequent carries a SEALED complement that itself contains a per-member rule (definite-plural subject + attitude complement over its own definite plural) is unexemplified: the fresh-variable requirement is stated only for the conjuncts of one seal, not for a seal nested inside an outer rule's consequent, and the inner sealed rule's own STV is already unrepresentable under the in-seal-grammar limitation."
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form adds, beside the group event, (: villagers_say_rule (Implication (PartOf $x sk_villagers_1) (And (Member (sk_say $x) say) (Experiencer (sk_say $x) $x) (Theme (sk_say $x) <the same sealed (And ...)>))) (STV 1.0 0.9)), with the sealed lantern rule inside that consequent re-lettered to a variable other than $x so the seal's variables do not co-vary with the outer rule's.",
+    "notes": "Everything else checks out: Experiencer for the holder of a sealed finite complement, no top-level predication of P for non-factive 'say', the definite plural's GroupOf typing projected out of the seal, event-form Obligated on specific referents rather than a kind-level property, and no status atom on the simple present."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000194",
+   "sentence": "The Keepers repeat the phrase at births, at funerals, and at the close of every Council session.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: phrase_type (Member sk_phrase_1 phrase) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: repeat_at_birth (Implication (Member $x birth) (And (Member (sk_repeat_birth $x) repeat) (Agent (sk_repeat_birth $x) keepers) (Theme (sk_repeat_birth $x) sk_phrase_1) (During (sk_repeat_birth $x) $x))) (STV 1.0 0.9))",
+    "(: repeat_at_funeral (Implication (Member $x funeral) (And (Member (sk_repeat_funeral $x) repeat) (Agent (sk_repeat_funeral $x) keepers) (Theme (sk_repeat_funeral $x) sk_phrase_1) (During (sk_repeat_funeral $x) $x))) (STV 1.0 0.9))",
+    "(: repeat_at_close (Implication (And (Member $x session) (Possession $x sk_council_1)) (And (Member (sk_close $x) close) (Patient (sk_close $x) $x) (Member (sk_repeat_close $x) repeat) (Agent (sk_repeat_close $x) keepers) (Theme (sk_repeat_close $x) sk_phrase_1) (During (sk_repeat_close $x) (sk_close $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000194",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The rule consumes the explicit quantifier word 'every' ('every Council session') but emits no QuantifierPhrase companion, which the instruction set makes mandatory for every explicit quantifier word a rule consumes."
+     },
+     {
+      "statement": 3,
+      "issue": "Strength 1.0 asserts a universal over all births, but 'at births' carries no explicit quantifier word, so the bare-plural generic strength 0.9 is what the quantity dial gives."
+     },
+     {
+      "statement": 4,
+      "issue": "Same over-strength as statement 3: 'at funerals' is a bare-plural generic with no quantifier word, yet the rule is emitted at strength 1.0."
+     },
+     {
+      "statement": 5,
+      "issue": "'Council session' is linked by (Possession $x sk_council_1), but the parse itself types sk_council_1 as a common noun (no Name atom), and Possession is licensed for genitives and PROPER-noun premodifiers — a common-noun premodifier goes through Compound concepts (council_session with genus session)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Occasion-denoting bare-plural PP adjuncts on a habitual clause ('repeat the phrase at births, at funerals') — neither the calendar-slot frequency machinery (Time / Every / TimesPer, which needs a named calendar slot) nor the 'every time / whenever' clause machinery (which needs a clause) covers them; the preposition-named oblique (At e birth) would be licensed but drops the per-occasion recurrence, and the parse's fallback renders 'at' as During, a head the instruction set restricts to during/while/throughout and explicitly warns against using as a synonym head.",
+     "A capitalized common-noun premodifier ('Council session') — the instruction set gives a Possession rule for a PROPER-noun premodifier and a common-noun default (no Name) for a capitalized noun used as the referent's ONLY label, but says nothing about a capitalized common noun in premodifier position, so it falls between that rule and Compound concepts.",
+     "'the close of every Council session' — a nominalization that is simultaneously a temporal anchor: the nominalization rule attaches the of-phrase as the entity-attached oblique (Of <close> <session>), while reifying it as an eventuality (needed to carry the ordering/nesting relation) invites a thematic role instead; the instruction set does not say which shape wins."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The Name-only treatment of the capitalized plural label 'the Keepers' (one symbol, Name atom, no GroupOf and no per-member kind) is exactly what the instruction set legislates. The three-way split of the coordinated adjuncts into three occurrence-quantified rules is a plausible extension of the whenever machinery, but the instruction set never licenses that route from a PP adjunct."
+   },
+   "adjudication": {
+    "id": "lore-000194",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The companion is 'mandatory for every explicit quantifier word the rule or claim consumes', and this rule consumes 'every' as the range restriction on its session premise, so (QuantifierPhrase session repeat \"every\") is owed — the no-companion carve-out covers the fixed 'every time / whenever' frequency conditional, not a determiner sitting on an NP."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "'at births' is a bare plural with no quantifier word, and the quantity dial gives 1.0 only to 'all' / 'every' while a bare generic takes 0.9, so strength 1.0 asserts a repetition at every birth that the text does not state."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "The same over-assertion on 'at funerals': a bare-plural adjunct with no quantifier word takes the generic strength 0.9, not the universal 1.0."
+     },
+     {
+      "index": 3,
+      "verdict": "refute",
+      "reason": "Possession is the opaque loose-association head, licensed generally for a possessed-to-possessor link that is not part-whole, and it is true and well-typed of a session of this Council; Compound concepts states only a NECESSARY condition on fusing ('fuse a modifier_noun only when the modifier classifies the head'), never a mandate to fuse, so this is the capitalized-common-noun-in-premodifier collision the reviewer filed as a gap, not a violated rule."
+     }
+    ],
+    "gaps_confirmed": [
+     "Occasion-denoting bare-plural PP adjuncts on a habitual clause ('repeat the phrase at births, at funerals') are covered by nothing: the calendar-slot machinery (Time / Every / TimesPer) needs a named slot, the 'every time / whenever' machinery needs a clause, and the preposition-named oblique (At e birth) carries no per-occasion recurrence.",
+     "A capitalized common noun in PREMODIFIER position ('Council session') falls between the proper-noun-premodifier rule (Possession, which comes with a mandatory Name atom the common-noun default forbids) and Compound concepts (fusion to council_session, which discards the reference to this specific Council)."
+    ],
+    "new_gaps": [
+     "A rule premise that restricts a kind by an association atom nothing ever asserts — (Possession $x sk_council_1) for 'Council session' — is permanently dormant: the premise rule licenses an sk_* constant that a top-level fact asserts, but nothing in this or any parse puts a session into that Possession relation, so a licensed-looking restriction can never match and the whole rule is unfireable."
+    ],
+    "decision": "defect",
+    "defect_summary": "The close-of-session rule owes its companion atom beside the implication — (: … (QuantifierPhrase session repeat \"every\") (STV 1.0 0.99)); the births and funerals rules must each carry the bare-generic (STV 0.9 0.9), since neither 'at births' nor 'at funerals' states a universal.",
+    "notes": "The During links are the whenever machinery's own per-occurrence device rather than a synonym head rendering 'at', so they do not breach the during/while/throughout restriction. I did not confirm the reviewer's third gap: an event noun's witness IS the eventuality (Light verbs over event-nouns), so 'the close' can carry both its argument and the During relation with no shape conflict."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000195",
+   "sentence": "The phrase appears in the earliest surviving Watch ledgers.",
+   "parse": [
+    "(: phrase_m (Member sk_phrase_1 phrase) (STV 1.0 0.99))",
+    "(: ledger_grp (GroupOf sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: watch_name (Name watch \"Watch\") (STV 1.0 0.99))",
+    "(: ledger_poss (Possession sk_ledger_1 watch) (STV 1.0 0.99))",
+    "(: ledger_most_early (Most early sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: ledger_survive_rule (Implication (PartOf $x sk_ledger_1) (Member $x surviving)) (STV 1.0 0.9))",
+    "(: phrase_located (LocatedIn sk_phrase_1 sk_ledger_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000195",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The verb \"appears\" is dropped entirely — no appear event is reified, so its lemma is unrecoverable — and the clause is encoded as a static LocatedIn containment, a route the instruction set reserves for \"is located/situated in\" and the bare postural verbs (lie/sit/stand/hang/lean/perch/rest), which \"appear\" is not among; a ledger is also a document, not a containing place."
+     },
+     {
+      "statement": 4,
+      "issue": "(Most early sk_ledger_1 ledger) claims the unique maximum for a plural set and puts a group witness in the entity slot without the (Member <entity> <class>) companion the superlative rule requires — a group is not a member of its members' kind."
+     },
+     {
+      "statement": 2,
+      "issue": "\"Watch\" is a bare capitalized class word, which Names and casing makes a common noun by default with no Name atom (name-hood needs the capitalized run to exceed the bare class word, or a different word to state the kind)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "textual-occurrence predication ('the phrase appears in / occurs in / is found in <document>') — the stative-locative verb list that routes to LocatedIn does not include it, and nothing says whether such a clause instead reifies an event with an In / Location oblique",
+     "attributive superlative over a PLURAL set ('the earliest surviving ledgers') — Most is the unique maximum of one individual and AmongMost is 'one of the ADJ-est'; a set-denoting superlative has no licensed form",
+     "a capitalized bare class word used as a PREMODIFIER ('Watch ledgers') — the capitalized-common-noun default (common noun, no Name) and the proper-noun-premodifier rule (Name + Possession) point at different encodings, with the compound-kind route (watch_ledger, genus ledger) a third"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The phrase's own typing, the definite-plural group, and the distributed \"surviving\" modifier rule are all right. The defects are the dropped verb, the plural superlative, and the unlicensed Name atom."
+   },
+   "adjudication": {
+    "id": "lore-000195",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The no-event carve-out of *Where a THING is* is closed — \"is located/situated in\" plus the bare postural verbs lie/sit/stand/hang/lean/perch/rest — and \"appears\" is none of them, so the clause is verbal and must reify an event; dropping the lemma and emitting `(LocatedIn sk_phrase_1 sk_ledger_1)` both loses the predicate and asserts a positional containment the clause never predicates."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "`Most` encodes the unique maximum and requires the entity's own `(Member <entity> <class>)` companion, so `(Most early sk_ledger_1 ledger)` over-asserts a single earliest ledger for what the text makes a plural set and puts a group witness in a slot whose companion would be false (a group of ledgers is not a ledger)."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "Names and casing makes a capitalized common noun used as the referent's only label a common noun by default with NO `Name` atom — name-hood requires the capitalized run to exceed the bare class word or a different word to state the kind — and \"Watch\" is exactly the bare class word."
+     }
+    ],
+    "gaps_confirmed": [
+     "Textual-occurrence predication (\"the phrase appears / occurs / is found in <document>\"): it is not on the stative-locative list, and nothing says which head the \"in\"-PP takes on the reified event (`Location` vs the preposition-named `In`).",
+     "Superlative over a PLURAL set (\"the earliest surviving ledgers\"): `Most` is a unique individual maximum and `AmongMost` is one individual in the top stratum, so a set-denoting superlative has no licensed carrier; a per-member distributed `AmongMost` is the nearest candidate and is unlicensed.",
+     "A capitalized bare class word used as a PREMODIFIER (\"Watch ledgers\"): the capitalized-common-noun default is stated for a definite NP head, and nothing says whether a premodifier falls under it, under the proper-noun-premodifier `Name` + `Possession` route, or under compound fusion (`watch_ledger`)."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "For \"appears\", the compliant form reifies the verb — `(Member sk_appear_1 appear) (Experiencer sk_appear_1 sk_phrase_1)` with the ledgers carried by the \"in\"-PP oblique — and emits no `LocatedIn`, though which oblique head that PP takes is itself the first gap. For \"the earliest surviving ... ledgers\" NO compliant form is licensed: neither `Most` (a unique individual maximum) nor `AmongMost` (one individual in the top stratum) fits a set-denoting superlative, so the licensed form would have to be a distributed `(Implication (PartOf $x sk_ledger_1) (AmongMost early $x ledger))` or a group-superlative head, and the loss is filed as the second gap. For \"Watch\", drop `(Name watch \"Watch\")` and treat it as the capitalized common noun the default makes it, which routes the premodifier through Compound concepts as `watch_ledger` with genus `ledger` and the noun modifier unexposed, rather than the proper-noun `Possession` route.",
+    "notes": "The phrase's own typing, the definite-plural group witness, and the distributed `surviving` rule (participle-as-modifier kept in adjective form) are all correct."
+   }
+  }
+ ]
+}

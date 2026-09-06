@@ -1,0 +1,2 @@
+(: hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: wintergloss_grow_hollows (Implication (Member $x wintergloss) (And (Member (sk_grow $x) grow) (Patient (sk_grow $x) $x) (Location (sk_grow $x) hollows))) (STV 0.9 0.9))

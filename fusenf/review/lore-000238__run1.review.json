@@ -1,0 +1,9 @@
+{"id": "lore-000238", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 7, "issue": "'call an emergency meeting' brings the occurrence into being, so the object takes Patient under the creates/occurrence-change test (an occurrence object is Patient every time), not Theme."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a cardinal-restricted deontic norm over a kind ('two Council members may call ...', a quorum rule): the kind-level (Inheritance <kind> (permitted <action>)) form has no slot for the count, and the group-event form the parse used ties the permission to one specific pair rather than to any two members", "existential import of an indefinite under a deontic/capability status atom: 'may call an emergency meeting' yields a top-level (Member sk_meeting_1 emergency_meeting) witness, but the sentence asserts no meeting exists; the instruction set gives status atoms no non-veridical scope over the event's own indefinite arguments"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The counted-plural group with Cardinality 2 and no per-member distribution rule is right for a joint/quorum act, and Permitted at (STV 1.0 0.99) matches the status-atom table. One borderline call left unflagged: 'council member' satisfies the do-not-fuse possessor/whole plus part/member test (PartOf's second job is 'a member of a group') as well as the genuine-subtype fusion test, and the instruction set does not say which wins."}

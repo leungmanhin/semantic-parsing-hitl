@@ -1,0 +1,6 @@
+(: wick_type (Member sk_wick_1 wick) (STV 1.0 0.99))
+(: carbonize_ev (Member sk_carbonize_1 carbonize) (STV 1.0 0.99))
+(: carbonize_pat (Patient sk_carbonize_1 sk_wick_1) (STV 1.0 0.99))
+(: burn_type (Member sk_burn_1 burn) (STV 1.0 0.99))
+(: burn_long (Member sk_burn_1 long) (STV 1.0 0.99))
+(: carbonize_over (Over sk_carbonize_1 sk_burn_1) (STV 1.0 0.99))

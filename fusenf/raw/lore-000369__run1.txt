@@ -1,0 +1,7 @@
+(: store_type (Member sk_store_1 feather_store) (STV 1.0 0.99))
+(: store_genus (Inheritance feather_store store) (STV 1.0 0.99))
+(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))
+(: store_loc (LocatedIn sk_store_1 sk_watch_1) (STV 1.0 0.99))
+(: e_keepout (Member sk_keep_out_1 keep_out) (STV 1.0 0.99))
+(: e_agent (Agent sk_keep_out_1 sk_store_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_keep_out_1 wraith) (STV 1.0 0.99))

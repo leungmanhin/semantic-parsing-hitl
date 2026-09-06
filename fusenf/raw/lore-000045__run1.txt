@@ -1,0 +1,6 @@
+(: e_council (Member sk_council_1 council) (STV 1.0 0.99))
+(: e_tidepool_grp (GroupOf sk_tide_pool_1 tide_pool) (STV 1.0 0.99))
+(: e_tidepool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))
+(: e_survey (Member sk_survey_1 survey) (STV 0.5 0.99))
+(: e_survey_ag (Agent sk_survey_1 sk_council_1) (STV 0.5 0.99))
+(: e_survey_th (Theme sk_survey_1 sk_tide_pool_1) (STV 0.5 0.99))

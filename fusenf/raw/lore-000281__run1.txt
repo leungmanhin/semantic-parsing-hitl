@@ -1,0 +1,8 @@
+(: villagers_grp (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))
+(: meal_gen (Inheritance midday_meal meal) (STV 1.0 0.99))
+(: eat_ev (Member sk_eat_1 eat) (STV 1.0 0.99))
+(: eat_ag (Agent sk_eat_1 sk_villagers_1) (STV 1.0 0.99))
+(: eat_pat (Patient sk_eat_1 sk_meal_1) (STV 1.0 0.99))
+(: meal_typ (Member sk_meal_1 midday_meal) (STV 1.0 0.99))
+(: meal_long (Member sk_meal_1 long) (STV 1.0 0.99))
+(: villagers_eat_rule (Implication (PartOf $x sk_villagers_1) (And (Member (sk_eat $x) eat) (Agent (sk_eat $x) $x) (Patient (sk_eat $x) (sk_meal $x)) (Member (sk_meal $x) midday_meal) (Member (sk_meal $x) long))) (STV 1.0 0.9))

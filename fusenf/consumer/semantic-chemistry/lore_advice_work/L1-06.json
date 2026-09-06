@@ -1,0 +1,287 @@
+{
+ "id": "L1-06",
+ "rule": "I — Salt-bloom Tide-pools",
+ "texts": [
+  "The Salt-bloom Tide-pools lie north of the village.",
+  "A goat-path along the cliff top leads to the Salt-bloom Tide-pools.",
+  "The Salt-bloom Tide-pools are small pools in a stone shelf above the tide-line.",
+  "There are seven pools.",
+  "Two pools at the south end never bloom.",
+  "Whenever a spring tide comes, the tide-pools fill and overflow.",
+  "The Keepers visit the tide-pools at harvest time.",
+  "The Council surveys the tide-pools occasionally."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000038",
+   "sentence": "The Salt-bloom Tide-pools lie north of the village.",
+   "parse": [
+    "(: tp_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+    "(: tp_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+    "(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: tp_village (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: tp_north (NorthOf salt_bloom_tide_pools sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000038",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a multi-word PLURAL proper name whose head word is the kind ('the Salt-bloom Tide-pools'): the capitalized-plural-name rule mandates one Name-only individual with no GroupOf, while the multi-word-name rule ('the Kestrel River') mandates a singular kind atom, so the referent's plurality ends up with no carrier anywhere in the parse"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The kind atom and its genus are read off the name's own head word, which the Kestrel-River rule licenses, and the noun modifier 'tide' is correctly left unexposed. NorthOf follows the entity-attached multi-word locative pattern (NextTo / AcrossTheLaneFrom), and 'lie' correctly mints no event."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000039",
+   "sentence": "A goat-path along the cliff top leads to the Salt-bloom Tide-pools.",
+   "parse": [
+    "(: gp_type (Member sk_goat_path_1 goat_path) (STV 1.0 0.99))",
+    "(: gp_genus (Inheritance goat_path path) (STV 1.0 0.99))",
+    "(: top_type (Member sk_top_1 top) (STV 1.0 0.99))",
+    "(: top_part (PartOf sk_top_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: gp_along (Along sk_goat_path_1 sk_top_1) (STV 1.0 0.99))",
+    "(: e_lead (Member sk_lead_1 lead) (STV 1.0 0.99))",
+    "(: e_exp (Experiencer sk_lead_1 sk_goat_path_1) (STV 1.0 0.99))",
+    "(: e_goal (Goal sk_lead_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+    "(: pools_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+    "(: pools_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: pools_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000039",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "stative path/route verb (\"a path leads to X\") — it is not among the enumerated position verbs (lie/sit/stand/hang/lean/perch/rest, \"is located/situated in\"), so nothing settles whether it reifies an event (Experiencer subject + Goal, as here) or falls under \"a bare position clause mints no event whatever its verb\" and takes the entity-attached surface-preposition form with no reification trigger present",
+     "capitalized PLURAL multi-word proper name whose head is a kind word (\"the Salt-bloom Tide-pools\") — the plural-label rule makes such a referent a Name-only individual with no GroupOf and \"no per-member kind from the label word\", while the multi-word-name rule and Core patterns license a type atom for \"a kind word inside the name itself\" (Kestrel River -> river); the two point opposite ways, and neither says how a plural-denoting named place is typed, so the singular (Member salt_bloom_tide_pools tide_pool) emitted here types a plurality as one pool"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling, the cliff-top part-whole (PartOf, not a fused cliff_top), the entity-attached Along, the single Name fact and the bare-present/no-status default all follow the instruction set as written. The only unsettled points are the two boundaries recorded above."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000040",
+   "sentence": "The Salt-bloom Tide-pools are small pools in a stone shelf above the tide-line.",
+   "parse": [
+    "(: sbtp_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+    "(: sbtp_pool (Member salt_bloom_tide_pools pool) (STV 1.0 0.99))",
+    "(: sbtp_small (Member salt_bloom_tide_pools small) (STV 1.0 0.99))",
+    "(: shelf_type (Member sk_shelf_1 stone_shelf) (STV 1.0 0.99))",
+    "(: shelf_genus (Inheritance stone_shelf shelf) (STV 1.0 0.99))",
+    "(: sbtp_loc (LocatedIn salt_bloom_tide_pools sk_shelf_1) (STV 1.0 0.99))",
+    "(: tideline_type (Member sk_tide_line_1 tide_line) (STV 1.0 0.99))",
+    "(: tideline_genus (Inheritance tide_line line) (STV 1.0 0.99))",
+    "(: shelf_above (Above sk_shelf_1 sk_tide_line_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000040",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a plural copular complement ('are small pools') predicated of a capitalized-plural Name-only individual: the Name-only rule bars GroupOf and any per-member kind, so the plurality and the distributive scope of the modifier have no carrier and collapse onto one singular (Member X pool) + (Member X small) pair"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name-only plural label, compound genus on stone_shelf and tide_line with the noun modifiers correctly unexposed, LocatedIn for the containment 'in' and entity-attached Above for the non-containment preposition all follow doctrine. Attaching 'above the tide-line' to the shelf rather than the pools is the world-knowledge-favored reading, not a genuine tie, so single-reading output is right."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000041",
+   "sentence": "There are seven pools.",
+   "parse": [
+    "(: pools_grp (GroupOf sk_group_1 pool) (STV 1.0 0.99))",
+    "(: pools_card (Cardinality sk_group_1 7) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000041",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare existential plural with an exact numeral takes the group + count shape (Cardinality section); no predicate is present, so no group event and no per-member rule are called for, and no type atom beyond GroupOf is licensed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000042",
+   "sentence": "Two pools at the south end never bloom.",
+   "parse": [
+    "(: end_genus (Inheritance south_end end) (STV 1.0 0.99))",
+    "(: end_mod (Inheritance south_end south) (STV 1.0 0.99))",
+    "(: end_type (Member sk_end_1 south_end) (STV 1.0 0.99))",
+    "(: pools_group (GroupOf sk_group_1 pool) (STV 1.0 0.99))",
+    "(: pools_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: pools_loc (LocatedIn sk_group_1 sk_end_1) (STV 1.0 0.99))",
+    "(: pools_no_bloom (And (Member sk_bloom_1 bloom) (Patient sk_bloom_1 sk_group_1)) (STV 0.0 0.99))",
+    "(: pools_bloom_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_bloom $x) bloom) (Patient (sk_bloom $x) $x))) (STV 0.0 0.9))",
+    "(: pools_q (QuantifierPhrase pool bloom \"never\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000042",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the \"kegs do not ferment\" shape exactly — group event denial at 0.0/0.99 plus the per-member distribution rule at 0.0/0.9, with GroupOf/Cardinality/LocatedIn projected outside the denial. \"never\" correctly routes to the strength-0 negation with its QuantifierPhrase companion, and bloom takes Patient as a non-volitional change-of-state subject."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000043",
+   "sentence": "Whenever a spring tide comes, the tide-pools fill and overflow.",
+   "parse": [
+    "(: tp_grp (GroupOf sk_group_1 tide_pool) (STV 1.0 0.99))",
+    "(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: st_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: whenever_fill (Implication (And (Member $t spring_tide) (Member $x come) (Patient $x $t)) (And (Member (sk_fill $x) fill) (Patient (sk_fill $x) sk_group_1) (During (sk_fill $x) $x))) (STV 1.0 0.9))",
+    "(: whenever_overflow (Implication (And (Member $t spring_tide) (Member $x come) (Patient $x $t)) (And (Member (sk_overflow $x) overflow) (Patient (sk_overflow $x) sk_group_1) (During (sk_overflow $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000043",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite-plural subject with a distributive predicate inside a 'whenever' rule's consequent: the instruction set mandates a per-member (Implication (PartOf $x <group>) ...) distribution beside the group predication, but supplies no form for a rule nested inside a per-occurrence rule conclusion"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever machinery, Patient on the non-volitional natural-force subject (cf. \"the tide receded\"), both compounds' genus atoms, the definite plural's group witness, and splitting the coordinated VP into two independent rules all match the instruction set. Consequence of the gap above: only the group-level fill/overflow is derivable, never an individual tide-pool's."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000044",
+   "sentence": "The Keepers visit the tide-pools at harvest time.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: tp_group (GroupOf sk_group_1 tide_pool) (STV 1.0 0.99))",
+    "(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: e_visit (Member sk_visit_1 visit) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_visit_1 keepers) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_visit_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_visit_1 harvest_time) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000044",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "multi-word named/seasonal time constant ('at harvest time') — the Time section says a named time stays a bare symbol and bars an sk_ witness and a Member atom for it, but does not say whether Compound concepts' mandatory genus atom (here (Inheritance harvest_time time)) still applies to such a fused time symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Plural capitalized label 'the Keepers' correctly takes the Name-only individual route (no GroupOf, no keeper typing); definite plural object takes a group witness with the tide_pool genus and the noun modifier left unexposed; habitual present correctly carries no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000045",
+   "sentence": "The Council surveys the tide-pools occasionally.",
+   "parse": [
+    "(: e_council (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_tidepool_grp (GroupOf sk_tide_pool_1 tide_pool) (STV 1.0 0.99))",
+    "(: e_tidepool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: e_survey (Member sk_survey_1 survey) (STV 0.5 0.99))",
+    "(: e_survey_ag (Agent sk_survey_1 sk_council_1) (STV 0.5 0.99))",
+    "(: e_survey_th (Theme sk_survey_1 sk_tide_pool_1) (STV 0.5 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000045",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "No (QuantifierPhrase council survey \"occasionally\") companion is emitted, though the instruction set makes the companion mandatory for every explicit quantifier word the claim consumes, a frequency adverb's word included."
+     },
+     {
+      "statement": 4,
+      "issue": "The frequency strength 0.5 is stamped independently on the event-class atom and on both role atoms, so each role is separately only half-true, whereas the dial's licensed carriers are a rule's strength or a flat generic statement's."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Frequency adverb on a habitual whose subject is a definite individual (a singular collective, so no distribution rule and no kind-level flat generic): the instruction set names only 'the rule's (or, for a flat generic, the statement's) strength' as the carrier, leaving both the placement of the strength across a multi-atom event and the companion's <kind> slot undetermined.",
+     "'occasionally' is not on the frequency dial (always / usually-normally-generally-often / sometimes / rarely-seldom-hardly ever), so its strength band is unstated."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The Council as a capitalized common-noun label with no Name atom, the definite plural tide-pools as a group witness, tide_pool's noun-modifier-suppressed genus, and Theme on an inspect-type verb all follow the instruction set."
+   },
+   "adjudication": {
+    "id": "lore-000045",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The companion's form is (QuantifierPhrase <kind> <verb-lemma> \"<word>\") and the same rule bars one that restates \"a range that appears nowhere else in the parse\" - this clause quantifies no kind, its subject being the definite singular-collective individual sk_council_1, so (QuantifierPhrase council survey \"occasionally\") would assert a council-kind range the parse never quantifies; the reviewer's own q2_gaps concedes the <kind> slot is undetermined here, which makes this a coverage gap mistaken for a defect."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "(Agent sk_survey_1 sk_council_1) (STV 0.5 0.99) and (Theme sk_survey_1 sk_tide_pool_1) (STV 0.5 0.99) assert at high confidence that the Council is only half the agent and the tide-pools only half the theme, which is false - the sentence makes the role assignments fully true and only the occasions occasional - and it departs from the stated discipline that a non-default strength over an event rides ONE conjunction atom (\"Positive event = separate atoms; negated event = one strength-0.0 conjunction\")."
+     }
+    ],
+    "gaps_confirmed": [
+     "A frequency adverb on a habitual whose subject is a definite individual (a singular collective) has no stated strength carrier: neither a rule's strength nor a flat generic statement's applies, and the QuantifierPhrase companion's <kind> slot has no licensed filler.",
+     "\"occasionally\" is absent from the frequency dial (always / usually-normally-generally-often / sometimes / rarely-seldom-hardly ever), so its strength band is unstated."
+    ],
+    "new_gaps": [
+     "Sub-1.0 strength over a multi-atom POSITIVE event: the instruction set licenses a single (And ...) carrier only at strength 0.0 (negation, cessation, denial bundles), and the frequency dial names only a rule's strength or a flat generic statement's - so a habitual event with a definite-individual subject has no licensed carrier for a partial frequency strength. A licensed form would need to put one strength on the whole eventuality while leaving every role atom fully true."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form would carry the single frequency strength on one atom spanning the whole eventuality - (: council_surveys (And (Member sk_survey_1 survey) (Agent sk_survey_1 sk_council_1) (Theme sk_survey_1 sk_tide_pool_1)) (STV 0.5 0.99)) - mirroring the strength-0.0 negation bundle, with no role atom independently downgraded; but the instruction set licenses a partial-strength (And ...) bundle nowhere, so no compliant form is in fact licensed and the construction is filed as a gap.",
+    "notes": "Everything else conforms: \"The Council\" as a capitalized common-noun label with no Name atom, the definite plural tide-pools as a group witness with a noun-modifier-suppressed genus, Theme on the evaluative verb, and no status atom on the habitual."
+   }
+  }
+ ]
+}

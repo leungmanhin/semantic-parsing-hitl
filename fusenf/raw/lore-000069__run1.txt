@@ -1,0 +1,5 @@
+(: e2_moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: e2_path_type (Member cliff_path path) (STV 1.0 0.99))
+(: e2_path_name (Name cliff_path "Cliff Path") (STV 1.0 0.99))
+(: e2_hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: e2_rule (Implication (And (Member $m nightmoth) (Member $e flee) (Agent $e $m) (Theme $e cliff_path)) (And (Member (sk_go $e) go) (Agent (sk_go $e) $m) (Goal (sk_go $e) (sk_lantern $e)) (Member (sk_lantern $e) lantern) (Member (sk_lantern $e) dim) (LocatedIn (sk_lantern $e) hollows) (During (sk_go $e) $e))) (STV 1.0 0.9))

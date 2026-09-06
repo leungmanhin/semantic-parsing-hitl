@@ -1,0 +1,155 @@
+{
+ "id": "L3-11",
+ "rule": "III — Other villages",
+ "texts": [
+  "No other village on this coast keeps lanterns.",
+  "Faltern lies south of Aelmere.",
+  "Aelmere Keepers exchange letters with the lantern-keepers of Faltern."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000269",
+   "sentence": "No other village on this coast keeps lanterns.",
+   "parse": [
+    "(: coast_1_type (Member sk_coast_1 coast) (STV 1.0 0.99))",
+    "(: village_keep_lantern_rule (Implication (And (Member $x village) (Member $x other) (LocatedIn $x sk_coast_1)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) $x) (Theme (sk_keep $x) lantern))) (STV 0.0 0.9))",
+    "(: village_keep_q (QuantifierPhrase village keep \"no\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000269",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "'on this coast' is encoded as (LocatedIn $x sk_coast_1), but LocatedIn is containment-only (in/at/inside/within) and 'on' must keep the surface entity-attached head (On $x sk_coast_1)."
+     },
+     {
+      "statement": 1,
+      "issue": "The contrastive 'other' is flattened to a property premise (Member $x other), predicating a non-property of the village and losing the exclusion of the discourse-salient village."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "exclusionary/contrastive 'other' as an NP restrictor ('no OTHER village') - the instruction set gives no way to exclude an already-salient referent from a quantified range"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The negated-verbal-generic route (strength-0.0 distributing rule, 0.9 confidence, QuantifierPhrase 'no' companion, restriction as premise conjuncts, bare-kind object filler lantern) is otherwise exactly per doctrine."
+   },
+   "adjudication": {
+    "id": "lore-000269",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"LocatedIn is containment ONLY - in / at / inside / within\": a thing positioned by \"on\" keeps the surface preposition entity-attached, so the premise must read (On $x sk_coast_1), and folding \"on\" into LocatedIn asserts a containment the sentence never states."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is that the exclusion of the discourse-salient village is unencoded (the coverage gap the reviewer files); the half that does not is the defect claim, since (Member $x other) sits in a rule premise - it asserts nothing of any village and narrows rather than widens the strength-0 claim, which is the \"carry the restriction rather than silently drop it\" instruction of Core patterns."
+     }
+    ],
+    "gaps_confirmed": [
+     "exclusionary / contrastive \"other\" as an NP restrictor (\"no OTHER village\") - no licensed way to exclude an already-salient referent from a quantified range"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps the surface preposition entity-attached in the premise - (On $x sk_coast_1) in place of (LocatedIn $x sk_coast_1) - with the rest of the strength-0.0 distributing rule unchanged.",
+    "notes": "The negated-verbal-generic route is otherwise per doctrine: explicit \"no\" -> the distributing Implication at 0.0 / 0.9 with its QuantifierPhrase companion, restrictions as premise conjuncts, Theme for keep, and the bare-kind object filler lantern."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000270",
+   "sentence": "Faltern lies south of Aelmere.",
+   "parse": [
+    "(: e3_faltern_name (Name faltern \"Faltern\") (STV 1.0 0.99))",
+    "(: e3_aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: e3_southof (SouthOf faltern aelmere) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000270",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"lies\" is a bare position clause and correctly mints no event; the non-containment multi-word preposition CamelCase-joins to the entity-attached surface head SouthOf, which is licensed by the same open licence as NextTo/AcrossTheLaneFrom. Both proper nouns get their mandatory Name atoms and correctly get no invented kind atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000271",
+   "sentence": "Aelmere Keepers exchange letters with the lantern-keepers of Faltern.",
+   "parse": [
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: faltern_name (Name faltern \"Faltern\") (STV 1.0 0.99))",
+    "(: lk_group (GroupOf sk_group_1 lantern_keeper) (STV 1.0 0.99))",
+    "(: lk_poss (Possession sk_group_1 faltern) (STV 1.0 0.99))",
+    "(: lk_can (Inheritance lantern_keeper (can keep)) (STV 1.0 0.99))",
+    "(: lk_rel (Keep lantern_keeper lantern) (STV 1.0 0.99))",
+    "(: aelmere_keepers_exchange (Implication (And (Member $x keeper) (Possession $x aelmere)) (And (Member (sk_exchange $x) exchange) (Agent (sk_exchange $x) $x) (Theme (sk_exchange $x) letter) (CoAgent (sk_exchange $x) sk_group_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000271",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The fused compound kind lantern_keeper is missing its head genus (Inheritance lantern_keeper keeper), which Compound concepts says is always emitted for a modifier_noun with a real head noun and a holding IS-A."
+     },
+     {
+      "statement": 6,
+      "issue": "\"Aelmere Keepers\" is decomposed into (Member $x keeper) + (Possession $x aelmere), minting a per-member keeper kind from a capitalized plural label whose own capitalized run exceeds the bare class word."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A proper noun premodifying a CAPITALIZED plural common-noun head (\"Aelmere Keepers\"): the proper-noun-premodifier rule (parse the head normally, link by Possession) and the capitalized-label rule (a run exceeding the bare class word is a name; a capitalized plural label is Name-only with no per-member kind) prescribe conflicting routes, and nothing in the instruction set selects between them."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The agent-nominalization atoms on lantern_keeper are licensed because the symbol was fused from the surface, and CoAgent for the comitative \"with\"-phrase follows the participant-vs-means test. The definite plural correctly takes a group witness rather than Inheritance."
+   },
+   "adjudication": {
+    "id": "lore-000271",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts states the head genus is \"always emitted either way\" for a modifier_noun compound whose last word is a real head noun, and a lantern-keeper is a keeper, so the mandatory `(Inheritance lantern_keeper keeper)` is simply absent."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "The proper-noun-premodifier rule (parse the head noun normally, link it with the opaque `Possession`) and the capitalized-plural-label rule prescribe different routes for a CAPITALIZED head and nothing subordinates one to the other, and both emitted atoms are true and well-typed — `Possession` is expressly the loose-association licence and `keeper` is read straight off the head noun — so this is licensed improvisation in gap territory."
+     }
+    ],
+    "gaps_confirmed": [
+     "a proper noun premodifying a CAPITALIZED plural common-noun head (\"Aelmere Keepers\"): the proper-noun-premodifier rule and the capitalized-run-exceeds-the-class-word / Name-only-plural-label rule give conflicting routes and the instruction set names no selector"
+    ],
+    "new_gaps": [
+     "if the Name-only route is the one intended for \"Aelmere Keepers\", a bare-plural GENERIC verbal clause about that label has no licensed form at all: a Name-only individual is not a kind, so it cannot range an `Implication`, and a habitual \"exchange letters\" would have to collapse into a single unmarked event on that individual — a licensed form would need to carry kind-hood and name-hood on one symbol"
+    ],
+    "decision": "defect",
+    "defect_summary": "Add the mandatory head genus `(: lk_genus (Inheritance lantern_keeper keeper) (STV 1.0 0.99))` beside the existing capability and kind-relation atoms; nothing else in the parse changes.",
+    "notes": "The agent-nominalization atoms are licensed because `lantern_keeper` was fused from the surface, and the noun modifier is correctly left unexposed. The \"Aelmere Keepers\" routing is a live doctrine conflict, not a parse fault."
+   }
+  }
+ ]
+}

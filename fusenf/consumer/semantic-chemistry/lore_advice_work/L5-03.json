@@ -1,0 +1,178 @@
+{
+ "id": "L5-03",
+ "rule": "V — What a wraith does",
+ "texts": [
+  "A wraith does not harm a person.",
+  "A wraith drains mire-essence from a lit lantern.",
+  "A drained lantern burns dimly.",
+  "Whenever a lantern at the Sunken Cove dies before dawn, a wraith rises from the cove's water.",
+  "The Keepers have known the wraith rule for generations.",
+  "The Council enforces strict standards at the Stilllight Lantern."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000356",
+   "sentence": "A wraith does not harm a person.",
+   "parse": [
+    "(: e_neg (And (Member sk_wraith_1 wraith) (Member sk_harm_1 harm) (Agent sk_harm_1 sk_wraith_1) (Patient sk_harm_1 sk_person_1) (Member sk_person_1 person)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000356",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Follows the 'A cooper does not caulk the barrel' template exactly: the indefinite subject's and the indefinite object's typing both stay inside the one strength-0.0 (And ...), no witness is promoted to a kind, and no tense atom appears (generic/unmarked default). 'harm' changes its object, so Patient is the right role by the stated change test."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000357",
+   "sentence": "A wraith drains mire-essence from a lit lantern.",
+   "parse": [
+    "(: wraith_type (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: drain_ev (Member sk_drain_1 drain) (STV 1.0 0.99))",
+    "(: drain_agent (Agent sk_drain_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: drain_theme (Theme sk_drain_1 mire_essence) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: drain_source (Source sk_drain_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_lit (Member sk_lantern_1 lit) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000357",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite subject correctly stays a witness rather than becoming a generic (a verbal generic needs a bare plural or explicit quantifier), the present simple correctly gets no status atom, and 'lit' is kept as a participial adjective instead of being lemmatized to the verb. `Theme` for the drained mass and `Source` for the 'from' phrase match the displacement test and the oblique table."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000358",
+   "sentence": "A drained lantern burns dimly.",
+   "parse": [
+    "(: lore358_lantern (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lore358_drained (Member sk_lantern_1 drained) (STV 1.0 0.99))",
+    "(: lore358_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: lore358_burn_pat (Patient sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: lore358_burn_manner (Manner sk_burn_1 dimly) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000358",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite \"a\" with a verbal predicate correctly takes the witness route rather than a generic rule, \"drained\" stays an adjectival participle (not `drain`) and is left unfused as incidental description, \"dimly\" keeps its surface -ly form in `Manner`, and the non-volitional undergoing intransitive subject takes `Patient`. Present-tense habitual correctly carries no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000359",
+   "sentence": "Whenever a lantern at the Sunken Cove dies before dawn, a wraith rises from the cove's water.",
+   "parse": [
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: water_type (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: water_part (PartOf sk_water_1 sunken_cove) (STV 1.0 0.99))",
+    "(: whenever_die_rise (Implication (And (Member $x lantern) (LocatedIn $x sunken_cove) (Member $e1 die) (Patient $e1 $x) (TimeAtMost $e1 dawn)) (And (Member (sk_rise $e1) rise) (Member (sk_wraith $e1) wraith) (Agent (sk_rise $e1) (sk_wraith $e1)) (Source (sk_rise $e1) sk_water_1) (During (sk_rise $e1) $e1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000359",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-rule shape is exactly as specified: plain-variable premises, dependent Skolem consequent ((sk_wraith $e1) for the indefinite subject), During link to the trigger, no QuantifierPhrase companion, STV 1.0 0.9; \"at the Sunken Cove\" → LocatedIn and \"before dawn\" → (TimeAtMost e dawn) both match the stated forms, and the two-word capitalized run licenses the Name plus the kind atom from the kind word inside it. PartOf for \"the cove's water\" is the possessive-genitive part/whole call and reads defensible."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000360",
+   "sentence": "The Keepers have known the wraith rule for generations.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: rule_type (Member sk_wraith_rule_1 wraith_rule) (STV 1.0 0.99))",
+    "(: rule_genus (Inheritance wraith_rule rule) (STV 1.0 0.99))",
+    "(: know_ev (Member sk_know_1 know) (STV 1.0 0.99))",
+    "(: know_exp (Experiencer sk_know_1 keepers) (STV 1.0 0.99))",
+    "(: know_stim (Stimulus sk_know_1 sk_wraith_rule_1) (STV 1.0 0.99))",
+    "(: know_ong (Ongoing sk_know_1) (STV 1.0 0.99))",
+    "(: know_dur (MeasureAtLeast sk_know_1 duration 2 generation) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000360",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name-only treatment of the capitalized plural label (no GroupOf, no kind atom), Experiencer/Stimulus for stative 'know' with an entity object, continuative-perfect Ongoing with no Past, and the bare-plural duration as MeasureAtLeast 2 generation all follow the instruction set. The unit 'generation' has no seeded conversion factor, which affects only downstream cross-unit thresholds, not the parse."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000361",
+   "sentence": "The Council enforces strict standards at the Stilllight Lantern.",
+   "parse": [
+    "(: e5_council (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e5_lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: e5_lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: e5_enforce (Member sk_enforce_1 enforce) (STV 1.0 0.99))",
+    "(: e5_enforce_ag (Agent sk_enforce_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e5_enforce_th (Theme sk_enforce_1 strict_standard) (STV 1.0 0.99))",
+    "(: e5_enforce_loc (Location sk_enforce_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: e5_ss_genus (Inheritance strict_standard standard) (STV 1.0 0.99))",
+    "(: e5_ss_mod (Inheritance strict_standard strict) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000361",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An adjectivally-modified bare plural serving as a NON-SPECIFIC kind-level object (\"enforces strict standards\"): the adjective+noun fusion test decides by exemplar lists (fuse for a term of art / nationality / role title / material adjective; never for incidental description = colour, size, damage, mood) and a qualitative adjective like \"strict\" falls in neither list, while the plural split rule sends a descriptive modifier to the group-distributive rule, which the bare-kind-filler route (no group witness) has no way to build — so the modifier has no licensed slot other than fusion."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Stilllight Lantern\" correctly takes the multi-word-name treatment (one opaque symbol + Name + the kind word from inside the name as an ordinary type atom), while \"the Council\" correctly stays a bare capitalized common noun with no Name. Given the fusion choice, the genus plus gradable-adjective modifier genus are both correctly emitted at definitional TV."
+   },
+   "adjudication": null
+  }
+ ]
+}

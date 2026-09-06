@@ -1,0 +1,4 @@
+(: speaker_type (Member sk_speaker_1 council_speaker) (STV 1.0 0.99))
+(: speaker_genus (Inheritance council_speaker speaker) (STV 1.0 0.99))
+(: speaker_dates (Implication (And (Member $l ledger) (Member $l new)) (And (Member (sk_date $l) date) (Agent (sk_date $l) sk_speaker_1) (Patient (sk_date $l) (sk_page $l)) (Member (sk_page $l) page) (PartOf (sk_page $l) $l) (Ordinal (sk_page $l) 1 page))) (STV 1.0 0.9))
+(: speaker_dates_q (QuantifierPhrase ledger date "each") (STV 1.0 0.99))

@@ -1,0 +1,4 @@
+(: lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))
+(: harvest_mem (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))
+(: harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))
+(: wraith_drain_rule (Implication (Member $w wraith) (And (Member (sk_drain $w) drain) (Agent (sk_drain $w) $w) (Patient (sk_drain $w) sk_lantern_1) (Member (sk_thin $w) thin) (Experiencer (sk_thin $w) sk_harvest_1) (Member sk_harvest_1 thin) (Before (sk_drain $w) (sk_thin $w)))) (STV 0.9 0.9))

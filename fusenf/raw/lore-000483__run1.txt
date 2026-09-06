@@ -1,0 +1,7 @@
+(: sbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: tps_genus (Inheritance tide_pool_stone stone) (STV 1.0 0.99))
+(: e_grow (Member sk_grow_1 grow) (STV 1.0 0.99))
+(: e_patient (Patient sk_grow_1 salt_bloom) (STV 1.0 0.99))
+(: e_loc (Location sk_grow_1 sk_stone_1) (STV 1.0 0.99))
+(: stone_group (GroupOf sk_stone_1 tide_pool_stone) (STV 1.0 0.99))
+(: stone_submerged_rule (Implication (PartOf $x sk_stone_1) (Member $x submerged)) (STV 1.0 0.9))

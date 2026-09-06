@@ -1,0 +1,154 @@
+{
+ "id": "L2-14",
+ "rule": "II — Coats",
+ "texts": [
+  "Keepers wear long oilcloth coats.",
+  "The coats protect against sea-spray.",
+  "Mire-essence stains a Keeper's coat over time.",
+  "A first-year apprentice wears an unstained coat."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000170",
+   "sentence": "Keepers wear long oilcloth coats.",
+   "parse": [
+    "(: keepers_wear (Implication (Member $x keeper) (And (Member (sk_wear $x) wear) (Agent (sk_wear $x) $x) (Theme (sk_wear $x) (sk_coat $x)) (Member (sk_coat $x) oilcloth_coat) (Member (sk_coat $x) long))) (STV 0.9 0.9))",
+    "(: coat_genus (Inheritance oilcloth_coat coat) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000170",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "relational kind-generic vs distributing rule when the OBJECT is adjectivally restricted: the stated trigger is \"both arguments being bare kind-denoting NPs\" (which would give the kind relation (Wear keeper oilcloth_coat)), and only an adjectivally-restricted SUBJECT is stated to force the rule route, so the restricted-object case (\"long\" has no slot in a kind relation) is unaddressed",
+     "a descriptively-modified bare-plural object inside a generic rule: nothing says whether it is the bare kind filler (\"grows wheat\"), a per-binding Skolem group (as the numbered \"every student read three books\" uses), or, as here, a single per-binding Skolem witness, so the object's plurality is silently dropped"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The distributing-rule route is defensible as the only one that carries \"long\" (a stated restriction is never silently dropped), and the 0.9/0.9 bare generic, Agent/Theme roles, oilcloth_coat fusion with genus only, and separate Member long atom are all correct. Sentence-initial \"Keepers\" supplies no casing evidence of name-hood, so the common-noun kind reading is right."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000171",
+   "sentence": "The coats protect against sea-spray.",
+   "parse": [
+    "(: coats_grp (GroupOf sk_group_1 coat) (STV 1.0 0.99))",
+    "(: spray_genus (Inheritance sea_spray spray) (STV 1.0 0.99))",
+    "(: protect_grp_ev (Member sk_protect_1 protect) (STV 1.0 0.99))",
+    "(: protect_grp_agent (Agent sk_protect_1 sk_group_1) (STV 1.0 0.99))",
+    "(: protect_grp_against (Against sk_protect_1 sea_spray) (STV 1.0 0.99))",
+    "(: protect_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_protect $x) protect) (Agent (sk_protect $x) $x) (Against (sk_protect $x) sea_spray))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000171",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural takes a group witness with both the group event and the per-member distribution rule as the distributive-predicate rule requires; \"against\" is the licensed preposition-named oblique for the prepositional verb, and \"sea-spray\" decomposes to its genus while staying a bare mass constant."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000172",
+   "sentence": "Mire-essence stains a Keeper's coat over time.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: coat_type (Member sk_coat_1 coat) (STV 1.0 0.99))",
+    "(: coat_poss (Possession sk_coat_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: e_stain (Member sk_stain_1 stain) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_stain_1 mire_essence) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_stain_1 sk_coat_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000172",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The clause is a verbal generic over a bare mass kind (simple present plus 'over time'), which the instruction set routes to a distributing Implication rule with a Skolem-function event — the kind-relation route being barred because the object 'a Keeper's coat' is an indefinite singular — but the parse emits a flat episodic event bundle instead."
+     },
+     {
+      "statement": 5,
+      "issue": "The bare kind symbol mire_essence fills the individual Agent slot of a minted event witness, a position the set licenses for bare class symbols only as non-specific/generic objects, not as the subject of a generic clause that should have become a rule range."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "gradual-process adverbial 'over time' (and 'gradually', 'in the end'): no licensed carrier — Duration takes a vague-extent surface adverb, Measure ... duration needs a stated figure and unit, and WithinLast is a backward-looking window, so the qualifier is dropped"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The mire_essence decomposition (genus only, noun modifier unexposed), the Possession head for \"a Keeper's coat\", the Patient for a substance-applying verb, and treating the capitalized 'a Keeper' as a common noun with a witness are all correct."
+   },
+   "adjudication": {
+    "id": "lore-000172",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A non-modal verbal generic over a kind \"becomes a rule that gives each instance its own event, via a Skolem-function event term\", and the indefinite-singular object does bar the kind-relation route, so the flat bundle is the wrong shape — and it existentially asserts a particular coat, a particular keeper and a particular staining that a generic never posits."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The generic machinery puts the kind in the rule's premise range, and the one bare-class-symbol slot the set licenses is a non-specific / generic object (\"pays tax\", \"grows wheat\"), so (Agent sk_stain_1 mire_essence) seats a kind — the very symbol carrying the kind-level genus (Inheritance mire_essence essence) — in an individual role position."
+     }
+    ],
+    "gaps_confirmed": [
+     "gradual-process / open-frame adverbial \"over time\" (and \"gradually\") has no licensed carrier: Duration takes a vague-extent surface adverb, (Measure e duration n u) needs a stated figure and unit, and WithinLast is a backward-looking window"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form is the distributing rule (Implication (Member $x mire_essence) (And (Member (sk_stain $x) stain) (Agent (sk_stain $x) $x) (Patient (sk_stain $x) (sk_coat $x)) (Member (sk_coat $x) coat) (Possession (sk_coat $x) (sk_keeper $x)) (Member (sk_keeper $x) keeper))) at (STV 0.9 0.9), the dependent coat and keeper as per-binding Skolem functions, with only the definitional (Inheritance mire_essence essence) left at top level; the kind symbol then appears as the premise range and never as an Agent filler.",
+    "notes": "Leaving \"over time\" out rather than mis-slotting it is exactly what the instruction set prescribes for an unrepresentable adverbial. The Possession head for \"a Keeper's coat\", the Patient role for a substance-applying verb, and the unexposed noun modifier in mire_essence are all correct."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000173",
+   "sentence": "A first-year apprentice wears an unstained coat.",
+   "parse": [
+    "(: apprentice_type (Member sk_apprentice_1 first_year_apprentice) (STV 1.0 0.99))",
+    "(: apprentice_genus (Inheritance first_year_apprentice apprentice) (STV 1.0 0.99))",
+    "(: wear_ev (Member sk_wear_1 wear) (STV 1.0 0.99))",
+    "(: wear_agent (Agent sk_wear_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: wear_theme (Theme sk_wear_1 sk_coat_1) (STV 1.0 0.99))",
+    "(: coat_type (Member sk_coat_1 coat) (STV 1.0 0.99))",
+    "(: coat_unstained (Member sk_coat_1 unstained) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000173",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound kind correctly fused with the head genus only ('first-year' fails the predication test, so no modifier genus), 'unstained' kept as a positive participial adjective at strength 1.0 and not fused into a compound (incidental description), and the indefinite subject of a verbal clause correctly a witness rather than a generic rule."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,3 @@
+(: keeper_carry (Implication (Member $x keeper) (And (Member (sk_carry $x) carry) (Agent (sk_carry $x) $x) (Theme (sk_carry $x) (sk_case $x)) (Member (sk_case $x) leather_case))) (STV 1.0 0.9))
+(: keeper_carry_q (QuantifierPhrase keeper carry "each") (STV 1.0 0.99))
+(: leather_case_genus (Inheritance leather_case case) (STV 1.0 0.99))

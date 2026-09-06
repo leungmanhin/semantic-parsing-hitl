@@ -1,0 +1,9 @@
+{"id": "lore-000406", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "(Measure sk_eat_1 duration 1 night) asserts the eating itself lasted a night, which the container adverbial \"in one night\" does not state, and the instruction set expressly bars this head for a frame adverbial (\"never (Measure e duration ...), which would claim the eventuality itself lasted that long\")."}],
+ "gaps_confirmed": ["container / frame time adverbial \"in <n> <unit>\" - the span within which an event completes, plus its per-period rate reading on a habitual; Measure duration is barred, WithinLast is backward-window only, and Every / TimesPer need a stated period or rate wording"],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "No head in the vocabulary carries \"the eating completed within a span of one night\", so the compliant parse emits the event atoms without the frame adverbial - the same handling the instruction set prescribes for adverbials with no licensed slot (\"leave them out and record the gap\") - and records the gap rather than mis-slotting it as a duration.",
+ "notes": "Everything else checks out: a witness for the indefinite \"one sky-cat\" under a verbal predicate, CardinalityPhrase \"many\" licensed because the phrase counts things rather than a proportion, Patient for eat, and both compound genera emitted with the noun modifiers (sky, night) correctly unexposed."}

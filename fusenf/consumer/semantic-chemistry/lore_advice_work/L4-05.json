@@ -1,0 +1,238 @@
+{
+ "id": "L4-05",
+ "rule": "IV — Feather collection",
+ "texts": [
+  "Tessa Brae walks the whole cliff base each morning during molting weeks.",
+  "The collectors pick up molted feathers.",
+  "The collectors drop the feathers into leather sacks.",
+  "The collectors record each morning's collection in a Watch ledger.",
+  "The collectors add the feathers to the feather bin."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000300",
+   "sentence": "Tessa Brae walks the whole cliff base each morning during molting weeks.",
+   "parse": [
+    "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: e_walk (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: e_walk_agent (Agent sk_walk_1 tessa_brae) (STV 1.0 0.99))",
+    "(: e_walk_theme (Theme sk_walk_1 sk_base_1) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: base_whole (Member sk_base_1 whole) (STV 1.0 0.99))",
+    "(: e_walk_time (Time sk_walk_1 morning) (STV 1.0 0.99))",
+    "(: e_walk_every (Every sk_walk_1 1 day) (STV 1.0 0.99))",
+    "(: e_walk_during (During sk_walk_1 molting_week) (STV 1.0 0.99))",
+    "(: molting_week_genus (Inheritance molting_week week) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000300",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "(Member sk_base_1 whole) turns the totality quantifier of \"the whole cliff base\" into a property atom, asserting that the base is whole/intact — a claim the sentence does not make, and one that fails the predication test the instruction set uses to decide modifier exposure."
+     },
+     {
+      "statement": 10,
+      "issue": "(During sk_walk_1 molting_week) puts a bare kind constant in the second slot, whereas the During rule requires both arguments to be reified eventualities."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a totality / extent modifier on a definite object (\"the whole N\", \"the entire N\") — the instruction set gives no carrier for it, so it can only be mis-slotted as a property or silently dropped",
+     "a bare-plural recurring time-period frame (\"during molting weeks\") — the frequency machinery covers Time slots, Every and TimesPer, and During covers two reified eventualities, but no form covers a recurring, non-specific period frame"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The \"cliff base\" part-whole decomposition (base typed on its own plus PartOf to the cliff, no fusion), the \"each morning\" slot-plus-implied-cycle pair, and the absence of any tense atom on the habitual are all correct."
+   },
+   "adjudication": {
+    "id": "lore-000300",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'whole' in 'the whole cliff base' is a totality quantifier over the object, not a property of it — 'the cliff base is whole' asserts an intactness the sentence never states, and it fails the very predication test the instruction set uses to decide whether a modifier may surface as its own atom."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "This mistakes the reviewer's own second coverage gap for a parse defect: the head is the surface word the instruction set mandates ('During renders only the word during'), the atom is true of the sentence's content, the bare kind symbol is the licensed filler for a non-specific/generic referent, and dropping the frame is barred outright since omitting a stated restriction widens the claim."
+     }
+    ],
+    "gaps_confirmed": [
+     "a totality / extent modifier on a definite object ('the whole N', 'the entire N') has no licensed carrier — it can only be mis-slotted as a property or silently dropped",
+     "a bare-plural recurring time-period frame ('during molting weeks') — Time terms cover calendar/deictic points, Every and TimesPer cover periods and rates, and During is specified over two reified eventualities, so a recurring non-specific period has no exactly-fitting form"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "No licensed form carries 'the whole': the compliant parse keeps (Member sk_base_1 base) + (PartOf sk_base_1 sk_cliff_1) and leaves the totality modifier out entirely rather than emitting (Member sk_base_1 whole) — a licensed form would need a totality/extent operator over a definite object slot, which the instruction set does not have.",
+    "notes": "The second gap is load-bearing rather than optional: since dropping 'during molting weeks' would widen the habitual claim to every morning of the year, the parser had no content-preserving alternative to the surface During head, which is why I refuted rather than confirmed that issue. The cliff-base part-whole split, the each-morning slot-plus-cycle pair, and the absent tense atom are all correct."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000301",
+   "sentence": "The collectors pick up molted feathers.",
+   "parse": [
+    "(: collectors_grp (GroupOf sk_collectors_1 collector) (STV 1.0 0.99))",
+    "(: feathers_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feathers_molted_rule (Implication (PartOf $x sk_feather_1) (Member $x molted)) (STV 1.0 0.9))",
+    "(: pickup1_class (Member sk_pick_up_1 pick_up) (STV 1.0 0.99))",
+    "(: pickup1_agent (Agent sk_pick_up_1 sk_collectors_1) (STV 1.0 0.99))",
+    "(: pickup1_theme (Theme sk_pick_up_1 sk_feather_1) (STV 1.0 0.99))",
+    "(: collectors_pickup_rule (Implication (PartOf $y sk_collectors_1) (And (Member (sk_pick_up $y) pick_up) (Agent (sk_pick_up $y) $y) (Theme (sk_pick_up $y) sk_feather_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000301",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A bare-plural object carrying a descriptive (non-fusing) modifier in a habitual/generic clause (\"pick up molted feathers\"): *Coordination & plurals* gives a bare-plural object a group witness only in an EPISODIC clause and keeps the bare kind filler for non-specific / kind-level objects, but *Compound concepts* says a descriptive modifier on a plural must distribute over the members (which needs a group to range over) and must not fuse into the kind - so the non-specific-object route has no slot for the modifier and the two rules pull opposite ways for a tenseless habitual."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Phrasal verb kept whole as pick_up with no genus, the referring-use \"collectors\" correctly gets no (can collect), the definite plural subject takes a group witness plus the per-member distribution rule, and \"molted\" is correctly treated as a participial adjective rather than the verb."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000302",
+   "sentence": "The collectors drop the feathers into leather sacks.",
+   "parse": [
+    "(: coll_grp (GroupOf sk_group_1 collector) (STV 1.0 0.99))",
+    "(: feath_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: sack_genus (Inheritance leather_sack sack) (STV 1.0 0.99))",
+    "(: e_drop (Member sk_drop_1 drop) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_drop_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_drop_1 sk_feather_1) (STV 1.0 0.99))",
+    "(: e_goal (Goal sk_drop_1 leather_sack) (STV 1.0 0.99))",
+    "(: coll_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_drop $x) drop) (Agent (sk_drop $x) $x) (Theme (sk_drop $x) sk_feather_1) (Goal (sk_drop $x) leather_sack))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000302",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Motion result is handled exactly as specified — object by its usual role (`Theme`, displaced not altered), path by `Goal` for \"into\", no `Result` atom — and `collector` in referring position correctly gets no `(can collect)` capability, `leather_sack` gets its head genus with the noun modifier unexposed, and the definite plural subject gets group event + per-member rule. One borderline call: the bare-plural oblique object \"leather sacks\" is a bare kind constant rather than a group witness, which is defensible under the habitual (no status atom) reading where the sacks are non-specific."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000303",
+   "sentence": "The collectors record each morning's collection in a Watch ledger.",
+   "parse": [
+    "(: lore303_group (GroupOf sk_collectors_1 collector) (STV 1.0 0.99))",
+    "(: lore303_collection (Member sk_collection_1 collection) (STV 1.0 0.99))",
+    "(: lore303_ledger (Member sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: lore303_ledger_poss (Possession sk_ledger_1 watch) (STV 1.0 0.99))",
+    "(: lore303_watch_name (Name watch \"Watch\") (STV 1.0 0.99))",
+    "(: lore303_record (Member sk_record_1 record) (STV 1.0 0.99))",
+    "(: lore303_record_ag (Agent sk_record_1 sk_collectors_1) (STV 1.0 0.99))",
+    "(: lore303_record_th (Theme sk_record_1 sk_collection_1) (STV 1.0 0.99))",
+    "(: lore303_record_loc (Location sk_record_1 sk_ledger_1) (STV 1.0 0.99))",
+    "(: lore303_record_time (Time sk_record_1 morning) (STV 1.0 0.99))",
+    "(: lore303_record_every (Every sk_record_1 1 day) (STV 1.0 0.99))",
+    "(: lore303_rule (Implication (PartOf $x sk_collectors_1) (And (Member (sk_record $x) record) (Agent (sk_record $x) $x) (Theme (sk_record $x) sk_collection_1) (Location (sk_record $x) sk_ledger_1) (Time (sk_record $x) morning) (Every (sk_record $x) 1 day))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000303",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 9,
+      "issue": "\"each morning\" modifies the object NP (\"each morning's collection\"), but the parse re-attaches it to the recording event as `(Time sk_record_1 morning)` plus `(Every sk_record_1 1 day)`, asserting when and how often the recording happens — which the sentence does not state."
+     },
+     {
+      "statement": 1,
+      "issue": "The universal in \"each morning's collection\" is dropped: one constant witness `sk_collection_1` stands for every morning's collection, so the per-morning collection (a dependent existential) is unencoded and a single collection is asserted instead."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a universal quantifier inside a possessive/genitive argument NP (\"each morning's collection\"): the instruction set covers \"every morning\" as a frequency adjunct on the event and dependent existentials inside rules, but not a distributive genitive modifying an argument",
+     "a capitalized COMMON noun premodifying a common-noun head (\"a Watch ledger\"): the proper-noun-premodifier rule (head parsed normally + `Possession` + `Name`) and the capitalized-common-noun default (common noun, no `Name`) both reach for it and the instruction set does not say which wins"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite plural correctly gives a group witness with the distributive per-member rule emitted alongside the group event, and the recorded collection is rightly `Theme`. `(Location sk_record_1 sk_ledger_1)` for a document medium is borderline against the instruction set's own \"in a statement\" → preposition-named `In` example."
+   },
+   "adjudication": {
+    "id": "lore-000303",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"each morning\" is the genitive determiner of the object NP, not an adverbial on the recording, so (Time sk_record_1 morning) and (Every sk_record_1 1 day) - and their twins inside the per-member rule - assert a time and a recurrence for the recording that no word of the sentence puts there (the \"point at the words\" test of Core patterns)."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is that the universal over mornings is unencoded - a genuine gap, since a calendar slot is a term and not an entity domain a rule can range over; the half that does not is the defect claim, because the single collection witness is true of the sentence's content and under- rather than over-asserts."
+     }
+    ],
+    "gaps_confirmed": [
+     "a universal quantifier inside a possessive / genitive argument NP (\"each morning's collection\") - the calendar slot is a term, not an entity domain, so neither the frequency-adjunct route nor the dependent-existential machinery reaches it",
+     "a capitalized COMMON noun premodifying a common-noun head (\"a Watch ledger\") - the proper-noun-premodifier rule (head parsed normally + Possession + Name) and the capitalized-common-noun default (common noun, no Name) both reach for it and the instruction set does not say which wins"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form drops (Time sk_record_1 morning) and (Every sk_record_1 1 day) from both the group event and the per-member rule, leaving the recording tense- and frequency-unmarked, and leaves the object NP's universal unencoded as a recorded gap rather than re-hosting it on the event.",
+    "notes": "The definite plural correctly yields a group witness plus the distributive per-member rule beside the group event, and record -> Theme is right for a verb that merely records its object. (Location sk_record_1 sk_ledger_1) for a document medium is arguable against the instruction set's own \"in a statement\" -> preposition-named In example, but the reviewer did not file it and I do not confirm it as a defect."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000304",
+   "sentence": "The collectors add the feathers to the feather bin.",
+   "parse": [
+    "(: bin_type (Member sk_bin_1 feather_bin) (STV 1.0 0.99))",
+    "(: bin_genus (Inheritance feather_bin bin) (STV 1.0 0.99))",
+    "(: collector_grp (GroupOf sk_group_1 collector) (STV 1.0 0.99))",
+    "(: feather_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: add_ev (Member sk_add_1 add) (STV 1.0 0.99))",
+    "(: add_ag (Agent sk_add_1 sk_group_1) (STV 1.0 0.99))",
+    "(: add_th (Theme sk_add_1 sk_feather_1) (STV 1.0 0.99))",
+    "(: add_goal (Goal sk_add_1 sk_bin_1) (STV 1.0 0.99))",
+    "(: collector_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_add $x) add) (Agent (sk_add $x) $x) (Theme (sk_add $x) sk_feather_1) (Goal (sk_add $x) sk_bin_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000304",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plurals correctly take group witnesses (never Inheritance), feather_bin fuses as a classifier compound with the head genus only, and the bare simple present rightly gets no status atom. Inanimate destination as Goal rather than Recipient is the defensible reading of the \"'to ...' non-recipient\" gloss."
+   },
+   "adjudication": null
+  }
+ ]
+}

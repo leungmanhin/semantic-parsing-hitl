@@ -1,0 +1,188 @@
+{
+ "id": "L2-17",
+ "rule": "II — Apprentices",
+ "texts": [
+  "There are three apprentices.",
+  "Coraline Ash is a first-year apprentice.",
+  "Jeb is a second-year apprentice.",
+  "Mira is a third-year apprentice.",
+  "The Council expects to invest Mira at the next solstice."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000180",
+   "sentence": "There are three apprentices.",
+   "parse": [
+    "(: apprentices_group (GroupOf sk_group_1 apprentice) (STV 1.0 0.99))",
+    "(: apprentices_count (Cardinality sk_group_1 3) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000180",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group witness plus exact Cardinality with a native integer and a lemmatized singular kind is exactly the Cardinality section's prescription for a counted existential plural. With no predicate in the clause there is nothing to distribute and no further atom is licensed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000181",
+   "sentence": "Coraline Ash is a first-year apprentice.",
+   "parse": [
+    "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+    "(: fya_genus (Inheritance first_year_apprentice apprentice) (STV 1.0 0.99))",
+    "(: fya_mod (Inheritance first_year_apprentice first_year) (STV 1.0 0.99))",
+    "(: coraline_type (Member coraline_ash first_year_apprentice) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000181",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The modifier genus (Inheritance first_year_apprentice first_year) is not licensed: 'first-year' is a relational / rank modifier that fails the stated predication test ('*the apprentice is first-year'), the same case as 'assistant secretary', which keeps only the head genus."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The exposed modifier is also a two-word symbol (first_year), which decompose-once-to-single-word-lemmas would never produce. The name symbol, the head genus (Inheritance first_year_apprentice apprentice) and the individual's (Member coraline_ash first_year_apprentice) are all correct."
+   },
+   "adjudication": {
+    "id": "lore-000181",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A modifier genus is exposed only for a modifier predicable of the referent, and 'first-year' is a noun-phrase / rank modifier that fails that test (*'the apprentice is first-year') — exactly the 'assistant secretary' case that keeps the head genus alone — and the atom is false besides, since a first-year apprentice is not a kind of first_year."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A fused compound whose MODIFIER is itself multi-word ('first-year', 'long-term') has no stated decomposition target: 'decompose once, to single-word lemmas' presumes a single-word modifier, so in the cases where the predication test DOES pass (a predicable hyphenated adjective) the rule names no well-formed genus to emit."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant parse keeps the head genus alone — (Inheritance first_year_apprentice apprentice) beside (Member coraline_ash first_year_apprentice) and the Name fact — with no modifier genus emitted at all.",
+    "notes": "The fusion itself is right: a rank/role title classifying the head into a genuine subtype, like senior_contractor. Member for the individual and Inheritance for the kind-to-kind link are both correct, as are the definitional truth values."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000182",
+   "sentence": "Jeb is a second-year apprentice.",
+   "parse": [
+    "(: jeb_name (Name jeb \"Jeb\") (STV 1.0 0.99))",
+    "(: jeb_type (Member jeb second_year_apprentice) (STV 1.0 0.99))",
+    "(: sya_genus (Inheritance second_year_apprentice apprentice) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000182",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Individual copular subject takes Member, the fused rank compound emits its head genus only (the modifier fails the predication test, like \"assistant secretary\"), the Name fact is present exactly once, and no superclass atom is emitted since engine inheritance supplies it. \"apprentice\" is correctly left a plain kind rather than an agent-nominalization."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000183",
+   "sentence": "Mira is a third-year apprentice.",
+   "parse": [
+    "(: mira_name (Name mira \"Mira\") (STV 1.0 0.99))",
+    "(: apprentice_genus (Inheritance third_year_apprentice apprentice) (STV 1.0 0.99))",
+    "(: apprentice_modifier (Inheritance third_year_apprentice third_year) (STV 1.0 0.99))",
+    "(: mira_type (Member mira third_year_apprentice) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000183",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The modifier genus (Inheritance third_year_apprentice third_year) exposes a noun-headed time modifier that fails the predication test (*\"the apprentice is third-year\"), which *Compound concepts* bars exactly as night_shift is not night and \"assistant secretary\" keeps only its head genus, and the exposed symbol third_year is not a single-word lemma as decompose-once-to-single-word-lemmas requires."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an ordinal + time-span attributive marking a stage or rank (\"a third-year apprentice\", \"a first-year student\") — compound fusion carries the kind, but nothing records that the apprenticeship is in its third year: Ordinal ranks the entity itself within a class, and Measure needs a magnitude on a stated dimension"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The copular routing is right otherwise — individual subject → Member on the fused compound kind, head genus (Inheritance third_year_apprentice apprentice) emitted, one Name atom, present tense so no status wrapper, and definitional 1.0/0.99 truth values throughout."
+   },
+   "adjudication": {
+    "id": "lore-000183",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"third-year\" is a noun-headed modifier naming time and fails the predication test (*\"the apprentice is third-year\"), and Compound concepts bars exposing a noun modifier \"whatever it names — purpose, association, role or time alike\" (night_shift is not night); the emitted atom is also ill-typed, since member-inheritance would make Mira a member of the time-span class third_year."
+     }
+    ],
+    "gaps_confirmed": [
+     "An ordinal + time-span attributive marking a stage or rank (\"a third-year apprentice\", \"a first-year student\"): fusion carries the kind, but nothing queryable records that the apprenticeship is in its third year — Ordinal ranks the entity within a class (wrong claim), and Measure needs a magnitude on a stated dimension, which \"third-year\" does not supply."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form emits (Inheritance third_year_apprentice apprentice) and (Member mira third_year_apprentice) alone, dropping (Inheritance third_year_apprentice third_year); with the modifier unexposed the stage content survives only inside the fused symbol, and the instruction set licenses NO atom that records \"in the third year\" — recorded as the confirmed gap above.",
+    "notes": "The rest of the parse is correct: individual subject to Member on the fused compound kind, the head genus emitted, one Name atom, present tense so no status wrapper, and definitional 1.0/0.99 truth values throughout."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000184",
+   "sentence": "The Council expects to invest Mira at the next solstice.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_expect (Member sk_expect_1 expect) (STV 1.0 0.99))",
+    "(: e_expect_agent (Agent sk_expect_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_expect_theme (Theme sk_expect_1 sk_invest_1) (STV 1.0 0.99))",
+    "(: e_invest (Member sk_invest_1 invest) (STV 1.0 0.99))",
+    "(: e_invest_agent (Agent sk_invest_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_invest_theme (Theme sk_invest_1 mira) (STV 1.0 0.99))",
+    "(: mira_name (Name mira \"Mira\") (STV 1.0 0.99))",
+    "(: e_invest_time (Time sk_invest_1 next_solstice) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000184",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"the next <recurring calendar-event noun>\" as a time adjunct (\"at the next solstice\") — the deictic-constant list is given for day/week/month/season units (yesterday, last_week, next_summer, \"seasons form these the same way\"), while an event-denoting noun otherwise stays an ordinary sk_ entity with its class atom; which route a recurring calendar point takes, and whether `next_solstice` may be coined as a bare constant with no typing, is unstated"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The control-infinitive pattern is applied correctly — complement reified at top level, Theme-attached, no tense of its own (so no futurate Future despite the forward-looking adjunct), subject control copied in, and the time adjunct placed on the investing rather than the expecting. Matrix `Agent` for \"expects\" is defensible under the stated progressive test (\"is expecting\" is grammatical), though the verb sits close to the Experiencer list."
+   },
+   "adjudication": null
+  }
+ ]
+}

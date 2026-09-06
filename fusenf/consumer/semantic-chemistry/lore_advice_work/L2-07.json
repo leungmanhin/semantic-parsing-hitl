@@ -1,0 +1,253 @@
+{
+ "id": "L2-07",
+ "rule": "II — Coraline Ash",
+ "texts": [
+  "Coraline Ash is a new apprentice.",
+  "Coraline Ash arrived in late summer from down the coast.",
+  "Coraline Ash's family farms down the coast.",
+  "Coraline Ash is not from a Keeper family.",
+  "The Council voted to accept Coraline Ash.",
+  "Old Vesh supported Coraline Ash's acceptance."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000138",
+   "sentence": "Coraline Ash is a new apprentice.",
+   "parse": [
+    "(: ca_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+    "(: ca_apprentice (Member coraline_ash apprentice) (STV 1.0 0.99))",
+    "(: ca_new (Member coraline_ash new) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000138",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"new apprentice\" is correctly split rather than fused — \"new\" is incidental description, not a term of art / role title / material or origin adjective — and the individual subject takes Member on both atoms with no tense wrapper on a present copular."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000139",
+   "sentence": "Coraline Ash arrived in late summer from down the coast.",
+   "parse": [
+    "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+    "(: arrive_ev (Member sk_arrive_1 arrive) (STV 1.0 0.99))",
+    "(: arrive_ag (Agent sk_arrive_1 coraline_ash) (STV 1.0 0.99))",
+    "(: arrive_tense (Past sk_arrive_1) (STV 1.0 0.99))",
+    "(: arrive_time (Time sk_arrive_1 late_summer) (STV 1.0 0.99))",
+    "(: coast_type (Member sk_coast_1 coast) (STV 1.0 0.99))",
+    "(: arrive_source (Source sk_arrive_1 sk_coast_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000139",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "\"from down the coast\" is flattened to the unqualified (Source sk_arrive_1 sk_coast_1), silently dropping \"down\" — the stated origin is a place further along the coast, not the coast itself, and Core patterns bars an unencodable qualifier from becoming an unqualified assertion (carry it or drop the claim and record the gap)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"from down the coast\": a stacked/complex directional preposition naming a vague region along a landmark as the origin — Source takes the bare landmark and no licensed head carries \"down\" (the multi-word-preposition CamelCase join is given only for entity-attached position, e.g. AcrossTheLaneFrom)",
+     "\"in late summer\": a non-deictic season time point — Time terms are only Year/Month/Day/Weekday/Hour/Minute, and seasons are mentioned only as deictic constants (last_spring, next_summer), so a bare modified season has no stated encoding (whether it stays one symbol like late_summer, decomposes, or needs a Season term is unaddressed)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Agent on the arrival is correct: the un-powered-relocation carve-out that would send \"arrive\" to Theme exempts animates (self-powered movers). Past + no Ongoing marker is right off the surface clause."
+   },
+   "adjudication": {
+    "id": "lore-000139",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "*Core patterns* bars a stated qualifier from being silently dropped ('an unencodable qualifier never becomes an unqualified assertion'), and the entity-side parallel — 'across the lane from the chapel' must not collapse into a bare head on the chapel, because the landmark is not the position — applies here: 'down the coast' names a region for which the coast is only the landmark, so (Source sk_arrive_1 sk_coast_1) states an origin the sentence does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "'from down the coast' — a complex directional origin phrase naming a vague region along a landmark; Source takes only the bare landmark and no licensed head carries 'down'.",
+     "'in late summer' — a non-deictic, modified season as a time point; the Time term inventory is only Year/Month/Day/Weekday/Hour/Minute and seasons appear only as deictic constants (last_spring, next_summer), so whether late_summer stays one bare Time symbol, decomposes, or needs a Season term is unlegislated."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "No licensed head carries 'down' — the multi-word-preposition CamelCase join (NextTo, AcrossTheLaneFrom) is given only for entity-attached position and the instruction set never extends it to an event-side oblique, and minting a sub-region witness the way 'coastal Calderwick' does would require inventing its type atom — so the compliant form is Core patterns' fallback: omit the origin claim entirely and record the gap, keeping the arrive event, its Past, the Time atom and the coast's own typing.",
+    "notes": "The parser's (Time sk_arrive_1 late_summer) is acceptable improvisation in gap territory — it copies the day-part 'bare symbol on Time' shape and the last_spring/next_summer symbol-formation convention, and the atom is true — so the season gap is a gap claim only, not a second defect. Agent on 'arrive' (animate self-powered mover) and the absent Ongoing are both correct."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000140",
+   "sentence": "Coraline Ash's family farms down the coast.",
+   "parse": [
+    "(: ca_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+    "(: fam_ty (Member sk_family_1 family) (STV 1.0 0.99))",
+    "(: fam_poss (Possession sk_family_1 coraline_ash) (STV 1.0 0.99))",
+    "(: farm_ev (Member sk_farm_1 farm) (STV 1.0 0.99))",
+    "(: farm_ag (Agent sk_farm_1 sk_family_1) (STV 1.0 0.99))",
+    "(: farm_loc (Location sk_farm_1 sk_coast_1) (STV 1.0 0.99))",
+    "(: coast_ty (Member sk_coast_1 coast) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000140",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "(Location sk_farm_1 sk_coast_1) drops the stated preposition 'down', asserting the farming happens at the coast rather than at a point along/down it — the same preposition-flattening the instruction set forbids on the entity side ('folding on / under / beside into LocatedIn asserts a containment the sentence never stated')."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "directional / extent locative preposition on an EVENT ('down the coast', 'up the valley', 'along the ridge'): Location is glossed only as 'in/at/on ...' and the surface-preposition-head discipline is stated for entity-attached position, so the instruction set never settles whether such a PP takes Location or the preposition-named oblique (Down <event> <place>)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is as specified: 's-genitive to opaque Possession (possessed first, not a part-whole), 'family' as a singular collective noun with no GroupOf and no distribution rule, definite first-mention 'the coast' as a fresh typed witness, and no status atom on the present-tense habitual."
+   },
+   "adjudication": {
+    "id": "lore-000140",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "The half that stands: \"down\" is recorded nowhere, so the parse cannot distinguish \"farms down the coast\" from \"farms at the coast\"; the half that falls: the containment-only bar governs the entity head LocatedIn, not the event role Location, whose own gloss is the open \"in/at/on ...\" and whose selection is instructed to go \"by the question the PP answers\" (here, where) - and (Location sk_farm_1 sk_coast_1) is entailed by the sentence, so it is neither false, ill-typed, nor over-asserting."
+     }
+    ],
+    "gaps_confirmed": [
+     "Directional / extent locative preposition on an EVENT (\"down the coast\", \"up the valley\", \"along the ridge\"): Location is glossed only as \"in/at/on ...\" while the surface-preposition-head discipline is spelled out for entity-attached position, so nothing settles whether such a PP takes Location or the preposition-named oblique (Down <event> <place>)."
+    ],
+    "new_gaps": [],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The rest conforms: 's-genitive to the opaque Possession (possessed first, not part-whole), \"family\" as a singular collective with no GroupOf and no distribution rule, \"the coast\" as a fresh typed first-mention witness, and no status atom on the present habitual."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000141",
+   "sentence": "Coraline Ash is not from a Keeper family.",
+   "parse": [
+    "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+    "(: kf_genus (Inheritance keeper_family family) (STV 1.0 0.99))",
+    "(: coraline_not_from_family (And (Member sk_family_1 keeper_family) (From coraline_ash sk_family_1)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000141",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Textbook negated multi-atom predicate: the indefinite 'a Keeper family' keeps its witness typing INSIDE the strength-0 (And ...) while the definitional genus (Inheritance keeper_family family) stays outside at 1.0/0.99, and entity-attached From is the origin head the instruction set licenses. No kind atom was invented for 'Coraline Ash', correctly."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000142",
+   "sentence": "The Council voted to accept Coraline Ash.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_vote (Member sk_vote_1 vote) (STV 1.0 0.99))",
+    "(: e_vote_agent (Agent sk_vote_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_vote_theme (Theme sk_vote_1 sk_accept_1) (STV 1.0 0.99))",
+    "(: e_vote_tense (Past sk_vote_1) (STV 1.0 0.99))",
+    "(: e_accept (Member sk_accept_1 accept) (STV 1.0 0.99))",
+    "(: e_accept_agent (Agent sk_accept_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_accept_theme (Theme sk_accept_1 coraline_ash) (STV 1.0 0.99))",
+    "(: coraline_ash_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000142",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"vote to V\" is not in the enumerated control-verb list (try/want/decide/agree/...), but the non-finite-complement pattern is stated as a general rule and the parse follows it exactly: complement reified at top level, attached by Theme, no tense of its own, subject control copied in. \"The Council\" correctly takes the capitalized-common-noun default (witness + Member, no Name) and, as a singular collective, gets a plain event with no distribution rule."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000143",
+   "sentence": "Old Vesh supported Coraline Ash's acceptance.",
+   "parse": [
+    "(: ov_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+    "(: ca_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+    "(: ov_accept (Member sk_accept_1 accept) (STV 1.0 0.99))",
+    "(: ov_accept_theme (Theme sk_accept_1 coraline_ash) (STV 1.0 0.99))",
+    "(: ov_support (Member sk_support_1 support) (STV 1.0 0.99))",
+    "(: ov_support_agent (Agent sk_support_1 old_vesh) (STV 1.0 0.99))",
+    "(: ov_support_theme (Theme sk_support_1 sk_accept_1) (STV 1.0 0.99))",
+    "(: ov_support_past (Past sk_support_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000143",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "the event noun 'acceptance' is classed as the verb 'accept' (symbol sk_accept_1), but that is derivation rather than inflection, which the lemmatization rule bars and which the instruction set's own nominalization examples avoid (sk_refinement_1, (Member sk_ceremony_1 ceremony))"
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an OBJECTIVE 's-genitive on a nominalization ('Coraline Ash's acceptance' read as she is the one accepted): the instruction set states only the SUBJECT genitive case (Marta's objection -> Agent/Experiencer) and the object of-phrase case (-> the Of oblique), so an object role on an 's-genitive event noun has no stated encoding"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correctly leaves the acceptance tenseless so nothing asserts it occurred, and correctly keeps 'Old' inside the capitalized run rather than stripping it as a courtesy title."
+   },
+   "adjudication": {
+    "id": "lore-000143",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'Inflection only — never derivation': 'acceptance' is a noun derived from 'accept' and so 'a different word [that] keeps its own form', and the instruction set's own event nouns bear that out (sk_refinement_1 beside 'refinement of', (Member sk_ceremony_1 ceremony)) — none is ever relabelled with its underlying verb."
+     }
+    ],
+    "gaps_confirmed": [
+     "An OBJECTIVE 's-genitive on a nominalization ('Coraline Ash's acceptance' read as she is the one accepted) has no stated encoding: only the SUBJECT genitive (Marta's objection to the event noun's subject role) and the object of-phrase (to the Of oblique) are legislated."
+    ],
+    "new_gaps": [
+     "An event-noun DIRECT OBJECT ('supported the acceptance') has no stated occurrence/tense rule: the control- and causative-complement sections make an embedded eventuality deliberately tenseless, but an event-noun argument left bare falls into the status-atom default of generic / habitual / dispositional, which is not what the clause says either — a specific past acceptance and a dispositional one are different claims."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form types the nominalization by its own lemma — (Member sk_acceptance_1 acceptance) — with the genitive argument and the matrix Theme link riding that same witness; the argument role itself (here Theme) stays acceptable gap-territory improvisation.",
+    "notes": "The rest holds: Old Vesh keeps his whole capitalized run in one Name fact, the acceptance is left tenseless so nothing asserts it occurred, and support takes Theme for an object it leaves unchanged."
+   }
+  }
+ ]
+}

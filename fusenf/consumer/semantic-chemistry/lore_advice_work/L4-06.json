@@ -1,0 +1,221 @@
+{
+ "id": "L4-06",
+ "rule": "IV — The salt-bloom harvest",
+ "texts": [
+  "The salt-bloom new-moon harvest is a large collective ritual.",
+  "On the night of the new moon in salt-bloom season, a harvest party walks to the Salt-bloom Tide-pools.",
+  "The harvest party wears waxed coats.",
+  "The harvest party carries copper buckets.",
+  "The harvest lasts until dawn.",
+  "The harvest party pours the salt-bloom into the Cauldron Hall salt-bloom store."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000305",
+   "sentence": "The salt-bloom new-moon harvest is a large collective ritual.",
+   "parse": [
+    "(: harvest_type (Member sk_harvest_1 salt_bloom_new_moon_harvest) (STV 1.0 0.99))",
+    "(: harvest_genus (Inheritance salt_bloom_new_moon_harvest harvest) (STV 1.0 0.99))",
+    "(: harvest_ritual (Member sk_harvest_1 ritual) (STV 1.0 0.99))",
+    "(: harvest_large (Member sk_harvest_1 large) (STV 1.0 0.99))",
+    "(: harvest_collective (Member sk_harvest_1 collective) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000305",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "definite singular generic naming a recurring event kind ('The <compound> harvest is a large collective ritual'): the instruction set says a definite description picks out a specific thing and takes a witness, yet its own kind-level examples read a definite singular as the kind ('The dodo is extinct'), so nothing settles whether this is one occurrence (Member on a witness) or the kind (Inheritance on salt_bloom_new_moon_harvest)",
+     "a compound kind with two stacked noun premodifiers ('salt-bloom new-moon harvest'): the compound rules cover one modifier + head and coordinated premodifiers, but not how a three-part modifier stack is segmented"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Genus of the fused compound is emitted and the noun modifiers are correctly not exposed; 'large' and 'collective' are kept as separate descriptive atoms rather than fused, per the incidental-description bar."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000306",
+   "sentence": "On the night of the new moon in salt-bloom season, a harvest party walks to the Salt-bloom Tide-pools.",
+   "parse": [
+    "(: harvest_party_genus (Inheritance harvest_party party) (STV 1.0 0.99))",
+    "(: new_moon_genus (Inheritance new_moon moon) (STV 1.0 0.99))",
+    "(: new_moon_mod (Inheritance new_moon new) (STV 1.0 0.99))",
+    "(: salt_bloom_season_genus (Inheritance salt_bloom_season season) (STV 1.0 0.99))",
+    "(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: party_typ (Member sk_party_1 harvest_party) (STV 1.0 0.99))",
+    "(: tide_pools_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+    "(: tide_pools_typ (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+    "(: walk_event (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: walk_agent (Agent sk_walk_1 sk_party_1) (STV 1.0 0.99))",
+    "(: walk_goal (Goal sk_walk_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+    "(: walk_time_night (Time sk_walk_1 night) (STV 1.0 0.99))",
+    "(: walk_time_moon (Time sk_walk_1 new_moon) (STV 1.0 0.99))",
+    "(: walk_time_season (Time sk_walk_1 salt_bloom_season) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000306",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "`new_moon` is decomposed as a compound kind (statements 1 and 2, asserting it is a subclass of `moon` and of `new`) yet is used nowhere as a kind — it appears only as a bare `Time` constant in statement 12 — so a time point is declared a class and the modifier genus is exposed on a non-compositional phase term."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a time NP restricted by an of-phrase and a PP (\"the night of the new moon in salt-bloom season\") — Time atoms may compose across granularities, but there is no carrier for the restriction relation itself, so the composite time flattens into three independent Time values",
+     "a lunar-phase / invented-season time expression — the structured Time terms are only Year/Month/Day/Weekday/Hour/Minute, and the instruction set does not say whether a multi-word bare Time constant takes compound decomposition or stays opaque like a deictic",
+     "a multi-word proper name whose internal kind word is PLURAL (\"the Salt-bloom Tide-pools\") — the kind-word-inside-a-name rule is stated for a singular kind word (\"the Kestrel River\"), while the capitalized-plural-label rule bars taking a per-member kind from a plural label word, so the singular typing atom in statement 7 sits between the two rules"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The main clause is right: indefinite subject with a verbal predicate stays a witness (not a generic rule), the present tense correctly gets no status atom (no TODAY and no lexically-future adjunct), and the destination is Goal. The name atom preserves the surface hyphenation and emits no modifier genus on the name symbol, as required."
+   },
+   "adjudication": {
+    "id": "lore-000306",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "`new_moon` is used only as a bare `Time` filler, yet the two atoms place that same symbol on both sides of `Inheritance`, which 'requires a kind or property on both sides' — and the instruction set's own multi-word time constants (`this_morning`, `last_week`, `last_spring`) are emitted as opaque symbols with no genus and no modifier atom, so typing a time constant as a subclass of `moon` and of `new` is ill-typed content the words do not put there."
+     }
+    ],
+    "gaps_confirmed": [
+     "A composite time NP restricted by an of-phrase and a PP ('the night of the new moon in salt-bloom season') has no carrier for the restriction relation, so it flattens into three independent `Time` values.",
+     "Lunar-phase and invented-season times have no structured `Time` term (the terms are only Year/Month/Day/Weekday/Hour/Minute), and no rule states that a multi-word bare `Time` constant stays opaque — the deictic examples demonstrate it but the doctrine never says it.",
+     "A multi-word proper name whose internal kind word is PLURAL ('the Salt-bloom Tide-pools') sits between the kind-word-inside-a-name rule (stated for a singular kind word, 'the Kestrel River') and the capitalized-plural-label rule (which bars taking a kind from a plural label word), so the singular typing atom is unresolved."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps the lunar-phase time as an opaque bare constant — `(Time sk_walk_1 new_moon)` alone, with no `(Inheritance new_moon moon)` and no `(Inheritance new_moon new)` — exactly as `last_spring` / `this_morning` are emitted undecomposed.",
+    "notes": "The same collision sits unflagged on `(Inheritance salt_bloom_season season)`, the other decomposed `Time` constant. The rest of the clause is right: an indefinite subject with a verbal predicate stays a witness, the unanchored present correctly takes no tense atom, the destination is `Goal`, and the name symbol carries no modifier genus."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000307",
+   "sentence": "The harvest party wears waxed coats.",
+   "parse": [
+    "(: party_genus (Inheritance harvest_party party) (STV 1.0 0.99))",
+    "(: party_type (Member sk_party_1 harvest_party) (STV 1.0 0.99))",
+    "(: wear_ev (Member sk_wear_1 wear) (STV 1.0 0.99))",
+    "(: wear_agent (Agent sk_wear_1 sk_party_1) (STV 1.0 0.99))",
+    "(: coat_genus (Inheritance waxed_coat coat) (STV 1.0 0.99))",
+    "(: coat_mod (Inheritance waxed_coat waxed) (STV 1.0 0.99))",
+    "(: wear_theme (Theme sk_wear_1 waxed_coat) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000307",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "participial treatment adjective + noun (\"waxed coats\"): the fuse/split test puts material adjectives on the fusing side (wooden_bridge) while the instruction set's own participial-modifier example is split (\"a laminated worktop\" -> (Member sk_worktop_1 laminated)), and neither the term-of-art list nor the incidental-description list (colour, size, damage, mood) decides a treatment participle",
+     "a descriptive modifier on a NON-SPECIFIC bare-plural object: the bare-kind-filler route supplies no witness or group for the plural distributive rule to attach the modifier to, so fusing into a compound kind is the only expressible option"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Given the fusion, the atoms are internally consistent with Compound concepts: head genus (Inheritance waxed_coat coat) always emitted, modifier genus licensed by the predication test (\"the coat is waxed\"), and harvest suppressed as a noun modifier. The singular collective subject correctly takes a plain event with the group as filler, no distribution rule, and no status atom for the habitual."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000308",
+   "sentence": "The harvest party carries copper buckets.",
+   "parse": [
+    "(: e2_party (Member sk_party_1 harvest_party) (STV 1.0 0.99))",
+    "(: e2_party_genus (Inheritance harvest_party party) (STV 1.0 0.99))",
+    "(: e2_carry (Member sk_carry_1 carry) (STV 1.0 0.99))",
+    "(: e2_agent (Agent sk_carry_1 sk_party_1) (STV 1.0 0.99))",
+    "(: e2_theme (Theme sk_carry_1 copper_bucket) (STV 1.0 0.99))",
+    "(: e2_bucket_genus (Inheritance copper_bucket bucket) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000308",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-plural object 'copper buckets' takes the bare kind filler rather than a group witness, which the episodic-vs-kind-level split licenses for this unmarked habitual present clause; 'copper' is correctly left unexposed as a noun modifier (the steel_beam line) and the singular collective subject correctly gets no distribution rule."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000309",
+   "sentence": "The harvest lasts until dawn.",
+   "parse": [
+    "(: h1_type (Member sk_harvest_1 harvest) (STV 1.0 0.99))",
+    "(: h1_end (End sk_harvest_1 dawn) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000309",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The event-denoting noun's own witness carries the extent, so 'lasts' is consumed by the interval End rather than reified as a separate last event -- the same treatment the instruction set gives 'lasted two days' as a duration measure on the eventuality. The bare present with no TODAY and no lexically future adjunct correctly gets no tense atom, and dawn is a licensed day-part constant in the term slot."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000310",
+   "sentence": "The harvest party pours the salt-bloom into the Cauldron Hall salt-bloom store.",
+   "parse": [
+    "(: party_kind (Member sk_party_1 harvest_party) (STV 1.0 0.99))",
+    "(: party_genus (Inheritance harvest_party party) (STV 1.0 0.99))",
+    "(: sb_kind (Member sk_saltbloom_1 salt_bloom) (STV 1.0 0.99))",
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: hall_kind (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: store_kind (Member sk_store_1 salt_bloom_store) (STV 1.0 0.99))",
+    "(: store_genus (Inheritance salt_bloom_store store) (STV 1.0 0.99))",
+    "(: store_poss (Possession sk_store_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: pour_ev (Member sk_pour_1 pour) (STV 1.0 0.99))",
+    "(: pour_ag (Agent sk_pour_1 sk_party_1) (STV 1.0 0.99))",
+    "(: pour_th (Theme sk_pour_1 sk_saltbloom_1) (STV 1.0 0.99))",
+    "(: pour_goal (Goal sk_pour_1 sk_store_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000310",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun premodifier is handled exactly per the 'Northgate spokesman' rule: the head phrase parses on its own with its compound genus and links to the named entity by opaque Possession, with no invented LocatedIn or PartOf. Motion-result 'pours ... into' correctly takes Theme + Goal with no Result atom; the witness symbol sk_saltbloom_1 elides the class underscore (sk_salt_bloom_1) but is still minted from the class."
+   },
+   "adjudication": null
+  }
+ ]
+}

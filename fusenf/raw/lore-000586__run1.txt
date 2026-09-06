@@ -1,0 +1,7 @@
+(: keeper_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: keeper_card (Cardinality sk_group_1 9) (STV 1.0 0.99))
+(: hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: tend_ev (Member sk_tend_1 tend) (STV 1.0 0.99))
+(: tend_ag (Agent sk_tend_1 sk_group_1) (STV 1.0 0.99))
+(: tend_th (Theme sk_tend_1 hollows) (STV 1.0 0.99))
+(: tend_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Theme (sk_tend $x) hollows))) (STV 1.0 0.9))

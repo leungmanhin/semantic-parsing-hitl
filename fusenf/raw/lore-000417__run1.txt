@@ -1,0 +1,4 @@
+(: keepers_name (Name keepers "Keepers") (STV 1.0 0.99))
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: keepers_harm_neg (And (Member sk_harm_1 harm) (Agent sk_harm_1 keepers) (Patient sk_harm_1 sk_sky_cat_1) (Member sk_sky_cat_1 sky_cat)) (STV 0.0 0.99))
+(: keepers_harm_q (QuantifierPhrase keepers harm "never") (STV 1.0 0.99))

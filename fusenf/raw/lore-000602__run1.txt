@@ -1,0 +1,7 @@
+(: e_order (Member sk_order_1 order) (STV 1.0 0.99))
+(: village_type (Member sk_village_1 village) (STV 1.0 0.99))
+(: e_agent (Agent sk_order_1 sk_village_1) (STV 1.0 0.99))
+(: domes_group (GroupOf sk_domes_1 dome) (STV 1.0 0.99))
+(: e_theme (Theme sk_order_1 sk_domes_1) (STV 1.0 0.99))
+(: domes_new_rule (Implication (PartOf $x sk_domes_1) (Member $x new)) (STV 1.0 0.9))
+(: e_in_batches (In sk_order_1 batch) (STV 1.0 0.99))

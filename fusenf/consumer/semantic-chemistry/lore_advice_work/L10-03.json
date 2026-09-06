@@ -1,0 +1,333 @@
+{
+ "id": "L10-03",
+ "rule": "X — Sky-cat seasons",
+ "texts": [
+  "Sky-cats hunt often in summer and early autumn.",
+  "Sky-cats hunt rarely in deep winter.",
+  "Sky-cats resume hunting in spring.",
+  "When nightmoths are scarce, sky-cats sometimes hunt other insects.",
+  "Marra Tallowhand's logs record sky-cat hunts of other insects.",
+  "Nightmoths remain the sky-cats' main food."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000577",
+   "sentence": "Sky-cats hunt often in summer and early autumn.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_hunt_q (QuantifierPhrase sky_cat hunt \"often\") (STV 1.0 0.99))",
+    "(: skycat_hunt_rule (Implication (Member $x sky_cat) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) summer) (Time (sk_hunt $x) early_autumn))) (STV 0.8 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000577",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The coordinated time adjunct \"summer and early autumn\" is collapsed onto ONE per-instance Skolem event, so the rule asserts that each sky-cat's single hunt event happens in summer AND in early autumn — Coordination & plurals makes a coordinated NP distributive (one event per conjunct), and the two seasons are disjoint, so a single event witness cannot bear both."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare, non-deictic recurring SEASON as a Time filler (\"in summer\", \"in early autumn\") — the structured Time terms are Year/Month/Day/Weekday/Hour/Minute, day-parts are the only licensed bare-symbol fillers, and seasons are mentioned only in the deictic-constant list (last_spring / next_summer)",
+     "a coordinated time adjunct inside a DISTRIBUTING generic rule — distribution would need two distinct Skolem event functions of the same verb in one conclusion, a shape the instruction set never gives"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The generic routing is right: bare-plural habitual -> distributing event rule, frequency adverb \"often\" -> rule strength 0.8 plus the QuantifierPhrase companion, compound genus \"sky_cat\" -> cat with the noun modifier correctly unexposed. Only the two-season adjunct is mishandled, and the underlying carrier is missing from the instruction set."
+   },
+   "adjudication": {
+    "id": "lore-000577",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Stacked Time atoms are licensed only as components of ONE time — \"one Time atom per granularity actually stated\" — so (Time (sk_hunt $x) summer) together with (Time (sk_hunt $x) early_autumn) places each member's single minted hunt in two disjoint seasons, a pair that cannot both be true of that witness."
+     }
+    ],
+    "gaps_confirmed": [
+     "a coordinated time adjunct inside a distributing generic rule: splitting it would need two distinct Skolem event functions of the same verb over the same variable, a shape the instruction set never provides",
+     "a recurring, non-deictic season as a Time filler is not addressed (seasons appear only as deictic constants such as next_summer / last_spring); the \"a deictic or named time stays a bare symbol\" line makes (Time e summer) acceptable improvisation, but nothing states it"
+    ],
+    "new_gaps": [
+     "the Skolem-function rule form mints exactly ONE event per member, so any generic that entails MULTIPLE occasions per member — which a frequency adverb plus a two-season window states — is inexpressible: the occasions cannot be individuated inside the conclusion"
+    ],
+    "decision": "defect",
+    "defect_summary": "No compliant form is licensed for the two-season adjunct — stacking is granularity-only, an (Or ...) would misrender the coordinating \"and\", and two same-verb Skolem events over one variable are unavailable — so the licensed route is the rule with the seasonal adjunct left out and the gap recorded, exactly as the instruction set directs for an adverbial with no slot (\"leave the unrepresentable adverbial out rather than mis-slot it\").",
+    "notes": "The rest is right: bare-plural habitual to a distributing event rule, \"often\" to strength 0.8 plus the QuantifierPhrase companion, Agent on the volitional hunter, and sky_cat fused with genus cat and the noun modifier unexposed."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000578",
+   "sentence": "Sky-cats hunt rarely in deep winter.",
+   "parse": [
+    "(: sk_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: sk_hunt_rule (Implication (Member $x sky_cat) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) deep_winter))) (STV 0.1 0.9))",
+    "(: sk_hunt_q (QuantifierPhrase sky_cat hunt \"rarely\") (STV 1.0 0.99))",
+    "(: dw_genus (Inheritance deep_winter winter) (STV 1.0 0.99))",
+    "(: dw_mod (Inheritance deep_winter deep) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000578",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a multi-word TIME expression ('deep winter') — named and deictic times are bare constants that take no type atom, and the compound-decomposition rules are written for kinds / properties / actions, so nothing says whether a time constant takes genus and modifier Inheritance atoms"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The distributing-rule shape with a Skolem-function event, strength 0.1 for 'rarely' with its QuantifierPhrase companion, the Time oblique inside the consequent, and the sky_cat genus all match the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000579",
+   "sentence": "Sky-cats resume hunting in spring.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_resume_rule (Implication (Member $x sky_cat) (And (Member (sk_resume $x) resume) (Agent (sk_resume $x) $x) (Theme (sk_resume $x) (sk_hunt $x)) (Time (sk_resume $x) spring) (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Ongoing (sk_hunt $x)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000579",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'resume hunting' is routed on the inception pattern (aspectual event with the activity as a tenseless Ongoing Theme witness, surface lemma kept), and the bare season rides Time as a named-time constant like a day-part; the sky_cat genus with the noun modifier unexposed and the 0.9/0.9 characteristic-generic rule are both correct."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000580",
+   "sentence": "When nightmoths are scarce, sky-cats sometimes hunt other insects.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_hunt_rule (Implication (And (Member $x sky_cat) (KindProperty nightmoth scarce)) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Theme (sk_hunt $x) (sk_insect $x)) (Member (sk_insect $x) insect))) (STV 0.5 0.9))",
+    "(: skycat_hunt_q (QuantifierPhrase sky_cat hunt \"sometimes\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000580",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "the restriction 'other' in 'other insects' is silently dropped, widening the claim to insects in general — including the nightmoths the sentence contrasts them against."
+     },
+     {
+      "statement": 2,
+      "issue": "the non-specific bare-plural object 'insects' is rendered as a per-binding Skolem witness (sk_insect $x) with its own Member atom, asserting one particular insect per sky-cat, where a kind-level object takes the bare kind filler."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a generic 'when P, Q' whose antecedent P is a kind-level STATE ('when nightmoths are scarce') rather than an occurrence: the whenever machinery expects a reified trigger eventuality and a During link on the per-occurrence consequent, and ConditionalProperty covers only a property consequent, not a verbal one — so the parse falls back to a ground KindProperty atom as a rule premise, a form the instruction set nowhere licenses (and no trigger link is emitted)",
+     "'other N' — an alterity / exclusion restriction on an NP — has no licensed encoding"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The frequency adverb is handled correctly ('sometimes' → rule strength 0.5 plus the QuantifierPhrase companion on kind and verb lemma), and both compounds emit the head genus only."
+   },
+   "adjudication": {
+    "id": "lore-000580",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Core patterns bars silently dropping a stated restriction because omitting it widens the claim — with 'other' gone, (Member (sk_insect $x) insect) lets the hunted insect be a nightmoth, the very kind the sentence contrasts it against."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "A non-specific / kind-level object takes the bare kind filler (Coordination & plurals: 'pays tax', 'grows wheat'); the per-binding Skolem witness (sk_insect $x) with its own Member atom asserts one particular insect per sky-cat, which the text does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "a generic 'when P, Q' whose antecedent is a kind-level STATE ('nightmoths are scarce') rather than an occurrence: the whenever machinery needs a reified trigger eventuality to carry its During link, and ConditionalProperty takes only a property consequent, so a verbal consequent under a kind-state condition has no specified carrier",
+     "'other N' — an alterity / exclusion restriction on an NP — has no licensed encoding: no head expresses non-identity with a kind, and negation is strength-0 over a whole bundle, so it cannot sit as a conjunct inside a positive conclusion"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "For the object, the compliant form is the bare kind filler (Theme (sk_hunt $x) insect) with no witness and no Member atom; for the dropped 'other' NO licensed form exists (alterity has no head and a negative restriction cannot be a conjunct of a positive conclusion), so the instruction set's own fallback governs — leave the restricted claim out and record the gap rather than assert the unqualified version.",
+    "notes": "Using the ground (KindProperty nightmoth scarce) as a rule premise is uncovered improvisation, but it is true, well-typed and correctly left unasserted at top level, so it is not itself a defect. The frequency dial (sometimes to 0.5), its companion, and both compounds' head-genus-only decomposition are correct."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000581",
+   "sentence": "Marra Tallowhand's logs record sky-cat hunts of other insects.",
+   "parse": [
+    "(: mt_name (Name marra_tallowhand \"Marra Tallowhand\") (STV 1.0 0.99))",
+    "(: logs_grp (GroupOf sk_logs_1 log) (STV 1.0 0.99))",
+    "(: logs_poss (Possession sk_logs_1 marra_tallowhand) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: hunt_fact (Hunt sky_cat insect) (STV 0.9 0.9))",
+    "(: e_record (Member sk_record_1 record) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_record_1 sk_logs_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_record_1 (Hunt sky_cat insect)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000581",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "(Inheritance sky_cat cat) asserts an IS-A the sentence itself rules out — \"hunts of other insects\" places sky-cats among the insects — so this is the hot-dog case in which the head genus must be suppressed."
+     },
+     {
+      "statement": 4,
+      "issue": "(Hunt sky_cat insect) is asserted at top level as a kind-level relational generic, but that route fires only on a clause with bare kind-denoting NPs on both sides; here the clause is \"logs record ...\" and the hunting sits inside an object NP, so the generalization about sky-cats is content the text does not state."
+     },
+     {
+      "statement": 7,
+      "issue": "The Theme filler nests a proposition as a term — the sealing device, reserved for attitudes, embedded questions, imperatives and counterfactuals — where \"record\" simply takes an NP object; the object \"sky-cat hunts of other insects\" should be the plural event-noun's own witness with its of-argument attached by the entity-attached preposition oblique per Complements of nouns and adjectives."
+     },
+     {
+      "statement": 4,
+      "issue": "\"other\" in \"other insects\" is silently dropped rather than carried or left out with the gap recorded, widening the prey class from insects-other-than-sky-cats to insects at large."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "contrastive/exclusion determiner \"other N\" (\"other insects\") — no licensed carrier for the exclusion it states",
+     "a bare noun premodifier filling an event-noun's underlying subject slot (\"sky-cat hunts\") — the instruction set covers a genitive subject of a nominalization (\"Marta's objection\") and its of-phrase object, but not a noun-noun premodifier naming who does the nominalized act"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The matrix clause is right — one Name atom for the multi-word name with no invented kind atom, GroupOf for the possessed plural \"logs\", opaque Possession, and Agent on the inanimate stative-transitive subject. Hunt is licensed as a head form under the kind-level-relation open class, so the defect is its use here rather than the head itself."
+   },
+   "adjudication": {
+    "id": "lore-000581",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "The half that stands: on the reading where \"other\" contrasts with the subject, a sky-cat is an insect and the head genus must be suppressed exactly as for \"a hot dog is not a dog\"; the half that overstates: \"other\" can equally contrast with a discourse-salient insect set rather than the subject, so the sentence does not conclusively rule the IS-A out and the compound rule's default (\"always emit the genus\") is not clearly defeated."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The kind-level relation route fires only when both of the CLAUSE's arguments are bare kind-denoting NPs; here the clause is \"logs record ...\" and the hunting sits inside an object NP, so a top-level (Hunt sky_cat insect) at 0.9 asserts a generalization about sky-cats at large that the text never states."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "Sealing is finite-clause-only (attitudes, embedded questions, imperatives, counterfactuals) and a verb with an entity object takes plain role assignment, so nesting a proposition as the Theme filler of \"record\" uses a device the instruction set does not license here - and since the identical term is also asserted at top level it is not even functioning as a seal."
+     },
+     {
+      "index": 3,
+      "verdict": "partial",
+      "reason": "That \"other\" is unencoded and has no licensed carrier is a real gap, but \"widening the prey class\" overstates it: naming the prey \"insect\" is true of them and asserts nothing false, and leaving an unencodable modifier out is precisely what the instruction set prescribes elsewhere for constructions with no slot."
+     }
+    ],
+    "gaps_confirmed": [
+     "contrastive / exclusion determiner \"other N\" (\"other insects\") - no licensed carrier for the exclusion it states",
+     "a noun-noun premodifier naming an event noun's underlying subject (\"sky-cat hunts\") - the genitive-subject rule (\"Marta's objection\") covers only a possessive, and the compound-kind route fuses the modifier and never exposes a noun modifier, so who performs the nominalized act stays unqueryable"
+    ],
+    "new_gaps": [
+     "no procedure for a SENTENCE-INTERNAL cue defeating the compound genus IS-A test: suppression is keyed to lexicalized non-kinds (\"a hot dog is not a dog\"), with nothing said about a same-sentence contrast (\"other insects\") implying the compound is not a kind of its head noun"
+    ],
+    "decision": "defect",
+    "defect_summary": "For the kind relation, the compliant form drops (Hunt sky_cat insect) altogether - no kind-level relation is licensed from a clause whose subject and object are \"logs\" and an event-noun NP. For the Theme, the object should be the event noun's own referent: (GroupOf sk_hunt_1 sky_cat_hunt) + (Inheritance sky_cat_hunt hunt) with the of-argument attached by the entity-attached oblique (Of sk_hunt_1 <insect group witness>), filled into (Theme sk_record_1 sk_hunt_1).",
+    "notes": "The matrix clause is right: one Name atom for the multi-word name with no invented kind atom, a group witness for the possessed plural \"logs\", opaque Possession, Agent on the stative-transitive \"record\", and no status atom on the present. Hunt is a licensed head shape under the kind-relation open class, so the defect is its use in this clause, not the head itself."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000582",
+   "sentence": "Nightmoths remain the sky-cats' main food.",
+   "parse": [
+    "(: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: mf_genus (Inheritance main_food food) (STV 1.0 0.99))",
+    "(: mf_poss (Possession main_food sky_cat) (STV 1.0 0.99))",
+    "(: nm_mainfood (Inheritance nightmoth main_food) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000582",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "'remain' is dropped entirely — the continuation copular's reified state plus (Still <state>) tag is absent, so the parse reads as a plain generic and the stated continuation is silently lost."
+     },
+     {
+      "statement": 4,
+      "issue": "(Inheritance nightmoth main_food) asserts that nightmoths are main food without restriction, widening the claim, because the 'sky-cats'' possessive never reaches the predication."
+     },
+     {
+      "statement": 3,
+      "issue": "(Possession main_food sky_cat) attaches the possessor to the bare kind main_food rather than to this food, so any other kind later typed as main_food would inherit the sky-cats as possessor; the definite plural 'the sky-cats' is also encoded as a bare kind where the categorical rules route a definite plural to a group witness."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "continuation copular ('remain' / 'stay' + predicate) over a bare-plural KIND subject — the licensed reified-state + (Still ...) shape presumes an individuated bearer for its Experiencer, and no kind-level carrier for continuation is defined",
+     "predicate nominal that is a definite possessed NP with a generic kind subject ('Ns are the Ms' main food') — Inheritance requires a kind on both sides while a definite possessed NP requires a witness, and no rule composes the two"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Decomposition is right throughout: nightmoth -> moth (solid spelling still decomposed), sky_cat -> cat, and main_food -> food with the rank adjective 'main' correctly not exposed as a modifier genus. The second and third issues follow from the second gap — with no composed form available the parse widened the claim instead of carrying the restriction or recording the loss."
+   },
+   "adjudication": {
+    "id": "lore-000582",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The continuation-copular shape (reified state + Still + flat atom) needs an eventuality to anchor the tag, and copular generics explicitly do not reify (\"all dogs are mammals\", \"most teachers are patient\" stay the single Inheritance fact), so no kind-level carrier for \"remain\" is licensed — and a dropped continuation presupposition loses information without widening the claim, unlike a dropped restriction."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "\"A stated restriction, hedge or qualifier is never silently dropped — omitting it widens the claim\": (Inheritance nightmoth main_food) asserts that nightmoths are main food full stop, where the text says only that they are the SKY-CATS' main food."
+     },
+     {
+      "index": 2,
+      "verdict": "partial",
+      "reason": "The first half stands — (Possession main_food sky_cat) predicates of the kind main_food at large, so any later kind typed main_food would inherit the sky-cats as possessor, which the text never states; the second half does not — the definite-plural-to-group-witness rule is stated for plural SUBJECTS of copular clauses, and a species-generic possessor inside a kind-level claim is not clearly covered by it."
+     }
+    ],
+    "gaps_confirmed": [
+     "a continuation copular (\"remain\" / \"stay\" + predicate) over a bare-plural KIND subject has no licensed carrier: the reified-state + (Still ...) shape presumes an individuated bearer for its Experiencer, and copular generics are barred from reifying",
+     "a predicate nominal that is a definite POSSESSED NP with a generic kind subject (\"Ns are the Ms' main food\"): Inheritance requires a kind on both sides, a definite possessed NP requires a witness, and no rule composes the two"
+    ],
+    "new_gaps": [
+     "Possession is defined only over entity symbols (possessed first, possessor resolved by coreference); nothing says whether a KIND may fill either slot, so a possessed kind-level predicate has no defined home and any attempt at one over-asserts about the kind at large"
+    ],
+    "decision": "defect",
+    "defect_summary": "For the widened predication NO compliant form is licensed — no rule composes a generic kind subject with a definite possessed predicate nominal — so per Core patterns (\"carry it, or leave the whole claim out and record the gap; an unencodable qualifier never becomes an unqualified assertion\") the compliant behaviour is to omit the claim and file the gap rather than assert the unrestricted Inheritance. The possessor atom likewise has no licensed kind-level carrier and should not have been emitted on the bare kind main_food at all.",
+    "notes": "Decomposition is right throughout — nightmoth/moth, sky_cat/cat, and main_food/food with the rank adjective \"main\" correctly unexposed (it fails the predication test). Both confirmed issues trace to the same missing composition rule."
+   }
+  }
+ ]
+}

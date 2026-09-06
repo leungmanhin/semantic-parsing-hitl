@@ -1,0 +1,5 @@
+(: lo401_keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))
+(: lo401_cats_grp (GroupOf sk_cats_1 sky_cat) (STV 1.0 0.99))
+(: lo401_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: lo401_count_neg (And (Member sk_count_1 count) (Agent sk_count_1 sk_keepers_1) (Theme sk_count_1 sk_cats_1) (Manner sk_count_1 exactly) (Can sk_count_1)) (STV 0.0 0.99))
+(: lo401_count_rule (Implication (PartOf $x sk_keepers_1) (And (Member (sk_count $x) count) (Agent (sk_count $x) $x) (Theme (sk_count $x) sk_cats_1) (Manner (sk_count $x) exactly) (Can (sk_count $x)))) (STV 0.0 0.9))

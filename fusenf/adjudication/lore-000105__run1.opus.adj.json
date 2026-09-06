@@ -1,0 +1,10 @@
+{"id": "lore-000105", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The (MeasureAtLeast e duration 2 <unit>) default is licensed by Time only for 'a bare-plural duration with no stated count', and 'many years' states a quantifier, so applying it here breaches Core patterns' flat rule that 'a stated restriction, hedge or qualifier is never silently dropped — carry it, or leave the whole claim out and record the gap'."}],
+ "gaps_confirmed": ["Vague-quantity temporal extent ('go back many years'): CardinalityPhrase records vague counts of things only, and the Measure family has no vague-magnitude counterpart, so no licensed form keeps 'many' on a duration or extent.",
+                    "Capitalized common-noun label used as a premodifier ('the Watch ledgers'): the Possession licence for a premodifier is stated for proper nouns, while 'the Watch' is a common noun with no Name atom by the singular-collective default, so nothing covers how the head noun links to that labelled referent (fusing watch_ledger would lose the specific referent)."],
+ "new_gaps": ["'Go back N years' measures reach-back extent into the past, not how long the eventuality itself lasted; the Measure family's `duration` scale is the only slot available and mis-describes what is measured, so even a stated figure ('go back forty years') would have no faithful carrier."],
+ "decision": "defect",
+ "defect_summary": "No licensed form carries 'many' on a temporal extent, so the compliant parse emits the go_back event, its Experiencer, the ledger group and the Watch referent with NO extent atom at all and records the gap — this is the drop-the-claim remedy Core patterns prescribes for an unencodable qualifier, and the instruction set licenses no form that keeps the quantifier.",
+ "notes": "The rest of the parse is sound: 'the Watch' correctly takes the common-noun default with no Name atom, 'go back' correctly stays one genus-free phrasal-verb symbol, Experiencer fits the stative intransitive subject, and the group-level (undistributed) reading matches the plural-measure-is-aggregate rule."}

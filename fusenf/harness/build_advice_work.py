@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import glob
 import json
+import re
 import os
 import sys
 
@@ -23,6 +24,12 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 FUSENF = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 from export_fiction_kb import census_flag  # noqa: E402
+
+
+def item_key(item):
+    """work-file / advice-file stem: R<nn> for world_rules ids, the id itself otherwise"""
+    m = re.fullmatch(r"R(\d+)", item["id"])
+    return f"R{int(m.group(1)):02d}" if m else item["id"]
 
 
 def main() -> None:
@@ -33,6 +40,9 @@ def main() -> None:
     ap.add_argument("--source-json", required=True)
     ap.add_argument("--review-run", type=int, default=1)
     ap.add_argument("--out-dir", required=True)
+    ap.add_argument("--skip-unparsed-items", action="store_true",
+                    help="chunked cycles: omit source items none of whose texts is parsed yet "
+                         "(an item with SOME texts parsed still fails loudly)")
     args = ap.parse_args()
 
     items = json.load(open(args.source_json))
@@ -58,8 +68,13 @@ def main() -> None:
     os.makedirs(args.out_dir, exist_ok=True)
     n_files = n_fields = n_adj = 0
     missing = []
+    n_skipped = 0
     for item in items:
-        rnn = f"R{int(item['id'][1:]):02d}"
+        rnn = item_key(item)
+        if args.skip_unparsed_items and not any(
+                parses.get(by_source.get(f"{item['id']}/t{k}")) for k in range(1, len(item["texts"]) + 1)):
+            n_skipped += 1
+            continue
         fields = []
         for k, sentence in enumerate(item["texts"], 1):
             rid = by_source.get(f"{item['id']}/t{k}")
@@ -84,7 +99,7 @@ def main() -> None:
     if missing:
         raise SystemExit("missing parses for: " + ", ".join(missing))
     print(f"-> {args.out_dir}: {n_files} work files, {n_fields} text fields, "
-          f"{n_adj} with adjudication")
+          f"{n_adj} with adjudication" + (f"; {n_skipped} unparsed items skipped" if n_skipped else ""))
 
 
 if __name__ == "__main__":

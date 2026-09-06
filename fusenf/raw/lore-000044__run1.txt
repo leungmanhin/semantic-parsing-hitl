@@ -1,0 +1,7 @@
+(: keepers_name (Name keepers "Keepers") (STV 1.0 0.99))
+(: tp_group (GroupOf sk_group_1 tide_pool) (STV 1.0 0.99))
+(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))
+(: e_visit (Member sk_visit_1 visit) (STV 1.0 0.99))
+(: e_agent (Agent sk_visit_1 keepers) (STV 1.0 0.99))
+(: e_theme (Theme sk_visit_1 sk_group_1) (STV 1.0 0.99))
+(: e_time (Time sk_visit_1 harvest_time) (STV 1.0 0.99))

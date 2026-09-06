@@ -1,0 +1,7 @@
+(: w1_type (Member sk_winter_1 winter) (STV 1.0 0.99))
+(: w1_bad (Member sk_winter_1 bad) (STV 1.0 0.99))
+(: w1_deg (Degree sk_winter_1 bad very) (STV 1.0 0.99))
+(: e1_come (Member sk_come_1 come) (STV 1.0 0.99))
+(: e1_pat (Patient sk_come_1 sk_winter_1) (STV 1.0 0.99))
+(: e1_past (Past sk_come_1) (STV 1.0 0.99))
+(: e1_time (BeforeBy sk_come_1 now 63 year) (STV 1.0 0.99))

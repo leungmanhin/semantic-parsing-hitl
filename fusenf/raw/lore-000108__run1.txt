@@ -1,0 +1,6 @@
+(: hall_type (Member sk_hall_1 council_hall) (STV 1.0 0.99))
+(: hall_genus (Inheritance council_hall hall) (STV 1.0 0.99))
+(: hall_old (Member sk_hall_1 old) (STV 1.0 0.99))
+(: e_collapse (Member sk_collapse_1 collapse) (STV 1.0 0.99))
+(: e_patient (Patient sk_collapse_1 sk_hall_1) (STV 1.0 0.99))
+(: e_past (Past sk_collapse_1) (STV 1.0 0.99))

@@ -1,0 +1,6 @@
+(: lo380_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: lo380_card (CardinalityPhrase sk_group_1 "some") (STV 1.0 0.99))
+(: lo380_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))
+(: lo380_bel_ev (Member sk_believe_1 believe) (STV 1.0 0.99))
+(: lo380_bel_exp (Experiencer sk_believe_1 sk_group_1) (STV 1.0 0.99))
+(: lo380_bel_theme (Theme sk_believe_1 (And (Member sk_wraith_1 wraith) (Member sk_remember_1 remember) (Experiencer sk_remember_1 sk_wraith_1) (Stimulus sk_remember_1 sk_keeper_1) (Member sk_let_1 let) (Agent sk_let_1 sk_keeper_1) (Past sk_let_1) (Theme sk_let_1 sk_rise_1) (Member sk_rise_1 rise) (Agent sk_rise_1 sk_wraith_1))) (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: potter_type (Member sk_potter_1 village_potter) (STV 1.0 0.99))
+(: potter_genus (Inheritance village_potter potter) (STV 1.0 0.99))
+(: vessel_type (GroupOf sk_vessel_1 clay_vessel) (STV 1.0 0.99))
+(: vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))
+(: e_make (Member sk_make_1 make) (STV 1.0 0.99))
+(: e_agent (Agent sk_make_1 sk_potter_1) (STV 1.0 0.99))
+(: e_patient (Patient sk_make_1 sk_vessel_1) (STV 1.0 0.99))

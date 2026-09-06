@@ -1,0 +1,8 @@
+(: ebb_type (Member sk_ebb_1 deep_ebb) (STV 1.0 0.99))
+(: ebb_genus (Inheritance deep_ebb ebb) (STV 1.0 0.99))
+(: ebb_mod (Inheritance deep_ebb deep) (STV 1.0 0.99))
+(: run_ev (Member sk_run_1 run) (STV 1.0 0.99))
+(: run_pat (Patient sk_run_1 sk_ebb_1) (STV 1.0 0.99))
+(: harbor_type (Member sk_harbor_1 harbor) (STV 1.0 0.99))
+(: run_src (Source sk_run_1 sk_harbor_1) (STV 1.0 0.99))
+(: run_time (Time sk_run_1 low_tide) (STV 1.0 0.99))

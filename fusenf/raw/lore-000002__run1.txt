@@ -1,0 +1,6 @@
+(: aelmere_name (Name aelmere "Aelmere") (STV 1.0 0.99))
+(: inlet_type (Member sk_inlet_1 horseshoe_inlet) (STV 1.0 0.99))
+(: inlet_genus (Inheritance horseshoe_inlet inlet) (STV 1.0 0.99))
+(: head_type (Member sk_head_1 head) (STV 1.0 0.99))
+(: head_partof (PartOf sk_head_1 sk_inlet_1) (STV 1.0 0.99))
+(: aelmere_loc (LocatedIn aelmere sk_head_1) (STV 1.0 0.99))

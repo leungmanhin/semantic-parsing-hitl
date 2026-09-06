@@ -1,0 +1,6 @@
+(: marra_name (Name marra_tallowhand "Marra Tallowhand") (STV 1.0 0.99))
+(: log_group (GroupOf sk_group_1 log) (STV 1.0 0.99))
+(: log_props (Implication (PartOf $x sk_group_1) (And (Member $x detailed) (Member $x nightly))) (STV 1.0 0.9))
+(: e_keep (Member sk_keep_1 keep) (STV 1.0 0.99))
+(: e_agent (Agent sk_keep_1 marra_tallowhand) (STV 1.0 0.99))
+(: e_theme (Theme sk_keep_1 sk_group_1) (STV 1.0 0.99))

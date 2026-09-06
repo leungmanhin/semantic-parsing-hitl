@@ -1,0 +1,6 @@
+(: e1_skycat (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))
+(: e1_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: e1_nightmoth (Member sk_nightmoth_1 nightmoth) (STV 1.0 0.99))
+(: e1_nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: e1_spires (GroupOf sk_spire_1 spire) (STV 1.0 0.99))
+(: e1_carry_bundle (And (Member sk_carry_1 carry) (Agent sk_carry_1 sk_sky_cat_1) (Theme sk_carry_1 sk_nightmoth_1) (Goal sk_carry_1 sk_spire_1) (In sk_carry_1 flight)) (STV 0.5 0.9))

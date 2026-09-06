@@ -1,0 +1,250 @@
+{
+ "id": "L2-19",
+ "rule": "II — Habits",
+ "texts": [
+  "The Keepers consider lantern-tending sacred.",
+  "Lantern-tending is not religious.",
+  "There are no formal prayers.",
+  "Meren Tallowhand counts moths aloud while Meren Tallowhand trims the wick.",
+  "Bevin Coombe touches the iron bands of the Stilllight Lantern each evening."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000188",
+   "sentence": "The Keepers consider lantern-tending sacred.",
+   "parse": [
+    "(: keepers_group (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: e_consider (Member sk_consider_1 consider) (STV 1.0 0.99))",
+    "(: e_consider_exp (Experiencer sk_consider_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_consider_theme (Theme sk_consider_1 (Inheritance lantern_tending sacred)) (STV 1.0 0.99))",
+    "(: lt_genus (Inheritance lantern_tending tend) (STV 1.0 0.99))",
+    "(: lt_obj (Patient lantern_tending lantern) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000188",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"The Keepers\" is a definite capitalized plural kind-word label, and the casing rule declares the capitalized-common-noun default singular-collective only, routing such a plural to a Name-only individual with explicitly no `GroupOf` and no per-member kind taken from the label word — here `keeper` is taken from exactly that word."
+     },
+     {
+      "statement": null,
+      "issue": "Under the group reading the parse did choose, \"consider\" is a distributive predicate over a definite plural, so the doctrine calls for an `(Implication (PartOf $x sk_group_1) ...)` per-member rule beside the group event; only the group event is emitted."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "active small-clause attitude \"X considers/deems/finds Y ADJ\" — only the impersonal passive \"is considered to be P\" (agentless, no Experiencer) and the finite that-clause attitude are specified; sealing the small clause under Theme with an Experiencer holder is an extrapolation from the passive case",
+     "no operational test for when a capitalized plural kind-word label is \"referring as a name\" (Name-only) rather than an ordinary definite plural common noun (group witness) — casing alone does not separate them, and the two routes yield incompatible parses",
+     "whether a compound ACTION's object atom (here `(Patient lantern_tending lantern)`) projects out of a seal — the projection table licenses only `Inheritance` genus/modifier decomposition atoms of compound kinds"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Nothing of the sealed content leaks to top level, `Experiencer` for the holder matches the \"Experiencer exactly when the complement seals\" rule, and `Inheritance` (not `Member`) is right for a kind-level bearer. The compound `lantern_tending` keeps surface order and decomposes per the compound-action shape."
+   },
+   "adjudication": {
+    "id": "lore-000188",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Names and casing limits the capitalized-common-noun default to singular-collective and routes a capitalized plural kind-word label to a Name-only individual with explicitly 'no GroupOf and no per-member kind from the label word' - the parse emits exactly those two prohibited atoms, taking keeper from the label word itself."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Under the group reading the parse chose, 'consider' is not one of the collective/aggregate predicates (gather, meet, assemble, collide) and sk_group_1 is a plural group rather than a singular collective noun, so the distributive-predicate rule over (PartOf $x sk_group_1) is owed beside the group event."
+     }
+    ],
+    "gaps_confirmed": [
+     "The active small-clause attitude 'X considers / deems / finds Y ADJ' is not among the specified routings (finite that-clause attitude, impersonal passive 'is considered to be P', control infinitive, perception report), so sealing the small clause under Theme with an Experiencer holder is an extrapolation from the agentless passive case - a graceful one, since nothing of the sealed content leaks.",
+     "'Referring as a name' in the capitalized-plural rule has no operational test, so casing plus number is all that separates a Name-only label from an ordinary definite plural of a capitalized office noun, and the two routes yield incompatible parses.",
+     "The projection table licenses only Inheritance genus/modifier decomposition atoms out of a seal, so whether a compound ACTION's object atom (Patient lantern_tending lantern) may stand at top level beside the sealed complement is unstated - it is definitional and speaker-independent like the genus, but the table does not name it."
+    ],
+    "new_gaps": [
+     "An object-plus-gerund nominal compound ('lantern-tending') has no stated normalization: Compound concepts defines the compound action as verb_object (pay_dues, wear_seatbelt), so nothing says whether the symbol keeps surface order (lantern_tending) or reorders to tend_lantern - two faithful parses would differ, and the decomposition atoms differ with them."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the Name-only individual - (Name keepers \"Keepers\") with (Experiencer sk_consider_1 keepers), no GroupOf and no keeper atom - and, were the group reading licensed, it would additionally owe the per-member rule (Implication (PartOf $x sk_group_1) (And (Member (sk_consider $x) consider) (Experiencer (sk_consider $x) $x) (Theme (sk_consider $x) (Inheritance lantern_tending sacred)))) at (STV 1.0 0.9) beside the group event.",
+    "notes": "Nothing of the sealed content reaches top level, Experiencer for the holder matches the 'Experiencer exactly when the complement seals' rule, and Inheritance rather than Member is right for the kind-level bearer of sacred."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000189",
+   "sentence": "Lantern-tending is not religious.",
+   "parse": [
+    "(: l189_lt_genus (Inheritance lantern_tending tend) (STV 1.0 0.99))",
+    "(: l189_lt_obj (Patient lantern_tending lantern) (STV 1.0 0.99))",
+    "(: l189_lt_not_religious (Inheritance lantern_tending religious) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000189",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The compound symbol keeps the surface gerund and object-first order ('lantern_tending') while its genus atom uses the lemmatized base verb 'tend', mixing two conventions — the compound-action form as written is a lemmatized verb_object symbol (pay_dues, carry_license), so this symbol will not unify with any other mention of tending lanterns."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an activity gerund-nominalization compound ('Lantern-tending') as the subject of a copular predication: the compound-action verb_object pattern is scoped to symbols inside a reified (can/obligated/permitted) property, the agent-nominalization rule covers only -er/-or/-ist/-ant nouns, and the gerund-subject rule covers only occurrence-trigger generics with a verbal predicate — so neither the symbol form nor the routing is decided"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Negation as strength 0.0 on the same Inheritance atom is right, as is Inheritance rather than KindProperty ('religious' can hold of a single instance), and plain 'not' correctly takes no QuantifierPhrase companion. Nothing false is asserted; the issue is symbol-form convention, not meaning."
+   },
+   "adjudication": {
+    "id": "lore-000189",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "A surface-derived compound symbol whose decomposition atoms use the base verb is exactly the licensed agent-nominalization precedent - egg_layer keeps its surface form while its atoms use lay ((Inheritance egg_layer (can lay)), (Lay egg_layer egg)) - so this is not an incoherent mixing of conventions; every atom is true and well-typed, and unifying variant symbols for one activity is the downstream normalization step the instruction set repeatedly assigns elsewhere."
+     }
+    ],
+    "gaps_confirmed": [
+     "An activity gerund-nominalization compound as the subject of a copular predication: the compound-action verb_object form is scoped to symbols inside a reified (can/obligated/permitted) property, agent-nominalization covers only -er/-or/-ist/-ant nouns, and the gerund-subject rule covers only occurrence-trigger generics with a verbal predicate - so neither the symbol shape nor the routing is decided."
+    ],
+    "new_gaps": [
+     "The inflection-vs-derivation line ('running' -> 'run' is inflection, while a participle used as a modifier keeps its own form) does not say which side a gerund used as an ACTIVITY NOUN falls on, so whether the symbol is tend_lantern or lantern_tending is undecided."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Nothing false or ill-typed is emitted: negation as strength 0.0 on the same Inheritance atom, Inheritance rather than KindProperty ('religious' can hold of one instance), and no companion for plain 'not' are all correct. The 0.99 confidence reads as definitional where the empirical 0.9 arguably fits, but no issue raised it."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000190",
+   "sentence": "There are no formal prayers.",
+   "parse": [
+    "(: no_formal_prayer (And (Member sk_prayer_1 prayer) (Member sk_prayer_1 formal)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000190",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The surface signals a generic denial (bare plural 'prayers' plus the explicit quantifier 'no'), which Negation (events) says needs the generic form, but the parse denies a bundle over a freshly minted singular witness, claiming only that one unspecified thing is not a formal prayer rather than that no formal prayers exist."
+     },
+     {
+      "statement": 0,
+      "issue": "No QuantifierPhrase companion records the explicit quantifier 'no', which the copular-negation rule makes mandatory for every explicit quantifier word a claim consumes — a knock-on of the witness form, which leaves no quantified range for the companion to restate."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Negated existential / non-existence claim ('there are no Ns'): the existential section covers only positive 'there is a X', and every negation route negates a predication ('no N is P', a negated event bundle, a strength-0 rule), so there is no licensed way to say a kind has no instances at all."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bundling 'prayer' and 'formal' into one strength-0.0 (And ...) is right per the negated multi-atom predicate rule — the defect is quantificational scope, not polarity. Whether 'formal prayer' should instead fuse as a term of art rather than split into two Member atoms is also unclear on the fuse-vs-incidental-description test."
+   },
+   "adjudication": {
+    "id": "lore-000190",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Negation (events) is explicit that 'a generic denial needs the same surface signal a positive generic needs: a bare plural or an explicit quantifier … The two are different claims; emit the one the surface shows' — the surface here carries both ('no' plus the plural 'prayers'), and the witness-bundle denial states only that one arbitrary symbol is not a formal prayer, dropping the sentence's universal force."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The standing half: the compliant generic form must carry (QuantifierPhrase prayer formal \"no\"), the companion being mandatory for every explicit quantifier word a claim consumes; the overstated half: the parse as written could not have added it, since the companion may only restate a range the claim quantifies and a witness denial quantifies over nothing."
+     }
+    ],
+    "gaps_confirmed": [
+     "A bare non-existence claim ('there are no Ns', with no predicate to set to strength 0) has no licensed form — the existential section covers only the positive, and every negation route negates a predication; this sentence escapes the gap only because the modifier 'formal' supplies a predicate to deny."
+    ],
+    "new_gaps": [
+     "Whether 'formal prayer' fuses as a term of art or splits into head noun + incidental-description modifier is left undecided by the fuse test, and the choice changes the shape of the denial (a single Member atom on a fused kind vs the two-atom strength-0 (And …) bundle)."
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form: the copular generic denial (Inheritance prayer formal) (STV 0.0 0.99) on the 'No reptile is warm-blooded' pattern — truth-conditionally the non-existence claim — together with its mandatory (QuantifierPhrase prayer formal \"no\") companion.",
+    "notes": "Bundling 'prayer' and 'formal' into one strength-0.0 predicate is itself correct per the negated-multi-atom rule; the defect is quantificational scope alone, not polarity."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000191",
+   "sentence": "Meren Tallowhand counts moths aloud while Meren Tallowhand trims the wick.",
+   "parse": [
+    "(: name_meren (Name meren_tallowhand \"Meren Tallowhand\") (STV 1.0 0.99))",
+    "(: e_count (Member sk_count_1 count) (STV 1.0 0.99))",
+    "(: e_count_ag (Agent sk_count_1 meren_tallowhand) (STV 1.0 0.99))",
+    "(: moth_grp (GroupOf sk_moth_1 moth) (STV 1.0 0.99))",
+    "(: e_count_th (Theme sk_count_1 sk_moth_1) (STV 1.0 0.99))",
+    "(: e_count_mnr (Manner sk_count_1 aloud) (STV 1.0 0.99))",
+    "(: e_trim (Member sk_trim_1 trim) (STV 1.0 0.99))",
+    "(: e_trim_ag (Agent sk_trim_1 meren_tallowhand) (STV 1.0 0.99))",
+    "(: wick_type (Member sk_wick_1 wick) (STV 1.0 0.99))",
+    "(: e_trim_pt (Patient sk_trim_1 sk_wick_1) (STV 1.0 0.99))",
+    "(: e_during (During sk_count_1 sk_trim_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000191",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'while' takes the During(inner, outer) form with the main clause inner and no connective atom, both clauses are unmarked present, the repeated full name reuses one symbol with a single Name atom, and no wick-to-lantern relation is invented; the bare-plural object 'moths' as a group witness rather than the bare kind filler is the one debatable call, and it is consistent with the witness-event habitual encoding used here."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000192",
+   "sentence": "Bevin Coombe touches the iron bands of the Stilllight Lantern each evening.",
+   "parse": [
+    "(: bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+    "(: sl_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: sl_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: bands_group (GroupOf sk_bands_1 iron_band) (STV 1.0 0.99))",
+    "(: bands_genus (Inheritance iron_band band) (STV 1.0 0.99))",
+    "(: bands_partof (PartOf sk_bands_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: e_touch (Member sk_touch_1 touch) (STV 1.0 0.99))",
+    "(: e_touch_agent (Agent sk_touch_1 bevin_coombe) (STV 1.0 0.99))",
+    "(: e_touch_theme (Theme sk_touch_1 sk_bands_1) (STV 1.0 0.99))",
+    "(: e_touch_time (Time sk_touch_1 evening) (STV 1.0 0.99))",
+    "(: e_touch_every (Every sk_touch_1 1 day) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000192",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'each evening' correctly yields the named slot (Time e evening) plus its implied cycle (Every e 1 day) with no tense atom and no QuantifierPhrase companion, matching the 'every Monday' pattern. iron_band fuses with genus 'band' and no 'iron' genus (noun modifier), the definite plural takes a group witness, and the of-phrase is correctly the part-whole PartOf."
+   },
+   "adjudication": null
+  }
+ ]
+}

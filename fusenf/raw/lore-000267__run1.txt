@@ -1,0 +1,4 @@
+(: nmw_genus (Inheritance near_miss_winter winter) (STV 1.0 0.99))
+(: winters_grp (GroupOf sk_winters_1 near_miss_winter) (STV 1.0 0.99))
+(: wraith_no_emerge (Implication (Member $x wraith) (And (Member (sk_emerge $x) emerge) (Agent (sk_emerge $x) $x) (Time (sk_emerge $x) sk_winters_1))) (STV 0.0 0.9))
+(: wraith_q (QuantifierPhrase wraith emerge "no") (STV 1.0 0.99))

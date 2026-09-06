@@ -1,0 +1,364 @@
+{
+ "id": "L1-05",
+ "rule": "I — Stilllight Lantern",
+ "texts": [
+  "The Stilllight Lantern stands at the top of the Cove Stair.",
+  "The Sunken Cove holds one lantern.",
+  "The Stilllight Lantern stands at the Sunken Cove.",
+  "The Stilllight Lantern is a large lantern.",
+  "Iron bands reinforce the Stilllight Lantern.",
+  "The Stilllight Lantern burns through a full night on one filling.",
+  "The Stilllight Keeper walks down the Cove Stair at midnight.",
+  "The Stilllight Keeper checks the flame at midnight.",
+  "The Stilllight station is a demanding station.",
+  "The Keepers fear the Stilllight station."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000028",
+   "sentence": "The Stilllight Lantern stands at the top of the Cove Stair.",
+   "parse": [
+    "(: stilllight_lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: stilllight_lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: cove_stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: cove_stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+    "(: top_type (Member sk_top_1 top) (STV 1.0 0.99))",
+    "(: top_partof (PartOf sk_top_1 cove_stair) (STV 1.0 0.99))",
+    "(: lantern_loc (LocatedIn stilllight_lantern sk_top_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000028",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "complex locative preposition of the shape P + definite N + 'of' (\"at the top of\", \"at the foot of\", \"in front of\"): the instruction set licenses both a single CamelCase-joined multi-word preposition head (its own AcrossTheLaneFrom example is the same P+NP+P shape) and a decomposition into a part-NP witness + PartOf + the containment head for 'at', with no criterion choosing between them"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The postural 'stands' correctly mints no event (a bare position clause mints none whatever its verb), and both capitalized runs get one opaque name symbol plus a kind atom read off the kind word inside the name."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000029",
+   "sentence": "The Sunken Cove holds one lantern.",
+   "parse": [
+    "(: sc_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sc_kind (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_hold_1 sunken_cove) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_hold_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000029",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The numeral in \"one lantern\" is dropped — the parse is atom-for-atom what \"holds a lantern\" would yield, and Core patterns bars silently dropping a stated qualifier."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a singular cardinal on an argument NP (\"one lantern\") — Cardinality is defined only over plural group witnesses, and the single place a singular count is mentioned (the \"there is only one book\" note under focus particles, which says to emit the exact Cardinality) does not say what bears it: the witness itself or a singleton group"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The name/type split for \"the Sunken Cove\", Agent on the stative transitive \"holds\" (the \"tank holds forty litres\" case), Theme on the unchanged object, and the absent status atom on the simple present are all correct."
+   },
+   "adjudication": {
+    "id": "lore-000029",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Core patterns states a stated restriction or qualifier is never silently dropped ('carry it, or leave the whole claim out and record the gap'), and the parse drops the numeral 'one' while keeping the claim, widening 'holds one lantern' to the bare existential 'holds a lantern'."
+     }
+    ],
+    "gaps_confirmed": [
+     "a singular cardinal on an argument NP ('one lantern'): Cardinality is defined only over plural group witnesses, and the single place a singular count is mentioned (the 'there is only one book' note under Focus particles, which says to emit the exact Cardinality) does not say what bears it"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps all six emitted atoms and adds the stated count for 'one' — either (Cardinality sk_lantern_1 1) on the witness or a singleton group (GroupOf sk_group_1 lantern) (Cardinality sk_group_1 1) filling the Theme — but the instruction set licenses the count atom without fixing its bearer for a singular NP, so no fully licensed form exists (the confirmed gap).",
+    "notes": "Everything else is correct: the name/kind split for 'the Sunken Cove' (capitalized run exceeding the bare class word), Agent on the stative transitive 'holds' per the 'tank holds forty litres' case, Theme on the unchanged object, and no status atom on the bare simple present."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000030",
+   "sentence": "The Stilllight Lantern stands at the Sunken Cove.",
+   "parse": [
+    "(: sl_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: sl_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: sc_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: sc_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sl_loc (LocatedIn stilllight_lantern sunken_cove) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000030",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both multi-word names are single opaque symbols with one Name each and kind atoms read off the name-internal kind words; the capitalized modifier 'Sunken' correctly joins the name rather than becoming a property atom, and 'at' is listed containment so LocatedIn is right."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000031",
+   "sentence": "The Stilllight Lantern is a large lantern.",
+   "parse": [
+    "(: sl_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: sl_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: sl_large (Member stilllight_lantern large) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000031",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The capitalized run exceeds the bare class word, so Name-hood plus one ordinary kind atom is right, and no modifier genus is emitted for the opaque name symbol. 'large' is correctly kept as a separate incidental-description Member atom rather than fused into a compound kind."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000032",
+   "sentence": "Iron bands reinforce the Stilllight Lantern.",
+   "parse": [
+    "(: iron_band_genus (Inheritance iron_band band) (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: iron_bands_reinforce (Implication (Member $x iron_band) (And (Member (sk_reinforce $x) reinforce) (Agent (sk_reinforce $x) $x) (Patient (sk_reinforce $x) stilllight_lantern))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000032",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "\"Iron bands\" names the specific bands on that one lantern (a standing configuration, not a habitual or characteristic claim), so the distributing rule wrongly makes every iron band in the KB reinforce the Stilllight Lantern; the licensed route is a group witness as Agent of a single reinforce event."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "iron_band is correctly fused with only the head genus emitted, since a noun material modifier is never exposed (the steel_beam line). \"The Stilllight Lantern\" correctly gets one opaque name symbol, its Name atom, and the kind atom licensed by the kind word inside the name."
+   },
+   "adjudication": {
+    "id": "lore-000032",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The distributing rule asserts at strength 0.9 that an arbitrary member of the kind iron_band reinforces this one named lantern, which the sentence does not state; the clause is neither a habitual/characteristic claim about iron bands nor a bare-kind relational generic (its object is a definite named individual), so the rule form puts a false claim into the KB."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A bare-plural subject in a present-tense STANDING-STATE clause with a definite specific object ('Iron bands reinforce the Stilllight Lantern') matches neither arm of the bare-plural split - it is not a past/dated/one-off occurrence, nor a habitual/characteristic claim about the kind - so the group-witness vs generic-rule choice is not legislated for it (only the group witness keeps every atom true)."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the bare-plural group witness - (GroupOf sk_group_1 iron_band) plus one reinforce event with (Agent sk_reinforce_1 sk_group_1) and (Patient sk_reinforce_1 stilllight_lantern) - instead of an Implication ranging over the kind iron_band.",
+    "notes": "The other three atoms are right: iron_band fuses with only the head genus exposed (iron is a noun modifier), and the kind word inside the name licenses (Member stilllight_lantern lantern)."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000033",
+   "sentence": "The Stilllight Lantern burns through a full night on one filling.",
+   "parse": [
+    "(: l33_lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: l33_lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: l33_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: l33_patient (Patient sk_burn_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: l33_duration (Measure sk_burn_1 duration 1 night) (STV 1.0 0.99))",
+    "(: l33_filling (Member sk_filling_1 filling) (STV 1.0 0.99))",
+    "(: l33_on (On sk_burn_1 sk_filling_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000033",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an emphatic singular numeral ('on ONE filling') has no carrier — Cardinality rides only on a group witness, so the numeral is dropped and the parse is indistinguishable from 'on a filling'",
+     "the completeness modifier inside a duration NP ('a FULL night') has no slot beside the magnitude and unit of (Measure e duration 1 night)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name handling is textbook — one opaque multi-word symbol, exactly one Name fact, kind stated by a separate type atom, no modifier genus — and the bare simple present correctly gets no status atom (dispositional reading). Patient for the burning lantern follows the non-volitional-process branch of the intransitive-subject test, and (On event filling) is the surface preposition actually used rather than a near-fit Instrument."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000034",
+   "sentence": "The Stilllight Keeper walks down the Cove Stair at midnight.",
+   "parse": [
+    "(: keeper_name (Name stilllight_keeper \"Stilllight Keeper\") (STV 1.0 0.99))",
+    "(: keeper_type (Member stilllight_keeper keeper) (STV 1.0 0.99))",
+    "(: stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+    "(: stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: e_walk (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_walk_1 stilllight_keeper) (STV 1.0 0.99))",
+    "(: e_loc (Location sk_walk_1 cove_stair) (STV 1.0 0.99))",
+    "(: e_time (Time sk_walk_1 midnight) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000034",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The directional path PP 'down the Cove Stair' is slotted into Location — a near-fit named role the instruction set reserves for 'in/at/on' — where the mechanical rule that the head is the preposition actually used calls for the surface-preposition oblique (Down ...), so the descent direction is silently dropped."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "directional / path PP on a motion event ('walks down the stair', 'ran along the quay', 'across the bridge'): the event-side role list covers only from/to (Source/Goal) and in/at/on (Location), and the preposition-named oblique is introduced for aboutness PPs ('work on the mural'), not for spatial paths"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Stilllight Keeper' correctly becomes a Name-plus-type individual (the capitalized run exceeds the bare class word), and the absence of any tense/status atom is the right unmarked-habitual default for a bare simple present."
+   },
+   "adjudication": {
+    "id": "lore-000034",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Location is defined as \"in/at/on …\" and the mechanical rule on top of the oblique choice is that the head is the preposition actually used — never a synonym head for a near-fit reading — so the path PP \"down the Cove Stair\" takes the surface-preposition oblique (Down sk_walk_1 cove_stair), and folding it into Location swaps in a near-fit named role while dropping the stated direction."
+     }
+    ],
+    "gaps_confirmed": [
+     "directional / path PP on a motion event has no named role (the list gives only Source \"from\", Goal \"to\", Location \"in/at/on\"), and the instruction set never states outright that such a PP takes the preposition-named oblique — the licence has to be read off the LocatedIn passage's \"the same open licence as the event-side preposition-named oblique\" sentence rather than from the oblique's own paragraph, which is written around aboutness PPs"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form replaces (Location sk_walk_1 cove_stair) with the surface-preposition oblique (Down sk_walk_1 cove_stair); the rest of the parse stands unchanged.",
+    "notes": "The Name-plus-type treatment of \"the Stilllight Keeper\" (capitalized run exceeds the bare class word) and of \"the Cove Stair\", the bare-symbol (Time sk_walk_1 midnight), and the absence of any tense atom on a bare simple present are all correct."
+   }
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000035",
+   "sentence": "The Stilllight Keeper checks the flame at midnight.",
+   "parse": [
+    "(: keeper_type (Member stilllight_keeper keeper) (STV 1.0 0.99))",
+    "(: keeper_name (Name stilllight_keeper \"Stilllight Keeper\") (STV 1.0 0.99))",
+    "(: check_event (Member sk_check_1 check) (STV 1.0 0.99))",
+    "(: check_agent (Agent sk_check_1 stilllight_keeper) (STV 1.0 0.99))",
+    "(: check_theme (Theme sk_check_1 sk_flame_1) (STV 1.0 0.99))",
+    "(: flame_type (Member sk_flame_1 flame) (STV 1.0 0.99))",
+    "(: check_time (Time sk_check_1 midnight) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000035",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare habitual simple present carrying a recurring time-of-day adjunct with no explicit \"every\" (\"checks the flame at midnight\") — *Frequency & habitual schedules* attaches the cycle atom (Every e 1 <cycle>) to a named slot only inside an explicit periodic phrase, so whether the implied daily cycle is licensed, forbidden, or optional here is not addressed"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Stilllight Keeper\" correctly takes the name route (the capitalized run exceeds the bare class word \"Keeper\") with the kind atom read off that word; check → Theme is right since an inspecting verb leaves its object unchanged, the unmarked habitual carries no status atom as prescribed, and midnight as a bare named-time constant follows the dawn / noon / dusk precedent."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t9",
+   "corpus_id": "lore-000036",
+   "sentence": "The Stilllight station is a demanding station.",
+   "parse": [
+    "(: stilllight_name (Name stilllight \"Stilllight\") (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: station_poss (Possession sk_station_1 stilllight) (STV 1.0 0.99))",
+    "(: station_demanding (Member sk_station_1 demanding) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000036",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Proper-noun premodifier is routed to Possession + Name with the head noun typed normally, and the incidental adjective stays unfused. The predicate nominal's kind half coincides with the subject NP's own typing atom, so it yields no additional atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t10",
+   "corpus_id": "lore-000037",
+   "sentence": "The Keepers fear the Stilllight station.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: stilllight_type (Member stilllight station) (STV 1.0 0.99))",
+    "(: stilllight_name (Name stilllight \"Stilllight\") (STV 1.0 0.99))",
+    "(: e_fear (Member sk_fear_1 fear) (STV 1.0 0.99))",
+    "(: e_fear_exp (Experiencer sk_fear_1 keepers) (STV 1.0 0.99))",
+    "(: e_fear_stim (Stimulus sk_fear_1 stilllight) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000037",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"the <Proper> <lowercase common-noun head>\" (\"the Stilllight station\"): the instruction set supplies two incompatible routes for this same surface shape with no test to choose between them - the Brindle/Kestrel-River route (the proper noun names the head referent; adjacent lowercase noun becomes an ordinary kind atom on the name symbol) and the Northgate-spokesman route (proper noun premodifying a common-noun head; head noun gets its own witness plus an opaque Possession to the named entity)."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Keepers\" is correctly a Name-only individual with no GroupOf and no invented keeper typing, per the capitalized-plural-label rule; \"fear\" correctly takes Experiencer/Stimulus under the progressive test and carries no status atom (habitual). The parse takes the Brindle route for \"the Stilllight station\", which is defensible since \"Stilllight\" carries no kind word of its own."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+(: coats_grp (GroupOf sk_group_1 coat) (STV 1.0 0.99))
+(: spray_genus (Inheritance sea_spray spray) (STV 1.0 0.99))
+(: protect_grp_ev (Member sk_protect_1 protect) (STV 1.0 0.99))
+(: protect_grp_agent (Agent sk_protect_1 sk_group_1) (STV 1.0 0.99))
+(: protect_grp_against (Against sk_protect_1 sea_spray) (STV 1.0 0.99))
+(: protect_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_protect $x) protect) (Agent (sk_protect $x) $x) (Against (sk_protect $x) sea_spray))) (STV 1.0 0.9))

@@ -1,0 +1,6 @@
+(: keeper_kind (Member sk_keeper_1 keeper) (STV 1.0 0.99))
+(: dawnout_kind (Member sk_dawn_out_1 dawn_out) (STV 1.0 0.99))
+(: walk_ev (Member sk_walk_1 walk) (STV 1.0 0.99))
+(: walk_agent (Agent sk_walk_1 sk_keeper_1) (STV 1.0 0.99))
+(: walk_goal (Goal sk_walk_1 home) (STV 1.0 0.99))
+(: dawnout_before_walk (Before sk_dawn_out_1 sk_walk_1) (STV 1.0 0.99))

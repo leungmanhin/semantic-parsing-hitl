@@ -1,0 +1,6 @@
+(: t3_hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: t3_lantern_grp (GroupOf sk_group_1 lantern) (STV 1.0 0.99))
+(: t3_lantern_poss (Possession sk_group_1 hollows) (STV 1.0 0.99))
+(: t3_path_grp (GroupOf sk_group_2 forest_path) (STV 1.0 0.99))
+(: t3_path_genus (Inheritance forest_path path) (STV 1.0 0.99))
+(: t3_stand_rule (Implication (PartOf $x sk_group_1) (Along $x sk_group_2)) (STV 1.0 0.9))

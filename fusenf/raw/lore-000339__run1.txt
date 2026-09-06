@@ -1,0 +1,3 @@
+(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))
+(: cove_name (Name sunken_cove "Sunken Cove") (STV 1.0 0.99))
+(: villager_avoid (Implication (And (Member $x villager) (Member $x non_keeper)) (And (Member (sk_avoid $x) avoid) (Agent (sk_avoid $x) $x) (Theme (sk_avoid $x) sunken_cove))) (STV 0.9 0.9))

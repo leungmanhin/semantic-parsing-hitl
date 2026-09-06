@@ -1,0 +1,7 @@
+(: ch_name (Name cauldron_hall "Cauldron Hall") (STV 1.0 0.99))
+(: ch_hall (Member cauldron_hall hall) (STV 1.0 0.99))
+(: cellar_grp (GroupOf sk_cellar_1 cellar) (STV 1.0 0.99))
+(: cellar_poss (Possession sk_cellar_1 cauldron_hall) (STV 1.0 0.99))
+(: bedrock_type (Member sk_bedrock_1 bedrock) (STV 1.0 0.99))
+(: bedrock_below (Below sk_bedrock_1 cauldron_hall) (STV 1.0 0.99))
+(: cellar_locin_rule (Implication (PartOf $x sk_cellar_1) (LocatedIn $x sk_bedrock_1)) (STV 1.0 0.9))

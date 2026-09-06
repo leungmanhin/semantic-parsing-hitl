@@ -1,0 +1,6 @@
+(: st1_name (Name salt_bloom_tide_pools "Salt-bloom Tide-pools") (STV 1.0 0.99))
+(: st1_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))
+(: st1_genus (Inheritance tide_pool pool) (STV 1.0 0.99))
+(: st1_stgenus (Inheritance spring_tide tide) (STV 1.0 0.99))
+(: st1_sbgenus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: st1_rule (Implication (And (Member $e fill) (Agent $e $t) (Member $t spring_tide) (Patient $e salt_bloom_tide_pools)) (And (Member (sk_bloom $e) bloom) (Patient (sk_bloom $e) salt_bloom) (Location (sk_bloom $e) salt_bloom_tide_pools) (During (sk_bloom $e) $e))) (STV 1.0 0.9))

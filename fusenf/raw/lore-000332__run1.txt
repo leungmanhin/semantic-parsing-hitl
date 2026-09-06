@@ -1,0 +1,4 @@
+(: grp_ty (GroupOf sk_group_1 keeper_child) (STV 1.0 0.99))
+(: grp_genus (Inheritance keeper_child child) (STV 1.0 0.99))
+(: appr_neg_grp (And (Member sk_apprentice_1 apprentice) (Agent sk_apprentice_1 sk_group_1)) (STV 0.0 0.99))
+(: appr_neg_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_apprentice $x) apprentice) (Agent (sk_apprentice $x) $x))) (STV 0.0 0.9))

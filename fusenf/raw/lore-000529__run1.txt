@@ -1,0 +1,8 @@
+(: hesper_name (Name hesper "Hesper") (STV 1.0 0.99))
+(: threads_group (GroupOf sk_threads_1 thread) (STV 1.0 0.99))
+(: cauldrons_group (GroupOf sk_cauldrons_1 cauldron) (STV 1.0 0.99))
+(: cauldrons_card (Cardinality sk_cauldrons_1 3) (STV 1.0 0.99))
+(: e_portion (Member sk_portion_1 portion) (STV 1.0 0.99))
+(: e_agent (Agent sk_portion_1 hesper) (STV 1.0 0.99))
+(: e_theme (Theme sk_portion_1 sk_threads_1) (STV 1.0 0.99))
+(: e_goal (Goal sk_portion_1 sk_cauldrons_1) (STV 1.0 0.99))

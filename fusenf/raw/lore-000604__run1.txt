@@ -1,0 +1,7 @@
+(: wh_genus (Inheritance harbor_warehouse warehouse) (STV 1.0 0.99))
+(: wh_type (Member sk_warehouse_1 harbor_warehouse) (STV 1.0 0.99))
+(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))
+(: e_hold_agent (Agent sk_hold_1 sk_warehouse_1) (STV 1.0 0.99))
+(: e_hold_theme (Theme sk_hold_1 sk_dome_1) (STV 1.0 0.99))
+(: dome_group (GroupOf sk_dome_1 dome) (STV 1.0 0.99))
+(: dome_spare_rule (Implication (PartOf $x sk_dome_1) (Member $x spare)) (STV 1.0 0.9))

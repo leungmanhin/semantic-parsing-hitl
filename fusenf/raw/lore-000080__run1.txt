@@ -1,0 +1,3 @@
+(: e3_name (Name northcove "Northcove") (STV 1.0 0.99))
+(: e3_rule (Implication (And (Member $x lantern) (Possession $x northcove)) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (Time (sk_go_out $x) winter))) (STV 0.0 0.9))
+(: e3_q (QuantifierPhrase lantern go_out "never") (STV 1.0 0.99))

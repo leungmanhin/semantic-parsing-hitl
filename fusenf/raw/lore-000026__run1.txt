@@ -1,0 +1,5 @@
+(: t1_tide (Member sk_tide_1 tide) (STV 1.0 0.99))
+(: t1_grp (GroupOf sk_group_1 grave_marker) (STV 1.0 0.99))
+(: t1_genus (Inheritance grave_marker marker) (STV 1.0 0.99))
+(: t1_surface (Member sk_surface_1 surface) (STV 1.0 0.99))
+(: t1_rule (Implication (And (Member $s low) (Experiencer $s sk_tide_1) (PartOf $x sk_group_1)) (And (Member (sk_visible $s $x) visible) (Experiencer (sk_visible $s $x) $x) (During (sk_visible $s $x) $s) (Below (sk_visible $s $x) sk_surface_1))) (STV 1.0 0.9))

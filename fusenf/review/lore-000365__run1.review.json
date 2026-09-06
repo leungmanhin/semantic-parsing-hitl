@@ -1,0 +1,10 @@
+{"id": "lore-000365", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The plural \"ground feathers\" / \"the feathers\" is collapsed to a single individual feather variable (`(Member $f feather)` plus `(Member $f ground)`), so the rule quantifies over one feather at a time instead of the scattered set, and a faithfully-parsed instance sentence — which would store a `GroupOf` group as the scatter's Theme — could never match this premise."},
+                {"statement": 0, "issue": "The consequent's Skolem term `(sk_ward $s)` is a function of the trigger event alone although the conclusion also varies with `$f` (and `$l`), so distinct feather bindings collapse onto one ward event with multiple Agents, contrary to the rule that a dependent existential is a Skolem function of every universal that scopes over it."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A plural NP as a participant inside a generic \"when P, Q\" rule: the instruction set mandates plain variables in rule premises and group witnesses (`GroupOf`) for plurals that take part in an occurrence, but never says how the two combine, so a bare-plural rule participant has no stated typing."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Routing is right — indefinite participants send bare \"when P, Q\" to the whenever/rule machinery with a per-occurrence Skolem consequent, `During`-linked, at (STV 1.0 0.9) and with no QuantifierPhrase companion. `Around` and `Against` are correctly the preposition actually used, and the participial modifier `ground` correctly keeps its surface form."}

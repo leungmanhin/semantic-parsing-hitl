@@ -1,0 +1,4 @@
+(: cs_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))
+(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: appr_rule (Implication (Member $x apprentice) (And (Member (sk_approach $x) approach) (Agent (sk_approach $x) $x) (Theme (sk_approach $x) sk_group_1))) (STV 0.0 0.9))
+(: appr_q (QuantifierPhrase apprentice approach "never") (STV 1.0 0.99))

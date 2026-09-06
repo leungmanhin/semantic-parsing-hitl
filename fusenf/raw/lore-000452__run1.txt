@@ -1,0 +1,4 @@
+(: wind_type (Member sk_wind_1 cold_threshold_wind) (STV 1.0 0.99))
+(: wind_genus (Inheritance cold_threshold_wind wind) (STV 1.0 0.99))
+(: nc_name (Name northcove "Northcove") (STV 1.0 0.99))
+(: reach_neg (And (Member sk_reach_1 reach) (Agent sk_reach_1 sk_wind_1) (Theme sk_reach_1 northcove)) (STV 0.0 0.99))

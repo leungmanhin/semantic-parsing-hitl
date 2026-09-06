@@ -1,0 +1,14 @@
+{"id": "lore-000585", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "confirm", "reason": "Start / End are licensed only for an eventuality with a STATED extent ('from X to / until Y', 'since X' → Start, 'until Y' → End), and 'through spring and summer' states no endpoints, so (Start sk_produce_1 spring) asserts that the producing began in spring — a bounded run the sentence never claims."},
+   {"index": 1, "verdict": "confirm", "reason": "Same over-assertion on the other conjunct: coordinated NPs are distributive by default — the predication is replicated per conjunct under the SAME head — so splitting one 'and' coordination across two different heads manufactures an interval instead of two like temporal atoms."},
+   {"index": 2, "verdict": "refute", "reason": "'Predicating over the group as a unit is the default here' licenses the group-only event, and the per-member rule is owed only where each member acts separately; with the single aggregate object 'a steady thread harvest', that rule — (Implication (PartOf $x sk_group_1) (And (Member (sk_produce $x) produce) (Agent (sk_produce $x) $x) (Patient (sk_produce $x) sk_harvest_1))) — would assert that each lantern produces the entire harvest, content the text does not state, so its omission is correct rather than a defect."}
+ ],
+ "gaps_confirmed": [
+   "a bare non-deictic season as a time filler: the structured Time terms cover Year / Month / Day / Weekday / Hour / Minute and the deictic constants are listed only in forms like last_spring / next_summer, so plain 'spring' / 'summer' has no stated encoding",
+   "'through' as a temporal-frame preposition: it is not one of the three words (during / while / throughout) that license During, a synonym head is barred, and no Time-role or preposition-named-oblique routing is stated for it"
+ ],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "The compliant form distributes the coordinated frame over ONE temporal head — two like atoms on sk_produce_1, one per season, rather than Start on the first conjunct and End on the second — but no fully compliant form is licensed for this sentence: the filler shape for a bare non-deictic season is unstated, and the throughout-force of 'through' has no carrier at all (During covers during / while / throughout only, and coining a synonym head is barred), so both are filed as gaps and the frame's span meaning is simply unencodable.",
+ "notes": "The two confirmed issues are one fault seen from each end — an interval was invented out of a coordinated frame — and it is an over-assertion, not merely a loss, which is what makes it a defect rather than gap-territory improvisation. The Hollows proper-noun-premodifier handling (Name string excluding the head noun, opaque Possession, no invented type atom), the thread_harvest genus with 'thread' unexposed, unfused descriptive 'steady', Patient for a created object, and the absent tense atom on the habitual are all correct."}

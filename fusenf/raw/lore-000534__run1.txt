@@ -1,0 +1,4 @@
+(: cauldron_group (GroupOf sk_group_1 cauldron) (STV 1.0 0.99))
+(: e_come_grp (Member sk_come_1 come) (STV 1.0 0.99))
+(: e_come_grp_pat (Patient sk_come_1 sk_group_1) (STV 1.0 0.99))
+(: cauldron_boil_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_come $x) come) (Patient (sk_come $x) $x) (Member (sk_boil $x) boil) (Experiencer (sk_boil $x) $x) (Member (sk_boil $x) slow) (Member $x boil) (Result (sk_come $x) (sk_boil $x)))) (STV 1.0 0.9))

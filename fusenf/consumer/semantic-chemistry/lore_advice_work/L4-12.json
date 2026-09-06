@@ -1,0 +1,200 @@
+{
+ "id": "L4-12",
+ "rule": "IV — Time-keeping",
+ "texts": [
+  "A sand-glass in the Watch is the village's clock.",
+  "The sand-glass measures one watch.",
+  "A watch is a period of the night.",
+  "Keepers carry notched candles for time-keeping."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000343",
+   "sentence": "A sand-glass in the Watch is the village's clock.",
+   "parse": [
+    "(: e_sandglass (Member sk_sandglass_1 sand_glass) (STV 1.0 0.99))",
+    "(: e_watch (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: e_located (LocatedIn sk_sandglass_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: e_clock (Member sk_sandglass_1 clock) (STV 1.0 0.99))",
+    "(: e_village (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: e_poss (Possession sk_sandglass_1 sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000343",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The compound kind sand_glass is missing its mandatory head genus (Inheritance sand_glass glass): it is a transparently modifier + head hyphenated compound whose IS-A does not clearly fail (cf. the instruction set's own 'rainshadow' -> shadow), and decomposition atoms are determined, not optional."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "equative copular with a DEFINITE predicate nominal ('A sand-glass ... is the village's clock') — the categorical section covers 'X is a/an N' and 'X is ADJ' only, so the identity/uniqueness of a definite predicate NP has no carrier and survives only as a plain class atom plus the genitive's Possession"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Watch' correctly takes the capitalized-common-noun default (no Name atom) and 'in' correctly routes to the entity-attached LocatedIn rather than an event Location. The indefinite subject is rightly read as a specific referent (Member, not the definitional-generic Inheritance) because the definite predicate rules the kind reading out, and the predicate's possessor attaches to the subject symbol rather than minting a second clock witness."
+   },
+   "adjudication": {
+    "id": "lore-000343",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The head genus is suppressed when the IS-A fails ('a hot dog is not a dog'), and a sand-glass is not a kind of glass — neither the vessel nor the material — so (Inheritance sand_glass glass) would put a false atom in the KB; the 'rainshadow -> shadow' clause the issue cites only bars treating a solid spelling as a reason to skip a genus whose IS-A does hold."
+     }
+    ],
+    "gaps_confirmed": [
+     "equative copular with a DEFINITE predicate nominal ('A sand-glass ... is the village's clock'): identity / uniqueness has no carrier, so the definite predicate survives only as a plain class atom plus the genitive's Possession"
+    ],
+    "new_gaps": [
+     "an indefinite subject in a copular clause that must be read specifically (a locative restriction plus a definite predicate nominal): Existential states that 'a/an' is generic in a copular / definitional predication and gives no stated exception for the specific reading the definite predicate forces"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Every emitted atom is true and well-typed: 'the Watch' takes the capitalized-common-noun default, entity-attached containment routes to LocatedIn, and the predicate's genitive attaches to the subject symbol rather than minting a second clock witness."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000344",
+   "sentence": "The sand-glass measures one watch.",
+   "parse": [
+    "(: sg_kind (Member sk_sandglass_1 sand_glass) (STV 1.0 0.99))",
+    "(: sg_genus (Inheritance sand_glass glass) (STV 1.0 0.99))",
+    "(: sg_measure (Measure sk_sandglass_1 duration 1 watch) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000344",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The Measure scale slot is filled with `duration`, a dimension no word in the sentence supplies, against the rule that 'a scale no word supplies is never invented' and takes the reserved symbol `unspecified`; `duration` is additionally defined for an eventuality's stated extent ('for three hours', 'lasted two days'), not for an entity."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a measuring instrument's calibrated extent ('the sand-glass measures one watch'): the Measure head predicates a magnitude of the bearer itself and (Measure e duration <n> <unit>) is reserved for an eventuality's extent, so the 'marks out an interval of N units' reading has no licensed carrier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else tracks the words: definite singular as a witness rather than a kind, hyphenated compound genus (Inheritance sand_glass glass) with the noun modifier left in the symbol, magnitude 1 and unit watch taken from the surface, and no status atom on the habitual present."
+   },
+   "adjudication": {
+    "id": "lore-000344",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Measures & units states that a scale no word supplies is never invented and takes the reserved slot symbol `unspecified`; no word here names a dimension ('measures' is not a dimension-naming verb the way weighs->weight or costs->price is — the time reading comes only from knowing what a watch is), and `duration`, defined for an eventuality's own extent, additionally makes the atom read as the sand-glass itself lasting one watch, which the sentence does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "A measuring instrument's calibrated extent ('the sand-glass measures one watch') has no licensed carrier: the Measure head predicates the magnitude of the BEARER, and (Measure e duration <n> <unit>) is defined for an eventuality's own extent — neither expresses 'marks out an interval of N units'."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The nearest compliant form is (Measure sk_sandglass_1 unspecified 1 watch), the reserved symbol for an unstated dimension, but even that attributes the one-watch extent to the sand-glass rather than to the interval it marks out, so the instruction set licenses NO fully compliant form for the instrument reading — the confirmed gap.",
+    "notes": "Everything else tracks the words: the definite singular as a witness, (Inheritance sand_glass glass) as the compound genus with the noun modifier left inside the symbol, magnitude 1 and unit watch taken from the surface, and no status atom on the habitual present."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000345",
+   "sentence": "A watch is a period of the night.",
+   "parse": [
+    "(: watch_genus (Inheritance watch period) (STV 1.0 0.99))",
+    "(: watch_part (PartOf watch night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000345",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a relational-noun complement inside a KIND-level copular predicate ('a watch is a period of the night') - the genitive PartOf/Possession route is specified for individual referents, and nothing says whether the of-restriction rides the subject kind, the predicate nominal, or a fused property (the kind-level fusion route exists only for an ADJECTIVE's PP complement, e.g. sensitive_to_light)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite copular definitional reading (Inheritance, definitional 0.99) and the bare generic 'night' filler are both correct. PartOf is a licensed head but is used here with two kinds, which the instruction set's part-of-object / member-of-group jobs do not describe."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000346",
+   "sentence": "Keepers carry notched candles for time-keeping.",
+   "parse": [
+    "(: nc_gen (Inheritance notched_candle candle) (STV 1.0 0.99))",
+    "(: nc_mod (Inheritance notched_candle notched) (STV 1.0 0.99))",
+    "(: nc_purpose (For notched_candle time_keeping) (STV 1.0 0.99))",
+    "(: keeper_carry (Carry keeper notched_candle) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000346",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The purpose adjunct 'for time-keeping' is attached to the object KIND (notched_candle), which asserts a standing kind-level purpose of notched candles at large instead of the purpose the clause states for the carrying."
+     },
+     {
+      "statement": 2,
+      "issue": "A contingent kind-level claim between two bare kinds carries (STV 1.0 0.99); the confidence dial reaches every kind-level claim whatever its head, so this should be confidence 0.9."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an adjunct (purpose / manner / time PP) on a relational generic: the kind relation is an opaque two-slot atom with no slot for it, and only the adjectivally-restricted SUBJECT case is legislated (that one forces the distributing-rule route instead)",
+     "decomposition of an action / gerund nominalization compound ('time-keeping'): the compound rules cover verb_object compound actions, modifier_noun kinds and agent nominalizations, none of which fits, so the symbol is left whole with no stated licence"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-plural/bare-plural relational-generic route and its 0.9/0.9 TV are right, as is exposing the participial modifier's genus by the predication test. Fusing 'notched candles' into notched_candle is defensible as a genuine subtype, though the instruction set's own participial example ('a laminated worktop') is left unfused."
+   },
+   "adjudication": {
+    "id": "lore-000346",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The words put 'for time-keeping' on the carrying, not on the candles (*Core patterns*: point at the words that put the atom there), so (For notched_candle time_keeping) asserts a standing kind-level function of notched candles at large that the sentence never states; the entity-attached For is licensed only as a noun's own argument PP ('a vehicle for V-ing', 'the search for the heir'), not as a clausal purpose adjunct relocated onto the object kind."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The confidence dial 'reaches every kind-level claim, whatever its head' and sets a contingent claim whose arguments are both bare kinds at 0.9, never the individual-fact 0.99 ('when unsure → empirical'), so (STV 1.0 0.99) on this atom is wrong however the atom is attached."
+     }
+    ],
+    "gaps_confirmed": [
+     "an adjunct (purpose / manner / time PP) on a relational generic: the kind relation is a fixed two-slot opaque atom with no room for it, and only the adjectivally-restricted SUBJECT case is legislated (that one forces the distributing-rule route instead)",
+     "an object-incorporating gerund nominalization ('time-keeping') fits none of the three compound rules — it is not verb_object, not modifier_noun with a head noun, and not an agent nominalization — so the symbol is left whole with no stated licence"
+    ],
+    "new_gaps": [
+     "what a licensed form would have to carry for the confirmed defect: a purpose 'for'-PP on a bare relational generic needs either a third slot on the opaque kind relation, or an explicit licence to take the distributing-rule route (as an adjectivally-restricted subject does) so the adjunct can ride the reified event as the already-licensed (For (sk_carry $x) time_keeping); neither exists, so the sentence's full content has no licensed encoding"
+    ],
+    "decision": "defect",
+    "defect_summary": "For issue 1 the compliant TV is (STV 1.0 0.9); for issue 0 no licensed form carries the adjunct, so the nearest compliant parse keeps (Carry keeper notched_candle) (STV 0.9 0.9) plus the two decomposition atoms, drops the purpose PP and records the gap — an unencodable adjunct never becomes an unqualified assertion.",
+    "notes": "The bare-plural/bare-plural kind-relation route and its 0.9/0.9 TV are right, as is exposing 'notched' by the predication test; fusing notched_candle is defensible as a genuine artifact subtype rather than incidental damage description. Leaving time_keeping undecomposed is acceptable — no compound rule covers it and nothing false is emitted."
+   }
+  }
+ ]
+}

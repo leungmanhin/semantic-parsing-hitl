@@ -1,0 +1,6 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: marra_name (Name marra_tallowhand "Marra Tallowhand") (STV 1.0 0.99))
+(: logs_group (GroupOf sk_logs_1 log) (STV 1.0 0.99))
+(: logs_poss (Possession sk_logs_1 marra_tallowhand) (STV 1.0 0.99))
+(: council_consult (And (Member sk_consult_1 consult) (Agent sk_consult_1 sk_council_1) (Theme sk_consult_1 sk_logs_1)) (STV 0.8 0.9))
+(: council_consult_q (QuantifierPhrase council consult "often") (STV 1.0 0.99))

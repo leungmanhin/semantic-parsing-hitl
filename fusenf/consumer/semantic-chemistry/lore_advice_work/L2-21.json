@@ -1,0 +1,217 @@
+{
+ "id": "L2-21",
+ "rule": "II — Discipline",
+ "texts": [
+  "When a Keeper fails a station, the Council judges that Keeper.",
+  "The Council may strip a Keeper of a station.",
+  "The Council may assign penance duties.",
+  "The Council may bar a Keeper from tending.",
+  "The Council has barred two Keepers permanently.",
+  "The two barred Keepers neglected the Sunken Cove station repeatedly."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000196",
+   "sentence": "When a Keeper fails a station, the Council judges that Keeper.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: keeper_fail_judge_rule (Implication (And (Member $k keeper) (Member $f fail) (Agent $f $k) (Member $s station) (Theme $f $s)) (And (Member (sk_judge $f) judge) (Agent (sk_judge $f) sk_council_1) (Theme (sk_judge $f) $k) (During (sk_judge $f) $f))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000196",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare 'when' with indefinite participants correctly takes the whenever machinery — plain-variable premises, a per-occurrence Skolem consequent keyed on the trigger event, the During link, and (STV 1.0 0.9) — with 'that Keeper' bound back to the premise variable. 'the Council' is treated as a capitalized common noun (typed witness, no Name atom) and, being a singular collective, correctly does not distribute; fail/judge both take Theme by the does-the-object-change test."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000197",
+   "sentence": "The Council may strip a Keeper of a station.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: strip_ev (Member sk_strip_1 strip) (STV 1.0 0.99))",
+    "(: strip_ag (Agent sk_strip_1 sk_council_1) (STV 1.0 0.99))",
+    "(: strip_th (Theme sk_strip_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: strip_of (Of sk_strip_1 sk_station_1) (STV 1.0 0.99))",
+    "(: strip_perm (Permitted sk_strip_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000197",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an INDEFINITE ARGUMENT under a deontic modal (\"may strip a Keeper of a station\") — the norm reads as a standing permission over any Keeper and any station, but the only stated rule for an indefinite argument mints a witness, so the parse asserts one particular keeper and one particular station that the Council may strip; the kind-level reified-norm form is reserved for a kind SUBJECT (\"A wheelwright must lacquer the spigot\"), leaving an institutional permission with indefinite objects no licensed quantified form"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" is correctly a capitalized singular-collective label — common noun, witness, no Name atom — and \"may\" is routed to deontic (Permitted e) at 1.0 0.99 on a definite individual subject rather than the kind-level property form, which the instruction set prescribes. Theme for the dispossessed Keeper is borderline (a loss of office is a state change, arguing for Patient) but is covered by the stated \"when the test is unclear, default to Theme\"."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000198",
+   "sentence": "The Council may assign penance duties.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: assign_ev (Member sk_assign_1 assign) (STV 1.0 0.99))",
+    "(: assign_agent (Agent sk_assign_1 sk_council_1) (STV 1.0 0.99))",
+    "(: assign_theme (Theme sk_assign_1 penance_duty) (STV 1.0 0.99))",
+    "(: duty_genus (Inheritance penance_duty duty) (STV 1.0 0.99))",
+    "(: assign_perm (Permitted sk_assign_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000198",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Deontic 'may' on a specific (non-kind) subject correctly takes the event-level `(Permitted e)` at 1.0/0.99 with no tense atom; 'the Council' is a singular collective so it takes a plain event with no distribution rule and no Name atom, and the non-specific bare-plural object correctly stays the bare fused kind `penance_duty` with its head genus and no exposed noun modifier."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000199",
+   "sentence": "The Council may bar a Keeper from tending.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: bar_ev (Member sk_bar_1 bar) (STV 1.0 0.99))",
+    "(: bar_agent (Agent sk_bar_1 sk_council_1) (STV 1.0 0.99))",
+    "(: bar_theme (Theme sk_bar_1 sk_tend_1) (STV 1.0 0.99))",
+    "(: bar_perm (Permitted sk_bar_1) (STV 1.0 0.99))",
+    "(: tend_ev (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: tend_agent (Agent sk_tend_1 sk_keeper_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000199",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'bar NP from V-ing' follows the causation-flavored-verb pattern exactly: a matrix event with Agent and a Theme on the reified complement, the barred Keeper's role placed only inside the complement, and no tense or status on the non-finite complement. 'The Council' is treated as a capitalized common-noun label (no Name atom) and 'may' takes the deontic Permitted sense on a specific act at 1.0/0.99, both as specified."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000200",
+   "sentence": "The Council has barred two Keepers permanently.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_bar (Member sk_bar_1 bar) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_bar_1 sk_council_1) (STV 1.0 0.99))",
+    "(: keepers_group (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: keepers_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_bar_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_past (Past sk_bar_1) (STV 1.0 0.99))",
+    "(: e_duration (Duration sk_bar_1 permanently) (STV 1.0 0.99))",
+    "(: keepers_bar_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_bar $x) bar) (Agent (sk_bar $x) sk_council_1) (Theme (sk_bar $x) $x) (Past (sk_bar $x)) (Duration (sk_bar $x) permanently))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000200",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "per-member distribution of a counted plural in OBJECT (Theme) position — the group + count + group-event + per-member-rule machinery is specified and illustrated only for plural subjects (\"both dogs barked\", \"all the students passed\"), so whether an object-position counted plural also takes the rule, and what shape its conclusion has (the matrix Agent copied in as a constant), is an interpolation the instruction set does not address"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"two Keepers\" is correctly a counted common-noun group rather than a Name-only individual: the capitalized-plural Name rule covers a plural kind-word LABEL referring as a name, not a quantified plural. (Duration sk_bar_1 permanently) follows the duration-adverb rule with the surface adverb kept, and the rule's (STV 1.0 0.9) matches the plain-plural/count strength and 0.9 confidence."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000201",
+   "sentence": "The two barred Keepers neglected the Sunken Cove station repeatedly.",
+   "parse": [
+    "(: keepers_group (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: keepers_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: keepers_barred_rule (Implication (PartOf $x sk_group_1) (Member $x barred)) (STV 1.0 0.9))",
+    "(: sunken_cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sunken_cove_type (Member sunken_cove station) (STV 1.0 0.99))",
+    "(: e_neglect (Member sk_neglect_1 neglect) (STV 1.0 0.99))",
+    "(: e_neglect_ag (Agent sk_neglect_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_neglect_th (Theme sk_neglect_1 sunken_cove) (STV 1.0 0.99))",
+    "(: e_neglect_past (Past sk_neglect_1) (STV 1.0 0.99))",
+    "(: e_neglect_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_neglect $x) neglect) (Agent (sk_neglect $x) $x) (Theme (sk_neglect $x) sunken_cove) (Past (sk_neglect $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000201",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "(Member sunken_cove station) types the named entity \"Sunken Cove\" as a station even though that name carries its own kind word \"Cove\", so the head noun \"station\" gets no witness and no link to the named place; the proper-noun-premodifier rule would instead give the station its own witness plus an opaque Possession to sunken_cove."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Iterative adverb \"repeatedly\" on a SPECIFIC past episode: the frequency dial and its companion are scoped to the generic/habitual reading, and Every/TimesPer need a stated period or rate - so there is no licensed carrier. The parse correctly drops it, which is exactly the gap the instruction set asks to be recorded.",
+     "A capitalized plural kind-word label carrying a cardinal and a restrictive modifier (\"the two barred Keepers\"): the plural-label rule legislates only the bare name-as-unit use (\"the Wrens beat the visitors\" -> Name-only individual, no GroupOf, no per-member kind from the label word) and says nothing about whether a counted, adjectivally restricted use may take a group witness whose member kind comes from the label word - which is what this parse does.",
+     "\"the <Proper> <lowercase common-noun head>\" (\"the Sunken Cove station\"): the instruction set gives both the Brindle/Kestrel-River route (the proper noun names the head referent) and the Northgate-spokesman route (head noun witness + Possession) for this shape, with no test to choose - and here the two routes disagree about whether Sunken Cove is the station or the place it belongs to."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The count/distribution machinery is right: exact Cardinality on the group, the descriptive modifier \"barred\" distributed by a per-member rule rather than predicated of the group symbol, and the distributive predicate keeping the group event alongside the per-member rule with tense inside the consequent. \"neglect\" correctly takes Theme (the object is not changed) and the participial modifier correctly keeps its adjective form."
+   },
+   "adjudication": {
+    "id": "lore-000201",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'Sunken Cove' is a name whose own capitalized run carries the kind word 'Cove' - which Core patterns says licenses that entity's type atom - so typing the same individual as a station asserts that the cove is a station, and leaves the lowercase common-noun head, the thing actually neglected, with no symbol at all."
+     }
+    ],
+    "gaps_confirmed": [
+     "'Repeatedly', an iterative adverb on a specific past episode, has no licensed carrier: the frequency dial and its companion are generic/habitual-only, Every/TimesPer need a stated period or rate, and the aspectual tags cover only again/still/already/yet - dropping it was correct.",
+     "A capitalized plural kind-word label carrying a cardinal and a restrictive modifier ('the two barred Keepers'): the plural-label rule legislates only the bare name-as-unit use, and says nothing about a counted, adjectivally restricted use taking a group witness whose member kind comes from the label word.",
+     "The 'the <Proper> <lowercase common-noun head>' shape: the Brindle-estuary route (the adjacent word states the named entity's kind) and the Northgate-spokesman route (own witness + Possession) are both stated, with no explicit test choosing between them."
+    ],
+    "new_gaps": [
+     "Nor is it stated whether, under the Northgate route, the premodifying name's own internal kind word still licenses its type atom - here (Member sunken_cove cove) - alongside the head noun's separate witness."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the proper-noun-premodifier route: (Member sk_station_1 station) (Possession sk_station_1 sunken_cove) (Name sunken_cove \"Sunken Cove\"), plus (Member sunken_cove cove) from the kind word inside the name, with sk_station_1 rather than sunken_cove filling Theme in both the group event and the per-member rule.",
+    "notes": "The tie between the two premodifier routes is broken here by the name's own kind word - a cove is not a station, so the lowercase head cannot be stating the named entity's kind. The count and distribution machinery is otherwise correct."
+   }
+  }
+ ]
+}

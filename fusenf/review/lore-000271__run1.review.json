@@ -1,0 +1,10 @@
+{"id": "lore-000271", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "The fused compound kind lantern_keeper is missing its head genus (Inheritance lantern_keeper keeper), which Compound concepts says is always emitted for a modifier_noun with a real head noun and a holding IS-A."},
+               {"statement": 6, "issue": "\"Aelmere Keepers\" is decomposed into (Member $x keeper) + (Possession $x aelmere), minting a per-member keeper kind from a capitalized plural label whose own capitalized run exceeds the bare class word."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A proper noun premodifying a CAPITALIZED plural common-noun head (\"Aelmere Keepers\"): the proper-noun-premodifier rule (parse the head normally, link by Possession) and the capitalized-label rule (a run exceeding the bare class word is a name; a capitalized plural label is Name-only with no per-member kind) prescribe conflicting routes, and nothing in the instruction set selects between them."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The agent-nominalization atoms on lantern_keeper are licensed because the symbol was fused from the surface, and CoAgent for the comitative \"with\"-phrase follows the participant-vs-means test. The definite plural correctly takes a group witness rather than Inheritance."}

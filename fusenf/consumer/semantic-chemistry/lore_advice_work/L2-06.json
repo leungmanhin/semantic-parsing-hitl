@@ -1,0 +1,153 @@
+{
+ "id": "L2-06",
+ "rule": "II — Hesper",
+ "texts": [
+  "Hesper is the Cauldron Hall Warden.",
+  "Hesper became Warden two years ago.",
+  "Hesper does not sit on the Council.",
+  "Hesper reports essence production to the Council at each full moon."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000134",
+   "sentence": "Hesper is the Cauldron Hall Warden.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: hesper_warden (Member hesper warden) (STV 1.0 0.99))",
+    "(: warden_of_hall (Possession hesper cauldron_hall) (STV 1.0 0.99))",
+    "(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000134",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "title-cased office phrase whose premodifier is itself a proper noun (\"the Cauldron Hall Warden\") — the mechanical name cue (\"the name is exactly its capitalized run of words\") would make the whole run one name, while the proper-noun-premodifying-a-common-noun-head rule (whose examples all have a lowercase head: \"a Northgate spokesman\") splits it into named entity + common-noun head; the instruction set does not say which wins when the head noun is capitalized too",
+     "definite predicate nominal / office equative (\"X is THE N\") — there is no carrier for the uniqueness the definite article states, so it is encoded exactly like the indefinite \"X is a N\""
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Under the reading that \"Cauldron Hall\" is the name and \"Warden\" the head noun, the parse follows the Northgate-spokesman pattern exactly — head-noun typing predicated of Hesper, the opaque (Possession hesper cauldron_hall) in possessed-first order, and the kind word inside the name licensing (Member cauldron_hall hall)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000135",
+   "sentence": "Hesper became Warden two years ago.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: become_ev (Member sk_become_1 become) (STV 1.0 0.99))",
+    "(: become_pat (Patient sk_become_1 hesper) (STV 1.0 0.99))",
+    "(: become_tense (Past sk_become_1) (STV 1.0 0.99))",
+    "(: become_time (BeforeBy sk_become_1 now 2 year) (STV 1.0 0.99))",
+    "(: warden_state (Member sk_warden_1 warden) (STV 1.0 0.99))",
+    "(: warden_exp (Experiencer sk_warden_1 hesper) (STV 1.0 0.99))",
+    "(: hesper_warden_flat (Member hesper warden) (STV 1.0 0.99))",
+    "(: become_result (Result sk_become_1 sk_warden_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000135",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the change-of-kind resultative shape exactly (subject as Patient of the become event, same-subject reified state, unwrapped flat copular atom, Result link) and the 'N units ago' anchor (BeforeBy ... now 2 year). 'Warden' correctly stays a lowercase common-noun class with no Name atom, per the capitalized-common-noun default."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000136",
+   "sentence": "Hesper does not sit on the Council.",
+   "parse": [
+    "(: t5_hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: t5_council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: t5_no_sit (And (Member sk_sit_1 sit) (Experiencer sk_sit_1 hesper) (On sk_sit_1 sk_council_1)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000136",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A POSTURAL verb in a non-spatial (membership) sense — \"sit on the Council\": the \"Where a THING is\" rule says a bare position clause mints NO event whatever its verb and puts the non-containment preposition entity-attached ((On hesper sk_council_1)), while the prepositional-verb rule reifies the verb as an event and puts the NP in the preposition's oblique ((On sk_sit_1 sk_council_1)); the instruction set gives no precedence, and the two yield different negation bundles."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Negation shape is correct: one strength-0.0 (And ...) over the event class and role atoms, with the presupposed definite \"the Council\" typed at top level and the Name atom projected out, and no Name for a capitalized common-noun-only label. Experiencer is the right subject role for a stative intransitive under the given tests."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000137",
+   "sentence": "Hesper reports essence production to the Council at each full moon.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: e_report (Member sk_report_1 report) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_report_1 hesper) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_report_1 essence_production) (STV 1.0 0.99))",
+    "(: ep_genus (Inheritance essence_production production) (STV 1.0 0.99))",
+    "(: e_recipient (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_time (Time sk_report_1 full_moon) (STV 1.0 0.99))",
+    "(: e_every (Every sk_report_1 1 month) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000137",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 8,
+      "issue": "(Every sk_report_1 1 month) asserts a calendar-monthly period the text never supplies - \"at each full moon\" states no period or rate, and the instruction set both restricts the named-slot cycle mapping to calendar slot words (weekday to week, day-part to day, month name to year) and says Every/TimesPer need a stated period or rate, leaving the unrepresentable adverbial out rather than mis-slotting it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a frequency adjunct whose slot is a recurring non-calendar occurrence (\"at each full moon\") - it is not one of the structured Time terms, not a day-part constant, and not the clausal \"every time / whenever\" occurrence-rule form, so neither the flat habitual slot+cycle route nor the Implication route is licensed for it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is correct: report with an entity object keeps Agent (Experiencer is reserved for a sealed finite complement), \"the Council\" is a capitalized common-noun label so it takes a witness and no Name atom, essence_production gets its head genus with the noun modifier correctly not exposed, and the habitual present takes no tense atom. Recording the slot as a bare (Time sk_report_1 full_moon) symbol adds no content and is the least-committal option available."
+   },
+   "adjudication": {
+    "id": "lore-000137",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "No word in the sentence supplies \"month\" — the named-slot-implies-cycle mapping is stated only for calendar slot words (weekday to week, day-part to day, month name to year), and Quantifiers says Every/TimesPer need a stated period or rate — so (Every sk_report_1 1 month) is world knowledge added as content, and a false approximation besides (a lunar cycle is not a calendar month)."
+     }
+    ],
+    "gaps_confirmed": [
+     "A frequency adjunct whose recurring slot is a non-calendar named occurrence (\"at each full moon\"): it is not a structured Time term, not a day-part constant, and not a clause, so neither the flat slot+cycle route nor the \"every time / whenever\" occurrence-rule route can carry its recurrence."
+    ],
+    "new_gaps": [
+     "A named-time constant that is itself a COMPOUND (full_moon) has no stated decomposition doctrine: Compound concepts would mandate a head genus (and, for a gradable predicable modifier, a modifier genus) for a kind symbol, while Time says a named/deictic time is a bare symbol that never takes a Member atom — so it is undecided whether such a constant owes any Inheritance atoms at all."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is to drop (Every sk_report_1 1 month) and keep (Time sk_report_1 full_moon) alone with the unmarked (habitual-default) event; for the \"each\" recurrence itself the instruction set licenses NO form — full_moon is outside the calendar-slot cycle table and no period or rate is stated — so it is left out and recorded as the gap above.",
+    "notes": "Everything else is correct: Agent for \"report\" with a nominal object (Experiencer is reserved for a sealed finite complement), \"the Council\" as a capitalized common-noun label with a witness and no Name atom, the essence_production head genus with the noun modifier correctly unexposed, and no tense atom on the habitual present. (Time sk_report_1 full_moon) is itself licensed, since a named time stays a bare symbol."
+   }
+  }
+ ]
+}

@@ -1,0 +1,3 @@
+(: threads_arrive_rule (Implication (Member $x thread) (And (Member (sk_arrive $x) arrive) (Theme (sk_arrive $x) $x) (Location (sk_arrive $x) cauldron_hall) (Time (sk_arrive $x) morning) (Every (sk_arrive $x) 1 day))) (STV 0.9 0.9))
+(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))
+(: hall_name (Name cauldron_hall "Cauldron Hall") (STV 1.0 0.99))

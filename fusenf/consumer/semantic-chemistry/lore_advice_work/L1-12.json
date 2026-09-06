@@ -1,0 +1,156 @@
+{
+ "id": "L1-12",
+ "rule": "I — Cold Sea",
+ "texts": [
+  "The Cold Sea stretches north of the cliffs.",
+  "The Cold Sea is grey-green in summer.",
+  "The Cold Sea is slate-grey in winter.",
+  "The fishing boats stay near the inlet.",
+  "The cold-threshold wind comes off the Cold Sea."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000089",
+   "sentence": "The Cold Sea stretches north of the cliffs.",
+   "parse": [
+    "(: cs_type (Member cold_sea sea) (STV 1.0 0.99))",
+    "(: cs_name (Name cold_sea \"Cold Sea\") (STV 1.0 0.99))",
+    "(: cliffs_grp (GroupOf sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: cs_northof (NorthOf cold_sea sk_cliff_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000089",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'north of' is a non-containment multi-word preposition, so the CamelCase-joined entity-attached head NorthOf is licensed by the same open licence as NextTo / AcrossTheLaneFrom, and 'stretches' correctly mints no event under the bare-position-clause rule; the definite plural 'the cliffs' rightly becomes a group witness."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000090",
+   "sentence": "The Cold Sea is grey-green in summer.",
+   "parse": [
+    "(: t4_sea_name (Name cold_sea \"Cold Sea\") (STV 1.0 0.99))",
+    "(: t4_sea_type (Member cold_sea sea) (STV 1.0 0.99))",
+    "(: t4_sea_color (Member cold_sea grey_green) (STV 1.0 0.99))",
+    "(: t4_gg_state (Member sk_greygreen_1 grey_green) (STV 1.0 0.99))",
+    "(: t4_gg_exp (Experiencer sk_greygreen_1 cold_sea) (STV 1.0 0.99))",
+    "(: t4_gg_time (Time sk_greygreen_1 summer) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000090",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "SEASONS as time points: the Time-term inventory is Year / Month / Day / Weekday / Hour / Minute, and seasons appear only as DEICTIC constants (\"last_spring\", \"next_summer\"); a bare non-deictic \"in summer\" has no stated term or bare-symbol licence, so (Time e summer) is an unlicensed extension of the day-part convention.",
+     "A RECURRING/seasonal restriction on a copular claim about an individual: the copular-with-time-modifier rule mandates the flat dual-emit half, which here asserts (Member cold_sea grey_green) unrestrictedly and so widens the claim past what the sentence says, while ConditionalProperty — the mechanism for a restricted property — takes a KIND in its first slot and is unavailable for a named individual."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The multi-word name is correctly one opaque symbol with its in-name kind atom and no \"cold\" modifier genus, and the reify-plus-flat shape follows the copular-with-time-modifier rule as written. Minor: the state witness is sk_greygreen_1 rather than sk_grey_green_1, so its stem does not match the class symbol."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000091",
+   "sentence": "The Cold Sea is slate-grey in winter.",
+   "parse": [
+    "(: cs_name (Name cold_sea \"Cold Sea\") (STV 1.0 0.99))",
+    "(: cs_type (Member cold_sea sea) (STV 1.0 0.99))",
+    "(: sg_state (Member sk_slategrey_1 slate_grey) (STV 1.0 0.99))",
+    "(: sg_exp (Experiencer sk_slategrey_1 cold_sea) (STV 1.0 0.99))",
+    "(: sg_time (Time sk_slategrey_1 winter) (STV 1.0 0.99))",
+    "(: cs_slategrey_flat (Member cold_sea slate_grey) (STV 1.0 0.99))",
+    "(: sg_genus (Inheritance slate_grey grey) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000091",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare non-deictic season as a Time filler ('in winter') — the Time section defines structured terms (Year/Month/Day/Weekday/Hour/Minute), speech-anchored deictic constants (last_spring / next_summer), and day-part bare symbols, but gives no form for a generic, non-deictic season",
+     "a hyphenated adjectival compound whose head is an ADJECTIVE ('slate-grey') — Compound concepts licenses the genus atom for a modifier_noun compound whose last word is a real head noun, and explicitly leaves adjective compounds opaque, so (Inheritance slate_grey grey) is an extrapolation from the solid/hyphenated-spelling boundary note",
+     "a condition- or season-scoped property of an INDIVIDUAL — ConditionalProperty takes a kind in its first slot, so the restriction can only ride the reified state's Time atom while the mandated flat copular dual-emit asserts the property unrestricted"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The copular-with-time-modifier dual-emit (reified state + Experiencer + Time + flat copular atom, no tense) is applied exactly as specified, and 'Cold' correctly stays inside the capitalized name run with no (Member cold_sea cold). The state witness sk_slategrey_1 drops the class symbol's internal underscore (sk_slate_grey_1 is the mechanical form) — cosmetic, meaning unaffected."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000092",
+   "sentence": "The fishing boats stay near the inlet.",
+   "parse": [
+    "(: boats_group (GroupOf sk_group_1 fishing_boat) (STV 1.0 0.99))",
+    "(: boats_genus (Inheritance fishing_boat boat) (STV 1.0 0.99))",
+    "(: inlet_type (Member sk_inlet_1 inlet) (STV 1.0 0.99))",
+    "(: boats_near_rule (Implication (PartOf $x sk_group_1) (Near $x sk_inlet_1)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000092",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'stay / remain' + locative PP: the continuative component ('stay near' is not merely 'be near') has no carrier once the clause is routed to the position-atom form — the instruction set registers this as a gap to record rather than encode",
+     "a stative position predicate over a definite plural group: the set does not say whether a group-level position atom accompanies the per-member distribution rule (the event-side doctrine keeps group event plus rule, while the resultative/copular doctrine bars the group-symbol atom)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "fishing_boat is fused with its genus only and no modifier genus, which is correct for a noun modifier, and the rule's (STV 1.0 0.9) matches the plain-plural distribution convention. The parse emits only the per-member rule with no group-level (Near sk_group_1 ...) atom — defensible under the bar on predicating member states of the group symbol."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000093",
+   "sentence": "The cold-threshold wind comes off the Cold Sea.",
+   "parse": [
+    "(: wind_type (Member sk_wind_1 cold_threshold_wind) (STV 1.0 0.99))",
+    "(: wind_genus (Inheritance cold_threshold_wind wind) (STV 1.0 0.99))",
+    "(: sea_type (Member cold_sea sea) (STV 1.0 0.99))",
+    "(: sea_name (Name cold_sea \"Cold Sea\") (STV 1.0 0.99))",
+    "(: come_ev (Member sk_come_1 come) (STV 1.0 0.99))",
+    "(: come_pat (Patient sk_come_1 sk_wind_1) (STV 1.0 0.99))",
+    "(: come_src (Source sk_come_1 cold_sea) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000093",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"off\" is licensed as Source by the motion-path rule; a wind is a gas, so the intransitive natural-force subject correctly takes Patient, and the kind word inside \"Cold Sea\" licenses (Member cold_sea sea). Noun modifier \"cold-threshold\" correctly gets no modifier genus, head genus emitted."
+   },
+   "adjudication": null
+  }
+ ]
+}

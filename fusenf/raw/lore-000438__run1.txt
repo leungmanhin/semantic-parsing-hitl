@@ -1,0 +1,6 @@
+(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: fmt_genus (Inheritance full_moon_tide tide) (STV 1.0 0.99))
+(: fmt_1 (Member sk_full_moon_tide_1 full_moon_tide) (STV 1.0 0.99))
+(: cr_genus (Inheritance chalky_residue residue) (STV 1.0 0.99))
+(: cr_mod (Inheritance chalky_residue chalky) (STV 1.0 0.99))
+(: sb_turns_residue (Implication (And (Member $x salt_bloom) (From $x sk_full_moon_tide_1)) (And (Member (sk_turn $x) turn) (Patient (sk_turn $x) $x) (Member (sk_residue $x) chalky_residue) (Experiencer (sk_residue $x) $x) (Member $x chalky_residue) (Result (sk_turn $x) (sk_residue $x)))) (STV 0.9 0.9))

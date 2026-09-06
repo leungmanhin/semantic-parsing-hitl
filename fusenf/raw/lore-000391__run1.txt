@@ -1,0 +1,7 @@
+(: skycat_m (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: e_have (Member sk_have_1 have) (STV 1.0 0.99))
+(: e_holder (Holder sk_have_1 sk_sky_cat_1) (STV 1.0 0.99))
+(: wing_grp (GroupOf sk_wing_1 wing) (STV 1.0 0.99))
+(: e_theme (Theme sk_have_1 sk_wing_1) (STV 1.0 0.99))
+(: wing_rule (Implication (PartOf $x sk_wing_1) (And (Member $x broad) (Member $x feathered))) (STV 1.0 0.9))

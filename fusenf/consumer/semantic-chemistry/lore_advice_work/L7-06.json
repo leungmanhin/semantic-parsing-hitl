@@ -1,0 +1,267 @@
+{
+ "id": "L7-06",
+ "rule": "VII — The deep ebb",
+ "texts": [
+  "Retreating spring tides sometimes trap small fish in the tide-pools.",
+  "Keepers take the trapped fish home on harvest mornings.",
+  "The deep ebb is a slow underwater current at the harbor mouth.",
+  "The deep ebb runs out of the harbor at low tide.",
+  "The water of the deep ebb tastes slightly bitter.",
+  "The Cauldron Hall Warden prefers deep-ebb water."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000460",
+   "sentence": "Retreating spring tides sometimes trap small fish in the tide-pools.",
+   "parse": [
+    "(: st_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: tp_group (GroupOf sk_tide_pool_1 tide_pool) (STV 1.0 0.99))",
+    "(: retreat_trap_rule (Implication (And (Member $x spring_tide) (Member $x retreating)) (And (Member (sk_trap $x) trap) (Agent (sk_trap $x) $x) (Theme (sk_trap $x) (sk_fish $x)) (Member (sk_fish $x) fish) (Member (sk_fish $x) small) (Location (sk_trap $x) sk_tide_pool_1))) (STV 0.5 0.9))",
+    "(: retreat_trap_q (QuantifierPhrase spring_tide trap \"sometimes\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000460",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an uncounted bare-plural indefinite object inside a generic rule's conclusion (\"trap small fish\") — the instruction set covers bare-plural objects only in EPISODIC clauses (existential group witness) and counted objects under a universal (Skolem group + Cardinality), so nothing decides between (Member (sk_fish $x) fish) and (GroupOf (sk_fish $x) fish); the parse's singular Skolem individual loses the plurality of \"small fish\""
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route with \"retreating\" as a premise conjunct kept in adjective (participle) form, and \"sometimes\" correctly sets rule strength 0.5 plus its QuantifierPhrase companion. The definite plural \"the tide-pools\" is a top-level-asserted group constant, so its appearance in the rule conclusion is licensed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000461",
+   "sentence": "Keepers take the trapped fish home on harvest mornings.",
+   "parse": [
+    "(: keepers_take_rule (Implication (Member $x keeper) (And (Member (sk_take $x) take) (Agent (sk_take $x) $x) (Theme (sk_take $x) (sk_fish $x)) (Member (sk_fish $x) fish) (Member (sk_fish $x) trapped) (Goal (sk_take $x) home) (Time (sk_take $x) harvest_morning))) (STV 0.9 0.9))",
+    "(: harvest_morning_genus (Inheritance harvest_morning morning) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000461",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The definite object \"the trapped fish\" is encoded as a per-keeper dependent Skolem function (sk_fish $x), with its typing atoms (Member (sk_fish $x) fish) / (Member (sk_fish $x) trapped) buried inside the rule, instead of the shared top-level constant witness the instruction set uses for a definite inside a generic rule (as sk_causeway_1 in \"Foxes rarely cross the causeway\" and sk_barrel_1 in \"Coopers do not caulk the barrel\"); the Skolem-function form is reserved for dependent INDEFINITES, so this asserts a distinct fish per keeper and drops the definite's presupposed existence from top level."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "If \"the trapped fish\" is read as plural, the top-level form would additionally be a group witness (GroupOf sk_fish_1 fish) rather than a single Member. The bare-generic rule route, 0.9/0.9 TV with no QuantifierPhrase, Theme for take, Goal home, and the harvest_morning Time symbol with its suppressed noun-modifier genus are all correct."
+   },
+   "adjudication": {
+    "id": "lore-000461",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The instruction set puts a definite object of a generic rule at top level as a shared constant witness (sk_causeway_1 in Foxes rarely cross the causeway; sk_barrel_1 in Coopers do not caulk the barrel) and reserves the dependent Skolem function for existentials (the forall-exists each-its-own case), so (sk_fish $x) with its typing sealed inside the rule both mints a distinct fish per keeper — content the text does not state — and withholds the definite's presupposed existence from top level."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "a definite object inside a generic rule whose referent covaries with the quantified subject (the trapped fish = whatever fish each keeper trapped): the licensed top-level constant asserts one shared fish for all keepers, while the dependent-Skolem form is reserved for indefinites, so no licensed form carries a covarying definite",
+     "a bare-plural recurring time adjunct on a habitual (on harvest mornings) fills the Time slot but gets no stated cycle, unlike the every-Monday family that adds (Every e 1 <cycle>)"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form lifts the definite object out of the rule as a shared top-level witness — (Member sk_fish_1 fish) (Member sk_fish_1 trapped), or (GroupOf sk_fish_1 fish) with the modifier distributed on the plural reading — and refers to it inside the rule as (Theme (sk_take $x) sk_fish_1), exactly as the causeway and barrel examples do.",
+    "notes": "Everything else holds: the bare-generic rule route at 0.9/0.9 with no QuantifierPhrase, Theme for the displacement verb, the bare Goal home, trapped as a participial modifier, and harvest_morning with genus morning and the noun modifier unexposed."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000462",
+   "sentence": "The deep ebb is a slow underwater current at the harbor mouth.",
+   "parse": [
+    "(: ebb_type (Member sk_ebb_1 ebb) (STV 1.0 0.99))",
+    "(: ebb_deep (Member sk_ebb_1 deep) (STV 1.0 0.99))",
+    "(: ebb_current (Member sk_ebb_1 current) (STV 1.0 0.99))",
+    "(: ebb_slow (Member sk_ebb_1 slow) (STV 1.0 0.99))",
+    "(: ebb_underwater (Member sk_ebb_1 underwater) (STV 1.0 0.99))",
+    "(: mouth_type (Member sk_mouth_1 mouth) (STV 1.0 0.99))",
+    "(: mouth_part (PartOf sk_mouth_1 sk_harbor_1) (STV 1.0 0.99))",
+    "(: harbor_type (Member sk_harbor_1 harbor) (STV 1.0 0.99))",
+    "(: ebb_loc (LocatedIn sk_ebb_1 sk_mouth_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000462",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite singular subject as a typed witness, 'at' routed to LocatedIn per the containment list, and 'harbor mouth' taken as the possessor/part compound (the 'car engine' shape) rather than fused. That last atom sits between two rules that pull opposite ways: the compound rule prescribes PartOf, while 'a place inside a place is LocatedIn, never PartOf' would prescribe containment for a geographic sub-region."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000463",
+   "sentence": "The deep ebb runs out of the harbor at low tide.",
+   "parse": [
+    "(: ebb_type (Member sk_ebb_1 deep_ebb) (STV 1.0 0.99))",
+    "(: ebb_genus (Inheritance deep_ebb ebb) (STV 1.0 0.99))",
+    "(: ebb_mod (Inheritance deep_ebb deep) (STV 1.0 0.99))",
+    "(: run_ev (Member sk_run_1 run) (STV 1.0 0.99))",
+    "(: run_pat (Patient sk_run_1 sk_ebb_1) (STV 1.0 0.99))",
+    "(: harbor_type (Member sk_harbor_1 harbor) (STV 1.0 0.99))",
+    "(: run_src (Source sk_run_1 sk_harbor_1) (STV 1.0 0.99))",
+    "(: run_time (Time sk_run_1 low_tide) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000463",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'at low tide' — a recurring natural-phase time adjunct: the Time section licenses structured calendar/clock terms, deictic constants and day-part symbols (morning/night), but says nothing about a tidal or other natural-phase phrase, nor whether a multi-word time symbol like low_tide takes Compound-concepts decomposition (the parse emitted the bare symbol with no genus, treating it like a day-part)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Source for 'out of the harbor' is right (the PP answers whence, so a named role applies rather than a preposition-named oblique), and Patient on the ebb matches the 'the tide receded' natural-process example. Fusing deep_ebb with a 'deep' modifier genus rides a term-of-art reading of the phrase; on an incidental-description reading it would instead be two atoms."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000464",
+   "sentence": "The water of the deep ebb tastes slightly bitter.",
+   "parse": [
+    "(: e3_water_type (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: e3_ebb_type (Member sk_ebb_1 deep_ebb) (STV 1.0 0.99))",
+    "(: e3_ebb_genus (Inheritance deep_ebb ebb) (STV 1.0 0.99))",
+    "(: e3_ebb_mod (Inheritance deep_ebb deep) (STV 1.0 0.99))",
+    "(: e3_water_part (PartOf sk_water_1 sk_ebb_1) (STV 1.0 0.99))",
+    "(: e3_bitter (Member sk_water_1 bitter) (STV 1.0 0.99))",
+    "(: e3_degree (Degree sk_water_1 bitter slightly) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000464",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The sensory linking verb 'tastes' is silently dropped and its complement asserted as a flat unqualified property `(Member sk_water_1 bitter)`, which is exactly the move Core patterns bars -- an unencodable qualifier must not become an unqualified assertion."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "copular-like sensory linking verbs with a predicative adjective complement ('tastes / smells / sounds / looks / feels ADJ') -- the two-kinds-of-clause split sends any non-'is' verb to a reified event, but an event has no slot for a predicate-adjective complement and the surface subject is the stimulus rather than an Experiencer, so no licensed form carries the sensory-modality restriction"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`(Degree sk_water_1 bitter slightly)` beside the retained positive is exactly the downtoner treatment the Degree rules prescribe, and `PartOf` for the genitive of-phrase is a defensible reading of the part/component test. Fusing 'deep ebb' into `deep_ebb` is borderline -- 'deep' is a size/dimension adjective, which the compound rules list under the never-fuse 'incidental description' class, so only a term-of-art reading licenses it; given the fusion, the exposed modifier genus is correctly mandatory."
+   },
+   "adjudication": {
+    "id": "lore-000464",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "\"taste\" is a linking verb, so *Two kinds of clause*'s copular branch (\"X is ADJ\") reaches it, and `bitter` is itself a gustatory property, so `(Member sk_water_1 bitter)` is true of the sentence's content; the qualifier the Core-patterns bar protects — \"slightly\" — was NOT dropped but carried by the licensed `(Degree sk_water_1 bitter slightly)`, exactly the downtoner treatment *Comparatives & degree* prescribes."
+     }
+    ],
+    "gaps_confirmed": [
+     "Sensory linking verbs with a predicative adjective complement (\"tastes / smells / sounds / looks / feels ADJ\") have no carrier for the sensory modality: the verbal route reifies an event that has no slot for a predicate-adjective complement, and only *seem / appear* are given a routing (the epistemic operators)."
+    ],
+    "new_gaps": [
+     "Whether a dimension adjective naming a recognized sub-kind (\"the deep ebb\") fuses into a compound kind is undecided: *Compound concepts* files size/dimension adjectives under the never-fuse \"incidental description\" class, yet a term-of-art reading is available, and the two routes yield different atoms (`(Member sk_ebb_1 deep_ebb)` + two `Inheritance` atoms vs. two flat `Member` atoms)."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The lost sensory modality is a real representational loss but a registered limitation, not a defect — every emitted atom is true of the content and well-typed per the vocabulary. `PartOf` for the of-phrase is a licensed reading of the part/component test."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000465",
+   "sentence": "The Cauldron Hall Warden prefers deep-ebb water.",
+   "parse": [
+    "(: n3_hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: n3_hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: n3_warden_type (Member sk_warden_1 warden) (STV 1.0 0.99))",
+    "(: n3_warden_poss (Possession sk_warden_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: n3_water_genus (Inheritance deep_ebb_water water) (STV 1.0 0.99))",
+    "(: n3_prefer_ev (Member sk_prefer_1 prefer) (STV 1.0 0.99))",
+    "(: n3_prefer_exp (Experiencer sk_prefer_1 sk_warden_1) (STV 1.0 0.99))",
+    "(: n3_prefer_stim (Stimulus sk_prefer_1 deep_ebb_water) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000465",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The capitalized run \"Cauldron Hall Warden\" is split, the Name atom going only to the substring \"Cauldron Hall\", where Names and casing treats a capitalized run that exceeds the bare class word (\"Warden\") as the referent's own name - one opaque symbol, one Name atom, plus an ordinary type atom from the name-internal kind word."
+     },
+     {
+      "statement": 3,
+      "issue": "(Possession sk_warden_1 cauldron_hall) asserts a warden-to-hall association that the text conveys only by juxtaposition; it is licensed by the proper-noun-premodifier rule but not if the whole capitalized run is the name."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a proper-noun premodifier whose common-noun head is itself CAPITALIZED (\"the Cauldron Hall Warden\"): the premodifier rule's examples all have lowercase heads (\"a Northgate spokesman\"), while the casing rule states that an adjacent LOWERCASE common noun is not part of a name and that the capitalized run exceeding the bare class word signals name-hood - nothing resolves which rule wins"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything downstream of the name question conforms: prefer takes Experiencer/Stimulus by the progressive test, deep_ebb_water is a bare-kind filler with genus water and its noun modifier correctly unexposed, and the simple present correctly gets no status atom."
+   },
+   "adjudication": {
+    "id": "lore-000465",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Names and casing has a rule naming exactly this construction — \"A proper noun premodifying a common-noun head ... the head never joins the Name string. Parse the head noun normally ... and link it to the named entity with the opaque Possession\" — and its collision with the capitalized-run test is the very gap the reviewer files, so this is improvisation in gap territory with no false or ill-typed atom."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "(Possession sk_warden_1 cauldron_hall) is the explicit \"loose-association licence\" of that same rule (the Northgate spokesman example is atom-for-atom this shape), and Possession is opaque — it covers association without having to mean ownership — so the atom is true of what the phrase conveys."
+     }
+    ],
+    "gaps_confirmed": [
+     "a proper-noun premodifier whose common-noun head is itself CAPITALIZED (\"the Cauldron Hall Warden\"): the premodifier rule's examples all have lowercase heads, while \"the name is exactly its capitalized run of words\" and \"the capitalized run exceeds the bare class word\" point the other way, and nothing states which rule wins"
+    ],
+    "new_gaps": [
+     "the two candidate routes differ in CONTENT, not just notation: a whole-run name (cauldron_hall_warden) is one opaque symbol carrying no modifier atoms, so it records neither the hall as an entity nor the warden-to-hall link, while the premodifier route records both but no whole-run Name — the doctrine call has to say which content is kept, not merely which symbol is minted"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The occupational-premodifier line (\"Chief engineer Priya Rao\" — an office premodifier stays out of the Name string and becomes an ordinary typing atom) further supports treating \"Warden\" as typing rather than name material. Downstream the parse is clean: Experiencer/Stimulus for stative prefer, deep_ebb_water as a bare-kind filler with genus water and its noun modifier unexposed, no status atom on the simple present."
+   }
+  }
+ ]
+}

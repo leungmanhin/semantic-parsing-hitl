@@ -1,0 +1,9 @@
+{"id": "lore-000370", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "The compound action's incorporated object is emitted as `(Goal enter_cauldron_hall cauldron_hall)`, but Compound concepts mandates `(Patient <compound> <object>)` for a verb_object action and Goal is reserved for a \"to\"-phrase oblique — \"enter\" takes its object with no preposition, and the Goal slot breaks the specified query shape `(And (Inheritance $k (can $a)) (Patient $a $w))`."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a kind-level capability or deontic norm whose action takes a SPECIFIC NAMED individual as its object (\"a wraith cannot enter Cauldron Hall\") — the reified `(can <action>)` form has no participant slot, and the only way to carry the name is to fuse it into the action symbol (`enter_cauldron_hall`), which the rule that names sit outside Compound concepts bars"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Routing is right: a modal over an indefinite kind subject keys on the modal, so the kind-level capability property at strength 0.0 / empirical confidence 0.9 is correct, as is Name + kind atom for the multi-word place name. Only the incorporated object's role head and the name-inside-a-compound-action question are at issue."}

@@ -1,0 +1,2 @@
+(: e2_council (Member sk_council_1 council) (STV 1.0 0.99))
+(: e2_rule (Implication (And (Member $k keeper) (Member $x retire) (Agent $x $k)) (And (Member (sk_restaff $x) re_staff) (Agent (sk_restaff $x) sk_council_1) (Patient (sk_restaff $x) (sk_station $k)) (Member (sk_station $k) station) (Possession (sk_station $k) $k) (During (sk_restaff $x) $x))) (STV 1.0 0.9))

@@ -1,0 +1,8 @@
+(: vesh_name (Name old_vesh "Old Vesh") (STV 1.0 0.99))
+(: e_retire (Member sk_retire_1 retire) (STV 1.0 0.99))
+(: e_agent (Agent sk_retire_1 old_vesh) (STV 1.0 0.99))
+(: e_source (Source sk_retire_1 active_duty) (STV 1.0 0.99))
+(: e_past (Past sk_retire_1) (STV 1.0 0.99))
+(: e_ago (BeforeBy sk_retire_1 now 11 year) (STV 1.0 0.99))
+(: ad_genus (Inheritance active_duty duty) (STV 1.0 0.99))
+(: ad_mod (Inheritance active_duty active) (STV 1.0 0.99))

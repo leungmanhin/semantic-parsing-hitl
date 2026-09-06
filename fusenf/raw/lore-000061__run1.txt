@@ -1,0 +1,7 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: table_type (Member sk_table_1 oak_table) (STV 1.0 0.99))
+(: table_genus (Inheritance oak_table table) (STV 1.0 0.99))
+(: table_long (Member sk_table_1 long) (STV 1.0 0.99))
+(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))
+(: table_loc (LocatedIn sk_table_1 sk_watch_1) (STV 1.0 0.99))
+(: council_loc (LocatedIn sk_council_1 sk_table_1) (STV 1.0 0.99))

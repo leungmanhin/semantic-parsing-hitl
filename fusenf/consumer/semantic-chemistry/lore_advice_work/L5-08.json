@@ -1,0 +1,190 @@
+{
+ "id": "L5-08",
+ "rule": "V — Stories",
+ "texts": [
+  "The villagers tell wraith stories at Lantern-night.",
+  "A favorite story concerns the bad winter of sixty-three years ago.",
+  "Four wraiths rose in succession sixty-three years ago.",
+  "In that winter three Keepers walked the Cove Stair together every evening."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000382",
+   "sentence": "The villagers tell wraith stories at Lantern-night.",
+   "parse": [
+    "(: villagers_grp (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))",
+    "(: lantern_night_name (Name lantern_night \"Lantern-night\") (STV 1.0 0.99))",
+    "(: wstory_genus (Inheritance wraith_story story) (STV 1.0 0.99))",
+    "(: tell_ev (Member sk_tell_1 tell) (STV 1.0 0.99))",
+    "(: tell_ag (Agent sk_tell_1 sk_villagers_1) (STV 1.0 0.99))",
+    "(: tell_th (Theme sk_tell_1 wraith_story) (STV 1.0 0.99))",
+    "(: tell_time (Time sk_tell_1 lantern_night) (STV 1.0 0.99))",
+    "(: villagers_tell_rule (Implication (PartOf $x sk_villagers_1) (And (Member (sk_tell $x) tell) (Agent (sk_tell $x) $x) (Theme (sk_tell $x) wraith_story) (Time (sk_tell $x) lantern_night))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000382",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "\"Lantern-night\" carries its kind word inside the name, which *Names and casing* says is stated in one ordinary type atom beside the `Name` fact (its \"the Kestrel River\" example emits `(Member kestrel_river river)`), but no `(Member lantern_night night)` atom is emitted."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural to group witness, plus the group event and the per-member distribution rule at (STV 1.0 0.9) for the distributive predicate, is right; so is the bare kind filler for the non-specific plural object and the `Time` head for the named time."
+   },
+   "adjudication": {
+    "id": "lore-000382",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "*Names and casing* requires the entity's kind in one ordinary type atom \"whether the kind word sits inside the name or beside it\" - its own \"the Kestrel River\" -> (Member kestrel_river river) example - and *Core patterns* names \"a kind word inside the name itself\" as a licensing source, so the missing (Member lantern_night night) leaves a named referent typed nowhere."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A NAMED TIME whose name carries its kind word (\"Lantern-night\", \"Midsummer Eve\") falls between two sections that do not meet: *Time* says a named time \"stays a bare symbol\" on Time and bars Member atoms for deictic times, while *Names and casing* mandates the type atom for a name carrying its kind word. The kind word here (night) is additionally a reserved day-part constant on Time, so the type atom overloads that symbol - a licensed form would need to state whether a Time-filler name is typed at all and, if so, which symbol carries the day-part sense."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds (Member lantern_night night) (STV 1.0 0.99) beside the existing Name atom; the rest of the parse stands.",
+    "notes": "The rest is doctrinal: group witness for the definite plural, group event plus the per-member distribution rule for the distributive predicate, the bare kind filler for the non-specific plural object, the compound's head genus with the noun modifier unexposed, and no status atom on the habitual present."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000383",
+   "sentence": "A favorite story concerns the bad winter of sixty-three years ago.",
+   "parse": [
+    "(: story_ty (Member sk_story_1 story) (STV 1.0 0.99))",
+    "(: story_fav (Member sk_story_1 favorite) (STV 1.0 0.99))",
+    "(: concern_ev (Member sk_concern_1 concern) (STV 1.0 0.99))",
+    "(: concern_ag (Agent sk_concern_1 sk_story_1) (STV 1.0 0.99))",
+    "(: winter_ty (Member sk_winter_1 winter) (STV 1.0 0.99))",
+    "(: winter_bad (Member sk_winter_1 bad) (STV 1.0 0.99))",
+    "(: concern_th (Theme sk_concern_1 sk_winter_1) (STV 1.0 0.99))",
+    "(: winter_ago (BeforeBy sk_winter_1 now 63 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000383",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Stative-transitive \"concerns\" correctly keeps Agent/Theme (stativity and inanimacy never demote a transitive subject), \"favorite\"/\"bad\" stay unfused descriptive atoms, and the event-noun winter takes (BeforeBy sk_winter_1 now 63 year) directly with no tense atom of its own, since no clause predicates its occurrence."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000384",
+   "sentence": "Four wraiths rose in succession sixty-three years ago.",
+   "parse": [
+    "(: wraiths_grp (GroupOf sk_group_1 wraith) (STV 1.0 0.99))",
+    "(: wraiths_card (Cardinality sk_group_1 4) (STV 1.0 0.99))",
+    "(: rise_ev (Member sk_rise_1 rise) (STV 1.0 0.99))",
+    "(: rise_ag (Agent sk_rise_1 sk_group_1) (STV 1.0 0.99))",
+    "(: rise_tense (Past sk_rise_1) (STV 1.0 0.99))",
+    "(: rise_ago (BeforeBy sk_rise_1 now 63 year) (STV 1.0 0.99))",
+    "(: rise_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_rise $x) rise) (Agent (sk_rise $x) $x) (Past (sk_rise $x)) (BeforeBy (sk_rise $x) now 63 year))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000384",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Sequential-ordering adverbial \"in succession\" (the members of a counted plural act one after another, not simultaneously): the instruction set gives sequence/ordering adverbials no slot (Manner is barred, and it answers neither an aboutness question for the preposition-named oblique nor a period/rate question for Every/TimesPer), so the parse must drop it; there is also no carrier for the intra-group ordering it states, which the group event plus per-member rule leaves unexpressed."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Dropping \"in succession\" is what the adverb rule directs, so it is a coverage gap rather than a defect. Counted-plural group + Cardinality + group event + per-member rule (status inside the consequent) all follow doctrine, and \"sixty-three years ago\" correctly anchors on the reserved `now` via BeforeBy."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000385",
+   "sentence": "In that winter three Keepers walked the Cove Stair together every evening.",
+   "parse": [
+    "(: winter_type (Member sk_winter_1 winter) (STV 1.0 0.99))",
+    "(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: keepers_card (Cardinality sk_keepers_1 3) (STV 1.0 0.99))",
+    "(: cove_stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+    "(: cove_stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: walk_ev (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: walk_ag (Agent sk_walk_1 sk_keepers_1) (STV 1.0 0.99))",
+    "(: walk_th (Theme sk_walk_1 cove_stair) (STV 1.0 0.99))",
+    "(: walk_time_winter (Time sk_walk_1 sk_winter_1) (STV 1.0 0.99))",
+    "(: walk_time_evening (Time sk_walk_1 evening) (STV 1.0 0.99))",
+    "(: walk_every (Every sk_walk_1 1 day) (STV 1.0 0.99))",
+    "(: walk_tense (Past sk_walk_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000385",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "'that winter' is minted as an sk_ witness carrying a (Member sk_winter_1 winter) type atom, which the Time section forbids for a time expression."
+     },
+     {
+      "statement": 8,
+      "issue": "(Time sk_walk_1 sk_winter_1) puts a witness symbol in the Time slot, whose licensed fillers are structured calendar terms or bare time constants."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "anaphoric temporal NP with no antecedent, at season granularity ('in that winter') - the term-propagation rule presupposes an antecedent event supplying calendar terms, and this item has none",
+     "past-tense habitual bounded in a past interval ('walked ... every evening') - the frequency rule says the recurring event stays unmarked while the finite-clause tense rule marks (Past e), and the instruction set does not say which wins"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'together' is correctly consumed as the collective marker (group event, no per-member rule), and 'the Cove Stair' correctly gets one opaque name symbol plus a separate ordinary kind atom."
+   },
+   "adjudication": {
+    "id": "lore-000385",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Time treats a time expression as a term or bare constant and forbids minting an sk_ witness or a Member atom for one — the sk_-entity contrast it draws is explicitly for event-denoting nouns ('the show', 'the storm'), and a season is a time span, not an eventuality — so (Member sk_winter_1 winter) types a time as an entity."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Time enumerates the role's fillers — structured calendar terms (Year/Month/Day/Weekday/Hour/Minute), day-part symbols, and deictic or named constants — and a minted witness is none of them, so (Time sk_walk_1 sk_winter_1) is ill-typed per the vocabulary and unreachable by the seeded calendar and ordering rules that consume Time terms."
+     }
+    ],
+    "gaps_confirmed": [
+     "Anaphoric temporal NP with no antecedent, at season granularity ('in that winter'): term propagation presupposes an antecedent event supplying the calendar terms to copy, and the stated fallback ('emit just the day-part') is given only at day granularity, with no season term defined beside (Year/Month/Day/Weekday).",
+     "Past-tense habitual bounded in a past interval ('walked ... every evening'): the frequency rule leaves the recurring event unmarked while the finite-clause tense rule marks (Past e), and the instruction set does not say which wins."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: the bare season constant in the Time slot — (Time sk_walk_1 winter), the season analogue of the stated 'if the antecedent's day is unknown, emit just the day-part' fallback — with no sk_winter_1 witness and no (Member ... winter) atom.",
+    "notes": "The rest is right: 'together' is correctly consumed as the collective marker (one group event, no per-member rule), 'the Cove Stair' takes the Kestrel-River shape of one opaque name symbol plus a separate ordinary kind atom, and 'every evening' correctly yields the slot term plus (Every ... 1 day)."
+   }
+  }
+ ]
+}

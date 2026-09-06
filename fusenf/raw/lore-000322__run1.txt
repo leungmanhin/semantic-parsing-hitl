@@ -1,0 +1,4 @@
+(: ln_name (Name lantern_night "Lantern-night") (STV 1.0 0.99))
+(: ln_type (Member lantern_night night) (STV 1.0 0.99))
+(: keeper_tend_rule (Implication (Member $x keeper) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Theme (sk_tend $x) (sk_station $x)) (Member (sk_station $x) station) (Time (sk_tend $x) lantern_night))) (STV 1.0 0.9))
+(: keeper_q (QuantifierPhrase keeper tend "every") (STV 1.0 0.99))

@@ -1,0 +1,2 @@
+(: station_type (Member sk_station_1 station) (STV 1.0 0.99))
+(: train_tend_rule (Implication (And (Member $t train) (Agent $t $k) (Theme $t $a) (Member $k keeper) (Member $a apprentice)) (And (Member (sk_tend $t) tend) (Agent (sk_tend $t) $k) (Agent (sk_tend $t) $a) (Theme (sk_tend $t) sk_station_1) (During (sk_tend $t) $t))) (STV 1.0 0.9))

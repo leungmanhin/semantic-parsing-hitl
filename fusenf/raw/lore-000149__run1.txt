@@ -1,0 +1,7 @@
+(: group_type (GroupOf sk_group_1 assistant) (STV 1.0 0.99))
+(: group_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: tessa_name (Name tessa_brae "Tessa Brae") (STV 1.0 0.99))
+(: walk_ev (Member sk_walk_1 walk) (STV 1.0 0.99))
+(: walk_ag (Agent sk_walk_1 sk_group_1) (STV 1.0 0.99))
+(: walk_co (CoAgent sk_walk_1 tessa_brae) (STV 1.0 0.99))
+(: walk_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_walk $x) walk) (Agent (sk_walk $x) $x) (CoAgent (sk_walk $x) tessa_brae))) (STV 1.0 0.9))

@@ -1,0 +1,122 @@
+{
+ "id": "L2-15",
+ "rule": "II — Notebooks",
+ "texts": [
+  "Some Keepers keep notebooks of moth-counts and weather notes.",
+  "A Keeper's notebook passes to the heir with the station."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000174",
+   "sentence": "Some Keepers keep notebooks of moth-counts and weather notes.",
+   "parse": [
+    "(: keepers_group (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: keepers_card (CardinalityPhrase sk_group_1 \"some\") (STV 1.0 0.99))",
+    "(: e_keep (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: e_keep_agent (Agent sk_keep_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_keep_theme (Theme sk_keep_1 notebook) (STV 1.0 0.99))",
+    "(: notebook_genus (Inheritance notebook book) (STV 1.0 0.99))",
+    "(: notebook_of_moth (Of notebook moth_count) (STV 1.0 0.99))",
+    "(: moth_count_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+    "(: notebook_of_weather (Of notebook weather_note) (STV 1.0 0.99))",
+    "(: weather_note_genus (Inheritance weather_note note) (STV 1.0 0.99))",
+    "(: keepers_keep_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) $x) (Theme (sk_keep $x) notebook))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000174",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The restrictive of-phrase is attached to the bare kind symbol `notebook`, so it asserts of notebooks at large that they are of moth-counts — a kind-level claim no word in the sentence puts there (the restriction belongs on the specific notebooks these keepers keep)."
+     },
+     {
+      "statement": 8,
+      "issue": "Same problem for the second conjunct: `(Of notebook weather_note)` predicates the restriction of the kind `notebook` rather than of the referents."
+     },
+     {
+      "statement": 1,
+      "issue": "`CardinalityPhrase` is scoped to vague phrases that count things (a few / several / a handful / dozens / scores / hundreds / a lot of), normalized to a canonical lexicon string; \"some\" is an existential determiner with no listed count reading."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "quantity encoding for the determiner \"some\" over a plural — it is absent from the quantifier strength dial (all/most/a lot of/many/few/no), absent from the vague-count list, and the Existential section's \"some X\" case supplies only a witness, so neither a strength, a CardinalityPhrase nor a QuantifierPhrase companion is licensed for it",
+     "a content / \"about\" of-phrase on a non-nominalization common noun (\"notebooks of moth-counts\") — the genitive rule explicitly excludes about-phrases (\"a photo of Mary\") from Possession, and the noun has no underlying verb, so the nominalization-object oblique does not apply either; no replacement encoding is stated",
+     "a capitalized plural kind-word under a quantifier (\"Some Keepers\") — the capitalized-common-noun default is declared singular-collective only, while the plural branch covers only a label referring as a name (\"the Wrens\"), leaving a quantified capitalized plural unaddressed"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group witness + group event + per-member distribution rule for a distributive predicate, and the solid-spelling/hyphenated compound decompositions (notebook→book, moth_count→count, weather_note→note, noun modifiers left unexposed), all match the instruction set. The defect is the bearer of the two `Of` atoms, not the head."
+   },
+   "adjudication": {
+    "id": "lore-000174",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "(Of notebook moth_count) predicates the restriction of the bare KIND notebook, asserting that notebooks at large are of moth-counts - a false kind-level claim no word of the sentence puts there (Core patterns: point at the words that put the atom there)."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "(Of notebook weather_note) is the same falsehood on the second conjunct: the kind notebook is asserted to stand in the Of relation to weather notes, which the sentence says only of the notebooks these keepers keep."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "CardinalityPhrase is scoped to vague phrases that COUNT things (\"use CardinalityPhrase only when the phrase counts things\"), normalized to the canonical lexicon string (a few / several / a handful / dozens / scores / hundreds / a lot of); the existential determiner \"some\" counts nothing and is handled by the Existential section, so the atom puts a non-lexicon string into a slot seeded rules read as a numeric bound."
+     }
+    ],
+    "gaps_confirmed": [
+     "Quantity encoding for the plural determiner \"some\": absent from the quantifier-strength dial (all/most/a lot of/many/few/no), absent from the vague-count lexicon, and the Existential section's \"some X\" case supplies only a witness - so neither a strength, a CardinalityPhrase nor a QuantifierPhrase companion is licensed for it.",
+     "A content / about of-phrase on a non-nominalization common noun (\"notebooks of moth-counts\"): the genitive rule excludes about-phrases from Possession and the noun has no underlying verb, so the nominalization-object oblique does not apply either; no replacement encoding is stated.",
+     "A capitalized plural kind-word under a quantifier (\"Some Keepers\"): the capitalized-common-noun default is declared singular-collective only and the plural branch covers only a label referring as a name (\"the Wrens\"), leaving a quantified capitalized plural unaddressed."
+    ],
+    "new_gaps": [
+     "A restrictively modified bare-plural object in a habitual clause (\"keep notebooks of moth-counts and weather notes\"): the bare kind filler is the licensed filler for a non-specific object, but a bare kind symbol has no referent to carry the restriction, and nothing states whether the restriction forces an existential group witness for the object (and a per-member Skolem group inside the distribution rule) instead. A licensed form would need to hold the restriction on the notebooks actually kept without claiming it of the kind."
+    ],
+    "decision": "defect",
+    "defect_summary": "For the two Of atoms the compliant form moves the restriction off the kind and onto the referents - a group witness as the Theme, (GroupOf sk_notebook_1 notebook) (Of sk_notebook_1 moth_count) (Of sk_notebook_1 weather_note), with the distribution rule carrying a per-member Skolem group (sk_notebook $x) bearing the same Of atoms (the dependent-existential pattern of \"every student read some book\"); for \"some\" NO compliant form is licensed - the determiner has no strength band, no vague-count reading and no partitive \"of the\" wording - so the compliant parse emits no quantity atom at all and records the gap.",
+    "notes": "The group witness, group event and per-member distribution rule for the distributive predicate, and the compound decompositions (notebook to book, moth_count to count, weather_note to note, with the noun modifiers unexposed), all conform; the Of head itself is licensed - only its bearer is wrong."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000175",
+   "sentence": "A Keeper's notebook passes to the heir with the station.",
+   "parse": [
+    "(: l175_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: l175_notebook (Member sk_notebook_1 notebook) (STV 1.0 0.99))",
+    "(: l175_poss (Possession sk_notebook_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: l175_pass (Member sk_pass_1 pass) (STV 1.0 0.99))",
+    "(: l175_theme (Theme sk_pass_1 sk_notebook_1) (STV 1.0 0.99))",
+    "(: l175_heir (Member sk_heir_1 heir) (STV 1.0 0.99))",
+    "(: l175_recipient (Recipient sk_pass_1 sk_heir_1) (STV 1.0 0.99))",
+    "(: l175_station (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: l175_with (With sk_pass_1 sk_station_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000175",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "inanimate accompaniment 'with' PP (an entity that transfers along with the theme) — the 'with'-split offers only CoAgent (explicitly animate co-participant) or Instrument (means), and the preposition-named oblique is framed for PPs answering where/when/how or naming what the activity is about, so accompaniment reaches (With <event> …) only by extension"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite 'a Keeper's notebook' correctly stays a witness rather than a generic rule (indefinite + verbal predicate), the document subject correctly takes Theme as un-powered relocation, and 'to the heir' correctly takes Recipient rather than a spatial Goal; capitalized 'Keeper' is handled as a common noun with no Name atom."
+   },
+   "adjudication": null
+  }
+ ]
+}

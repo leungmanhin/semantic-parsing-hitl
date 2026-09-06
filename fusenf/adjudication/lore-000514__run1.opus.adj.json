@@ -1,0 +1,9 @@
+{"id": "lore-000514", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The possessive-pronoun rule attaches the possessor to the possessed head by an atom - (Possession <possessed> <possessor>) unless the possessed is a part/component - and a Skolem function name asserts nothing, so \"its\" is silently dropped, which Core patterns forbids (\"a stated restriction, hedge or qualifier is never silently dropped\")."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["a predicative past participle with a PP complement (\"is fixed to its station\"): the participle rule's own example says the same participle in \"the worktop was laminated\" *is* a verb, while the adjective's-PP-complement reification the parse used is illustrated only with pure adjectives (full of / responsible for / sensitive to) - nothing states which route wins for a participle in that frame"],
+ "decision": "defect",
+ "defect_summary": "Compliant form: add (Possession (sk_station $x) $x) as a further conjunct of the rule's conclusion - a station is not a part/component of the lantern, so Possession rather than PartOf - leaving the rest of the emitted conclusion unchanged.",
+ "notes": "Everything else follows the instruction set: the bare-\"each\" universal's range (Member $x lantern) and 1.0/0.9 truth value, the QuantifierPhrase companion, the state reification with Experiencer plus the surface-preposition To plus the flat dual-emit half, and the dependent Skolem station. The adjective-vs-passive reading of \"is fixed\" is filed above as a gap and should be settled at the re-parse."}

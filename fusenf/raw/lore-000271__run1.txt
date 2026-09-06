@@ -1,0 +1,7 @@
+(: aelmere_name (Name aelmere "Aelmere") (STV 1.0 0.99))
+(: faltern_name (Name faltern "Faltern") (STV 1.0 0.99))
+(: lk_group (GroupOf sk_group_1 lantern_keeper) (STV 1.0 0.99))
+(: lk_poss (Possession sk_group_1 faltern) (STV 1.0 0.99))
+(: lk_can (Inheritance lantern_keeper (can keep)) (STV 1.0 0.99))
+(: lk_rel (Keep lantern_keeper lantern) (STV 1.0 0.99))
+(: aelmere_keepers_exchange (Implication (And (Member $x keeper) (Possession $x aelmere)) (And (Member (sk_exchange $x) exchange) (Agent (sk_exchange $x) $x) (Theme (sk_exchange $x) letter) (CoAgent (sk_exchange $x) sk_group_1))) (STV 0.9 0.9))

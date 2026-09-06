@@ -1,0 +1,4 @@
+(: keepers_name (Name keepers "Keepers") (STV 1.0 0.99))
+(: kf_poss (Possession family keepers) (STV 1.0 0.99))
+(: keepers_take (And (Member sk_take_1 take) (Agent sk_take_1 keepers) (Theme sk_take_1 apprentice) (FromOutside sk_take_1 family)) (STV 0.1 0.9))
+(: keepers_take_q (QuantifierPhrase keepers take "rarely") (STV 1.0 0.99))

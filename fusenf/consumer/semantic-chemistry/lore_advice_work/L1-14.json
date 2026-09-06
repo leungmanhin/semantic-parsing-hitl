@@ -1,0 +1,178 @@
+{
+ "id": "L1-14",
+ "rule": "I — Cellars",
+ "texts": [
+  "The Cauldron Hall cellars lie in the bedrock below the building.",
+  "The cellars hold a large reserve of mire-essence.",
+  "The cellars are cool and dark.",
+  "When a Keeper stores a clay vessel, the Keeper dates that vessel.",
+  "The Warden uses old vessels before new vessels."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000100",
+   "sentence": "The Cauldron Hall cellars lie in the bedrock below the building.",
+   "parse": [
+    "(: ch_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: ch_hall (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: cellar_grp (GroupOf sk_cellar_1 cellar) (STV 1.0 0.99))",
+    "(: cellar_poss (Possession sk_cellar_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: bedrock_type (Member sk_bedrock_1 bedrock) (STV 1.0 0.99))",
+    "(: bedrock_below (Below sk_bedrock_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: cellar_locin_rule (Implication (PartOf $x sk_cellar_1) (LocatedIn $x sk_bedrock_1)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000100",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The clause's actual assertion — that the cellars are in the bedrock — is emitted only as a per-member Implication, so the group-level (LocatedIn sk_cellar_1 sk_bedrock_1) is asserted nowhere and the rule stays dormant because no cellar is ever individuated."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a static position head (LocatedIn, or an entity-attached surface preposition) predicated of a definite-plural group witness — the instruction set fixes the group-vs-distribute choice only for Member/copular properties (always distribute) and for events (group event plus rule), and says nothing about position heads, while its one non-Member example on a group symbol (Measure on 'the crates') rides the group directly"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Proper-noun premodifier 'Cauldron Hall cellars' is handled correctly (head parsed normally, opaque Possession, no invented PartOf), and attaching 'below the building' to the bedrock NP is the favored single reading. 'The building' is resolved anaphorically to cauldron_hall, which carries only the name-internal kind atom (hall) — whether a resolved definite's own descriptive kind word adds an atom is not stated in the instruction set."
+   },
+   "adjudication": {
+    "id": "lore-000100",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Coordination & plurals makes predication over the group as a unit the default for a definite plural and the per-member rule an ADDITION to it ('also hands the predication to the group's members'; the 'instead of a group' carve-out is only for an explicit universal), so emitting the rule alone drops the clause's actual assertion and leaves it derivable from nothing while no cellar is individuated."
+     }
+    ],
+    "gaps_confirmed": [
+     "The group-vs-distribute choice is fixed only for Member/copular properties (always distribute) and for events (group event plus rule); a static position head — LocatedIn or an entity-attached surface preposition — on a definite-plural group witness is not addressed, its nearest precedent being Measure riding the group symbol directly."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: the group-level (LocatedIn sk_cellar_1 sk_bedrock_1) asserted at top level — the default unit predication for a definite plural, matching the Measure-on-'the crates' precedent — with the per-member Implication kept only as an addition beside it, never as its replacement.",
+    "notes": "The rest is right: the proper-noun premodifier takes the opaque Possession with no invented PartOf, the stative 'lie in' correctly mints no event and routes to LocatedIn, and 'below the building' keeps the surface preposition entity-attached on the bedrock."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000101",
+   "sentence": "The cellars hold a large reserve of mire-essence.",
+   "parse": [
+    "(: cellars_grp (GroupOf sk_group_1 cellar) (STV 1.0 0.99))",
+    "(: hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: hold_ag (Agent sk_hold_1 sk_group_1) (STV 1.0 0.99))",
+    "(: hold_th (Theme sk_hold_1 sk_reserve_1) (STV 1.0 0.99))",
+    "(: reserve_ty (Member sk_reserve_1 reserve) (STV 1.0 0.99))",
+    "(: reserve_large (Member sk_reserve_1 large) (STV 1.0 0.99))",
+    "(: reserve_of (Of sk_reserve_1 mire_essence) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000101",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "quantity/stock noun + 'of' + bare mass noun ('a large reserve of mire-essence', the instruction set's own 'a cup of water'): the measure of-phrase is named only as an EXCLUSION from the genitive Possession route, and no positive encoding is specified (it is not a partitive — no 'of the' — and the noun's verb-paraphrase test for the nominalization-object oblique does not cleanly apply)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural group witness, stative-transitive Agent (the 'the tank holds forty litres' case), Theme for the unchanged object, split 'large' as incidental description, and the mire_essence genus are all as specified. The (Of sk_reserve_1 mire_essence) head is licensed as an entity-attached surface-preposition oblique, but only by default — see the gap."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000102",
+   "sentence": "The cellars are cool and dark.",
+   "parse": [
+    "(: l102_grp (GroupOf sk_group_1 cellar) (STV 1.0 0.99))",
+    "(: l102_cool (Implication (PartOf $x sk_group_1) (Member $x cool)) (STV 1.0 0.9))",
+    "(: l102_dark (Implication (PartOf $x sk_group_1) (Member $x dark)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000102",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural takes a group witness (never Inheritance), and each coordinated copular predicate goes through its own per-member distribution rule at strength 1.0 / confidence 0.9, with no barred (Member <group> <prop>) atom and no QuantifierPhrase companion (no quantifier word is present)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000103",
+   "sentence": "When a Keeper stores a clay vessel, the Keeper dates that vessel.",
+   "parse": [
+    "(: cv_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+    "(: keeper_dates_rule (Implication (And (Member $k keeper) (Member $s store) (Agent $s $k) (Theme $s $v) (Member $v clay_vessel)) (And (Member (sk_date $k $v) date) (Agent (sk_date $k $v) $k) (Theme (sk_date $k $v) $v) (During (sk_date $k $v) $s))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000103",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare 'when P, Q' with indefinite participants routes to the whenever machinery exactly as specified: plain-variable premises, Skolem-function consequent, the During link, 1.0/0.9, and no QuantifierPhrase companion. 'dates that vessel' takes the Theme the unclear-change default prescribes, 'that vessel' binds the premise variable, and clay_vessel exposes only its head genus because 'clay' is a noun modifier."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000104",
+   "sentence": "The Warden uses old vessels before new vessels.",
+   "parse": [
+    "(: warden_type (Member sk_warden_1 warden) (STV 1.0 0.99))",
+    "(: use1_ev (Member sk_use_1 use) (STV 1.0 0.99))",
+    "(: use1_agent (Agent sk_use_1 sk_warden_1) (STV 1.0 0.99))",
+    "(: use1_theme (Theme sk_use_1 sk_group_1) (STV 1.0 0.99))",
+    "(: group1_kind (GroupOf sk_group_1 vessel) (STV 1.0 0.99))",
+    "(: group1_old (Implication (PartOf $x sk_group_1) (Member $x old)) (STV 1.0 0.9))",
+    "(: use2_ev (Member sk_use_2 use) (STV 1.0 0.99))",
+    "(: use2_agent (Agent sk_use_2 sk_warden_1) (STV 1.0 0.99))",
+    "(: use2_theme (Theme sk_use_2 sk_group_2) (STV 1.0 0.99))",
+    "(: group2_kind (GroupOf sk_group_2 vessel) (STV 1.0 0.99))",
+    "(: group2_new (Implication (PartOf $x sk_group_2) (Member $x new)) (STV 1.0 0.9))",
+    "(: use_order (Before sk_use_1 sk_use_2) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000104",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"before\" + a bare entity NP whose predicate is elided (\"uses old vessels before new vessels\" = before [using] new vessels): the Time section licenses \"before\" + a date as a bound and \"before\" + an event/clause as the Before relation, but says nothing about reconstructing an elided clause from a bare NP object, nor about the priority/preference reading of such an ordering"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Warden\" is correctly a capitalized-common-noun label (witness + typing, no Name atom), and the descriptive modifiers old/new correctly ride per-member distribution rules over group witnesses rather than fusing; the second use event is a reconstruction of the elided \"before [using] new vessels\", which the instruction set does not explicitly license but which parallels its elliptical adverbial-comparative treatment."
+   },
+   "adjudication": null
+  }
+ ]
+}

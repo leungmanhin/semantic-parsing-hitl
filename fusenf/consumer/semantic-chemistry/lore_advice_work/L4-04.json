@@ -1,0 +1,183 @@
+{
+ "id": "L4-04",
+ "rule": "IV — Checks and dawn-out",
+ "texts": [
+  "At midnight the Keeper checks the flame.",
+  "At midnight the Keeper refills the reservoir to the half-mark.",
+  "At the third watch the Keeper trims the wick carefully.",
+  "A wick carbonizes over a long burn.",
+  "At dawn the Keeper extinguishes the flame with a brass snuffer.",
+  "The Keeper walks home after dawn-out."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000294",
+   "sentence": "At midnight the Keeper checks the flame.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: flame_type (Member sk_flame_1 flame) (STV 1.0 0.99))",
+    "(: e_check (Member sk_check_1 check) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_check_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_check_1 sk_flame_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_check_1 midnight) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000294",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Keeper' takes the capitalized-common-noun default, the bare simple present correctly gets no status atom (habitual/unmarked), and 'check' is an evaluate/record verb so Theme is right. 'midnight' is not in the instruction set's day-part constant list (dawn/noon/dusk/night) though it follows that pattern, leaving the choice between a bare Time constant and an (Hour 0) clock term undetermined."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000295",
+   "sentence": "At midnight the Keeper refills the reservoir to the half-mark.",
+   "parse": [
+    "(: e_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: e_reservoir (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))",
+    "(: e_refill (Member sk_refill_1 refill) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_refill_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_refill_1 sk_reservoir_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_refill_1 midnight) (STV 1.0 0.99))",
+    "(: e_halfmark (Member sk_half_mark_1 half_mark) (STV 1.0 0.99))",
+    "(: e_halfmark_genus (Inheritance half_mark mark) (STV 1.0 0.99))",
+    "(: e_goal (Goal sk_refill_1 sk_half_mark_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000295",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Keeper' correctly takes the capitalized-common-noun default (no Name atom), 'at midnight' stays a bare Time symbol with no tense atom (habitual/unmarked), and half_mark emits its head genus while correctly withholding the non-predicable modifier 'half'. 'to the half-mark' is a fill-LEVEL endpoint that MeasureTo cannot carry (its slots need magnitude + unit), so Goal — licensed for a non-recipient 'to …' — is the only available head; borderline against the 'an end value is never a spatial Goal' clause, but defensible."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000296",
+   "sentence": "At the third watch the Keeper trims the wick carefully.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: wick_type (Member sk_wick_1 wick) (STV 1.0 0.99))",
+    "(: e_trim (Member sk_trim_1 trim) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_trim_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_trim_1 sk_wick_1) (STV 1.0 0.99))",
+    "(: e_manner (Manner sk_trim_1 carefully) (STV 1.0 0.99))",
+    "(: e_time (Time sk_trim_1 third_watch) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000296",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"At the third watch\" as the bare Time constant third_watch follows the named-time / period precedent (first_quarter), and no Every atom is added since no \"every\" is present. Manner keeps the surface -ly form \"carefully\", and no PartOf between the wick and any lantern is invented."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000297",
+   "sentence": "A wick carbonizes over a long burn.",
+   "parse": [
+    "(: wick_type (Member sk_wick_1 wick) (STV 1.0 0.99))",
+    "(: carbonize_ev (Member sk_carbonize_1 carbonize) (STV 1.0 0.99))",
+    "(: carbonize_pat (Patient sk_carbonize_1 sk_wick_1) (STV 1.0 0.99))",
+    "(: burn_type (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: burn_long (Member sk_burn_1 long) (STV 1.0 0.99))",
+    "(: carbonize_over (Over sk_carbonize_1 sk_burn_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000297",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'A wick' with a verbal predicate is correctly a witness rather than a generic rule, and the bare simple present correctly carries no status atom (the unmarked dispositional default). 'over' is not one of the three words that license During, so the surface-preposition oblique (Over e ...) is the right head."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000298",
+   "sentence": "At dawn the Keeper extinguishes the flame with a brass snuffer.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: flame_type (Member sk_flame_1 flame) (STV 1.0 0.99))",
+    "(: snuffer_type (Member sk_snuffer_1 brass_snuffer) (STV 1.0 0.99))",
+    "(: snuffer_genus (Inheritance brass_snuffer snuffer) (STV 1.0 0.99))",
+    "(: extinguish_ev (Member sk_extinguish_1 extinguish) (STV 1.0 0.99))",
+    "(: extinguish_ag (Agent sk_extinguish_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: extinguish_pat (Patient sk_extinguish_1 sk_flame_1) (STV 1.0 0.99))",
+    "(: extinguish_ins (Instrument sk_extinguish_1 sk_snuffer_1) (STV 1.0 0.99))",
+    "(: extinguish_time (Time sk_extinguish_1 dawn) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000298",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "brass_snuffer fuses with only the head genus, correct because \"brass\" is a noun modifier and noun modifiers are never exposed; \"the Keeper\" takes the capitalized-common-noun default with no Name atom. The bare present with an unanchored \"at dawn\" correctly gets no tense atom and no Every, and dawn rides Time as a day-part constant."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000299",
+   "sentence": "The Keeper walks home after dawn-out.",
+   "parse": [
+    "(: keeper_kind (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: dawnout_kind (Member sk_dawn_out_1 dawn_out) (STV 1.0 0.99))",
+    "(: walk_ev (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: walk_agent (Agent sk_walk_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: walk_goal (Goal sk_walk_1 home) (STV 1.0 0.99))",
+    "(: dawnout_before_walk (Before sk_dawn_out_1 sk_walk_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000299",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Keeper' correctly takes the capitalized-common-noun default (witness + kind atom, no Name), the bare simple present correctly gets no status atom, and 'after dawn-out' becomes Before with the arguments swapped. The temporal-anchor event noun carries only its class atom and the ordering relation, and dawn_out correctly gets no genus since 'out' is not a head noun."
+   },
+   "adjudication": null
+  }
+ ]
+}

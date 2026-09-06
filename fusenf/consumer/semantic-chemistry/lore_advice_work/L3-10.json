@@ -1,0 +1,135 @@
+{
+ "id": "L3-10",
+ "rule": "III — Near-miss winters",
+ "texts": [
+  "The ledgers record three near-miss winters.",
+  "No wraith emerged in the near-miss winters.",
+  "Apprentices study the near-miss winters."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000266",
+   "sentence": "The ledgers record three near-miss winters.",
+   "parse": [
+    "(: ledgers_grp (GroupOf sk_group_1 ledger) (STV 1.0 0.99))",
+    "(: winters_grp (GroupOf sk_group_2 near_miss_winter) (STV 1.0 0.99))",
+    "(: winters_card (Cardinality sk_group_2 3) (STV 1.0 0.99))",
+    "(: winter_genus (Inheritance near_miss_winter winter) (STV 1.0 0.99))",
+    "(: e_record (Member sk_record_1 record) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_record_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_record_1 sk_group_2) (STV 1.0 0.99))",
+    "(: ledgers_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_record $x) record) (Agent (sk_record $x) $x) (Theme (sk_record $x) sk_group_2))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000266",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "The per-member rule asserts that every individual ledger records the same three near-miss winters (the shared `sk_group_2` constant in the conclusion's `Theme`), which relocates the count \"three\" from a total across the ledgers to three per ledger; by the instruction set's own distributive/collective test (\"each member acts separately\" vs \"the group as one unit\") this aggregate inventory predication is the group-as-unit case and should stay group-only."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is right: definite plural subject to a group witness, inanimate stative-transitive subject to `Agent` (the \"manifest lists two pallets\" case), \"record\" as an evaluate/record verb to `Theme`, counted plural object to group + `Cardinality 3`, bare present with no status atom, and the fused compound riding the group's kind slot with its head genus only (noun modifier correctly not exposed)."
+   },
+   "adjudication": {
+    "id": "lore-000266",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The rule's conclusion carries the shared constant sk_group_2, which bears (Cardinality sk_group_2 3), so it asserts that EACH ledger records all three near-miss winters - more than the text states, and the same over-assertion the instruction set blocks elsewhere for aggregate readings over a plural subject (\"a measure on a PLURAL subject is the group AGGREGATE, like Cardinality - it does NOT distribute to each member\")."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "No stated test decides whether a TRANSITIVE predicate whose OBJECT carries an aggregate count distributes to the plural subject's members: the distributive/collective lists (bark, pass, laugh, arrive vs gather, meet, assemble, collide) are all intransitive-shaped, and the only aggregate precedent is the Measure-on-a-plural-subject note under *Measures & units*."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form drops ledgers_rule entirely and keeps the group-level predication alone - (GroupOf sk_group_1 ledger), (GroupOf sk_group_2 near_miss_winter), (Cardinality sk_group_2 3), (Member sk_record_1 record), (Agent sk_record_1 sk_group_1), (Theme sk_record_1 sk_group_2), plus the compound genus - since an aggregate inventory predication is the group-as-unit case and stays group-only.",
+    "notes": "Everything else is doctrinal: definite plural to a group witness, the stative-transitive subject staying Agent, record as an evaluate/record verb taking Theme, the counted object as group + Cardinality, and the fused compound's head genus with its noun modifier correctly unexposed."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000267",
+   "sentence": "No wraith emerged in the near-miss winters.",
+   "parse": [
+    "(: nmw_genus (Inheritance near_miss_winter winter) (STV 1.0 0.99))",
+    "(: winters_grp (GroupOf sk_winters_1 near_miss_winter) (STV 1.0 0.99))",
+    "(: wraith_no_emerge (Implication (Member $x wraith) (And (Member (sk_emerge $x) emerge) (Agent (sk_emerge $x) $x) (Time (sk_emerge $x) sk_winters_1))) (STV 0.0 0.9))",
+    "(: wraith_q (QuantifierPhrase wraith emerge \"no\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000267",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The clause is past tense ('emerged') but the distributed conclusion bundle carries no (Past ...) atom, so the strength-0 rule denies an unmarked/generic emergence rather than the past one (the universal pattern 'All the students passed' puts (Past (sk_pass $x)) inside the conclusion)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "temporal-frame PP whose object is a definite plural period NP ('in the near-miss winters'): Time's fillers are specified as structured calendar terms or deictic/named constants, and During is restricted to the surface words during/while/throughout, so surface 'in' plus a group-of-periods witness has no specified head"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The strength-0 distributing rule plus the mandatory 'no' QuantifierPhrase companion, the definite-plural group witness, and the near_miss_winter genus with the noun modifier left unexposed are all correct. Only the dropped past tense is at issue."
+   },
+   "adjudication": {
+    "id": "lore-000267",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'emerged' is a finite past clause, and the distribution pattern puts tense inside the consequent ('All the students passed' emits `(Past (sk_pass $x))` in the conclusion bundle); without it the strength-0 rule denies an unmarked event, which Status predicates defines as 'generic / habitual / dispositional — not a specific occurrence', a different claim from the one the sentence makes."
+     }
+    ],
+    "gaps_confirmed": [
+     "No licensed `Time` filler for a frame PP whose object is a definite plural period NP ('in the near-miss winters'): `Time` takes structured calendar terms or deictic/named constants, and `During` renders only during/while/throughout, so a group witness in the Time slot is improvised."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds `(Past (sk_emerge $x))` as a conjunct of the rule's consequent, inside the strength-0.0 `(Implication ...)`.",
+    "notes": "The routing is otherwise right — 'no' is an explicit quantifier, so the generic denial takes the distributing rule at strength 0.0 with its mandatory \"no\" QuantifierPhrase companion, and the definite plural takes a group witness. `(Time (sk_emerge $x) sk_winters_1)` is acceptable improvisation in the gap above: the atom is true of the content and the group is asserted at top level."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000268",
+   "sentence": "Apprentices study the near-miss winters.",
+   "parse": [
+    "(: l268_winter_grp (GroupOf sk_winter_1 near_miss_winter) (STV 1.0 0.99))",
+    "(: l268_winter_genus (Inheritance near_miss_winter winter) (STV 1.0 0.99))",
+    "(: l268_study_rule (Implication (Member $x apprentice) (And (Member (sk_study $x) study) (Agent (sk_study $x) $x) (Theme (sk_study $x) sk_winter_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000268",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-plural generic subject correctly takes the Skolem-function event rule at 0.9/0.9 with no QuantifierPhrase companion, and the definite plural object correctly takes a GroupOf witness (which also correctly blocks the bare-kinds-on-both-sides relational-generic route); the fused classifier keeps its head genus with the noun modifier unexposed."
+   },
+   "adjudication": null
+  }
+ ]
+}

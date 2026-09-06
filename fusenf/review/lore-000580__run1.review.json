@@ -1,0 +1,10 @@
+{"id": "lore-000580", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "the restriction 'other' in 'other insects' is silently dropped, widening the claim to insects in general — including the nightmoths the sentence contrasts them against."},
+               {"statement": 2, "issue": "the non-specific bare-plural object 'insects' is rendered as a per-binding Skolem witness (sk_insect $x) with its own Member atom, asserting one particular insect per sky-cat, where a kind-level object takes the bare kind filler."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a generic 'when P, Q' whose antecedent P is a kind-level STATE ('when nightmoths are scarce') rather than an occurrence: the whenever machinery expects a reified trigger eventuality and a During link on the per-occurrence consequent, and ConditionalProperty covers only a property consequent, not a verbal one — so the parse falls back to a ground KindProperty atom as a rule premise, a form the instruction set nowhere licenses (and no trigger link is emitted)", "'other N' — an alterity / exclusion restriction on an NP — has no licensed encoding"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The frequency adverb is handled correctly ('sometimes' → rule strength 0.5 plus the QuantifierPhrase companion on kind and verb lemma), and both compounds emit the head genus only."}

@@ -1,0 +1,7 @@
+(: collectors_grp (GroupOf sk_collectors_1 collector) (STV 1.0 0.99))
+(: feathers_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))
+(: feathers_molted_rule (Implication (PartOf $x sk_feather_1) (Member $x molted)) (STV 1.0 0.9))
+(: pickup1_class (Member sk_pick_up_1 pick_up) (STV 1.0 0.99))
+(: pickup1_agent (Agent sk_pick_up_1 sk_collectors_1) (STV 1.0 0.99))
+(: pickup1_theme (Theme sk_pick_up_1 sk_feather_1) (STV 1.0 0.99))
+(: collectors_pickup_rule (Implication (PartOf $y sk_collectors_1) (And (Member (sk_pick_up $y) pick_up) (Agent (sk_pick_up $y) $y) (Theme (sk_pick_up $y) sk_feather_1))) (STV 1.0 0.9))

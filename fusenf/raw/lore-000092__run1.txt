@@ -1,0 +1,4 @@
+(: boats_group (GroupOf sk_group_1 fishing_boat) (STV 1.0 0.99))
+(: boats_genus (Inheritance fishing_boat boat) (STV 1.0 0.99))
+(: inlet_type (Member sk_inlet_1 inlet) (STV 1.0 0.99))
+(: boats_near_rule (Implication (PartOf $x sk_group_1) (Near $x sk_inlet_1)) (STV 1.0 0.9))

@@ -1,0 +1,8 @@
+(: wpp_genus (Inheritance waxed_paper_packet packet) (STV 1.0 0.99))
+(: sb_mem (Member sk_salt_bloom_1 salt_bloom) (STV 1.0 0.99))
+(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: store_mem (Member sk_store_1 store) (STV 1.0 0.99))
+(: store_poss (Possession sk_store_1 cauldron_hall) (STV 1.0 0.99))
+(: ch_name (Name cauldron_hall "Cauldron Hall") (STV 1.0 0.99))
+(: ch_type (Member cauldron_hall hall) (STV 1.0 0.99))
+(: hold_rule (Implication (Member $x waxed_paper_packet) (And (Member (sk_hold $x) hold) (Agent (sk_hold $x) $x) (Theme (sk_hold $x) sk_salt_bloom_1) (Location (sk_hold $x) sk_store_1))) (STV 0.9 0.9))

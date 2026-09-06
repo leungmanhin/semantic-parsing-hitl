@@ -1,0 +1,236 @@
+{
+ "id": "L5-06",
+ "rule": "V — The deliberate dimming",
+ "texts": [
+  "Twenty-six years ago the Council deliberately let the Stilllight Lantern dim for one night.",
+  "The Council wanted to draw the wraith to one place.",
+  "The Keepers warded the wraith back with ground feathers.",
+  "The plan worked.",
+  "The Keepers call the plan dangerous."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000373",
+   "sentence": "Twenty-six years ago the Council deliberately let the Stilllight Lantern dim for one night.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: let_ev (Member sk_let_1 let) (STV 1.0 0.99))",
+    "(: let_ag (Agent sk_let_1 sk_council_1) (STV 1.0 0.99))",
+    "(: let_th (Theme sk_let_1 sk_dim_1) (STV 1.0 0.99))",
+    "(: let_past (Past sk_let_1) (STV 1.0 0.99))",
+    "(: let_manner (Manner sk_let_1 deliberately) (STV 1.0 0.99))",
+    "(: let_time (BeforeBy sk_let_1 now 26 year) (STV 1.0 0.99))",
+    "(: dim_ev (Member sk_dim_1 dim) (STV 1.0 0.99))",
+    "(: dim_ag (Agent sk_dim_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: dim_dur (Measure sk_dim_1 duration 1 night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000373",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 10,
+      "issue": "'dim' is an intransitive internal change of state (the stall/fade/weaken class), so the lantern undergoes the dimming and should take Patient, not Agent."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The periphrastic-causative bullet says a bare-infinitive causee becomes the caused event's Agent, which collides with the unaccusative-subject split for change-of-state verbs, and the instruction set does not say which wins. Everything else follows doctrine: let as the matrix event with Theme on the caused event, a tenseless complement, BeforeBy to now, and the duration Measure on the dimming."
+   },
+   "adjudication": {
+    "id": "lore-000373",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "dim belongs to the intransitive internal-change-of-state class the instruction set names explicitly (stall, weaken, falter, buckle, sag, fade, freeze -> Patient), which it states \"is never Agent by default\" and which \"carries into sealed complements and passives\", so (Agent sk_dim_1 stilllight_lantern) is ill-typed - Agent is defined as the volitional doer, which a dimming lantern is not."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "Periphrastic causative over an UNACCUSATIVE bare-infinitive complement (\"let the lantern dim\", \"had the beam sag\"): the causative bullet assigns the object the caused event's Agent while the intransitive-undergoer split assigns Patient/Theme, and no precedence rule is stated. A licensed form would need to say that the causative bullet fixes only WHICH slot the object fills (the caused event's subject) and that the role of that slot is then set by the ordinary does-it-change test - the causative examples (sprint, sign, leave) are all agentive and never test the collision."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is (Patient sk_dim_1 stilllight_lantern) in place of the Agent atom; every other atom in the parse stands.",
+    "notes": "The reviewer's note that the two bullets collide is correct, but the collision does not license the atom: Agent on a lantern's own dimming fails the role's stated definition, so the doctrinal ambiguity is a gap while the emitted atom is still a defect."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000374",
+   "sentence": "The Council wanted to draw the wraith to one place.",
+   "parse": [
+    "(: c1_council (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: c1_want (Member sk_want_1 want) (STV 1.0 0.99))",
+    "(: c1_want_exp (Experiencer sk_want_1 sk_council_1) (STV 1.0 0.99))",
+    "(: c1_want_theme (Theme sk_want_1 sk_draw_1) (STV 1.0 0.99))",
+    "(: c1_want_past (Past sk_want_1) (STV 1.0 0.99))",
+    "(: c1_draw (Member sk_draw_1 draw) (STV 1.0 0.99))",
+    "(: c1_draw_agent (Agent sk_draw_1 sk_council_1) (STV 1.0 0.99))",
+    "(: c1_draw_theme (Theme sk_draw_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: c1_wraith (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: c1_draw_goal (Goal sk_draw_1 sk_place_1) (STV 1.0 0.99))",
+    "(: c1_place (Member sk_place_1 place) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000374",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The control infinitive takes the non-finite-complement pattern exactly: complement reified at top level, attached by Theme, no tense or status of its own, subject control copying the Council in as the draw event's Agent; 'want' fails the progressive test so the matrix subject is Experiencer, and the capitalized singular collective label correctly gets a common-noun witness with no Name atom and no distribution rule. The cardinal 'one' in 'to one place' has no carrier on a singular witness, but the witness already denotes exactly one, so nothing is lost."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000375",
+   "sentence": "The Keepers warded the wraith back with ground feathers.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: e_wraith (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: e_ward (Member sk_ward_back_1 ward_back) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_ward_back_1 keepers) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_ward_back_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: e_past (Past sk_ward_back_1) (STV 1.0 0.99))",
+    "(: e_feathers (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: e_instrument (Instrument sk_ward_back_1 sk_feather_1) (STV 1.0 0.99))",
+    "(: feathers_ground_rule (Implication (PartOf $x sk_feather_1) (Member $x ground)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000375",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Conforms to the capitalized-plural-label rule ('the Keepers' = a Name-only individual, no GroupOf and no invented per-member kind, hence correctly no distribution rule for the warding), keeps the phrasal verb whole as ward_back with no genus and no single-word synonym, and takes Theme for the displaced wraith. The bare-plural instrument gets a group witness and the participial modifier 'ground' distributes to the members by rule rather than riding the group symbol, exactly as the descriptive-modifier-on-a-plural rule requires."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000376",
+   "sentence": "The plan worked.",
+   "parse": [
+    "(: plan_typ (Member sk_plan_1 plan) (STV 1.0 0.99))",
+    "(: work_ev (Member sk_work_1 work) (STV 1.0 0.99))",
+    "(: work_pat (Patient sk_work_1 sk_plan_1) (STV 1.0 0.99))",
+    "(: work_tense (Past sk_work_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000376",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The intransitive subject of \"worked\" (succeeded / was effective) is given Patient, but the plan undergoes no change of state and is not a gravity/fluid-moved mass, so Patient is not licensed by the intransitive-subject test; the instruction set's routes here are the stative Experiencer or the explicit \"when unclear, Agent\" default."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else — definite-singular witness plus typing, lemmatized event class, Past — matches the instruction set."
+   },
+   "adjudication": {
+    "id": "lore-000376",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The intransitive-subject test licenses Patient only for a change-of-state undergoer (collapse, melt, expire, lapse) or a non-volitional mass moved by a natural force, and a plan that 'worked' is neither, so the atom mis-slots the subject against a stated rule whose own residual reads 'when unclear, Agent'."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is (Agent sk_work_1 sk_plan_1), the instruction set's explicit residual for an intransitive subject that neither changes state nor is moved by a natural force, with Experiencer the alternative only if 'worked' is read as a purely stative predication.",
+    "notes": "Everything else — the definite witness plus its typing, the lemmatized event class, and Past — matches the instruction set, and the reviewer's 'covered' verdict is right because the stated residual default covers this residue by design."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000377",
+   "sentence": "The Keepers call the plan dangerous.",
+   "parse": [
+    "(: call_ev (Member sk_call_1 call) (STV 1.0 0.99))",
+    "(: call_exp (Experiencer sk_call_1 keepers) (STV 1.0 0.99))",
+    "(: call_theme (Theme sk_call_1 (Member sk_plan_1 dangerous)) (STV 1.0 0.99))",
+    "(: plan_type (Member sk_plan_1 plan) (STV 1.0 0.99))",
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000377",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The object-complement small clause \"the plan dangerous\" is sealed under `Theme` although the instruction set restricts sealing to finite clausal complements, its only non-finite small-clause seal being the impersonal *passive* \"is considered / said / thought to be\" frame — an active labeling verb with a stated holder is neither."
+     },
+     {
+      "statement": 1,
+      "issue": "`Experiencer` for the callers is licensed only on the sealing route (\"the holder is `Experiencer` exactly when the complement seals\"); on the ordinary tests \"call\" is an eventive transitive that accepts the progressive, so its subject would be `Agent`."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Active object-complement small clause with a labeling / speech verb (\"call / deem / name X ADJ\"): it is not a resultative (the calling does not make the plan dangerous), not a depictive (the state does not merely hold during the calling), and not a finite clausal complement, so the stated qualifier \"dangerous\" has no licensed carrier."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Keepers\" is handled exactly per the capitalized-plural-label rule — one Name-only symbol, no GroupOf, no per-member `keeper` typing — and the definite \"the plan\" correctly projects its typing outside the seal. The sealing choice, though not licensed as written, at least avoids asserting `(Member sk_plan_1 dangerous)` at top level, which is the right non-commitment."
+   },
+   "adjudication": {
+    "id": "lore-000377",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The reviewer's own q2 gap concedes that an active object-complement small clause ('call X ADJ') is neither resultative, depictive nor finite complement -- genuine gap territory -- and the calibration line makes improvisation acceptable there: the seal emits no false or ill-typed atom, records only what the Keepers say, and correctly withholds a top-level (Member sk_plan_1 dangerous) that no other route could supply without inventing or dropping stated content."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "Propositional attitudes states that 'the holder is Experiencer exactly when the complement seals' and expressly includes progressive-accepting speech verbs (announce, report, say, confirm), so once the sealing route is taken Experiencer is the rule-following choice; the objection is parasitic on issue 0 and the progressive test does not reach a sealed complement."
+     }
+    ],
+    "gaps_confirmed": [
+     "active object-complement small clause with a labeling / speech verb ('call / deem / name X ADJ'): not a resultative (the calling does not make the plan dangerous), not a depictive, and not a finite clausal complement, so the stated qualifier 'dangerous' has no licensed carrier of its own"
+    ],
+    "new_gaps": [
+     "under the improvised seal the labeled object carries no top-level role atom on the calling event, so nothing licenses how 'what did the Keepers call dangerous?' binds the object -- an object-complement construction needs both the non-commitment and a queryable object link"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "'The Keepers' follows the capitalized-plural-label rule exactly (one Name-only symbol, no GroupOf, no per-member keeper typing), and the definite 'the plan' correctly projects its typing outside the seal."
+   }
+  }
+ ]
+}

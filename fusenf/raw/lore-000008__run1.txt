@@ -1,0 +1,8 @@
+(: cp_name (Name cliff_path "Cliff Path") (STV 1.0 0.99))
+(: cp_type (Member cliff_path path) (STV 1.0 0.99))
+(: village_type (Member sk_village_1 village) (STV 1.0 0.99))
+(: edge_genus (Inheritance outer_edge edge) (STV 1.0 0.99))
+(: edge_mod (Inheritance outer_edge outer) (STV 1.0 0.99))
+(: edge_type (Member sk_edge_1 outer_edge) (STV 1.0 0.99))
+(: edge_loc (LocatedIn sk_edge_1 sk_village_1) (STV 1.0 0.99))
+(: path_along (Along cliff_path sk_edge_1) (STV 1.0 0.99))

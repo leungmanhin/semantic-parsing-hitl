@@ -1,0 +1,5 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: decide_ev (Member sk_decide_1 decide) (STV 0.8 0.9))
+(: decide_ag (Agent sk_decide_1 sk_council_1) (STV 0.8 0.9))
+(: decide_inst (Instrument sk_decide_1 consensus) (STV 0.8 0.9))
+(: decide_q (QuantifierPhrase sk_council_1 decide "usually") (STV 1.0 0.99))

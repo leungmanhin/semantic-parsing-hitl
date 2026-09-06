@@ -1,0 +1,4 @@
+(: iron_band_genus (Inheritance iron_band band) (STV 1.0 0.99))
+(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))
+(: lantern_name (Name stilllight_lantern "Stilllight Lantern") (STV 1.0 0.99))
+(: iron_bands_reinforce (Implication (Member $x iron_band) (And (Member (sk_reinforce $x) reinforce) (Agent (sk_reinforce $x) $x) (Patient (sk_reinforce $x) stilllight_lantern))) (STV 0.9 0.9))

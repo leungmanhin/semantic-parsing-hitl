@@ -1,0 +1,318 @@
+{
+ "id": "L1-07",
+ "rule": "I — Cauldron Hall",
+ "texts": [
+  "Cauldron Hall is a long low building near the harbor.",
+  "Cauldron Hall has thick walls of dark stone.",
+  "Cauldron Hall has a tall slate chimney.",
+  "Cauldron Hall holds three copper cauldrons.",
+  "Each cauldron sits on a stone hearth.",
+  "The Council appoints a Keeper as Cauldron Hall Warden each season.",
+  "Hesper is the current Cauldron Hall Warden.",
+  "Hesper is a careful and silent man."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000046",
+   "sentence": "Cauldron Hall is a long low building near the harbor.",
+   "parse": [
+    "(: ch_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: ch_hall (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: ch_building (Member cauldron_hall building) (STV 1.0 0.99))",
+    "(: ch_long (Member cauldron_hall long) (STV 1.0 0.99))",
+    "(: ch_low (Member cauldron_hall low) (STV 1.0 0.99))",
+    "(: harbor_type (Member sk_harbor_1 harbor) (STV 1.0 0.99))",
+    "(: ch_near (Near cauldron_hall sk_harbor_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000046",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'long low' are incidental size description, correctly split into separate Member atoms rather than fused; 'near the harbor' correctly keeps the surface preposition entity-attached on the subject rather than LocatedIn or a minted building witness."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000047",
+   "sentence": "Cauldron Hall has thick walls of dark stone.",
+   "parse": [
+    "(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: e_have (Member sk_have_1 have) (STV 1.0 0.99))",
+    "(: e_holder (Holder sk_have_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_have_1 sk_group_1) (STV 1.0 0.99))",
+    "(: walls_group (GroupOf sk_group_1 wall) (STV 1.0 0.99))",
+    "(: stone_type (Member sk_stone_1 stone) (STV 1.0 0.99))",
+    "(: stone_dark (Member sk_stone_1 dark) (STV 1.0 0.99))",
+    "(: walls_thick_rule (Implication (PartOf $x sk_group_1) (Member $x thick)) (STV 1.0 0.9))",
+    "(: walls_material_rule (Implication (PartOf $x sk_group_1) (Possession $x sk_stone_1)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000047",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 9,
+      "issue": "The material of-phrase 'walls of dark stone' is encoded as (Possession $x sk_stone_1), the possessed-first genitive mapping, which says each wall belongs to the stone rather than being made of it — the genitive route is licensed only for a GENUINELY possessive of-phrase."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "material / constitution of-phrase ('walls of dark stone', 'a table of oak') — the instruction set names partitive, measure, about- and nominalization-object of-phrases as exclusions but gives no head for what a thing is MADE of"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is on-doctrine: 'have' as a Holder/Theme event, the bare-plural object as a group witness, and 'thick' distributed by the (Implication (PartOf $x g) (Member $x thick)) (STV 1.0 0.9) rule rather than predicated of the group symbol. A second, smaller strain: the bare mass 'dark stone' is individuated as sk_stone_1 although the oblique-object rule says a bare mass stays a constant — unavoidable here, since a constant would force (Inheritance stone dark)."
+   },
+   "adjudication": {
+    "id": "lore-000047",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The genitive mapping is licensed only for a \"genuinely possessive of-phrase\", and a material/constitution of-phrase is not one; with the material in the possessor slot, (Possession $x sk_stone_1) says each wall belongs to the stone, asserting a possessor the text never states — the very falsehood the instruction set names when it bars Possession for a nominalization's of-phrase."
+     }
+    ],
+    "gaps_confirmed": [
+     "No licensed head for a material / constitution of-phrase (\"walls of dark stone\", \"a table of oak\"): the of-phrase exclusions name partitive, measure, about- and nominalization-object readings, but nothing covers what a thing is MADE of."
+    ],
+    "new_gaps": [
+     "A MODIFIED bare mass in an oblique/complement NP position (\"dark stone\") has no licensed encoding: the constant route (\"a bare mass ... stays a constant\") cannot carry the modifier without the false kind-claim (Inheritance stone dark); colour is explicitly \"incidental description\" so dark_stone may not fuse as a compound kind; and the only remaining shape is the witness the constant rule forbids."
+    ],
+    "decision": "defect",
+    "defect_summary": "For the confirmed issue there is NO compliant form: the instruction set licenses no head for material constitution, so the doctrinal move is Core patterns' \"carry it, or leave the whole claim out and record the gap\" — drop the material link entirely (keeping the walls group, the thick-distribution rule and the have-state) rather than route it through Possession; the nearest shape, the entity-attached surface-preposition oblique (Of <wall> <stone>), is licensed only as a nominalization's argument or a positional preposition, and \"wall\" is neither.",
+    "notes": "The rest of the parse is on-doctrine: the multi-word name with its separate kind atom, \"has\" as a Holder/Theme state, the bare-plural object as a group witness, and \"thick\" handed to members by a per-member rule rather than predicated of the group symbol."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000048",
+   "sentence": "Cauldron Hall has a tall slate chimney.",
+   "parse": [
+    "(: ch_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: ch_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: e_have (Member sk_have_1 have) (STV 1.0 0.99))",
+    "(: e_holder (Holder sk_have_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_have_1 sk_chimney_1) (STV 1.0 0.99))",
+    "(: chimney_type (Member sk_chimney_1 slate_chimney) (STV 1.0 0.99))",
+    "(: chimney_tall (Member sk_chimney_1 tall) (STV 1.0 0.99))",
+    "(: chimney_genus (Inheritance slate_chimney chimney) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000048",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name plus in-name kind atom, Holder/Theme for possessive \"has\" (with no invented PartOf), the fused material compound slate_chimney carrying genus only (a noun modifier is never exposed), and descriptive \"tall\" kept as its own Member atom are all as specified. Bare simple present correctly takes no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000049",
+   "sentence": "Cauldron Hall holds three copper cauldrons.",
+   "parse": [
+    "(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: hold_agent (Agent sk_hold_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: hold_theme (Theme sk_hold_1 sk_group_1) (STV 1.0 0.99))",
+    "(: cauldrons_group (GroupOf sk_group_1 copper_cauldron) (STV 1.0 0.99))",
+    "(: cauldrons_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+    "(: cauldron_genus (Inheritance copper_cauldron cauldron) (STV 1.0 0.99))",
+    "(: cauldron_mod (Inheritance copper_cauldron copper) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000049",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 8,
+      "issue": "`(Inheritance copper_cauldron copper)` exposes a modifier genus for a material NOUN, but the instruction set exposes only a material *adjective* (`wooden_bridge` -> `wooden`) and bars noun modifiers outright (`steel_beam` is not `steel`)."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else conforms: 'Cauldron Hall' is one opaque name symbol with its kind atom, stative-transitive 'holds' keeps Agent per the explicit 'the tank holds forty litres' ruling, and the counted plural object takes group + Cardinality with the head genus emitted."
+   },
+   "adjudication": {
+    "id": "lore-000049",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"copper\" is a noun sitting in front of another noun, not a material adjective, so Compound concepts' determined rule bars the modifier genus exactly as it bars `steel_beam` -> `steel` (the exposed material case is the adjective `wooden`), and the atom additionally asserts the falsehood that a copper cauldron is a kind of copper."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form emits only the head genus `(Inheritance copper_cauldron cauldron)` and no modifier genus at all — the noun-modifier bar leaves `copper` inside the fused symbol.",
+    "notes": "Everything else conforms: the multi-word name as one opaque symbol plus a separate kind atom, `Agent` on the stative transitive \"holds\", and group + `Cardinality 3` with the head genus on the counted object."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000050",
+   "sentence": "Each cauldron sits on a stone hearth.",
+   "parse": [
+    "(: sh_genus (Inheritance stone_hearth hearth) (STV 1.0 0.99))",
+    "(: cauldron_on_hearth (Implication (Member $x cauldron) (And (On $x (sk_hearth $x)) (Member (sk_hearth $x) stone_hearth))) (STV 1.0 0.9))",
+    "(: cauldron_q (QuantifierPhrase cauldron sit \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000050",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the QuantifierPhrase companion's verb-lemma slot for a universal whose predicate is a position atom rather than an event — the \"sits on\" clause is routed (correctly) to the entity-attached On with no event minted, so the recorded lemma sit appears nowhere else in the parse; the copular/position universal is told the companion \"comes along as usual\" without saying what fills that slot"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routes postural \"sits on\" to the surface-preposition On with no event, distributes \"each\" as a 1.0/0.9 rule over (Member $x cauldron), and makes the indefinite hearth a dependent Skolem function per the forall-exists pattern; stone_hearth carries its genus and correctly no noun-modifier genus."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000051",
+   "sentence": "The Council appoints a Keeper as Cauldron Hall Warden each season.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: appoint_event (Member sk_appoint_1 appoint) (STV 1.0 0.99))",
+    "(: appoint_agent (Agent sk_appoint_1 sk_council_1) (STV 1.0 0.99))",
+    "(: appoint_theme (Theme sk_appoint_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: keeper_warden (Member sk_keeper_1 warden) (STV 1.0 0.99))",
+    "(: keeper_possession (Possession sk_keeper_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: appoint_every (Every sk_appoint_1 1 season) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000051",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized multi-word office title containing an embedded proper name (\"Cauldron Hall Warden\") — *Names and casing* says the name is exactly its capitalized run of words, which would make the whole run one Name-bearing symbol, while the proper-noun-premodifier rule (\"a Northgate spokesman\" → head noun typed on its own + opaque Possession) gives the split the parse chose; nothing states which rule wins when the head noun is itself capitalized",
+     "predicative \"as\"-phrase of a designation / appointment verb (\"appoints a Keeper as Warden\", \"elected her as chair\") — no dedicated encoding exists; only the resultative branch (object = Patient, reified state + Result link) and the depictive branch (plain concurrent state, no Result) are available and neither is selected for this construction, so the appointing→office link is not recoverable from the emitted atoms",
+     "a habitual recurrence whose participant varies per occurrence (\"appoints a Keeper each season\" — a different Keeper each season) — the flat habitual form leaves one witness sk_keeper_1 standing for every occurrence, and the per-occurrence Skolem machinery is reserved for \"every time / whenever\", which a calendar-period phrase explicitly does not trigger"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"each season\" → (Every sk_appoint_1 1 season) on an otherwise unmarked event follows *Frequency & habitual schedules* exactly, and the singular collective \"the Council\" correctly gets a plain event filler with no GroupOf, no distribution rule and no Name atom (capitalized bare class word). The Possession link to cauldron_hall is the licensed loose-association head, not an invented relation."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000052",
+   "sentence": "Hesper is the current Cauldron Hall Warden.",
+   "parse": [
+    "(: t2_hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: t2_hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: t2_hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: t2_hesper_type (Member hesper current_warden) (STV 1.0 0.99))",
+    "(: t2_warden_genus (Inheritance current_warden warden) (STV 1.0 0.99))",
+    "(: t2_warden_mod (Inheritance current_warden current) (STV 1.0 0.99))",
+    "(: t2_hesper_poss (Possession hesper cauldron_hall) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000052",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "(Inheritance current_warden current) exposes a modifier genus that is not licensed: \"current\" is a relational/rank adjective failing the predication test (*\"the warden is current\"), which the instruction set says is never exposed as a modifier genus, and it falls outside the three licensed categories (gradable, positional/cardinal, material adjective)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A capitalized multi-word OFFICE TITLE embedding a proper noun, used as a predicate nominal (\"is the current Cauldron Hall Warden\"): the mechanical casing rule (\"the name is exactly its capitalized run of words\") makes \"Cauldron Hall Warden\" one name symbol, while the proper-noun-premodifier rule splits it into the name \"Cauldron Hall\" plus a separately-parsed common-noun head; the instruction set states no precedence, and applying the casing rule literally would put a name symbol in a class position."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The chosen split (name cauldron_hall with its in-name kind atom, head phrase parsed normally, opaque Possession linking Hesper to the named entity) follows the Northgate-spokesman pattern faithfully; note that it truncates the capitalized run in the Name string."
+   },
+   "adjudication": {
+    "id": "lore-000052",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"current\" fails the predication test (*\"the warden is current\") and is a relational / rank adjective, which the instruction set says is \"never exposed as a modifier genus\" (the assistant_secretary case, which keeps genus secretary only) and which falls outside the three licensed exposure categories, so (Inheritance current_warden current) is an unlicensed atom."
+     }
+    ],
+    "gaps_confirmed": [
+     "no stated precedence between the mechanical casing rule (\"the name is exactly its capitalized run of words\") and the proper-noun-premodifier rule (\"the head never joins the Name string\") when the common-noun head of an office title is itself capitalized — \"the current Cauldron Hall Warden\""
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form drops (Inheritance current_warden current) and keeps (Member hesper current_warden) plus the head genus (Inheritance current_warden warden), the rank modifier staying unexposed inside the fused symbol exactly as assistant_secretary keeps genus secretary only.",
+    "notes": "The rest follows the Northgate-spokesman pattern faithfully — cauldron_hall as a name with its in-name kind atom (Member cauldron_hall hall), the head phrase parsed on its own and predicated of hesper by Member, and the opaque Possession linking her to the named entity."
+   }
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000053",
+   "sentence": "Hesper is a careful and silent man.",
+   "parse": [
+    "(: hesper_man (Member hesper man) (STV 1.0 0.99))",
+    "(: hesper_careful (Member hesper careful) (STV 1.0 0.99))",
+    "(: hesper_silent (Member hesper silent) (STV 1.0 0.99))",
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000053",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Coordinated premodifiers are correctly left unfused (both are incidental character description, not a term of art / role title / material adjective) and each gets its own Member atom on the individual; Name atom present, present-tense copular needs no wrapper."
+   },
+   "adjudication": null
+  }
+ ]
+}

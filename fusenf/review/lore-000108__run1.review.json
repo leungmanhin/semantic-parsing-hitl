@@ -1,0 +1,9 @@
+{"id": "lore-000108", "run": 1,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A CAPITALIZED COMMON NOUN premodifying a common-noun head (\"the old Council hall\"): the instruction set covers a proper-noun premodifier (head parsed normally + opaque `Possession` to the named entity) and a standalone capitalized common-noun label (\"the Assembly\" — common noun by default, no `Name`), but not the case where a capitalized common noun is itself the premodifier, so whether it fuses into a compound kind or takes the `Possession` route is undetermined."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Under the \"capitalized common noun is a common noun by default\" reading the parse is right throughout: `council_hall` fuses as a classifying subtype with the `hall` genus emitted and the noun modifier unexposed, \"old\" stays a separate descriptive atom, and `collapse` correctly takes an intransitive change-of-state `Patient` plus `Past`."}

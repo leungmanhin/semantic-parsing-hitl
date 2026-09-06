@@ -1,0 +1,8 @@
+(: l176_keeper_group (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: l176_keeper_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: l176_leave (Member sk_leave_1 leave) (STV 1.0 0.99))
+(: l176_agent (Agent sk_leave_1 sk_group_1) (STV 1.0 0.99))
+(: l176_theme (Theme sk_leave_1 sk_village_1) (STV 1.0 0.99))
+(: l176_village_type (Member sk_village_1 village) (STV 1.0 0.99))
+(: l176_past (Past sk_leave_1) (STV 1.0 0.99))
+(: l176_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Theme (sk_leave $x) sk_village_1) (Past (sk_leave $x)))) (STV 1.0 0.9))

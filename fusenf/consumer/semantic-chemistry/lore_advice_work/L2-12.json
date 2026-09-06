@@ -1,0 +1,243 @@
+{
+ "id": "L2-12",
+ "rule": "II — Tending a station",
+ "texts": [
+  "Each Keeper tends a station alone.",
+  "When a Keeper trains an apprentice, the Keeper and the apprentice tend the station together.",
+  "During high-wraith weeks, two Keepers tend the Stilllight Lantern together.",
+  "A night shift begins at sundown.",
+  "A Keeper checks the lantern at midnight.",
+  "A Keeper checks the lantern at the third watch.",
+  "The shift ends at dawn."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000161",
+   "sentence": "Each Keeper tends a station alone.",
+   "parse": [
+    "(: keeper_tends (Implication (Member $x keeper) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Theme (sk_tend $x) (sk_station $x)) (Member (sk_station $x) station) (Manner (sk_tend $x) alone))) (STV 1.0 0.9))",
+    "(: keeper_q (QuantifierPhrase keeper tend \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000161",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the adverbial 'alone' in its solitary / unaccompanied sense: it is not a how-manner adverb proper, not one of the barred adverb classes (duration, sequence, scope, degree), not a depictive state of the subject, and not one of the listed focus particles ('only / just / solely'), so no routing is specified"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-'each' universal, the Skolem-function event, the dependent existential `(sk_station $x)` with its own typing, the 1.0/0.9 rule TV and the QuantifierPhrase companion all match the instruction set exactly, and `keeper` correctly stays a plain kind (referring use, so no agent-nominalization capability). The one debatable atom is `(Manner (sk_tend $x) alone)` — defensible as a how-adverb, but it is the gap recorded above."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000162",
+   "sentence": "When a Keeper trains an apprentice, the Keeper and the apprentice tend the station together.",
+   "parse": [
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: train_tend_rule (Implication (And (Member $t train) (Agent $t $k) (Theme $t $a) (Member $k keeper) (Member $a apprentice)) (And (Member (sk_tend $t) tend) (Agent (sk_tend $t) $k) (Agent (sk_tend $t) $a) (Theme (sk_tend $t) sk_station_1) (During (sk_tend $t) $t))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000162",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare \"when P, Q\" with indefinite participants correctly routes to the whenever machinery (plain-variable premises, Skolem-function consequent, During link, STV 1.0 0.9, no QuantifierPhrase), and bare \"together\" on the coordinated subject correctly yields one tend event with two Agent atoms; the definite \"the station\" sits as a top-level typed constant as the bell/dog example does."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000163",
+   "sentence": "During high-wraith weeks, two Keepers tend the Stilllight Lantern together.",
+   "parse": [
+    "(: hww_genus (Inheritance high_wraith_week week) (STV 1.0 0.99))",
+    "(: keepers_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: keepers_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: tend_ev (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: tend_ag (Agent sk_tend_1 sk_group_1) (STV 1.0 0.99))",
+    "(: tend_th (Theme sk_tend_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: lantern_ty (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: tend_time (Time sk_tend_1 high_wraith_week) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000163",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 8,
+      "issue": "The 'during' PP is encoded as (Time sk_tend_1 high_wraith_week), but the instruction set reserves the head During for exactly the words during/while/throughout, and a Time filler must be a structured calendar term or a deictic/named-time constant — high_wraith_week is neither, it is a compound common-noun KIND the parse itself puts in a class slot at statement 0."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'during' + a bare-plural non-calendar period noun ('during high-wraith weeks') framing a habitual clause: During requires a reified eventuality as its outer argument, Time requires a calendar term or a deictic/named constant, and the frequency machinery (Every / TimesPer / named slot) requires a calendar slot or a stated period — so a recurring described period has no licensed carrier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is as specified: counted plural to group + Cardinality 2, 'together' consumed as the collective marker so the group event stands alone with no per-member rule, 'the Stilllight Lantern' as one name symbol with its Name plus the kind atom read off the kind word inside the name, Theme by the unclear-case default, and the high_wraith_week head genus with the modifier unexposed."
+   },
+   "adjudication": {
+    "id": "lore-000163",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "This is graceful improvisation in gap territory, not a defect: a bare period symbol in the Time slot has direct precedent (day-parts as bare symbols, '(Time e morning)', and a fiscal period 'else the bare constant first_quarter'), the atom is true of the sentence's content and over-asserts nothing, and the During route the reviewer points to is structurally unavailable — During takes two reified eventualities, which a bare-plural period kind supplies only by wrongly individuating one particular week."
+     }
+    ],
+    "gaps_confirmed": [
+     "'during' + a bare-plural non-calendar period noun framing a habitual clause has no licensed carrier: During needs two reified eventualities, Time is specified for calendar terms and deictic/named constants, and Every/TimesPer need a named calendar slot or a stated period/rate."
+    ],
+    "new_gaps": [
+     "Whether a period KIND symbol may fill a Time slot is unstated, and here the same symbol also sits in a class position in (Inheritance high_wraith_week week); the instruction set fixes the individual/class discipline for Member vs Inheritance but says nothing about one symbol serving as both a kind and a time filler.",
+     "The recurrence carried by the plural 'weeks' is not recoverable from a single Time atom, and no frequency carrier fits a period named by description rather than by calendar slot, stated cycle or rate."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The rest is as specified: counted plural to group + Cardinality 2, 'together' consumed as the collective marker so the group event stands alone with no per-member rule, the Stilllight Lantern as one name symbol with its Name plus the kind atom read off the name-internal kind word, and no status atom on the habitual."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000164",
+   "sentence": "A night shift begins at sundown.",
+   "parse": [
+    "(: night_shift_type (Member sk_night_shift_1 night_shift) (STV 1.0 0.99))",
+    "(: night_shift_genus (Inheritance night_shift shift) (STV 1.0 0.99))",
+    "(: e_begin (Member sk_begin_1 begin) (STV 1.0 0.99))",
+    "(: e_begin_pat (Patient sk_begin_1 sk_night_shift_1) (STV 1.0 0.99))",
+    "(: e_begin_time (Time sk_begin_1 sundown) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000164",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the instruction set's own \"The harvest begins in September\" pattern exactly: Patient on the intransitive begin-subject, no tense atom (no TODAY and no lexically future adjunct, so the futurate rule cannot fire), and \"sundown\" as a bare day-part constant on Time. The compound is correctly fused with its head genus emitted and the noun modifier \"night\" correctly not exposed; indefinite \"a\" under a verbal predicate correctly mints a witness rather than a generic."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000165",
+   "sentence": "A Keeper checks the lantern at midnight.",
+   "parse": [
+    "(: kp_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: kp_check (Member sk_check_1 check) (STV 1.0 0.99))",
+    "(: kp_agent (Agent sk_check_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: kp_theme (Theme sk_check_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: kp_lantern (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: kp_time (Time sk_check_1 midnight) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000165",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite subject is correctly a witness rather than a generic rule, the bare simple present correctly takes no status atom (no futurate evidence, no Ongoing marker), and 'keeper' in referring position rightly gets no (can keep) capability. 'midnight' as a bare Time constant follows the noon/dawn/dusk day-part pattern rather than (Hour 0), a boundary the instruction set does not name explicitly."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000166",
+   "sentence": "A Keeper checks the lantern at the third watch.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: check_ev (Member sk_check_1 check) (STV 1.0 0.99))",
+    "(: check_agent (Agent sk_check_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: check_theme (Theme sk_check_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: check_time (Time sk_check_1 third_watch) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000166",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"At the third watch\" as the bare time constant third_watch follows the first_quarter precedent (an ordinally-named period with no year stays a bare constant) and correctly avoids During, licensed only for during/while/throughout. The indefinite \"A Keeper\" with a verbal predicate is a witness rather than a generic rule, checks takes Theme as an evaluate-only object, and the bare simple present correctly gets no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000167",
+   "sentence": "The shift ends at dawn.",
+   "parse": [
+    "(: shift_type (Member sk_shift_1 shift) (STV 1.0 0.99))",
+    "(: shift_end (End sk_shift_1 dawn) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000167",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The verbal clause \"ends\" is never reified as an event; the instruction set's direct parallel — \"The harvest begins in September\" → a begin event with the harvest as Patient plus a Time atom and no tense — reifies the boundary verb, while the interval End head is introduced for \"from X to / until Y\" framing rather than for a boundary verb's own clause."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Two passages pull against each other here: the harvest/survey futurate example reifies the boundary verb, while the light-verb-over-event-noun and interval-End passages could be read as licensing a flat (End sk_shift_1 dawn). Omitting the tense atom is correct either way (no TODAY, unanchored adjunct)."
+   },
+   "adjudication": {
+    "id": "lore-000167",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'The shift ends at dawn' is a verbal clause, so *Two kinds of clause* reifies an event, and the instruction set's own twin sentences settle it — 'the survey begins at dawn' / 'The harvest begins in September' are parsed as a reified begin event with the subject as Patient plus a Time atom and no tense — while Start/End stay pinned to from/to/until/since framing, as the 'When did X stop V-ing?' dual-storage note states outright (interval End from 'until <date>' versus a reified boundary event from the verb)."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: (Member sk_end_1 end) (Patient sk_end_1 sk_shift_1) (Member sk_shift_1 shift) (Time sk_end_1 dawn) — 'dawn' is a licensed day-part constant on Time — with no tense atom (bare present, unanchored adjunct, no TODAY) and no (End sk_shift_1 dawn) beside it, since one fact takes one head.",
+    "notes": "The Intervals section names only the from/to/until/since wordings and never states the boundary against a boundary verb's own clause, so the flat-End reading is an understandable misread of a covered construction — an explicit line there would close it. Omitting the tense atom was correct under either reading."
+   }
+  }
+ ]
+}

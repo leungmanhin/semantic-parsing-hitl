@@ -1,0 +1,5 @@
+(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: st_genus (Inheritance silken_thread thread) (STV 1.0 0.99))
+(: st_mod (Inheritance silken_thread silken) (STV 1.0 0.99))
+(: sw_genus (Inheritance sea_water water) (STV 1.0 0.99))
+(: keepers_make (Implication (Member $x keeper) (And (Member (sk_make $x) make) (Agent (sk_make $x) $x) (Patient (sk_make $x) mire_essence) (Source (sk_make $x) silken_thread) (Source (sk_make $x) sea_water))) (STV 0.9 0.9))

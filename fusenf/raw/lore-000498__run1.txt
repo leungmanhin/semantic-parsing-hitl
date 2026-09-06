@@ -1,0 +1,3 @@
+(: e2_feathers_grp (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))
+(: e2_feathers_dried (Implication (PartOf $y sk_feathers_1) (Member $y dried)) (STV 1.0 0.9))
+(: e2_collectors_grind (Implication (Member $x collector) (And (Member (sk_grind $x) grind) (Agent (sk_grind $x) $x) (Patient (sk_grind $x) sk_feathers_1) (Location (sk_grind $x) (sk_mortar $x)) (Member (sk_mortar $x) mortar))) (STV 0.9 0.9))

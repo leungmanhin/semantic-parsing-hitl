@@ -1,0 +1,4 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: km_genus (Inheritance keeper_matter matter) (STV 1.0 0.99))
+(: decide_rule (Implication (Member $x keeper_matter) (And (Member (sk_decide $x) decide) (Agent (sk_decide $x) sk_council_1) (Theme (sk_decide $x) $x))) (STV 1.0 0.9))
+(: decide_q (QuantifierPhrase keeper_matter decide "all") (STV 1.0 0.99))

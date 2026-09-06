@@ -1,0 +1,8 @@
+(: w1_watch (Member sk_watch_1 watch) (STV 1.0 0.99))
+(: w1_group (GroupOf sk_group_1 ledger) (STV 1.0 0.99))
+(: w1_poss (Possession sk_group_1 sk_watch_1) (STV 1.0 0.99))
+(: w1_old_rule (Implication (PartOf $x sk_group_1) (Member $x old)) (STV 1.0 0.9))
+(: w1_mention (Member sk_mention_1 mention) (STV 1.0 0.99))
+(: w1_mention_agent (Agent sk_mention_1 sk_group_1) (STV 1.0 0.99))
+(: w1_mention_theme (Theme sk_mention_1 sky_cat) (STV 1.0 0.99))
+(: w1_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))

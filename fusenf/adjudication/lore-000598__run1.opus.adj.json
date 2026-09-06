@@ -1,0 +1,9 @@
+{"id": "lore-000598", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The rule quantifies the named kind range `equinox` and consumes the explicit word \"each\" to set strength 1.0, and the companion is stated mandatory for every explicit quantifier word the rule consumes, restating exactly a range the rule itself quantifies; the one carve-out is the clause-ranged \"every time / whenever\" conditional, which has no kind symbol to fill the companion's first slot — unlike `equinox` here."}],
+ "gaps_confirmed": ["A universally-quantified temporal adjunct headed by a preposition (\"after each equinox\") has no stated routing: the occurrence-rule form is given only for \"every time / whenever\" CLAUSES and the flat habitual form only for calendar slots (Weekday / Month / Hour terms)."],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "The compliant form keeps this rule unchanged and adds `(: eq_q (QuantifierPhrase equinox make \"each\") (STV 1.0 0.99))` beside it.",
+ "notes": "The rest is well-motivated: an equinox is an event-noun occurrence domain rather than a calendar term, \"after\" is `(Before <equinox> <making>)`, strength 1.0 with confidence 0.9 is the universal's dial, `vessel` is the licensed bare kind filler for a non-specific object, and \"Aron Brae\" correctly takes a `Name` atom with no invented kind."}

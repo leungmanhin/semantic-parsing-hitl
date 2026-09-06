@@ -1,0 +1,332 @@
+{
+ "id": "L8-09",
+ "rule": "VIII — Stores",
+ "texts": [
+  "The feather bin is an iron-lidded box in the floor of the ledger-room.",
+  "The feather bin holds a large reserve of feathers.",
+  "Council members and Tessa Brae hold keys to the feather bin.",
+  "The Cauldron Hall salt-bloom store is a wooden cabinet.",
+  "Each compartment holds one new-moon harvest.",
+  "Hesper dates and labels each harvest.",
+  "Keepers use old salt-bloom before new salt-bloom within a season."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000519",
+   "sentence": "The feather bin is an iron-lidded box in the floor of the ledger-room.",
+   "parse": [
+    "(: fb_typ (Member sk_feather_bin_1 feather_bin) (STV 1.0 0.99))",
+    "(: fb_genus (Inheritance feather_bin bin) (STV 1.0 0.99))",
+    "(: fb_box (Member sk_feather_bin_1 box) (STV 1.0 0.99))",
+    "(: fb_lid_typ (Member sk_lid_1 lid) (STV 1.0 0.99))",
+    "(: fb_lid_part (PartOf sk_lid_1 sk_feather_bin_1) (STV 1.0 0.99))",
+    "(: fb_lid_iron (Member sk_lid_1 iron) (STV 1.0 0.99))",
+    "(: fb_loc (LocatedIn sk_feather_bin_1 sk_floor_1) (STV 1.0 0.99))",
+    "(: fb_floor_typ (Member sk_floor_1 floor) (STV 1.0 0.99))",
+    "(: fb_floor_part (PartOf sk_floor_1 sk_ledger_room_1) (STV 1.0 0.99))",
+    "(: fb_lr_typ (Member sk_ledger_room_1 ledger_room) (STV 1.0 0.99))",
+    "(: fb_lr_genus (Inheritance ledger_room room) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000519",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The compound adjective 'iron-lidded' is unpacked into an invented lid witness plus a PartOf link, where the instruction set treats a participial modifier as an adjective and explicitly says to leave adjective compounds opaque for now; no atom predicates the stated property of the bin at all."
+     },
+     {
+      "statement": 5,
+      "issue": "'iron' is exposed as a property atom on the lid, but iron is a noun modifier, which the instruction set says is never exposed (steel_beam is not steel) and instead rides inside the fused symbol."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "denominal / participial possessive compound adjective of the 'X-Yed' type ('iron-lidded', 'flat-roofed', 'three-legged') — nothing states whether it stays an opaque property of the bearer or unpacks into a possessed part"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "LocatedIn for 'in the floor', PartOf for the floor 'of the ledger-room', and both compound-kind genus atoms (bin, room, with the noun modifiers unexposed) follow the instruction set."
+   },
+   "adjudication": {
+    "id": "lore-000519",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A participle used as a modifier is an adjective ('a laminated worktop' gives (Member sk_worktop_1 laminated)) and Compound concepts says to leave adjective compounds opaque — unpacking 'iron-lidded' into a minted lid referent that no NP in the sentence introduces, while leaving the bin with no iron_lidded atom at all, is an unlicensed decomposition."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "(Member sk_lid_1 iron) exposes a noun modifier as a property, which the part-of-speech line bars outright ('steel is a noun sitting in front of another noun', steel_beam is not steel) — the material must ride inside the symbol, never be predicated of the lid."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "a possessive ('bahuvrihi') compound adjective — 'iron-lidded', 'flat-roofed', 'three-legged' — has a determinate ROUTE (one opaque property on the bearer) but no licensed decomposition, so the part it names and that part's material stay unreachable inside the symbol; the 'Leave opaque for now' clause registers the routing without naming any carrier for the entailed part"
+    ],
+    "decision": "defect",
+    "defect_summary": "Both confirmed issues share one compliant form: replace the three lid atoms with the single opaque property (Member sk_feather_bin_1 iron_lidded) beside the existing (Member sk_feather_bin_1 box) — no lid witness, no PartOf, no exposed 'iron'.",
+    "notes": "I refute the reviewer's framing that the routing is unstated: the participial-modifier-is-an-adjective rule plus the leave-opaque clause determine it, which is why the unpacking is a defect rather than gap-territory improvisation. The rest of the parse is sound — feather_bin and ledger_room fused with head genus only, the copular Member on the individual, LocatedIn for containment 'in the floor', PartOf for the floor of the room."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000520",
+   "sentence": "The feather bin holds a large reserve of feathers.",
+   "parse": [
+    "(: bin_type (Member sk_bin_1 feather_bin) (STV 1.0 0.99))",
+    "(: bin_genus (Inheritance feather_bin bin) (STV 1.0 0.99))",
+    "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_hold_1 sk_bin_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_hold_1 sk_reserve_1) (STV 1.0 0.99))",
+    "(: reserve_type (Member sk_reserve_1 reserve) (STV 1.0 0.99))",
+    "(: reserve_large (Member sk_reserve_1 large) (STV 1.0 0.99))",
+    "(: reserve_group (GroupOf sk_reserve_1 feather) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000520",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches doctrine throughout: the stative-transitive 'holds' keeps Agent (the 'the tank holds forty litres' case), 'a large reserve of feathers' takes the 'a flock of birds' Member+GroupOf shape, and 'large' is a property of the collection itself so it legitimately rides the group symbol."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000521",
+   "sentence": "Council members and Tessa Brae hold keys to the feather bin.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: council_hold_rule (Implication (PartOf $x sk_council_1) (And (Member (sk_hold $x) hold) (Holder (sk_hold $x) $x) (Theme (sk_hold $x) sk_key_1))) (STV 1.0 0.9))",
+    "(: tessa_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: tessa_holder (Holder sk_hold_1 tessa_brae) (STV 1.0 0.99))",
+    "(: tessa_theme (Theme sk_hold_1 sk_key_1) (STV 1.0 0.99))",
+    "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: key_group (GroupOf sk_key_1 key) (STV 1.0 0.99))",
+    "(: key_to_bin (To sk_key_1 sk_bin_1) (STV 1.0 0.99))",
+    "(: bin_type (Member sk_bin_1 feather_bin) (STV 1.0 0.99))",
+    "(: bin_genus (Inheritance feather_bin bin) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000521",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The distributing rule's Theme is the top-level constant sk_key_1 rather than a per-binding Skolem group (sk_key $x), so it asserts that every council member holds the very same key group — the shared/∃∀ reading, where the instruction set's default for a dependent existential under a universal is a Skolem function of the bound variable."
+     },
+     {
+      "statement": 4,
+      "issue": "Tessa's hold event reuses that same sk_key_1 group, asserting she holds the identical keys as the council members; the 'shared object reuses one symbol' licence is stated for a definite shared object, not an indefinite bare plural."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a non-nominalization relational noun taking a 'to'-complement ('keys to the feather bin') — the instruction set gives argument-PP encodings for nominalizations (Of / For) and 'of'-genitives on true relational nouns (Possession / PartOf), but nothing for a 'to'-complement on a relational noun",
+     "whether an indefinite bare-plural object shared across coordinated subjects takes one witness or one per conjunct"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Distributive coordination, the 'the crew members' member-of-group rule route over (PartOf $x sk_council_1) at 1.0/0.9, Holder/Theme for possessive 'hold', the feather_bin compound genus and the multi-word Name are all correct. The sole substantive fault is the scoping of the key group."
+   },
+   "adjudication": {
+    "id": "lore-000521",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The quantifier section fixes the dependent reading here twice over — 'read the natural meaning' (each key-holder holds their own key to the bin) and, failing that, 'genuine ambiguity → first quantifier takes wide scope' with the universal first — and prescribes a Skolem term for a dependent existential while reserving a top-level witness CONSTANT for the shared reading, so (Theme (sk_hold $x) sk_key_1) asserts that every council member holds one and the same key set, which the sentence does not state."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "'An indefinite is always a NEW witness' and 'existential witnesses are anonymous — mint a fresh sk_<class>_<n> each time; witnesses don't corefer' govern the bare-plural 'keys', and the shared-object licence under coordination is illustrated on a definite ('the cake' → one typed individual), so reusing sk_key_1 in Tessa's event asserts her keys are the identical set the council members hold — an over-assertion."
+     }
+    ],
+    "gaps_confirmed": [
+     "a 'to'-complement on a non-nominalization relational noun ('keys to the feather bin'): argument-PP encodings are stated for nominalizations (Of / For) and for true relational nouns' of-genitives (Possession / PartOf), and the entity-attached surface-preposition licence is stated for origin ('from') and for non-containment position, none of which covers this"
+    ],
+    "new_gaps": [
+     "no stated shape for an UNNUMBERED bare-plural dependent existential under a universal — the singular case gives a Skolem function ((sk_book $x)) and the counted case a per-binding Skolem group with a Cardinality ((sk_books $x) + Cardinality 3), but a plural-with-no-count object inside a rule conclusion has no specified form"
+    ],
+    "decision": "defect",
+    "defect_summary": "For issue 0 the compliant form makes the keys a per-binding Skolem term inside the conclusion — (Theme (sk_hold $x) (sk_keys $x)) (GroupOf (sk_keys $x) key) (To (sk_keys $x) sk_bin_1) — by extension of the counted (sk_books $x) pattern, though that plural-without-count shape is itself the unstated extension filed above as a new gap. For issue 1 the compliant form gives Tessa's hold event its own fresh key witness (a second group with its own (To … sk_bin_1)), the definite sk_bin_1 alone staying the shared top-level constant.",
+    "notes": "I do not confirm the reviewer's second gap (one witness vs one per conjunct for a shared indefinite object): the existential-witness rule settles it — an indefinite is always a new witness and witnesses don't corefer — which is precisely what makes issue 1 a defect rather than a gap. Distributive coordination, the (PartOf $x sk_council_1) member-rule route at 1.0/0.9 with no QuantifierPhrase (no quantifier word present), Holder/Theme on 'hold', the feather_bin genus and the multi-word Name are all correct."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000522",
+   "sentence": "The Cauldron Hall salt-bloom store is a wooden cabinet.",
+   "parse": [
+    "(: cn_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: cn_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: store_type (Member sk_store_1 salt_bloom_store) (STV 1.0 0.99))",
+    "(: store_poss (Possession sk_store_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: sbs_genus (Inheritance salt_bloom_store store) (STV 1.0 0.99))",
+    "(: store_cabinet (Member sk_store_1 wooden_cabinet) (STV 1.0 0.99))",
+    "(: wc_genus1 (Inheritance wooden_cabinet wooden) (STV 1.0 0.99))",
+    "(: wc_genus2 (Inheritance wooden_cabinet cabinet) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000522",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun premodifier is handled exactly as prescribed (head phrase parsed on its own, opaque Possession to the named entity, kind word inside the name giving one type atom and no modifier genus), and wooden_cabinet correctly exposes both the head genus and the material ADJECTIVE modifier while salt_bloom_store exposes only its head."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000523",
+   "sentence": "Each compartment holds one new-moon harvest.",
+   "parse": [
+    "(: harvest_genus (Inheritance new_moon_harvest harvest) (STV 1.0 0.99))",
+    "(: compartment_q (QuantifierPhrase compartment hold \"each\") (STV 1.0 0.99))",
+    "(: each_compartment_holds (Implication (Member $x compartment) (And (Member (sk_hold $x) hold) (Agent (sk_hold $x) $x) (Theme (sk_hold $x) (sk_harvest $x)) (Member (sk_harvest $x) new_moon_harvest))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000523",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The numeral 'one' in 'one new-moon harvest' is unrepresented — the bare per-binding Skolem witness asserts only that a harvest exists per compartment, dropping the stated count and widening the claim."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A singular cardinal determiner ('one N'): Cardinality / CardinalityAtLeast / CardinalityPhrase are all specified over a plural group (GroupOf), so a singular 'one N' has no stated carrier for its count."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Explicit-universal rule form, the QuantifierPhrase companion, the dependent Skolem-function object and STV 1.0 0.9 are all correct; Agent for the stative-transitive 'holds' matches the 'the tank holds forty litres' ruling, and the noun modifier in new_moon_harvest is correctly left unexposed."
+   },
+   "adjudication": {
+    "id": "lore-000523",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Cardinality / CardinalityAtLeast / CardinalityPhrase are all specified over a plural GROUP (\"a plural referred to as a unit is a group; when it carries a number, add a count atom to that group\"), so a singular \"one N\" has no licensed carrier, and omitting the numeral narrows rather than widens the claim — the per-binding Skolem term (sk_harvest $x) already denotes exactly one harvest per compartment — so the *Core patterns* never-silently-dropped bar, whose stated rationale is that omission widens the claim, does not bite."
+     }
+    ],
+    "gaps_confirmed": [
+     "a singular cardinal determiner (\"one N\"): Cardinality / CardinalityAtLeast / CardinalityPhrase are specified over a plural group (GroupOf), so a singular \"one N\" has no stated carrier for its count and the surface numeral goes unrecorded"
+    ],
+    "new_gaps": [],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The explicit-universal rule form over (Member $x compartment), the QuantifierPhrase companion, the dependent Skolem-function object and STV 1.0 0.9 are all correct, as is Agent for the stative transitive \"holds\" (the tank-holds-forty-litres ruling) and leaving the noun modifier in new_moon_harvest unexposed."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000524",
+   "sentence": "Hesper dates and labels each harvest.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: hesper_dates_harvest (Implication (Member $y harvest) (And (Member (sk_date $y) date) (Agent (sk_date $y) hesper) (Theme (sk_date $y) $y))) (STV 1.0 0.9))",
+    "(: date_q (QuantifierPhrase harvest date \"each\") (STV 1.0 0.99))",
+    "(: hesper_labels_harvest (Implication (Member $y harvest) (And (Member (sk_label $y) label) (Agent (sk_label $y) hesper) (Theme (sk_label $y) $y))) (STV 1.0 0.9))",
+    "(: label_q (QuantifierPhrase harvest label \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000524",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Coordinated VPs translated independently with the shared subject carried over, \"each harvest\" as the explicit-universal distributing rule ranging over (Member $y harvest) at 1.0/0.9, Skolem-function events, and a QuantifierPhrase companion per rule (the companion's verb-lemma slot means one atom could not cover both verbs). Theme for the recording verbs date/label is the licensed reading (record/evaluate verbs leave the object as it was, and the unclear case defaults to Theme), and no invented type atom for Hesper is correct."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000525",
+   "sentence": "Keepers use old salt-bloom before new salt-bloom within a season.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: osb_genus (Inheritance old_salt_bloom salt_bloom) (STV 1.0 0.99))",
+    "(: osb_prop (Inheritance old_salt_bloom old) (STV 1.0 0.99))",
+    "(: nsb_genus (Inheritance new_salt_bloom salt_bloom) (STV 1.0 0.99))",
+    "(: nsb_prop (Inheritance new_salt_bloom new) (STV 1.0 0.99))",
+    "(: keepers_use_order (Implication (Member $x keeper) (And (Member (sk_use_old $x) use) (Agent (sk_use_old $x) $x) (Theme (sk_use_old $x) old_salt_bloom) (Member (sk_use_new $x) use) (Agent (sk_use_new $x) $x) (Theme (sk_use_new $x) new_salt_bloom) (Before (sk_use_old $x) (sk_use_new $x)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000525",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "'within a season' is silently dropped: the rule asserts the old-before-new ordering with no bound on the gap, widening the claim past what the text states (Core patterns bars dropping a stated restriction)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bounded temporal-gap frame on an ordering ('within a season', 'within two weeks'): Before carries no bound, BeforeBy states an exact measured gap, and During/Start/End need a reified outer eventuality or stated terms",
+     "no naming convention for two events of the SAME verb in one rule conclusion — the prescribed Skolem term (sk_<verb> $x) would collide, forcing the ad-hoc stems sk_use_old / sk_use_new"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Fusing 'old salt-bloom' / 'new salt-bloom' into compound kinds with genus plus exposed gradable modifier is a stretch of the compound rule's 'never for incidental description' line, though no two-atom split is available for a bare kind filler. Before direction (old use earlier) and the 0.9/0.9 bare-generic rule TV are correct."
+   },
+   "adjudication": {
+    "id": "lore-000525",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Core patterns states that a stated restriction is never silently dropped — 'carry it, or leave the whole claim out and record the gap (an unencodable qualifier never becomes an unqualified assertion)' — and the emitted rule asserts an unbounded old-before-new ordering that also holds across season boundaries, which the text does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "no carrier for a bounded temporal window scoping an ordering ('within a season'): `Before` takes no bound, `BeforeBy` states an exact measured gap rather than a maximum, and `During`/`Start`/`End` need a reified outer eventuality or stated terms",
+     "no naming convention for two events of the SAME verb in one rule conclusion — the prescribed `(sk_<verb> $x)` term would collide, forcing the ad-hoc stems `sk_use_old` / `sk_use_new`"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "No compliant form is licensed for the ordering-plus-window content, so the instruction set's own fallback applies: omit the `Before` conjunct entirely and record the gap, keeping the kind-decomposition atoms and the two use-event halves, rather than emitting the unqualified ordering.",
+    "notes": "Fusing 'old salt-bloom' / 'new salt-bloom' into compound kinds with the modifier exposed is licensed here — `old` and `new` are gradable adjectives predicable of the referent — and it is the only route available for a bare kind filler. The Before direction (old use earlier) and the 0.9/0.9 bare-generic rule TV are correct."
+   }
+  }
+ ]
+}

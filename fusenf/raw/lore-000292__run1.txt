@@ -1,0 +1,8 @@
+(: keeper_ty (Member sk_keeper_1 keeper) (STV 1.0 0.99))
+(: reservoir_ty (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))
+(: saltbloom_gen (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: sprinkle_ev (Member sk_sprinkle_1 sprinkle) (STV 1.0 0.99))
+(: sprinkle_ag (Agent sk_sprinkle_1 sk_keeper_1) (STV 1.0 0.99))
+(: sprinkle_th (Theme sk_sprinkle_1 salt_bloom) (STV 1.0 0.99))
+(: sprinkle_goal (Goal sk_sprinkle_1 sk_reservoir_1) (STV 1.0 0.99))
+(: sprinkle_time (Time sk_sprinkle_1 winter) (STV 1.0 0.99))

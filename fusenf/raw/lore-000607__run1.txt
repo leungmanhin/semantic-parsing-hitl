@@ -1,0 +1,8 @@
+(: traders_group (GroupOf sk_traders_1 trader) (STV 1.0 0.99))
+(: lanterns_group (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))
+(: e_sail_out (Member sk_sail_out_1 sail_out) (STV 1.0 0.99))
+(: e_sail_agent (Agent sk_sail_out_1 sk_traders_1) (STV 1.0 0.99))
+(: sail_out_rule (Implication (PartOf $x sk_traders_1) (And (Member (sk_sail_out $x) sail_out) (Agent (sk_sail_out $x) $x))) (STV 1.0 0.9))
+(: e_light (Member sk_light_1 light) (STV 1.0 0.99))
+(: e_light_patient (Patient sk_light_1 sk_lanterns_1) (STV 1.0 0.99))
+(: before_rel (Before sk_sail_out_1 sk_light_1) (STV 1.0 0.99))

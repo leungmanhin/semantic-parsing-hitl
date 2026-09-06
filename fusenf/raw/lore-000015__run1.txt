@@ -1,0 +1,7 @@
+(: wall_type (Member sk_wall_1 harbor_wall) (STV 1.0 0.99))
+(: wall_genus (Inheritance harbor_wall wall) (STV 1.0 0.99))
+(: hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))
+(: hold_agent (Agent sk_hold_1 sk_wall_1) (STV 1.0 0.99))
+(: hold_theme (Theme sk_hold_1 sk_group_1) (STV 1.0 0.99))
+(: lantern_grp (GroupOf sk_group_1 lantern) (STV 1.0 0.99))
+(: lantern_card (Cardinality sk_group_1 24) (STV 1.0 0.99))

@@ -1,0 +1,8 @@
+(: coll_grp (GroupOf sk_group_1 collector) (STV 1.0 0.99))
+(: feath_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))
+(: sack_genus (Inheritance leather_sack sack) (STV 1.0 0.99))
+(: e_drop (Member sk_drop_1 drop) (STV 1.0 0.99))
+(: e_agent (Agent sk_drop_1 sk_group_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_drop_1 sk_feather_1) (STV 1.0 0.99))
+(: e_goal (Goal sk_drop_1 leather_sack) (STV 1.0 0.99))
+(: coll_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_drop $x) drop) (Agent (sk_drop $x) $x) (Theme (sk_drop $x) sk_feather_1) (Goal (sk_drop $x) leather_sack))) (STV 1.0 0.9))

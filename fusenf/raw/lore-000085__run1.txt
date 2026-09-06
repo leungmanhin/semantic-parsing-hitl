@@ -1,0 +1,8 @@
+(: sw_genus (Inheritance sea_wind wind) (STV 1.0 0.99))
+(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: cs_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))
+(: e_weather (Member sk_weather_1 weather) (STV 1.0 0.99))
+(: e_agent (Agent sk_weather_1 sea_wind) (STV 1.0 0.99))
+(: e_patient (Patient sk_weather_1 sk_group_1) (STV 1.0 0.99))
+(: e_past (Past sk_weather_1) (STV 1.0 0.99))
+(: e_dur (MeasureAtLeast sk_weather_1 duration 2 century) (STV 1.0 0.99))

@@ -1,0 +1,9 @@
+{"id": "lore-000011", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The rule ranges over every flat sea-worn stone in the KB and hands each one a pave event whose Patient is the constant cliff_path, asserting far more than the text states (Core patterns: assert only what the text states) — the sentence describes the specific set of stones surfacing that one named path, not a characteristic claim about stones at large."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["The episodic-vs-generic bare-plural test is stated with past/dated/one-off exemplars on the episodic side and habitual-present/characteristic on the generic side; a present-tense STANDING-CONFIGURATION clause ('stones pave the path', 'ivy covers the wall') is neither, and nothing tells the parser which route it takes."],
+ "decision": "defect",
+ "defect_summary": "Compliant form: a group witness for the specific stones — (GroupOf sk_group_1 stone) with the descriptive modifiers distributed over its members, (Implication (PartOf $x sk_group_1) (Member $x flat)) and the same for sea_worn — filling the Agent of one pave event whose Patient is cliff_path, instead of an Implication ranging over the kind.",
+ "notes": "The name handling is correct: one opaque symbol for the multi-word name, one Name atom, and the kind atom read off the kind word inside the name."}

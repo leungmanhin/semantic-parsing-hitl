@@ -1,0 +1,231 @@
+{
+ "id": "L1-02",
+ "rule": "I — Cliff Path",
+ "texts": [
+  "The Cliff Path runs along the outer edge of the village.",
+  "The Cliff Path runs from the harbor wall to the cliff-spires.",
+  "The cliff-spires stand east of the village.",
+  "Flat sea-worn stones pave the Cliff Path.",
+  "Each Keeper walks the Cliff Path every night.",
+  "The Cliff Path holds one hundred and twelve lanterns.",
+  "The middle stretch of the Cliff Path is unshielded."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000008",
+   "sentence": "The Cliff Path runs along the outer edge of the village.",
+   "parse": [
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: edge_genus (Inheritance outer_edge edge) (STV 1.0 0.99))",
+    "(: edge_mod (Inheritance outer_edge outer) (STV 1.0 0.99))",
+    "(: edge_type (Member sk_edge_1 outer_edge) (STV 1.0 0.99))",
+    "(: edge_loc (LocatedIn sk_edge_1 sk_village_1) (STV 1.0 0.99))",
+    "(: path_along (Along cliff_path sk_edge_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000008",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "extent / course verb of a linear thing ('the path runs along X', 'the road follows the river'): the bare-position route names only lie / sit / stand / hang / lean / perch / rest, so whether 'runs along' mints an event or takes the entity-attached position atom is undetermined",
+     "a relational part-noun of a place ('the outer edge of the village'): the genitive part/component test points to PartOf while the 'a place inside a place is LocatedIn, never PartOf' geography rule points to LocatedIn, and the relational-noun parenthetical ('a tributary of the river') does not settle which side an edge-of-a-place falls on"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name/type split, outer_edge decomposition (positional modifier exposed), and the entity-attached (Along ...) head all follow the instruction set; no tense atom is correct for a present-tense position clause."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000009",
+   "sentence": "The Cliff Path runs from the harbor wall to the cliff-spires.",
+   "parse": [
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: wall_type (Member sk_harbor_wall_1 harbor_wall) (STV 1.0 0.99))",
+    "(: wall_genus (Inheritance harbor_wall wall) (STV 1.0 0.99))",
+    "(: spires_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cp_from (From cliff_path sk_harbor_wall_1) (STV 1.0 0.99))",
+    "(: cp_to (To cliff_path sk_group_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000009",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "verb of spatial extent ('the Cliff Path runs from A to B') — 'run' is not among the stative locative/postural verbs the instruction set lists (lie/sit/stand/hang/lean/perch/rest), so whether such a clause mints an event is left undetermined",
+     "a from-to endpoint PAIR naming a linear thing's two termini — entity-attached 'From' is defined only as ORIGIN ('where the wool is from, not where it is'), and no head covers a route's extent"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Under the position-clause route ('a bare position clause mints no event whatever its verb') the surface verb 'runs' disappears entirely, exactly as 'leaned' does in the instruction set's own (Against ...) example; the definite/plural NP handling (typed witness, group witness, head genus without the noun-modifier genus) all follows the compound rules."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000010",
+   "sentence": "The cliff-spires stand east of the village.",
+   "parse": [
+    "(: l10_grp (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: l10_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: l10_village (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: l10_loc (EastOf sk_group_1 sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000010",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare position clause with postural 'stand' correctly mints no event; 'east of' is the entity-attached multi-word surface preposition, present tense correctly unwrapped. Definite plural takes a group witness and the noun-modifier 'cliff' is correctly left unexposed while the genus 'spire' is emitted."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000011",
+   "sentence": "Flat sea-worn stones pave the Cliff Path.",
+   "parse": [
+    "(: cliff_path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cliff_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: stones_pave_path (Implication (And (Member $x stone) (Member $x flat) (Member $x sea_worn)) (And (Member (sk_pave $x) pave) (Agent (sk_pave $x) $x) (Patient (sk_pave $x) cliff_path))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000011",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The bare plural here names the specific set of stones paving that one path, not a generic kind, so the distributing-rule route wrongly asserts that every flat sea-worn stone in the KB paves the Cliff Path; the clause is neither habitual nor a characteristic claim about stones, so the licensed route is a group witness acting in one pave event with the modifiers distributed over its members."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The name handling is right: one opaque symbol for \"the Cliff Path\", its Name atom, and the kind atom read off the kind word inside the name. The episodic-bare-plural test is stated with past/dated/one-off exemplars so a present-tense standing-configuration clause sits at its edge, but the rule route's own precondition (a genuinely generic clause) is not met."
+   },
+   "adjudication": {
+    "id": "lore-000011",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The rule ranges over every flat sea-worn stone in the KB and hands each one a pave event whose Patient is the constant cliff_path, asserting far more than the text states (Core patterns: assert only what the text states) — the sentence describes the specific set of stones surfacing that one named path, not a characteristic claim about stones at large."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "The episodic-vs-generic bare-plural test is stated with past/dated/one-off exemplars on the episodic side and habitual-present/characteristic on the generic side; a present-tense STANDING-CONFIGURATION clause ('stones pave the path', 'ivy covers the wall') is neither, and nothing tells the parser which route it takes."
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form: a group witness for the specific stones — (GroupOf sk_group_1 stone) with the descriptive modifiers distributed over its members, (Implication (PartOf $x sk_group_1) (Member $x flat)) and the same for sea_worn — filling the Agent of one pave event whose Patient is cliff_path, instead of an Implication ranging over the kind.",
+    "notes": "The name handling is correct: one opaque symbol for the multi-word name, one Name atom, and the kind atom read off the kind word inside the name."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000012",
+   "sentence": "Each Keeper walks the Cliff Path every night.",
+   "parse": [
+    "(: cliff_path_m (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cliff_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: keeper_walk_rule (Implication (Member $x keeper) (And (Member (sk_walk $x) walk) (Agent (sk_walk $x) $x) (Theme (sk_walk $x) cliff_path) (Time (sk_walk $x) night) (Every (sk_walk $x) 1 day))) (STV 1.0 0.9))",
+    "(: keeper_walk_q (QuantifierPhrase keeper walk \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000012",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The \"each\" universal takes the distributing rule over (Member $x keeper) with its QuantifierPhrase companion and no tense atom (habitual), and \"every night\" correctly becomes the day-part Time slot plus the implied (Every e 1 day) cycle. \"the Cliff Path\" is one opaque name symbol with its kind atom and no modifier genus, per Names and casing."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000013",
+   "sentence": "The Cliff Path holds one hundred and twelve lanterns.",
+   "parse": [
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_hold_1 cliff_path) (STV 1.0 0.99))",
+    "(: lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_card (Cardinality sk_lantern_1 112) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_hold_1 sk_lantern_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000013",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Multi-word name plus in-name kind atom, Agent on the stative transitive (cf. \"the tank holds forty litres\"), Theme for the unchanged object, and group + Cardinality 112 for the counted plural all follow the instruction set. Only nit: the group symbol is sk_lantern_1 where the stated default is sk_group_1 (a mnemonic stem is licensed \"with several groups in play\"), which is nominal rather than semantic."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000014",
+   "sentence": "The middle stretch of the Cliff Path is unshielded.",
+   "parse": [
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: ms_genus (Inheritance middle_stretch stretch) (STV 1.0 0.99))",
+    "(: ms_mod (Inheritance middle_stretch middle) (STV 1.0 0.99))",
+    "(: stretch_type (Member sk_stretch_1 middle_stretch) (STV 1.0 0.99))",
+    "(: stretch_partof (PartOf sk_stretch_1 cliff_path) (STV 1.0 0.99))",
+    "(: stretch_unshielded (Member sk_stretch_1 unshielded) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000014",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Multi-word name handled per Names and casing (one opaque symbol + one Name + the kind word from inside the name); the of-phrase takes PartOf on the part test, and the positional modifier genus follows the east_wing/upper_deck carve-out. \"unshielded\" correctly stays a positive property at strength 1.0 (lexical antonyms are not negation)."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+{"id": "lore-000238", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Thematic roles makes a created object a Patient and states outright that an occurrence object (a flight, a vote, a match, a hearing) is Patient every time, and 'call an emergency meeting' brings the occurrence into being, so Theme is not licensed."}],
+ "gaps_confirmed": ["a cardinal-restricted deontic norm over a kind (a quorum rule): (Inheritance <kind> (permitted <action>)) has no slot for the count, and ConditionalProperty's condition slot takes states, measures or environments, not a co-agent count",
+                    "an indefinite argument of a merely-Permitted (or Can) event is asserted at top level, so 'may call an emergency meeting' imports an emergency meeting the sentence never posits; no non-veridical scope for status atoms over their event's own arguments is specified"],
+ "new_gaps": ["'Council member' satisfies BOTH the fuse-into-a-genuine-subtype test (shaped like the instruction set's own lifetime_member) and the do-not-fuse possessor/whole + part/member test (PartOf's second stated job is 'a member of a group'), and no precedence between the two is stated"],
+ "decision": "defect",
+ "defect_summary": "The compliant form is (Patient sk_call_1 sk_meeting_1) in place of (Theme sk_call_1 sk_meeting_1); nothing else in the parse needs to change.",
+ "notes": "The counted group with Cardinality 2 and Permitted at (STV 1.0 0.99) is a coherent improvisation for a quorum norm, but it ties the permission to one specific pair rather than to any two members — the substance of the first confirmed gap."}

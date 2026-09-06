@@ -1,0 +1,8 @@
+(: e_group (GroupOf sk_group_1 senior_keeper) (STV 1.0 0.99))
+(: e_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))
+(: e_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))
+(: e_village (Member sk_village_1 village) (STV 1.0 0.99))
+(: e_worry (Member sk_worry_1 worry) (STV 1.0 0.99))
+(: e_exp (Experiencer sk_worry_1 sk_group_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_worry_1 (And (Member sk_complacency_1 complacency) (Member sk_creep_1 creep) (Patient sk_creep_1 sk_complacency_1) (Goal sk_creep_1 sk_village_1) (Past sk_creep_1))) (STV 1.0 0.99))
+(: e_dist (Implication (PartOf $x sk_group_1) (And (Member (sk_worry $x) worry) (Experiencer (sk_worry $x) $x) (Theme (sk_worry $x) (And (Member sk_complacency_1 complacency) (Member sk_creep_1 creep) (Patient sk_creep_1 sk_complacency_1) (Goal sk_creep_1 sk_village_1) (Past sk_creep_1))))) (STV 1.0 0.9))

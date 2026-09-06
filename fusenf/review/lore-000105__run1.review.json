@@ -1,0 +1,10 @@
+{"id": "lore-000105", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 5, "issue": "The bare-plural duration default (MeasureAtLeast e duration 2 <unit>), which the instruction set licenses only for a duration with no stated count ('for days', 'over weeks'), is applied to 'many years', silently dropping the stated quantifier and asserting a far weaker bound than the sentence states."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["vague-quantity temporal extent ('go back many years') — CardinalityPhrase records vague counts of things only, and the Measure family has no vague-magnitude counterpart, so there is no form that keeps 'many' on a duration/extent",
+             "capitalized common-noun label used as a premodifier ('the Watch ledgers') — the Possession licence for a premodifier is stated for proper nouns, while by the instruction set's own singular-collective default 'the Watch' is a common noun with no Name atom, so nothing covers how the head noun links to that labelled referent (fusing watch_ledger as a compound kind would lose the specific referent)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "'the Watch' correctly gets the common-noun default (typed individual, no Name), 'go back' correctly stays one genus-free phrasal symbol, and the group-level (not distributed) reading of the extent matches the plural-measure-is-aggregate rule."}

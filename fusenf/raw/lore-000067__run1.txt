@@ -1,0 +1,7 @@
+(: hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: lantern_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))
+(: lantern_poss (Possession sk_lanterns_1 hollows) (STV 1.0 0.99))
+(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))
+(: burn_patient (Patient sk_burn_1 sk_lanterns_1) (STV 1.0 0.99))
+(: burn_manner (Manner sk_burn_1 dimly) (STV 1.0 0.99))
+(: burn_dist (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Manner (sk_burn $x) dimly))) (STV 1.0 0.9))

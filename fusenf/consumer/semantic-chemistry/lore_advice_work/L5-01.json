@@ -1,0 +1,193 @@
+{
+ "id": "L5-01",
+ "rule": "V — The storm-surge",
+ "texts": [
+  "The Sunken Cove was the village's graveyard six generations ago.",
+  "A storm-surge drove water over the cliff edge six generations ago.",
+  "The storm-surge washed the graveyard into the inlet.",
+  "The bodies and markers settled at the bottom of the Sunken Cove.",
+  "The villagers consider the storm-surge the original misfortune of Aelmere."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000347",
+   "sentence": "The Sunken Cove was the village's graveyard six generations ago.",
+   "parse": [
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: cove_kind (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: gy_state (Member sk_graveyard_1 graveyard) (STV 1.0 0.99))",
+    "(: gy_exp (Experiencer sk_graveyard_1 sunken_cove) (STV 1.0 0.99))",
+    "(: gy_poss (Possession sk_graveyard_1 sk_village_1) (STV 1.0 0.99))",
+    "(: gy_beforeby (BeforeBy sk_graveyard_1 now 6 generation) (STV 1.0 0.99))",
+    "(: gy_past (Past sk_graveyard_1) (STV 1.0 0.99))",
+    "(: gy_flat (Past (Member sunken_cove graveyard)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000347",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A possessive-modified PREDICATE NOMINAL in a copular clause ('X was the village's graveyard'): the flat copular atom has no slot for the genitive, and once the time modifier reifies the state the instruction set never says whether the possessor attaches to the state witness, to the subject, or is dropped."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse hangs `(Possession sk_graveyard_1 sk_village_1)` on the reified state witness, so it reads as the village possessing the state of being-a-graveyard rather than possessing the cove, and 'whose graveyard was it?' would bind a state. The name/kind split for 'the Sunken Cove', the reified-state-plus-flat dual emit under a past copular with a time modifier, and `(BeforeBy … now 6 generation)` all follow the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000348",
+   "sentence": "A storm-surge drove water over the cliff edge six generations ago.",
+   "parse": [
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: edge_type (Member sk_edge_1 edge) (STV 1.0 0.99))",
+    "(: edge_partof (PartOf sk_edge_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: surge_type (Member sk_surge_1 storm_surge) (STV 1.0 0.99))",
+    "(: surge_genus (Inheritance storm_surge surge) (STV 1.0 0.99))",
+    "(: drive_ev (Member sk_drive_1 drive) (STV 1.0 0.99))",
+    "(: drive_ag (Agent sk_drive_1 sk_surge_1) (STV 1.0 0.99))",
+    "(: drive_th (Theme sk_drive_1 water) (STV 1.0 0.99))",
+    "(: drive_over (Over sk_drive_1 sk_edge_1) (STV 1.0 0.99))",
+    "(: drive_past (Past sk_drive_1) (STV 1.0 0.99))",
+    "(: drive_time (BeforeBy sk_drive_1 now 6 generation) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000348",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"cliff edge\" is correctly the part-whole (PartOf, no fusion) while \"storm-surge\" fuses with a head genus and no noun-modifier genus; the inanimate transitive subject stays Agent and displaced water stays Theme. \"over the cliff edge\" is a path that neither Source nor Goal covers, so the preposition-named oblique Over is the licensed head."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000349",
+   "sentence": "The storm-surge washed the graveyard into the inlet.",
+   "parse": [
+    "(: storm_surge_type (Member sk_storm_surge_1 storm_surge) (STV 1.0 0.99))",
+    "(: ss_genus (Inheritance storm_surge surge) (STV 1.0 0.99))",
+    "(: graveyard_type (Member sk_graveyard_1 graveyard) (STV 1.0 0.99))",
+    "(: inlet_type (Member sk_inlet_1 inlet) (STV 1.0 0.99))",
+    "(: wash_ev (Member sk_wash_1 wash) (STV 1.0 0.99))",
+    "(: wash_ag (Agent sk_wash_1 sk_storm_surge_1) (STV 1.0 0.99))",
+    "(: wash_th (Theme sk_wash_1 sk_graveyard_1) (STV 1.0 0.99))",
+    "(: wash_goal (Goal sk_wash_1 sk_inlet_1) (STV 1.0 0.99))",
+    "(: wash_tense (Past sk_wash_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000349",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The motion-result shape is exactly per doctrine - Theme on the displaced object, Goal for 'into', no Result atom - and the inanimate transitive subject correctly stays Agent. The compound 'storm-surge' emits its head genus while the noun modifier 'storm' is correctly left unexposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000350",
+   "sentence": "The bodies and markers settled at the bottom of the Sunken Cove.",
+   "parse": [
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: bottom_type (Member sk_bottom_1 bottom) (STV 1.0 0.99))",
+    "(: bottom_part (PartOf sk_bottom_1 sunken_cove) (STV 1.0 0.99))",
+    "(: bodies_grp (GroupOf sk_bodies_1 body) (STV 1.0 0.99))",
+    "(: markers_grp (GroupOf sk_markers_1 marker) (STV 1.0 0.99))",
+    "(: settle_ev1 (Member sk_settle_1 settle) (STV 1.0 0.99))",
+    "(: settle_pat1 (Patient sk_settle_1 sk_bodies_1) (STV 1.0 0.99))",
+    "(: settle_loc1 (Location sk_settle_1 sk_bottom_1) (STV 1.0 0.99))",
+    "(: settle_tns1 (Past sk_settle_1) (STV 1.0 0.99))",
+    "(: settle_ev2 (Member sk_settle_2 settle) (STV 1.0 0.99))",
+    "(: settle_pat2 (Patient sk_settle_2 sk_markers_1) (STV 1.0 0.99))",
+    "(: settle_loc2 (Location sk_settle_2 sk_bottom_1) (STV 1.0 0.99))",
+    "(: settle_tns2 (Past sk_settle_2) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000350",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "\"settle\" is a distributive predicate over two definite-plural groups, so each group event should be accompanied by a per-member (Implication (PartOf $x <group>) (And (Member (sk_settle $x) settle) (Patient (sk_settle $x) $x) (Past (sk_settle $x)))) rule — the \"the dogs barked\" case — and neither sk_bodies_1 nor sk_markers_1 has one."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The distributive-by-default split of the coordinated subject, the single shared bottom/cove symbols, Patient for a mass moved by gravity, event-only Location (no LocatedIn on the settled things), and the one-symbol name sunken_cove with its separate kind atom are all right; PartOf for \"the bottom of the Sunken Cove\" is the relational part-noun genitive rather than the place-in-place LocatedIn rule, which reads as the correct side of that boundary."
+   },
+   "adjudication": {
+    "id": "lore-000350",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "*Quantifiers, generics & scope* makes the per-member rule the mandated form for a distributive predicate over a grouped plural - \"the dogs barked\" is its own cited example - and *Negation (events)* confirms the positive sentence emits group event AND distribution rule (\"Dropping either is a different, weaker claim\"); settle is distributive (each body and each marker comes to rest separately), so both rules are missing."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds, beside each group event, (Implication (PartOf $x sk_bodies_1) (And (Member (sk_settle $x) settle) (Patient (sk_settle $x) $x) (Location (sk_settle $x) sk_bottom_1) (Past (sk_settle $x)))) (STV 1.0 0.9) and its sk_markers_1 twin - the full conclusion bundle including the Location oblique and Past, as the Both-dogs-barked pattern shows, not the reduced form the reviewer wrote.",
+    "notes": "The Patient-vs-Theme call on the settling groups is genuinely borderline (a mass moved by gravity takes Patient, un-powered relocation of dropped things takes Theme), but Patient is explicitly licensed, so it is not a defect."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000351",
+   "sentence": "The villagers consider the storm-surge the original misfortune of Aelmere.",
+   "parse": [
+    "(: ss_type (Member sk_storm_surge_1 storm_surge) (STV 1.0 0.99))",
+    "(: ss_gen (Inheritance storm_surge surge) (STV 1.0 0.99))",
+    "(: villagers_grp (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))",
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: consider_ev (Member sk_consider_1 consider) (STV 1.0 0.99))",
+    "(: consider_exp (Experiencer sk_consider_1 sk_villagers_1) (STV 1.0 0.99))",
+    "(: consider_theme (Theme sk_consider_1 (And (Member sk_storm_surge_1 misfortune) (Member sk_storm_surge_1 original) (Possession sk_storm_surge_1 aelmere))) (STV 1.0 0.99))",
+    "(: villagers_consider_rule (Implication (PartOf $x sk_villagers_1) (And (Member (sk_consider $x) consider) (Experiencer (sk_consider $x) $x) (Theme (sk_consider $x) (And (Member sk_storm_surge_1 misfortune) (Member sk_storm_surge_1 original) (Possession sk_storm_surge_1 aelmere))))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000351",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an ACTIVE small-clause attitude, 'consider NP NP' (object plus predicative complement): the attitude section licenses sealing only for a finite that-clause, and a small-clause complement is legislated only for the impersonal passive 'X is considered/thought to be P'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Non-factive handling is right — no predication of P reaches top level, while the definite referent's typing, the compound's genus and the Name atom project and the possessor stated inside P stays sealed, exactly as the projection table specifies. The group event plus per-member distribution rule matches the grouped-plural + distributive-predicate doctrine, and the rule's 1.0/0.9 TV is correct."
+   },
+   "adjudication": null
+  }
+ ]
+}

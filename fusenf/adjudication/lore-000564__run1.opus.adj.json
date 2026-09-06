@@ -1,0 +1,12 @@
+{"id": "lore-000564", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Coordination & plurals states, with no restriction to subject position, that coordinated noun phrases are distributive by default — \"replicate the whole predication once per conjunct (verbal -> one event each)\" — and the one-event-many-fillers form is licensed only for reciprocal/aggregate predicates or an explicit \"together / jointly\", neither of which track supplies."},
+            {"index": 1,
+             "verdict": "partial",
+             "reason": "The half that stands: a grouped plural with a distributive predicate \"also hands the predication to the group's members via a rule\", and only a collective predicate (gather / meet / assemble) stays group-only, so the (PartOf $x sk_group_1) rule is missing; the half that is overstated: every worked distributive example is eventive (bark, pass, arrive), and a stative transitive over a definite plural has no precedent settling that each record separately tracks all four fields."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["two distributions composing — a coordinated OBJECT list under an already-distributed grouped-plural subject — has no worked case: doctrine as written would demand four group events plus four per-member rules, and nothing states whether the object list still distributes once the subject rule has been minted"],
+ "decision": "defect",
+ "defect_summary": "The compliant form is four track events, one per coordinated object, each with (Agent $e sk_group_1) and a single Theme (the four genus atoms emitted once), and — for the distributive reading — a per-member (Implication (PartOf $x sk_group_1) (And (Member (sk_track $x) track) (Agent (sk_track $x) $x) (Theme (sk_track $x) <item>))) rule alongside each.",
+ "notes": "Compound handling is right on all four objects (head genus emitted, noun modifiers unexposed), the bare kind fillers fit the non-specific habitual objects, the inanimate transitive subject correctly stays Agent, and no status atom on the habitual present is correct."}

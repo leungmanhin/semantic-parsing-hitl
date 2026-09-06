@@ -1,0 +1,5 @@
+(: villagers_grp (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))
+(: say_ev (Member sk_say_1 say) (STV 1.0 0.99))
+(: say_exp (Experiencer sk_say_1 sk_villagers_1) (STV 1.0 0.99))
+(: lanterns_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))
+(: say_theme (Theme sk_say_1 (And (Member sk_burn_1 burn) (Patient sk_burn_1 sk_lanterns_1) (Obligated sk_burn_1) (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Obligated (sk_burn $x)))))) (STV 1.0 0.99))

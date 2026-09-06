@@ -1,0 +1,10 @@
+{"id": "lore-000518", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "'rise' is a distributive predicate over the wraith group, so the group event should be accompanied by the per-member rule (Implication (PartOf $x sk_group_1) (And (Member (sk_rise $x) rise) (Agent (sk_rise $x) $x) (Past (sk_rise $x)))) that the instruction set requires alongside a group event for distributive predicates; only the group event is emitted."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["iterative / frequency adverb on an episodic clause ('had risen repeatedly'): the unary Again tag is tied to the particle 'again', the frequency-strength dial applies to generic/habitual clauses only, and Every/TimesPer need a stated period or rate, so the adverb has no licensed carrier"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The past-perfect anteriority (Before sk_rise_1 sk_build_1) emitted beside the causal (Because sk_build_1 sk_rise_1) with the main clause first matches the instruction set's worked example exactly, and the bare-plural episodic subject correctly mints a group witness. Dropping 'repeatedly' rather than mis-slotting it is the correct choice."
+}

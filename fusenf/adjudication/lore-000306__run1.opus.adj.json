@@ -1,0 +1,11 @@
+{"id": "lore-000306", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "`new_moon` is used only as a bare `Time` filler, yet the two atoms place that same symbol on both sides of `Inheritance`, which 'requires a kind or property on both sides' — and the instruction set's own multi-word time constants (`this_morning`, `last_week`, `last_spring`) are emitted as opaque symbols with no genus and no modifier atom, so typing a time constant as a subclass of `moon` and of `new` is ill-typed content the words do not put there."}],
+ "gaps_confirmed": ["A composite time NP restricted by an of-phrase and a PP ('the night of the new moon in salt-bloom season') has no carrier for the restriction relation, so it flattens into three independent `Time` values.",
+                    "Lunar-phase and invented-season times have no structured `Time` term (the terms are only Year/Month/Day/Weekday/Hour/Minute), and no rule states that a multi-word bare `Time` constant stays opaque — the deictic examples demonstrate it but the doctrine never says it.",
+                    "A multi-word proper name whose internal kind word is PLURAL ('the Salt-bloom Tide-pools') sits between the kind-word-inside-a-name rule (stated for a singular kind word, 'the Kestrel River') and the capitalized-plural-label rule (which bars taking a kind from a plural label word), so the singular typing atom is unresolved."],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "The compliant form keeps the lunar-phase time as an opaque bare constant — `(Time sk_walk_1 new_moon)` alone, with no `(Inheritance new_moon moon)` and no `(Inheritance new_moon new)` — exactly as `last_spring` / `this_morning` are emitted undecomposed.",
+ "notes": "The same collision sits unflagged on `(Inheritance salt_bloom_season season)`, the other decomposed `Time` constant. The rest of the clause is right: an indefinite subject with a verbal predicate stays a witness, the unanchored present correctly takes no tense atom, the destination is `Goal`, and the name symbol carries no modifier genus."}

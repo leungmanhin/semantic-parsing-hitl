@@ -1,0 +1,2 @@
+(: keepers_take_rule (Implication (Member $x keeper) (And (Member (sk_take $x) take) (Agent (sk_take $x) $x) (Theme (sk_take $x) (sk_fish $x)) (Member (sk_fish $x) fish) (Member (sk_fish $x) trapped) (Goal (sk_take $x) home) (Time (sk_take $x) harvest_morning))) (STV 0.9 0.9))
+(: harvest_morning_genus (Inheritance harvest_morning morning) (STV 1.0 0.99))

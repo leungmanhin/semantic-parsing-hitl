@@ -1,0 +1,3 @@
+(: neaptide_genus (Inheritance neap_tide tide) (STV 1.0 0.99))
+(: neaptide_neap (Inheritance neap_tide neap) (STV 1.0 0.99))
+(: neaptide_qm_rule (Implication (Member $x neap_tide) (Time $x quarter_moon)) (STV 0.9 0.9))

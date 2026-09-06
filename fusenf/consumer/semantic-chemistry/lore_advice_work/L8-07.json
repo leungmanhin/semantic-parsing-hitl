@@ -1,0 +1,280 @@
+{
+ "id": "L8-07",
+ "rule": "VIII — Cauldrons and tools",
+ "texts": [
+  "The copper cauldrons are old.",
+  "A coppersmith family in Faltern forged the cauldrons.",
+  "The village cannot replace a lost cauldron.",
+  "A brass snuffer is a Keeper's personal tool.",
+  "A Keeper extinguishes the lantern at dawn with the brass snuffer.",
+  "A Keeper often inherits the snuffer with the station.",
+  "A wick-trimmer is a Keeper's personal tool."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000502",
+   "sentence": "The copper cauldrons are old.",
+   "parse": [
+    "(: cc_genus (Inheritance copper_cauldron cauldron) (STV 1.0 0.99))",
+    "(: cc_group (GroupOf sk_group_1 copper_cauldron) (STV 1.0 0.99))",
+    "(: cc_old_rule (Implication (PartOf $x sk_group_1) (Member $x old)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000502",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural takes the group witness, the copular predicate goes through the per-member distribution rule at (STV 1.0 0.9) rather than riding the group symbol, and \"copper\" is correctly treated as a noun modifier — fused into the kind with only the head genus exposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000503",
+   "sentence": "A coppersmith family in Faltern forged the cauldrons.",
+   "parse": [
+    "(: family_genus (Inheritance coppersmith_family family) (STV 1.0 0.99))",
+    "(: family_type (Member sk_coppersmith_family_1 coppersmith_family) (STV 1.0 0.99))",
+    "(: family_loc (LocatedIn sk_coppersmith_family_1 faltern) (STV 1.0 0.99))",
+    "(: faltern_name (Name faltern \"Faltern\") (STV 1.0 0.99))",
+    "(: forge_ev (Member sk_forge_1 forge) (STV 1.0 0.99))",
+    "(: forge_agent (Agent sk_forge_1 sk_coppersmith_family_1) (STV 1.0 0.99))",
+    "(: cauldron_grp (GroupOf sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: forge_patient (Patient sk_forge_1 sk_cauldron_1) (STV 1.0 0.99))",
+    "(: forge_tense (Past sk_forge_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000503",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Entity-attached LocatedIn for the NP-internal 'in Faltern' with a bare Name atom and no invented kind for the place, the coppersmith_family genus with the noun modifier left unexposed, the definite-plural group witness for 'the cauldrons', Patient for forging and Past on the event all match the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000504",
+   "sentence": "The village cannot replace a lost cauldron.",
+   "parse": [
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: village_not_replace (And (Member sk_replace_1 replace) (Agent sk_replace_1 sk_village_1) (Theme sk_replace_1 sk_cauldron_1) (Member sk_cauldron_1 cauldron) (Member sk_cauldron_1 lost) (Can sk_replace_1)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000504",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the instruction set's \"Bob can't cook\" template exactly: (Can e) inside one strength-0 (And ...), the definite subject's typing projected outside, and the indefinite \"a lost cauldron\" witness plus its participle-as-adjective (Member ... lost) kept inside the denial. \"replace\" is on the prompt's explicit Theme list, and no tense atom is right for the present modal."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000505",
+   "sentence": "A brass snuffer is a Keeper's personal tool.",
+   "parse": [
+    "(: bs_genus (Inheritance brass_snuffer snuffer) (STV 1.0 0.99))",
+    "(: bs_tool (Inheritance brass_snuffer tool) (STV 1.0 0.99))",
+    "(: bs_personal (Inheritance brass_snuffer personal) (STV 1.0 0.99))",
+    "(: bs_keeper_typ (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: bs_poss (Possession brass_snuffer sk_keeper_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000505",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "(Possession brass_snuffer sk_keeper_1) binds the kind symbol to one specific existential witness, so it asserts that a single particular Keeper possesses the whole kind rather than that each brass snuffer is some Keeper's."
+     },
+     {
+      "statement": 3,
+      "issue": "The witness typing puts a particular existing Keeper at top level, which a definitional claim about the kind does not assert."
+     },
+     {
+      "statement": 2,
+      "issue": "Contingent kind-level claims (being personal, being a Keeper's) carry the definitional confidence 0.99 where the definitional-vs-empirical dial prescribes 0.9 for a kind-level claim a counterexample could defeat; same for statement 4."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "generic possessive predicate nominal — 'A N is an M's P' (kind-level possession): Possession is defined over specific referents, and the kind-relation form requires bare plural or mass NPs on both sides, so 'each N belongs to some M' has no licensed carrier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The compound handling (genus snuffer, no brass modifier genus because brass is a noun modifier) and the common-noun reading of capitalized 'Keeper' both follow the instruction set."
+   },
+   "adjudication": {
+    "id": "lore-000505",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "(Possession brass_snuffer sk_keeper_1) puts a kind symbol in the possessed slot and one particular existential witness in the possessor slot, asserting that a single specific Keeper possesses the brass-snuffer kind as a whole — a claim the generic 'A brass snuffer is a Keeper's personal tool' (each snuffer its own Keeper's) never makes, so the atom is false of the sentence's content."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Core patterns' assert-only-what-the-text-states bar, read against the quantifier section's own treatment (a DEPENDENT existential under a universal is a Skolem term inside the rule and a top-level witness CONSTANT is reserved for the shared wide-scope reading), makes the top-level (Member sk_keeper_1 keeper) an assertion that some particular Keeper exists, which a kind-level claim about brass snuffers does not state."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "The definitional-vs-empirical dial reaches every kind-level claim and turns on whether a counterexample is conceivable, with 'when unsure → empirical (0.9)' as the tiebreak — a brass snuffer that is not personal, or not a Keeper's, is plainly conceivable — so both contingent kind-level atoms take confidence 0.9, not the definitional 0.99 (the taxonomic (Inheritance brass_snuffer tool), which the reviewer rightly leaves alone, does keep 0.99)."
+     }
+    ],
+    "gaps_confirmed": [
+     "generic possessive predicate nominal 'A N is an M's P' (kind-level possession): Possession is defined over referents, the kind-relation form requires a bare plural or mass NP on each side, and no form is stated for 'each N belongs to some M'"
+    ],
+    "new_gaps": [
+     "the machinery that would scope a dependent existential under a generic — the Skolem function of the bound instance — exists ONLY inside verbal generics' event rules, while copular/categorical generics are explicitly barred from reifying events and stay a flat Inheritance with no argument slots; a licensed form for this sentence would need a copular-generic carrier able to hold a per-instance existential possessor (and, on the same footing, the 'personal' modifier) without minting a top-level witness"
+    ],
+    "decision": "defect",
+    "defect_summary": "For issues 0 and 1 the instruction set licenses NO compliant form: the possessor has to scope under the kind (each brass snuffer its own Keeper's), but a copular generic may not reify an event and so has no rule in which a Skolem-function possessor could live, and no kind-to-kind Possession is licensed either — the compliant parse therefore keeps (Inheritance brass_snuffer snuffer) / (Inheritance brass_snuffer tool) / (Inheritance brass_snuffer personal), leaves the Keeper possessive unencoded, and records the gap rather than minting sk_keeper_1. For issue 2 the compliant form is the same atoms with (STV 1.0 0.9) on the contingent kind-level claims — (Inheritance brass_snuffer personal), and any possessive carrier — with 0.99 kept only on the taxonomic genus and tool atoms.",
+    "notes": "The three faults share one root: an existential that belongs inside the generic's scope was hoisted to top level, which is what makes both the witness typing and the Possession false rather than merely lossy. Compound handling (genus snuffer, 'brass' unexposed as a noun modifier) and the common-noun reading of capitalized 'Keeper' are correct."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000506",
+   "sentence": "A Keeper extinguishes the lantern at dawn with the brass snuffer.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: ext_ev (Member sk_extinguish_1 extinguish) (STV 1.0 0.99))",
+    "(: ext_ag (Agent sk_extinguish_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: ext_pat (Patient sk_extinguish_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: ext_time (Time sk_extinguish_1 dawn) (STV 1.0 0.99))",
+    "(: snuffer_type (Member sk_snuffer_1 brass_snuffer) (STV 1.0 0.99))",
+    "(: snuffer_genus (Inheritance brass_snuffer snuffer) (STV 1.0 0.99))",
+    "(: ext_instr (Instrument sk_extinguish_1 sk_snuffer_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000506",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite 'A Keeper' correctly stays a witness (a verbal generic needs a bare plural or explicit quantifier), the simple present correctly gets no status atom, 'at dawn' rides Time as a day-part constant, and brass_snuffer emits the head genus only since 'brass' is a noun modifier."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000507",
+   "sentence": "A Keeper often inherits the snuffer with the station.",
+   "parse": [
+    "(: snuffer_type (Member sk_snuffer_1 snuffer) (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: keeper_inherit_rule (Implication (Member $x keeper) (And (Member (sk_inherit $x) inherit) (Agent (sk_inherit $x) $x) (Theme (sk_inherit $x) sk_snuffer_1) (Theme (sk_inherit $x) sk_station_1))) (STV 0.8 0.9))",
+    "(: keeper_q (QuantifierPhrase keeper inherit \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000507",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The indefinite singular subject \"A Keeper\" over a verbal predicate is routed as a kind-level distributing rule, but the Existential section states that with a verbal predicate \"a/an\" is a witness and that a verbal generic requires a bare plural or an explicit quantifier (\"not 'a dog'\") — only modal predications key on the modal rather than the determiner, and a frequency adverb is not a modal."
+     },
+     {
+      "statement": 2,
+      "issue": "\"with the station\" is encoded as a second `Theme` on the same event, which asserts the station as a direct object and puts two fillers in one role slot; the station is neither an animate co-participant (`CoAgent`) nor a means (`Instrument`), so the licensed encoding is the surface-preposition oblique `(With <event> sk_station_1)`."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "accompaniment \"with\" on an inanimate, non-instrumental NP (\"inherits the snuffer **with** the station\" = \"along with\"): the with-phrase split covers only `CoAgent` (an animate participant) and `Instrument` (the means), leaving the comitative-of-an-object reading to fall through to the generic preposition-named oblique with no explicit ruling",
+     "a frequency adverb (\"often\") on a habitual whose subject is a singular witness rather than a kind: the `QuantifierPhrase` companion's first slot is a kind, so the witness reading the Existential section mandates here has no companion shape and no stated carrier for the frequency strength"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Granting the (unlicensed) rule route, the frequency handling is right: strength 0.8 for \"often\" per the dial, plus the `(QuantifierPhrase keeper inherit \"often\")` companion in the correct kind/verb-lemma/word shape. Capitalized \"Keeper\" correctly stays a common noun with no `Name` atom."
+   },
+   "adjudication": {
+    "id": "lore-000507",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The Existential section is explicit - with a verbal predicate \"a/an\" is a witness and \"a verbal generic takes a bare plural or an explicit quantifier ... not 'a dog'\", with the only carve-out reserved for modal predications - and the rule form additionally makes every keeper inherit the one shared sk_snuffer_1 and sk_station_1, which is false of the sentence."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "\"The direct-object roles are for objects the verb takes without a preposition\": \"the station\" arrives via \"with\" and is neither an animate co-participant (CoAgent) nor the means (Instrument), so it belongs in the preposition-named oblique (With <event> sk_station_1), not in a second Theme on the inherit event."
+     }
+    ],
+    "gaps_confirmed": [
+     "the with-phrase split names only CoAgent (an animate participant) and Instrument (the means), so an accompaniment \"with\" on an inanimate NP reaches the preposition-named oblique only by extension of the general \"head is the preposition actually used\" licence, with no explicit ruling",
+     "a frequency adverb (\"often\") over a witness-subject habitual: the QuantifierPhrase companion's first slot is a kind and the frequency strength is defined only on a rule or a flat generic, so the witness reading the Existential section mandates has no carrier for the adverb"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant subject form: a witness - (Member sk_keeper_1 keeper) plus an ordinary status-free (habitual) inherit event on that witness - never a kind-level Implication over (Member $x keeper); compliant with-phrase form: (With sk_inherit_1 sk_station_1) beside a single (Theme sk_inherit_1 sk_snuffer_1). Under that compliant subject route the instruction set licenses NO carrier for \"often\" - neither the frequency strength nor the QuantifierPhrase companion has a witness-scoped shape - so the adverb would have to be left out and the gap recorded (filed above).",
+    "notes": "Granting the (unlicensed) rule route, the dial value 0.8 for \"often\" and the companion's kind/verb-lemma/word shape are right, and capitalized \"Keeper\" correctly stays a common noun with no Name atom."
+   }
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000508",
+   "sentence": "A wick-trimmer is a Keeper's personal tool.",
+   "parse": [
+    "(: wt_can (Inheritance wick_trimmer (can trim)) (STV 1.0 0.99))",
+    "(: wt_obj (Trim wick_trimmer wick) (STV 1.0 0.99))",
+    "(: wt_tool (Inheritance wick_trimmer tool) (STV 1.0 0.99))",
+    "(: wt_personal (Inheritance wick_trimmer personal) (STV 0.9 0.9))",
+    "(: wt_poss (Possession wick_trimmer keeper) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000508",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A possessive inside a kind-level copular predicate whose possessor is an indefinite generic ('a wick-trimmer is a Keeper's tool' = every wick-trimmer belongs to SOME keeper): the Possessive/genitive NP rule is written for individual possessors and the kind-level form (Possession <kind> <kind>) has no way to carry the per-instance existential possessor."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The agent-nominalization firing is correct — wick_trimmer is fused from the surface, so (can trim) plus the kind-relation (Trim wick_trimmer wick) are licensed, and the head genus is omitted exactly as in the prompt's egg_layer exemplar. The split TVs (tool definitional 1.0/0.99, personal empirical 0.9/0.9) each follow the definitional-vs-empirical dial."
+   },
+   "adjudication": null
+  }
+ ]
+}

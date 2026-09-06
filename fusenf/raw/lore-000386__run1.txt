@@ -1,0 +1,5 @@
+(: skycat_gen (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: spire_gen (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: spire_grp (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))
+(: skycat_live (Implication (Member $x sky_cat) (And (Member (sk_live $x) live) (Agent (sk_live $x) $x) (Location (sk_live $x) sk_cliff_spire_1) (Ongoing (sk_live $x)))) (STV 1.0 0.9))
+(: skycat_q (QuantifierPhrase sky_cat live "always") (STV 1.0 0.99))

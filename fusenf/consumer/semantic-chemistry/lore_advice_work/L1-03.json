@@ -1,0 +1,211 @@
+{
+ "id": "L1-03",
+ "rule": "I — Harbor wall",
+ "texts": [
+  "The harbor wall holds twenty-four lanterns.",
+  "The fishing boats use the harbor lanterns as beacons at night.",
+  "The harbor lanterns are short and squat.",
+  "Whenever wind reflects off the water at the harbor wall, a harbor lantern burns its mire-essence quickly.",
+  "Harbor-lantern Keepers live near the harbor."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000015",
+   "sentence": "The harbor wall holds twenty-four lanterns.",
+   "parse": [
+    "(: wall_type (Member sk_wall_1 harbor_wall) (STV 1.0 0.99))",
+    "(: wall_genus (Inheritance harbor_wall wall) (STV 1.0 0.99))",
+    "(: hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: hold_agent (Agent sk_hold_1 sk_wall_1) (STV 1.0 0.99))",
+    "(: hold_theme (Theme sk_hold_1 sk_group_1) (STV 1.0 0.99))",
+    "(: lantern_grp (GroupOf sk_group_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_card (Cardinality sk_group_1 24) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000015",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Stative-transitive 'holds' correctly keeps Agent on the wall and Theme on the counted group (the 'tank holds forty litres' case), the noun modifier of harbor_wall is rightly left unexposed, and the bare present takes no status atom. 'harbor wall' sits near the fuse-vs-part-whole line ('car engine'), but the classifier reading is defensible."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000016",
+   "sentence": "The fishing boats use the harbor lanterns as beacons at night.",
+   "parse": [
+    "(: l16_boats_grp (GroupOf sk_boats_1 fishing_boat) (STV 1.0 0.99))",
+    "(: l16_boat_genus (Inheritance fishing_boat boat) (STV 1.0 0.99))",
+    "(: l16_lanterns_grp (GroupOf sk_lanterns_1 harbor_lantern) (STV 1.0 0.99))",
+    "(: l16_lantern_genus (Inheritance harbor_lantern lantern) (STV 1.0 0.99))",
+    "(: l16_use (Member sk_use_1 use) (STV 1.0 0.99))",
+    "(: l16_agent (Agent sk_use_1 sk_boats_1) (STV 1.0 0.99))",
+    "(: l16_theme (Theme sk_use_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: l16_as (As sk_use_1 beacon) (STV 1.0 0.99))",
+    "(: l16_time (Time sk_use_1 night) (STV 1.0 0.99))",
+    "(: l16_boats_rule (Implication (PartOf $x sk_boats_1) (And (Member (sk_use $x) use) (Agent (sk_use $x) $x) (Theme (sk_use $x) sk_lanterns_1) (As (sk_use $x) beacon) (Time (sk_use $x) night))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000016",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "predicative 'as NP' complement of a verb ('use X as beacons') — a role/capacity secondary predicate; the instruction set covers resultative and depictive secondary predicates but not the 'V NP as NP' capacity phrase, so the parse falls back on the preposition-named oblique (As), which the oblique rule frames only for PPs answering where/when/how or naming what the activity is about"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group event plus the per-member PartOf rule for a definite plural with a distributive predicate is the mandated pair; 'use' correctly takes Theme, 'at night' the bare day-part Time symbol, and the habitual present correctly carries no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000017",
+   "sentence": "The harbor lanterns are short and squat.",
+   "parse": [
+    "(: lant_grp (GroupOf sk_group_1 harbor_lantern) (STV 1.0 0.99))",
+    "(: lant_genus (Inheritance harbor_lantern lantern) (STV 1.0 0.99))",
+    "(: lant_short_rule (Implication (PartOf $x sk_group_1) (Member $x short)) (STV 1.0 0.9))",
+    "(: lant_squat_rule (Implication (PartOf $x sk_group_1) (Member $x squat)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000017",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural takes a group witness with the two coordinated copular predicates distributed as separate per-member rules, as the plural doctrine requires. The fused classifier compound rides the GroupOf kind slot with its genus emitted and its noun modifier left unexposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000018",
+   "sentence": "Whenever wind reflects off the water at the harbor wall, a harbor lantern burns its mire-essence quickly.",
+   "parse": [
+    "(: water_type (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: wall_type (Member sk_wall_1 harbor_wall) (STV 1.0 0.99))",
+    "(: wall_genus (Inheritance harbor_wall wall) (STV 1.0 0.99))",
+    "(: water_loc (LocatedIn sk_water_1 sk_wall_1) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 harbor_lantern) (STV 1.0 0.99))",
+    "(: lantern_genus (Inheritance harbor_lantern lantern) (STV 1.0 0.99))",
+    "(: essence_type (Member sk_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: essence_poss (Possession sk_essence_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: whenever_reflect_burn (Implication (And (Member $e reflect) (Patient $e wind) (Off $e sk_water_1)) (And (Member (sk_burn $e) burn) (Agent (sk_burn $e) sk_lantern_1) (Patient (sk_burn $e) sk_essence_1) (Manner (sk_burn $e) quickly) (During (sk_burn $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000018",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 9,
+      "issue": "The consequent's indefinite \"a harbor lantern\" is bound to the single top-level constant sk_lantern_1 (and its essence to sk_essence_1) instead of a Skolem function of the trigger variable, so every occurrence fires on the same one lantern rather than some lantern per occurrence, contrary to the dependent-existential machinery."
+     },
+     {
+      "statement": 4,
+      "issue": "Hoisting that indefinite's witness and typing to top level (with statements 6 and 8) asserts unconditionally that a particular harbor lantern and its mire-essence exist, which the conditional sentence never asserts."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Rule shape, the During link, the 1.0/0.9 TV, the absent QuantifierPhrase, and the harbor_wall / harbor_lantern / mire_essence genus atoms all follow the whenever machinery and Compound concepts. (Off $e sk_water_1) is within the prepositional-verb oblique licence for \"reflects off\"."
+   },
+   "adjudication": {
+    "id": "lore-000018",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The consequent's indefinite 'a harbor lantern' is a dependent existential under the whenever-occurrence universal, so *Quantifiers, generics & scope* requires a Skolem function of the trigger variable (as (sk_book $x) in 'every student read some book'; 'genuine ambiguity -> first quantifier takes wide scope' points the same way), whereas the constant sk_lantern_1 asserts that one particular lantern burns on every occasion — more than the text states."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "An indefinite posited only inside a scope-bearing container never projects — the same rule that keeps 'a cooper' inside the strength-0 bundle, an Or-branch's witness inside its branch, and a seal's indefinite sealed — so top-level (Member sk_lantern_1 harbor_lantern), (Member sk_essence_1 mire_essence) and (Possession sk_essence_1 sk_lantern_1) assert unconditionally an existence the conditional only posits per occurrence."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "For both issues one compliant form fixes them together: keep the indefinite and its possessum inside the consequent as Skolem functions of the trigger — (Member (sk_lantern $e) harbor_lantern), (Agent (sk_burn $e) (sk_lantern $e)), (Member (sk_essence $e) mire_essence), (Patient (sk_burn $e) (sk_essence $e)), (Possession (sk_essence $e) (sk_lantern $e)) — leaving at top level only the definite 'the water' / 'the harbor wall' witnesses and the definitional genus atoms (harbor_wall, harbor_lantern, mire_essence), which are kind-level and assert no existence.",
+    "notes": "Everything else is licensed: the whenever rule shape with its During link and STV 1.0 0.9, the absent QuantifierPhrase, the (Off $e sk_water_1) prepositional oblique, the mechanical 'at' -> LocatedIn read, Patient for the natural-force subject 'wind', and all three compound genus atoms."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000019",
+   "sentence": "Harbor-lantern Keepers live near the harbor.",
+   "parse": [
+    "(: hlk_can (Inheritance harbor_lantern_keeper (can keep)) (STV 1.0 0.99))",
+    "(: hlk_keeprel (Keep harbor_lantern_keeper harbor_lantern) (STV 1.0 0.99))",
+    "(: hl_genus (Inheritance harbor_lantern lantern) (STV 1.0 0.99))",
+    "(: hlk_live_rule (Implication (Member $x harbor_lantern_keeper) (And (Member (sk_live $x) live) (Agent (sk_live $x) $x) (Near (sk_live $x) sk_harbor_1))) (STV 0.9 0.9))",
+    "(: harbor_type (Member sk_harbor_1 harbor) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000019",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The fused compound kind harbor_lantern_keeper gets no head genus (Inheritance harbor_lantern_keeper keeper), which Compound concepts says is always emitted either way, so nothing links the kind to keeper — while the sub-compound harbor_lantern does get its genus."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Sentence-initial, hyphenated, capitalized plural label ('Harbor-lantern Keepers'): Names and casing makes the cue 'the casing itself, mechanically', but sentence-initial capitalization is indistinguishable from name-hood, the capitalized-plural Name-only rule is stated only for a definite label ('the Wrens'), and nothing says how a hyphenated Capitalized-lowercase run ('Harbor-lantern') delimits the capitalized run."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-plural generic rule at 0.9/0.9, the definite 'the harbor' witness with its type atom, and the surface-preposition oblique Near are all as specified, and Agent for 'live' follows the prompt's own Oslo example. Whether the subject is a common compound kind (as parsed, with its capability and kind-relation atoms) or a Name-only individual rests entirely on the unresolved casing question above."
+   },
+   "adjudication": {
+    "id": "lore-000019",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "An object-incorporating agent-nominalization fused from the surface is routed by the agent-nominalization bullet, whose worked example emits exactly the capability plus kind-relation the parse gives ((Inheritance egg_layer (can lay)), (Lay egg_layer egg)) and no head genus, and Core patterns defers to that section verbatim ('always emitted, exactly as Compound decomposition specifies'), so the Compound-kind clause's 'always emitted either way' — whose 'either way' governs the MODIFIER-genus branch — is not a rule this parse violates."
+     }
+    ],
+    "gaps_confirmed": [
+     "Sentence-initial hyphenated capitalized plural label ('Harbor-lantern Keepers'): the Name-only capitalized-plural rule is stated only for a definite label ('the Wrens'), sentence-initial capitalization is uninformative about name-hood, and nothing says how a Capitalized-hyphen-lowercase run delimits the capitalized run."
+    ],
+    "new_gaps": [
+     "Two Compound-concepts bullets both match a fused modifier+agent-nominalization symbol (harbor_lantern_keeper, egg_layer, dam_builder) and prescribe different atom sets: Compound kind says the head genus (Inheritance <compound> <head-noun>) is always emitted, while the agent-nominalization bullet's worked example emits only the capability and kind-relation. Which governs is unstated, so two faithful parses can differ by one atom."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Every emitted atom is true of the sentence and well-typed: the bare-plural verbal generic becomes a rule at 0.9/0.9 with no QuantifierPhrase companion (no quantifier word present), Agent for 'live' matches the prompt's own Oslo example, Near is the preposition actually used rather than a coined synonym head, and the definite 'the harbor' gets its witness plus type atom."
+   }
+  }
+ ]
+}

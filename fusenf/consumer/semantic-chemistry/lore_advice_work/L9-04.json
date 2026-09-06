@@ -1,0 +1,91 @@
+{
+ "id": "L9-04",
+ "rule": "IX — After the boil",
+ "texts": [
+  "Hesper pours the boiled sea-water into the harbor at the end of the day.",
+  "Boiled sea-water does not serve for a second distillation.",
+  "An apprentice scrubs each cauldron with sand."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000550",
+   "sentence": "Hesper pours the boiled sea-water into the harbor at the end of the day.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: pour_ev (Member sk_pour_1 pour) (STV 1.0 0.99))",
+    "(: pour_ag (Agent sk_pour_1 hesper) (STV 1.0 0.99))",
+    "(: pour_th (Theme sk_pour_1 sk_seawater_1) (STV 1.0 0.99))",
+    "(: sw_type (Member sk_seawater_1 sea_water) (STV 1.0 0.99))",
+    "(: sw_boiled (Member sk_seawater_1 boiled) (STV 1.0 0.99))",
+    "(: sw_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: pour_goal (Goal sk_pour_1 sk_harbor_1) (STV 1.0 0.99))",
+    "(: harbor_type (Member sk_harbor_1 harbor) (STV 1.0 0.99))",
+    "(: pour_time (Time sk_pour_1 end_of_day) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000550",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a descriptive temporal NP filling a Time value ('at the end of the day') — it is not a calendar-term granularity, not one of the listed speech-anchored deictic constants, and not one of the listed day-part symbols (morning / afternoon / evening / night, dawn / noon / dusk), so the Time slot has no licensed filler for it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "That slot is filled with a coined multiword constant end_of_day carrying no decomposition and matching no listed constant class. The rest is right: motion-result obliques (Theme plus Goal, with no LocatedIn asserted on the water), 'boiled' kept as a participial adjective on its own Member atom rather than fused or lemmatized to 'boil', sea_water given genus water with the noun modifier unexposed, and no status atom on the simple present."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000551",
+   "sentence": "Boiled sea-water does not serve for a second distillation.",
+   "parse": [
+    "(: sw_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: boiled_sw_no_serve (Implication (And (Member $x sea_water) (Member $x boiled)) (And (Member (sk_serve $x) serve) (Experiencer (sk_serve $x) $x) (For (sk_serve $x) (sk_distillation $x)) (Member (sk_distillation $x) distillation) (Ordinal (sk_distillation $x) 2 distillation))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000551",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The negated generic over an adjectivally-restricted bare mass subject takes the strength-0 distributing rule with the participial modifier as a premise conjunct, the purpose-sense 'for' takes the preposition-named oblique rather than Beneficiary, and the indefinite 'a second distillation' is a dependent Skolem function kept inside the denied consequent. The Ordinal scale slot is filled with the entity's own class symbol 'distillation', which reads as the associated-event scale but is degenerate against the entity's own Member atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000552",
+   "sentence": "An apprentice scrubs each cauldron with sand.",
+   "parse": [
+    "(: appr_type (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: appr_scrubs (Implication (Member $y cauldron) (And (Member (sk_scrub $y) scrub) (Agent (sk_scrub $y) sk_apprentice_1) (Patient (sk_scrub $y) $y) (Instrument (sk_scrub $y) sand))) (STV 1.0 0.9))",
+    "(: cauldron_q (QuantifierPhrase cauldron scrub \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000552",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the exists-forall shared-constant pattern exactly — indefinite subject as a top-level witness constant, rule ranging over (Member $y cauldron) at 1.0/0.9, and exactly one QuantifierPhrase companion on the quantified range. Patient for scrub (treatment applied) and Instrument with bare-mass 'sand' as a constant are both per doctrine."
+   },
+   "adjudication": null
+  }
+ ]
+}

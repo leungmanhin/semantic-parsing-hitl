@@ -1,0 +1,12 @@
+{"id": "lore-000187", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Cardinality states that a plural with a distributive predicate 'keeps the group + count + group event … and adds the per-member rule over (PartOf $x <group>)' minting the member's own event, as the 'Both dogs barked' pattern shows; 'become' is distributive, so distributing only the flat result kind leaves the required per-member event rule unemitted."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "Compound concepts bars exposing 'a relational / rank adjective that fails the predication test' (the assistant_secretary case), and in the sentence's own reading — apprentices from outside the order — '(Inheritance outside_apprentice outside)' asserts a spatial position the text never states."}],
+ "gaps_confirmed": ["'earlier' as an attributive elided-standard comparative on the subject NP: Comparatives & degree states no licensed form exists (nothing fills More's second slot), so it is dropped and 'two earlier outside apprentices' narrows to 'two outside apprentices' with no in-band record of the loss."],
+ "new_gaps": ["A capitalized plural kind-word in PREDICATE-NOMINAL position ('became senior Keepers') is unaddressed: Names and casing states the capitalized-plural Name-only rule for a referring subject ('the Wrens'), and a Name-only individual cannot fill a predicate slot, so nothing licenses the common-noun kind reading the sentence forces."],
+ "decision": "defect",
+ "defect_summary": "Compliant form for the missing distribution: add (Implication (PartOf $x sk_group_1) (And (Member (sk_become $x) become) (Patient (sk_become $x) $x) (Past (sk_become $x)))) (STV 1.0 0.9) beside the group event and count — optionally minting per-member Skolem result states, which Resultatives permits — so a later-named member's own becoming derives. Compliant form for the modifier: emit (Inheritance outside_apprentice apprentice) alone and drop (Inheritance outside_apprentice outside), the head-genus-only treatment the instruction set gives a relational adjective.",
+ "notes": "The change-of-kind resultative is otherwise handled correctly — the group as Patient of become, the result kind reified on the group's own symbol with Experiencer and a Result link, no barred flat (Member <group> senior_keeper) — and the fused classifier riding the group's kind slot with its decomposition atoms follows the plural-compound rule."}

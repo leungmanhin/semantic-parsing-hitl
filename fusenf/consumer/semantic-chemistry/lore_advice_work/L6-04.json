@@ -1,0 +1,212 @@
+{
+ "id": "L6-04",
+ "rule": "VI — The crowd rule",
+ "texts": [
+  "Whenever a crowd of nightmoths gathers at a lantern-row, sky-cats descend to hunt.",
+  "When a handful of nightmoths gathers at a lantern-row, sky-cats stay on the cliff-spires.",
+  "The Keepers have used the crowd rule for generations.",
+  "One sky-cat eats many nightmoths in one night.",
+  "After a sky-cat hunts at a lantern-row, the thread harvest at that lantern-row falls.",
+  "The nightmoth crowd recovers slowly."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000403",
+   "sentence": "Whenever a crowd of nightmoths gathers at a lantern-row, sky-cats descend to hunt.",
+   "parse": [
+    "(: gen_nightmoth (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: gen_lantern_row (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: gen_sky_cat (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: whenever_gather_descend (Implication (And (Member $x gather) (Agent $x $g) (Member $g crowd) (GroupOf $g nightmoth) (Location $x $l) (Member $l lantern_row)) (And (Member (sk_descend $x) descend) (Agent (sk_descend $x) (sk_skycats $x)) (GroupOf (sk_skycats $x) sky_cat) (During (sk_descend $x) $x) (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) (sk_skycats $x)) (To (sk_descend $x) (sk_hunt $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000403",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare-plural subject introduced inside the CONSEQUENT of a whenever/every-time rule — the instruction set gives no routing for it (per-occurrence Skolem group vs. kind-ranging premise vs. constant witness)",
+     "a grouped-plural participant with a distributive predicate inside a rule conclusion cannot carry the per-member (Implication (PartOf $x <group>) ...) distribution rule the plural doctrine otherwise mandates — rules cannot nest"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound genera (nightmoth->moth, lantern_row->row, sky_cat->cat) and the suppressed noun-modifier genera are correct; the whenever machinery, During link, purpose To (main action first), and (Member $g crowd)+(GroupOf $g nightmoth) all match the spec. The (sk_skycats $x) per-binding Skolem group is a reasonable extrapolation of the (sk_books $x) pattern rather than something the text explicitly licenses."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000404",
+   "sentence": "When a handful of nightmoths gathers at a lantern-row, sky-cats stay on the cliff-spires.",
+   "parse": [
+    "(: e404_nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: e404_lanternrow_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: e404_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: e404_cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: e404_cliffspires_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: e404_rule (Implication (And (Member $x gather) (Agent $x $g) (GroupOf $g nightmoth) (CardinalityPhrase $g \"a handful\") (Location $x $lr) (Member $lr lantern_row) (Member $y sky_cat)) (And (Member (sk_stay $x $y) stay) (Experiencer (sk_stay $x $y) $y) (Location (sk_stay $x $y) sk_group_1) (During (sk_stay $x $y) $x))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000404",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare \"when P, Q\" generic whose CONSEQUENT is a stative position clause (\"sky-cats stay on the cliff-spires\"): the whenever machinery requires a per-occurrence Skolem eventuality plus a `During` link, while *Where a THING is* and the \"stay/remain + locative PP\" note in *Resultatives* require the entity-attached position-atom route with no event minted; the instruction set does not say which of the two wins",
+     "the continuation ('remains') sense of \"stay\" has no carrier on the position-atom route (the instruction set registers this as a gap but gives no encoding)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound decomposition (nightmoth/lantern_row/sky_cat/cliff_spire genus only, no noun-modifier genus), the definite-plural group for \"the cliff-spires\", `CardinalityPhrase \"a handful\"`, collective `gather`, the two-variable Skolem event and the `During` tie are all correct. The only open question is whether \"stay + locative PP\" was licensed to mint an event at all; given the `During` link demands an anchor, the reified `Experiencer` + `Location` state is defensible."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000405",
+   "sentence": "The Keepers have used the crowd rule for generations.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: rule_type (Member sk_crowd_rule_1 crowd_rule) (STV 1.0 0.99))",
+    "(: rule_genus (Inheritance crowd_rule rule) (STV 1.0 0.99))",
+    "(: e_use (Member sk_use_1 use) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_use_1 keepers) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_use_1 sk_crowd_rule_1) (STV 1.0 0.99))",
+    "(: e_ongoing (Ongoing sk_use_1) (STV 1.0 0.99))",
+    "(: e_duration (MeasureAtLeast sk_use_1 duration 2 generation) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000405",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Capitalized-plural label \"the Keepers\" correctly takes the Name-only individual treatment (no GroupOf, no invented kind), \"use\" correctly takes Theme, and the bare-plural duration \"for generations\" matches the (MeasureAtLeast e duration 2 <unit>) rule exactly. Reading \"have used ... for generations\" as a continuative perfect (Ongoing, no Past, no stated Start) is the licensed alternative to the coarse-perfect Past and is defensible here."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000406",
+   "sentence": "One sky-cat eats many nightmoths in one night.",
+   "parse": [
+    "(: sc_type (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: eat_ev (Member sk_eat_1 eat) (STV 1.0 0.99))",
+    "(: eat_ag (Agent sk_eat_1 sk_sky_cat_1) (STV 1.0 0.99))",
+    "(: nm_group (GroupOf sk_group_1 nightmoth) (STV 1.0 0.99))",
+    "(: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: nm_card (CardinalityPhrase sk_group_1 \"many\") (STV 1.0 0.99))",
+    "(: eat_pat (Patient sk_eat_1 sk_group_1) (STV 1.0 0.99))",
+    "(: eat_dur (Measure sk_eat_1 duration 1 night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000406",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 8,
+      "issue": "The frame adverbial \"in one night\" is encoded as (Measure sk_eat_1 duration 1 night), which asserts the eating itself lasted a night rather than that it occurred within the span of one night, and drops the per-night rate reading the habitual states."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "container/frame time adverbial \"in <n> <time-unit>\" — the span within which a telic event completes, and its per-period rate reading on a habitual; the instruction set covers only the durative \"for N units\" (Measure e duration) and the backward window (WithinLast), and explicitly warns that Measure duration would wrongly claim the eventuality itself lasted that long"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"many nightmoths\" as (CardinalityPhrase sk_group_1 \"many\") is licensed by the \"use CardinalityPhrase only when the phrase counts things\" clause, even though \"many\" is listed among the proportion words and absent from the vague-quantity list. Compound handling is right: genus emitted for both sky_cat and nightmoth, noun modifiers (sky, night) correctly unexposed."
+   },
+   "adjudication": {
+    "id": "lore-000406",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "(Measure sk_eat_1 duration 1 night) asserts the eating itself lasted a night, which the container adverbial \"in one night\" does not state, and the instruction set expressly bars this head for a frame adverbial (\"never (Measure e duration ...), which would claim the eventuality itself lasted that long\")."
+     }
+    ],
+    "gaps_confirmed": [
+     "container / frame time adverbial \"in <n> <unit>\" - the span within which an event completes, plus its per-period rate reading on a habitual; Measure duration is barred, WithinLast is backward-window only, and Every / TimesPer need a stated period or rate wording"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "No head in the vocabulary carries \"the eating completed within a span of one night\", so the compliant parse emits the event atoms without the frame adverbial - the same handling the instruction set prescribes for adverbials with no licensed slot (\"leave them out and record the gap\") - and records the gap rather than mis-slotting it as a duration.",
+    "notes": "Everything else checks out: a witness for the indefinite \"one sky-cat\" under a verbal predicate, CardinalityPhrase \"many\" licensed because the phrase counts things rather than a proportion, Patient for eat, and both compound genera emitted with the noun modifiers (sky, night) correctly unexposed."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000407",
+   "sentence": "After a sky-cat hunts at a lantern-row, the thread harvest at that lantern-row falls.",
+   "parse": [
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lr_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: th_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: hunt_fall_rule (Implication (And (Member $sc sky_cat) (Member $lr lantern_row) (Member $h hunt) (Agent $h $sc) (Location $h $lr)) (And (Member (sk_thread_harvest $lr) thread_harvest) (LocatedIn (sk_thread_harvest $lr) $lr) (Member (sk_fall $h) fall) (Theme (sk_fall $h) (sk_thread_harvest $lr)) (Before $h (sk_fall $h)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000407",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "generic \"After P, Q\" with indefinite participants: the instruction set routes bare \"when P, Q\" by P's referents and supplies the \"every time / whenever\" rule machinery, but never says whether \"after\" takes that same rule route, nor that the per-occurrence link becomes (Before ...) rather than the (During ...) the whenever example uses",
+     "a presupposed DEFINITE NP that co-varies with a rule premise variable (\"the thread harvest at that lantern-row\"): Skolem-function terms are specified only for dependent existentials, so nothing states whether such a definite belongs in the premise or is minted in the conclusion"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Rule shape, plain-variable premises, Skolem-function conclusion, Before ordering, the 1.0/0.9 rule TV, Agent for the self-powered hunter, Theme for the scalar-change subject, Location for the event \"at\" PP and LocatedIn for the entity \"at\" PP, and all three compound genus atoms conform. Minting the presupposed harvest inside the consequent makes its existence conditional on a hunt occurring, which is weaker than the sentence states, though no licensed alternative is given."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000408",
+   "sentence": "The nightmoth crowd recovers slowly.",
+   "parse": [
+    "(: nightmoth_g (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: crowd_m (Member sk_crowd_1 crowd) (STV 1.0 0.99))",
+    "(: crowd_grp (GroupOf sk_crowd_1 nightmoth) (STV 1.0 0.99))",
+    "(: recover_e (Member sk_recover_1 recover) (STV 1.0 0.99))",
+    "(: recover_pat (Patient sk_recover_1 sk_crowd_1) (STV 1.0 0.99))",
+    "(: recover_man (Manner sk_recover_1 slowly) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000408",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A collective head noun premodified by a noun naming its member kind, written as a compound ('the nightmoth crowd') — Compound concepts would fuse it (nightmoth_crowd + genus crowd) while Coordination & plurals' collective-noun rule ('a flock of birds' → Member + GroupOf) is stated only for the of-phrase form; nothing adjudicates which route the compound form takes."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Patient for the intransitive 'recovers' (internal change of state), the bare simple present with no status atom, the solid-spelling genus (Inheritance nightmoth moth) with the noun modifier 'night' left unexposed, and the no-distribution-rule treatment of the singular collective 'crowd' all follow the instruction set. The GroupOf route taken here is the semantically better of the two unadjudicated options."
+   },
+   "adjudication": null
+  }
+ ]
+}

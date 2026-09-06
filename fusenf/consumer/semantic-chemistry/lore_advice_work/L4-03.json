@@ -1,0 +1,218 @@
+{
+ "id": "L4-03",
+ "rule": "IV — The lighting sequence",
+ "texts": [
+  "At sundown a Keeper cleans the lantern glass with a soft cloth.",
+  "The Keeper trims the wick.",
+  "The Keeper fills the reservoir from the day's flask.",
+  "When a station needs warding, the Keeper scatters ground feathers around the lantern.",
+  "In winter the Keeper sprinkles salt-bloom into the reservoir.",
+  "The Keeper lights the wick."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000288",
+   "sentence": "At sundown a Keeper cleans the lantern glass with a soft cloth.",
+   "parse": [
+    "(: e1_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: e1_clean (Member sk_clean_1 clean) (STV 1.0 0.99))",
+    "(: e1_agent (Agent sk_clean_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e1_patient (Patient sk_clean_1 sk_glass_1) (STV 1.0 0.99))",
+    "(: e1_glass (Member sk_glass_1 glass) (STV 1.0 0.99))",
+    "(: e1_partof (PartOf sk_glass_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e1_lantern (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e1_instrument (Instrument sk_clean_1 sk_cloth_1) (STV 1.0 0.99))",
+    "(: e1_cloth (Member sk_cloth_1 cloth) (STV 1.0 0.99))",
+    "(: e1_soft (Member sk_cloth_1 soft) (STV 1.0 0.99))",
+    "(: e1_time (Time sk_clean_1 sundown) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000288",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the lantern glass' takes the car-engine possessor/part route (glass + PartOf lantern) and 'soft' stays a separate descriptive atom, both as Compound concepts directs; the capitalized common noun 'Keeper' rightly gets no Name atom and the simple present rightly gets no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000289",
+   "sentence": "The Keeper trims the wick.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: trim_ev (Member sk_trim_1 trim) (STV 1.0 0.99))",
+    "(: trim_ag (Agent sk_trim_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: wick_type (Member sk_wick_1 wick) (STV 1.0 0.99))",
+    "(: trim_pat (Patient sk_trim_1 sk_wick_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000289",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The capitalized singular common-noun label 'the Keeper' correctly takes a definite witness with no Name atom, and the simple present correctly gets no status atom. Patient on the wick fits the physical-change test, and no wick-lantern part-whole is invented."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000290",
+   "sentence": "The Keeper fills the reservoir from the day's flask.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: fill_ev (Member sk_fill_1 fill) (STV 1.0 0.99))",
+    "(: fill_agent (Agent sk_fill_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: fill_patient (Patient sk_fill_1 sk_reservoir_1) (STV 1.0 0.99))",
+    "(: reservoir_type (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))",
+    "(: fill_source (Source sk_fill_1 sk_flask_1) (STV 1.0 0.99))",
+    "(: flask_type (Member sk_flask_1 flask) (STV 1.0 0.99))",
+    "(: day_type (Member sk_day_1 day) (STV 1.0 0.99))",
+    "(: flask_poss (Possession sk_flask_1 sk_day_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000290",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Capitalized singular label \"the Keeper\" correctly treated as a common noun (witness + Member, no Name); bare simple present correctly gets no status atom, and the 's-genitive \"the day's flask\" correctly takes the opaque Possession rather than PartOf."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000291",
+   "sentence": "When a station needs warding, the Keeper scatters ground feathers around the lantern.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: warding_rule (Implication (And (Member $s station) (Member $e need) (Experiencer $e $s) (Stimulus $e warding)) (And (Member (sk_scatter $e) scatter) (Agent (sk_scatter $e) sk_keeper_1) (Theme (sk_scatter $e) (sk_feathers $e)) (Member (sk_feathers $e) feather) (Member (sk_feathers $e) ground) (Location (sk_scatter $e) sk_lantern_1) (During (sk_scatter $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000291",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "(Member (sk_feathers $e) feather) types the plural NP 'ground feathers' as a single individual, where a plural set participating in the occurrence takes a group witness (GroupOf ... feather)."
+     },
+     {
+      "statement": 2,
+      "issue": "(Member (sk_feathers $e) ground) predicates the descriptive participial modifier of the group symbol itself — the group-as-object reading that *Categorical statements* and the plural clause of *Compound concepts* both bar; a descriptive modifier on a plural must distribute to the members."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a peripheral spatial preposition on an EVENT ('scatters ... around the lantern'): the entity side mandates the surface-preposition head for anything outside in/at/inside/within, but the event side glosses Location only as 'in/at/on ...' and tells you to decide by the question the PP answers ('where'), so whether 'around' takes Location or the preposition-named oblique (Around <event> ...) is unsettled",
+     "the role class for 'need' with an inanimate subject: it passes the progressive test for stativity but is not psych/perception, and sits next to the Holder class's 'lack' — neither of the two carve-outs that move a transitive subject off Agent clearly covers it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-rule machinery is otherwise right — plain-variable premises, per-occurrence Skolem consequent, During link, STV 1.0 0.9, definite referents typed at top level, no QuantifierPhrase — and the participial 'ground' correctly keeps its surface form rather than lemmatizing to 'grind'. The two issues are one fault: the plural object was individuated as a singleton instead of a group, which then put its modifier on the group symbol."
+   },
+   "adjudication": {
+    "id": "lore-000291",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"ground feathers\" is a plural set taking part in the occurrence, which *Coordination & plurals* gives a group witness; (Member (sk_feathers $e) feather) instead says the scattered thing IS one feather — the class-slot use the group rule explicitly forbids (\"a group is an individual; it never goes in a class slot\") and false of a plural NP."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is that under the correct group typing a descriptive modifier must distribute to the members and never ride the group symbol; the half that does not is the charge against the parse as written — with the object typed as a single feather, (Member (sk_feathers $e) ground) is the ordinary licensed two-atom adjective split (\"a dented pail\"), so the fault is the singular typing already confirmed at index 0."
+     }
+    ],
+    "gaps_confirmed": [
+     "a peripheral spatial preposition on an EVENT (\"scatters ... around the lantern\"): the event side glosses Location as in/at/on while the entity side mandates the surface-preposition head for anything outside in/at/inside/within, leaving Location vs (Around <event> ...) unsettled",
+     "the subject role for stative \"need\" with an inanimate subject: it resists the progressive but is neither possession nor psych/perception, so neither carve-out that moves a transitive subject off Agent clearly covers it"
+    ],
+    "new_gaps": [
+     "a plural object carrying a descriptive modifier INSIDE a rule consequent has no clean licensed form: the group route's per-member distribution would have to nest an (Implication (PartOf $x <group>) ...) inside the consequent's (And ...), a nesting the instruction set illustrates only for seals and for top-level resultatives"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant typing is (GroupOf (sk_feathers $e) feather) in place of (Member (sk_feathers $e) feather); the participial modifier then needs the per-member distribution a plural descriptive modifier requires, for which the instruction set licenses no form inside a rule consequent — filed as the new gap above.",
+    "notes": "The whenever machinery is otherwise right — plain-variable premises, per-occurrence Skolem consequent, During link, STV 1.0 0.9, definite referents typed at top level, no QuantifierPhrase — and \"ground\" correctly keeps its participial surface form."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000292",
+   "sentence": "In winter the Keeper sprinkles salt-bloom into the reservoir.",
+   "parse": [
+    "(: keeper_ty (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: reservoir_ty (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))",
+    "(: saltbloom_gen (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: sprinkle_ev (Member sk_sprinkle_1 sprinkle) (STV 1.0 0.99))",
+    "(: sprinkle_ag (Agent sk_sprinkle_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: sprinkle_th (Theme sk_sprinkle_1 salt_bloom) (STV 1.0 0.99))",
+    "(: sprinkle_goal (Goal sk_sprinkle_1 sk_reservoir_1) (STV 1.0 0.99))",
+    "(: sprinkle_time (Time sk_sprinkle_1 winter) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000292",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Keeper' correctly stays a capitalized-common-noun label (witness + type, no Name atom); bare mass 'salt-bloom' correctly stays a bare class constant while still carrying its compound genus, and 'into' correctly takes the motion-result Goal. Minor observation only: the named-slot cycle table (weekday->week, day-part->day, month->year) has no season entry, so a habitual 'in winter' gets a bare Time symbol and no Every atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000293",
+   "sentence": "The Keeper lights the wick.",
+   "parse": [
+    "(: keeper_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: wick_type (Member sk_wick_1 wick) (STV 1.0 0.99))",
+    "(: light_ev (Member sk_light_1 light) (STV 1.0 0.99))",
+    "(: light_ag (Agent sk_light_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: light_pat (Patient sk_light_1 sk_wick_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000293",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Capitalized singular kind-word label 'the Keeper' correctly stays a common noun with no Name atom; lighting a wick physically changes it, so Patient is right, and the bare simple present correctly carries no status atom."
+   },
+   "adjudication": null
+  }
+ ]
+}

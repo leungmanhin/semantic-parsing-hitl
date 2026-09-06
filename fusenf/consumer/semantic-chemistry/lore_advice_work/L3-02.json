@@ -1,0 +1,200 @@
+{
+ "id": "L3-02",
+ "rule": "III — Meetings",
+ "texts": [
+  "The Council meets at every full moon.",
+  "The Council meets at sundown in the Watch.",
+  "The Council sits at a long oak table.",
+  "The oak table is old.",
+  "Meren Tallowhand is the Council speaker.",
+  "The speaker calls each item of business.",
+  "The speaker decides the voting order."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000212",
+   "sentence": "The Council meets at every full moon.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: meet_ev (Member sk_meet_1 meet) (STV 1.0 0.99))",
+    "(: meet_ag (Agent sk_meet_1 sk_council_1) (STV 1.0 0.99))",
+    "(: meet_time (Time sk_meet_1 full_moon) (STV 1.0 0.99))",
+    "(: meet_every (Every sk_meet_1 1 month) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000212",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "recurring natural-event time slot ('at every full moon') - not a structured calendar term, not a day-part constant, and not the clausal 'every time / whenever' trigger; the named-slot cycle table (weekday -> week, day-part -> day, month-name -> year) has no entry for it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Council' correctly takes the capitalized-common-noun default (no Name atom) and, as a singular collective with a reciprocal predicate, gets no GroupOf and no distribution rule. (Every sk_meet_1 1 month) is the closest licensed form for the implied cycle, but the unit comes from the lunar period rather than from the words."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000213",
+   "sentence": "The Council meets at sundown in the Watch.",
+   "parse": [
+    "(: e1_council (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e1_watch (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: e1_meet (Member sk_meet_1 meet) (STV 1.0 0.99))",
+    "(: e1_meet_ag (Agent sk_meet_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e1_meet_time (Time sk_meet_1 sundown) (STV 1.0 0.99))",
+    "(: e1_meet_loc (Location sk_meet_1 sk_watch_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000213",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" and \"the Watch\" are both bare capitalized common nouns, correctly taking the common-noun default (witness + Member, no Name); bare simple present correctly takes no status atom, and \"sundown\" rides Time as a day-part-class bare symbol like dawn/dusk."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000214",
+   "sentence": "The Council sits at a long oak table.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: table_type (Member sk_table_1 oak_table) (STV 1.0 0.99))",
+    "(: table_genus (Inheritance oak_table table) (STV 1.0 0.99))",
+    "(: table_long (Member sk_table_1 long) (STV 1.0 0.99))",
+    "(: council_loc (LocatedIn sk_council_1 sk_table_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000214",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'sits at' is a bare position clause, so minting no event and routing 'at' to LocatedIn is exactly what *Where a THING is* mandates mechanically, even though sitting at a table is not containment in the world sense. 'oak' is correctly left unexposed as a noun modifier (steel_beam pattern) while descriptive 'long' stays a separate atom, and the singular collective 'the Council' rightly takes no GroupOf and no Name."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000215",
+   "sentence": "The oak table is old.",
+   "parse": [
+    "(: table_type (Member sk_table_1 oak_table) (STV 1.0 0.99))",
+    "(: table_genus (Inheritance oak_table table) (STV 1.0 0.99))",
+    "(: table_old (Member sk_table_1 old) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000215",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"oak\" is a material NOUN modifier (the adjective would be \"oaken\"), so the fused compound correctly carries the head genus (Inheritance oak_table table) and no modifier genus, exactly the steel_beam line; bare copular with no reification trigger takes the flat (Member sk_table_1 old) and no tense wrapper."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000216",
+   "sentence": "Meren Tallowhand is the Council speaker.",
+   "parse": [
+    "(: name_meren (Name meren_tallowhand \"Meren Tallowhand\") (STV 1.0 0.99))",
+    "(: cs_genus (Inheritance council_speaker speaker) (STV 1.0 0.99))",
+    "(: e_speaker (Member meren_tallowhand council_speaker) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000216",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "identificational copular with a DEFINITE predicate nominal ('X is THE N') — 'Two kinds of clause' and 'Categorical statements' define only 'X is a/an N' / 'X is ADJ' -> Member/Inheritance, and the definiteness-changes-only-coreference rule is stated for argument NPs, so the uniqueness of the office (THE speaker, not merely a speaker) has no carrier",
+     "capitalized common noun in PREMODIFIER position ('Council speaker') — the proper-noun-premodifier rule (head noun + opaque Possession) requires the modifier to be a proper noun, while the capitalized-common-noun default is scoped to 'the referent's only label', so neither rule settles whether Council fuses into a compound kind or names a separate entity"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Multi-word name as one opaque symbol with exactly one Name atom, Member (individual subject) and the compound genus with the noun modifier unexposed are all correct. No (Inheritance speaker (can speak)) is owed here: the clause's copular predicate is council_speaker, which fails the suffix-stripping test, and the bare speaker appears only as a genus target, neither of the two fixed firing places."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000217",
+   "sentence": "The speaker calls each item of business.",
+   "parse": [
+    "(: e_speaker (Member sk_speaker_1 speaker) (STV 1.0 0.99))",
+    "(: speaker_calls_rule (Implication (And (Member $x item) (Of $x business)) (And (Member (sk_call $x) call) (Agent (sk_call $x) sk_speaker_1) (Theme (sk_call $x) $x))) (STV 1.0 0.9))",
+    "(: q_speaker_calls (QuantifierPhrase item call \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000217",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a domain / constitutive \"N of N\" nominal (\"item of business\") — the of-phrase taxonomy covers a possessive of-phrase, a partitive, a measure, an about-phrase, a nominalization's object and a true relational noun, but not a category-restricting of-phrase, so no encoding is prescribed for it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"each item of business\" correctly takes the explicit-universal distributing rule with the restriction as a premise conjunct, strength 1.0 / confidence 0.9, plus the QuantifierPhrase companion; the referring use of \"speaker\" correctly gets no (can speak) capability atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000218",
+   "sentence": "The speaker decides the voting order.",
+   "parse": [
+    "(: sp_type (Member sk_speaker_1 speaker) (STV 1.0 0.99))",
+    "(: vo_type (Member sk_order_1 voting_order) (STV 1.0 0.99))",
+    "(: vo_gen (Inheritance voting_order order) (STV 1.0 0.99))",
+    "(: dec_ev (Member sk_decide_1 decide) (STV 1.0 0.99))",
+    "(: dec_ag (Agent sk_decide_1 sk_speaker_1) (STV 1.0 0.99))",
+    "(: dec_th (Theme sk_decide_1 sk_order_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000218",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The witness stem is sk_order_1 for class voting_order rather than sk_voting_order_1 - a shortened stem, not a meaning change. Theme on the decided order sits inside the 'when the test is unclear, default to Theme' allowance."
+   },
+   "adjudication": null
+  }
+ ]
+}

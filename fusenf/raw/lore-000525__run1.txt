@@ -1,0 +1,6 @@
+(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: osb_genus (Inheritance old_salt_bloom salt_bloom) (STV 1.0 0.99))
+(: osb_prop (Inheritance old_salt_bloom old) (STV 1.0 0.99))
+(: nsb_genus (Inheritance new_salt_bloom salt_bloom) (STV 1.0 0.99))
+(: nsb_prop (Inheritance new_salt_bloom new) (STV 1.0 0.99))
+(: keepers_use_order (Implication (Member $x keeper) (And (Member (sk_use_old $x) use) (Agent (sk_use_old $x) $x) (Theme (sk_use_old $x) old_salt_bloom) (Member (sk_use_new $x) use) (Agent (sk_use_new $x) $x) (Theme (sk_use_new $x) new_salt_bloom) (Before (sk_use_old $x) (sk_use_new $x)))) (STV 0.9 0.9))

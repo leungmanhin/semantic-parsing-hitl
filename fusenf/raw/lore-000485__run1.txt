@@ -1,0 +1,4 @@
+(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: wsc_genus (Inheritance wooden_scraper scraper) (STV 1.0 0.99))
+(: wsc_mod (Inheritance wooden_scraper wooden) (STV 1.0 0.99))
+(: keepers_harvest (Implication (Member $x keeper) (And (Member (sk_harvest $x) harvest) (Agent (sk_harvest $x) $x) (Theme (sk_harvest $x) salt_bloom) (Instrument (sk_harvest $x) (sk_scraper $x)) (Member (sk_scraper $x) wooden_scraper))) (STV 0.9 0.9))

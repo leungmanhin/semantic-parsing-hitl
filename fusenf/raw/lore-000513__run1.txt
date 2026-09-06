@@ -1,0 +1,8 @@
+(: lantern_typ (Member sk_lantern_1 lantern) (STV 1.0 0.99))
+(: reservoir_typ (Member sk_reservoir_1 iron_reservoir) (STV 1.0 0.99))
+(: reservoir_genus (Inheritance iron_reservoir reservoir) (STV 1.0 0.99))
+(: me2_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: have_ev (Member sk_have_1 have) (STV 1.0 0.99))
+(: have_holder (Holder sk_have_1 sk_lantern_1) (STV 1.0 0.99))
+(: have_theme (Theme sk_have_1 sk_reservoir_1) (STV 1.0 0.99))
+(: reservoir_for (For sk_reservoir_1 mire_essence) (STV 1.0 0.99))

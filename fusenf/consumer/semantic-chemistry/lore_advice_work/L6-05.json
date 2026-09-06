@@ -1,0 +1,108 @@
+{
+ "id": "L6-05",
+ "rule": "VI — Displacement",
+ "texts": [
+  "Whenever a sky-cat hunts on the Cliff Path, each nightmoth that survives the hunt flees to the Hollows.",
+  "When a sky-cat hunts on the Cliff Path, the Hollows lanterns gain nightmoths.",
+  "The displaced nightmoths keep the Hollows lanterns productive."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000409",
+   "sentence": "Whenever a sky-cat hunts on the Cliff Path, each nightmoth that survives the hunt flees to the Hollows.",
+   "parse": [
+    "(: cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: cliffpath_kind (Member cliff_path path) (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: nightmoth_q (QuantifierPhrase nightmoth flee \"each\") (STV 1.0 0.99))",
+    "(: whenever_hunt_flee (Implication (And (Member $h hunt) (Agent $h $c) (Member $c sky_cat) (Location $h cliff_path) (Member $m nightmoth) (Member $sv survive) (Agent $sv $m) (Theme $sv $h)) (And (Member (sk_flee $m $h) flee) (Agent (sk_flee $m $h) $m) (Goal (sk_flee $m $h) hollows) (During (sk_flee $m $h) $h))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000409",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-machinery applied correctly: indefinite trigger participants as plain premise variables, the restrictive relative clause as a premise conjunct, \"the hunt\" resolved to the trigger event variable, the response a Skolem function of both scoping universals with the During link, \"each\" recorded as a QuantifierPhrase companion while \"whenever\" correctly takes none. \"Cliff Path\" gets its name-internal kind atom and the capitalized plural \"the Hollows\" correctly gets Name only."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000410",
+   "sentence": "When a sky-cat hunts on the Cliff Path, the Hollows lanterns gain nightmoths.",
+   "parse": [
+    "(: e1_hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: e1_cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: e1_cliffpath_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: e1_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: e1_nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: e1_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e1_lantern_poss (Possession sk_lantern_1 hollows) (STV 1.0 0.99))",
+    "(: e1_whenever (Implication (And (Member $x hunt) (Agent $x $c) (Member $c sky_cat) (Location $x cliff_path)) (And (Member (sk_gain $x) gain) (Agent (sk_gain $x) sk_lantern_1) (Theme (sk_gain $x) nightmoth) (During (sk_gain $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000410",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite-plural group subject carrying a distributive predicate ('the Hollows lanterns gain nightmoths') inside a whenever-rule CONCLUSION: the plural doctrine mandates a per-member distribution rule over (PartOf $x <group>) beside the group event, but the instruction set gives no shape for nesting such a rule inside a rule consequent, so the distribution is simply absent",
+     "a bare-plural object inside a per-occurrence rule conclusion ('gain nightmoths') — the episodic-clause rule mints a group witness and the kind-level rule keeps a bare kind filler, but a rule consequent is neither, so which applies is unstated"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing, rule shape, Skolem-function event, During link, proper-noun premodifier (Possession on the lantern group + Name hollows), Cliff Path name+kind atom, and both compound genus atoms all follow the instruction set as written."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000411",
+   "sentence": "The displaced nightmoths keep the Hollows lanterns productive.",
+   "parse": [
+    "(: moths_grp (GroupOf sk_night_moths_1 night_moth) (STV 1.0 0.99))",
+    "(: moth_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: moths_displaced (Implication (PartOf $x sk_night_moths_1) (Member $x displaced)) (STV 1.0 0.9))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lanterns_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: lanterns_poss (Possession sk_lanterns_1 hollows) (STV 1.0 0.99))",
+    "(: e_keep (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_keep_1 sk_night_moths_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_keep_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: prod_state (Member sk_productive_1 productive) (STV 1.0 0.99))",
+    "(: prod_exp (Experiencer sk_productive_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: prod_still (Still sk_productive_1) (STV 1.0 0.99))",
+    "(: e_result (Result sk_keep_1 sk_productive_1) (STV 1.0 0.99))",
+    "(: lanterns_productive (Implication (PartOf $x sk_lanterns_1) (Member $x productive)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000411",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "solid/closed compound spelling ('nightmoths'): the instruction set mandates that such a form still decomposes and emits its head genus, but never fixes whether the emitted compound symbol keeps the solid spelling (nightmoth) or is split (night_moth)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Maintenance resultative is exactly per doctrine (Theme object, reified productive state with Still, Result link) and the plural-object flat half is correctly replaced by the PartOf distribution rule at 1.0/0.9. Proper-noun premodifier 'Hollows' correctly takes head-noun typing plus opaque Possession and a Name atom with no invented kind."
+   },
+   "adjudication": null
+  }
+ ]
+}

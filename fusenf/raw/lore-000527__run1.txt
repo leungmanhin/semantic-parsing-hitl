@@ -1,0 +1,8 @@
+(: keeper_leaves (Implication (Member $x keeper) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Theme (sk_leave $x) (sk_threads $x)) (GroupOf (sk_threads $x) thread) (Possession (sk_threads $x) night) (Location (sk_leave $x) sk_basket_1))) (STV 1.0 0.9))
+(: keeper_q (QuantifierPhrase keeper leave "each") (STV 1.0 0.99))
+(: basket_m (Member sk_basket_1 wicker_basket) (STV 1.0 0.99))
+(: basket_g (Inheritance wicker_basket basket) (STV 1.0 0.99))
+(: hall_m (Member sk_hall_1 hall) (STV 1.0 0.99))
+(: door_m (Member sk_door_1 door) (STV 1.0 0.99))
+(: door_part (PartOf sk_door_1 sk_hall_1) (STV 1.0 0.99))
+(: basket_loc (LocatedIn sk_basket_1 sk_door_1) (STV 1.0 0.99))

@@ -1,0 +1,228 @@
+{
+ "id": "L10-01",
+ "rule": "X — Moth-counts through the year",
+ "texts": [
+  "Moth-counts are thin in deep winter.",
+  "Moth-counts recover through spring.",
+  "Moth-counts are strong through summer.",
+  "Moth-counts peak in early autumn.",
+  "Moth-counts decline through late autumn."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000569",
+   "sentence": "Moth-counts are thin in deep winter.",
+   "parse": [
+    "(: mc_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+    "(: dw_genus (Inheritance deep_winter winter) (STV 1.0 0.99))",
+    "(: mc_thin_cond (ConditionalProperty moth_count thin deep_winter) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000569",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a temporal / seasonal PP restricting a kind-level copular generic ('in deep winter') - the ConditionalProperty condition slot is specified for an adjective/state, a measure/environment, or (by the extension bullet) a locative or domain PP, and a stretch of time is none of these; there is no event for a Time atom to attach to either"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "ConditionalProperty is the nearest licensed form and is used correctly - no bare (Inheritance moth_count thin), and the compound condition decomposed the way room_temperature is. 'deep' is rightly withheld as a modifier genus since 'deep winter' fails the predication test."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000570",
+   "sentence": "Moth-counts recover through spring.",
+   "parse": [
+    "(: mothcount_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+    "(: mothcount_rule (Implication (Member $x moth_count) (And (Member (sk_recover $x) recover) (Theme (sk_recover $x) $x) (Time (sk_recover $x) spring))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000570",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Temporal 'through <period>' (extent across a span): `During` is restricted to during/while/throughout and needs two reified eventualities, and no other head carries 'spanning a period', so the extent collapses into a plain `(Time e spring)` point.",
+     "A non-deictic season as a time value ('spring'): the Time term constructors cover Year/Month/Day/Weekday/Hour/Minute and bare symbols cover day-parts and deictic seasons, but a plain season name is unaddressed."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural generic correctly routed to a 0.9/0.9 distributing rule with a Skolem event, `moth_count` genus `count` with the noun modifier unexposed, and no QuantifierPhrase since no quantifier word appears; `Theme` for the subject is defensible under the scalar-change clause (a count is a value that recovers), though `Patient` as an internal change of state is the competing read."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000571",
+   "sentence": "Moth-counts are strong through summer.",
+   "parse": [
+    "(: e4_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+    "(: e4_cond (ConditionalProperty moth_count strong summer) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000571",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a temporal restriction on a kind-level copular generic (\"Moth-counts are strong through summer\"): Time atoms attach to an event witness and this clause reifies no eventuality, while ConditionalProperty's condition slot is specified for states, measures/environments and locative/domain PPs — not time spans — and nothing carries the \"through\" (throughout) force"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-plural generic on the kind, the moth_count genus with the noun modifier left unexposed, the suppressed bare Inheritance, and the 0.9/0.9 empirical TV are all right. Routing the seasonal frame into the condition slot extends the locative-restriction rule, but it is the only alternative to dropping the restriction, which the instruction set forbids."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000572",
+   "sentence": "Moth-counts peak in early autumn.",
+   "parse": [
+    "(: moth_count_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+    "(: peak_ev (Member sk_peak_1 peak) (STV 1.0 0.99))",
+    "(: peak_theme (Theme sk_peak_1 moth_count) (STV 1.0 0.99))",
+    "(: peak_time (Time sk_peak_1 early_autumn) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000572",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "\"Moth-counts peak in early autumn\" is a bare-plural habitual/characteristic claim, so *Quantifiers, generics & scope* requires the distributing rule form (Implication (Member $x moth_count) (And (Member (sk_peak $x) peak) ...)); the parse emits a single concrete event witness sk_peak_1 instead."
+     },
+     {
+      "statement": 2,
+      "issue": "The bare kind symbol moth_count fills the Theme slot of a specific event witness, putting a class in an individual position — the Member/Inheritance discipline reserves the bare class symbol for non-specific/generic objects, not for a role filler of a minted event."
+     },
+     {
+      "statement": 1,
+      "issue": "The event atoms carry individual-fact (STV 1.0 0.99); a kind-level generalization takes the empirical generic 0.9 strength / 0.9 confidence per the definitional-vs-empirical dial."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "graded/modified season and day-part expressions (\"early autumn\", and likewise \"late morning\"/\"mid-afternoon\"): the instruction set gives structured terms for calendar granularities and bare symbols for deictic and day-part times, but never says whether a degree modifier on a season/day-part is kept in the symbol, dropped, or decomposed"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The compound decomposition (Inheritance moth_count count) with the noun modifier correctly left unexposed, the scalar-change Theme role, and the absence of a tense atom are all right; the defect is the generic clause form, not the lexical work."
+   },
+   "adjudication": {
+    "id": "lore-000572",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A non-episodic bare-plural verbal generic takes the distributing rule with a Skolem-function event per *Quantifiers, generics & scope* (\"Birds fly\" → `Implication`), not a single minted event witness."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is that a generic clause's bare-plural subject belongs in the rule's premise range, not in a role slot; the half that falls is the blanket claim that a bare class symbol may never fill a role of a minted event — *Existential* explicitly reserves the bare class symbol for non-specific / generic fillers, and the instruction set's own `(Patient sk_cook_1 dinner)` is exactly that."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "*Confidence — definitional vs empirical* puts an empirical generalization at strength 0.9 / confidence 0.9 and reserves 0.99 for individual facts, so 1.0 / 0.99 on the event atoms asserts a kind-level claim at individual-fact confidence."
+     }
+    ],
+    "gaps_confirmed": [
+     "Graded season and day-part expressions (\"early autumn\", \"late morning\", \"mid-afternoon\"): the Time section gives structured terms only for calendar granularities and bare symbols for deictics and day-parts, and never says whether a degree modifier on a season stays inside the symbol, is dropped, or decomposes."
+    ],
+    "new_gaps": [
+     "\"peak\" is a series-level predicate that no single moth-count can instantiate (a count is a value, the peak is a property of the annual series), so the mandated distributing rule hands each count something only the population can satisfy — and there is no non-distributing VERBAL generic form, since `KindProperty` covers copular properties only."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the distributing rule `(: moth_peak (Implication (Member $x moth_count) (And (Member (sk_peak $x) peak) (Theme (sk_peak $x) $x) (Time (sk_peak $x) early_autumn))) (STV 0.9 0.9))`, keeping the definitional `(Inheritance moth_count count)` at 1.0 / 0.99 — but see the new gap: that licensed form is itself semantically wrong for a series-level predicate, so no fully faithful form exists.",
+    "notes": "The lexical work is right — the `moth_count` genus with the noun modifier unexposed, `Theme` for the scalar-change subject, and no tense atom on a habitual."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000573",
+   "sentence": "Moth-counts decline through late autumn.",
+   "parse": [
+    "(: count_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+    "(: decline_ev (Member sk_decline_1 decline) (STV 1.0 0.99))",
+    "(: decline_th (Theme sk_decline_1 moth_count) (STV 1.0 0.99))",
+    "(: decline_time (Time sk_decline_1 late_autumn) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000573",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The bare-plural subject of a habitual/characteristic present clause is a verbal generic and should become a distributing (Implication (Member $x moth_count) ...) rule at the empirical-generic (STV 0.9 0.9); instead a single specific decline event is asserted at individual-fact (STV 1.0 0.99), which claims one occurrence rather than a regularity."
+     },
+     {
+      "statement": 2,
+      "issue": "The bare kind symbol moth_count fills the subject role slot, but the instruction set reserves a bare class filler for non-specific / kind-level OBJECTS ('pays tax', 'grows wheat'), not for the subject of a generic clause, which takes either the rule variable or a group witness."
+     },
+     {
+      "statement": 3,
+      "issue": "'through late autumn' states a span the decline runs over, but is encoded as a Time point (Time e late_autumn), losing the extent."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Season-scale time expressions: the Time term inventory is Year / Month / Day / Weekday / Hour / Minute plus day-part bare symbols, and seasons appear only as deictic constants ('last_spring', 'next_summer'); a non-deictic season, let alone a modified one ('late autumn'), has no defined term shape or decomposition rule.",
+     "The span preposition 'through' ('through late autumn', 'through the winter'): During is licensed for 'during / while / throughout' ONLY and synonym heads are barred, the Start/End interval form needs stated endpoints, and Measure duration needs a count and unit - so a 'through <period>' adverbial has no stated encoding."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The compound decomposition (Inheritance moth_count count) with the noun modifier left unexposed is right, and Theme is the correct role for a scalar-change subject; the defect is the generic routing, not the roles."
+   },
+   "adjudication": {
+    "id": "lore-000573",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A bare-plural subject of a habitual/characteristic present clause is a verbal generic, which the instruction set routes to a distributing Implication with a Skolem-function event at the empirical-generic (STV 0.9 0.9) — the episodic group-witness alternative is reserved for a specific past/dated/one-off occurrence — so a lone event bundle at the individual-fact 1.0/0.99 is neither licensed form."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The bare class symbol is reserved for a non-specific / kind-level OBJECT ('pays tax', 'grows wheat'), and a generic subject is carried by the rule's bound variable, so (Theme sk_decline_1 moth_count) puts a kind in a role slot no rule licenses and asserts that the kind itself declines."
+     },
+     {
+      "index": 2,
+      "verdict": "partial",
+      "reason": "The half that stands is the loss: 'through' is not one of the three words (during / while / throughout) that license During, a synonym head is barred, Start/End needs stated endpoints and Measure duration a count and unit, so the span force is genuinely unencodable — but the half that fails is calling the residue a fault, since (Time e late_autumn) is a true, well-typed bare named-time filler that states LESS than the sentence rather than more."
+     }
+    ],
+    "gaps_confirmed": [
+     "season-scale time expressions: the structured Time terms are Year / Month / Day / Weekday / Hour / Minute plus day-part constants, and seasons appear only as deictic forms (last_spring / next_summer), so a non-deictic season — let alone a modified one, 'late autumn' — has no defined term shape and no stated decomposition treatment",
+     "'through <period>' as a temporal-span adverbial has no stated encoding: During is licensed for during / while / throughout only, Start/End requires stated endpoints, and Measure duration requires a count and unit"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the verbal-generic distributing rule — (: moth_counts_decline (Implication (Member $x moth_count) (And (Member (sk_decline $x) decline) (Theme (sk_decline $x) $x) (Time (sk_decline $x) late_autumn))) (STV 0.9 0.9)) — with the bound variable, never the bare kind symbol moth_count, filling the Theme slot, and (Inheritance moth_count count) kept as it is; the 'through'-span force of the adjunct still has no licensed carrier there and is recorded as a gap.",
+    "notes": "The reviewer's gloss 'a single specific decline event' is imprecise — an event with no status atom is the generic/habitual default, not a specific occurrence — but the substance (wrong route and wrong truth value for a verbal generic) stands, so the verdict is unaffected. The compound decomposition with the noun modifier unexposed and Theme for an unpowered scalar-change subject are both right."
+   }
+  }
+ ]
+}

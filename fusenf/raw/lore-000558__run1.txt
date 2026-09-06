@@ -1,0 +1,4 @@
+(: e3_basket_type (Member sk_basket_1 thread_basket) (STV 1.0 0.99))
+(: e3_basket_genus (Inheritance thread_basket basket) (STV 1.0 0.99))
+(: e3_cauldrons_grp (GroupOf sk_cauldrons_1 cauldron) (STV 1.0 0.99))
+(: e3_basket_idle_rule (Implication (And (Member sk_basket_1 empty) (PartOf $x sk_cauldrons_1)) (Member $x idle)) (STV 1.0 0.9))

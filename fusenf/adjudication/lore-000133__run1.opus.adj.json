@@ -1,0 +1,9 @@
+{"id": "lore-000133", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "*Compound concepts* makes the head-noun genus mandatory for a fused modifier_noun compound ('emit its genus (Inheritance <compound> <head-noun>)'; 'The genus itself ... is always emitted either way'), and *Core patterns* lists a decomposed compound's genus among the atoms 'always emitted'; a cliff-climber IS a climber, so the IS-A suppression carve-out does not apply and (Inheritance cliff_climber climber) is required, not optional."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "Add (: climber_genus (Inheritance cliff_climber climber) (STV 1.0 0.99)) beside the existing atoms; the rest of the parse stands unchanged.",
+ "notes": "The prompt's own 'Hens are egg-layers' exemplar omits the parallel (Inheritance egg_layer layer), so the worked example contradicts the always-emit rule and is the likely source of this defect — worth fixing prompt-side. The capability + kind-relation pair (licensed twice over: fused from the surface, and the copular predicate) and the split of 'reliable' as incidental description are both correct."}

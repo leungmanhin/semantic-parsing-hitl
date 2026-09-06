@@ -1,0 +1,9 @@
+{"id": "lore-000501", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 3, "issue": "The explicit quantifier word \"each\" ranges over exactly the domain the rule quantifies (`full_moon_meeting`), so the mandatory companion `(QuantifierPhrase full_moon_meeting issue \"each\")` is missing — the companion is required for every explicit quantifier word the rule consumes, and only the \"every time / whenever\" wording is exempted."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a universally-quantified temporal PP over an event noun (\"at each full-moon meeting\"): the instruction set legislates \"every time / whenever <clause>\" (occurrence domain -> rule + `During`) and calendar-slot frequencies (`Time` term + `Every`/`TimesPer`), but not a determiner-quantified event-noun adjunct, so both the rule route and its `During` tie are extrapolated here — and the surface preposition is \"at\", which the oblique rule would otherwise send to `(At <event> <meeting>)`, `During` being reserved for during/while/throughout"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"The Council\" correctly stays a common-noun witness with no `Name` atom, the compounds `feather_ration` and `full_moon_meeting` expose only their head genus (noun modifiers), and rule strength/confidence 1.0/0.9 matches the \"each\" universal. The bare-plural object `feather_ration` as a kind filler is defensible in a non-episodic habitual clause."}

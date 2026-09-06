@@ -1,0 +1,243 @@
+{
+ "id": "L6-03",
+ "rule": "VI — Diet and roosting",
+ "texts": [
+  "Sky-cats eat nightmoths.",
+  "Sky-cats eat nothing else.",
+  "Sky-cats hunt alone.",
+  "Sky-cats roost together.",
+  "A dozen sky-cats roost on the cliff-spires.",
+  "The Keepers cannot count the sky-cats exactly.",
+  "The cliff-spires are very high."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000396",
+   "sentence": "Sky-cats eat nightmoths.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: eat_rel (Eat sky_cat night_moth) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000396",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "symbol form for a SOLID/CLOSED-spelled compound ('nightmoth'): the instruction set mandates the genus atom for such spellings but never says whether the compound symbol keeps the solid surface form (nightmoth) or is respelled as modifier_noun (night_moth), so two spellings of one word can land on different symbols"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both arguments are bare kind-denoting plurals, so the opaque kind-level relation at (STV 0.9 0.9) is the prescribed route, with both compound genera at definitional 1.0 0.99 and the noun modifiers (sky, night) correctly left unexposed. Eat is a licensed kind-level relation head."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000397",
+   "sentence": "Sky-cats eat nothing else.",
+   "parse": [],
+   "census": "ok",
+   "review": {
+    "id": "lore-000397",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The parse file is zero bytes: no atoms at all were emitted for the sentence, so neither the generic subject, the verb, nor the negation is recorded anywhere."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a negative-quantifier DIRECT OBJECT ('eat nothing'): the negated verbal generic form covers a missing or definite object, but nothing licenses binding an object slot to 'no entity at all' inside a strength-0 bundle or rule",
+     "exceptive 'else' ('nothing else' = nothing besides what has already been mentioned): the focus-particle inventory covers only / even / also / clefts and has no carrier for the alternative-set exclusion, so the restriction cannot be encoded and dropping it would widen the claim to 'sky-cats eat nothing'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Nothing could be judged against the instruction set because the output is empty; this may be a run artifact rather than a translator decision to drop an unencodable claim."
+   },
+   "adjudication": {
+    "id": "lore-000397",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The observation is factually right but is not a defect: with no carrier for an object-position negative quantifier and none for exceptive \"else\", every partial encoding drops the \"else\" and widens the claim to the false \"sky-cats eat nothing\", and Core patterns directs exactly this outcome — carry the restriction, or \"leave the whole claim out and record the gap\" — so a zero-atom output violates no stated rule and puts nothing false or over-asserted into the KB."
+     }
+    ],
+    "gaps_confirmed": [
+     "a negative-quantifier DIRECT OBJECT (\"eat nothing\"): the strength-0 bundle and the negated verbal-generic rule have no way to bind an object slot to \"no entity at all\"",
+     "exceptive \"else\" (\"nothing else\" = nothing besides what was already mentioned): the focus-particle inventory (only / even / also / cleft) has no carrier for alternative-set exclusion, and dropping it widens the claim"
+    ],
+    "new_gaps": [
+     "an atoms-only output format gives the parser no way to mark \"unencodable, deliberately left out\": a licensed omission and a failed run produce byte-identical artifacts, so the pipeline cannot tell a correct empty parse from a crash"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Judged as an artifact against the instruction set; whether the empty file came from a deliberate omission or a failed run cannot be read off the parse or the verdict. A later instruction set with an exceptive carrier would make this sentence recordable."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000398",
+   "sentence": "Sky-cats hunt alone.",
+   "parse": [
+    "(: skycat_gen (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_hunt (Implication (Member $x sky_cat) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Manner (sk_hunt $x) alone))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000398",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-plural generic correctly becomes a Skolem-function distribution rule at 0.9/0.9 with no QuantifierPhrase companion, and the hyphenated compound emits its genus with the noun modifier left unexposed. 'alone' as a how-adverb Manner is the closest licensed slot; a concurrent depictive state is the only other reading."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000399",
+   "sentence": "Sky-cats roost together.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_roost (Implication (Member $x sky_cat) (And (Member (sk_roost $x) roost) (Agent (sk_roost $x) $x) (Manner (sk_roost $x) together))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000399",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "\"together\" is slotted as (Manner (sk_roost $x) together), but the instruction set names bare \"together\" a collectivity marker (one event with multiple Agent atoms) and never a manner adverb, so the atom both invents a Manner filler and asserts that each sky-cat's own roosting is done together."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A bare-plural GENERIC clause carrying a collectivity marker (\"Sky-cats roost together\"): the collective form needs a group or coordinated subject to hang multiple Agent atoms on, while the generic route mints a per-member distributing rule that the marker contradicts, and no carrier for collectivity inside a distributing rule is defined."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The sky_cat compound genus (noun modifier unexposed, head genus emitted) and the 0.9/0.9 bare-generic rule with a Skolem-function event are correct; only the \"together\" handling is at issue."
+   },
+   "adjudication": {
+    "id": "lore-000399",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Manner takes only how-adverbs of manner proper and 'a mis-slotted Manner atom asserts a manner the sentence does not state'; bare 'together' is named a collectivity marker (one event, multiple Agent atoms), and on a per-member Skolem event the atom says each individual sky-cat's own roosting is done together, which is false."
+     }
+    ],
+    "gaps_confirmed": [
+     "a bare-plural GENERIC clause carrying a collectivity marker ('Sky-cats roost together'): the collective form needs a group or coordinated subject to hang multiple Agent atoms on, the generic route mints a per-member distributing rule the marker contradicts, and no collectivity carrier inside a distributing rule is defined"
+    ],
+    "new_gaps": [
+     "what a licensed form would have to carry here: kind-level collective participation (members roost WITH one another) that does NOT distribute onto a single member's event — the pairwise reciprocal rule is the only existing shape and it would falsely assert that every pair of sky-cats roosts together"
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form: the same bare-plural distributing rule with the Manner atom simply omitted — the stated fallback for an adverb with no licensed slot ('leave them out and record the gap'); no licensed form preserves the collectivity itself, which is the gap filed above.",
+    "notes": "The sky_cat compound genus and the 0.9/0.9 Skolem-function generic rule are correct; only the 'together' slot fails."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000400",
+   "sentence": "A dozen sky-cats roost on the cliff-spires.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: spire_grp (GroupOf sk_spires_1 cliff_spire) (STV 1.0 0.99))",
+    "(: skycat_grp (GroupOf sk_skycats_1 sky_cat) (STV 1.0 0.99))",
+    "(: skycat_card (Cardinality sk_skycats_1 12) (STV 1.0 0.99))",
+    "(: roost_rule (Implication (PartOf $x sk_skycats_1) (On $x sk_spires_1)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000400",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a settling/resting verb such as \"roost\" is not in the enumerated bare-position postural class (lie / sit / stand / hang / lean / perch / rest), so whether the clause mints no event at all (position atom only, verb lemma discarded) or reifies an eventuality is unsettled — the whole predicate's survival turns on that boundary",
+     "how an entity-attached position atom (surface-preposition head such as On) applies to a counted-plural / group subject is unspecified: the distributive machinery is stated only for events and for copular / Member properties, so per-member rule vs. a group-level position atom vs. both is undetermined"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"a dozen\" as the exact fixed value 12 on the group, both compound genera, the definite-plural spires as a group witness, and On as the entity-attached surface preposition (LocatedIn being containment-only) are all correct; the verb roost has no symbol anywhere in the parse, which is licensed only if the bare-position route applies."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000401",
+   "sentence": "The Keepers cannot count the sky-cats exactly.",
+   "parse": [
+    "(: lo401_keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: lo401_cats_grp (GroupOf sk_cats_1 sky_cat) (STV 1.0 0.99))",
+    "(: lo401_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lo401_count_neg (And (Member sk_count_1 count) (Agent sk_count_1 sk_keepers_1) (Theme sk_count_1 sk_cats_1) (Manner sk_count_1 exactly) (Can sk_count_1)) (STV 0.0 0.99))",
+    "(: lo401_count_rule (Implication (PartOf $x sk_keepers_1) (And (Member (sk_count $x) count) (Agent (sk_count $x) $x) (Theme (sk_count $x) sk_cats_1) (Manner (sk_count $x) exactly) (Can (sk_count $x)))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000401",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "no test for when a capitalized PLURAL kind-word label ('the Keepers') is 'referring as a name' - which would make it a Name-only individual with no GroupOf and no per-member kind - versus an ordinary definite plural of that common noun; the singular-collective default is spelled out, but the plural carve-out's trigger is left entirely to judgment"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The negated group capability keeps both emissions at strength 0.0 with the prescribed 0.99/0.9 confidence split, and sky_cat gets its head genus with the noun modifier correctly unexposed. 'exactly' as Manner sits close to the 'degree adverb on a verb has no licensed slot' bar, though it does answer 'how'."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000402",
+   "sentence": "The cliff-spires are very high.",
+   "parse": [
+    "(: e5_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: e5_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: e5_high_rule (Implication (PartOf $x sk_group_1) (And (Member $x high) (Degree $x high very))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000402",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural plus copular predicate correctly distributes over (PartOf $x sk_group_1) with the Degree atom inside the conclusion at STV 1.0 0.9, avoiding both Inheritance on the kind and a property on the group symbol; no QuantifierPhrase, since no quantifier word appears."
+   },
+   "adjudication": null
+  }
+ ]
+}

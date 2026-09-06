@@ -12,7 +12,7 @@ the web.
 
 ## Input
 
-Each assigned work file `fusenf/consumer/semantic-chemistry/advice5_work/R<nn>.json` is one source item:
+Each assigned work file `fusenf/consumer/semantic-chemistry/lore_advice_work/<item-id>.json` is one source item:
 `{"id", "rule", "texts", "fields": [...]}` — `fields` has one entry per TEXT sentence
 (the `rule` string is context only: the consumer does NOT parse rules) with:
 
@@ -42,9 +42,10 @@ handles poorly (e.g. multi-event conditions packed into participles).
 ## Output
 
 For each assigned item write ONE file
-`/home/manhin/Dev/semantic-parsing-hitl/fusenf/consumer/semantic-chemistry/advice5/R<nn>__advice.json`:
+`/home/manhin/Dev/semantic-parsing-hitl/fusenf/consumer/semantic-chemistry/lore_advice/<item-id>__advice.json`
+(`<item-id>` exactly as in the work file, e.g. `L1-01`):
 
-    {"id": "R<nn>", "texts": ["<comment for texts[0]>", …]}
+    {"id": "<item-id>", "texts": ["<comment for texts[0]>", …]}
 
 (No `rule` comment: the rule string is context only and is not carried into the result —
 owner 2026-09-02.)

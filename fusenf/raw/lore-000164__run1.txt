@@ -1,0 +1,5 @@
+(: night_shift_type (Member sk_night_shift_1 night_shift) (STV 1.0 0.99))
+(: night_shift_genus (Inheritance night_shift shift) (STV 1.0 0.99))
+(: e_begin (Member sk_begin_1 begin) (STV 1.0 0.99))
+(: e_begin_pat (Patient sk_begin_1 sk_night_shift_1) (STV 1.0 0.99))
+(: e_begin_time (Time sk_begin_1 sundown) (STV 1.0 0.99))

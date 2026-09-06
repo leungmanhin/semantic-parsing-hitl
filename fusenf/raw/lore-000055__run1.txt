@@ -1,0 +1,8 @@
+(: e_watch (Member sk_watch_1 watch) (STV 1.0 0.99))
+(: e_council (Member sk_council_1 council) (STV 1.0 0.99))
+(: e_ledger_room (Member sk_ledger_room_1 ledger_room) (STV 1.0 0.99))
+(: e_ledger_genus (Inheritance ledger_room room) (STV 1.0 0.99))
+(: e_ledger_poss (Possession sk_ledger_room_1 sk_council_1) (STV 1.0 0.99))
+(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))
+(: e_hold_ag (Agent sk_hold_1 sk_watch_1) (STV 1.0 0.99))
+(: e_hold_th (Theme sk_hold_1 sk_ledger_room_1) (STV 1.0 0.99))

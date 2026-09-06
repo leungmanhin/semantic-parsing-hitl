@@ -1,0 +1,7 @@
+(: northcove_name (Name northcove "Northcove") (STV 1.0 0.99))
+(: lant_grp (GroupOf sk_group_1 lantern) (STV 1.0 0.99))
+(: lant_poss (Possession sk_group_1 northcove) (STV 1.0 0.99))
+(: shore_type (Member sk_shore_1 shore) (STV 1.0 0.99))
+(: shore_inner (Member sk_shore_1 inner) (STV 1.0 0.99))
+(: shore_curving (Member sk_shore_1 curving) (STV 1.0 0.99))
+(: lant_along_rule (Implication (PartOf $x sk_group_1) (Along $x sk_shore_1)) (STV 1.0 0.9))

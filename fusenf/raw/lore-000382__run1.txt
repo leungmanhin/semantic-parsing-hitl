@@ -1,0 +1,8 @@
+(: villagers_grp (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))
+(: lantern_night_name (Name lantern_night "Lantern-night") (STV 1.0 0.99))
+(: wstory_genus (Inheritance wraith_story story) (STV 1.0 0.99))
+(: tell_ev (Member sk_tell_1 tell) (STV 1.0 0.99))
+(: tell_ag (Agent sk_tell_1 sk_villagers_1) (STV 1.0 0.99))
+(: tell_th (Theme sk_tell_1 wraith_story) (STV 1.0 0.99))
+(: tell_time (Time sk_tell_1 lantern_night) (STV 1.0 0.99))
+(: villagers_tell_rule (Implication (PartOf $x sk_villagers_1) (And (Member (sk_tell $x) tell) (Agent (sk_tell $x) $x) (Theme (sk_tell $x) wraith_story) (Time (sk_tell $x) lantern_night))) (STV 1.0 0.9))

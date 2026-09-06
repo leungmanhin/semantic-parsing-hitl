@@ -1,0 +1,8 @@
+(: n2_lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))
+(: n2_lantern_prop (Member sk_lantern_1 salt_bloomed) (STV 1.0 0.99))
+(: n2_saltbloomed_genus (Inheritance salt_bloomed bloomed) (STV 1.0 0.99))
+(: n2_night_type (Member sk_night_1 cold_threshold_night) (STV 1.0 0.99))
+(: n2_night_genus (Inheritance cold_threshold_night night) (STV 1.0 0.99))
+(: n2_survive_ev (Member sk_survive_1 survive) (STV 1.0 0.99))
+(: n2_survive_ag (Agent sk_survive_1 sk_lantern_1) (STV 1.0 0.99))
+(: n2_survive_th (Theme sk_survive_1 sk_night_1) (STV 1.0 0.99))

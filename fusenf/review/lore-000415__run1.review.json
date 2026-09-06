@@ -1,0 +1,9 @@
+{"id": "lore-000415", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "\"sky-cat feather\" is fused into the compound kind `sky_cat_feather`, but the modifier is a possessor/whole and the head its part/component (the feather of a sky-cat), which *Compound concepts* explicitly bars from fusing (\"car engine\", \"table leg\" -> head kind + `PartOf`)."}, {"statement": 1, "issue": "`(Inheritance sky_cat cat)` decomposes a modifier that the noun-modifier rule says is never exposed, and mints a symbol (`sky_cat`) that appears in no other atom in the parse, leaving a dangling genus disconnected from `sky_cat_feather`."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["the possessor/whole + part/component no-fuse rule is stated only for individual referents (\"the car engine\" -> witness + `PartOf`); it gives no form for an animal-body-part compound that has to appear as a KIND restriction in a generic rule's premise"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The routing is right: an adjectivally-restricted kind subject (\"ground\") forces the distributing-rule route rather than a kind relation, `ground` correctly stays the participial adjective (not `grind`), the inanimate transitive subject takes `Agent`, unchanged \"lanterns\" takes `Theme` as a bare kind filler, and `Against` is a licensed preposition-named oblique. Only the compound-fusion decision and the dangling `sky_cat` genus are at issue."}

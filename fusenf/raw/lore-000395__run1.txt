@@ -1,0 +1,5 @@
+(: keepers_name (Name keepers "Keepers") (STV 1.0 0.99))
+(: skycat_gen (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: hunt_gen (Inheritance sky_cat_hunt hunt) (STV 1.0 0.99))
+(: witness_rare (And (Member sk_witness_1 witness) (Agent sk_witness_1 keepers) (Member sk_hunt_1 sky_cat_hunt) (Stimulus sk_witness_1 sk_hunt_1)) (STV 0.1 0.9))
+(: keepers_q (QuantifierPhrase keepers witness "rarely") (STV 1.0 0.99))

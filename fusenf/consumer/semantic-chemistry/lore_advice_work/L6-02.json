@@ -1,0 +1,297 @@
+{
+ "id": "L6-02",
+ "rule": "VI — Appearance",
+ "texts": [
+  "A sky-cat is a small winged animal.",
+  "A sky-cat has broad feathered wings.",
+  "Short feather-like fur covers a sky-cat's body.",
+  "Sky-cat feathers are mottled grey and white.",
+  "Sky-cats fly silently.",
+  "The Keepers rarely witness a sky-cat hunt."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000390",
+   "sentence": "A sky-cat is a small winged animal.",
+   "parse": [
+    "(: skycat_animal (Inheritance sky_cat animal) (STV 1.0 0.99))",
+    "(: skycat_small (Inheritance sky_cat small) (STV 1.0 0.9))",
+    "(: skycat_winged (Inheritance sky_cat winged) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000390",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The fused compound kind sky_cat carries no decomposition genus (Inheritance sky_cat cat), which Compound concepts makes an always-emitted atom for a modifier_noun compound unless the IS-A test fails, and nothing in the text signals that a sky-cat is not a cat."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else conforms: the indefinite copular definitional \"A sky-cat is ...\" takes Inheritance, the size and participial modifiers stay unfused as separate atoms, \"winged\" keeps its adjectival form, and the 0.99 taxonomic vs 0.9 empirical split is defensible."
+   },
+   "adjudication": {
+    "id": "lore-000390",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A hyphenated modifier+head compound kind must emit its head genus — the instruction set makes it 'always emitted' and 'determined, not optional' (an optional atom makes two faithful parses differ), and the IS-A suppression carve-out needs positive evidence that the compound is not a kind of its head ('a hot dog is not a dog'), which this text does not supply."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Add the head genus (: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99)) beside the three existing atoms; the noun modifier 'sky' correctly stays unexposed.",
+    "notes": "A coined fictional kind term gives the IS-A suppression test nothing to run on, but the instruction set's default under that uncertainty is to emit the genus, and the compositional reading is coherent for a small winged animal. Everything else conforms: Inheritance for the definitional indefinite copular, unfused size and participial modifiers, and the 0.99/0.9 split."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000391",
+   "sentence": "A sky-cat has broad feathered wings.",
+   "parse": [
+    "(: skycat_m (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: e_have (Member sk_have_1 have) (STV 1.0 0.99))",
+    "(: e_holder (Holder sk_have_1 sk_sky_cat_1) (STV 1.0 0.99))",
+    "(: wing_grp (GroupOf sk_wing_1 wing) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_have_1 sk_wing_1) (STV 1.0 0.99))",
+    "(: wing_rule (Implication (PartOf $x sk_wing_1) (And (Member $x broad) (Member $x feathered))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000391",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite singular with a verbal predicate correctly mints a witness rather than a kind-level generic or a `(Have sky_cat wing)` relational generic — *Existential* (\"with a verbal predicate it is a witness\") and the relational-generic trigger (\"an indefinite or definite singular is not one\") both mandate this — with `have` taking `Holder`/`Theme`, `sky_cat` getting its head genus and no exposed noun modifier, and no unstated `PartOf` between wings and cat. The two descriptive modifiers correctly distribute over the wing group by rule instead of riding the group symbol, and \"feathered\" keeps its participial-adjective form."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000392",
+   "sentence": "Short feather-like fur covers a sky-cat's body.",
+   "parse": [
+    "(: fur_type (Member sk_fur_1 fur) (STV 1.0 0.99))",
+    "(: fur_short (Member sk_fur_1 short) (STV 1.0 0.99))",
+    "(: fur_featherlike (Member sk_fur_1 feather_like) (STV 1.0 0.99))",
+    "(: cover_ev (Member sk_cover_1 cover) (STV 1.0 0.99))",
+    "(: cover_ag (Agent sk_cover_1 sk_fur_1) (STV 1.0 0.99))",
+    "(: cover_th (Theme sk_cover_1 sk_body_1) (STV 1.0 0.99))",
+    "(: body_type (Member sk_body_1 body) (STV 1.0 0.99))",
+    "(: body_part (PartOf sk_body_1 sk_sky_cat_1) (STV 1.0 0.99))",
+    "(: cat_type (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))",
+    "(: cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000392",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "A characteristic generic (present tense, bare mass subject 'short feather-like fur') is encoded as a one-off existential over witnesses, whereas the instruction set routes a verbal generic over a kind to a distributing Implication rule with the adjectival restriction as premise conjuncts, and says the witness route belongs to episodic clauses rather than characteristic claims."
+     },
+     {
+      "statement": null,
+      "issue": "Following from that, every atom carries the individual-fact (STV 1.0 0.99) rather than the empirical generic 0.9/0.9 the rule route would take."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a generic whose surface subject is a bare mass NP but whose intended universal is over the object's POSSESSOR ('short feather-like fur covers a sky-cat's body' = for every sky-cat, its body): the rule machinery ranges over the subject kind, and nothing says how to bind an indefinite possessor inside the object NP as the quantified range (or as a dependent Skolem body per sky-cat)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Role assignment is right on its own terms (inanimate transitive subject stays Agent, the unchanged covered body is Theme, the genitive body attaches by PartOf), and feather_like correctly keeps its derived surface form. The defect is the generic-vs-episodic routing, not the internal structure."
+   },
+   "adjudication": {
+    "id": "lore-000392",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Coordination & plurals reserves the witness route for episodic clauses and sends a genuinely generic clause (habitual present, characteristic claim) to the rule route, and Striking & relational generics says an adjectivally-restricted kind subject forces the distributing-rule route with the restriction as premise conjuncts — so the existential encoding posits one particular fur, body and sky-cat that this characteristic claim never introduces."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is the generic claim's own truth value — an empirical generic rule takes 0.9/0.9, not the individual-fact 0.99 — but 'every atom' overstates it: the compound-decomposition genus (Inheritance sky_cat cat) is definitional and keeps (STV 1.0 0.99) under either routing."
+     }
+    ],
+    "gaps_confirmed": [
+     "A generic whose surface subject is a bare mass NP but whose intended universal ranges over the OBJECT's possessor ('short feather-like fur covers a sky-cat's body' = for every sky-cat, its body): the rule machinery ranges over the subject kind, and nothing states how to bind an indefinite possessor buried in the object NP as the quantified range."
+    ],
+    "new_gaps": [
+     "A MASS kind as the range of a distributing verbal generic: the rule premise form is (Member $x <kind>), which presupposes count instances to quantify over — 'fur' has no natural instance, and no mass-subject range predicate (or portion/quantity witness convention) is defined for the rule route."
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form: one rule at (STV 0.9 0.9) — (Implication (And (Member $x fur) (Member $x short) (Member $x feather_like)) (And (Member (sk_cover $x) cover) (Agent (sk_cover $x) $x) (Theme (sk_cover $x) (sk_body $x)) (Member (sk_body $x) body) (PartOf (sk_body $x) (sk_sky_cat $x)) (Member (sk_sky_cat $x) sky_cat))) with the definitional (Inheritance sky_cat cat) staying outside at 1.0 0.99 — but that quantifies over fur rather than over sky-cats, which is the intended universal and the confirmed gap.",
+    "notes": "Role assignment is right on its own terms (inanimate transitive subject stays Agent, the unchanged covered body is Theme, the genitive body attaches by PartOf), and feather_like correctly keeps its derived surface form; the defect is the generic-vs-episodic routing."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000393",
+   "sentence": "Sky-cat feathers are mottled grey and white.",
+   "parse": [
+    "(: skf_genus (Inheritance sky_cat_feather feather) (STV 1.0 0.99))",
+    "(: skf_mottled (Inheritance sky_cat_feather mottled) (STV 0.9 0.9))",
+    "(: skf_grey (Inheritance sky_cat_feather grey) (STV 0.9 0.9))",
+    "(: skf_white (Inheritance sky_cat_feather white) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000393",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "\"mottled grey and white\" is flattened into three co-equal properties, so the parse asserts the kind is grey outright and white outright, dropping the scope of \"mottled\" over the colour pair (the text says the feathers are patterned in those two colours, not that they are each colour)."
+     },
+     {
+      "statement": 0,
+      "issue": "\"sky-cat feathers\" is fused into the compound kind `sky_cat_feather`, but on the possessor/whole + part reading (\"the feathers of a sky-cat\", like \"car engine\") the instruction set says do **not** fuse; the fusion is licensed only if \"sky-cat\" is read as a classifier carving a genuine subtype of feather."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An adjective modifying another adjective — a patterned-colour description (\"mottled grey and white\") — has no licensed carrier for the modification relation; only coordination of independent properties is defined.",
+     "A possessor/whole + part compound in a **bare-plural generic** subject (\"sky-cat feathers are …\"): the no-fuse `PartOf` route is defined only for individuals with witnesses (\"the car engine\"), and no kind-level form is given, so the two rules give no verdict here."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare plural → `Inheritance` on the kind is right, as are the truth values: definitional (1.0 0.99) on the decomposition genus, empirical bare-generic (0.9 0.9) on the properties, with no QuantifierPhrase companion. The noun modifier is correctly left unexposed (no `(Inheritance sky_cat_feather sky_cat)`), and predicate `mottled` correctly keeps its participial surface form."
+   },
+   "adjudication": {
+    "id": "lore-000393",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "\"mottled\" is kept as its own property rather than silently dropped, coordinated predicates are expressly one atom each (\"Bob is tall and kind\"), and the instruction set supplies no carrier for an adjective scoping over an adjective pair — each of the three atoms is true of a mottled grey-and-white feather, so this is graceful improvisation in gap territory."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "Compound concepts licenses fusing a modifier_noun \"only when the modifier classifies the head into a genuine subtype\", which sky-cat feathers are, and the part-whole no-fuse route it names (witness + `PartOf`) has no kind-level form for a bare-plural generic subject — so the fusion with its mandatory genus is licensed, not a defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "an adjective modifying another adjective — a patterned-colour description (\"mottled grey and white\") — has no licensed carrier for the modification relation; only coordination of independent properties is defined",
+     "a possessor/whole + part noun-noun compound in a BARE-PLURAL GENERIC subject (\"sky-cat feathers are ...\"): the no-fuse `PartOf` route is defined only for individuals with witnesses (\"the car engine\"), and no kind-level counterpart is given"
+    ],
+    "new_gaps": [],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Truth values are right throughout — definitional 1.0/0.99 on the decomposition genus, empirical bare-generic 0.9/0.9 on the properties, no `QuantifierPhrase` companion — and the noun modifier is correctly left unexposed."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000394",
+   "sentence": "Sky-cats fly silently.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_fly (Implication (Member $x sky_cat) (And (Member (sk_fly $x) fly) (Agent (sk_fly $x) $x) (Manner (sk_fly $x) silently))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000394",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural verbal generic as a Skolem-event distribution rule at 0.9/0.9 (a characteristic disposition, so not lowered), sky_cat's head genus emitted with the noun modifier left unexposed, and the -ly Manner adverb kept in surface form rather than reduced to the adjective."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000395",
+   "sentence": "The Keepers rarely witness a sky-cat hunt.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: skycat_gen (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: hunt_gen (Inheritance sky_cat_hunt hunt) (STV 1.0 0.99))",
+    "(: witness_rare (And (Member sk_witness_1 witness) (Agent sk_witness_1 keepers) (Member sk_hunt_1 sky_cat_hunt) (Stimulus sk_witness_1 sk_hunt_1)) (STV 0.1 0.9))",
+    "(: keepers_q (QuantifierPhrase keepers witness \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000395",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "(Inheritance sky_cat cat) decomposes the NOUN modifier inside the compound 'sky_cat_hunt' and mints a symbol nothing else in the parse uses, but a noun modifier is never exposed and decomposition runs once to the head genus then stops."
+     },
+     {
+      "statement": 3,
+      "issue": "The positive event is emitted as a single strength-0.1 (And ...) bundle, whereas a positive event is separate atoms and the (And ...) bundle is reserved for strength-0 denials; the bundling also drops the existence of the hunt witness and its typing to 0.1."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a frequency adverb ('rarely') on a habitual MULTI-ATOM EVENT clause whose subject is an individual: the dial is specified only as a distributing rule's strength (a kind range) or a flat generic's single-atom strength, so there is no stated carrier for the lowered strength here",
+     "QuantifierPhrase's first slot expects a kind / copular subject, but 'the Keepers' is a Name-only individual (per the capitalized-plural-label rule), so there is no kind to name in the companion"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Keepers' is handled correctly as a Name-only individual (one symbol, Name atom, no GroupOf, no per-member kind), and the eventive perception verb correctly takes Agent + Stimulus on the event-denoting object."
+   },
+   "adjudication": {
+    "id": "lore-000395",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The bar the issue cites forbids exposing a noun modifier as the compound's genus — (Inheritance sky_cat_hunt sky_cat) — which the parse never emits; (Inheritance sky_cat cat) is the definitional genus of a hyphenated compound kind read straight off the words (true, well-typed, definitional TV), and 'don't recurse on parts already single' does not reach a part that is not single."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "Graceful improvisation inside the reviewer's own gap: a frequency adverb sets 'the statement's strength' for a flat generic, an individual (Name-only) subject leaves no rule range to carry it, a one-fact (And ...) at non-zero strength has precedent in the disjunction clause bundle, and keeping the indefinite hunt inside is right — asserting its existence outside would claim a hunt the habitual never states."
+     }
+    ],
+    "gaps_confirmed": [
+     "a frequency adverb ('rarely') on a habitual MULTI-ATOM event clause whose subject is an individual: neither the distributing rule's strength nor a flat single-atom generic's strength fits, so the carrier for the lowered strength is unstated"
+    ],
+    "new_gaps": [
+     "a compound kind used as the MODIFIER of another compound ('sky-cat hunt'): the decomposition spec fixes one level (head genus emitted, noun modifier suppressed) and leaves undetermined whether the nested modifier compound's own genus is emitted too — an atom emitted only sometimes makes two faithful parses differ, so the determinacy needs a ruling"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The reviewer's second gap is thin: the Categorical form of the companion is (QuantifierPhrase <subject> <predicate> '<word>'), so an individual in the first slot is within the stated shape. Agent + Stimulus on the event-denoting object and the absence of a tense atom on a habitual are both right."
+   }
+  }
+ ]
+}

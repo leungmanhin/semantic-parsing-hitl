@@ -1,0 +1,3 @@
+(: sp_genus (Inheritance stone_pedestal pedestal) (STV 1.0 0.99))
+(: lantern_rule (Implication (Member $x lantern) (And (Member (sk_pedestal $x) stone_pedestal) (On $x (sk_pedestal $x)))) (STV 1.0 0.9))
+(: lantern_q (QuantifierPhrase lantern stand "each") (STV 1.0 0.99))

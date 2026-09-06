@@ -1,0 +1,3 @@
+(: appr_type (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))
+(: appr_scrubs (Implication (Member $y cauldron) (And (Member (sk_scrub $y) scrub) (Agent (sk_scrub $y) sk_apprentice_1) (Patient (sk_scrub $y) $y) (Instrument (sk_scrub $y) sand))) (STV 1.0 0.9))
+(: cauldron_q (QuantifierPhrase cauldron scrub "each") (STV 1.0 0.99))

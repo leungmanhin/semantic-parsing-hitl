@@ -1,0 +1,264 @@
+{
+ "id": "L1-04",
+ "rule": "I — Sunken Cove",
+ "texts": [
+  "The Sunken Cove lies west of the village.",
+  "The Cove Stair leads down to the Sunken Cove.",
+  "The Cove Stair is a narrow descending path.",
+  "A stone landing stands at the foot of the Cove Stair.",
+  "The landing extends into shallow water.",
+  "The bones of the old graveyard lie under the water of the Sunken Cove.",
+  "When the tide is low, the grave markers are visible below the surface.",
+  "The Sunken Cove is cold in every season."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000020",
+   "sentence": "The Sunken Cove lies west of the village.",
+   "parse": [
+    "(: sc_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sc_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: sc_west (WestOf sunken_cove sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000020",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare position clause with postural 'lies' correctly mints no event; non-containment 'west of' keeps the CamelCase-joined surface head WestOf entity-attached, and the name-internal kind word licenses (Member sunken_cove cove) with no modifier genus."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000021",
+   "sentence": "The Cove Stair leads down to the Sunken Cove.",
+   "parse": [
+    "(: cove_stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: cove_stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+    "(: sunken_cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: sunken_cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: lead_event (Member sk_lead_1 lead) (STV 1.0 0.99))",
+    "(: lead_experiencer (Experiencer sk_lead_1 cove_stair) (STV 1.0 0.99))",
+    "(: lead_goal (Goal sk_lead_1 sunken_cove) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000021",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "path / connection stative verb relating two places (\"X leads down to Y\", \"the road runs to Y\") — not among the stative locative / postural verbs listed in *Where a THING is*, so it is unsettled whether such a clause mints an event (as here, Experiencer subject + Goal oblique) or is a bare position clause that mints no event and takes the entity-attached surface-preposition head",
+     "directional adverb / particle \"down\" on a path verb — Manner covers only manner-proper adverbs and no directional slot is defined, while the verb_particle rule (which would demand the whole symbol lead_down and forbids dropping the particle) is written for non-compositional phrasal verbs; the parse leaves \"down\" out, which the leave-out-and-record-the-gap instruction permits, but the descent is lost"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both names follow *Names and casing* correctly — one opaque symbol from the whole capitalized run, one Name atom, and the kind atom read off the kind word inside the name. The stative-intransitive subject correctly takes Experiencer rather than Agent (a stair is not a self-powered mover), and no location or containment atom was invented."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000022",
+   "sentence": "The Cove Stair is a narrow descending path.",
+   "parse": [
+    "(: cove_stair_path (Member cove_stair path) (STV 1.0 0.99))",
+    "(: cove_stair_narrow (Member cove_stair narrow) (STV 1.0 0.99))",
+    "(: cove_stair_descending (Member cove_stair descending) (STV 1.0 0.99))",
+    "(: cove_stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000022",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Two-word capitalized run exceeding the bare class word is correctly a Name-only symbol with no modifier genus, and \"narrow\"/\"descending\" are correctly left unfused as incidental description with the participle kept in adjective form. The kind word inside the name (\"Stair\") yields no type atom here; Names-and-casing licenses one, but the copular predicate already supplies the kind, so this is at most a licensed-not-emitted atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000023",
+   "sentence": "A stone landing stands at the foot of the Cove Stair.",
+   "parse": [
+    "(: l23_landing_type (Member sk_landing_1 stone_landing) (STV 1.0 0.99))",
+    "(: l23_landing_genus (Inheritance stone_landing landing) (STV 1.0 0.99))",
+    "(: l23_foot_type (Member sk_foot_1 foot) (STV 1.0 0.99))",
+    "(: l23_foot_partof (PartOf sk_foot_1 cove_stair) (STV 1.0 0.99))",
+    "(: l23_stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: l23_stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+    "(: l23_landing_loc (LocatedIn sk_landing_1 sk_foot_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000023",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Stative postural 'stands' correctly mints no event, 'at' routes to LocatedIn, and 'the foot of the Cove Stair' takes the part-like relational-noun PartOf. Noun modifier 'stone' is kept inside the compound symbol with only the head genus emitted, as the part-of-speech test requires."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000024",
+   "sentence": "The landing extends into shallow water.",
+   "parse": [
+    "(: l24_land_type (Member sk_landing_1 landing) (STV 1.0 0.99))",
+    "(: l24_sw_genus (Inheritance shallow_water water) (STV 1.0 0.99))",
+    "(: l24_sw_mod (Inheritance shallow_water shallow) (STV 1.0 0.99))",
+    "(: l24_land_into (Into sk_landing_1 shallow_water) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000024",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "spatial-extent verbs (extend / stretch / reach / run) — the instruction set names only 'is located/situated in' plus lie/sit/stand/hang/lean/perch/rest as position verbs that mint no event, so whether 'extends' is a bare position clause (verb dropped entirely) or an ordinary verbal event is undecided",
+     "a directional preposition ('into') used as an entity-attached position head — every example of the entity-attached surface-preposition form is static (on / under / beside / next to / atop / across-the-lane-from), and 'into' names a direction rather than a position"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Given the position-clause route the NP handling is right: bare mass 'shallow water' stays a fused constant with its definitional head genus and its gradable-modifier genus, and the definite 'the landing' takes a typed witness. Nothing in the output records the verb 'extend' at all."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000025",
+   "sentence": "The bones of the old graveyard lie under the water of the Sunken Cove.",
+   "parse": [
+    "(: graveyard_type (Member sk_graveyard_1 graveyard) (STV 1.0 0.99))",
+    "(: graveyard_old (Member sk_graveyard_1 old) (STV 1.0 0.99))",
+    "(: bones_group (GroupOf sk_group_1 bone) (STV 1.0 0.99))",
+    "(: bones_poss (Possession sk_group_1 sk_graveyard_1) (STV 1.0 0.99))",
+    "(: water_type (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: water_poss (Possession sk_water_1 sunken_cove) (STV 1.0 0.99))",
+    "(: bones_under_water (Implication (PartOf $x sk_group_1) (Under $x sk_water_1)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000025",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare position clause whose subject is a definite plural: the instruction set fixes the group-vs-member split for copular predicates, result states and events, but not for an entity-attached surface-preposition position atom (whether `Under` rides the group symbol, a per-member `PartOf` rule, or both)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare postural 'lie' correctly mints no event and the non-containment 'under' correctly keeps the surface head; 'the Sunken Cove' gets the name-plus-kind pair with no modifier genus, as names require. The two of-genitives take the opaque Possession fallback, which is defensible though PartOf is arguable for both."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000026",
+   "sentence": "When the tide is low, the grave markers are visible below the surface.",
+   "parse": [
+    "(: t1_tide (Member sk_tide_1 tide) (STV 1.0 0.99))",
+    "(: t1_grp (GroupOf sk_group_1 grave_marker) (STV 1.0 0.99))",
+    "(: t1_genus (Inheritance grave_marker marker) (STV 1.0 0.99))",
+    "(: t1_surface (Member sk_surface_1 surface) (STV 1.0 0.99))",
+    "(: t1_rule (Implication (And (Member $s low) (Experiencer $s sk_tide_1) (PartOf $x sk_group_1)) (And (Member (sk_visible $s $x) visible) (Experiencer (sk_visible $s $x) $x) (During (sk_visible $s $x) $s) (Below (sk_visible $s $x) sk_surface_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000026",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The rule's consequent carries only the reified visible-state, with no flat per-member property atom (Member $x visible), which the copular-distribution rule (conclusion = the property atom over PartOf $x <group>) and the dual-emit convention both call for, so a plain \"is this marker visible?\" binds nothing."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A STATIVE/copular trigger clause under the \"every time / whenever\" occurrence-quantification machinery: the listed reification triggers (resultative, connective endpoint, time modifier, adjective's PP complement, focus particle, approximator) do not license reifying \"the tide is low\" into an eventuality, yet the During link in the consequent needs one, and the whenever pattern is only illustrated with a verbal trigger clause.",
+     "Bare \"when P, Q\" whose participants are DEFINITE but whose claim is a present-tense genuine regularity, not a one-off narrative: the routing rule names only generic/indefinite participants (rule form) and definite participants in a one-off narrative (two plain ordered events), leaving this combination decided only by the trailing \"nor leaves a genuine regularity unquantified\" remark."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group witness, grave_marker fusion with noun-modifier genus suppressed, definite typings projected at top level, and the sk_* premise constants (all top-level asserted) are all correct. Below is licensed as the surface preposition actually used, attached to the state witness as an event-side oblique."
+   },
+   "adjudication": {
+    "id": "lore-000026",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Dual-emit is mandatory beside a reified state ('keep the flat copular atom (dual-emit as always)'), and over a plural group that flat half is the per-member property atom in the rule's conclusion (the Resultatives plural clause; 'a universal over a COPULAR predicate ... a rule whose conclusion is the property atom'), so omitting (Member $x visible) leaves the plain 'is this marker visible?' question unbindable, which is the exact failure dual-emit exists to prevent."
+     }
+    ],
+    "gaps_confirmed": [
+     "No listed reification trigger licenses turning the stative trigger clause 'the tide is low' into the premise eventuality that the consequent's During link requires; the whenever machinery is illustrated only with a verbal trigger clause.",
+     "The bare 'when P, Q' routing covers generic/indefinite participants (the rule form) and definite participants in a one-off narrative (two plain ordered events), but not definite participants in a present-tense genuine regularity, which is this sentence."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps the per-occurrence reified state and adds the flat half as one more conjunct of the same consequent - (Member $x visible) beside (Member (sk_visible $s $x) visible), (Experiencer ...), (During ...) and (Below ...) - which the plural-group flat-half rule explicitly licenses, so this defect does have a licensed fix.",
+    "notes": "Everything else is licensed: the definite-plural group witness, grave_marker with the head genus emitted and the noun modifier suppressed, the top-level definite typings, the sk_* premise constants (each asserted at top level), and Below as the surface preposition actually used, attached to the state witness as an event-side oblique."
+   }
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000027",
+   "sentence": "The Sunken Cove is cold in every season.",
+   "parse": [
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cold_st (Member sk_cold_1 cold) (STV 1.0 0.99))",
+    "(: cold_exp (Experiencer sk_cold_1 sunken_cove) (STV 1.0 0.99))",
+    "(: cold_every (Every sk_cold_1 1 season) (STV 1.0 0.99))",
+    "(: cove_cold_flat (Member sunken_cove cold) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000027",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The name-internal kind word licenses (Member sunken_cove cove) with no modifier genus, and the time-modified copular correctly dual-emits the reified Experiencer state plus the flat atom. 'in every season' is periodic wording, so (Every e 1 season) with no Time slot term and no QuantifierPhrase companion matches the 'every month' pattern."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+(: stations_grp (GroupOf sk_stations_1 lantern_station) (STV 1.0 0.99))
+(: stations_gen (Inheritance lantern_station station) (STV 1.0 0.99))
+(: names_grp (GroupOf sk_names_1 name) (STV 1.0 0.99))
+(: names_poss (Possession sk_names_1 sk_stations_1) (STV 1.0 0.99))
+(: children_learn (Implication (Member $x child) (And (Member (sk_learn $x) learn) (Agent (sk_learn $x) $x) (Theme (sk_learn $x) sk_names_1) (By (sk_learn $x) heart))) (STV 0.9 0.9))

@@ -1,0 +1,8 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: em_genus (Inheritance emergency_meeting meeting) (STV 1.0 0.99))
+(: mtg_group (GroupOf sk_group_1 emergency_meeting) (STV 1.0 0.99))
+(: mtg_card (Cardinality sk_group_1 4) (STV 1.0 0.99))
+(: call_ev (Member sk_call_1 call) (STV 1.0 0.99))
+(: call_ag (Agent sk_call_1 sk_council_1) (STV 1.0 0.99))
+(: call_pat (Patient sk_call_1 sk_group_1) (STV 1.0 0.99))
+(: call_tense (Past sk_call_1) (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: party_genus (Inheritance harvest_party party) (STV 1.0 0.99))
+(: party_type (Member sk_party_1 harvest_party) (STV 1.0 0.99))
+(: wear_ev (Member sk_wear_1 wear) (STV 1.0 0.99))
+(: wear_agent (Agent sk_wear_1 sk_party_1) (STV 1.0 0.99))
+(: coat_genus (Inheritance waxed_coat coat) (STV 1.0 0.99))
+(: coat_mod (Inheritance waxed_coat waxed) (STV 1.0 0.99))
+(: wear_theme (Theme sk_wear_1 waxed_coat) (STV 1.0 0.99))

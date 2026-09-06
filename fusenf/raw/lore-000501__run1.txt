@@ -1,0 +1,4 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))
+(: meeting_genus (Inheritance full_moon_meeting meeting) (STV 1.0 0.99))
+(: council_issue_rule (Implication (Member $m full_moon_meeting) (And (Member (sk_issue $m) issue) (Agent (sk_issue $m) sk_council_1) (Theme (sk_issue $m) feather_ration) (During (sk_issue $m) $m))) (STV 1.0 0.9))

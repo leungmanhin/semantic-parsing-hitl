@@ -1,0 +1,4 @@
+(: ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: ls_report_q (QuantifierPhrase lantern_station report "each") (STV 1.0 0.99))
+(: ls_report_rule (Implication (Member $x lantern_station) (And (Member (sk_report $x) report) (Agent (sk_report $x) $x) (Member (sk_production $x) production) (Member (sk_production $x) monthly) (Agent (sk_production $x) $x) (Theme (sk_report $x) (sk_production $x)) (Recipient (sk_report $x) sk_council_1))) (STV 1.0 0.9))

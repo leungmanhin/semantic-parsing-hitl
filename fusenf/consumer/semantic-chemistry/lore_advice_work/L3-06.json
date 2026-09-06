@@ -1,0 +1,247 @@
+{
+ "id": "L3-06",
+ "rule": "III — Other business",
+ "texts": [
+  "The Council decides feather rations.",
+  "The Council hears apprentice progress reports.",
+  "The Council hears salt-bloom harvest reports.",
+  "When a Keeper retires, the Council re-staffs that Keeper's station.",
+  "When a Keeper dies, the Council re-staffs that Keeper's station.",
+  "The Council reads letters from other villages aloud."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000232",
+   "sentence": "The Council decides feather rations.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e_decide (Member sk_decide_1 decide) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_decide_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_decide_1 feather_ration) (STV 1.0 0.99))",
+    "(: ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000232",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" correctly takes the capitalized-common-noun default (common noun, no Name atom, singular collective so no GroupOf), and the habitual present correctly gets no status atom; the bare-plural object is non-specific/kind-level, so the bare kind filler feather_ration rather than a group witness is right."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000233",
+   "sentence": "The Council hears apprentice progress reports.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: hear_ev (Member sk_hear_1 hear) (STV 1.0 0.99))",
+    "(: hear_exp (Experiencer sk_hear_1 sk_council_1) (STV 1.0 0.99))",
+    "(: hear_stim (Stimulus sk_hear_1 apprentice_progress_report) (STV 1.0 0.99))",
+    "(: apr_genus (Inheritance apprentice_progress_report report) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000233",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" correctly takes the capitalized-common-noun default (witness + kind atom, no Name) and the singular-collective no-distribution rule, and the habitual present correctly carries no status atom. \"hear\" is on the instruction set's stative perception list, so Experiencer/Stimulus is the licensed routing even in this institutional sense."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000234",
+   "sentence": "The Council hears salt-bloom harvest reports.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: report_genus (Inheritance salt_bloom_harvest_report report) (STV 1.0 0.99))",
+    "(: e_hear (Member sk_hear_1 hear) (STV 1.0 0.99))",
+    "(: e_exp (Experiencer sk_hear_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_stim (Stimulus sk_hear_1 salt_bloom_harvest_report) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000234",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Stative perception \"hear\" correctly takes Experiencer/Stimulus, the definite singular subject correctly blocks the bare-kind relational-generic route, and the unmarked habitual reading licenses the bare kind filler for the bare-plural object. The compound genus (Inheritance salt_bloom_harvest_report report) is emitted with the noun modifier correctly left unexposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000235",
+   "sentence": "When a Keeper retires, the Council re-staffs that Keeper's station.",
+   "parse": [
+    "(: e2_council (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e2_rule (Implication (And (Member $k keeper) (Member $x retire) (Agent $x $k)) (And (Member (sk_restaff $x) re_staff) (Agent (sk_restaff $x) sk_council_1) (Patient (sk_restaff $x) (sk_station $k)) (Member (sk_station $k) station) (Possession (sk_station $k) $k) (During (sk_restaff $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000235",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare \"when P, Q\" with an indefinite participant correctly routes to the whenever machinery (plain-variable premises, per-occurrence Skolem consequent, During link, STV 1.0 0.9), and \"that Keeper's station\" is correctly a $k-dependent Skolem entity with opaque Possession. Two cosmetic/borderline points only: the Skolem stem sk_restaff does not exactly mirror the verb lemma re_staff, and Patient (vs the unclear-case default Theme) for the re-staffed station is a judgment call."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000236",
+   "sentence": "When a Keeper dies, the Council re-staffs that Keeper's station.",
+   "parse": [
+    "(: lore236_council (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: lore236_rule (Implication (And (Member $k keeper) (Member $e die) (Patient $e $k)) (And (Member (sk_staff $k) staff) (Agent (sk_staff $k) sk_council_1) (Member (sk_station $k) station) (Possession (sk_station $k) $k) (Patient (sk_staff $k) (sk_station $k)) (Again (sk_staff $k)) (During (sk_staff $k) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000236",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "\"re-staffs\" is rendered as the bare verb class `staff` plus an `(Again ...)` tag, but the instruction set licenses `Again` only for the surface particle \"again\" and permits inflectional lemmatization only, so stripping the derivational prefix and re-expressing it as an aspectual tag is a normalization the prompt reserves for downstream."
+     },
+     {
+      "statement": 1,
+      "issue": "The whenever machinery Skolemizes the response per occurrence on the trigger-event variable, but this rule builds `(sk_staff $k)` and `(sk_station $k)` on the keeper while `During` links to `$e`, so the response is a function of the keeper rather than of the death occurrence it is tied to."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a verb carrying a restitutive/derivational prefix (\"re-staff\", \"re-open\"): the instruction set covers the particle \"again\" and bars derivation in lemmatization, but never says how such a verb's class symbol should be formed"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare \"when a Keeper dies\" with generic participants correctly takes the whenever-rule route with the During link, `die` gives its subject `Patient`, \"that Keeper's station\" takes the opaque `Possession`, and \"the Council\" / \"a Keeper\" are handled as capitalized common nouns with no `Name` atom. Rule TV 1.0/0.9 and the absence of a `QuantifierPhrase` companion both match doctrine."
+   },
+   "adjudication": {
+    "id": "lore-000236",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Names and casing licenses inflectional lemmatization only and bars derivation, so a prefixed verb keeps its own form (re_staff), and Again is defined for the free aspectual particle -- rewriting re-staffs as staff plus (Again ...) is exactly the paraphrase-equivalence the prompt reserves for downstream normalization (as with go_out vs fail)."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The whenever machinery Skolemizes the response per occurrence on the trigger-event variable ((sk_bark $x) in the prompt's own example), and the multi-quantifier rule requires a dependent existential to be a Skolem function of every universal that scopes over it, so the terms must be indexed on $e (or on $k and $e), not on $k alone while During links to $e."
+     }
+    ],
+    "gaps_confirmed": [
+     "a restitutive / derivational prefix verb (re-staff, re-open): the lemmatization rule does fix the class symbol (re_staff), but nothing says how the restitutive meaning is recorded"
+    ],
+    "new_gaps": [
+     "Again is licensed only for the free particle, so once the surface lemma re_staff is kept the 'a prior same-type event happened' presupposition has no licensed carrier at all -- a prefix-borne aspectual tag is unlegislated, and dropping it loses stated content"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps the surface lemma -- (Member (sk_staff ...) re_staff) with no Again tag, the restitutive presupposition going unrecorded as the gap filed above; and the consequent's Skolem terms must be indexed on the trigger occurrence, (sk_staff $e) / (sk_station $e) or (sk_staff $k $e), so the response is one per death rather than one per Keeper.",
+    "notes": "Everything else is doctrinal: bare 'when' with generic participants takes the whenever rule with the During link, die gives its subject Patient, 'that Keeper's station' takes the opaque Possession, 'the Council' is a capitalized common noun with no Name, and the rule's 1.0/0.9 with no QuantifierPhrase companion is correct."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000237",
+   "sentence": "The Council reads letters from other villages aloud.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: read_ev (Member sk_read_1 read) (STV 1.0 0.99))",
+    "(: read_agent (Agent sk_read_1 sk_council_1) (STV 1.0 0.99))",
+    "(: letter_grp (GroupOf sk_letter_1 letter) (STV 1.0 0.99))",
+    "(: read_theme (Theme sk_read_1 sk_letter_1) (STV 1.0 0.99))",
+    "(: village_grp (GroupOf sk_village_1 village) (STV 1.0 0.99))",
+    "(: village_other (Member sk_village_1 other) (STV 1.0 0.99))",
+    "(: letter_from (From sk_letter_1 sk_village_1) (STV 1.0 0.99))",
+    "(: read_manner (Manner sk_read_1 aloud) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000237",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The descriptive modifier \"other\" is predicated of the group symbol as (Member sk_village_1 other), the form Categorical statements explicitly bars — a members' property must go through the distributive rule and never ride the group symbol, which a bare (Member <group> <prop>) reserves for a property of the collection itself."
+     },
+     {
+      "statement": 3,
+      "issue": "\"letters\" is the non-specific object of a habitual (non-episodic) present clause, which the bare-plural rule assigns the bare kind filler (\"pays tax\", \"grows wheat\"), not an existential group witness."
+     },
+     {
+      "statement": 5,
+      "issue": "Likewise sk_village_1: the group witness posits one specific set of villages that a habitual clause does not pick out."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "contrastive / anaphoric \"other\" as a nominal modifier (\"other villages\") — the instruction set gives RestOf for \"the rest of\" / \"the remaining\" but no carrier or treatment for \"other\"",
+     "a restrictive PP on a non-specific bare-plural object (\"letters from other villages\") — the bare-kind-filler route leaves no entity symbol for the entity-attached From to attach to"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The singular collective subject correctly takes a plain event with no distribution rule and no status atom (habitual), read is the listed Theme verb, From is the licensed entity-attached origin head, and aloud is a manner-proper adverb; the defects are confined to the plural handling of \"other villages\"."
+   },
+   "adjudication": {
+    "id": "lore-000237",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "*Categorical statements* bars a members' property from riding the group symbol — \"a bare (Member <group> <prop>) appears only for a property genuinely of the collection itself\" — and \"other\" is a member-level contrast (each village is other than the Council's own), so (Member sk_village_1 other) asserts precisely the group-as-object reading that rule names as wrong."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "The bare-kind-filler routing the issue cites leaves the restrictive \"from other villages\" with no symbol for the entity-attached From to attach to, and *Core patterns* forbids silently dropping a stated restriction, so minting the group witness to carry it is licensed improvisation inside the very gap the reviewer's own q2 records — every atom well-typed and true of the sentence."
+     },
+     {
+      "index": 2,
+      "verdict": "refute",
+      "reason": "Same licence: \"other villages\" is a modified NP whose restriction needs a referent, and the bare kind symbol village could carry neither the modifier nor the From link; the group witness is not the fault — its Member-placed modifier is, which is issue 0."
+     }
+    ],
+    "gaps_confirmed": [
+     "contrastive / anaphoric \"other\" as a nominal modifier has no licensed carrier (RestOf covers only \"the rest of\" / \"the remaining\")",
+     "a restrictive PP on a non-specific bare-plural object of a habitual clause: the bare-kind-filler route leaves no entity symbol for the entity-attached From"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "For the confirmed issue the compliant form is the per-member distribution rule (Implication (PartOf $x sk_village_1) (Member $x other)) beside the group witness rather than (Member sk_village_1 other); and if \"other\" resists a distributive property reading at all — it marks anaphoric contrast, not a property any village holds in isolation — the instruction set licenses no carrier and the restriction must be recorded as a gap rather than asserted in either placement, which is the first gap above.",
+    "notes": "The singular collective subject with no distribution rule and no status atom, the Theme role for read, the entity-attached From, and Manner aloud are all correct; the whole fault is the placement of \"other\", not the decision to individuate the two plurals."
+   }
+  }
+ ]
+}

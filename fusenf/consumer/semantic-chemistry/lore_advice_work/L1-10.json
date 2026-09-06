@@ -1,0 +1,319 @@
+{
+ "id": "L1-10",
+ "rule": "I — Northcove",
+ "texts": [
+  "The Northcove is a small cove.",
+  "The Northcove lies north of the village.",
+  "Two cliff-spires curve outward around the Northcove.",
+  "The cliff-spires shield the Northcove against the north wind.",
+  "The Northcove holds thirty lanterns.",
+  "The Northcove lanterns stand along a curving inner shore.",
+  "Northcove lanterns burn through winter.",
+  "Northcove lanterns need no salt-bloom.",
+  "Northcove lanterns never go out in winter.",
+  "The Northcove is a reliable production-row."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000072",
+   "sentence": "The Northcove is a small cove.",
+   "parse": [
+    "(: nc_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: nc_cove (Member northcove cove) (STV 1.0 0.99))",
+    "(: nc_small (Member northcove small) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000072",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'Northcove' exceeds the bare class word and the text states the kind separately, so name-hood is signalled; as a proper noun it correctly gets no solid-compound decomposition, and 'small' stays an unfused incidental-description atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000073",
+   "sentence": "The Northcove lies north of the village.",
+   "parse": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: northcove_northof (NorthOf northcove sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000073",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a solid-spelled proper name with an embedded kind morpheme (\"Northcove\") — *Core patterns* licenses a type atom when the kind word sits inside the name itself, but every worked example is a multi-word name (\"Kestrel River\", \"Brindle estuary\") and \"Aldenport\" is explicitly given no type atom, so whether (Member northcove cove) is licensed or forbidden is unsettled; the parse emits none"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare position clause correctly mints no event — \"lie\" is in the postural list of *Where a THING is* and no reification trigger (progressive, manner adverb, time modifier, connective endpoint) is present — and non-containment positioning correctly keeps the surface preposition entity-attached; NorthOf is licensed by the multi-word CamelCase-join convention (NextTo / AcrossTheLaneFrom), not a coined synonym head."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000074",
+   "sentence": "Two cliff-spires curve outward around the Northcove.",
+   "parse": [
+    "(: spires_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: spires_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: curve_ev (Member sk_curve_1 curve) (STV 1.0 0.99))",
+    "(: curve_exp (Experiencer sk_curve_1 sk_group_1) (STV 1.0 0.99))",
+    "(: curve_around (Around sk_curve_1 northcove) (STV 1.0 0.99))",
+    "(: northcove_type (Member northcove cove) (STV 1.0 0.99))",
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: curve_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_curve $x) curve) (Experiencer (sk_curve $x) $x) (Around (sk_curve $x) northcove))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000074",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Directional adverb 'outward' — Manner is restricted to how-adverbs of manner proper, and the enumerated no-licensed-slot adverbs (duration, sequence/ordering, scope/domain, degree) do not include direction, so the instruction set never says whether a directional adverb is droppable or encodable.",
+     "Static shape/extent verb ('two spires curve around X') — the 'a bare position clause mints no event whatever its verb' rule enumerates only the postural lie/sit/stand/hang/lean/perch/rest, leaving unclear whether a shape-describing stative reifies an event (as parsed) or takes the entity-attached surface-preposition head."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group witness + Cardinality 2 + the per-member distribution rule at 1.0/0.9, the cliff_spire head genus with its noun modifier correctly unexposed, and (Member northcove cove) licensed by the kind word inside the name are all per spec. The collective-vs-distributive call on two spires arcing around one cove is a judgment the distributive test leaves open."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000075",
+   "sentence": "The cliff-spires shield the Northcove against the north wind.",
+   "parse": [
+    "(: cs_group (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))",
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: shield_ev (Member sk_shield_1 shield) (STV 1.0 0.99))",
+    "(: shield_ag (Agent sk_shield_1 sk_cliff_spire_1) (STV 1.0 0.99))",
+    "(: shield_th (Theme sk_shield_1 northcove) (STV 1.0 0.99))",
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: shield_against (Against sk_shield_1 sk_north_wind_1) (STV 1.0 0.99))",
+    "(: wind_type (Member sk_north_wind_1 north_wind) (STV 1.0 0.99))",
+    "(: wind_genus (Inheritance north_wind wind) (STV 1.0 0.99))",
+    "(: wind_mod (Inheritance north_wind north) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000075",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a solid-spelled proper name whose final element is a common kind word (\"Northcove\" = north + cove): Names and casing licenses the kind type atom when the kind word \"sits inside the name\" only for a multi-word capitalized run (\"Kestrel River\" -> (Member kestrel_river river)), and Compound concepts explicitly does not reach proper nouns, so the one-word closed-spelling case is unsettled"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group-only encoding of the definite plural subject treats \"shield\" as collective/aggregate; if it counts as distributive, Quantifiers, generics & scope would also require the per-member (Implication (PartOf $x sk_cliff_spire_1) ...) rule beside the group event. Against is the surface-preposition oblique, cliff_spire exposes only its head genus (noun modifier suppressed), and north_wind exposes both (cardinal/positional modifier) — all per doctrine."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000076",
+   "sentence": "The Northcove holds thirty lanterns.",
+   "parse": [
+    "(: e_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: e_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e_lantern_card (Cardinality sk_lantern_1 30) (STV 1.0 0.99))",
+    "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: e_hold_ag (Agent sk_hold_1 northcove) (STV 1.0 0.99))",
+    "(: e_hold_th (Theme sk_hold_1 sk_lantern_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000076",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Solid-spelled proper name whose second element is a transparent kind word ('Northcove' contains 'cove'): Names and casing licenses a type atom when the kind word 'sits inside the name', but illustrates that only on multi-word names ('the Kestrel River' -> (Member kestrel_river river)), while the proper-noun carve-out in Compound concepts and the 'Aldenport' example bar decomposing a name at all, so whether (Member northcove cove) is licensed here is undetermined."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The counted plural object as group + Cardinality 30 (native integer), Agent on stative-transitive 'holds', and the bare Name with no invented type atom all match the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000077",
+   "sentence": "The Northcove lanterns stand along a curving inner shore.",
+   "parse": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: lant_grp (GroupOf sk_group_1 lantern) (STV 1.0 0.99))",
+    "(: lant_poss (Possession sk_group_1 northcove) (STV 1.0 0.99))",
+    "(: shore_type (Member sk_shore_1 shore) (STV 1.0 0.99))",
+    "(: shore_inner (Member sk_shore_1 inner) (STV 1.0 0.99))",
+    "(: shore_curving (Member sk_shore_1 curving) (STV 1.0 0.99))",
+    "(: lant_along_rule (Implication (PartOf $x sk_group_1) (Along $x sk_shore_1)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000077",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The stated position is emitted only as a per-member implication and never as a position atom on the group witness itself, so the sentence's main assertion stays dormant and unqueryable until some member is individuated."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an entity-attached position atom (surface-preposition head from a bare postural/locative clause, e.g. (Along x y)) whose bearer is a definite plural / group — the instruction set legislates group-versus-distributed only for events (group event plus per-member rule) and for copular member-properties (rule only), and says nothing about position atoms on a group symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows doctrine: no event is minted for the postural \"stand\", the non-containment preposition keeps its surface entity-attached head, and the proper-noun premodifier takes Possession + Name."
+   },
+   "adjudication": {
+    "id": "lore-000077",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "A definite plural takes a group witness and hands a non-event predication to its members through the (PartOf $x <group>) rule — Categorical statements bars the flat group-symbol form outright ('a property of a plural's members is never predicated of the group symbol') — so the rule is the nearest licensed shape here, every atom it emits is true of the sentence and well-typed, and the absent group-level position atom is the coverage gap the reviewer themselves filed rather than a rule the parse breaks."
+     }
+    ],
+    "gaps_confirmed": [
+     "No stated rule for an entity-attached position atom (a non-containment surface-preposition head off a bare postural clause) whose bearer is a definite plural / group: the group-versus-distributed split is legislated for events (group event plus per-member rule) and for copular member-properties (rule only), and nothing covers a position atom."
+    ],
+    "new_gaps": [
+     "'Along' is an arrangement preposition, collective by its own meaning — a line of lanterns runs along a shore, whereas a single lantern does not naturally 'stand along' one — but the collective-versus-distributive test is stated only for predicates (reciprocal / aggregate verbs, bare 'together' / 'jointly'), never for a position preposition, so nothing tells the parser which bearer the surface head takes."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The rest is doctrinal: no event minted for the postural 'stand', the non-containment preposition kept as the entity-attached surface head, the proper-noun premodifier linked by Possession plus its one Name fact, and 'curving' held in participle-as-adjective surface form."
+   }
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000078",
+   "sentence": "Northcove lanterns burn through winter.",
+   "parse": [
+    "(: l78_northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: l78_lantern_burn_rule (Implication (And (Member $x lantern) (Possession $x northcove)) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Time (sk_burn $x) winter))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000078",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "spanning temporal preposition 'through <period>' ('burn through winter'): During is licensed only for during/while/throughout, a duration Measure needs a stated figure, and Time records a slot, so the throughout-the-whole-period extent has no carrier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun premodifier 'Northcove lanterns' correctly becomes an opaque Possession premise conjunct rather than an invented LocatedIn, and the bare-plural generic takes the Skolem-function rule at 0.9/0.9 with no QuantifierPhrase. 'through winter' is coarsened to (Time e winter) — nothing false is asserted, but the spanning sense is lost."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000079",
+   "sentence": "Northcove lanterns need no salt-bloom.",
+   "parse": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: lantern_no_saltbloom (Implication (And (Member $x lantern) (Possession $x northcove)) (And (Member (sk_need $x) need) (Experiencer (sk_need $x) $x) (Stimulus (sk_need $x) salt_bloom))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000079",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an explicit quantifier word ('no') on the OBJECT of a verbal generic: the QuantifierPhrase companion shape (QuantifierPhrase <kind> <verb-lemma> \"<word>\") names only the quantified subject range, so there is no licensed carrier for object-position 'no' and 'need no salt-bloom' becomes indistinguishable from 'do not need salt-bloom'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun premodifier is correctly routed to opaque Possession (possessed first) and carried as a premise conjunct on the distributing rule, as an adjectivally-restricted kind subject would be; stative 'need' takes Experiencer/Stimulus by the progressive test, salt_bloom gets its head genus only (noun modifier never exposed), and the negated verbal generic sits at (STV 0.0 0.9). Omitting the QuantifierPhrase is defensible here because the rule quantifies lanterns rather than salt_bloom, but the surface quantifier is then unrecorded anywhere in the parse."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t9",
+   "corpus_id": "lore-000080",
+   "sentence": "Northcove lanterns never go out in winter.",
+   "parse": [
+    "(: e3_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: e3_rule (Implication (And (Member $x lantern) (Possession $x northcove)) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (Time (sk_go_out $x) winter))) (STV 0.0 0.9))",
+    "(: e3_q (QuantifierPhrase lantern go_out \"never\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000080",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"never\" routes to the strength-0.0 distributing rule, the proper-noun premodifier takes the opaque Possession link with no fused compound and no invented type atom for Northcove, `go_out` stays whole with no genus, and \"in winter\" rides Time as a bare named-time symbol. The parenthetical on \"never\" in Quantifiers is ambiguous about whether the companion records the surface word or the \"no\"/\"none\" string; the parse's \"never\" follows the general surface-record principle."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t10",
+   "corpus_id": "lore-000081",
+   "sentence": "The Northcove is a reliable production-row.",
+   "parse": [
+    "(: nc_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: nc_kind (Member northcove production_row) (STV 1.0 0.99))",
+    "(: pr_genus (Inheritance production_row row) (STV 1.0 0.99))",
+    "(: nc_reliable (Member northcove reliable) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000081",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a solid-spelled proper name whose final element is a common kind word (\"Northcove\" containing cove) — Names and casing licenses a type atom when the kind word \"sits inside the name\" but illustrates only spaced names (\"the Kestrel River\"), while Compound concepts' solid-spelling decomposition rule explicitly does not reach proper nouns, so whether (Member northcove cove) is licensed here is undecided"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Fusing production_row with genus row and leaving the noun modifier unexposed is right, as is keeping the incidental-description adjective reliable as its own Member atom rather than fusing it into the kind."
+   },
+   "adjudication": null
+  }
+ ]
+}

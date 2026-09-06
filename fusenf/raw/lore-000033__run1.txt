@@ -1,0 +1,7 @@
+(: l33_lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))
+(: l33_lantern_name (Name stilllight_lantern "Stilllight Lantern") (STV 1.0 0.99))
+(: l33_burn (Member sk_burn_1 burn) (STV 1.0 0.99))
+(: l33_patient (Patient sk_burn_1 stilllight_lantern) (STV 1.0 0.99))
+(: l33_duration (Measure sk_burn_1 duration 1 night) (STV 1.0 0.99))
+(: l33_filling (Member sk_filling_1 filling) (STV 1.0 0.99))
+(: l33_on (On sk_burn_1 sk_filling_1) (STV 1.0 0.99))

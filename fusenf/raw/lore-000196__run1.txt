@@ -1,0 +1,2 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: keeper_fail_judge_rule (Implication (And (Member $k keeper) (Member $f fail) (Agent $f $k) (Member $s station) (Theme $f $s)) (And (Member (sk_judge $f) judge) (Agent (sk_judge $f) sk_council_1) (Theme (sk_judge $f) $k) (During (sk_judge $f) $f))) (STV 1.0 0.9))

@@ -1,0 +1,7 @@
+(: group_type (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: group_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: e_marry (Member sk_marry_1 marry) (STV 1.0 0.99))
+(: e_agent (Agent sk_marry_1 sk_group_1) (STV 1.0 0.99))
+(: e_past (Past sk_marry_1) (STV 1.0 0.99))
+(: e_outside (Outside sk_marry_1 aelmere) (STV 1.0 0.99))
+(: aelmere_name (Name aelmere "Aelmere") (STV 1.0 0.99))

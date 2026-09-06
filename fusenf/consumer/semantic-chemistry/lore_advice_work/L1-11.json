@@ -1,0 +1,251 @@
+{
+ "id": "L1-11",
+ "rule": "I — Cliff-spires",
+ "texts": [
+  "The cliff-spires rise above the eastern cliff.",
+  "There are nine cliff-spires.",
+  "Each cliff-spire is a smooth stone column.",
+  "Sea wind weathered the cliff-spires over centuries.",
+  "The sky-cats roost on the tops of the cliff-spires.",
+  "The cliff-spires are visible from the village.",
+  "When sky-cats sit on the cliff-spires in the morning, the day stays calm."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000082",
+   "sentence": "The cliff-spires rise above the eastern cliff.",
+   "parse": [
+    "(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cliff_genus (Inheritance eastern_cliff cliff) (STV 1.0 0.99))",
+    "(: cliff_mod (Inheritance eastern_cliff eastern) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 eastern_cliff) (STV 1.0 0.99))",
+    "(: spires_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: spires_rise_rule (Implication (PartOf $x sk_group_1) (Above $x sk_cliff_1)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000082",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Read as a bare position clause (\"a bare position clause mints no event whatever its verb\"), so no rise event and the entity-attached surface head Above — defensible, though the stative-position verb list (lie/sit/stand/hang/lean/perch/rest) does not name extent/elevation verbs like rise/tower/loom, so the classification is a judgment the instruction set leaves implicit. The definite plural takes a group witness with the member-level position carried by the distribution rule (never on the group symbol), and the noun modifier of cliff_spire is correctly not exposed while the positional eastern is, un-derived."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000083",
+   "sentence": "There are nine cliff-spires.",
+   "parse": [
+    "(: cs_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cs_card (Cardinality sk_group_1 9) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000083",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Existential plural with a numeral takes the group + exact Cardinality shape as specified, with the cliff_spire genus emitted and the noun modifier correctly not exposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000084",
+   "sentence": "Each cliff-spire is a smooth stone column.",
+   "parse": [
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cs_type (Inheritance cliff_spire stone_column) (STV 1.0 0.9))",
+    "(: cs_type_q (QuantifierPhrase cliff_spire stone_column \"each\") (STV 1.0 0.99))",
+    "(: cs_smooth (Inheritance cliff_spire smooth) (STV 1.0 0.9))",
+    "(: cs_smooth_q (QuantifierPhrase cliff_spire smooth \"each\") (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance stone_column column) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000084",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The instruction set is internally in tension on a universal over a copular predicate: the Quantifiers section says such a universal distributes to a rule and 'never (Inheritance <kind> <prop>)', while the same section's closing parenthetical says copular universals stay the single Inheritance fact ('all dogs are mammals'); the parse takes the latter, which fits a bare-kind subject with no definite set. Two QuantifierPhrase companions are emitted for one surface quantifier phrase 'each' (one per predicate atom) — defensible under 'mandatory for every explicit quantifier word the claim consumes' but in tension with 'one companion per explicit quantifier PHRASE'."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000085",
+   "sentence": "Sea wind weathered the cliff-spires over centuries.",
+   "parse": [
+    "(: sw_genus (Inheritance sea_wind wind) (STV 1.0 0.99))",
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cs_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: e_weather (Member sk_weather_1 weather) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_weather_1 sea_wind) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_weather_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_past (Past sk_weather_1) (STV 1.0 0.99))",
+    "(: e_dur (MeasureAtLeast sk_weather_1 duration 2 century) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000085",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural duration 'over centuries' correctly becomes (MeasureAtLeast ... duration 2 century), both noun-modifier compounds expose only their head genus, and the definite plural object takes a group witness; the unit table lists no factor for 'century', so this measure cannot convert to canonical seconds. Fusing cliff_spire rather than treating it as a part of a cliff is a judgment call the wording leaves open, unlike the clearer part-whole cases."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000086",
+   "sentence": "The sky-cats roost on the tops of the cliff-spires.",
+   "parse": [
+    "(: cats_grp (GroupOf sk_group_1 sky_cat) (STV 1.0 0.99))",
+    "(: spires_grp (GroupOf sk_spires_1 cliff_spire) (STV 1.0 0.99))",
+    "(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: tops_grp (GroupOf sk_tops_1 top) (STV 1.0 0.99))",
+    "(: tops_part (PartOf sk_tops_1 sk_spires_1) (STV 1.0 0.99))",
+    "(: roost_ev (Member sk_roost_1 roost) (STV 1.0 0.99))",
+    "(: roost_ag (Agent sk_roost_1 sk_group_1) (STV 1.0 0.99))",
+    "(: roost_loc (Location sk_roost_1 sk_tops_1) (STV 1.0 0.99))",
+    "(: roost_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_roost $x) roost) (Agent (sk_roost $x) $x) (Location (sk_roost $x) sk_tops_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000086",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The compound kind sky_cat is introduced with no genus atom (Inheritance sky_cat cat), although the head genus is \"always emitted either way\" for a fused modifier_noun and the parse does emit the parallel (Inheritance cliff_spire spire) two lines later."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a part-whole relation between two PLURALS (\"the tops of the cliff-spires\") — the instruction set gives PartOf only for one component of one object and for one member of a group, so (PartOf sk_tops_1 sk_spires_1) between two group symbols is both undistributed (each top belongs to its own spire) and ambiguous with PartOf's group-membership job",
+     "a rest/perch-class verb not in the enumerated position-verb list (\"roost\") — nothing says whether it patterns with the listed \"perch\" as a bare position clause (Experiencer, no event) or as an ordinary intransitive event with an Agent subject and a Location oblique, as parsed here"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite-plural group witnesses, the group event plus per-member distribution rule at (STV 1.0 0.9), the absence of a QuantifierPhrase companion and the unmarked habitual tense all match the instruction set. Only the missing sky_cat genus is a clear defect."
+   },
+   "adjudication": {
+    "id": "lore-000086",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts makes the head genus of a fused modifier_noun determined, not optional ('The genus itself ... is always emitted either way'), and the IS-A suppression carve-out is for a lexicalized compound known not to be a kind of its head (hot_dog) - nothing in the text invokes it for a coined transparent compound - so (Inheritance sky_cat cat) is owed exactly as (Inheritance cliff_spire spire) was emitted for the parallel compound in the same sentence."
+     }
+    ],
+    "gaps_confirmed": [
+     "PartOf between two group symbols ('the tops of the cliff-spires') is uncovered: PartOf's two stated jobs are a component of one object and a member of a group, so the emitted atom neither distributes (each top belongs to its own spire) nor is distinguishable from the group-membership job.",
+     "'roost' is absent from the closed stative-locative/postural list (lie / sit / stand / hang / lean / perch / rest), so nothing decides whether it is a bare position clause minting no event or the ordinary intransitive event with Agent plus Location oblique that was parsed."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds (: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99)) beside the group witness; the noun modifier 'sky' correctly gets no genus of its own.",
+    "notes": "The genus rule does force a possibly-fictional IS-A here (a roosting sky-cat may be no more a cat than a sea horse is a horse), but the instruction set resolves that by default-emit and reserves suppression for compounds known not to be their head - and the parse's own cliff_spire genus shows the same transparency test applied the other way in one sentence, which is exactly the two-faithful-parses-differ outcome the doctrine forbids."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000087",
+   "sentence": "The cliff-spires are visible from the village.",
+   "parse": [
+    "(: cs_grp (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: v_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: cs_visible_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_visible $x) visible) (Experiencer (sk_visible $x) $x) (From (sk_visible $x) sk_village_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000087",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The dual-emit flat copular half is missing: the rule mints the per-member reified visible state but never yields (Member $x visible), which Core patterns (adjective's PP complement) and the resultative-plural note (flat half becomes (Implication (PartOf $x <group>) (Member $x <state>))) both require."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The reified-state route with the surface-preposition oblique From on the state witness is the right choice for an individuated bearer and complement (the fused sensitive_to_light form is bare-kinds-only), and distributing over (PartOf $x sk_group_1) instead of predicating on the group symbol is correct. Consequence of the omission: a plain \"is that cliff-spire visible?\" binds nothing."
+   },
+   "adjudication": {
+    "id": "lore-000087",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Dual-emit for an adjective's PP complement mandates keeping the flat copular atom beside the reified state (\"keep the flat copular atom (dual-emit as always)\"), and on a plural that half becomes the per-member `(Implication (PartOf $x <group>) (Member $x <state>))` — omitting it drops an atom the instruction set makes determined, not optional."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds the distributed flat half — either `(Member $x visible)` as a further conjunct of the existing rule's consequent, or a sibling `(: cs_visible_flat (Implication (PartOf $x sk_group_1) (Member $x visible)) (STV 1.0 0.9))` — beside the reified per-member state.",
+    "notes": "The reified-state route with the surface-preposition `From` on the state witness is right (the fused adjective+complement form is bare-kinds-only), as is distributing over `(PartOf $x sk_group_1)` instead of predicating on the group symbol; `cliff_spire`'s head genus with the noun modifier unexposed is also correct."
+   }
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000088",
+   "sentence": "When sky-cats sit on the cliff-spires in the morning, the day stays calm.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cliffspires_grp (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))",
+    "(: whenever_sit_calm (Implication (And (Member $x sky_cat) (Member $e sit) (Experiencer $e $x) (Location $e sk_cliff_spire_1) (Time $e morning)) (And (Member (sk_calm $e) calm) (Member (sk_day $e) day) (Experiencer (sk_calm $e) (sk_day $e)) (Still (sk_calm $e)) (Member (sk_day $e) calm) (During (sk_calm $e) $e))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000088",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a whenever/bare-'when' consequent whose eventuality temporally CONTAINS its trigger (a day-long 'stays calm' state vs. a morning sitting): the machinery prescribes only (During <response> <trigger>), which here asserts the reverse containment, and no wider-extent ordering option is offered",
+     "a DEFINITE NP in a generic conditional's consequent that covaries with each trigger occasion ('the day'): the whenever template Skolemizes only the response event and otherwise keeps definite participants as top-level constants (the bell/dog example), and Skolem ENTITY functions are stated only for dependent existentials under a universal, so (sk_day $e) is an unstated extension"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing is right throughout: bare 'when' with a bare-plural generic subject goes to the rule machinery with no QuantifierPhrase, postural 'sit' reifies because a time modifier triggers it (Experiencer + Location + Time morning), the definite plural 'the cliff-spires' projects as a top-level group constant usable in the premise, and 'stays calm' takes the continuation-copular shape (reified state + Still + flat atom). Strength 0.9/0.9 reads the bare 'when' as a generic rather than the 'every time' universal (1.0), which the dial supports."
+   },
+   "adjudication": null
+  }
+ ]
+}

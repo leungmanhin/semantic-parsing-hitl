@@ -1,0 +1,7 @@
+(: vesh_name (Name old_vesh "Old Vesh") (STV 1.0 0.99))
+(: e_remember (Member sk_remember_1 remember) (STV 1.0 0.99))
+(: e_exp (Experiencer sk_remember_1 old_vesh) (STV 1.0 0.99))
+(: e_stim (Stimulus sk_remember_1 sk_winter_1) (STV 1.0 0.99))
+(: winter_grp (GroupOf sk_winter_1 winter) (STV 1.0 0.99))
+(: winter_card (Cardinality sk_winter_1 2) (STV 1.0 0.99))
+(: winter_bad (Implication (PartOf $x sk_winter_1) (Member $x bad)) (STV 1.0 0.9))

@@ -1,0 +1,203 @@
+{
+ "id": "L10-02",
+ "rule": "X — Cold stretches",
+ "texts": [
+  "Cold-threshold nights come in stretches of several nights.",
+  "Mild periods separate the cold stretches.",
+  "The Keepers forecast cold-threshold stretches by watching the spire weathercocks and the hearth smoke."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000574",
+   "sentence": "Cold-threshold nights come in stretches of several nights.",
+   "parse": [
+    "(: cn_genus (Inheritance cold_threshold_night night) (STV 1.0 0.99))",
+    "(: stretch_group (GroupOf sk_group_1 cold_threshold_night) (STV 1.0 0.99))",
+    "(: stretch_card (CardinalityPhrase sk_group_1 \"several\") (STV 1.0 0.99))",
+    "(: come_ev (Member sk_come_1 come) (STV 0.9 0.9))",
+    "(: come_theme (Theme sk_come_1 sk_group_1) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000574",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The bare-plural subject of a characteristic present-tense claim is minted as a specific group witness, where the instruction set routes a genuinely generic clause to a distributing Implication rule over (Member $x cold_threshold_night)."
+     },
+     {
+      "statement": 2,
+      "issue": "The 'several' count belongs to the nights inside one stretch, not to the subject set, so CardinalityPhrase is attached to the wrong group — and those nights' stated kind is 'night', while the group is typed cold_threshold_night."
+     },
+     {
+      "statement": null,
+      "issue": "The entire PP 'in stretches' is dropped — no stretch entity and no (In …) oblique on the come event — so a stated restriction silently disappears and the parse claims only that a group of nights came."
+     },
+     {
+      "statement": 3,
+      "issue": "The come event is asserted as flat atoms at (STV 0.9 0.9), putting generic strength on an existential assertion about one specific group rather than on a rule."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "measure / container of-phrase ('stretches of several nights'; the instruction set's own example 'a cup of water') — it is explicitly excluded from the genitive of-phrase mapping and from the partitive rules, but given no positive encoding anywhere",
+     "a generic clause whose predicate says the kind's instances occur in multi-member runs ('X come in stretches of N') — no guidance on relating the per-instance rule to the group the PP describes"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The compound genus (Inheritance cold_threshold_night night) is the one clearly correct part; the rest conflates the subject NP with the PP's object NP into a single group."
+   },
+   "adjudication": {
+    "id": "lore-000574",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"A bare plural in an episodic clause is a specific set\" is restricted to a specific occurrence (past, dated, one-off); a habitual-present characteristic claim is the generic case, so minting sk_group_1 asserts that one particular set of cold-threshold nights came — an existential the generic sentence does not make."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "\"Several\" counts the nights inside one stretch, so (CardinalityPhrase sk_group_1 \"several\") predicates a count of the subject set that the sentence never states — a plain falsehood in the KB."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "The PP that carries the sentence's whole content is dropped with no residue, though the preposition-named oblique plus an existential group witness for the bare-plural object (\"(In <event> <stretch-group>) (GroupOf <stretch-group> stretch)\") is licensed and would have carried part of it; Core patterns bars silently dropping a stated qualifier, and what is left claims only that a group of nights came."
+     },
+     {
+      "index": 3,
+      "verdict": "confirm",
+      "reason": "The TV dial is explicit that \"individual facts keep 0.99 — the dial is only for generalizations\", so 0.9/0.9 on flat atoms about a minted specific group applies generic strength to a non-generic carrier."
+     }
+    ],
+    "gaps_confirmed": [
+     "measure / container of-phrase (\"stretches of several nights\", the prompt's own \"a cup of water\") — explicitly excluded from the genitive of-phrase mapping and from the partitive rules, yet given no positive encoding anywhere",
+     "a generic clause whose predicate says the kind's instances occur in multi-member runs (\"X come in stretches of N\") — no guidance on relating the per-instance rule to the group the PP describes"
+    ],
+    "new_gaps": [
+     "\"come / arrive / fall in <plural container>\" as a DISTRIBUTIONAL predicate: the licensed preposition-named oblique (In <event> <group>) says only that one coming happened inside a stretch, and nothing licenses the PartOf tie between the subject instance and its container group, so no head carries the claim that the kind's occurrences are grouped into runs of a stated size"
+    ],
+    "decision": "defect",
+    "defect_summary": "The subject must route through the distributing rule over (Member $x cold_threshold_night) rather than a minted group witness, with the generic 0.9/0.9 carried by that rule and the flat atoms gone; the \"several\" count must attach to the stretch's own group, not the subject set; the \"in stretches\" PP must at minimum surface as the preposition-named oblique on the come event with its own stretch group witness — but NO fully compliant form is licensed, since the container of-phrase (\"stretches of several nights\") has no encoding and nothing licenses tying each night to its stretch, which is the gap this sentence reports.",
+    "notes": "(Inheritance cold_threshold_night night) is the one clean atom. Three of the four confirmed issues are downstream of the same mistake — conflating the subject NP with the PP's object NP into a single group."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000575",
+   "sentence": "Mild periods separate the cold stretches.",
+   "parse": [
+    "(: e4_stretches_grp (GroupOf sk_stretches_1 stretch) (STV 1.0 0.99))",
+    "(: e4_stretches_cold (Implication (PartOf $y sk_stretches_1) (Member $y cold)) (STV 1.0 0.9))",
+    "(: e4_mild_separate (Implication (And (Member $x period) (Member $x mild)) (And (Member (sk_separate $x) separate) (Agent (sk_separate $x) $x) (Theme (sk_separate $x) sk_stretches_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000575",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted bare-plural subject correctly forces the distributing-rule route with \"mild\" as a premise conjunct rather than a fused compound or a kind relation (the definite object also bars the kind-relation reading). Agent for the inanimate stative transitive subject and Theme for the unchanged object both follow the stated tests, and \"the cold stretches\" takes the group witness plus per-member distribution of the descriptive modifier."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000576",
+   "sentence": "The Keepers forecast cold-threshold stretches by watching the spire weathercocks and the hearth smoke.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: forecast_ev (Member sk_forecast_1 forecast) (STV 1.0 0.99))",
+    "(: forecast_ag (Agent sk_forecast_1 keepers) (STV 1.0 0.99))",
+    "(: forecast_th (Theme sk_forecast_1 cold_threshold_stretch) (STV 1.0 0.99))",
+    "(: cts_genus (Inheritance cold_threshold_stretch stretch) (STV 1.0 0.99))",
+    "(: ct_genus (Inheritance cold_threshold threshold) (STV 1.0 0.99))",
+    "(: watch_ev (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: watch_ag (Agent sk_watch_1 keepers) (STV 1.0 0.99))",
+    "(: weathercock_grp (GroupOf sk_weathercock_1 spire_weathercock) (STV 1.0 0.99))",
+    "(: sw_genus (Inheritance spire_weathercock weathercock) (STV 1.0 0.99))",
+    "(: watch_stim1 (Stimulus sk_watch_1 sk_weathercock_1) (STV 1.0 0.99))",
+    "(: smoke_type (Member sk_smoke_1 hearth_smoke) (STV 1.0 0.99))",
+    "(: hs_genus (Inheritance hearth_smoke smoke) (STV 1.0 0.99))",
+    "(: watch_stim2 (Stimulus sk_watch_1 sk_smoke_1) (STV 1.0 0.99))",
+    "(: forecast_by (By sk_forecast_1 sk_watch_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000576",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 10,
+      "issue": "Stimulus is used for an ENTITY object of 'watch', but the role list puts watch in Theme's own verb list and reserves Stimulus for a perception verb's eventive complement ('Entity objects only'), so the weathercock group should be Theme."
+     },
+     {
+      "statement": 13,
+      "issue": "Same mis-slotting for the second entity object: (Stimulus sk_watch_1 sk_smoke_1) should be Theme, since the hearth smoke is an entity, not a perceived event."
+     },
+     {
+      "statement": 6,
+      "issue": "The coordinated objects 'the spire weathercocks and the hearth smoke' are packed onto ONE watch event as two same-role atoms, whereas coordinated NPs are distributive by default (one event per conjunct); the collective one-event form is licensed only for reciprocal/aggregate predicates or an explicit 'together / jointly'."
+     },
+     {
+      "statement": 5,
+      "issue": "(Inheritance cold_threshold threshold) is a second round of decomposition on a modifier the compound rule never exposes (a noun modifier) and leaves cold_threshold as an orphan symbol appearing in no other atom, against 'decompose once, to single-word lemmas, then stop'."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a MEANS adjunct of the form 'by V-ing' (a gerund clause naming how the matrix event is carried out): Instrument is restricted to a tool, substance or conduit, and the preposition-named oblique is defined with an NP object, so a reified clausal means has no stated carrier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Keepers' is handled correctly as a Name-only individual with no GroupOf and no per-member kind, per the capitalized-plural-label rule, and the definite plural 'the spire weathercocks' correctly takes a group witness with the fused classifier in its kind slot. Note the instruction set is in tension on watch's object role — the assignment paragraph says 'psych/perception object -> Stimulus' while the Theme entry names watch outright and carves Stimulus down to eventive complements."
+   },
+   "adjudication": {
+    "id": "lore-000576",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The Theme entry names 'watch' outright and restricts Stimulus to a perception verb's eventive complement ('Entity objects only'), and the parse's own Agent subject marks watch as an activity rather than the stative psych state whose object Stimulus takes."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Same rule and same mis-slot: the hearth smoke is an entity object of watch, so it takes Theme, not Stimulus."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "Coordination & plurals makes coordinated NPs distributive by default ('replicate the whole predication once per conjunct'); one event carrying two same-role atoms is the collective form, licensed only for a reciprocal/aggregate predicate or an explicit 'together / jointly'."
+     },
+     {
+      "index": 3,
+      "verdict": "confirm",
+      "reason": "Compound concepts decomposes 'once, to single-word lemmas, then stop' and never exposes a noun modifier, so cold_threshold gets no genus of its own — the atom is a second decomposition round and strands a symbol no other atom uses."
+     }
+    ],
+    "gaps_confirmed": [
+     "a MEANS adjunct of the form 'by V-ing' (a gerund clause naming how the matrix event is carried out): Instrument is restricted to a tool, substance or conduit, and the preposition-named oblique is specified with an NP object, so a reified clausal means has no stated carrier"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Both watch objects take Theme rather than Stimulus; the coordinated objects distribute into two watch events, one per conjunct, each tied to the forecast by its own means atom; and (Inheritance cold_threshold threshold) is simply dropped, the compound's only licensed decomposition being the head genus (Inheritance cold_threshold_stretch stretch).",
+    "notes": "The improvised (By sk_forecast_1 sk_watch_1) means link is acceptable gap-territory improvisation — the surface preposition actually used, true of the text — and 'the Keepers' is correctly a Name-only individual with no GroupOf and no per-member kind."
+   }
+  }
+ ]
+}

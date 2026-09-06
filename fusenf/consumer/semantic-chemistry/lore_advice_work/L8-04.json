@@ -1,0 +1,353 @@
+{
+ "id": "L8-04",
+ "rule": "VIII — Salt-bloom",
+ "texts": [
+  "Salt-bloom is a pale crystalline crust.",
+  "Salt-bloom grows on submerged tide-pool stones.",
+  "Salt-bloom smells faintly of salt.",
+  "Keepers harvest salt-bloom with a wooden scraper.",
+  "Iron makes salt-bloom crumble.",
+  "Waxed paper packets hold the salt-bloom in the Cauldron Hall store.",
+  "Keepers add salt-bloom to mire-essence in winter.",
+  "Salt-bloom slows the burn of mire-essence."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000482",
+   "sentence": "Salt-bloom is a pale crystalline crust.",
+   "parse": [
+    "(: sb_crust (Inheritance salt_bloom crust) (STV 1.0 0.99))",
+    "(: sb_pale (Inheritance salt_bloom pale) (STV 1.0 0.99))",
+    "(: sb_crystalline (Inheritance salt_bloom crystalline) (STV 1.0 0.99))",
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000482",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Kind subject correctly takes Inheritance throughout; the two incidental descriptors are correctly split off rather than fused (the \"dented pail\" line), and \"crystalline\" is correctly kept as a derivation rather than lemmatized to \"crystal\". The definitional 0.99 confidence on the two descriptive-property atoms is a judgment call the dial leaves open — read as a stipulative glossary definition it is right, read as ordinary contingent kind properties (\"trellises are wooden\" -> 0.9 0.9) it is high."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000483",
+   "sentence": "Salt-bloom grows on submerged tide-pool stones.",
+   "parse": [
+    "(: sbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: tps_genus (Inheritance tide_pool_stone stone) (STV 1.0 0.99))",
+    "(: e_grow (Member sk_grow_1 grow) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_grow_1 salt_bloom) (STV 1.0 0.99))",
+    "(: e_loc (Location sk_grow_1 sk_stone_1) (STV 1.0 0.99))",
+    "(: stone_group (GroupOf sk_stone_1 tide_pool_stone) (STV 1.0 0.99))",
+    "(: stone_submerged_rule (Implication (PartOf $x sk_stone_1) (Member $x submerged)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000483",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "A verbal generic over a bare kind subject (\"Salt-bloom grows ...\") is emitted as one token event at (STV 1.0 0.99) instead of the distributing Implication rule with a Skolem-function event term at the empirical generic 0.9/0.9 that the instruction set mandates for a non-modal verbal generic over a kind."
+     },
+     {
+      "statement": 3,
+      "issue": "The bare kind symbol salt_bloom fills the Patient slot of a token event, but the bare class symbol is reserved for a non-specific generic OBJECT, not for the kind the generic predicates over."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a restrictively modified bare plural in a kind-level / generic oblique (\"on submerged tide-pool stones\"): the bare kind filler prescribed for non-specific objects has no slot for the descriptive modifier, and the only modifier-carrying route (group witness + PartOf distribution rule, used here) asserts one specific submerged set of stones that the generic never introduces — dropping the modifier is separately barred"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both compound decompositions (salt_bloom -> bloom, tide_pool_stone -> stone, neither noun modifier exposed) and the Location oblique for \"on\" are correct. The defect is the quantificational form and its truth values, not the roles."
+   },
+   "adjudication": {
+    "id": "lore-000483",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"A verbal generic or universal over a kind becomes a rule that gives each instance its own event, via a Skolem-function event term\", and the confidence dial puts a contingent generalization at 0.9/0.9 - so the token event at (STV 1.0 0.99) both over-states a claim that admits counterexamples and reaches no instance of salt_bloom."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is that the kind a generic predicates over must be the rule's premise range, not a role filler on a token event; the half that overstates is the general ban - a bare class symbol in a role slot is itself licensed, being the prescribed filler for a non-specific / kind-level object (\"pays tax\")."
+     }
+    ],
+    "gaps_confirmed": [
+     "a restrictive modifier on a kind-level bare-plural oblique filler (\"on submerged tide-pool stones\"): the bare kind symbol has no modifier slot, fusing is barred for incidental description, and a group witness asserts a specific submerged set the generic never introduces"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: (Implication (Member $x salt_bloom) (And (Member (sk_grow $x) grow) (Patient (sk_grow $x) $x) (Location (sk_grow $x) <stone>))) at (STV 0.9 0.9), with salt_bloom as the premise range rather than a Patient filler and no token sk_grow_1; the <stone> slot is where the confirmed gap bites.",
+    "notes": "Both decompositions and the Location head for \"on\" (a PP answering *where*) are correct - the defect is quantificational form and truth values only. The rule route also narrows the reviewer's gap: a dependent Skolem stone in the conclusion, (Member (sk_stone $x) tide_pool_stone) plus (Member (sk_stone $x) submerged), carries the modifier without positing a specific set."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000484",
+   "sentence": "Salt-bloom smells faintly of salt.",
+   "parse": [
+    "(: bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: e_smell (Member sk_smell_1 smell) (STV 1.0 0.99))",
+    "(: e_experiencer (Experiencer sk_smell_1 salt_bloom) (STV 1.0 0.99))",
+    "(: e_of (Of sk_smell_1 salt) (STV 1.0 0.99))",
+    "(: e_manner (Manner sk_smell_1 faintly) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000484",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The bare mass-kind subject 'Salt-bloom' is used as a role filler in a single flat event, where a verbal generic over a kind is prescribed as an Implication rule over instances (bare class symbols are licensed only as non-specific objects)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "perception verb whose SUBJECT is the perceived source rather than a perceiver ('X smells/tastes/looks of Y'): the role table lists see/hear under Experiencer for the perceiver and reserves Stimulus for the percept, leaving the emitter subject undetermined — the stative-intransitive default lands it on Experiencer, which names the wrong participant",
+     "intensity adverb on a verb ('faintly') falls between the barred 'degree adverb on a verb' class (sharply / slightly — no licensed slot, leave out and record the gap) and the licensed Manner class, whose own exemplar 'brightly' is itself an intensity adverb; no test separates them"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The compound genus (Inheritance salt_bloom bloom) with the noun modifier unexposed and the bare-mass oblique object (Of sk_smell_1 salt) both follow doctrine."
+   },
+   "adjudication": {
+    "id": "lore-000484",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "A verbal generic over a kind becomes an Implication rule giving each instance its own Skolem event (*Quantifiers, generics & scope*), and the confidence dial puts every generalization at the empirical 0.9 — a flat event holding the kind symbol salt_bloom in a participant slot at (STV 1.0 0.99) instead records one individual-fact eventuality of the kind itself, which is neither the licensed form nor a claim the sentence makes."
+     }
+    ],
+    "gaps_confirmed": [
+     "an emitter-subject perception verb (X smells / tastes / looks of Y): the role table names see/hear's perceiver but no role for the source subject, so only the stative-intransitive default (Experiencer = the entity the state holds of) reaches it, and whether that is the intended fit is unstated",
+     "faintly sits between the barred degree-adverb-on-a-verb class (sharply / slightly — no licensed slot, drop and record the gap) and the licensed Manner class whose own exemplar brightly is itself an intensity adverb; no test separates them"
+    ],
+    "new_gaps": [
+     "whether a prepositional-verb generic with bare kinds on both sides (salt-bloom smells of salt) takes the kind-level relation form — the relational-generic trigger is stated for a direct object, not for a preposition-named oblique — or the distributing rule, and if the rule, what the instances of a bare MASS kind range over"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the distributing generic rule — (Implication (Member $x salt_bloom) (And (Member (sk_smell $x) smell) (Experiencer (sk_smell $x) $x) (Of (sk_smell $x) salt) ...)) at (STV 0.9 0.9) — unless the kind-relation route is licensed for an oblique argument, in which case (Smell salt_bloom salt) at (STV 0.9 0.9); either way the flat single event at individual-fact confidence is not a licensed encoding.",
+    "notes": "The salt_bloom genus with the noun modifier unexposed and the preposition-named (Of ... salt) oblique are correct, and the Manner faintly atom is left standing as graceful improvisation in the gap the reviewer identified."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000485",
+   "sentence": "Keepers harvest salt-bloom with a wooden scraper.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: wsc_genus (Inheritance wooden_scraper scraper) (STV 1.0 0.99))",
+    "(: wsc_mod (Inheritance wooden_scraper wooden) (STV 1.0 0.99))",
+    "(: keepers_harvest (Implication (Member $x keeper) (And (Member (sk_harvest $x) harvest) (Agent (sk_harvest $x) $x) (Theme (sk_harvest $x) salt_bloom) (Instrument (sk_harvest $x) (sk_scraper $x)) (Member (sk_scraper $x) wooden_scraper))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000485",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare relational generic whose clause also carries an oblique: 'Keepers harvest salt-bloom' has bare kind-denoting NPs on both sides, which is the stated trigger for the opaque kind-level relation, but that form has no slot for the instrument 'with a wooden scraper' and the instruction set does not say which route wins",
+     "sentence-initial capitalized plural ('Keepers'): the capitalized-plural-label vs bare-plural-kind test is declared to key on the casing itself, mechanically, but casing carries no information in sentence-initial position, so the test is undecidable there"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Decomposition (salt_bloom genus 'bloom' with the noun modifier suppressed; wooden_scraper genus plus the material-adjective modifier), the per-binding Skolem scraper for the indefinite instrument, and the 0.9/0.9 bare-generic TV with no QuantifierPhrase all follow the instruction set. Theme for the harvested mass is licensed by the unclear-test default."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000486",
+   "sentence": "Iron makes salt-bloom crumble.",
+   "parse": [
+    "(: e_make (Member sk_make_1 make) (STV 1.0 0.99))",
+    "(: e_make_ag (Agent sk_make_1 iron) (STV 1.0 0.99))",
+    "(: e_make_th (Theme sk_make_1 sk_crumble_1) (STV 1.0 0.99))",
+    "(: e_crumble (Member sk_crumble_1 crumble) (STV 1.0 0.99))",
+    "(: e_crumble_ag (Agent sk_crumble_1 salt_bloom) (STV 1.0 0.99))",
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000486",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "\"crumble\" is a verb of internal change of state, whose intransitive subject the role test assigns Patient rather than Agent - salt-bloom undergoes the crumbling, it does not do it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A bare MASS-noun subject in a verbal generic (\"Iron makes salt-bloom crumble\"): the verbal-generic doctrine mandates a distributing rule for a kind subject but illustrates only bare plurals, while Status predicates says a status-free event is already the generic/habitual reading - nothing settles which form a bare-mass-subject generic takes, or whether its atoms then fall under the empirical 0.9 confidence dial.",
+     "The periphrastic-causative rule states flatly that a bare-infinitive complement makes the object the caused event's Agent (its example verb is the volitional \"sprint\"), which collides with the intransitive-subject role test when the complement verb is a change-of-state verb such as crumble/collapse/melt."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest of the causative frame is right: matrix make event, causer as Agent, caused event as Theme, the object living only inside the caused event, and salt_bloom's compound genus. If the generic reading is the intended one, the 0.99 confidences would drop to the empirical 0.9."
+   },
+   "adjudication": {
+    "id": "lore-000486",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Agent is defined as the \"volitional doer\" and the role test is stated absolutely for this verb class — \"An intransitive subject that undergoes the eventuality is never Agent by default\", with crumble squarely among the change-of-state undergoers (collapse, sink, melt, shatter, snap, break) — so (Agent sk_crumble_1 salt_bloom) is an ill-typed role assignment."
+     }
+    ],
+    "gaps_confirmed": [
+     "the periphrastic-causative rule says flatly that a bare-infinitive complement \"makes the object the caused event's Agent\" (its examples are all volitional: sprint, sign, leave), which collides head-on with the intransitive-subject role test whenever the complement verb is a change-of-state verb; the wording needs to read \"the causee's role by the usual test\"",
+     "a bare MASS-noun subject in a verbal generic: the Quantifiers section mandates a distributing rule for a kind subject but illustrates only bare plurals, while a status-free event is already the generic/habitual default, and nothing settles which form a mass-subject generic takes or whether its atoms then fall under the empirical 0.9 dial"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form replaces (Agent sk_crumble_1 salt_bloom) with (Patient sk_crumble_1 salt_bloom) — the causative frame decides only that the causee lives inside the caused event, never which role it takes there.",
+    "notes": "The rest of the causative frame is right: matrix make event, inanimate transitive subject as Agent, caused event as Theme, the object living only in the complement, and salt_bloom's genus with its noun modifier unexposed."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000487",
+   "sentence": "Waxed paper packets hold the salt-bloom in the Cauldron Hall store.",
+   "parse": [
+    "(: wpp_genus (Inheritance waxed_paper_packet packet) (STV 1.0 0.99))",
+    "(: sb_mem (Member sk_salt_bloom_1 salt_bloom) (STV 1.0 0.99))",
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: store_mem (Member sk_store_1 store) (STV 1.0 0.99))",
+    "(: store_poss (Possession sk_store_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: ch_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: ch_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: hold_rule (Implication (Member $x waxed_paper_packet) (And (Member (sk_hold $x) hold) (Agent (sk_hold $x) $x) (Theme (sk_hold $x) sk_salt_bloom_1) (Location (sk_hold $x) sk_store_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000487",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Proper-noun premodifier ('the Cauldron Hall store') follows the Possession route with the kind word inside the name typed separately, exactly as Names and casing specifies. The bare-plural subject is routed as a generic rule per the habitual-present test, though pairing a universal over waxed_paper_packet with a definite object and location constant makes the claim read strongly."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000488",
+   "sentence": "Keepers add salt-bloom to mire-essence in winter.",
+   "parse": [
+    "(: e3_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: e3_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: e3_rule (Implication (Member $x keeper) (And (Member (sk_add $x) add) (Agent (sk_add $x) $x) (Theme (sk_add $x) salt_bloom) (Goal (sk_add $x) mire_essence) (Time (sk_add $x) winter))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000488",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural generic routed to the distributing Implication rule at 0.9/0.9 with no QuantifierPhrase (no quantifier word present), Theme/Goal split and the bare-season Time constant all follow doctrine; the relational-generic fork is correctly declined since an opaque kind relation has no slot for the 'to mire-essence' and 'in winter' adjuncts."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000489",
+   "sentence": "Salt-bloom slows the burn of mire-essence.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: e_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: e_burn_of (Of sk_burn_1 mire_essence) (STV 1.0 0.99))",
+    "(: e_slow (Member sk_slow_1 slow) (STV 1.0 0.99))",
+    "(: e_slow_agent (Agent sk_slow_1 salt_bloom) (STV 1.0 0.99))",
+    "(: e_slow_patient (Patient sk_slow_1 sk_burn_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000489",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The bare mass-kind subject 'Salt-bloom' is placed in an Agent slot as an untyped kind symbol, but a non-modal verbal generic over a kind is specified as a distributing Implication rule with a Skolem-function event (Quantifiers, generics & scope), not a flat event."
+     },
+     {
+      "statement": 4,
+      "issue": "As a generic claim the slowing atoms carry the individual-fact default (STV 1.0 0.99) instead of the empirical-generic 0.9 0.9 that the generic route prescribes."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a verbal generic whose subject is a bare MASS kind and whose object is a definite event-nominalization ('the burn of X'): the kind-relation route is barred because it requires bare kind NPs on BOTH sides, and the distributing-rule route's instance range (Member $x <kind>) is never specified for a mass kind"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest matches the instruction set: both compound genus atoms with their noun modifiers ('salt', 'mire') correctly suppressed, the nominalization's of-phrase as the entity-attached (Of ...) oblique, mire_essence left a bare mass constant, and Patient for slowing an occurrence."
+   },
+   "adjudication": {
+    "id": "lore-000489",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Quantifiers, generics & scope mandates the distributing Implication rule for a non-modal verbal generic over a kind — 'Foxes rarely cross the causeway' is exactly this shape (generic kind subject, definite-witness object) — and a bare kind symbol in an Agent slot is licensed nowhere, the bare-class filler being reserved for non-specific OBJECTS."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "This is an empirical kind-level generalization and the confidence dial reaches every kind-level claim whatever its head, so the generic route's (STV 0.9 0.9) applies, not the individual-fact default (STV 1.0 0.99)."
+     }
+    ],
+    "gaps_confirmed": [
+     "the kind-relation route is barred here (it fires only when BOTH arguments are bare kind-denoting NPs, and 'the burn of mire-essence' is definite), while the distributing rule's instance range is unspecified for a bare MASS kind subject — (Member $x salt_bloom) over a mass has no stated licence"
+    ],
+    "new_gaps": [
+     "a GENERIC definite event-nominalization object ('the burn of mire-essence' = the burning of it in general): the definite route mints a top-level witness asserting that one particular burn event exists, and no kind-level carrier is specified for an event-type object standing inside a generic rule"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is a distributing rule — (Implication (Member $x salt_bloom) (And (Member (sk_slow $x) slow) (Agent (sk_slow $x) $x) (Patient (sk_slow $x) sk_burn_1))) — with the burn witness, its (Of sk_burn_1 mire_essence) oblique and both genus atoms at top level; that rule carries the empirical-generic (STV 0.9 0.9) in place of the 1.0/0.99 the flat slowing atoms were given.",
+    "notes": "Everything else matches the instruction set: both compound genus atoms with their noun modifiers suppressed, the nominalization's of-phrase as the entity-attached oblique, and Patient for slowing an occurrence."
+   }
+  }
+ ]
+}

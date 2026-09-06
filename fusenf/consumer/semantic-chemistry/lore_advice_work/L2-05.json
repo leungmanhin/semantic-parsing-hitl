@@ -1,0 +1,190 @@
+{
+ "id": "L2-05",
+ "rule": "II — Sailsworn",
+ "texts": [
+  "Sailsworn is a Council member.",
+  "Sailsworn is the Salt-bloom Warden for the current year.",
+  "The Salt-bloom Warden leads the new-moon harvest expeditions to the tide-pools.",
+  "Sailsworn is a reliable cliff-climber."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000130",
+   "sentence": "Sailsworn is a Council member.",
+   "parse": [
+    "(: sailsworn_name (Name sailsworn \"Sailsworn\") (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: sailsworn_partof (PartOf sailsworn sk_council_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000130",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The copular predication itself is never emitted: \"X is a ... member\" is a categorical statement, so Categorical statements mandates (Member sailsworn member), but the parse records the clause only as the PartOf link, leaving \"Is Sailsworn a member?\" unbindable."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The PartOf link is itself licensed — PartOf's second job is \"a member of a group\", and the proper-noun-premodifier rule allows a more specific relation than Possession when the words state one — and treating \"Council\" as a capitalized common-noun label (witness + type atom, no Name) follows Names and casing. Only the head noun's own typing atom is missing."
+   },
+   "adjudication": {
+    "id": "lore-000130",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"Sailsworn is a Council member\" is a copular clause with an individual subject, which Categorical statements routes to a Member atom, and the part-whole precedent keeps the head noun's own kind atom beside the link (\"the car engine\" → (Member sk_engine_1 engine) (PartOf sk_engine_1 sk_car_1)), so the clause's own predication is left unrecorded."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form adds the categorical atom (Member sailsworn member) beside the existing (PartOf sailsworn sk_council_1) and (Member sk_council_1 council).",
+    "notes": "The PartOf encoding of \"Council member\" is itself licensed — PartOf's second job is membership in a group, and the possessor/whole + part reading blocks fusion — as is treating \"Council\" as a capitalized common-noun label with a witness and no Name atom."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000131",
+   "sentence": "Sailsworn is the Salt-bloom Warden for the current year.",
+   "parse": [
+    "(: sailsworn_name (Name sailsworn \"Sailsworn\") (STV 1.0 0.99))",
+    "(: saltbloom_name (Name salt_bloom \"Salt-bloom\") (STV 1.0 0.99))",
+    "(: e_warden (Member sk_warden_1 warden) (STV 1.0 0.99))",
+    "(: e_exp (Experiencer sk_warden_1 sailsworn) (STV 1.0 0.99))",
+    "(: e_poss (Possession sk_warden_1 salt_bloom) (STV 1.0 0.99))",
+    "(: e_time (Time sk_warden_1 current_year) (STV 1.0 0.99))",
+    "(: flat_warden (Member sailsworn warden) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000131",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized proper modifier + capitalized common head used as an office title ('the Salt-bloom Warden') — the proper-noun-premodifier rule (parse the head separately, link by opaque Possession, head never joins the Name string) and the capitalized-run name rule (the run exceeds the bare class word, so it becomes a Name) give conflicting routes",
+     "a definite / unique predicate nominal ('X is THE Warden', a one-per-year office) — nothing distinguishes it from 'X is a warden'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The copular-with-time-modifier reification (state witness + Experiencer + Time + the flat copular atom) and the deictic constant current_year with no Member atom both follow the instruction set exactly. One judgment call worth recording: (Possession sk_warden_1 salt_bloom) anchors the Northgate-spokesman association on the reified STATE witness rather than on the role-holder, where the rule's own example puts it."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000132",
+   "sentence": "The Salt-bloom Warden leads the new-moon harvest expeditions to the tide-pools.",
+   "parse": [
+    "(: e_name (Name salt_bloom_warden \"Salt-bloom Warden\") (STV 1.0 0.99))",
+    "(: e_warden_type (Member salt_bloom_warden warden) (STV 1.0 0.99))",
+    "(: e_lead (Member sk_lead_1 lead) (STV 1.0 0.99))",
+    "(: e_lead_ag (Agent sk_lead_1 salt_bloom_warden) (STV 1.0 0.99))",
+    "(: e_expedition_grp (GroupOf sk_expedition_1 new_moon_harvest_expedition) (STV 1.0 0.99))",
+    "(: e_expedition_genus (Inheritance new_moon_harvest_expedition expedition) (STV 1.0 0.99))",
+    "(: e_lead_th (Theme sk_lead_1 sk_expedition_1) (STV 1.0 0.99))",
+    "(: e_tidepool_grp (GroupOf sk_tide_pool_1 tide_pool) (STV 1.0 0.99))",
+    "(: e_tidepool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: e_expedition_to (To sk_expedition_1 sk_tide_pool_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000132",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 9,
+      "issue": "'to the tide-pools' answers 'whither' for the leading event and so takes the event oblique (Goal sk_lead_1 sk_tide_pool_1); attaching it to the expedition entity as (To sk_expedition_1 sk_tide_pool_1) silently resolves an attachment ambiguity that the instruction set would either decide for the verb or, if genuinely tied, require to be split across Interpretation readings."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Stacked three-part premodifier ('new-moon harvest expeditions'): Compound concepts defines only a two-part modifier_noun and says to decompose once to single-word lemmas then stop, giving no bracketing rule for a nested modifier chain — nothing settles whether it fuses into one new_moon_harvest_expedition symbol or into harvest_expedition with new_moon carried some other way."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The name treatment is right: the capitalized run exceeds the bare class word so it is a Name, and 'Warden' inside the name licenses the (Member salt_bloom_warden warden) type atom with no modifier genus for 'Salt-bloom'."
+   },
+   "adjudication": {
+    "id": "lore-000132",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "The half that stands: the \"lead X to Y\" frame favours the verb attachment, so (Goal sk_lead_1 sk_tide_pool_1) is the reading world knowledge picks and the parse loses the leading's whither-oblique; the half that falls: (To sk_expedition_1 sk_tide_pool_1) is an explicitly licensed entity-attached surface-preposition oblique (the From-of-origin / \"(For <noun-symbol> <argument>)\" licence), it is true of the sentence's content under either attachment, and an Interpretation split is barred because \"a mere world-knowledge lean is not a tie\"."
+     }
+    ],
+    "gaps_confirmed": [
+     "Stacked three-part premodifier (\"new-moon harvest expeditions\"): Compound concepts defines only a two-part modifier_noun and says to decompose once to single-word lemmas then stop, giving no bracketing rule for a nested modifier chain."
+    ],
+    "new_gaps": [
+     "Attachment of a destination \"to\"-PP following a guidance/motion verb's plural object NP: nothing states whether it is the event's Goal oblique or the object noun's own entity-attached (To <noun> <place>) argument, and the Interpretation route is closed by the single-reading default. A licensed form would need to say which anchor carries a destination that is readable of both the event and its object."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The name treatment is right - the capitalized run exceeds the bare class word so it is a Name, \"Warden\" inside it licenses (Member salt_bloom_warden warden), and no modifier genus is exposed for Salt-bloom; the group witnesses, compound genera and Theme on lead all conform."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000133",
+   "sentence": "Sailsworn is a reliable cliff-climber.",
+   "parse": [
+    "(: sailsworn_name (Name sailsworn \"Sailsworn\") (STV 1.0 0.99))",
+    "(: sailsworn_climber (Member sailsworn cliff_climber) (STV 1.0 0.99))",
+    "(: sailsworn_reliable (Member sailsworn reliable) (STV 1.0 0.99))",
+    "(: climber_can (Inheritance cliff_climber (can climb)) (STV 1.0 0.99))",
+    "(: climber_rel (Climb cliff_climber cliff) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000133",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The fused compound kind cliff_climber is missing its head-noun genus (Inheritance cliff_climber climber), which the compound-kind rule states is always emitted either way."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Splitting 'reliable' off as incidental description, leaving the noun modifier 'cliff' unexposed, and firing the agent-nominalization capability plus kind-relation (licensed twice over — fused from the surface and the copular predicate) are all correct. The prompt's own egg_layer example omits the parallel genus atom, so the always-emit requirement reads more firmly in the rule than in the example."
+   },
+   "adjudication": {
+    "id": "lore-000133",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "*Compound concepts* makes the head-noun genus mandatory for a fused modifier_noun compound ('emit its genus (Inheritance <compound> <head-noun>)'; 'The genus itself ... is always emitted either way'), and *Core patterns* lists a decomposed compound's genus among the atoms 'always emitted'; a cliff-climber IS a climber, so the IS-A suppression carve-out does not apply and (Inheritance cliff_climber climber) is required, not optional."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Add (: climber_genus (Inheritance cliff_climber climber) (STV 1.0 0.99)) beside the existing atoms; the rest of the parse stands unchanged.",
+    "notes": "The prompt's own 'Hens are egg-layers' exemplar omits the parallel (Inheritance egg_layer layer), so the worked example contradicts the always-emit rule and is the likely source of this defect — worth fixing prompt-side. The capability + kind-relation pair (licensed twice over: fused from the surface, and the copular predicate) and the split of 'reliable' as incidental description are both correct."
+   }
+  }
+ ]
+}

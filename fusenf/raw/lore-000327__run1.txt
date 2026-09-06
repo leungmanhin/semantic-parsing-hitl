@@ -1,0 +1,3 @@
+(: name_group (GroupOf sk_name_1 station_name) (STV 1.0 0.99))
+(: name_genus (Inheritance station_name name) (STV 1.0 0.99))
+(: children_chant_rule (Implication (Member $x child) (And (Member (sk_chant $x) chant) (Agent (sk_chant $x) $x) (Theme (sk_chant $x) sk_name_1) (In (sk_chant $x) game))) (STV 0.9 0.9))

@@ -1,0 +1,18 @@
+{
+ "id": "lore-000266",
+ "run": 1,
+ "issues": [
+  {
+   "index": 0,
+   "verdict": "confirm",
+   "reason": "The rule's conclusion carries the shared constant sk_group_2, which bears (Cardinality sk_group_2 3), so it asserts that EACH ledger records all three near-miss winters - more than the text states, and the same over-assertion the instruction set blocks elsewhere for aggregate readings over a plural subject (\"a measure on a PLURAL subject is the group AGGREGATE, like Cardinality - it does NOT distribute to each member\")."
+  }
+ ],
+ "gaps_confirmed": [],
+ "new_gaps": [
+  "No stated test decides whether a TRANSITIVE predicate whose OBJECT carries an aggregate count distributes to the plural subject's members: the distributive/collective lists (bark, pass, laugh, arrive vs gather, meet, assemble, collide) are all intransitive-shaped, and the only aggregate precedent is the Measure-on-a-plural-subject note under *Measures & units*."
+ ],
+ "decision": "defect",
+ "defect_summary": "The compliant form drops ledgers_rule entirely and keeps the group-level predication alone - (GroupOf sk_group_1 ledger), (GroupOf sk_group_2 near_miss_winter), (Cardinality sk_group_2 3), (Member sk_record_1 record), (Agent sk_record_1 sk_group_1), (Theme sk_record_1 sk_group_2), plus the compound genus - since an aggregate inventory predication is the group-as-unit case and stays group-only.",
+ "notes": "Everything else is doctrinal: definite plural to a group witness, the stative-transitive subject staying Agent, record as an evaluate/record verb taking Theme, the counted object as group + Cardinality, and the fused compound's head genus with its noun modifier correctly unexposed."
+}

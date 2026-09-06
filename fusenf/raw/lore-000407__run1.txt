@@ -1,0 +1,4 @@
+(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: lr_genus (Inheritance lantern_row row) (STV 1.0 0.99))
+(: th_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))
+(: hunt_fall_rule (Implication (And (Member $sc sky_cat) (Member $lr lantern_row) (Member $h hunt) (Agent $h $sc) (Location $h $lr)) (And (Member (sk_thread_harvest $lr) thread_harvest) (LocatedIn (sk_thread_harvest $lr) $lr) (Member (sk_fall $h) fall) (Theme (sk_fall $h) (sk_thread_harvest $lr)) (Before $h (sk_fall $h)))) (STV 1.0 0.9))

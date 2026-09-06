@@ -1,0 +1,5 @@
+(: st_genus (Inheritance spring_tide tide) (STV 1.0 0.99))
+(: tp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))
+(: tp_group (GroupOf sk_tide_pool_1 tide_pool) (STV 1.0 0.99))
+(: retreat_trap_rule (Implication (And (Member $x spring_tide) (Member $x retreating)) (And (Member (sk_trap $x) trap) (Agent (sk_trap $x) $x) (Theme (sk_trap $x) (sk_fish $x)) (Member (sk_fish $x) fish) (Member (sk_fish $x) small) (Location (sk_trap $x) sk_tide_pool_1))) (STV 0.5 0.9))
+(: retreat_trap_q (QuantifierPhrase spring_tide trap "sometimes") (STV 1.0 0.99))

@@ -1,0 +1,7 @@
+(: phrase_m (Member sk_phrase_1 phrase) (STV 1.0 0.99))
+(: ledger_grp (GroupOf sk_ledger_1 ledger) (STV 1.0 0.99))
+(: watch_name (Name watch "Watch") (STV 1.0 0.99))
+(: ledger_poss (Possession sk_ledger_1 watch) (STV 1.0 0.99))
+(: ledger_most_early (Most early sk_ledger_1 ledger) (STV 1.0 0.99))
+(: ledger_survive_rule (Implication (PartOf $x sk_ledger_1) (Member $x surviving)) (STV 1.0 0.9))
+(: phrase_located (LocatedIn sk_phrase_1 sk_ledger_1) (STV 1.0 0.99))

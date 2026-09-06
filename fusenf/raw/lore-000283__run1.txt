@@ -1,0 +1,5 @@
+(: kpr_rule (Implication (Member $x keeper) (And (Member (sk_carry $x) carry) (Agent (sk_carry $x) $x) (Theme (sk_carry $x) sk_case_1) (Goal (sk_carry $x) sk_station_1) (Time (sk_carry $x) sundown))) (STV 1.0 0.9))
+(: kpr_q (QuantifierPhrase keeper carry "each") (STV 1.0 0.99))
+(: case_type (Member sk_case_1 leather_case) (STV 1.0 0.99))
+(: case_genus (Inheritance leather_case case) (STV 1.0 0.99))
+(: station_type (Member sk_station_1 station) (STV 1.0 0.99))

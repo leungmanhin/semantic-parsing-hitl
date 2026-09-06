@@ -1,0 +1,157 @@
+{
+ "id": "L2-11",
+ "rule": "II — Marra Tallowhand",
+ "texts": [
+  "Marra Tallowhand is Meren Tallowhand's cousin.",
+  "Marra Tallowhand tends a harbor wall station.",
+  "Marra Tallowhand keeps detailed nightly logs.",
+  "The Council often consults Marra Tallowhand's logs."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000157",
+   "sentence": "Marra Tallowhand is Meren Tallowhand's cousin.",
+   "parse": [
+    "(: marra_name (Name marra_tallowhand \"Marra Tallowhand\") (STV 1.0 0.99))",
+    "(: meren_name (Name meren_tallowhand \"Meren Tallowhand\") (STV 1.0 0.99))",
+    "(: marra_cousin (Member marra_tallowhand cousin) (STV 1.0 0.99))",
+    "(: marra_cousin_poss (Possession marra_tallowhand meren_tallowhand) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000157",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a symmetric-by-meaning kinship noun appearing as a COPULAR genitive predicate ('X is Y's cousin'): the Possessive/genitive NP rule routes it to opaque Possession (its own 'her sister' example is a kinship noun), while Reciprocals & symmetric relations says a predicate mutual by meaning ('siblings') must be encoded so the engine can answer it either way, as (Cousin x y) + (Symmetric Cousin); which section governs is unstated, and under Possession the reverse direction is not recoverable"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both multi-word names are single opaque symbols with verbatim Name strings and no invented kind atoms, and the genitive is the mandated possessed-first Possession with the copular Member on the individual. The only open question is the symmetric-relation routing recorded above."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000158",
+   "sentence": "Marra Tallowhand tends a harbor wall station.",
+   "parse": [
+    "(: marra_name (Name marra_tallowhand \"Marra Tallowhand\") (STV 1.0 0.99))",
+    "(: e_tend (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_tend_1 marra_tallowhand) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_tend_1 sk_station_1) (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 harbor_wall_station) (STV 1.0 0.99))",
+    "(: station_genus (Inheritance harbor_wall_station station) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000158",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Multi-word name as one opaque symbol with exactly one `Name` atom and no invented kind atom, simple-present habitual left with no status atom, `Theme` for an unchanged object (the \"keep/use\" line, and the unclear-case default), and `harbor_wall_station` fused with only its head-noun genus — all as specified."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000159",
+   "sentence": "Marra Tallowhand keeps detailed nightly logs.",
+   "parse": [
+    "(: marra_name (Name marra_tallowhand \"Marra Tallowhand\") (STV 1.0 0.99))",
+    "(: log_group (GroupOf sk_group_1 log) (STV 1.0 0.99))",
+    "(: log_props (Implication (PartOf $x sk_group_1) (And (Member $x detailed) (Member $x nightly))) (STV 1.0 0.9))",
+    "(: e_keep (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_keep_1 marra_tallowhand) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_keep_1 sk_group_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000159",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A modifier-carrying BARE plural object in a non-episodic (habitual) clause - 'keeps detailed nightly logs': the instruction set routes bare-plural objects only as episodic-participant (group witness) or non-specific / kind-level (bare kind filler), and this clause is neither, while the bare-kind route would leave the descriptive modifiers 'detailed' and 'nightly' with no licensed carrier."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Within that gap the group witness plus (Implication (PartOf $x sk_group_1) ...) distribution of the two descriptive modifiers is the closest licensed form, and it correctly avoids predicating them of the group symbol. 'keep' takes Theme per the listed verb class, and both modifiers keep their surface adjective forms rather than deriving back to night."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000160",
+   "sentence": "The Council often consults Marra Tallowhand's logs.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: marra_name (Name marra_tallowhand \"Marra Tallowhand\") (STV 1.0 0.99))",
+    "(: logs_group (GroupOf sk_logs_1 log) (STV 1.0 0.99))",
+    "(: logs_poss (Possession sk_logs_1 marra_tallowhand) (STV 1.0 0.99))",
+    "(: council_consult (And (Member sk_consult_1 consult) (Agent sk_consult_1 sk_council_1) (Theme sk_consult_1 sk_logs_1)) (STV 0.8 0.9))",
+    "(: council_consult_q (QuantifierPhrase council consult \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000160",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The positive habitual event is bundled into a single strength-0.8 (And ...) atom, whereas the instruction set emits a positive event as separate atoms and reserves the multi-atom (And ...) for negation, cessation, sealing and disjunction."
+     },
+     {
+      "statement": 4,
+      "issue": "Confidence 0.9 is the generalization value, but the subject is a specific individual (sk_council_1) and the instruction set keeps individual facts at 0.99."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Frequency adverb (\"often\") on a habitual clause whose subject is a SPECIFIC individual rather than a kind: the frequency dial is defined to set \"the rule's (or, for a flat generic, the statement's) strength\", and here there is neither a rule (a singular collective noun does not distribute) nor a single flat generic atom to carry the 0.8 - so no carrier is licensed for a multi-atom event at reduced strength.",
+     "The mandated companion (QuantifierPhrase <kind> <verb-lemma> \"<word>\") has no kind range to name when the frequency adverb modifies a specific individual's habit; \"council\" here is the subject's class, not a range this parse quantifies over, which the Negation-(copular) constraint on companions warns against."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else checks out: \"The Council\" is correctly a capitalized common noun with no Name atom, the possessed plural correctly takes a group witness with Possession (not PartOf, not an own event), \"consult\" correctly takes Theme, and the habitual carries no tense atom."
+   },
+   "adjudication": {
+    "id": "lore-000160",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Events (verbal) requires the class, role and status atoms as SEPARATE atoms and Negation (events) states the contrast outright — 'Positive event = separate atoms; negated event = one strength-0.0 conjunction' — so bundling a positive event into one (And …) violates the rule and leaves the event unmatchable by an ordinary (Member $e consult) query."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "This mistakes a coverage gap for a defect: 'individual facts keep 0.99' governs individual FACTS, while every frequency-adverb exemplar in the instruction set carries confidence 0.9 (Foxes rarely cross… 0.1 0.9; Most birds migrate 0.9 0.9), nothing states the confidence for a frequency adverb on one individual's habitual, and 0.9 there is neither false nor over-asserted."
+     }
+    ],
+    "gaps_confirmed": [
+     "A frequency adverb on a habitual clause whose subject is a SPECIFIC individual: the dial sets 'the rule's (or, for a flat generic, the statement's) strength', and a positive multi-atom event — which must be separate atoms — offers no single carrier for the 0.8.",
+     "The mandated (QuantifierPhrase <kind> <verb-lemma> \"<word>\") companion has no quantified range to name when the adverb modifies one individual's habit rather than a kind."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: the consult event as separate atoms — (Member sk_consult_1 consult), (Agent sk_consult_1 sk_council_1), (Theme sk_consult_1 sk_logs_1) — each at the default (STV 1.0 0.99) and with no tense atom (habitual), and 'often' left unencoded and recorded as a gap, since once the event is un-bundled the instruction set licenses NO carrier for a reduced strength on a specific individual's habitual.",
+    "notes": "The emitted (QuantifierPhrase council consult \"often\") is unlicensed on the same ground the reviewer files as a gap — it restates a kind range this parse never quantifies over, which the companion rule expressly bars — but the reviewer logged it as a gap rather than an issue, so it is recorded here. Everything else checks out: no Name for the capitalized common-noun label, group witness plus Possession for the possessed plural, Theme for consult."
+   }
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: cliff_genus (Inheritance eastern_cliff cliff) (STV 1.0 0.99))
+(: cliff_mod (Inheritance eastern_cliff eastern) (STV 1.0 0.99))
+(: cliff_type (Member sk_cliff_1 eastern_cliff) (STV 1.0 0.99))
+(: spires_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))
+(: spires_rise_rule (Implication (PartOf $x sk_group_1) (Above $x sk_cliff_1)) (STV 1.0 0.9))

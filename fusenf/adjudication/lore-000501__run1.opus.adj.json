@@ -1,0 +1,9 @@
+{"id": "lore-000501", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "\"The companion is mandatory for every explicit quantifier word the rule or claim consumes\" and \"it only ever restates a range the rule itself quantifies\" — \"each\" is explicit and the rule quantifies exactly the range it determines (full_moon_meeting), while the only stated exemption is the \"every time / whenever\" wording, which is not what this sentence uses."}],
+ "gaps_confirmed": ["A determiner-quantified event-noun adjunct (\"at each full-moon meeting\") is legislated nowhere: the occurrence-domain machinery is specified for \"every time / whenever <clause>\" and the calendar-slot machinery for named slots (Time term + Every / TimesPer), so both the rule route and the During tie are extrapolations — and the surface preposition is \"at\", where During is restricted to during/while/throughout."],
+ "new_gaps": ["The QuantifierPhrase companion's shape is (QuantifierPhrase <kind> <verb-lemma> \"<word>\"), which presumes the quantified range is a participant kind; nothing states how the slots are filled when the quantified range is an event-noun ADJUNCT domain rather than a participant, so even the compliant companion here is a slot-filling extrapolation."],
+ "decision": "defect",
+ "defect_summary": "The compliant form adds the companion beside the rule: (: fmm_q (QuantifierPhrase full_moon_meeting issue \"each\") (STV 1.0 0.99)).",
+ "notes": "Routing \"each full-moon meeting\" as an occurrence domain rather than a calendar slot is right — meetings are entities, not calendar terms — and the During tie is the machinery's own prescription, not a rendering of surface \"at\"."}

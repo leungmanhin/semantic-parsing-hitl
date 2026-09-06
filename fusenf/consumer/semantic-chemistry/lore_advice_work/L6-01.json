@@ -1,0 +1,120 @@
+{
+ "id": "L6-01",
+ "rule": "VI — Origins",
+ "texts": [
+  "Sky-cats have always lived on the cliff-spires.",
+  "The old Watch ledgers mention sky-cats.",
+  "The Keepers tolerate sky-cats.",
+  "Sky-cats are wild animals."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000386",
+   "sentence": "Sky-cats have always lived on the cliff-spires.",
+   "parse": [
+    "(: skycat_gen (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: spire_gen (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: spire_grp (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))",
+    "(: skycat_live (Implication (Member $x sky_cat) (And (Member (sk_live $x) live) (Agent (sk_live $x) $x) (Location (sk_live $x) sk_cliff_spire_1) (Ongoing (sk_live $x)))) (STV 1.0 0.9))",
+    "(: skycat_q (QuantifierPhrase sky_cat live \"always\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000386",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the 'Mia has lived in Oslo' pattern (live event, Agent subject, Location oblique, continuative perfect -> Ongoing with no Start since none is stated), and the definite plural 'the cliff-spires' correctly becomes a group witness shared as a constant in the rule conclusion. 'always' here reads as temporal extent rather than quantification over occasions, but the frequency dial (strength 1.0 + QuantifierPhrase companion) is the only licensed carrier and lands on the same value."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000387",
+   "sentence": "The old Watch ledgers mention sky-cats.",
+   "parse": [
+    "(: w1_watch (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: w1_group (GroupOf sk_group_1 ledger) (STV 1.0 0.99))",
+    "(: w1_poss (Possession sk_group_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: w1_old_rule (Implication (PartOf $x sk_group_1) (Member $x old)) (STV 1.0 0.9))",
+    "(: w1_mention (Member sk_mention_1 mention) (STV 1.0 0.99))",
+    "(: w1_mention_agent (Agent sk_mention_1 sk_group_1) (STV 1.0 0.99))",
+    "(: w1_mention_theme (Theme sk_mention_1 sky_cat) (STV 1.0 0.99))",
+    "(: w1_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000387",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized COMMON-noun label in premodifier position ('the old Watch ledgers') -- the Possession licence is stated only for a PROPER noun premodifying a common-noun head, while a capitalized common noun is a common noun by default when it is the referent's own label ('the Assembly'); the instruction set does not say whether such a bare capitalized premodifier mints a referent linked by Possession, or fuses as a compound kind (watch_ledger)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural to a group witness, the descriptive age modifier distributed by the per-member copular rule at 1.0/0.9 with no QuantifierPhrase (no quantifier word present), the stative-transitive subject as Agent, and the bare-plural kind-level object as a bare compound symbol with its head genus and unexposed noun modifier -- all as specified. Treating 'mention' as collective (group event, no per-member rule) is a judgment call the instruction set leaves to the distributive-vs-collective test, and the collective reading looks right here."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000388",
+   "sentence": "The Keepers tolerate sky-cats.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: tolerate_ev (Member sk_tolerate_1 tolerate) (STV 1.0 0.99))",
+    "(: tolerate_ag (Agent sk_tolerate_1 keepers) (STV 1.0 0.99))",
+    "(: tolerate_th (Theme sk_tolerate_1 sky_cat) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000388",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The capitalized-plural label \"the Keepers\" is handled exactly as the Name-only individual rule prescribes (no GroupOf, no per-member kind), and the definite named subject keeps this out of the bare-kind relational-generic route. Agent/Theme over Experiencer/Stimulus for \"tolerate\" is borderline but follows the stated progressive test (\"is tolerating\" is acceptable)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000389",
+   "sentence": "Sky-cats are wild animals.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: wildanimal_genus (Inheritance wild_animal animal) (STV 1.0 0.99))",
+    "(: wildanimal_mod (Inheritance wild_animal wild) (STV 1.0 0.99))",
+    "(: skycat_wildanimal (Inheritance sky_cat wild_animal) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000389",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "wild_animal fuses as a classificatory adjective+noun kind and so correctly carries both the head genus and the predicable-modifier genus, while sky_cat exposes its head genus only since 'sky' is a noun modifier. Empirical 0.9/0.9 on the generic is the right side of the definitional/empirical dial for a property an individual could lack."
+   },
+   "adjudication": null
+  }
+ ]
+}

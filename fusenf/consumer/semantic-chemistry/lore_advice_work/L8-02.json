@@ -1,0 +1,120 @@
+{
+ "id": "L8-02",
+ "rule": "VIII — Clay vessels",
+ "texts": [
+  "Stored mire-essence stays good for years.",
+  "The village potter makes the clay vessels.",
+  "The clay comes from a seam in the cliffs.",
+  "The clay has a green tint."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000474",
+   "sentence": "Stored mire-essence stays good for years.",
+   "parse": [
+    "(: me1_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: me1_rule (Implication (And (Member $x mire_essence) (Member $x stored)) (And (Member (sk_good $x) good) (Experiencer (sk_good $x) $x) (Still (sk_good $x)) (Member $x good) (MeasureAtLeast (sk_good $x) duration 2 year))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000474",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a generic copular claim whose bare kind subject carries an attributive restriction (\"stored mire-essence\") — restricted kind subjects are routed to a distributing rule only for kind relations, and ConditionalProperty is licensed only for when/at/under/if conditions and locative/domain PPs, so this routing is unsettled"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The continuation-copular shape (reified state + Still + flat half, no tense) and the bare-plural duration MeasureAtLeast 2 year both follow the instruction set, with the flat half carried inside the rule conclusion as (Member $x good). Compound genus and the participle-as-adjective 'stored' are handled per Names and casing."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000475",
+   "sentence": "The village potter makes the clay vessels.",
+   "parse": [
+    "(: potter_type (Member sk_potter_1 village_potter) (STV 1.0 0.99))",
+    "(: potter_genus (Inheritance village_potter potter) (STV 1.0 0.99))",
+    "(: vessel_type (GroupOf sk_vessel_1 clay_vessel) (STV 1.0 0.99))",
+    "(: vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+    "(: e_make (Member sk_make_1 make) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_make_1 sk_potter_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_make_1 sk_vessel_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000475",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both compounds follow the part-of-speech line exactly: `village_potter` and `clay_vessel` get their head genus while the noun modifiers `village` and `clay` are correctly left unexposed, and `potter` correctly gets no agent-nominalization capability (\"a potter is one who pots\" fails the by-definition test). Definite plural object -> group witness, creation verb -> `Patient`, and simple present -> no status atom (unmarked habitual) are all right."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000476",
+   "sentence": "The clay comes from a seam in the cliffs.",
+   "parse": [
+    "(: clay_type (Member sk_clay_1 clay) (STV 1.0 0.99))",
+    "(: come_ev (Member sk_come_1 come) (STV 1.0 0.99))",
+    "(: come_th (Theme sk_come_1 sk_clay_1) (STV 1.0 0.99))",
+    "(: seam_type (Member sk_seam_1 seam) (STV 1.0 0.99))",
+    "(: come_src (Source sk_come_1 sk_seam_1) (STV 1.0 0.99))",
+    "(: cliff_grp (GroupOf sk_group_1 cliff) (STV 1.0 0.99))",
+    "(: seam_loc (LocatedIn sk_seam_1 sk_group_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000476",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Theme on the clay follows the un-powered-relocation rule for intransitive subjects, 'in the cliffs' correctly attaches to the seam as entity-side LocatedIn (containment), and the definite plural 'the cliffs' correctly takes a GroupOf witness rather than Inheritance. Attaching the PP to the seam rather than to the coming event is a world-knowledge lean, not a tie, so the single reading is right."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000477",
+   "sentence": "The clay has a green tint.",
+   "parse": [
+    "(: clay_type (Member sk_clay_1 clay) (STV 1.0 0.99))",
+    "(: have_ev (Member sk_have_1 have) (STV 1.0 0.99))",
+    "(: have_holder (Holder sk_have_1 sk_clay_1) (STV 1.0 0.99))",
+    "(: have_theme (Theme sk_have_1 sk_tint_1) (STV 1.0 0.99))",
+    "(: tint_type (Member sk_tint_1 tint) (STV 1.0 0.99))",
+    "(: tint_green (Member sk_tint_1 green) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000477",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Verbal 'have' reified with Holder subject and Theme object, the definite mass NP as a typed witness, and 'green tint' left unfused as two atoms on the tint witness all follow the instruction set. The bare simple present correctly takes no status atom, and no Possession atom is emitted (seeded rules derive it)."
+   },
+   "adjudication": null
+  }
+ ]
+}

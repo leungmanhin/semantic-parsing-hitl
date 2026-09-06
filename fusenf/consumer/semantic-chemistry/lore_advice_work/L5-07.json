@@ -1,0 +1,172 @@
+{
+ "id": "L5-07",
+ "rule": "V — The long quiet",
+ "texts": [
+  "No wraith has risen in twenty-six years.",
+  "The senior Keepers worry that complacency has crept into the village.",
+  "Some Keepers believe that a wraith remembers the Keeper who let that wraith rise.",
+  "The Council does not share the superstition."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000378",
+   "sentence": "No wraith has risen in twenty-six years.",
+   "parse": [
+    "(: wraith_no_rise (Implication (Member $x wraith) (And (Member (sk_rise $x) rise) (Patient (sk_rise $x) $x) (Past (sk_rise $x)) (WithinLast (sk_rise $x) 26 year))) (STV 0.0 0.9))",
+    "(: wraith_q (QuantifierPhrase wraith rise \"no\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000378",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "(Patient (sk_rise $x) $x) mis-slots the intransitive subject: a wraith is an animate self-powered mover, which the subject test assigns Agent, while Patient is reserved for change-of-state undergoers (collapse, melt, freeze) and non-volitional natural processes (rain, smoke, tides)."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is exactly the negated-verbal-generic doctrine: an explicit 'no' quantifier takes the distributing Implication at strength 0.0 / confidence 0.9 plus the QuantifierPhrase companion, and the backward-window adverbial is correctly (WithinLast ... 26 year) inside the denied bundle rather than a duration Measure. The animate-emergence sense of 'rise' sits near the instruction set's unaccusative boundary, so the role call is arguable but Agent is what the stated test yields."
+   },
+   "adjudication": {
+    "id": "lore-000378",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The intransitive-subject test reserves Patient for change-of-state undergoers (collapse, melt, freeze) and for non-volitional natural processes (rain, smoke, tides), while \"Agent stays only for a self-powered mover (an animate ...)\" and the stated tiebreak is \"when unclear, Agent\" - so an animate wraith's rising takes Agent, and Patient asserts an undergoer reading the test does not license."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is (Agent (sk_rise $x) $x) inside the denied bundle, with the rest of the strength-0.0 rule - class atom, Past, WithinLast window and the QuantifierPhrase companion - unchanged.",
+    "notes": "The rest is exactly the negated-verbal-generic doctrine: an explicit \"no\" takes the distributing Implication at 0.0 / 0.9 plus its companion, the present perfect coarsens to Past, and the backward-window adverbial is correctly (WithinLast ... 26 year) inside the denied bundle rather than a duration Measure. The emergence sense of \"rise\" sits near the unaccusative boundary, but the animacy carve-out and the Agent default both resolve it, so it is decided rather than a gap."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000379",
+   "sentence": "The senior Keepers worry that complacency has crept into the village.",
+   "parse": [
+    "(: e_group (GroupOf sk_group_1 senior_keeper) (STV 1.0 0.99))",
+    "(: e_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+    "(: e_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+    "(: e_village (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: e_worry (Member sk_worry_1 worry) (STV 1.0 0.99))",
+    "(: e_exp (Experiencer sk_worry_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_worry_1 (And (Member sk_complacency_1 complacency) (Member sk_creep_1 creep) (Patient sk_creep_1 sk_complacency_1) (Goal sk_creep_1 sk_village_1) (Past sk_creep_1))) (STV 1.0 0.99))",
+    "(: e_dist (Implication (PartOf $x sk_group_1) (And (Member (sk_worry $x) worry) (Experiencer (sk_worry $x) $x) (Theme (sk_worry $x) (And (Member sk_complacency_1 complacency) (Member sk_creep_1 creep) (Patient sk_creep_1 sk_complacency_1) (Goal sk_creep_1 sk_village_1) (Past sk_creep_1))))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000379",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized PLURAL kind-word label carrying a lowercase restrictive modifier ('the senior Keepers') — the instruction set states a name-hood default and its signals only for the singular-collective label ('the Assembly'), while its plural clause ('the Wrens') already presupposes the label 'refers as a name'; nothing decides the modified-plural case, which forks between a Name-only individual (no GroupOf, no per-member kind) and the common-noun group reading taken here"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Non-factive 'worry that P' seals P under Theme with no top-level predication, projecting only the definite 'the village' typing while the bare-mass 'complacency' stays sealed — exactly the interim projection table. The group event plus the (PartOf $x g) distribution rule at (STV 1.0 0.9) matches the 'both dogs barked' pattern, and senior_keeper carries both its head genus and its predicable-modifier genus."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000380",
+   "sentence": "Some Keepers believe that a wraith remembers the Keeper who let that wraith rise.",
+   "parse": [
+    "(: lo380_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: lo380_card (CardinalityPhrase sk_group_1 \"some\") (STV 1.0 0.99))",
+    "(: lo380_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: lo380_bel_ev (Member sk_believe_1 believe) (STV 1.0 0.99))",
+    "(: lo380_bel_exp (Experiencer sk_believe_1 sk_group_1) (STV 1.0 0.99))",
+    "(: lo380_bel_theme (Theme sk_believe_1 (And (Member sk_wraith_1 wraith) (Member sk_remember_1 remember) (Experiencer sk_remember_1 sk_wraith_1) (Stimulus sk_remember_1 sk_keeper_1) (Member sk_let_1 let) (Agent sk_let_1 sk_keeper_1) (Past sk_let_1) (Theme sk_let_1 sk_rise_1) (Member sk_rise_1 rise) (Agent sk_rise_1 sk_wraith_1))) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000380",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "CardinalityPhrase is licensed only for vague-count phrases that count things (a few / several / a handful / dozens / scores / hundreds / a lot of), and 'some' is neither in that canonical lexicon nor a counting phrase, being treated elsewhere as a proportional level word."
+     },
+     {
+      "statement": null,
+      "issue": "'believe' is a distributive predicate over the Keeper group, so the group event should be accompanied by the per-member (Implication (PartOf $x sk_group_1) ...) rule that a grouped/counted plural requires, and no such rule is emitted."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare 'some' + plural as a clause subject (non-partitive): 'some' is absent from the quantifier-to-strength table, absent from the CardinalityPhrase vague-count lexicon, and ProportionOf's 'some' level is licensed only for the partitive 'some of the Ns'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The seal itself is handled correctly: the definite 'the Keeper' projects its typing to top level, the indefinite 'a wraith' stays sealed, 'let' takes the periphrastic-causative shape with the causee as Agent of the caused event, and no predication of the belief content leaks."
+   },
+   "adjudication": {
+    "id": "lore-000380",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "CardinalityPhrase is a closed vague-COUNT operator whose string is 'normalized to the canonical lexicon string' and feeds seeded phrase-to-bound rules, and 'some' is in neither that lexicon nor the quantifier-strength table -- the Existential section instead routes 'some X' to the plain existential encoding -- so the companion puts an out-of-domain, count-flavoured reading into the KB."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Cardinality and Quantifiers both state that a grouped / counted plural with a distributive predicate keeps the group event AND adds the per-member (Implication (PartOf $x <group>) ...) rule; believing is distributive rather than collective (each Keeper believes separately), so the mandated second emission is missing and a later-named member is unqueryable."
+     }
+    ],
+    "gaps_confirmed": [
+     "bare 'some' plus a plural as a clause subject (non-partitive): absent from the quantifier-to-strength table, absent from the CardinalityPhrase vague-count lexicon, and ProportionOf's 'some' level is licensed only for the partitive 'some of the Ns'"
+    ],
+    "new_gaps": [
+     "a per-member distribution rule over an ATTITUDE predicate must carry the sealed Theme term inside the rule's conclusion: the instruction set exemplifies rules inside seals but never a seal inside a rule, so the required shape -- and whether the sealed term's witnesses must be Skolemized per member -- is unlegislated"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form drops (CardinalityPhrase sk_group_1 \"some\") and leaves 'some Keepers' as the plain existential group witness (GroupOf sk_group_1 keeper) carrying the belief event, since bare 'some' has no licensed count or strength carrier; and it adds the per-member rule (Implication (PartOf $x sk_group_1) (And (Member (sk_believe $x) believe) (Experiencer (sk_believe $x) $x) (Theme (sk_believe $x) <the same sealed term>))) at (STV 1.0 0.9) beside the group event.",
+    "notes": "The seal itself is handled correctly: the definite 'the Keeper' projects its typing, the indefinite 'a wraith' stays sealed, let takes the periphrastic-causative shape with the causee as Agent of the caused event, remember with an entity object keeps Experiencer/Stimulus, and no predication of the belief content leaks."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000381",
+   "sentence": "The Council does not share the superstition.",
+   "parse": [
+    "(: council_typ (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: superstition_typ (Member sk_superstition_1 superstition) (STV 1.0 0.99))",
+    "(: council_not_share (And (Member sk_share_1 share) (Agent sk_share_1 sk_council_1) (Theme sk_share_1 sk_superstition_1)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000381",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" correctly takes the capitalized-common-noun default (witness + kind atom, no Name), both definites project outside the strength-0 bundle, and the simple present correctly carries no tense atom. Agent/Theme for stative \"share\" follows the rule that only possession and stative psych/perception demote a transitive subject."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{"id": "lore-000380", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "CardinalityPhrase is a closed vague-COUNT operator whose string is 'normalized to the canonical lexicon string' and feeds seeded phrase-to-bound rules, and 'some' is in neither that lexicon nor the quantifier-strength table -- the Existential section instead routes 'some X' to the plain existential encoding -- so the companion puts an out-of-domain, count-flavoured reading into the KB."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "Cardinality and Quantifiers both state that a grouped / counted plural with a distributive predicate keeps the group event AND adds the per-member (Implication (PartOf $x <group>) ...) rule; believing is distributive rather than collective (each Keeper believes separately), so the mandated second emission is missing and a later-named member is unqueryable."}],
+ "gaps_confirmed": ["bare 'some' plus a plural as a clause subject (non-partitive): absent from the quantifier-to-strength table, absent from the CardinalityPhrase vague-count lexicon, and ProportionOf's 'some' level is licensed only for the partitive 'some of the Ns'"],
+ "new_gaps": ["a per-member distribution rule over an ATTITUDE predicate must carry the sealed Theme term inside the rule's conclusion: the instruction set exemplifies rules inside seals but never a seal inside a rule, so the required shape -- and whether the sealed term's witnesses must be Skolemized per member -- is unlegislated"],
+ "decision": "defect",
+ "defect_summary": "The compliant form drops (CardinalityPhrase sk_group_1 \"some\") and leaves 'some Keepers' as the plain existential group witness (GroupOf sk_group_1 keeper) carrying the belief event, since bare 'some' has no licensed count or strength carrier; and it adds the per-member rule (Implication (PartOf $x sk_group_1) (And (Member (sk_believe $x) believe) (Experiencer (sk_believe $x) $x) (Theme (sk_believe $x) <the same sealed term>))) at (STV 1.0 0.9) beside the group event.",
+ "notes": "The seal itself is handled correctly: the definite 'the Keeper' projects its typing, the indefinite 'a wraith' stays sealed, let takes the periphrastic-causative shape with the causee as Agent of the caused event, remember with an entity object keeps Experiencer/Stimulus, and no predication of the belief content leaks."}

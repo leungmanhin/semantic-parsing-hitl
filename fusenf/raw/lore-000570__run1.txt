@@ -1,0 +1,2 @@
+(: mothcount_genus (Inheritance moth_count count) (STV 1.0 0.99))
+(: mothcount_rule (Implication (Member $x moth_count) (And (Member (sk_recover $x) recover) (Theme (sk_recover $x) $x) (Time (sk_recover $x) spring))) (STV 0.9 0.9))

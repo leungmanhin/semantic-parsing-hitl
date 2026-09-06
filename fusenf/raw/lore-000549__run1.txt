@@ -1,0 +1,6 @@
+(: shelves_group (GroupOf sk_shelves_1 shelf) (STV 1.0 0.99))
+(: front_type (Member sk_front_1 front) (STV 1.0 0.99))
+(: front_partof (PartOf sk_front_1 sk_shelves_1) (STV 1.0 0.99))
+(: vessels_group (GroupOf sk_group_1 vessel) (STV 1.0 0.99))
+(: vessels_old_rule (Implication (PartOf $x sk_group_1) (Member $x old)) (STV 1.0 0.9))
+(: vessels_stand_rule (Implication (PartOf $x sk_group_1) (LocatedIn $x sk_front_1)) (STV 1.0 0.9))

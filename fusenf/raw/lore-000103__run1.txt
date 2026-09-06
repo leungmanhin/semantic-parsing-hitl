@@ -1,0 +1,2 @@
+(: cv_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))
+(: keeper_dates_rule (Implication (And (Member $k keeper) (Member $s store) (Agent $s $k) (Theme $s $v) (Member $v clay_vessel)) (And (Member (sk_date $k $v) date) (Agent (sk_date $k $v) $k) (Theme (sk_date $k $v) $v) (During (sk_date $k $v) $s))) (STV 1.0 0.9))

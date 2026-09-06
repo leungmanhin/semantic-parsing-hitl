@@ -1,0 +1,4 @@
+(: cliff_path_m (Member cliff_path path) (STV 1.0 0.99))
+(: cliff_path_name (Name cliff_path "Cliff Path") (STV 1.0 0.99))
+(: keeper_walk_rule (Implication (Member $x keeper) (And (Member (sk_walk $x) walk) (Agent (sk_walk $x) $x) (Theme (sk_walk $x) cliff_path) (Time (sk_walk $x) night) (Every (sk_walk $x) 1 day))) (STV 1.0 0.9))
+(: keeper_walk_q (QuantifierPhrase keeper walk "each") (STV 1.0 0.99))

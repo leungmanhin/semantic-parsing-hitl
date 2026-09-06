@@ -1,0 +1,3 @@
+(: cold_sea_type (Member cold_sea sea) (STV 1.0 0.99))
+(: cold_sea_name (Name cold_sea "Cold Sea") (STV 1.0 0.99))
+(: storms_come (Implication (Member $x storm) (And (Member (sk_come $x) come) (Patient (sk_come $x) $x) (Over (sk_come $x) cold_sea) (Or (Time (sk_come $x) autumn) (Time (sk_come $x) early_winter)))) (STV 0.9 0.9))

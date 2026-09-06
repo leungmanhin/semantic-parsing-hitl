@@ -1,0 +1,3 @@
+(: stair_type (Member cove_stair stair) (STV 1.0 0.99))
+(: stair_name (Name cove_stair "Cove Stair") (STV 1.0 0.99))
+(: parents_scold_rule (Implication (And (Member $p parent) (Member $c child) (Member $e play) (Agent $e $c) (Location $e cove_stair)) (And (Member (sk_scold $p $c) scold) (Agent (sk_scold $p $c) $p) (Theme (sk_scold $p $c) $c))) (STV 0.9 0.9))

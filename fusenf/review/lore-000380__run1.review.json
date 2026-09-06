@@ -1,0 +1,10 @@
+{"id": "lore-000380", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "CardinalityPhrase is licensed only for vague-count phrases that count things (a few / several / a handful / dozens / scores / hundreds / a lot of), and 'some' is neither in that canonical lexicon nor a counting phrase, being treated elsewhere as a proportional level word."},
+               {"statement": null, "issue": "'believe' is a distributive predicate over the Keeper group, so the group event should be accompanied by the per-member (Implication (PartOf $x sk_group_1) ...) rule that a grouped/counted plural requires, and no such rule is emitted."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["bare 'some' + plural as a clause subject (non-partitive): 'some' is absent from the quantifier-to-strength table, absent from the CardinalityPhrase vague-count lexicon, and ProportionOf's 'some' level is licensed only for the partitive 'some of the Ns'"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The seal itself is handled correctly: the definite 'the Keeper' projects its typing to top level, the indefinite 'a wraith' stays sealed, 'let' takes the periphrastic-causative shape with the causee as Agent of the caused event, and no predication of the belief content leaks."}

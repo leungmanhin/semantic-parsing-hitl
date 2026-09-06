@@ -1,0 +1,177 @@
+{
+ "id": "L3-04",
+ "rule": "III — Redistribution",
+ "texts": [
+  "The Council redistributes mire-essence reserves at every full moon.",
+  "Each lantern-station reports its monthly production to the Council.",
+  "The Cauldron Hall Warden reports the essence reserve to the Council.",
+  "The Council allocates mire-essence to the stations for the coming month."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000224",
+   "sentence": "The Council redistributes mire-essence reserves at every full moon.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: redist_ev (Member sk_redistribute_1 redistribute) (STV 1.0 0.99))",
+    "(: redist_agent (Agent sk_redistribute_1 sk_council_1) (STV 1.0 0.99))",
+    "(: redist_theme (Theme sk_redistribute_1 mire_essence_reserve) (STV 1.0 0.99))",
+    "(: mer_genus (Inheritance mire_essence_reserve reserve) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: redist_every (Every sk_redistribute_1 1 full_moon) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000224",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The compound `full_moon` is fused from the surface but carries none of the decomposition atoms Compound concepts makes mandatory for a minted compound — no genus `(Inheritance full_moon moon)` and no modifier genus, though 'full' passes the predication test on 'moon'."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Recurrence keyed to a recurring natural event ('at every full moon'): Every's unit slot is illustrated only with time units (week, month, year) and the named-slot route needs a licensed Time term, so nothing states whether a lunar phase may fill the unit slot, ride Time as a bare symbol, or take the 'every time / whenever' occurrence-rule route."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`(Inheritance mire_essence essence)` decomposes a symbol that appears in no other atom of this parse — the noun modifier is correctly left unexposed, so this is a second-level decomposition past 'decompose once, then stop'. The rest follows the instruction set: 'the Council' as a capitalized common noun with no Name, no tense atom on the habitual, bare-kind plural object, and the `reserve` genus."
+   },
+   "adjudication": {
+    "id": "lore-000224",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "In the `Every` unit slot `full_moon` names a recurrence period, not a moon, so the demanded genus fails the instruction set's own boundary note that \"the head genus is suppressed when the IS-A fails\" and would itself be a false atom; with the unit slot uncovered (the reviewer's own gap), the calibration line licenses the undecomposed improvisation, every atom of which is true and well-typed."
+     }
+    ],
+    "gaps_confirmed": [
+     "Recurrence keyed to a recurring natural event (\"at every full moon\"): no licensed Time term, cycle unit, or occurrence-rule route is stated for a lunar phase, so nothing says whether it may fill Every's unit slot, ride Time as a bare symbol, or take the whenever route."
+    ],
+    "new_gaps": [
+     "Whether a compound symbol minted into a Measure-family / Every unit slot takes the Compound concepts decomposition atoms at all: compound rate units (cent_per_share, kilometer_per_hour) are shown with no genus, while a compound condition (room_temperature) is explicitly decomposed, and nothing states which precedent governs a unit slot."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The dangling `(Inheritance mire_essence essence)` recurses past \"decompose once, to single-word lemmas, then stop\" onto a noun modifier the parse correctly leaves unexposed, but the reviewer filed it only as a note and the atom is itself true and well-typed. The Council as a bare capitalized common-noun label, the absent tense atom on the habitual, the bare-kind object and the `reserve` genus all follow the instruction set."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000225",
+   "sentence": "Each lantern-station reports its monthly production to the Council.",
+   "parse": [
+    "(: ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: ls_report_q (QuantifierPhrase lantern_station report \"each\") (STV 1.0 0.99))",
+    "(: ls_report_rule (Implication (Member $x lantern_station) (And (Member (sk_report $x) report) (Agent (sk_report $x) $x) (Member (sk_production $x) production) (Member (sk_production $x) monthly) (Agent (sk_production $x) $x) (Theme (sk_report $x) (sk_production $x)) (Recipient (sk_report $x) sk_council_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000225",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"each N V\" takes the distributing rule with a Member-premise range, the \"each\" companion, and the dependent (sk_report $x)/(sk_production $x) Skolem functions as specified; \"its production\" is the event-noun's underlying subject, so Agent rather than Possession is the licensed link, and \"the Council\" correctly stays a bare capitalized-common-noun witness with no Name atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000226",
+   "sentence": "The Cauldron Hall Warden reports the essence reserve to the Council.",
+   "parse": [
+    "(: l226_ch_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: l226_ch_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: l226_warden_type (Member sk_warden_1 warden) (STV 1.0 0.99))",
+    "(: l226_warden_poss (Possession sk_warden_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: l226_report_ev (Member sk_report_1 report) (STV 1.0 0.99))",
+    "(: l226_report_ag (Agent sk_report_1 sk_warden_1) (STV 1.0 0.99))",
+    "(: l226_report_th (Theme sk_report_1 sk_reserve_1) (STV 1.0 0.99))",
+    "(: l226_reserve_type (Member sk_reserve_1 essence_reserve) (STV 1.0 0.99))",
+    "(: l226_reserve_genus (Inheritance essence_reserve reserve) (STV 1.0 0.99))",
+    "(: l226_report_rec (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+    "(: l226_council_type (Member sk_council_1 council) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000226",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a proper-noun premodifier followed by a CAPITALIZED common-noun head ('the Cauldron Hall Warden'): the proper-noun-premodifier rule (never fuses, head never joins the Name string, linked by opaque Possession) and the mechanical capitalized-run name rule (the capitalized run exceeds the bare class word, so it becomes a Name-only individual with an ordinary type atom, cf. 'the Grand Assembly' / 'Upper Calderwick') give different parses, and the instruction set does not say which governs"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse takes the Northgate-spokesman route (warden witness + Possession + Name/type on 'Cauldron Hall'), whose structure it matches exactly, but every example of that rule has a lowercase head noun, leaving the capitalized 'Warden' unlegislated. Speech-verb 'report' with an entity object correctly keeps Agent (not Experiencer), and 'the Council' correctly gets no Name atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000227",
+   "sentence": "The Council allocates mire-essence to the stations for the coming month.",
+   "parse": [
+    "(: council_m (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: allocate_ev (Member sk_allocate_1 allocate) (STV 1.0 0.99))",
+    "(: allocate_ag (Agent sk_allocate_1 sk_council_1) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: allocate_th (Theme sk_allocate_1 mire_essence) (STV 1.0 0.99))",
+    "(: stations_g (GroupOf sk_stations_1 station) (STV 1.0 0.99))",
+    "(: allocate_rec (Recipient sk_allocate_1 sk_stations_1) (STV 1.0 0.99))",
+    "(: allocate_time (Time sk_allocate_1 coming_month) (STV 1.0 0.99))",
+    "(: allocate_fut (Future sk_allocate_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000227",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "The coverage frame 'for the coming month' is asserted as the allocating event's own Time, which places the allocating inside that month rather than recording the period the allocation is allotted for."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a forward-looking window / extent frame adverbial ('for the coming month') — the instruction set gives WithinLast for the backward window, Measure-duration for a bare duration and Time for a point or named time, but no head for the future period an eventuality is allotted for"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows doctrine: 'The Council' as a capitalized common-noun label with no Name atom, the singular collective taking a plain event and no distribution rule, mire_essence genus-only with the noun modifier unexposed and used as a bare kind filler, and Future licensed by the lexically future adjunct."
+   },
+   "adjudication": {
+    "id": "lore-000227",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "(Time sk_allocate_1 coming_month) places the allocating event itself inside the coming month, a temporal location the sentence never states — the allotment covers that period, and the instruction set's parallel ruling on frame adverbials ('a backward-window frame adverbial is a window, not a duration... never (Measure e duration ...)') bars exactly this kind of mis-slotting."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the surface-preposition oblique built on the word actually used — (For sk_allocate_1 coming_month) — which records the allotted period without claiming when the allocating happens; Time stays reserved for the event's own time.",
+    "notes": "I do not confirm the reviewer's gap: the preposition-named oblique is the instruction set's standing open licence for a PP that no named role fits ('the head is the preposition actually used', 'decide by the question the PP answers'), so the frame IS encodable — what is missing is only a dedicated head distinguishing coverage-'for' from other 'for' senses, which is not a coverage gap. Everything else in the parse follows doctrine, including the Name-less capitalized label, the singular collective's rule-free event, and the mire_essence genus."
+   }
+  }
+ ]
+}

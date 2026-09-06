@@ -1,0 +1,9 @@
+{"id": "lore-000441", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The rule quantifies the named kind range `spring_tide` and consumes the explicit word \"each\" to set strength 1.0, and the companion is stated mandatory for every explicit quantifier word the rule consumes (*Negation (copular)*), restating exactly a range the rule itself quantifies; the sole carve-out names \"every time / whenever\", a clause-ranged frequency conditional with no kind symbol to fill the companion's first slot, which is not this case."}],
+ "gaps_confirmed": ["Routing for a determiner-quantified event-noun inside a temporal PP (\"after each spring tide\") is unspecified: the occurrence-rule route is given only for \"every time / whenever\" CLAUSES and the flat habitual form only for calendar slots (Weekday / Month / Hour terms)."],
+ "new_gaps": ["A definite plural object inside such an improvised occurrence rule (\"refills the cisterns\") has no stated treatment: *Quantifiers, generics & scope* would require a per-member distribution rule for a distributive predicate on a grouped plural, but nesting that rule inside the outer rule's consequent has no licensed shape."],
+ "decision": "defect",
+ "defect_summary": "The compliant form keeps this rule unchanged and adds the companion `(: tide_q (QuantifierPhrase spring_tide refill \"each\") (STV 1.0 0.99))` beside it.",
+ "notes": "Everything else is doctrine-clean: the `Possession` route for the proper-noun premodifier \"a Cauldron Hall apprentice\", the whole-name symbol plus a separate `hall` type atom, the `spring_tide` genus with the noun modifier correctly unexposed, and \"after\" rendered as `(Before <tide> <refill>)`."}

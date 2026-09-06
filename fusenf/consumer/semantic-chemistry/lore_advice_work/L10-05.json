@@ -1,0 +1,226 @@
+{
+ "id": "L10-05",
+ "rule": "X — Inspections and ledgers",
+ "texts": [
+  "Sailsworn inspects the Salt-bloom Tide-pools once each season.",
+  "The inspection checks the pools for erosion.",
+  "The inspection confirms that the bloom is growing.",
+  "The Council periodically begins a fresh ledger.",
+  "The Council speaker dates the first page of each new ledger.",
+  "Meren Tallowhand dated the first page of the current ledger."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000590",
+   "sentence": "Sailsworn inspects the Salt-bloom Tide-pools once each season.",
+   "parse": [
+    "(: sw_ev (Member sk_inspect_1 inspect) (STV 1.0 0.99))",
+    "(: sw_ag (Agent sk_inspect_1 sailsworn) (STV 1.0 0.99))",
+    "(: sw_name (Name sailsworn \"Sailsworn\") (STV 1.0 0.99))",
+    "(: sw_th (Theme sk_inspect_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+    "(: sw_place_typ (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+    "(: sw_place_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+    "(: sw_freq (TimesPer sk_inspect_1 1 season) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000590",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized PLURAL-headed multi-word proper name ('the Salt-bloom Tide-pools') — the multi-word-name rule licenses one singular type atom from the kind word inside the name (the 'Kestrel River' pattern), while the capitalized-plural-label rule bars any per-member kind from the label word and any GroupOf; neither settles how to type a plural referent that is also a proper name"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Theme for 'inspect' and TimesPer for the 'once each season' rate are exactly as the instruction set specifies. The emitted (Member salt_bloom_tide_pools tide_pool) reads the plural named site as a single tide pool."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000591",
+   "sentence": "The inspection checks the pools for erosion.",
+   "parse": [
+    "(: insp_type (Member sk_inspection_1 inspection) (STV 1.0 0.99))",
+    "(: check_ev (Member sk_check_1 check) (STV 1.0 0.99))",
+    "(: check_ag (Agent sk_check_1 sk_inspection_1) (STV 1.0 0.99))",
+    "(: pools_group (GroupOf sk_group_1 pool) (STV 1.0 0.99))",
+    "(: check_th (Theme sk_check_1 sk_group_1) (STV 1.0 0.99))",
+    "(: check_for (For sk_check_1 erosion) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000591",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'check' is an evaluate/record verb so the object is Theme, the inanimate transitive subject correctly stays Agent, the definite plural 'the pools' takes a group witness, and 'for erosion' correctly takes the preposition-named For oblique rather than Beneficiary."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000592",
+   "sentence": "The inspection confirms that the bloom is growing.",
+   "parse": [
+    "(: insp_m (Member sk_inspection_1 inspection) (STV 1.0 0.99))",
+    "(: confirm_e (Member sk_confirm_1 confirm) (STV 1.0 0.99))",
+    "(: confirm_exp (Experiencer sk_confirm_1 sk_inspection_1) (STV 1.0 0.99))",
+    "(: confirm_theme (Theme sk_confirm_1 (And (Member sk_grow_1 grow) (Patient sk_grow_1 sk_bloom_1) (Ongoing sk_grow_1))) (STV 1.0 0.99))",
+    "(: grow_e (Member sk_grow_1 grow) (STV 1.0 0.99))",
+    "(: grow_pat (Patient sk_grow_1 sk_bloom_1) (STV 1.0 0.99))",
+    "(: grow_ong (Ongoing sk_grow_1) (STV 1.0 0.99))",
+    "(: bloom_m (Member sk_bloom_1 bloom) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000592",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'confirm' with a finite that-complement is not classified as factive or non-factive: it appears in neither the factive list (know/realize/discover/learn/notice/remember/regret) nor the non-factive list (believe/think/.../claim/say), and the one place it is named — the Experiencer bullet grouping it with announce/report/say — is followed by a non-factive carve-out that pointedly lists say/report/announce/claim without it, so whether P projects to top level is undetermined."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else matches the attitude template exactly — Experiencer holder, P sealed under Theme as one (And …), the definite 'the bloom' typed at top level, Patient for the change-of-state 'grow', Ongoing from the progressive, and no tense on the simple-present matrix. The verdict rests on treating confirm as factive (which the dual-emit of P at top level assumes and which ordinary English supports); if the intended classification is non-factive, statements 4-6 wrongly assert that the bloom is growing."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000593",
+   "sentence": "The Council periodically begins a fresh ledger.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: begin_ev (Member sk_begin_1 begin) (STV 1.0 0.99))",
+    "(: begin_ag (Agent sk_begin_1 sk_council_1) (STV 1.0 0.99))",
+    "(: begin_pat (Patient sk_begin_1 sk_ledger_1) (STV 1.0 0.99))",
+    "(: ledger_type (Member sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: ledger_fresh (Member sk_ledger_1 fresh) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000593",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a PERIODICITY adverb with no stated period ('periodically', and the same family: 'intermittently', 'regularly', 'occasionally at intervals'): it is not on the frequency-strength dial (always / usually / often / sometimes / rarely), Every and TimesPer both require a stated period or rate, and Manner is barred, so the instruction set's only move is to drop it — the recurrence claim is silently lost"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Council' correctly takes the capitalized-common-noun default (witness plus type atom, no Name, no GroupOf) and, as a singular collective, does not distribute; 'begins a fresh ledger' is rightly an ordinary transitive event rather than the inceptive-aspect form, which needs an activity complement. Dropping 'periodically' is what the instruction set prescribes for an unrepresentable frequency adverbial, so it is a gap rather than a parse defect."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000594",
+   "sentence": "The Council speaker dates the first page of each new ledger.",
+   "parse": [
+    "(: speaker_type (Member sk_speaker_1 council_speaker) (STV 1.0 0.99))",
+    "(: speaker_genus (Inheritance council_speaker speaker) (STV 1.0 0.99))",
+    "(: speaker_dates (Implication (And (Member $l ledger) (Member $l new)) (And (Member (sk_date $l) date) (Agent (sk_date $l) sk_speaker_1) (Patient (sk_date $l) (sk_page $l)) (Member (sk_page $l) page) (PartOf (sk_page $l) $l) (Ordinal (sk_page $l) 1 page))) (STV 1.0 0.9))",
+    "(: speaker_dates_q (QuantifierPhrase ledger date \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000594",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The Ordinal scale slot is filled with the entity's own class 'page', but that slot is licensed only for the associated event ('the first to respond' takes respond) or an explicit '-est' dimension, and 'the first page' supplies neither."
+     },
+     {
+      "statement": 0,
+      "issue": "Capitalized 'Council' is absorbed into the fused kind council_speaker, so no council referent exists and the capitalization is recorded nowhere; if 'Council' counts as a name-bearing premodifier the licensed form is the head noun typed on its own plus an opaque Possession link and a Name atom, never a fused compound."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized COMMON-noun premodifier of a common-noun head ('the Council speaker') — the proper-noun-premodifier rule (no fusion, Possession plus Name) and the capitalized-common-noun-by-default rule (scoped to a capitalized noun used as the referent's ONLY label) point opposite ways, and neither is stated to govern this shape",
+     "a purely positional ordinal on a non-eventive noun ('the first page of a ledger') — Ordinal's scale slot is defined as the associated event or an explicit '-est' dimension, and position-within-a-sequence is neither, while the reserved 'unspecified' filler is licensed only in Measure-family slots"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Right calls: 'each new ledger' routed to a distributing rule with the adjectival restriction as a premise conjunct, the dependent definite 'the first page' minted as the Skolem function (sk_page $l) with PartOf back to its ledger, and the shared agent kept as a constant asserted at top level."
+   },
+   "adjudication": {
+    "id": "lore-000594",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The reviewer reads the Ordinal scale slot correctly, but that makes this uncovered territory rather than a violation: the only alternatives are to drop \"first\" — barred by *Core patterns*, since it widens the claim from the first page to any page — or the reserved symbol \"unspecified\", licensed only in Measure-family slots, so improvising the sequence name \"page\" keeps a true atom (the page is rank 1 in the ledger's page order) with an ordinary lowercase term in the slot."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "*Names and casing* makes a capitalized common noun a common noun BY DEFAULT with no Name atom, name-hood requiring the capitalized run to exceed the bare class word (\"the Grand Assembly\") or a different word to state the kind — \"Council\" is the bare class word, so the proper-noun-premodifier rule (Possession + Name) is not triggered and the ordinary compound-kind rule applies, fusing council_speaker with genus speaker and no modifier atom or referent (fire_exit is not fire)."
+     }
+    ],
+    "gaps_confirmed": [
+     "a capitalized COMMON-noun premodifier of a common-noun head (\"the Council speaker\"): the proper-noun-premodifier rule (no fusion, Possession plus Name) and the capitalized-common-noun-by-default rule (scoped to a capitalized noun used as the referent's ONLY label) point opposite ways, and neither is stated to govern this shape",
+     "a purely positional ordinal on a non-eventive noun (\"the first page of a ledger\"): Ordinal's scale slot is defined as the associated event or an explicit \"-est\" dimension, position-within-a-sequence is neither, and the reserved \"unspecified\" filler is licensed only in Measure-family slots"
+    ],
+    "new_gaps": [
+     "Ordinal has no licensed slot for the SET the rank is relative to — rank 1 among the pages of THIS ledger versus pages at large; here the PartOf link carries the containment but nothing ties the ordering to it, so a restricted ordinal and an absolute one are indistinguishable in the KB"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The rest is doctrinal: the object-side universal routed to a distributing rule with the adjectival restriction as a premise conjunct, the shared agent kept as a top-level constant (the ∃∀ shape), the dependent definite minted as (sk_page $l) with PartOf back to its ledger, Patient for the marked page, and the QuantifierPhrase companion on the quantified range."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000595",
+   "sentence": "Meren Tallowhand dated the first page of the current ledger.",
+   "parse": [
+    "(: meren_name (Name meren_tallowhand \"Meren Tallowhand\") (STV 1.0 0.99))",
+    "(: ledger_type (Member sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: ledger_current (Member sk_ledger_1 current) (STV 1.0 0.99))",
+    "(: page_type (Member sk_page_1 page) (STV 1.0 0.99))",
+    "(: page_ordinal (Ordinal sk_page_1 1 page) (STV 1.0 0.99))",
+    "(: page_partof (PartOf sk_page_1 sk_ledger_1) (STV 1.0 0.99))",
+    "(: date_ev (Member sk_date_1 date) (STV 1.0 0.99))",
+    "(: date_agent (Agent sk_date_1 meren_tallowhand) (STV 1.0 0.99))",
+    "(: date_patient (Patient sk_date_1 sk_page_1) (STV 1.0 0.99))",
+    "(: date_past (Past sk_date_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000595",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a positional ordinal on a noun with no associated event and no stated '-est' dimension (\"the first page of the ledger\", \"the third house\"): Ordinal's third slot is defined as \"the associated event, or an explicit '-est' dimension\", and neither exists here, so the scale filler used (the entity's own class, `page`) is not licensed by the rule as written and the ordering domain (pages of THIS ledger) is carried only implicitly by the separate PartOf atom"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Multi-word name as one opaque symbol with a Name atom and no invented kind atom, 'current' split off rather than fused, page-of-ledger as PartOf, and Patient for the content-altering 'dated' all conform; the write-a-date-on sense is favored over the determine-the-age sense by world knowledge, which the Multiple-live-readings section treats as a lean, not a tie, so the single reading is correct."
+   },
+   "adjudication": null
+  }
+ ]
+}

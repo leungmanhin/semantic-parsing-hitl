@@ -1,0 +1,168 @@
+{
+ "id": "L3-12",
+ "rule": "III — Calendar markers",
+ "texts": [
+  "The Council recognizes three calendar markers.",
+  "The autumn equinox starts moth-season.",
+  "The first hard frost starts salt-bloom season.",
+  "The spring equinox closes salt-bloom season."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000272",
+   "sentence": "The Council recognizes three calendar markers.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: marker_group (GroupOf sk_marker_1 calendar_marker) (STV 1.0 0.99))",
+    "(: marker_count (Cardinality sk_marker_1 3) (STV 1.0 0.99))",
+    "(: marker_genus (Inheritance calendar_marker marker) (STV 1.0 0.99))",
+    "(: e_recognize (Member sk_recognize_1 recognize) (STV 1.0 0.99))",
+    "(: e_experiencer (Experiencer sk_recognize_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_stimulus (Stimulus sk_recognize_1 sk_marker_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000272",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "\"recognizes\" here is institutional acknowledgment, not a stative psych/perception state, so the transitive subject should be Agent — stativity alone never demotes a transitive subject (\"the manifest lists two pallets\") — and the object Theme, not Experiencer/Stimulus."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else matches the instruction set: the capitalized bare class label \"the Council\" correctly takes no Name atom, the counted plural gets GroupOf + Cardinality 3, calendar_marker exposes only its head genus (a noun modifier is never exposed), and the habitual present correctly carries no status atom."
+   },
+   "adjudication": {
+    "id": "lore-000272",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Institutional 'recognizes' is an act of acknowledgment, not a stative psych/perception state — the instruction set moves a transitive subject off Agent for exactly two classes (possession, and stative psych/perception bounded by the progressive test, listing the eventive neighbours 'discover, notice, realise' as ordinary Agents) and states that stativity alone never demotes a transitive subject ('the manifest lists two pallets')."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is (Agent sk_recognize_1 sk_council_1) with (Theme sk_recognize_1 sk_marker_1) — the markers are acknowledged, not changed, so the object takes Theme by the does-it-change test.",
+    "notes": "Everything else is right: the capitalized bare class label takes no Name atom, the counted plural gets GroupOf + Cardinality 3, calendar_marker exposes only its head genus, and the habitual present carries no status atom."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000273",
+   "sentence": "The autumn equinox starts moth-season.",
+   "parse": [
+    "(: eq_typ (Member sk_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+    "(: eq_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+    "(: e_start (Member sk_start_1 start) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_start_1 sk_equinox_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_start_1 moth_season) (STV 1.0 0.99))",
+    "(: season_genus (Inheritance moth_season season) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000273",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite-singular subject correctly reifies an event rather than a kind relation, and the bare simple present correctly gets no status atom; Patient on moth_season follows the occurrence-object rule (starting changes whether it happens), and bare 'moth-season' correctly stays a non-specific kind filler with its genus atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000274",
+   "sentence": "The first hard frost starts salt-bloom season.",
+   "parse": [
+    "(: frost_kind (Member sk_frost_1 hard_frost) (STV 1.0 0.99))",
+    "(: frost_genus (Inheritance hard_frost frost) (STV 1.0 0.99))",
+    "(: frost_mod (Inheritance hard_frost hard) (STV 1.0 0.99))",
+    "(: frost_ord (Ordinal sk_frost_1 1 hard_frost) (STV 1.0 0.99))",
+    "(: start_ev (Member sk_start_1 start) (STV 1.0 0.99))",
+    "(: start_ag (Agent sk_start_1 sk_frost_1) (STV 1.0 0.99))",
+    "(: start_pat (Patient sk_start_1 salt_bloom_season) (STV 1.0 0.99))",
+    "(: season_genus (Inheritance salt_bloom_season season) (STV 1.0 0.99))",
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000274",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 8,
+      "issue": "(Inheritance salt_bloom bloom) recursively decomposes the noun modifier of salt_bloom_season, which the compound rules deliberately leave inside the symbol ('a noun modifier is never exposed ... leave those in the symbol'), past the 'decompose once, to single-word lemmas, then stop' bar; salt_bloom is not itself a referent or predicate of this sentence."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an ordinal ranking an entity within its own kind's temporal sequence ('the first hard frost'): Ordinal's scale slot is specified as 'the associated event, or an explicit -est dimension', and this NP supplies neither, so there is no licensed filler"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse fills that empty scale slot with the entity's own class, (Ordinal sk_frost_1 1 hard_frost), which is neither of the two licensed fillers. Fusing 'hard frost' as a term of art with genus frost plus the gradable modifier genus hard is defensible, and Agent/Patient on 'starts' plus the tenseless habitual present are right."
+   },
+   "adjudication": {
+    "id": "lore-000274",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "*Compound concepts* decomposes once to single-word lemmas and stops, and a noun modifier is never exposed but \"left in the symbol\", so nothing licenses a second-level genus for salt_bloom — an orphan taxonomy claim about a symbol that fills no slot in the parse and that the point-at-the-words test of *Core patterns* cannot support."
+     }
+    ],
+    "gaps_confirmed": [
+     "an ordinal ranking an entity within its own kind's temporal sequence (\"the first hard frost\"): Ordinal's scale slot is specified as the associated event or an explicit -est dimension, and this NP supplies neither"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Drop (Inheritance salt_bloom bloom): the compliant decomposition of salt_bloom_season is the head genus (Inheritance salt_bloom_season season) alone, with the noun modifier left undecomposed inside the symbol.",
+    "notes": "The parse's (Ordinal sk_frost_1 1 hard_frost) fills that unlicensed scale slot with the entity's own class, but the atom is true of the sentence and well-typed, so it is acceptable improvisation in the gap territory the reviewer records rather than a second defect. Fusing \"hard frost\" as a term of art with genus frost plus the gradable modifier genus, and the tenseless habitual Agent/Patient event, are correct."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000275",
+   "sentence": "The spring equinox closes salt-bloom season.",
+   "parse": [
+    "(: equinox_gen (Inheritance spring_equinox equinox) (STV 1.0 0.99))",
+    "(: equinox_typ (Member sk_equinox_1 spring_equinox) (STV 1.0 0.99))",
+    "(: season_gen (Inheritance salt_bloom_season season) (STV 1.0 0.99))",
+    "(: close_ev (Member sk_close_1 close) (STV 1.0 0.99))",
+    "(: close_ag (Agent sk_close_1 sk_equinox_1) (STV 1.0 0.99))",
+    "(: close_pat (Patient sk_close_1 salt_bloom_season) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000275",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite-singular subject correctly stays an ordinary verbal clause on a witness rather than a kind relation, and the bare simple present correctly gets no status atom; both compounds carry their head genus with the noun modifiers left unexposed."
+   },
+   "adjudication": null
+  }
+ ]
+}

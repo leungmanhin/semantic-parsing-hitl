@@ -1,0 +1,2 @@
+(: keeper_apprentice_rule (Implication (And (Member $k keeper) (Member $c child) (Possession $c $k)) (And (Member (sk_apprentice $c) apprentice) (Agent (sk_apprentice $c) $c) (Permitted (sk_apprentice $c)))) (STV 1.0 0.99))
+(: keeper_apprentice_q (QuantifierPhrase keeper apprentice "any") (STV 1.0 0.99))

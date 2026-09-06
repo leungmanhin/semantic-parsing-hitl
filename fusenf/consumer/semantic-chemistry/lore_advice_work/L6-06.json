@@ -1,0 +1,299 @@
+{
+ "id": "L6-06",
+ "rule": "VI — Molting and feathers",
+ "texts": [
+  "Sky-cats molt in late summer and early autumn.",
+  "Whenever a sky-cat molts, feathers fall to the base of the cliff.",
+  "Tessa Brae's collectors gather the fallen feathers each morning during molting weeks.",
+  "Ground sky-cat feathers ward lanterns against wraiths.",
+  "The Keepers consider sky-cats sacred because sky-cat feathers ward lanterns against wraiths.",
+  "The Keepers never harm a sky-cat.",
+  "A sky-cat sometimes carries a nightmoth to the spires in flight."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000412",
+   "sentence": "Sky-cats molt in late summer and early autumn.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_molt_rule (Implication (Member $x sky_cat) (And (Member (sk_molt $x) molt) (Patient (sk_molt $x) $x) (Time (sk_molt $x) late_summer) (Time (sk_molt $x) early_autumn))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000412",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "Both (Time (sk_molt $x) late_summer) and (Time (sk_molt $x) early_autumn) ride one per-instance Skolem event, asserting a single molting located in two disjoint seasons instead of distributing the coordinated adjunct into two occurrences (or recording a span)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a non-deictic season expression ('late summer', 'early autumn') as a time value — the Time-term inventory defines only (Year)/(Month)/(Day)/(Weekday)/(Hour)/(Minute) plus deictic and day-part constants, so a bare modified season name has no specified form",
+     "a coordinated temporal adjunct ('in A and B') on one clause — the coordination rules cover coordinated clauses and argument NPs, not two same-granularity Time values, and a distributing generic rule has no stated way to mint two per-instance events for one binding"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The sky_cat compound genus (noun modifier correctly unexposed), the distributing-rule form, Patient for the internal-change intransitive subject and the 0.9/0.9 empirical-generic TVs are all right; only the two-season adjunct is mis-scoped."
+   },
+   "adjudication": {
+    "id": "lore-000412",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The generic-rule machinery of *Quantifiers, generics & scope* mints exactly one Skolem event per binding, so both contiguous seasons can only ride that one event, and each Time atom is true of the sentence under the season-spanning reading that *Multiple live readings* directs the parser to select (a world-knowledge lean, not a tie) — nothing in *Time* bars two same-granularity Time values on one eventuality."
+     }
+    ],
+    "gaps_confirmed": [
+     "a non-deictic season expression (late summer, early autumn) has no defined Time value — the term inventory is Year/Month/Day/Weekday/Hour/Minute plus deictic and day-part constants only",
+     "a coordinated temporal adjunct (in A and B) on one clause: the coordination doctrine distributes coordinated NPs, but a distributing generic rule has no stated way to mint two per-instance events for one binding, so the two routes conflict with no tie-breaker"
+    ],
+    "new_gaps": [],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The sky_cat genus with the noun modifier unexposed, Patient for the internal-change intransitive subject, the bare-generic rule with no QuantifierPhrase, and the 0.9/0.9 empirical TVs are all correct. The season symbols are improvisation in genuine gap territory, and every atom emitted there is true and well-typed."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000413",
+   "sentence": "Whenever a sky-cat molts, feathers fall to the base of the cliff.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: whenever_molt_fall (Implication (And (Member $c sky_cat) (Member $x molt) (Patient $x $c)) (And (GroupOf (sk_feathers $x) feather) (Member (sk_fall $x) fall) (Patient (sk_fall $x) (sk_feathers $x)) (Goal (sk_fall $x) sk_base_1) (During (sk_fall $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000413",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule routing, per-occurrence Skolem consequent with the During link, Goal for 'to the base', PartOf for the of-genitive, and the sky_cat compound genus all follow the instruction set; Patient on both the intransitive molt subject and the gravity-moved feathers matches the intransitive-subject tests."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000414",
+   "sentence": "Tessa Brae's collectors gather the fallen feathers each morning during molting weeks.",
+   "parse": [
+    "(: tessa_brae_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: collectors_grp (GroupOf sk_collector_1 collector) (STV 1.0 0.99))",
+    "(: collectors_poss (Possession sk_collector_1 tessa_brae) (STV 1.0 0.99))",
+    "(: feathers_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feathers_fallen_rule (Implication (PartOf $x sk_feather_1) (Member $x fallen)) (STV 1.0 0.9))",
+    "(: e_gather (Member sk_gather_1 gather) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_gather_1 sk_collector_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_gather_1 sk_feather_1) (STV 1.0 0.99))",
+    "(: e_time_morning (Time sk_gather_1 morning) (STV 1.0 0.99))",
+    "(: e_every_day (Every sk_gather_1 1 day) (STV 1.0 0.99))",
+    "(: e_during_molt (During sk_gather_1 molting_week) (STV 1.0 0.99))",
+    "(: molting_week_genus (Inheritance molting_week week) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000414",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"during\" + a bare-plural period noun (\"during molting weeks\"): the During rule specifies (During <inner> <outer>) with both arguments reified eventualities, and gives no form for a period-denoting NP as the outer argument — the parse uses the bare kind symbol molting_week, which is neither a witness nor a calendar/deictic Time term"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group-only encoding of transitive \"gather\" (no per-member rule) is licensed because the instruction set names gather in its collective-predicate list, though the transitive collecting sense arguably distributes. Everything else — Possession on the possessed group, the distributive (PartOf $x .. -> fallen) rule at 1.0 0.9, Time morning + Every 1 day, and the noun-modifier-suppressed molting_week genus — follows the stated rules."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000415",
+   "sentence": "Ground sky-cat feathers ward lanterns against wraiths.",
+   "parse": [
+    "(: e415_feather_genus (Inheritance sky_cat_feather feather) (STV 1.0 0.99))",
+    "(: e415_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: e415_rule (Implication (And (Member $f sky_cat_feather) (Member $f ground)) (And (Member (sk_ward $f) ward) (Agent (sk_ward $f) $f) (Theme (sk_ward $f) lantern) (Against (sk_ward $f) wraith))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000415",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"sky-cat feather\" is fused into the compound kind `sky_cat_feather`, but the modifier is a possessor/whole and the head its part/component (the feather of a sky-cat), which *Compound concepts* explicitly bars from fusing (\"car engine\", \"table leg\" -> head kind + `PartOf`)."
+     },
+     {
+      "statement": 1,
+      "issue": "`(Inheritance sky_cat cat)` decomposes a modifier that the noun-modifier rule says is never exposed, and mints a symbol (`sky_cat`) that appears in no other atom in the parse, leaving a dangling genus disconnected from `sky_cat_feather`."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the possessor/whole + part/component no-fuse rule is stated only for individual referents (\"the car engine\" -> witness + `PartOf`); it gives no form for an animal-body-part compound that has to appear as a KIND restriction in a generic rule's premise"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The routing is right: an adjectivally-restricted kind subject (\"ground\") forces the distributing-rule route rather than a kind relation, `ground` correctly stays the participial adjective (not `grind`), the inanimate transitive subject takes `Agent`, unchanged \"lanterns\" takes `Theme` as a bare kind filler, and `Against` is a licensed preposition-named oblique. Only the compound-fusion decision and the dangling `sky_cat` genus are at issue."
+   },
+   "adjudication": {
+    "id": "lore-000415",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts bars fusing a possessor/whole + part/component pair — a sky-cat feather is the feather of a sky-cat, exactly the 'car engine' / 'table leg' case, which must emit the head kind plus a PartOf link and never the fused symbol."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "(Inheritance sky_cat cat) is the head genus of the hyphenated compound sky_cat, which the compound rule says is always emitted — not the barred exposure of the noun modifier ((Inheritance sky_cat sky)), which the parse correctly omits; its disconnectedness is a symptom of issue 0's fusion, not a false or unlicensed atom."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: drop the fusion and range the rule over (And (Member $f feather) (Member $f ground) (PartOf $f $c) (Member $c sky_cat)) — head kind plus the part-whole link, the possessor bound by a plain variable — keeping (Inheritance sky_cat cat) and the conclusion bundle unchanged.",
+    "notes": "The reviewer's gap does not stand: the no-fuse form composes inside a rule premise with no improvisation, since a plain variable binds the possessor and PartOf needs no individuated whole. The rest is licensed — the 'ground' participial adjective, the distributing-rule route forced by the restricted kind subject, the bare-kind Theme, and the Against oblique."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000416",
+   "sentence": "The Keepers consider sky-cats sacred because sky-cat feathers ward lanterns against wraiths.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: e_consider (Member sk_consider_1 consider) (STV 1.0 0.99))",
+    "(: e_consider_exp (Experiencer sk_consider_1 keepers) (STV 1.0 0.99))",
+    "(: e_consider_theme (Theme sk_consider_1 (Inheritance sky_cat sacred)) (STV 1.0 0.99))",
+    "(: feather_ward_rule (Implication (And (Member $x feather) (Member $y sky_cat) (PartOf $x $y)) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) lantern) (Against (sk_ward $x) wraith))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000416",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "active small-clause complement of an attitude verb (\"X considers Y ADJ\") — the instruction set routes only finite that-clause attitudes and the passive impersonal \"is considered to be P\", never the active object+predicate small clause",
+     "a causal connective whose subordinate clause is a generic that becomes an Implication rule: a rule has no event witness to fill the connective's second endpoint, so the stated \"because\" link cannot be recorded at all (the nearest guidance, discourse-initial connectives, says never invent an endpoint and record the gap)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name-only handling of the capitalized plural label \"the Keepers\", the sky_cat genus projecting out of the seal, the PartOf (not fused) reading of \"sky-cat feathers\", and the Against oblique all follow the instruction set. The causal link is the one thing lost, and it is lost for want of a licensed carrier rather than by mis-parse."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000417",
+   "sentence": "The Keepers never harm a sky-cat.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: keepers_harm_neg (And (Member sk_harm_1 harm) (Agent sk_harm_1 keepers) (Patient sk_harm_1 sk_sky_cat_1) (Member sk_sky_cat_1 sky_cat)) (STV 0.0 0.99))",
+    "(: keepers_harm_q (QuantifierPhrase keepers harm \"never\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000417",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "frequency adverb ('never') on a habitual claim whose subject is a Name-only individual rather than a kind: the mandatory QuantifierPhrase companion is specified as (QuantifierPhrase <kind> <verb-lemma> \"<word>\") and 'only ever restates a range the rule itself quantifies', but this sentence yields no rule and no quantified range, so the first slot ends up holding an individual constant"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Keepers' follows the capitalized-plural-label rule (Name-only individual, no GroupOf, no per-member kind), and the strength-0.0 bundle keeping the indefinite 'a sky-cat' witness and its typing inside matches the 'A cooper does not caulk the barrel' pattern."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000418",
+   "sentence": "A sky-cat sometimes carries a nightmoth to the spires in flight.",
+   "parse": [
+    "(: e1_skycat (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))",
+    "(: e1_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: e1_nightmoth (Member sk_nightmoth_1 nightmoth) (STV 1.0 0.99))",
+    "(: e1_nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: e1_spires (GroupOf sk_spire_1 spire) (STV 1.0 0.99))",
+    "(: e1_carry_bundle (And (Member sk_carry_1 carry) (Agent sk_carry_1 sk_sky_cat_1) (Theme sk_carry_1 sk_nightmoth_1) (Goal sk_carry_1 sk_spire_1) (In sk_carry_1 flight)) (STV 0.5 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000418",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The frequency adverb \"sometimes\" is encoded as strength 0.5 on an (And ...) event bundle, but the instruction set licenses a multi-atom (And ...) container only for negation/cessation, disjunction and sealing, and specifies the frequency dial as setting a rule's or a flat generic's strength, never as a reason to bundle a witness-subject event."
+     },
+     {
+      "statement": null,
+      "issue": "No (QuantifierPhrase sky_cat carry \"sometimes\") companion is emitted, although the companion is mandatory for every explicit quantifier word the rule or claim consumes, a frequency adverb's word included."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a frequency adverb (\"sometimes\") on a verbal clause whose subject is an indefinite singular: the Existential section forces a witness rather than a generic rule, while the frequency dial and its QuantifierPhrase companion are defined only for a rule or a flat generic, so there is no single atom for the 0.5 strength to ride on"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling (sky_cat genus cat, solid-spelled nightmoth genus moth, noun modifiers left unexposed), the definite-plural group witness for \"the spires\", Goal for the non-recipient \"to\", and the preposition-named (In ... flight) oblique all follow the instruction set."
+   },
+   "adjudication": {
+    "id": "lore-000418",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Gap territory: with an indefinite-singular subject over a verbal predicate the Existential section forces a witness rather than a rule (\"a verbal generic takes a bare plural or an explicit quantifier ... not 'a dog'\"), so the frequency dial has no rule or flat generic to ride on, while a positive event bundled as one (And ...) fact is a precedented well-typed container (the Disjunction section's \"one (And ...) fact ... like a negated event\" at STV 1.0 0.99), every conjunct is true of the sentence, and Core patterns bars dropping the hedge instead of carrying it."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "The companion \"only ever restates a range the rule itself quantifies - never a range that appears nowhere else in the parse\", and this parse quantifies over no kind (the subject is the witness sk_sky_cat_1), so (QuantifierPhrase sky_cat carry \"sometimes\") would invent a kind-level range the parse never states - a coverage gap, not a parse defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "a frequency adverb on a verbal clause with an indefinite-singular subject: the Existential section forces a witness, while the frequency strength and its QuantifierPhrase companion are defined only over a rule or a flat generic, leaving the adverb no licensed carrier"
+    ],
+    "new_gaps": [
+     "an indefinite witness posited only by a sub-1.0-strength bundle has no stated projection rule - the \"what projects out of a seal\" table covers strength-0 denials and attitude seals only, so nothing says whether (Member sk_nightmoth_1 nightmoth) belongs inside the graded bundle or at top level at full strength"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Compound handling (sky_cat genus cat, solid-spelled nightmoth genus moth, noun modifiers unexposed), the definite-plural group witness, the non-recipient Goal and the (In ... flight) preposition-named oblique are all correct. The one residual worry is the full-strength nightmoth witness sitting outside the 0.5 bundle that is its only source - filed above as a gap rather than as an issue."
+   }
+  }
+ ]
+}

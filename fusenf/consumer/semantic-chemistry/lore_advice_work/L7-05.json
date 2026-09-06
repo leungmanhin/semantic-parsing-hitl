@@ -1,0 +1,302 @@
+{
+ "id": "L7-05",
+ "rule": "VII — Storms and the fleet",
+ "texts": [
+  "Storms come over the Cold Sea in autumn and early winter.",
+  "The autumn equinox begins the storm season.",
+  "Autumn storms sometimes destroy Cliff Path lanterns.",
+  "The fishing fleet stays near the harbor in winter.",
+  "The fleet sails far in summer.",
+  "The fleet's safe return depends on the harbor wall lanterns.",
+  "A bad winter for lanterns is a bad winter for fishing."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000453",
+   "sentence": "Storms come over the Cold Sea in autumn and early winter.",
+   "parse": [
+    "(: cold_sea_type (Member cold_sea sea) (STV 1.0 0.99))",
+    "(: cold_sea_name (Name cold_sea \"Cold Sea\") (STV 1.0 0.99))",
+    "(: storms_come (Implication (Member $x storm) (And (Member (sk_come $x) come) (Patient (sk_come $x) $x) (Over (sk_come $x) cold_sea) (Or (Time (sk_come $x) autumn) (Time (sk_come $x) early_winter)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000453",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The coordination 'in autumn and early winter' is encoded as (Or (Time ... autumn) (Time ... early_winter)), but the text says 'and' — the Disjunction section applies only to surface 'or', and because Or is opaque and never asserts a disjunct, both time claims become unqueryable instead of the two conjoined Time facts the distributive coordination rule requires."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "modified / partial season expressions ('early winter', 'late summer') have no licensed Time term — the structured terms are Year/Month/Day/Weekday/Hour/Minute, day-parts are bare symbols, and only speech-anchored deictics ('last_spring', 'next_summer') form compound season constants, so a non-deictic 'early winter' has no defined encoding",
+     "a bare non-deictic season name ('in autumn') is not explicitly licensed as a bare Time filler either — it is neither a listed structured term nor a deictic constant"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Cold Sea' is handled exactly per the Kestrel River pattern (one name symbol + Name + separate kind atom), the Patient role for the non-volitional natural-force subject 'storms' is correct, and (Over ...) is the licensed preposition-named oblique. The rule strength 0.9 says an arbitrary storm comes over this one named sea, which reads high for the striking-verbal-generic base-rate check."
+   },
+   "adjudication": {
+    "id": "lore-000453",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Encoding a surface \"and\" with the opaque Or head is unlicensed — Disjunction is keyed to surface \"or\", and the doctrine bars Or even there when both members are asserted (\"fell 12 tons, or 8 percent\" is two true MeasureBy atoms, never an Or) — so the parse records an uncertainty the text does not state and puts both stated season facts behind an opaque head where nothing binds them."
+     }
+    ],
+    "gaps_confirmed": [
+     "a modified / partial season expression (\"early winter\") has no licensed Time filler: the structured terms are Year/Month/Day/Weekday/Hour/Minute, day-parts are bare symbols, only speech-anchored deictics form compound season constants, and the compound-concept machinery does not reach time constants, so early_winter is an unlicensed coinage"
+    ],
+    "new_gaps": [
+     "distributive coordination inside a Skolem-function generic rule has no licensed shape: per-conjunct replication needs two distinct per-storm events, but a Skolem event term is a function of the bound variable and the verb only ((sk_come $x)), so two rules — or two Time atoms in one conclusion — collide on one event and assert a single storm-coming in both seasons; a seasonal-occurrence claim over a kind (\"storms come in autumn and early winter\") therefore has no licensed carrier at all"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form would assert both seasons as ordinary conjoined content instead of hiding them behind Or, but the instruction set licenses no way to do that here — two Time atoms on the single (sk_come $x) event would claim one storm-coming happening in both autumn and early winter, and per-conjunct replication cannot mint two distinct per-binding events — so no compliant form exists for this sentence and the construction is filed as a gap.",
+    "notes": "Everything else conforms: the Cold Sea takes the Kestrel River name+kind pattern, Patient is right for a non-volitional natural force, and (Over ...) is the licensed preposition-named oblique. I do not confirm the reviewer's second gap — \"a deictic or named time stays a bare symbol\" reasonably covers a bare season name on Time."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000454",
+   "sentence": "The autumn equinox begins the storm season.",
+   "parse": [
+    "(: e2_eq_type (Member sk_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+    "(: e2_eq_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+    "(: e2_season_type (Member sk_season_1 storm_season) (STV 1.0 0.99))",
+    "(: e2_season_genus (Inheritance storm_season season) (STV 1.0 0.99))",
+    "(: e2_begin (Member sk_begin_1 begin) (STV 1.0 0.99))",
+    "(: e2_agent (Agent sk_begin_1 sk_equinox_1) (STV 1.0 0.99))",
+    "(: e2_patient (Patient sk_begin_1 sk_season_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000454",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both compounds fuse correctly with head genus only (the noun modifiers `autumn` and `storm` are rightly not exposed), the inanimate transitive subject takes `Agent`, definite singulars get witnesses, and the bare present correctly gets no status atom. `Patient` on 'the storm season' follows the occurrence-object rule, though the Inception section gives a begun activity `Theme` plus `Ongoing` -- the boundary for `begin` with an event-denoting NP object rather than a to-V complement is not settled in the text."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000455",
+   "sentence": "Autumn storms sometimes destroy Cliff Path lanterns.",
+   "parse": [
+    "(: as_genus (Inheritance autumn_storm storm) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: cp_kind (Member cliff_path path) (STV 1.0 0.99))",
+    "(: storms_destroy (Implication (Member $x autumn_storm) (And (Member (sk_destroy $x) destroy) (Agent (sk_destroy $x) $x) (Patient (sk_destroy $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern) (Possession (sk_lantern $x) cliff_path))) (STV 0.5 0.9))",
+    "(: storms_q (QuantifierPhrase autumn_storm destroy \"sometimes\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000455",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The bare-plural object 'Cliff Path lanterns' is rendered as a single Skolem witness ((Member (sk_lantern $x) lantern)), silently singularizing it — a plural set taking part in the occurrence is specified to take a group witness, not one individual."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an unnumbered bare-plural OBJECT inside a distributing rule's conclusion — the instruction set specifies group-witness vs bare-kind-filler only for episodic clauses, and Skolem groups only for a stated number under a universal, so nothing states which form a plural object takes in a generic rule"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise correct: autumn_storm genus without a noun-modifier genus, the Northgate-spokesman Possession route for the proper-noun premodifier with (Member cliff_path path) and no name decomposition, the 'sometimes' 0.5 strength with its mandatory QuantifierPhrase companion, and no tense atom on the habitual."
+   },
+   "adjudication": {
+    "id": "lore-000455",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The group-witness requirement the issue cites is stated for a bare plural in an EPISODIC clause ('rescuers reached the ridge' / 'crates were stacked with melons'), a section that expressly hands genuinely generic clauses to the rule route instead, and every atom the parser emitted inside that rule — a per-storm destroy event whose Patient is a lantern possessed by cliff_path — is true of the sentence and well-typed, so this is licensed improvisation in exactly the coverage gap the reviewer itself names rather than a false, ill-typed or over-asserted atom."
+     }
+    ],
+    "gaps_confirmed": [
+     "no stated form for an unnumbered bare-plural OBJECT inside a generic rule's conclusion: the group-witness vs bare-kind-filler split is fixed only for episodic clauses, the DEPENDENT-existential example is singular ((sk_book $x)), and the per-binding Skolem GROUP is given only for a stated number under a universal ((sk_books $x) + Cardinality), leaving the plural-without-count case unspecified"
+    ],
+    "new_gaps": [],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Also checked and sound: the proper-noun-premodifier route (head parsed normally + opaque Possession to cliff_path, head noun kept out of the Name string), (Member cliff_path path) licensed by the kind word inside the name, no modifier genus on the name, the autumn_storm genus with the noun modifier unexposed, and 'sometimes' at strength 0.5 with its mandatory QuantifierPhrase companion and no tense atom. The distributing-rule route rather than a kind-level relation is defensible here because the Cliff Path restriction on the object has no slot in an opaque two-kind relation, mirroring the 'stray dogs chase cyclists' note."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000456",
+   "sentence": "The fishing fleet stays near the harbor in winter.",
+   "parse": [
+    "(: fleet_type (Member sk_fleet_1 fishing_fleet) (STV 1.0 0.99))",
+    "(: fleet_genus (Inheritance fishing_fleet fleet) (STV 1.0 0.99))",
+    "(: harbor_type (Member sk_harbor_1 harbor) (STV 1.0 0.99))",
+    "(: stay_ev (Member sk_stay_1 stay) (STV 1.0 0.99))",
+    "(: stay_exp (Experiencer sk_stay_1 sk_fleet_1) (STV 1.0 0.99))",
+    "(: stay_loc (Location sk_stay_1 sk_harbor_1) (STV 1.0 0.99))",
+    "(: stay_time (Time sk_stay_1 winter) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000456",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "\"near the harbor\" is stored as (Location sk_stay_1 sk_harbor_1), collapsing a proximity relation into the in/at/on Location role and asserting the staying was at the harbor, where a non-containment position preposition is supposed to keep its surface head (the same open licence that gives \"next to the kiln\" its NextTo)."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest follows the instruction set: the time modifier \"in winter\" is a licensed reification trigger for a stay/remain position clause, the stative-intransitive subject correctly takes Experiencer, the habitual present correctly takes no status atom, and fishing_fleet carries its head genus with no noun-modifier genus."
+   },
+   "adjudication": {
+    "id": "lore-000456",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Where a THING is licenses exactly this shape for a position clause that a reification trigger anchors — \"Reify the postural state — Experiencer subject + Location oblique\" — and its own illustration of that trigger (\"was lying across the threshold\") carries a non-containment preposition, so the surface-head rule the reviewer cites governs the un-reified entity-attached case (LocatedIn is containment ONLY) and not the reified state's oblique."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "Proximity preposition on a REIFIED position state (\"stays near the harbor in winter\"): the Where a THING is recipe names the Location oblique for the reified case while the un-reified counterpart demands the surface head for every non-containment preposition (NextTo, Against, Atop), and the word \"near\" appears nowhere in the instruction set — so (Location e harbor) vs (Near e harbor) is underdetermined, and the two say different things about whether the staying is AT the harbor."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The rest checks out: \"stay + locative PP\" is routed to Where a THING is by the Resultatives cross-reference, \"in winter\" is a listed reification trigger, the collective noun \"the fishing fleet\" takes a plain witness with no GroupOf, and fishing_fleet exposes only its head genus."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000457",
+   "sentence": "The fleet sails far in summer.",
+   "parse": [
+    "(: e457_fleet (Member sk_fleet_1 fleet) (STV 1.0 0.99))",
+    "(: e457_sail (Member sk_sail_1 sail) (STV 1.0 0.99))",
+    "(: e457_agent (Agent sk_sail_1 sk_fleet_1) (STV 1.0 0.99))",
+    "(: e457_time (Time sk_sail_1 summer) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000457",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the spatial-extent adverb \"far\" on a motion verb (\"sails far\") has no licensed slot -- it is not a *how*-adverb so `Manner` is barred, `Degree` takes an entity plus an adjective/quantity scale rather than an event, and `Measure` needs a magnitude and unit; the instruction set's adverb rule says to leave it out and record the gap, which the parse does"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything emitted is correct: the singular collective noun \"the fleet\" is one participant with no `GroupOf` and no distribution rule, a vessel under its own power keeps `Agent`, the bare simple present correctly gets no status atom (habitual default), and the season rides `Time` as a bare constant with no `Every` since no \"every\" wording is present. The only loss is the unencodable \"far\"."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000458",
+   "sentence": "The fleet's safe return depends on the harbor wall lanterns.",
+   "parse": [
+    "(: fleet_type (Member sk_fleet_1 fleet) (STV 1.0 0.99))",
+    "(: e_return (Member sk_return_1 return) (STV 1.0 0.99))",
+    "(: e_return_ag (Agent sk_return_1 sk_fleet_1) (STV 1.0 0.99))",
+    "(: e_return_safe (Member sk_return_1 safe) (STV 1.0 0.99))",
+    "(: e_depend (Member sk_depend_1 depend) (STV 1.0 0.99))",
+    "(: e_depend_exp (Experiencer sk_depend_1 sk_return_1) (STV 1.0 0.99))",
+    "(: lanterns_grp (GroupOf sk_group_1 harbor_wall_lantern) (STV 1.0 0.99))",
+    "(: lantern_genus (Inheritance harbor_wall_lantern lantern) (STV 1.0 0.99))",
+    "(: e_depend_on (On sk_depend_1 sk_group_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000458",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The nominalized \"safe return\" is asserted at top level as an occurring event (statements 1-3 at strength 1.0), although the sentence only makes that return contingent on the lanterns and never claims the fleet returned safely."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an event nominalization whose occurrence is NOT asserted - here the subject of \"depends on\" - has no non-asserting carrier: the noun-argument rules reify such a nominalization and give its genitive a subject role, but nothing licenses reifying it without thereby asserting that the eventuality occurred (compare the irrealis-clause gap, where the instruction is to leave the clause unencoded)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The genitive-subject routing (Agent on the return, a self-powered vessel mover), the incidental-description split for \"safe\", and the prepositional-verb oblique (On) are all correct per the instruction set. \"Harbor wall lanterns\" is fused as a classifier compound rather than split into lanterns PartOf a harbor wall - borderline, but defensible under the classifier reading."
+   },
+   "adjudication": {
+    "id": "lore-000458",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The reified return carries no tense or status atom, and the instruction set makes exactly that form occurrence-neutral — Status predicates: an event with no status predicate is \"not a specific occurrence\"; a reified non-finite complement with no status \"asserts or denies nothing about occurrence\"; and a temporal-anchor event noun (\"before the inspection\") gets its class atom and nothing else precisely so no occurrence is claimed — so the three return atoms do not assert that the fleet returned safely."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The reviewer's q2 gap is not a gap: the non-asserting carrier is the untensed reification itself, which the noun-argument rules already prescribe (a genitive naming an event noun's underlying subject takes that subject role). The (On sk_depend_1 ...) oblique is the instruction set's own \"depend on the pump\" case, and Experiencer on the stative intransitive subject follows the intransitive-subject test."
+   }
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000459",
+   "sentence": "A bad winter for lanterns is a bad winter for fishing.",
+   "parse": [
+    "(: bfl_genus (Inheritance bad_for_lanterns bad) (STV 1.0 0.99))",
+    "(: bfl_arg (For bad_for_lanterns lantern) (STV 1.0 0.99))",
+    "(: bff_genus (Inheritance bad_for_fishing bad) (STV 1.0 0.99))",
+    "(: bff_arg (For bad_for_fishing fishing) (STV 1.0 0.99))",
+    "(: winter_bad_rule (Implication (And (Member $w winter) (Member $w bad_for_lanterns)) (Member $w bad_for_fishing)) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000459",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a copular generic whose subject and predicate are both restricted kinds sharing one head noun (\"A bad winter for X is a bad winter for Y\") — Categorical statements would give a single Inheritance between the two complex kinds, while the relational-universal-with-copular-conclusion precedent gives the restriction-in-premises Implication used here; nothing in the instruction set selects between them",
+     "the adjective+PP-complement fusion rule (\"sensitive_to_light\") is stated for a PREDICATIVE kind-level generic; its use here is attributive, inside the NP \"a bad winter for lanterns\", which the instruction set does not address"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The fused properties bad_for_lanterns / bad_for_fishing carry the correct genus + argument decomposition, \"fishing\" is correctly left underived, and 0.9/0.9 is the right empirical-generic dial. The only open question is the choice of rule form over a flat Inheritance, which the instruction set leaves under-determined."
+   },
+   "adjudication": null
+  }
+ ]
+}

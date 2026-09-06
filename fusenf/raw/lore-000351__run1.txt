@@ -1,0 +1,8 @@
+(: ss_type (Member sk_storm_surge_1 storm_surge) (STV 1.0 0.99))
+(: ss_gen (Inheritance storm_surge surge) (STV 1.0 0.99))
+(: villagers_grp (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))
+(: aelmere_name (Name aelmere "Aelmere") (STV 1.0 0.99))
+(: consider_ev (Member sk_consider_1 consider) (STV 1.0 0.99))
+(: consider_exp (Experiencer sk_consider_1 sk_villagers_1) (STV 1.0 0.99))
+(: consider_theme (Theme sk_consider_1 (And (Member sk_storm_surge_1 misfortune) (Member sk_storm_surge_1 original) (Possession sk_storm_surge_1 aelmere))) (STV 1.0 0.99))
+(: villagers_consider_rule (Implication (PartOf $x sk_villagers_1) (And (Member (sk_consider $x) consider) (Experiencer (sk_consider $x) $x) (Theme (sk_consider $x) (And (Member sk_storm_surge_1 misfortune) (Member sk_storm_surge_1 original) (Possession sk_storm_surge_1 aelmere))))) (STV 1.0 0.9))

@@ -1,0 +1,11 @@
+{"id": "lore-000448", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Compound concepts states 'A noun modifier is never exposed, whatever it names' and gates exposure on the predication test, which 'cold-threshold' fails ('*the wind is cold-threshold'); taking only the modifier's first half yields (Inheritance cold_threshold_wind cold), which predicates a coldness of the wind kind the text never states — the threshold is of cold, not the wind."}],
+ "gaps_confirmed": ["'between <event-noun> and <event-noun>' as an interval frame: Intervals covers 'from X to / until Y' with calendar/clock terms in the Start/End slots, and event-noun anchors are otherwise routed through Before/BeforeBy, with no ruling on 'between A and B'.",
+                    "'the first N' where N is a plain kind noun with no associated event and no explicit '-est' dimension: the Ordinal <scale> slot is defined as 'the associated event, or an explicit -est dimension', and neither exists here.",
+                    "A compound modifier inside a fused compound ('cold-threshold wind'): Compound concepts specifies modifier+head decomposition for a single-word modifier and is silent on whether a multi-word modifier is itself unpacked or kept whole in the symbol."],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "The compliant form emits the head genus alone — (Inheritance cold_threshold_wind wind) — leaving 'cold_threshold' unexposed inside the symbol, exactly as the same parse correctly left 'spring' unexposed in spring_equinox; no atom predicating 'cold' of the wind is licensed.",
+ "notes": "The remaining atoms hold: Patient on the wind for 'blows' (non-volitional natural process), the Start/End reading of 'between A and B' and the Ordinal scale improvisation are true and well-typed in the gap territory the reviewer names, and the bare simple present correctly takes no status atom."}

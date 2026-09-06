@@ -1,0 +1,123 @@
+{
+ "id": "L2-04",
+ "rule": "II — Brindle Coombe",
+ "texts": [
+  "Brindle Coombe sits on the Council.",
+  "Brindle Coombe tends a Northcove station.",
+  "Brindle Coombe is methodical and even-tempered.",
+  "Brindle Coombe delivers the Council's disagreeable announcements."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000126",
+   "sentence": "Brindle Coombe sits on the Council.",
+   "parse": [
+    "(: bc_name (Name brindle_coombe \"Brindle Coombe\") (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: sit_ev (Member sk_sit_1 sit) (STV 1.0 0.99))",
+    "(: sit_exp (Experiencer sk_sit_1 brindle_coombe) (STV 1.0 0.99))",
+    "(: sit_on (On sk_sit_1 sk_council_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000126",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A postural verb used non-literally for institutional membership (\"sits on the Council\"): *Where a THING is* says a bare position clause mints no event whatever its verb, and lists sit, which would give the entity-attached (On brindle_coombe sk_council_1) with no event and no reification trigger present; the prepositional-verb rule instead gives a reified sit event with the (On <event> <object>) oblique. Nothing in the instruction set decides which applies when the clause asserts no physical position, and neither encoding records the membership the sentence states."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" correctly stays a plain common-noun witness with no Name atom (capitalized-common-noun default), and no type atom is invented for the multi-word name Brindle Coombe. Experiencer follows the stative-intransitive rule, and On is the preposition actually used."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000127",
+   "sentence": "Brindle Coombe tends a Northcove station.",
+   "parse": [
+    "(: l127_name (Name brindle_coombe \"Brindle Coombe\") (STV 1.0 0.99))",
+    "(: l127_station (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: l127_poss (Possession sk_station_1 northcove) (STV 1.0 0.99))",
+    "(: l127_northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: l127_tend (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: l127_agent (Agent sk_tend_1 brindle_coombe) (STV 1.0 0.99))",
+    "(: l127_patient (Patient sk_tend_1 sk_station_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000127",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'a Northcove station' follows the proper-noun-premodifier pattern exactly (head noun typed on its own witness + opaque Possession + Name on the named entity), and no kind atom is invented for Brindle Coombe. Borderline only: 'tend' is given Patient on the reading that upkeep is a treatment applied; the change test is arguably unclear here, and the instruction set's tiebreak defaults an unclear object to Theme."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000128",
+   "sentence": "Brindle Coombe is methodical and even-tempered.",
+   "parse": [
+    "(: bc_name (Name brindle_coombe \"Brindle Coombe\") (STV 1.0 0.99))",
+    "(: bc_methodical (Member brindle_coombe methodical) (STV 1.0 0.99))",
+    "(: bc_temper (Member brindle_coombe even_tempered) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000128",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Coordinated copular adjectives split into one Member atom each on the named individual, with no invented kind atom for the referent, as the instruction set requires. The undecomposed hyphenated adjective compound 'even_tempered' matches the instruction set's own warm_blooded precedent and its 'leave adjective compounds opaque for now' note."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000129",
+   "sentence": "Brindle Coombe delivers the Council's disagreeable announcements.",
+   "parse": [
+    "(: brindle_name (Name brindle_coombe \"Brindle Coombe\") (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: announcement_grp (GroupOf sk_announcement_1 announcement) (STV 1.0 0.99))",
+    "(: announcement_agent (Agent sk_announcement_1 sk_council_1) (STV 1.0 0.99))",
+    "(: announcement_disagreeable (Implication (PartOf $x sk_announcement_1) (Member $x disagreeable)) (STV 1.0 0.9))",
+    "(: deliver_event (Member sk_deliver_1 deliver) (STV 1.0 0.99))",
+    "(: deliver_agent (Agent sk_deliver_1 brindle_coombe) (STV 1.0 0.99))",
+    "(: deliver_theme (Theme sk_deliver_1 sk_announcement_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000129",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a possessive genitive on a PLURAL event noun (\"the Council's announcements\") — the event-noun-subject-role rule is stated only for singulars, and the instruction set does not say whether that subject role attaches to the group symbol (as done here, putting a group of eventualities in a role atom's event slot) or distributes to each announcement eventuality"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The possessed plural correctly takes a group witness with \"disagreeable\" distributed by the per-member rule rather than predicated of the group, and \"the Council\" correctly stays a common noun with no Name atom. If \"announcements\" is read as a result nominal (the documents delivered) rather than the act, the genitive would take the opaque Possession instead, and the instruction set gives no cue separating the two readings."
+   },
+   "adjudication": null
+  }
+ ]
+}

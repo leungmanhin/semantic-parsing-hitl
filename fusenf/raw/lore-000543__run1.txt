@@ -1,0 +1,3 @@
+(: cauldron_yield_rule (Implication (Member $x cauldron) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) (sk_vessel $x)) (Member (sk_vessel $x) vessel) (Member (sk_vessel $x) partial) (Of (sk_vessel $x) mire_essence))) (STV 1.0 0.9))
+(: cauldron_q (QuantifierPhrase cauldron yield "each") (STV 1.0 0.99))
+(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))

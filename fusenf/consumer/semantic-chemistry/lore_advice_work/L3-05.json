@@ -1,0 +1,133 @@
+{
+ "id": "L3-05",
+ "rule": "III — The central pool",
+ "texts": [
+  "The Northcove contributes mire-essence to the central pool.",
+  "The Sunken Cove station draws mire-essence from the central pool.",
+  "The exposed Cliff Path stations draw mire-essence from the central pool.",
+  "The Council records each redistribution in the ledgers."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000228",
+   "sentence": "The Northcove contributes mire-essence to the central pool.",
+   "parse": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: e_contribute (Member sk_contribute_1 contribute) (STV 1.0 0.99))",
+    "(: e_contribute_agent (Agent sk_contribute_1 northcove) (STV 1.0 0.99))",
+    "(: e_contribute_theme (Theme sk_contribute_1 mire_essence) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: e_contribute_recipient (Recipient sk_contribute_1 sk_pool_1) (STV 1.0 0.99))",
+    "(: pool_type (Member sk_pool_1 central_pool) (STV 1.0 0.99))",
+    "(: pool_genus_head (Inheritance central_pool pool) (STV 1.0 0.99))",
+    "(: pool_genus_mod (Inheritance central_pool central) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000228",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"mire-essence\" correctly emits only the head genus (noun modifier not exposed) and \"central pool\" fuses with an exposed positional-modifier genus on the east_wing / upper_deck pattern; the bare Name atom standing alone for \"the Northcove\" is right, since no kind word licenses a type atom. Recipient for the inanimate goal of the transfer follows the instruction set's transfer-over-spatial-Goal preference."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000229",
+   "sentence": "The Sunken Cove station draws mire-essence from the central pool.",
+   "parse": [
+    "(: e1_station (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: e1_poss (Possession sk_station_1 sunken_cove) (STV 1.0 0.99))",
+    "(: e1_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: e1_cove_kind (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: e1_draw (Member sk_draw_1 draw) (STV 1.0 0.99))",
+    "(: e1_agent (Agent sk_draw_1 sk_station_1) (STV 1.0 0.99))",
+    "(: e1_theme (Theme sk_draw_1 mire_essence) (STV 1.0 0.99))",
+    "(: e1_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: e1_source (Source sk_draw_1 sk_pool_1) (STV 1.0 0.99))",
+    "(: e1_pool (Member sk_pool_1 pool) (STV 1.0 0.99))",
+    "(: e1_pool_central (Member sk_pool_1 central) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000229",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Proper-noun premodifier routed by the Possession licence with the head noun typed on its own, the kind word inside the name giving one type atom and no modifier genus; draw is a transitive event with an inanimate Agent, Theme for the undisplaced-but-moved mass, Source for the from-phrase, and no status atom for the habitual present. Splitting central off the pool (rather than fusing central_pool) is the right call since central identifies which pool rather than classifying a subtype."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000230",
+   "sentence": "The exposed Cliff Path stations draw mire-essence from the central pool.",
+   "parse": [
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: station_grp (GroupOf sk_group_1 station) (STV 1.0 0.99))",
+    "(: station_poss (Possession sk_group_1 cliff_path) (STV 1.0 0.99))",
+    "(: station_exposed_rule (Implication (PartOf $x sk_group_1) (Member $x exposed)) (STV 1.0 0.9))",
+    "(: pool_type (Member sk_pool_1 pool) (STV 1.0 0.99))",
+    "(: pool_central (Member sk_pool_1 central) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: draw_ev (Member sk_draw_1 draw) (STV 1.0 0.99))",
+    "(: draw_ag (Agent sk_draw_1 sk_group_1) (STV 1.0 0.99))",
+    "(: draw_th (Theme sk_draw_1 mire_essence) (STV 1.0 0.99))",
+    "(: draw_src (Source sk_draw_1 sk_pool_1) (STV 1.0 0.99))",
+    "(: draw_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Theme (sk_draw $x) mire_essence) (Source (sk_draw $x) sk_pool_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000230",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun premodifier is handled as prescribed (no fusion, Possession link, Name atom, kind atom from the kind word inside the name), the definite plural takes a group witness with the descriptive modifier 'exposed' distributed by rule rather than predicated of the group symbol, and the distributive predicate correctly emits both the group event and the per-member rule. Compound genus for mire_essence with the noun modifier left unexposed, the un-fused 'central pool', bare-kind Theme filler, Source oblique and the absent tense atom on a habitual present are all correct."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000231",
+   "sentence": "The Council records each redistribution in the ledgers.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: ledger_type (GroupOf sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: council_records_rule (Implication (Member $x redistribution) (And (Member (sk_record $x) record) (Agent (sk_record $x) sk_council_1) (Theme (sk_record $x) $x) (Location (sk_record $x) sk_ledger_1))) (STV 1.0 0.9))",
+    "(: council_records_q (QuantifierPhrase redistribution record \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000231",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The one borderline call is (Location (sk_record $x) sk_ledger_1) for \"in the ledgers\": \"in\" is a listed Location preposition and the PP answers where, but the ledgers are arguably the medium the record ends up in rather than the site of the recording event, which would favour the preposition-named In oblique (as with \"in a statement\"). Everything else checks out: capitalized bare class label takes no Name atom, the object universal \"each redistribution\" takes the Skolem-function rule at 1.0/0.9 with its QuantifierPhrase companion, and the definite plural \"the ledgers\" is a group witness."
+   },
+   "adjudication": null
+  }
+ ]
+}

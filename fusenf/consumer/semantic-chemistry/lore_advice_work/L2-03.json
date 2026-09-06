@@ -1,0 +1,163 @@
+{
+ "id": "L2-03",
+ "rule": "II — Old Vesh",
+ "texts": [
+  "Old Vesh is the village's historian.",
+  "Old Vesh retired from active duty eleven years ago.",
+  "Old Vesh retired because his hands grew unsteady.",
+  "Old Vesh remembers two bad winters.",
+  "Old Vesh teaches apprentices the older rituals."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000121",
+   "sentence": "Old Vesh is the village's historian.",
+   "parse": [
+    "(: vesh_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: vesh_historian (Member old_vesh historian) (STV 1.0 0.99))",
+    "(: vesh_poss (Possession old_vesh sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000121",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'Old' is a capitalized modifier so it joins the capitalized run mechanically (old_vesh, one Name, and correctly no (Member old_vesh old)); it is an epithet, not the kinship/courtesy-title case. The role genitive takes the opaque Possession with the possessed first, and 'historian' rightly gets no capability atom (-ian is not on the nominalization suffix list)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000122",
+   "sentence": "Old Vesh retired from active duty eleven years ago.",
+   "parse": [
+    "(: vesh_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+    "(: e_retire (Member sk_retire_1 retire) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_retire_1 old_vesh) (STV 1.0 0.99))",
+    "(: e_source (Source sk_retire_1 active_duty) (STV 1.0 0.99))",
+    "(: e_past (Past sk_retire_1) (STV 1.0 0.99))",
+    "(: e_ago (BeforeBy sk_retire_1 now 11 year) (STV 1.0 0.99))",
+    "(: ad_genus (Inheritance active_duty duty) (STV 1.0 0.99))",
+    "(: ad_mod (Inheritance active_duty active) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000122",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized epithet premodifying a personal name (\"Old Vesh\") - the mechanical casing rule folds the whole capitalized run into one symbol (old_vesh), while the kinship/courtesy-title rule would keep the epithet in the Name string only and derive the symbol from the name alone (vesh); the instruction set does not say which governs a non-kinship, non-courtesy epithet"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse follows the more general mechanical casing rule, and no invented old property atom is emitted, so it is faithful on either reading of that boundary. \"eleven years ago\" matches the BeforeBy ... now 11 year pattern exactly, and active_duty decomposes correctly (term-of-art fusion, adjectival modifier exposed, bare oblique object left as a constant)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000123",
+   "sentence": "Old Vesh retired because his hands grew unsteady.",
+   "parse": [
+    "(: vesh_name (Name vesh \"Old Vesh\") (STV 1.0 0.99))",
+    "(: e_retire (Member sk_retire_1 retire) (STV 1.0 0.99))",
+    "(: e_retire_agent (Agent sk_retire_1 vesh) (STV 1.0 0.99))",
+    "(: e_retire_tense (Past sk_retire_1) (STV 1.0 0.99))",
+    "(: hands_group (GroupOf sk_hands_1 hand) (STV 1.0 0.99))",
+    "(: hands_partof (PartOf sk_hands_1 vesh) (STV 1.0 0.99))",
+    "(: e_grow (Member sk_grow_1 grow) (STV 1.0 0.99))",
+    "(: e_grow_patient (Patient sk_grow_1 sk_hands_1) (STV 1.0 0.99))",
+    "(: e_grow_tense (Past sk_grow_1) (STV 1.0 0.99))",
+    "(: unsteady_state (Member sk_unsteady_1 unsteady) (STV 1.0 0.99))",
+    "(: unsteady_exp (Experiencer sk_unsteady_1 sk_hands_1) (STV 1.0 0.99))",
+    "(: hands_unsteady_rule (Implication (PartOf $x sk_hands_1) (Member $x unsteady)) (STV 1.0 0.9))",
+    "(: grow_result (Result sk_grow_1 sk_unsteady_1) (STV 1.0 0.99))",
+    "(: because_conn (Because sk_retire_1 sk_grow_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000123",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized epithet adjective premodifying a PERSONAL name ('Old Vesh') — Names and casing states both that the name is exactly its capitalized run and that a capitalized modifier joins it (illustrated only on places, 'Upper Calderwick'), and that a kinship/courtesy title stays out of the symbol while keeping the full Name string ('Dr Okoro'); neither rule claims 'Old' on a person's name, so the symbol boundary is unresolved"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse took the courtesy-title route (symbol 'vesh', string 'Old Vesh'); the casing rule read literally would give 'old_vesh'. Everything else follows doctrine, including the change-of-phase State-result shape and the plural-group carve-out that replaces the flat resultative half with the per-member (Implication (PartOf $x sk_hands_1) (Member $x unsteady)) rule at STV 1.0 0.9."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000124",
+   "sentence": "Old Vesh remembers two bad winters.",
+   "parse": [
+    "(: vesh_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+    "(: e_remember (Member sk_remember_1 remember) (STV 1.0 0.99))",
+    "(: e_exp (Experiencer sk_remember_1 old_vesh) (STV 1.0 0.99))",
+    "(: e_stim (Stimulus sk_remember_1 sk_winter_1) (STV 1.0 0.99))",
+    "(: winter_grp (GroupOf sk_winter_1 winter) (STV 1.0 0.99))",
+    "(: winter_card (Cardinality sk_winter_1 2) (STV 1.0 0.99))",
+    "(: winter_bad (Implication (PartOf $x sk_winter_1) (Member $x bad)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000124",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name-only treatment of 'Old Vesh' (capitalized modifier joining the name run, no invented kind atom), Experiencer/Stimulus for a stative psych verb with an entity object, group + Cardinality for the counted plural, and the descriptive modifier 'bad' distributed by a PartOf rule rather than ridden on the group symbol are each what the instruction set prescribes."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000125",
+   "sentence": "Old Vesh teaches apprentices the older rituals.",
+   "parse": [
+    "(: e4_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+    "(: e4_teach (Member sk_teach_1 teach) (STV 1.0 0.99))",
+    "(: e4_agent (Agent sk_teach_1 old_vesh) (STV 1.0 0.99))",
+    "(: e4_recipient (Recipient sk_teach_1 apprentice) (STV 1.0 0.99))",
+    "(: e4_group (GroupOf sk_rituals_1 ritual) (STV 1.0 0.99))",
+    "(: e4_theme (Theme sk_teach_1 sk_rituals_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000125",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "attributive comparative with an elided standard (\"the older rituals\") — the instruction set states there is no licensed form for it and prescribes dropping the comparative, so which rituals are taught is silently widened to the whole definite group"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Dropping \"older\" is exactly what the comparative section prescribes, so the loss is a registered representational gap rather than a parse defect. \"Old Vesh\" correctly takes the capitalized-modifier name rule (one symbol, one Name, no `old` atom), and the habitual clause correctly gets a bare kind Recipient plus a definite group Theme and no status atom."
+   },
+   "adjudication": null
+  }
+ ]
+}

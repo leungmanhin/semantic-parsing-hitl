@@ -1,0 +1,7 @@
+(: e5_sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: e5_cp_type (Member cliff_path path) (STV 1.0 0.99))
+(: e5_cp_name (Name cliff_path "Cliff Path") (STV 1.0 0.99))
+(: e5_hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: e5_lanterns_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))
+(: e5_lanterns_poss (Possession sk_lanterns_1 hollows) (STV 1.0 0.99))
+(: e5_rule (Implication (And (Member $y sky_cat) (Member $e1 hunt) (Agent $e1 $y) (Theme $e1 cliff_path)) (And (Member (sk_produce $e1) produce) (Agent (sk_produce $e1) sk_lanterns_1) (Patient (sk_produce $e1) (sk_threads $e1)) (GroupOf (sk_threads $e1) thread) (CardinalityPhrase (sk_threads $e1) "many") (During (sk_produce $e1) $e1))) (STV 1.0 0.9))

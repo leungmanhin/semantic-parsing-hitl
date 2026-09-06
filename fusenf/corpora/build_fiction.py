@@ -55,10 +55,15 @@ def main() -> None:
     records = []
     seq = 0
     for item in items:
+        # item ids: world_rules "R<n>" (legacy equiv_class fictR-R<nn>) or any other token
+        # such as lore.json's "L1-01" (equiv_class <prefix>-<id>); one class per source item
         m = re.fullmatch(r"R(\d+)", item["id"])
-        if not m:
+        if m:
+            equiv = f"fictR-R{int(m.group(1)):02d}"
+        elif re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]*", item["id"]):
+            equiv = f"{args.prefix}-{item['id']}"
+        else:
             raise SystemExit(f"unexpected item id {item['id']!r}")
-        rnn = f"R{int(m.group(1)):02d}"
         parts = ([] if args.skip_rules else [("rule", item["rule"])]) + [
             (f"t{k}", t) for k, t in enumerate(item["texts"], 1)]
         for field, sentence in parts:
@@ -74,7 +79,7 @@ def main() -> None:
                 "source_license": "internal (downstream consumer)",
                 "sentences": [sentence],
                 "context": CONTEXT,
-                "equiv_class": f"fictR-{rnn}",
+                "equiv_class": equiv,
                 "labels": {"words": len(_RE_WORD.findall(sentence)),
                            "item": item["id"], "field": "rule" if field == "rule" else "text"},
                 "input_sha256": input_sha256({"sentences": [sentence], "context": CONTEXT}),

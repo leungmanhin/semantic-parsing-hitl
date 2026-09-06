@@ -1,0 +1,10 @@
+{"id": "lore-000415", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "confirm", "reason": "Compound concepts bars fusing a possessor/whole + part/component pair — a sky-cat feather is the feather of a sky-cat, exactly the 'car engine' / 'table leg' case, which must emit the head kind plus a PartOf link and never the fused symbol."},
+   {"index": 1, "verdict": "refute", "reason": "(Inheritance sky_cat cat) is the head genus of the hyphenated compound sky_cat, which the compound rule says is always emitted — not the barred exposure of the noun modifier ((Inheritance sky_cat sky)), which the parse correctly omits; its disconnectedness is a symptom of issue 0's fusion, not a false or unlicensed atom."}
+ ],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "Compliant form: drop the fusion and range the rule over (And (Member $f feather) (Member $f ground) (PartOf $f $c) (Member $c sky_cat)) — head kind plus the part-whole link, the possessor bound by a plain variable — keeping (Inheritance sky_cat cat) and the conclusion bundle unchanged.",
+ "notes": "The reviewer's gap does not stand: the no-fuse form composes inside a rule premise with no improvisation, since a plain variable binds the possessor and PartOf needs no individuated whole. The rest is licensed — the 'ground' participial adjective, the distributing-rule route forced by the restricted kind subject, the bare-kind Theme, and the Against oblique."}

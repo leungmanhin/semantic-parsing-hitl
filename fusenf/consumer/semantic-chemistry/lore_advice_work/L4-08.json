@@ -1,0 +1,370 @@
+{
+ "id": "L4-08",
+ "rule": "IV — Festivals",
+ "texts": [
+  "The village holds three festivals each year.",
+  "Mid-summer is a feast for the Keepers during peak moth-season.",
+  "Frost-eve is the night before the first hard frost.",
+  "The village stockpiles salt-bloom at Frost-eve.",
+  "Lantern-night falls at midwinter.",
+  "Lantern-night is an important festival.",
+  "On Lantern-night every Keeper tends a station.",
+  "On Lantern-night every villager walks the Cliff Path at midnight.",
+  "The Council speaker lights the Stilllight Lantern at sundown on Lantern-night.",
+  "The villagers tell stories around fires in the harbor square on Lantern-night."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000316",
+   "sentence": "The village holds three festivals each year.",
+   "parse": [
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_hold_1 sk_village_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_hold_1 sk_group_1) (STV 1.0 0.99))",
+    "(: group_of (GroupOf sk_group_1 festival) (STV 1.0 0.99))",
+    "(: group_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+    "(: e_every (Every sk_hold_1 1 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000316",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a numeral-counted object under a periodic \"each <unit>\" frequency (\"three festivals each year\"): the count renews per cycle, but the instruction set mandates the flat habitual form for a calendar period (Every e 1 year) and reserves per-binding Skolem groups for the rule route, so there is no licensed way to let the counted group covary with the year — one fixed group of three is asserted for all years"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Theme vs Patient for \"hold\" over an occurrence object is borderline (staging a festival arguably brings the occurrence about), but the instruction set's \"when the test is unclear, default to Theme\" licenses the choice made. No QuantifierPhrase companion is correct here — \"each year\" quantifies a calendar cycle, not a range the parse quantifies."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000317",
+   "sentence": "Mid-summer is a feast for the Keepers during peak moth-season.",
+   "parse": [
+    "(: ms_name (Name mid_summer \"Mid-summer\") (STV 1.0 0.99))",
+    "(: ms_type (Member mid_summer feast) (STV 1.0 0.99))",
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: ms_for (For mid_summer keepers) (STV 1.0 0.99))",
+    "(: moth_season_genus (Inheritance moth_season season) (STV 1.0 0.99))",
+    "(: peak_moth_season_genus (Inheritance peak_moth_season moth_season) (STV 1.0 0.99))",
+    "(: ms_during (During mid_summer peak_moth_season) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000317",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "During is specified to nest two reified eventualities and a copular clause carrying a time modifier must reify its state (plus the flat copular atom), but no state witness is emitted: During is hung directly on the subject entity mid_summer and on the bare kind symbol peak_moth_season, for which no occasion witness exists."
+     },
+     {
+      "statement": 5,
+      "issue": "The compound genus is another compound (moth_season) rather than the single-word lemma, against 'decompose once, to single-word lemmas, then stop'; the single-word genus season is reached only indirectly via statement 4."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "PP complement of a PREDICATE NOMINAL in a copular clause ('is a feast for the Keepers'): noun-complement obliques are specified to attach to the noun's own symbol, but a predicate nominal mints no witness, and only an ADJECTIVE's PP complement is given the reified-state anchor",
+     "an article-less period NP as the argument of a temporal head ('during peak moth-season'): the instruction set does not say whether to mint an occasion witness or use the bare kind symbol licensed for non-specific objects"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Keepers' correctly takes the capitalized-plural-label treatment (Name-only, no GroupOf, no invented kind), and the Name on 'Mid-summer' is licensed by the rule that a different word ('feast') states the kind - though sentence-initial position makes the casing cue itself uninformative here. Attaching For to mid_summer is the only anchor available given no state was reified."
+   },
+   "adjudication": {
+    "id": "lore-000317",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Time mandates that a copular clause carrying a time modifier reifies its state plus the flat copular atom, and Intervals mandates that During nests two REIFIED eventualities; the parse emits no state witness and puts peak_moth_season — a symbol it declares a KIND with (Inheritance peak_moth_season moth_season) — in During's outer slot, which is ill-typed."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is descriptive: the genus is a compound rather than the single-word lemma 'decompose once, to single-word lemmas, then stop' asks for; but no atom is thereby false or ill-typed and season is reached through the emitted (Inheritance moth_season season) plus the engine's seeded inheritance transitivity, so it is not independently defect-making."
+     }
+    ],
+    "gaps_confirmed": [
+     "a PP complement of a PREDICATE NOMINAL ('is a feast for the Keepers') has no stated anchor: the nominalization rule attaches to the noun's own symbol, which a predicate nominal never mints, and the reified-state trigger list names only an ADJECTIVE's PP complement",
+     "an article-less recurring-period NP as the outer argument of a temporal head ('during peak moth-season'): mint an occasion witness, or keep the bare kind symbol the oblique-object rule licenses for non-specific NPs? unstated"
+    ],
+    "new_gaps": [
+     "a three-word compound whose head is itself a hyphenated compound ('peak moth-season'): 'decompose once, to single-word lemmas, then stop' does not say whether the genus is the compound head (moth_season) or the single-word head (season), and every worked example is two-word"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form reifies the copular state — (Member sk_feast_1 feast) (Experiencer sk_feast_1 mid_summer) beside the flat (Member mid_summer feast) — and hangs both the PP complement and During on that state witness, with an occasion witness rather than the bare kind symbol in During's outer slot (that witness itself being gap territory, second confirmed gap).",
+    "notes": "'the Keepers' correctly takes the capitalized-plural-label treatment (Name only, no GroupOf, no invented kind), and the Name on 'Mid-summer' is licensed because a different word ('feast') states the kind. Attaching For to mid_summer was the only anchor available once the state went unreified, so that choice falls with the reification, not separately."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000318",
+   "sentence": "Frost-eve is the night before the first hard frost.",
+   "parse": [
+    "(: fe_name (Name frost_eve \"Frost-eve\") (STV 1.0 0.99))",
+    "(: fe_typ (Member frost_eve night) (STV 1.0 0.99))",
+    "(: frost_typ (Member sk_frost_1 hard_frost) (STV 1.0 0.99))",
+    "(: frost_genus (Inheritance hard_frost frost) (STV 1.0 0.99))",
+    "(: frost_mod (Inheritance hard_frost hard) (STV 1.0 0.99))",
+    "(: frost_ord (Ordinal sk_frost_1 1 hard_frost) (STV 1.0 0.99))",
+    "(: fe_before (Before frost_eve sk_frost_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000318",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "equative copular with a definite predicate nominal ('X is the night before Y') - no identity/uniqueness operator, so a definition flattens to a type atom plus a relation and loses that Frost-eve IS that night",
+     "immediacy of 'the night before X' - Before records precedence only, not that no other night intervenes",
+     "Ordinal's scale slot when the ordinal modifies a noun with neither an associated verb nor an explicit '-est' dimension ('the first hard frost')"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Nothing false is asserted - the type atom, the projected definite frost witness and the Before are each licensed - but the definitional/equative force of the sentence has no carrier. The Ordinal atom fills the scale slot with the entity's own class, which is a stretch of 'the associated event' rather than a listed filler."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000319",
+   "sentence": "The village stockpiles salt-bloom at Frost-eve.",
+   "parse": [
+    "(: e4_village (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: e4_frost_eve_name (Name frost_eve \"Frost-eve\") (STV 1.0 0.99))",
+    "(: e4_stockpile (Member sk_stockpile_1 stockpile) (STV 1.0 0.99))",
+    "(: e4_stockpile_ag (Agent sk_stockpile_1 sk_village_1) (STV 1.0 0.99))",
+    "(: e4_stockpile_th (Theme sk_stockpile_1 salt_bloom) (STV 1.0 0.99))",
+    "(: e4_stockpile_time (Time sk_stockpile_1 frost_eve) (STV 1.0 0.99))",
+    "(: e4_saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000319",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A named festival / holiday time (\"at Frost-eve\"): Time says a deictic or named time stays a bare symbol and forbids a witness or Member atom for it, while Names and casing makes a Name fact mandatory and non-optional for every named event; the instruction set never states whether a named-time constant also carries its (Name frost_eve \"Frost-eve\") atom, so two faithful parses can differ by that atom."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare simple present correctly takes no status atom, the non-specific object stays a bare kind filler, and salt-bloom emits the head genus only (noun modifier never exposed) at definitional TV."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000320",
+   "sentence": "Lantern-night falls at midwinter.",
+   "parse": [
+    "(: ln_name (Name lantern_night \"Lantern-night\") (STV 1.0 0.99))",
+    "(: ln_type (Member lantern_night night) (STV 1.0 0.99))",
+    "(: ln_time (Time lantern_night midwinter) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000320",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a calendar-placement light verb ('Lantern-night falls at midwinter'): the light-verb-over-event-noun rule names only occurred / happened / took place, so nothing explicitly licenses treating temporal 'falls at/on <time>' the same way instead of reifying a fall event",
+     "a season / period time constant ('midwinter'): the Time term inventory is Year / Month / Day / Weekday / Hour / Minute plus day-parts, deictics and fiscal periods, with no form given for a bare named season or mid-season point"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Reading 'falls' as temporal occurrence and hanging Time directly on the named event rather than reifying a fall event is the coherent reading and the closest analogue in the instruction set. The name is one opaque symbol with no modifier genus, the Name string preserves the hyphenated surface form, the kind atom is read off the kind word inside the name, and the absent tense atom is correct for an unanchored habitual present."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000321",
+   "sentence": "Lantern-night is an important festival.",
+   "parse": [
+    "(: ln_name (Name lantern_night \"Lantern-night\") (STV 1.0 0.99))",
+    "(: ln_festival (Member lantern_night festival) (STV 1.0 0.99))",
+    "(: ln_important (Member lantern_night important) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000321",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "hyphenated proper name whose post-hyphen element is a lowercase common noun (\"Lantern-night\"): the name-boundary rule defines a name as 'exactly its capitalized run of words' with 'an adjacent lowercase common noun is not part of it', which is stated for word sequences and never says whether an intra-word hyphen keeps the lowercase element inside the name symbol/string (lantern_night, \"Lantern-night\") or splits it off as the kind word (lantern + (Member lantern night))"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Under the whole-token reading the parse is right: one name symbol with no modifier genus, Member for a named individual, and \"important festival\" correctly split into two atoms as incidental (evaluative) description rather than a fused kind."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000322",
+   "sentence": "On Lantern-night every Keeper tends a station.",
+   "parse": [
+    "(: ln_name (Name lantern_night \"Lantern-night\") (STV 1.0 0.99))",
+    "(: ln_type (Member lantern_night night) (STV 1.0 0.99))",
+    "(: keeper_tend_rule (Implication (Member $x keeper) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Theme (sk_tend $x) (sk_station $x)) (Member (sk_station $x) station) (Time (sk_tend $x) lantern_night))) (STV 1.0 0.9))",
+    "(: keeper_q (QuantifierPhrase keeper tend \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000322",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The universal-over-a-kind rule, the dependent Skolem-function existential for 'a station', the STV 1.0 0.9 and the 'every' QuantifierPhrase companion all match the stated forms, and capitalized 'Keeper' correctly stays a common noun with no Name atom. 'Lantern-night' takes the Kestrel-River treatment (one opaque symbol, its own Name, the kind word inside the name giving the type atom) and rides Time as a bare named-time symbol."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000323",
+   "sentence": "On Lantern-night every villager walks the Cliff Path at midnight.",
+   "parse": [
+    "(: p1_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: p1_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: n1_name (Name lantern_night \"Lantern-night\") (STV 1.0 0.99))",
+    "(: r1_rule (Implication (Member $x villager) (And (Member (sk_walk $x) walk) (Agent (sk_walk $x) $x) (Theme (sk_walk $x) cliff_path) (Time (sk_walk $x) lantern_night) (Time (sk_walk $x) midnight))) (STV 1.0 0.9))",
+    "(: r1_q (QuantifierPhrase villager walk \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000323",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized named calendar occasion used as a time adjunct ('On Lantern-night') -- the Time section says a named time stays a bare symbol and mints no Member atom for it, while Names and casing says a named event is a proper noun taking exactly one Name plus a kind atom when the kind word sits inside the name ('night' here); the two rules pull opposite ways and nothing legislates which applies to a festival name",
+     "the annual recurrence implied by a bare named occasion with no quantifier ('On Lantern-night ...' rather than 'every Lantern-night') -- the cycle-implying (Every e 1 <cycle>) rule is keyed to 'every <slot>' wording, so a habitual anchored on a festival name has no stated route to its period"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The explicit universal is correctly a distributing rule with a Skolem-function event, 1.0/0.9 strength-confidence, the QuantifierPhrase companion in (kind verb-lemma word) form, and both Time atoms inside the consequent; the Cliff Path is one opaque name symbol with the in-name kind word as its type atom and no 'cliff' genus. Consistent with the gap above, lantern_night got a Name atom but no (Member lantern_night night) -- defensible either way under the instruction set as written."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t9",
+   "corpus_id": "lore-000324",
+   "sentence": "The Council speaker lights the Stilllight Lantern at sundown on Lantern-night.",
+   "parse": [
+    "(: cs_genus (Inheritance council_speaker speaker) (STV 1.0 0.99))",
+    "(: e_spk (Member sk_speaker_1 council_speaker) (STV 1.0 0.99))",
+    "(: e_light (Member sk_light_1 light) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_light_1 sk_speaker_1) (STV 1.0 0.99))",
+    "(: e_lantern (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: e_lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_light_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: e_time1 (Time sk_light_1 sundown) (STV 1.0 0.99))",
+    "(: e_time2 (Time sk_light_1 lantern_night) (STV 1.0 0.99))",
+    "(: e_ln_name (Name lantern_night \"Lantern-night\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000324",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a NAMED recurring observance used as a time adjunct ('on Lantern-night') — the instruction set makes a named event a proper noun (one symbol + Name + a kind atom read off a kind word inside the name, the 'Kestrel River' rule), but the Time section says a named time stays a bare symbol and bars minting a Member atom for a time constant; which governs a festival name whose embedded kind word is 'night' is unsettled",
+     "capitalized common noun in PREMODIFIER position ('Council speaker') — the proper-noun-premodifier rule requires the modifier to be a proper noun and the capitalized-common-noun default is scoped to a referent's only label, so neither rule settles whether Council fuses into a compound kind or names a separate entity"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correctly emits no tense atom (bare present habitual, no futurate evidence) and no Every atom (no periodic wording), keeps sundown as a bare day-part Time symbol, and gives 'Stilllight Lantern' the name-internal kind atom exactly per the Kestrel River pattern. The same pattern is not applied to 'Lantern-night' (Name emitted, no type atom), which is the first gap above."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t10",
+   "corpus_id": "lore-000325",
+   "sentence": "The villagers tell stories around fires in the harbor square on Lantern-night.",
+   "parse": [
+    "(: villager_group (GroupOf sk_villager_1 villager) (STV 1.0 0.99))",
+    "(: square_type (Member sk_harbor_square_1 harbor_square) (STV 1.0 0.99))",
+    "(: square_genus (Inheritance harbor_square square) (STV 1.0 0.99))",
+    "(: lantern_night_name (Name lantern_night \"Lantern-night\") (STV 1.0 0.99))",
+    "(: e_tell_g (Member sk_tell_1 tell) (STV 1.0 0.99))",
+    "(: e_tell_g_agent (Agent sk_tell_1 sk_villager_1) (STV 1.0 0.99))",
+    "(: e_tell_g_theme (Theme sk_tell_1 story) (STV 1.0 0.99))",
+    "(: e_tell_g_loc1 (Location sk_tell_1 fire) (STV 1.0 0.99))",
+    "(: e_tell_g_loc2 (Location sk_tell_1 sk_harbor_square_1) (STV 1.0 0.99))",
+    "(: e_tell_g_time (Time sk_tell_1 lantern_night) (STV 1.0 0.99))",
+    "(: villagers_tell_rule (Implication (PartOf $x sk_villager_1) (And (Member (sk_tell $x) tell) (Agent (sk_tell $x) $x) (Theme (sk_tell $x) story) (Location (sk_tell $x) fire) (Location (sk_tell $x) sk_harbor_square_1) (Time (sk_tell $x) lantern_night))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000325",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "\"around fires\" is encoded as (Location sk_tell_1 fire), folding a non-containment preposition into Location and leaving two Location atoms on one event; the surface preposition should head the oblique (Around <event> ...), as the instruction set's own Beside example does, and the same atom recurs inside the distribution rule (statement 10)."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The dual emission (group event plus per-member distribution rule at 1.0/0.9), the harbor_square genus without a noun-modifier genus, and the named time (Time ... lantern_night) with its Name atom are all correct. A smaller open question is whether Lantern-night should also carry the type atom licensed by the kind word inside the name."
+   },
+   "adjudication": {
+    "id": "lore-000325",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The oblique head must be \"the preposition actually used — never a synonym head for a near-fit reading\", and the instruction set's own event-attached `(Beside sk_sketch_1 sk_archive_1)` shows a non-containment spatial PP taking its surface head, so folding \"around fires\" into `Location` asserts an at/in-ness the text does not state and collapses two distinct spatial relations onto one head."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A NAMED calendrical occasion filling a Time slot (\"on Lantern-night\"): a named time is licensed to stay a bare symbol, but nothing states whether it also takes the name-internal kind atom the Kestrel River rule mandates (`(Member lantern_night night)`), or whether the deictic-time bar on ever emitting a `Member` atom for a time constant extends to a named one."
+    ],
+    "decision": "defect",
+    "defect_summary": "\"around fires\" takes the surface-preposition event oblique `(Around sk_tell_1 <fire-filler>)` in place of `(Location sk_tell_1 fire)`, in the group event and in the per-member distribution rule alike; the second `(Location sk_tell_1 sk_harbor_square_1)`, for the containment \"in the harbor square\", stands as it is.",
+    "notes": "The dual emission (group event plus per-member rule at 1.0/0.9), the `harbor_square` genus with its noun modifier correctly unexposed, and the bare-symbol named time are all correct."
+   }
+  }
+ ]
+}

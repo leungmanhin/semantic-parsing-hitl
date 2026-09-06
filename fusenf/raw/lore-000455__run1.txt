@@ -1,0 +1,5 @@
+(: as_genus (Inheritance autumn_storm storm) (STV 1.0 0.99))
+(: cp_name (Name cliff_path "Cliff Path") (STV 1.0 0.99))
+(: cp_kind (Member cliff_path path) (STV 1.0 0.99))
+(: storms_destroy (Implication (Member $x autumn_storm) (And (Member (sk_destroy $x) destroy) (Agent (sk_destroy $x) $x) (Patient (sk_destroy $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern) (Possession (sk_lantern $x) cliff_path))) (STV 0.5 0.9))
+(: storms_q (QuantifierPhrase autumn_storm destroy "sometimes") (STV 1.0 0.99))

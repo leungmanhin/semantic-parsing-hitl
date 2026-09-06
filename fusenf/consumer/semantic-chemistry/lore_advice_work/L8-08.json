@@ -1,0 +1,428 @@
+{
+ "id": "L8-08",
+ "rule": "VIII — Lanterns",
+ "texts": [
+  "A Cliff Path lantern is a heavy stone construction.",
+  "Each lantern stands on a stone pedestal.",
+  "A lantern has a glass dome.",
+  "A southern glassworks supplies replacement domes.",
+  "A lantern has an iron reservoir for mire-essence.",
+  "Each lantern is fixed to its station.",
+  "Iron bands reinforce the Stilllight Lantern.",
+  "The reservoir of the Stilllight Lantern holds a full night of mire-essence.",
+  "The Council built the Stilllight Lantern sixty-three years ago.",
+  "The Council built the Stilllight Lantern because wraiths had risen repeatedly."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000509",
+   "sentence": "A Cliff Path lantern is a heavy stone construction.",
+   "parse": [
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_poss (Possession sk_lantern_1 cliff_path) (STV 1.0 0.99))",
+    "(: lantern_heavy (Member sk_lantern_1 heavy) (STV 1.0 0.99))",
+    "(: lantern_sc (Member sk_lantern_1 stone_construction) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance stone_construction construction) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000509",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "\"A Cliff Path lantern is a heavy stone construction\" is an indefinite subject of a copular/definitional predication, which the instruction set rules is generic (\"A dog is a mammal\" = Inheritance), but the parse mints a specific witness and predicates Member, so it asserts that one particular lantern is heavy and a stone construction rather than that such lanterns are."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "generic copular claim whose subject is a proper-noun-premodified head (\"a Cliff Path lantern is ...\") — the copular generic needs a kind symbol on the left of Inheritance, but the proper-noun-premodifier rule bars fusing name + head into one kind and links them by Possession instead, leaving no kind-level form available"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else follows doctrine: the Northgate-spokesman pattern (head typed on its own, opaque Possession to the named entity, one Name atom), the type atom licensed by the kind word sitting inside \"Cliff Path\", and \"heavy stone construction\" split into an incidental-description atom plus a fused material-noun compound exposing only its head genus."
+   },
+   "adjudication": {
+    "id": "lore-000509",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "*Existential* states flatly that \"Indefinite 'a/an' is generic in a copular / definitional predication (\\\"A dog is a mammal\\\" = (Inheritance dog mammal))\", and this is exactly such a clause, so minting sk_lantern_1 and asserting (Member sk_lantern_1 heavy) / (Member sk_lantern_1 stone_construction) puts a particular existing lantern and its properties into the KB where the text makes only a kind-level claim."
+     }
+    ],
+    "gaps_confirmed": [
+     "generic copular claim whose subject is a proper-noun-premodified head (\"a Cliff Path lantern is ...\"): the copular generic needs a kind symbol on the left of Inheritance, but the proper-noun-premodifier rule bars fusing name + head into one kind and links them by Possession instead"
+    ],
+    "new_gaps": [
+     "the *Conditional properties* extension that puts a restricting place in the condition slot (\"rents are steep in the capital\") is stated for a locative / domain PP only, so it is not clearly available to carry a proper-noun PREMODIFIER's restriction on a generic kind subject — leaving the restriction with no stated carrier and no way to state the generic without dropping it"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is a kind-level generic that keeps the Cliff-Path restriction — the nearest licensed analogue being the condition slot of *Conditional properties*, (ConditionalProperty lantern heavy cliff_path) + (ConditionalProperty lantern stone_construction cliff_path) alongside the unchanged (Name cliff_path \"Cliff Path\"), (Member cliff_path path) and (Inheritance stone_construction construction); if that analogue is rejected as PP-only then NO kind-level form is licensed for this subject shape, and the claim would have to be left out with the gap recorded, since a bare (Inheritance lantern heavy) silently drops the stated restriction and so is barred by *Core patterns*.",
+    "notes": "Only the generic-vs-witness routing fails: the Northgate-spokesman treatment of the premodifier, the type atom licensed by the kind word inside \"Cliff Path\", and the heavy / stone_construction split (incidental description separate, material-noun compound fused with head genus only) are all correct."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000510",
+   "sentence": "Each lantern stands on a stone pedestal.",
+   "parse": [
+    "(: sp_genus (Inheritance stone_pedestal pedestal) (STV 1.0 0.99))",
+    "(: lantern_rule (Implication (Member $x lantern) (And (Member (sk_pedestal $x) stone_pedestal) (On $x (sk_pedestal $x)))) (STV 1.0 0.9))",
+    "(: lantern_q (QuantifierPhrase lantern stand \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000510",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correct on every count I can check: the bare postural clause mints no event and keeps the surface preposition entity-attached, \"each\" takes the distributing rule at strength 1.0 / confidence 0.9, the per-lantern pedestal is a Skolem function, and stone_pedestal exposes its head genus but not its noun modifier. One under-specification: the QuantifierPhrase companion's second slot is defined as a verb lemma, but an eventless position clause leaves \"stand\" appearing nowhere else in the parse."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000511",
+   "sentence": "A lantern has a glass dome.",
+   "parse": [
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: dome_type (Member sk_dome_1 glass_dome) (STV 1.0 0.99))",
+    "(: dome_genus (Inheritance glass_dome dome) (STV 1.0 0.99))",
+    "(: have_ev (Member sk_have_1 have) (STV 1.0 0.99))",
+    "(: have_holder (Holder sk_have_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: have_theme (Theme sk_have_1 sk_dome_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000511",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite singular with a verbal predicate correctly takes the witness/event route rather than a kind-level relation (the \"a winch needs an annual inspection\" carve-out), have takes Holder/Theme, and no PartOf is invented between dome and lantern. \"glass\" is a noun modifier so only the head genus is exposed, as prescribed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000512",
+   "sentence": "A southern glassworks supplies replacement domes.",
+   "parse": [
+    "(: gw_type (Member sk_glassworks_1 glassworks) (STV 1.0 0.99))",
+    "(: gw_genus (Inheritance glassworks works) (STV 1.0 0.99))",
+    "(: gw_southern (Member sk_glassworks_1 southern) (STV 1.0 0.99))",
+    "(: e_supply (Member sk_supply_1 supply) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_supply_1 sk_glassworks_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_supply_1 replacement_dome) (STV 1.0 0.99))",
+    "(: dome_genus (Inheritance replacement_dome dome) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000512",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite subject with a verbal predicate correctly mints a witness (not a generic), 'southern' stays an unfused descriptive property attached by Member to the individual, and the solid compound 'glassworks' takes its head genus while the noun modifier 'glass' stays unexposed. The habitual present takes no status atom and the non-specific bare-plural object stays a bare kind filler, both as specified."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000513",
+   "sentence": "A lantern has an iron reservoir for mire-essence.",
+   "parse": [
+    "(: lantern_typ (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: reservoir_typ (Member sk_reservoir_1 iron_reservoir) (STV 1.0 0.99))",
+    "(: reservoir_genus (Inheritance iron_reservoir reservoir) (STV 1.0 0.99))",
+    "(: me2_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: have_ev (Member sk_have_1 have) (STV 1.0 0.99))",
+    "(: have_holder (Holder sk_have_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: have_theme (Theme sk_have_1 sk_reservoir_1) (STV 1.0 0.99))",
+    "(: reservoir_for (For sk_reservoir_1 mire_essence) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000513",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite subject with a verbal predicate correctly stays a witness rather than a kind relation, and no PartOf is invented for the obvious lantern/reservoir part-whole link. 'iron' is treated as a noun modifier (the steel_beam precedent) so only the head genus is exposed, and the noun's argument PP takes the entity-attached (For …) oblique."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000514",
+   "sentence": "Each lantern is fixed to its station.",
+   "parse": [
+    "(: e4_rule (Implication (Member $x lantern) (And (Member (sk_fixed $x) fixed) (Experiencer (sk_fixed $x) $x) (Member (sk_station $x) station) (To (sk_fixed $x) (sk_station $x)) (Member $x fixed))) (STV 1.0 0.9))",
+    "(: e4_q (QuantifierPhrase lantern fixed \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000514",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The possessive 'its' in 'its station' is dropped -- the per-lantern station `(sk_station $x)` is minted and typed but never linked to `$x` by the `(Possession (sk_station $x) $x)` atom the possessive-pronoun rule requires, so the stated relation between lantern and station is lost."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-'each' universal's rule range `(Member $x lantern)`, its 1.0/0.9 truth value, the QuantifierPhrase companion, the adjective-PP-complement reification (state witness plus `Experiencer` plus surface-preposition `To` plus the flat dual-emit half), and the dependent Skolem functions are all correct. Reading predicative 'is fixed' as an adjective rather than a passive verb is a judgment call the instruction set leaves partly open -- its own 'the worktop was laminated' and 'the gate is jammed by rust' examples point toward the verb reading."
+   },
+   "adjudication": {
+    "id": "lore-000514",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The possessive-pronoun rule attaches the possessor to the possessed head by an atom - (Possession <possessed> <possessor>) unless the possessed is a part/component - and a Skolem function name asserts nothing, so \"its\" is silently dropped, which Core patterns forbids (\"a stated restriction, hedge or qualifier is never silently dropped\")."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "a predicative past participle with a PP complement (\"is fixed to its station\"): the participle rule's own example says the same participle in \"the worktop was laminated\" *is* a verb, while the adjective's-PP-complement reification the parse used is illustrated only with pure adjectives (full of / responsible for / sensitive to) - nothing states which route wins for a participle in that frame"
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form: add (Possession (sk_station $x) $x) as a further conjunct of the rule's conclusion - a station is not a part/component of the lantern, so Possession rather than PartOf - leaving the rest of the emitted conclusion unchanged.",
+    "notes": "Everything else follows the instruction set: the bare-\"each\" universal's range (Member $x lantern) and 1.0/0.9 truth value, the QuantifierPhrase companion, the state reification with Experiencer plus the surface-preposition To plus the flat dual-emit half, and the dependent Skolem station. The adjective-vs-passive reading of \"is fixed\" is filed above as a gap and should be settled at the re-parse."
+   }
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000515",
+   "sentence": "Iron bands reinforce the Stilllight Lantern.",
+   "parse": [
+    "(: band_grp (GroupOf sk_band_1 iron_band) (STV 1.0 0.99))",
+    "(: band_genus (Inheritance iron_band band) (STV 1.0 0.99))",
+    "(: reinforce_ev (Member sk_reinforce_1 reinforce) (STV 1.0 0.99))",
+    "(: reinforce_ag (Agent sk_reinforce_1 sk_band_1) (STV 1.0 0.99))",
+    "(: reinforce_pt (Patient sk_reinforce_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: lantern_mem (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000515",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The bare-plural group agent takes a distributive predicate (each band reinforces the lantern), so the instruction set's group doctrine calls for the per-member `(Implication (PartOf $x sk_band_1) ...)` rule alongside the group event, and it is absent — arguable only if reinforcement is read as an aggregate contribution."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else conforms: `iron_band` fused with genus `band` and no `iron` modifier genus (noun modifier), `stilllight_lantern` as one opaque name symbol with its separate `lantern` type atom, transitive inanimate subject as Agent, treatment verb object as Patient, and no status atom on the unmarked present."
+   },
+   "adjudication": {
+    "id": "lore-000515",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Coordination & plurals states that a distributive predicate 'also hands the predication to the group's members via a rule' and reserves group-only encoding for reciprocal/aggregate predicates (meet, gather, assemble, collide) or an explicit 'together / jointly / between them' — 'reinforce' is none of these, and each band separately reinforces the lantern (the 'Bob and Alice ate the cake' shared-object distributive pattern), so the mandated per-member rule is missing."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "The distributive/collective test has no ruling for a structural/configurational transitive over a plural subject and one object ('iron bands reinforce X', 'cables support Y', 'struts brace Z'), where the effect is jointly produced but the verb is neither reciprocal nor plurality-requiring; the collective list is closed to reciprocal/aggregate verbs and the 'together/jointly' cue, so the aggregate reading has no cue to key on."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps the group event and adds the per-member distribution rule beside it: (: bands_reinforce (Implication (PartOf $x sk_band_1) (And (Member (sk_reinforce $x) reinforce) (Agent (sk_reinforce $x) $x) (Patient (sk_reinforce $x) stilllight_lantern))) (STV 1.0 0.9)).",
+    "notes": "No atom emitted is false — the defect is an omission that leaves a later-named band unqueryable, which is exactly the purpose the group-distribution rule is stated to serve. Everything else conforms: iron_band fused with genus band and no noun-modifier genus, stilllight_lantern as one opaque name symbol with its own lantern type atom, transitive inanimate subject as Agent, treatment verb object as Patient, and no status atom on the unmarked present."
+   }
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000516",
+   "sentence": "The reservoir of the Stilllight Lantern holds a full night of mire-essence.",
+   "parse": [
+    "(: reservoir_type (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))",
+    "(: reservoir_partof (PartOf sk_reservoir_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: hold_agent (Agent sk_hold_1 sk_reservoir_1) (STV 1.0 0.99))",
+    "(: hold_theme (Theme sk_hold_1 sk_essence_1) (STV 1.0 0.99))",
+    "(: essence_type (Member sk_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: essence_measure (Measure sk_essence_1 duration 1 night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000516",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 9,
+      "issue": "The Measure scale `duration` is not supplied by any word in the sentence, so the instruction set's reserved slot symbol `unspecified` is what is licensed (\"a scale no word supplies is never invented\"); `duration` is moreover defined for an eventuality's own extent, not for an entity like the essence."
+     },
+     {
+      "statement": 9,
+      "issue": "The qualifier \"full\" of \"a full night\" is silently dropped, against the rule that a stated restriction, hedge or qualifier is never dropped."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Measure/quantity of-phrase as an NP (\"a full night of mire-essence\"; the prompt's own \"a cup of water\"): the instruction set only excludes it from the possessive of-phrase route and never states how to encode the measure phrase together with the substance it measures."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is right: PartOf for the reservoir-of-lantern part-whole, the whole-name symbol plus a separate kind atom for \"the Stilllight Lantern\", Agent for the stative transitive \"holds\" (the prompt's own \"the tank holds forty litres\"), and no status atom on the habitual present."
+   },
+   "adjudication": {
+    "id": "lore-000516",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"A scale no word supplies is never invented - an unstated dimension takes the reserved slot symbol unspecified\": no word in the clause names a dimension (a unit never supplies the scale, exactly as \"6 feet\" without \"tall\" would not supply tall), and the symbol duration is fixed by the instruction set for an eventuality's own extent, not for a quantity of substance."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is that \"full\" is unencoded and has no licensed carrier (Degree's level slot attaches to an adjective's bearer or to the excessive/sufficient/insufficient quantity markers, none of which reaches a Measure magnitude); the half that overstates is calling it a rule breach, since dropping an intensifier of completeness neither widens the claim nor makes any atom false - it is a gap."
+     }
+    ],
+    "gaps_confirmed": [
+     "measure / quantity of-phrase as an NP (\"a full night of mire-essence\", the instruction set's own \"a cup of water\"): excluded from the possessive-of route with no replacement encoding named anywhere"
+    ],
+    "new_gaps": [
+     "an intensifier on a measure amount (\"a FULL night\", \"a good hour\") has no carrier - Degree takes an adjective's bearer or the three quantity markers, and the Measure family has no slot for a hedge on its magnitude"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps the magnitude and unit but fills the scale with the reserved symbol - (Measure sk_essence_1 unspecified 1 night) - because no word in the clause supplies a dimension; \"full\" has no licensed carrier at all and is filed as a gap rather than encoded.",
+    "notes": "Everything else is right: PartOf for the reservoir of the lantern, the whole-name symbol plus a separate kind atom for \"the Stilllight Lantern\", Agent for the stative transitive \"holds\" (the instruction set's own \"the tank holds forty litres\"), the mire_essence genus with the noun modifier unexposed, and no status atom on the habitual present."
+   }
+  },
+  {
+   "field": "t9",
+   "corpus_id": "lore-000517",
+   "sentence": "The Council built the Stilllight Lantern sixty-three years ago.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: e_build (Member sk_build_1 build) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_build_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_build_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: e_past (Past sk_build_1) (STV 1.0 0.99))",
+    "(: e_time (BeforeBy sk_build_1 now 63 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000517",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Council' correctly stays a capitalized common-noun label (witness + kind, no Name), while 'the Stilllight Lantern' exceeds the bare class word and takes the one-symbol name plus a separate kind atom; 'sixty-three years ago' matches the (BeforeBy e now 63 year) anchor and Past exactly, and the singular collective subject correctly gets no distribution rule."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t10",
+   "corpus_id": "lore-000518",
+   "sentence": "The Council built the Stilllight Lantern because wraiths had risen repeatedly.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: e_build (Member sk_build_1 build) (STV 1.0 0.99))",
+    "(: e_build_agent (Agent sk_build_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_build_patient (Patient sk_build_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: e_build_tense (Past sk_build_1) (STV 1.0 0.99))",
+    "(: wraith_grp (GroupOf sk_group_1 wraith) (STV 1.0 0.99))",
+    "(: e_rise (Member sk_rise_1 rise) (STV 1.0 0.99))",
+    "(: e_rise_agent (Agent sk_rise_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_rise_tense (Past sk_rise_1) (STV 1.0 0.99))",
+    "(: e_before (Before sk_rise_1 sk_build_1) (STV 1.0 0.99))",
+    "(: e_because (Because sk_build_1 sk_rise_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000518",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "'rise' is a distributive predicate over the wraith group, so the group event should be accompanied by the per-member rule (Implication (PartOf $x sk_group_1) (And (Member (sk_rise $x) rise) (Agent (sk_rise $x) $x) (Past (sk_rise $x)))) that the instruction set requires alongside a group event for distributive predicates; only the group event is emitted."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "iterative / frequency adverb on an episodic clause ('had risen repeatedly'): the unary Again tag is tied to the particle 'again', the frequency-strength dial applies to generic/habitual clauses only, and Every/TimesPer need a stated period or rate, so the adverb has no licensed carrier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The past-perfect anteriority (Before sk_rise_1 sk_build_1) emitted beside the causal (Because sk_build_1 sk_rise_1) with the main clause first matches the instruction set's worked example exactly, and the bare-plural episodic subject correctly mints a group witness. Dropping 'repeatedly' rather than mis-slotting it is the correct choice."
+   },
+   "adjudication": {
+    "id": "lore-000518",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"A distributive predicate (each member acts separately) also hands the predication to the group's members via a rule\", and Quantifiers restates it for a grouped plural (\"the dogs barked\") — rise is distributive, not collective (gather / meet / assemble), so the group event alone under-emits the required pair."
+     }
+    ],
+    "gaps_confirmed": [
+     "An iterative frequency adverb on an episodic clause (\"had risen repeatedly\") has no carrier: the unary Again tag is tied to the particle \"again\", the frequency-strength dial is for generic / habitual clauses, and Every / TimesPer need a stated period or rate."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps the group event and adds the per-member rule beside it: (: wraiths_rose (Implication (PartOf $x sk_group_1) (And (Member (sk_rise $x) rise) (Agent (sk_rise $x) $x) (Past (sk_rise $x)))) (STV 1.0 0.9)).",
+    "notes": "Everything else is right: the bare-plural episodic subject mints a group witness, the past perfect emits (Before sk_rise_1 sk_build_1) beside the causal (Because sk_build_1 sk_rise_1) with the main clause first, and the kind word inside \"Stilllight Lantern\" licenses its type atom beside the single Name."
+   }
+  }
+ ]
+}

@@ -1,0 +1,146 @@
+{
+ "id": "L2-10",
+ "rule": "II — Bevin Coombe",
+ "texts": [
+  "Bevin Coombe is Brindle Coombe's brother.",
+  "Bevin Coombe tends the Stilllight Lantern.",
+  "The Stilllight station is a hard station.",
+  "Bevin Coombe sleeps during the day.",
+  "Bevin Coombe walks down the Cove Stair every evening at sunset."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000152",
+   "sentence": "Bevin Coombe is Brindle Coombe's brother.",
+   "parse": [
+    "(: bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+    "(: brindle_name (Name brindle_coombe \"Brindle Coombe\") (STV 1.0 0.99))",
+    "(: bevin_type (Member bevin_coombe brother) (STV 1.0 0.99))",
+    "(: bevin_poss (Possession bevin_coombe brindle_coombe) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000152",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Exactly the \"her sister\" shape of Possessive / genitive NP — the copular typing atom plus the opaque Possession (possessed first), which the prompt says covers kinship — and both multi-word names get one whole-name symbol and one Name each. No Symmetric tag is due: \"brother\" is not asserted mutually by the copula here, and coining a Brother head would be barred."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000153",
+   "sentence": "Bevin Coombe tends the Stilllight Lantern.",
+   "parse": [
+    "(: bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+    "(: e_tend (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_tend_1 bevin_coombe) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_tend_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000153",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Stilllight Lantern\" correctly takes the name-plus-kind-atom route (the capitalized run exceeds the bare class word), with the surface spelling preserved in the Name string and no modifier genus for stilllight; the present-tense habitual correctly carries no status atom. Patient for the object of \"tend\" sits on the Patient/Theme boundary (upkeep as applied treatment vs. the unclear-defaults-to-Theme rule) but is defensible as written."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000154",
+   "sentence": "The Stilllight station is a hard station.",
+   "parse": [
+    "(: sl_station (Member stilllight station) (STV 1.0 0.99))",
+    "(: sl_name (Name stilllight \"Stilllight\") (STV 1.0 0.99))",
+    "(: sl_hard (Member stilllight hard) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000154",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Capitalized name plus adjacent lowercase kind noun follows the \"the Brindle estuary\" pattern exactly — one name symbol, one Name atom, the kind in an ordinary type atom. \"hard station\" is correctly left unfused (a gradable descriptive adjective, not a term of art), so the split into (Member stilllight station) and (Member stilllight hard) is right, and the individual facts keep 0.99."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000155",
+   "sentence": "Bevin Coombe sleeps during the day.",
+   "parse": [
+    "(: bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+    "(: e_sleep (Member sk_sleep_1 sleep) (STV 1.0 0.99))",
+    "(: e_exp (Experiencer sk_sleep_1 bevin_coombe) (STV 1.0 0.99))",
+    "(: e_time (Time sk_sleep_1 day) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000155",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'during' + a time-span NP ('during the day', 'during the winter'): the During head is defined only for nesting one reified eventuality inside another, and the day-part inventory licensed as a bare Time symbol lists morning / afternoon / evening / night (plus dawn / noon / dusk for bounds) but not 'day' as the daytime counterpart of 'night'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "No type atom is invented for Bevin Coombe and no status atom is added for the habitual present, both correct. The Experiencer on intransitive 'sleeps' is borderline — it sits between the stative-intransitive branch and the 'when unclear, Agent' fallback, and the set's stative examples are locative/postural and psych states only."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000156",
+   "sentence": "Bevin Coombe walks down the Cove Stair every evening at sunset.",
+   "parse": [
+    "(: l156_bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+    "(: l156_stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: l156_stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+    "(: l156_walk_event (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: l156_walk_agent (Agent sk_walk_1 bevin_coombe) (STV 1.0 0.99))",
+    "(: l156_walk_down (Down sk_walk_1 cove_stair) (STV 1.0 0.99))",
+    "(: l156_walk_time_evening (Time sk_walk_1 evening) (STV 1.0 0.99))",
+    "(: l156_walk_every (Every sk_walk_1 1 day) (STV 1.0 0.99))",
+    "(: l156_walk_time_sunset (Time sk_walk_1 sunset) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000156",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'every evening' correctly yields the slot atom (Time e evening) plus the implied cycle (Every e 1 day), with no tense atom on the habitual, and 'at sunset' stays a bare day-part-style Time constant. 'down the Cove Stair' takes the surface preposition-named Down oblique, since no named path role fits and a prepositional object never takes a direct-object role."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+(: villagers_grp (GroupOf sk_group_1 villager) (STV 1.0 0.99))
+(: e_stair (Member cove_stair stair) (STV 1.0 0.99))
+(: e_stair_name (Name cove_stair "Cove Stair") (STV 1.0 0.99))
+(: e_consider (Member sk_consider_1 consider) (STV 1.0 0.99))
+(: e_experiencer (Experiencer sk_consider_1 sk_group_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_consider_1 (Member cove_stair unlucky)) (STV 1.0 0.99))
+(: villagers_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_consider $x) consider) (Experiencer (sk_consider $x) $x) (Theme (sk_consider $x) (Member cove_stair unlucky)))) (STV 1.0 0.9))

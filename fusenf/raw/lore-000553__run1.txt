@@ -1,0 +1,7 @@
+(: e3_day (Member sk_day_1 day) (STV 1.0 0.99))
+(: e3_day_typical (Member sk_day_1 typical) (STV 1.0 0.99))
+(: e3_yield (Member sk_yield_1 yield) (STV 1.0 0.99))
+(: e3_agent (Agent sk_yield_1 sk_day_1) (STV 1.0 0.99))
+(: e3_patient (Patient sk_yield_1 sk_vessel_1) (STV 1.0 0.99))
+(: e3_vessel_grp (GroupOf sk_vessel_1 vessel) (STV 1.0 0.99))
+(: e3_vessel_card (CardinalityPhrase sk_vessel_1 "several") (STV 1.0 0.99))

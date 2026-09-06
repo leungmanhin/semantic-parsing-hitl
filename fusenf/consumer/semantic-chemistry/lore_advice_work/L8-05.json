@@ -1,0 +1,306 @@
+{
+ "id": "L8-05",
+ "rule": "VIII — Wintergloss",
+ "texts": [
+  "Wintergloss is a small flowering plant.",
+  "Wintergloss grows in the Hollows.",
+  "Wintergloss leaves are dark green and glossy.",
+  "Whenever a lantern burns dried wintergloss alongside mire-essence, the wintergloss repels nightmoths from that lantern.",
+  "Keepers rarely burn wintergloss.",
+  "The village wants nightmoths at its lanterns.",
+  "The Council issues wintergloss for the Stilllight Lantern."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000490",
+   "sentence": "Wintergloss is a small flowering plant.",
+   "parse": [
+    "(: wintergloss_name (Name wintergloss \"Wintergloss\") (STV 1.0 0.99))",
+    "(: wintergloss_kind (Member wintergloss flowering_plant) (STV 1.0 0.99))",
+    "(: wintergloss_small (Member wintergloss small) (STV 1.0 0.99))",
+    "(: fp_genus (Inheritance flowering_plant plant) (STV 1.0 0.99))",
+    "(: fp_mod (Inheritance flowering_plant flowering) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000490",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a proper noun that names a KIND (a species / variety name) as the subject of a copular clause: the instruction set routes 'proper noun / specific referent' to Member and 'class / kind' to Inheritance, but never says which side a named kind falls on, so 'Wintergloss is a small flowering plant' has two licensed readings (individual Member at 0.99 vs kind-level Inheritance at 0.9) with nothing to choose between them",
+     "whether a PARTICIPIAL classifier adjective inside a fused compound gets the modifier genus: the rule exposes the modifier 'iff' it is a gradable, positional/cardinal or material adjective — 'flowering' is none of the three, yet the stated predication test ('the plant is flowering') passes, and the two answers differ in meaning (an angiosperm is not thereby in bloom)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Fusing 'flowering plant' as a term-of-art kind while leaving the incidental size adjective 'small' as its own Member atom matches the adjective+noun line exactly, and the head genus plus the single Name fact are correct. Both open questions are boundary calls the instruction set does not decide."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000491",
+   "sentence": "Wintergloss grows in the Hollows.",
+   "parse": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: wintergloss_grow_hollows (Implication (Member $x wintergloss) (And (Member (sk_grow $x) grow) (Patient (sk_grow $x) $x) (Location (sk_grow $x) hollows))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000491",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-kind verbal generic correctly routed to the distributing rule with a Skolem event term and empirical 0.9/0.9, and 'the Hollows' is handled as a capitalized-plural Name-only individual with no invented type atom. Patient for the intransitive 'grow' subject follows the internal-change-of-state branch of the subject test, and the locative rides Location on the event rather than LocatedIn on the plant."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000492",
+   "sentence": "Wintergloss leaves are dark green and glossy.",
+   "parse": [
+    "(: wgl_genus (Inheritance wintergloss_leaf leaf) (STV 1.0 0.99))",
+    "(: wgl_darkgreen (Inheritance wintergloss_leaf dark_green) (STV 0.9 0.9))",
+    "(: wgl_glossy (Inheritance wintergloss_leaf glossy) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000492",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a two-adjective compound property ('dark green') as a predicate — the compound-decomposition rules cover verb+object actions, phrasal verbs and modifier+NOUN kinds only, so nothing decides between a single opaque dark_green, a genus (Inheritance dark_green green), and a split into dark + green",
+     "a sentence-initial capitalized premodifier ('Wintergloss') — the name-vs-common-noun cue is stated to be the casing itself, mechanically, but sentence-initial position makes casing unreadable, and the two routes differ materially (compound fusion with genus vs the proper-noun-premodifier Possession route)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural generic -> Inheritance on the kind, empirical 0.9/0.9 with no QuantifierPhrase, the compound genus at 1.0/0.99, and no modifier genus for the noun modifier are all as specified; coordinated predicates split into one atom each."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000493",
+   "sentence": "Whenever a lantern burns dried wintergloss alongside mire-essence, the wintergloss repels nightmoths from that lantern.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: wintergloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: lantern_burn_repel_rule (Implication (And (Member $e burn) (Agent $e $x) (Member $x lantern) (Patient $e $y) (Member $y wintergloss) (Member $y dried) (Alongside $e mire_essence)) (And (Member (sk_repel $e) repel) (Agent (sk_repel $e) $y) (Theme (sk_repel $e) nightmoth) (Source (sk_repel $e) $x) (During (sk_repel $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000493",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "(Inheritance wintergloss gloss) asserts a genus the IS-A test rules out — a dried substance burned as lantern fuel is not a kind of 'gloss' — so the head genus should have been suppressed under the lexicalized-compound (hot-dog) bar."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever machinery is right throughout: plain-variable premises, the (sk_repel $e) per-occurrence consequent with its During link at 1.0/0.9, no QuantifierPhrase companion, the Alongside preposition-named oblique with a bare-mass constant object, 'dried' kept as a participial adjective, and Theme/Source on repel."
+   },
+   "adjudication": {
+    "id": "lore-000493",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The head genus is suppressed when the IS-A fails (\"a hot dog is not a dog\"), and a dried herb burned as lantern fuel is not a kind of gloss — wintergloss patterns like wintergreen, a plant name whose head word is not its genus — so (Inheritance wintergloss gloss) puts a false taxonomy link into the KB."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "the IS-A / hot-dog suppression test is unevaluable for COINED vocabulary: whether \"wintergloss\" (or \"mire-essence\", \"sky-cat\") is transparently modifier+head or a non-compositional coined name cannot be decided from the sentence, and the instruction set states no default for invented terms — the decomposition rules assume the parser knows the referent's kind, which is exactly what a lore corpus withholds"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form simply omits (Inheritance wintergloss gloss), leaving wintergloss an undecomposed single symbol under the lexicalized-compound bar; every other atom stands unchanged.",
+    "notes": "The whenever machinery is otherwise exact: plain-variable premises with no Skolem term, the per-occurrence (sk_repel $e) consequent with its During link at 1.0/0.9, no QuantifierPhrase companion, the Alongside oblique over a bare-mass constant, \"dried\" kept as a participial adjective, and Agent/Patient/Theme/Source all assigned by the usual tests."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000494",
+   "sentence": "Keepers rarely burn wintergloss.",
+   "parse": [
+    "(: n4_wintergloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: n4_keeper_burn_rule (Implication (Member $x keeper) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) wintergloss))) (STV 0.1 0.9))",
+    "(: n4_keeper_burn_q (QuantifierPhrase keeper burn \"rarely\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000494",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "Both arguments are bare kind-denoting NPs (bare plural \"Keepers\", bare mass \"wintergloss\"), which is the stated mechanical trigger for the opaque kind-level relation (Burn keeper wintergloss) with the frequency adverb setting its strength, not the per-instance distributing rule emitted here - and the instruction set warns the two forms are not comparable."
+     },
+     {
+      "statement": 0,
+      "issue": "(Inheritance wintergloss gloss) applies the solid-spelling genus where the IS-A test plainly fails - a burnable substance called wintergloss is not a kind of gloss - and the head genus is supposed to be suppressed when the IS-A fails."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "deciding whether an INVENTED / coined solid-spelling common noun (\"wintergloss\") is transparently modifier + head: the only stated test is the IS-A / hot-dog check, which has no determinate answer for fiction vocabulary the reader has no world knowledge of"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The frequency dial (rarely -> 0.1), the QuantifierPhrase companion's shape and TV, Patient for the burnt object, and the 0.9 rule confidence are all correct; only the construction routing and the questionable genus are at issue."
+   },
+   "adjudication": {
+    "id": "lore-000494",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"Keepers\" (bare plural) and \"wintergloss\" (bare mass) are bare kind-denoting NPs on both sides, which is the stated mechanical trigger for the opaque kind-level relation, so the per-instance Implication wrongly distributes to every keeper a predication the instruction set says must stay opaque (\"does this mosquito carry malaria?\" correctly stays unknown) — the prompt's own \"Foxes rarely cross the causeway\" rule-example has a DEFINITE object, which is exactly why it is not a kind relation."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "Compound concepts' default for a transparently modifier+head solid spelling is \"always emit the genus … the solid spelling is never a reason to skip decomposition\"; suppression requires an established IS-A failure (the hot-dog test), which a coined fiction noun does not supply — the reviewer's own gap concedes the test has no determinate answer here."
+     }
+    ],
+    "gaps_confirmed": [
+     "deciding whether a coined / invented solid-spelling common noun (\"wintergloss\") is transparently modifier + head: the only stated test is the IS-A / hot-dog check, which is indeterminate for fiction vocabulary the reader has no world knowledge of"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the opaque kind-level relation (Burn keeper wintergloss) at strength 0.1 / confidence 0.9 (the \"rarely\" dial applied to the relation atom itself), keeping the existing (QuantifierPhrase keeper burn \"rarely\") companion on the subject kind, and emitting no per-instance Implication.",
+    "notes": "The frequency dial value, the companion's shape and TV, and the compound genus are all fine; only the construction routing fails. Nothing false is asserted by the rule per se — the defect is that it distributes an opaque kind characterization to every instance."
+   }
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000495",
+   "sentence": "The village wants nightmoths at its lanterns.",
+   "parse": [
+    "(: village_mem (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: want_mem (Member sk_want_1 want) (STV 1.0 0.99))",
+    "(: want_exp (Experiencer sk_want_1 sk_village_1) (STV 1.0 0.99))",
+    "(: want_stim (Stimulus sk_want_1 night_moth) (STV 1.0 0.99))",
+    "(: nm_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: want_loc (Location sk_want_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_poss (Possession sk_lantern_1 sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000495",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "(Location sk_want_1 sk_lantern_1) attaches 'at its lanterns' to the wanting event, asserting that the village does its wanting at the lanterns, when the PP predicates the location of the desired nightmoths."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "desire verb with a small-clause complement ('wants nightmoths at its lanterns' = wants them to be at the lanterns): the instruction set covers a psych verb with an entity object (Experiencer/Stimulus), a finite that-clause (seal), a control to-infinitive and a perception eventive complement, but supplies no carrier for a locative/adjectival small clause predicated of the object"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is doctrinal: definite singular witness, want as stative psych (Experiencer/Stimulus), possessed plural 'its lanterns' as a group witness with Possession, and night_moth decomposed to genus moth with the noun modifier unexposed."
+   },
+   "adjudication": {
+    "id": "lore-000495",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The PP belongs to the small-clause complement (wants them TO BE at the lanterns), so (Location sk_want_1 sk_lantern_1) asserts a place for the wanting that the text never states while dropping the place it does state, violating Core patterns' point-at-the-words test; the matrix-attachment reading is not a live second reading either, since a village wanting at its own lanterns is incoherent."
+     }
+    ],
+    "gaps_confirmed": [
+     "desire verb with a locative small-clause complement predicated of the object: the instruction set covers a psych verb with an entity object, a finite that-clause (seal), a control to-infinitive and a perception eventive complement, but supplies no carrier for a state merely desired of the object"
+    ],
+    "new_gaps": [
+     "a transparently compound SOLID spelling ('nightmoths'): Compound concepts mandates the genus but never fixes the symbol itself, so one surface word can yield either nightmoth or night_moth across parses -- an unforced symbol split the instruction set should decide"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form drops (Location sk_want_1 sk_lantern_1) -- leaving the want bundle with Experiencer and Stimulus only -- and records the locative as a gap: sealing is finite-clause-only, a top-level (LocatedIn <moths> sk_lantern_1) would assert the moths ARE at the lanterns, and a bare position clause mints no event, so nothing licensed carries a location that is only desired.",
+    "notes": "The rest is doctrinal: definite singular witness, want as a stative psych verb (Experiencer/Stimulus), bare-plural kind-level object as a bare filler, 'its lanterns' as a possessed-plural group witness with Possession, and the head genus 'moth' with the noun modifier 'night' unexposed."
+   }
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000496",
+   "sentence": "The Council issues wintergloss for the Stilllight Lantern.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: wg_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: e_issue (Member sk_issue_1 issue) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_issue_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_issue_1 wintergloss) (STV 1.0 0.99))",
+    "(: e_benef (Beneficiary sk_issue_1 stilllight_lantern) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000496",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "'for the Stilllight Lantern' is slotted as Beneficiary, but the lantern is an inanimate artifact the substance is destined for rather than 'a party the event is done for the benefit of', so the preposition-named oblique (For sk_issue_1 stilllight_lantern) is what the role definition points to."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "destination / intended-use 'for' with an inanimate target ('issues X for the Lantern'): neither the Beneficiary definition (a benefited party, including substitution-'for') nor the stated (For ...) fallback category (ground, prize or exchange) covers it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Council' correctly takes the singular-collective common-noun default (witness, no Name atom, no distribution rule) and 'the Stilllight Lantern' correctly takes one Name atom plus a separate kind atom. Bare simple present correctly gets no status atom."
+   },
+   "adjudication": {
+    "id": "lore-000496",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Beneficiary is defined by the benefit relation and carries no animacy bar (the prompt states an animacy restriction only for Instrument, 'never a person'), the Lantern is the party the issuing is done for, and the (For ...) fallback is expressly reserved for a 'for' naming the ground, prize or exchange — which this is not."
+     }
+    ],
+    "gaps_confirmed": [
+     "destination / intended-use 'for' with an inanimate target ('issues X for the Lantern') sits between Beneficiary's benefited-party gloss and the (For ...) ground/prize/exchange carve-out, with neither category written to cover it"
+    ],
+    "new_gaps": [],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Under the calibration line this is gap territory and (Beneficiary sk_issue_1 stilllight_lantern) is true of the text and well-typed, so the choice of role stands. The rest is right too: 'the Council' as a common-noun collective witness with no Name and no distribution, the Lantern's single Name plus a separate kind atom, the wintergloss genus with its noun modifier suppressed, and no status atom on the bare present."
+   }
+  }
+ ]
+}

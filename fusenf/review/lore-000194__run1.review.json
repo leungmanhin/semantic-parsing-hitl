@@ -1,0 +1,18 @@
+{"id": "lore-000194", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 5, "issue": "The rule consumes the explicit quantifier word 'every' ('every Council session') but emits no QuantifierPhrase companion, which the instruction set makes mandatory for every explicit quantifier word a rule consumes."},
+   {"statement": 3, "issue": "Strength 1.0 asserts a universal over all births, but 'at births' carries no explicit quantifier word, so the bare-plural generic strength 0.9 is what the quantity dial gives."},
+   {"statement": 4, "issue": "Same over-strength as statement 3: 'at funerals' is a bare-plural generic with no quantifier word, yet the rule is emitted at strength 1.0."},
+   {"statement": 5, "issue": "'Council session' is linked by (Possession $x sk_council_1), but the parse itself types sk_council_1 as a common noun (no Name atom), and Possession is licensed for genitives and PROPER-noun premodifiers — a common-noun premodifier goes through Compound concepts (council_session with genus session)."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "Occasion-denoting bare-plural PP adjuncts on a habitual clause ('repeat the phrase at births, at funerals') — neither the calendar-slot frequency machinery (Time / Every / TimesPer, which needs a named calendar slot) nor the 'every time / whenever' clause machinery (which needs a clause) covers them; the preposition-named oblique (At e birth) would be licensed but drops the per-occasion recurrence, and the parse's fallback renders 'at' as During, a head the instruction set restricts to during/while/throughout and explicitly warns against using as a synonym head.",
+   "A capitalized common-noun premodifier ('Council session') — the instruction set gives a Possession rule for a PROPER-noun premodifier and a common-noun default (no Name) for a capitalized noun used as the referent's ONLY label, but says nothing about a capitalized common noun in premodifier position, so it falls between that rule and Compound concepts.",
+   "'the close of every Council session' — a nominalization that is simultaneously a temporal anchor: the nominalization rule attaches the of-phrase as the entity-attached oblique (Of <close> <session>), while reifying it as an eventuality (needed to carry the ordering/nesting relation) invites a thematic role instead; the instruction set does not say which shape wins."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The Name-only treatment of the capitalized plural label 'the Keepers' (one symbol, Name atom, no GroupOf and no per-member kind) is exactly what the instruction set legislates. The three-way split of the coordinated adjuncts into three occurrence-quantified rules is a plausible extension of the whenever machinery, but the instruction set never licenses that route from a PP adjunct."}

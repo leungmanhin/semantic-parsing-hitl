@@ -1,0 +1,267 @@
+{
+ "id": "L9-01",
+ "rule": "IX — Morning",
+ "texts": [
+  "Threads arrive at Cauldron Hall each morning.",
+  "Each Keeper leaves the night's threads in a wicker basket at the Hall door.",
+  "Hesper weighs the threads by mid-morning.",
+  "Hesper portions the threads into the three cauldrons.",
+  "Hesper draws sea-water from the cisterns.",
+  "Hesper pours sea-water over the threads until the threads are submerged.",
+  "A banked central hearth lights the cauldron fires.",
+  "The central hearth never goes out."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000526",
+   "sentence": "Threads arrive at Cauldron Hall each morning.",
+   "parse": [
+    "(: threads_arrive_rule (Implication (Member $x thread) (And (Member (sk_arrive $x) arrive) (Theme (sk_arrive $x) $x) (Location (sk_arrive $x) cauldron_hall) (Time (sk_arrive $x) morning) (Every (sk_arrive $x) 1 day))) (STV 0.9 0.9))",
+    "(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000526",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare-plural generic subject carrying a periodic frequency adjunct (\"Threads arrive ... each morning\"): the instruction set mandates the distributing rule for a habitual verbal generic and, separately, Time+Every for a named recurrence slot, but never says how the two compose — stacking them puts the recurrence on each instance's own event, yielding 'every thread arrives every morning' rather than the intended 'every morning, threads arrive'; no scope carrier exists for the existential-under-frequency reading"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Rule form, Theme for the un-powered-relocation subject of 'arrive', the (Time morning)+(Every 1 day) slot/cycle pair, the opaque multi-word name symbol with its Name plus the kind word read off the name are all doctrine-conformant. Only the scope composition noted above is unaddressed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000527",
+   "sentence": "Each Keeper leaves the night's threads in a wicker basket at the Hall door.",
+   "parse": [
+    "(: keeper_leaves (Implication (Member $x keeper) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Theme (sk_leave $x) (sk_threads $x)) (GroupOf (sk_threads $x) thread) (Possession (sk_threads $x) night) (Location (sk_leave $x) sk_basket_1))) (STV 1.0 0.9))",
+    "(: keeper_q (QuantifierPhrase keeper leave \"each\") (STV 1.0 0.99))",
+    "(: basket_m (Member sk_basket_1 wicker_basket) (STV 1.0 0.99))",
+    "(: basket_g (Inheritance wicker_basket basket) (STV 1.0 0.99))",
+    "(: hall_m (Member sk_hall_1 hall) (STV 1.0 0.99))",
+    "(: door_m (Member sk_door_1 door) (STV 1.0 0.99))",
+    "(: door_part (PartOf sk_door_1 sk_hall_1) (STV 1.0 0.99))",
+    "(: basket_loc (LocatedIn sk_basket_1 sk_door_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000527",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The explicit universal 'each Keeper' takes the distributing rule with (Member $x keeper), Skolem-function event and per-binding thread group, its QuantifierPhrase companion, strength 1.0 / confidence 0.9, and no tense on the habitual present — all as specified; 'Keeper' correctly stays a common noun with no Name atom, 'wicker basket' fuses with the noun modifier unexposed, and no (LocatedIn <threads> <basket>) is invented for the positioned object. Giving 'a wicker basket' a shared constant rather than a per-keeper Skolem departs from the 'first quantifier takes wide scope' default, but is the reading the definite 'the Hall door' favors and the Interpretation section allows a world-knowledge lean to select."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000528",
+   "sentence": "Hesper weighs the threads by mid-morning.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: threads_grp (GroupOf sk_threads_1 thread) (STV 1.0 0.99))",
+    "(: weigh_ev (Member sk_weigh_1 weigh) (STV 1.0 0.99))",
+    "(: weigh_ag (Agent sk_weigh_1 hesper) (STV 1.0 0.99))",
+    "(: weigh_th (Theme sk_weigh_1 sk_threads_1) (STV 1.0 0.99))",
+    "(: weigh_time (TimeAtMost sk_weigh_1 mid_morning) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000528",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural → group witness, weigh as an evaluating verb → Theme, no status atom for the present habitual (no futurate evidence), and 'by mid-morning' → the deadline TimeAtMost; mid_morning sits just outside the parenthetical day-part inventory but the 'bound terms accept day-part constants as-is' rule covers it."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000529",
+   "sentence": "Hesper portions the threads into the three cauldrons.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: threads_group (GroupOf sk_threads_1 thread) (STV 1.0 0.99))",
+    "(: cauldrons_group (GroupOf sk_cauldrons_1 cauldron) (STV 1.0 0.99))",
+    "(: cauldrons_card (Cardinality sk_cauldrons_1 3) (STV 1.0 0.99))",
+    "(: e_portion (Member sk_portion_1 portion) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_portion_1 hesper) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_portion_1 sk_threads_1) (STV 1.0 0.99))",
+    "(: e_goal (Goal sk_portion_1 sk_cauldrons_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000529",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'into the three cauldrons' is handled as a motion result carried by the Goal oblique with no Result atom, the two definite plurals take group witnesses with the count on the cauldron group, and the bare simple present correctly gets no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000530",
+   "sentence": "Hesper draws sea-water from the cisterns.",
+   "parse": [
+    "(: n5_hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: n5_water_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: n5_cistern_grp (GroupOf sk_cistern_1 cistern) (STV 1.0 0.99))",
+    "(: n5_draw_ev (Member sk_draw_1 draw) (STV 1.0 0.99))",
+    "(: n5_draw_ag (Agent sk_draw_1 hesper) (STV 1.0 0.99))",
+    "(: n5_draw_th (Theme sk_draw_1 sea_water) (STV 1.0 0.99))",
+    "(: n5_draw_src (Source sk_draw_1 sk_cistern_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000530",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name-only for Hesper with no invented kind atom, sea_water's genus with its noun modifier left unexposed, the definite plural as a GroupOf witness, Theme for the undisplaced mass object kept as a bare-kind filler, and Source for the whence-PP all conform. The simple present correctly takes no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000531",
+   "sentence": "Hesper pours sea-water over the threads until the threads are submerged.",
+   "parse": [
+    "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+    "(: e_pour (Member sk_pour_1 pour) (STV 1.0 0.99))",
+    "(: e_pour_agent (Agent sk_pour_1 hesper) (STV 1.0 0.99))",
+    "(: e_pour_theme (Theme sk_pour_1 sea_water) (STV 1.0 0.99))",
+    "(: sw_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: e_pour_over (Over sk_pour_1 sk_thread_1) (STV 1.0 0.99))",
+    "(: thread_group (GroupOf sk_thread_1 thread) (STV 1.0 0.99))",
+    "(: e_pour_end (End sk_pour_1 sk_submerged_1) (STV 1.0 0.99))",
+    "(: e_submerged (Member sk_submerged_1 submerged) (STV 1.0 0.99))",
+    "(: e_submerged_exp (Experiencer sk_submerged_1 sk_thread_1) (STV 1.0 0.99))",
+    "(: thread_submerged_flat (Member sk_thread_1 submerged) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000531",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 10,
+      "issue": "The flat dual-emit atom (Member sk_thread_1 submerged) predicates the state of the GROUP symbol, which the instruction set explicitly bars for a plural — the flat half must become the per-member rule (Implication (PartOf $x sk_thread_1) (Member $x submerged)) beside the reified state."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'until <finite clause>' as an interval endpoint: the instruction set gives End only a structured time term / date in its value slot ('V-ed until <date>'), and says nothing about an eventuality or reified state filling it, nor whether a clausal 'until' should instead take the Before ordering"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name, event roles (Theme for displaced sea-water, the preposition-named Over oblique), the sea_water genus, the definite-plural group witness, coreference of the two 'the threads' mentions, and the unmarked habitual tense are all correct. Judgment call worth flagging: 'the threads are submerged' was read as an adjectival state, where the instruction set's own contrast ('the worktop was laminated' *is* a verb) points at a passive submerge event."
+   },
+   "adjudication": {
+    "id": "lore-000531",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Both *Categorical statements* (a property of a plural's members is never predicated of the group symbol) and *Resultatives* (the flat half becomes the per-member rule over (PartOf $x <group>), never (Member <group> <state>)) bar this atom, which as written says the collection-as-object is submerged rather than each thread."
+     }
+    ],
+    "gaps_confirmed": [
+     "a clausal until as an interval endpoint: End's value slot is specified for structured time terms and day-part constants, and nothing states whether a reified state or eventuality may fill it, nor whether clausal until should instead take the Before ordering that *Inter-clause connectives* routes temporal connectives to"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form drops (Member sk_thread_1 submerged) in favour of the per-member rule (Implication (PartOf $x sk_thread_1) (Member $x submerged)) at (STV 1.0 0.9), emitted beside the reified state (Member sk_submerged_1 submerged) (Experiencer sk_submerged_1 sk_thread_1).",
+    "notes": "The Name atom, Theme for the displaced sea-water, the sea_water genus, the preposition-named Over oblique, the definite-plural group witness and the unmarked habitual present are all right, and filling End with the state witness is gap-territory improvisation rather than a defect. The reviewer's own note — that the threads are submerged could be a passive submerge event rather than an adjectival state, on the laminated-worktop contrast — is a live alternative reading but was not filed as an issue, so I make no ruling on it."
+   }
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000532",
+   "sentence": "A banked central hearth lights the cauldron fires.",
+   "parse": [
+    "(: hearth_genus (Inheritance central_hearth hearth) (STV 1.0 0.99))",
+    "(: hearth_mod (Inheritance central_hearth central) (STV 1.0 0.99))",
+    "(: hearth_type (Member sk_hearth_1 central_hearth) (STV 1.0 0.99))",
+    "(: hearth_banked (Member sk_hearth_1 banked) (STV 1.0 0.99))",
+    "(: e_light (Member sk_light_1 light) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_light_1 sk_hearth_1) (STV 1.0 0.99))",
+    "(: fire_genus (Inheritance cauldron_fire fire) (STV 1.0 0.99))",
+    "(: fire_group (GroupOf sk_group_1 cauldron_fire) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_light_1 sk_group_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000532",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite subject with a verbal predicate correctly stays a witness rather than becoming a generic rule, the definite plural object correctly becomes a GroupOf witness, and \"lights\" correctly takes Patient (ignition changes the fires). \"central\" is exposed as a modifier genus on the east_wing / upper_deck positional-adjective precedent while the participial \"banked\" stays a separate surface-form property."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000533",
+   "sentence": "The central hearth never goes out.",
+   "parse": [
+    "(: hearth_type (Member sk_hearth_1 hearth) (STV 1.0 0.99))",
+    "(: hearth_central (Member sk_hearth_1 central) (STV 1.0 0.99))",
+    "(: hearth_never_out (And (Member sk_go_out_1 go_out) (Patient sk_go_out_1 sk_hearth_1)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000533",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the frequency quantifier 'never' on a SPECIFIC individual's habitual clause — the frequency-adverb machinery (and the QuantifierPhrase companion it calls mandatory for every explicit quantifier word) is scoped to the generic/habitual kind-level reading, and the companion's first slot expects a kind, while the same passage bars a companion restating a range that appears nowhere else in the parse; whether a definite-singular subject takes one is left undecided"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Phrasal verb kept whole as go_out with no genus, unaccusative subject as Patient, strength-0.0 conjunction and no tense atom (habitual) all follow the instruction set. Splitting 'central hearth' into a witness plus (Member sk_hearth_1 central) rather than fusing central_hearth is a judgment call the fuse-vs-describe test leaves open (cf. the fused positional east_wing / upper_deck)."
+   },
+   "adjudication": null
+  }
+ ]
+}

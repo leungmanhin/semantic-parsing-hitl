@@ -1,0 +1,371 @@
+{
+ "id": "L1-09",
+ "rule": "I — The Hollows",
+ "texts": [
+  "The Hollows lie inland from the village.",
+  "The Hollows are a long stretch of low scrub forest.",
+  "Fog usually covers the Hollows.",
+  "The Hollows hold thirty-two lanterns.",
+  "The Hollows lanterns stand along the forest paths.",
+  "The Hollows lanterns burn dimly.",
+  "The Keepers keep the Hollows lanterns dim.",
+  "Whenever a nightmoth flees the Cliff Path, the nightmoth goes to a dim lantern in the Hollows.",
+  "A small crew of Keepers tends the Hollows.",
+  "The Hollows produce a thin thread harvest."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000062",
+   "sentence": "The Hollows lie inland from the village.",
+   "parse": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: hollows_inland (InlandFrom hollows sk_village_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000062",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Hollows\" is handled exactly as the capitalized-plural label rule prescribes — Name-only individual, no GroupOf, no invented type atom — and \"lie\" is treated as a bare position clause minting no event, with the non-containment locative kept as the CamelCase-joined multi-word preposition head InlandFrom (the AcrossTheLaneFrom pattern). Present tense correctly takes no wrapper."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000063",
+   "sentence": "The Hollows are a long stretch of low scrub forest.",
+   "parse": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: hollows_stretch (Member hollows stretch) (STV 1.0 0.99))",
+    "(: hollows_long (Member hollows long) (STV 1.0 0.99))",
+    "(: hollows_scrub_forest (Member hollows scrub_forest) (STV 1.0 0.99))",
+    "(: scrub_forest_genus (Inheritance scrub_forest forest) (STV 1.0 0.99))",
+    "(: hollows_low (Member hollows low) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000063",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The of-phrase in \"a long stretch OF low scrub forest\" is flattened into a direct kind atom on the subject, so the portion/extent relation between the stretch and the forest is dropped with no atom recording it."
+     },
+     {
+      "statement": 5,
+      "issue": "`(Member hollows low)` predicates \"low\" of the Hollows, but the adjective sits inside the of-complement modifying the scrub/forest, so the modifier is re-attached to a different bearer."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Quantity/extent noun with a bare-mass of-complement in a copular predication (\"a stretch of low scrub forest\"): the of-phrase is not a possessive genitive, not a definite partitive (Partitives require \"of the / of these / of them\"), not a measure of a definite whole, and not a nominalization's object; the instruction set excludes the measure of-phrase (\"a cup of water\") from `Possession` but assigns it no encoding."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Treating \"the Hollows\" as a Name-only individual with the kind supplied by a separate word (\"stretch\") follows the capitalized-plural-label rule, and the `scrub_forest` fusion plus its `forest` genus is correct (noun modifier not exposed)."
+   },
+   "adjudication": {
+    "id": "lore-000063",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The extent-noun of-phrase is genuinely uncovered - not a genitive, not an 'of the' partitive, not a nominalization's object, and the measure of-phrase is explicitly excluded from Possession without being assigned any head - and (Member hollows scrub_forest) is true and well-typed on the instruction set's own principle that a part of a homogeneous mass is still that mass."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is descriptive - 'low' modifies the of-complement and its attachment site is lost - but the atom is neither false nor over-asserted: once scrub_forest is licensedly flattened onto the same symbol, carrying the stated modifier there is what the never-silently-drop-a-qualifier rule requires, and dropping it would be the worse violation."
+     }
+    ],
+    "gaps_confirmed": [
+     "A quantity/extent noun with a bare-mass of-complement in a copular predication ('a long stretch of low scrub forest') has no assigned encoding: not a genitive, not an 'of the' partitive (no definite whole exists to be SubsetOf/PartOf), not a nominalization's object."
+    ],
+    "new_gaps": [
+     "Once such an of-complement is flattened onto the subject symbol, an adjective that modifies only the complement ('low' in 'low scrub forest') has no distinct bearer left, so nothing records which of the two nominals the modifier restricts."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Every emitted atom is true and well-typed - the Name-only capitalized-plural label, the extent typing with its adjective, and the scrub_forest fusion with only the head genus exposed. What is lost is the unrecorded extent relation, which is the gap the reviewer correctly filed, not a parse defect."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000064",
+   "sentence": "Fog usually covers the Hollows.",
+   "parse": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: fog_cover (And (Member sk_cover_1 cover) (Agent sk_cover_1 fog) (Theme sk_cover_1 hollows)) (STV 0.8 0.9))",
+    "(: fog_cover_q (QuantifierPhrase fog cover \"usually\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000064",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The habitual verbal generic is packaged as one positive (And ...) event bundle carrying the 0.8 frequency strength, but a positive event is separate atoms and a verbal generic must be the distributing (Implication (Member $x fog) (And (Member (sk_cover $x) cover) ...)) rule of Quantifiers, generics & scope, which is where the frequency strength belongs."
+     },
+     {
+      "statement": 1,
+      "issue": "The bare kind symbol fog fills the Agent slot of a single specific event witness sk_cover_1, so the parse asserts one particular covering event at strength 0.8 rather than the stated regularity."
+     },
+     {
+      "statement": 2,
+      "issue": "The QuantifierPhrase companion names a range (fog / cover) that no rule in this parse quantifies, which the instruction set forbids ('never a range that appears nowhere else in the parse')."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Habitual with a frequency adverb over a bare MASS subject ('Fog usually covers the Hollows'): the instruction set calls a frequency adverb a quantifier over occasions but routes its strength onto an instance-ranging rule over the subject kind, and the only genuine occasion-domain machinery ('every time / whenever') requires a trigger clause, so there is no form that states 'on most occasions'."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The Name-only treatment of the capitalized plural label 'the Hollows' (Name atom, no GroupOf, no invented type atom) is correct, as is the 0.8 dial for 'usually'."
+   },
+   "adjudication": {
+    "id": "lore-000064",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Quantifiers, generics & scope makes a verbal generic the distributing `(Implication (Member $x fog) ...)` rule and puts the frequency adverb's strength on that rule, while Negation (events) reserves the single strength-bearing `(And ...)` bundle for denials — a positive event is separate atoms."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The structural half stands — the kind symbol `fog` belongs in a rule premise `(Member $x fog)` with the event as the Skolem term `(sk_cover $x)`, not as the filler of a minted event witness — but the \"one particular covering event\" half does not, since Status predicates makes an event with no status atom generic / habitual / dispositional, not a specific occurrence."
+     },
+     {
+      "index": 2,
+      "verdict": "refute",
+      "reason": "`(QuantifierPhrase fog cover \"usually\")` is the companion the frequency-adverb rule makes mandatory, it is true and well-typed, and it survives unchanged into the compliant rule form — the range it names is the very one the claim consumes, so its only fault is inherited from the mis-structured host claim."
+     }
+    ],
+    "gaps_confirmed": [
+     "A frequency adverb is called a quantifier over occasions, but its only licensed carrier ranges over instances of the subject kind — for a bare mass subject (\"fog\") that cannot state \"on most occasions\", and the genuine occasion-domain machinery (every time / whenever) requires a trigger clause."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the distributing rule `(: fog_cover (Implication (Member $x fog) (And (Member (sk_cover $x) cover) (Agent (sk_cover $x) $x) (Theme (sk_cover $x) hollows))) (STV 0.8 0.9))` with the `QuantifierPhrase` companion unchanged — which carries the frequency strength but quantifies fog-instances rather than occasions, the registered gap above.",
+    "notes": "The kind-relation route is unavailable here because only the subject is a bare kind — \"the Hollows\" is a definite named individual — so the event rule is the licensed route. The Name-only handling of the capitalized plural label and the 0.8 dial for \"usually\" are both correct."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000065",
+   "sentence": "The Hollows hold thirty-two lanterns.",
+   "parse": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: e_ag (Agent sk_hold_1 hollows) (STV 1.0 0.99))",
+    "(: e_th (Theme sk_hold_1 sk_group_1) (STV 1.0 0.99))",
+    "(: grp (GroupOf sk_group_1 lantern) (STV 1.0 0.99))",
+    "(: card (Cardinality sk_group_1 32) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000065",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Hollows' takes the capitalized-plural-label route exactly (one symbol, Name only, no GroupOf and no kind atom from the label word), and 'hold' is the stative-transitive case the instruction set names explicitly ('the tank holds forty litres'), so Agent + Theme is right; counted plural object gets group + Cardinality 32 with no per-member rule, which the distributive-rule doctrine only asks for on plural subjects."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000066",
+   "sentence": "The Hollows lanterns stand along the forest paths.",
+   "parse": [
+    "(: t3_hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: t3_lantern_grp (GroupOf sk_group_1 lantern) (STV 1.0 0.99))",
+    "(: t3_lantern_poss (Possession sk_group_1 hollows) (STV 1.0 0.99))",
+    "(: t3_path_grp (GroupOf sk_group_2 forest_path) (STV 1.0 0.99))",
+    "(: t3_path_genus (Inheritance forest_path path) (STV 1.0 0.99))",
+    "(: t3_stand_rule (Implication (PartOf $x sk_group_1) (Along $x sk_group_2)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000066",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Distribution of an ENTITY-ATTACHED POSITION ATOM over a definite plural subject: \"Where a THING is\" bars minting an event for a bare postural clause and mandates the surface-preposition entity-attached head, but the distributive machinery is stated only for events and for \"a descriptive modifier or copular predicate\" on a plural, so nothing says whether a position atom on \"the lanterns\" becomes a per-member Implication, a group-level atom, or both."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"stand along\" is correctly routed as a bare position clause (no event minted) with the surface preposition Along, and \"The Hollows\" is correctly handled as a proper-noun premodifier linked by the opaque Possession with a Name-only individual and no invented type atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000067",
+   "sentence": "The Hollows lanterns burn dimly.",
+   "parse": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lantern_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_poss (Possession sk_lanterns_1 hollows) (STV 1.0 0.99))",
+    "(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: burn_patient (Patient sk_burn_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: burn_manner (Manner sk_burn_1 dimly) (STV 1.0 0.99))",
+    "(: burn_dist (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Manner (sk_burn $x) dimly))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000067",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun premodifier is routed correctly to opaque Possession on the group with the head kept out of the Name string, the definite plural takes a group witness, and the distributive per-member rule accompanies the group event at (STV 1.0 0.9). Intransitive 'burn' as a Patient undergoer and the surface-form Manner filler 'dimly' both follow the stated tests."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000068",
+   "sentence": "The Keepers keep the Hollows lanterns dim.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lanterns_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: lanterns_poss (Possession sk_lanterns_1 hollows) (STV 1.0 0.99))",
+    "(: keep_ev (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: keep_ag (Agent sk_keep_1 keepers) (STV 1.0 0.99))",
+    "(: keep_th (Theme sk_keep_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: dim_state (Member sk_dim_1 dim) (STV 1.0 0.99))",
+    "(: dim_exp (Experiencer sk_dim_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: dim_still (Still sk_dim_1) (STV 1.0 0.99))",
+    "(: keep_result (Result sk_keep_1 sk_dim_1) (STV 1.0 0.99))",
+    "(: dim_rule (Implication (PartOf $x sk_lanterns_1) (Member $x dim)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000068",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Follows the capitalized-plural-label Name-only rule for \"the Keepers\", the proper-noun-premodifier Possession licence for \"the Hollows lanterns\", and the maintenance-verb State-result shape with the plural-object per-member rule standing in for the flat half. Bare simple present correctly takes no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t8",
+   "corpus_id": "lore-000069",
+   "sentence": "Whenever a nightmoth flees the Cliff Path, the nightmoth goes to a dim lantern in the Hollows.",
+   "parse": [
+    "(: e2_moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: e2_path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: e2_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: e2_hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: e2_rule (Implication (And (Member $m nightmoth) (Member $e flee) (Agent $e $m) (Theme $e cliff_path)) (And (Member (sk_go $e) go) (Agent (sk_go $e) $m) (Goal (sk_go $e) (sk_lantern $e)) (Member (sk_lantern $e) lantern) (Member (sk_lantern $e) dim) (LocatedIn (sk_lantern $e) hollows) (During (sk_go $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000069",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule shape, the During tie, the absent QuantifierPhrase companion, Name-only \"the Hollows\" and the kind-word-inside-the-name typing of \"Cliff Path\" all follow doctrine, and \"dim\" stays a separate descriptive atom rather than fusing. The consequent Skolems key on the trigger event alone rather than on both universals, which is harmless here because the premise's Agent atom makes $e determine $m."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t9",
+   "corpus_id": "lore-000070",
+   "sentence": "A small crew of Keepers tends the Hollows.",
+   "parse": [
+    "(: crew_type (Member sk_crew_1 crew) (STV 1.0 0.99))",
+    "(: crew_small (Member sk_crew_1 small) (STV 1.0 0.99))",
+    "(: crew_group (GroupOf sk_crew_1 keeper) (STV 1.0 0.99))",
+    "(: tend_ev (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: tend_agent (Agent sk_tend_1 sk_crew_1) (STV 1.0 0.99))",
+    "(: tend_theme (Theme sk_tend_1 hollows) (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000070",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A capitalized PLURAL common noun filling the member-kind slot of a collective ('a crew of Keepers'): the capitalized-common-noun rule gives a common-noun default that is explicitly 'singular-collective only', and legislates a Name-only individual only for a plural label 'referring as a name' ('the Wrens'), leaving a bare capitalized plural used as a kind specifier undecided between GroupOf-with-kind and Name-only."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Hollows' correctly takes the plural-label Name-only treatment (one symbol, Name atom, no GroupOf, no invented type atom), and (Member sk_crew_1 small) is licensed by the 'property genuinely of the collection itself (its size)' carve-out rather than the barred member-property-on-group reading. The singular collective subject correctly gets a plain event with the group as filler and no distribution rule."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t10",
+   "corpus_id": "lore-000071",
+   "sentence": "The Hollows produce a thin thread harvest.",
+   "parse": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: e_produce (Member sk_produce_1 produce) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_produce_1 hollows) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_produce_1 sk_harvest_1) (STV 1.0 0.99))",
+    "(: harvest_kind (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))",
+    "(: harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: harvest_thin (Member sk_harvest_1 thin) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000071",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Hollows\" is handled per the capitalized-plural-label rule (Name-only individual, no GroupOf, no invented kind atom); \"thread harvest\" fuses as a classifier with its genus emitted while the descriptive \"thin\" stays a separate Member atom, and the bare simple present correctly carries no status atom."
+   },
+   "adjudication": null
+  }
+ ]
+}

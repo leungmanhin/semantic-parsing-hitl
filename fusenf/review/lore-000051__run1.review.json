@@ -1,0 +1,9 @@
+{"id": "lore-000051", "run": 1,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a capitalized multi-word office title containing an embedded proper name (\"Cauldron Hall Warden\") — *Names and casing* says the name is exactly its capitalized run of words, which would make the whole run one Name-bearing symbol, while the proper-noun-premodifier rule (\"a Northgate spokesman\" → head noun typed on its own + opaque Possession) gives the split the parse chose; nothing states which rule wins when the head noun is itself capitalized", "predicative \"as\"-phrase of a designation / appointment verb (\"appoints a Keeper as Warden\", \"elected her as chair\") — no dedicated encoding exists; only the resultative branch (object = Patient, reified state + Result link) and the depictive branch (plain concurrent state, no Result) are available and neither is selected for this construction, so the appointing→office link is not recoverable from the emitted atoms", "a habitual recurrence whose participant varies per occurrence (\"appoints a Keeper each season\" — a different Keeper each season) — the flat habitual form leaves one witness sk_keeper_1 standing for every occurrence, and the per-occurrence Skolem machinery is reserved for \"every time / whenever\", which a calendar-period phrase explicitly does not trigger"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"each season\" → (Every sk_appoint_1 1 season) on an otherwise unmarked event follows *Frequency & habitual schedules* exactly, and the singular collective \"the Council\" correctly gets a plain event filler with no GroupOf, no distribution rule and no Name atom (capitalized bare class word). The Possession link to cauldron_hall is the licensed loose-association head, not an invented relation."}

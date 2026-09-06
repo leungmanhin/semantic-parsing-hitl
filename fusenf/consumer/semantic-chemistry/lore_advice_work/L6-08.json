@@ -1,0 +1,259 @@
+{
+ "id": "L6-08",
+ "rule": "VI — The cove incident",
+ "texts": [
+  "Three sky-cats once hunted nightmoths at the Sunken Cove.",
+  "The Council then ordered Bevin Coombe to burn wintergloss at the Stilllight Lantern.",
+  "Wraiths sometimes harm sky-cats in the cove.",
+  "Low moth-counts at the Stilllight Lantern keep sky-cats out of the cove.",
+  "The Keepers do not feed sky-cats.",
+  "Apprentices never approach the cliff-spires."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000421",
+   "sentence": "Three sky-cats once hunted nightmoths at the Sunken Cove.",
+   "parse": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cats_grp (GroupOf sk_group_1 sky_cat) (STV 1.0 0.99))",
+    "(: cats_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+    "(: moth_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: moth_grp (GroupOf sk_group_2 night_moth) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: hunt_ev (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+    "(: hunt_ag (Agent sk_hunt_1 sk_group_1) (STV 1.0 0.99))",
+    "(: hunt_th (Theme sk_hunt_1 sk_group_2) (STV 1.0 0.99))",
+    "(: hunt_loc (Location sk_hunt_1 sunken_cove) (STV 1.0 0.99))",
+    "(: hunt_tense (Past sk_hunt_1) (STV 1.0 0.99))",
+    "(: hunt_dist_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Theme (sk_hunt $x) sk_group_2) (Location (sk_hunt $x) sunken_cove) (Past (sk_hunt $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000421",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "past-remoteness adverb 'once' ('at one time / formerly'): it is not one of the listed speech-anchored deictic time constants and no Manner/sequence slot licenses it, so it can only be dropped",
+     "solid-spelled compound kind ('nightmoths'): the rules mandate the genus for a closed spelling but never say whether the compound symbol keeps the closed form (nightmoth) or is split with an underscore (night_moth)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Counted-plural handling is per doctrine: group witness + Cardinality 3 + group event + the per-member PartOf rule at (STV 1.0 0.9) for a distributive predicate, with the bare-plural object taking an episodic group witness. The parse writes the compound as night_moth although the surface spelling is closed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000422",
+   "sentence": "The Council then ordered Bevin Coombe to burn wintergloss at the Stilllight Lantern.",
+   "parse": [
+    "(: e1_council (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: e1_order (Member sk_order_1 order) (STV 1.0 0.99))",
+    "(: e1_order_ag (Agent sk_order_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e1_order_th (Theme sk_order_1 sk_burn_1) (STV 1.0 0.99))",
+    "(: e1_order_past (Past sk_order_1) (STV 1.0 0.99))",
+    "(: e1_bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+    "(: e1_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: e1_burn_ag (Agent sk_burn_1 bevin_coombe) (STV 1.0 0.99))",
+    "(: e1_burn_pat (Patient sk_burn_1 wintergloss) (STV 1.0 0.99))",
+    "(: e1_burn_loc (Location sk_burn_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: e1_lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: e1_lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000422",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "sequence/ordering adverb (\"then\") — the instruction set gives it no licensed slot and directs that it be dropped and recorded as a gap"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Object-control routing is right (burn event reified at top level, Theme of the order event, Bevin as its Agent, no tense of its own), and \"the Council\" correctly takes the capitalized-common-noun default with no Name while \"the Stilllight Lantern\" takes the name-plus-kind-atom pattern. The instruction set does not settle whether an object-control matrix verb of ordering also gives the controller a matrix role (addressee Recipient); the parse omits it, consistent with the adjacent causative rule that the object lives only in the caused event."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000423",
+   "sentence": "Wraiths sometimes harm sky-cats in the cove.",
+   "parse": [
+    "(: cove_type (Member sk_cove_1 cove) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: harm_rule (Implication (Member $x wraith) (And (Member (sk_harm $x) harm) (Agent (sk_harm $x) $x) (Patient (sk_harm $x) sky_cat) (Location (sk_harm $x) sk_cove_1))) (STV 0.5 0.9))",
+    "(: harm_q (QuantifierPhrase wraith harm \"sometimes\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000423",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "Both arguments are bare kind-denoting plurals (wraiths / sky-cats), which is the stated trigger for an opaque kind-level relation rather than a distributing per-instance rule, so the rule as written asserts at strength 0.5 that an arbitrary wraith harms sky-cats — exactly the inference the kind-relation route exists to block."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a locative restriction ('in the cove') on a relational generic whose two arguments are bare kinds — the kind-level relation form has exactly two slots and no condition slot, and ConditionalProperty is defined for kind-level properties rather than kind-level relations, so carrying the restriction and taking the licensed relational-generic route are mutually exclusive"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else checks out: 'sometimes' set to strength 0.5 with its QuantifierPhrase companion, sky_cat fused with genus cat and the noun modifier left unexposed, and the definite 'the cove' typed at top level outside the rule."
+   },
+   "adjudication": {
+    "id": "lore-000423",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Both arguments are bare kind-denoting plurals, which Striking & relational generics makes the mechanical trigger for the opaque kind-level relation and explicitly 'not a per-instance rule'; the emitted Implication hands the claim to an arbitrary wraith at 0.5, the very inference the kind-relation route exists to block."
+     }
+    ],
+    "gaps_confirmed": [
+     "a locative restriction ('in the cove') on a relational generic whose two arguments are bare kinds: the kind-relation head has exactly two slots, and ConditionalProperty's property slot takes a kind-level PROPERTY (or a reified can/obligated/permitted term), never a two-place relation — so carrying the restriction and taking the licensed route are mutually exclusive"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The licensed route is the opaque kind relation (Harm wraith sky_cat) at (STV 0.5 0.9) with the (QuantifierPhrase wraith harm \"sometimes\") companion, but that form has no slot for 'in the cove' and silently dropping the restriction is barred by Core patterns — so no licensed form carries the sentence's full content, and the instruction set's own fallback applies: leave the restricted claim out and record the gap.",
+    "notes": "Everything else is right — the frequency dial (sometimes to 0.5), the companion, the sky_cat genus, and the top-level typing of the definite 'the cove'; only the route is wrong. The restriction sits on the event, not on the subject, so the adjectivally-restricted-kind-subject carve-out that would license a distributing rule does not apply here."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000424",
+   "sentence": "Low moth-counts at the Stilllight Lantern keep sky-cats out of the cove.",
+   "parse": [
+    "(: mc_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lantern_kind (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: cove_type (Member sk_cove_1 cove) (STV 1.0 0.99))",
+    "(: mc_group (GroupOf sk_group_1 moth_count) (STV 1.0 0.99))",
+    "(: mc_low (Member sk_group_1 low) (STV 1.0 0.99))",
+    "(: mc_loc (LocatedIn sk_group_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: keep_ev (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: keep_ag (Agent sk_keep_1 sk_group_1) (STV 1.0 0.99))",
+    "(: keep_th (Theme sk_keep_1 sky_cat) (STV 1.0 0.99))",
+    "(: keep_out (OutOf sk_keep_1 sk_cove_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000424",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "The clause is a habitual-present characteristic claim with a bare-plural subject, so it needs the generic distributing-rule route (Implication over (Member $x moth_count) with a Skolem-function keep event), but it is parsed as a specific group witness plus a one-off event, which asserts a particular set of moth-counts the text never individuates."
+     },
+     {
+      "statement": 6,
+      "issue": "(Member sk_group_1 low) predicates 'low' of the group-as-object, which the instruction set explicitly bars for a plural's member property — a descriptive modifier on a plural must distribute (or ride the kind for a bare plural)."
+     },
+     {
+      "statement": 8,
+      "issue": "The keep event carries (STV 1.0 0.99) although, read as the generic/characteristic claim it is, it should carry the empirical generic values."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "transitive maintenance/preventive verb with a LOCATIVE result ('keep X out of Y') — the State-result + (Still …) shape is specified only for adjectival results, and the locative counterpart is gap-marked only for intransitive 'stay/remain + locative PP', leaving no stated route for the transitive case"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Names/casing, the compound genera (moth_count, sky_cat) and the 'at' -> LocatedIn head choice are all correct; OutOf is a licensed multi-word preposition-named oblique. The whole subject-side treatment is the defect."
+   },
+   "adjudication": {
+    "id": "lore-000424",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The clause is a habitual-present characteristic claim, which is exactly what the bare-plural split reserves for the generic rule route, and an adjectivally-restricted kind subject \"forces the distributing-rule route ... the restriction becomes a premise conjunct\"; the group-witness route instead asserts a specific existing set of low moth-counts and one full-confidence keeping occurrence the text never individuates."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "(Member sk_group_1 low) is the explicitly barred form - \"a property of a plural's members is never predicated of the group symbol ... a descriptive modifier or copular predicate on a plural always goes through the distributive rule (or, for a bare plural, the kind)\" - and \"low\" is a per-count property, not a property of the collection itself."
+     },
+     {
+      "index": 2,
+      "verdict": "partial",
+      "reason": "Real that no atom in the parse carries the empirical-generic confidence a characteristic claim requires, but overstated as an independent truth-value error: given the episodic framing the parser chose, (STV 1.0 0.99) is the correct TV for an asserted event, so the TV follows the form error rather than being a separate one."
+     }
+    ],
+    "gaps_confirmed": [
+     "transitive maintenance/preventive verb with a locative result (\"keep X out of Y\"): the State-result + (Still ...) shape is specified for adjectival results only, and \"out of\" states a non-position for which the entity-attached position heads have no polarity carrier"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form for both confirmed issues is one distributing rule - (Implication (And (Member $x moth_count) (Member $x low) (LocatedIn $x stilllight_lantern)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) $x) (Theme (sk_keep $x) sky_cat) ...)) at (STV 0.9 0.9) - with the restrictive \"low\" riding a premise conjunct on $x instead of (Member <group> low), and no group witness or token event at all. Inside that conclusion the \"out of the cove\" result still has no licensed head, which is the confirmed gap above.",
+    "notes": "Names/casing for \"the Stilllight Lantern\" (capitalized run exceeds the bare class word, so Name plus a separate kind atom), the compound genera and the \"at\" -> LocatedIn choice are all correct. The whole defect is subject-side quantificational form."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000425",
+   "sentence": "The Keepers do not feed sky-cats.",
+   "parse": [
+    "(: keepers_name (Name keepers \"Keepers\") (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: keepers_no_feed (And (Member sk_feed_1 feed) (Agent sk_feed_1 keepers) (Patient sk_feed_1 sky_cat)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000425",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Single strength-0 (And ...) denial with the Name atom and the definitional sky_cat genus projecting outside it; the Name-only subject correctly yields a plain denial rather than a generic rule, and the bare-kind object filler plus no tense atom fit the habitual present. Patient vs Theme on 'feed' is marginal but defensible under the 'applying a substance or treatment' test."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000426",
+   "sentence": "Apprentices never approach the cliff-spires.",
+   "parse": [
+    "(: cs_group (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: appr_rule (Implication (Member $x apprentice) (And (Member (sk_approach $x) approach) (Agent (sk_approach $x) $x) (Theme (sk_approach $x) sk_group_1))) (STV 0.0 0.9))",
+    "(: appr_q (QuantifierPhrase apprentice approach \"never\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000426",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Negated verbal generic at strength 0.0 with the definite plural object's GroupOf projecting at top level, exactly the 'Coopers do not caulk the barrel' / 'Foxes rarely cross the causeway' shape. The instruction set is ambiguous about whether a 'never' companion records the surface word or the 'no'/'none' string (the Quantifiers parenthetical); the surface word was recorded, which is what the surface-record rationale supports."
+   },
+   "adjudication": null
+  }
+ ]
+}

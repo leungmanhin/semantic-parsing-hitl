@@ -1,0 +1,9 @@
+{"id": "lore-000335", "run": 1,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Negated existential with a locative restriction ('There are no graves in Aelmere'): the Existential section covers only positive 'there is / there are', and no rule says whether the denial becomes a strength-0 Implication over instances of the kind or some flat copular-style strength-0 fact.", "The QuantifierPhrase companion has no predicate or verb-lemma to name when the denied predicate is a locative relation — the parse fills that slot with the place symbol `aelmere`, which the companion's stated shapes (<subject> <predicate> / <kind> <verb-lemma>) do not cover."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Minting no grave witness and ranging the strength-0 rule over `(Member $x grave)` correctly avoids both asserting a grave into existence and putting a kind in LocatedIn's entity slot, which the instruction set explicitly bars. Empirical confidence 0.9 and the mandatory companion for the explicit quantifier 'no' are both right."}

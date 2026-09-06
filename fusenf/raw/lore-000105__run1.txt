@@ -1,0 +1,6 @@
+(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))
+(: ledger_grp (GroupOf sk_ledger_1 ledger) (STV 1.0 0.99))
+(: ledger_poss (Possession sk_ledger_1 sk_watch_1) (STV 1.0 0.99))
+(: e_goback (Member sk_go_back_1 go_back) (STV 1.0 0.99))
+(: e_exp (Experiencer sk_go_back_1 sk_ledger_1) (STV 1.0 0.99))
+(: e_dur (MeasureAtLeast sk_go_back_1 duration 2 year) (STV 1.0 0.99))

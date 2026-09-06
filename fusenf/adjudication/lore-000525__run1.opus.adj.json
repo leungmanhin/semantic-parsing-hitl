@@ -1,0 +1,7 @@
+{"id": "lore-000525", "run": 1,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "Core patterns states that a stated restriction is never silently dropped — 'carry it, or leave the whole claim out and record the gap (an unencodable qualifier never becomes an unqualified assertion)' — and the emitted rule asserts an unbounded old-before-new ordering that also holds across season boundaries, which the text does not state."}],
+ "gaps_confirmed": ["no carrier for a bounded temporal window scoping an ordering ('within a season'): `Before` takes no bound, `BeforeBy` states an exact measured gap rather than a maximum, and `During`/`Start`/`End` need a reified outer eventuality or stated terms", "no naming convention for two events of the SAME verb in one rule conclusion — the prescribed `(sk_<verb> $x)` term would collide, forcing the ad-hoc stems `sk_use_old` / `sk_use_new`"],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "No compliant form is licensed for the ordering-plus-window content, so the instruction set's own fallback applies: omit the `Before` conjunct entirely and record the gap, keeping the kind-decomposition atoms and the two use-event halves, rather than emitting the unqualified ordering.",
+ "notes": "Fusing 'old salt-bloom' / 'new salt-bloom' into compound kinds with the modifier exposed is licensed here — `old` and `new` are gradable adjectives predicable of the referent — and it is the only route available for a bare kind filler. The Before direction (old use earlier) and the 0.9/0.9 bare-generic rule TV are correct."}

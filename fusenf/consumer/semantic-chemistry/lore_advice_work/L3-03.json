@@ -1,0 +1,224 @@
+{
+ "id": "L3-03",
+ "rule": "III — Decisions",
+ "texts": [
+  "The Council usually decides by consensus.",
+  "When consensus fails, the Council votes by a show of hands.",
+  "A simple majority decides a vote.",
+  "The speaker breaks a tied vote.",
+  "Ties are rare."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000219",
+   "sentence": "The Council usually decides by consensus.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: decide_ev (Member sk_decide_1 decide) (STV 0.8 0.9))",
+    "(: decide_ag (Agent sk_decide_1 sk_council_1) (STV 0.8 0.9))",
+    "(: decide_inst (Instrument sk_decide_1 consensus) (STV 0.8 0.9))",
+    "(: decide_q (QuantifierPhrase sk_council_1 decide \"usually\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000219",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The QuantifierPhrase companion holds the witness symbol sk_council_1 in its first slot, where the instruction set's form (QuantifierPhrase <kind> <verb-lemma> \"<word>\") and its group-premise note ('a group premise names the group kind', as in the committee example) call for the kind council."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a means/method 'by'-PP naming an abstract procedure ('decides by consensus'): Instrument is defined as a tool, substance or conduit and Manner is an adverb-only slot, so nothing settles between Instrument and the preposition-named (By <event> consensus) oblique",
+     "a frequency adverb ('usually') over a habitual clause with a definite singular-collective subject: the strength channel is specified for a rule or for a flat copular generic, but not for how the lowered strength is carried across a multi-atom event bundle (here 0.8 is put on the class atom and each role atom alike)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correctly treats 'the Council' as a capitalized common-noun label (no Name atom) and as a singular collective that takes a plain event with no distribution rule; 0.8/0.9 matches the 'usually' band and the empirical dial."
+   },
+   "adjudication": {
+    "id": "lore-000219",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Both stated forms put a kind in the first slot — (QuantifierPhrase <subject> <predicate> \"<word>\") on the copular side and (QuantifierPhrase <kind> <verb-lemma> \"<word>\") on the rule side — and the committee example names the kind `committee` while the group symbol is sk_committee_1, so the witness sk_council_1 is an individual placed in a class position."
+     }
+    ],
+    "gaps_confirmed": [
+     "a means/method 'by'-PP naming an abstract procedure ('decides by consensus'): Instrument is glossed as a tool, substance or conduit and Manner takes adverbs only, so nothing settles Instrument against the preposition-named (By <event> consensus) oblique",
+     "a frequency adverb's lowered strength over a multi-atom event bundle: the dial is specified for a rule's strength and for a flat generic's statement strength, but a definite singular-collective subject yields neither, so nothing says whether 0.8 rides the class atom, every atom, or none"
+    ],
+    "new_gaps": [
+     "the companion's own constraint — 'it only ever restates a range the rule itself quantifies, never a range that appears nowhere else in the parse' — is unsatisfiable for a frequency adverb over a definite singular-collective subject: the parse quantifies no kind range at all (only this one group's occasions), so neither the witness (ill-typed) nor the kind `council` (a range appearing nowhere else) is fully licensed; a licensed companion would need a slot able to name the specific group whose occasions the adverb quantifies"
+    ],
+    "decision": "defect",
+    "defect_summary": "The signature-compliant form is (QuantifierPhrase council decide \"usually\") (STV 1.0 0.99), but that names a kind range this parse never quantifies, so strictly no fully licensed companion exists for a frequency adverb over a definite singular-collective subject — filed in new_gaps.",
+    "notes": "The 0.8 band for 'usually' and the 0.9 empirical confidence are right, and the singular collective correctly takes a plain event with no distribution rule. Instrument for 'by consensus' is acceptable improvisation in gap territory — the role's core definition is 'the means it is performed by', and every emitted atom is true."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000220",
+   "sentence": "When consensus fails, the Council votes by a show of hands.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: consensus_fail_vote_rule (Implication (And (Member $x fail) (Patient $x consensus)) (And (Member (sk_vote $x) vote) (Agent (sk_vote $x) sk_council_1) (Instrument (sk_vote $x) (sk_show_of_hands $x)) (Member (sk_show_of_hands $x) show_of_hands) (During (sk_vote $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000220",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "`show_of_hands` is minted as a fused multi-word symbol with no decomposition atoms, but the literal 'show of hands' reading is coherent here, so the idiom bar that would license an un-decomposed fusion does not fire and the nominalization's-of-object route ((Member sk_show_N show) (Of sk_show_N hand)) is what the instruction set licenses."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a means/method PP naming a procedure ('votes by a show of hands'): Instrument is defined as a tool, substance or conduit and Manner is restricted to manner adverbs, so a procedural means-NP has no clearly assigned slot",
+     "an 'N of N' nominal ('a show of hands'): Compound concepts covers verb_object, verb_particle and modifier_noun, and gives no routing that decides between fusing such a phrase and the nominalization's-of-object oblique"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare 'when P, Q' routing is correct: P's participants are generic, so the whenever/rule machinery with a per-occurrence Skolem event and a During link is right, as is the no-QuantifierPhrase and the (Member sk_council_1 council) common-noun treatment of 'the Council'. Patient for the intransitive subject of 'consensus fails' matches the non-physical change-of-state test."
+   },
+   "adjudication": {
+    "id": "lore-000220",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts requires decomposition atoms for any fused compound unless the idiom bar fires, and that bar's own coherence test takes the literal reading \"whenever it is available\" — hands being literally shown is exactly what happens here — so the licensed encoding is the nominalization's-of-object oblique, not an opaque undecomposed `show_of_hands` that connects to nothing."
+     }
+    ],
+    "gaps_confirmed": [
+     "a procedural means-NP (\"votes by a show of hands\"): Instrument is defined as a tool, substance or conduit and Manner takes only manner adverbs, so nothing decides between Instrument and a preposition-named `(By <event> ...)` oblique for a stated method"
+    ],
+    "new_gaps": [
+     "the idiom coherence test can never select the lexicalized reading of a semi-transparent conventionalized NP (\"a show of hands\", \"a point of order\"), because the literal reading is always \"available\" for such phrases; a licensed form would need a way to record that the phrase names one conventional procedure while still decomposing it to its parts"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form replaces the fused symbol with the literal nominalization on its own witness — `(Member (sk_show $x) show)` plus its of-argument `(Of (sk_show $x) hand)` — keeping the vote event's link to that show witness; the rest of the whenever-rule stands unchanged.",
+    "notes": "The reviewer's second gap (no routing for an \"N of N\" nominal) is not confirmed: the nominalization's-of-object rule and the idiom coherence test together do decide this case. The whenever-rule routing, Patient on the failing consensus, and the no-Name common-noun treatment of \"the Council\" are all correct."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000221",
+   "sentence": "A simple majority decides a vote.",
+   "parse": [
+    "(: e_majority (Member sk_majority_1 majority) (STV 1.0 0.99))",
+    "(: e_majority_simple (Member sk_majority_1 simple) (STV 1.0 0.99))",
+    "(: e_vote (Member sk_vote_1 vote) (STV 1.0 0.99))",
+    "(: e_decide (Member sk_decide_1 decide) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_decide_1 sk_majority_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_decide_1 sk_vote_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000221",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "'simple majority' is a term of art (a named voting threshold), so the adjective+noun pair should fuse to simple_majority plus its genus atom; the split form instead predicates the property 'simple' of the majority, which is the incidental-description treatment the fusion rule reserves for colour/size/damage/mood."
+     },
+     {
+      "statement": 5,
+      "issue": "Patient on the vote overreads the occurrence-object carve-out, which covers only verbs that change whether or when an occurrence happens (cancel / postpone / reschedule); 'decide' settles its outcome, so the unclear-case default Theme applies."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The specific-witness (non-generic) reading is what the instruction set mandates for an indefinite subject with a verbal predicate, even though the sentence reads as a standing procedural rule, and the absent status atom is the correct habitual default. The singular collective 'majority' correctly gets a plain witness with no GroupOf and no distribution rule."
+   },
+   "adjudication": {
+    "id": "lore-000221",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"simple majority\" is a named voting threshold, exactly the term-of-art trigger *Compound concepts* gives for fusing an adjective+noun into a recognized kind, so the split form applies the incidental-description treatment that rule reserves for colour/size/damage/mood and predicates simplicity of the majority, which the sentence does not state."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The occurrence-object carve-out is bounded to verbs that change whether or when the occurrence happens (cancel / call off / postpone / delay / reschedule / bring forward); \"decide\" settles a vote's outcome, not its happening, and *Thematic roles* directs \"when the test is unclear, default to Theme\", so Patient is the unlicensed marked choice."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "a singular-indefinite subject with a verbal predicate stating a standing procedural rule (\"A simple majority decides a vote\") has no licensed generic carrier: *Existential* mandates the one-off witness reading because a verbal generic needs a bare plural or an explicit quantifier, so the standing-rule content the sentence actually conveys is unencodable"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form fuses the term of art as (Member sk_majority_1 simple_majority) with the head genus (Inheritance simple_majority majority) — the modifier genus emitted or withheld by the usual predication test — instead of the two-atom split; and the direct object takes (Theme sk_decide_1 sk_vote_1) rather than Patient.",
+    "notes": "The reviewer is right that the absent status atom (habitual default) and the plain witness for the singular collective \"majority\" are correct; the faults are confined to the fusion branch and the object role."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000222",
+   "sentence": "The speaker breaks a tied vote.",
+   "parse": [
+    "(: l222_speaker (Member sk_speaker_1 speaker) (STV 1.0 0.99))",
+    "(: l222_break_ev (Member sk_break_1 break) (STV 1.0 0.99))",
+    "(: l222_break_ag (Agent sk_break_1 sk_speaker_1) (STV 1.0 0.99))",
+    "(: l222_break_pat (Patient sk_break_1 sk_vote_1) (STV 1.0 0.99))",
+    "(: l222_vote (Member sk_vote_1 vote) (STV 1.0 0.99))",
+    "(: l222_vote_tied (Member sk_vote_1 tied) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000222",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite singular subject correctly stays a witness rather than a generic rule, and the bare simple present correctly takes no status atom; 'break' is on the Patient verb list. 'tied vote' is split rather than fused, which the adjective+noun test supports (a state description predicable of the vote), and 'tied' correctly keeps its participial-adjective form."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000223",
+   "sentence": "Ties are rare.",
+   "parse": [
+    "(: tie_rare (KindProperty tie rare) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000223",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Follows the kind-level non-distributing property rule, whose list names 'rare' explicitly, at the prescribed (STV 1.0 0.9). Bare plural with no quantifier word correctly takes no QuantifierPhrase companion, and 'Ties' is lemmatized to the singular kind."
+   },
+   "adjudication": null
+  }
+ ]
+}

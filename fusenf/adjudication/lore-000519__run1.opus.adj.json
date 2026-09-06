@@ -1,0 +1,10 @@
+{"id": "lore-000519", "run": 1,
+ "issues": [
+   {"index": 0, "verdict": "confirm", "reason": "A participle used as a modifier is an adjective ('a laminated worktop' gives (Member sk_worktop_1 laminated)) and Compound concepts says to leave adjective compounds opaque — unpacking 'iron-lidded' into a minted lid referent that no NP in the sentence introduces, while leaving the bin with no iron_lidded atom at all, is an unlicensed decomposition."},
+   {"index": 1, "verdict": "confirm", "reason": "(Member sk_lid_1 iron) exposes a noun modifier as a property, which the part-of-speech line bars outright ('steel is a noun sitting in front of another noun', steel_beam is not steel) — the material must ride inside the symbol, never be predicated of the lid."}
+ ],
+ "gaps_confirmed": [],
+ "new_gaps": ["a possessive ('bahuvrihi') compound adjective — 'iron-lidded', 'flat-roofed', 'three-legged' — has a determinate ROUTE (one opaque property on the bearer) but no licensed decomposition, so the part it names and that part's material stay unreachable inside the symbol; the 'Leave opaque for now' clause registers the routing without naming any carrier for the entailed part"],
+ "decision": "defect",
+ "defect_summary": "Both confirmed issues share one compliant form: replace the three lid atoms with the single opaque property (Member sk_feather_bin_1 iron_lidded) beside the existing (Member sk_feather_bin_1 box) — no lid witness, no PartOf, no exposed 'iron'.",
+ "notes": "I refute the reviewer's framing that the routing is unstated: the participial-modifier-is-an-adjective rule plus the leave-opaque clause determine it, which is why the unpacking is a defect rather than gap-territory improvisation. The rest of the parse is sound — feather_bin and ledger_room fused with head genus only, the copular Member on the individual, LocatedIn for containment 'in the floor', PartOf for the floor of the room."}

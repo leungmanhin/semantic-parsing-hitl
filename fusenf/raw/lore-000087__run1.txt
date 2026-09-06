@@ -1,0 +1,4 @@
+(: cs_grp (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))
+(: cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))
+(: v_type (Member sk_village_1 village) (STV 1.0 0.99))
+(: cs_visible_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_visible $x) visible) (Experiencer (sk_visible $x) $x) (From (sk_visible $x) sk_village_1))) (STV 1.0 0.9))

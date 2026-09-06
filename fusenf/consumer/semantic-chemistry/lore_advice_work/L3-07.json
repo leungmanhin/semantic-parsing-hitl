@@ -1,0 +1,190 @@
+{
+ "id": "L3-07",
+ "rule": "III — Emergency meetings",
+ "texts": [
+  "Two Council members may call an emergency meeting.",
+  "Emergency meetings are rare.",
+  "The Council has called four emergency meetings.",
+  "Three emergency meetings concerned wraith incidents.",
+  "One emergency meeting concerned a storm-loss of Cliff Path lanterns."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000238",
+   "sentence": "Two Council members may call an emergency meeting.",
+   "parse": [
+    "(: cm_genus (Inheritance council_member member) (STV 1.0 0.99))",
+    "(: cm_grp (GroupOf sk_group_1 council_member) (STV 1.0 0.99))",
+    "(: cm_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: meeting_type (Member sk_meeting_1 emergency_meeting) (STV 1.0 0.99))",
+    "(: em_genus (Inheritance emergency_meeting meeting) (STV 1.0 0.99))",
+    "(: call_ev (Member sk_call_1 call) (STV 1.0 0.99))",
+    "(: call_ag (Agent sk_call_1 sk_group_1) (STV 1.0 0.99))",
+    "(: call_th (Theme sk_call_1 sk_meeting_1) (STV 1.0 0.99))",
+    "(: call_perm (Permitted sk_call_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000238",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "'call an emergency meeting' brings the occurrence into being, so the object takes Patient under the creates/occurrence-change test (an occurrence object is Patient every time), not Theme."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a cardinal-restricted deontic norm over a kind ('two Council members may call ...', a quorum rule): the kind-level (Inheritance <kind> (permitted <action>)) form has no slot for the count, and the group-event form the parse used ties the permission to one specific pair rather than to any two members",
+     "existential import of an indefinite under a deontic/capability status atom: 'may call an emergency meeting' yields a top-level (Member sk_meeting_1 emergency_meeting) witness, but the sentence asserts no meeting exists; the instruction set gives status atoms no non-veridical scope over the event's own indefinite arguments"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The counted-plural group with Cardinality 2 and no per-member distribution rule is right for a joint/quorum act, and Permitted at (STV 1.0 0.99) matches the status-atom table. One borderline call left unflagged: 'council member' satisfies the do-not-fuse possessor/whole plus part/member test (PartOf's second job is 'a member of a group') as well as the genuine-subtype fusion test, and the instruction set does not say which wins."
+   },
+   "adjudication": {
+    "id": "lore-000238",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Thematic roles makes a created object a Patient and states outright that an occurrence object (a flight, a vote, a match, a hearing) is Patient every time, and 'call an emergency meeting' brings the occurrence into being, so Theme is not licensed."
+     }
+    ],
+    "gaps_confirmed": [
+     "a cardinal-restricted deontic norm over a kind (a quorum rule): (Inheritance <kind> (permitted <action>)) has no slot for the count, and ConditionalProperty's condition slot takes states, measures or environments, not a co-agent count",
+     "an indefinite argument of a merely-Permitted (or Can) event is asserted at top level, so 'may call an emergency meeting' imports an emergency meeting the sentence never posits; no non-veridical scope for status atoms over their event's own arguments is specified"
+    ],
+    "new_gaps": [
+     "'Council member' satisfies BOTH the fuse-into-a-genuine-subtype test (shaped like the instruction set's own lifetime_member) and the do-not-fuse possessor/whole + part/member test (PartOf's second stated job is 'a member of a group'), and no precedence between the two is stated"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is (Patient sk_call_1 sk_meeting_1) in place of (Theme sk_call_1 sk_meeting_1); nothing else in the parse needs to change.",
+    "notes": "The counted group with Cardinality 2 and Permitted at (STV 1.0 0.99) is a coherent improvisation for a quorum norm, but it ties the permission to one specific pair rather than to any two members — the substance of the first confirmed gap."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000239",
+   "sentence": "Emergency meetings are rare.",
+   "parse": [
+    "(: em_genus (Inheritance emergency_meeting meeting) (STV 1.0 0.99))",
+    "(: em_rare (KindProperty emergency_meeting rare) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000239",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound kind fused with the head genus only, the noun modifier 'emergency' correctly left unexposed; 'rare' sits on the instruction set's explicit KindProperty list and carries the empirical 1.0/0.9 TV of the dodo example."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000240",
+   "sentence": "The Council has called four emergency meetings.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: em_genus (Inheritance emergency_meeting meeting) (STV 1.0 0.99))",
+    "(: mtg_group (GroupOf sk_group_1 emergency_meeting) (STV 1.0 0.99))",
+    "(: mtg_card (Cardinality sk_group_1 4) (STV 1.0 0.99))",
+    "(: call_ev (Member sk_call_1 call) (STV 1.0 0.99))",
+    "(: call_ag (Agent sk_call_1 sk_council_1) (STV 1.0 0.99))",
+    "(: call_pat (Patient sk_call_1 sk_group_1) (STV 1.0 0.99))",
+    "(: call_tense (Past sk_call_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000240",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Perfect \"has called\" correctly collapses to coarse Past with no Before (no second event to order against), and the meeting group is Patient because calling an occurrence into being alters whether it happens. emergency_meeting fuses as a genuine subtype with its head genus and no exposed noun-modifier genus."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000241",
+   "sentence": "Three emergency meetings concerned wraith incidents.",
+   "parse": [
+    "(: emergency_meeting_genus (Inheritance emergency_meeting meeting) (STV 1.0 0.99))",
+    "(: wraith_incident_genus (Inheritance wraith_incident incident) (STV 1.0 0.99))",
+    "(: meetings_group (GroupOf sk_group_1 emergency_meeting) (STV 1.0 0.99))",
+    "(: meetings_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+    "(: incidents_group (GroupOf sk_incident_1 wraith_incident) (STV 1.0 0.99))",
+    "(: concern_event (Member sk_concern_1 concern) (STV 1.0 0.99))",
+    "(: concern_agent (Agent sk_concern_1 sk_group_1) (STV 1.0 0.99))",
+    "(: concern_theme (Theme sk_concern_1 sk_incident_1) (STV 1.0 0.99))",
+    "(: concern_past (Past sk_concern_1) (STV 1.0 0.99))",
+    "(: concern_member_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_concern $x) concern) (Agent (sk_concern $x) $x) (Theme (sk_concern $x) sk_incident_1) (Past (sk_concern $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000241",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Counted plural takes group + Cardinality + group event + per-member rule as Cardinality specifies; both noun-modifier compounds expose the genus only, correctly. The bare-plural object reading as an existential group witness (rather than a kind-level filler for what the meetings were about) is the one judgment call, and the episodic-clause rule licenses it."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000242",
+   "sentence": "One emergency meeting concerned a storm-loss of Cliff Path lanterns.",
+   "parse": [
+    "(: em_meeting (Member sk_emergency_meeting_1 emergency_meeting) (STV 1.0 0.99))",
+    "(: em_meeting_genus (Inheritance emergency_meeting meeting) (STV 1.0 0.99))",
+    "(: em_concern_ev (Member sk_concern_1 concern) (STV 1.0 0.99))",
+    "(: em_concern_agent (Agent sk_concern_1 sk_emergency_meeting_1) (STV 1.0 0.99))",
+    "(: em_concern_theme (Theme sk_concern_1 sk_storm_loss_1) (STV 1.0 0.99))",
+    "(: em_concern_past (Past sk_concern_1) (STV 1.0 0.99))",
+    "(: em_storm_loss (Member sk_storm_loss_1 storm_loss) (STV 1.0 0.99))",
+    "(: em_storm_loss_genus (Inheritance storm_loss loss) (STV 1.0 0.99))",
+    "(: em_storm_loss_of (Of sk_storm_loss_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: em_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: em_lantern_poss (Possession sk_lantern_1 cliff_path) (STV 1.0 0.99))",
+    "(: em_cliffpath_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: em_cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000242",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "cardinal 'one' on a SINGULAR count NP ('One emergency meeting'): Cardinality/CardinalityPhrase ride only on a group witness, so a numeral determiner on a singular referent has no licensed carrier and its enumerative 'one (of several)' force is lost in the bare existential witness"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Stative-transitive subject correctly takes Agent, the nominalization's of-phrase takes the entity-attached (Of ...) oblique, and 'Cliff Path lanterns' uses the licensed proper-noun-premodifier Possession with the kind word inside the name filling (Member cliff_path path)."
+   },
+   "adjudication": null
+  }
+ ]
+}

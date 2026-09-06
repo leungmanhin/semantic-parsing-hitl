@@ -1,0 +1,4 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: ledger_type (GroupOf sk_ledger_1 ledger) (STV 1.0 0.99))
+(: council_records_rule (Implication (Member $x redistribution) (And (Member (sk_record $x) record) (Agent (sk_record $x) sk_council_1) (Theme (sk_record $x) $x) (Location (sk_record $x) sk_ledger_1))) (STV 1.0 0.9))
+(: council_records_q (QuantifierPhrase redistribution record "each") (STV 1.0 0.99))

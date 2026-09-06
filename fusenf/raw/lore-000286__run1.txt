@@ -1,0 +1,8 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: vessel_type (Member sk_vessel_1 vessel) (STV 1.0 0.99))
+(: vessel_poss (Possession sk_vessel_1 mire_essence) (STV 1.0 0.99))
+(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: lighting_type (Member sk_lighting_1 lighting) (STV 1.0 0.99))
+(: lighting_ord (Ordinal sk_lighting_1 1 lighting) (STV 1.0 0.99))
+(: touch_rule (Implication (PartOf $x sk_council_1) (And (Member (sk_touch $x) touch) (Agent (sk_touch $x) $x) (Theme (sk_touch $x) sk_vessel_1) (Before (sk_touch $x) sk_lighting_1))) (STV 1.0 0.9))
+(: touch_q (QuantifierPhrase council touch "each") (STV 1.0 0.99))

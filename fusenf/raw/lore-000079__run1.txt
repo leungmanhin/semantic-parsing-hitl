@@ -1,0 +1,3 @@
+(: northcove_name (Name northcove "Northcove") (STV 1.0 0.99))
+(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))
+(: lantern_no_saltbloom (Implication (And (Member $x lantern) (Possession $x northcove)) (And (Member (sk_need $x) need) (Experiencer (sk_need $x) $x) (Stimulus (sk_need $x) salt_bloom))) (STV 0.0 0.9))

@@ -1,0 +1,199 @@
+{
+ "id": "L1-01",
+ "rule": "I — Aelmere",
+ "texts": [
+  "Aelmere is a village on the northern coast.",
+  "Aelmere sits at the head of a horseshoe inlet.",
+  "Grey cliffs surround the inlet.",
+  "Aelmere holds many stone houses.",
+  "The houses have slate roofs.",
+  "Cauldron Hall stands in Aelmere.",
+  "The Watch stands in Aelmere."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000001",
+   "sentence": "Aelmere is a village on the northern coast.",
+   "parse": [
+    "(: ael_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: ael_village (Member aelmere village) (STV 1.0 0.99))",
+    "(: coast_type (Member sk_coast_1 coast) (STV 1.0 0.99))",
+    "(: coast_north (Member sk_coast_1 northern) (STV 1.0 0.99))",
+    "(: ael_on_coast (On aelmere sk_coast_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The entity-attached surface preposition (On aelmere sk_coast_1) is the licensed head here since LocatedIn is containment-only, and northern correctly keeps its derived form rather than lemmatizing to north. Treating northern as a descriptive modifier on the definite witness rather than fusing northern_coast is a defensible reading of the adjective+noun fusion line."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000002",
+   "sentence": "Aelmere sits at the head of a horseshoe inlet.",
+   "parse": [
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: inlet_type (Member sk_inlet_1 horseshoe_inlet) (STV 1.0 0.99))",
+    "(: inlet_genus (Inheritance horseshoe_inlet inlet) (STV 1.0 0.99))",
+    "(: head_type (Member sk_head_1 head) (STV 1.0 0.99))",
+    "(: head_partof (PartOf sk_head_1 sk_inlet_1) (STV 1.0 0.99))",
+    "(: aelmere_loc (LocatedIn aelmere sk_head_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare position clause with a containment preposition ('at') correctly mints no event and uses LocatedIn, and no kind atom is invented for Aelmere. 'The head of a horseshoe inlet' is the relational-noun genitive (PartOf), which the place-inside-a-place rule explicitly exempts; the noun modifier of the fused compound is correctly left unexposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000003",
+   "sentence": "Grey cliffs surround the inlet.",
+   "parse": [
+    "(: c1_grp (GroupOf sk_group_1 cliff) (STV 1.0 0.99))",
+    "(: c1_grey (Implication (PartOf $x sk_group_1) (Member $x grey)) (STV 1.0 0.9))",
+    "(: c1_surround (Member sk_surround_1 surround) (STV 1.0 0.99))",
+    "(: c1_agent (Agent sk_surround_1 sk_group_1) (STV 1.0 0.99))",
+    "(: c1_theme (Theme sk_surround_1 sk_inlet_1) (STV 1.0 0.99))",
+    "(: c1_inlet (Member sk_inlet_1 inlet) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000003",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural specific set takes a group witness, the colour modifier distributes by the per-member rule rather than fusing, and the collective 'surround' correctly stays group-only with no distribution rule. The inanimate stative-transitive subject takes Agent exactly as the instruction set directs."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000004",
+   "sentence": "Aelmere holds many stone houses.",
+   "parse": [
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: houses_grp (GroupOf sk_group_1 stone_house) (STV 1.0 0.99))",
+    "(: houses_card (CardinalityPhrase sk_group_1 \"many\") (STV 1.0 0.99))",
+    "(: house_genus (Inheritance stone_house house) (STV 1.0 0.99))",
+    "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: e_hold_ag (Agent sk_hold_1 aelmere) (STV 1.0 0.99))",
+    "(: e_hold_th (Theme sk_hold_1 sk_group_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000004",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"holds\" as a stative transitive keeping Agent matches the instruction set's own \"the tank holds forty litres\" example, and the group-object gets no distribution rule. \"many\" counting things routes to CardinalityPhrase per the Cardinality note rather than to generic strength."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000005",
+   "sentence": "The houses have slate roofs.",
+   "parse": [
+    "(: houses_grp (GroupOf sk_group_1 house) (STV 1.0 0.99))",
+    "(: houses_have (Member sk_have_1 have) (STV 1.0 0.99))",
+    "(: houses_have_holder (Holder sk_have_1 sk_group_1) (STV 1.0 0.99))",
+    "(: houses_have_theme (Theme sk_have_1 slate_roof) (STV 1.0 0.99))",
+    "(: slate_roof_genus (Inheritance slate_roof roof) (STV 1.0 0.99))",
+    "(: houses_have_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) slate_roof))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000005",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural takes the group witness plus the group event and the per-member distribution rule, as the grouped-plural case of Quantifiers prescribes, and have correctly takes Holder/Theme. slate_roof fuses with genus only (a noun modifier is never exposed), and the bare-kind Theme is the licensed non-specific-object filler."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t6",
+   "corpus_id": "lore-000006",
+   "sentence": "Cauldron Hall stands in Aelmere.",
+   "parse": [
+    "(: ch_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: ch_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: ch_loc (LocatedIn cauldron_hall aelmere) (STV 1.0 0.99))",
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000006",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare position clause with postural 'stands' + containment 'in' correctly mints no event and takes static LocatedIn; the hall type atom is licensed by the kind word inside the name, and Aelmere rightly gets a Name with no invented kind atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t7",
+   "corpus_id": "lore-000007",
+   "sentence": "The Watch stands in Aelmere.",
+   "parse": [
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: watch_locin (LocatedIn sk_watch_1 aelmere) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000007",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare position clause with a postural verb correctly mints no event and takes LocatedIn for the containment preposition 'in'. 'The Watch' is correctly handled as a capitalized common-noun label (fresh witness + Member, no Name atom), and Aelmere gets its Name with no invented kind atom."
+   },
+   "adjudication": null
+  }
+ ]
+}

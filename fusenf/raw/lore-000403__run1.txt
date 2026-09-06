@@ -1,0 +1,4 @@
+(: gen_nightmoth (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: gen_lantern_row (Inheritance lantern_row row) (STV 1.0 0.99))
+(: gen_sky_cat (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: whenever_gather_descend (Implication (And (Member $x gather) (Agent $x $g) (Member $g crowd) (GroupOf $g nightmoth) (Location $x $l) (Member $l lantern_row)) (And (Member (sk_descend $x) descend) (Agent (sk_descend $x) (sk_skycats $x)) (GroupOf (sk_skycats $x) sky_cat) (During (sk_descend $x) $x) (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) (sk_skycats $x)) (To (sk_descend $x) (sk_hunt $x)))) (STV 1.0 0.9))

@@ -1,0 +1,13 @@
+{"id": "lore-000385", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Time treats a time expression as a term or bare constant and forbids minting an sk_ witness or a Member atom for one — the sk_-entity contrast it draws is explicitly for event-denoting nouns ('the show', 'the storm'), and a season is a time span, not an eventuality — so (Member sk_winter_1 winter) types a time as an entity."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "Time enumerates the role's fillers — structured calendar terms (Year/Month/Day/Weekday/Hour/Minute), day-part symbols, and deictic or named constants — and a minted witness is none of them, so (Time sk_walk_1 sk_winter_1) is ill-typed per the vocabulary and unreachable by the seeded calendar and ordering rules that consume Time terms."}],
+ "gaps_confirmed": ["Anaphoric temporal NP with no antecedent, at season granularity ('in that winter'): term propagation presupposes an antecedent event supplying the calendar terms to copy, and the stated fallback ('emit just the day-part') is given only at day granularity, with no season term defined beside (Year/Month/Day/Weekday).",
+                    "Past-tense habitual bounded in a past interval ('walked ... every evening'): the frequency rule leaves the recurring event unmarked while the finite-clause tense rule marks (Past e), and the instruction set does not say which wins."],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "Compliant form: the bare season constant in the Time slot — (Time sk_walk_1 winter), the season analogue of the stated 'if the antecedent's day is unknown, emit just the day-part' fallback — with no sk_winter_1 witness and no (Member ... winter) atom.",
+ "notes": "The rest is right: 'together' is correctly consumed as the collective marker (one group event, no per-member rule), 'the Cove Stair' takes the Kestrel-River shape of one opaque name symbol plus a separate ordinary kind atom, and 'every evening' correctly yields the slot term plus (Every ... 1 day)."}

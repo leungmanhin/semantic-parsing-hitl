@@ -1,0 +1,121 @@
+{
+ "id": "L4-11",
+ "rule": "IV — The Cove Stair custom",
+ "texts": [
+  "Non-Keeper villagers avoid the Sunken Cove.",
+  "The villagers consider the Cove Stair unlucky.",
+  "The Cove Stair is not forbidden.",
+  "Parents scold children who play near the Cove Stair."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000339",
+   "sentence": "Non-Keeper villagers avoid the Sunken Cove.",
+   "parse": [
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: villager_avoid (Implication (And (Member $x villager) (Member $x non_keeper)) (And (Member (sk_avoid $x) avoid) (Agent (sk_avoid $x) $x) (Theme (sk_avoid $x) sunken_cove))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000339",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A privative \"non-\" prefix on a nominal modifier (\"non-Keeper villagers\"): the instruction set treats morphologically negated ADJECTIVES as positive properties (\"unhappy\"), but never says whether non-N fuses into a compound kind, distributes as a positive property atom on the members, or should be a strength-0 membership (which a rule premise cannot express)."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Sunken Cove\" follows the Kestrel River pattern exactly: one opaque name symbol, the kind atom taken from the kind word inside the name, and no modifier genus. The restricted bare-plural subject correctly takes the distributing-rule route with the restriction as a premise conjunct, and no genus is emitted for non_keeper (the IS-A fails)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000340",
+   "sentence": "The villagers consider the Cove Stair unlucky.",
+   "parse": [
+    "(: villagers_grp (GroupOf sk_group_1 villager) (STV 1.0 0.99))",
+    "(: e_stair (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: e_stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+    "(: e_consider (Member sk_consider_1 consider) (STV 1.0 0.99))",
+    "(: e_experiencer (Experiencer sk_consider_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_consider_1 (Member cove_stair unlucky)) (STV 1.0 0.99))",
+    "(: villagers_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_consider $x) consider) (Experiencer (sk_consider $x) $x) (Theme (sk_consider $x) (Member cove_stair unlucky)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000340",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "ACTIVE object-small-clause attitude ('the villagers consider the Cove Stair unlucky') — Propositional attitudes restricts sealing to a FINITE clausal complement ('Only for a finite clausal complement'), and the only non-finite sealing route the instruction set supplies is the impersonal PASSIVE 'X is considered to be P'; the active 'S considers NP ADJ' is nowhere addressed, so the Experiencer-holder + sealed-small-clause shape used here is an extrapolation from the passive rule"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The non-factive bar is respected (no top-level (Member cove_stair unlucky)), the definite named referent's Member/Name typing projects out of the seal, 'unlucky' is correctly a positive property at strength 1.0 rather than a negation, and the definite-plural group witness plus the distributive per-member rule over (PartOf $x sk_group_1) at STV 1.0 0.9 matches the counted/definite-plural pattern. No QuantifierPhrase companion is owed, since no quantifier word is present."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000341",
+   "sentence": "The Cove Stair is not forbidden.",
+   "parse": [
+    "(: stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+    "(: stair_permitted (Member cove_stair permitted) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000341",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "explicit negation of a deontic participle whose own encoding is already a strength-0 mapping ('is not forbidden'): 'forbidden' maps to permitted at strength 0.0, and the copular rule 'negate by setting strength 0.0 on the same atom' cannot express the negation of that, so nothing licenses (or bars) flipping it to permitted at strength 1.0",
+     "an elided-action deontic predicated of a NAMED INDIVIDUAL rather than a kind: the bare-property route ('Trailers are not permitted' -> Inheritance on the kind) is specified for kinds, and the individual route (Obligated e / Permitted e) needs an action to reify, which the sentence elides"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name symbol, Name atom and the kind atom read off the kind word inside the name are all correct; the deontic participle is kept out of a plain quality atom as the instruction set requires, and Member (not Inheritance) is right for an individual."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000342",
+   "sentence": "Parents scold children who play near the Cove Stair.",
+   "parse": [
+    "(: stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+    "(: parents_scold_rule (Implication (And (Member $p parent) (Member $c child) (Member $e play) (Agent $e $c) (Location $e cove_stair)) (And (Member (sk_scold $p $c) scold) (Agent (sk_scold $p $c) $p) (Theme (sk_scold $p $c) $c))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000342",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Proximity preposition on an event (\"play near the Cove Stair\"): the oblique table licenses Location for any where-PP and glosses it \"in/at/on ...\", while the entity-side doctrine explicitly refuses to fold \"beside / next to / atop\" into a containment head and keeps the surface preposition instead; the instruction set never says which side governs an event's \"near X\", so (Location $e cove_stair) - which reads as at/in the Stair rather than near it - is licensed by one rule while *Core patterns*' bar on silently dropping a qualifier argues for a surface (Near $e cove_stair)."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Cove Stair\" follows the multi-word-name pattern exactly (one opaque symbol, kind word inside the name filling the type atom, no cove modifier genus); the restrictive relative on the object blocks the bare kind-relation route, so the two-universal rule with the relative clause as premise conjuncts and plain (not Skolem) premise variables is the right residual form."
+   },
+   "adjudication": null
+  }
+ ]
+}

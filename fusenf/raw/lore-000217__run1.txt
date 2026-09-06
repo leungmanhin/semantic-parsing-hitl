@@ -1,0 +1,3 @@
+(: e_speaker (Member sk_speaker_1 speaker) (STV 1.0 0.99))
+(: speaker_calls_rule (Implication (And (Member $x item) (Of $x business)) (And (Member (sk_call $x) call) (Agent (sk_call $x) sk_speaker_1) (Theme (sk_call $x) $x))) (STV 1.0 0.9))
+(: q_speaker_calls (QuantifierPhrase item call "each") (STV 1.0 0.99))

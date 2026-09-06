@@ -1,0 +1,3 @@
+(: gw_type (Member sk_glassworks_1 glassworks) (STV 1.0 0.99))
+(: gw_genus (Inheritance glassworks works) (STV 1.0 0.99))
+(: fire_rule (Implication (And (Member $x dome) (Member $x damaged)) (And (Member (sk_fire $x) fire) (Agent (sk_fire $x) sk_glassworks_1) (Patient (sk_fire $x) $x) (Again (sk_fire $x)))) (STV 0.9 0.9))

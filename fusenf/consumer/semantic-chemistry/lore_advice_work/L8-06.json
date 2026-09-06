@@ -1,0 +1,245 @@
+{
+ "id": "L8-06",
+ "rule": "VIII — Ground feathers",
+ "texts": [
+  "Collectors dry the sky-cat feathers.",
+  "Collectors grind the dried feathers in a mortar.",
+  "Copper boxes in the Watch hold the ground feathers.",
+  "One handful of ground feathers protects one lantern for about a month.",
+  "The Council issues feather rations at each full-moon meeting."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lore-000497",
+   "sentence": "Collectors dry the sky-cat feathers.",
+   "parse": [
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: feather_group (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feather_part (PartOf sk_feather_1 sky_cat) (STV 1.0 0.99))",
+    "(: collectors_dry (Implication (Member $x collector) (And (Member (sk_dry $x) dry) (Agent (sk_dry $x) $x) (Patient (sk_dry $x) sk_feather_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000497",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "(PartOf sk_feather_1 sky_cat) puts a KIND in the whole slot of a part-whole link whose other argument is an individual group witness; the specified pattern ('the car engine') mints a witness for the whole, and the individual/class discipline bars mixing the two."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a possessor/whole + part compound whose WHOLE is generic rather than a specific referent ('sky-cat feathers' = feathers of sky-cats at large) — the non-fusing PartOf route is specified only with a witness whole, and no form is given for a kind-level whole that does not assert one particular individual"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correct calls elsewhere: the definite plural takes a group witness (never Inheritance), 'sky-cat feathers' is not fused into a compound, 'collector' in referring subject position gets no (can collect) capability atom, and 'dry' takes Patient as a treatment that changes the object."
+   },
+   "adjudication": {
+    "id": "lore-000497",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "PartOf's two documented jobs - a component of an object and a member of a group - take individuals on both sides, and the specified \"car engine\" pattern mints a witness whole with its own Member atom, so the bare kind sky_cat in the whole slot is ill-typed and, read literally, false: this particular group of feathers is not a component of a species."
+     }
+    ],
+    "gaps_confirmed": [
+     "a possessor/whole + part compound whose WHOLE is generic rather than a specific referent (\"sky-cat feathers\" = feathers of sky-cats at large) - the non-fusing PartOf route is specified only with a witness whole"
+    ],
+    "new_gaps": [
+     "a kind-level whole in a part-whole link has NO licensed form at all: the witness route posits one particular sky-cat that every one of these feathers came from, and dropping the premodifier widens \"the feathers\" to feathers at large; a licensed form would need to say that each feather is a part of SOME member of the kind without minting a shared individual"
+    ],
+    "decision": "defect",
+    "defect_summary": "Both licensed alternatives misfire - the \"car engine\" pattern would give (Member sk_sky_cat_1 sky_cat) (PartOf sk_feather_1 sk_sky_cat_1), asserting one specific sky-cat as the source of all the feathers, and dropping the premodifier widens the definite plural - so the instruction set licenses no faithful form for a kind-level whole, filed above as a gap.",
+    "notes": "The rest is right: the bare-plural habitual subject becomes a distributing rule at 0.9/0.9, the definite plural object takes a group witness, the top-level constant sk_feather_1 inside the rule conclusion is licensed (a fact asserts it), and \"dry\" takes Patient as a treatment that changes the object."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lore-000498",
+   "sentence": "Collectors grind the dried feathers in a mortar.",
+   "parse": [
+    "(: e2_feathers_grp (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+    "(: e2_feathers_dried (Implication (PartOf $y sk_feathers_1) (Member $y dried)) (STV 1.0 0.9))",
+    "(: e2_collectors_grind (Implication (Member $x collector) (And (Member (sk_grind $x) grind) (Agent (sk_grind $x) $x) (Patient (sk_grind $x) sk_feathers_1) (Location (sk_grind $x) (sk_mortar $x)) (Member (sk_mortar $x) mortar))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000498",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural habitual subject correctly takes the distributing rule at 0.9/0.9 with no QuantifierPhrase; the definite plural object takes a group witness with \"dried\" (participial modifier kept as an adjective, not lemmatized to the verb) distributed over members at 1.0/0.9. The indefinite \"a mortar\" under the universal is correctly a dependent Skolem function, and Location is the licensed head for the surface \"in\"."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lore-000499",
+   "sentence": "Copper boxes in the Watch hold the ground feathers.",
+   "parse": [
+    "(: cb_genus (Inheritance copper_box box) (STV 1.0 0.99))",
+    "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: feathers_group (GroupOf sk_feathers_1 ground_feather) (STV 1.0 0.99))",
+    "(: gf_genus (Inheritance ground_feather feather) (STV 1.0 0.99))",
+    "(: gf_mod (Inheritance ground_feather ground) (STV 1.0 0.99))",
+    "(: cb_hold_rule (Implication (And (Member $x copper_box) (LocatedIn $x sk_watch_1)) (And (Member (sk_hold $x) hold) (Agent (sk_hold $x) $x) (Theme (sk_hold $x) sk_feathers_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000499",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "(Inheritance ground_feather ground) exposes a modifier genus the compound rule does not license - on the noun reading ('ground' = the earth) a noun modifier is never exposed, and on the participial-adjective reading it is neither gradable, positional/cardinal nor material, so only the head genus (Inheritance ground_feather feather) is licensed."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else holds: stative transitive 'hold' keeps Agent, 'the Watch' is a capitalized common-noun label with no Name atom, copper_box exposes no modifier genus (noun modifier), and the 'in the Watch' restriction becomes a premise conjunct on the distributing rule with the definite object group asserted at top level."
+   },
+   "adjudication": {
+    "id": "lore-000499",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Neither reading licenses the atom: on the noun reading Compound concepts says 'A noun modifier is never exposed', and (Inheritance ground_feather ground) is then flatly false (a ground-feather is not a kind of earth); on the participial reading 'ground' is none of the three exposable adjective classes (gradable / positional-cardinal / material), and a participial state modifier is the 'incidental description' case the same section bars from fusing at all."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A processing-state participial modifier that names a recognized commodity kind ('ground feathers', 'ground pepper', 'smoked fish') sits between the term-of-art fusion licence and the 'never for incidental description (colour, size, damage, mood)' bar, and the modifier-exposure list (gradable / positional / material) and its predication test disagree for it — 'the feathers are ground' passes the test while no listed category fits.",
+     "'ground feathers' is a live noun-vs-participle lexical ambiguity, but Multiple live readings requires two COMPLETE readings and the two differ in a single decomposition atom, so it is unclear whether such a hairline sense split should trigger an Interpretation split or be resolved silently."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the head genus alone — (Inheritance ground_feather feather) with 'ground' left inside the fused symbol — or, if 'ground' is read as a descriptive participial modifier, no fusion at all and the modifier distributed over the group's members per the plural distributive rule.",
+    "notes": "Everything else conforms: stative-transitive 'hold' keeps Agent, 'the Watch' is a capitalized common-noun label with no Name atom, copper_box correctly exposes no noun-modifier genus, and the 'in the Watch' restriction rightly becomes a premise conjunct on the distributing rule."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lore-000500",
+   "sentence": "One handful of ground feathers protects one lantern for about a month.",
+   "parse": [
+    "(: gf_genus (Inheritance ground_feather feather) (STV 1.0 0.99))",
+    "(: gf_mod (Inheritance ground_feather ground) (STV 1.0 0.99))",
+    "(: gf_type (Member sk_ground_feather_1 ground_feather) (STV 1.0 0.99))",
+    "(: gf_handful (Measure sk_ground_feather_1 unspecified 1 handful) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e_protect (Member sk_protect_1 protect) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_protect_1 sk_ground_feather_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_protect_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e_dur (Measure sk_protect_1 duration (ParticleFromNormal 1 0.1) month) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000500",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The plural \"ground feathers\" is typed as a single individual — (Member sk_ground_feather_1 ground_feather) rather than a group witness (GroupOf ... ground_feather) — so the parse asserts one feather instead of the many a handful contains, and both the handful Measure and the protect event's Agent hang off that singular symbol."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "measure-partitive quantity NP (\"one handful of ground feathers\"; the instruction set's own example \"a cup of water\") — explicitly excluded from the possessive/genitive of-phrase routes but given no positive encoding, and \"a handful\" is addressed only as a vague-count CardinalityPhrase, never as a measure unit"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The duration is right — Measure ... duration with (ParticleFromNormal 1 0.1) for the tight hedge \"about\" — as are Agent on the inanimate transitive subject, Theme for the unchanged lantern, and the reserved unspecified scale symbol. Whether \"ground feathers\" should fuse at all is debatable: the nearest exemplar, participial \"a laminated worktop\", stays two atoms."
+   },
+   "adjudication": {
+    "id": "lore-000500",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Coordination & plurals requires a plural referred to as a unit to take (GroupOf <group> <kind>), and warns that a bare Member on the collection says the group-as-object IS one of that kind, so (Member sk_ground_feather_1 ground_feather) asserts a single feather where the text describes a handful of many -- and the plural/count noun is exactly the cue the Partitives section gives for the GroupOf route rather than the mass Member+PartOf one."
+     }
+    ],
+    "gaps_confirmed": [
+     "measure-partitive quantity NP ('one handful of ground feathers', the instruction set's own excluded example 'a cup of water'): explicitly barred from the genitive of-phrase routes but given no positive encoding, and 'a handful' appears only as a vague-count CardinalityPhrase, never as a counted measure unit"
+    ],
+    "new_gaps": [
+     "a participial preparation modifier ('ground feathers', 'dried herbs', 'powdered bark') sits between the fuse test's two poles -- it is neither a listed fusing classifier (term of art, nationality, role title, material adjective) nor plainly incidental description like the two-atom 'laminated worktop' -- so whether it fuses, and whether the participle is then exposable as a modifier genus, is undecided"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form gives the plural a group witness -- (GroupOf sk_group_1 ground_feather) -- and hangs the quantity atom and the protect event's Agent on that group symbol; the 'one handful of' quantity itself still has no licensed carrier, since CardinalityPhrase records a vague word rather than a stated count of measure units, so that half remains a gap.",
+    "notes": "The duration is right (Measure ... duration with (ParticleFromNormal 1 0.1) for the tight hedge 'about'), as are Agent on the inanimate transitive subject, Theme for the unaltered lantern, the reserved unspecified scale symbol, and the absence of a tense atom on the generic present."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lore-000501",
+   "sentence": "The Council issues feather rations at each full-moon meeting.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))",
+    "(: meeting_genus (Inheritance full_moon_meeting meeting) (STV 1.0 0.99))",
+    "(: council_issue_rule (Implication (Member $m full_moon_meeting) (And (Member (sk_issue $m) issue) (Agent (sk_issue $m) sk_council_1) (Theme (sk_issue $m) feather_ration) (During (sk_issue $m) $m))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lore-000501",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The explicit quantifier word \"each\" ranges over exactly the domain the rule quantifies (`full_moon_meeting`), so the mandatory companion `(QuantifierPhrase full_moon_meeting issue \"each\")` is missing — the companion is required for every explicit quantifier word the rule consumes, and only the \"every time / whenever\" wording is exempted."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a universally-quantified temporal PP over an event noun (\"at each full-moon meeting\"): the instruction set legislates \"every time / whenever <clause>\" (occurrence domain -> rule + `During`) and calendar-slot frequencies (`Time` term + `Every`/`TimesPer`), but not a determiner-quantified event-noun adjunct, so both the rule route and its `During` tie are extrapolated here — and the surface preposition is \"at\", which the oblique rule would otherwise send to `(At <event> <meeting>)`, `During` being reserved for during/while/throughout"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" correctly stays a common-noun witness with no `Name` atom, the compounds `feather_ration` and `full_moon_meeting` expose only their head genus (noun modifiers), and rule strength/confidence 1.0/0.9 matches the \"each\" universal. The bare-plural object `feather_ration` as a kind filler is defensible in a non-episodic habitual clause."
+   },
+   "adjudication": {
+    "id": "lore-000501",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"The companion is mandatory for every explicit quantifier word the rule or claim consumes\" and \"it only ever restates a range the rule itself quantifies\" — \"each\" is explicit and the rule quantifies exactly the range it determines (full_moon_meeting), while the only stated exemption is the \"every time / whenever\" wording, which is not what this sentence uses."
+     }
+    ],
+    "gaps_confirmed": [
+     "A determiner-quantified event-noun adjunct (\"at each full-moon meeting\") is legislated nowhere: the occurrence-domain machinery is specified for \"every time / whenever <clause>\" and the calendar-slot machinery for named slots (Time term + Every / TimesPer), so both the rule route and the During tie are extrapolations — and the surface preposition is \"at\", where During is restricted to during/while/throughout."
+    ],
+    "new_gaps": [
+     "The QuantifierPhrase companion's shape is (QuantifierPhrase <kind> <verb-lemma> \"<word>\"), which presumes the quantified range is a participant kind; nothing states how the slots are filled when the quantified range is an event-noun ADJUNCT domain rather than a participant, so even the compliant companion here is a slot-filling extrapolation."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds the companion beside the rule: (: fmm_q (QuantifierPhrase full_moon_meeting issue \"each\") (STV 1.0 0.99)).",
+    "notes": "Routing \"each full-moon meeting\" as an occurrence domain rather than a calendar slot is right — meetings are entities, not calendar terms — and the During tie is the machinery's own prescription, not a rendering of surface \"at\"."
+   }
+  }
+ ]
+}
