@@ -1,0 +1,90 @@
+{
+ "id": "L1-05",
+ "rule": "I — Stilllight Lantern",
+ "texts": [
+  "The Stilllight Station is the lantern-station at the Sunken Cove.",
+  "The Stilllight Station is a demanding station.",
+  "Every Keeper fears the Stilllight Station."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000001",
+   "sentence": "The Stilllight Station is the lantern-station at the Sunken Cove.",
+   "parse": [
+    "(: stilllight_station_name (Name stilllight_station \"Stilllight Station\") (STV 1.0 0.99))",
+    "(: stilllight_station_kind (Member stilllight_station station) (STV 1.0 0.99))",
+    "(: stilllight_station_type (Member stilllight_station lantern_station) (STV 1.0 0.99))",
+    "(: lantern_station_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: sunken_cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sunken_cove_kind (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: stilllight_station_loc (LocatedIn stilllight_station sunken_cove) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "equative / specificational copula with a DEFINITE predicate nominal (\"X is THE N at Y\") — the instruction set only covers \"X is a/an N\" and \"X is ADJ\", so there is no carrier for the uniqueness/identity the definite article asserts; the parse can only type the subject and attach the PP"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name handling, the name-internal kind atoms (station, cove), the lantern_station genus with the noun modifier left unexposed, and \"at\" routed to entity-attached LocatedIn are all per doctrine."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000002",
+   "sentence": "The Stilllight Station is a demanding station.",
+   "parse": [
+    "(: stilllight_station_name (Name stilllight_station \"Stilllight Station\") (STV 1.0 0.99))",
+    "(: stilllight_station_kind (Member stilllight_station station) (STV 1.0 0.99))",
+    "(: stilllight_station_demanding (Member stilllight_station demanding) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The multi-word name is one opaque symbol with its single Name atom, and the kind word inside the name (also the copular complement) licenses (Member stilllight_station station) with no modifier genus. The evaluative adjective 'demanding' correctly stays its own Member atom rather than fusing into a compound kind."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep-000003",
+   "sentence": "Every Keeper fears the Stilllight Station.",
+   "parse": [
+    "(: keeper_fear_rule (Implication (Member $x keeper) (And (Member (sk_fear $x) fear) (Experiencer (sk_fear $x) $x) (Stimulus (sk_fear $x) stilllight_station))) (STV 1.0 0.9))",
+    "(: keeper_fear_q (QuantifierPhrase keeper fear \"every\") (STV 1.0 0.99))",
+    "(: stilllight_station_type (Member stilllight_station station) (STV 1.0 0.99))",
+    "(: stilllight_station_name (Name stilllight_station \"Stilllight Station\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000003",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Universal-over-kind verbal rule at 1.0/0.9 with the \"every\" QuantifierPhrase companion, Experiencer/Stimulus for the stative psych verb, and the multi-word name typed by the kind word inside it all match the instruction set. Capitalized \"Keeper\" correctly stays a common-noun kind with no Name atom."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,3 @@
+(: hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: keeper_tend_rule (Implication (And (Member $x keeper) (LocatedIn $x hollows)) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Patient (sk_tend $x) lantern) (In (sk_tend $x) pair))) (STV 0.8 0.9))
+(: keeper_tend_q (QuantifierPhrase keeper tend "often") (STV 1.0 0.99))

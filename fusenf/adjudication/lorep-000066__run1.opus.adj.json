@@ -1,0 +1,8 @@
+{"id": "lorep-000066", "run": 1,
+ "issues": [{"index": 0, "verdict": "confirm", "reason": "'first-year' is a noun/tenure premodifier that fails the predication test ('*the apprentice is first-year' — the 'night_shift is not night' family), which Compound concepts bars from ever being exposed, and the emitted (Inheritance first_year_apprentice first_year) is false as written besides: an apprentice is not a kind of year."}],
+ "gaps_confirmed": [],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "Compliant form: keep (Inheritance first_year_apprentice apprentice) as the head genus and emit no modifier genus at all — a noun modifier is left inside the symbol whatever it names, and decomposition targets single-word lemmas, which the two-word 'first_year' is not."
+,
+ "notes": "Everything else conforms: bare-plural habitual generic as a distributing rule, 'usually' at strength 0.8 with its QuantifierPhrase companion, the definite plural 'the cisterns' as a GroupOf witness, and Patient for fill."}

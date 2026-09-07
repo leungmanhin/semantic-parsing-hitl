@@ -1,0 +1,58 @@
+{
+ "id": "L8-03",
+ "rule": "VIII — Silken threads",
+ "texts": [
+  "Keepers scrape the threads off the warm stone with a flat blade.",
+  "Well-attended lanterns yield a small heap of threads each night in moth-season."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000069",
+   "sentence": "Keepers scrape the threads off the warm stone with a flat blade.",
+   "parse": [
+    "(: keeper_scrape (Implication (Member $x keeper) (And (Member (sk_scrape $x) scrape) (Agent (sk_scrape $x) $x) (Theme (sk_scrape $x) sk_thread_1) (Source (sk_scrape $x) sk_stone_1) (Instrument (sk_scrape $x) (sk_blade $x)) (Member (sk_blade $x) blade) (Member (sk_blade $x) flat))) (STV 0.9 0.9))",
+    "(: thread_grp (GroupOf sk_thread_1 thread) (STV 1.0 0.99))",
+    "(: stone_type (Member sk_stone_1 stone) (STV 1.0 0.99))",
+    "(: stone_warm (Member sk_stone_1 warm) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000069",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Motion-result shape is exactly the 'slid the plate off the counter' pattern (Theme object + Source path, no Result atom); the definite plural takes a group witness, 'warm' and 'flat' stay descriptive two-atom predications, and the indefinite blade is a dependent Skolem function of $x under the generic rule."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000070",
+   "sentence": "Well-attended lanterns yield a small heap of threads each night in moth-season.",
+   "parse": [
+    "(: moth_season_genus (Inheritance moth_season season) (STV 1.0 0.99))",
+    "(: lantern_yield_rule (Implication (And (Member $x lantern) (Member $x well_attended)) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) (sk_heap $x)) (Member (sk_heap $x) heap) (Member (sk_heap $x) small) (GroupOf (sk_heap $x) thread) (Time (sk_yield $x) night) (Every (sk_yield $x) 1 day) (Time (sk_yield $x) moth_season))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000070",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'a small heap of threads' follows the flock-of-birds shape (collective noun by Member + GroupOf on the member kind), and 'small' is a property of the collection itself, which is the one licensed use of a bare Member on a group symbol; 'each night' takes the named-slot Time term plus its implied (Every e 1 day) cycle, and 'in moth-season' a second composing Time atom. The (Every e 1 day) is the instruction set's mechanical named-slot output and so slightly outruns the moth-season restriction, which is nonetheless carried by its own Time atom."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{"id": "lorep-000085", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "'Marra Tallowhand's logs' is a definite plural group and 'record that P' is not one of the collective (gather/meet/assemble) predicates, so the instruction set's grouped-plural handling calls for the per-member (Implication (PartOf $x sk_log_grp_1) ...) distribution rule alongside the group event, and none is emitted."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Factivity default for an attitude/speech verb on neither stated list: 'record' is not among the non-factive (believe/think/.../say) nor the factive (know/realize/.../regret) verbs, and the instruction set gives no rule for deciding which side an unlisted clausal-complement verb falls on — which decides whether P is also asserted at top level."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Hunt is licensed as a kind-level relation head (both arguments bare kinds), so the sealed (Hunt sky_cat insect) is P's correct normalized form; Experiencer on the holder, Theme for the seal, no top-level predication of P, the projected sky_cat decomposition atom, and Possession for the genitive plural all follow the instruction set."}

@@ -1,0 +1,1 @@
+(: wraith_drain_rule (Implication (Member $x wraith) (And (Member (sk_drain $x) drain) (Agent (sk_drain $x) $x) (Patient (sk_drain $x) (sk_lanterns $x)) (GroupOf (sk_lanterns $x) lantern) (CardinalityPhrase (sk_lanterns $x) "many") (Member (sk_persist $x) persist) (Experiencer (sk_persist $x) $x) (During (sk_drain $x) (sk_persist $x)))) (STV 0.9 0.9))

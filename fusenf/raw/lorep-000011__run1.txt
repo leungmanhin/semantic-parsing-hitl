@@ -1,0 +1,7 @@
+(: keeper_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: keeper_card (CardinalityPhrase sk_group_1 "a few") (STV 1.0 0.99))
+(: notebook_type (Member sk_notebook_1 notebook) (STV 1.0 0.99))
+(: keep_ev (Member sk_keep_1 keep) (STV 1.0 0.99))
+(: keep_ag (Agent sk_keep_1 sk_group_1) (STV 1.0 0.99))
+(: keep_th (Theme sk_keep_1 sk_notebook_1) (STV 1.0 0.99))
+(: keep_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) $x) (Theme (sk_keep $x) sk_notebook_1))) (STV 1.0 0.9))

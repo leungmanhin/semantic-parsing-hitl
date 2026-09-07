@@ -1,0 +1,59 @@
+{
+ "id": "L8-07",
+ "rule": "VIII — Cauldrons and tools",
+ "texts": [
+  "Keepers extinguish the lantern at dawn with a brass snuffer.",
+  "Keepers often inherit the snuffer with the station."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000071",
+   "sentence": "Keepers extinguish the lantern at dawn with a brass snuffer.",
+   "parse": [
+    "(: keeper_extinguish_rule (Implication (Member $x keeper) (And (Member (sk_extinguish $x) extinguish) (Agent (sk_extinguish $x) $x) (Patient (sk_extinguish $x) sk_lantern_1) (Time (sk_extinguish $x) dawn) (Instrument (sk_extinguish $x) (sk_snuffer $x)) (Member (sk_snuffer $x) brass_snuffer))) (STV 0.9 0.9))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: brass_snuffer_genus (Inheritance brass_snuffer snuffer) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000071",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural generic at 0.9/0.9 with no companion (no quantifier word), the indefinite snuffer as a dependent Skolem per keeper, day-part \"dawn\" as a bare Time symbol, and brass_snuffer fused with the head genus only (a noun modifier is never exposed) all follow the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000072",
+   "sentence": "Keepers often inherit the snuffer with the station.",
+   "parse": [
+    "(: keeper_inherit (Implication (Member $x keeper) (And (Member (sk_inherit $x) inherit) (Agent (sk_inherit $x) $x) (Theme (sk_inherit $x) (sk_snuffer $x)) (Member (sk_snuffer $x) snuffer) (Member (sk_station $x) station) (With (sk_inherit $x) (sk_station $x)))) (STV 0.8 0.9))",
+    "(: keeper_inherit_q (QuantifierPhrase keeper inherit \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000072",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A bound / functional DEFINITE singular inside a generic distributing rule (\"Keepers often inherit the snuffer with the station\" — each keeper's own snuffer and station): the instruction set's definite rule mints one shared constant witness asserted at top level (as `sk_causeway_1` in \"Foxes rarely cross the causeway\"), and the Skolem-function machinery is defined only for dependent EXISTENTIALS (\"some book\"), so a definite that co-varies with the quantified subject has no stated route."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse's `(sk_snuffer $x)` / `(sk_station $x)` gives the semantically right per-keeper reading, which a shared constant would get wrong, so I read it as faithful despite the unstated route. \"often\" → strength 0.8 plus the QuantifierPhrase companion, Agent/Theme and the residual `With` oblique are all as specified, and `snuffer` correctly stays a plain kind (referring use of an agent-nominalization)."
+   },
+   "adjudication": null
+  }
+ ]
+}

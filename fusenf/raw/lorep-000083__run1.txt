@@ -1,0 +1,4 @@
+(: cts_genus (Inheritance cold_threshold_stretch stretch) (STV 1.0 0.99))
+(: hs_genus (Inheritance hearth_smoke smoke) (STV 1.0 0.99))
+(: hs_type (Member sk_hearth_smoke_1 hearth_smoke) (STV 1.0 0.99))
+(: keepers_forecast (Implication (Member $x keeper) (And (Member (sk_forecast $x) forecast) (Agent (sk_forecast $x) $x) (Theme (sk_forecast $x) cold_threshold_stretch) (Source (sk_forecast $x) sk_hearth_smoke_1))) (STV 0.9 0.9))

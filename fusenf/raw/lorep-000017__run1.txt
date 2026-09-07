@@ -1,0 +1,2 @@
+(: phrase_type (Member sk_phrase_1 phrase) (STV 1.0 0.99))
+(: birth_repeat_whenever (Implication (Member $b birth) (And (Member (sk_repeat $b) repeat) (Agent (sk_repeat $b) (sk_keeper $b)) (Member (sk_keeper $b) keeper) (Theme (sk_repeat $b) sk_phrase_1) (During (sk_repeat $b) $b))) (STV 1.0 0.9))

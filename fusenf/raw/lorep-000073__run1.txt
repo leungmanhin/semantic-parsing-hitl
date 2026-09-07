@@ -1,0 +1,3 @@
+(: glass_dome_genus (Inheritance glass_dome dome) (STV 1.0 0.99))
+(: every_lantern_has_dome (Implication (Member $x lantern) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) (sk_dome $x)) (Member (sk_dome $x) glass_dome))) (STV 1.0 0.9))
+(: lantern_q (QuantifierPhrase lantern have "every") (STV 1.0 0.99))

@@ -1,0 +1,57 @@
+{
+ "id": "L6-03",
+ "rule": "VI — Diet and roosting",
+ "texts": [
+  "Keepers cannot count the sky-cats exactly."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000055",
+   "sentence": "Keepers cannot count the sky-cats exactly.",
+   "parse": [
+    "(: skycat_grp (GroupOf sk_group_1 sky_cat) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: keeper_cant_count (Implication (Member $x keeper) (And (Member (sk_count $x) count) (Agent (sk_count $x) $x) (Theme (sk_count $x) sk_group_1) (Manner (sk_count $x) exactly) (Can (sk_count $x)))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000055",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "\"Keepers cannot count …\" is a capability generic over the bare-plural kind `keeper`, which the instruction set routes to a reified property `(Inheritance keeper (can <action>))` at strength 0.0 and explicitly excludes from the event-rule form — but the parse emits the Implication event rule with `(Can (sk_count $x))` inside it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A capability generic over a kind whose complement carries a DEFINITE/specific object (\"the sky-cats\", a group witness) and a manner adverb (\"exactly\"): the mandated `(Inheritance <kind> (can <action>))` property form has only a compound-action slot, with no place for a specific group filler or an adverb, so the sentence has no fully faithful licensed encoding on the route it is assigned to."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is right — hyphenated `sky_cat` with its `cat` genus, definite plural as a `GroupOf` witness projected outside the strength-0 rule, `Theme` for the counted set, and no QuantifierPhrase for plain \"not\". `(Manner … exactly)` is borderline: \"exactly\" reads as a precision/degree modifier rather than a manner-proper adverb, and degree adverbs on a verb have no licensed slot."
+   },
+   "adjudication": {
+    "id": "lorep-000055",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The instruction set routes a capability generic over a kind categorically away from this form — \"a capability generic (\\\"Ns can V\\\") ... not this event-rule form ... Only a non-modal verbal generic (\\\"birds fly\\\") takes the event rule\" — and (Can e) is reserved for \"a specific subject's ability\", so (Can (sk_count $x)) inside an Implication over the kind keeper is the excluded routing, not gap territory."
+     }
+    ],
+    "gaps_confirmed": [
+     "The mandated (Inheritance <kind> (can <action>)) property form has only a compound-action slot: it cannot carry the definite group object \"the sky-cats\" (the compound's Patient can name only the kind sky_cat, severing the link to sk_group_1) nor the adverb \"exactly\", so no licensed form encodes this sentence in full."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant routing is the reified kind property (: keeper_cant_count (Inheritance keeper (can count_sky_cat)) (STV 0.0 0.99)) with its compound-action decomposition (Inheritance count_sky_cat count) (Patient count_sky_cat sky_cat) — but that form silently drops \"exactly\", which widens the denial from \"cannot count them exactly\" to \"cannot count them at all\", and it cannot reference the definite group sk_group_1; the instruction set therefore licenses NO fully compliant form for this sentence's content, which is the gap recorded above.",
+    "notes": "sky_cat with its cat genus, the definite plural as a top-level GroupOf witness, Theme for the counted set and the absent QuantifierPhrase for plain \"not\" are all right, and (Manner … exactly) is defensible as a how-adverb rather than a degree adverb, so I do not treat it as a second fault."
+   }
+  }
+ ]
+}

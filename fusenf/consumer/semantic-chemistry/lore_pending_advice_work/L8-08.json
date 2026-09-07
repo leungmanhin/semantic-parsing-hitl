@@ -1,0 +1,59 @@
+{
+ "id": "L8-08",
+ "rule": "VIII — Lanterns",
+ "texts": [
+  "Every lantern has a glass dome.",
+  "Every lantern has an iron reservoir for mire-essence."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000073",
+   "sentence": "Every lantern has a glass dome.",
+   "parse": [
+    "(: glass_dome_genus (Inheritance glass_dome dome) (STV 1.0 0.99))",
+    "(: every_lantern_has_dome (Implication (Member $x lantern) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) (sk_dome $x)) (Member (sk_dome $x) glass_dome))) (STV 1.0 0.9))",
+    "(: lantern_q (QuantifierPhrase lantern have \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000073",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Explicit universal with a dependent existential correctly uses the Skolem-function dome, Holder/Theme for 'has', and the QuantifierPhrase companion; glass_dome emits only its head genus, correctly withholding the noun modifier 'glass' per the part-of-speech test."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000074",
+   "sentence": "Every lantern has an iron reservoir for mire-essence.",
+   "parse": [
+    "(: lantern_has_reservoir (Implication (Member $x lantern) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) (sk_reservoir $x)) (Member (sk_reservoir $x) iron_reservoir) (For (sk_reservoir $x) mire_essence))) (STV 1.0 0.9))",
+    "(: lantern_q (QuantifierPhrase lantern have \"every\") (STV 1.0 0.99))",
+    "(: reservoir_genus (Inheritance iron_reservoir reservoir) (STV 1.0 0.99))",
+    "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000074",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "An explicit universal with an indefinite singular object correctly stays an event rule rather than a kind relation (the 'lions have manes' trigger needs bare kinds on both sides); Holder/Theme for 'have', per-lantern Skolem reservoir, genus-only decomposition for the noun modifiers 'iron' and 'mire', and the noun-attached (For ...) purpose oblique are all licensed."
+   },
+   "adjudication": null
+  }
+ ]
+}

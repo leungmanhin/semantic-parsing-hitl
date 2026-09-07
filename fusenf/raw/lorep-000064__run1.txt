@@ -1,0 +1,5 @@
+(: neap_tide_genus (Inheritance neap_tide tide) (STV 1.0 0.99))
+(: neap_tide_adj (Inheritance neap_tide neap) (STV 1.0 0.99))
+(: pools_group (GroupOf sk_pools_1 tide_pool) (STV 1.0 0.99))
+(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))
+(: neap_leave_rule (Implication (Member $x neap_tide) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Patient (sk_leave $x) sk_pools_1) (Member (sk_dry $x) dry) (Experiencer (sk_dry $x) sk_pools_1) (Result (sk_leave $x) (sk_dry $x)) (Implication (PartOf $y sk_pools_1) (Member $y dry)))) (STV 0.9 0.9))

@@ -1,0 +1,36 @@
+{
+ "id": "L2-22",
+ "rule": "II — Pay",
+ "texts": [
+  "The village pays each Keeper in food and shelter."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000021",
+   "sentence": "The village pays each Keeper in food and shelter.",
+   "parse": [
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: village_pays_keeper (Implication (Member $x keeper) (And (Member (sk_pay $x) pay) (Agent (sk_pay $x) sk_village_1) (Recipient (sk_pay $x) $x) (Instrument (sk_pay $x) food) (Instrument (sk_pay $x) shelter))) (STV 1.0 0.9))",
+    "(: keeper_pay_q (QuantifierPhrase keeper pay \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000021",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Coordination inside an oblique PP ('pays ... in food and shelter'): the default rule for coordinated NPs is to replicate the whole predication once per conjunct, which here would assert two separate paying events; nothing carves out oblique objects to license the two role atoms on one event that the parse (rightly) emits.",
+     "Medium-of-payment 'in <goods>' PP: no rule decides between the Instrument role (means) and the preposition-named oblique (In ...) for an in-kind payment phrase."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The shared-constant village plus a rule ranging over (Member $x keeper) is the right existential-over-universal shape, strength 1.0 / confidence 0.9 and the 'each' QuantifierPhrase companion are both correct, and Theme is correctly barred for 'food'/'shelter' since they sit under a preposition."
+   },
+   "adjudication": null
+  }
+ ]
+}

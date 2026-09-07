@@ -1,0 +1,5 @@
+(: fya_genus (Inheritance first_year_apprentice apprentice) (STV 1.0 0.99))
+(: fya_mod (Inheritance first_year_apprentice first_year) (STV 1.0 0.99))
+(: cistern_grp (GroupOf sk_cistern_1 cistern) (STV 1.0 0.99))
+(: fya_fill_rule (Implication (Member $x first_year_apprentice) (And (Member (sk_fill $x) fill) (Agent (sk_fill $x) $x) (Patient (sk_fill $x) sk_cistern_1))) (STV 0.8 0.9))
+(: fya_fill_q (QuantifierPhrase first_year_apprentice fill "usually") (STV 1.0 0.99))

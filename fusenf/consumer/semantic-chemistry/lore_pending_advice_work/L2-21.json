@@ -1,0 +1,65 @@
+{
+ "id": "L2-21",
+ "rule": "II — Discipline",
+ "texts": [
+  "The two barred Keepers often neglected the Stilllight Station."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000020",
+   "sentence": "The two barred Keepers often neglected the Stilllight Station.",
+   "parse": [
+    "(: keepers_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: keepers_card (Cardinality sk_group_1 2) (STV 1.0 0.99))",
+    "(: keepers_barred_rule (Implication (PartOf $x sk_group_1) (Member $x barred)) (STV 1.0 0.9))",
+    "(: station_type (Member stilllight_station station) (STV 1.0 0.99))",
+    "(: station_name (Name stilllight_station \"Stilllight Station\") (STV 1.0 0.99))",
+    "(: keepers_neglect_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_neglect $x) neglect) (Agent (sk_neglect $x) $x) (Theme (sk_neglect $x) stilllight_station) (Past (sk_neglect $x)))) (STV 0.8 0.9))",
+    "(: keepers_neglect_q (QuantifierPhrase keeper neglect \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000020",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 5,
+      "issue": "A counted definite plural with a distributive predicate must keep the group-level event alongside the per-member rule (Cardinality: 'keeps the group + count + group event ... and adds the per-member rule', per the 'Both dogs barked' example), but no group-level neglect event is emitted."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized plural kind-word label carrying a cardinal and an adjectival modifier ('the two barred Keepers') — the instruction set gives no test for when such a plural is 'referring as a name' (Name-only individual, no GroupOf) versus an ordinary capitalized common-noun plural, unlike the mechanical test it supplies for the capitalized singular case",
+     "a frequency adverb ('often') on a definite-group distribution rule — the frequency dial sets 'the rule's strength', but that rule's strength is already the universal-distribution quantity, so the instruction set does not say how quantification over occasions and quantification over members combine on one atom"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name handling of 'the Stilllight Station' (opaque symbol + Name + separate kind atom) follows the Kestrel River pattern exactly, and 'barred' correctly distributes to members rather than riding the group symbol."
+   },
+   "adjudication": {
+    "id": "lorep-000020",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Cardinality states that a plural with a distributive predicate keeps the group + count + group event and ADDS the per-member rule (the 'Both dogs barked' example emits both), and Quantifiers repeats that Cardinality 'keeps the group event + count alongside the rule' — the group-level neglect event is simply absent here."
+     }
+    ],
+    "gaps_confirmed": [
+     "a capitalized plural kind-word label carrying a cardinal and a modifier ('the two barred Keepers') has no mechanical name-vs-common-noun test, unlike the capitalized singular case",
+     "a frequency adverb over a definite-group distribution rule: the frequency dial and the universal-distribution quantity both claim the same rule-strength slot"
+    ],
+    "new_gaps": [
+     "the mandated group-level event under a frequency adverb has no stated strength or bundling form — the dial sets 'the rule's (or, for a flat generic, the statement's) strength', but a positive multi-atom group event is emitted as separate atoms with no convention for carrying a non-default 0.8 across them"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds the group-level event beside the per-member rule — (Member sk_neglect_1 neglect) (Agent sk_neglect_1 sk_group_1) (Theme sk_neglect_1 stilllight_station) (Past sk_neglect_1) — exactly as 'Both dogs barked' emits the group bark event alongside its per-member rule.",
+    "notes": "Everything else is doctrinal: 'barred' distributes to the members rather than riding the group symbol, Stilllight Station follows the Kestrel River name/kind split, and the 0.8 strength plus the 'often' companion match the frequency dial."
+   }
+  }
+ ]
+}

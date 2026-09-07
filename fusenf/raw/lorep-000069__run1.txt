@@ -1,0 +1,4 @@
+(: keeper_scrape (Implication (Member $x keeper) (And (Member (sk_scrape $x) scrape) (Agent (sk_scrape $x) $x) (Theme (sk_scrape $x) sk_thread_1) (Source (sk_scrape $x) sk_stone_1) (Instrument (sk_scrape $x) (sk_blade $x)) (Member (sk_blade $x) blade) (Member (sk_blade $x) flat))) (STV 0.9 0.9))
+(: thread_grp (GroupOf sk_thread_1 thread) (STV 1.0 0.99))
+(: stone_type (Member sk_stone_1 stone) (STV 1.0 0.99))
+(: stone_warm (Member sk_stone_1 warm) (STV 1.0 0.99))

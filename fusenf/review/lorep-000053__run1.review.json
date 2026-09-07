@@ -1,0 +1,9 @@
+{"id": "lorep-000053", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "The plural object 'wings' is typed as a single individual — (Member (sk_wings $x) wing) — instead of the group form (GroupOf (sk_wings $x) wing) the plural rules require, so the plurality is lost and the symbol is asserted to BE one wing."}, {"statement": 1, "issue": "The descriptive modifiers 'broad' and 'feathered' are predicated of the plural's own symbol with Member, which is the group-as-object reading the plural rules explicitly bar; a descriptive modifier on a plural must distribute over the members, not ride the plural symbol."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A descriptive modifier on a plural object that lives INSIDE a rule conclusion: the per-member distribution rule is defined only over a top-level group's (PartOf $x <group>) domain, and the instruction set never shows or licenses nesting such an Implication inside an already-quantified conclusion whose group is a Skolem function of the rule variable."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The routing decisions are right — the explicit universal 'every' correctly blocks the bare-kind relational-generic route in favor of a distributing rule at 1.0/0.9 with its QuantifierPhrase companion, 'has' takes Holder/Theme, and the compound sky_cat emits its head genus with the noun modifier correctly unexposed. Only the encoding of the plural object is defective."}

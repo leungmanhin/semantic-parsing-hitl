@@ -1,0 +1,2 @@
+(: wraith_persist_fade (Implication (Member $x wraith) (And (Member (sk_persist $x) persist) (Experiencer (sk_persist $x) $x) (MeasureAtLeast (sk_persist $x) duration 2 week) (Member (sk_fade $x) fade) (Patient (sk_fade $x) $x) (Goal (sk_fade $x) sk_cove_1) (Before (sk_persist $x) (sk_fade $x)))) (STV 0.9 0.9))
+(: cove_type (Member sk_cove_1 cove) (STV 1.0 0.99))

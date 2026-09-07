@@ -1,0 +1,31 @@
+{
+ "id": "L4-04",
+ "rule": "IV — Checks and dawn-out",
+ "texts": [
+  "Wicks carbonize over a long burn."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000036",
+   "sentence": "Wicks carbonize over a long burn.",
+   "parse": [
+    "(: wick_carbonize_rule (Implication (Member $x wick) (And (Member (sk_carbonize $x) carbonize) (Patient (sk_carbonize $x) $x) (Member (sk_burn $x) burn) (Member (sk_burn $x) long) (Over (sk_carbonize $x) (sk_burn $x)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000036",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"over\" correctly stays the surface preposition-named oblique rather than being folded into During (which renders only during/while/throughout), the indefinite \"a long burn\" is a dependent existential Skolemized on $x, \"long\" stays an unfused descriptive property on the witness, and the intransitive change-of-state subject takes Patient. No unstated wick-burn relation is invented."
+   },
+   "adjudication": null
+  }
+ ]
+}

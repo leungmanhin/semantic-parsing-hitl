@@ -1,0 +1,10 @@
+{"id": "lorep-000011", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "With no \"the same\"/\"a certain\" cue the scope default is subject-wide (the doctrine's dependent-existential pattern, \"every student read some book\" -> (Theme (sk_read $x) (sk_book $x))), so reusing the constant sk_notebook_1 inside the per-member rule asserts one single notebook kept by every member of the group, which the text does not state."}],
+ "gaps_confirmed": ["Contentful/about of-phrase on a concrete, non-nominalization, non-relational noun (\"a notebook OF moth-counts and weather notes\"): Possession is explicitly barred for an about-phrase and the Of-oblique is scoped to nouns with an underlying verb, so no carrier is licensed and the restriction is dropped.",
+                    "Quantified capitalized plural kind-word label (\"a few Keepers\"): the capitalized-common-noun default is stated as singular-collective only, and the Name-only plural rule covers only a plural referring AS a name, leaving a quantified capitalized plural unrouted."],
+ "new_gaps": ["When a vague/counted plural's distributive predicate takes a DEPENDENT indefinite object, the group-event half that Cardinality keeps alongside the per-member rule has no licensed object filler: a single witness there (Theme sk_keep_1 sk_notebook_1) asserts one shared notebook at group level, and no group-side counterpart of the Skolem-function object is defined."],
+ "decision": "defect",
+ "defect_summary": "The rule's object must be the per-binding Skolem term - (Theme (sk_keep $x) (sk_notebook $x)) with (Member (sk_notebook $x) notebook) as a conjunct inside the same conclusion - rather than the shared constant sk_notebook_1.",
+ "notes": "The group witness, the CardinalityPhrase \"a few\", the Theme role for keep and the unmarked habitual tense are all correct; only the object's binding inside the rule fails."}

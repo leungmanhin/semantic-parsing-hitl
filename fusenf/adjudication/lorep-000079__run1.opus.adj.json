@@ -1,0 +1,12 @@
+{"id": "lorep-000079", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The modifier of heavy_thread_day is the noun-headed 'heavy-thread', which Compound concepts never exposes ('a noun modifier is never exposed, whatever it names') and which fails the predication test — 'the day is heavy' is not what the text says — so (Inheritance heavy_thread_day heavy) asserts a property from nowhere in the sentence, and it also recurses into a modifier the decompose-once rule stops at."},
+            {"index": 1,
+             "verdict": "refute",
+             "reason": "The bearer is a per-binding Skolem group, so the mandated flat half would have to be a rule whose premise reads (PartOf $y (sk_vessels $x)) — a Skolem term in a premise, which 'rule premises bind through plain variables' explicitly bars, with $x free besides — so no licensed flat form exists at all and the omission is the instruction set's own leave-it-out-and-record-the-gap response, i.e. exactly the coverage gap the reviewer himself filed, not a parse defect."}],
+ "gaps_confirmed": ["an adjective-with-PP-complement state whose bearer is a Skolem group inside a generic rule's conclusion: the dual-emit flat half is specified as a per-member (Implication (PartOf $x <group>) ...) rule and no form is given for it here"],
+ "new_gaps": ["the gap is sharper than 'no form for nesting': with a per-binding Skolem group the per-member rule is unrepresentable in either position — nested in an asserted conclusion it is unlicensed and carries no truth value, and at top level its premise would have to contain the Skolem term (sk_vessels $x) with $x free, which the plain-variable-premise rule bars outright; a licensed carrier would need a way to distribute a property to the members of a group minted per rule-binding"],
+ "decision": "defect",
+ "defect_summary": "The compliant form emits the genus (Inheritance heavy_thread_day day) and no modifier genus at all, dropping (Inheritance heavy_thread_day heavy).",
+ "notes": "The generic rule shape, Agent on the inanimate transitive subject, the per-binding Skolem group with GroupOf + Cardinality 4, the reified full state with its (Of ... mire_essence) complement, and the 0.9/0.9 TVs are all right; the dual-emit loss is a registered gap rather than a fault of this parse."}

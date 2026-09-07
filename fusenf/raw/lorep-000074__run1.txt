@@ -1,0 +1,4 @@
+(: lantern_has_reservoir (Implication (Member $x lantern) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) (sk_reservoir $x)) (Member (sk_reservoir $x) iron_reservoir) (For (sk_reservoir $x) mire_essence))) (STV 1.0 0.9))
+(: lantern_q (QuantifierPhrase lantern have "every") (STV 1.0 0.99))
+(: reservoir_genus (Inheritance iron_reservoir reservoir) (STV 1.0 0.99))
+(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))

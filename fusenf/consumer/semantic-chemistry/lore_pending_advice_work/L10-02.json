@@ -1,0 +1,85 @@
+{
+ "id": "L10-02",
+ "rule": "X — Cold stretches",
+ "texts": [
+  "Keepers forecast cold-threshold stretches from the spire weathercocks.",
+  "Keepers forecast cold-threshold stretches from the hearth smoke."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000082",
+   "sentence": "Keepers forecast cold-threshold stretches from the spire weathercocks.",
+   "parse": [
+    "(: cthresh_genus (Inheritance cold_threshold threshold) (STV 1.0 0.99))",
+    "(: cts_genus (Inheritance cold_threshold_stretch stretch) (STV 1.0 0.99))",
+    "(: sw_genus (Inheritance spire_weathercock weathercock) (STV 1.0 0.99))",
+    "(: sw_grp (GroupOf sk_group_1 spire_weathercock) (STV 1.0 0.99))",
+    "(: forecast_rule (Implication (Member $x keeper) (And (Member (sk_forecast $x) forecast) (Agent (sk_forecast $x) $x) (Theme (sk_forecast $x) cold_threshold_stretch) (Source (sk_forecast $x) sk_group_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000082",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "(Inheritance cold_threshold threshold) is an orphan: cold_threshold is a NOUN modifier of cold_threshold_stretch and so is never exposed as a modifier genus, leaving the symbol unreferenced anywhere else in the parse, and decomposing it is a second pass past the 'decompose once, to single-word lemmas, then stop' bar."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Nested / three-part compound ('cold-threshold stretches', modifier itself a compound): the instruction set says to decompose once to single-word lemmas and never to expose a noun modifier, but does not say whether a multi-word noun modifier is itself decomposed, nor how such a sub-symbol would attach if it were."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-plural generic distributing rule at 0.9/0.9, the Theme bare-kind object for a non-specific plural, Source for the 'from' PP, the definite plural as a GroupOf witness, and the spire_weathercock / cold_threshold_stretch genus atoms are all correct; only the extra cold_threshold genus atom is unlicensed."
+   },
+   "adjudication": {
+    "id": "lorep-000082",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound decomposition names exactly the atoms a compound yields — the head genus always, the modifier genus only when the modifier is adjectival — and directs 'decompose once, to single-word lemmas, then stop' while saying a noun modifier is left in the symbol, so the second-pass (Inheritance cold_threshold threshold) is an unlicensed optional atom of precisely the kind the determinacy bar ('an optional atom makes two faithful parses differ') exists to prevent."
+     }
+    ],
+    "gaps_confirmed": [
+     "the decomposition doctrine is written for a two-part compound: a modifier that is itself a compound ('cold-threshold' in 'cold-threshold stretches') is settled only by implication ('decompose once ... then stop', 'leave a noun modifier in the symbol'), never stated outright"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: the same parse minus cthresh_genus — (Inheritance cold_threshold_stretch stretch), (Inheritance spire_weathercock weathercock), the GroupOf witness and the rule — with cold_threshold left inside the symbol and no atom of its own.",
+    "notes": "The implication is clear enough that the extra atom is unlicensed rather than sheltered improvisation, though an explicit line on compound-valued modifiers would remove all doubt. The rest is correct: the 0.9/0.9 distributing rule, the bare-kind Theme object, Source for the 'from' PP, and the definite plural as a GroupOf witness."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000083",
+   "sentence": "Keepers forecast cold-threshold stretches from the hearth smoke.",
+   "parse": [
+    "(: cts_genus (Inheritance cold_threshold_stretch stretch) (STV 1.0 0.99))",
+    "(: hs_genus (Inheritance hearth_smoke smoke) (STV 1.0 0.99))",
+    "(: hs_type (Member sk_hearth_smoke_1 hearth_smoke) (STV 1.0 0.99))",
+    "(: keepers_forecast (Implication (Member $x keeper) (And (Member (sk_forecast $x) forecast) (Agent (sk_forecast $x) $x) (Theme (sk_forecast $x) cold_threshold_stretch) (Source (sk_forecast $x) sk_hearth_smoke_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000083",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"forecast\" is form-ambiguous between simple past and habitual present, and the generic-rule reading with no tense atom is a legitimate choice with no overt past marker. Both compounds correctly take the genus only, since each modifier is a noun and so is never exposed."
+   },
+   "adjudication": null
+  }
+ ]
+}

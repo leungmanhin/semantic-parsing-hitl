@@ -1,0 +1,61 @@
+{
+ "id": "L7-01",
+ "rule": "VII — Tides",
+ "texts": [
+  "Neap tides leave the tide-pools dry."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000064",
+   "sentence": "Neap tides leave the tide-pools dry.",
+   "parse": [
+    "(: neap_tide_genus (Inheritance neap_tide tide) (STV 1.0 0.99))",
+    "(: neap_tide_adj (Inheritance neap_tide neap) (STV 1.0 0.99))",
+    "(: pools_group (GroupOf sk_pools_1 tide_pool) (STV 1.0 0.99))",
+    "(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: neap_leave_rule (Implication (Member $x neap_tide) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Patient (sk_leave $x) sk_pools_1) (Member (sk_dry $x) dry) (Experiencer (sk_dry $x) sk_pools_1) (Result (sk_leave $x) (sk_dry $x)) (Implication (PartOf $y sk_pools_1) (Member $y dry)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000064",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The mandated per-member distribution rule (Implication (PartOf $y sk_pools_1) (Member $y dry)) is nested as a conjunct of the generic rule's own conclusion, where $y is bound neither by the outer premise nor by any asserted fact and where the nested rule can carry no truth value of its own — a nested Implication in asserted (non-sealed) rule-conclusion position appears nowhere in the instruction set."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A resultative whose object is a plural group inside a clause that is itself a GENERIC rule: the resultative rule mandates that the flat half become the per-member (Implication (PartOf $x <group>) (Member $x <state>)) (STV 1.0 0.9) 'beside the reified result state', but when the reified result state lives inside an Implication over a kind, the instruction set never says whether that per-member rule sits at top level or inside the generic rule's conclusion — and it licenses a rule nested as a conjunct only inside a SEAL, never inside an asserted conclusion."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else matches doctrine: term-of-art fusion neap_tide with its genus plus the predicable-adjective modifier genus, tide_pool's genus with the noun modifier suppressed, the definite plural as a top-level group constant referenced from the conclusion, per-binding Skolem event and state terms, transitive-subject Agent, resultative Patient, and bare-generic 0.9/0.9 with correctly no QuantifierPhrase."
+   },
+   "adjudication": {
+    "id": "lorep-000064",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Resultatives put the per-member rule 'beside the reified result state' as its own statement at (STV 1.0 0.9), and the only place the instruction set licenses a rule nested as a conjunct is inside a SEAL — as emitted, $y is bound by neither the outer premise nor any asserted fact and the nested rule silently inherits the outer 0.9/0.9, so an unbound-variable rule is asserted as ordinary conclusion content."
+     }
+    ],
+    "gaps_confirmed": [
+     "a resultative whose object is a plural group inside a clause that is itself a generic rule: the instruction set never says where the mandated per-member half goes, and it licenses a nested rule only inside a seal"
+    ],
+    "new_gaps": [
+     "that gap has a second horn the reviewer did not state: the literal 'beside' reading — the per-member rule at top level — drops the neap-tide condition and asserts unconditionally that every tide-pool is dry, so neither placement is licensed as written; the nearest licensed composition is a separate two-premise rule (Implication (And (Member $x neap_tide) (PartOf $y sk_pools_1)) (Member $y dry)) at (STV 1.0 0.9), which the instruction set never names for this case"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form keeps the per-member distribution out of the conclusion and gives it its own truth value and a bound variable — as written, no placement the instruction set names works (top level over-asserts by dropping the generic's condition, nesting is unlicensed), so the licensed form would have to be the composed two-premise rule (Implication (And (Member $x neap_tide) (PartOf $y sk_pools_1)) (Member $y dry)) (STV 1.0 0.9); this is filed as a gap.",
+    "notes": "Everything else matches doctrine — neap_tide fusion with its genus, tide_pool with the noun modifier suppressed, the definite plural as a top-level group constant, per-binding Skolem event and state terms, Agent on the transitive subject, resultative Patient, and 0.9/0.9 with no QuantifierPhrase."
+   }
+  }
+ ]
+}

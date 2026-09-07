@@ -1,0 +1,81 @@
+{
+ "id": "L3-09",
+ "rule": "III — The bad winters",
+ "texts": [
+  "The Council doubled the feather ration of the Stilllight Station twenty-six years ago.",
+  "Sixty-three years ago, Old Vesh's father walked the Cove Stair every evening with three Keepers."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000027",
+   "sentence": "The Council doubled the feather ration of the Stilllight Station twenty-six years ago.",
+   "parse": [
+    "(: council_m (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: station_name (Name stilllight_station \"Stilllight Station\") (STV 1.0 0.99))",
+    "(: station_m (Member stilllight_station station) (STV 1.0 0.99))",
+    "(: ration_m (Member sk_feather_ration_1 feather_ration) (STV 1.0 0.99))",
+    "(: ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))",
+    "(: ration_poss (Possession sk_feather_ration_1 stilllight_station) (STV 1.0 0.99))",
+    "(: e_double (Member sk_double_1 double) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_double_1 sk_council_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_double_1 sk_feather_ration_1) (STV 1.0 0.99))",
+    "(: e_past (Past sk_double_1) (STV 1.0 0.99))",
+    "(: e_time (BeforeBy sk_double_1 now 26 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000027",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Council\" correctly stays a capitalized-common-noun witness with no Name; \"Stilllight Station\" is one opaque name symbol with the in-name kind word as an ordinary type atom, and \"twenty-six years ago\" takes the BeforeBy/now anchor as specified."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000028",
+   "sentence": "Sixty-three years ago, Old Vesh's father walked the Cove Stair every evening with three Keepers.",
+   "parse": [
+    "(: old_vesh_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+    "(: father_type (Member sk_father_1 father) (STV 1.0 0.99))",
+    "(: father_poss (Possession sk_father_1 old_vesh) (STV 1.0 0.99))",
+    "(: cove_stair_kind (Member cove_stair stair) (STV 1.0 0.99))",
+    "(: cove_stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+    "(: e_walk (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_walk_1 sk_father_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_walk_1 cove_stair) (STV 1.0 0.99))",
+    "(: e_past (Past sk_walk_1) (STV 1.0 0.99))",
+    "(: e_time_evening (Time sk_walk_1 evening) (STV 1.0 0.99))",
+    "(: e_every (Every sk_walk_1 1 day) (STV 1.0 0.99))",
+    "(: e_beforeby (BeforeBy sk_walk_1 now 63 year) (STV 1.0 0.99))",
+    "(: keepers_group (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: keepers_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+    "(: e_coagent (CoAgent sk_walk_1 sk_group_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000028",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a past-tense habitual/iterative clause (\"walked the Cove Stair every evening\"): the frequency section says the event stays unmarked (\"no Past/Ongoing - habitual\") while the tense rule marks every finite past clause with (Past e), and the instruction set never says which governs a past habitual",
+     "distribution of a counted comitative group (\"with three Keepers\") to its members: the per-member (PartOf $x <group>) rule is specified for a group that is the clause's subject / predicated participant, not for a CoAgent filler, so whether each Keeper's own walking is derivable is unaddressed"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The name/kind split for \"Old Vesh\" and \"the Cove Stair\", the kinship genitive as Possession, the every-evening slot plus implied 1-day cycle, and the BeforeBy-now anchor for \"sixty-three years ago\" all follow the instruction set as written."
+   },
+   "adjudication": null
+  }
+ ]
+}

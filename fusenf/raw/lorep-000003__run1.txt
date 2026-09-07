@@ -1,0 +1,4 @@
+(: keeper_fear_rule (Implication (Member $x keeper) (And (Member (sk_fear $x) fear) (Experiencer (sk_fear $x) $x) (Stimulus (sk_fear $x) stilllight_station))) (STV 1.0 0.9))
+(: keeper_fear_q (QuantifierPhrase keeper fear "every") (STV 1.0 0.99))
+(: stilllight_station_type (Member stilllight_station station) (STV 1.0 0.99))
+(: stilllight_station_name (Name stilllight_station "Stilllight Station") (STV 1.0 0.99))

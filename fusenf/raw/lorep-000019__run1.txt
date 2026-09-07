@@ -1,0 +1,3 @@
+(: lorep19_council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: lorep19_phrase_type (Member sk_phrase_1 phrase) (STV 1.0 0.99))
+(: lorep19_whenever_rule (Implication (And (Member $x close) (Agent $x sk_council_1) (Patient $x $s) (Member $s session)) (And (Member (sk_repeat $x) repeat) (Agent (sk_repeat $x) (sk_keeper $x)) (Member (sk_keeper $x) keeper) (Theme (sk_repeat $x) sk_phrase_1) (During (sk_repeat $x) $x))) (STV 1.0 0.9))

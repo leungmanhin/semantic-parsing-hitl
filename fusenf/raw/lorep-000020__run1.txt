@@ -1,0 +1,7 @@
+(: keepers_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: keepers_card (Cardinality sk_group_1 2) (STV 1.0 0.99))
+(: keepers_barred_rule (Implication (PartOf $x sk_group_1) (Member $x barred)) (STV 1.0 0.9))
+(: station_type (Member stilllight_station station) (STV 1.0 0.99))
+(: station_name (Name stilllight_station "Stilllight Station") (STV 1.0 0.99))
+(: keepers_neglect_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_neglect $x) neglect) (Agent (sk_neglect $x) $x) (Theme (sk_neglect $x) stilllight_station) (Past (sk_neglect $x)))) (STV 0.8 0.9))
+(: keepers_neglect_q (QuantifierPhrase keeper neglect "often") (STV 1.0 0.99))

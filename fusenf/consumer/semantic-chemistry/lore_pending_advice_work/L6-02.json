@@ -1,0 +1,128 @@
+{
+ "id": "L6-02",
+ "rule": "VI — Appearance",
+ "texts": [
+  "Every sky-cat has broad feathered wings.",
+  "Keepers rarely witness a sky-cat hunt."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000053",
+   "sentence": "Every sky-cat has broad feathered wings.",
+   "parse": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: sky_cat_wing_rule (Implication (Member $x sky_cat) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) (sk_wings $x)) (Member (sk_wings $x) wing) (Member (sk_wings $x) broad) (Member (sk_wings $x) feathered))) (STV 1.0 0.9))",
+    "(: sky_cat_q (QuantifierPhrase sky_cat have \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000053",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The plural object 'wings' is typed as a single individual — (Member (sk_wings $x) wing) — instead of the group form (GroupOf (sk_wings $x) wing) the plural rules require, so the plurality is lost and the symbol is asserted to BE one wing."
+     },
+     {
+      "statement": 1,
+      "issue": "The descriptive modifiers 'broad' and 'feathered' are predicated of the plural's own symbol with Member, which is the group-as-object reading the plural rules explicitly bar; a descriptive modifier on a plural must distribute over the members, not ride the plural symbol."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A descriptive modifier on a plural object that lives INSIDE a rule conclusion: the per-member distribution rule is defined only over a top-level group's (PartOf $x <group>) domain, and the instruction set never shows or licenses nesting such an Implication inside an already-quantified conclusion whose group is a Skolem function of the rule variable."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The routing decisions are right — the explicit universal 'every' correctly blocks the bare-kind relational-generic route in favor of a distributing rule at 1.0/0.9 with its QuantifierPhrase companion, 'has' takes Holder/Theme, and the compound sky_cat emits its head genus with the noun modifier correctly unexposed. Only the encoding of the plural object is defective."
+   },
+   "adjudication": {
+    "id": "lorep-000053",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The doctrine's own precedent for a plural object under a universal is a per-binding Skolem GROUP - (GroupOf (sk_books $x) book) in \"every student read three books\" - and Coordination & plurals bars a group symbol from a class slot (\"a group is an individual; it never goes in a class slot\"), so (Member (sk_wings $x) wing) is ill-typed and asserts the plurality is one wing."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Categorical statements states flatly that a property of a plural's members is never predicated of the group symbol - \"(Member sk_group_1 wooden) says the group-as-object is wooden\" - and Compound concepts routes a DESCRIPTIVE modifier on a plural (as broad/feathered are, not classifiers) through the distributive rule, so both modifier atoms assert of the collection what the text asserts of each wing."
+     }
+    ],
+    "gaps_confirmed": [
+     "A descriptive modifier on a plural object living INSIDE a rule conclusion: the per-member distribution rule is defined only over a top-level group's (PartOf $x <group>) domain, and no nesting of such an Implication inside an already-quantified conclusion whose group is a Skolem function of the rule variable is shown or licensed."
+    ],
+    "new_gaps": [
+     "\"Every N has ADJ PLURALs\" is doubly unlicensed at the modifier: the fusing-classifier slot in the group's kind position is barred (broad/feathered are descriptive, not classifying), and the distributive route would need a nested rule whose own variable ranges over a Skolem-function group - against the constraint that variables must not co-vary inside one stored term - so no compliant form exists for this construction."
+    ],
+    "decision": "defect",
+    "defect_summary": "The plural object's typing has a compliant form - (GroupOf (sk_wings $x) wing) in place of (Member (sk_wings $x) wing) - but the modifiers do NOT: broad and feathered must distribute to the members, and the instruction set licenses no per-member distribution rule nested inside a rule conclusion over a Skolem-function group, so this sentence currently has no licensed complete parse (filed as a gap).",
+    "notes": "The routing is otherwise right: the explicit universal correctly blocks the bare-kind relational-generic route in favour of a 1.0/0.9 distributing rule with its QuantifierPhrase companion, \"has\" takes Holder/Theme, and sky_cat emits its head genus with the noun modifier unexposed."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000054",
+   "sentence": "Keepers rarely witness a sky-cat hunt.",
+   "parse": [
+    "(: keeper_witness_rule (Implication (Member $x keeper) (And (Member (sk_witness $x) witness) (Experiencer (sk_witness $x) $x) (Member (sk_hunt $x) hunt) (Patient (sk_hunt $x) sky_cat) (Stimulus (sk_witness $x) (sk_hunt $x)))) (STV 0.1 0.9))",
+    "(: keeper_witness_q (QuantifierPhrase keeper witness \"rarely\") (STV 1.0 0.99))",
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000054",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The compound noun 'a sky-cat hunt' is unpacked into a hunt event carrying (Patient (sk_hunt $x) sky_cat), which asserts that the sky-cat is what is hunted — a role relation the compound never states, and one that also picks one of two readings (hunt by vs. hunt of sky-cats); the compound-kind route (one fused symbol plus its head genus, noun modifier never exposed) is what the instruction set licenses."
+     },
+     {
+      "statement": 0,
+      "issue": "The subject of 'witness' is given Experiencer (with the object as Stimulus), but the progressive test that bounds the stative psych/perception class admits 'is witnessing', which groups the verb with notice/observe and makes its subject an ordinary Agent."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "noun-noun compound whose head is an event/deverbal noun with an incorporated participant ('a sky-cat hunt', 'a bird count') — the compound rules bar exposing a noun modifier and give no way to record which role the modifier plays in the denoted eventuality"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The generic routing is right otherwise: bare-plural habitual to a distributing rule at strength 0.1 for 'rarely', the QuantifierPhrase companion, and (Inheritance sky_cat cat) with the noun modifier unexposed."
+   },
+   "adjudication": {
+    "id": "lorep-000054",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts fuses 'sky-cat hunt' into one kind emitting only its head genus and states that a noun modifier is never exposed, so (Patient (sk_hunt $x) sky_cat) asserts a participant relation no word puts there - it fails Core patterns' 'point at the words' test and silently picks the hunt-of-sky-cats reading over the hunt-by-sky-cats one."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Thematic roles bounds the Experiencer class by the progressive test rather than by a list, and 'is witnessing' is fine, so witness is an event verb grouped with notice / observe / watch whose subject is an ordinary Agent, not a stative Experiencer."
+     }
+    ],
+    "gaps_confirmed": [
+     "Noun-noun compound whose head is an event / deverbal noun with an incorporated participant ('a sky-cat hunt', 'a bird count'): the compound rules bar exposing the noun modifier and give no way to record which role the modifier plays in the denoted eventuality."
+    ],
+    "new_gaps": [
+     "The role of an EVENT-DENOTING NP object of an agentive perception verb: Stimulus is defined only as a psych state's object or the perceived complement of a perception report (bare infinitive / participle), while the perception-report section says an event is never a Theme acted on - so a plain NP object like 'a sky-cat hunt' under an Agent-subject verb has no specified role slot."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form types the object with the fused compound - (Member (sk_hunt $x) sky_cat_hunt) inside the rule plus top-level (Inheritance sky_cat_hunt hunt) - and emits no role atom for sky_cat at all, since no licensed form records which role a sky-cat plays in the hunt (the confirmed gap); and the subject atom should be (Agent (sk_witness $x) $x) in place of the Experiencer.",
+    "notes": "The generic routing is otherwise correct: bare-plural habitual to a distributing rule, strength 0.1 for 'rarely' with its (QuantifierPhrase keeper witness \"rarely\") companion, and the sky_cat genus with the noun modifier unexposed. Whether the object role should then be Stimulus or Theme is undetermined and is filed as a new gap, not charged against the parse."
+   }
+  }
+ ]
+}

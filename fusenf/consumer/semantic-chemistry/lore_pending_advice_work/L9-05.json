@@ -1,0 +1,213 @@
+{
+ "id": "L9-05",
+ "rule": "IX — Yields",
+ "texts": [
+  "Typical days yield several vessels full of mire-essence.",
+  "Heavy-thread days yield four vessels full of mire-essence.",
+  "Thin days yield a single vessel full of mire-essence.",
+  "Whenever a wraith drains a lantern, the thread harvest at that lantern falls."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000078",
+   "sentence": "Typical days yield several vessels full of mire-essence.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: typical_day_yield_rule (Implication (And (Member $x day) (Member $x typical)) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) (sk_vessels $x)) (GroupOf (sk_vessels $x) vessel) (CardinalityPhrase (sk_vessels $x) \"several\") (Member (sk_full $x) full) (Experiencer (sk_full $x) (sk_vessels $x)) (Of (sk_full $x) mire_essence) (Member (sk_vessels $x) full))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000078",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The flat conjunct (Member (sk_vessels $x) full) predicates the state of the GROUP symbol, the reading the plural rules explicitly bar (\"a member state never rides the group symbol ... never (Member <group> <state>)\") — each vessel is full, not the collection, so this half owes a per-member distribution over (PartOf $y (sk_vessels $x))."
+     },
+     {
+      "statement": 1,
+      "issue": "For the same reason the reified state takes the group as its bearer, (Experiencer (sk_full $x) (sk_vessels $x)) with (Of (sk_full $x) mire_essence), asserting one collective fullness-of-mire-essence rather than the per-member Skolem state the group case calls for."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is per doctrine: the adjectivally-restricted bare-plural subject becomes a premise conjunct, the inanimate transitive subject stays Agent, \"several vessels\" is a per-binding Skolem group with CardinalityPhrase, and mire_essence carries its genus with the noun modifier unexposed. The group-bearer case sits at the seam of two sections — the adjective-PP-complement reification and the group-distribution bar — with the worked per-member state form given only under Resultatives."
+   },
+   "adjudication": {
+    "id": "lorep-000078",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "(Member (sk_vessels $x) full) is the exact form Categorical statements and Resultatives both bar - 'never (Member <group> <state>)' - and fullness is a property of each vessel, not of the collection as an object, so the atom is false of the sentence's content."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is that this is precisely the circumstance the instruction set names - a state carrying its own complement per member, where the conclusion may mint Skolem-function states - but the half that falls is that a group-borne reified state is itself barred: Resultatives keeps 'the reified result state' on the group object precisely BESIDE the distributed flat half, and the per-member Skolem form is offered with 'may', not mandated."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "Distributing a member state over a PER-BINDING SKOLEM group inside a rule conclusion has no licensed carrier: the prescribed per-member rule (Implication (PartOf $y <group>) (Member $y <state>)) cannot be emitted at top level over (sk_vessels $x) without leaving $x free, and a nested Implication inside an (And ...) is shown only for sealed complements, never for a rule conclusion."
+    ],
+    "decision": "defect",
+    "defect_summary": "The barred flat conjunct (Member (sk_vessels $x) full) must go, and the licensed replacement - the per-member rule (Implication (PartOf $y <group>) (Member $y full)) - cannot range over a per-binding Skolem group from top level, so NO licensed form carries the per-vessel reading here: the conjunct can only be dropped with the loss recorded, which is filed as the new gap above.",
+    "notes": "Everything else is per doctrine: the adjectivally-restricted bare-plural subject as premise conjuncts, Agent on the inanimate transitive subject, GroupOf plus CardinalityPhrase \"several\" with no invented number, and mire_essence carrying its genus with the noun modifier unexposed."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000079",
+   "sentence": "Heavy-thread days yield four vessels full of mire-essence.",
+   "parse": [
+    "(: htd_genus (Inheritance heavy_thread_day day) (STV 1.0 0.99))",
+    "(: htd_heavy (Inheritance heavy_thread_day heavy) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: htd_yields (Implication (Member $x heavy_thread_day) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) (sk_vessels $x)) (GroupOf (sk_vessels $x) vessel) (Cardinality (sk_vessels $x) 4) (Member (sk_full $x) full) (Experiencer (sk_full $x) (sk_vessels $x)) (Of (sk_full $x) mire_essence))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000079",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "(Inheritance heavy_thread_day heavy) exposes a modifier genus the compound rules withhold — the modifier is the noun-headed 'heavy-thread', and 'the day is heavy' fails the predication test, so the claim that heavy-thread days are heavy is asserted from nowhere in the text."
+     },
+     {
+      "statement": 3,
+      "issue": "The 'full of mire-essence' adjective-complement state omits its mandated dual-emit flat half — for a group bearer that half is the per-member distribution (each vessel is full), so as parsed nothing says the vessels themselves are full."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an adjective-with-PP-complement state whose bearer is a Skolem group inside a generic rule's conclusion: the flat/dual-emit half is specified as a per-member (Implication (PartOf $x <group>) ...) rule, and the instruction set gives no form for nesting that rule inside another rule's conclusion"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The generic rule shape, Agent on the inanimate transitive subject, per-binding Skolem group with GroupOf + Cardinality 4, the reified 'full' state with its (Of ... mire_essence) oblique, and the 0.9/0.9 TVs are otherwise right."
+   },
+   "adjudication": {
+    "id": "lorep-000079",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The modifier of heavy_thread_day is the noun-headed 'heavy-thread', which Compound concepts never exposes ('a noun modifier is never exposed, whatever it names') and which fails the predication test — 'the day is heavy' is not what the text says — so (Inheritance heavy_thread_day heavy) asserts a property from nowhere in the sentence, and it also recurses into a modifier the decompose-once rule stops at."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "The bearer is a per-binding Skolem group, so the mandated flat half would have to be a rule whose premise reads (PartOf $y (sk_vessels $x)) — a Skolem term in a premise, which 'rule premises bind through plain variables' explicitly bars, with $x free besides — so no licensed flat form exists at all and the omission is the instruction set's own leave-it-out-and-record-the-gap response, i.e. exactly the coverage gap the reviewer himself filed, not a parse defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "an adjective-with-PP-complement state whose bearer is a Skolem group inside a generic rule's conclusion: the dual-emit flat half is specified as a per-member (Implication (PartOf $x <group>) ...) rule and no form is given for it here"
+    ],
+    "new_gaps": [
+     "the gap is sharper than 'no form for nesting': with a per-binding Skolem group the per-member rule is unrepresentable in either position — nested in an asserted conclusion it is unlicensed and carries no truth value, and at top level its premise would have to contain the Skolem term (sk_vessels $x) with $x free, which the plain-variable-premise rule bars outright; a licensed carrier would need a way to distribute a property to the members of a group minted per rule-binding"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form emits the genus (Inheritance heavy_thread_day day) and no modifier genus at all, dropping (Inheritance heavy_thread_day heavy).",
+    "notes": "The generic rule shape, Agent on the inanimate transitive subject, the per-binding Skolem group with GroupOf + Cardinality 4, the reified full state with its (Of ... mire_essence) complement, and the 0.9/0.9 TVs are all right; the dual-emit loss is a registered gap rather than a fault of this parse."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep-000080",
+   "sentence": "Thin days yield a single vessel full of mire-essence.",
+   "parse": [
+    "(: lorep80_day_genus (Inheritance thin_day day) (STV 1.0 0.99))",
+    "(: lorep80_day_mod (Inheritance thin_day thin) (STV 1.0 0.99))",
+    "(: lorep80_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: lorep80_rule (Implication (Member $x thin_day) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) (sk_vessel $x)) (Member (sk_vessel $x) vessel) (Member (sk_vessel $x) single) (Member (sk_full $x) full) (Experiencer (sk_full $x) (sk_vessel $x)) (Of (sk_full $x) mire_essence) (Member (sk_vessel $x) full))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000080",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The count/uniqueness modifier in \"a single vessel\" is emitted as an ordinary adjectival property atom (Member (sk_vessel $x) single), which predicates a quality of the vessel rather than recording the stated singleness."
+     },
+     {
+      "statement": 0,
+      "issue": "\"Thin days\" is fused into the compound kind thin_day (with its modifier genus), where the instruction set's parallel case — an adjectivally-restricted bare-plural kind subject, \"stray dogs chase cyclists\" — makes the restriction a premise conjunct instead, so the rule here only fires on entities explicitly typed thin_day and not on a day typed day + thin."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"a single N\" — an exactness/uniqueness modifier on a singular indefinite: Cardinality is group-only and the \"only one N\" carrier is a registered gap, so nothing licensed records it",
+     "container-measure phrase (\"a vessel full of X\" as a quantity of X): the instruction set excludes measure of-phrases (\"a cup of water\") from the genitive rule but supplies no positive encoding, so the only licensed route treats the container itself as the produced object"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjective-PP-complement reification of \"full of mire-essence\" (reified state + Experiencer + Of + flat copular atom) and the mire_essence genus are correct, as is Agent for the inanimate transitive subject."
+   },
+   "adjudication": {
+    "id": "lorep-000080",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'a single vessel' is a count modifier ('exactly one'), and the instruction set routes amount words into the counting machinery (Cardinality / CardinalityPhrase / Degree ... quantity) and never into a Member property slot, so (Member (sk_vessel $x) single) predicates of the vessel a standing quality the sentence never states of it while recording the stated count nowhere."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "Compound concepts licenses fusing an adjective+noun that names a recognized kind and then makes the head genus plus a gradable-adjective modifier genus mandatory, so thin_day with (Inheritance thin_day day) and (Inheritance thin_day thin) is licensed and every atom true; the 'stray dogs chase cyclists' line cited governs kind-relation-vs-rule routing (the rule route this parse already takes), not a ban on fusion, and reduced premise reachability is a connectivity concern, not a fidelity defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "'a single N' — an exact count on a singular indefinite has no carrier: Cardinality's bearer slot is defined as a group, and the focus-particle section's 'emit the exact Cardinality' for 'only one N' presupposes a carrier the Cardinality section does not supply",
+     "a container-measure of-phrase ('a cup of water', a vesselful of X) is explicitly excluded from the genitive rule but given no positive encoding anywhere, so only the container-as-object route is licensed"
+    ],
+    "new_gaps": [
+     "A licensed form for the count reading would need a count head whose bearer may be an individual witness — (Cardinality <witness> 1) — or a stated singleton-group convention; as the instruction set stands the compliant behaviour drops 'single' and the exactness is unrecoverable."
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form: omit (Member (sk_vessel $x) single) and record the gap — an unencodable qualifier is left out, never recast as a different assertion — and note that no licensed carrier exists for an exact count on a singular indefinite, so 'exactly one' cannot be preserved in any form the instruction set licenses.",
+    "notes": "The reified adjective-PP-complement state for 'full of mire-essence' (Member + Experiencer + Of plus the flat copular atom), the mire_essence genus with its noun modifier left unexposed, the per-binding Skolem vessel, and Agent for the inanimate transitive subject are all correct."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lorep-000081",
+   "sentence": "Whenever a wraith drains a lantern, the thread harvest at that lantern falls.",
+   "parse": [
+    "(: lp81_th_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: lp81_rule (Implication (And (Member $w wraith) (Member $d drain) (Agent $d $w) (Patient $d $l) (Member $l lantern)) (And (Member (sk_fall $d) fall) (Theme (sk_fall $d) (sk_harvest $l)) (Member (sk_harvest $l) thread_harvest) (LocatedIn (sk_harvest $l) $l) (During (sk_fall $d) $d))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000081",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A definite entity in the response clause of a \"whenever\" rule that is presupposed to exist independently of the trigger (\"the thread harvest at that lantern\"): the whenever machinery specifies only the Skolem event per occurrence, so the harvest's typing and LocatedIn atoms end up derivable only when the rule fires, and the instruction set does not say where such a non-participant referent should be anchored."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Structure matches the \"Every time the bell rings, the dog barks\" template exactly: plain-variable premises, the response Skolemized on the trigger event variable, the During link, STV 1.0 0.9, and no QuantifierPhrase companion. Theme for the falling harvest follows the scalar-change subject rule, \"at\" maps to LocatedIn per the containment-only list, and thread_harvest carries its genus with the noun modifier unexposed."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+(: kg1 (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: kg1_card (CardinalityPhrase sk_group_1 "a few") (STV 1.0 0.99))
+(: keeper1_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))
+(: grp_believe_ev (Member sk_believe_1 believe) (STV 1.0 0.99))
+(: grp_believe_exp (Experiencer sk_believe_1 sk_group_1) (STV 1.0 0.99))
+(: grp_believe_theme (Theme sk_believe_1 (And (Member sk_wraith_1 wraith) (Member sk_remember_1 remember) (Experiencer sk_remember_1 sk_wraith_1) (Stimulus sk_remember_1 sk_keeper_1) (Member sk_let_1 let) (Agent sk_let_1 sk_keeper_1) (Theme sk_let_1 sk_rise_1) (Past sk_let_1) (Member sk_rise_1 rise) (Agent sk_rise_1 sk_wraith_1))) (STV 1.0 0.99))
+(: keeper_believe_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_believe $x) believe) (Experiencer (sk_believe $x) $x) (Theme (sk_believe $x) (And (Member sk_wraith_1 wraith) (Member sk_remember_1 remember) (Experiencer sk_remember_1 sk_wraith_1) (Stimulus sk_remember_1 sk_keeper_1) (Member sk_let_1 let) (Agent sk_let_1 sk_keeper_1) (Theme sk_let_1 sk_rise_1) (Past sk_let_1) (Member sk_rise_1 rise) (Agent sk_rise_1 sk_wraith_1))))) (STV 1.0 0.9))

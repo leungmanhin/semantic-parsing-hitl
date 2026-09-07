@@ -1,0 +1,78 @@
+{
+ "id": "L2-16",
+ "rule": "II — Departures and re-staffing",
+ "texts": [
+  "Whenever a Keeper leaves a station, the Council assigns an apprentice to that station.",
+  "Whenever an apprentice completes thirty solo nights, the Council assigns that apprentice to a station."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000013",
+   "sentence": "Whenever a Keeper leaves a station, the Council assigns an apprentice to that station.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: whenever_leave_assign (Implication (And (Member $e leave) (Agent $e $k) (Theme $e $s) (Member $k keeper) (Member $s station)) (And (Member (sk_assign $k $s) assign) (Agent (sk_assign $k $s) sk_council_1) (Theme (sk_assign $k $s) (sk_apprentice $k $s)) (Member (sk_apprentice $k $s) apprentice) (Goal (sk_assign $k $s) $s) (During (sk_assign $k $s) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000013",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The whenever-rule's response Skolems are functions of the participants ((sk_assign $k $s), (sk_apprentice $k $s)) instead of the trigger occurrence $e, so two leavings by the same keeper from the same station collapse into one assign event and one apprentice rather than one response per occurrence."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise conformant: premise on plain variables, \"that station\" bound to $s, During link on the response, no QuantifierPhrase for whenever, and \"the Council\" as a capitalized common-noun witness with no Name atom. Goal rather than Recipient for \"to that station\" is defensible since a station is a place, not an addressee."
+   },
+   "adjudication": {
+    "id": "lorep-000013",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The whenever machinery legislates the response as \"a Skolem event per occurrence\" keyed to the trigger variable (the exemplar's (sk_bark $x)), so keying on the participants instead makes one assign event and one apprentice serve every leaving by the same keeper from the same station — and makes that single event (During (sk_assign $k $s) $e) for two distinct leavings, which is false."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: key the response Skolems to the trigger occurrence — (sk_assign $e) for the event and (sk_apprentice $e) for the dependent existential (or Skolem functions carrying $e among their arguments) — leaving the plain-variable premise, the During link, the Goal oblique and the (STV 1.0 0.9) rule truth value unchanged.",
+    "notes": "Everything else conforms: premise on plain variables, \"that station\" bound to $s as donkey anaphora, no QuantifierPhrase for \"whenever\", and \"the Council\" as a capitalized common noun with no Name atom. Goal rather than Recipient for a place is licensed by the \"to … non-recipient\" oblique."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000014",
+   "sentence": "Whenever an apprentice completes thirty solo nights, the Council assigns that apprentice to a station.",
+   "parse": [
+    "(: sn_genus (Inheritance solo_night night) (STV 1.0 0.99))",
+    "(: sn_mod (Inheritance solo_night solo) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: apprentice_station_rule (Implication (And (Member $a apprentice) (Member $e complete) (Agent $e $a) (Theme $e $g) (GroupOf $g solo_night) (Cardinality $g 30)) (And (Member (sk_assign $e) assign) (Agent (sk_assign $e) sk_council_1) (Theme (sk_assign $e) $a) (Goal (sk_assign $e) (sk_station $e)) (Member (sk_station $e) station) (During (sk_assign $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000014",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule shape, During link, dependent Skolem station, no QuantifierPhrase, and the bare-class-word 'the Council' as a Name-less common noun all follow the instruction set. Borderline judgment call: exposing the modifier genus (Inheritance solo_night solo) rests on 'solo' being an adjective predicable of the night, which is arguable but not clearly wrong."
+   },
+   "adjudication": null
+  }
+ ]
+}

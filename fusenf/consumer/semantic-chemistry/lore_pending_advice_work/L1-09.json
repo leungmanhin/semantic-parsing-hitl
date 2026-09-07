@@ -1,0 +1,64 @@
+{
+ "id": "L1-09",
+ "rule": "I — The Hollows",
+ "texts": [
+  "Keepers keep the lanterns at the Hollows dim."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000005",
+   "sentence": "Keepers keep the lanterns at the Hollows dim.",
+   "parse": [
+    "(: lp5_lant_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lp5_lant_loc (LocatedIn sk_lantern_1 hollows) (STV 1.0 0.99))",
+    "(: lp5_hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lp5_dim_mem (Member sk_dim_1 dim) (STV 1.0 0.99))",
+    "(: lp5_dim_exp (Experiencer sk_dim_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: lp5_dim_still (Still sk_dim_1) (STV 1.0 0.99))",
+    "(: lp5_dim_distr (Implication (PartOf $x sk_lantern_1) (Member $x dim)) (STV 1.0 0.9))",
+    "(: lp5_keeper_rule (Implication (Member $x keeper) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) $x) (Theme (sk_keep $x) sk_lantern_1) (Result (sk_keep $x) sk_dim_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000005",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The per-member rule (Implication (PartOf $x sk_lantern_1) (Member $x dim)) and the reified state at statements 3-5 assert the lanterns' dimness unconditionally at full strength, although the sentence states it only through the 0.9 generic about what Keepers do, so the generic hedge is dropped from the result half."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Resultative/maintenance secondary predicate (\"keep X ADJ\") whose matrix clause is a bare-plural generic: the instruction set prescribes the reified result state, the Still tag, the Result link and the plural object's per-member flat rule, but never says whether those halves sit at top level or inside the generic's Implication."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else matches doctrine: bare-plural subject to a 0.9/0.9 distributing rule with no QuantifierPhrase, definite plural object to GroupOf, Theme for keep, and \"the Hollows\" as a capitalized-plural label taking a Name atom only with no GroupOf and no invented kind. \"at the Hollows\" is attached to the lantern group rather than to the keeping event; the NP-internal reading is the favoured one, so single-reading is right, but the attachment is the one genuinely contestable choice here."
+   },
+   "adjudication": {
+    "id": "lorep-000005",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Resultatives prescribes literally these atoms for a maintenance verb on a plural object - the reified result state with the group as Experiencer, the (Still <state-witness>) continuation tag, and the flat half converted to the per-member rule '(Implication (PartOf $x <group>) (Member $x <state>)) (STV 1.0 0.9)' at that exact TV - and 'keep the lanterns dim' entails the lanterns are dim, so no atom is false, ill-typed or wider than the text; whether a generic matrix modulates those TVs is undetermined (the reviewer's own gap), which the calibration line makes acceptable improvisation."
+     }
+    ],
+    "gaps_confirmed": [
+     "A maintenance resultative ('keep X ADJ') whose matrix clause is a bare-plural generic: the instruction set prescribes the reified result state, the Still tag, the Result link and the plural object's per-member flat rule, but never says whether those halves sit at top level or inside the generic's Implication."
+    ],
+    "new_gaps": [
+     "Sharper form of the same gap: the resultative TVs (1.0/0.99 for the reified state, 1.0/0.9 for the per-member flat rule) are stated only for episodic clauses, and nothing says whether a generic matrix's 0.9 strength propagates to result-half atoms emitted outside its Implication - so the same sentence has two defensible TV assignments."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Nesting the result half inside the rule would also defeat the flat half's stated purpose (so 'is it dim?' still binds) and would mint a separate dimness state per keeper of one definite lantern group. 'the Hollows' as a Name-only individual with no GroupOf and no invented kind is exactly the capitalized-plural-label rule, and the NP-internal attachment of 'at the Hollows' is the favoured reading, so single-reading is right."
+   }
+  }
+ ]
+}

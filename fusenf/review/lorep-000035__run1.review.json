@@ -1,0 +1,9 @@
+{"id": "lorep-000035", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "The explicit quantifier word 'no' is consumed by the parse (it is what sets the rule to strength 0.0) but no QuantifierPhrase companion is emitted, which the instruction set makes mandatory for every explicit quantifier word and specifically requires so that a quantifier-'no' claim stays distinguishable from a plain 'Ns don't V' strength-0 rule."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Negative quantifier in OBJECT position of a verbal generic ('Ns need no N'): the instruction set gives the 'no' route for a copular subject ('No reptile is warm-blooded') and for 'none of the Ns V', but not for an object-position 'no N' — neither the routing (deny the whole predication vs. something narrower) nor which kind fills the first slot of the QuantifierPhrase companion, whose stated shape (kind, verb-lemma, word) presumes the quantified range is the rule's premise range."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Compound decomposition (replacement_lantern -> lantern, council_touch -> touch, both noun modifiers correctly unexposed), the strength-0.0 distributing rule at confidence 0.9, and the bare kind filler for the non-specific object are all right; treating stative 'need' as Experiencer/Stimulus alongside 'want' is defensible under the progressive test."}

@@ -1,0 +1,4 @@
+(: vote_decide_rule (Implication (Member $x vote) (And (Member (sk_decide $x) decide) (Patient (sk_decide $x) $x) (Agent (sk_decide $x) (sk_majority $x)) (Member (sk_majority $x) simple_majority))) (STV 1.0 0.9))
+(: vote_decide_q (QuantifierPhrase vote decide "every") (STV 1.0 0.99))
+(: simple_majority_genus (Inheritance simple_majority majority) (STV 1.0 0.99))
+(: simple_majority_mod (Inheritance simple_majority simple) (STV 1.0 0.99))

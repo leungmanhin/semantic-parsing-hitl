@@ -1,0 +1,2 @@
+(: moth_season_genus (Inheritance moth_season season) (STV 1.0 0.99))
+(: lantern_yield_rule (Implication (And (Member $x lantern) (Member $x well_attended)) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) (sk_heap $x)) (Member (sk_heap $x) heap) (Member (sk_heap $x) small) (GroupOf (sk_heap $x) thread) (Time (sk_yield $x) night) (Every (sk_yield $x) 1 day) (Time (sk_yield $x) moth_season))) (STV 0.9 0.9))

@@ -1,0 +1,111 @@
+{
+ "id": "L5-04",
+ "rule": "V — Persistence",
+ "texts": [
+  "Wraiths persist for several weeks before they fade back into the cove.",
+  "Persisting wraiths approach lit lanterns each night.",
+  "Wraiths drain many lanterns while they persist."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000045",
+   "sentence": "Wraiths persist for several weeks before they fade back into the cove.",
+   "parse": [
+    "(: wraith_persist_fade (Implication (Member $x wraith) (And (Member (sk_persist $x) persist) (Experiencer (sk_persist $x) $x) (MeasureAtLeast (sk_persist $x) duration 2 week) (Member (sk_fade $x) fade) (Patient (sk_fade $x) $x) (Goal (sk_fade $x) sk_cove_1) (Before (sk_persist $x) (sk_fade $x)))) (STV 0.9 0.9))",
+    "(: cove_type (Member sk_cove_1 cove) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000045",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "'for several weeks' is encoded as (MeasureAtLeast ... duration 2 week), inventing a figure for a vague quantity and dropping the word 'several' — the at-least-2 licence is stated only for a bare-plural duration with no stated count ('for days', 'over weeks')."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a vague-quantity DURATION ('for several weeks'): the duration rules cover an exact figure or a bare plural only, and CardinalityPhrase records a vague amount only when the phrase counts things (a group), so there is no carrier for the surface word on an eventuality",
+     "the restitutive/directional adverb 'back' in 'fade back into the cove' — Again is keyed to the word 'again', Manner takes how-adverbs only, and the phrasal-verb rule targets non-compositional verb+particle, so 'back' has no slot"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise on-doctrine: bare-plural generic to a distributing rule at 0.9/0.9 with no QuantifierPhrase, Patient on 'fade' per the internal-change-of-state list, Goal for 'into', and 'before'+clause giving Before with the earlier event first."
+   },
+   "adjudication": {
+    "id": "lorep-000045",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "This is acknowledged gap territory (no carrier exists for a vague-quantity duration on an eventuality) and (MeasureAtLeast (sk_persist $x) duration 2 week) is true of 'for several weeks' and well-typed — a lower bound the text entails, weakening rather than widening the claim — so the calibration line protects the extension of the bare-plural duration rule as graceful improvisation."
+     }
+    ],
+    "gaps_confirmed": [
+     "vague-quantity DURATION on an eventuality ('for several weeks'): Measure / MeasureAtLeast take a stated figure and CardinalityPhrase records a vague amount only for a group that counts things, so the surface word has no carrier",
+     "the restitutive / directional 'back' in 'fade back into the cove' has no slot: Again is keyed to the word 'again', Manner takes how-adverbs only, and the phrasal-verb rule targets non-compositional verb+particle"
+    ],
+    "new_gaps": [
+     "A licensed form would need a duration-phrase companion mirroring CardinalityPhrase — (DurationPhrase <event> \"several\") beside the bound — so that 'for several weeks' and a bare 'for weeks' stop recording identically."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The residual loss the issue points at — 'several' leaving no trace, so this parse is indistinguishable from one of 'for weeks' — is exactly the confirmed gap, not a defect in the parse. The rest is on-doctrine: bare-plural generic to a 0.9/0.9 distributing rule with no QuantifierPhrase, Experiencer for the stative 'persist', Patient for 'fade' (named on the internal-change list), Goal for 'into', Before with the earlier event first, and the definite cove typed at top level."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000046",
+   "sentence": "Persisting wraiths approach lit lanterns each night.",
+   "parse": [
+    "(: lp46_rule (Implication (And (Member $x wraith) (Member $x persisting)) (And (Member (sk_approach $x) approach) (Agent (sk_approach $x) $x) (Theme (sk_approach $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern) (Member (sk_lantern $x) lit) (Time (sk_approach $x) night) (Every (sk_approach $x) 1 day))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000046",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Bare-plural object (\"approach lit lanterns\") inside a generic distributing rule: the instruction set covers bare-plural objects only for episodic clauses (group witness) and kind-level objects (bare kind filler), so the per-binding Skolem witness (sk_lantern $x) that loses the plurality is unlegislated.",
+     "A frequency/habitual slot (\"each night\") landing on a Skolem-function event inside a distributing rule: the Time-slot-plus-Every form is specified for a flat habitual event, and the instruction set does not say how the recurrence quantifies over occasions when the rule already mints exactly one event per kind member."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route with the restriction as a premise conjunct, and both participles are kept in their modifier (adjective) surface forms rather than lemmatized to verbs. \"each night\" gets the named slot plus its implied cycle, (Time e night) + (Every e 1 day), parallel to the morning-to-day mapping."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep-000047",
+   "sentence": "Wraiths drain many lanterns while they persist.",
+   "parse": [
+    "(: wraith_drain_rule (Implication (Member $x wraith) (And (Member (sk_drain $x) drain) (Agent (sk_drain $x) $x) (Patient (sk_drain $x) (sk_lanterns $x)) (GroupOf (sk_lanterns $x) lantern) (CardinalityPhrase (sk_lanterns $x) \"many\") (Member (sk_persist $x) persist) (Experiencer (sk_persist $x) $x) (During (sk_drain $x) (sk_persist $x)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000047",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a vague proportional quantifier ('many') on a NON-subject NP — the instruction set lists 'many' among the proportion words whose channel is strength plus a QuantifierPhrase companion, but that channel quantifies only the rule's subject range, while the CardinalityPhrase vague-quantity lexicon ('a few / several / a handful / dozens / scores / hundreds / a lot of') omits 'many' and is restricted to phrases that count things, so an object-position 'many' has no unambiguously licensed encoding"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The per-binding Skolem group for the object mirrors the 'every student read three books' shape, and 'while they persist' correctly yields During over two reified eventualities with no connective atom."
+   },
+   "adjudication": null
+  }
+ ]
+}

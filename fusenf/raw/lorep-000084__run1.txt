@@ -1,0 +1,4 @@
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: skycat_hunt (Implication (And (Member $x sky_cat) (KindProperty nightmoth scarce)) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Patient (sk_hunt $x) insect))) (STV 0.5 0.9))
+(: skycat_hunt_q (QuantifierPhrase sky_cat hunt "sometimes") (STV 1.0 0.99))

@@ -1,0 +1,2 @@
+(: lp7_ns_genus (Inheritance night_shift shift) (STV 1.0 0.99))
+(: lp7_rule (Implication (Member $x night_shift) (And (Member (sk_begin $x) begin) (Patient (sk_begin $x) $x) (Time (sk_begin $x) sundown))) (STV 0.9 0.9))

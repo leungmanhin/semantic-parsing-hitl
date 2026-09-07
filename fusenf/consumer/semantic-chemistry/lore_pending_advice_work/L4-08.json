@@ -1,0 +1,42 @@
+{
+ "id": "L4-08",
+ "rule": "IV — Festivals",
+ "texts": [
+  "The village holds a feast at Mid-summer during peak moth-season."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000037",
+   "sentence": "The village holds a feast at Mid-summer during peak moth-season.",
+   "parse": [
+    "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+    "(: hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: hold_ag (Agent sk_hold_1 sk_village_1) (STV 1.0 0.99))",
+    "(: hold_th (Theme sk_hold_1 sk_feast_1) (STV 1.0 0.99))",
+    "(: feast_type (Member sk_feast_1 feast) (STV 1.0 0.99))",
+    "(: hold_time (Time sk_hold_1 mid_summer) (STV 1.0 0.99))",
+    "(: season_type (Member sk_season_1 peak_moth_season) (STV 1.0 0.99))",
+    "(: season_genus (Inheritance peak_moth_season season) (STV 1.0 0.99))",
+    "(: hold_during (During sk_hold_1 sk_season_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000037",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A capitalized NAMED calendrical point / festival ('Mid-summer') filling a Time slot: the Time section says a 'deictic or named' time stays a bare symbol, while Names and casing says every proper noun — a named event included — gets exactly one Name fact and 'neither part is optional'; the instruction set never says which governs, so whether (Name mid_summer \"Mid-summer\") is required alongside the bare Time filler is undetermined.",
+     "Support / light verb taking an event-noun object ('holds a feast'): the light-verb rule names only 'occurred / happened / took place' (event-noun as subject), so it does not say whether a support verb with an agent reifies its own event with the event-noun as a role filler, or whether the event-noun witness is itself the eventuality carrying the time atoms."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Theme vs Patient for the held feast is a genuine borderline (holding arguably brings the occurrence into existence), and the instruction set's explicit 'when the test is unclear, default to Theme' covers the choice made. During is used only for the surface word 'during', with both sides reified, and no Every atom is invented since no periodic wording is present."
+   },
+   "adjudication": null
+  }
+ ]
+}

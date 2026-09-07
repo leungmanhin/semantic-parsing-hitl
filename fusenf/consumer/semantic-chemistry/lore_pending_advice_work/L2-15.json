@@ -1,0 +1,110 @@
+{
+ "id": "L2-15",
+ "rule": "II — Notebooks",
+ "texts": [
+  "A few Keepers keep a notebook of moth-counts and weather notes.",
+  "Whenever an heir inherits a Keeper's lantern-station, that heir inherits that Keeper's notebook."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000011",
+   "sentence": "A few Keepers keep a notebook of moth-counts and weather notes.",
+   "parse": [
+    "(: keeper_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: keeper_card (CardinalityPhrase sk_group_1 \"a few\") (STV 1.0 0.99))",
+    "(: notebook_type (Member sk_notebook_1 notebook) (STV 1.0 0.99))",
+    "(: keep_ev (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: keep_ag (Agent sk_keep_1 sk_group_1) (STV 1.0 0.99))",
+    "(: keep_th (Theme sk_keep_1 sk_notebook_1) (STV 1.0 0.99))",
+    "(: keep_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) $x) (Theme (sk_keep $x) sk_notebook_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000011",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "The per-member distribution rule reuses the single indefinite witness sk_notebook_1, so it asserts that every Keeper in the group keeps that same one notebook — the collective reading licenses no rule at all, and the distributive reading requires a per-binding Skolem object (sk_notebook $x) as in the doctrine's dependent-existential pattern."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Contentful / 'about' of-phrase on a concrete, non-nominalization, non-relational noun ('a notebook OF moth-counts and weather notes'): the possessive-genitive section explicitly excludes an about-phrase ('a photo of Mary') from Possession but names no replacement encoding, and the nominalization Of-oblique is scoped to nouns with an underlying verb — so the whole of-phrase (and both coordinated compounds) is unrepresentable and is dropped here.",
+     "Capitalized plural kind-word label under a quantifier ('a few Keepers'): the capitalized-common-noun default is stated as 'singular-collective only', and the Name-only plural rule is stated only for a plural 'referring as a name' ('the Wrens'), leaving a quantified capitalized plural unrouted between kind-typing and Name-only individual."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group witness + CardinalityPhrase \"a few\", the group event alongside the per-member rule, the Theme role for keep, and the unmarked habitual tense are all correct; the sole encoding fault is the shared notebook symbol inside the rule."
+   },
+   "adjudication": {
+    "id": "lorep-000011",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "With no \"the same\"/\"a certain\" cue the scope default is subject-wide (the doctrine's dependent-existential pattern, \"every student read some book\" -> (Theme (sk_read $x) (sk_book $x))), so reusing the constant sk_notebook_1 inside the per-member rule asserts one single notebook kept by every member of the group, which the text does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "Contentful/about of-phrase on a concrete, non-nominalization, non-relational noun (\"a notebook OF moth-counts and weather notes\"): Possession is explicitly barred for an about-phrase and the Of-oblique is scoped to nouns with an underlying verb, so no carrier is licensed and the restriction is dropped.",
+     "Quantified capitalized plural kind-word label (\"a few Keepers\"): the capitalized-common-noun default is stated as singular-collective only, and the Name-only plural rule covers only a plural referring AS a name, leaving a quantified capitalized plural unrouted."
+    ],
+    "new_gaps": [
+     "When a vague/counted plural's distributive predicate takes a DEPENDENT indefinite object, the group-event half that Cardinality keeps alongside the per-member rule has no licensed object filler: a single witness there (Theme sk_keep_1 sk_notebook_1) asserts one shared notebook at group level, and no group-side counterpart of the Skolem-function object is defined."
+    ],
+    "decision": "defect",
+    "defect_summary": "The rule's object must be the per-binding Skolem term - (Theme (sk_keep $x) (sk_notebook $x)) with (Member (sk_notebook $x) notebook) as a conjunct inside the same conclusion - rather than the shared constant sk_notebook_1.",
+    "notes": "The group witness, the CardinalityPhrase \"a few\", the Theme role for keep and the unmarked habitual tense are all correct; only the object's binding inside the rule fails."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000012",
+   "sentence": "Whenever an heir inherits a Keeper's lantern-station, that heir inherits that Keeper's notebook.",
+   "parse": [
+    "(: ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+    "(: nb_genus (Inheritance notebook book) (STV 1.0 0.99))",
+    "(: heir_inherit_whenever (Implication (And (Member $h heir) (Member $k keeper) (Member $e inherit) (Agent $e $h) (Theme $e $ls) (Member $ls lantern_station) (Possession $ls $k)) (And (Member (sk_inherit_notebook $h $k) inherit) (Agent (sk_inherit_notebook $h $k) $h) (Theme (sk_inherit_notebook $h $k) (sk_notebook $k)) (Member (sk_notebook $k) notebook) (Possession (sk_notebook $k) $k) (During (sk_inherit_notebook $h $k) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000012",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The consequent's Skolem event is indexed as (sk_inherit_notebook $h $k) rather than by the trigger occurrence $e, so it is not the required per-occurrence event: two distinct qualifying inheritances by the same heir from the same Keeper collapse into one event that is then During both triggers, contrary to the whenever pattern's (sk_bark $x) indexing and the rule that a dependent existential is a Skolem function of every universal scoping over it."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else checks out: lantern_station genus with the noun modifier correctly unexposed, Theme for inherit, Possession (possessed first) for both genitives, no QuantifierPhrase for whenever, keeper as a plain kind (referring use, so no agent-nominalization capability atom). (Inheritance notebook book) is a borderline call under the solid-spelling clause but defensible since note+head is transparent and the IS-A holds."
+   },
+   "adjudication": {
+    "id": "lorep-000012",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The whenever machinery mandates \"the response as a Skolem event per occurrence, tied to its trigger with During\" and indexes it on the trigger variable ((sk_bark $x) over the ring event $x), and the multi-quantifier rule makes a dependent existential \"a Skolem function of every universal that scopes over it\" — (sk_inherit_notebook $h $k) omits the trigger event $e, so one consequent event can be During two distinct qualifying station-inheritances, which no single event can truly be."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form indexes the consequent event on the trigger occurrence — (sk_inherit_notebook $e) (or (sk_inherit_notebook $h $k $e), a function of every scoping universal) with (During (sk_inherit_notebook $e) $e) — everything else in the rule unchanged.",
+    "notes": "The rest is clean: lantern_station/notebook genus atoms with the noun modifiers correctly unexposed, Theme for inherit, Possession possessed-first for both genitives, no QuantifierPhrase (whenever is a frequency conditional), and (sk_notebook $k) rightly covaries with the Keeper alone."
+   }
+  }
+ ]
+}

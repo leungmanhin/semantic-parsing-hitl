@@ -1,0 +1,5 @@
+(: lorep61_harvest_genus (Inheritance feather_harvest harvest) (STV 1.0 0.99))
+(: lorep61_harvest_type (Member sk_harvest_1 feather_harvest) (STV 1.0 0.99))
+(: lorep61_weight_type (Member sk_weight_1 weight) (STV 1.0 0.99))
+(: lorep61_weight_poss (Possession sk_weight_1 sk_harvest_1) (STV 1.0 0.99))
+(: lorep61_rule (Implication (Member $x keeper) (And (Member (sk_track $x) track) (Agent (sk_track $x) $x) (Theme (sk_track $x) sk_weight_1))) (STV 0.9 0.9))

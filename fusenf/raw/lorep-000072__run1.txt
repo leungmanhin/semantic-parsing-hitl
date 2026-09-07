@@ -1,0 +1,2 @@
+(: keeper_inherit (Implication (Member $x keeper) (And (Member (sk_inherit $x) inherit) (Agent (sk_inherit $x) $x) (Theme (sk_inherit $x) (sk_snuffer $x)) (Member (sk_snuffer $x) snuffer) (Member (sk_station $x) station) (With (sk_inherit $x) (sk_station $x)))) (STV 0.8 0.9))
+(: keeper_inherit_q (QuantifierPhrase keeper inherit "often") (STV 1.0 0.99))

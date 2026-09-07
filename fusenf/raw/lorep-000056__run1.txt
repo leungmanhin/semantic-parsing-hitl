@@ -1,0 +1,3 @@
+(: keepers_use_rule (Implication (Member $x keeper) (And (Member (sk_use $x) use) (Agent (sk_use $x) $x) (Theme (sk_use $x) sk_rule_1) (Ongoing (sk_use $x)) (MeasureAtLeast (sk_use $x) duration 2 generation))) (STV 0.9 0.9))
+(: rule_type (Member sk_rule_1 crowd_rule) (STV 1.0 0.99))
+(: rule_genus (Inheritance crowd_rule rule) (STV 1.0 0.99))

@@ -1,0 +1,3 @@
+(: ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))
+(: nb_genus (Inheritance notebook book) (STV 1.0 0.99))
+(: heir_inherit_whenever (Implication (And (Member $h heir) (Member $k keeper) (Member $e inherit) (Agent $e $h) (Theme $e $ls) (Member $ls lantern_station) (Possession $ls $k)) (And (Member (sk_inherit_notebook $h $k) inherit) (Agent (sk_inherit_notebook $h $k) $h) (Theme (sk_inherit_notebook $h $k) (sk_notebook $k)) (Member (sk_notebook $k) notebook) (Possession (sk_notebook $k) $k) (During (sk_inherit_notebook $h $k) $e))) (STV 1.0 0.9))

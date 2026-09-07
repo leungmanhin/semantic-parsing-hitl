@@ -1,0 +1,81 @@
+{
+ "id": "L4-09",
+ "rule": "IV — Children and families",
+ "texts": [
+  "When a Keeper marries into a fisher family, that Keeper keeps the station.",
+  "Keeper children may decline apprenticeship."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000038",
+   "sentence": "When a Keeper marries into a fisher family, that Keeper keeps the station.",
+   "parse": [
+    "(: fisher_family_genus (Inheritance fisher_family family) (STV 1.0 0.99))",
+    "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: keeper_marry_keep_rule (Implication (And (Member $k keeper) (Member $m marry) (Agent $m $k) (Goal $m $f) (Member $f fisher_family)) (And (Member (sk_keep $m) keep) (Agent (sk_keep $m) $k) (Theme (sk_keep $m) sk_station_1) (During (sk_keep $m) $m))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000038",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "'marries into a fisher family' is a prepositional verb, so its object belongs in the preposition-named oblique (Into $m $f) — the parse uses the spatial role (Goal $m $f), which the instruction set reserves for 'to'-goals answering whither and explicitly bars from taking a near-fit synonym head for the preposition actually used."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise the whenever machinery is applied correctly — plain-variable premises, per-occurrence Skolem consequent, During link, 'that Keeper' bound to the rule variable, and the definite 'the station' as a top-level-typed constant."
+   },
+   "adjudication": {
+    "id": "lorep-000038",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'marry into' is a prepositional verb, and Thematic roles orders the PP decided 'by the question the PP answers, never by which listed role is closest', bars a near-fit synonym head for the preposition actually used, and licenses the spatial Goal for 'into' only as a motion result's path — nothing moves when a Keeper marries into a family, so Goal asserts a spatial destination the sentence does not state."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the preposition-named oblique (Into $m $f) on the marry event in place of (Goal $m $f), the rest of the whenever rule unchanged.",
+    "notes": "The whenever machinery is otherwise correct — plain-variable premises, per-occurrence Skolem consequent with the During link, 'that Keeper' bound to the premise variable, the definite station as a top-level-typed constant, and STV 1.0 0.9 with no QuantifierPhrase."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000039",
+   "sentence": "Keeper children may decline apprenticeship.",
+   "parse": [
+    "(: kc_genus (Inheritance keeper_child child) (STV 1.0 0.99))",
+    "(: da_genus (Inheritance decline_apprenticeship decline) (STV 1.0 0.99))",
+    "(: da_obj (Patient decline_apprenticeship apprenticeship) (STV 1.0 0.99))",
+    "(: kc_decline_perm (Inheritance keeper_child (permitted decline_apprenticeship)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000039",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a capitalized COMMON noun premodifying a common-noun head (\"Keeper children\"): the instruction set covers a proper-noun premodifier (head parsed normally + opaque Possession + Name) and a capitalized common noun used as a referent's only label (common noun by default, no Name), but not their intersection, so nothing decides between the fused kind keeper_child and (Member sk_child_1 child) + (Possession sk_child_1 keeper) + (Name keeper \"Keeper\")"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The deontic-norm-over-a-kind form, the compound-action decomposition of decline_apprenticeship, and the suppressed noun-modifier genus all follow the instruction set exactly. Only the capitalisation boundary on \"Keeper\" is left undetermined by the text."
+   },
+   "adjudication": null
+  }
+ ]
+}

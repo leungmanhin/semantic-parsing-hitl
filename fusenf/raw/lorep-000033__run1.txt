@@ -1,0 +1,2 @@
+(: keeper_eat_rule (Implication (Member $x keeper) (And (Member (sk_eat $x) eat) (Agent (sk_eat $x) $x) (Patient (sk_eat $x) (sk_meal $x)) (Member (sk_meal $x) meal) (Member (sk_meal $x) small) (Time (sk_eat $x) sundown) (Member (sk_shift $x) shift) (Before (sk_eat $x) (sk_shift $x)))) (STV 1.0 0.9))
+(: keeper_q (QuantifierPhrase keeper eat "each") (STV 1.0 0.99))

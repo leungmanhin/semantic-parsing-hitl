@@ -1,0 +1,85 @@
+{
+ "id": "L7-04",
+ "rule": "VII — The cold-threshold wind",
+ "texts": [
+  "Salt-bloomed lanterns survive cold-threshold nights.",
+  "Unprepared Cliff Path lanterns die on cold-threshold nights."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000067",
+   "sentence": "Salt-bloomed lanterns survive cold-threshold nights.",
+   "parse": [
+    "(: cold_threshold_night_genus (Inheritance cold_threshold_night night) (STV 1.0 0.99))",
+    "(: lantern_survive_rule (Implication (And (Member $x lantern) (Member $x salt_bloomed)) (And (Member (sk_survive $x) survive) (Agent (sk_survive $x) $x) (Theme (sk_survive $x) cold_threshold_night))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000067",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted bare-kind subject correctly forces the distributing-rule route with the restriction as a premise conjunct rather than a kind-level relation, the participial modifier keeps its adjective form and is left undecomposed as an adjective compound, cold_threshold_night emits its head genus with the noun modifier unexposed, and the non-specific kind-level object keeps the bare kind filler. Bare generic TVs (0.9/0.9, no QuantifierPhrase) are right for a subject with no quantifier word."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000068",
+   "sentence": "Unprepared Cliff Path lanterns die on cold-threshold nights.",
+   "parse": [
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: ctn_genus (Inheritance cold_threshold_night night) (STV 1.0 0.99))",
+    "(: ct_genus (Inheritance cold_threshold threshold) (STV 1.0 0.99))",
+    "(: lantern_die_rule (Implication (And (Member $x lantern) (Possession $x cliff_path) (Member $x unprepared)) (And (Member (sk_die $x) die) (Patient (sk_die $x) $x) (Time (sk_die $x) cold_threshold_night))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000068",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "(Inheritance cold_threshold threshold) is a second-level genus on a noun-modifier fragment, which the compound rules do not license: decomposition runs once to the head noun and stops, a noun modifier is never exposed, and the symbol cold_threshold occurs nowhere else in the parse."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare-plural common-noun temporal adjunct naming a KIND of occasion (\"on cold-threshold nights\"): the licensed bare Time fillers are deictics, named times and day-parts, while Every/TimesPer need a stated period or rate, so no form covers a kind NP in the Time slot and the recurrence carried by the plural is silently dropped",
+     "a three-word compound kind whose modifier is itself a compound (\"cold-threshold night\"): 'decompose once, to single-word lemmas, then stop' does not say whether the inner compound modifier gets its own genus, so the emission is undetermined"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The proper-noun premodifier handling (one Name atom, kind atom from the name-internal kind word, opaque Possession on the head), the adjectivally-restricted kind subject routed to a distributing rule with the restriction as a premise conjunct, and Patient on the intransitive change-of-state subject all match the instruction set."
+   },
+   "adjudication": {
+    "id": "lorep-000068",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "The half that stands is that no rule licenses a second-level genus - 'decompose once, to single-word lemmas, then stop' points against it and cold_threshold appears nowhere else in the parse - but the half that falls is that this is a defect: (Inheritance cold_threshold threshold) is true, well-typed and traceable to the words 'cold-threshold', and the reviewer's own second gap concedes the emission is undetermined, which the binding calibration line makes acceptable improvisation."
+     }
+    ],
+    "gaps_confirmed": [
+     "A bare-plural common-noun temporal adjunct naming a KIND of occasion ('on cold-threshold nights'): the licensed bare Time fillers are deictics, named times and day-parts, and Every / TimesPer need a stated period or rate, so no form covers a kind NP in the Time slot and the recurrence carried by the plural is dropped.",
+     "A three-word compound kind whose modifier is itself a compound ('cold-threshold night'): 'decompose once, to single-word lemmas, then stop' does not settle whether the inner compound modifier gets its own genus, so the emission is undetermined."
+    ],
+    "new_gaps": [],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The atom is orphaned rather than wrong - the modifier is correctly left unexposed on the compound itself, so nothing predicates cold_threshold of the night. The Northgate-pattern Possession on the proper-noun premodifier, the name-internal kind atom (Member cliff_path path), the adjectivally-restricted subject as premise conjuncts, and Patient on the change-of-state intransitive all match the instruction set."
+   }
+  }
+ ]
+}

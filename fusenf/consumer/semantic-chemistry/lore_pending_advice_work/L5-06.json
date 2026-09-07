@@ -1,0 +1,84 @@
+{
+ "id": "L5-06",
+ "rule": "V — The deliberate dimming",
+ "texts": [
+  "Keepers warded the wraith back with ground feathers.",
+  "Every Keeper considers that the plan was dangerous."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000049",
+   "sentence": "Keepers warded the wraith back with ground feathers.",
+   "parse": [
+    "(: keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+    "(: wraith_type (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: ward_event (Member sk_ward_back_1 ward_back) (STV 1.0 0.99))",
+    "(: ward_agent (Agent sk_ward_back_1 sk_keepers_1) (STV 1.0 0.99))",
+    "(: ward_theme (Theme sk_ward_back_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: ward_tense (Past sk_ward_back_1) (STV 1.0 0.99))",
+    "(: feathers_group (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+    "(: feathers_ground (Member sk_feathers_1 ground) (STV 1.0 0.99))",
+    "(: ward_instrument (Instrument sk_ward_back_1 sk_feathers_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000049",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "\"ground\" is a descriptive, non-classifying modifier on a plural, so it must distribute over the members via (Implication (PartOf $x sk_feathers_1) (Member $x ground)); (Member sk_feathers_1 ground) instead predicates groundness of the group-as-object, the reading the plural rules explicitly bar."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"ward back\" is correctly kept as one phrasal-verb symbol with no genus, the episodic bare-plural subject correctly mints a group witness, and the wraith is Theme (displaced, not altered). Whether \"ward back\" counts as distributive enough to also require a per-member rule on sk_keepers_1 is genuinely unclear."
+   },
+   "adjudication": {
+    "id": "lorep-000049",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Categorical statements bars it outright — \"a property of a plural's members is never predicated of the group symbol … a bare (Member <group> <prop>) appears only for a property genuinely of the collection itself (its size, its name)\" — and being ground holds of each feather, so the descriptive (non-classifying, hence unfused) modifier must go through the distributive rule."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: replace (Member sk_feathers_1 ground) with the per-member rule (Implication (PartOf $x sk_feathers_1) (Member $x ground)) (STV 1.0 0.9), keeping the GroupOf witness, the Instrument link and everything else unchanged.",
+    "notes": "The rest is right: \"ward back\" kept whole as a phrasal verb with no genus, the episodic bare-plural subject minting a group witness, Theme for the displaced wraith, and Instrument for the means. The reviewer's open question — whether \"ward back\" is distributive enough to also add a per-member rule on sk_keepers_1 — is a genuine judgment call the instruction set leaves to the distributive/collective test, not a defect."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000050",
+   "sentence": "Every Keeper considers that the plan was dangerous.",
+   "parse": [
+    "(: keeper_consider_rule (Implication (Member $x keeper) (And (Member (sk_consider $x) consider) (Experiencer (sk_consider $x) $x) (Theme (sk_consider $x) (Past (Member sk_plan_1 dangerous))))) (STV 1.0 0.9))",
+    "(: keeper_consider_q (QuantifierPhrase keeper consider \"every\") (STV 1.0 0.99))",
+    "(: plan_type (Member sk_plan_1 plan) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000050",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Non-factive attitude reified with Experiencer holder and the complement sealed under Theme, the past copular kept inside the seal per surface-mechanical sequence of tense, and only the definite \"the plan\" typing projected to top level — nothing asserts the plan was dangerous. Universal rule TV and the \"every\" companion are correct."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "id": "lorep-000054",
+ "run": 1,
+ "issues": [
+  {
+   "index": 0,
+   "verdict": "confirm",
+   "reason": "Compound concepts fuses 'sky-cat hunt' into one kind emitting only its head genus and states that a noun modifier is never exposed, so (Patient (sk_hunt $x) sky_cat) asserts a participant relation no word puts there - it fails Core patterns' 'point at the words' test and silently picks the hunt-of-sky-cats reading over the hunt-by-sky-cats one."
+  },
+  {
+   "index": 1,
+   "verdict": "confirm",
+   "reason": "Thematic roles bounds the Experiencer class by the progressive test rather than by a list, and 'is witnessing' is fine, so witness is an event verb grouped with notice / observe / watch whose subject is an ordinary Agent, not a stative Experiencer."
+  }
+ ],
+ "gaps_confirmed": [
+  "Noun-noun compound whose head is an event / deverbal noun with an incorporated participant ('a sky-cat hunt', 'a bird count'): the compound rules bar exposing the noun modifier and give no way to record which role the modifier plays in the denoted eventuality."
+ ],
+ "new_gaps": [
+  "The role of an EVENT-DENOTING NP object of an agentive perception verb: Stimulus is defined only as a psych state's object or the perceived complement of a perception report (bare infinitive / participle), while the perception-report section says an event is never a Theme acted on - so a plain NP object like 'a sky-cat hunt' under an Agent-subject verb has no specified role slot."
+ ],
+ "decision": "defect",
+ "defect_summary": "The compliant form types the object with the fused compound - (Member (sk_hunt $x) sky_cat_hunt) inside the rule plus top-level (Inheritance sky_cat_hunt hunt) - and emits no role atom for sky_cat at all, since no licensed form records which role a sky-cat plays in the hunt (the confirmed gap); and the subject atom should be (Agent (sk_witness $x) $x) in place of the Experiencer.",
+ "notes": "The generic routing is otherwise correct: bare-plural habitual to a distributing rule, strength 0.1 for 'rarely' with its (QuantifierPhrase keeper witness \"rarely\") companion, and the sky_cat genus with the noun modifier unexposed. Whether the object role should then be Stimulus or Theme is undetermined and is filed as a new gap, not charged against the parse."
+}

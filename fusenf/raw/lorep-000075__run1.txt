@@ -1,0 +1,1 @@
+(: whenever_boil_fail (Implication (And (Member $c cauldron) (Member $x boil) (Patient $x $c) (Manner $x hard)) (And (Member (sk_distill $x) distillation) (Location (sk_distill $x) $c) (Member (sk_fail $x) fail) (Patient (sk_fail $x) (sk_distill $x)) (During (sk_fail $x) $x))) (STV 1.0 0.9))

@@ -15,6 +15,7 @@ State vocabulary (#51 reshape): never-parsed / clean-unreviewed / verified (revi
 | fiction4 | external consumer (v4 texts) | 107 | 107 | 81 (76%) | 81 | 0 | 0 | 26 | 0 | — | 2ed18b93×107 |
 | fiction5 | external consumer (pending re-parse set) | 9 | 9 | 6 (67%) | 6 | 0 | 0 | 3 | 0 | — | 2ed18b93×9 |
 | lore | external consumer (lore.json, parsed in chunks) | 607 | 607 | 436 (72%) | 436 | 0 | 26 | 145 | 0 | — | 2ed18b93×607 |
+| lore_pending | external consumer (lore pending re-parse set) | 87 | 87 | 59 (68%) | 59 | 0 | 7 | 21 | 0 | — | 2ed18b93×87 |
 | fixpack | validation | 7 | 0 | 0 (0%) | 0 | 7 | 0 | 0 | 0 | — | f6448eac×7 |
 | fixpack3 | validation | 10 | 0 | 0 (0%) | 0 | 10 | 0 | 0 | 0 | — | 2aa57fa8×10 |
 | fixpack31 | validation | 4 | 0 | 0 (0%) | 0 | 4 | 0 | 0 | 0 | — | bb7c4b71×4 |

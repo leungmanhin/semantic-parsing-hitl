@@ -1,0 +1,68 @@
+{
+ "id": "L6-04",
+ "rule": "VI — The crowd rule",
+ "texts": [
+  "Keepers have used the crowd rule for generations."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000056",
+   "sentence": "Keepers have used the crowd rule for generations.",
+   "parse": [
+    "(: keepers_use_rule (Implication (Member $x keeper) (And (Member (sk_use $x) use) (Agent (sk_use $x) $x) (Theme (sk_use $x) sk_rule_1) (Ongoing (sk_use $x)) (MeasureAtLeast (sk_use $x) duration 2 generation))) (STV 0.9 0.9))",
+    "(: rule_type (Member sk_rule_1 crowd_rule) (STV 1.0 0.99))",
+    "(: rule_genus (Inheritance crowd_rule rule) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000056",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "(MeasureAtLeast (sk_use $x) duration 2 generation) sits in the per-member conclusion, so the rule asserts that each individual Keeper used the crowd rule for at least two generations - the span belongs to the practice across Keepers, not to any one of them."
+     },
+     {
+      "statement": 0,
+      "issue": "(Ongoing (sk_use $x)) likewise distributes the continuative aspect to every instance of the kind, asserting an in-progress use for every Keeper, including the past ones the \"for generations\" span covers."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a duration / time-span adjunct scoping over a generic practice as a whole (\"Ns have V-ed for generations\"): the distributing-rule form puts every clause atom into the per-instance conclusion and offers no kind-level carrier for a span that holds of the kind rather than of each member"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correctly avoids the kind-level relation route (the object is a definite singular), and the bare-plural duration's at-least-2 form, the top-level definite crowd_rule witness and the noun-modifier compound (genus only, modifier not exposed) all follow the instruction set; the witness is named sk_rule_1 where its class is crowd_rule."
+   },
+   "adjudication": {
+    "id": "lorep-000056",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Per-member, the atom says each Keeper's own using lasted at least two generations — a falsehood the sentence never states (the span belongs to the practice across Keepers), and Core patterns' \"point at the words that put the atom there\" gives no words attaching a two-generation duration to any individual's event."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "(Ongoing e) is the licensed marker for a continuative perfect (Status predicates lists it as one of the exactly four markers), and a distributing rule's conclusion is where status atoms belong (\"All the students passed\" → (Past (sk_pass $x))); a typical Keeper's use being in progress is what the generic actually conveys at 0.9, so the residual worry about atypical past members is the coverage gap the reviewer itself filed, not a false atom."
+     }
+    ],
+    "gaps_confirmed": [
+     "A duration / span adjunct scoping over a generic practice as a whole (\"Ns have V-ed for generations\") has no kind-level carrier: the distributing-rule form puts every clause atom into the per-instance conclusion."
+    ],
+    "new_gaps": [
+     "The same lack extends to the continuative aspect of a generic practice: (Ongoing …) can only ride the per-member Skolem event, so \"the practice has continued\" and \"each member's use is in progress\" are indistinguishable in this form — a licensed carrier would need to attach span and continuity to the kind-level habit rather than to any instance event."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the same distributing rule with the (MeasureAtLeast (sk_use $x) duration 2 generation) atom omitted and the loss recorded as a gap — the span is a duration adjunct, not a restriction, so dropping it narrows nothing; no kind-level carrier for it is licensed, which is the gap recorded above.",
+    "notes": "The rest follows the instruction set: the event-rule route is right (a definite singular object bars the kind-level relation), \"for generations\" correctly becomes the bare-plural at-least-2 duration form, and the top-level crowd_rule witness carries genus rule with the noun modifier unexposed."
+   }
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+ "id": "L6-07",
+ "rule": "VI — Counting sky-cats",
+ "texts": [
+  "Keepers count the visible sky-cats on the cliff-spires each morning.",
+  "Keepers track the weight of the feather harvest."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000060",
+   "sentence": "Keepers count the visible sky-cats on the cliff-spires each morning.",
+   "parse": [
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycats_group (GroupOf sk_group_1 sky_cat) (STV 1.0 0.99))",
+    "(: skycats_visible_rule (Implication (PartOf $x sk_group_1) (Member $x visible)) (STV 1.0 0.9))",
+    "(: cliff_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: cliffspires_group (GroupOf sk_group_2 cliff_spire) (STV 1.0 0.99))",
+    "(: skycats_on_spires (On sk_group_1 sk_group_2) (STV 1.0 0.99))",
+    "(: keeper_count_rule (Implication (Member $x keeper) (And (Member (sk_count $x) count) (Agent (sk_count $x) $x) (Theme (sk_count $x) sk_group_1) (Time (sk_count $x) morning) (Every (sk_count $x) 1 day))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000060",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The descriptive modifier \"visible\" correctly distributes over the definite group by a PartOf rule instead of riding the group symbol, \"each morning\" gets the named slot plus its implied cycle (Time morning + Every 1 day) with no QuantifierPhrase (matching the habitual-schedule examples), and \"on the cliff-spires\" keeps the entity-attached surface preposition. The PP was attached to the sky-cats rather than to the counting event; that is the favored reading, so single-reading output is right."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000061",
+   "sentence": "Keepers track the weight of the feather harvest.",
+   "parse": [
+    "(: lorep61_harvest_genus (Inheritance feather_harvest harvest) (STV 1.0 0.99))",
+    "(: lorep61_harvest_type (Member sk_harvest_1 feather_harvest) (STV 1.0 0.99))",
+    "(: lorep61_weight_type (Member sk_weight_1 weight) (STV 1.0 0.99))",
+    "(: lorep61_weight_poss (Possession sk_weight_1 sk_harvest_1) (STV 1.0 0.99))",
+    "(: lorep61_rule (Implication (Member $x keeper) (And (Member (sk_track $x) track) (Agent (sk_track $x) $x) (Theme (sk_track $x) sk_weight_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000061",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-generic distributing rule at 0.9/0.9 with no QuantifierPhrase, Theme for the unchanged object of \"track\", and the feather_harvest genus (noun modifier not exposed) are all correct. \"the weight of X\" fails the nominalization verb-paraphrase test (\"weigh\" does not take the harvest as object) and is not a part, so the opaque Possession is the licensed genitive route."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "id": "L1-06",
+ "rule": "I — Salt-bloom Tide-pools",
+ "texts": [
+  "Keepers visit the tide-pools at harvest time."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000004",
+   "sentence": "Keepers visit the tide-pools at harvest time.",
+   "parse": [
+    "(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: tidepools_group (GroupOf sk_group_1 tide_pool) (STV 1.0 0.99))",
+    "(: keeper_visit_rule (Implication (Member $x keeper) (And (Member (sk_visit $x) visit) (Agent (sk_visit $x) $x) (Theme (sk_visit $x) sk_group_1) (Time (sk_visit $x) harvest_time))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000004",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural generic correctly takes the distributing rule rather than a kind relation (the object is a definite plural, not a bare kind); the definite \"the tide-pools\" group is asserted at top level and referenced as a constant in the conclusion, exactly the \"Foxes rarely cross the causeway\" shape. \"harvest time\" as a bare named-time Time filler is within the \"deictic or named time stays a bare symbol\" licence."
+   },
+   "adjudication": null
+  }
+ ]
+}

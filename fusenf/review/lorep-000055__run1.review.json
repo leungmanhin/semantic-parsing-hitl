@@ -1,0 +1,9 @@
+{"id": "lorep-000055", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 2, "issue": "\"Keepers cannot count …\" is a capability generic over the bare-plural kind `keeper`, which the instruction set routes to a reified property `(Inheritance keeper (can <action>))` at strength 0.0 and explicitly excludes from the event-rule form — but the parse emits the Implication event rule with `(Can (sk_count $x))` inside it."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A capability generic over a kind whose complement carries a DEFINITE/specific object (\"the sky-cats\", a group witness) and a manner adverb (\"exactly\"): the mandated `(Inheritance <kind> (can <action>))` property form has only a compound-action slot, with no place for a specific group filler or an adverb, so the sentence has no fully faithful licensed encoding on the route it is assigned to."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything else is right — hyphenated `sky_cat` with its `cat` genus, definite plural as a `GroupOf` witness projected outside the strength-0 rule, `Theme` for the counted set, and no QuantifierPhrase for plain \"not\". `(Manner … exactly)` is borderline: \"exactly\" reads as a precision/degree modifier rather than a manner-proper adverb, and degree adverbs on a verb have no licensed slot."}

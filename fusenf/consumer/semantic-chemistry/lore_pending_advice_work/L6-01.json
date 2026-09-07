@@ -1,0 +1,32 @@
+{
+ "id": "L6-01",
+ "rule": "VI — Origins",
+ "texts": [
+  "Keepers tolerate sky-cats."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000052",
+   "sentence": "Keepers tolerate sky-cats.",
+   "parse": [
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: tolerate_rel (Tolerate keeper sky_cat) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000052",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both arguments are bare kind-denoting plurals, so the opaque kind-level relation (Tolerate keeper sky_cat) at 0.9/0.9 is the specified route rather than a distributing rule. The hyphenated compound gets its head genus with the noun modifier correctly left unexposed, and no QuantifierPhrase is due since no quantifier word is present."
+   },
+   "adjudication": null
+  }
+ ]
+}

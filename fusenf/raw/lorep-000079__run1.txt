@@ -1,0 +1,4 @@
+(: htd_genus (Inheritance heavy_thread_day day) (STV 1.0 0.99))
+(: htd_heavy (Inheritance heavy_thread_day heavy) (STV 1.0 0.99))
+(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: htd_yields (Implication (Member $x heavy_thread_day) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) (sk_vessels $x)) (GroupOf (sk_vessels $x) vessel) (Cardinality (sk_vessels $x) 4) (Member (sk_full $x) full) (Experiencer (sk_full $x) (sk_vessels $x)) (Of (sk_full $x) mire_essence))) (STV 0.9 0.9))

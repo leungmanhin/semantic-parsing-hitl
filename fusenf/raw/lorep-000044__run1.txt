@@ -1,0 +1,3 @@
+(: wr_genus (Inheritance wraith_rule rule) (STV 1.0 0.99))
+(: wr_member (Member sk_wraith_rule_1 wraith_rule) (STV 1.0 0.99))
+(: keepers_know_rule (Implication (Member $x keeper) (And (Member (sk_know $x) know) (Experiencer (sk_know $x) $x) (Stimulus (sk_know $x) sk_wraith_rule_1) (Ongoing (sk_know $x)) (MeasureAtLeast (sk_know $x) duration 2 generation))) (STV 0.9 0.9))

@@ -1,0 +1,92 @@
+{
+ "id": "L10-03",
+ "rule": "X — Sky-cat seasons",
+ "texts": [
+  "When nightmoths are scarce, sky-cats sometimes hunt insects.",
+  "Marra Tallowhand's logs record that sky-cats hunt insects."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000084",
+   "sentence": "When nightmoths are scarce, sky-cats sometimes hunt insects.",
+   "parse": [
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_hunt (Implication (And (Member $x sky_cat) (KindProperty nightmoth scarce)) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Patient (sk_hunt $x) insect))) (STV 0.5 0.9))",
+    "(: skycat_hunt_q (QuantifierPhrase sky_cat hunt \"sometimes\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000084",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"When P, Q\" with a STATIVE, kind-level trigger clause (\"when nightmoths are scarce\"): the whenever machinery presumes an eventive trigger with its own witness to match, Skolemize over and `During`-link the response to, so a `KindProperty` condition leaves no trigger variable and the mandated `During` atom cannot be emitted — the temporal/occasion tie between condition and response is lost."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing is well-motivated: the \"when\" restriction has no slot in a kind relation, so the distributing rule is forced exactly as an adjectivally-restricted kind subject forces it, and the condition sits in the premise so it is never asserted. `scarce` as `KindProperty`, the solid-spelling `nightmoth`→`moth` genus, \"sometimes\"→0.5 with its companion, and the bare-kind object filler all match the instruction set."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000085",
+   "sentence": "Marra Tallowhand's logs record that sky-cats hunt insects.",
+   "parse": [
+    "(: marra_name (Name marra_tallowhand \"Marra Tallowhand\") (STV 1.0 0.99))",
+    "(: log_grp (GroupOf sk_log_grp_1 log) (STV 1.0 0.99))",
+    "(: log_poss (Possession sk_log_grp_1 marra_tallowhand) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: record_ev (Member sk_record_1 record) (STV 1.0 0.99))",
+    "(: record_exp (Experiencer sk_record_1 sk_log_grp_1) (STV 1.0 0.99))",
+    "(: record_th (Theme sk_record_1 (Hunt sky_cat insect)) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000085",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "'Marra Tallowhand's logs' is a definite plural group and 'record that P' is not one of the collective (gather/meet/assemble) predicates, so the instruction set's grouped-plural handling calls for the per-member (Implication (PartOf $x sk_log_grp_1) ...) distribution rule alongside the group event, and none is emitted."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Factivity default for an attitude/speech verb on neither stated list: 'record' is not among the non-factive (believe/think/.../say) nor the factive (know/realize/.../regret) verbs, and the instruction set gives no rule for deciding which side an unlisted clausal-complement verb falls on — which decides whether P is also asserted at top level."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Hunt is licensed as a kind-level relation head (both arguments bare kinds), so the sealed (Hunt sky_cat insect) is P's correct normalized form; Experiencer on the holder, Theme for the seal, no top-level predication of P, the projected sky_cat decomposition atom, and Possession for the genitive plural all follow the instruction set."
+   },
+   "adjudication": {
+    "id": "lorep-000085",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "Right that \"record\" is none of the named collective verbs, but the stated test is \"each member acts separately\" versus \"the group as one unit\", and \"her logs record that P\" is an aggregate fact about the corpus - the per-member rule would assert that EVERY individual log records P, content the text does not state, which the no-over-assertion rule bars outright."
+     }
+    ],
+    "gaps_confirmed": [
+     "Factivity default for a clausal-complement verb on neither stated list (\"record\" is on neither the non-factive believe/think/say list nor the factive know/realize/regret list), so nothing decides whether P is also asserted at top level."
+    ],
+    "new_gaps": [
+     "The distributive-vs-collective test is unsettled for an aggregate INFORMATIONAL predicate over a plural set of artifacts (logs/records/tables \"record / show / list / state\" P): the named collective verbs are all reciprocal (gather, meet, assemble, collide), so a corpus-level predicate falls between the two branches.",
+     "A sealed proposition carries no truth value of its own, so a kind-level relational generic sealed under Theme silently loses the (STV 0.9 0.9) its own doctrine mandates - the seal grammar has no slot for P's strength/confidence."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The multi-word Name with no invented kind atom, the possessed-plural group witness with Possession, Experiencer on the seal-bearing holder, the sky_cat genus projecting out of the seal (explicitly licensed), and (Hunt sky_cat insect) as P's bare-kind relational form all follow the instruction set."
+   }
+  }
+ ]
+}

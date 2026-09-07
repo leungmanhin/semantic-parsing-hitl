@@ -1,0 +1,36 @@
+{
+ "id": "L2-19",
+ "rule": "II — Habits",
+ "texts": [
+  "Every Keeper considers that lantern-tending is sacred."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000016",
+   "sentence": "Every Keeper considers that lantern-tending is sacred.",
+   "parse": [
+    "(: lt_genus (Inheritance lantern_tending tending) (STV 1.0 0.99))",
+    "(: keeper_considers_rule (Implication (Member $x keeper) (And (Member (sk_consider $x) consider) (Experiencer (sk_consider $x) $x) (Theme (sk_consider $x) (Inheritance lantern_tending sacred)))) (STV 1.0 0.9))",
+    "(: keeper_considers_q (QuantifierPhrase keeper consider \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000016",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Gerund / deverbal-noun head of a compound kind ('lantern-tending'): the lemmatization rule legislates verbs, nouns, adjectives, -ly adverbs and participles-used-as-modifiers, but never says whether a nominal gerund head keeps its -ing form ('tending') or takes the verb base ('tend'), so the genus symbol is undetermined.",
+     "A compound gerund as SUBJECT of a copular claim: the gerund/nominalized-clause-subject rule routes such a subject through the whenever/occurrence-trigger machinery, but it is stated only for a verbal main predicate ('Overwatering a fern rots the roots') and gives no route for a copular one ('lantern-tending is sacred'), leaving it undetermined whether the gerund is an ordinary kind (Inheritance) or an occurrence trigger."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The universal-over-kind rule, the non-factive seal under Theme with Experiencer holder, the Skolem-function event and the QuantifierPhrase companion are all in the mandated shapes at the mandated 1.0/0.9. The compound's genus atom correctly projects out of the seal as a definitional decomposition atom while the sealed proposition itself is never asserted."
+   },
+   "adjudication": null
+  }
+ ]
+}

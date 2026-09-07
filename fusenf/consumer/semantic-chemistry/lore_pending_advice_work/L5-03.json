@@ -1,0 +1,133 @@
+{
+ "id": "L5-03",
+ "rule": "V — What a wraith does",
+ "texts": [
+  "Wraiths do not harm people.",
+  "Wraiths drain mire-essence from lit lanterns.",
+  "Drained lanterns burn dimly.",
+  "Keepers have known the wraith rule for generations."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000041",
+   "sentence": "Wraiths do not harm people.",
+   "parse": [
+    "(: wraith_harm (Harm wraith person) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000041",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Negation over a kind-level relational generic (\"Ns do not V Ms\", both arguments bare kind NPs): the relational-generic section never mentions polarity, and the Negated-verbal-generic section prescribes a distributing rule at strength 0.0 whose example is intransitive — nothing says which route wins, nor whether a negated kind relation should also emit a distributing denial."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Both arguments are bare kinds, so the kind-relation trigger fires and \"negation does not re-decide the subject\" supports keeping the same form at strength 0.0; the cost is that the opaque atom does not distribute, so \"does this wraith harm people?\" stays unknown rather than deriving strength 0."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000042",
+   "sentence": "Wraiths drain mire-essence from lit lanterns.",
+   "parse": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: wraith_drain (Implication (Member $x wraith) (And (Member (sk_drain $x) drain) (Agent (sk_drain $x) $x) (Patient (sk_drain $x) mire_essence) (Source (sk_drain $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern) (Member (sk_lantern $x) lit))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000042",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The drained mire-essence is displaced out of the lantern rather than created, destroyed, consumed or changed, so the object test (and the explicit \"when the test is unclear, default to Theme\") gives Theme, not Patient."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A bare relational generic whose two arguments are both bare kind-denoting NPs (\"Wraiths drain mire-essence\") but which additionally carries an oblique (\"from lit lanterns\"): the kind-relation trigger fires on both bare arguments, yet the opaque two-slot kind relation has no slot for the oblique, and the instruction set states the forced-to-distributing-rule override only for an adjectivally-restricted SUBJECT, leaving this case unrouted."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The distributing-rule route is the reasonable resolution of that gap since it preserves the PP; the dependent Skolem lantern (sk_lantern $x) with its lantern/lit atoms follows the forall-exists pattern, and \"lit\" correctly stays a participial adjective rather than the verb."
+   },
+   "adjudication": {
+    "id": "lorep-000042",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Draining essence out of a lantern displaces it without creating, destroying, consuming or physically changing it — the Theme side of the one yes/no object test, alongside the section's own 'displacement stays displacement whatever is moved' — and the explicit tie-breaker 'when the test is unclear, default to Theme' forbids Patient even on a consumption reading."
+     }
+    ],
+    "gaps_confirmed": [
+     "a bare relational generic with bare kind-denoting NPs on both sides that additionally carries an oblique: the opaque two-slot kind relation has no slot for the PP, and the stated forced-to-distributing-rule override covers only an adjectivally-restricted subject"
+    ],
+    "new_gaps": [
+     "a bare plural carrying a descriptive modifier ('lit lanterns') as an oblique's object inside a generic rule has no stated route — the bare kind filler cannot carry the restriction, 'lit' is incidental description so Compound concepts bars fusing it into the kind, and the dependent Skolem singular the parse used silently drops the plurality"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is (Theme (sk_drain $x) mire_essence) in place of the Patient atom; the rest of the rule stands unchanged.",
+    "notes": "The distributing-rule route is acceptable improvisation in the gap the reviewer names — it is the only route with a slot for the from-PP and each of its atoms is true of the sentence — so it is not itself a fault."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep-000043",
+   "sentence": "Drained lanterns burn dimly.",
+   "parse": [
+    "(: drained_lantern_burn (Implication (And (Member $x lantern) (Member $x drained)) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Manner (sk_burn $x) dimly))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000043",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectival restriction rides as an unfused premise conjunct (incidental-description bar), the participial modifier keeps its adjective form \"drained\", and \"dimly\" takes Manner in surface form exactly as the instruction set's brightly example prescribes. One consequence of the prescribed generic rule form: it asserts that every drained lantern burns, whereas the sentence only characterizes how they burn."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lorep-000044",
+   "sentence": "Keepers have known the wraith rule for generations.",
+   "parse": [
+    "(: wr_genus (Inheritance wraith_rule rule) (STV 1.0 0.99))",
+    "(: wr_member (Member sk_wraith_rule_1 wraith_rule) (STV 1.0 0.99))",
+    "(: keepers_know_rule (Implication (Member $x keeper) (And (Member (sk_know $x) know) (Experiencer (sk_know $x) $x) (Stimulus (sk_know $x) sk_wraith_rule_1) (Ongoing (sk_know $x)) (MeasureAtLeast (sk_know $x) duration 2 generation))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000044",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a transgenerational / collective duration on a bare-plural generic (\"have known ... for generations\"): the mandated distributing rule forces (MeasureAtLeast e duration 2 generation) onto each member's own knowing event, so the parse says every individual Keeper has known the rule for two or more generations, which no individual can; the instruction set supplies no kind-level or collective span carrier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The continuative perfect -> Ongoing with no Past, the bare-plural duration -> MeasureAtLeast 2 generation, and know -> Experiencer/Stimulus are each exactly as specified, and sk_wraith_rule_1 is asserted at top level as a conclusion constant must be. The alternative route (reading the perfect-with-span clause as episodic, so \"Keepers\" mints a group witness carrying the span) is not clearly ruled out by the bare-plural rule either."
+   },
+   "adjudication": null
+  }
+ ]
+}

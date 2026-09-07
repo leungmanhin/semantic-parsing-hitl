@@ -1,0 +1,39 @@
+{
+ "id": "L5-07",
+ "rule": "V — The long quiet",
+ "texts": [
+  "A few Keepers believe that a wraith remembers the Keeper who let that wraith rise."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000051",
+   "sentence": "A few Keepers believe that a wraith remembers the Keeper who let that wraith rise.",
+   "parse": [
+    "(: kg1 (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: kg1_card (CardinalityPhrase sk_group_1 \"a few\") (STV 1.0 0.99))",
+    "(: keeper1_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: grp_believe_ev (Member sk_believe_1 believe) (STV 1.0 0.99))",
+    "(: grp_believe_exp (Experiencer sk_believe_1 sk_group_1) (STV 1.0 0.99))",
+    "(: grp_believe_theme (Theme sk_believe_1 (And (Member sk_wraith_1 wraith) (Member sk_remember_1 remember) (Experiencer sk_remember_1 sk_wraith_1) (Stimulus sk_remember_1 sk_keeper_1) (Member sk_let_1 let) (Agent sk_let_1 sk_keeper_1) (Theme sk_let_1 sk_rise_1) (Past sk_let_1) (Member sk_rise_1 rise) (Agent sk_rise_1 sk_wraith_1))) (STV 1.0 0.99))",
+    "(: keeper_believe_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_believe $x) believe) (Experiencer (sk_believe $x) $x) (Theme (sk_believe $x) (And (Member sk_wraith_1 wraith) (Member sk_remember_1 remember) (Experiencer sk_remember_1 sk_wraith_1) (Stimulus sk_remember_1 sk_keeper_1) (Member sk_let_1 let) (Agent sk_let_1 sk_keeper_1) (Theme sk_let_1 sk_rise_1) (Past sk_let_1) (Member sk_rise_1 rise) (Agent sk_rise_1 sk_wraith_1))))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000051",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite NP inside a seal whose reference is BOUND by a seal-internal indefinite (\"the Keeper who let that wraith rise\", covarying with \"a wraith\"): the seal-projection rule projects definite typing unconditionally, so (Member sk_keeper_1 keeper) is asserted at top level as one specific keeper, and the instruction set gives no treatment of a functional / donkey definite under an attitude"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"A few\" -> GroupOf + CardinalityPhrase, the group event plus the per-member distribution rule over PartOf, the non-factive seal keeping the indefinite wraith witness inside, the entity-object psych roles on remember, and the let/rise periphrastic-causative shape (causee as the caused event's Agent, object only in the caused event) all follow the instruction set. Duplicating the whole seal verbatim inside the rule's conclusion is what the plural dual-emission examples license."
+   },
+   "adjudication": null
+  }
+ ]
+}

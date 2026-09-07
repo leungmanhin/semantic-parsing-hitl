@@ -1,0 +1,34 @@
+{
+ "id": "L3-03",
+ "rule": "III — Decisions",
+ "texts": [
+  "Every vote is decided by a simple majority."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000024",
+   "sentence": "Every vote is decided by a simple majority.",
+   "parse": [
+    "(: vote_decide_rule (Implication (Member $x vote) (And (Member (sk_decide $x) decide) (Patient (sk_decide $x) $x) (Agent (sk_decide $x) (sk_majority $x)) (Member (sk_majority $x) simple_majority))) (STV 1.0 0.9))",
+    "(: vote_decide_q (QuantifierPhrase vote decide \"every\") (STV 1.0 0.99))",
+    "(: simple_majority_genus (Inheritance simple_majority majority) (STV 1.0 0.99))",
+    "(: simple_majority_mod (Inheritance simple_majority simple) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000024",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Two borderline calls left unflagged: the modifier genus (Inheritance simple_majority simple) is exposed although 'simple' in this term of art is arguably a classifying rather than a predicable adjective, and the vote takes Patient where the change test is unclear (the written default there is Theme). The universal-over-passive routing (rule at 1.0/0.9, by-phrase as Agent, dependent Skolem majority per vote, companion QuantifierPhrase) matches the instruction set."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "id": "L2-14",
+ "rule": "II — Coats",
+ "texts": [
+  "Every first-year apprentice wears an unstained coat."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000010",
+   "sentence": "Every first-year apprentice wears an unstained coat.",
+   "parse": [
+    "(: fya_apprentice_genus (Inheritance first_year_apprentice apprentice) (STV 1.0 0.99))",
+    "(: fya_wear_rule (Implication (Member $x first_year_apprentice) (And (Member (sk_wear $x) wear) (Agent (sk_wear $x) $x) (Theme (sk_wear $x) (sk_coat $x)) (Member (sk_coat $x) coat) (Member (sk_coat $x) unstained))) (STV 1.0 0.9))",
+    "(: fya_wear_q (QuantifierPhrase first_year_apprentice wear \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000010",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Universal verbal rule with dependent-existential Skolem object matches the mandated shape; 'unstained' correctly stays a distributed descriptive property rather than fusing, and the noun-phrase modifier 'first-year' correctly gets no exposed genus."
+   },
+   "adjudication": null
+  }
+ ]
+}

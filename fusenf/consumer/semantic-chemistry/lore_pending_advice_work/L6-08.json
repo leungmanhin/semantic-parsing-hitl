@@ -1,0 +1,68 @@
+{
+ "id": "L6-08",
+ "rule": "VI — The cove incident",
+ "texts": [
+  "When the moth-count at the Stilllight Lantern is low, sky-cats stay on the cliff-spires.",
+  "Keepers do not feed sky-cats."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000062",
+   "sentence": "When the moth-count at the Stilllight Lantern is low, sky-cats stay on the cliff-spires.",
+   "parse": [
+    "(: stilllight_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: stilllight_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: mothcount_type (Member sk_moth_count_1 moth_count) (STV 1.0 0.99))",
+    "(: mothcount_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+    "(: mothcount_loc (LocatedIn sk_moth_count_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cliffspire_grp (GroupOf sk_cliffspire_1 cliff_spire) (STV 1.0 0.99))",
+    "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: skycat_stay_rule (Implication (And (Member $x sky_cat) (Member sk_moth_count_1 low)) (On $x sk_cliffspire_1)) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000062",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'stay' + locative PP: the instruction set routes it to the bare position atom and states outright that the continuation aspect has no carrier there, so 'stay' is indistinguishable from a plain 'are on'",
+     "a stative 'when P, Q' regularity whose consequent is a position atom rather than a reified event has no carrier for the temporal co-extension of condition and consequence (the whenever machinery's During link needs a consequent event)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Multi-word name plus its kind type atom, both hyphenated compounds' genus atoms with noun modifiers correctly unexposed, 'at' -> LocatedIn and 'on' -> the entity-attached On are all per spec; the Implication route for the generic when-conditional is licensed and its premise constant is anchored by a top-level fact."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000063",
+   "sentence": "Keepers do not feed sky-cats.",
+   "parse": [
+    "(: keeper_no_feed (Implication (Member $x keeper) (And (Member (sk_feed $x) feed) (Agent (sk_feed $x) $x) (Patient (sk_feed $x) sky_cat))) (STV 0.0 0.9))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000063",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a TRANSITIVE generic with bare kind-denoting NPs on both sides under negation ('Keepers do not feed sky-cats'): the relational-generic trigger as written ('both arguments being bare kind-denoting NPs') points to an opaque kind relation (Feed keeper sky_cat) at strength 0.0, while 'Negated verbal generic' ('Ns don't V' = the same distributing rule at strength 0.0) points to the Implication form the parse chose — the instruction set states no precedence between them"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Within the distributing route everything is right: strength 0.0 / confidence 0.9, no QuantifierPhrase for plain 'not', bare kind filler for the non-specific object, Patient by the 'applying a substance' test, and the sky_cat genus emitted definitionally."
+   },
+   "adjudication": null
+  }
+ ]
+}

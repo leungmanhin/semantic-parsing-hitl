@@ -1,0 +1,3 @@
+(: lantern_1_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))
+(: keeper_check_rule (Implication (Member $x keeper) (And (Member (sk_check $x) check) (Agent (sk_check $x) $x) (Theme (sk_check $x) sk_lantern_1) (Time (sk_check $x) midnight))) (STV 1.0 0.9))
+(: keeper_check_q (QuantifierPhrase keeper check "each") (STV 1.0 0.99))

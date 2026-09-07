@@ -1,0 +1,59 @@
+{
+ "id": "L4-02",
+ "rule": "IV — First lighting",
+ "texts": [
+  "Replacement lanterns need no Council touch."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000035",
+   "sentence": "Replacement lanterns need no Council touch.",
+   "parse": [
+    "(: rl_genus (Inheritance replacement_lantern lantern) (STV 1.0 0.99))",
+    "(: ct_genus (Inheritance council_touch touch) (STV 1.0 0.99))",
+    "(: rl_need_rule (Implication (Member $x replacement_lantern) (And (Member (sk_need $x) need) (Experiencer (sk_need $x) $x) (Stimulus (sk_need $x) council_touch))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000035",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The explicit quantifier word 'no' is consumed by the parse (it is what sets the rule to strength 0.0) but no QuantifierPhrase companion is emitted, which the instruction set makes mandatory for every explicit quantifier word and specifically requires so that a quantifier-'no' claim stays distinguishable from a plain 'Ns don't V' strength-0 rule."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Negative quantifier in OBJECT position of a verbal generic ('Ns need no N'): the instruction set gives the 'no' route for a copular subject ('No reptile is warm-blooded') and for 'none of the Ns V', but not for an object-position 'no N' — neither the routing (deny the whole predication vs. something narrower) nor which kind fills the first slot of the QuantifierPhrase companion, whose stated shape (kind, verb-lemma, word) presumes the quantified range is the rule's premise range."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound decomposition (replacement_lantern -> lantern, council_touch -> touch, both noun modifiers correctly unexposed), the strength-0.0 distributing rule at confidence 0.9, and the bare kind filler for the non-specific object are all right; treating stative 'need' as Experiencer/Stimulus alongside 'want' is defensible under the progressive test."
+   },
+   "adjudication": {
+    "id": "lorep-000035",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "The loss is real - \"no\" was consumed into the rule's 0.0 strength and left unrecorded, so quantifier-no and a plain \"Ns don't V\" become indistinguishable, which is exactly what the companion rule exists to prevent - but the defect half falls: the companion \"only ever restates a range the rule itself quantifies\", and here \"no\" quantifies the bare-kind object filler council_touch while the rule ranges over replacement_lantern, so no compliant companion is licensed and omitting it while recording the gap is what the instruction set prescribes."
+     }
+    ],
+    "gaps_confirmed": [
+     "Negative quantifier in OBJECT position of a verbal generic (\"Ns need no N\"): the \"no\" routes given are a copular subject (\"No reptile is warm-blooded\") and \"none of the Ns V\", and neither the routing nor the QuantifierPhrase kind slot is defined when the quantified NP is an object filler rather than the rule's premise range."
+    ],
+    "new_gaps": [
+     "A capitalized common noun used as a PREMODIFIER (\"Council touch\"): Names and casing makes a capitalized common-noun label a common noun by default but states that default for a referent's own label (\"definite handling as usual\"), so whether such a premodifier fuses into a compound kind or takes the proper-noun-premodifier Possession route is unstated."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Every emitted atom is true of the sentence and well-typed: both compound genera with their noun modifiers correctly unexposed, the strength-0.0 distributing rule at empirical confidence 0.9, and Experiencer/Stimulus for stative \"need\" under the progressive test."
+   }
+  }
+ ]
+}

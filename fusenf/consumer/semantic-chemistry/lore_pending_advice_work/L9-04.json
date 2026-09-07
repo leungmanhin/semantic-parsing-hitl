@@ -1,0 +1,32 @@
+{
+ "id": "L9-04",
+ "rule": "IX — After the boil",
+ "texts": [
+  "Apprentices scrub the cauldrons with sand."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000077",
+   "sentence": "Apprentices scrub the cauldrons with sand.",
+   "parse": [
+    "(: cauldron_group (GroupOf sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+    "(: apprentice_scrub_rule (Implication (Member $x apprentice) (And (Member (sk_scrub $x) scrub) (Agent (sk_scrub $x) $x) (Patient (sk_scrub $x) sk_cauldron_1) (Instrument (sk_scrub $x) sand))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000077",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural habitual correctly takes the distributing rule at 0.9/0.9 with no QuantifierPhrase, the definite plural object is a group witness rather than a kind, Patient is right for scrub (cleaning changes the object), and 'with sand' is an Instrument substance kept as a bare constant."
+   },
+   "adjudication": null
+  }
+ ]
+}

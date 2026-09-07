@@ -1,0 +1,12 @@
+{"id": "lorep-000053", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The doctrine's own precedent for a plural object under a universal is a per-binding Skolem GROUP - (GroupOf (sk_books $x) book) in \"every student read three books\" - and Coordination & plurals bars a group symbol from a class slot (\"a group is an individual; it never goes in a class slot\"), so (Member (sk_wings $x) wing) is ill-typed and asserts the plurality is one wing."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "Categorical statements states flatly that a property of a plural's members is never predicated of the group symbol - \"(Member sk_group_1 wooden) says the group-as-object is wooden\" - and Compound concepts routes a DESCRIPTIVE modifier on a plural (as broad/feathered are, not classifiers) through the distributive rule, so both modifier atoms assert of the collection what the text asserts of each wing."}],
+ "gaps_confirmed": ["A descriptive modifier on a plural object living INSIDE a rule conclusion: the per-member distribution rule is defined only over a top-level group's (PartOf $x <group>) domain, and no nesting of such an Implication inside an already-quantified conclusion whose group is a Skolem function of the rule variable is shown or licensed."],
+ "new_gaps": ["\"Every N has ADJ PLURALs\" is doubly unlicensed at the modifier: the fusing-classifier slot in the group's kind position is barred (broad/feathered are descriptive, not classifying), and the distributive route would need a nested rule whose own variable ranges over a Skolem-function group - against the constraint that variables must not co-vary inside one stored term - so no compliant form exists for this construction."],
+ "decision": "defect",
+ "defect_summary": "The plural object's typing has a compliant form - (GroupOf (sk_wings $x) wing) in place of (Member (sk_wings $x) wing) - but the modifiers do NOT: broad and feathered must distribute to the members, and the instruction set licenses no per-member distribution rule nested inside a rule conclusion over a Skolem-function group, so this sentence currently has no licensed complete parse (filed as a gap).",
+ "notes": "The routing is otherwise right: the explicit universal correctly blocks the bare-kind relational-generic route in favour of a 1.0/0.9 distributing rule with its QuantifierPhrase companion, \"has\" takes Holder/Theme, and sky_cat emits its head genus with the noun modifier unexposed."}

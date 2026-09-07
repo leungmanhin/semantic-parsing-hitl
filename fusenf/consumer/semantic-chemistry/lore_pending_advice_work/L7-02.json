@@ -1,0 +1,68 @@
+{
+ "id": "L7-02",
+ "rule": "VII — The harvest tide",
+ "texts": [
+  "Keepers cannot explain the moon-phase rule."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000065",
+   "sentence": "Keepers cannot explain the moon-phase rule.",
+   "parse": [
+    "(: mprule_type (Member sk_moon_phase_rule_1 moon_phase_rule) (STV 1.0 0.99))",
+    "(: mprule_genus (Inheritance moon_phase_rule rule) (STV 1.0 0.99))",
+    "(: keeper_no_explain (Implication (Member $x keeper) (And (Member (sk_explain $x) explain) (Agent (sk_explain $x) $x) (Theme (sk_explain $x) sk_moon_phase_rule_1) (Can (sk_explain $x)))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000065",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "A capability generic over a kind ('Keepers cannot V') must be the reified property (Inheritance keeper (can <action>)) at strength 0.0, not a distributing event rule carrying (Can e): (Can e) is reserved for a specific subject's ability, and only a NON-modal verbal generic takes the event-rule form."
+     },
+     {
+      "statement": 2,
+      "issue": "As a consequence the parse cannot be reached by the legislated capability question for a kind subject, which queries (Inheritance <kind> (can <verb>)) and would find nothing here."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a kind-level capability or deontic property whose action has a DEFINITE SPECIFIC object ('the moon-phase rule'): the compound-action decomposition puts a bare kind in (Patient <compound> <object>), so the reference to the particular individual is lost and no licensed form preserves it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite referent's typing and the moon_phase_rule genus (noun modifier correctly unexposed) are right, but the sentence's sole predication is routed to the construct the instruction set explicitly excludes for modal generics."
+   },
+   "adjudication": {
+    "id": "lorep-000065",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Quantifiers states that a capability generic over a kind is \"not this event-rule form\" but the reified property (Inheritance <kind> (can <action>)), that \"only a non-modal verbal generic takes the event rule\", and Status predicates reserves (Can e) for a specific subject's ability — so the strength-0 distributing rule is precisely the construct the instruction set excludes for a modal generic over a kind."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Accurate, though it is the QA-side consequence of the same violation rather than an independent one: \"a capability question routes by subject\", and a kind subject queries (Inheritance <kind> (can <verb>)) — an atom this parse never emits (the specific-object carve-out to the event form is stated for the individual-subject branch)."
+     }
+    ],
+    "gaps_confirmed": [
+     "a kind-level capability/deontic property whose action takes a DEFINITE SPECIFIC object: the compound-action decomposition's (Patient <compound> <object>) slot is exemplified only with a bare kind, so \"the moon-phase rule\" as a particular individual has no licensed carrier in the property form"
+    ],
+    "new_gaps": [
+     "compound-action decomposition mandates (Patient <compound> <object>) whatever the verb's event-form object role would be (explain / read / grade take Theme under the does-the-object-change test), so the kind-level property form and the event form of the same content disagree on the object role and will not match across the two storages"
+    ],
+    "decision": "defect",
+    "defect_summary": "Compliant form: (Inheritance keeper (can explain_moon_phase_rule)) (STV 0.0 0.9) with the compound decomposed as (Inheritance explain_moon_phase_rule explain) + (Patient explain_moon_phase_rule moon_phase_rule) — but that object slot carries only the bare kind, so NO licensed form preserves the definite \"the moon-phase rule\" as the particular individual sk_moon_phase_rule_1 (the gap above).",
+    "notes": "The definite referent's typing and the moon_phase_rule genus (noun modifier correctly left unexposed) are both right; only the sentence's sole predication is mis-routed."
+   }
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "id": "L6-06",
+ "rule": "VI — Molting and feathers",
+ "texts": [
+  "Every Keeper considers that sky-cats are sacred.",
+  "Keepers never harm a sky-cat.",
+  "Sky-cats sometimes carry a nightmoth to the spires in flight."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000057",
+   "sentence": "Every Keeper considers that sky-cats are sacred.",
+   "parse": [
+    "(: keeper_considers (Implication (Member $x keeper) (And (Member (sk_consider $x) consider) (Experiencer (sk_consider $x) $x) (Theme (sk_consider $x) (Inheritance sky_cat sacred)))) (STV 1.0 0.9))",
+    "(: keeper_q (QuantifierPhrase keeper consider \"every\") (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000057",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Universal over a kind takes the event-rule form at 1.0/0.9 with its QuantifierPhrase companion; the non-factive attitude seals P under Theme with no top-level predication of sacredness, and only the definitional sky_cat genus projects out of the seal (noun modifier 'sky' correctly not exposed)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000058",
+   "sentence": "Keepers never harm a sky-cat.",
+   "parse": [
+    "(: lorep58_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lorep58_quant (QuantifierPhrase keeper harm \"never\") (STV 1.0 0.99))",
+    "(: lorep58_rule (Implication (Member $x keeper) (And (Member (sk_harm $x) harm) (Agent (sk_harm $x) $x) (Patient (sk_harm $x) (sk_sky_cat $x)) (Member (sk_sky_cat $x) sky_cat))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000058",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Strength-0.0 distributing rule for \"never\", the dependent Skolem object (sk_sky_cat $x) with its typing kept inside the rule, and the sky_cat genus (noun modifier not exposed) all follow the instruction set. The companion's word slot is the one ambiguity: the Quantifiers parenthetical (\"with its companion as 'no'/'none' already provides\") can be read as prescribing \"no\"/\"none\" rather than the surface \"never\" recorded here."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep-000059",
+   "sentence": "Sky-cats sometimes carry a nightmoth to the spires in flight.",
+   "parse": [
+    "(: spires_grp (GroupOf sk_spire_1 spire) (STV 1.0 0.99))",
+    "(: skycat_carry_rule (Implication (Member $x sky_cat) (And (Member (sk_carry $x) carry) (Agent (sk_carry $x) $x) (Theme (sk_carry $x) (sk_nightmoth $x)) (Member (sk_nightmoth $x) nightmoth) (Goal (sk_carry $x) sk_spire_1) (In (sk_carry $x) flight))) (STV 0.5 0.9))",
+    "(: skycat_carry_q (QuantifierPhrase sky_cat carry \"sometimes\") (STV 1.0 0.99))",
+    "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000059",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Frequency dial (sometimes 0.5), companion, dependent Skolem moth, Theme for carry, Goal for 'to the spires', the definite plural as a group witness, and both solid/hyphenated compound genera are all as the instruction set specifies. 'in flight' answers no where/when/how-adverb question, so the preposition-named oblique (In <event> flight) with a bare-noun constant is the licensed fallback."
+   },
+   "adjudication": null
+  }
+ ]
+}

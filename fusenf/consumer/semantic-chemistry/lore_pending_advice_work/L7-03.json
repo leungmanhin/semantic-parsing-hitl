@@ -1,0 +1,55 @@
+{
+ "id": "L7-03",
+ "rule": "VII — The sea-water store",
+ "texts": [
+  "First-year apprentices usually fill the cisterns."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000066",
+   "sentence": "First-year apprentices usually fill the cisterns.",
+   "parse": [
+    "(: fya_genus (Inheritance first_year_apprentice apprentice) (STV 1.0 0.99))",
+    "(: fya_mod (Inheritance first_year_apprentice first_year) (STV 1.0 0.99))",
+    "(: cistern_grp (GroupOf sk_cistern_1 cistern) (STV 1.0 0.99))",
+    "(: fya_fill_rule (Implication (Member $x first_year_apprentice) (And (Member (sk_fill $x) fill) (Agent (sk_fill $x) $x) (Patient (sk_fill $x) sk_cistern_1))) (STV 0.8 0.9))",
+    "(: fya_fill_q (QuantifierPhrase first_year_apprentice fill \"usually\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000066",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "(Inheritance first_year_apprentice first_year) exposes a modifier the instruction set bars: 'first-year' is a noun-phrase premodifier of time/tenure (the 'night_shift is not night' family), and the exposed symbol is a two-word compound rather than the single-word lemma decomposition requires."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else conforms: bare-plural habitual generic as a distributing rule, 'usually' at strength 0.8 with its QuantifierPhrase companion, definite plural 'the cisterns' as a GroupOf witness, and Patient for fill (the cistern changes state)."
+   },
+   "adjudication": {
+    "id": "lorep-000066",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'first-year' is a noun/tenure premodifier that fails the predication test ('*the apprentice is first-year' — the 'night_shift is not night' family), which Compound concepts bars from ever being exposed, and the emitted (Inheritance first_year_apprentice first_year) is false as written besides: an apprentice is not a kind of year."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Compliant form: keep (Inheritance first_year_apprentice apprentice) as the head genus and emit no modifier genus at all — a noun modifier is left inside the symbol whatever it names, and decomposition targets single-word lemmas, which the two-word 'first_year' is not.",
+    "notes": "Everything else conforms: bare-plural habitual generic as a distributing rule, 'usually' at strength 0.8 with its QuantifierPhrase companion, the definite plural 'the cisterns' as a GroupOf witness, and Patient for fill."
+   }
+  }
+ ]
+}

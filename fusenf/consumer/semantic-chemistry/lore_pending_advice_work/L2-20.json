@@ -1,0 +1,81 @@
+{
+ "id": "L2-20",
+ "rule": "II — The saying",
+ "texts": [
+  "Whenever a birth takes place, a Keeper repeats the phrase.",
+  "Whenever a funeral takes place, a Keeper repeats the phrase.",
+  "Whenever the Council closes a session, a Keeper repeats the phrase."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000017",
+   "sentence": "Whenever a birth takes place, a Keeper repeats the phrase.",
+   "parse": [
+    "(: phrase_type (Member sk_phrase_1 phrase) (STV 1.0 0.99))",
+    "(: birth_repeat_whenever (Implication (Member $b birth) (And (Member (sk_repeat $b) repeat) (Agent (sk_repeat $b) (sk_keeper $b)) (Member (sk_keeper $b) keeper) (Theme (sk_repeat $b) sk_phrase_1) (During (sk_repeat $b) $b))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000017",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Light verb 'takes place' correctly reifies no separate event (the birth witness is the eventuality), the indefinite 'a Keeper' is a dependent Skolem function of the trigger occurrence, and the definite 'the phrase' is a shared top-level constant; strength/confidence and the absence of a QuantifierPhrase both match the whenever pattern."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000018",
+   "sentence": "Whenever a funeral takes place, a Keeper repeats the phrase.",
+   "parse": [
+    "(: phrase_1_type (Member sk_phrase_1 phrase) (STV 1.0 0.99))",
+    "(: funeral_repeat_rule (Implication (Member $x funeral) (And (Member (sk_repeat $x) repeat) (Member (sk_keeper $x) keeper) (Agent (sk_repeat $x) (sk_keeper $x)) (Theme (sk_repeat $x) sk_phrase_1) (During (sk_repeat $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000018",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The 'whenever' machinery is applied exactly: occurrence-domain premise, per-occurrence Skolem consequent, During link, no QuantifierPhrase companion, no tense. The light-verb rule is honored ('a funeral takes place' reifies no separate occur event) and the indefinite 'a Keeper' is the licensed dependent-existential Skolem function with its typing inside the conclusion."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep-000019",
+   "sentence": "Whenever the Council closes a session, a Keeper repeats the phrase.",
+   "parse": [
+    "(: lorep19_council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: lorep19_phrase_type (Member sk_phrase_1 phrase) (STV 1.0 0.99))",
+    "(: lorep19_whenever_rule (Implication (And (Member $x close) (Agent $x sk_council_1) (Patient $x $s) (Member $s session)) (And (Member (sk_repeat $x) repeat) (Agent (sk_repeat $x) (sk_keeper $x)) (Member (sk_keeper $x) keeper) (Theme (sk_repeat $x) sk_phrase_1) (During (sk_repeat $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000019",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule shape, During link, no QuantifierPhrase, definite \"the phrase\" projected top-level and the indefinite \"a Keeper\" as a per-occurrence Skolem function all match the instruction set; \"the Council\" correctly takes the capitalized-common-noun default (no Name)."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,2 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: whenever_leave_assign (Implication (And (Member $e leave) (Agent $e $k) (Theme $e $s) (Member $k keeper) (Member $s station)) (And (Member (sk_assign $k $s) assign) (Agent (sk_assign $k $s) sk_council_1) (Theme (sk_assign $k $s) (sk_apprentice $k $s)) (Member (sk_apprentice $k $s) apprentice) (Goal (sk_assign $k $s) $s) (During (sk_assign $k $s) $e))) (STV 1.0 0.9))

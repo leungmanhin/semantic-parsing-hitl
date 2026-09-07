@@ -1,0 +1,82 @@
+{
+ "id": "L9-02",
+ "rule": "IX — The boil",
+ "texts": [
+  "When a cauldron boils hard, the distillation in that cauldron fails.",
+  "When a cauldron boils hard, that cauldron yields a thin slick of poor essence."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000075",
+   "sentence": "When a cauldron boils hard, the distillation in that cauldron fails.",
+   "parse": [
+    "(: whenever_boil_fail (Implication (And (Member $c cauldron) (Member $x boil) (Patient $x $c) (Manner $x hard)) (And (Member (sk_distill $x) distillation) (Location (sk_distill $x) $c) (Member (sk_fail $x) fail) (Patient (sk_fail $x) (sk_distill $x)) (During (sk_fail $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000075",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite NP inside a 'whenever'-rule consequent whose referent depends on the rule's bound variable ('the distillation in that cauldron') — the instruction set shows only top-level constant referents for the whenever machinery ('the bell', 'the dog'), and bars Skolem terms from premises, so there is no stated way to bind a presupposed dependent definite; Skolemizing it into the conclusion makes the rule assert that a distillation exists in every hard-boiling cauldron rather than presupposing it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing (indefinite trigger participant -> whenever rule), Patient on both the boiling cauldron and the failing distillation, Manner 'hard', the During tie and 'that cauldron' bound to the premise variable are all correct; Location on the distillation is licensed because an event-noun's witness is itself the eventuality."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000076",
+   "sentence": "When a cauldron boils hard, that cauldron yields a thin slick of poor essence.",
+   "parse": [
+    "(: cauldron_boil_yield_rule (Implication (And (Member $c cauldron) (Member $b boil) (Patient $b $c) (Manner $b hard)) (And (Member (sk_yield $c) yield) (Agent (sk_yield $c) $c) (Patient (sk_yield $c) (sk_slick $c)) (Member (sk_slick $c) slick) (Member (sk_slick $c) thin) (Member (sk_essence $c) essence) (Member (sk_essence $c) poor) (Of (sk_slick $c) (sk_essence $c)) (During (sk_yield $c) $b))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000076",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The consequent's Skolem terms are functions of the cauldron variable only ((sk_yield $c), (sk_slick $c), (sk_essence $c)) rather than of the boiling occurrence, so every boiling of one cauldron shares a single yield event — which the same rule then asserts is During each distinct boil $b; the whenever machinery requires a Skolem event per occurrence, and a dependent existential is a function of every universal scoping over it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "indefinite portion/quantity noun + 'of' + mass noun ('a thin slick of poor essence', 'a cup of water') — the genitive rule explicitly excludes measure-like of-phrases, the partitive rules cover only definite 'of the' wholes, and the Of-oblique is stated only for nominalizations' objects, so no encoding is specified for this NP"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise the routing is right: bare 'when P, Q' with generic participants to the whenever rule, 'that cauldron' as the same variable, Patient for the intransitive change-of-state boil subject, Agent for the inanimate transitive yield subject, created object as Patient, and the incidental modifiers thin/poor kept as separate atoms rather than fused. The rule strength 0.9 (generic) rather than 1.0 is defensible for bare 'when' since no explicit universal word appears, and no QuantifierPhrase companion is correctly emitted."
+   },
+   "adjudication": {
+    "id": "lorep-000076",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The whenever machinery mandates the response as 'a Skolem event per occurrence' tied to its trigger with During - its worked bell/bark rule keys the Skolem on the trigger-event variable - and Quantifiers requires a dependent existential to be a function of every universal scoping over it, so keying on $c alone makes one yield event stand During every distinct hard boil of that cauldron, which is false."
+     }
+    ],
+    "gaps_confirmed": [
+     "Indefinite portion / quantity noun + 'of' + mass noun ('a thin slick of poor essence', 'a cup of water'): the genitive rule excludes measure-like of-phrases, the partitive rules cover only definite 'of the' wholes, and the Of-oblique is stated only for nominalizations' objects, so no encoding is specified for this NP."
+    ],
+    "new_gaps": [
+     "When a 'whenever' premise binds both an entity variable and its trigger-event variable, the instruction set gives two different arities for the consequent's Skolem terms - the worked bell/bark example uses the trigger-event variable alone, while Quantifiers says a dependent existential is a function of EVERY universal scoping over it - and never says which governs."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form keys every consequent Skolem term on the trigger occurrence - (sk_yield $b) with (sk_slick $b) and (sk_essence $b), or the two-argument (sk_yield $c $b) family - so each hard boil yields its own slick and each During relates exactly one yield to one boil.",
+    "notes": "Everything else routes correctly: bare 'when P, Q' with indefinite participants to the whenever rule, 'that cauldron' as the same variable, Patient for the boil subject, Agent for the inanimate transitive yield subject, and thin / poor kept as separate incidental-modifier atoms. The Of-oblique on 'a slick of poor essence' is acceptable improvisation in the gap the reviewer names - surface preposition, entity-attached, nothing invented."
+   }
+  }
+ ]
+}

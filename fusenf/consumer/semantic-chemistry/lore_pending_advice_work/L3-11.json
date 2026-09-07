@@ -1,0 +1,108 @@
+{
+ "id": "L3-11",
+ "rule": "III — Other villages",
+ "texts": [
+  "Keepers from Aelmere exchange letters with the lantern-keepers of Faltern.",
+  "Villages on this coast do not keep lanterns.",
+  "Aelmere keeps lanterns."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000029",
+   "sentence": "Keepers from Aelmere exchange letters with the lantern-keepers of Faltern.",
+   "parse": [
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: faltern_name (Name faltern \"Faltern\") (STV 1.0 0.99))",
+    "(: lk_group (GroupOf sk_lkeepers_1 lantern_keeper) (STV 1.0 0.99))",
+    "(: lk_genus (Inheritance lantern_keeper keeper) (STV 1.0 0.99))",
+    "(: lk_poss (Possession sk_lkeepers_1 faltern) (STV 1.0 0.99))",
+    "(: keepers_exchange (Implication (And (Member $x keeper) (From $x aelmere)) (And (Member (sk_exchange $x) exchange) (Agent (sk_exchange $x) $x) (Agent (sk_exchange $x) sk_lkeepers_1) (Theme (sk_exchange $x) letter))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000029",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "lantern_keeper is a compound fused from the surface whose head is an agent-nominalization passing both -er tests (strip to the standalone verb \"keep\"; \"a keeper is one who keeps\" is definitional), so the fixed firing rule mandates (Inheritance lantern_keeper (can keep)) plus the incorporated-object kind-relation (Keep lantern_keeper lantern) beside the genus; both are missing."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Routing the restricted bare-plural subject to a distributing rule with (From $x aelmere) as a premise conjunct is right, and reading \"exchange ... with\" as a reciprocal predicate (one event, two Agent atoms) rather than CoAgent is defensible under the collective/reciprocal carve-out."
+   },
+   "adjudication": {
+    "id": "lorep-000029",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "lantern_keeper is a symbol fused from the surface whose head passes both -er tests (strip to the standalone verb \"keep\"; \"a keeper is one who keeps\" is true by definition), and Agent-nominalization fixes the firing site as exactly that case - Core patterns calls the genus and capability atoms of a compound you decomposed \"always emitted\" - so both (Inheritance lantern_keeper (can keep)) and the incorporated-object relation (Keep lantern_keeper lantern) are mandatory, not optional."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A reciprocal \"A V with B\" whose two sides are a quantified kind range and a definite group: Reciprocals covers named/enumerable pairs and a rule ranging over one group's ordered pairs, but shows no form for a collective multi-Agent event minted INSIDE a distributing rule, where one Agent is the rule variable and the other a top-level group constant."
+    ],
+    "decision": "defect",
+    "defect_summary": "Beside the existing genus, emit (Inheritance lantern_keeper (can keep)) (STV 1.0 0.99) and (Keep lantern_keeper lantern) (STV 1.0 0.99).",
+    "notes": "Everything else holds: the From-restricted premise conjunct for \"Keepers from Aelmere\", the bare-kind Theme filler \"letter\" in a generic clause, Possession for the of-genitive, and 0.9/0.9 on the bare-plural generic rule."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000030",
+   "sentence": "Villages on this coast do not keep lanterns.",
+   "parse": [
+    "(: coast_type (Member sk_coast_1 coast) (STV 1.0 0.99))",
+    "(: villages_no_keep_lanterns (Implication (And (Member $x village) (On $x sk_coast_1)) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) $x) (Theme (sk_keep $x) lantern))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000030",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Negated bare-plural verbal generic at strength 0.0 / confidence 0.9 with the PP restriction as a premise conjunct, entity-attached (On ...) rather than LocatedIn, the presupposed demonstrative 'this coast' typed at top level, and no QuantifierPhrase for plain 'not' — all as specified."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep-000031",
+   "sentence": "Aelmere keeps lanterns.",
+   "parse": [
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: keep_ev (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: keep_ag (Agent sk_keep_1 aelmere) (STV 1.0 0.99))",
+    "(: keep_th (Theme sk_keep_1 lantern) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000031",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name-only proper noun with no invented type atom, transitive subject as Agent, 'keep' correctly Theme, bare-plural object left as the bare kind filler for a non-specific object, and no status atom for the unmarked habitual - all as specified."
+   },
+   "adjudication": null
+  }
+ ]
+}

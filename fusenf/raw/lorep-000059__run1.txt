@@ -1,0 +1,5 @@
+(: spires_grp (GroupOf sk_spire_1 spire) (STV 1.0 0.99))
+(: skycat_carry_rule (Implication (Member $x sky_cat) (And (Member (sk_carry $x) carry) (Agent (sk_carry $x) $x) (Theme (sk_carry $x) (sk_nightmoth $x)) (Member (sk_nightmoth $x) nightmoth) (Goal (sk_carry $x) sk_spire_1) (In (sk_carry $x) flight))) (STV 0.5 0.9))
+(: skycat_carry_q (QuantifierPhrase sky_cat carry "sometimes") (STV 1.0 0.99))
+(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))

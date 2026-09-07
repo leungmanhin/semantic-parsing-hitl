@@ -1,0 +1,39 @@
+{
+ "id": "L3-05",
+ "rule": "III — The central pool",
+ "texts": [
+  "The Stilllight Station draws mire-essence from the central pool."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000025",
+   "sentence": "The Stilllight Station draws mire-essence from the central pool.",
+   "parse": [
+    "(: ss_station_type (Member stilllight_station station) (STV 1.0 0.99))",
+    "(: ss_station_name (Name stilllight_station \"Stilllight Station\") (STV 1.0 0.99))",
+    "(: e1_draw (Member sk_draw_1 draw) (STV 1.0 0.99))",
+    "(: e1_agent (Agent sk_draw_1 stilllight_station) (STV 1.0 0.99))",
+    "(: e1_theme (Theme sk_draw_1 mire_essence) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: pool_type (Member sk_pool_1 pool) (STV 1.0 0.99))",
+    "(: pool_central (Member sk_pool_1 central) (STV 1.0 0.99))",
+    "(: e1_source (Source sk_draw_1 sk_pool_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000025",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Multi-word name plus its kind atom, mire_essence genus, Source oblique on the drawing event and the no-status habitual present all follow the instruction set; 'the central pool' as witness + separate property atom is the licensed non-fusing split for a non-classifying modifier."
+   },
+   "adjudication": null
+  }
+ ]
+}

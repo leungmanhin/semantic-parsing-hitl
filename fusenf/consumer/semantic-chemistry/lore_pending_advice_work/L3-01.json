@@ -1,0 +1,60 @@
+{
+ "id": "L3-01",
+ "rule": "III — The Council",
+ "texts": [
+  "The Council has seven elders.",
+  "Council members serve permanently."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000022",
+   "sentence": "The Council has seven elders.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: council_have (Member sk_have_1 have) (STV 1.0 0.99))",
+    "(: council_holder (Holder sk_have_1 sk_council_1) (STV 1.0 0.99))",
+    "(: council_theme (Theme sk_have_1 sk_group_1) (STV 1.0 0.99))",
+    "(: elders_group (GroupOf sk_group_1 elder) (STV 1.0 0.99))",
+    "(: elders_card (Cardinality sk_group_1 7) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000022",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" correctly takes the capitalized-common-noun default (typed, no Name atom), and the possession verb takes Holder/Theme with the counted group riding the object; bare present correctly gets no status atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000023",
+   "sentence": "Council members serve permanently.",
+   "parse": [
+    "(: cm_genus (Inheritance council_member member) (STV 1.0 0.99))",
+    "(: cm_serve_rule (Implication (Member $x council_member) (And (Member (sk_serve $x) serve) (Agent (sk_serve $x) $x) (Duration (sk_serve $x) permanently))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000023",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural verbal generic as a 0.9/0.9 distributing rule with a Skolem event, no QuantifierPhrase (no quantifier word), compound kind council_member with genus member and the noun modifier unexposed, and 'permanently' in the surface-form Duration slot rather than Manner all follow the instruction set. Fusing 'council member' rather than routing it through PartOf as a group member is the one boundary the compound-vs-part test leaves close, but the generic subject needs a kind symbol, so the fusion reads as licensed."
+   },
+   "adjudication": null
+  }
+ ]
+}

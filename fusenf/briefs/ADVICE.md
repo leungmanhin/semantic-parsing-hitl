@@ -12,7 +12,8 @@ the web.
 
 ## Input
 
-Each assigned work file `fusenf/consumer/semantic-chemistry/lore_advice_work/<item-id>.json` is one source item:
+Each assigned work file `fusenf/consumer/semantic-chemistry/<cycle>_advice_work/<item-id>.json` (the
+directory is the one named in your task; `<cycle>` is its stem, e.g. `lore` or `lore_pending`) is one source item:
 `{"id", "rule", "texts", "fields": [...]}` — `fields` has one entry per TEXT sentence
 (the `rule` string is context only: the consumer does NOT parse rules) with:
 
@@ -42,7 +43,8 @@ handles poorly (e.g. multi-event conditions packed into participles).
 ## Output
 
 For each assigned item write ONE file
-`/home/manhin/Dev/semantic-parsing-hitl/fusenf/consumer/semantic-chemistry/lore_advice/<item-id>__advice.json`
+`/home/manhin/Dev/semantic-parsing-hitl/fusenf/consumer/semantic-chemistry/<cycle>_advice/<item-id>__advice.json`
+(the sibling of your work-file directory: work files under `<cycle>_advice_work/` → results under `<cycle>_advice/`)
 (`<item-id>` exactly as in the work file, e.g. `L1-01`):
 
     {"id": "<item-id>", "texts": ["<comment for texts[0]>", …]}

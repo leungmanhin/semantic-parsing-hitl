@@ -1,0 +1,37 @@
+{
+ "id": "L5-02",
+ "rule": "V — What wraiths are",
+ "texts": [
+  "Every Keeper believes that the dead of the storm-surge became wraiths."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000040",
+   "sentence": "Every Keeper believes that the dead of the storm-surge became wraiths.",
+   "parse": [
+    "(: dead_group (GroupOf sk_group_1 dead) (STV 1.0 0.99))",
+    "(: storm_surge_type (Member sk_storm_surge_1 storm_surge) (STV 1.0 0.99))",
+    "(: storm_surge_genus (Inheritance storm_surge surge) (STV 1.0 0.99))",
+    "(: keeper_believe_rule (Implication (Member $k keeper) (And (Member (sk_believe $k) believe) (Experiencer (sk_believe $k) $k) (Theme (sk_believe $k) (And (Possession sk_group_1 sk_storm_surge_1) (Member sk_become_1 become) (Patient sk_become_1 sk_group_1) (Past sk_become_1) (Member sk_wraith_1 wraith) (Experiencer sk_wraith_1 sk_group_1) (Result sk_become_1 sk_wraith_1) (Implication (PartOf $x sk_group_1) (Member $x wraith)))))) (STV 1.0 0.9))",
+    "(: keeper_believe_q (QuantifierPhrase keeper believe \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000040",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A 'casualties / victims of <event>' of-phrase ('the dead of the storm-surge'): it is not a part-whole, not a genuine possessive, not a partitive (no cardinal or proportional amount, and the dead are not members of the surge), and not a nominalization's object of-phrase (no underlying verb takes the surge as its object), so the instruction set licenses no head for the relation — the parse falls back on the opaque Possession, which the of-phrase rules neither license nor bar for this case."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Seal projection follows the interim table exactly — the definite GroupOf/Member typing and the storm_surge genus project to top level while the of-link, the become/Result bundle, its Past and the per-member distribution rule all stay sealed — and the sealed rule's variable ($x) is fresh against the matrix rule's ($k). The change-of-kind 'became' takes the mandated Patient-subject + reified-state + Result shape with the flat half correctly replaced by the plural-group per-member rule."
+   },
+   "adjudication": null
+  }
+ ]
+}

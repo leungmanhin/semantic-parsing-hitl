@@ -1,0 +1,33 @@
+{
+ "id": "L2-10",
+ "rule": "II — Bevin Coombe",
+ "texts": [
+  "The Stilllight Station is a hard station."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000006",
+   "sentence": "The Stilllight Station is a hard station.",
+   "parse": [
+    "(: stilllight_station_name (Name stilllight_station \"Stilllight Station\") (STV 1.0 0.99))",
+    "(: stilllight_station_kind (Member stilllight_station station) (STV 1.0 0.99))",
+    "(: stilllight_station_hard (Member stilllight_station hard) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000006",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The multi-word name gets one opaque symbol plus a single Name atom, with the kind word inside the name stated as one ordinary type atom, which also serves the copular predicate. \"hard station\" is split rather than fused, matching the bar on fusing incidental/evaluative description."
+   },
+   "adjudication": null
+  }
+ ]
+}

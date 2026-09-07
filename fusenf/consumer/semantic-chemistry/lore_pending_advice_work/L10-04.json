@@ -1,0 +1,69 @@
+{
+ "id": "L10-04",
+ "rule": "X — The Hollows through the year",
+ "texts": [
+  "Keepers at the Hollows often tend lanterns in pairs.",
+  "Keepers at the Hollows meet each week at a shed at the forest edge."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000086",
+   "sentence": "Keepers at the Hollows often tend lanterns in pairs.",
+   "parse": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: keeper_tend_rule (Implication (And (Member $x keeper) (LocatedIn $x hollows)) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Patient (sk_tend $x) lantern) (In (sk_tend $x) pair))) (STV 0.8 0.9))",
+    "(: keeper_tend_q (QuantifierPhrase keeper tend \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000086",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "distributive adverbial 'in pairs' / 'in threes' (the agents act N at a time) — no licensed carrier for the quantity; the preposition-named oblique records the surface preposition but not the two-at-a-time reading, and Cardinality applies only to a group referent, not to an event's grouping of participants"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Hollows' is treated as the capitalized-plural-label Name-only individual with no invented type atom, and the restrictive PP on the kind subject becomes a premise conjunct with 'at' routed to containment LocatedIn — both as written. Frequency 0.8 for 'often', the companion, and the bare-kind object in a habitual clause are also per doctrine."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000087",
+   "sentence": "Keepers at the Hollows meet each week at a shed at the forest edge.",
+   "parse": [
+    "(: lorep87_hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lorep87_group (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: lorep87_group_loc (LocatedIn sk_group_1 hollows) (STV 1.0 0.99))",
+    "(: lorep87_meet (Member sk_meet_1 meet) (STV 1.0 0.99))",
+    "(: lorep87_meet_agent (Agent sk_meet_1 sk_group_1) (STV 1.0 0.99))",
+    "(: lorep87_meet_freq (Every sk_meet_1 1 week) (STV 1.0 0.99))",
+    "(: lorep87_shed_type (Member sk_shed_1 shed) (STV 1.0 0.99))",
+    "(: lorep87_meet_loc (Location sk_meet_1 sk_shed_1) (STV 1.0 0.99))",
+    "(: lorep87_forest_type (Member sk_forest_1 forest) (STV 1.0 0.99))",
+    "(: lorep87_edge_type (Member sk_edge_1 edge) (STV 1.0 0.99))",
+    "(: lorep87_edge_partof (PartOf sk_edge_1 sk_forest_1) (STV 1.0 0.99))",
+    "(: lorep87_shed_loc (LocatedIn sk_shed_1 sk_edge_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000087",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Hollows\" correctly takes the capitalized-plural Name-only treatment (Name atom, no GroupOf, no invented type atom); \"meet\" is collective so the group event with no per-member rule and no tense (habitual + Every) is right, and \"the forest edge\" follows the N+N possessor/part route (Member edge + PartOf), not a fused compound."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+(: station_type (Member sk_station_1 station) (STV 1.0 0.99))
+(: senkeeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))
+(: senkeeper_mod (Inheritance senior_keeper senior) (STV 1.0 0.99))
+(: apprentice_walk_rule (Implication (Member $x apprentice) (And (Member (sk_walk $x) walk) (Agent (sk_walk $x) $x) (Goal (sk_walk $x) sk_station_1) (CoAgent (sk_walk $x) (sk_keeper $x)) (Member (sk_keeper $x) senior_keeper))) (STV 1.0 0.9))
+(: apprentice_walk_q (QuantifierPhrase apprentice walk "each") (STV 1.0 0.99))

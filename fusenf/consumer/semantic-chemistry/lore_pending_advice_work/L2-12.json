@@ -1,0 +1,82 @@
+{
+ "id": "L2-12",
+ "rule": "II — Tending a station",
+ "texts": [
+  "Night shifts begin at sundown.",
+  "Each Keeper checks the lantern at midnight.",
+  "Each Keeper checks the lantern at the third watch."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep-000007",
+   "sentence": "Night shifts begin at sundown.",
+   "parse": [
+    "(: lp7_ns_genus (Inheritance night_shift shift) (STV 1.0 0.99))",
+    "(: lp7_rule (Implication (Member $x night_shift) (And (Member (sk_begin $x) begin) (Patient (sk_begin $x) $x) (Time (sk_begin $x) sundown))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000007",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the \"The harvest begins in September\" model exactly: begin reified with the shift as Patient, no tense atom (a bare present with an unanchored adjunct and no TODAY), and night_shift fused with genus shift and the noun modifier night correctly left unexposed. \"sundown\" is not in the enumerated day-part list (dawn/noon/dusk/night) but a named time staying a bare Time symbol is the licensed route."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep-000008",
+   "sentence": "Each Keeper checks the lantern at midnight.",
+   "parse": [
+    "(: lantern_1_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: keeper_check_rule (Implication (Member $x keeper) (And (Member (sk_check $x) check) (Agent (sk_check $x) $x) (Theme (sk_check $x) sk_lantern_1) (Time (sk_check $x) midnight))) (STV 1.0 0.9))",
+    "(: keeper_check_q (QuantifierPhrase keeper check \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000008",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Explicit universal 'each N V' correctly takes the distributing rule (1.0/0.9) with its mandatory QuantifierPhrase companion, 'check' takes Agent/Theme per the progressive test and the evaluate-verb line, and the definite 'the lantern' is a top-level-asserted shared constant. 'midnight' is emitted as a bare named-time constant, matching the listed day-part constants (dawn/noon/dusk/night) rather than the 24-hour clock term; no 'Every' cycle atom is emitted, correctly, since no 'every' sits on the time slot."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep-000009",
+   "sentence": "Each Keeper checks the lantern at the third watch.",
+   "parse": [
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: keeper_check_rule (Implication (Member $x keeper) (And (Member (sk_check $x) check) (Agent (sk_check $x) $x) (Theme (sk_check $x) sk_lantern_1) (Time (sk_check $x) third_watch))) (STV 1.0 0.9))",
+    "(: keeper_check_q (QuantifierPhrase keeper check \"each\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep-000009",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Explicit universal 'each Keeper' correctly takes the distributing event rule (non-modal generic) at 1.0/0.9 with its QuantifierPhrase companion, the definite 'the lantern' projected at top level as a shared constant, and 'check' correctly Theme with an unmarked habitual. 'the third watch' as the bare Time constant third_watch follows the ordinal-named-period precedent (first_quarter), and no Every-cycle atom is due since no 'every' wording is present."
+   },
+   "adjudication": null
+  }
+ ]
+}
