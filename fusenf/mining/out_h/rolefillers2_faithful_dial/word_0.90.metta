@@ -3,8 +3,8 @@
 ;;   rolefiller2_signals_faithful_<mode>_<cut>.jsonl   (the gated slot pairs)
 ;;   rolefiller2_slotdist_faithful_<mode>_<cut>.jsonl  (every compared slot's distribution over clusters)
 ;;
-;; BLOCK: word texts @ cluster cosine 0.85 — the adopted setting. The other 9 mode × cut blocks of the dial:
-;;   rolefillers2_faithful_dial/<mode>_<cut>.metta
+;; BLOCK: word texts @ cluster cosine 0.90 — one point of the dial; the adopted setting (word @ 0.85) is
+;;   ../rolefillers2_faithful.metta
 ;;
 ;; PARAMETERS (choices the paper leaves open; disclosed)
 ;;   substrate       canonical_substrate.jsonl (2302 records); out_h/valuations_occ.jsonl (8586 filler occurrences)
@@ -42,334 +42,292 @@
 ;; ==================== POOLED ROLE LEVEL: 22 heads at n >= 14, 231 pairs, 0 pass the gate ====================
 ;; (the paper's 'Agent2 ~ Agent' reading: one head's fillers pooled over every predicate, against every other head's)
 
-;; [pooled role]  Agent ~ Experiencer   n 888 / 261   gate: FAIL
-;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; JSD: 0.65   shared clusters: 72 e.g. {person, people} {thing, things} {child, children, kid, kids}
-(Agent $e $x)
-(Experiencer $e $x)
-
 ;; [pooled role]  Experiencer ~ Patient   n 261 / 455   gate: FAIL
 ;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
 ;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.664   shared clusters: 96 e.g. {person, people} {thing, things} {door, door, open, door, unlocked}
+;; JSD: 0.695   shared clusters: 90 e.g. {person, people} {thing, things} {door}
 (Experiencer $e $x)
 (Patient $e $x)
+
+;; [pooled role]  Agent ~ Experiencer   n 888 / 261   gate: FAIL
+;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
+;; B fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
+;; JSD: 0.719   shared clusters: 68 e.g. {person, people} {thing, things} {child, kid}
+(Agent $e $x)
+(Experiencer $e $x)
 
 ;; [pooled role]  Patient ~ Theme   n 455 / 594   gate: FAIL
 ;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
 ;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.746   shared clusters: 79 e.g. {thing, things} {person, people} {movie, film}
+;; JSD: 0.775   shared clusters: 70 e.g. {thing, things} {person, people} {movie, film}
 (Patient $e $x)
 (Theme $e $x)
 
 ;; [pooled role]  Agent ~ Patient   n 888 / 455   gate: FAIL
 ;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
 ;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.762   shared clusters: 72 e.g. {person, people} {thing, things} {Brian Packham, Carl Fenton, Colin Richardson, O. R. Woodcock, …}
+;; JSD: 0.795   shared clusters: 64 e.g. {person, people} {thing, things} {child, kid}
 (Agent $e $x)
 (Patient $e $x)
 
 ;; [pooled role]  Agent ~ Theme   n 888 / 594   gate: FAIL
 ;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
 ;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.765   shared clusters: 81 e.g. {person, people} {thing, things} {company, corporation}
+;; JSD: 0.82   shared clusters: 62 e.g. {person, people} {thing, things} {company}
 (Agent $e $x)
 (Theme $e $x)
+
+;; [pooled role]  Experiencer ~ Result   n 261 / 43   gate: FAIL
+;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
+;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
+;; JSD: 0.821   shared clusters: 28 e.g. {bad} {red} {black}
+(Experiencer $e $x)
+(Result $e $x)
 
 ;; [pooled role]  Experiencer ~ Theme   n 261 / 594   gate: FAIL
 ;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
 ;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.776   shared clusters: 59 e.g. {thing, things} {person, people} {child, children, kid, kids}
+;; JSD: 0.821   shared clusters: 47 e.g. {thing, things} {person, people} {child, kid}
 (Experiencer $e $x)
 (Theme $e $x)
 
 ;; [pooled role]  Agent ~ Recipient   n 888 / 29   gate: FAIL
 ;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
 ;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
-;; JSD: 0.805   shared clusters: 13 e.g. {person, people} {company, corporation} {child, children, kid, kids}
+;; JSD: 0.833   shared clusters: 10 e.g. {person, people} {company} {child, kid}
 (Agent $e $x)
+(Recipient $e $x)
+
+;; [pooled role]  Beneficiary ~ Recipient   n 14 / 29   gate: FAIL
+;; A fillers: Mr. Morel ×2, Nelson ×2, CIA, Olivia, archaeologist, band
+;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
+;; JSD: 0.86   shared clusters: 2 e.g. {person, people} {child, kid}
+(Beneficiary $e $x)
 (Recipient $e $x)
 
 ;; [pooled role]  Experiencer ~ Holder   n 261 / 48   gate: FAIL
 ;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
 ;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
-;; JSD: 0.809   shared clusters: 16 e.g. {thing, things} {Gustavo, Alberto, Diego, Rodrigo, …} {Boris, Ivan, Dmitri, Rasputin}
+;; JSD: 0.862   shared clusters: 14 e.g. {thing, things} {house, home} {place, places}
 (Experiencer $e $x)
-(Holder $e $x)
-
-;; [pooled role]  Experiencer ~ Result   n 261 / 43   gate: FAIL
-;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; JSD: 0.812   shared clusters: 29 e.g. {bad, bad, matter, bad, problem} {black, white} {red}
-(Experiencer $e $x)
-(Result $e $x)
-
-;; [pooled role]  Holder ~ Patient   n 48 / 455   gate: FAIL
-;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
-;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.852   shared clusters: 14 e.g. {thing, things} {movie, film} {room, rooms}
-(Holder $e $x)
-(Patient $e $x)
-
-;; [pooled role]  Agent ~ Holder   n 888 / 48   gate: FAIL
-;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
-;; JSD: 0.857   shared clusters: 17 e.g. {thing, things} {Gustavo, Alberto, Diego, Rodrigo, …} {Hanako, Mie Sonozaki, Soichiro Akizuki, Mariko, …}
-(Agent $e $x)
 (Holder $e $x)
 
 ;; [pooled role]  Goal ~ Source   n 93 / 47   gate: FAIL
 ;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
 ;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
-;; JSD: 0.857   shared clusters: 8 e.g. {town, towns} {here} {school, education}
+;; JSD: 0.864   shared clusters: 7 e.g. {town} {here} {school}
 (Goal $e $x)
 (Source $e $x)
 
-;; [pooled role]  Goal ~ Location   n 93 / 210   gate: FAIL
-;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; B fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; JSD: 0.859   shared clusters: 13 e.g. {house, home, houses} {here} {Eskisehir, Giresun}
-(Goal $e $x)
-(Location $e $x)
-
-;; [pooled role]  Beneficiary ~ Recipient   n 14 / 29   gate: FAIL
-;; A fillers: Mr. Morel ×2, Nelson ×2, CIA, Olivia, archaeologist, band
-;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
-;; JSD: 0.86   shared clusters: 2 e.g. {person, people} {child, children, kid, kids}
-(Beneficiary $e $x)
-(Recipient $e $x)
-
-;; [pooled role]  Experiencer ~ Recipient   n 261 / 29   gate: FAIL
-;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
-;; JSD: 0.866   shared clusters: 8 e.g. {person, people} {child, children, kid, kids} {man, guy}
-(Experiencer $e $x)
-(Recipient $e $x)
+;; [pooled role]  Holder ~ Patient   n 48 / 455   gate: FAIL
+;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
+;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
+;; JSD: 0.871   shared clusters: 11 e.g. {thing, things} {movie, film} {room, rooms}
+(Holder $e $x)
+(Patient $e $x)
 
 ;; [pooled role]  Holder ~ Theme   n 48 / 594   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
 ;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.867   shared clusters: 16 e.g. {thing, things} {house, home, houses} {food, eat}
+;; JSD: 0.887   shared clusters: 13 e.g. {thing, things} {house, home} {food}
 (Holder $e $x)
+(Theme $e $x)
+
+;; [pooled role]  Stimulus ~ Theme   n 34 / 594   gate: FAIL
+;; A fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
+;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
+;; JSD: 0.887   shared clusters: 8 e.g. {thing, things} {child, kid} {music}
+(Stimulus $e $x)
 (Theme $e $x)
 
 ;; [pooled role]  Patient ~ Result   n 455 / 43   gate: FAIL
 ;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
 ;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; JSD: 0.878   shared clusters: 28 e.g. {bad, bad, matter, bad, problem} {black, white} {red}
+;; JSD: 0.888   shared clusters: 27 e.g. {bad} {black} {red}
 (Patient $e $x)
 (Result $e $x)
 
-;; [pooled role]  Stimulus ~ Theme   n 34 / 594   gate: FAIL
-;; A fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
-;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.881   shared clusters: 8 e.g. {thing, things} {child, children, kid, kids} {food, eat}
-(Stimulus $e $x)
-(Theme $e $x)
-
-;; [pooled role]  Agent ~ Beneficiary   n 888 / 14   gate: FAIL
-;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: Mr. Morel ×2, Nelson ×2, CIA, Olivia, archaeologist, band
-;; JSD: 0.886   shared clusters: 5 e.g. {person, people} {child, children, kid, kids} {Olivia, Sophia}
-(Agent $e $x)
-(Beneficiary $e $x)
-
-;; [pooled role]  Holder ~ Source   n 48 / 47   gate: FAIL
-;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
-;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
-;; JSD: 0.89   shared clusters: 4 e.g. {town, towns} {room, rooms} {place, places}
-(Holder $e $x)
-(Source $e $x)
-
-;; [pooled role]  Location ~ Source   n 210 / 47   gate: FAIL
-;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
-;; JSD: 0.89   shared clusters: 9 e.g. {here} {town, towns} {place, places}
+;; [pooled role]  Goal ~ Location   n 93 / 210   gate: FAIL
+;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
+;; B fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
+;; JSD: 0.89   shared clusters: 11 e.g. {house, home} {here} {town}
+(Goal $e $x)
 (Location $e $x)
-(Source $e $x)
 
 ;; [pooled role]  Goal ~ Holder   n 93 / 48   gate: FAIL
 ;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
 ;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
-;; JSD: 0.891   shared clusters: 5 e.g. {house, home, houses} {town, towns} {place, places}
+;; JSD: 0.891   shared clusters: 5 e.g. {house, home} {town} {place, places}
 (Goal $e $x)
 (Holder $e $x)
 
-;; [pooled role]  Before ~ Time   n 16 / 107   gate: FAIL
-;; A fillers: cease ×2, expand ×2, move back ×2, take over ×2, Memorial Day, break out
-;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
-;; JSD: 0.892   shared clusters: 1 e.g. {now, today, current}
-(Before $e $x)
-(Time $e $x)
+;; [pooled role]  Agent ~ Beneficiary   n 888 / 14   gate: FAIL
+;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
+;; B fillers: Mr. Morel ×2, Nelson ×2, CIA, Olivia, archaeologist, band
+;; JSD: 0.895   shared clusters: 4 e.g. {person, people} {child, kid} {customer}
+(Agent $e $x)
+(Beneficiary $e $x)
 
-;; [pooled role]  Holder ~ Stimulus   n 48 / 34   gate: FAIL
-;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
-;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
-;; JSD: 0.892   shared clusters: 3 e.g. {thing, things} {author, writer, novelist} {food, eat}
-(Holder $e $x)
-(Stimulus $e $x)
-
-;; [pooled role]  Manner ~ Result   n 115 / 43   gate: FAIL
-;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; JSD: 0.895   shared clusters: 5 e.g. {well, on, there, be} {direct, straight, directly} {together, come together}
-(Manner $e $x)
-(Result $e $x)
+;; [pooled role]  Experiencer ~ Recipient   n 261 / 29   gate: FAIL
+;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
+;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
+;; JSD: 0.898   shared clusters: 4 e.g. {person, people} {child, kid} {man, guy}
+(Experiencer $e $x)
+(Recipient $e $x)
 
 ;; [pooled role]  Goal ~ Patient   n 93 / 455   gate: FAIL
 ;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
 ;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.896   shared clusters: 17 e.g. {tree, trees} {house, home, houses} {room, rooms}
+;; JSD: 0.906   shared clusters: 16 e.g. {tree, trees} {house, home} {room, rooms}
 (Goal $e $x)
 (Patient $e $x)
 
-;; [pooled role]  Location ~ Patient   n 210 / 455   gate: FAIL
+;; [pooled role]  Location ~ Source   n 210 / 47   gate: FAIL
 ;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.9   shared clusters: 26 e.g. {door, door, open, door, unlocked} {table} {hotel}
+;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
+;; JSD: 0.906   shared clusters: 7 e.g. {here} {town} {place, places}
 (Location $e $x)
-(Patient $e $x)
-
-;; [pooled role]  Experiencer ~ Goal   n 261 / 93   gate: FAIL
-;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; B fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; JSD: 0.905   shared clusters: 15 e.g. {house, home, houses} {place, places} {Linda, Amanda, Loren, Dora Smith, …}
-(Experiencer $e $x)
-(Goal $e $x)
+(Source $e $x)
 
 ;; [pooled role]  Stimulus ~ To   n 34 / 46   gate: FAIL
 ;; A fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
 ;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
-;; JSD: 0.907   shared clusters: 4 e.g. {thing, things} {practice} {action, act, actions}
+;; JSD: 0.907   shared clusters: 4 e.g. {thing, things} {practice} {music}
 (Stimulus $e $x)
 (To $e $x)
 
-;; [pooled role]  Theme ~ To   n 594 / 46   gate: FAIL
-;; A fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
-;; JSD: 0.908   shared clusters: 12 e.g. {thing, things} {talk, conversation, discussion} {music}
-(Theme $e $x)
-(To $e $x)
+;; [pooled role]  Holder ~ Source   n 48 / 47   gate: FAIL
+;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
+;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
+;; JSD: 0.911   shared clusters: 3 e.g. {town} {room, rooms} {place, places}
+(Holder $e $x)
+(Source $e $x)
+
+;; [pooled role]  Location ~ Patient   n 210 / 455   gate: FAIL
+;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
+;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
+;; JSD: 0.911   shared clusters: 23 e.g. {door} {table} {hotel}
+(Location $e $x)
+(Patient $e $x)
+
+;; [pooled role]  Before ~ Time   n 16 / 107   gate: FAIL
+;; A fillers: cease ×2, expand ×2, move back ×2, take over ×2, Memorial Day, break out
+;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
+;; JSD: 0.912   shared clusters: 1 e.g. {now, current}
+(Before $e $x)
+(Time $e $x)
+
+;; [pooled role]  Beneficiary ~ Experiencer   n 14 / 261   gate: FAIL
+;; A fillers: Mr. Morel ×2, Nelson ×2, CIA, Olivia, archaeologist, band
+;; B fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
+;; JSD: 0.914   shared clusters: 2 e.g. {person, people} {child, kid}
+(Beneficiary $e $x)
+(Experiencer $e $x)
+
+;; [pooled role]  Holder ~ Stimulus   n 48 / 34   gate: FAIL
+;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
+;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
+;; JSD: 0.917   shared clusters: 2 e.g. {thing, things} {food}
+(Holder $e $x)
+(Stimulus $e $x)
+
+;; [pooled role]  Patient ~ Stimulus   n 455 / 34   gate: FAIL
+;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
+;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
+;; JSD: 0.918   shared clusters: 5 e.g. {thing, things} {child, kid} {food}
+(Patient $e $x)
+(Stimulus $e $x)
 
 ;; [pooled role]  Agent ~ Stimulus   n 888 / 34   gate: FAIL
 ;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
 ;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
-;; JSD: 0.91   shared clusters: 6 e.g. {thing, things} {child, children, kid, kids} {Jessica, Beth}
+;; JSD: 0.919   shared clusters: 6 e.g. {thing, things} {child, kid} {Jessica}
 (Agent $e $x)
+(Stimulus $e $x)
+
+;; [pooled role]  Experiencer ~ Goal   n 261 / 93   gate: FAIL
+;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
+;; B fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
+;; JSD: 0.919   shared clusters: 13 e.g. {house, home} {place, places} {school}
+(Experiencer $e $x)
+(Goal $e $x)
+
+;; [pooled role]  Theme ~ To   n 594 / 46   gate: FAIL
+;; A fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
+;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
+;; JSD: 0.919   shared clusters: 9 e.g. {thing, things} {talk, conversation} {music}
+(Theme $e $x)
+(To $e $x)
+
+;; [pooled role]  Agent ~ Holder   n 888 / 48   gate: FAIL
+;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
+;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
+;; JSD: 0.922   shared clusters: 13 e.g. {thing, things} {Wilson, wilson} {Karen}
+(Agent $e $x)
+(Holder $e $x)
+
+;; [pooled role]  Patient ~ Recipient   n 455 / 29   gate: FAIL
+;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
+;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
+;; JSD: 0.925   shared clusters: 5 e.g. {person, people} {child, kid} {city, cities}
+(Patient $e $x)
+(Recipient $e $x)
+
+;; [pooled role]  Experiencer ~ Stimulus   n 261 / 34   gate: FAIL
+;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
+;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
+;; JSD: 0.926   shared clusters: 3 e.g. {thing, things} {child, kid} {difficult, difficulty}
+(Experiencer $e $x)
 (Stimulus $e $x)
 
 ;; [pooled role]  Recipient ~ Theme   n 29 / 594   gate: FAIL
 ;; A fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
 ;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.912   shared clusters: 9 e.g. {person, people} {child, children, kid, kids} {Margaret Fleming, Martha, Anne, Marie}
+;; JSD: 0.928   shared clusters: 7 e.g. {person, people} {child, kid} {company}
 (Recipient $e $x)
 (Theme $e $x)
-
-;; [pooled role]  Experiencer ~ Location   n 261 / 210   gate: FAIL
-;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; B fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; JSD: 0.913   shared clusters: 19 e.g. {Europe, Western Europe} {house, home, houses} {place, places}
-(Experiencer $e $x)
-(Location $e $x)
-
-;; [pooled role]  Beneficiary ~ Experiencer   n 14 / 261   gate: FAIL
-;; A fillers: Mr. Morel ×2, Nelson ×2, CIA, Olivia, archaeologist, band
-;; B fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; JSD: 0.914   shared clusters: 2 e.g. {person, people} {child, children, kid, kids}
-(Beneficiary $e $x)
-(Experiencer $e $x)
 
 ;; [pooled role]  CoAgent ~ Holder   n 16 / 48   gate: FAIL
 ;; A fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
 ;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
-;; JSD: 0.914   shared clusters: 1 e.g. {Karen, Ken}
+;; JSD: 0.932   shared clusters: 1 e.g. {Karen}
 (CoAgent $e $x)
 (Holder $e $x)
 
-;; [pooled role]  Patient ~ Stimulus   n 455 / 34   gate: FAIL
-;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
-;; JSD: 0.918   shared clusters: 5 e.g. {thing, things} {child, children, kid, kids} {knock}
-(Patient $e $x)
-(Stimulus $e $x)
-
-;; [pooled role]  Experiencer ~ Stimulus   n 261 / 34   gate: FAIL
+;; [pooled role]  Experiencer ~ Location   n 261 / 210   gate: FAIL
 ;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
-;; JSD: 0.921   shared clusters: 4 e.g. {thing, things} {child, children, kid, kids} {difficult, hard, difficulty, harder}
+;; B fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
+;; JSD: 0.932   shared clusters: 15 e.g. {Europe, Western Europe} {house, home} {place, places}
 (Experiencer $e $x)
-(Stimulus $e $x)
-
-;; [pooled role]  Patient ~ Recipient   n 455 / 29   gate: FAIL
-;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
-;; JSD: 0.921   shared clusters: 6 e.g. {person, people} {child, children, kid, kids} {big, large, huge, massive, …}
-(Patient $e $x)
-(Recipient $e $x)
-
-;; [pooled role]  Location ~ Theme   n 210 / 594   gate: FAIL
-;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.925   shared clusters: 24 e.g. {house, home, houses} {Santiago, Havana} {Gareccio, Bologna}
 (Location $e $x)
-(Theme $e $x)
 
 ;; [pooled role]  Holder ~ Location   n 48 / 210   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
 ;; B fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; JSD: 0.927   shared clusters: 6 e.g. {town, towns} {house, home, houses} {place, places}
+;; JSD: 0.935   shared clusters: 5 e.g. {town} {house, home} {place, places}
 (Holder $e $x)
 (Location $e $x)
 
-;; [pooled role]  Source ~ Theme   n 47 / 594   gate: FAIL
-;; A fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
+;; [pooled role]  Location ~ Theme   n 210 / 594   gate: FAIL
+;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
 ;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.927   shared clusters: 13 e.g. {view, views, common, view, public, view, …} {food, eat} {room, rooms}
-(Source $e $x)
+;; JSD: 0.938   shared clusters: 20 e.g. {house, home} {Gareccio} {group}
+(Location $e $x)
 (Theme $e $x)
-
-;; [pooled role]  Manner ~ Time   n 115 / 107   gate: FAIL
-;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
-;; JSD: 0.928   shared clusters: 4 e.g. {late, later, last} {immediately, instantly, right away} {back, backward, before, past}
-(Manner $e $x)
-(Time $e $x)
-
-;; [pooled role]  Patient ~ Source   n 455 / 47   gate: FAIL
-;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
-;; JSD: 0.93   shared clusters: 9 e.g. {tree, trees} {room, rooms} {cookie, cookie jar, cookies}
-(Patient $e $x)
-(Source $e $x)
-
-;; [pooled role]  Goal ~ Theme   n 93 / 594   gate: FAIL
-;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.933   shared clusters: 15 e.g. {house, home, houses} {Baltimore, Boston, Springfield} {room, rooms}
-(Goal $e $x)
-(Theme $e $x)
-
-;; [pooled role]  Agent ~ To   n 888 / 46   gate: FAIL
-;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
-;; JSD: 0.94   shared clusters: 7 e.g. {thing, things} {doctor, doctors} {George Allen, James David Edgar, Chuck Robb}
-(Agent $e $x)
-(To $e $x)
 
 ;; [pooled role]  Beneficiary ~ Patient   n 14 / 455   gate: FAIL
 ;; A fillers: Mr. Morel ×2, Nelson ×2, CIA, Olivia, archaeologist, band
 ;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.94   shared clusters: 2 e.g. {person, people} {child, children, kid, kids}
+;; JSD: 0.94   shared clusters: 2 e.g. {person, people} {child, kid}
 (Beneficiary $e $x)
 (Patient $e $x)
 
-;; [pooled role]  Agent ~ Goal   n 888 / 93   gate: FAIL
-;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; JSD: 0.942   shared clusters: 15 e.g. {Linda, Amanda, Loren, Dora Smith, …} {house, home, houses} {school, education}
-(Agent $e $x)
+;; [pooled role]  Goal ~ Theme   n 93 / 594   gate: FAIL
+;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
+;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
+;; JSD: 0.941   shared clusters: 14 e.g. {house, home} {room, rooms} {new}
 (Goal $e $x)
+(Theme $e $x)
 
 ;; [pooled role]  Holder ~ To   n 48 / 46   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
@@ -378,243 +336,152 @@
 (Holder $e $x)
 (To $e $x)
 
-;; [pooled role]  Agent ~ CoAgent   n 888 / 16   gate: FAIL
+;; [pooled role]  Agent ~ To   n 888 / 46   gate: FAIL
 ;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
-;; JSD: 0.944   shared clusters: 6 e.g. {family, families} {Linda, Amanda, Loren, Dora Smith, …} {cat, cats}
+;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
+;; JSD: 0.944   shared clusters: 6 e.g. {thing, things} {doctor} {George Allen, Chuck Robb}
 (Agent $e $x)
-(CoAgent $e $x)
+(To $e $x)
 
-;; [pooled role]  For ~ Theme   n 39 / 594   gate: FAIL
-;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
-;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.944   shared clusters: 7 e.g. {work, job} {portray, portrait, portrayal} {word, word processor}
-(For $e $x)
-(Theme $e $x)
+;; [pooled role]  Patient ~ Source   n 455 / 47   gate: FAIL
+;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
+;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
+;; JSD: 0.949   shared clusters: 6 e.g. {tree, trees} {room, rooms} {school}
+(Patient $e $x)
+(Source $e $x)
 
 ;; [pooled role]  Experiencer ~ Source   n 261 / 47   gate: FAIL
 ;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
 ;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
-;; JSD: 0.946   shared clusters: 9 e.g. {place, places} {room, rooms} {school, education}
+;; JSD: 0.95   shared clusters: 8 e.g. {place, places} {room, rooms} {school}
 (Experiencer $e $x)
 (Source $e $x)
-
-;; [pooled role]  Goal ~ Result   n 93 / 43   gate: FAIL
-;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; JSD: 0.948   shared clusters: 4 e.g. {dead, die, death, die down, …} {well, on, there, be} {big, large, huge, massive, …}
-(Goal $e $x)
-(Result $e $x)
-
-;; [pooled role]  Instrument ~ Patient   n 34 / 455   gate: FAIL
-;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
-;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.949   shared clusters: 7 e.g. {snow, snowstorm, deep, snow} {road, motorway, roads} {blood}
-(Instrument $e $x)
-(Patient $e $x)
 
 ;; [pooled role]  Instrument ~ Stimulus   n 34 / 34   gate: FAIL
 ;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
 ;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
-;; JSD: 0.95   shared clusters: 2 e.g. {food, eat} {crash}
+;; JSD: 0.95   shared clusters: 2 e.g. {food} {crash}
 (Instrument $e $x)
 (Stimulus $e $x)
 
-;; [pooled role]  Patient ~ To   n 455 / 46   gate: FAIL
-;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
-;; JSD: 0.95   shared clusters: 4 e.g. {thing, things} {bake, bakery, bread} {woman, lady, female, women}
-(Patient $e $x)
-(To $e $x)
-
-;; [pooled role]  Experiencer ~ Manner   n 261 / 115   gate: FAIL
-;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; JSD: 0.951   shared clusters: 9 e.g. {well, on, there, be} {direct, straight, directly} {late, later, last}
-(Experiencer $e $x)
+;; [pooled role]  Manner ~ Time   n 115 / 107   gate: FAIL
+;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
+;; JSD: 0.95   shared clusters: 2 e.g. {late, later} {immediately, instantly, right away}
 (Manner $e $x)
-
-;; [pooled role]  Experiencer ~ To   n 261 / 46   gate: FAIL
-;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
-;; JSD: 0.951   shared clusters: 3 e.g. {thing, things} {George Allen, James David Edgar, Chuck Robb} {doctor, doctors}
-(Experiencer $e $x)
-(To $e $x)
+(Time $e $x)
 
 ;; [pooled role]  For ~ Goal   n 39 / 93   gate: FAIL
 ;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
 ;; B fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; JSD: 0.951   shared clusters: 2 e.g. {bed} {happiness, happy, happily, joy}
+;; JSD: 0.951   shared clusters: 2 e.g. {bed} {happiness, joy}
 (For $e $x)
 (Goal $e $x)
-
-;; [pooled role]  Recipient ~ Source   n 29 / 47   gate: FAIL
-;; A fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
-;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
-;; JSD: 0.951   shared clusters: 3 e.g. {company, corporation} {local, locals} {big, large, huge, massive, …}
-(Recipient $e $x)
-(Source $e $x)
-
-;; [pooled role]  Instrument ~ Recipient   n 34 / 29   gate: FAIL
-;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
-;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
-;; JSD: 0.952   shared clusters: 2 e.g. {crop, rice crop, corn, crops} {big, large, huge, massive, …}
-(Instrument $e $x)
-(Recipient $e $x)
-
-;; [pooled role]  As ~ Manner   n 15 / 115   gate: FAIL
-;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
-;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; JSD: 0.953   shared clusters: 1 e.g. {direct, straight, directly}
-(As $e $x)
-(Manner $e $x)
 
 ;; [pooled role]  In ~ Stimulus   n 50 / 34   gate: FAIL
 ;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
 ;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
-;; JSD: 0.953   shared clusters: 2 e.g. {action, act, actions} {poetry}
+;; JSD: 0.953   shared clusters: 2 e.g. {action} {poetry}
 (In $e $x)
 (Stimulus $e $x)
 
 ;; [pooled role]  Beneficiary ~ Theme   n 14 / 594   gate: FAIL
 ;; A fillers: Mr. Morel ×2, Nelson ×2, CIA, Olivia, archaeologist, band
 ;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.954   shared clusters: 2 e.g. {person, people} {child, children, kid, kids}
+;; JSD: 0.954   shared clusters: 2 e.g. {person, people} {child, kid}
 (Beneficiary $e $x)
 (Theme $e $x)
-
-;; [pooled role]  CoAgent ~ Recipient   n 16 / 29   gate: FAIL
-;; A fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
-;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
-;; JSD: 0.954   shared clusters: 1 e.g. {Linda, Amanda, Loren, Dora Smith, …}
-(CoAgent $e $x)
-(Recipient $e $x)
-
-;; [pooled role]  Agent ~ Location   n 888 / 210   gate: FAIL
-;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; JSD: 0.956   shared clusters: 17 e.g. {Santiago, Havana} {house, home, houses} {sun, sunlight, direct sun}
-(Agent $e $x)
-(Location $e $x)
 
 ;; [pooled role]  Beneficiary ~ Stimulus   n 14 / 34   gate: FAIL
 ;; A fillers: Mr. Morel ×2, Nelson ×2, CIA, Olivia, archaeologist, band
 ;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
-;; JSD: 0.956   shared clusters: 1 e.g. {child, children, kid, kids}
+;; JSD: 0.956   shared clusters: 1 e.g. {child, kid}
 (Beneficiary $e $x)
 (Stimulus $e $x)
+
+;; [pooled role]  Instrument ~ Patient   n 34 / 455   gate: FAIL
+;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
+;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
+;; JSD: 0.956   shared clusters: 6 e.g. {road, roads} {snow} {food}
+(Instrument $e $x)
+(Patient $e $x)
+
+;; [pooled role]  Manner ~ Result   n 115 / 43   gate: FAIL
+;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
+;; JSD: 0.956   shared clusters: 3 e.g. {together} {effective, effectively} {back, backward}
+(Manner $e $x)
+(Result $e $x)
 
 ;; [pooled role]  Recipient ~ Stimulus   n 29 / 34   gate: FAIL
 ;; A fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
 ;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
-;; JSD: 0.957   shared clusters: 1 e.g. {child, children, kid, kids}
+;; JSD: 0.957   shared clusters: 1 e.g. {child, kid}
 (Recipient $e $x)
 (Stimulus $e $x)
 
-;; [pooled role]  Goal ~ Manner   n 93 / 115   gate: FAIL
-;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; JSD: 0.96   shared clusters: 3 e.g. {well, on, there, be} {happiness, happy, happily, joy} {back, backward, before, past}
-(Goal $e $x)
-(Manner $e $x)
-
-;; [pooled role]  Agent ~ As   n 888 / 15   gate: FAIL
+;; [pooled role]  Agent ~ CoAgent   n 888 / 16   gate: FAIL
 ;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
-;; JSD: 0.961   shared clusters: 5 e.g. {Jason Suecof, Nick De Caro, Robert Day, Matt Brown, …} {girl, girls} {Peter}
+;; B fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
+;; JSD: 0.958   shared clusters: 5 e.g. {family, families} {cat, cats} {Spain}
 (Agent $e $x)
-(As $e $x)
+(CoAgent $e $x)
+
+;; [pooled role]  Source ~ Theme   n 47 / 594   gate: FAIL
+;; A fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
+;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
+;; JSD: 0.958   shared clusters: 8 e.g. {view, views} {room, rooms} {eat}
+(Source $e $x)
+(Theme $e $x)
+
+;; [pooled role]  Patient ~ To   n 455 / 46   gate: FAIL
+;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
+;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
+;; JSD: 0.959   shared clusters: 2 e.g. {thing, things} {woman, female}
+(Patient $e $x)
+(To $e $x)
+
+;; [pooled role]  Agent ~ Goal   n 888 / 93   gate: FAIL
+;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
+;; B fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
+;; JSD: 0.961   shared clusters: 12 e.g. {house, home} {school} {campfire}
+(Agent $e $x)
+(Goal $e $x)
 
 ;; [pooled role]  As ~ Result   n 15 / 43   gate: FAIL
 ;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
 ;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; JSD: 0.963   shared clusters: 1 e.g. {direct, straight, directly}
+;; JSD: 0.963   shared clusters: 1 e.g. {straight}
 (As $e $x)
 (Result $e $x)
 
-;; [pooled role]  Instrument ~ Source   n 34 / 47   gate: FAIL
-;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
-;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
-;; JSD: 0.963   shared clusters: 2 e.g. {food, eat} {big, large, huge, massive, …}
-(Instrument $e $x)
-(Source $e $x)
-
-;; [pooled role]  Result ~ Source   n 43 / 47   gate: FAIL
-;; A fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
-;; JSD: 0.963   shared clusters: 2 e.g. {bat} {big, large, huge, massive, …}
-(Result $e $x)
-(Source $e $x)
-
-;; [pooled role]  Goal ~ Recipient   n 93 / 29   gate: FAIL
-;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
-;; JSD: 0.964   shared clusters: 2 e.g. {Linda, Amanda, Loren, Dora Smith, …} {big, large, huge, massive, …}
-(Goal $e $x)
-(Recipient $e $x)
-
-;; [pooled role]  Experiencer ~ Instrument   n 261 / 34   gate: FAIL
+;; [pooled role]  Experiencer ~ To   n 261 / 46   gate: FAIL
 ;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; B fillers: help ×3, barometer ×2, bike, blood, chalk, corn
-;; JSD: 0.965   shared clusters: 4 e.g. {train} {road, motorway, roads} {crop, rice crop, corn, crops}
+;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
+;; JSD: 0.963   shared clusters: 2 e.g. {thing, things} {doctor}
 (Experiencer $e $x)
-(Instrument $e $x)
+(To $e $x)
 
-;; [pooled role]  Location ~ Recipient   n 210 / 29   gate: FAIL
-;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
-;; JSD: 0.965   shared clusters: 3 e.g. {city, cities} {little, small, minor} {big, large, huge, massive, …}
-(Location $e $x)
-(Recipient $e $x)
-
-;; [pooled role]  Result ~ Theme   n 43 / 594   gate: FAIL
-;; A fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.965   shared clusters: 8 e.g. {sleep} {king, queen, kings} {big, large, huge, massive, …}
+;; [pooled role]  Goal ~ Result   n 93 / 43   gate: FAIL
+;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
+;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
+;; JSD: 0.964   shared clusters: 3 e.g. {dead, die, death} {big, large, huge} {back, backward}
+(Goal $e $x)
 (Result $e $x)
+
+;; [pooled role]  For ~ Theme   n 39 / 594   gate: FAIL
+;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
+;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
+;; JSD: 0.965   shared clusters: 5 e.g. {work} {word} {polish}
+(For $e $x)
 (Theme $e $x)
 
-;; [pooled role]  Agent ~ For   n 888 / 39   gate: FAIL
+;; [pooled role]  Agent ~ Location   n 888 / 210   gate: FAIL
 ;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
-;; JSD: 0.966   shared clusters: 6 e.g. {bus, bus ride} {cook} {ship, merchant ship, modern ship}
+;; B fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
+;; JSD: 0.967   shared clusters: 14 e.g. {house, home} {fire} {sun, sunlight}
 (Agent $e $x)
-(For $e $x)
-
-;; [pooled role]  CoAgent ~ Experiencer   n 16 / 261   gate: FAIL
-;; A fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
-;; B fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; JSD: 0.966   shared clusters: 2 e.g. {cat, cats} {Linda, Amanda, Loren, Dora Smith, …}
-(CoAgent $e $x)
-(Experiencer $e $x)
-
-;; [pooled role]  CoAgent ~ Goal   n 16 / 93   gate: FAIL
-;; A fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
-;; B fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; JSD: 0.966   shared clusters: 1 e.g. {Linda, Amanda, Loren, Dora Smith, …}
-(CoAgent $e $x)
-(Goal $e $x)
-
-;; [pooled role]  Goal ~ Instrument   n 93 / 34   gate: FAIL
-;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; B fillers: help ×3, barometer ×2, bike, blood, chalk, corn
-;; JSD: 0.966   shared clusters: 3 e.g. {snow, snowstorm, deep, snow} {big, large, huge, massive, …} {new, brand new, new, product}
-(Goal $e $x)
-(Instrument $e $x)
-
-;; [pooled role]  Experiencer ~ Time   n 261 / 107   gate: FAIL
-;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
-;; JSD: 0.968   shared clusters: 5 e.g. {night, tonight, midnight} {late, later, last} {modern times, modern}
-(Experiencer $e $x)
-(Time $e $x)
-
-;; [pooled role]  Result ~ Time   n 43 / 107   gate: FAIL
-;; A fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
-;; JSD: 0.968   shared clusters: 2 e.g. {modern times, modern} {back, backward, before, past}
-(Result $e $x)
-(Time $e $x)
+(Location $e $x)
 
 ;; [pooled role]  Goal ~ In   n 93 / 50   gate: FAIL
 ;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
@@ -623,33 +490,19 @@
 (Goal $e $x)
 (In $e $x)
 
-;; [pooled role]  In ~ Location   n 50 / 210   gate: FAIL
-;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
-;; B fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; JSD: 0.969   shared clusters: 3 e.g. {mat, mathematics} {water, water source, clear, water, good, water} {Coronation Street}
-(In $e $x)
-(Location $e $x)
-
-;; [pooled role]  In ~ Theme   n 50 / 594   gate: FAIL
-;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
+;; [pooled role]  Result ~ Theme   n 43 / 594   gate: FAIL
+;; A fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
 ;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.969   shared clusters: 6 e.g. {language, english} {understand, misunderstand} {way, ways}
-(In $e $x)
+;; JSD: 0.969   shared clusters: 7 e.g. {sleep} {king, queen} {big, large, huge}
+(Result $e $x)
 (Theme $e $x)
 
-;; [pooled role]  Instrument ~ Theme   n 34 / 594   gate: FAIL
-;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
-;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.969   shared clusters: 4 e.g. {food, eat} {drum, snare, drums} {new, brand new, new, product}
-(Instrument $e $x)
-(Theme $e $x)
-
-;; [pooled role]  Agent ~ Source   n 888 / 47   gate: FAIL
-;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
-;; JSD: 0.97   shared clusters: 3 e.g. {company, corporation} {plane, flight, aeroplane, airplane, …} {school, education}
-(Agent $e $x)
-(Source $e $x)
+;; [pooled role]  Goal ~ Manner   n 93 / 115   gate: FAIL
+;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
+;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; JSD: 0.97   shared clusters: 2 e.g. {well} {back, backward}
+(Goal $e $x)
+(Manner $e $x)
 
 ;; [pooled role]  In ~ Result   n 50 / 43   gate: FAIL
 ;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
@@ -658,33 +511,33 @@
 (In $e $x)
 (Result $e $x)
 
-;; [pooled role]  Agent ~ Result   n 888 / 43   gate: FAIL
-;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; JSD: 0.971   shared clusters: 7 e.g. {indigenous, indigenous, people, native american, indigenous american, …} {crow, caw} {red}
-(Agent $e $x)
-(Result $e $x)
-
 ;; [pooled role]  Experiencer ~ For   n 261 / 39   gate: FAIL
 ;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
 ;; B fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
-;; JSD: 0.971   shared clusters: 3 e.g. {word, word processor} {happiness, happy, happily, joy} {general, general purpose}
+;; JSD: 0.971   shared clusters: 3 e.g. {word} {happiness, joy} {general, general purpose}
 (Experiencer $e $x)
 (For $e $x)
 
 ;; [pooled role]  Like ~ Result   n 14 / 43   gate: FAIL
 ;; A fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
 ;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; JSD: 0.971   shared clusters: 1 e.g. {big, large, huge, massive, …}
+;; JSD: 0.971   shared clusters: 1 e.g. {big, large, huge}
 (Like $e $x)
 (Result $e $x)
 
-;; [pooled role]  In ~ Patient   n 50 / 455   gate: FAIL
-;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
-;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.972   shared clusters: 5 e.g. {weather} {field, fields} {language, english}
-(In $e $x)
-(Patient $e $x)
+;; [pooled role]  Agent ~ For   n 888 / 39   gate: FAIL
+;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
+;; B fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
+;; JSD: 0.972   shared clusters: 5 e.g. {cook} {bus} {patient}
+(Agent $e $x)
+(For $e $x)
+
+;; [pooled role]  Experiencer ~ Instrument   n 261 / 34   gate: FAIL
+;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
+;; B fillers: help ×3, barometer ×2, bike, blood, chalk, corn
+;; JSD: 0.973   shared clusters: 3 e.g. {train} {road, roads} {big, large, huge}
+(Experiencer $e $x)
+(Instrument $e $x)
 
 ;; [pooled role]  For ~ Stimulus   n 39 / 34   gate: FAIL
 ;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
@@ -693,19 +546,33 @@
 (For $e $x)
 (Stimulus $e $x)
 
-;; [pooled role]  As ~ Experiencer   n 15 / 261   gate: FAIL
-;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
-;; B fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
-;; JSD: 0.975   shared clusters: 3 e.g. {caretaker, keeper} {girl, girls} {direct, straight, directly}
-(As $e $x)
-(Experiencer $e $x)
+;; [pooled role]  Goal ~ Recipient   n 93 / 29   gate: FAIL
+;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
+;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
+;; JSD: 0.973   shared clusters: 2 e.g. {Loren} {big, large, huge}
+(Goal $e $x)
+(Recipient $e $x)
+
+;; [pooled role]  Goal ~ Instrument   n 93 / 34   gate: FAIL
+;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
+;; B fillers: help ×3, barometer ×2, bike, blood, chalk, corn
+;; JSD: 0.975   shared clusters: 2 e.g. {snow} {big, large, huge}
+(Goal $e $x)
+(Instrument $e $x)
 
 ;; [pooled role]  Holder ~ Instrument   n 48 / 34   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
 ;; B fillers: help ×3, barometer ×2, bike, blood, chalk, corn
-;; JSD: 0.975   shared clusters: 1 e.g. {food, eat}
+;; JSD: 0.975   shared clusters: 1 e.g. {food}
 (Holder $e $x)
 (Instrument $e $x)
+
+;; [pooled role]  In ~ Patient   n 50 / 455   gate: FAIL
+;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
+;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
+;; JSD: 0.975   shared clusters: 4 e.g. {weather} {field, fields} {silent, silence}
+(In $e $x)
+(Patient $e $x)
 
 ;; [pooled role]  In ~ Source   n 50 / 47   gate: FAIL
 ;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
@@ -714,208 +581,180 @@
 (In $e $x)
 (Source $e $x)
 
-;; [pooled role]  Source ~ Stimulus   n 47 / 34   gate: FAIL
-;; A fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
-;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
-;; JSD: 0.975   shared clusters: 1 e.g. {food, eat}
-(Source $e $x)
-(Stimulus $e $x)
+;; [pooled role]  Location ~ Recipient   n 210 / 29   gate: FAIL
+;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
+;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
+;; JSD: 0.975   shared clusters: 2 e.g. {city, cities} {big, large, huge}
+(Location $e $x)
+(Recipient $e $x)
 
 ;; [pooled role]  Experiencer ~ In   n 261 / 50   gate: FAIL
 ;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
 ;; B fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
-;; JSD: 0.976   shared clusters: 3 e.g. {weather} {silent, silence} {nothing, no, empty, zero, …}
+;; JSD: 0.976   shared clusters: 3 e.g. {weather} {silent, silence} {nothing, no}
 (Experiencer $e $x)
 (In $e $x)
 
 ;; [pooled role]  Holder ~ Result   n 48 / 43   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
 ;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; JSD: 0.976   shared clusters: 1 e.g. {bad, bad, matter, bad, problem}
+;; JSD: 0.976   shared clusters: 1 e.g. {bad}
 (Holder $e $x)
 (Result $e $x)
 
 ;; [pooled role]  Like ~ Recipient   n 14 / 29   gate: FAIL
 ;; A fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
 ;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
-;; JSD: 0.976   shared clusters: 1 e.g. {big, large, huge, massive, …}
+;; JSD: 0.976   shared clusters: 1 e.g. {big, large, huge}
 (Like $e $x)
 (Recipient $e $x)
 
-;; [pooled role]  For ~ Holder   n 39 / 48   gate: FAIL
-;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
-;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
-;; JSD: 0.977   shared clusters: 1 e.g. {word, word processor}
-(For $e $x)
-(Holder $e $x)
+;; [pooled role]  Agent ~ As   n 888 / 15   gate: FAIL
+;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
+;; B fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
+;; JSD: 0.977   shared clusters: 4 e.g. {girl} {Peter} {president, person, president}
+(Agent $e $x)
+(As $e $x)
 
-;; [pooled role]  In ~ Manner   n 50 / 115   gate: FAIL
+;; [pooled role]  CoAgent ~ Experiencer   n 16 / 261   gate: FAIL
+;; A fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
+;; B fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
+;; JSD: 0.977   shared clusters: 1 e.g. {cat, cats}
+(CoAgent $e $x)
+(Experiencer $e $x)
+
+;; [pooled role]  In ~ Theme   n 50 / 594   gate: FAIL
 ;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
-;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; JSD: 0.977   shared clusters: 1 e.g. {really, real, reality, actual, …}
+;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
+;; JSD: 0.977   shared clusters: 5 e.g. {english} {understand} {way, ways}
 (In $e $x)
-(Manner $e $x)
+(Theme $e $x)
 
-;; [pooled role]  Before ~ Goal   n 16 / 93   gate: FAIL
-;; A fillers: cease ×2, expand ×2, move back ×2, take over ×2, Memorial Day, break out
+;; [pooled role]  CoAgent ~ Goal   n 16 / 93   gate: FAIL
+;; A fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
 ;; B fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; JSD: 0.978   shared clusters: 1 e.g. {escape, exit}
-(Before $e $x)
+;; JSD: 0.978   shared clusters: 1 e.g. {Amanda}
+(CoAgent $e $x)
 (Goal $e $x)
 
 ;; [pooled role]  Instrument ~ Like   n 34 / 14   gate: FAIL
 ;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
 ;; B fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
-;; JSD: 0.978   shared clusters: 1 e.g. {big, large, huge, massive, …}
+;; JSD: 0.978   shared clusters: 1 e.g. {big, large, huge}
 (Instrument $e $x)
 (Like $e $x)
 
 ;; [pooled role]  Location ~ To   n 210 / 46   gate: FAIL
 ;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
 ;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
-;; JSD: 0.978   shared clusters: 2 e.g. {talk, conversation, discussion} {shore, coast, shoreline}
+;; JSD: 0.978   shared clusters: 2 e.g. {talk, conversation} {shore, shoreline}
 (Location $e $x)
 (To $e $x)
 
-;; [pooled role]  Manner ~ Theme   n 115 / 594   gate: FAIL
-;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.978   shared clusters: 6 e.g. {full, fully, full fledged, complete, …} {really, real, reality, actual, …} {widespread, widely, wide, attention, widespread, …}
-(Manner $e $x)
-(Theme $e $x)
+;; [pooled role]  Result ~ Source   n 43 / 47   gate: FAIL
+;; A fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
+;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
+;; JSD: 0.978   shared clusters: 1 e.g. {bat}
+(Result $e $x)
+(Source $e $x)
 
-;; [pooled role]  CoAgent ~ Theme   n 16 / 594   gate: FAIL
-;; A fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
-;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.979   shared clusters: 2 e.g. {Laurie Aubanel, Muriel Zazoui, Patricia Kaas} {Linda, Amanda, Loren, Dora Smith, …}
-(CoAgent $e $x)
-(Theme $e $x)
+;; [pooled role]  Experiencer ~ Time   n 261 / 107   gate: FAIL
+;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
+;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
+;; JSD: 0.979   shared clusters: 3 e.g. {night} {modern times, modern} {day}
+(Experiencer $e $x)
+(Time $e $x)
 
-;; [pooled role]  Manner ~ Patient   n 115 / 455   gate: FAIL
-;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.979   shared clusters: 4 e.g. {well, on, there, be} {direct, straight, directly} {together, come together}
-(Manner $e $x)
-(Patient $e $x)
+;; [pooled role]  In ~ Location   n 50 / 210   gate: FAIL
+;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
+;; B fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
+;; JSD: 0.98   shared clusters: 2 e.g. {water} {Coronation Street}
+(In $e $x)
+(Location $e $x)
 
 ;; [pooled role]  Recipient ~ Result   n 29 / 43   gate: FAIL
 ;; A fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
 ;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; JSD: 0.98   shared clusters: 1 e.g. {big, large, huge, massive, …}
+;; JSD: 0.98   shared clusters: 1 e.g. {big, large, huge}
 (Recipient $e $x)
 (Result $e $x)
-
-;; [pooled role]  Agent ~ Instrument   n 888 / 34   gate: FAIL
-;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: help ×3, barometer ×2, bike, blood, chalk, corn
-;; JSD: 0.981   shared clusters: 5 e.g. {train} {plant, plants} {snow, snowstorm, deep, snow}
-(Agent $e $x)
-(Instrument $e $x)
 
 ;; [pooled role]  As ~ Theme   n 15 / 594   gate: FAIL
 ;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
 ;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.981   shared clusters: 2 e.g. {name} {girl, girls}
+;; JSD: 0.981   shared clusters: 2 e.g. {name} {girl}
 (As $e $x)
 (Theme $e $x)
 
 ;; [pooled role]  In ~ To   n 50 / 46   gate: FAIL
 ;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
 ;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
-;; JSD: 0.981   shared clusters: 1 e.g. {action, act, actions}
+;; JSD: 0.981   shared clusters: 1 e.g. {action}
 (In $e $x)
 (To $e $x)
 
-;; [pooled role]  Theme ~ Time   n 594 / 107   gate: FAIL
-;; A fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
-;; JSD: 0.981   shared clusters: 4 e.g. {now, today, current} {morning, early morning, this morning} {day, days, days, short}
-(Theme $e $x)
-(Time $e $x)
+;; [pooled role]  Agent ~ Result   n 888 / 43   gate: FAIL
+;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
+;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
+;; JSD: 0.982   shared clusters: 6 e.g. {crow} {red} {sleep}
+(Agent $e $x)
+(Result $e $x)
 
 ;; [pooled role]  Instrument ~ Result   n 34 / 43   gate: FAIL
 ;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
 ;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; JSD: 0.982   shared clusters: 1 e.g. {big, large, huge, massive, …}
+;; JSD: 0.982   shared clusters: 1 e.g. {big, large, huge}
 (Instrument $e $x)
 (Result $e $x)
 
-;; [pooled role]  Like ~ Source   n 14 / 47   gate: FAIL
-;; A fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
+;; [pooled role]  Recipient ~ Source   n 29 / 47   gate: FAIL
+;; A fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
 ;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
-;; JSD: 0.982   shared clusters: 1 e.g. {big, large, huge, massive, …}
-(Like $e $x)
+;; JSD: 0.982   shared clusters: 1 e.g. {local, locals}
+(Recipient $e $x)
 (Source $e $x)
 
-;; [pooled role]  Location ~ Result   n 210 / 43   gate: FAIL
-;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
-;; JSD: 0.982   shared clusters: 2 e.g. {big, large, huge, massive, …} {well, on, there, be}
-(Location $e $x)
+;; [pooled role]  Result ~ Time   n 43 / 107   gate: FAIL
+;; A fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
+;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
+;; JSD: 0.983   shared clusters: 1 e.g. {modern times, modern}
 (Result $e $x)
-
-;; [pooled role]  For ~ Patient   n 39 / 455   gate: FAIL
-;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
-;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.983   shared clusters: 4 e.g. {word, word processor} {call, telephone call} {dance}
-(For $e $x)
-(Patient $e $x)
-
-;; [pooled role]  Like ~ Theme   n 14 / 594   gate: FAIL
-;; A fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
-;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.983   shared clusters: 3 e.g. {imprison, jail, prison} {gold coin, gold, gold coins} {big, large, huge, massive, …}
-(Like $e $x)
-(Theme $e $x)
-
-;; [pooled role]  Patient ~ Time   n 455 / 107   gate: FAIL
-;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
-;; JSD: 0.983   shared clusters: 4 e.g. {night, tonight, midnight} {summer, this summer} {hour, hours}
-(Patient $e $x)
 (Time $e $x)
 
-;; [pooled role]  Location ~ Manner   n 210 / 115   gate: FAIL
-;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; JSD: 0.984   shared clusters: 2 e.g. {well, on, there, be} {early}
-(Location $e $x)
-(Manner $e $x)
-
-;; [pooled role]  Manner ~ Stimulus   n 115 / 34   gate: FAIL
-;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
-;; JSD: 0.985   shared clusters: 1 e.g. {difficult, hard, difficulty, harder}
-(Manner $e $x)
-(Stimulus $e $x)
-
-;; [pooled role]  Agent ~ Time   n 888 / 107   gate: FAIL
+;; [pooled role]  Agent ~ Instrument   n 888 / 34   gate: FAIL
 ;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
-;; JSD: 0.986   shared clusters: 3 e.g. {now, today, current} {hurricane, hurricane season} {spring}
+;; B fillers: help ×3, barometer ×2, bike, blood, chalk, corn
+;; JSD: 0.984   shared clusters: 4 e.g. {train} {plant, plants} {snow}
 (Agent $e $x)
+(Instrument $e $x)
+
+;; [pooled role]  Instrument ~ Recipient   n 34 / 29   gate: FAIL
+;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
+;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
+;; JSD: 0.984   shared clusters: 1 e.g. {big, large, huge}
+(Instrument $e $x)
+(Recipient $e $x)
+
+;; [pooled role]  Theme ~ Time   n 594 / 107   gate: FAIL
+;; A fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
+;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
+;; JSD: 0.984   shared clusters: 3 e.g. {now, current} {morning, early morning} {day}
+(Theme $e $x)
 (Time $e $x)
+
+;; [pooled role]  Agent ~ Source   n 888 / 47   gate: FAIL
+;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
+;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
+;; JSD: 0.986   shared clusters: 2 e.g. {plane, aeroplane, airplane} {school}
+(Agent $e $x)
+(Source $e $x)
 
 ;; [pooled role]  As ~ Patient   n 15 / 455   gate: FAIL
 ;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
 ;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.986   shared clusters: 2 e.g. {name} {direct, straight, directly}
+;; JSD: 0.986   shared clusters: 2 e.g. {name} {straight}
 (As $e $x)
 (Patient $e $x)
-
-;; [pooled role]  For ~ Manner   n 39 / 115   gate: FAIL
-;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
-;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; JSD: 0.986   shared clusters: 1 e.g. {happiness, happy, happily, joy}
-(For $e $x)
-(Manner $e $x)
-
-;; [pooled role]  Goal ~ Time   n 93 / 107   gate: FAIL
-;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
-;; JSD: 0.986   shared clusters: 1 e.g. {back, backward, before, past}
-(Goal $e $x)
-(Time $e $x)
 
 ;; [pooled role]  Holder ~ In   n 48 / 50   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
@@ -927,58 +766,100 @@
 ;; [pooled role]  Instrument ~ Location   n 34 / 210   gate: FAIL
 ;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
 ;; B fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; JSD: 0.986   shared clusters: 2 e.g. {snow, snowstorm, deep, snow} {big, large, huge, massive, …}
+;; JSD: 0.986   shared clusters: 2 e.g. {snow} {big, large, huge}
 (Instrument $e $x)
 (Location $e $x)
+
+;; [pooled role]  Instrument ~ Theme   n 34 / 594   gate: FAIL
+;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
+;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
+;; JSD: 0.986   shared clusters: 2 e.g. {food} {big, large, huge}
+(Instrument $e $x)
+(Theme $e $x)
 
 ;; [pooled role]  Source ~ Time   n 47 / 107   gate: FAIL
 ;; A fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
 ;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
-;; JSD: 0.986   shared clusters: 1 e.g. {point, point out}
+;; JSD: 0.986   shared clusters: 1 e.g. {point}
 (Source $e $x)
 (Time $e $x)
+
+;; [pooled role]  As ~ Experiencer   n 15 / 261   gate: FAIL
+;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
+;; B fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
+;; JSD: 0.987   shared clusters: 2 e.g. {girl} {straight}
+(As $e $x)
+(Experiencer $e $x)
+
+;; [pooled role]  CoAgent ~ Theme   n 16 / 594   gate: FAIL
+;; A fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
+;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
+;; JSD: 0.988   shared clusters: 2 e.g. {Laurie Aubanel, Muriel Zazoui} {Amanda}
+(CoAgent $e $x)
+(Theme $e $x)
+
+;; [pooled role]  Experiencer ~ Manner   n 261 / 115   gate: FAIL
+;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
+;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; JSD: 0.988   shared clusters: 3 e.g. {together} {effective, effectively} {poor, poorly}
+(Experiencer $e $x)
+(Manner $e $x)
+
+;; [pooled role]  For ~ Patient   n 39 / 455   gate: FAIL
+;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
+;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
+;; JSD: 0.988   shared clusters: 3 e.g. {word} {dance} {whole, entire}
+(For $e $x)
+(Patient $e $x)
 
 ;; [pooled role]  Goal ~ Like   n 93 / 14   gate: FAIL
 ;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
 ;; B fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
-;; JSD: 0.988   shared clusters: 1 e.g. {big, large, huge, massive, …}
+;; JSD: 0.988   shared clusters: 1 e.g. {big, large, huge}
 (Goal $e $x)
 (Like $e $x)
 
-;; [pooled role]  Instrument ~ Time   n 34 / 107   gate: FAIL
-;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
-;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
-;; JSD: 0.988   shared clusters: 1 e.g. {present, presented}
-(Instrument $e $x)
-(Time $e $x)
+;; [pooled role]  Manner ~ Patient   n 115 / 455   gate: FAIL
+;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
+;; JSD: 0.988   shared clusters: 3 e.g. {well} {together} {poor, poorly}
+(Manner $e $x)
+(Patient $e $x)
 
-;; [pooled role]  As ~ Goal   n 15 / 93   gate: FAIL
-;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
-;; B fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
-;; JSD: 0.989   shared clusters: 1 e.g. {potential, possibility}
-(As $e $x)
-(Goal $e $x)
+;; [pooled role]  Patient ~ Time   n 455 / 107   gate: FAIL
+;; A fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
+;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
+;; JSD: 0.988   shared clusters: 3 e.g. {night} {hour, hours} {day}
+(Patient $e $x)
+(Time $e $x)
 
 ;; [pooled role]  Before ~ Theme   n 16 / 594   gate: FAIL
 ;; A fillers: cease ×2, expand ×2, move back ×2, take over ×2, Memorial Day, break out
 ;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
-;; JSD: 0.989   shared clusters: 2 e.g. {now, today, current} {repair, repairs}
+;; JSD: 0.989   shared clusters: 2 e.g. {now, current} {repair, repairs}
 (Before $e $x)
 (Theme $e $x)
 
 ;; [pooled role]  Experiencer ~ Like   n 261 / 14   gate: FAIL
 ;; A fillers: person ×10.5, thing ×7, child ×5, Boris ×3, Low German ×3, Oleg ×3
 ;; B fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
-;; JSD: 0.989   shared clusters: 2 e.g. {spider, huge, spider, spiders} {big, large, huge, massive, …}
+;; JSD: 0.989   shared clusters: 2 e.g. {spider, spiders} {big, large, huge}
 (Experiencer $e $x)
 (Like $e $x)
 
 ;; [pooled role]  Like ~ Location   n 14 / 210   gate: FAIL
 ;; A fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
 ;; B fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
-;; JSD: 0.989   shared clusters: 1 e.g. {big, large, huge, massive, …}
+;; JSD: 0.989   shared clusters: 1 e.g. {big, large, huge}
 (Like $e $x)
 (Location $e $x)
+
+;; [pooled role]  Like ~ Theme   n 14 / 594   gate: FAIL
+;; A fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
+;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
+;; JSD: 0.989   shared clusters: 2 e.g. {gold coin, gold, gold coins} {big, large, huge}
+(Like $e $x)
+(Theme $e $x)
 
 ;; [pooled role]  Manner ~ Source   n 115 / 47   gate: FAIL
 ;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
@@ -987,12 +868,12 @@
 (Manner $e $x)
 (Source $e $x)
 
-;; [pooled role]  Agent ~ Like   n 888 / 14   gate: FAIL
-;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
-;; JSD: 0.992   shared clusters: 2 e.g. {centipede, centipedes, pillar} {flame, flames}
-(Agent $e $x)
-(Like $e $x)
+;; [pooled role]  Location ~ Result   n 210 / 43   gate: FAIL
+;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
+;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
+;; JSD: 0.991   shared clusters: 1 e.g. {big, large, huge}
+(Location $e $x)
+(Result $e $x)
 
 ;; [pooled role]  CoAgent ~ Patient   n 16 / 455   gate: FAIL
 ;; A fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
@@ -1004,30 +885,58 @@
 ;; [pooled role]  Like ~ Patient   n 14 / 455   gate: FAIL
 ;; A fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
 ;; B fillers: thing ×18, person ×16, door ×9.5, tree ×6.333, movie ×6, room ×5.5
-;; JSD: 0.992   shared clusters: 1 e.g. {big, large, huge, massive, …}
+;; JSD: 0.992   shared clusters: 1 e.g. {big, large, huge}
 (Like $e $x)
 (Patient $e $x)
+
+;; [pooled role]  Manner ~ Theme   n 115 / 594   gate: FAIL
+;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; B fillers: thing ×26, person ×9, view ×7, work ×6.5, Ashe ×4, child ×4
+;; JSD: 0.992   shared clusters: 3 e.g. {alone, single} {widely, wide} {hard, harder}
+(Manner $e $x)
+(Theme $e $x)
+
+;; [pooled role]  Agent ~ Time   n 888 / 107   gate: FAIL
+;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
+;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
+;; JSD: 0.993   shared clusters: 2 e.g. {now, current} {spring}
+(Agent $e $x)
+(Time $e $x)
 
 ;; [pooled role]  Agent ~ In   n 888 / 50   gate: FAIL
 ;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
 ;; B fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
-;; JSD: 0.994   shared clusters: 2 e.g. {really, real, reality, actual, …} {context}
+;; JSD: 0.994   shared clusters: 2 e.g. {reality, real life} {context}
 (Agent $e $x)
 (In $e $x)
-
-;; [pooled role]  Agent ~ Manner   n 888 / 115   gate: FAIL
-;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
-;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
-;; JSD: 0.995   shared clusters: 2 e.g. {quickly, quick, fast} {really, real, reality, actual, …}
-(Agent $e $x)
-(Manner $e $x)
 
 ;; [pooled role]  Agent ~ Before   n 888 / 16   gate: FAIL
 ;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
 ;; B fillers: cease ×2, expand ×2, move back ×2, take over ×2, Memorial Day, break out
-;; JSD: 0.996   shared clusters: 1 e.g. {now, today, current}
+;; JSD: 0.996   shared clusters: 1 e.g. {now, current}
 (Agent $e $x)
 (Before $e $x)
+
+;; [pooled role]  Agent ~ Like   n 888 / 14   gate: FAIL
+;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
+;; B fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
+;; JSD: 0.996   shared clusters: 1 e.g. {flame, flames}
+(Agent $e $x)
+(Like $e $x)
+
+;; [pooled role]  Location ~ Manner   n 210 / 115   gate: FAIL
+;; A fillers: table ×6, Japan ×5, couch ×5, here ×5, Kazakhstan ×4, cafe ×4
+;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; JSD: 0.996   shared clusters: 1 e.g. {early}
+(Location $e $x)
+(Manner $e $x)
+
+;; [pooled role]  Agent ~ Manner   n 888 / 115   gate: FAIL
+;; A fillers: person ×55.5, thing ×22, company ×19, child ×10, man ×10, boy ×8.5
+;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; JSD: 0.998   shared clusters: 1 e.g. {quickly, quick, fast}
+(Agent $e $x)
+(Manner $e $x)
 
 ;; [pooled role]  As ~ Before   n 15 / 16   gate: FAIL
 ;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
@@ -1056,6 +965,13 @@
 ;; JSD: 1.0   shared clusters: 0
 (As $e $x)
 (For $e $x)
+
+;; [pooled role]  As ~ Goal   n 15 / 93   gate: FAIL
+;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
+;; B fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
+;; JSD: 1.0   shared clusters: 0
+(As $e $x)
+(Goal $e $x)
 
 ;; [pooled role]  As ~ Holder   n 15 / 48   gate: FAIL
 ;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
@@ -1091,6 +1007,13 @@
 ;; JSD: 1.0   shared clusters: 0
 (As $e $x)
 (Location $e $x)
+
+;; [pooled role]  As ~ Manner   n 15 / 115   gate: FAIL
+;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
+;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; JSD: 1.0   shared clusters: 0
+(As $e $x)
+(Manner $e $x)
 
 ;; [pooled role]  As ~ Recipient   n 15 / 29   gate: FAIL
 ;; A fillers: Peter ×2, caretaker ×2, Scott Wells, girl, governor, joke
@@ -1154,6 +1077,13 @@
 ;; JSD: 1.0   shared clusters: 0
 (Before $e $x)
 (For $e $x)
+
+;; [pooled role]  Before ~ Goal   n 16 / 93   gate: FAIL
+;; A fillers: cease ×2, expand ×2, move back ×2, take over ×2, Memorial Day, break out
+;; B fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
+;; JSD: 1.0   shared clusters: 0
+(Before $e $x)
+(Goal $e $x)
 
 ;; [pooled role]  Before ~ Holder   n 16 / 48   gate: FAIL
 ;; A fillers: cease ×2, expand ×2, move back ×2, take over ×2, Memorial Day, break out
@@ -1372,6 +1302,13 @@
 (CoAgent $e $x)
 (Manner $e $x)
 
+;; [pooled role]  CoAgent ~ Recipient   n 16 / 29   gate: FAIL
+;; A fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
+;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
+;; JSD: 1.0   shared clusters: 0
+(CoAgent $e $x)
+(Recipient $e $x)
+
 ;; [pooled role]  CoAgent ~ Result   n 16 / 43   gate: FAIL
 ;; A fillers: Bianca Olsen ×2, Cyril Rambour ×2, Karen ×2, Laurie Aubanel ×2, family ×2, Amanda
 ;; B fillers: bad ×4, black ×2, red ×2, alarmed, bat, beautiful
@@ -1407,6 +1344,13 @@
 (CoAgent $e $x)
 (To $e $x)
 
+;; [pooled role]  For ~ Holder   n 39 / 48   gate: FAIL
+;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
+;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi
+;; JSD: 1.0   shared clusters: 0
+(For $e $x)
+(Holder $e $x)
+
 ;; [pooled role]  For ~ In   n 39 / 50   gate: FAIL
 ;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
 ;; B fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
@@ -1434,6 +1378,13 @@
 ;; JSD: 1.0   shared clusters: 0
 (For $e $x)
 (Location $e $x)
+
+;; [pooled role]  For ~ Manner   n 39 / 115   gate: FAIL
+;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
+;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; JSD: 1.0   shared clusters: 0
+(For $e $x)
+(Manner $e $x)
 
 ;; [pooled role]  For ~ Recipient   n 39 / 29   gate: FAIL
 ;; A fillers: Oscar ×3, portray ×3, job ×2, term ×2, Bombay, almost nothing
@@ -1476,6 +1427,13 @@
 ;; JSD: 1.0   shared clusters: 0
 (Goal $e $x)
 (Stimulus $e $x)
+
+;; [pooled role]  Goal ~ Time   n 93 / 107   gate: FAIL
+;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
+;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
+;; JSD: 1.0   shared clusters: 0
+(Goal $e $x)
+(Time $e $x)
 
 ;; [pooled role]  Goal ~ To   n 93 / 46   gate: FAIL
 ;; A fillers: bed ×4, home ×4, town ×2.5, Altoona ×2, Baltimore ×2, Germany ×2
@@ -1526,6 +1484,13 @@
 (In $e $x)
 (Like $e $x)
 
+;; [pooled role]  In ~ Manner   n 50 / 115   gate: FAIL
+;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
+;; B fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; JSD: 1.0   shared clusters: 0
+(In $e $x)
+(Manner $e $x)
+
 ;; [pooled role]  In ~ Recipient   n 50 / 29   gate: FAIL
 ;; A fillers: action ×2, continuous time ×2, discrete time ×2, english ×2, fluid mechanics ×2, japanese ×2
 ;; B fillers: Cameron ×2, Harvey ×2, Paulus ×2, kid ×2, person ×2, police ×2
@@ -1547,6 +1512,20 @@
 (Instrument $e $x)
 (Manner $e $x)
 
+;; [pooled role]  Instrument ~ Source   n 34 / 47   gate: FAIL
+;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
+;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
+;; JSD: 1.0   shared clusters: 0
+(Instrument $e $x)
+(Source $e $x)
+
+;; [pooled role]  Instrument ~ Time   n 34 / 107   gate: FAIL
+;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
+;; B fillers: now ×14, today ×10, night ×7, this year ×6, yesterday ×6, tonight ×5
+;; JSD: 1.0   shared clusters: 0
+(Instrument $e $x)
+(Time $e $x)
+
 ;; [pooled role]  Instrument ~ To   n 34 / 46   gate: FAIL
 ;; A fillers: help ×3, barometer ×2, bike, blood, chalk, corn
 ;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
@@ -1560,6 +1539,13 @@
 ;; JSD: 1.0   shared clusters: 0
 (Like $e $x)
 (Manner $e $x)
+
+;; [pooled role]  Like ~ Source   n 14 / 47   gate: FAIL
+;; A fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
+;; B fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
+;; JSD: 1.0   shared clusters: 0
+(Like $e $x)
+(Source $e $x)
 
 ;; [pooled role]  Like ~ Stimulus   n 14 / 34   gate: FAIL
 ;; A fillers: aspect ×2, Kermit the Frog, developed country, gold, hot cake, locker room
@@ -1603,6 +1589,13 @@
 (Manner $e $x)
 (Recipient $e $x)
 
+;; [pooled role]  Manner ~ Stimulus   n 115 / 34   gate: FAIL
+;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
+;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
+;; JSD: 1.0   shared clusters: 0
+(Manner $e $x)
+(Stimulus $e $x)
+
 ;; [pooled role]  Manner ~ To   n 115 / 46   gate: FAIL
 ;; A fillers: quickly ×11, well ×6, directly ×4, immediately ×4, often ×4, carefully ×3
 ;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
@@ -1638,6 +1631,13 @@
 (Result $e $x)
 (To $e $x)
 
+;; [pooled role]  Source ~ Stimulus   n 47 / 34   gate: FAIL
+;; A fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
+;; B fillers: thing ×3, animal ×2, Jessica, Mandela, author, bang
+;; JSD: 1.0   shared clusters: 0
+(Source $e $x)
+(Stimulus $e $x)
+
 ;; [pooled role]  Source ~ To   n 47 / 46   gate: FAIL
 ;; A fillers: Manila ×2, here ×2, town ×2, room ×1.5, Narita, New York
 ;; B fillers: accompany ×4, avoid ×3, talk ×3, bake ×2, learn ×2, make ×2
@@ -1659,7 +1659,7 @@
 (Time $e $x)
 (To $e $x)
 
-;; ==================== SLOT PAIRS: 3 pass the gate (event 3, entity 0); 110 pairs listed = every pair with >= 2 shared clusters (event 108, entity 2) among the 32718 pairs of 256 event slots and 13 entity slots at n >= 3 ====================
+;; ==================== SLOT PAIRS: 2 pass the gate (event 2, entity 0); 87 pairs listed = every pair with >= 2 shared clusters (event 85, entity 2) among the 32718 pairs of 256 event slots and 13 entity slots at n >= 3 ====================
 ;; (the paper's 'go to.Agent' reading: one (class, role) slot against every other slot of its centre kind)
 
 ;; [different class and role]  die.Patient ~ sleep.Agent   n 4 / 3   gate: PASS
@@ -1676,17 +1676,10 @@
 (And (Member $e0 accompany) (Agent $e0 $x1))
 (And (Member $e0 appear) (Agent $e0 $x1))
 
-;; [same role, different class]  design.Agent ~ produce.Agent   n 4 / 8   gate: PASS
-;; A fillers: Henry L. Taylor ×2, Philip Hercus, Robert Allan Limited   e.g. tierC-000184 tierC-000119
-;; B fillers: Colin Richardson ×2, Harvey Hayutin ×2, Sy Weintraub ×2, pancreas, layer ×0.333, oil ×0.333   e.g. tierC-000103 tierC-000104
-;; JSD: 0.25   shared clusters: 2 e.g. {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …} {Brian Packham, Carl Fenton, Colin Richardson, O. R. Woodcock, …}
-(And (Member $e0 design) (Agent $e0 $x1))
-(And (Member $e0 produce) (Agent $e0 $x1))
-
 ;; [same class, different role]  leave.Patient ~ leave.Result   n 3 / 3   gate: FAIL
 ;; A fillers: door, light ×0.5, on ×0.5, open ×0.5, unlocked ×0.5   e.g. tierB-000747 tierB-000425
 ;; B fillers: on, open, unlocked   e.g. tierB-000004 tierB-000747
-;; JSD: 0.311   shared clusters: 3 e.g. {unlocked} {open} {well, on, there, be}
+;; JSD: 0.311   shared clusters: 3 e.g. {unlocked} {open} {on}
 (And (Member $e0 leave) (Patient $e0 $x1))
 (And (Member $e0 leave) (Result $e0 $x1))
 
@@ -1697,45 +1690,24 @@
 (And (Member $e0 welcome) (Agent $e0 $x1))
 (And (Member $e0 welcome) (Theme $e0 $x1))
 
-;; [different class and role]  kill.Patient ~ spend.Agent   n 11 / 4   gate: FAIL
-;; A fillers: person ×6, soldier ×2, fox, gazelle, zombie   e.g. tierB-001197 tierB-000393
-;; B fillers: person ×2, May, giraffe   e.g. tierB-001146 tierC-000047
-;; JSD: 0.335   shared clusters: 2 e.g. {person, people} {gazelle, giraffe, giraffes}
-(And (Member $e0 kill) (Patient $e0 $x1))
-(And (Member $e0 spend) (Agent $e0 $x1))
-
 ;; [same role, different class]  portray.Agent ~ win.Agent   n 5 / 7   gate: FAIL
 ;; A fillers: Soichiro Akizuki ×2, James Woods, Wilson, wilson   e.g. tierC-000277 tierC-000278
 ;; B fillers: James Woods ×2, Wilson ×2, away team, horse, wilson   e.g. tierB-000730 tierC-000301
-;; JSD: 0.349   shared clusters: 2 e.g. {Wilson, wilson} {James Woods, Jeremy Irons}
+;; JSD: 0.349   shared clusters: 2 e.g. {Wilson, wilson} {James Woods}
 (And (Member $e0 portray) (Agent $e0 $x1))
 (And (Member $e0 win) (Agent $e0 $x1))
 
 ;; [same role, different class]  accompany.Agent ~ sing.Agent   n 4 / 9   gate: FAIL
 ;; A fillers: person ×2, sister ×2   e.g. tierC-000127 tierC-000128
-;; B fillers: person ×2, sister ×2, Amateur Barbershop Harmony Society, David, actress, bird   e.g. tierB-001901 tierC-000330
+;; B fillers: person ×2, sister ×2, Amateur Barbershop Harmony Society, David, actress, bird   e.g. tierC-000329 tierB-001901
 ;; JSD: 0.357   shared clusters: 2 e.g. {sister, sisters} {person, people}
 (And (Member $e0 accompany) (Agent $e0 $x1))
 (And (Member $e0 sing) (Agent $e0 $x1))
 
-;; [different class and role]  appear.Agent ~ replace.Theme   n 6 / 4   gate: FAIL
-;; A fillers: person ×3, Brian Packham ×2, sister   e.g. tierC-000050 tierC-000128
-;; B fillers: Lex Lex Luthor, Lex Luthor, William Ewer, person   e.g. tierC-000099 tierC-000100
-;; JSD: 0.368   shared clusters: 2 e.g. {person, people} {Brian Packham, Carl Fenton, Colin Richardson, O. R. Woodcock, …}
-(And (Member $e0 appear) (Agent $e0 $x1))
-(And (Member $e0 replace) (Theme $e0 $x1))
-
-;; [same role, different class]  replace.Agent ~ write.Agent   n 4 / 8   gate: FAIL
-;; A fillers: Sherman Howard ×2, Peter Gaussen, person   e.g. tierC-000100 tierC-000359
-;; B fillers: person ×2.5, Bill Wrubel ×2, Gilles Thibaut ×2, busy ×0.5, famous ×0.5, father ×0.5   e.g. tierB-001962 tierC-000089
-;; JSD: 0.377   shared clusters: 2 e.g. {Bill Wrubel, Harvey Hayutin, Henry L. Taylor, Sherman Howard, …} {person, people}
-(And (Member $e0 replace) (Agent $e0 $x1))
-(And (Member $e0 write) (Agent $e0 $x1))
-
 ;; [different class and role]  portray.Theme ~ win.Agent   n 5 / 7   gate: FAIL
 ;; A fillers: James Woods ×2, Kantaro Suga ×2, Wilson   e.g. tierC-000301 tierC-000277
 ;; B fillers: James Woods ×2, Wilson ×2, away team, horse, wilson   e.g. tierB-000730 tierC-000278
-;; JSD: 0.38   shared clusters: 2 e.g. {Wilson, wilson} {James Woods, Jeremy Irons}
+;; JSD: 0.38   shared clusters: 2 e.g. {Wilson, wilson} {James Woods}
 (And (Member $e0 portray) (Theme $e0 $x1))
 (And (Member $e0 win) (Agent $e0 $x1))
 
@@ -1756,20 +1728,20 @@
 ;; [same class, different role]  portray.Agent ~ portray.Theme   n 5 / 5   gate: FAIL
 ;; A fillers: Soichiro Akizuki ×2, James Woods, Wilson, wilson   e.g. tierC-000277 tierC-000278
 ;; B fillers: James Woods ×2, Kantaro Suga ×2, Wilson   e.g. tierC-000301 tierC-000247
-;; JSD: 0.449   shared clusters: 2 e.g. {Wilson, wilson} {James Woods, Jeremy Irons}
+;; JSD: 0.449   shared clusters: 2 e.g. {Wilson, wilson} {James Woods}
 (And (Member $e0 portray) (Agent $e0 $x1))
 (And (Member $e0 portray) (Theme $e0 $x1))
 
 ;; [same class, different role]  become.Patient ~ become.Result   n 11 / 8   gate: FAIL
-;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierC-000241 tierC-000242
-;; B fillers: bad ×2, alarmed, conservative, indigenous, inomaru, lax   e.g. tierC-000158 tierB-001582
-;; JSD: 0.466   shared clusters: 6 e.g. {bad, bad, matter, bad, problem} {indigenous, indigenous, people, native american, indigenous american, …} {lax} {red}
+;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierC-000001 tierC-000002
+;; B fillers: bad ×2, alarmed, conservative, indigenous, inomaru, lax   e.g. tierC-000241 tierC-000242
+;; JSD: 0.466   shared clusters: 6 e.g. {bad} {indigenous, indigenous, people} {lax} {red}
 (And (Member $e0 become) (Patient $e0 $x1))
 (And (Member $e0 become) (Result $e0 $x1))
 
 ;; [same role, different class]  appear.Agent ~ sing.Agent   n 6 / 9   gate: FAIL
 ;; A fillers: person ×3, Brian Packham ×2, sister   e.g. tierC-000128 tierC-000050
-;; B fillers: person ×2, sister ×2, Amateur Barbershop Harmony Society, David, actress, bird   e.g. tierC-000127 tierB-001901
+;; B fillers: person ×2, sister ×2, Amateur Barbershop Harmony Society, David, actress, bird   e.g. tierC-000127 tierC-000329
 ;; JSD: 0.487   shared clusters: 2 e.g. {person, people} {sister, sisters}
 (And (Member $e0 appear) (Agent $e0 $x1))
 (And (Member $e0 sing) (Agent $e0 $x1))
@@ -1777,14 +1749,14 @@
 ;; [same role, different class]  begin.Agent ~ create.Agent   n 11 / 6   gate: FAIL
 ;; A fillers: european american settler ×2, David, Jessica, Mark, William, crowd   e.g. tierC-000025 tierC-000026
 ;; B fillers: european american settler ×2, Paul, indigenous american, native american, writer   e.g. tierB-000728 tierB-000863
-;; JSD: 0.517   shared clusters: 2 e.g. {indigenous, indigenous, people, native american, indigenous american, …} {european american settler, european american settlers}
+;; JSD: 0.517   shared clusters: 2 e.g. {native american, indigenous american, indigenous americans, native americans} {european american settler, european american settlers}
 (And (Member $e0 begin) (Agent $e0 $x1))
 (And (Member $e0 create) (Agent $e0 $x1))
 
 ;; [same class, different role]  get.Patient ~ get.Result   n 7 / 6   gate: FAIL
 ;; A fillers: Iran, bad, big ×0.5, cheap ×0.5, day ×0.5, excuse ×0.5   e.g. tierB-000748 tierB-001910
 ;; B fillers: bad, cheap, expensive, powerful, ready, short   e.g. tierB-000370 tierB-001658
-;; JSD: 0.531   shared clusters: 4 e.g. {bad, bad, matter, bad, problem} {expensive, expensive, thing} {cheap, inexpensive, low, price} {short, shortening}
+;; JSD: 0.531   shared clusters: 4 e.g. {bad} {expensive} {cheap, inexpensive} {short}
 (And (Member $e0 get) (Patient $e0 $x1))
 (And (Member $e0 get) (Result $e0 $x1))
 
@@ -1795,52 +1767,38 @@
 (And (Member $e0 bear) (Patient $e0 $x1))
 (And (Member $e0 study) (Agent $e0 $x1))
 
-;; [same role, different class]  appear.Agent ~ build.Agent   n 6 / 14   gate: FAIL
-;; A fillers: person ×3, Brian Packham ×2, sister   e.g. tierC-000050 tierC-000128
-;; B fillers: company ×8, O. R. Woodcock ×2, person ×2, community, mozabite   e.g. tierC-000071 tierC-000072
-;; JSD: 0.545   shared clusters: 2 e.g. {person, people} {Brian Packham, Carl Fenton, Colin Richardson, O. R. Woodcock, …}
-(And (Member $e0 appear) (Agent $e0 $x1))
-(And (Member $e0 build) (Agent $e0 $x1))
-
 ;; [same class, different role]  find.Agent ~ find.Theme   n 4 / 10   gate: FAIL
 ;; A fillers: Couper ×2, Flavio, Pietro   e.g. tierC-000243 tierC-000244
 ;; B fillers: thing ×4, Couper ×2, Pietro, clay figurine, meteorite, paper sheet   e.g. tierB-000706 tierC-000279
-;; JSD: 0.547   shared clusters: 2 e.g. {Couper} {Martino, Pietro, Lorenzo, Damiano}
+;; JSD: 0.547   shared clusters: 2 e.g. {Couper} {Pietro}
 (And (Member $e0 find) (Agent $e0 $x1))
 (And (Member $e0 find) (Theme $e0 $x1))
 
 ;; [same role, different class]  direct.Patient ~ produce.Patient   n 5 / 11   gate: FAIL
 ;; A fillers: episode ×2, movie, thing, film ×0.5, syrian film ×0.5   e.g. tierC-000010 tierC-000091
 ;; B fillers: movie ×4, album ×2, insulin, film ×0.833, syrian film ×0.833, mesmerizing ×0.5   e.g. tierC-000009 tierC-000092
-;; JSD: 0.553   shared clusters: 2 e.g. {movie, film} {syrian film, film, syrian film, destined, film, syrian film}
+;; JSD: 0.553   shared clusters: 2 e.g. {movie, film} {syrian film, film, syrian film}
 (And (Member $e0 direct) (Patient $e0 $x1))
 (And (Member $e0 produce) (Patient $e0 $x1))
 
 ;; [same role, different class]  cry.Agent ~ stop.Agent   n 5 / 4   gate: FAIL
 ;; A fillers: Alberto, Baya, Rima, Skura, girl   e.g. tierB-000030 tierB-000738
 ;; B fillers: Rima, Skura, Yanni, adaptor ×0.5, old ×0.5   e.g. tierB-001873 tierB-000125
-;; JSD: 0.554   shared clusters: 2 e.g. {Skura, Inomaru, Barako} {Rima}
+;; JSD: 0.554   shared clusters: 2 e.g. {Rima} {Skura, Inomaru}
 (And (Member $e0 cry) (Agent $e0 $x1))
 (And (Member $e0 stop) (Agent $e0 $x1))
 
 ;; [different class and role]  ready.Experiencer ~ stop.Agent   n 5 / 4   gate: FAIL
-;; A fillers: Leonid, Skura, Yanni, cake, dinner   e.g. tierB-000044 tierB-001185
+;; A fillers: Leonid, Skura, Yanni, cake, dinner   e.g. tierB-000044 tierB-000916
 ;; B fillers: Rima, Skura, Yanni, adaptor ×0.5, old ×0.5   e.g. tierB-000030 tierB-000125
-;; JSD: 0.554   shared clusters: 2 e.g. {Skura, Inomaru, Barako} {Yanni}
+;; JSD: 0.554   shared clusters: 2 e.g. {Skura, Inomaru} {Yanni}
 (And (Member $e0 ready) (Experiencer $e0 $x1))
 (And (Member $e0 stop) (Agent $e0 $x1))
-
-;; [different class and role]  give.Agent ~ hear.Experiencer   n 3 / 8   gate: FAIL
-;; A fillers: Vladimir ×2, William   e.g. tierB-001046 tierB-000137
-;; B fillers: Bruno ×2, Damiano, Fadil, Flavio, James, Jonas   e.g. tierB-001479 tierB-000681
-;; JSD: 0.557   shared clusters: 2 e.g. {Oleg, Vladimir} {William, James}
-(And (Member $e0 give) (Agent $e0 $x1))
-(And (Member $e0 hear) (Experiencer $e0 $x1))
 
 ;; [different class and role]  eat.Agent ~ sleep.Experiencer   n 4 / 6   gate: FAIL
 ;; A fillers: bird, child, person, brown ×0.5, dog ×0.5   e.g. tierB-001551 tierB-000410
 ;; B fillers: cat ×2, child ×2, Baya, dog   e.g. tierB-001753 tierB-001891
-;; JSD: 0.569   shared clusters: 2 e.g. {child, children, kid, kids} {dog, dog feed}
+;; JSD: 0.569   shared clusters: 2 e.g. {child, kid} {dog}
 (And (Member $e0 eat) (Agent $e0 $x1))
 (And (Member $e0 sleep) (Experiencer $e0 $x1))
 
@@ -1851,45 +1809,38 @@
 (And (Member $e0 change) (Patient $e0 $x1))
 (And (Member $e0 good) (Experiencer $e0 $x1))
 
-;; [same role, different class]  get.Agent ~ take.Agent   n 6 / 9   gate: FAIL
-;; A fillers: Diego, Gabriel, Janos, Leonid, thing, man ×0.5   e.g. tierB-000770 tierB-000577
-;; B fillers: person ×2, Gustavo, Jerry Rawlings, Lajos, Michael, cook   e.g. tierB-000978 tierB-000987
-;; JSD: 0.595   shared clusters: 3 e.g. {thing, things} {Gustavo, Alberto, Diego, Rodrigo, …} {Janos, Miroslav, Lajos}
-(And (Member $e0 get) (Agent $e0 $x1))
-(And (Member $e0 take) (Agent $e0 $x1))
-
 ;; [same class, different role]  turn.Patient ~ turn.Result   n 7 / 5   gate: FAIL
 ;; A fillers: Gustavo, road, russian speech, war, black ×0.5, ceiling ×0.5   e.g. tierB-000832 tierB-000476
 ;; B fillers: black, crow, gusher, red, yellow   e.g. tierB-000654 tierB-001675
-;; JSD: 0.599   shared clusters: 4 e.g. {black, white} {gusher} {red} {yellow, orange}
+;; JSD: 0.599   shared clusters: 4 e.g. {black} {gusher} {red} {yellow}
 (And (Member $e0 turn) (Patient $e0 $x1))
 (And (Member $e0 turn) (Result $e0 $x1))
 
 ;; [same role, different class]  eat.Agent ~ sing.Agent   n 4 / 9   gate: FAIL
 ;; A fillers: bird, child, person, brown ×0.5, dog ×0.5   e.g. tierB-001973 tierB-000338
 ;; B fillers: person ×2, sister ×2, Amateur Barbershop Harmony Society, David, actress, bird   e.g. tierB-001901 tierC-000127
-;; JSD: 0.604   shared clusters: 2 e.g. {person, people} {bird, bird dropping, birds}
+;; JSD: 0.604   shared clusters: 2 e.g. {person, people} {bird, birds}
 (And (Member $e0 eat) (Agent $e0 $x1))
 (And (Member $e0 sing) (Agent $e0 $x1))
 
 ;; [different class and role]  build.Agent ~ replace.Theme   n 14 / 4   gate: FAIL
 ;; A fillers: company ×8, O. R. Woodcock ×2, person ×2, community, mozabite   e.g. tierC-000071 tierC-000072
 ;; B fillers: Lex Lex Luthor, Lex Luthor, William Ewer, person   e.g. tierC-000099 tierC-000100
-;; JSD: 0.628   shared clusters: 2 e.g. {person, people} {Brian Packham, Carl Fenton, Colin Richardson, O. R. Woodcock, …}
+;; JSD: 0.628   shared clusters: 2 e.g. {person, people} {O. R. Woodcock, William Ewer}
 (And (Member $e0 build) (Agent $e0 $x1))
 (And (Member $e0 replace) (Theme $e0 $x1))
 
 ;; [same role, different class]  cry.Agent ~ start.Agent   n 5 / 6   gate: FAIL
 ;; A fillers: Alberto, Baya, Rima, Skura, girl   e.g. tierB-000738 tierB-000030
-;; B fillers: Karl, Skura, cook, girl, school janitor, crowd ×0.5   e.g. tierB-000043 tierB-001219
-;; JSD: 0.636   shared clusters: 2 e.g. {girl, girls} {Skura, Inomaru, Barako}
+;; B fillers: Karl, Skura, cook, girl, school janitor, crowd ×0.5   e.g. tierB-000043 tierB-000942
+;; JSD: 0.636   shared clusters: 2 e.g. {girl} {Skura, Inomaru}
 (And (Member $e0 cry) (Agent $e0 $x1))
 (And (Member $e0 start) (Agent $e0 $x1))
 
 ;; [different class and role]  follow.Agent ~ rule.Theme   n 9 / 3   gate: FAIL
 ;; A fillers: bhadala ×2, Alexander, Bailey, Sami, muslim house, road   e.g. tierC-000095 tierC-000096
 ;; B fillers: Cuba, muslim house, house ×0.5, muslim ×0.5   e.g. tierB-000311 tierC-000095
-;; JSD: 0.639   shared clusters: 3 e.g. {muslim house, house, muslim} {house, home, houses} {muslim, muslim community, muslims}
+;; JSD: 0.639   shared clusters: 3 e.g. {muslim house, house, muslim} {house, home} {muslim, muslims}
 (And (Member $e0 follow) (Agent $e0 $x1))
 (And (Member $e0 rule) (Theme $e0 $x1))
 
@@ -1903,48 +1854,34 @@
 ;; [same role, different class]  follow.Theme ~ succeed.Theme   n 9 / 3   gate: FAIL
 ;; A fillers: region ×2, tradition ×2, Henry Cole, Layla, Lukas, Margaret Fleming   e.g. tierC-000076 tierC-000337
 ;; B fillers: Henry Cole, Margaret Fleming, person   e.g. tierC-000075 tierC-000338
-;; JSD: 0.639   shared clusters: 2 e.g. {Margaret Fleming, Martha, Anne, Marie} {Henry Cole}
+;; JSD: 0.639   shared clusters: 2 e.g. {Margaret Fleming} {Henry Cole}
 (And (Member $e0 follow) (Theme $e0 $x1))
 (And (Member $e0 succeed) (Theme $e0 $x1))
 
 ;; [same role, different class]  serve.Agent ~ take.Agent   n 10 / 9   gate: FAIL
 ;; A fillers: Indooroopilly ×2, person ×1.5, Ipswich, Ipswich & Rosewood, Janos, Rosewood   e.g. tierC-000053 tierC-000054
 ;; B fillers: person ×2, Gustavo, Jerry Rawlings, Lajos, Michael, cook   e.g. tierC-000071 tierC-000072
-;; JSD: 0.642   shared clusters: 3 e.g. {person, people} {Janos, Miroslav, Lajos} {president, person, president}
+;; JSD: 0.642   shared clusters: 3 e.g. {person, people} {Janos, Lajos} {president, person, president}
 (And (Member $e0 serve) (Agent $e0 $x1))
 (And (Member $e0 take) (Agent $e0 $x1))
 
 ;; [same role, different class]  go.Agent ~ talk.Agent   n 15 / 8   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierC-000209 tierC-000210
 ;; B fillers: Katherine ×2, Daniel, Jordan Peterson, Linda, friend, novelist   e.g. tierB-000327 tierB-000078
-;; JSD: 0.643   shared clusters: 3 e.g. {Katherine, Isabella, Kate} {Linda, Amanda, Loren, Dora Smith, …} {Daniel}
+;; JSD: 0.643   shared clusters: 3 e.g. {Katherine, Kate} {Linda} {Daniel}
 (And (Member $e0 go) (Agent $e0 $x1))
 (And (Member $e0 talk) (Agent $e0 $x1))
-
-;; [same role, different class]  leave.Agent ~ take.Agent   n 10 / 9   gate: FAIL
-;; A fillers: Brian, Ivan, Marcus, Rodrigo, Tom, bus   e.g. tierB-000747 tierB-001350
-;; B fillers: person ×2, Gustavo, Jerry Rawlings, Lajos, Michael, cook   e.g. tierC-000071 tierC-000072
-;; JSD: 0.645   shared clusters: 3 e.g. {person, people} {Michael, Marco, Marcus} {Gustavo, Alberto, Diego, Rodrigo, …}
-(And (Member $e0 leave) (Agent $e0 $x1))
-(And (Member $e0 take) (Agent $e0 $x1))
-
-;; [different class and role]  find.Agent ~ hear.Experiencer   n 4 / 8   gate: FAIL
-;; A fillers: Couper ×2, Flavio, Pietro   e.g. tierB-001139 tierB-000706
-;; B fillers: Bruno ×2, Damiano, Fadil, Flavio, James, Jonas   e.g. tierB-000751 tierB-000189
-;; JSD: 0.656   shared clusters: 2 e.g. {Adriano, Claudio, Flavio} {Martino, Pietro, Lorenzo, Damiano}
-(And (Member $e0 find) (Agent $e0 $x1))
-(And (Member $e0 hear) (Experiencer $e0 $x1))
 
 ;; [same role, different class]  move.Agent ~ swim.Agent   n 4 / 5   gate: FAIL
 ;; A fillers: headquarters ×2, Sammy, fish ×0.5, school ×0.5   e.g. tierB-000782 tierC-000197
 ;; B fillers: fish ×1.5, Linda, child, school, red ×0.5   e.g. tierB-001008 tierB-001268
-;; JSD: 0.658   shared clusters: 2 e.g. {fish, salmon} {school, education}
+;; JSD: 0.658   shared clusters: 2 e.g. {fish} {school}
 (And (Member $e0 move) (Agent $e0 $x1))
 (And (Member $e0 swim) (Agent $e0 $x1))
 
 ;; [same role, different class]  add.Agent ~ take.Agent   n 5 / 9   gate: FAIL
-;; A fillers: thing ×2, J. Augustus Knapp, cook, plant   e.g. tierC-000227 tierC-000228
-;; B fillers: person ×2, Gustavo, Jerry Rawlings, Lajos, Michael, cook   e.g. tierB-000978 tierB-000942
+;; A fillers: thing ×2, J. Augustus Knapp, cook, plant   e.g. tierB-000462 tierC-000227
+;; B fillers: person ×2, Gustavo, Jerry Rawlings, Lajos, Michael, cook   e.g. tierB-000942 tierB-000978
 ;; JSD: 0.661   shared clusters: 2 e.g. {thing, things} {cook}
 (And (Member $e0 add) (Agent $e0 $x1))
 (And (Member $e0 take) (Agent $e0 $x1))
@@ -1952,44 +1889,23 @@
 ;; [different class and role]  bad.Experiencer ~ get.Patient   n 4 / 7   gate: FAIL
 ;; A fillers: bad ×2, relationship, matter ×0.5, weather ×0.5   e.g. tierB-000748 tierB-001594
 ;; B fillers: Iran, bad, big ×0.5, cheap ×0.5, day ×0.5, excuse ×0.5   e.g. tierB-001910 tierB-000370
-;; JSD: 0.661   shared clusters: 2 e.g. {bad, bad, matter, bad, problem} {weather}
+;; JSD: 0.661   shared clusters: 2 e.g. {bad} {weather}
 (And (Member $e0 bad) (Experiencer $e0 $x1))
 (And (Member $e0 get) (Patient $e0 $x1))
 
-;; [same role, different class]  study.Agent ~ take.Agent   n 12 / 9   gate: FAIL
-;; A fillers: person ×3, scientist ×2, Beth, Carlos, Fadil, Nicolaus Copernicus   e.g. tierC-000253 tierC-000254
-;; B fillers: person ×2, Gustavo, Jerry Rawlings, Lajos, Michael, cook   e.g. tierC-000071 tierC-000072
-;; JSD: 0.669   shared clusters: 2 e.g. {person, people} {Gustavo, Alberto, Diego, Rodrigo, …}
-(And (Member $e0 study) (Agent $e0 $x1))
-(And (Member $e0 take) (Agent $e0 $x1))
-
 ;; [different class and role]  bad.Experiencer ~ become.Patient   n 4 / 11   gate: FAIL
 ;; A fillers: bad ×2, relationship, matter ×0.5, weather ×0.5   e.g. tierC-000241 tierC-000242
-;; B fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierC-000001 tierC-000002
-;; JSD: 0.674   shared clusters: 2 e.g. {bad, bad, matter, bad, problem} {relationship, relationships}
+;; B fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierB-000352 tierC-000001
+;; JSD: 0.674   shared clusters: 2 e.g. {bad} {relationship, relationships}
 (And (Member $e0 bad) (Experiencer $e0 $x1))
 (And (Member $e0 become) (Patient $e0 $x1))
 
-;; [same role, different class]  learn.Theme ~ speak.Theme   n 3 / 6   gate: FAIL
-;; A fillers: berber, vocabulary, foreign ×0.5, language ×0.5   e.g. tierB-000608 tierB-000282
-;; B fillers: Ashe ×2, czech, english, polish, foreign ×0.5, language ×0.5   e.g. tierB-000053 tierB-001068
-;; JSD: 0.683   shared clusters: 2 e.g. {language, english} {foreign, foreigner}
-(And (Member $e0 learn) (Theme $e0 $x1))
-(And (Member $e0 speak) (Theme $e0 $x1))
-
 ;; [same class, different role]  form.Agent ~ form.Patient   n 7 / 6   gate: FAIL
 ;; A fillers: Jon Bon Jovi ×2, Sambora ×2, labourer, technetium, complex ×0.5, simple ×0.5   e.g. tierC-000164 tierC-000163
-;; B fillers: main songwriting unit ×2, human barricade, technetium, complex ×0.5, main ×0.5, simple ×0.5   e.g. tierC-000179 tierB-000780
-;; JSD: 0.692   shared clusters: 3 e.g. {technetium} {complex, complex, simple, complicated} {simple}
+;; B fillers: main songwriting unit ×2, human barricade, technetium, complex ×0.5, main ×0.5, simple ×0.5   e.g. tierC-000180 tierC-000179
+;; JSD: 0.692   shared clusters: 3 e.g. {technetium} {complex, complicated} {simple}
 (And (Member $e0 form) (Agent $e0 $x1))
 (And (Member $e0 form) (Patient $e0 $x1))
-
-;; [different class and role]  lead.Agent ~ start.Patient   n 5 / 11   gate: FAIL
-;; A fillers: thing ×2, dog, education, general   e.g. tierB-001086 tierC-000019
-;; B fillers: Milky Way, concert, crack, dog feed, knock, national fibre optic network project   e.g. tierB-001446 tierB-001816
-;; JSD: 0.7   shared clusters: 2 e.g. {thing, things} {dog, dog feed}
-(And (Member $e0 lead) (Agent $e0 $x1))
-(And (Member $e0 start) (Patient $e0 $x1))
 
 ;; [same role, different class]  work.Agent ~ write.Agent   n 8 / 8   gate: FAIL
 ;; A fillers: Asserson, Dad, Dan, Dmitri, Mr. Jones, person   e.g. tierB-001813 tierB-001187
@@ -2008,37 +1924,30 @@
 ;; [different class and role]  lead.Goal ~ live.Location   n 5 / 8   gate: FAIL
 ;; A fillers: happiness, home, peace, big ×0.5, cat fight ×0.5, glory ×0.5   e.g. tierB-001086 tierC-000020
 ;; B fillers: Norway ×2, house ×1.5, group, southeastern corner, suburb, comfortable ×0.5   e.g. tierB-000048 tierB-000371
-;; JSD: 0.728   shared clusters: 2 e.g. {house, home, houses} {big, large, huge, massive, …}
+;; JSD: 0.728   shared clusters: 2 e.g. {house, home} {big, large, huge}
 (And (Member $e0 lead) (Goal $e0 $x1))
 (And (Member $e0 live) (Location $e0 $x1))
+
+;; [same role, different class]  get.Agent ~ take.Agent   n 6 / 9   gate: FAIL
+;; A fillers: Diego, Gabriel, Janos, Leonid, thing, man ×0.5   e.g. tierB-000770 tierB-000672
+;; B fillers: person ×2, Gustavo, Jerry Rawlings, Lajos, Michael, cook   e.g. tierB-000978 tierB-001102
+;; JSD: 0.73   shared clusters: 2 e.g. {thing, things} {Janos, Lajos}
+(And (Member $e0 get) (Agent $e0 $x1))
+(And (Member $e0 take) (Agent $e0 $x1))
 
 ;; [different class and role]  go.Agent ~ sleep.Experiencer   n 15 / 6   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-001183 tierB-001496
 ;; B fillers: cat ×2, child ×2, Baya, dog   e.g. tierB-001003 tierB-001334
-;; JSD: 0.74   shared clusters: 2 e.g. {cat, cats} {child, children, kid, kids}
+;; JSD: 0.74   shared clusters: 2 e.g. {cat, cats} {child, kid}
 (And (Member $e0 go) (Agent $e0 $x1))
 (And (Member $e0 sleep) (Experiencer $e0 $x1))
 
 ;; [same class, different role]  lead.Goal ~ lead.Theme   n 5 / 3   gate: FAIL
 ;; A fillers: happiness, home, peace, big ×0.5, cat fight ×0.5, glory ×0.5   e.g. tierC-000020 tierB-000040
 ;; B fillers: sheep, squad, big ×0.5, cat fight ×0.5   e.g. tierC-000019 tierB-001086
-;; JSD: 0.745   shared clusters: 2 e.g. {cat fight, big, cat fight} {big, large, huge, massive, …}
+;; JSD: 0.745   shared clusters: 2 e.g. {cat fight} {big, large, huge}
 (And (Member $e0 lead) (Goal $e0 $x1))
 (And (Member $e0 lead) (Theme $e0 $x1))
-
-;; [same role, different class]  get.Agent ~ make.Agent   n 6 / 18   gate: FAIL
-;; A fillers: Diego, Gabriel, Janos, Leonid, thing, man ×0.5   e.g. tierB-001773 tierB-000770
-;; B fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-001182 tierB-001831
-;; JSD: 0.752   shared clusters: 3 e.g. {thing, things} {Elias, Gabriel} {man, guy}
-(And (Member $e0 get) (Agent $e0 $x1))
-(And (Member $e0 make) (Agent $e0 $x1))
-
-;; [different class and role]  go.Goal ~ swim.Agent   n 12 / 5   gate: FAIL
-;; A fillers: bed ×4, Loren, aesthetic salon, bathroom, hospital, place   e.g. tierC-000210 tierB-001628
-;; B fillers: fish ×1.5, Linda, child, school, red ×0.5   e.g. tierB-000313 tierB-000782
-;; JSD: 0.752   shared clusters: 2 e.g. {Linda, Amanda, Loren, Dora Smith, …} {school, education}
-(And (Member $e0 go) (Goal $e0 $x1))
-(And (Member $e0 swim) (Agent $e0 $x1))
 
 ;; [different class and role]  get.Patient ~ good.Experiencer   n 7 / 4   gate: FAIL
 ;; A fillers: Iran, bad, big ×0.5, cheap ×0.5, day ×0.5, excuse ×0.5   e.g. tierB-000748 tierB-000370
@@ -2047,33 +1956,12 @@
 (And (Member $e0 get) (Patient $e0 $x1))
 (And (Member $e0 good) (Experiencer $e0 $x1))
 
-;; [same role, different class]  leave.Agent ~ study.Agent   n 10 / 12   gate: FAIL
-;; A fillers: Brian, Ivan, Marcus, Rodrigo, Tom, bus   e.g. tierB-000747 tierB-000704
-;; B fillers: person ×3, scientist ×2, Beth, Carlos, Fadil, Nicolaus Copernicus   e.g. tierC-000253 tierC-000254
-;; JSD: 0.758   shared clusters: 2 e.g. {person, people} {Gustavo, Alberto, Diego, Rodrigo, …}
-(And (Member $e0 leave) (Agent $e0 $x1))
-(And (Member $e0 study) (Agent $e0 $x1))
-
-;; [different class and role]  find.Theme ~ make.Agent   n 10 / 18   gate: FAIL
-;; A fillers: thing ×4, Couper ×2, Pietro, clay figurine, meteorite, paper sheet   e.g. tierC-000279 tierC-000280
-;; B fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-001831 tierB-000325
-;; JSD: 0.773   shared clusters: 2 e.g. {thing, things} {Martino, Pietro, Lorenzo, Damiano}
-(And (Member $e0 find) (Theme $e0 $x1))
-(And (Member $e0 make) (Agent $e0 $x1))
-
-;; [same role, different class]  leave.Agent ~ work.Agent   n 10 / 8   gate: FAIL
-;; A fillers: Brian, Ivan, Marcus, Rodrigo, Tom, bus   e.g. tierB-000747 tierB-000564
-;; B fillers: Asserson, Dad, Dan, Dmitri, Mr. Jones, person   e.g. tierB-001813 tierB-000212
-;; JSD: 0.777   shared clusters: 2 e.g. {person, people} {Boris, Ivan, Dmitri, Rasputin}
-(And (Member $e0 leave) (Agent $e0 $x1))
-(And (Member $e0 work) (Agent $e0 $x1))
-
-;; [same role, different class]  try.Agent ~ walk.Agent   n 10 / 8   gate: FAIL
-;; A fillers: Bob, Claudio, David, Felix, Mark, Santiago   e.g. tierB-000487 tierB-000216
-;; B fillers: Adriano, Felix, Hanako, Leon, Michael, ant   e.g. tierB-000148 tierB-001044
-;; JSD: 0.777   shared clusters: 2 e.g. {Felix} {Adriano, Claudio, Flavio}
-(And (Member $e0 try) (Agent $e0 $x1))
-(And (Member $e0 walk) (Agent $e0 $x1))
+;; [same role, different class]  learn.Theme ~ speak.Theme   n 3 / 6   gate: FAIL
+;; A fillers: berber, vocabulary, foreign ×0.5, language ×0.5   e.g. tierB-000608 tierB-000282
+;; B fillers: Ashe ×2, czech, english, polish, foreign ×0.5, language ×0.5   e.g. tierB-001068 tierB-000053
+;; JSD: 0.77   shared clusters: 2 e.g. {language} {foreign, foreigner}
+(And (Member $e0 learn) (Theme $e0 $x1))
+(And (Member $e0 speak) (Theme $e0 $x1))
 
 ;; [same role, different class]  change.Patient ~ get.Patient   n 8 / 7   gate: FAIL
 ;; A fillers: weather ×2, color, course, mind, name, rain   e.g. tierB-000517 tierB-001491
@@ -2085,16 +1973,9 @@
 ;; [same role, different class]  go.Agent ~ swim.Agent   n 15 / 5   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-001496 tierB-000313
 ;; B fillers: fish ×1.5, Linda, child, school, red ×0.5   e.g. tierB-001511 tierB-000782
-;; JSD: 0.784   shared clusters: 2 e.g. {child, children, kid, kids} {Linda, Amanda, Loren, Dora Smith, …}
+;; JSD: 0.784   shared clusters: 2 e.g. {child, kid} {Linda}
 (And (Member $e0 go) (Agent $e0 $x1))
 (And (Member $e0 swim) (Agent $e0 $x1))
-
-;; [same role, different class]  go.Agent ~ speak.Agent   n 15 / 8   gate: FAIL
-;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-000012 tierB-001857
-;; B fillers: Oates ×2, Sophia ×2, Kari Wahlgren, Mie Sonozaki, Xavier, man   e.g. tierB-000271 tierC-000094
-;; JSD: 0.793   shared clusters: 2 e.g. {Olivia, Sophia} {Hanako, Mie Sonozaki, Soichiro Akizuki, Mariko, …}
-(And (Member $e0 go) (Agent $e0 $x1))
-(And (Member $e0 speak) (Agent $e0 $x1))
 
 ;; [different class and role]  hear.Stimulus ~ start.Patient   n 9 / 11   gate: FAIL
 ;; A fillers: bang, crash, knock, shot, start, thing   e.g. tierB-000751 tierB-000756
@@ -2103,17 +1984,10 @@
 (And (Member $e0 hear) (Stimulus $e0 $x1))
 (And (Member $e0 start) (Patient $e0 $x1))
 
-;; [different class and role]  hear.Experiencer ~ make.Agent   n 8 / 18   gate: FAIL
-;; A fillers: Bruno ×2, Damiano, Fadil, Flavio, James, Jonas   e.g. tierB-000681 tierB-000189
-;; B fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-000539 tierB-000325
-;; JSD: 0.802   shared clusters: 2 e.g. {Martino, Pietro, Lorenzo, Damiano} {William, James}
-(And (Member $e0 hear) (Experiencer $e0 $x1))
-(And (Member $e0 make) (Agent $e0 $x1))
-
 ;; [same role, different class]  become.Patient ~ get.Patient   n 11 / 7   gate: FAIL
 ;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierC-000241 tierC-000242
 ;; B fillers: Iran, bad, big ×0.5, cheap ×0.5, day ×0.5, excuse ×0.5   e.g. tierB-000748 tierB-001910
-;; JSD: 0.807   shared clusters: 2 e.g. {bad, bad, matter, bad, problem} {thing, things}
+;; JSD: 0.807   shared clusters: 2 e.g. {bad} {thing, things}
 (And (Member $e0 become) (Patient $e0 $x1))
 (And (Member $e0 get) (Patient $e0 $x1))
 
@@ -2124,33 +1998,12 @@
 (And (Member $e0 begin) (Agent $e0 $x1))
 (And (Member $e0 try) (Agent $e0 $x1))
 
-;; [same role, different class]  get.Patient ~ make.Patient   n 7 / 20   gate: FAIL
-;; A fillers: Iran, bad, big ×0.5, cheap ×0.5, day ×0.5, excuse ×0.5   e.g. tierB-000748 tierB-001910
-;; B fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-001594 tierB-001457
-;; JSD: 0.81   shared clusters: 3 e.g. {Afghanistan, Iran, Iraq, Persia} {bad, bad, matter, bad, problem} {big, large, huge, massive, …}
-(And (Member $e0 get) (Patient $e0 $x1))
-(And (Member $e0 make) (Patient $e0 $x1))
-
 ;; [same role, different class]  go.Agent ~ play.Agent   n 15 / 15   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-001496 tierB-001857
 ;; B fillers: child ×4, Boston Red Sox ×2, Cincinnati Reds ×2, Audrey Hepburn, Audrey Heppurn, Tony   e.g. tierB-000160 tierB-000648
-;; JSD: 0.813   shared clusters: 2 e.g. {child, children, kid, kids} {Hanako, Mie Sonozaki, Soichiro Akizuki, Mariko, …}
+;; JSD: 0.813   shared clusters: 2 e.g. {child, kid} {Hanako, Mariko, Yumi}
 (And (Member $e0 go) (Agent $e0 $x1))
 (And (Member $e0 play) (Agent $e0 $x1))
-
-;; [different class and role]  get.Agent ~ have.Holder   n 6 / 44   gate: FAIL
-;; A fillers: Diego, Gabriel, Janos, Leonid, thing, man ×0.5   e.g. tierB-000770 tierB-000577
-;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierC-000271 tierC-000272
-;; JSD: 0.82   shared clusters: 3 e.g. {thing, things} {Gustavo, Alberto, Diego, Rodrigo, …} {Janos, Miroslav, Lajos}
-(And (Member $e0 get) (Agent $e0 $x1))
-(And (Member $e0 have) (Holder $e0 $x1))
-
-;; [same role, different class]  go.Agent ~ walk.Agent   n 15 / 8   gate: FAIL
-;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-001857 tierB-001145
-;; B fillers: Adriano, Felix, Hanako, Leon, Michael, ant   e.g. tierB-000951 tierB-001044
-;; JSD: 0.821   shared clusters: 2 e.g. {Hanako, Mie Sonozaki, Soichiro Akizuki, Mariko, …} {Adriano, Claudio, Flavio}
-(And (Member $e0 go) (Agent $e0 $x1))
-(And (Member $e0 walk) (Agent $e0 $x1))
 
 ;; [different class and role]  build.Patient ~ have.Holder   n 18 / 44   gate: FAIL
 ;; A fillers: hotel ×4, room ×3, horn ×2, paper factory ×2, paper mill ×2, thing ×2   e.g. tierC-000045 tierC-000046
@@ -2162,49 +2015,49 @@
 ;; [same role, different class]  stop.Agent ~ work.Agent   n 4 / 8   gate: FAIL
 ;; A fillers: Rima, Skura, Yanni, adaptor ×0.5, old ×0.5   e.g. tierB-001873 tierB-000030
 ;; B fillers: Asserson, Dad, Dan, Dmitri, Mr. Jones, person   e.g. tierB-001134 tierB-001813
-;; JSD: 0.828   shared clusters: 2 e.g. {old, elderly} {adaptor, adaptor, old}
+;; JSD: 0.828   shared clusters: 2 e.g. {adaptor} {old}
 (And (Member $e0 stop) (Agent $e0 $x1))
 (And (Member $e0 work) (Agent $e0 $x1))
 
 ;; [different class and role]  build.Patient ~ sell.Theme   n 18 / 7   gate: FAIL
 ;; A fillers: hotel ×4, room ×3, horn ×2, paper factory ×2, paper mill ×2, thing ×2   e.g. tierB-001867 tierC-000119
 ;; B fillers: ice cream ×2, copy, milk, thing, bean ×0.5, cell phone ×0.5   e.g. tierB-001168 tierB-001956
-;; JSD: 0.832   shared clusters: 2 e.g. {thing, things} {new, brand new, new, product}
+;; JSD: 0.832   shared clusters: 2 e.g. {thing, things} {new}
 (And (Member $e0 build) (Patient $e0 $x1))
 (And (Member $e0 sell) (Theme $e0 $x1))
 
 ;; [different class and role]  become.Patient ~ hear.Stimulus   n 11 / 9   gate: FAIL
-;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierB-000740 tierB-000352
-;; B fillers: bang, crash, knock, shot, start, thing   e.g. tierB-000756 tierB-000695
+;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierB-000352 tierB-000740
+;; B fillers: bang, crash, knock, shot, start, thing   e.g. tierB-000695 tierB-001479
 ;; JSD: 0.837   shared clusters: 2 e.g. {thing, things} {noise, noises}
 (And (Member $e0 become) (Patient $e0 $x1))
 (And (Member $e0 hear) (Stimulus $e0 $x1))
 
-;; [same role, different class]  make.Agent ~ speak.Agent   n 18 / 8   gate: FAIL
-;; A fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-001182 tierB-000951
-;; B fillers: Oates ×2, Sophia ×2, Kari Wahlgren, Mie Sonozaki, Xavier, man   e.g. tierB-001068 tierC-000094
-;; JSD: 0.839   shared clusters: 2 e.g. {man, guy} {Hanako, Mie Sonozaki, Soichiro Akizuki, Mariko, …}
+;; [different class and role]  hear.Experiencer ~ make.Agent   n 8 / 18   gate: FAIL
+;; A fillers: Bruno ×2, Damiano, Fadil, Flavio, James, Jonas   e.g. tierB-000681 tierB-000189
+;; B fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-000539 tierB-000325
+;; JSD: 0.839   shared clusters: 2 e.g. {James} {Martino, Damiano}
+(And (Member $e0 hear) (Experiencer $e0 $x1))
 (And (Member $e0 make) (Agent $e0 $x1))
-(And (Member $e0 speak) (Agent $e0 $x1))
 
 ;; [same role, different class]  make.Agent ~ walk.Agent   n 18 / 8   gate: FAIL
 ;; A fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-001623 tierB-000951
 ;; B fillers: Adriano, Felix, Hanako, Leon, Michael, ant   e.g. tierB-000324 tierB-001219
-;; JSD: 0.839   shared clusters: 2 e.g. {customer, customers} {Hanako, Mie Sonozaki, Soichiro Akizuki, Mariko, …}
+;; JSD: 0.839   shared clusters: 2 e.g. {customer} {Hanako, Mariko, Yumi}
 (And (Member $e0 make) (Agent $e0 $x1))
 (And (Member $e0 walk) (Agent $e0 $x1))
 
-;; [different class and role]  have.Holder ~ take.Agent   n 44 / 9   gate: FAIL
-;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierC-000271 tierC-000272
-;; B fillers: person ×2, Gustavo, Jerry Rawlings, Lajos, Michael, cook   e.g. tierB-000978 tierB-000987
-;; JSD: 0.844   shared clusters: 3 e.g. {thing, things} {Gustavo, Alberto, Diego, Rodrigo, …} {Janos, Miroslav, Lajos}
-(And (Member $e0 have) (Holder $e0 $x1))
-(And (Member $e0 take) (Agent $e0 $x1))
+;; [same role, different class]  get.Agent ~ make.Agent   n 6 / 18   gate: FAIL
+;; A fillers: Diego, Gabriel, Janos, Leonid, thing, man ×0.5   e.g. tierB-001773 tierB-000770
+;; B fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-001182 tierB-001831
+;; JSD: 0.842   shared clusters: 2 e.g. {thing, things} {man, guy}
+(And (Member $e0 get) (Agent $e0 $x1))
+(And (Member $e0 make) (Agent $e0 $x1))
 
 ;; [different class and role]  live.Location ~ make.Patient   n 8 / 20   gate: FAIL
 ;; A fillers: Norway ×2, house ×1.5, group, southeastern corner, suburb, comfortable ×0.5   e.g. tierB-000048 tierB-000371
 ;; B fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-001457 tierB-001831
-;; JSD: 0.851   shared clusters: 3 e.g. {house, home, houses} {big, large, huge, massive, …} {comfortable}
+;; JSD: 0.851   shared clusters: 3 e.g. {house, home} {big, large, huge} {comfortable}
 (And (Member $e0 live) (Location $e0 $x1))
 (And (Member $e0 make) (Patient $e0 $x1))
 
@@ -2215,26 +2068,19 @@
 (And (Member $e0 direct) (Patient $e0 $x1))
 (And (Member $e0 have) (Holder $e0 $x1))
 
-;; [same role, different class]  begin.Agent ~ make.Agent   n 11 / 18   gate: FAIL
-;; A fillers: european american settler ×2, David, Jessica, Mark, William, crowd   e.g. tierB-000240 tierB-000173
-;; B fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-000539 tierB-000073
-;; JSD: 0.86   shared clusters: 2 e.g. {William, James} {David}
-(And (Member $e0 begin) (Agent $e0 $x1))
-(And (Member $e0 make) (Agent $e0 $x1))
+;; [different class and role]  get.Agent ~ have.Holder   n 6 / 44   gate: FAIL
+;; A fillers: Diego, Gabriel, Janos, Leonid, thing, man ×0.5   e.g. tierB-000770 tierB-000577
+;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierC-000271 tierC-000272
+;; JSD: 0.87   shared clusters: 2 e.g. {thing, things} {Diego}
+(And (Member $e0 get) (Agent $e0 $x1))
+(And (Member $e0 have) (Holder $e0 $x1))
 
 ;; [same role, different class]  get.Agent ~ try.Agent   n 6 / 10   gate: FAIL
 ;; A fillers: Diego, Gabriel, Janos, Leonid, thing, man ×0.5   e.g. tierB-001773 tierB-000770
-;; B fillers: Bob, Claudio, David, Felix, Mark, Santiago   e.g. tierB-000470 tierB-001130
+;; B fillers: Bob, Claudio, David, Felix, Mark, Santiago   e.g. tierB-000469 tierB-000470
 ;; JSD: 0.873   shared clusters: 2 e.g. {man, guy} {young}
 (And (Member $e0 get) (Agent $e0 $x1))
 (And (Member $e0 try) (Agent $e0 $x1))
-
-;; [different class and role]  have.Holder ~ leave.Agent   n 44 / 10   gate: FAIL
-;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-001861 tierB-000358
-;; B fillers: Brian, Ivan, Marcus, Rodrigo, Tom, bus   e.g. tierB-000564 tierB-000004
-;; JSD: 0.873   shared clusters: 3 e.g. {Boris, Ivan, Dmitri, Rasputin} {Thomas, Tom, Tommy} {Gustavo, Alberto, Diego, Rodrigo, …}
-(And (Member $e0 have) (Holder $e0 $x1))
-(And (Member $e0 leave) (Agent $e0 $x1))
 
 ;; [same role, different class]  make.Agent ~ try.Agent   n 18 / 10   gate: FAIL
 ;; A fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-001182 tierB-000173
@@ -2253,56 +2099,63 @@
 ;; [different class and role]  lead.Goal ~ make.Patient   n 5 / 20   gate: FAIL
 ;; A fillers: happiness, home, peace, big ×0.5, cat fight ×0.5, glory ×0.5   e.g. tierB-001086 tierC-000020
 ;; B fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-000371 tierB-001457
-;; JSD: 0.875   shared clusters: 2 e.g. {house, home, houses} {big, large, huge, massive, …}
+;; JSD: 0.875   shared clusters: 2 e.g. {house, home} {big, large, huge}
 (And (Member $e0 lead) (Goal $e0 $x1))
 (And (Member $e0 make) (Patient $e0 $x1))
 
 ;; [different class and role]  bad.Experiencer ~ make.Patient   n 4 / 20   gate: FAIL
 ;; A fillers: bad ×2, relationship, matter ×0.5, weather ×0.5   e.g. tierB-000748 tierB-001594
-;; B fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-000539 tierB-000371
-;; JSD: 0.879   shared clusters: 2 e.g. {bad, bad, matter, bad, problem} {matter, mass}
+;; B fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-001754 tierB-000073
+;; JSD: 0.879   shared clusters: 2 e.g. {bad} {matter}
 (And (Member $e0 bad) (Experiencer $e0 $x1))
 (And (Member $e0 make) (Patient $e0 $x1))
 
 ;; [same role, different class]  go.Agent ~ make.Agent   n 15 / 18   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-001183 tierB-001857
 ;; B fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-000073 tierB-000951
-;; JSD: 0.879   shared clusters: 2 e.g. {cat, cats} {Hanako, Mie Sonozaki, Soichiro Akizuki, Mariko, …}
+;; JSD: 0.879   shared clusters: 2 e.g. {cat, cats} {Hanako, Mariko, Yumi}
 (And (Member $e0 go) (Agent $e0 $x1))
 (And (Member $e0 make) (Agent $e0 $x1))
 
 ;; [same role, different class]  make.Agent ~ play.Agent   n 18 / 15   gate: FAIL
 ;; A fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-001457 tierB-000951
 ;; B fillers: child ×4, Boston Red Sox ×2, Cincinnati Reds ×2, Audrey Hepburn, Audrey Heppurn, Tony   e.g. tierB-001840 tierB-000939
-;; JSD: 0.879   shared clusters: 2 e.g. {boy, boys} {Hanako, Mie Sonozaki, Soichiro Akizuki, Mariko, …}
+;; JSD: 0.879   shared clusters: 2 e.g. {boy} {Hanako, Mariko, Yumi}
 (And (Member $e0 make) (Agent $e0 $x1))
 (And (Member $e0 play) (Agent $e0 $x1))
 
 ;; [different class and role]  beautiful.Experiencer ~ make.Patient   n 3 / 20   gate: FAIL
 ;; A fillers: beautiful, weather, moon ×0.5, room ×0.5   e.g. tierB-001920 tierB-000904
-;; B fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-000539 tierB-001594
-;; JSD: 0.881   shared clusters: 2 e.g. {beautiful, gorgeous, pretty} {room, rooms}
+;; B fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-001754 tierB-000073
+;; JSD: 0.881   shared clusters: 2 e.g. {beautiful, gorgeous} {room, rooms}
 (And (Member $e0 beautiful) (Experiencer $e0 $x1))
 (And (Member $e0 make) (Patient $e0 $x1))
 
 ;; [same role, different class]  start.Patient ~ turn.Patient   n 11 / 7   gate: FAIL
-;; A fillers: Milky Way, concert, crack, dog feed, knock, national fibre optic network project   e.g. tierB-000654 tierB-001446
+;; A fillers: Milky Way, concert, crack, dog feed, knock, national fibre optic network project   e.g. tierB-000654 tierB-000465
 ;; B fillers: Gustavo, road, russian speech, war, black ×0.5, ceiling ×0.5   e.g. tierB-000832 tierB-000476
-;; JSD: 0.887   shared clusters: 2 e.g. {gusher} {freedom movement, freedom}
+;; JSD: 0.887   shared clusters: 2 e.g. {gusher} {freedom movement}
 (And (Member $e0 start) (Patient $e0 $x1))
 (And (Member $e0 turn) (Patient $e0 $x1))
+
+;; [same role, different class]  get.Patient ~ make.Patient   n 7 / 20   gate: FAIL
+;; A fillers: Iran, bad, big ×0.5, cheap ×0.5, day ×0.5, excuse ×0.5   e.g. tierB-000748 tierB-001910
+;; B fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-001594 tierB-001457
+;; JSD: 0.89   shared clusters: 2 e.g. {bad} {big, large, huge}
+(And (Member $e0 get) (Patient $e0 $x1))
+(And (Member $e0 make) (Patient $e0 $x1))
 
 ;; [different class and role]  get.Patient ~ have.Holder   n 7 / 44   gate: FAIL
 ;; A fillers: Iran, bad, big ×0.5, cheap ×0.5, day ×0.5, excuse ×0.5   e.g. tierB-000748 tierB-001910
 ;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000790 tierC-000271
-;; JSD: 0.891   shared clusters: 3 e.g. {thing, things} {bad, bad, matter, bad, problem} {weather}
+;; JSD: 0.891   shared clusters: 3 e.g. {thing, things} {bad} {weather}
 (And (Member $e0 get) (Patient $e0 $x1))
 (And (Member $e0 have) (Holder $e0 $x1))
 
 ;; [different class and role]  buy.Theme ~ have.Holder   n 5 / 44   gate: FAIL
-;; A fillers: computer, food, house, blue ×0.5, shirt ×0.5, trouser ×0.5   e.g. tierB-001690 tierB-000368
-;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-001016 tierB-001103
-;; JSD: 0.894   shared clusters: 2 e.g. {house, home, houses} {food, eat}
+;; A fillers: computer, food, house, blue ×0.5, shirt ×0.5, trouser ×0.5   e.g. tierB-000368 tierB-001690
+;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-001103 tierB-001016
+;; JSD: 0.894   shared clusters: 2 e.g. {food} {house, home}
 (And (Member $e0 buy) (Theme $e0 $x1))
 (And (Member $e0 have) (Holder $e0 $x1))
 
@@ -2316,14 +2169,14 @@
 ;; [same entity class, different head]  <unclassed>.PartOf ~ <unclassed>.Possession   n 11 / 30   gate: FAIL
 ;; A fillers: Khurda Road ×2, Yunnan, animal, cake, islamic ivory, ivy   e.g. tierC-000314 tierC-000114
 ;; B fillers: person ×5, Free Soil Party ×4, Republican Party ×4, subsequent game ×2, Dora Smith, God   e.g. tierC-000313 tierC-000113
-;; JSD: 0.896   shared clusters: 2 e.g. {Yunnan} {islamic ivory, ivory}
+;; JSD: 0.896   shared clusters: 2 e.g. {Yunnan} {islamic ivory}
 (PartOf $x0 $x1)
 (Possession $x0 $x1)
 
 ;; [same class, different role]  make.Patient ~ make.Result   n 20 / 7   gate: FAIL
 ;; A fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-001594 tierB-001920
 ;; B fillers: bad, beautiful, hazardous, king, uncomfortable, white   e.g. tierB-001504 tierB-000325
-;; JSD: 0.898   shared clusters: 2 e.g. {bad, bad, matter, bad, problem} {beautiful, gorgeous, pretty}
+;; JSD: 0.898   shared clusters: 2 e.g. {bad} {beautiful, gorgeous}
 (And (Member $e0 make) (Patient $e0 $x1))
 (And (Member $e0 make) (Result $e0 $x1))
 
@@ -2334,17 +2187,10 @@
 (And (Member $e0 change) (Patient $e0 $x1))
 (And (Member $e0 have) (Theme $e0 $x1))
 
-;; [different class and role]  have.Holder ~ use.Theme   n 44 / 23   gate: FAIL
-;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000142 tierB-001177
-;; B fillers: banach mackey topology ×2, weak arens space topology ×2, Iga, Laravel, Midway, auto tune   e.g. tierB-000971 tierB-001154
-;; JSD: 0.908   shared clusters: 3 e.g. {sentence, sentences} {word, word processor} {room, rooms}
-(And (Member $e0 have) (Holder $e0 $x1))
-(And (Member $e0 use) (Theme $e0 $x1))
-
 ;; [different class and role]  become.Patient ~ have.Holder   n 11 / 44   gate: FAIL
 ;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierC-000241 tierC-000242
 ;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000790 tierC-000271
-;; JSD: 0.912   shared clusters: 2 e.g. {thing, things} {bad, bad, matter, bad, problem}
+;; JSD: 0.912   shared clusters: 2 e.g. {thing, things} {bad}
 (And (Member $e0 become) (Patient $e0 $x1))
 (And (Member $e0 have) (Holder $e0 $x1))
 
@@ -2355,66 +2201,59 @@
 (And (Member $e0 beautiful) (Experiencer $e0 $x1))
 (And (Member $e0 have) (Holder $e0 $x1))
 
-;; [same role, different class]  give.Theme ~ have.Theme   n 4 / 43   gate: FAIL
-;; A fillers: chocolate, mock champagne, thing, advice ×0.5, good ×0.5   e.g. tierC-000111 tierB-000137
-;; B fillers: child ×4, representation ×2, antler, beauty salon, cemetery, chance   e.g. tierB-000162 tierB-001103
-;; JSD: 0.914   shared clusters: 2 e.g. {thing, things} {good, nice, pleasant, positive}
-(And (Member $e0 give) (Theme $e0 $x1))
-(And (Member $e0 have) (Theme $e0 $x1))
-
 ;; [same role, different class]  become.Patient ~ make.Patient   n 11 / 20   gate: FAIL
-;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierC-000241 tierC-000242
-;; B fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-001594 tierB-000073
-;; JSD: 0.923   shared clusters: 2 e.g. {bad, bad, matter, bad, problem} {noise, noises}
+;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierB-000352 tierC-000241
+;; B fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-000073 tierB-001594
+;; JSD: 0.923   shared clusters: 2 e.g. {bad} {noise, noises}
 (And (Member $e0 become) (Patient $e0 $x1))
 (And (Member $e0 make) (Patient $e0 $x1))
 
 ;; [different class and role]  get.Patient ~ have.Theme   n 7 / 43   gate: FAIL
 ;; A fillers: Iran, bad, big ×0.5, cheap ×0.5, day ×0.5, excuse ×0.5   e.g. tierB-001658 tierB-000370
 ;; B fillers: child ×4, representation ×2, antler, beauty salon, cemetery, chance   e.g. tierB-001553 tierB-000162
-;; JSD: 0.924   shared clusters: 2 e.g. {day, days, days, short} {thing, things}
+;; JSD: 0.924   shared clusters: 2 e.g. {day} {thing, things}
 (And (Member $e0 get) (Patient $e0 $x1))
 (And (Member $e0 have) (Theme $e0 $x1))
 
 ;; [different class and role]  create.Patient ~ use.Theme   n 7 / 23   gate: FAIL
 ;; A fillers: community ×4, particle accelerator, calendar ×0.5, language ×0.5, new ×0.5, various ×0.5   e.g. tierB-000089 tierB-000728
-;; B fillers: banach mackey topology ×2, weak arens space topology ×2, Iga, Laravel, Midway, auto tune   e.g. tierB-001884 tierB-000866
-;; JSD: 0.927   shared clusters: 2 e.g. {schedule, calendar} {various}
+;; B fillers: banach mackey topology ×2, weak arens space topology ×2, Iga, Laravel, Midway, auto tune   e.g. tierC-000174 tierB-000282
+;; JSD: 0.927   shared clusters: 2 e.g. {calendar} {various}
 (And (Member $e0 create) (Patient $e0 $x1))
 (And (Member $e0 use) (Theme $e0 $x1))
 
 ;; [same entity class, different head]  <unclassed>.LocatedIn ~ <unclassed>.PartOf   n 46 / 11   gate: FAIL
 ;; A fillers: here ×3, Derwent Isle ×2, city ×2, class ×2, garden ×2, southern ×2   e.g. tierB-000523 tierB-001111
 ;; B fillers: Khurda Road ×2, Yunnan, animal, cake, islamic ivory, ivy   e.g. tierB-001932 tierB-001966
-;; JSD: 0.93   shared clusters: 2 e.g. {play} {street, road, street}
+;; JSD: 0.93   shared clusters: 2 e.g. {play} {street}
 (LocatedIn $x0 $x1)
 (PartOf $x0 $x1)
 
-;; [different class and role]  have.Holder ~ work.Agent   n 44 / 8   gate: FAIL
-;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000665 tierB-001861
-;; B fillers: Asserson, Dad, Dan, Dmitri, Mr. Jones, person   e.g. tierB-001873 tierB-000212
-;; JSD: 0.931   shared clusters: 2 e.g. {Boris, Ivan, Dmitri, Rasputin} {old, elderly}
-(And (Member $e0 have) (Holder $e0 $x1))
-(And (Member $e0 work) (Agent $e0 $x1))
-
 ;; [different class and role]  bad.Experiencer ~ have.Holder   n 4 / 44   gate: FAIL
 ;; A fillers: bad ×2, relationship, matter ×0.5, weather ×0.5   e.g. tierB-000748 tierB-001594
-;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000790 tierB-001929
-;; JSD: 0.932   shared clusters: 2 e.g. {bad, bad, matter, bad, problem} {weather}
+;; B fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000790 tierB-001103
+;; JSD: 0.932   shared clusters: 2 e.g. {bad} {weather}
 (And (Member $e0 bad) (Experiencer $e0 $x1))
 (And (Member $e0 have) (Holder $e0 $x1))
 
 ;; [different class and role]  have.Holder ~ make.Patient   n 44 / 20   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000790 tierB-001016
 ;; B fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-001594 tierB-000371
-;; JSD: 0.936   shared clusters: 3 e.g. {house, home, houses} {room, rooms} {bad, bad, matter, bad, problem}
+;; JSD: 0.936   shared clusters: 3 e.g. {house, home} {room, rooms} {bad}
 (And (Member $e0 have) (Holder $e0 $x1))
 (And (Member $e0 make) (Patient $e0 $x1))
+
+;; [different class and role]  have.Holder ~ use.Theme   n 44 / 23   gate: FAIL
+;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000142 tierB-001264
+;; B fillers: banach mackey topology ×2, weak arens space topology ×2, Iga, Laravel, Midway, auto tune   e.g. tierB-000971 tierB-001378
+;; JSD: 0.939   shared clusters: 2 e.g. {sentence} {room, rooms}
+(And (Member $e0 have) (Holder $e0 $x1))
+(And (Member $e0 use) (Theme $e0 $x1))
 
 ;; [different class and role]  have.Theme ~ start.Patient   n 43 / 11   gate: FAIL
 ;; A fillers: child ×4, representation ×2, antler, beauty salon, cemetery, chance   e.g. tierB-001264 tierB-000162
 ;; B fillers: Milky Way, concert, crack, dog feed, knock, national fibre optic network project   e.g. tierB-001940 tierB-001816
-;; JSD: 0.941   shared clusters: 2 e.g. {thing, things} {blue, purple}
+;; JSD: 0.941   shared clusters: 2 e.g. {thing, things} {blue}
 (And (Member $e0 have) (Theme $e0 $x1))
 (And (Member $e0 start) (Patient $e0 $x1))
 

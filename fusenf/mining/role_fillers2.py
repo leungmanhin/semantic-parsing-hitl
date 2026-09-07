@@ -178,7 +178,7 @@ def make_head_class(vocab_path):
 
 
 def compare_slots(slots, kind_sel, role_filter, head_class, weighting, min_n, cos_thr, examples_for,
-                  gate="cosine", jsd_max=0.3, min_shared=2):
+                  gate="cosine", jsd_max=0.3, min_shared=2, failed=None, failed_all=False):
     """Slot-merge comparisons within one center kind:
     (same_role, same_center, cross_both, n_raw) — cross_both = different class AND
     different role (the paper's general slot merge; converses: buy.Agent ~ sell.Recipient).
@@ -192,7 +192,12 @@ def compare_slots(slots, kind_sel, role_filter, head_class, weighting, min_n, co
     (exact mode) or a cluster id (embed mode); wildcard units weigh 0. Weighting
     ``ppmi`` = role-conditional PPMI (background = the same head over every class of
     the bucket) with the >=2-shared test over informative units; ``raw`` = batch-1
-    counts verbatim. ``n_raw`` = the signal counts the raw criterion would give."""
+    counts verbatim. ``n_raw`` = the signal counts the raw criterion would give.
+
+    ``failed``: optional ``[[], [], []]`` (same bucket order) that receives the pairs which
+    did NOT pass — by default only those clearing the ``min_shared`` guard (the gate's first
+    condition; pairs sharing fewer units cannot pass), every pair when ``failed_all``. Rows
+    carry the same fields as the passing ones; the returned buckets are unchanged."""
     def in_bucket(k):
         return k[0] == kind_sel and (not role_filter or head_class(k[0], k[2]) is not None)
 
@@ -242,8 +247,9 @@ def compare_slots(slots, kind_sel, role_filter, head_class, weighting, min_n, co
             j = jsd(dist_a, dist_b)
             passed = (len(shared) >= min_shared) and (
                 cos >= cos_thr if gate == "cosine" else (j is not None and j <= jsd_max))
-            if passed:
-                bucket.append({
+            keep = passed or (failed is not None and (failed_all or len(shared) >= min_shared))
+            if keep:
+                row = {
                     "slot_a": f"{ka[1]}.{ka[2]}", "slot_b": f"{kb[1]}.{kb[2]}",
                     "class_a": ka[1], "class_b": kb[1], "role_a": ka[2], "role_b": kb[2],
                     "cosine": round(cos, 3), "cosine_raw": round(cos_raw, 3), "jsd": j,
@@ -251,8 +257,9 @@ def compare_slots(slots, kind_sel, role_filter, head_class, weighting, min_n, co
                     "n_a": mass(sum(big[ka].values())), "n_b": mass(sum(big[kb].values())),
                     "examples_a": examples_for(ka, shared),
                     "examples_b": examples_for(kb, shared, avoid=examples_for(ka, shared)),
-                })
-    for bucket in (same_role, same_center, cross_both):
+                }
+                (bucket if passed else failed[bi]).append(row)
+    for bucket in (same_role, same_center, cross_both) + (tuple(failed) if failed is not None else ()):
         if gate == "jsd":
             bucket.sort(key=lambda r: (r["jsd"], r["slot_a"], r["slot_b"]))
         else:

@@ -10,7 +10,7 @@
 | fillers | every argument of such a head, across the corpus; texts per `embeddings.py` (class labels, surface names, constant symbols); un-embeddable fillers (untyped skolems, numbers, strings, structured terms) excluded from the distribution |
 | embeddings | /home/manhin/Dev/semantic-parsing-hitl/fusenf/mining/out_h/embeddings: Qwen3-Embedding-8B, bf16, normalized; word texts (one per class label, 1/m mass for a multi-label filler) and subtree texts (the label bag / plural form / name as one text) |
 | clustering | agglomerative, average linkage on cosine distance, one tree cut at cluster cosine [0.8, 0.85, 0.9, 0.95, 1.0] (1.0 = one cluster per distinct text) |
-| slot distribution | raw mass over clusters, no weighting; a slot enters comparison at n >= 3 embedded fillers; a head enters the pooled view at n >= 20 |
+| slot distribution | raw mass over clusters, no weighting; a slot enters comparison at n >= 3 embedded fillers; a head enters the pooled view at n >= 14 |
 | 'indistinguishable' | similarity, not a homogeneity test (slot sizes are far too small for one): cosine >= 0.5 with >= 2 shared clusters; the other statistic is reported beside it |
 | slot pairs compared | all pairs of the same center kind; shown by bucket for reading only: same role / different class, same class / different role, different class and role |
 
@@ -53,13 +53,13 @@ _(inventory: 2077 slots; 4131 embedded filler units (one per label); 177 un-embe
 | 0.27 | 0.818 | Holder (48) | Theme (594) | {thing, things, stuff, practice, thing} {Boldi, Bruno, Felix, Maurice, …} {house, home, comfortable, house, houses, …} |
 | 0.26 | 0.779 | Agent (888) | Holder (48) | {Gustavo, Alberto, Martino, Pietro, …} {thing, things, stuff, practice, thing} {Jonas, Roger, Bob, Ralph, …} |
 | 0.24 | 0.913 | Patient (455) | Stimulus (34) | {thing, things, stuff, practice, thing} {child, children, kid, baby, …} {knock, kick, kick out} |
+| 0.24 | 0.846 | Agent (888) | Beneficiary (14) | {person, people} {Jessica, Linda, Beth, Katherine, …} {child, children, kid, baby, …} |
 | 0.24 | 0.806 | Holder (48) | Patient (455) | {thing, things, stuff, practice, thing} {movie, film} {room, changing room, rooms} |
 | 0.24 | 0.797 | Goal (93) | Location (210) | {Germany, Denmark, Norway, Sweden} {house, home, comfortable, house, houses, …} {city, town, cities, town, unknown, …} |
+| 0.22 | 0.789 | Beneficiary (14) | Recipient (29) | {Jessica, Linda, Beth, Katherine, …} {person, people} {child, children, kid, baby, …} |
 | 0.20 | 0.829 | Location (210) | Source (47) | {here, host} {city, town, cities, town, unknown, …} {Santiago, Manila, Havana} |
 | 0.19 | 0.883 | Experiencer (261) | Stimulus (34) | {thing, things, stuff, practice, thing} {child, children, kid, baby, …} {Jessica, Linda, Beth, Katherine, …} |
 | 0.18 | 0.886 | Agent (888) | Stimulus (34) | {Jessica, Linda, Beth, Katherine, …} {thing, things, stuff, practice, thing} {child, children, kid, baby, …} |
-| 0.17 | 0.908 | Patient (455) | Recipient (29) | {person, people} {child, children, kid, baby, …} {Jessica, Linda, Beth, Katherine, …} |
-| 0.16 | 0.883 | Manner (115) | Result (43) | {use, well, direct, do, …} {together, come together} {former, back, early, backward, …} |
 ### cross-event (same role, different event class)
 
 | cosine (raw) | JSD | slot A | slot B | shared clusters | A e.g. | B e.g. |
@@ -122,6 +122,7 @@ _(inventory: 2077 slots; 4131 embedded filler units (one per label); 177 un-embe
 | 0.24 | 0.918 | Patient (455) | Stimulus (34) | {thing, things} {child, children, kid, kids} {knock} |
 | 0.23 | 0.867 | Holder (48) | Theme (594) | {thing, things} {house, home, houses} {food, eat} |
 | 0.21 | 0.809 | Experiencer (261) | Holder (48) | {thing, things} {Gustavo, Alberto, Diego, Rodrigo, …} {Boris, Ivan, Dmitri, Rasputin} |
+| 0.21 | 0.886 | Agent (888) | Beneficiary (14) | {person, people} {child, children, kid, kids} {Olivia, Sophia} |
 | 0.21 | 0.852 | Holder (48) | Patient (455) | {thing, things} {movie, film} {room, rooms} |
 | 0.18 | 0.921 | Experiencer (261) | Stimulus (34) | {thing, things} {child, children, kid, kids} {difficult, hard, difficulty, harder} |
 | 0.17 | 0.91 | Agent (888) | Stimulus (34) | {thing, things} {child, children, kid, kids} {Jessica, Beth} |
@@ -129,7 +130,6 @@ _(inventory: 2077 slots; 4131 embedded filler units (one per label); 177 un-embe
 | 0.16 | 0.812 | Experiencer (261) | Result (43) | {bad, bad, matter, bad, problem} {black, white} {red} |
 | 0.16 | 0.859 | Goal (93) | Location (210) | {house, home, houses} {here} {Eskisehir, Giresun} |
 | 0.16 | 0.857 | Goal (93) | Source (47) | {town, towns} {here} {school, education} |
-| 0.15 | 0.892 | Holder (48) | Stimulus (34) | {thing, things} {author, writer, novelist} {food, eat} |
 ### cross-event (same role, different event class)
 
 | cosine (raw) | JSD | slot A | slot B | shared clusters | A e.g. | B e.g. |
@@ -182,15 +182,15 @@ _(inventory: 2077 slots; 4131 embedded filler units (one per label); 177 un-embe
 | 0.25 | 0.918 | Patient (455) | Stimulus (34) | {thing, things} {child, kid} {food} |
 | 0.23 | 0.898 | Experiencer (261) | Recipient (29) | {person, people} {child, kid} {man, guy} |
 | 0.22 | 0.887 | Holder (48) | Theme (594) | {thing, things} {house, home} {food} |
+| 0.21 | 0.895 | Agent (888) | Beneficiary (14) | {person, people} {child, kid} {customer} |
 | 0.20 | 0.871 | Holder (48) | Patient (455) | {thing, things} {movie, film} {room, rooms} |
 | 0.19 | 0.926 | Experiencer (261) | Stimulus (34) | {thing, things} {child, kid} {difficult, difficulty} |
 | 0.17 | 0.919 | Agent (888) | Stimulus (34) | {thing, things} {child, kid} {Jessica} |
 | 0.17 | 0.925 | Patient (455) | Recipient (29) | {person, people} {child, kid} {city, cities} |
+| 0.16 | 0.914 | Beneficiary (14) | Experiencer (261) | {person, people} {child, kid} |
 | 0.16 | 0.821 | Experiencer (261) | Result (43) | {bad} {red} {black} |
 | 0.16 | 0.864 | Goal (93) | Source (47) | {town} {here} {school} |
 | 0.16 | 0.862 | Experiencer (261) | Holder (48) | {thing, things} {house, home} {place, places} |
-| 0.15 | 0.919 | Theme (594) | To (46) | {thing, things} {talk, conversation} {music} |
-| 0.14 | 0.917 | Holder (48) | Stimulus (34) | {thing, things} {food} |
 ### cross-event (same role, different event class)
 
 | cosine (raw) | JSD | slot A | slot B | shared clusters | A e.g. | B e.g. |
@@ -238,16 +238,16 @@ _(inventory: 2077 slots; 4131 embedded filler units (one per label); 177 un-embe
 | 0.36 | 0.89 | Stimulus (34) | Theme (594) | {thing} {child, kid} {music} |
 | 0.25 | 0.918 | Patient (455) | Stimulus (34) | {thing} {child, kid} {food} |
 | 0.23 | 0.905 | Experiencer (261) | Recipient (29) | {person} {child, kid} {man} |
+| 0.21 | 0.895 | Agent (888) | Beneficiary (14) | {person} {child, kid} {customer} |
 | 0.21 | 0.896 | Holder (48) | Theme (594) | {thing} {house} {food} |
 | 0.20 | 0.871 | Holder (48) | Patient (455) | {thing} {movie, film} {room} |
 | 0.19 | 0.931 | Experiencer (261) | Stimulus (34) | {thing} {child, kid} |
 | 0.17 | 0.919 | Agent (888) | Stimulus (34) | {thing} {child, kid} {Jessica} |
+| 0.17 | 0.914 | Beneficiary (14) | Experiencer (261) | {person} {child, kid} |
 | 0.16 | 0.821 | Experiencer (261) | Result (43) | {bad} {red} {black} |
 | 0.16 | 0.864 | Goal (93) | Source (47) | {town} {school} {here} |
 | 0.16 | 0.933 | Patient (455) | Recipient (29) | {person} {child, kid} {city} |
 | 0.15 | 0.869 | Experiencer (261) | Holder (48) | {thing} {house} {place} |
-| 0.15 | 0.923 | Theme (594) | To (46) | {thing} {talk} {music} |
-| 0.14 | 0.917 | Holder (48) | Stimulus (34) | {thing} {food} |
 ### cross-event (same role, different event class)
 
 | cosine (raw) | JSD | slot A | slot B | shared clusters | A e.g. | B e.g. |
@@ -296,14 +296,14 @@ _(inventory: 2077 slots; 4131 embedded filler units (one per label); 177 un-embe
 | 0.21 | 0.903 | Holder (48) | Theme (594) | {thing} {house} {food} |
 | 0.20 | 0.873 | Holder (48) | Patient (455) | {thing} {movie} {room} |
 | 0.19 | 0.931 | Experiencer (261) | Stimulus (34) | {thing} {child} |
+| 0.18 | 0.919 | Agent (888) | Beneficiary (14) | {person} {customer} {Olivia} |
 | 0.17 | 0.919 | Agent (888) | Stimulus (34) | {thing} {child} {Jessica} |
 | 0.16 | 0.821 | Experiencer (261) | Result (43) | {bad} {red} {black} |
 | 0.16 | 0.864 | Goal (93) | Source (47) | {town} {here} {school} |
 | 0.15 | 0.938 | Experiencer (261) | Recipient (29) | {person} {man} {large} |
+| 0.15 | 0.86 | Beneficiary (14) | Recipient (29) | {kid} {person} |
 | 0.15 | 0.923 | Theme (594) | To (46) | {thing} {talk} {music} |
 | 0.15 | 0.877 | Experiencer (261) | Holder (48) | {thing} {house} {place} |
-| 0.14 | 0.942 | Patient (455) | Recipient (29) | {person} {city} {man} |
-| 0.14 | 0.917 | Holder (48) | Stimulus (34) | {thing} {food} |
 ### cross-event (same role, different event class)
 
 | cosine (raw) | JSD | slot A | slot B | shared clusters | A e.g. | B e.g. |
@@ -351,14 +351,14 @@ _(inventory: 2077 slots; 3733 embedded filler units (one per filler); 177 un-emb
 | 0.26 | 0.82 | Holder (48) | Theme (594) | {thing, things, stuff, practice, thing} {Boldi, Bruno, Felix, Maurice, …} {house, home, comfortable, house, houses, …} |
 | 0.26 | 0.782 | Agent (888) | Holder (48) | {Gustavo, Alberto, Martino, Pietro, …} {thing, things, stuff, practice, thing} {Jonas, Roger, Bob, Ralph, …} |
 | 0.25 | 0.802 | Goal (93) | Location (210) | {house, home, comfortable, house, houses, …} {Germany, Denmark, Norway, Sweden} {city, town, cities, town, unknown, …} |
+| 0.24 | 0.847 | Agent (888) | Beneficiary (14) | {person, people} {Jessica, Linda, Beth, Katherine, …} {child, children, kid, baby, …} |
 | 0.24 | 0.814 | Holder (48) | Patient (455) | {thing, things, stuff, practice, thing} {movie, film} {room, changing room, rooms} |
 | 0.23 | 0.852 | Experiencer (261) | Recipient (29) | {person, people} {child, children, kid, baby, …} {Jessica, Linda, Beth, Katherine, …} |
 | 0.23 | 0.922 | Patient (455) | Stimulus (34) | {thing, things, stuff, practice, thing} {knock, kick, kick out} {Jessica, Linda, Beth, Katherine, …} |
+| 0.22 | 0.789 | Beneficiary (14) | Recipient (29) | {Jessica, Linda, Beth, Katherine, …} {person, people} {child, children, kid, baby, …} |
 | 0.18 | 0.864 | Location (210) | Source (47) | {here, host} {city, town, cities, town, unknown, …} {Santiago, Manila, Havana} |
 | 0.18 | 0.89 | Agent (888) | Stimulus (34) | {Jessica, Linda, Beth, Katherine, …} {thing, things, stuff, practice, thing} {child, children, kid, baby, …} |
-| 0.17 | 0.896 | Theme (594) | To (46) | {thing, things, stuff, practice, thing} {talk, conversation, discussion} {computer, machine} |
-| 0.16 | 0.859 | Goal (93) | Source (47) | {city, town, cities, town, unknown, …} {here, host} {school, university, campus, college, …} |
-| 0.15 | 0.897 | Manner (115) | Result (43) | {use, well, direct, do, …} {together, come together} {effective, affect, effect, effectively} |
+| 0.17 | 0.88 | Before (16) | Time (107) | {now, today, this year, current, …} |
 ### cross-event (same role, different event class)
 
 | cosine (raw) | JSD | slot A | slot B | shared clusters | A e.g. | B e.g. |
@@ -416,16 +416,16 @@ _(inventory: 2077 slots; 3733 embedded filler units (one per filler); 177 un-emb
 | 0.30 | 0.82 | Experiencer (261) | Theme (594) | {thing, things} {person, people} {child, children, kid, kids} |
 | 0.23 | 0.928 | Patient (455) | Stimulus (34) | {thing, things} {child, children, kid, kids} {knock} |
 | 0.22 | 0.876 | Holder (48) | Theme (594) | {thing, things} {food, eat} {house, home, houses} |
+| 0.21 | 0.887 | Agent (888) | Beneficiary (14) | {person, people} {child, children, kid, kids} {Olivia, Sophia} |
 | 0.20 | 0.895 | Experiencer (261) | Recipient (29) | {person, people} {child, children, kid, kids} {Margaret Fleming, Martha, Anne, Marie} |
 | 0.19 | 0.871 | Holder (48) | Patient (455) | {thing, things} {movie, film} {room, rooms} |
 | 0.17 | 0.838 | Experiencer (261) | Holder (48) | {Gustavo, Alberto, Diego, Rodrigo, …} {thing, things} {Boris, Ivan, Dmitri, Rasputin} |
 | 0.17 | 0.915 | Agent (888) | Stimulus (34) | {thing, things} {child, children, kid, kids} {Jessica, Beth} |
+| 0.15 | 0.892 | Before (16) | Time (107) | {now, today, current} |
 | 0.15 | 0.892 | Holder (48) | Stimulus (34) | {thing, things} {author, writer, novelist} {food, eat} |
+| 0.15 | 0.86 | Beneficiary (14) | Recipient (29) | {person, people} {child, children, kid, kids} |
 | 0.15 | 0.861 | Agent (888) | Holder (48) | {thing, things} {Gustavo, Alberto, Diego, Rodrigo, …} {Hanako, Mie Sonozaki, Soichiro Akizuki, Mariko, …} |
 | 0.14 | 0.941 | Patient (455) | Recipient (29) | {person, people} {child, children, kid, kids} {city, cities} |
-| 0.13 | 0.871 | Goal (93) | Source (47) | {town, towns} {here} {school, education} |
-| 0.13 | 0.916 | Recipient (29) | Theme (594) | {person, people} {child, children, kid, kids} {Margaret Fleming, Martha, Anne, Marie} |
-| 0.13 | 0.877 | Goal (93) | Location (210) | {house, home, houses} {here} {Eskisehir, Giresun} |
 ### cross-event (same role, different event class)
 
 | cosine (raw) | JSD | slot A | slot B | shared clusters | A e.g. | B e.g. |
@@ -474,16 +474,16 @@ _(inventory: 2077 slots; 3733 embedded filler units (one per filler); 177 un-emb
 | 0.25 | 0.894 | Experiencer (261) | Theme (594) | {thing, things} {person, people} {children, kids} |
 | 0.23 | 0.933 | Patient (455) | Stimulus (34) | {thing, things} {food} {knock} |
 | 0.21 | 0.896 | Holder (48) | Theme (594) | {thing, things} {food} {house, home} |
+| 0.20 | 0.902 | Agent (888) | Beneficiary (14) | {person, people} {children, kids} {Olivia} |
 | 0.19 | 0.89 | Holder (48) | Patient (455) | {thing, things} {movie, film} {room, rooms} |
 | 0.16 | 0.932 | Experiencer (261) | Recipient (29) | {person, people} {children, kids} |
 | 0.15 | 0.936 | Agent (888) | Stimulus (34) | {thing, things} {Jessica} {child, kid} |
+| 0.15 | 0.86 | Beneficiary (14) | Recipient (29) | {person, people} {children, kids} |
 | 0.14 | 0.941 | Patient (455) | Recipient (29) | {person, people} {children, kids} {city, cities} |
 | 0.13 | 0.917 | Holder (48) | Stimulus (34) | {thing, things} {food} |
+| 0.12 | 0.931 | Beneficiary (14) | Experiencer (261) | {person, people} {children, kids} |
 | 0.12 | 0.895 | Goal (93) | Holder (48) | {house, home} {town} {place, places} |
-| 0.12 | 0.932 | Recipient (29) | Theme (594) | {person, people} {children, kids} {company} |
-| 0.12 | 0.879 | Goal (93) | Source (47) | {town} {here} {school} |
-| 0.11 | 0.923 | Location (210) | Source (47) | {here} {place, places} {town} |
-| 0.10 | 0.938 | Theme (594) | To (46) | {thing, things} {talk, conversation} {make} |
+| 0.12 | 0.912 | Before (16) | Time (107) | {now, current} |
 ### cross-event (same role, different event class)
 
 | cosine (raw) | JSD | slot A | slot B | shared clusters | A e.g. | B e.g. |
@@ -526,18 +526,18 @@ _(inventory: 2077 slots; 3733 embedded filler units (one per filler); 177 un-emb
 | 0.29 | 0.772 | Experiencer (261) | Patient (455) | {thing} {people} {person} |
 | 0.29 | 0.921 | Stimulus (34) | Theme (594) | {thing} {food} {questions} |
 | 0.20 | 0.942 | Patient (455) | Stimulus (34) | {thing} {food} {knock} |
+| 0.19 | 0.909 | Agent (888) | Beneficiary (14) | {person} {children, kids} {Olivia} |
 | 0.19 | 0.91 | Experiencer (261) | Theme (594) | {thing} {person} {people} |
 | 0.18 | 0.913 | Holder (48) | Theme (594) | {thing} {food} {house} |
 | 0.18 | 0.895 | Holder (48) | Patient (455) | {thing} {movie, film} {room} |
 | 0.17 | 0.937 | Agent (888) | Stimulus (34) | {thing} {Jessica} {child, kid} |
+| 0.15 | 0.86 | Beneficiary (14) | Recipient (29) | {person} {children, kids} |
 | 0.14 | 0.917 | Holder (48) | Stimulus (34) | {thing} {food} |
+| 0.12 | 0.912 | Before (16) | Time (107) | {now} |
 | 0.11 | 0.941 | Recipient (29) | Theme (594) | {person} {children, kids} {company} |
 | 0.11 | 0.955 | Experiencer (261) | Stimulus (34) | {thing} {child, kid} |
 | 0.11 | 0.894 | Goal (93) | Source (47) | {school} {town} {here} |
 | 0.10 | 0.928 | Location (210) | Source (47) | {here} {town} {school} |
-| 0.10 | 0.933 | Agent (888) | Holder (48) | {thing} {Wilson} {Karen} |
-| 0.10 | 0.918 | Experiencer (261) | Holder (48) | {thing} {place} {sea, ocean} |
-| 0.09 | 0.945 | Theme (594) | To (46) | {thing} {talk} {make} |
 ### cross-event (same role, different event class)
 
 | cosine (raw) | JSD | slot A | slot B | shared clusters | A e.g. | B e.g. |
@@ -581,14 +581,14 @@ _(inventory: 2077 slots; 3733 embedded filler units (one per filler); 177 un-emb
 | 0.18 | 0.895 | Holder (48) | Patient (455) | {thing} {movie} {room} |
 | 0.18 | 0.917 | Holder (48) | Theme (594) | {thing} {food} {house} |
 | 0.17 | 0.937 | Agent (888) | Stimulus (34) | {thing} {Jessica} {author} |
+| 0.16 | 0.929 | Agent (888) | Beneficiary (14) | {person} {Olivia} {customer} |
+| 0.15 | 0.86 | Beneficiary (14) | Recipient (29) | {kids} {person} |
 | 0.14 | 0.917 | Holder (48) | Stimulus (34) | {thing} {food} |
+| 0.12 | 0.912 | Before (16) | Time (107) | {now} |
 | 0.11 | 0.955 | Experiencer (261) | Stimulus (34) | {thing} {child} |
 | 0.11 | 0.894 | Goal (93) | Source (47) | {here} {school} {town} |
 | 0.10 | 0.928 | Location (210) | Source (47) | {here} {town} {office} |
 | 0.10 | 0.933 | Agent (888) | Holder (48) | {thing} {Wilson} {Karen} |
-| 0.09 | 0.945 | Theme (594) | To (46) | {thing} {talk} {make} |
-| 0.09 | 0.926 | Experiencer (261) | Holder (48) | {thing} {place} {Miroslav} |
-| 0.08 | 0.925 | Goal (93) | Location (210) | {here} {home} {town} |
 ### cross-event (same role, different event class)
 
 | cosine (raw) | JSD | slot A | slot B | shared clusters | A e.g. | B e.g. |

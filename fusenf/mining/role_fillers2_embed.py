@@ -23,9 +23,26 @@ Outputs (in --out-dir): ``rolefiller2_signals_embed_<mode>_<cos>.jsonl`` per thr
 report ``rolefillers2_compare.md`` (exact-label vs embed across the dial, top signals
 with witness sentences, flips in cluster space). Deterministic given the cached matrix.
 
+``--arm faithful`` (2026-09-04/05): the paper as written — every head on an event centre is
+a slot, raw cluster distributions, JSD gate (owner 2026-09-05), the pooled role-level view;
+outputs ``rolefillers2_faithful.md``, ``rolefiller2_signals_faithful_*``,
+``rolefiller2_slotdist_faithful_*`` (record of truth) and the readable MeTTa rendering.
+
+MeTTa rendering (``--metta-out``; format per owner 2026-09-07): ONE file for the adopted
+mode × cut block (``--metta-main``, default word@0.85) and the other blocks under
+``<stem>_dial/<mode>_<cut>.metta``. Every record is one pair in a uniform shape —
+bucket + support + gate verdict (PASS / FAIL), the top fillers of each side, the gate
+statistic with the shared clusters, then the two slot queries; the header discloses every
+parameter (floors, gate, clustering, texts) and carries no decision dates (owner 2026-09-07).
+Pooled pairs: every head pair. Slot pairs: every pair clearing the >= 2 shared-cluster guard
+(``--metta-fail-slots guard``, default — the near misses stay visible; ``all`` lists every
+pair, ~200k lines per block on H). Per-slot distributions are NOT rendered (the slotdist
+JSONL holds them). Pooled floor 14 (owner 2026-09-07; 20 in the 2026-09-04/05 runs).
+
 Usage:
-  python role_fillers2_embed.py [--emb-dir out_h/embeddings] [--emb-mode word|subtree|both]
-      [--cluster-cos 0.80,0.85,0.90,1.0] [--min-n 3] [--cos 0.5] [--weighting ppmi]
+  python role_fillers2_embed.py [--arm faithful] [--emb-dir out_h/embeddings] [--emb-mode word|subtree|both]
+      [--cluster-cos 0.80,0.85,0.90,0.95,1.0] [--min-n 3] [--min-pooled 14] [--jsd-max 0.3] [--cos 0.5]
+      [--metta-main word@0.85]
 """
 
 from __future__ import annotations
@@ -99,13 +116,23 @@ def main():
                          "cluster distributions over the embedded fillers only (no weighting, names "
                          "included), cosine + JSD, plus the pooled role-level view; augmented = the "
                          "role/oblique slot set with the chosen weighting (our additions)")
-    ap.add_argument("--min-pooled", type=int, default=20, help="faithful: min fillers for a pooled head")
+    ap.add_argument("--min-pooled", type=int, default=14,
+                    help="min embedded fillers for a head to enter the pooled role level (owner 2026-09-07: 14, so "
+                         "every legislated role that reaches it is audited — CoAgent 16 / Beneficiary 14 on H; the "
+                         "2026-09-04/05 runs used 20; any floor 18..29 selects the same 17 heads on H)")
     ap.add_argument("--clusters-dir", default=None,
                     help="write clusters_cosine_<cut>.txt (all clusters incl. singletons, ';; cluster #k' "
                          "blocks); default <out-dir>/clusters; '' disables")
     ap.add_argument("--metta-out", default=None,
                     help="readable MeTTa RENDERING of the results (never loaded); default "
                          "<out-dir>/rolefillers2_<arm>.metta; '' disables")
+    ap.add_argument("--metta-fail-slots", choices=("guard", "all"), default="guard",
+                    help="which FAILED slot pairs the rendering lists beside the passes: 'guard' = every pair with "
+                         ">= 2 shared clusters (the gate's first condition; pairs sharing fewer cannot pass), "
+                         "'all' = every pair of the same centre kind (~200k lines per block on H)")
+    ap.add_argument("--metta-main", default="word@0.85",
+                    help="the mode@cut block rendered in the main .metta file (the adopted setting); the other "
+                         "blocks go to <stem>_dial/<mode>_<cut>.metta")
     args = ap.parse_args()
     args.exact_signals = args.exact_signals or os.path.join(args.out_dir, "rolefiller2_signals.jsonl")
     args.flips = args.flips or os.path.join(args.out_dir, "flip_eligible.jsonl")
@@ -230,6 +257,8 @@ def main():
             slot_examples = collections.defaultdict(lambda: collections.defaultdict(list))
             role_dist = collections.defaultdict(collections.Counter)   # (class, role) entity fillers
             pooled = collections.defaultdict(collections.Counter)      # head -> cluster mass (event centers)
+            slot_texts = collections.defaultdict(collections.Counter)   # slot -> its own filler texts (mass)
+            pooled_texts = collections.defaultdict(collections.Counter)  # head -> filler texts pooled over classes
             n_embedded = n_excluded = 0
             for r, units in zip(occ, occ_units[m]):
                 key = (r["center_kind"], r["center_class"], r["head"])
@@ -243,7 +272,11 @@ def main():
                     n_embedded += 1
                     if head_class(r["center_kind"], r["head"]) is not None:   # argument slots only
                         pooled[r["head"]][u] += share
+                        if not is_wild(u):
+                            pooled_texts[r["head"]][text] += share
                     slots[key][u] += share
+                    if not is_wild(u):
+                        slot_texts[key][text] += share
                     ex = slot_examples[key][u]
                     if r["id"] not in ex and len(ex) < 6:
                         ex.append(r["id"])
@@ -258,12 +291,13 @@ def main():
                 ids = uniq(ids)
                 return ([i for i in ids if i not in avoid] + [i for i in ids if i in avoid])[:2]
 
+            ev_failed, en_failed = [[], [], []], [[], [], []]   # the rendering lists them (JSONL = passes only)
             ev_same_role, ev_same_event, ev_cross_both, ev_raw = compare_slots(
                 slots, "event", True, head_class, args.weighting, args.min_n, args.cos, examples_for,
-                gate=args.gate, jsd_max=args.jsd_max)
+                gate=args.gate, jsd_max=args.jsd_max, failed=ev_failed, failed_all=args.metta_fail_slots == "all")
             en_same_role, en_same_center, en_cross_both, en_raw = compare_slots(
                 slots, "entity", False, head_class, args.weighting, args.min_n, args.cos, examples_for,
-                gate=args.gate, jsd_max=args.jsd_max)
+                gate=args.gate, jsd_max=args.jsd_max, failed=en_failed, failed_all=args.metta_fail_slots == "all")
             sens = None
             if faithful and args.gate == "jsd" and args.jsd_sensitivity:
                 s1, s2, s3, _ = compare_slots(slots, "event", True, head_class, "raw", args.min_n, args.cos,
@@ -350,8 +384,15 @@ def main():
                                      for u, c in sorted(v.items(), key=lambda kv: (-kv[1], kv[0]))],
                         "variant": args.arm, "mode": m, "cluster_cos": thr,
                     }, ensure_ascii=False) + "\n")
-            results[(m, thr)] = (ev_same_role, ev_same_event, ev_cross_both, role_dist, members,
-                                 pooled_pairs, n_embedded, n_excluded, len(slots), compared, slot_examples)
+            results[(m, thr)] = {
+                "ev_same_role": ev_same_role, "ev_same_event": ev_same_event, "ev_cross_both": ev_cross_both,
+                "en_same_role": en_same_role, "en_same_center": en_same_center, "en_cross_both": en_cross_both,
+                "ev_failed": ev_failed, "en_failed": en_failed,
+                "role_dist": role_dist, "members": members, "pooled": pooled, "pooled_pairs": pooled_pairs,
+                "n_embedded": n_embedded, "n_excluded": n_excluded, "n_slots": len(slots), "n_clusters": n_clusters,
+                "compared": compared, "slot_examples": slot_examples, "slot_texts": slot_texts,
+                "pooled_texts": pooled_texts,
+            }
             print(f"{tag}: {n_clusters} clusters ({multi} non-singleton)  signals {n_sig} "
                   f"(cross-event {len(ev_same_role)}, cross-role {len(ev_same_event)}, cross-both {len(ev_cross_both)}, "
                   f"entity {len(en_same_role) + len(en_same_center) + len(en_cross_both)})")
@@ -387,7 +428,10 @@ def main():
 
     for m in modes:
         for thr in thresholds:
-            ev_same_role, ev_same_event, ev_cross_both, role_dist, members, pooled_pairs, n_embedded, n_excluded, n_slots, _, _ = results[(m, thr)]
+            R_ = results[(m, thr)]
+            ev_same_role, ev_same_event, ev_cross_both = R_["ev_same_role"], R_["ev_same_event"], R_["ev_cross_both"]
+            role_dist, members, pooled_pairs = R_["role_dist"], R_["members"], R_["pooled_pairs"]
+            n_embedded, n_excluded, n_slots = R_["n_embedded"], R_["n_excluded"], R_["n_slots"]
             R.append(f"\n## {'faithful' if faithful else 'embed'} {m} @ cluster cos {thr:.2f}\n")
             if faithful:
                 R.append(f"_(inventory: {n_slots} slots; {n_embedded} embedded filler units "
@@ -426,64 +470,189 @@ def main():
     open(args.report, "w", encoding="utf-8").write("\n".join(R) + "\n")
     print(f"-> {args.report}")
     if args.metta_out:
-        write_metta(args.metta_out, args, modes, thresholds, results, n_texts, emb.shape[1])
+        write_metta(args.metta_out, args, modes, thresholds, results, n_texts, emb.shape[1], len(occ))
 
 
-def write_metta(path, args, modes, thresholds, results, n_texts, dim):
-    """Readable MeTTa RENDERING of the §4.3.2 clustering results (never loaded; the JSONL
-    files are the record of truth). Per mode and cut: the pooled role-level pairs (two bare
-    head queries under a cosine / JSD comment), the slot pairs (two slot queries under the
-    signal comment), and every compared slot with its filler distribution over clusters as
-    comments (cluster id, mass, member texts)."""
+def write_metta(path, args, modes, thresholds, results, n_texts, dim, n_occ):
+    """Readable MeTTa RENDERING of the §4.3.2 results (never loaded; the JSONL files are the
+    record of truth). Format per owner 2026-09-07: the main file holds the adopted mode × cut
+    block (``--metta-main``); the other blocks go to ``<stem>_dial/<mode>_<cut>.metta``. A
+    block = the pooled role-level pairs (EVERY head pair, gate PASS / FAIL) and the gated slot
+    pairs (event and entity centres), each as one uniform record: bucket + support line, the
+    top fillers of each side, the gate statistic with the shared clusters, the two queries.
+    The per-slot distributions are not rendered (``rolefiller2_slotdist_*.jsonl`` holds them)."""
     faithful = args.arm == "faithful"
+    gate_jsd = args.gate == "jsd"
+    stem = os.path.splitext(path)[0]
+    dial_dir = stem + "_dial"
+    main_mode, main_cut = args.metta_main.split("@")
+    main_cut = float(main_cut)
+    if main_mode not in modes or all(abs(main_cut - t) > 1e-9 for t in thresholds):
+        print(f"WARNING: --metta-main {args.metta_main} is not in this run; main file = {modes[0]}@{thresholds[0]:.2f}")
+        main_mode, main_cut = modes[0], thresholds[0]
+    n_records = sum(1 for l in open(args.canonical, encoding="utf-8") if l.strip())
+    base = os.path.basename(stem)
+    gate_txt = (f"Jensen-Shannon divergence <= {args.jsd_max} between the two raw cluster distributions "
+                f"(0 = identical, 1 = disjoint)" if gate_jsd
+                else f"cosine >= {args.cos} between the two cluster-mass vectors")
+    other_gate = (f"cosine >= {args.cos} is the reference gate, rendered beside this file with the suffix _cosine"
+                  if gate_jsd else
+                  f"this is the REFERENCE gate; the adopted gate is JSD <= {args.jsd_max}, rendered beside this "
+                  f"file without the suffix")
 
-    def ren(u, members):
-        if u.startswith("c") and u[1:].isdigit():
-            ms = members[int(u[1:])]
-            return "{" + ", ".join(ms[:4]) + (", …" if len(ms) > 4 else "") + "}"
-        return u
+    def top_fillers(ctr, k=6):
+        items = sorted(ctr.items(), key=lambda kv: (-kv[1], kv[0]))[:k]
+        return ", ".join(t if abs(v - 1) < 1e-9 else f"{t} ×{mass(v)}" for t, v in items) or "—"
 
-    n_written = 0
-    with open(path, "w", encoding="utf-8") as fh:
-        fh.write(f";; FUSE-NF §4.3.2 Role-Filler Distribution Clustering — {args.arm.upper()} arm — readable MeTTa\n"
-                 ";; RENDERING (never loaded: a slot is a conjunctive query over variables, not an assertion).\n"
-                 f";; embeddings {args.emb_dir} ({n_texts} texts, dim {dim}); average-linkage clustering on cosine\n"
-                 f";; distance cut at cluster cosine {thresholds}; texts {', '.join(modes)}; distributions = "
-                 f"{'raw mass over clusters' if faithful else args.weighting + ' weighting'}.\n"
-                 ";; A slot renders as (And (Member $e0 <class>) (<Head> $e0 $x1)) — $x1 stands for any filler; the\n"
-                 ";; slot's distribution follows in comments: cluster id, mass, member texts. A pooled head renders\n"
-                 ";; as (<Head> $e $x). A signal = two slot queries under a comment with cosine, JSD, shared clusters\n"
-                 ";; and witness records. rolefiller2_slotdist_*.jsonl / rolefiller2_signals_*.jsonl are the record.\n")
-        for m in modes:
-            for thr in thresholds:
-                (ev_same_role, ev_same_event, ev_cross_both, _, members, pooled_pairs, n_embedded, n_excluded,
-                 n_slots, compared, _) = results[(m, thr)]
-                tag = f"{m} @ cluster cos {thr:.2f}"
-                fh.write(f"\n;; ==================== {tag}: pooled role level ({len(pooled_pairs)} head pairs) ====================\n")
-                for r in pooled_pairs:
-                    fh.write(f"\n;; {r['a']} ~ {r['b']}  cosine {r['cosine']:.2f}  JSD {r['jsd']}  n {r['n_a']} / {r['n_b']}"
-                             f"  shared: {' '.join(r['shared'])}\n({r['a']} $e $x)\n({r['b']} $e $x)\n")
-                n_sig = len(ev_same_role) + len(ev_same_event) + len(ev_cross_both)
-                fh.write(f"\n;; ==================== {tag}: slot pairs ({n_sig} event-center signals) ====================\n")
-                for sub, rows in (("same role, different class", ev_same_role),
-                                  ("same class, different role", ev_same_event),
-                                  ("different class and role", ev_cross_both)):
-                    for r in rows:
-                        fh.write(f"\n;; [{sub}]  {r['slot_a']} ~ {r['slot_b']}  cosine {r['cosine']:.2f}  JSD {r['jsd']}"
-                                 f"  n {r['n_a']} / {r['n_b']}  shared: {' '.join(r['shared_rendered'][:4])}\n"
-                                 f";;   A e.g. {' '.join(r['examples_a'])}   B e.g. {' '.join(r['examples_b'])}\n")
-                        fh.write(render_slot("event", r["class_a"], r["role_a"]) + "\n")
-                        fh.write(render_slot("event", r["class_b"], r["role_b"]) + "\n")
-                fh.write(f"\n;; ==================== {tag}: compared slots with their distributions "
-                         f"({len(compared)} slots, n >= {args.min_n}) ====================\n")
-                for k in sorted(compared, key=lambda k: (-sum(compared[k].values()), k)):
-                    v = compared[k]
-                    fh.write(f"\n;; ---- slot {k[1]}.{k[2]}  [{k[0]} center]  n {mass(sum(v.values()))}  clusters {len(v)}\n")
-                    fh.write(render_slot(k[0], k[1], k[2]) + "\n")
-                    for u, c in sorted(v.items(), key=lambda kv: (-kv[1], kv[0])):
-                        fh.write(f";;   {u:>7}  mass {mass(c)}  {ren(u, members)}\n")
-                    n_written += 1
-    print(f"-> {path}  ({n_written} slot renderings over {len(modes) * len(thresholds)} cuts)")
+    def fmt_jsd(j):
+        return "n/a" if j is None else str(j)
+
+    def stat_line(cos_v, jsd_v, shared_n, shared_eg):
+        eg = (" e.g. " + " ".join(shared_eg)) if shared_eg else ""
+        if gate_jsd:
+            return f";; JSD: {fmt_jsd(jsd_v)}   shared clusters: {shared_n}{eg}"
+        return f";; cosine: {cos_v:.2f} (gate)   JSD: {fmt_jsd(jsd_v)}   shared clusters: {shared_n}{eg}"
+
+    def passes(cos_v, jsd_v, shared_n):
+        if shared_n < 2:
+            return False
+        return (jsd_v is not None and jsd_v <= args.jsd_max) if gate_jsd else cos_v >= args.cos
+
+    def write_header(fh, m, thr, is_main, R_):
+        fh.write(f";; FUSE-NF §4.3.2 Role-Filler Distribution Clustering — {args.arm.upper()} arm — readable MeTTa RENDERING\n"
+                 ";; Never loaded: a slot is a conjunctive query over variables, not an assertion. The record of truth is\n"
+                 f";;   rolefiller2_signals_{'faithful' if faithful else 'embed'}{'' if gate_jsd == faithful else '_' + args.gate}_<mode>_<cut>.jsonl   (the gated slot pairs)\n"
+                 f";;   rolefiller2_slotdist_{args.arm}_<mode>_<cut>.jsonl  (every compared slot's distribution over clusters)\n;;\n")
+        if is_main:
+            fh.write(f";; BLOCK: {m} texts @ cluster cosine {thr:.2f} — the adopted setting. The other "
+                     f"{len(modes) * len(thresholds) - 1} mode × cut blocks of the dial:\n"
+                     f";;   {os.path.basename(dial_dir)}/<mode>_<cut>.metta\n;;\n")
+        else:
+            fh.write(f";; BLOCK: {m} texts @ cluster cosine {thr:.2f} — one point of the dial; the adopted setting "
+                     f"({main_mode} @ {main_cut:.2f}) is\n;;   ../{base}.metta\n;;\n")
+        cuts = "[" + ", ".join(f"{t:.2f}" for t in thresholds) + "]"
+        fh.write(";; PARAMETERS (choices the paper leaves open; disclosed)\n"
+                 f";;   substrate       {os.path.relpath(args.canonical, HERE)} ({n_records} records); "
+                 f"{os.path.relpath(args.occ, HERE)} ({n_occ} filler occurrences)\n"
+                 f";;   embeddings      {os.path.relpath(args.emb_dir, HERE)}: Qwen3-Embedding-8B, bf16, normalised; "
+                 f"{n_texts} texts, dim {dim}\n"
+                 ";;   texts           word = one text per class label (1/m mass for a multi-label filler); subtree = the\n"
+                 ";;                   label bag / plural form / surface name as one text\n"
+                 f";;   clustering      agglomerative, average linkage on cosine distance; one tree cut at cluster cosine {cuts};\n"
+                 ";;                   1.00 = one cluster per distinct text (= the exact-label method)\n")
+        if faithful:
+            fh.write(";;   slots           every head attached to an event centre (legislated roles, preposition-named obliques,\n"
+                     ";;                   other event links such as Result / To) and every head on an entity centre (LocatedIn,\n"
+                     ";;                   PartOf, …); the class links Member / Inheritance / GroupOf / Name classify the centre\n"
+                     ";;                   and are not slots; event and entity centres are compared separately\n"
+                     ";;   fillers         every embeddable argument of such a head (class labels, surface names, constants);\n"
+                     ";;                   un-embeddable fillers (untyped skolems, numbers, strings, structured terms) stay\n"
+                     f";;                   outside the distributions: {R_['n_excluded']} occurrences excluded in this block, "
+                     f"{R_['n_embedded']} filler units enter\n"
+                     ";;   distribution    raw mass over clusters, no weighting\n")
+        else:
+            fh.write(";;   slots           the vocabulary's class-role heads + the open preposition-named obliques on event\n"
+                     ";;                   centres; entity-centre heads separately (the augmented slot set)\n"
+                     f";;   distribution    {args.weighting} weighting over clusters (wildcard units kept for the support floor)\n")
+        fh.write(f";;   per-slot floor  a (class, role) slot enters comparison at n >= {args.min_n} embedded fillers\n"
+                 f";;   pooled floor    a head enters the pooled role level at n >= {args.min_pooled} embedded fillers")
+        fh.write("\n")
+        fh.write(f";;   gate            indistinguishable = {gate_txt},\n"
+                 f";;                   with >= 2 shared clusters; JSD <= {args.jsd_sensitivity} is the sensitivity value "
+                 "(dial table in the .md report);\n"
+                 f";;                   {other_gate}\n;;\n")
+        fh.write(";; RECORD FORMAT (every record is one pair, with its gate verdict)\n"
+                 ";;   ;; [bucket]  A ~ B   n <embedded fillers of A> / <of B>   gate: PASS|FAIL\n"
+                 ";;   ;; A fillers: the top fillers of A by mass (×mass when not 1)   e.g. <witness record ids>\n"
+                 ";;   ;; B fillers: the same for B\n"
+                 + (";;   ;; JSD: <value>   shared clusters: <count> e.g. {cluster members} …\n" if gate_jsd else
+                    ";;   ;; cosine: <value> (gate)   JSD: <value>   shared clusters: <count> e.g. {cluster members} …\n")
+                 + ";;   <query A>\n;;   <query B>\n"
+                 + (";; Pooled pairs: every head pair. Slot pairs: every pair with >= 2 shared clusters (the gate's first\n"
+                    ";; condition); a pair sharing fewer clusters cannot pass and is not listed.\n"
+                    if args.metta_fail_slots == "guard" else
+                    ";; Pooled pairs: every head pair. Slot pairs: every pair of the same centre kind (--metta-fail-slots all).\n")
+                 + ";; An event slot renders as (And (Member $e0 <class>) (<Role> $e0 $x1)), an entity slot as (<Head> $x0 $x1)\n"
+                 ";; (an entity centre carries no class link), a pooled role as (<Role> $e $x); $x1 / $x stand for any filler.\n")
+
+    def write_block(fh, m, thr, R_):
+        pooled, compared, members = R_["pooled"], R_["compared"], R_["members"]
+        slot_texts, pooled_texts = R_["slot_texts"], R_["pooled_texts"]
+
+        def ren(u):   # cluster id -> {member texts…}; anything else verbatim
+            if u.startswith("c") and u[1:].isdigit():
+                ms = members[int(u[1:])]
+                return "{" + ", ".join(ms[:4]) + (", …" if len(ms) > 4 else "") + "}"
+            return u
+        pp = []
+        for r in R_["pooled_pairs"]:
+            sh = {u for u in set(pooled[r["a"]]) & set(pooled[r["b"]]) if not is_wild(u)}
+            pp.append(dict(r, shared_n=len(sh), ok=passes(r["cosine"], r["jsd"], len(sh))))
+        if gate_jsd:
+            pp.sort(key=lambda r: (r["jsd"] if r["jsd"] is not None else 2.0, r["a"], r["b"]))
+        else:
+            pp.sort(key=lambda r: (-r["cosine"], r["a"], r["b"]))
+        heads = sorted({r["a"] for r in pp} | {r["b"] for r in pp})
+        n_pass = sum(1 for r in pp if r["ok"])
+        fh.write(f"\n;; ==================== POOLED ROLE LEVEL: {len(heads)} heads at n >= {args.min_pooled}, "
+                 f"{len(pp)} pairs, {n_pass} pass the gate ====================\n"
+                 ";; (the paper's 'Agent2 ~ Agent' reading: one head's fillers pooled over every predicate, against every other head's)\n")
+        for r in pp:
+            fh.write(f"\n;; [pooled role]  {r['a']} ~ {r['b']}   n {r['n_a']} / {r['n_b']}   gate: {'PASS' if r['ok'] else 'FAIL'}\n")
+            fh.write(f";; A fillers: {top_fillers(pooled_texts[r['a']])}\n")
+            fh.write(f";; B fillers: {top_fillers(pooled_texts[r['b']])}\n")
+            fh.write(stat_line(r["cosine"], r["jsd"], r["shared_n"], r["shared"]) + "\n")
+            fh.write(f"({r['a']} $e $x)\n({r['b']} $e $x)\n")
+        buckets = (("same role, different class", "event", R_["ev_same_role"]),
+                   ("same class, different role", "event", R_["ev_same_event"]),
+                   ("different class and role", "event", R_["ev_cross_both"]),
+                   ("same head, different entity class", "entity", R_["en_same_role"]),
+                   ("same entity class, different head", "entity", R_["en_same_center"]),
+                   ("different entity class and head", "entity", R_["en_cross_both"]))
+        n_ev = sum(len(rows) for _, kind, rows in buckets if kind == "event")
+        n_en = sum(len(rows) for _, kind, rows in buckets if kind == "entity")
+        c_ev = sum(1 for k in compared if k[0] == "event")
+        c_en = sum(1 for k in compared if k[0] == "entity")
+        n_pairs = c_ev * (c_ev - 1) // 2 + c_en * (c_en - 1) // 2
+        recs = [(bucket, kind, r, True) for bucket, kind, rows in buckets for r in rows]
+        recs += [(bucket, kind, r, False) for i, (bucket, kind, _) in enumerate(buckets)
+                 for r in (R_["ev_failed"] if kind == "event" else R_["en_failed"])[i % 3]]
+        if gate_jsd:
+            recs.sort(key=lambda t: (t[2]["jsd"] if t[2]["jsd"] is not None else 2.0, t[2]["slot_a"], t[2]["slot_b"]))
+        else:
+            recs.sort(key=lambda t: (-t[2]["cosine"], t[2]["slot_a"], t[2]["slot_b"]))
+        f_ev = sum(1 for t in recs if t[1] == "event" and not t[3])
+        f_en = sum(1 for t in recs if t[1] == "entity" and not t[3])
+        listed = "every pair with >= 2 shared clusters" if args.metta_fail_slots == "guard" else "every pair"
+        fh.write(f"\n;; ==================== SLOT PAIRS: {n_ev + n_en} pass the gate (event {n_ev}, entity {n_en}); "
+                 f"{len(recs)} pairs listed = {listed} (event {n_ev + f_ev}, entity {n_en + f_en}) among the {n_pairs} pairs "
+                 f"of {c_ev} event slots and {c_en} entity slots at n >= {args.min_n} ====================\n"
+                 ";; (the paper's 'go to.Agent' reading: one (class, role) slot against every other slot of its centre kind)\n")
+        for bucket, kind, r, ok in recs:
+            ka, kb = (kind, r["class_a"], r["role_a"]), (kind, r["class_b"], r["role_b"])
+            sh = {u for u in set(compared.get(ka, {})) & set(compared.get(kb, {})) if not is_wild(u)}
+            fh.write(f"\n;; [{bucket}]  {r['slot_a']} ~ {r['slot_b']}   n {r['n_a']} / {r['n_b']}   gate: {'PASS' if ok else 'FAIL'}\n")
+            eg_a = ("   e.g. " + " ".join(r["examples_a"])) if r["examples_a"] else ""
+            eg_b = ("   e.g. " + " ".join(r["examples_b"])) if r["examples_b"] else ""
+            fh.write(f";; A fillers: {top_fillers(slot_texts[ka])}{eg_a}\n")
+            fh.write(f";; B fillers: {top_fillers(slot_texts[kb])}{eg_b}\n")
+            eg = [ren(u) for u in sorted(sh, key=lambda u: (-(compared[ka][u] + compared[kb][u]), u))[:4]]
+            fh.write(stat_line(r["cosine"], r["jsd"], len(sh), eg) + "\n")
+            fh.write(render_slot(kind, r["class_a"], r["role_a"]) + "\n")
+            fh.write(render_slot(kind, r["class_b"], r["role_b"]) + "\n")
+
+    os.makedirs(dial_dir, exist_ok=True)
+    n_files = 0
+    for m in modes:
+        for thr in thresholds:
+            is_main = (m == main_mode and abs(thr - main_cut) < 1e-9)
+            p = path if is_main else os.path.join(dial_dir, f"{m}_{thr:.2f}.metta")
+            R_ = results[(m, thr)]
+            with open(p, "w", encoding="utf-8") as fh:
+                write_header(fh, m, thr, is_main, R_)
+                write_block(fh, m, thr, R_)
+            n_files += 1
+    print(f"-> {path} (main block {main_mode}@{main_cut:.2f}) + {n_files - 1} dial blocks in {dial_dir}/")
 
 
 if __name__ == "__main__":

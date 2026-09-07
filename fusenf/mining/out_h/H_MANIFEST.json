@@ -242,21 +242,21 @@
       "embeddings": "Qwen3-Embedding-8B bf16 normalized (out_h/embeddings, sha 0b65e1cd)",
       "clustering": "agglomerative hierarchical, average linkage (UPGMA) on cosine distance, one tree (scipy linkage/fcluster) cut at cluster cosine 0.80/0.85/0.90/0.95/1.00 (1.00 = one cluster per distinct text)",
       "distribution": "raw mass over clusters, no weighting",
-      "floors": "slot n>=3, pooled head n>=20",
+      "floors": "slot n>=3, pooled head n>=14 (owner 2026-09-07; 20 in the 2026-09-04/05 runs — any floor 18..29 selects the same 17 heads on H; 14 admits every attested legislated role)",
       "indistinguishable": "DEFAULT (owner 2026-09-05): Jensen-Shannon divergence <= 0.3 between the two slots' raw cluster distributions, >= 2 shared clusters; JSD <= 0.4 sensitivity column; cosine >= 0.5 kept as the reference gate (outputs suffixed _cosine)"
      },
      "outputs": [
       "mining/out_h/rolefillers2_faithful.md",
       "mining/out_h/rolefillers2_faithful_notes.md",
-      "mining/out_h/rolefillers2_faithful.metta (rendering only; 22,052 lines)",
+      "mining/out_h/rolefillers2_faithful.metta (rendering only; format 2026-09-07: the adopted word@0.85 block, 2,433 lines, every record one pair with its gate verdict — [bucket] A ~ B n a/b gate PASS|FAIL / A fillers / B fillers / JSD + shared clusters / the two queries; pooled = every head pair, slots = every pair with >= 2 shared clusters (110 at 0.85: 3 pass, 107 near misses; --metta-fail-slots all for every pair); header discloses every parameter and carries no decision dates; the other 9 mode×cut blocks in mining/out_h/rolefillers2_faithful_dial/<mode>_<cut>.metta; per-slot distributions no longer rendered — the slotdist JSONL holds them)",
       "mining/out_h/rolefiller2_signals_faithful_<mode>_<cos>.jsonl",
       "mining/out_h/rolefiller2_slotdist_faithful_<mode>_<cos>.jsonl (every compared slot's distribution over clusters = record of truth)",
       "mining/out_h/rolefiller2_clusters_<mode>_<cos>.jsonl",
       "mining/out_ecmp/rolefillers2_faithful.md",
-      "mining/out_ecmp/rolefillers2_faithful.metta",
+      "mining/out_ecmp/rolefillers2_faithful.metta (+ rolefillers2_faithful_dial/; same format)",
       "mining/out_h/embeddings/embed_words.txt (2,896 texts) + embed_subtrees.txt (3,396 texts): exactly what each mode sends, one per line",
       "mining/out_h/clusters/clusters_cosine_{0.80,0.85,0.90,0.95,1.00}.txt: every cluster (singletons included), ';; cluster #k' blocks, clusters by size, members alphabetical",
-      "mining/out_h/rolefillers2_faithful_cosine.md / .metta + rolefiller2_signals_faithful_cosine_* (reference gate)"
+      "mining/out_h/rolefillers2_faithful_cosine.md / .metta + rolefiller2_signals_faithful_cosine_* (reference gate) (+ rolefillers2_faithful_cosine_dial/ on both substrates; records show cosine (gate) + JSD)"
      ],
      "results": {
       "H_role_level": "no indistinguishable head pair: Agent~Experiencer 0.61/JSD 0.65 top, Patient~Theme 0.51, obliques ~0",
@@ -309,9 +309,18 @@
        "die.Patient~sleep.Agent 0.006",
        "accompany.Agent~appear.Agent 0.23",
        "design.Agent~produce.Agent 0.25"
-      ]
+      ],
+      "pooled_floor_14_2026-09-07": {
+       "H_heads": "22 (the 17 at floor 20 + CoAgent 16, Beneficiary 14, Before 17, As 15, Like 14)",
+       "H_pairs": 231,
+       "H_pass_jsd": 0,
+       "H_pass_cosine_reference": "3 (Agent~Experiencer 0.61, Patient~Theme 0.51, Agent~Patient 0.50 — the same top-3 as before)",
+       "new_heads_closest": "Beneficiary~Recipient JSD 0.86 (2 shared clusters), Agent~Beneficiary 0.886, Agent~CoAgent 0.944 (6 shared)",
+       "item_E": "13 heads, 78 pairs, 0 pass (both gates)",
+       "slot_level": "independent of the floor: signals / slotdist / clusters JSONL byte-identical to the 2026-09-05 files on both substrates, both gates; only the reports' pooled tables moved"
+      }
      },
-     "determinism": "byte-identical re-runs (report, metta, signals, slotdist) after fixing a tie-break in the pooled shared-cluster ordering (2026-09-04)",
+     "determinism": "byte-identical re-runs (report, metta, signals, slotdist) after fixing a tie-break in the pooled shared-cluster ordering (2026-09-04); 2026-09-07 rendering (incl. the failed-pairs listing): re-run byte-identical (main + 9 dial files); signals/slotdist/clusters JSONL and the .md reports untouched by the rendering changes",
      "gate_experiment_2026-09-05": {
       "gates": "cosine >= 0.5 (default) vs JSD <= jsd_max on the raw filler distributions; both with >= 2 shared clusters",
       "H_word_signals": {
@@ -373,7 +382,8 @@
        "mining/out_ecmp/rolefillers2_faithful_jsd.md"
       ],
       "decision": "ADOPTED: JSD <= 0.3 as the faithful default (owner 2026-09-05); cosine kept as reference run"
-     }
+     },
+     "metta_format_2026-09-07": "owner-agreed: one uniform pair record (bucket + support + gate verdict, top fillers of each side by mass with witness ids, gate statistic + shared-cluster count and examples, the two slot queries); pooled pairs ALL listed, slot pairs = every pair clearing the >= 2 shared-cluster guard (passes first, then the near misses; pairs sharing < 2 clusters cannot pass and are omitted unless --metta-fail-slots all); main file = --metta-main word@0.85, other blocks in <stem>_dial/; header = full parameter disclosure, no decision dates in result files; the per-slot distributions section was dropped from the rendering"
     },
     "augmented": {
      "script": "mining/role_fillers2.py (exact-label counts, PPMI) + role_fillers2_embed.py --arm augmented",

@@ -1,8 +1,11 @@
-# §4.3.2 faithful arm — reading (analyst notes, 2026-09-05)
+# §4.3.2 faithful arm — reading (analyst notes, 2026-09-05; pooled floor + rendering update 2026-09-07)
 
 Companion to the generated `rolefillers2_faithful.md` (H substrate) and
 `../out_ecmp/rolefillers2_faithful.md` (item-E substrate with the Tier A harness), the MeTTa rendering
-`rolefillers2_faithful.metta`, the per-cut records `rolefiller2_slotdist_faithful_*.jsonl` /
+`rolefillers2_faithful.metta` (the adopted word @ 0.85 block, every record one pair with its PASS / FAIL verdict — pooled: every head
+pair; slots: every pair with ≥ 2 shared clusters, so the near misses are visible, e.g. leave.Patient ~ leave.Result
+0.311 and welcome.Agent ~ welcome.Theme 0.333 at 0.85; the other nine mode × cut blocks in
+`rolefillers2_faithful_dial/`; record format agreed 2026-09-07), the per-cut records `rolefiller2_slotdist_faithful_*.jsonl` /
 `rolefiller2_signals_faithful_*.jsonl`, and the cosine-gated reference run (`rolefillers2_faithful_cosine.*`,
 `rolefiller2_signals_faithful_cosine_*`). The generated files are the record; this file is the reading.
 Nothing here is an addition to the method.
@@ -12,6 +15,12 @@ divergence ≤ 0.3 between the two slots' raw filler distributions over clusters
 clusters), JSD ≤ 0.4 shown as a sensitivity column, cosine ≥ 0.5 kept as the reference gate. JSD is the
 more literal reading of the doc's wording and is strictly more conservative here: on both substrates it
 drops cosine pairs and never adds one.
+
+**Pooled floor (owner decision 2026-09-07).** A head enters the pooled role level at n ≥ 14 embedded fillers
+(the 2026-09-04/05 runs used 20, an unrecorded round number; any floor from 18 to 29 selects the same 17
+heads on H). At 14 every legislated role that the substrate attests is audited: 22 heads on H (adds CoAgent 16,
+Beneficiary 14, Before 17, As 15, Like 14), 13 on item-E. The slot level does not depend on this floor; the
+signal, slotdist and cluster records are byte-identical to the 2026-09-05 files on both substrates.
 
 ## What the method delivers on the H substrate (2,302 natural-text records)
 
@@ -25,7 +34,11 @@ the heads' cluster distributions (cluster cosine 0.85, word texts), no pair is i
 | 0.50 | 0.76 | Agent ~ Patient | persons, things, production-people names |
 | 0.16 | 0.86 | Goal ~ Location | house, here, two Turkish towns |
 
-Every pair involving a preposition-named oblique sits near zero. Read literally, §4.3.2 proposes no
+Every pair involving a preposition-named oblique sits near zero. The five heads the lower floor admits change
+nothing: Beneficiary ~ Recipient at JSD 0.86 with two shared clusters is their closest pair, Agent ~ Beneficiary
+0.89, Agent ~ CoAgent 0.94 (six small shared clusters: families, a name cluster, cats), so the two legislated
+roles the old floor left out are as well separated as the rest. Under the cosine reference gate the same three
+pairs as before pass at the role level (Agent ~ Experiencer 0.61, Patient ~ Theme 0.51, Agent ~ Patient 0.50). Read literally, §4.3.2 proposes no
 role merge on this substrate; the residual similarity between the person-filled roles is a type overlap
 the method cannot resolve, because filler distribution carries no information about the predicate. On
 the designed Tier A corpus the roles are even better separated (top pair Agent ~ Recipient 0.29).

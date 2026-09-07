@@ -53,6 +53,7 @@ CORPORA = {
     "fiction5": ("fiction5.jsonl", ["fiction5.parses.jsonl"], "external consumer (pending re-parse set)"),
     "lore":     ("lore.jsonl",     ["lore.parses.jsonl"],     "external consumer (lore.json, parsed in chunks)"),
     "lore_pending": ("lore_pending.jsonl", ["lore_pending.parses.jsonl"], "external consumer (lore pending re-parse set)"),
+    "lore_pending2": ("lore_pending2.jsonl", ["lore_pending2.parses.jsonl"], "external consumer (lore pending re-parse set 2)"),
     "fixpack":  ("fixpack.jsonl",  ["fixpack.parses.jsonl"], "validation"),
     "fixpack3": ("fixpack3.jsonl", ["fixpack3.parses.jsonl"], "validation"),
     "fixpack31": ("fixpack31.jsonl", ["fixpack31.parses.jsonl"], "validation"),

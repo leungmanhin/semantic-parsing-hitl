@@ -53,7 +53,8 @@ Batch 1 stands as the exploratory phase and is not re-run.
 parameters** = choices the doc leaves open that any implementation must make — disclosed,
 never counted as additions: embedding model and cluster threshold, clustering algorithm,
 minimum support, MI cut-offs, SVD rank, alignment / matching algorithm, paraphrase-pair
-source, the indistinguishability statistic (§4.3.2: JSD ≤ 0.3 adopted 2026-09-05, cosine as reference).
+source, the indistinguishability statistic (§4.3.2: JSD ≤ 0.3 adopted 2026-09-05, cosine as reference;
+support floors slot n ≥ 3 / pooled head n ≥ 14, owner 2026-09-07).
 **Additions** = anything that changes a method's logic or filters its input:
 constant-lifting shape stratum and nisurp ranking (§4.3.1); count-based and PPMI-weighted
 slot comparison, lemma-equivalence corroboration, name zeroing, D.3 routing, the flip
