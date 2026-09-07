@@ -1,0 +1,104 @@
+{
+ "id": "L8-08",
+ "rule": "VIII — Lanterns",
+ "texts": [
+  "The reservoir of the Stilllight Lantern holds enough mire-essence to burn for one night.",
+  "The Council built the Stilllight Lantern because wraiths had risen again and again."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000066",
+   "sentence": "The reservoir of the Stilllight Lantern holds enough mire-essence to burn for one night.",
+   "parse": [
+    "(: reservoir_type (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))",
+    "(: reservoir_partof (PartOf sk_reservoir_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: hold_agent (Agent sk_hold_1 sk_reservoir_1) (STV 1.0 0.99))",
+    "(: hold_theme (Theme sk_hold_1 sk_mire_essence_1) (STV 1.0 0.99))",
+    "(: mire_essence_type (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: mire_essence_degree (Degree sk_mire_essence_1 quantity sufficient) (STV 1.0 0.99))",
+    "(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: burn_patient (Patient sk_burn_1 sk_mire_essence_1) (STV 1.0 0.99))",
+    "(: burn_duration (Measure sk_burn_1 duration 1 night) (STV 1.0 0.99))",
+    "(: burn_can (Can sk_burn_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000066",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "One tension worth recording: for \"enough N to V\" the degree rule says to reify the consequence \"with x as Agent\", while the general role test makes the burning essence an unaccusative undergoer — the parse's (Patient sk_burn_1 sk_mire_essence_1) follows the role doctrine and reads as the faithful choice. Everything else checks out: PartOf for the reservoir, the kind atom off the name-internal \"Lantern\", stative-transitive Agent for holds (the prompt's own \"the tank holds\" case), quantity Degree sufficient, and the positive Can-marked consequence with its duration Measure."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000067",
+   "sentence": "The Council built the Stilllight Lantern because wraiths had risen again and again.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: build_ev (Member sk_build_1 build) (STV 1.0 0.99))",
+    "(: build_ag (Agent sk_build_1 sk_council_1) (STV 1.0 0.99))",
+    "(: build_pat (Patient sk_build_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: build_tense (Past sk_build_1) (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: wraith_grp (GroupOf sk_group_1 wraith) (STV 1.0 0.99))",
+    "(: rise_ev (Member sk_rise_1 rise) (STV 1.0 0.99))",
+    "(: rise_ag (Agent sk_rise_1 sk_group_1) (STV 1.0 0.99))",
+    "(: rise_tense (Past sk_rise_1) (STV 1.0 0.99))",
+    "(: rise_again (Again sk_rise_1) (STV 1.0 0.99))",
+    "(: rise_before_build (Before sk_rise_1 sk_build_1) (STV 1.0 0.99))",
+    "(: because_conn (Because sk_build_1 sk_rise_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000067",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The bare-plural group 'wraiths' gets only the group-level rise event; a distributive predicate over a group is also supposed to hand the predication to the members via an (Implication (PartOf $x sk_group_1) ...) rule, which is absent."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "reduplicated iterative adverbial ('again and again') on an episodic past-perfect clause — the unary (Again e) tag records only that some prior same-type event occurred, and no licensed head carries the repeated multiplicity (Every/TimesPer need a stated period or rate, and the frequency-adverb dial is for generics/habituals)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name/kind handling of 'the Stilllight Lantern', the no-Name default for 'the Council', the past-perfect Before ordering and the main-clause-first Because atom are all correct."
+   },
+   "adjudication": {
+    "id": "lorep2-000067",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Rising is distributive (each wraith rises separately), and the instruction set states without qualification that a distributive predicate over a plural OR GROUP also hands the predication to the members via a (PartOf $x <group>) rule — the bare-plural-episodic passage settles only that the subject is a group witness rather than a kind-ranging generic, not that the per-member rule lapses."
+     }
+    ],
+    "gaps_confirmed": [
+     "A reduplicated iterative adverbial ('again and again') on an episodic clause: the unary (Again e) records only that a prior same-type event occurred, and no licensed head carries the repeated multiplicity (Every/TimesPer need a stated period or rate; the frequency dial is generic/habitual only)."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds, beside the group-level rise event, (Implication (PartOf $x sk_group_1) (And (Member (sk_rise $x) rise) (Agent (sk_rise $x) $x) (Past (sk_rise $x)))) at (STV 1.0 0.9).",
+    "notes": "Name/kind handling of 'the Stilllight Lantern', the no-Name default for 'the Council', the past-perfect Before ordering and the main-clause-first Because atom are all correct, and (Again sk_rise_1) under-records the iterative without asserting anything false."
+   }
+  }
+ ]
+}

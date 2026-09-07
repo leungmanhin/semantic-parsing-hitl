@@ -1,0 +1,3 @@
+(: ff_genus (Inheritance fisher_family family) (STV 1.0 0.99))
+(: station_typ (Member sk_station_1 station) (STV 1.0 0.99))
+(: keeper_marry_rule (Implication (And (Member $k keeper) (Member $e marry) (Agent $e $k) (Theme $e $m) (Member $f fisher_family) (PartOf $m $f)) (And (Member (sk_keep $e) keep) (Agent (sk_keep $e) $k) (Theme (sk_keep $e) sk_station_1) (During (sk_keep $e) $e))) (STV 1.0 0.9))

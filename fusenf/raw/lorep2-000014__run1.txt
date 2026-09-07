@@ -1,0 +1,4 @@
+(: hww_genus (Inheritance high_wraith_week week) (STV 1.0 0.99))
+(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))
+(: lantern_name (Name stilllight_lantern "Stilllight Lantern") (STV 1.0 0.99))
+(: hww_rule (Implication (Member $w high_wraith_week) (And (GroupOf (sk_keepers $w) keeper) (Cardinality (sk_keepers $w) 2) (Member (sk_tend $w) tend) (Agent (sk_tend $w) (sk_keepers $w)) (Patient (sk_tend $w) stilllight_lantern) (During (sk_tend $w) $w))) (STV 1.0 0.9))

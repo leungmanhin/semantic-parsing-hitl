@@ -1,0 +1,42 @@
+{
+ "id": "L2-09",
+ "rule": "II — Tessa Brae",
+ "texts": [
+  "Tessa Brae walks the base of the cliff each morning during the molting season."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000011",
+   "sentence": "Tessa Brae walks the base of the cliff each morning during the molting season.",
+   "parse": [
+    "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: walk_ev (Member sk_walk_1 walk) (STV 1.0 0.99))",
+    "(: walk_agent (Agent sk_walk_1 tessa_brae) (STV 1.0 0.99))",
+    "(: walk_theme (Theme sk_walk_1 sk_base_1) (STV 1.0 0.99))",
+    "(: base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: walk_time (Time sk_walk_1 morning) (STV 1.0 0.99))",
+    "(: walk_every (Every sk_walk_1 1 day) (STV 1.0 0.99))",
+    "(: season_type (Member sk_molting_season_1 molting_season) (STV 1.0 0.99))",
+    "(: season_genus (Inheritance molting_season season) (STV 1.0 0.99))",
+    "(: walk_during (During sk_walk_1 sk_molting_season_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000011",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"each morning\" takes the named-slot form `(Time e morning)` + the implied cycle `(Every e 1 day)` with no tense atom (habitual), \"the base of the cliff\" takes the part/whole `PartOf` branch of the genitive test, and `molting_season` correctly gets the head genus only (the season is not molting, so the modifier fails the predication test)."
+   },
+   "adjudication": null
+  }
+ ]
+}

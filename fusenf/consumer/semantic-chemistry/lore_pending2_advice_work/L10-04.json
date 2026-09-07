@@ -1,0 +1,143 @@
+{
+ "id": "L10-04",
+ "rule": "X — The Hollows through the year",
+ "texts": [
+  "Whenever a sky-cat hunts on the Cliff Path, the lanterns at the Hollows produce many threads.",
+  "In deep winter the lanterns at the Hollows produce a small thread harvest.",
+  "In spring the lanterns at the Hollows produce a steady thread harvest.",
+  "In summer the lanterns at the Hollows produce a steady thread harvest."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000080",
+   "sentence": "Whenever a sky-cat hunts on the Cliff Path, the lanterns at the Hollows produce many threads.",
+   "parse": [
+    "(: lo80_cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: lo80_cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: lo80_sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lo80_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lo80_lantern_loc (LocatedIn sk_lantern_1 hollows) (STV 1.0 0.99))",
+    "(: lo80_hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lo80_rule (Implication (And (Member $x hunt) (Agent $x $sc) (Member $sc sky_cat) (Location $x cliff_path)) (And (Member (sk_produce $x) produce) (Agent (sk_produce $x) sk_lantern_1) (Patient (sk_produce $x) (sk_thread $x)) (GroupOf (sk_thread $x) thread) (CardinalityPhrase (sk_thread $x) \"many\") (During (sk_produce $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000080",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite plural group as the subject of a whenever-rule consequent: a distributive predicate on a group normally also requires a per-member PartOf distribution rule, but the instruction set gives that rule no place inside an Implication's conclusion, so each lantern's own producing event is unreachable",
+     "\"many\" as a vague count on an object NP: it appears only in the proportion-to-strength table (many -> 0.7, for quantification over a subject kind) and is absent from the CardinalityPhrase vague-quantity list, so which channel an object-position \"many Ns\" takes is left unstated"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever machinery is applied correctly — indefinite trigger participant as a plain premise variable with its typing conjunct, per-occurrence Skolem consequent, During link, no QuantifierPhrase companion, 1.0/0.9 — as are the Cliff Path name-plus-kind atoms and the Name-only treatment of the capitalized plural label \"the Hollows\" (no GroupOf, no invented kind). Location for event-side \"on\" and LocatedIn for entity-side \"at\" are both the licensed heads."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000081",
+   "sentence": "In deep winter the lanterns at the Hollows produce a small thread harvest.",
+   "parse": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lant_grp (GroupOf sk_group_1 lantern) (STV 1.0 0.99))",
+    "(: lant_loc (LocatedIn sk_group_1 hollows) (STV 1.0 0.99))",
+    "(: produce_ev (Member sk_produce_1 produce) (STV 1.0 0.99))",
+    "(: produce_ag (Agent sk_produce_1 sk_group_1) (STV 1.0 0.99))",
+    "(: produce_pat (Patient sk_produce_1 sk_harvest_1) (STV 1.0 0.99))",
+    "(: produce_time (Time sk_produce_1 deep_winter) (STV 1.0 0.99))",
+    "(: harvest_type (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))",
+    "(: harvest_small (Member sk_harvest_1 small) (STV 1.0 0.99))",
+    "(: harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000081",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A multi-word, non-deictic time expression ('in deep winter') filling a Time slot: the Time section lists structured terms (Year/Month/Day/Weekday/Hour/Minute) and bare deictic/named constants, and the compound-concepts rules are stated for predicates/classes/properties/actions, so whether the fused constant deep_winter takes a decomposition genus (as the compound condition room_temperature does) or stays opaque is unaddressed."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Transitive 'produce' correctly keeps Agent on the inanimate lantern group and Patient on the created harvest, the classifier 'thread harvest' fuses with its head genus while the descriptive 'small' stays a separate Member atom, and the group-as-unit reading with no per-member rule is the instruction set's default for a singular shared product."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep2-000082",
+   "sentence": "In spring the lanterns at the Hollows produce a steady thread harvest.",
+   "parse": [
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lanterns_g (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: lanterns_loc (LocatedIn sk_lanterns_1 hollows) (STV 1.0 0.99))",
+    "(: e_produce (Member sk_produce_1 produce) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_produce_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_produce_1 sk_harvest_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_produce_1 spring) (STV 1.0 0.99))",
+    "(: harvest_type (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))",
+    "(: harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: harvest_steady (Member sk_harvest_1 steady) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000082",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare, non-deictic season as a time value (\"in spring\") — the `Time` term inventory is Year/Month/Day/Weekday/Hour/Minute plus bare day-part symbols, and seasons are mentioned only as deictic constants (\"last_spring\", \"next_summer\")",
+     "a seasonal frame on a habitual present with no explicit \"every\" — the named-slot-implies-its-cycle rule (`Every e 1 <cycle>`) is stated only for \"every X\" wording, so whether a cycle atom is owed here is unspecified"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Hollows\" is correctly a `Name`-only individual with no `GroupOf` and no per-member kind, per the capitalized-plural-label rule; the definite plural subject correctly takes a group witness with entity-attached `LocatedIn` for \"at\". The group predicate is treated as collective (group event, no per-member distribution rule), which the shared singular object supports but which the instruction set leaves to the parser's distributive/collective judgment."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lorep2-000083",
+   "sentence": "In summer the lanterns at the Hollows produce a steady thread harvest.",
+   "parse": [
+    "(: lo83_hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lo83_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lo83_lantern_loc (LocatedIn sk_lantern_1 hollows) (STV 1.0 0.99))",
+    "(: lo83_ev (Member sk_produce_1 produce) (STV 1.0 0.99))",
+    "(: lo83_ag (Agent sk_produce_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: lo83_pat (Patient sk_produce_1 sk_harvest_1) (STV 1.0 0.99))",
+    "(: lo83_time (Time sk_produce_1 summer) (STV 1.0 0.99))",
+    "(: lo83_harvest_kind (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))",
+    "(: lo83_harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+    "(: lo83_harvest_steady (Member sk_harvest_1 steady) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000083",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare, non-deictic season as a time slot ('in summer'): the structured Time terms are Year/Month/Day/Weekday/Hour/Minute only, and the bare-symbol licence covers speech-anchored deictics (last_spring, next_summer) and day-parts, neither of which reaches a plain season"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare simple present correctly gets no status atom (the habitual/dispositional default), 'steady' stays a separate Member atom as incidental description while 'thread harvest' fuses with its head genus and unexposed noun modifier, and Patient is right for a creation verb. 'the Hollows' again takes the plural-label Name-only treatment."
+   },
+   "adjudication": null
+  }
+ ]
+}

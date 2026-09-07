@@ -1,0 +1,84 @@
+{
+ "id": "L7-05",
+ "rule": "VII — Storms and the fleet",
+ "texts": [
+  "Autumn storms come over the Cold Sea.",
+  "Early-winter storms come over the Cold Sea."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000054",
+   "sentence": "Autumn storms come over the Cold Sea.",
+   "parse": [
+    "(: as_genus (Inheritance autumn_storm storm) (STV 1.0 0.99))",
+    "(: cs_name (Name cold_sea \"Cold Sea\") (STV 1.0 0.99))",
+    "(: cs_type (Member cold_sea sea) (STV 1.0 0.99))",
+    "(: storm_come_rule (Implication (Member $s autumn_storm) (And (Member (sk_come $s) come) (Patient (sk_come $s) $s) (Over (sk_come $s) cold_sea))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000054",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a spatial path / superposition preposition on a motion event ('come OVER the Cold Sea'): the event-oblique `Location` is glossed 'in/at/on', while the preposition-named oblique is introduced for PPs naming what the activity is 'about or directed at' — neither branch explicitly covers a spatial 'over/across/through' path on an event"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The multi-word name is handled exactly per the Kestrel River pattern (one opaque symbol, Name, kind atom from the name-internal head, no `cold` modifier atom), and the storm subject correctly takes Patient as a non-volitional natural process rather than Agent."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000055",
+   "sentence": "Early-winter storms come over the Cold Sea.",
+   "parse": [
+    "(: cold_sea_type (Member cold_sea sea) (STV 1.0 0.99))",
+    "(: cold_sea_name (Name cold_sea \"Cold Sea\") (STV 1.0 0.99))",
+    "(: storm_genus (Inheritance early_winter_storm storm) (STV 1.0 0.99))",
+    "(: storm_come_rule (Implication (Member $x early_winter_storm) (And (Member (sk_come $x) come) (Patient (sk_come $x) $x) (Location (sk_come $x) cold_sea))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000055",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "'over the Cold Sea' is slotted as Location, but Location is specified for in/at/on and the instruction set requires the preposition actually used rather than a near-fit named role, so the surface-preposition oblique (Over <event> cold_sea) is the licensed form; Location asserts the coming is situated at the sea rather than passing over it."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The named place is handled exactly per the multi-word-name rule (one opaque symbol, Name string, separate kind atom, no modifier genus for 'Cold'), the bare-plural generic correctly becomes a distributing rule at (STV 0.9 0.9), and Patient on the storm's motion follows the non-volitional-natural-force branch of the intransitive test."
+   },
+   "adjudication": {
+    "id": "lorep2-000055",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Thematic roles licenses a named role whenever the PP answers where/when/how/whence/whither and directs deciding by that question, Location's '(in/at/on ...)' gloss is illustrative rather than a closed list (the prompt's own reified postural takes a Location oblique for 'was lying across the threshold'), and only LocatedIn — the entity-side head — carries an explicit containment-only restriction, so (Location (sk_come $x) cold_sea) is licensed, true and well-typed."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "the preposition boundary of the EVENT-side Location role: LocatedIn is legislated as containment-only with any other preposition kept entity-attached, but nothing states whether a non-containment locative/path preposition on an EVENT ('come over the sea', 'lay across the threshold') takes Location or the surface-preposition oblique (Over/Across <event> ...)"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Location is entailed by the storms coming over the sea, so it loses specificity but asserts nothing false — not the 'situated at rather than passing over' over-assertion the reviewer describes. The rest is correct: name symbol plus separate kind atom, noun-modifier genus withheld, non-volitional-force Patient, bare-generic rule at (STV 0.9 0.9) with no QuantifierPhrase."
+   }
+  }
+ ]
+}

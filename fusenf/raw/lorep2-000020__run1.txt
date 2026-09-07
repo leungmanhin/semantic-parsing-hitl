@@ -1,0 +1,2 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: keeper_retire_staff (Implication (And (Member $e retire) (Agent $e $k) (Member $k keeper)) (And (Member (sk_staff $e) staff) (Agent (sk_staff $e) sk_council_1) (Patient (sk_staff $e) (sk_station $k)) (Member (sk_station $k) station) (Possession (sk_station $k) $k) (During (sk_staff $e) $e) (Again (sk_staff $e)))) (STV 1.0 0.9))

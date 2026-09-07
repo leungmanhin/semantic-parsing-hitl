@@ -1,0 +1,163 @@
+{
+ "id": "L8-04",
+ "rule": "VIII — Salt-bloom",
+ "texts": [
+  "When a tide-pool stone is submerged, salt-bloom grows on that stone.",
+  "Salt-bloom crusts have a faint smell of salt.",
+  "The salt-bloom is kept in waxed paper packets in the Cauldron Hall store.",
+  "Whenever a Keeper adds salt-bloom to mire-essence, that mire-essence burns slowly."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000059",
+   "sentence": "When a tide-pool stone is submerged, salt-bloom grows on that stone.",
+   "parse": [
+    "(: tps_genus (Inheritance tide_pool_stone stone) (STV 1.0 0.99))",
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: submerge_grow_rule (Implication (And (Member $x tide_pool_stone) (Member $e submerge) (Patient $e $x)) (And (Member (sk_grow $x) grow) (Patient (sk_grow $x) (sk_salt_bloom $x)) (Member (sk_salt_bloom $x) salt_bloom) (Location (sk_grow $x) $x) (During (sk_grow $x) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000059",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The consequent's Skolem terms (sk_grow $x) and (sk_salt_bloom $x) are functions of the stone variable only, not of the submersion event $e that the premise also binds, so two submersions of one stone collapse onto a single grow event and a single bloom witness — the whenever pattern mints a response event per occurrence and a dependent existential is a Skolem function of every universal scoping over it."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise the whenever routing is right: indefinite/generic participants give the rule form, 'that stone' binds the premise variable as donkey anaphora, the growth is During-linked to the trigger, and both compound genus atoms are present. Patient on the passive 'is submerged' is borderline against the does-the-object-change test (Theme is the stated default when unclear)."
+   },
+   "adjudication": {
+    "id": "lorep2-000059",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The whenever pattern keys the response on the trigger OCCURRENCE - \"Every time the bell rings\" makes the minted bark (sk_bark $x) a function of the ring-event variable - and a dependent existential must be \"a Skolem function of every universal that scopes over it\", so terms keyed on the stone alone mint one growth per stone and then place that single event During two distinct submersions, asserting content the text does not state."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form makes the minted terms functions of the trigger event as well - (sk_grow $x $e) and (sk_salt_bloom $x $e), or of $e alone since the Patient premise determines the stone - so each submersion mints its own growth event and its own bloom witness.",
+    "notes": "The rest of the routing is right: bare \"when\" with indefinite/generic participants takes the whenever rule at 1.0/0.9 with no QuantifierPhrase, \"that stone\" binds the premise variable, Location rides the grow event only (never LocatedIn on the bloom), and both compound head genera are present. The reviewer's Patient-vs-Theme remark on the passive was filed as a note, not an issue, and is a defensible judgment call either way."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000060",
+   "sentence": "Salt-bloom crusts have a faint smell of salt.",
+   "parse": [
+    "(: sbc_genus (Inheritance salt_bloom_crust crust) (STV 1.0 0.99))",
+    "(: sbc_have_rule (Implication (Member $x salt_bloom_crust) (And (Member (sk_have $x) have) (Holder (sk_have $x) $x) (Theme (sk_have $x) (sk_smell $x)) (Member (sk_smell $x) smell) (Member (sk_smell $x) faint) (Of (sk_smell $x) salt))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000060",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correctly declines the kind-relation route (the object 'a faint smell of salt' is an indefinite singular, not a bare kind NP, so the relational-generic trigger does not fire) and uses the distributing rule with Holder/Theme for 'have' and a dependent Skolem witness for the smell. The of-phrase takes the entity-attached surface-preposition oblique and 'faint' stays an unfused descriptive Member atom, both as specified."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep2-000061",
+   "sentence": "The salt-bloom is kept in waxed paper packets in the Cauldron Hall store.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: sb_type (Member sk_salt_bloom_1 salt_bloom) (STV 1.0 0.99))",
+    "(: wpp_genus (Inheritance waxed_paper_packet packet) (STV 1.0 0.99))",
+    "(: wpp_mod (Inheritance waxed_paper_packet waxed) (STV 1.0 0.99))",
+    "(: keep_ev (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: keep_th (Theme sk_keep_1 sk_salt_bloom_1) (STV 1.0 0.99))",
+    "(: keep_loc1 (Location sk_keep_1 waxed_paper_packet) (STV 1.0 0.99))",
+    "(: keep_loc2 (Location sk_keep_1 sk_store_1) (STV 1.0 0.99))",
+    "(: store_type (Member sk_store_1 store) (STV 1.0 0.99))",
+    "(: store_poss (Possession sk_store_1 cauldron_hall) (STV 1.0 0.99))",
+    "(: ch_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: ch_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000061",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a compound whose MODIFIER is itself multi-word ('waxed paper' packets): decompose-once gives the head genus `packet`, but the instruction set does not say how to expose (or suppress) a two-word modifier — splitting off `waxed` alone re-brackets it as a property of the packet rather than of the paper, while treating 'waxed paper' as a material noun would suppress it entirely",
+     "a locative PP stacked on a non-place CONTAINER NP ('in packets in the store'): the stacked-'in' rule is stated only for a second 'in <Place>' on a place NP, and the containment reading is in any case unavailable here because a bare kind may not fill LocatedIn's entity slot"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Cauldron Hall store' is handled exactly per the Northgate-spokesman pattern (head noun typed on its own witness, Possession to the named entity, name-internal kind atom), the agentless passive omits Agent and keeps `keep`'s Theme, and the unmarked present correctly yields no status atom. Attaching both locatives to the keeping event is a coherent reading, so no atom is false — only the packets-in-store nesting goes unrecorded."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lorep2-000062",
+   "sentence": "Whenever a Keeper adds salt-bloom to mire-essence, that mire-essence burns slowly.",
+   "parse": [
+    "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: whenever_add_burn (Implication (And (Member $k keeper) (Member $a add) (Agent $a $k) (Theme $a salt_bloom) (Goal $a $m) (Member $m mire_essence)) (And (Member (sk_burn $a) burn) (Agent (sk_burn $a) $m) (Manner (sk_burn $a) slowly) (During (sk_burn $a) $a))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000062",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "In the rule's conclusion the burning mire-essence is given Agent, but a substance undergoing combustion is a non-volitional change-of-state undergoer, which the intransitive-subject test routes to Patient, so Agent asserts a volitional doer the clause does not state."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A bare mass noun ('mire-essence', no determiner) that a later demonstrative ('that mire-essence') must bind back to: the instruction set says bare mass nouns stay constants and shows donkey-anaphora binding only for indefinite count NPs, so whether the mass may be individuated as a premise variable typed (Member $m mire_essence) to give the demonstrative an antecedent is unaddressed."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever machinery is otherwise correct — plain variables in the premise, Skolem-function consequent event, During link, (STV 1.0 0.9), no QuantifierPhrase companion — and both hyphenated compounds get their head genus with the noun modifiers left unexposed. Goal for the non-recipient 'to' and Theme for the added substance both match the role tests."
+   },
+   "adjudication": {
+    "id": "lorep2-000062",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Agent is defined as the 'volitional doer', and the intransitive-subject test sends a change-of-state undergoer to Patient — 'burn' is named among the verbs that physically change their object, and combustion of a substance is a non-volitional natural process — so (Agent (sk_burn $a) $m) asserts a volitional doer the clause does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "a bare mass noun ('mire-essence', no determiner) that a later demonstrative ('that mire-essence') must bind back to: bare mass NPs are prescribed to stay constants and donkey-anaphora binding is shown only for indefinite count NPs, so individuating the mass as a premise variable typed (Member $m mire_essence) to supply the antecedent is unaddressed"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant conclusion reads (Patient (sk_burn $a) $m) in place of (Agent (sk_burn $a) $m); every other atom in the rule stands.",
+    "notes": "The whenever machinery is otherwise correct — plain variables in the premise, Skolem-function consequent event, During link to the trigger, (STV 1.0 0.9), no QuantifierPhrase companion — and both compounds get their head genus with the noun modifiers left unexposed; Goal for the non-recipient 'to', Theme for the added substance and the surface-form Manner adverb 'slowly' all match the stated tests."
+   }
+  }
+ ]
+}

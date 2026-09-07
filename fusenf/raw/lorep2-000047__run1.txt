@@ -1,0 +1,4 @@
+(: tidepool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))
+(: neaptide_genus (Inheritance neap_tide tide) (STV 1.0 0.99))
+(: neaptide_mod (Inheritance neap_tide neap) (STV 1.0 0.99))
+(: tidepool_dry (ConditionalProperty tide_pool dry neap_tide) (STV 0.9 0.9))

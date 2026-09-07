@@ -1,0 +1,36 @@
+{
+ "id": "L3-09",
+ "rule": "III — The bad winters",
+ "texts": [
+  "Twenty-six years ago, a lone wraith emerged."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000024",
+   "sentence": "Twenty-six years ago, a lone wraith emerged.",
+   "parse": [
+    "(: lo24_wraith (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: lo24_lone (Member sk_wraith_1 lone) (STV 1.0 0.99))",
+    "(: lo24_ev (Member sk_emerge_1 emerge) (STV 1.0 0.99))",
+    "(: lo24_ag (Agent sk_emerge_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: lo24_past (Past sk_emerge_1) (STV 1.0 0.99))",
+    "(: lo24_time (BeforeBy sk_emerge_1 now 26 year) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000024",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The Past plus BeforeBy-to-now anchoring matches the Time section's 'three days ago' example exactly, and 'lone' correctly stays a separate Member atom as incidental description rather than fusing into a compound kind. Agent on the emerge event follows the intransitive-subject test for an animate self-powered mover."
+   },
+   "adjudication": null
+  }
+ ]
+}

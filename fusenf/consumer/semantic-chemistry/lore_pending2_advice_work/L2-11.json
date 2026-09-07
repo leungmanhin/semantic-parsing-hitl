@@ -1,0 +1,66 @@
+{
+ "id": "L2-11",
+ "rule": "II — Marra Tallowhand",
+ "texts": [
+  "Marra Tallowhand keeps a detailed log every night.",
+  "Council members often consult Marra Tallowhand's logs."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000012",
+   "sentence": "Marra Tallowhand keeps a detailed log every night.",
+   "parse": [
+    "(: mt_name (Name marra_tallowhand \"Marra Tallowhand\") (STV 1.0 0.99))",
+    "(: e_keep (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_keep_1 marra_tallowhand) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_keep_1 sk_log_1) (STV 1.0 0.99))",
+    "(: log_type (Member sk_log_1 log) (STV 1.0 0.99))",
+    "(: log_detailed (Member sk_log_1 detailed) (STV 1.0 0.99))",
+    "(: e_time (Time sk_keep_1 night) (STV 1.0 0.99))",
+    "(: e_every (Every sk_keep_1 1 day) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000012",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Multi-word name gets one opaque symbol plus its Name and no invented kind atom; 'detailed' is correctly a distributing-free descriptive Member on the singular witness rather than a fused compound, and 'every night' takes the named-slot form (Time night + Every 1 day) with no status atom, as the habitual rule requires. The narrow-scope indefinite ('a detailed log' shared across nights rather than one per night) is the reading the sections dictate, and scope alternations are explicitly not a multiple-reading trigger."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000013",
+   "sentence": "Council members often consult Marra Tallowhand's logs.",
+   "parse": [
+    "(: cm_genus (Inheritance council_member member) (STV 1.0 0.99))",
+    "(: mt_name (Name marra_tallowhand \"Marra Tallowhand\") (STV 1.0 0.99))",
+    "(: log_grp (GroupOf sk_log_1 log) (STV 1.0 0.99))",
+    "(: log_poss (Possession sk_log_1 marra_tallowhand) (STV 1.0 0.99))",
+    "(: cm_consult_rule (Implication (Member $x council_member) (And (Member (sk_consult $x) consult) (Agent (sk_consult $x) $x) (Theme (sk_consult $x) sk_log_1))) (STV 0.8 0.9))",
+    "(: cm_consult_q (QuantifierPhrase council_member consult \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000013",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Frequency-adverb generic routed as a distributing rule at strength 0.8 with the mandatory 'often' QuantifierPhrase companion, and the compound genus, possessed-plural group witness, multi-word Name and Theme role all follow doctrine. Fusing capitalized 'Council members' into council_member is the compound-concepts route rather than the proper-noun-premodifier route, which is correct only because a bare capitalized class word is a common noun by default."
+   },
+   "adjudication": null
+  }
+ ]
+}

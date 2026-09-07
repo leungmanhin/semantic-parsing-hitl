@@ -1,0 +1,7 @@
+(: faltern_name (Name faltern "Faltern") (STV 1.0 0.99))
+(: farms_grp (GroupOf sk_farms_1 inland_farm) (STV 1.0 0.99))
+(: farm_genus (Inheritance inland_farm farm) (STV 1.0 0.99))
+(: farm_inland_genus (Inheritance inland_farm inland) (STV 1.0 0.99))
+(: market_typ (Member sk_market_1 market) (STV 1.0 0.99))
+(: trader_faltern_rule (Implication (And (Member $x trader) (From $x faltern)) (And (Member (sk_come $x) come) (Agent (sk_come $x) $x) (Goal (sk_come $x) sk_market_1) (Every (sk_come $x) 1 week))) (STV 0.9 0.9))
+(: trader_farms_rule (Implication (And (Member $x trader) (From $x sk_farms_1)) (And (Member (sk_come $x) come) (Agent (sk_come $x) $x) (Goal (sk_come $x) sk_market_1) (Every (sk_come $x) 1 week))) (STV 0.9 0.9))

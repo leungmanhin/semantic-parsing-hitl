@@ -1,0 +1,33 @@
+{
+ "id": "L4-09",
+ "rule": "IV — Children and families",
+ "texts": [
+  "Whenever a Keeper marries a member of a fisher family, that Keeper keeps the station."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000030",
+   "sentence": "Whenever a Keeper marries a member of a fisher family, that Keeper keeps the station.",
+   "parse": [
+    "(: ff_genus (Inheritance fisher_family family) (STV 1.0 0.99))",
+    "(: station_typ (Member sk_station_1 station) (STV 1.0 0.99))",
+    "(: keeper_marry_rule (Implication (And (Member $k keeper) (Member $e marry) (Agent $e $k) (Theme $e $m) (Member $f fisher_family) (PartOf $m $f)) (And (Member (sk_keep $e) keep) (Agent (sk_keep $e) $k) (Theme (sk_keep $e) sk_station_1) (During (sk_keep $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000030",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Follows the whenever/every-time template exactly — plain-variable premises, a Skolem consequent event keyed to the trigger event, the During link, top-level typing for the definite station, and no QuantifierPhrase companion. 'A member of a fisher family' takes the bare PartOf encoding the instruction set's own 'every member of the committee' example uses, and 'that Keeper' correctly resolves to the rule variable."
+   },
+   "adjudication": null
+  }
+ ]
+}

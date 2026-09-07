@@ -1,0 +1,9 @@
+{"id": "lorep2-000048", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 1, "issue": "`(Inheritance spring_tide tide)` decomposes the NOUN modifier of `spring_tide_fill`, which the compound rule never exposes (\"a noun modifier is never exposed, whatever it names ... leave those in the symbol\"), and it introduces a `spring_tide` symbol no other atom in the parse uses."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The relational-generic route is correct — both arguments are bare kind-denoting NPs (bare mass \"salt-bloom\", bare plural \"spring-tide fills\"), so the opaque kind-level `(Need ...)` at 0.9/0.9 is the prescribed form, and `Need` is licensed under that kind-relation licence. Head genus atoms for `salt_bloom` and `spring_tide_fill` are both present and correct; only the extra modifier decomposition is unlicensed."}

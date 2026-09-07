@@ -1,0 +1,61 @@
+{
+ "id": "L10-03",
+ "rule": "X — Sky-cat seasons",
+ "texts": [
+  "Sky-cats hunt often in summer.",
+  "Sky-cats hunt often in early autumn."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000078",
+   "sentence": "Sky-cats hunt often in summer.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_hunt_rule (Implication (Member $x sky_cat) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) summer))) (STV 0.8 0.9))",
+    "(: skycat_q (QuantifierPhrase sky_cat hunt \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000078",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Frequency adverb 'often' rides both channels correctly — rule strength 0.8 plus the QuantifierPhrase companion — and 'in summer' stays a bare named-time constant on Time with no witness or Member atom, per the deictic/named-time rule. Compound genus (Inheritance sky_cat cat) is emitted with the noun modifier unexposed, and the habitual carries no tense atom."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000079",
+   "sentence": "Sky-cats hunt often in early autumn.",
+   "parse": [
+    "(: lo79_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lo79_rule (Implication (Member $x sky_cat) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Time (sk_hunt $x) early_autumn))) (STV 0.8 0.9))",
+    "(: lo79_freq (QuantifierPhrase sky_cat hunt \"often\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000079",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare, non-deictic season as a time slot ('in early autumn'): the structured Time terms are Year/Month/Day/Weekday/Hour/Minute only, and the bare-symbol licence covers speech-anchored deictics (last_spring, next_summer) and day-parts, neither of which reaches a plain season",
+     "a sub-period modifier on a season ('early' autumn): whether it fuses into one time constant, and whether a time compound minted that way owes a decomposition genus the way room_temperature does in the condition slot, is unspecified"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Rule strength 0.8 plus the QuantifierPhrase companion recording 'often' is exactly the frequency-adverb dial, the sky_cat genus is right, and the Skolem consequent correctly carries no status atom. The only unsettled point is the encoding of 'early autumn' as a Time filler."
+   },
+   "adjudication": null
+  }
+ ]
+}

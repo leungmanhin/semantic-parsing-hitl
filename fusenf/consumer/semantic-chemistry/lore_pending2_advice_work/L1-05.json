@@ -1,0 +1,91 @@
+{
+ "id": "L1-05",
+ "rule": "I — Stilllight Lantern",
+ "texts": [
+  "The Sunken Cove holds a single lantern.",
+  "The iron bands reinforce the Stilllight Lantern."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000003",
+   "sentence": "The Sunken Cove holds a single lantern.",
+   "parse": [
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+    "(: hold_agent (Agent sk_hold_1 sunken_cove) (STV 1.0 0.99))",
+    "(: hold_theme (Theme sk_hold_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_single (Member sk_lantern_1 single) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000003",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 6,
+      "issue": "\"a single lantern\" states an exact count / exclusivity (\"only one\"), but the parse slots `single` as a descriptive property of the lantern, asserting the lantern is single rather than that the cove holds exactly one."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "quantity-emphasis \"a single N\" on a SINGULAR indefinite: `Cardinality` / `CardinalityAtLeast` are defined only over a plural group witness, and the closest analogue the instruction set names (\"only one N\") is itself a registered gap under Focus particles, so nothing licenses an exact-count-one carrier here"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is squarely licensed: \"Sunken Cove\" is a capitalized run exceeding the bare class word, so name + kind-word type atom is the Names-and-casing pattern, and `Agent` on stative-transitive \"hold\" matches the instruction set's own \"the tank holds forty litres\" example."
+   },
+   "adjudication": {
+    "id": "lorep2-000003",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"single\" quantifies the NP (exactly one lantern) rather than describing the lantern, and the instruction set routes count words to Cardinality or to strength and never to a property atom (\"vague counts ... go under Cardinality ..., not a lone witness\"; \"do not use a witness for proportion words\"), so (Member sk_lantern_1 single) predicates of the lantern a property the text never attributes to it."
+     }
+    ],
+    "gaps_confirmed": [
+     "exact count-emphasis on a SINGULAR indefinite (\"a single N\"): Cardinality/CardinalityAtLeast are defined over a group witness, and the nearest directive - the Focus-particles bullet's \"only one N\" -> \"emit the exact Cardinality and leave the particle out\" - never says how that count attaches when no plural group is present"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form carries the count as an exact Cardinality on a counted lantern group filling Theme - (GroupOf sk_group_1 lantern) (Cardinality sk_group_1 1) - per the Focus-particles directive to emit the exact Cardinality; if a singleton group is refused for a singular indefinite, the licensed fallback is to drop the count word and record the gap (\"leave the unrepresentable out rather than mis-slot it\"), and a (Member sk_lantern_1 single) property atom is licensed under neither route.",
+    "notes": "The rest is squarely licensed: the capitalized run \"Sunken Cove\" exceeds the bare class word so Name + kind type atom is the Names-and-casing pattern, and Agent/Theme on stative-transitive \"hold\" follows the prompt's own \"the tank holds forty litres\" ruling."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000004",
+   "sentence": "The iron bands reinforce the Stilllight Lantern.",
+   "parse": [
+    "(: band_grp (GroupOf sk_band_1 iron_band) (STV 1.0 0.99))",
+    "(: band_genus (Inheritance iron_band band) (STV 1.0 0.99))",
+    "(: e_reinforce (Member sk_reinforce_1 reinforce) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_reinforce_1 sk_band_1) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_reinforce_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: band_reinforce_rule (Implication (PartOf $x sk_band_1) (And (Member (sk_reinforce $x) reinforce) (Agent (sk_reinforce $x) $x) (Patient (sk_reinforce $x) stilllight_lantern))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000004",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural takes a group witness with the fusing classifier in the kind slot, iron is a noun modifier so no modifier genus is exposed, and the multi-word name gets one opaque symbol plus its Name and kind atoms. The per-member distribution rule is licensed (reinforce is not a reciprocal/aggregate predicate), though a joint/cumulative reading of the bands is also available."
+   },
+   "adjudication": null
+  }
+ ]
+}

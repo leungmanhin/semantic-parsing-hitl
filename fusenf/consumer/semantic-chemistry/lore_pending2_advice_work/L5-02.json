@@ -1,0 +1,84 @@
+{
+ "id": "L5-02",
+ "rule": "V — What wraiths are",
+ "texts": [
+  "Wraiths rise from the water in the Sunken Cove.",
+  "Every Keeper believes that the people who died in the storm-surge became wraiths."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000032",
+   "sentence": "Wraiths rise from the water in the Sunken Cove.",
+   "parse": [
+    "(: water_type (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: water_loc (LocatedIn sk_water_1 sunken_cove) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: wraiths_rise (Implication (Member $x wraith) (And (Member (sk_rise $x) rise) (Agent (sk_rise $x) $x) (Source (sk_rise $x) sk_water_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000032",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural verbal generic as a 0.9/0.9 distributing rule with the definite oblique as a top-level constant matches the 'Foxes rarely cross the causeway' shape exactly, and the capitalized run stays one name symbol with its kind atom. 'In the Sunken Cove' is attached low (to the water) rather than to the rising; both sites are coherent but the readings are near-co-extensive, so a single reading is the right call under the equipoise bar."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000033",
+   "sentence": "Every Keeper believes that the people who died in the storm-surge became wraiths.",
+   "parse": [
+    "(: keeper_believe_q (QuantifierPhrase keeper believe \"every\") (STV 1.0 0.99))",
+    "(: people_type (GroupOf sk_people_1 person) (STV 1.0 0.99))",
+    "(: surge_type (Member sk_storm_surge_1 storm_surge) (STV 1.0 0.99))",
+    "(: surge_genus (Inheritance storm_surge surge) (STV 1.0 0.99))",
+    "(: keeper_believe_rule (Implication (Member $k keeper) (And (Member (sk_believe $k) believe) (Experiencer (sk_believe $k) $k) (Theme (sk_believe $k) (And (Member sk_die_1 die) (Patient sk_die_1 sk_people_1) (Location sk_die_1 sk_storm_surge_1) (Past sk_die_1) (Implication (PartOf $y sk_people_1) (And (Member (sk_die $y) die) (Patient (sk_die $y) $y) (Location (sk_die $y) sk_storm_surge_1) (Past (sk_die $y)))) (Member sk_become_1 become) (Patient sk_become_1 sk_people_1) (Past sk_become_1) (Member sk_wraith_1 wraith) (Experiencer sk_wraith_1 sk_people_1) (Result sk_become_1 sk_wraith_1) (Implication (PartOf $z sk_people_1) (Member $z wraith)))))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000033",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "Inside the sealed complement, \"died in the storm-surge\" is slotted as `(Location sk_die_1 sk_storm_surge_1)`, but the storm-surge is an event-denoting noun naming the circumstance rather than a where, which the instruction set routes to the preposition-named oblique `(In …)` (the \"in the final round\" / \"in a statement\" line)."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise doctrinal: the universal-over-a-verbal rule with Experiencer holder and its \"every\" companion, the sealed P carrying its own per-member Implications with fresh variables ($y, $z), projection of exactly the definite typing (GroupOf sk_people_1, storm_surge Member) plus the compound's definitional genus, and the become/Result change-of-kind shape whose flat half becomes the per-member rule because the subject is a group."
+   },
+   "adjudication": {
+    "id": "lorep2-000033",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Location is glossed in Thematic roles as the 'in/at/on ...' oblique answering 'where', and the 'in the final round / in a statement' line the reviewer cites is a bar on the SYNONYM head During for a surface 'in', not a bar on Location; a storm-surge is a physical inundation one can die inside, so (Location sk_die_1 sk_storm_surge_1) is neither false nor ill-typed and this is graceful improvisation on a boundary the instruction set does not draw."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "surface 'in' over an event-denoting noun that also has physical extent ('died in the storm-surge', 'in the fire', 'in the flood'): the Location-vs-preposition-named-In test ('does the PP answer where?') does not decide it, and During is barred because the surface word is 'in' — a licensed form would need to say whether the circumstance reading or the containment reading wins"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The rest is doctrinal: 'every' universal over a verbal clause as a Skolem-function rule with its QuantifierPhrase companion, Experiencer holder with the complement sealed under Theme, exactly the definite typing plus the compound's definitional genus projected out of the seal, P's per-member Implications kept inside the seal with fresh variables, and the become/Result change-of-kind shape whose flat half becomes the per-member rule over a group. The disputed atom is in any case sealed content, asserted nowhere at top level."
+   }
+  }
+ ]
+}

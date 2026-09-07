@@ -1,0 +1,38 @@
+{
+ "id": "L1-02",
+ "rule": "I — Cliff Path",
+ "texts": [
+  "The stones that pave the Cliff Path are flat and sea-worn."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000001",
+   "sentence": "The stones that pave the Cliff Path are flat and sea-worn.",
+   "parse": [
+    "(: st_grp (GroupOf sk_stone_1 stone) (STV 1.0 0.99))",
+    "(: pave_ev (Member sk_pave_1 pave) (STV 1.0 0.99))",
+    "(: pave_ag (Agent sk_pave_1 sk_stone_1) (STV 1.0 0.99))",
+    "(: pave_pat (Patient sk_pave_1 cliff_path) (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: st_flat (Implication (PartOf $x sk_stone_1) (Member $x flat)) (STV 1.0 0.9))",
+    "(: st_seaworn (Implication (PartOf $x sk_stone_1) (Member $x sea_worn)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Definite plural -> GroupOf plus the two per-member distribution rules matches the \"The trellises are wooden\" pattern, and \"Cliff Path\" gets the multi-word-name symbol with its kind atom and one Name. The restrictive relative is asserted as a group-level pave event (collective, no per-member rule), which is defensible for paving."
+   },
+   "adjudication": null
+  }
+ ]
+}

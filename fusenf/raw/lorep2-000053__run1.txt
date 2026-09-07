@@ -1,0 +1,4 @@
+(: night_genus (Inheritance cold_threshold_night night) (STV 1.0 0.99))
+(: cliffpath_type (Member cliff_path path) (STV 1.0 0.99))
+(: cliffpath_name (Name cliff_path "Cliff Path") (STV 1.0 0.99))
+(: night_lantern_die_rule (Implication (And (Member $e come) (Theme $e $n) (Member $n cold_threshold_night) (Member $l lantern) (Member $l unprepared) (On $l cliff_path)) (And (Member (sk_die $e $l) die) (Patient (sk_die $e $l) $l) (During (sk_die $e $l) $e))) (STV 1.0 0.9))

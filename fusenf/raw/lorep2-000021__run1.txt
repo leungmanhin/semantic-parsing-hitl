@@ -1,0 +1,2 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: keeper_die_staff_rule (Implication (And (Member $k keeper) (Member $e die) (Patient $e $k)) (And (Member (sk_staff $e) staff) (Agent (sk_staff $e) sk_council_1) (Theme (sk_staff $e) (sk_station $k)) (Member (sk_station $k) station) (Possession (sk_station $k) $k) (Again (sk_staff $e)) (During (sk_staff $e) $e))) (STV 1.0 0.9))

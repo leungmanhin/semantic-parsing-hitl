@@ -1,0 +1,104 @@
+{
+ "id": "L7-01",
+ "rule": "VII — Tides",
+ "texts": [
+  "Tide-pools are dry at neap tide.",
+  "Salt-bloom needs spring-tide fills."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000047",
+   "sentence": "Tide-pools are dry at neap tide.",
+   "parse": [
+    "(: tidepool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+    "(: neaptide_genus (Inheritance neap_tide tide) (STV 1.0 0.99))",
+    "(: neaptide_mod (Inheritance neap_tide neap) (STV 1.0 0.99))",
+    "(: tidepool_dry (ConditionalProperty tide_pool dry neap_tide) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000047",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "`(Inheritance neap_tide neap)` exposes a modifier genus for an attributive-only classifying adjective — \"the tide is neap\" fails the predication test and `neap` is none of the three exposure classes (gradable, positional/cardinal, material adjective), so only the head genus `(Inheritance neap_tide tide)` is licensed."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The core routing is exactly the \"Metals are solid at room temperature\" pattern — ConditionalProperty on the kind at 0.9 0.9, the bare (Inheritance tide_pool dry) correctly withheld, and the compound condition decomposed; tide_pool likewise takes only its head genus since `tide` is a noun modifier."
+   },
+   "adjudication": {
+    "id": "lorep2-000047",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Modifier-genus exposure is 'determined, not optional' and licensed only for an adjectival property of the referent — gradable, positional/cardinal, or material adjective — with relational/rank adjectives that fail the predication test expressly excluded ('assistant secretary'); 'neap' is an attributive-only classifier in none of those classes, and the parallel worked example emits only (Inheritance room_temperature temperature), so the extra atom hands every neap tide an unlicensed property."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "attributive-only CLASSIFYING adjectives inside a fused compound kind ('neap tide', and by the same shape 'breton tapestry'): the exposure rule names three positive classes and one relational/rank exclusion, but does not say where a classifier adjective that merely names a subtype falls — the predication test ('the tide is neap') is itself marginal in the relevant technical register"
+    ],
+    "decision": "defect",
+    "defect_summary": "Drop (Inheritance neap_tide neap); the compliant parse keeps only the head genus (Inheritance neap_tide tide) (STV 1.0 0.99), leaving the classifier in the symbol exactly as room_temperature keeps 'room'.",
+    "notes": "The core routing is otherwise exactly the 'Metals are solid at room temperature' pattern — ConditionalProperty on the kind at (STV 0.9 0.9), the bare (Inheritance tide_pool dry) correctly withheld, and tide_pool taking only its head genus."
+   }
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000048",
+   "sentence": "Salt-bloom needs spring-tide fills.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: st_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: stf_genus (Inheritance spring_tide_fill fill) (STV 1.0 0.99))",
+    "(: sb_need (Need salt_bloom spring_tide_fill) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000048",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "`(Inheritance spring_tide tide)` decomposes the NOUN modifier of `spring_tide_fill`, which the compound rule never exposes (\"a noun modifier is never exposed, whatever it names ... leave those in the symbol\"), and it introduces a `spring_tide` symbol no other atom in the parse uses."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The relational-generic route is correct — both arguments are bare kind-denoting NPs (bare mass \"salt-bloom\", bare plural \"spring-tide fills\"), so the opaque kind-level `(Need ...)` at 0.9/0.9 is the prescribed form, and `Need` is licensed under that kind-relation licence. Head genus atoms for `salt_bloom` and `spring_tide_fill` are both present and correct; only the extra modifier decomposition is unlicensed."
+   },
+   "adjudication": {
+    "id": "lorep2-000048",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Compound concepts makes modifier exposure determined, not optional - \"a noun modifier is never exposed, whatever it names ... leave those in the symbol\", and \"decompose once, to single-word lemmas, then stop\" - so (Inheritance spring_tide tide) is an unlicensed second-level decomposition of the noun modifier that injects a world-knowledge taxonomy fact about a kind the sentence predicates nothing of."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "a three-word compound whose modifier is itself a compound (spring_tide_fill): \"decompose once, to single-word lemmas\" and \"a noun modifier is never exposed\" pull in different directions and no worked example shows a multi-word modifier - the determinate rule does resolve it (head genus only), but the wording invites exactly the parser's reading"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form emits the head genus alone - (Inheritance spring_tide_fill fill) - with the noun modifier left unexposed inside the symbol and no atom about spring_tide at all.",
+    "notes": "The relational-generic route is correct and unchallenged: both arguments are bare kind-denoting NPs, so the opaque kind-level (Need salt_bloom spring_tide_fill) at 0.9/0.9 is the prescribed form, and salt_bloom's head genus is likewise licensed."
+   }
+  }
+ ]
+}

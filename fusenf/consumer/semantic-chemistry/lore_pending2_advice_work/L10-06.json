@@ -1,0 +1,61 @@
+{
+ "id": "L10-06",
+ "rule": "X — Craft and trade",
+ "texts": [
+  "Whenever an equinox passes, Aron Brae makes vessels.",
+  "Traders from Faltern and the inland farms come to the market each week."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000085",
+   "sentence": "Whenever an equinox passes, Aron Brae makes vessels.",
+   "parse": [
+    "(: lo85_name (Name aron_brae \"Aron Brae\") (STV 1.0 0.99))",
+    "(: lo85_rule (Implication (And (Member $x pass) (Patient $x $y) (Member $y equinox)) (And (Member (sk_make $x) make) (Agent (sk_make $x) aron_brae) (Patient (sk_make $x) vessel) (During (sk_make $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000085",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever machinery, plain-variable premise, Skolem-function consequent with During, absent QuantifierPhrase and 1.0/0.9 rule TV all match the 'Every time the bell rings' template; the Name atom sits at top level outside the rule as a label should. Patient on the passing equinox follows the intransitive-subject test for a non-volitional occurrence."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000086",
+   "sentence": "Traders from Faltern and the inland farms come to the market each week.",
+   "parse": [
+    "(: faltern_name (Name faltern \"Faltern\") (STV 1.0 0.99))",
+    "(: farms_grp (GroupOf sk_farms_1 inland_farm) (STV 1.0 0.99))",
+    "(: farm_genus (Inheritance inland_farm farm) (STV 1.0 0.99))",
+    "(: farm_inland_genus (Inheritance inland_farm inland) (STV 1.0 0.99))",
+    "(: market_typ (Member sk_market_1 market) (STV 1.0 0.99))",
+    "(: trader_faltern_rule (Implication (And (Member $x trader) (From $x faltern)) (And (Member (sk_come $x) come) (Agent (sk_come $x) $x) (Goal (sk_come $x) sk_market_1) (Every (sk_come $x) 1 week))) (STV 0.9 0.9))",
+    "(: trader_farms_rule (Implication (And (Member $x trader) (From $x sk_farms_1)) (And (Member (sk_come $x) come) (Agent (sk_come $x) $x) (Goal (sk_come $x) sk_market_1) (Every (sk_come $x) 1 week))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000086",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The coordinated origin restriction is correctly split into one rule per conjunct (a disjunctive premise range), with entity-attached From for origin, Goal for the non-recipient destination, Every 1 week for the periodic frequency and no QuantifierPhrase companion. The inland_farm compound exposes its positional modifier genus as the east_wing pattern requires, and the definite plural takes a group witness in the group's kind slot."
+   },
+   "adjudication": null
+  }
+ ]
+}

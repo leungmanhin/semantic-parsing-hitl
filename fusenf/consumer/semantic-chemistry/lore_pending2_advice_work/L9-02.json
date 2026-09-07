@@ -1,0 +1,78 @@
+{
+ "id": "L9-02",
+ "rule": "IX — The boil",
+ "texts": [
+  "Whenever a distillation runs in a cauldron and that cauldron boils hard, that distillation fails.",
+  "Whenever a cauldron boils hard, that cauldron yields a thin slick of poor essence."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000068",
+   "sentence": "Whenever a distillation runs in a cauldron and that cauldron boils hard, that distillation fails.",
+   "parse": [
+    "(: whenever_distill_fail (Implication (And (Member $x run) (Agent $x $d) (Member $d distillation) (Location $x $c) (Member $c cauldron) (Member $y boil) (Patient $y $c) (Manner $y hard)) (And (Member (sk_fail $x) fail) (Patient (sk_fail $x) $d) (During (sk_fail $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000068",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever machinery is applied correctly: both trigger clauses as plain-variable premises (no Skolem term in a premise), 'that cauldron' / 'that distillation' bound to the premise variables, a per-occurrence Skolem consequent tied by During, and STV 1.0 0.9 with no QuantifierPhrase companion. Minor: the consequent Skolem is a function of the run event alone rather than of both quantified premise events, which the multi-universal guidance would arguably make (sk_fail $x $y); the one-failure-per-run reading it yields is still coherent."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000069",
+   "sentence": "Whenever a cauldron boils hard, that cauldron yields a thin slick of poor essence.",
+   "parse": [
+    "(: cauldron_boil_yield_rule (Implication (And (Member $c cauldron) (Member $b boil) (Patient $b $c) (Manner $b hard)) (And (Member (sk_yield $c) yield) (Agent (sk_yield $c) $c) (Patient (sk_yield $c) (sk_slick $c)) (Member (sk_slick $c) slick) (Member (sk_slick $c) thin) (Member (sk_slick $c) essence) (Member (sk_slick $c) poor) (During (sk_yield $c) $b))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000069",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The consequent's Skolem terms are indexed on the cauldron (`(sk_yield $c)`, `(sk_slick $c)`) rather than on the boiling occurrence `$b`, so repeated hard boilings of one cauldron collapse onto a single yield event and a single slick, whereas 'whenever' quantifies over occurrences and the instruction set's bell/bark pattern skolemizes on the trigger-event variable."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a quantity / container of-phrase ('a thin slick OF poor essence', 'a cup of water'): it is explicitly excluded from the possessive-of mapping and fails the nominalization verb-paraphrase test that licenses the `Of` oblique, and the definite-set Partitive machinery does not apply to a bare mass complement — so no positive encoding is given, and the parse falls back on typing the slick as `essence` and hanging the essence's `poor` on the slick"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise the whenever machinery is right: plain-variable premises with no Skolem term, 'that cauldron' bound to the rule variable, the During link to the trigger, no QuantifierPhrase companion, and STV 1.0 0.9. `(Manner $b hard)` is borderline against the bar on degree adverbs on a verb, though `hard` is named elsewhere as a legitimate adverbial scale."
+   },
+   "adjudication": {
+    "id": "lorep2-000069",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'Whenever' quantifies over occurrences and its stated pattern skolemizes the response on the trigger-EVENT variable ((sk_bark $x) with (During (sk_bark $x) $x)); indexing on $c collapses one cauldron's repeated hard boilings onto a single yield event and a single slick, deriving the false (During (sk_yield $c) $b1) and (During (sk_yield $c) $b2) for distinct boilings."
+     }
+    ],
+    "gaps_confirmed": [
+     "a quantity/container of-phrase over an indefinite mass ('a thin slick of poor essence', the explicitly excluded 'a cup of water'): Possession is barred for it, the nominalization verb-paraphrase test fails, and the Partitive machinery requires a definite whole — so no positive encoding is licensed"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The consequent's Skolem terms should be functions of the trigger occurrence — (sk_yield $b) and (sk_slick $b), or fully generally (sk_yield $c $b) per the multi-universal rule — with (During (sk_yield $b) $b).",
+    "notes": "The fallback in the uncovered of-phrase territory stays acceptable: a portion of a homogeneous mass is still that mass (the mass-partitive precedent), so typing the slick slick/thin/essence/poor asserts nothing false. (Manner $b hard) reads as manner proper rather than the barred verb-degree adverb."
+   }
+  }
+ ]
+}

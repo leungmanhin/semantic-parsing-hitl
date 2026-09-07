@@ -1,0 +1,9 @@
+{"id": "lorep2-000048", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Compound concepts makes modifier exposure determined, not optional - \"a noun modifier is never exposed, whatever it names ... leave those in the symbol\", and \"decompose once, to single-word lemmas, then stop\" - so (Inheritance spring_tide tide) is an unlicensed second-level decomposition of the noun modifier that injects a world-knowledge taxonomy fact about a kind the sentence predicates nothing of."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["a three-word compound whose modifier is itself a compound (spring_tide_fill): \"decompose once, to single-word lemmas\" and \"a noun modifier is never exposed\" pull in different directions and no worked example shows a multi-word modifier - the determinate rule does resolve it (head genus only), but the wording invites exactly the parser's reading"],
+ "decision": "defect",
+ "defect_summary": "The compliant form emits the head genus alone - (Inheritance spring_tide_fill fill) - with the noun modifier left unexposed inside the symbol and no atom about spring_tide at all.",
+ "notes": "The relational-generic route is correct and unchallenged: both arguments are bare kind-denoting NPs, so the opaque kind-level (Need salt_bloom spring_tide_fill) at 0.9/0.9 is the prescribed form, and salt_bloom's head genus is likewise licensed."}

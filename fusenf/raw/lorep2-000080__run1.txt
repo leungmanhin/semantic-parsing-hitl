@@ -1,0 +1,7 @@
+(: lo80_cp_type (Member cliff_path path) (STV 1.0 0.99))
+(: lo80_cp_name (Name cliff_path "Cliff Path") (STV 1.0 0.99))
+(: lo80_sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: lo80_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))
+(: lo80_lantern_loc (LocatedIn sk_lantern_1 hollows) (STV 1.0 0.99))
+(: lo80_hollows_name (Name hollows "Hollows") (STV 1.0 0.99))
+(: lo80_rule (Implication (And (Member $x hunt) (Agent $x $sc) (Member $sc sky_cat) (Location $x cliff_path)) (And (Member (sk_produce $x) produce) (Agent (sk_produce $x) sk_lantern_1) (Patient (sk_produce $x) (sk_thread $x)) (GroupOf (sk_thread $x) thread) (CardinalityPhrase (sk_thread $x) "many") (During (sk_produce $x) $x))) (STV 1.0 0.9))

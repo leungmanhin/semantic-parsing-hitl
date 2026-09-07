@@ -1,0 +1,5 @@
+(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))
+(: hesper_name (Name hesper "Hesper") (STV 1.0 0.99))
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: ep_genus (Inheritance essence_production production) (STV 1.0 0.99))
+(: whenever_rule (Implication (And (Member $x full) (Experiencer $x sk_moon_1)) (And (Member (sk_report $x) report) (Agent (sk_report $x) hesper) (Theme (sk_report $x) essence_production) (Recipient (sk_report $x) sk_council_1) (During (sk_report $x) $x))) (STV 1.0 0.9))

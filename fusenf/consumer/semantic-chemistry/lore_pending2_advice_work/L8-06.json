@@ -1,0 +1,97 @@
+{
+ "id": "L8-06",
+ "rule": "VIII — Ground feathers",
+ "texts": [
+  "Collectors dry the feathers from sky-cats.",
+  "A handful of ground feathers protects a lantern for about a month."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000064",
+   "sentence": "Collectors dry the feathers from sky-cats.",
+   "parse": [
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: feather_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feather_from (From sk_feather_1 sky_cat) (STV 1.0 0.99))",
+    "(: collectors_dry (Implication (Member $x collector) (And (Member (sk_dry $x) dry) (Agent (sk_dry $x) $x) (Patient (sk_dry $x) sk_feather_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000064",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A DEFINITE-GENERIC plural object inside a generic/habitual clause (\"the feathers from sky-cats\" = feathers of that kind, not one specific batch). The definite rule is written for a definite \"that picks out a specific thing\" and the bare-kind filler is reserved for non-specific/generic objects; nothing says which applies when a definite plural is itself kind-referring, and the specific-group encoding makes every collector dry one shared set."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correctly NOT a relational kind-level generic (the object is definite, not a bare kind NP), correctly no (can collect) for the referring-use agent nominalization, and \"from sky-cats\" takes the entity-attached origin From with the kind constant. Patient on the drying object fits the treatment/physical-change test."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000065",
+   "sentence": "A handful of ground feathers protects a lantern for about a month.",
+   "parse": [
+    "(: gf_genus (Inheritance ground_feather feather) (STV 1.0 0.99))",
+    "(: gf_grp (GroupOf sk_group_1 ground_feather) (STV 1.0 0.99))",
+    "(: gf_card (CardinalityPhrase sk_group_1 \"handful\") (STV 1.0 0.99))",
+    "(: e_protect (Member sk_protect_1 protect) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_protect_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_protect_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e_dur (Measure sk_protect_1 duration (ParticleFromNormal 1 0.1) month) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000065",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "CardinalityPhrase records \"handful\" while the instruction set's vague-quantity lexicon lists the phrase as \"a handful\", so the string may miss the seeded phrase-to-bound rule (the worked example keeps the listed form exactly, \"several\")."
+     },
+     {
+      "statement": 0,
+      "issue": "ground_feather is fused but its modifier genus is not exposed, although \"ground\" is a participial adjective predicable of the referent (\"the feathers are ground\") and the modifier-genus test is stated as determined, not optional — so either (Inheritance ground_feather ground) is missing or the pair should not have fused at all, per the 'a laminated worktop' treatment."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is right: Theme for protect (the lantern is unchanged), a witness group for the vague-quantity indefinite subject, an unmarked event for the dispositional present, and the tight-hedge duration (ParticleFromNormal 1 0.1) at 10% sigma."
+   },
+   "adjudication": {
+    "id": "lorep2-000065",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The vague-quantity rule requires the phrase 'normalized to the canonical lexicon string', and the only lexicon the instruction set exhibits lists 'a handful' — beside 'a few' and 'a lot of', which likewise keep their leading words — so \"handful\" is not the canonical form the seeded phrase-to-bound rules key on."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "The parse reads 'ground' as a NOUN modifier (feathers from the ground, the fire_exit / night_shift pattern), for which the modifier genus is correctly suppressed; world knowledge picks the reading per Core patterns, every emitted atom is true under it, and the 'laminated worktop' treatment binds only under the participial-adjective reading the parse did not take."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "The Cardinality vague-quantity rule requires normalization 'to the canonical lexicon string' but never states the canonicalization itself — whether the leading article is kept — and the one worked example ('several') has none, so 'a few' / 'a handful' / 'a lot of' have no demonstrated canonical form to normalize to."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form is (CardinalityPhrase sk_group_1 \"a handful\"), the phrase exactly as the vague-quantity lexicon lists it; nothing else in the parse changes.",
+    "notes": "The remainder is right: Theme for the unchanged lantern, a vague-quantity group witness for the indefinite subject, no status atom on the dispositional present, and the tight-hedge duration at sigma = 10% of the value."
+   }
+  }
+ ]
+}

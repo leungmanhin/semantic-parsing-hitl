@@ -1,0 +1,3 @@
+(: htd_genus (Inheritance heavy_thread_day day) (STV 1.0 0.99))
+(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: htd_fill_vessels (Implication (Member $x heavy_thread_day) (And (Member (sk_fill $x) fill) (Agent (sk_fill $x) $x) (Patient (sk_fill $x) (sk_vessels $x)) (GroupOf (sk_vessels $x) vessel) (Cardinality (sk_vessels $x) 4) (Instrument (sk_fill $x) mire_essence))) (STV 0.9 0.9))

@@ -1,0 +1,7 @@
+(: market_type (Member sk_market_1 market) (STV 1.0 0.99))
+(: run_ev (Member sk_run_1 run) (STV 1.0 0.99))
+(: run_agent (Agent sk_run_1 sk_market_1) (STV 1.0 0.99))
+(: square_type (Member sk_square_1 village_square) (STV 1.0 0.99))
+(: square_genus (Inheritance village_square square) (STV 1.0 0.99))
+(: run_loc (Location sk_run_1 sk_square_1) (STV 1.0 0.99))
+(: run_every (Every sk_run_1 1 week) (STV 1.0 0.99))

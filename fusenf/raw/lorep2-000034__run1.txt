@@ -1,0 +1,3 @@
+(: rule_m (Member sk_wraith_rule_1 wraith_rule) (STV 1.0 0.99))
+(: rule_genus (Inheritance wraith_rule rule) (STV 1.0 0.99))
+(: keeper_know (Implication (Member $x keeper) (And (Member (sk_know $x) know) (Experiencer (sk_know $x) $x) (Stimulus (sk_know $x) sk_wraith_rule_1))) (STV 0.9 0.9))

@@ -1,0 +1,36 @@
+{
+ "id": "L2-12",
+ "rule": "II — Tending a station",
+ "texts": [
+  "When a week is a high-wraith week, two Keepers tend the Stilllight Lantern together."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000014",
+   "sentence": "When a week is a high-wraith week, two Keepers tend the Stilllight Lantern together.",
+   "parse": [
+    "(: hww_genus (Inheritance high_wraith_week week) (STV 1.0 0.99))",
+    "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: hww_rule (Implication (Member $w high_wraith_week) (And (GroupOf (sk_keepers $w) keeper) (Cardinality (sk_keepers $w) 2) (Member (sk_tend $w) tend) (Agent (sk_tend $w) (sk_keepers $w)) (Patient (sk_tend $w) stilllight_lantern) (During (sk_tend $w) $w))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000014",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare \"when P, Q\" whose trigger clause P is copular/stative (\"a week is a high-wraith week\"): the whenever machinery ties the per-occurrence Skolem response to its trigger with `During`, but a copular trigger reifies no eventuality to fill `During`'s second slot, and `During` is otherwise restricted to nesting one eventuality inside another (and to the words during/while/throughout)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`During` here takes the week entity `$w` rather than an eventuality, which is the gap above. `Patient` for \"tend\" is borderline against the does-the-object-change test, whose stated tiebreak is `Theme`."
+   },
+   "adjudication": null
+  }
+ ]
+}

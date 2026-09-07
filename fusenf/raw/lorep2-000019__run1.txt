@@ -1,0 +1,4 @@
+(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: mer_genus (Inheritance mire_essence_reserve reserve) (STV 1.0 0.99))
+(: whenever_full_redistribute (Implication (And (Member $x full) (Experiencer $x sk_moon_1)) (And (Member (sk_redistribute $x) redistribute) (Agent (sk_redistribute $x) sk_council_1) (Theme (sk_redistribute $x) mire_essence_reserve) (During (sk_redistribute $x) $x))) (STV 1.0 0.9))

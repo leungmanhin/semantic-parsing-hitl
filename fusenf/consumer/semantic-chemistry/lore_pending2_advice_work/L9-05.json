@@ -1,0 +1,172 @@
+{
+ "id": "L9-05",
+ "rule": "IX — Yields",
+ "texts": [
+  "Typical days fill several vessels with mire-essence.",
+  "Heavy-thread days fill four vessels with mire-essence.",
+  "Thin days fill one vessel with mire-essence.",
+  "Distillation runs heavily from early autumn to Lantern-night.",
+  "The distillation yield thins through deep winter."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000071",
+   "sentence": "Typical days fill several vessels with mire-essence.",
+   "parse": [
+    "(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: typicaldays_fill_rule (Implication (And (Member $d day) (Member $d typical)) (And (Member (sk_fill $d) fill) (Agent (sk_fill $d) $d) (Patient (sk_fill $d) (sk_vessels $d)) (GroupOf (sk_vessels $d) vessel) (CardinalityPhrase (sk_vessels $d) \"several\") (Instrument (sk_fill $d) mire_essence))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000071",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the material / content argument of the locative-alternation \"fill X with Y\" — the instruction set offers no Content/Material role, and `Instrument` is glossed as the *means* the event is performed by (tool, substance or conduit), whereas the mire-essence is what ends up in the vessels rather than the means of filling"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly forces the distributing-rule route with the restriction as a premise conjunct, the transitive inanimate subject stays Agent, and \"several vessels\" under the universal becomes a per-binding Skolem group (sk_vessels $d) with GroupOf + CardinalityPhrase, mirroring the \"three books under every student\" pattern."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000072",
+   "sentence": "Heavy-thread days fill four vessels with mire-essence.",
+   "parse": [
+    "(: htd_genus (Inheritance heavy_thread_day day) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: htd_fill_vessels (Implication (Member $x heavy_thread_day) (And (Member (sk_fill $x) fill) (Agent (sk_fill $x) $x) (Patient (sk_fill $x) (sk_vessels $x)) (GroupOf (sk_vessels $x) vessel) (Cardinality (sk_vessels $x) 4) (Instrument (sk_fill $x) mire_essence))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000072",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural generic subject correctly routes to the Skolem-function rule at 0.9/0.9 with no QuantifierPhrase, the inanimate transitive subject stays Agent as the instruction set requires, and 'four vessels' under the universal takes the per-binding Skolem group with GroupOf + Cardinality exactly as specified. The locative-alternation 'fill X with Y' is the one soft spot: the with-phrase split offers only CoAgent (animate participant) or Instrument (means), and Instrument's licence explicitly names substances, so mire_essence in Instrument is within the letter of the rule even though it is the content rather than the means."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep2-000073",
+   "sentence": "Thin days fill one vessel with mire-essence.",
+   "parse": [
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: thin_day_fill_rule (Implication (And (Member $x day) (Member $x thin)) (And (Member (sk_fill $x) fill) (Agent (sk_fill $x) $x) (Patient (sk_fill $x) (sk_vessel $x)) (Member (sk_vessel $x) vessel) (Instrument (sk_fill $x) mire_essence))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000073",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "The content / material \"with\"-phrase of a locative-alternation verb (\"fill one vessel WITH mire-essence\"): the instruction set splits a with-phrase only two ways — an animate co-participant (CoAgent) or the means the action is performed by (Instrument) — and the essence is neither; it is the substance that ends up in the filled object. No role names that argument, so the parse routes it to Instrument by elimination."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Second, smaller gap: the numeral in \"one vessel\" has no carrier — Cardinality rides on a group witness, and a singular count NP has none, so the count survives only implicitly as the per-day Skolem witness. Otherwise faithful: adjectivally-restricted bare-plural subject correctly routed to a 0.9/0.9 distributing rule with no QuantifierPhrase (no quantifier word), Patient for the filled vessel, and the bare kind filler plus its genus atom for the generic mire-essence."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lorep2-000074",
+   "sentence": "Distillation runs heavily from early autumn to Lantern-night.",
+   "parse": [
+    "(: distillation_type (Member sk_distillation_1 distillation) (STV 1.0 0.99))",
+    "(: run_ev (Member sk_run_1 run) (STV 1.0 0.99))",
+    "(: run_ag (Agent sk_run_1 sk_distillation_1) (STV 1.0 0.99))",
+    "(: run_manner (Manner sk_run_1 heavily) (STV 1.0 0.99))",
+    "(: run_start (Start sk_run_1 early_autumn) (STV 1.0 0.99))",
+    "(: run_end (End sk_run_1 lantern_night) (STV 1.0 0.99))",
+    "(: lantern_night_name (Name lantern_night \"Lantern-night\") (STV 1.0 0.99))",
+    "(: lantern_night_type (Member lantern_night night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000074",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "'heavily' here is a degree/intensity adverb on the verb (how much distilling, not in what manner), which the instruction set says has no licensed slot and must be left out with the gap recorded rather than slotted as Manner."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare mass / activity noun as the SUBJECT of a habitual clause ('Distillation runs ...') — the bare-plural rules (generic rule vs episodic group witness) and the article-driven witness rules do not decide it, and the parse's sk_distillation_1 witness commits to one specific distillation individual",
+     "a hyphenated proper name whose second element is lowercase ('Lantern-night') — the name boundary is defined mechanically over capitalized runs of separate words, so it does not say whether the lowercase hyphen-final common noun joins the Name symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Start/End for 'from X to Y' and the bare calendar-period constant early_autumn follow the interval and fiscal-period rules; no tense atom is right for the habitual reading."
+   },
+   "adjudication": {
+    "id": "lorep2-000074",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "'runs heavily' states the intensity/volume of the activity rather than the way it is performed, putting it in the barred 'degree adverb on a verb' class ('sharply', 'slightly') that has no licensed slot — and the instruction set says in terms that a mis-slotted Manner atom asserts a manner the sentence does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "a bare mass / activity noun as the SUBJECT of a habitual clause ('Distillation runs ...') — neither the bare-plural generic-vs-episodic split nor the bare-kind-filler rule (stated for objects) decides it",
+     "a hyphenated proper name with a lowercase second element ('Lantern-night') — the name boundary is defined over capitalized runs of separate words and over an adjacent lowercase common noun, never over hyphenation"
+    ],
+    "new_gaps": [
+     "a verb-modifying degree/intensity adverb has NO licensed carrier anywhere — the instruction set directs it to be dropped, so the stated intensity of a habitual activity ('runs heavily') cannot be recorded by any compliant parse"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form simply omits (Manner sk_run_1 heavily) and records the gap — no slot is licensed for a verb-degree adverb — leaving the witness, Start/End interval, Name and kind atoms as written.",
+    "notes": "In both gap areas the improvisation is otherwise acceptable: the activity witness and the kind atom read off the name-internal 'night' keep every atom true, and early_autumn as a bare period constant follows the calendar-period rule. No tense atom is right for the habitual reading."
+   }
+  },
+  {
+   "field": "t5",
+   "corpus_id": "lorep2-000075",
+   "sentence": "The distillation yield thins through deep winter.",
+   "parse": [
+    "(: yield_m (Member sk_yield_1 distillation_yield) (STV 1.0 0.99))",
+    "(: yield_genus (Inheritance distillation_yield yield) (STV 1.0 0.99))",
+    "(: thin_ev (Member sk_thin_1 thin) (STV 1.0 0.99))",
+    "(: thin_theme (Theme sk_thin_1 sk_yield_1) (STV 1.0 0.99))",
+    "(: thin_time (Time sk_thin_1 deep_winter) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000075",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "durative 'through <period>' (an eventuality holding across the whole of a period) — During is licensed only for during/while/throughout, so the extent reading has no carrier and collapses to a Time point atom"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Theme on the intransitive 'thins' is licensed by the scalar-change route (a quantity subject changing value) but sits against the internal-change-of-state list (weaken/fade/sag), which would give Patient; the simple present correctly carries no status atom. A modified non-deictic season phrase kept as the bare Time constant deep_winter also has no explicit rule — deictic season constants are covered, a compound kind would owe a genus atom."
+   },
+   "adjudication": null
+  }
+ ]
+}

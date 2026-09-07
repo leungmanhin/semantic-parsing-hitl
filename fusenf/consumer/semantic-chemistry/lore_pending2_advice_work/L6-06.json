@@ -1,0 +1,168 @@
+{
+ "id": "L6-06",
+ "rule": "VI — Molting and feathers",
+ "texts": [
+  "Sky-cats molt in late summer.",
+  "Sky-cats molt in early autumn.",
+  "Tessa Brae's collectors gather the fallen feathers each morning during the molting season.",
+  "Ground feathers of sky-cats ward lanterns against wraiths."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000041",
+   "sentence": "Sky-cats molt in late summer.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_molt (Implication (Member $x sky_cat) (And (Member (sk_molt $x) molt) (Patient (sk_molt $x) $x) (Time (sk_molt $x) late_summer))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000041",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural verbal generic -> Skolem-function distribution rule at 0.9/0.9, Patient on the intransitive change-of-state subject (molt), sky_cat fused with genus `cat` and the noun modifier correctly not exposed. \"late summer\" as a bare named-time symbol on Time is the licensed route; no Every atom is emitted, correct since no periodic wording is present."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000042",
+   "sentence": "Sky-cats molt in early autumn.",
+   "parse": [
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: skycat_molt_rule (Implication (Member $x sky_cat) (And (Member (sk_molt $x) molt) (Agent (sk_molt $x) $x) (Time (sk_molt $x) early_autumn))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000042",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The molting sky-cat is given Agent, but molt is a non-volitional internal change of state that the subject undergoes, which the intransitive-subject test routes to Patient (Agent is reserved for motion / volitional / self-propelled subjects)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a non-deictic season time expression with a phase modifier (\"in early autumn\"): the Time section defines structured terms only for Year/Month/Day/Weekday/Hour/Minute, bare symbols for day-parts and for deictic seasons (last_spring / next_summer), and says nothing about a plain or phase-modified season, so the fused bare symbol early_autumn (and whether it should decompose) is unspecified"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Otherwise the bare-plural verbal generic is correctly a distributing rule with a Skolem-function event at 0.9/0.9, and sky_cat emits the head genus only (noun modifier not exposed)."
+   },
+   "adjudication": {
+    "id": "lorep2-000042",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Molting is a non-volitional internal change of state its subject undergoes, and the instruction set states that an intransitive subject that undergoes the eventuality is never Agent by default (Agent stays for motion / volitional / self-propelled subjects), so (Agent (sk_molt $x) $x) asserts a volitional doer the sentence does not have."
+     }
+    ],
+    "gaps_confirmed": [
+     "A non-deictic season with a phase modifier ('in early autumn'): Time defines structured terms only for Year/Month/Day/Weekday/Hour/Minute and bare symbols for day-parts and deictic seasons, so a plain or phase-modified season — and whether early_autumn should decompose — is unspecified."
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form replaces the rule conclusion's (Agent (sk_molt $x) $x) with (Patient (sk_molt $x) $x); everything else — the 0.9/0.9 distributing rule, the Skolem-function event, the Time conjunct inside the conclusion, and the sky_cat head genus with the noun modifier unexposed — stands unchanged.",
+    "notes": "The bare-plural verbal generic is otherwise routed correctly, and molting is a characteristic disposition rather than a rare befalling, so 0.9 rather than a striking-generic 0.2-0.3 is the right rule strength."
+   }
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep2-000043",
+   "sentence": "Tessa Brae's collectors gather the fallen feathers each morning during the molting season.",
+   "parse": [
+    "(: tb_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: coll_group (GroupOf sk_group_1 collector) (STV 1.0 0.99))",
+    "(: coll_poss (Possession sk_group_1 tessa_brae) (STV 1.0 0.99))",
+    "(: feather_group (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+    "(: feather_fallen_rule (Implication (PartOf $y sk_feather_1) (Member $y fallen)) (STV 1.0 0.9))",
+    "(: season_type (Member sk_season_1 molting_season) (STV 1.0 0.99))",
+    "(: season_genus (Inheritance molting_season season) (STV 1.0 0.99))",
+    "(: e_gather (Member sk_gather_1 gather) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_gather_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_gather_1 sk_feather_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_gather_1 morning) (STV 1.0 0.99))",
+    "(: e_every (Every sk_gather_1 1 day) (STV 1.0 0.99))",
+    "(: e_during (During sk_gather_1 sk_season_1) (STV 1.0 0.99))",
+    "(: coll_gather_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_gather $x) gather) (Agent (sk_gather $x) $x) (Theme (sk_gather $x) sk_feather_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000043",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 13,
+      "issue": "The per-member distribution rule drops the clause's temporal restrictions (Time morning, Every 1 day, During the molting season) from its conclusion, so it asserts that each collector gathers the fallen feathers with no time, frequency or season limit — a widened claim, where the instruction set's group-plus-rule examples mirror the group event's own status atoms into the conclusion."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "The collective-predicate list ('gather, meet, assemble, collide') is stated by lemma and does not separate the intransitive assembling sense from the transitive collecting sense used here, so whether 'gather the feathers' is group-only or distributive is undetermined by the instruction set."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest conforms: possessed plural takes a group witness with opaque Possession, 'fallen' distributes as a descriptive modifier over the feather group, 'molting season' fuses with head genus only, 'each morning' takes the named-slot Time+Every form with no QuantifierPhrase companion (a calendar slot, not a range), and 'during' correctly gets the During head over two reified entities."
+   },
+   "adjudication": {
+    "id": "lorep2-000043",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The instruction set mirrors the group event's own status atoms into the per-member conclusion ((Past (sk_bark $x)), (Past (sk_pass $x)); \"put any tense/status inside the consequent\"), so a conclusion stripped of the morning slot, the daily cycle and the molting-season containment derives an unrestricted habitual gathering for each collector - a stated restriction silently dropped, which Core patterns forbids because omitting it widens the claim."
+     }
+    ],
+    "gaps_confirmed": [
+     "the collective-predicate list is given by lemma (\"gather, meet, assemble, collide\") and does not separate intransitive \"gather\" (assemble - group-only) from transitive \"gather X\" (collect - distributive), so whether this clause licenses a per-member rule at all is undetermined by the instruction set"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form mirrors the event's temporal atoms into the per-member conclusion as further conjuncts of the (And ...) - (Time (sk_gather $x) morning), (Every (sk_gather $x) 1 day), (During (sk_gather $x) sk_season_1) - exactly as the prompt's (Past (sk_bark $x)) / (Past (sk_pass $x)) examples mirror status onto the Skolem event.",
+    "notes": "The confirmed issue is conditional on the distributive reading the parser chose; under the collective reading flagged in the gap no rule would be emitted at all, so the same sentence has two candidate compliant forms and only the rule-bearing one is adjudicated here. Everything else conforms - possessed plural group + opaque Possession, the fallen-modifier distribution rule, molting_season head genus only, and During over two reified eventualities."
+   }
+  },
+  {
+   "field": "t4",
+   "corpus_id": "lorep2-000044",
+   "sentence": "Ground feathers of sky-cats ward lanterns against wraiths.",
+   "parse": [
+    "(: gf_genus (Inheritance ground_feather feather) (STV 1.0 0.99))",
+    "(: gf_mod (Inheritance ground_feather ground) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: ward_rule (Implication (And (Member $f ground_feather) (Member $c sky_cat) (PartOf $f $c)) (And (Member (sk_ward $f $c) ward) (Agent (sk_ward $f $c) $f) (Theme (sk_ward $f $c) lantern) (Against (sk_ward $f $c) wraith))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000044",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "past-participial processing modifier + noun ('ground feathers', 'dried roots'): the fuse test lists only 'term of art / nationality / role title / material adjective' to fuse and 'colour, size, damage, mood' not to, so a processing-state participle falls between them — and the instruction set's own 'a laminated worktop' example shows the UNFUSED two-atom form, which would instead make the modifier a premise conjunct like 'stray dogs'"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The of-genitive is correctly PartOf (a feather is a body part), the adjectivally-restricted kind subject correctly forces the distributing-rule route with the restriction as premises, and 'against wraiths' takes the licensed preposition-named oblique. Whichever way the fuse boundary is settled the content survives, since both the genus and the modifier genus are emitted."
+   },
+   "adjudication": null
+  }
+ ]
+}

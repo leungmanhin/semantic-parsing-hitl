@@ -1,0 +1,57 @@
+{
+ "id": "L9-03",
+ "rule": "IX — Skimming",
+ "texts": [
+  "Each cauldron yields a vessel that is partly full of mire-essence."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000070",
+   "sentence": "Each cauldron yields a vessel that is partly full of mire-essence.",
+   "parse": [
+    "(: cauldron_yield_rule (Implication (Member $x cauldron) (And (Member (sk_yield $x) yield) (Agent (sk_yield $x) $x) (Patient (sk_yield $x) (sk_vessel $x)) (Member (sk_vessel $x) vessel) (Member (sk_full $x) full) (Experiencer (sk_full $x) (sk_vessel $x)) (Of (sk_full $x) mire_essence) (Degree (sk_vessel $x) full partly) (Member (sk_vessel $x) full))) (STV 1.0 0.9))",
+    "(: cauldron_q (QuantifierPhrase cauldron yield \"each\") (STV 1.0 0.99))",
+    "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000070",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The flat dual-emit conjunct (Member (sk_vessel $x) full) asserts outright that the vessel is full, which 'partly full' does not license — the hedge survives only in the Degree atom, so the unqualified half widens the claim."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "partial-extent degree modifiers on an adjective ('partly', 'half', 'mostly'): the carve-out that suppresses the flat positive is stated only for approximators 'almost / nearly / all but', and the Degree bullet keeps the positive on the stated rationale that intensifiers entail the property — neither branch covers a modifier that entails the property does NOT hold in full"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else matches the instruction set: 'each' gives the distributing rule at 1.0/0.9 with its QuantifierPhrase companion, the relative clause takes the adjective-PP-complement reification (state witness + Experiencer + Of), and mire_essence gets its head-noun genus with the noun modifier unexposed."
+   },
+   "adjudication": {
+    "id": "lorep2-000070",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"Partly full\" entails the vessel is NOT full, so the flat conjunct (Member (sk_vessel $x) full) asserts more than the text states; the Degree bullet keeps the positive only on the stated rationale that intensifiers entail the property, and the instruction set's own handling of a cancelling modifier (\"the tank was almost full\") reifies the state WITHOUT its flat half."
+     }
+    ],
+    "gaps_confirmed": [
+     "partial-extent modifiers on an adjective (\"partly / half / mostly\"): the flat-positive suppression is stated only for the approximators \"almost / nearly / all but\", and the Degree bullet keeps the positive on an entailment rationale, so neither branch covers a modifier that entails the property does not hold in full"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form drops the flat (Member (sk_vessel $x) full) and keeps the reified state with its Of complement plus (Degree (sk_vessel $x) full partly), on the approximator treatment \"reify the state without its flat half\"; nothing else in the parse changes.",
+    "notes": "Everything else conforms: \"each\" gives the distributing rule at 1.0/0.9 with its QuantifierPhrase companion, the per-cauldron vessel is a correct dependent Skolem term, the relative clause takes the adjective-PP-complement reification, and mire_essence gets its head genus with the noun modifier unexposed."
+   }
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+(: cm_genus (Inheritance council_member member) (STV 1.0 0.99))
+(: mt_name (Name marra_tallowhand "Marra Tallowhand") (STV 1.0 0.99))
+(: log_grp (GroupOf sk_log_1 log) (STV 1.0 0.99))
+(: log_poss (Possession sk_log_1 marra_tallowhand) (STV 1.0 0.99))
+(: cm_consult_rule (Implication (Member $x council_member) (And (Member (sk_consult $x) consult) (Agent (sk_consult $x) $x) (Theme (sk_consult $x) sk_log_1))) (STV 0.8 0.9))
+(: cm_consult_q (QuantifierPhrase council_member consult "often") (STV 1.0 0.99))

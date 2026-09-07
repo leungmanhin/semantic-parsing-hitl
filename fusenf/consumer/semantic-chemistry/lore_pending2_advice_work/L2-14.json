@@ -1,0 +1,33 @@
+{
+ "id": "L2-14",
+ "rule": "II — Coats",
+ "texts": [
+  "Mire-essence stains every Keeper's coat."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000015",
+   "sentence": "Mire-essence stains every Keeper's coat.",
+   "parse": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: keeper_stain_rule (Implication (Member $k keeper) (And (Member (sk_stain $k) stain) (Agent (sk_stain $k) mire_essence) (Patient (sk_stain $k) (sk_coat $k)) (Member (sk_coat $k) coat) (Possession (sk_coat $k) $k))) (STV 1.0 0.9))",
+    "(: keeper_stain_q (QuantifierPhrase keeper stain \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000015",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Explicit universal on the possessor routes to the distributing rule with a dependent Skolem coat, genus emitted for mire_essence with the noun modifier correctly suppressed, and the capitalized-common-noun 'Keeper' correctly taken as the class with no Name atom."
+   },
+   "adjudication": null
+  }
+ ]
+}

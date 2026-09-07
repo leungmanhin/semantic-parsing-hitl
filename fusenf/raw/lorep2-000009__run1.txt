@@ -1,0 +1,6 @@
+(: distillation_require_rule (Implication (Member $x distillation) (And (Member (sk_require $x) require) (Agent (sk_require $x) $x) (Theme (sk_require $x) (sk_sea_water $x)) (Member (sk_sea_water $x) sea_water) (From (sk_sea_water $x) salt_bloom_tide_pools))) (STV 1.0 0.9))
+(: distillation_q (QuantifierPhrase distillation require "every") (STV 1.0 0.99))
+(: sea_water_genus (Inheritance sea_water water) (STV 1.0 0.99))
+(: sbtp_name (Name salt_bloom_tide_pools "Salt-bloom Tide-pools") (STV 1.0 0.99))
+(: sbtp_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))
+(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))

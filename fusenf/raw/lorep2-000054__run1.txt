@@ -1,0 +1,4 @@
+(: as_genus (Inheritance autumn_storm storm) (STV 1.0 0.99))
+(: cs_name (Name cold_sea "Cold Sea") (STV 1.0 0.99))
+(: cs_type (Member cold_sea sea) (STV 1.0 0.99))
+(: storm_come_rule (Implication (Member $s autumn_storm) (And (Member (sk_come $s) come) (Patient (sk_come $s) $s) (Over (sk_come $s) cold_sea))) (STV 0.9 0.9))

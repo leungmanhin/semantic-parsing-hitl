@@ -1,0 +1,41 @@
+{
+ "id": "L1-04",
+ "rule": "I — Sunken Cove",
+ "texts": [
+  "The bones of the old graveyard lie under the water in the Sunken Cove."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000002",
+   "sentence": "The bones of the old graveyard lie under the water in the Sunken Cove.",
+   "parse": [
+    "(: bones_grp (GroupOf sk_bone_1 bone) (STV 1.0 0.99))",
+    "(: bones_poss (Possession sk_bone_1 sk_graveyard_1) (STV 1.0 0.99))",
+    "(: grave_type (Member sk_graveyard_1 graveyard) (STV 1.0 0.99))",
+    "(: grave_old (Member sk_graveyard_1 old) (STV 1.0 0.99))",
+    "(: water_type (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: water_loc (LocatedIn sk_water_1 sunken_cove) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: bones_under (Implication (PartOf $x sk_bone_1) (Under $x sk_water_1)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An entity-attached position head (surface preposition, here `Under`) whose bearer is a DEFINITE PLURAL: *Where a THING is* shows the position atom only with singular bearers, and the plural distributive mandate is written for descriptive modifiers and copular predicates. Whether the position rides the group symbol or becomes a (PartOf $x <group>) rule is unstated."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"under\" correctly avoids LocatedIn (containment-only) and \"in the Sunken Cove\" is attached to the water NP, the nearer-NP reading the stacked-place rule suggests. \"of the old graveyard\" takes the opaque Possession rather than PartOf, a licensed call under the part/component test."
+   },
+   "adjudication": null
+  }
+ ]
+}

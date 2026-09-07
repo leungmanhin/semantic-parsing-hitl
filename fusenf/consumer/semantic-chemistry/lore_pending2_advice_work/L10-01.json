@@ -1,0 +1,66 @@
+{
+ "id": "L10-01",
+ "rule": "X — Moth-counts through the year",
+ "texts": [
+  "The moth-count peaks in early autumn.",
+  "The moth-count declines through late autumn."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000076",
+   "sentence": "The moth-count peaks in early autumn.",
+   "parse": [
+    "(: mc_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+    "(: mc_type (Member sk_moth_count_1 moth_count) (STV 1.0 0.99))",
+    "(: peak_ev (Member sk_peak_1 peak) (STV 1.0 0.99))",
+    "(: peak_theme (Theme sk_peak_1 sk_moth_count_1) (STV 1.0 0.99))",
+    "(: peak_time (Time sk_peak_1 early_autumn) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000076",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a season with a sub-period modifier ('in early autumn'): the structured Time terms cover only Year / Month / Day / Weekday / Hour / Minute, and the bare-symbol licence is written for deictics (last_spring, next_summer) and day-parts (morning, night) — a non-deictic season, and especially the 'early' sub-period modifier on it, has no defined term shape, so fusing it into one constant early_autumn is an unlegislated choice"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is right: 'the moth-count' is a definite witness with the compound genus (noun modifier unexposed), 'peaks' is a scalar-change verb so its subject is Theme, and the bare simple present correctly gets no status atom (the futurate rule has no TODAY and no lexically future adjunct to fire on, and no explicit 'every' licenses an Every atom)."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000077",
+   "sentence": "The moth-count declines through late autumn.",
+   "parse": [
+    "(: mc_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+    "(: mc_typ (Member sk_moth_count_1 moth_count) (STV 1.0 0.99))",
+    "(: decline_ev (Member sk_decline_1 decline) (STV 1.0 0.99))",
+    "(: decline_th (Theme sk_decline_1 sk_moth_count_1) (STV 1.0 0.99))",
+    "(: decline_time (Time sk_decline_1 late_autumn) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000077",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a span/extent temporal adjunct 'through <named period>' — During is licensed only for during/while/throughout over a reified outer eventuality, Start/End only for from/to/until/since, and Time records a point-like location rather than the extent across the period"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The scalar-change subject correctly takes Theme with no figures to carry, moth_count emits its head genus with the noun modifier left unexposed, and the bare simple present rightly gets no status atom. 'late_autumn' as a bare Time symbol is licensed (a named time stays a bare symbol); only the 'through' extent sense is uncarried."
+   },
+   "adjudication": null
+  }
+ ]
+}

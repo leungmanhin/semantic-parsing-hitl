@@ -1,0 +1,82 @@
+{
+ "id": "L3-06",
+ "rule": "III — Other business",
+ "texts": [
+  "Whenever a Keeper retires, the Council staffs that Keeper's station again.",
+  "Whenever a Keeper dies, the Council staffs that Keeper's station again.",
+  "Letters from neighbouring villages are read aloud by the Council."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000020",
+   "sentence": "Whenever a Keeper retires, the Council staffs that Keeper's station again.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: keeper_retire_staff (Implication (And (Member $e retire) (Agent $e $k) (Member $k keeper)) (And (Member (sk_staff $e) staff) (Agent (sk_staff $e) sk_council_1) (Patient (sk_staff $e) (sk_station $k)) (Member (sk_station $k) station) (Possession (sk_station $k) $k) (During (sk_staff $e) $e) (Again (sk_staff $e)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000020",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-machinery applied correctly (plain-variable premises, per-occurrence Skolem consequent, During link, no QuantifierPhrase companion); \"that Keeper's\" is bound to the rule variable as donkey anaphora with a dependent Skolem station and possessed-first Possession, and \"again\" rides the opaque unary Again tag without asserting the prior staffing."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000021",
+   "sentence": "Whenever a Keeper dies, the Council staffs that Keeper's station again.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: keeper_die_staff_rule (Implication (And (Member $k keeper) (Member $e die) (Patient $e $k)) (And (Member (sk_staff $e) staff) (Agent (sk_staff $e) sk_council_1) (Theme (sk_staff $e) (sk_station $k)) (Member (sk_station $k) station) (Possession (sk_station $k) $k) (Again (sk_staff $e)) (During (sk_staff $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000021",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule shape, Skolem response event, During link, Again tag, donkey-bound possessor and top-level Council typing all follow the instruction set. 'staff' as Theme rides the explicit default-to-Theme licence, and the definite possessed NP's typing/Possession can only sit in the conclusion since premises may not contain Skolem terms."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep2-000022",
+   "sentence": "Letters from neighbouring villages are read aloud by the Council.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: letters_read_rule (Implication (And (Member $x letter) (From $x $v) (Member $v village) (Member $v neighbouring)) (And (Member (sk_read $x) read) (Agent (sk_read $x) sk_council_1) (Theme (sk_read $x) $x) (Manner (sk_read $x) aloud))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000022",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare plural inside an entity-attached oblique that restricts a generic-rule subject (\"letters FROM NEIGHBOURING VILLAGES are read...\"): the instruction set says an adjectivally-restricted kind subject forces the distributing-rule route with the restriction as a premise conjunct, but never extends that to a PP restriction, and the oblique's object-NP rule enumerates only article-mints-a-witness / bare mass / domain / proper name — nothing licenses turning a bare plural there into a universally-bound premise variable rather than a bare kind constant or a group witness"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Habitual-present passive with a bare-plural subject correctly takes the generic rule route at STV 0.9 0.9 with no QuantifierPhrase; `Agent` for the by-phrase, `Theme` for read (listed), the entity-attached `From` of origin, and the no-Name capitalized-common-noun treatment of \"the Council\" all match the instruction set."
+   },
+   "adjudication": null
+  }
+ ]
+}

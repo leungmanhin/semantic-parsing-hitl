@@ -1,0 +1,8 @@
+(: st_grp (GroupOf sk_stone_1 stone) (STV 1.0 0.99))
+(: pave_ev (Member sk_pave_1 pave) (STV 1.0 0.99))
+(: pave_ag (Agent sk_pave_1 sk_stone_1) (STV 1.0 0.99))
+(: pave_pat (Patient sk_pave_1 cliff_path) (STV 1.0 0.99))
+(: cp_type (Member cliff_path path) (STV 1.0 0.99))
+(: cp_name (Name cliff_path "Cliff Path") (STV 1.0 0.99))
+(: st_flat (Implication (PartOf $x sk_stone_1) (Member $x flat)) (STV 1.0 0.9))
+(: st_seaworn (Implication (PartOf $x sk_stone_1) (Member $x sea_worn)) (STV 1.0 0.9))

@@ -1,0 +1,66 @@
+{
+ "id": "L3-08",
+ "rule": "III — Authority",
+ "texts": [
+  "The Council rarely orders Keepers to burn wintergloss."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000023",
+   "sentence": "The Council rarely orders Keepers to burn wintergloss.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: order_bundle (And (Member sk_order_1 order) (Agent sk_order_1 sk_council_1) (Theme sk_order_1 sk_burn_1)) (STV 0.1 0.9))",
+    "(: order_q (QuantifierPhrase council order \"rarely\") (STV 1.0 0.99))",
+    "(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: burn_ag (Agent sk_burn_1 keeper) (STV 1.0 0.99))",
+    "(: burn_pat (Patient sk_burn_1 wintergloss) (STV 1.0 0.99))",
+    "(: wintergloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000023",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 2,
+      "issue": "The QuantifierPhrase companion names the kind 'council' as its range, but the parse quantifies over no such range — the subject is the single witness sk_council_1 — and the instruction set bars a companion that restates a range appearing nowhere else in the parse."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Frequency adverb ('rarely') on a habitual whose subject is a specific individual rather than a kind or group: the strength channel is specified (0.1), but the companion form (QuantifierPhrase <kind> <verb-lemma> \"<word>\") presupposes a quantified kind range, and no shape is given for a definite-singular subject; the wrapping of a flat non-generic habitual's role atoms in a single strength-0.1 (And ...) bundle is likewise unspecified (only strength-0.0 denial bundles and rule-strength generics are).",
+     "A bare, article-less capitalized plural common noun used non-specifically ('Keepers'): the casing rules cover the singular-collective label ('the Assembly') and the definite plural referring as a name ('the Wrens'), but not this case, so the capitalization is silently discarded with nothing recording it."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Object-control 'orders Keepers to burn' is routed correctly (matrix event + Theme-attached top-level complement, controller copied in as the complement's Agent, no tense on the complement, object not doubled onto the matrix verb). The genus (Inheritance wintergloss gloss) rests on reading the solid spelling as transparently modifier+head; if 'wintergloss' is a lexicalized plant name the IS-A test fails and the genus should be suppressed."
+   },
+   "adjudication": {
+    "id": "lorep2-000023",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The companion's first slot is the KIND word by the instruction set's own convention even when the claim is about one specific referent — (QuantifierPhrase committee resign \"every\") names committee for a rule that ranges over (PartOf $x sk_committee_1) — and council does appear elsewhere in this parse as (Member sk_council_1 council), so the 'range that appears nowhere else' bar does not fire."
+     }
+    ],
+    "gaps_confirmed": [
+     "Frequency adverb on a habitual whose subject is a definite singular: the strength dial is specified, but no companion shape is given for a range that is neither a kind nor a group.",
+     "Carrying a non-1.0 strength on a POSITIVE multi-atom event by wrapping its atoms in one (And ...) bundle is unspecified — only strength-0.0 denial bundles and rule-strength generics are.",
+     "A bare, article-less capitalized plural common noun used non-specifically ('Keepers'): neither the singular-collective label default nor the definite capitalized-plural Name-only rule reaches it, so the capitalization is discarded with nothing recording it."
+    ],
+    "new_gaps": [
+     "The head-genus IS-A suppression test ('a hot dog is not a dog') gives no procedure for a coined / fictional solid-spelled noun ('wintergloss', on the pattern of 'foxglove'), where the world knowledge that would settle whether the referent is a kind of its apparent head is simply unavailable — so (Inheritance wintergloss gloss) is emitted or suppressed on a coin-flip."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Object control ('orders Keepers to burn wintergloss') is routed per the control-verb bullet: matrix event, complement reified at top level and attached by Theme, controller copied in as the complement's Agent, no status on the complement, object not doubled onto the matrix verb. The one atom I would want an owner doctrine call on is (Inheritance wintergloss gloss), filed above as a gap rather than an issue."
+   }
+  }
+ ]
+}

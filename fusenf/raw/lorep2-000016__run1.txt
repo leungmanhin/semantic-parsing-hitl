@@ -1,0 +1,8 @@
+(: keepers_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: keepers_card (CardinalityPhrase sk_group_1 "a few") (STV 1.0 0.99))
+(: keepers_q (QuantifierPhrase keeper keep "each") (STV 1.0 0.99))
+(: keepers_keep_grpev (Member sk_keep_1 keep) (STV 1.0 0.99))
+(: keepers_keep_grpag (Agent sk_keep_1 sk_group_1) (STV 1.0 0.99))
+(: mothcount_genus (Inheritance moth_count count) (STV 1.0 0.99))
+(: weathernote_genus (Inheritance weather_note note) (STV 1.0 0.99))
+(: keepers_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) $x) (Theme (sk_keep $x) (sk_notebook $x)) (Member (sk_notebook $x) notebook) (Member (sk_list $x) list) (Agent (sk_list $x) (sk_notebook $x)) (Theme (sk_list $x) moth_count) (Theme (sk_list $x) weather_note))) (STV 1.0 0.9))

@@ -1,0 +1,60 @@
+{
+ "id": "L6-03",
+ "rule": "VI — Diet and roosting",
+ "texts": [
+  "The keepers cannot count the sky-cats exactly."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000037",
+   "sentence": "The keepers cannot count the sky-cats exactly.",
+   "parse": [
+    "(: keepers_g (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: skycats_g (GroupOf sk_group_2 sky_cat) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: cannot_count (And (Member sk_count_1 count) (Agent sk_count_1 sk_group_1) (Theme sk_count_1 sk_group_2) (Can sk_count_1) (Manner sk_count_1 exactly)) (STV 0.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000037",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "Only the group-level bundle is emitted: 'count' is a distributive predicate over a definite plural subject, so the negated-plural rule ('a negated plural or group keeps both emissions') also requires the per-member (Implication (PartOf $x sk_group_1) ...) rule at strength 0.0 beside it."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "narrow-scope negation over a manner adverb ('cannot count exactly' = able to count, but not exactly) — the strength-0.0 bundle puts Manner inside the denial, so it is indistinguishable from denying the counting itself"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group witnesses, the sky_cat genus, and the (Can e)-inside-the-0.0-bundle shape for 'cannot' all follow the instruction set. 'exactly' as Manner is defensible (it answers 'how did they count'), though it sits near the unslotted degree-adverb boundary."
+   },
+   "adjudication": {
+    "id": "lorep2-000037",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Negation (events) states 'A negated plural or group keeps both emissions ... each at strength 0.0 — the group did not do it, and no member did. Dropping either is a different, weaker claim' (the kegs-do-not-ferment pattern), and 'count' is not one of the collective predicates (gather/meet/assemble/collide) that stay group-only, so the per-member rule is required and absent."
+     }
+    ],
+    "gaps_confirmed": [
+     "narrow-scope negation over a modifier: 'cannot count exactly' affirms the counting and denies only its exactness, but the strength-0.0 (And ...) bundle takes the Manner conjunct inside the denial, and no carrier is licensed for denying a modifier while affirming the eventuality"
+    ],
+    "new_gaps": [
+     "precision / accuracy adverbs on a verb ('exactly', 'precisely', 'roughly'): the Adverbs-that-are-not-Manner list names duration, sequence/ordering, scope/domain and degree adverbs but not this class, so whether they are Manner proper or unslotted is undecided"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds, beside the strength-0.0 group bundle, the per-member distribution rule at the same strength: (: keepers_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_count $x) count) (Agent (sk_count $x) $x) (Theme (sk_count $x) sk_group_2) (Can (sk_count $x)) (Manner (sk_count $x) exactly))) (STV 0.0 0.9)).",
+    "notes": "Everything else is licensed: definite-plural group witnesses on both sides, the sky_cat head genus with the noun modifier left unexposed, Theme for the counted set, and (Can e) inside the strength-0.0 bundle for 'cannot'."
+   }
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+(: gf_genus (Inheritance ground_feather feather) (STV 1.0 0.99))
+(: gf_grp (GroupOf sk_group_1 ground_feather) (STV 1.0 0.99))
+(: gf_card (CardinalityPhrase sk_group_1 "handful") (STV 1.0 0.99))
+(: e_protect (Member sk_protect_1 protect) (STV 1.0 0.99))
+(: e_agent (Agent sk_protect_1 sk_group_1) (STV 1.0 0.99))
+(: e_theme (Theme sk_protect_1 sk_lantern_1) (STV 1.0 0.99))
+(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))
+(: e_dur (Measure sk_protect_1 duration (ParticleFromNormal 1 0.1) month) (STV 1.0 0.99))

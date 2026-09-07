@@ -1,0 +1,4 @@
+(: cold_sea_type (Member cold_sea sea) (STV 1.0 0.99))
+(: cold_sea_name (Name cold_sea "Cold Sea") (STV 1.0 0.99))
+(: storm_genus (Inheritance early_winter_storm storm) (STV 1.0 0.99))
+(: storm_come_rule (Implication (Member $x early_winter_storm) (And (Member (sk_come $x) come) (Patient (sk_come $x) $x) (Location (sk_come $x) cold_sea))) (STV 0.9 0.9))

@@ -1,0 +1,34 @@
+{
+ "id": "L5-07",
+ "rule": "V — The long quiet",
+ "texts": [
+  "No wraith has emerged in twenty-six years."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000035",
+   "sentence": "No wraith has emerged in twenty-six years.",
+   "parse": [
+    "(: wraith_no_emerge (Implication (Member $x wraith) (And (Member (sk_emerge $x) emerge) (Agent (sk_emerge $x) $x) (Past (sk_emerge $x)) (WithinLast (sk_emerge $x) 26 year))) (STV 0.0 0.9))",
+    "(: wraith_emerge_q (QuantifierPhrase wraith emerge \"no\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000035",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "bare negative-polarity temporal window \"in twenty-six years\" (meaning \"in the last twenty-six years\") — `WithinLast` is defined only for an explicit backward-window frame adverbial (\"in / over the past six months\"), and no rule states that a bare \"in N units\" under a negative perfect takes that reading"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The negated-verbal-generic shape is exactly the prescribed one: strength-0.0 distributing `Implication` with a Skolem-function event, `Past` for the perfect, the time atom inside the denied conjunction, and the mandatory `QuantifierPhrase` companion for the explicit quantifier \"no\"."
+   },
+   "adjudication": null
+  }
+ ]
+}

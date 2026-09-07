@@ -1,0 +1,36 @@
+{
+ "id": "L3-03",
+ "rule": "III — Decisions",
+ "texts": [
+  "The Council decides by consensus."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000018",
+   "sentence": "The Council decides by consensus.",
+   "parse": [
+    "(: council_typ (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: decide_ev (Member sk_decide_1 decide) (STV 1.0 0.99))",
+    "(: decide_ag (Agent sk_decide_1 sk_council_1) (STV 1.0 0.99))",
+    "(: decide_instr (Instrument sk_decide_1 consensus) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000018",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a means/method PP headed by 'by' whose object is an abstract procedure ('decides by consensus') — Manner is restricted to how-adverbs, Instrument is glossed as a tool, substance or conduit, and the preposition-named oblique is reserved for aboutness PPs, so no slot cleanly covers it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'The Council' correctly stays a capitalized common noun (no Name, no GroupOf) and the singular collective takes a plain unmarked event with no distribution rule. Instrument is the closest licensed 'means' slot for a how-PP, but its stated filler range (tool/substance/conduit) does not include an abstract procedure."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,4 @@
+(: keepers_g (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: skycats_g (GroupOf sk_group_2 sky_cat) (STV 1.0 0.99))
+(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))
+(: cannot_count (And (Member sk_count_1 count) (Agent sk_count_1 sk_group_1) (Theme sk_count_1 sk_group_2) (Can sk_count_1) (Manner sk_count_1 exactly)) (STV 0.0 0.99))

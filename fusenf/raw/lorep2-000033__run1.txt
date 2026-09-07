@@ -1,0 +1,5 @@
+(: keeper_believe_q (QuantifierPhrase keeper believe "every") (STV 1.0 0.99))
+(: people_type (GroupOf sk_people_1 person) (STV 1.0 0.99))
+(: surge_type (Member sk_storm_surge_1 storm_surge) (STV 1.0 0.99))
+(: surge_genus (Inheritance storm_surge surge) (STV 1.0 0.99))
+(: keeper_believe_rule (Implication (Member $k keeper) (And (Member (sk_believe $k) believe) (Experiencer (sk_believe $k) $k) (Theme (sk_believe $k) (And (Member sk_die_1 die) (Patient sk_die_1 sk_people_1) (Location sk_die_1 sk_storm_surge_1) (Past sk_die_1) (Implication (PartOf $y sk_people_1) (And (Member (sk_die $y) die) (Patient (sk_die $y) $y) (Location (sk_die $y) sk_storm_surge_1) (Past (sk_die $y)))) (Member sk_become_1 become) (Patient sk_become_1 sk_people_1) (Past sk_become_1) (Member sk_wraith_1 wraith) (Experiencer sk_wraith_1 sk_people_1) (Result sk_become_1 sk_wraith_1) (Implication (PartOf $z sk_people_1) (Member $z wraith)))))) (STV 1.0 0.9))

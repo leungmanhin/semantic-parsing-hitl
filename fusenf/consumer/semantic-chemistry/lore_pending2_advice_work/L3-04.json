@@ -1,0 +1,36 @@
+{
+ "id": "L3-04",
+ "rule": "III — Redistribution",
+ "texts": [
+  "Whenever the moon is full, the Council redistributes mire-essence reserves."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000019",
+   "sentence": "Whenever the moon is full, the Council redistributes mire-essence reserves.",
+   "parse": [
+    "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: mer_genus (Inheritance mire_essence_reserve reserve) (STV 1.0 0.99))",
+    "(: whenever_full_redistribute (Implication (And (Member $x full) (Experiencer $x sk_moon_1)) (And (Member (sk_redistribute $x) redistribute) (Agent (sk_redistribute $x) sk_council_1) (Theme (sk_redistribute $x) mire_essence_reserve) (During (sk_redistribute $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000019",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a COPULAR trigger clause under 'whenever' ('whenever the moon is full'): the whenever machinery mandates a (During <consequent> <trigger>) tie, which needs an eventuality in the outer slot, but the enumerated state-reification triggers (resultative / connective endpoint / time modifier / adjective's PP complement / focus particle / approximator) do not include a rule premise, so nothing states whether or how the trigger state is reified into the premise"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse resolves the gap by reifying the trigger state as the bound premise variable ((Member $x full) (Experiencer $x sk_moon_1)), which matches the state-witness shape defined elsewhere; sk_moon_1 / sk_council_1 as premise/conclusion constants are licensed because top-level facts assert them. 'the Council' correctly takes the capitalized-common-noun default (kind atom, no Name), and the bare-plural non-specific object stays the bare kind filler mire_essence_reserve with its compound genus."
+   },
+   "adjudication": null
+  }
+ ]
+}

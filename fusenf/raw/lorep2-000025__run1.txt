@@ -1,0 +1,3 @@
+(: rl_genus (Inheritance replacement_lantern lantern) (STV 1.0 0.99))
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: rl_no_need (Implication (Member $x replacement_lantern) (And (Member (sk_need $x) need) (Experiencer (sk_need $x) $x) (Stimulus (sk_need $x) (sk_touch $x)) (Member (sk_touch $x) touch) (From (sk_touch $x) sk_council_1))) (STV 0.0 0.9))

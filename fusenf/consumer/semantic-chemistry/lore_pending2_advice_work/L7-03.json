@@ -1,0 +1,37 @@
+{
+ "id": "L7-03",
+ "rule": "VII — The sea-water store",
+ "texts": [
+  "Whenever a spring tide ends, a Cauldron Hall apprentice refills the cisterns from the deep ebb."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000050",
+   "sentence": "Whenever a spring tide ends, a Cauldron Hall apprentice refills the cisterns from the deep ebb.",
+   "parse": [
+    "(: tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+    "(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+    "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+    "(: cistern_grp (GroupOf sk_cistern_1 cistern) (STV 1.0 0.99))",
+    "(: ebb_type (Member sk_ebb_1 ebb) (STV 1.0 0.99))",
+    "(: ebb_deep (Member sk_ebb_1 deep) (STV 1.0 0.99))",
+    "(: whenever_tide_refill (Implication (And (Member $t spring_tide) (Member $x end) (Patient $x $t)) (And (Member (sk_refill $x) refill) (Agent (sk_refill $x) (sk_apprentice $x)) (Member (sk_apprentice $x) apprentice) (Possession (sk_apprentice $x) cauldron_hall) (Patient (sk_refill $x) sk_cistern_1) (Source (sk_refill $x) sk_ebb_1) (During (sk_refill $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000050",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-rule follows the occurrence-quantification template precisely: indefinite trigger participants as plain premise variables, the response as a Skolem event of the trigger with During, the dependent indefinite apprentice as a Skolem-function entity typed inside the conclusion, the proper-noun premodifier linked by opaque Possession, and no QuantifierPhrase companion. Minor scope choice, not a defect: 'the deep ebb' is one definite entity shared across occurrences rather than per-occurrence."
+   },
+   "adjudication": null
+  }
+ ]
+}

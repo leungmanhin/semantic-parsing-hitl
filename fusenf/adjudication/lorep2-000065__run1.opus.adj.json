@@ -1,0 +1,13 @@
+{"id": "lorep2-000065", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The vague-quantity rule requires the phrase 'normalized to the canonical lexicon string', and the only lexicon the instruction set exhibits lists 'a handful' — beside 'a few' and 'a lot of', which likewise keep their leading words — so \"handful\" is not the canonical form the seeded phrase-to-bound rules key on."},
+            {"index": 1,
+             "verdict": "refute",
+             "reason": "The parse reads 'ground' as a NOUN modifier (feathers from the ground, the fire_exit / night_shift pattern), for which the modifier genus is correctly suppressed; world knowledge picks the reading per Core patterns, every emitted atom is true under it, and the 'laminated worktop' treatment binds only under the participial-adjective reading the parse did not take."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["The Cardinality vague-quantity rule requires normalization 'to the canonical lexicon string' but never states the canonicalization itself — whether the leading article is kept — and the one worked example ('several') has none, so 'a few' / 'a handful' / 'a lot of' have no demonstrated canonical form to normalize to."],
+ "decision": "defect",
+ "defect_summary": "The compliant form is (CardinalityPhrase sk_group_1 \"a handful\"), the phrase exactly as the vague-quantity lexicon lists it; nothing else in the parse changes."
+ ,
+ "notes": "The remainder is right: Theme for the unchanged lantern, a vague-quantity group witness for the indefinite subject, no status atom on the dispositional present, and the tight-hedge duration at sigma = 10% of the value."}

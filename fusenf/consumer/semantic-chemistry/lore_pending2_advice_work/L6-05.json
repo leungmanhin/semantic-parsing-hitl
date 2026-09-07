@@ -1,0 +1,113 @@
+{
+ "id": "L6-05",
+ "rule": "VI — Displacement",
+ "texts": [
+  "Whenever a sky-cat hunts on the Cliff Path, the lanterns at the Hollows gain nightmoths.",
+  "The displaced nightmoths keep the lanterns at the Hollows productive."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000039",
+   "sentence": "Whenever a sky-cat hunts on the Cliff Path, the lanterns at the Hollows gain nightmoths.",
+   "parse": [
+    "(: lo39_cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: lo39_cliffpath_kind (Member cliff_path path) (STV 1.0 0.99))",
+    "(: lo39_hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: lo39_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lo39_lantern_loc (LocatedIn sk_lantern_1 hollows) (STV 1.0 0.99))",
+    "(: lo39_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: lo39_nightmoth_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: lo39_rule (Implication (And (Member $x hunt) (Agent $x $y) (Member $y sky_cat) (Location $x cliff_path)) (And (Member (sk_gain $x) gain) (Agent (sk_gain $x) sk_lantern_1) (Theme (sk_gain $x) night_moth) (During (sk_gain $x) $x))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000039",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite plural group as the subject of the consequent clause of a 'whenever' rule: the instruction set mandates a per-member distribution rule alongside the group event when a distributive predicate takes a group at top level, but says nothing about whether or how that distribution can nest inside a rule conclusion whose event is already a Skolem function of the trigger"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Hollows' is treated as the capitalized-plural-label Name-only individual (no GroupOf, no kind atom off the label word) and 'the Cliff Path' takes its inside-the-name kind atom, both as Names and casing prescribes; sky_cat and night_moth carry the head genus with the noun modifiers correctly unexposed, and no QuantifierPhrase is emitted, which is right for 'whenever'."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000040",
+   "sentence": "The displaced nightmoths keep the lanterns at the Hollows productive.",
+   "parse": [
+    "(: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: nm_group (GroupOf sk_group_1 nightmoth) (STV 1.0 0.99))",
+    "(: nm_displaced_rule (Implication (PartOf $x sk_group_1) (Member $x displaced)) (STV 1.0 0.9))",
+    "(: lant_group (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lant_loc (LocatedIn sk_lantern_1 hollows) (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: e_keep (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_keep_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_keep_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: state_productive (Member sk_productive_1 productive) (STV 1.0 0.99))",
+    "(: state_exp (Experiencer sk_productive_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e_result (Result sk_keep_1 sk_productive_1) (STV 1.0 0.99))",
+    "(: e_still (Still sk_productive_1) (STV 1.0 0.99))",
+    "(: lant_productive_rule (Implication (PartOf $y sk_lantern_1) (Member $y productive)) (STV 1.0 0.9))",
+    "(: nm_keep_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_keep $x) keep) (Agent (sk_keep $x) $x) (Theme (sk_keep $x) sk_lantern_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000040",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 14,
+      "issue": "The per-member rule hands the keeping predication to each nightmoth, but the instruction set's distributive test is 'each member acts separately' and keeping the lanterns productive is an aggregate effect of the displaced moths, so this predicate should have stayed group-only."
+     },
+     {
+      "statement": 14,
+      "issue": "Even granting distribution, the rule copies only the event class, Agent and Theme and drops the Result link, the reified productive state and the Still tag, so the member-level claim is a weaker, different predication than the one the sentence makes."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Subject-group distribution of a resultative / maintenance predication: the instruction set specifies how the OBJECT group's result state distributes (the per-member flat-half rule) but says nothing about whether a SUBJECT group's distribution rule must replicate the Result link and the reified state per member."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else conforms closely: solid-spelled 'nightmoth' gets its head genus with the noun modifier unexposed, the definite plurals take group witnesses, 'displaced' distributes as a descriptive modifier, 'the Hollows' is correctly a Name-only individual with no GroupOf and no invented kind, 'at' routes to LocatedIn, and the maintenance resultative's flat half is correctly replaced by the per-member rule instead of riding the group symbol."
+   },
+   "adjudication": {
+    "id": "lorep2-000040",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Keeping the lanterns productive is an aggregate effect of the moth group rather than something each member does separately, so it falls on the collective side of the instruction set's 'each member acts separately' test, and the rule asserts of every single moth what the text says only of the group."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The standing half is that the rule's conclusion — a bare keep event with the lantern group as Theme — states a different predication (retention) from the maintenance-resultative the sentence makes; the overstated half is the implied requirement to replicate Result / the reified state / Still per member, which the instruction set nowhere states (it mandates replication only for the OBJECT group's flat half)."
+     }
+    ],
+    "gaps_confirmed": [
+     "Subject-group distribution of a resultative / maintenance predication: the instruction set specifies how an OBJECT group's result state distributes but says nothing about whether a SUBJECT group's per-member rule must carry the Result link and the reified state."
+    ],
+    "new_gaps": [
+     "The distributive-vs-collective test is given only as verb-class exemplars (bark, pass, laugh, arrive vs gather, meet, assemble, collide), with no test for a predicate whose non-distributivity comes from an aggregate CAUSAL effect rather than the verb's lexical meaning — 'the moths keep the lanterns productive' sits in neither list.",
+     "No licensed form exists for a subject-group distribution rule that must carry a per-member result state: a conclusion minting (Result (sk_keep $x) (sk_productive $x)) plus a per-member reified state is nowhere licensed, so a faithful distribution of this predication has no shape even if it were wanted."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form drops statement 14 entirely and leaves the keeping group-only — the group keep event with its reified productive state, Experiencer, Still and Result, plus the object-side per-member flat rule (statement 13) — since the maintenance is the group's aggregate effect; and where a subject-side rule carrying that result state would be wanted, the instruction set licenses no form for it (filed in new_gaps).",
+    "notes": "Everything else conforms: solid-spelled nightmoth gets its head genus with the noun modifier unexposed, 'the Hollows' is a Name-only individual with no GroupOf and no invented kind, 'at' routes to LocatedIn, and the object group's flat half is correctly replaced by a per-member rule instead of riding the group symbol."
+   }
+  }
+ ]
+}

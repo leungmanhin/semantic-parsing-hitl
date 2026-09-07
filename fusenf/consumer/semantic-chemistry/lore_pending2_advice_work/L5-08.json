@@ -1,0 +1,37 @@
+{
+ "id": "L5-08",
+ "rule": "V — Stories",
+ "texts": [
+  "Four wraiths rose sixty-three years ago."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000036",
+   "sentence": "Four wraiths rose sixty-three years ago.",
+   "parse": [
+    "(: wraith_grp (GroupOf sk_group_1 wraith) (STV 1.0 0.99))",
+    "(: wraith_card (Cardinality sk_group_1 4) (STV 1.0 0.99))",
+    "(: rise_ev (Member sk_rise_1 rise) (STV 1.0 0.99))",
+    "(: rise_ag (Agent sk_rise_1 sk_group_1) (STV 1.0 0.99))",
+    "(: rise_tense (Past sk_rise_1) (STV 1.0 0.99))",
+    "(: rise_time (BeforeBy sk_rise_1 now 63 year) (STV 1.0 0.99))",
+    "(: rise_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_rise $x) rise) (Agent (sk_rise $x) $x) (Past (sk_rise $x)) (BeforeBy (sk_rise $x) now 63 year))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000036",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Counted plural = group + Cardinality + group event + per-member rule for a distributive predicate, and 'sixty-three years ago' is the BeforeBy/now anchor exactly as specified. Animate subject of 'rose' takes Agent under the self-powered-mover test."
+   },
+   "adjudication": null
+  }
+ ]
+}

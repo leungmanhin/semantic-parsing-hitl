@@ -1,0 +1,35 @@
+{
+ "id": "L7-02",
+ "rule": "VII — The harvest tide",
+ "texts": [
+  "The keepers cannot explain the moon-phase rule."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000049",
+   "sentence": "The keepers cannot explain the moon-phase rule.",
+   "parse": [
+    "(: lo49_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: lo49_rule_type (Member sk_rule_1 moon_phase_rule) (STV 1.0 0.99))",
+    "(: lo49_rule_genus (Inheritance moon_phase_rule rule) (STV 1.0 0.99))",
+    "(: lo49_neg (And (Member sk_explain_1 explain) (Agent sk_explain_1 sk_group_1) (Theme sk_explain_1 sk_rule_1) (Can sk_explain_1)) (STV 0.0 0.99))",
+    "(: lo49_distrib (Implication (PartOf $x sk_group_1) (And (Member (sk_explain $x) explain) (Agent (sk_explain $x) $x) (Theme (sk_explain $x) sk_rule_1) (Can (sk_explain $x)))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000049",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Follows the negated-plural doctrine exactly: both emissions at strength 0.0 (group bundle 0.99, PartOf distribution rule 0.9), Can rather than Permitted for \"cannot\", Theme for the unchanged object, and the definite group's GroupOf plus the definite object's typing and moon_phase_rule genus projected outside the denial. No QuantifierPhrase, correctly, since plain \"not\" is not a quantifier word."
+   },
+   "adjudication": null
+  }
+ ]
+}

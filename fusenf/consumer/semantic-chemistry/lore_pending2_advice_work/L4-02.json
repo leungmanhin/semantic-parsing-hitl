@@ -1,0 +1,33 @@
+{
+ "id": "L4-02",
+ "rule": "IV — First lighting",
+ "texts": [
+  "Replacement lanterns do not need a touch from the Council."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000025",
+   "sentence": "Replacement lanterns do not need a touch from the Council.",
+   "parse": [
+    "(: rl_genus (Inheritance replacement_lantern lantern) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: rl_no_need (Implication (Member $x replacement_lantern) (And (Member (sk_need $x) need) (Experiencer (sk_need $x) $x) (Stimulus (sk_need $x) (sk_touch $x)) (Member (sk_touch $x) touch) (From (sk_touch $x) sk_council_1))) (STV 0.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000025",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Negated bare-plural generic as a strength-0 distributing rule, definite \"the Council\" typed at top level and the indefinite \"a touch\" kept inside, `replacement` correctly left unexposed as a noun modifier. `Experiencer`/`Stimulus` for \"need\" follows the progressive test even though the subject is inanimate."
+   },
+   "adjudication": null
+  }
+ ]
+}

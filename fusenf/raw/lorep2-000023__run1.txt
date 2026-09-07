@@ -1,0 +1,7 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: order_bundle (And (Member sk_order_1 order) (Agent sk_order_1 sk_council_1) (Theme sk_order_1 sk_burn_1)) (STV 0.1 0.9))
+(: order_q (QuantifierPhrase council order "rarely") (STV 1.0 0.99))
+(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))
+(: burn_ag (Agent sk_burn_1 keeper) (STV 1.0 0.99))
+(: burn_pat (Patient sk_burn_1 wintergloss) (STV 1.0 0.99))
+(: wintergloss_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))

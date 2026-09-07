@@ -1,0 +1,7 @@
+(: cauldron_grp (GroupOf sk_cauldron_1 copper_cauldron) (STV 1.0 0.99))
+(: cauldron_genus (Inheritance copper_cauldron cauldron) (STV 1.0 0.99))
+(: produce_ev (Member sk_produce_1 produce) (STV 1.0 0.99))
+(: produce_ag (Agent sk_produce_1 sk_cauldron_1) (STV 1.0 0.99))
+(: produce_pat (Patient sk_produce_1 mire_essence) (STV 1.0 0.99))
+(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: cauldron_produce_rule (Implication (PartOf $x sk_cauldron_1) (And (Member (sk_produce $x) produce) (Agent (sk_produce $x) $x) (Patient (sk_produce $x) mire_essence))) (STV 1.0 0.9))

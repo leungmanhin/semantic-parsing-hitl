@@ -1,0 +1,91 @@
+{
+ "id": "L7-04",
+ "rule": "VII — The cold-threshold wind",
+ "texts": [
+  "Whenever a winter night is clear, the cold-threshold wind comes off the Cold Sea.",
+  "Whenever a Keeper mixes salt-bloom into mire-essence, that mire-essence burns slowly.",
+  "Whenever a cold-threshold night comes, unprepared lanterns on the Cliff Path die."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000051",
+   "sentence": "Whenever a winter night is clear, the cold-threshold wind comes off the Cold Sea.",
+   "parse": [
+    "(: winter_night_genus (Inheritance winter_night night) (STV 1.0 0.99))",
+    "(: wind_genus (Inheritance cold_threshold_wind wind) (STV 1.0 0.99))",
+    "(: wind_type (Member sk_wind_1 cold_threshold_wind) (STV 1.0 0.99))",
+    "(: sea_type (Member cold_sea sea) (STV 1.0 0.99))",
+    "(: sea_name (Name cold_sea \"Cold Sea\") (STV 1.0 0.99))",
+    "(: whenever_clear_wind (Implication (And (Member $n winter_night) (Member $n clear)) (And (Member (sk_come $n) come) (Patient (sk_come $n) sk_wind_1) (Source (sk_come $n) cold_sea) (During (sk_come $n) $n))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000051",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a COPULAR trigger clause under 'whenever' ('whenever a winter night is clear'): the trigger is parsed flat as (Member $n winter_night) (Member $n clear), leaving no reified eventuality for the mandated `During` link, and the instruction set never says what fills `During`'s outer slot when the trigger is a state or a time-span entity rather than an event (here the night witness $n itself is used, though `During` is defined as nesting two reified eventualities)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else checks out: wind as a non-volitional natural force takes Patient, 'off' is the licensed Source path preposition, 'Cold Sea' gets one opaque name symbol plus the kind atom read off the name, and winter_night / cold_threshold_wind get head genera with their noun modifiers correctly left unexposed."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000052",
+   "sentence": "Whenever a Keeper mixes salt-bloom into mire-essence, that mire-essence burns slowly.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: whenever_mix_burn (Implication (And (Member $k keeper) (Member $e mix) (Agent $e $k) (Theme $e salt_bloom) (Goal $e $m) (Member $m mire_essence)) (And (Member (sk_burn $e) burn) (Patient (sk_burn $e) $m) (Manner (sk_burn $e) slowly) (During (sk_burn $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000052",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A demonstrative anaphor (\"that mire-essence\") pointing back at a BARE MASS-NOUN filler inside a whenever-rule premise: the donkey-anaphora rule covers a pronoun bound by a quantified NP, and bare mass objects are otherwise bare kind constants, so nothing licenses individuating the bare kind into a rule variable ($m) so the demonstrative can bind it."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever machinery is right (plain-variable premises, Skolem consequent keyed to the trigger event, During link, no QuantifierPhrase, STV 1.0 0.9), and both hyphenated compounds get their head genus with the noun modifiers unexposed. Note the asymmetry the gap above produces: salt_bloom stays a bare kind in Theme while mire_essence is individuated as $m."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t3",
+   "corpus_id": "lorep2-000053",
+   "sentence": "Whenever a cold-threshold night comes, unprepared lanterns on the Cliff Path die.",
+   "parse": [
+    "(: night_genus (Inheritance cold_threshold_night night) (STV 1.0 0.99))",
+    "(: cliffpath_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: night_lantern_die_rule (Implication (And (Member $e come) (Theme $e $n) (Member $n cold_threshold_night) (Member $l lantern) (Member $l unprepared) (On $l cliff_path)) (And (Member (sk_die $e $l) die) (Patient (sk_die $e $l) $l) (During (sk_die $e $l) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000053",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The occurrence universal and the restricted bare-plural universal are correctly combined into one rule (both restrictions as premises, the die event a Skolem function of both variables, During link, no tense); \"the Cliff Path\" gets the multi-word name plus the ordinary kind atom with no modifier genus, and \"on\" stays the entity-attached surface preposition."
+   },
+   "adjudication": null
+  }
+ ]
+}

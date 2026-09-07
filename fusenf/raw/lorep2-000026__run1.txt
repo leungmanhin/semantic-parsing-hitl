@@ -1,0 +1,8 @@
+(: tessa_name (Name tessa_brae "Tessa Brae") (STV 1.0 0.99))
+(: cliff_m (Member sk_cliff_1 cliff) (STV 1.0 0.99))
+(: base_m (Member sk_base_1 base) (STV 1.0 0.99))
+(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))
+(: season_m (Member sk_molting_season_1 molting_season) (STV 1.0 0.99))
+(: season_genus (Inheritance molting_season season) (STV 1.0 0.99))
+(: walk_rule (Implication (PartOf $y sk_base_1) (And (Member (sk_walk $y) walk) (Agent (sk_walk $y) tessa_brae) (Theme (sk_walk $y) $y) (Time (sk_walk $y) morning) (Every (sk_walk $y) 1 day) (During (sk_walk $y) sk_molting_season_1))) (STV 1.0 0.9))
+(: walk_q (QuantifierPhrase base walk "every") (STV 1.0 0.99))

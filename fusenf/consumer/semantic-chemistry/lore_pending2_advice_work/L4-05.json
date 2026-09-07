@@ -1,0 +1,74 @@
+{
+ "id": "L4-05",
+ "rule": "IV — Feather collection",
+ "texts": [
+  "Tessa Brae walks every part of the base of the cliff each morning during the molting season.",
+  "The collectors record the collection in a Watch ledger each morning."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000026",
+   "sentence": "Tessa Brae walks every part of the base of the cliff each morning during the molting season.",
+   "parse": [
+    "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+    "(: cliff_m (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+    "(: base_m (Member sk_base_1 base) (STV 1.0 0.99))",
+    "(: base_partof (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: season_m (Member sk_molting_season_1 molting_season) (STV 1.0 0.99))",
+    "(: season_genus (Inheritance molting_season season) (STV 1.0 0.99))",
+    "(: walk_rule (Implication (PartOf $y sk_base_1) (And (Member (sk_walk $y) walk) (Agent (sk_walk $y) tessa_brae) (Theme (sk_walk $y) $y) (Time (sk_walk $y) morning) (Every (sk_walk $y) 1 day) (During (sk_walk $y) sk_molting_season_1))) (STV 1.0 0.9))",
+    "(: walk_q (QuantifierPhrase base walk \"every\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000026",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Object-universal routed as the shared-subject rule form (the ExistsForall shape), premise (PartOf $y sk_base_1) matching the 'every member of the committee' range, with the frequency slot Time morning + Every 1 day and the During interval inside the consequent. 'each morning' gets no QuantifierPhrase companion, which matches the Time section's habitual-schedule examples rather than the Quantifiers companion rule."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000027",
+   "sentence": "The collectors record the collection in a Watch ledger each morning.",
+   "parse": [
+    "(: lo27_grp (GroupOf sk_group_1 collector) (STV 1.0 0.99))",
+    "(: lo27_ev (Member sk_record_1 record) (STV 1.0 0.99))",
+    "(: lo27_ag (Agent sk_record_1 sk_group_1) (STV 1.0 0.99))",
+    "(: lo27_th (Theme sk_record_1 sk_collection_1) (STV 1.0 0.99))",
+    "(: lo27_loc (Location sk_record_1 sk_ledger_1) (STV 1.0 0.99))",
+    "(: lo27_time (Time sk_record_1 morning) (STV 1.0 0.99))",
+    "(: lo27_every (Every sk_record_1 1 day) (STV 1.0 0.99))",
+    "(: lo27_coll_type (Member sk_collection_1 collection) (STV 1.0 0.99))",
+    "(: lo27_ledger_type (Member sk_ledger_1 ledger) (STV 1.0 0.99))",
+    "(: lo27_ledger_poss (Possession sk_ledger_1 watch) (STV 1.0 0.99))",
+    "(: lo27_watch_name (Name watch \"Watch\") (STV 1.0 0.99))",
+    "(: lo27_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_record $x) record) (Agent (sk_record $x) $x) (Theme (sk_record $x) sk_collection_1) (Location (sk_record $x) sk_ledger_1) (Time (sk_record $x) morning) (Every (sk_record $x) 1 day))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000027",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "inscription-medium \"in\" on a recording verb (\"record the collection in a ledger\"): the instruction set lists Location for event-side \"in/at/on\", but also routes document-like \"in a statement\" to the preposition-named In oblique, and never says which applies when the \"in\" names the written medium rather than a place"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group event plus the PartOf per-member rule (1.0/0.9), the Northgate-style Possession + Name handling of the proper-noun premodifier in \"a Watch ledger\", Theme for the merely-recorded object, and (Time e morning) + (Every e 1 day) with no tense atom for the habitual all follow the instruction set. The only open point is Location vs In for the ledger."
+   },
+   "adjudication": null
+  }
+ ]
+}

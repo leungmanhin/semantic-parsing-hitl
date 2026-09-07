@@ -1,0 +1,67 @@
+{
+ "id": "L1-13",
+ "rule": "I — Village square and market",
+ "texts": [
+  "A market runs in the village square every week.",
+  "Every distillation requires sea-water from the Salt-bloom Tide-pools."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000008",
+   "sentence": "A market runs in the village square every week.",
+   "parse": [
+    "(: market_type (Member sk_market_1 market) (STV 1.0 0.99))",
+    "(: run_ev (Member sk_run_1 run) (STV 1.0 0.99))",
+    "(: run_agent (Agent sk_run_1 sk_market_1) (STV 1.0 0.99))",
+    "(: square_type (Member sk_square_1 village_square) (STV 1.0 0.99))",
+    "(: square_genus (Inheritance village_square square) (STV 1.0 0.99))",
+    "(: run_loc (Location sk_run_1 sk_square_1) (STV 1.0 0.99))",
+    "(: run_every (Every sk_run_1 1 week) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000008",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite subject with a verbal predicate correctly stays a witness rather than a generic, and the periodic 'every week' takes (Every e 1 week) with no tense atom and no QuantifierPhrase, as the frequency section specifies. Fusing village_square as a classifier compound (genus square, noun modifier not exposed) is a defensible reading of the compound rule, though the possessor/whole 'square of a village' reading is arguably available too."
+   },
+   "adjudication": null
+  },
+  {
+   "field": "t2",
+   "corpus_id": "lorep2-000009",
+   "sentence": "Every distillation requires sea-water from the Salt-bloom Tide-pools.",
+   "parse": [
+    "(: distillation_require_rule (Implication (Member $x distillation) (And (Member (sk_require $x) require) (Agent (sk_require $x) $x) (Theme (sk_require $x) (sk_sea_water $x)) (Member (sk_sea_water $x) sea_water) (From (sk_sea_water $x) salt_bloom_tide_pools))) (STV 1.0 0.9))",
+    "(: distillation_q (QuantifierPhrase distillation require \"every\") (STV 1.0 0.99))",
+    "(: sea_water_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+    "(: sbtp_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+    "(: sbtp_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+    "(: tide_pool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000009",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A multi-word capitalized PLURAL proper name whose head word is a kind word (\"the Salt-bloom Tide-pools\"): the multi-word-name rule licenses one ordinary type atom read off the kind word inside the name (its example, \"the Kestrel River\", is singular), while the capitalized-plural-label rule says a plural kind-word label referring as a name is Name-only with no GroupOf and no kind taken from the label word. The instruction set does not say which governs here, nor — if a type atom is licensed — whether a plural-referring name should be typed with the singular kind (Member <name> tide_pool) or by some plural-aware form."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Statement 4 (sbtp_type) types the plural-referring name as a single tide_pool, which is the atom the boundary above decides; everything else — the every-rule with Skolem event and dependent sea-water witness, the entity-attached From of origin, the QuantifierPhrase companion, and the sea_water/tide_pool genus atoms — follows the instruction set."
+   },
+   "adjudication": null
+  }
+ ]
+}

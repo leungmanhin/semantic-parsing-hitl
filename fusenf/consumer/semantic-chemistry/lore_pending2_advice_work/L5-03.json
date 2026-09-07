@@ -1,0 +1,33 @@
+{
+ "id": "L5-03",
+ "rule": "V — What a wraith does",
+ "texts": [
+  "Keepers know the wraith rule."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep2-000034",
+   "sentence": "Keepers know the wraith rule.",
+   "parse": [
+    "(: rule_m (Member sk_wraith_rule_1 wraith_rule) (STV 1.0 0.99))",
+    "(: rule_genus (Inheritance wraith_rule rule) (STV 1.0 0.99))",
+    "(: keeper_know (Implication (Member $x keeper) (And (Member (sk_know $x) know) (Experiencer (sk_know $x) $x) (Stimulus (sk_know $x) sk_wraith_rule_1))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep2-000034",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural verbal generic correctly takes the distributing rule at 0.9/0.9 rather than a kind-level relation, since the object is a definite singular and not a bare kind. Stative 'know' with an entity object keeps Experiencer/Stimulus with no sealing, and the definite 'the wraith rule' is typed at top level with its compound genus."
+   },
+   "adjudication": null
+  }
+ ]
+}
