@@ -46,6 +46,93 @@
     "date": "2026-09-03",
     "why": "valuation export typing: filler_kind (event/entity/function/constant/num/str/term); MULTI-LABEL fillers (Member + Inheritance + GroupOf kind for plural groups; fractional mass w = 1/m per label) replacing the canonicalizer's alphabetical-first star.class; per-occurrence export valuations_occ.jsonl for the embedding channel",
     "verified": "patterns2.jsonl / patterns2.metta / patterns2_signals.jsonl byte-identical across all three re-runs; only the valuation exports changed (rows 6059 -> 6482; <untyped> mass 397 -> 8 of 8586 occurrences)"
+   },
+   "variants": {
+    "faithful": {
+     "script": "mining/patterns2_faithful.py (a view over patterns2.jsonl; no re-mining)",
+     "date": "2026-09-07",
+     "parameters": {
+      "unit": "a constants-verbatim (n_lifted = 0) pattern that is a rooted tree: atoms as edges centre -> other arguments, unary atoms as attributes, one root, every other node under exactly one parent; joins excluded",
+      "size_threshold": "k = 4 atoms (inherited from the run)",
+      "min_support": "3 records, document support (inherited)",
+      "closure": "closed = no larger faithful unit with the same supporting records CONTAINS it (atoms embed under a variable renaming); different units on the same records are both closed; every size-k unit is closed by construction; computed within the view (the miner's dominated flag, whole inventory incl. lifted + joins, kept as miner_dominated only)",
+      "meta_node": "(Mn<Name> <root> <other variables>) for units of size >= 2; Name = batch-1 style, built along the tree (heads/constants in atom order, Ev/Fn for event/function fillers, Of<spec> for a filler with its own atoms, Neg for ~NEG; root tokens joined with '_', tokens inside a nested spec with '-'); pattern id appended only on a residual collision (2 units on H, 0 on item-E); provisional",
+      "excluded": "constant-lifted shape stratum (addition) and joins (cross-star capability, addition)",
+      "single_atom_units": "subtrees by the letter, kept in the JSONL and counts; NOT proposals (a one-atom pack is a rename); not rendered in the .metta",
+      "owner_decisions_2026-09-08": "lifted patterns and joins = additions arm; rooted subtree = directed, one parent per node (undirected reading would admit 221 of 275 joins; 54 cyclic under any reading); k = 4 kept for production; example sentences kept in the report"
+     },
+     "outputs": [
+      "mining/out_h/patterns2_faithful.jsonl (record of truth for the view: 1,454 units with fields, closure within the view, supporting ids)",
+      "mining/out_h/patterns2_faithful.md (parameters, counts, top tables with one example sentence, excluded joins)",
+      "mining/out_h/patterns2_faithful.metta (rendering only; sections CLOSED / SUBSUMED / SINGLE-ATOM; no decision dates)",
+      "mining/out_h/patterns2_faithful_notes.md (reading)",
+      "mining/out_ecmp/patterns2_faithful.{jsonl,md,metta}"
+     ],
+     "results": {
+      "H": {
+       "units": 1454,
+       "closed": 1140,
+       "closed_size_ge2": 728,
+       "closed_size_ge2_support_ge10": 72,
+       "joins_excluded": 275,
+       "lifted_excluded": 6037,
+       "by_root_kind": {
+        "event": 1170,
+        "entity": 262,
+        "constant": 22
+       },
+       "by_depth": {
+        "0": 19,
+        "1": 1088,
+        "2": 331,
+        "3": 16
+       },
+       "top_closed_size_ge2": [
+        "Agent+Past 232",
+        "Patient+Past 195",
+        "Theme+Past 154",
+        "Agent+Theme 114",
+        "Agent+Patient 74",
+        "Location+Past 62",
+        "Agent+Past+Theme 60",
+        "Agent+Ongoing 58",
+        "lexicalised: have+Theme 40, Agent-person 30, have+Holder 27, have+Holder+Theme 26, person+Possession 17, make+Patient 15, begin/start + Ongoing complement 9"
+       ],
+       "reading": "verb-free participant frames of the event vocabulary first (the batch-1 pack shapes minus the verb clause), verb-specific light-verb frames and typed participants second; recurring lexical structure lives in the lifted stratum (addition)",
+       "closed_size4_all_by_construction": 137,
+       "proposals": 728
+      },
+      "item_E": {
+       "units": 1652,
+       "closed": 773,
+       "closed_size_ge2": 614,
+       "joins_excluded": 208,
+       "lifted_excluded": 3939,
+       "closed_size_ge2_support_ge10": 35,
+       "proposals": 614
+      },
+      "k5_probe_2026-09-08": {
+       "where": "scratch run, outputs not kept in the repo; production inventory stays k = 4",
+       "cost": "51 s wall, 379 MB peak RSS (k = 4: 20.6 s)",
+       "patterns": 11706,
+       "k_le_4_part": "identical to the k = 4 inventory (patterns and supports)",
+       "size5_patterns": 3940,
+       "faithful_size5_units": 81,
+       "closed_size5": "81 (all, by construction)",
+       "closed_size5_support_ge10": 0,
+       "max_size5_support": 5,
+       "closed_total": "1130 at k=5 vs 1140 at k=4",
+       "reading": "k = 4 saturates this substrate at support >= 3; the closure caveat touches support-3..5 units only",
+       "size4_units_covered_by_size5": "91 of 137"
+      },
+      "k6_k7_probes_2026-09-08": {
+       "k6": "2:26 wall, 597 MB, 16,629 patterns, 54 faithful size-6 units (max support 4)",
+       "k7": "8:24 wall, 936 MB, 22,947 patterns, 34 faithful size-7 units (max support 4)",
+       "reading": "size >= 6 units = shared structure of PAWS paraphrase families fully inside the substrate (tierC-000159 family), not recurring units; cost ~3x per level; nothing above size 4 exceeds support 5"
+      }
+     },
+     "determinism": "byte-identical re-runs (jsonl, md, metta) on both substrates"
+    }
    }
   },
   "4.3.2_role_fillers": {
