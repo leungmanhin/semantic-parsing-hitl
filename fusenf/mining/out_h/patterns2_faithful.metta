@@ -11,13 +11,13 @@
 ;;   rooted subtree      atoms read as edges centre -> other arguments (a unary atom is an attribute of its node); exactly one node without a parent (the root), every other node with exactly one parent; joins (a node under two parents) are excluded
 ;;   constants verbatim  n_lifted = 0 only; the 6037 constant-lifted (shape-stratum) patterns are an addition
 ;;   closure             closed = no larger faithful unit with exactly the same supporting records contains it (its atoms embed under a renaming of variables); two different units on the same records are both closed; computed within this view (the miner's own flag ranges over the full inventory, lifted patterns and joins included, and is kept as miner_dominated); closed units are the meta-node proposals, subsumed units the same evidence in fewer atoms (subsumed_by names the covering unit)
-;;   meta-node           (Mn<Name> <root> <other variables>) for units of size >= 2 — Name = the unit's heads and constants in atom order along the tree (Member / GroupOf give their constant, roles their name, Ev / Fn for an event- or function-valued filler, Of<spec> for a filler with atoms of its own, ~NEG a Neg suffix; root tokens joined with '_', tokens inside a nested spec with '-'), the pattern id appended when two units would share a name (2 here); provisional; pack rule = (Implication (And <atoms>) (Mn<Name> …))
-;;   single-atom units   subtrees by the letter, kept in the JSONL and the counts; not proposals (a one-atom pack is a rename), so not rendered in the .metta
+;;   meta-node           (Mn<Name> <root> <other variables>) for proposals = closed units of size >= 2 — Name = the unit's heads and constants in atom order along the tree (Member / GroupOf give their constant, roles their name, Ev / Fn for an event- or function-valued filler, Of<spec> for a filler with atoms of its own, ~NEG a Neg suffix; root tokens joined with '_', tokens inside a nested spec with '-'), the pattern id appended when two units would share a name (2 here); provisional; pack rule = (Implication (And <atoms>) (Mn<Name> …))
+;;   proposals           closed units of size >= 2 (flag `proposal`); a subsumed unit is the same evidence in fewer atoms and is rendered for reading only; single-atom units are subtrees by the letter, kept in the JSONL and the counts, but a one-atom pack is a rename, so they are not rendered
 ;;
 ;; RECORD FORMAT (every record is one unit = one rooted subtree)
 ;;   ;; <pattern id>  support <records> (occ <matches>)  size <atoms>  root <variable> (<kind>)  depth <d>
 ;;   ;;   e.g. <up to three supporting record ids>
-;;   ;;   meta-node: (Mn<Name> <root> <other variables>)
+;;   ;;   meta-node: (Mn<Name> <root> <other variables>)      (closed units; a subsumed unit names its cover instead)
 ;;   <the unit as a conjunctive query>
 ;; Sections: CLOSED UNITS (the meta-node proposals) then SUBSUMED UNITS (a larger unit on the same records
 ;; contains them); each sorted by support desc, then pattern id. Single-atom units are not rendered.
@@ -3666,1132 +3666,1132 @@
 
 ;; ==================== SUBSUMED UNITS: 226 of 1454 rooted-subtree units (k = 4, support >= 3 of 2302 records) ====================
 
-;; p200339  support 26 (occ 26)  size 2  root $e0 (event)  depth 1  subsumed by p200337
+;; p200339  support 26 (occ 26)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000142 tierB-000408 tierB-000492
-;;   meta-node: (MnHolder_Theme $e0 $x0 $x1)
+;;   subsumed by p200337 (MnHolder_Have_Theme); not a proposal
 (And (Holder $e0 $x0) (Theme $e0 $x1))
 
-;; p200847  support 12 (occ 12)  size 2  root $e0 (event)  depth 1  subsumed by p200785
+;; p200847  support 12 (occ 12)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000199 tierB-000265 tierB-000465
-;;   meta-node: (MnStart_ThemeEv $e0 $e1)
+;;   subsumed by p200785 (MnStart_ThemeEvOfOngoing); not a proposal
 (And (Member $e0 start) (Theme $e0 $e1))
 
-;; p200935  support 11 (occ 11)  size 2  root $e0 (event)  depth 1  subsumed by p200900
+;; p200935  support 11 (occ 11)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000412 tierB-000688 tierB-001302
-;;   meta-node: (MnBeforeEv_Past $e0 $e1)
+;;   subsumed by p200900 (MnBeforeEvOfPast_Past); not a proposal
 (And (Before $e0 $e1) (Past $e0))
 
-;; p201168  support 9 (occ 11)  size 3  root $e0 (event)  depth 1  subsumed by p201104
+;; p201168  support 9 (occ 11)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000075 tierB-000173 tierB-000240
-;;   meta-node: (MnBegin_ThemeEvOfOngoing $e0 $e1)
+;;   subsumed by p201104 (MnBegin_Past_ThemeEvOfOngoing); not a proposal
 (And (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1))
 
-;; p201222  support 9 (occ 11)  size 3  root $e0 (event)  depth 1  subsumed by p201104
+;; p201222  support 9 (occ 11)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000075 tierB-000173 tierB-000240
-;;   meta-node: (MnBegin_Past_ThemeEv $e0 $e1)
+;;   subsumed by p201104 (MnBegin_Past_ThemeEvOfOngoing); not a proposal
 (And (Member $e0 begin) (Past $e0) (Theme $e0 $e1))
 
-;; p201224  support 9 (occ 9)  size 3  root $e0 (event)  depth 1  subsumed by p201105
+;; p201224  support 9 (occ 9)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000199 tierB-000265 tierB-000534
-;;   meta-node: (MnStart_Past_ThemeEv $e0 $e1)
+;;   subsumed by p201105 (MnStart_Past_ThemeEvOfOngoing); not a proposal
 (And (Member $e0 start) (Past $e0) (Theme $e0 $e1))
 
-;; p201245  support 9 (occ 11)  size 2  root $e0 (event)  depth 1  subsumed by p201104
+;; p201245  support 9 (occ 11)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000075 tierB-000173 tierB-000240
-;;   meta-node: (MnBegin_ThemeEv $e0 $e1)
+;;   subsumed by p201104 (MnBegin_Past_ThemeEvOfOngoing); not a proposal
 (And (Member $e0 begin) (Theme $e0 $e1))
 
-;; p201246  support 9 (occ 13)  size 2  root $e0 (event)  depth 1  subsumed by p201223
+;; p201246  support 9 (occ 13)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000063 tierB-000932 tierC-000045
-;;   meta-node: (MnBuild_Past $e0)
+;;   subsumed by p201223 (MnBuild_Past_Patient); not a proposal
 (And (Member $e0 build) (Past $e0))
 
-;; p201478  support 8 (occ 12)  size 2  root $e0 (event)  depth 1  subsumed by p201446
+;; p201478  support 8 (occ 12)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000063 tierB-001867 tierC-000045
-;;   meta-node: (MnAgent_Build $e0 $x0)
+;;   subsumed by p201446 (MnAgent_Build_Patient); not a proposal
 (And (Agent $e0 $x0) (Member $e0 build))
 
-;; p201814  support 7 (occ 7)  size 2  root $e0 (event)  depth 2  subsumed by p201674
+;; p201814  support 7 (occ 7)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000320 tierB-000779 tierB-000838
-;;   meta-node: (MnPatientOfCardinalityNum $e0 $x0)
+;;   subsumed by p201674 (MnPast_PatientOfCardinalityNum); not a proposal
 (And (Cardinality $x0 <num>) (Patient $e0 $x0))
 
-;; p201824  support 7 (occ 9)  size 2  root $e0 (event)  depth 1  subsumed by p201772
+;; p201824  support 7 (occ 9)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000067 tierB-000412 tierB-001197
-;;   meta-node: (MnKill_Past $e0)
+;;   subsumed by p201772 (MnKill_Past_Patient); not a proposal
 (And (Member $e0 kill) (Past $e0))
 
-;; p201828  support 7 (occ 9)  size 2  root $e0 (event)  depth 1  subsumed by p201773
+;; p201828  support 7 (occ 9)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000208 tierC-000009 tierC-000010
-;;   meta-node: (MnProduce_Past $e0)
+;;   subsumed by p201773 (MnProduce_Past_Patient); not a proposal
 (And (Member $e0 produce) (Past $e0))
 
-;; p201831  support 7 (occ 7)  size 2  root $e0 (event)  depth 1  subsumed by p201774
+;; p201831  support 7 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001962 tierC-000089 tierC-000090
-;;   meta-node: (MnWrite_Past $e0)
+;;   subsumed by p201774 (MnWrite_Past_Patient); not a proposal
 (And (Member $e0 write) (Past $e0))
 
-;; p202011  support 6 (occ 10)  size 3  root $e0 (event)  depth 2  subsumed by p201891
+;; p202011  support 6 (occ 10)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000017 tierC-000018 tierC-000123
-;;   meta-node: (MnAgentOfPossession_Past $e0 $x0 $x1)
+;;   subsumed by p201891 (MnAgentOfPossessionOfPerson_Past); not a proposal
 (And (Agent $e0 $x0) (Past $e0) (Possession $x0 $x1))
 
-;; p202137  support 6 (occ 10)  size 3  root $e0 (event)  depth 1  subsumed by p202114
+;; p202137  support 6 (occ 10)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000063 tierC-000045 tierC-000046
-;;   meta-node: (MnAgent_Build_Past $e0 $x0)
+;;   subsumed by p202114 (MnAgent_Build_Past_Patient); not a proposal
 (And (Agent $e0 $x0) (Member $e0 build) (Past $e0))
 
-;; p202559  support 5 (occ 7)  size 3  root $e1 (event)  depth 2  subsumed by p202334
+;; p202559  support 5 (occ 7)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000485 tierB-001052 tierB-001138
-;;   meta-node: (MnBegin_ThemeEvOfAgent $e1 $e0 $x0)
+;;   subsumed by p202334 (MnBegin_ThemeEvOfAgent-Ongoing); not a proposal
 (And (Agent $e0 $x0) (Member $e1 begin) (Theme $e1 $e0))
 
-;; p202569  support 5 (occ 5)  size 3  root $e0 (event)  depth 2  subsumed by p202342
+;; p202569  support 5 (occ 5)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierB-000265 tierB-000942 tierB-001446
-;;   meta-node: (MnStart_ThemeEvOfPatient $e0 $e1 $x0)
+;;   subsumed by p202342 (MnStart_ThemeEvOfOngoing-Patient); not a proposal
 (And (Member $e0 start) (Patient $e1 $x0) (Theme $e0 $e1))
 
-;; p202758  support 5 (occ 7)  size 3  root $e0 (event)  depth 1  subsumed by p202724
+;; p202758  support 5 (occ 7)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000485 tierB-001052 tierB-001138
-;;   meta-node: (MnAgent_Begin_Past $e0 $x0)
+;;   subsumed by p202724 (MnAgent_Begin_Past_ThemeEv); not a proposal
 (And (Agent $e0 $x0) (Member $e0 begin) (Past $e0))
 
-;; p202759  support 5 (occ 7)  size 3  root $e0 (event)  depth 1  subsumed by p202333
+;; p202759  support 5 (occ 7)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000485 tierB-001052 tierB-001138
-;;   meta-node: (MnAgent_Begin_ThemeEv $e0 $e1 $x0)
+;;   subsumed by p202333 (MnAgent_Begin_ThemeEvOfOngoing); not a proposal
 (And (Agent $e0 $x0) (Member $e0 begin) (Theme $e0 $e1))
 
-;; p202770  support 5 (occ 5)  size 3  root $e0 (event)  depth 1  subsumed by p202725
+;; p202770  support 5 (occ 5)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000665 tierB-000797 tierB-001264
-;;   meta-node: (MnHolder_Have_Past $e0 $x0)
+;;   subsumed by p202725 (MnHolder_Have_Past_Theme); not a proposal
 (And (Holder $e0 $x0) (Member $e0 have) (Past $e0))
 
-;; p202771  support 5 (occ 5)  size 3  root $e0 (event)  depth 1  subsumed by p202725
+;; p202771  support 5 (occ 5)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000665 tierB-000797 tierB-001264
-;;   meta-node: (MnHolder_Past_Theme $e0 $x0 $x1)
+;;   subsumed by p202725 (MnHolder_Have_Past_Theme); not a proposal
 (And (Holder $e0 $x0) (Past $e0) (Theme $e0 $x1))
 
-;; p202851  support 5 (occ 7)  size 2  root $e0 (event)  depth 1  subsumed by p202333
+;; p202851  support 5 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000485 tierB-001052 tierB-001138
-;;   meta-node: (MnAgent_Begin $e0 $x0)
+;;   subsumed by p202333 (MnAgent_Begin_ThemeEvOfOngoing); not a proposal
 (And (Agent $e0 $x0) (Member $e0 begin))
 
-;; p202859  support 5 (occ 5)  size 2  root $e0 (event)  depth 2  subsumed by p202560
+;; p202859  support 5 (occ 5)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000305 tierB-000337 tierB-000340
-;;   meta-node: (MnAgentOfBoy $e0 $x0)
+;;   subsumed by p202560 (MnAgentOfBoy_Past); not a proposal
 (And (Agent $e0 $x0) (Member $x0 boy))
 
-;; p202861  support 5 (occ 5)  size 2  root $e0 (event)  depth 1  subsumed by p202764
+;; p202861  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000500 tierB-000656 tierB-000782
-;;   meta-node: (MnAgent_Through $e0 $x0 $x1)
+;;   subsumed by p202764 (MnAgent_Past_Through); not a proposal
 (And (Agent $e0 $x0) (Through $e0 $x1))
 
-;; p202869  support 5 (occ 5)  size 2  root $e0 (event)  depth 1  subsumed by p202725
+;; p202869  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000665 tierB-000797 tierB-001264
-;;   meta-node: (MnHolder_Past $e0 $x0)
+;;   subsumed by p202725 (MnHolder_Have_Past_Theme); not a proposal
 (And (Holder $e0 $x0) (Past $e0))
 
-;; p202873  support 5 (occ 5)  size 2  root $e0 (event)  depth 1  subsumed by p202775
+;; p202873  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000215 tierB-000636 tierB-000852
-;;   meta-node: (MnCapture_Theme $e0 $x0)
+;;   subsumed by p202775 (MnCapture_Past_Theme); not a proposal
 (And (Member $e0 capture) (Theme $e0 $x0))
 
-;; p202879  support 5 (occ 5)  size 2  root $e0 (event)  depth 1  subsumed by p202761
+;; p202879  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000584 tierC-000095 tierC-000096
-;;   meta-node: (MnFollow_Theme $e0 $x0)
+;;   subsumed by p202761 (MnAgent_Follow_Theme); not a proposal
 (And (Member $e0 follow) (Theme $e0 $x0))
 
-;; p202885  support 5 (occ 5)  size 2  root $e0 (event)  depth 1  subsumed by p202778
+;; p202885  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000876 tierB-001486 tierB-001932
-;;   meta-node: (MnPresent_Past $e0)
+;;   subsumed by p202778 (MnPresent_Past_Theme); not a proposal
 (And (Member $e0 present) (Past $e0))
 
-;; p202886  support 5 (occ 5)  size 2  root $e0 (event)  depth 1  subsumed by p202778
+;; p202886  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000876 tierB-001486 tierB-001932
-;;   meta-node: (MnPresent_Theme $e0 $x0)
+;;   subsumed by p202778 (MnPresent_Past_Theme); not a proposal
 (And (Member $e0 present) (Theme $e0 $x0))
 
-;; p202887  support 5 (occ 5)  size 2  root $e0 (event)  depth 1  subsumed by p202779
+;; p202887  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000962 tierB-001595 tierB-001693
-;;   meta-node: (MnReceive_Theme $e0 $x0)
+;;   subsumed by p202779 (MnReceive_Past_Theme); not a proposal
 (And (Member $e0 receive) (Theme $e0 $x0))
 
-;; p202895  support 5 (occ 5)  size 2  root $e0 (event)  depth 1  subsumed by p202782
+;; p202895  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000145 tierC-000277 tierC-000278
-;;   meta-node: (MnWin_Past $e0)
+;;   subsumed by p202782 (MnWin_Past_Theme); not a proposal
 (And (Member $e0 win) (Past $e0))
 
-;; p202896  support 5 (occ 5)  size 2  root $e0 (event)  depth 1  subsumed by p202782
+;; p202896  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000145 tierC-000277 tierC-000278
-;;   meta-node: (MnWin_Theme $e0 $x0)
+;;   subsumed by p202782 (MnWin_Past_Theme); not a proposal
 (And (Member $e0 win) (Theme $e0 $x0))
 
-;; p203710  support 4 (occ 4)  size 3  root $e1 (event)  depth 2  subsumed by p203046
+;; p203710  support 4 (occ 4)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000688 tierC-000001 tierC-000121
-;;   meta-node: (MnBeforeEvOfAgent_Past $e1 $e0 $x0)
+;;   subsumed by p203046 (MnBeforeEvOfAgent-Past_Past); not a proposal
 (And (Agent $e0 $x0) (Before $e1 $e0) (Past $e1))
 
-;; p203713  support 4 (occ 7)  size 3  root $e0 (event)  depth 2  subsumed by p203047
+;; p203713  support 4 (occ 7)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnAgent_ThemeOfGroupOfView $e0 $x0 $x1)
+;;   subsumed by p203047 (MnAgentOfThing_ThemeOfGroupOfView); not a proposal
 (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1))
 
-;; p203714  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203053
+;; p203714  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_LocationKazakhstan $e0 $x0)
+;;   subsumed by p203053 (MnAgentOfCompany_LocationKazakhstan_Build); not a proposal
 (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company))
 
-;; p203716  support 4 (occ 8)  size 3  root $e0 (event)  depth 2  subsumed by p203053
+;; p203716  support 4 (occ 8)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_Build $e0 $x0)
+;;   subsumed by p203053 (MnAgentOfCompany_LocationKazakhstan_Build); not a proposal
 (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company))
 
-;; p203717  support 4 (occ 4)  size 3  root $e1 (event)  depth 2  subsumed by p203067
+;; p203717  support 4 (occ 4)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000738 tierB-000942 tierB-001169
-;;   meta-node: (MnStart_ThemeEvOfAgent $e1 $e0 $x0)
+;;   subsumed by p203067 (MnStart_ThemeEvOfAgent-Ongoing); not a proposal
 (And (Agent $e0 $x0) (Member $e1 start) (Theme $e1 $e0))
 
-;; p203720  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203065
+;; p203720  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_PatientOfHotel $e0 $x0 $x1)
+;;   subsumed by p203065 (MnAgent_Build_PatientOfHotel); not a proposal
 (And (Agent $e0 $x0) (Member $x1 hotel) (Patient $e0 $x1))
 
-;; p203722  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203049
+;; p203722  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnAgent_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1)
+;;   subsumed by p203049 (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty); not a proposal
 (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
 
-;; p203723  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203050
+;; p203723  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnAgent_ThemeOfPossessionRepublicanParty $e0 $x0 $x1)
+;;   subsumed by p203050 (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty); not a proposal
 (And (Agent $e0 $x0) (Possession $x1 republican_party) (Theme $e0 $x1))
 
-;; p203725  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203079
+;; p203725  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnHolderKristoffer_ThemeOfCardinalityNum $e0 $x0)
+;;   subsumed by p203079 (MnHolderKristoffer_ThemeOfCardinalityNum-GroupOfChild); not a proposal
 (And (Cardinality $x0 <num>) (Holder $e0 kristoffer) (Theme $e0 $x0))
 
-;; p203730  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203087
+;; p203730  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEv_ThemeOfEmmy $e0 $e1 $x0)
+;;   subsumed by p203087 (MnForEv_Win_ThemeOfEmmy); not a proposal
 (And (For $e0 $e1) (Member $x0 emmy) (Theme $e0 $x0))
 
-;; p203731  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203079
+;; p203731  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnHolderKristoffer_ThemeOfGroupOfChild $e0 $x0)
+;;   subsumed by p203079 (MnHolderKristoffer_ThemeOfCardinalityNum-GroupOfChild); not a proposal
 (And (GroupOf $x0 child) (Holder $e0 kristoffer) (Theme $e0 $x0))
 
-;; p203732  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203080
+;; p203732  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnHave_ThemeOfGroupOfChild $e0 $x0)
+;;   subsumed by p203080 (MnHave_ThemeOfCardinalityNum-GroupOfChild); not a proposal
 (And (GroupOf $x0 child) (Member $e0 have) (Theme $e0 $x0))
 
-;; p203734  support 4 (occ 4)  size 3  root $x0 (entity)  depth 2  subsumed by p203092
+;; p203734  support 4 (occ 4)  size 3  root $x0 (entity)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnGroupOfView_PossessionFreeSoilPartyOfParty $x0)
+;;   subsumed by p203092 (MnThemeOfGroupOfView-PossessionFreeSoilPartyOfParty); not a proposal
 (And (GroupOf $x0 view) (Member free_soil_party party) (Possession $x0 free_soil_party))
 
-;; p203735  support 4 (occ 4)  size 3  root $x0 (entity)  depth 2  subsumed by p203093
+;; p203735  support 4 (occ 4)  size 3  root $x0 (entity)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnGroupOfView_PossessionRepublicanPartyOfParty $x0)
+;;   subsumed by p203093 (MnThemeOfGroupOfView-PossessionRepublicanPartyOfParty); not a proposal
 (And (GroupOf $x0 view) (Member republican_party party) (Possession $x0 republican_party))
 
-;; p203736  support 4 (occ 7)  size 3  root $e0 (event)  depth 2  subsumed by p203048
+;; p203736  support 4 (occ 7)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnPast_ThemeOfGroupOfView $e0 $x0)
+;;   subsumed by p203048 (MnAgent_Past_ThemeOfGroupOfView); not a proposal
 (And (GroupOf $x0 view) (Past $e0) (Theme $e0 $x0))
 
-;; p203740  support 4 (occ 5)  size 3  root $e0 (event)  depth 2  subsumed by p203096
+;; p203740  support 4 (occ 5)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000279 tierC-000280 tierC-000313
-;;   meta-node: (MnLocation_ThemeOfThing $e0 $x0 $x1)
+;;   subsumed by p203096 (MnLocation_Find_ThemeOfThing); not a proposal
 (And (Location $e0 $x0) (Member $x1 thing) (Theme $e0 $x1))
 
-;; p203746  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203065
+;; p203746  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnBuild_PatientOfHotel $e0 $x0)
+;;   subsumed by p203065 (MnAgent_Build_PatientOfHotel); not a proposal
 (And (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
 
-;; p203749  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203096
+;; p203749  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000279 tierC-000280 tierC-000313
-;;   meta-node: (MnFind_ThemeOfThing $e0 $x0)
+;;   subsumed by p203096 (MnLocation_Find_ThemeOfThing); not a proposal
 (And (Member $e0 find) (Member $x0 thing) (Theme $e0 $x0))
 
-;; p203751  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203087
+;; p203751  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnWin_ThemeOfEmmy $e0 $x0)
+;;   subsumed by p203087 (MnForEv_Win_ThemeOfEmmy); not a proposal
 (And (Member $e0 win) (Member $x0 emmy) (Theme $e0 $x0))
 
-;; p203754  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203088
+;; p203754  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnPast_ThemeOfEmmy $e0 $x0)
+;;   subsumed by p203088 (MnForEv_Past_ThemeOfEmmy); not a proposal
 (And (Member $x0 emmy) (Past $e0) (Theme $e0 $x0))
 
-;; p203756  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203073
+;; p203756  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnPast_PatientOfHotel $e0 $x0)
+;;   subsumed by p203073 (MnAgent_Past_PatientOfHotel); not a proposal
 (And (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
 
-;; p203759  support 4 (occ 5)  size 3  root $e0 (event)  depth 3  subsumed by p203116
+;; p203759  support 4 (occ 5)  size 3  root $e0 (event)  depth 3
 ;;   e.g. tierC-000047 tierC-000048 tierC-000235
-;;   meta-node: (MnThemeOfPossessionOfPerson $e0 $x0 $x1)
+;;   subsumed by p203116 (MnPast_ThemeOfPossessionOfPerson); not a proposal
 (And (Member $x0 person) (Possession $x1 $x0) (Theme $e0 $x1))
 
-;; p203763  support 4 (occ 4)  size 3  root $e0 (event)  depth 3  subsumed by p203074
+;; p203763  support 4 (occ 4)  size 3  root $e0 (event)  depth 3
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnThemeOfPossessionFreeSoilPartyOfParty $e0 $x0)
+;;   subsumed by p203074 (MnAgent_ThemeOfPossessionFreeSoilPartyOfParty); not a proposal
 (And (Member free_soil_party party) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 
-;; p203764  support 4 (occ 4)  size 3  root $e0 (event)  depth 3  subsumed by p203075
+;; p203764  support 4 (occ 4)  size 3  root $e0 (event)  depth 3
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnThemeOfPossessionRepublicanPartyOfParty $e0 $x0)
+;;   subsumed by p203075 (MnAgent_ThemeOfPossessionRepublicanPartyOfParty); not a proposal
 (And (Member republican_party party) (Possession $x0 republican_party) (Theme $e0 $x0))
 
-;; p203768  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203076
+;; p203768  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnPast_ThemeOfPossessionFreeSoilParty $e0 $x0)
+;;   subsumed by p203076 (MnAgent_Past_ThemeOfPossessionFreeSoilParty); not a proposal
 (And (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 
-;; p203769  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203077
+;; p203769  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnPast_ThemeOfPossessionRepublicanParty $e0 $x0)
+;;   subsumed by p203077 (MnAgent_Past_ThemeOfPossessionRepublicanParty); not a proposal
 (And (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
 
-;; p203992  support 4 (occ 4)  size 2  root $x0 (entity)  depth 2  subsumed by p203074
+;; p203992  support 4 (occ 4)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnPossessionFreeSoilPartyOfParty $x0)
+;;   subsumed by p203074 (MnAgent_ThemeOfPossessionFreeSoilPartyOfParty); not a proposal
 (And (Member free_soil_party party) (Possession $x0 free_soil_party))
 
-;; p203993  support 4 (occ 4)  size 2  root $x0 (entity)  depth 2  subsumed by p203075
+;; p203993  support 4 (occ 4)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnPossessionRepublicanPartyOfParty $x0)
+;;   subsumed by p203075 (MnAgent_ThemeOfPossessionRepublicanPartyOfParty); not a proposal
 (And (Member republican_party party) (Possession $x0 republican_party))
 
-;; p204278  support 4 (occ 4)  size 3  root $e1 (event)  depth 2  subsumed by p203046
+;; p204278  support 4 (occ 4)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000688 tierC-000001 tierC-000121
-;;   meta-node: (MnBeforeEvOfAgent-Past $e1 $e0 $x0)
+;;   subsumed by p203046 (MnBeforeEvOfAgent-Past_Past); not a proposal
 (And (Agent $e0 $x0) (Before $e1 $e0) (Past $e0))
 
-;; p204279  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p203053
+;; p204279  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationKazakhstan_Build $e0 $x0)
+;;   subsumed by p203053 (MnAgentOfCompany_LocationKazakhstan_Build); not a proposal
 (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build))
 
-;; p204280  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p203054
+;; p204280  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationKazakhstan_Past $e0 $x0)
+;;   subsumed by p203054 (MnAgentOfCompany_LocationKazakhstan_Past); not a proposal
 (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0))
 
-;; p204281  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p203055
+;; p204281  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationKazakhstan_Patient $e0 $x0 $x1)
+;;   subsumed by p203055 (MnAgentOfCompany_LocationKazakhstan_Patient); not a proposal
 (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Patient $e0 $x1))
 
-;; p204284  support 4 (occ 6)  size 3  root $e0 (event)  depth 1  subsumed by p204221
+;; p204284  support 4 (occ 6)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-001197 tierB-001399 tierC-000353
-;;   meta-node: (MnAgent_Kill_Past $e0 $x0)
+;;   subsumed by p204221 (MnAgent_Kill_Past_Patient); not a proposal
 (And (Agent $e0 $x0) (Member $e0 kill) (Past $e0))
 
-;; p204285  support 4 (occ 6)  size 3  root $e0 (event)  depth 1  subsumed by p204221
+;; p204285  support 4 (occ 6)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-001197 tierB-001399 tierC-000353
-;;   meta-node: (MnAgent_Kill_Patient $e0 $x0 $x1)
+;;   subsumed by p204221 (MnAgent_Kill_Past_Patient); not a proposal
 (And (Agent $e0 $x0) (Member $e0 kill) (Patient $e0 $x1))
 
-;; p204287  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p204222
+;; p204287  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000738 tierB-000942 tierB-001169
-;;   meta-node: (MnAgent_Start_Past $e0 $x0)
+;;   subsumed by p204222 (MnAgent_Start_Past_ThemeEv); not a proposal
 (And (Agent $e0 $x0) (Member $e0 start) (Past $e0))
 
-;; p204288  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p203066
+;; p204288  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000738 tierB-000942 tierB-001169
-;;   meta-node: (MnAgent_Start_ThemeEv $e0 $e1 $x0)
+;;   subsumed by p203066 (MnAgent_Start_ThemeEvOfOngoing); not a proposal
 (And (Agent $e0 $x0) (Member $e0 start) (Theme $e0 $e1))
 
-;; p204294  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203079
+;; p204294  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnThemeOfCardinalityNum-GroupOfChild $e0 $x0)
+;;   subsumed by p203079 (MnHolderKristoffer_ThemeOfCardinalityNum-GroupOfChild); not a proposal
 (And (Cardinality $x0 <num>) (GroupOf $x0 child) (Theme $e0 $x0))
 
-;; p204299  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p204223
+;; p204299  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEv_Win_Past $e0 $e1)
+;;   subsumed by p204223 (MnForEv_Win_Past_Theme); not a proposal
 (And (For $e0 $e1) (Member $e0 win) (Past $e0))
 
-;; p204300  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p203087
+;; p204300  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEv_Win_Theme $e0 $e1 $x0)
+;;   subsumed by p203087 (MnForEv_Win_ThemeOfEmmy); not a proposal
 (And (For $e0 $e1) (Member $e0 win) (Theme $e0 $x0))
 
-;; p204303  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203049
+;; p204303  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnThemeOfGroupOfView-PossessionFreeSoilParty $e0 $x0)
+;;   subsumed by p203049 (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty); not a proposal
 (And (GroupOf $x0 view) (Possession $x0 free_soil_party) (Theme $e0 $x0))
 
-;; p204304  support 4 (occ 4)  size 3  root $e0 (event)  depth 2  subsumed by p203050
+;; p204304  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnThemeOfGroupOfView-PossessionRepublicanParty $e0 $x0)
+;;   subsumed by p203050 (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty); not a proposal
 (And (GroupOf $x0 view) (Possession $x0 republican_party) (Theme $e0 $x0))
 
-;; p204305  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p203081
+;; p204305  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnHolderKristoffer_Have_Theme $e0 $x0)
+;;   subsumed by p203081 (MnHolderKristoffer_Have_ThemeOfCardinalityNum); not a proposal
 (And (Holder $e0 kristoffer) (Member $e0 have) (Theme $e0 $x0))
 
-;; p204307  support 4 (occ 6)  size 3  root $e1 (event)  depth 2  subsumed by p203056
+;; p204307  support 4 (occ 6)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000942 tierB-001933 tierC-000025
-;;   meta-node: (MnThemeEvOfLocation-Ongoing $e1 $e0 $x0)
+;;   subsumed by p203056 (MnAgent_ThemeEvOfLocation-Ongoing); not a proposal
 (And (Location $e0 $x0) (Ongoing $e0) (Theme $e1 $e0))
 
-;; p204308  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p204218
+;; p204308  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationKazakhstan_Build_Past $e0)
+;;   subsumed by p204218 (MnAgent_LocationKazakhstan_Build_Past); not a proposal
 (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
 
-;; p204309  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p204219
+;; p204309  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationKazakhstan_Build_Patient $e0 $x0)
+;;   subsumed by p204219 (MnAgent_LocationKazakhstan_Build_Patient); not a proposal
 (And (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x0))
 
-;; p204310  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p204220
+;; p204310  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationKazakhstan_Past_Patient $e0 $x0)
+;;   subsumed by p204220 (MnAgent_LocationKazakhstan_Past_Patient); not a proposal
 (And (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x0))
 
-;; p204318  support 4 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p203111
+;; p204318  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000265 tierB-001446 tierB-001816
-;;   meta-node: (MnStart_Patient_ThemeEv $e0 $e1 $x0)
+;;   subsumed by p203111 (MnStart_Patient_ThemeEvOfOngoing); not a proposal
 (And (Member $e0 start) (Patient $e0 $x0) (Theme $e0 $e1))
 
-;; p204460  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p203053
+;; p204460  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationKazakhstan $e0 $x0)
+;;   subsumed by p203053 (MnAgentOfCompany_LocationKazakhstan_Build); not a proposal
 (And (Agent $e0 $x0) (Location $e0 kazakhstan))
 
-;; p204462  support 4 (occ 6)  size 2  root $e0 (event)  depth 1  subsumed by p204282
+;; p204462  support 4 (occ 6)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000101 tierB-000768 tierB-001254
-;;   meta-node: (MnAgent_Contain $e0 $x0)
+;;   subsumed by p204282 (MnAgent_Contain_Theme); not a proposal
 (And (Agent $e0 $x0) (Member $e0 contain))
 
-;; p204465  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204283
+;; p204465  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000871 tierB-000889 tierB-001530
-;;   meta-node: (MnAgent_Jump $e0 $x0)
+;;   subsumed by p204283 (MnAgent_Jump_Past); not a proposal
 (And (Agent $e0 $x0) (Member $e0 jump))
 
-;; p204466  support 4 (occ 6)  size 2  root $e0 (event)  depth 1  subsumed by p204221
+;; p204466  support 4 (occ 6)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001197 tierB-001399 tierC-000353
-;;   meta-node: (MnAgent_Kill $e0 $x0)
+;;   subsumed by p204221 (MnAgent_Kill_Past_Patient); not a proposal
 (And (Agent $e0 $x0) (Member $e0 kill))
 
-;; p204470  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p203066
+;; p204470  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000738 tierB-000942 tierB-001169
-;;   meta-node: (MnAgent_Start $e0 $x0)
+;;   subsumed by p203066 (MnAgent_Start_ThemeEvOfOngoing); not a proposal
 (And (Agent $e0 $x0) (Member $e0 start))
 
-;; p204471  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204289
+;; p204471  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000782 tierB-001008 tierB-001268
-;;   meta-node: (MnAgent_Swim $e0 $x0)
+;;   subsumed by p204289 (MnAgent_Swim_Ongoing); not a proposal
 (And (Agent $e0 $x0) (Member $e0 swim))
 
-;; p204474  support 4 (occ 4)  size 2  root $e0 (event)  depth 2  subsumed by p203718
+;; p204474  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000073 tierB-000381 tierB-001183
-;;   meta-node: (MnAgentOfCat $e0 $x0)
+;;   subsumed by p203718 (MnAgentOfCat_Past); not a proposal
 (And (Agent $e0 $x0) (Member $x0 cat))
 
-;; p204480  support 4 (occ 4)  size 2  root $e0 (event)  depth 0  subsumed by p204292
+;; p204480  support 4 (occ 4)  size 2  root $e0 (event)  depth 0
 ;;   e.g. tierB-000034 tierB-000616 tierB-001000
-;;   meta-node: (MnAlready_Past $e0)
+;;   subsumed by p204292 (MnAlready_Past_Patient); not a proposal
 (And (Already $e0) (Past $e0))
 
-;; p204483  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p203724
+;; p204483  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000161 tierC-000162 tierC-000243
-;;   meta-node: (MnButEv_Past $e0 $e1)
+;;   subsumed by p203724 (MnButEvOfPast_Past); not a proposal
 (And (But $e0 $e1) (Past $e0))
 
-;; p204484  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p203724
+;; p204484  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000161 tierC-000162 tierC-000243
-;;   meta-node: (MnButEvOfPast $e0 $e1)
+;;   subsumed by p203724 (MnButEvOfPast_Past); not a proposal
 (And (But $e0 $e1) (Past $e1))
 
-;; p204491  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204295
+;; p204491  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000748 tierB-001594 tierC-000241
-;;   meta-node: (MnExperiencer_Bad $e0 $x0)
+;;   subsumed by p204295 (MnResultEvOfExperiencer-Bad); not a proposal
 (And (Experiencer $e0 $x0) (Member $e0 bad))
 
-;; p204493  support 4 (occ 4)  size 2  root $e0 (event)  depth 2  subsumed by p203729
+;; p204493  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000748 tierB-001594 tierC-000241
-;;   meta-node: (MnExperiencerOfBad $e0 $x0)
+;;   subsumed by p203729 (MnResultEvOfExperiencerOfBad); not a proposal
 (And (Experiencer $e0 $x0) (Member $x0 bad))
 
-;; p204497  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p203087
+;; p204497  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEv_Win $e0 $e1)
+;;   subsumed by p203087 (MnForEv_Win_ThemeOfEmmy); not a proposal
 (And (For $e0 $e1) (Member $e0 win))
 
-;; p204498  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204301
+;; p204498  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000324 tierB-000929 tierB-001044
-;;   meta-node: (MnGoal_Walk $e0 $x0)
+;;   subsumed by p204301 (MnGoal_Walk_Past); not a proposal
 (And (Goal $e0 $x0) (Member $e0 walk))
 
-;; p204499  support 4 (occ 4)  size 2  root $e0 (event)  depth 2  subsumed by p203079
+;; p204499  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnThemeOfGroupOfChild $e0 $x0)
+;;   subsumed by p203079 (MnHolderKristoffer_ThemeOfCardinalityNum-GroupOfChild); not a proposal
 (And (GroupOf $x0 child) (Theme $e0 $x0))
 
-;; p204500  support 4 (occ 4)  size 2  root $x0 (entity)  depth 1  subsumed by p203049
+;; p204500  support 4 (occ 4)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnGroupOfView_PossessionFreeSoilParty $x0)
+;;   subsumed by p203049 (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty); not a proposal
 (And (GroupOf $x0 view) (Possession $x0 free_soil_party))
 
-;; p204501  support 4 (occ 4)  size 2  root $x0 (entity)  depth 1  subsumed by p203050
+;; p204501  support 4 (occ 4)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnGroupOfView_PossessionRepublicanParty $x0)
+;;   subsumed by p203050 (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty); not a proposal
 (And (GroupOf $x0 view) (Possession $x0 republican_party))
 
-;; p204502  support 4 (occ 7)  size 2  root $e0 (event)  depth 2  subsumed by p203047
+;; p204502  support 4 (occ 7)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnThemeOfGroupOfView $e0 $x0)
+;;   subsumed by p203047 (MnAgentOfThing_ThemeOfGroupOfView); not a proposal
 (And (GroupOf $x0 view) (Theme $e0 $x0))
 
-;; p204503  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p203081
+;; p204503  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnHolderKristoffer_Have $e0)
+;;   subsumed by p203081 (MnHolderKristoffer_Have_ThemeOfCardinalityNum); not a proposal
 (And (Holder $e0 kristoffer) (Member $e0 have))
 
-;; p204504  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p203079
+;; p204504  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnHolderKristoffer_Theme $e0 $x0)
+;;   subsumed by p203079 (MnHolderKristoffer_ThemeOfCardinalityNum-GroupOfChild); not a proposal
 (And (Holder $e0 kristoffer) (Theme $e0 $x0))
 
-;; p204510  support 4 (occ 6)  size 2  root $e0 (event)  depth 2  subsumed by p203739
+;; p204510  support 4 (occ 6)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000047 tierB-000502 tierB-001041
-;;   meta-node: (MnLocationOfTable $e0 $x0)
+;;   subsumed by p203739 (MnLocationOfTable_Past); not a proposal
 (And (Location $e0 $x0) (Member $x0 table))
 
-;; p204512  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p203053
+;; p204512  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationKazakhstan_Build $e0)
+;;   subsumed by p203053 (MnAgentOfCompany_LocationKazakhstan_Build); not a proposal
 (And (Location $e0 kazakhstan) (Member $e0 build))
 
-;; p204513  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p203054
+;; p204513  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationKazakhstan_Past $e0)
+;;   subsumed by p203054 (MnAgentOfCompany_LocationKazakhstan_Past); not a proposal
 (And (Location $e0 kazakhstan) (Past $e0))
 
-;; p204514  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p203055
+;; p204514  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationKazakhstan_Patient $e0 $x0)
+;;   subsumed by p203055 (MnAgentOfCompany_LocationKazakhstan_Patient); not a proposal
 (And (Location $e0 kazakhstan) (Patient $e0 $x0))
 
-;; p204518  support 4 (occ 4)  size 2  root $e1 (event)  depth 2  subsumed by p203744
+;; p204518  support 4 (occ 4)  size 2  root $e1 (event)  depth 2
 ;;   e.g. tierB-000748 tierB-001594 tierC-000241
-;;   meta-node: (MnResultEvOfBad $e1 $e0)
+;;   subsumed by p203744 (MnPatient_ResultEvOfBad); not a proposal
 (And (Member $e0 bad) (Result $e1 $e0))
 
-;; p204519  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204311
+;; p204519  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001568 tierC-000199 tierC-000200
-;;   meta-node: (MnBear_Patient $e0 $x0)
+;;   subsumed by p204311 (MnBear_Past_Patient); not a proposal
 (And (Member $e0 bear) (Patient $e0 $x0))
 
-;; p204526  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204312
+;; p204526  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000010 tierC-000091 tierC-000297
-;;   meta-node: (MnDirect_Past $e0)
+;;   subsumed by p204312 (MnDirect_Past_Patient); not a proposal
 (And (Member $e0 direct) (Past $e0))
 
-;; p204527  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204313
+;; p204527  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000658 tierB-001251 tierC-000111
-;;   meta-node: (MnDiscover_Past $e0)
+;;   subsumed by p204313 (MnDiscover_Past_Theme); not a proposal
 (And (Member $e0 discover) (Past $e0))
 
-;; p204528  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204313
+;; p204528  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000658 tierB-001251 tierC-000111
-;;   meta-node: (MnDiscover_Theme $e0 $x0)
+;;   subsumed by p204313 (MnDiscover_Past_Theme); not a proposal
 (And (Member $e0 discover) (Theme $e0 $x0))
 
-;; p204530  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204283
+;; p204530  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000871 tierB-000889 tierB-001530
-;;   meta-node: (MnJump_Past $e0)
+;;   subsumed by p204283 (MnAgent_Jump_Past); not a proposal
 (And (Member $e0 jump) (Past $e0))
 
-;; p204531  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204317
+;; p204531  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000056 tierB-001487 tierC-000285
-;;   meta-node: (MnOpen_Past $e0)
+;;   subsumed by p204317 (MnOpen_Past_Patient); not a proposal
 (And (Member $e0 open) (Past $e0))
 
-;; p204540  support 4 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204289
+;; p204540  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000782 tierB-001008 tierB-001268
-;;   meta-node: (MnSwim_Ongoing $e0)
+;;   subsumed by p204289 (MnAgent_Swim_Ongoing); not a proposal
 (And (Member $e0 swim) (Ongoing $e0))
 
-;; p204546  support 4 (occ 4)  size 2  root $e0 (event)  depth 2  subsumed by p203087
+;; p204546  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnThemeOfEmmy $e0 $x0)
+;;   subsumed by p203087 (MnForEv_Win_ThemeOfEmmy); not a proposal
 (And (Member $x0 emmy) (Theme $e0 $x0))
 
-;; p204547  support 4 (occ 4)  size 2  root $x0 (entity)  depth 1  subsumed by p203755
+;; p204547  support 4 (occ 4)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierC-000017 tierC-000018 tierC-000121
-;;   meta-node: (MnFamily_Possession $x0 $x1)
+;;   subsumed by p203755 (MnFamily_PossessionOfPerson); not a proposal
 (And (Member $x0 family) (Possession $x0 $x1))
 
-;; p204548  support 4 (occ 4)  size 2  root $e0 (event)  depth 2  subsumed by p203065
+;; p204548  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnPatientOfHotel $e0 $x0)
+;;   subsumed by p203065 (MnAgent_Build_PatientOfHotel); not a proposal
 (And (Member $x0 hotel) (Patient $e0 $x0))
 
-;; p204550  support 4 (occ 4)  size 2  root $e0 (event)  depth 2  subsumed by p203765
+;; p204550  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000409 tierB-001070 tierB-001262
-;;   meta-node: (MnThemeOfOf $e0 $x0 $x1)
+;;   subsumed by p203765 (MnPast_ThemeOfOf); not a proposal
 (And (Of $x0 $x1) (Theme $e0 $x0))
 
-;; p204555  support 4 (occ 5)  size 2  root $e1 (event)  depth 1  subsumed by p203766
+;; p204555  support 4 (occ 5)  size 2  root $e1 (event)  depth 1
 ;;   e.g. tierB-000030 tierB-000087 tierB-001515
-;;   meta-node: (MnThemeEvOfPast $e1 $e0)
+;;   subsumed by p203766 (MnPast_ThemeEvOfPast); not a proposal
 (And (Past $e0) (Theme $e1 $e0))
 
-;; p204557  support 4 (occ 4)  size 2  root $e0 (event)  depth 2  subsumed by p203767
+;; p204557  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000196 tierB-000320 tierB-000779
-;;   meta-node: (MnPatientOfSubsetOf $e0 $x0 $x1)
+;;   subsumed by p203767 (MnPast_PatientOfSubsetOf); not a proposal
 (And (Patient $e0 $x0) (SubsetOf $x0 $x1))
 
-;; p204559  support 4 (occ 4)  size 2  root $e0 (event)  depth 2  subsumed by p203049
+;; p204559  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnThemeOfPossessionFreeSoilParty $e0 $x0)
+;;   subsumed by p203049 (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty); not a proposal
 (And (Possession $x0 free_soil_party) (Theme $e0 $x0))
 
-;; p204560  support 4 (occ 4)  size 2  root $e0 (event)  depth 2  subsumed by p203050
+;; p204560  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnThemeOfPossessionRepublicanParty $e0 $x0)
+;;   subsumed by p203050 (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty); not a proposal
 (And (Possession $x0 republican_party) (Theme $e0 $x0))
 
-;; p205990  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204829
+;; p205990  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnAgentOfCompany_LocationEskisehir $e0 $x0)
+;;   subsumed by p204829 (MnAgentOfCompany_LocationEskisehir_Build); not a proposal
 (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company))
 
-;; p205991  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204836
+;; p205991  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierB-001962 tierC-000089 tierC-000090
-;;   meta-node: (MnAgentOfPerson_Write $e0 $x0)
+;;   subsumed by p204836 (MnAgentOfPerson_Write_Past); not a proposal
 (And (Agent $e0 $x0) (Member $e0 write) (Member $x0 person))
 
-;; p206004  support 3 (occ 5)  size 3  root $e0 (event)  depth 2  subsumed by p204843
+;; p206004  support 3 (occ 5)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierB-000258 tierC-000123 tierC-000124
-;;   meta-node: (MnAgent_ToEvOfTheme $e0 $e1 $x0 $x1)
+;;   subsumed by p204843 (MnAgent_Past_ToEvOfTheme); not a proposal
 (And (Agent $e0 $x0) (Theme $e1 $x1) (To $e0 $e1))
 
-;; p206008  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p204848
+;; p206008  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000412 tierC-000001 tierC-000002
-;;   meta-node: (MnBeforeEvOfPast_Patient $e0 $e1 $x0)
+;;   subsumed by p204848 (MnBeforeEvOfPast_Past_Patient); not a proposal
 (And (Before $e0 $e1) (Past $e1) (Patient $e0 $x0))
 
-;; p206009  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204849
+;; p206009  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierB-000797 tierB-001348 tierB-001412
-;;   meta-node: (MnHolder_ThemeOfCardinalityNum $e0 $x0 $x1)
+;;   subsumed by p204849 (MnHolder_Have_ThemeOfCardinalityNum); not a proposal
 (And (Cardinality $x0 <num>) (Holder $e0 $x1) (Theme $e0 $x0))
 
-;; p206010  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204850
+;; p206010  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierB-000838 tierC-000353 tierC-000354
-;;   meta-node: (MnLocation_PatientOfCardinalityNum $e0 $x0 $x1)
+;;   subsumed by p204850 (MnLocation_Past_PatientOfCardinalityNum); not a proposal
 (And (Cardinality $x0 <num>) (Location $e0 $x1) (Patient $e0 $x0))
 
-;; p206013  support 3 (occ 4)  size 3  root $e1 (event)  depth 2  subsumed by p204854
+;; p206013  support 3 (occ 4)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000370 tierB-000748 tierB-001658
-;;   meta-node: (MnGet_ResultEvOfExperiencer $e1 $e0 $x0)
+;;   subsumed by p204854 (MnGet_Ongoing_ResultEvOfExperiencer); not a proposal
 (And (Experiencer $e0 $x0) (Member $e1 get) (Result $e1 $e0))
 
-;; p206020  support 3 (occ 4)  size 3  root $e1 (event)  depth 2  subsumed by p204854
+;; p206020  support 3 (occ 4)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000370 tierB-000748 tierB-001658
-;;   meta-node: (MnOngoing_ResultEvOfExperiencer $e1 $e0 $x0)
+;;   subsumed by p204854 (MnGet_Ongoing_ResultEvOfExperiencer); not a proposal
 (And (Experiencer $e0 $x0) (Ongoing $e1) (Result $e1 $e0))
 
-;; p206022  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204861
+;; p206022  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEvOfPortray_Win $e0 $e1)
+;;   subsumed by p204861 (MnForEvOfPortray_Win_Past); not a proposal
 (And (For $e0 $e1) (Member $e0 win) (Member $e1 portray))
 
-;; p206023  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204861
+;; p206023  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEvOfPortray_Past $e0 $e1)
+;;   subsumed by p204861 (MnForEvOfPortray_Win_Past); not a proposal
 (And (For $e0 $e1) (Member $e1 portray) (Past $e0))
 
-;; p206024  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204862
+;; p206024  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEvOfPortray_Theme $e0 $e1 $x0)
+;;   subsumed by p204862 (MnForEvOfPortray_Win_Theme); not a proposal
 (And (For $e0 $e1) (Member $e1 portray) (Theme $e0 $x0))
 
-;; p206028  support 3 (occ 6)  size 3  root $e0 (event)  depth 2  subsumed by p204824
+;; p206028  support 3 (occ 6)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000356
-;;   meta-node: (MnThemeOfGroupOfView_Theme $e0 $x0 $x1)
+;;   subsumed by p204824 (MnAgent_ThemeOfGroupOfView_Theme); not a proposal
 (And (GroupOf $x0 view) (Theme $e0 $x0) (Theme $e0 $x1))
 
-;; p206035  support 3 (occ 5)  size 3  root $e1 (event)  depth 2  subsumed by p204827
+;; p206035  support 3 (occ 5)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000942 tierC-000025 tierC-000026
-;;   meta-node: (MnPast_ThemeEvOfLocation $e1 $e0 $x0)
+;;   subsumed by p204827 (MnPast_ThemeEvOfAgent-Location); not a proposal
 (And (Location $e0 $x0) (Past $e1) (Theme $e1 $e0))
 
-;; p206037  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204832
+;; p206037  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnLocationEskisehir_PatientOfHotel $e0 $x0)
+;;   subsumed by p204832 (MnAgent_LocationEskisehir_PatientOfHotel); not a proposal
 (And (Location $e0 eskisehir) (Member $x0 hotel) (Patient $e0 $x0))
 
-;; p206038  support 3 (occ 3)  size 3  root $e1 (event)  depth 2  subsumed by p204852
+;; p206038  support 3 (occ 3)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-001594 tierC-000241 tierC-000242
-;;   meta-node: (MnPast_ResultEvOfBad $e1 $e0)
+;;   subsumed by p204852 (MnPast_ResultEvOfExperiencer-Bad); not a proposal
 (And (Member $e0 bad) (Past $e1) (Result $e1 $e0))
 
-;; p206039  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204894
+;; p206039  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000199 tierC-000200 tierC-000358
-;;   meta-node: (MnBear_PatientOfPerson $e0 $x0)
+;;   subsumed by p204894 (MnBear_Past_PatientOfPerson); not a proposal
 (And (Member $e0 bear) (Member $x0 person) (Patient $e0 $x0))
 
-;; p206040  support 3 (occ 5)  size 3  root $e0 (event)  depth 2  subsumed by p204895
+;; p206040  support 3 (occ 5)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierB-001394 tierC-000025 tierC-000026
-;;   meta-node: (MnBegin_ThemeEvOfPatient $e0 $e1 $x0)
+;;   subsumed by p204895 (MnBegin_ThemeEvOfOngoing-Patient); not a proposal
 (And (Member $e0 begin) (Patient $e1 $x0) (Theme $e0 $e1))
 
-;; p206042  support 3 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p204902
+;; p206042  support 3 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000030 tierB-001515 tierB-001873
-;;   meta-node: (MnStop_ThemeEvOfPast $e0 $e1)
+;;   subsumed by p204902 (MnStop_Past_ThemeEvOfPast); not a proposal
 (And (Member $e0 stop) (Past $e1) (Theme $e0 $e1))
 
-;; p206043  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204903
+;; p206043  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierB-001594 tierC-000241 tierC-000242
-;;   meta-node: (MnPast_PatientOfBad $e0 $x0)
+;;   subsumed by p204903 (MnPast_PatientOfBad_ResultEv); not a proposal
 (And (Member $x0 bad) (Past $e0) (Patient $e0 $x0))
 
-;; p206054  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204846
+;; p206054  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000356
-;;   meta-node: (MnThemeOfPossessionFreeSoilParty_Theme $e0 $x0 $x1)
+;;   subsumed by p204846 (MnAgent_ThemeOfPossessionFreeSoilParty_Theme); not a proposal
 (And (Possession $x0 free_soil_party) (Theme $e0 $x0) (Theme $e0 $x1))
 
-;; p206055  support 3 (occ 3)  size 3  root $e0 (event)  depth 2  subsumed by p204847
+;; p206055  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000356
-;;   meta-node: (MnThemeOfPossessionRepublicanParty_Theme $e0 $x0 $x1)
+;;   subsumed by p204847 (MnAgent_ThemeOfPossessionRepublicanParty_Theme); not a proposal
 (And (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
 
-;; p206793  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p206645
+;; p206793  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000387 tierB-001534 tierB-001963
-;;   meta-node: (MnAgent_Goal_Come $e0 $x0 $x1)
+;;   subsumed by p206645 (MnAgent_Goal_Come_Past); not a proposal
 (And (Agent $e0 $x0) (Goal $e0 $x1) (Member $e0 come))
 
-;; p206796  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p204829
+;; p206796  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnAgent_LocationEskisehir_Build $e0 $x0)
+;;   subsumed by p204829 (MnAgentOfCompany_LocationEskisehir_Build); not a proposal
 (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build))
 
-;; p206797  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p204830
+;; p206797  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnAgent_LocationEskisehir_Past $e0 $x0)
+;;   subsumed by p204830 (MnAgentOfCompany_LocationEskisehir_Past); not a proposal
 (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0))
 
-;; p206798  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p204831
+;; p206798  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnAgent_LocationEskisehir_Patient $e0 $x0 $x1)
+;;   subsumed by p204831 (MnAgentOfCompany_LocationEskisehir_Patient); not a proposal
 (And (Agent $e0 $x0) (Location $e0 eskisehir) (Patient $e0 $x1))
 
-;; p206799  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p206651
+;; p206799  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000257 tierC-000353 tierC-000354
-;;   meta-node: (MnAgent_MannerDirectly_Past $e0 $x0)
+;;   subsumed by p206651 (MnAgent_MannerDirectly_Past_Patient); not a proposal
 (And (Agent $e0 $x0) (Manner $e0 directly) (Past $e0))
 
-;; p206800  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p206651
+;; p206800  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000257 tierC-000353 tierC-000354
-;;   meta-node: (MnAgent_MannerDirectly_Patient $e0 $x0 $x1)
+;;   subsumed by p206651 (MnAgent_MannerDirectly_Past_Patient); not a proposal
 (And (Agent $e0 $x0) (Manner $e0 directly) (Patient $e0 $x1))
 
-;; p206801  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p206652
+;; p206801  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000852 tierB-001342 tierB-001990
-;;   meta-node: (MnAgent_Capture_Past $e0 $x0)
+;;   subsumed by p206652 (MnAgent_Capture_Past_Theme); not a proposal
 (And (Agent $e0 $x0) (Member $e0 capture) (Past $e0))
 
-;; p206802  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p206652
+;; p206802  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000852 tierB-001342 tierB-001990
-;;   meta-node: (MnAgent_Capture_Theme $e0 $x0 $x1)
+;;   subsumed by p206652 (MnAgent_Capture_Past_Theme); not a proposal
 (And (Agent $e0 $x0) (Member $e0 capture) (Theme $e0 $x1))
 
-;; p206810  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p206653
+;; p206810  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-001146 tierC-000047 tierC-000048
-;;   meta-node: (MnAgent_Spend_Past $e0 $x0)
+;;   subsumed by p206653 (MnAgent_Spend_Past_Theme); not a proposal
 (And (Agent $e0 $x0) (Member $e0 spend) (Past $e0))
 
-;; p206811  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p206653
+;; p206811  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-001146 tierC-000047 tierC-000048
-;;   meta-node: (MnAgent_Spend_Theme $e0 $x0 $x1)
+;;   subsumed by p206653 (MnAgent_Spend_Past_Theme); not a proposal
 (And (Agent $e0 $x0) (Member $e0 spend) (Theme $e0 $x1))
 
-;; p206817  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p204836
+;; p206817  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-001962 tierC-000089 tierC-000090
-;;   meta-node: (MnAgent_Write_Past $e0 $x0)
+;;   subsumed by p204836 (MnAgentOfPerson_Write_Past); not a proposal
 (And (Agent $e0 $x0) (Member $e0 write) (Past $e0))
 
-;; p206818  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p204837
+;; p206818  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-001962 tierC-000089 tierC-000090
-;;   meta-node: (MnAgent_Write_Patient $e0 $x0 $x1)
+;;   subsumed by p204837 (MnAgentOfPerson_Write_Patient); not a proposal
 (And (Agent $e0 $x0) (Member $e0 write) (Patient $e0 $x1))
 
-;; p206821  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p204824
+;; p206821  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000159 tierC-000160 tierC-000356
-;;   meta-node: (MnAgent_Theme_Theme $e0 $x0 $x1 $x2)
+;;   subsumed by p204824 (MnAgent_ThemeOfGroupOfView_Theme); not a proposal
 (And (Agent $e0 $x0) (Theme $e0 $x1) (Theme $e0 $x2))
 
-;; p206822  support 3 (occ 5)  size 3  root $e1 (event)  depth 2  subsumed by p204845
+;; p206822  support 3 (occ 5)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000258 tierC-000123 tierC-000124
-;;   meta-node: (MnToEvOfAgent-Theme $e1 $e0 $x0 $x1)
+;;   subsumed by p204845 (MnPast_ToEvOfAgent-Theme); not a proposal
 (And (Agent $e0 $x0) (Theme $e0 $x1) (To $e1 $e0))
 
-;; p206823  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p204848
+;; p206823  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000412 tierC-000001 tierC-000002
-;;   meta-node: (MnBeforeEv_Past_Patient $e0 $e1 $x0)
+;;   subsumed by p204848 (MnBeforeEvOfPast_Past_Patient); not a proposal
 (And (Before $e0 $e1) (Past $e0) (Patient $e0 $x0))
 
-;; p206828  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p206645
+;; p206828  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000387 tierB-001534 tierB-001963
-;;   meta-node: (MnGoal_Come_Past $e0 $x0)
+;;   subsumed by p206645 (MnAgent_Goal_Come_Past); not a proposal
 (And (Goal $e0 $x0) (Member $e0 come) (Past $e0))
 
-;; p206832  support 3 (occ 5)  size 3  root $e1 (event)  depth 2  subsumed by p204834
+;; p206832  support 3 (occ 5)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000942 tierC-000025 tierC-000026
-;;   meta-node: (MnThemeEvOfLocation-Patient $e1 $e0 $x0 $x1)
+;;   subsumed by p204834 (MnAgent_ThemeEvOfLocation-Patient); not a proposal
 (And (Location $e0 $x0) (Patient $e0 $x1) (Theme $e1 $e0))
 
-;; p206833  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p206648
+;; p206833  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnLocationEskisehir_Build_Past $e0)
+;;   subsumed by p206648 (MnAgent_LocationEskisehir_Build_Past); not a proposal
 (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
 
-;; p206834  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p204889
+;; p206834  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnLocationEskisehir_Build_Patient $e0 $x0)
+;;   subsumed by p204889 (MnLocationEskisehir_Build_PatientOfHotel); not a proposal
 (And (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x0))
 
-;; p206835  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p204890
+;; p206835  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnLocationEskisehir_Past_Patient $e0 $x0)
+;;   subsumed by p204890 (MnLocationEskisehir_Past_PatientOfHotel); not a proposal
 (And (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x0))
 
-;; p206836  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p206651
+;; p206836  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000257 tierC-000353 tierC-000354
-;;   meta-node: (MnMannerDirectly_Past_Patient $e0 $x0)
+;;   subsumed by p206651 (MnAgent_MannerDirectly_Past_Patient); not a proposal
 (And (Manner $e0 directly) (Past $e0) (Patient $e0 $x0))
 
-;; p206848  support 3 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p206661
+;; p206848  support 3 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000370 tierB-000748 tierB-001658
-;;   meta-node: (MnGet_Patient_ResultEv $e0 $e1 $x0)
+;;   subsumed by p206661 (MnGet_Ongoing_Patient_ResultEv); not a proposal
 (And (Member $e0 get) (Patient $e0 $x0) (Result $e0 $e1))
 
-;; p206853  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p206653
+;; p206853  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-001146 tierC-000047 tierC-000048
-;;   meta-node: (MnSpend_Past_Theme $e0 $x0)
+;;   subsumed by p206653 (MnAgent_Spend_Past_Theme); not a proposal
 (And (Member $e0 spend) (Past $e0) (Theme $e0 $x0))
 
-;; p206856  support 3 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p204902
+;; p206856  support 3 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000030 tierB-001515 tierB-001873
-;;   meta-node: (MnStop_Past_ThemeEv $e0 $e1)
+;;   subsumed by p204902 (MnStop_Past_ThemeEvOfPast); not a proposal
 (And (Member $e0 stop) (Past $e0) (Theme $e0 $e1))
 
-;; p206863  support 3 (occ 4)  size 3  root $e0 (event)  depth 1  subsumed by p206661
+;; p206863  support 3 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000370 tierB-000748 tierB-001658
-;;   meta-node: (MnOngoing_Patient_ResultEv $e0 $e1 $x0)
+;;   subsumed by p206661 (MnGet_Ongoing_Patient_ResultEv); not a proposal
 (And (Ongoing $e0) (Patient $e0 $x0) (Result $e0 $e1))
 
-;; p206865  support 3 (occ 3)  size 3  root $e0 (event)  depth 1  subsumed by p204875
+;; p206865  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000159 tierC-000160 tierC-000356
-;;   meta-node: (MnPast_Theme_Theme $e0 $x0 $x1)
+;;   subsumed by p204875 (MnPast_ThemeOfGroupOfView_Theme); not a proposal
 (And (Past $e0) (Theme $e0 $x0) (Theme $e0 $x1))
 
-;; p207154  support 3 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p206795
+;; p207154  support 3 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000575 tierB-001086 tierB-001743
-;;   meta-node: (MnAgent_GoalHome $e0 $x0)
+;;   subsumed by p206795 (MnAgent_GoalHome_Past); not a proposal
 (And (Agent $e0 $x0) (Goal $e0 home))
 
-;; p207158  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p204829
+;; p207158  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnAgent_LocationEskisehir $e0 $x0)
+;;   subsumed by p204829 (MnAgentOfCompany_LocationEskisehir_Build); not a proposal
 (And (Agent $e0 $x0) (Location $e0 eskisehir))
 
-;; p207159  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206651
+;; p207159  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000257 tierC-000353 tierC-000354
-;;   meta-node: (MnAgent_MannerDirectly $e0 $x0)
+;;   subsumed by p206651 (MnAgent_MannerDirectly_Past_Patient); not a proposal
 (And (Agent $e0 $x0) (Manner $e0 directly))
 
-;; p207161  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206652
+;; p207161  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000852 tierB-001342 tierB-001990
-;;   meta-node: (MnAgent_Capture $e0 $x0)
+;;   subsumed by p206652 (MnAgent_Capture_Past_Theme); not a proposal
 (And (Agent $e0 $x0) (Member $e0 capture))
 
-;; p207163  support 3 (occ 5)  size 2  root $e0 (event)  depth 1  subsumed by p206804
+;; p207163  support 3 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000728 tierC-000025 tierC-000026
-;;   meta-node: (MnAgent_Create $e0 $x0)
+;;   subsumed by p206804 (MnAgent_Create_Patient); not a proposal
 (And (Agent $e0 $x0) (Member $e0 create))
 
-;; p207164  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206805
+;; p207164  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000781 tierB-001245 tierB-001250
-;;   meta-node: (MnAgent_Draw $e0 $x0)
+;;   subsumed by p206805 (MnAgent_Draw_Past); not a proposal
 (And (Agent $e0 $x0) (Member $e0 draw))
 
-;; p207170  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206653
+;; p207170  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001146 tierC-000047 tierC-000048
-;;   meta-node: (MnAgent_Spend $e0 $x0)
+;;   subsumed by p206653 (MnAgent_Spend_Past_Theme); not a proposal
 (And (Agent $e0 $x0) (Member $e0 spend))
 
-;; p207173  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206816
+;; p207173  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001868 tierC-000087 tierC-000088
-;;   meta-node: (MnAgent_Welcome $e0 $x0)
+;;   subsumed by p206816 (MnAgent_Welcome_Past); not a proposal
 (And (Agent $e0 $x0) (Member $e0 welcome))
 
-;; p207179  support 3 (occ 3)  size 2  root $e0 (event)  depth 2  subsumed by p205996
+;; p207179  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000045 tierB-000132 tierB-000298
-;;   meta-node: (MnAgentOfPlane $e0 $x0)
+;;   subsumed by p205996 (MnAgentOfPlane_Past); not a proposal
 (And (Agent $e0 $x0) (Member $x0 plane))
 
-;; p207181  support 3 (occ 3)  size 2  root $e1 (event)  depth 2  subsumed by p206000
+;; p207181  support 3 (occ 3)  size 2  root $e1 (event)  depth 2
 ;;   e.g. tierB-000316 tierB-001720 tierB-001911
-;;   meta-node: (MnStimulusEvOfAgent $e1 $e0 $x0)
+;;   subsumed by p206000 (MnPast_StimulusEvOfAgent); not a proposal
 (And (Agent $e0 $x0) (Stimulus $e1 $e0))
 
-;; p207196  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206006
+;; p207196  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001625 tierC-000311 tierC-000312
-;;   meta-node: (MnBecauseEv_Past $e0 $e1)
+;;   subsumed by p206006 (MnBecauseEvOfPast_Past); not a proposal
 (And (Because $e0 $e1) (Past $e0))
 
-;; p207197  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206006
+;; p207197  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001625 tierC-000311 tierC-000312
-;;   meta-node: (MnBecauseEvOfPast $e0 $e1)
+;;   subsumed by p206006 (MnBecauseEvOfPast_Past); not a proposal
 (And (Because $e0 $e1) (Past $e1))
 
-;; p207198  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206007
+;; p207198  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001134 tierC-000121 tierC-000122
-;;   meta-node: (MnBeforeEv_MeasureDurationNumYear $e0 $e1)
+;;   subsumed by p206007 (MnBeforeEvOfPast_MeasureDurationNumYear); not a proposal
 (And (Before $e0 $e1) (Measure $e0 duration <num> year))
 
-;; p207199  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p204848
+;; p207199  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000412 tierC-000001 tierC-000002
-;;   meta-node: (MnBeforeEv_Patient $e0 $e1 $x0)
+;;   subsumed by p204848 (MnBeforeEvOfPast_Past_Patient); not a proposal
 (And (Before $e0 $e1) (Patient $e0 $x0))
 
-;; p207200  support 3 (occ 3)  size 2  root $e0 (event)  depth 2  subsumed by p206824
+;; p207200  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-001134 tierB-001302 tierC-000002
-;;   meta-node: (MnBeforeEvOfPatient $e0 $e1 $x0)
+;;   subsumed by p206824 (MnBeforeEvOfPast-Patient); not a proposal
 (And (Before $e0 $e1) (Patient $e1 $x0))
 
-;; p207209  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206825
+;; p207209  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000411 tierB-001667 tierC-000014
-;;   meta-node: (MnExperiencer_In $e0 $x0 $x1)
+;;   subsumed by p206825 (MnExperiencer_In_Past); not a proposal
 (And (Experiencer $e0 $x0) (In $e0 $x1))
 
-;; p207218  support 3 (occ 3)  size 2  root $e0 (event)  depth 2  subsumed by p204861
+;; p207218  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEvOfPortray $e0 $e1)
+;;   subsumed by p204861 (MnForEvOfPortray_Win_Past); not a proposal
 (And (For $e0 $e1) (Member $e1 portray))
 
-;; p207221  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206827
+;; p207221  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001563 tierB-001579 tierB-001902
-;;   meta-node: (MnGoal_MannerQuickly $e0 $x0)
+;;   subsumed by p206827 (MnGoal_MannerQuickly_Past); not a proposal
 (And (Goal $e0 $x0) (Manner $e0 quickly))
 
-;; p207222  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206645
+;; p207222  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000387 tierB-001534 tierB-001963
-;;   meta-node: (MnGoal_Come $e0 $x0)
+;;   subsumed by p206645 (MnAgent_Goal_Come_Past); not a proposal
 (And (Goal $e0 $x0) (Member $e0 come))
 
-;; p207224  support 3 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p206795
+;; p207224  support 3 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000575 tierB-001086 tierB-001743
-;;   meta-node: (MnGoalHome_Past $e0)
+;;   subsumed by p206795 (MnAgent_GoalHome_Past); not a proposal
 (And (Goal $e0 home) (Past $e0))
 
-;; p207228  support 3 (occ 5)  size 2  root $e0 (event)  depth 1  subsumed by p206829
+;; p207228  support 3 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000072 tierC-000213 tierC-000214
-;;   meta-node: (MnInstrument_Build $e0 $x0)
+;;   subsumed by p206829 (MnInstrument_Build_Patient); not a proposal
 (And (Instrument $e0 $x0) (Member $e0 build))
 
-;; p207235  support 3 (occ 3)  size 2  root $e0 (event)  depth 2  subsumed by p206034
+;; p207235  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000305 tierC-000243 tierC-000244
-;;   meta-node: (MnLocationOfBench $e0 $x0)
+;;   subsumed by p206034 (MnLocationOfBench_Past); not a proposal
 (And (Location $e0 $x0) (Member $x0 bench))
 
-;; p207236  support 3 (occ 5)  size 2  root $e0 (event)  depth 2  subsumed by p206033
+;; p207236  support 3 (occ 5)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-001003 tierC-000041 tierC-000042
-;;   meta-node: (MnLocationOfCouch $e0 $x0)
+;;   subsumed by p206033 (MnLocationOfCouch_Sleep); not a proposal
 (And (Location $e0 $x0) (Member $x0 couch))
 
-;; p207237  support 3 (occ 3)  size 2  root $e0 (event)  depth 2  subsumed by p206032
+;; p207237  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000048 tierB-000371 tierB-000524
-;;   meta-node: (MnLocationOfHouse $e0 $x0)
+;;   subsumed by p206032 (MnLocationOfHouse_Live); not a proposal
 (And (Location $e0 $x0) (Member $x0 house))
 
-;; p207241  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p204829
+;; p207241  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnLocationEskisehir_Build $e0)
+;;   subsumed by p204829 (MnAgentOfCompany_LocationEskisehir_Build); not a proposal
 (And (Location $e0 eskisehir) (Member $e0 build))
 
-;; p207242  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p204830
+;; p207242  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnLocationEskisehir_Past $e0)
+;;   subsumed by p204830 (MnAgentOfCompany_LocationEskisehir_Past); not a proposal
 (And (Location $e0 eskisehir) (Past $e0))
 
-;; p207243  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p204831
+;; p207243  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
-;;   meta-node: (MnLocationEskisehir_Patient $e0 $x0)
+;;   subsumed by p204831 (MnAgentOfCompany_LocationEskisehir_Patient); not a proposal
 (And (Location $e0 eskisehir) (Patient $e0 $x0))
 
-;; p207246  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206651
+;; p207246  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000257 tierC-000353 tierC-000354
-;;   meta-node: (MnMannerDirectly_Patient $e0 $x0)
+;;   subsumed by p206651 (MnAgent_MannerDirectly_Past_Patient); not a proposal
 (And (Manner $e0 directly) (Patient $e0 $x0))
 
-;; p207250  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206837
+;; p207250  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000462 tierC-000231 tierC-000232
-;;   meta-node: (MnAdd_Past $e0)
+;;   subsumed by p206837 (MnAdd_Past_Theme); not a proposal
 (And (Member $e0 add) (Past $e0))
 
-;; p207257  support 3 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p206838
+;; p207257  support 3 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000367 tierB-000368 tierB-001690
-;;   meta-node: (MnBuy_Past $e0)
+;;   subsumed by p206838 (MnBuy_Past_Theme); not a proposal
 (And (Member $e0 buy) (Past $e0))
 
-;; p207258  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206839
+;; p207258  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000775 tierB-000805 tierB-001649
-;;   meta-node: (MnCause_Patient $e0 $x0)
+;;   subsumed by p206839 (MnCause_Past_Patient); not a proposal
 (And (Member $e0 cause) (Patient $e0 $x0))
 
-;; p207262  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206841
+;; p207262  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001575 tierC-000131 tierC-000132
-;;   meta-node: (MnCompose_Past $e0)
+;;   subsumed by p206841 (MnCompose_Past_Patient); not a proposal
 (And (Member $e0 compose) (Past $e0))
 
-;; p207263  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206841
+;; p207263  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001575 tierC-000131 tierC-000132
-;;   meta-node: (MnCompose_Patient $e0 $x0)
+;;   subsumed by p206841 (MnCompose_Past_Patient); not a proposal
 (And (Member $e0 compose) (Patient $e0 $x0))
 
-;; p207265  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206842
+;; p207265  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000089 tierB-000728 tierB-000863
-;;   meta-node: (MnCreate_Past $e0)
+;;   subsumed by p206842 (MnCreate_Past_Patient); not a proposal
 (And (Member $e0 create) (Past $e0))
 
-;; p207267  support 3 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p206843
+;; p207267  support 3 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000119 tierC-000120 tierC-000184
-;;   meta-node: (MnDesign_Past $e0)
+;;   subsumed by p206843 (MnDesign_Past_Patient); not a proposal
 (And (Member $e0 design) (Past $e0))
 
-;; p207268  support 3 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p206843
+;; p207268  support 3 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000119 tierC-000120 tierC-000184
-;;   meta-node: (MnDesign_Patient $e0 $x0)
+;;   subsumed by p206843 (MnDesign_Past_Patient); not a proposal
 (And (Member $e0 design) (Patient $e0 $x0))
 
-;; p207269  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206844
+;; p207269  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000838 tierC-000199 tierC-000200
-;;   meta-node: (MnDie_Past $e0)
+;;   subsumed by p206844 (MnDie_Past_Patient); not a proposal
 (And (Member $e0 die) (Past $e0))
 
-;; p207270  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206845
+;; p207270  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000338 tierB-000616 tierB-001551
-;;   meta-node: (MnEat_Past $e0)
+;;   subsumed by p206845 (MnEat_Past_Patient); not a proposal
 (And (Member $e0 eat) (Past $e0))
 
-;; p207271  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206845
+;; p207271  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000338 tierB-000616 tierB-001551
-;;   meta-node: (MnEat_Patient $e0 $x0)
+;;   subsumed by p206845 (MnEat_Past_Patient); not a proposal
 (And (Member $e0 eat) (Patient $e0 $x0))
 
-;; p207273  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206846
+;; p207273  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000456 tierB-000779 tierB-001364
-;;   meta-node: (MnFall_Source $e0 $x0)
+;;   subsumed by p206846 (MnFall_Past_Source); not a proposal
 (And (Member $e0 fall) (Source $e0 $x0))
 
-;; p207281  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206849
+;; p207281  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000680 tierB-000690 tierB-000965
-;;   meta-node: (MnIncrease_Past $e0)
+;;   subsumed by p206849 (MnIncrease_Past_Patient); not a proposal
 (And (Member $e0 increase) (Past $e0))
 
-;; p207282  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206849
+;; p207282  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000680 tierB-000690 tierB-000965
-;;   meta-node: (MnIncrease_Patient $e0 $x0)
+;;   subsumed by p206849 (MnIncrease_Past_Patient); not a proposal
 (And (Member $e0 increase) (Patient $e0 $x0))
 
-;; p207284  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206807
+;; p207284  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001086 tierB-001782 tierC-000019
-;;   meta-node: (MnLead_Theme $e0 $x0)
+;;   subsumed by p206807 (MnAgent_Lead_Theme); not a proposal
 (And (Member $e0 lead) (Theme $e0 $x0))
 
-;; p207285  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206850
+;; p207285  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000004 tierB-000425 tierB-000747
-;;   meta-node: (MnLeave_Patient $e0 $x0)
+;;   subsumed by p206850 (MnLeave_Patient_ResultEv); not a proposal
 (And (Member $e0 leave) (Patient $e0 $x0))
 
-;; p207286  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206015
+;; p207286  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000004 tierB-000425 tierB-000747
-;;   meta-node: (MnLeave_ResultEv $e0 $e1)
+;;   subsumed by p206015 (MnLeave_ResultEvOfExperiencer); not a proposal
 (And (Member $e0 leave) (Result $e0 $e1))
 
-;; p207289  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206809
+;; p207289  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001125 tierB-001433 tierB-001840
-;;   meta-node: (MnPlay_Ongoing $e0)
+;;   subsumed by p206809 (MnAgent_Play_Ongoing); not a proposal
 (And (Member $e0 play) (Ongoing $e0))
 
-;; p207296  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206653
+;; p207296  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001146 tierC-000047 tierC-000048
-;;   meta-node: (MnSpend_Past $e0)
+;;   subsumed by p206653 (MnAgent_Spend_Past_Theme); not a proposal
 (And (Member $e0 spend) (Past $e0))
 
-;; p207297  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206653
+;; p207297  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001146 tierC-000047 tierC-000048
-;;   meta-node: (MnSpend_Theme $e0 $x0)
+;;   subsumed by p206653 (MnAgent_Spend_Past_Theme); not a proposal
 (And (Member $e0 spend) (Theme $e0 $x0))
 
-;; p207298  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206854
+;; p207298  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000676 tierB-001299 tierB-001604
-;;   meta-node: (MnStand_Ongoing $e0)
+;;   subsumed by p206854 (MnStand_Ongoing_Past); not a proposal
 (And (Member $e0 stand) (Ongoing $e0))
 
-;; p207299  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206855
+;; p207299  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000383 tierB-000482 tierB-001027
-;;   meta-node: (MnStick_Past $e0)
+;;   subsumed by p206855 (MnStick_Past_Patient); not a proposal
 (And (Member $e0 stick) (Past $e0))
 
-;; p207300  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206855
+;; p207300  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000383 tierB-000482 tierB-001027
-;;   meta-node: (MnStick_Patient $e0 $x0)
+;;   subsumed by p206855 (MnStick_Past_Patient); not a proposal
 (And (Member $e0 stick) (Patient $e0 $x0))
 
-;; p207301  support 3 (occ 4)  size 2  root $e0 (event)  depth 1  subsumed by p204902
+;; p207301  support 3 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000030 tierB-001515 tierB-001873
-;;   meta-node: (MnStop_ThemeEv $e0 $e1)
+;;   subsumed by p204902 (MnStop_Past_ThemeEvOfPast); not a proposal
 (And (Member $e0 stop) (Theme $e0 $e1))
 
-;; p207309  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206815
+;; p207309  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000258 tierB-000520 tierB-001800
-;;   meta-node: (MnWatch_Theme $e0 $x0)
+;;   subsumed by p206815 (MnAgent_Watch_Theme); not a proposal
 (And (Member $e0 watch) (Theme $e0 $x0))
 
-;; p207310  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206816
+;; p207310  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001868 tierC-000087 tierC-000088
-;;   meta-node: (MnWelcome_Past $e0)
+;;   subsumed by p206816 (MnAgent_Welcome_Past); not a proposal
 (And (Member $e0 welcome) (Past $e0))
 
-;; p207315  support 3 (occ 3)  size 2  root $e0 (event)  depth 2  subsumed by p206044
+;; p207315  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000890 tierB-001163 tierB-001302
-;;   meta-node: (MnPatientOfFire $e0 $x0)
+;;   subsumed by p206044 (MnPast_PatientOfFire); not a proposal
 (And (Member $x0 fire) (Patient $e0 $x0))
 
-;; p207321  support 3 (occ 3)  size 2  root $e0 (event)  depth 2  subsumed by p206046
+;; p207321  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000876 tierB-001070 tierB-001423
-;;   meta-node: (MnThemeOfPicture $e0 $x0)
+;;   subsumed by p206046 (MnPast_ThemeOfPicture); not a proposal
 (And (Member $x0 picture) (Theme $e0 $x0))
 
-;; p207323  support 3 (occ 3)  size 2  root $e0 (event)  depth 2  subsumed by p206047
+;; p207323  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-001156 tierC-000011 tierC-000012
-;;   meta-node: (MnThemeOfSong $e0 $x0)
+;;   subsumed by p206047 (MnPast_ThemeOfSong); not a proposal
 (And (Member $x0 song) (Theme $e0 $x0))
 
-;; p207340  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p206864
+;; p207340  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-001894 tierC-000283 tierC-000284
-;;   meta-node: (MnPatient_TimeNight $e0 $x0)
+;;   subsumed by p206864 (MnPast_Patient_TimeNight); not a proposal
 (And (Patient $e0 $x0) (Time $e0 night))
 
-;; p207343  support 3 (occ 3)  size 2  root $e1 (event)  depth 2  subsumed by p206052
+;; p207343  support 3 (occ 3)  size 2  root $e1 (event)  depth 2
 ;;   e.g. tierB-000485 tierB-000547 tierB-001219
-;;   meta-node: (MnThemeEvOfRecipient $e1 $e0 $x0)
+;;   subsumed by p206052 (MnPast_ThemeEvOfRecipient); not a proposal
 (And (Recipient $e0 $x0) (Theme $e1 $e0))
 
-;; p207344  support 3 (occ 3)  size 2  root $e0 (event)  depth 1  subsumed by p204824
+;; p207344  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000159 tierC-000160 tierC-000356
-;;   meta-node: (MnTheme_Theme $e0 $x0 $x1)
+;;   subsumed by p204824 (MnAgent_ThemeOfGroupOfView_Theme); not a proposal
 (And (Theme $e0 $x0) (Theme $e0 $x1))

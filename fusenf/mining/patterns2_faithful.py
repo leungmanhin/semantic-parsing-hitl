@@ -29,7 +29,8 @@ addition — it is kept as ``miner_dominated`` for traceability only. Closed uni
 meta-node proposals, the subsumed ones the same evidence in smaller pieces
 (``subsumed_by`` names the closed unit). Units of size 1 are subtrees by the letter and
 stay in the JSONL and the counts, but they are NOT proposals (a one-atom pack is a rename):
-the .metta renders proposals only (owner 2026-09-08). The proposed meta-node for a unit is
+the .metta renders size >= 2 units only, and only the CLOSED ones are proposals — a subsumed
+unit is rendered for reading and names its cover (owner 2026-09-08). The proposed meta-node is
 ``(Mn<Name> <root> <other variables…>)`` with a batch-1 style readable name built from the
 unit's heads and constants along the tree (Member / GroupOf contribute their constant,
 roles their name, Ev / Fn for an event- or function-valued filler, Of<spec> for a filler
@@ -213,22 +214,12 @@ def main():
             "support": r["support"], "occurrences": r["occurrences"], "size": r["size"],
             "root": root, "root_kind": kind, "depth": depth, "nodes": n_nodes,
             "miner_dominated": bool(r.get("dominated", False)), "miner_mode": r["mode"],
-            "proposal": r["size"] >= 2, "meta_name": meta_name(r["atoms"]) if r["size"] >= 2 else None,
+            "meta_name": meta_name(r["atoms"]) if r["size"] >= 2 else None,
             "examples": r["examples"][:3], "tiers": r["tiers"], "per_tier": r["per_tier"],
             "ids": r["ids"], "variant": "faithful",
         })
     units.sort(key=lambda u: (-u["support"], u["pattern_id"]))
     joins.sort(key=lambda r: (-r["support"], r["pattern_id"]))
-    names = collections.Counter(u["meta_name"] for u in units if u["proposal"])
-    n_collide = 0
-    for u in units:
-        if not u["proposal"]:
-            u["meta_node"] = None
-            continue
-        if names[u["meta_name"]] > 1:
-            u["meta_name"] = f"{u['meta_name']}_{u['pattern_id']}"
-            n_collide += 1
-        u["meta_node"] = meta_node(u["meta_name"], u["root"], u["atoms"])
     by_set = collections.defaultdict(list)          # closure within the faithful units
     for u in units:
         by_set[frozenset(u["ids"])].append(u)
@@ -238,6 +229,20 @@ def main():
             covers = [v for v in group if v["size"] > u["size"] and contains(v["atoms"], u["atoms"])]
             u["closed"] = not covers
             u["subsumed_by"] = covers[0]["pattern_id"] if covers else None   # the largest cover
+    # proposals = closed units of size >= 2 (a subsumed unit is the same evidence in fewer atoms; a
+    # one-atom pack is a rename); meta-node names for proposals only, id-suffixed on a collision
+    for u in units:
+        u["proposal"] = u["closed"] and u["size"] >= 2
+    names = collections.Counter(u["meta_name"] for u in units if u["proposal"])
+    n_collide = 0
+    for u in units:
+        if not u["proposal"]:
+            u["meta_name"], u["meta_node"] = None, None
+            continue
+        if names[u["meta_name"]] > 1:
+            u["meta_name"] = f"{u['meta_name']}_{u['pattern_id']}"
+            n_collide += 1
+        u["meta_node"] = meta_node(u["meta_name"], u["root"], u["atoms"])
 
     # ---- jsonl ----
     p_jsonl = os.path.join(out_dir, "patterns2_faithful.jsonl")
@@ -263,13 +268,14 @@ def main():
                     "within this view (the miner's own flag ranges over the full inventory, lifted patterns and joins "
                     "included, and is kept as miner_dominated); closed units are the meta-node proposals, subsumed units "
                     "the same evidence in fewer atoms (subsumed_by names the covering unit)"),
-        ("meta-node", "(Mn<Name> <root> <other variables>) for units of size >= 2 — Name = the unit's heads and constants in atom "
+        ("meta-node", "(Mn<Name> <root> <other variables>) for proposals = closed units of size >= 2 — Name = the unit's heads and constants in atom "
                       "order along the tree (Member / GroupOf give their constant, roles their name, Ev / Fn for an event- or "
                       "function-valued filler, Of<spec> for a filler with atoms of its own, ~NEG a Neg suffix; root tokens joined with "
                       "'_', tokens inside a nested spec with '-'), the pattern id appended "
                       f"when two units would share a name ({n_collide} here); provisional; pack rule = (Implication (And <atoms>) (Mn<Name> …))"),
-        ("single-atom units", "subtrees by the letter, kept in the JSONL and the counts; not proposals (a one-atom pack is a rename), "
-                              "so not rendered in the .metta"),
+        ("proposals", "closed units of size >= 2 (flag `proposal`); a subsumed unit is the same evidence in fewer atoms and is "
+                      "rendered for reading only; single-atom units are subtrees by the letter, kept in the JSONL and the counts, "
+                      "but a one-atom pack is a rename, so they are not rendered"),
     ]
 
     # ---- md ----
@@ -328,20 +334,22 @@ def main():
         fh.write(";;\n;; RECORD FORMAT (every record is one unit = one rooted subtree)\n"
                  ";;   ;; <pattern id>  support <records> (occ <matches>)  size <atoms>  root <variable> (<kind>)  depth <d>\n"
                  ";;   ;;   e.g. <up to three supporting record ids>\n"
-                 ";;   ;;   meta-node: (Mn<Name> <root> <other variables>)\n"
+                 ";;   ;;   meta-node: (Mn<Name> <root> <other variables>)      (closed units; a subsumed unit names its cover instead)\n"
                  ";;   <the unit as a conjunctive query>\n"
                  ";; Sections: CLOSED UNITS (the meta-node proposals) then SUBSUMED UNITS (a larger unit on the same records\n"
                  ";; contains them); each sorted by support desc, then pattern id. Single-atom units are not rendered.\n")
+        by_id = {u["pattern_id"]: u for u in units}
         for title, seq in (("CLOSED UNITS", [u for u in closed if u["size"] >= 2]),
                            ("SUBSUMED UNITS", [u for u in units if not u["closed"] and u["size"] >= 2])):
             fh.write(f"\n;; ==================== {title}: {len(seq)} of {len(units)} rooted-subtree units "
                      f"(k = {k}, support >= {min_support} of {n_docs} records) ====================\n")
             for u in seq:
                 fh.write(f"\n;; {u['pattern_id']}  support {u['support']} (occ {u['occurrences']})  size {u['size']}  "
-                         f"root {u['root']} ({u['root_kind']})  depth {u['depth']}"
-                         + ("" if u["closed"] else f"  subsumed by {u['subsumed_by']}") + "\n"
+                         f"root {u['root']} ({u['root_kind']})  depth {u['depth']}\n"
                          f";;   e.g. {' '.join(u['examples'])}\n"
-                         f";;   meta-node: {u['meta_node']}\n{u['query']}\n")
+                         + (f";;   meta-node: {u['meta_node']}\n" if u["closed"] else
+                            f";;   subsumed by {u['subsumed_by']} ({by_id[u['subsumed_by']]['meta_name']}); not a proposal\n")
+                         + f"{u['query']}\n")
     print(f"{os.path.basename(args.patterns)}: {len(rows)} patterns -> {len(units)} rooted-subtree units "
           f"({len(closed)} closed; {sum(1 for u in closed if u['size'] >= 2)} proposals, {n_collide} name collisions), "
           f"{len(joins)} joins excluded, {n_lifted} lifted excluded")
