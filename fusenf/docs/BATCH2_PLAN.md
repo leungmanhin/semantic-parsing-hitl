@@ -127,6 +127,15 @@ runs under its `DISPATCH.md`-inventoried brief (zero pending); parse ops = 5-ite
 load-balanced batches, ~8-agent sub-groups, disk-diff recovery; owner commits everything;
 append to `PAPER_NOTES.md` at decision time.
 
+**Amendment 2026-09-08 (owner; #53 confluence, deferred to the candidate stage):** the rewriter's
+fixed application order is determinism, not confluence, and the batch-1 "overlap tests on Tier A"
+were never implemented. Before the H rule set is rewritten in: (1) assert orthogonality in
+`combine_rules.py` (no symbol on one rule's LHS and another's RHS; no two pack LHSs unifying on a
+shared atom), (2) a critical-pair joinability check for the overlaps that remain, (3) the Tier A
+permutation test as the empirical backstop; pack-set selection must pick non-conflicting frames
+(the 728 faithful §4.3.1 proposals overlap heavily), and packs must be mined on, or aligned with,
+the post-lexical-collapse form. Detail: memory deferred-topics #53.
+
 ## A — Retroactive provenance audit (#7)
 
 - **Scope**: collect the distinct record ids cited in `provenance.examples` across

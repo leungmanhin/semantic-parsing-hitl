@@ -160,6 +160,13 @@ Sections follow a prospective paper skeleton; reorganize freely at writing time.
   instead of a confluence proof; termination argued (idempotent symbol rewrites;
   strictly-reducing one-direction structural rules). Orphan sweep = a declared projection,
   M5-checked.
+- Confluence, batch-2 (owner 2026-09-08, #53, deferred to the candidate stage): the fixed order
+  is determinism, not confluence, and no overlap test exists; plan = orthogonality asserted by
+  the combiner + critical-pair joinability for residual overlaps (Newman) + Tier A permutation
+  test; §4.3.1 packs overlap (Agent_Past / Past_Theme / Agent_Past_Theme) and were mined on
+  unconsolidated records, so pack selection and lexical-collapse direction must be aligned.
+  Rejected alternative: a formal confluence proof for the whole calculus (not constructible
+  for an open lexical alphabet; the paper never constructs it either).
 
 ## 8. Metrics (design rationales; numbers live in eval/)
 
