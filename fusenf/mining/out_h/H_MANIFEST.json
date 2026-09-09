@@ -513,16 +513,15 @@
       "threshold": "MI of a perfect co-occurrence over 7 records = H(7/N) = 0.0298 bits on H (--mi-anchor-records 7; ~6x the Bonferroni level 0.0053); near-miss value = 5 records; recording floor = 3 records",
       "ceiling": "97th percentile of unit support = 27 records on H (1.2%), 12 on item-E (--cap-percentile 97; --support-cap-frac overrides)",
       "calibration": "ceiling x threshold table with median Jaccard of the passes; the claim holds only near a 1% ceiling; the record-count anchor keeps the perfectly co-occurring support-3..5 paraphrase pairs out (the claim alone would accept 0.015 bits)",
-      "containment": "tagged not gated; same-records passes rendered as families: paraphrase = distinct sentences (equiv_class/text) < 3 or >= half duplicates, else distinct; n_distinct_sentences recorded",
       "jaccard": "reported as the paper's consequence, not gated",
       "prior": "OFF",
-      "conditional_MI": "not used (addition)"
+      "conditional_MI": "not used (addition)",
+      "record": "one record per passing pair: units, record counts + distinct sentences behind the shared records, MI, Jaccard, variable alignment found by matching both units in every shared record (holds-in count), merged feature, and the pack rule (Implication (And <merged>) (Mn<Name> <vars>)); flags: contained (= part-of), no shared skolem; kinds and families dropped (owner 2026-09-09)"
      },
      "outputs": [
-      "mining/out_h/mi_faithful.jsonl (3,300 pairs at the floor)",
-      "mining/out_h/mi_faithful_families.jsonl",
-      "mining/out_h/mi_faithful.md (calibration table, dial, families, passes, near misses under/over the ceiling)",
-      "mining/out_h/mi_faithful.metta (rendering only, 218 lines; no decision dates)",
+      "mining/out_h/mi_faithful.jsonl (3,300 pairs at the floor; alignment + rule on the passes)",
+      "mining/out_h/mi_faithful.md (calibration table, dial, passes with rules, near misses under/over the ceiling)",
+      "mining/out_h/mi_faithful.metta (rendering only, 761 lines; one uniform record per pass ending in its Implication; no decision dates)",
       "mining/out_h/mi_faithful_notes.md",
       "mining/out_ecmp/mi_faithful.*"
      ],
@@ -531,41 +530,33 @@
        "pairs": 1056331,
        "recorded": 3300,
        "pass": 104,
-       "contained": 77,
-       "same_records_pairs": 10,
-       "families": {
-        "total": 5,
-        "paraphrase": 1,
-        "distinct": 4
-       },
-       "overlapping": 17,
-       "overlapping_tight_ge_0.8": 8,
+       "part_of": 77,
+       "genuine": 27,
+       "distinct_rules": 73,
+       "genuine_rules": 24,
+       "alignment_full": 100,
+       "no_shared_skolem": 6,
        "median_jaccard_passes": 0.83,
-       "near_misses_under_ceiling": 64,
-       "over_ceiling_not_contained": 25,
-       "top_overlapping": [
-        "Holder+have ~ Holder+Theme 27/26/26",
-        "Experiencer+Past+Result ~ Past+Patient+Result 17/16/16",
-        "Before halves 12/11/11",
-        "aspectual halves begin/start + Ongoing",
+       "near_misses_under_ceiling": 208,
+       "over_ceiling": 113,
+       "genuine_rules_examples": [
+        "MnHolder_Have_Theme from Holder+have ~ Holder+Theme 27/26/26",
+        "MnAgent_Agent_Ongoing_ThemeEv (subject-control join) from the aspectual halves 10/10",
+        "resultative with tense 17/16/16",
+        "Before halves",
+        "purpose infinitive",
         "build+Patient ~ build+Past"
        ],
-       "over_ceiling_best": "Experiencer+Result ~ Patient+Result 28/27/27 J 0.96 (one record above the ceiling; recovered by the NMI addition)",
-       "reading": "mostly §4.3.1 subsumption restated; genuine yield = rooted halves of constructions (have frame, aspectual, resultative, Before, purpose) = join shapes / cross-k conjunctions for the candidate stage"
+       "over_ceiling_best": "Experiencer+Result ~ Patient+Result 28/27/27 J 0.96 -> recovered by the NMI addition as MnExperiencer_Patient_ResultEv = join p200308",
+       "reading": "mostly §4.3.1 subsumption restated; genuine yield = rooted halves of constructions written out as joins / frames with tense"
       },
       "item_E": {
        "ceiling": 12,
        "threshold_bits": 0.0753,
        "pass": 106,
-       "same_records_pairs": 20,
-       "families": {
-        "total": 9,
-        "paraphrase": 8,
-        "distinct": 1
-       },
-       "overlapping": 2,
-       "near_misses": 490,
-       "over_ceiling": 39
+       "part_of": 84,
+       "near_misses": 860,
+       "over_ceiling": 105
       }
      },
      "determinism": "byte-identical re-runs (4 files) on both substrates; ~1 s"
@@ -573,36 +564,25 @@
     "additions_nmi": {
      "gate": "normalised MI = MI / max(H(A),H(B)) >= 0.8, no ceiling (our reading of 'very high'; support-free)",
      "outputs": [
-      "mining/out_h/mi_additions_nmi.{jsonl,md,metta} + _families.jsonl",
+      "mining/out_h/mi_additions_nmi.{jsonl,md,metta} (17k-line metta)",
       "mining/out_ecmp/mi_additions_nmi.*"
      ],
      "results": {
       "H": {
        "pass": 2448,
-       "contained": 770,
-       "same_records_pairs": 1667,
-       "families": {
-        "total": 57,
-        "paraphrase": 24,
-        "distinct": 33
-       },
-       "overlapping": 11,
-       "near_misses_0.7": 1820,
-       "delta_vs_faithful": "adds the rare perfect pairs (support-3..5 families incl. small distinct ones) and the tight pairs just above the ceiling (the resultative); admits the paraphrase artefact in bulk"
+       "part_of": 770,
+       "no_shared_skolem": 318,
+       "near_misses_0.7": 2120,
+       "delta_vs_faithful": "adds the rare perfect pairs (support-3..5, mostly near-duplicate records) and the tight pairs just above the ceiling (the resultative)"
       },
       "item_E": {
        "pass": 9990,
-       "families": {
-        "total": 178,
-        "paraphrase": 160,
-        "distinct": 18
-       },
-       "overlapping": 16
+       "part_of": 2543
       }
      }
     }
    },
-   "history": "2026-09-08 first build gated on NMI (cap 10%, then no cap); 2026-09-09 owner: raw MI + ceiling = faithful, NMI = addition; family label 'construction' renamed 'distinct'; label rule = real support < 3 or mostly duplicates"
+   "history": "2026-09-08 first build gated on NMI (cap 10%, then no cap); 2026-09-09 owner: raw MI + ceiling = faithful, NMI = addition; family label 'construction' renamed 'distinct'; label rule = real support < 3 or mostly duplicates; 2026-09-09 (later): kinds + families dropped from the rendering (owner: confusing) → uniform pair records with variable alignment through the shared records and the Implication each pair would become"
   }
  }
 }

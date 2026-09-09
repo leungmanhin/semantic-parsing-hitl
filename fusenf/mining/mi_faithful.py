@@ -14,49 +14,48 @@ subtrees):
   * MI        exact pairwise mutual information of the two binary presence variables, in
               bits, for every pair — the paper's statistic, used RAW.
 
-FAITHFUL gate (``--gate raw``, the default): MI >= --mi AND both supports <= the ceiling
---support-cap-frac x N — the paper's two clauses. Raw MI is bounded by the entropy of the
-rarer feature, so it can only be "very high" for common features, and common features
-reach it through loose association; the ceiling on individual support is the paper's way
-of making a high MI value mean tight co-occurrence, and the low end excludes itself (a
-rare pair can never score high). Both values are calibrated on the paper's own claim: the
-adopted point is the largest-yield (ceiling, threshold) at which the typical passing pair
-does "almost always co-occur" (median doc-Jaccard >= 0.8); the .md shows the full
-ceiling x threshold table so the choice is auditable. The adopted threshold, 0.03 bits,
-is the MI of a perfect co-occurrence over 7 records and ~3x the Bonferroni-significant
-level for a million pairs (0.0093 bits); the adopted ceiling, 1% of the records, is the
-97th percentile of unit support. Jaccard is reported as the paper's consequence, not gated.
+FAITHFUL gate (``--gate raw``, the default): MI >= threshold AND both supports <= ceiling —
+the paper's two clauses. Raw MI is bounded by the entropy of the rarer feature, so it can
+only be "very high" for common features, and common features reach it through loose
+association; the ceiling on individual support is the paper's way of making a high MI
+value mean tight co-occurrence, and the low end excludes itself (a rare pair can never
+score high). Both values are anchored in corpus-relative terms: the threshold is the MI
+of a perfect co-occurrence over ``--mi-anchor-records`` records (H(k/N); 7 by default,
+the evidence-sufficiency judgement the paper leaves implicit), the ceiling is the
+``--cap-percentile`` of unit support (97 by default: "moderate" = not among the most
+common units). The .md carries a ceiling x threshold table with the median doc-Jaccard of
+the passes, so the paper's claim can be checked; Jaccard is reported, never gated.
 
 ADDITION (``--gate nmi``, outputs ``mi_additions_nmi.*``): normalised MI = MI / max(H(A),
-H(B)) in [0, 1] (1 = identical record sets) reads tightness directly, so the support
-ceiling is dropped; gate NMI >= --nmi. It admits the rare perfect pairs raw MI cannot
-reach (support-3 families) and the tight pairs just above the ceiling.
+H(B)) in [0, 1] (1 = identical record sets) reads tightness directly, so no ceiling is
+applied; gate NMI >= --nmi. It admits the rare perfect pairs raw MI cannot reach and the
+tight pairs just above the ceiling.
 
-Containment is tagged, not gated: a sub-unit always co-occurs with its super-unit, so a
-CONTAINED pair restates §4.3.1's subsumption; the paper's new information is in the
-non-contained pairs — SAME-RECORDS (identical support sets: two different subtrees that
-are one feature) and OVERLAPPING (very high MI short of identity). Same-records pairs are
-rendered as FAMILIES (all units on one support set; every pair inside is a same-records
-pair), labelled `paraphrase` when the family's distinct sentences (by corpus equiv_class
-or text) number fewer than the unit floor of 3, or when at least half of its records
-duplicate another one — near-duplicate sentences share every subtree, a corpus artefact;
-`n_distinct_sentences` is the family's real support — or `distinct` otherwise (distinct
-sentences that merely share the units). Grouping ACROSS support sets (batch 1's union-find) and conditional MI are
-further additions, not implemented here.
+"Consolidation into a single feature" is rendered for every passing pair as the pack rule
+it would become: the two units' variables are ALIGNED through the records they share
+(each unit is matched in each shared record with the miner's own abstraction of record
+atoms; the variable correspondence that holds in most shared records is taken, and the
+record says in how many), the aligned conjunction is the merged feature, and the rule is
+``(Implication (And <merged atoms>) (Mn<Name> <vars>))`` — naming provisional, the pack
+vocabulary is fixed when candidates are built; a unit that is part of the other yields
+the larger unit's own pack; units that never share a skolem in the shared records give a
+co-occurrence conjunction with disjoint variables.
+
+Per pair the JSONL also records ``contained`` (one unit's atoms embed in the other's under
+a variable renaming — the pair restates §4.3.1 subsumption) and ``n_distinct_shared`` (how
+many distinct sentences, by corpus equiv_class or text, stand behind the shared records:
+near-duplicate records share every subtree, a corpus artefact). Grouping across pairs
+(batch 1's union-find) and conditional MI are further additions, not implemented here.
 
 Outputs (in --out-dir; stem ``mi_faithful`` for the raw gate, ``mi_additions_nmi`` for the
-NMI gate): ``<stem>.jsonl`` (every pair at the recording floor with all statistics, bucket
-and verdict; the unit id lists are the matrix's record of truth), ``<stem>_families.jsonl``
-(one row per same-records family among the passes), ``<stem>.md`` (parameters, the
-calibration table, families, top tables with one example sentence, near misses under and
-over the ceiling), ``<stem>.metta`` (readable rendering, no decision dates: overlapping
-passes as pair records, same-records families as family records, contained passes one
-line each; near misses live in the .md and the JSONL). Deterministic; no randomness.
+NMI gate): ``<stem>.jsonl`` (every pair at the recording floor with all statistics,
+verdict, alignment and rule), ``<stem>.md`` (parameters, calibration table, dial, passes,
+near misses under and over the ceiling), ``<stem>.metta`` (readable rendering, no decision
+dates: every pass as one uniform record ending in its Implication). Deterministic.
 
 Usage:
   python mi_faithful.py [--units out_h/patterns2_faithful.jsonl] [--canonical canonical_substrate.jsonl]
-      [--out-dir out_h] [--gate raw|nmi] [--mi 0.03] [--mi-sensitivity 0.02] [--mi-floor 0.01]
-      [--support-cap-frac 0.01] [--nmi 0.8] [--nmi-sensitivity 0.7] [--nmi-floor 0.3]
+      [--out-dir out_h] [--gate raw|nmi] [--mi-anchor-records 7] [--cap-percentile 97] [--nmi 0.8]
 """
 from __future__ import annotations
 
@@ -66,13 +65,17 @@ import glob
 import json
 import math
 import os
+import re
 import sys
 
 import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from patterns2_faithful import contains  # noqa: E402
+from frequent_patterns2 import RE_NUM, RE_SKOLEM, RE_STR  # noqa: E402
+from patterns2_faithful import camel, contains, meta_name, parse_atom, tree_info, variables  # noqa: E402
+
+RE_VAR = re.compile(r"\$[exf]\d+")
 
 
 def load(path):
@@ -84,8 +87,123 @@ def entropy(p):
     return -(p * np.log2(p) + (1 - p) * np.log2(1 - p))
 
 
-def fmt(x, nd=3):
-    return f"{x:.{nd}f}"
+# ---------------------------------------------------------------- matching in records
+def abstract_record(rec):
+    """A record's flat top-level atoms in the miner's abstraction: skolems e0/x0/f0 -> $e0/$x0/$f0
+    (the record's own numbering), strings -> <str>, numbers -> <num>, ' ~NEG' when strength < 0.5."""
+    out = []
+    for a in rec["atoms"]:
+        term = a["term"].strip()
+        if term.count("(") != 1:          # nested / wrapped terms never match a unit
+            continue
+        t = RE_SKOLEM.sub(lambda m: f"${m.group(1)}{m.group(2)}", term)
+        t = RE_STR.sub("<str>", t)
+        t = RE_NUM.sub("<num>", t)
+        if a["stv"][0] < 0.5:
+            t += " ~NEG"
+        out.append(parse_atom(t))
+    return out
+
+
+def match(unit_atoms, rec_atoms):
+    """All bindings {unit var -> record token} under which every unit atom is a distinct record
+    atom (heads, constants and the ~NEG marker equal; variables injective)."""
+    U = [parse_atom(a) for a in unit_atoms]
+    results = []
+
+    def go(i, bind, used):
+        if i == len(U):
+            results.append(dict(bind))
+            return
+        h, args, neg = U[i]
+        for j, (rh, rargs, rneg) in enumerate(rec_atoms):
+            if j in used or rh != h or rneg != neg or len(rargs) != len(args):
+                continue
+            b = dict(bind)
+            ok = True
+            for ua, ra in zip(args, rargs):
+                if ua.startswith("$"):
+                    if ua in b:
+                        if b[ua] != ra:
+                            ok = False
+                            break
+                    elif ra in b.values() or ua[1] != ra[1:2]:   # injective; same stream ($e -> $e…)
+                        ok = False
+                        break
+                    else:
+                        b[ua] = ra
+                elif ua != ra:
+                    ok = False
+                    break
+            if ok:
+                go(i + 1, b, used | {j})
+
+    go(0, {}, frozenset())
+    uniq = []
+    for r in results:
+        if r not in uniq:
+            uniq.append(r)
+    return uniq
+
+
+def align(ua, ub, shared_recs):
+    """The variable correspondence A-var -> B-var that holds in most shared records.
+    Returns (mapping, holds_in, total)."""
+    votes = collections.Counter()
+    for rec in shared_recs:
+        atoms = abstract_record(rec)
+        found = set()
+        for ba in match(ua["atoms"], atoms):
+            for bb in match(ub["atoms"], atoms):
+                corr = tuple(sorted((va, vb) for va, ta in ba.items() for vb, tb in bb.items()
+                                    if ta == tb and ta.startswith("$")))
+                found.add(corr)
+        for corr in found:
+            votes[corr] += 1
+    if not votes:
+        return {}, 0, len(shared_recs)
+    best, cnt = max(votes.items(), key=lambda kv: (kv[1], len(kv[0]), kv[0]))
+    return dict(best), cnt, len(shared_recs)
+
+
+def merge(ua, ub, mapping):
+    """A's atoms plus B's atoms with B's variables renamed into A's namespace (aligned ones by
+    the mapping, the rest fresh); returns the sorted, de-duplicated atom list."""
+    ren = {vb: va for va, vb in mapping.items()}
+    used = collections.defaultdict(set)
+    for v in variables(ua["atoms"]) + list(ren.values()):
+        used[v[1]].add(int(v[2:]))
+    for v in variables(ub["atoms"]):
+        if v not in ren:
+            k = 0
+            while k in used[v[1]]:
+                k += 1
+            used[v[1]].add(k)
+            ren[v] = f"${v[1]}{k}"
+    atoms = set(ua["atoms"])
+    for a in ub["atoms"]:
+        atoms.add(RE_VAR.sub(lambda m: ren[m.group(0)], a))
+    return sorted(atoms)
+
+
+def flat_name(atoms):
+    parts = []
+    for a in atoms:
+        head, args, neg = parse_atom(a)
+        consts = [t for t in args if not t.startswith("$")]
+        tok = ("" if head == "Member" and consts else head) + "".join(camel(c) for c in consts)
+        tok += "".join("Ev" if t.startswith("$e") else "Fn" for t in args[1:] if t.startswith(("$e", "$f")))
+        parts.append(tok + ("Neg" if neg else ""))
+    return "Mn" + "_".join(parts)
+
+
+def rule_for(atoms):
+    """(name, vars) for the merged feature: tree naming when it is a rooted tree, flat otherwise."""
+    t = tree_info(atoms)
+    if t:
+        root = t[0]
+        return meta_name(atoms), [root] + sorted(v for v in variables(atoms) if v != root)
+    return flat_name(atoms), sorted(variables(atoms))
 
 
 def main():
@@ -95,24 +213,21 @@ def main():
     ap.add_argument("--out-dir", default=None, help="default: the directory of --units")
     ap.add_argument("--corpora", default=os.path.join(HERE, os.pardir, "corpora"))
     ap.add_argument("--gate", choices=("raw", "nmi"), default="raw",
-                    help="raw = the faithful gate (raw MI >= --mi AND both supports <= the ceiling); nmi = the addition "
-                         "(normalised MI >= --nmi, no ceiling); outputs mi_faithful.* / mi_additions_nmi.*")
+                    help="raw = the faithful gate (raw MI >= threshold AND both supports <= ceiling); nmi = the addition")
     ap.add_argument("--mi-anchor-records", type=int, default=7,
-                    help="raw gate: the threshold is the MI of a perfect co-occurrence over this many records (H(k/N)); "
-                         "the evidence-sufficiency anchor the paper leaves implicit")
+                    help="raw gate: the threshold is the MI of a perfect co-occurrence over this many records (H(k/N))")
     ap.add_argument("--mi", type=float, default=None, help="raw gate: override the threshold in bits")
     ap.add_argument("--mi-sensitivity-records", type=int, default=5, help="raw gate: the near-miss value, same anchoring")
-    ap.add_argument("--mi-floor-records", type=int, default=3, help="raw gate: recording floor, same anchoring (3 = the unit floor)")
-    ap.add_argument("--cap-percentile", type=float, default=97.0,
-                    help="'moderate individual support': the ceiling is this percentile of unit support (units above it are "
-                         "the common ones); --support-cap-frac overrides it as a fraction of the records")
+    ap.add_argument("--mi-floor-records", type=int, default=3, help="raw gate: recording floor, same anchoring")
     ap.add_argument("--mi-dial", default="0.10,0.05,0.04,0.03,0.02,0.015,0.01")
     ap.add_argument("--cap-dial", default="0.10,0.05,0.03,0.02,0.01")
+    ap.add_argument("--cap-percentile", type=float, default=97.0,
+                    help="'moderate individual support': ceiling = this percentile of unit support")
     ap.add_argument("--support-cap-frac", type=float, default=None,
-                    help="override: both units' support <= this fraction of the records (0 = off); the nmi gate uses no ceiling")
+                    help="override: ceiling as a fraction of the records (0 = off); the nmi gate uses no ceiling")
     ap.add_argument("--nmi", type=float, default=0.8, help="nmi gate: normalised MI at or above this passes")
-    ap.add_argument("--nmi-sensitivity", type=float, default=0.7, help="nmi gate: looser value for the near misses")
-    ap.add_argument("--nmi-floor", type=float, default=0.3, help="nmi gate: pairs below this are not recorded")
+    ap.add_argument("--nmi-sensitivity", type=float, default=0.7)
+    ap.add_argument("--nmi-floor", type=float, default=0.3)
     ap.add_argument("--dial", default="0.5,0.6,0.7,0.8,0.9,1.0", help="nmi gate dial")
     ap.add_argument("--top", type=int, default=30)
     args = ap.parse_args()
@@ -120,7 +235,9 @@ def main():
     stem = "mi_faithful" if raw else "mi_additions_nmi"
     out_dir = args.out_dir or os.path.dirname(os.path.abspath(args.units))
     units = load(args.units)
-    N = sum(1 for l in open(args.canonical, encoding="utf-8") if l.strip())
+    uid = {u["pattern_id"]: u for u in units}
+    recs = {r["id"]: r for r in load(args.canonical)}
+    N = len(recs)
     dial = [float(x) for x in (args.mi_dial if raw else args.dial).split(",")]
     cap_dial = [float(x) for x in args.cap_dial.split(",")]
     stat_name = "MI" if raw else "NMI"
@@ -140,19 +257,18 @@ def main():
             X[ridx[i], j] = 1.0
     n = X.sum(0)
     if not raw:
-        cap = N
-        args.support_cap_frac = 0.0
+        cap, args.support_cap_frac = N, 0.0
     elif args.support_cap_frac is not None:
         cap = int(math.floor(args.support_cap_frac * N)) if args.support_cap_frac > 0 else N
     else:
         cap = int(math.floor(np.percentile(n, args.cap_percentile)))
         args.support_cap_frac = cap / N
+
     def h_records(k):
         return float(entropy(np.array(k / N)))
     if raw:
         gate_val = args.mi if args.mi is not None else round(h_records(args.mi_anchor_records), 4)
-        sens_val = round(h_records(args.mi_sensitivity_records), 4)
-        floor_val = round(h_records(args.mi_floor_records), 4)
+        sens_val, floor_val = round(h_records(args.mi_sensitivity_records), 4), round(h_records(args.mi_floor_records), 4)
     else:
         gate_val, sens_val, floor_val = args.nmi, args.nmi_sensitivity, args.nmi_floor
     both = X.T @ X
@@ -172,133 +288,125 @@ def main():
     NMI = MI / np.maximum(h[:, None], h[None, :])
     union = n[:, None] + n[None, :] - both
     JAC = np.where(union > 0, both / np.where(union > 0, union, 1), 0.0)
-    ia, ib = np.triu_indices(F, 1)
-    n_pairs = len(ia)
-    n_cooc = int((both[ia, ib] > 0).sum())
-
     STAT = MI if raw else NMI
-    keep = np.where(STAT[ia, ib] >= floor_val - 1e-12)[0]
+    ia, ib = np.triu_indices(F, 1)
+    n_pairs, n_cooc = len(ia), int((both[ia, ib] > 0).sum())
+
+    # ---- recorded pairs ----
     rows = []
-    for t in keep:
+    for t in np.where(STAT[ia, ib] >= floor_val - 1e-12)[0]:
         a, b = int(ia[t]), int(ib[t])
         ua, ub = units[a], units[b]
         if ua["support"] < ub["support"] or (ua["support"] == ub["support"] and ua["pattern_id"] > ub["pattern_id"]):
             a, b, ua, ub = b, a, ub, ua      # A = the larger-support unit
-        same = int(both[a, b]) == int(n[a]) == int(n[b])
-        a_in_b = contains(ub["atoms"], ua["atoms"])
-        b_in_a = contains(ua["atoms"], ub["atoms"])
-        bucket = "contained" if (a_in_b or b_in_a) else ("same records" if same else "overlapping")
-        nmi = float(NMI[a, b])
+        shared = sorted(set(ua["ids"]) & set(ub["ids"]))
         stat = float(STAT[a, b])
         moderate = n[a] <= cap and n[b] <= cap
         rows.append({
             "a": ua["pattern_id"], "b": ub["pattern_id"], "query_a": ua["query"], "query_b": ub["query"],
-            "size_a": ua["size"], "size_b": ub["size"],
-            "n_a": int(n[a]), "n_b": int(n[b]), "n_both": int(both[a, b]),
-            "mi_bits": round(float(MI[a, b]), 6), "nmi": round(nmi, 4), "jaccard": round(float(JAC[a, b]), 4),
-            "bucket": bucket, "moderate_support": bool(moderate), "gate": args.gate,
+            "n_a": int(n[a]), "n_b": int(n[b]), "n_both": len(shared),
+            "n_distinct_shared": min(len({eqc.get(i, i) for i in shared}), len({corp.get(i, "") for i in shared})),
+            "mi_bits": round(float(MI[a, b]), 6), "nmi": round(float(NMI[a, b]), 4), "jaccard": round(float(JAC[a, b]), 4),
+            "contained": bool(contains(ua["atoms"], ub["atoms"]) or contains(ub["atoms"], ua["atoms"])),
+            "moderate_support": bool(moderate), "gate": args.gate,
             "pass": bool(stat >= gate_val - 1e-12 and moderate),
             "sensitivity_pass": bool(stat >= sens_val - 1e-12 and moderate),
             "over_ceiling": bool(stat >= gate_val - 1e-12 and not moderate),
-            "examples": sorted(set(ua["ids"]) & set(ub["ids"]))[:3],
-            "variant": "faithful",
+            "examples": shared[:3], "variant": "faithful" if raw else "addition:nmi",
         })
     rows.sort(key=lambda r: ((-r["mi_bits"], -r["jaccard"]) if raw else (-r["nmi"], -r["mi_bits"])) + (r["a"], r["b"]))
+    passes = [r for r in rows if r["pass"]]
+    near = [r for r in rows if r["sensitivity_pass"] and not r["pass"]]
+    above = [r for r in rows if r["over_ceiling"]]
+
+    # ---- alignment + rule for every pass ----
+    by_name = collections.defaultdict(set)      # name -> distinct merged features carrying it
+    for r in passes:
+        ua, ub = uid[r["a"]], uid[r["b"]]
+        shared = sorted(set(ua["ids"]) & set(ub["ids"]))
+        mapping, holds, total = align(ua, ub, [recs[i] for i in shared if i in recs])
+        merged = merge(ua, ub, mapping)
+        name, vs = rule_for(merged)
+        r.update({"alignment": {va: vb for va, vb in sorted(mapping.items())}, "alignment_holds_in": holds,
+                  "alignment_of": total, "merged_atoms": merged, "meta_name": name, "meta_vars": vs})
+        by_name[name].add(tuple(merged))
+    for r in passes:      # the same merged feature from several pairs keeps one name; different features get a suffix
+        if len(by_name[r["meta_name"]]) > 1:
+            k = sorted(by_name[r["meta_name"]]).index(tuple(r["merged_atoms"])) + 1
+            r["meta_name"] = f"{r['meta_name']}_{k}"
+        r["implication"] = (f"(Implication {'(And ' + ' '.join(r['merged_atoms']) + ')' if len(r['merged_atoms']) > 1 else r['merged_atoms'][0]} "
+                            f"({r['meta_name']}{(' ' + ' '.join(r['meta_vars'])) if r['meta_vars'] else ''}))")
     p_jsonl = os.path.join(out_dir, f"{stem}.jsonl")
     with open(p_jsonl, "w", encoding="utf-8") as fh:
         for r in rows:
             fh.write(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n")
 
-    # ---- dial table ----
-    stat_all = STAT[ia, ib]
-    jac_all = JAC[ia, ib]
-    dial_rows = []
-    for cut in dial:
-        selm = [r for r in rows if r["moderate_support"] and (r["mi_bits"] if raw else r["nmi"]) >= cut - 1e-12]
-        c = collections.Counter(r["bucket"] for r in selm)
-        mod_all = (n[ia] <= cap) & (n[ib] <= cap)
-        dial_rows.append((cut, int((stat_all >= cut - 1e-12).sum()), int(((stat_all >= cut - 1e-12) & mod_all).sum()),
-                          c["contained"], c["same records"], c["overlapping"]))
-    calib = []      # raw gate: ceiling x threshold -> passes, not contained, median Jaccard, share >= 0.8
+    # ---- dial + calibration ----
+    stat_all, jac_all = STAT[ia, ib], JAC[ia, ib]
+    mod_all = (n[ia] <= cap) & (n[ib] <= cap)
+    dial_rows = [(cut, int((stat_all >= cut - 1e-12).sum()), int(((stat_all >= cut - 1e-12) & mod_all).sum()),
+                  sum(1 for r in rows if r["moderate_support"] and r["contained"] and (r["mi_bits"] if raw else r["nmi"]) >= cut - 1e-12))
+                 for cut in dial]
+    calib = []
     if raw:
-        cont_cache = {(r["a"], r["b"]): r["bucket"] == "contained" for r in rows}
         for cf in cap_dial:
             c_ = int(math.floor(cf * N))
             sel_c = (n[ia] <= c_) & (n[ib] <= c_)
             line = []
             for cut in dial:
                 s_ = np.where(sel_c & (stat_all >= cut - 1e-12))[0]
-                if len(s_) == 0:
-                    line.append((cut, 0, 0, 0.0, 0.0))
-                    continue
-                nc = sum(1 for t in s_ if not cont_cache.get((units[max(ia[t], ib[t], key=lambda k: (n[k], -k))]["pattern_id"],
-                                                                 units[min(ia[t], ib[t], key=lambda k: (n[k], -k))]["pattern_id"]), False))
-                line.append((cut, int(len(s_)), nc, float(np.median(jac_all[s_])), float((jac_all[s_] >= 0.8).mean())))
+                line.append((cut, int(len(s_)), float(np.median(jac_all[s_])) if len(s_) else 0.0,
+                             float((jac_all[s_] >= 0.8).mean()) if len(s_) else 0.0))
             calib.append((cf, c_, line))
-    passes = [r for r in rows if r["pass"]]
-    new_pass = [r for r in passes if r["bucket"] != "contained"]
-    over = [r for r in new_pass if r["bucket"] == "overlapping"]
-    near = [r for r in rows if r["sensitivity_pass"] and not r["pass"] and r["bucket"] != "contained"]
-    above = [r for r in rows if r["over_ceiling"] and r["bucket"] != "contained"]
-    uid = {u["pattern_id"]: u for u in units}
-    fam = collections.defaultdict(set)
-    for r in new_pass:
-        if r["bucket"] == "same records":
-            fam[tuple(sorted(uid[r["a"]]["ids"]))].update((r["a"], r["b"]))
-    families = []
-    for recs, members in fam.items():
-        texts = [corp.get(i, "") for i in recs]
-        n_distinct = min(len({eqc.get(i, i) for i in recs}), len(set(texts)))   # distinct sentences behind the records
-        paraphrase = n_distinct < 3 or 2 * n_distinct <= len(recs)   # real support below the unit floor, or mostly duplicates
-        members = sorted(members, key=lambda pid: (-uid[pid]["size"], pid))
-        families.append({"records": list(recs), "n_records": len(recs), "n_distinct_sentences": n_distinct,
-                         "kind": "paraphrase" if paraphrase else "distinct",
-                         "members": members, "n_members": len(members),
-                         "n_pairs": sum(1 for r in new_pass if r["bucket"] == "same records" and tuple(sorted(uid[r["a"]]["ids"])) == recs),
-                         "queries": [uid[m]["query"] for m in members], "variant": "faithful"})
-    families.sort(key=lambda f: (-f["n_members"], f["records"]))
-    p_fam = os.path.join(out_dir, f"{stem}_families.jsonl")
-    with open(p_fam, "w", encoding="utf-8") as fh:
-        for f in families:
-            fh.write(json.dumps(f, ensure_ascii=False, sort_keys=True) + "\n")
-    n_par = sum(1 for f in families if f["kind"] == "paraphrase")
 
     params = [
         ("features", f"the {F} faithful §4.3.1 units of {os.path.basename(args.units)} (rooted subtrees, constants verbatim, "
                      "support >= 3, single-atom units included: they are subtrees)"),
         ("matrix", f"binary presence, {N} records x {F} units, from each unit's supporting ids "
                    f"({N - len(rec_ids)} records carry no unit and are all-zero rows); {n_pairs} pairs, {n_cooc} with any co-occurrence"),
-        ("MI", "exact pairwise mutual information of the two binary presence variables, in bits"),
+        ("MI", "exact pairwise mutual information of the two binary presence variables, in bits, raw"),
         ("'very high MI'", (f"raw MI >= {gate_val} bits = the MI of a perfect co-occurrence over {args.mi_anchor_records} of the {N} records "
                             f"(the evidence-sufficiency anchor the paper leaves implicit; the Bonferroni-significant level for {n_pairs} "
                             f"pairs is ~{math.log(n_pairs / 0.05) / (2 * N * math.log(2)):.4f} bits); near-miss value {sens_val} "
                             f"(= {args.mi_sensitivity_records} records); pairs recorded from {floor_val} (= {args.mi_floor_records} records); "
                             f"dial {dial}") if raw else
                            (f"ADDITION: normalised MI = MI / max(H(A), H(B)) in [0, 1] (1 = identical record sets); gate NMI >= {args.nmi}; "
-                            f"sensitivity value {args.nmi_sensitivity}; pairs recorded from {args.nmi_floor}; dial {dial}")),
+                            f"near-miss value {args.nmi_sensitivity}; pairs recorded from {args.nmi_floor}; dial {dial}")),
         ("'moderate individual support'", (f"both units' support <= {cap} records = the {args.cap_percentile:g}th percentile of unit support "
                                            f"({args.support_cap_frac:.1%} of the records; percentiles 50/90/95/99 = "
-                                           f"{'/'.join(str(int(x)) for x in np.percentile(n, [50, 90, 95, 99]))}); "
-                                           "the floor of 3 is inherited from the units; raw MI cannot be high for rare pairs, so the low "
-                                           "end excludes itself" if raw and args.support_cap_frac > 0 else
+                                           f"{'/'.join(str(int(x)) for x in np.percentile(n, [50, 90, 95, 99]))}); the floor of 3 is "
+                                           "inherited from the units; raw MI cannot be high for rare pairs, so the low end excludes itself"
+                                           if raw and args.support_cap_frac > 0 else
                                            "no ceiling: the normalisation reads tightness directly; the floor of 3 inherited from the units is "
                                            "the only support condition")),
-        ("calibration", ("the ceiling x threshold table below checks the paper's claim (median doc-Jaccard of the passes); the claim "
-                         "alone would also accept a lower threshold where perfectly co-occurring support-3..5 pairs (paraphrase "
-                         "families) dominate — the record-count anchor on the threshold is what keeps them out" if raw else
+        ("calibration", ("the ceiling x threshold table checks the paper's claim (median doc-Jaccard of the passes); the claim alone "
+                         "would also accept a lower threshold where perfectly co-occurring support-3..5 pairs (near-duplicate records) "
+                         "dominate — the record-count anchor on the threshold is what keeps them out" if raw else
                          "NMI is our reading of 'very high' (support-free); it belongs to the additions arm")),
         ("'almost always co-occur'", "the paper's consequence, shown as the doc-Jaccard column (not gated)"),
-        ("containment", "tagged, not gated: a CONTAINED pair (one unit's atoms embed in the other's under a variable renaming) "
-                        "restates §4.3.1 subsumption; SAME RECORDS = identical support sets, not contained; OVERLAPPING = the rest"),
-        ("families", "same-records passes rendered per support set (every pair inside has NMI 1); `paraphrase` when the distinct "
-                     "sentences (by corpus equiv_class or text) are fewer than the unit floor of 3 or at least half the records duplicate "
-                     "another (near-duplicates share every subtree), `distinct` otherwise; n_distinct_sentences = the family's real support"),
-        ("consolidation", "a passing non-contained pair is a proposal to treat the two subtrees as one feature (their conjunction); "
-                          "grouping across support sets and conditional MI are additions"),
+        ("shared records", "n_both = records containing both units; the distinct-sentence count beside it (by corpus equiv_class or "
+                           "text) exposes near-duplicate records, which share every subtree by construction"),
+        ("part-of", "when one unit's atoms embed in the other's (a variable renaming), the pair restates §4.3.1 subsumption and its "
+                    "rule is the larger unit's own pack; flagged in the record, not gated"),
+        ("consolidation", "for every pass: the two units' variables are aligned through the shared records (each unit matched in "
+                          "each record under the miner's abstraction; the correspondence holding in most records is taken and the "
+                          "count shown), the aligned conjunction is the merged feature, and the rule is (Implication (And <merged>) "
+                          "(Mn<Name> <vars>)) — naming provisional; units that never share a skolem give a co-occurrence conjunction "
+                          "with disjoint variables"),
     ]
 
     def sent(i):
         return corp.get(i, "")[:100]
+
+    def note(r):
+        parts = []
+        if r["contained"]:
+            parts.append("B is part of A: the rule is A's own pack")
+        if r.get("alignment_of") is not None and not r["alignment"] and not r["contained"]:
+            parts.append("no shared skolem: co-occurrence conjunction")
+        if r["n_distinct_shared"] < r["n_both"]:
+            parts.append(f"{r['n_both'] - r['n_distinct_shared']} of the shared records duplicate another")
+        return "; ".join(parts)
 
     L = [("# §4.3.3 Mutual-Information Grouping — FAITHFUL arm (paper as written)\n" if raw else
           "# §4.3.3 Mutual-Information Grouping — ADDITION: normalised-MI gate\n"),
@@ -308,38 +416,33 @@ def main():
          "## Implementation parameters (choices the paper leaves open; disclosed)\n", "| parameter | choice |\n|---|---|"]
     L += [f"| {a} | {b} |" for a, b in params]
     if raw:
-        L += ["", "## Calibration: ceiling x threshold (cell = passes / not contained / median Jaccard / share with Jaccard >= 0.8)\n",
+        L += ["", "## Calibration: ceiling x threshold (cell = passes / median Jaccard / share with Jaccard >= 0.8)\n",
               "| ceiling | " + " | ".join(f"MI >= {cut}" for cut in dial) + " |", "|---|" + "---|" * len(dial)]
         for cf, c_, line in calib:
-            L.append(f"| {cf:.0%} ({c_}) | " + " | ".join(f"{k} / {nc} / {mj:.2f} / {sh:.0%}" if k else "0" for cut, k, nc, mj, sh in line) + " |")
-    L += ["", f"## The dial at the adopted ceiling ({args.support_cap_frac:.0%} = {cap} records)\n" if raw and args.support_cap_frac > 0 else "## The dial\n",
-          f"| {stat_name} >= | all pairs | within the ceiling | contained | same records | overlapping |\n|---|---|---|---|---|---|"]
-    L += [f"| {cut} | {tot} | {mod} | {c} | {s} | {o} |" for cut, tot, mod, c, s, o in dial_rows]
-    L += ["", f"- at the gate ({stat_name} >= {gate_val}{f', both supports <= {cap}' if args.support_cap_frac > 0 else ''}): **{len(passes)} pairs pass**, {len(new_pass)} of them not contained "
-          f"({sum(1 for r in new_pass if r['bucket'] == 'same records')} same records = **{len(families)} families** "
-          f"({n_par} paraphrase, {len(families) - n_par} distinct), **{len(over)} overlapping**); {len(near)} non-contained near misses at "
-          f"{stat_name} >= {sens_val} under the ceiling; {len(above)} non-contained pairs at or above the gate but OVER the ceiling", ""]
-    L.append("## Same-records families (all units on one support set; kind = paraphrase | distinct)\n")
-    L.append("| units | pairs | records (distinct sentences) | kind | e.g. | members (first 3) |\n|---|---|---|---|---|---|")
-    for f in families[:args.top]:
-        L.append(f"| {f['n_members']} | {f['n_pairs']} | {f['n_records']} ({f['n_distinct_sentences']} distinct; {', '.join(f['records'][:3])}{'…' if f['n_records'] > 3 else ''}) | {f['kind']} "
-                 f"| {sent(f['records'][0])} | {' • '.join('`' + q + '`' for q in f['queries'][:3])} |")
-    L.append("")
+            L.append(f"| {cf:.0%} ({c_}) | " + " | ".join(f"{k} / {mj:.2f} / {sh:.0%}" if k else "0" for cut, k, mj, sh in line) + " |")
+    L += ["", (f"## The dial at the adopted ceiling ({cap} records)\n" if raw else "## The dial\n"),
+          f"| {stat_name} >= | all pairs | within the ceiling | of which part-of pairs |\n|---|---|---|---|"]
+    L += [f"| {cut} | {tot} | {mod} | {c} |" for cut, tot, mod, c in dial_rows]
+    n_cont = sum(1 for r in passes if r["contained"])
+    L += ["", f"- at the gate ({stat_name} >= {gate_val}{f', both supports <= {cap}' if args.support_cap_frac > 0 else ''}): "
+          f"**{len(passes)} pairs pass** ({n_cont} part-of pairs, {len(passes) - n_cont} genuine); {len(near)} near misses under the "
+          f"ceiling at {stat_name} >= {sens_val}; {len(above)} pairs at or above the threshold but over the ceiling", ""]
 
-    def table(title, seq, k):
+    def table(title, seq, k, with_rule=False):
         L.append(f"## {title}\n")
-        L.append(f"| {'MI bits' if raw else 'NMI'} | Jaccard | n A / B / both | bucket | A | B | e.g. |\n|---|---|---|---|---|---|---|")
+        L.append(f"| {'MI bits' if raw else 'NMI'} | Jaccard | records A / B / shared (distinct) | A | B | note | e.g. |"
+                 + (" merged rule |" if with_rule else "") + "\n|---|---|---|---|---|---|---|" + ("---|" if with_rule else ""))
         for r in seq[:k]:
-            L.append(f"| {r['mi_bits']:.4f} | " if raw else f"| {r['nmi']:.2f} | ")
-            L[-1] += (f"{r['jaccard']:.2f} | {r['n_a']} / {r['n_b']} / {r['n_both']} | {r['bucket']} "
-                     f"| `{r['query_a']}` | `{r['query_b']}` | {r['examples'][0] if r['examples'] else ''}: "
-                     f"{sent(r['examples'][0]) if r['examples'] else ''} |")
+            L.append((f"| {r['mi_bits']:.4f} | " if raw else f"| {r['nmi']:.2f} | ")
+                     + f"{r['jaccard']:.2f} | {r['n_a']} / {r['n_b']} / {r['n_both']} ({r['n_distinct_shared']}) | `{r['query_a']}` | `{r['query_b']}` "
+                     + f"| {note(r)} | {r['examples'][0] if r['examples'] else ''}: {sent(r['examples'][0]) if r['examples'] else ''} |"
+                     + (f" `{r['implication']}` |" if with_rule else ""))
         L.append("")
 
-    table(f"Overlapping passes — two subtrees short of identical records that are one feature (by {stat_name})", over, args.top)
-    table(f"Non-contained near misses under the ceiling ({stat_name} >= {sens_val}, below the gate)", near, min(args.top, 15))
+    table(f"Passes (by {stat_name})", passes, args.top, with_rule=True)
+    table(f"Near misses under the ceiling ({stat_name} >= {sens_val}, below the gate)", near, min(args.top, 15))
     if args.support_cap_frac > 0:
-        table(f"Non-contained pairs at or above the gate but OVER the ceiling (support > {cap}; the paper's clause excludes them)",
+        table(f"At or above the threshold but over the ceiling (support > {cap}; the paper's clause excludes them)",
               sorted(above, key=lambda r: (-r["mi_bits"], r["a"], r["b"])), min(args.top, 15))
     table("Highest raw MI overall (the generic features: high raw MI, loose association)",
           sorted(rows, key=lambda r: (-r["mi_bits"], r["a"], r["b"])), 10)
@@ -351,44 +454,44 @@ def main():
     with open(p_metta, "w", encoding="utf-8") as fh:
         fh.write((";; FUSE-NF §4.3.3 Mutual-Information Grouping — FAITHFUL arm — readable MeTTa RENDERING\n" if raw else
                   ";; FUSE-NF §4.3.3 Mutual-Information Grouping — ADDITION (normalised-MI gate) — readable MeTTa RENDERING\n")
-                 + ";; Never loaded: a unit is a conjunctive query over variables, not an assertion. The record of truth is\n"
-                 f";;   {stem}.jsonl          (every pair at the recording floor, with its statistics, bucket and verdict)\n"
+                 + ";; Never loaded: a unit is a conjunctive query over variables, not an assertion, and the Implication is the\n"
+                 ";; pack rule the pair WOULD become (naming provisional; the candidate stage fixes the pack vocabulary and the\n"
+                 ";; gauntlet decides). The record of truth is\n"
+                 f";;   {stem}.jsonl          (every pair at the recording floor: statistics, verdict, alignment, rule)\n"
                  ";;   patterns2_faithful.jsonl   (the units and their supporting records = the binary matrix)\n;;\n"
                  ";; PARAMETERS (choices the paper leaves open; disclosed)\n")
         for a, b in params:
             fh.write(f";;   {a:<30s} {b}\n")
-        fh.write(";;\n;; RECORD FORMATS\n"
-                 ";;   pair record (OVERLAPPING PASSES): two units that are one feature, short of identical records\n"
-                 ";;     ;; [overlapping]  A ~ B   n <records of A> / <of B> / <both>   gate: PASS\n")
-        fh.write(";;     ;;   MI: <bits>   Jaccard: <both / either>   e.g. <shared record ids>\n" if raw else
-                 ";;     ;;   NMI: <MI / max entropy>   MI: <bits>   Jaccard: <both / either>   e.g. <shared record ids>\n")
-        fh.write(";;     <query A>\n;;     <query B>\n"
-                 ";;   family record (SAME-RECORDS FAMILIES): every unit on one support set; each pair inside has NMI 1\n"
-                 ";;     ;; [family: paraphrase|distinct]  <m> units, <p> pairs, on <n> records (<d> distinct sentences): <ids>   gate: PASS\n"
-                 ";;     <query of each member, one per line>\n"
-                 f";; A is the unit with the larger support. Sections sorted by {stat_name} desc (pairs) and by size (families);\n"
-                 ";; CONTAINED PASSES restate §4.3.1 subsumption and take one line each; near misses are in the .md and the JSONL.\n")
-        fh.write(f"\n;; ==================== OVERLAPPING PASSES: {len(over)} pairs ====================\n")
-        for r in over:
-            stats = (f";;   MI: {r['mi_bits']:.4f}   Jaccard: {r['jaccard']:.2f}" if raw else
-                     f";;   NMI: {r['nmi']:.3f}   MI: {r['mi_bits']:.4f}   Jaccard: {r['jaccard']:.2f}")
-            fh.write(f"\n;; [{r['bucket']}]  {r['a']} ~ {r['b']}   n {r['n_a']} / {r['n_b']} / {r['n_both']}   gate: PASS\n"
-                     f"{stats}   e.g. {' '.join(r['examples'])}\n{r['query_a']}\n{r['query_b']}\n")
-        fh.write(f"\n;; ==================== SAME-RECORDS FAMILIES: {len(families)} families ({n_par} paraphrase, "
-                 f"{len(families) - n_par} distinct) = {sum(f['n_pairs'] for f in families)} pairs ====================\n")
-        for f in families:
-            fh.write(f"\n;; [family: {f['kind']}]  {f['n_members']} units, {f['n_pairs']} pairs, on {f['n_records']} records "
-                     f"({f['n_distinct_sentences']} distinct sentences): {' '.join(f['records'])}   gate: PASS\n" + "\n".join(f["queries"]) + "\n")
-        cont = [r for r in passes if r["bucket"] == "contained"]
-        fh.write(f"\n;; ==================== CONTAINED PASSES: {len(cont)} pairs (§4.3.1 subsumption restated; one line each) ====================\n")
-        for r in cont:
-            fh.write(f";; {r['a']} ⊇ {r['b']}   n {r['n_a']} / {r['n_b']} / {r['n_both']}   {stat_name} {r['mi_bits'] if raw else r['nmi']:.3f}   {r['query_a']}   ⊇   {r['query_b']}\n")
-    print(f"{os.path.basename(args.units)} [{args.gate}]: {F} units x {N} records -> {n_pairs} pairs ({n_cooc} co-occurring); recorded {len(rows)} "
-          f"at {stat_name} >= {floor_val}; gate {stat_name} >= {gate_val}{' + support <= %d' % cap if args.support_cap_frac > 0 else ''}: {len(passes)} pass, {len(new_pass)} not contained "
-          f"({sum(1 for r in new_pass if r['bucket'] == 'same records')} same records, {sum(1 for r in new_pass if r['bucket'] == 'overlapping')} overlapping), "
-          f"{len(near)} near misses under the ceiling, {len(above)} over the ceiling")
-    print(f"   same-records families: {len(families)} ({n_par} paraphrase, {len(families) - n_par} distinct)")
-    print(f"-> {p_jsonl}\n-> {p_fam}\n-> {p_md}\n-> {p_metta}")
+        fh.write(";;\n;; RECORD FORMAT (every record is one passing pair)\n"
+                 ";;   ;; A ~ B   records <of A> / <of B> / <shared> (<distinct sentences among the shared>)   gate: PASS\n"
+                 + (";;   ;;   MI: <bits>   Jaccard: <shared / either>   e.g. <shared record ids>\n" if raw else
+                    ";;   ;;   NMI: <MI / max entropy>   MI: <bits>   Jaccard: <shared / either>   e.g. <shared record ids>\n")
+                 + ";;   ;;   A: <query A>\n;;   ;;   B: <query B>\n"
+                 ";;   ;;   alignment: <A var = B var …> (holds in <k> of <shared> records)   <note>\n"
+                 ";;   (Implication (And <merged atoms>) (Mn<Name> <vars>))\n"
+                 ";; A is the unit with the larger support; records sorted by the gate statistic. Near misses are in the .md and\n"
+                 ";; the JSONL. Notes: 'B is part of A' = the pair restates §4.3.1 subsumption and the rule is A's own pack;\n"
+                 ";; 'no shared skolem' = the units co-occur in the same sentences without touching = a co-occurrence conjunction.\n"
+                 ";; Several pairs can yield the SAME merged feature (the same rule); a numeric suffix marks different features that\n"
+                 ";; would share a name.\n")
+        fh.write(f"\n;; ==================== PASSES: {len(passes)} pairs ({n_cont} part-of, {len(passes) - n_cont} genuine) ====================\n")
+        for r in passes:
+            al = " ".join(f"{va}={vb}" for va, vb in r["alignment"].items()) or "—"
+            nt = note(r)
+            fh.write(f"\n;; {r['a']} ~ {r['b']}   records {r['n_a']} / {r['n_b']} / {r['n_both']} ({r['n_distinct_shared']} distinct)   gate: PASS\n"
+                     + (f";;   MI: {r['mi_bits']:.4f}   Jaccard: {r['jaccard']:.2f}" if raw else
+                        f";;   NMI: {r['nmi']:.3f}   MI: {r['mi_bits']:.4f}   Jaccard: {r['jaccard']:.2f}")
+                     + f"   e.g. {' '.join(r['examples'])}\n"
+                     f";;   A: {r['query_a']}\n;;   B: {r['query_b']}\n"
+                     f";;   alignment: {al} (holds in {r['alignment_holds_in']} of {r['alignment_of']} records)" + (f"   {nt}" if nt else "") + "\n"
+                     f"{r['implication']}\n")
+    print(f"{os.path.basename(args.units)} [{args.gate}]: {F} units x {N} records -> {n_pairs} pairs ({n_cooc} co-occurring); "
+          f"recorded {len(rows)} at {stat_name} >= {floor_val}; gate {stat_name} >= {gate_val}"
+          f"{' + support <= %d' % cap if args.support_cap_frac > 0 else ''}: {len(passes)} pass ({n_cont} part-of), "
+          f"{len(near)} near misses under the ceiling, {len(above)} over the ceiling; "
+          f"alignment holds in all shared records for {sum(1 for r in passes if r['alignment_holds_in'] == r['alignment_of'])} passes, "
+          f"no shared skolem for {sum(1 for r in passes if not r['alignment'])}")
+    print(f"-> {p_jsonl}\n-> {p_md}\n-> {p_metta}")
 
 
 if __name__ == "__main__":
