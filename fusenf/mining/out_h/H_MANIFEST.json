@@ -64,7 +64,7 @@
      "outputs": [
       "mining/out_h/patterns2_faithful.jsonl (record of truth for the view: 1,454 units with fields, closure within the view, supporting ids)",
       "mining/out_h/patterns2_faithful.md (parameters, counts, top tables with one example sentence, excluded joins)",
-      "mining/out_h/patterns2_faithful.metta (rendering only; sections CLOSED / SUBSUMED / SINGLE-ATOM; no decision dates)",
+      "mining/out_h/patterns2_faithful.metta (rendering only; every proposal as (Implication <unit> (Mn<Name> <vars>)), subsumed units as bare queries naming their cover; no decision dates; 4,070 lines)",
       "mining/out_h/patterns2_faithful_notes.md (reading)",
       "mining/out_ecmp/patterns2_faithful.{jsonl,md,metta}"
      ],
@@ -470,7 +470,8 @@
       ],
       "decision": "ADOPTED: JSD <= 0.3 as the faithful default (owner 2026-09-05); cosine kept as reference run"
      },
-     "metta_format_2026-09-07": "owner-agreed: one uniform pair record (bucket + support + gate verdict, top fillers of each side by mass with witness ids, gate statistic + shared-cluster count and examples, the two slot queries); pooled pairs ALL listed, slot pairs = every pair clearing the >= 2 shared-cluster guard (passes first, then the near misses; pairs sharing < 2 clusters cannot pass and are omitted unless --metta-fail-slots all); main file = --metta-main word@0.85, other blocks in <stem>_dial/; header = full parameter disclosure, no decision dates in result files; the per-slot distributions section was dropped from the rendering"
+     "metta_format_2026-09-07": "owner-agreed: one uniform pair record (bucket + support + gate verdict, top fillers of each side by mass with witness ids, gate statistic + shared-cluster count and examples, the two slot queries); pooled pairs ALL listed, slot pairs = every pair clearing the >= 2 shared-cluster guard (passes first, then the near misses; pairs sharing < 2 clusters cannot pass and are omitted unless --metta-fail-slots all); main file = --metta-main word@0.85, other blocks in <stem>_dial/; header = full parameter disclosure, no decision dates in result files; the per-slot distributions section was dropped from the rendering",
+     "metta_rules_2026-09-10": "every pair record ends in the merge as a rule: minority slot's head relabelled to the majority slot's head on the minority's own class (the batch-1 role-canonicalization shape); pooled pair -> role-vocabulary collapse (minority role -> majority role); majority = larger n, tie -> alphabetically first name; same-head pairs carry 'rule: none' (merge done by construction); rendered for PASS and FAIL alike; A/B queries moved into comments; H main file 294 Implications + 47 rule-none records"
     },
     "augmented": {
      "script": "mining/role_fillers2.py (exact-label counts, PPMI) + role_fillers2_embed.py --arm augmented",

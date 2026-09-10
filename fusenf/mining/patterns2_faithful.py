@@ -40,9 +40,10 @@ the pack rule would read ``(Implication (And <atoms>) (Mn<Name> <vars>))``.
 
 Outputs (in --out-dir): ``patterns2_faithful.jsonl`` (one row per unit, full fields),
 ``patterns2_faithful.md`` (parameters, counts, top tables with one example sentence),
-``patterns2_faithful.metta`` (readable rendering: every unit as a conjunctive query under a
-provenance comment; closed units first, then subsumed; support-ranked). Deterministic;
-no decision dates in the result files.
+``patterns2_faithful.metta`` (readable rendering: every proposal as the pack rule it would
+become, ``(Implication <unit> (Mn<Name> <vars>))``, under a provenance comment; subsumed
+units as bare queries naming their cover; support-ranked). Deterministic; no decision
+dates in the result files.
 
 Usage:
   python patterns2_faithful.py [--patterns out_h/patterns2.jsonl] [--out-dir out_h]
@@ -334,8 +335,9 @@ def main():
         fh.write(";;\n;; RECORD FORMAT (every record is one unit = one rooted subtree)\n"
                  ";;   ;; <pattern id>  support <records> (occ <matches>)  size <atoms>  root <variable> (<kind>)  depth <d>\n"
                  ";;   ;;   e.g. <up to three supporting record ids>\n"
-                 ";;   ;;   meta-node: (Mn<Name> <root> <other variables>)      (closed units; a subsumed unit names its cover instead)\n"
-                 ";;   <the unit as a conjunctive query>\n"
+                 ";;   (Implication <the unit as a conjunctive query> (Mn<Name> <root> <other variables>))\n"
+                 ";;     = the pack rule the proposal would become (naming provisional; the gauntlet decides); a subsumed\n"
+                 ";;     unit carries no rule and is rendered as its bare query under a 'subsumed by' note\n"
                  ";; Sections: CLOSED UNITS (the meta-node proposals) then SUBSUMED UNITS (a larger unit on the same records\n"
                  ";; contains them); each sorted by support desc, then pattern id. Single-atom units are not rendered.\n")
         by_id = {u["pattern_id"]: u for u in units}
@@ -347,9 +349,8 @@ def main():
                 fh.write(f"\n;; {u['pattern_id']}  support {u['support']} (occ {u['occurrences']})  size {u['size']}  "
                          f"root {u['root']} ({u['root_kind']})  depth {u['depth']}\n"
                          f";;   e.g. {' '.join(u['examples'])}\n"
-                         + (f";;   meta-node: {u['meta_node']}\n" if u["closed"] else
-                            f";;   subsumed by {u['subsumed_by']} ({by_id[u['subsumed_by']]['meta_name']}); not a proposal\n")
-                         + f"{u['query']}\n")
+                         + (f"(Implication {u['query']} {u['meta_node']})\n" if u["closed"] else
+                            f";;   subsumed by {u['subsumed_by']} ({by_id[u['subsumed_by']]['meta_name']}); not a proposal\n{u['query']}\n"))
     print(f"{os.path.basename(args.patterns)}: {len(rows)} patterns -> {len(units)} rooted-subtree units "
           f"({len(closed)} closed; {sum(1 for u in closed if u['size'] >= 2)} proposals, {n_collide} name collisions), "
           f"{len(joins)} joins excluded, {n_lifted} lifted excluded")

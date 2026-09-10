@@ -17,8 +17,9 @@
 ;; RECORD FORMAT (every record is one unit = one rooted subtree)
 ;;   ;; <pattern id>  support <records> (occ <matches>)  size <atoms>  root <variable> (<kind>)  depth <d>
 ;;   ;;   e.g. <up to three supporting record ids>
-;;   ;;   meta-node: (Mn<Name> <root> <other variables>)      (closed units; a subsumed unit names its cover instead)
-;;   <the unit as a conjunctive query>
+;;   (Implication <the unit as a conjunctive query> (Mn<Name> <root> <other variables>))
+;;     = the pack rule the proposal would become (naming provisional; the gauntlet decides); a subsumed
+;;     unit carries no rule and is rendered as its bare query under a 'subsumed by' note
 ;; Sections: CLOSED UNITS (the meta-node proposals) then SUBSUMED UNITS (a larger unit on the same records
 ;; contains them); each sorted by support desc, then pattern id. Single-atom units are not rendered.
 
@@ -26,3073 +27,2459 @@
 
 ;; p200015  support 171 (occ 171)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnAgent_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Theme $e0 $x1)) (MnAgent_Theme $e0 $x0 $x1))
 
 ;; p200033  support 77 (occ 101)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnAgent_Past $e0 $x0)
-(And (Agent $e0 $x0) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Past $e0)) (MnAgent_Past $e0 $x0))
 
 ;; p200041  support 63 (occ 71)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnPast_Theme $e0 $x0)
-(And (Past $e0) (Theme $e0 $x0))
+(Implication (And (Past $e0) (Theme $e0 $x0)) (MnPast_Theme $e0 $x0))
 
 ;; p200049  support 52 (occ 75)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
-;;   meta-node: (MnPast_Patient $e0 $x0)
-(And (Past $e0) (Patient $e0 $x0))
+(Implication (And (Past $e0) (Patient $e0 $x0)) (MnPast_Patient $e0 $x0))
 
 ;; p200053  support 50 (occ 58)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
-;;   meta-node: (MnAgent_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Patient $e0 $x1)) (MnAgent_Patient $e0 $x0 $x1))
 
 ;; p200073  support 35 (occ 35)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnAgent_Past_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1)) (MnAgent_Past_Theme $e0 $x0 $x1))
 
 ;; p200091  support 29 (occ 29)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000004 tierA-000011 tierA-000018
-;;   meta-node: (MnRecipient_Theme $e0 $x0 $x1)
-(And (Recipient $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Recipient $e0 $x0) (Theme $e0 $x1)) (MnRecipient_Theme $e0 $x0 $x1))
 
 ;; p200099  support 28 (occ 28)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000208 tierA-000213 tierA-000218
-;;   meta-node: (MnAgent_Recipient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Recipient $e0 $x1)) (MnAgent_Recipient $e0 $x0 $x1))
 
 ;; p200125  support 25 (occ 31)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000080 tierA-000081 tierA-000083
-;;   meta-node: (MnAgent_Location $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1)) (MnAgent_Location $e0 $x0 $x1))
 
 ;; p200136  support 24 (occ 24)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000208 tierA-000213 tierA-000218
-;;   meta-node: (MnAgent_Recipient_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; p200147  support 23 (occ 23)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnThemeOfCardinalityNum $e0 $x0)
-(And (Cardinality $x0 <num>) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (Theme $e0 $x0)) (MnThemeOfCardinalityNum $e0 $x0))
 
 ;; p200159  support 22 (occ 28)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
-;;   meta-node: (MnAgent_Past_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Patient $e0 $x1)) (MnAgent_Past_Patient $e0 $x0 $x1))
 
 ;; p200170  support 20 (occ 20)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000075 tierA-000078 tierA-000108
-;;   meta-node: (MnAgent_Might $e0 $x0)
-(And (Agent $e0 $x0) (Might $e0))
+(Implication (And (Agent $e0 $x0) (Might $e0)) (MnAgent_Might $e0 $x0))
 
 ;; p200191  support 18 (occ 28)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierC-000041 tierC-000042 tierC-000049
-;;   meta-node: (MnAgentOfPerson $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 person))
+(Implication (And (Agent $e0 $x0) (Member $x0 person)) (MnAgentOfPerson $e0 $x0))
 
 ;; p200249  support 14 (occ 14)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000001 tierA-000005 tierA-000006
-;;   meta-node: (MnAgent_Buy_Past_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1)) (MnAgent_Buy_Past_Theme $e0 $x0 $x1))
 
 ;; p200266  support 13 (occ 19)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000049 tierC-000050 tierC-000072
-;;   meta-node: (MnAgentOfPerson_Past $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 person) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Member $x0 person) (Past $e0)) (MnAgentOfPerson_Past $e0 $x0))
 
 ;; p200281  support 13 (occ 14)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000133 tierA-000134 tierA-000135
-;;   meta-node: (MnLocation_Theme $e0 $x0 $x1)
-(And (Location $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Location $e0 $x0) (Theme $e0 $x1)) (MnLocation_Theme $e0 $x0 $x1))
 
 ;; p200282  support 13 (occ 13)  size 2  root $x1 (entity)  depth 2
 ;;   e.g. tierC-000017 tierC-000018 tierC-000066
-;;   meta-node: (MnPossessionOfPerson $x1 $x0)
-(And (Member $x0 person) (Possession $x1 $x0))
+(Implication (And (Member $x0 person) (Possession $x1 $x0)) (MnPossessionOfPerson $x1 $x0))
 
 ;; p200283  support 13 (occ 13)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000087 tierA-000108 tierA-000112
-;;   meta-node: (MnMight_Theme $e0 $x0)
-(And (Might $e0) (Theme $e0 $x0))
+(Implication (And (Might $e0) (Theme $e0 $x0)) (MnMight_Theme $e0 $x0))
 
 ;; p200326  support 12 (occ 12)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000208 tierA-000213 tierA-000218
-;;   meta-node: (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; p200331  support 12 (occ 12)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000108 tierA-000112 tierA-000122
-;;   meta-node: (MnAgent_Might_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Might $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Might $e0) (Theme $e0 $x1)) (MnAgent_Might_Theme $e0 $x0 $x1))
 
 ;; p200339  support 12 (occ 12)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000085 tierA-000086 tierA-000087
-;;   meta-node: (MnHolder_Theme $e0 $x0 $x1)
-(And (Holder $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Holder $e0 $x0) (Theme $e0 $x1)) (MnHolder_Theme $e0 $x0 $x1))
 
 ;; p200377  support 11 (occ 11)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnAgent_ThemeOfCardinalityNum $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Cardinality $x1 <num>) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Cardinality $x1 <num>) (Theme $e0 $x1)) (MnAgent_ThemeOfCardinalityNum $e0 $x0 $x1))
 
 ;; p200400  support 11 (occ 13)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000174 tierA-000178 tierA-000187
-;;   meta-node: (MnAgent_ThemeEv $e0 $e1 $x0)
-(And (Agent $e0 $x0) (Theme $e0 $e1))
+(Implication (And (Agent $e0 $x0) (Theme $e0 $e1)) (MnAgent_ThemeEv $e0 $e1 $x0))
 
 ;; p200401  support 11 (occ 11)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000395 tierA-000396 tierA-000397
-;;   meta-node: (MnExperiencer_Location $e0 $x0 $x1)
-(And (Experiencer $e0 $x0) (Location $e0 $x1))
+(Implication (And (Experiencer $e0 $x0) (Location $e0 $x1)) (MnExperiencer_Location $e0 $x0 $x1))
 
 ;; p200402  support 11 (occ 11)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000222 tierA-000223 tierA-000224
-;;   meta-node: (MnDestroy_Patient $e0 $x0)
-(And (Member $e0 destroy) (Patient $e0 $x0))
+(Implication (And (Member $e0 destroy) (Patient $e0 $x0)) (MnDestroy_Patient $e0 $x0))
 
 ;; p200403  support 11 (occ 13)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000104 tierA-000105 tierA-000106
-;;   meta-node: (MnThemeOfPossession $e0 $x0 $x1)
-(And (Possession $x0 $x1) (Theme $e0 $x0))
+(Implication (And (Possession $x0 $x1) (Theme $e0 $x0)) (MnThemeOfPossession $e0 $x0 $x1))
 
 ;; p200470  support 10 (occ 10)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000207 tierA-000209 tierA-000210
-;;   meta-node: (MnAgent_Answer_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 answer) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 answer) (Theme $e0 $x1)) (MnAgent_Answer_Theme $e0 $x0 $x1))
 
 ;; p200471  support 10 (occ 10)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000281 tierA-000283 tierA-000284
-;;   meta-node: (MnAgent_Teach_Recipient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 teach) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 teach) (Recipient $e0 $x1)) (MnAgent_Teach_Recipient $e0 $x0 $x1))
 
 ;; p200480  support 10 (occ 10)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000006 tierA-000109 tierA-000110
-;;   meta-node: (MnAgentOfCardinalityNum $e0 $x0)
-(And (Agent $e0 $x0) (Cardinality $x0 <num>))
+(Implication (And (Agent $e0 $x0) (Cardinality $x0 <num>)) (MnAgentOfCardinalityNum $e0 $x0))
 
 ;; p200482  support 10 (occ 10)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000185 tierA-000189 tierA-000190
-;;   meta-node: (MnAgent_Decide $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 decide))
+(Implication (And (Agent $e0 $x0) (Member $e0 decide)) (MnAgent_Decide $e0 $x0))
 
 ;; p200484  support 10 (occ 10)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierA-000181 tierA-000182 tierA-000183
-;;   meta-node: (MnCardinalityNum_GroupOfChild $x0)
-(And (Cardinality $x0 <num>) (GroupOf $x0 child))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x0 child)) (MnCardinalityNum_GroupOfChild $x0))
 
 ;; p200487  support 10 (occ 14)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000071
-;;   meta-node: (MnBuild_Patient $e0 $x0)
-(And (Member $e0 build) (Patient $e0 $x0))
+(Implication (And (Member $e0 build) (Patient $e0 $x0)) (MnBuild_Patient $e0 $x0))
 
 ;; p200488  support 10 (occ 10)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000296 tierA-000298 tierA-000299
-;;   meta-node: (MnLend_Theme $e0 $x0)
-(And (Member $e0 lend) (Theme $e0 $x0))
+(Implication (And (Member $e0 lend) (Theme $e0 $x0)) (MnLend_Theme $e0 $x0))
 
 ;; p200490  support 10 (occ 11)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000262 tierA-000272 tierA-000277
-;;   meta-node: (MnSource_Theme $e0 $x0 $x1)
-(And (Source $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Source $e0 $x0) (Theme $e0 $x1)) (MnSource_Theme $e0 $x0 $x1))
 
 ;; p200525  support 9 (occ 9)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnPast_ThemeOfCardinalityNum $e0 $x0)
-(And (Cardinality $x0 <num>) (Past $e0) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (Past $e0) (Theme $e0 $x0)) (MnPast_ThemeOfCardinalityNum $e0 $x0))
 
 ;; p200550  support 9 (occ 9)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000185 tierA-000189 tierA-000190
-;;   meta-node: (MnAgent_Decide_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 decide) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 decide) (Theme $e0 $x1)) (MnAgent_Decide_Theme $e0 $x0 $x1))
 
 ;; p200551  support 9 (occ 9)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000296 tierA-000298 tierA-000299
-;;   meta-node: (MnAgent_Lend_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 lend) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Theme $e0 $x1)) (MnAgent_Lend_Theme $e0 $x0 $x1))
 
 ;; p200558  support 9 (occ 9)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000143 tierA-000145 tierA-000148
-;;   meta-node: (MnAgent_Cancel $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 cancel))
+(Implication (And (Agent $e0 $x0) (Member $e0 cancel)) (MnAgent_Cancel $e0 $x0))
 
 ;; p200560  support 9 (occ 9)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000114 tierA-000115 tierA-000116
-;;   meta-node: (MnAgentOfBoard $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 board))
+(Implication (And (Agent $e0 $x0) (Member $x0 board)) (MnAgentOfBoard $e0 $x0))
 
 ;; p200561  support 9 (occ 10)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000262 tierA-000272 tierA-000277
-;;   meta-node: (MnAgent_Source $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Source $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Source $e0 $x1)) (MnAgent_Source $e0 $x0 $x1))
 
 ;; p200562  support 9 (occ 12)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000313 tierA-000315 tierA-000316
-;;   meta-node: (MnLocation_Work $e0 $x0)
-(And (Location $e0 $x0) (Member $e0 work))
+(Implication (And (Location $e0 $x0) (Member $e0 work)) (MnLocation_Work $e0 $x0))
 
 ;; p200564  support 9 (occ 9)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000133 tierA-000135 tierA-000136
-;;   meta-node: (MnDiscover_Theme $e0 $x0)
-(And (Member $e0 discover) (Theme $e0 $x0))
+(Implication (And (Member $e0 discover) (Theme $e0 $x0)) (MnDiscover_Theme $e0 $x0))
 
 ;; p200620  support 8 (occ 8)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnAgentOfSchool_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 school) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 school) (Theme $e0 $x1)) (MnAgentOfSchool_Theme $e0 $x0 $x1))
 
 ;; p200621  support 8 (occ 20)  size 3  root $e0 (event)  depth 3
 ;;   e.g. tierC-000017 tierC-000018 tierC-000123
-;;   meta-node: (MnAgentOfPossessionOfPerson $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 person) (Possession $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 person) (Possession $x0 $x1)) (MnAgentOfPossessionOfPerson $e0 $x0 $x1))
 
 ;; p200661  support 8 (occ 8)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000099 tierA-000101 tierA-000104
-;;   meta-node: (MnAgent_Abandon_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 abandon) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 abandon) (Theme $e0 $x1)) (MnAgent_Abandon_Theme $e0 $x0 $x1))
 
 ;; p200662  support 8 (occ 8)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000222 tierA-000224 tierA-000226
-;;   meta-node: (MnAgent_Destroy_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 destroy) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 destroy) (Patient $e0 $x1)) (MnAgent_Destroy_Patient $e0 $x0 $x1))
 
 ;; p200663  support 8 (occ 8)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000158 tierA-000160 tierA-000162
-;;   meta-node: (MnAgent_Reject_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 reject) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 reject) (Theme $e0 $x1)) (MnAgent_Reject_Theme $e0 $x0 $x1))
 
 ;; p200664  support 8 (occ 8)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000029 tierA-000032 tierA-000034
-;;   meta-node: (MnAgent_Repair_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 repair) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 repair) (Patient $e0 $x1)) (MnAgent_Repair_Patient $e0 $x0 $x1))
 
 ;; p200665  support 8 (occ 9)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000262 tierA-000272 tierA-000277
-;;   meta-node: (MnAgent_Source_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Source $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Source $e0 $x1) (Theme $e0 $x2)) (MnAgent_Source_Theme $e0 $x0 $x1 $x2))
 
 ;; p200679  support 8 (occ 8)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000375 tierA-000377 tierA-000380
-;;   meta-node: (MnAgentOfPhysician $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 physician))
+(Implication (And (Agent $e0 $x0) (Member $x0 physician)) (MnAgentOfPhysician $e0 $x0))
 
 ;; p200682  support 8 (occ 8)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000145 tierC-000146 tierC-000237
-;;   meta-node: (MnCan_Theme $e0 $x0)
-(And (Can $e0) (Theme $e0 $x0))
+(Implication (And (Can $e0) (Theme $e0 $x0)) (MnCan_Theme $e0 $x0))
 
 ;; p200683  support 8 (occ 8)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000086 tierA-000087 tierA-000088
-;;   meta-node: (MnHolder_Require $e0 $x0)
-(And (Holder $e0 $x0) (Member $e0 require))
+(Implication (And (Holder $e0 $x0) (Member $e0 require)) (MnHolder_Require $e0 $x0))
 
 ;; p200684  support 8 (occ 9)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000128 tierA-000129 tierA-000130
-;;   meta-node: (MnLocationOfLedger $e0 $x0)
-(And (Location $e0 $x0) (Member $x0 ledger))
+(Implication (And (Location $e0 $x0) (Member $x0 ledger)) (MnLocationOfLedger $e0 $x0))
 
 ;; p200686  support 8 (occ 8)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000153 tierC-000154 tierC-000181
-;;   meta-node: (MnHave_Theme $e0 $x0)
-(And (Member $e0 have) (Theme $e0 $x0))
+(Implication (And (Member $e0 have) (Theme $e0 $x0)) (MnHave_Theme $e0 $x0))
 
 ;; p200758  support 7 (occ 7)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000006 tierA-000109 tierA-000110
-;;   meta-node: (MnAgentOfCardinalityNum_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Cardinality $x0 <num>) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Cardinality $x0 <num>) (Theme $e0 $x1)) (MnAgentOfCardinalityNum_Theme $e0 $x0 $x1))
 
 ;; p200759  support 7 (occ 7)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000114 tierA-000115 tierA-000116
-;;   meta-node: (MnAgentOfBoard_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 board) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 board) (Theme $e0 $x1)) (MnAgentOfBoard_Theme $e0 $x0 $x1))
 
 ;; p200760  support 7 (occ 7)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnAgentOfDepot_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 depot) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 depot) (Theme $e0 $x1)) (MnAgentOfDepot_Theme $e0 $x0 $x1))
 
 ;; p200762  support 7 (occ 7)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000001 tierC-000077 tierC-000078
-;;   meta-node: (MnBeforeEvOfPast_Past $e0 $e1)
-(And (Before $e0 $e1) (Past $e0) (Past $e1))
+(Implication (And (Before $e0 $e1) (Past $e0) (Past $e1)) (MnBeforeEvOfPast_Past $e0 $e1))
 
 ;; p200793  support 7 (occ 7)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000022 tierA-000023 tierA-000024
-;;   meta-node: (MnPotteryStudioOfInheritanceStudio $x0)
-(And (Inheritance pottery_studio studio) (Member $x0 pottery_studio))
+(Implication (And (Inheritance pottery_studio studio) (Member $x0 pottery_studio)) (MnPotteryStudioOfInheritanceStudio $x0))
 
 ;; p200805  support 7 (occ 7)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000145 tierA-000148 tierA-000150
-;;   meta-node: (MnAgent_Cancel_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 cancel) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 cancel) (Patient $e0 $x1)) (MnAgent_Cancel_Patient $e0 $x0 $x1))
 
 ;; p200806  support 7 (occ 7)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000133 tierA-000135 tierA-000136
-;;   meta-node: (MnAgent_Discover_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 discover) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 discover) (Theme $e0 $x1)) (MnAgent_Discover_Theme $e0 $x0 $x1))
 
 ;; p200807  support 7 (occ 7)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000114 tierA-000116 tierA-000119
-;;   meta-node: (MnAgent_Postpone_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 postpone) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 postpone) (Theme $e0 $x1)) (MnAgent_Postpone_Theme $e0 $x0 $x1))
 
 ;; p200808  support 7 (occ 11)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000072
-;;   meta-node: (MnBuild_Past_Patient $e0 $x0)
-(And (Member $e0 build) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnBuild_Past_Patient $e0 $x0))
 
 ;; p200809  support 7 (occ 7)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000300 tierA-000301 tierA-000303
-;;   meta-node: (MnLend_Recipient_Theme $e0 $x0 $x1)
-(And (Member $e0 lend) (Recipient $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Member $e0 lend) (Recipient $e0 $x0) (Theme $e0 $x1)) (MnLend_Recipient_Theme $e0 $x0 $x1))
 
 ;; p200822  support 7 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000315 tierA-000318 tierA-000319
-;;   meta-node: (MnAgent_CoAgent $e0 $x0 $x1)
-(And (Agent $e0 $x0) (CoAgent $e0 $x1))
+(Implication (And (Agent $e0 $x0) (CoAgent $e0 $x1)) (MnAgent_CoAgent $e0 $x0 $x1))
 
 ;; p200829  support 7 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnBeneficiary_Past $e0 $x0)
-(And (Beneficiary $e0 $x0) (Past $e0))
+(Implication (And (Beneficiary $e0 $x0) (Past $e0)) (MnBeneficiary_Past $e0 $x0))
 
 ;; p200830  support 7 (occ 7)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnCardinalityNum_GroupOfForklift $x0)
-(And (Cardinality $x0 <num>) (GroupOf $x0 forklift))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x0 forklift)) (MnCardinalityNum_GroupOfForklift $x0))
 
 ;; p200831  support 7 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000062 tierA-000063 tierA-000064
-;;   meta-node: (MnFuture_Patient $e0 $x0)
-(And (Future $e0) (Patient $e0 $x0))
+(Implication (And (Future $e0) (Patient $e0 $x0)) (MnFuture_Patient $e0 $x0))
 
 ;; p200832  support 7 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000052 tierA-000055 tierA-000057
-;;   meta-node: (MnBegin_Patient $e0 $x0)
-(And (Member $e0 begin) (Patient $e0 $x0))
+(Implication (And (Member $e0 begin) (Patient $e0 $x0)) (MnBegin_Patient $e0 $x0))
 
 ;; p200837  support 7 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000084 tierA-000086 tierA-000087
-;;   meta-node: (MnRequire_Theme $e0 $x0)
-(And (Member $e0 require) (Theme $e0 $x0))
+(Implication (And (Member $e0 require) (Theme $e0 $x0)) (MnRequire_Theme $e0 $x0))
 
 ;; p200863  support 6 (occ 6)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnAgent_Past_ThemeOfCardinalityNum $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Cardinality $x1 <num>) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Cardinality $x1 <num>) (Past $e0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfCardinalityNum $e0 $x0 $x1))
 
 ;; p200864  support 6 (occ 10)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierC-000017 tierC-000018 tierC-000123
-;;   meta-node: (MnAgentOfPossessionOfPerson_Past $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 person) (Past $e0) (Possession $x0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 person) (Past $e0) (Possession $x0 $x1)) (MnAgentOfPossessionOfPerson_Past $e0 $x0 $x1))
 
 ;; p200865  support 6 (occ 6)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnBeneficiaryOfHall_Past_Theme $e0 $x0 $x1)
-(And (Beneficiary $e0 $x0) (Member $x0 hall) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Beneficiary $e0 $x0) (Member $x0 hall) (Past $e0) (Theme $e0 $x1)) (MnBeneficiaryOfHall_Past_Theme $e0 $x0 $x1))
 
 ;; p200866  support 6 (occ 6)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnPast_ThemeOfCardinalityNum-GroupOfForklift $e0 $x0)
-(And (Cardinality $x0 <num>) (GroupOf $x0 forklift) (Past $e0) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x0 forklift) (Past $e0) (Theme $e0 $x0)) (MnPast_ThemeOfCardinalityNum-GroupOfForklift $e0 $x0))
 
 ;; p200965  support 6 (occ 6)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000380 tierA-000382 tierA-000384
-;;   meta-node: (MnAgentOfPhysician_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 physician) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 physician) (Theme $e0 $x1)) (MnAgentOfPhysician_Theme $e0 $x0 $x1))
 
 ;; p200971  support 6 (occ 6)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000023 tierA-000024
-;;   meta-node: (MnPast_ThemeOfKiln $e0 $x0)
-(And (Member $x0 kiln) (Past $e0) (Theme $e0 $x0))
+(Implication (And (Member $x0 kiln) (Past $e0) (Theme $e0 $x0)) (MnPast_ThemeOfKiln $e0 $x0))
 
 ;; p201014  support 6 (occ 6)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000035 tierA-000036 tierA-000037
-;;   meta-node: (MnYardFloodlightOfInheritanceFloodlight $x0)
-(And (Inheritance yard_floodlight floodlight) (Member $x0 yard_floodlight))
+(Implication (And (Inheritance yard_floodlight floodlight) (Member $x0 yard_floodlight)) (MnYardFloodlightOfInheritanceFloodlight $x0))
 
 ;; p201048  support 6 (occ 6)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000301 tierA-000303 tierA-000304
-;;   meta-node: (MnAgent_Lend_Recipient_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $e0 lend) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Lend_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; p201049  support 6 (occ 6)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000029 tierA-000032 tierA-000034
-;;   meta-node: (MnAgent_Repair_Past_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 repair) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 repair) (Past $e0) (Patient $e0 $x1)) (MnAgent_Repair_Past_Patient $e0 $x0 $x1))
 
 ;; p201050  support 6 (occ 6)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000286 tierA-000288 tierA-000289
-;;   meta-node: (MnAgent_Teach_Recipient_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $e0 teach) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 teach) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Teach_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; p201058  support 6 (occ 10)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000071
-;;   meta-node: (MnAgent_Build_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 build) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_Build_Patient $e0 $x0 $x1))
 
 ;; p201064  support 6 (occ 6)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000086 tierA-000087 tierA-000088
-;;   meta-node: (MnHolder_Require_Theme $e0 $x0 $x1)
-(And (Holder $e0 $x0) (Member $e0 require) (Theme $e0 $x1))
+(Implication (And (Holder $e0 $x0) (Member $e0 require) (Theme $e0 $x1)) (MnHolder_Require_Theme $e0 $x0 $x1))
 
 ;; p201067  support 6 (occ 6)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000089 tierC-000090 tierC-000131
-;;   meta-node: (MnWrite_Past_Patient $e0 $x0)
-(And (Member $e0 write) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Member $e0 write) (Past $e0) (Patient $e0 $x0)) (MnWrite_Past_Patient $e0 $x0))
 
 ;; p201083  support 6 (occ 6)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000237 tierA-000238 tierA-000240
-;;   meta-node: (MnAgent_Arrive $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 arrive))
+(Implication (And (Agent $e0 $x0) (Member $e0 arrive)) (MnAgent_Arrive $e0 $x0))
 
 ;; p201087  support 6 (occ 6)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEv_Past $e0 $e1)
-(And (For $e0 $e1) (Past $e0))
+(Implication (And (For $e0 $e1) (Past $e0)) (MnForEv_Past $e0 $e1))
 
 ;; p201089  support 6 (occ 6)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierA-000015 tierA-000016 tierA-000017
-;;   meta-node: (MnGroupOfLemon_Crate $x0)
-(And (GroupOf $x0 lemon) (Member $x0 crate))
+(Implication (And (GroupOf $x0 lemon) (Member $x0 crate)) (MnGroupOfLemon_Crate $x0))
 
 ;; p201090  support 6 (occ 8)  size 2  root $e1 (event)  depth 2
 ;;   e.g. tierA-000174 tierA-000178 tierC-000025
-;;   meta-node: (MnThemeEvOfLocation $e1 $e0 $x0)
-(And (Location $e0 $x0) (Theme $e1 $e0))
+(Implication (And (Location $e0 $x0) (Theme $e1 $e0)) (MnThemeEvOfLocation $e1 $e0 $x0))
 
 ;; p201091  support 6 (occ 6)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000186 tierA-000187 tierA-000191
-;;   meta-node: (MnDecision_Theme $e0 $x0)
-(And (Member $e0 decision) (Theme $e0 $x0))
+(Implication (And (Member $e0 decision) (Theme $e0 $x0)) (MnDecision_Theme $e0 $x0))
 
 ;; p201092  support 6 (occ 8)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000009 tierC-000010 tierC-000091
-;;   meta-node: (MnProduce_Patient $e0 $x0)
-(And (Member $e0 produce) (Patient $e0 $x0))
+(Implication (And (Member $e0 produce) (Patient $e0 $x0)) (MnProduce_Patient $e0 $x0))
 
 ;; p201097  support 6 (occ 6)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierA-000201 tierA-000202 tierA-000203
-;;   meta-node: (MnBudget_PossessionNextYear $x0)
-(And (Member $x0 budget) (Possession $x0 next_year))
+(Implication (And (Member $x0 budget) (Possession $x0 next_year)) (MnBudget_PossessionNextYear $x0))
 
 ;; p201099  support 6 (occ 6)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000292 tierA-000293
-;;   meta-node: (MnThemeOfSong $e0 $x0)
-(And (Member $x0 song) (Theme $e0 $x0))
+(Implication (And (Member $x0 song) (Theme $e0 $x0)) (MnThemeOfSong $e0 $x0))
 
 ;; p201100  support 6 (occ 6)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000055 tierA-000066 tierA-000070
-;;   meta-node: (MnMight_Patient $e0 $x0)
-(And (Might $e0) (Patient $e0 $x0))
+(Implication (And (Might $e0) (Patient $e0 $x0)) (MnMight_Patient $e0 $x0))
 
 ;; p201162  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnAgentOfSchool_BeneficiaryOfHall $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x0 school) (Member $x1 hall))
+(Implication (And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x0 school) (Member $x1 hall)) (MnAgentOfSchool_BeneficiaryOfHall $e0 $x0 $x1))
 
 ;; p201163  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnAgentOfSchool_Beneficiary_Past $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x0 school) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x0 school) (Past $e0)) (MnAgentOfSchool_Beneficiary_Past $e0 $x0 $x1))
 
 ;; p201164  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnAgentOfSchool_Beneficiary_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x0 school) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x0 school) (Theme $e0 $x2)) (MnAgentOfSchool_Beneficiary_Theme $e0 $x0 $x1 $x2))
 
 ;; p201165  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnAgent_BeneficiaryOfHall_Past $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x1 hall) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x1 hall) (Past $e0)) (MnAgent_BeneficiaryOfHall_Past $e0 $x0 $x1))
 
 ;; p201166  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnAgent_BeneficiaryOfHall_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x1 hall) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x1 hall) (Theme $e0 $x2)) (MnAgent_BeneficiaryOfHall_Theme $e0 $x0 $x1 $x2))
 
 ;; p201167  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000109 tierA-000110 tierA-000111
-;;   meta-node: (MnAgentOfCardinalityNum-GroupOfClimber_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Cardinality $x0 <num>) (GroupOf $x0 climber) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Cardinality $x0 <num>) (GroupOf $x0 climber) (Theme $e0 $x1)) (MnAgentOfCardinalityNum-GroupOfClimber_Theme $e0 $x0 $x1))
 
 ;; p201168  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000109 tierA-000110 tierA-000111
-;;   meta-node: (MnAgentOfCardinalityNum_ThemeOfNorthRoute $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Cardinality $x0 <num>) (Member $x1 north_route) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Cardinality $x0 <num>) (Member $x1 north_route) (Theme $e0 $x1)) (MnAgentOfCardinalityNum_ThemeOfNorthRoute $e0 $x0 $x1))
 
 ;; p201169  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnAgent_ThemeOfCardinalityNum-GroupOfForklift $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Cardinality $x1 <num>) (GroupOf $x1 forklift) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Cardinality $x1 <num>) (GroupOf $x1 forklift) (Theme $e0 $x1)) (MnAgent_ThemeOfCardinalityNum-GroupOfForklift $e0 $x0 $x1))
 
 ;; p201170  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnAgentOfDepot_ThemeOfCardinalityNum $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Cardinality $x1 <num>) (Member $x0 depot) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Cardinality $x1 <num>) (Member $x0 depot) (Theme $e0 $x1)) (MnAgentOfDepot_ThemeOfCardinalityNum $e0 $x0 $x1))
 
 ;; p201171  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000109 tierA-000110 tierA-000111
-;;   meta-node: (MnAgentOfGroupOfClimber_ThemeOfNorthRoute $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x0 climber) (Member $x1 north_route) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x0 climber) (Member $x1 north_route) (Theme $e0 $x1)) (MnAgentOfGroupOfClimber_ThemeOfNorthRoute $e0 $x0 $x1))
 
 ;; p201172  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnAgentOfDepot_ThemeOfGroupOfForklift $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x1 forklift) (Member $x0 depot) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 forklift) (Member $x0 depot) (Theme $e0 $x1)) (MnAgentOfDepot_ThemeOfGroupOfForklift $e0 $x0 $x1))
 
 ;; p201173  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnAgent_Past_ThemeOfGroupOfForklift $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x1 forklift) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 forklift) (Past $e0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfForklift $e0 $x0 $x1))
 
 ;; p201174  support 5 (occ 5)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000109 tierA-000110 tierA-000111
-;;   meta-node: (MnAgent_ThemeOfNorthRouteOfInheritanceNorth $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Inheritance north_route north) (Member $x1 north_route) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Inheritance north_route north) (Member $x1 north_route) (Theme $e0 $x1)) (MnAgent_ThemeOfNorthRouteOfInheritanceNorth $e0 $x0 $x1))
 
 ;; p201175  support 5 (occ 5)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000109 tierA-000110 tierA-000111
-;;   meta-node: (MnAgent_ThemeOfNorthRouteOfInheritanceRoute $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Inheritance north_route route) (Member $x1 north_route) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Inheritance north_route route) (Member $x1 north_route) (Theme $e0 $x1)) (MnAgent_ThemeOfNorthRouteOfInheritanceRoute $e0 $x0 $x1))
 
 ;; p201176  support 5 (occ 5)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000022 tierA-000023 tierA-000024
-;;   meta-node: (MnAgentOfPotteryStudioOfInheritanceStudio_Past $e0 $x0)
-(And (Agent $e0 $x0) (Inheritance pottery_studio studio) (Member $x0 pottery_studio) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Inheritance pottery_studio studio) (Member $x0 pottery_studio) (Past $e0)) (MnAgentOfPotteryStudioOfInheritanceStudio_Past $e0 $x0))
 
 ;; p201177  support 5 (occ 5)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000022 tierA-000023 tierA-000024
-;;   meta-node: (MnAgentOfPotteryStudioOfInheritanceStudio_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Inheritance pottery_studio studio) (Member $x0 pottery_studio) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Inheritance pottery_studio studio) (Member $x0 pottery_studio) (Theme $e0 $x1)) (MnAgentOfPotteryStudioOfInheritanceStudio_Theme $e0 $x0 $x1))
 
 ;; p201178  support 5 (occ 5)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000035 tierA-000036 tierA-000037
-;;   meta-node: (MnAgent_PatientOfYardFloodlightOfInheritanceFloodlight $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Inheritance yard_floodlight floodlight) (Member $x1 yard_floodlight) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Inheritance yard_floodlight floodlight) (Member $x1 yard_floodlight) (Patient $e0 $x1)) (MnAgent_PatientOfYardFloodlightOfInheritanceFloodlight $e0 $x0 $x1))
 
 ;; p201179  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000134 tierA-000135
-;;   meta-node: (MnAgent_LocationOfPoint_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $x1 point) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $x1 point) (Theme $e0 $x2)) (MnAgent_LocationOfPoint_Theme $e0 $x0 $x1 $x2))
 
 ;; p201180  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000123 tierA-000124 tierA-000125
-;;   meta-node: (MnAgentOfClub_ThemeOfTournament $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 club) (Member $x1 tournament) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 club) (Member $x1 tournament) (Theme $e0 $x1)) (MnAgentOfClub_ThemeOfTournament $e0 $x0 $x1))
 
 ;; p201181  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
-;;   meta-node: (MnAgentOfDepot_Past_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 depot) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 depot) (Past $e0) (Theme $e0 $x1)) (MnAgentOfDepot_Past_Theme $e0 $x0 $x1))
 
 ;; p201182  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000035 tierA-000036 tierA-000037
-;;   meta-node: (MnAgentOfElectrician_PatientOfYardFloodlight $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 electrician) (Member $x1 yard_floodlight) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 electrician) (Member $x1 yard_floodlight) (Patient $e0 $x1)) (MnAgentOfElectrician_PatientOfYardFloodlight $e0 $x0 $x1))
 
 ;; p201183  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000035 tierA-000036 tierA-000037
-;;   meta-node: (MnAgentOfElectrician_Past_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 electrician) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 electrician) (Past $e0) (Patient $e0 $x1)) (MnAgentOfElectrician_Past_Patient $e0 $x0 $x1))
 
 ;; p201184  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000023 tierA-000024
-;;   meta-node: (MnAgentOfPotteryStudio_ThemeOfKiln $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 pottery_studio) (Member $x1 kiln) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 pottery_studio) (Member $x1 kiln) (Theme $e0 $x1)) (MnAgentOfPotteryStudio_ThemeOfKiln $e0 $x0 $x1))
 
 ;; p201185  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000023 tierA-000024
-;;   meta-node: (MnAgentOfPotteryStudio_Past_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 pottery_studio) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 pottery_studio) (Past $e0) (Theme $e0 $x1)) (MnAgentOfPotteryStudio_Past_Theme $e0 $x0 $x1))
 
 ;; p201186  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnAgentOfSchool_Past_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 school) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 school) (Past $e0) (Theme $e0 $x1)) (MnAgentOfSchool_Past_Theme $e0 $x0 $x1))
 
 ;; p201187  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000023 tierA-000024
-;;   meta-node: (MnAgent_Past_ThemeOfKiln $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 kiln) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 kiln) (Past $e0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfKiln $e0 $x0 $x1))
 
 ;; p201188  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000035 tierA-000036 tierA-000037
-;;   meta-node: (MnAgent_Past_PatientOfYardFloodlight $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 yard_floodlight) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 yard_floodlight) (Past $e0) (Patient $e0 $x1)) (MnAgent_Past_PatientOfYardFloodlight $e0 $x0 $x1))
 
 ;; p201189  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnBeneficiaryOfHall_ThemeOfProjector $e0 $x0 $x1)
-(And (Beneficiary $e0 $x0) (Member $x0 hall) (Member $x1 projector) (Theme $e0 $x1))
+(Implication (And (Beneficiary $e0 $x0) (Member $x0 hall) (Member $x1 projector) (Theme $e0 $x1)) (MnBeneficiaryOfHall_ThemeOfProjector $e0 $x0 $x1))
 
 ;; p201190  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnBeneficiary_Past_ThemeOfProjector $e0 $x0 $x1)
-(And (Beneficiary $e0 $x0) (Member $x1 projector) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Beneficiary $e0 $x0) (Member $x1 projector) (Past $e0) (Theme $e0 $x1)) (MnBeneficiary_Past_ThemeOfProjector $e0 $x0 $x1))
 
 ;; p201191  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000015 tierA-000016 tierA-000017
-;;   meta-node: (MnPast_ThemeOfGroupOfLemon-Crate $e0 $x0)
-(And (GroupOf $x0 lemon) (Member $x0 crate) (Past $e0) (Theme $e0 $x0))
+(Implication (And (GroupOf $x0 lemon) (Member $x0 crate) (Past $e0) (Theme $e0 $x0)) (MnPast_ThemeOfGroupOfLemon-Crate $e0 $x0))
 
 ;; p201192  support 5 (occ 5)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000067 tierA-000068 tierA-000069
-;;   meta-node: (MnPatientOfAppleHarvestOfInheritanceHarvest_Time(MonthSeptember $e0 $x0)
-(And (Inheritance apple_harvest harvest) (Member $x0 apple_harvest) (Patient $e0 $x0) (Time $e0 (Month september)))
+(Implication (And (Inheritance apple_harvest harvest) (Member $x0 apple_harvest) (Patient $e0 $x0) (Time $e0 (Month september))) (MnPatientOfAppleHarvestOfInheritanceHarvest_Time(MonthSeptember $e0 $x0))
 
 ;; p201193  support 5 (occ 5)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000109 tierA-000110 tierA-000111
-;;   meta-node: (MnThemeOfNorthRouteOfInheritanceNorth-InheritanceRoute $e0 $x0)
-(And (Inheritance north_route north) (Inheritance north_route route) (Member $x0 north_route) (Theme $e0 $x0))
+(Implication (And (Inheritance north_route north) (Inheritance north_route route) (Member $x0 north_route) (Theme $e0 $x0)) (MnThemeOfNorthRouteOfInheritanceNorth-InheritanceRoute $e0 $x0))
 
 ;; p201194  support 5 (occ 5)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000052 tierA-000053 tierA-000054
-;;   meta-node: (MnPatientOfShorelineSurveyOfInheritanceSurvey_TimeDawn $e0 $x0)
-(And (Inheritance shoreline_survey survey) (Member $x0 shoreline_survey) (Patient $e0 $x0) (Time $e0 dawn))
+(Implication (And (Inheritance shoreline_survey survey) (Member $x0 shoreline_survey) (Patient $e0 $x0) (Time $e0 dawn)) (MnPatientOfShorelineSurveyOfInheritanceSurvey_TimeDawn $e0 $x0))
 
 ;; p201195  support 5 (occ 5)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000035 tierA-000036 tierA-000037
-;;   meta-node: (MnPast_PatientOfYardFloodlightOfInheritanceFloodlight $e0 $x0)
-(And (Inheritance yard_floodlight floodlight) (Member $x0 yard_floodlight) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Inheritance yard_floodlight floodlight) (Member $x0 yard_floodlight) (Past $e0) (Patient $e0 $x0)) (MnPast_PatientOfYardFloodlightOfInheritanceFloodlight $e0 $x0))
 
 ;; p201410  support 5 (occ 5)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000390 tierA-000392 tierA-000398
-;;   meta-node: (MnAgentOfAutomobile_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 automobile) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 automobile) (Theme $e0 $x1)) (MnAgentOfAutomobile_Theme $e0 $x0 $x1))
 
 ;; p201423  support 5 (occ 7)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000223 tierA-000228 tierA-000233
-;;   meta-node: (MnAgent_ThemeEvOfPatient $e0 $e1 $x0 $x1)
-(And (Agent $e0 $x0) (Patient $e1 $x1) (Theme $e0 $e1))
+(Implication (And (Agent $e0 $x0) (Patient $e1 $x1) (Theme $e0 $e1)) (MnAgent_ThemeEvOfPatient $e0 $e1 $x0 $x1))
 
 ;; p201425  support 5 (occ 5)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000085 tierA-000086 tierA-000087
-;;   meta-node: (MnHolder_ThemeOfCardinalityNum $e0 $x0 $x1)
-(And (Cardinality $x0 <num>) (Holder $e0 $x1) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (Holder $e0 $x1) (Theme $e0 $x0)) (MnHolder_ThemeOfCardinalityNum $e0 $x0 $x1))
 
 ;; p201426  support 5 (occ 5)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000084 tierA-000086 tierA-000087
-;;   meta-node: (MnRequire_ThemeOfCardinalityNum $e0 $x0)
-(And (Cardinality $x0 <num>) (Member $e0 require) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (Member $e0 require) (Theme $e0 $x0)) (MnRequire_ThemeOfCardinalityNum $e0 $x0))
 
 ;; p201438  support 5 (occ 5)  size 3  root $x1 (entity)  depth 2
 ;;   e.g. tierA-000104 tierA-000105 tierA-000106
-;;   meta-node: (MnTender_PossessionOfFirm $x1 $x0)
-(And (Member $x0 firm) (Member $x1 tender) (Possession $x1 $x0))
+(Implication (And (Member $x0 firm) (Member $x1 tender) (Possession $x1 $x0)) (MnTender_PossessionOfFirm $x1 $x0))
 
 ;; p201533  support 5 (occ 5)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000153 tierA-000154 tierA-000155
-;;   meta-node: (MnAfternoonSessionOfInheritanceSession $x0)
-(And (Inheritance afternoon_session session) (Member $x0 afternoon_session))
+(Implication (And (Inheritance afternoon_session session) (Member $x0 afternoon_session)) (MnAfternoonSessionOfInheritanceSession $x0))
 
 ;; p201535  support 5 (occ 5)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000062 tierA-000063 tierA-000064
-;;   meta-node: (MnDressRehearsalOfInheritanceRehearsal $x0)
-(And (Inheritance dress_rehearsal rehearsal) (Member $x0 dress_rehearsal))
+(Implication (And (Inheritance dress_rehearsal rehearsal) (Member $x0 dress_rehearsal)) (MnDressRehearsalOfInheritanceRehearsal $x0))
 
 ;; p201536  support 5 (occ 5)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000143 tierA-000144 tierA-000145
-;;   meta-node: (MnEveningFlightOfInheritanceFlight $x0)
-(And (Inheritance evening_flight flight) (Member $x0 evening_flight))
+(Implication (And (Inheritance evening_flight flight) (Member $x0 evening_flight)) (MnEveningFlightOfInheritanceFlight $x0))
 
 ;; p201537  support 5 (occ 5)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000163 tierA-000164 tierA-000165
-;;   meta-node: (MnLoanApplicationOfInheritanceApplication $x0)
-(And (Inheritance loan_application application) (Member $x0 loan_application))
+(Implication (And (Inheritance loan_application application) (Member $x0 loan_application)) (MnLoanApplicationOfInheritanceApplication $x0))
 
 ;; p201540  support 5 (occ 5)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000099 tierA-000100 tierA-000101
-;;   meta-node: (MnRescueTeamOfInheritanceTeam $x0)
-(And (Inheritance rescue_team team) (Member $x0 rescue_team))
+(Implication (And (Inheritance rescue_team team) (Member $x0 rescue_team)) (MnRescueTeamOfInheritanceTeam $x0))
 
 ;; p201542  support 5 (occ 5)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000148 tierA-000149 tierA-000150
-;;   meta-node: (MnSummerFairOfInheritanceFair $x0)
-(And (Inheritance summer_fair fair) (Member $x0 summer_fair))
+(Implication (And (Inheritance summer_fair fair) (Member $x0 summer_fair)) (MnSummerFairOfInheritanceFair $x0))
 
 ;; p201571  support 5 (occ 5)  size 2  root monthly_servicing (constant)  depth 1
 ;;   e.g. tierA-000094 tierA-000095 tierA-000096
-;;   meta-node: (MnInheritanceMonthly_InheritanceServicing monthly_servicing)
-(And (Inheritance monthly_servicing monthly) (Inheritance monthly_servicing servicing))
+(Implication (And (Inheritance monthly_servicing monthly) (Inheritance monthly_servicing servicing)) (MnInheritanceMonthly_InheritanceServicing monthly_servicing))
 
 ;; p201622  support 5 (occ 5)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnAgent_Beneficiary_Past_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Past $e0) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Past $e0) (Theme $e0 $x2)) (MnAgent_Beneficiary_Past_Theme $e0 $x0 $x1 $x2))
 
 ;; p201623  support 5 (occ 9)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000072
-;;   meta-node: (MnAgent_Build_Past_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 build) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Past $e0) (Patient $e0 $x1)) (MnAgent_Build_Past_Patient $e0 $x0 $x1))
 
 ;; p201636  support 5 (occ 5)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000315 tierA-000318 tierA-000319
-;;   meta-node: (MnAgent_CoAgent_Location $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (CoAgent $e0 $x1) (Location $e0 $x2))
+(Implication (And (Agent $e0 $x0) (CoAgent $e0 $x1) (Location $e0 $x2)) (MnAgent_CoAgent_Location $e0 $x0 $x1 $x2))
 
 ;; p201637  support 5 (occ 7)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000315 tierA-000316 tierA-000319
-;;   meta-node: (MnAgent_Location_Work $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 work))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 work)) (MnAgent_Location_Work $e0 $x0 $x1))
 
 ;; p201641  support 5 (occ 5)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000084 tierA-000085 tierA-000086
-;;   meta-node: (MnThemeOfCardinalityNum-GroupOfEgg $e0 $x0)
-(And (Cardinality $x0 <num>) (GroupOf $x0 egg) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x0 egg) (Theme $e0 $x0)) (MnThemeOfCardinalityNum-GroupOfEgg $e0 $x0))
 
 ;; p201643  support 5 (occ 5)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000201 tierA-000202 tierA-000203
-;;   meta-node: (MnThemeOfBudget-PossessionNextYear $e0 $x0)
-(And (Member $x0 budget) (Possession $x0 next_year) (Theme $e0 $x0))
+(Implication (And (Member $x0 budget) (Possession $x0 next_year) (Theme $e0 $x0)) (MnThemeOfBudget-PossessionNextYear $e0 $x0))
 
 ;; p201676  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000237 tierA-000238 tierA-000241
-;;   meta-node: (MnAgent_Future $e0 $x0)
-(And (Agent $e0 $x0) (Future $e0))
+(Implication (And (Agent $e0 $x0) (Future $e0)) (MnAgent_Future $e0 $x0))
 
 ;; p201677  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000181 tierA-000183 tierA-000184
-;;   meta-node: (MnAgent_Goal $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Goal $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Goal $e0 $x1)) (MnAgent_Goal $e0 $x0 $x1))
 
 ;; p201679  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000174 tierA-000178 tierA-000182
-;;   meta-node: (MnAgent_Take $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 take))
+(Implication (And (Agent $e0 $x0) (Member $e0 take)) (MnAgent_Take $e0 $x0))
 
 ;; p201680  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000173 tierA-000177 tierA-000180
-;;   meta-node: (MnAgent_Walk $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 walk))
+(Implication (And (Agent $e0 $x0) (Member $e0 walk)) (MnAgent_Walk $e0 $x0))
 
 ;; p201685  support 5 (occ 5)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000196 tierA-000197 tierA-000198
-;;   meta-node: (MnAgentOfFamily $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 family))
+(Implication (And (Agent $e0 $x0) (Member $x0 family)) (MnAgentOfFamily $e0 $x0))
 
 ;; p201686  support 5 (occ 5)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000190 tierA-000191 tierA-000192
-;;   meta-node: (MnAgentOfJudge $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 judge))
+(Implication (And (Agent $e0 $x0) (Member $x0 judge)) (MnAgentOfJudge $e0 $x0))
 
 ;; p201688  support 5 (occ 5)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000153 tierA-000154 tierA-000155
-;;   meta-node: (MnAgentOfTutor $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 tutor))
+(Implication (And (Agent $e0 $x0) (Member $x0 tutor)) (MnAgentOfTutor $e0 $x0))
 
 ;; p201689  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000182 tierA-000186 tierA-000191
-;;   meta-node: (MnAgent_PatientEv $e0 $e1 $x0)
-(And (Agent $e0 $x0) (Patient $e0 $e1))
+(Implication (And (Agent $e0 $x0) (Patient $e0 $e1)) (MnAgent_PatientEv $e0 $e1 $x0))
 
 ;; p201690  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000281 tierA-000282 tierA-000283
-;;   meta-node: (MnAgent_ThemeGlazing $e0 $x0)
-(And (Agent $e0 $x0) (Theme $e0 glazing))
+(Implication (And (Agent $e0 $x0) (Theme $e0 glazing)) (MnAgent_ThemeGlazing $e0 $x0))
 
 ;; p201692  support 5 (occ 6)  size 2  root appear (constant)  depth 1
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
-;;   meta-node: (MnAlsoEvOfPast appear $e0)
-(And (Also appear $e0) (Past $e0))
+(Implication (And (Also appear $e0) (Past $e0)) (MnAlsoEvOfPast appear $e0))
 
 ;; p201697  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000013 tierC-000014 tierC-000062
-;;   meta-node: (MnExperiencer_Past $e0 $x0)
-(And (Experiencer $e0 $x0) (Past $e0))
+(Implication (And (Experiencer $e0 $x0) (Past $e0)) (MnExperiencer_Past $e0 $x0))
 
 ;; p201700  support 5 (occ 6)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000243 tierC-000244 tierC-000279
-;;   meta-node: (MnLocation_Find $e0 $x0)
-(And (Location $e0 $x0) (Member $e0 find))
+(Implication (And (Location $e0 $x0) (Member $e0 find)) (MnLocation_Find $e0 $x0))
 
 ;; p201701  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000173 tierA-000174 tierA-000177
-;;   meta-node: (MnLocation_Walk $e0 $x0)
-(And (Location $e0 $x0) (Member $e0 walk))
+(Implication (And (Location $e0 $x0) (Member $e0 walk)) (MnLocation_Walk $e0 $x0))
 
 ;; p201703  support 5 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000014 tierC-000243 tierC-000244
-;;   meta-node: (MnLocation_Past $e0 $x0)
-(And (Location $e0 $x0) (Past $e0))
+(Implication (And (Location $e0 $x0) (Past $e0)) (MnLocation_Past $e0 $x0))
 
 ;; p201704  support 5 (occ 8)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
-;;   meta-node: (MnAppear_Past $e0)
-(And (Member $e0 appear) (Past $e0))
+(Implication (And (Member $e0 appear) (Past $e0)) (MnAppear_Past $e0))
 
 ;; p201705  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000001 tierC-000237 tierC-000238
-;;   meta-node: (MnBecome_Patient $e0 $x0)
-(And (Member $e0 become) (Patient $e0 $x0))
+(Implication (And (Member $e0 become) (Patient $e0 $x0)) (MnBecome_Patient $e0 $x0))
 
 ;; p201706  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000297 tierA-000302 tierA-000307
-;;   meta-node: (MnBorrow_Theme $e0 $x0)
-(And (Member $e0 borrow) (Theme $e0 $x0))
+(Implication (And (Member $e0 borrow) (Theme $e0 $x0)) (MnBorrow_Theme $e0 $x0))
 
 ;; p201707  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000253 tierA-000255 tierA-000257
-;;   meta-node: (MnDie_Patient $e0 $x0)
-(And (Member $e0 die) (Patient $e0 $x0))
+(Implication (And (Member $e0 die) (Patient $e0 $x0)) (MnDie_Patient $e0 $x0))
 
 ;; p201708  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000010 tierC-000091 tierC-000138
-;;   meta-node: (MnDirect_Patient $e0 $x0)
-(And (Member $e0 direct) (Patient $e0 $x0))
+(Implication (And (Member $e0 direct) (Patient $e0 $x0)) (MnDirect_Patient $e0 $x0))
 
 ;; p201709  support 5 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000262 tierA-000272 tierA-000277
-;;   meta-node: (MnReceive_Theme $e0 $x0)
-(And (Member $e0 receive) (Theme $e0 $x0))
+(Implication (And (Member $e0 receive) (Theme $e0 $x0)) (MnReceive_Theme $e0 $x0))
 
 ;; p201712  support 5 (occ 5)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000190 tierA-000191 tierA-000192
-;;   meta-node: (MnThemeOfCase $e0 $x0)
-(And (Member $x0 case) (Theme $e0 $x0))
+(Implication (And (Member $x0 case) (Theme $e0 $x0)) (MnThemeOfCase $e0 $x0))
 
 ;; p201714  support 5 (occ 5)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierA-000138 tierA-000139 tierA-000140
-;;   meta-node: (MnFile_Missing $x0)
-(And (Member $x0 file) (Member $x0 missing))
+(Implication (And (Member $x0 file) (Member $x0 missing)) (MnFile_Missing $x0))
 
 ;; p201716  support 5 (occ 5)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
-;;   meta-node: (MnGearbox_Seized $x0)
-(And (Member $x0 gearbox) (Member $x0 seized))
+(Implication (And (Member $x0 gearbox) (Member $x0 seized)) (MnGearbox_Seized $x0))
 
 ;; p201724  support 5 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000025 tierC-000026 tierC-000203
-;;   meta-node: (MnPast_ThemeEv $e0 $e1)
-(And (Past $e0) (Theme $e0 $e1))
+(Implication (And (Past $e0) (Theme $e0 $e1)) (MnPast_ThemeEv $e0 $e1))
 
 ;; p201838  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000217 tierC-000218 tierC-000245
-;;   meta-node: (MnAgentOfGovernment_AgentJica_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Agent $e0 jica) (Member $x0 government) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e0 jica) (Member $x0 government) (Theme $e0 $x1)) (MnAgentOfGovernment_AgentJica_Theme $e0 $x0 $x1))
 
 ;; p201877  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnAgent_Beneficiary_ThemeOfProjector $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x2 projector) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $x2 projector) (Theme $e0 $x2)) (MnAgent_Beneficiary_ThemeOfProjector $e0 $x0 $x1 $x2))
 
 ;; p201878  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000005 tierA-000007
-;;   meta-node: (MnAgent_Buy_ThemeOfCardinalityNum $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Cardinality $x1 <num>) (Member $e0 buy) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Cardinality $x1 <num>) (Member $e0 buy) (Theme $e0 $x1)) (MnAgent_Buy_ThemeOfCardinalityNum $e0 $x0 $x1))
 
 ;; p201879  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000015 tierA-000016 tierA-000017
-;;   meta-node: (MnAgentOfChef_ThemeOfGroupOfLemon $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x1 lemon) (Member $x0 chef) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 lemon) (Member $x0 chef) (Theme $e0 $x1)) (MnAgentOfChef_ThemeOfGroupOfLemon $e0 $x0 $x1))
 
 ;; p201880  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000015 tierA-000016 tierA-000017
-;;   meta-node: (MnAgent_ThemeOfGroupOfLemon-Crate $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x1 lemon) (Member $x1 crate) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 lemon) (Member $x1 crate) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfLemon-Crate $e0 $x0 $x1))
 
 ;; p201881  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000015 tierA-000016 tierA-000017
-;;   meta-node: (MnAgent_Past_ThemeOfGroupOfLemon $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x1 lemon) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 lemon) (Past $e0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfGroupOfLemon $e0 $x0 $x1))
 
 ;; p201882  support 4 (occ 4)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000153 tierA-000154 tierA-000155
-;;   meta-node: (MnAgent_PatientOfAfternoonSessionOfInheritanceSession $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Inheritance afternoon_session session) (Member $x1 afternoon_session) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Inheritance afternoon_session session) (Member $x1 afternoon_session) (Patient $e0 $x1)) (MnAgent_PatientOfAfternoonSessionOfInheritanceSession $e0 $x0 $x1))
 
 ;; p201883  support 4 (occ 4)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000099 tierA-000100 tierA-000101
-;;   meta-node: (MnAgentOfRescueTeamOfInheritanceTeam_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Inheritance rescue_team team) (Member $x0 rescue_team) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Inheritance rescue_team team) (Member $x0 rescue_team) (Theme $e0 $x1)) (MnAgentOfRescueTeamOfInheritanceTeam_Theme $e0 $x0 $x1))
 
 ;; p201884  support 4 (occ 4)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000148 tierA-000149 tierA-000150
-;;   meta-node: (MnAgent_PatientOfSummerFairOfInheritanceFair $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Inheritance summer_fair fair) (Member $x1 summer_fair) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Inheritance summer_fair fair) (Member $x1 summer_fair) (Patient $e0 $x1)) (MnAgent_PatientOfSummerFairOfInheritanceFair $e0 $x0 $x1))
 
 ;; p201888  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000135 tierA-000136
-;;   meta-node: (MnAgent_LocationOfPoint_Discover $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 discover) (Member $x1 point))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 discover) (Member $x1 point)) (MnAgent_LocationOfPoint_Discover $e0 $x0 $x1))
 
 ;; p201889  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000319 tierA-000320 tierA-000321
-;;   meta-node: (MnAgentOfBiologist_LocationOfSurvey $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 biologist) (Member $x1 survey))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 biologist) (Member $x1 survey)) (MnAgentOfBiologist_LocationOfSurvey $e0 $x0 $x1))
 
 ;; p201890  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000134 tierA-000135
-;;   meta-node: (MnAgentOfDiver_LocationOfPoint $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 diver) (Member $x1 point))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 diver) (Member $x1 point)) (MnAgentOfDiver_LocationOfPoint $e0 $x0 $x1))
 
 ;; p201891  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000134 tierA-000135
-;;   meta-node: (MnAgentOfDiver_Location_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 diver) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 diver) (Theme $e0 $x2)) (MnAgentOfDiver_Location_Theme $e0 $x0 $x1 $x2))
 
 ;; p201892  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000134 tierA-000135
-;;   meta-node: (MnAgent_Location_ThemeOfWreck $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $x2 wreck) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $x2 wreck) (Theme $e0 $x2)) (MnAgent_Location_ThemeOfWreck $e0 $x0 $x1 $x2))
 
 ;; p201893  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_LocationEskisehir_LocationTurkey $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 eskisehir) (Location $e0 turkey) (Member $x0 company))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Location $e0 turkey) (Member $x0 company)) (MnAgentOfCompany_LocationEskisehir_LocationTurkey $e0 $x0))
 
 ;; p201895  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_LocationEskisehir_Build $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Member $x0 company)) (MnAgentOfCompany_LocationEskisehir_Build $e0 $x0))
 
 ;; p201896  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_LocationEskisehir_Past $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Past $e0)) (MnAgentOfCompany_LocationEskisehir_Past $e0 $x0))
 
 ;; p201897  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_LocationEskisehir_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x0 company) (Patient $e0 $x1)) (MnAgentOfCompany_LocationEskisehir_Patient $e0 $x0 $x1))
 
 ;; p201898  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationEskisehir_PatientOfHotel $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_PatientOfHotel $e0 $x0 $x1))
 
 ;; p201900  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_LocationKazakhstan_Build $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 company))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Member $x0 company)) (MnAgentOfCompany_LocationKazakhstan_Build $e0 $x0))
 
 ;; p201901  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_LocationKazakhstan_Past $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Past $e0)) (MnAgentOfCompany_LocationKazakhstan_Past $e0 $x0))
 
 ;; p201902  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_LocationKazakhstan_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $x0 company) (Patient $e0 $x1)) (MnAgentOfCompany_LocationKazakhstan_Patient $e0 $x0 $x1))
 
 ;; p201904  support 4 (occ 6)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_LocationTurkey_Build $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 turkey) (Member $e0 build) (Member $x0 company))
+(Implication (And (Agent $e0 $x0) (Location $e0 turkey) (Member $e0 build) (Member $x0 company)) (MnAgentOfCompany_LocationTurkey_Build $e0 $x0))
 
 ;; p201905  support 4 (occ 6)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_LocationTurkey_Past $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 turkey) (Member $x0 company) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Location $e0 turkey) (Member $x0 company) (Past $e0)) (MnAgentOfCompany_LocationTurkey_Past $e0 $x0))
 
 ;; p201906  support 4 (occ 6)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_LocationTurkey_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 turkey) (Member $x0 company) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 turkey) (Member $x0 company) (Patient $e0 $x1)) (MnAgentOfCompany_LocationTurkey_Patient $e0 $x0 $x1))
 
 ;; p201907  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationTurkey_PatientOfHotel $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 turkey) (Member $x1 hotel) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 turkey) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_LocationTurkey_PatientOfHotel $e0 $x0 $x1))
 
 ;; p201911  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000390 tierA-000391 tierA-000392
-;;   meta-node: (MnAgent_Block_ThemeOfLane $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 block) (Member $x1 lane) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 block) (Member $x1 lane) (Theme $e0 $x1)) (MnAgent_Block_ThemeOfLane $e0 $x0 $x1))
 
 ;; p201917  support 4 (occ 8)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_Build_Past $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Past $e0)) (MnAgentOfCompany_Build_Past $e0 $x0))
 
 ;; p201918  support 4 (occ 8)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_Build_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x0 company) (Patient $e0 $x1)) (MnAgentOfCompany_Build_Patient $e0 $x0 $x1))
 
 ;; p201919  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_Build_PatientOfHotel $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 build) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgent_Build_PatientOfHotel $e0 $x0 $x1))
 
 ;; p201920  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000186 tierA-000191 tierA-000197
-;;   meta-node: (MnAgent_Make_PatientEvOfDecision $e0 $e1 $x0)
-(And (Agent $e0 $x0) (Member $e0 make) (Member $e1 decision) (Patient $e0 $e1))
+(Implication (And (Agent $e0 $x0) (Member $e0 make) (Member $e1 decision) (Patient $e0 $e1)) (MnAgent_Make_PatientEvOfDecision $e0 $e1 $x0))
 
 ;; p201921  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000187 tierA-000192 tierA-000198
-;;   meta-node: (MnAgent_Reach_ThemeEvOfDecision $e0 $e1 $x0)
-(And (Agent $e0 $x0) (Member $e0 reach) (Member $e1 decision) (Theme $e0 $e1))
+(Implication (And (Agent $e0 $x0) (Member $e0 reach) (Member $e1 decision) (Theme $e0 $e1)) (MnAgent_Reach_ThemeEvOfDecision $e0 $e1 $x0))
 
 ;; p201922  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000114 tierA-000115 tierA-000116
-;;   meta-node: (MnAgentOfBoard_ThemeOfVote $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 board) (Member $x1 vote) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 board) (Member $x1 vote) (Theme $e0 $x1)) (MnAgentOfBoard_ThemeOfVote $e0 $x0 $x1))
 
 ;; p201923  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000015 tierA-000016 tierA-000017
-;;   meta-node: (MnAgentOfChef_ThemeOfCrate $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 chef) (Member $x1 crate) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 chef) (Member $x1 crate) (Theme $e0 $x1)) (MnAgentOfChef_ThemeOfCrate $e0 $x0 $x1))
 
 ;; p201924  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000015 tierA-000016 tierA-000017
-;;   meta-node: (MnAgentOfChef_Past_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 chef) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 chef) (Past $e0) (Theme $e0 $x1)) (MnAgentOfChef_Past_Theme $e0 $x0 $x1))
 
 ;; p201925  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_PatientOfHotel $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 company) (Member $x1 hotel) (Patient $e0 $x1)) (MnAgentOfCompany_PatientOfHotel $e0 $x0 $x1))
 
 ;; p201926  support 4 (occ 8)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgentOfCompany_Past_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 company) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 company) (Past $e0) (Patient $e0 $x1)) (MnAgentOfCompany_Past_Patient $e0 $x0 $x1))
 
 ;; p201927  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000148 tierA-000149 tierA-000150
-;;   meta-node: (MnAgentOfCouncil_PatientOfSummerFair $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 council) (Member $x1 summer_fair) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 council) (Member $x1 summer_fair) (Patient $e0 $x1)) (MnAgentOfCouncil_PatientOfSummerFair $e0 $x0 $x1))
 
 ;; p201928  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000134 tierA-000135
-;;   meta-node: (MnAgentOfDiver_ThemeOfWreck $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 diver) (Member $x1 wreck) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 diver) (Member $x1 wreck) (Theme $e0 $x1)) (MnAgentOfDiver_ThemeOfWreck $e0 $x0 $x1))
 
 ;; p201929  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000158 tierA-000159 tierA-000160
-;;   meta-node: (MnAgentOfEditor_ThemeOfManuscript $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 editor) (Member $x1 manuscript) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 editor) (Member $x1 manuscript) (Theme $e0 $x1)) (MnAgentOfEditor_ThemeOfManuscript $e0 $x0 $x1))
 
 ;; p201931  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000104 tierA-000105 tierA-000106
-;;   meta-node: (MnAgentOfFirm_ThemeOfTender $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 firm) (Member $x1 tender) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 firm) (Member $x1 tender) (Theme $e0 $x1)) (MnAgentOfFirm_ThemeOfTender $e0 $x0 $x1))
 
 ;; p201933  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000138 tierA-000139 tierA-000140
-;;   meta-node: (MnAgentOfIntern_ThemeOfFile $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 intern) (Member $x1 file) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 intern) (Member $x1 file) (Theme $e0 $x1)) (MnAgentOfIntern_ThemeOfFile $e0 $x0 $x1))
 
 ;; p201934  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000138 tierA-000139 tierA-000140
-;;   meta-node: (MnAgentOfIntern_ThemeOfMissing $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 intern) (Member $x1 missing) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 intern) (Member $x1 missing) (Theme $e0 $x1)) (MnAgentOfIntern_ThemeOfMissing $e0 $x0 $x1))
 
 ;; p201935  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
-;;   meta-node: (MnAgentOfMechanic_PatientOfGearbox $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 mechanic) (Member $x1 gearbox) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 mechanic) (Member $x1 gearbox) (Patient $e0 $x1)) (MnAgentOfMechanic_PatientOfGearbox $e0 $x0 $x1))
 
 ;; p201936  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
-;;   meta-node: (MnAgentOfMechanic_PatientOfSeized $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 mechanic) (Member $x1 seized) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 mechanic) (Member $x1 seized) (Patient $e0 $x1)) (MnAgentOfMechanic_PatientOfSeized $e0 $x0 $x1))
 
 ;; p201937  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
-;;   meta-node: (MnAgentOfMechanic_Past_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 mechanic) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 mechanic) (Past $e0) (Patient $e0 $x1)) (MnAgentOfMechanic_Past_Patient $e0 $x0 $x1))
 
 ;; p201938  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000168 tierA-000169 tierA-000170
-;;   meta-node: (MnAgentOfPanel_ThemeOfProposal $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 panel) (Member $x1 proposal) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 panel) (Member $x1 proposal) (Theme $e0 $x1)) (MnAgentOfPanel_ThemeOfProposal $e0 $x0 $x1))
 
 ;; p201940  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000099 tierA-000100 tierA-000101
-;;   meta-node: (MnAgentOfRescueTeam_ThemeOfSearch $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 rescue_team) (Member $x1 search) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 rescue_team) (Member $x1 search) (Theme $e0 $x1)) (MnAgentOfRescueTeam_ThemeOfSearch $e0 $x0 $x1))
 
 ;; p201941  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnAgentOfSchool_ThemeOfProjector $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 school) (Member $x1 projector) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 school) (Member $x1 projector) (Theme $e0 $x1)) (MnAgentOfSchool_ThemeOfProjector $e0 $x0 $x1))
 
 ;; p201942  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000153 tierA-000154 tierA-000155
-;;   meta-node: (MnAgentOfTutor_PatientOfAfternoonSession $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 tutor) (Member $x1 afternoon_session) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 tutor) (Member $x1 afternoon_session) (Patient $e0 $x1)) (MnAgentOfTutor_PatientOfAfternoonSession $e0 $x0 $x1))
 
 ;; p201943  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000015 tierA-000016 tierA-000017
-;;   meta-node: (MnAgent_Past_ThemeOfCrate $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 crate) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 crate) (Past $e0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfCrate $e0 $x0 $x1))
 
 ;; p201944  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000138 tierA-000139 tierA-000140
-;;   meta-node: (MnAgent_ThemeOfFile-Missing $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 file) (Member $x1 missing) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 file) (Member $x1 missing) (Theme $e0 $x1)) (MnAgent_ThemeOfFile-Missing $e0 $x0 $x1))
 
 ;; p201945  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
-;;   meta-node: (MnAgent_PatientOfGearbox-Seized $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 gearbox) (Member $x1 seized) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 gearbox) (Member $x1 seized) (Patient $e0 $x1)) (MnAgent_PatientOfGearbox-Seized $e0 $x0 $x1))
 
 ;; p201946  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
-;;   meta-node: (MnAgent_Past_PatientOfGearbox $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 gearbox) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 gearbox) (Past $e0) (Patient $e0 $x1)) (MnAgent_Past_PatientOfGearbox $e0 $x0 $x1))
 
 ;; p201947  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_Past_PatientOfHotel $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 hotel) (Past $e0) (Patient $e0 $x1)) (MnAgent_Past_PatientOfHotel $e0 $x0 $x1))
 
 ;; p201948  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
-;;   meta-node: (MnAgent_Past_ThemeOfProjector $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 projector) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 projector) (Past $e0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfProjector $e0 $x0 $x1))
 
 ;; p201950  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
-;;   meta-node: (MnAgent_Past_PatientOfSeized $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 seized) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 seized) (Past $e0) (Patient $e0 $x1)) (MnAgent_Past_PatientOfSeized $e0 $x0 $x1))
 
 ;; p201952  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnAgent_Past_ThemeOfView $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 view) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 view) (Past $e0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfView $e0 $x0 $x1))
 
 ;; p201953  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnAgent_ThemeOfView-PossessionFreeSoilParty $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 view) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_ThemeOfView-PossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; p201954  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnAgent_ThemeOfView-PossessionRepublicanParty $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 view) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfView-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; p201956  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnAgent_Past_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 free_soil_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionFreeSoilParty $e0 $x0 $x1))
 
 ;; p201957  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnAgent_Past_ThemeOfPossessionRepublicanParty $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Past $e0) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfPossessionRepublicanParty $e0 $x0 $x1))
 
 ;; p201958  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnAgent_ThemeOfPossessionFreeSoilParty-PossessionRepublicanParty $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Possession $x1 free_soil_party) (Possession $x1 republican_party) (Theme $e0 $x1)) (MnAgent_ThemeOfPossessionFreeSoilParty-PossessionRepublicanParty $e0 $x0 $x1))
 
 ;; p201959  support 4 (occ 4)  size 4  root $x0 (entity)  depth 4
 ;;   e.g. tierA-000062 tierA-000063 tierA-000064
-;;   meta-node: (MnBeforeEvOfPatientOfDressRehearsalOfInheritanceRehearsal $x0 $e0 $x1)
-(And (Before $x0 $e0) (Inheritance dress_rehearsal rehearsal) (Member $x1 dress_rehearsal) (Patient $e0 $x1))
+(Implication (And (Before $x0 $e0) (Inheritance dress_rehearsal rehearsal) (Member $x1 dress_rehearsal) (Patient $e0 $x1)) (MnBeforeEvOfPatientOfDressRehearsalOfInheritanceRehearsal $x0 $e0 $x1))
 
 ;; p201960  support 4 (occ 4)  size 4  root $x0 (entity)  depth 3
 ;;   e.g. tierA-000062 tierA-000063 tierA-000064
-;;   meta-node: (MnBeforeEvOfPatientOfDressRehearsal_Lunch $x0 $e0 $x1)
-(And (Before $x0 $e0) (Member $x0 lunch) (Member $x1 dress_rehearsal) (Patient $e0 $x1))
+(Implication (And (Before $x0 $e0) (Member $x0 lunch) (Member $x1 dress_rehearsal) (Patient $e0 $x1)) (MnBeforeEvOfPatientOfDressRehearsal_Lunch $x0 $e0 $x1))
 
 ;; p201961  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnCan_MannerOfCardinalityNum_Define $e0 $x0)
-(And (Can $e0) (Cardinality $x0 <num>) (Manner $e0 $x0) (Member $e0 define))
+(Implication (And (Can $e0) (Cardinality $x0 <num>) (Manner $e0 $x0) (Member $e0 define)) (MnCan_MannerOfCardinalityNum_Define $e0 $x0))
 
 ;; p201962  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnCan_MannerOfCardinalityNum_Theme $e0 $x0 $x1)
-(And (Can $e0) (Cardinality $x0 <num>) (Manner $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Can $e0) (Cardinality $x0 <num>) (Manner $e0 $x0) (Theme $e0 $x1)) (MnCan_MannerOfCardinalityNum_Theme $e0 $x0 $x1))
 
 ;; p201963  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnCan_Manner_ThemeOfGroupOfSequence $e0 $x0 $x1)
-(And (Can $e0) (GroupOf $x0 sequence) (Manner $e0 $x1) (Theme $e0 $x0))
+(Implication (And (Can $e0) (GroupOf $x0 sequence) (Manner $e0 $x1) (Theme $e0 $x0)) (MnCan_Manner_ThemeOfGroupOfSequence $e0 $x0 $x1))
 
 ;; p201964  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnCan_Define_ThemeOfGroupOfSequence $e0 $x0)
-(And (Can $e0) (GroupOf $x0 sequence) (Member $e0 define) (Theme $e0 $x0))
+(Implication (And (Can $e0) (GroupOf $x0 sequence) (Member $e0 define) (Theme $e0 $x0)) (MnCan_Define_ThemeOfGroupOfSequence $e0 $x0))
 
 ;; p201965  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnHolderKristoffer_ThemeOfCardinalityNum-GroupOfChild $e0 $x0)
-(And (Cardinality $x0 <num>) (GroupOf $x0 child) (Holder $e0 kristoffer) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x0 child) (Holder $e0 kristoffer) (Theme $e0 $x0)) (MnHolderKristoffer_ThemeOfCardinalityNum-GroupOfChild $e0 $x0))
 
 ;; p201966  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnHave_ThemeOfCardinalityNum-GroupOfChild $e0 $x0)
-(And (Cardinality $x0 <num>) (GroupOf $x0 child) (Member $e0 have) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x0 child) (Member $e0 have) (Theme $e0 $x0)) (MnHave_ThemeOfCardinalityNum-GroupOfChild $e0 $x0))
 
 ;; p201967  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000085 tierA-000086 tierA-000087
-;;   meta-node: (MnHolder_ThemeOfCardinalityNum-GroupOfEgg $e0 $x0 $x1)
-(And (Cardinality $x0 <num>) (GroupOf $x0 egg) (Holder $e0 $x1) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x0 egg) (Holder $e0 $x1) (Theme $e0 $x0)) (MnHolder_ThemeOfCardinalityNum-GroupOfEgg $e0 $x0 $x1))
 
 ;; p201968  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000084 tierA-000086 tierA-000087
-;;   meta-node: (MnRequire_ThemeOfCardinalityNum-GroupOfEgg $e0 $x0)
-(And (Cardinality $x0 <num>) (GroupOf $x0 egg) (Member $e0 require) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x0 egg) (Member $e0 require) (Theme $e0 $x0)) (MnRequire_ThemeOfCardinalityNum-GroupOfEgg $e0 $x0))
 
 ;; p201969  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnMannerOfCardinalityNum_ThemeOfGroupOfSequence $e0 $x0 $x1)
-(And (Cardinality $x0 <num>) (GroupOf $x1 sequence) (Manner $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x1 sequence) (Manner $e0 $x0) (Theme $e0 $x1)) (MnMannerOfCardinalityNum_ThemeOfGroupOfSequence $e0 $x0 $x1))
 
 ;; p201970  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000086 tierA-000087 tierA-000088
-;;   meta-node: (MnHolder_Require_ThemeOfCardinalityNum $e0 $x0 $x1)
-(And (Cardinality $x0 <num>) (Holder $e0 $x1) (Member $e0 require) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (Holder $e0 $x1) (Member $e0 require) (Theme $e0 $x0)) (MnHolder_Require_ThemeOfCardinalityNum $e0 $x0 $x1))
 
 ;; p201971  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000085 tierA-000086 tierA-000087
-;;   meta-node: (MnHolderOfRecipe_ThemeOfCardinalityNum $e0 $x0 $x1)
-(And (Cardinality $x0 <num>) (Holder $e0 $x1) (Member $x1 recipe) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (Holder $e0 $x1) (Member $x1 recipe) (Theme $e0 $x0)) (MnHolderOfRecipe_ThemeOfCardinalityNum $e0 $x0 $x1))
 
 ;; p201972  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnHolderKristoffer_Have_ThemeOfCardinalityNum $e0 $x0)
-(And (Cardinality $x0 <num>) (Holder $e0 kristoffer) (Member $e0 have) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (Holder $e0 kristoffer) (Member $e0 have) (Theme $e0 $x0)) (MnHolderKristoffer_Have_ThemeOfCardinalityNum $e0 $x0))
 
 ;; p201973  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnMannerOfCardinalityNum_Define_Theme $e0 $x0 $x1)
-(And (Cardinality $x0 <num>) (Manner $e0 $x0) (Member $e0 define) (Theme $e0 $x1))
+(Implication (And (Cardinality $x0 <num>) (Manner $e0 $x0) (Member $e0 define) (Theme $e0 $x1)) (MnMannerOfCardinalityNum_Define_Theme $e0 $x0 $x1))
 
 ;; p201974  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000005 tierA-000007
-;;   meta-node: (MnBuy_Past_ThemeOfCardinalityNum $e0 $x0)
-(And (Cardinality $x0 <num>) (Member $e0 buy) (Past $e0) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (Member $e0 buy) (Past $e0) (Theme $e0 $x0)) (MnBuy_Past_ThemeOfCardinalityNum $e0 $x0))
 
 ;; p201975  support 4 (occ 4)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000128 tierA-000129 tierA-000130
-;;   meta-node: (MnExperiencer_StimulusEvOfLocationOfLedger $e0 $e1 $x0 $x1)
-(And (Experiencer $e0 $x0) (Location $e1 $x1) (Member $x1 ledger) (Stimulus $e0 $e1))
+(Implication (And (Experiencer $e0 $x0) (Location $e1 $x1) (Member $x1 ledger) (Stimulus $e0 $e1)) (MnExperiencer_StimulusEvOfLocationOfLedger $e0 $e1 $x0 $x1))
 
 ;; p201976  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEvOfPortray_Win_Past $e0 $e1)
-(And (For $e0 $e1) (Member $e0 win) (Member $e1 portray) (Past $e0))
+(Implication (And (For $e0 $e1) (Member $e0 win) (Member $e1 portray) (Past $e0)) (MnForEvOfPortray_Win_Past $e0 $e1))
 
 ;; p201977  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEvOfPortray_Win_Theme $e0 $e1 $x0)
-(And (For $e0 $e1) (Member $e0 win) (Member $e1 portray) (Theme $e0 $x0))
+(Implication (And (For $e0 $e1) (Member $e0 win) (Member $e1 portray) (Theme $e0 $x0)) (MnForEvOfPortray_Win_Theme $e0 $e1 $x0))
 
 ;; p201978  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEv_Win_ThemeOfEmmy $e0 $e1 $x0)
-(And (For $e0 $e1) (Member $e0 win) (Member $x0 emmy) (Theme $e0 $x0))
+(Implication (And (For $e0 $e1) (Member $e0 win) (Member $x0 emmy) (Theme $e0 $x0)) (MnForEv_Win_ThemeOfEmmy $e0 $e1 $x0))
 
 ;; p201979  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEvOfPortray_ThemeOfEmmy $e0 $e1 $x0)
-(And (For $e0 $e1) (Member $e1 portray) (Member $x0 emmy) (Theme $e0 $x0))
+(Implication (And (For $e0 $e1) (Member $e1 portray) (Member $x0 emmy) (Theme $e0 $x0)) (MnForEvOfPortray_ThemeOfEmmy $e0 $e1 $x0))
 
 ;; p201980  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEvOfPortray_Past_Theme $e0 $e1 $x0)
-(And (For $e0 $e1) (Member $e1 portray) (Past $e0) (Theme $e0 $x0))
+(Implication (And (For $e0 $e1) (Member $e1 portray) (Past $e0) (Theme $e0 $x0)) (MnForEvOfPortray_Past_Theme $e0 $e1 $x0))
 
 ;; p201981  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEv_Past_ThemeOfEmmy $e0 $e1 $x0)
-(And (For $e0 $e1) (Member $x0 emmy) (Past $e0) (Theme $e0 $x0))
+(Implication (And (For $e0 $e1) (Member $x0 emmy) (Past $e0) (Theme $e0 $x0)) (MnForEv_Past_ThemeOfEmmy $e0 $e1 $x0))
 
 ;; p201982  support 4 (occ 4)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000067 tierA-000068 tierA-000069
-;;   meta-node: (MnFuture_PatientOfAppleHarvestOfInheritanceHarvest $e0 $x0)
-(And (Future $e0) (Inheritance apple_harvest harvest) (Member $x0 apple_harvest) (Patient $e0 $x0))
+(Implication (And (Future $e0) (Inheritance apple_harvest harvest) (Member $x0 apple_harvest) (Patient $e0 $x0)) (MnFuture_PatientOfAppleHarvestOfInheritanceHarvest $e0 $x0))
 
 ;; p201983  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000067 tierA-000068 tierA-000069
-;;   meta-node: (MnFuture_PatientOfAppleHarvest_Time(MonthSeptember $e0 $x0)
-(And (Future $e0) (Member $x0 apple_harvest) (Patient $e0 $x0) (Time $e0 (Month september)))
+(Implication (And (Future $e0) (Member $x0 apple_harvest) (Patient $e0 $x0) (Time $e0 (Month september))) (MnFuture_PatientOfAppleHarvest_Time(MonthSeptember $e0 $x0))
 
 ;; p201984  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000181 tierC-000182 tierC-000239
-;;   meta-node: (MnHolderKristoffer_Have_ThemeOfGroupOfChild $e0 $x0)
-(And (GroupOf $x0 child) (Holder $e0 kristoffer) (Member $e0 have) (Theme $e0 $x0))
+(Implication (And (GroupOf $x0 child) (Holder $e0 kristoffer) (Member $e0 have) (Theme $e0 $x0)) (MnHolderKristoffer_Have_ThemeOfGroupOfChild $e0 $x0))
 
 ;; p201985  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000085 tierA-000086 tierA-000087
-;;   meta-node: (MnHolderOfRecipe_ThemeOfGroupOfEgg $e0 $x0 $x1)
-(And (GroupOf $x0 egg) (Holder $e0 $x1) (Member $x1 recipe) (Theme $e0 $x0))
+(Implication (And (GroupOf $x0 egg) (Holder $e0 $x1) (Member $x1 recipe) (Theme $e0 $x0)) (MnHolderOfRecipe_ThemeOfGroupOfEgg $e0 $x0 $x1))
 
 ;; p201986  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnManner_Define_ThemeOfGroupOfSequence $e0 $x0 $x1)
-(And (GroupOf $x0 sequence) (Manner $e0 $x1) (Member $e0 define) (Theme $e0 $x0))
+(Implication (And (GroupOf $x0 sequence) (Manner $e0 $x1) (Member $e0 define) (Theme $e0 $x0)) (MnManner_Define_ThemeOfGroupOfSequence $e0 $x0 $x1))
 
 ;; p201987  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000135 tierA-000136
-;;   meta-node: (MnLocationOfPoint_Discover_Theme $e0 $x0 $x1)
-(And (Location $e0 $x0) (Member $e0 discover) (Member $x0 point) (Theme $e0 $x1))
+(Implication (And (Location $e0 $x0) (Member $e0 discover) (Member $x0 point) (Theme $e0 $x1)) (MnLocationOfPoint_Discover_Theme $e0 $x0 $x1))
 
 ;; p201988  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000134 tierA-000135
-;;   meta-node: (MnLocationOfPoint_ThemeOfWreck $e0 $x0 $x1)
-(And (Location $e0 $x0) (Member $x0 point) (Member $x1 wreck) (Theme $e0 $x1))
+(Implication (And (Location $e0 $x0) (Member $x0 point) (Member $x1 wreck) (Theme $e0 $x1)) (MnLocationOfPoint_ThemeOfWreck $e0 $x0 $x1))
 
 ;; p201990  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationEskisehir_LocationTurkey_PatientOfHotel $e0 $x0)
-(And (Location $e0 eskisehir) (Location $e0 turkey) (Member $x0 hotel) (Patient $e0 $x0))
+(Implication (And (Location $e0 eskisehir) (Location $e0 turkey) (Member $x0 hotel) (Patient $e0 $x0)) (MnLocationEskisehir_LocationTurkey_PatientOfHotel $e0 $x0))
 
 ;; p201996  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationEskisehir_Build_PatientOfHotel $e0 $x0)
-(And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
+(Implication (And (Location $e0 eskisehir) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnLocationEskisehir_Build_PatientOfHotel $e0 $x0))
 
 ;; p201997  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationEskisehir_Past_PatientOfHotel $e0 $x0)
-(And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Location $e0 eskisehir) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnLocationEskisehir_Past_PatientOfHotel $e0 $x0))
 
 ;; p202007  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationTurkey_Build_PatientOfHotel $e0 $x0)
-(And (Location $e0 turkey) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0))
+(Implication (And (Location $e0 turkey) (Member $e0 build) (Member $x0 hotel) (Patient $e0 $x0)) (MnLocationTurkey_Build_PatientOfHotel $e0 $x0))
 
 ;; p202008  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationTurkey_Past_PatientOfHotel $e0 $x0)
-(And (Location $e0 turkey) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Location $e0 turkey) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnLocationTurkey_Past_PatientOfHotel $e0 $x0))
 
 ;; p202014  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnBuild_Past_PatientOfHotel $e0 $x0)
-(And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Member $e0 build) (Member $x0 hotel) (Past $e0) (Patient $e0 $x0)) (MnBuild_Past_PatientOfHotel $e0 $x0))
 
 ;; p202020  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnWin_Past_ThemeOfEmmy $e0 $x0)
-(And (Member $e0 win) (Member $x0 emmy) (Past $e0) (Theme $e0 $x0))
+(Implication (And (Member $e0 win) (Member $x0 emmy) (Past $e0) (Theme $e0 $x0)) (MnWin_Past_ThemeOfEmmy $e0 $x0))
 
 ;; p202023  support 4 (occ 4)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000104 tierA-000105 tierA-000106
-;;   meta-node: (MnThemeOfTender-PossessionOfFirm $e0 $x0 $x1)
-(And (Member $x0 firm) (Member $x1 tender) (Possession $x1 $x0) (Theme $e0 $x1))
+(Implication (And (Member $x0 firm) (Member $x1 tender) (Possession $x1 $x0) (Theme $e0 $x1)) (MnThemeOfTender-PossessionOfFirm $e0 $x0 $x1))
 
 ;; p202024  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
-;;   meta-node: (MnPast_PatientOfGearbox-Seized $e0 $x0)
-(And (Member $x0 gearbox) (Member $x0 seized) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Member $x0 gearbox) (Member $x0 seized) (Past $e0) (Patient $e0 $x0)) (MnPast_PatientOfGearbox-Seized $e0 $x0))
 
 ;; p202025  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000057 tierA-000058 tierA-000059
-;;   meta-node: (MnPatientOfHearing_Time(WeekdayMonday_TimeMorning $e0 $x0)
-(And (Member $x0 hearing) (Patient $e0 $x0) (Time $e0 (Weekday monday)) (Time $e0 morning))
+(Implication (And (Member $x0 hearing) (Patient $e0 $x0) (Time $e0 (Weekday monday)) (Time $e0 morning)) (MnPatientOfHearing_Time(WeekdayMonday_TimeMorning $e0 $x0))
 
 ;; p202026  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnPast_ThemeOfView-PossessionFreeSoilParty $e0 $x0)
-(And (Member $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0))
+(Implication (And (Member $x0 view) (Past $e0) (Possession $x0 free_soil_party) (Theme $e0 $x0)) (MnPast_ThemeOfView-PossessionFreeSoilParty $e0 $x0))
 
 ;; p202027  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnPast_ThemeOfView-PossessionRepublicanParty $e0 $x0)
-(And (Member $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0))
+(Implication (And (Member $x0 view) (Past $e0) (Possession $x0 republican_party) (Theme $e0 $x0)) (MnPast_ThemeOfView-PossessionRepublicanParty $e0 $x0))
 
 ;; p202029  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnPast_ThemeOfPossessionFreeSoilParty-PossessionRepublicanParty $e0 $x0)
-(And (Past $e0) (Possession $x0 free_soil_party) (Possession $x0 republican_party) (Theme $e0 $x0))
+(Implication (And (Past $e0) (Possession $x0 free_soil_party) (Possession $x0 republican_party) (Theme $e0 $x0)) (MnPast_ThemeOfPossessionFreeSoilParty-PossessionRepublicanParty $e0 $x0))
 
 ;; p202769  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000380 tierA-000381 tierA-000382
-;;   meta-node: (MnAgent_ThemeOfGroupOfSample $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x1 sample) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 sample) (Theme $e0 $x1)) (MnAgent_ThemeOfGroupOfSample $e0 $x0 $x1))
 
 ;; p202777  support 4 (occ 6)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000174 tierA-000178 tierC-000025
-;;   meta-node: (MnAgent_ThemeEvOfLocation $e0 $e1 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e1 $x1) (Theme $e0 $e1))
+(Implication (And (Agent $e0 $x0) (Location $e1 $x1) (Theme $e0 $e1)) (MnAgent_ThemeEvOfLocation $e0 $e1 $x0 $x1))
 
 ;; p202785  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000207 tierA-000208 tierA-000209
-;;   meta-node: (MnAgentOfClerk_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 clerk) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 clerk) (Theme $e0 $x1)) (MnAgentOfClerk_Theme $e0 $x0 $x1))
 
 ;; p202789  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000241 tierA-000242 tierA-000243
-;;   meta-node: (MnAgentOfDelegation_Time(WeekdayThursday $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 delegation) (Time $e0 (Weekday thursday)))
+(Implication (And (Agent $e0 $x0) (Member $x0 delegation) (Time $e0 (Weekday thursday))) (MnAgentOfDelegation_Time(WeekdayThursday $e0 $x0))
 
 ;; p202798  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000071 tierC-000072 tierC-000089
-;;   meta-node: (MnAgentOfPerson_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 person) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 person) (Patient $e0 $x1)) (MnAgentOfPerson_Patient $e0 $x0 $x1))
 
 ;; p202799  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000212 tierA-000213 tierA-000214
-;;   meta-node: (MnAgentOfPilot_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 pilot) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 pilot) (Theme $e0 $x1)) (MnAgentOfPilot_Theme $e0 $x0 $x1))
 
 ;; p202804  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000286 tierA-000287 tierA-000288
-;;   meta-node: (MnAgent_ThemeOfDrill $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 drill) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 drill) (Theme $e0 $x1)) (MnAgent_ThemeOfDrill $e0 $x0 $x1))
 
 ;; p202807  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000301 tierA-000302 tierA-000303
-;;   meta-node: (MnAgent_ThemeOfGenerator $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 generator) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 generator) (Theme $e0 $x1)) (MnAgent_ThemeOfGenerator $e0 $x0 $x1))
 
 ;; p202810  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000271 tierA-000272 tierA-000273
-;;   meta-node: (MnAgent_ThemeOfManifest $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 manifest) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 manifest) (Theme $e0 $x1)) (MnAgent_ThemeOfManifest $e0 $x0 $x1))
 
 ;; p202815  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000385 tierA-000386 tierA-000387
-;;   meta-node: (MnAgent_ThemeOfScan $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 scan) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 scan) (Theme $e0 $x1)) (MnAgent_ThemeOfScan $e0 $x0 $x1))
 
 ;; p202818  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000292 tierA-000293
-;;   meta-node: (MnAgent_ThemeOfSong $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 song) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 song) (Theme $e0 $x1)) (MnAgent_ThemeOfSong $e0 $x0 $x1))
 
 ;; p202825  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000385 tierA-000386 tierA-000387
-;;   meta-node: (MnAgent_ThemeOfOrdinalNumScan $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Ordinal $x1 <num> scan) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Ordinal $x1 <num> scan) (Theme $e0 $x1)) (MnAgent_ThemeOfOrdinalNumScan $e0 $x0 $x1))
 
 ;; p202831  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000161 tierC-000162 tierC-000243
-;;   meta-node: (MnButEvOfPast_Past $e0 $e1)
-(And (But $e0 $e1) (Past $e0) (Past $e1))
+(Implication (And (But $e0 $e1) (Past $e0) (Past $e1)) (MnButEvOfPast_Past $e0 $e1))
 
 ;; p202839  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000004 tierA-000265 tierA-000280
-;;   meta-node: (MnRecipient_ThemeOfCardinalityNum $e0 $x0 $x1)
-(And (Cardinality $x0 <num>) (Recipient $e0 $x1) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (Recipient $e0 $x1) (Theme $e0 $x0)) (MnRecipient_ThemeOfCardinalityNum $e0 $x0 $x1))
 
 ;; p202841  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000013 tierC-000014 tierC-000121
-;;   meta-node: (MnExperiencerOfPerson_Past $e0 $x0)
-(And (Experiencer $e0 $x0) (Member $x0 person) (Past $e0))
+(Implication (And (Experiencer $e0 $x0) (Member $x0 person) (Past $e0)) (MnExperiencerOfPerson_Past $e0 $x0))
 
 ;; p202853  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000089 tierA-000090 tierA-000091
-;;   meta-node: (MnHolderOfPermit_Theme $e0 $x0 $x1)
-(And (Holder $e0 $x0) (Member $x0 permit) (Theme $e0 $x1))
+(Implication (And (Holder $e0 $x0) (Member $x0 permit) (Theme $e0 $x1)) (MnHolderOfPermit_Theme $e0 $x0 $x1))
 
 ;; p202857  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000094 tierA-000095 tierA-000096
-;;   meta-node: (MnThemeMonthlyServicingOfInheritanceMonthly-InheritanceServicing $e0)
-(And (Inheritance monthly_servicing monthly) (Inheritance monthly_servicing servicing) (Theme $e0 monthly_servicing))
+(Implication (And (Inheritance monthly_servicing monthly) (Inheritance monthly_servicing servicing) (Theme $e0 monthly_servicing)) (MnThemeMonthlyServicingOfInheritanceMonthly-InheritanceServicing $e0))
 
 ;; p202862  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000128 tierA-000129 tierA-000130
-;;   meta-node: (MnLocationOfLedger_Error $e0 $x0)
-(And (Location $e0 $x0) (Member $e0 error) (Member $x0 ledger))
+(Implication (And (Location $e0 $x0) (Member $e0 error) (Member $x0 ledger)) (MnLocationOfLedger_Error $e0 $x0))
 
 ;; p202882  support 4 (occ 4)  size 3  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000119 tierA-000120 tierA-000121
-;;   meta-node: (MnDeparture_PossessionOfFerry $x0 $x1)
-(And (Member $x0 departure) (Member $x1 ferry) (Possession $x0 $x1))
+(Implication (And (Member $x0 departure) (Member $x1 ferry) (Possession $x0 $x1)) (MnDeparture_PossessionOfFerry $x0 $x1))
 
 ;; p202884  support 4 (occ 4)  size 3  root $x0 (entity)  depth 2
 ;;   e.g. tierC-000017 tierC-000018 tierC-000121
-;;   meta-node: (MnFamily_PossessionOfPerson $x0 $x1)
-(And (Member $x0 family) (Member $x1 person) (Possession $x0 $x1))
+(Implication (And (Member $x0 family) (Member $x1 person) (Possession $x0 $x1)) (MnFamily_PossessionOfPerson $x0 $x1))
 
 ;; p202892  support 4 (occ 6)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000235 tierC-000236 tierC-000257
-;;   meta-node: (MnPast_ThemeOfPossession $e0 $x0 $x1)
-(And (Past $e0) (Possession $x0 $x1) (Theme $e0 $x0))
+(Implication (And (Past $e0) (Possession $x0 $x1) (Theme $e0 $x0)) (MnPast_ThemeOfPossession $e0 $x0 $x1))
 
 ;; p203143  support 4 (occ 4)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000245 tierA-000246 tierA-000247
-;;   meta-node: (MnGroupOfSoilSampleOfInheritanceSample $x0)
-(And (GroupOf $x0 soil_sample) (Inheritance soil_sample sample))
+(Implication (And (GroupOf $x0 soil_sample) (Inheritance soil_sample sample)) (MnGroupOfSoilSampleOfInheritanceSample $x0))
 
 ;; p203146  support 4 (occ 4)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000363 tierA-000364 tierA-000365
-;;   meta-node: (MnNightCrewOfInheritanceCrew $x0)
-(And (Inheritance night_crew crew) (Member $x0 night_crew))
+(Implication (And (Inheritance night_crew crew) (Member $x0 night_crew)) (MnNightCrewOfInheritanceCrew $x0))
 
 ;; p203147  support 4 (occ 4)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000347 tierA-000348 tierA-000349
-;;   meta-node: (MnSpoilMoundOfInheritanceMound $x0)
-(And (Inheritance spoil_mound mound) (Member $x0 spoil_mound))
+(Implication (And (Inheritance spoil_mound mound) (Member $x0 spoil_mound)) (MnSpoilMoundOfInheritanceMound $x0))
 
 ;; p203209  support 4 (occ 4)  size 2  root regional_unit (constant)  depth 1
 ;;   e.g. tierC-000031 tierC-000032 tierC-000081
-;;   meta-node: (MnInheritanceRegional_InheritanceUnit regional_unit)
-(And (Inheritance regional_unit regional) (Inheritance regional_unit unit))
+(Implication (And (Inheritance regional_unit regional) (Inheritance regional_unit unit)) (MnInheritanceRegional_InheritanceUnit regional_unit))
 
 ;; p203258  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000133 tierA-000135 tierA-000136
-;;   meta-node: (MnAgent_Location_Discover_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 discover) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 discover) (Theme $e0 $x2)) (MnAgent_Location_Discover_Theme $e0 $x0 $x1 $x2))
 
 ;; p203259  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationEskisehir_LocationTurkey_Build $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 eskisehir) (Location $e0 turkey) (Member $e0 build))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Location $e0 turkey) (Member $e0 build)) (MnAgent_LocationEskisehir_LocationTurkey_Build $e0 $x0))
 
 ;; p203260  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationEskisehir_LocationTurkey_Past $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 eskisehir) (Location $e0 turkey) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Location $e0 turkey) (Past $e0)) (MnAgent_LocationEskisehir_LocationTurkey_Past $e0 $x0))
 
 ;; p203261  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationEskisehir_LocationTurkey_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 eskisehir) (Location $e0 turkey) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Location $e0 turkey) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_LocationTurkey_Patient $e0 $x0 $x1))
 
 ;; p203262  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationEskisehir_Build_Past $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Past $e0)) (MnAgent_LocationEskisehir_Build_Past $e0 $x0))
 
 ;; p203263  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Build_Patient $e0 $x0 $x1))
 
 ;; p203264  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 eskisehir) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationEskisehir_Past_Patient $e0 $x0 $x1))
 
 ;; p203265  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationKazakhstan_Build_Past $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Past $e0)) (MnAgent_LocationKazakhstan_Build_Past $e0 $x0))
 
 ;; p203266  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Build_Patient $e0 $x0 $x1))
 
 ;; p203267  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 kazakhstan) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationKazakhstan_Past_Patient $e0 $x0 $x1))
 
 ;; p203268  support 4 (occ 6)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationTurkey_Build_Past $e0 $x0)
-(And (Agent $e0 $x0) (Location $e0 turkey) (Member $e0 build) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Location $e0 turkey) (Member $e0 build) (Past $e0)) (MnAgent_LocationTurkey_Build_Past $e0 $x0))
 
 ;; p203269  support 4 (occ 6)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationTurkey_Build_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 turkey) (Member $e0 build) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 turkey) (Member $e0 build) (Patient $e0 $x1)) (MnAgent_LocationTurkey_Build_Patient $e0 $x0 $x1))
 
 ;; p203270  support 4 (occ 6)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnAgent_LocationTurkey_Past_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 turkey) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Location $e0 turkey) (Past $e0) (Patient $e0 $x1)) (MnAgent_LocationTurkey_Past_Patient $e0 $x0 $x1))
 
 ;; p203271  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000003 tierA-000010 tierA-000017
-;;   meta-node: (MnAgent_Acquire_Past_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0) (Theme $e0 $x1)) (MnAgent_Acquire_Past_Theme $e0 $x0 $x1))
 
 ;; p203272  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000002 tierA-000009 tierA-000016
-;;   meta-node: (MnAgent_Purchase_Past_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 purchase) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 purchase) (Past $e0) (Theme $e0 $x1)) (MnAgent_Purchase_Past_Theme $e0 $x0 $x1))
 
 ;; p203273  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000281 tierA-000283 tierA-000284
-;;   meta-node: (MnAgent_Teach_Recipient_ThemeGlazing $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 teach) (Recipient $e0 $x1) (Theme $e0 glazing))
+(Implication (And (Agent $e0 $x0) (Member $e0 teach) (Recipient $e0 $x1) (Theme $e0 glazing)) (MnAgent_Teach_Recipient_ThemeGlazing $e0 $x0 $x1))
 
 ;; p203274  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnCan_Manner_Define_Theme $e0 $x0 $x1)
-(And (Can $e0) (Manner $e0 $x0) (Member $e0 define) (Theme $e0 $x1))
+(Implication (And (Can $e0) (Manner $e0 $x0) (Member $e0 define) (Theme $e0 $x1)) (MnCan_Manner_Define_Theme $e0 $x0 $x1))
 
 ;; p203275  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000277 tierC-000278 tierC-000301
-;;   meta-node: (MnForEv_Win_Past_Theme $e0 $e1 $x0)
-(And (For $e0 $e1) (Member $e0 win) (Past $e0) (Theme $e0 $x0))
+(Implication (And (For $e0 $e1) (Member $e0 win) (Past $e0) (Theme $e0 $x0)) (MnForEv_Win_Past_Theme $e0 $e1 $x0))
 
 ;; p203276  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationEskisehir_LocationTurkey_Build_Past $e0)
-(And (Location $e0 eskisehir) (Location $e0 turkey) (Member $e0 build) (Past $e0))
+(Implication (And (Location $e0 eskisehir) (Location $e0 turkey) (Member $e0 build) (Past $e0)) (MnLocationEskisehir_LocationTurkey_Build_Past $e0))
 
 ;; p203277  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationEskisehir_LocationTurkey_Build_Patient $e0 $x0)
-(And (Location $e0 eskisehir) (Location $e0 turkey) (Member $e0 build) (Patient $e0 $x0))
+(Implication (And (Location $e0 eskisehir) (Location $e0 turkey) (Member $e0 build) (Patient $e0 $x0)) (MnLocationEskisehir_LocationTurkey_Build_Patient $e0 $x0))
 
 ;; p203278  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationEskisehir_LocationTurkey_Past_Patient $e0 $x0)
-(And (Location $e0 eskisehir) (Location $e0 turkey) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Location $e0 eskisehir) (Location $e0 turkey) (Past $e0) (Patient $e0 $x0)) (MnLocationEskisehir_LocationTurkey_Past_Patient $e0 $x0))
 
 ;; p203279  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationEskisehir_Build_Past_Patient $e0 $x0)
-(And (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Location $e0 eskisehir) (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnLocationEskisehir_Build_Past_Patient $e0 $x0))
 
 ;; p203280  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationKazakhstan_Build_Past_Patient $e0 $x0)
-(And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Location $e0 kazakhstan) (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnLocationKazakhstan_Build_Past_Patient $e0 $x0))
 
 ;; p203281  support 4 (occ 6)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000045 tierC-000046 tierC-000291
-;;   meta-node: (MnLocationTurkey_Build_Past_Patient $e0 $x0)
-(And (Location $e0 turkey) (Member $e0 build) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Location $e0 turkey) (Member $e0 build) (Past $e0) (Patient $e0 $x0)) (MnLocationTurkey_Build_Past_Patient $e0 $x0))
 
 ;; p203282  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000004 tierA-000011 tierA-000018
-;;   meta-node: (MnSell_Past_Recipient_Theme $e0 $x0 $x1)
-(And (Member $e0 sell) (Past $e0) (Recipient $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Member $e0 sell) (Past $e0) (Recipient $e0 $x0) (Theme $e0 $x1)) (MnSell_Past_Recipient_Theme $e0 $x0 $x1))
 
 ;; p203283  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
-;;   meta-node: (MnThemeOfView-PossessionFreeSoilParty-PossessionRepublicanParty $e0 $x0)
-(And (Member $x0 view) (Possession $x0 free_soil_party) (Possession $x0 republican_party) (Theme $e0 $x0))
+(Implication (And (Member $x0 view) (Possession $x0 free_soil_party) (Possession $x0 republican_party) (Theme $e0 $x0)) (MnThemeOfView-PossessionFreeSoilParty-PossessionRepublicanParty $e0 $x0))
 
 ;; p203383  support 4 (occ 8)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000025 tierC-000026 tierC-000353
-;;   meta-node: (MnAgent_Location_Patient $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Patient $e0 $x2)) (MnAgent_Location_Patient $e0 $x0 $x1 $x2))
 
 ;; p203384  support 4 (occ 6)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierC-000025 tierC-000026 tierC-000041
-;;   meta-node: (MnThemeEvOfAgent-Location $e1 $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Theme $e1 $e0))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Theme $e1 $e0)) (MnThemeEvOfAgent-Location $e1 $e0 $x0 $x1))
 
 ;; p203399  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000385 tierA-000386 tierA-000387
-;;   meta-node: (MnAgent_Order_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 order) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 order) (Theme $e0 $x1)) (MnAgent_Order_Theme $e0 $x0 $x1))
 
 ;; p203403  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000375 tierA-000376 tierA-000377
-;;   meta-node: (MnAgent_Sign_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 sign) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 sign) (Patient $e0 $x1)) (MnAgent_Sign_Patient $e0 $x0 $x1))
 
 ;; p203412  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000003 tierC-000004 tierC-000343
-;;   meta-node: (MnExperiencer_Location_Locate $e0 $x0 $x1)
-(And (Experiencer $e0 $x0) (Location $e0 $x1) (Member $e0 locate))
+(Implication (And (Experiencer $e0 $x0) (Location $e0 $x1) (Member $e0 locate)) (MnExperiencer_Location_Locate $e0 $x0 $x1))
 
 ;; p203417  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000153 tierC-000154 tierC-000271
-;;   meta-node: (MnHolder_Have_Theme $e0 $x0 $x1)
-(And (Holder $e0 $x0) (Member $e0 have) (Theme $e0 $x1))
+(Implication (And (Holder $e0 $x0) (Member $e0 have) (Theme $e0 $x1)) (MnHolder_Have_Theme $e0 $x0 $x1))
 
 ;; p203434  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000001 tierC-000158 tierC-000241
-;;   meta-node: (MnBecome_Past_ResultEv $e0 $e1)
-(And (Member $e0 become) (Past $e0) (Result $e0 $e1))
+(Implication (And (Member $e0 become) (Past $e0) (Result $e0 $e1)) (MnBecome_Past_ResultEv $e0 $e1))
 
 ;; p203435  support 4 (occ 6)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000119 tierC-000120 tierC-000183
-;;   meta-node: (MnDesign_Past_Patient $e0 $x0)
-(And (Member $e0 design) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Member $e0 design) (Past $e0) (Patient $e0 $x0)) (MnDesign_Past_Patient $e0 $x0))
 
 ;; p203436  support 4 (occ 6)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000091 tierC-000092 tierC-000103
-;;   meta-node: (MnProduce_Past_Patient $e0 $x0)
-(And (Member $e0 produce) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Member $e0 produce) (Past $e0) (Patient $e0 $x0)) (MnProduce_Past_Patient $e0 $x0))
 
 ;; p203445  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000185 tierA-000186 tierA-000187
-;;   meta-node: (MnThemeOfNew-Roof $e0 $x0)
-(And (Member $x0 new) (Member $x0 roof) (Theme $e0 $x0))
+(Implication (And (Member $x0 new) (Member $x0 roof) (Theme $e0 $x0)) (MnThemeOfNew-Roof $e0 $x0))
 
 ;; p203612  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000181 tierA-000182 tierA-000184
-;;   meta-node: (MnAgentOfGroupOfChild $e0 $x0)
-(And (Agent $e0 $x0) (GroupOf $x0 child))
+(Implication (And (Agent $e0 $x0) (GroupOf $x0 child)) (MnAgentOfGroupOfChild $e0 $x0))
 
 ;; p203617  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000075 tierA-000076 tierA-000078
-;;   meta-node: (MnAgent_Allow $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 allow))
+(Implication (And (Agent $e0 $x0) (Member $e0 allow)) (MnAgent_Allow $e0 $x0))
 
 ;; p203624  support 4 (occ 6)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000127 tierC-000128 tierC-000329
-;;   meta-node: (MnAgent_Sing $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 sing))
+(Implication (And (Agent $e0 $x0) (Member $e0 sing)) (MnAgent_Sing $e0 $x0))
 
 ;; p203625  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000143 tierA-000144 tierA-000145
-;;   meta-node: (MnAgentOfAirline $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 airline))
+(Implication (And (Agent $e0 $x0) (Member $x0 airline)) (MnAgentOfAirline $e0 $x0))
 
 ;; p203629  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000185 tierA-000186 tierA-000187
-;;   meta-node: (MnAgentOfCommittee $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 committee))
+(Implication (And (Agent $e0 $x0) (Member $x0 committee)) (MnAgentOfCommittee $e0 $x0))
 
 ;; p203635  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000227 tierA-000228 tierA-000229
-;;   meta-node: (MnAgentOfFire $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 fire))
+(Implication (And (Agent $e0 $x0) (Member $x0 fire)) (MnAgentOfFire $e0 $x0))
 
 ;; p203637  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000232 tierA-000233 tierA-000234
-;;   meta-node: (MnAgentOfFlood $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 flood))
+(Implication (And (Agent $e0 $x0) (Member $x0 flood)) (MnAgentOfFlood $e0 $x0))
 
 ;; p203647  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierC-000109 tierC-000110 tierC-000333
-;;   meta-node: (MnBeforeEvOfTheme $e0 $e1 $x0)
-(And (Before $e0 $e1) (Theme $e1 $x0))
+(Implication (And (Before $e0 $e1) (Theme $e1 $x0)) (MnBeforeEvOfTheme $e0 $e1 $x0))
 
 ;; p203675  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000137 tierA-000313 tierA-000322
-;;   meta-node: (MnLocation_Might $e0 $x0)
-(And (Location $e0 $x0) (Might $e0))
+(Implication (And (Location $e0 $x0) (Might $e0)) (MnLocation_Might $e0 $x0))
 
 ;; p203682  support 4 (occ 6)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000111 tierC-000112 tierC-000121
-;;   meta-node: (MnLocationJapan_Past $e0)
-(And (Location $e0 japan) (Past $e0))
+(Implication (And (Location $e0 japan) (Past $e0)) (MnLocationJapan_Past $e0))
 
 ;; p203696  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000054 tierA-000059 tierA-000064
-;;   meta-node: (MnCommence_Patient $e0 $x0)
-(And (Member $e0 commence) (Patient $e0 $x0))
+(Implication (And (Member $e0 commence) (Patient $e0 $x0)) (MnCommence_Patient $e0 $x0))
 
 ;; p203702  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000279 tierC-000280 tierC-000313
-;;   meta-node: (MnFind_Theme $e0 $x0)
-(And (Member $e0 find) (Theme $e0 $x0))
+(Implication (And (Member $e0 find) (Theme $e0 $x0)) (MnFind_Theme $e0 $x0))
 
 ;; p203703  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000076 tierC-000095 tierC-000096
-;;   meta-node: (MnFollow_Past $e0)
-(And (Member $e0 follow) (Past $e0))
+(Implication (And (Member $e0 follow) (Past $e0)) (MnFollow_Past $e0))
 
 ;; p203704  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000257 tierC-000258 tierC-000351
-;;   meta-node: (MnInfluence_Past $e0)
-(And (Member $e0 influence) (Past $e0))
+(Implication (And (Member $e0 influence) (Past $e0)) (MnInfluence_Past $e0))
 
 ;; p203707  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000227 tierC-000228 tierC-000229
-;;   meta-node: (MnPlay_Past $e0)
-(And (Member $e0 play) (Past $e0))
+(Implication (And (Member $e0 play) (Past $e0)) (MnPlay_Past $e0))
 
 ;; p203712  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000099 tierC-000100 tierC-000359
-;;   meta-node: (MnReplace_Past $e0)
-(And (Member $e0 replace) (Past $e0))
+(Implication (And (Member $e0 replace) (Past $e0)) (MnReplace_Past $e0))
 
 ;; p203717  support 4 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000053 tierA-000058 tierA-000063
-;;   meta-node: (MnStart_Patient $e0 $x0)
-(And (Member $e0 start) (Patient $e0 $x0))
+(Implication (And (Member $e0 start) (Patient $e0 $x0)) (MnStart_Patient $e0 $x0))
 
 ;; p203722  support 4 (occ 4)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierA-000335 tierA-000336 tierA-000337
-;;   meta-node: (MnBench_New $x0)
-(And (Member $x0 bench) (Member $x0 new))
+(Implication (And (Member $x0 bench) (Member $x0 new)) (MnBench_New $x0))
 
 ;; p203726  support 4 (occ 4)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierA-000257 tierA-000258 tierA-000259
-;;   meta-node: (MnElm_Last $x0)
-(And (Member $x0 elm) (Member $x0 last))
+(Implication (And (Member $x0 elm) (Member $x0 last)) (MnElm_Last $x0))
 
 ;; p203735  support 4 (occ 4)  size 2  root $x0 (entity)  depth 1
 ;;   e.g. tierA-000022 tierA-000026 tierA-000027
-;;   meta-node: (MnKiln_OrdinalNumBuy $x0)
-(And (Member $x0 kiln) (Ordinal $x0 <num> buy))
+(Implication (And (Member $x0 kiln) (Ordinal $x0 <num> buy)) (MnKiln_OrdinalNumBuy $x0))
 
 ;; p203736  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000296 tierA-000297 tierA-000298
-;;   meta-node: (MnThemeOfLadder $e0 $x0)
-(And (Member $x0 ladder) (Theme $e0 $x0))
+(Implication (And (Member $x0 ladder) (Theme $e0 $x0)) (MnThemeOfLadder $e0 $x0))
 
 ;; p203743  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierC-000041 tierC-000042 tierC-000123
-;;   meta-node: (MnThemeOfPerson $e0 $x0)
-(And (Member $x0 person) (Theme $e0 $x0))
+(Implication (And (Member $x0 person) (Theme $e0 $x0)) (MnThemeOfPerson $e0 $x0))
 
 ;; p203956  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000217 tierC-000218 tierC-000245
-;;   meta-node: (MnAgentOfGovernment_AgentJica_Fund $e0 $x0)
-(And (Agent $e0 $x0) (Agent $e0 jica) (Member $e0 fund) (Member $x0 government))
+(Implication (And (Agent $e0 $x0) (Agent $e0 jica) (Member $e0 fund) (Member $x0 government)) (MnAgentOfGovernment_AgentJica_Fund $e0 $x0))
 
 ;; p203968  support 3 (occ 3)  size 4  root $e1 (event)  depth 4
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
-;;   meta-node: (MnAppearOfAlsoEvOfAgentOfPerson $e1 $e0 $x0)
-(And (Agent $e0 $x0) (Also appear $e0) (Member $e1 appear) (Member $x0 person))
+(Implication (And (Agent $e0 $x0) (Also appear $e0) (Member $e1 appear) (Member $x0 person)) (MnAppearOfAlsoEvOfAgentOfPerson $e1 $e0 $x0))
 
 ;; p203969  support 3 (occ 4)  size 4  root $e1 (event)  depth 3
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
-;;   meta-node: (MnAppearOfAlsoEvOfAgent-Past $e1 $e0 $x0)
-(And (Agent $e0 $x0) (Also appear $e0) (Member $e1 appear) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Also appear $e0) (Member $e1 appear) (Past $e0)) (MnAppearOfAlsoEvOfAgent-Past $e1 $e0 $x0))
 
 ;; p203970  support 3 (occ 4)  size 4  root $e1 (event)  depth 3
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
-;;   meta-node: (MnAppearOfAlsoEvOfAgent_Past $e1 $e0 $x0)
-(And (Agent $e0 $x0) (Also appear $e0) (Member $e1 appear) (Past $e1))
+(Implication (And (Agent $e0 $x0) (Also appear $e0) (Member $e1 appear) (Past $e1)) (MnAppearOfAlsoEvOfAgent_Past $e1 $e0 $x0))
 
 ;; p203971  support 3 (occ 3)  size 4  root appear (constant)  depth 3
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
-;;   meta-node: (MnAlsoEvOfAgentOfPerson-Past appear $e0 $x0)
-(And (Agent $e0 $x0) (Also appear $e0) (Member $x0 person) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Also appear $e0) (Member $x0 person) (Past $e0)) (MnAlsoEvOfAgentOfPerson-Past appear $e0 $x0))
 
 ;; p203973  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
-;;   meta-node: (MnAgentOfPerson_AppearOfAlsoEv $e0 $e1 $x0)
-(And (Agent $e0 $x0) (Also appear $e1) (Member $e0 appear) (Member $x0 person))
+(Implication (And (Agent $e0 $x0) (Also appear $e1) (Member $e0 appear) (Member $x0 person)) (MnAgentOfPerson_AppearOfAlsoEv $e0 $e1 $x0))
 
 ;; p203974  support 3 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
-;;   meta-node: (MnAgent_AppearOfAlsoEv_Past $e0 $e1 $x0)
-(And (Agent $e0 $x0) (Also appear $e1) (Member $e0 appear) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Also appear $e1) (Member $e0 appear) (Past $e0)) (MnAgent_AppearOfAlsoEv_Past $e0 $e1 $x0))
 
 ;; p203975  support 3 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
-;;   meta-node: (MnAgent_AppearOfAlsoEvOfPast $e0 $e1 $x0)
-(And (Agent $e0 $x0) (Also appear $e1) (Member $e0 appear) (Past $e1))
+(Implication (And (Agent $e0 $x0) (Also appear $e1) (Member $e0 appear) (Past $e1)) (MnAgent_AppearOfAlsoEvOfPast $e0 $e1 $x0))
 
 ;; p203976  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000012 tierA-000013
-;;   meta-node: (MnAgentOfSchool_Beneficiary_Buy $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $e0 buy) (Member $x0 school))
+(Implication (And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $e0 buy) (Member $x0 school)) (MnAgentOfSchool_Beneficiary_Buy $e0 $x0 $x1))
 
 ;; p203977  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000012 tierA-000013
-;;   meta-node: (MnAgent_BeneficiaryOfHall_Buy $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $e0 buy) (Member $x1 hall))
+(Implication (And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $e0 buy) (Member $x1 hall)) (MnAgent_BeneficiaryOfHall_Buy $e0 $x0 $x1))
 
 ;; p203978  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000109 tierA-000111 tierA-000112
-;;   meta-node: (MnAgentOfCardinalityNum-GroupOfClimber_Abandon $e0 $x0)
-(And (Agent $e0 $x0) (Cardinality $x0 <num>) (GroupOf $x0 climber) (Member $e0 abandon))
+(Implication (And (Agent $e0 $x0) (Cardinality $x0 <num>) (GroupOf $x0 climber) (Member $e0 abandon)) (MnAgentOfCardinalityNum-GroupOfClimber_Abandon $e0 $x0))
 
 ;; p203979  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000109 tierA-000111 tierA-000112
-;;   meta-node: (MnAgentOfCardinalityNum_Abandon_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Cardinality $x0 <num>) (Member $e0 abandon) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Cardinality $x0 <num>) (Member $e0 abandon) (Theme $e0 $x1)) (MnAgentOfCardinalityNum_Abandon_Theme $e0 $x0 $x1))
 
 ;; p203980  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000265 tierA-000280 tierA-000310
-;;   meta-node: (MnAgent_Recipient_ThemeOfCardinalityNum $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Cardinality $x1 <num>) (Recipient $e0 $x2) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Cardinality $x1 <num>) (Recipient $e0 $x2) (Theme $e0 $x1)) (MnAgent_Recipient_ThemeOfCardinalityNum $e0 $x0 $x1 $x2))
 
 ;; p203981  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000319 tierA-000321 tierA-000322
-;;   meta-node: (MnAgentOfBiologist_CoAgent_Location $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (CoAgent $e0 $x1) (Location $e0 $x2) (Member $x0 biologist))
+(Implication (And (Agent $e0 $x0) (CoAgent $e0 $x1) (Location $e0 $x2) (Member $x0 biologist)) (MnAgentOfBiologist_CoAgent_Location $e0 $x0 $x1 $x2))
 
 ;; p203982  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000319 tierA-000321 tierA-000322
-;;   meta-node: (MnAgent_CoAgentOfRanger_Location $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (CoAgent $e0 $x1) (Location $e0 $x2) (Member $x1 ranger))
+(Implication (And (Agent $e0 $x0) (CoAgent $e0 $x1) (Location $e0 $x2) (Member $x1 ranger)) (MnAgent_CoAgentOfRanger_Location $e0 $x0 $x1 $x2))
 
 ;; p203983  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000319 tierA-000321 tierA-000322
-;;   meta-node: (MnAgent_CoAgent_LocationOfSurvey $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (CoAgent $e0 $x1) (Location $e0 $x2) (Member $x2 survey))
+(Implication (And (Agent $e0 $x0) (CoAgent $e0 $x1) (Location $e0 $x2) (Member $x2 survey)) (MnAgent_CoAgent_LocationOfSurvey $e0 $x0 $x1 $x2))
 
 ;; p203984  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000319 tierA-000321 tierA-000322
-;;   meta-node: (MnAgentOfBiologist_CoAgentOfRanger $e0 $x0 $x1)
-(And (Agent $e0 $x0) (CoAgent $e0 $x1) (Member $x0 biologist) (Member $x1 ranger))
+(Implication (And (Agent $e0 $x0) (CoAgent $e0 $x1) (Member $x0 biologist) (Member $x1 ranger)) (MnAgentOfBiologist_CoAgentOfRanger $e0 $x0 $x1))
 
 ;; p203985  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000241 tierA-000242 tierA-000244
-;;   meta-node: (MnAgentOfDelegation_Future_Time(WeekdayThursday $e0 $x0)
-(And (Agent $e0 $x0) (Future $e0) (Member $x0 delegation) (Time $e0 (Weekday thursday)))
+(Implication (And (Agent $e0 $x0) (Future $e0) (Member $x0 delegation) (Time $e0 (Weekday thursday))) (MnAgentOfDelegation_Future_Time(WeekdayThursday $e0 $x0))
 
 ;; p203986  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000109 tierA-000111 tierA-000112
-;;   meta-node: (MnAgentOfGroupOfClimber_Abandon_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x0 climber) (Member $e0 abandon) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x0 climber) (Member $e0 abandon) (Theme $e0 $x1)) (MnAgentOfGroupOfClimber_Abandon_Theme $e0 $x0 $x1))
 
 ;; p203987  support 3 (occ 3)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000245 tierA-000246 tierA-000247
-;;   meta-node: (MnAgentOfGroupOfSoilSampleOfInheritanceSample_InstrumentPost $e0 $x0)
-(And (Agent $e0 $x0) (GroupOf $x0 soil_sample) (Inheritance soil_sample sample) (Instrument $e0 post))
+(Implication (And (Agent $e0 $x0) (GroupOf $x0 soil_sample) (Inheritance soil_sample sample) (Instrument $e0 post)) (MnAgentOfGroupOfSoilSampleOfInheritanceSample_InstrumentPost $e0 $x0))
 
 ;; p203988  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnAgent_Teach_RecipientOfGroupOfChild $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x1 child) (Member $e0 teach) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 child) (Member $e0 teach) (Recipient $e0 $x1)) (MnAgent_Teach_RecipientOfGroupOfChild $e0 $x0 $x1))
 
 ;; p203989  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnAgentOfElder_RecipientOfGroupOfChild $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x1 child) (Member $x0 elder) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 child) (Member $x0 elder) (Recipient $e0 $x1)) (MnAgentOfElder_RecipientOfGroupOfChild $e0 $x0 $x1))
 
 ;; p203990  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnAgent_RecipientOfGroupOfChild_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (GroupOf $x1 child) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 child) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_RecipientOfGroupOfChild_Theme $e0 $x0 $x1 $x2))
 
 ;; p203991  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000005 tierA-000007
-;;   meta-node: (MnAgent_Buy_ThemeOfGroupOfForklift $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x1 forklift) (Member $e0 buy) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 forklift) (Member $e0 buy) (Theme $e0 $x1)) (MnAgent_Buy_ThemeOfGroupOfForklift $e0 $x0 $x1))
 
 ;; p203992  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000380 tierA-000381 tierA-000382
-;;   meta-node: (MnAgent_Examine_ThemeOfGroupOfSample $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x1 sample) (Member $e0 examine) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 sample) (Member $e0 examine) (Theme $e0 $x1)) (MnAgent_Examine_ThemeOfGroupOfSample $e0 $x0 $x1))
 
 ;; p203993  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000380 tierA-000382 tierA-000384
-;;   meta-node: (MnAgentOfPhysician_ThemeOfGroupOfSample $e0 $x0 $x1)
-(And (Agent $e0 $x0) (GroupOf $x1 sample) (Member $x0 physician) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (GroupOf $x1 sample) (Member $x0 physician) (Theme $e0 $x1)) (MnAgentOfPhysician_ThemeOfGroupOfSample $e0 $x0 $x1))
 
 ;; p203994  support 3 (occ 3)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000143 tierA-000144 tierA-000146
-;;   meta-node: (MnAgent_ThemeOfEveningFlightOfInheritanceFlight $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Inheritance evening_flight flight) (Member $x1 evening_flight) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Inheritance evening_flight flight) (Member $x1 evening_flight) (Theme $e0 $x1)) (MnAgent_ThemeOfEveningFlightOfInheritanceFlight $e0 $x0 $x1))
 
 ;; p203995  support 3 (occ 3)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000163 tierA-000164 tierA-000165
-;;   meta-node: (MnAgent_ThemeOfLoanApplicationOfInheritanceApplication $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Inheritance loan_application application) (Member $x1 loan_application) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Inheritance loan_application application) (Member $x1 loan_application) (Theme $e0 $x1)) (MnAgent_ThemeOfLoanApplicationOfInheritanceApplication $e0 $x0 $x1))
 
 ;; p203996  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000076 tierA-000077 tierA-000078
-;;   meta-node: (MnAgentOfLicence_ThemeNightDeliveryOfInheritanceDelivery $e0 $x0)
-(And (Agent $e0 $x0) (Inheritance night_delivery delivery) (Member $x0 licence) (Theme $e0 night_delivery))
+(Implication (And (Agent $e0 $x0) (Inheritance night_delivery delivery) (Member $x0 licence) (Theme $e0 night_delivery)) (MnAgentOfLicence_ThemeNightDeliveryOfInheritanceDelivery $e0 $x0))
 
 ;; p203997  support 3 (occ 3)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000022 tierA-000026 tierA-000028
-;;   meta-node: (MnAgentOfPotteryStudioOfInheritanceStudio_Buy $e0 $x0)
-(And (Agent $e0 $x0) (Inheritance pottery_studio studio) (Member $e0 buy) (Member $x0 pottery_studio))
+(Implication (And (Agent $e0 $x0) (Inheritance pottery_studio studio) (Member $e0 buy) (Member $x0 pottery_studio)) (MnAgentOfPotteryStudioOfInheritanceStudio_Buy $e0 $x0))
 
 ;; p203998  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000135 tierA-000137
-;;   meta-node: (MnAgentOfDiver_Location_Discover $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 discover) (Member $x0 diver))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 discover) (Member $x0 diver)) (MnAgentOfDiver_Location_Discover $e0 $x0 $x1))
 
 ;; p203999  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000319 tierA-000320 tierA-000322
-;;   meta-node: (MnAgentOfBiologist_Location_Work $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 work) (Member $x0 biologist))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 work) (Member $x0 biologist)) (MnAgentOfBiologist_Location_Work $e0 $x0 $x1))
 
 ;; p204000  support 3 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000319 tierA-000320 tierA-000322
-;;   meta-node: (MnAgent_LocationOfSurvey_Work $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 work) (Member $x1 survey))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 work) (Member $x1 survey)) (MnAgent_LocationOfSurvey_Work $e0 $x0 $x1))
 
 ;; p204001  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000080 tierA-000081 tierA-000083
-;;   meta-node: (MnAgentOfCurator_LocationOfHall $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 curator) (Member $x1 hall))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 curator) (Member $x1 hall)) (MnAgentOfCurator_LocationOfHall $e0 $x0 $x1))
 
 ;; p204002  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000080 tierA-000081 tierA-000083
-;;   meta-node: (MnAgentOfCurator_Location_ThemePhotography $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 curator) (Theme $e0 photography))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 curator) (Theme $e0 photography)) (MnAgentOfCurator_Location_ThemePhotography $e0 $x0 $x1))
 
 ;; p204003  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000315 tierA-000316 tierA-000318
-;;   meta-node: (MnAgentOfWelder_LocationOfFrame $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 welder) (Member $x1 frame))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $x0 welder) (Member $x1 frame)) (MnAgentOfWelder_LocationOfFrame $e0 $x0 $x1))
 
 ;; p204004  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000080 tierA-000081 tierA-000083
-;;   meta-node: (MnAgent_LocationOfHall_ThemePhotography $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $x1 hall) (Theme $e0 photography))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $x1 hall) (Theme $e0 photography)) (MnAgent_LocationOfHall_ThemePhotography $e0 $x0 $x1))
 
 ;; p204006  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000104 tierA-000106 tierA-000108
-;;   meta-node: (MnAgentOfFirm_Abandon_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 abandon) (Member $x0 firm) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 abandon) (Member $x0 firm) (Theme $e0 $x1)) (MnAgentOfFirm_Abandon_Theme $e0 $x0 $x1))
 
 ;; p204007  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000109 tierA-000111 tierA-000112
-;;   meta-node: (MnAgent_Abandon_ThemeOfNorthRoute $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 abandon) (Member $x1 north_route) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 abandon) (Member $x1 north_route) (Theme $e0 $x1)) (MnAgent_Abandon_ThemeOfNorthRoute $e0 $x0 $x1))
 
 ;; p204009  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000104 tierA-000106 tierA-000108
-;;   meta-node: (MnAgent_Abandon_ThemeOfTender $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 abandon) (Member $x1 tender) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 abandon) (Member $x1 tender) (Theme $e0 $x1)) (MnAgent_Abandon_ThemeOfTender $e0 $x0 $x1))
 
 ;; p204011  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000207 tierA-000209 tierA-000211
-;;   meta-node: (MnAgentOfClerk_Answer_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 answer) (Member $x0 clerk) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 answer) (Member $x0 clerk) (Theme $e0 $x1)) (MnAgentOfClerk_Answer_Theme $e0 $x0 $x1))
 
 ;; p204012  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000212 tierA-000214 tierA-000215
-;;   meta-node: (MnAgentOfPilot_Answer_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 answer) (Member $x0 pilot) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 answer) (Member $x0 pilot) (Theme $e0 $x1)) (MnAgentOfPilot_Answer_Theme $e0 $x0 $x1))
 
 ;; p204013  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000207 tierA-000209 tierA-000211
-;;   meta-node: (MnAgent_Answer_ThemeOfQuery $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 answer) (Member $x1 query) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 answer) (Member $x1 query) (Theme $e0 $x1)) (MnAgent_Answer_ThemeOfQuery $e0 $x0 $x1))
 
 ;; p204014  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000212 tierA-000214 tierA-000215
-;;   meta-node: (MnAgent_Answer_ThemeOfTower $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 answer) (Member $x1 tower) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 answer) (Member $x1 tower) (Theme $e0 $x1)) (MnAgent_Answer_ThemeOfTower $e0 $x0 $x1))
 
 ;; p204018  support 3 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
-;;   meta-node: (MnAgentOfPerson_Appear_Past $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 appear) (Member $x0 person) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Member $e0 appear) (Member $x0 person) (Past $e0)) (MnAgentOfPerson_Appear_Past $e0 $x0))
 
 ;; p204019  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000237 tierA-000238 tierA-000240
-;;   meta-node: (MnAgentOfFreight_Arrive_Time(HourNum $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 arrive) (Member $x0 freight) (Time $e0 (Hour <num>)))
+(Implication (And (Agent $e0 $x0) (Member $e0 arrive) (Member $x0 freight) (Time $e0 (Hour <num>))) (MnAgentOfFreight_Arrive_Time(HourNum $e0 $x0))
 
 ;; p204020  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000005 tierA-000007
-;;   meta-node: (MnAgentOfDepot_Buy_Past $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 depot) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 depot) (Past $e0)) (MnAgentOfDepot_Buy_Past $e0 $x0))
 
 ;; p204021  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000005 tierA-000007
-;;   meta-node: (MnAgentOfDepot_Buy_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 depot) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 depot) (Theme $e0 $x1)) (MnAgentOfDepot_Buy_Theme $e0 $x0 $x1))
 
 ;; p204023  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000026 tierA-000028
-;;   meta-node: (MnAgentOfPotteryStudio_Buy_Past $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 pottery_studio) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 pottery_studio) (Past $e0)) (MnAgentOfPotteryStudio_Buy_Past $e0 $x0))
 
 ;; p204024  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000026 tierA-000028
-;;   meta-node: (MnAgentOfPotteryStudio_Buy_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 pottery_studio) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 pottery_studio) (Theme $e0 $x1)) (MnAgentOfPotteryStudio_Buy_Theme $e0 $x0 $x1))
 
 ;; p204025  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000012 tierA-000013
-;;   meta-node: (MnAgentOfSchool_Buy_Past $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 school) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 school) (Past $e0)) (MnAgentOfSchool_Buy_Past $e0 $x0))
 
 ;; p204026  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000012 tierA-000013
-;;   meta-node: (MnAgentOfSchool_Buy_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 school) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 buy) (Member $x0 school) (Theme $e0 $x1)) (MnAgentOfSchool_Buy_Theme $e0 $x0 $x1))
 
 ;; p204028  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000026 tierA-000028
-;;   meta-node: (MnAgent_Buy_ThemeOfKiln $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 buy) (Member $x1 kiln) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 buy) (Member $x1 kiln) (Theme $e0 $x1)) (MnAgent_Buy_ThemeOfKiln $e0 $x0 $x1))
 
 ;; p204031  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000148 tierA-000150 tierA-000152
-;;   meta-node: (MnAgentOfCouncil_Cancel_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 cancel) (Member $x0 council) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 cancel) (Member $x0 council) (Patient $e0 $x1)) (MnAgentOfCouncil_Cancel_Patient $e0 $x0 $x1))
 
 ;; p204032  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000153 tierA-000155 tierA-000156
-;;   meta-node: (MnAgentOfTutor_Cancel_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 cancel) (Member $x0 tutor) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 cancel) (Member $x0 tutor) (Patient $e0 $x1)) (MnAgentOfTutor_Cancel_Patient $e0 $x0 $x1))
 
 ;; p204033  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000153 tierA-000155 tierA-000156
-;;   meta-node: (MnAgent_Cancel_PatientOfAfternoonSession $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 cancel) (Member $x1 afternoon_session) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 cancel) (Member $x1 afternoon_session) (Patient $e0 $x1)) (MnAgent_Cancel_PatientOfAfternoonSession $e0 $x0 $x1))
 
 ;; p204034  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000148 tierA-000150 tierA-000152
-;;   meta-node: (MnAgent_Cancel_PatientOfSummerFair $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 cancel) (Member $x1 summer_fair) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 cancel) (Member $x1 summer_fair) (Patient $e0 $x1)) (MnAgent_Cancel_PatientOfSummerFair $e0 $x0 $x1))
 
 ;; p204035  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000223 tierA-000228 tierA-000233
-;;   meta-node: (MnAgent_Cause_ThemeEvOfDestroy $e0 $e1 $x0)
-(And (Agent $e0 $x0) (Member $e0 cause) (Member $e1 destroy) (Theme $e0 $e1))
+(Implication (And (Agent $e0 $x0) (Member $e0 cause) (Member $e1 destroy) (Theme $e0 $e1)) (MnAgent_Cause_ThemeEvOfDestroy $e0 $e1 $x0))
 
 ;; p204036  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000223 tierA-000228 tierA-000233
-;;   meta-node: (MnAgent_Cause_ThemeEvOfPatient $e0 $e1 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 cause) (Patient $e1 $x1) (Theme $e0 $e1))
+(Implication (And (Agent $e0 $x0) (Member $e0 cause) (Patient $e1 $x1) (Theme $e0 $e1)) (MnAgent_Cause_ThemeEvOfPatient $e0 $e1 $x0 $x1))
 
 ;; p204037  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000201 tierA-000204 tierA-000206
-;;   meta-node: (MnAgentOfBoard_Decide_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 decide) (Member $x0 board) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 decide) (Member $x0 board) (Theme $e0 $x1)) (MnAgentOfBoard_Decide_Theme $e0 $x0 $x1))
 
 ;; p204038  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000190 tierA-000193 tierA-000194
-;;   meta-node: (MnAgentOfJudge_Decide_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 decide) (Member $x0 judge) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 decide) (Member $x0 judge) (Theme $e0 $x1)) (MnAgentOfJudge_Decide_Theme $e0 $x0 $x1))
 
 ;; p204039  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000201 tierA-000204 tierA-000206
-;;   meta-node: (MnAgent_Decide_ThemeOfBudget $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 decide) (Member $x1 budget) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 decide) (Member $x1 budget) (Theme $e0 $x1)) (MnAgent_Decide_ThemeOfBudget $e0 $x0 $x1))
 
 ;; p204040  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000190 tierA-000193 tierA-000194
-;;   meta-node: (MnAgent_Decide_ThemeOfCase $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 decide) (Member $x1 case) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 decide) (Member $x1 case) (Theme $e0 $x1)) (MnAgent_Decide_ThemeOfCase $e0 $x0 $x1))
 
 ;; p204041  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000201 tierA-000204 tierA-000206
-;;   meta-node: (MnAgent_Decide_ThemeOfPossessionNextYear $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 decide) (Possession $x1 next_year) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 decide) (Possession $x1 next_year) (Theme $e0 $x1)) (MnAgent_Decide_ThemeOfPossessionNextYear $e0 $x0 $x1))
 
 ;; p204042  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000135 tierA-000137
-;;   meta-node: (MnAgentOfDiver_Discover_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 discover) (Member $x0 diver) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 discover) (Member $x0 diver) (Theme $e0 $x1)) (MnAgentOfDiver_Discover_Theme $e0 $x0 $x1))
 
 ;; p204043  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000138 tierA-000140 tierA-000141
-;;   meta-node: (MnAgentOfIntern_Discover_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 discover) (Member $x0 intern) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 discover) (Member $x0 intern) (Theme $e0 $x1)) (MnAgentOfIntern_Discover_Theme $e0 $x0 $x1))
 
 ;; p204044  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000138 tierA-000140 tierA-000141
-;;   meta-node: (MnAgent_Discover_ThemeOfFile $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 discover) (Member $x1 file) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 discover) (Member $x1 file) (Theme $e0 $x1)) (MnAgent_Discover_ThemeOfFile $e0 $x0 $x1))
 
 ;; p204045  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000138 tierA-000140 tierA-000141
-;;   meta-node: (MnAgent_Discover_ThemeOfMissing $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 discover) (Member $x1 missing) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 discover) (Member $x1 missing) (Theme $e0 $x1)) (MnAgent_Discover_ThemeOfMissing $e0 $x0 $x1))
 
 ;; p204046  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000135 tierA-000137
-;;   meta-node: (MnAgent_Discover_ThemeOfWreck $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 discover) (Member $x1 wreck) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 discover) (Member $x1 wreck) (Theme $e0 $x1)) (MnAgent_Discover_ThemeOfWreck $e0 $x0 $x1))
 
 ;; p204047  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000217 tierC-000218 tierC-000245
-;;   meta-node: (MnAgentOfGovernment_Fund_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 fund) (Member $x0 government) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 fund) (Member $x0 government) (Theme $e0 $x1)) (MnAgentOfGovernment_Fund_Theme $e0 $x0 $x1))
 
 ;; p204048  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000276 tierA-000278 tierA-000280
-;;   meta-node: (MnAgentOfSchool_Give_Recipient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 give) (Member $x0 school) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Member $x0 school) (Recipient $e0 $x1)) (MnAgentOfSchool_Give_Recipient $e0 $x0 $x1))
 
 ;; p204049  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000276 tierA-000278 tierA-000280
-;;   meta-node: (MnAgentOfSchool_Give_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 give) (Member $x0 school) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Member $x0 school) (Theme $e0 $x1)) (MnAgentOfSchool_Give_Theme $e0 $x0 $x1))
 
 ;; p204050  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000261 tierA-000263 tierA-000265
-;;   meta-node: (MnAgentOfTrainer_Give_Recipient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 give) (Member $x0 trainer) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Member $x0 trainer) (Recipient $e0 $x1)) (MnAgentOfTrainer_Give_Recipient $e0 $x0 $x1))
 
 ;; p204051  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000261 tierA-000263 tierA-000265
-;;   meta-node: (MnAgentOfTrainer_Give_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 give) (Member $x0 trainer) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Member $x0 trainer) (Theme $e0 $x1)) (MnAgentOfTrainer_Give_Theme $e0 $x0 $x1))
 
 ;; p204052  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000208 tierA-000213 tierA-000218
-;;   meta-node: (MnAgent_Give_ThemeOfAnswer $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 give) (Member $x1 answer) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Member $x1 answer) (Theme $e0 $x1)) (MnAgent_Give_ThemeOfAnswer $e0 $x0 $x1))
 
 ;; p204053  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000271 tierA-000273 tierA-000274
-;;   meta-node: (MnAgent_Give_ThemeOfManifest $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 give) (Member $x1 manifest) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Member $x1 manifest) (Theme $e0 $x1)) (MnAgent_Give_ThemeOfManifest $e0 $x0 $x1))
 
 ;; p204054  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000261 tierA-000263 tierA-000265
-;;   meta-node: (MnAgent_Give_RecipientOfRecruit $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 give) (Member $x1 recruit) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Member $x1 recruit) (Recipient $e0 $x1)) (MnAgent_Give_RecipientOfRecruit $e0 $x0 $x1))
 
 ;; p204055  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000276 tierA-000278 tierA-000280
-;;   meta-node: (MnAgent_Give_RecipientOfWinner $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 give) (Member $x1 winner) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 give) (Member $x1 winner) (Recipient $e0 $x1)) (MnAgent_Give_RecipientOfWinner $e0 $x0 $x1))
 
 ;; p204056  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000306 tierA-000308 tierA-000310
-;;   meta-node: (MnAgentOfMuseum_Lend_Recipient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 lend) (Member $x0 museum) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Member $x0 museum) (Recipient $e0 $x1)) (MnAgentOfMuseum_Lend_Recipient $e0 $x0 $x1))
 
 ;; p204057  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000306 tierA-000308 tierA-000310
-;;   meta-node: (MnAgentOfMuseum_Lend_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 lend) (Member $x0 museum) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Member $x0 museum) (Theme $e0 $x1)) (MnAgentOfMuseum_Lend_Theme $e0 $x0 $x1))
 
 ;; p204058  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000296 tierA-000298 tierA-000299
-;;   meta-node: (MnAgentOfNeighbour_Lend_RecipientRavi $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 lend) (Member $x0 neighbour) (Recipient $e0 ravi))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Member $x0 neighbour) (Recipient $e0 ravi)) (MnAgentOfNeighbour_Lend_RecipientRavi $e0 $x0))
 
 ;; p204059  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000296 tierA-000298 tierA-000299
-;;   meta-node: (MnAgentOfNeighbour_Lend_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 lend) (Member $x0 neighbour) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Member $x0 neighbour) (Theme $e0 $x1)) (MnAgentOfNeighbour_Lend_Theme $e0 $x0 $x1))
 
 ;; p204060  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000306 tierA-000308 tierA-000310
-;;   meta-node: (MnAgent_Lend_RecipientOfGallery $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 lend) (Member $x1 gallery) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Member $x1 gallery) (Recipient $e0 $x1)) (MnAgent_Lend_RecipientOfGallery $e0 $x0 $x1))
 
 ;; p204061  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000301 tierA-000303 tierA-000304
-;;   meta-node: (MnAgent_Lend_ThemeOfGenerator $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 lend) (Member $x1 generator) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Member $x1 generator) (Theme $e0 $x1)) (MnAgent_Lend_ThemeOfGenerator $e0 $x0 $x1))
 
 ;; p204062  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000186 tierA-000191 tierA-000202
-;;   meta-node: (MnAgent_Make_PatientEvOfTheme $e0 $e1 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 make) (Patient $e0 $e1) (Theme $e1 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 make) (Patient $e0 $e1) (Theme $e1 $x1)) (MnAgent_Make_PatientEvOfTheme $e0 $e1 $x0 $x1))
 
 ;; p204063  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000385 tierA-000386 tierA-000387
-;;   meta-node: (MnAgent_Order_ThemeOfScan $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 order) (Member $x1 scan) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 order) (Member $x1 scan) (Theme $e0 $x1)) (MnAgent_Order_ThemeOfScan $e0 $x0 $x1))
 
 ;; p204064  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000385 tierA-000386 tierA-000387
-;;   meta-node: (MnAgent_Order_ThemeOfOrdinalNumScan $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 order) (Ordinal $x1 <num> scan) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 order) (Ordinal $x1 <num> scan) (Theme $e0 $x1)) (MnAgent_Order_ThemeOfOrdinalNumScan $e0 $x0 $x1))
 
 ;; p204065  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000123 tierA-000125 tierA-000126
-;;   meta-node: (MnAgentOfClub_Postpone_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 postpone) (Member $x0 club) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 postpone) (Member $x0 club) (Theme $e0 $x1)) (MnAgentOfClub_Postpone_Theme $e0 $x0 $x1))
 
 ;; p204066  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000123 tierA-000125 tierA-000126
-;;   meta-node: (MnAgent_Postpone_ThemeOfTournament $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 postpone) (Member $x1 tournament) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 postpone) (Member $x1 tournament) (Theme $e0 $x1)) (MnAgent_Postpone_ThemeOfTournament $e0 $x0 $x1))
 
 ;; p204067  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000187 tierA-000192 tierA-000203
-;;   meta-node: (MnAgent_Reach_ThemeEvOfTheme $e0 $e1 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 reach) (Theme $e0 $e1) (Theme $e1 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 reach) (Theme $e0 $e1) (Theme $e1 $x1)) (MnAgent_Reach_ThemeEvOfTheme $e0 $e1 $x0 $x1))
 
 ;; p204068  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000375 tierA-000376 tierA-000377
-;;   meta-node: (MnAgent_Sign_PatientOfChart $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 sign) (Member $x1 chart) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 sign) (Member $x1 chart) (Patient $e0 $x1)) (MnAgent_Sign_PatientOfChart $e0 $x0 $x1))
 
 ;; p204069  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnAgentOfElder_Teach_Recipient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 teach) (Member $x0 elder) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 teach) (Member $x0 elder) (Recipient $e0 $x1)) (MnAgentOfElder_Teach_Recipient $e0 $x0 $x1))
 
 ;; p204070  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnAgentOfElder_Teach_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 teach) (Member $x0 elder) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 teach) (Member $x0 elder) (Theme $e0 $x1)) (MnAgentOfElder_Teach_Theme $e0 $x0 $x1))
 
 ;; p204071  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000281 tierA-000283 tierA-000284
-;;   meta-node: (MnAgentOfPotter_Teach_Recipient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 teach) (Member $x0 potter) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 teach) (Member $x0 potter) (Recipient $e0 $x1)) (MnAgentOfPotter_Teach_Recipient $e0 $x0 $x1))
 
 ;; p204072  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000281 tierA-000283 tierA-000284
-;;   meta-node: (MnAgentOfPotter_Teach_ThemeGlazing $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 teach) (Member $x0 potter) (Theme $e0 glazing))
+(Implication (And (Agent $e0 $x0) (Member $e0 teach) (Member $x0 potter) (Theme $e0 glazing)) (MnAgentOfPotter_Teach_ThemeGlazing $e0 $x0))
 
 ;; p204073  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000281 tierA-000283 tierA-000284
-;;   meta-node: (MnAgent_Teach_RecipientOfApprentice $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 teach) (Member $x1 apprentice) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 teach) (Member $x1 apprentice) (Recipient $e0 $x1)) (MnAgent_Teach_RecipientOfApprentice $e0 $x0 $x1))
 
 ;; p204074  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000286 tierA-000288 tierA-000289
-;;   meta-node: (MnAgent_Teach_ThemeOfDrill $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 teach) (Member $x1 drill) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 teach) (Member $x1 drill) (Theme $e0 $x1)) (MnAgent_Teach_ThemeOfDrill $e0 $x0 $x1))
 
 ;; p204075  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnAgent_Teach_ThemeOfSong $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 teach) (Member $x1 song) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 teach) (Member $x1 song) (Theme $e0 $x1)) (MnAgent_Teach_ThemeOfSong $e0 $x0 $x1))
 
 ;; p204076  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000186 tierA-000191 tierA-000202
-;;   meta-node: (MnAgent_PatientEvOfDecision-Theme $e0 $e1 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e1 decision) (Patient $e0 $e1) (Theme $e1 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e1 decision) (Patient $e0 $e1) (Theme $e1 $x1)) (MnAgent_PatientEvOfDecision-Theme $e0 $e1 $x0 $x1))
 
 ;; p204077  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000187 tierA-000192 tierA-000203
-;;   meta-node: (MnAgent_ThemeEvOfDecision-Theme $e0 $e1 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e1 decision) (Theme $e0 $e1) (Theme $e1 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e1 decision) (Theme $e0 $e1) (Theme $e1 $x1)) (MnAgent_ThemeEvOfDecision-Theme $e0 $e1 $x0 $x1))
 
 ;; p204078  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000223 tierA-000228 tierA-000233
-;;   meta-node: (MnAgent_ThemeEvOfDestroy-Patient $e0 $e1 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e1 destroy) (Patient $e1 $x1) (Theme $e0 $e1))
+(Implication (And (Agent $e0 $x0) (Member $e1 destroy) (Patient $e1 $x1) (Theme $e0 $e1)) (MnAgent_ThemeEvOfDestroy-Patient $e0 $e1 $x0 $x1))
 
 ;; p204079  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000143 tierA-000144 tierA-000146
-;;   meta-node: (MnAgentOfAirline_ThemeOfEveningFlight $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 airline) (Member $x1 evening_flight) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 airline) (Member $x1 evening_flight) (Theme $e0 $x1)) (MnAgentOfAirline_ThemeOfEveningFlight $e0 $x0 $x1))
 
 ;; p204080  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000163 tierA-000164 tierA-000165
-;;   meta-node: (MnAgentOfBank_ThemeOfLoanApplication $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 bank) (Member $x1 loan_application) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 bank) (Member $x1 loan_application) (Theme $e0 $x1)) (MnAgentOfBank_ThemeOfLoanApplication $e0 $x0 $x1))
 
 ;; p204081  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000201 tierA-000204 tierA-000206
-;;   meta-node: (MnAgentOfBoard_ThemeOfBudget $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 board) (Member $x1 budget) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 board) (Member $x1 budget) (Theme $e0 $x1)) (MnAgentOfBoard_ThemeOfBudget $e0 $x0 $x1))
 
 ;; p204082  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000201 tierA-000204 tierA-000206
-;;   meta-node: (MnAgentOfBoard_ThemeOfPossessionNextYear $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 board) (Possession $x1 next_year) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 board) (Possession $x1 next_year) (Theme $e0 $x1)) (MnAgentOfBoard_ThemeOfPossessionNextYear $e0 $x0 $x1))
 
 ;; p204083  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000207 tierA-000209 tierA-000211
-;;   meta-node: (MnAgentOfClerk_ThemeOfQuery $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 clerk) (Member $x1 query) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 clerk) (Member $x1 query) (Theme $e0 $x1)) (MnAgentOfClerk_ThemeOfQuery $e0 $x0 $x1))
 
 ;; p204084  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnAgentOfElder_ThemeOfSong $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 elder) (Member $x1 song) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 elder) (Member $x1 song) (Theme $e0 $x1)) (MnAgentOfElder_ThemeOfSong $e0 $x0 $x1))
 
 ;; p204085  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnAgentOfElder_Recipient_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x0 elder) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 elder) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgentOfElder_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; p204087  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000119 tierA-000120 tierA-000122
-;;   meta-node: (MnAgentOfFerry_ThemeOfDeparture $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 ferry) (Member $x1 departure) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 ferry) (Member $x1 departure) (Theme $e0 $x1)) (MnAgentOfFerry_ThemeOfDeparture $e0 $x0 $x1))
 
 ;; p204089  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000190 tierA-000193 tierA-000194
-;;   meta-node: (MnAgentOfJudge_ThemeOfCase $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 judge) (Member $x1 case) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 judge) (Member $x1 case) (Theme $e0 $x1)) (MnAgentOfJudge_ThemeOfCase $e0 $x0 $x1))
 
 ;; p204090  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000306 tierA-000308 tierA-000310
-;;   meta-node: (MnAgentOfMuseum_RecipientOfGallery $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 museum) (Member $x1 gallery) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 museum) (Member $x1 gallery) (Recipient $e0 $x1)) (MnAgentOfMuseum_RecipientOfGallery $e0 $x0 $x1))
 
 ;; p204091  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000306 tierA-000308 tierA-000310
-;;   meta-node: (MnAgentOfMuseum_Recipient_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x0 museum) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 museum) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgentOfMuseum_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; p204092  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000296 tierA-000298 tierA-000299
-;;   meta-node: (MnAgentOfNeighbour_RecipientRavi_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 neighbour) (Recipient $e0 ravi) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 neighbour) (Recipient $e0 ravi) (Theme $e0 $x1)) (MnAgentOfNeighbour_RecipientRavi_Theme $e0 $x0 $x1))
 
 ;; p204093  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000072 tierC-000089 tierC-000090
-;;   meta-node: (MnAgentOfPerson_Past_Patient $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 person) (Past $e0) (Patient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 person) (Past $e0) (Patient $e0 $x1)) (MnAgentOfPerson_Past_Patient $e0 $x0 $x1))
 
 ;; p204094  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000385 tierA-000387 tierA-000388
-;;   meta-node: (MnAgentOfPhysician_ThemeOfScan $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 physician) (Member $x1 scan) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 physician) (Member $x1 scan) (Theme $e0 $x1)) (MnAgentOfPhysician_ThemeOfScan $e0 $x0 $x1))
 
 ;; p204095  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000385 tierA-000387 tierA-000388
-;;   meta-node: (MnAgentOfPhysician_ThemeOfOrdinalNumScan $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 physician) (Ordinal $x1 <num> scan) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 physician) (Ordinal $x1 <num> scan) (Theme $e0 $x1)) (MnAgentOfPhysician_ThemeOfOrdinalNumScan $e0 $x0 $x1))
 
 ;; p204096  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000212 tierA-000214 tierA-000215
-;;   meta-node: (MnAgentOfPilot_ThemeOfTower $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 pilot) (Member $x1 tower) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 pilot) (Member $x1 tower) (Theme $e0 $x1)) (MnAgentOfPilot_ThemeOfTower $e0 $x0 $x1))
 
 ;; p204097  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000281 tierA-000283 tierA-000284
-;;   meta-node: (MnAgentOfPotter_RecipientOfApprentice $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 potter) (Member $x1 apprentice) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 potter) (Member $x1 apprentice) (Recipient $e0 $x1)) (MnAgentOfPotter_RecipientOfApprentice $e0 $x0 $x1))
 
 ;; p204098  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000281 tierA-000283 tierA-000284
-;;   meta-node: (MnAgentOfPotter_Recipient_ThemeGlazing $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 potter) (Recipient $e0 $x1) (Theme $e0 glazing))
+(Implication (And (Agent $e0 $x0) (Member $x0 potter) (Recipient $e0 $x1) (Theme $e0 glazing)) (MnAgentOfPotter_Recipient_ThemeGlazing $e0 $x0 $x1))
 
 ;; p204099  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000026 tierA-000028
-;;   meta-node: (MnAgentOfPotteryStudio_ThemeOfOrdinalNumBuy $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 pottery_studio) (Ordinal $x1 <num> buy) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 pottery_studio) (Ordinal $x1 <num> buy) (Theme $e0 $x1)) (MnAgentOfPotteryStudio_ThemeOfOrdinalNumBuy $e0 $x0 $x1))
 
 ;; p204100  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000276 tierA-000278 tierA-000280
-;;   meta-node: (MnAgentOfSchool_RecipientOfWinner $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 school) (Member $x1 winner) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 school) (Member $x1 winner) (Recipient $e0 $x1)) (MnAgentOfSchool_RecipientOfWinner $e0 $x0 $x1))
 
 ;; p204101  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000276 tierA-000278 tierA-000280
-;;   meta-node: (MnAgentOfSchool_Recipient_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x0 school) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 school) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgentOfSchool_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; p204102  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000261 tierA-000263 tierA-000265
-;;   meta-node: (MnAgentOfTrainer_RecipientOfRecruit $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 trainer) (Member $x1 recruit) (Recipient $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 trainer) (Member $x1 recruit) (Recipient $e0 $x1)) (MnAgentOfTrainer_RecipientOfRecruit $e0 $x0 $x1))
 
 ;; p204103  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000261 tierA-000263 tierA-000265
-;;   meta-node: (MnAgentOfTrainer_Recipient_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x0 trainer) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x0 trainer) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgentOfTrainer_Recipient_Theme $e0 $x0 $x1 $x2))
 
 ;; p204104  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000073 tierA-000074 tierA-000075
-;;   meta-node: (MnAgentOfWarden_ThemeVisitor_Time(WeekdaySunday $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 warden) (Theme $e0 visitor) (Time $e0 (Weekday sunday)))
+(Implication (And (Agent $e0 $x0) (Member $x0 warden) (Theme $e0 visitor) (Time $e0 (Weekday sunday))) (MnAgentOfWarden_ThemeVisitor_Time(WeekdaySunday $e0 $x0))
 
 ;; p204105  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000208 tierA-000213 tierA-000218
-;;   meta-node: (MnAgent_Recipient_ThemeOfAnswer $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x1 answer) (Recipient $e0 $x2) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 answer) (Recipient $e0 $x2) (Theme $e0 $x1)) (MnAgent_Recipient_ThemeOfAnswer $e0 $x0 $x1 $x2))
 
 ;; p204106  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000281 tierA-000283 tierA-000284
-;;   meta-node: (MnAgent_RecipientOfApprentice_ThemeGlazing $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 apprentice) (Recipient $e0 $x1) (Theme $e0 glazing))
+(Implication (And (Agent $e0 $x0) (Member $x1 apprentice) (Recipient $e0 $x1) (Theme $e0 glazing)) (MnAgent_RecipientOfApprentice_ThemeGlazing $e0 $x0 $x1))
 
 ;; p204107  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000201 tierA-000204 tierA-000206
-;;   meta-node: (MnAgent_ThemeOfBudget-PossessionNextYear $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 budget) (Possession $x1 next_year) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 budget) (Possession $x1 next_year) (Theme $e0 $x1)) (MnAgent_ThemeOfBudget-PossessionNextYear $e0 $x0 $x1))
 
 ;; p204109  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000286 tierA-000288 tierA-000289
-;;   meta-node: (MnAgent_Recipient_ThemeOfDrill $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x1 drill) (Recipient $e0 $x2) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 drill) (Recipient $e0 $x2) (Theme $e0 $x1)) (MnAgent_Recipient_ThemeOfDrill $e0 $x0 $x1 $x2))
 
 ;; p204110  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000306 tierA-000308 tierA-000310
-;;   meta-node: (MnAgent_RecipientOfGallery_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x1 gallery) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x1 gallery) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_RecipientOfGallery_Theme $e0 $x0 $x1 $x2))
 
 ;; p204111  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000301 tierA-000303 tierA-000304
-;;   meta-node: (MnAgent_Recipient_ThemeOfGenerator $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x1 generator) (Recipient $e0 $x2) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 generator) (Recipient $e0 $x2) (Theme $e0 $x1)) (MnAgent_Recipient_ThemeOfGenerator $e0 $x0 $x1 $x2))
 
 ;; p204112  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000026 tierA-000028
-;;   meta-node: (MnAgent_ThemeOfKiln-OrdinalNumBuy $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 kiln) (Ordinal $x1 <num> buy) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 kiln) (Ordinal $x1 <num> buy) (Theme $e0 $x1)) (MnAgent_ThemeOfKiln-OrdinalNumBuy $e0 $x0 $x1))
 
 ;; p204113  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000271 tierA-000273 tierA-000274
-;;   meta-node: (MnAgent_Recipient_ThemeOfManifest $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x1 manifest) (Recipient $e0 $x2) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 manifest) (Recipient $e0 $x2) (Theme $e0 $x1)) (MnAgent_Recipient_ThemeOfManifest $e0 $x0 $x1 $x2))
 
 ;; p204114  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000261 tierA-000263 tierA-000265
-;;   meta-node: (MnAgent_RecipientOfRecruit_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x1 recruit) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x1 recruit) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_RecipientOfRecruit_Theme $e0 $x0 $x1 $x2))
 
 ;; p204115  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnAgent_Recipient_ThemeOfSong $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x1 song) (Recipient $e0 $x2) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 song) (Recipient $e0 $x2) (Theme $e0 $x1)) (MnAgent_Recipient_ThemeOfSong $e0 $x0 $x1 $x2))
 
 ;; p204116  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000276 tierA-000278 tierA-000280
-;;   meta-node: (MnAgent_RecipientOfWinner_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $x1 winner) (Recipient $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Member $x1 winner) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_RecipientOfWinner_Theme $e0 $x0 $x1 $x2))
 
 ;; p204117  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000026 tierA-000028
-;;   meta-node: (MnAgent_Past_ThemeOfOrdinalNumBuy $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Ordinal $x1 <num> buy) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Ordinal $x1 <num> buy) (Past $e0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfOrdinalNumBuy $e0 $x0 $x1))
 
 ;; p204118  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000323 tierA-000324 tierA-000325
-;;   meta-node: (MnAgentDara_LocationOfLedger_Work $e0 $x0)
-(And (Agent $e0 dara) (Location $e0 $x0) (Member $e0 work) (Member $x0 ledger))
+(Implication (And (Agent $e0 dara) (Location $e0 $x0) (Member $e0 work) (Member $x0 ledger)) (MnAgentDara_LocationOfLedger_Work $e0 $x0))
 
 ;; p204121  support 3 (occ 4)  size 4  root $e1 (event)  depth 2
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
-;;   meta-node: (MnAppearOfAlsoEvOfPast_Past $e1 $e0)
-(And (Also appear $e0) (Member $e1 appear) (Past $e0) (Past $e1))
+(Implication (And (Also appear $e0) (Member $e1 appear) (Past $e0) (Past $e1)) (MnAppearOfAlsoEvOfPast_Past $e1 $e0))
 
 ;; p204122  support 3 (occ 3)  size 4  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000062 tierA-000063 tierA-000064
-;;   meta-node: (MnBeforeEvOfFuture-Patient_Lunch $x0 $e0 $x1)
-(And (Before $x0 $e0) (Future $e0) (Member $x0 lunch) (Patient $e0 $x1))
+(Implication (And (Before $x0 $e0) (Future $e0) (Member $x0 lunch) (Patient $e0 $x1)) (MnBeforeEvOfFuture-Patient_Lunch $x0 $e0 $x1))
 
 ;; p204123  support 3 (occ 3)  size 4  root $x0 (entity)  depth 3
 ;;   e.g. tierA-000062 tierA-000063 tierA-000064
-;;   meta-node: (MnBeforeEvOfFuture-PatientOfDressRehearsal $x0 $e0 $x1)
-(And (Before $x0 $e0) (Future $e0) (Member $x1 dress_rehearsal) (Patient $e0 $x1))
+(Implication (And (Before $x0 $e0) (Future $e0) (Member $x1 dress_rehearsal) (Patient $e0 $x1)) (MnBeforeEvOfFuture-PatientOfDressRehearsal $x0 $e0 $x1))
 
 ;; p204124  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000012 tierA-000013
-;;   meta-node: (MnBeneficiaryOfHall_Buy_Past $e0 $x0)
-(And (Beneficiary $e0 $x0) (Member $e0 buy) (Member $x0 hall) (Past $e0))
+(Implication (And (Beneficiary $e0 $x0) (Member $e0 buy) (Member $x0 hall) (Past $e0)) (MnBeneficiaryOfHall_Buy_Past $e0 $x0))
 
 ;; p204125  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000012 tierA-000013
-;;   meta-node: (MnBeneficiaryOfHall_Buy_Theme $e0 $x0 $x1)
-(And (Beneficiary $e0 $x0) (Member $e0 buy) (Member $x0 hall) (Theme $e0 $x1))
+(Implication (And (Beneficiary $e0 $x0) (Member $e0 buy) (Member $x0 hall) (Theme $e0 $x1)) (MnBeneficiaryOfHall_Buy_Theme $e0 $x0 $x1))
 
 ;; p204126  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000146 tierC-000261 tierC-000262
-;;   meta-node: (MnCan_MannerOfCardinalityNum-GroupOfWay $e0 $x0)
-(And (Can $e0) (Cardinality $x0 <num>) (GroupOf $x0 way) (Manner $e0 $x0))
+(Implication (And (Can $e0) (Cardinality $x0 <num>) (GroupOf $x0 way) (Manner $e0 $x0)) (MnCan_MannerOfCardinalityNum-GroupOfWay $e0 $x0))
 
 ;; p204127  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnCan_MannerOfCardinalityNum-Random $e0 $x0)
-(And (Can $e0) (Cardinality $x0 <num>) (Manner $e0 $x0) (Member $x0 random))
+(Implication (And (Can $e0) (Cardinality $x0 <num>) (Manner $e0 $x0) (Member $x0 random)) (MnCan_MannerOfCardinalityNum-Random $e0 $x0))
 
 ;; p204128  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000146 tierC-000261 tierC-000262
-;;   meta-node: (MnCan_MannerOfGroupOfWay_Define $e0 $x0)
-(And (Can $e0) (GroupOf $x0 way) (Manner $e0 $x0) (Member $e0 define))
+(Implication (And (Can $e0) (GroupOf $x0 way) (Manner $e0 $x0) (Member $e0 define)) (MnCan_MannerOfGroupOfWay_Define $e0 $x0))
 
 ;; p204129  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000146 tierC-000261 tierC-000262
-;;   meta-node: (MnCan_MannerOfGroupOfWay_Theme $e0 $x0 $x1)
-(And (Can $e0) (GroupOf $x0 way) (Manner $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Can $e0) (GroupOf $x0 way) (Manner $e0 $x0) (Theme $e0 $x1)) (MnCan_MannerOfGroupOfWay_Theme $e0 $x0 $x1))
 
 ;; p204130  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnCan_MannerOfRandom_Define $e0 $x0)
-(And (Can $e0) (Manner $e0 $x0) (Member $e0 define) (Member $x0 random))
+(Implication (And (Can $e0) (Manner $e0 $x0) (Member $e0 define) (Member $x0 random)) (MnCan_MannerOfRandom_Define $e0 $x0))
 
 ;; p204131  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnCan_MannerOfRandom_Theme $e0 $x0 $x1)
-(And (Can $e0) (Manner $e0 $x0) (Member $x0 random) (Theme $e0 $x1))
+(Implication (And (Can $e0) (Manner $e0 $x0) (Member $x0 random) (Theme $e0 $x1)) (MnCan_MannerOfRandom_Theme $e0 $x0 $x1))
 
 ;; p204132  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000005 tierA-000007
-;;   meta-node: (MnBuy_ThemeOfCardinalityNum-GroupOfForklift $e0 $x0)
-(And (Cardinality $x0 <num>) (GroupOf $x0 forklift) (Member $e0 buy) (Theme $e0 $x0))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x0 forklift) (Member $e0 buy) (Theme $e0 $x0)) (MnBuy_ThemeOfCardinalityNum-GroupOfForklift $e0 $x0))
 
 ;; p204133  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000146 tierC-000261 tierC-000262
-;;   meta-node: (MnMannerOfCardinalityNum-GroupOfWay_Define $e0 $x0)
-(And (Cardinality $x0 <num>) (GroupOf $x0 way) (Manner $e0 $x0) (Member $e0 define))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x0 way) (Manner $e0 $x0) (Member $e0 define)) (MnMannerOfCardinalityNum-GroupOfWay_Define $e0 $x0))
 
 ;; p204134  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000146 tierC-000261 tierC-000262
-;;   meta-node: (MnMannerOfCardinalityNum-GroupOfWay_Theme $e0 $x0 $x1)
-(And (Cardinality $x0 <num>) (GroupOf $x0 way) (Manner $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Cardinality $x0 <num>) (GroupOf $x0 way) (Manner $e0 $x0) (Theme $e0 $x1)) (MnMannerOfCardinalityNum-GroupOfWay_Theme $e0 $x0 $x1))
 
 ;; p204135  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnMannerOfCardinalityNum-Random_Define $e0 $x0)
-(And (Cardinality $x0 <num>) (Manner $e0 $x0) (Member $e0 define) (Member $x0 random))
+(Implication (And (Cardinality $x0 <num>) (Manner $e0 $x0) (Member $e0 define) (Member $x0 random)) (MnMannerOfCardinalityNum-Random_Define $e0 $x0))
 
 ;; p204136  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnMannerOfCardinalityNum-Random_Theme $e0 $x0 $x1)
-(And (Cardinality $x0 <num>) (Manner $e0 $x0) (Member $x0 random) (Theme $e0 $x1))
+(Implication (And (Cardinality $x0 <num>) (Manner $e0 $x0) (Member $x0 random) (Theme $e0 $x1)) (MnMannerOfCardinalityNum-Random_Theme $e0 $x0 $x1))
 
 ;; p204137  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000319 tierA-000321 tierA-000322
-;;   meta-node: (MnCoAgentOfRanger_LocationOfSurvey $e0 $x0 $x1)
-(And (CoAgent $e0 $x0) (Location $e0 $x1) (Member $x0 ranger) (Member $x1 survey))
+(Implication (And (CoAgent $e0 $x0) (Location $e0 $x1) (Member $x0 ranger) (Member $x1 survey)) (MnCoAgentOfRanger_LocationOfSurvey $e0 $x0 $x1))
 
 ;; p204138  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000395 tierA-000396 tierA-000397
-;;   meta-node: (MnExperiencer_LocationOfGate_Wait $e0 $x0 $x1)
-(And (Experiencer $e0 $x0) (Location $e0 $x1) (Member $e0 wait) (Member $x1 gate))
+(Implication (And (Experiencer $e0 $x0) (Location $e0 $x1) (Member $e0 wait) (Member $x1 gate)) (MnExperiencer_LocationOfGate_Wait $e0 $x0 $x1))
 
 ;; p204139  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000128 tierA-000130 tierA-000132
-;;   meta-node: (MnExperiencer_Discover_StimulusEvOfLocation $e0 $e1 $x0 $x1)
-(And (Experiencer $e0 $x0) (Location $e1 $x1) (Member $e0 discover) (Stimulus $e0 $e1))
+(Implication (And (Experiencer $e0 $x0) (Location $e1 $x1) (Member $e0 discover) (Stimulus $e0 $e1)) (MnExperiencer_Discover_StimulusEvOfLocation $e0 $e1 $x0 $x1))
 
 ;; p204140  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000128 tierA-000129 tierA-000130
-;;   meta-node: (MnExperiencer_StimulusEvOfLocation-Error $e0 $e1 $x0 $x1)
-(And (Experiencer $e0 $x0) (Location $e1 $x1) (Member $e1 error) (Stimulus $e0 $e1))
+(Implication (And (Experiencer $e0 $x0) (Location $e1 $x1) (Member $e1 error) (Stimulus $e0 $e1)) (MnExperiencer_StimulusEvOfLocation-Error $e0 $e1 $x0 $x1))
 
 ;; p204141  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000128 tierA-000129 tierA-000130
-;;   meta-node: (MnExperiencerOfAuditor_StimulusEvOfLocation $e0 $e1 $x0 $x1)
-(And (Experiencer $e0 $x0) (Location $e1 $x1) (Member $x0 auditor) (Stimulus $e0 $e1))
+(Implication (And (Experiencer $e0 $x0) (Location $e1 $x1) (Member $x0 auditor) (Stimulus $e0 $e1)) (MnExperiencerOfAuditor_StimulusEvOfLocation $e0 $e1 $x0 $x1))
 
 ;; p204143  support 3 (occ 3)  size 4  root $e1 (event)  depth 2
 ;;   e.g. tierC-000001 tierC-000241 tierC-000242
-;;   meta-node: (MnBecome_Past_ResultEvOfExperiencer $e1 $e0 $x0)
-(And (Experiencer $e0 $x0) (Member $e1 become) (Past $e1) (Result $e1 $e0))
+(Implication (And (Experiencer $e0 $x0) (Member $e1 become) (Past $e1) (Result $e1 $e0)) (MnBecome_Past_ResultEvOfExperiencer $e1 $e0 $x0))
 
 ;; p204145  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000128 tierA-000129 tierA-000130
-;;   meta-node: (MnExperiencerOfAuditor_StimulusEvOfError $e0 $e1 $x0)
-(And (Experiencer $e0 $x0) (Member $e1 error) (Member $x0 auditor) (Stimulus $e0 $e1))
+(Implication (And (Experiencer $e0 $x0) (Member $e1 error) (Member $x0 auditor) (Stimulus $e0 $e1)) (MnExperiencerOfAuditor_StimulusEvOfError $e0 $e1 $x0))
 
 ;; p204147  support 3 (occ 3)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000062 tierA-000063 tierA-000064
-;;   meta-node: (MnFuture_PatientOfDressRehearsalOfInheritanceRehearsal $e0 $x0)
-(And (Future $e0) (Inheritance dress_rehearsal rehearsal) (Member $x0 dress_rehearsal) (Patient $e0 $x0))
+(Implication (And (Future $e0) (Inheritance dress_rehearsal rehearsal) (Member $x0 dress_rehearsal) (Patient $e0 $x0)) (MnFuture_PatientOfDressRehearsalOfInheritanceRehearsal $e0 $x0))
 
 ;; p204148  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnTeach_RecipientOfGroupOfChild_Theme $e0 $x0 $x1)
-(And (GroupOf $x0 child) (Member $e0 teach) (Recipient $e0 $x0) (Theme $e0 $x1))
+(Implication (And (GroupOf $x0 child) (Member $e0 teach) (Recipient $e0 $x0) (Theme $e0 $x1)) (MnTeach_RecipientOfGroupOfChild_Theme $e0 $x0 $x1))
 
 ;; p204149  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnRecipientOfGroupOfChild_ThemeOfSong $e0 $x0 $x1)
-(And (GroupOf $x0 child) (Member $x1 song) (Recipient $e0 $x0) (Theme $e0 $x1))
+(Implication (And (GroupOf $x0 child) (Member $x1 song) (Recipient $e0 $x0) (Theme $e0 $x1)) (MnRecipientOfGroupOfChild_ThemeOfSong $e0 $x0 $x1))
 
 ;; p204150  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000086 tierA-000087 tierA-000088
-;;   meta-node: (MnHolder_Require_ThemeOfGroupOfEgg $e0 $x0 $x1)
-(And (GroupOf $x0 egg) (Holder $e0 $x1) (Member $e0 require) (Theme $e0 $x0))
+(Implication (And (GroupOf $x0 egg) (Holder $e0 $x1) (Member $e0 require) (Theme $e0 $x0)) (MnHolder_Require_ThemeOfGroupOfEgg $e0 $x0 $x1))
 
 ;; p204151  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000005 tierA-000007
-;;   meta-node: (MnBuy_Past_ThemeOfGroupOfForklift $e0 $x0)
-(And (GroupOf $x0 forklift) (Member $e0 buy) (Past $e0) (Theme $e0 $x0))
+(Implication (And (GroupOf $x0 forklift) (Member $e0 buy) (Past $e0) (Theme $e0 $x0)) (MnBuy_Past_ThemeOfGroupOfForklift $e0 $x0))
 
 ;; p204152  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000146 tierC-000261 tierC-000262
-;;   meta-node: (MnMannerOfGroupOfWay_ThemeOfGroupOfSequence $e0 $x0 $x1)
-(And (GroupOf $x0 sequence) (GroupOf $x1 way) (Manner $e0 $x1) (Theme $e0 $x0))
+(Implication (And (GroupOf $x0 sequence) (GroupOf $x1 way) (Manner $e0 $x1) (Theme $e0 $x0)) (MnMannerOfGroupOfWay_ThemeOfGroupOfSequence $e0 $x0 $x1))
 
 ;; p204153  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnMannerOfRandom_ThemeOfGroupOfSequence $e0 $x0 $x1)
-(And (GroupOf $x0 sequence) (Manner $e0 $x1) (Member $x1 random) (Theme $e0 $x0))
+(Implication (And (GroupOf $x0 sequence) (Manner $e0 $x1) (Member $x1 random) (Theme $e0 $x0)) (MnMannerOfRandom_ThemeOfGroupOfSequence $e0 $x0 $x1))
 
 ;; p204154  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000146 tierC-000261 tierC-000262
-;;   meta-node: (MnMannerOfGroupOfWay_Define_Theme $e0 $x0 $x1)
-(And (GroupOf $x0 way) (Manner $e0 $x0) (Member $e0 define) (Theme $e0 $x1))
+(Implication (And (GroupOf $x0 way) (Manner $e0 $x0) (Member $e0 define) (Theme $e0 $x1)) (MnMannerOfGroupOfWay_Define_Theme $e0 $x0 $x1))
 
 ;; p204155  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000094 tierA-000095 tierA-000096
-;;   meta-node: (MnHolder_ThemeMonthlyServicingOfInheritanceMonthly-InheritanceServicing $e0 $x0)
-(And (Holder $e0 $x0) (Inheritance monthly_servicing monthly) (Inheritance monthly_servicing servicing) (Theme $e0 monthly_servicing))
+(Implication (And (Holder $e0 $x0) (Inheritance monthly_servicing monthly) (Inheritance monthly_servicing servicing) (Theme $e0 monthly_servicing)) (MnHolder_ThemeMonthlyServicingOfInheritanceMonthly-InheritanceServicing $e0 $x0))
 
 ;; p204156  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000094 tierA-000095 tierA-000096
-;;   meta-node: (MnHolderOfLathe_ThemeMonthlyServicingOfInheritanceMonthly $e0 $x0)
-(And (Holder $e0 $x0) (Inheritance monthly_servicing monthly) (Member $x0 lathe) (Theme $e0 monthly_servicing))
+(Implication (And (Holder $e0 $x0) (Inheritance monthly_servicing monthly) (Member $x0 lathe) (Theme $e0 monthly_servicing)) (MnHolderOfLathe_ThemeMonthlyServicingOfInheritanceMonthly $e0 $x0))
 
 ;; p204157  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000094 tierA-000095 tierA-000096
-;;   meta-node: (MnHolderOfLathe_ThemeMonthlyServicingOfInheritanceServicing $e0 $x0)
-(And (Holder $e0 $x0) (Inheritance monthly_servicing servicing) (Member $x0 lathe) (Theme $e0 monthly_servicing))
+(Implication (And (Holder $e0 $x0) (Inheritance monthly_servicing servicing) (Member $x0 lathe) (Theme $e0 monthly_servicing)) (MnHolderOfLathe_ThemeMonthlyServicingOfInheritanceServicing $e0 $x0))
 
 ;; p204158  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000089 tierA-000091 tierA-000092
-;;   meta-node: (MnHolderOfPermit_Require_Theme $e0 $x0 $x1)
-(And (Holder $e0 $x0) (Member $e0 require) (Member $x0 permit) (Theme $e0 $x1))
+(Implication (And (Holder $e0 $x0) (Member $e0 require) (Member $x0 permit) (Theme $e0 $x1)) (MnHolderOfPermit_Require_Theme $e0 $x0 $x1))
 
 ;; p204159  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000086 tierA-000087 tierA-000088
-;;   meta-node: (MnHolderOfRecipe_Require_Theme $e0 $x0 $x1)
-(And (Holder $e0 $x0) (Member $e0 require) (Member $x0 recipe) (Theme $e0 $x1))
+(Implication (And (Holder $e0 $x0) (Member $e0 require) (Member $x0 recipe) (Theme $e0 $x1)) (MnHolderOfRecipe_Require_Theme $e0 $x0 $x1))
 
 ;; p204160  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000089 tierA-000090 tierA-000091
-;;   meta-node: (MnHolderOfPermit_ThemeOfCountersignature $e0 $x0 $x1)
-(And (Holder $e0 $x0) (Member $x0 permit) (Member $x1 countersignature) (Theme $e0 $x1))
+(Implication (And (Holder $e0 $x0) (Member $x0 permit) (Member $x1 countersignature) (Theme $e0 $x1)) (MnHolderOfPermit_ThemeOfCountersignature $e0 $x0 $x1))
 
 ;; p204161  support 3 (occ 3)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000153 tierA-000155 tierA-000156
-;;   meta-node: (MnCancel_PatientOfAfternoonSessionOfInheritanceSession $e0 $x0)
-(And (Inheritance afternoon_session session) (Member $e0 cancel) (Member $x0 afternoon_session) (Patient $e0 $x0))
+(Implication (And (Inheritance afternoon_session session) (Member $e0 cancel) (Member $x0 afternoon_session) (Patient $e0 $x0)) (MnCancel_PatientOfAfternoonSessionOfInheritanceSession $e0 $x0))
 
 ;; p204162  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000094 tierA-000096 tierA-000098
-;;   meta-node: (MnRequire_ThemeMonthlyServicingOfInheritanceMonthly-InheritanceServicing $e0)
-(And (Inheritance monthly_servicing monthly) (Inheritance monthly_servicing servicing) (Member $e0 require) (Theme $e0 monthly_servicing))
+(Implication (And (Inheritance monthly_servicing monthly) (Inheritance monthly_servicing servicing) (Member $e0 require) (Theme $e0 monthly_servicing)) (MnRequire_ThemeMonthlyServicingOfInheritanceMonthly-InheritanceServicing $e0))
 
 ;; p204163  support 3 (occ 3)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000109 tierA-000111 tierA-000112
-;;   meta-node: (MnAbandon_ThemeOfNorthRouteOfInheritanceNorth $e0 $x0)
-(And (Inheritance north_route north) (Member $e0 abandon) (Member $x0 north_route) (Theme $e0 $x0))
+(Implication (And (Inheritance north_route north) (Member $e0 abandon) (Member $x0 north_route) (Theme $e0 $x0)) (MnAbandon_ThemeOfNorthRouteOfInheritanceNorth $e0 $x0))
 
 ;; p204164  support 3 (occ 3)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000109 tierA-000111 tierA-000112
-;;   meta-node: (MnAbandon_ThemeOfNorthRouteOfInheritanceRoute $e0 $x0)
-(And (Inheritance north_route route) (Member $e0 abandon) (Member $x0 north_route) (Theme $e0 $x0))
+(Implication (And (Inheritance north_route route) (Member $e0 abandon) (Member $x0 north_route) (Theme $e0 $x0)) (MnAbandon_ThemeOfNorthRouteOfInheritanceRoute $e0 $x0))
 
 ;; p204165  support 3 (occ 3)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000148 tierA-000150 tierA-000152
-;;   meta-node: (MnCancel_PatientOfSummerFairOfInheritanceFair $e0 $x0)
-(And (Inheritance summer_fair fair) (Member $e0 cancel) (Member $x0 summer_fair) (Patient $e0 $x0))
+(Implication (And (Inheritance summer_fair fair) (Member $e0 cancel) (Member $x0 summer_fair) (Patient $e0 $x0)) (MnCancel_PatientOfSummerFairOfInheritanceFair $e0 $x0))
 
 ;; p204167  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000133 tierA-000135 tierA-000137
-;;   meta-node: (MnLocation_Discover_ThemeOfWreck $e0 $x0 $x1)
-(And (Location $e0 $x0) (Member $e0 discover) (Member $x1 wreck) (Theme $e0 $x1))
+(Implication (And (Location $e0 $x0) (Member $e0 discover) (Member $x1 wreck) (Theme $e0 $x1)) (MnLocation_Discover_ThemeOfWreck $e0 $x0 $x1))
 
 ;; p204168  support 3 (occ 3)  size 4  root $e1 (event)  depth 3
 ;;   e.g. tierA-000128 tierA-000129 tierA-000130
-;;   meta-node: (MnStimulusEvOfLocationOfLedger-Error $e1 $e0 $x0)
-(And (Location $e0 $x0) (Member $e0 error) (Member $x0 ledger) (Stimulus $e1 $e0))
+(Implication (And (Location $e0 $x0) (Member $e0 error) (Member $x0 ledger) (Stimulus $e1 $e0)) (MnStimulusEvOfLocationOfLedger-Error $e1 $e0 $x0))
 
 ;; p204169  support 3 (occ 3)  size 4  root $e1 (event)  depth 3
 ;;   e.g. tierA-000128 tierA-000130 tierA-000132
-;;   meta-node: (MnDiscover_StimulusEvOfLocationOfLedger $e1 $e0 $x0)
-(And (Location $e0 $x0) (Member $e1 discover) (Member $x0 ledger) (Stimulus $e1 $e0))
+(Implication (And (Location $e0 $x0) (Member $e1 discover) (Member $x0 ledger) (Stimulus $e1 $e0)) (MnDiscover_StimulusEvOfLocationOfLedger $e1 $e0 $x0))
 
 ;; p204170  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000145 tierC-000146 tierC-000261
-;;   meta-node: (MnMannerOfRandom_Define_Theme $e0 $x0 $x1)
-(And (Manner $e0 $x0) (Member $e0 define) (Member $x0 random) (Theme $e0 $x1))
+(Implication (And (Manner $e0 $x0) (Member $e0 define) (Member $x0 random) (Theme $e0 $x1)) (MnMannerOfRandom_Define_Theme $e0 $x0 $x1))
 
 ;; p204171  support 3 (occ 3)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000104 tierA-000106 tierA-000108
-;;   meta-node: (MnAbandon_ThemeOfPossessionOfFirm $e0 $x0 $x1)
-(And (Member $e0 abandon) (Member $x0 firm) (Possession $x1 $x0) (Theme $e0 $x1))
+(Implication (And (Member $e0 abandon) (Member $x0 firm) (Possession $x1 $x0) (Theme $e0 $x1)) (MnAbandon_ThemeOfPossessionOfFirm $e0 $x0 $x1))
 
 ;; p204172  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000104 tierA-000106 tierA-000108
-;;   meta-node: (MnAbandon_ThemeOfTender-Possession $e0 $x0 $x1)
-(And (Member $e0 abandon) (Member $x0 tender) (Possession $x0 $x1) (Theme $e0 $x0))
+(Implication (And (Member $e0 abandon) (Member $x0 tender) (Possession $x0 $x1) (Theme $e0 $x0)) (MnAbandon_ThemeOfTender-Possession $e0 $x0 $x1))
 
 ;; p204175  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000026 tierA-000028
-;;   meta-node: (MnBuy_Past_ThemeOfKiln $e0 $x0)
-(And (Member $e0 buy) (Member $x0 kiln) (Past $e0) (Theme $e0 $x0))
+(Implication (And (Member $e0 buy) (Member $x0 kiln) (Past $e0) (Theme $e0 $x0)) (MnBuy_Past_ThemeOfKiln $e0 $x0))
 
 ;; p204177  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000223 tierA-000228 tierA-000233
-;;   meta-node: (MnCause_ThemeEvOfDestroy-Patient $e0 $e1 $x0)
-(And (Member $e0 cause) (Member $e1 destroy) (Patient $e1 $x0) (Theme $e0 $e1))
+(Implication (And (Member $e0 cause) (Member $e1 destroy) (Patient $e1 $x0) (Theme $e0 $e1)) (MnCause_ThemeEvOfDestroy-Patient $e0 $e1 $x0))
 
 ;; p204178  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000201 tierA-000204 tierA-000206
-;;   meta-node: (MnDecide_ThemeOfBudget-PossessionNextYear $e0 $x0)
-(And (Member $e0 decide) (Member $x0 budget) (Possession $x0 next_year) (Theme $e0 $x0))
+(Implication (And (Member $e0 decide) (Member $x0 budget) (Possession $x0 next_year) (Theme $e0 $x0)) (MnDecide_ThemeOfBudget-PossessionNextYear $e0 $x0))
 
 ;; p204179  support 3 (occ 3)  size 4  root $e1 (event)  depth 2
 ;;   e.g. tierA-000186 tierA-000191 tierA-000202
-;;   meta-node: (MnMake_PatientEvOfDecision-Theme $e1 $e0 $x0)
-(And (Member $e0 decision) (Member $e1 make) (Patient $e1 $e0) (Theme $e0 $x0))
+(Implication (And (Member $e0 decision) (Member $e1 make) (Patient $e1 $e0) (Theme $e0 $x0)) (MnMake_PatientEvOfDecision-Theme $e1 $e0 $x0))
 
 ;; p204180  support 3 (occ 3)  size 4  root $e1 (event)  depth 2
 ;;   e.g. tierA-000187 tierA-000192 tierA-000203
-;;   meta-node: (MnReach_ThemeEvOfDecision-Theme $e1 $e0 $x0)
-(And (Member $e0 decision) (Member $e1 reach) (Theme $e0 $x0) (Theme $e1 $e0))
+(Implication (And (Member $e0 decision) (Member $e1 reach) (Theme $e0 $x0) (Theme $e1 $e0)) (MnReach_ThemeEvOfDecision-Theme $e1 $e0 $x0))
 
 ;; p204183  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000138 tierA-000140 tierA-000141
-;;   meta-node: (MnDiscover_ThemeOfFile-Missing $e0 $x0)
-(And (Member $e0 discover) (Member $x0 file) (Member $x0 missing) (Theme $e0 $x0))
+(Implication (And (Member $e0 discover) (Member $x0 file) (Member $x0 missing) (Theme $e0 $x0)) (MnDiscover_ThemeOfFile-Missing $e0 $x0))
 
 ;; p204184  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000208 tierA-000213 tierA-000218
-;;   meta-node: (MnGive_Recipient_ThemeOfAnswer $e0 $x0 $x1)
-(And (Member $e0 give) (Member $x0 answer) (Recipient $e0 $x1) (Theme $e0 $x0))
+(Implication (And (Member $e0 give) (Member $x0 answer) (Recipient $e0 $x1) (Theme $e0 $x0)) (MnGive_Recipient_ThemeOfAnswer $e0 $x0 $x1))
 
 ;; p204185  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000271 tierA-000273 tierA-000274
-;;   meta-node: (MnGive_Recipient_ThemeOfManifest $e0 $x0 $x1)
-(And (Member $e0 give) (Member $x0 manifest) (Recipient $e0 $x1) (Theme $e0 $x0))
+(Implication (And (Member $e0 give) (Member $x0 manifest) (Recipient $e0 $x1) (Theme $e0 $x0)) (MnGive_Recipient_ThemeOfManifest $e0 $x0 $x1))
 
 ;; p204186  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000261 tierA-000263 tierA-000265
-;;   meta-node: (MnGive_RecipientOfRecruit_Theme $e0 $x0 $x1)
-(And (Member $e0 give) (Member $x0 recruit) (Recipient $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Member $e0 give) (Member $x0 recruit) (Recipient $e0 $x0) (Theme $e0 $x1)) (MnGive_RecipientOfRecruit_Theme $e0 $x0 $x1))
 
 ;; p204187  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000276 tierA-000278 tierA-000280
-;;   meta-node: (MnGive_RecipientOfWinner_Theme $e0 $x0 $x1)
-(And (Member $e0 give) (Member $x0 winner) (Recipient $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Member $e0 give) (Member $x0 winner) (Recipient $e0 $x0) (Theme $e0 $x1)) (MnGive_RecipientOfWinner_Theme $e0 $x0 $x1))
 
 ;; p204188  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000306 tierA-000308 tierA-000310
-;;   meta-node: (MnLend_RecipientOfGallery_Theme $e0 $x0 $x1)
-(And (Member $e0 lend) (Member $x0 gallery) (Recipient $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Member $e0 lend) (Member $x0 gallery) (Recipient $e0 $x0) (Theme $e0 $x1)) (MnLend_RecipientOfGallery_Theme $e0 $x0 $x1))
 
 ;; p204189  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000301 tierA-000303 tierA-000304
-;;   meta-node: (MnLend_Recipient_ThemeOfGenerator $e0 $x0 $x1)
-(And (Member $e0 lend) (Member $x0 generator) (Recipient $e0 $x1) (Theme $e0 $x0))
+(Implication (And (Member $e0 lend) (Member $x0 generator) (Recipient $e0 $x1) (Theme $e0 $x0)) (MnLend_Recipient_ThemeOfGenerator $e0 $x0 $x1))
 
 ;; p204191  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000281 tierA-000283 tierA-000284
-;;   meta-node: (MnTeach_RecipientOfApprentice_ThemeGlazing $e0 $x0)
-(And (Member $e0 teach) (Member $x0 apprentice) (Recipient $e0 $x0) (Theme $e0 glazing))
+(Implication (And (Member $e0 teach) (Member $x0 apprentice) (Recipient $e0 $x0) (Theme $e0 glazing)) (MnTeach_RecipientOfApprentice_ThemeGlazing $e0 $x0))
 
 ;; p204192  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000286 tierA-000288 tierA-000289
-;;   meta-node: (MnTeach_Recipient_ThemeOfDrill $e0 $x0 $x1)
-(And (Member $e0 teach) (Member $x0 drill) (Recipient $e0 $x1) (Theme $e0 $x0))
+(Implication (And (Member $e0 teach) (Member $x0 drill) (Recipient $e0 $x1) (Theme $e0 $x0)) (MnTeach_Recipient_ThemeOfDrill $e0 $x0 $x1))
 
 ;; p204193  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000291 tierA-000293 tierA-000295
-;;   meta-node: (MnTeach_Recipient_ThemeOfSong $e0 $x0 $x1)
-(And (Member $e0 teach) (Member $x0 song) (Recipient $e0 $x1) (Theme $e0 $x0))
+(Implication (And (Member $e0 teach) (Member $x0 song) (Recipient $e0 $x1) (Theme $e0 $x0)) (MnTeach_Recipient_ThemeOfSong $e0 $x0 $x1))
 
 ;; p204194  support 3 (occ 3)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierA-000119 tierA-000120 tierA-000122
-;;   meta-node: (MnThemeOfDeparture-PossessionOfFerry $e0 $x0 $x1)
-(And (Member $x0 departure) (Member $x1 ferry) (Possession $x0 $x1) (Theme $e0 $x0))
+(Implication (And (Member $x0 departure) (Member $x1 ferry) (Possession $x0 $x1) (Theme $e0 $x0)) (MnThemeOfDeparture-PossessionOfFerry $e0 $x0 $x1))
 
 ;; p204195  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000022 tierA-000026 tierA-000028
-;;   meta-node: (MnPast_ThemeOfKiln-OrdinalNumBuy $e0 $x0)
-(And (Member $x0 kiln) (Ordinal $x0 <num> buy) (Past $e0) (Theme $e0 $x0))
+(Implication (And (Member $x0 kiln) (Ordinal $x0 <num> buy) (Past $e0) (Theme $e0 $x0)) (MnPast_ThemeOfKiln-OrdinalNumBuy $e0 $x0))
 
 ;; p204926  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000217 tierA-000218 tierA-000219
-;;   meta-node: (MnAgentOfVet_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x0 vet) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x0 vet) (Theme $e0 $x1)) (MnAgentOfVet_Theme $e0 $x0 $x1))
 
 ;; p204931  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000399 tierA-000400 tierA-000401
-;;   meta-node: (MnAgent_ThemeOfBridge $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 bridge) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 bridge) (Theme $e0 $x1)) (MnAgent_ThemeOfBridge $e0 $x0 $x1))
 
 ;; p204940  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000276 tierA-000277 tierA-000278
-;;   meta-node: (MnAgent_ThemeOfMedal $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 medal) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 medal) (Theme $e0 $x1)) (MnAgent_ThemeOfMedal $e0 $x0 $x1))
 
 ;; p204941  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000306 tierA-000307 tierA-000308
-;;   meta-node: (MnAgent_ThemeOfPainting $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 painting) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 painting) (Theme $e0 $x1)) (MnAgent_ThemeOfPainting $e0 $x0 $x1))
 
 ;; p204945  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000261 tierA-000262 tierA-000263
-;;   meta-node: (MnAgent_ThemeOfWhistle $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $x1 whistle) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $x1 whistle) (Theme $e0 $x1)) (MnAgent_ThemeOfWhistle $e0 $x0 $x1))
 
 ;; p204983  support 3 (occ 3)  size 3  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000049 tierA-000050 tierA-000051
-;;   meta-node: (MnCracked_FeedPipeOfInheritancePipe $x0)
-(And (Inheritance feed_pipe pipe) (Member $x0 cracked) (Member $x0 feed_pipe))
+(Implication (And (Inheritance feed_pipe pipe) (Member $x0 cracked) (Member $x0 feed_pipe)) (MnCracked_FeedPipeOfInheritancePipe $x0))
 
 ;; p205011  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000227 tierA-000228 tierA-000229
-;;   meta-node: (MnDestroy_PatientOfArchive $e0 $x0)
-(And (Member $e0 destroy) (Member $x0 archive) (Patient $e0 $x0))
+(Implication (And (Member $e0 destroy) (Member $x0 archive) (Patient $e0 $x0)) (MnDestroy_PatientOfArchive $e0 $x0))
 
 ;; p205012  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000232 tierA-000233 tierA-000234
-;;   meta-node: (MnDestroy_PatientOfFootbridge $e0 $x0)
-(And (Member $e0 destroy) (Member $x0 footbridge) (Patient $e0 $x0))
+(Implication (And (Member $e0 destroy) (Member $x0 footbridge) (Patient $e0 $x0)) (MnDestroy_PatientOfFootbridge $e0 $x0))
 
 ;; p205013  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000222 tierA-000223 tierA-000224
-;;   meta-node: (MnDestroy_PatientOfGreenhouse $e0 $x0)
-(And (Member $e0 destroy) (Member $x0 greenhouse) (Patient $e0 $x0))
+(Implication (And (Member $e0 destroy) (Member $x0 greenhouse) (Patient $e0 $x0)) (MnDestroy_PatientOfGreenhouse $e0 $x0))
 
 ;; p205023  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000296 tierA-000298 tierA-000300
-;;   meta-node: (MnLend_ThemeOfLadder $e0 $x0)
-(And (Member $e0 lend) (Member $x0 ladder) (Theme $e0 $x0))
+(Implication (And (Member $e0 lend) (Member $x0 ladder) (Theme $e0 $x0)) (MnLend_ThemeOfLadder $e0 $x0))
 
 ;; p205306  support 3 (occ 3)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000217 tierC-000218 tierC-000245
-;;   meta-node: (MnAgent_AgentJica_Fund_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Agent $e0 jica) (Member $e0 fund) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Agent $e0 jica) (Member $e0 fund) (Theme $e0 $x1)) (MnAgent_AgentJica_Fund_Theme $e0 $x0 $x1))
 
 ;; p205308  support 3 (occ 3)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000008 tierA-000012 tierA-000013
-;;   meta-node: (MnAgent_Beneficiary_Buy_Past $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $e0 buy) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $e0 buy) (Past $e0)) (MnAgent_Beneficiary_Buy_Past $e0 $x0 $x1))
 
 ;; p205309  support 3 (occ 3)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000008 tierA-000012 tierA-000013
-;;   meta-node: (MnAgent_Beneficiary_Buy_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $e0 buy) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Beneficiary $e0 $x1) (Member $e0 buy) (Theme $e0 $x2)) (MnAgent_Beneficiary_Buy_Theme $e0 $x0 $x1 $x2))
 
 ;; p205310  support 3 (occ 3)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000315 tierA-000319 tierA-000322
-;;   meta-node: (MnAgent_CoAgent_Location_Work $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (CoAgent $e0 $x1) (Location $e0 $x2) (Member $e0 work))
+(Implication (And (Agent $e0 $x0) (CoAgent $e0 $x1) (Location $e0 $x2) (Member $e0 work)) (MnAgent_CoAgent_Location_Work $e0 $x0 $x1 $x2))
 
 ;; p205311  support 3 (occ 3)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000189 tierA-000194 tierA-000206
-;;   meta-node: (MnAgent_Decide_Might_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 decide) (Might $e0) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 decide) (Might $e0) (Theme $e0 $x1)) (MnAgent_Decide_Might_Theme $e0 $x0 $x1))
 
 ;; p205312  support 3 (occ 3)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000296 tierA-000298 tierA-000299
-;;   meta-node: (MnAgent_Lend_RecipientRavi_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 lend) (Recipient $e0 ravi) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 lend) (Recipient $e0 ravi) (Theme $e0 $x1)) (MnAgent_Lend_RecipientRavi_Theme $e0 $x0 $x1))
 
 ;; p205313  support 3 (occ 3)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000262 tierA-000272 tierA-000277
-;;   meta-node: (MnAgent_Receive_Source_Theme $e0 $x0 $x1 $x2)
-(And (Agent $e0 $x0) (Member $e0 receive) (Source $e0 $x1) (Theme $e0 $x2))
+(Implication (And (Agent $e0 $x0) (Member $e0 receive) (Source $e0 $x1) (Theme $e0 $x2)) (MnAgent_Receive_Source_Theme $e0 $x0 $x1 $x2))
 
 ;; p205314  support 3 (occ 3)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000008 tierA-000012 tierA-000013
-;;   meta-node: (MnBeneficiary_Buy_Past_Theme $e0 $x0 $x1)
-(And (Beneficiary $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))
+(Implication (And (Beneficiary $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1)) (MnBeneficiary_Buy_Past_Theme $e0 $x0 $x1))
 
 ;; p205315  support 3 (occ 3)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierC-000001 tierC-000241 tierC-000242
-;;   meta-node: (MnBecome_Past_Patient_ResultEv $e0 $e1 $x0)
-(And (Member $e0 become) (Past $e0) (Patient $e0 $x0) (Result $e0 $e1))
+(Implication (And (Member $e0 become) (Past $e0) (Patient $e0 $x0) (Result $e0 $e1)) (MnBecome_Past_Patient_ResultEv $e0 $e1 $x0))
 
 ;; p205362  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000181 tierA-000182 tierA-000184
-;;   meta-node: (MnAgentOfCardinalityNum-GroupOfChild $e0 $x0)
-(And (Agent $e0 $x0) (Cardinality $x0 <num>) (GroupOf $x0 child))
+(Implication (And (Agent $e0 $x0) (Cardinality $x0 <num>) (GroupOf $x0 child)) (MnAgentOfCardinalityNum-GroupOfChild $e0 $x0))
 
 ;; p205364  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000237 tierA-000238 tierA-000241
-;;   meta-node: (MnAgent_Future_Arrive $e0 $x0)
-(And (Agent $e0 $x0) (Future $e0) (Member $e0 arrive))
+(Implication (And (Agent $e0 $x0) (Future $e0) (Member $e0 arrive)) (MnAgent_Future_Arrive $e0 $x0))
 
 ;; p205366  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000173 tierA-000177 tierA-000180
-;;   meta-node: (MnAgent_Location_Walk $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 walk))
+(Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 walk)) (MnAgent_Location_Walk $e0 $x0 $x1))
 
 ;; p205374  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000100 tierA-000105 tierA-000110
-;;   meta-node: (MnAgent_GiveUp_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 give_up) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 give_up) (Theme $e0 $x1)) (MnAgent_GiveUp_Theme $e0 $x0 $x1))
 
 ;; p205375  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000257 tierC-000351 tierC-000352
-;;   meta-node: (MnAgent_Influence_Past $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 influence) (Past $e0))
+(Implication (And (Agent $e0 $x0) (Member $e0 influence) (Past $e0)) (MnAgent_Influence_Past $e0 $x0))
 
 ;; p205376  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000282 tierA-000287 tierA-000292
-;;   meta-node: (MnAgent_Learn_Source $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 learn) (Source $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 learn) (Source $e0 $x1)) (MnAgent_Learn_Source $e0 $x0 $x1))
 
 ;; p205378  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000115 tierA-000120 tierA-000124
-;;   meta-node: (MnAgent_PutOff_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 put_off) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 put_off) (Theme $e0 $x1)) (MnAgent_PutOff_Theme $e0 $x0 $x1))
 
 ;; p205381  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000159 tierA-000164 tierA-000169
-;;   meta-node: (MnAgent_TurnDown_Theme $e0 $x0 $x1)
-(And (Agent $e0 $x0) (Member $e0 turn_down) (Theme $e0 $x1))
+(Implication (And (Agent $e0 $x0) (Member $e0 turn_down) (Theme $e0 $x1)) (MnAgent_TurnDown_Theme $e0 $x0 $x1))
 
 ;; p205396  support 3 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000279 tierC-000280 tierC-000314
-;;   meta-node: (MnLocation_Find_Theme $e0 $x0 $x1)
-(And (Location $e0 $x0) (Member $e0 find) (Theme $e0 $x1))
+(Implication (And (Location $e0 $x0) (Member $e0 find) (Theme $e0 $x1)) (MnLocation_Find_Theme $e0 $x0 $x1))
 
 ;; p205397  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000313 tierA-000322 tierA-000325
-;;   meta-node: (MnLocation_Work_Might $e0 $x0)
-(And (Location $e0 $x0) (Member $e0 work) (Might $e0))
+(Implication (And (Location $e0 $x0) (Member $e0 work) (Might $e0)) (MnLocation_Work_Might $e0 $x0))
 
 ;; p205398  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000253 tierA-000254 tierA-000255
-;;   meta-node: (MnPatientOfMeasureAgeNumYear-Founder $e0 $x0)
-(And (Measure $x0 age <num> year) (Member $x0 founder) (Patient $e0 $x0))
+(Implication (And (Measure $x0 age <num> year) (Member $x0 founder) (Patient $e0 $x0)) (MnPatientOfMeasureAgeNumYear-Founder $e0 $x0))
 
 ;; p205401  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000055 tierA-000066 tierA-000070
-;;   meta-node: (MnBegin_Might_Patient $e0 $x0)
-(And (Member $e0 begin) (Might $e0) (Patient $e0 $x0))
+(Implication (And (Member $e0 begin) (Might $e0) (Patient $e0 $x0)) (MnBegin_Might_Patient $e0 $x0))
 
 ;; p205402  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000297 tierA-000302 tierA-000307
-;;   meta-node: (MnBorrow_Source_Theme $e0 $x0 $x1)
-(And (Member $e0 borrow) (Source $e0 $x0) (Theme $e0 $x1))
+(Implication (And (Member $e0 borrow) (Source $e0 $x0) (Theme $e0 $x1)) (MnBorrow_Source_Theme $e0 $x0 $x1))
 
 ;; p205407  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000091 tierC-000297 tierC-000298
-;;   meta-node: (MnDirect_Past_Patient $e0 $x0)
-(And (Member $e0 direct) (Past $e0) (Patient $e0 $x0))
+(Implication (And (Member $e0 direct) (Past $e0) (Patient $e0 $x0)) (MnDirect_Past_Patient $e0 $x0))
 
 ;; p205526  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000144 tierA-000149 tierA-000154
-;;   meta-node: (MnAgent_CallOff $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 call_off))
+(Implication (And (Agent $e0 $x0) (Member $e0 call_off)) (MnAgent_CallOff $e0 $x0))
 
 ;; p205533  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000073 tierA-000077 tierA-000081
-;;   meta-node: (MnAgent_Permit $e0 $x0)
-(And (Agent $e0 $x0) (Member $e0 permit))
+(Implication (And (Agent $e0 $x0) (Member $e0 permit)) (MnAgent_Permit $e0 $x0))
 
 ;; p205538  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000049 tierA-000302 tierA-000304
-;;   meta-node: (MnAgentOfCrew $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 crew))
+(Implication (And (Agent $e0 $x0) (Member $x0 crew)) (MnAgentOfCrew $e0 $x0))
 
 ;; p205540  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000376 tierA-000381 tierA-000386
-;;   meta-node: (MnAgentOfDoctor $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 doctor))
+(Implication (And (Agent $e0 $x0) (Member $x0 doctor)) (MnAgentOfDoctor $e0 $x0))
 
 ;; p205548  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000173 tierA-000174 tierA-000175
-;;   meta-node: (MnAgentOfShepherd $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 shepherd))
+(Implication (And (Agent $e0 $x0) (Member $x0 shepherd)) (MnAgentOfShepherd $e0 $x0))
 
 ;; p205549  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000222 tierA-000223 tierA-000224
-;;   meta-node: (MnAgentOfStorm $e0 $x0)
-(And (Agent $e0 $x0) (Member $x0 storm))
+(Implication (And (Agent $e0 $x0) (Member $x0 storm)) (MnAgentOfStorm $e0 $x0))
 
 ;; p205560  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000311 tierA-000312 tierA-000313
-;;   meta-node: (MnAgentAna_Work $e0)
-(And (Agent $e0 ana) (Member $e0 work))
+(Implication (And (Agent $e0 ana) (Member $e0 work)) (MnAgentAna_Work $e0))
 
 ;; p205564  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000001 tierC-000333 tierC-000334
-;;   meta-node: (MnBeforeEv_Patient $e0 $e1 $x0)
-(And (Before $e0 $e1) (Patient $e0 $x0))
+(Implication (And (Before $e0 $e1) (Patient $e0 $x0)) (MnBeforeEv_Patient $e0 $e1 $x0))
 
 ;; p205578  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000181 tierA-000182 tierA-000183
-;;   meta-node: (MnGoal_Walk $e0 $x0)
-(And (Goal $e0 $x0) (Member $e0 walk))
+(Implication (And (Goal $e0 $x0) (Member $e0 walk)) (MnGoal_Walk $e0 $x0))
 
 ;; p205579  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000181 tierA-000182 tierA-000184
-;;   meta-node: (MnGoalOfPier $e0 $x0)
-(And (Goal $e0 $x0) (Member $x0 pier))
+(Implication (And (Goal $e0 $x0) (Member $x0 pier)) (MnGoalOfPier $e0 $x0))
 
 ;; p205582  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000085 tierA-000090 tierA-000095
-;;   meta-node: (MnHolder_Need $e0 $x0)
-(And (Holder $e0 $x0) (Member $e0 need))
+(Implication (And (Holder $e0 $x0) (Member $e0 need)) (MnHolder_Need $e0 $x0))
 
 ;; p205589  support 3 (occ 3)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000173 tierA-000174 tierA-000175
-;;   meta-node: (MnLocationOfRidge $e0 $x0)
-(And (Location $e0 $x0) (Member $x0 ridge))
+(Implication (And (Location $e0 $x0) (Member $x0 ridge)) (MnLocationOfRidge $e0 $x0))
 
 ;; p205590  support 3 (occ 5)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000025 tierC-000026 tierC-000280
-;;   meta-node: (MnLocation_Ongoing $e0 $x0)
-(And (Location $e0 $x0) (Ongoing $e0))
+(Implication (And (Location $e0 $x0) (Ongoing $e0)) (MnLocation_Ongoing $e0 $x0))
 
 ;; p205596  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000199 tierC-000200 tierC-000358
-;;   meta-node: (MnBear_Past $e0)
-(And (Member $e0 bear) (Past $e0))
+(Implication (And (Member $e0 bear) (Past $e0)) (MnBear_Past $e0))
 
 ;; p205600  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000284 tierC-000341 tierC-000342
-;;   meta-node: (MnConduct_Past $e0)
-(And (Member $e0 conduct) (Past $e0))
+(Implication (And (Member $e0 conduct) (Past $e0)) (MnConduct_Past $e0))
 
 ;; p205605  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000056 tierA-000060 tierA-000071
-;;   meta-node: (MnEnd_Patient $e0 $x0)
-(And (Member $e0 end) (Patient $e0 $x0))
+(Implication (And (Member $e0 end) (Patient $e0 $x0)) (MnEnd_Patient $e0 $x0))
 
 ;; p205608  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000163 tierC-000179 tierC-000180
-;;   meta-node: (MnForm_Patient $e0 $x0)
-(And (Member $e0 form) (Patient $e0 $x0))
+(Implication (And (Member $e0 form) (Patient $e0 $x0)) (MnForm_Patient $e0 $x0))
 
 ;; p205616  support 3 (occ 4)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000023 tierC-000024 tierC-000094
-;;   meta-node: (MnSpeak_Past $e0)
-(And (Member $e0 speak) (Past $e0))
+(Implication (And (Member $e0 speak) (Past $e0)) (MnSpeak_Past $e0))
 
 ;; p205617  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000075 tierC-000100 tierC-000338
-;;   meta-node: (MnSucceed_Past $e0)
-(And (Member $e0 succeed) (Past $e0))
+(Implication (And (Member $e0 succeed) (Past $e0)) (MnSucceed_Past $e0))
 
 ;; p205643  support 3 (occ 3)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000193 tierC-000194 tierC-000316
-;;   meta-node: (MnPast_TimeLater $e0)
-(And (Past $e0) (Time $e0 later))
+(Implication (And (Past $e0) (Time $e0 later)) (MnPast_TimeLater $e0))
 
 ;; ==================== SUBSUMED UNITS: 714 of 1652 rooted-subtree units (k = 4, support >= 3 of 762 records) ====================
 

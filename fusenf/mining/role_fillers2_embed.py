@@ -567,7 +567,13 @@ def write_metta(path, args, modes, thresholds, results, n_texts, dim, n_occ):
                  ";;   ;; B fillers: the same for B\n"
                  + (";;   ;; JSD: <value>   shared clusters: <count> e.g. {cluster members} …\n" if gate_jsd else
                     ";;   ;; cosine: <value> (gate)   JSD: <value>   shared clusters: <count> e.g. {cluster members} …\n")
-                 + ";;   <query A>\n;;   <query B>\n"
+                 + ";;   ;; A: <query A>\n;;   ;; B: <query B>\n"
+                 ";;   (Implication <minority slot> <the same slot relabelled to the majority head>)\n"
+                 ";;     = the merge as the rule it would become (the paper: the two slots 'fulfil the same semantic role');\n"
+                 ";;     the majority side (larger n; tie -> the alphabetically first name) is the canonical form; a pooled pair\n"
+                 ";;     gives the role-vocabulary collapse (<minority role> -> <majority role>); a pair whose slots already share\n"
+                 ";;     the head has no rule (the merge is done by construction) and says so; rendered for PASS and FAIL alike,\n"
+                 ";;     the verdict is on the record; naming and direction provisional, the gauntlet decides\n"
                  + (";; Pooled pairs: every head pair. Slot pairs: every pair with >= 2 shared clusters (the gate's first\n"
                     ";; condition); a pair sharing fewer clusters cannot pass and is not listed.\n"
                     if args.metta_fail_slots == "guard" else
@@ -584,6 +590,21 @@ def write_metta(path, args, modes, thresholds, results, n_texts, dim, n_occ):
                 ms = members[int(u[1:])]
                 return "{" + ", ".join(ms[:4]) + (", …" if len(ms) > 4 else "") + "}"
             return u
+
+        def canonical_first(na, nb, name_a, name_b):
+            """the majority side (larger n; tie -> the alphabetically first name) is the canonical form"""
+            return na > nb or (na == nb and name_a <= name_b)
+
+        def slot_rule(kind, r):
+            """The merge as a rule: the minority slot's head relabelled to the majority slot's head, on the
+            minority slot's own class (the batch-1 role-canonicalization shape). None when both slots already
+            carry the same head (the merge the paper describes is done by construction)."""
+            if r["role_a"] == r["role_b"]:
+                return None
+            a_first = canonical_first(r["n_a"], r["n_b"], r["slot_a"], r["slot_b"])
+            maj_role = r["role_a"] if a_first else r["role_b"]
+            min_cls, min_role = (r["class_b"], r["role_b"]) if a_first else (r["class_a"], r["role_a"])
+            return f"(Implication {render_slot(kind, min_cls, min_role)} {render_slot(kind, min_cls, maj_role)})"
         pp = []
         for r in R_["pooled_pairs"]:
             sh = {u for u in set(pooled[r["a"]]) & set(pooled[r["b"]]) if not is_wild(u)}
@@ -602,7 +623,9 @@ def write_metta(path, args, modes, thresholds, results, n_texts, dim, n_occ):
             fh.write(f";; A fillers: {top_fillers(pooled_texts[r['a']])}\n")
             fh.write(f";; B fillers: {top_fillers(pooled_texts[r['b']])}\n")
             fh.write(stat_line(r["cosine"], r["jsd"], r["shared_n"], r["shared"]) + "\n")
-            fh.write(f"({r['a']} $e $x)\n({r['b']} $e $x)\n")
+            fh.write(f";; A: ({r['a']} $e $x)\n;; B: ({r['b']} $e $x)\n")
+            maj, mnr = (r["a"], r["b"]) if canonical_first(r["n_a"], r["n_b"], r["a"], r["b"]) else (r["b"], r["a"])
+            fh.write(f"(Implication ({mnr} $e $x) ({maj} $e $x))\n")
         buckets = (("same role, different class", "event", R_["ev_same_role"]),
                    ("same class, different role", "event", R_["ev_same_event"]),
                    ("different class and role", "event", R_["ev_cross_both"]),
@@ -638,8 +661,11 @@ def write_metta(path, args, modes, thresholds, results, n_texts, dim, n_occ):
             fh.write(f";; B fillers: {top_fillers(slot_texts[kb])}{eg_b}\n")
             eg = [ren(u) for u in sorted(sh, key=lambda u: (-(compared[ka][u] + compared[kb][u]), u))[:4]]
             fh.write(stat_line(r["cosine"], r["jsd"], len(sh), eg) + "\n")
-            fh.write(render_slot(kind, r["class_a"], r["role_a"]) + "\n")
-            fh.write(render_slot(kind, r["class_b"], r["role_b"]) + "\n")
+            fh.write(f";; A: {render_slot(kind, r['class_a'], r['role_a'])}\n;; B: {render_slot(kind, r['class_b'], r['role_b'])}\n")
+            rule = slot_rule(kind, r)
+            fh.write((rule + "\n") if rule else
+                     ";;   rule: none — both slots already carry the same head; the merge the paper describes is done by\n"
+                     ";;   construction (one closed role vocabulary); the pair is corroboration for a lexical candidate only\n")
 
     os.makedirs(dial_dir, exist_ok=True)
     n_files = 0

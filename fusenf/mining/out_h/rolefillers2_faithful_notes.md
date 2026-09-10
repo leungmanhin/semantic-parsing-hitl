@@ -22,6 +22,15 @@ heads on H). At 14 every legislated role that the substrate attests is audited: 
 Beneficiary 14, Before 17, As 15, Like 14), 13 on item-E. The slot level does not depend on this floor; the
 signal, slotdist and cluster records are byte-identical to the 2026-09-05 files on both substrates.
 
+**Rules in the .metta (2026-09-10).** Every pair record ends in the rule the merge would become. The paper says the
+two slots "fulfil the same semantic role", so the rule relabels the minority slot's head to the majority slot's head
+on the minority slot's own class: `(Implication (And (Member $e0 sleep) (Agent $e0 $x1)) (And (Member $e0 sleep)
+(Patient $e0 $x1)))` for die.Patient ~ sleep.Agent, the criterion's blind spot written out as a rule. A pooled pair
+gives the role-vocabulary collapse, `(Implication (Experiencer $e $x) (Agent $e $x))`. The majority side is the larger
+n (tie: the alphabetically first name). A pair whose slots already share the head (accompany.Agent ~ appear.Agent)
+has no rule, since that merge is done by the prompt's closed role vocabulary, and the record says so. Rendered for
+PASS and FAIL alike; naming and direction provisional; the two slot queries moved into comments.
+
 ## What the method delivers on the H substrate (2,302 natural-text records)
 
 **Role level — the doc's "Agent2 ~ Agent" reading.** Pooling every argument slot by head and comparing
