@@ -1,0 +1,44 @@
+{
+ "id": "L6-05",
+ "rule": "VI — Displacement",
+ "texts": [
+  "Together, the displaced nightmoths keep the lanterns at the Hollows productive."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep3-000003",
+   "sentence": "Together, the displaced nightmoths keep the lanterns at the Hollows productive.",
+   "parse": [
+    "(: nm_group (GroupOf sk_group_1 nightmoth) (STV 1.0 0.99))",
+    "(: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: nm_displaced (Implication (PartOf $x sk_group_1) (Member $x displaced)) (STV 1.0 0.9))",
+    "(: lant_group (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lant_loc (LocatedIn sk_lantern_1 hollows) (STV 1.0 0.99))",
+    "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+    "(: e_keep (Member sk_keep_1 keep) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_keep_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_keep_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e_state (Member sk_productive_1 productive) (STV 1.0 0.99))",
+    "(: e_exp (Experiencer sk_productive_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e_still (Still sk_productive_1) (STV 1.0 0.99))",
+    "(: e_result (Result sk_keep_1 sk_productive_1) (STV 1.0 0.99))",
+    "(: lant_productive_rule (Implication (PartOf $x sk_lantern_1) (Member $x productive)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep3-000003",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The hard calls are all right: bare \"together\" makes the keeping collective (group Agent, no per-member rule), descriptive \"displaced\" distributes by rule instead of riding the group symbol, maintenance \"keep\" takes Theme + reified Still state + Result, and the plural object's flat half is correctly replaced by the (PartOf $x sk_lantern_1) rule. \"the Hollows\" gets the capitalized-plural Name-only treatment with no GroupOf or type atom, and the nightmoth genus is emitted with the noun modifier unexposed."
+   },
+   "adjudication": null
+  }
+ ]
+}

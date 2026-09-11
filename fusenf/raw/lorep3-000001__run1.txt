@@ -1,0 +1,4 @@
+(: hw_genus (Inheritance harbor_water water) (STV 1.0 0.99))
+(: hl_genus (Inheritance harbor_lantern lantern) (STV 1.0 0.99))
+(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))
+(: whenever_reflect_burn (Implication (And (Member $e reflect) (Patient $e wind) (Source $e harbor_water) (Location $e $y) (Member $y harbor_lantern)) (And (Member (sk_burn $e) burn) (Agent (sk_burn $e) $y) (Patient (sk_burn $e) (sk_mire_essence $y)) (Member (sk_mire_essence $y) mire_essence) (Possession (sk_mire_essence $y) $y) (Manner (sk_burn $e) quickly) (During (sk_burn $e) $e))) (STV 1.0 0.9))

@@ -1,0 +1,7 @@
+(: mc_genus (Inheritance moth_count count) (STV 1.0 0.99))
+(: mc_type (Member sk_count_1 moth_count) (STV 1.0 0.99))
+(: la_genus (Inheritance late_autumn autumn) (STV 1.0 0.99))
+(: la_mod (Inheritance late_autumn late) (STV 1.0 0.99))
+(: e_decline (Member sk_decline_1 decline) (STV 1.0 0.99))
+(: e_pat (Patient sk_decline_1 sk_count_1) (STV 1.0 0.99))
+(: e_during (During sk_decline_1 late_autumn) (STV 1.0 0.99))

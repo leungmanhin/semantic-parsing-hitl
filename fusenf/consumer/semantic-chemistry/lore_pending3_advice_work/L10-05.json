@@ -1,0 +1,32 @@
+{
+ "id": "L10-05",
+ "rule": "X — Inspections and ledgers",
+ "texts": [
+  "Whenever a new year begins, the Council begins a new ledger."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep3-000008",
+   "sentence": "Whenever a new year begins, the Council begins a new ledger.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: yearly_ledger_rule (Implication (And (Member $e begin) (Patient $e $y) (Member $y year) (Member $y new)) (And (Member (sk_begin_ledger $e) begin) (Agent (sk_begin_ledger $e) sk_council_1) (Patient (sk_begin_ledger $e) (sk_ledger $e)) (Member (sk_ledger $e) ledger) (Member (sk_ledger $e) new) (During (sk_begin_ledger $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep3-000008",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correct whenever-rule routing with the clause trigger (not a calendar slot), \"the Council\" as a capitalized common noun (no Name atom) and a singular collective that does not distribute, Patient for the subject of intransitive \"begins\" as the harvest/festival examples set, and \"a new ledger\" as a dependent Skolem function of the trigger event with both typing atoms. The Skolem stem sk_begin_ledger departs from the plain sk_<verb> spelling but is unique and harmless."
+   },
+   "adjudication": null
+  }
+ ]
+}

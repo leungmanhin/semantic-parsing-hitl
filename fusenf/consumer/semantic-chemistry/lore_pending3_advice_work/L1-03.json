@@ -1,0 +1,34 @@
+{
+ "id": "L1-03",
+ "rule": "I — Harbor wall",
+ "texts": [
+  "Whenever wind reflects off harbor water at a harbor lantern, that lantern burns its mire-essence quickly."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep3-000001",
+   "sentence": "Whenever wind reflects off harbor water at a harbor lantern, that lantern burns its mire-essence quickly.",
+   "parse": [
+    "(: hw_genus (Inheritance harbor_water water) (STV 1.0 0.99))",
+    "(: hl_genus (Inheritance harbor_lantern lantern) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: whenever_reflect_burn (Implication (And (Member $e reflect) (Patient $e wind) (Source $e harbor_water) (Location $e $y) (Member $y harbor_lantern)) (And (Member (sk_burn $e) burn) (Agent (sk_burn $e) $y) (Patient (sk_burn $e) (sk_mire_essence $y)) (Member (sk_mire_essence $y) mire_essence) (Possession (sk_mire_essence $y) $y) (Manner (sk_burn $e) quickly) (During (sk_burn $e) $e))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep3-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Whenever-rule shape, the donkey-bound premise variable for 'a harbor lantern' / 'that lantern', the During tie to the trigger, the three compound genus atoms and the correct absence of a QuantifierPhrase companion all match the instruction set. The only open judgment call is 'its mire-essence' taking Possession rather than PartOf (fuel in a lantern could read as a component); Source for 'off' follows the motion-path licence and Patient for the wind subject follows the natural-force rule."
+   },
+   "adjudication": null
+  }
+ ]
+}

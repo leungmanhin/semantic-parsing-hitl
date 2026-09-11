@@ -1,0 +1,39 @@
+{
+ "id": "L9-05",
+ "rule": "IX — Yields",
+ "texts": [
+  "The distillation yield thins throughout deep winter."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep3-000006",
+   "sentence": "The distillation yield thins throughout deep winter.",
+   "parse": [
+    "(: dy_genus (Inheritance distillation_yield yield) (STV 1.0 0.99))",
+    "(: dy_type (Member sk_yield_1 distillation_yield) (STV 1.0 0.99))",
+    "(: dw_genus (Inheritance deep_winter winter) (STV 1.0 0.99))",
+    "(: dw_mod (Inheritance deep_winter deep) (STV 1.0 0.99))",
+    "(: e_thin (Member sk_thin_1 thin) (STV 1.0 0.99))",
+    "(: e_pat (Patient sk_thin_1 sk_yield_1) (STV 1.0 0.99))",
+    "(: e_during (During sk_thin_1 deep_winter) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep3-000006",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a non-deictic, modifier-restricted season as a temporal frame ('throughout deep winter'): 'throughout' is mapped to During, whose outer argument is specified as a reified eventuality ('both reified'), while the Time section supplies structured terms only for Year/Month/Day/Weekday/Hour/Minute plus deictic season constants ('last_spring') - so a bare season period has no licensed carrier and here lands in the eventuality slot as a bare kind symbol; the span sense of 'throughout' versus the containment sense of During is likewise not distinguished"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The intransitive subject role is the one open call: with a quantity-denoting subject, 'thins' could ride Scalar change (subject -> Theme, as in 'the temperature fell' -> (Theme sk_fall_1 sk_temperature_1)) rather than the internal-change-of-state Patient chosen here, but 'thin' sits closest to the listed weaken/fade, so I did not score it a defect. Genus/modifier decomposition, the definite-singular witness and the absent status atom for the habitual simple present are all correct; exposing 'deep' as a modifier genus is licensed by the part-of-speech line even though 'the winter is deep' is a marginal predication."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,2 @@
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: yearly_ledger_rule (Implication (And (Member $e begin) (Patient $e $y) (Member $y year) (Member $y new)) (And (Member (sk_begin_ledger $e) begin) (Agent (sk_begin_ledger $e) sk_council_1) (Patient (sk_begin_ledger $e) (sk_ledger $e)) (Member (sk_ledger $e) ledger) (Member (sk_ledger $e) new) (During (sk_begin_ledger $e) $e))) (STV 1.0 0.9))

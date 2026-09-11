@@ -1,0 +1,32 @@
+{
+ "id": "L5-07",
+ "rule": "V — The long quiet",
+ "texts": [
+  "No wraith has emerged in the past twenty-six years."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep3-000002",
+   "sentence": "No wraith has emerged in the past twenty-six years.",
+   "parse": [
+    "(: wraith_no_emerge (Implication (Member $x wraith) (And (Member (sk_emerge $x) emerge) (Agent (sk_emerge $x) $x) (Past (sk_emerge $x)) (WithinLast (sk_emerge $x) 26 year))) (STV 0.0 0.9))",
+    "(: wraith_emerge_q (QuantifierPhrase wraith emerge \"no\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep3-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Explicit-quantifier denial routed as the strength-0 distributing rule with the mandatory \"no\" QuantifierPhrase companion, perfect as coarse Past, and the backward window as WithinLast 26 year inside the denied bundle - all as the instruction set specifies. Worth flagging downstream (a limit of the licensed form, not of this parse): the per-wraith rule cannot answer the episodic existential \"has any wraith emerged?\" at strength 0 unless some wraith is individuated."
+   },
+   "adjudication": null
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "id": "L6-08",
+ "rule": "VI — The cove incident",
+ "texts": [
+  "Wraiths that are in the Sunken Cove sometimes harm sky-cats."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep3-000004",
+   "sentence": "Wraiths that are in the Sunken Cove sometimes harm sky-cats.",
+   "parse": [
+    "(: sc_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: sc_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: wraith_harm_rule (Implication (And (Member $x wraith) (LocatedIn $x sunken_cove)) (And (Member (sk_harm $x) harm) (Agent (sk_harm $x) $x) (Patient (sk_harm $x) sky_cat))) (STV 0.5 0.9))",
+    "(: wraith_harm_q (QuantifierPhrase wraith harm \"sometimes\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep3-000004",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The relative-clause-restricted bare-plural subject correctly forces the distributing-rule route rather than an opaque kind relation, with the locative restriction as a LocatedIn premise conjunct; 'sometimes' sets strength 0.5 and carries its mandatory QuantifierPhrase companion. 'The Sunken Cove' gets the single name symbol plus the kind atom licensed by the kind word inside the name, and sky_cat is decomposed to its genus with the noun modifier left unexposed."
+   },
+   "adjudication": null
+  }
+ ]
+}
