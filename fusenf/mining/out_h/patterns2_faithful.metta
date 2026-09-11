@@ -12,18 +12,38 @@
 ;;   constants verbatim  n_lifted = 0 only; the 6037 constant-lifted (shape-stratum) patterns are an addition
 ;;   closure             closed = no larger faithful unit with exactly the same supporting records contains it (its atoms embed under a renaming of variables); two different units on the same records are both closed; computed within this view (the miner's own flag ranges over the full inventory, lifted patterns and joins included, and is kept as miner_dominated); closed units are the meta-node proposals, subsumed units the same evidence in fewer atoms (subsumed_by names the covering unit)
 ;;   meta-node           (Mn<Name> <root> <other variables>) for proposals = closed units of size >= 2 — Name = the unit's heads and constants in atom order along the tree (Member / GroupOf give their constant, roles their name, Ev / Fn for an event- or function-valued filler, Of<spec> for a filler with atoms of its own, ~NEG a Neg suffix; root tokens joined with '_', tokens inside a nested spec with '-'), the pattern id appended when two units would share a name (2 here); provisional; pack rule = (Implication (And <atoms>) (Mn<Name> …))
-;;   proposals           closed units of size >= 2 (flag `proposal`); a subsumed unit is the same evidence in fewer atoms and is rendered for reading only; single-atom units are subtrees by the letter, kept in the JSONL and the counts, but a one-atom pack is a rename, so they are not rendered
+;;   proposals           closed units of size >= 2 (flag `proposal`); a subsumed unit is the same evidence in fewer atoms and is rendered for reading only; single-atom units are subtrees by the letter and are rendered in their section without a rule, since a one-atom pack is a rename
 ;;
 ;; RECORD FORMAT (every record is one unit = one rooted subtree)
 ;;   ;; <pattern id>  support <records> (occ <matches>)  size <atoms>  root <variable> (<kind>)  depth <d>
 ;;   ;;   e.g. <up to three supporting record ids>
 ;;   (Implication <the unit as a conjunctive query> (Mn<Name> <root> <other variables>))
-;;     = the pack rule the proposal would become (naming provisional; the gauntlet decides); a subsumed
-;;     unit carries no rule and is rendered as its bare query under a 'subsumed by' note
-;; Sections: CLOSED UNITS (the meta-node proposals) then SUBSUMED UNITS (a larger unit on the same records
-;; contains them); each sorted by support desc, then pattern id. Single-atom units are not rendered.
+;;     = the pack rule the proposal would become (naming provisional; the gauntlet decides); a unit that is
+;;     not a proposal (subsumed, or a single atom) carries no rule and is rendered as its bare query under a note
+;; Sections: CLOSED UNITS (proposals = the closed units of size >= 2; closed single atoms listed with them) then
+;; SUBSUMED UNITS (a larger unit on the same records contains them); each sorted by support desc, then pattern id.
 
-;; ==================== CLOSED UNITS: 728 of 1454 rooted-subtree units (k = 4, support >= 3 of 2302 records) ====================
+;; ==================== CLOSED UNITS: 1140 of 1454 rooted-subtree units (728 proposals; k = 4, support >= 3 of 2302 records) ====================
+
+;; p200004  support 703 (occ 847)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000001 tierB-000002 tierB-000005
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Past $e0)
+
+;; p200009  support 385 (occ 476)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000005 tierB-000018 tierB-000028
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 $x0)
+
+;; p200011  support 323 (occ 366)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000004 tierB-000005 tierB-000016
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Patient $e0 $x0)
+
+;; p200012  support 316 (occ 345)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000018 tierB-000021 tierB-000037
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Theme $e0 $x0)
 
 ;; p200025  support 232 (occ 271)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000018 tierB-000045 tierB-000049
@@ -37,13 +57,48 @@
 ;;   e.g. tierB-000018 tierB-000021 tierB-000047
 (Implication (And (Past $e0) (Theme $e0 $x0)) (MnPast_Theme $e0 $x0))
 
+;; p200038  support 150 (occ 165)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000004 tierB-000040 tierB-000124
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Experiencer $e0 $x0)
+
+;; p200040  support 149 (occ 155)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000001 tierB-000008 tierB-000013
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Ongoing $e0)
+
 ;; p200048  support 114 (occ 122)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000018 tierB-000091 tierB-000101
 (Implication (And (Agent $e0 $x0) (Theme $e0 $x1)) (MnAgent_Theme $e0 $x0 $x1))
 
+;; p200049  support 114 (occ 115)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000023 tierB-000055 tierB-000080
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 thing)
+
+;; p200051  support 111 (occ 124)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000008 tierB-000034 tierB-000036
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Location $e0 $x0)
+
 ;; p200075  support 74 (occ 84)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000028 tierB-000063 tierB-000073
 (Implication (And (Agent $e0 $x0) (Patient $e0 $x1)) (MnAgent_Patient $e0 $x0 $x1))
+
+;; p200080  support 72 (occ 77)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000030 tierB-000075 tierB-000087
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Theme $e0 $e1)
+
+;; p200083  support 69 (occ 72)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000019 tierB-000032 tierB-000116
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(LocatedIn $x0 $x1)
+
+;; p200093  support 64 (occ 66)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000101 tierB-000133 tierB-000267
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Cardinality $x0 <num>)
 
 ;; p200100  support 62 (occ 68)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000008 tierB-000034 tierB-000045
@@ -57,6 +112,21 @@
 ;;   e.g. tierB-000028 tierB-000036 tierB-000098
 (Implication (And (Agent $e0 $x0) (Ongoing $e0)) (MnAgent_Ongoing $e0 $x0))
 
+;; p200114  support 58 (occ 58)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000316 tierB-000338 tierB-000628
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 person)
+
+;; p200128  support 54 (occ 54)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000122 tierB-000246 tierB-000423
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Possession $x0 $x1)
+
+;; p200133  support 52 (occ 52)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000040 tierB-000111 tierB-000135
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Goal $e0 $x0)
+
 ;; p200137  support 51 (occ 58)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000063 tierB-000073 tierB-000170
 (Implication (And (Agent $e0 $x0) (Past $e0) (Patient $e0 $x1)) (MnAgent_Past_Patient $e0 $x0 $x1))
@@ -68,6 +138,21 @@
 ;; p200163  support 45 (occ 49)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000124 tierB-000134 tierB-000191
 (Implication (And (Experiencer $e0 $x0) (Past $e0)) (MnExperiencer_Past $e0 $x0))
+
+;; p200164  support 45 (occ 48)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000083 tierB-000172 tierB-000202
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(PartOf $x0 $x1)
+
+;; p200178  support 43 (occ 43)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000066 tierB-000142 tierB-000162
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 have)
+
+;; p200192  support 41 (occ 43)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000004 tierB-000206 tierB-000228
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Result $e0 $e1)
 
 ;; p200196  support 40 (occ 40)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000066 tierB-000142 tierB-000162
@@ -85,9 +170,24 @@
 ;;   e.g. tierB-000028 tierB-000062 tierB-000154
 (Implication (And (Ongoing $e0) (Patient $e0 $x0)) (MnOngoing_Patient $e0 $x0))
 
+;; p200233  support 34 (occ 37)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000040 tierB-000126 tierB-000191
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 person)
+
 ;; p200243  support 33 (occ 38)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000036 tierB-000045 tierB-000121
 (Implication (And (Agent $e0 $x0) (Location $e0 $x1)) (MnAgent_Location $e0 $x0 $x1))
+
+;; p200248  support 32 (occ 32)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000082 tierB-000100 tierB-000108
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Future $e0)
+
+;; p200249  support 32 (occ 32)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000103 tierB-000138 tierB-000230
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Source $e0 $x0)
 
 ;; p200263  support 30 (occ 46)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000316 tierB-000338 tierB-000628
@@ -117,9 +217,24 @@
 ;;   e.g. tierB-000004 tierB-000362 tierB-000370
 (Implication (And (Patient $e0 $x0) (Result $e0 $e1)) (MnPatient_ResultEv $e0 $e1 $x0))
 
+;; p200326  support 27 (occ 27)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000025 tierB-000156 tierB-000299
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Can $e0)
+
 ;; p200337  support 26 (occ 26)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000142 tierB-000408 tierB-000492
 (Implication (And (Holder $e0 $x0) (Member $e0 have) (Theme $e0 $x1)) (MnHolder_Have_Theme $e0 $x0 $x1))
+
+;; p200343  support 26 (occ 26)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000037 tierB-000080 tierB-000144
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Obligated $e0)
+
+;; p200359  support 25 (occ 27)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000078 tierB-000115 tierB-000147
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(To $e0 $e1)
 
 ;; p200379  support 24 (occ 27)  size 2  root $e1 (event)  depth 2
 ;;   e.g. tierB-000160 tierB-000166 tierB-000339
@@ -129,6 +244,16 @@
 ;;   e.g. tierB-000075 tierB-000173 tierB-000199
 (Implication (And (Ongoing $e0) (Theme $e1 $e0)) (MnThemeEvOfOngoing $e1 $e0))
 
+;; p200416  support 22 (occ 22)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000025 tierB-000073 tierB-000173
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 make)
+
+;; p200422  support 21 (occ 22)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000043 tierB-000192 tierB-000199
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 start)
+
 ;; p200425  support 20 (occ 30)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierB-000338 tierB-000747 tierB-001813
 (Implication (And (Agent $e0 $x0) (Member $x0 person) (Past $e0)) (MnAgentOfPerson_Past $e0 $x0))
@@ -136,6 +261,21 @@
 ;; p200431  support 20 (occ 20)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000103 tierB-000138 tierB-000338
 (Implication (And (Past $e0) (Source $e0 $x0)) (MnPast_Source $e0 $x0))
+
+;; p200432  support 20 (occ 21)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000410 tierB-000587 tierB-000634
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 child)
+
+;; p200433  support 20 (occ 21)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000089 tierB-000268 tierB-000282
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 use)
+
+;; p200434  support 20 (occ 20)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000048 tierB-000293 tierB-000371
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 house)
 
 ;; p200451  support 19 (occ 21)  size 3  root $e1 (event)  depth 1
 ;;   e.g. tierB-000075 tierB-000173 tierB-000199
@@ -161,6 +301,11 @@
 ;;   e.g. tierB-000080 tierB-000252 tierB-000865
 (Implication (And (Member $x0 thing) (Theme $e0 $x0)) (MnThemeOfThing $e0 $x0))
 
+;; p200499  support 18 (occ 18)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000009 tierB-000114 tierB-000174
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Stimulus $e0 $x0)
+
 ;; p200517  support 17 (occ 17)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000362 tierB-000392 tierB-000425
 (Implication (And (Experiencer $e0 $x0) (Past $e1) (Result $e1 $e0)) (MnPast_ResultEvOfExperiencer $e1 $e0 $x0))
@@ -172,6 +317,26 @@
 ;; p200536  support 17 (occ 17)  size 2  root $x1 (entity)  depth 2
 ;;   e.g. tierB-000966 tierC-000017 tierC-000018
 (Implication (And (Member $x0 person) (Possession $x1 $x0)) (MnPossessionOfPerson $x1 $x0))
+
+;; p200546  support 17 (occ 19)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000016 tierB-000222 tierB-000392
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Instrument $e0 $x0)
+
+;; p200547  support 17 (occ 18)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000263 tierB-000344 tierB-000670
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 room)
+
+;; p200548  support 17 (occ 18)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000150 tierB-000485 tierB-000547
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Recipient $e0 $x0)
+
+;; p200549  support 17 (occ 17)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000124 tierB-000133 tierB-000196
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(SubsetOf $x0 $x1)
 
 ;; p200577  support 16 (occ 19)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000045 tierB-000291 tierB-000305
@@ -185,6 +350,11 @@
 ;;   e.g. tierB-000107 tierB-000265 tierB-000455
 (Implication (And (Patient $e0 $x0) (Theme $e1 $e0)) (MnThemeEvOfPatient $e1 $e0 $x0))
 
+;; p200586  support 16 (occ 17)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000012 tierB-000115 tierB-000204
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 go)
+
 ;; p200611  support 15 (occ 17)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000144 tierB-000963 tierB-000997
 (Implication (And (Experiencer $e0 $x0) (Ongoing $e0)) (MnExperiencer_Ongoing $e0 $x0))
@@ -196,6 +366,11 @@
 ;; p200613  support 15 (occ 15)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000416 tierB-000520 tierB-000574
 (Implication (And (Ongoing $e0) (Theme $e0 $x0)) (MnOngoing_Theme $e0 $x0))
+
+;; p200617  support 15 (occ 16)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000044 tierB-000049 tierB-000107
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(For $e0 $x0)
 
 ;; p200651  support 14 (occ 15)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000047 tierB-000579 tierB-000704
@@ -209,6 +384,21 @@
 ;;   e.g. tierB-000246 tierB-000423 tierB-000722
 (Implication (And (Possession $x0 $x1) (Theme $e0 $x0)) (MnThemeOfPossession $e0 $x0 $x1))
 
+;; p200662  support 14 (occ 14)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000412 tierB-000688 tierB-001134
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Before $e0 $e1)
+
+;; p200663  support 14 (occ 14)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000056 tierB-000425 tierB-000446
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 door)
+
+;; p200664  support 14 (occ 14)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000144 tierB-000744 tierB-000880
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 now)
+
 ;; p200720  support 13 (occ 13)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000324 tierB-000387 tierB-000462
 (Implication (And (Agent $e0 $x0) (Goal $e0 $x1) (Past $e0)) (MnAgent_Goal_Past $e0 $x0 $x1))
@@ -220,6 +410,26 @@
 ;; p200728  support 13 (occ 18)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000063 tierB-000932 tierB-001867
 (Implication (And (Member $e0 build) (Patient $e0 $x0)) (MnBuild_Patient $e0 $x0))
+
+;; p200738  support 13 (occ 14)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000206 tierB-000370 tierB-000418
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 get)
+
+;; p200739  support 13 (occ 13)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000089 tierB-000160 tierB-000648
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 play)
+
+;; p200740  support 13 (occ 13)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000762 tierB-000853 tierB-000986
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 company)
+
+;; p200741  support 13 (occ 13)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000288 tierB-000728 tierB-000958
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 new)
 
 ;; p200785  support 12 (occ 12)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000199 tierB-000265 tierB-000465
@@ -244,6 +454,41 @@
 ;; p200848  support 12 (occ 14)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierB-000082 tierB-000370 tierB-000389
 (Implication (And (Member $x0 thing) (Patient $e0 $x0)) (MnPatientOfThing $e0 $x0))
+
+;; p200858  support 12 (occ 12)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000352 tierB-000740 tierB-001079
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 become)
+
+;; p200859  support 12 (occ 14)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000075 tierB-000173 tierB-000182
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 begin)
+
+;; p200860  support 12 (occ 12)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000152 tierB-000238 tierB-000255
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 come)
+
+;; p200861  support 12 (occ 12)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000252 tierB-000309 tierB-000942
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 take)
+
+;; p200862  support 12 (occ 12)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000307 tierB-000650 tierB-000843
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 problem)
+
+;; p200863  support 12 (occ 12)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000205 tierB-000351 tierB-000429
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 weather)
+
+;; p200864  support 12 (occ 12)  size 1  root (LocatedIn (constant)  depth 1
+;;   e.g. tierB-000016 tierB-000126 tierB-000285
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Past (LocatedIn $x0 $x1))
 
 ;; p200899  support 11 (occ 13)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000485 tierB-000738 tierB-000930
@@ -272,6 +517,61 @@
 ;; p200937  support 11 (occ 13)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000016 tierB-000392 tierB-000733
 (Implication (And (Instrument $e0 $x0) (Patient $e0 $x1)) (MnInstrument_Patient $e0 $x0 $x1))
+
+;; p200955  support 11 (occ 11)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000162 tierB-000483 tierB-001020
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 thing)
+
+;; p200956  support 11 (occ 11)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000411 tierB-000774 tierB-001033
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(In $e0 $x0)
+
+;; p200957  support 11 (occ 11)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000005 tierB-000094 tierB-000128
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Manner $e0 quickly)
+
+;; p200958  support 11 (occ 12)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000203 tierB-000225 tierB-000253
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 study)
+
+;; p200959  support 11 (occ 11)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000117 tierB-000216 tierB-000400
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 try)
+
+;; p200960  support 11 (occ 11)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000144 tierB-000212 tierB-000419
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 work)
+
+;; p200961  support 11 (occ 11)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000793 tierB-001182 tierB-001316
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 man)
+
+;; p200962  support 11 (occ 11)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000494 tierB-000576 tierB-000589
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 place)
+
+;; p200963  support 11 (occ 11)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000016 tierB-000047 tierB-000335
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 table)
+
+;; p200964  support 11 (occ 11)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000370 tierB-000792 tierB-000797
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Only $x0 $e0)
+
+;; p200965  support 11 (occ 11)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000495 tierB-000517 tierB-001521
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Probably $e0)
 
 ;; p201043  support 10 (occ 12)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000485 tierB-000738 tierB-000942
@@ -312,6 +612,51 @@
 ;; p201071  support 10 (occ 12)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000078 tierB-000115 tierB-000147
 (Implication (And (Past $e0) (To $e0 $e1)) (MnPast_ToEv $e0 $e1))
+
+;; p201086  support 10 (occ 10)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000579 tierB-000585 tierB-000706
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 find)
+
+;; p201087  support 10 (occ 10)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000026 tierB-000231 tierB-000584
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 follow)
+
+;; p201088  support 10 (occ 10)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000004 tierB-000100 tierB-000298
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 leave)
+
+;; p201089  support 10 (occ 10)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000971 tierB-001004 tierB-001601
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 write)
+
+;; p201090  support 10 (occ 11)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000295 tierB-000458 tierB-000703
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 book)
+
+;; p201091  support 10 (occ 10)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000024 tierB-000073 tierB-000250
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 cat)
+
+;; p201092  support 10 (occ 12)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000024 tierB-000137 tierB-000527
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 good)
+
+;; p201093  support 10 (occ 11)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000176 tierB-000277 tierB-000668
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 tree)
+
+;; p201094  support 10 (occ 10)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000093 tierB-000240 tierB-000734
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(To $e0 $x0)
 
 ;; p201102  support 9 (occ 11)  size 4  root $e1 (event)  depth 2
 ;;   e.g. tierB-000485 tierB-000738 tierB-000942
@@ -397,6 +742,76 @@
 ;;   e.g. tierB-000150 tierB-000769 tierB-000775
 (Implication (And (Past $e0) (Recipient $e0 $x0)) (MnPast_Recipient $e0 $x0))
 
+;; p201266  support 9 (occ 9)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000147 tierB-000337 tierB-000588
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Again $e0)
+
+;; p201267  support 9 (occ 9)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000194 tierB-000456 tierB-000609
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 fall)
+
+;; p201268  support 9 (occ 9)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000176 tierB-000189 tierB-000421
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 hear)
+
+;; p201270  support 9 (occ 9)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000061 tierB-000086 tierB-000107
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 need)
+
+;; p201271  support 9 (occ 9)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000056 tierB-000302 tierB-000425
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 open)
+
+;; p201272  support 9 (occ 11)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000208 tierB-001358 tierB-001995
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 produce)
+
+;; p201273  support 9 (occ 9)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001003 tierB-001302 tierB-001334
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 sleep)
+
+;; p201274  support 9 (occ 9)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000872 tierB-000904 tierB-001016
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 beautiful)
+
+;; p201275  support 9 (occ 9)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000083 tierB-000746 tierB-000890
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 big)
+
+;; p201276  support 9 (occ 9)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000083 tierB-000190 tierB-000327
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 car)
+
+;; p201277  support 9 (occ 9)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000153 tierB-000546 tierB-000680
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 city)
+
+;; p201278  support 9 (occ 9)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000340 tierB-000537 tierB-000871
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 dog)
+
+;; p201279  support 9 (occ 9)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000267 tierB-000334 tierB-000471
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 old)
+
+;; p201280  support 9 (occ 9)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000294 tierB-000468 tierB-000582
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 road)
+
 ;; p201344  support 8 (occ 9)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierB-000248 tierB-000258 tierB-000548
 (Implication (And (Agent $e0 $x0) (GroupOf $x0 person) (Past $e0)) (MnAgentOfGroupOfPerson_Past $e0 $x0))
@@ -404,6 +819,26 @@
 ;; p201345  support 8 (occ 8)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierB-000797 tierB-001348 tierB-001412
 (Implication (And (Cardinality $x0 <num>) (Member $e0 have) (Theme $e0 $x0)) (MnHave_ThemeOfCardinalityNum $e0 $x0))
+
+;; p201433  support 8 (occ 8)  size 1  root bicycle (constant)  depth 1
+;;   e.g. tierC-000317 tierC-000318 tierC-000319
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(ConditionalProperty bicycle permitted footpath)
+
+;; p201434  support 8 (occ 8)  size 1  root pedestrian (constant)  depth 1
+;;   e.g. tierC-000317 tierC-000318 tierC-000319
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(ConditionalProperty pedestrian permitted footpath)
+
+;; p201435  support 8 (occ 8)  size 1  root bicycle (constant)  depth 1
+;;   e.g. tierC-000317 tierC-000318 tierC-000319
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Inheritance bicycle permitted) ~NEG
+
+;; p201436  support 8 (occ 8)  size 1  root pedestrian (constant)  depth 1
+;;   e.g. tierC-000317 tierC-000318 tierC-000319
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Inheritance pedestrian permitted) ~NEG
 
 ;; p201446  support 8 (occ 12)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000063 tierB-001867 tierC-000045
@@ -496,6 +931,71 @@
 ;; p201498  support 8 (occ 8)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000103 tierB-000338 tierB-000677
 (Implication (And (Patient $e0 $x0) (Source $e0 $x1)) (MnPatient_Source $e0 $x0 $x1))
+
+;; p201527  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000002 tierB-000239 tierB-000938
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(For $e0 $e1)
+
+;; p201528  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000230 tierB-000831 tierB-001135
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Like $e0 $x0)
+
+;; p201529  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000098 tierB-000139 tierB-000517
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 change)
+
+;; p201530  support 8 (occ 9)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000048 tierB-000371 tierB-000524
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 live)
+
+;; p201531  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000257 tierB-000326 tierB-000784
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 sell)
+
+;; p201532  support 8 (occ 11)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000864 tierB-000910 tierB-000915
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 serve)
+
+;; p201533  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000078 tierB-000327 tierB-000550
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 talk)
+
+;; p201534  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000036 tierB-000148 tierB-000324
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 walk)
+
+;; p201535  support 8 (occ 8)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000322 tierB-000615 tierB-000677
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 garden)
+
+;; p201536  support 8 (occ 8)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000149 tierB-000767 tierB-000836
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 hotel)
+
+;; p201537  support 8 (occ 8)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000456 tierB-000722 tierB-000937
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 sky)
+
+;; p201538  support 8 (occ 8)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000768 tierB-001156 tierB-001556
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 song)
+
+;; p201539  support 8 (occ 9)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000298 tierB-000302 tierB-000315
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 (Hour <num>))
 
 ;; p201545  support 7 (occ 7)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierB-000338 tierB-000747 tierB-001887
@@ -632,6 +1132,81 @@
 ;; p201834  support 7 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000500 tierB-000656 tierB-000782
 (Implication (And (Past $e0) (Through $e0 $x0)) (MnPast_Through $e0 $x0))
+
+;; p201867  support 7 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000252 tierB-001989 tierC-000017
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(As $e0 $x0)
+
+;; p201868  support 7 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000463 tierB-001314 tierB-001337
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(But $e0 $e1)
+
+;; p201869  support 7 (occ 8)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000172 tierB-000622 tierB-001271
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(From $x0 $x1)
+
+;; p201870  support 7 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000253 tierB-000778 tierB-001084
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Measure $e0 duration <num> year)
+
+;; p201871  support 7 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000299 tierB-000319 tierB-000858
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 help)
+
+;; p201872  support 7 (occ 9)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000827 tierB-001156 tierB-001901
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 sing)
+
+;; p201873  support 7 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000018 tierB-000476 tierB-000654
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 turn)
+
+;; p201874  support 7 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000250 tierB-000626 tierB-000846
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 want)
+
+;; p201875  support 7 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000145 tierB-000730 tierB-001345
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 win)
+
+;; p201876  support 7 (occ 7)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000748 tierB-000790 tierB-001594
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 bad)
+
+;; p201877  support 7 (occ 7)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000009 tierB-000368 tierB-000403
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 food)
+
+;; p201878  support 7 (occ 7)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000569 tierB-001239 tierB-001331
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 park)
+
+;; p201879  support 7 (occ 7)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000408 tierB-000739 tierB-001058
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 town)
+
+;; p201880  support 7 (occ 7)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000032 tierB-000618 tierB-000650
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 water)
+
+;; p201882  support 7 (occ 10)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000495 tierB-000631 tierB-000808
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 today)
 
 ;; p201891  support 6 (occ 10)  size 4  root $e0 (event)  depth 3
 ;;   e.g. tierC-000017 tierC-000018 tierC-000123
@@ -832,6 +1407,191 @@
 ;; p202223  support 6 (occ 6)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000229 tierB-000252 tierB-000730
 (Implication (And (Theme $e0 $x0) (To $e0 $e1)) (MnTheme_ToEv $e0 $e1 $x0))
+
+;; p202273  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000805 tierB-000969 tierB-001547
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 $e1)
+
+;; p202274  support 6 (occ 6)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000034 tierB-000218 tierB-000616
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Already $e0)
+
+;; p202275  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001130 tierB-001222 tierB-001531
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Before $x0 $e0)
+
+;; p202276  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000502 tierB-000867 tierB-001782
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(During $e0 $e1)
+
+;; p202277  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000599 tierB-000892 tierB-001212
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(For $x0 $x1)
+
+;; p202278  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000387 tierB-000656 tierB-000712
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 student)
+
+;; p202279  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000049 tierB-000921 tierB-001766
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Manner $e0 well)
+
+;; p202280  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000462 tierB-001132 tierC-000227
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 add)
+
+;; p202283  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000775 tierB-000805 tierB-001089
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 cause)
+
+;; p202284  support 6 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000079 tierB-000188 tierB-000218
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 close)
+
+;; p202285  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001087 tierC-000010 tierC-000091
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 direct)
+
+;; p202286  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001236 tierB-001520 tierB-001721
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 do)
+
+;; p202287  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000163 tierB-000450 tierB-000556
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 enter)
+
+;; p202288  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000040 tierB-000105 tierB-001086
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 lead)
+
+;; p202289  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000876 tierB-001486 tierB-001683
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 present)
+
+;; p202291  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000178 tierB-000339 tierB-001153
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 run)
+
+;; p202292  support 6 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000053 tierB-000271 tierB-001068
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 speak)
+
+;; p202293  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000258 tierB-000520 tierB-000651
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 watch)
+
+;; p202294  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000305 tierB-000337 tierB-000340
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 boy)
+
+;; p202295  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000160 tierB-001021 tierB-001114
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 child)
+
+;; p202296  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000520 tierB-001302 tierC-000017
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 family)
+
+;; p202297  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000687 tierB-000792 tierB-000798
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 floor)
+
+;; p202298  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000145 tierB-000383 tierB-000981
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 horse)
+
+;; p202299  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000230 tierB-000316 tierB-000576
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 huge)
+
+;; p202300  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000048 tierB-001666 tierB-001925
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 large)
+
+;; p202301  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000561 tierB-000685 tierB-000708
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 light)
+
+;; p202302  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000520 tierB-001253 tierB-001555
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 movie)
+
+;; p202303  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000180 tierB-000498 tierB-000841
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 rain)
+
+;; p202304  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000297 tierB-000546 tierB-000782
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 school)
+
+;; p202305  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000805 tierB-000951 tierB-001384
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 sound)
+
+;; p202306  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000202 tierB-000882 tierB-001111
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 street)
+
+;; p202307  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000116 tierB-001317 tierB-001706
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 village)
+
+;; p202308  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000261 tierB-000343 tierB-000560
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 wall)
+
+;; p202309  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000082 tierB-001123 tierB-001169
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 whole)
+
+;; p202310  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000090 tierB-000108 tierB-001275
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 world)
+
+;; p202311  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000097 tierB-000201 tierB-000790
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(On $e0 $x0)
+
+;; p202313  support 6 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000012 tierB-000264 tierB-000917
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 night)
 
 ;; p202333  support 5 (occ 7)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierB-000485 tierB-001052 tierB-001138
@@ -1173,6 +1933,201 @@
 ;;   e.g. tierB-000147 tierB-000258 tierB-001396
 (Implication (And (Theme $e0 $x0) (To $e1 $e0)) (MnToEvOfTheme $e1 $e0 $x0))
 
+;; p202970  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000295 tierB-000705 tierB-000959
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 book)
+
+;; p202971  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001316 tierB-001457 tierB-001530
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 boy)
+
+;; p202972  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000207 tierB-001260 tierB-001730
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 city)
+
+;; p202973  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001252 tierB-001284 tierB-001697
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 cloud)
+
+;; p202974  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000085 tierB-000615 tierB-001450
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 flower)
+
+;; p202975  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000237 tierB-000378 tierB-000653
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Location $e0 here)
+
+;; p202976  support 5 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001940 tierC-000050 tierC-000128
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 appear)
+
+;; p202980  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000338 tierB-000410 tierB-000616
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 eat)
+
+;; p202981  support 5 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000780 tierC-000163 tierC-000164
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 form)
+
+;; p202982  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000230 tierB-000297 tierB-000831
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 look)
+
+;; p202983  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000247 tierC-000248 tierC-000277
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 portray)
+
+;; p202984  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000769 tierB-001260 tierB-001262
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 provide)
+
+;; p202985  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000080 tierB-000865 tierB-001441
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 say)
+
+;; p202987  support 5 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000030 tierB-000125 tierB-000792
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 stop)
+
+;; p202988  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000313 tierB-000782 tierB-001008
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 swim)
+
+;; p202989  support 5 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000434 tierB-000667 tierB-000830
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 travel)
+
+;; p202990  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000302 tierB-000931 tierB-001435
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 bank)
+
+;; p202991  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000476 tierB-000541 tierB-001509
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 black)
+
+;; p202992  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000367 tierB-000937 tierB-001124
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 blue)
+
+;; p202993  support 5 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000083 tierB-000475 tierB-000541
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 box)
+
+;; p202994  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000081 tierB-000912 tierB-001821
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 corner)
+
+;; p202995  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000505 tierB-001017 tierB-001295
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 film)
+
+;; p202996  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000838 tierB-000890 tierB-000922
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 fire)
+
+;; p202997  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000233 tierB-000369 tierB-000386
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 fridge)
+
+;; p202998  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000796 tierB-000861 tierB-000918
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 full)
+
+;; p202999  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000548 tierB-001800 tierB-001885
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 government)
+
+;; p203000  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000122 tierB-000608 tierB-000728
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 language)
+
+;; p203001  support 5 (occ 7)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000172 tierB-001120 tierB-001383
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 line)
+
+;; p203002  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000646 tierB-001152 tierB-001381
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 party)
+
+;; p203003  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000238 tierB-000808 tierB-000900
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 train)
+
+;; p203004  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000138 tierB-001190 tierB-001459
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 way)
+
+;; p203005  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000062 tierB-001163 tierB-001306
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 wind)
+
+;; p203006  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000879 tierB-001389 tierB-001980
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 work)
+
+;; p203007  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000409 tierB-001070 tierB-001262
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Of $x0 $x1)
+
+;; p203008  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000871 tierB-000889 tierB-001205
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Over $e0 $x0)
+
+;; p203009  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000799 tierB-001111 tierB-001628
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(ProportionOf $x0 $x1 most)
+
+;; p203010  support 5 (occ 5)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000089 tierB-000919 tierB-001016
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Still $e0)
+
+;; p203014  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000081 tierB-000913 tierB-001673
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(To $x0 $x1)
+
+;; p203015  support 5 (occ 5)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000224 tierB-000439 tierB-000726
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Yet $e0)
+
 ;; p203046  support 4 (occ 4)  size 4  root $e1 (event)  depth 2
 ;;   e.g. tierB-000688 tierC-000001 tierC-000121
 (Implication (And (Agent $e0 $x0) (Before $e1 $e0) (Past $e0) (Past $e1)) (MnBeforeEvOfAgent-Past_Past $e1 $e0 $x0))
@@ -1428,6 +2383,16 @@
 ;; p204124  support 4 (occ 4)  size 2  root regional_unit (constant)  depth 1
 ;;   e.g. tierC-000031 tierC-000032 tierC-000081
 (Implication (And (Inheritance regional_unit regional) (Inheritance regional_unit unit)) (MnInheritanceRegional_InheritanceUnit regional_unit))
+
+;; p204173  support 4 (occ 4)  size 1  root metropolitan_statistical_area (constant)  depth 1
+;;   e.g. tierC-000249 tierC-000250 tierC-000275
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Inheritance metropolitan_statistical_area area)
+
+;; p204178  support 4 (occ 4)  size 1  root Married (constant)  depth 0
+;;   e.g. tierC-000079 tierC-000080 tierC-000335
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Symmetric Married)
 
 ;; p204216  support 4 (occ 6)  size 4  root $e1 (event)  depth 2
 ;;   e.g. tierB-000942 tierB-001933 tierC-000025
@@ -1813,6 +2778,416 @@
 ;;   e.g. tierB-000339 tierB-000400 tierB-000401
 (Implication (And (Theme $e0 $e1) (Theme $e1 $x0)) (MnThemeEvOfTheme $e0 $e1 $x0))
 
+;; p204683  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000217 tierC-000218 tierC-000245
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 jica)
+
+;; p204684  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000842 tierB-001878 tierC-000133
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Also $x0 $e0)
+
+;; p204686  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000374 tierB-001696 tierB-001867
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Beneficiary $e0 $x0)
+
+;; p204687  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000160 tierB-001332 tierC-000121
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(CoAgent $e0 $x0)
+
+;; p204688  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000407 tierB-000518 tierB-000604
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Degree $x0 quantity excessive)
+
+;; p204691  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000206 tierB-000238 tierB-000313
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Every $e0 <num> day)
+
+;; p204692  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000308 tierB-000555 tierB-001455
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(For $x0 $e0)
+
+;; p204693  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000463 tierB-000513 tierB-001553
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 day)
+
+;; p204694  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000066 tierB-000267 tierB-000550
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 friend)
+
+;; p204695  support 4 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000133 tierB-000738 tierB-000814
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 girl)
+
+;; p204696  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000098 tierB-000832 tierB-001246
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 leaf)
+
+;; p204697  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000243 tierB-000277 tierB-001068
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 man)
+
+;; p204698  support 4 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000194 tierB-000794 tierB-001080
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 pupil)
+
+;; p204699  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000225 tierB-000533 tierB-001251
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 scientist)
+
+;; p204700  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000274 tierB-001058 tierB-001695
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 soldier)
+
+;; p204703  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000518 tierB-000972 tierB-001495
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(LocatedIn $x0 here)
+
+;; p204707  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000666 tierB-001496 tierB-001572
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Manner $e0 immediately)
+
+;; p204708  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000075 tierB-000407 tierB-000947
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Manner $e0 often)
+
+;; p204709  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000237 tierB-000444 tierB-001440
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 arrive)
+
+;; p204710  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000171 tierB-000246 tierB-000674
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 avoid)
+
+;; p204712  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000427 tierB-000636 tierB-001013
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 bring)
+
+;; p204715  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000063 tierB-001071 tierC-000037
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 connect)
+
+;; p204716  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001300 tierB-001863 tierC-000233
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 consider)
+
+;; p204717  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000702 tierB-000809 tierB-001166
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 cover)
+
+;; p204718  support 4 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000030 tierB-000502 tierB-000738
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 cry)
+
+;; p204723  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000495 tierB-000999 tierB-001238
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 good)
+
+;; p204724  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000087 tierB-001363 tierB-001708
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 happen)
+
+;; p204725  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000378 tierB-001266 tierC-000283
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 hold)
+
+;; p204726  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000680 tierB-000690 tierB-000965
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 increase)
+
+;; p204728  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000236 tierB-000795 tierC-000161
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 lose)
+
+;; p204729  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000782 tierB-001570 tierC-000197
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 move)
+
+;; p204731  support 4 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000044 tierB-000168 tierB-000916
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 ready)
+
+;; p204734  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000883 tierB-001146 tierC-000047
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 spend)
+
+;; p204735  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000742 tierB-000745 tierC-000035
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 tell)
+
+;; p204736  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000624 tierB-001536 tierB-001621
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 war)
+
+;; p204737  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001787 tierB-001868 tierC-000087
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 welcome)
+
+;; p204738  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000376 tierB-000678 tierB-001503
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 beauty)
+
+;; p204739  support 4 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000712 tierB-001430 tierB-001528
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 bus)
+
+;; p204740  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000794 tierB-000814 tierB-001612
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 class)
+
+;; p204741  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001867 tierB-001902 tierC-000025
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 community)
+
+;; p204742  support 4 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000504 tierB-000849 tierB-001177
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 computer)
+
+;; p204743  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000207 tierB-001546 tierB-001928
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 country)
+
+;; p204744  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001052 tierB-001108 tierB-001169
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 crowd)
+
+;; p204745  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000049 tierB-000339 tierB-000666
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 doctor)
+
+;; p204748  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001442 tierC-000116 tierC-000167
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 former)
+
+;; p204749  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000319 tierB-000783 tierB-001280
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 girl)
+
+;; p204750  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000522 tierB-001329 tierB-001470
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 great)
+
+;; p204751  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000176 tierB-000474 tierB-001308
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 ground)
+
+;; p204752  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001357 tierB-001525 tierC-000109
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 group)
+
+;; p204753  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000394 tierB-001234 tierB-001246
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 ivy)
+
+;; p204754  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001114 tierB-001208 tierB-001480
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 lady)
+
+;; p204755  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000036 tierB-000783 tierB-001280
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 little)
+
+;; p204756  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000938 tierB-001996 tierC-000315
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 machine)
+
+;; p204757  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000119 tierB-000244 tierB-000574
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 matter)
+
+;; p204758  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000141 tierB-000524 tierB-001257
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 middle)
+
+;; p204759  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000135 tierC-000136 tierC-000211
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 northern)
+
+;; p204760  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000567 tierB-000932 tierB-000992
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 original)
+
+;; p204761  support 4 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000202 tierB-000792 tierB-001738
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 other)
+
+;; p204762  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000358 tierB-001462 tierC-000227
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 personality)
+
+;; p204763  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000876 tierB-001070 tierB-001077
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 picture)
+
+;; p204764  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000045 tierB-000132 tierB-000298
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 plane)
+
+;; p204765  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000019 tierB-000832 tierB-001268
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 red)
+
+;; p204766  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000095 tierC-000096 tierC-000223
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 region)
+
+;; p204767  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000416 tierB-000468 tierB-000470
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 river)
+
+;; p204768  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000134 tierB-000767 tierB-001296
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 sea)
+
+;; p204769  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000100 tierB-000605 tierB-000835
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 ship)
+
+;; p204770  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000154 tierB-000383 tierB-000445
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 snow)
+
+;; p204771  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000135 tierC-000136 tierC-000279
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 southern)
+
+;; p204772  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000218 tierB-000324 tierB-001044
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 store)
+
+;; p204773  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000825 tierB-001218 tierB-001838
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 sun)
+
+;; p204774  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000932 tierB-001134 tierB-001447
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 system)
+
+;; p204775  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000979 tierB-001466 tierC-000135
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 view)
+
+;; p204776  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001204 tierB-001324 tierB-001444
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 war)
+
+;; p204777  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000097 tierC-000098 tierC-000177
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 widespread)
+
+;; p204778  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000265 tierB-000984 tierB-001161
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 windshield)
+
+;; p204779  support 4 (occ 4)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000218 tierB-000969 tierB-000978
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Might $e0)
+
+;; p204780  support 4 (occ 4)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierB-000450 tierB-000971 tierB-001687
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Permitted $e0)
+
+;; p204783  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000124 tierB-000196 tierB-000723
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(ProportionOf $x0 $x1 some)
+
+;; p204784  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000251 tierB-000828 tierB-000903
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 $x0)
+
+;; p204785  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000193 tierC-000194 tierC-000315
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 later)
+
+;; p204786  support 4 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001171 tierB-001275 tierB-001387
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 this_year)
+
+;; p204787  support 4 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000212 tierB-000686 tierB-001588
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 tonight)
+
 ;; p204824  support 3 (occ 6)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000159 tierC-000160 tierC-000356
 (Implication (And (Agent $e0 $x0) (GroupOf $x1 view) (Theme $e0 $x1) (Theme $e0 $x2)) (MnAgent_ThemeOfGroupOfView_Theme $e0 $x0 $x1 $x2))
@@ -2164,6 +3539,16 @@
 ;; p206538  support 3 (occ 3)  size 2  root metropolitan_statistical_area (constant)  depth 1
 ;;   e.g. tierC-000249 tierC-000250 tierC-000275
 (Implication (And (Inheritance metropolitan_statistical_area area) (Inheritance metropolitan_statistical_area metropolitan)) (MnInheritanceArea_InheritanceMetropolitan metropolitan_statistical_area))
+
+;; p206589  support 3 (occ 3)  size 1  root border_section (constant)  depth 1
+;;   e.g. tierC-000217 tierC-000218 tierC-000245
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Inheritance border_section section)
+
+;; p206590  support 3 (occ 3)  size 1  root dung_beetle (constant)  depth 1
+;;   e.g. tierB-000059 tierB-001735 tierB-001833
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Inheritance dung_beetle beetle)
 
 ;; p206645  support 3 (occ 3)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierB-000387 tierB-001534 tierB-001963
@@ -2937,12 +4322,697 @@
 ;;   e.g. tierB-001177 tierB-001566 tierB-001922
 (Implication (And (Theme $e0 $x0) (To $e0 $x1)) (MnTheme_To $e0 $x0 $x1))
 
-;; ==================== SUBSUMED UNITS: 226 of 1454 rooted-subtree units (k = 4, support >= 3 of 2302 records) ====================
+;; p207568  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000248 tierB-000343 tierB-000786
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Against $e0 $x0)
+
+;; p207569  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001044 tierB-001117 tierB-001767
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 adriano)
+
+;; p207570  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001270 tierC-000075 tierC-000076
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 alexander)
+
+;; p207574  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000025 tierB-000524 tierB-000563
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 elias)
+
+;; p207576  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000791 tierB-000987 tierB-001675
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 gustavo)
+
+;; p207577  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000406 tierB-000412 tierB-000564
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 ivan)
+
+;; p207579  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000313 tierB-000327 tierB-001449
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 linda)
+
+;; p207581  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000107 tierB-000450 tierB-000588
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 martino)
+
+;; p207582  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000002 tierB-000021 tierB-000048
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 mary)
+
+;; p207584  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000209 tierB-000219 tierB-000257
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 mennad)
+
+;; p207587  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000995 tierC-000269 tierC-000270
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 roger)
+
+;; p207588  support 3 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000137 tierB-000240 tierB-000273
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 william)
+
+;; p207592  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000925 tierB-000964 tierB-001832
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(But $e0 $x0)
+
+;; p207593  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000791 tierB-000917 tierB-001051
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Every $e0 <num> week)
+
+;; p207594  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000393 tierB-000559 tierB-001967
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Every $e0 <num> year)
+
+;; p207595  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001016 tierB-001523 tierB-001966
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Experiencer $e0 $e1)
+
+;; p207598  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000335 tierB-000338 tierB-000815
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 cookie)
+
+;; p207599  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000796 tierB-001519 tierB-001955
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 dish)
+
+;; p207600  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001928 tierC-000285 tierC-000286
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 law)
+
+;; p207601  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000120 tierB-000409 tierB-001591
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 measure)
+
+;; p207602  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000193 tierB-000414 tierB-001479
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 noise)
+
+;; p207603  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001351 tierB-001426 tierB-001449
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 question)
+
+;; p207604  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000018 tierB-000913 tierB-001699
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 road)
+
+;; p207605  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000760 tierC-000265 tierC-000266
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 rock)
+
+;; p207606  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000145 tierC-000261 tierC-000262
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 sequence)
+
+;; p207607  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001362 tierC-000127 tierC-000128
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 sister)
+
+;; p207608  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001394 tierB-001632 tierB-001886
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 tree)
+
+;; p207610  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000864 tierB-001295 tierB-001760
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 woman)
+
+;; p207611  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000783 tierB-000816 tierB-001909
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(In $e0 $e1)
+
+;; p207612  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000040 tierB-001616 tierC-000206
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(In $x0 $x1)
+
+;; p207613  support 3 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001173 tierC-000135 tierC-000136
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(LocatedIn $x0 india)
+
+;; p207616  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000374 tierB-000398 tierB-001800
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Manner $e0 carefully)
+
+;; p207617  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000465 tierB-000466 tierB-001149
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Manner $e0 really)
+
+;; p207618  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000004 tierB-000593 tierB-000647
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Measure $e0 duration <num> day)
+
+;; p207619  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000080 tierC-000201 tierC-000202
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 active)
+
+;; p207621  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000345 tierB-000673 tierB-001688
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 attack)
+
+;; p207622  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000464 tierC-000197 tierC-000198
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 bake)
+
+;; p207623  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001605 tierB-001610 tierB-001928
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 base)
+
+;; p207626  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000303 tierC-000133 tierC-000134
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 celebrate)
+
+;; p207627  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000344 tierB-000930 tierB-001735
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 climb)
+
+;; p207631  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000925 tierB-001535 tierB-001648
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 difficult)
+
+;; p207632  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000209 tierB-000946 tierB-000993
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 drink)
+
+;; p207634  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000137 tierB-001046 tierC-000111
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 give)
+
+;; p207635  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000228 tierB-001384 tierB-001512
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 grow)
+
+;; p207637  support 3 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000379 tierB-001878 tierC-000139
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 include)
+
+;; p207639  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000689 tierB-001449 tierB-001843
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 know)
+
+;; p207640  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000229 tierB-000282 tierB-000608
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 learn)
+
+;; p207641  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000478 tierC-000075 tierC-000076
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 marry)
+
+;; p207642  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000759 tierB-001149 tierB-001989
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 mean)
+
+;; p207643  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000455 tierC-000293 tierC-000294
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 paint)
+
+;; p207645  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000470 tierB-001120 tierB-001386
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 pull)
+
+;; p207646  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000117 tierB-001082 tierB-001488
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 reach)
+
+;; p207650  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000115 tierB-000686 tierB-000980
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 see)
+
+;; p207651  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001218 tierB-001933 tierB-001977
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 shine)
+
+;; p207652  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000256 tierB-000813 tierB-001813
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 shoot)
+
+;; p207657  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000132 tierB-000147 tierB-001471
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 take_off)
+
+;; p207659  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001257 tierB-001648 tierC-000022
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 task)
+
+;; p207660  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000114 tierB-000816 tierB-001909
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 understand)
+
+;; p207661  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000002 tierB-000712 tierB-001557
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 wait)
+
+;; p207662  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001318 tierB-001396 tierB-001801
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 wear)
+
+;; p207663  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000033 tierB-000692 tierB-001806
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 accident)
+
+;; p207664  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000411 tierB-000913 tierC-000158
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 army)
+
+;; p207665  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000285 tierB-000360 tierB-001043
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 atmosphere)
+
+;; p207666  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000170 tierB-001843 tierB-001964
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 author)
+
+;; p207667  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000103 tierB-000343 tierB-001092
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 ball)
+
+;; p207668  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000221 tierB-001081 tierB-001775
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 beach)
+
+;; p207672  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000676 tierB-001385 tierB-001688
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 building)
+
+;; p207673  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000330 tierB-000619 tierB-001040
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 camera)
+
+;; p207674  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000476 tierB-000687 tierB-001925
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 ceiling)
+
+;; p207675  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000143 tierB-000202 tierB-000739
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 church)
+
+;; p207676  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000782 tierC-000221 tierC-000222
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 clear)
+
+;; p207677  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000205 tierB-000261 tierB-000362
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 cold)
+
+;; p207678  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000391 tierC-000163 tierC-000164
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 complex)
+
+;; p207679  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000387 tierB-000781 tierB-001000
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 concert)
+
+;; p207680  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000462 tierB-000942 tierB-001663
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 cook)
+
+;; p207682  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000251 tierB-001146 tierB-001519
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 day)
+
+;; p207683  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001002 tierB-001053 tierB-001186
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 desk)
+
+;; p207684  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000025 tierB-001455 tierB-001831
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 difference)
+
+;; p207685  support 3 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000285 tierB-001022 tierB-001529
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 different)
+
+;; p207686  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000021 tierB-001587 tierB-001634
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 dress)
+
+;; p207687  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001259 tierB-001322 tierB-001582
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 earth)
+
+;; p207688  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000246 tierB-001432 tierB-001488
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 easy)
+
+;; p207689  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000949 tierB-001232 tierB-001336
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 fact)
+
+;; p207690  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000774 tierB-001153 tierB-001490
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 field)
+
+;; p207691  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000872 tierB-000923 tierB-000977
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 flower)
+
+;; p207692  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000141 tierB-000609 tierB-000929
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 forest)
+
+;; p207693  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000423 tierB-000871 tierB-001399
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 fox)
+
+;; p207694  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000498 tierB-001610 tierB-001845
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 game)
+
+;; p207695  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000285 tierC-000197 tierC-000198
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 headquarters)
+
+;; p207696  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000089 tierC-000221 tierC-000222
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 important)
+
+;; p207697  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000524 tierC-000269 tierC-000270
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 isolated)
+
+;; p207698  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000248 tierB-000551 tierB-000664
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 king)
+
+;; p207699  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000604 tierB-001291 tierB-001403
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 kitchen)
+
+;; p207700  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000288 tierB-001762 tierB-001848
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 law)
+
+;; p207702  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000243 tierC-000283 tierC-000284
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 mass)
+
+;; p207703  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000625 tierC-000061 tierC-000062
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 method)
+
+;; p207704  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001423 tierB-001647 tierB-001653
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 museum)
+
+;; p207705  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000139 tierC-000111 tierC-000112
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 name)
+
+;; p207706  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000073 tierB-000352 tierB-000695
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 noise)
+
+;; p207707  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000573 tierB-000722 tierB-001257
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 ocean)
+
+;; p207708  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000252 tierB-000332 tierB-001572
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 opportunity)
+
+;; p207710  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000172 tierB-001250 tierB-001638
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 page)
+
+;; p207711  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000049 tierB-001263 tierB-001498
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 patient)
+
+;; p207712  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000394 tierB-000535 tierB-000714
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 plant)
+
+;; p207713  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000150 tierB-000256 tierB-000547
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 police)
+
+;; p207714  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000005 tierB-000617 tierB-001716
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 population)
+
+;; p207715  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001726 tierC-000053 tierC-000054
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 president)
+
+;; p207716  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000145 tierC-000029 tierC-000030
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 race)
+
+;; p207717  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000224 tierB-000306 tierB-000777
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 report)
+
+;; p207718  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000521 tierB-000902 tierB-001180
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 right)
+
+;; p207719  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000633 tierB-001110 tierB-001919
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 roof)
+
+;; p207720  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001196 tierC-000163 tierC-000164
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 simple)
+
+;; p207721  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000647 tierB-000975 tierB-001651
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 small)
+
+;; p207722  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000230 tierB-000503 tierB-000734
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 spider)
+
+;; p207723  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000081 tierB-000706 tierB-001699
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 station)
+
+;; p207724  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000134 tierB-000775 tierB-001531
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 storm)
+
+;; p207725  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001280 tierC-000177 tierC-000178
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 story)
+
+;; p207726  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000156 tierB-001223 tierB-001453
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 strong)
+
+;; p207727  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000700 tierB-000749 tierB-001219
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 teacher)
+
+;; p207728  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001108 tierB-001266 tierB-001573
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 theater)
+
+;; p207729  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000208 tierB-000356 tierB-001166
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 top)
+
+;; p207730  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000128 tierB-000437 tierB-001878
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 treaty)
+
+;; p207731  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000694 tierB-000745 tierB-001223
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 truth)
+
+;; p207732  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000510 tierB-000931 tierB-001569
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 valuable)
+
+;; p207733  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000039 tierB-001055 tierB-001752
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 wood)
+
+;; p207734  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000367 tierB-000832 tierB-001890
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 yellow)
+
+;; p207735  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000602 tierB-001773 tierB-001870
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 young)
+
+;; p207736  support 3 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000172 tierC-000083 tierC-000084
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Ordinal $x0 <num> line)
+
+;; p207737  support 3 (occ 3)  size 1  root (LocatedIn (constant)  depth 1
+;;   e.g. tierB-000664 tierB-001207 tierB-001292
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Past (LocatedIn $x0 there))
+
+;; p207738  support 3 (occ 3)  size 1  root (Member (constant)  depth 1
+;;   e.g. tierB-000495 tierB-001170 tierB-001521
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Probably (Member $x0 good))
+
+;; p207739  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000229 tierB-001518 tierB-001745
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(RestOf $x0 $x1)
+
+;; p207740  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000908 tierB-000997 tierB-001031
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Start $e0 (Year <num>))
+
+;; p207741  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000559 tierB-000917 tierB-000939
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 (Weekday sunday))
+
+;; p207742  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000238 tierB-000303 tierB-000598
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 morning)
+
+;; p207743  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000168 tierB-000699 tierB-001440
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 soon)
+
+;; ==================== SUBSUMED UNITS: 314 of 1454 rooted-subtree units (0 proposals; k = 4, support >= 3 of 2302 records) ====================
+
+;; p200327  support 27 (occ 27)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000142 tierB-000408 tierB-000492
+;;   subsumed by p200321 (MnHolder_Have); not a proposal
+(Holder $e0 $x0)
 
 ;; p200339  support 26 (occ 26)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000142 tierB-000408 tierB-000492
 ;;   subsumed by p200337 (MnHolder_Have_Theme); not a proposal
 (And (Holder $e0 $x0) (Theme $e0 $x1))
+
+;; p200737  support 13 (occ 18)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000063 tierB-000932 tierB-001867
+;;   subsumed by p200728 (MnBuild_Patient); not a proposal
+(Member $e0 build)
 
 ;; p200847  support 12 (occ 12)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000199 tierB-000265 tierB-000465
@@ -2979,6 +5049,11 @@
 ;;   subsumed by p201223 (MnBuild_Past_Patient); not a proposal
 (And (Member $e0 build) (Past $e0))
 
+;; p201269  support 9 (occ 11)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000067 tierB-000393 tierB-000412
+;;   subsumed by p201247 (MnKill_Patient); not a proposal
+(Member $e0 kill)
+
 ;; p201478  support 8 (occ 12)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierB-000063 tierB-001867 tierC-000045
 ;;   subsumed by p201446 (MnAgent_Build_Patient); not a proposal
@@ -3004,6 +5079,11 @@
 ;;   subsumed by p201774 (MnWrite_Past_Patient); not a proposal
 (And (Member $e0 write) (Past $e0))
 
+;; p201881  support 7 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000500 tierB-000656 tierB-000782
+;;   subsumed by p201834 (MnPast_Through); not a proposal
+(Through $e0 $x0)
+
 ;; p202011  support 6 (occ 10)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000017 tierC-000018 tierC-000123
 ;;   subsumed by p201891 (MnAgentOfPossessionOfPerson_Past); not a proposal
@@ -3013,6 +5093,31 @@
 ;;   e.g. tierB-000063 tierC-000045 tierC-000046
 ;;   subsumed by p202114 (MnAgent_Build_Past_Patient); not a proposal
 (And (Agent $e0 $x0) (Member $e0 build) (Past $e0))
+
+;; p202281  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000906 tierB-001568 tierB-001812
+;;   subsumed by p202207 (MnBear_Past); not a proposal
+(Member $e0 bear)
+
+;; p202282  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000215 tierB-000636 tierB-000852
+;;   subsumed by p202208 (MnCapture_Past); not a proposal
+(Member $e0 capture)
+
+;; p202290  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000962 tierB-001035 tierB-001595
+;;   subsumed by p202213 (MnReceive_Past); not a proposal
+(Member $e0 receive)
+
+;; p202312  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000259 tierB-000903 tierB-001031
+;;   subsumed by p202219 (MnPast_PatientEv); not a proposal
+(Patient $e0 $e1)
+
+;; p202314  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000237 tierB-000327 tierB-000565
+;;   subsumed by p202220 (MnPast_TimeYesterday); not a proposal
+(Time $e0 yesterday)
 
 ;; p202559  support 5 (occ 7)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000485 tierB-001052 tierB-001138
@@ -3098,6 +5203,41 @@
 ;;   e.g. tierB-000145 tierC-000277 tierC-000278
 ;;   subsumed by p202782 (MnWin_Past_Theme); not a proposal
 (And (Member $e0 win) (Theme $e0 $x0))
+
+;; p202977  support 5 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000101 tierB-000454 tierB-000768
+;;   subsumed by p202874 (MnContain_Theme); not a proposal
+(Member $e0 contain)
+
+;; p202978  support 5 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000089 tierB-000728 tierB-000863
+;;   subsumed by p202875 (MnCreate_Patient); not a proposal
+(Member $e0 create)
+
+;; p202979  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000781 tierB-001245 tierB-001250
+;;   subsumed by p202877 (MnDraw_Past); not a proposal
+(Member $e0 draw)
+
+;; p202986  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000676 tierB-000712 tierB-001299
+;;   subsumed by p202892 (MnStand_Past); not a proposal
+(Member $e0 stand)
+
+;; p203011  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000176 tierB-000316 tierB-000659
+;;   subsumed by p202902 (MnPast_StimulusEv); not a proposal
+(Stimulus $e0 $e1)
+
+;; p203012  support 5 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000139 tierB-000309 tierB-000373
+;;   subsumed by p202903 (MnPast_Time(YearNum); not a proposal
+(Time $e0 (Year <num>))
+
+;; p203013  support 5 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000215 tierB-000799 tierB-001031
+;;   subsumed by p202905 (MnPast_TimeAtMost(YearNum); not a proposal
+(TimeAtMost $e0 (Year <num>))
 
 ;; p203710  support 4 (occ 4)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000688 tierC-000001 tierC-000121
@@ -3238,6 +5378,26 @@
 ;;   e.g. tierC-000159 tierC-000160 tierC-000355
 ;;   subsumed by p203075 (MnAgent_ThemeOfPossessionRepublicanPartyOfParty); not a proposal
 (And (Member republican_party party) (Possession $x0 republican_party))
+
+;; p204174  support 4 (occ 4)  size 1  root regional_unit (constant)  depth 1
+;;   e.g. tierC-000031 tierC-000032 tierC-000081
+;;   subsumed by p204124 (MnInheritanceRegional_InheritanceUnit); not a proposal
+(Inheritance regional_unit regional)
+
+;; p204175  support 4 (occ 4)  size 1  root regional_unit (constant)  depth 1
+;;   e.g. tierC-000031 tierC-000032 tierC-000081
+;;   subsumed by p204124 (MnInheritanceRegional_InheritanceUnit); not a proposal
+(Inheritance regional_unit unit)
+
+;; p204176  support 4 (occ 4)  size 1  root free_soil_party (constant)  depth 1
+;;   e.g. tierC-000159 tierC-000160 tierC-000355
+;;   subsumed by p203074 (MnAgent_ThemeOfPossessionFreeSoilPartyOfParty); not a proposal
+(Member free_soil_party party)
+
+;; p204177  support 4 (occ 4)  size 1  root republican_party (constant)  depth 1
+;;   e.g. tierC-000159 tierC-000160 tierC-000355
+;;   subsumed by p203075 (MnAgent_ThemeOfPossessionRepublicanPartyOfParty); not a proposal
+(Member republican_party party)
 
 ;; p204278  support 4 (occ 4)  size 3  root $e1 (event)  depth 2
 ;;   e.g. tierB-000688 tierC-000001 tierC-000121
@@ -3534,6 +5694,121 @@
 ;;   subsumed by p203050 (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty); not a proposal
 (And (Possession $x0 republican_party) (Theme $e0 $x0))
 
+;; p204685  support 4 (occ 5)  size 1  root appear (constant)  depth 1
+;;   e.g. tierC-000050 tierC-000128 tierC-000259
+;;   subsumed by p204482 (MnAlsoEvOfPast); not a proposal
+(Also appear $e0)
+
+;; p204690  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000411 tierB-000844 tierB-001017
+;;   subsumed by p204489 (MnDuring_Past); not a proposal
+(During $e0 $x0)
+
+;; p204701  support 4 (occ 7)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000159 tierC-000160 tierC-000355
+;;   subsumed by p203047 (MnAgentOfThing_ThemeOfGroupOfView); not a proposal
+(GroupOf $x0 view)
+
+;; p204702  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000181 tierC-000182 tierC-000239
+;;   subsumed by p203079 (MnHolderKristoffer_ThemeOfCardinalityNum-GroupOfChild); not a proposal
+(Holder $e0 kristoffer)
+
+;; p204704  support 4 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000111 tierC-000112 tierC-000121
+;;   subsumed by p204511 (MnLocationJapan_Past); not a proposal
+(Location $e0 japan)
+
+;; p204705  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000045 tierC-000046 tierC-000291
+;;   subsumed by p203053 (MnAgentOfCompany_LocationKazakhstan_Build); not a proposal
+(Location $e0 kazakhstan)
+
+;; p204706  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000257 tierC-000258 tierC-000353
+;;   subsumed by p204515 (MnMannerDirectly_Past); not a proposal
+(Manner $e0 directly)
+
+;; p204711  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000748 tierB-001594 tierC-000241
+;;   subsumed by p203729 (MnResultEvOfExperiencerOfBad); not a proposal
+(Member $e0 bad)
+
+;; p204713  support 4 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000367 tierB-000368 tierB-000849
+;;   subsumed by p204520 (MnBuy_Theme); not a proposal
+(Member $e0 buy)
+
+;; p204714  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000177 tierC-000284 tierC-000341
+;;   subsumed by p204523 (MnConduct_Past); not a proposal
+(Member $e0 conduct)
+
+;; p204719  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000401 tierB-000563 tierB-001544
+;;   subsumed by p204524 (MnDecide_Past); not a proposal
+(Member $e0 decide)
+
+;; p204720  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000838 tierB-001967 tierC-000199
+;;   subsumed by p204525 (MnDie_Patient); not a proposal
+(Member $e0 die)
+
+;; p204721  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000658 tierB-001251 tierC-000111
+;;   subsumed by p204313 (MnDiscover_Past_Theme); not a proposal
+(Member $e0 discover)
+
+;; p204722  support 4 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000045 tierB-000121 tierB-000801
+;;   subsumed by p204464 (MnAgent_Fly); not a proposal
+(Member $e0 fly)
+
+;; p204727  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000871 tierB-000889 tierB-001530
+;;   subsumed by p204283 (MnAgent_Jump_Past); not a proposal
+(Member $e0 jump)
+
+;; p204730  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000649 tierB-001008 tierB-001762
+;;   subsumed by p204532 (MnPass_Past); not a proposal
+(Member $e0 pass)
+
+;; p204732  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000099 tierC-000100 tierC-000359
+;;   subsumed by p204534 (MnReplace_Past); not a proposal
+(Member $e0 replace)
+
+;; p204733  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000607 tierB-001436 tierB-001566
+;;   subsumed by p204535 (MnRequire_Theme); not a proposal
+(Member $e0 require)
+
+;; p204746  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000277 tierC-000278 tierC-000301
+;;   subsumed by p203087 (MnForEv_Win_ThemeOfEmmy); not a proposal
+(Member $x0 emmy)
+
+;; p204747  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001004 tierB-001743 tierC-000123
+;;   subsumed by p204476 (MnAgentOfFather); not a proposal
+(Member $x0 father)
+
+;; p204781  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000159 tierC-000160 tierC-000355
+;;   subsumed by p203049 (MnAgent_ThemeOfGroupOfView-PossessionFreeSoilParty); not a proposal
+(Possession $x0 free_soil_party)
+
+;; p204782  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000159 tierC-000160 tierC-000355
+;;   subsumed by p203050 (MnAgent_ThemeOfGroupOfView-PossessionRepublicanParty); not a proposal
+(Possession $x0 republican_party)
+
+;; p204788  support 4 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000215 tierB-000799 tierB-001629
+;;   subsumed by p204556 (MnPast_TimeAtLeast(YearNum); not a proposal
+(TimeAtLeast $e0 (Year <num>))
+
 ;; p205990  support 3 (occ 3)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000045 tierC-000291 tierC-000292
 ;;   subsumed by p204829 (MnAgentOfCompany_LocationEskisehir_Build); not a proposal
@@ -3638,6 +5913,16 @@
 ;;   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   subsumed by p204847 (MnAgent_ThemeOfPossessionRepublicanParty_Theme); not a proposal
 (And (Possession $x0 republican_party) (Theme $e0 $x0) (Theme $e0 $x1))
+
+;; p206591  support 3 (occ 3)  size 1  root living_room (constant)  depth 1
+;;   e.g. tierB-001573 tierB-001670 tierB-001938
+;;   subsumed by p206419 (MnLivingRoomOfInheritanceRoom); not a proposal
+(Inheritance living_room room)
+
+;; p206592  support 3 (occ 3)  size 1  root metropolitan_statistical_area (constant)  depth 1
+;;   e.g. tierC-000249 tierC-000250 tierC-000275
+;;   subsumed by p206538 (MnInheritanceArea_InheritanceMetropolitan); not a proposal
+(Inheritance metropolitan_statistical_area metropolitan)
 
 ;; p206793  support 3 (occ 3)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierB-000387 tierB-001534 tierB-001963
@@ -4068,3 +6353,218 @@
 ;;   e.g. tierC-000159 tierC-000160 tierC-000356
 ;;   subsumed by p204824 (MnAgent_ThemeOfGroupOfView_Theme); not a proposal
 (And (Theme $e0 $x0) (Theme $e0 $x1))
+
+;; p207571  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000209 tierB-000651 tierB-001538
+;;   subsumed by p207183 (MnAgentBaya_Past); not a proposal
+(Agent $e0 baya)
+
+;; p207572  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000078 tierB-000201 tierB-000576
+;;   subsumed by p207184 (MnAgentDaniel_Past); not a proposal
+(Agent $e0 daniel)
+
+;; p207573  support 3 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000117 tierB-000173 tierB-000827
+;;   subsumed by p207185 (MnAgentDavid_Ongoing); not a proposal
+(Agent $e0 david)
+
+;; p207575  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000148 tierB-000389 tierB-000487
+;;   subsumed by p207187 (MnAgentFelix_Past); not a proposal
+(Agent $e0 felix)
+
+;; p207578  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000075 tierC-000041 tierC-000042
+;;   subsumed by p207188 (MnAgentJessica_ThemeEv); not a proposal
+(Agent $e0 jessica)
+
+;; p207580  support 3 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000075 tierB-000239 tierB-000400
+;;   subsumed by p207190 (MnAgentMark_Past); not a proposal
+(Agent $e0 mark)
+
+;; p207583  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000667 tierB-001023 tierB-001418
+;;   subsumed by p207191 (MnAgentMatthew_Past); not a proposal
+(Agent $e0 matthew)
+
+;; p207585  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000252 tierB-000929 tierB-001094
+;;   subsumed by p207192 (MnAgentMichael_Past); not a proposal
+(Agent $e0 michael)
+
+;; p207586  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000138 tierB-000706 tierB-001172
+;;   subsumed by p207193 (MnAgentPietro_Past); not a proposal
+(Agent $e0 pietro)
+
+;; p207589  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000001 tierB-000008 tierB-000013
+;;   subsumed by p207194 (MnAgentZiri_Ongoing); not a proposal
+(Agent $e0 ziri)
+
+;; p207590  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000340 tierB-001316 tierB-001572
+;;   subsumed by p207195 (MnAt_Past); not a proposal
+(At $e0 $x0)
+
+;; p207591  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001625 tierC-000311 tierC-000312
+;;   subsumed by p206006 (MnBecauseEvOfPast_Past); not a proposal
+(Because $e0 $e1)
+
+;; p207596  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000012 tierB-001418 tierB-001496
+;;   subsumed by p207223 (MnGoalBed_Go); not a proposal
+(Goal $e0 bed)
+
+;; p207597  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000575 tierB-001086 tierB-001743
+;;   subsumed by p206795 (MnAgent_GoalHome_Past); not a proposal
+(Goal $e0 home)
+
+;; p207609  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001985 tierC-000261 tierC-000262
+;;   subsumed by p207205 (MnCardinalityNum_GroupOfWay); not a proposal
+(GroupOf $x0 way)
+
+;; p207614  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000045 tierC-000291 tierC-000292
+;;   subsumed by p204829 (MnAgentOfCompany_LocationEskisehir_Build); not a proposal
+(Location $e0 eskisehir)
+
+;; p207615  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000419 tierC-000097 tierC-000098
+;;   subsumed by p207210 (MnExperiencer_LocationEurope); not a proposal
+(Location $e0 europe)
+
+;; p207620  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000037 tierB-000128 tierB-000974
+;;   subsumed by p207251 (MnApprove_Theme); not a proposal
+(Member $e0 approve)
+
+;; p207624  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000565 tierB-000904 tierB-001920
+;;   subsumed by p207211 (MnExperiencer_Beautiful); not a proposal
+(Member $e0 beautiful)
+
+;; p207625  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001302 tierB-001641 tierB-001694
+;;   subsumed by p207255 (MnBreakOut_Past); not a proposal
+(Member $e0 break_out)
+
+;; p207628  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001575 tierC-000131 tierC-000132
+;;   subsumed by p206841 (MnCompose_Past_Patient); not a proposal
+(Member $e0 compose)
+
+;; p207629  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001149 tierC-000261 tierC-000262
+;;   subsumed by p207266 (MnDefine_Theme); not a proposal
+(Member $e0 define)
+
+;; p207630  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000119 tierC-000120 tierC-000184
+;;   subsumed by p206843 (MnDesign_Past_Patient); not a proposal
+(Member $e0 design)
+
+;; p207633  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000217 tierC-000218 tierC-000245
+;;   subsumed by p207189 (MnAgentJica_Fund); not a proposal
+(Member $e0 fund)
+
+;; p207636  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000329 tierB-000692 tierB-001801
+;;   subsumed by p207280 (MnHoldUp_Past); not a proposal
+(Member $e0 hold_up)
+
+;; p207638  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000257 tierC-000258 tierC-000351
+;;   subsumed by p207283 (MnInfluence_Past); not a proposal
+(Member $e0 influence)
+
+;; p207644  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000334 tierB-001040 tierB-001072
+;;   subsumed by p207288 (MnPickUp_Past); not a proposal
+(Member $e0 pick_up)
+
+;; p207647  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000783 tierB-001221 tierB-001637
+;;   subsumed by p207291 (MnRead_Theme); not a proposal
+(Member $e0 read)
+
+;; p207648  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000688 tierC-000255 tierC-000256
+;;   subsumed by p207292 (MnReturn_Past); not a proposal
+(Member $e0 return)
+
+;; p207649  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000311 tierC-000095 tierC-000096
+;;   subsumed by p207293 (MnRule_Past); not a proposal
+(Member $e0 rule)
+
+;; p207653  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000935 tierB-001202 tierB-001970
+;;   subsumed by p207295 (MnSolve_Patient); not a proposal
+(Member $e0 solve)
+
+;; p207654  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000383 tierB-000482 tierB-001027
+;;   subsumed by p206855 (MnStick_Past_Patient); not a proposal
+(Member $e0 stick)
+
+;; p207655  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000075 tierC-000100 tierC-000338
+;;   subsumed by p207302 (MnSucceed_Past); not a proposal
+(Member $e0 succeed)
+
+;; p207656  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000700 tierC-000017 tierC-000018
+;;   subsumed by p207303 (MnSuggest_Past); not a proposal
+(Member $e0 suggest)
+
+;; p207658  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-001234 tierC-000109 tierC-000110
+;;   subsumed by p207304 (MnTakeOver_Past); not a proposal
+(Member $e0 take_over)
+
+;; p207669  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000305 tierC-000243 tierC-000244
+;;   subsumed by p206034 (MnLocationOfBench_Past); not a proposal
+(Member $x0 bench)
+
+;; p207670  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000172 tierB-001586 tierB-001638
+;;   subsumed by p207314 (MnBottom_PartOf); not a proposal
+(Member $x0 bottom)
+
+;; p207671  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-000227 tierC-000125 tierC-000126
+;;   subsumed by p207214 (MnExperiencerOfBridge); not a proposal
+(Member $x0 bridge)
+
+;; p207681  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001003 tierC-000041 tierC-000042
+;;   subsumed by p206033 (MnLocationOfCouch_Sleep); not a proposal
+(Member $x0 couch)
+
+;; p207701  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001573 tierB-001670 tierB-001938
+;;   subsumed by p206419 (MnLivingRoomOfInheritanceRoom); not a proposal
+(Member $x0 living_room)
+
+;; p207709  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierB-001087 tierC-000341 tierC-000342
+;;   subsumed by p207320 (MnThemeOfOrchestra); not a proposal
+(Member $x0 orchestra)
+
+;; p207744  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000100 tierB-000378 tierB-001726
+;;   subsumed by p207220 (MnFuture_TimeTomorrow); not a proposal
+(Time $e0 tomorrow)
+
+;; p207745  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierB-000193 tierB-001094 tierB-001397
+;;   subsumed by p207337 (MnPast_With); not a proposal
+(With $e0 $x0)

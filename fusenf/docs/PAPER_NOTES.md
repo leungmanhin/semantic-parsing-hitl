@@ -126,6 +126,25 @@ Sections follow a prospective paper skeleton; reorganize freely at writing time.
   batch-2 `frequent_patterns2` scoped to shape stratum + bounded conjunction expansion +
   nisurp ranking; hyperon-miner = cross-reference, NOT oracle (WIP; arbiter = written
   formal spec + Tier A answer key). → `PATTERN_MINER_STUDY.md`.
+- One-line readings of the §4.3 methods (owner-approved 2026-09-10; "proposed" carries the pipeline): §4.3.1 a
+  subtree that recurs across enough sentences is proposed as a single semantic unit; §4.3.2 two slots whose
+  fillers come from indistinguishable populations are proposed to be the same role (minority label →
+  majority); §4.3.3 two subtrees that co-occur far more than their frequencies predict are proposed to be one
+  feature (their aligned conjunction); §4.3.4 a recurring structural difference between known paraphrases is
+  proposed as a rewrite; §4.3.5 subtrees interchangeable in context are proposed equivalent. §4.3.1 finds
+  units, §4.3.3 glues them, §4.3.2/4/5 find the equivalences where surface variation is absorbed.
+- Packs are not the anti-fragility mechanism (2026-09-10): a pack rewrites one structure on both sides, so it
+  changes vocabulary, not equivalence classes; QA robustness (M2) comes from relabels / collapses /
+  alternations / prunes, packs move compression (M3), give coarser units and shorter proofs, and absorb
+  variation only as the common target of several LHS shapes (§4.3.3's merged halves). Ordering consequence:
+  relabels and collapses before packs (#53). Rejected alternative: treating §4.3.1 packs as consolidation of
+  surface variants.
+- Faithful §4.3.3 on single-sentence corpora (2026-09-10/11): the paper's clause is a proxy for tightness under
+  raw MI (calibrated: threshold = MI of a perfect pair over 7 records, ceiling = 97th percentile of unit
+  support; NMI = the addition); genuine yield = the rooted halves of constructions the directed-tree reading
+  of §4.3.1 split (have frame, subject-control aspectual join, resultative, purpose infinitive); NEGATIVE
+  RESULT: no genuine disconnected pair — every "no shared skolem" pass is a near-duplicate PAWS family; a
+  discourse-level regularity would need a document-level corpus.
 
 ## 6. Validation gauntlet
 

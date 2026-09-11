@@ -12,26 +12,51 @@
 ;;   constants verbatim  n_lifted = 0 only; the 3939 constant-lifted (shape-stratum) patterns are an addition
 ;;   closure             closed = no larger faithful unit with exactly the same supporting records contains it (its atoms embed under a renaming of variables); two different units on the same records are both closed; computed within this view (the miner's own flag ranges over the full inventory, lifted patterns and joins included, and is kept as miner_dominated); closed units are the meta-node proposals, subsumed units the same evidence in fewer atoms (subsumed_by names the covering unit)
 ;;   meta-node           (Mn<Name> <root> <other variables>) for proposals = closed units of size >= 2 — Name = the unit's heads and constants in atom order along the tree (Member / GroupOf give their constant, roles their name, Ev / Fn for an event- or function-valued filler, Of<spec> for a filler with atoms of its own, ~NEG a Neg suffix; root tokens joined with '_', tokens inside a nested spec with '-'), the pattern id appended when two units would share a name (0 here); provisional; pack rule = (Implication (And <atoms>) (Mn<Name> …))
-;;   proposals           closed units of size >= 2 (flag `proposal`); a subsumed unit is the same evidence in fewer atoms and is rendered for reading only; single-atom units are subtrees by the letter, kept in the JSONL and the counts, but a one-atom pack is a rename, so they are not rendered
+;;   proposals           closed units of size >= 2 (flag `proposal`); a subsumed unit is the same evidence in fewer atoms and is rendered for reading only; single-atom units are subtrees by the letter and are rendered in their section without a rule, since a one-atom pack is a rename
 ;;
 ;; RECORD FORMAT (every record is one unit = one rooted subtree)
 ;;   ;; <pattern id>  support <records> (occ <matches>)  size <atoms>  root <variable> (<kind>)  depth <d>
 ;;   ;;   e.g. <up to three supporting record ids>
 ;;   (Implication <the unit as a conjunctive query> (Mn<Name> <root> <other variables>))
-;;     = the pack rule the proposal would become (naming provisional; the gauntlet decides); a subsumed
-;;     unit carries no rule and is rendered as its bare query under a 'subsumed by' note
-;; Sections: CLOSED UNITS (the meta-node proposals) then SUBSUMED UNITS (a larger unit on the same records
-;; contains them); each sorted by support desc, then pattern id. Single-atom units are not rendered.
+;;     = the pack rule the proposal would become (naming provisional; the gauntlet decides); a unit that is
+;;     not a proposal (subsumed, or a single atom) carries no rule and is rendered as its bare query under a note
+;; Sections: CLOSED UNITS (proposals = the closed units of size >= 2; closed single atoms listed with them) then
+;; SUBSUMED UNITS (a larger unit on the same records contains them); each sorted by support desc, then pattern id.
 
-;; ==================== CLOSED UNITS: 614 of 1652 rooted-subtree units (k = 4, support >= 3 of 762 records) ====================
+;; ==================== CLOSED UNITS: 773 of 1652 rooted-subtree units (614 proposals; k = 4, support >= 3 of 762 records) ====================
+
+;; p200004  support 301 (occ 347)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000001 tierA-000002 tierA-000003
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Agent $e0 $x0)
+
+;; p200008  support 247 (occ 264)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000001 tierA-000002 tierA-000003
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Theme $e0 $x0)
+
+;; p200013  support 176 (occ 255)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierA-000001 tierA-000002 tierA-000003
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Past $e0)
 
 ;; p200015  support 171 (occ 171)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
 (Implication (And (Agent $e0 $x0) (Theme $e0 $x1)) (MnAgent_Theme $e0 $x0 $x1))
 
+;; p200022  support 122 (occ 148)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000029 tierA-000030 tierA-000031
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Patient $e0 $x0)
+
 ;; p200033  support 77 (occ 101)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
 (Implication (And (Agent $e0 $x0) (Past $e0)) (MnAgent_Past $e0 $x0))
+
+;; p200039  support 65 (occ 76)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000080 tierA-000081 tierA-000083
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Location $e0 $x0)
 
 ;; p200041  support 63 (occ 71)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
@@ -41,13 +66,38 @@
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
 (Implication (And (Past $e0) (Patient $e0 $x0)) (MnPast_Patient $e0 $x0))
 
+;; p200051  support 51 (occ 53)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000001 tierA-000002 tierA-000003
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Cardinality $x0 <num>)
+
 ;; p200053  support 50 (occ 58)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000029 tierA-000030 tierA-000031
 (Implication (And (Agent $e0 $x0) (Patient $e0 $x1)) (MnAgent_Patient $e0 $x0 $x1))
 
+;; p200070  support 37 (occ 37)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000013 tierC-000014 tierC-000017
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 person)
+
+;; p200071  support 37 (occ 37)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000004 tierA-000011 tierA-000018
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Recipient $e0 $x0)
+
 ;; p200073  support 35 (occ 35)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
 (Implication (And (Agent $e0 $x0) (Past $e0) (Theme $e0 $x1)) (MnAgent_Past_Theme $e0 $x0 $x1))
+
+;; p200076  support 34 (occ 41)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000098 tierA-000128 tierA-000129
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Experiencer $e0 $x0)
+
+;; p200089  support 30 (occ 30)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000104 tierA-000105 tierA-000106
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Possession $x0 $x1)
 
 ;; p200091  support 29 (occ 29)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000004 tierA-000011 tierA-000018
@@ -56,6 +106,11 @@
 ;; p200099  support 28 (occ 28)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000208 tierA-000213 tierA-000218
 (Implication (And (Agent $e0 $x0) (Recipient $e0 $x1)) (MnAgent_Recipient $e0 $x0 $x1))
+
+;; p200103  support 28 (occ 28)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierA-000055 tierA-000066 tierA-000070
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Might $e0)
 
 ;; p200125  support 25 (occ 31)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000080 tierA-000081 tierA-000083
@@ -81,6 +136,21 @@
 ;;   e.g. tierC-000041 tierC-000042 tierC-000049
 (Implication (And (Agent $e0 $x0) (Member $x0 person)) (MnAgentOfPerson $e0 $x0))
 
+;; p200205  support 17 (occ 17)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000181 tierA-000182 tierA-000183
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 child)
+
+;; p200219  support 16 (occ 18)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000174 tierA-000178 tierA-000187
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Theme $e0 $e1)
+
+;; p200237  support 15 (occ 15)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000085 tierA-000086 tierA-000087
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Holder $e0 $x0)
+
 ;; p200249  support 14 (occ 14)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000001 tierA-000005 tierA-000006
 (Implication (And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1)) (MnAgent_Buy_Past_Theme $e0 $x0 $x1))
@@ -101,6 +171,16 @@
 ;;   e.g. tierA-000087 tierA-000108 tierA-000112
 (Implication (And (Might $e0) (Theme $e0 $x0)) (MnMight_Theme $e0 $x0))
 
+;; p200288  support 13 (occ 13)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000181 tierA-000182 tierA-000183
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Goal $e0 $x0)
+
+;; p200289  support 13 (occ 17)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000311 tierA-000312 tierA-000313
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 work)
+
 ;; p200326  support 12 (occ 12)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000208 tierA-000213 tierA-000218
 (Implication (And (Agent $e0 $x0) (Member $e0 give) (Recipient $e0 $x1) (Theme $e0 $x2)) (MnAgent_Give_Recipient_Theme $e0 $x0 $x1 $x2))
@@ -112,6 +192,31 @@
 ;; p200339  support 12 (occ 12)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000085 tierA-000086 tierA-000087
 (Implication (And (Holder $e0 $x0) (Theme $e0 $x1)) (MnHolder_Theme $e0 $x0 $x1))
+
+;; p200350  support 12 (occ 12)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierA-000062 tierA-000063 tierA-000064
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Future $e0)
+
+;; p200351  support 12 (occ 12)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000128 tierA-000130 tierA-000132
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 discover)
+
+;; p200353  support 12 (occ 12)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000001 tierA-000002 tierA-000003
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 depot)
+
+;; p200354  support 12 (occ 12)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000375 tierA-000377 tierA-000378
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 physician)
+
+;; p200355  support 12 (occ 13)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000262 tierA-000272 tierA-000277
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Source $e0 $x0)
 
 ;; p200377  support 11 (occ 11)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
@@ -132,6 +237,31 @@
 ;; p200403  support 11 (occ 13)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierA-000104 tierA-000105 tierA-000106
 (Implication (And (Possession $x0 $x1) (Theme $e0 $x0)) (MnThemeOfPossession $e0 $x0 $x1))
+
+;; p200409  support 11 (occ 11)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000001 tierC-000077 tierC-000078
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Before $e0 $e1)
+
+;; p200410  support 11 (occ 11)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000185 tierA-000189 tierA-000190
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 decide)
+
+;; p200412  support 11 (occ 11)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000114 tierA-000115 tierA-000116
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 board)
+
+;; p200413  support 11 (occ 11)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000008 tierA-000009 tierA-000010
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 hall)
+
+;; p200414  support 11 (occ 11)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000008 tierA-000009 tierA-000010
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 school)
 
 ;; p200470  support 10 (occ 10)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000207 tierA-000209 tierA-000210
@@ -165,6 +295,21 @@
 ;;   e.g. tierA-000262 tierA-000272 tierA-000277
 (Implication (And (Source $e0 $x0) (Theme $e0 $x1)) (MnSource_Theme $e0 $x0 $x1))
 
+;; p200498  support 10 (occ 10)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierC-000145 tierC-000146 tierC-000149
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Can $e0)
+
+;; p200502  support 10 (occ 10)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000084 tierA-000086 tierA-000087
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 require)
+
+;; p200504  support 10 (occ 10)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000015 tierA-000016 tierA-000017
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 crate)
+
 ;; p200525  support 9 (occ 9)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
 (Implication (And (Cardinality $x0 <num>) (Past $e0) (Theme $e0 $x0)) (MnPast_ThemeOfCardinalityNum $e0 $x0))
@@ -196,6 +341,16 @@
 ;; p200564  support 9 (occ 9)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000133 tierA-000135 tierA-000136
 (Implication (And (Member $e0 discover) (Theme $e0 $x0)) (MnDiscover_Theme $e0 $x0))
+
+;; p200573  support 9 (occ 11)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000052 tierA-000055 tierA-000057
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 begin)
+
+;; p200575  support 9 (occ 9)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000128 tierA-000129 tierA-000130
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 ledger)
 
 ;; p200620  support 8 (occ 8)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
@@ -244,6 +399,46 @@
 ;; p200686  support 8 (occ 8)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000153 tierC-000154 tierC-000181
 (Implication (And (Member $e0 have) (Theme $e0 $x0)) (MnHave_Theme $e0 $x0))
+
+;; p200697  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000186 tierA-000187 tierA-000191
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 decision)
+
+;; p200701  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000173 tierA-000174 tierA-000177
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 walk)
+
+;; p200702  support 8 (occ 8)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000390 tierA-000392 tierA-000393
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 automobile)
+
+;; p200703  support 8 (occ 8)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000328 tierA-000332 tierA-000336
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 big)
+
+;; p200704  support 8 (occ 8)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000049 tierA-000050 tierA-000051
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 crew)
+
+;; p200705  support 8 (occ 8)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000196 tierA-000197 tierA-000198
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 family)
+
+;; p200706  support 8 (occ 8)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000185 tierA-000186 tierA-000187
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 new)
+
+;; p200707  support 8 (occ 8)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000291 tierA-000292 tierA-000293
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 song)
 
 ;; p200758  support 7 (occ 7)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000006 tierA-000109 tierA-000110
@@ -309,6 +504,21 @@
 ;;   e.g. tierA-000084 tierA-000086 tierA-000087
 (Implication (And (Member $e0 require) (Theme $e0 $x0)) (MnRequire_Theme $e0 $x0))
 
+;; p200853  support 7 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000003 tierC-000004 tierC-000216
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 locate)
+
+;; p200855  support 7 (occ 7)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000015 tierA-000016 tierA-000017
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 chef)
+
+;; p200856  support 7 (occ 7)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000022 tierA-000023 tierA-000024
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 kiln)
+
 ;; p200863  support 6 (occ 6)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
 (Implication (And (Agent $e0 $x0) (Cardinality $x1 <num>) (Past $e0) (Theme $e0 $x1)) (MnAgent_Past_ThemeOfCardinalityNum $e0 $x0 $x1))
@@ -336,6 +546,11 @@
 ;; p201014  support 6 (occ 6)  size 2  root $x0 (entity)  depth 2
 ;;   e.g. tierA-000035 tierA-000036 tierA-000037
 (Implication (And (Inheritance yard_floodlight floodlight) (Member $x0 yard_floodlight)) (MnYardFloodlightOfInheritanceFloodlight $x0))
+
+;; p201038  support 6 (occ 6)  size 1  root feed_pipe (constant)  depth 1
+;;   e.g. tierA-000046 tierA-000047 tierA-000048
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Inheritance feed_pipe pipe)
 
 ;; p201048  support 6 (occ 6)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000301 tierA-000303 tierA-000304
@@ -396,6 +611,81 @@
 ;; p201100  support 6 (occ 6)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000055 tierA-000066 tierA-000070
 (Implication (And (Might $e0) (Patient $e0 $x0)) (MnMight_Patient $e0 $x0))
+
+;; p201131  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000062 tierA-000063 tierA-000064
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Before $x0 $e0)
+
+;; p201135  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000001 tierC-000158 tierC-000237
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 become)
+
+;; p201136  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000243 tierC-000244 tierC-000279
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 find)
+
+;; p201137  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000247 tierC-000248 tierC-000277
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 portray)
+
+;; p201139  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000004 tierA-000011 tierA-000018
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 sell)
+
+;; p201140  support 6 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000053 tierA-000058 tierA-000063
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 start)
+
+;; p201142  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000335 tierA-000336 tierA-000337
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 bench)
+
+;; p201143  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000399 tierA-000400 tierA-000401
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 bridge)
+
+;; p201145  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000190 tierA-000191 tierA-000192
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 case)
+
+;; p201146  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000035 tierA-000036 tierA-000037
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 electrician)
+
+;; p201147  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000190 tierA-000191 tierA-000192
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 judge)
+
+;; p201148  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000029 tierA-000030 tierA-000031
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 mechanic)
+
+;; p201149  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000135 tierC-000136 tierC-000159
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 view)
+
+;; p201151  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000182 tierA-000186 tierA-000191
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Patient $e0 $e1)
+
+;; p201153  support 6 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000123 tierC-000124 tierC-000197
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(To $e0 $e1)
 
 ;; p201162  support 5 (occ 5)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
@@ -700,6 +990,241 @@
 ;; p201724  support 5 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierC-000025 tierC-000026 tierC-000203
 (Implication (And (Past $e0) (Theme $e0 $e1)) (MnPast_ThemeEv $e0 $e1))
+
+;; p201760  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000380 tierA-000381 tierA-000382
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 sample)
+
+;; p201762  support 5 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000126 tierC-000212 tierC-000215
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 be)
+
+;; p201769  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000143 tierA-000144 tierA-000145
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 airline)
+
+;; p201771  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000281 tierA-000282 tierA-000283
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 apprentice)
+
+;; p201772  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000227 tierA-000228 tierA-000229
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 archive)
+
+;; p201773  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000163 tierA-000164 tierA-000165
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 bank)
+
+;; p201774  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000217 tierA-000218 tierA-000219
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 caller)
+
+;; p201775  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000375 tierA-000376 tierA-000377
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 chart)
+
+;; p201776  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000207 tierA-000208 tierA-000209
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 clerk)
+
+;; p201778  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000185 tierA-000186 tierA-000187
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 committee)
+
+;; p201779  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000148 tierA-000149 tierA-000150
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 council)
+
+;; p201780  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000133 tierA-000134 tierA-000135
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 diver)
+
+;; p201782  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000158 tierA-000159 tierA-000160
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 editor)
+
+;; p201785  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000227 tierA-000228 tierA-000229
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 fire)
+
+;; p201787  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000232 tierA-000233 tierA-000234
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 flood)
+
+;; p201788  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000232 tierA-000233 tierA-000234
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 footbridge)
+
+;; p201789  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000306 tierA-000307 tierA-000308
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 gallery)
+
+;; p201791  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000301 tierA-000302 tierA-000303
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 generator)
+
+;; p201792  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000222 tierA-000223 tierA-000224
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 greenhouse)
+
+;; p201793  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000138 tierA-000139 tierA-000140
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 intern)
+
+;; p201794  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000390 tierA-000391 tierA-000392
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 lane)
+
+;; p201795  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000327 tierA-000331 tierA-000335
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 large)
+
+;; p201796  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000094 tierA-000095 tierA-000096
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 lathe)
+
+;; p201797  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000266 tierA-000267 tierA-000268
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 library)
+
+;; p201799  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000062 tierA-000063 tierA-000064
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 lunch)
+
+;; p201800  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000271 tierA-000272 tierA-000273
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 manifest)
+
+;; p201801  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000158 tierA-000159 tierA-000160
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 manuscript)
+
+;; p201803  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000306 tierA-000307 tierA-000308
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 museum)
+
+;; p201804  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000296 tierA-000297 tierA-000298
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 neighbour)
+
+;; p201806  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000168 tierA-000169 tierA-000170
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 panel)
+
+;; p201807  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000089 tierA-000090 tierA-000091
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 permit)
+
+;; p201808  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000212 tierA-000213 tierA-000214
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 pilot)
+
+;; p201810  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000281 tierA-000282 tierA-000283
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 potter)
+
+;; p201812  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000168 tierA-000169 tierA-000170
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 proposal)
+
+;; p201813  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000207 tierA-000208 tierA-000209
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 query)
+
+;; p201814  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000084 tierA-000085 tierA-000086
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 recipe)
+
+;; p201816  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000385 tierA-000386 tierA-000387
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 scan)
+
+;; p201817  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000099 tierA-000100 tierA-000101
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 search)
+
+;; p201820  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000286 tierA-000287 tierA-000288
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 squad)
+
+;; p201821  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000222 tierA-000223 tierA-000224
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 storm)
+
+;; p201825  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000212 tierA-000213 tierA-000214
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 tower)
+
+;; p201827  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000217 tierA-000218 tierA-000219
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 vet)
+
+;; p201828  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000114 tierA-000115 tierA-000116
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 vote)
+
+;; p201829  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000276 tierA-000277 tierA-000278
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 winner)
+
+;; p201830  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000133 tierA-000134 tierA-000135
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 wreck)
+
+;; p201831  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000385 tierA-000386 tierA-000387
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Ordinal $x0 <num> scan)
+
+;; p201832  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000007 tierC-000008 tierC-000180
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(PartOf $x0 $x1)
 
 ;; p201838  support 4 (occ 4)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000217 tierC-000218 tierC-000245
@@ -1225,6 +1750,16 @@
 ;;   e.g. tierC-000031 tierC-000032 tierC-000081
 (Implication (And (Inheritance regional_unit regional) (Inheritance regional_unit unit)) (MnInheritanceRegional_InheritanceUnit regional_unit))
 
+;; p203231  support 4 (occ 4)  size 1  root night_delivery (constant)  depth 1
+;;   e.g. tierA-000076 tierA-000077 tierA-000078
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Inheritance night_delivery delivery)
+
+;; p203236  support 4 (occ 4)  size 1  root Married (constant)  depth 0
+;;   e.g. tierC-000079 tierC-000080 tierC-000335
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Symmetric Married)
+
 ;; p203258  support 4 (occ 4)  size 4  root $e0 (event)  depth 1
 ;;   e.g. tierA-000133 tierA-000135 tierA-000136
 (Implication (And (Agent $e0 $x0) (Location $e0 $x1) (Member $e0 discover) (Theme $e0 $x2)) (MnAgent_Location_Discover_Theme $e0 $x0 $x1 $x2))
@@ -1456,6 +1991,201 @@
 ;; p203743  support 4 (occ 4)  size 2  root $e0 (event)  depth 2
 ;;   e.g. tierC-000041 tierC-000042 tierC-000123
 (Implication (And (Member $x0 person) (Theme $e0 $x0)) (MnThemeOfPerson $e0 $x0))
+
+;; p203864  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000113 tierC-000114 tierC-000117
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(GroupOf $x0 tradition)
+
+;; p203872  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000227 tierC-000228 tierC-000231
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 add)
+
+;; p203880  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000163 tierC-000164 tierC-000179
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 form)
+
+;; p203881  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000100 tierA-000105 tierA-000110
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 give_up)
+
+;; p203882  support 4 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000139 tierC-000140 tierC-000189
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 include)
+
+;; p203885  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000121 tierC-000122 tierC-000197
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 move)
+
+;; p203891  support 4 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000053 tierC-000054 tierC-000185
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 serve)
+
+;; p203894  support 4 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000005 tierC-000006 tierC-000173
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 use)
+
+;; p203896  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000128 tierA-000129 tierA-000130
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 auditor)
+
+;; p203898  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000339 tierA-000340 tierA-000341
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 boiler)
+
+;; p203899  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000355 tierA-000356 tierA-000357
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 calibration)
+
+;; p203900  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000286 tierA-000287 tierA-000288
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 coach)
+
+;; p203902  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000089 tierA-000090 tierA-000091
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 countersignature)
+
+;; p203903  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000367 tierA-000368 tierA-000369
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 courier)
+
+;; p203904  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000080 tierA-000081 tierA-000082
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 curator)
+
+;; p203907  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000359 tierA-000360 tierA-000361
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 descent)
+
+;; p203909  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000271 tierA-000272 tierA-000273
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 driver)
+
+;; p203910  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000291 tierA-000292 tierA-000293
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 elder)
+
+;; p203914  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000271 tierA-000272 tierA-000273
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 foreman)
+
+;; p203915  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000253 tierA-000254 tierA-000255
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 founder)
+
+;; p203916  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000315 tierA-000316 tierA-000317
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 frame)
+
+;; p203917  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000237 tierA-000238 tierA-000239
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 freight)
+
+;; p203918  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000395 tierA-000396 tierA-000397
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 gate)
+
+;; p203920  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000331 tierA-000332 tierA-000333
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 hatch)
+
+;; p203925  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000076 tierA-000077 tierA-000078
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 licence)
+
+;; p203926  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000311 tierA-000312 tierA-000313
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 mural)
+
+;; p203928  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000177 tierA-000178 tierA-000179
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 nurse)
+
+;; p203929  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000306 tierA-000307 tierA-000308
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 painting)
+
+;; p203930  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000181 tierA-000182 tierA-000183
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 pier)
+
+;; p203931  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000319 tierA-000320 tierA-000321
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 ranger)
+
+;; p203932  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000261 tierA-000262 tierA-000263
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 recruit)
+
+;; p203933  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000351 tierA-000352 tierA-000353
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 repair)
+
+;; p203934  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000173 tierA-000174 tierA-000175
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 ridge)
+
+;; p203936  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000173 tierA-000174 tierA-000175
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 shepherd)
+
+;; p203937  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000343 tierA-000344 tierA-000345
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 skylight)
+
+;; p203940  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000261 tierA-000262 tierA-000263
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 trainer)
+
+;; p203941  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000177 tierA-000178 tierA-000179
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 ward)
+
+;; p203942  support 4 (occ 6)  size 1  root $e0 (event)  depth 0
+;;   e.g. tierC-000025 tierC-000026 tierC-000079
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Ongoing $e0)
+
+;; p203951  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000193 tierC-000194 tierC-000315
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 later)
 
 ;; p203956  support 3 (occ 3)  size 4  root $e0 (event)  depth 2
 ;;   e.g. tierC-000217 tierC-000218 tierC-000245
@@ -2481,7 +3211,72 @@
 ;;   e.g. tierC-000193 tierC-000194 tierC-000316
 (Implication (And (Past $e0) (Time $e0 later)) (MnPast_TimeLater $e0))
 
-;; ==================== SUBSUMED UNITS: 714 of 1652 rooted-subtree units (k = 4, support >= 3 of 762 records) ====================
+;; p205743  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000340 tierA-000344 tierA-000348
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Degree $x0 big very)
+
+;; p205747  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000080 tierC-000201 tierC-000202
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 active)
+
+;; p205754  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000129 tierA-000134 tierA-000139
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $e0 find_out)
+
+;; p205765  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000391 tierA-000396 tierA-000400
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 car)
+
+;; p205767  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000351 tierA-000355 tierA-000359
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 difficult)
+
+;; p205770  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000315 tierA-000316 tierA-000318
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 fitter)
+
+;; p205771  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000352 tierA-000356 tierA-000360
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 hard)
+
+;; p205772  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000095 tierC-000096 tierC-000115
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 house)
+
+;; p205773  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000339 tierA-000343 tierA-000347
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 huge)
+
+;; p205775  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000003 tierC-000004 tierC-000064
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 park)
+
+;; p205779  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000143 tierC-000144 tierC-000279
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Member $x0 western)
+
+;; p205782  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000203 tierC-000204 tierC-000348
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Source $e0 manila)
+
+;; p205789  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000257 tierA-000258 tierA-000260
+;;   single atom; not a proposal (a one-atom pack is a rename)
+(Time $e0 that_autumn)
+
+;; ==================== SUBSUMED UNITS: 879 of 1652 rooted-subtree units (0 proposals; k = 4, support >= 3 of 762 records) ====================
 
 ;; p200250  support 14 (occ 14)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000001 tierA-000005 tierA-000006
@@ -2513,6 +3308,11 @@
 ;;   subsumed by p200249 (MnAgent_Buy_Past_Theme); not a proposal
 (And (Member $e0 buy) (Theme $e0 $x0))
 
+;; p200259  support 14 (occ 14)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000001 tierA-000005 tierA-000006
+;;   subsumed by p200249 (MnAgent_Buy_Past_Theme); not a proposal
+(Member $e0 buy)
+
 ;; p200329  support 12 (occ 12)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000208 tierA-000213 tierA-000218
 ;;   subsumed by p200326 (MnAgent_Give_Recipient_Theme); not a proposal
@@ -2543,6 +3343,16 @@
 ;;   subsumed by p200326 (MnAgent_Give_Recipient_Theme); not a proposal
 (And (Member $e0 give) (Theme $e0 $x0))
 
+;; p200352  support 12 (occ 12)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000208 tierA-000213 tierA-000218
+;;   subsumed by p200326 (MnAgent_Give_Recipient_Theme); not a proposal
+(Member $e0 give)
+
+;; p200411  support 11 (occ 11)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000222 tierA-000223 tierA-000224
+;;   subsumed by p200402 (MnDestroy_Patient); not a proposal
+(Member $e0 destroy)
+
 ;; p200481  support 10 (occ 10)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000207 tierA-000209 tierA-000210
 ;;   subsumed by p200470 (MnAgent_Answer_Theme); not a proposal
@@ -2563,6 +3373,26 @@
 ;;   subsumed by p200471 (MnAgent_Teach_Recipient); not a proposal
 (And (Member $e0 teach) (Recipient $e0 $x0))
 
+;; p200499  support 10 (occ 10)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000207 tierA-000209 tierA-000210
+;;   subsumed by p200470 (MnAgent_Answer_Theme); not a proposal
+(Member $e0 answer)
+
+;; p200500  support 10 (occ 14)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000045 tierC-000046 tierC-000071
+;;   subsumed by p200487 (MnBuild_Patient); not a proposal
+(Member $e0 build)
+
+;; p200501  support 10 (occ 10)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000296 tierA-000298 tierA-000299
+;;   subsumed by p200488 (MnLend_Theme); not a proposal
+(Member $e0 lend)
+
+;; p200503  support 10 (occ 10)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000281 tierA-000283 tierA-000284
+;;   subsumed by p200471 (MnAgent_Teach_Recipient); not a proposal
+(Member $e0 teach)
+
 ;; p200559  support 9 (occ 9)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000296 tierA-000298 tierA-000299
 ;;   subsumed by p200551 (MnAgent_Lend_Theme); not a proposal
@@ -2572,6 +3402,11 @@
 ;;   e.g. tierA-000185 tierA-000189 tierA-000190
 ;;   subsumed by p200550 (MnAgent_Decide_Theme); not a proposal
 (And (Member $e0 decide) (Theme $e0 $x0))
+
+;; p200574  support 9 (occ 9)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000143 tierA-000145 tierA-000148
+;;   subsumed by p200558 (MnAgent_Cancel); not a proposal
+(Member $e0 cancel)
 
 ;; p200675  support 8 (occ 8)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000099 tierA-000101 tierA-000104
@@ -2618,6 +3453,31 @@
 ;;   subsumed by p200664 (MnAgent_Repair_Patient); not a proposal
 (And (Member $e0 repair) (Patient $e0 $x0))
 
+;; p200696  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000099 tierA-000101 tierA-000104
+;;   subsumed by p200661 (MnAgent_Abandon_Theme); not a proposal
+(Member $e0 abandon)
+
+;; p200698  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000153 tierC-000154 tierC-000181
+;;   subsumed by p200686 (MnHave_Theme); not a proposal
+(Member $e0 have)
+
+;; p200699  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000158 tierA-000160 tierA-000162
+;;   subsumed by p200663 (MnAgent_Reject_Theme); not a proposal
+(Member $e0 reject)
+
+;; p200700  support 8 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000029 tierA-000032 tierA-000034
+;;   subsumed by p200664 (MnAgent_Repair_Patient); not a proposal
+(Member $e0 repair)
+
+;; p200801  support 7 (occ 7)  size 1  root pottery_studio (constant)  depth 1
+;;   e.g. tierA-000022 tierA-000023 tierA-000024
+;;   subsumed by p200793 (MnPotteryStudioOfInheritanceStudio); not a proposal
+(Inheritance pottery_studio studio)
+
 ;; p200823  support 7 (occ 7)  size 2  root $e0 (event)  depth 1
 ;;   e.g. tierA-000133 tierA-000135 tierA-000136
 ;;   subsumed by p200806 (MnAgent_Discover_Theme); not a proposal
@@ -2663,6 +3523,31 @@
 ;;   subsumed by p200807 (MnAgent_Postpone_Theme); not a proposal
 (And (Member $e0 postpone) (Theme $e0 $x0))
 
+;; p200850  support 7 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000008 tierA-000009 tierA-000010
+;;   subsumed by p200829 (MnBeneficiary_Past); not a proposal
+(Beneficiary $e0 $x0)
+
+;; p200851  support 7 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000315 tierA-000318 tierA-000319
+;;   subsumed by p200822 (MnAgent_CoAgent); not a proposal
+(CoAgent $e0 $x0)
+
+;; p200852  support 7 (occ 7)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000001 tierA-000002 tierA-000003
+;;   subsumed by p200830 (MnCardinalityNum_GroupOfForklift); not a proposal
+(GroupOf $x0 forklift)
+
+;; p200854  support 7 (occ 7)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000114 tierA-000116 tierA-000119
+;;   subsumed by p200807 (MnAgent_Postpone_Theme); not a proposal
+(Member $e0 postpone)
+
+;; p200857  support 7 (occ 7)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000022 tierA-000023 tierA-000024
+;;   subsumed by p200793 (MnPotteryStudioOfInheritanceStudio); not a proposal
+(Member $x0 pottery_studio)
+
 ;; p200966  support 6 (occ 10)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000017 tierC-000018 tierC-000123
 ;;   subsumed by p200864 (MnAgentOfPossessionOfPerson_Past); not a proposal
@@ -2682,6 +3567,11 @@
 ;;   e.g. tierA-000001 tierA-000002 tierA-000003
 ;;   subsumed by p200866 (MnPast_ThemeOfCardinalityNum-GroupOfForklift); not a proposal
 (And (GroupOf $x0 forklift) (Past $e0) (Theme $e0 $x0))
+
+;; p201039  support 6 (occ 6)  size 1  root yard_floodlight (constant)  depth 1
+;;   e.g. tierA-000035 tierA-000036 tierA-000037
+;;   subsumed by p201014 (MnYardFloodlightOfInheritanceFloodlight); not a proposal
+(Inheritance yard_floodlight floodlight)
 
 ;; p201059  support 6 (occ 6)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000301 tierA-000303 tierA-000304
@@ -2762,6 +3652,46 @@
 ;;   e.g. tierA-000022 tierA-000023 tierA-000024
 ;;   subsumed by p200971 (MnPast_ThemeOfKiln); not a proposal
 (And (Member $x0 kiln) (Theme $e0 $x0))
+
+;; p201132  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000277 tierC-000278 tierC-000301
+;;   subsumed by p201087 (MnForEv_Past); not a proposal
+(For $e0 $e1)
+
+;; p201133  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000015 tierA-000016 tierA-000017
+;;   subsumed by p201089 (MnGroupOfLemon_Crate); not a proposal
+(GroupOf $x0 lemon)
+
+;; p201134  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000237 tierA-000238 tierA-000240
+;;   subsumed by p201083 (MnAgent_Arrive); not a proposal
+(Member $e0 arrive)
+
+;; p201138  support 6 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000009 tierC-000010 tierC-000091
+;;   subsumed by p201092 (MnProduce_Patient); not a proposal
+(Member $e0 produce)
+
+;; p201141  support 6 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000089 tierC-000090 tierC-000131
+;;   subsumed by p201067 (MnWrite_Past_Patient); not a proposal
+(Member $e0 write)
+
+;; p201144  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000201 tierA-000202 tierA-000203
+;;   subsumed by p201097 (MnBudget_PossessionNextYear); not a proposal
+(Member $x0 budget)
+
+;; p201150  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000035 tierA-000036 tierA-000037
+;;   subsumed by p201014 (MnYardFloodlightOfInheritanceFloodlight); not a proposal
+(Member $x0 yard_floodlight)
+
+;; p201152  support 6 (occ 6)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000201 tierA-000202 tierA-000203
+;;   subsumed by p201097 (MnBudget_PossessionNextYear); not a proposal
+(Possession $x0 next_year)
 
 ;; p201404  support 5 (occ 5)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
@@ -2943,6 +3873,66 @@
 ;;   subsumed by p201193 (MnThemeOfNorthRouteOfInheritanceNorth-InheritanceRoute); not a proposal
 (And (Inheritance north_route north) (Inheritance north_route route))
 
+;; p201586  support 5 (occ 5)  size 1  root afternoon_session (constant)  depth 1
+;;   e.g. tierA-000153 tierA-000154 tierA-000155
+;;   subsumed by p201533 (MnAfternoonSessionOfInheritanceSession); not a proposal
+(Inheritance afternoon_session session)
+
+;; p201587  support 5 (occ 5)  size 1  root apple_harvest (constant)  depth 1
+;;   e.g. tierA-000067 tierA-000068 tierA-000069
+;;   subsumed by p201192 (MnPatientOfAppleHarvestOfInheritanceHarvest_Time(MonthSeptember); not a proposal
+(Inheritance apple_harvest harvest)
+
+;; p201588  support 5 (occ 5)  size 1  root dress_rehearsal (constant)  depth 1
+;;   e.g. tierA-000062 tierA-000063 tierA-000064
+;;   subsumed by p201535 (MnDressRehearsalOfInheritanceRehearsal); not a proposal
+(Inheritance dress_rehearsal rehearsal)
+
+;; p201589  support 5 (occ 5)  size 1  root evening_flight (constant)  depth 1
+;;   e.g. tierA-000143 tierA-000144 tierA-000145
+;;   subsumed by p201536 (MnEveningFlightOfInheritanceFlight); not a proposal
+(Inheritance evening_flight flight)
+
+;; p201590  support 5 (occ 5)  size 1  root loan_application (constant)  depth 1
+;;   e.g. tierA-000163 tierA-000164 tierA-000165
+;;   subsumed by p201537 (MnLoanApplicationOfInheritanceApplication); not a proposal
+(Inheritance loan_application application)
+
+;; p201591  support 5 (occ 5)  size 1  root monthly_servicing (constant)  depth 1
+;;   e.g. tierA-000094 tierA-000095 tierA-000096
+;;   subsumed by p201571 (MnInheritanceMonthly_InheritanceServicing); not a proposal
+(Inheritance monthly_servicing monthly)
+
+;; p201592  support 5 (occ 5)  size 1  root monthly_servicing (constant)  depth 1
+;;   e.g. tierA-000094 tierA-000095 tierA-000096
+;;   subsumed by p201571 (MnInheritanceMonthly_InheritanceServicing); not a proposal
+(Inheritance monthly_servicing servicing)
+
+;; p201593  support 5 (occ 5)  size 1  root north_route (constant)  depth 1
+;;   e.g. tierA-000109 tierA-000110 tierA-000111
+;;   subsumed by p201174 (MnAgent_ThemeOfNorthRouteOfInheritanceNorth); not a proposal
+(Inheritance north_route north)
+
+;; p201594  support 5 (occ 5)  size 1  root north_route (constant)  depth 1
+;;   e.g. tierA-000109 tierA-000110 tierA-000111
+;;   subsumed by p201175 (MnAgent_ThemeOfNorthRouteOfInheritanceRoute); not a proposal
+(Inheritance north_route route)
+
+;; p201595  support 5 (occ 5)  size 1  root rescue_team (constant)  depth 1
+;;   e.g. tierA-000099 tierA-000100 tierA-000101
+;;   subsumed by p201540 (MnRescueTeamOfInheritanceTeam); not a proposal
+(Inheritance rescue_team team)
+
+;; p201596  support 5 (occ 5)  size 1  root shoreline_survey (constant)  depth 1
+;;   e.g. tierA-000052 tierA-000053 tierA-000054
+;;   subsumed by p201194 (MnPatientOfShorelineSurveyOfInheritanceSurvey_TimeDawn); not a proposal
+(Inheritance shoreline_survey survey)
+
+;; p201597  support 5 (occ 5)  size 1  root summer_fair (constant)  depth 1
+;;   e.g. tierA-000148 tierA-000149 tierA-000150
+;;   subsumed by p201542 (MnSummerFairOfInheritanceFair); not a proposal
+(Inheritance summer_fair fair)
+
 ;; p201633  support 5 (occ 5)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierA-000008 tierA-000009 tierA-000010
 ;;   subsumed by p201163 (MnAgentOfSchool_Beneficiary_Past); not a proposal
@@ -3107,6 +4097,166 @@
 ;;   e.g. tierA-000201 tierA-000202 tierA-000203
 ;;   subsumed by p201643 (MnThemeOfBudget-PossessionNextYear); not a proposal
 (And (Possession $x0 next_year) (Theme $e0 $x0))
+
+;; p201757  support 5 (occ 6)  size 1  root appear (constant)  depth 1
+;;   e.g. tierC-000049 tierC-000050 tierC-000128
+;;   subsumed by p201692 (MnAlsoEvOfPast); not a proposal
+(Also appear $e0)
+
+;; p201758  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000109 tierA-000110 tierA-000111
+;;   subsumed by p201167 (MnAgentOfCardinalityNum-GroupOfClimber_Theme); not a proposal
+(GroupOf $x0 climber)
+
+;; p201759  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000084 tierA-000085 tierA-000086
+;;   subsumed by p201641 (MnThemeOfCardinalityNum-GroupOfEgg); not a proposal
+(GroupOf $x0 egg)
+
+;; p201761  support 5 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000049 tierC-000050 tierC-000128
+;;   subsumed by p201704 (MnAppear_Past); not a proposal
+(Member $e0 appear)
+
+;; p201763  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000297 tierA-000302 tierA-000307
+;;   subsumed by p201706 (MnBorrow_Theme); not a proposal
+(Member $e0 borrow)
+
+;; p201764  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000253 tierA-000255 tierA-000257
+;;   subsumed by p201707 (MnDie_Patient); not a proposal
+(Member $e0 die)
+
+;; p201765  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000010 tierC-000091 tierC-000138
+;;   subsumed by p201708 (MnDirect_Patient); not a proposal
+(Member $e0 direct)
+
+;; p201766  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000262 tierA-000272 tierA-000277
+;;   subsumed by p201709 (MnReceive_Theme); not a proposal
+(Member $e0 receive)
+
+;; p201767  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000174 tierA-000178 tierA-000182
+;;   subsumed by p201679 (MnAgent_Take); not a proposal
+(Member $e0 take)
+
+;; p201768  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000153 tierA-000154 tierA-000155
+;;   subsumed by p201533 (MnAfternoonSessionOfInheritanceSession); not a proposal
+(Member $x0 afternoon_session)
+
+;; p201770  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000067 tierA-000068 tierA-000069
+;;   subsumed by p201192 (MnPatientOfAppleHarvestOfInheritanceHarvest_Time(MonthSeptember); not a proposal
+(Member $x0 apple_harvest)
+
+;; p201777  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000123 tierA-000124 tierA-000125
+;;   subsumed by p201180 (MnAgentOfClub_ThemeOfTournament); not a proposal
+(Member $x0 club)
+
+;; p201781  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000062 tierA-000063 tierA-000064
+;;   subsumed by p201535 (MnDressRehearsalOfInheritanceRehearsal); not a proposal
+(Member $x0 dress_rehearsal)
+
+;; p201783  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000143 tierA-000144 tierA-000145
+;;   subsumed by p201536 (MnEveningFlightOfInheritanceFlight); not a proposal
+(Member $x0 evening_flight)
+
+;; p201784  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000138 tierA-000139 tierA-000140
+;;   subsumed by p201714 (MnFile_Missing); not a proposal
+(Member $x0 file)
+
+;; p201786  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000104 tierA-000105 tierA-000106
+;;   subsumed by p201438 (MnTender_PossessionOfFirm); not a proposal
+(Member $x0 firm)
+
+;; p201790  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000029 tierA-000030 tierA-000031
+;;   subsumed by p201716 (MnGearbox_Seized); not a proposal
+(Member $x0 gearbox)
+
+;; p201798  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000163 tierA-000164 tierA-000165
+;;   subsumed by p201537 (MnLoanApplicationOfInheritanceApplication); not a proposal
+(Member $x0 loan_application)
+
+;; p201802  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000138 tierA-000139 tierA-000140
+;;   subsumed by p201714 (MnFile_Missing); not a proposal
+(Member $x0 missing)
+
+;; p201805  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000109 tierA-000110 tierA-000111
+;;   subsumed by p201168 (MnAgentOfCardinalityNum_ThemeOfNorthRoute); not a proposal
+(Member $x0 north_route)
+
+;; p201809  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000133 tierA-000134 tierA-000135
+;;   subsumed by p201179 (MnAgent_LocationOfPoint_Theme); not a proposal
+(Member $x0 point)
+
+;; p201811  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000008 tierA-000009 tierA-000010
+;;   subsumed by p201189 (MnBeneficiaryOfHall_ThemeOfProjector); not a proposal
+(Member $x0 projector)
+
+;; p201815  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000099 tierA-000100 tierA-000101
+;;   subsumed by p201540 (MnRescueTeamOfInheritanceTeam); not a proposal
+(Member $x0 rescue_team)
+
+;; p201818  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000029 tierA-000030 tierA-000031
+;;   subsumed by p201716 (MnGearbox_Seized); not a proposal
+(Member $x0 seized)
+
+;; p201819  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000052 tierA-000053 tierA-000054
+;;   subsumed by p201194 (MnPatientOfShorelineSurveyOfInheritanceSurvey_TimeDawn); not a proposal
+(Member $x0 shoreline_survey)
+
+;; p201822  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000148 tierA-000149 tierA-000150
+;;   subsumed by p201542 (MnSummerFairOfInheritanceFair); not a proposal
+(Member $x0 summer_fair)
+
+;; p201823  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000104 tierA-000105 tierA-000106
+;;   subsumed by p201438 (MnTender_PossessionOfFirm); not a proposal
+(Member $x0 tender)
+
+;; p201824  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000123 tierA-000124 tierA-000125
+;;   subsumed by p201180 (MnAgentOfClub_ThemeOfTournament); not a proposal
+(Member $x0 tournament)
+
+;; p201826  support 5 (occ 5)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000153 tierA-000154 tierA-000155
+;;   subsumed by p201688 (MnAgentOfTutor); not a proposal
+(Member $x0 tutor)
+
+;; p201833  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000281 tierA-000282 tierA-000283
+;;   subsumed by p201690 (MnAgent_ThemeGlazing); not a proposal
+(Theme $e0 glazing)
+
+;; p201834  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000067 tierA-000068 tierA-000069
+;;   subsumed by p201192 (MnPatientOfAppleHarvestOfInheritanceHarvest_Time(MonthSeptember); not a proposal
+(Time $e0 (Month september))
+
+;; p201835  support 5 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000052 tierA-000053 tierA-000054
+;;   subsumed by p201194 (MnPatientOfShorelineSurveyOfInheritanceSurvey_TimeDawn); not a proposal
+(Time $e0 dawn)
 
 ;; p202763  support 4 (occ 4)  size 3  root $e0 (event)  depth 2
 ;;   e.g. tierC-000217 tierC-000218 tierC-000245
@@ -3572,6 +4722,31 @@
 ;;   e.g. tierA-000094 tierA-000095 tierA-000096
 ;;   subsumed by p202857 (MnThemeMonthlyServicingOfInheritanceMonthly-InheritanceServicing); not a proposal
 (And (Inheritance monthly_servicing servicing) (Theme $e0 monthly_servicing))
+
+;; p203230  support 4 (occ 4)  size 1  root night_crew (constant)  depth 1
+;;   e.g. tierA-000363 tierA-000364 tierA-000365
+;;   subsumed by p203146 (MnNightCrewOfInheritanceCrew); not a proposal
+(Inheritance night_crew crew)
+
+;; p203232  support 4 (occ 4)  size 1  root regional_unit (constant)  depth 1
+;;   e.g. tierC-000031 tierC-000032 tierC-000081
+;;   subsumed by p203209 (MnInheritanceRegional_InheritanceUnit); not a proposal
+(Inheritance regional_unit regional)
+
+;; p203233  support 4 (occ 4)  size 1  root regional_unit (constant)  depth 1
+;;   e.g. tierC-000031 tierC-000032 tierC-000081
+;;   subsumed by p203209 (MnInheritanceRegional_InheritanceUnit); not a proposal
+(Inheritance regional_unit unit)
+
+;; p203234  support 4 (occ 4)  size 1  root soil_sample (constant)  depth 1
+;;   e.g. tierA-000245 tierA-000246 tierA-000247
+;;   subsumed by p203143 (MnGroupOfSoilSampleOfInheritanceSample); not a proposal
+(Inheritance soil_sample sample)
+
+;; p203235  support 4 (occ 4)  size 1  root spoil_mound (constant)  depth 1
+;;   e.g. tierA-000347 tierA-000348 tierA-000349
+;;   subsumed by p203147 (MnSpoilMoundOfInheritanceMound); not a proposal
+(Inheritance spoil_mound mound)
 
 ;; p203379  support 4 (occ 4)  size 3  root $e0 (event)  depth 1
 ;;   e.g. tierC-000217 tierC-000218 tierC-000245
@@ -4532,6 +5707,276 @@
 ;;   e.g. tierA-000057 tierA-000058 tierA-000059
 ;;   subsumed by p202025 (MnPatientOfHearing_Time(WeekdayMonday_TimeMorning); not a proposal
 (And (Time $e0 (Weekday monday)) (Time $e0 morning))
+
+;; p203860  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000217 tierC-000218 tierC-000245
+;;   subsumed by p201838 (MnAgentOfGovernment_AgentJica_Theme); not a proposal
+(Agent $e0 jica)
+
+;; p203861  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000161 tierC-000162 tierC-000243
+;;   subsumed by p202831 (MnButEvOfPast_Past); not a proposal
+(But $e0 $e1)
+
+;; p203862  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000145 tierC-000146 tierC-000261
+;;   subsumed by p201963 (MnCan_Manner_ThemeOfGroupOfSequence); not a proposal
+(GroupOf $x0 sequence)
+
+;; p203863  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000245 tierA-000246 tierA-000247
+;;   subsumed by p203143 (MnGroupOfSoilSampleOfInheritanceSample); not a proposal
+(GroupOf $x0 soil_sample)
+
+;; p203865  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000181 tierC-000182 tierC-000239
+;;   subsumed by p201965 (MnHolderKristoffer_ThemeOfCardinalityNum-GroupOfChild); not a proposal
+(Holder $e0 kristoffer)
+
+;; p203866  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000045 tierC-000046 tierC-000291
+;;   subsumed by p201893 (MnAgentOfCompany_LocationEskisehir_LocationTurkey); not a proposal
+(Location $e0 eskisehir)
+
+;; p203867  support 4 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000111 tierC-000112 tierC-000121
+;;   subsumed by p203682 (MnLocationJapan_Past); not a proposal
+(Location $e0 japan)
+
+;; p203868  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000045 tierC-000046 tierC-000291
+;;   subsumed by p201900 (MnAgentOfCompany_LocationKazakhstan_Build); not a proposal
+(Location $e0 kazakhstan)
+
+;; p203869  support 4 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000045 tierC-000046 tierC-000291
+;;   subsumed by p201893 (MnAgentOfCompany_LocationEskisehir_LocationTurkey); not a proposal
+(Location $e0 turkey)
+
+;; p203870  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000145 tierC-000146 tierC-000261
+;;   subsumed by p201961 (MnCan_MannerOfCardinalityNum_Define); not a proposal
+(Manner $e0 $x0)
+
+;; p203871  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000003 tierA-000010 tierA-000017
+;;   subsumed by p203271 (MnAgent_Acquire_Past_Theme); not a proposal
+(Member $e0 acquire)
+
+;; p203873  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000075 tierA-000076 tierA-000078
+;;   subsumed by p203617 (MnAgent_Allow); not a proposal
+(Member $e0 allow)
+
+;; p203874  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000390 tierA-000391 tierA-000392
+;;   subsumed by p201911 (MnAgent_Block_ThemeOfLane); not a proposal
+(Member $e0 block)
+
+;; p203875  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000054 tierA-000059 tierA-000064
+;;   subsumed by p203696 (MnCommence_Patient); not a proposal
+(Member $e0 commence)
+
+;; p203876  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000145 tierC-000146 tierC-000261
+;;   subsumed by p201961 (MnCan_MannerOfCardinalityNum_Define); not a proposal
+(Member $e0 define)
+
+;; p203877  support 4 (occ 6)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000119 tierC-000120 tierC-000183
+;;   subsumed by p203435 (MnDesign_Past_Patient); not a proposal
+(Member $e0 design)
+
+;; p203878  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000128 tierA-000129 tierA-000130
+;;   subsumed by p202862 (MnLocationOfLedger_Error); not a proposal
+(Member $e0 error)
+
+;; p203879  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000076 tierC-000095 tierC-000096
+;;   subsumed by p203703 (MnFollow_Past); not a proposal
+(Member $e0 follow)
+
+;; p203883  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000257 tierC-000258 tierC-000351
+;;   subsumed by p203704 (MnInfluence_Past); not a proposal
+(Member $e0 influence)
+
+;; p203884  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000186 tierA-000191 tierA-000197
+;;   subsumed by p201920 (MnAgent_Make_PatientEvOfDecision); not a proposal
+(Member $e0 make)
+
+;; p203886  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000385 tierA-000386 tierA-000387
+;;   subsumed by p203399 (MnAgent_Order_Theme); not a proposal
+(Member $e0 order)
+
+;; p203887  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000227 tierC-000228 tierC-000229
+;;   subsumed by p203707 (MnPlay_Past); not a proposal
+(Member $e0 play)
+
+;; p203888  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000002 tierA-000009 tierA-000016
+;;   subsumed by p203272 (MnAgent_Purchase_Past_Theme); not a proposal
+(Member $e0 purchase)
+
+;; p203889  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000187 tierA-000192 tierA-000198
+;;   subsumed by p201921 (MnAgent_Reach_ThemeEvOfDecision); not a proposal
+(Member $e0 reach)
+
+;; p203890  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000099 tierC-000100 tierC-000359
+;;   subsumed by p203712 (MnReplace_Past); not a proposal
+(Member $e0 replace)
+
+;; p203892  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000375 tierA-000376 tierA-000377
+;;   subsumed by p203403 (MnAgent_Sign_Patient); not a proposal
+(Member $e0 sign)
+
+;; p203893  support 4 (occ 8)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000127 tierC-000128 tierC-000329
+;;   subsumed by p203624 (MnAgent_Sing); not a proposal
+(Member $e0 sing)
+
+;; p203895  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000277 tierC-000278 tierC-000301
+;;   subsumed by p201976 (MnForEvOfPortray_Win_Past); not a proposal
+(Member $e0 win)
+
+;; p203897  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000319 tierA-000320 tierA-000321
+;;   subsumed by p201889 (MnAgentOfBiologist_LocationOfSurvey); not a proposal
+(Member $x0 biologist)
+
+;; p203901  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000045 tierC-000046 tierC-000291
+;;   subsumed by p201893 (MnAgentOfCompany_LocationEskisehir_LocationTurkey); not a proposal
+(Member $x0 company)
+
+;; p203905  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000241 tierA-000242 tierA-000243
+;;   subsumed by p202789 (MnAgentOfDelegation_Time(WeekdayThursday); not a proposal
+(Member $x0 delegation)
+
+;; p203906  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000119 tierA-000120 tierA-000121
+;;   subsumed by p202882 (MnDeparture_PossessionOfFerry); not a proposal
+(Member $x0 departure)
+
+;; p203908  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000286 tierA-000287 tierA-000288
+;;   subsumed by p202804 (MnAgent_ThemeOfDrill); not a proposal
+(Member $x0 drill)
+
+;; p203911  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000257 tierA-000258 tierA-000259
+;;   subsumed by p203726 (MnElm_Last); not a proposal
+(Member $x0 elm)
+
+;; p203912  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000277 tierC-000278 tierC-000301
+;;   subsumed by p201978 (MnForEv_Win_ThemeOfEmmy); not a proposal
+(Member $x0 emmy)
+
+;; p203913  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000119 tierA-000120 tierA-000121
+;;   subsumed by p202882 (MnDeparture_PossessionOfFerry); not a proposal
+(Member $x0 ferry)
+
+;; p203919  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000217 tierC-000218 tierC-000245
+;;   subsumed by p201838 (MnAgentOfGovernment_AgentJica_Theme); not a proposal
+(Member $x0 government)
+
+;; p203921  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000057 tierA-000058 tierA-000059
+;;   subsumed by p202025 (MnPatientOfHearing_Time(WeekdayMonday_TimeMorning); not a proposal
+(Member $x0 hearing)
+
+;; p203922  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000045 tierC-000046 tierC-000291
+;;   subsumed by p201898 (MnAgent_LocationEskisehir_PatientOfHotel); not a proposal
+(Member $x0 hotel)
+
+;; p203923  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000296 tierA-000297 tierA-000298
+;;   subsumed by p203736 (MnThemeOfLadder); not a proposal
+(Member $x0 ladder)
+
+;; p203924  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000257 tierA-000258 tierA-000259
+;;   subsumed by p203726 (MnElm_Last); not a proposal
+(Member $x0 last)
+
+;; p203927  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000363 tierA-000364 tierA-000365
+;;   subsumed by p203146 (MnNightCrewOfInheritanceCrew); not a proposal
+(Member $x0 night_crew)
+
+;; p203935  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000185 tierA-000186 tierA-000187
+;;   subsumed by p203445 (MnThemeOfNew-Roof); not a proposal
+(Member $x0 roof)
+
+;; p203938  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000347 tierA-000348 tierA-000349
+;;   subsumed by p203147 (MnSpoilMoundOfInheritanceMound); not a proposal
+(Member $x0 spoil_mound)
+
+;; p203939  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000319 tierA-000320 tierA-000321
+;;   subsumed by p201889 (MnAgentOfBiologist_LocationOfSurvey); not a proposal
+(Member $x0 survey)
+
+;; p203943  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000022 tierA-000026 tierA-000027
+;;   subsumed by p203735 (MnKiln_OrdinalNumBuy); not a proposal
+(Ordinal $x0 <num> buy)
+
+;; p203944  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000159 tierC-000160 tierC-000355
+;;   subsumed by p201953 (MnAgent_ThemeOfView-PossessionFreeSoilParty); not a proposal
+(Possession $x0 free_soil_party)
+
+;; p203945  support 4 (occ 4)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000159 tierC-000160 tierC-000355
+;;   subsumed by p201954 (MnAgent_ThemeOfView-PossessionRepublicanParty); not a proposal
+(Possession $x0 republican_party)
+
+;; p203946  support 4 (occ 5)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000001 tierC-000158 tierC-000241
+;;   subsumed by p203434 (MnBecome_Past_ResultEv); not a proposal
+(Result $e0 $e1)
+
+;; p203947  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000128 tierA-000129 tierA-000130
+;;   subsumed by p201975 (MnExperiencer_StimulusEvOfLocationOfLedger); not a proposal
+(Stimulus $e0 $e1)
+
+;; p203948  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000094 tierA-000095 tierA-000096
+;;   subsumed by p202857 (MnThemeMonthlyServicingOfInheritanceMonthly-InheritanceServicing); not a proposal
+(Theme $e0 monthly_servicing)
+
+;; p203949  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000057 tierA-000058 tierA-000059
+;;   subsumed by p202025 (MnPatientOfHearing_Time(WeekdayMonday_TimeMorning); not a proposal
+(Time $e0 (Weekday monday))
+
+;; p203950  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000241 tierA-000242 tierA-000243
+;;   subsumed by p202789 (MnAgentOfDelegation_Time(WeekdayThursday); not a proposal
+(Time $e0 (Weekday thursday))
+
+;; p203952  support 4 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000057 tierA-000058 tierA-000059
+;;   subsumed by p202025 (MnPatientOfHearing_Time(WeekdayMonday_TimeMorning); not a proposal
+(Time $e0 morning)
 
 ;; p204865  support 3 (occ 4)  size 3  root $e1 (event)  depth 3
 ;;   e.g. tierC-000049 tierC-000050 tierC-000128
@@ -6052,3 +7497,178 @@
 ;;   e.g. tierA-000073 tierA-000074 tierA-000075
 ;;   subsumed by p204104 (MnAgentOfWarden_ThemeVisitor_Time(WeekdaySunday); not a proposal
 (And (Theme $e0 visitor) (Time $e0 (Weekday sunday)))
+
+;; p205741  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000311 tierA-000312 tierA-000313
+;;   subsumed by p205560 (MnAgentAna_Work); not a proposal
+(Agent $e0 ana)
+
+;; p205742  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000323 tierA-000324 tierA-000325
+;;   subsumed by p204118 (MnAgentDara_LocationOfLedger_Work); not a proposal
+(Agent $e0 dara)
+
+;; p205744  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000146 tierC-000261 tierC-000262
+;;   subsumed by p204126 (MnCan_MannerOfCardinalityNum-GroupOfWay); not a proposal
+(GroupOf $x0 way)
+
+;; p205745  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000245 tierA-000246 tierA-000247
+;;   subsumed by p203987 (MnAgentOfGroupOfSoilSampleOfInheritanceSample_InstrumentPost); not a proposal
+(Instrument $e0 post)
+
+;; p205746  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000253 tierA-000254 tierA-000255
+;;   subsumed by p205398 (MnPatientOfMeasureAgeNumYear-Founder); not a proposal
+(Measure $x0 age <num> year)
+
+;; p205748  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000199 tierC-000200 tierC-000358
+;;   subsumed by p205596 (MnBear_Past); not a proposal
+(Member $e0 bear)
+
+;; p205749  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000144 tierA-000149 tierA-000154
+;;   subsumed by p205526 (MnAgent_CallOff); not a proposal
+(Member $e0 call_off)
+
+;; p205750  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000223 tierA-000228 tierA-000233
+;;   subsumed by p204035 (MnAgent_Cause_ThemeEvOfDestroy); not a proposal
+(Member $e0 cause)
+
+;; p205751  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000284 tierC-000341 tierC-000342
+;;   subsumed by p205600 (MnConduct_Past); not a proposal
+(Member $e0 conduct)
+
+;; p205752  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000056 tierA-000060 tierA-000071
+;;   subsumed by p205605 (MnEnd_Patient); not a proposal
+(Member $e0 end)
+
+;; p205753  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000380 tierA-000381 tierA-000382
+;;   subsumed by p203992 (MnAgent_Examine_ThemeOfGroupOfSample); not a proposal
+(Member $e0 examine)
+
+;; p205755  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000217 tierC-000218 tierC-000245
+;;   subsumed by p203956 (MnAgentOfGovernment_AgentJica_Fund); not a proposal
+(Member $e0 fund)
+
+;; p205756  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000282 tierA-000287 tierA-000292
+;;   subsumed by p205376 (MnAgent_Learn_Source); not a proposal
+(Member $e0 learn)
+
+;; p205757  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000085 tierA-000090 tierA-000095
+;;   subsumed by p205582 (MnHolder_Need); not a proposal
+(Member $e0 need)
+
+;; p205758  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000073 tierA-000077 tierA-000081
+;;   subsumed by p205533 (MnAgent_Permit); not a proposal
+(Member $e0 permit)
+
+;; p205759  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000115 tierA-000120 tierA-000124
+;;   subsumed by p205378 (MnAgent_PutOff_Theme); not a proposal
+(Member $e0 put_off)
+
+;; p205760  support 3 (occ 4)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000023 tierC-000024 tierC-000094
+;;   subsumed by p205616 (MnSpeak_Past); not a proposal
+(Member $e0 speak)
+
+;; p205761  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierC-000075 tierC-000100 tierC-000338
+;;   subsumed by p205617 (MnSucceed_Past); not a proposal
+(Member $e0 succeed)
+
+;; p205762  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000159 tierA-000164 tierA-000169
+;;   subsumed by p205381 (MnAgent_TurnDown_Theme); not a proposal
+(Member $e0 turn_down)
+
+;; p205763  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000395 tierA-000396 tierA-000397
+;;   subsumed by p204138 (MnExperiencer_LocationOfGate_Wait); not a proposal
+(Member $e0 wait)
+
+;; p205764  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000208 tierA-000213 tierA-000218
+;;   subsumed by p204052 (MnAgent_Give_ThemeOfAnswer); not a proposal
+(Member $x0 answer)
+
+;; p205766  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000049 tierA-000050 tierA-000051
+;;   subsumed by p204983 (MnCracked_FeedPipeOfInheritancePipe); not a proposal
+(Member $x0 cracked)
+
+;; p205768  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000376 tierA-000381 tierA-000386
+;;   subsumed by p205540 (MnAgentOfDoctor); not a proposal
+(Member $x0 doctor)
+
+;; p205769  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000049 tierA-000050 tierA-000051
+;;   subsumed by p204983 (MnCracked_FeedPipeOfInheritancePipe); not a proposal
+(Member $x0 feed_pipe)
+
+;; p205774  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000276 tierA-000277 tierA-000278
+;;   subsumed by p204940 (MnAgent_ThemeOfMedal); not a proposal
+(Member $x0 medal)
+
+;; p205776  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierC-000145 tierC-000146 tierC-000261
+;;   subsumed by p204127 (MnCan_MannerOfCardinalityNum-Random); not a proposal
+(Member $x0 random)
+
+;; p205777  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000073 tierA-000074 tierA-000075
+;;   subsumed by p204104 (MnAgentOfWarden_ThemeVisitor_Time(WeekdaySunday); not a proposal
+(Member $x0 warden)
+
+;; p205778  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000315 tierA-000316 tierA-000318
+;;   subsumed by p204003 (MnAgentOfWelder_LocationOfFrame); not a proposal
+(Member $x0 welder)
+
+;; p205780  support 3 (occ 3)  size 1  root $x0 (entity)  depth 1
+;;   e.g. tierA-000261 tierA-000262 tierA-000263
+;;   subsumed by p204945 (MnAgent_ThemeOfWhistle); not a proposal
+(Member $x0 whistle)
+
+;; p205781  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000296 tierA-000298 tierA-000299
+;;   subsumed by p204058 (MnAgentOfNeighbour_Lend_RecipientRavi); not a proposal
+(Recipient $e0 ravi)
+
+;; p205784  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000076 tierA-000077 tierA-000078
+;;   subsumed by p203996 (MnAgentOfLicence_ThemeNightDeliveryOfInheritanceDelivery); not a proposal
+(Theme $e0 night_delivery)
+
+;; p205785  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000080 tierA-000081 tierA-000083
+;;   subsumed by p204002 (MnAgentOfCurator_Location_ThemePhotography); not a proposal
+(Theme $e0 photography)
+
+;; p205786  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000073 tierA-000074 tierA-000075
+;;   subsumed by p204104 (MnAgentOfWarden_ThemeVisitor_Time(WeekdaySunday); not a proposal
+(Theme $e0 visitor)
+
+;; p205787  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000237 tierA-000238 tierA-000240
+;;   subsumed by p204019 (MnAgentOfFreight_Arrive_Time(HourNum); not a proposal
+(Time $e0 (Hour <num>))
+
+;; p205788  support 3 (occ 3)  size 1  root $e0 (event)  depth 1
+;;   e.g. tierA-000073 tierA-000074 tierA-000075
+;;   subsumed by p204104 (MnAgentOfWarden_ThemeVisitor_Time(WeekdaySunday); not a proposal
+(Time $e0 (Weekday sunday))

@@ -28,9 +28,9 @@ inventory, lifted patterns and joins included, so it would mark units subsumed b
 addition — it is kept as ``miner_dominated`` for traceability only. Closed units are the
 meta-node proposals, the subsumed ones the same evidence in smaller pieces
 (``subsumed_by`` names the closed unit). Units of size 1 are subtrees by the letter and
-stay in the JSONL and the counts, but they are NOT proposals (a one-atom pack is a rename):
-the .metta renders size >= 2 units only, and only the CLOSED ones are proposals — a subsumed
-unit is rendered for reading and names its cover (owner 2026-09-08). The proposed meta-node is
+are rendered like every other unit, but they are NOT proposals (a one-atom pack is a rename);
+only the CLOSED units of size >= 2 are proposals — a subsumed unit is rendered for reading and
+names its cover (owner 2026-09-08; single atoms back in the rendering 2026-09-10). The proposed meta-node is
 ``(Mn<Name> <root> <other variables…>)`` with a batch-1 style readable name built from the
 unit's heads and constants along the tree (Member / GroupOf contribute their constant,
 roles their name, Ev / Fn for an event- or function-valued filler, Of<spec> for a filler
@@ -42,7 +42,7 @@ Outputs (in --out-dir): ``patterns2_faithful.jsonl`` (one row per unit, full fie
 ``patterns2_faithful.md`` (parameters, counts, top tables with one example sentence),
 ``patterns2_faithful.metta`` (readable rendering: every proposal as the pack rule it would
 become, ``(Implication <unit> (Mn<Name> <vars>))``, under a provenance comment; subsumed
-units as bare queries naming their cover; support-ranked). Deterministic; no decision
+and single-atom units as bare queries under a note, in the same two sections; support-ranked). Deterministic; no decision
 dates in the result files.
 
 Usage:
@@ -275,8 +275,8 @@ def main():
                       "'_', tokens inside a nested spec with '-'), the pattern id appended "
                       f"when two units would share a name ({n_collide} here); provisional; pack rule = (Implication (And <atoms>) (Mn<Name> …))"),
         ("proposals", "closed units of size >= 2 (flag `proposal`); a subsumed unit is the same evidence in fewer atoms and is "
-                      "rendered for reading only; single-atom units are subtrees by the letter, kept in the JSONL and the counts, "
-                      "but a one-atom pack is a rename, so they are not rendered"),
+                      "rendered for reading only; single-atom units are subtrees by the letter and are rendered in their section "
+                      "without a rule, since a one-atom pack is a rename"),
     ]
 
     # ---- md ----
@@ -336,21 +336,24 @@ def main():
                  ";;   ;; <pattern id>  support <records> (occ <matches>)  size <atoms>  root <variable> (<kind>)  depth <d>\n"
                  ";;   ;;   e.g. <up to three supporting record ids>\n"
                  ";;   (Implication <the unit as a conjunctive query> (Mn<Name> <root> <other variables>))\n"
-                 ";;     = the pack rule the proposal would become (naming provisional; the gauntlet decides); a subsumed\n"
-                 ";;     unit carries no rule and is rendered as its bare query under a 'subsumed by' note\n"
-                 ";; Sections: CLOSED UNITS (the meta-node proposals) then SUBSUMED UNITS (a larger unit on the same records\n"
-                 ";; contains them); each sorted by support desc, then pattern id. Single-atom units are not rendered.\n")
+                 ";;     = the pack rule the proposal would become (naming provisional; the gauntlet decides); a unit that is\n"
+                 ";;     not a proposal (subsumed, or a single atom) carries no rule and is rendered as its bare query under a note\n"
+                 ";; Sections: CLOSED UNITS (proposals = the closed units of size >= 2; closed single atoms listed with them) then\n"
+                 ";; SUBSUMED UNITS (a larger unit on the same records contains them); each sorted by support desc, then pattern id.\n")
         by_id = {u["pattern_id"]: u for u in units}
-        for title, seq in (("CLOSED UNITS", [u for u in closed if u["size"] >= 2]),
-                           ("SUBSUMED UNITS", [u for u in units if not u["closed"] and u["size"] >= 2])):
+        for title, seq in (("CLOSED UNITS", closed),
+                           ("SUBSUMED UNITS", [u for u in units if not u["closed"]])):
+            n_prop = sum(1 for u in seq if u["proposal"])
             fh.write(f"\n;; ==================== {title}: {len(seq)} of {len(units)} rooted-subtree units "
-                     f"(k = {k}, support >= {min_support} of {n_docs} records) ====================\n")
+                     f"({n_prop} proposals; k = {k}, support >= {min_support} of {n_docs} records) ====================\n")
             for u in seq:
                 fh.write(f"\n;; {u['pattern_id']}  support {u['support']} (occ {u['occurrences']})  size {u['size']}  "
                          f"root {u['root']} ({u['root_kind']})  depth {u['depth']}\n"
                          f";;   e.g. {' '.join(u['examples'])}\n"
-                         + (f"(Implication {u['query']} {u['meta_node']})\n" if u["closed"] else
-                            f";;   subsumed by {u['subsumed_by']} ({by_id[u['subsumed_by']]['meta_name']}); not a proposal\n{u['query']}\n"))
+                         + (f"(Implication {u['query']} {u['meta_node']})\n" if u["proposal"] else
+                            (f";;   subsumed by {u['subsumed_by']}" + (f" ({by_id[u['subsumed_by']]['meta_name']})" if by_id[u["subsumed_by"]]["meta_name"] else "")
+                             + "; not a proposal\n" if not u["closed"] else
+                             ";;   single atom; not a proposal (a one-atom pack is a rename)\n") + f"{u['query']}\n"))
     print(f"{os.path.basename(args.patterns)}: {len(rows)} patterns -> {len(units)} rooted-subtree units "
           f"({len(closed)} closed; {sum(1 for u in closed if u['size'] >= 2)} proposals, {n_collide} name collisions), "
           f"{len(joins)} joins excluded, {n_lifted} lifted excluded")

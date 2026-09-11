@@ -463,22 +463,24 @@ def main():
         for a, b in params:
             fh.write(f";;   {a:<30s} {b}\n")
         fh.write(";;\n;; RECORD FORMAT (every record is one passing pair)\n"
-                 ";;   ;; A ~ B   records <of A> / <of B> / <shared> (<distinct sentences among the shared>)   gate: PASS\n"
+                 ";;   ;; [genuine|part-of]  A ~ B   records <of A> / <of B> / <shared> (<distinct sentences among the shared>)   gate: PASS\n"
                  + (";;   ;;   MI: <bits>   Jaccard: <shared / either>   e.g. <shared record ids>\n" if raw else
                     ";;   ;;   NMI: <MI / max entropy>   MI: <bits>   Jaccard: <shared / either>   e.g. <shared record ids>\n")
                  + ";;   ;;   A: <query A>\n;;   ;;   B: <query B>\n"
                  ";;   ;;   alignment: <A var = B var …> (holds in <k> of <shared> records)   <note>\n"
                  ";;   (Implication (And <merged atoms>) (Mn<Name> <vars>))\n"
-                 ";; A is the unit with the larger support; records sorted by the gate statistic. Near misses are in the .md and\n"
-                 ";; the JSONL. Notes: 'B is part of A' = the pair restates §4.3.1 subsumption and the rule is A's own pack;\n"
+                 ";; A is the unit with the larger support. GENUINE passes come first (neither unit is part of the other: the rule\n"
+                 ";; is new to this method), then the PART-OF passes (B's atoms embed in A's: the pair restates §4.3.1 subsumption\n"
+                 ";; and the rule is A's own pack); each group sorted by the gate statistic. Near misses are in the .md and the JSONL.\n"
+                 ";; Notes: 'B is part of A' = the pair restates §4.3.1 subsumption and the rule is A's own pack;\n"
                  ";; 'no shared skolem' = the units co-occur in the same sentences without touching = a co-occurrence conjunction.\n"
                  ";; Several pairs can yield the SAME merged feature (the same rule); a numeric suffix marks different features that\n"
                  ";; would share a name.\n")
-        fh.write(f"\n;; ==================== PASSES: {len(passes)} pairs ({n_cont} part-of, {len(passes) - n_cont} genuine) ====================\n")
-        for r in passes:
+        fh.write(f"\n;; ==================== PASSES: {len(passes)} pairs — {len(passes) - n_cont} genuine first, then {n_cont} part-of ====================\n")
+        for r in [r for r in passes if not r["contained"]] + [r for r in passes if r["contained"]]:
             al = " ".join(f"{va}={vb}" for va, vb in r["alignment"].items()) or "—"
             nt = note(r)
-            fh.write(f"\n;; {r['a']} ~ {r['b']}   records {r['n_a']} / {r['n_b']} / {r['n_both']} ({r['n_distinct_shared']} distinct)   gate: PASS\n"
+            fh.write(f"\n;; [{'part-of' if r['contained'] else 'genuine'}]  {r['a']} ~ {r['b']}   records {r['n_a']} / {r['n_b']} / {r['n_both']} ({r['n_distinct_shared']} distinct)   gate: PASS\n"
                      + (f";;   MI: {r['mi_bits']:.4f}   Jaccard: {r['jaccard']:.2f}" if raw else
                         f";;   NMI: {r['nmi']:.3f}   MI: {r['mi_bits']:.4f}   Jaccard: {r['jaccard']:.2f}")
                      + f"   e.g. {' '.join(r['examples'])}\n"

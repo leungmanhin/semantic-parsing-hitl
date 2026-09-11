@@ -27,8 +27,9 @@ flag computed over an inventory that mixes arms has to be recomputed per arm.
 directed, one parent per node (the undirected reading would admit 221 of the 275 joins as trees rooted at the shared
 node; 54 contain a genuine cycle under either reading). Proposals are the closed units of size ≥ 2 (JSONL flag `proposal`); a subsumed unit is
 rendered for reading only and names its cover. Each proposal is rendered as the pack rule it would become,
-`(Implication <unit> (Mn<Name> <vars>))` (2026-09-10). Single-atom units are subtrees by the letter and stay in the
-JSONL and the counts, but they are not proposals (a one-atom pack is a rename) and are not rendered. Meta-nodes carry
+`(Implication <unit> (Mn<Name> <vars>))` (2026-09-10). Single-atom units are subtrees by the letter and are rendered
+in their section (closed or subsumed) like every other unit, but they are not proposals (a one-atom pack is a rename)
+and carry no rule. Meta-nodes carry
 batch-1 style readable names built along the tree, root tokens joined with `_` and the tokens inside a nested spec
 with `-` (`MnHolder_Have_Theme`, `MnAgentOfPerson_Past_Patient`, `MnBeforeEvOfAgent_Past` with Past on the root event
 versus `MnBeforeEvOfAgent-Past` with Past inside the Before filler); the pattern id is appended only when two units

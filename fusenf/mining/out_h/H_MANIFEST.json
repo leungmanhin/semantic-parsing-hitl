@@ -59,12 +59,12 @@
       "meta_node": "(Mn<Name> <root> <other variables>) for units of size >= 2; Name = batch-1 style, built along the tree (heads/constants in atom order, Ev/Fn for event/function fillers, Of<spec> for a filler with its own atoms, Neg for ~NEG; root tokens joined with '_', tokens inside a nested spec with '-'); pattern id appended only on a residual collision (2 units on H, 0 on item-E); provisional",
       "excluded": "constant-lifted shape stratum (addition) and joins (cross-star capability, addition)",
       "owner_decisions_2026-09-08": "lifted patterns and joins = additions arm; rooted subtree = directed, one parent per node (undirected reading would admit 221 of 275 joins; 54 cyclic under any reading); k = 4 kept for production; example sentences kept in the report",
-      "proposals": "closed units of size >= 2 (JSONL flag `proposal`; 728 on H, 614 on item-E); a subsumed unit is the same evidence in fewer atoms and is rendered for reading only, naming its cover; single-atom units are subtrees by the letter, kept in the JSONL and counts, not rendered (a one-atom pack is a rename)"
+      "proposals": "closed units of size >= 2 (JSONL flag `proposal`; 728 on H, 614 on item-E); a subsumed unit is the same evidence in fewer atoms and is rendered for reading only, naming its cover; single-atom units are subtrees by the letter, rendered in their section without a rule (a one-atom pack is a rename) — back in the rendering per owner 2026-09-10"
      },
      "outputs": [
       "mining/out_h/patterns2_faithful.jsonl (record of truth for the view: 1,454 units with fields, closure within the view, supporting ids)",
       "mining/out_h/patterns2_faithful.md (parameters, counts, top tables with one example sentence, excluded joins)",
-      "mining/out_h/patterns2_faithful.metta (rendering only; every proposal as (Implication <unit> (Mn<Name> <vars>)), subsumed units as bare queries naming their cover; no decision dates; 4,070 lines)",
+      "mining/out_h/patterns2_faithful.metta (rendering only; every proposal as (Implication <unit> (Mn<Name> <vars>)), subsumed and single-atom units as bare queries under a note, in the same two sections; no decision dates; 6,570 lines)",
       "mining/out_h/patterns2_faithful_notes.md (reading)",
       "mining/out_ecmp/patterns2_faithful.{jsonl,md,metta}"
      ],
@@ -522,7 +522,7 @@
      "outputs": [
       "mining/out_h/mi_faithful.jsonl (3,300 pairs at the floor; alignment + rule on the passes)",
       "mining/out_h/mi_faithful.md (calibration table, dial, passes with rules, near misses under/over the ceiling)",
-      "mining/out_h/mi_faithful.metta (rendering only, 761 lines; one uniform record per pass ending in its Implication; no decision dates)",
+      "mining/out_h/mi_faithful.metta (rendering only, 761 lines; one uniform record per pass ending in its Implication, tagged [genuine] or [part-of] on the header, genuine first; no decision dates)",
       "mining/out_h/mi_faithful_notes.md",
       "mining/out_ecmp/mi_faithful.*"
      ],

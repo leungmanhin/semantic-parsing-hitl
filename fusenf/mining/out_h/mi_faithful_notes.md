@@ -33,7 +33,8 @@ rule the pair would become, `(Implication (And <aligned conjunction>) (Mn<Name> 
 earlier kinds and families: "B is part of A" (one unit's atoms embed in the other's, so the pair restates §4.3.1
 subsumption and the rule is A's own pack) and "no shared skolem" (the units co-occur in the same sentences without
 touching, so the rule is a co-occurrence conjunction). Several pairs can produce the same merged feature; they share
-one rule name.
+one rule name. The .metta tags every pass `[genuine]` or `[part-of]` on its header line and lists the genuine passes
+first, so `grep '\[genuine\]'` locates the rules new to this method.
 
 ## What the faithful gate delivers on the H substrate (1,454 units × 2,302 records)
 
@@ -78,6 +79,12 @@ resultative), at the cost of admitting the paraphrase artefact in bulk.
    reassembled by co-occurrence and now written out as the join or the frame-with-tense they are.
 2. The paper's two clauses are a proxy for tightness under raw MI, and a coarse one: the resultative pair, the
    strongest candidate, falls one record outside the ceiling. That is the delta the NMI addition measures.
-3. Near-duplicate records must be neutralised before an MI candidate is trusted; each record carries the count of
+3. No genuine disconnected pair was found: every pass whose units share no skolem (6 on H, 299 under the NMI
+   addition, 4 on item-E) comes from a near-duplicate family, the footpath sentences above all. A discourse-level
+   regularity, every sentence about X also mentioning Y, would need a document-level corpus; on independent single
+   sentences the reach beyond §4.3.1 that materialised is the join kind, not the disconnected kind.
+4. Against §4.3.1: same rule species, 77 of 104 passes restate its subsumption, and the two should be consumed in
+   sequence (units, then glue, the merged features replacing the halves they cover) rather than as two lists.
+5. Near-duplicate records must be neutralised before an MI candidate is trusted; each record carries the count of
    distinct sentences behind its shared records. Counting support by corpus equivalence class would remove the
    artefact at the source; the owner chose not to go there for now.
