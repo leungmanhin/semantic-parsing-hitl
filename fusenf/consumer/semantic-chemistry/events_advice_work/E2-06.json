@@ -1,0 +1,117 @@
+{
+ "id": "E2-06",
+ "rule": "II — The first cold snap",
+ "texts": [
+  "On day 21 of Year 1, the moon was full.",
+  "The Council convened at the Watch.",
+  "The Council redistributed mire-essence across the lantern-stations.",
+  "The Northcove stations contributed mire-essence to the central pool.",
+  "The Council issued extra mire-essence to the stations of the Middle Row from the central pool.",
+  "The Council recorded the redistribution in the Watch ledgers."
+ ],
+ "passage": {
+  "corpus_id": "evt-000017",
+  "sentences": [
+   "On day 21 of Year 1, the moon was full.",
+   "The Council convened at the Watch.",
+   "The Council redistributed mire-essence across the lantern-stations.",
+   "The Northcove stations contributed mire-essence to the central pool.",
+   "The Council issued extra mire-essence to the stations of the Middle Row from the central pool.",
+   "The Council recorded the redistribution in the Watch ledgers."
+  ],
+  "parse": [
+   "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+   "(: full_state (Member sk_full_1 full) (STV 1.0 0.99))",
+   "(: full_exp (Experiencer sk_full_1 sk_moon_1) (STV 1.0 0.99))",
+   "(: full_time_year (Time sk_full_1 (Year 1)) (STV 1.0 0.99))",
+   "(: full_time_day (Time sk_full_1 (Day 21)) (STV 1.0 0.99))",
+   "(: full_past (Past sk_full_1) (STV 1.0 0.99))",
+   "(: full_flat (Past (Member sk_moon_1 full)) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: convene_ev (Member sk_convene_1 convene) (STV 1.0 0.99))",
+   "(: convene_ag (Agent sk_convene_1 sk_council_1) (STV 1.0 0.99))",
+   "(: convene_loc (Location sk_convene_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: convene_past (Past sk_convene_1) (STV 1.0 0.99))",
+   "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: lstation_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+   "(: lstations_grp (GroupOf sk_group_1 lantern_station) (STV 1.0 0.99))",
+   "(: redist_ev (Member sk_redistribute_1 redistribute) (STV 1.0 0.99))",
+   "(: redist_ag (Agent sk_redistribute_1 sk_council_1) (STV 1.0 0.99))",
+   "(: redist_th (Theme sk_redistribute_1 mire_essence) (STV 1.0 0.99))",
+   "(: redist_across (Across sk_redistribute_1 sk_group_1) (STV 1.0 0.99))",
+   "(: redist_past (Past sk_redistribute_1) (STV 1.0 0.99))",
+   "(: ncstations_grp (GroupOf sk_group_2 station) (STV 1.0 0.99))",
+   "(: ncstations_poss (Possession sk_group_2 northcove) (STV 1.0 0.99))",
+   "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+   "(: pool_type (Member sk_pool_1 pool) (STV 1.0 0.99))",
+   "(: pool_central (Member sk_pool_1 central) (STV 1.0 0.99))",
+   "(: contribute_ev (Member sk_contribute_1 contribute) (STV 1.0 0.99))",
+   "(: contribute_ag (Agent sk_contribute_1 sk_group_2) (STV 1.0 0.99))",
+   "(: contribute_th (Theme sk_contribute_1 mire_essence) (STV 1.0 0.99))",
+   "(: contribute_rec (Recipient sk_contribute_1 sk_pool_1) (STV 1.0 0.99))",
+   "(: contribute_past (Past sk_contribute_1) (STV 1.0 0.99))",
+   "(: contribute_rule (Implication (PartOf $x sk_group_2) (And (Member (sk_contribute $x) contribute) (Agent (sk_contribute $x) $x) (Theme (sk_contribute $x) mire_essence) (Recipient (sk_contribute $x) sk_pool_1) (Past (sk_contribute $x)))) (STV 1.0 0.9))",
+   "(: extra_essence_type (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: extra_essence_prop (Member sk_mire_essence_1 extra) (STV 1.0 0.99))",
+   "(: mrstations_grp (GroupOf sk_group_3 station) (STV 1.0 0.99))",
+   "(: mrstations_poss (Possession sk_group_3 middle_row) (STV 1.0 0.99))",
+   "(: middlerow_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: middlerow_type (Member middle_row row) (STV 1.0 0.99))",
+   "(: issue_ev (Member sk_issue_1 issue) (STV 1.0 0.99))",
+   "(: issue_ag (Agent sk_issue_1 sk_council_1) (STV 1.0 0.99))",
+   "(: issue_th (Theme sk_issue_1 sk_mire_essence_1) (STV 1.0 0.99))",
+   "(: issue_rec (Recipient sk_issue_1 sk_group_3) (STV 1.0 0.99))",
+   "(: issue_src (Source sk_issue_1 sk_pool_1) (STV 1.0 0.99))",
+   "(: issue_past (Past sk_issue_1) (STV 1.0 0.99))",
+   "(: record_ev (Member sk_record_1 record) (STV 1.0 0.99))",
+   "(: record_ag (Agent sk_record_1 sk_council_1) (STV 1.0 0.99))",
+   "(: record_th (Theme sk_record_1 sk_redistribute_1) (STV 1.0 0.99))",
+   "(: ledgers_grp (GroupOf sk_ledger_1 ledger) (STV 1.0 0.99))",
+   "(: ledgers_poss (Possession sk_ledger_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: record_loc (Location sk_record_1 sk_ledger_1) (STV 1.0 0.99))",
+   "(: record_past (Past sk_record_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000017",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 49,
+     "issue": "\"in the Watch ledgers\" is the medium the record is written into rather than where the recording happened, so by the instruction set's own \"in a statement\" case it should be the preposition-named oblique `(In ...)` rather than `Location`."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a capitalized common-noun label used as a premodifier of another common noun (\"the Watch ledgers\") — the premodifier rule is written for a proper noun, while the label rule makes \"the Watch\" a common noun with no `Name`, so no rule names the link between head and premodifier"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The rest follows the instruction set closely: the copular-with-time state reification plus flat dual-emit, the compound genus atoms for `mire_essence`/`lantern_station`, the proper-noun-premodifier `Possession` pattern for the Northcove stations, the group event plus per-member distribution rule at STV 1.0 0.9, event anaphora reusing `sk_redistribute_1`, and no connective atoms for bare juxtaposition. `Possession` for \"the stations of the Middle Row\" is the debatable one — the part/member test arguably gives `PartOf` — but the opaque fallback is defensible."
+  },
+  "adjudication": {
+   "id": "evt-000017",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "The instruction set names this case outright — \"an event 'in July' is Time, 'in the final round' the preposition-named In, 'in a statement' likewise In\" — and a ledger is the same written medium, so (Location sk_record_1 sk_ledger_1) asserts the false spatial claim that the recording event took place inside the books."
+    }
+   ],
+   "gaps_confirmed": [
+    "a capitalized common-noun label premodifying another common noun (\"the Watch ledgers\") — the premodifier rule is written for a proper noun with a Name, while the label rule makes \"the Watch\" a bare common noun, so no rule names the head-premodifier link (the parse's opaque Possession is a true, well-typed improvisation)"
+   ],
+   "new_gaps": [
+    "an inanimate repository as the \"to\"-destination of a transfer (\"contributed mire-essence to the central pool\") — Recipient is defined as the goal of a transfer and Goal as the non-recipient spatial \"to\", with no test separating them when the destination is a container rather than a party, so two faithful parses can differ",
+    "a bare MASS-noun object in an episodic clause (\"redistributed mire-essence\", \"contributed mire-essence\") — the episodic rule mints an existential witness for a bare PLURAL that takes part in the occurrence and leaves the bare kind filler for non-specific objects, but says nothing about a mass noun naming a specific quantity that is then moved"
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form for the one confirmed issue is the preposition-named oblique (In sk_record_1 sk_ledger_1), the same head the instruction set gives \"in a statement\", leaving the rest of the record event untouched.",
+   "notes": "Everything else follows the instruction set: the copular-with-time state reification plus flat dual-emit for the full moon, the compound genus atoms, the Northgate-spokesman Possession for the Northcove stations, the group event plus per-member rule at STV 1.0 0.9, event anaphora reusing sk_redistribute_1, record → Theme per the evaluate/record test, and no invented time or connective atoms. Possession for \"the stations of the Middle Row\" is debatable against the part/member test but the opaque fallback is licensed."
+  }
+ }
+}

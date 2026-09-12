@@ -1,0 +1,112 @@
+{
+ "id": "E3-04",
+ "rule": "III — The first salt-bloom harvest",
+ "texts": [
+  "On day 34 of Year 1, the harvest party returned to Cauldron Hall at dawn with twelve full buckets of salt-bloom.",
+  "The harvest was heavy.",
+  "Hesper poured the salt-bloom into the salt-bloom store.",
+  "Hesper labeled each compartment of the store with the date.",
+  "The salt-bloom stayed potent."
+ ],
+ "passage": {
+  "corpus_id": "evt-000022",
+  "sentences": [
+   "On day 34 of Year 1, the harvest party returned to Cauldron Hall at dawn with twelve full buckets of salt-bloom.",
+   "The harvest was heavy.",
+   "Hesper poured the salt-bloom into the salt-bloom store.",
+   "Hesper labeled each compartment of the store with the date.",
+   "The salt-bloom stayed potent."
+  ],
+  "parse": [
+   "(: s1_party_typ (Member sk_harvest_party_1 harvest_party) (STV 1.0 0.99))",
+   "(: s1_party_genus (Inheritance harvest_party party) (STV 1.0 0.99))",
+   "(: s1_return_ev (Member sk_return_1 return) (STV 1.0 0.99))",
+   "(: s1_return_ag (Agent sk_return_1 sk_harvest_party_1) (STV 1.0 0.99))",
+   "(: s1_return_goal (Goal sk_return_1 cauldron_hall) (STV 1.0 0.99))",
+   "(: s1_return_dawn (Time sk_return_1 dawn) (STV 1.0 0.99))",
+   "(: s1_return_day (Time sk_return_1 (Day 34)) (STV 1.0 0.99))",
+   "(: s1_return_year (Time sk_return_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_return_past (Past sk_return_1) (STV 1.0 0.99))",
+   "(: s1_return_instr (Instrument sk_return_1 sk_bucket_1) (STV 1.0 0.99))",
+   "(: s1_cauldron_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+   "(: s1_cauldron_kind (Member cauldron_hall hall) (STV 1.0 0.99))",
+   "(: s1_bucket_grp (GroupOf sk_bucket_1 bucket) (STV 1.0 0.99))",
+   "(: s1_bucket_card (Cardinality sk_bucket_1 12) (STV 1.0 0.99))",
+   "(: s1_bucket_full_rule (Implication (PartOf $x sk_bucket_1) (Past (Member $x full))) (STV 1.0 0.9))",
+   "(: s1_saltbloom_typ (Member sk_salt_bloom_1 salt_bloom) (STV 1.0 0.99))",
+   "(: s1_saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: s1_saltbloom_loc (LocatedIn sk_salt_bloom_1 sk_bucket_1) (STV 1.0 0.99))",
+   "(: s2_harvest_typ (Member sk_harvest_1 harvest) (STV 1.0 0.99))",
+   "(: s2_harvest_heavy (Past (Member sk_harvest_1 heavy)) (STV 1.0 0.99))",
+   "(: s3_hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: s3_pour_ev (Member sk_pour_1 pour) (STV 1.0 0.99))",
+   "(: s3_pour_ag (Agent sk_pour_1 hesper) (STV 1.0 0.99))",
+   "(: s3_pour_th (Theme sk_pour_1 sk_salt_bloom_1) (STV 1.0 0.99))",
+   "(: s3_pour_goal (Goal sk_pour_1 sk_store_1) (STV 1.0 0.99))",
+   "(: s3_pour_past (Past sk_pour_1) (STV 1.0 0.99))",
+   "(: s3_store_typ (Member sk_store_1 salt_bloom_store) (STV 1.0 0.99))",
+   "(: s3_store_genus (Inheritance salt_bloom_store store) (STV 1.0 0.99))",
+   "(: s4_label_rule (Implication (And (PartOf $x sk_store_1) (Member $x compartment)) (And (Member (sk_label $x) label) (Agent (sk_label $x) hesper) (Patient (sk_label $x) $x) (Instrument (sk_label $x) sk_date_1) (Past (sk_label $x)))) (STV 1.0 0.9))",
+   "(: s4_compartment_q (QuantifierPhrase compartment label \"each\") (STV 1.0 0.99))",
+   "(: s4_date_typ (Member sk_date_1 date) (STV 1.0 0.99))",
+   "(: s5_potent_st (Member sk_potent_1 potent) (STV 1.0 0.99))",
+   "(: s5_potent_exp (Experiencer sk_potent_1 sk_salt_bloom_1) (STV 1.0 0.99))",
+   "(: s5_potent_still (Still sk_potent_1) (STV 1.0 0.99))",
+   "(: s5_potent_past (Past sk_potent_1) (STV 1.0 0.99))",
+   "(: s5_potent_flat (Member sk_salt_bloom_1 potent) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000022",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 9,
+     "issue": "(Instrument sk_return_1 sk_bucket_1) claims the buckets were the means by which the returning was performed; they are carried cargo, which the with-phrase test (CoAgent = animate participant, Instrument = means) does not cover."
+    },
+    {
+     "statement": 17,
+     "issue": "(LocatedIn sk_salt_bloom_1 sk_bucket_1) reads containment off an \"of\"-partitive, though LocatedIn is licensed only for the containment prepositions in / at / inside / within."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "an inanimate accompaniment / cargo \"with\"-phrase (\"returned ... with twelve full buckets\") — the with-phrase split offers only CoAgent (animate co-participant) or Instrument (means), neither of which fits",
+    "a container/measure partitive (\"twelve full buckets of salt-bloom\") — excluded from the genitive rules as a measure, but given no positive encoding for the container-contents link or the amount",
+    "tense on a prenominal adjectival modifier distributed to a group's members (\"twelve full buckets\" → (Past (Member $x full)) at statement 14) — the wrapping rule covers copular clauses and appositives, not prenominal modifiers"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "\"The salt-bloom stayed potent\" (31-35) follows the continuation-copular pattern exactly, and the \"each compartment of the store\" universal is a correct per-member rule with its QuantifierPhrase companion and no group event. Both defects come from the same unencodable \"twelve full buckets of salt-bloom\" phrase."
+  },
+  "adjudication": {
+   "id": "evt-000022",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Thematic roles define Instrument as the means the event is performed by (a tool, substance or conduit) and split a with-phrase only into participant-CoAgent vs means-Instrument, so calling the carried buckets the means of the returning asserts a manner of return the sentence never states - exactly the mis-slotting the section's 'decide by the question the PP answers, never by which listed role is closest' bars."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "'twelve full buckets OF salt-bloom' states the containment itself rather than leaving it to world knowledge, and LocatedIn is the instruction set's containment head; the 'in / at / inside / within' clause bars folding NON-containment prepositions (on / under / beside) into LocatedIn, not a stated containment, so in this acknowledged measure-partitive gap the atom is true of the sentence's content and well-typed."
+    }
+   ],
+   "gaps_confirmed": [
+    "no licensed slot for an inanimate accompaniment / cargo 'with'-phrase ('returned ... with twelve full buckets'): the with-split offers only CoAgent (animate co-participant) or Instrument (means), and neither fits carried cargo",
+    "no positive encoding for a container / measure partitive ('twelve full buckets of salt-bloom'): Possessive / genitive NP explicitly excludes the measure of-phrase ('a cup of water') and no section supplies the container-contents link or the amount reading"
+   ],
+   "new_gaps": [
+    "the content 'with'-phrase of a marking verb ('labeled each compartment with the date') has the same hole as the cargo case: the date is the inscribed content, not the means by which the labeling was done, and neither CoAgent nor Instrument names it - this parse's (Instrument (sk_label $x) sk_date_1) is the near-fit that results",
+    "the continuation-copular recipe ('the lodge remained / stayed empty' -> reified state + Still + the flat atom + tense) does not say whether the past tense wraps the flat atom, as the copular-with-time-modifier dual-emit explicitly does; this parse emits a bare, present-reading (Member sk_salt_bloom_1 potent) beside (Past sk_potent_1)"
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0: the compliant form omits (Instrument sk_return_1 sk_bucket_1) and carries the cargo phrase at most as the surface-preposition oblique (With sk_return_1 sk_bucket_1) if the 'head is the preposition actually used' licence reaches past the CoAgent/Instrument split; since that split is stated as exhaustive for with-phrases, no form is licensed for inanimate cargo accompaniment and the adjunct must be left out with the gap recorded.",
+   "notes": "Reviewer gap 3 is not a gap: 'the surface tense decides, mechanically ... it wraps every categorical atom the clause yields' plus the plural distributive rule together license (Past (Member $x full)) for 'twelve full buckets'. The rest of the parse is clean - the singular-collective 'harvest party' takes a plain event with no distribution, the 'each compartment of the store' universal is a correct PartOf-ranged rule with its QuantifierPhrase companion, and 'poured ... into the store' takes the motion-result Goal with no Result atom."
+  }
+ }
+}

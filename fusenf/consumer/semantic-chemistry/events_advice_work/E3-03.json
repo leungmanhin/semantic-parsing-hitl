@@ -1,0 +1,163 @@
+{
+ "id": "E3-03",
+ "rule": "III — The first salt-bloom harvest",
+ "texts": [
+  "On day 33 of Year 1, Coraline Ash harvested salt-bloom at the new-moon spring tide.",
+  "Coraline Ash scraped the submerged stones of the second pool with a wooden scraper.",
+  "The salt-bloom came off the stones in pale flakes.",
+  "Coraline Ash gathered the flakes with a fine net.",
+  "The harvest party rotated pools at midnight.",
+  "The harvest party rotated pools again at the third watch.",
+  "The harvest party inspected the two southern pools.",
+  "The two southern pools had not bloomed.",
+  "The harvest took the whole night."
+ ],
+ "passage": {
+  "corpus_id": "evt-000021",
+  "sentences": [
+   "On day 33 of Year 1, Coraline Ash harvested salt-bloom at the new-moon spring tide.",
+   "Coraline Ash scraped the submerged stones of the second pool with a wooden scraper.",
+   "The salt-bloom came off the stones in pale flakes.",
+   "Coraline Ash gathered the flakes with a fine net.",
+   "The harvest party rotated pools at midnight.",
+   "The harvest party rotated pools again at the third watch.",
+   "The harvest party inspected the two southern pools.",
+   "The two southern pools had not bloomed.",
+   "The harvest took the whole night."
+  ],
+  "parse": [
+   "(: ca_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: e1_class (Member sk_harvest_1 harvest) (STV 1.0 0.99))",
+   "(: e1_agent (Agent sk_harvest_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e1_theme (Theme sk_harvest_1 salt_bloom) (STV 1.0 0.99))",
+   "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: e1_day (Time sk_harvest_1 (Day 33)) (STV 1.0 0.99))",
+   "(: e1_year (Time sk_harvest_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e1_tide_time (Time sk_harvest_1 sk_tide_1) (STV 1.0 0.99))",
+   "(: tide_type (Member sk_tide_1 new_moon_spring_tide) (STV 1.0 0.99))",
+   "(: tide_genus (Inheritance new_moon_spring_tide tide) (STV 1.0 0.99))",
+   "(: e1_past (Past sk_harvest_1) (STV 1.0 0.99))",
+   "(: e2_class (Member sk_scrape_1 scrape) (STV 1.0 0.99))",
+   "(: e2_agent (Agent sk_scrape_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e2_patient (Patient sk_scrape_1 sk_stones_1) (STV 1.0 0.99))",
+   "(: stones_group (GroupOf sk_stones_1 stone) (STV 1.0 0.99))",
+   "(: stones_submerged_rule (Implication (PartOf $x sk_stones_1) (Member $x submerged)) (STV 1.0 0.9))",
+   "(: stones_locin (LocatedIn sk_stones_1 sk_pool_1) (STV 1.0 0.99))",
+   "(: pool2_type (Member sk_pool_1 pool) (STV 1.0 0.99))",
+   "(: pool2_ord (Ordinal sk_pool_1 2 pool) (STV 1.0 0.99))",
+   "(: e2_instr (Instrument sk_scrape_1 sk_scraper_1) (STV 1.0 0.99))",
+   "(: scraper_type (Member sk_scraper_1 wooden_scraper) (STV 1.0 0.99))",
+   "(: scraper_genus (Inheritance wooden_scraper scraper) (STV 1.0 0.99))",
+   "(: scraper_mod (Inheritance wooden_scraper wooden) (STV 1.0 0.99))",
+   "(: e2_past (Past sk_scrape_1) (STV 1.0 0.99))",
+   "(: saltbloom_type (Member sk_salt_bloom_1 salt_bloom) (STV 1.0 0.99))",
+   "(: e3_class (Member sk_come_1 come) (STV 1.0 0.99))",
+   "(: e3_patient (Patient sk_come_1 sk_salt_bloom_1) (STV 1.0 0.99))",
+   "(: e3_source (Source sk_come_1 sk_stones_1) (STV 1.0 0.99))",
+   "(: e3_form (In sk_come_1 sk_flake_1) (STV 1.0 0.99))",
+   "(: flakes_group (GroupOf sk_flake_1 flake) (STV 1.0 0.99))",
+   "(: flakes_pale_rule (Implication (PartOf $x sk_flake_1) (Member $x pale)) (STV 1.0 0.9))",
+   "(: e3_past (Past sk_come_1) (STV 1.0 0.99))",
+   "(: e4_class (Member sk_gather_1 gather) (STV 1.0 0.99))",
+   "(: e4_agent (Agent sk_gather_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e4_theme (Theme sk_gather_1 sk_flake_1) (STV 1.0 0.99))",
+   "(: e4_instr (Instrument sk_gather_1 sk_net_1) (STV 1.0 0.99))",
+   "(: net_type (Member sk_net_1 net) (STV 1.0 0.99))",
+   "(: net_fine (Member sk_net_1 fine) (STV 1.0 0.99))",
+   "(: e4_past (Past sk_gather_1) (STV 1.0 0.99))",
+   "(: party_type (Member sk_harvest_party_1 harvest_party) (STV 1.0 0.99))",
+   "(: party_genus (Inheritance harvest_party party) (STV 1.0 0.99))",
+   "(: e5_class (Member sk_rotate_1 rotate) (STV 1.0 0.99))",
+   "(: e5_agent (Agent sk_rotate_1 sk_harvest_party_1) (STV 1.0 0.99))",
+   "(: e5_theme (Theme sk_rotate_1 sk_poolgrp_1) (STV 1.0 0.99))",
+   "(: poolgrp1_group (GroupOf sk_poolgrp_1 pool) (STV 1.0 0.99))",
+   "(: e5_time (Time sk_rotate_1 midnight) (STV 1.0 0.99))",
+   "(: e5_past (Past sk_rotate_1) (STV 1.0 0.99))",
+   "(: e6_class (Member sk_rotate_2 rotate) (STV 1.0 0.99))",
+   "(: e6_agent (Agent sk_rotate_2 sk_harvest_party_1) (STV 1.0 0.99))",
+   "(: e6_theme (Theme sk_rotate_2 sk_poolgrp_2) (STV 1.0 0.99))",
+   "(: poolgrp2_group (GroupOf sk_poolgrp_2 pool) (STV 1.0 0.99))",
+   "(: e6_time (Time sk_rotate_2 third_watch) (STV 1.0 0.99))",
+   "(: e6_again (Again sk_rotate_2) (STV 1.0 0.99))",
+   "(: e6_past (Past sk_rotate_2) (STV 1.0 0.99))",
+   "(: e7_class (Member sk_inspect_1 inspect) (STV 1.0 0.99))",
+   "(: e7_agent (Agent sk_inspect_1 sk_harvest_party_1) (STV 1.0 0.99))",
+   "(: e7_theme (Theme sk_inspect_1 sk_poolgrp_3) (STV 1.0 0.99))",
+   "(: poolgrp3_group (GroupOf sk_poolgrp_3 pool) (STV 1.0 0.99))",
+   "(: poolgrp3_card (Cardinality sk_poolgrp_3 2) (STV 1.0 0.99))",
+   "(: poolgrp3_south_rule (Implication (PartOf $x sk_poolgrp_3) (Member $x southern)) (STV 1.0 0.9))",
+   "(: e7_past (Past sk_inspect_1) (STV 1.0 0.99))",
+   "(: poolgrp3_notbloom (And (Member sk_bloom_1 bloom) (Patient sk_bloom_1 sk_poolgrp_3) (Past sk_bloom_1)) (STV 0.0 0.99))",
+   "(: poolgrp3_notbloom_rule (Implication (PartOf $x sk_poolgrp_3) (And (Member (sk_bloom $x) bloom) (Patient (sk_bloom $x) $x) (Past (sk_bloom $x)))) (STV 0.0 0.9))",
+   "(: e1_duration (Measure sk_harvest_1 duration 1 night) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000021",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 3,
+     "issue": "the harvested salt-bloom is the bare kind constant salt_bloom in a dated episodic clause, while the anaphoric definite \"The salt-bloom\" two sentences later mints sk_salt_bloom_1 — the specific stuff harvested and the stuff that came off the stones end up as two unconnected symbols."
+    },
+    {
+     "statement": 16,
+     "issue": "(LocatedIn sk_stones_1 sk_pool_1) encodes the of-genitive \"the stones of the second pool\" as spatial containment, but LocatedIn is licensed only for in/at/inside/within; a genitive takes PartOf (part/component) or the opaque Possession."
+    },
+    {
+     "statement": 63,
+     "issue": "(Measure sk_harvest_1 duration 1 night) supplies a magnitude no word states and uses \"night\", a day-part constant, in the unit slot, where units are lemmatized measure nouns (hour, day, year)."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "\"on day 33 of Year 1\" — an epoch-relative day-of-year date; the Time terms have no day-of-year slot and (Day 33) is out of range for the day-of-month reading (Day) otherwise carries",
+    "\"at the new-moon spring tide\" — an event-noun as a temporal anchor under \"at\": the Time value slot is specified for structured calendar terms and deictic/named constants, and the ordering machinery covers only before/after/during, so nothing licenses an event witness as a Time value",
+    "\"took the whole night\" — a duration stated as a whole named period with no number and no unit noun; (Measure e duration <n> <unit>) has no form for it",
+    "a NEGATED past perfect (\"The two southern pools had not bloomed\", after the inspection event): the anteriority rule presumes an asserted perfect event to order, and says nothing about whether a Before atom is emitted for a denied one, or whether it would sit inside or outside the strength-0 bundle",
+    "an Ordinal on an entity with no associated event or \"-est\" dimension (\"the second pool\"): the scale slot is defined as the associated event or an explicit dimension, and here the parse has to fall back on the kind symbol pool"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Plural handling is otherwise strong: definite/bare plurals all take group witnesses with per-member distribution rules for the descriptive modifiers (submerged, pale, southern), the collective singular \"harvest party\" correctly does not distribute, inspect takes Theme, and the negated plural keeps both the group denial and the strength-0 member rule."
+  },
+  "adjudication": {
+   "id": "evt-000021",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "partial",
+     "reason": "The standing half is the broken referent chain - the harvested salt-bloom and 'The salt-bloom' that came off the stones are one discourse referent that Coreference & anaphora would have share one symbol, and the parse leaves two unlinked symbols; the overstated half is that the bare kind filler is itself illicit, since 'Bob cooked dinner yesterday' -> (Patient sk_cook_1 dinner) licenses a bare constant for a bare non-count object in a dated episodic clause and the episodic-witness rule is written for bare PLURALS."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "'the stones of the second pool' is a genitive of-phrase, which Possessive / genitive NP routes to PartOf (part / component) or the opaque Possession, while LocatedIn is licensed 'ONLY - in / at / inside / within' off a stated preposition, so the atom asserts a spatial containment the text never states (Core patterns: no unstated location, however obvious)."
+    },
+    {
+     "index": 2,
+     "verdict": "partial",
+     "reason": "The unit half stands - 'night' is designated a day-part Time constant in the instruction set's own bound-terms list, is absent from the unit-conversion lexicon, and so cannot convert to canonical seconds or compare with any other duration, while colliding with its Time-slot sense; the magnitude half is overstated, since 'the whole night' does denote exactly one night and the instruction set derives a count from non-numeral wording elsewhere ('for days' -> MeasureAtLeast e duration 2 day)."
+    }
+   ],
+   "gaps_confirmed": [
+    "'on day 33 of Year 1' - an epoch-relative day-of-year date: the Time term set has no day-of-year constructor and (Day 33) is out of range for the day-of-month reading Day otherwise carries.",
+    "'at the new-moon spring tide' - an event-noun temporal anchor under 'at': the Time value slot is specified for structured calendar terms and deictic / named constants, and the ordering machinery covers only before / after / during, so nothing licenses an event witness as a Time value.",
+    "'took the whole night' - a duration stated as a whole named period with no number and no measure-unit noun: (Measure e duration <n> <unit>) has no form for it, and unlike scale and unit there is no reserved 'unspecified' symbol for a magnitude.",
+    "A NEGATED past perfect ('The two southern pools had not bloomed', after the inspection): the anteriority rule presumes an asserted perfect event to order and says nothing about whether a Before atom is emitted for a denied one, or whether it would sit inside or outside the strength-0 bundle.",
+    "An Ordinal on an entity with no associated event and no explicit '-est' dimension ('the second pool'): the scale slot is defined as the associated event or a stated dimension, leaving only the kind symbol as a fallback."
+   ],
+   "new_gaps": [
+    "A bare MASS object in a dated episodic clause that the passage later re-mentions with a definite ('harvested salt-bloom' ... 'The salt-bloom came off'): the 'bare plural in an episodic clause is a specific set' rule covers plurals only, and the 'cooked dinner' precedent licenses the bare kind filler, so nothing decides whether the first mention must mint a mass witness for the later definite to reuse - and there is no licensed way to link a kind constant to a witness after the fact. A licensed form would need to carry the identity of the participating stuff across the two clauses.",
+    "Whether an agent-nominalization head inside a compound you fused ('wooden_scraper', head 'scraper') fires the (Inheritance <nom> (can <verb>)) capability atom is undecided: Agent-nominalization says the licence is for 'a symbol you fused from the surface' and names verb+object coinages (egg_layer, dam_builder), while here the head is an ordinary dictionary nominalization in referring use ('type the referent and stop') - and the section insists 'where it fires is fixed, not a judgment call'.",
+    "'at the third watch' vs 'the second pool' show two undecided treatments of an ordinal-headed definite: one became a bare named-time constant third_watch, the other a witness plus (Ordinal sk_pool_1 2 pool), with nothing in the instruction set deciding when an ordinal NP is a named constant and when it is an entity with an Ordinal atom."
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 1: the compliant form is (PartOf sk_stones_1 sk_pool_1) - the stones are a component of the pool - or the opaque (Possession sk_stones_1 sk_pool_1) if the part test is judged to fail, never LocatedIn, which is reserved for a stated containment preposition. Issue 0 (standing half): the compliant form would be a single mass witness minted at 'harvested salt-bloom' and reused by the later definite, but the instruction set licenses no such witness for a bare mass object in an episodic clause and offers no way to link a kind constant to a witness later, so no compliant form is stated and the loss is filed as a gap. Issue 2 (standing half): no licensed form exists for 'took the whole night' - the Measure duration head requires a stated number and a measure unit, and neither is supplied - so the compliant behaviour is to leave the duration unencoded and record the gap rather than coin 'night' as a unit.",
+   "notes": "The rest of the parse is strong and I found no further defects: group witnesses with per-member distribution rules for submerged / pale / southern, the singular collective 'harvest party' correctly not distributing, inspect and gather taking Theme, 'came off the stones' following the 'slid the plate off the counter' precedent rather than a phrasal verb, and the negated plural keeping both the group denial and the strength-0 member rule. The Time-value use of the tide witness and the Ordinal scale fallback are acceptable improvisation in the gap territory the reviewer correctly identified."
+  }
+ }
+}

@@ -1,0 +1,20 @@
+{"id": "evt-000003", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 27, "issue": "The flat `(Member coraline_ash apprentice)` (with the reified state at 25-26) asserts at top level the result of `sk_accept_1`, a control-verb complement the instruction set says carries no tense/status because whether it occurred is not stated."},
+   {"statement": 24, "issue": "`accept` neither creates, destroys, consumes nor physically changes Coraline, so the direct-object test gives `Theme`; `Patient` follows only from reading the as-phrase as a resultative."},
+   {"statement": 35, "issue": "`(Result sk_assign_1 sk_apprentice_1)` treats \"as an apprentice\" on the assigning as a caused result rather than a concurrent capacity, where the instruction set says to prefer the plain state and omit `Result`, and it reuses the accept event's state witness for a second event."},
+   {"statement": 42, "issue": "\"in the previous year\" is rendered as `(Year 0)`, arithmetically decremented off the equinox's `(Year 1)` two steps away, and without the ordering atom the anaphoric shifted-time rule pairs with a shift."},
+   {"statement": null, "issue": "The past perfect \"had completed\" gets no `(Before ...)` atom even though the passage supplies other asserted events (the vote, the assignment) for it to precede."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "as-NP secondary predicate on a transitive verb (\"accept X as an apprentice\", \"assign X to Y as an apprentice\") — the resultative/depictive section covers adjectival results and become/turn-into changes of kind, not a role-assigning as-phrase",
+   "backward-shifting anaphoric temporal NP (\"in the previous year\") — only \"that <time>\" (copy the antecedent's terms) and \"the next/following <time>\" (+1) are specified",
+   "a complement negated by a negative determiner (\"said the village had no apprentice candidate\") — the drop-the-complement rule is stated for a clausal denial, leaving it undecided whether a no-NP complement counts as wholly negative",
+   "a capitalized epithet before a personal name (\"Old Vesh\") — neither a kinship nor a courtesy title, so the title carve-out and the mechanical capitalized-run rule yield different name symbols"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Sentences 1, 2 and 6 match the instruction set closely, including the `BeforeBy` measured gap, the compound-kind genus for `autumn_equinox`, and the tense-wrapped age `Measure`. Dropping the \"said\" complement looks like a correct application of the wholly-negative-complement rule, and the definite \"the village\" correctly projects."}

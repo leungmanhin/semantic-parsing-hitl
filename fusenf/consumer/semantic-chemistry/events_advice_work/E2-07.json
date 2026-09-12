@@ -1,0 +1,166 @@
+{
+ "id": "E2-07",
+ "rule": "II — The first cold snap",
+ "texts": [
+  "On day 21 of Year 1, Hesper reported to the Council that the cold snap had cost about one and a half vessels of mire-essence.",
+  "Hesper reported to the Council that the salt-bloom store held eight weeks of winter supply.",
+  "Brindle Coombe reported to the Council that the Northcove production was normal.",
+  "Sailsworn reported to the Council that the next new moon was twelve days away.",
+  "Sailsworn reported to the Council that the harvest party would have twelve members.",
+  "Old Vesh proposed that Coraline Ash join the salt-bloom harvest party.",
+  "The Council agreed."
+ ],
+ "passage": {
+  "corpus_id": "evt-000018",
+  "sentences": [
+   "On day 21 of Year 1, Hesper reported to the Council that the cold snap had cost about one and a half vessels of mire-essence.",
+   "Hesper reported to the Council that the salt-bloom store held eight weeks of winter supply.",
+   "Brindle Coombe reported to the Council that the Northcove production was normal.",
+   "Sailsworn reported to the Council that the next new moon was twelve days away.",
+   "Sailsworn reported to the Council that the harvest party would have twelve members.",
+   "Old Vesh proposed that Coraline Ash join the salt-bloom harvest party.",
+   "The Council agreed."
+  ],
+  "parse": [
+   "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: r1_ev (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: r1_exp (Experiencer sk_report_1 hesper) (STV 1.0 0.99))",
+   "(: r1_rec (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: r1_past (Past sk_report_1) (STV 1.0 0.99))",
+   "(: r1_year (Time sk_report_1 (Year 1)) (STV 1.0 0.99))",
+   "(: r1_day (Time sk_report_1 (Day 21)) (STV 1.0 0.99))",
+   "(: r1_theme (Theme sk_report_1 (Past (Measure sk_cold_snap_1 price (ParticleFromNormal 1.5 0.15) vessel_of_mire_essence))) (STV 1.0 0.99))",
+   "(: cs_type (Member sk_cold_snap_1 cold_snap) (STV 1.0 0.99))",
+   "(: cs_gen (Inheritance cold_snap snap) (STV 1.0 0.99))",
+   "(: cs_mod (Inheritance cold_snap cold) (STV 1.0 0.99))",
+   "(: r2_ev (Member sk_report_2 report) (STV 1.0 0.99))",
+   "(: r2_exp (Experiencer sk_report_2 hesper) (STV 1.0 0.99))",
+   "(: r2_rec (Recipient sk_report_2 sk_council_1) (STV 1.0 0.99))",
+   "(: r2_past (Past sk_report_2) (STV 1.0 0.99))",
+   "(: r2_theme (Theme sk_report_2 (And (Member sk_hold_1 hold) (Agent sk_hold_1 sk_store_1) (Theme sk_hold_1 sk_supply_1) (Member sk_supply_1 winter_supply) (Measure sk_supply_1 duration 8 week) (Past sk_hold_1))) (STV 1.0 0.99))",
+   "(: store_type (Member sk_store_1 salt_bloom_store) (STV 1.0 0.99))",
+   "(: store_gen (Inheritance salt_bloom_store store) (STV 1.0 0.99))",
+   "(: supply_gen (Inheritance winter_supply supply) (STV 1.0 0.99))",
+   "(: brindle_name (Name brindle_coombe \"Brindle Coombe\") (STV 1.0 0.99))",
+   "(: r3_ev (Member sk_report_3 report) (STV 1.0 0.99))",
+   "(: r3_exp (Experiencer sk_report_3 brindle_coombe) (STV 1.0 0.99))",
+   "(: r3_rec (Recipient sk_report_3 sk_council_1) (STV 1.0 0.99))",
+   "(: r3_past (Past sk_report_3) (STV 1.0 0.99))",
+   "(: r3_theme (Theme sk_report_3 (And (Possession sk_production_1 northcove) (Past (Member sk_production_1 normal)))) (STV 1.0 0.99))",
+   "(: production_type (Member sk_production_1 production) (STV 1.0 0.99))",
+   "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+   "(: sailsworn_name (Name sailsworn \"Sailsworn\") (STV 1.0 0.99))",
+   "(: r4_ev (Member sk_report_4 report) (STV 1.0 0.99))",
+   "(: r4_exp (Experiencer sk_report_4 sailsworn) (STV 1.0 0.99))",
+   "(: r4_rec (Recipient sk_report_4 sk_council_1) (STV 1.0 0.99))",
+   "(: r4_past (Past sk_report_4) (STV 1.0 0.99))",
+   "(: r4_theme (Theme sk_report_4 (Past (BeforeBy now sk_new_moon_1 12 day))) (STV 1.0 0.99))",
+   "(: moon_type (Member sk_new_moon_1 new_moon) (STV 1.0 0.99))",
+   "(: moon_gen (Inheritance new_moon moon) (STV 1.0 0.99))",
+   "(: moon_mod (Inheritance new_moon new) (STV 1.0 0.99))",
+   "(: r5_ev (Member sk_report_5 report) (STV 1.0 0.99))",
+   "(: r5_exp (Experiencer sk_report_5 sailsworn) (STV 1.0 0.99))",
+   "(: r5_rec (Recipient sk_report_5 sk_council_1) (STV 1.0 0.99))",
+   "(: r5_past (Past sk_report_5) (STV 1.0 0.99))",
+   "(: r5_theme (Theme sk_report_5 (Future (Cardinality sk_party_1 12))) (STV 1.0 0.99))",
+   "(: party_type (Member sk_party_1 harvest_party) (STV 1.0 0.99))",
+   "(: party_gen (Inheritance harvest_party party) (STV 1.0 0.99))",
+   "(: vesh_name (Name vesh \"Old Vesh\") (STV 1.0 0.99))",
+   "(: propose_ev (Member sk_propose_1 propose) (STV 1.0 0.99))",
+   "(: propose_exp (Experiencer sk_propose_1 vesh) (STV 1.0 0.99))",
+   "(: propose_past (Past sk_propose_1) (STV 1.0 0.99))",
+   "(: propose_theme (Theme sk_propose_1 (And (Member sk_join_1 join) (Agent sk_join_1 coraline_ash) (Theme sk_join_1 sk_party_1))) (STV 1.0 0.99))",
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: party_type2 (Member sk_party_1 salt_bloom_harvest_party) (STV 1.0 0.99))",
+   "(: party_gen2 (Inheritance salt_bloom_harvest_party party) (STV 1.0 0.99))",
+   "(: agree_ev (Member sk_agree_1 agree) (STV 1.0 0.99))",
+   "(: agree_ag (Agent sk_agree_1 sk_council_1) (STV 1.0 0.99))",
+   "(: agree_past (Past sk_agree_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000018",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 8,
+     "issue": "The unit vessel_of_mire_essence is a coined multi-word compound emitted with no decomposition atom (no (Inheritance vessel_of_mire_essence vessel)), which Compound concepts requires of every compound symbol minted from the surface."
+    },
+    {
+     "statement": 16,
+     "issue": "(Measure sk_supply_1 duration 8 week) invents the scale duration: no word in \"eight weeks of winter supply\" supplies a dimension, so the Measures rule reserves unspecified for that slot, and (Measure e duration n u) is defined for an eventuality's extent, not for an entity."
+    },
+    {
+     "statement": 33,
+     "issue": "(Past (BeforeBy now sk_new_moon_1 12 day)) tense-wraps a temporal ordering relation — tense wrapping is licensed for categorical, comparative and Measure atoms — and leaves the speech-anchored now constant inside a past-tense sealed report."
+    },
+    {
+     "statement": 34,
+     "issue": "The restrictive \"next\" of \"the next new moon\" is silently dropped, widening the claim from that specific upcoming new moon to any new moon."
+    },
+    {
+     "statement": 41,
+     "issue": "The possession clause \"would have twelve members\" is collapsed into (Future (Cardinality sk_party_1 12)) instead of the licensed verbal event with Holder/Theme, and the stated kind \"member\" is never recorded (no GroupOf sk_party_1 member)."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "measure/quantity of-NP (\"about one and a half vessels of mire-essence\", \"eight weeks of winter supply\") — the measure of-phrase is named only as an exclusion from Possession, with no positive encoding, leaving both the Measure scale slot and the multi-word unit symbol unlicensed",
+    "a predicative statement of group size (\"the harvest party would have twelve members\") — Cardinality is only ever introduced from a counted-plural NP, never from a \"have N members\" clause",
+    "a mandative / subjunctive that-complement (\"proposed that Coraline Ash join the party\") — nothing distinguishes its directive force from a declarative that-clause; Directive/Forbid covers imperatives only",
+    "an anaphoric ordering modifier on an entity NP (\"the next new moon\") — next/last is covered only as a time adjunct on a weekday (\"next Tuesday\"), and Ordinal covers first / nth / last but not \"next\"",
+    "a capitalized adjectival epithet inside a personal name (\"Old Vesh\") — the casing rule makes the whole capitalized run the name symbol (old_vesh) while the courtesy-title rule derives the symbol from the name alone (vesh), and nothing says which governs an epithet"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The five-report skeleton is well handled: distinct sk_report_1..5, Experiencer holders with Recipient addressees, sequence-of-tense kept inside each seal, the Northgate-pattern Possession for \"the Northcove production\" correctly left sealed while its typing and Name project, and the indefinite winter_supply witness correctly kept inside the seal. One side effect of resolving \"the salt-bloom harvest party\" to sk_party_1 is that the symbol carries two unrelated compound kind atoms (harvest_party and salt_bloom_harvest_party) with no link between them."
+  },
+  "adjudication": {
+   "id": "evt-000018",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "refute",
+     "reason": "Compound concepts mandates decomposition for compound actions, phrasal verbs and modifier_noun kinds -- not for Measure unit symbols, and the prompt's own coined rate unit cent_per_share carries no decomposition atom -- while vessel_of_mire_essence is not a modifier_noun (its last word is not its head), so the objection mistakes the reviewer's own measure-of-NP coverage gap for a parse defect."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "duration is a reserved Measure-family scale the instruction set itself uses where no word supplies it ('Sam drove for six hours' -> (Measure sk_drive_1 duration 6 hour)), so it is not the invented open-class dimension the 'never invented / use unspecified' rule bars; stretching it from an eventuality to a stock of supplies is improvisation inside the measure-of-NP gap, and (Measure sk_supply_1 duration 8 week) is true of 'eight weeks of winter supply' and well-typed."
+    },
+    {
+     "index": 2,
+     "verdict": "refute",
+     "reason": "Time anchors 'N units away / from now' on the reserved constant now, and a copular clause with no event witness carries its tense by wrapping the atom the clause yields (Status predicates, the same wrap Comparatives and Measures take), so (Past (BeforeBy now sk_new_moon_1 12 day)) is licensed improvisation whose every atom is true of what Sailsworn reported -- and it is sealed under Theme, so nothing reaches top level."
+    },
+    {
+     "index": 3,
+     "verdict": "partial",
+     "reason": "The half that stands is that no atom records 'next' (a real gap the reviewer also files, since Ordinal covers first/nth/last and 'next Tuesday' covers only a time adjunct); the half that falls is 'widening to any new moon' -- sk_new_moon_1 is a specific witness and (BeforeBy now sk_new_moon_1 12 day) already places it ahead of now, exactly as 'next Tuesday' lets the clause's direction carry the modifier instead of an atom."
+    },
+    {
+     "index": 4,
+     "verdict": "confirm",
+     "reason": "Two kinds of clause makes 'have' a verbal predicate and Thematic roles assigns it Holder, so 'would have twelve members' must reify a have eventuality with the counted-plural object as its Theme; collapsing it to (Future (Cardinality sk_party_1 12)) deletes the eventuality the rule requires, hangs Cardinality on a symbol with no GroupOf, and drops the stated kind 'member'."
+    }
+   ],
+   "gaps_confirmed": [
+    "measure/quantity of-NP ('one and a half vessels of mire-essence', 'eight weeks of winter supply') -- named only as an exclusion from Possession, with no positive encoding for either the Measure scale slot or the multi-word unit symbol",
+    "mandative / subjunctive that-complement ('proposed that Coraline Ash join the party') -- nothing marks its directive force apart from a declarative that-clause, and Directive/Forbid is imperative-only",
+    "'the next new moon' -- an anaphoric ordering modifier on an entity NP: Ordinal covers first/nth/last but not 'next', and 'next Tuesday' covers only the time-adjunct case",
+    "'Old Vesh' -- a capitalized adjectival epithet inside a personal name: the casing rule makes the whole capitalized run the symbol (old_vesh) while the courtesy-title rule derives it from the name alone (vesh), and nothing says which governs"
+   ],
+   "new_gaps": [
+    "'On day 21 of Year 1' -- an epoch-relative day-of-year date has no Time term: the vocabulary is Year/Month/Day/Weekday/Hour/Minute and (Day n) elsewhere means day-of-month, so (Day 21) beside (Year 1) is unlicensed improvisation.",
+    "A deictic interval inside a reported past complement ('reported that the next new moon was twelve days away') has no report-time anchor: now is speech-anchored, so the sealed content measures the twelve days from the text's present rather than from the day-21 report, and sequence-of-tense is declared surface-mechanical with no device to re-anchor it."
+   ],
+   "decision": "defect",
+   "defect_summary": "For the one confirmed issue the compliant form is the reified possession event inside report 5's Theme seal -- (Member sk_have_1 have) (Holder sk_have_1 sk_party_1) (Theme sk_have_1 sk_members_1) (GroupOf sk_members_1 member) (Cardinality sk_members_1 12) (Future sk_have_1) -- with the party's own typing and genus projecting at top level as they already do.",
+   "notes": "The reviewer's second gap claim is not a gap: 'twelve members' is an ordinary counted-plural object, so the licensed have-event plus GroupOf/Cardinality composes with no new machinery -- which is precisely why the collapse is a defect rather than improvisation. The five-report skeleton, the Northcove Possession correctly left sealed while its typing and Name project, and the stative-transitive Agent on 'held' are all right."
+  }
+ }
+}

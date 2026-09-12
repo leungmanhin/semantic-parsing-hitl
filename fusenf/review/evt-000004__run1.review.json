@@ -1,0 +1,12 @@
+{"id": "evt-000004", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 49, "issue": "\"wrote each step\" assigns the quantified object `Theme`, but the instruction set lists *write* among the Patient verbs (objects the action creates/reworks), so the role contradicts the stated object test."},
+               {"statement": 4, "issue": "`(Ordinal sk_night_1 1 sk_apprenticeship_1)` puts an individual witness in the scale slot, which the instruction set defines as an associated event class or an '-est' dimension, and no other atom relates the night to the apprenticeship."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["ordinal position inside a stated containing period (\"the first night of Coraline Ash's apprenticeship\") — `Ordinal`'s scale slot is defined only for an associated event or an '-est' dimension, and no relation is defined to link the ranked period to its container",
+             "a temporal-frame PP whose object is a period/event noun (\"on the first night, X did not ...\") — `Time` is specified for calendar terms and deictic/named constants, `During` is restricted to during/while/throughout, so a witness-valued temporal frame has no documented carrier",
+             "the content argument of a locative-alternation verb (\"filled the reservoir with mire-essence\") — the with-phrase test splits only co-participant vs means, so the substance that fills the object is forced into `Instrument`"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Negation scope, projection of the definite night/apprenticeship atoms out of the strength-0 bundle, the `leather_case` / `mire_essence` decompositions (noun modifier not exposed), and the coreferent lantern symbol all follow the instruction set. The \"each step\" universal is correctly a distributing rule with its QuantifierPhrase companion; only the object role inside it is off."}

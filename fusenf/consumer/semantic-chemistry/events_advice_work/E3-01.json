@@ -1,0 +1,70 @@
+{
+ "id": "E3-01",
+ "rule": "III — The first salt-bloom harvest",
+ "texts": [
+  "On day 33 of Year 1, the moon was new.",
+  "A spring tide came on day 33 of Year 1.",
+  "The spring tide filled the Salt-bloom Tide-pools.",
+  "Salt-bloom bloomed in the tide-pools.",
+  "The tide-pools overflowed at sundown."
+ ],
+ "passage": {
+  "corpus_id": "evt-000019",
+  "sentences": [
+   "On day 33 of Year 1, the moon was new.",
+   "A spring tide came on day 33 of Year 1.",
+   "The spring tide filled the Salt-bloom Tide-pools.",
+   "Salt-bloom bloomed in the tide-pools.",
+   "The tide-pools overflowed at sundown."
+  ],
+  "parse": [
+   "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+   "(: new_state (Member sk_new_1 new) (STV 1.0 0.99))",
+   "(: new_exp (Experiencer sk_new_1 sk_moon_1) (STV 1.0 0.99))",
+   "(: new_time_day (Time sk_new_1 (Day 33)) (STV 1.0 0.99))",
+   "(: new_time_year (Time sk_new_1 (Year 1)) (STV 1.0 0.99))",
+   "(: new_past (Past sk_new_1) (STV 1.0 0.99))",
+   "(: moon_new_flat (Past (Member sk_moon_1 new)) (STV 1.0 0.99))",
+   "(: tide_type (Member sk_spring_tide_1 spring_tide) (STV 1.0 0.99))",
+   "(: tide_genus (Inheritance spring_tide tide) (STV 1.0 0.99))",
+   "(: come_ev (Member sk_come_1 come) (STV 1.0 0.99))",
+   "(: come_pat (Patient sk_come_1 sk_spring_tide_1) (STV 1.0 0.99))",
+   "(: come_past (Past sk_come_1) (STV 1.0 0.99))",
+   "(: come_time_day (Time sk_come_1 (Day 33)) (STV 1.0 0.99))",
+   "(: come_time_year (Time sk_come_1 (Year 1)) (STV 1.0 0.99))",
+   "(: pools_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+   "(: pools_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+   "(: pools_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+   "(: fill_ev (Member sk_fill_1 fill) (STV 1.0 0.99))",
+   "(: fill_ag (Agent sk_fill_1 sk_spring_tide_1) (STV 1.0 0.99))",
+   "(: fill_pat (Patient sk_fill_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+   "(: fill_past (Past sk_fill_1) (STV 1.0 0.99))",
+   "(: saltbloom_name (Name salt_bloom \"Salt-bloom\") (STV 1.0 0.99))",
+   "(: bloom_ev (Member sk_bloom_1 bloom) (STV 1.0 0.99))",
+   "(: bloom_pat (Patient sk_bloom_1 salt_bloom) (STV 1.0 0.99))",
+   "(: bloom_past (Past sk_bloom_1) (STV 1.0 0.99))",
+   "(: bloom_loc (Location sk_bloom_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+   "(: overflow_ev (Member sk_overflow_1 overflow) (STV 1.0 0.99))",
+   "(: overflow_pat (Patient sk_overflow_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+   "(: overflow_past (Past sk_overflow_1) (STV 1.0 0.99))",
+   "(: overflow_time (Time sk_overflow_1 sundown) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000019",
+   "run": 1,
+   "q1_faithful": "yes",
+   "q1_issues": [],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a capitalized, determiner-less bare noun naming a substance/species ('Salt-bloom bloomed in the tide-pools') — proper name vs. mass kind is unresolved: the capitalized-common-noun default is written for definite 'the N' labels, so nothing decides whether this gets a `Name` atom (as parsed, leaving the referent with no kind atom) or a mass-kind/witness encoding",
+    "a proper name whose internal kind word is PLURAL ('the Salt-bloom Tide-pools') — the Kestrel River rule licenses a type atom from the kind word inside the name but is singular (`Member <name> <kind>`), while the 'the Wrens' plural-name rule bars `GroupOf`; whether a named plurality is one individual or a group is not settled"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The copular-with-time-modifier reification of 'the moon was new' (reified state + Experiencer + Time terms + Past, plus the flat `(Past (Member sk_moon_1 new))`) matches the instruction set's exemplar exactly, and the intransitive-subject roles (Patient for the tide coming, the blooming, the overflowing; Agent for the transitive inanimate 'the spring tide filled …') follow the stated natural-process/transitive-subject tests. Coreference across the five sentences (spring tide, tide-pools) reuses symbols correctly and no unstated time is propagated to the undated sentences."
+  },
+  "adjudication": null
+ }
+}

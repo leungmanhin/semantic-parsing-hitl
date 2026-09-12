@@ -16,6 +16,14 @@ a sealed rule is inert regardless, but the census reports premise health uniform
 The `review` objects self-describe their vintage (`"run": N`) — a v2 export may carry
 run-1 reviews beside run-2 stmts/census; the consumer reads the run fields.
 
+PASSAGE items (corpus built with --passage; source_id `<item>/passage`, e.g. events.json
+episodes, 2026-09-12): the whole entry was translated as ONE passage, so the mirrored
+objects carry a `passage` slot instead of the per-text list —
+  stmts  {passage: [statement…]}      census {passage: flag}
+  review {passage: reviewObj|null}    (objects mode)  /  {texts: [advice…]}  (advice mode:
+                                        the advisers still comment per sentence)
+Detected per item from the corpus; mixed corpora are fine.
+
 Usage:
   python export_fiction_kb.py --run 2 --review-run 1 --out <path>
   python export_fiction_kb.py --run 1 --review-run 1 --out /tmp/check.json   # v1 repro
@@ -111,9 +119,17 @@ def main() -> None:
     ap.add_argument("--skip-unparsed-items", action="store_true",
                     help="chunked cycles: omit source items none of whose texts is parsed in this run "
                          "(an item with SOME texts parsed still fails loudly)")
+    ap.add_argument("--items", default=None,
+                    help="file of source item ids (one per line): export only these items "
+                         "(chunked cycles whose parse store runs ahead of the review)")
     args = ap.parse_args()
 
     items = json.load(open(args.source_json))
+    if args.items:
+        keep = {l.strip() for l in open(args.items) if l.strip()}
+        items = [it for it in items if it["id"] in keep]
+        if len(items) != len(keep):
+            raise SystemExit(f"--items: {len(keep) - len(items)} ids not in the source json")
     corpus = [json.loads(l) for l in open(args.corpus)]
     by_source = {}
     for r in corpus:
@@ -149,6 +165,27 @@ def main() -> None:
     out, missing = [], []
     n_skipped = 0
     for item in items:
+        prid = by_source.get(f"{item['id']}/passage")
+        if prid is not None:
+            st = parses.get(prid)
+            if st is None:
+                if args.skip_unparsed_items:
+                    n_skipped += 1
+                    continue
+                missing.append(f"{item['id']}/passage ({prid})")
+                st = []
+            stmts = {"passage": st}
+            census = {"passage": census_flag(st)}
+            review = advice_of(item) if args.review_mode == "advice" else {"passage": review_of(prid)}
+            if not args.no_rule_slots:
+                rrid = by_source.get(f"{item['id']}/rule")
+                if rrid is not None:
+                    rst = parses.get(rrid) or []
+                    stmts["rule"], census["rule"] = rst, census_flag(rst)
+                    if args.review_mode != "advice":
+                        review["rule"] = review_of(rrid)
+            out.append({**item, "stmts": stmts, "review": review, "census": census})
+            continue
         if args.skip_unparsed_items and not any(
                 parses.get(by_source.get(f"{item['id']}/t{k}")) for k in range(1, len(item["texts"]) + 1)):
             n_skipped += 1
@@ -185,9 +222,10 @@ def main() -> None:
     if missing:
         raise SystemExit("missing parses for: " + ", ".join(missing))
     json.dump(out, open(args.out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
-    n_ok = sum((1 if it["census"].get("rule") == "ok" else 0) + sum(1 for c in it["census"]["texts"] if c == "ok")
-               for it in out)
-    n_tot = sum((0 if it["census"].get("rule") is None else 1) + len(it["census"]["texts"]) for it in out)
+    def flags(c):
+        return [x for k, v in c.items() for x in (v if k == "texts" else [v]) if x is not None]
+    n_ok = sum(1 for it in out for c in flags(it["census"]) if c == "ok")
+    n_tot = sum(len(flags(it["census"])) for it in out)
     print(f"-> {args.out}  ({len(out)} items, run {args.run} stmts; census ok {n_ok}/{n_tot}"
           + (f"; {n_skipped} unparsed items omitted" if n_skipped else "") + ")")
 

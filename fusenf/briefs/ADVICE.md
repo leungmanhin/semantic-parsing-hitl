@@ -32,6 +32,17 @@ directory is the one named in your task; `<cycle>` is its stem, e.g. `lore` or `
   on the strength of a refuted claim.** No adjudication present = the review found the
   parse faithful.
 
+**Passage items.** When the consumer's entry was translated as ONE passage (all its `texts`
+together, e.g. the episodes of `events.json`), the work file has a `passage` block INSTEAD
+of `fields`: `{corpus_id, sentences, parse, census, review, adjudication}` — `parse` is the
+single parse of the whole passage (one symbol reused for mentions that refer to the same
+thing across its sentences), and `review` / `adjudication` judge that whole parse. Judge
+each sentence against the part of the passage parse that carries it; your output still has
+ONE comment per sentence, in `texts` order. A cross-sentence problem (a definite or a name
+not linked back to its earlier mention, a lost connective between two sentences) goes on the
+comment of the sentence where it surfaces, and a suggested rewrite must keep that sentence
+usable in its place in the passage.
+
 ## Judgment
 
 A parse is GOOD when it is faithful (says what the sentence says, nothing more), covers

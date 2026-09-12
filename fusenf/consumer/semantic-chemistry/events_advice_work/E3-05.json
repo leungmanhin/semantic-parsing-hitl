@@ -1,0 +1,162 @@
+{
+ "id": "E3-05",
+ "rule": "III — The first salt-bloom harvest",
+ "texts": [
+  "On day 47 of Year 1, the moon was full.",
+  "The Council convened at the Watch.",
+  "Sailsworn reported to the Council that the salt-bloom store held fourteen weeks of winter supply.",
+  "The Council issued the standard winter feather ration to the Stilllight Station.",
+  "Bevin Coombe reported to the Council that no wraith had approached the Stilllight Lantern.",
+  "Tessa Brae reported to the Council that the feather store held eight weeks of supply.",
+  "The Council issued extra ground feathers to the Stilllight Station for the coming month.",
+  "The Council issued extra ground feathers to the two stations nearest the Sunken Cove for the coming month."
+ ],
+ "passage": {
+  "corpus_id": "evt-000023",
+  "sentences": [
+   "On day 47 of Year 1, the moon was full.",
+   "The Council convened at the Watch.",
+   "Sailsworn reported to the Council that the salt-bloom store held fourteen weeks of winter supply.",
+   "The Council issued the standard winter feather ration to the Stilllight Station.",
+   "Bevin Coombe reported to the Council that no wraith had approached the Stilllight Lantern.",
+   "Tessa Brae reported to the Council that the feather store held eight weeks of supply.",
+   "The Council issued extra ground feathers to the Stilllight Station for the coming month.",
+   "The Council issued extra ground feathers to the two stations nearest the Sunken Cove for the coming month."
+  ],
+  "parse": [
+   "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+   "(: full_state (Member sk_full_1 full) (STV 1.0 0.99))",
+   "(: full_exp (Experiencer sk_full_1 sk_moon_1) (STV 1.0 0.99))",
+   "(: full_time_day (Time sk_full_1 (Day 47)) (STV 1.0 0.99))",
+   "(: full_time_year (Time sk_full_1 (Year 1)) (STV 1.0 0.99))",
+   "(: full_past (Past sk_full_1) (STV 1.0 0.99))",
+   "(: moon_full_flat (Past (Member sk_moon_1 full)) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: convene_ev (Member sk_convene_1 convene) (STV 1.0 0.99))",
+   "(: convene_ag (Agent sk_convene_1 sk_council_1) (STV 1.0 0.99))",
+   "(: convene_loc (Location sk_convene_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: convene_past (Past sk_convene_1) (STV 1.0 0.99))",
+   "(: sailsworn_name (Name sailsworn \"Sailsworn\") (STV 1.0 0.99))",
+   "(: report1_ev (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: report1_exp (Experiencer sk_report_1 sailsworn) (STV 1.0 0.99))",
+   "(: report1_rec (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: report1_past (Past sk_report_1) (STV 1.0 0.99))",
+   "(: report1_theme (Theme sk_report_1 (And (Member sk_hold_1 hold) (Agent sk_hold_1 sk_salt_bloom_store_1) (Theme sk_hold_1 sk_winter_supply_1) (Member sk_winter_supply_1 winter_supply) (Measure sk_winter_supply_1 unspecified 14 week) (Past sk_hold_1))) (STV 1.0 0.99))",
+   "(: salt_bloom_store_type (Member sk_salt_bloom_store_1 salt_bloom_store) (STV 1.0 0.99))",
+   "(: salt_bloom_store_genus (Inheritance salt_bloom_store store) (STV 1.0 0.99))",
+   "(: winter_supply_genus (Inheritance winter_supply supply) (STV 1.0 0.99))",
+   "(: issue1_ev (Member sk_issue_1 issue) (STV 1.0 0.99))",
+   "(: issue1_ag (Agent sk_issue_1 sk_council_1) (STV 1.0 0.99))",
+   "(: issue1_th (Theme sk_issue_1 sk_ration_1) (STV 1.0 0.99))",
+   "(: issue1_rec (Recipient sk_issue_1 stilllight_station) (STV 1.0 0.99))",
+   "(: issue1_past (Past sk_issue_1) (STV 1.0 0.99))",
+   "(: ration1_type (Member sk_ration_1 winter_feather_ration) (STV 1.0 0.99))",
+   "(: ration1_standard (Member sk_ration_1 standard) (STV 1.0 0.99))",
+   "(: ration_genus (Inheritance winter_feather_ration ration) (STV 1.0 0.99))",
+   "(: stilllight_station_type (Member stilllight_station station) (STV 1.0 0.99))",
+   "(: stilllight_station_name (Name stilllight_station \"Stilllight Station\") (STV 1.0 0.99))",
+   "(: bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+   "(: report2_ev (Member sk_report_2 report) (STV 1.0 0.99))",
+   "(: report2_exp (Experiencer sk_report_2 bevin_coombe) (STV 1.0 0.99))",
+   "(: report2_rec (Recipient sk_report_2 sk_council_1) (STV 1.0 0.99))",
+   "(: report2_past (Past sk_report_2) (STV 1.0 0.99))",
+   "(: stilllight_lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: stilllight_lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+   "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+   "(: report3_ev (Member sk_report_3 report) (STV 1.0 0.99))",
+   "(: report3_exp (Experiencer sk_report_3 tessa_brae) (STV 1.0 0.99))",
+   "(: report3_rec (Recipient sk_report_3 sk_council_1) (STV 1.0 0.99))",
+   "(: report3_past (Past sk_report_3) (STV 1.0 0.99))",
+   "(: report3_theme (Theme sk_report_3 (And (Member sk_hold_2 hold) (Agent sk_hold_2 sk_feather_store_1) (Theme sk_hold_2 sk_supply_1) (Member sk_supply_1 supply) (Measure sk_supply_1 unspecified 8 week) (Past sk_hold_2))) (STV 1.0 0.99))",
+   "(: feather_store_type (Member sk_feather_store_1 feather_store) (STV 1.0 0.99))",
+   "(: feather_store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+   "(: issue2_ev (Member sk_issue_2 issue) (STV 1.0 0.99))",
+   "(: issue2_ag (Agent sk_issue_2 sk_council_1) (STV 1.0 0.99))",
+   "(: issue2_th (Theme sk_issue_2 sk_feathers_1) (STV 1.0 0.99))",
+   "(: issue2_rec (Recipient sk_issue_2 stilllight_station) (STV 1.0 0.99))",
+   "(: issue2_time (Time sk_issue_2 next_month) (STV 1.0 0.99))",
+   "(: issue2_past (Past sk_issue_2) (STV 1.0 0.99))",
+   "(: feathers1_group (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+   "(: feathers1_props_rule (Implication (PartOf $x sk_feathers_1) (And (Member $x ground) (Member $x extra))) (STV 1.0 0.9))",
+   "(: issue3_ev (Member sk_issue_3 issue) (STV 1.0 0.99))",
+   "(: issue3_ag (Agent sk_issue_3 sk_council_1) (STV 1.0 0.99))",
+   "(: issue3_th (Theme sk_issue_3 sk_feathers_2) (STV 1.0 0.99))",
+   "(: issue3_rec (Recipient sk_issue_3 sk_stations_1) (STV 1.0 0.99))",
+   "(: issue3_time (Time sk_issue_3 next_month) (STV 1.0 0.99))",
+   "(: issue3_past (Past sk_issue_3) (STV 1.0 0.99))",
+   "(: feathers2_group (GroupOf sk_feathers_2 feather) (STV 1.0 0.99))",
+   "(: feathers2_props_rule (Implication (PartOf $x sk_feathers_2) (And (Member $x ground) (Member $x extra))) (STV 1.0 0.9))",
+   "(: stations_group (GroupOf sk_stations_1 station) (STV 1.0 0.99))",
+   "(: stations_card (Cardinality sk_stations_1 2) (STV 1.0 0.99))",
+   "(: stations_near (Near sk_stations_1 sunken_cove) (STV 1.0 0.99))",
+   "(: sunken_cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: sunken_cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000023",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 51,
+     "issue": "\"for the coming month\" names the period the ration covers, not when the issuing happened, so (Time sk_issue_2 next_month) places a Past event in a future month."
+    },
+    {
+     "statement": 59,
+     "issue": "Same misplacement on the second issuing — (Time sk_issue_3 next_month) contradicts (Past sk_issue_3) — and the narrative-relative \"the coming month\" is rendered as the speech-anchored deictic constant next_month rather than resolved against the discourse time."
+    },
+    {
+     "statement": 65,
+     "issue": "The superlative in \"the two stations nearest the Sunken Cove\" is dropped: (Near sk_stations_1 sunken_cove) says only that the stations are near the cove, which widens the restriction the text states."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "superlative with a comparison landmark (\"the two stations nearest the Sunken Cove\") — Most / AmongMost take a comparison-CLASS slot and have no slot for the entity compared against, so a landmark superlative has no licensed form",
+    "a coverage-period / temporal-extent \"for <time span>\" adjunct on an event (\"issued ... for the coming month\") — Beneficiary is benefit-only, Time asserts the event's own time, and no head is designated for the period an action's effect covers",
+    "measure-of NP (\"fourteen weeks of winter supply\", \"eight weeks of supply\") — Possessive / genitive NP explicitly excludes a measure of-phrase (\"a cup of water\") but no positive encoding is supplied in its place",
+    "additive-quantity modifier \"extra\" (\"extra ground feathers\") — not a fusing classifier and not one of the excessive / insufficient / sufficient quantity markers, so the descriptive-modifier route ends up asserting of each individual feather that it is `extra`"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The rest checks out: Bevin Coombe's wholly-negative complement is correctly dropped with the attitude event left Theme-less, and seal projection (definite typing plus compound genus atoms, indefinite witnesses kept inside) follows the interim table. Near is licensed as an entity-attached surface-preposition oblique, but it rides the group symbol rather than distributing to the member stations."
+  },
+  "adjudication": {
+   "id": "evt-000023",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Time attaches an event's OWN time, so (Time sk_issue_2 next_month) asserts the issuing happened in the coming month while (Past sk_issue_2) and the passage's 'day 47 of Year 1' place it then - a false atom, since 'for the coming month' names the period the ration covers, not when the issuing occurred."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Both halves stand: (Time sk_issue_3 next_month) is the same false event-time atom, and 'the coming month' is narrative-relative to day 47 of Year 1 while 'Deictic times are speech-anchored CONSTANTS' makes next_month anchor to the speech time, so the constant mis-anchors a discourse-relative period that term propagation was supposed to resolve."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "'No comparative, approximator or minimizer ever asserts the positive' and 'a stated restriction, hedge or qualifier is never silently dropped' both bite: (Near sk_stations_1 sunken_cove) asserts a positive nearness that 'nearest' does not entail and widens 'the two stations NEAREST the Sunken Cove' to 'two stations near it', and Near is not even the word used."
+    }
+   ],
+   "gaps_confirmed": [
+    "landmark superlative ('the two stations nearest the Sunken Cove'): Most / AmongMost carry a comparison-CLASS slot and no slot for the entity compared against, so the landmark has no licensed carrier",
+    "coverage-period 'for <span>' adjunct on an event ('issued ... for the coming month'): Beneficiary is benefit-only and Time asserts the event's own time; the preposition-named (For <event> ...) oblique is the nearest carrier but is designated for the ground / prize / exchange sense, and no head is named for the period an action's effect covers",
+    "measure-of NP ('fourteen weeks of winter supply', 'eight weeks of supply'): Possessive / genitive NP explicitly excludes the measure of-phrase and no section states the positive mapping - the Measure family serves (as this parse used it, with scale 'unspecified') but is never designated for it",
+    "additive-quantity modifier 'extra' ('extra ground feathers'): not a fusing classifier and not one of the excessive / insufficient / sufficient quantity markers, so the descriptive-modifier route predicates 'extra' of each individual feather when it is the amount, not the feather, that is additional"
+   ],
+   "new_gaps": [
+    "a narrative-relative temporal NP whose antecedent supplies no term at that granularity ('the coming month' against a day-of-year calendar, 'day 47 of Year 1'): term propagation has no Month term to increment, and the stated BeforeBy fallback orders two eventualities rather than an event and a period, so nothing licensed names the period",
+    "an entity-attached positional oblique on a group symbol ((Near sk_stations_1 sunken_cove)) has no stated distributive counterpart: a position holding of the member stations rides the group-as-object, the same reading the plural rules bar for (Member <group> <prop>)"
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0: drop (Time sk_issue_2 next_month) - the issuing's only time is day 47 of Year 1, and the coverage period has at best the preposition-named oblique (For sk_issue_2 <period>), otherwise it is left out with the gap recorded. Issue 1: the same for (Time sk_issue_3 next_month); 'the coming month' would need a narrative-relative term (the antecedent's month term plus one) rather than the speech-anchored next_month, and no such term is licensed here because the passage's calendar states no month. Issue 2: the compliant form keeps (GroupOf sk_stations_1 station) and (Cardinality sk_stations_1 2) and leaves the superlative restriction unencoded with the gap recorded, since no Most / AmongMost form carries a landmark and a superlative never licenses its positive.",
+   "notes": "The Bevin Coombe sentence is exactly right - a wholly negative complement dropped, the attitude event left Theme-less, the definite Stilllight Lantern still typed and named. Seal projection elsewhere also matches the interim table: definite store typing and the compound genus atoms sit at top level while the indefinite supply witnesses and their Measure atoms stay inside."
+  }
+ }
+}

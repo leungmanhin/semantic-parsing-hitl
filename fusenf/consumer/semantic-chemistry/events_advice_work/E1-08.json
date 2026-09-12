@@ -1,0 +1,159 @@
+{
+ "id": "E1-08",
+ "rule": "I — The equinox week",
+ "texts": [
+  "On day 0 of Year 1, the night of the autumn equinox was clear and mild.",
+  "The moth-count at each lantern of the Cliff Path was about twenty-five.",
+  "A crowd of nightmoths gathered at the East Row.",
+  "Three sky-cats descended from the cliff-spires.",
+  "The three sky-cats hunted nightmoths at the East Row.",
+  "The nightmoth crowd at the East Row shrank.",
+  "The moth-count at the East Row was seven at the third watch.",
+  "Each nightmoth that survived the hunt fled to the Hollows."
+ ],
+ "passage": {
+  "corpus_id": "evt-000008",
+  "sentences": [
+   "On day 0 of Year 1, the night of the autumn equinox was clear and mild.",
+   "The moth-count at each lantern of the Cliff Path was about twenty-five.",
+   "A crowd of nightmoths gathered at the East Row.",
+   "Three sky-cats descended from the cliff-spires.",
+   "The three sky-cats hunted nightmoths at the East Row.",
+   "The nightmoth crowd at the East Row shrank.",
+   "The moth-count at the East Row was seven at the third watch.",
+   "Each nightmoth that survived the hunt fled to the Hollows."
+  ],
+  "parse": [
+   "(: s1_equinox_type (Member sk_autumn_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+   "(: s1_equinox_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+   "(: s1_night_type (Member sk_night_1 night) (STV 1.0 0.99))",
+   "(: s1_night_assoc (Possession sk_night_1 sk_autumn_equinox_1) (STV 1.0 0.99))",
+   "(: s1_clear_type (Member sk_clear_1 clear) (STV 1.0 0.99))",
+   "(: s1_clear_exp (Experiencer sk_clear_1 sk_night_1) (STV 1.0 0.99))",
+   "(: s1_clear_year (Time sk_clear_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_clear_day (Time sk_clear_1 (Day 0)) (STV 1.0 0.99))",
+   "(: s1_clear_past (Past sk_clear_1) (STV 1.0 0.99))",
+   "(: s1_clear_flat (Past (Member sk_night_1 clear)) (STV 1.0 0.99))",
+   "(: s1_mild_type (Member sk_mild_1 mild) (STV 1.0 0.99))",
+   "(: s1_mild_exp (Experiencer sk_mild_1 sk_night_1) (STV 1.0 0.99))",
+   "(: s1_mild_year (Time sk_mild_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_mild_day (Time sk_mild_1 (Day 0)) (STV 1.0 0.99))",
+   "(: s1_mild_past (Past sk_mild_1) (STV 1.0 0.99))",
+   "(: s1_mild_flat (Past (Member sk_night_1 mild)) (STV 1.0 0.99))",
+   "(: s2_path_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: s2_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: s2_mc_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+   "(: s2_rule (Implication (And (Member $x lantern) (Possession $x cliff_path)) (Past (Measure $x moth_count (ParticleFromNormal 25 2.5) unspecified))) (STV 1.0 0.9))",
+   "(: s2_q (QuantifierPhrase lantern moth_count \"each\") (STV 1.0 0.99))",
+   "(: s3_crowd_type (Member sk_crowd_1 crowd) (STV 1.0 0.99))",
+   "(: s3_crowd_kind (GroupOf sk_crowd_1 nightmoth) (STV 1.0 0.99))",
+   "(: s3_nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: s3_gather_type (Member sk_gather_1 gather) (STV 1.0 0.99))",
+   "(: s3_gather_agent (Agent sk_gather_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: s3_gather_loc (Location sk_gather_1 east_row) (STV 1.0 0.99))",
+   "(: s3_row_type (Member east_row row) (STV 1.0 0.99))",
+   "(: s3_row_name (Name east_row \"East Row\") (STV 1.0 0.99))",
+   "(: s3_gather_past (Past sk_gather_1) (STV 1.0 0.99))",
+   "(: s4_skycats_kind (GroupOf sk_skycats_1 sky_cat) (STV 1.0 0.99))",
+   "(: s4_skycats_card (Cardinality sk_skycats_1 3) (STV 1.0 0.99))",
+   "(: s4_sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: s4_spires_kind (GroupOf sk_spires_1 cliff_spire) (STV 1.0 0.99))",
+   "(: s4_cs_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: s4_descend_type (Member sk_descend_1 descend) (STV 1.0 0.99))",
+   "(: s4_descend_agent (Agent sk_descend_1 sk_skycats_1) (STV 1.0 0.99))",
+   "(: s4_descend_src (Source sk_descend_1 sk_spires_1) (STV 1.0 0.99))",
+   "(: s4_descend_past (Past sk_descend_1) (STV 1.0 0.99))",
+   "(: s4_rule (Implication (PartOf $x sk_skycats_1) (And (Member (sk_descend $x) descend) (Agent (sk_descend $x) $x) (Source (sk_descend $x) sk_spires_1) (Past (sk_descend $x)))) (STV 1.0 0.9))",
+   "(: s5_prey_kind (GroupOf sk_preymoths_1 nightmoth) (STV 1.0 0.99))",
+   "(: s5_hunt_type (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: s5_hunt_agent (Agent sk_hunt_1 sk_skycats_1) (STV 1.0 0.99))",
+   "(: s5_hunt_patient (Patient sk_hunt_1 sk_preymoths_1) (STV 1.0 0.99))",
+   "(: s5_hunt_loc (Location sk_hunt_1 east_row) (STV 1.0 0.99))",
+   "(: s5_hunt_past (Past sk_hunt_1) (STV 1.0 0.99))",
+   "(: s5_rule (Implication (PartOf $x sk_skycats_1) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Patient (sk_hunt $x) sk_preymoths_1) (Location (sk_hunt $x) east_row) (Past (sk_hunt $x)))) (STV 1.0 0.9))",
+   "(: s6_shrink_type (Member sk_shrink_1 shrink) (STV 1.0 0.99))",
+   "(: s6_shrink_patient (Patient sk_shrink_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: s6_shrink_past (Past sk_shrink_1) (STV 1.0 0.99))",
+   "(: s7_count_type (Member sk_moth_count_1 moth_count) (STV 1.0 0.99))",
+   "(: s7_count_exp (Experiencer sk_moth_count_1 east_row) (STV 1.0 0.99))",
+   "(: s7_count_time (Time sk_moth_count_1 third_watch) (STV 1.0 0.99))",
+   "(: s7_count_past (Past sk_moth_count_1) (STV 1.0 0.99))",
+   "(: s7_count_flat (Past (Measure east_row moth_count 7 unspecified)) (STV 1.0 0.99))",
+   "(: s8_hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+   "(: s8_rule (Implication (And (Member $x nightmoth) (Member $e survive) (Agent $e $x) (Theme $e sk_hunt_1) (Past $e)) (And (Member (sk_flee $x) flee) (Agent (sk_flee $x) $x) (Goal (sk_flee $x) hollows) (Past (sk_flee $x)))) (STV 1.0 0.9))",
+   "(: s8_q (QuantifierPhrase nightmoth flee \"each\") (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000008",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 51,
+     "issue": "(Experiencer sk_moth_count_1 east_row) hangs a thematic role on sk_moth_count_1, which is typed as the entity moth_count rather than as a reified state, and lines 52-53 then put the eventuality-only Time and Past heads on that same non-eventuality."
+    },
+    {
+     "statement": 52,
+     "issue": "The reified count witness carries the time (third_watch) but no value, while the value 7 sits in the separate flat (Past (Measure east_row moth_count 7 unspecified)) with no time, so 'seven at the third watch' is never joined."
+    },
+    {
+     "statement": 50,
+     "issue": "S7 mints a moth_count entity while the parallel S2 clause ('the moth-count at each lantern ... was about twenty-five') encodes the same construction as a bare Measure on the location with no count entity, so one passage gets two incompatible encodings of one construction."
+    },
+    {
+     "statement": 43,
+     "issue": "(Patient sk_hunt_1 sk_preymoths_1) - hunting does not create, destroy, consume or physically change its object, and the instruction set's tie-breaker ('when the test is unclear, default to Theme') points to Theme."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "A time adjunct on a measured value ('the moth-count ... was seven AT THE THIRD WATCH'): Measure has no Time slot, tense only wraps it, and the copular-with-time-modifier reification is defined for adjectival property states, so there is no licensed carrier for when a quantity held.",
+    "A day-index within a year ('on DAY 0 of Year 1'): the (Day <n>) term is the calendar day-of-month slot; a 'day N of Year Y' ordinal-day calendar has no defined encoding.",
+    "A passage-initial date frame ('On day 0 of Year 1, ...'): nothing states whether it scopes over the following sentences, so only the first clause ends up dated."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Compound decomposition, the Cliff Path / East Row / Hollows name handling, the counted-group + per-member-rule pattern for the sky-cats, and the 'each nightmoth that survived' relative-clause universal all follow the instruction set closely. The one structurally broken block is S7's reified moth-count."
+  },
+  "adjudication": {
+   "id": "evt-000008",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Thematic roles and the heads Past/Time are eventuality-only ((<Role> <event> <filler>), (<Status> <event>)), yet the parse's own (Member sk_moth_count_1 moth_count) + (Inheritance moth_count count) type that symbol as a count, so Experiencer/Time/Past on it are ill-typed — and 'at the East Row' is a locative restrictor, not the entity a state holds of."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Core patterns bars a stated qualifier from being dropped ('carry it, or leave the whole claim out and record the gap'), but the only valued atom, (Past (Measure east_row moth_count 7 unspecified)), carries no time while (Time sk_moth_count_1 third_watch) sits on a disconnected symbol with no value, so 'seven at the third watch' is recorded nowhere."
+    },
+    {
+     "index": 2,
+     "verdict": "partial",
+     "reason": "The divergence is real and the extra reified block is the unlicensed half, but 'two incompatible encodings' overstates it — S7 also emits S2's (Measure <place> moth_count <n> unspecified) form, and minting a witness for the definite 'the moth-count at the East Row' is itself licensed (a definite description is a typed individual), so the defect is the eventuality heads hung on that witness, not the witness."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "The object test is 'does the object itself change?' with the explicit tie-break 'when the test is unclear, default to Theme', and hunting neither creates, destroys, consumes nor physically changes the nightmoths, so Patient is the wrong role."
+    }
+   ],
+   "gaps_confirmed": [
+    "A time adjunct on a measured value ('was seven at the third watch'): Measure has no time slot, tense only wraps it, and the copular-with-time-modifier reification is defined for adjectival property states, so no licensed carrier joins a value to when it held.",
+    "A day-index within a year ('on day 0 of Year 1'): (Day <n>) is the day-of-month slot, and an ordinal day-of-year calendar has no defined term.",
+    "A passage-initial date frame ('On day 0 of Year 1, ...'): nothing states whether it scopes over the following sentences, so only the first clause ends up dated."
+   ],
+   "new_gaps": [
+    "A place restrictor on a measured quantity ('the moth-count AT the East Row'): LocatedIn is containment for positioned things and a count is not positioned, so the only carrier is folding the place into the Measure's bearer slot, which conflates 'the count at a place' with a measure of the place itself.",
+    "A universal distributed over a measured value ('the moth-count at EACH lantern ... was about twenty-five'): the distribution rule is specified with an event or property-atom conclusion, and QuantifierPhrase's second slot is a verb lemma or property — neither is defined for a Measure-conclusion rule."
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0: the compliant form drops sk_moth_count_1 entirely and lets the clause ride the flat (Past (Measure east_row moth_count 7 unspecified)) — no role, Time or Past on a count witness. Issue 1: NO compliant form is licensed for 'seven at the third watch' — Measure has no time slot and tense only wraps it — so the compliant parse emits the untimed measure and records the loss as a gap. Issue 3: (Theme sk_hunt_1 sk_preymoths_1).",
+   "notes": "Everything outside the S7 block follows the instruction set closely — the counted sky-cat group plus per-member rule, the Cliff Path / East Row / Hollows name handling, and the 'each nightmoth that survived' relative-clause universal are all correct. The S2 clause shows the licensed shape the S7 clause should have reused."
+  }
+ }
+}

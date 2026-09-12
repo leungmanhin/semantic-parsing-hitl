@@ -1,0 +1,132 @@
+{
+ "id": "E1-04",
+ "rule": "I — The equinox week",
+ "texts": [
+  "On the first night of Coraline Ash's apprenticeship, Coraline Ash did not light a lantern.",
+  "Coraline Ash walked the Cliff Path with Pell from sundown to dawn.",
+  "Coraline Ash carried Pell's leather case.",
+  "Pell cleaned the glass of the lantern.",
+  "Pell trimmed the wick of the lantern.",
+  "Pell filled the reservoir of the lantern with mire-essence.",
+  "Pell lit the lantern.",
+  "Coraline Ash wrote each step in a notebook."
+ ],
+ "passage": {
+  "corpus_id": "evt-000004",
+  "sentences": [
+   "On the first night of Coraline Ash's apprenticeship, Coraline Ash did not light a lantern.",
+   "Coraline Ash walked the Cliff Path with Pell from sundown to dawn.",
+   "Coraline Ash carried Pell's leather case.",
+   "Pell cleaned the glass of the lantern.",
+   "Pell trimmed the wick of the lantern.",
+   "Pell filled the reservoir of the lantern with mire-essence.",
+   "Pell lit the lantern.",
+   "Coraline Ash wrote each step in a notebook."
+  ],
+  "parse": [
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: appr_type (Member sk_apprenticeship_1 apprenticeship) (STV 1.0 0.99))",
+   "(: appr_poss (Possession sk_apprenticeship_1 coraline_ash) (STV 1.0 0.99))",
+   "(: night_type (Member sk_night_1 night) (STV 1.0 0.99))",
+   "(: night_ord (Ordinal sk_night_1 1 sk_apprenticeship_1) (STV 1.0 0.99))",
+   "(: coraline_no_light (And (Member sk_light_1 light) (Agent sk_light_1 coraline_ash) (Patient sk_light_1 sk_lantern_1) (Member sk_lantern_1 lantern) (Time sk_light_1 sk_night_1) (Past sk_light_1)) (STV 0.0 0.99))",
+   "(: cliff_path_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: cliff_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: e_walk (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: walk_agent (Agent sk_walk_1 coraline_ash) (STV 1.0 0.99))",
+   "(: walk_theme (Theme sk_walk_1 cliff_path) (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: walk_coagent (CoAgent sk_walk_1 pell) (STV 1.0 0.99))",
+   "(: walk_start (Start sk_walk_1 sundown) (STV 1.0 0.99))",
+   "(: walk_end (End sk_walk_1 dawn) (STV 1.0 0.99))",
+   "(: walk_past (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: e_carry (Member sk_carry_1 carry) (STV 1.0 0.99))",
+   "(: carry_agent (Agent sk_carry_1 coraline_ash) (STV 1.0 0.99))",
+   "(: carry_theme (Theme sk_carry_1 sk_case_1) (STV 1.0 0.99))",
+   "(: carry_past (Past sk_carry_1) (STV 1.0 0.99))",
+   "(: case_type (Member sk_case_1 leather_case) (STV 1.0 0.99))",
+   "(: case_genus (Inheritance leather_case case) (STV 1.0 0.99))",
+   "(: case_poss (Possession sk_case_1 pell) (STV 1.0 0.99))",
+   "(: e_clean (Member sk_clean_1 clean) (STV 1.0 0.99))",
+   "(: clean_agent (Agent sk_clean_1 pell) (STV 1.0 0.99))",
+   "(: clean_patient (Patient sk_clean_1 sk_glass_1) (STV 1.0 0.99))",
+   "(: clean_past (Past sk_clean_1) (STV 1.0 0.99))",
+   "(: glass_type (Member sk_glass_1 glass) (STV 1.0 0.99))",
+   "(: glass_partof (PartOf sk_glass_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: e_trim (Member sk_trim_1 trim) (STV 1.0 0.99))",
+   "(: trim_agent (Agent sk_trim_1 pell) (STV 1.0 0.99))",
+   "(: trim_patient (Patient sk_trim_1 sk_wick_1) (STV 1.0 0.99))",
+   "(: trim_past (Past sk_trim_1) (STV 1.0 0.99))",
+   "(: wick_type (Member sk_wick_1 wick) (STV 1.0 0.99))",
+   "(: wick_partof (PartOf sk_wick_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e_fill (Member sk_fill_1 fill) (STV 1.0 0.99))",
+   "(: fill_agent (Agent sk_fill_1 pell) (STV 1.0 0.99))",
+   "(: fill_patient (Patient sk_fill_1 sk_reservoir_1) (STV 1.0 0.99))",
+   "(: fill_instrument (Instrument sk_fill_1 mire_essence) (STV 1.0 0.99))",
+   "(: fill_past (Past sk_fill_1) (STV 1.0 0.99))",
+   "(: reservoir_type (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))",
+   "(: reservoir_partof (PartOf sk_reservoir_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: e_light2 (Member sk_light_2 light) (STV 1.0 0.99))",
+   "(: light2_agent (Agent sk_light_2 pell) (STV 1.0 0.99))",
+   "(: light2_patient (Patient sk_light_2 sk_lantern_1) (STV 1.0 0.99))",
+   "(: light2_past (Past sk_light_2) (STV 1.0 0.99))",
+   "(: notebook_type (Member sk_notebook_1 notebook) (STV 1.0 0.99))",
+   "(: coraline_wrote_step (Implication (Member $x step) (And (Member (sk_write $x) write) (Agent (sk_write $x) coraline_ash) (Theme (sk_write $x) $x) (Location (sk_write $x) sk_notebook_1) (Past (sk_write $x)))) (STV 1.0 0.9))",
+   "(: step_write_q (QuantifierPhrase step write \"each\") (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000004",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 49,
+     "issue": "\"wrote each step\" assigns the quantified object `Theme`, but the instruction set lists *write* among the Patient verbs (objects the action creates/reworks), so the role contradicts the stated object test."
+    },
+    {
+     "statement": 4,
+     "issue": "`(Ordinal sk_night_1 1 sk_apprenticeship_1)` puts an individual witness in the scale slot, which the instruction set defines as an associated event class or an '-est' dimension, and no other atom relates the night to the apprenticeship."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "ordinal position inside a stated containing period (\"the first night of Coraline Ash's apprenticeship\") — `Ordinal`'s scale slot is defined only for an associated event or an '-est' dimension, and no relation is defined to link the ranked period to its container",
+    "a temporal-frame PP whose object is a period/event noun (\"on the first night, X did not ...\") — `Time` is specified for calendar terms and deictic/named constants, `During` is restricted to during/while/throughout, so a witness-valued temporal frame has no documented carrier",
+    "the content argument of a locative-alternation verb (\"filled the reservoir with mire-essence\") — the with-phrase test splits only co-participant vs means, so the substance that fills the object is forced into `Instrument`"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Negation scope, projection of the definite night/apprenticeship atoms out of the strength-0 bundle, the `leather_case` / `mire_essence` decompositions (noun modifier not exposed), and the coreferent lantern symbol all follow the instruction set. The \"each step\" universal is correctly a distributing rule with its QuantifierPhrase companion; only the object role inside it is off."
+  },
+  "adjudication": {
+   "id": "evt-000004",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "*Thematic roles* names *write* explicitly in the Patient list (objects the action creates or reworks, reinforced by the informational-artifact clause) and fixes one role per verb so a statement and its question match, so `(Theme (sk_write $x) $x)` slots a created written record as an unchanged object."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "`Ordinal` is a listed opaque head (nothing is read inside it) whose third slot the instruction set defines as \"the associated event, or an explicit '-est' dimension\", and an eventuality-noun witness IS the eventuality (*Light verbs over event-nouns*), so the atom is true of the sentence and is itself the night-to-apprenticeship carrier — this is the reviewer's own gap 1, improvisation in uncovered territory rather than a defect."
+    }
+   ],
+   "gaps_confirmed": [
+    "ordinal rank of a period inside a stated containing period (\"the first night of Coraline Ash's apprenticeship\") — no relation links a ranked period to its container, so the container has to ride Ordinal's scale slot",
+    "a temporal-frame PP whose object is an individuated period witness (\"on the first night, X did not ...\") — Time's documented values are structured calendar terms and deictic/day-part constants, and During is reserved for during/while/throughout"
+   ],
+   "new_gaps": [
+    "bare \"each N\" whose domain is a set the passage has just narrated (\"wrote each step\" = the steps Pell performed): the licensed range `(Member $x step)` quantifies over the kind at large, and nothing types the narrated clean/trim/fill/light events as steps, so the rule both over-generalizes and can never fire on the intended set — a licensed form would need a group witness for the narrated steps, or a way to type an event as a member of a named procedure"
+   ],
+   "decision": "defect",
+   "defect_summary": "Statement 49's conclusion must read `(Patient (sk_write $x) $x)` in place of the Theme atom, every other atom of the rule unchanged.",
+   "notes": "Gap 3 is not confirmed: *Thematic roles* defines Instrument as \"a tool, substance or conduit\", which licenses the filling substance of \"filled the reservoir with mire-essence\" outright, so that with-phrase is covered rather than forced. The rest of the parse — negation scope and definite projection, the PartOf chain on the lantern, the leather_case / mire_essence decompositions, the CoAgent and Start/End interval atoms, and the sk_light_2 index continuation — matches the instruction set."
+  }
+ }
+}

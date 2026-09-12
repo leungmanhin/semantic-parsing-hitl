@@ -1,0 +1,154 @@
+{
+ "id": "E1-03",
+ "rule": "I — The equinox week",
+ "texts": [
+  "Two days before the autumn equinox of Year 1, the Council questioned Coraline Ash at the Watch.",
+  "The questioning lasted for one afternoon.",
+  "Old Vesh said that the village had no apprentice candidate from a Keeper family that year.",
+  "The Council voted to accept Coraline Ash as an apprentice.",
+  "The Council assigned Coraline Ash to Pell as an apprentice.",
+  "Pell was nineteen years old.",
+  "Pell had completed an apprenticeship in the previous year."
+ ],
+ "passage": {
+  "corpus_id": "evt-000003",
+  "sentences": [
+   "Two days before the autumn equinox of Year 1, the Council questioned Coraline Ash at the Watch.",
+   "The questioning lasted for one afternoon.",
+   "Old Vesh said that the village had no apprentice candidate from a Keeper family that year.",
+   "The Council voted to accept Coraline Ash as an apprentice.",
+   "The Council assigned Coraline Ash to Pell as an apprentice.",
+   "Pell was nineteen years old.",
+   "Pell had completed an apprenticeship in the previous year."
+  ],
+  "parse": [
+   "(: eq_type (Member sk_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+   "(: eq_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+   "(: eq_time (Time sk_equinox_1 (Year 1)) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: quest_ev (Member sk_question_1 question) (STV 1.0 0.99))",
+   "(: quest_ag (Agent sk_question_1 sk_council_1) (STV 1.0 0.99))",
+   "(: quest_th (Theme sk_question_1 coraline_ash) (STV 1.0 0.99))",
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: quest_loc (Location sk_question_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: quest_past (Past sk_question_1) (STV 1.0 0.99))",
+   "(: quest_before (BeforeBy sk_question_1 sk_equinox_1 2 day) (STV 1.0 0.99))",
+   "(: quest_dur (Measure sk_question_1 duration 1 afternoon) (STV 1.0 0.99))",
+   "(: say_ev (Member sk_say_1 say) (STV 1.0 0.99))",
+   "(: say_exp (Experiencer sk_say_1 vesh) (STV 1.0 0.99))",
+   "(: say_past (Past sk_say_1) (STV 1.0 0.99))",
+   "(: vesh_name (Name vesh \"Old Vesh\") (STV 1.0 0.99))",
+   "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+   "(: vote_ev (Member sk_vote_1 vote) (STV 1.0 0.99))",
+   "(: vote_ag (Agent sk_vote_1 sk_council_1) (STV 1.0 0.99))",
+   "(: vote_th (Theme sk_vote_1 sk_accept_1) (STV 1.0 0.99))",
+   "(: vote_past (Past sk_vote_1) (STV 1.0 0.99))",
+   "(: accept_ev (Member sk_accept_1 accept) (STV 1.0 0.99))",
+   "(: accept_ag (Agent sk_accept_1 sk_council_1) (STV 1.0 0.99))",
+   "(: accept_pat (Patient sk_accept_1 coraline_ash) (STV 1.0 0.99))",
+   "(: appr_state_type (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+   "(: appr_state_exp (Experiencer sk_apprentice_1 coraline_ash) (STV 1.0 0.99))",
+   "(: coraline_appr (Member coraline_ash apprentice) (STV 1.0 0.99))",
+   "(: accept_result (Result sk_accept_1 sk_apprentice_1) (STV 1.0 0.99))",
+   "(: assign_ev (Member sk_assign_1 assign) (STV 1.0 0.99))",
+   "(: assign_ag (Agent sk_assign_1 sk_council_1) (STV 1.0 0.99))",
+   "(: assign_th (Theme sk_assign_1 coraline_ash) (STV 1.0 0.99))",
+   "(: assign_rec (Recipient sk_assign_1 pell) (STV 1.0 0.99))",
+   "(: assign_past (Past sk_assign_1) (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: assign_result (Result sk_assign_1 sk_apprentice_1) (STV 1.0 0.99))",
+   "(: pell_age (Past (Measure pell old 19 year)) (STV 1.0 0.99))",
+   "(: complete_ev (Member sk_complete_1 complete) (STV 1.0 0.99))",
+   "(: complete_ag (Agent sk_complete_1 pell) (STV 1.0 0.99))",
+   "(: complete_pat (Patient sk_complete_1 sk_apprenticeship_1) (STV 1.0 0.99))",
+   "(: apprenticeship_type (Member sk_apprenticeship_1 apprenticeship) (STV 1.0 0.99))",
+   "(: complete_past (Past sk_complete_1) (STV 1.0 0.99))",
+   "(: complete_time (Time sk_complete_1 (Year 0)) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000003",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 27,
+     "issue": "The flat `(Member coraline_ash apprentice)` (with the reified state at 25-26) asserts at top level the result of `sk_accept_1`, a control-verb complement the instruction set says carries no tense/status because whether it occurred is not stated."
+    },
+    {
+     "statement": 24,
+     "issue": "`accept` neither creates, destroys, consumes nor physically changes Coraline, so the direct-object test gives `Theme`; `Patient` follows only from reading the as-phrase as a resultative."
+    },
+    {
+     "statement": 35,
+     "issue": "`(Result sk_assign_1 sk_apprentice_1)` treats \"as an apprentice\" on the assigning as a caused result rather than a concurrent capacity, where the instruction set says to prefer the plain state and omit `Result`, and it reuses the accept event's state witness for a second event."
+    },
+    {
+     "statement": 42,
+     "issue": "\"in the previous year\" is rendered as `(Year 0)`, arithmetically decremented off the equinox's `(Year 1)` two steps away, and without the ordering atom the anaphoric shifted-time rule pairs with a shift."
+    },
+    {
+     "statement": null,
+     "issue": "The past perfect \"had completed\" gets no `(Before ...)` atom even though the passage supplies other asserted events (the vote, the assignment) for it to precede."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "as-NP secondary predicate on a transitive verb (\"accept X as an apprentice\", \"assign X to Y as an apprentice\") — the resultative/depictive section covers adjectival results and become/turn-into changes of kind, not a role-assigning as-phrase",
+    "backward-shifting anaphoric temporal NP (\"in the previous year\") — only \"that <time>\" (copy the antecedent's terms) and \"the next/following <time>\" (+1) are specified",
+    "a complement negated by a negative determiner (\"said the village had no apprentice candidate\") — the drop-the-complement rule is stated for a clausal denial, leaving it undecided whether a no-NP complement counts as wholly negative",
+    "a capitalized epithet before a personal name (\"Old Vesh\") — neither a kinship nor a courtesy title, so the title carve-out and the mechanical capitalized-run rule yield different name symbols"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Sentences 1, 2 and 6 match the instruction set closely, including the `BeforeBy` measured gap, the compound-kind genus for `autumn_equinox`, and the tense-wrapped age `Measure`. Dropping the \"said\" complement looks like a correct application of the wholly-negative-complement rule, and the definite \"the village\" correctly projects."
+  },
+  "adjudication": {
+   "id": "evt-000003",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "partial",
+     "reason": "The over-assertion is real but it lands on `(Result sk_accept_1 sk_apprentice_1)` and the state witness it anchors — the control-verb rule makes the `vote to accept` complement occurrence-neutral (\"whether it occurred is not stated — the reified event asserts or denies nothing about occurrence\"), so nothing may be linked to it as an achieved result — while the flat `(Member coraline_ash apprentice)` is independently licensed by sentence 5's asserted \"assigned Coraline Ash to Pell as an apprentice\", whose as-state Resultatives encodes as a plain concurrent state."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Thematic roles' single test — does the object itself change? — puts an accepted person with `choose / keep / use` in `Theme` (the non-physical carve-outs cover only occurrences and informational artifacts, neither of which is a person's status), and the section's own tiebreak is \"when the test is unclear, default to `Theme`\"."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Resultatives states that a state merely holding during the action is a depictive with no `Result` link and that \"when it is genuinely unclear whether a state is caused or merely concurrent, omit `Result` (prefer the plain state)\" — and the parse compounds this by making one state witness the result of two distinct events, a state-identity the text never asserts."
+    },
+    {
+     "index": 3,
+     "verdict": "partial",
+     "reason": "The half that stands is the antecedent and the missing ordering: Time's shifted-anaphora rule increments/copies the terms of the antecedent EVENT and pairs the shift with a `Before`, whereas `(Year 0)` is decremented off `sk_equinox_1`'s term while no event the completion is anterior to carries a year at all — where Time's own fallback (\"emit the measured gap `(BeforeBy <antecedent> <new> 1 year)` rather than inventing a calendar term\") is the closer-fitting licensed form; the half that overstates is treating the year-level decrement itself as illicit, since the instruction set licenses exactly that arithmetic for \"the following year\"."
+    },
+    {
+     "index": 4,
+     "verdict": "confirm",
+     "reason": "Time is explicit that \"a past perfect is exactly this anteriority — `Past` on both events plus the `Before` ... emit the ordering whenever the sentence contains another asserted event for the perfect to precede, whatever links them\", and neither exemption applies (the passage asserts the questioning, vote and assignment, and this perfect sits in no seal)."
+    }
+   ],
+   "gaps_confirmed": [
+    "as-NP secondary predicate on a transitive verb (\"accept X as an apprentice\", \"assign X to Y as an apprentice\") — Resultatives covers adjectival results, motion results and become/turn-into kind changes, not a role-assigning as-phrase",
+    "backward-shifting anaphoric temporal NP (\"in the previous year\") — Time specifies only \"that <time>\" (copy the antecedent's terms) and \"the next / following <time>\" (+1 at that granularity)",
+    "a complement negated by a negative determiner (\"said the village had no apprentice candidate\") — the drop-the-complement rule is stated for a clausal denial, leaving it undecided whether a no-NP complement counts as wholly negative",
+    "a capitalized epithet before a personal name (\"Old Vesh\") — neither kinship nor courtesy title, so the title carve-out (symbol `vesh`) and the mechanical capitalized-run rule (symbol `old_vesh`) give different answers"
+   ],
+   "new_gaps": [
+    "A secondary predicate inside an occurrence-neutral control complement (\"voted to accept X as an apprentice\"): every carrier the resultative/depictive doctrine offers — the reified state witness with its `Experiencer`, the flat copular atom, the `Result` link — sits at top level, so the instruction set licenses NO form that records the as-phrase while leaving the complement's occurrence open. Either the as-state is asserted (over-assertion) or it is dropped (loss).",
+    "A duration whose stated unit is a day-part (\"the questioning lasted for one afternoon\"): `(Measure e duration <n> <unit>)` expects a lemmatized singular unit with a seeded canonical-second conversion, and nothing says what to do when the word the text supplies (`afternoon`) is a day-part constant used elsewhere as a `Time` value rather than a unit.",
+    "The past-perfect ordering rule says to emit `Before` whenever the text supplies another asserted event, but not WHICH of several to order against in a multi-sentence passage (the narrative reference event only, or every asserted event), nor how to pick when the perfect's own sentence contains none."
+   ],
+   "decision": "defect",
+   "defect_summary": "Sentence 4's direct object takes `(Theme sk_accept_1 coraline_ash)` in place of `Patient`. Sentence 5's \"as an apprentice\" takes a plain concurrent state on its own fresh state witness with no `(Result sk_assign_1 ...)` link and no reuse of the accept event's witness. The past perfect adds the ordering atom `(Before sk_complete_1 sk_assign_1)` beside its `Past`. The accept bundle drops `(Result sk_accept_1 sk_apprentice_1)` and the state witness it anchors — and for that half no compliant form is licensed at all, since every carrier for an as-phrase state is a top-level assertion while the control complement's occurrence is unstated (filed in new_gaps); the shifted year keeps a licensed decrement only if it is taken off an event term and paired with the ordering atom, else the measured `BeforeBy` gap.",
+   "notes": "Sentences 1, 2 and 6 are clean — the `BeforeBy` measured gap, the `autumn_equinox` genus with its noun modifier suppressed, the capitalized-common-noun (no `Name`) handling of \"the Council\" and \"the Watch\", and the tense-wrapped age `Measure`. The parse is also internally inconsistent about one participant: Coraline is `Theme` of the assigning but `Patient` of the accepting."
+  }
+ }
+}

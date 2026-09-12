@@ -1,0 +1,75 @@
+{
+ "id": "E1-02",
+ "rule": "I — The equinox week",
+ "texts": [
+  "Coraline Ash arrived in Aelmere in the late summer of Year 1.",
+  "Coraline Ash arrived two days before the autumn equinox.",
+  "Coraline Ash came on a market boat from a village down the coast.",
+  "Old Vesh met Coraline Ash at the harbor.",
+  "Old Vesh walked with Coraline Ash to the Watch."
+ ],
+ "passage": {
+  "corpus_id": "evt-000002",
+  "sentences": [
+   "Coraline Ash arrived in Aelmere in the late summer of Year 1.",
+   "Coraline Ash arrived two days before the autumn equinox.",
+   "Coraline Ash came on a market boat from a village down the coast.",
+   "Old Vesh met Coraline Ash at the harbor.",
+   "Old Vesh walked with Coraline Ash to the Watch."
+  ],
+  "parse": [
+   "(: ca_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+   "(: ov_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+   "(: ea_class (Member sk_arrive_1 arrive) (STV 1.0 0.99))",
+   "(: ea_agent (Agent sk_arrive_1 coraline_ash) (STV 1.0 0.99))",
+   "(: ea_loc (Location sk_arrive_1 aelmere) (STV 1.0 0.99))",
+   "(: ea_time_season (Time sk_arrive_1 late_summer) (STV 1.0 0.99))",
+   "(: ea_time_year (Time sk_arrive_1 (Year 1)) (STV 1.0 0.99))",
+   "(: ea_past (Past sk_arrive_1) (STV 1.0 0.99))",
+   "(: eq_type (Member sk_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+   "(: eq_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+   "(: ea_beforeby (BeforeBy sk_arrive_1 sk_equinox_1 2 day) (STV 1.0 0.99))",
+   "(: ec_class (Member sk_come_1 come) (STV 1.0 0.99))",
+   "(: ec_agent (Agent sk_come_1 coraline_ash) (STV 1.0 0.99))",
+   "(: boat_type (Member sk_boat_1 market_boat) (STV 1.0 0.99))",
+   "(: boat_genus (Inheritance market_boat boat) (STV 1.0 0.99))",
+   "(: ec_instr (Instrument sk_come_1 sk_boat_1) (STV 1.0 0.99))",
+   "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+   "(: ec_source (Source sk_come_1 sk_village_1) (STV 1.0 0.99))",
+   "(: coast_type (Member sk_coast_1 coast) (STV 1.0 0.99))",
+   "(: village_down (Down sk_village_1 sk_coast_1) (STV 1.0 0.99))",
+   "(: ec_past (Past sk_come_1) (STV 1.0 0.99))",
+   "(: em_class (Member sk_meet_1 meet) (STV 1.0 0.99))",
+   "(: em_ag1 (Agent sk_meet_1 old_vesh) (STV 1.0 0.99))",
+   "(: em_ag2 (Agent sk_meet_1 coraline_ash) (STV 1.0 0.99))",
+   "(: harbor_type (Member sk_harbor_1 harbor) (STV 1.0 0.99))",
+   "(: em_loc (Location sk_meet_1 sk_harbor_1) (STV 1.0 0.99))",
+   "(: em_past (Past sk_meet_1) (STV 1.0 0.99))",
+   "(: ew_class (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: ew_agent (Agent sk_walk_1 old_vesh) (STV 1.0 0.99))",
+   "(: ew_coagent (CoAgent sk_walk_1 coraline_ash) (STV 1.0 0.99))",
+   "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: ew_goal (Goal sk_walk_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: ew_past (Past sk_walk_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000002",
+   "run": 1,
+   "q1_faithful": "yes",
+   "q1_issues": [],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a non-deictic season time point (\"in the late summer of Year 1\") — the Time term inventory is Year/Month/Day/Weekday/Hour/Minute plus day-part constants, and seasons are specified only as deictic constants (last_spring / next_summer), so a bare modifier+season expression has no stated encoding",
+    "a conveyance PP (\"came on a market boat\") — whether a vehicle one travels on is the Instrument means/conduit or the entity's own preposition-named oblique (On) is not settled by the roles section",
+    "a reciprocal verb taking a bare direct object (\"Old Vesh met Coraline Ash\") — the collective one-event/multiple-Agent form is stated for coordinated or plural subjects and for comitative \"met with\", never for a transitive object, which the Thematic-roles test would make a Theme"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Names, the capitalized-adjective name rule (\"Old Vesh\"), the bare capitalized class label (\"the Watch\" — no Name atom), compound genus, BeforeBy, Source/Goal/CoAgent and the event-coreference of the two \"arrived\" sentences are all handled correctly. The three gaps above are the only points where the parse had to choose without a rule to point at."
+  },
+  "adjudication": null
+ }
+}

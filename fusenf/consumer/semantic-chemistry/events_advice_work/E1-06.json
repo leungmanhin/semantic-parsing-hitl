@@ -1,0 +1,158 @@
+{
+ "id": "E1-06",
+ "rule": "I — The equinox week",
+ "texts": [
+  "One day before the autumn equinox of Year 1, Meren Tallowhand walked to a station on the Cliff Path at sundown.",
+  "Meren Tallowhand lit the lantern at the station.",
+  "The lantern burned mire-essence.",
+  "The lantern produced mist-light.",
+  "The mist-light attracted nightmoths.",
+  "The moth-count at the lantern was seventeen at the third watch.",
+  "A handful of nightmoths gathered at the Middle Row that night.",
+  "Sky-cats stayed on the cliff-spires that night."
+ ],
+ "passage": {
+  "corpus_id": "evt-000006",
+  "sentences": [
+   "One day before the autumn equinox of Year 1, Meren Tallowhand walked to a station on the Cliff Path at sundown.",
+   "Meren Tallowhand lit the lantern at the station.",
+   "The lantern burned mire-essence.",
+   "The lantern produced mist-light.",
+   "The mist-light attracted nightmoths.",
+   "The moth-count at the lantern was seventeen at the third watch.",
+   "A handful of nightmoths gathered at the Middle Row that night.",
+   "Sky-cats stayed on the cliff-spires that night."
+  ],
+  "parse": [
+   "(: eq_class (Member sk_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+   "(: eq_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+   "(: eq_time (Time sk_equinox_1 (Year 1)) (STV 1.0 0.99))",
+   "(: meren_name (Name meren_tallowhand \"Meren Tallowhand\") (STV 1.0 0.99))",
+   "(: walk_ev (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: walk_ag (Agent sk_walk_1 meren_tallowhand) (STV 1.0 0.99))",
+   "(: walk_goal (Goal sk_walk_1 sk_station_1) (STV 1.0 0.99))",
+   "(: walk_time (Time sk_walk_1 sundown) (STV 1.0 0.99))",
+   "(: walk_before (BeforeBy sk_walk_1 sk_equinox_1 1 day) (STV 1.0 0.99))",
+   "(: walk_past (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+   "(: station_on (On sk_station_1 cliff_path) (STV 1.0 0.99))",
+   "(: cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: cliffpath_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: light_ev (Member sk_light_1 light) (STV 1.0 0.99))",
+   "(: light_ag (Agent sk_light_1 meren_tallowhand) (STV 1.0 0.99))",
+   "(: light_pat (Patient sk_light_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: light_loc (Location sk_light_1 sk_station_1) (STV 1.0 0.99))",
+   "(: light_past (Past sk_light_1) (STV 1.0 0.99))",
+   "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: burn_ag (Agent sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: burn_pat (Patient sk_burn_1 mire_essence) (STV 1.0 0.99))",
+   "(: burn_past (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: mire_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: produce_ev (Member sk_produce_1 produce) (STV 1.0 0.99))",
+   "(: produce_ag (Agent sk_produce_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: produce_pat (Patient sk_produce_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: produce_past (Past sk_produce_1) (STV 1.0 0.99))",
+   "(: mistlight_type (Member sk_mist_light_1 mist_light) (STV 1.0 0.99))",
+   "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: attract_ev (Member sk_attract_1 attract) (STV 1.0 0.99))",
+   "(: attract_ag (Agent sk_attract_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: attract_th (Theme sk_attract_1 sk_moths_1) (STV 1.0 0.99))",
+   "(: attract_past (Past sk_attract_1) (STV 1.0 0.99))",
+   "(: moths1_group (GroupOf sk_moths_1 night_moth) (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+   "(: moths2_group (GroupOf sk_moths_2 night_moth) (STV 1.0 0.99))",
+   "(: moths2_card (Cardinality sk_moths_2 17) (STV 1.0 0.99))",
+   "(: moths2_loc (LocatedIn sk_moths_2 sk_lantern_1) (STV 1.0 0.99))",
+   "(: moths2_time (Time sk_moths_2 third_watch) (STV 1.0 0.99))",
+   "(: moths2_past (Past sk_moths_2) (STV 1.0 0.99))",
+   "(: moths3_group (GroupOf sk_moths_3 night_moth) (STV 1.0 0.99))",
+   "(: moths3_phrase (CardinalityPhrase sk_moths_3 \"a handful\") (STV 1.0 0.99))",
+   "(: gather_ev (Member sk_gather_1 gather) (STV 1.0 0.99))",
+   "(: gather_ag (Agent sk_gather_1 sk_moths_3) (STV 1.0 0.99))",
+   "(: gather_loc (Location sk_gather_1 middle_row) (STV 1.0 0.99))",
+   "(: gather_time (Time sk_gather_1 night) (STV 1.0 0.99))",
+   "(: gather_past (Past sk_gather_1) (STV 1.0 0.99))",
+   "(: midrow_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: midrow_type (Member middle_row row) (STV 1.0 0.99))",
+   "(: skycats_group (GroupOf sk_skycats_1 sky_cat) (STV 1.0 0.99))",
+   "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: spires_group (GroupOf sk_spires_1 cliff_spire) (STV 1.0 0.99))",
+   "(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: stay_ev (Member sk_stay_1 stay) (STV 1.0 0.99))",
+   "(: stay_exp (Experiencer sk_stay_1 sk_skycats_1) (STV 1.0 0.99))",
+   "(: stay_loc (Location sk_stay_1 sk_spires_1) (STV 1.0 0.99))",
+   "(: stay_time (Time sk_stay_1 night) (STV 1.0 0.99))",
+   "(: stay_past (Past sk_stay_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000006",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 40,
+     "issue": "(Time sk_moths_2 third_watch) hangs a Time atom on a group entity, but Time atoms are licensed only on an event witness or an event-denoting noun."
+    },
+    {
+     "statement": 41,
+     "issue": "(Past sk_moths_2) applies a tense status to a group entity rather than to an event or to a wrapped categorical atom; this copular clause with a time modifier should have reified its state (plus the flat atom) to carry tense and time."
+    },
+    {
+     "statement": 37,
+     "issue": "The counted group is typed night_moth although the sentence says only \"moth-count\", so the narrower kind is imported from discourse rather than read off the words (and the compound moth_count with its genus is dropped entirely)."
+    },
+    {
+     "statement": 55,
+     "issue": "The sky-cats' stay is emitted as a group-only event with no per-member distribution rule over (PartOf $x sk_skycats_1), although staying is a distributive rather than a collective predicate."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a count/tally nominal as copular subject with a numeral predicate (\"the moth-count at the lantern was seventeen\") - the instruction set gives no mapping from a numeric predication on a count noun onto a Cardinality (or Measure) on the counted set"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Sentences 1-5 and 7 track the instruction set closely: the BeforeBy gap onto the equinox anchor, entity-attached On for the station, name+kind for \"Cliff Path\" and \"Middle Row\", and the collective gather with CardinalityPhrase \"a handful\". The two bare mass objects are handled inconsistently (mire_essence stays a bare kind constant while mist-light gets a witness), though the later anaphoric mention arguably licenses the witness."
+  },
+  "adjudication": {
+   "id": "evt-000006",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Time states that \"Time atoms attach to the event witness (or an event-denoting noun like 'the show')\", and `sk_moths_2` is a `GroupOf` moth group — an entity, not an eventuality — so `(Time sk_moths_2 third_watch)` is ill-typed."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Status predicates are `(<Status> <event>)`, and a copular clause with no event \"wraps the categorical atom in the status operator instead\" (`(Past (Member alice happy))`), so a bare `(Past sk_moths_2)` over a group entity is ill-typed in both slots it could have used."
+    },
+    {
+     "index": 2,
+     "verdict": "partial",
+     "reason": "The typing half stands — Core patterns licenses a type atom \"exactly when the kind is readable off the words\", and \"moth-count\" reads off `moth`, not `night_moth`, however strongly the previous sentence's nightmoths are the intended referents (world knowledge picks the reading, never the content) — while the dropped `moth_count` compound is acceptable improvisation in the reviewer's own gap territory, since re-expressing the count nominal as a `Cardinality` on the counted set loses no true content."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "Quantifiers, generics & scope: \"the same rule form distributes a distributive predicate over a plural or group — whether an explicit universal ... or a grouped / counted plural\", and only a collective predicate (gather, meet, assemble) stays group-only; staying on the spires is distributive, so the per-member rule over `(PartOf $x sk_skycats_1)` is required alongside the group event."
+    }
+   ],
+   "gaps_confirmed": [
+    "a count/tally nominal as copular subject with a numeral predicate (\"the moth-count at the lantern was seventeen\") — the instruction set gives no mapping from a numeric predication on a count noun onto a `Cardinality` (or `Measure`) on the counted set, and no predicate form for a bare numeral (`Measure` needs a stated scale and unit, `Cardinality` needs a group)"
+   ],
+   "new_gaps": [
+    "A TIME-INDEXED COUNT has no licensed carrier at all: `Time` and the tense operators attach only to eventualities, `Cardinality` takes only a group and a number, and no word in \"the moth-count at the lantern was seventeen at the third watch\" supplies a state class to reify — so WHEN the count held is unencodable however the clause is routed. A licensed form would need either a `Time`-bearing count state or a time argument on `Cardinality`.",
+    "Anaphoric \"that night\" whose antecedent carries no calendar terms: Time's term-propagation rule then licenses only the bare day-part `(Time e night)` on each event, and nothing identifies the two \"that night\" events (the gathering, the sky-cats' stay) as the same night, or ties either to the walk anchored only by `(BeforeBy sk_walk_1 sk_equinox_1 1 day)` — co-temporality is silently lost.",
+    "Whether a position clause reified by a time modifier (*Where a THING is*) ALSO dual-emits the flat entity-attached position atom — `(On sk_skycats_1 sk_spires_1)` beside the state's `(Location sk_stay_1 sk_spires_1)` — is unspecified: the dual-emit pattern names \"a copular clause carrying a time modifier\", but the position route is stated separately and shows only the reified half."
+   ],
+   "decision": "defect",
+   "defect_summary": "`(Time sk_moths_2 third_watch)` has NO compliant form — `Time` requires an eventuality, the improvised `Cardinality` is an entity-level atom, and no word supplies a state class to reify — so \"at the third watch\" is unencodable here and is filed as a new gap rather than fixed. The tense belongs on the wrapped categorical atom, `(Past (Cardinality sk_moths_2 17))`, never as a bare status atom over a group symbol. The counted group is typed `(GroupOf sk_moths_2 moth)`, the kind the words \"moth-count\" supply. The sky-cats' stay adds the per-member rule beside the group event: `(Implication (PartOf $x sk_skycats_1) (And (Member (sk_stay $x) stay) (Experiencer (sk_stay $x) $x) (Location (sk_stay $x) sk_spires_1) (Time (sk_stay $x) night) (Past (sk_stay $x)))) (STV 1.0 0.9)`.",
+   "notes": "Sentences 1-5 and 7 track the instruction set closely — the `BeforeBy` equinox anchor, the entity-attached `On` for the station, the name+kind pattern for \"Cliff Path\" / \"Middle Row\", the noun-modifier-suppressed compound genera (`mist_light`→`light`, `night_moth`→`moth`, `sky_cat`→`cat`), the `Theme` on `attract`, and the collective `gather` with its `CardinalityPhrase`. The reified `Experiencer` + `Location` state for \"stayed on the cliff-spires that night\" is itself licensed: a time modifier is one of the named reification triggers for a position clause."
+  }
+ }
+}

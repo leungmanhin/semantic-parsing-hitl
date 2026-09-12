@@ -1,0 +1,133 @@
+{
+ "id": "E3-02",
+ "rule": "III — The first salt-bloom harvest",
+ "texts": [
+  "On day 33 of Year 1, a harvest party of twelve people left Aelmere at sundown.",
+  "Sailsworn led the harvest party along the goat-path to the Salt-bloom Tide-pools.",
+  "The harvest party carried copper buckets and wooden scrapers.",
+  "Coraline Ash walked with the harvest party.",
+  "Sailsworn assigned each member of the harvest party to one of the five blooming pools.",
+  "Sailsworn assigned Coraline Ash to the second pool from the north."
+ ],
+ "passage": {
+  "corpus_id": "evt-000020",
+  "sentences": [
+   "On day 33 of Year 1, a harvest party of twelve people left Aelmere at sundown.",
+   "Sailsworn led the harvest party along the goat-path to the Salt-bloom Tide-pools.",
+   "The harvest party carried copper buckets and wooden scrapers.",
+   "Coraline Ash walked with the harvest party.",
+   "Sailsworn assigned each member of the harvest party to one of the five blooming pools.",
+   "Sailsworn assigned Coraline Ash to the second pool from the north."
+  ],
+  "parse": [
+   "(: party_mem (Member sk_party_1 harvest_party) (STV 1.0 0.99))",
+   "(: party_genus (Inheritance harvest_party party) (STV 1.0 0.99))",
+   "(: party_group (GroupOf sk_party_1 person) (STV 1.0 0.99))",
+   "(: party_card (Cardinality sk_party_1 12) (STV 1.0 0.99))",
+   "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+   "(: e1_class (Member sk_leave_1 leave) (STV 1.0 0.99))",
+   "(: e1_agent (Agent sk_leave_1 sk_party_1) (STV 1.0 0.99))",
+   "(: e1_theme (Theme sk_leave_1 aelmere) (STV 1.0 0.99))",
+   "(: e1_time_sundown (Time sk_leave_1 sundown) (STV 1.0 0.99))",
+   "(: e1_time_year (Time sk_leave_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e1_time_day (Time sk_leave_1 (Day 33)) (STV 1.0 0.99))",
+   "(: e1_past (Past sk_leave_1) (STV 1.0 0.99))",
+   "(: sailsworn_name (Name sailsworn \"Sailsworn\") (STV 1.0 0.99))",
+   "(: e2_class (Member sk_lead_1 lead) (STV 1.0 0.99))",
+   "(: e2_agent (Agent sk_lead_1 sailsworn) (STV 1.0 0.99))",
+   "(: e2_theme (Theme sk_lead_1 sk_party_1) (STV 1.0 0.99))",
+   "(: e2_along (Along sk_lead_1 sk_path_1) (STV 1.0 0.99))",
+   "(: e2_goal (Goal sk_lead_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+   "(: e2_past (Past sk_lead_1) (STV 1.0 0.99))",
+   "(: path_mem (Member sk_path_1 goat_path) (STV 1.0 0.99))",
+   "(: path_genus (Inheritance goat_path path) (STV 1.0 0.99))",
+   "(: stp_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+   "(: stp_mem (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+   "(: stp_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+   "(: e3_class1 (Member sk_carry_1 carry) (STV 1.0 0.99))",
+   "(: e3_agent1 (Agent sk_carry_1 sk_party_1) (STV 1.0 0.99))",
+   "(: e3_theme1 (Theme sk_carry_1 sk_bucket_1) (STV 1.0 0.99))",
+   "(: e3_past1 (Past sk_carry_1) (STV 1.0 0.99))",
+   "(: bucket_group (GroupOf sk_bucket_1 copper_bucket) (STV 1.0 0.99))",
+   "(: bucket_genus (Inheritance copper_bucket bucket) (STV 1.0 0.99))",
+   "(: e3_class2 (Member sk_carry_2 carry) (STV 1.0 0.99))",
+   "(: e3_agent2 (Agent sk_carry_2 sk_party_1) (STV 1.0 0.99))",
+   "(: e3_theme2 (Theme sk_carry_2 sk_scraper_1) (STV 1.0 0.99))",
+   "(: e3_past2 (Past sk_carry_2) (STV 1.0 0.99))",
+   "(: scraper_group (GroupOf sk_scraper_1 wooden_scraper) (STV 1.0 0.99))",
+   "(: scraper_genus (Inheritance wooden_scraper scraper) (STV 1.0 0.99))",
+   "(: scraper_mod (Inheritance wooden_scraper wooden) (STV 1.0 0.99))",
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: e4_class (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: e4_agent (Agent sk_walk_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e4_coagent (CoAgent sk_walk_1 sk_party_1) (STV 1.0 0.99))",
+   "(: e4_past (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: pool_group (GroupOf sk_pool_group_1 pool) (STV 1.0 0.99))",
+   "(: pool_group_card (Cardinality sk_pool_group_1 5) (STV 1.0 0.99))",
+   "(: pool_bloom_rule (Implication (PartOf $y sk_pool_group_1) (Member $y blooming)) (STV 1.0 0.9))",
+   "(: assign_rule (Implication (PartOf $x sk_party_1) (And (Member (sk_assign $x) assign) (Agent (sk_assign $x) sailsworn) (Theme (sk_assign $x) $x) (Goal (sk_assign $x) (sk_pool $x)) (Member (sk_pool $x) pool) (PartOf (sk_pool $x) sk_pool_group_1) (Past (sk_assign $x)))) (STV 1.0 0.9))",
+   "(: assign_q (QuantifierPhrase harvest_party assign \"each\") (STV 1.0 0.99))",
+   "(: e6_class (Member sk_assign_2 assign) (STV 1.0 0.99))",
+   "(: e6_agent (Agent sk_assign_2 sailsworn) (STV 1.0 0.99))",
+   "(: e6_theme (Theme sk_assign_2 coraline_ash) (STV 1.0 0.99))",
+   "(: e6_goal (Goal sk_assign_2 sk_pool_1) (STV 1.0 0.99))",
+   "(: e6_past (Past sk_assign_2) (STV 1.0 0.99))",
+   "(: pool1_mem (Member sk_pool_1 pool) (STV 1.0 0.99))",
+   "(: pool1_partof (PartOf sk_pool_1 sk_pool_group_1) (STV 1.0 0.99))",
+   "(: pool1_ordinal (Ordinal sk_pool_1 2 north) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000020",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 53,
+     "issue": "`(PartOf sk_pool_1 sk_pool_group_1)` asserts that \"the second pool from the north\" is one of the five blooming pools, a link the text never states, and it makes the blooming distribution rule (statement 44) derive that this pool is blooming."
+    },
+    {
+     "statement": 54,
+     "issue": "`(Ordinal sk_pool_1 2 north)` puts a direction constant in the scale slot, which the instruction set defines as an associated event class or an '-est' dimension."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "spatially-anchored ordinal (\"the second pool from the north\") — `Ordinal`'s scale slot is defined only for an associated event or an '-est' dimension, not a direction or reference point the ranking counts from",
+    "a proper name whose internal kind word is plural (\"the Salt-bloom Tide-pools\") — the name-plus-type-atom rule is written for a singular kind word, leaving `Member` vs `GroupOf` undetermined for a named plurality",
+    "a day-of-year date with no month (\"day 33 of Year 1\") — the `Day <n>` term is specified as a calendar day inside a month"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The ∀∃ assignment rule over `(PartOf $x sk_party_1)` with the dependent Skolem pool, the descriptive-modifier distribution rule for \"blooming\", and the differential `copper_bucket` (noun modifier, no genus) vs `wooden_scraper` (adjective modifier, genus emitted) handling all match the instruction set. Coraline Ash is correctly kept a `CoAgent` rather than asserted a party member."
+  },
+  "adjudication": {
+   "id": "evt-000020",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Core patterns bars an unstated relation however obvious ('point at the words that put the atom there'), and nothing says the second pool from the north is one of the five BLOOMING pools — a restricted subset need not exhaust the spatial series — while the emitted PartOf feeds the blooming rule to derive (Member sk_pool_1 blooming), content the text never states."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "Ordinal's scale slot takes 'an explicit \"-est\" dimension', and the instruction set's own 'the third tallest' -> (Ordinal x 3 tall) is this exact shape: north is a positional property the vocabulary already predicates of things ((Inheritance east_wing east)), so (Ordinal sk_pool_1 2 north) = second-most-northern is true of the content and well-typed — graceful improvisation in the very gap the reviewer records in q2."
+    }
+   ],
+   "gaps_confirmed": [
+    "Spatially-anchored ordinal ('the second pool from the north'): Ordinal's scale slot is defined for an associated event or an '-est' dimension, with nothing said about a direction or reference point the ranking counts from.",
+    "A proper name whose internal kind word is plural ('the Salt-bloom Tide-pools'): the name-plus-type-atom rule is written for a singular kind word, leaving Member vs GroupOf undetermined (the 'the Wrens' precedent leans against GroupOf, so Member is the safer of the two).",
+    "A day-of-year date with no month ('day 33 of Year 1'): (Day <n>) is specified as a calendar day inside a month."
+   ],
+   "new_gaps": [
+    "An ordinal definite whose comparison set is recoverable only from prior discourse ('the second pool from the north', after 'the five blooming pools'): Ordinal has no slot for the set the rank is taken within, and the only available link — a PartOf into that set — over-asserts membership, so a licensed parse necessarily loses which set the ordinal ranks within."
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0: the compliant form leaves the pool as (Member sk_pool_1 pool) + (Ordinal sk_pool_1 2 north) with no PartOf into sk_pool_group_1; where the discourse identification is genuinely intended, the instruction set licenses no carrier for an ordinal definite's comparison set, which is filed as a new gap.",
+   "notes": "The rest of the parse is strong — the forall-exists assignment rule with the dependent Skolem pool, the blooming distribution rule, the copper_bucket (noun modifier, no genus) vs wooden_scraper (adjective modifier, genus emitted) split, and Coraline Ash as CoAgent rather than a party member all match the instruction set. Only the one unstated PartOf link fails it."
+  }
+ }
+}

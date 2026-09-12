@@ -1,0 +1,149 @@
+{
+ "id": "E1-11",
+ "rule": "I — The equinox week",
+ "texts": [
+  "On day 1 of Year 1, Pell collected silken threads from the lanterns of the Cliff Path at dawn.",
+  "Nightmoths had landed on the lanterns during the night.",
+  "The nightmoths had left silken threads on the lanterns.",
+  "Pell carried the silken threads to Cauldron Hall.",
+  "Hesper filled the three cauldrons with sea-water from the Salt-bloom Tide-pools.",
+  "Hesper boiled the silken threads in the sea-water.",
+  "Mire-essence formed in each cauldron by evening.",
+  "Hesper stored the mire-essence in three clay vessels."
+ ],
+ "passage": {
+  "corpus_id": "evt-000011",
+  "sentences": [
+   "On day 1 of Year 1, Pell collected silken threads from the lanterns of the Cliff Path at dawn.",
+   "Nightmoths had landed on the lanterns during the night.",
+   "The nightmoths had left silken threads on the lanterns.",
+   "Pell carried the silken threads to Cauldron Hall.",
+   "Hesper filled the three cauldrons with sea-water from the Salt-bloom Tide-pools.",
+   "Hesper boiled the silken threads in the sea-water.",
+   "Mire-essence formed in each cauldron by evening.",
+   "Hesper stored the mire-essence in three clay vessels."
+  ],
+  "parse": [
+   "(: e1_collect (Member sk_collect_1 collect) (STV 1.0 0.99))",
+   "(: e1_agent (Agent sk_collect_1 pell) (STV 1.0 0.99))",
+   "(: e1_theme (Theme sk_collect_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: e1_source (Source sk_collect_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e1_dawn (Time sk_collect_1 dawn) (STV 1.0 0.99))",
+   "(: e1_day (Time sk_collect_1 (Day 1)) (STV 1.0 0.99))",
+   "(: e1_year (Time sk_collect_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e1_past (Past sk_collect_1) (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: thread_grp (GroupOf sk_thread_1 silken_thread) (STV 1.0 0.99))",
+   "(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+   "(: thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+   "(: lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: lantern_poss (Possession sk_lantern_1 cliff_path) (STV 1.0 0.99))",
+   "(: cliffpath_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: nightmoth_grp (GroupOf sk_nightmoth_1 nightmoth) (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: e2_land (Member sk_land_1 land) (STV 1.0 0.99))",
+   "(: e2_agent (Agent sk_land_1 sk_nightmoth_1) (STV 1.0 0.99))",
+   "(: e2_loc (Location sk_land_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e2_time (Time sk_land_1 night) (STV 1.0 0.99))",
+   "(: e2_past (Past sk_land_1) (STV 1.0 0.99))",
+   "(: e3_leave (Member sk_leave_1 leave) (STV 1.0 0.99))",
+   "(: e3_agent (Agent sk_leave_1 sk_nightmoth_1) (STV 1.0 0.99))",
+   "(: e3_theme (Theme sk_leave_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: e3_loc (Location sk_leave_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e3_past (Past sk_leave_1) (STV 1.0 0.99))",
+   "(: e4_carry (Member sk_carry_1 carry) (STV 1.0 0.99))",
+   "(: e4_agent (Agent sk_carry_1 pell) (STV 1.0 0.99))",
+   "(: e4_theme (Theme sk_carry_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: e4_goal (Goal sk_carry_1 cauldron_hall) (STV 1.0 0.99))",
+   "(: e4_past (Past sk_carry_1) (STV 1.0 0.99))",
+   "(: caldhall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+   "(: caldhall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+   "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: e5_fill (Member sk_fill_1 fill) (STV 1.0 0.99))",
+   "(: e5_agent (Agent sk_fill_1 hesper) (STV 1.0 0.99))",
+   "(: e5_patient (Patient sk_fill_1 sk_cauldron_1) (STV 1.0 0.99))",
+   "(: cauldron_grp (GroupOf sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+   "(: cauldron_card (Cardinality sk_cauldron_1 3) (STV 1.0 0.99))",
+   "(: e5_instr (Instrument sk_fill_1 sk_water_1) (STV 1.0 0.99))",
+   "(: water_type (Member sk_water_1 sea_water) (STV 1.0 0.99))",
+   "(: water_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+   "(: water_from (From sk_water_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+   "(: tidepools_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+   "(: tidepool_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+   "(: tidepools_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+   "(: e5_past (Past sk_fill_1) (STV 1.0 0.99))",
+   "(: e6_boil (Member sk_boil_1 boil) (STV 1.0 0.99))",
+   "(: e6_agent (Agent sk_boil_1 hesper) (STV 1.0 0.99))",
+   "(: e6_patient (Patient sk_boil_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: e6_loc (Location sk_boil_1 sk_water_1) (STV 1.0 0.99))",
+   "(: e6_past (Past sk_boil_1) (STV 1.0 0.99))",
+   "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: cauldron_form_rule (Implication (PartOf $x sk_cauldron_1) (And (Member (sk_form $x) form) (Patient (sk_form $x) (sk_essence $x)) (Member (sk_essence $x) mire_essence) (Location (sk_form $x) $x) (TimeAtMost (sk_form $x) evening) (Past (sk_form $x)))) (STV 1.0 0.9))",
+   "(: cauldron_form_q (QuantifierPhrase cauldron form \"each\") (STV 1.0 0.99))",
+   "(: essence_witness (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: e8_store (Member sk_store_1 store) (STV 1.0 0.99))",
+   "(: e8_agent (Agent sk_store_1 hesper) (STV 1.0 0.99))",
+   "(: e8_theme (Theme sk_store_1 sk_mire_essence_1) (STV 1.0 0.99))",
+   "(: e8_loc (Location sk_store_1 sk_vessel_1) (STV 1.0 0.99))",
+   "(: vessel_grp (GroupOf sk_vessel_1 clay_vessel) (STV 1.0 0.99))",
+   "(: vessel_card (Cardinality sk_vessel_1 3) (STV 1.0 0.99))",
+   "(: vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+   "(: e8_past (Past sk_store_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000011",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 22,
+     "issue": "The past perfect 'had landed' carries only (Past sk_land_1) with no Before ordering it against the dawn collecting event the passage asserts, so the anteriority the perfect exists to state is unrecorded."
+    },
+    {
+     "statement": 27,
+     "issue": "Same for 'had left': (Past sk_leave_1) with no Before against the collecting event, leaving the moths' depositing of the threads unordered relative to Pell's collection of them."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Definite anaphora to a referent introduced only inside a distribution rule: 'Mire-essence formed in each cauldron' mints per-member Skolem terms (sk_essence $x), and nothing licenses the next sentence's 'the mire-essence' to refer to them — the parse is forced into a fresh, unlinked witness, so the essence that formed and the essence that is stored are different entities.",
+    "The past-perfect ordering test is scoped to 'the sentence' ('whenever the sentence contains another asserted event') while its own exception is scoped to 'the text' ('no other event in the text'), so a past perfect standing alone in its sentence whose only anchor is a neighbouring sentence of the passage is unresolved.",
+    "'during' + a day-part NP ('during the night'): During is mandated for that word but requires two reified eventualities, while day-parts must stay bare Time symbols and may never be given a witness — the two rules cannot both be satisfied."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Roles, the group/Cardinality pairs, the 'each cauldron' distribution rule with its PartOf range, its QuantifierPhrase companion and the 'by evening' TimeAtMost are all correctly formed, as is the modifier-genus split (silken exposed, night/clay/mire/sea not). 'with sea-water' as Instrument and a witness for the bare mass 'sea-water' are both borderline but licensed — Instrument explicitly covers a substance, and the From-origin modifier needs an entity to attach to."
+  },
+  "adjudication": {
+   "id": "evt-000011",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "refute",
+     "reason": "The past-perfect ordering trigger is stated sentence-scoped — \"emit the ordering whenever the sentence contains another asserted event for the perfect to precede, whatever links them\", with only intra-sentential links exemplified — and \"Nightmoths had landed on the lanterns during the night\" holds no second event, so omitting Before follows the letter of the rule and emits nothing false; the sentence/text scope clash is the reviewer's own gap 2, a coverage gap rather than a parse defect."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "Same standard: \"The nightmoths had left silken threads on the lanterns\" is likewise a single-event sentence, so the stated trigger does not fire, and a missing ordering atom is an unrecorded inference, not false, ill-typed or over-asserted content."
+    }
+   ],
+   "gaps_confirmed": [
+    "definite anaphora to a referent that exists only inside a distribution rule — \"Mire-essence formed in each cauldron\" mints per-member `(sk_essence $x)` terms and nothing lets the next sentence's \"the mire-essence\" refer to them, so the essence stored is a different entity from the essence formed",
+    "the past-perfect ordering test is sentence-scoped (\"whenever the sentence contains another asserted event\") while its exemption is text-scoped (\"no other event in the text\"), leaving a perfect alone in its sentence but anchored by a neighbouring sentence of the passage unresolved",
+    "\"during\" + a day-part NP (\"during the night\"): During is mandated for that surface word but needs two reified eventualities, while day-parts must stay bare Time symbols and may never take a witness, so the two rules cannot both be met"
+   ],
+   "new_gaps": [
+    "a multi-word proper name denoting a plurality (\"the Salt-bloom Tide-pools\"): *Names and casing* gives one opaque individual plus a singular type atom and bars `GroupOf` on a named individual, so the referent's plurality (and any count) has no carrier",
+    "an entity-attached origin modifier on a bare mass (\"sea-water from the Salt-bloom Tide-pools\"): an oblique's bare-mass object is told to stay a constant, yet `(From sea_water ...)` on the constant would be a kind-level claim about all sea-water — the faithful reading needs a witness the mass rule does not license"
+   ],
+   "decision": "accept",
+   "defect_summary": "",
+   "notes": "Licensed carriers for the two perfects do exist — `(Before sk_land_1 sk_collect_1)` and `(Before sk_leave_1 sk_collect_1)` — so resolving gap 2 in favour of passage scope would make them mandatory on any later parse. Everything else here follows the instruction set: the group/Cardinality pairs, the each-cauldron rule with its PartOf range, Skolem essence and QuantifierPhrase companion, the \"by evening\" TimeAtMost, the Source/Goal/Location obliques, and the modifier-genus splits (silken exposed; night, clay, sea, mire not)."
+  }
+ }
+}

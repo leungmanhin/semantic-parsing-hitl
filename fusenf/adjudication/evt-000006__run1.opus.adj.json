@@ -1,0 +1,26 @@
+{"id": "evt-000006", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "confirm",
+    "reason": "Time states that \"Time atoms attach to the event witness (or an event-denoting noun like 'the show')\", and `sk_moths_2` is a `GroupOf` moth group — an entity, not an eventuality — so `(Time sk_moths_2 third_watch)` is ill-typed."},
+   {"index": 1,
+    "verdict": "confirm",
+    "reason": "Status predicates are `(<Status> <event>)`, and a copular clause with no event \"wraps the categorical atom in the status operator instead\" (`(Past (Member alice happy))`), so a bare `(Past sk_moths_2)` over a group entity is ill-typed in both slots it could have used."},
+   {"index": 2,
+    "verdict": "partial",
+    "reason": "The typing half stands — Core patterns licenses a type atom \"exactly when the kind is readable off the words\", and \"moth-count\" reads off `moth`, not `night_moth`, however strongly the previous sentence's nightmoths are the intended referents (world knowledge picks the reading, never the content) — while the dropped `moth_count` compound is acceptable improvisation in the reviewer's own gap territory, since re-expressing the count nominal as a `Cardinality` on the counted set loses no true content."},
+   {"index": 3,
+    "verdict": "confirm",
+    "reason": "Quantifiers, generics & scope: \"the same rule form distributes a distributive predicate over a plural or group — whether an explicit universal ... or a grouped / counted plural\", and only a collective predicate (gather, meet, assemble) stays group-only; staying on the spires is distributive, so the per-member rule over `(PartOf $x sk_skycats_1)` is required alongside the group event."}
+ ],
+ "gaps_confirmed": [
+   "a count/tally nominal as copular subject with a numeral predicate (\"the moth-count at the lantern was seventeen\") — the instruction set gives no mapping from a numeric predication on a count noun onto a `Cardinality` (or `Measure`) on the counted set, and no predicate form for a bare numeral (`Measure` needs a stated scale and unit, `Cardinality` needs a group)"
+ ],
+ "new_gaps": [
+   "A TIME-INDEXED COUNT has no licensed carrier at all: `Time` and the tense operators attach only to eventualities, `Cardinality` takes only a group and a number, and no word in \"the moth-count at the lantern was seventeen at the third watch\" supplies a state class to reify — so WHEN the count held is unencodable however the clause is routed. A licensed form would need either a `Time`-bearing count state or a time argument on `Cardinality`.",
+   "Anaphoric \"that night\" whose antecedent carries no calendar terms: Time's term-propagation rule then licenses only the bare day-part `(Time e night)` on each event, and nothing identifies the two \"that night\" events (the gathering, the sky-cats' stay) as the same night, or ties either to the walk anchored only by `(BeforeBy sk_walk_1 sk_equinox_1 1 day)` — co-temporality is silently lost.",
+   "Whether a position clause reified by a time modifier (*Where a THING is*) ALSO dual-emits the flat entity-attached position atom — `(On sk_skycats_1 sk_spires_1)` beside the state's `(Location sk_stay_1 sk_spires_1)` — is unspecified: the dual-emit pattern names \"a copular clause carrying a time modifier\", but the position route is stated separately and shows only the reified half."
+ ],
+ "decision": "defect",
+ "defect_summary": "`(Time sk_moths_2 third_watch)` has NO compliant form — `Time` requires an eventuality, the improvised `Cardinality` is an entity-level atom, and no word supplies a state class to reify — so \"at the third watch\" is unencodable here and is filed as a new gap rather than fixed. The tense belongs on the wrapped categorical atom, `(Past (Cardinality sk_moths_2 17))`, never as a bare status atom over a group symbol. The counted group is typed `(GroupOf sk_moths_2 moth)`, the kind the words \"moth-count\" supply. The sky-cats' stay adds the per-member rule beside the group event: `(Implication (PartOf $x sk_skycats_1) (And (Member (sk_stay $x) stay) (Experiencer (sk_stay $x) $x) (Location (sk_stay $x) sk_spires_1) (Time (sk_stay $x) night) (Past (sk_stay $x)))) (STV 1.0 0.9)`.",
+ "notes": "Sentences 1-5 and 7 track the instruction set closely — the `BeforeBy` equinox anchor, the entity-attached `On` for the station, the name+kind pattern for \"Cliff Path\" / \"Middle Row\", the noun-modifier-suppressed compound genera (`mist_light`→`light`, `night_moth`→`moth`, `sky_cat`→`cat`), the `Theme` on `attract`, and the collective `gather` with its `CardinalityPhrase`. The reified `Experiencer` + `Location` state for \"stayed on the cliff-spires that night\" is itself licensed: a time modifier is one of the named reification triggers for a position clause."}

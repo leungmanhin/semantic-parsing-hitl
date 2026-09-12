@@ -17,7 +17,7 @@ fictional vocabulary parses like any open-class lexical material).
 
 Deterministic: source order preserved, no clock, no randomness (date passed in).
 
-Usage:  python build_fiction.py --date YYYY-MM-DD
+Usage:  python build_fiction.py --date YYYY-MM-DD [--prefix X --skip-rules --passage]
 """
 
 from __future__ import annotations
@@ -48,6 +48,10 @@ def main() -> None:
     ap.add_argument("--skip-rules", action="store_true",
                     help="corpus the texts only — the 'rule' field is not parsed "
                          "(consumer feedback, 2026-09-01 rewrite round)")
+    ap.add_argument("--passage", action="store_true",
+                    help="ONE record per source item holding ALL its texts, translated together as "
+                         "one passage (consumer events.json, 2026-09-12: a definite refers back "
+                         "within the episode); implies --skip-rules")
     args = ap.parse_args()
 
     raw = open(args.source, "rb").read()
@@ -64,25 +68,32 @@ def main() -> None:
             equiv = f"{args.prefix}-{item['id']}"
         else:
             raise SystemExit(f"unexpected item id {item['id']!r}")
-        parts = ([] if args.skip_rules else [("rule", item["rule"])]) + [
-            (f"t{k}", t) for k, t in enumerate(item["texts"], 1)]
-        for field, sentence in parts:
-            sentence = sentence.strip()
-            if not (sentence and sentence.isprintable()):
+        if args.passage:
+            parts = [("passage", list(item["texts"]))]
+        else:
+            parts = ([] if args.skip_rules else [("rule", [item["rule"]])]) + [
+                (f"t{k}", [t]) for k, t in enumerate(item["texts"], 1)]
+        for field, sentences in parts:
+            sentences = [x.strip() for x in sentences]
+            if not sentences or not all(x and x.isprintable() for x in sentences):
                 raise SystemExit(f"unprintable/empty sentence in {item['id']}/{field}")
             seq += 1
+            labels = {"words": sum(len(_RE_WORD.findall(x)) for x in sentences),
+                      "item": item["id"],
+                      "field": "rule" if field == "rule" else ("passage" if field == "passage" else "text")}
+            if field == "passage":
+                labels["sentences"] = len(sentences)
             records.append({
                 "schema": "fusenf-corpus/1",
                 "id": f"{args.prefix}-{seq:06d}",
                 "source": "semantic-chemistry/expt2-fiction-world",
                 "source_id": f"{item['id']}/{field}",
                 "source_license": "internal (downstream consumer)",
-                "sentences": [sentence],
+                "sentences": sentences,
                 "context": CONTEXT,
                 "equiv_class": equiv,
-                "labels": {"words": len(_RE_WORD.findall(sentence)),
-                           "item": item["id"], "field": "rule" if field == "rule" else "text"},
-                "input_sha256": input_sha256({"sentences": [sentence], "context": CONTEXT}),
+                "labels": labels,
+                "input_sha256": input_sha256({"sentences": sentences, "context": CONTEXT}),
             })
 
     ids = [r["id"] for r in records]
@@ -99,11 +110,16 @@ def main() -> None:
         "source_items": len(items),
         "records": len(records),
         "rules": sum(1 for r in records if r["labels"]["field"] == "rule"),
-        "texts": sum(1 for r in records if r["labels"]["field"] == "text"),
+        "texts": sum(len(r["sentences"]) for r in records if r["labels"]["field"] in ("text", "passage")),
         "built": args.date,
         "role": "external-downstream (semantic-chemistry); NEVER in the mining substrate",
-        "dispatch_constraint": "no parse batch may contain two sentences of one equiv_class",
+        "dispatch_constraint": ("passage mode: one record per source item, all its texts translated "
+                                "together as one passage (no equiv_class sharing possible)"
+                                if args.passage else
+                                "no parse batch may contain two sentences of one equiv_class"),
     }
+    if args.passage:
+        manifest["passages"] = len(records)
     json.dump(manifest, open(args.manifest, "w", encoding="utf-8"), indent=1, sort_keys=True)
     print(f"-> {args.out}  ({len(records)} records from {len(items)} items)")
     print(f"-> {args.manifest}")

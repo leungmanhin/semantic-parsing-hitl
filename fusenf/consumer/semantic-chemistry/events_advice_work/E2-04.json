@@ -1,0 +1,192 @@
+{
+ "id": "E2-04",
+ "rule": "II — The first cold snap",
+ "texts": [
+  "On day 17 of Year 1, the eleven relit lanterns of the Middle Row burned dimly.",
+  "The dim lanterns gave weak mist-light.",
+  "The weak mist-light attracted a handful of nightmoths.",
+  "The moth-count at the Middle Row was twelve that night.",
+  "The thread harvest at the Middle Row fell.",
+  "Pell and Coraline Ash collected few silken threads from the Middle Row the next morning.",
+  "Hesper boiled the silken threads in sea-water at Cauldron Hall that day.",
+  "The cauldrons yielded two vessels of mire-essence instead of three."
+ ],
+ "passage": {
+  "corpus_id": "evt-000015",
+  "sentences": [
+   "On day 17 of Year 1, the eleven relit lanterns of the Middle Row burned dimly.",
+   "The dim lanterns gave weak mist-light.",
+   "The weak mist-light attracted a handful of nightmoths.",
+   "The moth-count at the Middle Row was twelve that night.",
+   "The thread harvest at the Middle Row fell.",
+   "Pell and Coraline Ash collected few silken threads from the Middle Row the next morning.",
+   "Hesper boiled the silken threads in sea-water at Cauldron Hall that day.",
+   "The cauldrons yielded two vessels of mire-essence instead of three."
+  ],
+  "parse": [
+   "(: s1_mr_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: s1_mr_type (Member middle_row row) (STV 1.0 0.99))",
+   "(: s1_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: s1_lantern_card (Cardinality sk_lantern_1 11) (STV 1.0 0.99))",
+   "(: s1_lantern_poss (Possession sk_lantern_1 middle_row) (STV 1.0 0.99))",
+   "(: s1_relit_rule (Implication (PartOf $x sk_lantern_1) (Member $x relit)) (STV 1.0 0.9))",
+   "(: s1_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: s1_burn_pat (Patient sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s1_burn_manner (Manner sk_burn_1 dimly) (STV 1.0 0.99))",
+   "(: s1_burn_day (Time sk_burn_1 (Day 17)) (STV 1.0 0.99))",
+   "(: s1_burn_year (Time sk_burn_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_burn_tense (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: s1_burn_rule (Implication (PartOf $x sk_lantern_1) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Manner (sk_burn $x) dimly) (Time (sk_burn $x) (Day 17)) (Time (sk_burn $x) (Year 1)) (Past (sk_burn $x)))) (STV 1.0 0.9))",
+   "(: s2_dim_rule (Implication (PartOf $x sk_lantern_1) (Member $x dim)) (STV 1.0 0.9))",
+   "(: s2_give (Member sk_give_1 give) (STV 1.0 0.99))",
+   "(: s2_give_ag (Agent sk_give_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s2_give_th (Theme sk_give_1 sk_light_1) (STV 1.0 0.99))",
+   "(: s2_give_tense (Past sk_give_1) (STV 1.0 0.99))",
+   "(: s2_give_rule (Implication (PartOf $x sk_lantern_1) (And (Member (sk_give $x) give) (Agent (sk_give $x) $x) (Theme (sk_give $x) sk_light_1) (Past (sk_give $x)))) (STV 1.0 0.9))",
+   "(: s2_light_type (Member sk_light_1 mist_light) (STV 1.0 0.99))",
+   "(: s2_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: s2_light_weak (Member sk_light_1 weak) (STV 1.0 0.99))",
+   "(: s3_attract (Member sk_attract_1 attract) (STV 1.0 0.99))",
+   "(: s3_attract_ag (Agent sk_attract_1 sk_light_1) (STV 1.0 0.99))",
+   "(: s3_attract_th (Theme sk_attract_1 sk_nightmoth_1) (STV 1.0 0.99))",
+   "(: s3_attract_tense (Past sk_attract_1) (STV 1.0 0.99))",
+   "(: s3_moth_grp (GroupOf sk_nightmoth_1 nightmoth) (STV 1.0 0.99))",
+   "(: s3_moth_card (CardinalityPhrase sk_nightmoth_1 \"a handful\") (STV 1.0 0.99))",
+   "(: s3_moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: s4_mc_type (Member sk_moth_count_1 moth_count) (STV 1.0 0.99))",
+   "(: s4_mc_genus (Inheritance moth_count count) (STV 1.0 0.99))",
+   "(: s4_mc_loc (LocatedIn sk_moth_count_1 middle_row) (STV 1.0 0.99))",
+   "(: s4_mc_day (Time sk_moth_count_1 (Day 17)) (STV 1.0 0.99))",
+   "(: s4_mc_year (Time sk_moth_count_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s4_mc_night (Time sk_moth_count_1 night) (STV 1.0 0.99))",
+   "(: s4_mc_measure (Past (Measure sk_moth_count_1 moth_count 12 unspecified)) (STV 1.0 0.99))",
+   "(: s5_harvest_type (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))",
+   "(: s5_harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+   "(: s5_harvest_loc (LocatedIn sk_harvest_1 middle_row) (STV 1.0 0.99))",
+   "(: s5_fall (Member sk_fall_1 fall) (STV 1.0 0.99))",
+   "(: s5_fall_th (Theme sk_fall_1 sk_harvest_1) (STV 1.0 0.99))",
+   "(: s5_fall_tense (Past sk_fall_1) (STV 1.0 0.99))",
+   "(: s6_pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: s6_ca_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: s6_thread_grp (GroupOf sk_thread_1 silken_thread) (STV 1.0 0.99))",
+   "(: s6_thread_card (CardinalityPhrase sk_thread_1 \"few\") (STV 1.0 0.99))",
+   "(: s6_thread_genus1 (Inheritance silken_thread thread) (STV 1.0 0.99))",
+   "(: s6_thread_genus2 (Inheritance silken_thread silken) (STV 1.0 0.99))",
+   "(: s6_collect1 (Member sk_collect_1 collect) (STV 1.0 0.99))",
+   "(: s6_collect1_ag (Agent sk_collect_1 pell) (STV 1.0 0.99))",
+   "(: s6_collect1_th (Theme sk_collect_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: s6_collect1_src (Source sk_collect_1 middle_row) (STV 1.0 0.99))",
+   "(: s6_collect1_tense (Past sk_collect_1) (STV 1.0 0.99))",
+   "(: s6_collect1_day (Time sk_collect_1 (Day 18)) (STV 1.0 0.99))",
+   "(: s6_collect1_year (Time sk_collect_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s6_collect1_morning (Time sk_collect_1 morning) (STV 1.0 0.99))",
+   "(: s6_collect1_before (Before sk_moth_count_1 sk_collect_1) (STV 1.0 0.99))",
+   "(: s6_collect2 (Member sk_collect_2 collect) (STV 1.0 0.99))",
+   "(: s6_collect2_ag (Agent sk_collect_2 coraline_ash) (STV 1.0 0.99))",
+   "(: s6_collect2_th (Theme sk_collect_2 sk_thread_1) (STV 1.0 0.99))",
+   "(: s6_collect2_src (Source sk_collect_2 middle_row) (STV 1.0 0.99))",
+   "(: s6_collect2_tense (Past sk_collect_2) (STV 1.0 0.99))",
+   "(: s6_collect2_day (Time sk_collect_2 (Day 18)) (STV 1.0 0.99))",
+   "(: s6_collect2_year (Time sk_collect_2 (Year 1)) (STV 1.0 0.99))",
+   "(: s6_collect2_morning (Time sk_collect_2 morning) (STV 1.0 0.99))",
+   "(: s6_collect2_before (Before sk_moth_count_1 sk_collect_2) (STV 1.0 0.99))",
+   "(: s7_hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: s7_ch_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+   "(: s7_ch_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+   "(: s7_boil (Member sk_boil_1 boil) (STV 1.0 0.99))",
+   "(: s7_boil_ag (Agent sk_boil_1 hesper) (STV 1.0 0.99))",
+   "(: s7_boil_pat (Patient sk_boil_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: s7_boil_loc1 (Location sk_boil_1 sea_water) (STV 1.0 0.99))",
+   "(: s7_seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+   "(: s7_boil_loc2 (Location sk_boil_1 cauldron_hall) (STV 1.0 0.99))",
+   "(: s7_boil_tense (Past sk_boil_1) (STV 1.0 0.99))",
+   "(: s7_boil_day (Time sk_boil_1 (Day 18)) (STV 1.0 0.99))",
+   "(: s7_boil_year (Time sk_boil_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s8_cauldron_grp (GroupOf sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+   "(: s8_cauldron_loc (LocatedIn sk_cauldron_1 cauldron_hall) (STV 1.0 0.99))",
+   "(: s8_yield (Member sk_yield_1 yield) (STV 1.0 0.99))",
+   "(: s8_yield_ag (Agent sk_yield_1 sk_cauldron_1) (STV 1.0 0.99))",
+   "(: s8_yield_pat (Patient sk_yield_1 sk_essence_1) (STV 1.0 0.99))",
+   "(: s8_yield_tense (Past sk_yield_1) (STV 1.0 0.99))",
+   "(: s8_essence_type (Member sk_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: s8_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: s8_essence_measure (Measure sk_essence_1 quantity 2 vessel) (STV 1.0 0.99))",
+   "(: s8_essence_not_three (Measure sk_essence_1 quantity 3 vessel) (STV 0.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000015",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 79,
+     "issue": "(LocatedIn sk_cauldron_1 cauldron_hall) asserts a location the text never states — nothing places the cauldrons in Cauldron Hall, and an obvious world relation is not an atom."
+    },
+    {
+     "statement": 87,
+     "issue": "A strength-0 Measure is derived from \"instead of three\", but strength 0.0 is licensed only by an explicit not / n't / no / never."
+    },
+    {
+     "statement": 86,
+     "issue": "Measure's scale slot is filled with the invented symbol `quantity` although no dimension word is stated; an unstated scale takes the reserved `unspecified` (same in statement 87)."
+    },
+    {
+     "statement": 32,
+     "issue": "\"that night\" hangs Time / Day / Year atoms directly on the entity witness sk_moth_count_1 (statements 32-34) rather than on an eventuality, while the tense sits only on the Measure at 35."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "\"instead of N\" — a corrective/substitutive numeral contrasting the actual value with an expected one",
+    "a container/measure partitive (\"two vessels of mire-essence\"): excluded from the genitive rules as a measure, but given no positive encoding",
+    "a copular clause whose predicate is a bare numeral/measure and which carries a time modifier — the time-modifier trigger prescribes reifying an adjectival state, but a numeric predication supplies no state symbol to anchor Time on",
+    "bare \"few\" (not \"a few\") quantifying an episodic object — the quantifier table routes \"few\" to the strength channel (generic / partitive), while CardinalityPhrase's vague-count list has only \"a few\"",
+    "tense on a prenominal adjectival modifier inside a past-tense verbal clause (\"the relit lanterns burned\") — the wrapping rule covers copular clauses and appositives, not prenominal modifiers, so the distributed property atoms at 5 and 13 are unwrapped by default"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Group/distribution handling, the compound decompositions (mist_light, nightmoth, silken_thread), and the \"that night\" / \"the next morning\" term propagation are all correct. The defects cluster in the last sentence, where an unstated containment and an unlicensed strength-0 twin are emitted."
+  },
+  "adjudication": {
+   "id": "evt-000015",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "No word places the cauldrons anywhere — Core patterns bars exactly this (\"no unstated property, possessor, location or causal link, however obvious\"), and the only Cauldron Hall the text supplies is the Location of Hesper's boiling, so the containment atom is unstated content."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "\"only an explicit not / n't / no / never sets strength 0.0\" is the lexical-antonym bar, not a global one (a prohibition emits (permitted V) at 0.0 and \"too young to vote\" emits a 0.0 event bundle, both with no negator), and in the uncovered \"instead of N\" territory the emitted atom is true — a two-vessel yield is not a three-vessel one."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Measures & units: \"A scale no word supplies is never invented — an unstated dimension takes the reserved slot symbol `unspecified`\"; \"two vessels of mire-essence\" states no dimension word, and `quantity` is licensed only in Degree's too-much / too-little / enough slot, never as a Measure scale."
+    },
+    {
+     "index": 3,
+     "verdict": "refute",
+     "reason": "Time says its atoms attach to \"the event witness (or an event-denoting noun like 'the show')\" and a moth-count is such a noun, the Past-wrapped Measure is the licensed tense form (\"Alice was 6 feet tall\" → (Past (Measure …))), and every emitted term is true of \"that night\" (Day 17, Year 1, night) — the reviewer's own q2 gap concedes a numeric predicate supplies no state symbol, which makes this a gap, not a defect."
+    }
+   ],
+   "gaps_confirmed": [
+    "\"instead of N\" — a corrective/substitutive numeral: nothing carries the expected-versus-actual contrast, so the expectation of three vessels is simply lost",
+    "a container/measure of-phrase (\"two vessels of mire-essence\") — explicitly excluded from the genitive rules as a measure but given no positive routing; Measure with an `unspecified` scale is the near-fit the instruction set never states",
+    "a copular clause whose predicate is a bare numeral/measure and which carries a time modifier — the reification trigger yields no state symbol for Time to anchor on",
+    "bare \"few\" (not \"a few\") on an episodic count object — the quantifier table routes \"few\" to the strength channel and the vague-count lexicon lists only \"a few\", so neither channel clearly owns it",
+    "tense on a prenominal participial/adjectival modifier in a past-tense verbal clause (\"the relit lanterns burned\") — the wrapping rule reaches copular clauses and appositives only, so the distributed property atoms stand untensed"
+   ],
+   "new_gaps": [
+    "a locative PP on an abstract measurement/tally noun (\"the moth-count at the Middle Row\") — \"at\" forces LocatedIn under the containment-only rule, which asserts spatial containment of a count, while Location is barred on an entity; the station-scoping the text states has no licensed head"
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0: the compliant form emits the cauldron group and its yield event with no location atom at all, since the text locates only the boiling at Cauldron Hall. Issue 2: the compliant form is (Measure sk_essence_1 unspecified 2 vessel) — the reserved `unspecified` in the scale slot, exactly as the parse itself uses it in the moth-count measure's unit slot — and the same substitution in the strength-0 twin.",
+   "notes": "The passage's harder machinery is handled correctly: the group plus per-member distribution rules, every compound decomposition (mist_light, nightmoth, silken_thread, thread_harvest, sea_water, mire_essence) with noun modifiers suppressed and the material adjective `silken` exposed, and the \"that night\" / \"the next morning\" / \"that day\" term propagation with its Before link. Both confirmed defects sit in the final sentence and both have licensed compliant forms, so no fix-blocking gap arises from them."
+  }
+ }
+}

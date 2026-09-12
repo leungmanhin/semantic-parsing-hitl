@@ -35,7 +35,9 @@ def main() -> None:
         r = json.loads(ln)
         if keep is not None and r["id"] not in keep:
             continue
-        items.append((r["id"], r["sentences"][0], r.get("equiv_class")))
+        # TEXT = every sentence of the record on one line (single-sentence records unchanged;
+        # passage records = the whole episode, translated together per prompt.txt "Input")
+        items.append((r["id"], " ".join(x.strip() for x in r["sentences"]), r.get("equiv_class")))
     if keep is not None and len(items) != len(keep):
         missing = sorted(keep - {i for i, _, _ in items})
         raise SystemExit(f"{len(missing)} ids not in corpus (first: {missing[:3]})")

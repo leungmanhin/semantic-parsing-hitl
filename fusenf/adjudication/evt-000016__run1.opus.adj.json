@@ -1,0 +1,27 @@
+{"id": "evt-000016", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "confirm",
+    "reason": "Core patterns bars silently dropping a stated qualifier ('an unencodable qualifier never becomes an unqualified assertion'), yet (Theme sk_tell_1 (Draw lantern nightmoth)) records Pell as having said that lanterns draw nightmoths, which is false of what he said and widens the claim by discarding both 'weaker' and 'fewer'."},
+   {"index": 1,
+    "verdict": "confirm",
+    "reason": "Striking & relational generics limits the kind-level relation to 'both arguments being bare kind-denoting NPs' and states that an adjectivally-restricted kind subject forces the distributing-rule route instead, so 'weaker lanterns' / 'fewer nightmoths' take a route the instruction set explicitly bars."},
+   {"index": 2,
+    "verdict": "confirm",
+    "reason": "(Leave nightmoth silken_thread) asserts as Pell's content a bare kind relation the sentence does not state and whose trigger is unmet, since 'fewer nightmoths' and 'fewer silken threads' are comparative-quantified, not bare kind-denoting NPs."},
+   {"index": 3,
+    "verdict": "confirm",
+    "reason": "(Yield silken_thread mire_essence) does the same for the third report, dropping 'fewer' and 'less' and seating a kind relation whose both-bare-arguments trigger is unmet."}
+ ],
+ "gaps_confirmed": [
+   "Generic covariation stated with elided-standard comparatives and comparative quantifiers on both sides ('weaker lanterns draw fewer nightmoths'): the comparative-correlative rule needs the 'the ADJ-er X, the ADJ-er Y' surface, an elided-standard comparative has no second More slot and must be dropped, and 'fewer/less N' as a bare generic has no quantifier carrier (QuantifierPhrase takes proportion words, CardinalityPhrase needs a specific group) - so the claim has no licensed form."
+ ],
+ "new_gaps": [
+   "Cross-kind covariation has no carrier even in rule form: the comparative-correlative Implication in the instruction set relates two orderings over ONE domain noun ($x and $y both wine), so a covariation whose two varying quantities belong to different kinds (lantern strength vs. number of nightmoths drawn) cannot be expressed at all; a licensed form would need to reify the linking event and compare its argument groups across two bindings.",
+   "An attitude complement that is wholly unencodable for a NON-polarity reason has no stated fallback: the instruction set licenses dropping the Theme and letting the attitude event stand only for a 'wholly negative' complement, so whether the tell event should stand Theme-less here, or the whole report be omitted, is undecided.",
+   "The comparative quantifiers 'fewer N' / 'less N' as bare generic NPs have no slot anywhere in the vocabulary - not as strength (they state no proportion), not as QuantifierPhrase (whose companion may only restate a range the rule itself quantifies), and not as CardinalityPhrase (which needs a specific group)."
+ ],
+ "decision": "defect",
+ "defect_summary": "Issue 0: the compliant form would have to carry 'weaker' and 'fewer' inside the seal, and none is licensed - the comparative-correlative rule's surface trigger and single-domain-noun shape do not fit, and an elided-standard comparative must be dropped - so the compliant parse is the tell event with its Experiencer / Recipient / Past / Day / Year / midnight atoms and NO Theme, with the loss recorded as a gap. Issue 1: with the kind-relation route barred and the distributing-rule route unable to carry a standard-less 'weaker', there is no licensed form for this clause at all. Issue 2: same verdict for 'fewer nightmoths leave fewer silken threads' - the second tell event stands with no Theme, since neither a kind relation nor a distributing rule can carry 'fewer' on both arguments. Issue 3: same for 'fewer silken threads yield less mire-essence' - no licensed form, the third tell event stands Theme-less and the gap is recorded.",
+ "notes": "The attitude scaffolding, calendar terms, definite-referent projection, compound decomposition and the sealed collective 'form a closed loop' (one event, four Agent atoms, indefinite loop witness kept inside) are all correct; the defect is confined to the three sealed complements. All three sentences fail the same way, so this is one construction gap reported three times rather than three independent errors."
+}

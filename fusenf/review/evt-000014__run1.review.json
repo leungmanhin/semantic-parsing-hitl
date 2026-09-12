@@ -1,0 +1,20 @@
+{"id": "evt-000014", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 4, "issue": "The definite singulars \"the mire-essence of the lantern\" are Skolemized per keeper as (sk_mire_essence $x) / (sk_lantern $x), whereas the instruction set encodes a definite singular as a witness constant and reserves Skolem functions for dependent existentials."},
+   {"statement": 6, "issue": "The anaphoric definite \"The mire-essence\" mints a fresh sk_mire_essence_1 instead of reusing the referent introduced in the first sentence, so the two mentions no longer corefer."},
+   {"statement": 41, "issue": "(Member salt_bloom distribution) puts the bare kind salt_bloom in Member's individual slot and predicates the class distribution of a substance, breaking the Member/Inheritance individual-vs-class discipline."},
+   {"statement": 25, "issue": "(Measure sk_cold_snap_1 duration 3 night) recasts \"ended after three nights\" as the snap's own extent, asserting a duration the sentence supplies only by inference."},
+   {"statement": 36, "issue": "(Time sk_keep_1 sk_rest_1) fills the Time slot with a minted entity witness, while Time takes a structured calendar term or a bare deictic/named symbol."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "a definite singular NP under an explicit universal (\"each Keeper ... the mire-essence of the lantern\") - whether the definite co-varies with the quantified subject or stays one constant is not addressed",
+   "a maintenance resultative whose result is a PP (\"kept salt-bloom in distribution\") - the State-result shape assumes an adjectival/kind predicate and has no slot for the preposition",
+   "an elapsed-interval adjunct with no named anchor event (\"ended after three nights\") - Before/BeforeBy need two eventualities or now, and Measure ... duration claims the eventuality's own extent",
+   "a durative span PP naming a period NP (\"for the rest of the autumn\") - During is restricted to during/while/throughout, Start/End need time terms, and Measure ... duration needs a stated number"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The \"that night\" day-term propagation, the go_out phrasal verb kept whole, the strength-0.0 \"no lantern\" rule with its \"no\" companion, and the cold wind split versus cold_snap fusion all follow the instruction set exactly. cold_snap carries no genus atom, which holds only if \"a cold snap is not a snap\" fails the IS-A test."}

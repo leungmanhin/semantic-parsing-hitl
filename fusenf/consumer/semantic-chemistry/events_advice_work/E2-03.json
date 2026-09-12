@@ -1,0 +1,151 @@
+{
+ "id": "E2-03",
+ "rule": "II — The first cold snap",
+ "texts": [
+  "On day 17 of Year 1, each Keeper on the Cliff Path added salt-bloom to the mire-essence of the lantern at sundown.",
+  "The mire-essence burned slowly.",
+  "The cold wind struck the Cliff Path again that night.",
+  "No lantern on the Cliff Path went out that night.",
+  "The cold snap ended after three nights.",
+  "The Council kept salt-bloom in distribution for the rest of the autumn."
+ ],
+ "passage": {
+  "corpus_id": "evt-000014",
+  "sentences": [
+   "On day 17 of Year 1, each Keeper on the Cliff Path added salt-bloom to the mire-essence of the lantern at sundown.",
+   "The mire-essence burned slowly.",
+   "The cold wind struck the Cliff Path again that night.",
+   "No lantern on the Cliff Path went out that night.",
+   "The cold snap ended after three nights.",
+   "The Council kept salt-bloom in distribution for the rest of the autumn."
+  ],
+  "parse": [
+   "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: keeper_add_rule (Implication (And (Member $x keeper) (On $x cliff_path)) (And (Member (sk_add $x) add) (Agent (sk_add $x) $x) (Theme (sk_add $x) salt_bloom) (Goal (sk_add $x) (sk_mire_essence $x)) (Member (sk_mire_essence $x) mire_essence) (Possession (sk_mire_essence $x) (sk_lantern $x)) (Member (sk_lantern $x) lantern) (Time (sk_add $x) (Day 17)) (Time (sk_add $x) (Year 1)) (Time (sk_add $x) sundown) (Past (sk_add $x)))) (STV 1.0 0.9))",
+   "(: keeper_add_q (QuantifierPhrase keeper add \"each\") (STV 1.0 0.99))",
+   "(: me2_type (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: burn1_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: burn1_pat (Patient sk_burn_1 sk_mire_essence_1) (STV 1.0 0.99))",
+   "(: burn1_manner (Manner sk_burn_1 slowly) (STV 1.0 0.99))",
+   "(: burn1_tense (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: wind1_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+   "(: wind1_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+   "(: strike1_ev (Member sk_strike_1 strike) (STV 1.0 0.99))",
+   "(: strike1_ag (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+   "(: strike1_th (Theme sk_strike_1 cliff_path) (STV 1.0 0.99))",
+   "(: strike1_again (Again sk_strike_1) (STV 1.0 0.99))",
+   "(: strike1_day (Time sk_strike_1 (Day 17)) (STV 1.0 0.99))",
+   "(: strike1_year (Time sk_strike_1 (Year 1)) (STV 1.0 0.99))",
+   "(: strike1_night (Time sk_strike_1 night) (STV 1.0 0.99))",
+   "(: strike1_tense (Past sk_strike_1) (STV 1.0 0.99))",
+   "(: no_lantern_out (Implication (And (Member $x lantern) (On $x cliff_path)) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (Time (sk_go_out $x) (Day 17)) (Time (sk_go_out $x) (Year 1)) (Time (sk_go_out $x) night) (Past (sk_go_out $x)))) (STV 0.0 0.9))",
+   "(: lantern_out_q (QuantifierPhrase lantern go_out \"no\") (STV 1.0 0.99))",
+   "(: snap1_type (Member sk_cold_snap_1 cold_snap) (STV 1.0 0.99))",
+   "(: snap1_tense (Past sk_cold_snap_1) (STV 1.0 0.99))",
+   "(: snap1_dur (Measure sk_cold_snap_1 duration 3 night) (STV 1.0 0.99))",
+   "(: end1_ev (Member sk_end_1 end) (STV 1.0 0.99))",
+   "(: end1_pat (Patient sk_end_1 sk_cold_snap_1) (STV 1.0 0.99))",
+   "(: end1_tense (Past sk_end_1) (STV 1.0 0.99))",
+   "(: council1_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: autumn1_type (Member sk_autumn_1 autumn) (STV 1.0 0.99))",
+   "(: rest1_part (PartOf sk_rest_1 sk_autumn_1) (STV 1.0 0.99))",
+   "(: rest1_flag (RestOf sk_rest_1 sk_autumn_1) (STV 1.0 0.99))",
+   "(: keep1_ev (Member sk_keep_1 keep) (STV 1.0 0.99))",
+   "(: keep1_ag (Agent sk_keep_1 sk_council_1) (STV 1.0 0.99))",
+   "(: keep1_th (Theme sk_keep_1 salt_bloom) (STV 1.0 0.99))",
+   "(: keep1_time (Time sk_keep_1 sk_rest_1) (STV 1.0 0.99))",
+   "(: keep1_tense (Past sk_keep_1) (STV 1.0 0.99))",
+   "(: dist1_type (Member sk_distribution_1 distribution) (STV 1.0 0.99))",
+   "(: dist1_exp (Experiencer sk_distribution_1 salt_bloom) (STV 1.0 0.99))",
+   "(: dist1_still (Still sk_distribution_1) (STV 1.0 0.99))",
+   "(: dist1_flat (Member salt_bloom distribution) (STV 1.0 0.99))",
+   "(: keep1_result (Result sk_keep_1 sk_distribution_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evt-000014",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 4,
+     "issue": "The definite singulars \"the mire-essence of the lantern\" are Skolemized per keeper as (sk_mire_essence $x) / (sk_lantern $x), whereas the instruction set encodes a definite singular as a witness constant and reserves Skolem functions for dependent existentials."
+    },
+    {
+     "statement": 6,
+     "issue": "The anaphoric definite \"The mire-essence\" mints a fresh sk_mire_essence_1 instead of reusing the referent introduced in the first sentence, so the two mentions no longer corefer."
+    },
+    {
+     "statement": 41,
+     "issue": "(Member salt_bloom distribution) puts the bare kind salt_bloom in Member's individual slot and predicates the class distribution of a substance, breaking the Member/Inheritance individual-vs-class discipline."
+    },
+    {
+     "statement": 25,
+     "issue": "(Measure sk_cold_snap_1 duration 3 night) recasts \"ended after three nights\" as the snap's own extent, asserting a duration the sentence supplies only by inference."
+    },
+    {
+     "statement": 36,
+     "issue": "(Time sk_keep_1 sk_rest_1) fills the Time slot with a minted entity witness, while Time takes a structured calendar term or a bare deictic/named symbol."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a definite singular NP under an explicit universal (\"each Keeper ... the mire-essence of the lantern\") - whether the definite co-varies with the quantified subject or stays one constant is not addressed",
+    "a maintenance resultative whose result is a PP (\"kept salt-bloom in distribution\") - the State-result shape assumes an adjectival/kind predicate and has no slot for the preposition",
+    "an elapsed-interval adjunct with no named anchor event (\"ended after three nights\") - Before/BeforeBy need two eventualities or now, and Measure ... duration claims the eventuality's own extent",
+    "a durative span PP naming a period NP (\"for the rest of the autumn\") - During is restricted to during/while/throughout, Start/End need time terms, and Measure ... duration needs a stated number"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The \"that night\" day-term propagation, the go_out phrasal verb kept whole, the strength-0.0 \"no lantern\" rule with its \"no\" companion, and the cold wind split versus cold_snap fusion all follow the instruction set exactly. cold_snap carries no genus atom, which holds only if \"a cold snap is not a snap\" fails the IS-A test."
+  },
+  "adjudication": {
+   "id": "evt-000014",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "refute",
+     "reason": "\"the mire-essence of the lantern\" co-varies with \"each Keeper\", so the per-binding Skolem-function term is the licensed device (\"read the natural meaning, not word order\"; cf. (sk_books $x) under \"every student read three books\"), and a shared constant would falsely assert one lantern for all keepers — the reviewer's own gap entry concedes the construction is uncovered, making this graceful improvisation."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "This mistakes a coverage gap for a defect: the antecedent exists only as the rule-bound term (sk_mire_essence $x), so there is no minted witness constant for the anaphoric-definite reuse rule to point at (a free variable outside the rule is explicitly barred), and the fresh witness's atoms are all true and well-typed."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "The parse itself treats salt_bloom as a kind in (Inheritance salt_bloom bloom), so (Member salt_bloom distribution) puts a class in Member's individual slot, violating the Categorical-statements discipline that Inheritance is required when both sides are kinds."
+    },
+    {
+     "index": 3,
+     "verdict": "refute",
+     "reason": "\"The cold snap ended after three nights\" anchors the elapsed interval on the snap's own onset — the only durative eventuality in the clause — so the 3-night extent is the sentence's content, and (Measure <event-noun witness> duration 3 night) is the licensed duration form with the unit the text actually supplies."
+    },
+    {
+     "index": 4,
+     "verdict": "confirm",
+     "reason": "The Time role takes a structured calendar term or a bare deictic / named / day-part symbol (a calendar period is (Quarter 3 2003) or the bare constant first_quarter), never a minted entity witness, so (Time sk_keep_1 sk_rest_1) is ill-typed per the vocabulary."
+    }
+   ],
+   "gaps_confirmed": [
+    "a definite singular NP under an explicit universal (\"each Keeper … the mire-essence of the lantern\") — whether the definite co-varies with the quantified subject or stays one constant is unaddressed",
+    "a maintenance resultative whose result is a PP (\"kept salt-bloom in distribution\") — the State-result shape presumes an adjectival / kind predicate and has no slot for the preposition",
+    "an elapsed-interval adjunct with no named anchor event (\"ended after three nights\") — Before / BeforeBy need two eventualities or now, and Measure … duration claims the eventuality's own extent",
+    "a durative span PP naming a period NP (\"for the rest of the autumn\") — During is restricted to during / while / throughout, Start / End need time terms, and Measure … duration needs a stated number"
+   ],
+   "new_gaps": [
+    "cross-sentence anaphora into a rule-bound Skolem term — a later definite (\"The mire-essence\") whose antecedent is (sk_mire_essence $x) inside an Implication has no reachable symbol; the coreference rule presumes a minted witness constant, and no licensed form re-binds the per-member referent outside its rule, so the two mentions cannot be made to corefer at all",
+    "\"night\" as a duration unit has no entry in the seeded canonical-unit lexicon (minute / hour / day / week / month / year / decade → second), so (Measure e duration 3 night) cannot be converted or thresholded against any other duration"
+   ],
+   "decision": "defect",
+   "defect_summary": "For \"kept salt-bloom in distribution\" the flat dual-emit half would have to be an Inheritance atom (both sides kinds), but \"in distribution\" is a PP-borne state and not a kind salt_bloom inherits, so NO compliant flat form is licensed — the flat half must be dropped and the PP-resultative gap recorded; for \"for the rest of the autumn\" no licensed carrier exists either (Time admits only calendar terms and bare deictic / named / day-part symbols, During is restricted to during / while / throughout, and Start / End / Measure duration each need a time term or a stated number), so the span adjunct must be left out and recorded as a gap rather than mis-slotted onto Time.",
+   "notes": "Both confirmed defects are the same shape — a construction with no licensed carrier that the parser mis-slotted rather than dropping, against the Core-patterns rule that an unencodable qualifier is carried or the claim is left out. The three refuted issues all object to improvisation in territory the reviewer's own gap list concedes is uncovered, where every emitted atom is true and well-typed."
+  }
+ }
+}

@@ -1,0 +1,12 @@
+{"id": "evt-000020", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 53, "issue": "`(PartOf sk_pool_1 sk_pool_group_1)` asserts that \"the second pool from the north\" is one of the five blooming pools, a link the text never states, and it makes the blooming distribution rule (statement 44) derive that this pool is blooming."},
+               {"statement": 54, "issue": "`(Ordinal sk_pool_1 2 north)` puts a direction constant in the scale slot, which the instruction set defines as an associated event class or an '-est' dimension."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["spatially-anchored ordinal (\"the second pool from the north\") — `Ordinal`'s scale slot is defined only for an associated event or an '-est' dimension, not a direction or reference point the ranking counts from",
+             "a proper name whose internal kind word is plural (\"the Salt-bloom Tide-pools\") — the name-plus-type-atom rule is written for a singular kind word, leaving `Member` vs `GroupOf` undetermined for a named plurality",
+             "a day-of-year date with no month (\"day 33 of Year 1\") — the `Day <n>` term is specified as a calendar day inside a month"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The ∀∃ assignment rule over `(PartOf $x sk_party_1)` with the dependent Skolem pool, the descriptive-modifier distribution rule for \"blooming\", and the differential `copper_bucket` (noun modifier, no genus) vs `wooden_scraper` (adjective modifier, genus emitted) handling all match the instruction set. Coraline Ash is correctly kept a `CoAgent` rather than asserted a party member."}
