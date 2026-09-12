@@ -1,0 +1,105 @@
+{
+ "id": "E3-04",
+ "rule": "III — The first salt-bloom harvest",
+ "texts": [
+  "On day 34 of Year 1, the harvest party returned to Cauldron Hall at dawn and carried twelve full buckets of salt-bloom.",
+  "The harvest was heavy.",
+  "Hesper poured the salt-bloom into the salt-bloom store.",
+  "Hesper wrote the date on each compartment of the store.",
+  "The salt-bloom stayed potent."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000022",
+  "sentences": [
+   "On day 34 of Year 1, the harvest party returned to Cauldron Hall at dawn and carried twelve full buckets of salt-bloom.",
+   "The harvest was heavy.",
+   "Hesper poured the salt-bloom into the salt-bloom store.",
+   "Hesper wrote the date on each compartment of the store.",
+   "The salt-bloom stayed potent."
+  ],
+  "parse": [
+   "(: chall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+   "(: chall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+   "(: party_type (Member sk_party_1 harvest_party) (STV 1.0 0.99))",
+   "(: party_genus (Inheritance harvest_party party) (STV 1.0 0.99))",
+   "(: return_ev (Member sk_return_1 return) (STV 1.0 0.99))",
+   "(: return_ag (Agent sk_return_1 sk_party_1) (STV 1.0 0.99))",
+   "(: return_goal (Goal sk_return_1 cauldron_hall) (STV 1.0 0.99))",
+   "(: return_day (Time sk_return_1 (Day 34)) (STV 1.0 0.99))",
+   "(: return_year (Time sk_return_1 (Year 1)) (STV 1.0 0.99))",
+   "(: return_dawn (Time sk_return_1 dawn) (STV 1.0 0.99))",
+   "(: return_tense (Past sk_return_1) (STV 1.0 0.99))",
+   "(: bucket_group (GroupOf sk_bucket_1 bucket) (STV 1.0 0.99))",
+   "(: bucket_card (Cardinality sk_bucket_1 12) (STV 1.0 0.99))",
+   "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: saltbloom_type (Member sk_salt_bloom_1 salt_bloom) (STV 1.0 0.99))",
+   "(: bucket_of (Of sk_bucket_1 sk_salt_bloom_1) (STV 1.0 0.99))",
+   "(: carry_ev (Member sk_carry_1 carry) (STV 1.0 0.99))",
+   "(: carry_ag (Agent sk_carry_1 sk_party_1) (STV 1.0 0.99))",
+   "(: carry_th (Theme sk_carry_1 sk_bucket_1) (STV 1.0 0.99))",
+   "(: carry_day (Time sk_carry_1 (Day 34)) (STV 1.0 0.99))",
+   "(: carry_year (Time sk_carry_1 (Year 1)) (STV 1.0 0.99))",
+   "(: carry_dawn (Time sk_carry_1 dawn) (STV 1.0 0.99))",
+   "(: carry_tense (Past sk_carry_1) (STV 1.0 0.99))",
+   "(: bucket_full_rule (Implication (PartOf $x sk_bucket_1) (Member $x full)) (STV 1.0 0.9))",
+   "(: harvest_type (Member sk_harvest_1 harvest) (STV 1.0 0.99))",
+   "(: harvest_heavy (Past (Member sk_harvest_1 heavy)) (STV 1.0 0.99))",
+   "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: store_genus (Inheritance salt_bloom_store store) (STV 1.0 0.99))",
+   "(: store_type (Member sk_salt_bloom_store_1 salt_bloom_store) (STV 1.0 0.99))",
+   "(: pour_ev (Member sk_pour_1 pour) (STV 1.0 0.99))",
+   "(: pour_ag (Agent sk_pour_1 hesper) (STV 1.0 0.99))",
+   "(: pour_th (Theme sk_pour_1 sk_salt_bloom_1) (STV 1.0 0.99))",
+   "(: pour_goal (Goal sk_pour_1 sk_salt_bloom_store_1) (STV 1.0 0.99))",
+   "(: pour_tense (Past sk_pour_1) (STV 1.0 0.99))",
+   "(: date_type (Member sk_date_1 date) (STV 1.0 0.99))",
+   "(: compartment_write_rule (Implication (And (PartOf $c sk_salt_bloom_store_1) (Member $c compartment)) (And (Member (sk_write $c) write) (Agent (sk_write $c) hesper) (Patient (sk_write $c) sk_date_1) (Location (sk_write $c) $c) (Past (sk_write $c)))) (STV 1.0 0.9))",
+   "(: compartment_q (QuantifierPhrase compartment write \"each\") (STV 1.0 0.99))",
+   "(: potent_state (Member sk_potent_1 potent) (STV 1.0 0.99))",
+   "(: potent_exp (Experiencer sk_potent_1 sk_salt_bloom_1) (STV 1.0 0.99))",
+   "(: potent_still (Still sk_potent_1) (STV 1.0 0.99))",
+   "(: potent_tense (Past sk_potent_1) (STV 1.0 0.99))",
+   "(: potent_flat (Past (Member sk_salt_bloom_1 potent)) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000022",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 21,
+     "issue": "\"at dawn\" sits inside the first conjunct's VP (\"returned to Cauldron Hall at dawn\"), and coordinated VPs share only the subject, so (Time sk_carry_1 dawn) asserts a time the text never states for the carrying."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "container/measure of-phrase (\"twelve full buckets of salt-bloom\"): a measure \"of\" is explicitly excluded from the genitive Possession mapping, but no positive encoding is named for it anywhere, so the container-to-contents link has no licensed form",
+    "day-of-year dating (\"on day 34 of Year 1\"): (Day <n>) is defined as a calendar day beside (Month <name>), so a numbered day of a year (34) has no well-formed term, and an ordinal era year (\"Year 1\") has no form distinguishing it from a calendar year"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The distributive rule for \"full\" over the bucket group, the each-compartment universal with its QuantifierPhrase companion, and the stayed-potent continuation copular (Still + reified state + flat atom + tense) all match the instruction set as written. The (Day 34)/(Year 1) atoms are the only terms available, so the mis-fit is the instruction set's, not the parse's."
+  },
+  "adjudication": {
+   "id": "evtp-000022",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Coordination & plurals translates coordinated VPs 'independently, as if written as separate sentences (a shared subject carries over to each conjunct)' — only the subject and the fronted 'On day 34 of Year 1' frame reach the second conjunct, so 'at dawn', which sits inside the first VP, puts a time on the carrying that the text never states (Core patterns: point at the words that put the atom there)."
+    }
+   ],
+   "gaps_confirmed": [
+    "Container / measure of-phrase ('twelve full buckets of salt-bloom'): a measure 'of' is explicitly excluded from the genitive Possession mapping and no positive encoding is named anywhere, so the container-to-contents link has no licensed form (the parse's entity-attached (Of …) is acceptable improvisation — true and well-typed — not a defect).",
+    "Day-of-year dating ('on day 34 of Year 1'): (Day <n>) is the month-day slot that composes with (Month <name>), so a numbered day of a year has no well-formed term, and an ordinal era year has no form distinguishing it from a calendar year."
+   ],
+   "new_gaps": [],
+   "decision": "defect",
+   "defect_summary": "The compliant form drops (Time sk_carry_1 dawn) and leaves the carrying event with only the sentence-frame time atoms (Time sk_carry_1 (Day 34)) and (Time sk_carry_1 (Year 1)), the frame adverbial being the only time the second conjunct states.",
+   "notes": "Everything else matches the instruction set as written: the distributive 'full' rule over the bucket group, the motion-result Theme+Goal on 'poured … into', the each-compartment universal with its QuantifierPhrase companion, and the stayed-potent continuation copular (reified state + Still + flat atom + tense). The defect is a single over-asserted adjunct, not a structural failure."
+  }
+ }
+}

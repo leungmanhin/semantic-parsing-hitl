@@ -1,0 +1,10 @@
+{"id": "evtp-000021", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 46, "issue": "The second episodic bare plural \"pools\" (\"rotated pools again\") reuses the first sentence's existential group witness sk_pool_2, but an indefinite mints a fresh witness each time and witnesses do not corefer, so the parse asserts the same set of pools was involved on both occasions."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Bare positional ordinal modifying a noun (\"the second pool\") with no associated event and no stated '-est' dimension: Ordinal's scale slot is defined as the associated event or an explicit dimension, and neither exists, so the parse put the comparison class `pool` in the scale slot.",
+             "Bare mass-noun subject of an episodic past clause (\"Salt-bloom came off the stones\"): witness-minting is specified for bare *plural* episodic subjects, but not for bare mass ones, so the parse used the bare kind symbol `salt_bloom` directly in the Patient slot."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Term propagation for \"that night\" (Year 1 / Day 33 plus `night`) and the negated-plural double emission (group denial plus the strength-0 per-member rule) are both done exactly as specified. The event class `bloom` and the compound genus `bloom` from salt_bloom land on one symbol, an artifact of the one-symbol-per-lemma policy rather than a choice this parse made."}

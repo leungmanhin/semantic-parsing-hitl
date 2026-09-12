@@ -1,0 +1,120 @@
+{
+ "id": "E2-06",
+ "rule": "II — The first cold snap",
+ "texts": [
+  "On day 21 of Year 1, the moon was full.",
+  "The Council convened at the Watch.",
+  "The Council redistributed mire-essence across the lantern-stations.",
+  "The Northcove stations contributed mire-essence to the central pool.",
+  "The Council issued mire-essence from the central pool to the stations of the Middle Row.",
+  "The Council recorded the redistribution in the Watch ledgers."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000018",
+  "sentences": [
+   "On day 21 of Year 1, the moon was full.",
+   "The Council convened at the Watch.",
+   "The Council redistributed mire-essence across the lantern-stations.",
+   "The Northcove stations contributed mire-essence to the central pool.",
+   "The Council issued mire-essence from the central pool to the stations of the Middle Row.",
+   "The Council recorded the redistribution in the Watch ledgers."
+  ],
+  "parse": [
+   "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+   "(: full_type (Member sk_full_1 full) (STV 1.0 0.99))",
+   "(: full_exp (Experiencer sk_full_1 sk_moon_1) (STV 1.0 0.99))",
+   "(: full_time_day (Time sk_full_1 (Day 21)) (STV 1.0 0.99))",
+   "(: full_time_year (Time sk_full_1 (Year 1)) (STV 1.0 0.99))",
+   "(: full_past (Past sk_full_1) (STV 1.0 0.99))",
+   "(: moon_full_past (Past (Member sk_moon_1 full)) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: convene_ev (Member sk_convene_1 convene) (STV 1.0 0.99))",
+   "(: convene_agent (Agent sk_convene_1 sk_council_1) (STV 1.0 0.99))",
+   "(: convene_loc (Location sk_convene_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: convene_past (Past sk_convene_1) (STV 1.0 0.99))",
+   "(: redistribute_ev (Member sk_redistribute_1 redistribute) (STV 1.0 0.99))",
+   "(: redistribute_agent (Agent sk_redistribute_1 sk_council_1) (STV 1.0 0.99))",
+   "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: redistribute_theme (Theme sk_redistribute_1 mire_essence) (STV 1.0 0.99))",
+   "(: lantern_station_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+   "(: stations_group (GroupOf sk_stations_1 lantern_station) (STV 1.0 0.99))",
+   "(: redistribute_across (Across sk_redistribute_1 sk_stations_1) (STV 1.0 0.99))",
+   "(: redistribute_past (Past sk_redistribute_1) (STV 1.0 0.99))",
+   "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+   "(: nc_stations_group (GroupOf sk_nc_stations_1 station) (STV 1.0 0.99))",
+   "(: nc_stations_poss (Possession sk_nc_stations_1 northcove) (STV 1.0 0.99))",
+   "(: contribute_ev (Member sk_contribute_1 contribute) (STV 1.0 0.99))",
+   "(: contribute_agent (Agent sk_contribute_1 sk_nc_stations_1) (STV 1.0 0.99))",
+   "(: contribute_theme (Theme sk_contribute_1 mire_essence) (STV 1.0 0.99))",
+   "(: central_pool_genus (Inheritance central_pool pool) (STV 1.0 0.99))",
+   "(: central_pool_mod (Inheritance central_pool central) (STV 1.0 0.99))",
+   "(: pool_type (Member sk_pool_1 central_pool) (STV 1.0 0.99))",
+   "(: contribute_recipient (Recipient sk_contribute_1 sk_pool_1) (STV 1.0 0.99))",
+   "(: contribute_past (Past sk_contribute_1) (STV 1.0 0.99))",
+   "(: issue_ev (Member sk_issue_1 issue) (STV 1.0 0.99))",
+   "(: issue_agent (Agent sk_issue_1 sk_council_1) (STV 1.0 0.99))",
+   "(: issue_theme (Theme sk_issue_1 mire_essence) (STV 1.0 0.99))",
+   "(: issue_source (Source sk_issue_1 sk_pool_1) (STV 1.0 0.99))",
+   "(: middle_row_type (Member middle_row row) (STV 1.0 0.99))",
+   "(: middle_row_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: mr_stations_group (GroupOf sk_mr_stations_1 station) (STV 1.0 0.99))",
+   "(: mr_stations_loc (LocatedIn sk_mr_stations_1 middle_row) (STV 1.0 0.99))",
+   "(: issue_recipient (Recipient sk_issue_1 sk_mr_stations_1) (STV 1.0 0.99))",
+   "(: issue_past (Past sk_issue_1) (STV 1.0 0.99))",
+   "(: record_ev (Member sk_record_1 record) (STV 1.0 0.99))",
+   "(: record_agent (Agent sk_record_1 sk_council_1) (STV 1.0 0.99))",
+   "(: record_theme (Theme sk_record_1 sk_redistribute_1) (STV 1.0 0.99))",
+   "(: ledgers_group (GroupOf sk_ledgers_1 ledger) (STV 1.0 0.99))",
+   "(: ledgers_poss (Possession sk_ledgers_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: record_loc (Location sk_record_1 sk_ledgers_1) (STV 1.0 0.99))",
+   "(: record_past (Past sk_record_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000018",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 39,
+     "issue": "\"the stations of the Middle Row\" is encoded as (LocatedIn sk_mr_stations_1 middle_row), asserting a spatial containment the text never states; a genitive of-phrase routes through Possessive / genitive NP (PartOf or Possession), which is exactly what the parallel \"Northcove stations\" correctly got."
+    },
+    {
+     "statement": 47,
+     "issue": "\"recorded the redistribution in the Watch ledgers\" takes the event's spatial Location, but a document/medium in-phrase is the preposition-named oblique In (the instruction set's \"in a statement\" case), so this asserts the recording happened at a place that is the ledgers."
+    }
+   ],
+   "q2_coverage": "covered",
+   "q2_gaps": [],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Across and Possession are used exactly as the open-class oblique and proper-noun-premodifier rules license, and the central_pool fusion with its positional-modifier genus follows the east_wing pattern. (Recipient sk_contribute_1 sk_pool_1) for an inanimate container is defensible under \"goal of a transfer\" but sits close to the Goal boundary."
+  },
+  "adjudication": {
+   "id": "evtp-000018",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "\"the stations of the Middle Row\" is a genitive of-phrase, which *Possessive / genitive NP* routes to PartOf or the opaque Possession, while *Where a THING is* restricts LocatedIn to \"in / at / inside / within\" — so the atom asserts a spatial containment the text never states."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "*Intervals* fixes a medium in-phrase (\"in a statement\") as the preposition-named oblique In, and the recording event did not take place inside the ledgers — the record did — so (Location sk_record_1 sk_ledgers_1) asserts a place the text does not state."
+    }
+   ],
+   "gaps_confirmed": [],
+   "new_gaps": [
+    "Episodic bare MASS-noun argument (\"redistributed / contributed / issued mire-essence\"): witness-minting is specified only for bare PLURAL episodic arguments and the bare kind filler is reserved for non-specific / kind-level ones (\"grows wheat\"), so a specific mass taking part in a one-off occurrence has no stated routing; the parse put the bare kind symbol mire_essence in Theme slots.",
+    "A definite capitalized-common-noun referent used as a nominal premodifier (\"the Watch ledgers\", where \"the Watch\" is an already-introduced non-name referent): the proper-noun-premodifier rule keys on proper-noun-hood and *Compound concepts* would fuse watch_ledger and sever the coreference, so neither branch covers a discourse referent in modifier position — a licensed form would have to keep the antecedent symbol and name the link."
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0's compliant form is the genitive route the parallel \"Northcove stations\" NP already took — (Possession sk_mr_stations_1 middle_row), or (PartOf sk_mr_stations_1 middle_row) if the row is read as the whole — in place of LocatedIn; issue 1's compliant form is the preposition-named oblique (In sk_record_1 sk_ledgers_1) in place of (Location sk_record_1 sk_ledgers_1).",
+   "notes": "The Across oblique, the Northcove Possession, the reified \"the moon was full\" state with its flat dual-emit, and the event-anaphoric (Theme sk_record_1 sk_redistribute_1) are all emitted as licensed. (Recipient sk_contribute_1 sk_pool_1) for an inanimate container stays within \"goal of a transfer\" and is not a defect."
+  }
+ }
+}

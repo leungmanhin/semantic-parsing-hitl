@@ -1,0 +1,140 @@
+{
+ "id": "E3-02",
+ "rule": "III — The first salt-bloom harvest",
+ "texts": [
+  "On day 33 of Year 1, a harvest party of twelve people left Aelmere at sundown.",
+  "Sailsworn led the harvest party along the goat-path to the Salt-bloom Tide-pools.",
+  "The harvest party carried copper buckets and wooden scrapers.",
+  "Coraline Ash walked with the harvest party.",
+  "Sailsworn assigned each member of the harvest party to one of the five blooming pools in the Salt-bloom Tide-pools.",
+  "Sailsworn assigned Coraline Ash to the second pool from the north."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000020",
+  "sentences": [
+   "On day 33 of Year 1, a harvest party of twelve people left Aelmere at sundown.",
+   "Sailsworn led the harvest party along the goat-path to the Salt-bloom Tide-pools.",
+   "The harvest party carried copper buckets and wooden scrapers.",
+   "Coraline Ash walked with the harvest party.",
+   "Sailsworn assigned each member of the harvest party to one of the five blooming pools in the Salt-bloom Tide-pools.",
+   "Sailsworn assigned Coraline Ash to the second pool from the north."
+  ],
+  "parse": [
+   "(: hp_mem (Member sk_party_1 harvest_party) (STV 1.0 0.99))",
+   "(: hp_genus (Inheritance harvest_party party) (STV 1.0 0.99))",
+   "(: hp_group (GroupOf sk_party_1 person) (STV 1.0 0.99))",
+   "(: hp_card (Cardinality sk_party_1 12) (STV 1.0 0.99))",
+   "(: e1_ev (Member sk_leave_1 leave) (STV 1.0 0.99))",
+   "(: e1_ag (Agent sk_leave_1 sk_party_1) (STV 1.0 0.99))",
+   "(: e1_src (Source sk_leave_1 aelmere) (STV 1.0 0.99))",
+   "(: e1_time_sd (Time sk_leave_1 sundown) (STV 1.0 0.99))",
+   "(: e1_time_day (Time sk_leave_1 (Day 33)) (STV 1.0 0.99))",
+   "(: e1_time_yr (Time sk_leave_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e1_tense (Past sk_leave_1) (STV 1.0 0.99))",
+   "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+   "(: e2_ev (Member sk_lead_1 lead) (STV 1.0 0.99))",
+   "(: e2_ag (Agent sk_lead_1 sailsworn) (STV 1.0 0.99))",
+   "(: e2_th (Theme sk_lead_1 sk_party_1) (STV 1.0 0.99))",
+   "(: path_mem (Member sk_path_1 goat_path) (STV 1.0 0.99))",
+   "(: path_genus (Inheritance goat_path path) (STV 1.0 0.99))",
+   "(: e2_inst (Instrument sk_lead_1 sk_path_1) (STV 1.0 0.99))",
+   "(: e2_goal (Goal sk_lead_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+   "(: e2_tense (Past sk_lead_1) (STV 1.0 0.99))",
+   "(: sailsworn_name (Name sailsworn \"Sailsworn\") (STV 1.0 0.99))",
+   "(: sbtp_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+   "(: bucket_group (GroupOf sk_bucket_1 copper_bucket) (STV 1.0 0.99))",
+   "(: bucket_genus (Inheritance copper_bucket bucket) (STV 1.0 0.99))",
+   "(: bucket_mat (Inheritance copper_bucket copper) (STV 1.0 0.99))",
+   "(: scraper_group (GroupOf sk_scraper_1 wooden_scraper) (STV 1.0 0.99))",
+   "(: scraper_genus (Inheritance wooden_scraper scraper) (STV 1.0 0.99))",
+   "(: scraper_mat (Inheritance wooden_scraper wooden) (STV 1.0 0.99))",
+   "(: e3_ev (Member sk_carry_1 carry) (STV 1.0 0.99))",
+   "(: e3_ag (Agent sk_carry_1 sk_party_1) (STV 1.0 0.99))",
+   "(: e3_th1 (Theme sk_carry_1 sk_bucket_1) (STV 1.0 0.99))",
+   "(: e3_th2 (Theme sk_carry_1 sk_scraper_1) (STV 1.0 0.99))",
+   "(: e3_tense (Past sk_carry_1) (STV 1.0 0.99))",
+   "(: e4_ev (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: e4_ag (Agent sk_walk_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e4_coag (CoAgent sk_walk_1 sk_party_1) (STV 1.0 0.99))",
+   "(: e4_tense (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: pools_group (GroupOf sk_pools_1 pool) (STV 1.0 0.99))",
+   "(: pools_card (Cardinality sk_pools_1 5) (STV 1.0 0.99))",
+   "(: pools_loc (LocatedIn sk_pools_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+   "(: pools_bloom (Implication (PartOf $p sk_pools_1) (Member $p blooming)) (STV 1.0 0.9))",
+   "(: assign_rule (Implication (PartOf $x sk_party_1) (And (Member (sk_assign $x) assign) (Agent (sk_assign $x) sailsworn) (Theme (sk_assign $x) $x) (Goal (sk_assign $x) (sk_pool $x)) (Member (sk_pool $x) pool) (PartOf (sk_pool $x) sk_pools_1) (Past (sk_assign $x)))) (STV 1.0 0.9))",
+   "(: assign_q (QuantifierPhrase harvest_party assign \"each\") (STV 1.0 0.99))",
+   "(: e6_ev (Member sk_assign_2 assign) (STV 1.0 0.99))",
+   "(: e6_ag (Agent sk_assign_2 sailsworn) (STV 1.0 0.99))",
+   "(: e6_th (Theme sk_assign_2 coraline_ash) (STV 1.0 0.99))",
+   "(: pool2_mem (Member sk_pool_2 pool) (STV 1.0 0.99))",
+   "(: pool2_partof (PartOf sk_pool_2 sk_pools_1) (STV 1.0 0.99))",
+   "(: pool2_ord (Ordinal sk_pool_2 2 north) (STV 1.0 0.99))",
+   "(: e6_goal (Goal sk_assign_2 sk_pool_2) (STV 1.0 0.99))",
+   "(: e6_tense (Past sk_assign_2) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000020",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 24,
+     "issue": "copper is a noun modifier, so its genus must not be exposed (the explicit \"steel_beam is not steel\" rule, decided by part of speech); only a material adjective such as wooden earns the modifier genus."
+    },
+    {
+     "statement": 6,
+     "issue": "\"left Aelmere\" has a bare direct object, which the role rules assign Theme (or Patient by the change test); Source is defined as the \"from ...\" oblique, not a direct-object role."
+    },
+    {
+     "statement": 17,
+     "issue": "\"along the goat-path\" is not a via / by-way-of means phrase, so Instrument overreaches where the surface-preposition oblique — the preposition actually used — applies."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a plural multi-word proper name whose head is a kind word (\"the Salt-bloom Tide-pools\"): the Kestrel River rule prescribes a type atom from a kind word inside the name, but its singular Member shape does not fit a named plural set and the \"the Wrens\" bullet bars a per-member kind from the label word, so the parse states nothing about what the place is",
+    "coordinated direct objects (\"carried copper buckets and wooden scrapers\"): the distributive-by-default coordination rule is written for coordinated subjects (\"a shared object reuses one symbol\"), leaving one event with two Theme atoms vs two replicated events undecided",
+    "an ordinal ranked along a stated spatial axis (\"the second pool from the north\"): Ordinal's scale slot is defined as the associated event or an explicit -est dimension, not a compass-direction ordering"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The quantified sentence is handled well: the \"each member of\" universal ranges over PartOf with a per-binding Skolem pool for the dependent existential, the QuantifierPhrase companion names the collective kind, and \"blooming\" distributes to the pool group's members by rule rather than riding the group symbol. CoAgent for the comitative, GroupOf+Cardinality for the twelve-person party, and LocatedIn for the pools are all correct."
+  },
+  "adjudication": {
+   "id": "evtp-000020",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Compound concepts bars exposing a noun modifier's genus and says the line is \"part of speech, not meaning\" with the explicit steel_beam-is-not-steel case; copper is the same noun-before-noun as steel, and (Inheritance copper_bucket copper) additionally states the falsehood that a copper bucket is an instance of the metal."
+    },
+    {
+     "index": 1,
+     "verdict": "partial",
+     "reason": "The half that stands is that the direct-object mapping nominally sends a bare object to Theme and Source is glossed as the \"from …\" oblique; the half that falls is calling it a defect — Theme's own definition (acquired / transferred / moved / possessed / perceived / evaluated) does not fit a place departed from, the instruction set states no rule for a locative direct object, and (Source sk_leave_1 aelmere) is true of the sentence and well-typed."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Instrument's route licence is keyed to the wordings \"via / by way of\", while the oblique rule is mechanical — \"the head is the preposition actually used — never a synonym head for a near-fit reading\" and \"decide by the question the PP answers, never by which listed role is closest\" — so the licensed head is the surface-preposition oblique, and Instrument over-asserts the path as the means of the leading."
+    }
+   ],
+   "gaps_confirmed": [
+    "a plural multi-word proper name whose head is a kind word (\"the Salt-bloom Tide-pools\"): the Kestrel River rule licenses a type atom from a kind word inside the name, but its singular Member shape does not fit a named plural set and the \"the Wrens\" bullet bars GroupOf and a per-member kind from the label word, so the place's kind goes unstated",
+    "coordinated direct objects (\"carried copper buckets and wooden scrapers\"): the distributive-by-default coordination rule is illustrated only on subjects with a shared object, leaving one event with two Theme atoms vs two replicated events undecided",
+    "an ordinal ranked along a stated spatial axis (\"the second pool from the north\"): Ordinal's scale slot is defined as the associated event or an explicit -est dimension, not a compass-direction ordering"
+   ],
+   "new_gaps": [
+    "a departure verb with a locative direct object (\"left Aelmere\"): the direct-object rule yields Theme, whose definition covers only things acquired / transferred / moved / possessed / perceived / evaluated, while Source and Goal are defined as PP obliques — nothing licenses \"the place departed from\" as a bare object, and a licensed form would need to carry the source-of-motion reading of a direct object without claiming the place moved",
+    "the QuantifierPhrase group-kind slot when a group carries both a collective noun and a member kind (\"each member of the harvest party\", with (Member sk_party_1 harvest_party) and (GroupOf sk_party_1 person)): \"a group premise names the group kind\" does not say whether the collective kind or the member kind fills the slot, so two faithful parses can differ"
+   ],
+   "decision": "defect",
+   "defect_summary": "For the modifier genus the compliant form is the head genus alone — (Inheritance copper_bucket bucket) with no (Inheritance copper_bucket copper), exactly as steel_beam gets no steel genus; for the route phrase the compliant form is the surface-preposition oblique (Along sk_lead_1 sk_path_1) in place of (Instrument sk_lead_1 sk_path_1).",
+   "notes": "Everything else holds: the each-of-the-party universal ranging over PartOf with a per-binding Skolem pool for the dependent existential, the blooming distribution rule instead of a property on the group symbol, CoAgent for the comitative, GroupOf + Cardinality on the twelve-person party, and the LocatedIn / Ordinal / bridging-PartOf improvisations for the tide-pools are all true and well-typed. \"Left Aelmere\" is the one place where the stated direct-object mapping and the role definitions genuinely pull apart."
+  }
+ }
+}

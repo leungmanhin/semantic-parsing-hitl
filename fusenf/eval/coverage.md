@@ -19,6 +19,7 @@ State vocabulary (#51 reshape): never-parsed / clean-unreviewed / verified (revi
 | lore_pending2 | external consumer (lore pending re-parse set 2) | 86 | 86 | 68 (79%) | 68 | 0 | 2 | 16 | 0 | — | 2ed18b93×86 |
 | lore_pending3 | external consumer (lore pending re-parse set 3) | 8 | 8 | 7 (88%) | 7 | 0 | 0 | 1 | 0 | — | 2ed18b93×8 |
 | events | external consumer (events.json; one record per episode = passage) | 74 | 27 | 8 (11%) | 8 | 4 | 5 | 10 | 47 | — | 2ed18b93×27 |
+| events_pending | external consumer (events pending re-parse set; passages) | 82 | 23 | 6 (7%) | 6 | 0 | 2 | 15 | 59 | — | 2ed18b93×23 |
 | fixpack | validation | 7 | 0 | 0 (0%) | 0 | 7 | 0 | 0 | 0 | — | f6448eac×7 |
 | fixpack3 | validation | 10 | 0 | 0 (0%) | 0 | 10 | 0 | 0 | 0 | — | 2aa57fa8×10 |
 | fixpack31 | validation | 4 | 0 | 0 (0%) | 0 | 4 | 0 | 0 | 0 | — | bb7c4b71×4 |

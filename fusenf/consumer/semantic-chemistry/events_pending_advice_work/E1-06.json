@@ -1,0 +1,142 @@
+{
+ "id": "E1-06",
+ "rule": "I — The equinox week",
+ "texts": [
+  "In the late summer of Year 1, one day before the autumn equinox, Meren Tallowhand walked to a station on the Cliff Path at sundown.",
+  "Meren Tallowhand lit the lantern at the station.",
+  "The lantern burned mire-essence.",
+  "The lantern produced mist-light.",
+  "The mist-light attracted nightmoths.",
+  "Meren Tallowhand counted seventeen nightmoths at the lantern at the third watch.",
+  "A handful of nightmoths gathered at the Middle Row that night.",
+  "All the sky-cats stayed on the cliff-spires that night."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000006",
+  "sentences": [
+   "In the late summer of Year 1, one day before the autumn equinox, Meren Tallowhand walked to a station on the Cliff Path at sundown.",
+   "Meren Tallowhand lit the lantern at the station.",
+   "The lantern burned mire-essence.",
+   "The lantern produced mist-light.",
+   "The mist-light attracted nightmoths.",
+   "Meren Tallowhand counted seventeen nightmoths at the lantern at the third watch.",
+   "A handful of nightmoths gathered at the Middle Row that night.",
+   "All the sky-cats stayed on the cliff-spires that night."
+  ],
+  "parse": [
+   "(: meren_name (Name meren_tallowhand \"Meren Tallowhand\") (STV 1.0 0.99))",
+   "(: equinox_type (Member sk_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+   "(: equinox_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+   "(: walk_ev (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: walk_agent (Agent sk_walk_1 meren_tallowhand) (STV 1.0 0.99))",
+   "(: station_type (Member sk_station_1 station) (STV 1.0 0.99))",
+   "(: walk_goal (Goal sk_walk_1 sk_station_1) (STV 1.0 0.99))",
+   "(: cliffpath_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: station_on_cliffpath (On sk_station_1 cliff_path) (STV 1.0 0.99))",
+   "(: walk_time_sundown (Time sk_walk_1 sundown) (STV 1.0 0.99))",
+   "(: walk_time_summer (Time sk_walk_1 late_summer) (STV 1.0 0.99))",
+   "(: walk_time_year (Time sk_walk_1 (Year 1)) (STV 1.0 0.99))",
+   "(: walk_before_equinox (BeforeBy sk_walk_1 sk_equinox_1 1 day) (STV 1.0 0.99))",
+   "(: walk_past (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: light_ev (Member sk_light_1 light) (STV 1.0 0.99))",
+   "(: light_agent (Agent sk_light_1 meren_tallowhand) (STV 1.0 0.99))",
+   "(: light_patient (Patient sk_light_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: light_loc (Location sk_light_1 sk_station_1) (STV 1.0 0.99))",
+   "(: light_past (Past sk_light_1) (STV 1.0 0.99))",
+   "(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: burn_agent (Agent sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: burn_patient (Patient sk_burn_1 mire_essence) (STV 1.0 0.99))",
+   "(: mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: burn_past (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: produce_ev (Member sk_produce_1 produce) (STV 1.0 0.99))",
+   "(: produce_agent (Agent sk_produce_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: produce_patient (Patient sk_produce_1 mist_light) (STV 1.0 0.99))",
+   "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: produce_past (Past sk_produce_1) (STV 1.0 0.99))",
+   "(: nightmoths1_group (GroupOf sk_nightmoths_1 nightmoth) (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: attract_ev (Member sk_attract_1 attract) (STV 1.0 0.99))",
+   "(: attract_agent (Agent sk_attract_1 mist_light) (STV 1.0 0.99))",
+   "(: attract_theme (Theme sk_attract_1 sk_nightmoths_1) (STV 1.0 0.99))",
+   "(: attract_past (Past sk_attract_1) (STV 1.0 0.99))",
+   "(: nightmoths2_group (GroupOf sk_nightmoths_2 nightmoth) (STV 1.0 0.99))",
+   "(: nightmoths2_card (Cardinality sk_nightmoths_2 17) (STV 1.0 0.99))",
+   "(: count_ev (Member sk_count_1 count) (STV 1.0 0.99))",
+   "(: count_agent (Agent sk_count_1 meren_tallowhand) (STV 1.0 0.99))",
+   "(: count_theme (Theme sk_count_1 sk_nightmoths_2) (STV 1.0 0.99))",
+   "(: count_loc (Location sk_count_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: watch_ordinal (Ordinal sk_watch_1 3 watch) (STV 1.0 0.99))",
+   "(: count_time (Time sk_count_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: count_past (Past sk_count_1) (STV 1.0 0.99))",
+   "(: nightmoths3_group (GroupOf sk_nightmoths_3 nightmoth) (STV 1.0 0.99))",
+   "(: nightmoths3_cardphrase (CardinalityPhrase sk_nightmoths_3 \"a handful\") (STV 1.0 0.99))",
+   "(: gather_ev (Member sk_gather_1 gather) (STV 1.0 0.99))",
+   "(: gather_agent (Agent sk_gather_1 sk_nightmoths_3) (STV 1.0 0.99))",
+   "(: middlerow_type (Member middle_row row) (STV 1.0 0.99))",
+   "(: middlerow_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: gather_loc (Location sk_gather_1 middle_row) (STV 1.0 0.99))",
+   "(: gather_time_year (Time sk_gather_1 (Year 1)) (STV 1.0 0.99))",
+   "(: gather_time_night (Time sk_gather_1 night) (STV 1.0 0.99))",
+   "(: gather_past (Past sk_gather_1) (STV 1.0 0.99))",
+   "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: cliffspires_group (GroupOf sk_cliff_spires_1 cliff_spire) (STV 1.0 0.99))",
+   "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: sky_cats_stay (Implication (Member $x sky_cat) (And (Member (sk_stay $x) stay) (Experiencer (sk_stay $x) $x) (On (sk_stay $x) sk_cliff_spires_1) (Time (sk_stay $x) (Year 1)) (Time (sk_stay $x) night) (Past (sk_stay $x)))) (STV 1.0 0.9))",
+   "(: sky_cats_q (QuantifierPhrase sky_cat stay \"all\") (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000006",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 34,
+     "issue": "The specific definite subject \"The mist-light\" fills the Agent slot with the bare kind symbol mist_light, which the instruction set reserves for non-specific/generic fillers and explicitly bars for a specific definite individual; the same symbol is simultaneously the subject of (Inheritance mist_light light), putting one symbol in both a class and an individual position."
+    },
+    {
+     "statement": 60,
+     "issue": "The reified stay state takes (On (sk_stay $x) sk_cliff_spires_1) where the postural-reification rule prescribes an Experiencer subject plus the event-side Location oblique, which is the head that covers in/at/on once an eventuality exists."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "A time expression that is an ordinal-indexed named period (\"at the third watch\") has no licensed Time filler: the Time slot admits structured calendar/clock terms, deictic constants and day-part symbols, but not a minted entity witness, and Ordinal's scale slot is defined as the associated event or an explicit -est dimension, not the period's own class word.",
+    "A non-deictic season expression anchored to a stated year (\"in the late summer of Year 1\") has no season granularity in the Time term inventory; seasons are given only as deictic constants (last_spring / next_summer)."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Names, compound genera (autumn_equinox, nightmoth, sky_cat, cliff_spire, mire_essence), the BeforeBy gap, the handful CardinalityPhrase, the collective gather with no per-member rule, and the all-the-sky-cats universal rule plus QuantifierPhrase are all handled correctly. Reifying the stay state is licensed here because \"that night\" is a time-modifier trigger; only its oblique head is off."
+  },
+  "adjudication": {
+   "id": "evtp-000006",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "The Existential section states that a definite description picking out a specific thing is a typed individual sk_<class>_<n> plus its Member atom and reserves the bare class symbol for non-specific/generic fillers \"never for a specific definite individual\", so (Agent sk_attract_1 mist_light) for the definite subject \"The mist-light\" violates a stated rule; the reviewer's secondary class-vs-individual-position framing is weaker, since bare kind role fillers carrying Inheritance genus atoms are licensed for genuinely non-specific objects."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Once the postural state is reified (licensed here by the \"that night\" time modifier), Where a THING is prescribes \"Experiencer subject + Location oblique\", and the thematic-roles list assigns Location to where-PPs headed by \"in/at/on\", so the event-attached (On (sk_stay $x) sk_cliff_spires_1) is a mis-slotted head that no \"where\" PP on an eventuality may take."
+    }
+   ],
+   "gaps_confirmed": [
+    "Seasons have no calendar Time term — they appear only as deictic constants (last_spring / next_summer) — so a year-anchored season (\"the late summer of Year 1\") must be improvised as a bare symbol composed with (Year 1).",
+    "An ordinally-indexed named sub-day period (\"the third watch\") has no structured Time term: only a flat bare constant on the first_quarter precedent is licensed, which loses the ordinal index, and Ordinal's scale slot is defined for an associated event or an explicit -est dimension, not a period's own class word."
+   ],
+   "new_gaps": [
+    "\"stay / remain + locative PP\" has no carrier for the continuation the verb asserts (the instruction set itself says to record the gap), so \"All the sky-cats stayed on the cliff-spires\" loses the already-there-and-remained component entirely."
+   ],
+   "decision": "defect",
+   "defect_summary": "For the definite \"The mist-light\" the compliant form is a typed individual — (Member sk_mist_light_1 mist_light) with (Agent sk_attract_1 sk_mist_light_1), the same witness carried over from the produce clause; for the reified stay state the compliant oblique is the event-side (Location (sk_stay $x) sk_cliff_spires_1).",
+   "notes": "The reviewer's \"third watch\" gap is overstated — a flat bare constant third_watch is licensed by the first_quarter precedent — but the parse's (Time sk_count_1 sk_watch_1) instead puts a minted entity witness in a Time slot the instruction set fills only with structured terms or bare constants, which the review did not raise as an issue. Everything else (names, compound genera, the BeforeBy gap to the equinox anchor, the handful CardinalityPhrase, the collective gather with no per-member rule, and the universal rule plus QuantifierPhrase) is per doctrine."
+  }
+ }
+}

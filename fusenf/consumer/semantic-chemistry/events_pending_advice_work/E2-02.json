@@ -1,0 +1,136 @@
+{
+ "id": "E2-02",
+ "rule": "II — The first cold snap",
+ "texts": [
+  "On day 17 of Year 1, the Council held an emergency meeting in the afternoon.",
+  "The Council decided to begin salt-bloom additions that afternoon.",
+  "Hesper distributed pouches of salt-bloom to the keepers of the Cliff Path.",
+  "The Council spoke to the keepers of the Northcove.",
+  "The Northcove did not need salt-bloom.",
+  "The Council recorded the cold snap in the ledger."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000014",
+  "sentences": [
+   "On day 17 of Year 1, the Council held an emergency meeting in the afternoon.",
+   "The Council decided to begin salt-bloom additions that afternoon.",
+   "Hesper distributed pouches of salt-bloom to the keepers of the Cliff Path.",
+   "The Council spoke to the keepers of the Northcove.",
+   "The Northcove did not need salt-bloom.",
+   "The Council recorded the cold snap in the ledger."
+  ],
+  "parse": [
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+   "(: hold_ag (Agent sk_hold_1 sk_council_1) (STV 1.0 0.99))",
+   "(: meeting_type (Member sk_meeting_1 emergency_meeting) (STV 1.0 0.99))",
+   "(: meeting_genus (Inheritance emergency_meeting meeting) (STV 1.0 0.99))",
+   "(: hold_th (Theme sk_hold_1 sk_meeting_1) (STV 1.0 0.99))",
+   "(: hold_past (Past sk_hold_1) (STV 1.0 0.99))",
+   "(: hold_day (Time sk_hold_1 (Day 17)) (STV 1.0 0.99))",
+   "(: hold_year (Time sk_hold_1 (Year 1)) (STV 1.0 0.99))",
+   "(: hold_pod (Time sk_hold_1 afternoon) (STV 1.0 0.99))",
+   "(: decide_ev (Member sk_decide_1 decide) (STV 1.0 0.99))",
+   "(: decide_ag (Agent sk_decide_1 sk_council_1) (STV 1.0 0.99))",
+   "(: decide_past (Past sk_decide_1) (STV 1.0 0.99))",
+   "(: decide_th (Theme sk_decide_1 sk_begin_1) (STV 1.0 0.99))",
+   "(: begin_ev (Member sk_begin_1 begin) (STV 1.0 0.99))",
+   "(: begin_ag (Agent sk_begin_1 sk_council_1) (STV 1.0 0.99))",
+   "(: addition_genus (Inheritance salt_bloom_addition addition) (STV 1.0 0.99))",
+   "(: begin_th (Theme sk_begin_1 salt_bloom_addition) (STV 1.0 0.99))",
+   "(: decide_day (Time sk_decide_1 (Day 17)) (STV 1.0 0.99))",
+   "(: decide_year (Time sk_decide_1 (Year 1)) (STV 1.0 0.99))",
+   "(: decide_pod (Time sk_decide_1 afternoon) (STV 1.0 0.99))",
+   "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: distribute_ev (Member sk_distribute_1 distribute) (STV 1.0 0.99))",
+   "(: distribute_ag (Agent sk_distribute_1 hesper) (STV 1.0 0.99))",
+   "(: distribute_past (Past sk_distribute_1) (STV 1.0 0.99))",
+   "(: pouches_grp (GroupOf sk_pouches_1 salt_bloom_pouch) (STV 1.0 0.99))",
+   "(: pouch_genus (Inheritance salt_bloom_pouch pouch) (STV 1.0 0.99))",
+   "(: bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: distribute_th (Theme sk_distribute_1 sk_pouches_1) (STV 1.0 0.99))",
+   "(: keepers1_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+   "(: cliffpath_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: keepers1_poss (Possession sk_keepers_1 cliff_path) (STV 1.0 0.99))",
+   "(: distribute_rec (Recipient sk_distribute_1 sk_keepers_1) (STV 1.0 0.99))",
+   "(: speak_ev (Member sk_speak_1 speak) (STV 1.0 0.99))",
+   "(: speak_ag (Agent sk_speak_1 sk_council_1) (STV 1.0 0.99))",
+   "(: speak_past (Past sk_speak_1) (STV 1.0 0.99))",
+   "(: keepers2_grp (GroupOf sk_keepers_2 keeper) (STV 1.0 0.99))",
+   "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+   "(: keepers2_poss (Possession sk_keepers_2 northcove) (STV 1.0 0.99))",
+   "(: speak_rec (Recipient sk_speak_1 sk_keepers_2) (STV 1.0 0.99))",
+   "(: north_no_need (And (Member sk_need_1 need) (Experiencer sk_need_1 northcove) (Stimulus sk_need_1 salt_bloom) (Past sk_need_1)) (STV 0.0 0.99))",
+   "(: record_ev (Member sk_record_1 record) (STV 1.0 0.99))",
+   "(: record_ag (Agent sk_record_1 sk_council_1) (STV 1.0 0.99))",
+   "(: coldsnap_type (Member sk_cold_snap_1 cold_snap) (STV 1.0 0.99))",
+   "(: coldsnap_genus (Inheritance cold_snap snap) (STV 1.0 0.99))",
+   "(: coldsnap_mod (Inheritance cold_snap cold) (STV 1.0 0.99))",
+   "(: record_th (Theme sk_record_1 sk_cold_snap_1) (STV 1.0 0.99))",
+   "(: ledger_type (Member sk_ledger_1 ledger) (STV 1.0 0.99))",
+   "(: record_loc (Location sk_record_1 sk_ledger_1) (STV 1.0 0.99))",
+   "(: record_past (Past sk_record_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000014",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 25,
+     "issue": "\"pouches of salt-bloom\" is fused into a coined compound kind salt_bloom_pouch (with its genus chain), naming a kind the surface never states and dropping the containment relation between the pouches and the salt-bloom."
+    },
+    {
+     "statement": 20,
+     "issue": "\"that afternoon\" is propagated onto the deciding event only; the adjunct more plausibly times the complement (the beginning of the salt-bloom additions), so the attachment site may be wrong."
+    },
+    {
+     "statement": 49,
+     "issue": "\"in the ledger\" is encoded as Location, asserting a spatial location for the recording event, where the document/medium reading matches the prompt's \"in a statement\" case and its preposition-named In oblique."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "container / quantity of-phrase (\"pouches of salt-bloom\") - Possessive/genitive NP explicitly excludes a measure of-phrase (\"a cup of water\") but supplies no positive encoding for one",
+    "agent-nominalization taking an of-phrase argument (\"the keepers of the Cliff Path\") - Complements of nouns and adjectives rules on act/result/quality nominalizations and on relational nouns with no underlying verb, leaving an -er agent noun with a live underlying verb unruled between Of and Possession"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "\"the Council\" is correctly treated as a capitalized common noun (no Name atom) and as a singular collective that does not distribute; the control-verb complement sk_begin_1 correctly carries no tense. The genus atoms (Inheritance cold_snap snap) and (Inheritance salt_bloom bloom) rest on IS-A judgments that are not checkable for these invented terms."
+  },
+  "adjudication": {
+   "id": "evtp-000014",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "refute",
+     "reason": "A container / quantity of-phrase is explicitly excluded from the genitive Possession rule (\"a cup of water\") with no replacement supplied, and \"Never coin a relation head\" bars a containment head, so fusing every surface word into salt_bloom_pouch with its true genus (Inheritance salt_bloom_pouch pouch) is graceful improvisation in gap territory - no emitted atom is false or ill-typed, and the \"of salt-bloom\" restriction is carried in the symbol rather than dropped."
+    },
+    {
+     "index": 1,
+     "verdict": "partial",
+     "reason": "The attachment half stands - adjacency favours timing the beginning, and the parse commits to the matrix site with no Interpretation wrapper and no time on sk_begin_1 - but the falsehood half does not: the passage places the Council's day-17 decision at that same afternoon emergency meeting, so every Time atom emitted on sk_decide_1 is true of the content."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Time/Intervals fixes \"in a statement\" as the preposition-named In oblique rather than a named role, and Thematic roles says to decide by the question the PP answers - \"in the ledger\" names the record's medium, not where the recording happened, so (Location sk_record_1 sk_ledger_1) asserts a spatial location for the event that the sentence does not state."
+    }
+   ],
+   "gaps_confirmed": [
+    "Container / quantity of-phrase (\"pouches of salt-bloom\"): the genitive rule excludes measure of-phrases without supplying any positive encoding for one.",
+    "Agent nominalization with an of-phrase argument (\"the keepers of the Cliff Path\"): it falls between the act/result/quality-nominalization Of oblique and the relational-noun Possession branch, which is reserved for nouns with no underlying verb."
+   ],
+   "new_gaps": [
+    "Agentive support / light-verb construction over an event noun (\"the Council held an emergency meeting in the afternoon\"): the light-verb rule covers only occurred / happened / took place, so nothing says whether the time terms ride the matrix hold event (as parsed) or the meeting witness that IS the eventuality - as parsed, \"when was the meeting?\" binds nothing."
+   ],
+   "decision": "defect",
+   "defect_summary": "Compliant form for the confirmed issue: (: record_in (In sk_record_1 sk_ledger_1) (STV 1.0 0.99)) in place of (Location sk_record_1 sk_ledger_1), with (Member sk_ledger_1 ledger) unchanged - the licensed preposition-named oblique, exactly the \"in a statement\" precedent.",
+   "notes": "\"The Council\" is correctly a Name-less capitalized common noun and a non-distributing singular collective, the control complement sk_begin_1 correctly carries no tense, and the strength-0 need bundle keeps its Past inside. On the re-parse, if \"that afternoon\" is read as timing the beginning, the three Time atoms move to sk_begin_1."
+  }
+ }
+}

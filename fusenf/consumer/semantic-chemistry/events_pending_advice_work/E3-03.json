@@ -1,0 +1,136 @@
+{
+ "id": "E3-03",
+ "rule": "III — The first salt-bloom harvest",
+ "texts": [
+  "On day 33 of Year 1, Coraline Ash harvested salt-bloom at the new moon.",
+  "Coraline Ash scraped the submerged stones in the second pool with a wooden scraper.",
+  "Salt-bloom came off the stones in pale flakes.",
+  "Coraline Ash gathered the flakes with a fine net.",
+  "The harvest party rotated pools at midnight.",
+  "The harvest party rotated pools again at the third watch.",
+  "The harvest party inspected the two southern pools.",
+  "The two southern pools did not bloom that night.",
+  "The harvest ran from dusk until dawn."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000021",
+  "sentences": [
+   "On day 33 of Year 1, Coraline Ash harvested salt-bloom at the new moon.",
+   "Coraline Ash scraped the submerged stones in the second pool with a wooden scraper.",
+   "Salt-bloom came off the stones in pale flakes.",
+   "Coraline Ash gathered the flakes with a fine net.",
+   "The harvest party rotated pools at midnight.",
+   "The harvest party rotated pools again at the third watch.",
+   "The harvest party inspected the two southern pools.",
+   "The two southern pools did not bloom that night.",
+   "The harvest ran from dusk until dawn."
+  ],
+  "parse": [
+   "(: h1_cls (Member sk_harvest_1 harvest) (STV 1.0 0.99))",
+   "(: h1_agt (Agent sk_harvest_1 coraline_ash) (STV 1.0 0.99))",
+   "(: h1_thm (Theme sk_harvest_1 salt_bloom) (STV 1.0 0.99))",
+   "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: h1_yr (Time sk_harvest_1 (Year 1)) (STV 1.0 0.99))",
+   "(: h1_day (Time sk_harvest_1 (Day 33)) (STV 1.0 0.99))",
+   "(: h1_moon (Time sk_harvest_1 new_moon) (STV 1.0 0.99))",
+   "(: h1_past (Past sk_harvest_1) (STV 1.0 0.99))",
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: s2_cls (Member sk_scrape_1 scrape) (STV 1.0 0.99))",
+   "(: s2_agt (Agent sk_scrape_1 coraline_ash) (STV 1.0 0.99))",
+   "(: s2_pat (Patient sk_scrape_1 sk_stone_1) (STV 1.0 0.99))",
+   "(: stone_grp (GroupOf sk_stone_1 stone) (STV 1.0 0.99))",
+   "(: stone_sub_rule (Implication (PartOf $x sk_stone_1) (Member $x submerged)) (STV 1.0 0.9))",
+   "(: stone_loc (LocatedIn sk_stone_1 sk_pool_1) (STV 1.0 0.99))",
+   "(: pool1_type (Member sk_pool_1 pool) (STV 1.0 0.99))",
+   "(: pool1_ord (Ordinal sk_pool_1 2 pool) (STV 1.0 0.99))",
+   "(: scraper_type (Member sk_scraper_1 wooden_scraper) (STV 1.0 0.99))",
+   "(: scraper_genus (Inheritance wooden_scraper scraper) (STV 1.0 0.99))",
+   "(: scraper_mod (Inheritance wooden_scraper wooden) (STV 1.0 0.99))",
+   "(: s2_instr (Instrument sk_scrape_1 sk_scraper_1) (STV 1.0 0.99))",
+   "(: s2_past (Past sk_scrape_1) (STV 1.0 0.99))",
+   "(: s3_cls (Member sk_come_1 come) (STV 1.0 0.99))",
+   "(: s3_pat (Patient sk_come_1 salt_bloom) (STV 1.0 0.99))",
+   "(: s3_src (Source sk_come_1 sk_stone_1) (STV 1.0 0.99))",
+   "(: flake_grp (GroupOf sk_flake_1 flake) (STV 1.0 0.99))",
+   "(: flake_pale_rule (Implication (PartOf $x sk_flake_1) (Member $x pale)) (STV 1.0 0.9))",
+   "(: s3_in (In sk_come_1 sk_flake_1) (STV 1.0 0.99))",
+   "(: s3_past (Past sk_come_1) (STV 1.0 0.99))",
+   "(: s4_cls (Member sk_gather_1 gather) (STV 1.0 0.99))",
+   "(: s4_agt (Agent sk_gather_1 coraline_ash) (STV 1.0 0.99))",
+   "(: s4_thm (Theme sk_gather_1 sk_flake_1) (STV 1.0 0.99))",
+   "(: net_type (Member sk_net_1 net) (STV 1.0 0.99))",
+   "(: net_fine (Member sk_net_1 fine) (STV 1.0 0.99))",
+   "(: s4_instr (Instrument sk_gather_1 sk_net_1) (STV 1.0 0.99))",
+   "(: s4_past (Past sk_gather_1) (STV 1.0 0.99))",
+   "(: hp_type (Member sk_harvest_party_1 harvest_party) (STV 1.0 0.99))",
+   "(: hp_genus (Inheritance harvest_party party) (STV 1.0 0.99))",
+   "(: s5_cls (Member sk_rotate_1 rotate) (STV 1.0 0.99))",
+   "(: s5_agt (Agent sk_rotate_1 sk_harvest_party_1) (STV 1.0 0.99))",
+   "(: s5_thm (Theme sk_rotate_1 sk_pool_2) (STV 1.0 0.99))",
+   "(: pool2_grp (GroupOf sk_pool_2 pool) (STV 1.0 0.99))",
+   "(: s5_time (Time sk_rotate_1 midnight) (STV 1.0 0.99))",
+   "(: s5_past (Past sk_rotate_1) (STV 1.0 0.99))",
+   "(: s6_cls (Member sk_rotate_2 rotate) (STV 1.0 0.99))",
+   "(: s6_agt (Agent sk_rotate_2 sk_harvest_party_1) (STV 1.0 0.99))",
+   "(: s6_thm (Theme sk_rotate_2 sk_pool_2) (STV 1.0 0.99))",
+   "(: s6_again (Again sk_rotate_2) (STV 1.0 0.99))",
+   "(: s6_time (Time sk_rotate_2 third_watch) (STV 1.0 0.99))",
+   "(: s6_past (Past sk_rotate_2) (STV 1.0 0.99))",
+   "(: s7_cls (Member sk_inspect_1 inspect) (STV 1.0 0.99))",
+   "(: s7_agt (Agent sk_inspect_1 sk_harvest_party_1) (STV 1.0 0.99))",
+   "(: s7_thm (Theme sk_inspect_1 sk_pool_3) (STV 1.0 0.99))",
+   "(: pool3_grp (GroupOf sk_pool_3 southern_pool) (STV 1.0 0.99))",
+   "(: sp_genus (Inheritance southern_pool pool) (STV 1.0 0.99))",
+   "(: sp_mod (Inheritance southern_pool southern) (STV 1.0 0.99))",
+   "(: pool3_card (Cardinality sk_pool_3 2) (STV 1.0 0.99))",
+   "(: s7_past (Past sk_inspect_1) (STV 1.0 0.99))",
+   "(: s8_neg (And (Member sk_bloom_1 bloom) (Patient sk_bloom_1 sk_pool_3) (Time sk_bloom_1 (Year 1)) (Time sk_bloom_1 (Day 33)) (Time sk_bloom_1 night) (Past sk_bloom_1)) (STV 0.0 0.99))",
+   "(: s8_rule (Implication (PartOf $x sk_pool_3) (And (Member (sk_bloom $x) bloom) (Patient (sk_bloom $x) $x) (Time (sk_bloom $x) (Year 1)) (Time (sk_bloom $x) (Day 33)) (Time (sk_bloom $x) night) (Past (sk_bloom $x)))) (STV 0.0 0.9))",
+   "(: s9_start (Start sk_harvest_1 dusk) (STV 1.0 0.99))",
+   "(: s9_end (End sk_harvest_1 dawn) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000021",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 46,
+     "issue": "The second episodic bare plural \"pools\" (\"rotated pools again\") reuses the first sentence's existential group witness sk_pool_2, but an indefinite mints a fresh witness each time and witnesses do not corefer, so the parse asserts the same set of pools was involved on both occasions."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Bare positional ordinal modifying a noun (\"the second pool\") with no associated event and no stated '-est' dimension: Ordinal's scale slot is defined as the associated event or an explicit dimension, and neither exists, so the parse put the comparison class `pool` in the scale slot.",
+    "Bare mass-noun subject of an episodic past clause (\"Salt-bloom came off the stones\"): witness-minting is specified for bare *plural* episodic subjects, but not for bare mass ones, so the parse used the bare kind symbol `salt_bloom` directly in the Patient slot."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Term propagation for \"that night\" (Year 1 / Day 33 plus `night`) and the negated-plural double emission (group denial plus the strength-0 per-member rule) are both done exactly as specified. The event class `bloom` and the compound genus `bloom` from salt_bloom land on one symbol, an artifact of the one-symbol-per-lemma policy rather than a choice this parse made."
+  },
+  "adjudication": {
+   "id": "evtp-000021",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "*Names and casing* states that an existential witness is minted fresh each time and witnesses do not corefer (and *Input* repeats that an indefinite is always a new witness), so reusing sk_pool_2 for the second bare-plural \"pools\" asserts that the two rotations involved the same set — content the text never states."
+    }
+   ],
+   "gaps_confirmed": [
+    "Ordinal's scale slot is defined as the associated event or an explicit \"-est\" dimension, and a bare positional ordinal on a noun (\"the second pool\") supplies neither — no licensed filler exists.",
+    "A bare MASS-noun argument in an episodic clause (\"Salt-bloom came off the stones\", \"harvested salt-bloom\") has no stated routing: the episodic-witness rule covers bare plurals only, and the bare kind filler is specified for non-specific / kind-level objects."
+   ],
+   "new_gaps": [
+    "Lemma collision between a noun-derived kind symbol and a verb-derived event class: bloom is simultaneously the genus of salt_bloom (a substance kind, (Inheritance salt_bloom bloom)) and the class of the bloom eventuality ((Member sk_bloom_1 bloom)), and the one-symbol-per-lemma policy gives no way to keep a substance kind and an event class apart on one symbol.",
+    "An episodic bare-plural object naming an activity pattern rather than a participating set (\"rotated pools\" = switched between pools): neither of the two offered routings — existential group witness, or bare kind filler for a non-specific object — states what such an object denotes, and that undecided choice is what forces the cross-sentence identity question the confirmed issue turns on."
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form is a fresh group witness for the second \"pools\" — (GroupOf sk_pool_4 pool) with (Theme sk_rotate_2 sk_pool_4) — or, if \"rotated pools\" is taken as a non-specific object, the bare kind filler pool in both clauses; reusing sk_pool_2 is the one thing not licensed.",
+   "notes": "Term propagation for \"that night\", the negated-plural double emission, the submerged / pale distribution rules, and putting Start/End directly on the antecedent event-noun witness sk_harvest_1 are all as specified. (Ordinal sk_pool_1 2 pool) is improvisation in confirmed gap territory whose atom reads true of the content, so it is not itself a defect."
+  }
+ }
+}

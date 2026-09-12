@@ -1,0 +1,111 @@
+{
+ "id": "E2-05",
+ "rule": "II — The first cold snap",
+ "texts": [
+  "On day 17 of Year 1, Pell told Coraline Ash at midnight that a dim lantern gives weak mist-light.",
+  "Pell told Coraline Ash that weak mist-light attracts a handful of nightmoths.",
+  "Pell told Coraline Ash that a handful of nightmoths leaves a small heap of silken threads.",
+  "Coraline Ash wrote in the notebook that the lantern, the nightmoths, the silken threads and the mire-essence form a closed loop."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000017",
+  "sentences": [
+   "On day 17 of Year 1, Pell told Coraline Ash at midnight that a dim lantern gives weak mist-light.",
+   "Pell told Coraline Ash that weak mist-light attracts a handful of nightmoths.",
+   "Pell told Coraline Ash that a handful of nightmoths leaves a small heap of silken threads.",
+   "Coraline Ash wrote in the notebook that the lantern, the nightmoths, the silken threads and the mire-essence form a closed loop."
+  ],
+  "parse": [
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: coraline_ash_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: t1_class (Member sk_tell_1 tell) (STV 1.0 0.99))",
+   "(: t1_exp (Experiencer sk_tell_1 pell) (STV 1.0 0.99))",
+   "(: t1_rec (Recipient sk_tell_1 coraline_ash) (STV 1.0 0.99))",
+   "(: t1_past (Past sk_tell_1) (STV 1.0 0.99))",
+   "(: t1_day (Time sk_tell_1 (Day 17)) (STV 1.0 0.99))",
+   "(: t1_year (Time sk_tell_1 (Year 1)) (STV 1.0 0.99))",
+   "(: t1_time (Time sk_tell_1 midnight) (STV 1.0 0.99))",
+   "(: t1_theme (Theme sk_tell_1 (And (Member sk_lantern_1 lantern) (Member sk_lantern_1 dim) (Member sk_give_1 give) (Agent sk_give_1 sk_lantern_1) (Theme sk_give_1 weak_mist_light))) (STV 1.0 0.99))",
+   "(: t2_class (Member sk_tell_2 tell) (STV 1.0 0.99))",
+   "(: t2_exp (Experiencer sk_tell_2 pell) (STV 1.0 0.99))",
+   "(: t2_rec (Recipient sk_tell_2 coraline_ash) (STV 1.0 0.99))",
+   "(: t2_past (Past sk_tell_2) (STV 1.0 0.99))",
+   "(: t2_theme (Theme sk_tell_2 (And (GroupOf sk_nightmoths_1 nightmoth) (CardinalityPhrase sk_nightmoths_1 \"handful\") (Member sk_attract_1 attract) (Agent sk_attract_1 weak_mist_light) (Theme sk_attract_1 sk_nightmoths_1))) (STV 1.0 0.99))",
+   "(: t3_class (Member sk_tell_3 tell) (STV 1.0 0.99))",
+   "(: t3_exp (Experiencer sk_tell_3 pell) (STV 1.0 0.99))",
+   "(: t3_rec (Recipient sk_tell_3 coraline_ash) (STV 1.0 0.99))",
+   "(: t3_past (Past sk_tell_3) (STV 1.0 0.99))",
+   "(: t3_theme (Theme sk_tell_3 (And (GroupOf sk_nightmoths_2 nightmoth) (CardinalityPhrase sk_nightmoths_2 \"handful\") (GroupOf sk_threads_1 silken_thread) (CardinalityPhrase sk_threads_1 \"heap\") (Member sk_threads_1 small) (Member sk_leave_1 leave) (Agent sk_leave_1 sk_nightmoths_2) (Patient sk_leave_1 sk_threads_1))) (STV 1.0 0.99))",
+   "(: w1_class (Member sk_write_1 write) (STV 1.0 0.99))",
+   "(: w1_exp (Experiencer sk_write_1 coraline_ash) (STV 1.0 0.99))",
+   "(: w1_loc (Location sk_write_1 sk_notebook_1) (STV 1.0 0.99))",
+   "(: notebook_type (Member sk_notebook_1 notebook) (STV 1.0 0.99))",
+   "(: w1_past (Past sk_write_1) (STV 1.0 0.99))",
+   "(: w1_theme (Theme sk_write_1 (And (Member sk_form_1 form) (Agent sk_form_1 sk_lantern_1) (Agent sk_form_1 sk_nightmoths_2) (Agent sk_form_1 sk_threads_1) (Agent sk_form_1 sk_mire_essence_1) (Patient sk_form_1 sk_loop_1) (Member sk_loop_1 loop) (Member sk_loop_1 closed))) (STV 1.0 0.99))",
+   "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: nightmoths_type (GroupOf sk_nightmoths_2 nightmoth) (STV 1.0 0.99))",
+   "(: threads_type (GroupOf sk_threads_1 silken_thread) (STV 1.0 0.99))",
+   "(: mire_essence_type (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: wml_genus (Inheritance weak_mist_light light) (STV 1.0 0.99))",
+   "(: wml_mod (Inheritance weak_mist_light weak) (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+   "(: thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+   "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000017",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 19,
+     "issue": "\"a small heap of silken threads\" is encoded with (CardinalityPhrase sk_threads_1 \"heap\"), a phrase outside the instruction set's vague-quantity lexicon, and it drops the collective-noun typing (Member <g> heap) that the \"a flock of birds\" pattern requires, leaving \"small\" predicated of a group typed only as silken_thread."
+    },
+    {
+     "statement": 14,
+     "issue": "The bare mass kind symbol weak_mist_light is used directly as the Agent role filler of a generic present-tense clause, where the instruction set routes a verbal generic over a kind through a distributing Implication rule (sealed as a conjunct) rather than a flat event on the kind symbol."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Container / quantity partitives (\"a small heap of silken threads\", \"a cup of water\"): named as excluded from the genitive rules but given no encoding of their own, and \"heap\" is not in the vague-quantity lexicon.",
+    "A bare mass-noun subject of a generic verbal clause (\"weak mist-light attracts a handful of nightmoths\"): the generic-rule machinery ranges over instances via (Member $x kind), which does not fit a mass kind, and nothing licenses a bare kind symbol as a subject role filler.",
+    "Cross-seal coreference: a definite inside one seal re-mentioning an indefinite witness introduced inside an earlier seal (\"a dim lantern\" ... \"the lantern\"), and whether the definite-projection rule then lets that witness's typing reach top level even though its existence was deliberately withheld by the first seal."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Seal discipline is otherwise clean: no predication of any reported proposition reaches top level, and only definite-referent typing plus compound-decomposition Inheritance atoms project. The tell/write attitude events, the Experiencer/Recipient assignment, the tenseless generic complements, the unfused \"dim lantern\", and the collective four-Agent \"form a closed loop\" event all follow the instruction set."
+  },
+  "adjudication": {
+   "id": "evtp-000017",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "\"a heap of silken threads\" is the \"a flock of birds\" shape, which *Coordination & plurals* says \"takes both\" — (Member sk_heap_1 heap) (GroupOf sk_heap_1 silken_thread) — so omitting the heap typing drops a kind word readable straight off the words (*Core patterns*), and CardinalityPhrase's slot is specified as the surface word \"normalized to the canonical lexicon string\", which \"heap\" is not, leaving an atom no seeded bound rule can consume."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "\"weak mist-light attracts a handful of nightmoths\" is a bare mass (kind-denoting) subject with a verbal predicate, which *Quantifiers, generics & scope* routes to a distributing Implication rule — and *Propositional attitudes* requires P's \"full normalized form\", rules included, inside the seal — while the bare class symbol is licensed as a filler only for a non-specific/generic OBJECT (\"pays tax\", \"grows wheat\"), never as the Agent, so (Agent sk_attract_1 weak_mist_light) puts a kind in an individual's role slot and records a single attracting where the report states a regularity."
+    }
+   ],
+   "gaps_confirmed": [
+    "A measure/container of-phrase over a mass (\"a cup of water\") is explicitly excluded from the genitive rules and given no encoding of its own; and an aggregate noun's implied quantity (\"a heap of\") has no carrier, since the vague-quantity lexicon does not contain it. (The count-noun half of the reviewer's claim is overstated: \"a heap of silken threads\" is covered by the flock pattern.)",
+    "A bare mass-noun subject of a generic verbal clause: the generic-rule machinery ranges over instances via (Member $x <kind>), which does not fit a mass kind, and no form is given for a kind-level eventuality with roles.",
+    "Cross-seal coreference: a definite inside one seal re-mentioning an indefinite witness introduced inside an earlier seal (\"a dim lantern\" ... \"the lantern\"), where the definite-projection rule then lifts that witness's typing to top level even though the first seal deliberately withheld its existence."
+   ],
+   "new_gaps": [
+    "A dependent existential with a VAGUE quantity under a generic (\"attracts a handful of nightmoths\", \"leaves a small heap of silken threads\"): the number-under-a-universal pattern is worked only for an exact Cardinality on a Skolem group, and nothing says how a CardinalityPhrase (or an aggregate-noun group) rides a per-binding Skolem group inside a rule.",
+    "A writing/medium PP (\"wrote in the notebook\") is undecided between the event Location head and the preposition-named oblique In — the instruction set routes \"in a statement\" to In but a notebook is also a genuine physical place, and nothing selects."
+   ],
+   "decision": "defect",
+   "defect_summary": "For the heap the compliant form is the flock shape inside the seal — (Member sk_heap_1 heap) (GroupOf sk_heap_1 silken_thread) (Member sk_heap_1 small), the size property riding the collection itself as *Categorical statements* permits — with no CardinalityPhrase atom; for the generic the compliant form seals the distributing rule as a conjunct of sk_tell_2's Theme, (Implication (Member $x weak_mist_light) (And (Member (sk_attract $x) attract) (Agent (sk_attract $x) $x) (Theme (sk_attract $x) (sk_moths $x)) (GroupOf (sk_moths $x) nightmoth) ...)) with fresh variables, though the mass-kind range (Member $x weak_mist_light) is exactly the uncovered part filed as a gap.",
+   "notes": "Seal discipline is otherwise clean — no predication of any reported proposition reaches top level, and only definite typing plus definitional decomposition atoms project. The tell/write Experiencer+Recipient assignment, the unfused \"dim lantern\", the tenseless generic complements, the fresh witness per indefinite \"a handful\", and the collective four-Agent \"form a closed loop\" all follow the instruction set."
+  }
+ }
+}

@@ -1,0 +1,13 @@
+{"id": "evtp-000020", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 24, "issue": "copper is a noun modifier, so its genus must not be exposed (the explicit \"steel_beam is not steel\" rule, decided by part of speech); only a material adjective such as wooden earns the modifier genus."},
+               {"statement": 6, "issue": "\"left Aelmere\" has a bare direct object, which the role rules assign Theme (or Patient by the change test); Source is defined as the \"from ...\" oblique, not a direct-object role."},
+               {"statement": 17, "issue": "\"along the goat-path\" is not a via / by-way-of means phrase, so Instrument overreaches where the surface-preposition oblique — the preposition actually used — applies."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a plural multi-word proper name whose head is a kind word (\"the Salt-bloom Tide-pools\"): the Kestrel River rule prescribes a type atom from a kind word inside the name, but its singular Member shape does not fit a named plural set and the \"the Wrens\" bullet bars a per-member kind from the label word, so the parse states nothing about what the place is",
+             "coordinated direct objects (\"carried copper buckets and wooden scrapers\"): the distributive-by-default coordination rule is written for coordinated subjects (\"a shared object reuses one symbol\"), leaving one event with two Theme atoms vs two replicated events undecided",
+             "an ordinal ranked along a stated spatial axis (\"the second pool from the north\"): Ordinal's scale slot is defined as the associated event or an explicit -est dimension, not a compass-direction ordering"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The quantified sentence is handled well: the \"each member of\" universal ranges over PartOf with a per-binding Skolem pool for the dependent existential, the QuantifierPhrase companion names the collective kind, and \"blooming\" distributes to the pool group's members by rule rather than riding the group symbol. CoAgent for the comitative, GroupOf+Cardinality for the twelve-person party, and LocatedIn for the pools are all correct."}

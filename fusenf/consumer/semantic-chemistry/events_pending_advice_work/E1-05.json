@@ -1,0 +1,61 @@
+{
+ "id": "E1-05",
+ "rule": "I — The equinox week",
+ "texts": [
+  "In the late summer of Year 1, one day before the autumn equinox, the salt-bloom store at Cauldron Hall held ten weeks of winter supply.",
+  "Hesper reported to the Council that the previous new-moon harvest had been thin."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000005",
+  "sentences": [
+   "In the late summer of Year 1, one day before the autumn equinox, the salt-bloom store at Cauldron Hall held ten weeks of winter supply.",
+   "Hesper reported to the Council that the previous new-moon harvest had been thin."
+  ],
+  "parse": [
+   "(: store_type (Member sk_store_1 salt_bloom_store) (STV 1.0 0.99))",
+   "(: store_genus (Inheritance salt_bloom_store store) (STV 1.0 0.99))",
+   "(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+   "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+   "(: store_loc (LocatedIn sk_store_1 cauldron_hall) (STV 1.0 0.99))",
+   "(: supply_type (Member sk_supply_1 winter_supply) (STV 1.0 0.99))",
+   "(: supply_genus (Inheritance winter_supply supply) (STV 1.0 0.99))",
+   "(: supply_measure (Measure sk_supply_1 unspecified 10 week) (STV 1.0 0.99))",
+   "(: e_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+   "(: e_hold_agent (Agent sk_hold_1 sk_store_1) (STV 1.0 0.99))",
+   "(: e_hold_theme (Theme sk_hold_1 sk_supply_1) (STV 1.0 0.99))",
+   "(: e_hold_past (Past sk_hold_1) (STV 1.0 0.99))",
+   "(: e_hold_season (Time sk_hold_1 late_summer) (STV 1.0 0.99))",
+   "(: e_hold_year (Time sk_hold_1 (Year 1)) (STV 1.0 0.99))",
+   "(: equinox_type (Member sk_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+   "(: equinox_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+   "(: hold_before_equinox (BeforeBy sk_hold_1 sk_equinox_1 1 day) (STV 1.0 0.99))",
+   "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: e_report (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: e_report_exp (Experiencer sk_report_1 hesper) (STV 1.0 0.99))",
+   "(: e_report_past (Past sk_report_1) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: e_report_recip (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: harvest_type (Member sk_harvest_1 new_moon_harvest) (STV 1.0 0.99))",
+   "(: harvest_genus (Inheritance new_moon_harvest harvest) (STV 1.0 0.99))",
+   "(: e_report_theme (Theme sk_report_1 (Past (Member sk_harvest_1 thin))) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000005",
+   "run": 1,
+   "q1_faithful": "yes",
+   "q1_issues": [],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "A non-deictic season as a time granularity ('the late summer of Year 1'): Time terms cover Year/Month/Day/Weekday/Hour/Minute, and seasons appear only as speech-anchored deictic constants ('last_spring', 'next_summer'); nothing licenses a bare season symbol composed with a stated (Year n), nor the internal 'late' modifier on it.",
+    "A measure / container 'of' phrase ('ten weeks of winter supply', the instruction set's own 'a cup of water'): it is explicitly excluded from the genitive Possession mapping but is given no positive encoding anywhere, so the quantity-of-a-mass construction has no stated form.",
+    "An anaphoric / relational temporal adjective restricting a definite ('the previous new-moon harvest'): it fails the predication test so it cannot be a Member property, and an ordering atom may not cross the attitude seal, so the restriction has no licensed carrier and is silently lost."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Stative-transitive Agent for 'held', the BeforeBy measured gap on the event-noun anchor, the non-factive seal with its projected definite typing plus compound-genus atoms, and the no-Name default for 'the Council' all follow the instruction set exactly. The three items above are holes in the instruction set rather than parse errors; the parse's late_summer and Measure-with-'unspecified' choices are reasonable improvisations within them."
+  },
+  "adjudication": null
+ }
+}

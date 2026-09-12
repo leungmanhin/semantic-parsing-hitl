@@ -1,0 +1,113 @@
+{
+ "id": "E1-09",
+ "rule": "I — The equinox week",
+ "texts": [
+  "On day 0 of Year 1, Coraline Ash carried Pell's leather case on the Cliff Path.",
+  "Coraline Ash and Pell watched the sky-cat hunt at the East Row from the Middle Row.",
+  "Pell told Coraline Ash that surviving nightmoths flee to the dim lanterns of the Hollows.",
+  "Coraline Ash wrote Pell's explanation in the notebook."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000009",
+  "sentences": [
+   "On day 0 of Year 1, Coraline Ash carried Pell's leather case on the Cliff Path.",
+   "Coraline Ash and Pell watched the sky-cat hunt at the East Row from the Middle Row.",
+   "Pell told Coraline Ash that surviving nightmoths flee to the dim lanterns of the Hollows.",
+   "Coraline Ash wrote Pell's explanation in the notebook."
+  ],
+  "parse": [
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: e1_carry (Member sk_carry_1 carry) (STV 1.0 0.99))",
+   "(: e1_ag (Agent sk_carry_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e1_th (Theme sk_carry_1 sk_leather_case_1) (STV 1.0 0.99))",
+   "(: case_ty (Member sk_leather_case_1 leather_case) (STV 1.0 0.99))",
+   "(: case_genus (Inheritance leather_case case) (STV 1.0 0.99))",
+   "(: case_poss (Possession sk_leather_case_1 pell) (STV 1.0 0.99))",
+   "(: e1_loc (Location sk_carry_1 cliff_path) (STV 1.0 0.99))",
+   "(: cliffpath_ty (Member cliff_path path) (STV 1.0 0.99))",
+   "(: cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: e1_tense (Past sk_carry_1) (STV 1.0 0.99))",
+   "(: e1_day (Time sk_carry_1 (Day 0)) (STV 1.0 0.99))",
+   "(: e1_year (Time sk_carry_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e2a_watch (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: e2a_ag (Agent sk_watch_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e2a_stim (Stimulus sk_watch_1 sk_hunt_1) (STV 1.0 0.99))",
+   "(: e2a_src (Source sk_watch_1 middle_row) (STV 1.0 0.99))",
+   "(: e2a_tense (Past sk_watch_1) (STV 1.0 0.99))",
+   "(: e2b_watch (Member sk_watch_2 watch) (STV 1.0 0.99))",
+   "(: e2b_ag (Agent sk_watch_2 pell) (STV 1.0 0.99))",
+   "(: e2b_stim (Stimulus sk_watch_2 sk_hunt_1) (STV 1.0 0.99))",
+   "(: e2b_src (Source sk_watch_2 middle_row) (STV 1.0 0.99))",
+   "(: e2b_tense (Past sk_watch_2) (STV 1.0 0.99))",
+   "(: hunt_ev (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: hunt_ag (Agent sk_hunt_1 sk_sky_cat_1) (STV 1.0 0.99))",
+   "(: hunt_loc (Location sk_hunt_1 east_row) (STV 1.0 0.99))",
+   "(: skycat_ty (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))",
+   "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: eastrow_name (Name east_row \"East Row\") (STV 1.0 0.99))",
+   "(: eastrow_ty (Member east_row row) (STV 1.0 0.99))",
+   "(: middlerow_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: middlerow_ty (Member middle_row row) (STV 1.0 0.99))",
+   "(: e3_tell (Member sk_tell_1 tell) (STV 1.0 0.99))",
+   "(: e3_exp (Experiencer sk_tell_1 pell) (STV 1.0 0.99))",
+   "(: e3_rec (Recipient sk_tell_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e3_tense (Past sk_tell_1) (STV 1.0 0.99))",
+   "(: e3_theme (Theme sk_tell_1 (And (Implication (And (Member $x nightmoth) (Member $x surviving)) (And (Member (sk_flee $x) flee) (Agent (sk_flee $x) $x) (Goal (sk_flee $x) sk_lantern_1))) (Possession sk_lantern_1 hollows) (Implication (PartOf $y sk_lantern_1) (Member $y dim)))) (STV 1.0 0.99))",
+   "(: lantern_ty (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: e4_write (Member sk_write_1 write) (STV 1.0 0.99))",
+   "(: e4_ag (Agent sk_write_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e4_pat (Patient sk_write_1 sk_explanation_1) (STV 1.0 0.99))",
+   "(: e4_tense (Past sk_write_1) (STV 1.0 0.99))",
+   "(: expl_ty (Member sk_explanation_1 explanation) (STV 1.0 0.99))",
+   "(: expl_poss (Possession sk_explanation_1 pell) (STV 1.0 0.99))",
+   "(: e4_loc (Location sk_write_1 sk_notebook_1) (STV 1.0 0.99))",
+   "(: notebook_ty (Member sk_notebook_1 notebook) (STV 1.0 0.99))",
+   "(: notebook_genus (Inheritance notebook book) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000009",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 46,
+     "issue": "\"Pell's explanation\" is an event noun's underlying subject, which the instruction set routes to that noun's own subject role (Agent), not the opaque Possession."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a passage-initial date frame (\"On day 0 of Year 1, ...\") whose temporal scope carries over the following sentences — only explicitly anaphoric temporal NPs (\"that evening/night\") are covered by term propagation, so the later sentences end up with no date at all"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The seal-projection table lists only Member/Name typing as projecting out of an attitude seal; statement 38 projects (GroupOf sk_lantern_1 lantern), the definite-plural analogue, which matches the denial-bundle rule but is not explicitly licensed there. Everything else in the sealed complement (the possessor link, both distribution rules) is placed correctly."
+  },
+  "adjudication": {
+   "id": "evtp-000009",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Complements of nouns and adjectives states that a genitive naming an event noun's underlying subject (\"Marta's objection\", \"the committee's ruling\") takes that noun's subject role, not Possession, and \"Pell's explanation\" is exactly that — Pell is the explainer — so (Possession sk_explanation_1 pell) asserts a relation the text never states."
+    }
+   ],
+   "gaps_confirmed": [
+    "A passage-initial date frame (\"On day 0 of Year 1, ...\") whose temporal scope runs on over the following sentences has no carrier: term propagation is defined only for explicitly anaphoric temporal NPs (\"that evening/night\", \"the following morning\"), so the watching, telling and writing events end up with no date."
+   ],
+   "new_gaps": [
+    "An epoch-style calendar reference (\"day 0 of Year 1\") has no Time term distinct from the Gregorian day-of-month: (Day 0) silently occupies the day-of-month slot with no Month to anchor it, and the seeded same-year-month day ordering would read it as a month-day.",
+    "The seal-projection interim table licenses only Member/Name typing to project out of an attitude seal; a DEFINITE PLURAL's typing atom is GroupOf (here (GroupOf sk_lantern_1 lantern) for \"the dim lanterns\"), which the table never names — a licensed form needs to say whether the group-typing analogue of Member projects.",
+    "A generic sealed under an attitude complement cannot carry its own truth value: the empirical 0.9/0.9 of \"surviving nightmoths flee ...\" is lost inside the Theme term, which stands at the wrapper's (STV 1.0 0.99). The prompt registers in-seal grammar as a limitation but names no form that preserves a sealed rule's strength."
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form is (Agent sk_explanation_1 pell) in place of the emitted (Possession sk_explanation_1 pell) — the event noun's subject role, which the instruction set licenses directly; everything else in the parse stands.",
+   "notes": "The reviewer's \"statement 46\" indexes the typing atom; the offending atom is line 47 (expl_poss). The sealed complement is otherwise correctly built — fresh variables per sealed rule, the adjectival restriction as a premise conjunct, the possessor link kept inside, and only typing/Name/decomposition projected."
+  }
+ }
+}

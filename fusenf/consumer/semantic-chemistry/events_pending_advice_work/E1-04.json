@@ -1,0 +1,129 @@
+{
+ "id": "E1-04",
+ "rule": "I — The equinox week",
+ "texts": [
+  "In the late summer of Year 1, on the first night of her apprenticeship, Coraline Ash did not light a lantern.",
+  "Coraline Ash walked the Cliff Path with Pell from sundown to dawn.",
+  "Coraline Ash carried Pell's leather case.",
+  "Pell cleaned the glass of the lantern.",
+  "Pell trimmed the wick of the lantern.",
+  "Pell filled the reservoir of the lantern with mire-essence.",
+  "Pell lit the lantern.",
+  "Coraline Ash wrote the steps in a notebook."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000004",
+  "sentences": [
+   "In the late summer of Year 1, on the first night of her apprenticeship, Coraline Ash did not light a lantern.",
+   "Coraline Ash walked the Cliff Path with Pell from sundown to dawn.",
+   "Coraline Ash carried Pell's leather case.",
+   "Pell cleaned the glass of the lantern.",
+   "Pell trimmed the wick of the lantern.",
+   "Pell filled the reservoir of the lantern with mire-essence.",
+   "Pell lit the lantern.",
+   "Coraline Ash wrote the steps in a notebook."
+  ],
+  "parse": [
+   "(: coraline_ash_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: appr_1_type (Member sk_apprenticeship_1 apprenticeship) (STV 1.0 0.99))",
+   "(: appr_1_poss (Possession sk_apprenticeship_1 coraline_ash) (STV 1.0 0.99))",
+   "(: night_1_type (Member sk_night_1 night) (STV 1.0 0.99))",
+   "(: night_1_partof (PartOf sk_night_1 sk_apprenticeship_1) (STV 1.0 0.99))",
+   "(: night_1_ord (Ordinal sk_night_1 1 night) (STV 1.0 0.99))",
+   "(: e1_not_light (And (Member sk_light_1 light) (Agent sk_light_1 coraline_ash) (Patient sk_light_1 sk_lantern_1) (Member sk_lantern_1 lantern) (Past sk_light_1) (Time sk_light_1 late_summer) (Time sk_light_1 (Year 1)) (Time sk_light_1 sk_night_1)) (STV 0.0 0.99))",
+   "(: cliff_path_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: cliff_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: e2_walk (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: e2_agent (Agent sk_walk_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e2_theme (Theme sk_walk_1 cliff_path) (STV 1.0 0.99))",
+   "(: e2_coagent (CoAgent sk_walk_1 pell) (STV 1.0 0.99))",
+   "(: e2_start (Start sk_walk_1 sundown) (STV 1.0 0.99))",
+   "(: e2_end (End sk_walk_1 dawn) (STV 1.0 0.99))",
+   "(: e2_past (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: case_1_type (Member sk_case_1 leather_case) (STV 1.0 0.99))",
+   "(: case_1_genus (Inheritance leather_case case) (STV 1.0 0.99))",
+   "(: case_1_poss (Possession sk_case_1 pell) (STV 1.0 0.99))",
+   "(: e3_carry (Member sk_carry_1 carry) (STV 1.0 0.99))",
+   "(: e3_agent (Agent sk_carry_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e3_theme (Theme sk_carry_1 sk_case_1) (STV 1.0 0.99))",
+   "(: e3_past (Past sk_carry_1) (STV 1.0 0.99))",
+   "(: lantern_1_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: glass_1_type (Member sk_glass_1 glass) (STV 1.0 0.99))",
+   "(: glass_1_partof (PartOf sk_glass_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e4_clean (Member sk_clean_1 clean) (STV 1.0 0.99))",
+   "(: e4_agent (Agent sk_clean_1 pell) (STV 1.0 0.99))",
+   "(: e4_patient (Patient sk_clean_1 sk_glass_1) (STV 1.0 0.99))",
+   "(: e4_past (Past sk_clean_1) (STV 1.0 0.99))",
+   "(: wick_1_type (Member sk_wick_1 wick) (STV 1.0 0.99))",
+   "(: wick_1_partof (PartOf sk_wick_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e5_trim (Member sk_trim_1 trim) (STV 1.0 0.99))",
+   "(: e5_agent (Agent sk_trim_1 pell) (STV 1.0 0.99))",
+   "(: e5_patient (Patient sk_trim_1 sk_wick_1) (STV 1.0 0.99))",
+   "(: e5_past (Past sk_trim_1) (STV 1.0 0.99))",
+   "(: reservoir_1_type (Member sk_reservoir_1 reservoir) (STV 1.0 0.99))",
+   "(: reservoir_1_partof (PartOf sk_reservoir_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: e6_fill (Member sk_fill_1 fill) (STV 1.0 0.99))",
+   "(: e6_agent (Agent sk_fill_1 pell) (STV 1.0 0.99))",
+   "(: e6_patient (Patient sk_fill_1 sk_reservoir_1) (STV 1.0 0.99))",
+   "(: e6_instrument (Instrument sk_fill_1 mire_essence) (STV 1.0 0.99))",
+   "(: e6_past (Past sk_fill_1) (STV 1.0 0.99))",
+   "(: e7_light (Member sk_light_2 light) (STV 1.0 0.99))",
+   "(: e7_agent (Agent sk_light_2 pell) (STV 1.0 0.99))",
+   "(: e7_patient (Patient sk_light_2 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e7_past (Past sk_light_2) (STV 1.0 0.99))",
+   "(: steps_group (GroupOf sk_group_1 step) (STV 1.0 0.99))",
+   "(: notebook_1_type (Member sk_notebook_1 notebook) (STV 1.0 0.99))",
+   "(: e8_write (Member sk_write_1 write) (STV 1.0 0.99))",
+   "(: e8_agent (Agent sk_write_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e8_patient (Patient sk_write_1 sk_group_1) (STV 1.0 0.99))",
+   "(: e8_location (Location sk_write_1 sk_notebook_1) (STV 1.0 0.99))",
+   "(: e8_past (Past sk_write_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000004",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 24,
+     "issue": "(Member sk_lantern_1 lantern) is emitted twice — inside the strength-0 denial at index 6 (where the indefinite \"a lantern\" is required to stay) and again here at top level — so the same atom is double-counted and the denied indefinite ends up asserted to exist anyway."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a non-deictic season expression (\"the late summer of Year 1\"): Time terms cover only Year/Month/Day/Weekday/Hour/Minute plus deictic and day-part constants, so \"late summer\" has no licensed form (the parse improvises the bare symbol late_summer)",
+    "a temporal adjunct naming a countable occasion (\"on the first night of her apprenticeship\"): the Time value slot is defined only for structured calendar terms, deictic constants and day-parts, and no during/before/after wording licenses the event-noun anchor route, so the parse puts an entity witness (sk_night_1) in the Time slot",
+    "Ordinal's scale slot for a time-period NP (\"the first night of her apprenticeship\"): the scale is specified as the associated event or an explicit \"-est\" dimension, neither of which this phrase supplies (the parse fills it with the class word night)"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Everything else follows the instruction set: negation scope with time atoms inside the strength-0 bundle, presupposed referents projected out, the Cliff Path multi-word name plus separate kind atom, leather_case / mire_essence genus-only decomposition, CoAgent for \"with Pell\", Start/End for sundown-to-dawn, and the definite-plural group for \"the steps\". Sentence 1's time frame is correctly not propagated to the later sentences."
+  },
+  "adjudication": {
+   "id": "evtp-000004",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "refute",
+     "reason": "The top-level (Member sk_lantern_1 lantern) is licensed — indeed required — by sentences 4-7, whose anaphoric definite \"the lantern\" reuses that witness (Coreference & anaphora: \"an anaphoric definite re-mentioning an already-minted witness reuses that witness\") and whose clauses assert the lantern's existence, while Names and casing bars an untyped referent symbol from appearing at all; and a conjunct of a strength-0.0 (And …) is not an independently asserted atom, so no atom is double-counted."
+    }
+   ],
+   "gaps_confirmed": [
+    "season expressions have no Time term: the granularity list is Year/Month/Day/Weekday/Hour/Minute plus deictic and day-part constants, so \"the late summer of Year 1\" can only be a bare symbol that does not compose with (Year 1)",
+    "a temporal adjunct naming a countable occasion (\"on the first night of her apprenticeship\") has no licensed carrier: the Time value slot is defined for structured calendar terms, deictic constants and day-parts, and During is restricted to during/while/throughout, so an entity witness in the Time slot is the only route left",
+    "Ordinal's scale slot is defined as the associated event or an explicit \"-est\" dimension, and a ranked time-period NP (\"the first night of her apprenticeship\") supplies neither, nor any way to carry the ordering's domain (the apprenticeship)"
+   ],
+   "new_gaps": [
+    "an anaphoric definite in a later sentence picking up an indefinite that was introduced only inside a strength-0 denial (\"did not light a lantern\" … \"the lantern\"): the projection rule seals the indefinite's typing inside the bundle, but the later mention puts the witness at top level where an untyped symbol is barred — the instruction set does not say whether the typing is then re-emitted at top level, minted as a fresh witness, or something else, and a licensed form would need to say what asserts the referent's existence once a later sentence presupposes it"
+   ],
+   "decision": "accept",
+   "defect_summary": "",
+   "notes": "The improvisations in gap territory (late_summer on Time, the night witness on Time, night in Ordinal's scale slot) each emit only atoms true of the passage and well-typed in arity, so the calibration line keeps them acceptable. Negation scope, definite-referent projection, the Cliff Path name plus separate kind atom, leather_case/mire_essence genus-only decomposition, CoAgent, Start/End and the definite-plural group are all by the book."
+  }
+ }
+}

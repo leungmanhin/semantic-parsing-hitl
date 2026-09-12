@@ -1,0 +1,152 @@
+{
+ "id": "E2-03",
+ "rule": "II — The first cold snap",
+ "texts": [
+  "On day 17 of Year 1, the keepers on the Cliff Path added salt-bloom to the mire-essence of their lanterns at sundown.",
+  "The mire-essence in the lanterns burned slowly.",
+  "The cold wind struck the Cliff Path again that night.",
+  "No lantern on the Cliff Path went out that night.",
+  "The cold snap ended after three nights.",
+  "The Council continued to distribute salt-bloom throughout the rest of the autumn."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000015",
+  "sentences": [
+   "On day 17 of Year 1, the keepers on the Cliff Path added salt-bloom to the mire-essence of their lanterns at sundown.",
+   "The mire-essence in the lanterns burned slowly.",
+   "The cold wind struck the Cliff Path again that night.",
+   "No lantern on the Cliff Path went out that night.",
+   "The cold snap ended after three nights.",
+   "The Council continued to distribute salt-bloom throughout the rest of the autumn."
+  ],
+  "parse": [
+   "(: cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: cliffpath_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+   "(: keepers_loc (On sk_keepers_1 cliff_path) (STV 1.0 0.99))",
+   "(: lanterns_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+   "(: lanterns_poss (Possession sk_lanterns_1 sk_keepers_1) (STV 1.0 0.99))",
+   "(: essence_type (Member sk_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: essence_poss (Possession sk_essence_1 sk_lanterns_1) (STV 1.0 0.99))",
+   "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: add_ev (Member sk_add_1 add) (STV 1.0 0.99))",
+   "(: add_ag (Agent sk_add_1 sk_keepers_1) (STV 1.0 0.99))",
+   "(: add_th (Theme sk_add_1 salt_bloom) (STV 1.0 0.99))",
+   "(: add_goal (Goal sk_add_1 sk_essence_1) (STV 1.0 0.99))",
+   "(: add_day (Time sk_add_1 (Day 17)) (STV 1.0 0.99))",
+   "(: add_year (Time sk_add_1 (Year 1)) (STV 1.0 0.99))",
+   "(: add_sundown (Time sk_add_1 sundown) (STV 1.0 0.99))",
+   "(: add_tense (Past sk_add_1) (STV 1.0 0.99))",
+   "(: add_rule (Implication (PartOf $x sk_keepers_1) (And (Member (sk_add $x) add) (Agent (sk_add $x) $x) (Theme (sk_add $x) salt_bloom) (Goal (sk_add $x) sk_essence_1) (Time (sk_add $x) (Day 17)) (Time (sk_add $x) (Year 1)) (Time (sk_add $x) sundown) (Past (sk_add $x)))) (STV 1.0 0.9))",
+   "(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: burn_pat (Patient sk_burn_1 sk_essence_1) (STV 1.0 0.99))",
+   "(: burn_manner (Manner sk_burn_1 slowly) (STV 1.0 0.99))",
+   "(: burn_tense (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: essence_locin (LocatedIn sk_essence_1 sk_lanterns_1) (STV 1.0 0.99))",
+   "(: wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+   "(: wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+   "(: strike_ev (Member sk_strike_1 strike) (STV 1.0 0.99))",
+   "(: strike_ag (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+   "(: strike_pat (Patient sk_strike_1 cliff_path) (STV 1.0 0.99))",
+   "(: strike_again (Again sk_strike_1) (STV 1.0 0.99))",
+   "(: strike_day (Time sk_strike_1 (Day 17)) (STV 1.0 0.99))",
+   "(: strike_year (Time sk_strike_1 (Year 1)) (STV 1.0 0.99))",
+   "(: strike_night (Time sk_strike_1 night) (STV 1.0 0.99))",
+   "(: strike_tense (Past sk_strike_1) (STV 1.0 0.99))",
+   "(: lanterns_loc (On sk_lanterns_1 cliff_path) (STV 1.0 0.99))",
+   "(: lanterns_neg (And (Member sk_go_out_1 go_out) (Patient sk_go_out_1 sk_lanterns_1) (Time sk_go_out_1 (Day 17)) (Time sk_go_out_1 (Year 1)) (Time sk_go_out_1 night) (Past sk_go_out_1)) (STV 0.0 0.99))",
+   "(: lanterns_rule (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (Time (sk_go_out $x) (Day 17)) (Time (sk_go_out $x) (Year 1)) (Time (sk_go_out $x) night) (Past (sk_go_out $x)))) (STV 0.0 0.9))",
+   "(: lantern_q (QuantifierPhrase lantern go_out \"no\") (STV 1.0 0.99))",
+   "(: coldsnap_type (Member sk_cold_snap_1 cold_snap) (STV 1.0 0.99))",
+   "(: coldsnap_genus (Inheritance cold_snap cold) (STV 1.0 0.99))",
+   "(: end_ev (Member sk_end_1 end) (STV 1.0 0.99))",
+   "(: end_pat (Patient sk_end_1 sk_cold_snap_1) (STV 1.0 0.99))",
+   "(: end_tense (Past sk_end_1) (STV 1.0 0.99))",
+   "(: coldsnap_dur (Measure sk_cold_snap_1 duration 3 night) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: continue_ev (Member sk_continue_1 continue) (STV 1.0 0.99))",
+   "(: continue_ag (Agent sk_continue_1 sk_council_1) (STV 1.0 0.99))",
+   "(: continue_th (Theme sk_continue_1 sk_distribute_1) (STV 1.0 0.99))",
+   "(: continue_tense (Past sk_continue_1) (STV 1.0 0.99))",
+   "(: distribute_ev (Member sk_distribute_1 distribute) (STV 1.0 0.99))",
+   "(: distribute_ag (Agent sk_distribute_1 sk_council_1) (STV 1.0 0.99))",
+   "(: distribute_th (Theme sk_distribute_1 salt_bloom) (STV 1.0 0.99))",
+   "(: distribute_ongoing (Ongoing sk_distribute_1) (STV 1.0 0.99))",
+   "(: autumn_type (Member sk_autumn_1 autumn) (STV 1.0 0.99))",
+   "(: autumn_rest (Member sk_rest_1 autumn) (STV 1.0 0.99))",
+   "(: autumn_rest_part (PartOf sk_rest_1 sk_autumn_1) (STV 1.0 0.99))",
+   "(: autumn_rest_flag (RestOf sk_rest_1 sk_autumn_1) (STV 1.0 0.99))",
+   "(: distribute_during (During sk_distribute_1 sk_rest_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000015",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 39,
+     "issue": "(Inheritance cold_snap cold) exposes the modifier as the compound's genus while omitting the head-noun genus (snap), which the compound-kind rule says is always emitted; the modifier genus is only ever an addition to the head genus, never a substitute for it."
+    },
+    {
+     "statement": 52,
+     "issue": "(Ongoing sk_distribute_1) puts a status atom on a non-finite control complement, which the control-verb pattern says carries no tense/status of its own, and \"continued to V\" is not one of the four enumerated Ongoing markers (progressive morphology, continuative perfect, inceptive complement, perception participle)."
+    },
+    {
+     "statement": 36,
+     "issue": "\"No lantern on the Cliff Path\" is ranged over (PartOf $x sk_lanterns_1) — the keepers' lantern group from sentence 1 — instead of the restricted kind (Member $x lantern) plus the restriction as a premise conjunct, narrowing the blanket denial to one previously-introduced set."
+    },
+    {
+     "statement": 34,
+     "issue": "(On sk_lanterns_1 cliff_path) asserts that the keepers' lantern group is on the Cliff Path; the text attaches \"on the Cliff Path\" to the keepers and to the quantified \"no lantern\", never to those lanterns as a group."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "A continuative aspectual verb (\"continued to V\") is not covered: the instruction set gives Inception (began/started to V) and cessation (no longer / used to) but no form for continuation of an ongoing activity.",
+    "\"ended after three nights\" — a relative-offset temporal adjunct with an unnamed anchor has no licensed form; the parse re-reads it as the eventuality's own duration Measure, which states a total extent the sentence gives only relative to an implicit start."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "go_out kept whole with no genus, the cold/wind split into two Member atoms, the capitalized-common-noun Council with no Name atom, the RestOf partitive and throughout->During are all exactly per doctrine. The per-member add rule beside the group event and the paired strength-0 denial plus rule for \"no lantern\" follow the plural-distribution and negated-group patterns."
+  },
+  "adjudication": {
+   "id": "evtp-000015",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Compound concepts states the head genus \"is always emitted either way\" and makes the modifier genus an addition to it rather than a substitute, and the IS-A suppression escape does not apply because \"snap\" independently denotes a brief spell of weather, so the missing (Inheritance cold_snap snap) is a real omission of a mandated atom."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "A continuative aspectual matrix verb is genuinely uncovered (the reviewer's own gap), and the Inception template — reify the aspectual verb, Theme = the activity's own witness marked Ongoing — is the nearest licensed analogue, so (Ongoing sk_distribute_1) is true of \"continued to distribute\" and well-typed, which the calibration line makes acceptable improvisation rather than a defect; \"continue\" is an aspectual verb like \"begin\", not one of the volitional control verbs the no-status rule lists."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "\"No lantern on the Cliff Path\" names a restricted kind, so the negative-universal rule must range over (Member $x lantern) with the restriction as a premise conjunct (the adjectivally-restricted-kind-subject rule); ranging over (PartOf $x sk_lanterns_1) silently swaps the stated restriction for membership in a previously-introduced set — barred by Core patterns' \"a stated restriction is never silently dropped\" — and leaves the (QuantifierPhrase lantern go_out \"no\") companion naming a range the rule does not quantify."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "The text states \"on the Cliff Path\" of the keepers and inside the quantified \"no lantern\" NP, never of the keepers' lanterns as a group, so the strength-1.0 (On sk_lanterns_1 cliff_path) asserts an unstated location, which Core patterns bars (\"no unstated property, possessor, location or causal link, however obvious\")."
+    }
+   ],
+   "gaps_confirmed": [
+    "No form for a continuative aspectual matrix verb (\"continued to V\"): Inception and cessation each get an explicit template, continuation of an ongoing activity gets none, and the nearest carriers (Still, and the inceptive's Ongoing) are each defined for other constructions.",
+    "A relative-offset temporal adjunct with an unnamed anchor (\"ended after three nights\") has no licensed form — BeforeBy needs two eventualities, and only deictic \"ago / from now\" gets the reserved now anchor — so the extent can only be re-read as the eventuality's own duration Measure."
+   ],
+   "new_gaps": [
+    "QuantifierPhrase has no slot for a restricted range: when the rule ranges over a restricted kind (\"no lantern on the Cliff Path\"), the companion (QuantifierPhrase lantern go_out \"no\") can only name the bare kind, which is broader than the range the rule actually quantifies — the instruction set requires the companion to restate exactly the rule's range."
+   ],
+   "decision": "defect",
+   "defect_summary": "cold_snap must carry its head genus (Inheritance cold_snap snap) beside the modifier genus; \"No lantern on the Cliff Path went out that night\" must be a single strength-0.0 rule ranging over (And (Member $x lantern) (On $x cliff_path)) with no group-level denial over the keepers' lantern group; and (On sk_lanterns_1 cliff_path) must simply not be emitted, the restriction living only as that rule's premise conjunct.",
+   "notes": "The Ongoing atom is the one issue I refute — \"continued to V\" is genuinely uncovered and the inceptive template is the closest licensed analogue. The three confirmed issues after the genus omission share one root: the quantified \"no lantern on the Cliff Path\" was resolved to the keepers' lantern group from sentence 1 instead of being treated as a restricted kind."
+  }
+ }
+}

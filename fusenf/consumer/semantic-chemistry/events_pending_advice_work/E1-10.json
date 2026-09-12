@@ -1,0 +1,148 @@
+{
+ "id": "E1-10",
+ "rule": "I — The equinox week",
+ "texts": [
+  "On day 1 of Year 1, Tessa Brae walked the base of the cliff in the morning.",
+  "Two assistants walked with Tessa Brae.",
+  "The three sky-cats had molted during the hunt.",
+  "Feathers had fallen to the base of the cliff.",
+  "Tessa Brae collected forty-one of the fallen feathers at the base of the cliff.",
+  "Tessa Brae weighed the feathers at the Watch.",
+  "Tessa Brae recorded the feathers in a ledger of the Watch.",
+  "Tessa Brae added the feathers to the feather bin."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000010",
+  "sentences": [
+   "On day 1 of Year 1, Tessa Brae walked the base of the cliff in the morning.",
+   "Two assistants walked with Tessa Brae.",
+   "The three sky-cats had molted during the hunt.",
+   "Feathers had fallen to the base of the cliff.",
+   "Tessa Brae collected forty-one of the fallen feathers at the base of the cliff.",
+   "Tessa Brae weighed the feathers at the Watch.",
+   "Tessa Brae recorded the feathers in a ledger of the Watch.",
+   "Tessa Brae added the feathers to the feather bin."
+  ],
+  "parse": [
+   "(: s1_tb_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+   "(: s1_walk_cls (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: s1_walk_ag (Agent sk_walk_1 tessa_brae) (STV 1.0 0.99))",
+   "(: s1_walk_th (Theme sk_walk_1 sk_base_1) (STV 1.0 0.99))",
+   "(: s1_base_cls (Member sk_base_1 base) (STV 1.0 0.99))",
+   "(: s1_base_part (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+   "(: s1_cliff_cls (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+   "(: s1_time_day (Time sk_walk_1 (Day 1)) (STV 1.0 0.99))",
+   "(: s1_time_year (Time sk_walk_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_time_morn (Time sk_walk_1 morning) (STV 1.0 0.99))",
+   "(: s1_walk_past (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: s2_assist_grp (GroupOf sk_assistants_1 assistant) (STV 1.0 0.99))",
+   "(: s2_assist_card (Cardinality sk_assistants_1 2) (STV 1.0 0.99))",
+   "(: s2_walk_cls (Member sk_walk_2 walk) (STV 1.0 0.99))",
+   "(: s2_walk_ag (Agent sk_walk_2 sk_assistants_1) (STV 1.0 0.99))",
+   "(: s2_walk_coag (CoAgent sk_walk_2 tessa_brae) (STV 1.0 0.99))",
+   "(: s2_walk_past (Past sk_walk_2) (STV 1.0 0.99))",
+   "(: s2_walk_rule (Implication (PartOf $x sk_assistants_1) (And (Member (sk_walk $x) walk) (Agent (sk_walk $x) $x) (CoAgent (sk_walk $x) tessa_brae) (Past (sk_walk $x)))) (STV 1.0 0.9))",
+   "(: s3_skycat_grp (GroupOf sk_skycats_1 sky_cat) (STV 1.0 0.99))",
+   "(: s3_skycat_card (Cardinality sk_skycats_1 3) (STV 1.0 0.99))",
+   "(: s3_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: s3_molt_cls (Member sk_molt_1 molt) (STV 1.0 0.99))",
+   "(: s3_molt_pt (Patient sk_molt_1 sk_skycats_1) (STV 1.0 0.99))",
+   "(: s3_molt_past (Past sk_molt_1) (STV 1.0 0.99))",
+   "(: s3_hunt_cls (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: s3_molt_during (During sk_molt_1 sk_hunt_1) (STV 1.0 0.99))",
+   "(: s3_molt_rule (Implication (PartOf $x sk_skycats_1) (And (Member (sk_molt $x) molt) (Patient (sk_molt $x) $x) (During (sk_molt $x) sk_hunt_1) (Past (sk_molt $x)))) (STV 1.0 0.9))",
+   "(: s4_feathers_grp (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+   "(: s4_fall_cls (Member sk_fall_1 fall) (STV 1.0 0.99))",
+   "(: s4_fall_th (Theme sk_fall_1 sk_feathers_1) (STV 1.0 0.99))",
+   "(: s4_fall_goal (Goal sk_fall_1 sk_base_1) (STV 1.0 0.99))",
+   "(: s4_fall_past (Past sk_fall_1) (STV 1.0 0.99))",
+   "(: s5_feathers_grp (GroupOf sk_feathers_2 feather) (STV 1.0 0.99))",
+   "(: s5_feathers_sub (SubsetOf sk_feathers_2 sk_feathers_1) (STV 1.0 0.99))",
+   "(: s5_feathers_card (Cardinality sk_feathers_2 41) (STV 1.0 0.99))",
+   "(: s5_collect_cls (Member sk_collect_1 collect) (STV 1.0 0.99))",
+   "(: s5_collect_ag (Agent sk_collect_1 tessa_brae) (STV 1.0 0.99))",
+   "(: s5_collect_th (Theme sk_collect_1 sk_feathers_2) (STV 1.0 0.99))",
+   "(: s5_collect_loc (Location sk_collect_1 sk_base_1) (STV 1.0 0.99))",
+   "(: s5_collect_past (Past sk_collect_1) (STV 1.0 0.99))",
+   "(: s6_watch_cls (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: s6_weigh_cls (Member sk_weigh_1 weigh) (STV 1.0 0.99))",
+   "(: s6_weigh_ag (Agent sk_weigh_1 tessa_brae) (STV 1.0 0.99))",
+   "(: s6_weigh_th (Theme sk_weigh_1 sk_feathers_2) (STV 1.0 0.99))",
+   "(: s6_weigh_loc (Location sk_weigh_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: s6_weigh_past (Past sk_weigh_1) (STV 1.0 0.99))",
+   "(: s7_ledger_cls (Member sk_ledger_1 ledger) (STV 1.0 0.99))",
+   "(: s7_ledger_poss (Possession sk_ledger_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: s7_record_cls (Member sk_record_1 record) (STV 1.0 0.99))",
+   "(: s7_record_ag (Agent sk_record_1 tessa_brae) (STV 1.0 0.99))",
+   "(: s7_record_th (Theme sk_record_1 sk_feathers_2) (STV 1.0 0.99))",
+   "(: s7_record_loc (Location sk_record_1 sk_ledger_1) (STV 1.0 0.99))",
+   "(: s7_record_past (Past sk_record_1) (STV 1.0 0.99))",
+   "(: s8_bin_genus (Inheritance feather_bin bin) (STV 1.0 0.99))",
+   "(: s8_bin_cls (Member sk_bin_1 feather_bin) (STV 1.0 0.99))",
+   "(: s8_add_cls (Member sk_add_1 add) (STV 1.0 0.99))",
+   "(: s8_add_ag (Agent sk_add_1 tessa_brae) (STV 1.0 0.99))",
+   "(: s8_add_th (Theme sk_add_1 sk_feathers_2) (STV 1.0 0.99))",
+   "(: s8_add_goal (Goal sk_add_1 sk_bin_1) (STV 1.0 0.99))",
+   "(: s8_add_past (Past sk_add_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000010",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 23,
+     "issue": "The past perfect \"had molted\" carries Past but no Before ordering, although the text supplies other asserted events (the walking, the collecting) for it to precede — the rule excludes the ordering only when there is no other event in the text."
+    },
+    {
+     "statement": 31,
+     "issue": "Same omission for the past perfect \"had fallen\": Past only, with no Before against the later collecting/weighing events."
+    },
+    {
+     "statement": 28,
+     "issue": "\"Feathers had fallen\" gets the group event but no per-member distribution rule, though fall is distributive and the parse does emit that rule for the other two distributive plural subjects (indices 17 and 26)."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "intransitive subject of \"fall\" (feathers falling to the ground): the role rules conflict rather than being silent — \"un-powered relocation … drifting or dropped things\" → Theme versus \"a non-volitional natural process … a mass moved by gravity (rain fell)\" → Patient — and no tie-breaker is given, so the parse's Theme is unarbitrated"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The rest is by the book: Day/Year/morning time terms, group+Cardinality for the counted plurals with the per-member rules, CoAgent for \"with Tessa Brae\", During for \"the hunt\" with the anchor event-noun typed and nothing else, the 41-of-the-fallen-feathers partitive reusing the earlier feather group as superset, \"the Watch\" as a capitalized common noun with no Name atom, and sky_cat / feather_bin genus-only decomposition."
+  },
+  "adjudication": {
+   "id": "evtp-000010",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Time states that a past perfect is \"exactly this anteriority — Past on both events plus the Before\", and its only exemption is \"a past perfect with no other event in the text\" (TEXT is this instruction set's term for the whole passage), so with the walking, collecting and weighing all asserted there is something to order against and the anteriority \"had molted\" states is recorded nowhere."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Same rule and same failure for \"had fallen\", and here the anchor is explicit in the next sentence — \"the fallen feathers\" that Tessa Brae collected — so the ordering of the falling before the collecting is stated content that the parse drops."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "\"Feathers had fallen\" is a bare-plural episodic subject, which mints a group witness, and a distributive predicate over a plural or group \"also hands the predication to the group's members via a rule\" (Coordination & plurals; Quantifiers, generics & scope) — falling is distributive, and the same parse emits that rule for the two assistants and the three sky-cats."
+    }
+   ],
+   "gaps_confirmed": [
+    "the intransitive subject of \"fall\" for count objects dropping under gravity is doubly covered with opposite answers — \"un-powered relocation … drifting or dropped things\" → Theme versus \"a non-volitional natural process … a mass moved by gravity (rain fell)\" → Patient — with no tie-breaker, so either role is unarbitrated"
+   ],
+   "new_gaps": [
+    "the past-perfect ordering rule states its scope two ways: the emission trigger is sentence-scoped (\"whenever the sentence contains another asserted event for the perfect to precede\") while the only exemption is text-scoped (\"no other event in the text\"), so a flashback whose anchor lies in a neighbouring sentence — the common narrative case — is both required and not required",
+    "in a multi-event passage the past-perfect rule does not say WHICH asserted event the perfect anchors to: a licensed form would need to name the narrative reference event rather than leaving the parser to order against an arbitrary one (here the molting could be ordered before the walking, the collecting or the weighing with no stated basis for choosing)"
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form for issue 0 adds an anteriority atom on the molting against the passage's narrative reference event, e.g. (Before sk_molt_1 sk_walk_1); for issue 1 it adds (Before sk_fall_1 sk_collect_1), the falling before the collecting that picks up \"the fallen feathers\"; for issue 2 it adds the per-member rule beside the group event, (: feathers_fell_rule (Implication (PartOf $x sk_feathers_1) (And (Member (sk_fall $x) fall) (Theme (sk_fall $x) $x) (Goal (sk_fall $x) sk_base_1) (Past (sk_fall $x)))) (STV 1.0 0.9)), exactly as the parse already does for the assistants and the sky-cats.",
+   "notes": "The anchor for each Before is licensed but under-specified (see new_gaps), so a re-parse should pick the narrative reference event; nothing the parse emits is false or ill-typed — all three confirmed issues are omissions of stated content. The rest (Day/Year/morning terms, the counted groups with their rules, CoAgent, During with a bare anchor event-noun, the 41-of-the-fallen-feathers partitive, \"the Watch\" as a Name-less capitalized common noun, sky_cat / feather_bin genus-only decomposition) follows the instruction set."
+  }
+ }
+}

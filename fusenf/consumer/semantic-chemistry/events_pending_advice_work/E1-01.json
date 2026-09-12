@@ -1,0 +1,70 @@
+{
+ "id": "E1-01",
+ "rule": "I — The equinox week",
+ "texts": [
+  "The autumn equinox took place on day 0 of Year 1.",
+  "Every autumn equinox begins moth-season.",
+  "The East Row is a lantern-row on the Cliff Path.",
+  "The Middle Row is a lantern-row on the Cliff Path.",
+  "The Harbor Row is a lantern-row along the harbor wall.",
+  "The Harbor Station is a lantern-station on the Cliff Path near the harbor."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000001",
+  "sentences": [
+   "The autumn equinox took place on day 0 of Year 1.",
+   "Every autumn equinox begins moth-season.",
+   "The East Row is a lantern-row on the Cliff Path.",
+   "The Middle Row is a lantern-row on the Cliff Path.",
+   "The Harbor Row is a lantern-row along the harbor wall.",
+   "The Harbor Station is a lantern-station on the Cliff Path near the harbor."
+  ],
+  "parse": [
+   "(: ae1_mem (Member sk_autumn_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+   "(: ae_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+   "(: ae1_past (Past sk_autumn_equinox_1) (STV 1.0 0.99))",
+   "(: ae1_day (Time sk_autumn_equinox_1 (Day 0)) (STV 1.0 0.99))",
+   "(: ae1_year (Time sk_autumn_equinox_1 (Year 1)) (STV 1.0 0.99))",
+   "(: ms_genus (Inheritance moth_season season) (STV 1.0 0.99))",
+   "(: eq_begin_rule (Implication (Member $x autumn_equinox) (And (Member (sk_begin $x) begin) (Agent (sk_begin $x) $x) (Patient (sk_begin $x) moth_season))) (STV 1.0 0.9))",
+   "(: eq_begin_q (QuantifierPhrase autumn_equinox begin \"every\") (STV 1.0 0.99))",
+   "(: er_name (Name east_row \"East Row\") (STV 1.0 0.99))",
+   "(: er_mem (Member east_row lantern_row) (STV 1.0 0.99))",
+   "(: lr_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+   "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: cp_mem (Member cliff_path path) (STV 1.0 0.99))",
+   "(: er_on (On east_row cliff_path) (STV 1.0 0.99))",
+   "(: mr_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: mr_mem (Member middle_row lantern_row) (STV 1.0 0.99))",
+   "(: mr_on (On middle_row cliff_path) (STV 1.0 0.99))",
+   "(: hr_name (Name harbor_row \"Harbor Row\") (STV 1.0 0.99))",
+   "(: hr_mem (Member harbor_row lantern_row) (STV 1.0 0.99))",
+   "(: hw_mem (Member sk_harbor_wall_1 harbor_wall) (STV 1.0 0.99))",
+   "(: hw_genus (Inheritance harbor_wall wall) (STV 1.0 0.99))",
+   "(: hr_along (Along harbor_row sk_harbor_wall_1) (STV 1.0 0.99))",
+   "(: hs_name (Name harbor_station \"Harbor Station\") (STV 1.0 0.99))",
+   "(: hs_mem (Member harbor_station lantern_station) (STV 1.0 0.99))",
+   "(: ls_genus (Inheritance lantern_station station) (STV 1.0 0.99))",
+   "(: hs_on (On harbor_station cliff_path) (STV 1.0 0.99))",
+   "(: harbor_mem (Member sk_harbor_1 harbor) (STV 1.0 0.99))",
+   "(: hs_near (Near harbor_station sk_harbor_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000001",
+   "run": 1,
+   "q1_faithful": "yes",
+   "q1_issues": [],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "epoch-style day numbering — \"day 0 of Year 1\" is a day-of-year ordinal with no month, but the Time vocabulary defines (Day <n>) as the day-of-month granularity (the worked example is \"June 5, 2021\"), and the seeded date-ordering rules read it as same-year-month day; nothing says how to record a day counted from an epoch, and (Day 0) is not a possible day-of-month",
+    "aspectual \"begin\" with a nominal eventuality object — \"Every autumn equinox begins moth-season\" has an event-denoting NP, not a to-V / V-ing complement, so the Inception rule (which assigns the begun activity Theme, plus Ongoing) is out of scope while the occurrence-object rule under Thematic roles gives Patient; the instruction set leaves the object's role undetermined between the two"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Compound decomposition is applied correctly throughout (genus for lantern_row/lantern_station/moth_season/autumn_equinox, noun modifiers left unexposed), the capitalized runs exceed their bare class words so name-hood plus a separate kind atom is right, and On/Along/Near are the entity-attached surface-preposition heads rather than LocatedIn. The \"on the Cliff Path near the harbor\" attachment is resolved to the station on a world-knowledge lean, which the single-reading default licenses."
+  },
+  "adjudication": null
+ }
+}

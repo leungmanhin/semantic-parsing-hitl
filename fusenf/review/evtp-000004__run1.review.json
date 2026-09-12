@@ -1,0 +1,11 @@
+{"id": "evtp-000004", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 24, "issue": "(Member sk_lantern_1 lantern) is emitted twice — inside the strength-0 denial at index 6 (where the indefinite \"a lantern\" is required to stay) and again here at top level — so the same atom is double-counted and the denied indefinite ends up asserted to exist anyway."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a non-deictic season expression (\"the late summer of Year 1\"): Time terms cover only Year/Month/Day/Weekday/Hour/Minute plus deictic and day-part constants, so \"late summer\" has no licensed form (the parse improvises the bare symbol late_summer)",
+             "a temporal adjunct naming a countable occasion (\"on the first night of her apprenticeship\"): the Time value slot is defined only for structured calendar terms, deictic constants and day-parts, and no during/before/after wording licenses the event-noun anchor route, so the parse puts an entity witness (sk_night_1) in the Time slot",
+             "Ordinal's scale slot for a time-period NP (\"the first night of her apprenticeship\"): the scale is specified as the associated event or an explicit \"-est\" dimension, neither of which this phrase supplies (the parse fills it with the class word night)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything else follows the instruction set: negation scope with time atoms inside the strength-0 bundle, presupposed referents projected out, the Cliff Path multi-word name plus separate kind atom, leather_case / mire_essence genus-only decomposition, CoAgent for \"with Pell\", Start/End for sundown-to-dawn, and the definite-plural group for \"the steps\". Sentence 1's time frame is correctly not propagated to the later sentences."}

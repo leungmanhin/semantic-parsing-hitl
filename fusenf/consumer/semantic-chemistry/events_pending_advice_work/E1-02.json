@@ -1,0 +1,102 @@
+{
+ "id": "E1-02",
+ "rule": "I — The equinox week",
+ "texts": [
+  "Coraline Ash arrived in Aelmere in the late summer of Year 1.",
+  "Coraline Ash arrived two days before the autumn equinox.",
+  "Coraline Ash came on a market boat from a village down the coast.",
+  "Old Vesh and Coraline Ash met at the harbor.",
+  "Old Vesh walked with Coraline Ash to the Watch."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000002",
+  "sentences": [
+   "Coraline Ash arrived in Aelmere in the late summer of Year 1.",
+   "Coraline Ash arrived two days before the autumn equinox.",
+   "Coraline Ash came on a market boat from a village down the coast.",
+   "Old Vesh and Coraline Ash met at the harbor.",
+   "Old Vesh walked with Coraline Ash to the Watch."
+  ],
+  "parse": [
+   "(: ca_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: e1_mem (Member sk_arrive_1 arrive) (STV 1.0 0.99))",
+   "(: e1_agt (Agent sk_arrive_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e1_loc (Location sk_arrive_1 aelmere) (STV 1.0 0.99))",
+   "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+   "(: e1_time1 (Time sk_arrive_1 late_summer) (STV 1.0 0.99))",
+   "(: e1_time2 (Time sk_arrive_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e1_past (Past sk_arrive_1) (STV 1.0 0.99))",
+   "(: e2_mem (Member sk_arrive_2 arrive) (STV 1.0 0.99))",
+   "(: e2_agt (Agent sk_arrive_2 coraline_ash) (STV 1.0 0.99))",
+   "(: e2_past (Past sk_arrive_2) (STV 1.0 0.99))",
+   "(: equinox_mem (Member sk_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+   "(: equinox_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+   "(: e2_beforeby (BeforeBy sk_arrive_2 sk_equinox_1 2 day) (STV 1.0 0.99))",
+   "(: e3_mem (Member sk_come_1 come) (STV 1.0 0.99))",
+   "(: e3_agt (Agent sk_come_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e3_past (Past sk_come_1) (STV 1.0 0.99))",
+   "(: boat_mem (Member sk_boat_1 market_boat) (STV 1.0 0.99))",
+   "(: boat_genus (Inheritance market_boat boat) (STV 1.0 0.99))",
+   "(: e3_instr (Instrument sk_come_1 sk_boat_1) (STV 1.0 0.99))",
+   "(: village_mem (Member sk_village_1 village) (STV 1.0 0.99))",
+   "(: e3_src (Source sk_come_1 sk_village_1) (STV 1.0 0.99))",
+   "(: coast_mem (Member sk_coast_1 coast) (STV 1.0 0.99))",
+   "(: village_down (Down sk_village_1 sk_coast_1) (STV 1.0 0.99))",
+   "(: vesh_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+   "(: e4_mem (Member sk_meet_1 meet) (STV 1.0 0.99))",
+   "(: e4_agt1 (Agent sk_meet_1 old_vesh) (STV 1.0 0.99))",
+   "(: e4_agt2 (Agent sk_meet_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e4_past (Past sk_meet_1) (STV 1.0 0.99))",
+   "(: harbor_mem (Member sk_harbor_1 harbor) (STV 1.0 0.99))",
+   "(: e4_loc (Location sk_meet_1 sk_harbor_1) (STV 1.0 0.99))",
+   "(: e5_mem (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: e5_agt (Agent sk_walk_1 old_vesh) (STV 1.0 0.99))",
+   "(: e5_coagt (CoAgent sk_walk_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e5_past (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: watch_mem (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: e5_goal (Goal sk_walk_1 sk_watch_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000002",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 8,
+     "issue": "Sentence 2 re-describes the same past arrival by Coraline Ash that sentence 1 introduced (late summer and two days before the autumn equinox are the same time), so Coreference & anaphora's rule to reuse the symbol for a later mention of an already-introduced event should have put (BeforeBy ... sk_equinox_1 2 day) on sk_arrive_1 instead of minting a duplicate arrive event."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "A non-deictic season anchored to a stated year ('in the late summer of Year 1'): the Time term list has no season constructor and the bare-symbol licence covers only speech-anchored deictic seasons (last_spring / next_summer), so 'late summer' has no licensed form and the modifier 'late' has no carrier of its own.",
+    "Event coreference by full-clause re-description rather than a pronoun: the instruction set states the principle (reuse the symbol for a later mention of an already-introduced event) but gives a mechanical test only for pronominal event anaphora ('it'/'this'/'that'), and Events says to mint a fresh sk_<verb>_<n> per verbal clause."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Down, Instrument, CoAgent, the collective two-Agent 'met', the BeforeBy gap, the capitalized-run name old_vesh, and the no-Name treatment of 'the Watch' all follow the instruction set exactly. The three motion clauses (arrived / arrived / came) become three separate event witnesses; only the arrive/arrive pair is flagged, since 'came' is a different lemma and cross-lemma event identity is not addressed."
+  },
+  "adjudication": {
+   "id": "evtp-000002",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "refute",
+     "reason": "Events mandates a fresh sk_<verb>_<n> for each verbal clause and the Coreference section's only mechanical event case is pronominal event anaphora ('it'/'this'/'that' pointing at a clause), so identifying two independently asserted arrive clauses as one event is uncovered territory — every atom on sk_arrive_2 (arrive, Coraline Ash as Agent, Past, the two-day gap to the equinox) is true of sentence 2 and well-typed, and nothing in the parse asserts the two arrivals are distinct, so this is the reviewer's own second gap mistaken for a parse defect."
+    }
+   ],
+   "gaps_confirmed": [
+    "A non-deictic season anchored to a stated year ('in the late summer of Year 1'): the Time term list has no season constructor and the bare-symbol licence covers only speech-anchored deictic seasons, so late_summer and its 'late' modifier have no licensed carrier.",
+    "Event coreference by full-clause re-description: the Coreference principle names events, but the only mechanical test given is pronominal event anaphora, while Events says to mint a fresh witness per verbal clause — the two give opposite answers here."
+   ],
+   "new_gaps": [
+    "A conveyance PP ('came on a market boat'): the preposition 'on' cues the Location role by the in/at/on list, while a vehicle is a 'conduit' under Instrument's gloss, and no rule separates a conveyance/means from a venue — the same undecided boundary reaches any means-PP headed by a locative preposition."
+   ],
+   "decision": "accept",
+   "defect_summary": "",
+   "notes": "The rest of the passage follows the instruction set closely: the equinox anchor gets only its class atom plus the BeforeBy gap, 'met' is the collective one-event two-Agent form, 'with Coraline Ash' is CoAgent, 'down the coast' keeps the entity-attached surface preposition, and 'the Watch' correctly takes no Name. If a later instruction set supplies a mechanical test for full-clause event re-description this record would merge sk_arrive_2 into sk_arrive_1, but as the instructions stand nothing false was emitted."
+  }
+ }
+}

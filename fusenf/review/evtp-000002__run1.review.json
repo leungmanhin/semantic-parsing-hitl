@@ -1,0 +1,9 @@
+{"id": "evtp-000002", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 8, "issue": "Sentence 2 re-describes the same past arrival by Coraline Ash that sentence 1 introduced (late summer and two days before the autumn equinox are the same time), so Coreference & anaphora's rule to reuse the symbol for a later mention of an already-introduced event should have put (BeforeBy ... sk_equinox_1 2 day) on sk_arrive_1 instead of minting a duplicate arrive event."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["A non-deictic season anchored to a stated year ('in the late summer of Year 1'): the Time term list has no season constructor and the bare-symbol licence covers only speech-anchored deictic seasons (last_spring / next_summer), so 'late summer' has no licensed form and the modifier 'late' has no carrier of its own.", "Event coreference by full-clause re-description rather than a pronoun: the instruction set states the principle (reuse the symbol for a later mention of an already-introduced event) but gives a mechanical test only for pronominal event anaphora ('it'/'this'/'that'), and Events says to mint a fresh sk_<verb>_<n> per verbal clause."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Down, Instrument, CoAgent, the collective two-Agent 'met', the BeforeBy gap, the capitalized-run name old_vesh, and the no-Name treatment of 'the Watch' all follow the instruction set exactly. The three motion clauses (arrived / arrived / came) become three separate event witnesses; only the arrive/arrive pair is flagged, since 'came' is a different lemma and cross-lemma event identity is not addressed."}

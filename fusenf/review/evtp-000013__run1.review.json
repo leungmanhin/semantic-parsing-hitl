@@ -1,0 +1,12 @@
+{"id": "evtp-000013", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 10, "issue": "\"The cold wind WAS a north wind\" is a past-tense copular, so the categorical atom must be wrapped as (Past (Member sk_wind_1 north_wind)); the surface tense decides mechanically."},
+               {"statement": 47, "issue": "The past tense of \"were unprepared\" is dropped entirely — the reified per-member state carries Time atoms but no (Past ...)."},
+               {"statement": 47, "issue": "A copular clause with a time modifier must dual-emit the flat copular atom beside the reified state (for a group, as the per-member flat rule over (PartOf $x sk_lanterns_2)); only the reified half is present, so \"is this lantern unprepared?\" cannot bind."},
+               {"statement": 40, "issue": "\"The keepers ... had not yet added\" is a definite plural with a distributive predicate, so the negated clause should emit the per-member distribution rule at strength 0.0 as well, not the group-level denial alone."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a passage-initial date frame (\"On day 16 of Year 1, ...\") whose scope carries over later sentences — the instruction set covers anaphoric temporal NPs (\"that night\") but not frame persistence, so the striking and coming events keep only the day-part and lose the date"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The two past-perfect denials (statements 30, 40) leave their anteriority to the night's events unencoded because the ordering test is stated over \"the sentence\", which gives a multi-sentence passage no carrier for it. Role choices (Patient for the wind's blowing/coming, Agent for the transitive striking and sheltering), the go_out phrasal verb, the \"no lantern\" rules with their QuantifierPhrase companions, and the On/Against surface-preposition heads all follow the instruction set."}
