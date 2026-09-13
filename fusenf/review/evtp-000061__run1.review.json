@@ -1,0 +1,12 @@
+{"id": "evtp-000061", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 17, "issue": "The stated ordinals of \"the first / second / third cauldron\" are dropped entirely (no Ordinal atom anywhere), so the three cauldrons are told apart only by arbitrary witness indices, which carry no meaning for a question that names \"the third cauldron\"."},
+               {"statement": 75, "issue": "\"one vessel of mire-essence\" is stored with the scale symbol `quantity`, which no word in the clause supplies, where the Measure rule reserves the slot symbol `unspecified` for a dimension no word states (same at statement 85)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["An enumerative ordinal on an entity (\"the first/second/third cauldron\") has no licensed filler for Ordinal's <scale> slot: there is no associated ordering event and no explicit \"-est\" dimension, and `unspecified` is licensed only in Measure-family slots.",
+             "An in-world calendar date \"day 425 of Year 2\" is a day-of-year count, not a day-of-month; the Time term inventory has no way to mark which, so (Day 425) is indistinguishable from an ordinary day-of-month reading.",
+             "\"No\" on a bare mass-noun subject (\"No mire-essence formed in the third cauldron\"): the instruction set makes a QuantifierPhrase companion mandatory for the explicit quantifier \"no\" yet also bars a companion whose range appears nowhere else in the parse, and the witness-based strength-0 denial it licenses for such a subject supplies no quantified range."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything else holds up: cross-sentence coreference over 14 sentences, the negated-formation bundle with the indefinite subject kept inside, the compound genus atoms, the fill/boil/yield/record role choices, the duration measure and the entity-attached From of origin. (Location sk_record_1 sk_ledger_1) for \"recorded the results in the ledger\" is borderline against the \"in a statement\" example, but the ledger is a physical book, so the where-test supports it."}

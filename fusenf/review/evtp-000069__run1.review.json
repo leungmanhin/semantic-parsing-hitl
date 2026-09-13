@@ -1,0 +1,15 @@
+{"id": "evtp-000069", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 12, "issue": "The definite common-noun oblique object \"the new-moon spring tide\" is encoded as the bare constant new_moon_spring_tide instead of minting a witness with its kind atom, which the oblique-object NP rule requires for an article-marked NP."},
+   {"statement": 21, "issue": "(Inheritance new_moon_spring_tide tide) puts in a class position the very symbol statement 12 uses as an individual time filler, violating the individual-vs-class discipline that reserves Inheritance for kind/property on both sides."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "a temporal adjunct headed by \"at\" whose object is a definite common-noun event NP (\"at the new-moon spring tide\") — the Time role is specified for deictic constants, dates and clock terms, and event-noun time anchors are covered only for before/after ordering",
+   "a non-Gregorian day-of-year date (\"day 525 of Year 2\") — the calendar terms assume a Year/Month/Day decomposition, and nothing says whether a bare day-of-year count belongs in the (Day <n>) slot"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The rest of the passage is clean: the copular-with-time-modifier dual-emit, the collective \"harvest party\" (Member + GroupOf + Cardinality, no distribution rule), the unspecified-scale bucket Measure, and the no-Name treatment of \"the Council\" all follow the instruction set. \"The next morning\" emits only the day-part plus Before, which the anaphoric-time rule licenses when the antecedent event carries no day terms, though the passage's own day 525 arguably made day 526 recoverable."}

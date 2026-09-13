@@ -1,0 +1,9 @@
+{"id": "evtp-000053", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 94, "issue": "\"that night\" is encoded only as the day-part (Time (sk_approach $x) night); the anaphoric-time term-propagation rule also requires copying the antecedent's stated day-level terms — (Day 301) and (Year 1) — onto the new event."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["day-of-year date numbering (\"day 301 of Year 1\") — the (Day <n>) term is specified as a calendar day paired with a month, so a day index with no month has no distinct encoding", "stacked locative PPs whose inner object is a bare mass noun (\"boiled … in sea-water in the three cauldrons\") — the stacked-\"in\" rule is stated only for a second \"in <Place>\" on a place NP, and a bare mass constant has no witness to carry an entity-side position atom, leaving two co-equal Location atoms on one event as the only route", "agent-nominalization taking an of-phrase (\"the keepers of the Harbor Row\") — it falls outside the nominalization-oblique rule's stated scope (act/result/quality nouns) yet passes that rule's verb-paraphrase test, while the Possession genitive is scoped to relational nouns with no underlying verb"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The partitive shape for \"thirty of the fallen feathers\", the \"by evening\" TimeAtMost bound, the participle-modifier distribution rules for fallen/ground, the material-adjective vs noun-modifier split (silken_thread exposes silken, clay_vessel does not expose clay), and the strength-0 rule with its \"no\" QuantifierPhrase companion are all correct. Witness indexing is clean — the definite superset sk_feather_1 stays distinct from the later indefinite sk_feather_2."}

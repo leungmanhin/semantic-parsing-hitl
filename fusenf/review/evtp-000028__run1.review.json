@@ -1,0 +1,12 @@
+{"id": "evtp-000028", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 9, "issue": "(Location sk_approve_1 harbor_station) hangs \"at the Harbor Station\" on the approving event, but the PP most plausibly restricts the half-shifts (where Coraline Ash would work), so the parse asserts the Council did its approving at the station."},
+               {"statement": 36, "issue": "(PartOf sk_wick_1 sk_lantern_1) is put there by no words in the text, and Core patterns names this exact wick-in-lantern link as an atom that must not be emitted."},
+               {"statement": 66, "issue": "\"left silken threads on the lantern\" puts the threads in Patient, but they are deposited unchanged, so the \"does the object change?\" test gives Theme (and the instruction set says default to Theme when unclear)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"for the first time\" — an ordinality/occasion adverbial on an episodic event; Ordinal covers ranked NPs (\"the first to respond\"), not this adjunct, so there is no licensed carrier and the parse drops it silently",
+             "coordinated temporal adjunct PPs on one verb (\"at midnight and at the third watch\") — Coordination & plurals distributes coordinated clauses/VPs and argument NPs, but never says whether a coordinated adjunct replicates the event (the parse mints two join events)"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The wick PartOf sits on a contradiction inside the instruction set: Core patterns forbids exactly `(PartOf sk_wick_1 sk_lantern_1)` while the Bridging bullet of Coreference & anaphora licenses precisely this definite-part-to-antecedent link. Everything else — the postural `(Past (Beside pell coraline_ash))`, the `So` + `Before` pair on the past perfects, the compound decompositions, and the bare-plural object group witnesses — follows the instruction set as written."}

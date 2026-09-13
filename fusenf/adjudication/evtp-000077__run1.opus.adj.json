@@ -1,0 +1,9 @@
+{"id": "evtp-000077", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "The Time section's term-propagation rule is mandatory — 'that evening / day / night' copies the antecedent event's day-level terms (Weekday / Day / Month / Year, whichever are stated) plus the day-part symbol — and (Day 631) and (Year 2) are stated on the forming event, so emitting the day-part alone violates it."}],
+ "gaps_confirmed": ["'day 631 of Year 2' — (Day <n>) is the instruction set's day-of-month slot, so a day-of-year reading in a non-Gregorian calendar is stored indistinguishably from a day-of-month one"],
+ "new_gaps": ["whether a transitive predicate over a definite or counted plural OBJECT hands the predication to each member is unspecified: the per-member (PartOf $x <group>) rule is stated for plural SUBJECTS (Cardinality, Quantifiers) and for a resultative's flat half, leaving 'lit the lanterns of the East Row', 'collected forty of the fallen feathers' and 'ground the feathers' with no settled per-member form"],
+ "decision": "defect",
+ "defect_summary": "The compliant form propagates the antecedent's stated day-level terms into the rule's conclusion — (Time (sk_approach $x) (Day 631)) and (Time (sk_approach $x) (Year 2)) beside (Time (sk_approach $x) night) — the same shape the instruction set gives for 'that evening' after a dated antecedent.",
+ "notes": "The rest of the parse is close: the 'forty of the fallen feathers' partitive with its distributed 'fallen' rule, the 'by evening' TimeAtMost deadline, event-only Location for the forming and the storing, the preposition-named Around / Against obliques, and the strength-0 rule plus QuantifierPhrase for 'No wraith approached'. 'the lanterns of the East Row' as Possession rather than PartOf is defensible under the genitive's single part/whole test, so it would not fail the parse on its own."}

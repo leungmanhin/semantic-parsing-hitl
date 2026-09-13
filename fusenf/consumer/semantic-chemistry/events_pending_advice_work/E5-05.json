@@ -1,0 +1,137 @@
+{
+ "id": "E5-05",
+ "rule": "V — First frost and midwinter",
+ "texts": [
+  "On the night of day 111 of Year 1, Bevin Coombe was ill.",
+  "Halden tended the Stilllight Lantern that night in place of Bevin Coombe.",
+  "Halden was a substitute Keeper.",
+  "Halden refilled the mire-essence of the Stilllight Lantern at midnight.",
+  "The wick of the Stilllight Lantern was carbonized.",
+  "Halden did not trim the wick.",
+  "The Stilllight Lantern burned dim for three hours.",
+  "The Stilllight Lantern gave weak mist-light for three hours.",
+  "The Council judged that the dim burning was equivalent to an untended night."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000035",
+  "sentences": [
+   "On the night of day 111 of Year 1, Bevin Coombe was ill.",
+   "Halden tended the Stilllight Lantern that night in place of Bevin Coombe.",
+   "Halden was a substitute Keeper.",
+   "Halden refilled the mire-essence of the Stilllight Lantern at midnight.",
+   "The wick of the Stilllight Lantern was carbonized.",
+   "Halden did not trim the wick.",
+   "The Stilllight Lantern burned dim for three hours.",
+   "The Stilllight Lantern gave weak mist-light for three hours.",
+   "The Council judged that the dim burning was equivalent to an untended night."
+  ],
+  "parse": [
+   "(: ill_mem (Member sk_ill_1 ill) (STV 1.0 0.99))",
+   "(: ill_exp (Experiencer sk_ill_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: ill_day (Time sk_ill_1 (Day 111)) (STV 1.0 0.99))",
+   "(: ill_year (Time sk_ill_1 (Year 1)) (STV 1.0 0.99))",
+   "(: ill_night (Time sk_ill_1 night) (STV 1.0 0.99))",
+   "(: ill_past (Past sk_ill_1) (STV 1.0 0.99))",
+   "(: ill_flat (Past (Member bevin_coombe ill)) (STV 1.0 0.99))",
+   "(: bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+   "(: tend_mem (Member sk_tend_1 tend) (STV 1.0 0.99))",
+   "(: tend_agent (Agent sk_tend_1 halden) (STV 1.0 0.99))",
+   "(: tend_theme (Theme sk_tend_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: tend_benef (Beneficiary sk_tend_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: tend_day (Time sk_tend_1 (Day 111)) (STV 1.0 0.99))",
+   "(: tend_year (Time sk_tend_1 (Year 1)) (STV 1.0 0.99))",
+   "(: tend_night (Time sk_tend_1 night) (STV 1.0 0.99))",
+   "(: tend_past (Past sk_tend_1) (STV 1.0 0.99))",
+   "(: halden_name (Name halden \"Halden\") (STV 1.0 0.99))",
+   "(: lantern_mem (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+   "(: halden_keeper (Past (Member halden substitute_keeper)) (STV 1.0 0.99))",
+   "(: keeper_genus (Inheritance substitute_keeper keeper) (STV 1.0 0.99))",
+   "(: refill_mem (Member sk_refill_1 refill) (STV 1.0 0.99))",
+   "(: refill_agent (Agent sk_refill_1 halden) (STV 1.0 0.99))",
+   "(: refill_patient (Patient sk_refill_1 sk_mire_essence_1) (STV 1.0 0.99))",
+   "(: mire_mem (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: mire_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: mire_poss (Possession sk_mire_essence_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: refill_time (Time sk_refill_1 (Hour 0)) (STV 1.0 0.99))",
+   "(: refill_past (Past sk_refill_1) (STV 1.0 0.99))",
+   "(: wick_mem (Member sk_wick_1 wick) (STV 1.0 0.99))",
+   "(: wick_partof (PartOf sk_wick_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: carbonize_mem (Member sk_carbonize_1 carbonize) (STV 1.0 0.99))",
+   "(: carbonize_patient (Patient sk_carbonize_1 sk_wick_1) (STV 1.0 0.99))",
+   "(: carbonize_past (Past sk_carbonize_1) (STV 1.0 0.99))",
+   "(: not_trim (And (Member sk_trim_1 trim) (Agent sk_trim_1 halden) (Patient sk_trim_1 sk_wick_1) (Past sk_trim_1)) (STV 0.0 0.99))",
+   "(: burn_mem (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: burn_patient (Patient sk_burn_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: burn_dim (Member sk_burn_1 dim) (STV 1.0 0.99))",
+   "(: burn_past (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: burn_dur (Measure sk_burn_1 duration 3 hour) (STV 1.0 0.99))",
+   "(: give_mem (Member sk_give_1 give) (STV 1.0 0.99))",
+   "(: give_agent (Agent sk_give_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: give_theme (Theme sk_give_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: light_mem (Member sk_mist_light_1 mist_light) (STV 1.0 0.99))",
+   "(: light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: light_weak (Member sk_mist_light_1 weak) (STV 1.0 0.99))",
+   "(: give_past (Past sk_give_1) (STV 1.0 0.99))",
+   "(: give_dur (Measure sk_give_1 duration 3 hour) (STV 1.0 0.99))",
+   "(: council_mem (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: judge_mem (Member sk_judge_1 judge) (STV 1.0 0.99))",
+   "(: judge_exp (Experiencer sk_judge_1 sk_council_1) (STV 1.0 0.99))",
+   "(: judge_past (Past sk_judge_1) (STV 1.0 0.99))",
+   "(: judge_theme (Theme sk_judge_1 (And (Member sk_equivalent_1 equivalent) (Experiencer sk_equivalent_1 sk_burn_1) (To sk_equivalent_1 sk_night_1) (Member sk_burn_1 equivalent) (Member sk_night_1 night) (Member sk_night_1 untended))) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000035",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 52,
+     "issue": "The sealed complement of \"judged that the dim burning was equivalent...\" carries no tense atom at all, but sequence of tense keeps a past-tense verb's (Past ...) inside the seal, so the reified equivalent-state and its flat half should be past-marked."
+    },
+    {
+     "statement": 37,
+     "issue": "\"burned dim\" is encoded as a class atom on the burn event itself, whereas the instruction set routes a bare adjectival secondary predicate as a depictive concurrent state on the subject (\"arrived tired\") or as a Manner atom, not as a Member atom on the event witness."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "A day-of-year date in a non-Gregorian calendar (\"day 111 of Year 1\"): the (Day <n>) term is specified as the day-of-month of a calendar date, and no convention is given for an ordinal day-of-year with no month, so (Day 111) is indistinguishable downstream from a day-of-month reading.",
+    "An adjective that is simultaneously a symmetric predicate and takes a PP complement (\"was equivalent to an untended night\"): the adjective's-PP-complement reification rule and the symmetric-predicate rule (which explicitly names \"is equal to\") both claim it, with no tie-break, and there is no guidance on whether a (Symmetric ...) tag may sit inside a seal."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Coreference (the lantern, the wick, \"the dim burning\"), the \"that night\" term-propagation, the in-place-of Beneficiary, and the did-not-trim denial bundle are all handled per the instruction set. Whether the surface-fused agent-nominalization compound substitute_keeper should also carry (Inheritance substitute_keeper (can keep)) is arguable under the fixed-firing rule."
+  },
+  "adjudication": {
+   "id": "evtp-000035",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Sequence of tense is surface-mechanical — a past-tense verb inside a sealed complement keeps its (Past ...) inside the seal — so \"was equivalent\" must carry (Past sk_equivalent_1) plus the past-wrapped flat half inside the sealed (And ...), exactly as the parse itself wraps \"Bevin Coombe was ill\" at top level."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "(Member sk_burn_1 dim) is true of the passage's own words (its last sentence calls it \"the dim burning\") and well-typed (a minted event witness is an individual, so a property attaches by Member), while the depictive rule cited covers subject-oriented states (\"arrived tired\") and Manner admits only manner adverbs — an eventuality-characterizing bare adjective is uncovered ground, where a true, well-typed improvisation is acceptable."
+    }
+   ],
+   "gaps_confirmed": [
+    "A day-of-year ordinal with no month (\"day 111 of Year 1\"): (Day <n>) is specified only as a calendar date's day-of-month, so the two readings are indistinguishable downstream.",
+    "\"Was equivalent to an untended night\" is claimed by both the adjective's-PP-complement reification rule and the symmetric-predicate rule (which names \"is equal to\"), with no tie-break, and nothing states whether a (Symmetric ...) tag may sit inside a seal or must project out of one."
+   ],
+   "new_gaps": [
+    "A bare adjectival secondary predicate that characterizes the EVENTUALITY rather than the subject (\"the lantern burned dim\", \"the stars shone bright\") has no named carrier: the depictive rule predicates the state of the subject, Manner takes only manner adverbs (and never a bare adjective), and nothing licenses or bars a property atom on the event witness — a licensed form would need to say which bearer, event or subject, a bare adjectival adjunct attaches to.",
+    "\"at midnight\" has no stated convention: the day-part constant list names dawn / noon / dusk / night but not midnight, leaving (Hour 0) and a bare `midnight` constant both defensible — precisely the optional-form split the instruction set elsewhere forbids.",
+    "Whether the agent-nominalization capability fires on a modifier+agent-noun compound fused from the surface (\"a substitute Keeper\" -> (Inheritance substitute_keeper (can keep))) is undetermined: both firing licences (\"a symbol you fused from the surface\" and \"the copular predicate of the clause\") appear to apply, while the rule's examples are object-incorporating nominalizations (egg_layer, dam_builder), so a rule declared \"fixed, not a judgment call\" is a judgment call here."
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form for the judged complement keeps the complement clause's own past tense inside the seal — (Past sk_equivalent_1) as a conjunct of the sealed (And ...) and the dual-emit flat half as (Past (Member sk_burn_1 equivalent)) inside it — with the rest of the parse unchanged.",
+   "notes": "Everything else checks out against the instruction set: the \"that night\" term propagation, in-place-of as Beneficiary, the stated PartOf on the wick, the did-not-trim denial bundle, and \"the dim burning\" resolving to the burn event witness. The one confirmed defect is narrow and does have a licensed compliant form."
+  }
+ }
+}

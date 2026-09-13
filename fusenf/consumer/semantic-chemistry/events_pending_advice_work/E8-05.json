@@ -1,0 +1,123 @@
+{
+ "id": "E8-05",
+ "rule": "VIII — The following autumn",
+ "texts": [
+  "On day 396 of Year 2, Coraline Ash wrote in her log that a bright lantern draws a crowd of nightmoths.",
+  "Coraline Ash wrote in her log that a crowd of nightmoths brings sky-cats down from the cliff-spires.",
+  "Coraline Ash wrote in her log that hunting sky-cats molt feathers.",
+  "Coraline Ash wrote in her log that ground feathers make the Sunken Cove safe.",
+  "Coraline Ash read the note to Pell at breakfast."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000059",
+  "sentences": [
+   "On day 396 of Year 2, Coraline Ash wrote in her log that a bright lantern draws a crowd of nightmoths.",
+   "Coraline Ash wrote in her log that a crowd of nightmoths brings sky-cats down from the cliff-spires.",
+   "Coraline Ash wrote in her log that hunting sky-cats molt feathers.",
+   "Coraline Ash wrote in her log that ground feathers make the Sunken Cove safe.",
+   "Coraline Ash read the note to Pell at breakfast."
+  ],
+  "parse": [
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: w1_class (Member sk_write_1 write) (STV 1.0 0.99))",
+   "(: w1_exp (Experiencer sk_write_1 coraline_ash) (STV 1.0 0.99))",
+   "(: log_type (Member sk_log_1 log) (STV 1.0 0.99))",
+   "(: log_poss (Possession sk_log_1 coraline_ash) (STV 1.0 0.99))",
+   "(: w1_loc (Location sk_write_1 sk_log_1) (STV 1.0 0.99))",
+   "(: w1_past (Past sk_write_1) (STV 1.0 0.99))",
+   "(: w1_day (Time sk_write_1 (Day 396)) (STV 1.0 0.99))",
+   "(: w1_year (Time sk_write_1 (Year 2)) (STV 1.0 0.99))",
+   "(: w1_theme (Theme sk_write_1 (And (Member sk_lantern_1 lantern) (Member sk_lantern_1 bright) (Member sk_draw_1 draw) (Agent sk_draw_1 sk_lantern_1) (Theme sk_draw_1 sk_crowd_1) (Member sk_crowd_1 crowd) (GroupOf sk_crowd_1 nightmoth))) (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: w2_class (Member sk_write_2 write) (STV 1.0 0.99))",
+   "(: w2_exp (Experiencer sk_write_2 coraline_ash) (STV 1.0 0.99))",
+   "(: w2_loc (Location sk_write_2 sk_log_1) (STV 1.0 0.99))",
+   "(: w2_past (Past sk_write_2) (STV 1.0 0.99))",
+   "(: cliffspires_grp (GroupOf sk_cliffspires_1 cliff_spire) (STV 1.0 0.99))",
+   "(: w2_theme (Theme sk_write_2 (And (Member sk_crowd_2 crowd) (GroupOf sk_crowd_2 nightmoth) (Member sk_bring_down_1 bring_down) (Agent sk_bring_down_1 sk_crowd_2) (Theme sk_bring_down_1 sky_cat) (Source sk_bring_down_1 sk_cliffspires_1))) (STV 1.0 0.99))",
+   "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: w3_class (Member sk_write_3 write) (STV 1.0 0.99))",
+   "(: w3_exp (Experiencer sk_write_3 coraline_ash) (STV 1.0 0.99))",
+   "(: w3_loc (Location sk_write_3 sk_log_1) (STV 1.0 0.99))",
+   "(: w3_past (Past sk_write_3) (STV 1.0 0.99))",
+   "(: w3_theme (Theme sk_write_3 (Implication (And (Member $x sky_cat) (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Ongoing (sk_hunt $x))) (And (Member (sk_molt $x) molt) (Agent (sk_molt $x) $x) (Theme (sk_molt $x) feather)))) (STV 1.0 0.99))",
+   "(: w4_class (Member sk_write_4 write) (STV 1.0 0.99))",
+   "(: w4_exp (Experiencer sk_write_4 coraline_ash) (STV 1.0 0.99))",
+   "(: w4_loc (Location sk_write_4 sk_log_1) (STV 1.0 0.99))",
+   "(: w4_past (Past sk_write_4) (STV 1.0 0.99))",
+   "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+   "(: w4_theme (Theme sk_write_4 (Implication (And (Member $x feather) (Member $x ground)) (And (Member (sk_make $x) make) (Agent (sk_make $x) $x) (Patient (sk_make $x) sunken_cove) (Member (sk_safe $x) safe) (Experiencer (sk_safe $x) sunken_cove) (Member sunken_cove safe) (Result (sk_make $x) (sk_safe $x))))) (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: note_type (Member sk_note_1 note) (STV 1.0 0.99))",
+   "(: read_class (Member sk_read_1 read) (STV 1.0 0.99))",
+   "(: read_agent (Agent sk_read_1 coraline_ash) (STV 1.0 0.99))",
+   "(: read_theme (Theme sk_read_1 sk_note_1) (STV 1.0 0.99))",
+   "(: read_recipient (Recipient sk_read_1 pell) (STV 1.0 0.99))",
+   "(: read_time (Time sk_read_1 breakfast) (STV 1.0 0.99))",
+   "(: read_past (Past sk_read_1) (STV 1.0 0.99))"
+  ],
+  "census": "unfireable-rule: sk-function-in-premise",
+  "review": {
+   "id": "evtp-000059",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 23,
+     "issue": "The rule's premise contains Skolem-function terms ((Member (sk_hunt $x) hunt), (Agent (sk_hunt $x) $x), (Ongoing (sk_hunt $x))), which the instruction set explicitly bars -- a premise naming a Skolem event nothing asserts can never fire."
+    },
+    {
+     "statement": 23,
+     "issue": "\"hunting\" is a prenominal participle used as a modifier, so it is an adjective -- the restriction should be the premise conjunct (Member $x hunting), not a reified hunt event carrying an unlicensed (Ongoing ...)."
+    },
+    {
+     "statement": 5,
+     "issue": "\"wrote in her log\" puts the written medium in Location; the instruction set routes a medium/document \"in\" (\"in a statement\") to the preposition-named oblique In, and a log is not a place the writing is located; same at 13, 21, 26."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a generic Implication sealed inside an attitude's Theme has no carrier for its own truth value -- the empirical-generic (STV 0.9 0.9) a top-level generic rule would take cannot be expressed inside the seal, and the wrapper's STV is the attitude's",
+    "a prenominal participle that is genuinely a reduced relative (\"hunting sky-cats\" = sky-cats that are hunting) -- the participle rules cover post-modifiers as events and prenominal ones as adjectives, with nothing for a prenominal participle taking its own complement or aspect"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Sealing discipline is correct throughout -- no predication of P reaches top level, and only definite/named typing (GroupOf cliff_spire, Sunken Cove) and compound-genus decomposition atoms project; the \"crowd of nightmoths\" Member+GroupOf, the bring_down phrasal verb, and the w4 resultative State-result shape are all right. The w3 rule is the one structural violation."
+  },
+  "adjudication": {
+   "id": "evtp-000059",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Time states \"Rule premises bind through plain variables -- a premise never contains a Skolem term\", so (Member (sk_hunt $x) hunt) / (Agent (sk_hunt $x) $x) / (Ongoing (sk_hunt $x)) in the antecedent build a rule that can never fire."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Names and casing fixes that \"a participle used as a modifier is an adjective, not the verb\" (\"a laminated worktop\" -> laminated), and Status predicates allows Ongoing only on four explicit markers, none of which a prenominal participle is -- so the restriction is the premise conjunct (Member $x hunting), exactly as the parse itself treated \"ground feathers\"."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Intervals names the licensed head for a non-place \"in\" -- \"an event 'in July' is Time, 'in the final round' the preposition-named In, 'in a statement' likewise In\" -- so a document/medium takes (In <event> <log>); (Location sk_write_N sk_log_1) instead asserts the writing event was positioned inside the log, which the sentence does not state."
+    }
+   ],
+   "gaps_confirmed": [
+    "a generic Implication sealed inside an attitude's Theme has no carrier for its own truth value -- the empirical (STV 0.9 0.9) a top-level generic rule would take cannot be expressed on a nested term, and the wrapper's STV belongs to the attitude"
+   ],
+   "new_gaps": [
+    "whether a definite plural's GroupOf typing projects out of an attitude seal is undetermined: the \"What projects out of a seal\" table names only Member / Name typing of definite and named referents, so the parse's top-level (GroupOf sk_cliffspires_1 cliff_spire) for \"the cliff-spires\" is unruled either way",
+    "an ordinal-day fictional calendar (\"on day 396 of Year 2\"): (Day <n>) is a day-of-month slot and (Year <n>) a calendar year, so a day-of-year 396 in \"Year 2\" has no defined reading",
+    "a meal-name temporal adjunct (\"at breakfast\") has no listed Time filler -- the day-part constants are morning / afternoon / evening / night / dawn / noon / dusk, and a meal is neither a day-part nor a calendar term"
+   ],
+   "decision": "defect",
+   "defect_summary": "Issues 0 and 1 have one compliant form: the sealed rule's premise is the plain-variable pair (And (Member $x sky_cat) (Member $x hunting)), the prenominal participle riding as an adjective, with the three Skolem-term hunt conjuncts and the unlicensed (Ongoing (sk_hunt $x)) dropped entirely. Issue 2: replace (Location sk_write_N sk_log_1) with the preposition-named oblique (In sk_write_N sk_log_1) on all four write events.",
+   "notes": "Sealing discipline, the phrasal bring_down, the crowd-of-nightmoths Member+GroupOf and the w4 State-result shape are all sound, and the four writes correctly share sk_log_1. The reviewer's second gap is not one: the instruction set does cover a prenominal participle -- as an adjective -- and that coverage is precisely the licensed fix for issue 1."
+  }
+ }
+}

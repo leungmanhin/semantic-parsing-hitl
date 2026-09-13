@@ -1,0 +1,146 @@
+{
+ "id": "E10-10",
+ "rule": "X — Spring of Year 2",
+ "texts": [
+  "On day 705 of Year 2, Tessa Brae found sixty-three feathers at the base of the cliff in the morning.",
+  "About thirty feathers fall to the base of the cliff in a normal week of that season.",
+  "No heavy sky-cat hunt had been seen on the previous night.",
+  "Tessa Brae said that several sky-cats might have molted at the same time.",
+  "The Council recorded the find.",
+  "Tessa Brae added the feathers to the feather store."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000081",
+  "sentences": [
+   "On day 705 of Year 2, Tessa Brae found sixty-three feathers at the base of the cliff in the morning.",
+   "About thirty feathers fall to the base of the cliff in a normal week of that season.",
+   "No heavy sky-cat hunt had been seen on the previous night.",
+   "Tessa Brae said that several sky-cats might have molted at the same time.",
+   "The Council recorded the find.",
+   "Tessa Brae added the feathers to the feather store."
+  ],
+  "parse": [
+   "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+   "(: find_ev (Member sk_find_1 find) (STV 1.0 0.99))",
+   "(: find_ag (Agent sk_find_1 tessa_brae) (STV 1.0 0.99))",
+   "(: find_th (Theme sk_find_1 sk_feather_1) (STV 1.0 0.99))",
+   "(: feather1_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+   "(: feather1_card (Cardinality sk_feather_1 63) (STV 1.0 0.99))",
+   "(: find_loc (Location sk_find_1 sk_base_1) (STV 1.0 0.99))",
+   "(: base1_type (Member sk_base_1 base) (STV 1.0 0.99))",
+   "(: base1_part (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+   "(: cliff1_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+   "(: find_time_day (Time sk_find_1 (Day 705)) (STV 1.0 0.99))",
+   "(: find_time_year (Time sk_find_1 (Year 2)) (STV 1.0 0.99))",
+   "(: find_time_morn (Time sk_find_1 morning) (STV 1.0 0.99))",
+   "(: find_tense (Past sk_find_1) (STV 1.0 0.99))",
+   "(: feather2_grp (GroupOf sk_feather_2 feather) (STV 1.0 0.99))",
+   "(: feather2_card (Cardinality sk_feather_2 (ParticleFromNormal 30 3)) (STV 1.0 0.99))",
+   "(: fall_ev (Member sk_fall_1 fall) (STV 1.0 0.99))",
+   "(: fall_pat (Patient sk_fall_1 sk_feather_2) (STV 1.0 0.99))",
+   "(: fall_goal (Goal sk_fall_1 sk_base_1) (STV 1.0 0.99))",
+   "(: fall_every (Every sk_fall_1 1 week) (STV 1.0 0.99))",
+   "(: fall_time_season (Time sk_fall_1 sk_season_1) (STV 1.0 0.99))",
+   "(: season1_type (Member sk_season_1 season) (STV 1.0 0.99))",
+   "(: seehunt_neg (And (Member sk_hunt_1 sky_cat_hunt) (Member sk_hunt_1 heavy) (Member sk_see_1 see) (Stimulus sk_see_1 sk_hunt_1) (Time sk_see_1 (Day 704)) (Time sk_see_1 (Year 2)) (Time sk_see_1 night) (Before sk_see_1 sk_find_1) (Past sk_see_1)) (STV 0.0 0.99))",
+   "(: skycathunt_genus (Inheritance sky_cat_hunt hunt) (STV 1.0 0.99))",
+   "(: say_ev (Member sk_say_1 say) (STV 1.0 0.99))",
+   "(: say_exp (Experiencer sk_say_1 tessa_brae) (STV 1.0 0.99))",
+   "(: say_tense (Past sk_say_1) (STV 1.0 0.99))",
+   "(: say_theme (Theme sk_say_1 (And (GroupOf sk_skycat_1 sky_cat) (CardinalityPhrase sk_skycat_1 \"several\") (Member sk_molt_1 molt) (Patient sk_molt_1 sk_skycat_1) (Might sk_molt_1) (Past sk_molt_1))) (STV 1.0 0.99))",
+   "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: record_ev (Member sk_record_1 record) (STV 1.0 0.99))",
+   "(: record_ag (Agent sk_record_1 sk_council_1) (STV 1.0 0.99))",
+   "(: record_th (Theme sk_record_1 sk_find_1) (STV 1.0 0.99))",
+   "(: record_tense (Past sk_record_1) (STV 1.0 0.99))",
+   "(: add_ev (Member sk_add_1 add) (STV 1.0 0.99))",
+   "(: add_ag (Agent sk_add_1 tessa_brae) (STV 1.0 0.99))",
+   "(: add_th (Theme sk_add_1 sk_feather_1) (STV 1.0 0.99))",
+   "(: add_goal (Goal sk_add_1 sk_store_1) (STV 1.0 0.99))",
+   "(: add_tense (Past sk_add_1) (STV 1.0 0.99))",
+   "(: store1_type (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+   "(: featherstore_genus (Inheritance feather_store store) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000081",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 20,
+     "issue": "\"of that season\" restricts the week, not the falling, yet it is attached as (Time sk_fall_1 sk_season_1) on a minted witness — a Time filler must be a structured term or a bare constant, and the instruction set bars minting an sk_ witness (or a Member atom) for a time."
+    },
+    {
+     "statement": 19,
+     "issue": "(Every sk_fall_1 1 week) makes one fixed ~30-feather group recur weekly, whereas the sentence states a per-week rate over a different set of feathers each week."
+    },
+    {
+     "statement": 15,
+     "issue": "(Cardinality sk_feather_2 (ParticleFromNormal 30 3)) puts a distribution into a slot the instruction set specifies as a native integer; the ParticleFromNormal form is defined for Measure magnitudes and clock values only."
+    },
+    {
+     "statement": 27,
+     "issue": "the sealed complement omits the per-member distribution rule that a counted/vague plural with a distributive predicate (\"several sky-cats ... molted\") requires, although a seal must carry P's full normalized form including that rule."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "per-period base rate over a varying quantity (\"about thirty feathers fall ... in a normal week\") — the habitual Every/TimesPer forms bind one fixed group to one event; no per-occurrence quantity form is defined",
+    "approximate/hedged count (\"about thirty feathers\") — Cardinality's magnitude is a native integer and CardinalityPhrase is for phrases with no number",
+    "typicality qualifier on a frame adverbial (\"in a normal week\") — no licensed carrier, so the hedge is dropped",
+    "\"at the same time\" (simultaneity across several distributed events) — no licensed head; During needs two reified eventualities",
+    "anaphoric \"that season\" with no antecedent season in the text — term propagation has nothing to copy at that granularity",
+    "backward-shifted anaphoric time (\"the previous night\") — term propagation is defined for \"that\" and \"the next/following\", not for \"previous/preceding\"",
+    "ordinal/continuous day-count date (\"day 705 of Year 2\") — the Time terms assume a Gregorian Day-of-month inside a Month"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "No CONTEXT block was supplied, so q3 is na. \"No heavy sky-cat hunt had been seen\" is encoded as an indefinite-witness denial; \"no\" is an explicit quantifier, and the instruction set does not settle whether a singular \"no\"-determiner subject takes that witness bundle or the strength-0 distributing rule with its QuantifierPhrase \"no\" companion."
+  },
+  "adjudication": {
+   "id": "evtp-000081",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "The Time section says a time expression may NEVER be minted as an sk_ witness or given a Member atom and that a Time filler is a structured term or a bare constant, so (Time sk_fall_1 sk_season_1) + (Member sk_season_1 season) is ill-typed, and it additionally re-attaches a restrictor on \"a normal week\" to the falling event."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "The instruction set prescribes exactly this flat habitual form for a calendar-slot recurrence (\"days are terms, not entities, so use the flat habitual form\"), which necessarily binds one event witness and one group symbol; each emitted atom is individually true (a weekly falling, of a roughly thirty-feather group), so the fixed-set artifact is the coverage gap the reviewer itself filed, not a parse defect."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Cardinality's magnitude is specified as a native integer, and the instruction set deliberately keeps distributions out of the counting machinery (\"Compute is the hard-integer test; GreaterThan is for distribution values, not plain counts\"), so (Cardinality sk_feather_2 (ParticleFromNormal 30 3)) is ill-typed rather than licensed improvisation."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "Propositional attitudes states \"Seal P's full normalized form … including a plural's per-member (Implication (PartOf $x <group>) …) distribution rule\", and Cardinality mandates that rule for a vague-counted plural with a distributive predicate (molt), so its absence inside the Theme seal violates a stated rule."
+    }
+   ],
+   "gaps_confirmed": [
+    "per-period base rate over a varying quantity (\"about thirty feathers fall … in a normal week\") — the habitual Every/TimesPer forms bind one fixed group to one event witness; no per-occurrence quantity form is defined",
+    "approximate/hedged count (\"about thirty feathers\") — Cardinality's magnitude is a native integer and CardinalityPhrase is specified for phrases with no number",
+    "typicality qualifier on a frame adverbial (\"in a normal week\") — the frame is neither entity nor event, so the hedge has no carrier and is dropped",
+    "\"at the same time\" (simultaneity across several distributed events) — no licensed head; During needs two reified eventualities",
+    "anaphoric \"that season\" with no antecedent season in the text — term propagation has nothing to copy at that granularity",
+    "backward-shifted anaphoric time (\"the previous night\") — term propagation is defined for \"that\" and \"the next/following\", not for \"previous/preceding\"",
+    "ordinal/continuous day-count date (\"day 705 of Year 2\") — the Time terms assume a Gregorian Day-of-month inside a Month"
+   ],
+   "new_gaps": [
+    "a singular \"no N\" determiner subject of a verbal clause (\"No heavy sky-cat hunt had been seen\") is unsettled between the witness-denial bundle of Negation (events) and the strength-0 distributing rule of Negated verbal generic; only the rule form can carry the QuantifierPhrase \"no\" companion the instruction set calls mandatory for every explicit quantifier word, so under the witness reading the surface quantifier is silently lost",
+    "an anaphoric time-period restrictor on a habitual frame (\"a normal week of that season\") has no licensed form at all: the season may not become an entity, no antecedent supplies a season term, and Time takes only terms or bare constants — a licensed form would need a period constant for the season plus a head relating one period to another"
+   ],
+   "decision": "defect",
+   "defect_summary": "For \"of that season\" no compliant form is licensed — a time may never be an sk_ witness with a Member atom and there is no antecedent season term to propagate, so the restrictor must be left out and recorded as a gap. For \"about thirty\" no numeric slot may hold a distribution, so the compliant form is either the surface-phrase record (CardinalityPhrase sk_feather_2 \"about thirty\") or leaving the hedged count out entirely, never a ParticleFromNormal in Cardinality. For the sealed complement the compliant form adds, as a further conjunct of the same (And …) under Theme, the per-member rule with fresh variables — (Implication (PartOf $x sk_skycat_1) (And (Member (sk_molt $x) molt) (Patient (sk_molt $x) $x) (Might (sk_molt $x)) (Past (sk_molt $x)))).",
+   "notes": "(Day 704) for \"the previous night\" is acceptable improvisation, not a defect: the antecedent does supply a day term, so the decrement mirrors the licensed \"next/following\" increment and stays true and well-typed. The rest of the parse — the agentless passive perception denial, the projected sky_cat_hunt genus, the common-noun \"the Council\" with no Name atom, and the Might+Past pairing licensed by the perfect infinitive — is clean."
+  }
+ }
+}

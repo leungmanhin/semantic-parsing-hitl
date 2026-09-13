@@ -1,0 +1,169 @@
+{
+ "id": "E10-02",
+ "rule": "X — Spring of Year 2",
+ "texts": [
+  "On day 555 of Year 2, the spring equinox came.",
+  "The day was clear and warm.",
+  "The Council closed the salt-bloom season at the next full-moon meeting.",
+  "The stations of the Cliff Path stepped down salt-bloom additions during the following two weeks.",
+  "The Northcove returned to its summer cadence.",
+  "Cauldron Hall increased its distillation.",
+  "Hesper assigned an extra apprentice to the morning collection of silken threads."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000071",
+  "sentences": [
+   "On day 555 of Year 2, the spring equinox came.",
+   "The day was clear and warm.",
+   "The Council closed the salt-bloom season at the next full-moon meeting.",
+   "The stations of the Cliff Path stepped down salt-bloom additions during the following two weeks.",
+   "The Northcove returned to its summer cadence.",
+   "Cauldron Hall increased its distillation.",
+   "Hesper assigned an extra apprentice to the morning collection of silken threads."
+  ],
+  "parse": [
+   "(: eq_type (Member sk_equinox_1 spring_equinox) (STV 1.0 0.99))",
+   "(: eq_genus (Inheritance spring_equinox equinox) (STV 1.0 0.99))",
+   "(: come_ev (Member sk_come_1 come) (STV 1.0 0.99))",
+   "(: come_pat (Patient sk_come_1 sk_equinox_1) (STV 1.0 0.99))",
+   "(: come_tense (Past sk_come_1) (STV 1.0 0.99))",
+   "(: come_yr (Time sk_come_1 (Year 2)) (STV 1.0 0.99))",
+   "(: come_day (Time sk_come_1 (Day 555)) (STV 1.0 0.99))",
+   "(: day_type (Member sk_day_1 day) (STV 1.0 0.99))",
+   "(: day_yr (Time sk_day_1 (Year 2)) (STV 1.0 0.99))",
+   "(: day_day (Time sk_day_1 (Day 555)) (STV 1.0 0.99))",
+   "(: day_clear (Past (Member sk_day_1 clear)) (STV 1.0 0.99))",
+   "(: day_warm (Past (Member sk_day_1 warm)) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: season_type (Member sk_season_1 salt_bloom_season) (STV 1.0 0.99))",
+   "(: season_genus (Inheritance salt_bloom_season season) (STV 1.0 0.99))",
+   "(: meeting_type (Member sk_meeting_1 full_moon_meeting) (STV 1.0 0.99))",
+   "(: meeting_genus (Inheritance full_moon_meeting meeting) (STV 1.0 0.99))",
+   "(: close_ev (Member sk_close_1 close) (STV 1.0 0.99))",
+   "(: close_ag (Agent sk_close_1 sk_council_1) (STV 1.0 0.99))",
+   "(: close_pat (Patient sk_close_1 sk_season_1) (STV 1.0 0.99))",
+   "(: close_tense (Past sk_close_1) (STV 1.0 0.99))",
+   "(: close_at (At sk_close_1 sk_meeting_1) (STV 1.0 0.99))",
+   "(: path_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: stations_grp (GroupOf sk_stations_1 station) (STV 1.0 0.99))",
+   "(: stations_part (PartOf sk_stations_1 cliff_path) (STV 1.0 0.99))",
+   "(: additions_grp (GroupOf sk_additions_1 salt_bloom_addition) (STV 1.0 0.99))",
+   "(: additions_genus (Inheritance salt_bloom_addition addition) (STV 1.0 0.99))",
+   "(: stepdown_ev (Member sk_stepdown_1 step_down) (STV 1.0 0.99))",
+   "(: stepdown_ag (Agent sk_stepdown_1 sk_stations_1) (STV 1.0 0.99))",
+   "(: stepdown_pat (Patient sk_stepdown_1 sk_additions_1) (STV 1.0 0.99))",
+   "(: stepdown_tense (Past sk_stepdown_1) (STV 1.0 0.99))",
+   "(: stepdown_dur (Measure sk_stepdown_1 duration 2 week) (STV 1.0 0.99))",
+   "(: stepdown_seq (Before sk_close_1 sk_stepdown_1) (STV 1.0 0.99))",
+   "(: stepdown_rule (Implication (PartOf $x sk_stations_1) (And (Member (sk_stepdown $x) step_down) (Agent (sk_stepdown $x) $x) (Patient (sk_stepdown $x) sk_additions_1) (Past (sk_stepdown $x)))) (STV 1.0 0.9))",
+   "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+   "(: return_ev (Member sk_return_1 return) (STV 1.0 0.99))",
+   "(: return_pat (Patient sk_return_1 northcove) (STV 1.0 0.99))",
+   "(: return_tense (Past sk_return_1) (STV 1.0 0.99))",
+   "(: cadence_type (Member sk_cadence_1 summer_cadence) (STV 1.0 0.99))",
+   "(: cadence_genus (Inheritance summer_cadence cadence) (STV 1.0 0.99))",
+   "(: cadence_exp (Experiencer sk_cadence_1 northcove) (STV 1.0 0.99))",
+   "(: cadence_flat (Member northcove summer_cadence) (STV 1.0 0.99))",
+   "(: return_result (Result sk_return_1 sk_cadence_1) (STV 1.0 0.99))",
+   "(: hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+   "(: hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+   "(: distill_type (Member sk_distillation_1 distillation) (STV 1.0 0.99))",
+   "(: distill_ag (Agent sk_distillation_1 cauldron_hall) (STV 1.0 0.99))",
+   "(: increase_ev (Member sk_increase_1 increase) (STV 1.0 0.99))",
+   "(: increase_ag (Agent sk_increase_1 cauldron_hall) (STV 1.0 0.99))",
+   "(: increase_pat (Patient sk_increase_1 sk_distillation_1) (STV 1.0 0.99))",
+   "(: increase_tense (Past sk_increase_1) (STV 1.0 0.99))",
+   "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: appr_type (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+   "(: appr_extra (Member sk_apprentice_1 extra) (STV 1.0 0.99))",
+   "(: assign_ev (Member sk_assign_1 assign) (STV 1.0 0.99))",
+   "(: assign_ag (Agent sk_assign_1 hesper) (STV 1.0 0.99))",
+   "(: assign_th (Theme sk_assign_1 sk_apprentice_1) (STV 1.0 0.99))",
+   "(: assign_goal (Goal sk_assign_1 sk_collection_1) (STV 1.0 0.99))",
+   "(: assign_tense (Past sk_assign_1) (STV 1.0 0.99))",
+   "(: collection_type (Member sk_collection_1 collection) (STV 1.0 0.99))",
+   "(: collection_time (Time sk_collection_1 morning) (STV 1.0 0.99))",
+   "(: collection_of (Of sk_collection_1 silken_thread) (STV 1.0 0.99))",
+   "(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+   "(: thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000071",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 42,
+     "issue": "(Member northcove summer_cadence) asserts the Northcove IS a summer cadence: the change-of-kind State-result shape ('turned into a museum') was applied to 'returned to its summer cadence', where the subject resumes operating AT a cadence rather than becoming one, so the flat dual-emit half (and the (Experiencer sk_cadence_1 northcove) at 41) states the wrong fact."
+    },
+    {
+     "statement": null,
+     "issue": "The possessive 'its' in 'its summer cadence' is dropped - no (Possession sk_cadence_1 northcove), although the parallel 'its distillation' at statement 47 does carry its possessor through the event-noun subject-role rule."
+    },
+    {
+     "statement": null,
+     "issue": "'the NEXT full-moon meeting' loses 'next' entirely: no ordering atom relates the meeting to the equinox, while the parse does emit (Before sk_close_1 sk_stepdown_1) for 'the following two weeks', so the same qualifier is carried in one place and silently dropped in the other."
+    },
+    {
+     "statement": 3,
+     "issue": "(Patient sk_come_1 sk_equinox_1) makes the equinox a change-of-state undergoer; an arriving equinox neither changes nor self-propels, so the intransitive-subject tests give Theme (or Agent as the stated fallback), and the light-verb-over-event-noun rule would put the date atoms on sk_equinox_1 with no separate come event."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a time-denoting definite NP as clause subject coreferring with a stated date ('On day 555 ... The day was clear and warm') - Time atoms are specified to attach to an event witness or event-denoting noun, so (Time sk_day_1 (Day 555)) on a day entity is outside the stated attachment rule, and there is no identity relation to use instead",
+    "'during / for the following two weeks' - a bare temporal-interval NP: During requires an eventuality as its outer argument, and no encoding refers to an interval span itself",
+    "'the next N' where N is an event-noun rather than a calendar unit ('the next full-moon meeting') - the next/following term-propagation rule covers morning / day / week / month / year only",
+    "'returned to its X' (resumption of a prior operating mode) - neither the motion-result Goal route nor the change-of-kind State-result route fits a mode/cadence NP, and nothing licenses a 'back to a prior state' reading",
+    "a day-of-year date in a non-Gregorian calendar ('day 555 of Year 2') - the (Day n) term takes the integer, but the seeded calendar-ordering machinery assumes day-of-month numbering"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Strong elsewhere: the phrasal verb step_down kept whole, the definite-group per-member distribution rule, the 'its distillation' possessor as the event-noun's Agent, and the nominalization's (Of sk_collection_1 silken_thread) with the material-adjective modifier genus are all exactly as the instruction set specifies."
+  },
+  "adjudication": {
+   "id": "evtp-000071",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "The change-of-kind State-result shape is licensed only where the subject genuinely comes to be the predicate ('the depot turned into a museum'), and the Northcove resumes operating AT a cadence rather than becoming one, so the flat (Member northcove summer_cadence) - and the (Experiencer sk_cadence_1 northcove) that anchors it - put a plain falsehood into the KB."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "'its summer cadence' is a possessive pronoun over a possessed noun that is not a part or component of the possessor, which the Possessive / genitive NP rule maps to (Possession sk_cadence_1 northcove); no atom carries it, and Core patterns bars silently dropping stated content."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Core patterns states that a stated restriction or qualifier is never silently dropped, and the 'the next / the following X' rule itself mandates an explicit (Before <antecedent> <new>) sequence atom - which this parse emitted for 'the following two weeks' and omitted entirely for 'the next full-moon meeting'."
+    },
+    {
+     "index": 3,
+     "verdict": "refute",
+     "reason": "An abstract temporal occurrence as an intransitive subject fits none of the enumerated classes (change-of-state undergoer, un-powered relocation of cargo / documents / institutions, self-powered mover), while the natural-process clause's own rationale - the subject 'undergoes the motion, it does not initiate it' - licenses Patient; and the light-verb rule names only occur / happen / take place, so reifying a come event is the ordinary verbal-clause route."
+    }
+   ],
+   "gaps_confirmed": [
+    "a time-denoting definite NP as clause subject coreferring with a stated date ('The day was clear and warm') - Time atoms are specified for event witnesses or event-denoting nouns, and no identity relation exists for 'the day' = day 555 of Year 2",
+    "'during the following two weeks' - a bare temporal-interval NP: During needs an eventuality as its outer argument and nothing refers to an interval span itself",
+    "'the next N' where N is an event-noun ('the next full-moon meeting') - the next / following term-propagation rule covers morning / day / week / month / year only",
+    "'returned to its X' (resumption of a prior operating mode) - neither the motion-result Goal route nor the change-of-kind State-result route fits a mode NP, and nothing licenses a 'back to a prior state' reading",
+    "'day 555 of Year 2' - day-of-year dating in a non-Gregorian calendar; (Day n) takes the integer but the seeded ordering machinery presumes day-of-month"
+   ],
+   "new_gaps": [
+    "the adjacency component of 'the next <event-noun>' has NO licensed carrier at all: Before records posteriority only, Ordinal takes a rank integer or the symbol last, and no head says 'the first one after' - so the qualifier can be carried only in half",
+    "an abstract temporal event ('the spring equinox') as an intransitive subject - the intransitive-subject role tests enumerate physical and institutional classes only (change-of-state undergoer, un-powered relocation, self-powered mover, fluid / gas / gravity-driven natural process), so nothing decides Patient vs Theme for an occurrence that simply arrives",
+    "whether an occurrence verb over a time-denoting event noun ('the equinox came', 'winter came') is a light verb - the no-separate-event rule names only occur / happen / take place, leaving 'come' / 'arrive' unrouted"
+   ],
+   "decision": "defect",
+   "defect_summary": "For 'returned to its summer cadence' the compliant form keeps the return event and attaches the cadence as its own entity by the surface-preposition oblique - (Member sk_cadence_1 summer_cadence) (To sk_return_1 sk_cadence_1) - emitting neither (Experiencer sk_cadence_1 northcove) nor the flat (Member northcove summer_cadence). The possessive 'its' is then carried by (Possession sk_cadence_1 northcove), exactly as the Possessive / genitive NP rule specifies. For 'the next full-moon meeting' only the ordering half is licensed - (Before sk_come_1 sk_meeting_1), the explicit sequence atom the next/following rule mandates - and the adjacency half ('the very next one') has no licensed form at all, filed as a new gap.",
+   "notes": "Issue 3 is the only refuted one: an abstract temporal event as an intransitive subject falls outside every enumerated role class, and 'come' is not among the three named light verbs. The rest of the parse is strong - step_down kept whole, the definite-group per-member rule, 'its distillation' as the event noun's Agent, and the nominalization's (Of sk_collection_1 silken_thread) with the material-adjective modifier genus."
+  }
+ }
+}

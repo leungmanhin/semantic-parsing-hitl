@@ -1,0 +1,140 @@
+{
+ "id": "E10-09",
+ "rule": "X — Spring of Year 2",
+ "texts": [
+  "On day 690 of Year 2, Old Vesh asked the Council whether the sealed records in the Watch should be opened.",
+  "Brindle Coombe argued that the sealed records had been sealed for a reason.",
+  "Meren Tallowhand agreed with Brindle Coombe.",
+  "Old Vesh said that the open records alone shaped the village's memory.",
+  "The Council declined to open the sealed records.",
+  "The Council tabled the matter.",
+  "The Council agreed to revisit the question at the autumn-equinox meeting."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000080",
+  "sentences": [
+   "On day 690 of Year 2, Old Vesh asked the Council whether the sealed records in the Watch should be opened.",
+   "Brindle Coombe argued that the sealed records had been sealed for a reason.",
+   "Meren Tallowhand agreed with Brindle Coombe.",
+   "Old Vesh said that the open records alone shaped the village's memory.",
+   "The Council declined to open the sealed records.",
+   "The Council tabled the matter.",
+   "The Council agreed to revisit the question at the autumn-equinox meeting."
+  ],
+  "parse": [
+   "(: vesh_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: records1_grp (GroupOf sk_records_1 record) (STV 1.0 0.99))",
+   "(: watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: ask1_ev (Member sk_ask_1 ask) (STV 1.0 0.99))",
+   "(: ask1_exp (Experiencer sk_ask_1 old_vesh) (STV 1.0 0.99))",
+   "(: ask1_rec (Recipient sk_ask_1 sk_council_1) (STV 1.0 0.99))",
+   "(: ask1_theme (Theme sk_ask_1 (Whether (And (Member sk_open_1 open) (Patient sk_open_1 sk_records_1) (Obligated sk_open_1) (LocatedIn sk_records_1 sk_watch_1) (Implication (PartOf $x sk_records_1) (Member $x sealed))))) (STV 1.0 0.99))",
+   "(: ask1_past (Past sk_ask_1) (STV 1.0 0.99))",
+   "(: ask1_year (Time sk_ask_1 (Year 2)) (STV 1.0 0.99))",
+   "(: ask1_day (Time sk_ask_1 (Day 690)) (STV 1.0 0.99))",
+   "(: coombe_name (Name brindle_coombe \"Brindle Coombe\") (STV 1.0 0.99))",
+   "(: argue1_ev (Member sk_argue_1 argue) (STV 1.0 0.99))",
+   "(: argue1_exp (Experiencer sk_argue_1 brindle_coombe) (STV 1.0 0.99))",
+   "(: argue1_theme (Theme sk_argue_1 (And (Member sk_seal_1 seal) (Patient sk_seal_1 sk_records_1) (Past sk_seal_1) (For sk_seal_1 sk_reason_1) (Member sk_reason_1 reason))) (STV 1.0 0.99))",
+   "(: argue1_past (Past sk_argue_1) (STV 1.0 0.99))",
+   "(: tallowhand_name (Name meren_tallowhand \"Meren Tallowhand\") (STV 1.0 0.99))",
+   "(: agree1_ev (Member sk_agree_1 agree) (STV 1.0 0.99))",
+   "(: agree1_exp (Experiencer sk_agree_1 meren_tallowhand) (STV 1.0 0.99))",
+   "(: agree1_stim (Stimulus sk_agree_1 brindle_coombe) (STV 1.0 0.99))",
+   "(: agree1_past (Past sk_agree_1) (STV 1.0 0.99))",
+   "(: say1_ev (Member sk_say_1 say) (STV 1.0 0.99))",
+   "(: say1_exp (Experiencer sk_say_1 old_vesh) (STV 1.0 0.99))",
+   "(: records2_grp (GroupOf sk_records_2 record) (STV 1.0 0.99))",
+   "(: village1_type (Member sk_village_1 village) (STV 1.0 0.99))",
+   "(: memory1_type (Member sk_memory_1 memory) (STV 1.0 0.99))",
+   "(: say1_theme (Theme sk_say_1 (And (Member sk_shape_1 shape) (Agent sk_shape_1 sk_records_2) (Patient sk_shape_1 sk_memory_1) (Past sk_shape_1) (Only sk_records_2 sk_shape_1) (Implication (PartOf $x sk_records_2) (Member $x open)) (Possession sk_memory_1 sk_village_1))) (STV 1.0 0.99))",
+   "(: say1_past (Past sk_say_1) (STV 1.0 0.99))",
+   "(: decline1_ev (Member sk_decline_1 decline) (STV 1.0 0.99))",
+   "(: decline1_ag (Agent sk_decline_1 sk_council_1) (STV 1.0 0.99))",
+   "(: decline1_theme (Theme sk_decline_1 sk_open_2) (STV 1.0 0.99))",
+   "(: decline1_past (Past sk_decline_1) (STV 1.0 0.99))",
+   "(: open2_ev (Member sk_open_2 open) (STV 1.0 0.99))",
+   "(: open2_ag (Agent sk_open_2 sk_council_1) (STV 1.0 0.99))",
+   "(: open2_pat (Patient sk_open_2 sk_records_1) (STV 1.0 0.99))",
+   "(: table1_ev (Member sk_table_1 table) (STV 1.0 0.99))",
+   "(: table1_ag (Agent sk_table_1 sk_council_1) (STV 1.0 0.99))",
+   "(: table1_pat (Patient sk_table_1 sk_matter_1) (STV 1.0 0.99))",
+   "(: matter1_type (Member sk_matter_1 matter) (STV 1.0 0.99))",
+   "(: table1_past (Past sk_table_1) (STV 1.0 0.99))",
+   "(: agree2_ev (Member sk_agree_2 agree) (STV 1.0 0.99))",
+   "(: agree2_ag (Agent sk_agree_2 sk_council_1) (STV 1.0 0.99))",
+   "(: agree2_theme (Theme sk_agree_2 sk_revisit_1) (STV 1.0 0.99))",
+   "(: agree2_past (Past sk_agree_2) (STV 1.0 0.99))",
+   "(: revisit1_ev (Member sk_revisit_1 revisit) (STV 1.0 0.99))",
+   "(: revisit1_ag (Agent sk_revisit_1 sk_council_1) (STV 1.0 0.99))",
+   "(: revisit1_theme (Theme sk_revisit_1 sk_question_1) (STV 1.0 0.99))",
+   "(: question1_type (Member sk_question_1 question) (STV 1.0 0.99))",
+   "(: revisit1_time (Time sk_revisit_1 sk_meeting_1) (STV 1.0 0.99))",
+   "(: meeting1_type (Member sk_meeting_1 autumn_equinox_meeting) (STV 1.0 0.99))",
+   "(: meeting1_genus (Inheritance autumn_equinox_meeting meeting) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000080",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 18,
+     "issue": "\"agreed with\" is an eventive verb (it passes the progressive test — \"they are agreeing\"), so its subject should be Agent, not the stative-psych Experiencer; the same parse correctly uses Agent for agree at index 41."
+    },
+    {
+     "statement": 19,
+     "issue": "\"agreed WITH Brindle Coombe\" is a prepositional verb whose object must go in the preposition-named oblique (With ...) — the instruction set's own \"dealt with the appeal\" case — not in the psych role Stimulus."
+    },
+    {
+     "statement": 48,
+     "issue": "(Time sk_revisit_1 sk_meeting_1) puts an event-denoting entity witness in the Time slot, which takes calendar/clock structured terms or deictic/named time constants; \"at the autumn-equinox meeting\" is the preposition-named oblique (At ...), by the same line that sends \"in the final round\" to In rather than During/Time."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "A graded/weak deontic inside a seal (\"asked whether the records SHOULD be opened\") — \"should\" is specified as (Obligated e) at strength 0.7, but a sealed complement is one term carrying a single STV, so the weakening has no carrier and the seal records a flat Obligated; this is the strength analogue of the registered no-polarity-in-seal limitation, which the document states only for negation.",
+    "The interim projection table lists only Member/Name typing as projecting out of an attitude seal, and says nothing about a definite PLURAL referent's GroupOf (or Cardinality) atom — the parse projects (GroupOf sk_records_1 record) and (GroupOf sk_records_2 record) to top level, which is the sensible reading but is not licensed by the table as written."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The seals themselves are well built — Whether for the indirect polar question, sealed Past for the past perfect with no cross-seal Before, indefinite \"a reason\" kept inside while definite typing projects, and \"sealed\"/\"open\" distributed as per-member rules inside the seal. \"Declined to open\" follows the control-verb doctrine exactly, which does leave the opening's atoms asserted at top level at full strength — a consequence of the doctrine, not a parse defect."
+  },
+  "adjudication": {
+   "id": "evtp-000080",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "\"Agree\" accepts the progressive (\"they are agreeing\"), so it is eventive, and the instruction set reserves Experiencer for a holder \"exactly when the complement seals\" — with a PP object and no sealed complement the subject is an ordinary Agent, as the same parse has for agree at index 41."
+    },
+    {
+     "index": 1,
+     "verdict": "partial",
+     "reason": "The real half stands — Stimulus is defined only as a psych state's object, so it is unlicensed once the subject is not an Experiencer — but that (With ...) is the uniquely licensed remedy is overstated: the instruction set's own Reciprocals example puts \"argue with\"'s object in Theme, and CoAgent covers an animate comitative \"with\", with no stated tie-break."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "The Time slot takes structured calendar/clock terms or deictic/named time constants, never an entity witness, and the instruction set explicitly routes a framing NP like \"in the final round\" to the preposition-named oblique, so (Time sk_revisit_1 sk_meeting_1) is ill-typed where (At sk_revisit_1 sk_meeting_1) is licensed."
+    }
+   ],
+   "gaps_confirmed": [
+    "A weak deontic inside a seal (\"whether the records should be opened\"): \"should\" is (Obligated e) at strength 0.7, but a sealed complement is one term under a single STV, so the weakening has no carrier — the strength analogue of the registered no-polarity-in-seal limitation.",
+    "The interim projection table licenses only Member/Name typing out of an attitude seal and never names a definite PLURAL's GroupOf, which the strength-0 denial rule does name explicitly; the parse's top-level GroupOf is the evident intent but is not literally licensed by the table as written."
+   ],
+   "new_gaps": [
+    "No tie-break for a prepositional-verb \"with\" taking an animate object (\"agreed with Brindle Coombe\"): the mechanical prepositional-verb rule sends the NP to the (With ...) oblique, Reciprocals assigns \"argue with\"'s object to Theme, and Thematic roles offers CoAgent for a comitative \"with\" — three licensed-looking forms for one clause.",
+    "A negative-implicative control verb (\"declined / refused / failed to V\") routes through the control-verb doctrine, which reifies the complement as asserted top-level class and role atoms with NO carrier for the non-occurrence the sentence states — while the parallel refusal wording \"would not V\" is explicitly given the strength-0 denial bundle; a licensed form would need to record that the complement event did not occur.",
+    "\"day 690 of Year 2\" is a day-of-year ordinal with no month, but (Day <n>) is specified only as a calendar date's day-of-month, so the two readings are indistinguishable downstream."
+   ],
+   "decision": "defect",
+   "defect_summary": "For \"Meren Tallowhand agreed with Brindle Coombe\" the compliant form is (Agent sk_agree_1 meren_tallowhand) with the with-phrase moved out of Stimulus — to the preposition-named (With sk_agree_1 brindle_coombe) or to the Theme the instruction set's own \"argue with\" example uses, a choice it does not settle (filed in new_gaps); for the revisit clause the compliant form is the preposition-named oblique (At sk_revisit_1 sk_meeting_1), the meeting's typing and genus atoms unchanged.",
+   "notes": "The seals are well built — Whether for the polar indirect question, sealed Past with no ordering atom crossing the seal, the indefinite \"a reason\" and the LocatedIn / Possession restrictors kept inside while definite typing projects. All confirmed defects are role- and slot-choices outside the seals."
+  }
+ }
+}

@@ -1,0 +1,13 @@
+{
+ "id": "E5-10",
+ "texts": [
+  "good. the day-131 date, the \"second\" ordinal and the arrival of the cold snap all land as separate queryable atoms; the day-of-year date rides the ordinary calendar day slot, which carries the content.",
+  "good. \"that night\" automatically picks up day 131 from the previous sentence, and \"unusually sharp\" keeps both the property and its degree, tense included.",
+  "good. the counted group of three, the Cliff Path location and the \"before dawn\" deadline are all covered, and a per-lantern rule is emitted so an individual lantern can be asked about later.",
+  "good. the holding is a full event with the lanterns as its subject, the salt-bloom as what is held and the mire-essence as where, plus the matching per-lantern rule.",
+  "mixed: the parse correctly reuses the same going-out event as the previous sentence, but \"despite the salt-bloom\" is a concession over a noun phrase, which the instruction set does not cover, so the translator has to guess which eventuality the concession runs against. It guessed the lanterns' holding of the salt-bloom, which is right here, but the guess is not licensed by any rule; spell the second half out as a clause instead: \"The three lanterns went out although they held salt-bloom.\"",
+  "bad: \"recorded X as Y\" is a construction the translator does not cover, so the classification comes out as a flat standalone fact -- the night simply is an extreme cold event -- with nothing tying it to the Council's recording, and the attribution is lost. A finite that-clause attributes it properly: \"The Council recorded that the night was an extreme cold event.\"",
+  "bad: \"held four weeks of supply\" gives the translator no licensed way to carry a coverage quantity, so the whole reported clause collapsed into a single measurement atom -- the holding event, its class and the feather store's role as its subject are all gone, and what Tessa reported can no longer be queried as an event. State the coverage as a duration instead: \"Tessa Brae reported to the Council that the feather store would last four weeks.\"",
+  "mixed: all the content is there, but the half-store is filed under the wrong object role -- the instruction set lists \"use\" with objects that are not changed, while this parse used the changed-object role, so a later \"what did the wraith response use?\" need not match what was stored. Writing \"consumed\" makes the stored role the correct one: \"The wraith response had consumed half of the autumn feather store.\""
+ ]
+}

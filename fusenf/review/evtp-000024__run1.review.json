@@ -1,0 +1,20 @@
+{"id": "evtp-000024", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 30, "issue": "sk_weeks_1 is minted as a referent for \"those two weeks\" but never given a class atom, so an untyped referent symbol appears in the output and then fills slots at 39, 46 and 57."},
+   {"statement": 39, "issue": "The Time role is filled with an entity witness (sk_weeks_1 here and at 46; sk_autumn_1/sk_autumn_2 at 21 and 68) rather than a structured calendar term or a named/deictic time constant."},
+   {"statement": 57, "issue": "(During sk_collect_1 sk_weeks_1) nests the collecting inside something that is not a reified eventuality, while During is specified as relating two reified eventualities."},
+   {"statement": null, "issue": "The three past-perfect clauses (had been visible / had hunted / had molted) emit Past but no Before ordering, although the passage supplies the day-60 visibility event for them to precede."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "Approximated cardinal count (\"about four sky-cats\", \"about ten\", \"about twelve feathers\", \"about thirty-five\"): Cardinality takes a native integer, ParticleFromNormal is defined only for Measure/Time magnitudes, and CardinalityPhrase is defined for vague quantities with no exact number normalized to a canonical lexicon string.",
+   "Normalcy-baseline framing (\"In a normal autumn about ten sky-cats are visible ...\") — a typical/expected value under normal conditions; there is no typicality operator, and the indefinite-witness route asserts one particular autumn.",
+   "Anaphoric multi-unit time-span NP (\"in those two weeks\", \"during those two weeks\"): term propagation is specified for single day-level or coarser calendar terms, not for a stated N-unit interval, so the span has no licensed referent or Time filler.",
+   "Day-of-year dating in a fictional calendar (\"On day 60 of Year 1\"): (Day n) is defined as a calendar day inside a month/date, not a day ordinal within a year.",
+   "Quantity-per-time-unit rate on an event's object (\"about twelve feathers per morning\"): TimesPer counts occurrences and the compound <unit>_per_<unit> Measure form is defined for a bearer's own magnitude, so the \"twelve per morning\" binding has no single licensed carrier."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Roles, compound decomposition (sky_cat/cliff_spire), group + per-member distribution handling, and the reified-state route for \"were visible\" all follow the instruction set; the weak points are concentrated in the temporal encoding. Approximated counts were routed to CardinalityPhrase with non-lexicon strings (\"about four\"), which no seeded phrase rule can map back to a bound."}

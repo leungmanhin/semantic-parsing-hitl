@@ -1,0 +1,170 @@
+{
+ "id": "E6-02",
+ "rule": "VI — The second new-moon harvest",
+ "texts": [
+  "On day 155 of Year 1, six sky-cats were visible on the cliff-spires in the morning.",
+  "Tessa Brae collected about twenty feathers per morning in that week.",
+  "Tessa Brae reported to the Council that the sky-cats had begun to return.",
+  "Bevin Coombe asked the Council to consider Halden for a permanent station.",
+  "Halden had tended the Stilllight Lantern well since the wraith.",
+  "The Council approved an apprenticeship-completion track for Halden."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000042",
+  "sentences": [
+   "On day 155 of Year 1, six sky-cats were visible on the cliff-spires in the morning.",
+   "Tessa Brae collected about twenty feathers per morning in that week.",
+   "Tessa Brae reported to the Council that the sky-cats had begun to return.",
+   "Bevin Coombe asked the Council to consider Halden for a permanent station.",
+   "Halden had tended the Stilllight Lantern well since the wraith.",
+   "The Council approved an apprenticeship-completion track for Halden."
+  ],
+  "parse": [
+   "(: s1_grp (GroupOf sk_sky_cats_1 sky_cat) (STV 1.0 0.99))",
+   "(: s1_grp_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: s1_card (Cardinality sk_sky_cats_1 6) (STV 1.0 0.99))",
+   "(: s1_spire_grp (GroupOf sk_cliff_spires_1 cliff_spire) (STV 1.0 0.99))",
+   "(: s1_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: s1_vis (Member sk_visible_1 visible) (STV 1.0 0.99))",
+   "(: s1_vis_exp (Experiencer sk_visible_1 sk_sky_cats_1) (STV 1.0 0.99))",
+   "(: s1_vis_loc (Location sk_visible_1 sk_cliff_spires_1) (STV 1.0 0.99))",
+   "(: s1_vis_yr (Time sk_visible_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_vis_day (Time sk_visible_1 (Day 155)) (STV 1.0 0.99))",
+   "(: s1_vis_morn (Time sk_visible_1 morning) (STV 1.0 0.99))",
+   "(: s1_vis_past (Past sk_visible_1) (STV 1.0 0.99))",
+   "(: s1_vis_rule (Implication (PartOf $x sk_sky_cats_1) (Member $x visible)) (STV 1.0 0.9))",
+   "(: s2_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+   "(: s2_ev (Member sk_collect_1 collect) (STV 1.0 0.99))",
+   "(: s2_ag (Agent sk_collect_1 tessa_brae) (STV 1.0 0.99))",
+   "(: s2_th (Theme sk_collect_1 sk_feathers_1) (STV 1.0 0.99))",
+   "(: s2_grp (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+   "(: s2_card (Cardinality sk_feathers_1 (ParticleFromNormal 20 2)) (STV 1.0 0.99))",
+   "(: s2_morn (Time sk_collect_1 morning) (STV 1.0 0.99))",
+   "(: s2_every (Every sk_collect_1 1 day) (STV 1.0 0.99))",
+   "(: s2_past (Past sk_collect_1) (STV 1.0 0.99))",
+   "(: s3_ev (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: s3_exp (Experiencer sk_report_1 tessa_brae) (STV 1.0 0.99))",
+   "(: s3_rec (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s3_council (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s3_theme (Theme sk_report_1 (And (Member sk_begin_1 begin) (Agent sk_begin_1 sk_sky_cats_1) (Theme sk_begin_1 sk_return_1) (Past sk_begin_1) (Member sk_return_1 return) (Agent sk_return_1 sk_sky_cats_1) (Ongoing sk_return_1) (Implication (PartOf $x sk_sky_cats_1) (And (Member (sk_begin $x) begin) (Agent (sk_begin $x) $x) (Theme (sk_begin $x) (sk_return $x)) (Past (sk_begin $x)) (Member (sk_return $x) return) (Agent (sk_return $x) $x) (Ongoing (sk_return $x)))))) (STV 1.0 0.99))",
+   "(: s3_past (Past sk_report_1) (STV 1.0 0.99))",
+   "(: s4_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+   "(: s4_ev (Member sk_ask_1 ask) (STV 1.0 0.99))",
+   "(: s4_ag (Agent sk_ask_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: s4_rec (Recipient sk_ask_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s4_theme (Theme sk_ask_1 sk_consider_1) (STV 1.0 0.99))",
+   "(: s4_past (Past sk_ask_1) (STV 1.0 0.99))",
+   "(: s4_cons_ev (Member sk_consider_1 consider) (STV 1.0 0.99))",
+   "(: s4_cons_ag (Agent sk_consider_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s4_cons_th (Theme sk_consider_1 halden) (STV 1.0 0.99))",
+   "(: s4_cons_for (For sk_consider_1 sk_station_1) (STV 1.0 0.99))",
+   "(: s4_station (Member sk_station_1 station) (STV 1.0 0.99))",
+   "(: s4_station_prop (Member sk_station_1 permanent) (STV 1.0 0.99))",
+   "(: s4_name2 (Name halden \"Halden\") (STV 1.0 0.99))",
+   "(: s5_ev (Member sk_tend_1 tend) (STV 1.0 0.99))",
+   "(: s5_ag (Agent sk_tend_1 halden) (STV 1.0 0.99))",
+   "(: s5_pat (Patient sk_tend_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: s5_manner (Manner sk_tend_1 well) (STV 1.0 0.99))",
+   "(: s5_past (Past sk_tend_1) (STV 1.0 0.99))",
+   "(: s5_ong (Ongoing sk_tend_1) (STV 1.0 0.99))",
+   "(: s5_start (Start sk_tend_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: s5_lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: s5_lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+   "(: s5_wraith (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+   "(: s6_ev (Member sk_approve_1 approve) (STV 1.0 0.99))",
+   "(: s6_ag (Agent sk_approve_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s6_th (Theme sk_approve_1 sk_track_1) (STV 1.0 0.99))",
+   "(: s6_ben (Beneficiary sk_approve_1 halden) (STV 1.0 0.99))",
+   "(: s6_past (Past sk_approve_1) (STV 1.0 0.99))",
+   "(: s6_track (Member sk_track_1 apprenticeship_completion_track) (STV 1.0 0.99))",
+   "(: s6_track_genus (Inheritance apprenticeship_completion_track track) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000042",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 18,
+     "issue": "Cardinality's count slot is specified as a native integer, but the parse puts a ParticleFromNormal distribution in it for \"about twenty\"."
+    },
+    {
+     "statement": null,
+     "issue": "The frame adverbial \"in that week\" is dropped entirely, so the collecting habit is asserted without its stated temporal restriction."
+    },
+    {
+     "statement": 12,
+     "issue": "The distributed flat half of the past-tense copular \"were visible\" concludes a bare (Member $x visible) with no Past wrapper, although the surface tense is required to wrap every categorical atom the clause yields."
+    },
+    {
+     "statement": 47,
+     "issue": "(Start sk_tend_1 sk_wraith_1) fills the interval Start slot with an entity witness typed (Member sk_wraith_1 wraith) rather than a time term or a reified eventuality."
+    },
+    {
+     "statement": 20,
+     "issue": "\"about twenty feathers per morning\" is encoded as one shared ~20-feather group under a recurring event, so the per-morning count reads as the same twenty feathers every morning."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "approximated cardinal count (\"about twenty N\") — Cardinality takes a native integer, CardinalityPhrase covers only number-less vague quantities, and ParticleFromNormal is licensed only in Measure/clock slots",
+    "a count distributed per occasion under a habitual/frequency reading (\"twenty feathers per morning\") — no way to scope the count inside each recurrence",
+    "anaphoric week-level temporal frame (\"in that week\") — there is no Week term, and term propagation has no week-level term in the antecedent to copy",
+    "interval \"since <entity NP>\" where the anchor is an elliptical/metonymic event (\"since the wraith\") — Start's argument is defined as a time term and the event-noun anchor rule needs an eventuality",
+    "ordinal day-of-year in a non-Gregorian calendar (\"day 155 of Year 1\") — (Day n) is defined as the day slot of a calendar date, so (Day 155) overloads it",
+    "an indefinite introduced inside a top-level-reified control complement (\"consider Halden for a permanent station\") is asserted to exist at top level; only seals have a non-committal carrier for such a witness"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The harder constructions are handled well: the control complement of \"asked ... to consider\" is reified at top level with the object controller copied in, and the sealed report complement keeps its past perfect inside the seal with no cross-seal Before and carries the plural distribution rule as a sealed conjunct."
+  },
+  "adjudication": {
+   "id": "evtp-000042",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Cardinality's count slot is specified as \"a native integer\" and ParticleFromNormal is licensed only in Measure-family magnitude slots (Measures & units; the approximate clock-time value slot), so a distribution term there is ill-typed and would break the hard-integer Compute test the counting-question rule prescribes."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Core patterns bars silently dropping a stated restriction, and here the omission genuinely widens the claim: (Every sk_collect_1 1 day) with no window asserts a standing daily habit the text confines to that one week, while term propagation licensed carrying at least the antecedent's (Time sk_collect_1 (Year 1))."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Status predicates: \"the surface tense decides, mechanically ... it wraps every categorical atom the clause yields\", so the distributed flat half of \"were visible\" must conclude (Past (Member $x visible)); the bare conclusion asserts present visibility of each sky-cat, which the sentence does not state."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "Start/End take a time term (Year/Month/Day/Weekday/Hour, or a day-part constant), but sk_wraith_1 is an entity witness explicitly typed (Member sk_wraith_1 wraith), so a \"when did the tending start?\" query binds a creature in a time slot."
+    },
+    {
+     "index": 4,
+     "verdict": "confirm",
+     "reason": "One event witness with one ~20-member feather group under (Every sk_collect_1 1 day) says the very same twenty feathers were collected every morning — false of \"about twenty feathers per morning\", and the count is equally wrong read as the week's aggregate."
+    }
+   ],
+   "gaps_confirmed": [
+    "approximated cardinal count (\"about twenty N\") — Cardinality demands a native integer, CardinalityPhrase covers only number-less vague quantities, and ParticleFromNormal is confined to Measure-family slots",
+    "a count scoped per occasion under a habitual/frequency reading (\"twenty feathers per morning\") — no way to put the count inside each recurrence",
+    "anaphoric week-level temporal frame (\"in that week\") — the term inventory has no Week, so term propagation has nothing at that level to copy",
+    "interval \"since <entity NP>\" with an elliptical/metonymic event anchor (\"since the wraith\") — Start takes a time term and Before takes an eventuality, and the NP supplies neither",
+    "ordinal day-of-year in a non-Gregorian calendar (\"day 155 of Year 1\") — (Day n) is the day-of-month slot, so (Day 155) overloads it",
+    "an indefinite introduced inside a top-level-reified control complement (\"consider Halden for a permanent station\") gets a top-level witness asserting a station that does not yet exist; only a seal has a non-committal carrier for it"
+   ],
+   "new_gaps": [
+    "a habitual/frequency claim confined to a stated past window (\"collected ... per morning in that week\") — Every/TimesPer carry no interval slot, WithinLast is now-anchored and backward-only, and the frequency section's unmarked-habitual form asserts a standing disposition rather than a one-week one",
+    "a rate whose counted noun is a participant rather than an occurrence (\"twenty feathers per morning\") — TimesPer counts event occurrences only, and the Measure rate-unit route (feather_per_morning) has no stated dimension, forcing the reserved `unspecified` scale"
+   ],
+   "decision": "defect",
+   "defect_summary": "The approximate count has no licensed integer form, so the compliant parse keeps the feather group, omits the Cardinality atom, and files the gap. The \"in that week\" frame should at minimum carry the propagated (Time sk_collect_1 (Year 1)), with the week-level residue filed as a gap, rather than leaving the daily habit unrestricted. The distribution rule's conclusion should be (Implication (PartOf $x sk_sky_cats_1) (Past (Member $x visible))). \"Since the wraith\" has no licensed carrier at all — Start wants a time term, Before wants an eventuality, and sk_wraith_1 is an entity — so the phrase should be left unencoded and filed as a gap. The per-morning count likewise has no per-occasion scope, so it must be dropped rather than ridden on one shared group shared across every recurrence.",
+   "notes": "The control complement of \"asked ... to consider\" (top-level, tenseless, object controller copied in) and the sealed report complement (past perfect kept inside the seal, plural distribution rule as a sealed conjunct) are both handled as the instruction set prescribes. Three of the five confirmed defects are the same underlying shortfall — a count and a window that the frequency machinery cannot scope — so a single sentence drives most of this record's loss."
+  }
+ }
+}

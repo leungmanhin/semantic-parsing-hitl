@@ -1,0 +1,102 @@
+{
+ "id": "E5-01",
+ "rule": "V — First frost and midwinter",
+ "texts": [
+  "On day 92 of Year 1, the first hard frost came.",
+  "The harbor was white with rime in the morning.",
+  "The cold wind blew off the sea from dusk until dawn.",
+  "Every lantern on the Cliff Path held salt-bloom in its mire-essence.",
+  "The mire-essence burned slowly.",
+  "Every lantern on the Cliff Path stayed lit from dusk until dawn."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000030",
+  "sentences": [
+   "On day 92 of Year 1, the first hard frost came.",
+   "The harbor was white with rime in the morning.",
+   "The cold wind blew off the sea from dusk until dawn.",
+   "Every lantern on the Cliff Path held salt-bloom in its mire-essence.",
+   "The mire-essence burned slowly.",
+   "Every lantern on the Cliff Path stayed lit from dusk until dawn."
+  ],
+  "parse": [
+   "(: s1_frost_type (Member sk_frost_1 frost) (STV 1.0 0.99))",
+   "(: s1_frost_hard (Member sk_frost_1 hard) (STV 1.0 0.99))",
+   "(: s1_come_ev (Member sk_come_1 come) (STV 1.0 0.99))",
+   "(: s1_come_pat (Patient sk_come_1 sk_frost_1) (STV 1.0 0.99))",
+   "(: s1_come_past (Past sk_come_1) (STV 1.0 0.99))",
+   "(: s1_come_day (Time sk_come_1 (Day 92)) (STV 1.0 0.99))",
+   "(: s1_come_year (Time sk_come_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_frost_ord (Ordinal sk_frost_1 1 frost) (STV 1.0 0.99))",
+   "(: s2_harbor_type (Member sk_harbor_1 harbor) (STV 1.0 0.99))",
+   "(: s2_white_st (Member sk_white_1 white) (STV 1.0 0.99))",
+   "(: s2_white_exp (Experiencer sk_white_1 sk_harbor_1) (STV 1.0 0.99))",
+   "(: s2_white_with (With sk_white_1 rime) (STV 1.0 0.99))",
+   "(: s2_white_time (Time sk_white_1 morning) (STV 1.0 0.99))",
+   "(: s2_white_past (Past sk_white_1) (STV 1.0 0.99))",
+   "(: s2_white_flat (Past (Member sk_harbor_1 white)) (STV 1.0 0.99))",
+   "(: s3_wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+   "(: s3_wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+   "(: s3_blow_ev (Member sk_blow_1 blow) (STV 1.0 0.99))",
+   "(: s3_blow_pat (Patient sk_blow_1 sk_wind_1) (STV 1.0 0.99))",
+   "(: s3_sea_type (Member sk_sea_1 sea) (STV 1.0 0.99))",
+   "(: s3_blow_src (Source sk_blow_1 sk_sea_1) (STV 1.0 0.99))",
+   "(: s3_blow_start (Start sk_blow_1 dusk) (STV 1.0 0.99))",
+   "(: s3_blow_end (End sk_blow_1 dawn) (STV 1.0 0.99))",
+   "(: s3_blow_past (Past sk_blow_1) (STV 1.0 0.99))",
+   "(: s4_path_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: s4_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: s4_saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: s4_mireessence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: s4_hold_rule (Implication (And (Member $x lantern) (On $x cliff_path)) (And (Member (sk_hold $x) hold) (Agent (sk_hold $x) $x) (Theme (sk_hold $x) salt_bloom) (Location (sk_hold $x) (sk_mire_essence $x)) (Member (sk_mire_essence $x) mire_essence) (PartOf (sk_mire_essence $x) $x) (Past (sk_hold $x)))) (STV 1.0 0.9))",
+   "(: s4_hold_q (QuantifierPhrase lantern hold \"every\") (STV 1.0 0.99))",
+   "(: s5_essence_type (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: s5_burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: s5_burn_pat (Patient sk_burn_1 sk_mire_essence_1) (STV 1.0 0.99))",
+   "(: s5_burn_manner (Manner sk_burn_1 slowly) (STV 1.0 0.99))",
+   "(: s5_burn_past (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: s6_lit_rule (Implication (And (Member $x lantern) (On $x cliff_path)) (And (Member (sk_lit $x) lit) (Experiencer (sk_lit $x) $x) (Still (sk_lit $x)) (Start (sk_lit $x) dusk) (End (sk_lit $x) dawn) (Past (sk_lit $x)) (Past (Member $x lit)))) (STV 1.0 0.9))",
+   "(: s6_lit_q (QuantifierPhrase lantern lit \"every\") (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000030",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 7,
+     "issue": "(Ordinal sk_frost_1 1 frost) fills the scale slot with the entity's own class; the instruction licenses only the associated event (here come) or an explicit '-est' dimension in that slot."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "cross-sentence definite anaphora to a referent that exists only inside a quantified rule: 'The mire-essence' (S5) refers back to the per-lantern Skolem term (sk_mire_essence $x) minted in S4's universal rule, and the instruction set gives no way for a later sentence to corefer with a rule-internal referent"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "S5's fresh sk_mire_essence_1 witness is the only licensed fallback but it severs the link to S4's per-lantern mire-essence, so 'the mire-essence burned' floats free of the lanterns. The rest follows the instruction set closely: copular time-modifier reification plus flat atom (S2), interval Start/End on dusk/dawn, the 'stayed lit' continuation copular with Still, and the two universal rules carrying the 'on the Cliff Path' restriction as a premise conjunct."
+  },
+  "adjudication": {
+   "id": "evtp-000030",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Comparatives & degree fixes Ordinal's third slot to an ordering — 'the associated event, or an explicit -est dimension' ('Priya was the first to respond' -> (Ordinal priya 1 respond) beside the reified respond event) — and this clause supplies that event (come), so the entity's own class 'frost' is not a licensed filler and the stored atom would miss the query form the instruction set prescribes."
+    }
+   ],
+   "gaps_confirmed": [
+    "Cross-sentence definite anaphora into a rule-internal referent: S5's 'The mire-essence' points at the per-lantern Skolem term (sk_mire_essence $x) minted inside S4's universal, and nothing in the instruction set lets a later sentence corefer with a referent that exists only under a rule binding."
+   ],
+   "new_gaps": [
+    "A day-of-year date in a non-Gregorian calendar ('day 92 of Year 1'): the Time term inventory is Year/Month/Day/Weekday/Hour/Minute, so (Day 92) borrows the day-of-month slot — the granularity is misrecorded, and with no Month the seeded year/month/day ordering rules cannot order two such dates against each other."
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form is (Ordinal sk_frost_1 1 come) — the lemma of the clause's own reified event in the scale slot, exactly as 'the first to respond' yields (Ordinal priya 1 respond).",
+   "notes": "The rest holds up under the instruction set: S2's time-modified copular reifies the state plus the flat (Past (Member sk_harbor_1 white)) and hangs 'with rime' on the state witness as an adjective-PP complement, 'came' / 'blew' take Patient as non-volitional natural processes, dusk/dawn ride Start/End, and both universals carry 'on the Cliff Path' as an entity-attached (On $x cliff_path) premise conjunct with the mandatory QuantifierPhrase companion. S6's 'stayed lit' follows the continuation-copular shape — reified state + Still + flat atom + tense — distributed over the rule."
+  }
+ }
+}

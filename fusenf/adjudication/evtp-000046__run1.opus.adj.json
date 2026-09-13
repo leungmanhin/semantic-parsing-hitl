@@ -1,0 +1,28 @@
+{"id": "evtp-000046", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "confirm",
+    "reason": "Instrument is \"the means\" and its route/channel extension is worded for \"via / by way of\", while the mechanical rule says \"the head is the preposition actually used — never a synonym head for a near-fit reading\", so a medium the light passes through takes (Through sk_produce_1 sk_fog_1); as emitted the atom asserts the fog was the means of production, which the text does not state."},
+   {"index": 1,
+    "verdict": "confirm",
+    "reason": "Deposited threads are not created, destroyed, consumed or physically changed by the leaving, so the stated yes/no test (and its \"when unclear, default to Theme\" fallback) gives (Theme sk_leave_1 sk_threads_1); Patient asserts a change to the threads that never occurred."},
+   {"index": 2,
+    "verdict": "confirm",
+    "reason": "Cardinality's second slot is specified as \"a native integer\", and the counting section states that GreaterThan (the distribution comparator) \"is for distribution values, not plain counts\", so a ParticleFromNormal term there is ill-typed per the vocabulary."},
+   {"index": 3,
+    "verdict": "confirm",
+    "reason": "The anaphoric-temporal rule is mechanical — \"the next / the following morning\" takes \"the antecedent's day terms plus one ... plus the day-part, plus (Before <antecedent> <new>)\", and the day-only fallback applies solely \"if the antecedent's day is unknown\", which it is not here (day 246 of Year 1), so (Day 247) and (Year 1) were owed."}
+ ],
+ "gaps_confirmed": [
+   "Hedged exact count (\"about thirty-five silken threads\") — Cardinality requires a native integer and CardinalityPhrase requires no number, so an approximated count has no carrier.",
+   "Per-member distribution over a plural subject with an indefinite plural OBJECT (\"The nightmoths left silken threads\") — the rule form copies the object symbol in, so every member's event takes the whole thread group; the per-binding Skolem group exists only for an explicit universal with a stated number, not for group distribution.",
+   "Present-participle complement of a maintenance verb (\"kept the lantern burning\") — the State-result shape is illustrated only with adjectival results, and the decide-by-function rule leaves it unsettled whether `burning` is the adjective or the verb's own reified ongoing event.",
+   "Ordinal day-of-year in a non-Gregorian calendar (\"day 246 of Year 1\") — (Day <n>) carries no day-of-month vs day-of-year distinction."
+ ],
+ "new_gaps": [
+   "A bare mass/kind object that is later re-mentioned as a definite (\"produced mist-light\" ... \"The mist-light attracted nightmoths\") — the non-specific-object rule wants the bare kind filler, but a bare kind cannot then fill an individual role slot for the coreferring definite, and no rule licenses promoting it to a witness."
+ ],
+ "decision": "defect",
+ "defect_summary": "\"Through the fog\" should take the preposition-named oblique (Through sk_produce_1 sk_fog_1) rather than Instrument; \"left silken threads\" should take (Theme sk_leave_1 sk_threads_1), in the group event and in the per-member rule alike; \"about thirty-five\" has NO licensed form — Cardinality demands a native integer and the hedge may not be silently dropped — so the count should be omitted with the gap recorded; and \"the next morning\" should carry (Time sk_collect_1 (Day 247)) and (Time sk_collect_1 (Year 1)) beside the day-part and the already-emitted Before.",
+ "notes": "Coreference across the passage, the phrasal verb come_in, the natural-force Patient subject, the silken_thread material-adjective fusion and the keep/Still/Result maintenance shape are all right. Note that the emitted distribution rule (statement 54) additionally hands every nightmoth the entire thread group, which is the reviewer's second gap showing up as a live over-assertion rather than a mere coverage hole."
+}

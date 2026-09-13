@@ -1,0 +1,161 @@
+{
+ "id": "E5-07",
+ "rule": "V — First frost and midwinter",
+ "texts": [
+  "On day 121 of Year 1, the wraith approached a lit lantern on the West Row.",
+  "The wraith drained mire-essence from the lantern.",
+  "The drained lantern gave weak mist-light for the rest of the night.",
+  "The weak mist-light attracted a handful of nightmoths.",
+  "The wraith persisted for eleven days.",
+  "The wraith drained six lanterns on the West Row during its persistence.",
+  "Keepers counted about six nightmoths at each drained lantern during the persistence.",
+  "The thread harvest at the West Row fell sharply during that week.",
+  "The West Row is a lantern-row on the Cliff Path near the Sunken Cove."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000037",
+  "sentences": [
+   "On day 121 of Year 1, the wraith approached a lit lantern on the West Row.",
+   "The wraith drained mire-essence from the lantern.",
+   "The drained lantern gave weak mist-light for the rest of the night.",
+   "The weak mist-light attracted a handful of nightmoths.",
+   "The wraith persisted for eleven days.",
+   "The wraith drained six lanterns on the West Row during its persistence.",
+   "Keepers counted about six nightmoths at each drained lantern during the persistence.",
+   "The thread harvest at the West Row fell sharply during that week.",
+   "The West Row is a lantern-row on the Cliff Path near the Sunken Cove."
+  ],
+  "parse": [
+   "(: wraith_type (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+   "(: row_name (Name west_row \"West Row\") (STV 1.0 0.99))",
+   "(: lantern1_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: lantern1_lit (Member sk_lantern_1 lit) (STV 1.0 0.99))",
+   "(: lantern1_on_row (On sk_lantern_1 west_row) (STV 1.0 0.99))",
+   "(: approach_ev (Member sk_approach_1 approach) (STV 1.0 0.99))",
+   "(: approach_ag (Agent sk_approach_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: approach_th (Theme sk_approach_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: approach_past (Past sk_approach_1) (STV 1.0 0.99))",
+   "(: approach_day (Time sk_approach_1 (Day 121)) (STV 1.0 0.99))",
+   "(: approach_year (Time sk_approach_1 (Year 1)) (STV 1.0 0.99))",
+   "(: drain1_ev (Member sk_drain_1 drain) (STV 1.0 0.99))",
+   "(: drain1_ag (Agent sk_drain_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: drain1_th (Theme sk_drain_1 mire_essence) (STV 1.0 0.99))",
+   "(: drain1_src (Source sk_drain_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: drain1_past (Past sk_drain_1) (STV 1.0 0.99))",
+   "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: lantern1_drained (Member sk_lantern_1 drained) (STV 1.0 0.99))",
+   "(: give_ev (Member sk_give_1 give) (STV 1.0 0.99))",
+   "(: give_ag (Agent sk_give_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: give_th (Theme sk_give_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: give_past (Past sk_give_1) (STV 1.0 0.99))",
+   "(: give_end (End sk_give_1 night) (STV 1.0 0.99))",
+   "(: mistlight_type (Member sk_mist_light_1 mist_light) (STV 1.0 0.99))",
+   "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: mistlight_weak (Member sk_mist_light_1 weak) (STV 1.0 0.99))",
+   "(: attract_ev (Member sk_attract_1 attract) (STV 1.0 0.99))",
+   "(: attract_ag (Agent sk_attract_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: attract_th (Theme sk_attract_1 sk_nightmoths_1) (STV 1.0 0.99))",
+   "(: attract_past (Past sk_attract_1) (STV 1.0 0.99))",
+   "(: nightmoths1_group (GroupOf sk_nightmoths_1 nightmoth) (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: nightmoths1_card (CardinalityPhrase sk_nightmoths_1 \"a handful\") (STV 1.0 0.99))",
+   "(: persist_ev (Member sk_persist_1 persist) (STV 1.0 0.99))",
+   "(: persist_exp (Experiencer sk_persist_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: persist_dur (Measure sk_persist_1 duration 11 day) (STV 1.0 0.99))",
+   "(: persist_past (Past sk_persist_1) (STV 1.0 0.99))",
+   "(: drain2_ev (Member sk_drain_2 drain) (STV 1.0 0.99))",
+   "(: drain2_ag (Agent sk_drain_2 sk_wraith_1) (STV 1.0 0.99))",
+   "(: drain2_pat (Patient sk_drain_2 sk_lanterns_1) (STV 1.0 0.99))",
+   "(: lanterns1_group (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+   "(: lanterns1_card (Cardinality sk_lanterns_1 6) (STV 1.0 0.99))",
+   "(: lanterns1_on_row (On sk_lanterns_1 west_row) (STV 1.0 0.99))",
+   "(: drain2_during (During sk_drain_2 sk_persist_1) (STV 1.0 0.99))",
+   "(: drain2_past (Past sk_drain_2) (STV 1.0 0.99))",
+   "(: keepers1_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+   "(: keeper_count_rule (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_count $x) count) (Agent (sk_count $x) sk_keepers_1) (Theme (sk_count $x) (sk_nightmoths $x)) (GroupOf (sk_nightmoths $x) nightmoth) (CardinalityPhrase (sk_nightmoths $x) \"about six\") (Location (sk_count $x) $x) (During (sk_count $x) sk_persist_1) (Past (sk_count $x)))) (STV 1.0 0.9))",
+   "(: keeper_count_q (QuantifierPhrase lantern count \"each\") (STV 1.0 0.99))",
+   "(: thread_harvest_type (Member sk_thread_harvest_1 thread_harvest) (STV 1.0 0.99))",
+   "(: thread_harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+   "(: thread_harvest_loc (LocatedIn sk_thread_harvest_1 west_row) (STV 1.0 0.99))",
+   "(: fall_ev (Member sk_fall_1 fall) (STV 1.0 0.99))",
+   "(: fall_th (Theme sk_fall_1 sk_thread_harvest_1) (STV 1.0 0.99))",
+   "(: fall_during (During sk_fall_1 sk_persist_1) (STV 1.0 0.99))",
+   "(: fall_past (Past sk_fall_1) (STV 1.0 0.99))",
+   "(: row_type (Member west_row lantern_row) (STV 1.0 0.99))",
+   "(: row_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+   "(: row_on_path (On west_row cliff_path) (STV 1.0 0.99))",
+   "(: path_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: row_near_cove (Near west_row sunken_cove) (STV 1.0 0.99))",
+   "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000037",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 22,
+     "issue": "\"gave weak mist-light for the rest of the night\" is rendered as (End sk_give_1 night), which states the giving ended at night rather than lasting the night's remainder, and silently drops the \"rest of\" restriction."
+    },
+    {
+     "statement": 53,
+     "issue": "\"during that week\" is resolved to the eleven-day persistence eventuality, asserting a temporal containment the text never states — no week-denoting antecedent exists anywhere in the passage."
+    },
+    {
+     "statement": 46,
+     "issue": "(CardinalityPhrase (sk_nightmoths $x) \"about six\") puts a hedged exact number into the slot the instruction set reserves for numberless canonical vague phrases (\"several\", \"a handful\", \"dozens\"), so no seeded rule can map it to a bound."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "extent adverbial naming the remainder of a time period (\"for the rest of the night\") — RestOf covers entity/mass partitives, duration Measure needs a count, and Start/End take calendar terms, so no licensed carrier exists",
+    "degree adverb on a verb (\"fell sharply\") — the instruction set itself states it has no licensed slot and must be left out",
+    "anaphoric temporal NP at a granularity the antecedent never supplies (\"during that week\") — term propagation has no week-level term to copy",
+    "approximate/hedged count (\"about six nightmoths\") — Cardinality's magnitude is specified as a native integer and CardinalityPhrase is for phrases with no number; the ParticleFromNormal approximation is defined only for Measure",
+    "ordinal/continuous day-count date in a non-Gregorian calendar (\"day 121 of Year 1\") — the Time terms assume a Gregorian Day-of-month inside a Month"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "No CONTEXT block was supplied, so q3 is na. The \"each drained lantern\" universal is ranged over the six-lantern group of the previous sentence, which silently excludes the first lantern (asserted drained, never asserted a member of that group)."
+  },
+  "adjudication": {
+   "id": "evtp-000037",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Core patterns bars dropping a stated restriction (\"an unencodable qualifier never becomes an unqualified assertion\"), yet \"the rest of\" is dropped and what remains, (End sk_give_1 night), is the Intervals section's \"until Y\" storage — the giving stopped when night came, roughly the converse of its spanning the night's remainder."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "No word in the passage denotes a week, and the Time section forbids inventing a term the antecedent does not supply, so (During sk_fall_1 sk_persist_1) asserts containment in the eleven-day persistence that \"during that week\" does not state — you cannot point at the words that put that atom there."
+    },
+    {
+     "index": 2,
+     "verdict": "refute",
+     "reason": "Hedged counts are genuinely uncovered (Cardinality's magnitude is a native integer and ParticleFromNormal is defined only for Measure/clock magnitudes), and (CardinalityPhrase sk_nightmoths \"about six\") is a true, well-typed surface record of the phrase actually used — the calibration line licenses such improvisation, and failing to match a seeded lexicon string is the coverage gap the reviewer separately (and rightly) filed, not a parse defect."
+    }
+   ],
+   "gaps_confirmed": [
+    "extent adverbial naming the remainder of a time period (\"for the rest of the night\") — no licensed carrier: Start/End take time terms, Measure duration needs a count, RestOf needs an entity/mass whole",
+    "degree adverb on a verb (\"fell sharply\") — the instruction set itself states such adverbs have no licensed slot and must be left out",
+    "anaphoric temporal NP at a granularity the antecedent never supplies (\"during that week\") — term propagation has no week-level term to copy",
+    "approximate/hedged count (\"about six nightmoths\") — Cardinality's magnitude is a native integer and CardinalityPhrase is specified for phrases with no number",
+    "ordinal/continuous day-count date in a non-Gregorian calendar (\"day 121 of Year 1\") — the Time terms assume a Gregorian Day-of-month inside a Month"
+   ],
+   "new_gaps": [
+    "\"during <time-period NP>\" has no head at all when the period is neither an eventuality nor a stated calendar term: During requires two reified eventualities and Time requires a term, so a licensed form would need a period-denoting term at week granularity (a Week/Quarter-style constructor) plus a containment head that accepts a period rather than an event",
+    "no head expresses \"for the remainder of period P\": RestOf ranges over entity/mass wholes, and a time period can never be an entity here (deictic and day-part times are bare constants and the Time section forbids minting an sk_ witness or Member atom for one), so a licensed form would need an interval whose Start is the event's onset and whose End is the period's own end"
+   ],
+   "decision": "defect",
+   "defect_summary": "For \"for the rest of the night\" no compliant form is licensed — the give event should carry its class, roles and Past and no extent atom at all, with the extent recorded as a gap, since End/Start, Measure duration and RestOf each fail on a time period. For \"during that week\" the compliant form is likewise no temporal atom: with no week-denoting antecedent there is nothing to propagate, and no head may substitute the persistence eventuality for the week.",
+   "notes": "The parse also omits the per-member distribution rule that Cardinality mandates for a counted plural with a distributive predicate (\"drained six lanterns\"), which the reviewer did not file. The reviewer's note about \"each drained lantern\" ranging over the six-lantern group is a defensible narrowing, not a defect — an (And (Member $x lantern) (Member $x drained)) range would also have been licensed."
+  }
+ }
+}

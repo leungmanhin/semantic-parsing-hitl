@@ -1,0 +1,130 @@
+{
+ "id": "E4-04",
+ "rule": "IV — The sky-cat drought",
+ "texts": [
+  "On day 75 of Year 1, a sky-cat hunted nightmoths at the Sunken Cove on a clear night.",
+  "Sky-cats rarely hunt at the Sunken Cove.",
+  "The Council discussed burning wintergloss at the Stilllight Lantern.",
+  "Wintergloss repels nightmoths from a lantern.",
+  "The Council declined the wintergloss, because the Stilllight Lantern drew a handful of nightmoths."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000027",
+  "sentences": [
+   "On day 75 of Year 1, a sky-cat hunted nightmoths at the Sunken Cove on a clear night.",
+   "Sky-cats rarely hunt at the Sunken Cove.",
+   "The Council discussed burning wintergloss at the Stilllight Lantern.",
+   "Wintergloss repels nightmoths from a lantern.",
+   "The Council declined the wintergloss, because the Stilllight Lantern drew a handful of nightmoths."
+  ],
+  "parse": [
+   "(: s1_skycat_type (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))",
+   "(: s1_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: s1_hunt_ev (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: s1_hunt_ag (Agent sk_hunt_1 sk_sky_cat_1) (STV 1.0 0.99))",
+   "(: s1_hunt_th (Theme sk_hunt_1 sk_nightmoths_1) (STV 1.0 0.99))",
+   "(: s1_nightmoths_grp (GroupOf sk_nightmoths_1 nightmoth) (STV 1.0 0.99))",
+   "(: s1_nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: s1_hunt_loc (Location sk_hunt_1 sunken_cove) (STV 1.0 0.99))",
+   "(: s1_cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: s1_cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+   "(: s1_night_type (Member sk_night_1 night) (STV 1.0 0.99))",
+   "(: s1_night_clear (Member sk_night_1 clear) (STV 1.0 0.99))",
+   "(: s1_hunt_time_night (Time sk_hunt_1 sk_night_1) (STV 1.0 0.99))",
+   "(: s1_hunt_time_day (Time sk_hunt_1 (Day 75)) (STV 1.0 0.99))",
+   "(: s1_hunt_time_year (Time sk_hunt_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_hunt_past (Past sk_hunt_1) (STV 1.0 0.99))",
+   "(: s2_skycat_hunt_rule (Implication (Member $x sky_cat) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Location (sk_hunt $x) sunken_cove))) (STV 0.1 0.9))",
+   "(: s2_skycat_hunt_q (QuantifierPhrase sky_cat hunt \"rarely\") (STV 1.0 0.99))",
+   "(: s3_council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s3_discuss_ev (Member sk_discuss_1 discuss) (STV 1.0 0.99))",
+   "(: s3_discuss_ag (Agent sk_discuss_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s3_discuss_past (Past sk_discuss_1) (STV 1.0 0.99))",
+   "(: s3_discuss_th (Theme sk_discuss_1 sk_burn_1) (STV 1.0 0.99))",
+   "(: s3_burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: s3_burn_pat (Patient sk_burn_1 wintergloss) (STV 1.0 0.99))",
+   "(: s3_burn_loc (Location sk_burn_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: s3_lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: s3_lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+   "(: s4_repel_ev (Member sk_repel_1 repel) (STV 0.9 0.9))",
+   "(: s4_repel_ag (Agent sk_repel_1 wintergloss) (STV 0.9 0.9))",
+   "(: s4_repel_th (Theme sk_repel_1 nightmoth) (STV 0.9 0.9))",
+   "(: s4_repel_src (Source sk_repel_1 lantern) (STV 0.9 0.9))",
+   "(: s5_decline_ev (Member sk_decline_1 decline) (STV 1.0 0.99))",
+   "(: s5_decline_ag (Agent sk_decline_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s5_decline_th (Theme sk_decline_1 wintergloss) (STV 1.0 0.99))",
+   "(: s5_decline_past (Past sk_decline_1) (STV 1.0 0.99))",
+   "(: s5_draw_ev (Member sk_draw_1 draw) (STV 1.0 0.99))",
+   "(: s5_draw_ag (Agent sk_draw_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: s5_draw_th (Theme sk_draw_1 sk_nightmoths_2) (STV 1.0 0.99))",
+   "(: s5_draw_past (Past sk_draw_1) (STV 1.0 0.99))",
+   "(: s5_nightmoths_grp (GroupOf sk_nightmoths_2 nightmoth) (STV 1.0 0.99))",
+   "(: s5_nightmoths_card (CardinalityPhrase sk_nightmoths_2 \"a handful\") (STV 1.0 0.99))",
+   "(: s5_because (Because sk_decline_1 sk_draw_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000027",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 28,
+     "issue": "\"Wintergloss repels nightmoths from a lantern\" is a verbal generic with bare kind-denoting NPs on both sides, yet it is emitted as a flat top-level event with the kind symbols wintergloss and nightmoth filling Agent/Theme, rather than the kind-level relation or the distributing Implication rule the instruction set mandates for a generic over a kind."
+    },
+    {
+     "statement": 29,
+     "issue": "Genericity is expressed by lowering each separate role atom to (STV 0.9 0.9), which is not a licensed use of the confidence/strength dial — the dial grades kind-level claims and rules, not the individual role atoms of one reified event."
+    },
+    {
+     "statement": 31,
+     "issue": "The indefinite \"a lantern\" in the Source oblique is rendered as the bare constant lantern instead of a fresh witness plus its (Member ... lantern) atom, contrary to the rule that an oblique's object NP follows ordinary NP rules (an article mints a witness)."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a gerund complement of a verb that is neither a control verb, a finite-that-clause attitude verb, a perception verb nor a causative (\"The Council discussed burning wintergloss\") — no routing is specified, so occurrence-neutrality of the complement event rests only on analogy to the control-verb pattern",
+    "an indefinite temporal NP carrying an adjectival modifier (\"on a clear night\") — day-parts are bare Time symbols and calendar expressions are structured terms, with no licensed slot for a modifier and no licensed witness filler for the Time role",
+    "a day-of-year ordinal calendar (\"day 75 of Year 1\") — (Day n) is defined as the day-of-month granularity term, so (Day 75) beside (Year 1) has no stated reading",
+    "a two-bare-kind relational generic that also carries an oblique (\"repels nightmoths from a lantern\") — the kind-level relation has no slot for the third argument, and only the analogous adjectivally-restricted-subject case is addressed"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Sentences 1, 2, 3 and 5 track the instruction set closely (compound genus atoms, the rarely-rule with its QuantifierPhrase companion, the capitalized-common-noun \"the Council\" with no Name, CardinalityPhrase for \"a handful\", Because with the main clause first). The one clear routing defect is sentence 4's generic."
+  },
+  "adjudication": {
+   "id": "evtp-000027",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Both arguments of 'Wintergloss repels nightmoths' are bare kind-denoting NPs (mass subject, bare-plural object), which is the stated trigger for the kind-level relation (Repel wintergloss nightmoth); reifying a flat event with the kind symbols in Agent/Theme is precisely the routing the relational-generic rule forbids ('not a per-instance rule', and the two forms 'are not comparable')."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "The dial is for generalizations only — 'Individual facts keep 0.99' — so (STV 0.9 0.9) on each separate role atom of one reified event witness grades role assignments the sentence states flatly, a placement the instruction set licenses nowhere (a generic's 0.9/0.9 rides the single kind-level atom or the Implication)."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "The oblique rule states that 'the oblique's object NP follows the ordinary NP rules (an article mints a witness with its kind atom; a bare mass / domain / proper name stays a constant)', and 'a lantern' carries an article, so the bare constant lantern with no typing atom anywhere in the parse violates it."
+    }
+   ],
+   "gaps_confirmed": [
+    "a gerund complement of a verb that is neither a control verb, a finite-that-clause attitude verb, a perception verb nor a causative ('discussed burning wintergloss') — no routing is stated, so occurrence-neutrality rests on analogy to the control-verb pattern",
+    "an indefinite, adjectivally modified temporal NP ('on a clear night') — day-parts are bare Time symbols and calendar expressions are structured terms, with no licensed modifier slot and no licensed witness filler for Time",
+    "a day-of-year ordinal calendar ('day 75 of Year 1') — (Day n) is exemplified only as the day-of-month granularity beside a (Month ...), so (Day 75) with (Year 1) has no stated reading",
+    "a two-bare-kind relational generic that also carries an oblique ('repels nightmoths from a lantern') — the kind-level relation has exactly two slots, and the escape to the distributing rule is licensed only for an adjectivally-restricted subject"
+   ],
+   "new_gaps": [
+    "definite anaphora to a bare mass constant ('burning wintergloss' ... 'declined the wintergloss'): the reserve rule bars the bare class symbol 'for a specific definite individual' while the anaphoric-definite rule mandates reusing the antecedent symbol, and nothing states how a specific portion of a previously-mentioned mass is encoded — minting sk_wintergloss_1 would sever the link to the s3 constant"
+   ],
+   "decision": "defect",
+   "defect_summary": "Sentence 4's compliant form is the single kind-level relation (: s4_repel (Repel wintergloss nightmoth) (STV 0.9 0.9)), not a reified event with kinds in role slots. That one atom is also the only place the empirical-generic 0.9/0.9 belongs; role atoms of an event witness are individual facts and keep 1.0/0.99 or do not exist. For 'from a lantern' NO compliant form is licensed — the kind-level relation has only two slots and the distributing-rule fallback is licensed only for an adjectivally-restricted subject — so the oblique must be dropped and the loss recorded as a gap, which is why the reviewer's witness remedy would be moot under the correct routing.",
+   "notes": "Sentences 1, 2, 3 and 5 are faithful: the sky_cat/nightmoth genus atoms, the strength-0.1 'rarely' rule with its QuantifierPhrase companion, 'the Council' as a Name-less capitalized common noun, the episodic bare-plural group witnesses, CardinalityPhrase for 'a handful', and (Because sk_decline_1 sk_draw_1) main-clause-first. The gap-territory improvisations — (Time sk_hunt_1 sk_night_1) for 'a clear night', (Day 75)/(Year 1), and the tenseless sk_burn_1 under discuss — emit nothing false or ill-typed and stand."
+  }
+ }
+}

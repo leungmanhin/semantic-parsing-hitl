@@ -1,0 +1,16 @@
+{
+ "id": "E7-06",
+ "texts": [
+  "mixed: the date, the agent, the lantern of the Harbor Station and \"at sundown\" all land, but \"on the thirtieth night of the solo stretch\" is a counted noun phrase in a time slot that only accepts calendar terms and day-part words, so the parse improvises by dropping a night entity into it. One word fixes it — \"during\" is the licensed way to nest one stretch of time inside an event: \"On day 259 of Year 1, Coraline Ash lit the lantern of the Harbor Station at sundown during the thirtieth night of the solo stretch.\" (As elsewhere in this batch, \"day 259 of Year 1\" still has no day-of-year term on our side; that one is ours to fix, not yours.)",
+  "good. the thirty solo nights come through as a counted group with its night genus, and the completing carries Coraline Ash as the one who did it.",
+  "good. the possessed solo count and the \"reached thirty\" endpoint both land, with thirty recorded as the value the count rose to.",
+  "good. \"met\" is treated as one meeting with both participants, dated to dawn on day 260 of Year 1.",
+  "mixed: the joint walk, both walkers and the Aelmere destination all land, but the directional \"back\" has no slot in our instruction set, so the fact that this was a return is dropped. If the return matters, put it in the verb: \"Coraline Ash and Pell returned to Aelmere together on foot.\"",
+  "good. the Council is one participant (nothing is distributed to its members), \"in an informal session\" is kept as the stated setting, and the day-260 date lands.",
+  "good. the investiture comes through with the Council acting on Coraline Ash, and her new Keeper status is recorded both as the resulting state and as a plain fact about her.",
+  "bad: \"her first lantern as a Keeper\" asks a rank to be restricted by a role, and our ordinal head has slots only for the thing, the rank and the scale — so \"as a Keeper\" is silently dropped and the parse asserts a flat first-ever lighting, which contradicts the lantern she lit on day 259; the same trailing phrase also restates her Keeper status, which sentence 7 has already established. The rank cannot be carried however it is worded, so drop it and state the ordering instead: \"Coraline Ash lit her lantern at sundown after the investiture.\"",
+  "good. the hand, the shoulder as a part of Coraline Ash, and the placing all land as stated.",
+  "good. the repetition and its agent land; \"the phrase\" is a first-mention definite in this passage, so it mints a referent with nothing said about its wording — faithful, since the passage never states the words.",
+  "good. parses as a fireable rule over villagers who are present, each getting their own repetition of the same phrase, with the \"every\" quantifier recorded alongside."
+ ]
+}

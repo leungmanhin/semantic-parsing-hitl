@@ -1,0 +1,30 @@
+{"id": "evtp-000071", "run": 1,
+ "issues": [
+  {"index": 0,
+   "verdict": "confirm",
+   "reason": "The change-of-kind State-result shape is licensed only where the subject genuinely comes to be the predicate ('the depot turned into a museum'), and the Northcove resumes operating AT a cadence rather than becoming one, so the flat (Member northcove summer_cadence) - and the (Experiencer sk_cadence_1 northcove) that anchors it - put a plain falsehood into the KB."},
+  {"index": 1,
+   "verdict": "confirm",
+   "reason": "'its summer cadence' is a possessive pronoun over a possessed noun that is not a part or component of the possessor, which the Possessive / genitive NP rule maps to (Possession sk_cadence_1 northcove); no atom carries it, and Core patterns bars silently dropping stated content."},
+  {"index": 2,
+   "verdict": "confirm",
+   "reason": "Core patterns states that a stated restriction or qualifier is never silently dropped, and the 'the next / the following X' rule itself mandates an explicit (Before <antecedent> <new>) sequence atom - which this parse emitted for 'the following two weeks' and omitted entirely for 'the next full-moon meeting'."},
+  {"index": 3,
+   "verdict": "refute",
+   "reason": "An abstract temporal occurrence as an intransitive subject fits none of the enumerated classes (change-of-state undergoer, un-powered relocation of cargo / documents / institutions, self-powered mover), while the natural-process clause's own rationale - the subject 'undergoes the motion, it does not initiate it' - licenses Patient; and the light-verb rule names only occur / happen / take place, so reifying a come event is the ordinary verbal-clause route."}
+ ],
+ "gaps_confirmed": [
+  "a time-denoting definite NP as clause subject coreferring with a stated date ('The day was clear and warm') - Time atoms are specified for event witnesses or event-denoting nouns, and no identity relation exists for 'the day' = day 555 of Year 2",
+  "'during the following two weeks' - a bare temporal-interval NP: During needs an eventuality as its outer argument and nothing refers to an interval span itself",
+  "'the next N' where N is an event-noun ('the next full-moon meeting') - the next / following term-propagation rule covers morning / day / week / month / year only",
+  "'returned to its X' (resumption of a prior operating mode) - neither the motion-result Goal route nor the change-of-kind State-result route fits a mode NP, and nothing licenses a 'back to a prior state' reading",
+  "'day 555 of Year 2' - day-of-year dating in a non-Gregorian calendar; (Day n) takes the integer but the seeded ordering machinery presumes day-of-month"
+ ],
+ "new_gaps": [
+  "the adjacency component of 'the next <event-noun>' has NO licensed carrier at all: Before records posteriority only, Ordinal takes a rank integer or the symbol last, and no head says 'the first one after' - so the qualifier can be carried only in half",
+  "an abstract temporal event ('the spring equinox') as an intransitive subject - the intransitive-subject role tests enumerate physical and institutional classes only (change-of-state undergoer, un-powered relocation, self-powered mover, fluid / gas / gravity-driven natural process), so nothing decides Patient vs Theme for an occurrence that simply arrives",
+  "whether an occurrence verb over a time-denoting event noun ('the equinox came', 'winter came') is a light verb - the no-separate-event rule names only occur / happen / take place, leaving 'come' / 'arrive' unrouted"
+ ],
+ "decision": "defect",
+ "defect_summary": "For 'returned to its summer cadence' the compliant form keeps the return event and attaches the cadence as its own entity by the surface-preposition oblique - (Member sk_cadence_1 summer_cadence) (To sk_return_1 sk_cadence_1) - emitting neither (Experiencer sk_cadence_1 northcove) nor the flat (Member northcove summer_cadence). The possessive 'its' is then carried by (Possession sk_cadence_1 northcove), exactly as the Possessive / genitive NP rule specifies. For 'the next full-moon meeting' only the ordering half is licensed - (Before sk_come_1 sk_meeting_1), the explicit sequence atom the next/following rule mandates - and the adjacency half ('the very next one') has no licensed form at all, filed as a new gap.",
+ "notes": "Issue 3 is the only refuted one: an abstract temporal event as an intransitive subject falls outside every enumerated role class, and 'come' is not among the three named light verbs. The rest of the parse is strong - step_down kept whole, the definite-group per-member rule, 'its distillation' as the event noun's Agent, and the nominalization's (Of sk_collection_1 silken_thread) with the material-adjective modifier genus."}

@@ -1,0 +1,96 @@
+{
+ "id": "E4-03",
+ "rule": "IV — The sky-cat drought",
+ "texts": [
+  "On day 68 of Year 1, Pell told Coraline Ash that sky-cats molt while they hunt.",
+  "Pell told Coraline Ash that molting sky-cats drop feathers.",
+  "Coraline Ash wrote in the notebook that a thin sky-cat year brings a thin feather harvest.",
+  "Old Vesh told Pell that the village always keeps the Stilllight Lantern lit."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000026",
+  "sentences": [
+   "On day 68 of Year 1, Pell told Coraline Ash that sky-cats molt while they hunt.",
+   "Pell told Coraline Ash that molting sky-cats drop feathers.",
+   "Coraline Ash wrote in the notebook that a thin sky-cat year brings a thin feather harvest.",
+   "Old Vesh told Pell that the village always keeps the Stilllight Lantern lit."
+  ],
+  "parse": [
+   "(: tell1_ev (Member sk_tell_1 tell) (STV 1.0 0.99))",
+   "(: tell1_exp (Experiencer sk_tell_1 pell) (STV 1.0 0.99))",
+   "(: tell1_rec (Recipient sk_tell_1 coraline_ash) (STV 1.0 0.99))",
+   "(: tell1_theme (Theme sk_tell_1 (Implication (Member $x sky_cat) (And (Member (sk_molt $x) molt) (Patient (sk_molt $x) $x) (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (During (sk_molt $x) (sk_hunt $x))))) (STV 1.0 0.99))",
+   "(: tell1_past (Past sk_tell_1) (STV 1.0 0.99))",
+   "(: tell1_day (Time sk_tell_1 (Day 68)) (STV 1.0 0.99))",
+   "(: tell1_year (Time sk_tell_1 (Year 1)) (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: tell2_ev (Member sk_tell_2 tell) (STV 1.0 0.99))",
+   "(: tell2_exp (Experiencer sk_tell_2 pell) (STV 1.0 0.99))",
+   "(: tell2_rec (Recipient sk_tell_2 coraline_ash) (STV 1.0 0.99))",
+   "(: tell2_theme (Theme sk_tell_2 (Implication (And (Member $y sky_cat) (Member $y molting)) (And (Member (sk_drop $y) drop) (Agent (sk_drop $y) $y) (Theme (sk_drop $y) feather)))) (STV 1.0 0.99))",
+   "(: tell2_past (Past sk_tell_2) (STV 1.0 0.99))",
+   "(: write1_ev (Member sk_write_1 write) (STV 1.0 0.99))",
+   "(: write1_exp (Experiencer sk_write_1 coraline_ash) (STV 1.0 0.99))",
+   "(: write1_loc (Location sk_write_1 sk_notebook_1) (STV 1.0 0.99))",
+   "(: notebook_type (Member sk_notebook_1 notebook) (STV 1.0 0.99))",
+   "(: write1_theme (Theme sk_write_1 (And (Member sk_year_1 sky_cat_year) (Member sk_year_1 thin) (Member sk_harvest_1 feather_harvest) (Member sk_harvest_1 thin) (Member sk_bring_1 bring) (Agent sk_bring_1 sk_year_1) (Patient sk_bring_1 sk_harvest_1))) (STV 1.0 0.99))",
+   "(: write1_past (Past sk_write_1) (STV 1.0 0.99))",
+   "(: skycatyear_genus (Inheritance sky_cat_year year) (STV 1.0 0.99))",
+   "(: featherharvest_genus (Inheritance feather_harvest harvest) (STV 1.0 0.99))",
+   "(: tell3_ev (Member sk_tell_3 tell) (STV 1.0 0.99))",
+   "(: tell3_exp (Experiencer sk_tell_3 old_vesh) (STV 1.0 0.99))",
+   "(: tell3_rec (Recipient sk_tell_3 pell) (STV 1.0 0.99))",
+   "(: tell3_theme (Theme sk_tell_3 (And (Member sk_keep_1 keep) (Agent sk_keep_1 sk_village_1) (Theme sk_keep_1 stilllight_lantern) (Result sk_keep_1 sk_lit_1) (Member sk_lit_1 lit) (Experiencer sk_lit_1 stilllight_lantern) (Still sk_lit_1) (Member stilllight_lantern lit))) (STV 1.0 0.99))",
+   "(: tell3_past (Past sk_tell_3) (STV 1.0 0.99))",
+   "(: oldvesh_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+   "(: village_type (Member sk_village_1 village) (STV 1.0 0.99))",
+   "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000026",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 26,
+     "issue": "The frequency adverb \"always\" in \"the village always keeps the Stilllight Lantern lit\" is dropped with no record at all — no QuantifierPhrase companion and no strength effect — so the sealed clause is indistinguishable from an unqualified \"the village keeps the lantern lit\"."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Frequency adverb on a habitual whose subject is a definite individual rather than a kind: the companion is specified as (QuantifierPhrase <kind> <verb-lemma> \"<word>\"), and there is no kind here; inside an attitude seal there is also no truth value for the frequency dial to set.",
+    "A day-of-year date (\"day 68 of Year 1\", no month): the calendar terms define (Day n) at day-of-month granularity, and the seeded date-ordering rules key on year/month/day, so (Day 68)+(Year 1) is representable but not interpretable as stated."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Everything else checks out: tell/write route as non-factive attitudes (Experiencer holder, Recipient addressee, sealed Theme) with only definite/named typing and compound-genus atoms projected, the two generic complements become distributing rules with the adjectival restriction as a premise conjunct, and \"keeps ... lit\" uses the maintenance State-result shape with Result + Still + the flat atom kept inside the seal. The sealed rules' generic 0.9 strength is unexpressible inside a seal — the registered in-seal limitation, not a parse choice."
+  },
+  "adjudication": {
+   "id": "evtp-000026",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "partial",
+     "reason": "The loss is real — \"always\" leaves no trace and the sealed clause reads as unqualified — but the defect half falls: the Quantifiers section's own fallback for a frequency adverb with no slot (\"leave the unrepresentable adverbial out rather than mis-slot it\") covers exactly this case, since a sealed conjunct carries no truth value for the strength channel and the companion's (QuantifierPhrase <kind> <verb-lemma> \"<word>\") has no licensed filler for the definite individual \"the village\" (the companion \"only ever restates a range the rule itself quantifies — never a range that appears nowhere else in the parse\", which bars the kind village)."
+    }
+   ],
+   "gaps_confirmed": [
+    "Frequency adverb on a habitual whose subject is a definite individual, not a kind: the QuantifierPhrase companion's first slot is a kind range the claim does not quantify, so \"always\" has no surface-record carrier.",
+    "Inside an attitude seal there is no truth value for the frequency dial to set, so the strength channel of the two-channel frequency rule is unavailable there.",
+    "Day-of-year dating (\"day 68 of Year 1\", no month): (Day <n>) is day-of-month and the seeded date-ordering rules key on year/month/day, so (Day 68) + (Year 1) is emittable but not interpretable as stated."
+   ],
+   "new_gaps": [
+    "A sealed conjunct carries no TV, so both sealed generics (\"sky-cats molt while they hunt\", \"molting sky-cats drop feathers\") lose the 0.9 empirical-generic strength their unsealed rule form would carry — a sealed generic is indistinguishable from a sealed universal, and no licensed form inside the seal restores the distinction."
+   ],
+   "decision": "accept",
+   "defect_summary": "",
+   "notes": "Independently checked: tell/write route correctly as non-factive attitudes (Experiencer holder, Recipient addressee, sealed Theme, only definite/named typing and compound-genus atoms projected), \"keeps ... lit\" takes the maintenance State-result shape (Result + Still + flat atom) inside the seal, \"molting\" stays a participle-modifier adjective, and \"a thin sky-cat year\" correctly stays a witness rather than a generic (indefinite + verbal predicate). No emitted atom is false, ill-typed, or asserts more than the text states."
+  }
+ }
+}

@@ -1,0 +1,13 @@
+{"id": "evtp-000055", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "(Member sk_role_1 senior_keeper) is false and ill-typed: it makes the role witness an instance of the person-kind senior_keeper (the same witness the parse already types (Member sk_role_1 role)), whereas the text only names which office the role is, so the atom asserts something no words put there (Core patterns)."}],
+ "gaps_confirmed": ["A naming of-phrase whose complement states the head noun's content (\"the role of senior Keeper\"): the genitive routes cover possession, part-whole and a nominalization's object, none of which is an office-naming complement.",
+                    "Past-tense habitual (\"wrote her own log every night\"): Frequency & habitual schedules says the event stays unmarked, Status predicates puts (Past e) on a finite past clause, and nothing arbitrates.",
+                    "Manner PP (\"with ease\"): Manner is specified over how-adverbs only, and the \"with\"-phrase test splits solely CoAgent from Instrument, so a manner PP has no stated slot or filler form.",
+                    "Day-of-year ordinal dating (\"on day 365 of Year 2\"): (Day n) is defined as the day granularity of a calendar expression alongside (Month ...), so a day numbered within the year stores indistinguishably from a day-of-month.",
+                    "Emphatic possessive \"her own\": no carrier for the contrastive component beyond the plain Possession link."],
+ "new_gaps": ["Even the nearest licensed carrier for \"the role of senior Keeper\" — the true-relational-noun genitive (Possession sk_role_1 senior_keeper) — is opaque loose association, so the identity between the role and the office it names is unencodable; a licensed form would need to say that the role IS the senior-Keeper office, not merely that the two are linked."],
+ "decision": "defect",
+ "defect_summary": "The compliant form drops (Member sk_role_1 senior_keeper), keeps (Member sk_role_1 role) plus the senior_keeper genus/modifier decomposition, and attaches the of-phrase by the true-relational-noun genitive of Complements of nouns and adjectives — the opaque (Possession sk_role_1 senior_keeper) — which records the link without typing the role as a person; no licensed head records the naming/identity relation itself (filed in new_gaps).",
+ "notes": "Everything else holds up: the Harbor Station name+kind pair, the senior_keeper and keeper_family decompositions with the noun modifier correctly unexposed, the every-night slot + (Every e 1 day) cycle pair, and Experiencer on the stative \"came from\". (Manner sk_carry_1 ease) with a noun filler is graceful improvisation in gap territory — the atom is true of the clause — not a defect."}

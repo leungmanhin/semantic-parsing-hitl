@@ -1,0 +1,122 @@
+{
+ "id": "E9-05",
+ "rule": "IX — Smaller incidents through Year 2",
+ "texts": [
+  "On day 470 of Year 2, the first snow of Year 2 fell in the early evening.",
+  "The snow was gone by dawn.",
+  "Every lantern burned normally that night.",
+  "The cold wind did not blow that night.",
+  "The mist-light was visible from a great distance, because the snow reflected the mist-light.",
+  "Coraline Ash counted many nightmoths at the Harbor Station that week."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000065",
+  "sentences": [
+   "On day 470 of Year 2, the first snow of Year 2 fell in the early evening.",
+   "The snow was gone by dawn.",
+   "Every lantern burned normally that night.",
+   "The cold wind did not blow that night.",
+   "The mist-light was visible from a great distance, because the snow reflected the mist-light.",
+   "Coraline Ash counted many nightmoths at the Harbor Station that week."
+  ],
+  "parse": [
+   "(: p1_snow_type (Member sk_snow_1 snow) (STV 1.0 0.99))",
+   "(: p1_snow_ordinal (Ordinal sk_snow_1 1 fall) (STV 1.0 0.99))",
+   "(: p1_fall_class (Member sk_fall_1 fall) (STV 1.0 0.99))",
+   "(: p1_fall_patient (Patient sk_fall_1 sk_snow_1) (STV 1.0 0.99))",
+   "(: p1_fall_past (Past sk_fall_1) (STV 1.0 0.99))",
+   "(: p1_fall_year (Time sk_fall_1 (Year 2)) (STV 1.0 0.99))",
+   "(: p1_fall_day (Time sk_fall_1 (Day 470)) (STV 1.0 0.99))",
+   "(: p1_fall_daypart (Time sk_fall_1 early_evening) (STV 1.0 0.99))",
+   "(: p1_ee_genus (Inheritance early_evening evening) (STV 1.0 0.99))",
+   "(: p1_ee_early (Inheritance early_evening early) (STV 1.0 0.99))",
+   "(: p2_gone_class (Member sk_gone_1 gone) (STV 1.0 0.99))",
+   "(: p2_gone_exp (Experiencer sk_gone_1 sk_snow_1) (STV 1.0 0.99))",
+   "(: p2_gone_bound (TimeAtMost sk_gone_1 dawn) (STV 1.0 0.99))",
+   "(: p2_gone_past (Past sk_gone_1) (STV 1.0 0.99))",
+   "(: p2_gone_flat (Past (Member sk_snow_1 gone)) (STV 1.0 0.99))",
+   "(: p3_lantern_rule (Implication (Member $x lantern) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Manner (sk_burn $x) normally) (Time (sk_burn $x) (Year 2)) (Time (sk_burn $x) (Day 470)) (Time (sk_burn $x) night) (Past (sk_burn $x)))) (STV 1.0 0.9))",
+   "(: p3_lantern_quant (QuantifierPhrase lantern burn \"every\") (STV 1.0 0.99))",
+   "(: p4_wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+   "(: p4_wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+   "(: p4_wind_notblow (And (Member sk_blow_1 blow) (Patient sk_blow_1 sk_wind_1) (Time sk_blow_1 (Year 2)) (Time sk_blow_1 (Day 470)) (Time sk_blow_1 night) (Past sk_blow_1)) (STV 0.0 0.99))",
+   "(: p5_mistlight_type (Member sk_mist_light_1 mist_light) (STV 1.0 0.99))",
+   "(: p5_mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: p5_visible_class (Member sk_visible_1 visible) (STV 1.0 0.99))",
+   "(: p5_visible_exp (Experiencer sk_visible_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: p5_visible_source (Source sk_visible_1 sk_distance_1) (STV 1.0 0.99))",
+   "(: p5_distance_type (Member sk_distance_1 distance) (STV 1.0 0.99))",
+   "(: p5_distance_great (Member sk_distance_1 great) (STV 1.0 0.99))",
+   "(: p5_visible_past (Past sk_visible_1) (STV 1.0 0.99))",
+   "(: p5_visible_flat (Past (Member sk_mist_light_1 visible)) (STV 1.0 0.99))",
+   "(: p5_reflect_class (Member sk_reflect_1 reflect) (STV 1.0 0.99))",
+   "(: p5_reflect_agent (Agent sk_reflect_1 sk_snow_1) (STV 1.0 0.99))",
+   "(: p5_reflect_theme (Theme sk_reflect_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: p5_reflect_past (Past sk_reflect_1) (STV 1.0 0.99))",
+   "(: p5_because (Because sk_visible_1 sk_reflect_1) (STV 1.0 0.99))",
+   "(: p6_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: p6_count_class (Member sk_count_1 count) (STV 1.0 0.99))",
+   "(: p6_count_agent (Agent sk_count_1 coraline_ash) (STV 1.0 0.99))",
+   "(: p6_count_theme (Theme sk_count_1 sk_nightmoths_1) (STV 1.0 0.99))",
+   "(: p6_group (GroupOf sk_nightmoths_1 nightmoth) (STV 1.0 0.99))",
+   "(: p6_group_card (CardinalityPhrase sk_nightmoths_1 \"many\") (STV 1.0 0.99))",
+   "(: p6_nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: p6_count_loc (Location sk_count_1 harbor_station) (STV 1.0 0.99))",
+   "(: p6_station_type (Member harbor_station station) (STV 1.0 0.99))",
+   "(: p6_station_name (Name harbor_station \"Harbor Station\") (STV 1.0 0.99))",
+   "(: p6_count_past (Past sk_count_1) (STV 1.0 0.99))",
+   "(: p6_count_time (Time sk_count_1 (Year 2)) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000065",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 1,
+     "issue": "\"the first snow **of Year 2**\" drops the ordinal's stated restricting domain — `(Ordinal sk_snow_1 1 fall)` claims first-ever rather than first of that year (only partly recoverable from the fall event's own Year term)."
+    },
+    {
+     "statement": 46,
+     "issue": "\"that week\" is reduced to `(Time sk_count_1 (Year 2))`, so the anaphoric link to the day-470 week is not recorded; the conservative choice is right, but the week identity is lost."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "week-level temporal anchoring — the structured Time term vocabulary has Year / Month / Day / Weekday / Hour / Minute but no week term, so \"that week\" has no carrier under term propagation",
+    "a restricting domain on an `Ordinal` (\"the first snow of Year 2\") — the head has no slot for it and no entity-attached form is specified"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The rest is a close match to the instruction set: definite-projection out of the strength-0 denial, both reified-plus-flat copular dual-emits, precipitation and intransitive-subject roles, compound genus with an un-exposed noun modifier, and the name-with-kind-word handling of \"Harbor Station\". Treating `early_evening` as a decomposable compound kind rather than a bare day-part symbol is an extension, but a consistent one."
+  },
+  "adjudication": {
+   "id": "evtp-000065",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Core patterns states that a stated restriction is never silently dropped ('carry it, or leave the whole claim out and record the gap'), and no atom in the parse is traceable to the NP-internal 'of Year 2', so the bare (Ordinal sk_snow_1 1 fall) asserts rank 1 over snowfalls at large — more than the text states."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "This mistakes a coverage gap for a parse defect: the Time term inventory (Year/Month/Day/Weekday/Hour/Minute) has no week term, so term propagation can only copy the antecedent's stated day-level terms, and (Time sk_count_1 (Year 2)) is true of the content and well-typed."
+    }
+   ],
+   "gaps_confirmed": [
+    "no week-level Time term, so 'that week' has no carrier under anaphoric term propagation",
+    "a stated domain restriction on Ordinal — the head has no slot for it and no entity-attached carrier is specified"
+   ],
+   "new_gaps": [
+    "a day-of-year number ('day 470 of Year 2') has only the (Day <n>) term, which the instruction set exemplifies as day-of-month (June 5, 2021) and which the seeded same-year-month day-ordering rules read that way, so the two granularities are indistinguishable once stored"
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form is (Ordinal sk_snow_1 1 fall) beside an entity-attached restrictor carrying the stated Year-2 domain, in the AmongMost precedent's style ('one of the oldest orchards in the valley' keeps (In sk_orchard_1 sk_valley_1) on the entity); because no such carrier is licensed for a TEMPORAL domain — (Year 2) is a Time-family term and Time attaches to event witnesses, not to the snow substance witness — the only licensed form here is to drop the Ordinal claim entirely and record the gap rather than leave it unrestricted.",
+   "notes": "Everything else tracks the instruction set: definite typing projected out of the strength-0 wind denial, both reified-plus-flat copular dual-emits, the 'by dawn' TimeAtMost day-part bound, term propagation of day 470 / Year 2 / night onto the lantern rule and the wind denial, and the Kestrel-River handling of 'Harbor Station'. Decomposing early_evening as a compound day-part is improvisation, but every atom it emits is true and well-typed, so it is acceptable under the calibration line."
+  }
+ }
+}

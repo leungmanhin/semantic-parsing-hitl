@@ -1,0 +1,163 @@
+{
+ "id": "E7-03",
+ "rule": "VII — Midspring recovery",
+ "texts": [
+  "On day 246 of Year 1, a thin fog came in off the sea in the evening.",
+  "The fog reduced visibility on the Cliff Path.",
+  "Coraline Ash kept the lantern of the Harbor Station burning steadily.",
+  "The lantern produced mist-light through the fog.",
+  "The mist-light attracted nightmoths.",
+  "The nightmoths left silken threads on the lantern.",
+  "Coraline Ash collected about thirty-five silken threads from the lantern the next morning."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000046",
+  "sentences": [
+   "On day 246 of Year 1, a thin fog came in off the sea in the evening.",
+   "The fog reduced visibility on the Cliff Path.",
+   "Coraline Ash kept the lantern of the Harbor Station burning steadily.",
+   "The lantern produced mist-light through the fog.",
+   "The mist-light attracted nightmoths.",
+   "The nightmoths left silken threads on the lantern.",
+   "Coraline Ash collected about thirty-five silken threads from the lantern the next morning."
+  ],
+  "parse": [
+   "(: s1_fog_cls (Member sk_fog_1 fog) (STV 1.0 0.99))",
+   "(: s1_fog_thin (Member sk_fog_1 thin) (STV 1.0 0.99))",
+   "(: s1_comein_cls (Member sk_come_in_1 come_in) (STV 1.0 0.99))",
+   "(: s1_comein_pat (Patient sk_come_in_1 sk_fog_1) (STV 1.0 0.99))",
+   "(: s1_sea_cls (Member sk_sea_1 sea) (STV 1.0 0.99))",
+   "(: s1_comein_src (Source sk_come_in_1 sk_sea_1) (STV 1.0 0.99))",
+   "(: s1_comein_time_evening (Time sk_come_in_1 evening) (STV 1.0 0.99))",
+   "(: s1_comein_time_day (Time sk_come_in_1 (Day 246)) (STV 1.0 0.99))",
+   "(: s1_comein_time_year (Time sk_come_in_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_comein_past (Past sk_come_in_1) (STV 1.0 0.99))",
+   "(: s2_reduce_cls (Member sk_reduce_1 reduce) (STV 1.0 0.99))",
+   "(: s2_reduce_agt (Agent sk_reduce_1 sk_fog_1) (STV 1.0 0.99))",
+   "(: s2_reduce_pat (Patient sk_reduce_1 visibility) (STV 1.0 0.99))",
+   "(: s2_cliffpath_cls (Member cliff_path path) (STV 1.0 0.99))",
+   "(: s2_cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: s2_reduce_loc (Location sk_reduce_1 cliff_path) (STV 1.0 0.99))",
+   "(: s2_reduce_past (Past sk_reduce_1) (STV 1.0 0.99))",
+   "(: s3_coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: s3_lantern_cls (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: s3_harborstation_cls (Member harbor_station station) (STV 1.0 0.99))",
+   "(: s3_harborstation_name (Name harbor_station \"Harbor Station\") (STV 1.0 0.99))",
+   "(: s3_lantern_partof (PartOf sk_lantern_1 harbor_station) (STV 1.0 0.99))",
+   "(: s3_keep_cls (Member sk_keep_1 keep) (STV 1.0 0.99))",
+   "(: s3_keep_agt (Agent sk_keep_1 coraline_ash) (STV 1.0 0.99))",
+   "(: s3_keep_thm (Theme sk_keep_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s3_keep_past (Past sk_keep_1) (STV 1.0 0.99))",
+   "(: s3_burning_cls (Member sk_burning_1 burning) (STV 1.0 0.99))",
+   "(: s3_burning_exp (Experiencer sk_burning_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s3_lantern_burning_flat (Member sk_lantern_1 burning) (STV 1.0 0.99))",
+   "(: s3_burning_still (Still sk_burning_1) (STV 1.0 0.99))",
+   "(: s3_burning_manner (Manner sk_burning_1 steadily) (STV 1.0 0.99))",
+   "(: s3_keep_result (Result sk_keep_1 sk_burning_1) (STV 1.0 0.99))",
+   "(: s4_produce_cls (Member sk_produce_1 produce) (STV 1.0 0.99))",
+   "(: s4_produce_agt (Agent sk_produce_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s4_mistlight_cls (Member sk_mist_light_1 mist_light) (STV 1.0 0.99))",
+   "(: s4_mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: s4_produce_pat (Patient sk_produce_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: s4_produce_instr (Instrument sk_produce_1 sk_fog_1) (STV 1.0 0.99))",
+   "(: s4_produce_past (Past sk_produce_1) (STV 1.0 0.99))",
+   "(: s5_attract_cls (Member sk_attract_1 attract) (STV 1.0 0.99))",
+   "(: s5_attract_agt (Agent sk_attract_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: s5_nightmoths_grp (GroupOf sk_nightmoths_1 nightmoth) (STV 1.0 0.99))",
+   "(: s5_nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: s5_attract_thm (Theme sk_attract_1 sk_nightmoths_1) (STV 1.0 0.99))",
+   "(: s5_attract_past (Past sk_attract_1) (STV 1.0 0.99))",
+   "(: s6_leave_cls (Member sk_leave_1 leave) (STV 1.0 0.99))",
+   "(: s6_leave_agt (Agent sk_leave_1 sk_nightmoths_1) (STV 1.0 0.99))",
+   "(: s6_threads_grp (GroupOf sk_threads_1 silken_thread) (STV 1.0 0.99))",
+   "(: s6_silkenthread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+   "(: s6_silkenthread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+   "(: s6_leave_pat (Patient sk_leave_1 sk_threads_1) (STV 1.0 0.99))",
+   "(: s6_leave_loc (Location sk_leave_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s6_leave_past (Past sk_leave_1) (STV 1.0 0.99))",
+   "(: s6_leave_rule (Implication (PartOf $x sk_nightmoths_1) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Patient (sk_leave $x) sk_threads_1) (Location (sk_leave $x) sk_lantern_1) (Past (sk_leave $x)))) (STV 1.0 0.9))",
+   "(: s7_collect_cls (Member sk_collect_1 collect) (STV 1.0 0.99))",
+   "(: s7_collect_agt (Agent sk_collect_1 coraline_ash) (STV 1.0 0.99))",
+   "(: s7_threads2_grp (GroupOf sk_threads_2 silken_thread) (STV 1.0 0.99))",
+   "(: s7_threads2_card (Cardinality sk_threads_2 (ParticleFromNormal 35 3.5)) (STV 1.0 0.99))",
+   "(: s7_collect_thm (Theme sk_collect_1 sk_threads_2) (STV 1.0 0.99))",
+   "(: s7_collect_src (Source sk_collect_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s7_collect_time_morning (Time sk_collect_1 morning) (STV 1.0 0.99))",
+   "(: s7_before (Before sk_leave_1 sk_collect_1) (STV 1.0 0.99))",
+   "(: s7_collect_past (Past sk_collect_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000046",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 37,
+     "issue": "\"through the fog\" is slotted as Instrument, asserting the fog was the means by which the lantern produced the light; Instrument's route/channel licence is worded for \"via / by way of\", and the surface-faithful option for a medium the light passes through is the preposition-named oblique (Through ...)."
+    },
+    {
+     "statement": 50,
+     "issue": "\"left silken threads on the lantern\" takes Patient, but nothing about the threads is created, destroyed, consumed or changed by being deposited — the stated test defaults to Theme (and the same threads take Theme under \"collected\" in statement 7)."
+    },
+    {
+     "statement": 57,
+     "issue": "(Cardinality sk_threads_2 (ParticleFromNormal 35 3.5)) puts a distribution in a slot the Cardinality section specifies as a native integer; ParticleFromNormal is licensed only for Measure-family magnitudes and clock-hour values."
+    },
+    {
+     "statement": 60,
+     "issue": "\"the next morning\" emits only the day-part: the passage's antecedent day IS stated (day 246 of Year 1), so the anaphoric-temporal rule calls for the antecedent's day terms plus one — (Day 247) and (Year 1) — beside the day-part and the Before."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Approximate cardinality (\"about thirty-five silken threads\") — Cardinality requires a native integer and CardinalityPhrase covers only vague quantities with no number, so a hedged exact count has no licensed form.",
+    "Per-member distribution over a plural subject with a plural OBJECT (\"The nightmoths left silken threads\") — the shared-object copying the rule form prescribes makes every member's event take the entire object group, i.e. each moth left all the threads; no mechanism splits a plural object across members.",
+    "Present-participle complement of a maintenance verb (\"kept the lantern burning\") — the Resultative State-result shape is illustrated only with adjectival results (\"kept the gate shut\"), and the inflection-vs-derivation rule leaves it unsettled whether \"burning\" is the adjective `burning` or the verb `burn` with its own reified event.",
+    "Ordinal day-of-year in a non-Gregorian calendar (\"day 246 of Year 1\") — (Day <n>) is defined as a bare granularity term with no day-of-month vs day-of-year distinction."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Coreference across the passage (fog, lantern, mist-light, nightmoths, Coraline Ash) and the indefinite-mints-a-new-witness rule for sk_threads_2 are handled correctly, as are the phrasal verb `come_in`, the natural-force Patient subject, the silken_thread material-adjective fusion with both genus and modifier atoms, and the keep/Still/Result maintenance shape. Minting sk_mist_light_1 for the bare mass object \"mist-light\" rather than a bare kind filler is a departure from the non-specific-object rule, but it is what lets the later definite \"The mist-light\" corefer."
+  },
+  "adjudication": {
+   "id": "evtp-000046",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Instrument is \"the means\" and its route/channel extension is worded for \"via / by way of\", while the mechanical rule says \"the head is the preposition actually used — never a synonym head for a near-fit reading\", so a medium the light passes through takes (Through sk_produce_1 sk_fog_1); as emitted the atom asserts the fog was the means of production, which the text does not state."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Deposited threads are not created, destroyed, consumed or physically changed by the leaving, so the stated yes/no test (and its \"when unclear, default to Theme\" fallback) gives (Theme sk_leave_1 sk_threads_1); Patient asserts a change to the threads that never occurred."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Cardinality's second slot is specified as \"a native integer\", and the counting section states that GreaterThan (the distribution comparator) \"is for distribution values, not plain counts\", so a ParticleFromNormal term there is ill-typed per the vocabulary."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "The anaphoric-temporal rule is mechanical — \"the next / the following morning\" takes \"the antecedent's day terms plus one ... plus the day-part, plus (Before <antecedent> <new>)\", and the day-only fallback applies solely \"if the antecedent's day is unknown\", which it is not here (day 246 of Year 1), so (Day 247) and (Year 1) were owed."
+    }
+   ],
+   "gaps_confirmed": [
+    "Hedged exact count (\"about thirty-five silken threads\") — Cardinality requires a native integer and CardinalityPhrase requires no number, so an approximated count has no carrier.",
+    "Per-member distribution over a plural subject with an indefinite plural OBJECT (\"The nightmoths left silken threads\") — the rule form copies the object symbol in, so every member's event takes the whole thread group; the per-binding Skolem group exists only for an explicit universal with a stated number, not for group distribution.",
+    "Present-participle complement of a maintenance verb (\"kept the lantern burning\") — the State-result shape is illustrated only with adjectival results, and the decide-by-function rule leaves it unsettled whether `burning` is the adjective or the verb's own reified ongoing event.",
+    "Ordinal day-of-year in a non-Gregorian calendar (\"day 246 of Year 1\") — (Day <n>) carries no day-of-month vs day-of-year distinction."
+   ],
+   "new_gaps": [
+    "A bare mass/kind object that is later re-mentioned as a definite (\"produced mist-light\" ... \"The mist-light attracted nightmoths\") — the non-specific-object rule wants the bare kind filler, but a bare kind cannot then fill an individual role slot for the coreferring definite, and no rule licenses promoting it to a witness."
+   ],
+   "decision": "defect",
+   "defect_summary": "\"Through the fog\" should take the preposition-named oblique (Through sk_produce_1 sk_fog_1) rather than Instrument; \"left silken threads\" should take (Theme sk_leave_1 sk_threads_1), in the group event and in the per-member rule alike; \"about thirty-five\" has NO licensed form — Cardinality demands a native integer and the hedge may not be silently dropped — so the count should be omitted with the gap recorded; and \"the next morning\" should carry (Time sk_collect_1 (Day 247)) and (Time sk_collect_1 (Year 1)) beside the day-part and the already-emitted Before.",
+   "notes": "Coreference across the passage, the phrasal verb come_in, the natural-force Patient subject, the silken_thread material-adjective fusion and the keep/Still/Result maintenance shape are all right. Note that the emitted distribution rule (statement 54) additionally hands every nightmoth the entire thread group, which is the reviewer's second gap showing up as a live over-assertion rather than a mere coverage hole."
+  }
+ }
+}

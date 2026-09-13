@@ -1,0 +1,162 @@
+{
+ "id": "E4-06",
+ "rule": "IV — The sky-cat drought",
+ "texts": [
+  "On day 85 of Year 1, the lanterns at the Hollows drew many nightmoths.",
+  "The lanterns of the Cliff Path drew a handful of nightmoths that autumn.",
+  "A handful of sky-cats hunted on the Cliff Path that autumn, so a handful of nightmoths fled to the Hollows.",
+  "Pell wrote a note about the Hollows for the Council.",
+  "The thread harvest at the Hollows rose in that week.",
+  "The thread harvest on the Cliff Path stayed thin in that week."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000029",
+  "sentences": [
+   "On day 85 of Year 1, the lanterns at the Hollows drew many nightmoths.",
+   "The lanterns of the Cliff Path drew a handful of nightmoths that autumn.",
+   "A handful of sky-cats hunted on the Cliff Path that autumn, so a handful of nightmoths fled to the Hollows.",
+   "Pell wrote a note about the Hollows for the Council.",
+   "The thread harvest at the Hollows rose in that week.",
+   "The thread harvest on the Cliff Path stayed thin in that week."
+  ],
+  "parse": [
+   "(: hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+   "(: s1_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: s1_lantern_loc (LocatedIn sk_lantern_1 hollows) (STV 1.0 0.99))",
+   "(: s1_moth_grp (GroupOf sk_nightmoth_1 nightmoth) (STV 1.0 0.99))",
+   "(: s1_moth_card (CardinalityPhrase sk_nightmoth_1 \"many\") (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: s1_draw_ev (Member sk_draw_1 draw) (STV 1.0 0.99))",
+   "(: s1_draw_ag (Agent sk_draw_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s1_draw_th (Theme sk_draw_1 sk_nightmoth_1) (STV 1.0 0.99))",
+   "(: s1_draw_tense (Past sk_draw_1) (STV 1.0 0.99))",
+   "(: s1_draw_day (Time sk_draw_1 (Day 85)) (STV 1.0 0.99))",
+   "(: s1_draw_year (Time sk_draw_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_draw_rule (Implication (PartOf $x sk_lantern_1) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Theme (sk_draw $x) sk_nightmoth_1) (Past (sk_draw $x)) (Time (sk_draw $x) (Day 85)) (Time (sk_draw $x) (Year 1)))) (STV 1.0 0.9))",
+   "(: cliff_path_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: cliff_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: s2_lantern_grp (GroupOf sk_lantern_2 lantern) (STV 1.0 0.99))",
+   "(: s2_lantern_poss (Possession sk_lantern_2 cliff_path) (STV 1.0 0.99))",
+   "(: s2_moth_grp (GroupOf sk_nightmoth_2 nightmoth) (STV 1.0 0.99))",
+   "(: s2_moth_card (CardinalityPhrase sk_nightmoth_2 \"a handful\") (STV 1.0 0.99))",
+   "(: s2_draw_ev (Member sk_draw_2 draw) (STV 1.0 0.99))",
+   "(: s2_draw_ag (Agent sk_draw_2 sk_lantern_2) (STV 1.0 0.99))",
+   "(: s2_draw_th (Theme sk_draw_2 sk_nightmoth_2) (STV 1.0 0.99))",
+   "(: s2_draw_tense (Past sk_draw_2) (STV 1.0 0.99))",
+   "(: s2_draw_year (Time sk_draw_2 (Year 1)) (STV 1.0 0.99))",
+   "(: s2_draw_autumn (Time sk_draw_2 autumn) (STV 1.0 0.99))",
+   "(: s2_draw_rule (Implication (PartOf $x sk_lantern_2) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Theme (sk_draw $x) sk_nightmoth_2) (Past (sk_draw $x)) (Time (sk_draw $x) (Year 1)) (Time (sk_draw $x) autumn))) (STV 1.0 0.9))",
+   "(: s3_skycat_grp (GroupOf sk_skycat_1 sky_cat) (STV 1.0 0.99))",
+   "(: s3_skycat_card (CardinalityPhrase sk_skycat_1 \"a handful\") (STV 1.0 0.99))",
+   "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: s3_hunt_ev (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: s3_hunt_ag (Agent sk_hunt_1 sk_skycat_1) (STV 1.0 0.99))",
+   "(: s3_hunt_loc (Location sk_hunt_1 cliff_path) (STV 1.0 0.99))",
+   "(: s3_hunt_tense (Past sk_hunt_1) (STV 1.0 0.99))",
+   "(: s3_hunt_year (Time sk_hunt_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s3_hunt_autumn (Time sk_hunt_1 autumn) (STV 1.0 0.99))",
+   "(: s3_moth_grp (GroupOf sk_nightmoth_3 nightmoth) (STV 1.0 0.99))",
+   "(: s3_moth_card (CardinalityPhrase sk_nightmoth_3 \"a handful\") (STV 1.0 0.99))",
+   "(: s3_flee_ev (Member sk_flee_1 flee) (STV 1.0 0.99))",
+   "(: s3_flee_ag (Agent sk_flee_1 sk_nightmoth_3) (STV 1.0 0.99))",
+   "(: s3_flee_goal (Goal sk_flee_1 hollows) (STV 1.0 0.99))",
+   "(: s3_flee_tense (Past sk_flee_1) (STV 1.0 0.99))",
+   "(: s3_conn (So sk_hunt_1 sk_flee_1) (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: s4_write_ev (Member sk_write_1 write) (STV 1.0 0.99))",
+   "(: s4_write_ag (Agent sk_write_1 pell) (STV 1.0 0.99))",
+   "(: s4_write_pat (Patient sk_write_1 sk_note_1) (STV 1.0 0.99))",
+   "(: s4_write_tense (Past sk_write_1) (STV 1.0 0.99))",
+   "(: s4_note_type (Member sk_note_1 note) (STV 1.0 0.99))",
+   "(: s4_note_about (About sk_note_1 hollows) (STV 1.0 0.99))",
+   "(: s4_council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s4_write_ben (Beneficiary sk_write_1 sk_council_1) (STV 1.0 0.99))",
+   "(: threadharvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+   "(: s5_harvest_type (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))",
+   "(: s5_harvest_loc (LocatedIn sk_harvest_1 hollows) (STV 1.0 0.99))",
+   "(: s5_rise_ev (Member sk_rise_1 rise) (STV 1.0 0.99))",
+   "(: s5_rise_th (Theme sk_rise_1 sk_harvest_1) (STV 1.0 0.99))",
+   "(: s5_rise_tense (Past sk_rise_1) (STV 1.0 0.99))",
+   "(: s5_rise_time (Time sk_rise_1 that_week) (STV 1.0 0.99))",
+   "(: s6_harvest_type (Member sk_harvest_2 thread_harvest) (STV 1.0 0.99))",
+   "(: s6_harvest_loc (On sk_harvest_2 cliff_path) (STV 1.0 0.99))",
+   "(: s6_thin_state (Member sk_thin_1 thin) (STV 1.0 0.99))",
+   "(: s6_thin_exp (Experiencer sk_thin_1 sk_harvest_2) (STV 1.0 0.99))",
+   "(: s6_thin_still (Still sk_thin_1) (STV 1.0 0.99))",
+   "(: s6_thin_tense (Past sk_thin_1) (STV 1.0 0.99))",
+   "(: s6_thin_time (Time sk_thin_1 that_week) (STV 1.0 0.99))",
+   "(: s6_thin_flat (Past (Member sk_harvest_2 thin)) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000029",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 12,
+     "issue": "The per-member rule hands every individual lantern the whole existential moth group as Theme ((Theme (sk_draw $x) sk_nightmoth_1)), asserting that each lantern drew all the many nightmoths rather than that the lanterns drew them between them."
+    },
+    {
+     "statement": 25,
+     "issue": "Same over-distribution: each lantern of the Cliff Path is made to draw the entire handful sk_nightmoth_2."
+    },
+    {
+     "statement": null,
+     "issue": "Sentence 3's vague-quantity plurals (\"a handful of sky-cats hunted\", \"a handful of nightmoths fled\") get group events with no per-member distribution rule, although hunt and flee are distributive and the same construction got rules at 12 and 25."
+    },
+    {
+     "statement": 57,
+     "issue": "\"in that week\" is encoded as the bare constant that_week, an anaphoric NP treated as a speech-anchored deictic; it also propagates nothing, unlike \"that autumn\" at 23-24 and 33-34, which did copy (Year 1)."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Anaphoric temporal NPs coarser than a day (\"that autumn\", \"in that week\"): term propagation is specified for day-level terms plus a day-part symbol, so a season or a week has no defined filler, and when the antecedent supplies no term at that level there is nothing to copy.",
+    "Day-of-year dating in a fictional calendar (\"On day 85 of Year 1\"): (Day n) is defined as a calendar day inside a month/date, not a day ordinal within a year.",
+    "A counted/vague-quantity object group under a distributed subject (\"the lanterns drew many nightmoths\"): the distribution machinery specifies a shared definite object, and nothing says whether such an object should become a Skolem group per member or block the rule."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "\"the Hollows\" (capitalized plural label -> Name-only individual, no GroupOf/type), \"the Council\" (capitalized common noun -> common-noun default, no Name), \"on the Cliff Path\" as an entity-attached surface preposition against \"at the Hollows\" as LocatedIn, the scalar-change Theme on rise, and the stayed-thin continuation-copular bundle (Still + flat + tense) all match the instruction set precisely. The defects are confined to the distribution rules and the anaphoric time NPs."
+  },
+  "adjudication": {
+   "id": "evtp-000029",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "The rule hands every member the same constant object group, asserting that each lantern drew all the many nightmoths -- more than the text states -- and Quantifiers, generics & scope fixes the opposite form for a count under a distributed subject (a per-binding Skolem group, a shared constant only on a 'the same' cue)."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Same over-assertion on the same rule form: (Theme (sk_draw $x) sk_nightmoth_2) makes each Cliff Path lantern draw the entire handful, which the sentence does not say."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Cardinality states that a counted/vague-quantity plural with a distributive predicate keeps the group event and count and adds the per-member rule over (PartOf $x <group>); hunt and flee are distributive, so omitting the rule drops an atom the instruction set requires (and the same parse emitted it twice for draw)."
+    },
+    {
+     "index": 3,
+     "verdict": "partial",
+     "reason": "The propagation half stands -- 'in that week' is an anaphoric temporal NP, and term propagation requires copying the antecedent's stated terms, here (Year 1), exactly as the parse did for 'that autumn' -- but the deictic-constant complaint is overstated, since Time's term inventory has no week-level term and a bare symbol is the nearest licensed shape in that gap."
+    }
+   ],
+   "gaps_confirmed": [
+    "Anaphoric temporal NPs coarser than a day ('that autumn', 'in that week'): term propagation is defined over day-level calendar terms plus a day-part symbol, so a season or a week has no defined Time filler.",
+    "Day-of-year dating in a fictional calendar ('day 85 of Year 1'): (Day n) is a calendar day inside a month/date, not a day ordinal within a year.",
+    "A counted/vague-quantity object group under a distributed plural subject ('the lanterns drew many nightmoths'): the distribution machinery covers a shared definite object only, and says nothing about whether such an object becomes a per-member Skolem group or blocks the rule."
+   ],
+   "new_gaps": [
+    "Cumulative counted object under a distributed subject: neither licensed form is faithful -- a shared constant object gives every member the whole set, and the per-binding Skolem group ((sk_moth $x) with its own CardinalityPhrase) gives every member 'many' of its own -- so a licensed form would need to carry that the count is a total over the group while the predication still reaches individual members."
+   ],
+   "decision": "defect",
+   "defect_summary": "Issues 0 and 1: the object must not be a shared constant inside the per-member rule -- the nearest licensed form is a per-binding Skolem group, (Theme (sk_draw $x) (sk_moth $x)) + (GroupOf (sk_moth $x) nightmoth), but since the counts 'many'/'a handful' are cumulative over the lanterns no licensed form carries them faithfully, so the compliant minimum is the group event alone with no per-member rule (filed as a gap). Issue 2: emit the per-member rules the instruction set mandates -- (Implication (PartOf $x sk_skycat_1) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Location (sk_hunt $x) cliff_path) (Past (sk_hunt $x)) ...)) and the matching flee rule over sk_nightmoth_3.",
+   "notes": "The reviewer's positive reading is right: the Hollows name-only individual, the Council common-noun default, LocatedIn for 'at' against the entity-attached On for 'on', the So connective in surface order, the scalar-change Theme, and the stayed-thin Still/flat/tense bundle all follow the instruction set. The defects are the distribution rules on both sides -- two emitted that over-assert and two omitted that were required."
+  }
+ }
+}

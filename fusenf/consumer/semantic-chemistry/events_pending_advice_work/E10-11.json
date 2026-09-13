@@ -1,0 +1,138 @@
+{
+ "id": "E10-11",
+ "rule": "X — Spring of Year 2",
+ "texts": [
+  "The record ends on day 720 of Year 2.",
+  "The mire-essence reserve held ten months of supply on day 720.",
+  "The salt-bloom store held eight weeks of supply on day 720.",
+  "The feather store held nine weeks of supply on day 720.",
+  "The sky-cat census estimated fourteen sky-cats on day 720.",
+  "Forty-four Keepers were active on day 720.",
+  "Aelis Brae returned to active station-tending in the late spring of Year 2."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000082",
+  "sentences": [
+   "The record ends on day 720 of Year 2.",
+   "The mire-essence reserve held ten months of supply on day 720.",
+   "The salt-bloom store held eight weeks of supply on day 720.",
+   "The feather store held nine weeks of supply on day 720.",
+   "The sky-cat census estimated fourteen sky-cats on day 720.",
+   "Forty-four Keepers were active on day 720.",
+   "Aelis Brae returned to active station-tending in the late spring of Year 2."
+  ],
+  "parse": [
+   "(: s1_record (Member sk_record_1 record) (STV 1.0 0.99))",
+   "(: s1_end_ev (Member sk_end_1 end) (STV 1.0 0.99))",
+   "(: s1_end_pat (Patient sk_end_1 sk_record_1) (STV 1.0 0.99))",
+   "(: s1_end_day (Time sk_end_1 (Day 720)) (STV 1.0 0.99))",
+   "(: s1_end_year (Time sk_end_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s2_reserve_type (Member sk_reserve_1 mire_essence_reserve) (STV 1.0 0.99))",
+   "(: s2_reserve_genus (Inheritance mire_essence_reserve reserve) (STV 1.0 0.99))",
+   "(: s2_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: s2_hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+   "(: s2_hold_agt (Agent sk_hold_1 sk_reserve_1) (STV 1.0 0.99))",
+   "(: s2_hold_thm (Theme sk_hold_1 supply) (STV 1.0 0.99))",
+   "(: s2_hold_msr (Measure sk_hold_1 supply 10 month) (STV 1.0 0.99))",
+   "(: s2_hold_day (Time sk_hold_1 (Day 720)) (STV 1.0 0.99))",
+   "(: s2_hold_past (Past sk_hold_1) (STV 1.0 0.99))",
+   "(: s3_store_type (Member sk_store_1 salt_bloom_store) (STV 1.0 0.99))",
+   "(: s3_store_genus (Inheritance salt_bloom_store store) (STV 1.0 0.99))",
+   "(: s3_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: s3_hold_ev (Member sk_hold_2 hold) (STV 1.0 0.99))",
+   "(: s3_hold_agt (Agent sk_hold_2 sk_store_1) (STV 1.0 0.99))",
+   "(: s3_hold_thm (Theme sk_hold_2 supply) (STV 1.0 0.99))",
+   "(: s3_hold_msr (Measure sk_hold_2 supply 8 week) (STV 1.0 0.99))",
+   "(: s3_hold_day (Time sk_hold_2 (Day 720)) (STV 1.0 0.99))",
+   "(: s3_hold_past (Past sk_hold_2) (STV 1.0 0.99))",
+   "(: s4_store_type (Member sk_store_2 feather_store) (STV 1.0 0.99))",
+   "(: s4_store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+   "(: s4_hold_ev (Member sk_hold_3 hold) (STV 1.0 0.99))",
+   "(: s4_hold_agt (Agent sk_hold_3 sk_store_2) (STV 1.0 0.99))",
+   "(: s4_hold_thm (Theme sk_hold_3 supply) (STV 1.0 0.99))",
+   "(: s4_hold_msr (Measure sk_hold_3 supply 9 week) (STV 1.0 0.99))",
+   "(: s4_hold_day (Time sk_hold_3 (Day 720)) (STV 1.0 0.99))",
+   "(: s4_hold_past (Past sk_hold_3) (STV 1.0 0.99))",
+   "(: s5_census_type (Member sk_census_1 sky_cat_census) (STV 1.0 0.99))",
+   "(: s5_census_genus (Inheritance sky_cat_census census) (STV 1.0 0.99))",
+   "(: s5_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: s5_est_ev (Member sk_estimate_1 estimate) (STV 1.0 0.99))",
+   "(: s5_est_agt (Agent sk_estimate_1 sk_census_1) (STV 1.0 0.99))",
+   "(: s5_est_thm (Theme sk_estimate_1 sk_group_1) (STV 1.0 0.99))",
+   "(: s5_group_kind (GroupOf sk_group_1 sky_cat) (STV 1.0 0.99))",
+   "(: s5_group_card (Cardinality sk_group_1 14) (STV 1.0 0.99))",
+   "(: s5_est_day (Time sk_estimate_1 (Day 720)) (STV 1.0 0.99))",
+   "(: s5_est_past (Past sk_estimate_1) (STV 1.0 0.99))",
+   "(: s6_group_kind (GroupOf sk_group_2 keeper) (STV 1.0 0.99))",
+   "(: s6_group_card (Cardinality sk_group_2 44) (STV 1.0 0.99))",
+   "(: s6_active_rule (Implication (PartOf $x sk_group_2) (And (Member (sk_active $x) active) (Experiencer (sk_active $x) $x) (Time (sk_active $x) (Day 720)) (Past (sk_active $x)))) (STV 1.0 0.9))",
+   "(: s7_name (Name aelis_brae \"Aelis Brae\") (STV 1.0 0.99))",
+   "(: s7_return_ev (Member sk_return_1 return) (STV 1.0 0.99))",
+   "(: s7_return_agt (Agent sk_return_1 aelis_brae) (STV 1.0 0.99))",
+   "(: s7_return_goal (Goal sk_return_1 sk_tending_1) (STV 1.0 0.99))",
+   "(: s7_tending_type (Member sk_tending_1 station_tending) (STV 1.0 0.99))",
+   "(: s7_tending_genus (Inheritance station_tending tend) (STV 1.0 0.99))",
+   "(: s7_tending_obj (Patient station_tending station) (STV 1.0 0.99))",
+   "(: s7_tending_active (Member sk_tending_1 active) (STV 1.0 0.99))",
+   "(: s7_return_time1 (Time sk_return_1 late_spring) (STV 1.0 0.99))",
+   "(: s7_return_time2 (Time sk_return_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s7_return_past (Past sk_return_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000082",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 43,
+     "issue": "The distributed copular state for \"Forty-four Keepers were active on day 720\" emits only the reified per-member state, omitting the mandated flat half of the dual-emit (a (Member $x active) conjunct in the rule's conclusion), so \"is this Keeper active?\" queried flatly cannot bind."
+    },
+    {
+     "statement": 7,
+     "issue": "(Inheritance mire_essence essence) is a second-level decomposition of a noun modifier that \"decompose once, to single-word lemmas, then stop\" does not license, and it introduces a symbol used nowhere else in the parse (same at 16, (Inheritance salt_bloom bloom)); (Inheritance sky_cat cat) at 33 is fine because sky_cat is itself used as a kind at 38."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a stock quantified as time-to-exhaustion (\"ten months of supply\") — a measure of-phrase over a bare mass noun with a time unit is excluded from Possession but given no positive encoding, so neither the scale nor the bearer of the Measure is licensed",
+    "a gerundive object+verb compound noun used referentially (\"active station-tending\") — the verb_object compound-action decomposition (genus on the verb + Patient on the compound symbol) is scoped to reified (can/obligated/permitted) terms and does not reach an ordinary referring NP",
+    "\"returned to <activity>\" — an abstract resumed activity as the object of \"to\" fits neither the spatial Goal (no whither) nor the preposition-named oblique rule",
+    "\"the late spring of Year 2\" — no structured term exists for a season or a season sub-part, so it can only be a bare symbol sitting beside (Year 2)"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Two judgment calls are right: \"Forty-four Keepers\" is read as a counted group of the kind rather than the Name-only capitalized-plural label, and \"The record ends on day 720\" correctly carries no tense atom (no TODAY and no lexically future adjunct, so the futurate rule has nothing to fire on). The repeated \"on day 720\" adjuncts correctly emit only (Day 720) without importing Year 2 from the first sentence."
+  },
+  "adjudication": {
+   "id": "evtp-000082",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Core patterns makes dual-emit mandatory for \"a copular clause carrying a time modifier\" (reified state AND the flat copular atom), and the Resultatives plural bullet fixes the plural form of that flat half as a per-member rule conclusion rather than a group atom, so the Keepers rule's conclusion must also carry `(Past (Member $x active))`."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Compound concepts says to decompose \"once, to single-word lemmas, then stop\" and that a noun modifier is \"never exposed … leave those in the symbol\", so mire_essence and salt_bloom — fragments of the minted compounds, never kinds the parse mints — license no genus atom of their own, unlike sky_cat which is itself minted as a kind at 38."
+    }
+   ],
+   "gaps_confirmed": [
+    "stock expressed as time-to-exhaustion (\"ten months of supply\") — a measure phrase whose unit is time but whose dimension is stock has no licensed bearer; here the bearer is improvised onto the `hold` event",
+    "a verb+object gerundive compound used as a referring NP (\"active station-tending\") — the compound-action decomposition (genus on the verb + `Patient` on the compound symbol) is scoped to reified can/obligated/permitted terms and does not reach an ordinary referring NP",
+    "\"returned to <activity>\" — an abstract resumed activity as the object of \"to\"; the gap is real but narrower than filed, since the preposition-named oblique `(To <event> <object>)` is available — the residue is that `To` feeds the seeded `PurposeOf` bridge and would assert an aim the text does not state, leaving no collision-free head",
+    "\"the late spring of Year 2\" — no structured term exists for a season or a season sub-part, so it can only sit as a bare symbol beside `(Year 2)`"
+   ],
+   "new_gaps": [
+    "a day-ordinal within a year (\"on day 720 of Year 2\") — `(Day <n>)` is the day-of-month slot, so `(Day 720)` overloads it and cannot feed the seeded same-year-month day ordering; no term exists for a day-of-year count or a regnal-style year",
+    "a reported / estimated count (\"the sky-cat census estimated fourteen sky-cats\") — `estimate` takes an NP object, so nothing seals or hedges the count and `(GroupOf sk_group_1 sky_cat) (Cardinality sk_group_1 14)` lands as asserted fact; a licensed form would need to carry the count as the content of the estimate rather than as a standing group size"
+   ],
+   "decision": "defect",
+   "defect_summary": "(1) The Keepers rule's conclusion must also carry the flat per-member half — (Implication (PartOf $x sk_group_2) (And (Member (sk_active $x) active) (Experiencer (sk_active $x) $x) (Time (sk_active $x) (Day 720)) (Past (sk_active $x)) (Past (Member $x active)))) — so a flat \"is this Keeper active?\" binds. (2) The compliant form drops (Inheritance mire_essence essence) and (Inheritance salt_bloom bloom) entirely, keeping only the first-level genus atoms (Inheritance mire_essence_reserve reserve) and (Inheritance salt_bloom_store store).",
+   "notes": "The three \"held N weeks of supply\" clauses put the `Measure` on the hold event with scale `supply` — a dimension noun stated in the clause, so the scale itself is licensed even though the bearer is improvised; treating that as a gap rather than an issue is the right call. Stative-transitive `hold` / `estimate` subjects as `Agent`, the no-tense reading of \"The record ends on day 720\", the Name-less counted \"Forty-four Keepers\", and the per-sentence `(Day 720)` without importing `(Year 2)` are all correct."
+  }
+ }
+}

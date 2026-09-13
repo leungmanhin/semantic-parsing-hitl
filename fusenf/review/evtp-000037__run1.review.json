@@ -1,0 +1,19 @@
+{"id": "evtp-000037", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 22, "issue": "\"gave weak mist-light for the rest of the night\" is rendered as (End sk_give_1 night), which states the giving ended at night rather than lasting the night's remainder, and silently drops the \"rest of\" restriction."},
+   {"statement": 53, "issue": "\"during that week\" is resolved to the eleven-day persistence eventuality, asserting a temporal containment the text never states — no week-denoting antecedent exists anywhere in the passage."},
+   {"statement": 46, "issue": "(CardinalityPhrase (sk_nightmoths $x) \"about six\") puts a hedged exact number into the slot the instruction set reserves for numberless canonical vague phrases (\"several\", \"a handful\", \"dozens\"), so no seeded rule can map it to a bound."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "extent adverbial naming the remainder of a time period (\"for the rest of the night\") — RestOf covers entity/mass partitives, duration Measure needs a count, and Start/End take calendar terms, so no licensed carrier exists",
+   "degree adverb on a verb (\"fell sharply\") — the instruction set itself states it has no licensed slot and must be left out",
+   "anaphoric temporal NP at a granularity the antecedent never supplies (\"during that week\") — term propagation has no week-level term to copy",
+   "approximate/hedged count (\"about six nightmoths\") — Cardinality's magnitude is specified as a native integer and CardinalityPhrase is for phrases with no number; the ParticleFromNormal approximation is defined only for Measure",
+   "ordinal/continuous day-count date in a non-Gregorian calendar (\"day 121 of Year 1\") — the Time terms assume a Gregorian Day-of-month inside a Month"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "No CONTEXT block was supplied, so q3 is na. The \"each drained lantern\" universal is ranged over the six-lantern group of the previous sentence, which silently excludes the first lantern (asserted drained, never asserted a member of that group)."}

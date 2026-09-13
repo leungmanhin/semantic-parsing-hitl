@@ -1,0 +1,144 @@
+{
+ "id": "E9-06",
+ "rule": "IX — Smaller incidents through Year 2",
+ "texts": [
+  "On day 485 of Year 2, Tam Harrow missed the midnight check at his station on the Middle Row, because his child was ill.",
+  "Tam Harrow was a junior Keeper.",
+  "Tam Harrow returned to the station at the third watch.",
+  "The lantern was burning low.",
+  "Tam Harrow refilled the mire-essence.",
+  "Tam Harrow trimmed the wick.",
+  "The lantern recovered.",
+  "The station was not at the Sunken Cove.",
+  "Tam Harrow reported the incident to the Council the next morning.",
+  "The Council issued no penalty.",
+  "The Council logged the incident."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000066",
+  "sentences": [
+   "On day 485 of Year 2, Tam Harrow missed the midnight check at his station on the Middle Row, because his child was ill.",
+   "Tam Harrow was a junior Keeper.",
+   "Tam Harrow returned to the station at the third watch.",
+   "The lantern was burning low.",
+   "Tam Harrow refilled the mire-essence.",
+   "Tam Harrow trimmed the wick.",
+   "The lantern recovered.",
+   "The station was not at the Sunken Cove.",
+   "Tam Harrow reported the incident to the Council the next morning.",
+   "The Council issued no penalty.",
+   "The Council logged the incident."
+  ],
+  "parse": [
+   "(: tam_name (Name tam_harrow \"Tam Harrow\") (STV 1.0 0.99))",
+   "(: e1_miss (Member sk_miss_1 miss) (STV 1.0 0.99))",
+   "(: e1_ag (Agent sk_miss_1 tam_harrow) (STV 1.0 0.99))",
+   "(: e1_th (Theme sk_miss_1 sk_midnight_check_1) (STV 1.0 0.99))",
+   "(: check_ty (Member sk_midnight_check_1 midnight_check) (STV 1.0 0.99))",
+   "(: check_gen (Inheritance midnight_check check) (STV 1.0 0.99))",
+   "(: e1_loc (Location sk_miss_1 sk_station_1) (STV 1.0 0.99))",
+   "(: station_ty (Member sk_station_1 station) (STV 1.0 0.99))",
+   "(: station_poss (Possession sk_station_1 tam_harrow) (STV 1.0 0.99))",
+   "(: station_on (On sk_station_1 middle_row) (STV 1.0 0.99))",
+   "(: mrow_ty (Member middle_row row) (STV 1.0 0.99))",
+   "(: mrow_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: e1_past (Past sk_miss_1) (STV 1.0 0.99))",
+   "(: e1_day (Time sk_miss_1 (Day 485)) (STV 1.0 0.99))",
+   "(: e1_year (Time sk_miss_1 (Year 2)) (STV 1.0 0.99))",
+   "(: child_ty (Member sk_child_1 child) (STV 1.0 0.99))",
+   "(: child_poss (Possession sk_child_1 tam_harrow) (STV 1.0 0.99))",
+   "(: ill_ty (Member sk_ill_1 ill) (STV 1.0 0.99))",
+   "(: ill_exp (Experiencer sk_ill_1 sk_child_1) (STV 1.0 0.99))",
+   "(: ill_flat (Past (Member sk_child_1 ill)) (STV 1.0 0.99))",
+   "(: miss_because (Because sk_miss_1 sk_ill_1) (STV 1.0 0.99))",
+   "(: tam_keeper (Past (Member tam_harrow junior_keeper)) (STV 1.0 0.99))",
+   "(: keeper_gen (Inheritance junior_keeper keeper) (STV 1.0 0.99))",
+   "(: keeper_mod (Inheritance junior_keeper junior) (STV 1.0 0.99))",
+   "(: e2_return (Member sk_return_1 return) (STV 1.0 0.99))",
+   "(: e2_ag (Agent sk_return_1 tam_harrow) (STV 1.0 0.99))",
+   "(: e2_goal (Goal sk_return_1 sk_station_1) (STV 1.0 0.99))",
+   "(: e2_time (Time sk_return_1 third_watch) (STV 1.0 0.99))",
+   "(: e2_past (Past sk_return_1) (STV 1.0 0.99))",
+   "(: lantern_ty (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: e3_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: e3_pat (Patient sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e3_manner (Manner sk_burn_1 low) (STV 1.0 0.99))",
+   "(: e3_ong (Ongoing sk_burn_1) (STV 1.0 0.99))",
+   "(: e3_past (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: mire_ty (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: mire_gen (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: e4_refill (Member sk_refill_1 refill) (STV 1.0 0.99))",
+   "(: e4_ag (Agent sk_refill_1 tam_harrow) (STV 1.0 0.99))",
+   "(: e4_pat (Patient sk_refill_1 sk_mire_essence_1) (STV 1.0 0.99))",
+   "(: e4_past (Past sk_refill_1) (STV 1.0 0.99))",
+   "(: wick_ty (Member sk_wick_1 wick) (STV 1.0 0.99))",
+   "(: e5_trim (Member sk_trim_1 trim) (STV 1.0 0.99))",
+   "(: e5_ag (Agent sk_trim_1 tam_harrow) (STV 1.0 0.99))",
+   "(: e5_pat (Patient sk_trim_1 sk_wick_1) (STV 1.0 0.99))",
+   "(: e5_past (Past sk_trim_1) (STV 1.0 0.99))",
+   "(: e6_recover (Member sk_recover_1 recover) (STV 1.0 0.99))",
+   "(: e6_pat (Patient sk_recover_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e6_past (Past sk_recover_1) (STV 1.0 0.99))",
+   "(: cove_ty (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+   "(: station_not_cove (Past (LocatedIn sk_station_1 sunken_cove)) (STV 0.0 0.99))",
+   "(: council_ty (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: e7_report (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: e7_ag (Agent sk_report_1 tam_harrow) (STV 1.0 0.99))",
+   "(: e7_th (Theme sk_report_1 sk_miss_1) (STV 1.0 0.99))",
+   "(: incident_ty (Member sk_miss_1 incident) (STV 1.0 0.99))",
+   "(: e7_rec (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: e7_past (Past sk_report_1) (STV 1.0 0.99))",
+   "(: e7_day (Time sk_report_1 (Day 486)) (STV 1.0 0.99))",
+   "(: e7_year (Time sk_report_1 (Year 2)) (STV 1.0 0.99))",
+   "(: e7_morning (Time sk_report_1 morning) (STV 1.0 0.99))",
+   "(: miss_before_report (Before sk_miss_1 sk_report_1) (STV 1.0 0.99))",
+   "(: council_no_penalty (And (Member sk_issue_1 issue) (Agent sk_issue_1 sk_council_1) (Theme sk_issue_1 sk_penalty_1) (Member sk_penalty_1 penalty) (Past sk_issue_1)) (STV 0.0 0.99))",
+   "(: e9_log (Member sk_log_1 log) (STV 1.0 0.99))",
+   "(: e9_ag (Agent sk_log_1 sk_council_1) (STV 1.0 0.99))",
+   "(: e9_th (Theme sk_log_1 sk_miss_1) (STV 1.0 0.99))",
+   "(: e9_past (Past sk_log_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000066",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 17,
+     "issue": "The reified state sk_ill_1 for the past-tense \"his child was ill\" carries no (Past sk_ill_1) atom even though the flat half is Past-wrapped, unlike the instruction set's parallel reified-state pattern for \"Alice was ill on Friday\"."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Negative determiner on an episodic object NP (\"The Council issued no penalty\"): the instruction set covers \"no/none\" only as a subject quantifier on copular generics, rules and partitives, and its mandatory-QuantifierPhrase clause presupposes a quantified range that an ordinary strength-0 event denial does not have, so it never says whether object-position \"no N\" is a plain event denial, needs a companion, or needs a zero-count record."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The instruction set is itself inconsistent about tensing a reified connective-endpoint state (the \"wallpaper peeled because it was damp\" example tenses neither half, the Time section's copular example tenses both), so the flagged omission is partly an instruction-set ambiguity. Resolving \"the incident\" to the missed-check event and the \"burning low\" adverbial to Manner are both judgment calls the instruction set leaves open but does not forbid; the wick correctly gets no invented PartOf to the lantern."
+  },
+  "adjudication": {
+   "id": "evtp-000066",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "\"his child was ill\" is a finite past clause, and *Status predicates* puts tense on the eventuality it reifies — the Time section's parallel \"Alice was ill on Friday\" emits (Past sk_ill_1) beside the flat (Past (Member alice ill)) — so the untensed state witness reads as the unmarked/dispositional default (\"an event with no status predicate is generic / habitual / dispositional\"), asserting a standing illness the text does not state and contradicting the parse's own Past-wrapped flat half."
+    }
+   ],
+   "gaps_confirmed": [
+    "Object-position negative determiner in an episodic clause (\"issued no penalty\"): the instruction set fixes the strength-0 event denial but leaves undecided whether the explicit quantifier word \"no\" takes a QuantifierPhrase companion, whose (subject predicate \"word\") slots presuppose a quantified range an episodic denial has not got."
+   ],
+   "new_gaps": [
+    "Fictional day-of-year dating (\"day 485 of Year 2\"): (Day <n>) is the day-of-month slot, so a day-of-year value has no licensed term and is only carried by overloading that constructor (the \"next morning\" 485→486 increment inherits the same overload).",
+    "A flat degree/extent adverbial on a process verb (\"the lantern was burning low\"): *Adverbs that are not Manner* reserves Manner for manner proper and gives a verb-modifying degree adverb no slot at all, so the only licensed move is to drop the word — losing the very state that motivates the refill and the later \"recovered\"."
+   ],
+   "decision": "defect",
+   "defect_summary": "Emit (Past sk_ill_1) on the reified state witness alongside the existing (Member sk_ill_1 ill) / (Experiencer sk_ill_1 sk_child_1) and the flat (Past (Member sk_child_1 ill)), exactly as the \"Alice was ill on Friday\" pattern does; nothing else in the because-clause encoding changes.",
+   "notes": "The connectives section's own \"because it was damp\" illustration omits tense on both endpoints — including the indisputably required (Past sk_peel_1) — so it is abbreviated on tense rather than a licence to leave a reified past state unmarked. The \"next morning\" day-increment, the entity-attached (On sk_station_1 middle_row), the negated (Past (LocatedIn …)) and the absence of an invented wick/lantern PartOf are all correct."
+  }
+ }
+}

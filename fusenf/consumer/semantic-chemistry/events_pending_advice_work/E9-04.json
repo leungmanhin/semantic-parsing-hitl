@@ -1,0 +1,150 @@
+{
+ "id": "E9-04",
+ "rule": "IX — Smaller incidents through Year 2",
+ "texts": [
+  "On day 455 of Year 2, an apprentice named Eli arrived.",
+  "Eli came from a Keeper family.",
+  "The Council assigned Eli to Norren.",
+  "Norren was a Council member.",
+  "Norren had not taken an apprentice before.",
+  "Eli carried Norren's leather case from her second night.",
+  "Eli did not tend a lantern alone during her first six months.",
+  "Norren supervised Eli on every night of her first six months."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000063",
+  "sentences": [
+   "On day 455 of Year 2, an apprentice named Eli arrived.",
+   "Eli came from a Keeper family.",
+   "The Council assigned Eli to Norren.",
+   "Norren was a Council member.",
+   "Norren had not taken an apprentice before.",
+   "Eli carried Norren's leather case from her second night.",
+   "Eli did not tend a lantern alone during her first six months.",
+   "Norren supervised Eli on every night of her first six months."
+  ],
+  "parse": [
+   "(: eli_type (Member eli apprentice) (STV 1.0 0.99))",
+   "(: eli_name (Name eli \"Eli\") (STV 1.0 0.99))",
+   "(: e1_arrive (Member sk_arrive_1 arrive) (STV 1.0 0.99))",
+   "(: e1_agent (Agent sk_arrive_1 eli) (STV 1.0 0.99))",
+   "(: e1_past (Past sk_arrive_1) (STV 1.0 0.99))",
+   "(: e1_day (Time sk_arrive_1 (Day 455)) (STV 1.0 0.99))",
+   "(: e1_year (Time sk_arrive_1 (Year 2)) (STV 1.0 0.99))",
+   "(: e2_come (Member sk_come_1 come) (STV 1.0 0.99))",
+   "(: e2_agent (Agent sk_come_1 eli) (STV 1.0 0.99))",
+   "(: e2_source (Source sk_come_1 sk_family_1) (STV 1.0 0.99))",
+   "(: e2_past (Past sk_come_1) (STV 1.0 0.99))",
+   "(: family_type (Member sk_family_1 keeper_family) (STV 1.0 0.99))",
+   "(: family_genus (Inheritance keeper_family family) (STV 1.0 0.99))",
+   "(: norren_name (Name norren \"Norren\") (STV 1.0 0.99))",
+   "(: e3_assign (Member sk_assign_1 assign) (STV 1.0 0.99))",
+   "(: e3_agent (Agent sk_assign_1 sk_council_1) (STV 1.0 0.99))",
+   "(: e3_theme (Theme sk_assign_1 eli) (STV 1.0 0.99))",
+   "(: e3_recipient (Recipient sk_assign_1 norren) (STV 1.0 0.99))",
+   "(: e3_past (Past sk_assign_1) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: norren_council (Past (PartOf norren sk_council_1)) (STV 1.0 0.99))",
+   "(: norren_no_take (And (Member sk_take_1 take) (Agent sk_take_1 norren) (Theme sk_take_1 sk_apprentice_1) (Member sk_apprentice_1 apprentice) (Past sk_take_1)) (STV 0.0 0.99))",
+   "(: case_type (Member sk_case_1 leather_case) (STV 1.0 0.99))",
+   "(: case_genus (Inheritance leather_case case) (STV 1.0 0.99))",
+   "(: case_poss (Possession sk_case_1 norren) (STV 1.0 0.99))",
+   "(: e6_carry (Member sk_carry_1 carry) (STV 1.0 0.99))",
+   "(: e6_agent (Agent sk_carry_1 eli) (STV 1.0 0.99))",
+   "(: e6_theme (Theme sk_carry_1 sk_case_1) (STV 1.0 0.99))",
+   "(: e6_past (Past sk_carry_1) (STV 1.0 0.99))",
+   "(: night_type (Member sk_night_1 night) (STV 1.0 0.99))",
+   "(: night_ord (Ordinal sk_night_1 2 night) (STV 1.0 0.99))",
+   "(: night_poss (Possession sk_night_1 eli) (STV 1.0 0.99))",
+   "(: e6_start (Start sk_carry_1 sk_night_1) (STV 1.0 0.99))",
+   "(: period_first (Member sk_period_1 first) (STV 1.0 0.99))",
+   "(: period_dur (Measure sk_period_1 duration 6 month) (STV 1.0 0.99))",
+   "(: period_poss (Possession sk_period_1 eli) (STV 1.0 0.99))",
+   "(: eli_no_tend_alone (And (Member sk_tend_1 tend) (Agent sk_tend_1 eli) (Theme sk_tend_1 sk_lantern_1) (Member sk_lantern_1 lantern) (Member eli alone) (Past sk_tend_1) (During sk_tend_1 sk_period_1)) (STV 0.0 0.99))",
+   "(: e8_supervise (Member sk_supervise_1 supervise) (STV 1.0 0.99))",
+   "(: e8_agent (Agent sk_supervise_1 norren) (STV 1.0 0.99))",
+   "(: e8_theme (Theme sk_supervise_1 eli) (STV 1.0 0.99))",
+   "(: e8_past (Past sk_supervise_1) (STV 1.0 0.99))",
+   "(: e8_time (Time sk_supervise_1 night) (STV 1.0 0.99))",
+   "(: e8_every (Every sk_supervise_1 1 day) (STV 1.0 0.99))",
+   "(: e8_during (During sk_supervise_1 sk_period_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000063",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 43,
+     "issue": "`During` is used for the surface preposition \"of\" in \"every night of her first six months\" — the instruction set restricts `During` to during/while/throughout and names `During` for a surface \"of\"/\"in\" as the single most common head error."
+    },
+    {
+     "statement": 33,
+     "issue": "\"first\" in \"her first six months\" is encoded as the property atom (Member sk_period_1 first) rather than the `Ordinal` head the instruction set defines for \"the first N\", inconsistent with (Ordinal sk_night_1 2 night) emitted for \"her second night\" in the same parse."
+    },
+    {
+     "statement": 33,
+     "issue": "sk_period_1 never receives a kind atom — its only Member atom is the property `first` — so a referent symbol appears in the output untyped."
+    },
+    {
+     "statement": 20,
+     "issue": "\"Norren was a Council member\" emits only the PartOf link; neither licensed route for a modifier+head NP is completed — no fused `council_member` typing with its genus, and no head-noun kind atom of the non-fusing part-whole route."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "A possessed, ordinal-modified time-span NP used as a discourse referent and temporal frame (\"her first six months\"): no rule says how to type such a span, how to rank it, or how to attach a stated extent to it (Measure … duration is defined for an eventuality).",
+    "\"every night OF <span>\" — a habitual whose recurrence is bounded by a span NP: the frequency machinery supplies the slot term plus (Every e 1 <cycle>) but has no carrier for the bounding period, which is why the parse reached for `During`.",
+    "An interval boundary anchored on an entity/period NP (\"from her second night\"): Start/End are specified with structured calendar terms, not witnesses.",
+    "A past-tense habitual (\"supervised … on every night\"): the frequency section says the event stays unmarked while the surface-tense rule requires (Past e) on a finite past clause; the parse emits both and the instruction set does not adjudicate.",
+    "A past perfect with the bare adverb \"before\" whose anterior anchor is an event in an EARLIER sentence: the ordering test is stated sentence-internally (\"the sentence contains another asserted event\") but its carve-out is stated text-wide (\"no other event in the text\"), and the bare sequence adverb itself has no licensed slot — it is dropped with no gap recorded.",
+    "A non-Gregorian calendar date (\"day 455 of Year 2\"): (Day n) is exemplified as day-of-month, so a day-of-year ordinal with no month has no stated convention (and the seeded date-ordering rules key on same-year-month day)."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Roles, negation scope (the alone-depictive and the indefinite lantern both stay inside the strength-0 bundle), tense wrapping of the PartOf, coreference of \"her\"/\"the Council\", and the leather_case / keeper_family decompositions are all handled correctly. The weak area is the two time-span NPs, where an unlicensed-slot approximation was chosen over recording the gap."
+  },
+  "adjudication": {
+   "id": "evtp-000063",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "The Time section restricts During to \"during / while / throughout\" and names During for a surface \"in\" / \"of\" as the single most common head error; here the surface word is \"of\" and the second argument sk_period_1 is a span entity, not the reified eventuality During requires."
+    },
+    {
+     "index": 1,
+     "verdict": "partial",
+     "reason": "The half that stands is the intra-parse inconsistency — the same ordinal-modifier construction gets (Ordinal sk_night_1 2 night) for \"her second night\" but a bare property atom for \"her first six months\", and an atom emitted only sometimes makes two faithful parses differ; the half that is overstated is that Ordinal was cleanly available, since its <scale> slot is defined as the associated event or an explicit \"-est\" dimension and neither exists for a bare span (the reviewer's own first gap)."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Names and casing states that a witness's class atom is always emitted and \"an untyped referent symbol must never appear in the output\"; sk_period_1's only Member atom is the property first, so its kind is never stated."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "The part-whole route of Compound concepts requires emitting the head as its own kind AND attaching it with PartOf, and Categorical statements requires a Member atom for an individual subject of \"X was a N\" — the parse emits the PartOf alone, so Norren is never typed by the clause's own predicate nominal."
+    }
+   ],
+   "gaps_confirmed": [
+    "a possessed, ordinal-modified time-span NP used as a referent and temporal frame (\"her first six months\"): no rule types such a span, ranks it, or attaches a stated extent to it (Measure ... duration is defined on an eventuality)",
+    "\"every night OF <span>\": the frequency machinery gives the slot term plus (Every e 1 <cycle>) but has no carrier for a bounding period",
+    "an interval boundary anchored on an entity NP (\"from her second night\"): Start / End are specified with structured calendar terms, not witnesses",
+    "a past-tense habitual (\"supervised ... on every night\"): the frequency section leaves the event unmarked while the surface-tense rule requires (Past e) on a finite past clause, and the instruction set does not adjudicate the clash",
+    "a past perfect with the bare adverb \"before\" whose anterior anchor sits in an earlier sentence: the ordering test is worded sentence-internally while its carve-out is worded text-wide, and the bare sequence adverb has no licensed slot",
+    "a non-Gregorian calendar date (\"day 455 of Year 2\"): (Day n) is exemplified only as day-of-month, so a monthless day-of-year ordinal has no stated convention"
+   ],
+   "new_gaps": [
+    "an ordinal on a bare counted noun with no associated event and no \"-est\" dimension (\"her second night\", \"her first six months\"): Ordinal's <scale> slot has no licensed filler — the parse substitutes the referent's own kind (night), which nothing licenses, and the reserved symbol unspecified is permitted only in Measure-family scale / unit slots"
+   ],
+   "decision": "defect",
+   "defect_summary": "For \"on every night of her first six months\" no compliant form is licensed for the bounding span — the frequency machinery has no slot for it — so the compliant parse keeps (Time e night) + (Every e 1 day) and leaves the span unencoded, since During is expressly barred for a surface \"of\"; sk_period_1 must carry its head noun's class atom, e.g. (GroupOf sk_period_1 month) with (Cardinality sk_period_1 6), so no referent symbol is untyped; and \"Norren was a Council member\" must emit the clause's own typing under the past wrapper — (Past (Member norren member)) beside the PartOf, or the fused (Past (Member norren council_member)) plus (Inheritance council_member member).",
+   "notes": "Negation scope is handled well — the depictive \"alone\" and the indefinite lantern both stay inside the strength-0 bundle while no referent typing is wrongly sealed — as are coreference of \"her\" to Eli, the Name-less \"the Council\", and the leather_case / keeper_family decompositions. Note that the During at statement 36 is licensed (the surface word there really is \"during\"); only the statement-43 one is the error."
+  }
+ }
+}

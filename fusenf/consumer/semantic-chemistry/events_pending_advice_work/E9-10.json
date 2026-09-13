@@ -1,0 +1,237 @@
+{
+ "id": "E9-10",
+ "rule": "IX — Smaller incidents through Year 2",
+ "texts": [
+  "On day 460 of Year 2, the keepers of the Middle Row lit the lanterns of the Middle Row at sundown.",
+  "The lanterns burned mire-essence.",
+  "The mire-essence in the lanterns held salt-bloom.",
+  "The mire-essence burned slowly.",
+  "A cold wind struck the Middle Row at night.",
+  "The lanterns stayed lit.",
+  "The lanterns produced mist-light.",
+  "The mist-light attracted a handful of nightmoths.",
+  "The nightmoths left silken threads on the lanterns.",
+  "Keepers collected the silken threads from the lanterns at dawn on day 461 of Year 2.",
+  "Hesper boiled the silken threads in sea-water in the first cauldron on day 461 of Year 2.",
+  "Mire-essence formed in the first cauldron by evening.",
+  "Hesper stored the mire-essence in a clay vessel.",
+  "The keepers of the Middle Row drew the stored mire-essence at sundown on day 461 of Year 2."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000064",
+  "sentences": [
+   "On day 460 of Year 2, the keepers of the Middle Row lit the lanterns of the Middle Row at sundown.",
+   "The lanterns burned mire-essence.",
+   "The mire-essence in the lanterns held salt-bloom.",
+   "The mire-essence burned slowly.",
+   "A cold wind struck the Middle Row at night.",
+   "The lanterns stayed lit.",
+   "The lanterns produced mist-light.",
+   "The mist-light attracted a handful of nightmoths.",
+   "The nightmoths left silken threads on the lanterns.",
+   "Keepers collected the silken threads from the lanterns at dawn on day 461 of Year 2.",
+   "Hesper boiled the silken threads in sea-water in the first cauldron on day 461 of Year 2.",
+   "Mire-essence formed in the first cauldron by evening.",
+   "Hesper stored the mire-essence in a clay vessel.",
+   "The keepers of the Middle Row drew the stored mire-essence at sundown on day 461 of Year 2."
+  ],
+  "parse": [
+   "(: mr_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: mr_kind (Member middle_row row) (STV 1.0 0.99))",
+   "(: keepers1_grp (GroupOf sk_keeper_1 keeper) (STV 1.0 0.99))",
+   "(: lanterns1_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: lanterns1_poss (Possession sk_lantern_1 middle_row) (STV 1.0 0.99))",
+   "(: light1_ev (Member sk_light_1 light) (STV 1.0 0.99))",
+   "(: light1_ag (Agent sk_light_1 sk_keeper_1) (STV 1.0 0.99))",
+   "(: light1_pat (Patient sk_light_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: light1_tense (Past sk_light_1) (STV 1.0 0.99))",
+   "(: light1_day (Time sk_light_1 (Day 460)) (STV 1.0 0.99))",
+   "(: light1_year (Time sk_light_1 (Year 2)) (STV 1.0 0.99))",
+   "(: light1_sundown (Time sk_light_1 sundown) (STV 1.0 0.99))",
+   "(: light_rule (Implication (PartOf $x sk_keeper_1) (And (Member (sk_light $x) light) (Agent (sk_light $x) $x) (Patient (sk_light $x) sk_lantern_1) (Past (sk_light $x)) (Time (sk_light $x) (Day 460)) (Time (sk_light $x) (Year 2)) (Time (sk_light $x) sundown))) (STV 1.0 0.9))",
+   "(: essence1_type (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: burn1_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: burn1_ag (Agent sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: burn1_pat (Patient sk_burn_1 sk_mire_essence_1) (STV 1.0 0.99))",
+   "(: burn1_tense (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: burn_rule (Implication (PartOf $x sk_lantern_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) sk_mire_essence_1) (Past (sk_burn $x)))) (STV 1.0 0.9))",
+   "(: essence1_loc (LocatedIn sk_mire_essence_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: hold1_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+   "(: hold1_holder (Holder sk_hold_1 sk_mire_essence_1) (STV 1.0 0.99))",
+   "(: hold1_theme (Theme sk_hold_1 salt_bloom) (STV 1.0 0.99))",
+   "(: hold1_tense (Past sk_hold_1) (STV 1.0 0.99))",
+   "(: bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: burn2_ev (Member sk_burn_2 burn) (STV 1.0 0.99))",
+   "(: burn2_pat (Patient sk_burn_2 sk_mire_essence_1) (STV 1.0 0.99))",
+   "(: burn2_manner (Manner sk_burn_2 slowly) (STV 1.0 0.99))",
+   "(: burn2_tense (Past sk_burn_2) (STV 1.0 0.99))",
+   "(: wind1_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+   "(: wind1_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+   "(: strike1_ev (Member sk_strike_1 strike) (STV 1.0 0.99))",
+   "(: strike1_ag (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+   "(: strike1_thm (Theme sk_strike_1 middle_row) (STV 1.0 0.99))",
+   "(: strike1_tense (Past sk_strike_1) (STV 1.0 0.99))",
+   "(: strike1_time (Time sk_strike_1 night) (STV 1.0 0.99))",
+   "(: lit_rule (Implication (PartOf $x sk_lantern_1) (And (Member (sk_lit $x) lit) (Experiencer (sk_lit $x) $x) (Still (sk_lit $x)) (Past (sk_lit $x)))) (STV 1.0 0.9))",
+   "(: mistlight1_type (Member sk_mist_light_1 mist_light) (STV 1.0 0.99))",
+   "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: produce1_ev (Member sk_produce_1 produce) (STV 1.0 0.99))",
+   "(: produce1_ag (Agent sk_produce_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: produce1_pat (Patient sk_produce_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: produce1_tense (Past sk_produce_1) (STV 1.0 0.99))",
+   "(: produce_rule (Implication (PartOf $x sk_lantern_1) (And (Member (sk_produce $x) produce) (Agent (sk_produce $x) $x) (Patient (sk_produce $x) sk_mist_light_1) (Past (sk_produce $x)))) (STV 1.0 0.9))",
+   "(: moths1_grp (GroupOf sk_nightmoth_1 nightmoth) (STV 1.0 0.99))",
+   "(: moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: moths1_card (CardinalityPhrase sk_nightmoth_1 \"a handful\") (STV 1.0 0.99))",
+   "(: attract1_ev (Member sk_attract_1 attract) (STV 1.0 0.99))",
+   "(: attract1_ag (Agent sk_attract_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: attract1_thm (Theme sk_attract_1 sk_nightmoth_1) (STV 1.0 0.99))",
+   "(: attract1_tense (Past sk_attract_1) (STV 1.0 0.99))",
+   "(: threads1_grp (GroupOf sk_thread_1 silken_thread) (STV 1.0 0.99))",
+   "(: thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+   "(: thread_silken (Inheritance silken_thread silken) (STV 1.0 0.99))",
+   "(: leave1_ev (Member sk_leave_1 leave) (STV 1.0 0.99))",
+   "(: leave1_ag (Agent sk_leave_1 sk_nightmoth_1) (STV 1.0 0.99))",
+   "(: leave1_pat (Patient sk_leave_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: leave1_loc (Location sk_leave_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: leave1_tense (Past sk_leave_1) (STV 1.0 0.99))",
+   "(: leave_rule (Implication (PartOf $x sk_nightmoth_1) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Patient (sk_leave $x) sk_thread_1) (Location (sk_leave $x) sk_lantern_1) (Past (sk_leave $x)))) (STV 1.0 0.9))",
+   "(: keepers2_grp (GroupOf sk_keeper_2 keeper) (STV 1.0 0.99))",
+   "(: collect1_ev (Member sk_collect_1 collect) (STV 1.0 0.99))",
+   "(: collect1_ag (Agent sk_collect_1 sk_keeper_2) (STV 1.0 0.99))",
+   "(: collect1_thm (Theme sk_collect_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: collect1_src (Source sk_collect_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: collect1_tense (Past sk_collect_1) (STV 1.0 0.99))",
+   "(: collect1_dawn (Time sk_collect_1 dawn) (STV 1.0 0.99))",
+   "(: collect1_day (Time sk_collect_1 (Day 461)) (STV 1.0 0.99))",
+   "(: collect1_year (Time sk_collect_1 (Year 2)) (STV 1.0 0.99))",
+   "(: collect_rule (Implication (PartOf $x sk_keeper_2) (And (Member (sk_collect $x) collect) (Agent (sk_collect $x) $x) (Theme (sk_collect $x) sk_thread_1) (Source (sk_collect $x) sk_lantern_1) (Past (sk_collect $x)) (Time (sk_collect $x) dawn) (Time (sk_collect $x) (Day 461)) (Time (sk_collect $x) (Year 2)))) (STV 1.0 0.9))",
+   "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: cauldron1_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+   "(: cauldron1_ord (Ordinal sk_cauldron_1 1 cauldron) (STV 1.0 0.99))",
+   "(: seawater_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+   "(: boil1_ev (Member sk_boil_1 boil) (STV 1.0 0.99))",
+   "(: boil1_ag (Agent sk_boil_1 hesper) (STV 1.0 0.99))",
+   "(: boil1_pat (Patient sk_boil_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: boil1_instr (Instrument sk_boil_1 sea_water) (STV 1.0 0.99))",
+   "(: boil1_loc (Location sk_boil_1 sk_cauldron_1) (STV 1.0 0.99))",
+   "(: boil1_tense (Past sk_boil_1) (STV 1.0 0.99))",
+   "(: boil1_day (Time sk_boil_1 (Day 461)) (STV 1.0 0.99))",
+   "(: boil1_year (Time sk_boil_1 (Year 2)) (STV 1.0 0.99))",
+   "(: essence2_type (Member sk_mire_essence_2 mire_essence) (STV 1.0 0.99))",
+   "(: form1_ev (Member sk_form_1 form) (STV 1.0 0.99))",
+   "(: form1_pat (Patient sk_form_1 sk_mire_essence_2) (STV 1.0 0.99))",
+   "(: form1_loc (Location sk_form_1 sk_cauldron_1) (STV 1.0 0.99))",
+   "(: form1_tense (Past sk_form_1) (STV 1.0 0.99))",
+   "(: form1_time (TimeAtMost sk_form_1 evening) (STV 1.0 0.99))",
+   "(: vessel1_type (Member sk_vessel_1 clay_vessel) (STV 1.0 0.99))",
+   "(: vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+   "(: store1_ev (Member sk_store_1 store) (STV 1.0 0.99))",
+   "(: store1_ag (Agent sk_store_1 hesper) (STV 1.0 0.99))",
+   "(: store1_thm (Theme sk_store_1 sk_mire_essence_2) (STV 1.0 0.99))",
+   "(: store1_loc (Location sk_store_1 sk_vessel_1) (STV 1.0 0.99))",
+   "(: store1_tense (Past sk_store_1) (STV 1.0 0.99))",
+   "(: draw1_ev (Member sk_draw_1 draw) (STV 1.0 0.99))",
+   "(: draw1_ag (Agent sk_draw_1 sk_keeper_1) (STV 1.0 0.99))",
+   "(: draw1_thm (Theme sk_draw_1 sk_mire_essence_2) (STV 1.0 0.99))",
+   "(: draw1_tense (Past sk_draw_1) (STV 1.0 0.99))",
+   "(: draw1_sundown (Time sk_draw_1 sundown) (STV 1.0 0.99))",
+   "(: draw1_day (Time sk_draw_1 (Day 461)) (STV 1.0 0.99))",
+   "(: draw1_year (Time sk_draw_1 (Year 2)) (STV 1.0 0.99))",
+   "(: draw_rule (Implication (PartOf $x sk_keeper_1) (And (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Theme (sk_draw $x) sk_mire_essence_2) (Past (sk_draw $x)) (Time (sk_draw $x) sundown) (Time (sk_draw $x) (Day 461)) (Time (sk_draw $x) (Year 2)))) (STV 1.0 0.9))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000064",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 22,
+     "issue": "\"The mire-essence in the lanterns held salt-bloom\" is a containment stative transitive, which the instruction set assigns Agent (its own example \"the tank holds forty litres\"), reserving Holder for own/have/lack only."
+    },
+    {
+     "statement": 2,
+     "issue": "The of-phrase restrictor in \"the keepers of the Middle Row\" is dropped entirely — sk_keeper_1 gets no Possession/PartOf link to middle_row, although the parallel \"the lanterns of the Middle Row\" does get one."
+    },
+    {
+     "statement": 37,
+     "issue": "\"The lanterns stayed lit\" emits only the per-member reified-state rule; the mandated flat half of the continuation-copular dual-emit (as the per-member rule (Implication (PartOf $x sk_lantern_1) (Member $x lit))) is missing, so no member's \"is it lit?\" can bind."
+    },
+    {
+     "statement": 57,
+     "issue": "\"left silken threads\" takes Patient although depositing leaves the threads unchanged — the change test (and its default-to-Theme fallback) selects Theme."
+    },
+    {
+     "statement": 73,
+     "issue": "(Ordinal sk_cauldron_1 1 cauldron) puts the entity's own class in the scale slot, which the instruction set licenses only for an associated event or an explicit \"-est\" dimension."
+    },
+    {
+     "statement": 78,
+     "issue": "\"boiled ... in sea-water\" is slotted as Instrument although the PP answers \"where/in what medium\" and its preposition is \"in\", where the instruction set's oblique rules point to Location or the preposition-named (In ...)."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "ordinal day-of-year dating (\"on day 460 of Year 2\") — (Day <n>) is defined only as the day-of-month granularity of a calendar expression, leaving a day numbered within the year with no distinct licensed form",
+    "an ordinal that ranks a plain object noun with no associated event and no \"-est\" dimension (\"the first cauldron\") — the instruction set supplies no licensed filler for Ordinal's scale slot",
+    "a distributive per-member rule whose predicate is TRANSITIVE with a plural/group object (\"the keepers lit the lanterns\", \"the nightmoths left silken threads\") — every distributive example given is intransitive, and the instruction set never says whether the object distributes too, so the shared-symbol convention yields \"each keeper lit the whole lantern group\"",
+    "cross-part-of-speech lemma collision — \"lit\" (verb) and \"mist-light\" (noun head) both lemmatize to the symbol light, and the instruction set offers no sense-disambiguation, so the lighting event class and the noun genus share one symbol"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Aside from the role and dual-emit slips above the passage is well tracked — witness identity (two distinct keeper groups, two distinct mire-essence witnesses), the compound decompositions (silken_thread with its material-adjective modifier genus, clay_vessel and nightmoth without noun-modifier genera), \"by evening\" as TimeAtMost, and the creation/positioning events correctly taking Location on the event only. One further omission: the participial modifier in \"the stored mire-essence\" gets no atom, though coreference to sk_mire_essence_2 arguably discharges it."
+  },
+  "adjudication": {
+   "id": "evtp-000064",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Thematic roles bounds Holder to possession verbs \"own / have / lack\" and gives \"the tank holds forty litres\" as the stative transitive that still takes Agent, so (Holder sk_hold_1 sk_mire_essence_1) asserts a possession relation the rule bars for exactly this verb."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Core patterns forbids silently dropping a stated restriction (\"omitting it widens the claim\"), and the licensed carrier plainly exists — the parse itself emits (Possession sk_lantern_1 middle_row) for the parallel \"the lanterns of the Middle Row\" — so the keepers' of-phrase is an omitted licensed atom, not gap territory."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "The continuation copular (\"stayed lit\") mandates the reified state plus the flat atom (Dual-emit; Resultatives), which on a plural group becomes the per-member rule (Implication (PartOf $x sk_lantern_1) (Member $x lit)); only the reified half was emitted, so no member's \"is it lit?\" can bind."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "Depositing leaves the threads themselves unaltered, so the \"does the object itself change?\" test — and its explicit default-to-Theme fallback — yields Theme; Patient asserts a change the leaving does not make."
+    },
+    {
+     "index": 4,
+     "verdict": "refute",
+     "reason": "This mistakes a coverage gap for a defect (the reviewer files it as gap 2 as well): Ordinal's scale slot has no licensed filler for a plain object noun with no associated event or \"-est\" dimension, and (Ordinal sk_cauldron_1 1 cauldron) asserts nothing false — it records the stated rank, which Core patterns forbids silently dropping."
+    },
+    {
+     "index": 5,
+     "verdict": "refute",
+     "reason": "Instrument's own gloss covers \"a tool, substance or conduit\" as the means, and the preposition-named oblique is reserved for PPs naming what the activity is about or directed at, so sea-water as the medium the boiling is done in is a licensed reading (Location is already taken by the cauldron in the same clause)."
+    }
+   ],
+   "gaps_confirmed": [
+    "Day-of-year ordinal dating (\"on day 460 of Year 2\"): (Day n) is defined as the day granularity of a calendar expression paired with (Month ...), so a day numbered within the year has no distinct licensed form.",
+    "An ordinal ranking a plain object noun with no associated event and no \"-est\" dimension (\"the first cauldron\"): no licensed filler exists for Ordinal's scale slot — this is the hole behind refuted issue 4.",
+    "A per-member distribution rule whose predicate is TRANSITIVE with a plural/group object (\"the keepers lit the lanterns\", \"the nightmoths left silken threads\"): every distributive example in the instruction set is intransitive and nothing says whether the object co-distributes, so the shared-symbol convention makes each member act on the whole group.",
+    "Cross-part-of-speech lemma collision: the verb \"lit\" lemmatizes to light and the noun head of \"mist-light\" also gives light, and lemmatization offers no sense split, so the lighting event class and the noun genus share one symbol."
+   ],
+   "new_gaps": [
+    "A medium PP naming the substance an action is performed in (\"boiled the threads in sea-water\") has no decision rule: Instrument is defined by means, Location by place, and the preposition-named oblique by aboutness, so nothing selects among them for a medium — which is why issue 5 is underdetermined.",
+    "A bare mass direct object later taken up by a definite anaphor (\"burned mire-essence\" ... \"The mire-essence in the lanterns ...\"): Existential reserves the bare class symbol for a non-specific object, but a bare class symbol gives the later definite nothing to attach its predications to, so the two rules pull opposite ways and no licensed form covers both."
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0: the compliant form is (Agent sk_hold_1 sk_mire_essence_1) — a stative transitive keeps Agent, Holder being own/have/lack only. Issue 1: add (Possession sk_keeper_1 middle_row) beside (GroupOf sk_keeper_1 keeper), exactly as the parallel lantern phrase is handled. Issue 2: add the flat half of the dual-emit as the per-member rule (Implication (PartOf $x sk_lantern_1) (Member $x lit)) (STV 1.0 0.9) beside the reified state. Issue 3: the compliant role is (Theme sk_leave_1 sk_thread_1).",
+   "notes": "The passage is otherwise well tracked — two distinct keeper groups, two distinct mire-essence witnesses, clean compound decompositions, \"by evening\" as TimeAtMost, and Location-on-the-event-only for the creating/positioning clauses. Beyond the filed gap, the six transitive distribution rules arguably over-assert rather than merely improvise (each keeper lighting the whole lantern group, each lantern producing the one mist-light), which a re-parse should settle rather than replicate."
+  }
+ }
+}

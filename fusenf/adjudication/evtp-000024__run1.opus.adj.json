@@ -1,0 +1,30 @@
+{"id": "evtp-000024", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "confirm",
+    "reason": "Names and casing states that a minted witness's class atom is always emitted and that an untyped referent symbol must never appear in the output, yet sk_weeks_1 carries only a Measure and then fills three slots."},
+   {"index": 1,
+    "verdict": "partial",
+    "reason": "The sk_weeks_1 half stands (an untyped symbol in the Time slot, with the passage already reifying the two-week state sk_visible_3 to anchor on), but sk_autumn_1/sk_autumn_2 are typed witnesses in genuine gap territory -- Time's term inventory has no season term and a bare autumn constant would silently drop the stated 'normal' restriction -- so those atoms are acceptable improvisation."},
+   {"index": 2,
+    "verdict": "confirm",
+    "reason": "Intervals specifies During as nesting one reified eventuality inside another, both reified, and sk_weeks_1 is neither reified nor an eventuality, while the passage supplies sk_visible_3 (the two-week visibility state) as a licensed outer argument."},
+   {"index": 3,
+    "verdict": "partial",
+    "reason": "Real that the passage contains other asserted events so the 'no other event in the text' exemption does not apply, but overstated as a violation: the rule's positive trigger is sentence-internal ('whenever the sentence contains another asserted event') and each past perfect is its own single-clause sentence, and a Before on the continuative 'had been visible for two weeks' would be false since that state runs up to the day-60 reference time."}
+ ],
+ "gaps_confirmed": [
+   "Approximated cardinal count ('about four', 'about twelve'): Cardinality takes a native integer, ParticleFromNormal is defined only for Measure/Time magnitudes, and CardinalityPhrase is for vague quantities normalized to a canonical lexicon string -- so 'about four' has no carrier that a seeded rule can map to a bound.",
+   "Normalcy-baseline framing ('In a normal autumn ...'): no typicality operator exists, and the default indefinite-witness route asserts one particular autumn.",
+   "Anaphoric multi-unit time-span NP: term propagation yields calendar terms and Time's inventory has no span term, so 'in those two weeks' has no licensed Time filler (only the 'during' variant has the During-over-the-antecedent-eventuality route).",
+   "Day-of-year dating in a fictional calendar ('day 60 of Year 1'): (Day n) is defined as a calendar day inside a month/date, not a day ordinal within a year.",
+   "Quantity-per-time-unit rate on an event's object ('about twelve feathers per morning'): TimesPer counts occurrences and the <unit>_per_<unit> compound is for a bearer's own magnitude, so the per-morning quantity has no single licensed carrier."
+ ],
+ "new_gaps": [
+   "Past-bounded habitual ('collected about twelve feathers per morning during those two weeks'): Frequency & habitual schedules requires the event to stay unmarked, giving no licensed way to bound a habit to a closed past interval while the clause is finite past tense -- a licensed form would need to carry the recurrence, the tense, and the enclosing interval on one eventuality.",
+   "Restricted period adverbial in the Time slot ('in a normal autumn'): a licensed form would need a Time filler that both names a season-level period and carries the 'normal' restriction, since the bare-constant route drops the qualifier and the witness route asserts a particular autumn."
+ ],
+ "decision": "defect",
+ "defect_summary": "Issue 0: any minted referent must carry a class atom, so 'those two weeks' would have to be a typed definite-plural group ((GroupOf sk_weeks_1 week) (Cardinality sk_weeks_1 2)) or, better, resolved to the already-reified two-week state sk_visible_3 so that no bare span symbol is minted at all. Issue 2: the compliant form is (During sk_collect_1 sk_visible_3), nesting the collecting inside the reified two-week visibility eventuality the passage itself supplies.",
+ "notes": "Compound decomposition (sky_cat/cliff_spire), the Cliff Path name/type pair, group + per-member distribution, and the reified-state route for 'were visible' are all correct; the damage is confined to the invented span referent. The CardinalityPhrase strings 'about four'/'about twelve' are non-lexicon improvisations but keep a hedge that dropping would widen the claim, so they stand under the calibration line."
+}

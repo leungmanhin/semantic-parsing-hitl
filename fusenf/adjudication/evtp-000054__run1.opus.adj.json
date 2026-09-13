@@ -1,0 +1,30 @@
+{"id": "evtp-000054", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "confirm",
+    "reason": "Role fillers are lowercase entity terms and `(Year n)` is defined only as a structured Time-term value (UpperCamelCase term constructor), so `(Patient sk_begin_1 (Year 2))` is ill-typed — the same term is simultaneously used correctly as a Time value on line 5, which is exactly the type confusion."},
+   {"index": 1,
+    "verdict": "confirm",
+    "reason": "Cardinality is stated to take `a native integer`, and ParticleFromNormal is licensed only as a Measure magnitude or an approximate clock value, so the distribution in the count slot is ill-typed and breaks the `Compute` hard-integer counting machinery the instruction set pairs with Cardinality."},
+   {"index": 2,
+    "verdict": "refute",
+    "reason": "The rule cited (`a noun modifier is never exposed`) bars `(Inheritance salt_bloom_store salt_bloom)`, which the parse does not emit; `(Inheritance salt_bloom bloom)` is the hyphenated transparent modifier+head genus the same section says to `always emit`, whether decomposition reaches a compound nested inside a compound is simply unstated, and the atom is true and well-typed."},
+   {"index": 3,
+    "verdict": "refute",
+    "reason": "Identical case to index 2 — `(Inheritance mire_essence essence)` is a compound genus, not the barred exposure of a noun modifier as the store compound's genus, and it is true and well-typed in gap territory."},
+   {"index": 4,
+    "verdict": "partial",
+    "reason": "The half that stands: `recover from` is a prepositional verb and its object does not answer `whence`, so the licensed head is the preposition-named `(From sk_recover_1 sk_loss_1)`; the half that does not: `Source` is the instruction set's own listed head for an event-side `from` oblique and the atom is true, well-typed and asserts nothing extra, so it is a head-choice error rather than false content."}
+ ],
+ "gaps_confirmed": [
+   "A hedged cardinal (\"About ten sky-cats\"): Cardinality requires a native integer and CardinalityPhrase covers only vague phrases carrying no number, so an approximated exact count has no licensed carrier.",
+   "A measure-of quantity phrase (\"eight weeks of supply\", \"eleven weeks of winter supply\"): the of-phrase rules explicitly exclude a measure (\"a cup of water\") from the genitive mapping but never give it an encoding."
+ ],
+ "new_gaps": [
+   "The instruction set states no link between a named-year entity symbol (year_2, licensed by Names and casing) and the `(Year n)` Time term, so \"Year 2 began on day 365\" and `(Time e (Year 2))` cannot be related in the KB.",
+   "Whether compound decomposition reaches a compound MODIFIER nested inside a compound (salt_bloom inside salt_bloom_store, mire_essence inside mire_essence_store) is unstated — \"decompose once, then stop\" names a stopping condition only for parts already single.",
+   "`(Ordinal <entity> <n> <scale>)` specifies the scale as the associated event or an explicit -est dimension; a kind-ordinal over a non-eventive class (\"the second autumn equinox\") supplies neither, leaving the scale slot unlicensed."
+ ],
+ "decision": "defect",
+ "defect_summary": "For index 0 the compliant form is a named entity for the year — `(Name year_2 \"Year 2\")` + `(Member year_2 year)` per Names and casing (the capitalized run exceeds the bare class word), with `year_2` filling the Patient slot and `(Year 2)` staying in Time slots only. For index 1 NO licensed form carries the content: Cardinality admits only a native integer and CardinalityPhrase only a numberless vague phrase, so the instruction-compliant behaviour under Core patterns (\"carry it, or leave the whole claim out and record the gap\") is to omit the count atom entirely and file the gap — which is why the hedged-cardinal gap above is the substantive finding here.",
+ "notes": "The reviewer's second gap is not a gap: Names and casing does license an entity symbol for \"Year 2\" (capitalized run exceeding the bare class word); the real gap is the missing bridge to the `(Year n)` term, filed above. The light-verb reading of \"came\" over the equinox event-noun (reviewer's note) is acceptable improvisation — every atom it yields is true and well-typed."}

@@ -1,0 +1,41 @@
+{"id": "evtp-000058", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "confirm",
+    "reason": "Compound concepts makes the head genus mandatory (\"The genus itself is ALWAYS emitted either way\"; a solid/hyphenated transparent modifier+head \"always emit the genus\"), and `(Inheritance sky_cat cat)` appears nowhere in the parse even though cliff_spire, nightmoth, cold_snap, mist_light and feather_harvest all carry theirs."},
+   {"index": 1,
+    "verdict": "confirm",
+    "reason": "`(Member sk_crowd_1 crowd) (GroupOf sk_crowd_1 nightmoth)` is the singular \"a flock of birds\" pattern applied to the plural \"crowds of nightmoths\", asserting one crowd where the text states several — number is read off the surface (\"emit the one the surface shows\")."},
+   {"index": 2,
+    "verdict": "confirm",
+    "reason": "One `sk_gather_1` cannot occur on six disjoint nights, so a single Past event witness carrying `(Time sk_gather_1 sk_nights_2)` misstates the content (and the Time filler is a group entity, not a calendar term, deictic or day-part symbol); the knock-on is real — plural \"the hunts\" resolves to the one `sk_hunt_1` at line 79."},
+   {"index": 3,
+    "verdict": "confirm",
+    "reason": "Cardinality is stated to take `a native integer` and ParticleFromNormal is licensed only as a Measure magnitude or an approximate clock value, so the distribution in the count slot is ill-typed and breaks the `Compute` hard-integer counting machinery."},
+   {"index": 4,
+    "verdict": "partial",
+    "reason": "The half that stands: `night` is a day-part slot symbol, not a period unit, so `(Every e 1 night)` mis-slots it where the stated recipe gives the slot atom `(Time e night)` plus the cycle `(Every e 1 day)` (mirroring morning -> day); the half that does not: \"per night\" here quantifies the OBJECT count (thirty moths a night), not the counting event's period, so the reviewer's prescribed pair would not capture it either — which is the reviewer's own fourth gap."},
+   {"index": 5,
+    "verdict": "confirm",
+    "reason": "Hunting neither creates, destroys, consumes nor physically changes the nightmoths (success is not entailed), and the instruction set's explicit fallback is \"When the test is unclear, default to Theme\", so `Patient` violates the stated role test and breaks statement/question role agreement."},
+   {"index": 6,
+    "verdict": "confirm",
+    "reason": "The dependent-existential doctrine makes an object under a universal a per-binding Skolem term unless \"the same Y\" / \"a certain Y\" cues the shared reading, so reusing the constants `sk_fuel_1` and `sk_mistlight_1` inside the per-member rules asserts one shared portion of mire-essence and one shared mist-light across the three stations — more than the text states."},
+   {"index": 7,
+    "verdict": "partial",
+    "reason": "The deviation is real — the convention is `sk_<class>_<n>` and \"fuel\" is neither the class nor a word the text uses — but a witness symbol is an opaque identifier typed by `(Member sk_fuel_1 mire_essence)`, so nothing false or ill-typed enters the KB and this alone would not defect the parse."}
+ ],
+ "gaps_confirmed": [
+   "A hedged numeral count (\"about thirty nightmoths\"): Cardinality takes a native integer, CardinalityPhrase covers only numberless vague phrases, and CardinalityAtLeast/AtMost only bounds — no licensed carrier.",
+   "An event distributed over a counted set of calendar units (\"on six of the next ten nights\"): days are stated to be terms, not entities, so there is no partitive over nights and Time has no slot for a set of occasions.",
+   "A forward-looking window relative to the narrative present (\"the next ten nights\"): the anaphoric-time rules cover only a single \"that / the following <unit>\" increment from an antecedent.",
+   "A per-unit rate on a counted object (\"about thirty nightmoths per night\"): compound rate units belong to Measure, while Every / TimesPer quantify the event's recurrence, not an object group's count.",
+   "An ordinal's stated domain restriction (\"the first cold snap of Year 2\"): `(Ordinal <entity> <n> <scale>)` has no slot for the domain the ranking is relative to."
+ ],
+ "new_gaps": [
+   "A bare plural of collectives whose member kind is stated (\"crowds of nightmoths\"): the `(Member g flock) (GroupOf g bird)` pattern is singular-only, and no form is stated for a group whose members are themselves groups.",
+   "A mass / bare-substance object under a universal (\"the three stations burned extra mire-essence\"): the dependent-existential machinery is spelled out for indefinite COUNT objects (`(sk_book $x)`), leaving it unstated whether a per-member mass portion is minted the same way."
+ ],
+ "decision": "defect",
+ "defect_summary": "Index 0: emit the mandatory compound genus `(Inheritance sky_cat cat)` beside `(GroupOf sk_skycats_1 sky_cat)`. Index 1: \"crowds of nightmoths\" takes a group OF CROWDS — `(GroupOf sk_crowds_1 crowd)` as the attract event's Theme, each member's nightmoth membership handed down by a per-member rule — not one crowd witness. Index 2: NO licensed form exists — Time admits only calendar terms, deictics and day-part symbols and the instruction set states days are terms rather than entities, so an event recurring on a counted subset of nights cannot be encoded; the compliant behaviour is to leave the six-nights restriction (and the single collapsed event) out and record the gap, which is filed above. Index 3: NO licensed form — the compliant behaviour is to omit the hedged count atom entirely and record the gap. Index 5: `(Theme sk_hunt_1 sk_nightmoths_2)`, and `(Theme (sk_hunt $x) ...)` in the per-member rule. Index 6: give each station its own portion — `(Patient (sk_burn $x) (sk_mire_essence $x))` with `(Member (sk_mire_essence $x) mire_essence)` as a rule conjunct, and likewise a per-binding mist-light in the produce rule.",
+ "notes": "The reviewer filed \"the first cold snap OF YEAR 2\" only as a gap, but dropping the domain restriction also widens the claim to first-ever, which Core patterns bars (\"carry it, or leave the whole claim out\") — a second defect route to the same conclusion. Everything else in the passage is compliant: the every-lantern rule with its `On` premise, the strength-0 no-lantern rule with its \"no\" companion, the collective gather with no per-member rule, and the `(BeforeBy sk_fall_1 sk_strong_1 1 month)` fallback for \"the following month\" all follow the stated forms."}

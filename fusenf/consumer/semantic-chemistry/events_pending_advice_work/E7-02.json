@@ -1,0 +1,153 @@
+{
+ "id": "E7-02",
+ "rule": "VII — Midspring recovery",
+ "texts": [
+  "On day 230 of Year 1, Coraline Ash began a solo stretch of thirty nights at the Harbor Station.",
+  "Pell did not accompany Coraline Ash during the solo stretch.",
+  "Pell visited the Harbor Station on her own off-nights.",
+  "During the solo stretch, Coraline Ash lit the lantern at sundown every night.",
+  "During the solo stretch, Coraline Ash refreshed the mire-essence at midnight every night.",
+  "During the solo stretch, Coraline Ash trimmed the wick at the third watch every night.",
+  "During the solo stretch, Coraline Ash extinguished the lantern at dawn every night.",
+  "Coraline Ash kept the notebook carefully."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000045",
+  "sentences": [
+   "On day 230 of Year 1, Coraline Ash began a solo stretch of thirty nights at the Harbor Station.",
+   "Pell did not accompany Coraline Ash during the solo stretch.",
+   "Pell visited the Harbor Station on her own off-nights.",
+   "During the solo stretch, Coraline Ash lit the lantern at sundown every night.",
+   "During the solo stretch, Coraline Ash refreshed the mire-essence at midnight every night.",
+   "During the solo stretch, Coraline Ash trimmed the wick at the third watch every night.",
+   "During the solo stretch, Coraline Ash extinguished the lantern at dawn every night.",
+   "Coraline Ash kept the notebook carefully."
+  ],
+  "parse": [
+   "(: cora_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: hs_name (Name harbor_station \"Harbor Station\") (STV 1.0 0.99))",
+   "(: hs_kind (Member harbor_station station) (STV 1.0 0.99))",
+   "(: e1_begin (Member sk_begin_1 begin) (STV 1.0 0.99))",
+   "(: e1_agent (Agent sk_begin_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e1_theme (Theme sk_begin_1 sk_stretch_1) (STV 1.0 0.99))",
+   "(: e1_past (Past sk_begin_1) (STV 1.0 0.99))",
+   "(: e1_year (Time sk_begin_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e1_day (Time sk_begin_1 (Day 230)) (STV 1.0 0.99))",
+   "(: stretch_kind (Member sk_stretch_1 stretch) (STV 1.0 0.99))",
+   "(: stretch_solo (Member sk_stretch_1 solo) (STV 1.0 0.99))",
+   "(: stretch_dur (Measure sk_stretch_1 duration 30 night) (STV 1.0 0.99))",
+   "(: stretch_loc (Location sk_stretch_1 harbor_station) (STV 1.0 0.99))",
+   "(: stretch_ong (Ongoing sk_stretch_1) (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: e2_neg (And (Member sk_accompany_1 accompany) (Agent sk_accompany_1 pell) (Theme sk_accompany_1 coraline_ash) (During sk_accompany_1 sk_stretch_1) (Past sk_accompany_1)) (STV 0.0 0.99))",
+   "(: e3_visit (Member sk_visit_1 visit) (STV 1.0 0.99))",
+   "(: e3_agent (Agent sk_visit_1 pell) (STV 1.0 0.99))",
+   "(: e3_theme (Theme sk_visit_1 harbor_station) (STV 1.0 0.99))",
+   "(: e3_past (Past sk_visit_1) (STV 1.0 0.99))",
+   "(: e3_time (Time sk_visit_1 off_night) (STV 1.0 0.99))",
+   "(: offnight_genus (Inheritance off_night night) (STV 1.0 0.99))",
+   "(: e4_light (Member sk_light_1 light) (STV 1.0 0.99))",
+   "(: e4_agent (Agent sk_light_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e4_patient (Patient sk_light_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: lantern_kind (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: e4_time (Time sk_light_1 sundown) (STV 1.0 0.99))",
+   "(: e4_every (Every sk_light_1 1 night) (STV 1.0 0.99))",
+   "(: e4_during (During sk_light_1 sk_stretch_1) (STV 1.0 0.99))",
+   "(: e4_past (Past sk_light_1) (STV 1.0 0.99))",
+   "(: e5_refresh (Member sk_refresh_1 refresh) (STV 1.0 0.99))",
+   "(: e5_agent (Agent sk_refresh_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e5_patient (Patient sk_refresh_1 sk_essence_1) (STV 1.0 0.99))",
+   "(: essence_kind (Member sk_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: e5_time (Time sk_refresh_1 midnight) (STV 1.0 0.99))",
+   "(: e5_every (Every sk_refresh_1 1 night) (STV 1.0 0.99))",
+   "(: e5_during (During sk_refresh_1 sk_stretch_1) (STV 1.0 0.99))",
+   "(: e5_past (Past sk_refresh_1) (STV 1.0 0.99))",
+   "(: e6_trim (Member sk_trim_1 trim) (STV 1.0 0.99))",
+   "(: e6_agent (Agent sk_trim_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e6_patient (Patient sk_trim_1 sk_wick_1) (STV 1.0 0.99))",
+   "(: wick_kind (Member sk_wick_1 wick) (STV 1.0 0.99))",
+   "(: e6_time (Time sk_trim_1 third_watch) (STV 1.0 0.99))",
+   "(: e6_every (Every sk_trim_1 1 night) (STV 1.0 0.99))",
+   "(: e6_during (During sk_trim_1 sk_stretch_1) (STV 1.0 0.99))",
+   "(: e6_past (Past sk_trim_1) (STV 1.0 0.99))",
+   "(: e7_extinguish (Member sk_extinguish_1 extinguish) (STV 1.0 0.99))",
+   "(: e7_agent (Agent sk_extinguish_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e7_patient (Patient sk_extinguish_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e7_time (Time sk_extinguish_1 dawn) (STV 1.0 0.99))",
+   "(: e7_every (Every sk_extinguish_1 1 night) (STV 1.0 0.99))",
+   "(: e7_during (During sk_extinguish_1 sk_stretch_1) (STV 1.0 0.99))",
+   "(: e7_past (Past sk_extinguish_1) (STV 1.0 0.99))",
+   "(: e8_keep (Member sk_keep_1 keep) (STV 1.0 0.99))",
+   "(: e8_agent (Agent sk_keep_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e8_theme (Theme sk_keep_1 sk_notebook_1) (STV 1.0 0.99))",
+   "(: notebook_kind (Member sk_notebook_1 notebook) (STV 1.0 0.99))",
+   "(: e8_manner (Manner sk_keep_1 carefully) (STV 1.0 0.99))",
+   "(: e8_past (Past sk_keep_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000045",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 20,
+     "issue": "\"her own\" is silently dropped -- no Possession links the off-nights to Pell, so the parse widens the claim to off-nights in general."
+    },
+    {
+     "statement": 16,
+     "issue": "The plural \"off-nights\" (several occasions) collapses into a single Past visit event with no recurrence atom and no group witness for the possessed plural."
+    },
+    {
+     "statement": 27,
+     "issue": "\"every night\" is encoded as a period (Every e 1 night), but \"night\" is a day-part like \"morning\", which the slot rule maps to (Time e night) + (Every e 1 day); same at 36, 44, 51."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "inceptive verb with an event-denoting NOUN object (\"began a solo stretch of thirty nights\") -- Inception covers only \"to V\" / \"V-ing\" complements, so nothing says whether the noun-eventuality takes Ongoing, its own tense, or a role linking the subject to it",
+    "past-tense habitual: a finite past clause carrying \"every night\" -- Frequency & habitual schedules says the event stays unmarked, Status predicates tenses finite clauses, and no rule says which wins for a habitual bounded inside a past interval (the parse emits both Past and Every)",
+    "a possessed plural common-noun NP as a temporal adjunct (\"on her own off-nights\") -- Time takes structured terms, deictics or bare day-part constants, with no slot for a witness/group that carries a possessor"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Roles, the negation bundle, During, compound decomposition (mire_essence, off_night) and cross-sentence coreference (the stretch, the lantern) are all handled correctly. The defects are confined to the \"her own off-nights\" adjunct and the frequency encoding."
+  },
+  "adjudication": {
+   "id": "evtp-000045",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Core patterns forbids silently dropping a stated restriction (\"omitting it widens the claim -- carry it, or leave the whole claim out\") and Possessive / genitive NP mandates (Possession <possessed> <possessor>) for a possessive pronoun, so \"her own\" could not simply vanish into the bare constant off_night."
+    },
+    {
+     "index": 1,
+     "verdict": "partial",
+     "reason": "The missing group witness for the possessed plural is real (it is issue 0's defect), but the demand for a recurrence atom falls: Quantifiers states Every / TimesPer \"need a stated period or rate\" and that an unrepresentable frequency adverbial is left out rather than mis-slotted, and no rule pluralizes events off a plural temporal adjunct."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Frequency & habitual schedules puts a NAMED SLOT on Time and adds its cycle -- \"every morning\" -> (Time e morning) + (Every e 1 day) -- and night is one of the instruction set's own day-part constants (\"at night\", \"overnight-as-night\"), so (Every e 1 night) mis-files the slot as a period in a unit the time lexicon does not define."
+    }
+   ],
+   "gaps_confirmed": [
+    "inceptive verb with an event-denoting NOUN complement (\"began a solo stretch of thirty nights\") -- Inception covers only \"to V\" / \"V-ing\", leaving the noun-eventuality's aspect, tense and linking role undetermined",
+    "past-tense habitual -- Frequency says a habitual event stays unmarked while Status predicates tenses every finite clause, and nothing resolves which wins for a habit bounded inside a past interval",
+    "a possessed plural common-noun NP as a temporal adjunct (\"on her own off-nights\") -- the Time role's filler grammar is structured terms, deictic/named constants and day-part symbols, with no slot for a witness or group carrying a possessor"
+   ],
+   "new_gaps": [
+    "a named-slot recurrence that contradicts the clause's own stated time point (\"extinguished the lantern at dawn every night\"): the slot rule would add (Time e night) beside (Time e dawn), which is false of that event, and nothing licenses keeping only the (Every e 1 day) cycle while suppressing the conflicting slot",
+    "plurality of occasions has no carrier: a plural temporal adjunct (\"on her off-nights\") states several visits, but Every / TimesPer require a stated period or rate and no other head records repeated occurrence, so a single event witness under-reports and there is no licensed alternative",
+    "an ordinal-day fictional calendar (\"on day 230 of Year 1\"): the (Day <n>) term is a day-of-month slot and (Year <n>) a calendar year, so a day-of-year 230 in \"Year 1\" has no defined reading -- the atom records the surface but no rule says how such a calendar is termed"
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0: the compliant form carries the possessor -- the possessed plural as a group witness, (GroupOf sk_offnight_1 off_night) + (Possession sk_offnight_1 pell), filling the visit's temporal slot -- but the Time role licenses no filler of that shape, so the carrier itself is filed as a gap and the alternative the instruction set actually licenses is to leave the adjunct out and record the loss. Issue 1 (partial half that stands): the same possessed-plural group witness is the compliant form; no recurrence atom is licensed at all. Issue 2: the compliant form on each of the four nightly events is the named-slot pair (Time e night) + (Every e 1 day) in place of (Every e 1 night), with the caveat that for the dawn event the slot half conflicts with the stated time point (new gap).",
+   "notes": "Roles, the strength-0 accompany bundle, the During links, the compound decompositions (mire_essence, off_night) and cross-sentence coreference are all sound; the confirmed defects are confined to the \"her own off-nights\" adjunct and the four Every atoms. One thing the reviewer did not file: Inception says the activity witness is \"Past if past\", and sk_stretch_1 carries Ongoing with no Past."
+  }
+ }
+}

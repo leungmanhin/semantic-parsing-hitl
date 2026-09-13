@@ -1,0 +1,32 @@
+{
+ "id": "evtp-000068",
+ "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+  {
+   "statement": 37,
+   "issue": "(Degree sk_salt_bloom_1 quantity extra) fills the quantity-scale level slot with 'extra', which is not one of the three fixed construction markers (excessive / sufficient / insufficient) that scale licenses."
+  },
+  {
+   "statement": 35,
+   "issue": "(Per sk_use_1 lantern) hangs the per-lantern rate on the using event, but 'per lantern' measures the amount of salt-bloom, not the event, and an unnumbered rate has no licensed carrier (rates exist only as compound units inside a Measure)."
+  },
+  {
+   "statement": 13,
+   "issue": "'through the two weeks' inside the lantern rule (and 'for the two weeks' at statements 47 and 62) becomes (Measure e duration 2 week), which states the extent but drops the anaphoric identity of the one two-week span sentences 2, 6 and 8 all point back to."
+  }
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+  "anaphoric definite temporal-interval NP ('through/for the two weeks') referring back to a previously stated span - only calendar terms, deictics, durations and During-over-an-eventuality are provided, so the shared interval cannot be one referent",
+  "unmeasured rate / distributive 'per N' modifier on a quantity ('extra salt-bloom per lantern') - a rate is defined only as a <unit>_per_<unit> compound inside a Measure, which needs a number",
+  "unmeasured comparative quantity modifier ('extra N' = more than the usual amount) - an elided-standard comparative, for which the instruction set supplies no form, and the Degree quantity markers are a closed set of three",
+  "an ordinal-named clock period as a time point ('at the third watch') - no rule says whether it is a named-time constant or a definite witness with an Ordinal atom",
+  "a day-of-year date in a non-Gregorian calendar ('day 510 of Year 2') - (Day n) / (Year n) accept the integers, but the seeded calendar-ordering machinery assumes day-of-month numbering",
+  "whether a vague-quantity group with a distributive predicate ('a handful of nightmoths flew') takes the per-member (PartOf $x g) rule: Cardinality's 'Several birds sang' example omits it while Quantifiers lists 'several dogs barked' as taking it"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Otherwise a careful parse: the every-lantern universal, the Cliff Path / Cauldron Hall name+kind atoms, the compound genus atoms and the copular-with-time-modifier dual-emit in sentence 8 all match the instruction set. 'Per' is counted as licensed here only because it is the preposition actually used."
+}

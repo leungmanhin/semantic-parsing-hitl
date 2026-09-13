@@ -1,0 +1,223 @@
+{
+ "id": "E9-07",
+ "rule": "IX — Smaller incidents through Year 2",
+ "texts": [
+  "On day 495 of Year 2, Bevin Coombe scattered fresh ground feathers around the Stilllight Lantern in the evening.",
+  "The Stilllight Lantern burned steadily that night.",
+  "Bevin Coombe saw a pale shape near the water of the Sunken Cove.",
+  "The shape turned away before the shape reached the Stilllight Lantern.",
+  "Bevin Coombe reported the sighting to the Council.",
+  "The Council held an emergency session the next afternoon.",
+  "The Council logged the report as a possible wraith near-miss.",
+  "The Council kept the doubled feather ration at the Stilllight Station for two months.",
+  "The Council told the keepers of the West Row to stay alert.",
+  "No further sighting followed.",
+  "The Council judged that the feather warding had prevented a full emergence."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000067",
+  "sentences": [
+   "On day 495 of Year 2, Bevin Coombe scattered fresh ground feathers around the Stilllight Lantern in the evening.",
+   "The Stilllight Lantern burned steadily that night.",
+   "Bevin Coombe saw a pale shape near the water of the Sunken Cove.",
+   "The shape turned away before the shape reached the Stilllight Lantern.",
+   "Bevin Coombe reported the sighting to the Council.",
+   "The Council held an emergency session the next afternoon.",
+   "The Council logged the report as a possible wraith near-miss.",
+   "The Council kept the doubled feather ration at the Stilllight Station for two months.",
+   "The Council told the keepers of the West Row to stay alert.",
+   "No further sighting followed.",
+   "The Council judged that the feather warding had prevented a full emergence."
+  ],
+  "parse": [
+   "(: s1_scatter (Member sk_scatter_1 scatter) (STV 1.0 0.99))",
+   "(: s1_agent (Agent sk_scatter_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: s1_theme (Theme sk_scatter_1 sk_feather_group_1) (STV 1.0 0.99))",
+   "(: s1_feathers_grp (GroupOf sk_feather_group_1 feather) (STV 1.0 0.99))",
+   "(: s1_feathers_fresh (Member sk_feather_group_1 fresh) (STV 1.0 0.99))",
+   "(: s1_feathers_ground (Member sk_feather_group_1 ground) (STV 1.0 0.99))",
+   "(: s1_loc (Location sk_scatter_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: s1_time_evening (Time sk_scatter_1 evening) (STV 1.0 0.99))",
+   "(: s1_time_day (Time sk_scatter_1 (Day 495)) (STV 1.0 0.99))",
+   "(: s1_time_year (Time sk_scatter_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s1_past (Past sk_scatter_1) (STV 1.0 0.99))",
+   "(: bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+   "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+   "(: s2_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: s2_patient (Patient sk_burn_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: s2_manner (Manner sk_burn_1 steadily) (STV 1.0 0.99))",
+   "(: s2_time_day (Time sk_burn_1 (Day 495)) (STV 1.0 0.99))",
+   "(: s2_time_year (Time sk_burn_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s2_time_night (Time sk_burn_1 night) (STV 1.0 0.99))",
+   "(: s2_past (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: s3_see (Member sk_see_1 see) (STV 1.0 0.99))",
+   "(: s3_exp (Experiencer sk_see_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: s3_stim (Stimulus sk_see_1 sk_shape_1) (STV 1.0 0.99))",
+   "(: s3_past (Past sk_see_1) (STV 1.0 0.99))",
+   "(: shape_type (Member sk_shape_1 shape) (STV 1.0 0.99))",
+   "(: shape_pale (Member sk_shape_1 pale) (STV 1.0 0.99))",
+   "(: shape_near (Near sk_shape_1 sk_water_1) (STV 1.0 0.99))",
+   "(: water_type (Member sk_water_1 water) (STV 1.0 0.99))",
+   "(: water_partof (PartOf sk_water_1 sunken_cove) (STV 1.0 0.99))",
+   "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+   "(: s4_turn (Member sk_turn_away_1 turn_away) (STV 1.0 0.99))",
+   "(: s4_turn_agent (Agent sk_turn_away_1 sk_shape_1) (STV 1.0 0.99))",
+   "(: s4_turn_past (Past sk_turn_away_1) (STV 1.0 0.99))",
+   "(: s4_reach (Member sk_reach_1 reach) (STV 1.0 0.99))",
+   "(: s4_reach_agent (Agent sk_reach_1 sk_shape_1) (STV 1.0 0.99))",
+   "(: s4_reach_goal (Goal sk_reach_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: s4_reach_past (Past sk_reach_1) (STV 1.0 0.99))",
+   "(: s4_before (Before sk_turn_away_1 sk_reach_1) (STV 1.0 0.99))",
+   "(: s5_report (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: s5_agent (Agent sk_report_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: s5_theme (Theme sk_report_1 sk_see_1) (STV 1.0 0.99))",
+   "(: s5_recipient (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s5_past (Past sk_report_1) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s6_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+   "(: s6_agent (Agent sk_hold_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s6_patient (Patient sk_hold_1 sk_session_1) (STV 1.0 0.99))",
+   "(: session_type (Member sk_session_1 emergency_session) (STV 1.0 0.99))",
+   "(: session_genus (Inheritance emergency_session session) (STV 1.0 0.99))",
+   "(: s6_time_afternoon (Time sk_hold_1 afternoon) (STV 1.0 0.99))",
+   "(: s6_before (Before sk_report_1 sk_hold_1) (STV 1.0 0.99))",
+   "(: s6_past (Past sk_hold_1) (STV 1.0 0.99))",
+   "(: s7_log (Member sk_log_1 log) (STV 1.0 0.99))",
+   "(: s7_agent (Agent sk_log_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s7_theme (Theme sk_log_1 sk_report_1) (STV 1.0 0.99))",
+   "(: s7_past (Past sk_log_1) (STV 1.0 0.99))",
+   "(: s7_classify (Member sk_report_1 wraith_near_miss) (STV 1.0 0.9))",
+   "(: wnm_genus (Inheritance wraith_near_miss near_miss) (STV 1.0 0.99))",
+   "(: s8_keep (Member sk_keep_1 keep) (STV 1.0 0.99))",
+   "(: s8_agent (Agent sk_keep_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s8_theme (Theme sk_keep_1 sk_ration_1) (STV 1.0 0.99))",
+   "(: ration_type (Member sk_ration_1 feather_ration) (STV 1.0 0.99))",
+   "(: ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))",
+   "(: ration_doubled (Member sk_ration_1 doubled) (STV 1.0 0.99))",
+   "(: s8_loc (Location sk_keep_1 stilllight_station) (STV 1.0 0.99))",
+   "(: s8_dur (Measure sk_keep_1 duration 2 month) (STV 1.0 0.99))",
+   "(: s8_past (Past sk_keep_1) (STV 1.0 0.99))",
+   "(: station_type (Member stilllight_station station) (STV 1.0 0.99))",
+   "(: station_name (Name stilllight_station \"Stilllight Station\") (STV 1.0 0.99))",
+   "(: s9_tell (Member sk_tell_1 tell) (STV 1.0 0.99))",
+   "(: s9_agent (Agent sk_tell_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s9_recipient (Recipient sk_tell_1 sk_keeper_group_1) (STV 1.0 0.99))",
+   "(: s9_theme (Theme sk_tell_1 sk_alert_1) (STV 1.0 0.99))",
+   "(: s9_past (Past sk_tell_1) (STV 1.0 0.99))",
+   "(: keepers_grp (GroupOf sk_keeper_group_1 keeper) (STV 1.0 0.99))",
+   "(: keepers_poss (Possession sk_keeper_group_1 west_row) (STV 1.0 0.99))",
+   "(: row_type (Member west_row row) (STV 1.0 0.99))",
+   "(: row_name (Name west_row \"West Row\") (STV 1.0 0.99))",
+   "(: alert_state (Member sk_alert_1 alert) (STV 1.0 0.99))",
+   "(: alert_exp (Experiencer sk_alert_1 sk_keeper_group_1) (STV 1.0 0.99))",
+   "(: s10_neg (And (Member sk_sighting_2 sighting) (Member sk_sighting_2 further)) (STV 0.0 0.99))",
+   "(: s11_judge (Member sk_judge_1 judge) (STV 1.0 0.99))",
+   "(: s11_exp (Experiencer sk_judge_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s11_theme (Theme sk_judge_1 (And (Member sk_prevent_1 prevent) (Agent sk_prevent_1 sk_warding_1) (Patient sk_prevent_1 sk_emergence_1) (Past sk_prevent_1) (Member sk_emergence_1 emergence) (Member sk_emergence_1 full))) (STV 1.0 0.99))",
+   "(: s11_past (Past sk_judge_1) (STV 1.0 0.99))",
+   "(: warding_type (Member sk_warding_1 feather_warding) (STV 1.0 0.99))",
+   "(: warding_genus (Inheritance feather_warding warding) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000067",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 4,
+     "issue": "(Member sk_feather_group_1 fresh) predicates a member property of the group symbol, which the plural rules explicitly bar; a descriptive modifier on a plural must go through the per-member distributive rule."
+    },
+    {
+     "statement": 5,
+     "issue": "(Member sk_feather_group_1 ground) is the same group-symbol predication of a member property."
+    },
+    {
+     "statement": 6,
+     "issue": "'around the Stilllight Lantern' is rendered as Location, which is glossed 'in/at/on'; the head should be the preposition actually used, not a near-fit synonym role."
+    },
+    {
+     "statement": 38,
+     "issue": "The 'before'-clause reach event is asserted at full strength with (Past sk_reach_1), so the parse states that the shape reached the lantern, which the sentence says did not happen."
+    },
+    {
+     "statement": 58,
+     "issue": "(Member sk_report_1 wraith_near_miss) (STV 1.0 0.9) silently drops the hedge 'possible' and asserts the classification outright; confidence is evidence, not possibility, and an individual fact keeps 0.99."
+    },
+    {
+     "statement": 80,
+     "issue": "'stay alert' is a continuation copular, so the reified state should carry (Still sk_alert_1); without it the 'continue to be' meaning of 'stay' has no trace in the parse."
+    },
+    {
+     "statement": 82,
+     "issue": "The strength-0 bundle for 'No further sighting followed' contains no follow event class, no role atom and no tense, so the denied eventuality is dropped, and the explicit quantifier 'no' gets no QuantifierPhrase companion."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a non-veridical finite 'before' clause ('turned away before the shape reached the Lantern'), where the subordinate event never occurred: the instruction set only warns about event-NOUN anchors taking no tense, and gives no form for a full clause whose event did not happen",
+    "'V X as Y' classification / registration ('logged the report as a possible wraith near-miss'): no licensed encoding for an as-predicative complement, and no carrier for a 'possible' hedge sitting on it",
+    "a one-off narrative non-occurrence with 'no' ('No further sighting followed'): the explicit-'no' route is specified as a strength-0 distributing rule over a kind or a definite set, which does not fit an episodic single non-event"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "'saw a pale shape near the water' was resolved single-reading to entity attachment, although it matches the Interpretation attachment trigger (the PP is coherent on either the seeing or the shape). 'The next afternoon' emitted only the day-part plus Before, which follows the unknown-antecedent-day branch, even though the passage's day 495 is arguably recoverable."
+  },
+  "adjudication": {
+   "id": "evtp-000067",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Categorical statements is explicit that \"a property of a plural's members is never predicated of the group symbol\" and that a bare (Member <group> <prop>) is only for a property of the collection itself (size, name), so descriptive 'fresh' must ride the per-member distributive rule over (PartOf $x sk_feather_group_1)."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Same rule and same falsehood: 'ground' is a participial modifier used as an adjective (Names and casing) and is a descriptive, not classifying, modifier, so (Member sk_feather_group_1 ground) predicates of the group-as-object the property that holds of each feather."
+    },
+    {
+     "index": 2,
+     "verdict": "refute",
+     "reason": "Thematic roles licenses the named role whenever the PP answers where ('Those named roles apply when the PP answers where / when / how / whence / whither'); the 'preposition actually used' proviso governs the preposition-named oblique branch and the containment-only bar is LocatedIn's entity-side rule, and in any case (Location sk_scatter_1 stilllight_lantern) is true of the sentence and well-typed."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "The parse asserts (Member sk_reach_1 reach) (Agent sk_reach_1 sk_shape_1) (Goal sk_reach_1 stilllight_lantern) (Past sk_reach_1) at strength 1.0, stating that the shape reached the Lantern when the sentence says it turned away first — the very falsehood Time names for anchors ('a (Past …) there would assert an inspection that may never have happened')."
+    },
+    {
+     "index": 4,
+     "verdict": "confirm",
+     "reason": "Both halves stand: Core patterns bars silently dropping a stated hedge ('carry it, or leave the whole claim out and record the gap'), and the parse asserts the classification outright while mis-encoding 'possible' as confidence, which is evidence/reliability only — 'Individual facts keep 0.99'."
+    },
+    {
+     "index": 5,
+     "verdict": "confirm",
+     "reason": "Resultatives & secondary predicates states that an intransitive continuation copular ('the lodge remained / stayed empty') reifies the state with (Still …), so 'stay alert' must carry (Still sk_alert_1); as parsed, 'stay' has no trace at all."
+    },
+    {
+     "index": 6,
+     "verdict": "partial",
+     "reason": "The missing temporal trace stands — a light verb over an event-noun puts the tense on the noun's own witness, so (Past sk_sighting_2) belongs inside the strength-0 bundle — but that same rule ('do not reify a separate occur event') refutes the demand for a follow event class and role, and the QuantifierPhrase companion is barred here because it 'only ever restates a range the rule itself quantifies — never a range that appears nowhere else in the parse'."
+    }
+   ],
+   "gaps_confirmed": [
+    "non-veridical finite 'before' clause ('turned away before the shape reached the Stilllight Lantern'): the instruction set gives no way to record the ordering without asserting the subordinate event, since only the event-NOUN anchor case is covered",
+    "'V X as Y' classification ('logged the report as a possible wraith near-miss'): no encoding for an as-predicative complement, and no site on it for the prenominal epistemic hedge 'possible'",
+    "narrowed: the strength-0 witness bundle for a one-off episodic non-occurrence is covered by Negation (events), but the explicit quantifier 'no' has no QuantifierPhrase shape there — the companion presumes a quantified kind or group range, which an episodic single non-event does not supply"
+   ],
+   "new_gaps": [
+    "an unrealized subordinate eventuality needs a container that records an event as not having happened while staying orderable: sealing is the only non-asserting container and 'ordering atoms never cross a seal boundary, in either direction', so a licensed form would have to carry the Before relation over an unasserted event",
+    "continuation copular inside a control/directive complement ('told the keepers to stay alert'): the mandated shape is (Still …) + the flat copular atom + tense, but the flat half would assert a state the directive does not claim (control complements carry no occurrence commitment) and on a plural addressee the group-predication bar blocks it outright — nothing states which half survives"
+   ],
+   "decision": "defect",
+   "defect_summary": "The two feather modifiers must distribute, as (Implication (PartOf $x sk_feather_group_1) (Member $x fresh)) and (… (Member $x ground)) at (STV 1.0 0.9), not as Member atoms on the group symbol; the 'before the shape reached the Lantern' clause has NO licensed compliant form — every available shape still asserts the reach event's class and roles — so it is filed as a gap; 'logged the report as a possible wraith near-miss' likewise has no licensed compliant form, so the compliant move is Core patterns' fallback — keep the log event with sk_report_1 as Theme, leave the classification claim out, and record the gap — never a top-level (Member sk_report_1 wraith_near_miss); the alert state needs (Still sk_alert_1) added; and the 'No further sighting followed' bundle needs (Past sk_sighting_2) as a conjunct inside the strength-0 (And …).",
+   "notes": "The rest of the parse is disciplined: 'the Council' correctly stays a common noun with no Name atom, the sealed judgment keeps its own Past with no ordering across the seal, 'that night' propagates the day terms, and turn_away is kept whole with no genus. I agree with the parser's single reading of 'near the water' — a world-knowledge lean toward entity attachment is explicitly 'not a tie' under Multiple live readings."
+  }
+ }
+}

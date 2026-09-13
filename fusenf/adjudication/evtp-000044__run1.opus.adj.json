@@ -1,0 +1,42 @@
+{"id": "evtp-000044", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "confirm",
+    "reason": "The full-moon meeting is an occasion, not a place, and the instruction set's own parallel (\"an event 'in July' is Time, 'in the final round' the preposition-named In\") plus \"the head is the preposition actually used\" license (At sk_close_1 sk_meeting_1), so putting an eventuality witness in Location's place slot is ill-typed."},
+   {"index": 1,
+    "verdict": "confirm",
+    "reason": "The frame-adverbial rule states a window is \"a window, not a duration\" and bars (Measure e duration ...) precisely because it \"would claim the eventuality itself lasted that long\", so the atom asserts an extent the containment adverbial never states; the licensed (Before <antecedent> <new>) that \"the following ...\" mandates was also dropped."},
+   {"index": 2,
+    "verdict": "confirm",
+    "reason": "Scalar change states outright that \"An end value is never a spatial Goal\", so (Goal sk_return_1 spring_level) violates an explicit rule and puts a non-place in a spatial-goal slot."},
+   {"index": 3,
+    "verdict": "partial",
+    "reason": "The observed inconsistency is real — this parse distributes its other two plural predicates (statements 41 and 80) but not this one — yet the mandate does not clearly reach here, since the instruction set makes a quantity predication over a plural the group AGGREGATE that \"does NOT distribute\" and gives no test classifying a return-to-a-level as distributive, and the omission puts nothing false in the KB."},
+   {"index": 4,
+    "verdict": "refute",
+    "reason": "`duration` is the instruction set's own reserved scale for a temporal extent — (Measure sk_drive_1 duration 6 hour) invents it from no surface word either — and Measure's first slot takes an entity, so inside the reviewer's own admitted measure-of-phrase gap every emitted atom stays true and well-typed (calibration line)."},
+   {"index": 5,
+    "verdict": "partial",
+    "reason": "Half stands — Time's filler space is structured terms and bare deictic/named constants, and the surface-preposition oblique (At sk_hold_1 sk_end_1) would have been the cleaner carrier — but the minted end/winter witnesses and their PartOf are exactly the licensed genitive treatment of \"the end of the winter\" and nothing false is asserted, so in this uncovered construction it is acceptable improvisation rather than a defect."},
+   {"index": 6,
+    "verdict": "confirm",
+    "reason": "Cardinality's second slot is specified as \"a native integer\", and the counting section states that GreaterThan (the distribution comparator) \"is for distribution values, not plain counts\", so a ParticleFromNormal term there is ill-typed per the vocabulary."}
+ ],
+ "gaps_confirmed": [
+   "Forward window frame adverbial (\"during the following two weeks\") — WithinLast covers backward windows only, and During needs two reified eventualities, so a forward span has no licensed head.",
+   "Qualitative scalar endpoint (\"returned to spring levels\") — MeasureTo needs magnitude plus unit and Goal is explicitly barred for end values.",
+   "Period-relative time point (\"at the end of the winter\") — Time takes calendar terms or deictic/named constants, and Start/End attach to an eventuality's own extent, not to a separate period NP.",
+   "Hedged exact count (\"about ten sky-cats\") — Cardinality requires a native integer, CardinalityPhrase requires no number, so an approximated count has no carrier.",
+   "Attributive comparative with elided standard (\"a heavier distillation cycle\") — the instruction set itself declares no licensed form and directs dropping it; the parse dropped it correctly.",
+   "Measure/quantity of-phrase (\"three weeks of supply\") — named only as an exclusion from the genitive rule, with no positive encoding given.",
+   "Deadline \"by <event-noun>\" (\"by the spring equinox\") — TimeAtMost takes calendar terms, and Before is strict precedence, so the inclusive \"at or before\" sense has no carrier.",
+   "Ordinal day-of-year in a non-Gregorian calendar (\"day 210 of Year 1\") — (Day <n>) carries no day-of-month vs day-of-year distinction."
+ ],
+ "new_gaps": [
+   "Arrival/onset verb over an event-noun (\"the spring equinox came\") — the light-verb rule names occur / happen / take place only, so an arrival verb marking a scheduled time's onset is not literally licensed to take the tense and Time atoms directly on the event-noun's witness.",
+   "Whether a scalar / level predication over a definite plural (\"the thread harvests returned to spring levels\") is distributive or aggregate — the instruction set makes a plural's Measure an aggregate and lists only act-verbs (bark, pass, arrive) as distributive, so the per-member rule's applicability to a level-return is undecided."
+ ],
+ "decision": "defect",
+ "defect_summary": "The full-moon meeting should ride the preposition-named oblique (At sk_close_1 sk_meeting_1), not Location; \"during the following two weeks\" has NO licensed form (WithinLast is backward-only and During needs a reified outer eventuality) so the span should be left out with the gap recorded, while the licensed (Before sk_close_1 sk_step_down_1) for \"following\" should have been emitted; \"returned to spring levels\" likewise has NO licensed form — MeasureTo needs a magnitude and unit and Goal is barred for an end value — so the endpoint should be omitted and the gap recorded; and \"about ten\" has NO licensed form either, since Cardinality demands a native integer and the hedge may not be silently dropped, so the count should be omitted with the gap recorded.",
+ "notes": "Most of the mechanical doctrine is right — compound genus/modifier exposure, the Name-vs-capitalized-common-noun split, the copular-plus-time dual-emit, and the group-plus-per-member rule. The four confirmed defects all sit at slot-type boundaries (Location, Measure duration, Goal, Cardinality) where the parser reached for a named role instead of leaving an uncovered construction out."
+}

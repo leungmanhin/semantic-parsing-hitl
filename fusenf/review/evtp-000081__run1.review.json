@@ -1,0 +1,22 @@
+{"id": "evtp-000081", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 20, "issue": "\"of that season\" restricts the week, not the falling, yet it is attached as (Time sk_fall_1 sk_season_1) on a minted witness — a Time filler must be a structured term or a bare constant, and the instruction set bars minting an sk_ witness (or a Member atom) for a time."},
+   {"statement": 19, "issue": "(Every sk_fall_1 1 week) makes one fixed ~30-feather group recur weekly, whereas the sentence states a per-week rate over a different set of feathers each week."},
+   {"statement": 15, "issue": "(Cardinality sk_feather_2 (ParticleFromNormal 30 3)) puts a distribution into a slot the instruction set specifies as a native integer; the ParticleFromNormal form is defined for Measure magnitudes and clock values only."},
+   {"statement": 27, "issue": "the sealed complement omits the per-member distribution rule that a counted/vague plural with a distributive predicate (\"several sky-cats ... molted\") requires, although a seal must carry P's full normalized form including that rule."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "per-period base rate over a varying quantity (\"about thirty feathers fall ... in a normal week\") — the habitual Every/TimesPer forms bind one fixed group to one event; no per-occurrence quantity form is defined",
+   "approximate/hedged count (\"about thirty feathers\") — Cardinality's magnitude is a native integer and CardinalityPhrase is for phrases with no number",
+   "typicality qualifier on a frame adverbial (\"in a normal week\") — no licensed carrier, so the hedge is dropped",
+   "\"at the same time\" (simultaneity across several distributed events) — no licensed head; During needs two reified eventualities",
+   "anaphoric \"that season\" with no antecedent season in the text — term propagation has nothing to copy at that granularity",
+   "backward-shifted anaphoric time (\"the previous night\") — term propagation is defined for \"that\" and \"the next/following\", not for \"previous/preceding\"",
+   "ordinal/continuous day-count date (\"day 705 of Year 2\") — the Time terms assume a Gregorian Day-of-month inside a Month"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "No CONTEXT block was supplied, so q3 is na. \"No heavy sky-cat hunt had been seen\" is encoded as an indefinite-witness denial; \"no\" is an explicit quantifier, and the instruction set does not settle whether a singular \"no\"-determiner subject takes that witness bundle or the strength-0 distributing rule with its QuantifierPhrase \"no\" companion."}

@@ -1,0 +1,19 @@
+{"id": "evtp-000046", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 37, "issue": "\"through the fog\" is slotted as Instrument, asserting the fog was the means by which the lantern produced the light; Instrument's route/channel licence is worded for \"via / by way of\", and the surface-faithful option for a medium the light passes through is the preposition-named oblique (Through ...)."},
+   {"statement": 50, "issue": "\"left silken threads on the lantern\" takes Patient, but nothing about the threads is created, destroyed, consumed or changed by being deposited — the stated test defaults to Theme (and the same threads take Theme under \"collected\" in statement 7)."},
+   {"statement": 57, "issue": "(Cardinality sk_threads_2 (ParticleFromNormal 35 3.5)) puts a distribution in a slot the Cardinality section specifies as a native integer; ParticleFromNormal is licensed only for Measure-family magnitudes and clock-hour values."},
+   {"statement": 60, "issue": "\"the next morning\" emits only the day-part: the passage's antecedent day IS stated (day 246 of Year 1), so the anaphoric-temporal rule calls for the antecedent's day terms plus one — (Day 247) and (Year 1) — beside the day-part and the Before."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "Approximate cardinality (\"about thirty-five silken threads\") — Cardinality requires a native integer and CardinalityPhrase covers only vague quantities with no number, so a hedged exact count has no licensed form.",
+   "Per-member distribution over a plural subject with a plural OBJECT (\"The nightmoths left silken threads\") — the shared-object copying the rule form prescribes makes every member's event take the entire object group, i.e. each moth left all the threads; no mechanism splits a plural object across members.",
+   "Present-participle complement of a maintenance verb (\"kept the lantern burning\") — the Resultative State-result shape is illustrated only with adjectival results (\"kept the gate shut\"), and the inflection-vs-derivation rule leaves it unsettled whether \"burning\" is the adjective `burning` or the verb `burn` with its own reified event.",
+   "Ordinal day-of-year in a non-Gregorian calendar (\"day 246 of Year 1\") — (Day <n>) is defined as a bare granularity term with no day-of-month vs day-of-year distinction."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Coreference across the passage (fog, lantern, mist-light, nightmoths, Coraline Ash) and the indefinite-mints-a-new-witness rule for sk_threads_2 are handled correctly, as are the phrasal verb `come_in`, the natural-force Patient subject, the silken_thread material-adjective fusion with both genus and modifier atoms, and the keep/Still/Result maintenance shape. Minting sk_mist_light_1 for the bare mass object \"mist-light\" rather than a bare kind filler is a departure from the non-specific-object rule, but it is what lets the later definite \"The mist-light\" corefer."}

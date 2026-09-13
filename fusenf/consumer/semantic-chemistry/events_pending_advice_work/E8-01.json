@@ -1,0 +1,152 @@
+{
+ "id": "E8-01",
+ "rule": "VIII — The following autumn",
+ "texts": [
+  "On day 365 of Year 2, the second autumn equinox came.",
+  "Year 2 began on day 365.",
+  "The feather store held eight weeks of supply.",
+  "About ten sky-cats were visible on the cliff-spires in the morning.",
+  "The salt-bloom store held eleven weeks of winter supply.",
+  "The mire-essence store had not yet recovered from the losses of Year 1."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000054",
+  "sentences": [
+   "On day 365 of Year 2, the second autumn equinox came.",
+   "Year 2 began on day 365.",
+   "The feather store held eight weeks of supply.",
+   "About ten sky-cats were visible on the cliff-spires in the morning.",
+   "The salt-bloom store held eleven weeks of winter supply.",
+   "The mire-essence store had not yet recovered from the losses of Year 1."
+  ],
+  "parse": [
+   "(: eq_type (Member sk_autumn_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+   "(: eq_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+   "(: eq_ord (Ordinal sk_autumn_equinox_1 2 autumn_equinox) (STV 1.0 0.99))",
+   "(: eq_day (Time sk_autumn_equinox_1 (Day 365)) (STV 1.0 0.99))",
+   "(: eq_year (Time sk_autumn_equinox_1 (Year 2)) (STV 1.0 0.99))",
+   "(: eq_past (Past sk_autumn_equinox_1) (STV 1.0 0.99))",
+   "(: y2_begin (Member sk_begin_1 begin) (STV 1.0 0.99))",
+   "(: y2_pat (Patient sk_begin_1 (Year 2)) (STV 1.0 0.99))",
+   "(: y2_time (Time sk_begin_1 (Day 365)) (STV 1.0 0.99))",
+   "(: y2_past (Past sk_begin_1) (STV 1.0 0.99))",
+   "(: fs_type (Member sk_feather_store_1 feather_store) (STV 1.0 0.99))",
+   "(: fs_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+   "(: fs_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+   "(: fs_agent (Agent sk_hold_1 sk_feather_store_1) (STV 1.0 0.99))",
+   "(: fs_theme (Theme sk_hold_1 sk_supply_1) (STV 1.0 0.99))",
+   "(: fs_past (Past sk_hold_1) (STV 1.0 0.99))",
+   "(: fs_supply_type (Member sk_supply_1 supply) (STV 1.0 0.99))",
+   "(: fs_supply_measure (Measure sk_supply_1 unspecified 8 week) (STV 1.0 0.99))",
+   "(: cat_grp (GroupOf sk_group_1 sky_cat) (STV 1.0 0.99))",
+   "(: cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: cat_card (Cardinality sk_group_1 (ParticleFromNormal 10 1)) (STV 1.0 0.99))",
+   "(: spire_grp (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))",
+   "(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: vis_type (Member sk_visible_1 visible) (STV 1.0 0.99))",
+   "(: vis_exp (Experiencer sk_visible_1 sk_group_1) (STV 1.0 0.99))",
+   "(: vis_loc (Location sk_visible_1 sk_cliff_spire_1) (STV 1.0 0.99))",
+   "(: vis_time (Time sk_visible_1 morning) (STV 1.0 0.99))",
+   "(: vis_past (Past sk_visible_1) (STV 1.0 0.99))",
+   "(: vis_rule (Implication (PartOf $x sk_group_1) (Past (Member $x visible))) (STV 1.0 0.9))",
+   "(: sb_type (Member sk_salt_bloom_store_1 salt_bloom_store) (STV 1.0 0.99))",
+   "(: sb_genus (Inheritance salt_bloom_store store) (STV 1.0 0.99))",
+   "(: sb_mod_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: sb_hold (Member sk_hold_2 hold) (STV 1.0 0.99))",
+   "(: sb_agent (Agent sk_hold_2 sk_salt_bloom_store_1) (STV 1.0 0.99))",
+   "(: sb_theme (Theme sk_hold_2 sk_winter_supply_1) (STV 1.0 0.99))",
+   "(: sb_past (Past sk_hold_2) (STV 1.0 0.99))",
+   "(: sb_supply_type (Member sk_winter_supply_1 winter_supply) (STV 1.0 0.99))",
+   "(: sb_supply_genus (Inheritance winter_supply supply) (STV 1.0 0.99))",
+   "(: sb_supply_measure (Measure sk_winter_supply_1 unspecified 11 week) (STV 1.0 0.99))",
+   "(: me_type (Member sk_mire_essence_store_1 mire_essence_store) (STV 1.0 0.99))",
+   "(: me_genus (Inheritance mire_essence_store store) (STV 1.0 0.99))",
+   "(: me_mod_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: loss_grp (GroupOf sk_loss_1 loss) (STV 1.0 0.99))",
+   "(: loss_time (Time sk_loss_1 (Year 1)) (STV 1.0 0.99))",
+   "(: me_not_recovered (And (Member sk_recover_1 recover) (Patient sk_recover_1 sk_mire_essence_store_1) (Source sk_recover_1 sk_loss_1) (Past sk_recover_1)) (STV 0.0 0.99))",
+   "(: me_yet (Yet sk_recover_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000054",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 7,
+     "issue": "(Patient sk_begin_1 (Year 2)) puts a structured calendar term in an entity role slot, but (Year n) is defined only as a Time-term value and role fillers must be lowercase entity symbols."
+    },
+    {
+     "statement": 20,
+     "issue": "(Cardinality sk_group_1 (ParticleFromNormal 10 1)) violates the rule that Cardinality takes a native integer; the ParticleFromNormal distribution is licensed only in Measure-magnitude and clock-time slots."
+    },
+    {
+     "statement": 31,
+     "issue": "(Inheritance salt_bloom bloom) decomposes a second level inside the noun modifier of salt_bloom_store, but the compound rule decomposes once and leaves a noun modifier in the symbol, un-exposed."
+    },
+    {
+     "statement": 41,
+     "issue": "(Inheritance mire_essence essence) is the same unlicensed second-level decomposition of an un-exposed noun modifier."
+    },
+    {
+     "statement": 44,
+     "issue": "'recovered from the losses' is a prepositional verb, so its object belongs in the preposition-named oblique (From sk_recover_1 sk_loss_1), not in the spatial Source role, which is reserved for PPs that answer 'whence'."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "approximated cardinal ('About ten sky-cats'): Cardinality is specified as a native integer and CardinalityPhrase covers only vague phrases with no number, so a hedged count has no licensed form",
+    "a calendar year as a clause participant ('Year 2 began on day 365'): (Year n) is defined only as a Time-term value, leaving a named year with no licensed entity symbol for a subject/role slot",
+    "a measure-of quantity phrase ('eight weeks of supply', 'eleven weeks of winter supply'): the 'measure' of-phrase is excluded from the genitive rule but never given an encoding of its own"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "'The second autumn equinox came' is parsed by the light-verb/event-noun route (tense and Time placed directly on the equinox witness); extending the 'occurred / happened / took place' rule to 'came' is plausible but not spelled out. The sigma of 1 on 'about ten' does follow the tight-hedge 10% convention, so the improvised Cardinality distribution is at least internally consistent."
+  },
+  "adjudication": {
+   "id": "evtp-000054",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Role fillers are lowercase entity terms and `(Year n)` is defined only as a structured Time-term value (UpperCamelCase term constructor), so `(Patient sk_begin_1 (Year 2))` is ill-typed — the same term is simultaneously used correctly as a Time value on line 5, which is exactly the type confusion."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Cardinality is stated to take `a native integer`, and ParticleFromNormal is licensed only as a Measure magnitude or an approximate clock value, so the distribution in the count slot is ill-typed and breaks the `Compute` hard-integer counting machinery the instruction set pairs with Cardinality."
+    },
+    {
+     "index": 2,
+     "verdict": "refute",
+     "reason": "The rule cited (`a noun modifier is never exposed`) bars `(Inheritance salt_bloom_store salt_bloom)`, which the parse does not emit; `(Inheritance salt_bloom bloom)` is the hyphenated transparent modifier+head genus the same section says to `always emit`, whether decomposition reaches a compound nested inside a compound is simply unstated, and the atom is true and well-typed."
+    },
+    {
+     "index": 3,
+     "verdict": "refute",
+     "reason": "Identical case to index 2 — `(Inheritance mire_essence essence)` is a compound genus, not the barred exposure of a noun modifier as the store compound's genus, and it is true and well-typed in gap territory."
+    },
+    {
+     "index": 4,
+     "verdict": "partial",
+     "reason": "The half that stands: `recover from` is a prepositional verb and its object does not answer `whence`, so the licensed head is the preposition-named `(From sk_recover_1 sk_loss_1)`; the half that does not: `Source` is the instruction set's own listed head for an event-side `from` oblique and the atom is true, well-typed and asserts nothing extra, so it is a head-choice error rather than false content."
+    }
+   ],
+   "gaps_confirmed": [
+    "A hedged cardinal (\"About ten sky-cats\"): Cardinality requires a native integer and CardinalityPhrase covers only vague phrases carrying no number, so an approximated exact count has no licensed carrier.",
+    "A measure-of quantity phrase (\"eight weeks of supply\", \"eleven weeks of winter supply\"): the of-phrase rules explicitly exclude a measure (\"a cup of water\") from the genitive mapping but never give it an encoding."
+   ],
+   "new_gaps": [
+    "The instruction set states no link between a named-year entity symbol (year_2, licensed by Names and casing) and the `(Year n)` Time term, so \"Year 2 began on day 365\" and `(Time e (Year 2))` cannot be related in the KB.",
+    "Whether compound decomposition reaches a compound MODIFIER nested inside a compound (salt_bloom inside salt_bloom_store, mire_essence inside mire_essence_store) is unstated — \"decompose once, then stop\" names a stopping condition only for parts already single.",
+    "`(Ordinal <entity> <n> <scale>)` specifies the scale as the associated event or an explicit -est dimension; a kind-ordinal over a non-eventive class (\"the second autumn equinox\") supplies neither, leaving the scale slot unlicensed."
+   ],
+   "decision": "defect",
+   "defect_summary": "For index 0 the compliant form is a named entity for the year — `(Name year_2 \"Year 2\")` + `(Member year_2 year)` per Names and casing (the capitalized run exceeds the bare class word), with `year_2` filling the Patient slot and `(Year 2)` staying in Time slots only. For index 1 NO licensed form carries the content: Cardinality admits only a native integer and CardinalityPhrase only a numberless vague phrase, so the instruction-compliant behaviour under Core patterns (\"carry it, or leave the whole claim out and record the gap\") is to omit the count atom entirely and file the gap — which is why the hedged-cardinal gap above is the substantive finding here.",
+   "notes": "The reviewer's second gap is not a gap: Names and casing does license an entity symbol for \"Year 2\" (capitalized run exceeding the bare class word); the real gap is the missing bridge to the `(Year n)` term, filed above. The light-verb reading of \"came\" over the equinox event-noun (reviewer's note) is acceptable improvisation — every atom it yields is true and well-typed."
+  }
+ }
+}

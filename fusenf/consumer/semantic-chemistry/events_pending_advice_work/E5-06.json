@@ -1,0 +1,161 @@
+{
+ "id": "E5-06",
+ "rule": "V — First frost and midwinter",
+ "texts": [
+  "On day 120 of Year 1, a wraith emerged from the water of the Sunken Cove, because the Stilllight Lantern had burned dim on the night of day 111.",
+  "The Stilllight Lantern had burned dim nine days before the emergence.",
+  "Marra Tallowhand saw the wraith first from her station near the Cove Stair.",
+  "Marra Tallowhand walked to the Stilllight Lantern.",
+  "Bevin Coombe was already at the Stilllight Lantern.",
+  "Bevin Coombe ground feathers.",
+  "Bevin Coombe scattered the ground feathers around the Stilllight Lantern.",
+  "The ground feathers warded the Stilllight Lantern against the wraith.",
+  "The wraith approached the Stilllight Lantern.",
+  "The wraith turned away from the Stilllight Lantern.",
+  "The wraith did not drain the Stilllight Lantern."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000036",
+  "sentences": [
+   "On day 120 of Year 1, a wraith emerged from the water of the Sunken Cove, because the Stilllight Lantern had burned dim on the night of day 111.",
+   "The Stilllight Lantern had burned dim nine days before the emergence.",
+   "Marra Tallowhand saw the wraith first from her station near the Cove Stair.",
+   "Marra Tallowhand walked to the Stilllight Lantern.",
+   "Bevin Coombe was already at the Stilllight Lantern.",
+   "Bevin Coombe ground feathers.",
+   "Bevin Coombe scattered the ground feathers around the Stilllight Lantern.",
+   "The ground feathers warded the Stilllight Lantern against the wraith.",
+   "The wraith approached the Stilllight Lantern.",
+   "The wraith turned away from the Stilllight Lantern.",
+   "The wraith did not drain the Stilllight Lantern."
+  ],
+  "parse": [
+   "(: sunken_cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: sunken_cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+   "(: water1_type (Member sk_water_1 water) (STV 1.0 0.99))",
+   "(: water1_partof (PartOf sk_water_1 sunken_cove) (STV 1.0 0.99))",
+   "(: wraith1_type (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+   "(: emerge1_class (Member sk_emerge_1 emerge) (STV 1.0 0.99))",
+   "(: emerge1_agent (Agent sk_emerge_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: emerge1_source (Source sk_emerge_1 sk_water_1) (STV 1.0 0.99))",
+   "(: emerge1_past (Past sk_emerge_1) (STV 1.0 0.99))",
+   "(: emerge1_time_day (Time sk_emerge_1 (Day 120)) (STV 1.0 0.99))",
+   "(: emerge1_time_year (Time sk_emerge_1 (Year 1)) (STV 1.0 0.99))",
+   "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+   "(: burn1_class (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: burn1_patient (Patient sk_burn_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: burn1_past (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: burn1_time_night (Time sk_burn_1 night) (STV 1.0 0.99))",
+   "(: burn1_time_day (Time sk_burn_1 (Day 111)) (STV 1.0 0.99))",
+   "(: burn1_before_emerge (Before sk_burn_1 sk_emerge_1) (STV 1.0 0.99))",
+   "(: dim1_class (Member sk_dim_1 dim) (STV 1.0 0.99))",
+   "(: dim1_experiencer (Experiencer sk_dim_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: burn1_result (Result sk_burn_1 sk_dim_1) (STV 1.0 0.99))",
+   "(: lantern_dim_flat (Member stilllight_lantern dim) (STV 1.0 0.99))",
+   "(: emerge_because_burn (Because sk_emerge_1 sk_burn_1) (STV 1.0 0.99))",
+   "(: burn1_beforeby_emerge (BeforeBy sk_burn_1 sk_emerge_1 9 day) (STV 1.0 0.99))",
+   "(: marra_name (Name marra_tallowhand \"Marra Tallowhand\") (STV 1.0 0.99))",
+   "(: see1_class (Member sk_see_1 see) (STV 1.0 0.99))",
+   "(: see1_experiencer (Experiencer sk_see_1 marra_tallowhand) (STV 1.0 0.99))",
+   "(: see1_stimulus (Stimulus sk_see_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: see1_source (Source sk_see_1 sk_station_1) (STV 1.0 0.99))",
+   "(: see1_past (Past sk_see_1) (STV 1.0 0.99))",
+   "(: marra_first_see (Ordinal marra_tallowhand 1 see) (STV 1.0 0.99))",
+   "(: station1_type (Member sk_station_1 station) (STV 1.0 0.99))",
+   "(: station1_possession (Possession sk_station_1 marra_tallowhand) (STV 1.0 0.99))",
+   "(: station1_near (Near sk_station_1 cove_stair) (STV 1.0 0.99))",
+   "(: cove_stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+   "(: cove_stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+   "(: walk1_class (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: walk1_agent (Agent sk_walk_1 marra_tallowhand) (STV 1.0 0.99))",
+   "(: walk1_goal (Goal sk_walk_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: walk1_past (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+   "(: bevin_located (Past (LocatedIn bevin_coombe stilllight_lantern)) (STV 1.0 0.99))",
+   "(: grind1_class (Member sk_grind_1 grind) (STV 1.0 0.99))",
+   "(: grind1_agent (Agent sk_grind_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: grind1_patient (Patient sk_grind_1 sk_feather_1) (STV 1.0 0.99))",
+   "(: grind1_past (Past sk_grind_1) (STV 1.0 0.99))",
+   "(: feather1_group (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+   "(: scatter1_class (Member sk_scatter_1 scatter) (STV 1.0 0.99))",
+   "(: scatter1_agent (Agent sk_scatter_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: scatter1_theme (Theme sk_scatter_1 sk_feather_1) (STV 1.0 0.99))",
+   "(: scatter1_around (Around sk_scatter_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: scatter1_past (Past sk_scatter_1) (STV 1.0 0.99))",
+   "(: ward1_class (Member sk_ward_1 ward) (STV 1.0 0.99))",
+   "(: ward1_agent (Agent sk_ward_1 sk_feather_1) (STV 1.0 0.99))",
+   "(: ward1_theme (Theme sk_ward_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: ward1_against (Against sk_ward_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: ward1_past (Past sk_ward_1) (STV 1.0 0.99))",
+   "(: approach1_class (Member sk_approach_1 approach) (STV 1.0 0.99))",
+   "(: approach1_agent (Agent sk_approach_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: approach1_theme (Theme sk_approach_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: approach1_past (Past sk_approach_1) (STV 1.0 0.99))",
+   "(: turn1_class (Member sk_turn_1 turn) (STV 1.0 0.99))",
+   "(: turn1_agent (Agent sk_turn_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: turn1_source (Source sk_turn_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: turn1_past (Past sk_turn_1) (STV 1.0 0.99))",
+   "(: wraith_not_drain (And (Member sk_drain_1 drain) (Agent sk_drain_1 sk_wraith_1) (Patient sk_drain_1 stilllight_lantern) (Past sk_drain_1)) (STV 0.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000036",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 21,
+     "issue": "\"had burned dim\" gets a (Result sk_burn_1 sk_dim_1) link, but the dimness is the state holding during the burning rather than one caused by it — a depictive takes no Result atom, and the instruction set's tie-break says to omit Result whenever caused-vs-concurrent is unclear."
+    },
+    {
+     "statement": 42,
+     "issue": "The aspectual particle \"already\" in \"Bevin Coombe was already at the Stilllight Lantern\" is dropped entirely — no (Already ...) tag and no other carrier — although the instruction set defines the tag and forbids silently dropping a stated qualifier."
+    },
+    {
+     "statement": 62,
+     "issue": "\"turned away from\" loses its particle: the event class is turn, not turn_away, and \"away\" appears nowhere in the parse, contrary to the phrasal/particle-verb rule that the particle is never split off or dropped."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "an aspectual particle (\"already\") on a bare stative position clause — such a clause mints no event (Where a THING is), so there is no eventuality for (Already ...) to tag, and the listed reification triggers (resultative, connective endpoint, time modifier, adjective PP complement, focus particle) do not include aspectual particles",
+    "a day-of-year ordinal calendar (\"day 120 of Year 1\", \"the night of day 111\") — (Day n) is defined as the day-of-month granularity term, so (Day 120) beside (Year 1) has no stated reading",
+    "an intransitive resultative/depictive adjective on the subject (\"the lantern burned dim\") — the resultative section's State-result shape is specified for a transitive object, and no rule says how an intransitive subject's secondary predicate attaches"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Passage-wide coreference, the past-perfect Before plus the measured BeforeBy gap, the perception state's Experiencer/Stimulus split, (Ordinal marra_tallowhand 1 see) for \"first\", the entity-attached Near, and the strength-0 conjunction for the final denial are all handled per the instruction set. The three defects are all dropped or over-committed modifiers rather than structural mis-routings."
+  },
+  "adjudication": {
+   "id": "evtp-000036",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "\"burned dim\" names the state the burning held in, not one the burning brought about, and *Resultatives* directs a merely concurrent — or genuinely unclear — state to be emitted as the plain state with no Result link, so (Result sk_burn_1 sk_dim_1) asserts a causal relation the sentence never states."
+    },
+    {
+     "index": 1,
+     "verdict": "refute",
+     "reason": "(Already <event>) needs an eventuality to tag and *Where a THING is* mints no event for the bare position clause \"was at the Stilllight Lantern\" (aspectual particles are not among the listed reification triggers), so leaving the particle out is the instruction set's own leave-it-out-and-record-the-gap behaviour — as the reviewer's own q2 gap concedes — and the surviving (Past (LocatedIn bevin_coombe stilllight_lantern)) is not widened by the loss, since \"already\" contributes a presupposition rather than a restriction."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "*Compound concepts* forbids splitting off or dropping a verb's particle (\"turned away\" → the single surface symbol turn_away), and \"away\" survives nowhere in the parse — even on the competing reading, where \"away from\" is a multi-word preposition CamelCase-joining into AwayFrom, the stated word is dropped."
+    }
+   ],
+   "gaps_confirmed": [
+    "an aspectual particle (\"already\") on a bare stative position clause: the clause mints no event, and the listed reification triggers (resultative, connective endpoint, time modifier, adjective PP complement, focus particle) do not include aspectual particles, so (Already ...) has no anchor",
+    "a day-of-year ordinal calendar (\"day 120 of Year 1\", \"the night of day 111\"): (Day <n>) is the day-of-month granularity term, so a day-of-year count has no distinct licensed reading"
+   ],
+   "new_gaps": [],
+   "decision": "defect",
+   "defect_summary": "For \"had burned dim\" the compliant form is the plain concurrent state — (Member sk_dim_1 dim) (Experiencer sk_dim_1 stilllight_lantern) plus the flat (Member stilllight_lantern dim) — with no Result atom; for \"turned away from\" the compliant form keeps the particle in the event class, (Member sk_turn_away_1 turn_away) with (Agent sk_turn_away_1 sk_wraith_1) (Source sk_turn_away_1 stilllight_lantern) (Past sk_turn_away_1).",
+   "notes": "The reviewer's third gap is not one: the depictive rule's own example \"arrived tired\" is an intransitive subject, and the \"turned into a museum\" case shows the State-result shape applied to a subject's own symbol, so a licensed form exists either way. Everything else here follows the instruction set — passage coreference, the past-perfect Before beside the separately stated nine-day BeforeBy, (Ordinal marra_tallowhand 1 see) for \"first\", the entity-attached Near, (Past (LocatedIn ...)) for \"at\", and the strength-0 denial bundle over an already-projected definite."
+  }
+ }
+}

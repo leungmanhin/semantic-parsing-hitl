@@ -1,0 +1,24 @@
+{"id": "evtp-000058", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 59, "issue": "The compound kind sky_cat is minted with no genus atom (Inheritance sky_cat cat), which Compound concepts requires for a modifier_noun compound."},
+   {"statement": 36, "issue": "Plural \"crowds of nightmoths\" is collapsed into a single crowd witness sk_crowd_1, so the plurality of crowds is lost."},
+   {"statement": 57, "issue": "\"on six of the next ten nights\" is hung on one gather event witness (and likewise one descend, one hunt), so six separate nightly occurrences are asserted as a single occurrence; sentence 11's plural \"the hunts\" then resolves to that one sk_hunt_1."},
+   {"statement": 43, "issue": "(Cardinality (sk_moths $s) (ParticleFromNormal 30 3)) puts a distribution in a slot the instruction set defines as a native integer; ParticleFromNormal is licensed only in Measure-family magnitude slots and approximate clock values."},
+   {"statement": 43, "issue": "\"per night\" is encoded as (Every (sk_count $s) 1 night), where the named-slot rule gives the day-part slot atom (Time e night) plus the cycle (Every e 1 day)."},
+   {"statement": 71, "issue": "The hunted nightmoths take Patient, but hunting neither creates, destroys nor physically changes them, and the stated default for an unclear object is Theme."},
+   {"statement": 26, "issue": "The per-member burn rule reuses the single witness sk_fuel_1 as every station's Patient (and sk_mistlight_1 likewise in the produce rule), asserting that all three stations burned/produced the very same portion rather than each its own."},
+   {"statement": 20, "issue": "The witness for the mire-essence is named sk_fuel_1, not minted from its class as sk_mire_essence_<n> per the sk_<class>_<n> convention."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "Approximate/hedged cardinality (\"about thirty nightmoths\"): Cardinality takes a native integer, CardinalityPhrase covers only the vague-word lexicon (a few / several / dozens / ...), and CardinalityAtLeast/AtMost only \"more/fewer than\" — a hedged numeral count has no licensed form.",
+   "An event distributed over a counted set of calendar units (\"on six of the next ten nights\", \"on those six nights\"): the instruction set says days are terms, not entities, so there is no partitive over nights and the Time role has no slot for a set of occasions.",
+   "A forward-looking window relative to the narrative present (\"the next ten nights\"): the anaphoric-time rules cover only a single \"that / the following <unit>\" increment from an antecedent.",
+   "A per-unit rate on a counted object (\"about thirty nightmoths per night\"): the compound rate unit belongs to Measure, and Every/TimesPer quantify the event's recurrence, not the object group's count.",
+   "An ordinal's stated domain restriction (\"the first cold snap of Year 2\"): (Ordinal <entity> <n> <scale>) has no slot for the domain the ranking is relative to."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Compound decomposition is otherwise systematic — cold_snap, salt_bloom, mire_essence, mist_light, nightmoth, cliff_spire and feather_harvest all carry their genus — which makes the missing sky_cat genus an oversight rather than a judgment call. Where the instruction set supplied no form (approximate counts, a counted set of nights) the parse extended licensed constructors into new slots instead of leaving the claim out and recording the gap."}

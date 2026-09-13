@@ -1,0 +1,27 @@
+{"id": "evtp-000029", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "confirm",
+    "reason": "The rule hands every member the same constant object group, asserting that each lantern drew all the many nightmoths -- more than the text states -- and Quantifiers, generics & scope fixes the opposite form for a count under a distributed subject (a per-binding Skolem group, a shared constant only on a 'the same' cue)."},
+   {"index": 1,
+    "verdict": "confirm",
+    "reason": "Same over-assertion on the same rule form: (Theme (sk_draw $x) sk_nightmoth_2) makes each Cliff Path lantern draw the entire handful, which the sentence does not say."},
+   {"index": 2,
+    "verdict": "confirm",
+    "reason": "Cardinality states that a counted/vague-quantity plural with a distributive predicate keeps the group event and count and adds the per-member rule over (PartOf $x <group>); hunt and flee are distributive, so omitting the rule drops an atom the instruction set requires (and the same parse emitted it twice for draw)."},
+   {"index": 3,
+    "verdict": "partial",
+    "reason": "The propagation half stands -- 'in that week' is an anaphoric temporal NP, and term propagation requires copying the antecedent's stated terms, here (Year 1), exactly as the parse did for 'that autumn' -- but the deictic-constant complaint is overstated, since Time's term inventory has no week-level term and a bare symbol is the nearest licensed shape in that gap."}
+ ],
+ "gaps_confirmed": [
+   "Anaphoric temporal NPs coarser than a day ('that autumn', 'in that week'): term propagation is defined over day-level calendar terms plus a day-part symbol, so a season or a week has no defined Time filler.",
+   "Day-of-year dating in a fictional calendar ('day 85 of Year 1'): (Day n) is a calendar day inside a month/date, not a day ordinal within a year.",
+   "A counted/vague-quantity object group under a distributed plural subject ('the lanterns drew many nightmoths'): the distribution machinery covers a shared definite object only, and says nothing about whether such an object becomes a per-member Skolem group or blocks the rule."
+ ],
+ "new_gaps": [
+   "Cumulative counted object under a distributed subject: neither licensed form is faithful -- a shared constant object gives every member the whole set, and the per-binding Skolem group ((sk_moth $x) with its own CardinalityPhrase) gives every member 'many' of its own -- so a licensed form would need to carry that the count is a total over the group while the predication still reaches individual members."
+ ],
+ "decision": "defect",
+ "defect_summary": "Issues 0 and 1: the object must not be a shared constant inside the per-member rule -- the nearest licensed form is a per-binding Skolem group, (Theme (sk_draw $x) (sk_moth $x)) + (GroupOf (sk_moth $x) nightmoth), but since the counts 'many'/'a handful' are cumulative over the lanterns no licensed form carries them faithfully, so the compliant minimum is the group event alone with no per-member rule (filed as a gap). Issue 2: emit the per-member rules the instruction set mandates -- (Implication (PartOf $x sk_skycat_1) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Location (sk_hunt $x) cliff_path) (Past (sk_hunt $x)) ...)) and the matching flee rule over sk_nightmoth_3.",
+ "notes": "The reviewer's positive reading is right: the Hollows name-only individual, the Council common-noun default, LocatedIn for 'at' against the entity-attached On for 'on', the So connective in surface order, the scalar-change Theme, and the stayed-thin Still/flat/tense bundle all follow the instruction set. The defects are the distribution rules on both sides -- two emitted that over-assert and two omitted that were required."
+}

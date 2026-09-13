@@ -1,0 +1,133 @@
+{
+ "id": "E8-03",
+ "rule": "VIII — The following autumn",
+ "texts": [
+  "On day 365 of Year 2, the moon was full.",
+  "The Council convened at the Watch.",
+  "The Council accepted Old Vesh's bright-station proposal.",
+  "The Council issued extra mire-essence rations to three stations of the Middle Row in order to draw crowds of nightmoths.",
+  "The Council issued the extra rations in order to keep sky-cats hunting on the Cliff Path."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000056",
+  "sentences": [
+   "On day 365 of Year 2, the moon was full.",
+   "The Council convened at the Watch.",
+   "The Council accepted Old Vesh's bright-station proposal.",
+   "The Council issued extra mire-essence rations to three stations of the Middle Row in order to draw crowds of nightmoths.",
+   "The Council issued the extra rations in order to keep sky-cats hunting on the Cliff Path."
+  ],
+  "parse": [
+   "(: s1_moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+   "(: s1_full_type (Member sk_full_1 full) (STV 1.0 0.99))",
+   "(: s1_full_exp (Experiencer sk_full_1 sk_moon_1) (STV 1.0 0.99))",
+   "(: s1_full_year (Time sk_full_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s1_full_day (Time sk_full_1 (Day 365)) (STV 1.0 0.99))",
+   "(: s1_full_past (Past sk_full_1) (STV 1.0 0.99))",
+   "(: s1_moon_full_flat (Past (Member sk_moon_1 full)) (STV 1.0 0.99))",
+   "(: s2_council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s2_convene_type (Member sk_convene_1 convene) (STV 1.0 0.99))",
+   "(: s2_convene_agent (Agent sk_convene_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s2_convene_past (Past sk_convene_1) (STV 1.0 0.99))",
+   "(: s2_watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: s2_convene_loc (Location sk_convene_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: s3_vesh_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+   "(: s3_proposal_type (Member sk_proposal_1 bright_station_proposal) (STV 1.0 0.99))",
+   "(: s3_proposal_agent (Agent sk_proposal_1 old_vesh) (STV 1.0 0.99))",
+   "(: s3_bsp_genus (Inheritance bright_station_proposal proposal) (STV 1.0 0.99))",
+   "(: s3_bs_genus (Inheritance bright_station station) (STV 1.0 0.99))",
+   "(: s3_bs_mod (Inheritance bright_station bright) (STV 1.0 0.99))",
+   "(: s3_accept_type (Member sk_accept_1 accept) (STV 1.0 0.99))",
+   "(: s3_accept_agent (Agent sk_accept_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s3_accept_theme (Theme sk_accept_1 sk_proposal_1) (STV 1.0 0.99))",
+   "(: s3_accept_past (Past sk_accept_1) (STV 1.0 0.99))",
+   "(: s4_issue_type (Member sk_issue_1 issue) (STV 1.0 0.99))",
+   "(: s4_issue_agent (Agent sk_issue_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s4_issue_theme (Theme sk_issue_1 sk_ration_1) (STV 1.0 0.99))",
+   "(: s4_issue_recipient (Recipient sk_issue_1 sk_station_1) (STV 1.0 0.99))",
+   "(: s4_issue_past (Past sk_issue_1) (STV 1.0 0.99))",
+   "(: s4_ration_group (GroupOf sk_ration_1 mire_essence_ration) (STV 1.0 0.99))",
+   "(: s4_mer_genus (Inheritance mire_essence_ration ration) (STV 1.0 0.99))",
+   "(: s4_me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: s4_ration_extra_rule (Implication (PartOf $x sk_ration_1) (Member $x extra)) (STV 1.0 0.9))",
+   "(: s4_station_group (GroupOf sk_station_1 station) (STV 1.0 0.99))",
+   "(: s4_station_card (Cardinality sk_station_1 3) (STV 1.0 0.99))",
+   "(: s4_station_partof (PartOf sk_station_1 middle_row) (STV 1.0 0.99))",
+   "(: s4_row_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: s4_row_type (Member middle_row row) (STV 1.0 0.99))",
+   "(: s4_draw_type (Member sk_draw_1 draw) (STV 1.0 0.99))",
+   "(: s4_draw_agent (Agent sk_draw_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s4_draw_theme (Theme sk_draw_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: s4_crowd_type (Member sk_crowd_1 crowd) (STV 1.0 0.99))",
+   "(: s4_crowd_group (GroupOf sk_crowd_1 nightmoth) (STV 1.0 0.99))",
+   "(: s4_nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: s4_purpose (InOrderTo sk_issue_1 sk_draw_1) (STV 1.0 0.99))",
+   "(: s5_keep_type (Member sk_keep_1 keep) (STV 1.0 0.99))",
+   "(: s5_keep_agent (Agent sk_keep_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s5_keep_theme (Theme sk_keep_1 sk_skycat_1) (STV 1.0 0.99))",
+   "(: s5_skycat_group (GroupOf sk_skycat_1 sky_cat) (STV 1.0 0.99))",
+   "(: s5_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: s5_hunt_type (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: s5_hunt_agent (Agent sk_hunt_1 sk_skycat_1) (STV 1.0 0.99))",
+   "(: s5_hunt_still (Still sk_hunt_1) (STV 1.0 0.99))",
+   "(: s5_hunt_loc (Location sk_hunt_1 cliff_path) (STV 1.0 0.99))",
+   "(: s5_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: s5_path_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: s5_result (Result sk_keep_1 sk_hunt_1) (STV 1.0 0.99))",
+   "(: s5_purpose (InOrderTo sk_issue_1 sk_keep_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000056",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 40,
+     "issue": "The plural \"crowds of nightmoths\" is collapsed into a single crowd individual (Member sk_crowd_1 crowd), so the stated plurality of crowds is lost."
+    },
+    {
+     "statement": 18,
+     "issue": "bright_station is decomposed a second level down (station + bright) although it is never the kind of any referent and its modifier genus is correctly suppressed, leaving orphaned atoms beyond the \"decompose once, then stop\" licence."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "an ordinal day-of-year in a non-Gregorian calendar (\"day 365 of Year 2\") — the Time term inventory supplies only (Day <n>) for a calendar day-of-month, so a day-of-year reading is indistinguishable from a day-of-month one",
+    "a maintenance verb with a participial eventive complement (\"keep sky-cats hunting\") — the resultative/maintenance rule covers only an adjectival state result (kept the gate shut) with its flat copular half, and gives no shape for an activity complement",
+    "a cardinal partitive whose superset is a named individual rather than a \"the Ns\" group (\"three stations of the Middle Row\") — the partitive rule presupposes a GroupOf superset, so no licensed link exists between the counted group and the named whole"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Strong handling of the two purpose infinitives on one reused sk_issue_1 event, of Old Vesh's proposal as an event-noun subject role rather than Possession, and of the Council/Watch capitalized-common-noun default. The PartOf link from the station group to middle_row is an improvisation but built from licensed heads."
+  },
+  "adjudication": {
+   "id": "evtp-000056",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "partial",
+     "reason": "The observation stands — \"crowds\" is plural and the parse records one crowd, so the plurality is unrecoverable — but the defect charge does not: (Member sk_crowd_1 crowd) and (GroupOf sk_crowd_1 nightmoth) are the instruction set's own \"a flock of birds\" pattern, every atom is true and well-typed, and nothing over-asserts, while a set whose members are themselves groups has no licensed carrier (GroupOf takes a member kind), so this is gap territory."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "*Compound concepts* licenses exactly one decomposition level and never exposes a noun modifier, so bright_station_proposal's whole licensed unpacking is (Inheritance bright_station_proposal proposal); (Inheritance bright_station station) and (Inheritance bright_station bright) are unlicensed atoms about a kind no referent in the passage bears, and the section's own \"determined, not optional\" bar (\"an optional atom makes two faithful parses differ\") is what they break."
+    }
+   ],
+   "gaps_confirmed": [
+    "an ordinal day-of-year in a non-Gregorian calendar (\"day 365 of Year 2\"): the Time term inventory supplies only (Day <n>) for day-of-month, so a day-of-year reading is indistinguishable from it",
+    "a maintenance verb with a participial eventive complement (\"keep sky-cats hunting\"): the maintenance/resultative rule specifies only an adjectival state result with its flat copular half, and gives no shape for an activity complement",
+    "a cardinal partitive whose superset is a named individual rather than a \"the Ns\" group (\"three stations of the Middle Row\"): the partitive rule presupposes a GroupOf superset, so the link from the counted group to the named whole is unlicensed"
+   ],
+   "new_gaps": [
+    "a plural collective-of NP (\"crowds of nightmoths\"): GroupOf's second slot is a member KIND and the flock pattern is singular, so a plural set of groups has no licensed form and the plural marking cannot be recorded at all — a licensed form would need to carry both the number of crowds and each crowd's member kind"
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form for \"Old Vesh's bright-station proposal\" is (Member sk_proposal_1 bright_station_proposal) + (Agent sk_proposal_1 old_vesh) + (Inheritance bright_station_proposal proposal) and nothing else — no atoms on the un-exposed noun modifier bright_station.",
+   "notes": "The same unlicensed second-level decomposition recurs at line 31, (Inheritance mire_essence essence) beside the correct (Inheritance mire_essence_ration ration), which the reviewer did not flag — the fix is systematic, not one-off. The improvised (Result sk_keep_1 sk_hunt_1) + (Still sk_hunt_1) for \"keep sky-cats hunting\" is acceptable in gap territory: it is the maintenance-verb shape with a true, well-typed, tenseless activity witness standing in for the adjectival state."
+  }
+ }
+}

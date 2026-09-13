@@ -1,0 +1,13 @@
+{"id": "evtp-000045", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 20, "issue": "\"her own\" is silently dropped -- no Possession links the off-nights to Pell, so the parse widens the claim to off-nights in general."},
+               {"statement": 16, "issue": "The plural \"off-nights\" (several occasions) collapses into a single Past visit event with no recurrence atom and no group witness for the possessed plural."},
+               {"statement": 27, "issue": "\"every night\" is encoded as a period (Every e 1 night), but \"night\" is a day-part like \"morning\", which the slot rule maps to (Time e night) + (Every e 1 day); same at 36, 44, 51."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["inceptive verb with an event-denoting NOUN object (\"began a solo stretch of thirty nights\") -- Inception covers only \"to V\" / \"V-ing\" complements, so nothing says whether the noun-eventuality takes Ongoing, its own tense, or a role linking the subject to it",
+             "past-tense habitual: a finite past clause carrying \"every night\" -- Frequency & habitual schedules says the event stays unmarked, Status predicates tenses finite clauses, and no rule says which wins for a habitual bounded inside a past interval (the parse emits both Past and Every)",
+             "a possessed plural common-noun NP as a temporal adjunct (\"on her own off-nights\") -- Time takes structured terms, deictics or bare day-part constants, with no slot for a witness/group that carries a possessor"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Roles, the negation bundle, During, compound decomposition (mire_essence, off_night) and cross-sentence coreference (the stretch, the lantern) are all handled correctly. The defects are confined to the \"her own off-nights\" adjunct and the frequency encoding."}

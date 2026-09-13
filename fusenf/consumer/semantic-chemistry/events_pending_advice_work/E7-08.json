@@ -1,0 +1,179 @@
+{
+ "id": "E7-08",
+ "rule": "VII — Midspring recovery",
+ "texts": [
+  "On day 270 of Year 1, Meren Tallowhand told Old Vesh that the year had been difficult.",
+  "The village lost three lanterns to cold snaps in Year 1.",
+  "The village lost no lantern to the wraith beyond the six drained lanterns.",
+  "The six drained lanterns recovered.",
+  "The feather store nearly ran out in the winter of Year 1.",
+  "Old Vesh told Meren Tallowhand that the sky-cat drought had caused the near-miss.",
+  "Old Vesh proposed that a few stations of the Cliff Path burn extra mire-essence in early winter in order to draw crowds of nightmoths.",
+  "Old Vesh proposed that the bright stations keep sky-cats hunting on the Cliff Path.",
+  "The Council took the proposal under consideration."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000051",
+  "sentences": [
+   "On day 270 of Year 1, Meren Tallowhand told Old Vesh that the year had been difficult.",
+   "The village lost three lanterns to cold snaps in Year 1.",
+   "The village lost no lantern to the wraith beyond the six drained lanterns.",
+   "The six drained lanterns recovered.",
+   "The feather store nearly ran out in the winter of Year 1.",
+   "Old Vesh told Meren Tallowhand that the sky-cat drought had caused the near-miss.",
+   "Old Vesh proposed that a few stations of the Cliff Path burn extra mire-essence in early winter in order to draw crowds of nightmoths.",
+   "Old Vesh proposed that the bright stations keep sky-cats hunting on the Cliff Path.",
+   "The Council took the proposal under consideration."
+  ],
+  "parse": [
+   "(: s1_mtname (Name meren_tallowhand \"Meren Tallowhand\") (STV 1.0 0.99))",
+   "(: s1_ovname (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+   "(: s1_tellclass (Member sk_tell_1 tell) (STV 1.0 0.99))",
+   "(: s1_tellexp (Experiencer sk_tell_1 meren_tallowhand) (STV 1.0 0.99))",
+   "(: s1_tellrec (Recipient sk_tell_1 old_vesh) (STV 1.0 0.99))",
+   "(: s1_telltheme (Theme sk_tell_1 (Past (Member sk_year_1 difficult))) (STV 1.0 0.99))",
+   "(: s1_yeartype (Member sk_year_1 year) (STV 1.0 0.99))",
+   "(: s1_tellpast (Past sk_tell_1) (STV 1.0 0.99))",
+   "(: s1_tellyear (Time sk_tell_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_tellday (Time sk_tell_1 (Day 270)) (STV 1.0 0.99))",
+   "(: s2_villagetype (Member sk_village_1 village) (STV 1.0 0.99))",
+   "(: s2_loseclass (Member sk_lose_1 lose) (STV 1.0 0.99))",
+   "(: s2_loseagent (Agent sk_lose_1 sk_village_1) (STV 1.0 0.99))",
+   "(: s2_lanterngroup (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: s2_lanterncard (Cardinality sk_lantern_1 3) (STV 1.0 0.99))",
+   "(: s2_losepatient (Patient sk_lose_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s2_loseto (To sk_lose_1 cold_snap) (STV 1.0 0.99))",
+   "(: s2_snapgenus (Inheritance cold_snap snap) (STV 1.0 0.99))",
+   "(: s2_snapmod (Inheritance cold_snap cold) (STV 1.0 0.99))",
+   "(: s2_losepast (Past sk_lose_1) (STV 1.0 0.99))",
+   "(: s2_loseyear (Time sk_lose_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s3_wraithtype (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+   "(: s3_negloss (And (Member sk_lose_2 lose) (Agent sk_lose_2 sk_village_1) (Member sk_lantern_2 lantern) (Patient sk_lose_2 sk_lantern_2) (To sk_lose_2 sk_wraith_1) (Past sk_lose_2)) (STV 0.0 0.99))",
+   "(: s3_lantern3group (GroupOf sk_lantern_3 lantern) (STV 1.0 0.99))",
+   "(: s3_lantern3card (Cardinality sk_lantern_3 6) (STV 1.0 0.99))",
+   "(: s3_lantern3drained (Implication (PartOf $x sk_lantern_3) (Member $x drained)) (STV 1.0 0.9))",
+   "(: s4_recoverclass (Member sk_recover_1 recover) (STV 1.0 0.99))",
+   "(: s4_recoverpatient (Patient sk_recover_1 sk_lantern_3) (STV 1.0 0.99))",
+   "(: s4_recoverpast (Past sk_recover_1) (STV 1.0 0.99))",
+   "(: s4_recoverrule (Implication (PartOf $x sk_lantern_3) (And (Member (sk_recover $x) recover) (Patient (sk_recover $x) $x) (Past (sk_recover $x)))) (STV 1.0 0.9))",
+   "(: s5_storetype (Member sk_feather_store_1 feather_store) (STV 1.0 0.99))",
+   "(: s5_storegenus (Inheritance feather_store store) (STV 1.0 0.99))",
+   "(: s5_runoutclass (Member sk_run_out_1 run_out) (STV 1.0 0.99))",
+   "(: s5_runoutpatient (Patient sk_run_out_1 sk_feather_store_1) (STV 1.0 0.99))",
+   "(: s5_runoutdegree (Degree sk_feather_store_1 run_out almost) (STV 1.0 0.99))",
+   "(: s5_runoutyear (Time sk_run_out_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s5_runoutwinter (Time sk_run_out_1 winter) (STV 1.0 0.99))",
+   "(: s6_tell2class (Member sk_tell_2 tell) (STV 1.0 0.99))",
+   "(: s6_tell2exp (Experiencer sk_tell_2 old_vesh) (STV 1.0 0.99))",
+   "(: s6_tell2rec (Recipient sk_tell_2 meren_tallowhand) (STV 1.0 0.99))",
+   "(: s6_tell2theme (Theme sk_tell_2 (And (Member sk_cause_1 cause) (Agent sk_cause_1 sk_drought_1) (Patient sk_cause_1 sk_run_out_1) (Past sk_cause_1))) (STV 1.0 0.99))",
+   "(: s6_droughttype (Member sk_drought_1 sky_cat_drought) (STV 1.0 0.99))",
+   "(: s6_droughtgenus (Inheritance sky_cat_drought drought) (STV 1.0 0.99))",
+   "(: s6_catgenus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: s6_nearmisstype (Member sk_run_out_1 near_miss) (STV 1.0 0.99))",
+   "(: s6_tell2past (Past sk_tell_2) (STV 1.0 0.99))",
+   "(: s7_pathname (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: s7_pathtype (Member cliff_path path) (STV 1.0 0.99))",
+   "(: s7_essencegenus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: s7_mothgenus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: s7_proposeclass (Member sk_propose_1 propose) (STV 1.0 0.99))",
+   "(: s7_proposeexp (Experiencer sk_propose_1 old_vesh) (STV 1.0 0.99))",
+   "(: s7_proposepast (Past sk_propose_1) (STV 1.0 0.99))",
+   "(: s7_proposetheme (Theme sk_propose_1 (And (GroupOf sk_station_1 station) (CardinalityPhrase sk_station_1 \"a few\") (PartOf sk_station_1 cliff_path) (Member sk_burn_1 burn) (Agent sk_burn_1 sk_station_1) (Member sk_essence_1 mire_essence) (Member sk_essence_1 extra) (Patient sk_burn_1 sk_essence_1) (Time sk_burn_1 early_winter) (InOrderTo sk_burn_1 sk_draw_1) (Member sk_draw_1 draw) (Agent sk_draw_1 sk_station_1) (Member sk_crowd_1 crowd) (GroupOf sk_crowd_1 nightmoth) (Theme sk_draw_1 sk_crowd_1) (Implication (PartOf $x sk_station_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Member (sk_essence $x) mire_essence) (Member (sk_essence $x) extra) (Patient (sk_burn $x) (sk_essence $x)) (Time (sk_burn $x) early_winter) (InOrderTo (sk_burn $x) (sk_draw $x)) (Member (sk_draw $x) draw) (Agent (sk_draw $x) $x) (Member (sk_crowd $x) crowd) (GroupOf (sk_crowd $x) nightmoth) (Theme (sk_draw $x) (sk_crowd $x)))))) (STV 1.0 0.99))",
+   "(: s8_propose2class (Member sk_propose_2 propose) (STV 1.0 0.99))",
+   "(: s8_propose2exp (Experiencer sk_propose_2 old_vesh) (STV 1.0 0.99))",
+   "(: s8_propose2past (Past sk_propose_2) (STV 1.0 0.99))",
+   "(: s8_propose2theme (Theme sk_propose_2 (And (Implication (PartOf $x sk_station_1) (Member $x bright)) (Member sk_keep_1 keep) (Agent sk_keep_1 sk_station_1) (Theme sk_keep_1 sky_cat) (Member sk_hunt_1 hunt) (Agent sk_hunt_1 sky_cat) (Location sk_hunt_1 cliff_path) (Ongoing sk_hunt_1) (Still sk_hunt_1) (Result sk_keep_1 sk_hunt_1))) (STV 1.0 0.99))",
+   "(: s9_counciltype (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s9_proposaltype (Member sk_proposal_1 proposal) (STV 1.0 0.99))",
+   "(: s9_takeclass (Member sk_take_1 take_under_consideration) (STV 1.0 0.99))",
+   "(: s9_takeagent (Agent sk_take_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s9_taketheme (Theme sk_take_1 sk_proposal_1) (STV 1.0 0.99))",
+   "(: s9_takepast (Past sk_take_1) (STV 1.0 0.99))"
+  ],
+  "census": "unfireable-rule: unasserted-sk-constant-in-premise",
+  "review": {
+   "id": "evtp-000051",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 22,
+     "issue": "The exceptive \"beyond the six drained lanterns\" is silently dropped, so the strength-0 bundle asserts the unrestricted claim that the village lost no lantern at all to the wraith — a widened denial the sentence does not make (Core patterns requires carrying the restriction or omitting the claim and recording the gap)."
+    },
+    {
+     "statement": 32,
+     "issue": "\"The feather store nearly ran out\" is parsed as an asserted run_out event at (STV 1.0 0.99), so the parse claims the store did run out, whereas the approximator cancels the eventuality."
+    },
+    {
+     "statement": 32,
+     "issue": "The run_out event carries no (Past ...) atom although the clause is finite past tense, so by the status-predicate default it reads as generic/habitual."
+    },
+    {
+     "statement": 34,
+     "issue": "(Degree sk_feather_store_1 run_out almost) puts a verb lemma in Degree's scale slot, which the instruction set defines as a gradable adjective or dimension noun."
+    },
+    {
+     "statement": 57,
+     "issue": "The bare kind symbol sky_cat fills Agent/Theme of a specific, Ongoing/Located hunting eventuality, where the episodic bare-plural-object rule indicates a group witness rather than a kind filler."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "NP exceptive restricting a negated claim (\"lost no lantern to the wraith BEYOND the six drained lanterns\" - also 'apart from', 'other than' in this NP-exceptive use): no licensed head or scoping device; the 'other than / aside from' cues in the instruction set are only defeasible-exception cues introducing a sub-kind to a generic.",
+    "Approximator on a verbal eventuality (\"nearly ran out\"): the almost/nearly rule under Comparatives & degree is written only for an adjectival property (reify the state, drop the flat half, tag Degree with an adjective scale), so there is no way to record an event that nearly happened without asserting that it happened.",
+    "Mandative subjunctive complement (\"proposed that a few stations burn ...\", \"proposed that the bright stations keep ...\"): a directive-force complement is sealed as a plain declarative proposition; the instruction set has no directive-under-attitude form (Directive/Forbid is imperative-only).",
+    "Determiner \"no\" on an object NP (\"lost no lantern\"): the no/none quantifier machinery and the QuantifierPhrase companion are defined over subject ranges/kinds, so the quantifier word has no recorded carrier here."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Strong elsewhere: past perfects inside seals keep Past with no Before, definite/named typing and compound decomposition project out of the seals while predications stay in, the six-drained-lantern group carries the descriptive modifier as a per-member rule, and the S7 seal correctly nests its own distribution rule as a sealed conjunct."
+  },
+  "adjudication": {
+   "id": "evtp-000051",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Core patterns states a stated restriction is never silently dropped because omitting it widens the claim, and the unrestricted strength-0 bundle denies exactly the six wraith-drained lanterns the exceptive excludes."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "The approximator rule says \"almost/nearly\" cancels what it modifies (\"the tank was almost full\" asserts neither fullness nor the state), so the full-strength (Member sk_run_out_1 run_out) + (Patient ...) pair asserts an eventuality the sentence says did not occur."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Status predicates put (Past e) on finite clauses and warn never to choose between Ongoing/Past/nothing by feel; with no status atom the run_out reads as the generic/habitual default, i.e. that the feather store runs out as a matter of course."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "Degree's middle slot is the stated gradable adjective (or the reserved quantity / forKind), and run_out is an event-class symbol — the same symbol this parse uses in (Member sk_run_out_1 run_out) — so the atom is ill-typed per the vocabulary."
+    },
+    {
+     "index": 4,
+     "verdict": "confirm",
+     "reason": "Coordination & plurals reserves the bare kind filler for non-specific/kind-level objects and requires an existential group witness when a bare plural takes part in the occurrence, and these sky-cats are the Agent of an Ongoing, Located, Result-linked hunting eventuality."
+    }
+   ],
+   "gaps_confirmed": [
+    "NP exceptive restricting a negated claim (\"lost no lantern to the wraith beyond the six drained lanterns\"): no exceptive head or scoping device exists; \"other than / aside from\" appear only as defeasible-exception cues over a generic sub-kind.",
+    "Approximator over a verbal eventuality (\"nearly ran out\"): the almost/nearly rule is written only for an adjectival property (reify the state, drop the flat half, tag Degree with the adjective scale), so an event that nearly happened has no licensed carrier.",
+    "Mandative subjunctive complement (\"proposed that a few stations ... burn\", \"proposed that the bright stations keep\"): the directive force is lost because sealing under Theme records a plain declarative and Directive/Forbid is defined for imperatives only.",
+    "Quantifier \"no\" on an object NP (\"lost no lantern\"): QuantifierPhrase is shaped over a subject range/kind, so the deliberate quantifier-no vs plain-not distinction the instruction set preserves for subjects collapses in object position."
+   ],
+   "new_gaps": [
+    "Coreference into a prior seal: \"the bright stations\" re-mentions an indefinite witness minted inside the earlier proposal seal, which the instruction set says stays sealed and does not project, and the projection table licenses no route for a later clause to refer back to it.",
+    "Non-deictic season / sub-season time constants (\"in the winter of Year 1\", \"in early winter\"): the Time term vocabulary is Year/Month/Day/Weekday/Hour/Minute plus day-parts and deictic seasons (last_spring), with no bare season term that composes with a Year.",
+    "Day-of-year ordinal in a non-Gregorian calendar (\"day 270 of Year 1\"): (Day <n>) is the day-of-month granularity — the seeded strict ordering reads it as same-year-month day — so a day counted within a year has no licensed term."
+   ],
+   "decision": "defect",
+   "defect_summary": "For the exceptive, no licensed form carries \"beyond the six drained lanterns\", so the compliant form is to leave the whole denial out and record the gap (Core patterns) rather than emit the unrestricted strength-0 bundle; for \"nearly ran out\" no licensed form exists either, so the compliant form is to omit the eventuality and record the gap instead of asserting (Member sk_run_out_1 run_out) — which subsumes the missing (Past sk_run_out_1), since the clause must not surface as an asserted event at all; the Degree atom has no compliant variant and should simply not be emitted (Degree's scale slot admits only a stated gradable adjective or the reserved quantity); and the sky-cats take the ordinary (GroupOf sk_group_N sky_cat) witness as the Theme of keep and the Agent of hunt.",
+   "notes": "The same episodic bare-plural-filler problem the reviewer flags at sky_cat also sits unflagged at (To sk_lose_1 cold_snap) in S2. Seal discipline is otherwise strong — definite/named typing and compound decomposition project while predications and in-P PartOf/Possession links stay sealed, and S7 nests its own distribution rule as a sealed conjunct with non-colliding variables."
+  }
+ }
+}

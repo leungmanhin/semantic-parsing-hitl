@@ -1,0 +1,17 @@
+{"id": "evtp-000076", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "refute",
+    "reason": "This is the reviewer's own gap, and the calibration line governs it: the episodic-bare-object witness rule is stated for bare PLURALS only, so 'produced mist-light' correctly took the licensed bare kind filler, leaving the definite re-mention no witness to reuse - and (Agent sk_attract_1 mist_light) is true of the sentence, well-typed per a vocabulary that itself fills role slots with bare kind symbols ('grows wheat' -> (Patient e wheat)), and asserts nothing extra, whereas minting a fresh witness only at the second mention would sever the symbol reuse Coreference mandates."}
+ ],
+ "gaps_confirmed": [
+   "definite re-mention of a mass entity introduced as a bare kind filler ('The lanterns produced mist-light. The mist-light attracted nightmoths.') - the existential-group-witness rule for an episodic bare object is written for plurals, so a bare MASS object stays a kind symbol and the following definite has nothing individuated to corefer with; the two applicable rules (definite -> witness, coreference -> reuse the symbol) then pull opposite ways"
+ ],
+ "new_gaps": [
+   "a cumulative plural-subject + plural-object clause ('Keepers lit the lanterns of the East Row', 'Nightmoths left silken threads on the lanterns', 'Keepers collected the silken threads') has no licensed form: the per-member distribution rule copies the whole definite object group into each member's Skolem event, so (Implication (PartOf $x sk_keeper_1) (... (Patient (sk_light $x) sk_lantern_1) ...)) reads as 'each keeper lit every lantern' - the prompt's worked examples share only a single object ('the barrel', 'the exam'), and nothing licenses the share-out reading the text actually states",
+   "a non-Gregorian day-of-year date ('day 630 of Year 2', 'day 631 of Year 2') has no licensed term - (Day <n>) is specified as a day-of-month inside a Month/Year decomposition, and nothing says a bare day-of-year count may fill it; the parse's (Day 630)/(Day 631) is unguided improvisation (true and well-typed, so acceptable, but unguided)",
+   "a CAPITALIZED BARE plural common noun with no determiner ('Keepers lit the lanterns') is unaddressed: Names and casing fixes the singular-collective label ('the Assembly' -> common noun) and the determined plural label ('the Wrens' -> Name-only individual), but not the bare capitalized plural, which could read either as an ordinary kind plural (what the parse chose) or as a Name-bearing order/office"
+ ],
+ "decision": "accept",
+ "defect_summary": "",
+ "notes": "The parse is otherwise careful in exactly the places that usually slip: group-only treatment for the collective 'gathered' and 'shrank' with no distribution rule, the 'each nightmoth that survived the hunt' universal built as a relative-clause-premise rule whose only sk_ constant (sk_hunt_1) is top-level asserted, Name-only 'Hollows' with no GroupOf, no invented kind atom for 'Hesper', and silken exposed as a material adjective while mire/mist/night/sky/cliff/sea stay unexposed noun modifiers. 'the lanterns of the East Row' as Possession rather than PartOf is within the opaque fallback's licence, and 'in sea-water' as Instrument is covered by Instrument's substance/medium clause."}

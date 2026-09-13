@@ -1,0 +1,126 @@
+{
+ "id": "E9-03",
+ "rule": "IX — Smaller incidents through Year 2",
+ "texts": [
+  "On day 440 of Year 2, Tessa Brae found a large sky-cat feather near the third cliff-spire.",
+  "The feather was unusually long.",
+  "Tessa Brae added the feather to the feather store.",
+  "Tessa Brae reported to the Council that the feather might belong to a new sky-cat.",
+  "The Council took no action."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000062",
+  "sentences": [
+   "On day 440 of Year 2, Tessa Brae found a large sky-cat feather near the third cliff-spire.",
+   "The feather was unusually long.",
+   "Tessa Brae added the feather to the feather store.",
+   "Tessa Brae reported to the Council that the feather might belong to a new sky-cat.",
+   "The Council took no action."
+  ],
+  "parse": [
+   "(: s1_tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+   "(: s1_feather_type (Member sk_feather_1 sky_cat_feather) (STV 1.0 0.99))",
+   "(: s1_feather_genus (Inheritance sky_cat_feather feather) (STV 1.0 0.99))",
+   "(: s1_feather_large (Member sk_feather_1 large) (STV 1.0 0.99))",
+   "(: s1_spire_type (Member sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))",
+   "(: s1_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: s1_spire_ord (Ordinal sk_cliff_spire_1 3 cliff_spire) (STV 1.0 0.99))",
+   "(: s1_find_ev (Member sk_find_1 find) (STV 1.0 0.99))",
+   "(: s1_find_ag (Agent sk_find_1 tessa_brae) (STV 1.0 0.99))",
+   "(: s1_find_th (Theme sk_find_1 sk_feather_1) (STV 1.0 0.99))",
+   "(: s1_find_loc (Location sk_find_1 sk_cliff_spire_1) (STV 1.0 0.99))",
+   "(: s1_find_tense (Past sk_find_1) (STV 1.0 0.99))",
+   "(: s1_find_year (Time sk_find_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s1_find_day (Time sk_find_1 (Day 440)) (STV 1.0 0.99))",
+   "(: s2_long (Past (Member sk_feather_1 long)) (STV 1.0 0.99))",
+   "(: s2_deg (Past (Degree sk_feather_1 long unusually)) (STV 1.0 0.99))",
+   "(: s3_add_ev (Member sk_add_1 add) (STV 1.0 0.99))",
+   "(: s3_add_ag (Agent sk_add_1 tessa_brae) (STV 1.0 0.99))",
+   "(: s3_add_th (Theme sk_add_1 sk_feather_1) (STV 1.0 0.99))",
+   "(: s3_store_type (Member sk_feather_store_1 feather_store) (STV 1.0 0.99))",
+   "(: s3_store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+   "(: s3_add_goal (Goal sk_add_1 sk_feather_store_1) (STV 1.0 0.99))",
+   "(: s3_add_tense (Past sk_add_1) (STV 1.0 0.99))",
+   "(: s4_council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s4_report_ev (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: s4_report_exp (Experiencer sk_report_1 tessa_brae) (STV 1.0 0.99))",
+   "(: s4_report_rec (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s4_report_tense (Past sk_report_1) (STV 1.0 0.99))",
+   "(: s4_report_theme (Theme sk_report_1 (And (Member sk_belong_1 belong) (Theme sk_belong_1 sk_feather_1) (Holder sk_belong_1 sk_skycat_1) (Member sk_skycat_1 sky_cat) (Member sk_skycat_1 new) (Might sk_belong_1))) (STV 1.0 0.99))",
+   "(: s5_no_action (And (Member sk_take_1 take) (Agent sk_take_1 sk_council_1) (Theme sk_take_1 action) (Past sk_take_1)) (STV 0.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000062",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 28,
+     "issue": "Inside the sealed complement, \"the feather might belong to a new sky-cat\" gives the prepositional object the role Holder, which the instruction set reserves for the SUBJECT of a possession state (own/have/lack only), and gives the surface subject Theme; the prepositional-verb rule routes such an object to the preposition-named oblique, and a stative intransitive subject to Experiencer."
+    },
+    {
+     "statement": 10,
+     "issue": "\"near the third cliff-spire\" is stored as Location on the finding event, which places the event at the spire rather than near it; Location is glossed \"in/at/on\" and the surface-preposition doctrine elsewhere forbids folding a proximity preposition into a location/containment head."
+    },
+    {
+     "statement": 6,
+     "issue": "(Ordinal sk_cliff_spire_1 3 cliff_spire) fills the <scale> slot with the entity's own class, which is neither the associated ordering event nor an explicit \"-est\" dimension."
+    },
+    {
+     "statement": 28,
+     "issue": "The compound kind sky_cat, used as a class in the sealed complement, gets no genus atom projected to top level, unlike every other compound in the parse (sky_cat_feather, cliff_spire, feather_store) — defensible only if IS-A suppression was intended for the fictional creature."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "A converse possession verb (\"X belongs to Y\", possessed as subject): Holder/Theme are defined only for possessor-subject verbs (own/have/lack), and the prepositional-verb oblique the rules otherwise mandate gives no route to the Possession form that possession questions are required to query.",
+    "An enumerative ordinal (\"the third cliff-spire\") has no licensed filler for Ordinal's <scale> slot: no associated ordering event, no \"-est\" dimension, and `unspecified` is Measure-family-only.",
+    "An in-world calendar date \"day 440 of Year 2\" is a day-of-year count, not a day-of-month, and the Time term inventory cannot mark the difference.",
+    "\"took no action\": the QuantifierPhrase companion is mandatory for the explicit quantifier \"no\", but its shape (QuantifierPhrase <subject> <predicate> \"word\") has no slot for a \"no\" sitting on a direct object."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The sealing is otherwise handled correctly: a non-factive report with an Experiencer holder, no top-level predication of P, and the seal-internal indefinite sky-cat witness kept inside. Also correct: the past-wrapped copular plus its surface-form Degree level, the fuse-vs-split calls on \"large\" and \"new\" against sky_cat_feather, the Goal for \"to the feather store\", and the strength-0 bundle for the final sentence."
+  },
+  "adjudication": {
+   "id": "evtp-000062",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Holder is defined as the subject of a possession / relational state and only for own / have / lack, so filling it with the PP object of \"belong to\" violates that definition outright, and this is not uncovered territory: the prepositional-verb rule (\"referred to the memo\" → (To …), never a direct-object role) plus the stative-intransitive-subject rule (\"nothing changes and nothing moves\" → Experiencer) already license a complete alternative."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "\"Near\" is neither containment nor in / at / on, and the prompt states the entity-side surface-preposition licence is \"the same open licence as the event-side preposition-named oblique — never a coined synonym head, always the word actually used\", so (Location sk_find_1 sk_cliff_spire_1) asserts the finding happened at the spire when the text says only that it happened nearby."
+    },
+    {
+     "index": 2,
+     "verdict": "partial",
+     "reason": "The gap half stands — Ordinal's <scale> is the associated ordering event or an explicit \"-est\" dimension and \"the third cliff-spire\" supplies neither — but the defect half does not, since (Ordinal sk_cliff_spire_1 3 cliff_spire) states nothing false (it is the third among cliff-spires), uses a licensed head, and Core patterns forbids silently dropping the stated restrictive \"third\"."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "A fused compound kind's head genus is \"always emitted either way\" and the seal-projection table routes a sealed P's compound-decomposition atoms to top level as its second item, while the IS-A suppression bar is explicitly the idiom bar's little sibling for lexicalized compounds (\"hot dog\"), which a transparent novel coinage cannot be — so (Inheritance sky_cat cat) is a determined, missing atom, leaving the minted sky_cat symbol unreachable in the KB."
+    }
+   ],
+   "gaps_confirmed": [
+    "Converse possession verb (\"X belongs to Y\", possessed as subject): Holder / Theme are defined only for possessor-subject verbs (own / have / lack), and the preposition-named oblique the rules otherwise mandate feeds no seeded derivation to the (Possession <possessed> <possessor>) form the prompt requires every possession question to query.",
+    "Enumerative ordinal (\"the third cliff-spire\"): Ordinal's <scale> slot has no licensed filler — no associated ordering event, no \"-est\" dimension, and `unspecified` is Measure-family-only.",
+    "In-world calendar date (\"day 440 of Year 2\"): a day-of-year count, not a day-of-month, and the Time term inventory cannot mark the difference.",
+    "\"Took no action\": the QuantifierPhrase companion is mandatory for every explicit quantifier word the claim consumes, but its (QuantifierPhrase <subject> <predicate> \"<word>\") shape has no slot for a \"no\" sitting on a direct object, and here no rule quantifies a range for it to restate — rightly filed as a gap rather than an issue, since an ill-shaped companion would be worse than none."
+   ],
+   "new_gaps": [
+    "A novel compound kind naming an invented creature (sky_cat) gives the IS-A suppression test nothing to decide on: the bar the instruction set states is lexicalization (\"a hot dog is not a dog\"), which a coinage cannot exhibit, so the genus is emitted by default even where the fiction may not support it (a feathered cat) — a licensed form would need a way to mark a genus as surface-derived rather than world-verified, or a stated default for invented kinds."
+   ],
+   "decision": "defect",
+   "defect_summary": "For the belong-to roles the compliant sealed form is (Member sk_belong_1 belong) (Experiencer sk_belong_1 sk_feather_1) (To sk_belong_1 sk_skycat_1) (Might sk_belong_1), which is licensed but loses the possession relation the sentence turns on — the cost recorded in the first confirmed gap. For \"near the third cliff-spire\" the compliant form is the surface-preposition oblique (Near sk_find_1 sk_cliff_spire_1) in place of Location. For the compound kind, (Inheritance sky_cat cat) belongs at top level beside the seal, per the seal-projection table's second item.",
+   "notes": "The seal itself is handled well: non-factive report with an Experiencer holder, Recipient for the addressee, no top-level predication of P, and the indefinite sky-cat witness correctly kept inside. One cosmetic slip the reviewer did not raise: the witness stem sk_skycat_1 does not match its minted class symbol sky_cat, which the prompt says the symbol is minted from."
+  }
+ }
+}

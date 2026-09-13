@@ -1,0 +1,173 @@
+{
+ "id": "E9-01",
+ "rule": "IX — Smaller incidents through Year 2",
+ "texts": [
+  "On day 410 of Year 2, a gust of wind extinguished a lantern on the Middle Row in the evening.",
+  "Marra Tallowhand saw the gust from her station.",
+  "Marra Tallowhand walked to the lantern.",
+  "Marra Tallowhand relit the lantern within the hour.",
+  "The lantern was not at the Sunken Cove.",
+  "No wraith emerged.",
+  "The Council recorded the incident as a minor weather event.",
+  "Marra Tallowhand recommended that the Council issue extra mire-essence to the wind-exposed lanterns of the Cliff Path.",
+  "The Council took the recommendation under advisement."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000060",
+  "sentences": [
+   "On day 410 of Year 2, a gust of wind extinguished a lantern on the Middle Row in the evening.",
+   "Marra Tallowhand saw the gust from her station.",
+   "Marra Tallowhand walked to the lantern.",
+   "Marra Tallowhand relit the lantern within the hour.",
+   "The lantern was not at the Sunken Cove.",
+   "No wraith emerged.",
+   "The Council recorded the incident as a minor weather event.",
+   "Marra Tallowhand recommended that the Council issue extra mire-essence to the wind-exposed lanterns of the Cliff Path.",
+   "The Council took the recommendation under advisement."
+  ],
+  "parse": [
+   "(: s1_gust (Member sk_gust_1 gust) (STV 1.0 0.99))",
+   "(: s1_gustof (Of sk_gust_1 wind) (STV 1.0 0.99))",
+   "(: s1_ext (Member sk_extinguish_1 extinguish) (STV 1.0 0.99))",
+   "(: s1_ag (Agent sk_extinguish_1 sk_gust_1) (STV 1.0 0.99))",
+   "(: s1_lant (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: s1_pat (Patient sk_extinguish_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s1_row (Member middle_row row) (STV 1.0 0.99))",
+   "(: s1_rowname (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: s1_lanton (On sk_lantern_1 middle_row) (STV 1.0 0.99))",
+   "(: s1_tns (Past sk_extinguish_1) (STV 1.0 0.99))",
+   "(: s1_day (Time sk_extinguish_1 (Day 410)) (STV 1.0 0.99))",
+   "(: s1_yr (Time sk_extinguish_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s1_eve (Time sk_extinguish_1 evening) (STV 1.0 0.99))",
+   "(: s2_name (Name marra_tallowhand \"Marra Tallowhand\") (STV 1.0 0.99))",
+   "(: s2_see (Member sk_see_1 see) (STV 1.0 0.99))",
+   "(: s2_exp (Experiencer sk_see_1 marra_tallowhand) (STV 1.0 0.99))",
+   "(: s2_stim (Stimulus sk_see_1 sk_gust_1) (STV 1.0 0.99))",
+   "(: s2_tns (Past sk_see_1) (STV 1.0 0.99))",
+   "(: s2_stat (Member sk_station_1 station) (STV 1.0 0.99))",
+   "(: s2_poss (Possession sk_station_1 marra_tallowhand) (STV 1.0 0.99))",
+   "(: s2_src (Source sk_see_1 sk_station_1) (STV 1.0 0.99))",
+   "(: s3_walk (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: s3_ag (Agent sk_walk_1 marra_tallowhand) (STV 1.0 0.99))",
+   "(: s3_goal (Goal sk_walk_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s3_tns (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: s4_light (Member sk_light_1 light) (STV 1.0 0.99))",
+   "(: s4_ag (Agent sk_light_1 marra_tallowhand) (STV 1.0 0.99))",
+   "(: s4_pat (Patient sk_light_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: s4_tns (Past sk_light_1) (STV 1.0 0.99))",
+   "(: s4_again (Again sk_light_1) (STV 1.0 0.99))",
+   "(: s5_cove (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: s5_covename (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+   "(: s5_neg (Past (LocatedIn sk_lantern_1 sunken_cove)) (STV 0.0 0.99))",
+   "(: s6_neg (And (Member sk_wraith_1 wraith) (Member sk_emerge_1 emerge) (Agent sk_emerge_1 sk_wraith_1) (Past sk_emerge_1)) (STV 0.0 0.99))",
+   "(: s7_council (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s7_incident (Member sk_incident_1 incident) (STV 1.0 0.99))",
+   "(: s7_record (Member sk_record_1 record) (STV 1.0 0.99))",
+   "(: s7_exp (Experiencer sk_record_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s7_tns (Past sk_record_1) (STV 1.0 0.99))",
+   "(: s7_thm (Theme sk_record_1 (And (Member sk_incident_1 weather_event) (Member sk_incident_1 minor))) (STV 1.0 0.99))",
+   "(: s7_weg (Inheritance weather_event event) (STV 1.0 0.99))",
+   "(: s8_rec (Member sk_recommend_1 recommend) (STV 1.0 0.99))",
+   "(: s8_exp (Experiencer sk_recommend_1 marra_tallowhand) (STV 1.0 0.99))",
+   "(: s8_tns (Past sk_recommend_1) (STV 1.0 0.99))",
+   "(: s8_lg (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+   "(: s8_cliffk (Member cliff_path path) (STV 1.0 0.99))",
+   "(: s8_cliffn (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: s8_meg (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: s8_thm (Theme sk_recommend_1 (And (Member sk_issue_1 issue) (Agent sk_issue_1 sk_council_1) (Theme sk_issue_1 sk_essence_1) (Recipient sk_issue_1 sk_lanterns_1) (Member sk_essence_1 mire_essence) (Member sk_essence_1 extra) (Possession sk_lanterns_1 cliff_path) (Implication (PartOf $x sk_lanterns_1) (Member $x wind_exposed)))) (STV 1.0 0.99))",
+   "(: s9_take (Member sk_take_1 take_under_advisement) (STV 1.0 0.99))",
+   "(: s9_ag (Agent sk_take_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s9_thm (Theme sk_take_1 sk_recommend_1) (STV 1.0 0.99))",
+   "(: s9_tns (Past sk_take_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000060",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 37,
+     "issue": "\"record\" is an act, not a stative psych/perception verb, so its transitive subject must be Agent, not Experiencer."
+    },
+    {
+     "statement": 39,
+     "issue": "The direct object of \"recorded the incident\" gets no role atom on the record event — its slot is taken by a sealed proposition, and sealing is licensed only for a finite clausal complement."
+    },
+    {
+     "statement": 33,
+     "issue": "\"No wraith emerged\" carries the explicit quantifier \"no\", which routes to the strength-0 distributing rule plus a mandatory (QuantifierPhrase wraith emerge \"no\") companion; the parse uses a single-witness denial bundle and emits no companion, collapsing quantifier-none into plain \"a wraith did not emerge\"."
+    },
+    {
+     "statement": null,
+     "issue": "\"within the hour\" in sentence 4 is dropped entirely, so the relighting is asserted with no temporal bound at all."
+    },
+    {
+     "statement": 25,
+     "issue": "\"relit\" is lemmatized to `light` with an added (Again …) tag, stripping a derivational prefix that the lemmatization rule says to keep (inflection only, never derivation)."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "classificatory \"V NP as NP/ADJ\" secondary predicate (\"recorded the incident as a minor weather event\") — not a resultative (nothing changes) and not a depictive; no licensed carrier for the as-phrase",
+    "forward bounded window (\"within the hour\", \"within two days\") — WithinLast is backward-only, TimeAtMost needs a time term, and BeforeBy states an exact gap rather than a bound",
+    "prefixal derivation on a verb (\"relit\", \"reopen\") — the instruction set does not say whether the lemma is `relight` or `light` + (Again …)",
+    "quantity/portion of-phrase (\"a gust of wind\", the \"a cup of water\" case) — explicitly excluded from Possession and not a stated-proportion partitive, so no head is assigned",
+    "mandative subjunctive complement (\"recommended that the Council issue …\") — sealed as a plain proposition, and the directive force has no carrier (Directive/Forbid are imperative-only)",
+    "a definite superordinate NP anaphoric to a previously described event (\"the incident\" for the whole lantern episode) — the anaphoric-definite rule covers re-mention of a same-class witness, not a summary label",
+    "ordinal day-of-year in a non-Gregorian calendar (\"day 410 of Year 2\") — (Day n) is defined as the day slot of a calendar date, so (Day 410) overloads it"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Coreference across the passage is handled well (the lantern, the gust, and \"the recommendation\" → the recommend event), as is the sealed recommendation, whose Possession restrictor and per-member wind_exposed rule correctly stay inside the seal while the group typing, the Cliff Path name and the mire_essence genus project. The negated position atom (Past (LocatedIn …)) at strength 0.0 is also the right shape."
+  },
+  "adjudication": {
+   "id": "evtp-000060",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Thematic roles moves a transitive subject off Agent only for possession and STATIVE psych/perception, and \"record\" passes the progressive test (\"is recording\"), so the Council is an Agent; the Experiencer licence holds \"exactly when the complement seals\", which an entity object plus an as-phrase does not."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Sealing under Theme is \"only for a finite clausal complement\", and by using the slot for a sealed small clause the parse leaves the record event with no role atom for its stated direct object, so \"what did the Council record?\" cannot bind the incident."
+    },
+    {
+     "index": 2,
+     "verdict": "refute",
+     "reason": "The generic rule route is blocked in a dated one-off clause — \"a bare plural in an episodic clause is a specific set, not a generic ... the generic rule route needs a genuinely generic clause\" — so the strength-0 bundle with the indefinite subject inside is exactly the Negation (events) shape, and with no quantified range in the parse the companion is barred by \"never a range that appears nowhere else in the parse\"; the rule form would instead assert the false kind-level claim that no wraith ever emerges."
+    },
+    {
+     "index": 3,
+     "verdict": "refute",
+     "reason": "No head carries a forward window, and the instruction set's own practice for an unencodable adjunct is to leave it out and record the gap (sequence/scope adverbs, the \"D-Ashford\" tag) rather than coin or mis-slot a head; the remaining claim is entailed by the sentence, so this is the coverage gap the reviewer also filed, not a defect."
+    },
+    {
+     "index": 4,
+     "verdict": "refute",
+     "reason": "The \"inflection only, never derivation\" bar is stated for a word derived into another part of speech (coastal / mountainous / tidal), which a same-part-of-speech prefixed verb is not; `light` + (Again sk_light_1) is true of the sentence, well-typed, and asserts no prior event, and the reviewer's own gap entry concedes the instruction set does not decide the case."
+    }
+   ],
+   "gaps_confirmed": [
+    "classificatory \"V NP as NP/ADJ\" secondary predicate (\"recorded the incident as a minor weather event\") — neither resultative nor depictive, and a flat typing atom would assert the Council's classification as fact, so no carrier exists",
+    "forward bounded window (\"within the hour\") — WithinLast is backward-only, TimeAtMost needs a time term, and BeforeBy states an exact gap rather than a bound",
+    "prefixal derivation on a verb (\"relit\", \"reopen\") — the instruction set does not say whether the lemma is `relight` or `light` + (Again …)",
+    "quantity/portion of-phrase (\"a gust of wind\") — excluded from Possession and not a stated-proportion partitive, so no head is assigned",
+    "mandative subjunctive complement (\"recommended that the Council issue …\") — the directive force has no carrier, since Directive/Forbid are imperative-only and a seal cannot hold a 0.7-strength Obligated on one conjunct",
+    "a definite superordinate NP anaphoric to a previously described event (\"the incident\") — the anaphoric-definite rule covers re-mention of a same-class witness, not a summary label, so the incident witness stays unlinked to the extinguishing",
+    "ordinal day-of-year in a non-Gregorian calendar (\"day 410 of Year 2\") — (Day n) is the day-of-month slot, so (Day 410) overloads it"
+   ],
+   "new_gaps": [
+    "an episodic negative-quantifier subject (\"No wraith emerged\" in a dated one-off narrative) — the faithful existential denial has no quantified range, and QuantifierPhrase may only restate a range the parse quantifies, so the surface word \"no\" is lost with no licensed carrier",
+    "an event-noun object of an attitude/record verb whose content is stated as a classification rather than a clause — with the object role filled by the entity, the classification has nowhere to attach even as a non-committal record"
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant record clause is (Agent sk_record_1 sk_council_1) with (Theme sk_record_1 sk_incident_1) giving the stated direct object its role. The classificatory \"as a minor weather event\" has no licensed carrier of any kind, so it should be left unencoded and filed as a gap rather than smuggled into the Theme slot as a sealed proposition.",
+   "notes": "Coreference across the passage, the sealed recommendation (Possession restrictor and per-member rule inside, group typing / Cliff Path name / mire_essence genus projected out), and the strength-0 (Past (LocatedIn …)) denial are all correct. Three of the five filed issues mistake genuine coverage gaps — a forward window, a prefixal verb, and an episodic \"no\" — for parse defects."
+  }
+ }
+}

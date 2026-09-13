@@ -1,0 +1,232 @@
+{
+ "id": "E8-06",
+ "rule": "VIII — The following autumn",
+ "texts": [
+  "On day 380 of Year 2, Coraline Ash lit the lantern of the Harbor Station at sundown.",
+  "The lantern burned mire-essence.",
+  "The lantern produced mist-light.",
+  "The mist-light attracted nightmoths.",
+  "A crowd of nightmoths gathered at the Harbor Row.",
+  "Two sky-cats descended from the cliff-spires.",
+  "The two sky-cats hunted the nightmoth crowd at the Harbor Row.",
+  "The nightmoth crowd at the Harbor Row shrank.",
+  "The nightmoths left silken threads on the lantern.",
+  "Coraline Ash collected the silken threads from the lantern at dawn on day 381 of Year 2.",
+  "Hesper boiled the silken threads in sea-water in the second cauldron on day 381 of Year 2.",
+  "Mire-essence formed in the second cauldron by evening.",
+  "Hesper stored the mire-essence in a clay vessel.",
+  "Coraline Ash drew the stored mire-essence at sundown on day 381 of Year 2."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000057",
+  "sentences": [
+   "On day 380 of Year 2, Coraline Ash lit the lantern of the Harbor Station at sundown.",
+   "The lantern burned mire-essence.",
+   "The lantern produced mist-light.",
+   "The mist-light attracted nightmoths.",
+   "A crowd of nightmoths gathered at the Harbor Row.",
+   "Two sky-cats descended from the cliff-spires.",
+   "The two sky-cats hunted the nightmoth crowd at the Harbor Row.",
+   "The nightmoth crowd at the Harbor Row shrank.",
+   "The nightmoths left silken threads on the lantern.",
+   "Coraline Ash collected the silken threads from the lantern at dawn on day 381 of Year 2.",
+   "Hesper boiled the silken threads in sea-water in the second cauldron on day 381 of Year 2.",
+   "Mire-essence formed in the second cauldron by evening.",
+   "Hesper stored the mire-essence in a clay vessel.",
+   "Coraline Ash drew the stored mire-essence at sundown on day 381 of Year 2."
+  ],
+  "parse": [
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: station_name (Name harbor_station \"Harbor Station\") (STV 1.0 0.99))",
+   "(: station_type (Member harbor_station station) (STV 1.0 0.99))",
+   "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: lantern_partof (PartOf sk_lantern_1 harbor_station) (STV 1.0 0.99))",
+   "(: e1_class (Member sk_light_1 light) (STV 1.0 0.99))",
+   "(: e1_agent (Agent sk_light_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e1_patient (Patient sk_light_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e1_past (Past sk_light_1) (STV 1.0 0.99))",
+   "(: e1_day (Time sk_light_1 (Day 380)) (STV 1.0 0.99))",
+   "(: e1_year (Time sk_light_1 (Year 2)) (STV 1.0 0.99))",
+   "(: e1_sundown (Time sk_light_1 sundown) (STV 1.0 0.99))",
+   "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: e2_class (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: e2_agent (Agent sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e2_patient (Patient sk_burn_1 mire_essence) (STV 1.0 0.99))",
+   "(: e2_past (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: e3_class (Member sk_produce_1 produce) (STV 1.0 0.99))",
+   "(: e3_agent (Agent sk_produce_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e3_patient (Patient sk_produce_1 mist_light) (STV 1.0 0.99))",
+   "(: e3_past (Past sk_produce_1) (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: nightmoths_group (GroupOf sk_nightmoths_1 nightmoth) (STV 1.0 0.99))",
+   "(: e4_class (Member sk_attract_1 attract) (STV 1.0 0.99))",
+   "(: e4_agent (Agent sk_attract_1 mist_light) (STV 1.0 0.99))",
+   "(: e4_theme (Theme sk_attract_1 sk_nightmoths_1) (STV 1.0 0.99))",
+   "(: e4_past (Past sk_attract_1) (STV 1.0 0.99))",
+   "(: crowd_type (Member sk_crowd_1 crowd) (STV 1.0 0.99))",
+   "(: crowd_group (GroupOf sk_crowd_1 nightmoth) (STV 1.0 0.99))",
+   "(: row_name (Name harbor_row \"Harbor Row\") (STV 1.0 0.99))",
+   "(: row_type (Member harbor_row row) (STV 1.0 0.99))",
+   "(: e5_class (Member sk_gather_1 gather) (STV 1.0 0.99))",
+   "(: e5_agent (Agent sk_gather_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: e5_location (Location sk_gather_1 harbor_row) (STV 1.0 0.99))",
+   "(: e5_past (Past sk_gather_1) (STV 1.0 0.99))",
+   "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: skycats_group (GroupOf sk_skycats_1 sky_cat) (STV 1.0 0.99))",
+   "(: skycats_card (Cardinality sk_skycats_1 2) (STV 1.0 0.99))",
+   "(: cliff_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: spires_group (GroupOf sk_spires_1 cliff_spire) (STV 1.0 0.99))",
+   "(: e6_class (Member sk_descend_1 descend) (STV 1.0 0.99))",
+   "(: e6_agent (Agent sk_descend_1 sk_skycats_1) (STV 1.0 0.99))",
+   "(: e6_source (Source sk_descend_1 sk_spires_1) (STV 1.0 0.99))",
+   "(: e6_past (Past sk_descend_1) (STV 1.0 0.99))",
+   "(: e6_rule (Implication (PartOf $x sk_skycats_1) (And (Member (sk_descend $x) descend) (Agent (sk_descend $x) $x) (Source (sk_descend $x) sk_spires_1) (Past (sk_descend $x)))) (STV 1.0 0.9))",
+   "(: e7_class (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: e7_agent (Agent sk_hunt_1 sk_skycats_1) (STV 1.0 0.99))",
+   "(: e7_theme (Theme sk_hunt_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: e7_past (Past sk_hunt_1) (STV 1.0 0.99))",
+   "(: e7_rule (Implication (PartOf $x sk_skycats_1) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Theme (sk_hunt $x) sk_crowd_1) (Past (sk_hunt $x)))) (STV 1.0 0.9))",
+   "(: crowd_location (LocatedIn sk_crowd_1 harbor_row) (STV 1.0 0.99))",
+   "(: e8_class (Member sk_shrink_1 shrink) (STV 1.0 0.99))",
+   "(: e8_patient (Patient sk_shrink_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: e8_past (Past sk_shrink_1) (STV 1.0 0.99))",
+   "(: silken_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+   "(: silken_thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+   "(: threads_group (GroupOf sk_threads_1 silken_thread) (STV 1.0 0.99))",
+   "(: e9_class (Member sk_leave_1 leave) (STV 1.0 0.99))",
+   "(: e9_agent (Agent sk_leave_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: e9_patient (Patient sk_leave_1 sk_threads_1) (STV 1.0 0.99))",
+   "(: e9_location (Location sk_leave_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e9_past (Past sk_leave_1) (STV 1.0 0.99))",
+   "(: e9_rule (Implication (PartOf $x sk_crowd_1) (And (Member (sk_leave $x) leave) (Agent (sk_leave $x) $x) (Patient (sk_leave $x) (sk_thread $x)) (Member (sk_thread $x) silken_thread) (Location (sk_leave $x) sk_lantern_1) (Past (sk_leave $x)))) (STV 1.0 0.9))",
+   "(: e10_class (Member sk_collect_1 collect) (STV 1.0 0.99))",
+   "(: e10_agent (Agent sk_collect_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e10_theme (Theme sk_collect_1 sk_threads_1) (STV 1.0 0.99))",
+   "(: e10_source (Source sk_collect_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e10_past (Past sk_collect_1) (STV 1.0 0.99))",
+   "(: e10_dawn (Time sk_collect_1 dawn) (STV 1.0 0.99))",
+   "(: e10_day (Time sk_collect_1 (Day 381)) (STV 1.0 0.99))",
+   "(: e10_year (Time sk_collect_1 (Year 2)) (STV 1.0 0.99))",
+   "(: hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: sea_water_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+   "(: cauldron_type (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+   "(: cauldron_ordinal (Ordinal sk_cauldron_1 2 cauldron) (STV 1.0 0.99))",
+   "(: e11_class (Member sk_boil_1 boil) (STV 1.0 0.99))",
+   "(: e11_agent (Agent sk_boil_1 hesper) (STV 1.0 0.99))",
+   "(: e11_patient (Patient sk_boil_1 sk_threads_1) (STV 1.0 0.99))",
+   "(: e11_instrument (Instrument sk_boil_1 sea_water) (STV 1.0 0.99))",
+   "(: e11_location (Location sk_boil_1 sk_cauldron_1) (STV 1.0 0.99))",
+   "(: e11_past (Past sk_boil_1) (STV 1.0 0.99))",
+   "(: e11_day (Time sk_boil_1 (Day 381)) (STV 1.0 0.99))",
+   "(: e11_year (Time sk_boil_1 (Year 2)) (STV 1.0 0.99))",
+   "(: e12_class (Member sk_form_1 form) (STV 1.0 0.99))",
+   "(: e12_patient (Patient sk_form_1 mire_essence) (STV 1.0 0.99))",
+   "(: e12_location (Location sk_form_1 sk_cauldron_1) (STV 1.0 0.99))",
+   "(: e12_past (Past sk_form_1) (STV 1.0 0.99))",
+   "(: e12_evening (TimeAtMost sk_form_1 evening) (STV 1.0 0.99))",
+   "(: clay_vessel_genus (Inheritance clay_vessel vessel) (STV 1.0 0.99))",
+   "(: vessel_type (Member sk_vessel_1 clay_vessel) (STV 1.0 0.99))",
+   "(: e13_class (Member sk_store_1 store) (STV 1.0 0.99))",
+   "(: e13_agent (Agent sk_store_1 hesper) (STV 1.0 0.99))",
+   "(: e13_theme (Theme sk_store_1 mire_essence) (STV 1.0 0.99))",
+   "(: e13_location (Location sk_store_1 sk_vessel_1) (STV 1.0 0.99))",
+   "(: e13_past (Past sk_store_1) (STV 1.0 0.99))",
+   "(: e14_class (Member sk_draw_1 draw) (STV 1.0 0.99))",
+   "(: e14_agent (Agent sk_draw_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e14_theme (Theme sk_draw_1 mire_essence) (STV 1.0 0.99))",
+   "(: e14_past (Past sk_draw_1) (STV 1.0 0.99))",
+   "(: e14_sundown (Time sk_draw_1 sundown) (STV 1.0 0.99))",
+   "(: e14_day (Time sk_draw_1 (Day 381)) (STV 1.0 0.99))",
+   "(: e14_year (Time sk_draw_1 (Year 2)) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000057",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 25,
+     "issue": "The definite anaphoric subject \"The mist-light\" is filled by the bare kind symbol mist_light, which the parse also puts in class position (mist_light_genus), whereas a specific definite referent must be a typed witness."
+    },
+    {
+     "statement": 85,
+     "issue": "\"Mire-essence formed in the second cauldron\" fills Patient with the bare kind mire_essence instead of a witness for the specific portion that formed."
+    },
+    {
+     "statement": 93,
+     "issue": "The definite \"the mire-essence\" reuses that same kind symbol, so the stored portion is not distinguished from the mire-essence the lantern burned in sentence 2."
+    },
+    {
+     "statement": 98,
+     "issue": "\"the stored mire-essence\" both reuses the bare kind symbol and silently drops the participial modifier \"stored\", which as a modifier is an adjective and licenses its own atom."
+    },
+    {
+     "statement": 60,
+     "issue": "\"left silken threads\" takes Patient although leaving/depositing neither creates, destroys, consumes nor changes the threads, so the role test (and its unclear-case default) gives Theme."
+    },
+    {
+     "statement": 51,
+     "issue": "Sentence 7's \"at the Harbor Row\" surfaces only as (LocatedIn sk_crowd_1 harbor_row), leaving the hunting event with no locative, though the event-modifier attachment is at least as available there as the NP-modifier one."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "A fictional-calendar date \"day 380 of Year 2\" — a day-of-year number with no month, inside a bare ordinal year: the Time section's (Day n)/(Year n) terms assume a Gregorian day-of-month and calendar year, and nothing states how such a date should be rendered.",
+    "An ordinal-modified noun with no associated ordering event and no explicit \"-est\" dimension (\"the second cauldron\") — Ordinal's scale slot is specified only as the associated event or a stated dimension, so no licensed filler exists."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Event structure, compound decomposition, group/cardinality handling, the per-member distribution rules and the time atoms are otherwise accurate, and every head used is licensed. The systematic defect is that mass referents (mist-light, mire-essence) stay bare kind symbols even when definite, so one symbol occupies both class and individual positions and merges distinct portions across the passage."
+  },
+  "adjudication": {
+   "id": "evtp-000057",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Existential/definite doctrine states \"Reserve the bare class symbol for a non-specific / generic object ..., never for a specific definite individual\", so the definite anaphor \"The mist-light\" must fill (Agent sk_attract_1 ...) with a typed witness, not with mist_light, the symbol the parse simultaneously puts in the class slot of (Inheritance mist_light light)."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "\"A bare plural in an episodic clause is a specific set, not a generic\" — this clause is exactly a specific dated, located occurrence, so (Patient sk_form_1 mire_essence) asserts of the substance kind what the text says of one portion that formed in that cauldron by evening."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "\"the mire-essence\" is a definite anaphor to the portion just formed, and the same bare-class-symbol bar plus \"an anaphoric definite re-mentioning an already-minted witness reuses that witness\" forbid filling Theme with the kind symbol that also fills the lantern's generic fuel object."
+    },
+    {
+     "index": 3,
+     "verdict": "partial",
+     "reason": "The bare-kind half stands for the same reason as index 2, but the dropped-modifier half is overstated: \"stored\" here restrictively re-identifies a referent whose storing is already asserted at top level (e13), and Coreference & anaphora resolves such a definite by symbol reuse without re-emitting the antecedent's atoms — exactly as \"the two sky-cats\" correctly re-emits no Cardinality."
+    },
+    {
+     "index": 4,
+     "verdict": "confirm",
+     "reason": "Depositing threads on a lantern neither creates, destroys, consumes nor physically changes them, so the Thematic-roles yes/no test — and its explicit \"when the test is unclear, default to Theme\" — gives Theme; the same mis-slotting also rides inside e9_rule's (Patient (sk_leave $x) (sk_thread $x))."
+    },
+    {
+     "index": 5,
+     "verdict": "refute",
+     "reason": "An entity-attached \"at\" is licensed as LocatedIn (\"LocatedIn is containment ONLY — in / at / inside / within\") and the atom is true of the crowd, while Multiple live readings makes one reading the default and fires only on genuine equipoise — which the very next sentence's repeated NP epithet \"The nightmoth crowd at the Harbor Row\" breaks in favour of the NP attachment."
+    }
+   ],
+   "gaps_confirmed": [
+    "A day-of-year number inside a bare ordinal year (\"day 380 of Year 2\") — the Time terms (Day n)/(Year n) are specified for a Gregorian day-of-month and calendar year, and nothing states how a fictional-calendar date of this shape renders.",
+    "An ordinal-modified noun with no associated ordering event and no stated \"-est\" dimension (\"the second cauldron\") — Ordinal's scale slot is defined only as the associated event or an explicit dimension, so the parse's (Ordinal sk_cauldron_1 2 cauldron) fills it with the comparison class, for which no licence exists."
+   ],
+   "new_gaps": [
+    "No stated trigger for a bare MASS NP in an episodic clause: the \"bare plural in an episodic clause is a specific set\" rule is count-only (a GroupOf witness), and nothing says when a mass NP (\"produced mist-light\", \"Mire-essence formed\") mints a portion witness (Member sk_<mass>_1 <mass>) versus staying the bare kind filler that is licensed for non-specific objects (\"burned mire-essence\").",
+    "No licensed way to keep successive portions of one substance apart across a passage — the fuel the lantern burned, the portion that formed in the cauldron, and the portion stored and then drawn: the only mass-witness machinery lives in Partitives (a whole plus a PartOf portion of a presupposed whole), and nothing covers a portion brought newly into existence by an event or its relation to the kind symbol."
+   ],
+   "decision": "defect",
+   "defect_summary": "Index 0: mint (Member sk_mist_light_1 mist_light) at \"produced mist-light\" and fill (Agent sk_attract_1 sk_mist_light_1), leaving mist_light in the class slot only. Index 1: mint (Member sk_mire_essence_1 mire_essence) and emit (Patient sk_form_1 sk_mire_essence_1). Index 2: reuse that witness — (Theme sk_store_1 sk_mire_essence_1) — keeping it distinct from the kind symbol the lantern's generic fuel object legitimately fills. Index 3 (confirmed half): (Theme sk_draw_1 sk_mire_essence_1) for \"the stored mire-essence\". Index 4: (Theme sk_leave_1 sk_threads_1) in place of Patient, with (Theme (sk_leave $x) (sk_thread $x)) inside e9_rule.",
+   "notes": "Compound decomposition, the group/cardinality handling, the per-member distribution rules, the connective-free narrative sequencing and the tense/time atoms are otherwise clean, and every head used is licensed. The Ordinal scale filler is filed above as a confirmed gap rather than an issue, per the reviewer's own routing."
+  }
+ }
+}

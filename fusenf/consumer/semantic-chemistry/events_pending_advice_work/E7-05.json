@@ -1,0 +1,121 @@
+{
+ "id": "E7-05",
+ "rule": "VII — Midspring recovery",
+ "texts": [
+  "On day 258 of Year 1, a crowd of nightmoths gathered at the Harbor Row.",
+  "Three sky-cats descended from the cliff-spires.",
+  "The three sky-cats hunted the nightmoth crowd at the Harbor Row.",
+  "The nightmoth crowd at the Harbor Row shrank.",
+  "Coraline Ash counted twenty-four nightmoths at the lantern of the Harbor Station before the hunt.",
+  "Coraline Ash counted nine nightmoths at the lantern of the Harbor Station after the hunt.",
+  "Coraline Ash wrote notes about the hunt."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000048",
+  "sentences": [
+   "On day 258 of Year 1, a crowd of nightmoths gathered at the Harbor Row.",
+   "Three sky-cats descended from the cliff-spires.",
+   "The three sky-cats hunted the nightmoth crowd at the Harbor Row.",
+   "The nightmoth crowd at the Harbor Row shrank.",
+   "Coraline Ash counted twenty-four nightmoths at the lantern of the Harbor Station before the hunt.",
+   "Coraline Ash counted nine nightmoths at the lantern of the Harbor Station after the hunt.",
+   "Coraline Ash wrote notes about the hunt."
+  ],
+  "parse": [
+   "(: e1_crowd_type (Member sk_crowd_1 crowd) (STV 1.0 0.99))",
+   "(: e1_crowd_kind (GroupOf sk_crowd_1 nightmoth) (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: harbor_row_name (Name harbor_row \"Harbor Row\") (STV 1.0 0.99))",
+   "(: harbor_row_kind (Member harbor_row row) (STV 1.0 0.99))",
+   "(: e1_gather (Member sk_gather_1 gather) (STV 1.0 0.99))",
+   "(: e1_gather_ag (Agent sk_gather_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: e1_gather_loc (Location sk_gather_1 harbor_row) (STV 1.0 0.99))",
+   "(: e1_gather_yr (Time sk_gather_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e1_gather_day (Time sk_gather_1 (Day 258)) (STV 1.0 0.99))",
+   "(: e1_gather_past (Past sk_gather_1) (STV 1.0 0.99))",
+   "(: e2_skycat_kind (GroupOf sk_group_1 sky_cat) (STV 1.0 0.99))",
+   "(: e2_skycat_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+   "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: e2_cliffspire_kind (GroupOf sk_group_2 cliff_spire) (STV 1.0 0.99))",
+   "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: e2_descend (Member sk_descend_1 descend) (STV 1.0 0.99))",
+   "(: e2_descend_ag (Agent sk_descend_1 sk_group_1) (STV 1.0 0.99))",
+   "(: e2_descend_src (Source sk_descend_1 sk_group_2) (STV 1.0 0.99))",
+   "(: e2_descend_past (Past sk_descend_1) (STV 1.0 0.99))",
+   "(: e2_descend_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_descend $x) descend) (Agent (sk_descend $x) $x) (Source (sk_descend $x) sk_group_2) (Past (sk_descend $x)))) (STV 1.0 0.9))",
+   "(: e3_hunt (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: e3_hunt_ag (Agent sk_hunt_1 sk_group_1) (STV 1.0 0.99))",
+   "(: e3_hunt_th (Theme sk_hunt_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: e3_hunt_loc (Location sk_hunt_1 harbor_row) (STV 1.0 0.99))",
+   "(: e3_hunt_past (Past sk_hunt_1) (STV 1.0 0.99))",
+   "(: e3_hunt_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Theme (sk_hunt $x) sk_crowd_1) (Location (sk_hunt $x) harbor_row) (Past (sk_hunt $x)))) (STV 1.0 0.9))",
+   "(: e4_shrink (Member sk_shrink_1 shrink) (STV 1.0 0.99))",
+   "(: e4_shrink_pt (Patient sk_shrink_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: e4_shrink_loc (Location sk_shrink_1 harbor_row) (STV 1.0 0.99))",
+   "(: e4_shrink_past (Past sk_shrink_1) (STV 1.0 0.99))",
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: e5_group_kind (GroupOf sk_group_3 nightmoth) (STV 1.0 0.99))",
+   "(: e5_group_card (Cardinality sk_group_3 24) (STV 1.0 0.99))",
+   "(: e5_count (Member sk_count_1 count) (STV 1.0 0.99))",
+   "(: e5_count_ag (Agent sk_count_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e5_count_th (Theme sk_count_1 sk_group_3) (STV 1.0 0.99))",
+   "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: harbor_station_name (Name harbor_station \"Harbor Station\") (STV 1.0 0.99))",
+   "(: harbor_station_kind (Member harbor_station station) (STV 1.0 0.99))",
+   "(: lantern_partof (PartOf sk_lantern_1 harbor_station) (STV 1.0 0.99))",
+   "(: e5_count_loc (Location sk_count_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e5_count_past (Past sk_count_1) (STV 1.0 0.99))",
+   "(: e5_count_before (Before sk_count_1 sk_hunt_1) (STV 1.0 0.99))",
+   "(: e6_group_kind (GroupOf sk_group_4 nightmoth) (STV 1.0 0.99))",
+   "(: e6_group_card (Cardinality sk_group_4 9) (STV 1.0 0.99))",
+   "(: e6_count (Member sk_count_2 count) (STV 1.0 0.99))",
+   "(: e6_count_ag (Agent sk_count_2 coraline_ash) (STV 1.0 0.99))",
+   "(: e6_count_th (Theme sk_count_2 sk_group_4) (STV 1.0 0.99))",
+   "(: e6_count_loc (Location sk_count_2 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e6_count_past (Past sk_count_2) (STV 1.0 0.99))",
+   "(: e6_count_after (Before sk_hunt_1 sk_count_2) (STV 1.0 0.99))",
+   "(: e7_notes_kind (GroupOf sk_notes_1 note) (STV 1.0 0.99))",
+   "(: e7_write (Member sk_write_1 write) (STV 1.0 0.99))",
+   "(: e7_write_ag (Agent sk_write_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e7_write_pt (Patient sk_write_1 sk_notes_1) (STV 1.0 0.99))",
+   "(: e7_write_about (About sk_write_1 sk_hunt_1) (STV 1.0 0.99))",
+   "(: e7_write_past (Past sk_write_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000048",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 29,
+     "issue": "In \"The nightmoth crowd at the Harbor Row shrank\" the PP sits inside the subject NP and so states where the crowd is, but the parse emits an event Location on the shrinking instead of an entity-attached position atom, and the instruction set makes that entity/event head split load-bearing."
+    }
+   ],
+   "q2_coverage": "covered",
+   "q2_gaps": [],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Statement 24 attaches the same PP to the hunt event, which is a defensible post-verbal VP reading there even if the passage treats \"the nightmoth crowd at the Harbor Row\" as a fixed definite description. The fictional day-of-year dating (\"day 258 of Year 1\") maps cleanly onto the stated (Day n)/(Year n) terms, and the compound genus, group/cardinality, distribution-rule and Before/after-the-hunt handling all follow doctrine."
+  },
+  "adjudication": {
+   "id": "evtp-000048",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "In \"The nightmoth crowd at the Harbor Row shrank\" the PP is preverbal and therefore inside the subject NP, so it states where the crowd is — which *Where a THING is* routes to the entity-attached containment head (\"in / at / inside / within\" → LocatedIn) under the section's explicit bar on swapping the two heads (\"never Location on an entity — the head *is* the event-vs-entity distinction\"); (Location sk_shrink_1 harbor_row) instead asserts a location of the shrinking the text never states while dropping the stated location of the crowd."
+    }
+   ],
+   "gaps_confirmed": [],
+   "new_gaps": [
+    "Fictional day-of-year dating (\"day 258 of Year 1\"): the Time term lexicon offers only (Day <n>) as a day-of-month slot, so a 258th-day-of-year value has no licensed term and the parse can only overload the day-of-month constructor; a licensed form would need a day-of-year (or era-day) term that date comparison and the \"next day\" increment could still order."
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form for the subject-internal locative in sentence 4 is the entity-attached (LocatedIn sk_crowd_1 harbor_row) — \"at\" is one of the four containment prepositions — with no (Location sk_shrink_1 harbor_row) on the shrink event; a licensed form exists, so this is a mis-slot rather than a gap.",
+   "notes": "The sentence-3 PP (\"hunted the nightmoth crowd at the Harbor Row\") is postverbal and so genuinely attachable to the hunt event, as the reviewer allowed; only the preverbal sentence-4 PP is forced NP-internal. The compound genera, group/cardinality and distribution rules, the lantern-of-station PartOf and the before/after-the-hunt orderings all follow doctrine."
+  }
+ }
+}

@@ -1,0 +1,68 @@
+{
+ "id": "E7-04",
+ "rule": "VII — Midspring recovery",
+ "texts": [
+  "On day 251 of Year 1, the cold wind returned briefly at night.",
+  "The lantern of the Harbor Station held salt-bloom in its mire-essence.",
+  "The cold wind struck the lantern.",
+  "The lantern stayed lit."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000047",
+  "sentences": [
+   "On day 251 of Year 1, the cold wind returned briefly at night.",
+   "The lantern of the Harbor Station held salt-bloom in its mire-essence.",
+   "The cold wind struck the lantern.",
+   "The lantern stayed lit."
+  ],
+  "parse": [
+   "(: wind1_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+   "(: wind1_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+   "(: e1_class (Member sk_return_1 return) (STV 1.0 0.99))",
+   "(: e1_pat (Patient sk_return_1 sk_wind_1) (STV 1.0 0.99))",
+   "(: e1_past (Past sk_return_1) (STV 1.0 0.99))",
+   "(: e1_dur (Duration sk_return_1 briefly) (STV 1.0 0.99))",
+   "(: e1_time_night (Time sk_return_1 night) (STV 1.0 0.99))",
+   "(: e1_time_day (Time sk_return_1 (Day 251)) (STV 1.0 0.99))",
+   "(: e1_time_year (Time sk_return_1 (Year 1)) (STV 1.0 0.99))",
+   "(: lantern1_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: station_name (Name harbor_station \"Harbor Station\") (STV 1.0 0.99))",
+   "(: station_type (Member harbor_station station) (STV 1.0 0.99))",
+   "(: lantern1_part (PartOf sk_lantern_1 harbor_station) (STV 1.0 0.99))",
+   "(: e2_class (Member sk_hold_1 hold) (STV 1.0 0.99))",
+   "(: e2_agent (Agent sk_hold_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e2_theme (Theme sk_hold_1 salt_bloom) (STV 1.0 0.99))",
+   "(: saltbloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: mire1_type (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: mire_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: mire1_part (PartOf sk_mire_essence_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e2_loc (Location sk_hold_1 sk_mire_essence_1) (STV 1.0 0.99))",
+   "(: e2_past (Past sk_hold_1) (STV 1.0 0.99))",
+   "(: e3_class (Member sk_strike_1 strike) (STV 1.0 0.99))",
+   "(: e3_agent (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+   "(: e3_theme (Theme sk_strike_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e3_past (Past sk_strike_1) (STV 1.0 0.99))",
+   "(: e4_state (Member sk_lit_1 lit) (STV 1.0 0.99))",
+   "(: e4_exp (Experiencer sk_lit_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e4_still (Still sk_lit_1) (STV 1.0 0.99))",
+   "(: e4_past (Past sk_lit_1) (STV 1.0 0.99))",
+   "(: e4_flat (Past (Member sk_lantern_1 lit)) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000047",
+   "run": 1,
+   "q1_faithful": "yes",
+   "q1_issues": [],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "ordinal day-of-year dating (\"on day 251 of Year 1\") — the instruction set defines (Day <n>) only as the day-of-month granularity of a calendar expression (\"June 5, 2021\"), so a day numbered within the year lands in the same term and is indistinguishable from a day-of-month, with no licensed alternative form"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Two defensible judgment calls: PartOf (rather than the opaque Possession) for both \"the lantern of the Harbor Station\" and \"its mire-essence\", and Theme for the object of \"struck\" — the latter is explicitly covered by the instruction set's \"when the test is unclear, default to Theme\". Everything else — the Patient subject of the natural-force \"returned\", (Duration e briefly), the day-part Time, the stative-transitive Agent on \"held\", and the stayed-lit continuation-copular bundle (reified state + Still + Past + flat (Past (Member ... lit))) — follows the instruction set as written."
+  },
+  "adjudication": null
+ }
+}

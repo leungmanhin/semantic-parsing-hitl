@@ -1,0 +1,220 @@
+{
+ "id": "E7-01",
+ "rule": "VII — Midspring recovery",
+ "texts": [
+  "On day 210 of Year 1, the spring equinox came.",
+  "On day 216 of Year 1, the moon was full.",
+  "The Council closed the salt-bloom season at the full-moon meeting.",
+  "The Northcove resumed its usual production.",
+  "The stations of the Cliff Path stepped down salt-bloom additions during the following two weeks.",
+  "The thread harvests returned to spring levels.",
+  "Cauldron Hall began a heavier distillation cycle.",
+  "The feather store held three weeks of supply at the end of the winter.",
+  "About ten sky-cats were visible on the cliff-spires in the morning by the spring equinox."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000044",
+  "sentences": [
+   "On day 210 of Year 1, the spring equinox came.",
+   "On day 216 of Year 1, the moon was full.",
+   "The Council closed the salt-bloom season at the full-moon meeting.",
+   "The Northcove resumed its usual production.",
+   "The stations of the Cliff Path stepped down salt-bloom additions during the following two weeks.",
+   "The thread harvests returned to spring levels.",
+   "Cauldron Hall began a heavier distillation cycle.",
+   "The feather store held three weeks of supply at the end of the winter.",
+   "About ten sky-cats were visible on the cliff-spires in the morning by the spring equinox."
+  ],
+  "parse": [
+   "(: s1_eq_mem (Member sk_equinox_1 spring_equinox) (STV 1.0 0.99))",
+   "(: s1_eq_genus (Inheritance spring_equinox equinox) (STV 1.0 0.99))",
+   "(: s1_eq_year (Time sk_equinox_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_eq_day (Time sk_equinox_1 (Day 210)) (STV 1.0 0.99))",
+   "(: s1_eq_past (Past sk_equinox_1) (STV 1.0 0.99))",
+   "(: s2_moon_mem (Member sk_moon_1 moon) (STV 1.0 0.99))",
+   "(: s2_full_mem (Member sk_full_1 full) (STV 1.0 0.99))",
+   "(: s2_full_exp (Experiencer sk_full_1 sk_moon_1) (STV 1.0 0.99))",
+   "(: s2_full_year (Time sk_full_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s2_full_day (Time sk_full_1 (Day 216)) (STV 1.0 0.99))",
+   "(: s2_full_past (Past sk_full_1) (STV 1.0 0.99))",
+   "(: s2_full_flat (Past (Member sk_moon_1 full)) (STV 1.0 0.99))",
+   "(: s3_council_mem (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s3_season_mem (Member sk_season_1 salt_bloom_season) (STV 1.0 0.99))",
+   "(: s3_season_genus (Inheritance salt_bloom_season season) (STV 1.0 0.99))",
+   "(: s3_meeting_mem (Member sk_meeting_1 full_moon_meeting) (STV 1.0 0.99))",
+   "(: s3_meeting_genus (Inheritance full_moon_meeting meeting) (STV 1.0 0.99))",
+   "(: s3_close_ev (Member sk_close_1 close) (STV 1.0 0.99))",
+   "(: s3_close_ag (Agent sk_close_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s3_close_pat (Patient sk_close_1 sk_season_1) (STV 1.0 0.99))",
+   "(: s3_close_loc (Location sk_close_1 sk_meeting_1) (STV 1.0 0.99))",
+   "(: s3_close_past (Past sk_close_1) (STV 1.0 0.99))",
+   "(: s4_nc_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+   "(: s4_prod_mem (Member sk_production_1 production) (STV 1.0 0.99))",
+   "(: s4_prod_usual (Member sk_production_1 usual) (STV 1.0 0.99))",
+   "(: s4_prod_poss (Possession sk_production_1 northcove) (STV 1.0 0.99))",
+   "(: s4_resume_ev (Member sk_resume_1 resume) (STV 1.0 0.99))",
+   "(: s4_resume_ag (Agent sk_resume_1 northcove) (STV 1.0 0.99))",
+   "(: s4_resume_th (Theme sk_resume_1 sk_production_1) (STV 1.0 0.99))",
+   "(: s4_resume_past (Past sk_resume_1) (STV 1.0 0.99))",
+   "(: s5_cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: s5_cp_mem (Member cliff_path path) (STV 1.0 0.99))",
+   "(: s5_stations_group (GroupOf sk_stations_1 station) (STV 1.0 0.99))",
+   "(: s5_stations_part (PartOf sk_stations_1 cliff_path) (STV 1.0 0.99))",
+   "(: s5_addition_genus (Inheritance salt_bloom_addition addition) (STV 1.0 0.99))",
+   "(: s5_stepdown_ev (Member sk_step_down_1 step_down) (STV 1.0 0.99))",
+   "(: s5_stepdown_ag (Agent sk_step_down_1 sk_stations_1) (STV 1.0 0.99))",
+   "(: s5_stepdown_pat (Patient sk_step_down_1 salt_bloom_addition) (STV 1.0 0.99))",
+   "(: s5_stepdown_dur (Measure sk_step_down_1 duration 2 week) (STV 1.0 0.99))",
+   "(: s5_stepdown_past (Past sk_step_down_1) (STV 1.0 0.99))",
+   "(: s5_stations_rule (Implication (PartOf $x sk_stations_1) (And (Member (sk_step_down $x) step_down) (Agent (sk_step_down $x) $x) (Patient (sk_step_down $x) salt_bloom_addition) (Past (sk_step_down $x)))) (STV 1.0 0.9))",
+   "(: s6_th_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+   "(: s6_th_group (GroupOf sk_harvests_1 thread_harvest) (STV 1.0 0.99))",
+   "(: s6_sl_genus (Inheritance spring_level level) (STV 1.0 0.99))",
+   "(: s6_return_ev (Member sk_return_1 return) (STV 1.0 0.99))",
+   "(: s6_return_th (Theme sk_return_1 sk_harvests_1) (STV 1.0 0.99))",
+   "(: s6_return_goal (Goal sk_return_1 spring_level) (STV 1.0 0.99))",
+   "(: s6_return_past (Past sk_return_1) (STV 1.0 0.99))",
+   "(: s7_ch_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+   "(: s7_ch_mem (Member cauldron_hall hall) (STV 1.0 0.99))",
+   "(: s7_cycle_genus (Inheritance distillation_cycle cycle) (STV 1.0 0.99))",
+   "(: s7_cycle_mem (Member sk_cycle_1 distillation_cycle) (STV 1.0 0.99))",
+   "(: s7_begin_ev (Member sk_begin_1 begin) (STV 1.0 0.99))",
+   "(: s7_begin_ag (Agent sk_begin_1 cauldron_hall) (STV 1.0 0.99))",
+   "(: s7_begin_th (Theme sk_begin_1 sk_cycle_1) (STV 1.0 0.99))",
+   "(: s7_begin_past (Past sk_begin_1) (STV 1.0 0.99))",
+   "(: s8_fs_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+   "(: s8_fs_mem (Member sk_store_1 feather_store) (STV 1.0 0.99))",
+   "(: s8_hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+   "(: s8_hold_ag (Agent sk_hold_1 sk_store_1) (STV 1.0 0.99))",
+   "(: s8_supply_mem (Member sk_supply_1 supply) (STV 1.0 0.99))",
+   "(: s8_supply_measure (Measure sk_supply_1 duration 3 week) (STV 1.0 0.99))",
+   "(: s8_hold_th (Theme sk_hold_1 sk_supply_1) (STV 1.0 0.99))",
+   "(: s8_winter_mem (Member sk_winter_1 winter) (STV 1.0 0.99))",
+   "(: s8_end_mem (Member sk_end_1 end) (STV 1.0 0.99))",
+   "(: s8_end_part (PartOf sk_end_1 sk_winter_1) (STV 1.0 0.99))",
+   "(: s8_hold_time (Time sk_hold_1 sk_end_1) (STV 1.0 0.99))",
+   "(: s8_hold_past (Past sk_hold_1) (STV 1.0 0.99))",
+   "(: s9_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: s9_cats_group (GroupOf sk_cats_1 sky_cat) (STV 1.0 0.99))",
+   "(: s9_cats_card (Cardinality sk_cats_1 (ParticleFromNormal 10 1)) (STV 1.0 0.99))",
+   "(: s9_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: s9_spires_group (GroupOf sk_spires_1 cliff_spire) (STV 1.0 0.99))",
+   "(: s9_visible_mem (Member sk_visible_1 visible) (STV 1.0 0.99))",
+   "(: s9_visible_exp (Experiencer sk_visible_1 sk_cats_1) (STV 1.0 0.99))",
+   "(: s9_visible_loc (Location sk_visible_1 sk_spires_1) (STV 1.0 0.99))",
+   "(: s9_visible_time (Time sk_visible_1 morning) (STV 1.0 0.99))",
+   "(: s9_visible_before (Before sk_visible_1 sk_equinox_1) (STV 1.0 0.99))",
+   "(: s9_visible_past (Past sk_visible_1) (STV 1.0 0.99))",
+   "(: s9_visible_rule (Implication (PartOf $x sk_cats_1) (Past (Member $x visible))) (STV 1.0 0.9))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000044",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 20,
+     "issue": "\"at the full-moon meeting\" is slotted as Location, but the meeting is an occasion (an eventuality witness), not a place — the instruction's own parallel (\"in the final round\" -> the preposition-named In, not During/Location) points to the surface-preposition oblique (At ...)."
+    },
+    {
+     "statement": 38,
+     "issue": "\"during the following two weeks\" is a frame window, but is encoded as (Measure sk_step_down_1 duration 2 week), which claims the stepping-down itself lasted two weeks; the anaphoric \"following\" ordering relative to the preceding narrative event is also dropped."
+    },
+    {
+     "statement": 46,
+     "issue": "\"returned to spring levels\" gives a scalar-change endpoint a spatial Goal, which the Scalar change section explicitly forbids (\"An end value is never a spatial Goal\")."
+    },
+    {
+     "statement": null,
+     "issue": "\"The thread harvests returned to spring levels\" is a definite plural with a distributive predicate but emits no per-member (Implication (PartOf $x sk_harvests_1) ...) rule, unlike the parallel plural subjects in statements 5 and 9."
+    },
+    {
+     "statement": 61,
+     "issue": "(Measure sk_supply_1 duration 3 week) invents the scale `duration` — no word in \"three weeks of supply\" supplies a dimension, and the instruction reserves `unspecified` for an unstated scale; it also applies the eventuality-duration form to an entity witness."
+    },
+    {
+     "statement": 66,
+     "issue": "\"at the end of the winter\" is encoded by minting an `end` entity witness (PartOf winter) and using it as the Time filler; Time takes structured calendar terms or bare deictic/named constants, never a minted witness."
+    },
+    {
+     "statement": 70,
+     "issue": "(Cardinality sk_cats_1 (ParticleFromNormal 10 1)) puts a distribution in a slot the Cardinality section specifies as a native integer; ParticleFromNormal is licensed only for Measure-family magnitudes and clock-hour values."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Forward window frame adverbial (\"during the following two weeks\") — WithinLast covers only backward windows, and the anaphoric \"the following <unit>\" rule increments a calendar term rather than framing a span, so a forward span has no licensed head.",
+    "Scalar-change endpoint stated as a qualitative level rather than a figure (\"returned to spring levels\") — MeasureTo requires a magnitude plus unit and Goal is barred for scalar endpoints, leaving no licensed form.",
+    "Period-relative time point (\"at the end of the winter\") — Time takes calendar terms or deictic/named constants, and Start/End attach to an eventuality's own extent, not to a separate period NP.",
+    "Approximate cardinality (\"about ten sky-cats\") — Cardinality requires a native integer and CardinalityPhrase covers only vague quantities with no number, so a hedged exact count has no licensed form.",
+    "Attributive comparative with elided standard (\"a heavier distillation cycle\") — the instruction set itself directs dropping it and recording the gap; the parse correctly drops it.",
+    "Measure/quantity of-phrase (\"three weeks of supply\") — named only as an exclusion from the genitive rule, with no positive encoding given.",
+    "Deadline \"by <event-noun>\" (\"by the spring equinox\") — TimeAtMost takes calendar terms only, and Before is strict precedence, so the inclusive \"at or before\" sense has no carrier.",
+    "Ordinal day-of-year in a non-Gregorian calendar (\"day 210 of Year 1\") — (Day <n>) is defined as a bare granularity term with no day-of-month vs day-of-year distinction."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Strong on the mechanical rules — compound genus/modifier exposure, the capitalized-common-noun vs Name split, the copular-plus-time dual-emit, the plural reified-state plus per-member rule, and the stative-transitive Agent for \"held\" all match the instruction set exactly. Treating \"the spring equinox came\" as a light verb over an event-noun (tense and Time straight on sk_equinox_1, no `come` event) extends a rule whose stated examples are occurred/happened/took place; defensible but not literally licensed."
+  },
+  "adjudication": {
+   "id": "evtp-000044",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "The full-moon meeting is an occasion, not a place, and the instruction set's own parallel (\"an event 'in July' is Time, 'in the final round' the preposition-named In\") plus \"the head is the preposition actually used\" license (At sk_close_1 sk_meeting_1), so putting an eventuality witness in Location's place slot is ill-typed."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "The frame-adverbial rule states a window is \"a window, not a duration\" and bars (Measure e duration ...) precisely because it \"would claim the eventuality itself lasted that long\", so the atom asserts an extent the containment adverbial never states; the licensed (Before <antecedent> <new>) that \"the following ...\" mandates was also dropped."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Scalar change states outright that \"An end value is never a spatial Goal\", so (Goal sk_return_1 spring_level) violates an explicit rule and puts a non-place in a spatial-goal slot."
+    },
+    {
+     "index": 3,
+     "verdict": "partial",
+     "reason": "The observed inconsistency is real — this parse distributes its other two plural predicates (statements 41 and 80) but not this one — yet the mandate does not clearly reach here, since the instruction set makes a quantity predication over a plural the group AGGREGATE that \"does NOT distribute\" and gives no test classifying a return-to-a-level as distributive, and the omission puts nothing false in the KB."
+    },
+    {
+     "index": 4,
+     "verdict": "refute",
+     "reason": "`duration` is the instruction set's own reserved scale for a temporal extent — (Measure sk_drive_1 duration 6 hour) invents it from no surface word either — and Measure's first slot takes an entity, so inside the reviewer's own admitted measure-of-phrase gap every emitted atom stays true and well-typed (calibration line)."
+    },
+    {
+     "index": 5,
+     "verdict": "partial",
+     "reason": "Half stands — Time's filler space is structured terms and bare deictic/named constants, and the surface-preposition oblique (At sk_hold_1 sk_end_1) would have been the cleaner carrier — but the minted end/winter witnesses and their PartOf are exactly the licensed genitive treatment of \"the end of the winter\" and nothing false is asserted, so in this uncovered construction it is acceptable improvisation rather than a defect."
+    },
+    {
+     "index": 6,
+     "verdict": "confirm",
+     "reason": "Cardinality's second slot is specified as \"a native integer\", and the counting section states that GreaterThan (the distribution comparator) \"is for distribution values, not plain counts\", so a ParticleFromNormal term there is ill-typed per the vocabulary."
+    }
+   ],
+   "gaps_confirmed": [
+    "Forward window frame adverbial (\"during the following two weeks\") — WithinLast covers backward windows only, and During needs two reified eventualities, so a forward span has no licensed head.",
+    "Qualitative scalar endpoint (\"returned to spring levels\") — MeasureTo needs magnitude plus unit and Goal is explicitly barred for end values.",
+    "Period-relative time point (\"at the end of the winter\") — Time takes calendar terms or deictic/named constants, and Start/End attach to an eventuality's own extent, not to a separate period NP.",
+    "Hedged exact count (\"about ten sky-cats\") — Cardinality requires a native integer, CardinalityPhrase requires no number, so an approximated count has no carrier.",
+    "Attributive comparative with elided standard (\"a heavier distillation cycle\") — the instruction set itself declares no licensed form and directs dropping it; the parse dropped it correctly.",
+    "Measure/quantity of-phrase (\"three weeks of supply\") — named only as an exclusion from the genitive rule, with no positive encoding given.",
+    "Deadline \"by <event-noun>\" (\"by the spring equinox\") — TimeAtMost takes calendar terms, and Before is strict precedence, so the inclusive \"at or before\" sense has no carrier.",
+    "Ordinal day-of-year in a non-Gregorian calendar (\"day 210 of Year 1\") — (Day <n>) carries no day-of-month vs day-of-year distinction."
+   ],
+   "new_gaps": [
+    "Arrival/onset verb over an event-noun (\"the spring equinox came\") — the light-verb rule names occur / happen / take place only, so an arrival verb marking a scheduled time's onset is not literally licensed to take the tense and Time atoms directly on the event-noun's witness.",
+    "Whether a scalar / level predication over a definite plural (\"the thread harvests returned to spring levels\") is distributive or aggregate — the instruction set makes a plural's Measure an aggregate and lists only act-verbs (bark, pass, arrive) as distributive, so the per-member rule's applicability to a level-return is undecided."
+   ],
+   "decision": "defect",
+   "defect_summary": "The full-moon meeting should ride the preposition-named oblique (At sk_close_1 sk_meeting_1), not Location; \"during the following two weeks\" has NO licensed form (WithinLast is backward-only and During needs a reified outer eventuality) so the span should be left out with the gap recorded, while the licensed (Before sk_close_1 sk_step_down_1) for \"following\" should have been emitted; \"returned to spring levels\" likewise has NO licensed form — MeasureTo needs a magnitude and unit and Goal is barred for an end value — so the endpoint should be omitted and the gap recorded; and \"about ten\" has NO licensed form either, since Cardinality demands a native integer and the hedge may not be silently dropped, so the count should be omitted with the gap recorded.",
+   "notes": "Most of the mechanical doctrine is right — compound genus/modifier exposure, the Name-vs-capitalized-common-noun split, the copular-plus-time dual-emit, and the group-plus-per-member rule. The four confirmed defects all sit at slot-type boundaries (Location, Measure duration, Goal, Cardinality) where the parser reached for a named role instead of leaving an uncovered construction out."
+  }
+ }
+}

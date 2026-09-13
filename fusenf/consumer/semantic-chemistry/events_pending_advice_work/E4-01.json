@@ -1,0 +1,172 @@
+{
+ "id": "E4-01",
+ "rule": "IV — The sky-cat drought",
+ "texts": [
+  "On day 60 of Year 1, about four sky-cats were visible on the cliff-spires in the morning.",
+  "In a normal autumn about ten sky-cats are visible on the cliff-spires in the morning.",
+  "A handful of sky-cats had been visible on the cliff-spires for two weeks.",
+  "A handful of sky-cats had hunted on the Cliff Path in those two weeks.",
+  "A handful of sky-cats had molted in those two weeks.",
+  "Tessa Brae collected about twelve feathers per morning during those two weeks.",
+  "In a normal autumn Tessa Brae collects about thirty-five feathers per morning."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000024",
+  "sentences": [
+   "On day 60 of Year 1, about four sky-cats were visible on the cliff-spires in the morning.",
+   "In a normal autumn about ten sky-cats are visible on the cliff-spires in the morning.",
+   "A handful of sky-cats had been visible on the cliff-spires for two weeks.",
+   "A handful of sky-cats had hunted on the Cliff Path in those two weeks.",
+   "A handful of sky-cats had molted in those two weeks.",
+   "Tessa Brae collected about twelve feathers per morning during those two weeks.",
+   "In a normal autumn Tessa Brae collects about thirty-five feathers per morning."
+  ],
+  "parse": [
+   "(: g1_grp (GroupOf sk_group_1 sky_cat) (STV 1.0 0.99))",
+   "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: g1_card (CardinalityPhrase sk_group_1 \"about four\") (STV 1.0 0.99))",
+   "(: spires_grp (GroupOf sk_spires_1 cliff_spire) (STV 1.0 0.99))",
+   "(: spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: vis1_mem (Member sk_visible_1 visible) (STV 1.0 0.99))",
+   "(: vis1_exp (Experiencer sk_visible_1 sk_group_1) (STV 1.0 0.99))",
+   "(: vis1_loc (Location sk_visible_1 sk_spires_1) (STV 1.0 0.99))",
+   "(: vis1_time_morn (Time sk_visible_1 morning) (STV 1.0 0.99))",
+   "(: vis1_time_yr (Time sk_visible_1 (Year 1)) (STV 1.0 0.99))",
+   "(: vis1_time_day (Time sk_visible_1 (Day 60)) (STV 1.0 0.99))",
+   "(: vis1_past (Past sk_visible_1) (STV 1.0 0.99))",
+   "(: vis1_rule (Implication (PartOf $x sk_group_1) (Past (Member $x visible))) (STV 1.0 0.9))",
+   "(: g2_grp (GroupOf sk_group_2 sky_cat) (STV 1.0 0.99))",
+   "(: g2_card (CardinalityPhrase sk_group_2 \"about ten\") (STV 1.0 0.99))",
+   "(: autumn1_type (Member sk_autumn_1 autumn) (STV 1.0 0.99))",
+   "(: autumn1_normal (Member sk_autumn_1 normal) (STV 1.0 0.99))",
+   "(: vis2_mem (Member sk_visible_2 visible) (STV 1.0 0.99))",
+   "(: vis2_exp (Experiencer sk_visible_2 sk_group_2) (STV 1.0 0.99))",
+   "(: vis2_loc (Location sk_visible_2 sk_spires_1) (STV 1.0 0.99))",
+   "(: vis2_time_morn (Time sk_visible_2 morning) (STV 1.0 0.99))",
+   "(: vis2_time_aut (Time sk_visible_2 sk_autumn_1) (STV 1.0 0.99))",
+   "(: vis2_rule (Implication (PartOf $x sk_group_2) (Member $x visible)) (STV 1.0 0.9))",
+   "(: g3_grp (GroupOf sk_group_3 sky_cat) (STV 1.0 0.99))",
+   "(: g3_card (CardinalityPhrase sk_group_3 \"a handful\") (STV 1.0 0.99))",
+   "(: vis3_mem (Member sk_visible_3 visible) (STV 1.0 0.99))",
+   "(: vis3_exp (Experiencer sk_visible_3 sk_group_3) (STV 1.0 0.99))",
+   "(: vis3_loc (Location sk_visible_3 sk_spires_1) (STV 1.0 0.99))",
+   "(: vis3_dur (Measure sk_visible_3 duration 2 week) (STV 1.0 0.99))",
+   "(: vis3_past (Past sk_visible_3) (STV 1.0 0.99))",
+   "(: weeks_dur (Measure sk_weeks_1 duration 2 week) (STV 1.0 0.99))",
+   "(: vis3_rule (Implication (PartOf $x sk_group_3) (Past (Member $x visible))) (STV 1.0 0.9))",
+   "(: g4_grp (GroupOf sk_group_4 sky_cat) (STV 1.0 0.99))",
+   "(: g4_card (CardinalityPhrase sk_group_4 \"a handful\") (STV 1.0 0.99))",
+   "(: path_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: hunt1_mem (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: hunt1_ag (Agent sk_hunt_1 sk_group_4) (STV 1.0 0.99))",
+   "(: hunt1_loc (Location sk_hunt_1 cliff_path) (STV 1.0 0.99))",
+   "(: hunt1_time (Time sk_hunt_1 sk_weeks_1) (STV 1.0 0.99))",
+   "(: hunt1_past (Past sk_hunt_1) (STV 1.0 0.99))",
+   "(: hunt1_rule (Implication (PartOf $x sk_group_4) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Past (sk_hunt $x)))) (STV 1.0 0.9))",
+   "(: g5_grp (GroupOf sk_group_5 sky_cat) (STV 1.0 0.99))",
+   "(: g5_card (CardinalityPhrase sk_group_5 \"a handful\") (STV 1.0 0.99))",
+   "(: molt1_mem (Member sk_molt_1 molt) (STV 1.0 0.99))",
+   "(: molt1_pat (Patient sk_molt_1 sk_group_5) (STV 1.0 0.99))",
+   "(: molt1_time (Time sk_molt_1 sk_weeks_1) (STV 1.0 0.99))",
+   "(: molt1_past (Past sk_molt_1) (STV 1.0 0.99))",
+   "(: molt1_rule (Implication (PartOf $x sk_group_5) (And (Member (sk_molt $x) molt) (Patient (sk_molt $x) $x) (Past (sk_molt $x)))) (STV 1.0 0.9))",
+   "(: tessa_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+   "(: collect1_mem (Member sk_collect_1 collect) (STV 1.0 0.99))",
+   "(: collect1_ag (Agent sk_collect_1 tessa_brae) (STV 1.0 0.99))",
+   "(: feathers1_grp (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+   "(: feathers1_card (CardinalityPhrase sk_feathers_1 \"about twelve\") (STV 1.0 0.99))",
+   "(: collect1_th (Theme sk_collect_1 sk_feathers_1) (STV 1.0 0.99))",
+   "(: collect1_time_morn (Time sk_collect_1 morning) (STV 1.0 0.99))",
+   "(: collect1_every (Every sk_collect_1 1 day) (STV 1.0 0.99))",
+   "(: collect1_during_wks (During sk_collect_1 sk_weeks_1) (STV 1.0 0.99))",
+   "(: collect1_past (Past sk_collect_1) (STV 1.0 0.99))",
+   "(: autumn2_type (Member sk_autumn_2 autumn) (STV 1.0 0.99))",
+   "(: autumn2_normal (Member sk_autumn_2 normal) (STV 1.0 0.99))",
+   "(: collect2_mem (Member sk_collect_2 collect) (STV 1.0 0.99))",
+   "(: collect2_ag (Agent sk_collect_2 tessa_brae) (STV 1.0 0.99))",
+   "(: feathers2_grp (GroupOf sk_feathers_2 feather) (STV 1.0 0.99))",
+   "(: feathers2_card (CardinalityPhrase sk_feathers_2 \"about thirty-five\") (STV 1.0 0.99))",
+   "(: collect2_th (Theme sk_collect_2 sk_feathers_2) (STV 1.0 0.99))",
+   "(: collect2_time_morn (Time sk_collect_2 morning) (STV 1.0 0.99))",
+   "(: collect2_every (Every sk_collect_2 1 day) (STV 1.0 0.99))",
+   "(: collect2_time_aut (Time sk_collect_2 sk_autumn_2) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000024",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 30,
+     "issue": "sk_weeks_1 is minted as a referent for \"those two weeks\" but never given a class atom, so an untyped referent symbol appears in the output and then fills slots at 39, 46 and 57."
+    },
+    {
+     "statement": 39,
+     "issue": "The Time role is filled with an entity witness (sk_weeks_1 here and at 46; sk_autumn_1/sk_autumn_2 at 21 and 68) rather than a structured calendar term or a named/deictic time constant."
+    },
+    {
+     "statement": 57,
+     "issue": "(During sk_collect_1 sk_weeks_1) nests the collecting inside something that is not a reified eventuality, while During is specified as relating two reified eventualities."
+    },
+    {
+     "statement": null,
+     "issue": "The three past-perfect clauses (had been visible / had hunted / had molted) emit Past but no Before ordering, although the passage supplies the day-60 visibility event for them to precede."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Approximated cardinal count (\"about four sky-cats\", \"about ten\", \"about twelve feathers\", \"about thirty-five\"): Cardinality takes a native integer, ParticleFromNormal is defined only for Measure/Time magnitudes, and CardinalityPhrase is defined for vague quantities with no exact number normalized to a canonical lexicon string.",
+    "Normalcy-baseline framing (\"In a normal autumn about ten sky-cats are visible ...\") — a typical/expected value under normal conditions; there is no typicality operator, and the indefinite-witness route asserts one particular autumn.",
+    "Anaphoric multi-unit time-span NP (\"in those two weeks\", \"during those two weeks\"): term propagation is specified for single day-level or coarser calendar terms, not for a stated N-unit interval, so the span has no licensed referent or Time filler.",
+    "Day-of-year dating in a fictional calendar (\"On day 60 of Year 1\"): (Day n) is defined as a calendar day inside a month/date, not a day ordinal within a year.",
+    "Quantity-per-time-unit rate on an event's object (\"about twelve feathers per morning\"): TimesPer counts occurrences and the compound <unit>_per_<unit> Measure form is defined for a bearer's own magnitude, so the \"twelve per morning\" binding has no single licensed carrier."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Roles, compound decomposition (sky_cat/cliff_spire), group + per-member distribution handling, and the reified-state route for \"were visible\" all follow the instruction set; the weak points are concentrated in the temporal encoding. Approximated counts were routed to CardinalityPhrase with non-lexicon strings (\"about four\"), which no seeded phrase rule can map back to a bound."
+  },
+  "adjudication": {
+   "id": "evtp-000024",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Names and casing states that a minted witness's class atom is always emitted and that an untyped referent symbol must never appear in the output, yet sk_weeks_1 carries only a Measure and then fills three slots."
+    },
+    {
+     "index": 1,
+     "verdict": "partial",
+     "reason": "The sk_weeks_1 half stands (an untyped symbol in the Time slot, with the passage already reifying the two-week state sk_visible_3 to anchor on), but sk_autumn_1/sk_autumn_2 are typed witnesses in genuine gap territory -- Time's term inventory has no season term and a bare autumn constant would silently drop the stated 'normal' restriction -- so those atoms are acceptable improvisation."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Intervals specifies During as nesting one reified eventuality inside another, both reified, and sk_weeks_1 is neither reified nor an eventuality, while the passage supplies sk_visible_3 (the two-week visibility state) as a licensed outer argument."
+    },
+    {
+     "index": 3,
+     "verdict": "partial",
+     "reason": "Real that the passage contains other asserted events so the 'no other event in the text' exemption does not apply, but overstated as a violation: the rule's positive trigger is sentence-internal ('whenever the sentence contains another asserted event') and each past perfect is its own single-clause sentence, and a Before on the continuative 'had been visible for two weeks' would be false since that state runs up to the day-60 reference time."
+    }
+   ],
+   "gaps_confirmed": [
+    "Approximated cardinal count ('about four', 'about twelve'): Cardinality takes a native integer, ParticleFromNormal is defined only for Measure/Time magnitudes, and CardinalityPhrase is for vague quantities normalized to a canonical lexicon string -- so 'about four' has no carrier that a seeded rule can map to a bound.",
+    "Normalcy-baseline framing ('In a normal autumn ...'): no typicality operator exists, and the default indefinite-witness route asserts one particular autumn.",
+    "Anaphoric multi-unit time-span NP: term propagation yields calendar terms and Time's inventory has no span term, so 'in those two weeks' has no licensed Time filler (only the 'during' variant has the During-over-the-antecedent-eventuality route).",
+    "Day-of-year dating in a fictional calendar ('day 60 of Year 1'): (Day n) is defined as a calendar day inside a month/date, not a day ordinal within a year.",
+    "Quantity-per-time-unit rate on an event's object ('about twelve feathers per morning'): TimesPer counts occurrences and the <unit>_per_<unit> compound is for a bearer's own magnitude, so the per-morning quantity has no single licensed carrier."
+   ],
+   "new_gaps": [
+    "Past-bounded habitual ('collected about twelve feathers per morning during those two weeks'): Frequency & habitual schedules requires the event to stay unmarked, giving no licensed way to bound a habit to a closed past interval while the clause is finite past tense -- a licensed form would need to carry the recurrence, the tense, and the enclosing interval on one eventuality.",
+    "Restricted period adverbial in the Time slot ('in a normal autumn'): a licensed form would need a Time filler that both names a season-level period and carries the 'normal' restriction, since the bare-constant route drops the qualifier and the witness route asserts a particular autumn."
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0: any minted referent must carry a class atom, so 'those two weeks' would have to be a typed definite-plural group ((GroupOf sk_weeks_1 week) (Cardinality sk_weeks_1 2)) or, better, resolved to the already-reified two-week state sk_visible_3 so that no bare span symbol is minted at all. Issue 2: the compliant form is (During sk_collect_1 sk_visible_3), nesting the collecting inside the reified two-week visibility eventuality the passage itself supplies.",
+   "notes": "Compound decomposition (sky_cat/cliff_spire), the Cliff Path name/type pair, group + per-member distribution, and the reified-state route for 'were visible' are all correct; the damage is confined to the invented span referent. The CardinalityPhrase strings 'about four'/'about twelve' are non-lexicon improvisations but keep a hedge that dropping would widen the claim, so they stand under the calibration line."
+  }
+ }
+}

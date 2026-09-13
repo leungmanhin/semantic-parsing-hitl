@@ -1,0 +1,9 @@
+{"id": "evtp-000026", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 26, "issue": "The frequency adverb \"always\" in \"the village always keeps the Stilllight Lantern lit\" is dropped with no record at all — no QuantifierPhrase companion and no strength effect — so the sealed clause is indistinguishable from an unqualified \"the village keeps the lantern lit\"."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["Frequency adverb on a habitual whose subject is a definite individual rather than a kind: the companion is specified as (QuantifierPhrase <kind> <verb-lemma> \"<word>\"), and there is no kind here; inside an attitude seal there is also no truth value for the frequency dial to set.", "A day-of-year date (\"day 68 of Year 1\", no month): the calendar terms define (Day n) at day-of-month granularity, and the seeded date-ordering rules key on year/month/day, so (Day 68)+(Year 1) is representable but not interpretable as stated."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Everything else checks out: tell/write route as non-factive attitudes (Experiencer holder, Recipient addressee, sealed Theme) with only definite/named typing and compound-genus atoms projected, the two generic complements become distributing rules with the adjectival restriction as a premise conjunct, and \"keeps ... lit\" uses the maintenance State-result shape with Result + Still + the flat atom kept inside the seal. The sealed rules' generic 0.9 strength is unexpressible inside a seal — the registered in-seal limitation, not a parse choice."}

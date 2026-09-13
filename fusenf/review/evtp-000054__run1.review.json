@@ -1,0 +1,19 @@
+{"id": "evtp-000054", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 7, "issue": "(Patient sk_begin_1 (Year 2)) puts a structured calendar term in an entity role slot, but (Year n) is defined only as a Time-term value and role fillers must be lowercase entity symbols."},
+   {"statement": 20, "issue": "(Cardinality sk_group_1 (ParticleFromNormal 10 1)) violates the rule that Cardinality takes a native integer; the ParticleFromNormal distribution is licensed only in Measure-magnitude and clock-time slots."},
+   {"statement": 31, "issue": "(Inheritance salt_bloom bloom) decomposes a second level inside the noun modifier of salt_bloom_store, but the compound rule decomposes once and leaves a noun modifier in the symbol, un-exposed."},
+   {"statement": 41, "issue": "(Inheritance mire_essence essence) is the same unlicensed second-level decomposition of an un-exposed noun modifier."},
+   {"statement": 44, "issue": "'recovered from the losses' is a prepositional verb, so its object belongs in the preposition-named oblique (From sk_recover_1 sk_loss_1), not in the spatial Source role, which is reserved for PPs that answer 'whence'."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "approximated cardinal ('About ten sky-cats'): Cardinality is specified as a native integer and CardinalityPhrase covers only vague phrases with no number, so a hedged count has no licensed form",
+   "a calendar year as a clause participant ('Year 2 began on day 365'): (Year n) is defined only as a Time-term value, leaving a named year with no licensed entity symbol for a subject/role slot",
+   "a measure-of quantity phrase ('eight weeks of supply', 'eleven weeks of winter supply'): the 'measure' of-phrase is excluded from the genitive rule but never given an encoding of its own"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "'The second autumn equinox came' is parsed by the light-verb/event-noun route (tense and Time placed directly on the equinox witness); extending the 'occurred / happened / took place' rule to 'came' is plausible but not spelled out. The sigma of 1 on 'about ten' does follow the tight-hedge 10% convention, so the improvised Cardinality distribution is at least internally consistent."}

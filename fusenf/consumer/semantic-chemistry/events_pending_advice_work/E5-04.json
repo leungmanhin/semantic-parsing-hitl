@@ -1,0 +1,190 @@
+{
+ "id": "E5-04",
+ "rule": "V — First frost and midwinter",
+ "texts": [
+  "On day 111 of Year 1, Lantern-night fell.",
+  "Lantern-night is the longest night of the year.",
+  "The night was clear and very cold.",
+  "Every lantern in Aelmere was lit.",
+  "Meren Tallowhand lit the Stilllight Lantern at sundown as the speaker of the Council.",
+  "Every villager walked the Cliff Path at midnight from the harbor wall to the cliff-spires.",
+  "The cold wind blew strongly that night.",
+  "Every lantern on the Cliff Path held.",
+  "Coraline Ash walked beside Pell.",
+  "Joren Salt walked beside Meren Tallowhand.",
+  "The villagers told stories at the harbor fires until dawn.",
+  "Old Vesh told the story of the bad winter of sixty-three years ago.",
+  "Three sky-cats were visible on the cliff-spires in the morning."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000034",
+  "sentences": [
+   "On day 111 of Year 1, Lantern-night fell.",
+   "Lantern-night is the longest night of the year.",
+   "The night was clear and very cold.",
+   "Every lantern in Aelmere was lit.",
+   "Meren Tallowhand lit the Stilllight Lantern at sundown as the speaker of the Council.",
+   "Every villager walked the Cliff Path at midnight from the harbor wall to the cliff-spires.",
+   "The cold wind blew strongly that night.",
+   "Every lantern on the Cliff Path held.",
+   "Coraline Ash walked beside Pell.",
+   "Joren Salt walked beside Meren Tallowhand.",
+   "The villagers told stories at the harbor fires until dawn.",
+   "Old Vesh told the story of the bad winter of sixty-three years ago.",
+   "Three sky-cats were visible on the cliff-spires in the morning."
+  ],
+  "parse": [
+   "(: ln_name (Name lantern_night \"Lantern-night\") (STV 1.0 0.99))",
+   "(: ln_time_year (Time lantern_night (Year 1)) (STV 1.0 0.99))",
+   "(: ln_time_day (Time lantern_night (Day 111)) (STV 1.0 0.99))",
+   "(: ln_past (Past lantern_night) (STV 1.0 0.99))",
+   "(: ln_superlative (Most long lantern_night night) (STV 1.0 0.99))",
+   "(: ln_night_type (Member lantern_night night) (STV 1.0 0.99))",
+   "(: ln_clear (Past (Member lantern_night clear)) (STV 1.0 0.99))",
+   "(: ln_cold (Past (Member lantern_night cold)) (STV 1.0 0.99))",
+   "(: ln_cold_degree (Past (Degree lantern_night cold very)) (STV 1.0 0.99))",
+   "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+   "(: r_lantern_lit (Implication (And (Member $x lantern) (LocatedIn $x aelmere)) (And (Member (sk_light $x) light) (Patient (sk_light $x) $x) (Past (sk_light $x)))) (STV 1.0 0.9))",
+   "(: q_lantern_lit (QuantifierPhrase lantern light \"every\") (STV 1.0 0.99))",
+   "(: meren_name (Name meren_tallowhand \"Meren Tallowhand\") (STV 1.0 0.99))",
+   "(: stilllight_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: stilllight_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+   "(: e_light1 (Member sk_light_1 light) (STV 1.0 0.99))",
+   "(: e_light1_agent (Agent sk_light_1 meren_tallowhand) (STV 1.0 0.99))",
+   "(: e_light1_patient (Patient sk_light_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: e_light1_past (Past sk_light_1) (STV 1.0 0.99))",
+   "(: e_light1_time (Time sk_light_1 sundown) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: meren_speaker (Past (Member meren_tallowhand speaker)) (STV 1.0 0.99))",
+   "(: meren_council (Past (Possession meren_tallowhand sk_council_1)) (STV 1.0 0.99))",
+   "(: cliffpath_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: cliffpath_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: hwall_type (Member sk_harbor_wall_1 harbor_wall) (STV 1.0 0.99))",
+   "(: hwall_genus (Inheritance harbor_wall wall) (STV 1.0 0.99))",
+   "(: cspires_group (GroupOf sk_cliff_spires_1 cliff_spire) (STV 1.0 0.99))",
+   "(: cspires_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: r_villager_walk (Implication (Member $x villager) (And (Member (sk_walk $x) walk) (Agent (sk_walk $x) $x) (Theme (sk_walk $x) cliff_path) (Time (sk_walk $x) midnight) (Source (sk_walk $x) sk_harbor_wall_1) (Goal (sk_walk $x) sk_cliff_spires_1) (Past (sk_walk $x)))) (STV 1.0 0.9))",
+   "(: q_villager_walk (QuantifierPhrase villager walk \"every\") (STV 1.0 0.99))",
+   "(: wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+   "(: wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+   "(: e_blow1 (Member sk_blow_1 blow) (STV 1.0 0.99))",
+   "(: e_blow1_patient (Patient sk_blow_1 sk_wind_1) (STV 1.0 0.99))",
+   "(: e_blow1_manner (Manner sk_blow_1 strongly) (STV 1.0 0.99))",
+   "(: e_blow1_past (Past sk_blow_1) (STV 1.0 0.99))",
+   "(: e_blow1_time_night (Time sk_blow_1 night) (STV 1.0 0.99))",
+   "(: e_blow1_time_year (Time sk_blow_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e_blow1_time_day (Time sk_blow_1 (Day 111)) (STV 1.0 0.99))",
+   "(: r_lantern_hold (Implication (And (Member $x lantern) (On $x cliff_path)) (And (Member (sk_hold $x) hold) (Experiencer (sk_hold $x) $x) (Past (sk_hold $x)))) (STV 1.0 0.9))",
+   "(: q_lantern_hold (QuantifierPhrase lantern hold \"every\") (STV 1.0 0.99))",
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: e_walk1 (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: e_walk1_agent (Agent sk_walk_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e_walk1_past (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: e_walk1_beside (Beside sk_walk_1 pell) (STV 1.0 0.99))",
+   "(: joren_name (Name joren_salt \"Joren Salt\") (STV 1.0 0.99))",
+   "(: e_walk2 (Member sk_walk_2 walk) (STV 1.0 0.99))",
+   "(: e_walk2_agent (Agent sk_walk_2 joren_salt) (STV 1.0 0.99))",
+   "(: e_walk2_past (Past sk_walk_2) (STV 1.0 0.99))",
+   "(: e_walk2_beside (Beside sk_walk_2 meren_tallowhand) (STV 1.0 0.99))",
+   "(: villagers_group (GroupOf sk_villagers_1 villager) (STV 1.0 0.99))",
+   "(: hfires_group (GroupOf sk_harbor_fires_1 harbor_fire) (STV 1.0 0.99))",
+   "(: hfires_genus (Inheritance harbor_fire fire) (STV 1.0 0.99))",
+   "(: e_tell1 (Member sk_tell_1 tell) (STV 1.0 0.99))",
+   "(: e_tell1_agent (Agent sk_tell_1 sk_villagers_1) (STV 1.0 0.99))",
+   "(: e_tell1_theme (Theme sk_tell_1 story) (STV 1.0 0.99))",
+   "(: e_tell1_location (Location sk_tell_1 sk_harbor_fires_1) (STV 1.0 0.99))",
+   "(: e_tell1_end (End sk_tell_1 dawn) (STV 1.0 0.99))",
+   "(: e_tell1_past (Past sk_tell_1) (STV 1.0 0.99))",
+   "(: r_villagers_tell (Implication (PartOf $x sk_villagers_1) (And (Member (sk_tell $x) tell) (Agent (sk_tell $x) $x) (Theme (sk_tell $x) story) (Location (sk_tell $x) sk_harbor_fires_1) (End (sk_tell $x) dawn) (Past (sk_tell $x)))) (STV 1.0 0.9))",
+   "(: vesh_name (Name vesh \"Old Vesh\") (STV 1.0 0.99))",
+   "(: e_tell2 (Member sk_tell_2 tell) (STV 1.0 0.99))",
+   "(: e_tell2_agent (Agent sk_tell_2 vesh) (STV 1.0 0.99))",
+   "(: e_tell2_theme (Theme sk_tell_2 sk_story_1) (STV 1.0 0.99))",
+   "(: e_tell2_past (Past sk_tell_2) (STV 1.0 0.99))",
+   "(: story_type (Member sk_story_1 story) (STV 1.0 0.99))",
+   "(: winter_type (Member sk_winter_1 winter) (STV 1.0 0.99))",
+   "(: winter_bad (Member sk_winter_1 bad) (STV 1.0 0.99))",
+   "(: winter_beforeby (BeforeBy sk_winter_1 now 63 year) (STV 1.0 0.99))",
+   "(: skycats_group (GroupOf sk_sky_cats_1 sky_cat) (STV 1.0 0.99))",
+   "(: skycats_card (Cardinality sk_sky_cats_1 3) (STV 1.0 0.99))",
+   "(: skycats_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: r_skycats_visible_flat (Implication (PartOf $x sk_sky_cats_1) (Past (Member $x visible))) (STV 1.0 0.9))",
+   "(: r_skycats_visible_state (Implication (PartOf $x sk_sky_cats_1) (And (Member (sk_visible $x) visible) (Experiencer (sk_visible $x) $x) (Location (sk_visible $x) sk_cliff_spires_1) (Time (sk_visible $x) morning) (Past (sk_visible $x)))) (STV 1.0 0.9))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000034",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 3,
+     "issue": "\"Lantern-night fell\" reifies no `fall` event at all — tense and the calendar terms are placed directly on the name symbol, which the instruction set licenses only for the light verbs occur / happen / take place, so the stated verb is dropped."
+    },
+    {
+     "statement": 4,
+     "issue": "\"the longest night **of the year**\" drops the stated domain restriction, widening the superlative claim (the parallel `AmongMost` rule requires a stated domain restriction to stay on the entity as its own atoms)."
+    },
+    {
+     "statement": 58,
+     "issue": "\"told stories\" uses the bare kind filler `story`, but a bare-plural object taking part in an episodic past occurrence should mint an existential group witness per *Coordination & plurals*; the same filler is copied into the per-member rule."
+    },
+    {
+     "statement": 68,
+     "issue": "\"the story **of the bad winter**\" loses its of-phrase entirely — no atom links sk_story_1 to sk_winter_1, so what the story was about is dropped."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "capacity / role adjunct \"as the speaker of the Council\" on an event — no licensed head for an in-what-capacity \"as\"-phrase, so the link between the capacity and the lighting event cannot be recorded",
+    "aboutness \"of\"-phrase on a non-nominalization noun (\"the story of the bad winter\") — explicitly excluded from `Possession` but never given a positive encoding",
+    "a time-period subject with an arrival verb (\"Lantern-night fell\") — the event-noun / light-verb rule names only occur / happen / take place",
+    "a domain restriction on a superlative (\"the longest night of the year\") — `Most` has no slot for the restricting domain"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "One symbol `lantern_night` carries both the timeless kind claim (\"is the longest night of the year\") and the day-111 occurrence, conflating the recurring named night with that year's instance. `(Manner sk_blow_1 strongly)` is borderline between manner proper and the unslotted degree-adverb class."
+  },
+  "adjudication": {
+   "id": "evtp-000034",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "refute",
+     "reason": "\"Night fell\" predicates no falling — the literal reading is incoherent for a night — so putting the Day/Year terms and Past directly on the event-denoting lantern_night extends the light-verb rule's own rationale (the event-noun's witness IS the eventuality), and every atom emitted is true of the sentence and well-typed; the reviewer's own q2 gap concedes the construction is uncovered."
+    },
+    {
+     "index": 1,
+     "verdict": "partial",
+     "reason": "The standing half is the gap the reviewer also files — Most's third slot is the comparison class and has no room for a restricting domain, so \"of the year\" goes unrecorded; the widening charge does not stand, since night is exactly the head-noun class the superlative rule puts in that slot and, for a recurring annual night, \"of the year\" names the comparison cycle rather than carving out a narrower set, so no false or over-asserted atom is emitted."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "*Coordination & plurals* states that a bare-plural object in an episodic clause takes an existential group witness when the set takes part in the occurrence, reserving the bare kind filler for non-specific / kind-level objects (\"pays tax\", \"grows wheat\"), and \"the villagers told stories at the harbor fires until dawn\" is a one-off dated occurrence — so (Theme sk_tell_1 story), copied again into the per-member rule, is the storage the instruction set reserves for the other case."
+    },
+    {
+     "index": 3,
+     "verdict": "partial",
+     "reason": "The loss is real — nothing links sk_story_1 to sk_winter_1, so the winter's atoms dangle and the sentence's aboutness is unrecorded — but calling it a parse defect overstates it: an about-of-phrase on a non-derived noun is barred from Possession and given no positive encoding anywhere (the Of oblique is stated only for nominalizations' objects and for position/origin), and every atom the parse did emit is true and well-typed."
+    }
+   ],
+   "gaps_confirmed": [
+    "Capacity/role \"as\"-phrase on an event (\"lit ... as the speaker of the Council\") — no licensed head ties the capacity to the event.",
+    "Aboutness \"of\"-phrase on a non-nominalization noun (\"the story of the bad winter\") — excluded from Possession, never given a positive encoding.",
+    "A time-period subject with an arrival verb (\"Lantern-night fell\") — the light-verb rule names only occur / happen / take place.",
+    "A domain restriction on a superlative (\"the longest night of the year\") — Most has no slot for the restricting domain."
+   ],
+   "new_gaps": [
+    "A named recurring night/period gets one stable name symbol reused for every mention (*Names and casing*), so the type-level claim (Most long lantern_night night) and a single occurrence's atoms ((Past lantern_night), (Time lantern_night (Day 111))) collide on one symbol — nothing licenses separating the recurring named event from that year's instance, and (Past lantern_night) reads as false of the recurring night.",
+    "The entity-attached surface-preposition oblique is the obvious carrier for an aboutness of-phrase ((Of sk_story_1 sk_winter_1)), but that open licence is stated only for position/origin prepositions and for nominalizations' objects; extending it explicitly to non-derived nouns would close the \"story of the bad winter\" gap."
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 2: the compliant form mints an existential group witness for the bare-plural object — (GroupOf sk_stories_1 story) with (Theme sk_tell_1 sk_stories_1) on the group event, and a per-binding Skolem group inside the distribution rule ((GroupOf (sk_stories $x) story), (Theme (sk_tell $x) (sk_stories $x))) — the bare kind symbol story being reserved for non-specific / kind-level objects.",
+   "notes": "The rest of the parse is strong: \"that night\" resolved by term propagation onto Day 111 / Year 1, the three universals rendered as restriction-in-premise rules with their companions, and the sky-cats' state distributed as per-member Skolem states instead of riding the group symbol. (Manner sk_blow_1 strongly) is manner proper (how the wind blew), not the unslotted degree-adverb class, so it needs no flag."
+  }
+ }
+}

@@ -1,0 +1,248 @@
+{
+ "id": "E8-04",
+ "rule": "VIII — The following autumn",
+ "texts": [
+  "On day 395 of Year 2, the first cold snap of Year 2 came.",
+  "Every lantern on the Cliff Path already held salt-bloom in its mire-essence.",
+  "No lantern went out.",
+  "The three bright stations burned extra mire-essence.",
+  "The three bright stations produced strong mist-light.",
+  "The strong mist-light attracted crowds of nightmoths.",
+  "Keepers counted about thirty nightmoths per night at each bright station.",
+  "A crowd of nightmoths gathered at the Middle Row on six of the next ten nights.",
+  "Sky-cats descended from the cliff-spires on those six nights.",
+  "The sky-cats hunted nightmoths at the Middle Row on those six nights.",
+  "The sky-cats molted during the hunts.",
+  "Feathers fell to the base of the cliff.",
+  "The feather harvest in the following month was strong."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000058",
+  "sentences": [
+   "On day 395 of Year 2, the first cold snap of Year 2 came.",
+   "Every lantern on the Cliff Path already held salt-bloom in its mire-essence.",
+   "No lantern went out.",
+   "The three bright stations burned extra mire-essence.",
+   "The three bright stations produced strong mist-light.",
+   "The strong mist-light attracted crowds of nightmoths.",
+   "Keepers counted about thirty nightmoths per night at each bright station.",
+   "A crowd of nightmoths gathered at the Middle Row on six of the next ten nights.",
+   "Sky-cats descended from the cliff-spires on those six nights.",
+   "The sky-cats hunted nightmoths at the Middle Row on those six nights.",
+   "The sky-cats molted during the hunts.",
+   "Feathers fell to the base of the cliff.",
+   "The feather harvest in the following month was strong."
+  ],
+  "parse": [
+   "(: s1_snap_genus (Inheritance cold_snap snap) (STV 1.0 0.99))",
+   "(: s1_snap_mod (Inheritance cold_snap cold) (STV 1.0 0.99))",
+   "(: s1_snap_type (Member sk_snap_1 cold_snap) (STV 1.0 0.99))",
+   "(: s1_ord (Ordinal sk_snap_1 1 come) (STV 1.0 0.99))",
+   "(: s1_come_cls (Member sk_come_1 come) (STV 1.0 0.99))",
+   "(: s1_come_pat (Patient sk_come_1 sk_snap_1) (STV 1.0 0.99))",
+   "(: s1_come_tns (Past sk_come_1) (STV 1.0 0.99))",
+   "(: s1_come_day (Time sk_come_1 (Day 395)) (STV 1.0 0.99))",
+   "(: s1_come_yr (Time sk_come_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s2_path_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: s2_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: s2_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: s2_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: s2_rule (Implication (And (Member $x lantern) (On $x cliff_path)) (And (Member (sk_hold $x) hold) (Agent (sk_hold $x) $x) (Theme (sk_hold $x) salt_bloom) (Member (sk_mire_essence $x) mire_essence) (Possession (sk_mire_essence $x) $x) (Location (sk_hold $x) (sk_mire_essence $x)) (Already (sk_hold $x)) (Past (sk_hold $x)))) (STV 1.0 0.9))",
+   "(: s2_q (QuantifierPhrase lantern hold \"every\") (STV 1.0 0.99))",
+   "(: s3_rule (Implication (Member $x lantern) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (Past (sk_go_out $x)))) (STV 0.0 0.9))",
+   "(: s3_q (QuantifierPhrase lantern go_out \"no\") (STV 1.0 0.99))",
+   "(: s4_grp (GroupOf sk_group_1 station) (STV 1.0 0.99))",
+   "(: s4_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+   "(: s4_bright_rule (Implication (PartOf $x sk_group_1) (Member $x bright)) (STV 1.0 0.9))",
+   "(: s4_fuel_type (Member sk_fuel_1 mire_essence) (STV 1.0 0.99))",
+   "(: s4_fuel_extra (Member sk_fuel_1 extra) (STV 1.0 0.99))",
+   "(: s4_burn_cls (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: s4_burn_ag (Agent sk_burn_1 sk_group_1) (STV 1.0 0.99))",
+   "(: s4_burn_pat (Patient sk_burn_1 sk_fuel_1) (STV 1.0 0.99))",
+   "(: s4_burn_tns (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: s4_burn_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) sk_fuel_1) (Past (sk_burn $x)))) (STV 1.0 0.9))",
+   "(: s5_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: s5_light_type (Member sk_mistlight_1 mist_light) (STV 1.0 0.99))",
+   "(: s5_light_strong (Member sk_mistlight_1 strong) (STV 1.0 0.99))",
+   "(: s5_produce_cls (Member sk_produce_1 produce) (STV 1.0 0.99))",
+   "(: s5_produce_ag (Agent sk_produce_1 sk_group_1) (STV 1.0 0.99))",
+   "(: s5_produce_pat (Patient sk_produce_1 sk_mistlight_1) (STV 1.0 0.99))",
+   "(: s5_produce_tns (Past sk_produce_1) (STV 1.0 0.99))",
+   "(: s5_produce_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_produce $x) produce) (Agent (sk_produce $x) $x) (Patient (sk_produce $x) sk_mistlight_1) (Past (sk_produce $x)))) (STV 1.0 0.9))",
+   "(: s6_moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: s6_crowd_type (Member sk_crowd_1 crowd) (STV 1.0 0.99))",
+   "(: s6_crowd_grp (GroupOf sk_crowd_1 nightmoth) (STV 1.0 0.99))",
+   "(: s6_attract_cls (Member sk_attract_1 attract) (STV 1.0 0.99))",
+   "(: s6_attract_ag (Agent sk_attract_1 sk_mistlight_1) (STV 1.0 0.99))",
+   "(: s6_attract_thm (Theme sk_attract_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: s6_attract_tns (Past sk_attract_1) (STV 1.0 0.99))",
+   "(: s7_keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+   "(: s7_rule (Implication (PartOf $s sk_group_1) (And (Member (sk_count $s) count) (Agent (sk_count $s) sk_keepers_1) (Theme (sk_count $s) (sk_moths $s)) (GroupOf (sk_moths $s) nightmoth) (Cardinality (sk_moths $s) (ParticleFromNormal 30 3)) (Location (sk_count $s) $s) (Every (sk_count $s) 1 night))) (STV 1.0 0.9))",
+   "(: s7_q (QuantifierPhrase station count \"each\") (STV 1.0 0.99))",
+   "(: s8_nights_grp (GroupOf sk_nights_1 night) (STV 1.0 0.99))",
+   "(: s8_nights_card (Cardinality sk_nights_1 10) (STV 1.0 0.99))",
+   "(: s8_sub_grp (GroupOf sk_nights_2 night) (STV 1.0 0.99))",
+   "(: s8_sub_of (SubsetOf sk_nights_2 sk_nights_1) (STV 1.0 0.99))",
+   "(: s8_sub_card (Cardinality sk_nights_2 6) (STV 1.0 0.99))",
+   "(: s8_crowd2_type (Member sk_crowd_2 crowd) (STV 1.0 0.99))",
+   "(: s8_crowd2_grp (GroupOf sk_crowd_2 nightmoth) (STV 1.0 0.99))",
+   "(: s8_row_type (Member middle_row row) (STV 1.0 0.99))",
+   "(: s8_row_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: s8_gather_cls (Member sk_gather_1 gather) (STV 1.0 0.99))",
+   "(: s8_gather_ag (Agent sk_gather_1 sk_crowd_2) (STV 1.0 0.99))",
+   "(: s8_gather_loc (Location sk_gather_1 middle_row) (STV 1.0 0.99))",
+   "(: s8_gather_time (Time sk_gather_1 sk_nights_2) (STV 1.0 0.99))",
+   "(: s8_gather_tns (Past sk_gather_1) (STV 1.0 0.99))",
+   "(: s9_skycats_grp (GroupOf sk_skycats_1 sky_cat) (STV 1.0 0.99))",
+   "(: s9_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: s9_spires_grp (GroupOf sk_cliffspires_1 cliff_spire) (STV 1.0 0.99))",
+   "(: s9_descend_cls (Member sk_descend_1 descend) (STV 1.0 0.99))",
+   "(: s9_descend_ag (Agent sk_descend_1 sk_skycats_1) (STV 1.0 0.99))",
+   "(: s9_descend_src (Source sk_descend_1 sk_cliffspires_1) (STV 1.0 0.99))",
+   "(: s9_descend_time (Time sk_descend_1 sk_nights_2) (STV 1.0 0.99))",
+   "(: s9_descend_tns (Past sk_descend_1) (STV 1.0 0.99))",
+   "(: s9_descend_rule (Implication (PartOf $x sk_skycats_1) (And (Member (sk_descend $x) descend) (Agent (sk_descend $x) $x) (Source (sk_descend $x) sk_cliffspires_1) (Time (sk_descend $x) sk_nights_2) (Past (sk_descend $x)))) (STV 1.0 0.9))",
+   "(: s10_moths2_grp (GroupOf sk_nightmoths_2 nightmoth) (STV 1.0 0.99))",
+   "(: s10_hunt_cls (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: s10_hunt_ag (Agent sk_hunt_1 sk_skycats_1) (STV 1.0 0.99))",
+   "(: s10_hunt_pat (Patient sk_hunt_1 sk_nightmoths_2) (STV 1.0 0.99))",
+   "(: s10_hunt_loc (Location sk_hunt_1 middle_row) (STV 1.0 0.99))",
+   "(: s10_hunt_time (Time sk_hunt_1 sk_nights_2) (STV 1.0 0.99))",
+   "(: s10_hunt_tns (Past sk_hunt_1) (STV 1.0 0.99))",
+   "(: s10_hunt_rule (Implication (PartOf $x sk_skycats_1) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Patient (sk_hunt $x) sk_nightmoths_2) (Location (sk_hunt $x) middle_row) (Time (sk_hunt $x) sk_nights_2) (Past (sk_hunt $x)))) (STV 1.0 0.9))",
+   "(: s11_molt_cls (Member sk_molt_1 molt) (STV 1.0 0.99))",
+   "(: s11_molt_pat (Patient sk_molt_1 sk_skycats_1) (STV 1.0 0.99))",
+   "(: s11_molt_during (During sk_molt_1 sk_hunt_1) (STV 1.0 0.99))",
+   "(: s11_molt_tns (Past sk_molt_1) (STV 1.0 0.99))",
+   "(: s11_molt_rule (Implication (PartOf $x sk_skycats_1) (And (Member (sk_molt $x) molt) (Patient (sk_molt $x) $x) (During (sk_molt $x) (sk_hunt $x)) (Past (sk_molt $x)))) (STV 1.0 0.9))",
+   "(: s12_feathers_grp (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+   "(: s12_cliff_type (Member sk_cliff_1 cliff) (STV 1.0 0.99))",
+   "(: s12_base_type (Member sk_base_1 base) (STV 1.0 0.99))",
+   "(: s12_base_part (PartOf sk_base_1 sk_cliff_1) (STV 1.0 0.99))",
+   "(: s12_fall_cls (Member sk_fall_1 fall) (STV 1.0 0.99))",
+   "(: s12_fall_pat (Patient sk_fall_1 sk_feathers_1) (STV 1.0 0.99))",
+   "(: s12_fall_goal (Goal sk_fall_1 sk_base_1) (STV 1.0 0.99))",
+   "(: s12_fall_tns (Past sk_fall_1) (STV 1.0 0.99))",
+   "(: s12_fall_rule (Implication (PartOf $x sk_feathers_1) (And (Member (sk_fall $x) fall) (Patient (sk_fall $x) $x) (Goal (sk_fall $x) sk_base_1) (Past (sk_fall $x)))) (STV 1.0 0.9))",
+   "(: s13_harvest_genus (Inheritance feather_harvest harvest) (STV 1.0 0.99))",
+   "(: s13_harvest_type (Member sk_featherharvest_1 feather_harvest) (STV 1.0 0.99))",
+   "(: s13_strong_cls (Member sk_strong_1 strong) (STV 1.0 0.99))",
+   "(: s13_strong_exp (Experiencer sk_strong_1 sk_featherharvest_1) (STV 1.0 0.99))",
+   "(: s13_strong_gap (BeforeBy sk_fall_1 sk_strong_1 1 month) (STV 1.0 0.99))",
+   "(: s13_strong_tns (Past sk_strong_1) (STV 1.0 0.99))",
+   "(: s13_flat (Past (Member sk_featherharvest_1 strong)) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000058",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 59,
+     "issue": "The compound kind sky_cat is minted with no genus atom (Inheritance sky_cat cat), which Compound concepts requires for a modifier_noun compound."
+    },
+    {
+     "statement": 36,
+     "issue": "Plural \"crowds of nightmoths\" is collapsed into a single crowd witness sk_crowd_1, so the plurality of crowds is lost."
+    },
+    {
+     "statement": 57,
+     "issue": "\"on six of the next ten nights\" is hung on one gather event witness (and likewise one descend, one hunt), so six separate nightly occurrences are asserted as a single occurrence; sentence 11's plural \"the hunts\" then resolves to that one sk_hunt_1."
+    },
+    {
+     "statement": 43,
+     "issue": "(Cardinality (sk_moths $s) (ParticleFromNormal 30 3)) puts a distribution in a slot the instruction set defines as a native integer; ParticleFromNormal is licensed only in Measure-family magnitude slots and approximate clock values."
+    },
+    {
+     "statement": 43,
+     "issue": "\"per night\" is encoded as (Every (sk_count $s) 1 night), where the named-slot rule gives the day-part slot atom (Time e night) plus the cycle (Every e 1 day)."
+    },
+    {
+     "statement": 71,
+     "issue": "The hunted nightmoths take Patient, but hunting neither creates, destroys nor physically changes them, and the stated default for an unclear object is Theme."
+    },
+    {
+     "statement": 26,
+     "issue": "The per-member burn rule reuses the single witness sk_fuel_1 as every station's Patient (and sk_mistlight_1 likewise in the produce rule), asserting that all three stations burned/produced the very same portion rather than each its own."
+    },
+    {
+     "statement": 20,
+     "issue": "The witness for the mire-essence is named sk_fuel_1, not minted from its class as sk_mire_essence_<n> per the sk_<class>_<n> convention."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Approximate/hedged cardinality (\"about thirty nightmoths\"): Cardinality takes a native integer, CardinalityPhrase covers only the vague-word lexicon (a few / several / dozens / ...), and CardinalityAtLeast/AtMost only \"more/fewer than\" — a hedged numeral count has no licensed form.",
+    "An event distributed over a counted set of calendar units (\"on six of the next ten nights\", \"on those six nights\"): the instruction set says days are terms, not entities, so there is no partitive over nights and the Time role has no slot for a set of occasions.",
+    "A forward-looking window relative to the narrative present (\"the next ten nights\"): the anaphoric-time rules cover only a single \"that / the following <unit>\" increment from an antecedent.",
+    "A per-unit rate on a counted object (\"about thirty nightmoths per night\"): the compound rate unit belongs to Measure, and Every/TimesPer quantify the event's recurrence, not the object group's count.",
+    "An ordinal's stated domain restriction (\"the first cold snap of Year 2\"): (Ordinal <entity> <n> <scale>) has no slot for the domain the ranking is relative to."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Compound decomposition is otherwise systematic — cold_snap, salt_bloom, mire_essence, mist_light, nightmoth, cliff_spire and feather_harvest all carry their genus — which makes the missing sky_cat genus an oversight rather than a judgment call. Where the instruction set supplied no form (approximate counts, a counted set of nights) the parse extended licensed constructors into new slots instead of leaving the claim out and recording the gap."
+  },
+  "adjudication": {
+   "id": "evtp-000058",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Compound concepts makes the head genus mandatory (\"The genus itself is ALWAYS emitted either way\"; a solid/hyphenated transparent modifier+head \"always emit the genus\"), and `(Inheritance sky_cat cat)` appears nowhere in the parse even though cliff_spire, nightmoth, cold_snap, mist_light and feather_harvest all carry theirs."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "`(Member sk_crowd_1 crowd) (GroupOf sk_crowd_1 nightmoth)` is the singular \"a flock of birds\" pattern applied to the plural \"crowds of nightmoths\", asserting one crowd where the text states several — number is read off the surface (\"emit the one the surface shows\")."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "One `sk_gather_1` cannot occur on six disjoint nights, so a single Past event witness carrying `(Time sk_gather_1 sk_nights_2)` misstates the content (and the Time filler is a group entity, not a calendar term, deictic or day-part symbol); the knock-on is real — plural \"the hunts\" resolves to the one `sk_hunt_1` at line 79."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "Cardinality is stated to take `a native integer` and ParticleFromNormal is licensed only as a Measure magnitude or an approximate clock value, so the distribution in the count slot is ill-typed and breaks the `Compute` hard-integer counting machinery."
+    },
+    {
+     "index": 4,
+     "verdict": "partial",
+     "reason": "The half that stands: `night` is a day-part slot symbol, not a period unit, so `(Every e 1 night)` mis-slots it where the stated recipe gives the slot atom `(Time e night)` plus the cycle `(Every e 1 day)` (mirroring morning -> day); the half that does not: \"per night\" here quantifies the OBJECT count (thirty moths a night), not the counting event's period, so the reviewer's prescribed pair would not capture it either — which is the reviewer's own fourth gap."
+    },
+    {
+     "index": 5,
+     "verdict": "confirm",
+     "reason": "Hunting neither creates, destroys, consumes nor physically changes the nightmoths (success is not entailed), and the instruction set's explicit fallback is \"When the test is unclear, default to Theme\", so `Patient` violates the stated role test and breaks statement/question role agreement."
+    },
+    {
+     "index": 6,
+     "verdict": "confirm",
+     "reason": "The dependent-existential doctrine makes an object under a universal a per-binding Skolem term unless \"the same Y\" / \"a certain Y\" cues the shared reading, so reusing the constants `sk_fuel_1` and `sk_mistlight_1` inside the per-member rules asserts one shared portion of mire-essence and one shared mist-light across the three stations — more than the text states."
+    },
+    {
+     "index": 7,
+     "verdict": "partial",
+     "reason": "The deviation is real — the convention is `sk_<class>_<n>` and \"fuel\" is neither the class nor a word the text uses — but a witness symbol is an opaque identifier typed by `(Member sk_fuel_1 mire_essence)`, so nothing false or ill-typed enters the KB and this alone would not defect the parse."
+    }
+   ],
+   "gaps_confirmed": [
+    "A hedged numeral count (\"about thirty nightmoths\"): Cardinality takes a native integer, CardinalityPhrase covers only numberless vague phrases, and CardinalityAtLeast/AtMost only bounds — no licensed carrier.",
+    "An event distributed over a counted set of calendar units (\"on six of the next ten nights\"): days are stated to be terms, not entities, so there is no partitive over nights and Time has no slot for a set of occasions.",
+    "A forward-looking window relative to the narrative present (\"the next ten nights\"): the anaphoric-time rules cover only a single \"that / the following <unit>\" increment from an antecedent.",
+    "A per-unit rate on a counted object (\"about thirty nightmoths per night\"): compound rate units belong to Measure, while Every / TimesPer quantify the event's recurrence, not an object group's count.",
+    "An ordinal's stated domain restriction (\"the first cold snap of Year 2\"): `(Ordinal <entity> <n> <scale>)` has no slot for the domain the ranking is relative to."
+   ],
+   "new_gaps": [
+    "A bare plural of collectives whose member kind is stated (\"crowds of nightmoths\"): the `(Member g flock) (GroupOf g bird)` pattern is singular-only, and no form is stated for a group whose members are themselves groups.",
+    "A mass / bare-substance object under a universal (\"the three stations burned extra mire-essence\"): the dependent-existential machinery is spelled out for indefinite COUNT objects (`(sk_book $x)`), leaving it unstated whether a per-member mass portion is minted the same way."
+   ],
+   "decision": "defect",
+   "defect_summary": "Index 0: emit the mandatory compound genus `(Inheritance sky_cat cat)` beside `(GroupOf sk_skycats_1 sky_cat)`. Index 1: \"crowds of nightmoths\" takes a group OF CROWDS — `(GroupOf sk_crowds_1 crowd)` as the attract event's Theme, each member's nightmoth membership handed down by a per-member rule — not one crowd witness. Index 2: NO licensed form exists — Time admits only calendar terms, deictics and day-part symbols and the instruction set states days are terms rather than entities, so an event recurring on a counted subset of nights cannot be encoded; the compliant behaviour is to leave the six-nights restriction (and the single collapsed event) out and record the gap, which is filed above. Index 3: NO licensed form — the compliant behaviour is to omit the hedged count atom entirely and record the gap. Index 5: `(Theme sk_hunt_1 sk_nightmoths_2)`, and `(Theme (sk_hunt $x) ...)` in the per-member rule. Index 6: give each station its own portion — `(Patient (sk_burn $x) (sk_mire_essence $x))` with `(Member (sk_mire_essence $x) mire_essence)` as a rule conjunct, and likewise a per-binding mist-light in the produce rule.",
+   "notes": "The reviewer filed \"the first cold snap OF YEAR 2\" only as a gap, but dropping the domain restriction also widens the claim to first-ever, which Core patterns bars (\"carry it, or leave the whole claim out\") — a second defect route to the same conclusion. Everything else in the passage is compliant: the every-lantern rule with its `On` premise, the strength-0 no-lantern rule with its \"no\" companion, the collective gather with no per-member rule, and the `(BeforeBy sk_fall_1 sk_strong_1 1 month)` fallback for \"the following month\" all follow the stated forms."
+  }
+ }
+}

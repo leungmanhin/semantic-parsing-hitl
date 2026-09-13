@@ -1,0 +1,131 @@
+{
+ "id": "E10-04",
+ "rule": "X — Spring of Year 2",
+ "texts": [
+  "On day 590 of Year 2, Coraline Ash told Eli that mire-essence with salt-bloom burns slowly.",
+  "Coraline Ash told Eli that the cliff-spires shield the Northcove against the north wind.",
+  "Coraline Ash told Eli that the lanterns of the Northcove burn plain mire-essence.",
+  "Coraline Ash told Eli that a lantern burning at full rate produces strong mist-light.",
+  "Eli wrote the answers in her notebook."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000073",
+  "sentences": [
+   "On day 590 of Year 2, Coraline Ash told Eli that mire-essence with salt-bloom burns slowly.",
+   "Coraline Ash told Eli that the cliff-spires shield the Northcove against the north wind.",
+   "Coraline Ash told Eli that the lanterns of the Northcove burn plain mire-essence.",
+   "Coraline Ash told Eli that a lantern burning at full rate produces strong mist-light.",
+   "Eli wrote the answers in her notebook."
+  ],
+  "parse": [
+   "(: ca_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: eli_name (Name eli \"Eli\") (STV 1.0 0.99))",
+   "(: mire_ess_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: salt_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: e1_tell (Member sk_tell_1 tell) (STV 1.0 0.99))",
+   "(: e1_exp (Experiencer sk_tell_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e1_rec (Recipient sk_tell_1 eli) (STV 1.0 0.99))",
+   "(: e1_past (Past sk_tell_1) (STV 1.0 0.99))",
+   "(: e1_day (Time sk_tell_1 (Day 590)) (STV 1.0 0.99))",
+   "(: e1_year (Time sk_tell_1 (Year 2)) (STV 1.0 0.99))",
+   "(: e1_theme (Theme sk_tell_1 (And (Member sk_burn_1 burn) (Patient sk_burn_1 mire_essence) (Manner sk_burn_1 slowly) (With mire_essence salt_bloom))) (STV 1.0 0.99))",
+   "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+   "(: cliff_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: north_wind_genus (Inheritance north_wind wind) (STV 1.0 0.99))",
+   "(: north_wind_mod (Inheritance north_wind north) (STV 1.0 0.99))",
+   "(: cliff_spire_grp (GroupOf sk_cliff_spire_1 cliff_spire) (STV 1.0 0.99))",
+   "(: e2_tell (Member sk_tell_2 tell) (STV 1.0 0.99))",
+   "(: e2_exp (Experiencer sk_tell_2 coraline_ash) (STV 1.0 0.99))",
+   "(: e2_rec (Recipient sk_tell_2 eli) (STV 1.0 0.99))",
+   "(: e2_past (Past sk_tell_2) (STV 1.0 0.99))",
+   "(: e2_theme (Theme sk_tell_2 (And (Member sk_shield_1 shield) (Agent sk_shield_1 sk_cliff_spire_1) (Theme sk_shield_1 northcove) (Against sk_shield_1 north_wind))) (STV 1.0 0.99))",
+   "(: lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: lantern_part (PartOf sk_lantern_1 northcove) (STV 1.0 0.99))",
+   "(: plain_mire_genus (Inheritance plain_mire_essence mire_essence) (STV 1.0 0.99))",
+   "(: plain_mire_mod (Inheritance plain_mire_essence plain) (STV 1.0 0.99))",
+   "(: e3_tell (Member sk_tell_3 tell) (STV 1.0 0.99))",
+   "(: e3_exp (Experiencer sk_tell_3 coraline_ash) (STV 1.0 0.99))",
+   "(: e3_rec (Recipient sk_tell_3 eli) (STV 1.0 0.99))",
+   "(: e3_past (Past sk_tell_3) (STV 1.0 0.99))",
+   "(: e3_theme (Theme sk_tell_3 (And (Member sk_burn_2 burn) (Agent sk_burn_2 sk_lantern_1) (Patient sk_burn_2 plain_mire_essence) (Implication (PartOf $x sk_lantern_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) plain_mire_essence))))) (STV 1.0 0.99))",
+   "(: full_rate_genus (Inheritance full_rate rate) (STV 1.0 0.99))",
+   "(: full_rate_mod (Inheritance full_rate full) (STV 1.0 0.99))",
+   "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: e4_tell (Member sk_tell_4 tell) (STV 1.0 0.99))",
+   "(: e4_exp (Experiencer sk_tell_4 coraline_ash) (STV 1.0 0.99))",
+   "(: e4_rec (Recipient sk_tell_4 eli) (STV 1.0 0.99))",
+   "(: e4_past (Past sk_tell_4) (STV 1.0 0.99))",
+   "(: e4_theme (Theme sk_tell_4 (And (Member sk_lantern_2 lantern) (Member sk_burn_3 burn) (Patient sk_burn_3 sk_lantern_2) (At sk_burn_3 full_rate) (Member sk_produce_1 produce) (Agent sk_produce_1 sk_lantern_2) (Patient sk_produce_1 sk_mist_light_1) (Member sk_mist_light_1 mist_light) (Member sk_mist_light_1 strong))) (STV 1.0 0.99))",
+   "(: e5_write (Member sk_write_1 write) (STV 1.0 0.99))",
+   "(: e5_agent (Agent sk_write_1 eli) (STV 1.0 0.99))",
+   "(: answer_grp (GroupOf sk_answer_1 answer) (STV 1.0 0.99))",
+   "(: e5_patient (Patient sk_write_1 sk_answer_1) (STV 1.0 0.99))",
+   "(: e5_past (Past sk_write_1) (STV 1.0 0.99))",
+   "(: notebook_typ (Member sk_notebook_1 notebook) (STV 1.0 0.99))",
+   "(: notebook_poss (Possession sk_notebook_1 eli) (STV 1.0 0.99))",
+   "(: e5_loc (Location sk_write_1 sk_notebook_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000073",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 10,
+     "issue": "The sealed complement of sk_tell_1 encodes the habitual generic \"mire-essence with salt-bloom burns slowly\" as one specific burn event rather than the distributing Implication rule a bare-kind-subject verbal generic requires (the seal at statement 29 does use the rule form, so the treatment is also internally inconsistent)."
+    },
+    {
+     "statement": 10,
+     "issue": "(With mire_essence salt_bloom) severs the restriction: inside the seal the content now reads \"mire-essence burns slowly\" plus \"mire-essence carries salt-bloom\", widening the claim from the salt-bloom-bearing essence to mire-essence at large."
+    },
+    {
+     "statement": 22,
+     "issue": "(PartOf sk_lantern_1 northcove) is emitted at top level although \"of the Northcove\" is stated only inside the sealed complement, and the seal-projection table says a referent's possessor / Of links stated only inside P stay sealed."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a PP-restricted bare-kind subject in a generic (\"mire-essence with salt-bloom burns slowly\") — the instruction set routes an adjectivally-restricted kind subject into a distributing rule with the restriction as a premise conjunct, but gives no form for a PP restriction and no licensed way to attach a surface preposition to a kind symbol",
+    "a rate/degree PP on an event (\"burning at full rate\") — it answers neither where/when/how/whence/whither nor the aboutness question, so nothing in the oblique rules actually selects the preposition-named `(At …)` fallback the parse used"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The attitude routing is otherwise right: tell is non-factive with Experiencer holder + Recipient addressee, no predication of P reaches top level, indefinites minted inside the seals (sk_lantern_2, sk_mist_light_1) stay sealed, and only Name atoms, definite typing and compound-kind decomposition project. \"a lantern burning at full rate produces…\" correctly takes a witness rather than a rule, since the Existential section makes indefinite-plus-verbal-predicate a witness."
+  },
+  "adjudication": {
+   "id": "evtp-000073",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "A bare-kind (mass) subject with a verbal predicate is a generic, which Quantifiers, generics & scope turns into a distributing `(Implication (Member $x mire_essence) ...)` rule, and Propositional attitudes requires the seal to carry 'P's full normalized form' — so the flat event is the wrong form (though, being tenseless, it reads as habitual by the status default rather than as the specific occurrence the reviewer describes), and it neither distributes nor matches the rule form the parse's own third seal uses."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Detaching the restriction widens the sealed claim from salt-bloom-bearing essence to mire-essence at large and additionally posits of the kind that mire-essence carries salt-bloom, which Core patterns bars in terms — 'a stated restriction, hedge or qualifier is never silently dropped: omitting it widens the claim — carry it, or leave the whole claim out and record the gap'."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "The seal-projection table lets exactly three things out of an attitude seal — `Member`/`Name` typing, compound-kind decomposition, and a factive's P — and says outright that 'a referent's possessor / Of links stated only inside P stay sealed'; `tell` is non-factive, so the of-phrase link belongs inside the sealed `(And ...)`, not beside it."
+    }
+   ],
+   "gaps_confirmed": [
+    "A PP-restricted kind subject in a generic ('mire-essence with salt-bloom burns slowly') — the adjectivally-restricted-kind-subject rule routes the restriction into a premise conjunct but names no head for a PP restriction, and no rule licenses a surface preposition on a kind symbol.",
+    "A rate/degree PP on an event ('burning at full rate') — it answers none of where/when/how-manner/whence/whither and is not an aboutness PP, while 'a degree adverb on a verb' is explicitly slotless, so nothing selects the preposition-named `(At ...)` the parse used; that improvisation is nonetheless true and well-typed, so it is a gap, not a defect."
+   ],
+   "new_gaps": [
+    "No licensed form exists for the first told proposition: a compliant one would need a head that restricts a kind — or the rule's premise variable — by a PP, e.g. a premise conjunct `(With $x salt_bloom)` beside `(Member $x mire_essence)`, or a condition slot for verbal generics parallel to `ConditionalProperty`, so the restriction rides the burning claim instead of standing beside it as an independent kind-level atom.",
+    "A sealed generic has no truth-value carrier: an `(Implication ...)` nested as a term argument of `Theme` cannot carry the (STV 0.9 0.9) a generic requires, so a reported regularity and a reported certainty seal identically; the seal grammar registers the no-polarity-inside-a-seal limitation but not this no-STV one.",
+    "A non-Gregorian day-count date ('day 590 of Year 2') has no term: `(Day <n>)` is the day-of-month slot, so a day-of-year ordinal (590) silently reuses a slot that means something else."
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0's compliant form is the distributing rule sealed as the `Theme` conjunct — `(Implication (And (Member $x mire_essence) <restriction>) (And (Member (sk_burn $x) burn) (Patient (sk_burn $x) $x) (Manner (sk_burn $x) slowly)))` — in place of the flat burn event. Issue 1 has NO licensed compliant form: no head can restrict a kind or a rule variable by a PP, so the only licensed move is Core patterns' own fallback — leave the whole claim out and record the gap (filed above). Issue 2's compliant form keeps `(PartOf sk_lantern_1 northcove)` inside the sealed `(And ...)`, leaving only the `GroupOf`/`Member`/`Name` typing and the compound-kind decomposition atoms at top level.",
+   "notes": "The attitude routing itself is right and the reviewer's read of it matches mine — non-factive `tell` with `Experiencer` holder and `Recipient` addressee, no predication of P at top level, seal-internal indefinites kept sealed, and the indefinite-subject witness in the fourth seal correctly not a rule. All three confirmed issues concern what goes inside versus beside a seal, and two of them have no fully licensed replacement."
+  }
+ }
+}

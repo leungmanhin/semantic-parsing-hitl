@@ -1,0 +1,26 @@
+{"id": "evtp-000044", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 20, "issue": "\"at the full-moon meeting\" is slotted as Location, but the meeting is an occasion (an eventuality witness), not a place — the instruction's own parallel (\"in the final round\" -> the preposition-named In, not During/Location) points to the surface-preposition oblique (At ...)."},
+   {"statement": 38, "issue": "\"during the following two weeks\" is a frame window, but is encoded as (Measure sk_step_down_1 duration 2 week), which claims the stepping-down itself lasted two weeks; the anaphoric \"following\" ordering relative to the preceding narrative event is also dropped."},
+   {"statement": 46, "issue": "\"returned to spring levels\" gives a scalar-change endpoint a spatial Goal, which the Scalar change section explicitly forbids (\"An end value is never a spatial Goal\")."},
+   {"statement": null, "issue": "\"The thread harvests returned to spring levels\" is a definite plural with a distributive predicate but emits no per-member (Implication (PartOf $x sk_harvests_1) ...) rule, unlike the parallel plural subjects in statements 5 and 9."},
+   {"statement": 61, "issue": "(Measure sk_supply_1 duration 3 week) invents the scale `duration` — no word in \"three weeks of supply\" supplies a dimension, and the instruction reserves `unspecified` for an unstated scale; it also applies the eventuality-duration form to an entity witness."},
+   {"statement": 66, "issue": "\"at the end of the winter\" is encoded by minting an `end` entity witness (PartOf winter) and using it as the Time filler; Time takes structured calendar terms or bare deictic/named constants, never a minted witness."},
+   {"statement": 70, "issue": "(Cardinality sk_cats_1 (ParticleFromNormal 10 1)) puts a distribution in a slot the Cardinality section specifies as a native integer; ParticleFromNormal is licensed only for Measure-family magnitudes and clock-hour values."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "Forward window frame adverbial (\"during the following two weeks\") — WithinLast covers only backward windows, and the anaphoric \"the following <unit>\" rule increments a calendar term rather than framing a span, so a forward span has no licensed head.",
+   "Scalar-change endpoint stated as a qualitative level rather than a figure (\"returned to spring levels\") — MeasureTo requires a magnitude plus unit and Goal is barred for scalar endpoints, leaving no licensed form.",
+   "Period-relative time point (\"at the end of the winter\") — Time takes calendar terms or deictic/named constants, and Start/End attach to an eventuality's own extent, not to a separate period NP.",
+   "Approximate cardinality (\"about ten sky-cats\") — Cardinality requires a native integer and CardinalityPhrase covers only vague quantities with no number, so a hedged exact count has no licensed form.",
+   "Attributive comparative with elided standard (\"a heavier distillation cycle\") — the instruction set itself directs dropping it and recording the gap; the parse correctly drops it.",
+   "Measure/quantity of-phrase (\"three weeks of supply\") — named only as an exclusion from the genitive rule, with no positive encoding given.",
+   "Deadline \"by <event-noun>\" (\"by the spring equinox\") — TimeAtMost takes calendar terms only, and Before is strict precedence, so the inclusive \"at or before\" sense has no carrier.",
+   "Ordinal day-of-year in a non-Gregorian calendar (\"day 210 of Year 1\") — (Day <n>) is defined as a bare granularity term with no day-of-month vs day-of-year distinction."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Strong on the mechanical rules — compound genus/modifier exposure, the capitalized-common-noun vs Name split, the copular-plus-time dual-emit, the plural reified-state plus per-member rule, and the stative-transitive Agent for \"held\" all match the instruction set exactly. Treating \"the spring equinox came\" as a light verb over an event-noun (tense and Time straight on sk_equinox_1, no `come` event) extends a rule whose stated examples are occurred/happened/took place; defensible but not literally licensed."}

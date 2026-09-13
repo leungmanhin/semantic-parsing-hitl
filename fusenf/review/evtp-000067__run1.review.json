@@ -1,0 +1,21 @@
+{"id": "evtp-000067", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 4, "issue": "(Member sk_feather_group_1 fresh) predicates a member property of the group symbol, which the plural rules explicitly bar; a descriptive modifier on a plural must go through the per-member distributive rule."},
+   {"statement": 5, "issue": "(Member sk_feather_group_1 ground) is the same group-symbol predication of a member property."},
+   {"statement": 6, "issue": "'around the Stilllight Lantern' is rendered as Location, which is glossed 'in/at/on'; the head should be the preposition actually used, not a near-fit synonym role."},
+   {"statement": 38, "issue": "The 'before'-clause reach event is asserted at full strength with (Past sk_reach_1), so the parse states that the shape reached the lantern, which the sentence says did not happen."},
+   {"statement": 58, "issue": "(Member sk_report_1 wraith_near_miss) (STV 1.0 0.9) silently drops the hedge 'possible' and asserts the classification outright; confidence is evidence, not possibility, and an individual fact keeps 0.99."},
+   {"statement": 80, "issue": "'stay alert' is a continuation copular, so the reified state should carry (Still sk_alert_1); without it the 'continue to be' meaning of 'stay' has no trace in the parse."},
+   {"statement": 82, "issue": "The strength-0 bundle for 'No further sighting followed' contains no follow event class, no role atom and no tense, so the denied eventuality is dropped, and the explicit quantifier 'no' gets no QuantifierPhrase companion."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "a non-veridical finite 'before' clause ('turned away before the shape reached the Lantern'), where the subordinate event never occurred: the instruction set only warns about event-NOUN anchors taking no tense, and gives no form for a full clause whose event did not happen",
+   "'V X as Y' classification / registration ('logged the report as a possible wraith near-miss'): no licensed encoding for an as-predicative complement, and no carrier for a 'possible' hedge sitting on it",
+   "a one-off narrative non-occurrence with 'no' ('No further sighting followed'): the explicit-'no' route is specified as a strength-0 distributing rule over a kind or a definite set, which does not fit an episodic single non-event"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "'saw a pale shape near the water' was resolved single-reading to entity attachment, although it matches the Interpretation attachment trigger (the PP is coherent on either the seeing or the shape). 'The next afternoon' emitted only the day-part plus Before, which follows the unknown-antecedent-day branch, even though the passage's day 495 is arguably recoverable."}

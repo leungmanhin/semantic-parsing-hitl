@@ -1,0 +1,181 @@
+{
+ "id": "E4-05",
+ "rule": "IV — The sky-cat drought",
+ "texts": [
+  "On day 80 of Year 1, the Council approved half-shifts for Coraline Ash at the Harbor Station.",
+  "A senior Keeper had retired from the Harbor Station, so the Harbor Station had been unstaffed.",
+  "Coraline Ash lit the lantern of the Harbor Station at sundown for the first time.",
+  "Pell stood beside Coraline Ash.",
+  "The wick caught cleanly.",
+  "The lantern burned mire-essence.",
+  "The lantern produced mist-light.",
+  "The mist-light attracted nightmoths.",
+  "A nightmoth landed on the lantern after sundown.",
+  "The nightmoth left silken threads on the lantern.",
+  "Pell joined Coraline Ash at the Harbor Station at midnight and at the third watch."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000028",
+  "sentences": [
+   "On day 80 of Year 1, the Council approved half-shifts for Coraline Ash at the Harbor Station.",
+   "A senior Keeper had retired from the Harbor Station, so the Harbor Station had been unstaffed.",
+   "Coraline Ash lit the lantern of the Harbor Station at sundown for the first time.",
+   "Pell stood beside Coraline Ash.",
+   "The wick caught cleanly.",
+   "The lantern burned mire-essence.",
+   "The lantern produced mist-light.",
+   "The mist-light attracted nightmoths.",
+   "A nightmoth landed on the lantern after sundown.",
+   "The nightmoth left silken threads on the lantern.",
+   "Pell joined Coraline Ash at the Harbor Station at midnight and at the third watch."
+  ],
+  "parse": [
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: hs_type (Member harbor_station station) (STV 1.0 0.99))",
+   "(: hs_name (Name harbor_station \"Harbor Station\") (STV 1.0 0.99))",
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: e1_class (Member sk_approve_1 approve) (STV 1.0 0.99))",
+   "(: e1_agent (Agent sk_approve_1 sk_council_1) (STV 1.0 0.99))",
+   "(: e1_theme (Theme sk_approve_1 half_shift) (STV 1.0 0.99))",
+   "(: half_shift_genus (Inheritance half_shift shift) (STV 1.0 0.99))",
+   "(: e1_ben (Beneficiary sk_approve_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e1_loc (Location sk_approve_1 harbor_station) (STV 1.0 0.99))",
+   "(: e1_day (Time sk_approve_1 (Day 80)) (STV 1.0 0.99))",
+   "(: e1_year (Time sk_approve_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e1_tense (Past sk_approve_1) (STV 1.0 0.99))",
+   "(: keeper_type (Member sk_keeper_1 senior_keeper) (STV 1.0 0.99))",
+   "(: senior_keeper_genus (Inheritance senior_keeper keeper) (STV 1.0 0.99))",
+   "(: senior_keeper_adj (Inheritance senior_keeper senior) (STV 1.0 0.99))",
+   "(: e2_class (Member sk_retire_1 retire) (STV 1.0 0.99))",
+   "(: e2_agent (Agent sk_retire_1 sk_keeper_1) (STV 1.0 0.99))",
+   "(: e2_source (Source sk_retire_1 harbor_station) (STV 1.0 0.99))",
+   "(: e2_tense (Past sk_retire_1) (STV 1.0 0.99))",
+   "(: e3_class (Member sk_unstaffed_1 unstaffed) (STV 1.0 0.99))",
+   "(: e3_exp (Experiencer sk_unstaffed_1 harbor_station) (STV 1.0 0.99))",
+   "(: e3_tense (Past sk_unstaffed_1) (STV 1.0 0.99))",
+   "(: e3_flat (Past (Member harbor_station unstaffed)) (STV 1.0 0.99))",
+   "(: e2_before (Before sk_retire_1 sk_unstaffed_1) (STV 1.0 0.99))",
+   "(: e2_so (So sk_retire_1 sk_unstaffed_1) (STV 1.0 0.99))",
+   "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: lantern_partof (PartOf sk_lantern_1 harbor_station) (STV 1.0 0.99))",
+   "(: e4_class (Member sk_light_1 light) (STV 1.0 0.99))",
+   "(: e4_agent (Agent sk_light_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e4_patient (Patient sk_light_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e4_time (Time sk_light_1 sundown) (STV 1.0 0.99))",
+   "(: e4_tense (Past sk_light_1) (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: e5_beside (Past (Beside pell coraline_ash)) (STV 1.0 0.99))",
+   "(: wick_type (Member sk_wick_1 wick) (STV 1.0 0.99))",
+   "(: wick_partof (PartOf sk_wick_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e6_class (Member sk_catch_1 catch) (STV 1.0 0.99))",
+   "(: e6_patient (Patient sk_catch_1 sk_wick_1) (STV 1.0 0.99))",
+   "(: e6_manner (Manner sk_catch_1 cleanly) (STV 1.0 0.99))",
+   "(: e6_tense (Past sk_catch_1) (STV 1.0 0.99))",
+   "(: e7_class (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: e7_agent (Agent sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e7_patient (Patient sk_burn_1 mire_essence) (STV 1.0 0.99))",
+   "(: mire_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: e7_tense (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: e8_class (Member sk_produce_1 produce) (STV 1.0 0.99))",
+   "(: e8_agent (Agent sk_produce_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e8_patient (Patient sk_produce_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: mistlight_type (Member sk_mist_light_1 mist_light) (STV 1.0 0.99))",
+   "(: mist_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: e8_tense (Past sk_produce_1) (STV 1.0 0.99))",
+   "(: e9_class (Member sk_attract_1 attract) (STV 1.0 0.99))",
+   "(: e9_agent (Agent sk_attract_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: e9_theme (Theme sk_attract_1 sk_nightmoths_1) (STV 1.0 0.99))",
+   "(: nightmoths_group (GroupOf sk_nightmoths_1 nightmoth) (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: e9_tense (Past sk_attract_1) (STV 1.0 0.99))",
+   "(: nightmoth_type (Member sk_nightmoth_1 nightmoth) (STV 1.0 0.99))",
+   "(: e10_class (Member sk_land_1 land) (STV 1.0 0.99))",
+   "(: e10_agent (Agent sk_land_1 sk_nightmoth_1) (STV 1.0 0.99))",
+   "(: e10_loc (Location sk_land_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e10_time (TimeAtLeast sk_land_1 sundown) (STV 1.0 0.99))",
+   "(: e10_tense (Past sk_land_1) (STV 1.0 0.99))",
+   "(: e11_class (Member sk_leave_1 leave) (STV 1.0 0.99))",
+   "(: e11_agent (Agent sk_leave_1 sk_nightmoth_1) (STV 1.0 0.99))",
+   "(: e11_patient (Patient sk_leave_1 sk_threads_1) (STV 1.0 0.99))",
+   "(: threads_group (GroupOf sk_threads_1 silken_thread) (STV 1.0 0.99))",
+   "(: silkenthread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+   "(: silkenthread_adj (Inheritance silken_thread silken) (STV 1.0 0.99))",
+   "(: e11_loc (Location sk_leave_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: e11_tense (Past sk_leave_1) (STV 1.0 0.99))",
+   "(: e12_class (Member sk_join_1 join) (STV 1.0 0.99))",
+   "(: e12_agent (Agent sk_join_1 pell) (STV 1.0 0.99))",
+   "(: e12_theme (Theme sk_join_1 coraline_ash) (STV 1.0 0.99))",
+   "(: e12_loc (Location sk_join_1 harbor_station) (STV 1.0 0.99))",
+   "(: e12_time (Time sk_join_1 midnight) (STV 1.0 0.99))",
+   "(: e12_tense (Past sk_join_1) (STV 1.0 0.99))",
+   "(: e13_class (Member sk_join_2 join) (STV 1.0 0.99))",
+   "(: e13_agent (Agent sk_join_2 pell) (STV 1.0 0.99))",
+   "(: e13_theme (Theme sk_join_2 coraline_ash) (STV 1.0 0.99))",
+   "(: e13_loc (Location sk_join_2 harbor_station) (STV 1.0 0.99))",
+   "(: e13_time (Time sk_join_2 third_watch) (STV 1.0 0.99))",
+   "(: e13_tense (Past sk_join_2) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000028",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 9,
+     "issue": "(Location sk_approve_1 harbor_station) hangs \"at the Harbor Station\" on the approving event, but the PP most plausibly restricts the half-shifts (where Coraline Ash would work), so the parse asserts the Council did its approving at the station."
+    },
+    {
+     "statement": 36,
+     "issue": "(PartOf sk_wick_1 sk_lantern_1) is put there by no words in the text, and Core patterns names this exact wick-in-lantern link as an atom that must not be emitted."
+    },
+    {
+     "statement": 66,
+     "issue": "\"left silken threads on the lantern\" puts the threads in Patient, but they are deposited unchanged, so the \"does the object change?\" test gives Theme (and the instruction set says default to Theme when unclear)."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "\"for the first time\" — an ordinality/occasion adverbial on an episodic event; Ordinal covers ranked NPs (\"the first to respond\"), not this adjunct, so there is no licensed carrier and the parse drops it silently",
+    "coordinated temporal adjunct PPs on one verb (\"at midnight and at the third watch\") — Coordination & plurals distributes coordinated clauses/VPs and argument NPs, but never says whether a coordinated adjunct replicates the event (the parse mints two join events)"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The wick PartOf sits on a contradiction inside the instruction set: Core patterns forbids exactly `(PartOf sk_wick_1 sk_lantern_1)` while the Bridging bullet of Coreference & anaphora licenses precisely this definite-part-to-antecedent link. Everything else — the postural `(Past (Beside pell coraline_ash))`, the `So` + `Before` pair on the past perfects, the compound decompositions, and the bare-plural object group witnesses — follows the instruction set as written."
+  },
+  "adjudication": {
+   "id": "evtp-000028",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "partial",
+     "reason": "The half that stands: the text never places the approving itself at the Harbor Station, and the favored reading restricts the half-shifts, so the atom commits to an unstated fact; the half that does not: Thematic roles licenses `Location` for an 'at'-PP answering 'where' on the event, that is the default attachment, and the competing site has no licensed carrier here (a bare-kind `half_shift` Theme cannot take a place atom), so this is at least as much gap territory as parser error."
+    },
+    {
+     "index": 1,
+     "verdict": "partial",
+     "reason": "The half that stands: Core patterns forbids this atom by name — 'a wick sits in a lantern ... must not yield (PartOf sk_wick_1 sk_lantern_1)'; the half that does not: the claim that no words put it there is refuted by the Bridging bullet of Coreference & anaphora, which licenses exactly this definite-part-to-antecedent `PartOf` (and extends it even within one sentence), so the parse is caught between two contradictory rules rather than asserting something untrue of the passage."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Thematic roles' single test — does the object itself change? — puts deposited-unchanged threads in `Theme` (the moved/displaced line, and the 'slid the plate off the counter' motion-result precedent), and the same section says default to `Theme` when unclear, so `Patient` mis-slots the role and breaks the statement/question role agreement the test exists to guarantee."
+    }
+   ],
+   "gaps_confirmed": [
+    "'for the first time' — an occasion-count adverbial on an episodic event has no carrier: `Ordinal` ranks entities, `Again` presupposes a prior same-type event (the opposite claim), and nothing else records a first occurrence.",
+    "coordinated temporal adjunct PPs on one verb ('at midnight and at the third watch') — Coordination & plurals covers coordinated clauses/VPs and argument NPs, never adjuncts, so nothing says whether the event replicates; two `Time` atoms on one event would assert a contradiction, so the parser's two join events are the sound improvisation."
+   ],
+   "new_gaps": [
+    "A locative restriction on a kind-level role filler ('approved half-shifts ... at the Harbor Station') has no licensed form: `LocatedIn` takes an entity — Conditional properties explicitly bars putting a kind in its entity slot — and the preposition-named oblique attaches to events or entities, not kinds, so carrying the restriction would force the bare-kind object into a group witness that nothing licenses either.",
+    "Core patterns ('a wick sits in a lantern ... must not yield (PartOf sk_wick_1 sk_lantern_1)') and the Bridging bullet ('Alice bought a car. The engine was broken' -> (PartOf sk_engine_1 sk_car_1), bridged 'the same way' inside one sentence) give flatly opposite instructions for the same construction; a licensed form has to state whether a bridged definite part carries its `PartOf` anchor or stays unanchored.",
+    "A non-Gregorian day-count date ('day 80 of Year 1') has no term: `(Day <n>)` is the day-of-month slot, so a day-of-year ordinal silently reuses a slot that means something else, and nothing distinguishes the two readings at query time."
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form for the confirmed issue is `(Theme sk_leave_1 sk_threads_1)` — 'left silken threads on the lantern' displaces the threads without altering them, so the change test and its unclear-case default both give `Theme`; on the partials, no licensed form exists for the favored 'half-shifts at the Harbor Station' reading (the gap above), and the instruction set licenses both emitting and forbidding the wick `PartOf`, so it licenses no single compliant form there either.",
+   "notes": "Both partials are instruction-set problems rather than parser lapses — one attachment whose favored site has no carrier, one atom that Core patterns forbids and Bridging mandates. The rest of the parse checks out: the postural `(Past (Beside pell coraline_ash))`, the `So` + `Before` pair over the two past perfects, the compound decompositions (`nightmoth`/`silken_thread`/`senior_keeper`, with noun modifiers left unexposed), the `TimeAtLeast` for 'after sundown', and the bare-plural group witnesses."
+  }
+ }
+}

@@ -1,0 +1,109 @@
+{
+ "id": "E7-07",
+ "rule": "VII — Midspring recovery",
+ "texts": [
+  "On day 270 of Year 1, the village held the summer feast at midsummer.",
+  "The keepers of Aelmere ate together at the village square at midday.",
+  "The Council toasted the investiture of Coraline Ash.",
+  "The Council toasted the investiture of Mira.",
+  "Mira had completed her apprenticeship at the summer solstice."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000050",
+  "sentences": [
+   "On day 270 of Year 1, the village held the summer feast at midsummer.",
+   "The keepers of Aelmere ate together at the village square at midday.",
+   "The Council toasted the investiture of Coraline Ash.",
+   "The Council toasted the investiture of Mira.",
+   "Mira had completed her apprenticeship at the summer solstice."
+  ],
+  "parse": [
+   "(: v1_type (Member sk_village_1 village) (STV 1.0 0.99))",
+   "(: hold1_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+   "(: hold1_ag (Agent sk_hold_1 sk_village_1) (STV 1.0 0.99))",
+   "(: feast1_type (Member sk_summer_feast_1 summer_feast) (STV 1.0 0.99))",
+   "(: feast1_gen (Inheritance summer_feast feast) (STV 1.0 0.99))",
+   "(: hold1_th (Theme sk_hold_1 sk_summer_feast_1) (STV 1.0 0.99))",
+   "(: hold1_day (Time sk_hold_1 (Day 270)) (STV 1.0 0.99))",
+   "(: hold1_year (Time sk_hold_1 (Year 1)) (STV 1.0 0.99))",
+   "(: hold1_mids (Time sk_hold_1 midsummer) (STV 1.0 0.99))",
+   "(: hold1_tns (Past sk_hold_1) (STV 1.0 0.99))",
+   "(: keepers_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+   "(: keepers_poss (Possession sk_group_1 aelmere) (STV 1.0 0.99))",
+   "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+   "(: eat1_ev (Member sk_eat_1 eat) (STV 1.0 0.99))",
+   "(: eat1_ag (Agent sk_eat_1 sk_group_1) (STV 1.0 0.99))",
+   "(: square1_type (Member sk_square_1 square) (STV 1.0 0.99))",
+   "(: square1_loc (LocatedIn sk_square_1 sk_village_1) (STV 1.0 0.99))",
+   "(: eat1_loc (Location sk_eat_1 sk_square_1) (STV 1.0 0.99))",
+   "(: eat1_time (Time sk_eat_1 midday) (STV 1.0 0.99))",
+   "(: eat1_tns (Past sk_eat_1) (STV 1.0 0.99))",
+   "(: council1_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: toast1_ev (Member sk_toast_1 toast) (STV 1.0 0.99))",
+   "(: toast1_ag (Agent sk_toast_1 sk_council_1) (STV 1.0 0.99))",
+   "(: inv1_type (Member sk_investiture_1 investiture) (STV 1.0 0.99))",
+   "(: inv1_of (Of sk_investiture_1 coraline_ash) (STV 1.0 0.99))",
+   "(: coraline_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: toast1_th (Theme sk_toast_1 sk_investiture_1) (STV 1.0 0.99))",
+   "(: toast1_tns (Past sk_toast_1) (STV 1.0 0.99))",
+   "(: toast2_ev (Member sk_toast_2 toast) (STV 1.0 0.99))",
+   "(: toast2_ag (Agent sk_toast_2 sk_council_1) (STV 1.0 0.99))",
+   "(: inv2_type (Member sk_investiture_2 investiture) (STV 1.0 0.99))",
+   "(: inv2_of (Of sk_investiture_2 mira) (STV 1.0 0.99))",
+   "(: mira_name (Name mira \"Mira\") (STV 1.0 0.99))",
+   "(: toast2_th (Theme sk_toast_2 sk_investiture_2) (STV 1.0 0.99))",
+   "(: toast2_tns (Past sk_toast_2) (STV 1.0 0.99))",
+   "(: complete1_ev (Member sk_complete_1 complete) (STV 1.0 0.99))",
+   "(: complete1_ag (Agent sk_complete_1 mira) (STV 1.0 0.99))",
+   "(: appr1_type (Member sk_apprenticeship_1 apprenticeship) (STV 1.0 0.99))",
+   "(: appr1_poss (Possession sk_apprenticeship_1 mira) (STV 1.0 0.99))",
+   "(: complete1_pat (Patient sk_complete_1 sk_apprenticeship_1) (STV 1.0 0.99))",
+   "(: complete1_time (Time sk_complete_1 summer_solstice) (STV 1.0 0.99))",
+   "(: complete1_tns (Past sk_complete_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000050",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 41,
+     "issue": "The past perfect \"had completed\" gets (Past sk_complete_1) but no (Before sk_complete_1 sk_toast_2) anteriority atom, although the passage supplies asserted events for the perfect to precede."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "day-of-year date numbering (\"day 270 of Year 1\") — the (Day <n>) term is specified as a calendar day paired with a month, so a day index with no month has no distinct encoding",
+    "transitive light verb over an event noun (\"the village held the summer feast\") — the light-verb rule names only intransitive occurred/happened/took place, leaving unsettled whether to reify a separate hold event or put the tense and Time terms on the feast witness",
+    "agent-nominalization taking an of-phrase (\"the keepers of Aelmere\") — it falls outside the nominalization-oblique rule's stated scope (act/result/quality nouns) yet passes that rule's verb-paraphrase test, while the Possession genitive is scoped to relational nouns with no underlying verb"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Compound decomposition (summer_feast), the Council-as-capitalized-common-noun default with no Name atom, the (Of sk_investiture_N …) nominalization oblique, and the group-only collective reading of \"ate together\" all follow the instruction set. (LocatedIn sk_square_1 sk_village_1) for \"the village square\" is licensed by the possessor/whole compound route plus the place-inside-a-place rule."
+  },
+  "adjudication": {
+   "id": "evtp-000050",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "partial",
+     "reason": "Real that the past perfect's anteriority goes unencoded, but overstated as a rule violation: the Time section's trigger reads \"emit the ordering whenever the SENTENCE contains another asserted event for the perfect to precede ... a temporal clause, a causal one, or a relative clause\", and this sentence holds only the completion event and is joined to the toasts by bare juxtaposition, so no stated rule names a pair to order and nothing emitted is false or over-asserted."
+    }
+   ],
+   "gaps_confirmed": [
+    "day-of-year date numbering (\"day 270 of Year 1\") — the (Day <n>) term presupposes a day-of-month paired with a month, so a day index within a year has no distinct encoding",
+    "transitive light verb over an event noun (\"the village held the summer feast\") — the light-verb rule names only the intransitive occurred / happened / took place, leaving the reify-a-hold-event vs anchor-on-the-feast-witness choice unsettled",
+    "agent-nominalization taking an of-phrase (\"the keepers of Aelmere\") — the nominalization-oblique rule is scoped to act / result / quality nouns and the Possession genitive to relational nouns with no underlying verb, so neither branch cleanly covers an agent noun whose verb does exist"
+   ],
+   "new_gaps": [
+    "cross-sentence past-perfect anteriority in a passage — the ordering rule states its trigger over \"the sentence\" but its exclusion over \"no other event in the text\", and it supplies no way to choose WHICH prior event a discourse-level flashback joined only by juxtaposition should precede; a licensed form would need both a scope statement (sentence or passage) and an anchor-selection rule"
+   ],
+   "decision": "accept",
+   "defect_summary": "",
+   "notes": "The rest of the parse holds: the Council as a capitalized common noun with no Name atom, (LocatedIn sk_square_1 sk_village_1) for \"the village square\" under the place-inside-a-place rule, the collective reading of \"ate together\" with no per-member rule, summer_feast's genus with the noun modifier correctly unexposed, and the (Of sk_investiture_N ...) nominalization obliques. No atom is false, ill-typed, or over-asserted."
+  }
+ }
+}

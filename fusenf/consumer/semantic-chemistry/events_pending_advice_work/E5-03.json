@@ -1,0 +1,90 @@
+{
+ "id": "E5-03",
+ "rule": "V — First frost and midwinter",
+ "texts": [
+  "On day 96 of Year 1, Brindle Coombe said at the Council that the village was behind on mire-essence.",
+  "Brindle Coombe said at the Council that the village was behind on feathers.",
+  "Brindle Coombe said at the Council that a hard winter would force the village to dim some lanterns.",
+  "Old Vesh said at the Council that the village always keeps the Stilllight Lantern lit."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000032",
+  "sentences": [
+   "On day 96 of Year 1, Brindle Coombe said at the Council that the village was behind on mire-essence.",
+   "Brindle Coombe said at the Council that the village was behind on feathers.",
+   "Brindle Coombe said at the Council that a hard winter would force the village to dim some lanterns.",
+   "Old Vesh said at the Council that the village always keeps the Stilllight Lantern lit."
+  ],
+  "parse": [
+   "(: bc_name (Name brindle_coombe \"Brindle Coombe\") (STV 1.0 0.99))",
+   "(: council_typ (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s1_ev (Member sk_say_1 say) (STV 1.0 0.99))",
+   "(: s1_exp (Experiencer sk_say_1 brindle_coombe) (STV 1.0 0.99))",
+   "(: s1_loc (Location sk_say_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s1_tns (Past sk_say_1) (STV 1.0 0.99))",
+   "(: s1_day (Time sk_say_1 (Day 96)) (STV 1.0 0.99))",
+   "(: s1_yr (Time sk_say_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_thm (Theme sk_say_1 (And (Member sk_behind_1 behind) (Experiencer sk_behind_1 sk_village_1) (On sk_behind_1 mire_essence) (Past sk_behind_1) (Past (Member sk_village_1 behind)))) (STV 1.0 0.99))",
+   "(: village_typ (Member sk_village_1 village) (STV 1.0 0.99))",
+   "(: mire_gen (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: s2_ev (Member sk_say_2 say) (STV 1.0 0.99))",
+   "(: s2_exp (Experiencer sk_say_2 brindle_coombe) (STV 1.0 0.99))",
+   "(: s2_loc (Location sk_say_2 sk_council_1) (STV 1.0 0.99))",
+   "(: s2_tns (Past sk_say_2) (STV 1.0 0.99))",
+   "(: s2_thm (Theme sk_say_2 (And (Member sk_behind_2 behind) (Experiencer sk_behind_2 sk_village_1) (On sk_behind_2 feather) (Past sk_behind_2) (Past (Member sk_village_1 behind)))) (STV 1.0 0.99))",
+   "(: s3_ev (Member sk_say_3 say) (STV 1.0 0.99))",
+   "(: s3_exp (Experiencer sk_say_3 brindle_coombe) (STV 1.0 0.99))",
+   "(: s3_loc (Location sk_say_3 sk_council_1) (STV 1.0 0.99))",
+   "(: s3_tns (Past sk_say_3) (STV 1.0 0.99))",
+   "(: s3_thm (Theme sk_say_3 (And (Member sk_winter_1 winter) (Member sk_winter_1 hard) (Member sk_force_1 force) (Agent sk_force_1 sk_winter_1) (Theme sk_force_1 sk_dim_1) (Future sk_force_1) (Member sk_dim_1 dim) (Agent sk_dim_1 sk_village_1) (Patient sk_dim_1 sk_lantern_1) (GroupOf sk_lantern_1 lantern))) (STV 1.0 0.99))",
+   "(: vesh_name (Name old_vesh \"Old Vesh\") (STV 1.0 0.99))",
+   "(: s4_ev (Member sk_say_4 say) (STV 1.0 0.99))",
+   "(: s4_exp (Experiencer sk_say_4 old_vesh) (STV 1.0 0.99))",
+   "(: s4_loc (Location sk_say_4 sk_council_1) (STV 1.0 0.99))",
+   "(: s4_tns (Past sk_say_4) (STV 1.0 0.99))",
+   "(: s4_thm (Theme sk_say_4 (And (Member sk_keep_1 keep) (Agent sk_keep_1 sk_village_1) (Theme sk_keep_1 stilllight_lantern) (Member sk_lit_1 lit) (Experiencer sk_lit_1 stilllight_lantern) (Still sk_lit_1) (Member stilllight_lantern lit) (Result sk_keep_1 sk_lit_1))) (STV 1.0 0.99))",
+   "(: lantern_typ (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000032",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 26,
+     "issue": "The frequency quantifier \"always\" in \"the village always keeps the Stilllight Lantern lit\" is dropped with no trace — no QuantifierPhrase companion and no strength effect — although the instruction set makes the companion mandatory for every explicit quantifier word including a frequency adverb's."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Frequency adverb on a habitual whose subject is a definite individual rather than a kind: the mandated (QuantifierPhrase <kind> <verb-lemma> \"<word>\") companion's first slot expects a kind, so \"always\" on \"the village keeps ...\" has no well-formed carrier (and would additionally have to sit as a sealed sibling conjunct inside the say-complement)."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Otherwise clean: non-factive say with Experiencer holder and sealed Theme, definite/named typing projected at top level while every predication stays sealed, embedded \"would\" as Future inside the seal, adjective-PP-complement reification for \"behind on X\", and the maintenance-verb State-result shape with Still for \"keeps ... lit\"."
+  },
+  "adjudication": {
+   "id": "evtp-000032",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "refute",
+     "reason": "The mandated companion (QuantifierPhrase <kind> <verb-lemma> \"<word>\") fills its first slot with a kind in every exemplar — even a group premise names the group kind, not its witness — so a habitual whose subject is the definite individual sk_village_1 has no well-formed carrier for \"always\", and *Quantifiers* expressly directs leaving an unrepresentable frequency adverbial out rather than mis-slotting it; \"always\" maps to strength 1.0, exactly what the emitted atoms carry, so nothing is widened or falsified."
+    }
+   ],
+   "gaps_confirmed": [
+    "A frequency adverb on a habitual with a definite-individual subject has no well-formed QuantifierPhrase companion (the documented first slot is a kind), and inside a report it would additionally have to sit as a sealed sibling conjunct."
+   ],
+   "new_gaps": [
+    "A seal carries one STV on its wrapper and no per-conjunct truth value, so the frequency adverb's strength channel is unrepresentable inside a reported claim: \"always\" coincides with the wrapper's 1.0 only by luck, while \"said the village rarely keeps the lantern lit\" would lose the 0.1 grading outright — no companion slot and no strength left to carry the word."
+   ],
+   "decision": "accept",
+   "defect_summary": "",
+   "notes": "The rest of the parse is compliant: say takes Experiencer with a sealed Theme, only definite/named typing and the mire_essence genus project out of the seals, the embedded \"would force\" is Future inside the seal with the causee's role placed solely in the caused dim event, and \"keeps ... lit\" takes the maintenance State-result shape with Still plus the flat half."
+  }
+ }
+}

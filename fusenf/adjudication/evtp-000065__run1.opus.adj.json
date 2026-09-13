@@ -1,0 +1,13 @@
+{"id": "evtp-000065", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Core patterns states that a stated restriction is never silently dropped ('carry it, or leave the whole claim out and record the gap'), and no atom in the parse is traceable to the NP-internal 'of Year 2', so the bare (Ordinal sk_snow_1 1 fall) asserts rank 1 over snowfalls at large — more than the text states."},
+            {"index": 1,
+             "verdict": "refute",
+             "reason": "This mistakes a coverage gap for a parse defect: the Time term inventory (Year/Month/Day/Weekday/Hour/Minute) has no week term, so term propagation can only copy the antecedent's stated day-level terms, and (Time sk_count_1 (Year 2)) is true of the content and well-typed."}],
+ "gaps_confirmed": ["no week-level Time term, so 'that week' has no carrier under anaphoric term propagation",
+                    "a stated domain restriction on Ordinal — the head has no slot for it and no entity-attached carrier is specified"],
+ "new_gaps": ["a day-of-year number ('day 470 of Year 2') has only the (Day <n>) term, which the instruction set exemplifies as day-of-month (June 5, 2021) and which the seeded same-year-month day-ordering rules read that way, so the two granularities are indistinguishable once stored"],
+ "decision": "defect",
+ "defect_summary": "The compliant form is (Ordinal sk_snow_1 1 fall) beside an entity-attached restrictor carrying the stated Year-2 domain, in the AmongMost precedent's style ('one of the oldest orchards in the valley' keeps (In sk_orchard_1 sk_valley_1) on the entity); because no such carrier is licensed for a TEMPORAL domain — (Year 2) is a Time-family term and Time attaches to event witnesses, not to the snow substance witness — the only licensed form here is to drop the Ordinal claim entirely and record the gap rather than leave it unrestricted.",
+ "notes": "Everything else tracks the instruction set: definite typing projected out of the strength-0 wind denial, both reified-plus-flat copular dual-emits, the 'by dawn' TimeAtMost day-part bound, term propagation of day 470 / Year 2 / night onto the lantern rule and the wind denial, and the Kestrel-River handling of 'Harbor Station'. Decomposing early_evening as a compound day-part is improvisation, but every atom it emits is true and well-typed, so it is acceptable under the calibration line."}

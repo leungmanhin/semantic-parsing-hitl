@@ -1,0 +1,161 @@
+{
+ "id": "E5-02",
+ "rule": "V — First frost and midwinter",
+ "texts": [
+  "On day 96 of Year 1, the moon was full.",
+  "The Council convened at the Watch.",
+  "The Council opened the salt-bloom season.",
+  "The Council standardized the salt-bloom rations for the winter.",
+  "The Council exempted the Northcove from salt-bloom.",
+  "Hesper reported to the Council that the thread harvest was thin.",
+  "Cauldron Hall distilled at reduced volume during the frost weeks, because the thread harvest was thin.",
+  "Hesper said that the cold months would yield about eight vessels of mire-essence."
+ ],
+ "passage": {
+  "corpus_id": "evtp-000031",
+  "sentences": [
+   "On day 96 of Year 1, the moon was full.",
+   "The Council convened at the Watch.",
+   "The Council opened the salt-bloom season.",
+   "The Council standardized the salt-bloom rations for the winter.",
+   "The Council exempted the Northcove from salt-bloom.",
+   "Hesper reported to the Council that the thread harvest was thin.",
+   "Cauldron Hall distilled at reduced volume during the frost weeks, because the thread harvest was thin.",
+   "Hesper said that the cold months would yield about eight vessels of mire-essence."
+  ],
+  "parse": [
+   "(: s1_moon (Member sk_moon_1 moon) (STV 1.0 0.99))",
+   "(: s1_full (Member sk_full_1 full) (STV 1.0 0.99))",
+   "(: s1_full_exp (Experiencer sk_full_1 sk_moon_1) (STV 1.0 0.99))",
+   "(: s1_full_day (Time sk_full_1 (Day 96)) (STV 1.0 0.99))",
+   "(: s1_full_year (Time sk_full_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_full_past (Past sk_full_1) (STV 1.0 0.99))",
+   "(: s1_full_flat (Past (Member sk_moon_1 full)) (STV 1.0 0.99))",
+   "(: s2_council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s2_watch_type (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: s2_convene (Member sk_convene_1 convene) (STV 1.0 0.99))",
+   "(: s2_convene_agent (Agent sk_convene_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s2_convene_loc (Location sk_convene_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: s2_convene_past (Past sk_convene_1) (STV 1.0 0.99))",
+   "(: s3_season_type (Member sk_season_1 salt_bloom_season) (STV 1.0 0.99))",
+   "(: s3_season_genus (Inheritance salt_bloom_season season) (STV 1.0 0.99))",
+   "(: s3_open (Member sk_open_1 open) (STV 1.0 0.99))",
+   "(: s3_open_agent (Agent sk_open_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s3_open_patient (Patient sk_open_1 sk_season_1) (STV 1.0 0.99))",
+   "(: s3_open_past (Past sk_open_1) (STV 1.0 0.99))",
+   "(: s4_rations_grp (GroupOf sk_rations_1 salt_bloom_ration) (STV 1.0 0.99))",
+   "(: s4_ration_genus (Inheritance salt_bloom_ration ration) (STV 1.0 0.99))",
+   "(: s4_standardize (Member sk_standardize_1 standardize) (STV 1.0 0.99))",
+   "(: s4_standardize_agent (Agent sk_standardize_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s4_standardize_patient (Patient sk_standardize_1 sk_rations_1) (STV 1.0 0.99))",
+   "(: s4_standardize_for (For sk_standardize_1 winter) (STV 1.0 0.99))",
+   "(: s4_standardize_past (Past sk_standardize_1) (STV 1.0 0.99))",
+   "(: s5_northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+   "(: s5_bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: s5_exempt (Member sk_exempt_1 exempt) (STV 1.0 0.99))",
+   "(: s5_exempt_agent (Agent sk_exempt_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s5_exempt_theme (Theme sk_exempt_1 northcove) (STV 1.0 0.99))",
+   "(: s5_exempt_source (Source sk_exempt_1 salt_bloom) (STV 1.0 0.99))",
+   "(: s5_exempt_past (Past sk_exempt_1) (STV 1.0 0.99))",
+   "(: s6_hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: s6_report (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: s6_report_exp (Experiencer sk_report_1 hesper) (STV 1.0 0.99))",
+   "(: s6_report_recipient (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s6_report_theme (Theme sk_report_1 (Past (Member sk_harvest_1 thin))) (STV 1.0 0.99))",
+   "(: s6_report_past (Past sk_report_1) (STV 1.0 0.99))",
+   "(: s6_harvest_type (Member sk_harvest_1 thread_harvest) (STV 1.0 0.99))",
+   "(: s6_harvest_genus (Inheritance thread_harvest harvest) (STV 1.0 0.99))",
+   "(: s7_hall_name (Name cauldron_hall \"Cauldron Hall\") (STV 1.0 0.99))",
+   "(: s7_hall_type (Member cauldron_hall hall) (STV 1.0 0.99))",
+   "(: s7_distill (Member sk_distill_1 distill) (STV 1.0 0.99))",
+   "(: s7_distill_agent (Agent sk_distill_1 cauldron_hall) (STV 1.0 0.99))",
+   "(: s7_distill_past (Past sk_distill_1) (STV 1.0 0.99))",
+   "(: s7_weeks_grp (GroupOf sk_weeks_1 frost_week) (STV 1.0 0.99))",
+   "(: s7_week_genus (Inheritance frost_week week) (STV 1.0 0.99))",
+   "(: s7_distill_during (During sk_distill_1 sk_weeks_1) (STV 1.0 0.99))",
+   "(: s7_thin (Member sk_thin_1 thin) (STV 1.0 0.99))",
+   "(: s7_thin_exp (Experiencer sk_thin_1 sk_harvest_1) (STV 1.0 0.99))",
+   "(: s7_thin_past (Past sk_thin_1) (STV 1.0 0.99))",
+   "(: s7_thin_flat (Past (Member sk_harvest_1 thin)) (STV 1.0 0.99))",
+   "(: s7_because (Because sk_distill_1 sk_thin_1) (STV 1.0 0.99))",
+   "(: s8_say (Member sk_say_1 say) (STV 1.0 0.99))",
+   "(: s8_say_exp (Experiencer sk_say_1 hesper) (STV 1.0 0.99))",
+   "(: s8_say_theme (Theme sk_say_1 (And (Member sk_yield_1 yield) (Agent sk_yield_1 sk_months_1) (Patient sk_yield_1 sk_essence_1) (Member sk_essence_1 mire_essence) (Measure sk_essence_1 unspecified (ParticleFromNormal 8 0.8) vessel) (Future sk_yield_1))) (STV 1.0 0.99))",
+   "(: s8_say_past (Past sk_say_1) (STV 1.0 0.99))",
+   "(: s8_months_grp (GroupOf sk_months_1 cold_month) (STV 1.0 0.99))",
+   "(: s8_month_genus (Inheritance cold_month month) (STV 1.0 0.99))",
+   "(: s8_month_cold (Inheritance cold_month cold) (STV 1.0 0.99))",
+   "(: s8_essence_genus (Inheritance mire_essence essence) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp-000031",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 43,
+     "issue": "The adjunct \"at reduced volume\" is dropped with no trace, so the parse asserts plain unqualified distilling — Core patterns forbids silently dropping a stated qualifier because omitting it widens the claim."
+    },
+    {
+     "statement": 31,
+     "issue": "\"exempted the Northcove from salt-bloom\" is a prepositional-verb argument that answers no whence question, so the named role Source mis-slots it where the preposition-named oblique (From <event> salt_bloom) is the licensed head."
+    },
+    {
+     "statement": 58,
+     "issue": "\"the cold months\" fuses the descriptive temperature adjective into the compound kind cold_month, but Compound concepts licenses adjective+noun fusion only for a term of art, nationality/origin, role title or material adjective, and otherwise distributes the modifier over the group's members."
+    },
+    {
+     "statement": 24,
+     "issue": "The For oblique's object \"the winter\" is an articled NP, so by the oblique's own NP rule it should mint a witness with its kind atom rather than appear as the bare untyped constant winter."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "manner/extent PP on a verbal event (\"distilled at reduced volume\") — Manner is restricted to how-adverbs proper and the preposition-named oblique is defined for aboutness PPs, so no slot is clearly licensed for a PP saying to what degree the action was done",
+    "a temporal-scope \"for\"-phrase over a named period (\"standardized the rations for the winter\") — neither the Beneficiary reading nor the numbered-duration Measure applies, and the fallback For oblique leaves the season NP's status (witness vs bare time constant) undecided"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Sealing discipline is handled well: the non-factive report/say complements stay sealed, definite typing (thread_harvest, cold_months group) and compound decomposition atoms project out, and the seal-internal indefinite mire-essence witness stays inside. The passage-level coreference (sk_council_1, hesper, sk_harvest_1) and the embedded future-shift on \"would yield\" are both correct."
+  },
+  "adjudication": {
+   "id": "evtp-000031",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "refute",
+     "reason": "Gap mistaken for defect: a verb-modifying extent PP has no licensed slot, and the instruction set's own ruling for unslottable verb modifiers ('a degree adverb on a verb ... have no licensed slot: leave them out and record the gap') licenses dropping it while keeping the clause, since 'distilled at reduced volume' entails 'distilled' and no emitted atom is thereby false or widened."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "'Those named roles apply when the PP answers where / when / how / whence / whither ... Decide by the question the PP answers, never by which listed role is closest', and a prepositional verb's argument goes to the preposition-named oblique ('dealt with the appeal', 'referred to the memo' — not Instrument, not Recipient), so 'exempt X from Y', which names no origin, makes (Source sk_exempt_1 salt_bloom) assert a whence relation the sentence does not state."
+    },
+    {
+     "index": 2,
+     "verdict": "partial",
+     "reason": "The half that stands: 'cold' is a gradable descriptive adjective, not one of the four fusing categories (term of art / nationality-origin / role title / material adjective), so the fused kind cold_month is not clearly licensed; the half that falls: nothing false or over-asserted follows, because the parse also emitted the modifier genus (Inheritance cold_month cold), so each member inherits both month and cold exactly as the distributive route would deliver."
+    },
+    {
+     "index": 3,
+     "verdict": "refute",
+     "reason": "A temporal-period NP is not an ordinary oblique object: the Time section keeps seasons and day-parts as bare constants and bars minting an sk_ witness or a Member atom for a time, so the bare constant winter is well-typed — and the reviewer's own q2 gap concedes the instruction set leaves this NP's status undecided."
+    }
+   ],
+   "gaps_confirmed": [
+    "manner/extent PP on a verbal event ('distilled at reduced volume') — Manner is how-adverbs-of-manner only and the preposition-named oblique is defined for aboutness PPs, so no head is licensed for a PP saying to what degree the action was done",
+    "temporal-scope 'for'-phrase over a named period ('standardized the rations for the winter') — neither Beneficiary nor a numbered-duration Measure applies, and the fallback For oblique leaves the period NP's encoding (witness vs bare time constant) undecided"
+   ],
+   "new_gaps": [
+    "The obliques list glosses Source as bare 'from ...' while the very next sentence restricts the named roles to PPs answering where/when/how/whence/whither; nothing states that a non-whence 'from'-argument of a prepositional verb ('exempt X from Y', 'bar X from Y', 'excuse X from Y') takes the preposition-named (From <event> ...) oblique, and the gloss/test collision invites exactly this mis-slot.",
+    "The adjective+noun fusion test names four fusing categories against 'incidental description (colour, size, damage, mood)' but gives no criterion for a conventional period or season designation built on a descriptive adjective ('the cold months', beside the noun-modifier 'the frost weeks') — the choice is declared 'determined, not optional', yet this class falls between the two lists."
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form for 'exempted the Northcove from salt-bloom' is the preposition-named oblique (From sk_exempt_1 salt_bloom) in place of the named role (Source sk_exempt_1 salt_bloom) — the same routing the instruction set gives 'dealt with the appeal' and 'referred to the memo'; a compliant form is licensed, so this is not a no-fix case.",
+   "notes": "Everything else in this parse is sound: the non-factive report/say seals, the projection of definite typing and compound decomposition out of them, passage coreference on sk_council_1 / hesper / sk_harvest_1, the During for a surface 'during', and the embedded future-shift on 'would yield' are all as specified. The two remaining objections are both gap territory with every emitted atom true."
+  }
+ }
+}
