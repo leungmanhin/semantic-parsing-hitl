@@ -1,0 +1,135 @@
+{
+ "id": "E9-09",
+ "rule": "IX — Smaller incidents through Year 2",
+ "texts": [
+  "On day 525 of Year 2, the moon was new.",
+  "Mira was a Keeper.",
+  "Mira led a harvest party of three people to the Salt-bloom Tide-pools at the new-moon spring tide.",
+  "Mira harvested salt-bloom at the new moon.",
+  "The harvest party harvested nine buckets of salt-bloom.",
+  "Mira reported the harvest to the Council the next morning.",
+  "The Council congratulated Mira.",
+  "The Council recorded the harvest."
+ ],
+ "passage": {
+  "corpus_id": "evtp2-000021",
+  "sentences": [
+   "On day 525 of Year 2, the moon was new.",
+   "Mira was a Keeper.",
+   "Mira led a harvest party of three people to the Salt-bloom Tide-pools at the new-moon spring tide.",
+   "Mira harvested salt-bloom at the new moon.",
+   "The harvest party harvested nine buckets of salt-bloom.",
+   "Mira reported the harvest to the Council the next morning.",
+   "The Council congratulated Mira.",
+   "The Council recorded the harvest."
+  ],
+  "parse": [
+   "(: s1_moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+   "(: s1_new_type (Member sk_new_1 new) (STV 1.0 0.99))",
+   "(: s1_exp (Experiencer sk_new_1 sk_moon_1) (STV 1.0 0.99))",
+   "(: s1_day (Time sk_new_1 (Day 525)) (STV 1.0 0.99))",
+   "(: s1_year (Time sk_new_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s1_past (Past sk_new_1) (STV 1.0 0.99))",
+   "(: s1_flat (Past (Member sk_moon_1 new)) (STV 1.0 0.99))",
+   "(: mira_name (Name mira \"Mira\") (STV 1.0 0.99))",
+   "(: s2_keeper (Past (Member mira keeper)) (STV 1.0 0.99))",
+   "(: s3_lead_ev (Member sk_lead_1 lead) (STV 1.0 0.99))",
+   "(: s3_agent (Agent sk_lead_1 mira) (STV 1.0 0.99))",
+   "(: s3_theme (Theme sk_lead_1 sk_party_1) (STV 1.0 0.99))",
+   "(: s3_goal (Goal sk_lead_1 salt_bloom_tide_pools) (STV 1.0 0.99))",
+   "(: s3_day (Time sk_lead_1 (Day 525)) (STV 1.0 0.99))",
+   "(: s3_year (Time sk_lead_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s3_tide (Time sk_lead_1 spring_tide) (STV 1.0 0.99))",
+   "(: s3_past (Past sk_lead_1) (STV 1.0 0.99))",
+   "(: party_type (Member sk_party_1 harvest_party) (STV 1.0 0.99))",
+   "(: party_genus (Inheritance harvest_party party) (STV 1.0 0.99))",
+   "(: party_group (GroupOf sk_party_1 person) (STV 1.0 0.99))",
+   "(: party_card (Cardinality sk_party_1 3) (STV 1.0 0.99))",
+   "(: pools_name (Name salt_bloom_tide_pools \"Salt-bloom Tide-pools\") (STV 1.0 0.99))",
+   "(: pools_type (Member salt_bloom_tide_pools tide_pool) (STV 1.0 0.99))",
+   "(: pools_genus (Inheritance tide_pool pool) (STV 1.0 0.99))",
+   "(: s4_harvest_ev (Member sk_harvest_1 harvest) (STV 1.0 0.99))",
+   "(: s4_agent (Agent sk_harvest_1 mira) (STV 1.0 0.99))",
+   "(: s4_theme (Theme sk_harvest_1 salt_bloom) (STV 1.0 0.99))",
+   "(: s4_day (Time sk_harvest_1 (Day 525)) (STV 1.0 0.99))",
+   "(: s4_year (Time sk_harvest_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s4_past (Past sk_harvest_1) (STV 1.0 0.99))",
+   "(: bloom_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: s5_harvest_ev (Member sk_harvest_2 harvest) (STV 1.0 0.99))",
+   "(: s5_agent (Agent sk_harvest_2 sk_party_1) (STV 1.0 0.99))",
+   "(: s5_theme (Theme sk_harvest_2 sk_bloom_1) (STV 1.0 0.99))",
+   "(: s5_bloom_type (Member sk_bloom_1 salt_bloom) (STV 1.0 0.99))",
+   "(: s5_measure (Measure sk_bloom_1 quantity 9 bucket) (STV 1.0 0.99))",
+   "(: s5_past (Past sk_harvest_2) (STV 1.0 0.99))",
+   "(: s6_report_ev (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: s6_agent (Agent sk_report_1 mira) (STV 1.0 0.99))",
+   "(: s6_theme (Theme sk_report_1 sk_harvest_2) (STV 1.0 0.99))",
+   "(: s6_recipient (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s6_time (Time sk_report_1 morning) (STV 1.0 0.99))",
+   "(: s6_before (Before sk_harvest_2 sk_report_1) (STV 1.0 0.99))",
+   "(: s6_past (Past sk_report_1) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s7_congrat_ev (Member sk_congratulate_1 congratulate) (STV 1.0 0.99))",
+   "(: s7_agent (Agent sk_congratulate_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s7_theme (Theme sk_congratulate_1 mira) (STV 1.0 0.99))",
+   "(: s7_past (Past sk_congratulate_1) (STV 1.0 0.99))",
+   "(: s8_record_ev (Member sk_record_1 record) (STV 1.0 0.99))",
+   "(: s8_agent (Agent sk_record_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s8_theme (Theme sk_record_1 sk_harvest_2) (STV 1.0 0.99))",
+   "(: s8_past (Past sk_record_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp2-000021",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 35,
+     "issue": "\"nine buckets of salt-bloom\" is stored as (Measure sk_bloom_1 quantity 9 bucket), but no dimension word is stated in the clause and Measures & units reserves the slot symbol `unspecified` for a scale no word supplies — `quantity` is licensed only as the Degree-family marker ((Degree <N> quantity <marker>)), never as a Measure scale."
+    },
+    {
+     "statement": 15,
+     "issue": "\"at the new-moon spring tide\" is reduced to the bare time symbol `spring_tide`, silently dropping the stated \"new-moon\" restriction (Core patterns: a stated restriction is never silently dropped)."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "ordinal day-of-year dating in a non-Gregorian calendar (\"On day 525 of Year 2\") — the Time term inventory presumes month-day calendar expressions, so (Day 525) is used outside its defined range",
+    "a named natural-cycle time used as a temporal anchor (\"at the new-moon spring tide\", \"at the new moon\") — Time terms cover calendar granularities, deictic constants and day-parts, and `During` is restricted to during/while/throughout, so there is no specified encoding for an \"at <tide / lunar phase>\" anchor (and no guidance on whether it stays a bare constant or becomes an sk_ eventuality like \"the storm\")",
+    "a container-quantity partitive (\"nine buckets of salt-bloom\") — the measure exclusion under Possessive/genitive NP names it as not-a-genitive but no section says which head carries it"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Sentence 1's (Day 525)/(Year 2) are copied onto the lead (13-14) and Mira-harvest (27-28) events, defensible as anaphoric term propagation off \"at the new moon\", but the party-harvest event (31-36) is left undated and \"the next morning\" (42) therefore gets only the day-part with no incremented day term — the frame is carried unevenly across the passage. Everything else checks out: the copular time-modifier dual-emit in sentence 1, the singular-collective no-distribution treatment of \"the harvest party\"/\"the Council\", the Agent (not Experiencer) subject of entity-object \"reported\", and \"the Council\" as a Name-less capitalized common noun."
+  },
+  "adjudication": {
+   "id": "evtp2-000021",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Measures & units states \"A scale no word supplies is never invented -- an unstated dimension takes the reserved slot symbol `unspecified`\" and that no scale is ever taken from world knowledge; no dimension word occurs in \"harvested nine buckets of salt-bloom\", and `quantity` is defined only as the Degree-family scale in \"(Degree <N> quantity <marker>)\"."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Core patterns bars silently dropping a stated restriction (\"carry it, or leave the whole claim out and record the gap\"), and (Time sk_lead_1 spring_tide) drops \"new-moon\" with nothing recorded, leaving the anchor shareable with any other spring tide."
+    }
+   ],
+   "gaps_confirmed": [
+    "Ordinal day-of-year dating in a non-Gregorian calendar (\"On day 525 of Year 2\"): the Time term inventory presumes month/day calendar expressions and CE years, so (Day 525) and (Year 2) are used outside the range those terms define.",
+    "A named natural-cycle time used as a temporal anchor (\"at the new-moon spring tide\", \"at the new moon\"): Time covers calendar granularities, deictic constants and day-parts, `During` is restricted to during/while/throughout, and nothing states whether such an anchor stays a bare constant, becomes an sk_ eventuality, or how a modifier on it is carried.",
+    "A container-quantity expression (\"nine buckets of salt-bloom\"): the Possessive/genitive NP exclusion routes \"a cup of water\" to a measure but no section states the resulting atom shape -- which symbol bears the measure, whether a container word may fill the unit slot, and whether the count instead rides a bucket group's Cardinality."
+   ],
+   "new_gaps": [
+    "Propagating a passage-initial date frame (\"On day 525 of Year 2, ...\") onto later clauses that carry only a non-calendar anchor: term propagation is licensed only off an explicit anaphoric temporal NP (\"that evening\", \"the next morning\"), so nothing says whether (Day 525)/(Year 2) may be copied onto the lead and Mira-harvest events -- which is why this parse dates three events, leaves the party-harvest undated, and then has no day term for \"the next morning\" to increment."
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0: with no dimension word in the clause the measure must use the reserved slot symbol -- (Measure sk_bloom_1 unspecified 9 bucket) -- since Measures & units forbids inventing a scale. Issue 1: the \"new-moon\" restriction must be carried, which for a named time means the whole phrase as one time constant, (Time sk_lead_1 new_moon_spring_tide); if a multi-word descriptive time constant is judged unlicensed (the confirmed natural-cycle-anchor gap), the only compliant alternative is to omit the time atom and record the gap -- never the widened bare `spring_tide`.",
+   "notes": "Sentence 4's \"at the new moon\" is dropped outright, the same construction as the confirmed issue, but the reviewer filed it only as a gap and I have not scored it separately. The rest of the parse holds up: the sentence-1 copular time-modifier dual-emit, the no-distribution treatment of the singular collectives \"the harvest party\" and \"the Council\", Agent (not Experiencer) for entity-object \"reported\", Theme for \"recorded\", and \"the Council\"/\"a Keeper\" as Name-less capitalized common nouns."
+  }
+ }
+}

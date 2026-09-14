@@ -1,0 +1,185 @@
+{
+ "id": "E1-08",
+ "rule": "I — The equinox week",
+ "texts": [
+  "On day 0 of Year 1, the night of the autumn equinox was clear and mild.",
+  "Keepers counted about twenty-five nightmoths at each lantern of the Cliff Path.",
+  "A crowd of nightmoths gathered at the East Row.",
+  "Three sky-cats descended from the cliff-spires.",
+  "The three sky-cats hunted the nightmoth crowd at the East Row.",
+  "The nightmoth crowd at the East Row shrank.",
+  "Keepers counted seven of the nightmoths at the East Row at the third watch.",
+  "Some nightmoths survived the hunt.",
+  "The surviving nightmoths fled to the Hollows.",
+  "The surviving nightmoths reached the Hollows."
+ ],
+ "passage": {
+  "corpus_id": "evtp2-000002",
+  "sentences": [
+   "On day 0 of Year 1, the night of the autumn equinox was clear and mild.",
+   "Keepers counted about twenty-five nightmoths at each lantern of the Cliff Path.",
+   "A crowd of nightmoths gathered at the East Row.",
+   "Three sky-cats descended from the cliff-spires.",
+   "The three sky-cats hunted the nightmoth crowd at the East Row.",
+   "The nightmoth crowd at the East Row shrank.",
+   "Keepers counted seven of the nightmoths at the East Row at the third watch.",
+   "Some nightmoths survived the hunt.",
+   "The surviving nightmoths fled to the Hollows.",
+   "The surviving nightmoths reached the Hollows."
+  ],
+  "parse": [
+   "(: s1_night_type (Member sk_night_1 night) (STV 1.0 0.99))",
+   "(: s1_equinox_type (Member sk_equinox_1 autumn_equinox) (STV 1.0 0.99))",
+   "(: s1_equinox_genus (Inheritance autumn_equinox equinox) (STV 1.0 0.99))",
+   "(: s1_night_of_equinox (Possession sk_night_1 sk_equinox_1) (STV 1.0 0.99))",
+   "(: s1_clear_state (Member sk_clear_1 clear) (STV 1.0 0.99))",
+   "(: s1_clear_exp (Experiencer sk_clear_1 sk_night_1) (STV 1.0 0.99))",
+   "(: s1_clear_day (Time sk_clear_1 (Day 0)) (STV 1.0 0.99))",
+   "(: s1_clear_year (Time sk_clear_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_clear_tense (Past sk_clear_1) (STV 1.0 0.99))",
+   "(: s1_clear_flat (Past (Member sk_night_1 clear)) (STV 1.0 0.99))",
+   "(: s1_mild_state (Member sk_mild_1 mild) (STV 1.0 0.99))",
+   "(: s1_mild_exp (Experiencer sk_mild_1 sk_night_1) (STV 1.0 0.99))",
+   "(: s1_mild_day (Time sk_mild_1 (Day 0)) (STV 1.0 0.99))",
+   "(: s1_mild_year (Time sk_mild_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_mild_tense (Past sk_mild_1) (STV 1.0 0.99))",
+   "(: s1_mild_flat (Past (Member sk_night_1 mild)) (STV 1.0 0.99))",
+   "(: s2_path_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: s2_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: s2_keepers_group (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+   "(: s2_moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: s2_rule (Implication (And (Member $x lantern) (PartOf $x cliff_path)) (And (Member (sk_count $x) count) (Agent (sk_count $x) sk_keepers_1) (Theme (sk_count $x) (sk_moths $x)) (GroupOf (sk_moths $x) nightmoth) (Cardinality (sk_moths $x) (ParticleFromNormal 25 2.5)) (Location (sk_count $x) $x) (Past (sk_count $x)))) (STV 1.0 0.9))",
+   "(: s2_q (QuantifierPhrase lantern count \"each\") (STV 1.0 0.99))",
+   "(: s3_crowd_type (Member sk_crowd_1 crowd) (STV 1.0 0.99))",
+   "(: s3_crowd_kind (GroupOf sk_crowd_1 nightmoth) (STV 1.0 0.99))",
+   "(: s3_row_type (Member east_row row) (STV 1.0 0.99))",
+   "(: s3_row_name (Name east_row \"East Row\") (STV 1.0 0.99))",
+   "(: s3_gather (Member sk_gather_1 gather) (STV 1.0 0.99))",
+   "(: s3_gather_agent (Agent sk_gather_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: s3_gather_loc (Location sk_gather_1 east_row) (STV 1.0 0.99))",
+   "(: s3_gather_tense (Past sk_gather_1) (STV 1.0 0.99))",
+   "(: s4_skycats_group (GroupOf sk_skycats_1 sky_cat) (STV 1.0 0.99))",
+   "(: s4_skycats_card (Cardinality sk_skycats_1 3) (STV 1.0 0.99))",
+   "(: s4_skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: s4_spires_group (GroupOf sk_spires_1 cliff_spire) (STV 1.0 0.99))",
+   "(: s4_spire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: s4_descend (Member sk_descend_1 descend) (STV 1.0 0.99))",
+   "(: s4_descend_agent (Agent sk_descend_1 sk_skycats_1) (STV 1.0 0.99))",
+   "(: s4_descend_src (Source sk_descend_1 sk_spires_1) (STV 1.0 0.99))",
+   "(: s4_descend_tense (Past sk_descend_1) (STV 1.0 0.99))",
+   "(: s4_rule (Implication (PartOf $x sk_skycats_1) (And (Member (sk_descend $x) descend) (Agent (sk_descend $x) $x) (Source (sk_descend $x) sk_spires_1) (Past (sk_descend $x)))) (STV 1.0 0.9))",
+   "(: s5_hunt (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: s5_hunt_agent (Agent sk_hunt_1 sk_skycats_1) (STV 1.0 0.99))",
+   "(: s5_hunt_theme (Theme sk_hunt_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: s5_hunt_loc (Location sk_hunt_1 east_row) (STV 1.0 0.99))",
+   "(: s5_hunt_tense (Past sk_hunt_1) (STV 1.0 0.99))",
+   "(: s5_rule (Implication (PartOf $x sk_skycats_1) (And (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (Theme (sk_hunt $x) sk_crowd_1) (Location (sk_hunt $x) east_row) (Past (sk_hunt $x)))) (STV 1.0 0.9))",
+   "(: s6_crowd_loc (LocatedIn sk_crowd_1 east_row) (STV 1.0 0.99))",
+   "(: s6_shrink (Member sk_shrink_1 shrink) (STV 1.0 0.99))",
+   "(: s6_shrink_patient (Patient sk_shrink_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: s6_shrink_tense (Past sk_shrink_1) (STV 1.0 0.99))",
+   "(: s7_keepers_group (GroupOf sk_keepers_2 keeper) (STV 1.0 0.99))",
+   "(: s7_subset_kind (GroupOf sk_subset_1 nightmoth) (STV 1.0 0.99))",
+   "(: s7_subset_of (SubsetOf sk_subset_1 sk_crowd_1) (STV 1.0 0.99))",
+   "(: s7_subset_card (Cardinality sk_subset_1 7) (STV 1.0 0.99))",
+   "(: s7_count (Member sk_count_1 count) (STV 1.0 0.99))",
+   "(: s7_count_agent (Agent sk_count_1 sk_keepers_2) (STV 1.0 0.99))",
+   "(: s7_count_theme (Theme sk_count_1 sk_subset_1) (STV 1.0 0.99))",
+   "(: s7_count_time (Time sk_count_1 third_watch) (STV 1.0 0.99))",
+   "(: s7_count_tense (Past sk_count_1) (STV 1.0 0.99))",
+   "(: s8_survivors_group (GroupOf sk_survivors_1 nightmoth) (STV 1.0 0.99))",
+   "(: s8_survive (Member sk_survive_1 survive) (STV 1.0 0.99))",
+   "(: s8_survive_agent (Agent sk_survive_1 sk_survivors_1) (STV 1.0 0.99))",
+   "(: s8_survive_theme (Theme sk_survive_1 sk_hunt_1) (STV 1.0 0.99))",
+   "(: s8_survive_tense (Past sk_survive_1) (STV 1.0 0.99))",
+   "(: s9_hollows_name (Name hollows \"Hollows\") (STV 1.0 0.99))",
+   "(: s9_flee (Member sk_flee_1 flee) (STV 1.0 0.99))",
+   "(: s9_flee_agent (Agent sk_flee_1 sk_survivors_1) (STV 1.0 0.99))",
+   "(: s9_flee_goal (Goal sk_flee_1 hollows) (STV 1.0 0.99))",
+   "(: s9_flee_tense (Past sk_flee_1) (STV 1.0 0.99))",
+   "(: s9_rule (Implication (PartOf $x sk_survivors_1) (And (Member (sk_flee $x) flee) (Agent (sk_flee $x) $x) (Goal (sk_flee $x) hollows) (Past (sk_flee $x)))) (STV 1.0 0.9))",
+   "(: s10_reach (Member sk_reach_1 reach) (STV 1.0 0.99))",
+   "(: s10_reach_agent (Agent sk_reach_1 sk_survivors_1) (STV 1.0 0.99))",
+   "(: s10_reach_goal (Goal sk_reach_1 hollows) (STV 1.0 0.99))",
+   "(: s10_reach_tense (Past sk_reach_1) (STV 1.0 0.99))",
+   "(: s10_rule (Implication (PartOf $x sk_survivors_1) (And (Member (sk_reach $x) reach) (Agent (sk_reach $x) $x) (Goal (sk_reach $x) hollows) (Past (sk_reach $x)))) (STV 1.0 0.9))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp2-000002",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 72,
+     "issue": "\"reached the Hollows\" has a bare direct object, so it takes Theme (the instruction set's own worked example gives reach a Theme object); Goal is the oblique for a \"to\"-PP, which this clause does not contain."
+    },
+    {
+     "statement": 74,
+     "issue": "The per-member reach rule repeats the same Goal-for-Theme role error inside its conclusion."
+    },
+    {
+     "statement": 20,
+     "issue": "Cardinality's magnitude slot is specified as a native integer, but the rule puts a ParticleFromNormal distribution there for \"about twenty-five\"."
+    },
+    {
+     "statement": 60,
+     "issue": "\"Some nightmoths survived the hunt\" gets no per-member distribution rule even though survive is distributive and the parse emits such a rule for descend, hunt, flee and reach."
+    },
+    {
+     "statement": 54,
+     "issue": "\"at the East Row\" in sentence 7 yields no atom at all (no Location on the counting event), while the parallel phrase in sentence 6 does produce a position atom."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "approximate cardinal count of a group (\"about twenty-five nightmoths\"): Cardinality takes a native integer, CardinalityAtLeast/AtMost take a bound, and CardinalityPhrase takes a vague-lexicon word, so a hedged exact numeral has no licensed form; ParticleFromNormal is licensed only in Measure-family and Time value slots"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Naming, group/partitive and copular-with-time-modifier handling are otherwise correct, including the Name-only treatment of \"the Hollows\". Reading \"the night of the autumn equinox\" as Possession is a defensible default, but the instruction set does not really address a temporal-identification of-phrase."
+  },
+  "adjudication": {
+   "id": "evtp2-000002",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "\"reached the Hollows\" is a bare direct object and the direct-object roles are for objects the verb takes without a preposition, while Goal is defined as the \"to …\" oblique; the instruction set's own worked example \"Sara reached the platform\" gives reach a Theme."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "The per-member rule's conclusion carries the same unlicensed (Goal (sk_reach $x) hollows), so the role error is replicated to every derived member event."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Cardinality's count slot is specified as a native integer, and ParticleFromNormal is licensed only as a Measure-family magnitude or a Time term's value, so (Cardinality (sk_moths $x) (ParticleFromNormal 25 2.5)) is ill-typed per the vocabulary — the calibration line makes an ill-typed atom a defect even in gap territory."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "Quantifiers, generics & scope states that the same rule form distributes a distributive predicate over a plural or group (\"the dogs barked\"), and survive is not one of the reciprocal/aggregate predicates that stay group-only, so the per-member rule over (PartOf $x sk_survivors_1) is determined, not optional."
+    },
+    {
+     "index": 4,
+     "verdict": "partial",
+     "reason": "It is correct that the sentence-7 PP yields no atom of its own, but the claim of lost content overstates: the parse takes the licensed NP-attachment reading (\"seven of the nightmoths at the East Row\"), and the restriction is already carried by (SubsetOf sk_subset_1 sk_crowd_1) over a crowd the parse has already placed with (LocatedIn sk_crowd_1 east_row)."
+    }
+   ],
+   "gaps_confirmed": [
+    "a hedged exact count (\"about twenty-five nightmoths\") has no licensed carrier: Cardinality takes a native integer, CardinalityAtLeast/AtMost take a bound the hedge does not state, and CardinalityPhrase takes a canonical vague-lexicon word"
+   ],
+   "new_gaps": [
+    "an epoch-relative / day-index calendar (\"on day 0 of Year 1\"): the Time section's (Day <n>) term is a within-month granularity sitting beside Month/Year, so a day counted off a fictional epoch has no distinct term and will not interoperate with the seeded day/month ordering rules",
+    "a temporal-identification of-phrase (\"the night of the autumn equinox\"): the of-phrase names which night, not a possessor or a nominalization's object, so the loose-association Possession is the only fallback head and it records an association the text states only as identification"
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form for \"reached the Hollows\" is (Theme sk_reach_1 hollows); the per-member rule's conclusion likewise needs (Theme (sk_reach $x) hollows); for \"about twenty-five\" the instruction set licenses NO form that carries a hedged count, so the compliant parse emits the Skolem group and its GroupOf with no count atom at all and records the gap; and the survive clause needs the per-member rule (Implication (PartOf $x sk_survivors_1) (And (Member (sk_survive $x) survive) (Agent (sk_survive $x) $x) (Theme (sk_survive $x) sk_hunt_1) (Past (sk_survive $x)))) at (STV 1.0 0.9) beside the group event.",
+   "notes": "Naming (Cliff Path / East Row typed-plus-Name, the Hollows Name-only), the s7 partitive, the s1 copular-with-time-modifier dual-emit and the collective/distributive split for gather and shrink are all handled correctly. The Goal-vs-Theme and the missing survive rule are both consistency failures against choices the same parse makes elsewhere."
+  }
+ }
+}

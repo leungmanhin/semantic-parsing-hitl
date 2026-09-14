@@ -1,0 +1,226 @@
+{
+ "id": "E10-08",
+ "rule": "X — Spring of Year 2",
+ "texts": [
+  "Sky-cats hunted at the Sunken Cove on day 667, on day 668 and on day 669 of Year 2.",
+  "On day 670 of Year 2, Bevin Coombe asked the Council for permission to burn wintergloss at the Stilllight Lantern for one night.",
+  "The Council approved the test.",
+  "Bevin Coombe added wintergloss to the Stilllight Lantern at sundown.",
+  "The Stilllight Lantern burned wintergloss alongside mire-essence.",
+  "The Stilllight Lantern produced mist-light.",
+  "The wintergloss repelled nightmoths from the Stilllight Lantern.",
+  "Bevin Coombe counted three nightmoths at the Stilllight Lantern that night.",
+  "About twelve nightmoths gather at the Stilllight Lantern on a normal night.",
+  "The sky-cats did not descend into the Sunken Cove that night.",
+  "Bevin Coombe reported the result to the Council.",
+  "The Council recorded the test."
+ ],
+ "passage": {
+  "corpus_id": "evtp2-000024",
+  "sentences": [
+   "Sky-cats hunted at the Sunken Cove on day 667, on day 668 and on day 669 of Year 2.",
+   "On day 670 of Year 2, Bevin Coombe asked the Council for permission to burn wintergloss at the Stilllight Lantern for one night.",
+   "The Council approved the test.",
+   "Bevin Coombe added wintergloss to the Stilllight Lantern at sundown.",
+   "The Stilllight Lantern burned wintergloss alongside mire-essence.",
+   "The Stilllight Lantern produced mist-light.",
+   "The wintergloss repelled nightmoths from the Stilllight Lantern.",
+   "Bevin Coombe counted three nightmoths at the Stilllight Lantern that night.",
+   "About twelve nightmoths gather at the Stilllight Lantern on a normal night.",
+   "The sky-cats did not descend into the Sunken Cove that night.",
+   "Bevin Coombe reported the result to the Council.",
+   "The Council recorded the test."
+  ],
+  "parse": [
+   "(: sky_cat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: skycats_grp (GroupOf sk_group_1 sky_cat) (STV 1.0 0.99))",
+   "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+   "(: hunt1_ev (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+   "(: hunt1_ag (Agent sk_hunt_1 sk_group_1) (STV 1.0 0.99))",
+   "(: hunt1_loc (Location sk_hunt_1 sunken_cove) (STV 1.0 0.99))",
+   "(: hunt1_day (Time sk_hunt_1 (Day 667)) (STV 1.0 0.99))",
+   "(: hunt1_yr (Time sk_hunt_1 (Year 2)) (STV 1.0 0.99))",
+   "(: hunt1_tns (Past sk_hunt_1) (STV 1.0 0.99))",
+   "(: hunt2_ev (Member sk_hunt_2 hunt) (STV 1.0 0.99))",
+   "(: hunt2_ag (Agent sk_hunt_2 sk_group_1) (STV 1.0 0.99))",
+   "(: hunt2_loc (Location sk_hunt_2 sunken_cove) (STV 1.0 0.99))",
+   "(: hunt2_day (Time sk_hunt_2 (Day 668)) (STV 1.0 0.99))",
+   "(: hunt2_yr (Time sk_hunt_2 (Year 2)) (STV 1.0 0.99))",
+   "(: hunt2_tns (Past sk_hunt_2) (STV 1.0 0.99))",
+   "(: hunt3_ev (Member sk_hunt_3 hunt) (STV 1.0 0.99))",
+   "(: hunt3_ag (Agent sk_hunt_3 sk_group_1) (STV 1.0 0.99))",
+   "(: hunt3_loc (Location sk_hunt_3 sunken_cove) (STV 1.0 0.99))",
+   "(: hunt3_day (Time sk_hunt_3 (Day 669)) (STV 1.0 0.99))",
+   "(: hunt3_yr (Time sk_hunt_3 (Year 2)) (STV 1.0 0.99))",
+   "(: hunt3_tns (Past sk_hunt_3) (STV 1.0 0.99))",
+   "(: bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: ask1_ev (Member sk_ask_1 ask) (STV 1.0 0.99))",
+   "(: ask1_ag (Agent sk_ask_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: ask1_rec (Recipient sk_ask_1 sk_council_1) (STV 1.0 0.99))",
+   "(: ask1_th (Theme sk_ask_1 sk_permission_1) (STV 1.0 0.99))",
+   "(: perm1_type (Member sk_permission_1 permission) (STV 1.0 0.99))",
+   "(: ask1_day (Time sk_ask_1 (Day 670)) (STV 1.0 0.99))",
+   "(: ask1_yr (Time sk_ask_1 (Year 2)) (STV 1.0 0.99))",
+   "(: ask1_tns (Past sk_ask_1) (STV 1.0 0.99))",
+   "(: wgloss_genus (Inheritance winter_gloss gloss) (STV 1.0 0.99))",
+   "(: burn1_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: burn1_ag (Agent sk_burn_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: burn1_pat (Patient sk_burn_1 winter_gloss) (STV 1.0 0.99))",
+   "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+   "(: burn1_loc (Location sk_burn_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: burn1_dur (Measure sk_burn_1 duration 1 night) (STV 1.0 0.99))",
+   "(: perm1_for (For sk_permission_1 sk_burn_1) (STV 1.0 0.99))",
+   "(: approve1_ev (Member sk_approve_1 approve) (STV 1.0 0.99))",
+   "(: approve1_ag (Agent sk_approve_1 sk_council_1) (STV 1.0 0.99))",
+   "(: approve1_th (Theme sk_approve_1 sk_burn_1) (STV 1.0 0.99))",
+   "(: burn1_test_type (Member sk_burn_1 test) (STV 1.0 0.99))",
+   "(: approve1_tns (Past sk_approve_1) (STV 1.0 0.99))",
+   "(: add1_ev (Member sk_add_1 add) (STV 1.0 0.99))",
+   "(: add1_ag (Agent sk_add_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: add1_th (Theme sk_add_1 winter_gloss) (STV 1.0 0.99))",
+   "(: add1_goal (Goal sk_add_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: add1_time (Time sk_add_1 sundown) (STV 1.0 0.99))",
+   "(: add1_tns (Past sk_add_1) (STV 1.0 0.99))",
+   "(: mire_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: burn2_ev (Member sk_burn_2 burn) (STV 1.0 0.99))",
+   "(: burn2_ag (Agent sk_burn_2 stilllight_lantern) (STV 1.0 0.99))",
+   "(: burn2_pat (Patient sk_burn_2 winter_gloss) (STV 1.0 0.99))",
+   "(: burn2_along (Alongside sk_burn_2 mire_essence) (STV 1.0 0.99))",
+   "(: burn2_tns (Past sk_burn_2) (STV 1.0 0.99))",
+   "(: mistlight_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: produce1_ev (Member sk_produce_1 produce) (STV 1.0 0.99))",
+   "(: produce1_ag (Agent sk_produce_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: produce1_pat (Patient sk_produce_1 mist_light) (STV 1.0 0.99))",
+   "(: produce1_tns (Past sk_produce_1) (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+   "(: repel1_ev (Member sk_repel_1 repel) (STV 1.0 0.99))",
+   "(: repel1_ag (Agent sk_repel_1 winter_gloss) (STV 1.0 0.99))",
+   "(: moths1_grp (GroupOf sk_moths_1 night_moth) (STV 1.0 0.99))",
+   "(: repel1_th (Theme sk_repel_1 sk_moths_1) (STV 1.0 0.99))",
+   "(: repel1_src (Source sk_repel_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: repel1_tns (Past sk_repel_1) (STV 1.0 0.99))",
+   "(: moths2_grp (GroupOf sk_moths_2 night_moth) (STV 1.0 0.99))",
+   "(: moths2_card (Cardinality sk_moths_2 3) (STV 1.0 0.99))",
+   "(: count1_ev (Member sk_count_1 count) (STV 1.0 0.99))",
+   "(: count1_ag (Agent sk_count_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: count1_th (Theme sk_count_1 sk_moths_2) (STV 1.0 0.99))",
+   "(: count1_loc (Location sk_count_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: count1_day (Time sk_count_1 (Day 670)) (STV 1.0 0.99))",
+   "(: count1_yr (Time sk_count_1 (Year 2)) (STV 1.0 0.99))",
+   "(: count1_night (Time sk_count_1 night) (STV 1.0 0.99))",
+   "(: count1_tns (Past sk_count_1) (STV 1.0 0.99))",
+   "(: moths3_grp (GroupOf sk_moths_3 night_moth) (STV 1.0 0.99))",
+   "(: moths3_card (Cardinality sk_moths_3 (ParticleFromNormal 12 1.2)) (STV 1.0 0.99))",
+   "(: gather1_ev (Member sk_gather_1 gather) (STV 1.0 0.99))",
+   "(: gather1_ag (Agent sk_gather_1 sk_moths_3) (STV 1.0 0.99))",
+   "(: gather1_loc (Location sk_gather_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: night1_type (Member sk_night_1 night) (STV 1.0 0.99))",
+   "(: night1_normal (Member sk_night_1 normal) (STV 1.0 0.99))",
+   "(: gather1_time (Time sk_gather_1 sk_night_1) (STV 1.0 0.99))",
+   "(: descend1_neg (And (Member sk_descend_1 descend) (Agent sk_descend_1 sk_group_1) (Goal sk_descend_1 sunken_cove) (Past sk_descend_1) (Time sk_descend_1 (Day 670)) (Time sk_descend_1 (Year 2)) (Time sk_descend_1 night)) (STV 0.0 0.99))",
+   "(: result1_type (Member sk_result_1 result) (STV 1.0 0.99))",
+   "(: report1_ev (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: report1_ag (Agent sk_report_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: report1_rec (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: report1_th (Theme sk_report_1 sk_result_1) (STV 1.0 0.99))",
+   "(: report1_tns (Past sk_report_1) (STV 1.0 0.99))",
+   "(: record1_ev (Member sk_record_1 record) (STV 1.0 0.99))",
+   "(: record1_ag (Agent sk_record_1 sk_council_1) (STV 1.0 0.99))",
+   "(: record1_th (Theme sk_record_1 sk_burn_1) (STV 1.0 0.99))",
+   "(: record1_tns (Past sk_record_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp2-000024",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 27,
+     "issue": "\"asked the Council for permission\" puts the for-PP object in Theme, but a prepositional verb's object takes the preposition-named oblique, never a direct-object role."
+    },
+    {
+     "statement": 40,
+     "issue": "The complement of \"permission to burn\" is headed For rather than the preposition actually used (To), which the head-selection rule forbids as a near-fit synonym head."
+    },
+    {
+     "statement": 81,
+     "issue": "\"About twelve\" is encoded as (Cardinality sk_moths_3 (ParticleFromNormal 12 1.2)), but Cardinality is specified to take a native integer and ParticleFromNormal is licensed only in Measure magnitude and Time hour slots."
+    },
+    {
+     "statement": 88,
+     "issue": "The strength-0 group denial for \"the sky-cats did not descend\" omits the accompanying strength-0 per-member distribution rule that a negated plural or group must also emit (descend is not a collective predicate)."
+    },
+    {
+     "statement": 4,
+     "issue": "The three hunting events over the bare-plural group sk_group_1 emit no per-member distribution rule, although hunt is not one of the collective/aggregate predicates that stay group-only."
+    },
+    {
+     "statement": 86,
+     "issue": "\"on a normal night\" is placed in the Time slot as a witness sk_night_1 carrying (Member sk_night_1 night) and (Member sk_night_1 normal), while the Time role is defined to take structured calendar terms or bare constants only."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "a day-of-year numbering (\"on day 667 ... of Year 2\") - (Day n) is defined as a within-month granularity beside Month/Year, and no term covers days counted across a whole year, so (Day 667) will not interoperate with the seeded day/month ordering rules",
+    "an approximated count (\"about twelve nightmoths\") - Cardinality takes a native integer, CardinalityAtLeast/AtMost take a bound, and CardinalityPhrase takes a canonical vague phrase; a hedged numeral count has no licensed form",
+    "a typicality-restricted habitual occasion (\"on a normal night\") - the habitual machinery covers named slots, Every periods and TimesPer rates, but nothing restricts a habitual to typical/normal occasions"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The proposed burn is correctly reified tenseless as the non-asserted complement, \"the Council\" correctly takes the capitalized-common-noun default with no Name, and \"that night\" propagation copies Day 670 / Year 2 plus the day-part exactly as specified. Resolving \"the test\" to the burn event sk_burn_1 (and typing it (Member sk_burn_1 test)) is a bridging inference the text does not spell out, though it is applied consistently for both \"approved\" and \"recorded\"."
+  },
+  "adjudication": {
+   "id": "evtp2-000024",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Thematic roles states that a prepositional verb's object takes the preposition's oblique and never a direct-object role (\"referred to the memo\", \"dealt with the appeal\"), and the Beneficiary bullet routes a non-benefit \"for\" to the preposition-named (For <event> …), so \"asked … for permission\" cannot be a Theme."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "The head must be the preposition actually used — never a synonym head for a near-fit reading — and the instruction set already renders an infinitival \"to\" as the head To (\"knelt to check the drain\" → (To sk_kneel_1 sk_check_1)), so \"permission to burn\" takes To, not For."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Cardinality's count slot is specified as a native integer and ParticleFromNormal is licensed only as a Measure-family magnitude or a Time term's value, so (Cardinality sk_moths_3 (ParticleFromNormal 12 1.2)) is ill-typed per the vocabulary — the calibration line makes an ill-typed atom a defect even in gap territory."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "Negation (events) states that a negated plural or group keeps BOTH emissions — the strength-0 group bundle and the strength-0 per-member rule (\"The kegs do not ferment\") — and descend is not a reciprocal/aggregate predicate, so dropping the rule states a weaker claim than the sentence."
+    },
+    {
+     "index": 4,
+     "verdict": "confirm",
+     "reason": "Quantifiers, generics & scope has the same rule form distribute a distributive predicate over a plural or group, and hunt is not among the collective predicates (gather / meet / assemble / collide) that stay group-only, so each of the three hunt events owes a per-member rule over (PartOf $x sk_group_1)."
+    },
+    {
+     "index": 5,
+     "verdict": "partial",
+     "reason": "The observation stands — the Time role's documented fillers are structured calendar terms, deictic/named constants and day-part symbols, and the same parse puts the bare constant night in that slot for \"that night\", so the two forms will not match — but calling it a violation overstates: the instruction set does not cover a typicality-restricted habitual occasion (the reviewer's own third gap), every atom emitted is true of the sentence and well-typed, and a bare night constant would silently drop the stated \"normal\" restriction."
+    }
+   ],
+   "gaps_confirmed": [
+    "a day-of-year numbering (\"on day 667 … of Year 2\"): (Day <n>) is a within-month granularity beside Month/Year, so a day counted across a whole year has no term and will not interoperate with the seeded day/month ordering rules",
+    "a hedged exact count (\"about twelve nightmoths\"): Cardinality takes a native integer, CardinalityAtLeast/AtMost take a bound the hedge does not state, and CardinalityPhrase takes a canonical vague-lexicon word",
+    "a typicality-restricted habitual occasion (\"on a normal night\"): the habitual machinery covers named slots, Every periods and TimesPer rates, but nothing restricts a habitual to typical occasions"
+   ],
+   "new_gaps": [
+    "coordinated date adjuncts on one clause (\"hunted at the Sunken Cove on day 667, on day 668 and on day 669\"): Coordination & plurals covers coordinated clauses, VPs and NPs but not coordinated time adjuncts, so nothing licenses replicating the event once per date — and the one-event alternative (three Day terms on one event) would be false",
+    "a surface-lemma duration unit (\"for one night\" → (Measure e duration 1 night)): the unit is the stated word as required, but night is outside the seeded second-canonical lexicon, so the duration cannot be compared or thresholded against hour/day durations"
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form for \"asked the Council for permission\" is the preposition-named oblique (For sk_ask_1 sk_permission_1) with no Theme on the ask event; \"permission to burn\" takes the preposition actually used, (To sk_permission_1 sk_burn_1); for \"about twelve\" the instruction set licenses NO form that carries a hedged count, so the compliant parse emits the group and its GroupOf with no count atom at all and records the gap; the denial needs (Implication (PartOf $x sk_group_1) (And (Member (sk_descend $x) descend) (Agent (sk_descend $x) $x) (Goal (sk_descend $x) sunken_cove) (Past (sk_descend $x)) (Time (sk_descend $x) (Day 670)) (Time (sk_descend $x) (Year 2)) (Time (sk_descend $x) night))) at (STV 0.0 0.9) beside the strength-0 group bundle; and each of the three hunt events needs its per-member rule over (PartOf $x sk_group_1) at (STV 1.0 0.9).",
+   "notes": "The tenseless reification of the proposed burn, the no-Name treatment of \"the Council\", the \"that night\" term propagation and the Alongside / Source / Goal preposition choices are all correct. Resolving \"the test\" to sk_burn_1 and typing it (Member sk_burn_1 test) is a coreference judgment the text supports and is applied consistently, so I do not treat it as a defect."
+  }
+ }
+}

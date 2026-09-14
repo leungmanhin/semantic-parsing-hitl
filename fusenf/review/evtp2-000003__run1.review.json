@@ -1,0 +1,9 @@
+{"id": "evtp2-000003", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 62, "issue": "\"The nightmoths left silken threads on the lanterns\" gives the threads Patient, but leaving/depositing does not create, destroy, consume or physically change them, so the stated change test yields Theme (the same choice is repeated inside the rule at index 65)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["of-phrase on an agent-nominalization (\"the keepers of the East Row\"): the nominalization-object `Of` oblique is defined for nouns naming an act, result or quality, while the agent-nominalization section says a referring use is an ordinary kind -- neither settles whether \"keepers of X\" takes `Of` or the genitive `Possession`, and the parse uses `Of` here but `Possession` for \"the lanterns of the East Row\" in the same sentence", "partitive level word \"many\" (\"Many of the nightmoths gathered\"): the enumerated vague-word lexicon for the `ProportionOf` level slot is most / half / some / few / none and does not cover \"many\""],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The collective/distributive contrast is handled correctly throughout -- \"together lit\" and \"Together, the lanterns produced\" get group-only events while the unmarked plural clauses add the per-member rule, and collective \"gathered\" stays group-only. Compound decomposition (mire_essence, mist_light, nightmoth, silken_thread, sea_water, clay_vessel), the \"that night\" term propagation, the \"by evening\" TimeAtMost and the partitive superset reuse of sk_nightmoths_1 all follow the instruction set."}

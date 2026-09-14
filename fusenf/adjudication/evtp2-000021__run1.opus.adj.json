@@ -1,0 +1,20 @@
+{"id": "evtp2-000021", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "confirm",
+    "reason": "Measures & units states \"A scale no word supplies is never invented -- an unstated dimension takes the reserved slot symbol `unspecified`\" and that no scale is ever taken from world knowledge; no dimension word occurs in \"harvested nine buckets of salt-bloom\", and `quantity` is defined only as the Degree-family scale in \"(Degree <N> quantity <marker>)\"."},
+   {"index": 1,
+    "verdict": "confirm",
+    "reason": "Core patterns bars silently dropping a stated restriction (\"carry it, or leave the whole claim out and record the gap\"), and (Time sk_lead_1 spring_tide) drops \"new-moon\" with nothing recorded, leaving the anchor shareable with any other spring tide."}
+ ],
+ "gaps_confirmed": [
+   "Ordinal day-of-year dating in a non-Gregorian calendar (\"On day 525 of Year 2\"): the Time term inventory presumes month/day calendar expressions and CE years, so (Day 525) and (Year 2) are used outside the range those terms define.",
+   "A named natural-cycle time used as a temporal anchor (\"at the new-moon spring tide\", \"at the new moon\"): Time covers calendar granularities, deictic constants and day-parts, `During` is restricted to during/while/throughout, and nothing states whether such an anchor stays a bare constant, becomes an sk_ eventuality, or how a modifier on it is carried.",
+   "A container-quantity expression (\"nine buckets of salt-bloom\"): the Possessive/genitive NP exclusion routes \"a cup of water\" to a measure but no section states the resulting atom shape -- which symbol bears the measure, whether a container word may fill the unit slot, and whether the count instead rides a bucket group's Cardinality."
+ ],
+ "new_gaps": [
+   "Propagating a passage-initial date frame (\"On day 525 of Year 2, ...\") onto later clauses that carry only a non-calendar anchor: term propagation is licensed only off an explicit anaphoric temporal NP (\"that evening\", \"the next morning\"), so nothing says whether (Day 525)/(Year 2) may be copied onto the lead and Mira-harvest events -- which is why this parse dates three events, leaves the party-harvest undated, and then has no day term for \"the next morning\" to increment."
+ ],
+ "decision": "defect",
+ "defect_summary": "Issue 0: with no dimension word in the clause the measure must use the reserved slot symbol -- (Measure sk_bloom_1 unspecified 9 bucket) -- since Measures & units forbids inventing a scale. Issue 1: the \"new-moon\" restriction must be carried, which for a named time means the whole phrase as one time constant, (Time sk_lead_1 new_moon_spring_tide); if a multi-word descriptive time constant is judged unlicensed (the confirmed natural-cycle-anchor gap), the only compliant alternative is to omit the time atom and record the gap -- never the widened bare `spring_tide`.",
+ "notes": "Sentence 4's \"at the new moon\" is dropped outright, the same construction as the confirmed issue, but the reviewer filed it only as a gap and I have not scored it separately. The rest of the parse holds up: the sentence-1 copular time-modifier dual-emit, the no-distribution treatment of the singular collectives \"the harvest party\" and \"the Council\", Agent (not Experiencer) for entity-object \"reported\", Theme for \"recorded\", and \"the Council\"/\"a Keeper\" as Name-less capitalized common nouns."}

@@ -1,0 +1,12 @@
+{"id": "evtp2-000008", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 41, "issue": "(Cardinality sk_group_1 4) stamps the exact count of the indefinite \"four nightmoths\" onto the \"a handful of nightmoths\" group from the previous sentence, asserting an identification and a size the text never states and colliding with that same symbol's CardinalityPhrase \"a handful\"."},
+               {"statement": 37, "issue": "\"four nightmoths\" is an indefinite and should mint its own group witness rather than reuse sk_group_1."},
+               {"statement": 64, "issue": "\"a small heap of silken threads\" is an indefinite, but the parse types the sentence-8 thread group as that heap instead of minting a new witness, asserting that the collected heap is exactly the threads left on the lantern."},
+               {"statement": 65, "issue": "Same merge: (Member sk_threads_1 small) puts the indefinite heap's size property onto the earlier thread group."}],
+ "q2_coverage": "covered",
+ "q2_gaps": [],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Role assignment, compound decomposition (silken exposed as a material adjective while clay/mire/sea stay unexposed noun modifiers) and \"by evening\" as TimeAtMost are all correct. The verb lemma of \"lit\" and the head noun of \"mist-light\" both land on the symbol light, a homonym collision the lemmatization rule does not disambiguate."}

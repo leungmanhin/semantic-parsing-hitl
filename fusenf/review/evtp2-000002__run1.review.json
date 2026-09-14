@@ -1,0 +1,13 @@
+{"id": "evtp2-000002", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 72, "issue": "\"reached the Hollows\" has a bare direct object, so it takes Theme (the instruction set's own worked example gives reach a Theme object); Goal is the oblique for a \"to\"-PP, which this clause does not contain."},
+               {"statement": 74, "issue": "The per-member reach rule repeats the same Goal-for-Theme role error inside its conclusion."},
+               {"statement": 20, "issue": "Cardinality's magnitude slot is specified as a native integer, but the rule puts a ParticleFromNormal distribution there for \"about twenty-five\"."},
+               {"statement": 60, "issue": "\"Some nightmoths survived the hunt\" gets no per-member distribution rule even though survive is distributive and the parse emits such a rule for descend, hunt, flee and reach."},
+               {"statement": 54, "issue": "\"at the East Row\" in sentence 7 yields no atom at all (no Location on the counting event), while the parallel phrase in sentence 6 does produce a position atom."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["approximate cardinal count of a group (\"about twenty-five nightmoths\"): Cardinality takes a native integer, CardinalityAtLeast/AtMost take a bound, and CardinalityPhrase takes a vague-lexicon word, so a hedged exact numeral has no licensed form; ParticleFromNormal is licensed only in Measure-family and Time value slots"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Naming, group/partitive and copular-with-time-modifier handling are otherwise correct, including the Name-only treatment of \"the Hollows\". Reading \"the night of the autumn equinox\" as Possession is a defensible default, but the instruction set does not really address a temporal-identification of-phrase."}

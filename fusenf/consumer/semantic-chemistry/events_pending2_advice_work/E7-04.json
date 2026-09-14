@@ -1,0 +1,60 @@
+{
+ "id": "E7-04",
+ "rule": "VII — Midspring recovery",
+ "texts": [
+  "On day 251 of Year 1, the cold wind returned briefly at night.",
+  "The lantern of the Harbor Station was salt-bloomed.",
+  "The cold wind struck the salt-bloomed lantern.",
+  "The lantern stayed lit."
+ ],
+ "passage": {
+  "corpus_id": "evtp2-000011",
+  "sentences": [
+   "On day 251 of Year 1, the cold wind returned briefly at night.",
+   "The lantern of the Harbor Station was salt-bloomed.",
+   "The cold wind struck the salt-bloomed lantern.",
+   "The lantern stayed lit."
+  ],
+  "parse": [
+   "(: wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+   "(: wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+   "(: ret_ev (Member sk_return_1 return) (STV 1.0 0.99))",
+   "(: ret_pat (Patient sk_return_1 sk_wind_1) (STV 1.0 0.99))",
+   "(: ret_dur (Duration sk_return_1 briefly) (STV 1.0 0.99))",
+   "(: ret_night (Time sk_return_1 night) (STV 1.0 0.99))",
+   "(: ret_year (Time sk_return_1 (Year 1)) (STV 1.0 0.99))",
+   "(: ret_day (Time sk_return_1 (Day 251)) (STV 1.0 0.99))",
+   "(: ret_past (Past sk_return_1) (STV 1.0 0.99))",
+   "(: lant_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+   "(: hs_name (Name harbor_station \"Harbor Station\") (STV 1.0 0.99))",
+   "(: hs_type (Member harbor_station station) (STV 1.0 0.99))",
+   "(: lant_poss (Possession sk_lantern_1 harbor_station) (STV 1.0 0.99))",
+   "(: lant_saltbloom (Past (Member sk_lantern_1 salt_bloomed)) (STV 1.0 0.99))",
+   "(: strike_ev (Member sk_strike_1 strike) (STV 1.0 0.99))",
+   "(: strike_ag (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+   "(: strike_th (Theme sk_strike_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: strike_past (Past sk_strike_1) (STV 1.0 0.99))",
+   "(: lit_ev (Member sk_lit_1 lit) (STV 1.0 0.99))",
+   "(: lit_exp (Experiencer sk_lit_1 sk_lantern_1) (STV 1.0 0.99))",
+   "(: lit_still (Still sk_lit_1) (STV 1.0 0.99))",
+   "(: lit_past (Past sk_lit_1) (STV 1.0 0.99))",
+   "(: lant_lit_flat (Past (Member sk_lantern_1 lit)) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp2-000011",
+   "run": 1,
+   "q1_faithful": "yes",
+   "q1_issues": [],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "day-of-year dating (\"On day 251 of Year 1\"): the Time section defines (Day <n>) as a day-of-month granularity inside a calendar date (\"June 5, 2021\"), and nothing addresses an ordinal day-index of a year or a non-Gregorian era year, so the emitted (Day 251) is formally indistinguishable from a day-of-month term"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The wind's role split follows the stated rules exactly (intransitive natural force \"returned\" -> Patient; transitive \"struck\" -> Agent, with Theme by the unclear-object default), and \"stayed lit\" gets the continuation-copular bundle (reified state + Still + flat atom + tense) as specified. \"the lantern of the Harbor Station\" takes the opaque Possession rather than PartOf, which is the licensed default when the part/component test does not clearly succeed."
+  },
+  "adjudication": null
+ }
+}
