@@ -1,0 +1,12 @@
+{"id": "evtp2-000015", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 50, "issue": "\"at the Harbor Row\" is dropped from the hunting clause entirely - neither (Location sk_hunt_1 harbor_row) on the event nor an entity-attached position atom on the crowd is emitted."},
+               {"statement": 55, "issue": "the restrictor in \"the nightmoth crowd at the Harbor Row shrank\" is likewise dropped, so a stated locative restriction goes unrecorded for a second time."},
+               {"statement": 1, "issue": "harbor_station gets its Name atom but no (Member harbor_station station) type atom, although the kind word sits inside the name (same omission for harbor_row at statement 35)."},
+               {"statement": 63, "issue": "\"left silken threads on the lantern\" deposits the threads without altering them, so the object should be Theme, not Patient (the same role error is copied into the per-member rule at statement 66)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["verb/noun homonymy under lemmatization: the lighting event class (Member sk_light_1 light) and the illumination kind (Inheritance mist_light light) collapse onto one symbol `light`, and the instruction set offers no sense-distinguishing mechanism"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The group/count encoding, the per-member distribution rules for the distributive plural subjects, the deadline \"by evening\" as TimeAtMost, and \"stored\" kept as a participial adjective are all handled per the instruction set. The recurring defect is the silently dropped \"at the Harbor Row\" locative."}

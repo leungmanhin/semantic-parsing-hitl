@@ -1,0 +1,121 @@
+{
+ "id": "E8-05",
+ "rule": "VIII — The following autumn",
+ "texts": [
+  "On day 396 of Year 2, Coraline Ash wrote in her log that a bright lantern draws a crowd of nightmoths.",
+  "Coraline Ash wrote in her log that a crowd of nightmoths brings sky-cats down from the cliff-spires.",
+  "Coraline Ash wrote in her log that sky-cats molt during hunts.",
+  "Coraline Ash wrote in her log that ground feathers make the Sunken Cove safe.",
+  "Coraline Ash read the note to Pell at breakfast."
+ ],
+ "passage": {
+  "corpus_id": "evtp2-000017",
+  "sentences": [
+   "On day 396 of Year 2, Coraline Ash wrote in her log that a bright lantern draws a crowd of nightmoths.",
+   "Coraline Ash wrote in her log that a crowd of nightmoths brings sky-cats down from the cliff-spires.",
+   "Coraline Ash wrote in her log that sky-cats molt during hunts.",
+   "Coraline Ash wrote in her log that ground feathers make the Sunken Cove safe.",
+   "Coraline Ash read the note to Pell at breakfast."
+  ],
+  "parse": [
+   "(: ca_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+   "(: log_type (Member sk_log_1 log) (STV 1.0 0.99))",
+   "(: log_poss (Possession sk_log_1 coraline_ash) (STV 1.0 0.99))",
+   "(: w1_ev (Member sk_write_1 write) (STV 1.0 0.99))",
+   "(: w1_exp (Experiencer sk_write_1 coraline_ash) (STV 1.0 0.99))",
+   "(: w1_loc (Location sk_write_1 sk_log_1) (STV 1.0 0.99))",
+   "(: w1_time_y (Time sk_write_1 (Year 2)) (STV 1.0 0.99))",
+   "(: w1_time_d (Time sk_write_1 (Day 396)) (STV 1.0 0.99))",
+   "(: w1_past (Past sk_write_1) (STV 1.0 0.99))",
+   "(: w1_theme (Theme sk_write_1 (And (Member sk_lantern_1 lantern) (Member sk_lantern_1 bright) (Member sk_draw_1 draw) (Agent sk_draw_1 sk_lantern_1) (Theme sk_draw_1 sk_crowd_1) (Member sk_crowd_1 crowd) (GroupOf sk_crowd_1 nightmoth))) (STV 1.0 0.99))",
+   "(: nightmoth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: w2_ev (Member sk_write_2 write) (STV 1.0 0.99))",
+   "(: w2_exp (Experiencer sk_write_2 coraline_ash) (STV 1.0 0.99))",
+   "(: w2_loc (Location sk_write_2 sk_log_1) (STV 1.0 0.99))",
+   "(: w2_past (Past sk_write_2) (STV 1.0 0.99))",
+   "(: w2_theme (Theme sk_write_2 (And (Member sk_crowd_2 crowd) (GroupOf sk_crowd_2 nightmoth) (Member sk_bring_1 bring) (Agent sk_bring_1 sk_crowd_2) (Theme sk_bring_1 sk_skycat_1) (GroupOf sk_skycat_1 sky_cat) (Source sk_bring_1 sk_cliffspire_1) (GroupOf sk_cliffspire_1 cliff_spire))) (STV 1.0 0.99))",
+   "(: skycat_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+   "(: cliffspire_genus (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+   "(: w3_ev (Member sk_write_3 write) (STV 1.0 0.99))",
+   "(: w3_exp (Experiencer sk_write_3 coraline_ash) (STV 1.0 0.99))",
+   "(: w3_loc (Location sk_write_3 sk_log_1) (STV 1.0 0.99))",
+   "(: w3_past (Past sk_write_3) (STV 1.0 0.99))",
+   "(: w3_theme (Theme sk_write_3 (Implication (Member $x sky_cat) (And (Member (sk_molt $x) molt) (Patient (sk_molt $x) $x) (Member (sk_hunt $x) hunt) (Agent (sk_hunt $x) $x) (During (sk_molt $x) (sk_hunt $x))))) (STV 1.0 0.99))",
+   "(: w4_ev (Member sk_write_4 write) (STV 1.0 0.99))",
+   "(: w4_exp (Experiencer sk_write_4 coraline_ash) (STV 1.0 0.99))",
+   "(: w4_loc (Location sk_write_4 sk_log_1) (STV 1.0 0.99))",
+   "(: w4_past (Past sk_write_4) (STV 1.0 0.99))",
+   "(: w4_theme (Theme sk_write_4 (Implication (And (Member $x feather) (Member $x ground)) (And (Member (sk_make $x) make) (Agent (sk_make $x) $x) (Patient (sk_make $x) sunken_cove) (Member (sk_safe $x) safe) (Experiencer (sk_safe $x) sunken_cove) (Result (sk_make $x) (sk_safe $x)) (Member sunken_cove safe)))) (STV 1.0 0.99))",
+   "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+   "(: r5_ev (Member sk_read_1 read) (STV 1.0 0.99))",
+   "(: r5_agent (Agent sk_read_1 coraline_ash) (STV 1.0 0.99))",
+   "(: r5_note (Member sk_note_1 note) (STV 1.0 0.99))",
+   "(: r5_theme (Theme sk_read_1 sk_note_1) (STV 1.0 0.99))",
+   "(: r5_recip (Recipient sk_read_1 pell) (STV 1.0 0.99))",
+   "(: pell_name (Name pell \"Pell\") (STV 1.0 0.99))",
+   "(: r5_time (Time sk_read_1 breakfast) (STV 1.0 0.99))",
+   "(: r5_past (Past sk_read_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp2-000017",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 22,
+     "issue": "The sealed rule for \"sky-cats molt during hunts\" adds (Agent (sk_hunt $x) $x), asserting the sky-cats are the hunters, which the bare \"during hunts\" adjunct never states -- an event-noun that is only a temporal anchor gets its class atom and the ordering relation and nothing else."
+    },
+    {
+     "statement": 15,
+     "issue": "\"brings sky-cats down from the cliff-spires\" drops the particle/direction \"down\" with no trace: the phrasal-verb rule would keep bring_down as one surface symbol, and no oblique records the downward path."
+    },
+    {
+     "statement": 15,
+     "issue": "The definite plural \"the cliff-spires\" keeps its typing atom (GroupOf sk_cliffspire_1 cliff_spire) inside the Theme seal, although a definite referent inside a seal is presupposed and its typing should be emitted at top level beside the wrapper."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "meal-name temporal adjunct (\"at breakfast\") -- it is neither a calendar/clock term, a listed deictic, nor a listed day-part (morning/afternoon/evening/night/dawn/noon/dusk), so there is no stated licensed Time filler for it"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "(Location sk_write_N sk_log_1) for \"wrote in her log\" is arguable -- the instruction set routes a non-spatial \"in <medium>\" (its own \"in a statement\" case) to the preposition-named In oblique instead. The rest follows doctrine: four separate non-factive write seals, indefinites kept sealed, and the Sunken Cove's Name/Member plus the compound genus atoms correctly projected to top level."
+  },
+  "adjudication": {
+   "id": "evtp2-000017",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Time states that an event-noun serving only as a temporal anchor in an adjunct \"gets its class atom and the ordering relation and nothing else\", so (Agent (sk_hunt $x) $x) makes each sky-cat the hunter on words the bare \"during hunts\" never supplies (Core patterns: point at the words that put the atom there)."
+    },
+    {
+     "index": 1,
+     "verdict": "partial",
+     "reason": "The first half stands -- \"down\" leaves no trace and the phrasal-verb rule (\"do not split off or drop the particle\") would have kept bring_down -- but the second half does not: a \"from\" PP answering whence is correctly Source, no oblique can carry a bare directional adverb (a preposition-named oblique needs an object NP and Manner is barred), so nothing emitted is false or ill-typed."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Core patterns (Sealing) projects a definite referent's typing to top level \"in every sealing construct alike\", and its worked denial case names the \"GroupOf / Member typing\" of a definite plural specifically, so (GroupOf sk_cliffspire_1 cliff_spire) for \"the cliff-spires\" belongs beside the Theme wrapper, not inside it."
+    }
+   ],
+   "gaps_confirmed": [
+    "meal-name temporal adjunct (\"at breakfast\"): a meal noun is also an event noun, and the two routes that could take it both stop short -- it is not among the day-part constants (morning/afternoon/evening/night/dawn/noon/dusk) that the Time-point rule enumerates, and the event-noun-anchor route supplies no head for \"at\" (only before/after/during)"
+   ],
+   "new_gaps": [
+    "a directional particle separated from its verb by the object (\"brings sky-cats down from the cliff-spires\"): when the \"from\" PP already takes Source, nothing carries the bare \"down\" -- Manner is barred for non-manner adverbs and preposition-named obliques need an object NP -- and the phrasal-verb rule does not say whether it still applies when the particle is separated, so a licensed form must either fuse bring_down or lose the direction",
+    "seal projection for a definite PLURAL: the interim projection table lists only \"Member/Name typing\" as projecting out of an attitude / quotation / AccordingTo seal, while the parallel denial bullet names GroupOf as well -- the table should state that a definite plural's GroupOf projects too",
+    "non-Gregorian day-of-year dating (\"on day 396 of Year 2\"): (Day n) is the day-of-month granularity term and 396 cannot be one, so the day index is stored in a slot that does not mean what the text states"
+   ],
+   "decision": "defect",
+   "defect_summary": "The sealed rule for \"sky-cats molt during hunts\" should keep only (Member (sk_hunt $x) hunt) plus (During (sk_molt $x) (sk_hunt $x)) and drop (Agent (sk_hunt $x) $x); (GroupOf sk_cliffspire_1 cliff_spire) should be emitted at top level beside w2's Theme wrapper with the rest of P left sealed; for the lost \"down\" the only form that retains it is the fused particle symbol bring_down (Theme and Source unchanged), and if the separated particle is instead read as a bare directional adverb the instruction set licenses no carrier at all -- filed as a gap.",
+   "notes": "Unfiled by the reviewer but worth fixing on re-parse: (Location sk_write_N sk_log_1) for \"wrote in her log\" should be the preposition-named (In sk_write_N sk_log_1) -- the instruction set routes the non-spatial \"in a statement\" case there explicitly, and a log is a medium, not a place. Otherwise the four separate non-factive write seals, the sealed indefinites, the adjectivally-restricted distributing rule for \"ground feathers\", and the projected Name/Member and compound-genus atoms all follow doctrine."
+  }
+ }
+}

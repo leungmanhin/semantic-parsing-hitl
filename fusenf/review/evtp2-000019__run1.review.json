@@ -1,0 +1,17 @@
+{"id": "evtp2-000019", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 14, "issue": "\"The lanterns burned mire-essence\" emits only the group event; a definite plural with a distributive predicate must also emit the per-member (Implication (PartOf $x sk_lanterns_1) ...) rule, and the same rule is missing at statements 39 (showed), 55 (left), 60 (collected) and 85 (drew)."},
+   {"statement": 18, "issue": "(Inheritance salt_bloomed bloomed) decomposes a compound adjective, which the compound-kind rule does not license -- that rule covers modifier + real head NOUN, and the instruction set's own warm_blooded example emits no genus."},
+   {"statement": 32, "issue": "The continuation-copular dual-emit's flat half is emitted bare as (Member $x lit) instead of the tense-wrapped (Past (Member $x lit)) that the \"Alice was ill on Friday\" pattern prescribes, so the past copular is recorded on the state witness only."},
+   {"statement": 57, "issue": "\"left silken threads on the lanterns\" assigns Patient, but the threads are deposited rather than created, destroyed, consumed or physically changed by the leaving, and the instruction set's tiebreak for the unclear case is Theme."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "an anaphoric definite mass NP (\"The mire-essence\", \"The mist-light\") whose antecedent was stored as a bare kind filler -- the instruction set licenses the bare kind for a non-specific object but gives no way to corefer back to it, so the parse mints fresh witnesses (statements 20 and 44) and the discourse chain breaks",
+   "compound ADJECTIVE formation (\"salt-bloomed\") -- Compound concepts covers verb_object, verb_particle and modifier + head-noun only, so whether a genus/decomposition atom is licensed for a modifier + participial-adjective compound is unstated"
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"Together\" is handled correctly (collective, group-only, no per-member rule) in statements 6-9 and 35-38, and \"Each of the lanterns stayed lit\" gets the prescribed Still + reified-state + QuantifierPhrase shape. (CardinalityPhrase sk_nightmoth_1 \"handful\") may not match the canonical lexicon string, which the instruction set writes as \"a handful\"."}

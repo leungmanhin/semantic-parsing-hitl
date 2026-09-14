@@ -1,0 +1,26 @@
+{"id": "evtp2-000019", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "confirm",
+    "reason": "Cardinality and Quantifiers, generics & scope both state that a definite/grouped plural with a distributive predicate keeps the group event AND adds the per-member (Implication (PartOf $x <group>) ...) rule (\"the dogs barked\" is the worked example), and none of burned / showed / left / collected / drew is a reciprocal-aggregate predicate or marked \"together\", so the rule is owed at all five sites."},
+   {"index": 1,
+    "verdict": "confirm",
+    "reason": "The compound-kind genus rule is defined only for a modifier_noun \"whose last word is a real head noun\", `bloomed` is a participial adjective and not a noun, and the instruction set's own warm_blooded example emits no genus, so (Inheritance salt_bloomed bloomed) hands every lantern the property `bloomed` — content the text never states."},
+   {"index": 2,
+    "verdict": "confirm",
+    "reason": "\"The surface tense decides, mechanically\" requires a past copular to wrap its categorical atom, and the copular-with-time-modifier dual-emit is shown as reified state + `(Past (Member alice ill))`, so the bare `(Member $x lit)` conclusion asserts an untensed, still-holding lit state that the past-tense \"stayed lit\" does not claim."},
+   {"index": 3,
+    "verdict": "confirm",
+    "reason": "Thematic roles reserves `Patient` for an object the action creates, destroys, consumes or physically changes; the threads are deposited unchanged by the leaving, and the stated tiebreak (\"When the test is unclear, default to Theme\") points the same way."}
+ ],
+ "gaps_confirmed": [
+   "No licensed way to corefer an anaphoric definite mass NP (\"The mire-essence\", \"The mist-light\") back to an antecedent stored as a bare kind filler, so the parse mints fresh witnesses and the discourse chain breaks.",
+   "Compound ADJECTIVE formation (noun + participial adjective, \"salt-bloomed\"): Compound concepts covers verb_object, verb_particle and modifier + head-noun only, so no rule states whether a genus atom is licensed — only the warm_blooded example, which emits none."
+ ],
+ "new_gaps": [
+   "Non-Gregorian ordinal dating (\"day 460 of Year 2\", \"day 461 of Year 2\"): the Time term inventory presumes calendar month/day and CE-year expressions, so (Day 460) reuses the day-of-month slot outside its range and (Year 2) the CE-year slot; a licensed form would need a day-of-year / era-year term that a day-of-month or CE-year query cannot falsely match.",
+   "Bare MASS NPs in episodic clauses have no stated treatment: the bare-plural episodic rule mints a group witness and the bare-kind filler is reserved for non-specific objects, but nothing covers a mass noun as an episodic subject (\"Mire-essence formed in a cauldron\") or as a later-referenced episodic object — which is what leaves one passage holding both `mire_essence` (bare kind) and `sk_mire_essence_1` for the same stuff."
+ ],
+ "decision": "defect",
+ "defect_summary": "Issue 0: each of the five definite-plural group events (burned, showed, left, collected, drew) must additionally carry its per-member (Implication (PartOf $x <group>) (And ...)) rule at (STV 1.0 0.9) beside the group event, exactly as the parse's own s3_rule and s6_rule already do. Issue 1: `salt_bloomed` must stay an opaque property symbol with no decomposition atom, following the instruction set's warm_blooded precedent. Issue 2: the continuation-copular rule's flat half must be the tense-wrapped (Past (Member $x lit)), matching the (Past (Member $x salt_bloomed)) the same parse emits at s3_rule. Issue 3: the deposited threads take (Theme sk_leave_1 sk_thread_1).",
+ "notes": "The parse is internally inconsistent rather than uniformly wrong: s3_rule gets the tense-wrapped distributive copular exactly right while s6_rule does not, and s1/s7 correctly keep \"together\" collective while five unmarked plurals lose their distribution rule. Separately, (CardinalityPhrase sk_nightmoth_1 \"handful\") records the phrase as \"handful\" where the instruction set's vague-quantity lexicon lists it as \"a handful\" — the reviewer raised this only in notes and I have not scored it."}

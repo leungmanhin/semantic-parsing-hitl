@@ -1,0 +1,203 @@
+{
+ "id": "E9-10",
+ "rule": "IX — Smaller incidents through Year 2",
+ "texts": [
+  "On day 460 of Year 2, the keepers of the Middle Row together lit the lanterns of the Middle Row at sundown.",
+  "The lanterns burned mire-essence.",
+  "The lanterns of the Middle Row were salt-bloomed.",
+  "The mire-essence burned slowly.",
+  "A cold wind struck the salt-bloomed lanterns of the Middle Row at night.",
+  "Each of the lanterns stayed lit.",
+  "Together, the lanterns produced mist-light.",
+  "The lanterns showed mist-light at night.",
+  "The mist-light attracted a handful of nightmoths.",
+  "The nightmoths left silken threads on the lanterns.",
+  "The keepers of the Middle Row collected the silken threads from the lanterns at dawn on day 461 of Year 2.",
+  "Hesper boiled the silken threads in sea-water on day 461 of Year 2.",
+  "Mire-essence formed in a cauldron by evening.",
+  "The keepers of the Middle Row drew the stored mire-essence at sundown on day 461 of Year 2."
+ ],
+ "passage": {
+  "corpus_id": "evtp2-000019",
+  "sentences": [
+   "On day 460 of Year 2, the keepers of the Middle Row together lit the lanterns of the Middle Row at sundown.",
+   "The lanterns burned mire-essence.",
+   "The lanterns of the Middle Row were salt-bloomed.",
+   "The mire-essence burned slowly.",
+   "A cold wind struck the salt-bloomed lanterns of the Middle Row at night.",
+   "Each of the lanterns stayed lit.",
+   "Together, the lanterns produced mist-light.",
+   "The lanterns showed mist-light at night.",
+   "The mist-light attracted a handful of nightmoths.",
+   "The nightmoths left silken threads on the lanterns.",
+   "The keepers of the Middle Row collected the silken threads from the lanterns at dawn on day 461 of Year 2.",
+   "Hesper boiled the silken threads in sea-water on day 461 of Year 2.",
+   "Mire-essence formed in a cauldron by evening.",
+   "The keepers of the Middle Row drew the stored mire-essence at sundown on day 461 of Year 2."
+  ],
+  "parse": [
+   "(: s1_mrow_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+   "(: s1_mrow_type (Member middle_row row) (STV 1.0 0.99))",
+   "(: s1_keep_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+   "(: s1_keep_poss (Possession sk_keepers_1 middle_row) (STV 1.0 0.99))",
+   "(: s1_lant_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+   "(: s1_lant_poss (Possession sk_lanterns_1 middle_row) (STV 1.0 0.99))",
+   "(: s1_light_ev (Member sk_light_1 light) (STV 1.0 0.99))",
+   "(: s1_light_ag (Agent sk_light_1 sk_keepers_1) (STV 1.0 0.99))",
+   "(: s1_light_pat (Patient sk_light_1 sk_lanterns_1) (STV 1.0 0.99))",
+   "(: s1_light_tense (Past sk_light_1) (STV 1.0 0.99))",
+   "(: s1_light_day (Time sk_light_1 (Day 460)) (STV 1.0 0.99))",
+   "(: s1_light_year (Time sk_light_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s1_light_sundown (Time sk_light_1 sundown) (STV 1.0 0.99))",
+   "(: s2_ess_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: s2_burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: s2_burn_ag (Agent sk_burn_1 sk_lanterns_1) (STV 1.0 0.99))",
+   "(: s2_burn_pat (Patient sk_burn_1 mire_essence) (STV 1.0 0.99))",
+   "(: s2_burn_tense (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: s3_bloom_genus (Inheritance salt_bloomed bloomed) (STV 1.0 0.99))",
+   "(: s3_rule (Implication (PartOf $x sk_lanterns_1) (Past (Member $x salt_bloomed))) (STV 1.0 0.9))",
+   "(: s4_me_wit (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+   "(: s4_burn_ev (Member sk_burn_2 burn) (STV 1.0 0.99))",
+   "(: s4_burn_pat (Patient sk_burn_2 sk_mire_essence_1) (STV 1.0 0.99))",
+   "(: s4_burn_manner (Manner sk_burn_2 slowly) (STV 1.0 0.99))",
+   "(: s4_burn_tense (Past sk_burn_2) (STV 1.0 0.99))",
+   "(: s5_wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+   "(: s5_wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+   "(: s5_strike_ev (Member sk_strike_1 strike) (STV 1.0 0.99))",
+   "(: s5_strike_ag (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+   "(: s5_strike_th (Theme sk_strike_1 sk_lanterns_1) (STV 1.0 0.99))",
+   "(: s5_strike_time (Time sk_strike_1 night) (STV 1.0 0.99))",
+   "(: s5_strike_tense (Past sk_strike_1) (STV 1.0 0.99))",
+   "(: s6_rule (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_lit $x) lit) (Experiencer (sk_lit $x) $x) (Still (sk_lit $x)) (Past (sk_lit $x)) (Member $x lit))) (STV 1.0 0.9))",
+   "(: s6_q (QuantifierPhrase lantern lit \"each\") (STV 1.0 0.99))",
+   "(: s7_light_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+   "(: s7_prod_ev (Member sk_produce_1 produce) (STV 1.0 0.99))",
+   "(: s7_prod_ag (Agent sk_produce_1 sk_lanterns_1) (STV 1.0 0.99))",
+   "(: s7_prod_pat (Patient sk_produce_1 mist_light) (STV 1.0 0.99))",
+   "(: s7_prod_tense (Past sk_produce_1) (STV 1.0 0.99))",
+   "(: s8_show_ev (Member sk_show_1 show) (STV 1.0 0.99))",
+   "(: s8_show_ag (Agent sk_show_1 sk_lanterns_1) (STV 1.0 0.99))",
+   "(: s8_show_th (Theme sk_show_1 mist_light) (STV 1.0 0.99))",
+   "(: s8_show_time (Time sk_show_1 night) (STV 1.0 0.99))",
+   "(: s8_show_tense (Past sk_show_1) (STV 1.0 0.99))",
+   "(: s9_ml_wit (Member sk_mist_light_1 mist_light) (STV 1.0 0.99))",
+   "(: s9_moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+   "(: s9_moth_grp (GroupOf sk_nightmoth_1 nightmoth) (STV 1.0 0.99))",
+   "(: s9_moth_card (CardinalityPhrase sk_nightmoth_1 \"handful\") (STV 1.0 0.99))",
+   "(: s9_attract_ev (Member sk_attract_1 attract) (STV 1.0 0.99))",
+   "(: s9_attract_ag (Agent sk_attract_1 sk_mist_light_1) (STV 1.0 0.99))",
+   "(: s9_attract_th (Theme sk_attract_1 sk_nightmoth_1) (STV 1.0 0.99))",
+   "(: s9_attract_tense (Past sk_attract_1) (STV 1.0 0.99))",
+   "(: s10_thread_genus (Inheritance silken_thread thread) (STV 1.0 0.99))",
+   "(: s10_thread_mod (Inheritance silken_thread silken) (STV 1.0 0.99))",
+   "(: s10_thread_grp (GroupOf sk_thread_1 silken_thread) (STV 1.0 0.99))",
+   "(: s10_leave_ev (Member sk_leave_1 leave) (STV 1.0 0.99))",
+   "(: s10_leave_ag (Agent sk_leave_1 sk_nightmoth_1) (STV 1.0 0.99))",
+   "(: s10_leave_pat (Patient sk_leave_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: s10_leave_loc (Location sk_leave_1 sk_lanterns_1) (STV 1.0 0.99))",
+   "(: s10_leave_tense (Past sk_leave_1) (STV 1.0 0.99))",
+   "(: s11_collect_ev (Member sk_collect_1 collect) (STV 1.0 0.99))",
+   "(: s11_collect_ag (Agent sk_collect_1 sk_keepers_1) (STV 1.0 0.99))",
+   "(: s11_collect_th (Theme sk_collect_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: s11_collect_src (Source sk_collect_1 sk_lanterns_1) (STV 1.0 0.99))",
+   "(: s11_collect_tense (Past sk_collect_1) (STV 1.0 0.99))",
+   "(: s11_collect_dawn (Time sk_collect_1 dawn) (STV 1.0 0.99))",
+   "(: s11_collect_day (Time sk_collect_1 (Day 461)) (STV 1.0 0.99))",
+   "(: s11_collect_year (Time sk_collect_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s12_hesper_name (Name hesper \"Hesper\") (STV 1.0 0.99))",
+   "(: s12_water_genus (Inheritance sea_water water) (STV 1.0 0.99))",
+   "(: s12_boil_ev (Member sk_boil_1 boil) (STV 1.0 0.99))",
+   "(: s12_boil_ag (Agent sk_boil_1 hesper) (STV 1.0 0.99))",
+   "(: s12_boil_pat (Patient sk_boil_1 sk_thread_1) (STV 1.0 0.99))",
+   "(: s12_boil_loc (Location sk_boil_1 sea_water) (STV 1.0 0.99))",
+   "(: s12_boil_tense (Past sk_boil_1) (STV 1.0 0.99))",
+   "(: s12_boil_day (Time sk_boil_1 (Day 461)) (STV 1.0 0.99))",
+   "(: s12_boil_year (Time sk_boil_1 (Year 2)) (STV 1.0 0.99))",
+   "(: s13_me_wit (Member sk_mire_essence_2 mire_essence) (STV 1.0 0.99))",
+   "(: s13_cauldron_wit (Member sk_cauldron_1 cauldron) (STV 1.0 0.99))",
+   "(: s13_form_ev (Member sk_form_1 form) (STV 1.0 0.99))",
+   "(: s13_form_pat (Patient sk_form_1 sk_mire_essence_2) (STV 1.0 0.99))",
+   "(: s13_form_loc (Location sk_form_1 sk_cauldron_1) (STV 1.0 0.99))",
+   "(: s13_form_time (TimeAtMost sk_form_1 evening) (STV 1.0 0.99))",
+   "(: s13_form_tense (Past sk_form_1) (STV 1.0 0.99))",
+   "(: s14_me_stored (Member sk_mire_essence_2 stored) (STV 1.0 0.99))",
+   "(: s14_draw_ev (Member sk_draw_1 draw) (STV 1.0 0.99))",
+   "(: s14_draw_ag (Agent sk_draw_1 sk_keepers_1) (STV 1.0 0.99))",
+   "(: s14_draw_th (Theme sk_draw_1 sk_mire_essence_2) (STV 1.0 0.99))",
+   "(: s14_draw_tense (Past sk_draw_1) (STV 1.0 0.99))",
+   "(: s14_draw_sundown (Time sk_draw_1 sundown) (STV 1.0 0.99))",
+   "(: s14_draw_day (Time sk_draw_1 (Day 461)) (STV 1.0 0.99))",
+   "(: s14_draw_year (Time sk_draw_1 (Year 2)) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp2-000019",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 14,
+     "issue": "\"The lanterns burned mire-essence\" emits only the group event; a definite plural with a distributive predicate must also emit the per-member (Implication (PartOf $x sk_lanterns_1) ...) rule, and the same rule is missing at statements 39 (showed), 55 (left), 60 (collected) and 85 (drew)."
+    },
+    {
+     "statement": 18,
+     "issue": "(Inheritance salt_bloomed bloomed) decomposes a compound adjective, which the compound-kind rule does not license -- that rule covers modifier + real head NOUN, and the instruction set's own warm_blooded example emits no genus."
+    },
+    {
+     "statement": 32,
+     "issue": "The continuation-copular dual-emit's flat half is emitted bare as (Member $x lit) instead of the tense-wrapped (Past (Member $x lit)) that the \"Alice was ill on Friday\" pattern prescribes, so the past copular is recorded on the state witness only."
+    },
+    {
+     "statement": 57,
+     "issue": "\"left silken threads on the lanterns\" assigns Patient, but the threads are deposited rather than created, destroyed, consumed or physically changed by the leaving, and the instruction set's tiebreak for the unclear case is Theme."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "an anaphoric definite mass NP (\"The mire-essence\", \"The mist-light\") whose antecedent was stored as a bare kind filler -- the instruction set licenses the bare kind for a non-specific object but gives no way to corefer back to it, so the parse mints fresh witnesses (statements 20 and 44) and the discourse chain breaks",
+    "compound ADJECTIVE formation (\"salt-bloomed\") -- Compound concepts covers verb_object, verb_particle and modifier + head-noun only, so whether a genus/decomposition atom is licensed for a modifier + participial-adjective compound is unstated"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "\"Together\" is handled correctly (collective, group-only, no per-member rule) in statements 6-9 and 35-38, and \"Each of the lanterns stayed lit\" gets the prescribed Still + reified-state + QuantifierPhrase shape. (CardinalityPhrase sk_nightmoth_1 \"handful\") may not match the canonical lexicon string, which the instruction set writes as \"a handful\"."
+  },
+  "adjudication": {
+   "id": "evtp2-000019",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Cardinality and Quantifiers, generics & scope both state that a definite/grouped plural with a distributive predicate keeps the group event AND adds the per-member (Implication (PartOf $x <group>) ...) rule (\"the dogs barked\" is the worked example), and none of burned / showed / left / collected / drew is a reciprocal-aggregate predicate or marked \"together\", so the rule is owed at all five sites."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "The compound-kind genus rule is defined only for a modifier_noun \"whose last word is a real head noun\", `bloomed` is a participial adjective and not a noun, and the instruction set's own warm_blooded example emits no genus, so (Inheritance salt_bloomed bloomed) hands every lantern the property `bloomed` — content the text never states."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "\"The surface tense decides, mechanically\" requires a past copular to wrap its categorical atom, and the copular-with-time-modifier dual-emit is shown as reified state + `(Past (Member alice ill))`, so the bare `(Member $x lit)` conclusion asserts an untensed, still-holding lit state that the past-tense \"stayed lit\" does not claim."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "Thematic roles reserves `Patient` for an object the action creates, destroys, consumes or physically changes; the threads are deposited unchanged by the leaving, and the stated tiebreak (\"When the test is unclear, default to Theme\") points the same way."
+    }
+   ],
+   "gaps_confirmed": [
+    "No licensed way to corefer an anaphoric definite mass NP (\"The mire-essence\", \"The mist-light\") back to an antecedent stored as a bare kind filler, so the parse mints fresh witnesses and the discourse chain breaks.",
+    "Compound ADJECTIVE formation (noun + participial adjective, \"salt-bloomed\"): Compound concepts covers verb_object, verb_particle and modifier + head-noun only, so no rule states whether a genus atom is licensed — only the warm_blooded example, which emits none."
+   ],
+   "new_gaps": [
+    "Non-Gregorian ordinal dating (\"day 460 of Year 2\", \"day 461 of Year 2\"): the Time term inventory presumes calendar month/day and CE-year expressions, so (Day 460) reuses the day-of-month slot outside its range and (Year 2) the CE-year slot; a licensed form would need a day-of-year / era-year term that a day-of-month or CE-year query cannot falsely match.",
+    "Bare MASS NPs in episodic clauses have no stated treatment: the bare-plural episodic rule mints a group witness and the bare-kind filler is reserved for non-specific objects, but nothing covers a mass noun as an episodic subject (\"Mire-essence formed in a cauldron\") or as a later-referenced episodic object — which is what leaves one passage holding both `mire_essence` (bare kind) and `sk_mire_essence_1` for the same stuff."
+   ],
+   "decision": "defect",
+   "defect_summary": "Issue 0: each of the five definite-plural group events (burned, showed, left, collected, drew) must additionally carry its per-member (Implication (PartOf $x <group>) (And ...)) rule at (STV 1.0 0.9) beside the group event, exactly as the parse's own s3_rule and s6_rule already do. Issue 1: `salt_bloomed` must stay an opaque property symbol with no decomposition atom, following the instruction set's warm_blooded precedent. Issue 2: the continuation-copular rule's flat half must be the tense-wrapped (Past (Member $x lit)), matching the (Past (Member $x salt_bloomed)) the same parse emits at s3_rule. Issue 3: the deposited threads take (Theme sk_leave_1 sk_thread_1).",
+   "notes": "The parse is internally inconsistent rather than uniformly wrong: s3_rule gets the tense-wrapped distributive copular exactly right while s6_rule does not, and s1/s7 correctly keep \"together\" collective while five unmarked plurals lose their distribution rule. Separately, (CardinalityPhrase sk_nightmoth_1 \"handful\") records the phrase as \"handful\" where the instruction set's vague-quantity lexicon lists it as \"a handful\" — the reviewer raised this only in notes and I have not scored it."
+  }
+ }
+}

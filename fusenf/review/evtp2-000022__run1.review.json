@@ -1,0 +1,13 @@
+{"id": "evtp2-000022", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 52, "issue": "\"The four sky-cats hunted the nightmoth crowd\" is a counted definite plural with a non-collective predicate, so the per-member distribution rule over (PartOf $x sk_skycats_1) is due alongside the group event, but only the group event is emitted."},
+               {"statement": 85, "issue": "\"The nightmoths left silken threads on the lanterns\" likewise gets a group event with no per-member distribution rule, although leaving threads is distributive and every other plural-subject predicate in the parse (burn, show, descend, survive, flee, reach, molt) does get one."},
+               {"statement": 0, "issue": "\"the East Row\" is treated as a multi-word name but the kind word inside the name yields no type atom — the Kestrel-River rule directs that (Member east_row row) be stated beside the Name atom."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["An in-world calendar date (\"on day 630 of Year 2\"): the structured Time terms (Day n)/(Year n) are specified for Gregorian dates, and a day-of-year number far above 31 plus a bare regnal year are not addressed.",
+             "An anaphoric definite mass NP whose antecedent was encoded as a bare kind filler (\"the lanterns produced mist-light\" ... \"The mist-light attracted nightmoths\"): the bare-class rule gives the non-specific object the constant mist_light while the later definite mints sk_mistlight_1, and no rule links the two, so the passage's causal chain is severed.",
+             "An agent-nominalization's of-phrase (\"the keepers of the East Row\"): the nominalization test (\"the N of X\" ~ \"what Vs X\" -> the surface-preposition oblique (Of ...)) and the true-relational-noun/role carve-out (-> Possession) both fit a -er noun with a live underlying verb, and nothing selects between them."],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The collective/distributive split is otherwise handled exactly as specified — bare \"together\" suppresses the rule for lit and produced, and gather and shrink stay group-only — which makes the two missing rules read as omissions rather than collective readings. \"the Hollows\" is correctly Name-only with no type atom and no GroupOf, and the During link on the molting and the LocatedIn on the nightmoth crowd both follow the instruction set."}

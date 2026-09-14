@@ -1,0 +1,10 @@
+{"id": "evtp2-000004", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 69, "issue": "\"left silken threads\" takes Patient, but the threads are deposited rather than created/destroyed/physically changed, so the object-change test (and its \"when unclear, default to Theme\" fallback) gives Theme."},
+               {"statement": 78, "issue": "\"that night\" is an anaphoric temporal NP, so term propagation should copy the antecedent's stated day-level terms (Day 80, Year 1) onto sk_tend_1 alongside the day-part symbol; only the bare `night` is emitted."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"for the first time\" — an nth-occurrence adverbial on an event; Ordinal is specified for an entity's rank on a scale, not for counting occasions of the event itself, so the qualifier has no licensed carrier and is dropped"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Heads are all licensed (Beside is the entity-attached surface preposition, So the surface connective); the wick correctly gets no invented PartOf to the lantern. Two defensible-but-arguable choices: PartOf rather than Possession for \"the lantern of the Harbor Station\", and the bare kind fillers half_shift / mist_light where definite mentions might warrant witnesses."}

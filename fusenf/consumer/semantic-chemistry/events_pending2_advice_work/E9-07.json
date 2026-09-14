@@ -1,0 +1,239 @@
+{
+ "id": "E9-07",
+ "rule": "IX — Smaller incidents through Year 2",
+ "texts": [
+  "On day 495 of Year 2, Bevin Coombe scattered fresh ground feathers around the Stilllight Lantern in the evening.",
+  "The Stilllight Lantern was lit that night.",
+  "The Stilllight Lantern burned steadily that night.",
+  "Bevin Coombe saw a pale shape near the water of the Sunken Cove.",
+  "The shape turned away before the shape reached the Stilllight Lantern.",
+  "Bevin Coombe reported the sighting to the Council.",
+  "The Council held an emergency session the next afternoon.",
+  "The Council logged the report as a possible wraith near-miss.",
+  "The Council kept the doubled feather ration at the Stilllight Station for two months.",
+  "The Council told the keepers of the West Row to stay alert.",
+  "No further sighting followed.",
+  "The Council judged that the feather warding had prevented a full emergence."
+ ],
+ "passage": {
+  "corpus_id": "evtp2-000020",
+  "sentences": [
+   "On day 495 of Year 2, Bevin Coombe scattered fresh ground feathers around the Stilllight Lantern in the evening.",
+   "The Stilllight Lantern was lit that night.",
+   "The Stilllight Lantern burned steadily that night.",
+   "Bevin Coombe saw a pale shape near the water of the Sunken Cove.",
+   "The shape turned away before the shape reached the Stilllight Lantern.",
+   "Bevin Coombe reported the sighting to the Council.",
+   "The Council held an emergency session the next afternoon.",
+   "The Council logged the report as a possible wraith near-miss.",
+   "The Council kept the doubled feather ration at the Stilllight Station for two months.",
+   "The Council told the keepers of the West Row to stay alert.",
+   "No further sighting followed.",
+   "The Council judged that the feather warding had prevented a full emergence."
+  ],
+  "parse": [
+   "(: bc_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+   "(: lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+   "(: e1_ev (Member sk_scatter_1 scatter) (STV 1.0 0.99))",
+   "(: e1_ag (Agent sk_scatter_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: e1_th (Theme sk_scatter_1 sk_feather_1) (STV 1.0 0.99))",
+   "(: e1_loc (Location sk_scatter_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: e1_time_d (Time sk_scatter_1 (Day 495)) (STV 1.0 0.99))",
+   "(: e1_time_y (Time sk_scatter_1 (Year 2)) (STV 1.0 0.99))",
+   "(: e1_time_p (Time sk_scatter_1 evening) (STV 1.0 0.99))",
+   "(: e1_tense (Past sk_scatter_1) (STV 1.0 0.99))",
+   "(: feather_grp (GroupOf sk_feather_1 feather) (STV 1.0 0.99))",
+   "(: feather_fresh (Implication (PartOf $x sk_feather_1) (Member $x fresh)) (STV 1.0 0.9))",
+   "(: feather_ground (Implication (PartOf $x sk_feather_1) (Member $x ground)) (STV 1.0 0.9))",
+   "(: lit_ev (Member sk_lit_1 lit) (STV 1.0 0.99))",
+   "(: lit_exp (Experiencer sk_lit_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: lit_time_d (Time sk_lit_1 (Day 495)) (STV 1.0 0.99))",
+   "(: lit_time_y (Time sk_lit_1 (Year 2)) (STV 1.0 0.99))",
+   "(: lit_time_n (Time sk_lit_1 night) (STV 1.0 0.99))",
+   "(: lit_tense (Past sk_lit_1) (STV 1.0 0.99))",
+   "(: lit_flat (Past (Member stilllight_lantern lit)) (STV 1.0 0.99))",
+   "(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: burn_pat (Patient sk_burn_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: burn_man (Manner sk_burn_1 steadily) (STV 1.0 0.99))",
+   "(: burn_time_d (Time sk_burn_1 (Day 495)) (STV 1.0 0.99))",
+   "(: burn_time_y (Time sk_burn_1 (Year 2)) (STV 1.0 0.99))",
+   "(: burn_time_n (Time sk_burn_1 night) (STV 1.0 0.99))",
+   "(: burn_tense (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: see_ev (Member sk_see_1 see) (STV 1.0 0.99))",
+   "(: see_exp (Experiencer sk_see_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: see_stim (Stimulus sk_see_1 sk_shape_1) (STV 1.0 0.99))",
+   "(: see_tense (Past sk_see_1) (STV 1.0 0.99))",
+   "(: shape_type (Member sk_shape_1 shape) (STV 1.0 0.99))",
+   "(: shape_pale (Member sk_shape_1 pale) (STV 1.0 0.99))",
+   "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+   "(: water_type (Member sk_water_1 water) (STV 1.0 0.99))",
+   "(: water_loc (LocatedIn sk_water_1 sunken_cove) (STV 1.0 0.99))",
+   "(: shape_near (Near sk_shape_1 sk_water_1) (STV 1.0 0.99))",
+   "(: turn_ev (Member sk_turn_away_1 turn_away) (STV 1.0 0.99))",
+   "(: turn_ag (Agent sk_turn_away_1 sk_shape_1) (STV 1.0 0.99))",
+   "(: turn_tense (Past sk_turn_away_1) (STV 1.0 0.99))",
+   "(: reach_ev (Member sk_reach_1 reach) (STV 1.0 0.99))",
+   "(: reach_ag (Agent sk_reach_1 sk_shape_1) (STV 1.0 0.99))",
+   "(: reach_th (Theme sk_reach_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: reach_tense (Past sk_reach_1) (STV 1.0 0.99))",
+   "(: turn_before_reach (Before sk_turn_away_1 sk_reach_1) (STV 1.0 0.99))",
+   "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: report_ev (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: report_ag (Agent sk_report_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: report_th (Theme sk_report_1 sk_see_1) (STV 1.0 0.99))",
+   "(: report_rec (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: report_tense (Past sk_report_1) (STV 1.0 0.99))",
+   "(: session_type (Member sk_session_1 emergency_session) (STV 1.0 0.99))",
+   "(: session_genus (Inheritance emergency_session session) (STV 1.0 0.99))",
+   "(: hold_ev (Member sk_hold_1 hold) (STV 1.0 0.99))",
+   "(: hold_ag (Agent sk_hold_1 sk_council_1) (STV 1.0 0.99))",
+   "(: hold_pat (Patient sk_hold_1 sk_session_1) (STV 1.0 0.99))",
+   "(: hold_time_d (Time sk_hold_1 (Day 496)) (STV 1.0 0.99))",
+   "(: hold_time_y (Time sk_hold_1 (Year 2)) (STV 1.0 0.99))",
+   "(: hold_time_a (Time sk_hold_1 afternoon) (STV 1.0 0.99))",
+   "(: hold_tense (Past sk_hold_1) (STV 1.0 0.99))",
+   "(: burn_before_hold (Before sk_burn_1 sk_hold_1) (STV 1.0 0.99))",
+   "(: log_ev (Member sk_log_1 log) (STV 1.0 0.99))",
+   "(: log_ag (Agent sk_log_1 sk_council_1) (STV 1.0 0.99))",
+   "(: log_th (Theme sk_log_1 (Might (Member sk_report_1 wraith_near_miss))) (STV 1.0 0.99))",
+   "(: log_tense (Past sk_log_1) (STV 1.0 0.99))",
+   "(: wnm_genus (Inheritance wraith_near_miss miss) (STV 1.0 0.99))",
+   "(: ration_type (Member sk_ration_1 feather_ration) (STV 1.0 0.99))",
+   "(: ration_genus (Inheritance feather_ration ration) (STV 1.0 0.99))",
+   "(: ration_doubled (Member sk_ration_1 doubled) (STV 1.0 0.99))",
+   "(: station_type (Member stilllight_station station) (STV 1.0 0.99))",
+   "(: station_name (Name stilllight_station \"Stilllight Station\") (STV 1.0 0.99))",
+   "(: keep_ev (Member sk_keep_1 keep) (STV 1.0 0.99))",
+   "(: keep_ag (Agent sk_keep_1 sk_council_1) (STV 1.0 0.99))",
+   "(: keep_th (Theme sk_keep_1 sk_ration_1) (STV 1.0 0.99))",
+   "(: keep_loc (Location sk_keep_1 stilllight_station) (STV 1.0 0.99))",
+   "(: keep_dur (Measure sk_keep_1 duration 2 month) (STV 1.0 0.99))",
+   "(: keep_tense (Past sk_keep_1) (STV 1.0 0.99))",
+   "(: keepers_grp (GroupOf sk_keepers_1 keeper) (STV 1.0 0.99))",
+   "(: row_type (Member west_row row) (STV 1.0 0.99))",
+   "(: row_name (Name west_row \"West Row\") (STV 1.0 0.99))",
+   "(: keepers_of (Of sk_keepers_1 west_row) (STV 1.0 0.99))",
+   "(: tell_ev (Member sk_tell_1 tell) (STV 1.0 0.99))",
+   "(: tell_ag (Agent sk_tell_1 sk_council_1) (STV 1.0 0.99))",
+   "(: tell_rec (Recipient sk_tell_1 sk_keepers_1) (STV 1.0 0.99))",
+   "(: tell_th (Theme sk_tell_1 sk_alert_1) (STV 1.0 0.99))",
+   "(: tell_tense (Past sk_tell_1) (STV 1.0 0.99))",
+   "(: alert_st (Member sk_alert_1 alert) (STV 1.0 0.99))",
+   "(: alert_exp (Experiencer sk_alert_1 sk_keepers_1) (STV 1.0 0.99))",
+   "(: no_sighting (And (Member sk_see_2 see) (Member sk_see_2 further) (Past sk_see_2)) (STV 0.0 0.99))",
+   "(: warding_type (Member sk_warding_1 feather_warding) (STV 1.0 0.99))",
+   "(: warding_genus (Inheritance feather_warding warding) (STV 1.0 0.99))",
+   "(: judge_ev (Member sk_judge_1 judge) (STV 1.0 0.99))",
+   "(: judge_exp (Experiencer sk_judge_1 sk_council_1) (STV 1.0 0.99))",
+   "(: judge_th (Theme sk_judge_1 (And (Member sk_prevent_1 prevent) (Agent sk_prevent_1 sk_warding_1) (Theme sk_prevent_1 sk_emerge_1) (Past sk_prevent_1) (Member sk_emerge_1 emergence) (Member sk_emerge_1 full))) (STV 1.0 0.99))",
+   "(: judge_tense (Past sk_judge_1) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp2-000020",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 14,
+     "issue": "\"The Stilllight Lantern was lit that night\" is parsed as an adjectival state (reified lit state plus flat copular atom), but a predicative participle is a verb by the instruction set's own test (\"the worktop was laminated\" IS a verb), so this should be the agentless passive of light."
+    },
+    {
+     "statement": 37,
+     "issue": "(LocatedIn sk_water_1 sunken_cove) reads the of-genitive \"the water of the Sunken Cove\" as containment; LocatedIn is licensed only for a stated in/at/inside/within, and a relational of-phrase takes the ordinary genitive PartOf / Possession."
+    },
+    {
+     "statement": 42,
+     "issue": "The non-veridical before-clause is asserted as fact - the reach event plus (Past sk_reach_1) at full strength claims the shape did reach the lantern, which \"turned away before the shape reached the Stilllight Lantern\" denies."
+    },
+    {
+     "statement": 63,
+     "issue": "The log event carries no role atom for its direct object \"the report\" - the object surfaces only inside the sealed Theme term."
+    },
+    {
+     "statement": 65,
+     "issue": "The \"as a possible wraith near-miss\" predicate is sealed as a Theme term, but sealing is licensed only for finite clausal complements of attitude verbs, embedded questions, imperatives and counterfactuals - not for a secondary predicate on an object."
+    },
+    {
+     "statement": 88,
+     "issue": "The continuation copular \"stay alert\" drops \"stay\": the state is reified with the controller as Experiencer but no (Still sk_alert_1) tag records the continuation the verb states."
+    },
+    {
+     "statement": 90,
+     "issue": "The matrix predicate \"followed\" is unrepresented - the strength-0 bundle denies a seeing event instead - and the noun \"sighting\" is re-lemmatized to the derived verb see, which the inflection-only (never derivation) rule bars."
+    },
+    {
+     "statement": 90,
+     "issue": "The explicit quantifier \"no\" gets no (QuantifierPhrase ...) companion, which the negation rules make mandatory for every explicit quantifier word so that quantifier-none stays distinct from plain not-negation."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "non-veridical \"before\"-clause (\"turned away before it reached X\") - the Before relation parses both clauses as asserted eventualities, with no licensed way to record that the later one did not occur",
+    "classificatory secondary predicate \"log / record / classify X as Y\", with a \"possible\" hedge - no licensed encoding for a non-veridical as-phrase on an object"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Time-term propagation (\"that night\", and \"the next afternoon\" as Day 496 plus Before), the compound decompositions with noun modifiers correctly unexposed, the plural-modifier distribution rules, and the s12 attitude seal with its projected definite typing and in-seal past perfect all follow the instruction set."
+  },
+  "adjudication": {
+   "id": "evtp2-000020",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "partial",
+     "reason": "The eventive-passive reading is live and the lit symbol will not unify with light events, but the instruction set does not force it: the lemmatization rule says to decide \"by the word's function here, not its shape\", and Focus particles supplies the counter-precedent (Member sk_annex_1 heated) for a predicative participle read as a state — and the parse's copular-with-time-modifier dual-emit is itself correctly executed, with no false or over-asserted atom."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "\"LocatedIn is containment ONLY - in / at / inside / within\", and an of-phrase on a non-nominalized relational noun is the ordinary genitive of Possessive / genitive NP, so \"the water of the Sunken Cove\" licenses PartOf / Possession, never a containment head the sentence never worded."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "The reaching never happened — the shape turned away before it — so (Member sk_reach_1 reach) (Agent ...) (Past sk_reach_1) at strength 1.0 asserts a false event, precisely the error Time warns of for anchor eventualities (\"a (Past ...) there would assert an inspection that may never have happened\")."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "Events requires \"one role atom per participant\", and \"the report\" is the logging clause's direct object, yet no role atom on sk_log_1 carries it — \"what did the Council log?\" binds the sealed proposition instead of the report."
+    },
+    {
+     "index": 4,
+     "verdict": "partial",
+     "reason": "It is true that sealing is enumerated for attitude complements, embedded questions, imperatives and counterfactuals and not for an as-phrase, but the reviewer's own q2 concedes this construction is uncovered, and sealing the classification rather than asserting it keeps the parse free of the false atom (Member sk_report_1 wraith_near_miss) — what is defective is displacing the object's own Theme slot (issue 3), not the non-assertion."
+    },
+    {
+     "index": 5,
+     "verdict": "confirm",
+     "reason": "Resultatives prescribes (Still ...) on the reified state for an intransitive continuation copular (\"the lodge remained / stayed empty\"), and Still is an opaque presupposition tag rather than an occurrence claim, so omitting it silently drops \"stay\" and makes the directive read as \"be alert\"."
+    },
+    {
+     "index": 6,
+     "verdict": "partial",
+     "reason": "The derivation half stands — \"sighting\" is a deverbal noun and (Member sk_see_2 see) is both a derivation and a synonym substitution, which \"Inflection only - never derivation\" and the go_out-is-not-fail rule bar, so the class must be sighting — but the \"followed is unrepresented\" half falls: Time's light-verb-over-event-noun rule (occurred / happened / took place) licenses putting the eventuality directly on the event-noun's own witness."
+    },
+    {
+     "index": 7,
+     "verdict": "confirm",
+     "reason": "Negation (copular) makes the QuantifierPhrase companion \"mandatory for every explicit quantifier word the rule or claim consumes\" and singles out \"no\" so that quantifier-none stays distinct from plain not-negation; the claim quantifies a real range here (sighting x follow), so the companion is well-formed and owed."
+    }
+   ],
+   "gaps_confirmed": [
+    "non-veridical \"before\"-clause (\"turned away before the shape reached X\"): the Before machinery reifies both clauses as asserted eventualities and offers no carrier for the later one's non-occurrence",
+    "classificatory secondary predicate with a hedge (\"logged the report as a possible wraith near-miss\"): no licensed encoding exists for a non-veridical as-phrase on an object"
+   ],
+   "new_gaps": [
+    "a continuation copular inside a control complement (\"told the keepers to stay alert\"): the prescribed shape is reified state + (Still ...) + the flat atom + tense, but a control complement takes no tense of its own and the flat copular atom would assert a state the directive does not claim, so only part of the prescribed bundle is emittable and the rule does not say which parts survive"
+   ],
+   "decision": "defect",
+   "defect_summary": "The of-genitive takes (PartOf sk_water_1 sunken_cove) (or Possession), never LocatedIn, which is licensed only for a stated in/at/inside/within; the non-veridical before-clause licenses NO asserted reach bundle at all - the compliant output leaves the reaching (and its Before endpoint) unasserted and records the gap, since nothing carries \"it did not get that far\"; the logging event must carry its direct object as (Theme sk_log_1 sk_report_1), with the \"as a possible wraith near-miss\" classification having no licensed carrier (the confirmed gap above); the reified alert state must take (Still sk_alert_1) to record \"stay\"; and the strength-0 no-sighting bundle must take the (QuantifierPhrase sighting follow \"no\") companion.",
+   "notes": "The two reviewer gaps bracket exactly the two confirmed defects that have no fully licensed fix, which is what makes them worth recording. The remainder of the parse is sound: \"that night\" / \"the next afternoon\" term propagation with its Before, the compound decompositions with noun modifiers unexposed, the fresh/ground per-member distribution rules, and the non-factive \"judged\" seal with its projected definite typing, sealed indefinite and in-seal past perfect."
+  }
+ }
+}
