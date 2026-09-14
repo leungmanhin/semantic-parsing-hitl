@@ -1,0 +1,139 @@
+{
+ "id": "E3-05",
+ "rule": "III — The first salt-bloom harvest",
+ "texts": [
+  "On day 47 of Year 1, the moon was full.",
+  "The Council convened at the Watch.",
+  "Sailsworn reported to the Council that the salt-bloom store held fourteen weeks of winter supply.",
+  "The Council issued the standard winter feather ration to the Stilllight Station.",
+  "Bevin Coombe reported to the Council that the Stilllight Lantern had remained free of wraiths.",
+  "Tessa Brae reported to the Council that the feather store held eight weeks of supply.",
+  "The feather store was large.",
+  "The Council issued an extra feather ration to the Stilllight Station.",
+  "The Council issued an extra feather ration to the stations of the West Row."
+ ],
+ "passage": {
+  "corpus_id": "evtp3-000003",
+  "sentences": [
+   "On day 47 of Year 1, the moon was full.",
+   "The Council convened at the Watch.",
+   "Sailsworn reported to the Council that the salt-bloom store held fourteen weeks of winter supply.",
+   "The Council issued the standard winter feather ration to the Stilllight Station.",
+   "Bevin Coombe reported to the Council that the Stilllight Lantern had remained free of wraiths.",
+   "Tessa Brae reported to the Council that the feather store held eight weeks of supply.",
+   "The feather store was large.",
+   "The Council issued an extra feather ration to the Stilllight Station.",
+   "The Council issued an extra feather ration to the stations of the West Row."
+  ],
+  "parse": [
+   "(: s1_moon (Member sk_moon_1 moon) (STV 1.0 0.99))",
+   "(: s1_full (Member sk_full_1 full) (STV 1.0 0.99))",
+   "(: s1_exp (Experiencer sk_full_1 sk_moon_1) (STV 1.0 0.99))",
+   "(: s1_time_y (Time sk_full_1 (Year 1)) (STV 1.0 0.99))",
+   "(: s1_time_d (Time sk_full_1 (Day 47)) (STV 1.0 0.99))",
+   "(: s1_past (Past sk_full_1) (STV 1.0 0.99))",
+   "(: s1_flat (Past (Member sk_moon_1 full)) (STV 1.0 0.99))",
+   "(: s2_council (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: s2_watch (Member sk_watch_1 watch) (STV 1.0 0.99))",
+   "(: s2_convene (Member sk_convene_1 convene) (STV 1.0 0.99))",
+   "(: s2_agent (Agent sk_convene_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s2_loc (Location sk_convene_1 sk_watch_1) (STV 1.0 0.99))",
+   "(: s2_past (Past sk_convene_1) (STV 1.0 0.99))",
+   "(: s3_name (Name sailsworn \"Sailsworn\") (STV 1.0 0.99))",
+   "(: s3_report (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: s3_exp (Experiencer sk_report_1 sailsworn) (STV 1.0 0.99))",
+   "(: s3_recip (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s3_past (Past sk_report_1) (STV 1.0 0.99))",
+   "(: s3_theme (Theme sk_report_1 (And (Member sk_winter_supply_1 winter_supply) (Measure sk_winter_supply_1 unspecified 14 week) (Member sk_hold_1 hold) (Agent sk_hold_1 sk_salt_bloom_store_1) (Theme sk_hold_1 sk_winter_supply_1) (Past sk_hold_1))) (STV 1.0 0.99))",
+   "(: s3_store_type (Member sk_salt_bloom_store_1 salt_bloom_store) (STV 1.0 0.99))",
+   "(: s3_store_genus (Inheritance salt_bloom_store store) (STV 1.0 0.99))",
+   "(: s3_supply_genus (Inheritance winter_supply supply) (STV 1.0 0.99))",
+   "(: s4_ration_type (Member sk_standard_winter_feather_ration_1 standard_winter_feather_ration) (STV 1.0 0.99))",
+   "(: s4_ration_genus (Inheritance standard_winter_feather_ration ration) (STV 1.0 0.99))",
+   "(: s4_ration_std (Inheritance standard_winter_feather_ration standard) (STV 1.0 0.99))",
+   "(: s4_station_type (Member stilllight_station station) (STV 1.0 0.99))",
+   "(: s4_station_name (Name stilllight_station \"Stilllight Station\") (STV 1.0 0.99))",
+   "(: s4_issue (Member sk_issue_1 issue) (STV 1.0 0.99))",
+   "(: s4_agent (Agent sk_issue_1 sk_council_1) (STV 1.0 0.99))",
+   "(: s4_recip (Recipient sk_issue_1 stilllight_station) (STV 1.0 0.99))",
+   "(: s4_theme (Theme sk_issue_1 sk_standard_winter_feather_ration_1) (STV 1.0 0.99))",
+   "(: s4_past (Past sk_issue_1) (STV 1.0 0.99))",
+   "(: s5_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+   "(: s5_report (Member sk_report_2 report) (STV 1.0 0.99))",
+   "(: s5_exp (Experiencer sk_report_2 bevin_coombe) (STV 1.0 0.99))",
+   "(: s5_recip (Recipient sk_report_2 sk_council_1) (STV 1.0 0.99))",
+   "(: s5_past (Past sk_report_2) (STV 1.0 0.99))",
+   "(: s5_theme (Theme sk_report_2 (And (Member sk_free_1 free) (Experiencer sk_free_1 stilllight_lantern) (Of sk_free_1 wraith) (Still sk_free_1) (Past sk_free_1) (Past (Member stilllight_lantern free)))) (STV 1.0 0.99))",
+   "(: s5_lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: s5_lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+   "(: s6_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+   "(: s6_report (Member sk_report_3 report) (STV 1.0 0.99))",
+   "(: s6_exp (Experiencer sk_report_3 tessa_brae) (STV 1.0 0.99))",
+   "(: s6_recip (Recipient sk_report_3 sk_council_1) (STV 1.0 0.99))",
+   "(: s6_past (Past sk_report_3) (STV 1.0 0.99))",
+   "(: s6_theme (Theme sk_report_3 (And (Member sk_supply_1 supply) (Measure sk_supply_1 unspecified 8 week) (Member sk_hold_2 hold) (Agent sk_hold_2 sk_feather_store_1) (Theme sk_hold_2 sk_supply_1) (Past sk_hold_2))) (STV 1.0 0.99))",
+   "(: s6_store_type (Member sk_feather_store_1 feather_store) (STV 1.0 0.99))",
+   "(: s6_store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+   "(: s7_large (Past (Member sk_feather_store_1 large)) (STV 1.0 0.99))",
+   "(: s8_ration_type (Member sk_extra_feather_ration_1 extra_feather_ration) (STV 1.0 0.99))",
+   "(: s8_ration_genus (Inheritance extra_feather_ration ration) (STV 1.0 0.99))",
+   "(: s8_ration_extra (Inheritance extra_feather_ration extra) (STV 1.0 0.99))",
+   "(: s8_issue (Member sk_issue_2 issue) (STV 1.0 0.99))",
+   "(: s8_agent (Agent sk_issue_2 sk_council_1) (STV 1.0 0.99))",
+   "(: s8_recip (Recipient sk_issue_2 stilllight_station) (STV 1.0 0.99))",
+   "(: s8_theme (Theme sk_issue_2 sk_extra_feather_ration_1) (STV 1.0 0.99))",
+   "(: s8_past (Past sk_issue_2) (STV 1.0 0.99))",
+   "(: s9_ration_type (Member sk_extra_feather_ration_2 extra_feather_ration) (STV 1.0 0.99))",
+   "(: s9_row_type (Member west_row row) (STV 1.0 0.99))",
+   "(: s9_row_name (Name west_row \"West Row\") (STV 1.0 0.99))",
+   "(: s9_stations_group (GroupOf sk_stations_1 station) (STV 1.0 0.99))",
+   "(: s9_stations_loc (LocatedIn sk_stations_1 west_row) (STV 1.0 0.99))",
+   "(: s9_issue (Member sk_issue_3 issue) (STV 1.0 0.99))",
+   "(: s9_agent (Agent sk_issue_3 sk_council_1) (STV 1.0 0.99))",
+   "(: s9_recip (Recipient sk_issue_3 sk_stations_1) (STV 1.0 0.99))",
+   "(: s9_theme (Theme sk_issue_3 sk_extra_feather_ration_2) (STV 1.0 0.99))",
+   "(: s9_past (Past sk_issue_3) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp3-000003",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 61,
+     "issue": "(LocatedIn sk_stations_1 west_row) reads the genitive \"the stations of the West Row\" as spatial containment, but LocatedIn is licensed for \"in / at / inside / within\" only; an of-genitive routes to PartOf (member of a group) or the opaque Possession."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "Measure / quantity of-phrase over a bare mass (\"held fourteen weeks of winter supply\", \"eight weeks of supply\") - the instruction set names the measure of-phrase (\"a cup of water\") only as an exclusion from the genitive rule and gives no positive encoding, so the parse had to improvise (Measure <mass-witness> unspecified 14 week).",
+    "Ordinal day-of-year date in a non-Gregorian calendar (\"on day 47 of Year 1\") - the Time terms assume a Month plus day-of-month, so a bare (Day 47) is indistinguishable from a day-of-month reading and there is no slot for \"day N of year\".",
+    "Stacked three-or-more premodifiers on one head (\"the standard winter feather ration\") - Compound concepts specifies fusing and modifier-genus exposure for a single modifier + head, and says nothing about which modifier(s) in a stack are exposed or whether all of them fuse."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The two report seals are handled correctly - non-factive Experiencer holder, sealed complement, only definite typing and compound-genus atoms projected to top level - and \"had remained free of wraiths\" correctly gets the continuation-copular state with Still, the Of complement oblique, the flat dual-emit, and no cross-seal Before. The only structural error is the LocatedIn head on the final of-genitive."
+  },
+  "adjudication": {
+   "id": "evtp3-000003",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Where a THING is licenses LocatedIn for containment prepositions ONLY (\"in / at / inside / within\"), so reading the of-genitive \"the stations of the West Row\" as (LocatedIn sk_stations_1 west_row) asserts a spatial containment the text never states, exactly the error the same rule bars for \"on / under / beside\"."
+    }
+   ],
+   "gaps_confirmed": [
+    "Measure/quantity of-phrase over a bare mass (\"fourteen weeks of winter supply\", \"eight weeks of supply\"): Possessive / genitive NP names the measure of-phrase (\"a cup of water\") only as an exclusion and gives no positive encoding, and Partitives covers proportions of a definite whole, not a quantity of an unbounded mass.",
+    "Ordinal day-of-year date in a non-Gregorian calendar (\"on day 47 of Year 1\"): the Time terms assume (Day n) is a day-of-month under a (Month ...), so there is no slot for \"day N of year N\" and the atom is indistinguishable from a day-of-month reading."
+   ],
+   "new_gaps": [],
+   "decision": "defect",
+   "defect_summary": "The compliant form for \"the stations of the West Row\" is the ordinary genitive of Possessive / genitive NP — (PartOf sk_stations_1 west_row) if the stations are members/components of the Row, else the opaque (Possession sk_stations_1 west_row) — so a licensed form exists and no gap follows.",
+   "notes": "The reviewer's third gap (stacked premodifiers in \"the standard winter feather ration\") is not confirmed: Compound concepts already decides the stack mechanically — \"decompose once, to single-word lemmas, then stop\" fixes the genus at the head noun ration, and \"expose the modifier iff it is an adjectival property\" applied per modifier exposes standard and withholds the noun modifiers winter and feather, which is what the parse emitted. Everything else checks out: the two report seals take Experiencer holders with only definite typing and compound-genus atoms projected, and the \"had remained free of wraiths\" state carries Still, the Of complement, the sealed flat dual-emit and no cross-seal ordering atom."
+  }
+ }
+}

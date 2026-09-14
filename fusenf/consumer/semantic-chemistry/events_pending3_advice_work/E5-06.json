@@ -1,0 +1,183 @@
+{
+ "id": "E5-06",
+ "rule": "V — First frost and midwinter",
+ "texts": [
+  "On day 120 of Year 1, a wraith emerged from the water of the Sunken Cove, because the Stilllight Lantern had burned dim on the night of day 111.",
+  "The Stilllight Lantern had burned dim nine days before the emergence.",
+  "Marra Tallowhand saw the wraith first from her station near the Cove Stair.",
+  "Marra Tallowhand walked to the Stilllight Lantern.",
+  "Bevin Coombe was already at the Stilllight Lantern.",
+  "The Stilllight Lantern was lit.",
+  "Bevin Coombe ground feathers.",
+  "Bevin Coombe scattered the ground feathers around the Stilllight Lantern.",
+  "The ground feathers warded the Stilllight Lantern against the wraith.",
+  "The Stilllight Lantern was warded.",
+  "The wraith turned away from the Stilllight Lantern.",
+  "The wraith did not drain the Stilllight Lantern."
+ ],
+ "passage": {
+  "corpus_id": "evtp3-000007",
+  "sentences": [
+   "On day 120 of Year 1, a wraith emerged from the water of the Sunken Cove, because the Stilllight Lantern had burned dim on the night of day 111.",
+   "The Stilllight Lantern had burned dim nine days before the emergence.",
+   "Marra Tallowhand saw the wraith first from her station near the Cove Stair.",
+   "Marra Tallowhand walked to the Stilllight Lantern.",
+   "Bevin Coombe was already at the Stilllight Lantern.",
+   "The Stilllight Lantern was lit.",
+   "Bevin Coombe ground feathers.",
+   "Bevin Coombe scattered the ground feathers around the Stilllight Lantern.",
+   "The ground feathers warded the Stilllight Lantern against the wraith.",
+   "The Stilllight Lantern was warded.",
+   "The wraith turned away from the Stilllight Lantern.",
+   "The wraith did not drain the Stilllight Lantern."
+  ],
+  "parse": [
+   "(: e1_wraith (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+   "(: e1_water (Member sk_water_1 water) (STV 1.0 0.99))",
+   "(: e1_water_poss (Possession sk_water_1 sunken_cove) (STV 1.0 0.99))",
+   "(: e1_cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+   "(: e1_cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+   "(: e1_lantern_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+   "(: e1_lantern_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+   "(: e1_emerge (Member sk_emerge_1 emerge) (STV 1.0 0.99))",
+   "(: e1_emerge_ag (Agent sk_emerge_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: e1_emerge_src (Source sk_emerge_1 sk_water_1) (STV 1.0 0.99))",
+   "(: e1_emerge_tense (Past sk_emerge_1) (STV 1.0 0.99))",
+   "(: e1_emerge_year (Time sk_emerge_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e1_emerge_day (Time sk_emerge_1 (Day 120)) (STV 1.0 0.99))",
+   "(: e1_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+   "(: e1_burn_pat (Patient sk_burn_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: e1_dim_state (Member sk_dim_1 dim) (STV 1.0 0.99))",
+   "(: e1_dim_exp (Experiencer sk_dim_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: e1_lantern_dim_flat (Member stilllight_lantern dim) (STV 1.0 0.99))",
+   "(: e1_burn_result (Result sk_burn_1 sk_dim_1) (STV 1.0 0.99))",
+   "(: e1_burn_tense (Past sk_burn_1) (STV 1.0 0.99))",
+   "(: e1_burn_night (Time sk_burn_1 night) (STV 1.0 0.99))",
+   "(: e1_burn_day (Time sk_burn_1 (Day 111)) (STV 1.0 0.99))",
+   "(: e1_because (Because sk_emerge_1 sk_burn_1) (STV 1.0 0.99))",
+   "(: e2_beforeby (BeforeBy sk_burn_1 sk_emerge_1 9 day) (STV 1.0 0.99))",
+   "(: e3_marra_name (Name marra_tallowhand \"Marra Tallowhand\") (STV 1.0 0.99))",
+   "(: e3_see (Member sk_see_1 see) (STV 1.0 0.99))",
+   "(: e3_see_exp (Experiencer sk_see_1 marra_tallowhand) (STV 1.0 0.99))",
+   "(: e3_see_stim (Stimulus sk_see_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: e3_see_tense (Past sk_see_1) (STV 1.0 0.99))",
+   "(: e3_station (Member sk_station_1 station) (STV 1.0 0.99))",
+   "(: e3_station_poss (Possession sk_station_1 marra_tallowhand) (STV 1.0 0.99))",
+   "(: e3_see_src (Source sk_see_1 sk_station_1) (STV 1.0 0.99))",
+   "(: e3_stair_type (Member cove_stair stair) (STV 1.0 0.99))",
+   "(: e3_stair_name (Name cove_stair \"Cove Stair\") (STV 1.0 0.99))",
+   "(: e3_station_near (Near sk_station_1 cove_stair) (STV 1.0 0.99))",
+   "(: e4_walk (Member sk_walk_1 walk) (STV 1.0 0.99))",
+   "(: e4_walk_ag (Agent sk_walk_1 marra_tallowhand) (STV 1.0 0.99))",
+   "(: e4_walk_goal (Goal sk_walk_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: e4_walk_tense (Past sk_walk_1) (STV 1.0 0.99))",
+   "(: e5_bevin_name (Name bevin_coombe \"Bevin Coombe\") (STV 1.0 0.99))",
+   "(: e5_loc_past (Past (LocatedIn bevin_coombe stilllight_lantern)) (STV 1.0 0.99))",
+   "(: e5_loc_already (Already (LocatedIn bevin_coombe stilllight_lantern)) (STV 1.0 0.99))",
+   "(: e6_light (Member sk_light_1 light) (STV 1.0 0.99))",
+   "(: e6_light_pat (Patient sk_light_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: e6_light_tense (Past sk_light_1) (STV 1.0 0.99))",
+   "(: e7_feathers (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+   "(: e7_grind (Member sk_grind_1 grind) (STV 1.0 0.99))",
+   "(: e7_grind_ag (Agent sk_grind_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: e7_grind_pat (Patient sk_grind_1 sk_feathers_1) (STV 1.0 0.99))",
+   "(: e7_grind_tense (Past sk_grind_1) (STV 1.0 0.99))",
+   "(: e8_scatter (Member sk_scatter_1 scatter) (STV 1.0 0.99))",
+   "(: e8_scatter_ag (Agent sk_scatter_1 bevin_coombe) (STV 1.0 0.99))",
+   "(: e8_scatter_th (Theme sk_scatter_1 sk_feathers_1) (STV 1.0 0.99))",
+   "(: e8_scatter_around (Around sk_scatter_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: e8_scatter_tense (Past sk_scatter_1) (STV 1.0 0.99))",
+   "(: e9_ward (Member sk_ward_1 ward) (STV 1.0 0.99))",
+   "(: e9_ward_ag (Agent sk_ward_1 sk_feathers_1) (STV 1.0 0.99))",
+   "(: e9_ward_pat (Patient sk_ward_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: e9_ward_against (Against sk_ward_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: e9_ward_tense (Past sk_ward_1) (STV 1.0 0.99))",
+   "(: e10_warded (Member sk_ward_2 ward) (STV 1.0 0.99))",
+   "(: e10_warded_pat (Patient sk_ward_2 stilllight_lantern) (STV 1.0 0.99))",
+   "(: e10_warded_tense (Past sk_ward_2) (STV 1.0 0.99))",
+   "(: e11_turn (Member sk_turn_1 turn) (STV 1.0 0.99))",
+   "(: e11_turn_ag (Agent sk_turn_1 sk_wraith_1) (STV 1.0 0.99))",
+   "(: e11_turn_src (Source sk_turn_1 stilllight_lantern) (STV 1.0 0.99))",
+   "(: e11_turn_tense (Past sk_turn_1) (STV 1.0 0.99))",
+   "(: e12_not_drain (And (Member sk_drain_1 drain) (Agent sk_drain_1 sk_wraith_1) (Patient sk_drain_1 stilllight_lantern) (Past sk_drain_1)) (STV 0.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp3-000007",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": null,
+     "issue": "In \"Marra Tallowhand saw the wraith first\" the adverb \"first\" is dropped with no atom at all, although the Ordinal rule covers the \"first to V\" rank reading."
+    },
+    {
+     "statement": 60,
+     "issue": "\"The Stilllight Lantern was warded\" mints a second warding event sk_ward_2 instead of reusing sk_ward_1 from the immediately preceding sentence, so the KB records two distinct wardings where the text states one."
+    },
+    {
+     "statement": 41,
+     "issue": "The aspectual tag is defined as (Already <event>) but is applied here to a LocatedIn atom, since a bare position clause mints no eventuality to anchor it."
+    },
+    {
+     "statement": 18,
+     "issue": "The Result link for \"burned dim\" asserts a caused result where resultative vs depictive is genuinely unclear, and the instruction set says to omit Result and keep the plain state in exactly that case."
+    },
+    {
+     "statement": 63,
+     "issue": "\"turned away\" is rendered as the bare head turn with the particle \"away\" unrepresented, which the phrasal-verb rule bars unless \"away from\" is read as a complex directional PP."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "aspectual \"already\" over a bare copular / locative position clause (\"was already at the Lantern\") — the particle needs an eventuality to tag and such a clause mints no event; the parallel \"remained / stayed + locative PP\" continuation is explicitly recorded as having no carrier"
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "Sentence 1's past-perfect anteriority is carried only by sentence 2's (BeforeBy sk_burn_1 sk_emerge_1 9 day), from which seeded rules derive the plain Before, so I read the absent Before atom as licensed rather than as a missing ordering. The rest follows the instruction set closely: multi-word Name plus separate kind atoms, event coreference for the restated burning, the group witness for bare-plural \"feathers\", the Near / Around / Against surface-preposition obliques, and the strength-0 conjunction for the final denial with definite typing projected."
+  },
+  "adjudication": {
+   "id": "evtp3-000007",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "partial",
+     "reason": "The rank reading is genuinely expressible — 'the first to respond' -> (Ordinal priya 1 respond) would give (Ordinal marra_tallowhand 1 see) — so the loss is real; but calling it a defect overstates, since the Ordinal rule is worded for nominal/predicative 'first', the adverbial reading falls under the sequence/ordering adverbs the instruction set says to 'leave out and record the gap', and nothing emitted is false or wider than the text."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Coreference & anaphora requires a later mention of an already-introduced event to reuse its symbol, and a passive 'carries exactly the roles its active would' — minting sk_ward_2 puts two distinct warding events in the KB where the text states one."
+    },
+    {
+     "index": 2,
+     "verdict": "refute",
+     "reason": "The instruction set itself wraps eventless propositions in unary operators — (Past (Member alice happy)), (Past (Against sk_mattock_1 sk_wall_1)) — so (Already (LocatedIn bevin_coombe stilllight_lantern)) is a true, vocabulary-shaped improvisation in territory the reviewer themselves files as a gap."
+    },
+    {
+     "index": 3,
+     "verdict": "confirm",
+     "reason": "'burned dim' states the state holding during the burning, not one the burning brought about, and Resultatives is explicit that 'when it is genuinely unclear whether a state is caused or merely concurrent, omit Result (prefer the plain state)'."
+    },
+    {
+     "index": 4,
+     "verdict": "refute",
+     "reason": "'away from the Lantern' is the directional-PP reading the issue itself allows: 'turn away from X' is compositional (unlike the non-compositional go_out the phrasal-verb rule targets), and (Source sk_turn_1 stilllight_lantern) is the licensed head for 'from ...', leaving every emitted atom true."
+    }
+   ],
+   "gaps_confirmed": [
+    "Aspectual 'already' over a bare copular / locative position clause ('was already at the Lantern') — the tag is defined over an event and such a clause mints none, exactly as the parallel 'stay/remain + locative PP' continuation is recorded as having no carrier."
+   ],
+   "new_gaps": [
+    "Adverbial rank 'first' ('saw the wraith first') — Ordinal is specified for the nominal/predicative 'the first to V', and nothing says whether a post-verbal 'first' takes (Ordinal <subject> 1 <verb>) or falls under the no-slot sequence-adverb rule.",
+    "A resultant-state restatement of an already-asserted event ('The ground feathers warded the Lantern.' then 'The Lantern was warded.') — symbol reuse is mandated for coreference, but the instruction set gives no form that records the resulting state without re-emitting the event's atoms as fresh evidence.",
+    "Ordinal day-of-year dating in a non-Gregorian calendar ('day 120 of Year 1', 'the night of day 111') — (Day n) is specified as a day-of-month term composing with Month/Year."
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant form for 'The Stilllight Lantern was warded' reuses sk_ward_1 (agentless passive of the same event, no second witness), and the compliant form for 'had burned dim' keeps the reified dim state plus the flat copular atom but drops (Result sk_burn_1 sk_dim_1).",
+   "notes": "I agree with the reviewer's reading that sentence 1's missing Before is licensed, since sentence 2's (BeforeBy sk_burn_1 sk_emerge_1 9 day) is the measured gap from which seeded rules derive the plain ordering."
+  }
+ }
+}

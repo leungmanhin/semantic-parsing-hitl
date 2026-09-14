@@ -1,0 +1,224 @@
+{
+ "id": "E5-10",
+ "rule": "V — First frost and midwinter",
+ "texts": [
+  "On day 131 of Year 1, a second cold snap came.",
+  "The cold wind was unusually sharp that night.",
+  "Three lanterns on the Cliff Path went out before dawn.",
+  "The three lanterns held salt-bloom in their mire-essence.",
+  "The three lanterns went out despite the salt-bloom.",
+  "The Council recorded the night as an extreme cold event.",
+  "Tessa Brae reported to the Council that the feather store held four weeks of supply.",
+  "The wraith response had used half of the autumn feather store.",
+  "The feather store was small."
+ ],
+ "passage": {
+  "corpus_id": "evtp3-000004",
+  "sentences": [
+   "On day 131 of Year 1, a second cold snap came.",
+   "The cold wind was unusually sharp that night.",
+   "Three lanterns on the Cliff Path went out before dawn.",
+   "The three lanterns held salt-bloom in their mire-essence.",
+   "The three lanterns went out despite the salt-bloom.",
+   "The Council recorded the night as an extreme cold event.",
+   "Tessa Brae reported to the Council that the feather store held four weeks of supply.",
+   "The wraith response had used half of the autumn feather store.",
+   "The feather store was small."
+  ],
+  "parse": [
+   "(: e1_snap_type (Member sk_snap_1 cold_snap) (STV 1.0 0.99))",
+   "(: e1_snap_gen (Inheritance cold_snap snap) (STV 1.0 0.99))",
+   "(: e1_snap_mod (Inheritance cold_snap cold) (STV 1.0 0.99))",
+   "(: e1_ord (Ordinal sk_snap_1 2 cold_snap) (STV 1.0 0.99))",
+   "(: e1_come (Member sk_come_1 come) (STV 1.0 0.99))",
+   "(: e1_theme (Theme sk_come_1 sk_snap_1) (STV 1.0 0.99))",
+   "(: e1_past (Past sk_come_1) (STV 1.0 0.99))",
+   "(: e1_day (Time sk_come_1 (Day 131)) (STV 1.0 0.99))",
+   "(: e1_year (Time sk_come_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e2_wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+   "(: e2_wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+   "(: e2_sharp_type (Member sk_sharp_1 sharp) (STV 1.0 0.99))",
+   "(: e2_sharp_exp (Experiencer sk_sharp_1 sk_wind_1) (STV 1.0 0.99))",
+   "(: e2_deg (Degree sk_wind_1 sharp unusually) (STV 1.0 0.99))",
+   "(: e2_day (Time sk_sharp_1 (Day 131)) (STV 1.0 0.99))",
+   "(: e2_year (Time sk_sharp_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e2_night (Time sk_sharp_1 night) (STV 1.0 0.99))",
+   "(: e2_past (Past sk_sharp_1) (STV 1.0 0.99))",
+   "(: e2_flat (Past (Member sk_wind_1 sharp)) (STV 1.0 0.99))",
+   "(: e3_grp (GroupOf sk_group_1 lantern) (STV 1.0 0.99))",
+   "(: e3_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+   "(: e3_cp_type (Member cliff_path path) (STV 1.0 0.99))",
+   "(: e3_cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+   "(: e3_on (On sk_group_1 cliff_path) (STV 1.0 0.99))",
+   "(: e3_goout (Member sk_go_out_1 go_out) (STV 1.0 0.99))",
+   "(: e3_patient (Patient sk_go_out_1 sk_group_1) (STV 1.0 0.99))",
+   "(: e3_past (Past sk_go_out_1) (STV 1.0 0.99))",
+   "(: e3_time (TimeAtMost sk_go_out_1 dawn) (STV 1.0 0.99))",
+   "(: e3_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_go_out $x) go_out) (Patient (sk_go_out $x) $x) (Past (sk_go_out $x)))) (STV 1.0 0.9))",
+   "(: e4_saltbloom_gen (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+   "(: e4_mire_gen (Inheritance mire_essence essence) (STV 1.0 0.99))",
+   "(: e4_hold (Member sk_hold_1 hold) (STV 1.0 0.99))",
+   "(: e4_agent (Agent sk_hold_1 sk_group_1) (STV 1.0 0.99))",
+   "(: e4_theme (Theme sk_hold_1 salt_bloom) (STV 1.0 0.99))",
+   "(: e4_past (Past sk_hold_1) (STV 1.0 0.99))",
+   "(: e4_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_hold $x) hold) (Agent (sk_hold $x) $x) (Theme (sk_hold $x) salt_bloom) (Location (sk_hold $x) (sk_mire_essence $x)) (Member (sk_mire_essence $x) mire_essence) (Past (sk_hold $x)))) (STV 1.0 0.9))",
+   "(: e5_despite (Despite sk_go_out_1 sk_hold_1) (STV 1.0 0.99))",
+   "(: e6_council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+   "(: e6_night_type (Member sk_night_1 night) (STV 1.0 0.99))",
+   "(: e6_night_day (Time sk_night_1 (Day 131)) (STV 1.0 0.99))",
+   "(: e6_night_year (Time sk_night_1 (Year 1)) (STV 1.0 0.99))",
+   "(: e6_ece_gen (Inheritance extreme_cold_event event) (STV 1.0 0.99))",
+   "(: e6_ece_mod1 (Inheritance extreme_cold_event extreme) (STV 1.0 0.99))",
+   "(: e6_ece_mod2 (Inheritance extreme_cold_event cold) (STV 1.0 0.99))",
+   "(: e6_record (Member sk_record_1 record) (STV 1.0 0.99))",
+   "(: e6_agent (Agent sk_record_1 sk_council_1) (STV 1.0 0.99))",
+   "(: e6_patient (Patient sk_record_1 sk_night_1) (STV 1.0 0.99))",
+   "(: e6_past (Past sk_record_1) (STV 1.0 0.99))",
+   "(: e6_state_type (Member sk_ece_1 extreme_cold_event) (STV 1.0 0.99))",
+   "(: e6_state_exp (Experiencer sk_ece_1 sk_night_1) (STV 1.0 0.99))",
+   "(: e6_flat (Member sk_night_1 extreme_cold_event) (STV 1.0 0.99))",
+   "(: e6_result (Result sk_record_1 sk_ece_1) (STV 1.0 0.99))",
+   "(: e7_name (Name tessa_brae \"Tessa Brae\") (STV 1.0 0.99))",
+   "(: e7_report (Member sk_report_1 report) (STV 1.0 0.99))",
+   "(: e7_exp (Experiencer sk_report_1 tessa_brae) (STV 1.0 0.99))",
+   "(: e7_recip (Recipient sk_report_1 sk_council_1) (STV 1.0 0.99))",
+   "(: e7_past (Past sk_report_1) (STV 1.0 0.99))",
+   "(: e7_fs_type (Member sk_feather_store_1 feather_store) (STV 1.0 0.99))",
+   "(: e7_fs_gen (Inheritance feather_store store) (STV 1.0 0.99))",
+   "(: e7_theme (Theme sk_report_1 (And (Member sk_hold_2 hold) (Agent sk_hold_2 sk_feather_store_1) (Theme sk_hold_2 sk_supply_1) (Member sk_supply_1 supply) (Measure sk_supply_1 duration 4 week) (Past sk_hold_2))) (STV 1.0 0.99))",
+   "(: e8_wr_type (Member sk_wraith_response_1 wraith_response) (STV 1.0 0.99))",
+   "(: e8_wr_gen (Inheritance wraith_response response) (STV 1.0 0.99))",
+   "(: e8_afs_gen (Inheritance autumn_feather_store store) (STV 1.0 0.99))",
+   "(: e8_fs_type2 (Member sk_feather_store_1 autumn_feather_store) (STV 1.0 0.99))",
+   "(: e8_use (Member sk_use_1 use) (STV 1.0 0.99))",
+   "(: e8_agent (Agent sk_use_1 sk_wraith_response_1) (STV 1.0 0.99))",
+   "(: e8_portion_type (Member sk_portion_1 autumn_feather_store) (STV 1.0 0.99))",
+   "(: e8_portion_part (PartOf sk_portion_1 sk_feather_store_1) (STV 1.0 0.99))",
+   "(: e8_portion_prop (ProportionOf sk_portion_1 sk_feather_store_1 half) (STV 1.0 0.99))",
+   "(: e8_theme (Theme sk_use_1 sk_portion_1) (STV 1.0 0.99))",
+   "(: e8_past (Past sk_use_1) (STV 1.0 0.99))",
+   "(: e9_small (Past (Member sk_feather_store_1 small)) (STV 1.0 0.99))"
+  ],
+  "census": "ok",
+  "review": {
+   "id": "evtp3-000004",
+   "run": 1,
+   "q1_faithful": "partial",
+   "q1_issues": [
+    {
+     "statement": 47,
+     "issue": "\"The Council recorded the night\" makes the night a Patient, but the instruction set lists record among the verbs that merely evaluate or record an object and leave it as it was, which take Theme."
+    },
+    {
+     "statement": 52,
+     "issue": "(Result sk_record_1 sk_ece_1) asserts the recording caused the night to be an extreme cold event; recording classifies rather than causes, and the guidance is to omit Result whenever a state is not caused by the verb."
+    },
+    {
+     "statement": 51,
+     "issue": "The flat (Member sk_night_1 extreme_cold_event) asserts the Council's classification as a top-level fact, the same over-commitment the reported-attitude rule forbids for \"is considered to be P\"."
+    },
+    {
+     "statement": 37,
+     "issue": "\"went out despite the salt-bloom\" has a nominal complement, but the second argument of Despite is the reified hold event sk_hold_1 rather than the salt-bloom the words actually name."
+    },
+    {
+     "statement": null,
+     "issue": "The group-level hold event (32-35) drops \"in their mire-essence\" entirely: the oblique and the possessive \"their\" appear only inside the distribution rule at 36, so no top-level atom records the stated PP."
+    },
+    {
+     "statement": 60,
+     "issue": "\"four weeks of supply\" is stored with the scale duration, which no word in the clause supplies; Measures & units reserves unspecified for a dimension no word states."
+    },
+    {
+     "statement": 29,
+     "issue": "The per-member go_out rule omits the (TimeAtMost sk_go_out_1 dawn) bound carried by the group event at 28, so each distributed event loses the stated time bound."
+    },
+    {
+     "statement": 3,
+     "issue": "(Ordinal sk_snap_1 2 cold_snap) puts a kind in the scale slot, whereas the Ordinal form's scale is the associated event lemma or an explicit -est dimension."
+    },
+    {
+     "statement": 65,
+     "issue": "\"had used\" is a past perfect and the passage supplies an asserted event for it to precede (the reporting at 54-57), yet no (Before ...) ordering atom is emitted; arguable, since the rule's test is worded over the sentence but its exemption is worded over the text."
+    }
+   ],
+   "q2_coverage": "gap",
+   "q2_gaps": [
+    "\"V NP as NP\" predicative complement of a classifying / reporting verb (\"recorded the night as an extreme cold event\") — neither the resultative, depictive, change-of-kind nor attitude sections cover it, and nothing says whether the ascribed classification may be asserted of the object.",
+    "A concessive preposition with a nominal complement (\"went out despite the salt-bloom\") — the connective section requires two reified eventualities as endpoints and gives no form for despite + NP.",
+    "A measure-of / quantity partitive (\"four weeks of supply\"); \"a cup of water\" is named only to exclude it from Possession, and no encoding is specified.",
+    "A day-part time expression later referred to as an entity (\"that night\" as the Time constant night, then \"the night\" as a direct object with its own witness) — nothing links the bare time constant to the entity witness.",
+    "An ordinal day-of-year date in a non-Gregorian calendar (\"On day 131 of Year 1\") — (Day n) is defined as a day-of-month term composing with Month/Year, with no form for a day number counted within a year."
+   ],
+   "q3_context_leak": "na",
+   "q3_leaks": [],
+   "q4_unlicensed_heads": [],
+   "notes": "The copular-with-time-modifier dual-emit, the \"that night\" term propagation, the phrasal verb go_out, the Cliff Path name plus entity-attached On, the sealed non-factive report with projected definite typing, and the mass partitive for \"half of the autumn feather store\" all match the instruction set exactly."
+  },
+  "adjudication": {
+   "id": "evtp3-000004",
+   "run": 1,
+   "issues": [
+    {
+     "index": 0,
+     "verdict": "confirm",
+     "reason": "Thematic roles explicitly puts verbs that 'merely evaluate or record an object ... which leave it as it was' on Theme, so (Patient sk_record_1 sk_night_1) violates the stated one-test role assignment."
+    },
+    {
+     "index": 1,
+     "verdict": "confirm",
+     "reason": "Resultatives licenses Result only for a state the action causes and directs that 'when it is genuinely unclear whether a state is caused or merely concurrent, omit Result' — the recording does not make the night an extreme cold event, so the Result atom asserts a causal link the text never states."
+    },
+    {
+     "index": 2,
+     "verdict": "confirm",
+     "reason": "Top-level (Member sk_night_1 extreme_cold_event) asserts the classification as fact, but 'record' is a reporting verb (Propositional attitudes: say/report/claim stay non-factive however credible the source), so the atom asserts more than 'the Council recorded the night as X' states."
+    },
+    {
+     "index": 3,
+     "verdict": "refute",
+     "reason": "The connective heads are defined over two eventualities, so binding the nominal 'the salt-bloom' to the antecedent hold event keeps (Despite sk_go_out_1 sk_hold_1) true and well-typed — an entity in that slot would be the ill-typed option, and despite+NP is uncovered territory the calibration line protects."
+    },
+    {
+     "index": 4,
+     "verdict": "refute",
+     "reason": "'in their mire-essence' is per-member ('their'), so a single group-level Location would posit one shared mire-essence that is false; the instruction set gives no form for a distributive possessive oblique on a group event, and the PP is recorded in the distribution rule rather than dropped from the parse."
+    },
+    {
+     "index": 5,
+     "verdict": "refute",
+     "reason": "'duration' is the instruction set's own reserved temporal-extent scale, supplied by no word in its own example either ('Sam drove for six hours' -> (Measure sk_drive_1 duration 6 hour)), so it is not an invented dimension of the kind the 'unspecified' rule bars."
+    },
+    {
+     "index": 6,
+     "verdict": "refute",
+     "reason": "No stated rule requires the per-member rule to carry every non-role atom of the group event (the 'Both dogs barked' and 'kegs do not ferment' patterns show class, role and tense only), and the omission loses information without making any emitted atom false or wider than the text."
+    },
+    {
+     "index": 7,
+     "verdict": "refute",
+     "reason": "Ordinal's scale slot takes 'the associated event' lemma, and 'cold snap' is an event noun whose witness is the eventuality (Time: light verbs over event-nouns), so ranking sk_snap_1 second on the cold_snap ordering is true and well-typed — (Ordinal sk_snap_1 2 come) would instead claim it was the second thing to come."
+    },
+    {
+     "index": 8,
+     "verdict": "refute",
+     "reason": "Time states the trigger as 'whenever the sentence contains another asserted event for the perfect to precede' and lists only in-sentence links (temporal, causal, relative clause); this past perfect stands alone in its sentence, and picking Tessa Brae's reporting as the ordered event would assert an ordering the text never states."
+    }
+   ],
+   "gaps_confirmed": [
+    "'V NP as NP' predicative complement of a classifying / reporting verb ('recorded the night as an extreme cold event') — not covered by resultative, depictive, change-of-kind or attitude sealing (which is finite-clause-only), and nothing says whether the ascribed classification may be asserted.",
+    "Concessive preposition with a nominal complement ('despite the salt-bloom') — the connective section supplies only a clause-clause form with two reified eventualities.",
+    "Measure-of / quantity partitive ('four weeks of supply') — 'a cup of water' is named only to exclude it from Possession, with no encoding given.",
+    "A time expression used first as a Time constant and later as a referential argument ('that night' -> (Time e night); 'recorded the night' -> sk_night_1) — nothing links the bare constant to the entity witness.",
+    "Ordinal day-of-year dating in a non-Gregorian calendar ('day 131 of Year 1') — (Day n) is specified as a day-of-month term composing with Month/Year."
+   ],
+   "new_gaps": [
+    "The group-event + per-member-rule dual emission is unspecified as to which of a clause's non-role atoms belong in each half: time bounds (TimeAtMost dawn) and obliques with a per-member possessive ('in their mire-essence') have no stated home, and a distributive possessive has no group-level filler at all.",
+    "The past-perfect ordering test is worded over 'the sentence' while its exemption is worded over 'the text', leaving a passage-level past perfect with no same-sentence event undecided ('The wraith response had used half of the autumn feather store')."
+   ],
+   "decision": "defect",
+   "defect_summary": "The compliant role for 'the Council recorded the night' is (Theme sk_record_1 sk_night_1), since record evaluates/records without changing its object; the (Result sk_record_1 sk_ece_1) link is simply dropped, the recording having caused nothing; and for the ascribed classification itself NO compliant form is licensed — sealing is finite-clause-only and no object-predicative carrier exists — so the compliant parse states the record event alone and records the gap.",
+   "notes": "The over-assertion flagged for the flat (Member sk_night_1 extreme_cold_event) rides the reified (Member sk_ece_1 extreme_cold_event) + (Experiencer sk_ece_1 sk_night_1) pair as well, so that issue is understated rather than overstated. Two issues (the group event missing the PP, the rule missing the time bound) are mirror complaints about the same uncovered group/rule split, which I record as a gap instead."
+  }
+ }
+}

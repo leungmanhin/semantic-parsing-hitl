@@ -1,0 +1,38 @@
+{
+ "id": "L1-10",
+ "rule": "I — Northcove",
+ "texts": [
+  "Thirty lanterns stand in the Northcove."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "lorep5-000002",
+   "sentence": "Thirty lanterns stand in the Northcove.",
+   "parse": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: lantern_grp (GroupOf sk_group_1 lantern) (STV 1.0 0.99))",
+    "(: lantern_card (Cardinality sk_group_1 30) (STV 1.0 0.99))",
+    "(: lantern_loc (LocatedIn sk_group_1 northcove) (STV 1.0 0.99))",
+    "(: lantern_dist (Implication (PartOf $x sk_group_1) (LocatedIn $x northcove)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "lorep5-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a static position predicate (LocatedIn, or any entity-attached surface-preposition head) with a counted/definite PLURAL subject: the instruction set fixes the group-atom-plus-per-member-rule pattern only for group EVENTS (Cardinality's distributive predicates) and for explicit universals over copular predicates, and Measures explicitly makes a plural-bearer Measure a non-distributing group aggregate - nothing says whether a position atom on a plural rides the group symbol, distributes to members by rule, or both",
+     "a solid-spelling place name whose kind morpheme is fused into the single capitalized word (\"Northcove\"): Core patterns licenses a type atom for \"a kind word inside the name itself\", but Names-and-casing illustrates only spaced names (\"the Kestrel River\") and Compound concepts' solid-spelling decomposition is explicitly barred for proper nouns, so whether (Member northcove cove) is licensed is undecided"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare \"stand\" is correctly routed to the no-event position atom, the count rides the group, and the distribution rule's range and (STV 1.0 0.9) match the counted-plural rule convention; the only open question is whether that rule and the group-level LocatedIn are both licensed for a static position predicate. No type atom for \"Northcove\" is the conservative reading and matches the \"Aldenport gets no city atom\" bar."
+   },
+   "adjudication": null
+  }
+ ]
+}

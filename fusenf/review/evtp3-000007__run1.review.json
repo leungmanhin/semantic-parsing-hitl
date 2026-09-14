@@ -1,0 +1,13 @@
+{"id": "evtp3-000007", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "In \"Marra Tallowhand saw the wraith first\" the adverb \"first\" is dropped with no atom at all, although the Ordinal rule covers the \"first to V\" rank reading."},
+               {"statement": 60, "issue": "\"The Stilllight Lantern was warded\" mints a second warding event sk_ward_2 instead of reusing sk_ward_1 from the immediately preceding sentence, so the KB records two distinct wardings where the text states one."},
+               {"statement": 41, "issue": "The aspectual tag is defined as (Already <event>) but is applied here to a LocatedIn atom, since a bare position clause mints no eventuality to anchor it."},
+               {"statement": 18, "issue": "The Result link for \"burned dim\" asserts a caused result where resultative vs depictive is genuinely unclear, and the instruction set says to omit Result and keep the plain state in exactly that case."},
+               {"statement": 63, "issue": "\"turned away\" is rendered as the bare head turn with the particle \"away\" unrepresented, which the phrasal-verb rule bars unless \"away from\" is read as a complex directional PP."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["aspectual \"already\" over a bare copular / locative position clause (\"was already at the Lantern\") — the particle needs an eventuality to tag and such a clause mints no event; the parallel \"remained / stayed + locative PP\" continuation is explicitly recorded as having no carrier"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Sentence 1's past-perfect anteriority is carried only by sentence 2's (BeforeBy sk_burn_1 sk_emerge_1 9 day), from which seeded rules derive the plain Before, so I read the absent Before atom as licensed rather than as a missing ordering. The rest follows the instruction set closely: multi-word Name plus separate kind atoms, event coreference for the restated burning, the group witness for bare-plural \"feathers\", the Near / Around / Against surface-preposition obliques, and the strength-0 conjunction for the final denial with definite typing projected."}

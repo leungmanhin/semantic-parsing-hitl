@@ -1,0 +1,25 @@
+{"id": "evtp3-000004", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [
+   {"statement": 47, "issue": "\"The Council recorded the night\" makes the night a Patient, but the instruction set lists record among the verbs that merely evaluate or record an object and leave it as it was, which take Theme."},
+   {"statement": 52, "issue": "(Result sk_record_1 sk_ece_1) asserts the recording caused the night to be an extreme cold event; recording classifies rather than causes, and the guidance is to omit Result whenever a state is not caused by the verb."},
+   {"statement": 51, "issue": "The flat (Member sk_night_1 extreme_cold_event) asserts the Council's classification as a top-level fact, the same over-commitment the reported-attitude rule forbids for \"is considered to be P\"."},
+   {"statement": 37, "issue": "\"went out despite the salt-bloom\" has a nominal complement, but the second argument of Despite is the reified hold event sk_hold_1 rather than the salt-bloom the words actually name."},
+   {"statement": null, "issue": "The group-level hold event (32-35) drops \"in their mire-essence\" entirely: the oblique and the possessive \"their\" appear only inside the distribution rule at 36, so no top-level atom records the stated PP."},
+   {"statement": 60, "issue": "\"four weeks of supply\" is stored with the scale duration, which no word in the clause supplies; Measures & units reserves unspecified for a dimension no word states."},
+   {"statement": 29, "issue": "The per-member go_out rule omits the (TimeAtMost sk_go_out_1 dawn) bound carried by the group event at 28, so each distributed event loses the stated time bound."},
+   {"statement": 3, "issue": "(Ordinal sk_snap_1 2 cold_snap) puts a kind in the scale slot, whereas the Ordinal form's scale is the associated event lemma or an explicit -est dimension."},
+   {"statement": 65, "issue": "\"had used\" is a past perfect and the passage supplies an asserted event for it to precede (the reporting at 54-57), yet no (Before ...) ordering atom is emitted; arguable, since the rule's test is worded over the sentence but its exemption is worded over the text."}
+ ],
+ "q2_coverage": "gap",
+ "q2_gaps": [
+   "\"V NP as NP\" predicative complement of a classifying / reporting verb (\"recorded the night as an extreme cold event\") — neither the resultative, depictive, change-of-kind nor attitude sections cover it, and nothing says whether the ascribed classification may be asserted of the object.",
+   "A concessive preposition with a nominal complement (\"went out despite the salt-bloom\") — the connective section requires two reified eventualities as endpoints and gives no form for despite + NP.",
+   "A measure-of / quantity partitive (\"four weeks of supply\"); \"a cup of water\" is named only to exclude it from Possession, and no encoding is specified.",
+   "A day-part time expression later referred to as an entity (\"that night\" as the Time constant night, then \"the night\" as a direct object with its own witness) — nothing links the bare time constant to the entity witness.",
+   "An ordinal day-of-year date in a non-Gregorian calendar (\"On day 131 of Year 1\") — (Day n) is defined as a day-of-month term composing with Month/Year, with no form for a day number counted within a year."
+ ],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The copular-with-time-modifier dual-emit, the \"that night\" term propagation, the phrasal verb go_out, the Cliff Path name plus entity-attached On, the sealed non-factive report with projected definite typing, and the mass partitive for \"half of the autumn feather store\" all match the instruction set exactly."}

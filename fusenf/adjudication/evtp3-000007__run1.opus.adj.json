@@ -1,0 +1,29 @@
+{"id": "evtp3-000007", "run": 1,
+ "issues": [
+   {"index": 0,
+    "verdict": "partial",
+    "reason": "The rank reading is genuinely expressible — 'the first to respond' -> (Ordinal priya 1 respond) would give (Ordinal marra_tallowhand 1 see) — so the loss is real; but calling it a defect overstates, since the Ordinal rule is worded for nominal/predicative 'first', the adverbial reading falls under the sequence/ordering adverbs the instruction set says to 'leave out and record the gap', and nothing emitted is false or wider than the text."},
+   {"index": 1,
+    "verdict": "confirm",
+    "reason": "Coreference & anaphora requires a later mention of an already-introduced event to reuse its symbol, and a passive 'carries exactly the roles its active would' — minting sk_ward_2 puts two distinct warding events in the KB where the text states one."},
+   {"index": 2,
+    "verdict": "refute",
+    "reason": "The instruction set itself wraps eventless propositions in unary operators — (Past (Member alice happy)), (Past (Against sk_mattock_1 sk_wall_1)) — so (Already (LocatedIn bevin_coombe stilllight_lantern)) is a true, vocabulary-shaped improvisation in territory the reviewer themselves files as a gap."},
+   {"index": 3,
+    "verdict": "confirm",
+    "reason": "'burned dim' states the state holding during the burning, not one the burning brought about, and Resultatives is explicit that 'when it is genuinely unclear whether a state is caused or merely concurrent, omit Result (prefer the plain state)'."},
+   {"index": 4,
+    "verdict": "refute",
+    "reason": "'away from the Lantern' is the directional-PP reading the issue itself allows: 'turn away from X' is compositional (unlike the non-compositional go_out the phrasal-verb rule targets), and (Source sk_turn_1 stilllight_lantern) is the licensed head for 'from ...', leaving every emitted atom true."}
+ ],
+ "gaps_confirmed": [
+   "Aspectual 'already' over a bare copular / locative position clause ('was already at the Lantern') — the tag is defined over an event and such a clause mints none, exactly as the parallel 'stay/remain + locative PP' continuation is recorded as having no carrier."
+ ],
+ "new_gaps": [
+   "Adverbial rank 'first' ('saw the wraith first') — Ordinal is specified for the nominal/predicative 'the first to V', and nothing says whether a post-verbal 'first' takes (Ordinal <subject> 1 <verb>) or falls under the no-slot sequence-adverb rule.",
+   "A resultant-state restatement of an already-asserted event ('The ground feathers warded the Lantern.' then 'The Lantern was warded.') — symbol reuse is mandated for coreference, but the instruction set gives no form that records the resulting state without re-emitting the event's atoms as fresh evidence.",
+   "Ordinal day-of-year dating in a non-Gregorian calendar ('day 120 of Year 1', 'the night of day 111') — (Day n) is specified as a day-of-month term composing with Month/Year."
+ ],
+ "decision": "defect",
+ "defect_summary": "The compliant form for 'The Stilllight Lantern was warded' reuses sk_ward_1 (agentless passive of the same event, no second witness), and the compliant form for 'had burned dim' keeps the reified dim state plus the flat copular atom but drops (Result sk_burn_1 sk_dim_1).",
+ "notes": "I agree with the reviewer's reading that sentence 1's missing Before is licensed, since sentence 2's (BeforeBy sk_burn_1 sk_emerge_1 9 day) is the measured gap from which seeded rules derive the plain ordering."}

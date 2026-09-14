@@ -1,0 +1,10 @@
+{"id": "evtp3-000003", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Where a THING is licenses LocatedIn for containment prepositions ONLY (\"in / at / inside / within\"), so reading the of-genitive \"the stations of the West Row\" as (LocatedIn sk_stations_1 west_row) asserts a spatial containment the text never states, exactly the error the same rule bars for \"on / under / beside\"."}],
+ "gaps_confirmed": ["Measure/quantity of-phrase over a bare mass (\"fourteen weeks of winter supply\", \"eight weeks of supply\"): Possessive / genitive NP names the measure of-phrase (\"a cup of water\") only as an exclusion and gives no positive encoding, and Partitives covers proportions of a definite whole, not a quantity of an unbounded mass.",
+                    "Ordinal day-of-year date in a non-Gregorian calendar (\"on day 47 of Year 1\"): the Time terms assume (Day n) is a day-of-month under a (Month ...), so there is no slot for \"day N of year N\" and the atom is indistinguishable from a day-of-month reading."],
+ "new_gaps": [],
+ "decision": "defect",
+ "defect_summary": "The compliant form for \"the stations of the West Row\" is the ordinary genitive of Possessive / genitive NP — (PartOf sk_stations_1 west_row) if the stations are members/components of the Row, else the opaque (Possession sk_stations_1 west_row) — so a licensed form exists and no gap follows.",
+ "notes": "The reviewer's third gap (stacked premodifiers in \"the standard winter feather ration\") is not confirmed: Compound concepts already decides the stack mechanically — \"decompose once, to single-word lemmas, then stop\" fixes the genus at the head noun ration, and \"expose the modifier iff it is an adjectival property\" applied per modifier exposes standard and withholds the noun modifiers winter and feather, which is what the parse emitted. Everything else checks out: the two report seals take Experiencer holders with only definite typing and compound-genus atoms projected, and the \"had remained free of wraiths\" state carries Still, the Of complement, the sealed flat dual-emit and no cross-seal ordering atom."}
