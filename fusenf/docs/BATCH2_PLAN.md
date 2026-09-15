@@ -54,20 +54,22 @@ parameters** = choices the doc leaves open that any implementation must make —
 never counted as additions: embedding model and cluster threshold, clustering algorithm,
 minimum support, MI cut-offs, SVD rank, alignment / matching algorithm, paraphrase-pair
 source, the indistinguishability statistic (§4.3.2: JSD ≤ 0.3 adopted 2026-09-05, cosine as reference;
-support floors slot n ≥ 3 / pooled head n ≥ 14, owner 2026-09-07).
+support floor slot n ≥ 3, owner 2026-09-07).
 **Additions** = anything that changes a method's logic or filters its input:
 constant-lifting shape stratum and nisurp ranking (§4.3.1); count-based and PPMI-weighted
 slot comparison, lemma-equivalence corroboration, name zeroing, D.3 routing, the flip
-discriminator (§4.3.2); the Qwen3 prior and conditional MI (§4.3.3 / §4.3.5); factoring,
+discriminator, the role-pair level (heads pooled over every class, floor n ≥ 14; moved out of
+the faithful core 2026-09-15 — the paper's "Agent2" reads as the second participant slot of
+"go to", i.e. a slot) (§4.3.2); the Qwen3 prior and conditional MI (§4.3.3 / §4.3.5); factoring,
 promotability and control-based pruning (§4.3.4). **Evaluation harness** = ours, shared by
 both arms and stated as such: the Tier A answer key and negative controls, `JUDGE.md` panels,
 gauntlet routing and confidence, M1–M5, the coverage dashboard, query-side normalization.
 
 *Per method (faithful core → additions).* §4.3.1 frequent subtrees at a minimum support →
 meta-node proposals | shape stratum, nisurp, cross / kind-level modes. §4.3.2 embed fillers,
-cluster, slots with indistinguishable distributions merge (role level and per class, raw
-cluster distributions, names included) | PPMI, lemma corroboration (annotation only), name
-zeroing, D.3, flip discriminator, oblique heads, cross-both bucket. §4.3.3 pairwise MI over
+cluster, (class, head) slots with indistinguishable distributions merge (raw cluster
+distributions, names included) | role-pair level, PPMI, lemma corroboration (annotation only),
+name zeroing, D.3, flip discriminator, oblique heads, cross-both bucket. §4.3.3 pairwise MI over
 the binary subtree × sentence matrix, high-MI moderate-support pairs → one feature |
 conditional MI. §4.3.4 align paraphrase-pair graphs, record consistently mapping subtrees /
 roles | factoring, promotability, controls as pruning. §4.3.5 autoencoder over feature

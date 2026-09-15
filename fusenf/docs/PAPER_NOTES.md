@@ -422,3 +422,10 @@ Two owner decisions close the pre-flight. (1) The graded-lexical-bridge route is
   groups typed only on `GroupOf`, recovered by reading the kind there. The canonicalizer's one-label-per-
   skolem (alphabetical-first among Member links: "pockets of blue sky" → blue) affected 16 % of entity
   fillers; multi-label fractional mass replaces it in the valuation export.
+- **Addendum 2026-09-15 — the role level is ours, not the paper's.** The §4.3.2 example "go to.Agent or
+  Agent2" directly follows §4.3.1's "go to with two participants", so "Agent2" most likely names the
+  second participant slot of the go-to meta-node (a slot with the predicate elided; the token occurs once
+  in the paper), not a role pooled over predicates. Finding 4(a)'s role-level comparison is therefore
+  reclassified as our extension (`role_fillers2_embed.py --levels role` → `rolefillers2_additions_rolepairs.*`;
+  the default run renders the paper's slot pairs only); its result stands (no indistinguishable head pair on
+  H: top Agent~Experiencer JSD 0.65 / cosine 0.61; 0 of 231 pairs pass, 3 under the cosine reference).

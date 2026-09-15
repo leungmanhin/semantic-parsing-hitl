@@ -329,13 +329,14 @@
       "embeddings": "Qwen3-Embedding-8B bf16 normalized (out_h/embeddings, sha 0b65e1cd)",
       "clustering": "agglomerative hierarchical, average linkage (UPGMA) on cosine distance, one tree (scipy linkage/fcluster) cut at cluster cosine 0.80/0.85/0.90/0.95/1.00 (1.00 = one cluster per distinct text)",
       "distribution": "raw mass over clusters, no weighting",
-      "floors": "slot n>=3, pooled head n>=14 (owner 2026-09-07; 20 in the 2026-09-04/05 runs — any floor 18..29 selects the same 17 heads on H; 14 admits every attested legislated role)",
-      "indistinguishable": "DEFAULT (owner 2026-09-05): Jensen-Shannon divergence <= 0.3 between the two slots' raw cluster distributions, >= 2 shared clusters; JSD <= 0.4 sensitivity column; cosine >= 0.5 kept as the reference gate (outputs suffixed _cosine)"
+      "floors": "slot n>=3 (the paper's method). The role-pair floor n>=14 belongs to the role-pair EXTENSION (owner 2026-09-07; 20 in the 2026-09-04/05 runs — any floor 18..29 selects the same 17 heads on H; 14 admits every attested legislated role)",
+      "indistinguishable": "DEFAULT (owner 2026-09-05): Jensen-Shannon divergence <= 0.3 between the two slots' raw cluster distributions, >= 2 shared clusters; JSD <= 0.4 sensitivity column; cosine >= 0.5 kept as the reference gate (outputs suffixed _cosine)",
+      "levels": "--levels slot (default since 2026-09-15) = the paper's method, (class, head) slot pairs only; the role-pair level (one head's fillers pooled over every class) is OUR EXTENSION (--levels role -> its own files): the paper's 'go to.Agent or Agent2' follows §4.3.1's 'go to with two participants', so 'Agent2' reads as the second participant slot of the go-to meta-node, i.e. a slot"
      },
      "outputs": [
       "mining/out_h/rolefillers2_faithful.md",
       "mining/out_h/rolefillers2_faithful_notes.md",
-      "mining/out_h/rolefillers2_faithful.metta (rendering only; format 2026-09-07: the adopted word@0.85 block, 2,433 lines, every record one pair with its gate verdict — [bucket] A ~ B n a/b gate PASS|FAIL / A fillers / B fillers / JSD + shared clusters / the two queries; pooled = every head pair, slots = every pair with >= 2 shared clusters (110 at 0.85: 3 pass, 107 near misses; --metta-fail-slots all for every pair); header discloses every parameter and carries no decision dates; the other 9 mode×cut blocks in mining/out_h/rolefillers2_faithful_dial/<mode>_<cut>.metta; per-slot distributions no longer rendered — the slotdist JSONL holds them)",
+      "mining/out_h/rolefillers2_faithful.metta (rendering only; format 2026-09-07, slot pairs only since 2026-09-15: the adopted word@0.85 block, 979 lines, every record one pair with its gate verdict — [bucket] A ~ B n a/b gate PASS|FAIL / A fillers / B fillers / JSD + shared clusters / the two queries / the rule it would become; slots = every pair with >= 2 shared clusters (110 at 0.85: 3 pass, 107 near misses; --metta-fail-slots all for every pair); header discloses every parameter and carries no decision dates; the other 9 mode×cut blocks in mining/out_h/rolefillers2_faithful_dial/<mode>_<cut>.metta; per-slot distributions not rendered — the slotdist JSONL holds them)",
       "mining/out_h/rolefiller2_signals_faithful_<mode>_<cos>.jsonl",
       "mining/out_h/rolefiller2_slotdist_faithful_<mode>_<cos>.jsonl (every compared slot's distribution over clusters = record of truth)",
       "mining/out_h/rolefiller2_clusters_<mode>_<cos>.jsonl",
@@ -343,10 +344,13 @@
       "mining/out_ecmp/rolefillers2_faithful.metta (+ rolefillers2_faithful_dial/; same format)",
       "mining/out_h/embeddings/embed_words.txt (2,896 texts) + embed_subtrees.txt (3,396 texts): exactly what each mode sends, one per line",
       "mining/out_h/clusters/clusters_cosine_{0.80,0.85,0.90,0.95,1.00}.txt: every cluster (singletons included), ';; cluster #k' blocks, clusters by size, members alphabetical",
-      "mining/out_h/rolefillers2_faithful_cosine.md / .metta + rolefiller2_signals_faithful_cosine_* (reference gate) (+ rolefillers2_faithful_cosine_dial/ on both substrates; records show cosine (gate) + JSD)"
+      "mining/out_h/rolefillers2_faithful_cosine.md / .metta + rolefiller2_signals_faithful_cosine_* (reference gate) (+ rolefillers2_faithful_cosine_dial/ on both substrates; records show cosine (gate) + JSD)",
+      "mining/out_h/rolefillers2_additions_rolepairs.md / .metta (+ _dial/; + _cosine twins) — the role-pair EXTENSION (--levels role; 1,900 lines: 231 pairs of 22 heads at n>=14, 0 pass JSD<=0.3, 3 pass the cosine reference)",
+      "mining/out_h/rolefiller2_rolepairs_faithful[_cosine]_<mode>_<cut>.jsonl (every role pair with its gate verdict = the extension's record; additions: ['role-pair level: heads pooled over every class'])",
+      "mining/out_ecmp/rolefillers2_additions_rolepairs.md / .metta (+ _dial/, _cosine twins) + rolefiller2_rolepairs_faithful[_cosine]_* (676 lines: 78 pairs of 13 heads, 0 pass under both gates)"
      ],
      "results": {
-      "H_role_level": "no indistinguishable head pair: Agent~Experiencer 0.61/JSD 0.65 top, Patient~Theme 0.51, obliques ~0",
+      "H_role_level": "(role-pair EXTENSION) no indistinguishable head pair: Agent~Experiencer 0.61/JSD 0.65 top, Patient~Theme 0.51, obliques ~0",
       "H_slot_signals_word": {
        "gate": "jsd<=0.3",
        "0.80": 3,
@@ -397,17 +401,18 @@
        "accompany.Agent~appear.Agent 0.23",
        "design.Agent~produce.Agent 0.25"
       ],
-      "pooled_floor_14_2026-09-07": {
+      "role_pair_floor_14_2026-09-07": {
        "H_heads": "22 (the 17 at floor 20 + CoAgent 16, Beneficiary 14, Before 17, As 15, Like 14)",
        "H_pairs": 231,
        "H_pass_jsd": 0,
        "H_pass_cosine_reference": "3 (Agent~Experiencer 0.61, Patient~Theme 0.51, Agent~Patient 0.50 — the same top-3 as before)",
        "new_heads_closest": "Beneficiary~Recipient JSD 0.86 (2 shared clusters), Agent~Beneficiary 0.886, Agent~CoAgent 0.944 (6 shared)",
        "item_E": "13 heads, 78 pairs, 0 pass (both gates)",
-       "slot_level": "independent of the floor: signals / slotdist / clusters JSONL byte-identical to the 2026-09-05 files on both substrates, both gates; only the reports' pooled tables moved"
+       "slot_level": "independent of the floor: signals / slotdist / clusters JSONL byte-identical to the 2026-09-05 files on both substrates, both gates; only the reports' role-pair tables moved",
+       "note": "key renamed from pooled_floor_14_2026-09-07 on 2026-09-15 ('pooled' -> 'role pairs')"
       }
      },
-     "determinism": "byte-identical re-runs (report, metta, signals, slotdist) after fixing a tie-break in the pooled shared-cluster ordering (2026-09-04); 2026-09-07 rendering (incl. the failed-pairs listing): re-run byte-identical (main + 9 dial files); signals/slotdist/clusters JSONL and the .md reports untouched by the rendering changes",
+     "determinism": "byte-identical re-runs (report, metta, signals, slotdist) after fixing a tie-break in the role-pair shared-cluster ordering (2026-09-04); 2026-09-07 rendering (incl. the failed-pairs listing): re-run byte-identical (main + 9 dial files); signals/slotdist/clusters JSONL and the .md reports untouched by the rendering changes",
      "gate_experiment_2026-09-05": {
       "gates": "cosine >= 0.5 (default) vs JSD <= jsd_max on the raw filler distributions; both with >= 2 shared clusters",
       "H_word_signals": {
@@ -470,8 +475,17 @@
       ],
       "decision": "ADOPTED: JSD <= 0.3 as the faithful default (owner 2026-09-05); cosine kept as reference run"
      },
-     "metta_format_2026-09-07": "owner-agreed: one uniform pair record (bucket + support + gate verdict, top fillers of each side by mass with witness ids, gate statistic + shared-cluster count and examples, the two slot queries); pooled pairs ALL listed, slot pairs = every pair clearing the >= 2 shared-cluster guard (passes first, then the near misses; pairs sharing < 2 clusters cannot pass and are omitted unless --metta-fail-slots all); main file = --metta-main word@0.85, other blocks in <stem>_dial/; header = full parameter disclosure, no decision dates in result files; the per-slot distributions section was dropped from the rendering",
-     "metta_rules_2026-09-10": "every pair record ends in the merge as a rule: minority slot's head relabelled to the majority slot's head on the minority's own class (the batch-1 role-canonicalization shape); pooled pair -> role-vocabulary collapse (minority role -> majority role); majority = larger n, tie -> alphabetically first name; same-head pairs carry 'rule: none' (merge done by construction); rendered for PASS and FAIL alike; A/B queries moved into comments; H main file 294 Implications + 47 rule-none records"
+     "metta_format_2026-09-07": "owner-agreed: one uniform pair record (bucket + support + gate verdict, top fillers of each side by mass with witness ids, gate statistic + shared-cluster count and examples, the two slot queries); role pairs (since 2026-09-15 the extension's own file) ALL listed, slot pairs = every pair clearing the >= 2 shared-cluster guard (passes first, then the near misses; pairs sharing < 2 clusters cannot pass and are omitted unless --metta-fail-slots all); main file = --metta-main word@0.85, other blocks in <stem>_dial/; header = full parameter disclosure, no decision dates in result files; the per-slot distributions section was dropped from the rendering",
+     "metta_rules_2026-09-10": "every pair record ends in the merge as a rule: minority slot's head relabelled to the majority slot's head on the minority's own class (the batch-1 role-canonicalization shape); role pair -> role-vocabulary collapse (minority role -> majority role); majority = larger n, tie -> alphabetically first name; same-head pairs carry 'rule: none' (merge done by construction); rendered for PASS and FAIL alike; A/B queries moved into comments; H main file 294 Implications + 47 rule-none records",
+     "role_pairs_extension_2026-09-15": {
+      "decision": "owner 2026-09-15: the role-pair level (one head's fillers pooled over every class) is OUR EXTENSION, not the paper's method — the paper's 'go to.Agent or Agent2' follows §4.3.1's 'go to with two participants', so 'Agent2' reads as the second participant slot of the go-to meta-node ('Agent2' occurs once in the PDF); 'pooled' renamed 'role pairs' throughout; --levels defaults to slot",
+      "script": "mining/role_fillers2_embed.py --levels {slot (default), role, both}; --min-role (alias --min-pooled); a role-only run writes rolefillers2_additions_rolepairs[_cosine].{md,metta} + _dial/ and rolefiller2_rolepairs_faithful[_cosine]_<mode>_<cut>.jsonl; internals renamed role_mass / role_pairs / role_texts",
+      "results": {
+       "H": "22 heads, 231 pairs, 0 pass JSD<=0.3; cosine>=0.5 reference: 3 (Agent~Experiencer 0.61, Patient~Theme 0.51, Agent~Patient 0.50)",
+       "item_E": "13 heads, 78 pairs, 0 pass under both gates"
+      },
+      "verification": "signals / slotdist / clusters JSONL byte-identical to the 2026-09-10 files on both substrates; the four faithful runs × both levels regenerated twice, 269 output files byte-identical between the passes"
+     }
     },
     "augmented": {
      "script": "mining/role_fillers2.py (exact-label counts, PPMI) + role_fillers2_embed.py --arm augmented",
