@@ -612,15 +612,16 @@
       "training": "full batch, Adam lr 0.01, 2,000 epochs (loss still creeping: 2.98/2.90/2.87/2.84 per record over the quarters at k 32), float32, 8 threads, seed 0 adopted, seeds 0..4 for the stability count; byte-identical re-runs",
       "dials": "bottleneck 16 / 32 / 64 (adopted 32); gate cosine >= 0.80 / 0.85 / 0.90 / 0.95 (adopted 0.85); recording floor 0.8 (the lowest gate)",
       "ties": "cosine between two units' encoder weight vectors (columns of W); co-occurrence relation from the units' record sets (exclusive / overlapping / nested / same-records) and part-of (§4.3.1 containment) as FIELDS, never filters",
-      "clusters": "average linkage on the cosine distance of the weight vectors, cut at 1 - tau (rendering only)"
+      "clusters": "average linkage on the cosine distance of the weight vectors, cut at 1 - tau (rendering only)",
+      "ties_grouping": "tie groups (owner 2026-09-17, replacing average-linkage clusters): complete-linkage clustering of the encoder weight vectors cut at 1 - tau, so every pair inside a group passes the cosine gate; a partition (a unit sits in one group; passing pairs can fall across groups) — the pairwise JSONL is the record"
      },
      "outputs": [
       "mining/out_h/ae_faithful.md / .metta / .jsonl (adopted k 32; the .metta = passes grouped by relation, exclusive first; the .jsonl = every pair >= 0.8 with per-seed cosines, norms, relation)",
       "mining/out_h/ae_faithful_dial/k16_beta0.5.* and k64_beta0.5.* (the bottleneck dial); the cosine dial is read off the records (the .md counts per threshold)",
       "mining/out_h/ae_faithful_plain.md / .metta / .jsonl + ae_faithful_plain_weights/ (beta 0 twin at k 32)",
-      "mining/out_h/ae_counts.csv (the count matrix, 6.5 MB), ae_faithful_weights/k<k>_beta0.5_seed<s>.tsv (15 files), clusters/clusters_ae_k<k>_beta<b>_<tau>.txt (16 files) — the owner-requested intermediates, switchable with --intermediates",
+      "mining/out_h/ae_counts.csv (the count matrix, 6.5 MB), ae_faithful_weights/k<k>_beta0.5_seed<s>.tsv (15 files), ties/ties_ae_k<k>_beta<b>_<tau>.txt (16 files; tie groups) — the owner-requested intermediates, switchable with --intermediates",
       "mining/out_h/ae_faithful_notes.md (analyst reading)",
-      "mining/out_ecmp/ae_faithful.* + _dial/ + _plain.* + ae_counts.csv + ae_faithful_weights/ + clusters/ (item-E twin, 762 x 1,652; Tier A scorecard in the .md)"
+      "mining/out_ecmp/ae_faithful.* + _dial/ + _plain.* + ae_counts.csv + ae_faithful_weights/ + ties/ (item-E twin, 762 x 1,652; Tier A scorecard in the .md)"
      ],
      "results": {
       "H_k32_pass_0.85": {
@@ -673,9 +674,19 @@
        ]
       },
       "reading": "as written the method is chiefly a loose co-occurrence detector (nine tenths of the ties restate the unit lattice; corroborates 93/104 §4.3.3 passes); its interchangeability claim surfaces only where a sentence template recurs with one unit swapped, entangled with a rare-unit effect (a rare unit's weight vector = the mean bottleneck code of its records, so look-alike sentences tie whatever the units mean); bottleneck size is the lever",
-      "sizes": "files total 59 MB on H and 176 MB on item-E at these parameters (item-E dial dir 89 MB; k 16 records 74,476 item-E pairs at the 0.8 floor); all deterministic and regenerable in minutes — what is committed is the owner's call"
+      "sizes": "files total 59 MB on H and 176 MB on item-E at these parameters (item-E dial dir 89 MB; k 16 records 74,476 item-E pairs at the 0.8 floor); all deterministic and regenerable in minutes — what is committed is the owner's call",
+      "H_k32_tie_groups_0.85": {
+       "groups_size_ge_2": 263,
+       "units_covered": 1165,
+       "untied": 289,
+       "largest": [
+        64,
+        63,
+        30
+       ]
+      }
      },
-     "determinism": "passes 3 and 4 (after removing the wall-clock column from the .md) byte-identical across all 95 output files on both substrates (JSONL, metta, md, weights, clusters, count matrices); weights / clusters / count matrices also identical to passes 1-2 (the JSONL/metta differ from those only by the record floor 0.7 -> 0.8)"
+     "determinism": "passes 3 and 4 (after removing the wall-clock column from the .md) byte-identical across all 95 output files on both substrates (JSONL, metta, md, weights, clusters, count matrices); weights / clusters / count matrices also identical to passes 1-2 (the JSONL/metta differ from those only by the record floor 0.7 -> 0.8); after the tie-group replacement (2026-09-17 evening) passes 5 and 6 byte-identical across all 95 files, JSONL / weights / count matrices unchanged from the committed run #1 (46b6e1a); the committed clusters_ae_* files are superseded by ties/"
     }
    }
   }

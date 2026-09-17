@@ -13,7 +13,7 @@
 | training | full batch, Adam lr 0.01, 2000 epochs, float32, 8 thread(s); seed 0 adopted, seeds 0..4 for stability |
 | ties | cosine between two units' encoder weight vectors (columns of W); gate cosine ≥ tau, dial [0.8, 0.85, 0.9, 0.95], adopted 0.85; recording floor 0.8 |
 | co-occurrence | field per pair from the units' record sets: exclusive / overlapping / nested / same-records; part-of = §4.3.1 containment — never a filter |
-| clusters | average linkage on the cosine distance of the weight vectors, cut at 1 − tau (rendering only; the gate is pairwise) |
+| tie groups | complete linkage on the cosine distance of the weight vectors, cut at 1 − tau: every pair inside a group passes the gate; a partition, so passing pairs can fall across groups (the pairwise record is the JSONL) |
 | renderings | one .metta per bottleneck at the adopted gate (passes grouped by relation, exclusive first); the cosine dial is read off the records; the plain shallow AE (beta 0) is the twin run `ae_faithful_plain_plain.*` when present |
 
 ## Count matrix
@@ -32,12 +32,12 @@
 
 ## Tied pairs across the dial
 
-| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | smaller side below the median norm | clusters | weight norm min / median | Tier A recall | control hits |
+| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | smaller side below the median norm | tie groups (untied units) | weight norm min / median | Tier A recall | control hits |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 32 | 0 | 0.80 | 34315 | 12060 | 4155 | 8155 | 9945 | 4817 | 106 | 32191 | 20153 | 109 | 0.017 / 0.282 | 9/26 | begin|end |
-| 32 | 0 | 0.85 | 32375 | 10392 | 3942 | 8096 | 9945 | 4786 | 106 | 30111 | 18240 | 122 | 0.017 / 0.282 | 9/26 | begin|end |
-| 32 | 0 | 0.90 | 30139 | 8537 | 3627 | 8030 | 9945 | 4750 | 106 | 27575 | 16035 | 141 | 0.017 / 0.282 | 9/26 | begin|end |
-| 32 | 0 | 0.95 | 25887 | 6062 | 2658 | 7222 | 9945 | 4456 | 105 | 24285 | 12511 | 184 | 0.017 / 0.282 | 7/26 | begin|end |
+| 32 | 0 | 0.80 | 34315 | 12060 | 4155 | 8155 | 9945 | 4817 | 106 | 32191 | 20153 | 91 (29) | 0.017 / 0.282 | 9/26 | begin|end |
+| 32 | 0 | 0.85 | 32375 | 10392 | 3942 | 8096 | 9945 | 4786 | 106 | 30111 | 18240 | 104 (33) | 0.017 / 0.282 | 9/26 | begin|end |
+| 32 | 0 | 0.90 | 30139 | 8537 | 3627 | 8030 | 9945 | 4750 | 106 | 27575 | 16035 | 113 (41) | 0.017 / 0.282 | 9/26 | begin|end |
+| 32 | 0 | 0.95 | 25887 | 6062 | 2658 | 7222 | 9945 | 4456 | 105 | 24285 | 12511 | 132 (64) | 0.017 / 0.282 | 7/26 | begin|end |
 
 ## Adopted block: k 32, beta 0, cosine ≥ 0.85 — top 25 EXCLUSIVE passes (the paper's interchangeability reading)
 

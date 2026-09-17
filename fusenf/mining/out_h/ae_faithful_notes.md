@@ -7,7 +7,11 @@ record `ae_faithful.jsonl` (+ `ae_faithful_dial/k<k>_beta0.5.jsonl`: every pair 
 per-seed cosines, weight norms and co-occurrence relation), the plain-autoencoder twin `ae_faithful_plain.*` (beta 0 at
 bottleneck 32), and the intermediates the owner asked for: `ae_counts.csv` (the count matrix, records × units),
 `ae_faithful_weights/k<k>_beta<b>_seed<s>.tsv` (one encoder weight vector per unit) and
-`clusters/clusters_ae_k<k>_beta<b>_<tau>.txt` (average-linkage clusters of the weight vectors, members as MeTTa queries).
+`ties/ties_ae_k<k>_beta<b>_<tau>.txt` (tie groups: complete-linkage clustering of the weight vectors cut at 1 − tau, so
+every pair inside a group passes the gate; a partition, members as MeTTa queries; the untied units listed at the end —
+owner 2026-09-17, replacing the average-linkage cluster files of the first run). At the adopted block 263 groups cover
+1,165 of the 1,454 units (289 untied); the two largest, 64 and 63 units, are the frequent frame families around Agent /
+Past / Patient, and the same-records groups reappear intact.
 The generated files are the record; this file is the reading. Nothing here is an addition to the method; the feature
 inventory is the §4.3.1 faithful view taken as-is (owner 2026-09-16: no deduplication, no closure filter, no scaling —
 those are additions to be measured as deltas).
@@ -82,6 +86,6 @@ their own code. The lexical control begin|end is linked at every gate (0.981 thr
 3. The natural next parameters to discuss are a weight-norm floor for entering the comparison (the analogue of
    §4.3.2's n ≥ 3), longer training, and the additions already planned (deduplicated columns, closed units, the Qwen3
    prior) — each as a measured delta, not a change to this run.
-4. Output size is a finding in itself: at these parameters the files total 59 MB on H and 176 MB on item-E (the
+4. Output size is a finding in itself: at these parameters the files total about 59 MB on H and 175 MB on item-E (the
    k 16 point alone records 74,476 item-E pairs at the 0.8 floor; everything is deterministic and regenerable in
    minutes). The owner decides what is committed.

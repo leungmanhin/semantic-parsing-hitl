@@ -22,13 +22,13 @@ Ties       = cosine between two units' ENCODER weight vectors (the columns of W,
              JSONL with its co-occurrence relation as a FIELD (exclusive / overlapping / nested /
              same-records; part-of = structural containment) — never a filter. Seeds 1..S-1 retrain
              the same model; ``stable_at`` counts the seeds in which the pair also clears each tau.
-Clusters   = agglomerative average linkage on the cosine distance of the weight vectors, cut at
-             1 - tau — a rendering (the gate is pairwise).
+Tie groups = COMPLETE-linkage clustering of the weight vectors cut at 1 - tau, so every pair inside
+             a group passes the gate (owner 2026-09-17); a partition — the pairwise record is the JSONL.
 
 Outputs (in --out-dir; <stem> = ae_faithful):
   ae_counts.csv                                 the count matrix, records x units   [--intermediates]
   <stem>_weights/k<k>_beta<b>_seed<s>.tsv       one encoder weight vector per unit  [--intermediates]
-  clusters/clusters_ae_k<k>_beta<b>_<tau>.txt   clusters, members as MeTTa queries  [--intermediates]
+  ties/ties_ae_k<k>_beta<b>_<tau>.txt           tie groups, members as MeTTa queries [--intermediates]
   <stem>.jsonl  (adopted k, beta; seed 0)        the record: every pair >= floor with fields
   <stem>_dial/k<k>_beta<b>.jsonl                the same for the other (k, beta) points
   <stem>.metta  (adopted k, beta; gate = adopted tau)   readable rendering, PASS pairs grouped by relation
@@ -43,7 +43,7 @@ Usage:
   python ae_faithful.py [--units out_h/patterns2_faithful.jsonl] [--canonical canonical_substrate.jsonl]
       [--out-dir out_h] [--bottleneck 16,32,64 --adopt-bottleneck 32] [--beta 0.5 --adopt-beta 0.5]
       [--cos 0.80,0.85,0.90,0.95 --adopt-cos 0.85] [--record-floor 0.5] [--seeds 5] [--epochs 2000]
-      [--intermediates matrix,weights,clusters | none] [--key out_ecmp/tierA_slot_key.json]
+      [--intermediates matrix,weights,ties | none] [--key out_ecmp/tierA_slot_key.json]
 """
 from __future__ import annotations
 
@@ -256,7 +256,10 @@ def write_weights(path, W, units):
             fh.write(u["pattern_id"] + "\t" + "\t".join(f"{v:.5f}" for v in W[:, f]) + "\t" + u["query"] + "\n")
 
 
-def write_clusters(path, W, units, tau, label):
+def write_ties(path, W, units, tau, label):
+    """Tie groups: COMPLETE-linkage clustering of the encoder weight vectors cut at 1 - tau, so every pair
+    inside a group passes the cosine gate (owner 2026-09-17). A partition: a unit sits in one group, and a
+    passing pair whose other companions conflict falls across groups — the pairwise record is the JSONL."""
     from scipy.cluster.hierarchy import fcluster, linkage
     from scipy.spatial.distance import pdist
     norms = np.linalg.norm(W, axis=0)
@@ -264,20 +267,25 @@ def write_clusters(path, W, units, tau, label):
     if tau >= 1.0:
         lab = np.arange(len(units))
     else:
-        tree = linkage(pdist(Wn, metric="cosine"), method="average")
-        lab = fcluster(tree, t=1.0 - tau, criterion="distance")
+        d = pdist(Wn, metric="cosine")
+        d = np.where(np.isnan(d), 1.0, d)
+        lab = fcluster(linkage(d, method="complete"), t=1.0 - tau, criterion="distance")
     members = collections.defaultdict(list)
     for f, cl in enumerate(lab):
         members[int(cl)].append(units[f]["query"])
-    groups = sorted((sorted(ms, key=lambda q: (q.lower(), q)) for ms in members.values()),
+    groups = sorted((sorted(ms, key=lambda q: (q.lower(), q)) for ms in members.values() if len(ms) > 1),
                     key=lambda ms: (-len(ms), ms[0].lower(), ms[0]))
+    untied = sorted((ms[0] for ms in members.values() if len(ms) == 1), key=lambda q: (q.lower(), q))
     with open(path, "w", encoding="utf-8") as fh:
-        fh.write(f";; {len(groups)} clusters of {len(units)} units at cosine {tau:.2f} — agglomerative, average linkage on "
-                 f"the cosine distance of the encoder weight vectors ({label}); clusters by size, members by query; "
-                 "singletons included\n\n")
+        fh.write(f";; {len(groups)} tie groups (size >= 2) covering {len(units) - len(untied)} of {len(units)} units at cosine >= {tau:.2f} — "
+                 "complete linkage on the cosine distance of the encoder weight vectors\n"
+                 f";; ({label}): every pair inside a group passes the gate; a partition, so a unit sits in one group and a passing\n"
+                 ";; pair whose other companions conflict falls across groups (the pairwise record is the JSONL); groups by size,\n"
+                 f";; members by query; the {len(untied)} untied units are listed at the end\n\n")
         for n, ms in enumerate(groups, 1):
-            fh.write(f";; cluster #{n}\n" + "\n".join(ms) + "\n\n")
-    return len(groups)
+            fh.write(f";; tie #{n} (size {len(ms)})\n" + "\n".join(ms) + "\n\n")
+        fh.write(f";; untied units ({len(untied)})\n" + "\n".join(untied) + "\n")
+    return len(groups), len(untied)
 
 
 def write_jsonl(path, rows, k, beta, adopt_tau):
@@ -331,7 +339,8 @@ def write_metta(path, args, rows, units, k, beta, tau, is_main, facts, stats, n_
                  f";;                   gate cosine >= {tau:.2f} (dial {', '.join(f'{t:.2f}' for t in args.cos_list)}); recording floor {args.record_floor}\n"
                  f";;   co-occurrence   from the units' record sets: exclusive (no shared record) / overlapping / nested / same-records;\n"
                  ";;                   part-of = one unit's atoms embed in the other's (§4.3.1 containment) — a FIELD, never a filter\n"
-                 ";;   clusters        average linkage on the cosine distance of the weight vectors, cut at 1 - tau (rendering only)\n;;\n"
+                 ";;   tie groups      complete linkage on the cosine distance of the weight vectors, cut at 1 - tau: every pair inside a\n"
+                 ";;                   group passes the gate; a partition (a unit sits in one group) — the pairwise record is the JSONL\n;;\n"
                  ";; RECORD FORMAT (every record is one pair, with its gate verdict)\n"
                  ";;   ;; [relation(, part-of)]  A ~ B   cosine <seed 0> (seeds <n>/<S> >= tau)   records <A> / <B> / <shared>   norms <A> / <B>   gate: PASS|FAIL\n"
                  ";;   ;;   A: <query A>   e.g. <witness record ids>\n"
@@ -384,8 +393,8 @@ def main():
     ap.add_argument("--record-floor", type=float, default=0.8, help="pairs at or above this cosine (seed 0) enter the JSONL "
                                                                      "(default = the lowest gate on the cosine dial)")
     ap.add_argument("--metta-near", type=float, default=0.0, help="FAIL pairs listed in the rendering: cosine within this below the gate (0 = passes only)")
-    ap.add_argument("--intermediates", default="matrix,weights,clusters",
-                    help="comma list of matrix,weights,clusters — or 'none'")
+    ap.add_argument("--intermediates", default="matrix,weights,ties",
+                    help="comma list of matrix,weights,ties — or 'none'")
     ap.add_argument("--top", type=int, default=25, help="pairs shown with sentences in the .md")
     args = ap.parse_args()
     args.cos_list = [float(x) for x in args.cos.split(",")]
@@ -421,12 +430,12 @@ def main():
     mi_pass = {frozenset((r["a"], r["b"])) for r in load(mi_path) if r.get("pass")} if os.path.exists(mi_path) else set()
 
     wdir = os.path.join(args.out_dir, f"{args.stem}_weights")
-    cdir = os.path.join(args.out_dir, "clusters")
+    cdir = os.path.join(args.out_dir, "ties")
     ddir = os.path.join(args.out_dir, f"{args.stem}_dial")
     os.makedirs(ddir, exist_ok=True)
     if "weights" in inter:
         os.makedirs(wdir, exist_ok=True)
-    if "clusters" in inter:
+    if "ties" in inter:
         os.makedirs(cdir, exist_ok=True)
 
     results = {}
@@ -461,9 +470,9 @@ def main():
             norm_median = float(np.median(norms))
             for tau in args.cos_list:
                 n_cl = None
-                if "clusters" in inter:
-                    n_cl = write_clusters(os.path.join(cdir, f"clusters_ae_k{k}_beta{beta:g}_{tau:.2f}.txt"), Ws[0], units, tau,
-                                          f"bottleneck {k}, beta {beta:g}, seed 0")
+                if "ties" in inter:
+                    n_cl = write_ties(os.path.join(cdir, f"ties_ae_k{k}_beta{beta:g}_{tau:.2f}.txt"), Ws[0], units, tau,
+                                      f"bottleneck {k}, beta {beta:g}, seed 0")
                 passes = [r for r in rows if r["cosine"] >= tau - 1e-9]
                 results[(k, beta, tau)] = {
                     "pass": len(passes), "by_relation": dict(collections.Counter(r["relation"] for r in passes)),
@@ -471,7 +480,7 @@ def main():
                     "stable_all": sum(1 for r in passes if r["stable_at"][f"{tau:.2f}"] == args.seeds),
                     "low_norm": sum(1 for r in passes if min(r["norm_a"], r["norm_b"]) < norm_median),
                     "shared_mi": sum(1 for r in passes if frozenset((r["a"], r["b"])) in mi_pass),
-                    "clusters": n_cl, "recorded": len(rows),
+                    "ties": n_cl, "recorded": len(rows),
                     "scorecard": score_key(key, rows, tau) if key else None,
                     "norm_min": round(float(norms.min()), 3), "norm_median": round(float(np.median(norms)), 3),
                 }
@@ -494,7 +503,7 @@ def main():
          f"| ties | cosine between two units' encoder weight vectors (columns of W); gate cosine ≥ tau, dial {args.cos_list}, adopted {args.adopt_cos:.2f}; "
          f"recording floor {args.record_floor} |",
          "| co-occurrence | field per pair from the units' record sets: exclusive / overlapping / nested / same-records; part-of = §4.3.1 containment — never a filter |",
-         "| clusters | average linkage on the cosine distance of the weight vectors, cut at 1 − tau (rendering only; the gate is pairwise) |",
+         "| tie groups | complete linkage on the cosine distance of the weight vectors, cut at 1 − tau: every pair inside a group passes the gate; a partition, so passing pairs can fall across groups (the pairwise record is the JSONL) |",
          f"| renderings | one .metta per bottleneck at the adopted gate (passes grouped by relation, exclusive first); the cosine dial is read off the records; "
          f"the plain shallow AE (beta 0) is the twin run `{args.stem}_plain.*` when present |\n",
          "## Count matrix\n",
@@ -506,7 +515,7 @@ def main():
         R.append(f"| {k} | {beta:g} | {s} | {st['recon']} | {st['r2']} | {st['mean_activation']} | {st['active_units_per_record']} | "
                  f"{' / '.join(str(c[1]) for c in st['curve'])} |")
     R.append("\n## Tied pairs across the dial\n")
-    R.append("| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | smaller side below the median norm | clusters | weight norm min / median |"
+    R.append("| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | smaller side below the median norm | tie groups (untied units) | weight norm min / median |"
              + (" Tier A recall | control hits |" if key else "") + "\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|" + ("---|---|" if key else ""))
     for k in ks:
         for beta in betas:
@@ -514,7 +523,7 @@ def main():
                 r = results[(k, beta, tau)]
                 br = r["by_relation"]
                 R.append(f"| {k} | {beta:g} | {tau:.2f} | {r['pass']} | {br.get('exclusive', 0)} | {br.get('overlapping', 0)} | {br.get('nested', 0)} | "
-                         f"{br.get('same-records', 0)} | {r['part_of']} | {r['shared_mi']} | {r['stable_all']} | {r['low_norm']} | {r['clusters'] if r['clusters'] is not None else '—'} | "
+                         f"{br.get('same-records', 0)} | {r['part_of']} | {r['shared_mi']} | {r['stable_all']} | {r['low_norm']} | {f"{r['ties'][0]} ({r['ties'][1]})" if r['ties'] is not None else '—'} | "
                          f"{r['norm_min']} / {r['norm_median']} |"
                          + (f" {r['scorecard']['recall']} | {', '.join(r['scorecard']['control_hits']) or 'none'} |" if key else ""))
     rows = results[(args.adopt_bottleneck, args.adopt_beta)]

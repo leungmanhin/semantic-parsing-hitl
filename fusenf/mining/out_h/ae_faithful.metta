@@ -26,7 +26,8 @@
 ;;                   gate cosine >= 0.85 (dial 0.80, 0.85, 0.90, 0.95); recording floor 0.8
 ;;   co-occurrence   from the units' record sets: exclusive (no shared record) / overlapping / nested / same-records;
 ;;                   part-of = one unit's atoms embed in the other's (§4.3.1 containment) — a FIELD, never a filter
-;;   clusters        average linkage on the cosine distance of the weight vectors, cut at 1 - tau (rendering only)
+;;   tie groups      complete linkage on the cosine distance of the weight vectors, cut at 1 - tau: every pair inside a
+;;                   group passes the gate; a partition (a unit sits in one group) — the pairwise record is the JSONL
 ;;
 ;; RECORD FORMAT (every record is one pair, with its gate verdict)
 ;;   ;; [relation(, part-of)]  A ~ B   cosine <seed 0> (seeds <n>/<S> >= tau)   records <A> / <B> / <shared>   norms <A> / <B>   gate: PASS|FAIL

@@ -13,7 +13,7 @@
 | training | full batch, Adam lr 0.01, 2000 epochs, float32, 8 thread(s); seed 0 adopted, seeds 0..4 for stability |
 | ties | cosine between two units' encoder weight vectors (columns of W); gate cosine ≥ tau, dial [0.8, 0.85, 0.9, 0.95], adopted 0.85; recording floor 0.8 |
 | co-occurrence | field per pair from the units' record sets: exclusive / overlapping / nested / same-records; part-of = §4.3.1 containment — never a filter |
-| clusters | average linkage on the cosine distance of the weight vectors, cut at 1 − tau (rendering only; the gate is pairwise) |
+| tie groups | complete linkage on the cosine distance of the weight vectors, cut at 1 − tau: every pair inside a group passes the gate; a partition, so passing pairs can fall across groups (the pairwise record is the JSONL) |
 | renderings | one .metta per bottleneck at the adopted gate (passes grouped by relation, exclusive first); the cosine dial is read off the records; the plain shallow AE (beta 0) is the twin run `ae_faithful_plain.*` when present |
 
 ## Count matrix
@@ -42,20 +42,20 @@
 
 ## Tied pairs across the dial
 
-| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | smaller side below the median norm | clusters | weight norm min / median | Tier A recall | control hits |
+| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | smaller side below the median norm | tie groups (untied units) | weight norm min / median | Tier A recall | control hits |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 16 | 0.5 | 0.80 | 74476 | 50006 | 5659 | 8866 | 9945 | 5106 | 106 | 58918 | 54608 | 70 | 0.02 / 0.144 | 13/26 | begin|end |
-| 16 | 0.5 | 0.85 | 65354 | 41700 | 5224 | 8485 | 9945 | 4940 | 106 | 53027 | 46437 | 84 | 0.02 / 0.144 | 11/26 | begin|end |
-| 16 | 0.5 | 0.90 | 57648 | 34770 | 4684 | 8249 | 9945 | 4834 | 106 | 47279 | 39137 | 105 | 0.02 / 0.144 | 11/26 | begin|end |
-| 16 | 0.5 | 0.95 | 43040 | 21480 | 3763 | 7852 | 9945 | 4661 | 106 | 36599 | 26433 | 146 | 0.02 / 0.144 | 9/26 | begin|end |
-| 32 | 0.5 | 0.80 | 39787 | 17444 | 4204 | 8194 | 9945 | 4821 | 106 | 36670 | 25434 | 101 | 0.027 / 0.349 | 10/26 | begin|end |
-| 32 | 0.5 | 0.85 | 37062 | 15027 | 3997 | 8093 | 9945 | 4773 | 106 | 34026 | 22765 | 115 | 0.027 / 0.349 | 10/26 | begin|end |
-| 32 | 0.5 | 0.90 | 33971 | 12473 | 3656 | 7897 | 9945 | 4706 | 105 | 30985 | 19760 | 141 | 0.027 / 0.349 | 9/26 | begin|end |
-| 32 | 0.5 | 0.95 | 28181 | 8195 | 2604 | 7437 | 9945 | 4526 | 105 | 25742 | 14385 | 175 | 0.027 / 0.349 | 8/26 | begin|end |
-| 64 | 0.5 | 0.80 | 19843 | 1269 | 2112 | 6517 | 9945 | 4361 | 106 | 18941 | 14683 | 163 | 0.041 / 0.509 | 10/26 | none |
-| 64 | 0.5 | 0.85 | 19101 | 1150 | 1901 | 6105 | 9945 | 4229 | 105 | 18206 | 14051 | 187 | 0.041 / 0.509 | 8/26 | none |
-| 64 | 0.5 | 0.90 | 18056 | 1033 | 1462 | 5616 | 9945 | 4121 | 105 | 17490 | 13044 | 202 | 0.041 / 0.509 | 5/26 | none |
-| 64 | 0.5 | 0.95 | 16841 | 972 | 1165 | 4759 | 9945 | 3895 | 105 | 16449 | 12046 | 233 | 0.041 / 0.509 | 3/26 | none |
+| 16 | 0.5 | 0.80 | 74476 | 50006 | 5659 | 8866 | 9945 | 5106 | 106 | 58918 | 54608 | 68 (19) | 0.02 / 0.144 | 13/26 | begin|end |
+| 16 | 0.5 | 0.85 | 65354 | 41700 | 5224 | 8485 | 9945 | 4940 | 106 | 53027 | 46437 | 77 (26) | 0.02 / 0.144 | 11/26 | begin|end |
+| 16 | 0.5 | 0.90 | 57648 | 34770 | 4684 | 8249 | 9945 | 4834 | 106 | 47279 | 39137 | 92 (36) | 0.02 / 0.144 | 11/26 | begin|end |
+| 16 | 0.5 | 0.95 | 43040 | 21480 | 3763 | 7852 | 9945 | 4661 | 106 | 36599 | 26433 | 110 (50) | 0.02 / 0.144 | 9/26 | begin|end |
+| 32 | 0.5 | 0.80 | 39787 | 17444 | 4204 | 8194 | 9945 | 4821 | 106 | 36670 | 25434 | 87 (27) | 0.027 / 0.349 | 10/26 | begin|end |
+| 32 | 0.5 | 0.85 | 37062 | 15027 | 3997 | 8093 | 9945 | 4773 | 106 | 34026 | 22765 | 100 (34) | 0.027 / 0.349 | 10/26 | begin|end |
+| 32 | 0.5 | 0.90 | 33971 | 12473 | 3656 | 7897 | 9945 | 4706 | 105 | 30985 | 19760 | 108 (42) | 0.027 / 0.349 | 9/26 | begin|end |
+| 32 | 0.5 | 0.95 | 28181 | 8195 | 2604 | 7437 | 9945 | 4526 | 105 | 25742 | 14385 | 126 (60) | 0.027 / 0.349 | 8/26 | begin|end |
+| 64 | 0.5 | 0.80 | 19843 | 1269 | 2112 | 6517 | 9945 | 4361 | 106 | 18941 | 14683 | 137 (40) | 0.041 / 0.509 | 10/26 | none |
+| 64 | 0.5 | 0.85 | 19101 | 1150 | 1901 | 6105 | 9945 | 4229 | 105 | 18206 | 14051 | 143 (49) | 0.041 / 0.509 | 8/26 | none |
+| 64 | 0.5 | 0.90 | 18056 | 1033 | 1462 | 5616 | 9945 | 4121 | 105 | 17490 | 13044 | 154 (57) | 0.041 / 0.509 | 5/26 | none |
+| 64 | 0.5 | 0.95 | 16841 | 972 | 1165 | 4759 | 9945 | 3895 | 105 | 16449 | 12046 | 164 (77) | 0.041 / 0.509 | 3/26 | none |
 
 ## Adopted block: k 32, beta 0.5, cosine ≥ 0.85 — top 25 EXCLUSIVE passes (the paper's interchangeability reading)
 
