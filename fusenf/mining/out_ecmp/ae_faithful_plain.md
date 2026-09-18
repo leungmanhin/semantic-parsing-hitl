@@ -9,12 +9,13 @@
 | features | the 1652 rooted-subtree units of the §4.3.1 faithful view (`out_ecmp/patterns2_faithful.jsonl`), taken as-is: subsumed units and identical columns included (the faithful arm never pre-filters its input; dedup / closed-only / binary input are additions) |
 | vectorisation | per record, the number of matches (variable bindings) of each unit, recounted with the miner's enumerator (k = 4, 28 eligible atoms per record, surface atoms excluded, constants verbatim) and verified against the inventory; raw counts, no scaling |
 | autoencoder | one hidden layer of k sigmoid units (dial [32], adopted 32), linear output, tied decoder x_hat = h W + c; W uniform(±sqrt(6/(F+k))), b = 0, c = column means |
-| loss | mean over records of the squared reconstruction error summed over units + 0.0001·‖W‖² + beta·Σ_j KL(rho ‖ mean activation_j), rho 0.1, beta dial [0.0] (0 = plain shallow AE), adopted 0 |
-| training | full batch, Adam lr 0.01, 2000 epochs, float32, 8 thread(s); seed 0 adopted, seeds 0..4 for stability |
+| loss | mean over records of the squared reconstruction error summed over units + 0.0001·‖W‖² + beta·Σ_j KL(rho ‖ mean activation_j), rho 0.1, beta [0.0] (adopted 0; the plain AE beta 0 and beta 2 are twin runs `ae_faithful_plain_plain.*` / `ae_faithful_plain_beta2.*` when present) |
+| training | full batch, Adam lr 0.01, 10000 epochs, float32, 8 thread(s); seed 0 adopted, seeds 0..4 for stability |
 | ties | cosine between two units' encoder weight vectors (columns of W); gate cosine ≥ tau, dial [0.8, 0.85, 0.9, 0.95], adopted 0.85; recording floor 0.8 |
+| norm floor | a unit enters the comparison when its encoder-vector norm is at least the floor; dial none, median, init, adopted init (init = the initialisation norm a·sqrt(k/3), a = sqrt(6/(F+k)): training grew the vector beyond where it started; median = the median unit norm) |
 | co-occurrence | field per pair from the units' record sets: exclusive / overlapping / nested / same-records; part-of = §4.3.1 containment — never a filter |
-| tie groups | complete linkage on the cosine distance of the weight vectors, cut at 1 − tau: every pair inside a group passes the gate; a partition, so passing pairs can fall across groups (the pairwise record is the JSONL) |
-| renderings | one .metta per bottleneck at the adopted gate (passes grouped by relation, exclusive first); the cosine dial is read off the records; the plain shallow AE (beta 0) is the twin run `ae_faithful_plain_plain.*` when present |
+| tie groups | complete linkage on the cosine distance of the entering units' weight vectors, cut at 1 − tau: every pair inside a group passes the gate; a partition (the pairwise record is the JSONL) |
+| renderings | one .metta per bottleneck at the adopted gate (passes grouped by relation, exclusive first); the cosine and floor dials are read off the records |
 
 ## Count matrix
 
@@ -22,86 +23,92 @@
 
 ## Training
 
-| k | beta | seed | reconstruction / record | R² | mean activation | units > 0.5 / record | reconstruction at 25 / 50 / 75 / 100 % of the epochs |
+| k | beta | seed | reconstruction / record | R² | mean activation | units > 0.5 / record | reconstruction at each tenth of the epochs |
 |---|---|---|---|---|---|---|---|
-| 32 | 0 | 0 | 5.6461 | 0.5737 | 0.4107 | 11.96 | 5.8302 / 5.6755 / 5.6729 / 5.6417 |
-| 32 | 0 | 1 | 5.631 | 0.5748 | 0.3948 | 10.27 | 5.826 / 5.6821 / 5.6486 / 5.6312 |
-| 32 | 0 | 2 | 5.645 | 0.5738 | 0.41 | 10.76 | 5.8392 / 5.6857 / 5.6576 / 5.6452 |
-| 32 | 0 | 3 | 5.636 | 0.5744 | 0.3926 | 10.4 | 5.8533 / 5.6796 / 5.6428 / 5.6413 |
-| 32 | 0 | 4 | 5.629 | 0.575 | 0.3895 | 9.8 | 5.8405 / 5.6791 / 5.6453 / 5.6299 |
+| 32 | 0 | 0 | 5.5727 | 0.5792 | 0.3285 | 8.48 | 5.6755 / 5.6417 / 5.6088 / 5.5918 / 5.5991 / 5.5779 / 5.5788 / 5.571 / 5.5799 / 5.5739 |
+| 32 | 0 | 1 | 5.5684 | 0.5795 | 0.2842 | 7.08 | 5.6821 / 5.6312 / 5.6114 / 5.5966 / 5.587 / 5.5831 / 5.5795 / 5.5736 / 5.579 / 5.5683 |
+| 32 | 0 | 2 | 5.5719 | 0.5793 | 0.2888 | 7.06 | 5.6857 / 5.6452 / 5.6202 / 5.6013 / 5.604 / 5.5863 / 5.6221 / 5.5851 / 5.5986 / 5.5725 |
+| 32 | 0 | 3 | 5.5688 | 0.5795 | 0.3134 | 8.55 | 5.6796 / 5.6413 / 5.5992 / 5.5895 / 5.5806 / 5.5714 / 5.569 / 5.5759 / 5.5659 / 5.5681 |
+| 32 | 0 | 4 | 5.5891 | 0.578 | 0.3017 | 7.36 | 5.6791 / 5.6299 / 5.6241 / 5.5855 / 5.5813 / 5.5844 / 5.5746 / 5.5678 / 5.5934 / 5.5934 |
 
-## Tied pairs across the dial
+## Norm floors and entering units
 
-| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | smaller side below the median norm | tie groups (untied units) | weight norm min / median | Tier A recall | control hits |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 32 | 0 | 0.80 | 34315 | 12060 | 4155 | 8155 | 9945 | 4817 | 106 | 32191 | 20153 | 91 (29) | 0.017 / 0.282 | 9/26 | begin|end |
-| 32 | 0 | 0.85 | 32375 | 10392 | 3942 | 8096 | 9945 | 4786 | 106 | 30111 | 18240 | 104 (33) | 0.017 / 0.282 | 9/26 | begin|end |
-| 32 | 0 | 0.90 | 30139 | 8537 | 3627 | 8030 | 9945 | 4750 | 106 | 27575 | 16035 | 113 (41) | 0.017 / 0.282 | 9/26 | begin|end |
-| 32 | 0 | 0.95 | 25887 | 6062 | 2658 | 7222 | 9945 | 4456 | 105 | 24285 | 12511 | 132 (64) | 0.017 / 0.282 | 7/26 | begin|end |
+| k | beta | floor none (units entering) | floor median (units entering) | floor init (units entering) |
+|---|---|---|---|---|
+| 32 | 0 | 0.000 (1652) | 0.299 (826) | 0.195 (1005) |
 
-## Adopted block: k 32, beta 0, cosine ≥ 0.85 — top 25 EXCLUSIVE passes (the paper's interchangeability reading)
+## Tied pairs across the dial (gate: cosine ≥ tau and both norms ≥ the adopted floor `init`)
 
-| cosine | seeds | relation | norms A / B | A (support) | B (support) | shared | A e.g. | B e.g. |
-|---|---|---|---|---|---|---|---|---|
-| 1.000 | 5/5 | exclusive | 0.03 / 0.02 | `(Member $x0 library)` (5) | `(Member $x0 descent)` (4) | 0 | A library gives each member a card. | The descent is difficult. |
-| 1.000 | 5/5 | exclusive | 0.09 / 0.07 | `(Member $x0 manuscript)` (5) | `(And (Agent $e0 $x0) (Member $x0 panel) (Theme $e0 $x1))` (4) | 0 | An editor rejects a manuscript. | A panel rejects the proposal. |
-| 1.000 | 5/5 | exclusive | 0.09 / 0.07 | `(Member $x0 manuscript)` (5) | `(And (Agent $e0 $x0) (Member $x0 panel))` (4) | 0 | An editor rejects a manuscript. | A panel rejects the proposal. |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.02 | `(Inheritance night_crew crew)` (4) | `(Inheritance regional_unit unit)` (4) | 0 | The night crew is exhausted. | Methoni is a village and a former municipality in Pieria regional unit , Greece . |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0) (Theme $e0 $x1))` (4) | `(And (Member $e0 purchase) (Past $e0) (Theme $e0 $x0))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0) (Theme $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $e0 purchase))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0) (Theme $e0 $x1))` (4) | `(And (Member $e0 purchase) (Past $e0))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0) (Theme $e0 $x1))` (4) | `(Member $e0 purchase)` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 purchase) (Past $e0) (Theme $e0 $x1))` (4) | `(Member $e0 acquire)` (4) | 0 | The depot purchased two forklifts. | The depot acquired two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0))` (4) | `(And (Agent $e0 $x0) (Member $e0 purchase) (Past $e0) (Theme $e0 $x1))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0))` (4) | `(And (Agent $e0 $x0) (Member $e0 purchase) (Past $e0))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0))` (4) | `(And (Agent $e0 $x0) (Member $e0 purchase) (Theme $e0 $x1))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0))` (4) | `(And (Member $e0 purchase) (Past $e0) (Theme $e0 $x0))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0))` (4) | `(And (Member $e0 purchase) (Past $e0))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Past $e0))` (4) | `(And (Member $e0 purchase) (Theme $e0 $x0))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Theme $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $e0 purchase) (Past $e0) (Theme $e0 $x1))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Theme $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $e0 purchase) (Past $e0))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Theme $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $e0 purchase) (Theme $e0 $x1))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Theme $e0 $x1))` (4) | `(And (Member $e0 purchase) (Past $e0) (Theme $e0 $x0))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Theme $e0 $x1))` (4) | `(And (Member $e0 purchase) (Past $e0))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Theme $e0 $x1))` (4) | `(And (Member $e0 purchase) (Theme $e0 $x0))` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 acquire) (Theme $e0 $x1))` (4) | `(Member $e0 purchase)` (4) | 0 | The depot acquired two forklifts. | The depot purchased two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 purchase) (Past $e0))` (4) | `(Member $e0 acquire)` (4) | 0 | The depot purchased two forklifts. | The depot acquired two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 purchase) (Theme $e0 $x1))` (4) | `(And (Member $e0 acquire) (Past $e0) (Theme $e0 $x0))` (4) | 0 | The depot purchased two forklifts. | The depot acquired two forklifts. |
-| 1.000 | 5/5 | exclusive | 0.12 / 0.12 | `(And (Agent $e0 $x0) (Member $e0 purchase) (Theme $e0 $x1))` (4) | `(Member $e0 acquire)` (4) | 0 | The depot purchased two forklifts. | The depot acquired two forklifts. |
+| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | tie groups (untied / below floor) | pass / exclusive at floor none | pass / exclusive at floor median | pass / exclusive at floor init | Tier A recall | control hits |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 32 | 0 | 0.80 | 18326 | 1189 | 2112 | 6536 | 8489 | 3437 | 93 | 18113 | 47 (23 / 647) | 34714 / 12206 | 14226 / 241 | 18326 / 1189 | 2/26 | none |
+| 32 | 0 | 0.85 | 18106 | 1098 | 2022 | 6497 | 8489 | 3421 | 93 | 18018 | 50 (26 / 647) | 32064 / 9964 | 14185 / 239 | 18106 / 1098 | 2/26 | none |
+| 32 | 0 | 0.90 | 17957 | 1097 | 1970 | 6401 | 8489 | 3390 | 92 | 17711 | 53 (31 / 647) | 29103 / 7650 | 14059 / 239 | 17957 / 1097 | 2/26 | none |
+| 32 | 0 | 0.95 | 17059 | 979 | 1521 | 6070 | 8489 | 3274 | 92 | 16563 | 61 (36 / 647) | 25967 / 5892 | 13700 / 238 | 17059 / 979 | 1/26 | none |
 
-## Adopted block: k 32, beta 0, cosine ≥ 0.85 — top 25 co-occurrence passes (overlapping / nested / same-records)
+## Adopted block: k 32, beta 0, cosine ≥ 0.85, floor init — top 25 EXCLUSIVE passes (the paper's interchangeability reading)
 
 | cosine | seeds | relation | norms A / B | A (support) | B (support) | shared | A e.g. | B e.g. |
 |---|---|---|---|---|---|---|---|---|
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(Member $e0 buy)` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(And (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(And (Member $e0 buy) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(Member $e0 buy)` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | `(Member $e0 buy)` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | `(And (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | `(And (Member $e0 buy) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | `(Member $e0 buy)` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | `(And (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | `(And (Member $e0 buy) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
-| 1.000 | 5/5 | same-records (part-of) | 0.53 / 0.53 | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | `(Member $e0 buy)` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance afternoon_session session) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Inheritance summer_fair fair) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | 0 | A tutor cancels the afternoon session. | A council cancels the summer fair. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance afternoon_session session) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x0 council) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | 0 | A tutor cancels the afternoon session. | A council cancels the summer fair. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance afternoon_session session) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x0 council) (Patient $e0 $x1))` (4) | 0 | A tutor cancels the afternoon session. | A council cancels the summer fair. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance afternoon_session session) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | 0 | A tutor cancels the afternoon session. | A council cancels the summer fair. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance afternoon_session session) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | `(And (Inheritance summer_fair fair) (Member $x0 summer_fair) (Patient $e0 $x0))` (4) | 0 | A tutor cancels the afternoon session. | A council cancels the summer fair. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance afternoon_session session) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x0 council))` (4) | 0 | A tutor cancels the afternoon session. | A council cancels the summer fair. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance afternoon_session session) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | `(And (Member $x0 summer_fair) (Patient $e0 $x0))` (4) | 0 | A tutor cancels the afternoon session. | A council cancels the summer fair. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance summer_fair fair) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x0 tutor) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance summer_fair fair) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x0 tutor) (Patient $e0 $x1))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance summer_fair fair) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance summer_fair fair) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | `(And (Inheritance afternoon_session session) (Member $x0 afternoon_session) (Patient $e0 $x0))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Inheritance summer_fair fair) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | `(And (Member $x0 afternoon_session) (Patient $e0 $x0))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 council) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x0 tutor) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 council) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x0 tutor) (Patient $e0 $x1))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 council) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 council) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | `(And (Inheritance afternoon_session session) (Member $x0 afternoon_session) (Patient $e0 $x0))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 council) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | `(And (Member $x0 afternoon_session) (Patient $e0 $x0))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 tutor) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x1 summer_fair) (Patient $e0 $x1))` (4) | 0 | A tutor cancels the afternoon session. | A council cancels the summer fair. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 tutor) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | `(And (Inheritance summer_fair fair) (Member $x0 summer_fair) (Patient $e0 $x0))` (4) | 0 | A tutor cancels the afternoon session. | A council cancels the summer fair. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 tutor) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | `(And (Member $x0 summer_fair) (Patient $e0 $x0))` (4) | 0 | A tutor cancels the afternoon session. | A council cancels the summer fair. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 council) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x0 tutor) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 council) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x0 tutor) (Patient $e0 $x1))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 council) (Patient $e0 $x1))` (4) | `(And (Agent $e0 $x0) (Member $x1 afternoon_session) (Patient $e0 $x1))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 council) (Patient $e0 $x1))` (4) | `(And (Inheritance afternoon_session session) (Member $x0 afternoon_session) (Patient $e0 $x0))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+| 1.000 | 5/5 | exclusive | 0.32 / 0.32 | `(And (Agent $e0 $x0) (Member $x0 council) (Patient $e0 $x1))` (4) | `(And (Member $x0 afternoon_session) (Patient $e0 $x0))` (4) | 0 | A council cancels the summer fair. | A tutor cancels the afternoon session. |
+
+## Adopted block: k 32, beta 0, cosine ≥ 0.85, floor init — top 25 co-occurrence passes (overlapping / nested / same-records)
+
+| cosine | seeds | relation | norms A / B | A (support) | B (support) | shared | A e.g. | B e.g. |
+|---|---|---|---|---|---|---|---|---|
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0) (Theme $e0 $x1))` (14) | `(Member $e0 buy)` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(And (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(And (Member $e0 buy) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Past $e0))` (14) | `(Member $e0 buy)` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | `(And (Member $e0 buy) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy) (Theme $e0 $x1))` (14) | `(Member $e0 buy)` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | `(And (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | `(And (Member $e0 buy) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | `(Member $e0 buy)` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | `(And (Member $e0 buy) (Past $e0) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | `(And (Member $e0 buy) (Past $e0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | `(And (Member $e0 buy) (Theme $e0 $x0))` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
+| 1.000 | 5/5 | same-records (part-of) | 0.58 / 0.58 | `(And (Agent $e0 $x0) (Member $e0 buy))` (14) | `(Member $e0 buy)` (14) | 14 | The depot bought two forklifts. | The depot bought two forklifts. |
 
 ## Tier A scorecard (item-E substrate; key = mining/tierA_slot_key.py)
 
 - an expected lemma pair counts as recovered when a PASS pair's two units mention the two lemmas as `(Member $e lemma)` atoms; lexical control pairs (antonyms / near-misses) linked the same way are control hits
 
-- adopted block: recall 9/26; recovered: abandon|give_up, begin|commence, begin|start, call_off|cancel, cause|destroy, discover|find_out, need|require, postpone|put_off, reject|turn_down; missed: acquire|buy, allow|permit, answer|give, arrival|arrive, borrow|lend, buy|purchase, buy|sell, decide|decision, decide|make, decide|reach, die|kick_the_bucket, error|find_out, fix|repair, give|receive, learn|teach, mend|repair, take|walk; control hits: begin|end
+- adopted block: recall 2/26; recovered: begin|start, cause|destroy; missed: abandon|give_up, acquire|buy, allow|permit, answer|give, arrival|arrive, begin|commence, borrow|lend, buy|purchase, buy|sell, call_off|cancel, decide|decision, decide|make, decide|reach, die|kick_the_bucket, discover|find_out, error|find_out, fix|repair, give|receive, learn|teach, mend|repair, need|require, postpone|put_off, reject|turn_down, take|walk; control hits: none
 

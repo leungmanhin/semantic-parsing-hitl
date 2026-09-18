@@ -604,6 +604,74 @@
    "date": "2026-09-17",
    "variants": {
     "faithful": {
+     "date": "2026-09-18 (run #2; run #1 2026-09-17 in history)",
+     "parameters": {
+      "features": "the 1,454 rooted-subtree units of the §4.3.1 faithful view (out_h/patterns2_faithful.jsonl), as-is: subsumed units and identical columns included (owner 2026-09-16: no pre-filtering; dedup / closed-only / binary input / Qwen3 prior = additions)",
+      "vectorisation": "count of each unit's matches (variable bindings) per record, recounted with the miner's enumerator (k 4, MAX_REC_ATOMS 28, surface atoms excluded, constants verbatim) and verified against the inventory (column sums = occurrences, non-zero rows = support sets); raw counts, no scaling; 2,302 x 1,454, 11,330 non-zero cells, 1,075 repeats",
+      "model": "one hidden layer of k sigmoid units, linear output, tied decoder x_hat = h W + c; init W uniform(+-sqrt(6/(F+k))), b 0, c column means",
+      "loss": "mean over records of the squared reconstruction error summed over units + 1e-4 ||W||^2 + beta * sum_j KL(rho 0.1 || mean activation_j); beta 0.5 adopted, beta 0 = the plain twin (ae_faithful_plain.*)",
+      "training": "full batch, Adam lr 0.01, 10,000 epochs (reconstruction per record at each tenth, k 32: 2.978 / 2.875 / 2.850 / 2.834 / 2.818 / 2.815 / 2.815 / 2.814 / 2.809 / 2.810 = plateau), float32, 8 threads, seed 0 adopted, seeds 0..4 for the stability count; byte-identical re-runs",
+      "dials": "bottleneck 32 / 64 / 128 (adopted 32); gate cosine >= 0.80 / 0.85 / 0.90 / 0.95 (adopted 0.85); norm floor none / median / init (adopted init); recording floor 0.8; twins beta 0 (ae_faithful_plain.*) and beta 2 (ae_faithful_beta2.*) at k 32",
+      "ties": "cosine between two units' encoder weight vectors (columns of W); co-occurrence relation from the units' record sets (exclusive / overlapping / nested / same-records) and part-of (§4.3.1 containment) as FIELDS, never filters",
+      "clusters": "average linkage on the cosine distance of the weight vectors, cut at 1 - tau (rendering only)",
+      "ties_grouping": "tie groups over the ENTERING units: complete-linkage clustering cut at 1 - tau (every pair inside a group passes the gate; a partition); untied entering units and below-floor units listed at the end of each file",
+      "gate": "pass = cosine >= tau AND both units enter (encoder-vector norm >= floor); init floor = the initialisation norm a*sqrt(k/3), a = sqrt(6/(F+k)) = 0.208 / 0.290 / 0.402 at k 32 / 64 / 128 (609 / 776 / 1,000 of 1,454 units enter); the record keeps every pair >= 0.8 whatever the floor (fields pass / enters / pass_no_floor)"
+     },
+     "outputs": [
+      "mining/out_h/ae_faithful.md / .metta / .jsonl (adopted k 32, floor init); ae_faithful_dial/k64_beta0.5.* and k128_beta0.5.*; twins ae_faithful_plain.* (beta 0) and ae_faithful_beta2.* (beta 2) with their own _weights/ dirs",
+      "mining/out_h/ae_counts.csv; ae_faithful_weights/k<k>_beta0.5_seed<s>.tsv (15 files); ties/ties_ae_k<k>_beta<b>_<tau>.txt (20 files incl. the twins)",
+      "mining/out_h/ae_faithful_notes.md (analyst reading, run #1 + run #2)",
+      "mining/out_ecmp/: the same set for item-E (762 x 1,652), Tier A scorecard in the .md"
+     ],
+     "results": {
+      "H_k32_adopted_0.85_init_floor": {
+       "pass": 6896,
+       "same-records": 2202,
+       "nested": 3479,
+       "overlapping": 1207,
+       "exclusive": 8,
+       "stable_in_all_seeds": 6566,
+       "shared_with_4.3.3_passes": "82 of 104",
+       "no_floor": "8979 pass / 763 exclusive",
+       "median_floor": "7342 / 26",
+       "exclusive_survivors": [
+        "(Goal+Patient) ~ (Goal+Theme) 0.898 — the Theme/Patient wobble in the Goal frame (#23 family)",
+        "(Member $x0 crowd) ~ Recipient-with-clausal-Theme frames 0.959 / Agent+Recipient 0.915",
+        "(Goal+Patient) ~ (Goal+go) 0.884"
+       ]
+      },
+      "H_dial_0.85_init_floor": {
+       "k64": "4230 pass, 16 exclusive (10 stable; Obligated+Theme ~ Obligated+Patient 0.901, swim ~ play 0.872)",
+       "k128": "1849 pass, 0 exclusive (32 without the floor)",
+       "plain_k32": "6616 pass, 3 exclusive",
+       "beta2_k32": "6960 pass, 7 exclusive (incl. (Agent $e0 david) ~ (Agent $e0 mark) 0.931)"
+      },
+      "H_R2": {
+       "k32": 0.542,
+       "k64": 0.659,
+       "k128": 0.769,
+       "plain_k32": 0.541,
+       "beta2_k32": 0.54
+      },
+      "H_designed_case": "(Member $e0 start) ~ (Member $e0 begin) cosine -0.34 (k 32) / -0.20 (k 128), both vectors above the floor — never tied",
+      "H_tie_groups_adopted": "77 groups cover 559 of the 609 entering units; 50 untied; 845 below the floor",
+      "item_E_0.85_init_floor": {
+       "k32": "19136 pass, 1482 exclusive, Tier A recall 2/26 (begin|commence, begin|start), control hits none",
+       "k64": "18012 pass, recall 4/26",
+       "k128": "8484 pass, recall 2/26",
+       "plain": "2/26",
+       "beta2": "3/26",
+       "note": "run #1 without the floor: 10/26 with the control hit begin|end — the floor removes the low-norm same-frame links that carried both"
+      },
+      "reading": "chiefly a co-occurrence detector (corroborates 82/104 §4.3.3 passes); its interchangeability claim survives the floor as a short readable list = the Theme/Patient wobble inside a shared frame (Goal, Obligated), name interchange, activity verbs — the families §4.3.2 / #23 found from the filler side; the lexical case (start ~ begin) is never tied; the floor is a precision lever with a measured recall cost on the designed corpus",
+      "sizes": "about 65 MB on H and 152 MB on item-E; deterministic, ~85 min per pass for both substrates"
+     },
+     "determinism": "run #2: two full passes (main grid + both twins, both substrates) byte-identical across all 119 output files"
+    }
+   },
+   "history": {
+    "run1_2026-09-17": {
+     "commit": "46b6e1a",
      "parameters": {
       "features": "the 1,454 rooted-subtree units of the §4.3.1 faithful view (out_h/patterns2_faithful.jsonl), as-is: subsumed units and identical columns included (owner 2026-09-16: no pre-filtering; dedup / closed-only / binary input / Qwen3 prior = additions)",
       "vectorisation": "count of each unit's matches (variable bindings) per record, recounted with the miner's enumerator (k 4, MAX_REC_ATOMS 28, surface atoms excluded, constants verbatim) and verified against the inventory (column sums = occurrences, non-zero rows = support sets); raw counts, no scaling; 2,302 x 1,454, 11,330 non-zero cells, 1,075 repeats",
@@ -615,14 +683,6 @@
       "clusters": "average linkage on the cosine distance of the weight vectors, cut at 1 - tau (rendering only)",
       "ties_grouping": "tie groups (owner 2026-09-17, replacing average-linkage clusters): complete-linkage clustering of the encoder weight vectors cut at 1 - tau, so every pair inside a group passes the cosine gate; a partition (a unit sits in one group; passing pairs can fall across groups) — the pairwise JSONL is the record"
      },
-     "outputs": [
-      "mining/out_h/ae_faithful.md / .metta / .jsonl (adopted k 32; the .metta = passes grouped by relation, exclusive first; the .jsonl = every pair >= 0.8 with per-seed cosines, norms, relation)",
-      "mining/out_h/ae_faithful_dial/k16_beta0.5.* and k64_beta0.5.* (the bottleneck dial); the cosine dial is read off the records (the .md counts per threshold)",
-      "mining/out_h/ae_faithful_plain.md / .metta / .jsonl + ae_faithful_plain_weights/ (beta 0 twin at k 32)",
-      "mining/out_h/ae_counts.csv (the count matrix, 6.5 MB), ae_faithful_weights/k<k>_beta0.5_seed<s>.tsv (15 files), ties/ties_ae_k<k>_beta<b>_<tau>.txt (16 files; tie groups) — the owner-requested intermediates, switchable with --intermediates",
-      "mining/out_h/ae_faithful_notes.md (analyst reading)",
-      "mining/out_ecmp/ae_faithful.* + _dial/ + _plain.* + ae_counts.csv + ae_faithful_weights/ + ties/ (item-E twin, 762 x 1,652; Tier A scorecard in the .md)"
-     ],
      "results": {
       "H_k32_pass_0.85": {
        "pass": 8775,
@@ -686,7 +746,8 @@
        ]
       }
      },
-     "determinism": "passes 3 and 4 (after removing the wall-clock column from the .md) byte-identical across all 95 output files on both substrates (JSONL, metta, md, weights, clusters, count matrices); weights / clusters / count matrices also identical to passes 1-2 (the JSONL/metta differ from those only by the record floor 0.7 -> 0.8); after the tie-group replacement (2026-09-17 evening) passes 5 and 6 byte-identical across all 95 files, JSONL / weights / count matrices unchanged from the committed run #1 (46b6e1a); the committed clusters_ae_* files are superseded by ties/"
+     "determinism": "passes 3 and 4 (after removing the wall-clock column from the .md) byte-identical across all 95 output files on both substrates (JSONL, metta, md, weights, clusters, count matrices); weights / clusters / count matrices also identical to passes 1-2 (the JSONL/metta differ from those only by the record floor 0.7 -> 0.8); after the tie-group replacement (2026-09-17 evening) passes 5 and 6 byte-identical across all 95 files, JSONL / weights / count matrices unchanged from the committed run #1 (46b6e1a); the committed clusters_ae_* files are superseded by ties/",
+     "note": "2,000 epochs, bottleneck 16/32/64, no norm floor; superseded by run #2 (same script, rewritten 2026-09-18)"
     }
    }
   }

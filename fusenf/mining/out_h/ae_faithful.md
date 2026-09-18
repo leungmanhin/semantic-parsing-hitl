@@ -8,13 +8,14 @@
 |---|---|
 | features | the 1454 rooted-subtree units of the §4.3.1 faithful view (`out_h/patterns2_faithful.jsonl`), taken as-is: subsumed units and identical columns included (the faithful arm never pre-filters its input; dedup / closed-only / binary input are additions) |
 | vectorisation | per record, the number of matches (variable bindings) of each unit, recounted with the miner's enumerator (k = 4, 28 eligible atoms per record, surface atoms excluded, constants verbatim) and verified against the inventory; raw counts, no scaling |
-| autoencoder | one hidden layer of k sigmoid units (dial [16, 32, 64], adopted 32), linear output, tied decoder x_hat = h W + c; W uniform(±sqrt(6/(F+k))), b = 0, c = column means |
-| loss | mean over records of the squared reconstruction error summed over units + 0.0001·‖W‖² + beta·Σ_j KL(rho ‖ mean activation_j), rho 0.1, beta dial [0.5] (0 = plain shallow AE), adopted 0.5 |
-| training | full batch, Adam lr 0.01, 2000 epochs, float32, 8 thread(s); seed 0 adopted, seeds 0..4 for stability |
+| autoencoder | one hidden layer of k sigmoid units (dial [32, 64, 128], adopted 32), linear output, tied decoder x_hat = h W + c; W uniform(±sqrt(6/(F+k))), b = 0, c = column means |
+| loss | mean over records of the squared reconstruction error summed over units + 0.0001·‖W‖² + beta·Σ_j KL(rho ‖ mean activation_j), rho 0.1, beta [0.5] (adopted 0.5; the plain AE beta 0 and beta 2 are twin runs `ae_faithful_plain.*` / `ae_faithful_beta2.*` when present) |
+| training | full batch, Adam lr 0.01, 10000 epochs, float32, 8 thread(s); seed 0 adopted, seeds 0..4 for stability |
 | ties | cosine between two units' encoder weight vectors (columns of W); gate cosine ≥ tau, dial [0.8, 0.85, 0.9, 0.95], adopted 0.85; recording floor 0.8 |
+| norm floor | a unit enters the comparison when its encoder-vector norm is at least the floor; dial none, median, init, adopted init (init = the initialisation norm a·sqrt(k/3), a = sqrt(6/(F+k)): training grew the vector beyond where it started; median = the median unit norm) |
 | co-occurrence | field per pair from the units' record sets: exclusive / overlapping / nested / same-records; part-of = §4.3.1 containment — never a filter |
-| tie groups | complete linkage on the cosine distance of the weight vectors, cut at 1 − tau: every pair inside a group passes the gate; a partition, so passing pairs can fall across groups (the pairwise record is the JSONL) |
-| renderings | one .metta per bottleneck at the adopted gate (passes grouped by relation, exclusive first); the cosine dial is read off the records; the plain shallow AE (beta 0) is the twin run `ae_faithful_plain.*` when present |
+| tie groups | complete linkage on the cosine distance of the entering units' weight vectors, cut at 1 − tau: every pair inside a group passes the gate; a partition (the pairwise record is the JSONL) |
+| renderings | one .metta per bottleneck at the adopted gate (passes grouped by relation, exclusive first); the cosine and floor dials are read off the records |
 
 ## Count matrix
 
@@ -22,97 +23,88 @@
 
 ## Training
 
-| k | beta | seed | reconstruction / record | R² | mean activation | units > 0.5 / record | reconstruction at 25 / 50 / 75 / 100 % of the epochs |
+| k | beta | seed | reconstruction / record | R² | mean activation | units > 0.5 / record | reconstruction at each tenth of the epochs |
 |---|---|---|---|---|---|---|---|
-| 16 | 0.5 | 0 | 3.5725 | 0.4179 | 0.102 | 0.43 | 3.836 / 3.6438 / 3.6036 / 3.5726 |
-| 16 | 0.5 | 1 | 3.5469 | 0.4221 | 0.1035 | 0.47 | 3.849 / 3.6675 / 3.5851 / 3.547 |
-| 16 | 0.5 | 2 | 3.5659 | 0.419 | 0.106 | 0.48 | 3.8593 / 3.6785 / 3.5974 / 3.566 |
-| 16 | 0.5 | 3 | 3.5374 | 0.4237 | 0.1031 | 0.49 | 3.8149 / 3.6278 / 3.5819 / 3.5374 |
-| 16 | 0.5 | 4 | 3.5501 | 0.4216 | 0.1011 | 0.45 | 3.7869 / 3.6107 / 3.5596 / 3.5501 |
-| 32 | 0.5 | 0 | 2.8754 | 0.5315 | 0.1041 | 0.57 | 3.1906 / 2.9781 / 2.914 / 2.8754 |
-| 32 | 0.5 | 1 | 2.8572 | 0.5345 | 0.1039 | 0.59 | 3.1422 / 2.9515 / 2.901 / 2.8572 |
-| 32 | 0.5 | 2 | 2.8577 | 0.5344 | 0.1044 | 0.58 | 3.1442 / 2.9494 / 2.8918 / 2.8578 |
-| 32 | 0.5 | 3 | 2.8497 | 0.5357 | 0.1043 | 0.6 | 3.1622 / 2.952 / 2.8846 / 2.8498 |
-| 32 | 0.5 | 4 | 2.8463 | 0.5363 | 0.1044 | 0.59 | 3.1191 / 2.9361 / 2.8729 / 2.8463 |
-| 64 | 0.5 | 0 | 2.2013 | 0.6413 | 0.1046 | 0.62 | 2.8943 / 2.3741 / 2.247 / 2.2014 |
-| 64 | 0.5 | 1 | 2.1941 | 0.6425 | 0.1045 | 0.66 | 2.8635 / 2.3553 / 2.2379 / 2.1941 |
-| 64 | 0.5 | 2 | 2.1875 | 0.6436 | 0.1043 | 0.68 | 2.8742 / 2.3438 / 2.2274 / 2.1875 |
-| 64 | 0.5 | 3 | 2.1978 | 0.6419 | 0.1046 | 0.63 | 2.8917 / 2.3698 / 2.2444 / 2.1979 |
-| 64 | 0.5 | 4 | 2.1935 | 0.6426 | 0.1047 | 0.65 | 2.8739 / 2.3537 / 2.2346 / 2.1935 |
+| 32 | 0.5 | 0 | 2.81 | 0.5422 | 0.1017 | 0.62 | 2.9781 / 2.8754 / 2.8503 / 2.834 / 2.8176 / 2.8153 / 2.8146 / 2.8135 / 2.8094 / 2.8103 |
+| 32 | 0.5 | 1 | 2.8093 | 0.5423 | 0.1027 | 0.67 | 2.9515 / 2.8572 / 2.8319 / 2.8242 / 2.8139 / 2.809 / 2.8084 / 2.8106 / 2.8085 / 2.8087 |
+| 32 | 0.5 | 2 | 2.8027 | 0.5433 | 0.1025 | 0.64 | 2.9494 / 2.8578 / 2.8256 / 2.8147 / 2.8091 / 2.8066 / 2.803 / 2.8061 / 2.8022 / 2.8027 |
+| 32 | 0.5 | 3 | 2.7988 | 0.544 | 0.1024 | 0.66 | 2.952 / 2.8498 / 2.8204 / 2.8111 / 2.8067 / 2.8025 / 2.7993 / 2.7987 / 2.7958 / 2.7985 |
+| 32 | 0.5 | 4 | 2.7927 | 0.545 | 0.1026 | 0.65 | 2.9361 / 2.8463 / 2.8164 / 2.8049 / 2.8012 / 2.8006 / 2.7991 / 2.7998 / 2.7935 / 2.7925 |
+| 64 | 0.5 | 0 | 2.0959 | 0.6585 | 0.1017 | 0.92 | 2.3741 / 2.2014 / 2.1599 / 2.1394 / 2.1234 / 2.1104 / 2.1038 / 2.0996 / 2.1042 / 2.0958 |
+| 64 | 0.5 | 1 | 2.0982 | 0.6581 | 0.1019 | 0.9 | 2.3553 / 2.1941 / 2.1495 / 2.1303 / 2.1157 / 2.1051 / 2.1022 / 2.0973 / 2.0986 / 2.0985 |
+| 64 | 0.5 | 2 | 2.1047 | 0.6571 | 0.1018 | 0.81 | 2.3438 / 2.1875 / 2.1485 / 2.1276 / 2.1123 / 2.1062 / 2.108 / 2.1012 / 2.1026 / 2.106 |
+| 64 | 0.5 | 3 | 2.098 | 0.6582 | 0.1015 | 0.89 | 2.3698 / 2.1979 / 2.1554 / 2.1351 / 2.1223 / 2.1101 / 2.1068 / 2.1072 / 2.1004 / 2.0989 |
+| 64 | 0.5 | 4 | 2.097 | 0.6583 | 0.1016 | 0.83 | 2.3537 / 2.1935 / 2.1519 / 2.1301 / 2.1138 / 2.1035 / 2.104 / 2.0995 / 2.0951 / 2.0977 |
+| 128 | 0.5 | 0 | 1.4159 | 0.7693 | 0.1011 | 0.89 | 2.2575 / 1.6701 / 1.5186 / 1.4738 / 1.4509 / 1.4352 / 1.4336 / 1.436 / 1.4686 / 1.4165 |
+| 128 | 0.5 | 1 | 1.4274 | 0.7674 | 0.1011 | 0.84 | 2.2463 / 1.6671 / 1.52 / 1.4766 / 1.453 / 1.4376 / 1.4519 / 1.4227 / 1.4403 / 1.4262 |
+| 128 | 0.5 | 2 | 1.428 | 0.7673 | 0.1015 | 0.92 | 2.2442 / 1.6673 / 1.5197 / 1.4753 / 1.4511 / 1.4364 / 1.4358 / 1.4518 / 1.424 / 1.4259 |
+| 128 | 0.5 | 3 | 1.4191 | 0.7688 | 0.1015 | 0.88 | 2.2509 / 1.6721 / 1.5225 / 1.4773 / 1.4544 / 1.4392 / 1.4384 / 1.4336 / 1.4297 / 1.4185 |
+| 128 | 0.5 | 4 | 1.4381 | 0.7657 | 0.1016 | 0.97 | 2.2426 / 1.6756 / 1.522 / 1.4773 / 1.4534 / 1.4368 / 1.4399 / 1.4824 / 1.4345 / 1.4332 |
 
-## Tied pairs across the dial
+## Norm floors and entering units
 
-| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | smaller side below the median norm | tie groups (untied units) | weight norm min / median |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 16 | 0.5 | 0.80 | 18190 | 7321 | 4012 | 4450 | 2407 | 2065 | 93 | 10784 | 7843 | 254 (117) | 0.008 / 0.075 |
-| 16 | 0.5 | 0.85 | 14165 | 4245 | 3251 | 4262 | 2407 | 1931 | 93 | 9116 | 4771 | 263 (182) | 0.008 / 0.075 |
-| 16 | 0.5 | 0.90 | 11060 | 2012 | 2584 | 4057 | 2407 | 1777 | 89 | 7744 | 2562 | 268 (287) | 0.008 / 0.075 |
-| 16 | 0.5 | 0.95 | 8203 | 718 | 1550 | 3528 | 2407 | 1529 | 85 | 6424 | 1149 | 254 (461) | 0.008 / 0.075 |
-| 32 | 0.5 | 0.80 | 9995 | 1180 | 2443 | 3965 | 2407 | 1893 | 93 | 8550 | 2374 | 273 (199) | 0.015 / 0.152 |
-| 32 | 0.5 | 0.85 | 8775 | 647 | 1926 | 3795 | 2407 | 1780 | 93 | 7716 | 1557 | 263 (289) | 0.015 / 0.152 |
-| 32 | 0.5 | 0.90 | 7616 | 380 | 1323 | 3506 | 2407 | 1604 | 88 | 6901 | 982 | 261 (367) | 0.015 / 0.152 |
-| 32 | 0.5 | 0.95 | 6073 | 161 | 551 | 2955 | 2406 | 1360 | 77 | 5869 | 501 | 266 (478) | 0.015 / 0.152 |
-| 64 | 0.5 | 0.80 | 7786 | 147 | 1682 | 3550 | 2407 | 1747 | 88 | 7117 | 4201 | 264 (275) | 0.018 / 0.331 |
-| 64 | 0.5 | 0.85 | 6967 | 67 | 1093 | 3400 | 2407 | 1656 | 85 | 6438 | 3791 | 283 (324) | 0.018 / 0.331 |
-| 64 | 0.5 | 0.90 | 6251 | 25 | 690 | 3129 | 2407 | 1536 | 80 | 5190 | 3449 | 275 (385) | 0.018 / 0.331 |
-| 64 | 0.5 | 0.95 | 4751 | 8 | 270 | 2066 | 2407 | 1308 | 67 | 4499 | 2392 | 269 (511) | 0.018 / 0.331 |
+| k | beta | floor none (units entering) | floor median (units entering) | floor init (units entering) |
+|---|---|---|---|---|
+| 32 | 0.5 | 0.000 (1454) | 0.143 (727) | 0.208 (609) |
+| 64 | 0.5 | 0.000 (1454) | 0.299 (727) | 0.290 (776) |
+| 128 | 0.5 | 0.000 (1454) | 0.585 (728) | 0.402 (1000) |
 
-## Adopted block: k 32, beta 0.5, cosine ≥ 0.85 — top 25 EXCLUSIVE passes (the paper's interchangeability reading)
+## Tied pairs across the dial (gate: cosine ≥ tau and both norms ≥ the adopted floor `init`)
 
-| cosine | seeds | relation | norms A / B | A (support) | B (support) | shared | A e.g. | B e.g. |
-|---|---|---|---|---|---|---|---|---|
-| 1.000 | 5/5 | exclusive | 0.17 / 0.13 | `(And (LocatedIn $x0 $x1) (Member $x1 garden))` (4) | `(And (LocatedIn $x0 $x1) (Member $x1 full))` (3) | 0 | There are some pretty flowers in the garden. | The kitchen sink is full of dishes. |
-| 1.000 | 5/5 | exclusive | 0.01 / 0.01 | `(Member $x0 beach)` (3) | `(Member $x0 fact)` (3) | 0 | People go to the beach during the summer. | Nobody can deny this fact. |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.02 | `(And (Inheritance regional_unit regional) (Inheritance regional_unit unit))` (4) | `(And (Inheritance metropolitan_statistical_area area) (Inheritance metropolitan_statistical_area metropolitan))` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.02 | `(And (Inheritance regional_unit regional) (Inheritance regional_unit unit))` (4) | `(Inheritance metropolitan_statistical_area metropolitan)` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.02 | `(Inheritance metropolitan_statistical_area area)` (4) | `(Inheritance regional_unit unit)` (4) | 0 | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . | Methoni is a village and a former municipality in Pieria regional unit , Greece . |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.02 | `(Inheritance regional_unit regional)` (4) | `(And (Inheritance metropolitan_statistical_area area) (Inheritance metropolitan_statistical_area metropolitan))` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.02 | `(Inheritance regional_unit regional)` (4) | `(Inheritance metropolitan_statistical_area metropolitan)` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.02 | `(Inheritance regional_unit unit)` (4) | `(And (Inheritance metropolitan_statistical_area area) (Inheritance metropolitan_statistical_area metropolitan))` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.02 | `(Inheritance regional_unit unit)` (4) | `(Inheritance metropolitan_statistical_area metropolitan)` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.02 | `(And (Inheritance regional_unit regional) (Inheritance regional_unit unit))` (4) | `(Inheritance metropolitan_statistical_area area)` (4) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.02 | `(Inheritance metropolitan_statistical_area area)` (4) | `(Inheritance regional_unit regional)` (4) | 0 | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . | Methoni is a village and a former municipality in Pieria regional unit , Greece . |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.01 | `(Inheritance metropolitan_statistical_area area)` (4) | `(Member $x0 beach)` (3) | 0 | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . | People go to the beach during the summer. |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.01 | `(Inheritance metropolitan_statistical_area area)` (4) | `(Member $x0 fact)` (3) | 0 | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . | Nobody can deny this fact. |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.01 | `(And (Inheritance metropolitan_statistical_area area) (Inheritance metropolitan_statistical_area metropolitan))` (3) | `(Member $x0 beach)` (3) | 0 | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . | People go to the beach during the summer. |
-| 1.000 | 5/5 | exclusive | 0.02 / 0.01 | `(Inheritance metropolitan_statistical_area metropolitan)` (3) | `(Member $x0 beach)` (3) | 0 | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . | People go to the beach during the summer. |
-| 0.999 | 5/5 | exclusive | 0.02 / 0.01 | `(And (Inheritance metropolitan_statistical_area area) (Inheritance metropolitan_statistical_area metropolitan))` (3) | `(Member $x0 fact)` (3) | 0 | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . | Nobody can deny this fact. |
-| 0.999 | 5/5 | exclusive | 0.02 / 0.01 | `(Inheritance metropolitan_statistical_area metropolitan)` (3) | `(Member $x0 fact)` (3) | 0 | Peoria is part of the Peoria County , IL Metropolitan Statistical Area . | Nobody can deny this fact. |
-| 0.999 | 5/5 | exclusive | 0.02 / 0.01 | `(And (Inheritance regional_unit regional) (Inheritance regional_unit unit))` (4) | `(Member $x0 beach)` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | People go to the beach during the summer. |
-| 0.999 | 5/5 | exclusive | 0.02 / 0.01 | `(And (Inheritance regional_unit regional) (Inheritance regional_unit unit))` (4) | `(Member $x0 fact)` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | Nobody can deny this fact. |
-| 0.999 | 5/5 | exclusive | 0.02 / 0.01 | `(Inheritance regional_unit regional)` (4) | `(Member $x0 beach)` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | People go to the beach during the summer. |
-| 0.999 | 5/5 | exclusive | 0.02 / 0.01 | `(Inheritance regional_unit regional)` (4) | `(Member $x0 fact)` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | Nobody can deny this fact. |
-| 0.999 | 5/5 | exclusive | 0.02 / 0.01 | `(Inheritance regional_unit unit)` (4) | `(Member $x0 beach)` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | People go to the beach during the summer. |
-| 0.999 | 5/5 | exclusive | 0.02 / 0.01 | `(Inheritance regional_unit unit)` (4) | `(Member $x0 fact)` (3) | 0 | Methoni is a village and a former municipality in Pieria regional unit , Greece . | Nobody can deny this fact. |
-| 0.998 | 5/5 | exclusive | 0.13 / 0.17 | `(Member $x0 full)` (5) | `(And (LocatedIn $x0 $x1) (Member $x1 garden))` (4) | 0 | The kitchen sink is full of dishes. | There are some pretty flowers in the garden. |
-| 0.996 | 5/5 | exclusive | 0.17 / 0.12 | `(And (LocatedIn $x0 $x1) (Member $x1 garden))` (4) | `(And (LocatedIn $x0 $x1) (Member $x1 table))` (3) | 0 | There are some pretty flowers in the garden. | There is a camera on the table. |
+| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | tie groups (untied / below floor) | pass / exclusive at floor none | pass / exclusive at floor median | pass / exclusive at floor init |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 32 | 0.5 | 0.80 | 7273 | 31 | 1507 | 3533 | 2202 | 1336 | 82 | 6911 | 69 (42 / 845) | 10393 / 1394 | 7862 / 83 | 7273 / 31 |
+| 32 | 0.5 | 0.85 | 6896 | 8 | 1207 | 3479 | 2202 | 1311 | 82 | 6566 | 77 (50 / 845) | 8979 / 763 | 7342 / 26 | 6896 / 8 |
+| 32 | 0.5 | 0.90 | 6467 | 3 | 915 | 3347 | 2202 | 1246 | 80 | 6047 | 85 (62 / 845) | 7803 / 393 | 6751 / 4 | 6467 / 3 |
+| 32 | 0.5 | 0.95 | 5685 | 2 | 485 | 2996 | 2202 | 1091 | 72 | 5385 | 86 (89 / 845) | 6345 / 156 | 5828 / 2 | 5685 / 2 |
+| 64 | 0.5 | 0.80 | 4737 | 42 | 1164 | 1727 | 1804 | 1246 | 82 | 4583 | 122 (67 / 678) | 8223 / 379 | 3998 / 34 | 4737 / 42 |
+| 64 | 0.5 | 0.85 | 4230 | 16 | 898 | 1512 | 1804 | 1162 | 81 | 4071 | 129 (91 / 678) | 7224 / 186 | 3559 / 10 | 4230 / 16 |
+| 64 | 0.5 | 0.90 | 3810 | 2 | 636 | 1368 | 1804 | 1105 | 76 | 3656 | 140 (108 / 678) | 6445 / 75 | 3150 / 2 | 3810 / 2 |
+| 64 | 0.5 | 0.95 | 3325 | 0 | 340 | 1181 | 1804 | 996 | 68 | 3160 | 145 (150 / 678) | 5593 / 34 | 2747 / 0 | 3325 / 0 |
+| 128 | 0.5 | 0.80 | 2119 | 3 | 512 | 961 | 643 | 996 | 72 | 2031 | 232 (144 / 454) | 5391 / 39 | 1262 / 0 | 2119 / 3 |
+| 128 | 0.5 | 0.85 | 1849 | 0 | 365 | 841 | 643 | 918 | 69 | 1788 | 232 (188 / 454) | 4926 / 32 | 1123 / 0 | 1849 / 0 |
+| 128 | 0.5 | 0.90 | 1549 | 0 | 220 | 686 | 643 | 830 | 65 | 1461 | 235 (234 / 454) | 4530 / 26 | 987 / 0 | 1549 / 0 |
+| 128 | 0.5 | 0.95 | 1192 | 0 | 53 | 498 | 641 | 687 | 58 | 1149 | 221 (318 / 454) | 3345 / 21 | 758 / 0 | 1192 / 0 |
 
-## Adopted block: k 32, beta 0.5, cosine ≥ 0.85 — top 25 co-occurrence passes (overlapping / nested / same-records)
+## Adopted block: k 32, beta 0.5, cosine ≥ 0.85, floor init — top 25 EXCLUSIVE passes (the paper's interchangeability reading)
 
 | cosine | seeds | relation | norms A / B | A (support) | B (support) | shared | A e.g. | B e.g. |
 |---|---|---|---|---|---|---|---|---|
-| 1.000 | 5/5 | same-records (part-of) | 0.94 / 0.94 | `(And (Holder $e0 $x0) (Member $e0 have) (Theme $e0 $x1))` (26) | `(And (Holder $e0 $x0) (Theme $e0 $x1))` (26) | 26 | This sentence has various meanings. | This sentence has various meanings. |
-| 1.000 | 5/5 | same-records (part-of) | 0.55 / 0.55 | `(And (Before $e0 $e1) (Past $e0) (Past $e1))` (11) | `(And (Before $e0 $e1) (Past $e0))` (11) | 11 | Ivan killed several people and then escaped. | Ivan killed several people and then escaped. |
-| 1.000 | 5/5 | same-records | 0.71 / 0.71 | `(And (Agent $e0 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0))` (9) | `(And (Agent $e0 $x0) (Ongoing $e1) (Past $e0) (Theme $e0 $e1))` (9) | 9 | The rebels began distributing food and clothing from the storehouse to the locals. | The rebels began distributing food and clothing from the storehouse to the locals. |
-| 1.000 | 5/5 | same-records (part-of) | 0.84 / 0.84 | `(And (Member $e0 begin) (Ongoing $e1) (Past $e0) (Theme $e0 $e1))` (9) | `(And (Member $e0 begin) (Past $e0) (Theme $e0 $e1))` (9) | 9 | Mark and Jessica began hanging out often. | Mark and Jessica began hanging out often. |
-| 1.000 | 5/5 | same-records (part-of) | 0.84 / 0.84 | `(And (Member $e0 begin) (Ongoing $e1) (Past $e0) (Theme $e0 $e1))` (9) | `(And (Member $e0 begin) (Theme $e0 $e1))` (9) | 9 | Mark and Jessica began hanging out often. | Mark and Jessica began hanging out often. |
-| 1.000 | 5/5 | same-records (part-of) | 0.70 / 0.70 | `(And (Member $e0 start) (Ongoing $e1) (Past $e0) (Theme $e0 $e1))` (9) | `(And (Member $e0 start) (Past $e0) (Theme $e0 $e1))` (9) | 9 | Karl started vomitting in disgust. | Karl started vomitting in disgust. |
-| 1.000 | 5/5 | same-records (part-of) | 0.84 / 0.84 | `(And (Member $e0 begin) (Past $e0) (Theme $e0 $e1))` (9) | `(And (Member $e0 begin) (Theme $e0 $e1))` (9) | 9 | Mark and Jessica began hanging out often. | Mark and Jessica began hanging out often. |
-| 1.000 | 5/5 | same-records (part-of) | 0.81 / 0.81 | `(And (Member $e0 build) (Past $e0) (Patient $e0 $x0))` (9) | `(And (Member $e0 build) (Past $e0))` (9) | 9 | In Ghardaia, Mozabites built a network of wells connected by underground channels. | In Ghardaia, Mozabites built a network of wells connected by underground channels. |
-| 1.000 | 5/5 | same-records (part-of) | 0.79 / 0.79 | `(And (Member $e0 kill) (Patient $e0 $x0))` (9) | `(Member $e0 kill)` (9) | 9 | The soldier was killed in action. | The soldier was killed in action. |
-| 1.000 | 5/5 | same-records | 0.06 / 0.06 | `(ConditionalProperty bicycle permitted footpath)` (8) | `(ConditionalProperty pedestrian permitted footpath)` (8) | 8 | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . |
-| 1.000 | 5/5 | same-records | 0.06 / 0.06 | `(ConditionalProperty bicycle permitted footpath)` (8) | `(Inheritance bicycle permitted) ~NEG` (8) | 8 | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . |
-| 1.000 | 5/5 | same-records | 0.06 / 0.06 | `(ConditionalProperty bicycle permitted footpath)` (8) | `(Inheritance pedestrian permitted) ~NEG` (8) | 8 | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . |
-| 1.000 | 5/5 | same-records | 0.06 / 0.06 | `(ConditionalProperty pedestrian permitted footpath)` (8) | `(Inheritance bicycle permitted) ~NEG` (8) | 8 | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . |
-| 1.000 | 5/5 | same-records | 0.06 / 0.06 | `(ConditionalProperty pedestrian permitted footpath)` (8) | `(Inheritance pedestrian permitted) ~NEG` (8) | 8 | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . |
-| 1.000 | 5/5 | same-records | 0.06 / 0.06 | `(Inheritance bicycle permitted) ~NEG` (8) | `(Inheritance pedestrian permitted) ~NEG` (8) | 8 | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . | Pedestrians and bicycles are not permitted , but can be allowed on a footpath . |
-| 1.000 | 5/5 | same-records (part-of) | 0.81 / 0.80 | `(And (Agent $e0 $x0) (Member $e0 build) (Patient $e0 $x1))` (8) | `(And (Agent $e0 $x0) (Member $e0 build))` (8) | 8 | In Ghardaia, Mozabites built a network of wells connected by underground channels. | In Ghardaia, Mozabites built a network of wells connected by underground channels. |
-| 1.000 | 5/5 | same-records | 0.68 / 0.68 | `(And (Agent $e0 $x0) (To $e0 $e1))` (8) | `(And (Agent $e0 $x0) (To $e1 $e0))` (8) | 8 | Thousands gathered to watch the event. | Thousands gathered to watch the event. |
-| 1.000 | 5/5 | same-records (part-of) | 0.77 / 0.77 | `(And (Member $e0 kill) (Past $e0) (Patient $e0 $x0))` (7) | `(And (Member $e0 kill) (Past $e0))` (7) | 7 | The soldier was killed in action. | The soldier was killed in action. |
-| 1.000 | 5/5 | same-records (part-of) | 0.42 / 0.42 | `(And (Member $e0 produce) (Past $e0) (Patient $e0 $x0))` (7) | `(And (Member $e0 produce) (Past $e0))` (7) | 7 | The thin layer of oil at the top of the soup produced a mesmerizing sheen. | The thin layer of oil at the top of the soup produced a mesmerizing sheen. |
-| 1.000 | 5/5 | same-records (part-of) | 0.76 / 0.76 | `(And (Agent $e0 $x0) (Member $x1 person) (Past $e0) (Possession $x0 $x1))` (6) | `(And (Agent $e0 $x0) (Past $e0) (Possession $x0 $x1))` (6) | 6 | Her family contacted Corentin Rahier , who suggested Muriel Zazoui as a potential partner  | Her family contacted Corentin Rahier , who suggested Muriel Zazoui as a potential partner  |
-| 1.000 | 5/5 | same-records (part-of) | 0.12 / 0.12 | `(And (Member $e0 bear) (Past $e0))` (6) | `(Member $e0 bear)` (6) | 6 | Tobias was born on this planet. | Tobias was born on this planet. |
-| 1.000 | 5/5 | same-records (part-of) | 0.10 / 0.10 | `(And (Member $e0 capture) (Past $e0))` (6) | `(Member $e0 capture)` (6) | 6 | Spain captured many Algerian cities in the 16th century. | Spain captured many Algerian cities in the 16th century. |
-| 1.000 | 5/5 | same-records (part-of) | 0.34 / 0.35 | `(And (Member $e0 receive) (Past $e0))` (6) | `(Member $e0 receive)` (6) | 6 | At the winter festival, Beth received an award for dancing the best. | At the winter festival, Beth received an award for dancing the best. |
-| 1.000 | 5/5 | same-records (part-of) | 0.08 / 0.08 | `(And (Past $e0) (Patient $e0 $e1))` (6) | `(Patient $e0 $e1)` (6) | 6 | The game was put off till next week. | The game was put off till next week. |
-| 1.000 | 5/5 | same-records (part-of) | 0.09 / 0.09 | `(And (Past $e0) (Time $e0 yesterday))` (6) | `(Time $e0 yesterday)` (6) | 6 | Go and find the driver who arrived here yesterday. | Go and find the driver who arrived here yesterday. |
+| 0.959 | 5/5 | exclusive | 0.26 / 0.24 | `(Member $x0 crowd)` (4) | `(And (Past $e0) (Recipient $e1 $x0) (Theme $e0 $e1))` (3) | 0 | The crowd began to applaud. | The rebels began distributing food and clothing from the storehouse to the locals. |
+| 0.959 | 5/5 | exclusive | 0.26 / 0.24 | `(Member $x0 crowd)` (4) | `(And (Recipient $e0 $x0) (Theme $e1 $e0))` (3) | 0 | The crowd began to applaud. | The rebels began distributing food and clothing from the storehouse to the locals. |
+| 0.915 | 5/5 | exclusive | 0.32 / 0.26 | `(And (Agent $e0 $x0) (Recipient $e0 $x1))` (9) | `(Member $x0 crowd)` (4) | 0 | The rebels began distributing food and clothing from the storehouse to the locals. | The crowd began to applaud. |
+| 0.898 | 5/5 | exclusive | 0.21 / 0.22 | `(And (Goal $e0 $x0) (Patient $e0 $x1))` (7) | `(And (Goal $e0 $x0) (Theme $e0 $x1))` (6) | 0 | The lid screws onto the jar. | The cook added cloves to the sauce. |
+| 0.889 | 4/5 | exclusive | 0.34 / 0.26 | `(Recipient $e0 $x0)` (17) | `(Member $x0 crowd)` (4) | 0 | The thief was handed over to the police. | The crowd began to applaud. |
+| 0.884 | 4/5 | exclusive | 0.21 / 0.22 | `(And (Goal $e0 $x0) (Patient $e0 $x1))` (7) | `(And (Goal $e0 $x0) (Member $e0 go))` (6) | 0 | The lid screws onto the jar. | Mom went to the supermarket. |
+| 0.874 | 5/5 | exclusive | 0.72 / 0.21 | `(And (Agent $e0 $x0) (Goal $e0 $x1))` (17) | `(And (Goal $e0 $x0) (Patient $e0 $x1))` (7) | 0 | A few customers have just walked into the store. | The lid screws onto the jar. |
+| 0.860 | 4/5 | exclusive | 0.62 / 0.21 | `(And (Agent $e0 $x0) (Goal $e0 $x1) (Past $e0))` (13) | `(And (Goal $e0 $x0) (Patient $e0 $x1))` (7) | 0 | A few customers have just walked into the store. | The lid screws onto the jar. |
+
+## Adopted block: k 32, beta 0.5, cosine ≥ 0.85, floor init — top 25 co-occurrence passes (overlapping / nested / same-records)
+
+| cosine | seeds | relation | norms A / B | A (support) | B (support) | shared | A e.g. | B e.g. |
+|---|---|---|---|---|---|---|---|---|
+| 1.000 | 5/5 | same-records (part-of) | 0.97 / 0.97 | `(And (Holder $e0 $x0) (Member $e0 have))` (27) | `(Holder $e0 $x0)` (27) | 27 | This sentence has various meanings. | This sentence has various meanings. |
+| 1.000 | 5/5 | same-records (part-of) | 0.95 / 0.95 | `(And (Holder $e0 $x0) (Member $e0 have) (Theme $e0 $x1))` (26) | `(And (Holder $e0 $x0) (Theme $e0 $x1))` (26) | 26 | This sentence has various meanings. | This sentence has various meanings. |
+| 1.000 | 5/5 | same-records (part-of) | 0.77 / 0.77 | `(And (Member $e0 build) (Patient $e0 $x0))` (13) | `(Member $e0 build)` (13) | 13 | In Ghardaia, Mozabites built a network of wells connected by underground channels. | In Ghardaia, Mozabites built a network of wells connected by underground channels. |
+| 1.000 | 5/5 | same-records (part-of) | 0.83 / 0.83 | `(And (Member $e0 start) (Ongoing $e1) (Theme $e0 $e1))` (12) | `(And (Member $e0 start) (Theme $e0 $e1))` (12) | 12 | Karl started vomitting in disgust. | Karl started vomitting in disgust. |
+| 1.000 | 5/5 | same-records (part-of) | 0.68 / 0.68 | `(And (Before $e0 $e1) (Past $e0) (Past $e1))` (11) | `(And (Before $e0 $e1) (Past $e0))` (11) | 11 | Ivan killed several people and then escaped. | Ivan killed several people and then escaped. |
+| 1.000 | 5/5 | same-records | 0.70 / 0.70 | `(And (Agent $e0 $x0) (Ongoing $e0) (Past $e1) (Theme $e1 $e0))` (9) | `(And (Agent $e0 $x0) (Ongoing $e1) (Past $e0) (Theme $e0 $e1))` (9) | 9 | The rebels began distributing food and clothing from the storehouse to the locals. | The rebels began distributing food and clothing from the storehouse to the locals. |
+| 1.000 | 5/5 | same-records (part-of) | 0.86 / 0.86 | `(And (Member $e0 begin) (Ongoing $e1) (Past $e0) (Theme $e0 $e1))` (9) | `(And (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1))` (9) | 9 | Mark and Jessica began hanging out often. | Mark and Jessica began hanging out often. |
+| 1.000 | 5/5 | same-records (part-of) | 0.86 / 0.86 | `(And (Member $e0 begin) (Ongoing $e1) (Past $e0) (Theme $e0 $e1))` (9) | `(And (Member $e0 begin) (Past $e0) (Theme $e0 $e1))` (9) | 9 | Mark and Jessica began hanging out often. | Mark and Jessica began hanging out often. |
+| 1.000 | 5/5 | same-records (part-of) | 0.86 / 0.86 | `(And (Member $e0 begin) (Ongoing $e1) (Past $e0) (Theme $e0 $e1))` (9) | `(And (Member $e0 begin) (Theme $e0 $e1))` (9) | 9 | Mark and Jessica began hanging out often. | Mark and Jessica began hanging out often. |
+| 1.000 | 5/5 | same-records (part-of) | 0.71 / 0.71 | `(And (Member $e0 start) (Ongoing $e1) (Past $e0) (Theme $e0 $e1))` (9) | `(And (Member $e0 start) (Past $e0) (Theme $e0 $e1))` (9) | 9 | Karl started vomitting in disgust. | Karl started vomitting in disgust. |
+| 1.000 | 5/5 | same-records | 0.86 / 0.86 | `(And (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1))` (9) | `(And (Member $e0 begin) (Past $e0) (Theme $e0 $e1))` (9) | 9 | Mark and Jessica began hanging out often. | Mark and Jessica began hanging out often. |
+| 1.000 | 5/5 | same-records (part-of) | 0.86 / 0.86 | `(And (Member $e0 begin) (Ongoing $e1) (Theme $e0 $e1))` (9) | `(And (Member $e0 begin) (Theme $e0 $e1))` (9) | 9 | Mark and Jessica began hanging out often. | Mark and Jessica began hanging out often. |
+| 1.000 | 5/5 | same-records (part-of) | 0.86 / 0.86 | `(And (Member $e0 begin) (Past $e0) (Theme $e0 $e1))` (9) | `(And (Member $e0 begin) (Theme $e0 $e1))` (9) | 9 | Mark and Jessica began hanging out often. | Mark and Jessica began hanging out often. |
+| 1.000 | 5/5 | same-records (part-of) | 0.74 / 0.74 | `(And (Member $e0 build) (Past $e0) (Patient $e0 $x0))` (9) | `(And (Member $e0 build) (Past $e0))` (9) | 9 | In Ghardaia, Mozabites built a network of wells connected by underground channels. | In Ghardaia, Mozabites built a network of wells connected by underground channels. |
+| 1.000 | 5/5 | same-records (part-of) | 0.85 / 0.85 | `(And (Member $e0 kill) (Patient $e0 $x0))` (9) | `(Member $e0 kill)` (9) | 9 | The soldier was killed in action. | The soldier was killed in action. |
+| 1.000 | 5/5 | same-records (part-of) | 0.71 / 0.71 | `(And (Agent $e0 $x0) (Member $e0 build) (Patient $e0 $x1))` (8) | `(And (Agent $e0 $x0) (Member $e0 build))` (8) | 8 | In Ghardaia, Mozabites built a network of wells connected by underground channels. | In Ghardaia, Mozabites built a network of wells connected by underground channels. |
+| 1.000 | 5/5 | same-records | 0.81 / 0.81 | `(And (Agent $e0 $x0) (To $e0 $e1))` (8) | `(And (Agent $e0 $x0) (To $e1 $e0))` (8) | 8 | Thousands gathered to watch the event. | Thousands gathered to watch the event. |
+| 1.000 | 5/5 | same-records (part-of) | 0.36 / 0.36 | `(And (Cardinality $x0 <num>) (Past $e0) (Patient $e0 $x0))` (7) | `(And (Cardinality $x0 <num>) (Patient $e0 $x0))` (7) | 7 | One of the windows was broken. | One of the windows was broken. |
+| 1.000 | 5/5 | same-records | 0.53 / 0.53 | `(And (Experiencer $e0 $x0) (Member $e1 become) (Result $e1 $e0))` (7) | `(And (Member $e0 become) (Patient $e0 $x0) (Result $e0 $e1))` (7) | 7 | The earth became red with blood. | The earth became red with blood. |
+| 1.000 | 5/5 | same-records (part-of) | 0.82 / 0.82 | `(And (Member $e0 kill) (Past $e0) (Patient $e0 $x0))` (7) | `(And (Member $e0 kill) (Past $e0))` (7) | 7 | The soldier was killed in action. | The soldier was killed in action. |
+| 1.000 | 5/5 | same-records (part-of) | 0.32 / 0.32 | `(And (Member $e0 produce) (Past $e0) (Patient $e0 $x0))` (7) | `(And (Member $e0 produce) (Past $e0))` (7) | 7 | The thin layer of oil at the top of the soup produced a mesmerizing sheen. | The thin layer of oil at the top of the soup produced a mesmerizing sheen. |
+| 1.000 | 5/5 | same-records (part-of) | 0.25 / 0.25 | `(And (Member $e0 write) (Past $e0) (Patient $e0 $x0))` (7) | `(And (Member $e0 write) (Past $e0))` (7) | 7 | This book had been written by someone famous. | This book had been written by someone famous. |
+| 1.000 | 5/5 | same-records (part-of) | 0.85 / 0.85 | `(And (Agent $e0 $x0) (Member $x1 person) (Past $e0) (Possession $x0 $x1))` (6) | `(And (Agent $e0 $x0) (Past $e0) (Possession $x0 $x1))` (6) | 6 | Her family contacted Corentin Rahier , who suggested Muriel Zazoui as a potential partner  | Her family contacted Corentin Rahier , who suggested Muriel Zazoui as a potential partner  |
+| 1.000 | 5/5 | same-records (part-of) | 0.72 / 0.72 | `(And (Agent $e0 $x0) (Member $e0 build) (Past $e0) (Patient $e0 $x1))` (6) | `(And (Agent $e0 $x0) (Member $e0 build) (Past $e0))` (6) | 6 | In Ghardaia, Mozabites built a network of wells connected by underground channels. | In Ghardaia, Mozabites built a network of wells connected by underground channels. |
+| 1.000 | 5/5 | same-records (part-of) | 0.25 / 0.25 | `(And (Member $e0 receive) (Past $e0))` (6) | `(Member $e0 receive)` (6) | 6 | At the winter festival, Beth received an award for dancing the best. | At the winter festival, Beth received an award for dancing the best. |
