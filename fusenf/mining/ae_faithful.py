@@ -35,8 +35,9 @@ Outputs (in --out-dir; <stem> = ae_faithful):
   ties/ties_ae_k<k>_beta<b>_<tau>.txt           tie groups, members as MeTTa queries [--intermediates]
   <stem>.jsonl  (adopted k, beta; seed 0)        the record: every pair >= record floor, with fields
   <stem>_dial/k<k>_beta<b>.jsonl                the same for the other (k, beta) points
-  <stem>.metta  (adopted k, beta; adopted gate)  readable rendering, PASS pairs grouped by relation
-  <stem>_dial/k<k>_beta<b>.metta                (exclusive first); every record shows its cosine and
+  <stem>.metta  (adopted k, beta; adopted gate)  readable rendering: SHAPE-PARALLEL EXCLUSIVE pairs first (the only
+  <stem>_dial/k<k>_beta<b>.metta                ones rendered as a rule; owner 2026-09-18), then the other pairs by
+                                                relation with 'rule: none'; every record shows its cosine and
                                                 norms, so the tau / floor dials are the reader's; the
                                                 .md carries the counts per tau and floor; never loaded
   <stem>.md                                     parameters, matrix facts, training table, dial table,
@@ -72,7 +73,8 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(FUSENF, "harness"))
 import canonicalize as C  # noqa: E402
 from frequent_patterns2 import Enumerator, canonical_pattern2, load, MAX_REC_ATOMS  # noqa: E402
-from patterns2_faithful import contains  # noqa: E402
+from patterns2_faithful import contains, parse_atom  # noqa: E402
+import itertools  # noqa: E402
 
 PAPER = ("We vectorize each SENF graph by its feature counts and train a shallow autoencoder with a "
          "low-dimensional bottleneck. Input features whose activations are tied together in the encoder "
@@ -201,6 +203,32 @@ def relation_of(A, B):
     return "overlapping", len(both)
 
 
+def shape_parallel(A, B):
+    """Owner 2026-09-18: two units are SHAPE-PARALLEL when they have the same number of atoms and, under some
+    bijective renaming of B's variables onto A's, all atoms but one coincide, the two differing atoms having the
+    same arity with the same variables in the same positions — i.e. they differ only in a head symbol or a
+    constant (Theme -> Patient; swim -> play). Returns (True, atom_of_A, atom_of_B) or (False, None, None)."""
+    if len(A) != len(B):
+        return False, None, None
+    PA = [(a, parse_atom(a)) for a in A]
+    PB = [(b, parse_atom(b)) for b in B]
+    va = sorted({t for _, (_, args, _) in PA for t in args if t.startswith("$")})
+    vb = sorted({t for _, (_, args, _) in PB for t in args if t.startswith("$")})
+    if len(va) != len(vb):
+        return False, None, None
+    aset = {(h, tuple(args), n): orig for orig, (h, args, n) in PA}
+    for perm in itertools.permutations(va, len(vb)):
+        m = dict(zip(vb, perm))
+        bset = {(h, tuple(m.get(t, t) for t in args), n): orig for orig, (h, args, n) in PB}
+        da = set(aset) - set(bset)
+        db = set(bset) - set(aset)
+        if len(da) == 1 and len(db) == 1:
+            (ha, argsa, na), (hb, argsb, nb) = next(iter(da)), next(iter(db))
+            if len(argsa) == len(argsb) and all(x == y for x, y in zip(argsa, argsb) if x.startswith("$") or y.startswith("$")):
+                return True, aset[(ha, argsa, na)], bset[(hb, argsb, nb)]
+    return False, None, None
+
+
 def build_pairs(units, C0, Cs, norms, floor, taus, texts):
     F = len(units)
     iu, ju = np.triu_indices(F, k=1)
@@ -212,6 +240,7 @@ def build_pairs(units, C0, Cs, norms, floor, taus, texts):
             ua, ub, f, g = ub, ua, g, f
         rel, n_both = relation_of(ua["idset"], ub["idset"])
         part = bool(contains(ua["atoms"], ub["atoms"]) or contains(ub["atoms"], ua["atoms"]))
+        par, atom_a, atom_b = shape_parallel(ua["atoms"], ub["atoms"])
         cos = [round(float(Cm[f, g]), 4) for Cm in Cs]
         shared = sorted(ua["idset"] & ub["idset"])
         if shared:
@@ -223,7 +252,9 @@ def build_pairs(units, C0, Cs, norms, floor, taus, texts):
         rows.append({
             "a": ua["pattern_id"], "b": ub["pattern_id"], "query_a": ua["query"], "query_b": ub["query"],
             "n_a": ua["support"], "n_b": ub["support"], "n_both": n_both, "n_distinct_shared": n_distinct,
-            "relation": rel, "part_of": part, "cosine": cos[0], "cosines": cos,
+            "relation": rel, "part_of": part, "parallel": par,
+            "substitution": f"{atom_b} -> {atom_a}" if par else None,
+            "cosine": cos[0], "cosines": cos,
             "stable_at": {f"{t:.2f}": sum(1 for cv in cos if cv >= t - EPS) for t in taus},
             "norm_a": round(float(norms[f]), 4), "norm_b": round(float(norms[g]), 4),
             "examples": examples, "variant": "faithful", "gate": "cosine+norm-floor",
@@ -338,10 +369,14 @@ def write_metta(path, args, rows, units, k, beta, tau, fvals, fkind, is_main, fa
     fv = fvals[fkind]
     n_pairs = F * (F - 1) // 2
     ps = [r for r in rows if passes(r, tau, fv)]
-    ps.sort(key=lambda r: (ORDER.index(r["relation"]), -r["cosine"], r["a"], r["b"]))
+
+    def rank(r):   # shape-parallel exclusive pairs first (the only ones that render as a rule), then the rest by relation
+        return 0 if r["relation"] == "exclusive" and r["parallel"] else 1 + ORDER.index(r["relation"])
+    ps.sort(key=lambda r: (rank(r), -r["cosine"], r["a"], r["b"]))
     below = sum(1 for r in rows if r["cosine"] >= tau - EPS and not passes(r, tau, fv))
     near = [r for r in rows if passes(r, tau - args.metta_near, fv) and not passes(r, tau, fv)] if args.metta_near > 0 else []
     cnt = collections.Counter(r["relation"] for r in ps)
+    n_par = sum(1 for r in ps if r["relation"] == "exclusive" and r["parallel"])
     n_enter = facts["entering"][(k, beta)][fkind]
     fl = " / ".join(f"{kd} {v:.3f}" for kd, v in fvals.items())
     with open(path, "w", encoding="utf-8") as fh:
@@ -386,27 +421,39 @@ def write_metta(path, args, rows, units, k, beta, tau, fvals, fkind, is_main, fa
                  ";;   ;; [relation(, part-of)]  A ~ B   cosine <seed 0> (seeds <n>/<S> >= tau)   records <A> / <B> / <shared>   norms <A> / <B>   gate: PASS|FAIL\n"
                  ";;   ;;   A: <query A>   e.g. <witness record ids>\n"
                  ";;   ;;   B: <query B>\n"
-                 ";;   (Implication <B> <A>)\n"
+                 ";;   ;;   substitution: <atom of B> -> <atom of A>      (shape-parallel exclusive pairs only)\n"
+                 ";;   (Implication <B> <A>)                               (shape-parallel exclusive pairs only)\n"
                  ";;     = the consolidation as the rule it would become: the minority unit (smaller support) rewrites to the majority\n"
-                 ";;     unit; variables as each unit's own canonical naming (an exclusive pair shares no record, so no alignment\n"
-                 ";;     is observable); naming and direction provisional, the gauntlet decides. Rendered for PASS and FAIL alike.\n"
-                 ";; A is the unit with the larger support (tie: query order). PASS pairs grouped by relation — EXCLUSIVE first (the\n"
-                 ";; paper's interchangeability reading: the two units never share a record), then OVERLAPPING, NESTED and SAME-RECORDS\n"
-                 ";; (co-occurrence: these restate §4.3.3 / §4.3.1 and are corroboration, not new rules) — each group by cosine;\n"
+                 ";;     unit. Rendered ONLY for an EXCLUSIVE pair that is SHAPE-PARALLEL (owner 2026-09-18): same number of atoms and,\n"
+                 ";;     under a renaming of variables, all atoms but one coincide, the differing atom differing only in its head symbol\n"
+                 ";;     or a constant — so the two sides' variables line up by construction (an exclusive pair shares no record, so no\n"
+                 ";;     alignment is observable otherwise). Every other pair carries ';;   rule: none' with the reason: an exclusive pair\n"
+                 ";;     that is not shape-parallel records shared sentence context, not a rewrite; a co-occurring pair (overlapping /\n"
+                 ";;     nested / same-records) corroborates §4.3.3 / §4.3.1, and a whole implying its part is a tautology.\n"
+                 ";;     Naming and direction provisional, the gauntlet decides.\n"
+                 ";; A is the unit with the larger support (tie: query order). PASS pairs in this order — SHAPE-PARALLEL EXCLUSIVE first (the\n"
+                 ";; rules), then the other EXCLUSIVE pairs (the paper's interchangeability reading: the two units never share a record),\n"
+                 ";; then OVERLAPPING, NESTED and SAME-RECORDS (co-occurrence: corroboration, not new rules) — each group by cosine;\n"
                  + (f";; then the near misses (cosine within {args.metta_near:g} below the gate).\n" if args.metta_near > 0 else
                     ";; near misses and the pairs above the cosine gate with a side below the floor are in the JSONL only.\n"))
-        fh.write(f"\n;; ==================== TIED PAIRS: {len(ps)} pass the gate — exclusive {cnt['exclusive']}, overlapping "
+        fh.write(f"\n;; ==================== TIED PAIRS: {len(ps)} pass the gate — exclusive {cnt['exclusive']} (shape-parallel {n_par} = the rules), overlapping "
                  f"{cnt['overlapping']}, nested {cnt['nested']}, same-records {cnt['same-records']}"
                  + (f"; + {len(near)} near misses listed" if near else "")
                  + f" — among the {n_pairs} pairs of {F} units ({n_enter} entering); {below} pairs above the cosine gate have a side below "
                  f"the floor; {len(rows)} pairs recorded in the JSONL ====================\n")
         for r in ps + near:
             ok = passes(r, tau, fv)
-            tag = r["relation"] + (", part-of" if r["part_of"] else "")
+            tag = r["relation"] + (", shape-parallel" if r["parallel"] else "") + (", part-of" if r["part_of"] else "")
             fh.write(f"\n;; [{tag}]  {r['a']} ~ {r['b']}   cosine {r['cosine']:.4f} (seeds {r['stable_at'][f'{tau:.2f}']}/{n_seeds} >= {tau:.2f})"
                      f"   records {r['n_a']} / {r['n_b']} / {r['n_both']}   norms {r['norm_a']:.2f} / {r['norm_b']:.2f}   gate: {'PASS' if ok else 'FAIL'}\n")
-            fh.write(f";;   A: {r['query_a']}   e.g. {' '.join(r['examples'])}\n;;   B: {r['query_b']}\n"
-                     f"(Implication {r['query_b']} {r['query_a']})\n")
+            fh.write(f";;   A: {r['query_a']}   e.g. {' '.join(r['examples'])}\n;;   B: {r['query_b']}\n")
+            if r["relation"] == "exclusive" and r["parallel"]:
+                fh.write(f";;   substitution: {r['substitution']}\n(Implication {r['query_b']} {r['query_a']})\n")
+            elif r["relation"] == "exclusive":
+                fh.write(";;   rule: none — the units are not shape-parallel: the tie records shared sentence context, not a rewrite\n")
+            else:
+                fh.write(f";;   rule: none — the units co-occur ({r['relation']}): the pair corroborates §4.3.3 / §4.3.1; a whole implying "
+                         "its part is a tautology\n")
 
 
 # ----------------------------------------------------------------------------- main
@@ -528,6 +575,7 @@ def main():
                 results[(k, beta, tau)] = {
                     "pass": len(ps), "by_relation": dict(collections.Counter(r["relation"] for r in ps)),
                     "part_of": sum(1 for r in ps if r["part_of"]),
+                    "parallel": sum(1 for r in ps if r["relation"] == "exclusive" and r["parallel"]),
                     "shared_mi": sum(1 for r in ps if frozenset((r["a"], r["b"])) in mi_pass),
                     "stable_all": sum(1 for r in ps if r["stable_at"][f"{tau:.2f}"] == args.seeds),
                     "pass_by_floor": {kd: sum(1 for r in rows if passes(r, tau, v)) for kd, v in fvals.items()},
@@ -573,7 +621,7 @@ def main():
         for beta in betas:
             R.append(f"| {k} | {beta:g} | " + " | ".join(f"{floors_of[(k, beta)][kd]:.3f} ({facts['entering'][(k, beta)][kd]})" for kd in args.floor_list) + " |")
     R.append(f"\n## Tied pairs across the dial (gate: cosine ≥ tau and both norms ≥ the adopted floor `{args.adopt_floor}`)\n")
-    R.append("| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | tie groups (untied / below floor) | "
+    R.append("| k | beta | cosine ≥ | pass | exclusive (shape-parallel) | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | tie groups (untied / below floor) | "
              + " | ".join(f"pass / exclusive at floor {kd}" for kd in args.floor_list) + " |"
              + (" Tier A recall | control hits |" if key else "") + "\n|---|---|---|---|---|---|---|---|---|---|---|---|" + "---|" * len(args.floor_list) + ("---|---|" if key else ""))
     for k in ks:
@@ -581,7 +629,7 @@ def main():
             for tau in args.cos_list:
                 r = results[(k, beta, tau)]
                 br = r["by_relation"]
-                R.append(f"| {k} | {beta:g} | {tau:.2f} | {r['pass']} | {br.get('exclusive', 0)} | {br.get('overlapping', 0)} | {br.get('nested', 0)} | "
+                R.append(f"| {k} | {beta:g} | {tau:.2f} | {r['pass']} | {br.get('exclusive', 0)} ({r['parallel']}) | {br.get('overlapping', 0)} | {br.get('nested', 0)} | "
                          f"{br.get('same-records', 0)} | {r['part_of']} | {r['shared_mi']} | {r['stable_all']} | "
                          f"{f'{r['ties'][0]} ({r['ties'][1]} / {r['ties'][2]})' if r['ties'] is not None else '—'} | "
                          + " | ".join(f"{r['pass_by_floor'][kd]} / {r['excl_by_floor'][kd]}" for kd in args.floor_list) + " |"
@@ -599,9 +647,10 @@ def main():
         for r in rs[:args.top]:
             ea = r["examples"][0] if r["examples"] else ""
             eb = (r["examples"][0] if r["n_both"] else (r["examples"][2] if len(r["examples"]) > 2 else ""))
-            R.append(f"| {r['cosine']:.3f} | {r['stable_at'][f'{args.adopt_cos:.2f}']}/{args.seeds} | {r['relation']}{' (part-of)' if r['part_of'] else ''} | "
+            R.append(f"| {r['cosine']:.3f} | {r['stable_at'][f'{args.adopt_cos:.2f}']}/{args.seeds} | {r['relation']}{' (shape-parallel)' if r['parallel'] else ''}{' (part-of)' if r['part_of'] else ''} | "
                      f"{r['norm_a']:.2f} / {r['norm_b']:.2f} | `{r['query_a']}` ({r['n_a']}) | `{r['query_b']}` ({r['n_b']}) | {r['n_both']} | {sent(ea)} | {sent(eb)} |")
-    table(f"top {args.top} EXCLUSIVE passes (the paper's interchangeability reading)", [r for r in ps if r["relation"] == "exclusive"])
+    table(f"top {args.top} EXCLUSIVE passes (the paper's interchangeability reading; shape-parallel ones are the rules)",
+          sorted([r for r in ps if r["relation"] == "exclusive"], key=lambda r: (not r["parallel"], -r["cosine"], r["a"], r["b"])))
     table(f"top {args.top} co-occurrence passes (overlapping / nested / same-records)", [r for r in ps if r["relation"] != "exclusive"])
     if key:
         sc = results[(args.adopt_bottleneck, args.adopt_beta, args.adopt_cos)]["scorecard"]

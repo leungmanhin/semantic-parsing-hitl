@@ -664,7 +664,31 @@
        "note": "run #1 without the floor: 10/26 with the control hit begin|end — the floor removes the low-norm same-frame links that carried both"
       },
       "reading": "chiefly a co-occurrence detector (corroborates 82/104 §4.3.3 passes); its interchangeability claim survives the floor as a short readable list = the Theme/Patient wobble inside a shared frame (Goal, Obligated), name interchange, activity verbs — the families §4.3.2 / #23 found from the filler side; the lexical case (start ~ begin) is never tied; the floor is a precision lever with a measured recall cost on the designed corpus",
-      "sizes": "about 65 MB on H and 152 MB on item-E; deterministic, ~85 min per pass for both substrates"
+      "sizes": "about 65 MB on H and 152 MB on item-E; deterministic, ~85 min per pass for both substrates",
+      "H_capacity_2026-09-18": {
+       "pca_R2_optimal_linear": {
+        "32": 0.565,
+        "64": 0.669,
+        "128": 0.779,
+        "256": 0.888,
+        "512": 0.972,
+        "rank_for_0.90": 279,
+        "rank_for_0.99": 654
+       },
+       "ae_R2": {
+        "32": 0.542,
+        "64": 0.659,
+        "128": 0.769
+       },
+       "variance_split_k32": "units below the init floor: 845 units, 27.1% of SST, R2 0.033; entering: 609 units, 72.9% of SST, R2 0.732; by support 3 / 4-5 / 6-10 / 11-30 / 31+: 0.22 / 0.36 / 0.33 / 0.47 / 0.89",
+       "exclusive_ties_across_k": {
+        "Goal+Patient~Goal+Theme": "0.898 / 0.223 (below floor) / -0.181 at k 32 / 64 / 128",
+        "Obligated+Theme~Obligated+Patient": "-0.232 (below floor) / 0.901 / 0.703",
+        "crowd~Recipient-frame": "0.959 / 0.627 / 0.160",
+        "reading": "no exclusive tie holds across the bottleneck dial — each is a property of one compression"
+       },
+       "retrain_check": "k32 seed 0 retrained in a probe: max |dW| vs the saved weights 5e-6 (rounding)"
+      }
      },
      "determinism": "run #2: two full passes (main grid + both twins, both substrates) byte-identical across all 119 output files"
     }

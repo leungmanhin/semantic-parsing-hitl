@@ -76,6 +76,19 @@ interchangeable Agent fillers, the name-cluster effect §4.3.2 reported. At k 12
 −0.34 (k 32) and −0.20 (k 128) with both vectors well above the floor — the model encodes the two verbs as distinct
 directions; their aspectual complement, which is what would tie them, is a separate unit in the same records.
 
+**Capacity, or why a wider bottleneck gives fewer ties (owner question, 2026-09-18).** The autoencoder sits at the
+capacity limit of its code, not short of training: the optimal linear reconstruction (PCA of the centred count matrix)
+reaches R² 0.565 / 0.669 / 0.779 at rank 32 / 64 / 128 against the model's 0.542 / 0.659 / 0.769. The matrix is
+intrinsically high-dimensional — 279 dimensions for R² 0.90, 654 for 0.99 — because most of its variance sits in
+rare units that no shared dimension can carry: the 845 units below the floor hold 27 % of the variance and are
+reconstructed at R² 0.03, the 609 entering units hold 73 % and are reconstructed at 0.73 (by support: 0.22 at 3,
+0.36 at 4–5, 0.47 at 11–30, 0.89 above 30). A tie is what the model conflates because it cannot afford separate
+directions, so widening the bottleneck lowers the yield by construction: 1,000 units enter at k 128 and the
+exclusive ties are gone. The dial also shows that the survivors are properties of one compression rather than of
+the data: Goal+Patient ~ Goal+Theme reads 0.898 at k 32, 0.223 at 64 (one side below the floor) and −0.181 at 128;
+Obligated+Theme ~ Obligated+Patient −0.232 (below the floor) / 0.901 / 0.703; crowd ~ the Recipient frame 0.959 /
+0.627 / 0.160. No exclusive tie holds across all three bottlenecks.
+
 **Tie groups.** With the floor, 77 groups cover 559 of the 609 entering units at the adopted block (50 entering units
 tie with nothing; 845 sit below the floor); the largest groups are the same-records families and the frequent frame
 families around Agent / Past / Patient.
@@ -97,12 +110,22 @@ frequent enough to be encoded and nothing else.
 2. Its own claim — interchangeable subtrees — survives the floor as a short, readable list whose best members are the
    Theme / Patient role wobble inside a shared frame (Goal, Obligated) and name / activity-verb interchange: the same
    families §4.3.2 and the #23 flip audit found from the filler side. That is corroboration across methods, not a
-   new rule family.
+   new rule family — and none of these ties holds across the bottleneck dial, so each is a fact about one compression.
 3. The floor is a precision lever with a measurable cost: on item-E it removes eight of the ten designed recoveries
    together with the control hit. Whether the pipeline wants the floored or the unfloored list is a candidate-stage
    decision; both are in the record.
 4. The lexical case the paper motivates (start ~ begin) is not what a count autoencoder ties, at any bottleneck: the
    verbs get their own directions and the shared complement is a separate feature. Interchangeability at the lemma
    level is §4.3.2's and §4.3.4's business.
-5. Output size at these parameters: about 65 MB on H and 152 MB on item-E; everything is deterministic and regenerable
+5. Corpus size (owner question, 2026-09-18). The substrate is too small for the rare-unit ties to be evidence — a tie
+   resting on three host sentences per side is a coincidence of templates — but it is not what stops the method from
+   tying interchangeable FREQUENT units: start (21 records) and begin (12) are both encoded above the floor and kept
+   apart, because a model that can afford separate directions separates units in complementary distribution rather
+   than merging them. More data moves units from the rare band into the encoded band, where they get their own
+   directions; the rare tail regenerates below them (the inventory floor is support 3). What more data would buy is
+   reliability for the context ties (thirty host sentences instead of three), not more of them. The structural limit is
+   the loss: merging co-occurring units (part and whole) costs the reconstruction almost nothing, merging alternatives
+   costs half their signal, so a count autoencoder prefers the lattice — which is why nine tenths of the ties restate
+   §4.3.3 at every corpus size.
+6. Output size at these parameters: about 65 MB on H and 152 MB on item-E; everything is deterministic and regenerable
    in about 85 minutes per pass.
