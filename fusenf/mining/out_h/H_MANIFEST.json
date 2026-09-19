@@ -785,6 +785,117 @@
      "note": "2,000 epochs, bottleneck 16/32/64, no norm floor; superseded by run #2 (same script, rewritten 2026-09-18)"
     }
    }
+  },
+  "4.3.4_alignment": {
+   "script": "mining/align_faithful.py",
+   "date": "2026-09-19",
+   "variants": {
+    "faithful": {
+     "parameters": {
+      "pairs": "every equivalence class with >= 2 members in the canonical store: paraphrase pairs = same-polarity members (H: the 172 complete Tier C PAWS pairs; item-E: 413 = Tier A variants + 180 Tier C pairs), control pairs = same x different polarity (item-E: 468; a measurement column, never a filter); control support of a mapping = classes where it occurs in a control pair but in none of the class's paraphrase pairs",
+      "alignment": "exact maximum-common-subgraph: every injective skolem renaming within each stream (e/x/f), maximising identical atoms (term + polarity) then near-identical atoms (same arity, same variables in the same positions, one head or constant differs), first renaming on a tie (ambiguity recorded); greedy assignment above 5,040 renamings (never triggered); eligible atoms = the miner's",
+      "subtrees": "the §4.3.1 faithful units instantiated on each side (k 4); a unit maps to the canonical form of its atoms' images (raw when not in the inventory)",
+      "roles": "binary heads on an aligned event centre (class links excluded), matched by aligned centre + filler; role-lost when the other side has no atom there",
+      "residue": "atoms matched on neither side, keyed by canonical form + the smallest unit instance around them whose other atoms matched; head_on_other_side = attachment slack vs true add/drop",
+      "consistency": "support = distinct equivalence classes (never pairs); PASS at >= 3; identity mappings summarised per unit (self / other / lost)",
+      "rules": "unit mapping -> two implications into a provisional meta-node (Mn<shared heads>_<AltOrAlt>); role mapping -> minority head rewrites to majority (by occurrence count); residue with a matched context -> the context rewrites to itself without the atom"
+     },
+     "outputs": [
+      "mining/out_h/align_faithful.jsonl / .md / .metta + align_faithful_pairs.jsonl (per-pair intermediate) + align_faithful_notes.md",
+      "mining/out_ecmp/align_faithful.* (item-E twin with the Tier A scorecard)"
+     ],
+     "results": {
+      "H": {
+       "pairs": 172,
+       "identical_parses": 26,
+       "quality_median": 0.7143,
+       "quality_quartiles": [
+        0.5455,
+        0.8846
+       ],
+       "pairs_below_0.5": 35,
+       "ambiguous_renamings": 11,
+       "greedy": 0,
+       "unit_mappings": {
+        "recorded": 124,
+        "pass": 3,
+        "shape_parallel": 117,
+        "passes": [
+         "Patient~Theme 5",
+         "Agent~Patient 4",
+         "Past+Patient~Past+Theme 3"
+        ],
+        "support_2": [
+         "Theme~Goal",
+         "follow~succeed (x2)"
+        ]
+       },
+       "role_mappings": {
+        "recorded": 11,
+        "pass": 4,
+        "passes": [
+         "Theme~Patient 6",
+         "Agent~Patient 4",
+         "Agent~Theme 4",
+         "Agent~Experiencer 3"
+        ],
+        "role_lost_top": [
+         "Theme 13",
+         "Agent 12",
+         "Location 8"
+        ]
+       },
+       "residue": {
+        "recorded": 556,
+        "pass": 5,
+        "passes": [
+         "(Past $e0) 6 (head elsewhere 5/7)",
+         "(Agent $e0 $x0) 4",
+         "(LocatedIn $x0 $x1) 3",
+         "(Theme $e0 $x0) 3 x2"
+        ],
+        "head_on_other_side_among_support_ge_2": "27 of 43 occurrences"
+       },
+       "profiles": {
+        "units_occurring": 772,
+        "always_self": 496,
+        "ever_other_or_lost": 276
+       }
+      },
+      "item_E": {
+       "pairs": "413 paraphrase + 468 control",
+       "identical_parses": 113,
+       "quality_median": 0.8333,
+       "unit_mappings": {
+        "recorded": 1298,
+        "pass": 124,
+        "pass_kinds": "78 lexical swaps, 16 role swaps, 30 not shape-parallel",
+        "pass_with_control_support": 2
+       },
+       "role_mappings": {
+        "pass": 4,
+        "passes": [
+         "Agent~Recipient 13 (control 0)",
+         "Agent~Source 10 (control 0)",
+         "Theme~Patient 6 (control 3)",
+         "Agent~Theme 3 (control 5)"
+        ]
+       },
+       "residue": {
+        "pass": 12,
+        "designed_cases": [
+         "(Member $e0 decision) 4",
+         "(Degree $x0 big very) 3"
+        ]
+       },
+       "tierA_recall": "27/31 (misses CoAgent~GroupOf, destroy<-destruction, exhausted<-very_tired, walk<-take_a_walk; 3 by the provenance rule; 1 by a mapping with control support)",
+       "alt_targets": "dative 10/10 identical, voice 33/36"
+      },
+      "reading": "on H the method mostly confirms the parser (15% identical graphs; consistent non-identity mappings = the Theme/Patient/Agent wobble, corroborating §4.3.2 / #23 / §4.3.5); lexical mappings appear at support 2 and stop (172 pairs); residue = attachment slack from translator variance, made separable by the head-on-other-side and context fields; on item-E the designed swaps, converses and pruning cases are recovered with clean control columns; diff factoring not needed at unit granularity"
+     },
+     "determinism": "two consecutive runs byte-identical on both substrates (8 files); ~2 s per run"
+    }
+   }
   }
  }
 }
