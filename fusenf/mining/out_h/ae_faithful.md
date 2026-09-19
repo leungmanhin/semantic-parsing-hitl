@@ -51,32 +51,32 @@
 
 ## Tied pairs across the dial (gate: cosine ≥ tau and both norms ≥ the adopted floor `init`)
 
-| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | tie groups (untied / below floor) | pass / exclusive at floor none | pass / exclusive at floor median | pass / exclusive at floor init |
+| k | beta | cosine ≥ | pass | exclusive (shape-parallel) | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | tie groups (untied / below floor) | pass / exclusive at floor none | pass / exclusive at floor median | pass / exclusive at floor init |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 32 | 0.5 | 0.80 | 7273 | 31 | 1507 | 3533 | 2202 | 1336 | 82 | 6911 | 69 (42 / 845) | 10393 / 1394 | 7862 / 83 | 7273 / 31 |
-| 32 | 0.5 | 0.85 | 6896 | 8 | 1207 | 3479 | 2202 | 1311 | 82 | 6566 | 77 (50 / 845) | 8979 / 763 | 7342 / 26 | 6896 / 8 |
-| 32 | 0.5 | 0.90 | 6467 | 3 | 915 | 3347 | 2202 | 1246 | 80 | 6047 | 85 (62 / 845) | 7803 / 393 | 6751 / 4 | 6467 / 3 |
-| 32 | 0.5 | 0.95 | 5685 | 2 | 485 | 2996 | 2202 | 1091 | 72 | 5385 | 86 (89 / 845) | 6345 / 156 | 5828 / 2 | 5685 / 2 |
-| 64 | 0.5 | 0.80 | 4737 | 42 | 1164 | 1727 | 1804 | 1246 | 82 | 4583 | 122 (67 / 678) | 8223 / 379 | 3998 / 34 | 4737 / 42 |
-| 64 | 0.5 | 0.85 | 4230 | 16 | 898 | 1512 | 1804 | 1162 | 81 | 4071 | 129 (91 / 678) | 7224 / 186 | 3559 / 10 | 4230 / 16 |
-| 64 | 0.5 | 0.90 | 3810 | 2 | 636 | 1368 | 1804 | 1105 | 76 | 3656 | 140 (108 / 678) | 6445 / 75 | 3150 / 2 | 3810 / 2 |
-| 64 | 0.5 | 0.95 | 3325 | 0 | 340 | 1181 | 1804 | 996 | 68 | 3160 | 145 (150 / 678) | 5593 / 34 | 2747 / 0 | 3325 / 0 |
-| 128 | 0.5 | 0.80 | 2119 | 3 | 512 | 961 | 643 | 996 | 72 | 2031 | 232 (144 / 454) | 5391 / 39 | 1262 / 0 | 2119 / 3 |
-| 128 | 0.5 | 0.85 | 1849 | 0 | 365 | 841 | 643 | 918 | 69 | 1788 | 232 (188 / 454) | 4926 / 32 | 1123 / 0 | 1849 / 0 |
-| 128 | 0.5 | 0.90 | 1549 | 0 | 220 | 686 | 643 | 830 | 65 | 1461 | 235 (234 / 454) | 4530 / 26 | 987 / 0 | 1549 / 0 |
-| 128 | 0.5 | 0.95 | 1192 | 0 | 53 | 498 | 641 | 687 | 58 | 1149 | 221 (318 / 454) | 3345 / 21 | 758 / 0 | 1192 / 0 |
+| 32 | 0.5 | 0.80 | 7273 | 31 (4) | 1507 | 3533 | 2202 | 1336 | 82 | 6911 | 69 (42 / 845) | 10393 / 1394 | 7862 / 83 | 7273 / 31 |
+| 32 | 0.5 | 0.85 | 6896 | 8 (2) | 1207 | 3479 | 2202 | 1311 | 82 | 6566 | 77 (50 / 845) | 8979 / 763 | 7342 / 26 | 6896 / 8 |
+| 32 | 0.5 | 0.90 | 6467 | 3 (0) | 915 | 3347 | 2202 | 1246 | 80 | 6047 | 85 (62 / 845) | 7803 / 393 | 6751 / 4 | 6467 / 3 |
+| 32 | 0.5 | 0.95 | 5685 | 2 (0) | 485 | 2996 | 2202 | 1091 | 72 | 5385 | 86 (89 / 845) | 6345 / 156 | 5828 / 2 | 5685 / 2 |
+| 64 | 0.5 | 0.80 | 4737 | 42 (8) | 1164 | 1727 | 1804 | 1246 | 82 | 4583 | 122 (67 / 678) | 8223 / 379 | 3998 / 34 | 4737 / 42 |
+| 64 | 0.5 | 0.85 | 4230 | 16 (5) | 898 | 1512 | 1804 | 1162 | 81 | 4071 | 129 (91 / 678) | 7224 / 186 | 3559 / 10 | 4230 / 16 |
+| 64 | 0.5 | 0.90 | 3810 | 2 (1) | 636 | 1368 | 1804 | 1105 | 76 | 3656 | 140 (108 / 678) | 6445 / 75 | 3150 / 2 | 3810 / 2 |
+| 64 | 0.5 | 0.95 | 3325 | 0 (0) | 340 | 1181 | 1804 | 996 | 68 | 3160 | 145 (150 / 678) | 5593 / 34 | 2747 / 0 | 3325 / 0 |
+| 128 | 0.5 | 0.80 | 2119 | 3 (1) | 512 | 961 | 643 | 996 | 72 | 2031 | 232 (144 / 454) | 5391 / 39 | 1262 / 0 | 2119 / 3 |
+| 128 | 0.5 | 0.85 | 1849 | 0 (0) | 365 | 841 | 643 | 918 | 69 | 1788 | 232 (188 / 454) | 4926 / 32 | 1123 / 0 | 1849 / 0 |
+| 128 | 0.5 | 0.90 | 1549 | 0 (0) | 220 | 686 | 643 | 830 | 65 | 1461 | 235 (234 / 454) | 4530 / 26 | 987 / 0 | 1549 / 0 |
+| 128 | 0.5 | 0.95 | 1192 | 0 (0) | 53 | 498 | 641 | 687 | 58 | 1149 | 221 (318 / 454) | 3345 / 21 | 758 / 0 | 1192 / 0 |
 
-## Adopted block: k 32, beta 0.5, cosine ≥ 0.85, floor init — top 25 EXCLUSIVE passes (the paper's interchangeability reading)
+## Adopted block: k 32, beta 0.5, cosine ≥ 0.85, floor init — top 25 EXCLUSIVE passes (the paper's interchangeability reading; shape-parallel ones are the rules)
 
 | cosine | seeds | relation | norms A / B | A (support) | B (support) | shared | A e.g. | B e.g. |
 |---|---|---|---|---|---|---|---|---|
+| 0.898 | 5/5 | exclusive (shape-parallel) | 0.21 / 0.22 | `(And (Goal $e0 $x0) (Patient $e0 $x1))` (7) | `(And (Goal $e0 $x0) (Theme $e0 $x1))` (6) | 0 | The lid screws onto the jar. | The cook added cloves to the sauce. |
+| 0.874 | 5/5 | exclusive (shape-parallel) | 0.72 / 0.21 | `(And (Agent $e0 $x0) (Goal $e0 $x1))` (17) | `(And (Goal $e0 $x0) (Patient $e0 $x1))` (7) | 0 | A few customers have just walked into the store. | The lid screws onto the jar. |
 | 0.959 | 5/5 | exclusive | 0.26 / 0.24 | `(Member $x0 crowd)` (4) | `(And (Past $e0) (Recipient $e1 $x0) (Theme $e0 $e1))` (3) | 0 | The crowd began to applaud. | The rebels began distributing food and clothing from the storehouse to the locals. |
 | 0.959 | 5/5 | exclusive | 0.26 / 0.24 | `(Member $x0 crowd)` (4) | `(And (Recipient $e0 $x0) (Theme $e1 $e0))` (3) | 0 | The crowd began to applaud. | The rebels began distributing food and clothing from the storehouse to the locals. |
 | 0.915 | 5/5 | exclusive | 0.32 / 0.26 | `(And (Agent $e0 $x0) (Recipient $e0 $x1))` (9) | `(Member $x0 crowd)` (4) | 0 | The rebels began distributing food and clothing from the storehouse to the locals. | The crowd began to applaud. |
-| 0.898 | 5/5 | exclusive | 0.21 / 0.22 | `(And (Goal $e0 $x0) (Patient $e0 $x1))` (7) | `(And (Goal $e0 $x0) (Theme $e0 $x1))` (6) | 0 | The lid screws onto the jar. | The cook added cloves to the sauce. |
 | 0.889 | 4/5 | exclusive | 0.34 / 0.26 | `(Recipient $e0 $x0)` (17) | `(Member $x0 crowd)` (4) | 0 | The thief was handed over to the police. | The crowd began to applaud. |
 | 0.884 | 4/5 | exclusive | 0.21 / 0.22 | `(And (Goal $e0 $x0) (Patient $e0 $x1))` (7) | `(And (Goal $e0 $x0) (Member $e0 go))` (6) | 0 | The lid screws onto the jar. | Mom went to the supermarket. |
-| 0.874 | 5/5 | exclusive | 0.72 / 0.21 | `(And (Agent $e0 $x0) (Goal $e0 $x1))` (17) | `(And (Goal $e0 $x0) (Patient $e0 $x1))` (7) | 0 | A few customers have just walked into the store. | The lid screws onto the jar. |
 | 0.860 | 4/5 | exclusive | 0.62 / 0.21 | `(And (Agent $e0 $x0) (Goal $e0 $x1) (Past $e0))` (13) | `(And (Goal $e0 $x0) (Patient $e0 $x1))` (7) | 0 | A few customers have just walked into the store. | The lid screws onto the jar. |
 
 ## Adopted block: k 32, beta 0.5, cosine ≥ 0.85, floor init — top 25 co-occurrence passes (overlapping / nested / same-records)

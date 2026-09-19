@@ -615,7 +615,8 @@
       "ties": "cosine between two units' encoder weight vectors (columns of W); co-occurrence relation from the units' record sets (exclusive / overlapping / nested / same-records) and part-of (§4.3.1 containment) as FIELDS, never filters",
       "clusters": "average linkage on the cosine distance of the weight vectors, cut at 1 - tau (rendering only)",
       "ties_grouping": "tie groups over the ENTERING units: complete-linkage clustering cut at 1 - tau (every pair inside a group passes the gate; a partition); untied entering units and below-floor units listed at the end of each file",
-      "gate": "pass = cosine >= tau AND both units enter (encoder-vector norm >= floor); init floor = the initialisation norm a*sqrt(k/3), a = sqrt(6/(F+k)) = 0.208 / 0.290 / 0.402 at k 32 / 64 / 128 (609 / 776 / 1,000 of 1,454 units enter); the record keeps every pair >= 0.8 whatever the floor (fields pass / enters / pass_no_floor)"
+      "gate": "pass = cosine >= tau AND both units enter (encoder-vector norm >= floor); init floor = the initialisation norm a*sqrt(k/3), a = sqrt(6/(F+k)) = 0.208 / 0.290 / 0.402 at k 32 / 64 / 128 (609 / 776 / 1,000 of 1,454 units enter); the record keeps every pair >= 0.8 whatever the floor (fields pass / enters / pass_no_floor)",
+      "rendering_rule": "owner 2026-09-18: (Implication B A) rendered ONLY for exclusive SHAPE-PARALLEL pairs (same atom count; under a within-stream variable renaming all atoms but one coincide; the differing atom differs only in head symbol or a constant) — they open the .metta with a 'substitution:' line; every other pair carries 'rule: none' with its reason (exclusive non-parallel = shared sentence context; co-occurring = corroborates §4.3.3/§4.3.1, whole=>part a tautology); JSONL fields parallel / substitution; fix 2026-09-19: the renaming may not map across variable streams (3 false parallels at k 64 before the fix)"
      },
      "outputs": [
       "mining/out_h/ae_faithful.md / .metta / .jsonl (adopted k 32, floor init); ae_faithful_dial/k64_beta0.5.* and k128_beta0.5.*; twins ae_faithful_plain.* (beta 0) and ae_faithful_beta2.* (beta 2) with their own _weights/ dirs",
@@ -688,9 +689,19 @@
         "reading": "no exclusive tie holds across the bottleneck dial — each is a property of one compression"
        },
        "retrain_check": "k32 seed 0 retrained in a probe: max |dW| vs the saved weights 5e-6 (rounding)"
+      },
+      "shape_parallel_exclusive_0.85_init_floor": {
+       "H_k32": "2 of 8 (Theme->Patient 0.898, Patient->Agent 0.874, both in the Goal frame, 5/5 seeds)",
+       "H_k64": "5 of 16 (Theme<->Patient x3 incl. Obligated 0.901, play->swim x2)",
+       "H_k128": "0 of 0",
+       "H_plain": "0 of 3",
+       "H_beta2": "3 of 7 (mark/david/william as Agent)",
+       "item_E_k32": "88 of 1482 (51 distinct substitutions; 80 Member swaps, 6 Theme, 2 Inheritance = the designed variants)",
+       "item_E_k64": "101 of 717",
+       "item_E_k128": "9 of 24"
       }
      },
-     "determinism": "run #2: two full passes (main grid + both twins, both substrates) byte-identical across all 119 output files"
+     "determinism": "run #2: two full passes (main grid + both twins, both substrates) byte-identical across all 119 output files; rendering re-renders 2026-09-18/19 (runs #3 and #4, single pass each): weights / ties / count matrices byte-identical to run #2 (92 files), only JSONL / metta / md changed"
     }
    },
    "history": {

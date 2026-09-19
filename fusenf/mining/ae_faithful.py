@@ -205,7 +205,8 @@ def relation_of(A, B):
 
 def shape_parallel(A, B):
     """Owner 2026-09-18: two units are SHAPE-PARALLEL when they have the same number of atoms and, under some
-    bijective renaming of B's variables onto A's, all atoms but one coincide, the two differing atoms having the
+    bijective renaming of B's variables onto A's WITHIN each variable stream (an entity variable never becomes an
+    event variable; fix 2026-09-19), all atoms but one coincide, the two differing atoms having the
     same arity with the same variables in the same positions — i.e. they differ only in a head symbol or a
     constant (Theme -> Patient; swim -> play). Returns (True, atom_of_A, atom_of_B) or (False, None, None)."""
     if len(A) != len(B):
@@ -214,11 +215,14 @@ def shape_parallel(A, B):
     PB = [(b, parse_atom(b)) for b in B]
     va = sorted({t for _, (_, args, _) in PA for t in args if t.startswith("$")})
     vb = sorted({t for _, (_, args, _) in PB for t in args if t.startswith("$")})
-    if len(va) != len(vb):
+    streams = sorted({t[1] for t in va} | {t[1] for t in vb})           # $e / $x / $f: a renaming stays within a stream
+    by_a = {st: [t for t in va if t[1] == st] for st in streams}
+    by_b = {st: [t for t in vb if t[1] == st] for st in streams}
+    if any(len(by_a[st]) != len(by_b[st]) for st in streams):
         return False, None, None
     aset = {(h, tuple(args), n): orig for orig, (h, args, n) in PA}
-    for perm in itertools.permutations(va, len(vb)):
-        m = dict(zip(vb, perm))
+    for combo in itertools.product(*(itertools.permutations(by_a[st]) for st in streams)):
+        m = {t: p for st, perm in zip(streams, combo) for t, p in zip(by_b[st], perm)}
         bset = {(h, tuple(m.get(t, t) for t in args), n): orig for orig, (h, args, n) in PB}
         da = set(aset) - set(bset)
         db = set(bset) - set(aset)

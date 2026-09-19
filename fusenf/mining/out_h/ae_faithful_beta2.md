@@ -39,24 +39,24 @@
 
 ## Tied pairs across the dial (gate: cosine ≥ tau and both norms ≥ the adopted floor `init`)
 
-| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | tie groups (untied / below floor) | pass / exclusive at floor none | pass / exclusive at floor median | pass / exclusive at floor init |
+| k | beta | cosine ≥ | pass | exclusive (shape-parallel) | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | tie groups (untied / below floor) | pass / exclusive at floor none | pass / exclusive at floor median | pass / exclusive at floor init |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 32 | 2 | 0.80 | 7311 | 14 | 1469 | 3613 | 2215 | 1364 | 82 | 6852 | 69 (41 / 848) | 10218 / 1200 | 7887 / 88 | 7311 / 14 |
-| 32 | 2 | 0.85 | 6960 | 7 | 1198 | 3540 | 2215 | 1326 | 82 | 6566 | 69 (53 / 848) | 8939 / 666 | 7382 / 35 | 6960 / 7 |
-| 32 | 2 | 0.90 | 6412 | 3 | 881 | 3313 | 2215 | 1231 | 80 | 6077 | 81 (65 / 848) | 7645 / 354 | 6684 / 7 | 6412 / 3 |
-| 32 | 2 | 0.95 | 5781 | 2 | 505 | 3059 | 2215 | 1113 | 73 | 5394 | 86 (89 / 848) | 6413 / 152 | 5895 / 2 | 5781 / 2 |
+| 32 | 2 | 0.80 | 7311 | 14 (4) | 1469 | 3613 | 2215 | 1364 | 82 | 6852 | 69 (41 / 848) | 10218 / 1200 | 7887 / 88 | 7311 / 14 |
+| 32 | 2 | 0.85 | 6960 | 7 (3) | 1198 | 3540 | 2215 | 1326 | 82 | 6566 | 69 (53 / 848) | 8939 / 666 | 7382 / 35 | 6960 / 7 |
+| 32 | 2 | 0.90 | 6412 | 3 (1) | 881 | 3313 | 2215 | 1231 | 80 | 6077 | 81 (65 / 848) | 7645 / 354 | 6684 / 7 | 6412 / 3 |
+| 32 | 2 | 0.95 | 5781 | 2 (0) | 505 | 3059 | 2215 | 1113 | 73 | 5394 | 86 (89 / 848) | 6413 / 152 | 5895 / 2 | 5781 / 2 |
 
-## Adopted block: k 32, beta 2, cosine ≥ 0.85, floor init — top 25 EXCLUSIVE passes (the paper's interchangeability reading)
+## Adopted block: k 32, beta 2, cosine ≥ 0.85, floor init — top 25 EXCLUSIVE passes (the paper's interchangeability reading; shape-parallel ones are the rules)
 
 | cosine | seeds | relation | norms A / B | A (support) | B (support) | shared | A e.g. | B e.g. |
 |---|---|---|---|---|---|---|---|---|
+| 0.931 | 5/5 | exclusive (shape-parallel) | 0.27 / 0.25 | `(Agent $e0 david)` (3) | `(Agent $e0 mark)` (3) | 0 | David was trying to reach Amanda. | Mark and Jessica began hanging out often. |
+| 0.862 | 2/5 | exclusive (shape-parallel) | 0.27 / 0.24 | `(Agent $e0 david)` (3) | `(Agent $e0 william)` (3) | 0 | David was trying to reach Amanda. | William is the type of friend who always listens and gives good advice. |
+| 0.857 | 3/5 | exclusive (shape-parallel) | 0.25 / 0.24 | `(Agent $e0 mark)` (3) | `(Agent $e0 william)` (3) | 0 | Mark and Jessica began hanging out often. | William is the type of friend who always listens and gives good advice. |
 | 0.963 | 5/5 | exclusive | 0.27 / 0.24 | `(Member $x0 crowd)` (4) | `(And (Past $e0) (Recipient $e1 $x0) (Theme $e0 $e1))` (3) | 0 | The crowd began to applaud. | The rebels began distributing food and clothing from the storehouse to the locals. |
 | 0.963 | 5/5 | exclusive | 0.27 / 0.24 | `(Member $x0 crowd)` (4) | `(And (Recipient $e0 $x0) (Theme $e1 $e0))` (3) | 0 | The crowd began to applaud. | The rebels began distributing food and clothing from the storehouse to the locals. |
-| 0.931 | 5/5 | exclusive | 0.27 / 0.25 | `(Agent $e0 david)` (3) | `(Agent $e0 mark)` (3) | 0 | David was trying to reach Amanda. | Mark and Jessica began hanging out often. |
 | 0.892 | 5/5 | exclusive | 0.29 / 0.27 | `(And (Agent $e0 $x0) (Recipient $e0 $x1))` (9) | `(Member $x0 crowd)` (4) | 0 | The rebels began distributing food and clothing from the storehouse to the locals. | The crowd began to applaud. |
 | 0.873 | 5/5 | exclusive | 0.32 / 0.27 | `(Recipient $e0 $x0)` (17) | `(Member $x0 crowd)` (4) | 0 | The thief was handed over to the police. | The crowd began to applaud. |
-| 0.862 | 2/5 | exclusive | 0.27 / 0.24 | `(Agent $e0 david)` (3) | `(Agent $e0 william)` (3) | 0 | David was trying to reach Amanda. | William is the type of friend who always listens and gives good advice. |
-| 0.857 | 3/5 | exclusive | 0.25 / 0.24 | `(Agent $e0 mark)` (3) | `(Agent $e0 william)` (3) | 0 | Mark and Jessica began hanging out often. | William is the type of friend who always listens and gives good advice. |
 
 ## Adopted block: k 32, beta 2, cosine ≥ 0.85, floor init — top 25 co-occurrence passes (overlapping / nested / same-records)
 

@@ -39,14 +39,14 @@
 
 ## Tied pairs across the dial (gate: cosine ≥ tau and both norms ≥ the adopted floor `init`)
 
-| k | beta | cosine ≥ | pass | exclusive | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | tie groups (untied / below floor) | pass / exclusive at floor none | pass / exclusive at floor median | pass / exclusive at floor init |
+| k | beta | cosine ≥ | pass | exclusive (shape-parallel) | overlapping | nested | same-records | part-of | shared with §4.3.3 passes | stable in all seeds | tie groups (untied / below floor) | pass / exclusive at floor none | pass / exclusive at floor median | pass / exclusive at floor init |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 32 | 0 | 0.80 | 7014 | 38 | 1323 | 3477 | 2176 | 1277 | 84 | 6695 | 69 (38 / 886) | 10293 / 1354 | 7829 / 104 | 7014 / 38 |
-| 32 | 0 | 0.85 | 6616 | 3 | 1131 | 3306 | 2176 | 1205 | 81 | 6425 | 72 (45 / 886) | 8891 / 778 | 7265 / 43 | 6616 / 3 |
-| 32 | 0 | 0.90 | 6300 | 0 | 941 | 3183 | 2176 | 1154 | 76 | 6068 | 74 (57 / 886) | 7687 / 375 | 6725 / 5 | 6300 / 0 |
-| 32 | 0 | 0.95 | 5776 | 0 | 603 | 2997 | 2176 | 1058 | 66 | 5441 | 78 (79 / 886) | 6554 / 165 | 6025 / 0 | 5776 / 0 |
+| 32 | 0 | 0.80 | 7014 | 38 (4) | 1323 | 3477 | 2176 | 1277 | 84 | 6695 | 69 (38 / 886) | 10293 / 1354 | 7829 / 104 | 7014 / 38 |
+| 32 | 0 | 0.85 | 6616 | 3 (0) | 1131 | 3306 | 2176 | 1205 | 81 | 6425 | 72 (45 / 886) | 8891 / 778 | 7265 / 43 | 6616 / 3 |
+| 32 | 0 | 0.90 | 6300 | 0 (0) | 941 | 3183 | 2176 | 1154 | 76 | 6068 | 74 (57 / 886) | 7687 / 375 | 6725 / 5 | 6300 / 0 |
+| 32 | 0 | 0.95 | 5776 | 0 (0) | 603 | 2997 | 2176 | 1058 | 66 | 5441 | 78 (79 / 886) | 6554 / 165 | 6025 / 0 | 5776 / 0 |
 
-## Adopted block: k 32, beta 0, cosine ≥ 0.85, floor init — top 25 EXCLUSIVE passes (the paper's interchangeability reading)
+## Adopted block: k 32, beta 0, cosine ≥ 0.85, floor init — top 25 EXCLUSIVE passes (the paper's interchangeability reading; shape-parallel ones are the rules)
 
 | cosine | seeds | relation | norms A / B | A (support) | B (support) | shared | A e.g. | B e.g. |
 |---|---|---|---|---|---|---|---|---|

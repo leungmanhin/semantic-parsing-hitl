@@ -55,7 +55,7 @@ passes tie at the adopted block). The sparsity weight barely matters (beta 0 / 0
 entirely); the bottleneck size does: widening it lets the model encode more units on their own (1,000 enter at k 128)
 and the ties thin out.
 
-**The exclusive ties — the paper's interchangeability reading — are now few and readable.** The floor removes 755 of
+**The exclusive ties — the paper's interchangeability reading — are now few and readable.** (The rules among them are the shape-parallel ones; see the rendering rule below.) The floor removes 755 of
 the 763 exclusive ties of the unfloored run: those were the rare-unit context ties (a rare unit's vector is the mean
 bottleneck code of its few records minus the global mean, so look-alike sentences tie whatever the units mean). What
 survives at the adopted block, all with both vectors grown and most stable in every seed:
@@ -88,6 +88,17 @@ exclusive ties are gone. The dial also shows that the survivors are properties o
 the data: Goal+Patient ~ Goal+Theme reads 0.898 at k 32, 0.223 at 64 (one side below the floor) and −0.181 at 128;
 Obligated+Theme ~ Obligated+Patient −0.232 (below the floor) / 0.901 / 0.703; crowd ~ the Recipient frame 0.959 /
 0.627 / 0.160. No exclusive tie holds across all three bottlenecks.
+
+**Rendering rule (owner 2026-09-18, after reading the crowd ~ Recipient-frame rule).** A tie's `(Implication B A)` is
+rendered only when the pair is exclusive AND shape-parallel — same number of atoms and, under a renaming of variables
+within each stream, all atoms but one coincide, the differing atom differing only in its head symbol or a constant —
+because only then do the two sides' variables line up by construction (an exclusive pair shares no record, so no
+alignment is observable otherwise; the canonical names on the two sides share symbols by accident). Those pairs open
+each file with a `substitution:` line; every other pair carries `rule: none` with its reason. At the adopted gate: H
+k 32 — 2 of the 8 exclusive passes (Theme → Patient and Patient → Agent in the Goal frame); k 64 — 5 of 16 (Theme ↔
+Patient ×3 incl. the Obligated frame, play → swim ×2); k 128 — none; plain twin — 0 of 3; beta-2 twin — 3 of 7 (the
+mark / david / william name interchange). Item-E k 32 — 88 of 1,482, almost all `Member` swaps in one slot (tutor →
+council, summer_fair → afternoon_session, start → commence), i.e. the designed variants; k 64 101 of 717; k 128 9 of 24.
 
 **Tie groups.** With the floor, 77 groups cover 559 of the 609 entering units at the adopted block (50 entering units
 tie with nothing; 845 sit below the floor); the largest groups are the same-records families and the frequent frame
