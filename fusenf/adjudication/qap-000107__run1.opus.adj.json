@@ -1,0 +1,9 @@
+{"id": "qap-000107", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Queries requires the pattern be built exactly as the matching statement, and the very statement that answers this question is already in the context as (Patient sk_drain_1 sk_group_1) - the To oblique binds the goal-style slot instead of that undergoer role, so the query matches nothing though the answer is present."}],
+ "gaps_confirmed": ["No undergoer-side analogue of \"What does Bob do?\": the event-class slot may hold a variable but a role head may not, and no role-union is licensed, so \"What happens to X?\" has no complete licensed form."],
+ "new_gaps": ["A licensed \"what happens to X\" form would have to carry an OPEN UNDERGOER: either an undergoer-neutral head, or a sanctioned union of query lines over Patient / Theme / Experiencer - the dual-storage-union list is closed and does not include alternative role heads."],
+ "decision": "defect",
+ "defect_summary": "The compliant single line here is (: $prf (And (Member $e $verb) (Patient $e sk_group_1)) $tv), which binds the context's drain event; a form that also covers Theme / Experiencer storage is not licensed, since neither a variable role head nor a role-union is sanctioned.",
+ "notes": "Referent handling is right: the definite plural is the context's group sk_group_1, used as a constant with no re-emission of its GroupOf / Cardinality atoms."}

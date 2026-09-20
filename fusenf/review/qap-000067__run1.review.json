@@ -1,0 +1,9 @@
+{"id": "qap-000067", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "The locative \"at that lantern-row\" is attached to the crowd as a static containment `(LocatedIn $g sk_lantern_row_1)` instead of to the asked-about eventuality as the event oblique `(Location $e sk_lantern_row_1)`, which is the reading the CONTEXT selects (it stores the lantern-row only as the hunt event's `Location`, never as any entity's position)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["an open \"what happens to X?\" question: the predicate is unknown, so which role holds X (Patient vs Theme vs Experiencer vs Recipient) cannot be decided, and Queries licenses neither a variable in head position nor a union of role branches"],
+ "q3_context_leak": "none",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The query's group structure (`(Member $g crowd)` + `(GroupOf $g night_moth)`) follows the flock-of-birds pattern for \"the nightmoth crowd\" and correctly reuses the context kind symbol `night_moth`, but the context fills the hunt's Patient with that bare kind and has no group, so the pattern cannot reach the hunt event. The Patient/Theme pair reads as a reasonable response to the unknown-role gap rather than a defect."}

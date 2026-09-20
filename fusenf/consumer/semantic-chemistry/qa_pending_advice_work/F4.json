@@ -1,0 +1,34 @@
+{
+ "id": "F4",
+ "rule": "F — Factual recall",
+ "texts": [
+  "Where does the Stilllight Lantern stand?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000004",
+   "sentence": "Where does the Stilllight Lantern stand?",
+   "parse": [
+    "(: $prf (And (Name $x \"Stilllight Lantern\") (LocatedIn $x $w)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000004",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a \"where\" question about a thing's static position: no query form is given for it, and no dual-storage union is specified across LocatedIn (containment only) and the entity-attached surface-preposition position heads (On / NextTo / Against / ...), so a position stored under any non-containment preposition cannot bind"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"stand\" is correctly treated as a bare position clause that mints no event (Where a THING is), and the named referent is bound by Name as Queries requires. The single LocatedIn line is the only form the instruction set actually licenses, since the query grammar has no head variable."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "id": "F27",
+ "rule": "F — Factual recall",
+ "texts": [
+  "Where is the feather store?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000027",
+   "sentence": "Where is the feather store?",
+   "parse": [
+    "(: $prf (And (Member $s feather_store) (LocatedIn $s $w)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000027",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"Where is <thing>?\" — a thing's position is stored either as (LocatedIn x place) for containment or under an entity-attached surface preposition (On / NextTo / Atop / ...), and the instruction set gives no query doctrine for asking across both storages (position heads are not among the listed dual-storage-union instances), so a where-question can only reach the containment form."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite NP is bound by its kind as Queries/Existential prescribe, and feather_store is the correct fused compound kind (a noun modifier classifying the head, genus not exposed in a query). Heads used (Member, LocatedIn) are both defined operators."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+ "id": "N2",
+ "rule": "N — What-next",
+ "texts": [
+  "A lantern at the Sunken Cove dies before dawn.",
+  "What happens at the Sunken Cove?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000068",
+   "sentence": "A lantern at the Sunken Cove dies before dawn.",
+   "parse": [
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: lantern_loc (LocatedIn sk_lantern_1 sunken_cove) (STV 1.0 0.99))",
+    "(: die_ev (Member sk_die_1 die) (STV 1.0 0.99))",
+    "(: die_patient (Patient sk_die_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: die_time (TimeAtMost sk_die_1 dawn) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000068",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite with a verbal predicate -> witness (not a generic), 'Sunken Cove' as one opaque name symbol with its Name and kind atom and no modifier genus, entity-attached 'at' -> LocatedIn, die's subject -> Patient, and 'before dawn' -> (TimeAtMost e dawn) all follow the instruction set verbatim. The bare simple present correctly gets no tense atom, since neither futurate trigger (TODAY-placeable date, lexically future adjunct) is present."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000069",
+   "sentence": "What happens at the Sunken Cove?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (Location $e sunken_cove)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000069",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The verb-class unknown `(Member $e $verb)` follows the \"What does Bob do?\" pattern, \"at\" on an eventuality is the `Location` oblique, and the named cove is used as the context constant `sunken_cove` directly as Input prescribes for a question. The context stores the cove only as the lantern's position (`LocatedIn sk_lantern_1 sunken_cove`) and puts no `Location` on the die event, so this faithfully-built query binds nothing — a storage/query mismatch, not a translation defect."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: lantern_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: lantern_loc (LocatedIn sk_lantern_1 sunken_cove) (STV 1.0 0.99))",
+    "(: die_ev (Member sk_die_1 die) (STV 1.0 0.99))",
+    "(: die_patient (Patient sk_die_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: die_time (TimeAtMost sk_die_1 dawn) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000068"
+   ]
+  }
+ ]
+}

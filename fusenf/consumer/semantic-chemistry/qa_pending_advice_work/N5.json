@@ -1,0 +1,128 @@
+{
+ "id": "N5",
+ "rule": "N — What-next",
+ "texts": [
+  "An apprentice's lantern dims during the apprentice's solo nights.",
+  "What happens to the apprentice's solo count?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000075",
+   "sentence": "An apprentice's lantern dims during the apprentice's solo nights.",
+   "parse": [
+    "(: e_appr (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: e_lant (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e_poss (Possession sk_lantern_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: e_dim (Member sk_dim_1 dim) (STV 1.0 0.99))",
+    "(: e_pat (Patient sk_dim_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e_nights_g (GroupOf sk_nights_1 solo_night) (STV 1.0 0.99))",
+    "(: e_nights_poss (Possession sk_nights_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_dim_1 sk_nights_1) (STV 1.0 0.99))",
+    "(: sn_genus (Inheritance solo_night night) (STV 1.0 0.99))",
+    "(: sn_mod (Inheritance solo_night solo) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000075",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "The \"during\" PP is encoded as (Time sk_dim_1 sk_nights_1), but the instruction set makes During the head for exactly during/while/throughout, and Time's value slot takes structured calendar terms or bare deictic/day-part symbols, never an entity witness."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The witness reading of \"an apprentice\" (indefinite under a verbal predicate), both Possession genitives, the group witness for the possessed plural, the change-of-state Patient on \"dims\" and the unmarked habitual are all correct. (Inheritance solo_night solo) is doubtful: the modifier genus is licensed only for a gradable, positional/cardinal or material adjective, and \"solo\" is shaky on the \"the night is solo\" predication test."
+   },
+   "adjudication": {
+    "id": "qap-000075",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Intervals fixes During as the head for exactly during / while / throughout (\"never a synonym head\"), and Time's value slot is specified for structured calendar terms or bare deictic / day-part symbols, so (Time sk_dim_1 sk_nights_1) drops the mandated head and puts an entity witness in a slot the vocabulary does not type for it."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "During is specified over a single reified eventuality (\"the phone rang during the lecture\"); a DEFINITE PLURAL of time-spans used as a habitual frame (\"during the apprentice's solo nights\") has no stated carrier — the calendar-slot habitual needs a named slot for Time + Every and TimesPer needs a stated rate — so a group witness in During's outer slot is an extension of the head, not a licensed form"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form replaces (Time sk_dim_1 sk_nights_1) with (During sk_dim_1 sk_nights_1), the head the instruction set fixes for \"during\", the group witness and its Possession staying as they are — though During over a group of time-spans is itself uncovered, which is filed above as a gap.",
+    "notes": "The reviewer's closing aside is right but was never filed as an issue: (Inheritance solo_night solo) fails the modifier-exposure test, which licenses a modifier genus only for a gradable, positional/cardinal or material adjective, and \"solo\" is not predicable of the night."
+   },
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000076",
+   "sentence": "What happens to the apprentice's solo count?",
+   "parse": [
+    "(: $prf (And (Member $c solo_count) (Possession $c sk_apprentice_1) (Member $e $verb) (To $e $c)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000076",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The relation between the asked-about event and the solo count is bound to the surface-preposition oblique (To $e $c), a form no statement the instruction set prescribes would emit for an event befalling an entity (an undergoer takes Patient or Theme), so the conjunct cannot bind."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A \"what happens to X?\" question: the instruction set gives only the agentive counterpart (\"What does Bob do?\" -> (Member $e $verb) (Agent $e $b)), and with the verb left as the unknown $verb its Patient-vs-Theme test (\"does the object itself change?\") cannot be applied, so no undergoer query shape is prescribed."
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Referent handling is right: the context-identified apprentice is used as the constant sk_apprentice_1 directly, and the count (absent from context) binds by kind with possessed-first (Possession $c sk_apprentice_1). `To` is itself a licensed head (preposition-named oblique, and the purpose connective feeding the seeded PurposeOf bridge), so the defect is the role it is made to carry, not the head."
+   },
+   "adjudication": {
+    "id": "qap-000076",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Queries requires the pattern to be built exactly as the matching statement stores it, and an eventuality's undergoer is a thematic role (Patient / Theme / Experiencer) whereas the preposition-named oblique records a surface preposition of the statement's own clause, so (To $e $c) asks which event is directed at or about the count rather than which one befalls it -- the wrong slot."
+     }
+    ],
+    "gaps_confirmed": [
+     "'What happens to X?' has no prescribed query shape -- only the agentive open-verb counterpart ('What does Bob do?' -> (Member $e $verb) (Agent $e $b)) exists, the Patient-vs-Theme test cannot be applied with the verb left unknown, and role storage is not among the closed dual-storage-union instances, so no union over undergoer roles is licensed."
+    ],
+    "new_gaps": [
+     "A count referent has nothing to bind: Cardinality stores a count as (Cardinality <group> <n>) on the group, never as an entity of kind count, so (Member $c solo_count) cannot reach a count held in that form -- a licensed shape for 'what happens to X's count' would have to bind the magnitude slot of a Cardinality atom and ask how it changed (e.g. via a scalar-change eventuality on the group), and no such form exists."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form puts the count in the undergoer role the answering statement would store -- (Theme $e $c), by the 'when the test is unclear, default to Theme' rule, with (Member $c solo_count) and (Possession $c sk_apprentice_1) unchanged -- in place of the oblique (To $e $c); since no union over Patient / Theme / Experiencer is licensed, even that form stays partial, which is exactly the confirmed gap.",
+    "notes": "Referent handling is otherwise right: the context-identified apprentice is the constant sk_apprentice_1 directly per Input, and possessed-first (Possession $c sk_apprentice_1) is the licensed genitive for a non-part possessum."
+   },
+   "mode": "query",
+   "context": [
+    "(: e_appr (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: e_lant (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e_poss (Possession sk_lantern_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: e_dim (Member sk_dim_1 dim) (STV 1.0 0.99))",
+    "(: e_pat (Patient sk_dim_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e_nights_g (GroupOf sk_nights_1 solo_night) (STV 1.0 0.99))",
+    "(: e_nights_poss (Possession sk_nights_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: e_time (Time sk_dim_1 sk_nights_1) (STV 1.0 0.99))",
+    "(: sn_genus (Inheritance solo_night night) (STV 1.0 0.99))",
+    "(: sn_mod (Inheritance solo_night solo) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000075"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+(: keepers_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))
+(: keepers_card (Cardinality sk_group_1 43) (STV 1.0 0.99))
+(: gen_mem (Member sk_generation_1 generation) (STV 1.0 0.99))
+(: gen_mod (Member sk_generation_1 present) (STV 1.0 0.99))
+(: keepers_in_gen (In sk_group_1 sk_generation_1) (STV 1.0 0.99))
+(: keepers_active_rule (Implication (PartOf $x sk_group_1) (Member $x active)) (STV 1.0 0.9))

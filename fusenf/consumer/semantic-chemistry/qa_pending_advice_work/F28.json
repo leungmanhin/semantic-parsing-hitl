@@ -1,0 +1,32 @@
+{
+ "id": "F28",
+ "rule": "F — Factual recall",
+ "texts": [
+  "Which ground feathers do not ward lanterns?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000028",
+   "sentence": "Which ground feathers do not ward lanterns?",
+   "parse": [
+    "(: $prf (And (Member $x ground_feather) (Member $e ward) (Agent $e $x) (Theme $e lantern)) (STV 0.0 $conf))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000028",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The (STV 0.0 $conf) pin for the negative question, the bare wh variable, the inanimate transitive Agent and the unchanged-object Theme all follow the instruction set. If the matching statement were stored as a bare relational generic (Ward ground_feather lantern), this instance-level query would miss it, but the instruction set explicitly accepts that a kind relation does not distribute."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

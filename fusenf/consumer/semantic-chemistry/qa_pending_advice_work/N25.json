@@ -1,0 +1,160 @@
+{
+ "id": "N25",
+ "rule": "N — What-next",
+ "texts": [
+  "A Keeper dims a lantern on the Cliff Path.",
+  "The dim lantern gives weak mist-light.",
+  "What happens to the thread harvest at that lantern?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000110",
+   "sentence": "A Keeper dims a lantern on the Cliff Path.",
+   "parse": [
+    "(: k_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: l_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: d_ev (Member sk_dim_1 dim) (STV 1.0 0.99))",
+    "(: d_ag (Agent sk_dim_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: d_pat (Patient sk_dim_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(Interpretation r1 (: d_loc (Location sk_dim_1 cliff_path) (STV 1.0 0.99)))",
+    "(Interpretation r2 (: l_loc (On sk_lantern_1 cliff_path) (STV 1.0 0.99)))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000110",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The two-reading split is the licensed attachment trigger applied exactly as the 'sketched the fountain beside the archive' example, with the right head on each side — event-attached 'on' is Location, entity-attached 'on' keeps the surface head On per 'LocatedIn is containment ONLY'. Indefinite subject stays a witness (not a rule), the bare simple present correctly gets no status atom, and 'the Cliff Path' gets its Name plus the separate (Member cliff_path path) kind atom."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000111",
+   "sentence": "The dim lantern gives weak mist-light.",
+   "parse": [
+    "(: lantern_dim (Member sk_lantern_1 dim) (STV 1.0 0.99))",
+    "(: give_ev (Member sk_give_1 give) (STV 1.0 0.99))",
+    "(: give_ag (Agent sk_give_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: give_th (Theme sk_give_1 sk_mist_light_1) (STV 1.0 0.99))",
+    "(: ml_type (Member sk_mist_light_1 mist_light) (STV 1.0 0.99))",
+    "(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: ml_weak (Member sk_mist_light_1 weak) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000111",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a descriptive adjective on a determiner-less mass-noun object (\"gives weak mist-light\"): the instruction set reserves the bare class symbol for a non-specific / generic object (\"cooked dinner\", \"pays tax\", \"a bare mass ... stays a constant\") but gives that bare filler no carrier for a modifier, while Core patterns forbids silently dropping a stated qualifier — so witness-plus-Member versus bare-constant filler is left undecided for modified bare mass objects"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite \"the dim lantern\" correctly reuses the context's sk_lantern_1 with \"dim\" as a separate descriptive atom (not fused, and TEXT-licensed rather than carried over from the context's dim event), the inanimate transitive subject takes Agent, give takes Theme, the simple present correctly gets no status atom, and mist_light carries its noun-modifier-suppressed genus (Inheritance mist_light light). Individuating the mist-light is the resolution of the gap above, chosen so that \"weak\" is not dropped."
+   },
+   "adjudication": null,
+   "mode": "statement",
+   "context": [
+    "(: k_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: l_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: d_ev (Member sk_dim_1 dim) (STV 1.0 0.99))",
+    "(: d_ag (Agent sk_dim_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: d_pat (Patient sk_dim_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(Interpretation r1 (: d_loc (Location sk_dim_1 cliff_path) (STV 1.0 0.99)))",
+    "(Interpretation r2 (: l_loc (On sk_lantern_1 cliff_path) (STV 1.0 0.99)))"
+   ],
+   "context_of": [
+    "qap-000110"
+   ]
+  },
+  {
+   "field": "t3",
+   "corpus_id": "qap-000112",
+   "sentence": "What happens to the thread harvest at that lantern?",
+   "parse": [
+    "(: $prf (And (Member $h thread_harvest) (Location $h sk_lantern_1) (Member $e $verb) (To $e $h)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000112",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The query relates the unknown event to the harvest with the preposition-named oblique (To $e $h), but a statement that answers \"what happens to the thread harvest\" would store the harvest in an undergoer role (Patient / Theme / Experiencer), so the pattern is not built \"exactly as the matching statement\" and can bind nothing in the KB."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An open \"What happens to X?\" question: the instruction set supplies only the agent-side analogue (\"What does Bob do?\" -> (Member $e $verb) (Agent $e $b)) and no undergoer-side form, since the role head varies with the unknown verb, a variable is never licensed in head position, and the dual-storage-union list does not include alternative role heads.",
+     "A locative PP on an event-denoting noun (\"the thread harvest at that lantern\"): the event-vs-entity split fixes Location for eventualities and LocatedIn for things, but the extension of event-side attachment to an event-noun witness is stated only for Time atoms, so which head such a noun takes is left open."
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest is well built: \"that lantern\" reuses the context constant sk_lantern_1, and the first-mention definite \"the thread harvest\" is correctly bound by its fused compound kind (Member $h thread_harvest) rather than given a context symbol. (Location $h sk_lantern_1) is defensible only if the harvest witness counts as an eventuality; read as a thing it would have to be LocatedIn (\"at\" is a containment preposition)."
+   },
+   "adjudication": {
+    "id": "qap-000112",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Queries requires the pattern be built exactly as the matching statement, and no statement reporting something that happens to the thread harvest would store it in a To oblique (that head is reserved for a PP naming what the activity is directed at), so the query binds the wrong slot and can match nothing."
+     }
+    ],
+    "gaps_confirmed": [
+     "No undergoer-side analogue of \"What does Bob do?\": the event-class slot may hold a variable but a role head may not, and no role-union is licensed, so \"What happens to X?\" has no complete licensed form.",
+     "A locative PP on an event-denoting noun (\"the thread harvest at that lantern\"): the event-vs-entity head split is spelled out for eventualities vs things, but the rule that an event-noun's witness IS the eventuality is stated only for tense and Time atoms, leaving Location vs LocatedIn open for such a witness."
+    ],
+    "new_gaps": [
+     "A licensed \"what happens to X\" form would have to carry an OPEN UNDERGOER: either an undergoer-neutral head, or a sanctioned union of query lines over Patient / Theme / Experiencer - the dual-storage-union list is closed and does not include alternative role heads."
+    ],
+    "decision": "defect",
+    "defect_summary": "The nearest licensed form drops the To oblique and binds the harvest in an undergoer role - (: $prf (And (Member $h thread_harvest) (Location $h sk_lantern_1) (Member $e $verb) (Patient $e $h)) $tv) - but since the undergoer head varies with the unknown verb and neither a variable head nor a role-union is licensed, the instruction set licenses no complete compliant form for this question.",
+    "notes": "The rest is well built: \"that lantern\" reuses the context constant sk_lantern_1, and the first-mention definite \"the thread harvest\" is bound by its fused compound kind with no decomposition atom asserted, as a query must."
+   },
+   "mode": "query",
+   "context": [
+    "(: k_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: l_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: d_ev (Member sk_dim_1 dim) (STV 1.0 0.99))",
+    "(: d_ag (Agent sk_dim_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: d_pat (Patient sk_dim_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(Interpretation r1 (: d_loc (Location sk_dim_1 cliff_path) (STV 1.0 0.99)))",
+    "(Interpretation r2 (: l_loc (On sk_lantern_1 cliff_path) (STV 1.0 0.99)))",
+    "(: lantern_dim (Member sk_lantern_1 dim) (STV 1.0 0.99))",
+    "(: give_ev (Member sk_give_1 give) (STV 1.0 0.99))",
+    "(: give_ag (Agent sk_give_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: give_th (Theme sk_give_1 sk_mist_light_1) (STV 1.0 0.99))",
+    "(: ml_type (Member sk_mist_light_1 mist_light) (STV 1.0 0.99))",
+    "(: ml_genus (Inheritance mist_light light) (STV 1.0 0.99))",
+    "(: ml_weak (Member sk_mist_light_1 weak) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000110",
+    "qap-000111"
+   ]
+  }
+ ]
+}

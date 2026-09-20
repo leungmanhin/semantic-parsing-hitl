@@ -1,0 +1,34 @@
+{
+ "id": "W11",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why did the Council discuss burning wintergloss at the Stilllight Lantern in Year 1?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000041",
+   "sentence": "Why did the Council discuss burning wintergloss at the Stilllight Lantern in Year 1?",
+   "parse": [
+    "(: $prf (And (Member $c council) (Member $e discuss) (Agent $e $c) (Theme $e $b) (Member $b burn) (Patient $b wintergloss) (Name $l \"Stilllight Lantern\") (Location $e $l) (Time $e (Year 1)) (Past $e) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000041",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a gerund / nominalized eventuality as the direct object of an ordinary transitive verb (\"discuss burning wintergloss\"): the instruction set covers gerund subjects of generic claims, control to-infinitives, causative complements and finite sealed complements, but not this, so whether the burning reifies at top level (as the parse assumes) or seals under Theme is undecided"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Location for \"at the Stilllight Lantern\", the structured (Time $e (Year 1)), Past, Name-binding of the place and (ReasonFor $r $e) on the discuss event are all right, and the gerund correctly receives no agent and no tense of its own. Theme is the correct role for discuss (evaluated, unchanged) and Patient the correct one for burn."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

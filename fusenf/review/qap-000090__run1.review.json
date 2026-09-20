@@ -1,0 +1,9 @@
+{"id": "qap-000090", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": null, "issue": "The locative \"at the West Row\" is attached to the harvest as static containment `(LocatedIn $h west_row)` rather than to the asked-about eventuality as the event oblique `(Location $e west_row)`, and if \"the thread harvest\" denotes the harvesting eventuality rather than a yield then `LocatedIn` is the wrong head for it either way (an eventuality takes `Location`, never `LocatedIn`)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["an open \"what happens to X?\" question: the predicate is unknown, so which role holds X (Patient vs Theme vs Experiencer vs Recipient) cannot be decided, and Queries licenses neither a variable in head position nor a union of role branches"],
+ "q3_context_leak": "none",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The named row is correctly used as the context constant `west_row` directly, and \"thread harvest\" binds by its fused compound kind, which is right since the context names no thread harvest. The context links West Row to its lanterns by `Possession`, so nothing in the KB supplies the containment fact this query's locative conjunct demands."}

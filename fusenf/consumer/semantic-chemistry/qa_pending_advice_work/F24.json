@@ -1,0 +1,32 @@
+{
+ "id": "F24",
+ "rule": "F — Factual recall",
+ "texts": [
+  "What does Tessa Brae do?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000024",
+   "sentence": "What does Tessa Brae do?",
+   "parse": [
+    "(: $prf (And (Name $t \"Tessa Brae\") (Member $e $verb) (Agent $e $t)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000024",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the instruction set's prescribed \"What does X do?\" query shape exactly: the verb slot is the unknown, the named individual is bound by its verbatim Name string rather than a hard-coded symbol, and nothing is asserted."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

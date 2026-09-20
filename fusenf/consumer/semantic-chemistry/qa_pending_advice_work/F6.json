@@ -1,0 +1,56 @@
+{
+ "id": "F6",
+ "rule": "F — Factual recall",
+ "texts": [
+  "What is salt-bloom used for?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000006",
+   "sentence": "What is salt-bloom used for?",
+   "parse": [
+    "(: $prf (And (Member $e use) (Theme $e salt_bloom) (For $e $w)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000006",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "Explanation questions routes a \"what … for?\" question to the canonical `(PurposeOf $g <focus>)` conjunct, but the parse binds a surface `(For $e $w)` oblique instead, so it cannot reach a purpose stored under the bridged heads `To` / `InOrderTo` / `SoAsTo`."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a purpose expressed as a \"for + NP\" oblique — the seeded `PurposeOf` bridge is specified only for the heads `To` / `InOrderTo` / `SoAsTo`, so a `For`-stored purpose is unreachable by the prescribed what-for query and no dual-storage union branch is given for it"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest of the pattern is right: the agentless passive omits the Agent, `Theme` is the listed role for the object of *use*, `salt_bloom` stays a bare kind symbol for a non-specific mass referent, and the generic present correctly gets no status atom."
+   },
+   "adjudication": {
+    "id": "qap-000006",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Explanation questions states that a \"what ... for?\" question conjoins the canonical (PurposeOf $g <focus>) — a head licensed only in queries and seeded rules — so substituting the surface oblique (For $e $w) drops the prescribed conjunct and reaches no purpose stored under the bridged heads To / InOrderTo / SoAsTo."
+     }
+    ],
+    "gaps_confirmed": [
+     "a purpose stated as a \"for + NP / gerund\" adjunct stores as the preposition-named (For <event> ...) oblique, which the seeded PurposeOf bridge (specified for To / InOrderTo / SoAsTo only) never reaches, and no dual-storage union branch is given for it"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the single line (: $prf (And (Member $e use) (Theme $e salt_bloom) (PurposeOf $g $e)) $tv); it is licensed, but where the answering statement stored its purpose as a For oblique that licensed form binds nothing — which is exactly the confirmed gap.",
+    "notes": "The focus pattern itself is correct: the agentless passive omits Agent, use takes Theme per the listed role tests, salt_bloom stays a bare kind symbol, and the generic present takes no status atom."
+   },
+   "mode": "query"
+  }
+ ]
+}

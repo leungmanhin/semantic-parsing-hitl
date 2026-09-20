@@ -1,0 +1,9 @@
+{"id": "qap-000101", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The indefinite possessor 'an apprentice' is given an existential witness, so the parse asserts that one particular apprentice's solo count is large, whereas the sentence makes a generic claim about apprentices (the instruction set reads indefinite 'a/an' in a copular predication as generic)."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a generic copular claim whose subject is the possessed NP of an indefinite possessor (\"An apprentice's N is ADJ\") - the copular generic route yields only a single Inheritance fact, which cannot carry the possessor dependency, and the Implication-rule route is reserved for verbal generics"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Compound handling is right: solo_count fuses, the head genus is emitted, and 'solo' correctly gets no modifier genus because it fails the predication test. Possession rather than PartOf is also correct, since a count is not a component of the apprentice."}

@@ -1,0 +1,34 @@
+{
+ "id": "W9",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does the Council redistribute mire-essence at the full moon?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000039",
+   "sentence": "Why does the Council redistribute mire-essence at the full moon?",
+   "parse": [
+    "(: $prf (And (Member $c council) (Member $e redistribute) (Agent $e $c) (Theme $e mire_essence) (Time $e full_moon) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000039",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite NP naming a recurring natural/astronomical time point ('at the full moon') as a Time filler: the instruction set's Time fillers are structured calendar/clock terms, speech-anchored deictic constants, and an enumerated day-part list (morning/afternoon/evening/night, dawn/noon/dusk), and it gives no rule for whether such a phrase becomes a bare Time constant or the ordinary definite witness that 'the N' would otherwise mint"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Binding 'the Council' by kind rather than Name is right (capitalized bare class word = common noun by default), Theme for redistributed mire-essence follows the no-change test, and the bare-symbol Time filler is the most defensible of the undetermined options."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

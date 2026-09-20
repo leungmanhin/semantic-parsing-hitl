@@ -1,0 +1,32 @@
+{
+ "id": "F12",
+ "rule": "F — Factual recall",
+ "texts": [
+  "When does the Council meet?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000012",
+   "sentence": "When does the Council meet?",
+   "parse": [
+    "(: $prf (And (Member $e meet) (Agent $e $c) (Member $c council) (Time $e $t)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000012",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Plain \"when\" correctly binds the open slot term (Time $e $t) per Time questions, with no status atom for the present habitual and the capitalized common-noun label \"the Council\" bound by kind rather than Name. A KB fact stored only as (Every $e $n $u) would not match, but the instruction set assigns the Every/TimesPer union to \"how often\", not to \"when\"."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

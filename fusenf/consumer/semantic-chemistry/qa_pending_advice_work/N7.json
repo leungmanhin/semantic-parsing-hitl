@@ -1,0 +1,147 @@
+{
+ "id": "N7",
+ "rule": "N — What-next",
+ "texts": [
+  "A cold wind strikes the Cliff Path at night.",
+  "A lantern on the Cliff Path is salt-bloomed.",
+  "What happens to the salt-bloomed lantern?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000080",
+   "sentence": "A cold wind strikes the Cliff Path at night.",
+   "parse": [
+    "(: wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+    "(: wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+    "(: strike_ev (Member sk_strike_1 strike) (STV 1.0 0.99))",
+    "(: strike_agent (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+    "(: strike_theme (Theme sk_strike_1 cliff_path) (STV 1.0 0.99))",
+    "(: path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: strike_time (Time sk_strike_1 night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000080",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite 'a cold wind' with a verbal predicate correctly mints a witness rather than a generic, 'cold' stays an unfused descriptive Member atom, the multi-word name 'Cliff Path' is one opaque symbol with its kind atom and no modifier genus, the inanimate transitive subject keeps Agent, 'at night' is the bare day-part symbol on Time, and the simple present correctly emits no status atom."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000081",
+   "sentence": "A lantern on the Cliff Path is salt-bloomed.",
+   "parse": [
+    "(: lant_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lant_on_path (On sk_lantern_1 cliff_path) (STV 1.0 0.99))",
+    "(: lant_salt_bloomed (Member sk_lantern_1 salt_bloomed) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000081",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A hyphenated modifier + participial-adjective compound used as a copular predicate (\"salt-bloomed\"): Compound concepts enumerates verb_object actions, phrasal verbs and modifier + head-NOUN kinds, and parks adjective compounds under \"leave opaque for now\", so whether the property symbol salt_bloomed must carry a genus atom (Inheritance salt_bloomed bloomed) is unspecified."
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The Cliff Path is correctly reused as the context constant cliff_path with none of its context atoms (path_type, path_name) re-emitted, and \"on\" correctly stays the entity-attached surface preposition rather than being folded into LocatedIn. The indefinite \"a lantern\" mints a fresh witness that collides with nothing in the context."
+   },
+   "adjudication": null,
+   "mode": "statement",
+   "context": [
+    "(: wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+    "(: wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+    "(: strike_ev (Member sk_strike_1 strike) (STV 1.0 0.99))",
+    "(: strike_agent (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+    "(: strike_theme (Theme sk_strike_1 cliff_path) (STV 1.0 0.99))",
+    "(: path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: strike_time (Time sk_strike_1 night) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000080"
+   ]
+  },
+  {
+   "field": "t3",
+   "corpus_id": "qap-000082",
+   "sentence": "What happens to the salt-bloomed lantern?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (To $e sk_lantern_1)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000082",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The query relates the unknown event to the lantern with the preposition-named oblique (To $e sk_lantern_1), but a statement that answers \"what happens to the salt-bloomed lantern\" would store the lantern in an undergoer role (Patient / Theme / Experiencer), so the pattern is not built \"exactly as the matching statement\" and can bind nothing in the KB."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An open \"What happens to X?\" question: the instruction set supplies only the agent-side analogue (\"What does Bob do?\" -> (Member $e $verb) (Agent $e $b)) and no undergoer-side form, since the role head varies with the unknown verb, a variable is never licensed in head position, and the dual-storage-union list does not include alternative role heads."
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Referent handling is right: \"the salt-bloomed lantern\" is the context's sk_lantern_1 (typed salt_bloomed there), so the constant is used directly and its restrictor is correctly not restated or re-asserted."
+   },
+   "adjudication": {
+    "id": "qap-000082",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Queries requires the pattern be built exactly as the matching statement, and no statement reporting something that happens to the salt-bloomed lantern would store it in a To oblique (that head is reserved for a PP naming what the activity is directed at, decided by the question the PP answers), so the query binds the wrong slot and can match nothing - the context links sk_lantern_1 to no event at all."
+     }
+    ],
+    "gaps_confirmed": [
+     "No undergoer-side analogue of \"What does Bob do?\": the event-class slot may hold a variable but a role head may not, and no role-union is licensed, so \"What happens to X?\" has no complete licensed form."
+    ],
+    "new_gaps": [
+     "A licensed \"what happens to X\" form would have to carry an OPEN UNDERGOER: either an undergoer-neutral head, or a sanctioned union of query lines over Patient / Theme / Experiencer - the dual-storage-union list is closed and does not include alternative role heads."
+    ],
+    "decision": "defect",
+    "defect_summary": "The nearest licensed form drops the To oblique and binds the lantern in an undergoer role - (: $prf (And (Member $e $verb) (Patient $e sk_lantern_1)) $tv) - but since the undergoer head varies with the unknown verb and neither a variable head nor a role-union is licensed, the instruction set licenses no complete compliant form for this question.",
+    "notes": "Referent handling is right: \"the salt-bloomed lantern\" is the context's sk_lantern_1, used as a constant with its restrictor correctly not restated or re-asserted."
+   },
+   "mode": "query",
+   "context": [
+    "(: wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+    "(: wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+    "(: strike_ev (Member sk_strike_1 strike) (STV 1.0 0.99))",
+    "(: strike_agent (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+    "(: strike_theme (Theme sk_strike_1 cliff_path) (STV 1.0 0.99))",
+    "(: path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: strike_time (Time sk_strike_1 night) (STV 1.0 0.99))",
+    "(: lant_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lant_on_path (On sk_lantern_1 cliff_path) (STV 1.0 0.99))",
+    "(: lant_salt_bloomed (Member sk_lantern_1 salt_bloomed) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000080",
+    "qap-000081"
+   ]
+  }
+ ]
+}

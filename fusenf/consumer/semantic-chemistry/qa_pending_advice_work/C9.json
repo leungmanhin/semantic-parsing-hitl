@@ -1,0 +1,91 @@
+{
+ "id": "C9",
+ "rule": "C — Counterfactuals",
+ "texts": [
+  "Whenever an apprentice completes thirty solo nights, the Council assigns that apprentice to a station.",
+  "Whenever an apprentice completes ten solo nights, the Council assigns that apprentice to a station."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000121",
+   "sentence": "Whenever an apprentice completes thirty solo nights, the Council assigns that apprentice to a station.",
+   "parse": [
+    "(: council_mem (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: sn_gen (Inheritance solo_night night) (STV 1.0 0.99))",
+    "(: sn_mod (Inheritance solo_night solo) (STV 1.0 0.99))",
+    "(: whenever_complete_assign (Implication (And (Member $x apprentice) (Member (sk_complete $x) complete) (Agent (sk_complete $x) $x) (Patient (sk_complete $x) (sk_nights $x)) (GroupOf (sk_nights $x) solo_night) (Cardinality (sk_nights $x) 30)) (And (Member (sk_assign $x) assign) (Agent (sk_assign $x) sk_council_1) (Theme (sk_assign $x) $x) (Goal (sk_assign $x) (sk_station $x)) (Member (sk_station $x) station) (During (sk_assign $x) (sk_complete $x)))) (STV 1.0 0.9))"
+   ],
+   "census": "unfireable-rule: sk-function-in-premise",
+   "review": {
+    "id": "qap-000121",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 3,
+      "issue": "The whenever rule's premise is built out of Skolem function terms — (sk_complete $x) and (sk_nights $x) — which the instruction set bars from premises outright, so nothing can ever match it and the rule is inert (the trigger event and its counted object should be plain premise variables, as in the bell/bark example)."
+     },
+     {
+      "statement": 3,
+      "issue": "\"completes thirty solo nights\" assigns Patient to the nights group although completing them neither creates, destroys, consumes nor changes it, so the object test — and its stated default — gives Theme."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else in the rule follows the whenever machinery: \"the Council\" as a capitalized common noun with no Name, the per-occurrence assign event tied by During, a dependent Skolem station, Goal for the non-recipient \"to\", no QuantifierPhrase companion, and (STV 1.0 0.9). The exposed modifier genus (Inheritance solo_night solo) is borderline — \"solo\" is not gradable, positional or material, and \"the night is solo\" barely passes the predication test."
+   },
+   "adjudication": {
+    "id": "qap-000121",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Time states outright that 'a premise never contains a Skolem term — (sk_<verb> $x) function terms belong to conclusions' and that a rule whose premise names a Skolem event nothing asserts can never fire, so the premise's (sk_complete $x) and (sk_nights $x) leave the rule inert."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Completing thirty solo nights neither creates, destroys, consumes nor physically changes them, and neither bounded extension of Patient reaches the case (their whether/when is not altered and they are not informational artifacts), so the object test and its stated default ('when the test is unclear, default to Theme') both give Theme."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "Issue 0's compliant form matches the trigger with plain variables, as the bell/bark example does, and keys the response's Skolem terms on the trigger event variable: (Implication (And (Member $a apprentice) (Member $e complete) (Agent $e $a) (Theme $e $g) (GroupOf $g solo_night) (Cardinality $g 30)) (And (Member (sk_assign $e) assign) (Agent (sk_assign $e) sk_council_1) (Theme (sk_assign $e) $a) (Goal (sk_assign $e) (sk_station $e)) (Member (sk_station $e) station) (During (sk_assign $e) $e))) (STV 1.0 0.9); issue 1's fix is the Theme already shown there in place of Patient on the nights group.",
+    "notes": "Everything else follows the whenever machinery: 'the Council' as a capitalized common noun with no Name, the per-occurrence assign tied by During, a dependent Skolem station, no QuantifierPhrase companion, and (STV 1.0 0.9). The reviewer's doubt about (Inheritance solo_night solo) was not filed as an issue so I do not reach it, though 'solo' is marginal on the predication test."
+   },
+   "mode": "intervention"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000122",
+   "sentence": "Whenever an apprentice completes ten solo nights, the Council assigns that apprentice to a station.",
+   "parse": [
+    "(: solo_night_genus (Inheritance solo_night night) (STV 1.0 0.99))",
+    "(: solo_night_mod (Inheritance solo_night solo) (STV 1.0 0.99))",
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: apprentice_station_rule (Implication (And (Member $x apprentice) (Member $c complete) (Agent $c $x) (Theme $c $g) (GroupOf $g solo_night) (Cardinality $g 10)) (And (Member (sk_assign $c) assign) (Agent (sk_assign $c) sk_council_1) (Theme (sk_assign $c) $x) (Goal (sk_assign $c) (sk_station $c)) (Member (sk_station $c) station) (During (sk_assign $c) $c))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000122",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The whenever-rule shape is right throughout: plain-variable premises, per-occurrence Skolem event, 'that apprentice' bound to the rule variable, the dependent station as (sk_station $c), the During link, no QuantifierPhrase companion, and 'the Council' as a capitalized common noun with no Name atom. The one borderline atom is (Inheritance solo_night solo) — 'solo' is none of the three exposed modifier classes (gradable, positional/cardinal, material), though it passes the predication test if a 'night' is read as a duty period."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  }
+ ]
+}

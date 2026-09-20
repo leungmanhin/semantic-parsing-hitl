@@ -1,0 +1,72 @@
+{
+ "id": "N14",
+ "rule": "N — What-next",
+ "texts": [
+  "A newcomer arrives in Aelmere in autumn.",
+  "What does the newcomer do?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000095",
+   "sentence": "A newcomer arrives in Aelmere in autumn.",
+   "parse": [
+    "(: newcomer_mem (Member sk_newcomer_1 newcomer) (STV 1.0 0.99))",
+    "(: arrive_ev (Member sk_arrive_1 arrive) (STV 1.0 0.99))",
+    "(: arrive_ag (Agent sk_arrive_1 sk_newcomer_1) (STV 1.0 0.99))",
+    "(: arrive_loc (Location sk_arrive_1 aelmere) (STV 1.0 0.99))",
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: arrive_time (Time sk_arrive_1 autumn) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000095",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "An animate arriver is a self-powered mover so Agent is right, the event's \"in\"-PP takes Location rather than the entity-side LocatedIn, no kind atom is invented for Aelmere, and the unanchored present correctly gets no tense atom under the futurate rule. A season has no structured Time term, so the bare symbol \"autumn\" is the only licensed form and follows the day-part precedent."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000096",
+   "sentence": "What does the newcomer do?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (Agent $e sk_newcomer_1)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000096",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Uses the context's sk_newcomer_1 constant directly, as Input requires for a question whose referent the context identifies, and follows the 'What does Bob do?' pattern exactly with no restated class, no tense atom and nothing asserted."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: newcomer_mem (Member sk_newcomer_1 newcomer) (STV 1.0 0.99))",
+    "(: arrive_ev (Member sk_arrive_1 arrive) (STV 1.0 0.99))",
+    "(: arrive_ag (Agent sk_arrive_1 sk_newcomer_1) (STV 1.0 0.99))",
+    "(: arrive_loc (Location sk_arrive_1 aelmere) (STV 1.0 0.99))",
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: arrive_time (Time sk_arrive_1 autumn) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000095"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,58 @@
+{
+ "id": "W1",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does Aelmere keep lanterns burning every night?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000031",
+   "sentence": "Why does Aelmere keep lanterns burning every night?",
+   "parse": [
+    "(: $prf (And (Name $a \"Aelmere\") (Member $e keep) (Agent $e $a) (Theme $e $g) (GroupOf $g lantern) (Member $s burning) (Experiencer $s $g) (Still $s) (Result $e $s) (Time $e night) (Every $e 1 day) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000031",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The maintained state is classed as the unlemmatized participle `burning`, where Names and casing lemmatizes a participle in predicative (non-modifier) function to its verb (`running` → `run`, so `burning` → `burn`) with progressive -ing adding `(Ongoing …)`, so the query cannot match a parse that stored the burning as a `burn` eventuality."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"keep + object + present participle\" maintaining an ongoing activity (\"keep lanterns burning\") — the maintenance resultative is specified only for a resultant state predicate (\"kept the gate shut\"), leaving the -ing complement's class symbol and aspect atoms undetermined"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The bare-plural object \"lanterns\" is bound as a group witness (`GroupOf`), but the instruction set reserves the bare kind filler for non-specific objects outside an episodic clause, so this branch may miss a kind-filler storage. Everything else follows the instruction set exactly: `Theme` for *keep*, `Still` on the state witness plus `Result`, `(Time $e night)` with `(Every $e 1 day)` for the named day-part slot, and the `ReasonFor` conjunct on the focus event."
+   },
+   "adjudication": {
+    "id": "qap-000031",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Names and casing lemmatizes by the word's function, not its shape, and reserves the adjective reading for a participle used as a MODIFIER (the same participle predicatively, \"the worktop was laminated\", is a verb and takes the base form), so the maintained eventuality's class is the lemma `burn`, not `burning` — the instruction set's own participial-complement precedent (\"heard the engine stalling\" -> `(Member sk_stall_1 stall)` + `(Ongoing …)`) fixes both the lemma and the aspect atom."
+     }
+    ],
+    "gaps_confirmed": [
+     "\"keep + object + present participle\" maintaining an ongoing ACTIVITY (\"keep lanterns burning\") is uncovered: Resultatives specifies the maintenance shape only for a resultant STATE predicate (\"kept the gate shut\")"
+    ],
+    "new_gaps": [
+     "Within that gap, the complement's ROLE and LINK are what is undetermined (not its class symbol, which lemmatization fixes): the State-result form supplies `Experiencer` + `Result` + `Still` for a state, but for an activity complement neither the subject role (the intransitive-subject test would give `Patient` for a non-volitional burning) nor whether it attaches by `Result` or `Theme` is licensed anywhere."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant query classes the maintained eventuality by the verb lemma — `(Member $s burn)` with the lanterns in that event's own role plus `(Ongoing $s)` for the participial marker — keeping `(Still $s)` and `(Result $e $s)`; the exact role slot for the lanterns is the part the instruction set licenses no form for, filed above as a gap.",
+    "notes": "The rest of the query is compliant: `Theme` for *keep*, `(Time $e night)` with `(Every $e 1 day)` for the named day-part slot, no tense on the habitual, `(ReasonFor $r $e)` for \"why\". The reviewer's own note is worth carrying: a bare-plural object in a habitual (non-episodic) clause takes the bare kind filler, so the `GroupOf` binding may miss the storage the statement doctrine mandates."
+   },
+   "mode": "query"
+  }
+ ]
+}

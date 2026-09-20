@@ -1,0 +1,98 @@
+{
+ "id": "N15",
+ "rule": "N — What-next",
+ "texts": [
+  "A Keeper on the Cliff Path retires.",
+  "What happens to that Keeper's station?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000097",
+   "sentence": "A Keeper on the Cliff Path retires.",
+   "parse": [
+    "(: k_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: k_loc (On sk_keeper_1 cliff_path) (STV 1.0 0.99))",
+    "(: e_retire (Member sk_retire_1 retire) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_retire_1 sk_keeper_1) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000097",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite subject is a witness with a verbal predicate (not a generic rule), the capitalized common noun \"Keeper\" correctly gets no Name atom, the proper noun \"Cliff Path\" gets one Name plus the kind atom read off the kind word inside the name, non-containment \"on\" stays the entity-attached surface head, and the bare simple present correctly carries no status atom."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000098",
+   "sentence": "What happens to that Keeper's station?",
+   "parse": [
+    "(: $prf (And (Member $s station) (Possession $s sk_keeper_1) (Member $e $verb) (Theme $e $s)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000098",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The undergoer is pinned to `Theme` for a verb the question leaves unknown, so the query silently excludes any Patient- or Experiencer-stored eventuality affecting the station."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a \"what happens to X?\" question, where the undergoer's role (Patient / Theme / Experiencer) is fixed by the very verb the question leaves unknown — the instruction set gives the agentive \"What does Bob do?\" shape (`(Member $e $verb)`) but no role-underspecified counterpart, and role storage is not among the listed dual-storage-union instances"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"That Keeper\" is correctly resolved straight to the context constant `sk_keeper_1` with none of its atoms re-emitted, and the genitive takes the opaque `(Possession $s sk_keeper_1)` with the possessed first, as the instruction set's possessive rule requires. The definite \"station\" is bound by its kind, which is the prescribed query form."
+   },
+   "adjudication": {
+    "id": "qap-000098",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "*Thematic roles* states the fallback outright — \"When the test is unclear, default to `Theme`\" — which is exactly the case when the question names no verb, and the residual under-coverage is the coverage gap the verdict itself logs rather than a parse defect: a query asserts nothing, so no atom here is false, ill-typed or over-asserted."
+     }
+    ],
+    "gaps_confirmed": [
+     "\"what happens to X?\" fixes the undergoer's role by the very verb the question leaves unknown; *Queries* supplies the agentive `(Member $e $verb)` shape but no role-underspecified counterpart, and role storage is not among *Core patterns*' dual-storage-union instances"
+    ],
+    "new_gaps": [
+     "a definite NP's restrictors enter a query as ordinary blocking conjuncts — here `(Possession $s sk_keeper_1)` — so a KB that records the station without the possessor link drops the whole answer; *Queries* has no device for a presupposed, non-blocking restrictor"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "\"That Keeper\" resolves straight to the context constant `sk_keeper_1` with nothing re-emitted (*Input*), and the genitive takes the opaque `Possession` with the possessed first, as *Possessive / genitive NP* requires and as *Possession questions always query the `Possession` form* confirms. Omitting a tense atom is right — an unconstrained status slot widens the match rather than narrowing it."
+   },
+   "mode": "query",
+   "context": [
+    "(: k_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: k_loc (On sk_keeper_1 cliff_path) (STV 1.0 0.99))",
+    "(: e_retire (Member sk_retire_1 retire) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_retire_1 sk_keeper_1) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000097"
+   ]
+  }
+ ]
+}

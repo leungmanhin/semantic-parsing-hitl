@@ -1,0 +1,136 @@
+{
+ "id": "C10",
+ "rule": "C — Counterfactuals",
+ "texts": [
+  "Stored mire-essence stays good for years.",
+  "Stored mire-essence stays good for six months."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000123",
+   "sentence": "Stored mire-essence stays good for years.",
+   "parse": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: mire_good_rule (Implication (And (Member $x mire_essence) (Member $x stored)) (And (Member (sk_good $x) good) (Experiencer (sk_good $x) $x) (Still (sk_good $x)) (MeasureAtLeast (sk_good $x) duration 2 year))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000123",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "The continuation copular's dual-emit flat half is missing: the rule's conclusion reifies the state (Member (sk_good $x) good) (Experiencer (sk_good $x) $x) but never adds the per-member flat atom (Member $x good), so \"is stored mire-essence good?\" cannot bind."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a continuation copular (\"stays ADJ\", Still + reified state + flat atom) whose subject is a kind-level generic rather than a specific referent: the instruction set defines that shape for a specific subject and separately says copular generics/universals do not reify, and it never says how the two combine (nor how a restricted mass-kind subject ranges over instances)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else lines up: compound genus at definitional TV, the participial modifier kept as the adjective \"stored\" and made a premise conjunct for the adjectivally-restricted kind subject, empirical generic 0.9/0.9 with no QuantifierPhrase (no quantifier word), Skolem-function state in the conclusion, and the bare-plural duration as (MeasureAtLeast ... duration 2 year)."
+   },
+   "adjudication": {
+    "id": "qap-000123",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The continuation copular is specified as the reified state + (Still ...) + the flat atom (the Core patterns dual-emit), and the instruction set shows that flat half surviving distribution as a per-member atom (the plural resultative's (Implication (PartOf $x <group>) (Member $x <state>))), so omitting (Member $x good) from the conclusion drops a mandated half and leaves \"is stored mire-essence good?\" unbindable."
+     }
+    ],
+    "gaps_confirmed": [
+     "the continuation copular (\"stays ADJ\") is defined for a specific subject while copular generics / universals are said not to reify — how the two combine over a kind-level subject, and how a restricted mass kind ranges over instances, is never stated"
+    ],
+    "new_gaps": [
+     "the kind-level route the instruction set does license for a condition-restricted property, (ConditionalProperty mire_essence good stored), has no slot for the continuation aspect (Still) or for the duration (\"for years\"), so neither that route nor the distributing-rule route carries the whole sentence"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form adds the per-member flat conjunct (Member $x good) inside the rule's conclusion beside the reified state, mirroring the plural resultative's flat half; the premises, Still, MeasureAtLeast duration 2 year and the 0.9/0.9 empirical TV all stand.",
+    "notes": "Everything else is on-spec: the compound genus at definitional TV, \"stored\" kept as a participial adjective and made a premise conjunct for the adjectivally-restricted kind subject, the bare-plural duration as MeasureAtLeast ... 2 year, and no QuantifierPhrase since no quantifier word appears."
+   },
+   "mode": "intervention"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000124",
+   "sentence": "Stored mire-essence stays good for six months.",
+   "parse": [
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: sme_genus (Inheritance stored_mire_essence mire_essence) (STV 1.0 0.99))",
+    "(: sme_mod (Inheritance stored_mire_essence stored) (STV 1.0 0.99))",
+    "(: good_state (Member sk_good_1 good) (STV 1.0 0.99))",
+    "(: good_exp (Experiencer sk_good_1 stored_mire_essence) (STV 1.0 0.99))",
+    "(: good_still (Still sk_good_1) (STV 1.0 0.99))",
+    "(: good_dur (Measure sk_good_1 duration 6 month) (STV 1.0 0.99))",
+    "(: sme_good (Inheritance stored_mire_essence good) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000124",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 7,
+      "issue": "a bare generic with no quantifier word takes strength 0.9 (~most), so (Inheritance stored_mire_essence good) (STV 1.0 0.9) over-claims — 1.0 is reserved for \"all\"/\"every\"."
+     },
+     {
+      "statement": 4,
+      "issue": "the reified state's Experiencer is filled by a kind symbol (stored_mire_essence); a generic over a kind is either the flat Inheritance atom or a distributing rule with per-instance Skolem states, and no licensed form asserts one individual state witness whose holder is the kind itself."
+     },
+     {
+      "statement": 3,
+      "issue": "the asserted state bundle (state, Experiencer, Still, duration) carries individual-fact truth values (STV 1.0 0.99) although the claim it encodes is an empirical generic, which the dial puts at 0.9."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a duration on a kind-level generic property (\"stays good for six months\"): (Measure e duration <n> <unit>) attaches to an eventuality, but a copular generic over a kind reifies none and the flat Inheritance atom has no duration/shelf-life slot",
+     "a restrictive participial/adjectival modifier on a bare-kind (mass) generic subject (\"stored mire-essence\"): the copular generic's flat Inheritance has no slot for the restriction, and the instruction set routes restricted kind subjects into a distributing rule only for the relational/verbal case, so nothing decides between fusing the modifier into the kind symbol and a rule"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The Still tag for \"stays\" and the duration Measure shape are the right pieces; what is missing is a licensed eventuality at kind level for them to attach to. The genus atom (Inheritance stored_mire_essence mire_essence) also points at another compound rather than the single-word head noun essence that the compound-kind rule specifies."
+   },
+   "adjudication": {
+    "id": "qap-000124",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Quantity -> strength: the companion's absence marks the bare generic and a bare generic takes strength 0.9 ('Apples are sweet' -> (STV 0.9 0.9)), so (STV 1.0 0.9) asserts the 'all / every' strength the sentence never states."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Copular universals and generics do not reify events (they stay the single Inheritance fact of Categorical statements), and the adjective-complement rule reserves the reified-state route for an individuated bearer — so a state witness whose Experiencer is the kind symbol stored_mire_essence is unlicensed and asserts one particular state held by the kind itself."
+     },
+     {
+      "index": 2,
+      "verdict": "confirm",
+      "reason": "The confidence dial reaches every kind-level claim whatever its head, so atoms encoding this empirical, counterexample-admitting generic take confidence 0.9, not the individual-fact 0.99 the state bundle carries."
+     }
+    ],
+    "gaps_confirmed": [
+     "a duration on a kind-level generic property ('stays good for six months'): (Measure e duration <n> <unit>) needs an eventuality, a copular generic over a kind reifies none, and the flat Inheritance atom has no shelf-life slot",
+     "a restrictive state / participial modifier on a bare-kind (mass) generic subject ('stored mire-essence'): the compound rule bars fusing a non-classifying modifier, and ConditionalProperty — the nearest licensed carrier, (ConditionalProperty mire_essence good stored) — is cued only by a when / at / under / if clause, never by an attributive modifier"
+    ],
+    "new_gaps": [
+     "a continuation copular ('stays / remains P') over a KIND: the Still tag needs a reified state witness, which a kind-level copular generic does not license, so 'stays good' cannot be distinguished from plain 'is good' at kind level"
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0: the flat generic is (Inheritance stored_mire_essence good) (STV 0.9 0.9) — strength 0.9 for a quantifier-less generic. Issue 1: no licensed form exists — a kind-level copular generic reifies no state, so the state witness and its kind-filled Experiencer must go, leaving 'stays' and 'for six months' with no carrier at all (both filed as gaps). Issue 2: had any of those atoms stood they would take the empirical 0.9 confidence rather than 0.99, but the compliant move is to omit the bundle entirely.",
+    "notes": "The reviewer's unfiled observation is right and belongs in the re-parse: the compound-kind rule decomposes once to the single-word head, so the genus is (Inheritance stored_mire_essence essence), not the intermediate compound mire_essence. Whether 'stored mire-essence' should have been fused at all is itself doubtful — 'stored' is a state, not a classifier that carves a subtype."
+   },
+   "mode": "statement"
+  }
+ ]
+}

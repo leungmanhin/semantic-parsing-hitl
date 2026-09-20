@@ -1,0 +1,32 @@
+{
+ "id": "W20",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why did the wraith response use half of the autumn feather store in Year 1?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000050",
+   "sentence": "Why did the wraith response use half of the autumn feather store in Year 1?",
+   "parse": [
+    "(: $prf (And (Member $wr wraith_response) (Member $e use) (Agent $e $wr) (Member $s autumn_feather_store) (Member $p autumn_feather_store) (PartOf $p $s) (ProportionOf $p $s half) (Theme $e $p) (Time $e (Year 1)) (Past $e) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000050",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The mass-partitive shape matches the 'Half of the cake melted' pattern exactly (single Member for whole and portion, PartOf, ProportionOf with the vague symbol 'half', predicate on the portion), 'use' correctly takes Theme, and the why-question adds the single (ReasonFor $r $e) conjunct with nothing asserted."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

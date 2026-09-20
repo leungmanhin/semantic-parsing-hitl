@@ -1,0 +1,9 @@
+{"id": "qap-000006", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "Explanation questions routes a \"what … for?\" question to the canonical `(PurposeOf $g <focus>)` conjunct, but the parse binds a surface `(For $e $w)` oblique instead, so it cannot reach a purpose stored under the bridged heads `To` / `InOrderTo` / `SoAsTo`."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a purpose expressed as a \"for + NP\" oblique — the seeded `PurposeOf` bridge is specified only for the heads `To` / `InOrderTo` / `SoAsTo`, so a `For`-stored purpose is unreachable by the prescribed what-for query and no dual-storage union branch is given for it"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The rest of the pattern is right: the agentless passive omits the Agent, `Theme` is the listed role for the object of *use*, `salt_bloom` stays a bare kind symbol for a non-specific mass referent, and the generic present correctly gets no status atom."}

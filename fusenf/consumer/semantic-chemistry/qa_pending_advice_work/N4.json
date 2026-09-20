@@ -1,0 +1,173 @@
+{
+ "id": "N4",
+ "rule": "N — What-next",
+ "texts": [
+  "A Keeper grinds feathers and scatters the feathers around a lit lantern at the Sunken Cove.",
+  "A wraith emerges from the water of the Sunken Cove.",
+  "What happens to the lantern?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000072",
+   "sentence": "A Keeper grinds feathers and scatters the feathers around a lit lantern at the Sunken Cove.",
+   "parse": [
+    "(: k_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: e1_grind (Member sk_grind_1 grind) (STV 1.0 0.99))",
+    "(: e1_agent (Agent sk_grind_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: feathers_grp (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+    "(: e1_patient (Patient sk_grind_1 sk_feathers_1) (STV 1.0 0.99))",
+    "(: e2_scatter (Member sk_scatter_1 scatter) (STV 1.0 0.99))",
+    "(: e2_agent (Agent sk_scatter_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e2_theme (Theme sk_scatter_1 sk_feathers_1) (STV 1.0 0.99))",
+    "(: lant_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lant_lit (Member sk_lantern_1 lit) (STV 1.0 0.99))",
+    "(: e2_around (Around sk_scatter_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(Interpretation r1 (: e2_loc (Location sk_scatter_1 sunken_cove) (STV 1.0 0.99)))",
+    "(Interpretation r2 (: lant_loc (LocatedIn sk_lantern_1 sunken_cove) (STV 1.0 0.99)))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000072",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The PP split is the licensed attachment trigger of Multiple live readings (event Location vs entity LocatedIn for containment 'at'), each reading complete with the shared lines; 'a Keeper' correctly stays a capitalized common noun with no Name, 'lit' stays the participial adjective, and 'the Sunken Cove' gets the one opaque name symbol plus a separate kind atom. The bare-plural object 'feathers' is given a group witness rather than the bare kind filler, which the habitual clause would otherwise indicate — the anaphoric definite 'the feathers' needs that antecedent, and the instruction set does not settle this combination."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000073",
+   "sentence": "A wraith emerges from the water of the Sunken Cove.",
+   "parse": [
+    "(: wraith_mem (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: emerge_ev (Member sk_emerge_1 emerge) (STV 1.0 0.99))",
+    "(: emerge_ag (Agent sk_emerge_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: water_mem (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: emerge_src (Source sk_emerge_1 sk_water_1) (STV 1.0 0.99))",
+    "(: water_poss (Possession sk_water_1 sunken_cove) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000073",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Reuses the context symbol sunken_cove for the named cove and re-emits none of its atoms; the intransitive self-powered subject takes Agent and the whence-PP takes Source, both per Thematic roles. The one judgment call is the genitive of-phrase: the Possessive/genitive part-component test could arguably make 'the water of the Sunken Cove' a PartOf, but the opaque Possession is defensible given PartOf is barred from geographic containment."
+   },
+   "adjudication": null,
+   "mode": "statement",
+   "context": [
+    "(: k_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: e1_grind (Member sk_grind_1 grind) (STV 1.0 0.99))",
+    "(: e1_agent (Agent sk_grind_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: feathers_grp (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+    "(: e1_patient (Patient sk_grind_1 sk_feathers_1) (STV 1.0 0.99))",
+    "(: e2_scatter (Member sk_scatter_1 scatter) (STV 1.0 0.99))",
+    "(: e2_agent (Agent sk_scatter_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e2_theme (Theme sk_scatter_1 sk_feathers_1) (STV 1.0 0.99))",
+    "(: lant_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lant_lit (Member sk_lantern_1 lit) (STV 1.0 0.99))",
+    "(: e2_around (Around sk_scatter_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(Interpretation r1 (: e2_loc (Location sk_scatter_1 sunken_cove) (STV 1.0 0.99)))",
+    "(Interpretation r2 (: lant_loc (LocatedIn sk_lantern_1 sunken_cove) (STV 1.0 0.99)))"
+   ],
+   "context_of": [
+    "qap-000072"
+   ]
+  },
+  {
+   "field": "t3",
+   "corpus_id": "qap-000074",
+   "sentence": "What happens to the lantern?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (To $e sk_lantern_1)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000074",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The query relates the unknown event to the lantern with the preposition-named oblique (To $e sk_lantern_1), but a statement that answers \"what happens to the lantern\" would store the lantern in an undergoer role (Patient / Theme / Experiencer), so the pattern is not built \"exactly as the matching statement\" and can bind nothing in the KB."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An open \"What happens to X?\" question: the instruction set supplies only the agent-side analogue (\"What does Bob do?\" -> (Member $e $verb) (Agent $e $b)) and no undergoer-side form, since the role head varies with the unknown verb, a variable is never licensed in head position, and the dual-storage-union list does not include alternative role heads."
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Referent handling is right: the context identifies the lantern, so the constant sk_lantern_1 is used directly, and only a query line is emitted. To is a licensable preposition-named head, but the instruction set reserves that oblique for a PP naming what the activity is about or directed at, which \"happens to\" is not."
+   },
+   "adjudication": {
+    "id": "qap-000074",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Queries requires the pattern be built exactly as the matching statement, and no statement reporting something that happens to the lantern stores it in a To oblique (that head is reserved for a PP naming where/what the activity is directed at), so the query binds a goal-style slot instead of the undergoer role and matches nothing in the KB - not even the context's own (Around sk_scatter_1 sk_lantern_1)."
+     }
+    ],
+    "gaps_confirmed": [
+     "No undergoer-side analogue of \"What does Bob do?\": the event-class slot may hold a variable but a role head may not, and no role-union is licensed, so \"What happens to X?\" has no complete licensed form."
+    ],
+    "new_gaps": [
+     "A licensed \"what happens to X\" form would have to carry an OPEN UNDERGOER: either an undergoer-neutral head, or a sanctioned union of query lines over Patient / Theme / Experiencer - the dual-storage-union list is closed and does not include alternative role heads.",
+     "Even a role-union would not reach an event linked to the entity only by a preposition-named or entity-attached oblique (here the context's (Around sk_scatter_1 sk_lantern_1)): there is no licensed \"what event involves X at all\" query."
+    ],
+    "decision": "defect",
+    "defect_summary": "The nearest licensed form drops the To oblique and binds the lantern in an undergoer role - (: $prf (And (Member $e $verb) (Patient $e sk_lantern_1)) $tv) - but since the undergoer head varies with the unknown verb and neither a variable head nor a role-union is licensed, the instruction set licenses no complete compliant form for this question.",
+    "notes": "Referent handling is right: with CONTEXT the lantern is its constant sk_lantern_1 used directly, and only a query line is emitted."
+   },
+   "mode": "query",
+   "context": [
+    "(: k_type (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: e1_grind (Member sk_grind_1 grind) (STV 1.0 0.99))",
+    "(: e1_agent (Agent sk_grind_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: feathers_grp (GroupOf sk_feathers_1 feather) (STV 1.0 0.99))",
+    "(: e1_patient (Patient sk_grind_1 sk_feathers_1) (STV 1.0 0.99))",
+    "(: e2_scatter (Member sk_scatter_1 scatter) (STV 1.0 0.99))",
+    "(: e2_agent (Agent sk_scatter_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e2_theme (Theme sk_scatter_1 sk_feathers_1) (STV 1.0 0.99))",
+    "(: lant_type (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lant_lit (Member sk_lantern_1 lit) (STV 1.0 0.99))",
+    "(: e2_around (Around sk_scatter_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(Interpretation r1 (: e2_loc (Location sk_scatter_1 sunken_cove) (STV 1.0 0.99)))",
+    "(Interpretation r2 (: lant_loc (LocatedIn sk_lantern_1 sunken_cove) (STV 1.0 0.99)))",
+    "(: wraith_mem (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: emerge_ev (Member sk_emerge_1 emerge) (STV 1.0 0.99))",
+    "(: emerge_ag (Agent sk_emerge_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: water_mem (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: emerge_src (Source sk_emerge_1 sk_water_1) (STV 1.0 0.99))",
+    "(: water_poss (Possession sk_water_1 sunken_cove) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000072",
+    "qap-000073"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,111 @@
+{
+ "id": "N3",
+ "rule": "N — What-next",
+ "texts": [
+  "A lantern burns wintergloss alongside mire-essence.",
+  "What happens to the nightmoths at that lantern?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000070",
+   "sentence": "A lantern burns wintergloss alongside mire-essence.",
+   "parse": [
+    "(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: burn_ag (Agent sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: burn_pat (Patient sk_burn_1 wintergloss) (STV 1.0 0.99))",
+    "(: burn_alongside (Alongside sk_burn_1 mire_essence) (STV 1.0 0.99))",
+    "(: lantern_ty (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: wg_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000070",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "A comitative/accompaniment PP naming an INANIMATE co-participant that undergoes the same action (\"burns wintergloss alongside mire-essence\"): CoAgent is animate-only and Instrument is the means, and no role records a second thing burned, so the co-burning reading survives only as the opaque preposition-named oblique."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Alongside is the licensed surface-preposition oblique (the word actually used, no synonym head), the inanimate transitive subject correctly stays Agent, the bare mass objects stay kind constants, and the bare simple present correctly takes no status atom. (Inheritance wintergloss gloss) follows the solid-compound \"always emit the genus\" rule, but the IS-A it asserts is unverifiable for a coined substance and may be the suppressed-genus case instead."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000071",
+   "sentence": "What happens to the nightmoths at that lantern?",
+   "parse": [
+    "(: $prf (And (GroupOf $g nightmoth) (Inheritance nightmoth moth) (LocatedIn $g sk_lantern_1) (Member $e $verb) (Theme $e $g)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000071",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The undergoer is pinned to `Theme` for a verb the question leaves unknown, so the query cannot bind a Patient-stored eventuality — and the instruction set's own role test puts the context's burning (burn is in its Patient list) exactly there, which is the likeliest answer for these moths."
+     },
+     {
+      "statement": 0,
+      "issue": "The conjunct `(Inheritance nightmoth moth)` binds nothing and only narrows the match, so the query returns nothing against a KB that typed the moths without that compound-genus atom."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a \"what happens to X?\" question, where the undergoer's role (Patient / Theme / Experiencer) is fixed by the very verb the question leaves unknown — the instruction set gives the agentive \"What does Bob do?\" shape (`(Member $e $verb)`) but no role-underspecified counterpart, and role storage is not among the listed dual-storage-union instances"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"That lantern\" is correctly resolved straight to the context constant `sk_lantern_1`, and \"at\" -> `LocatedIn` is a licensed entity-attached position head. Attaching the PP to the moths rather than to the happening is one of two coherent readings and the instruction set does not decide between them."
+   },
+   "adjudication": {
+    "id": "qap-000071",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Pinning the undergoer to Theme is licensed by the instruction set's own role doctrine -- a direct object is Patient only when the action creates / destroys / consumes / physically changes it, and 'when the test is unclear, default to Theme' -- and the 'likeliest answer' premise fails anyway, since the context's burn event carries wintergloss (Patient) and mire_essence (Alongside), not the moths."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "(Inheritance nightmoth moth) is the mandatory genus of a transparently modifier+head solid compound (Compound concepts: 'always emit the genus'; 'the solid spelling is never a reason to skip decomposition'), so any compliant parse that mentions nightmoths puts that atom in the KB and the conjunct does not narrow the match against a compliant KB."
+     }
+    ],
+    "gaps_confirmed": [
+     "'What happens to X?' has no prescribed query shape -- the instruction set gives only the agentive open-verb counterpart ('What does Bob do?' -> (Member $e $verb) (Agent $e $b)), the Patient-vs-Theme test cannot be applied with the verb left unknown, and role storage is not among the closed dual-storage-union instances, so no union over undergoer roles is licensed either."
+    ],
+    "new_gaps": [
+     "A locative PP in a 'what happens to X at L?' question has two coherent attachment sites -- a standing position on the entity, (LocatedIn $g <place>), or the locus of the happening, (Location $e <place>) -- and the instruction set decides neither while requiring a question to be translated single-form (Multiple live readings: 'a question about this sentence is still translated per Queries, single-form'); a licensed form would need either an attachment rule for questions or a union over the two storages."
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Referent handling is right: 'that lantern' resolves straight to the context constant sk_lantern_1 per Input, and 'at' -> LocatedIn is the licensed entity-attached containment head. What remains is role and attachment underspecification -- gap territory over a query whose every conjunct is true and well-typed."
+   },
+   "mode": "query",
+   "context": [
+    "(: burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: burn_ag (Agent sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: burn_pat (Patient sk_burn_1 wintergloss) (STV 1.0 0.99))",
+    "(: burn_alongside (Alongside sk_burn_1 mire_essence) (STV 1.0 0.99))",
+    "(: lantern_ty (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: wg_genus (Inheritance wintergloss gloss) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000070"
+   ]
+  }
+ ]
+}

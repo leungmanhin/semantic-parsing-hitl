@@ -1,0 +1,4 @@
+(: lr_genus (Inheritance lantern_row row) (STV 1.0 0.99))
+(: nm_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: crowd_gather_rule (Implication (Member $l lantern_row) (And (Member (sk_crowd $l) crowd) (GroupOf (sk_crowd $l) nightmoth) (Member (sk_gather $l) gather) (Agent (sk_gather $l) (sk_crowd $l)) (Location (sk_gather $l) $l) (Time (sk_gather $l) night) (Every (sk_gather $l) 1 day))) (STV 1.0 0.9))
+(: lr_q (QuantifierPhrase lantern_row gather "each") (STV 1.0 0.99))

@@ -1,0 +1,37 @@
+{
+ "id": "C3",
+ "rule": "C — Counterfactuals",
+ "texts": [
+  "Salt-bloom gathered at the full moon turns to chalky residue."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000115",
+   "sentence": "Salt-bloom gathered at the full moon turns to chalky residue.",
+   "parse": [
+    "(: sb_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: cr_genus (Inheritance chalky_residue residue) (STV 1.0 0.99))",
+    "(: cr_mod (Inheritance chalky_residue chalky) (STV 1.0 0.99))",
+    "(: sb_turns_residue (Implication (And (Member $x salt_bloom) (Member $g gather) (Theme $g $x) (Time $g full_moon)) (And (Member (sk_turn $x) turn) (Patient (sk_turn $x) $x) (Member (sk_residue $x) chalky_residue) (Experiencer (sk_residue $x) $x) (Member $x chalky_residue) (Result (sk_turn $x) (sk_residue $x)))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000115",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a temporal adjunct headed by 'at' whose object is a recurring natural phenomenon ('at the full moon') — Time fillers are structured calendar/clock terms, the listed deictic constants, or day-part symbols, while an event-denoting noun routes through Before/After/During, so no stated form covers this filler (and a bare `full_moon` constant carries no decomposition either)"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The adjectivally-restricted kind subject correctly takes the distributing-rule route with the reduced relative as premise conjuncts binding through plain variables, and 'turns to chalky residue' uses the change-of-kind result shape (Patient subject, same-subject Experiencer state, flat atom, Result) at the bare-generic 0.9/0.9 with no QuantifierPhrase. Fusing `chalky_residue` is a borderline call — 'chalky' reads closer to incidental description than to a material adjective — but the emitted genus and modifier atoms keep the content recoverable."
+   },
+   "adjudication": null,
+   "mode": "intervention"
+  }
+ ]
+}

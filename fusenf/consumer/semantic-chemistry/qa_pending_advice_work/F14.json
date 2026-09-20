@@ -1,0 +1,32 @@
+{
+ "id": "F14",
+ "rule": "F — Factual recall",
+ "texts": [
+  "When did four wraiths emerge from the Sunken Cove?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000014",
+   "sentence": "When did four wraiths emerge from the Sunken Cove?",
+   "parse": [
+    "(: $prf (And (GroupOf $g wraith) (Cardinality $g 4) (Member $e emerge) (Agent $e $g) (Name $c \"Sunken Cove\") (Source $e $c) (Past $e) (Time $e $t)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000014",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group witness + exact Cardinality 4, Source for \"from the Sunken Cove\", Name binding for the place, Past, and the open (Time $e $t) all match the Time-questions \"When?\" recipe. Agent is the right intransitive-subject role for an animate self-powered mover."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

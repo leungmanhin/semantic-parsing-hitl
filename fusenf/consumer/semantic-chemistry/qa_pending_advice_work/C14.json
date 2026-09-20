@@ -1,0 +1,38 @@
+{
+ "id": "C14",
+ "rule": "C — Counterfactuals",
+ "texts": [
+  "Keepers burn extra mire-essence at three Cliff Path lanterns every night."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000128",
+   "sentence": "Keepers burn extra mire-essence at three Cliff Path lanterns every night.",
+   "parse": [
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: lg_group (GroupOf sk_lantern_group_1 lantern) (STV 1.0 0.99))",
+    "(: lg_card (Cardinality sk_lantern_group_1 3) (STV 1.0 0.99))",
+    "(: lg_poss (Possession sk_lantern_group_1 cliff_path) (STV 1.0 0.99))",
+    "(: me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: keepers_burn (Implication (Member $x keeper) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Member (sk_mire_essence $x) mire_essence) (Member (sk_mire_essence $x) extra) (Patient (sk_burn $x) (sk_mire_essence $x)) (Location (sk_burn $x) sk_lantern_group_1) (Time (sk_burn $x) night) (Every (sk_burn $x) 1 day))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000128",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare-plural habitual correctly becomes a 0.9/0.9 Implication with a Skolem-function event, 'every night' correctly splits into the day-part slot (Time e night) plus the implied cycle (Every e 1 day) with no QuantifierPhrase (the 'every' quantifies a calendar slot, not the rule's range), and the proper-noun premodifier 'Cliff Path lanterns' takes the opaque Possession per the 'Northgate spokesman' rule. Treating the three lanterns as a shared top-level constant rather than a per-keeper Skolem group is a scope call the instruction set leaves to 'read the natural meaning', and 'extra' rides as a plain Member property since no Degree-quantity marker covers it."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  }
+ ]
+}

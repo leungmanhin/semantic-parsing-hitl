@@ -1,0 +1,12 @@
+{"id": "qap-000020", "run": 1,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": 0, "issue": "The query hard-codes the invented witness symbol sk_generation_1 instead of binding the definite 'the present generation' as a variable constrained by its kind, so it can only match a KB that happens to have minted that exact symbol."},
+                {"statement": 0, "issue": "(GroupOf sk_generation_1 keeper) builds into the pattern that the generation is a group whose members are keepers, which the question does not state - it says Keepers are active in that generation."},
+                {"statement": 0, "issue": "The partitive superset/SubsetOf machinery is used although the question carries no 'of the / of them' partitive cue, so the pattern matches only a partitive storage the sentence never licenses."},
+                {"statement": 0, "issue": "(Inheritance $g active) predicates the property of a group witness with Inheritance, which is licensed only for a partitive subset group; a copular predicate over a plural is stored as a per-member distribution rule, not as an atom on the group."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a counting question whose predicate is copular ('how many Ns are ADJ?') - the Counting-questions shape anchors the counted group to an event, and a copular predicate over a plural is stored as a per-member distribution rule that a flat query conjunct cannot bind"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Only (GroupOf $g keeper) (Cardinality $g $n) is well-formed; everything anchoring the count to the question's restriction is invented structure. 'In the present generation' is never given the reified-state plus preposition-named In oblique route the instruction set would allow."}

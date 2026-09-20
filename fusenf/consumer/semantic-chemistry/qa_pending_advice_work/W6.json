@@ -1,0 +1,32 @@
+{
+ "id": "W6",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why did the Council create the modern feather-ration system?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000036",
+   "sentence": "Why did the Council create the modern feather-ration system?",
+   "parse": [
+    "(: $prf (And (Member $c council) (Member $e create) (Agent $e $c) (Patient $e $s) (Member $s feather_ration_system) (Member $s modern) (Past $e) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000036",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Why-question built as the focus event pattern plus one (ReasonFor $r $e) conjunct, with 'the Council' bound by kind and no Name atom (capitalized common noun whose run does not exceed the bare class word). 'create' takes Patient for the thing created, and 'modern' splits off as a descriptive modifier while 'feather-ration system' fuses as a classifying compound kind, both per Compound concepts."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

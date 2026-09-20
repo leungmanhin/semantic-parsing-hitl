@@ -1,0 +1,77 @@
+{
+ "id": "N13",
+ "rule": "N — What-next",
+ "texts": [
+  "A Keeper gathers salt-bloom at the full moon.",
+  "What happens to that salt-bloom?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000093",
+   "sentence": "A Keeper gathers salt-bloom at the full moon.",
+   "parse": [
+    "(: e_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: e_gather (Member sk_gather_1 gather) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_gather_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_gather_1 salt_bloom) (STV 1.0 0.99))",
+    "(: e_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: e_time (Time sk_gather_1 full_moon) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000093",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a named recurring natural time-point NP as a temporal adjunct (\"at the full moon\"): the Time section licenses calendar/clock structured terms, deictic constants, day-part constants and fiscal periods, but nothing covers a natural recurrence, so whether it is a bare Time constant (as the parse has it), a compound kind needing its (Inheritance full_moon moon) genus, or an event-denoting sk_ entity is undetermined"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite \"A Keeper\" with a verbal predicate is correctly a witness rather than a generic rule, the referring agent-nominalization \"keeper\" rightly gets no (can keep), salt_bloom gets its head genus with the noun modifier left unexposed, and the habitual carries no status atom. No Every/cycle atom was invented for the non-\"every\" wording."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000094",
+   "sentence": "What happens to that salt-bloom?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (Patient $e salt_bloom)) $tv)",
+    "(: $prf (And (Member $e $verb) (Theme $e salt_bloom)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000094",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an open \"what happens to X?\" question: the predicate is unknown, so which role holds X (Patient vs Theme vs Experiencer vs Recipient) cannot be decided, and Queries licenses neither a variable in head position nor a union of role branches"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The demonstrative \"that salt-bloom\" is bound as the context constant `salt_bloom` directly, exactly as Input prescribes for a referent the context identifies, and no tense is pinned for the present-tense \"happens\". The Theme branch matches the context's gather event; the Patient branch is the unknown-role union half and binds nothing here."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: e_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: e_gather (Member sk_gather_1 gather) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_gather_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_gather_1 salt_bloom) (STV 1.0 0.99))",
+    "(: e_genus (Inheritance salt_bloom bloom) (STV 1.0 0.99))",
+    "(: e_time (Time sk_gather_1 full_moon) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000093"
+   ]
+  }
+ ]
+}

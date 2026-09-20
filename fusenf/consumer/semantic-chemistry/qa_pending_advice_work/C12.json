@@ -1,0 +1,34 @@
+{
+ "id": "C12",
+ "rule": "C — Counterfactuals",
+ "texts": [
+  "The Northcove is a small cove."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000126",
+   "sentence": "The Northcove is a small cove.",
+   "parse": [
+    "(: northcove_name (Name northcove \"Northcove\") (STV 1.0 0.99))",
+    "(: northcove_type (Member northcove cove) (STV 1.0 0.99))",
+    "(: northcove_small (Member northcove small) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000126",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'Northcove' exceeds the bare class word and the predicate states the kind with a different word, so the Name atom plus a separate kind atom is right, with no modifier genus for a proper noun; the size adjective 'small' correctly stays an unfused second Member atom on the individual."
+   },
+   "adjudication": null,
+   "mode": "intervention"
+  }
+ ]
+}

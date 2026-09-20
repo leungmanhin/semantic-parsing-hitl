@@ -94,6 +94,26 @@ INTERPRETATION_HEAD = "Interpretation"
 READING_TAG_RE = re.compile(r"^r\d+$")
 INTERP_LINE_RE = re.compile(r"^\s*\(Interpretation\s+r\d+\s")
 
+#: QA task stream (2026-09-20): a corpus item whose `labels.mode` is "query" was a QUESTION,
+#: translated per prompt.txt "Queries" into `(: $prf <pattern> $tv)` lines — a variable in
+#: the proof slot, the unknowns as variables, `$tv` or a `(STV <s> $conf)` pin as the truth
+#: value. Such lines are checked as queries (C3 shape, C6 free variables, C7 skip) ONLY when
+#: the corpus item declares that mode; an item with no mode label (every earlier corpus) is
+#: validated exactly as before, and a query-shaped line in a statement-mode item is a finding.
+QUERY_LINE_RE = re.compile(r"^\s*\(:\s+\$[A-Za-z][A-Za-z0-9_]*\s")
+
+
+def _is_query_line(node: Node) -> bool:
+    return (isinstance(node, list) and len(node) == 4 and node[0] == ASSERTION_HEAD
+            and isinstance(node[1], str) and is_variable(node[1]))
+
+
+def item_mode(record: dict, corpus_index: dict) -> str | None:
+    item = corpus_index.get(record.get("id")) if isinstance(record.get("id"), str) else None
+    labels = (item or {}).get("labels") or {}
+    mode = labels.get("mode")
+    return mode if isinstance(mode, str) else None
+
 
 def _split_wrapper(node):
     """(tag, inner) for a WELL-FORMED wrapper; (None, node) otherwise.
@@ -333,7 +353,34 @@ def _stv_number(tok: Any) -> float | None:
     return None
 
 
-def check_c3(statements: Sequence[str], parsed: Sequence[dict], strict: bool) -> list[dict]:
+def _check_query_line(node: Node, add) -> None:
+    """C3 for a query line `(: $prf <pattern> $tv)` (prompt.txt "Queries")."""
+    _name, expr, tv = node[1], node[2], node[3]
+    if not isinstance(expr, list):
+        add(f"query pattern must be a compound term, got bare {expr!r}")
+    if isinstance(tv, str):
+        if not is_variable(tv):
+            add(f"query truth value must be a variable or an (STV <s> <c>) pin, got {tv!r}")
+        return
+    if not isinstance(tv, list) or _head_of(tv) != "STV" or len(tv) != 3:
+        add(f"query truth value must be a variable or an (STV <s> <c>) pin, got {term_key(tv)!r}")
+        return
+    strength = _stv_number(tv[1])
+    if strength is None:
+        if not (isinstance(tv[1], str) and is_variable(tv[1])):
+            add(f"STV strength {term_key(tv[1])!r} is neither a number nor a variable")
+    elif not 0.0 <= strength <= 1.0:
+        add(f"STV strength {strength} outside [0,1]")
+    confidence = _stv_number(tv[2])
+    if confidence is None:
+        if not (isinstance(tv[2], str) and is_variable(tv[2])):
+            add(f"STV confidence {term_key(tv[2])!r} is neither a number nor a variable")
+    elif not 0.0 <= confidence <= 1.0:
+        add(f"STV confidence {confidence} outside [0,1]")
+
+
+def check_c3(statements: Sequence[str], parsed: Sequence[dict], strict: bool,
+             mode: str | None = None) -> list[dict]:
     out: list[dict] = []
     seen_shared: dict[str, int] = {}
     seen_tag: dict[str, dict[str, int]] = {}
@@ -344,6 +391,18 @@ def check_c3(statements: Sequence[str], parsed: Sequence[dict], strict: bool) ->
 
         def add(detail: str) -> None:
             out.append(_finding("C3", i, detail, text, strict))
+
+        if mode == "query":
+            if _is_query_line(node):
+                _check_query_line(node, add)
+            else:
+                add("query-mode item (a question) emitted an assertion, not a query line "
+                    "'(: $prf <pattern> $tv)'")
+            continue
+        if mode is not None and _is_query_line(node):
+            add(f"{mode}-mode item emitted a query line '(: $prf …)' — a statement asserts, "
+                "it does not ask")
+            continue
 
         tag = None
         if _head_of(node) == INTERPRETATION_HEAD:
@@ -585,7 +644,7 @@ def _context_symbols(record: dict) -> frozenset:
 
 
 def check_c6(record: dict, statements: Sequence[str], parsed: Sequence[dict], vocab: dict,
-             strict: bool) -> list[dict]:
+             strict: bool, mode: str | None = None) -> list[dict]:
     out: list[dict] = []
     carried = _context_symbols(record)
 
@@ -644,7 +703,10 @@ def check_c6(record: dict, statements: Sequence[str], parsed: Sequence[dict], vo
                     "in the record or the context-carried symbol set"
                     + (f" (reading {tag}: shared + {tag} lines only)" if tag else ""))
 
-        # Free variables: legal only inside a rule, and only if the premises bind them.
+        # Free variables: legal only inside a rule, and only if the premises bind them —
+        # and in a query line of a query-mode item, where every variable is an unknown.
+        if mode == "query" and _is_query_line(node):
+            continue
         if not is_rule:
             free = sorted({t for t in iter_tokens(expr) if isinstance(t, str) and is_variable(t)})
             for var in free:
@@ -679,7 +741,8 @@ def _load_chainer():
     return PeTTaChainer
 
 
-def smoke_test(statements: Sequence[str], chainer_cls=None) -> list[tuple[int, str]]:
+def smoke_test(statements: Sequence[str], chainer_cls=None,
+               skip_query_lines: bool = False) -> list[tuple[int, str]]:
     """C7: load every statement into a fresh KB. Any exception is a finding.
 
     Returns `[(statement_index, detail)]`. A fresh chainer per record keeps one record's
@@ -695,6 +758,8 @@ def smoke_test(statements: Sequence[str], chainer_cls=None) -> list[tuple[int, s
             if INTERP_LINE_RE.match(statement):
                 continue  # transport wrapper, never a KB atom (engine marginalization
                 # is the deferred #48 half; the canonicalizer splits readings)
+            if skip_query_lines and QUERY_LINE_RE.match(statement):
+                continue  # a query is asked of the KB, never added to it (query-mode items)
             try:
                 handle.add_atom(statement)
             except Exception as exc:  # noqa: BLE001 — any failure at all is the signal
@@ -702,11 +767,13 @@ def smoke_test(statements: Sequence[str], chainer_cls=None) -> list[tuple[int, s
     return findings
 
 
-def check_c7(statements: Sequence[str], strict: bool, chainer_cls=None) -> list[dict]:
+def check_c7(statements: Sequence[str], strict: bool, chainer_cls=None,
+             mode: str | None = None) -> list[dict]:
     return [
         _finding("C7", i, f"chainer rejected the statement — {detail}",
                  statements[i] if i < len(statements) else "", strict)
-        for i, detail in smoke_test(statements, chainer_cls=chainer_cls)
+        for i, detail in smoke_test(statements, chainer_cls=chainer_cls,
+                                    skip_query_lines=(mode == "query"))
     ]
 
 
@@ -768,15 +835,17 @@ def validate(record: dict, vocab: dict, corpus_index: dict, *, include_c7: bool 
                   if isinstance(raw_statements, list) else [])
     parsed = [parse_sexp(s) for s in statements]
 
+    mode = item_mode(record, corpus_index)
+
     findings: list[dict] = []
     findings += check_c1(record, corpus_index, strict)
     findings += check_c2(statements, parsed, strict)
-    findings += check_c3(statements, parsed, strict)
+    findings += check_c3(statements, parsed, strict, mode=mode)
     findings += check_c4(statements, parsed, vocab, strict)
     findings += check_c5(statements, parsed, vocab, strict)
-    findings += check_c6(record, statements, parsed, vocab, strict)
+    findings += check_c6(record, statements, parsed, vocab, strict, mode=mode)
     if include_c7:
-        findings += check_c7(statements, strict, chainer_cls=chainer_cls)
+        findings += check_c7(statements, strict, chainer_cls=chainer_cls, mode=mode)
     findings += check_c8(statements, parsed, strict)
 
     return finalize(findings)

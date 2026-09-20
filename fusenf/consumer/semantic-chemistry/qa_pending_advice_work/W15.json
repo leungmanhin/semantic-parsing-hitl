@@ -1,0 +1,58 @@
+{
+ "id": "W15",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why did a wraith emerge from the water of the Sunken Cove on day 120 of Year 1?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000045",
+   "sentence": "Why did a wraith emerge from the water of the Sunken Cove on day 120 of Year 1?",
+   "parse": [
+    "(: $prf (And (Member $w wraith) (Member $e emerge) (Agent $e $w) (Source $e $wt) (Member $wt water) (LocatedIn $wt $sc) (Name $sc \"Sunken Cove\") (Member $sc cove) (Past $e) (Time $e (Day 120)) (Time $e (Year 1)) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000045",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The genitive 'the water of the Sunken Cove' is encoded as (LocatedIn $wt $sc), but an of-genitive is routed through PartOf (part/component) or the opaque Possession, and LocatedIn is reserved for the containment prepositions in/at/inside/within — so the query conjunct will not match a faithful statement parse of the same phrase."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an ordinal day-of-year date in a non-Gregorian calendar ('day 120 of Year 1'): the Time terms (Day <n>) / (Year <n>) are specified for a calendar day (with a month) and a year, and nothing addresses a bare day-number with no month, which (Day 120) silently borrows the month-day slot for"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Agent for the self-propelled animate 'a wraith emerged', Source for 'from the water', the Name binding for 'the Sunken Cove' and the Past + ReasonFor conjuncts are all right; the extra (Member $sc cove) beside (Name $sc \"Sunken Cove\") is redundant but matchable, since the kind word inside the name licenses that atom statement-side."
+   },
+   "adjudication": {
+    "id": "qap-000045",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "LocatedIn is containment ONLY — 'in / at / inside / within' — and the head is never a synonym for a near-fit reading, while the instruction set's own tributary note ('a tributary of the larger river' is the ordinary genitive, untouched by the place-in-place rule) puts an of-genitive like 'the water of the Sunken Cove' on PartOf/Possession, so the query binds a relation no faithful statement parse would store."
+     }
+    ],
+    "gaps_confirmed": [
+     "an ordinal day-of-year date in a non-Gregorian calendar ('day 120 of Year 1'): the Time term (Day <n>) is specified as the calendar day-of-month beside a Month, and nothing covers a bare day-number with no month, which (Day 120) borrows that slot for"
+    ],
+    "new_gaps": [
+     "a query over a genitive faces an unmergeable storage fork: the part-test decides PartOf vs the opaque Possession statement-side by judgment, Core patterns' dual-storage list does not name that pair, and a query that picks the other branch returns nothing — acute for a mass constituent of a geographic feature ('the water of the cove'), which is neither of PartOf's two stated jobs (component of an object, member of a group) nor a place-in-place"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant conjunct is the ordinary genitive of Possessive / genitive NP — (PartOf $wt $sc) if the water counts as a component of the cove, else the opaque (Possession $wt $sc) — in place of (LocatedIn $wt $sc); everything else in the line stands.",
+    "notes": "Agent for the self-propelled 'a wraith emerged', Source for 'from the water', Past, ReasonFor and the (Member $sc cove) beside (Name $sc \"Sunken Cove\") (kind word inside the name) are all correct."
+   },
+   "mode": "query"
+  }
+ ]
+}

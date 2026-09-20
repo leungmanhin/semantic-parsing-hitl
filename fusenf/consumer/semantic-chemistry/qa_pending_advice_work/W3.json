@@ -1,0 +1,32 @@
+{
+ "id": "W3",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why is Aelmere's mire-essence supply considered a closed cycle?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000033",
+   "sentence": "Why is Aelmere's mire-essence supply considered a closed cycle?",
+   "parse": [
+    "(: $prf (And (Name $ae \"Aelmere\") (Member $s mire_essence_supply) (Possession $s $ae) (Member $e consider) (Theme $e (Member $s closed_cycle)) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000033",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Rebuilds the impersonal-reported-attitude storage correctly — a consider event with no Experiencer, the content sealed as (Member $s closed_cycle) under Theme, the matrix subject's typing and its Possession link at top level — and conjoins (ReasonFor $r $e) on the attitude event per Explanation questions, asserting nothing. The fusions mire_essence_supply and closed_cycle are defensible classifier/term-of-art compounds, but they only bind if the source statement fused them the same way."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

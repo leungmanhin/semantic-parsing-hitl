@@ -1,0 +1,60 @@
+{
+ "id": "W10",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does the Council rarely order Keepers to burn wintergloss?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000040",
+   "sentence": "Why does the Council rarely order Keepers to burn wintergloss?",
+   "parse": [
+    "(: $prf (And (Member $c council) (Member $e order) (Agent $e $c) (Recipient $e keeper) (Theme $e $b) (Member $b burn) (Agent $b keeper) (Patient $b wintergloss) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000040",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The frequency adverb \"rarely\" is dropped entirely - neither the strength channel (the slot is the unconstrained $tv) nor the QuantifierPhrase companion that the statement form makes mandatory appears, so the query equally matches a Council that orders Keepers to burn wintergloss often."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a frequency adverb / explicit quantifier word inside a question: Queries pins the truth-value slot to $tv and never says whether the statement's mandatory (QuantifierPhrase <kind> <verb> \"<word>\") companion is restated in the query pattern, so there is no stated way to carry \"rarely\" into a query",
+     "a bare, determiner-less capitalized plural role label (\"Keepers\"): Names and casing settles only the definite \"the Wrens\" case, leaving undecided whether such a label is the bare kind constant keeper (as parsed) or a Name-bearing individual"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Apart from the lost \"rarely\", the object-control complement is handled exactly per the non-finite-complement pattern (complement reified at top level under Theme, controller copied in as its Agent, no tense of its own), and \"the Council\" is correctly bound by kind with no Name atom and no rule form, since a singular collective does not distribute."
+   },
+   "adjudication": {
+    "id": "qap-000040",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "partial",
+      "reason": "The loss is real — the pattern equally matches a frequently-ordering Council — but calling it a fault overstates: Queries makes the TV slot $tv for every non-polarity question (only negative/polarity questions pin it), so the statement's 0.1 strength channel is returned as the graded answer, and the QuantifierPhrase companion is mandatory only for a rule or claim that consumes the word, never stated to be restated inside a query pattern."
+     }
+    ],
+    "gaps_confirmed": [
+     "no stated way to carry a frequency adverb / explicit quantifier word into a query: Queries fixes the TV slot to $tv and confines the focus pattern to classes, roles and tense, and never says whether the statement's mandatory QuantifierPhrase companion is restated as a query conjunct",
+     "a bare determiner-less capitalized plural role label ('Keepers'): the Names and casing plural-label rule is written for the definite 'the Wrens' referring as a name, and does not settle whether a bare capitalized plural in a generic clause is the bare kind constant (as parsed) or a Name-bearing individual"
+    ],
+    "new_gaps": [
+     "'why does X rarely V?' has no licensed target: ReasonFor takes an eventuality, but the rarity lives in the event's strength plus a QuantifierPhrase companion — neither is an eventuality — so the question asking the reason for the infrequency cannot be distinguished from the question asking the reason for the ordering"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The rest is per doctrine: object-control complement reified at top level under Theme with the controller copied in as its Agent and no tense of its own, the addressee as Recipient of a directive communication, the singular collective 'the Council' bound by kind with no Name and no rule form, and no status atom on a habitual."
+   },
+   "mode": "query"
+  }
+ ]
+}

@@ -1,0 +1,94 @@
+{
+ "id": "N18",
+ "rule": "N — What-next",
+ "texts": [
+  "An apprentice's solo count is large.",
+  "What does the Council do?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000101",
+   "sentence": "An apprentice's solo count is large.",
+   "parse": [
+    "(: e_apprentice (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: e_count (Member sk_count_1 solo_count) (STV 1.0 0.99))",
+    "(: e_count_genus (Inheritance solo_count count) (STV 1.0 0.99))",
+    "(: e_poss (Possession sk_count_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: e_large (Member sk_count_1 large) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000101",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The indefinite possessor 'an apprentice' is given an existential witness, so the parse asserts that one particular apprentice's solo count is large, whereas the sentence makes a generic claim about apprentices (the instruction set reads indefinite 'a/an' in a copular predication as generic)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a generic copular claim whose subject is the possessed NP of an indefinite possessor (\"An apprentice's N is ADJ\") - the copular generic route yields only a single Inheritance fact, which cannot carry the possessor dependency, and the Implication-rule route is reserved for verbal generics"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Compound handling is right: solo_count fuses, the head genus is emitted, and 'solo' correctly gets no modifier genus because it fails the predication test. Possession rather than PartOf is also correct, since a count is not a component of the apprentice."
+   },
+   "adjudication": {
+    "id": "qap-000101",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Existential reads indefinite 'a/an' in a copular predication as generic, and a generic carries no existential import, so the witness bundle — (Member sk_apprentice_1 apprentice), (Possession sk_count_1 sk_apprentice_1), (Member sk_count_1 large) — asserts one particular apprentice with one particular large count, more than the text states (Core patterns)."
+     }
+    ],
+    "gaps_confirmed": [
+     "no stated route for a copular generic whose indefinite sits inside the subject NP as a possessor ('An N's M is ADJ'): Categorical statements yields a single Inheritance between two kinds, which cannot carry the possessor dependency"
+    ],
+    "new_gaps": [],
+    "decision": "defect",
+    "defect_summary": "The compliant form is the generic as a distributing rule with a copular conclusion, on the 'everyone who owns a dog is a pet owner' pattern — (Implication (And (Member $a apprentice) (Member $c solo_count) (Possession $c $a)) (Member $c large)) (STV 0.9 0.9), with the definitional (Inheritance solo_count count) kept at top level — but nothing in the instruction set states that an indefinite possessor routes a copular claim into a rule, which is the confirmed gap.",
+    "notes": "Compound handling is right (solo_count fused, head genus emitted, no modifier genus for the non-predicable 'solo'), and Possession rather than PartOf is correct for a count. The reviewer's parenthetical that the rule route is reserved for verbal generics is inaccurate — a universal over a copular predicate distributes through a rule too — but the gap it points at is real."
+   },
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000102",
+   "sentence": "What does the Council do?",
+   "parse": [
+    "(: $prf (And (Member $c council) (Member $e $verb) (Agent $e $c)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000102",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Council\" is correctly treated as a capitalized common noun used as the referent's only label — kind binding (Member $c council), no Name conjunct — and the singular collective takes a plain event with the group itself as Agent and no distribution rule. It is absent from this item's context, so kind binding rather than a context constant is right."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: e_apprentice (Member sk_apprentice_1 apprentice) (STV 1.0 0.99))",
+    "(: e_count (Member sk_count_1 solo_count) (STV 1.0 0.99))",
+    "(: e_count_genus (Inheritance solo_count count) (STV 1.0 0.99))",
+    "(: e_poss (Possession sk_count_1 sk_apprentice_1) (STV 1.0 0.99))",
+    "(: e_large (Member sk_count_1 large) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000101"
+   ]
+  }
+ ]
+}

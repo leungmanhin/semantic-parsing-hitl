@@ -1,0 +1,34 @@
+{
+ "id": "W12",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does a Keeper harvest salt-bloom at the new moon?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000042",
+   "sentence": "Why does a Keeper harvest salt-bloom at the new moon?",
+   "parse": [
+    "(: $prf (And (Member $e harvest) (Agent $e $k) (Member $k keeper) (Theme $e salt_bloom) (Inheritance salt_bloom bloom) (Time $e new_moon) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000042",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a recurring astronomical / lunar-phase time adjunct (\"at the new moon\"): it is neither a calendar-clock granularity (Year/Month/Day/Weekday/Hour/Minute), a speech-anchored deictic, nor one of the listed day-part constants, so nothing in the instruction set fixes whether it is a bare Time constant, a compound kind needing decomposition, or an event-noun temporal anchor"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Focus-event pattern + ReasonFor is the right why-shape; the indefinite \"a Keeper\" with a verbal predicate correctly binds by kind rather than becoming a rule range, and no tense atom is right for the bare present. Theme for the harvested salt-bloom follows the \"default to Theme when unclear\" rule, and the (Inheritance salt_bloom bloom) conjunct is redundant in a query though harmless."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

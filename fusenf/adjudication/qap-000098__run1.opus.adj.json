@@ -1,0 +1,9 @@
+{"id": "qap-000098", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "refute",
+             "reason": "*Thematic roles* states the fallback outright — \"When the test is unclear, default to `Theme`\" — which is exactly the case when the question names no verb, and the residual under-coverage is the coverage gap the verdict itself logs rather than a parse defect: a query asserts nothing, so no atom here is false, ill-typed or over-asserted."}],
+ "gaps_confirmed": ["\"what happens to X?\" fixes the undergoer's role by the very verb the question leaves unknown; *Queries* supplies the agentive `(Member $e $verb)` shape but no role-underspecified counterpart, and role storage is not among *Core patterns*' dual-storage-union instances"],
+ "new_gaps": ["a definite NP's restrictors enter a query as ordinary blocking conjuncts — here `(Possession $s sk_keeper_1)` — so a KB that records the station without the possessor link drops the whole answer; *Queries* has no device for a presupposed, non-blocking restrictor"],
+ "decision": "accept",
+ "defect_summary": "",
+ "notes": "\"That Keeper\" resolves straight to the context constant `sk_keeper_1` with nothing re-emitted (*Input*), and the genitive takes the opaque `Possession` with the possessed first, as *Possessive / genitive NP* requires and as *Possession questions always query the `Possession` form* confirms. Omitting a tense atom is right — an unconstrained status slot widens the match rather than narrowing it."}

@@ -1,0 +1,32 @@
+{
+ "id": "W28",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does the sea-water store draw from the deep ebb?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000058",
+   "sentence": "Why does the sea-water store draw from the deep ebb?",
+   "parse": [
+    "(: $prf (And (Member $e draw) (Agent $e $s) (Member $s sea_water_store) (Source $e $b) (Member $b ebb) (Member $b deep) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000058",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Why-question form is correct (focus pattern + one ReasonFor conjunct, single line, nothing asserted); the bare present correctly carries no status atom, the inanimate subject stays Agent as the instruction set requires, and 'from the deep ebb' takes the whence role Source. 'deep ebb' is split into (Member $b ebb) (Member $b deep) as incidental description rather than fused, which is the instruction set's default but must match whatever the statement-side parse chose."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

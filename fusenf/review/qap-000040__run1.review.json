@@ -1,0 +1,10 @@
+{"id": "qap-000040", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The frequency adverb \"rarely\" is dropped entirely - neither the strength channel (the slot is the unconstrained $tv) nor the QuantifierPhrase companion that the statement form makes mandatory appears, so the query equally matches a Council that orders Keepers to burn wintergloss often."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a frequency adverb / explicit quantifier word inside a question: Queries pins the truth-value slot to $tv and never says whether the statement's mandatory (QuantifierPhrase <kind> <verb> \"<word>\") companion is restated in the query pattern, so there is no stated way to carry \"rarely\" into a query",
+             "a bare, determiner-less capitalized plural role label (\"Keepers\"): Names and casing settles only the definite \"the Wrens\" case, leaving undecided whether such a label is the bare kind constant keeper (as parsed) or a Name-bearing individual"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Apart from the lost \"rarely\", the object-control complement is handled exactly per the non-finite-complement pattern (complement reified at top level under Theme, controller copied in as its Agent, no tense of its own), and \"the Council\" is correctly bound by kind with no Name atom and no rule form, since a singular collective does not distribute."}

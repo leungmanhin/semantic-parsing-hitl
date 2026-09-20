@@ -1,0 +1,54 @@
+{
+ "id": "W19",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why do surviving nightmoths flee to the dim lanterns of the Hollows during a sky-cat hunt?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000049",
+   "sentence": "Why do surviving nightmoths flee to the dim lanterns of the Hollows during a sky-cat hunt?",
+   "parse": [
+    "(: $prf (And (Member $x nightmoth) (Inheritance nightmoth moth) (Member $x surviving) (Member $e flee) (Agent $e $x) (Goal $e $l) (GroupOf $l lantern) (Possession $l $hw) (Name $hw \"Hollows\") (During $e $h) (Member $h sky_cat_hunt) (Inheritance sky_cat_hunt hunt) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000049",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The stated modifier \"dim\" in \"the dim lanterns of the Hollows\" is dropped entirely, so the pattern matches any lantern group of the Hollows rather than the restricted set the question names."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "ReasonFor on the focus event, During for \"during\", Goal for \"flee to\", the participial modifier \"surviving\" as a property, and the Name-bound \"Hollows\" all follow the instruction set. The two decomposition conjuncts (Inheritance nightmoth moth) and (Inheritance sky_cat_hunt hunt) are needless constraints inside a query — they can only drop answers, never bind one."
+   },
+   "adjudication": {
+    "id": "qap-000049",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Core patterns: \"a stated restriction, hedge or qualifier is never silently dropped — omitting it widens the claim\"; with `dim` gone the pattern binds any lantern group of the Hollows, so the query asks something broader than the question."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A descriptive modifier on a DEFINITE PLURAL has no queryable carrier: the statement doctrine distributes it to the members as `(Implication (PartOf $x <group>) (Member $x dim))` and bars `(Member <group> dim)` on the group symbol, so a question about \"the dim lanterns\" can only reach it through `(PartOf $m $l) (Member $m dim)`, which stays dormant until some member is individuated — the instruction set licenses no group-level restriction atom for a query to bind."
+    ],
+    "decision": "defect",
+    "defect_summary": "The query must carry \"dim\", but the only forms the instruction set reaches are the member conjuncts `(PartOf $m $l) (Member $m dim)` (dormant until a member is individuated) or a fused `dim_lantern` kind, which Compound concepts bars as incidental description — so no clean compliant form is licensed and the missing carrier is filed as a gap.",
+    "notes": "The two decomposition conjuncts `(Inheritance nightmoth moth)` / `(Inheritance sky_cat_hunt hunt)` are redundant rather than wrong — a statement parse of those compounds emits them — though as query conjuncts they can only drop answers. Everything else follows the instruction set: `Goal` for \"flee to\", `During` for \"during\", the participial modifier `surviving` as an adjective, `Name`-bound Hollows, and `(ReasonFor $r $e)` on the focus event."
+   },
+   "mode": "query"
+  }
+ ]
+}

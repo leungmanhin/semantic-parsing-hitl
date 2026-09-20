@@ -1,0 +1,90 @@
+{
+ "id": "N17",
+ "rule": "N — What-next",
+ "texts": [
+  "The lanterns of three Cliff Path stations burn extra mire-essence.",
+  "What happens at those stations?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000099",
+   "sentence": "The lanterns of three Cliff Path stations burn extra mire-essence.",
+   "parse": [
+    "(: qap99_path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: qap99_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: qap99_st_group (GroupOf sk_station_1 station) (STV 1.0 0.99))",
+    "(: qap99_st_card (Cardinality sk_station_1 3) (STV 1.0 0.99))",
+    "(: qap99_st_poss (Possession sk_station_1 cliff_path) (STV 1.0 0.99))",
+    "(: qap99_lt_group (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: qap99_lt_poss (Possession sk_lantern_1 sk_station_1) (STV 1.0 0.99))",
+    "(: qap99_es_type (Member sk_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: qap99_es_extra (Member sk_essence_1 extra) (STV 1.0 0.99))",
+    "(: qap99_es_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: qap99_burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: qap99_burn_ag (Agent sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: qap99_burn_pt (Patient sk_burn_1 sk_essence_1) (STV 1.0 0.99))",
+    "(: qap99_burn_rule (Implication (PartOf $x sk_lantern_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) sk_essence_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000099",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"extra\" as a quantity increment on a bare mass-noun object (\"burn extra mire-essence\") — it is neither one of the fixed `Degree <N> quantity excessive/insufficient/sufficient` markers nor a comparative with a stated standard, so carrying it forces a witness plus `(Member sk_essence_1 extra)`, predicating the increment of the substance rather than of the amount"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"three Cliff Path stations\" follows the Northgate-spokesman rule (head phrase parsed normally, opaque `Possession` to the named entity, `(Member cliff_path path)` from the kind word inside the name), and group + `(Cardinality 3)` + the per-member distribution rule at (STV 1.0 0.9), `Agent` for the inanimate transitive subject, `Patient` for the consumed object and the `mire_essence` head genus all match. One lantern group possessed by the station group flattens the per-station reading, but the instruction set supplies no dependent-plural machinery to do otherwise."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000100",
+   "sentence": "What happens at those stations?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (Location $e sk_station_1)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000100",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"Those stations\" correctly resolves to the context group constant `sk_station_1`, and event-attached `Location` (not entity `LocatedIn`) is the right head for \"at\" on a happening; the unknown verb takes the licensed `(Member $e $verb)` shape. The group symbol is used as a unit, which is the instruction set's stated default for a plural."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: qap99_path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: qap99_path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: qap99_st_group (GroupOf sk_station_1 station) (STV 1.0 0.99))",
+    "(: qap99_st_card (Cardinality sk_station_1 3) (STV 1.0 0.99))",
+    "(: qap99_st_poss (Possession sk_station_1 cliff_path) (STV 1.0 0.99))",
+    "(: qap99_lt_group (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: qap99_lt_poss (Possession sk_lantern_1 sk_station_1) (STV 1.0 0.99))",
+    "(: qap99_es_type (Member sk_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: qap99_es_extra (Member sk_essence_1 extra) (STV 1.0 0.99))",
+    "(: qap99_es_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: qap99_burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: qap99_burn_ag (Agent sk_burn_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: qap99_burn_pt (Patient sk_burn_1 sk_essence_1) (STV 1.0 0.99))",
+    "(: qap99_burn_rule (Implication (PartOf $x sk_lantern_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) sk_essence_1))) (STV 1.0 0.9))"
+   ],
+   "context_of": [
+    "qap-000099"
+   ]
+  }
+ ]
+}

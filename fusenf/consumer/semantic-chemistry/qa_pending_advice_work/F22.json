@@ -1,0 +1,36 @@
+{
+ "id": "F22",
+ "rule": "F — Factual recall",
+ "texts": [
+  "Where do the bones of the old graveyard lie?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000022",
+   "sentence": "Where do the bones of the old graveyard lie?",
+   "parse": [
+    "(: $prf (And (Member $g graveyard) (Member $g old) (GroupOf $bones bone) (Possession $bones $g) (LocatedIn $bones $where)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000022",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a bare 'where' question about a thing's position: the instruction set stores position in at least three shapes (entity-attached LocatedIn for containment, an entity-attached surface-preposition head such as On/NextTo/Atop for any other preposition, and a trigger-reified postural state carrying a Location oblique), but the Dual-storage union list never covers position, so a 'where' question has no licensed way to union those branches and a single LocatedIn line silently misses the others",
+     "a position established by a motion or creation event: the instruction set explicitly bars emitting (LocatedIn <thing> <place>) there (the Goal/Location stays on the event only), and gives no query form by which a 'where is X?' question reaches such a stored position",
+     "the position of a definite PLURAL: 'Where a THING is' is written for a single entity, and the plural doctrine's bar on predicating member properties of the group symbol is not extended to LocatedIn, so whether the position rides the group witness or distributes to members is unaddressed"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The query correctly mints no event for the postural 'lie', binds the definite 'the old graveyard' by kind with 'old' as a separate incidental-description atom, and returns $where bare. The genitive 'of the old graveyard' takes the opaque Possession under the part/component test, which is defensible though PartOf is arguable."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

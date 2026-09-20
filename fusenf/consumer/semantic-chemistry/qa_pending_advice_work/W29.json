@@ -1,0 +1,34 @@
+{
+ "id": "W29",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does the Stilllight Keeper check the flame at midnight?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000059",
+   "sentence": "Why does the Stilllight Keeper check the flame at midnight?",
+   "parse": [
+    "(: $prf (And (Member $e check) (Agent $e $k) (Name $k \"Stilllight Keeper\") (Member $k keeper) (Theme $e $f) (Member $f flame) (Time $e midnight) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000059",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "'at midnight' — the instruction set makes clock expressions structured terms ((Hour 0-23)) and named/day-part times bare constants (its lists name dawn, noon, dusk, night, morning...), but never says which a named clock point like 'midnight' takes, so statement and query could store it two ways"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name-hood is correctly triggered (the capitalized run 'Stilllight Keeper' exceeds the bare class word), so Name-binding plus the kind atom is right, and check -> Agent/Theme matches the progressive and evaluate-only tests. The extra (Member $k keeper) conjunct over-constrains slightly but the statement is licensed to emit that typing atom, so it should still match."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

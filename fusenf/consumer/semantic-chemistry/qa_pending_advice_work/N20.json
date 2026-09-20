@@ -1,0 +1,161 @@
+{
+ "id": "N20",
+ "rule": "N — What-next",
+ "texts": [
+  "A wraith drains six lanterns on the West Row.",
+  "The wraith fades back into the water of the Sunken Cove.",
+  "What happens to the drained lanterns?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000105",
+   "sentence": "A wraith drains six lanterns on the West Row.",
+   "parse": [
+    "(: wraith_ty (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: drain_ev (Member sk_drain_1 drain) (STV 1.0 0.99))",
+    "(: drain_ag (Agent sk_drain_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: drain_pat (Patient sk_drain_1 sk_group_1) (STV 1.0 0.99))",
+    "(: grp_ty (GroupOf sk_group_1 lantern) (STV 1.0 0.99))",
+    "(: grp_card (Cardinality sk_group_1 6) (STV 1.0 0.99))",
+    "(: grp_loc (On sk_group_1 west_row) (STV 1.0 0.99))",
+    "(: wr_ty (Member west_row row) (STV 1.0 0.99))",
+    "(: wr_name (Name west_row \"West Row\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000105",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "Per-member distribution over a counted plural is specified only for plural SUBJECTS with a distributive predicate (\"both dogs barked\"); a counted plural OBJECT (\"drains six lanterns\") has no stated doctrine, so nothing makes an individual lantern's being drained queryable.",
+     "A restrictive locative PP on a counted plural (\"six lanterns on the West Row\") — the instruction set does not say whether the position rides the group symbol or distributes over the members the way a descriptive modifier does."
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Group witness + GroupOf + (Cardinality 6), Patient for an object the draining changes, Agent for the transitive subject, no status atom for the bare simple present, and West Row as a name with (Member west_row row) all follow the instruction set. On is the licensed entity-attached surface preposition, not a coined head."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000106",
+   "sentence": "The wraith fades back into the water of the Sunken Cove.",
+   "parse": [
+    "(: fade_ev (Member sk_fade_1 fade) (STV 1.0 0.99))",
+    "(: fade_pat (Patient sk_fade_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: fade_goal (Goal sk_fade_1 sk_water_1) (STV 1.0 0.99))",
+    "(: water_ty (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: water_part (PartOf sk_water_1 sunken_cove) (STV 1.0 0.99))",
+    "(: cove_ty (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000106",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the restitutive / directional adverb \"back\" (\"fades back into the water\") — not one of the four licensed aspectual particles (again / still / already / yet), not a lexicalized phrasal-verb particle, and with no Manner or oblique slot that fits, so it is dropped with no carrier and no test is given for separating it from a particle verb"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "`fade` is named in the instruction set's internal-change-of-state list so `Patient` on the wraith is right, the bare simple present correctly takes no tense atom, and \"the Sunken Cove\" gets the whole-name symbol plus its kind atom with no modifier genus. The context's `sk_wraith_1` is reused with none of its atoms re-emitted, and the fresh `sk_water_1` / `sk_fade_1` indices do not collide."
+   },
+   "adjudication": null,
+   "mode": "statement",
+   "context": [
+    "(: wraith_ty (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: drain_ev (Member sk_drain_1 drain) (STV 1.0 0.99))",
+    "(: drain_ag (Agent sk_drain_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: drain_pat (Patient sk_drain_1 sk_group_1) (STV 1.0 0.99))",
+    "(: grp_ty (GroupOf sk_group_1 lantern) (STV 1.0 0.99))",
+    "(: grp_card (Cardinality sk_group_1 6) (STV 1.0 0.99))",
+    "(: grp_loc (On sk_group_1 west_row) (STV 1.0 0.99))",
+    "(: wr_ty (Member west_row row) (STV 1.0 0.99))",
+    "(: wr_name (Name west_row \"West Row\") (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000105"
+   ]
+  },
+  {
+   "field": "t3",
+   "corpus_id": "qap-000107",
+   "sentence": "What happens to the drained lanterns?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (To $e sk_group_1)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000107",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The query relates the unknown event to the lantern group with the preposition-named oblique (To $e sk_group_1), but a statement that answers \"what happens to the drained lanterns\" would store the group in an undergoer role (Patient / Theme / Experiencer), so the pattern is not built \"exactly as the matching statement\" and can bind nothing in the KB."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An open \"What happens to X?\" question: the instruction set supplies only the agent-side analogue (\"What does Bob do?\" -> (Member $e $verb) (Agent $e $b)) and no undergoer-side form, since the role head varies with the unknown verb, a variable is never licensed in head position, and the dual-storage-union list does not include alternative role heads."
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Referent handling is right: the definite plural \"the drained lanterns\" is the context's group sk_group_1 (the Patient of the drain event), used as a constant with no re-emission of its GroupOf / Cardinality atoms."
+   },
+   "adjudication": {
+    "id": "qap-000107",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Queries requires the pattern be built exactly as the matching statement, and the very statement that answers this question is already in the context as (Patient sk_drain_1 sk_group_1) - the To oblique binds the goal-style slot instead of that undergoer role, so the query matches nothing though the answer is present."
+     }
+    ],
+    "gaps_confirmed": [
+     "No undergoer-side analogue of \"What does Bob do?\": the event-class slot may hold a variable but a role head may not, and no role-union is licensed, so \"What happens to X?\" has no complete licensed form."
+    ],
+    "new_gaps": [
+     "A licensed \"what happens to X\" form would have to carry an OPEN UNDERGOER: either an undergoer-neutral head, or a sanctioned union of query lines over Patient / Theme / Experiencer - the dual-storage-union list is closed and does not include alternative role heads."
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant single line here is (: $prf (And (Member $e $verb) (Patient $e sk_group_1)) $tv), which binds the context's drain event; a form that also covers Theme / Experiencer storage is not licensed, since neither a variable role head nor a role-union is sanctioned.",
+    "notes": "Referent handling is right: the definite plural is the context's group sk_group_1, used as a constant with no re-emission of its GroupOf / Cardinality atoms."
+   },
+   "mode": "query",
+   "context": [
+    "(: wraith_ty (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: drain_ev (Member sk_drain_1 drain) (STV 1.0 0.99))",
+    "(: drain_ag (Agent sk_drain_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: drain_pat (Patient sk_drain_1 sk_group_1) (STV 1.0 0.99))",
+    "(: grp_ty (GroupOf sk_group_1 lantern) (STV 1.0 0.99))",
+    "(: grp_card (Cardinality sk_group_1 6) (STV 1.0 0.99))",
+    "(: grp_loc (On sk_group_1 west_row) (STV 1.0 0.99))",
+    "(: wr_ty (Member west_row row) (STV 1.0 0.99))",
+    "(: wr_name (Name west_row \"West Row\") (STV 1.0 0.99))",
+    "(: fade_ev (Member sk_fade_1 fade) (STV 1.0 0.99))",
+    "(: fade_pat (Patient sk_fade_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: fade_goal (Goal sk_fade_1 sk_water_1) (STV 1.0 0.99))",
+    "(: water_ty (Member sk_water_1 water) (STV 1.0 0.99))",
+    "(: water_part (PartOf sk_water_1 sunken_cove) (STV 1.0 0.99))",
+    "(: cove_ty (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000105",
+    "qap-000106"
+   ]
+  }
+ ]
+}

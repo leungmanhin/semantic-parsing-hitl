@@ -1,0 +1,40 @@
+{
+ "id": "C13",
+ "rule": "C — Counterfactuals",
+ "texts": [
+  "The Stilllight Lantern burned dim on the night of day 111 of Year 1."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000127",
+   "sentence": "The Stilllight Lantern burned dim on the night of day 111 of Year 1.",
+   "parse": [
+    "(: sl_name (Name stilllight_lantern \"Stilllight Lantern\") (STV 1.0 0.99))",
+    "(: sl_type (Member stilllight_lantern lantern) (STV 1.0 0.99))",
+    "(: e_burn (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: e_patient (Patient sk_burn_1 stilllight_lantern) (STV 1.0 0.99))",
+    "(: e_past (Past sk_burn_1) (STV 1.0 0.99))",
+    "(: e_dim (Member stilllight_lantern dim) (STV 1.0 0.99))",
+    "(: e_time_day (Time sk_burn_1 (Day 111)) (STV 1.0 0.99))",
+    "(: e_time_year (Time sk_burn_1 (Year 1)) (STV 1.0 0.99))",
+    "(: e_time_night (Time sk_burn_1 night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000127",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name plus kind atom for the name-internal kind word, Patient for the undergoing intransitive subject, an untensed flat depictive state with no Result link, and one Time atom per stated granularity with the day-part composing — all as the instruction set specifies. Two soft spots worth watching: (Day 111) uses the day term for a day-of-year in a fictional calendar, and the flat \"dim\" state is left untensed beside a (Past …) event, following the resultative example rather than the copular tense-wrapping rule."
+   },
+   "adjudication": null,
+   "mode": "intervention"
+  }
+ ]
+}

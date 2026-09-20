@@ -1,0 +1,43 @@
+{
+ "id": "C11",
+ "rule": "C — Counterfactuals",
+ "texts": [
+  "Four wraiths emerge from the Sunken Cove in the winter of Year 3."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000125",
+   "sentence": "Four wraiths emerge from the Sunken Cove in the winter of Year 3.",
+   "parse": [
+    "(: wraiths_grp (GroupOf sk_group_1 wraith) (STV 1.0 0.99))",
+    "(: wraiths_card (Cardinality sk_group_1 4) (STV 1.0 0.99))",
+    "(: emerge_ev (Member sk_emerge_1 emerge) (STV 1.0 0.99))",
+    "(: emerge_agent (Agent sk_emerge_1 sk_group_1) (STV 1.0 0.99))",
+    "(: emerge_source (Source sk_emerge_1 sunken_cove) (STV 1.0 0.99))",
+    "(: cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: emerge_time_season (Time sk_emerge_1 winter) (STV 1.0 0.99))",
+    "(: emerge_time_year (Time sk_emerge_1 (Year 3)) (STV 1.0 0.99))",
+    "(: wraiths_emerge_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_emerge $x) emerge) (Agent (sk_emerge $x) $x) (Source (sk_emerge $x) sunken_cove) (Time (sk_emerge $x) winter) (Time (sk_emerge $x) (Year 3)))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000125",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a season as a time point anchored to a stated year ('in the winter of Year 3'): the structured Time terms are Year/Month/Day/Weekday/Hour/Minute with no season term, and the only seasons the instruction set mentions are speech-anchored deictic constants ('last_spring', 'next_summer'), so a non-deictic season has no specified encoding"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Counted plural takes GroupOf + Cardinality + the group event and adds the per-member PartOf rule at (STV 1.0 0.9) for the distributive 'emerge', matching the Cardinality section's pattern; 'the Sunken Cove' is one name symbol with its kind atom and no 'sunken' modifier genus, and the bare present correctly emits no tense atom since neither futurate trigger is present."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  }
+ ]
+}

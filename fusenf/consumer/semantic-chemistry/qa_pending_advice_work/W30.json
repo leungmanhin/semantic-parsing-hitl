@@ -1,0 +1,32 @@
+{
+ "id": "W30",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why did the Stilllight Lantern burn dim on the night of day 111 of Year 1?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000060",
+   "sentence": "Why did the Stilllight Lantern burn dim on the night of day 111 of Year 1?",
+   "parse": [
+    "(: $prf (And (Name $l \"Stilllight Lantern\") (Member $e burn) (Patient $e $l) (Past $e) (Time $e (Year 1)) (Time $e (Day 111)) (Time $e night) (Member $l dim) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000060",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Explanation-question form is correct (focus pattern + one ReasonFor conjunct, nothing asserted), the proper noun is bound by Name with the surface string preserved, and the time stack follows the one-atom-per-stated-granularity rule with the day-part composing with the calendar terms. The adjectival \"dim\" is kept as the flat secondary-predicate state rather than mis-slotted as a Manner adverb, and Patient for the intransitive burning is within the non-volitional-process branch."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

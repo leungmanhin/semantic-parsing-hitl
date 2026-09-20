@@ -1,0 +1,32 @@
+{
+ "id": "F10",
+ "rule": "F — Factual recall",
+ "texts": [
+  "How many solo nights does an apprentice complete before the Council assigns that apprentice to a station?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000010",
+   "sentence": "How many solo nights does an apprentice complete before the Council assigns that apprentice to a station?",
+   "parse": [
+    "(: $prf (And (Member $a apprentice) (Member $e1 complete) (Agent $e1 $a) (Theme $e1 $g) (GroupOf $g solo_night) (Cardinality $g $n) (Member $e2 assign) (Agent $e2 $c) (Member $c council) (Theme $e2 $a) (Goal $e2 $s) (Member $s station) (Before $e1 $e2)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000010",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the 'How many X V?' template (group + GroupOf + Cardinality $n bound through the event's Theme), orders Before earlier-first, reuses $a for 'that apprentice', binds 'the Council' by kind with no Name atom, takes Goal (not Recipient) for the inanimate 'to a station', and emits no status atom for the present habitual. The only storage risk is the solo_night fusion, which assumes a term-of-art classifier rather than a descriptive modifier that would distribute."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

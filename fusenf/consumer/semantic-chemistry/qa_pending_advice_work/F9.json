@@ -1,0 +1,34 @@
+{
+ "id": "F9",
+ "rule": "F — Factual recall",
+ "texts": [
+  "When do sky-cats descend from the cliff-spires?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000009",
+   "sentence": "When do sky-cats descend from the cliff-spires?",
+   "parse": [
+    "(: $prf (And (Member $x sky_cat) (Member $e descend) (Agent $e $x) (GroupOf $g cliff_spire) (Source $e $g) (Time $e $t)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000009",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a 'when' question whose subject is a bare-plural generic: the instruction set stores such a statement as an Implication rule over Skolem-function events ((sk_descend $x)) and supplies a query form only for an individuated member ('Query a distributed member like any event' — 'Did Ana pass?'), so no licensed pattern reaches the rule's consequent when no instance of the kind exists in the KB"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Within the licensed query vocabulary the shape is right: Source for 'from' (whence), Agent for the self-propelled intransitive subject, GroupOf binding of the definite plural 'the cliff-spires', open (Time $e $t) per Time questions' 'When?', and no tense atom for the present habitual."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

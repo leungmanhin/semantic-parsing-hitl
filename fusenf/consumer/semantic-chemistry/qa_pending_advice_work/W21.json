@@ -1,0 +1,34 @@
+{
+ "id": "W21",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why do the villagers consider the Cove Stair unlucky?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000051",
+   "sentence": "Why do the villagers consider the Cove Stair unlucky?",
+   "parse": [
+    "(: $prf (And (GroupOf $v villager) (Name $c \"Cove Stair\") (Member $c stair) (Member $e consider) (Experiencer $e $v) (Theme $e (Member $c unlucky)) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000051",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "active attitude verb with an object + predicative complement (\"the villagers consider the Cove Stair unlucky\"): Propositional attitudes restricts sealing to a finite that-clause, and \"consider\" is covered only in the passive impersonal \"X is considered to be P\" shape (which has no Experiencer), so an active small clause with a stated holder has no stated routing"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Judged against the nearest licensed pattern the query is well formed: one line, ReasonFor conjoined on the focus event, $tv unpinned, the name bound by Name, the group bound by GroupOf, and the sealed complement rebuilt as the attitude QA pattern prescribes. (Member $c stair) is an extra constraint on an already Name-bound referent - harmless because Names and casing mandates that type atom, but not called for by the query rules."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

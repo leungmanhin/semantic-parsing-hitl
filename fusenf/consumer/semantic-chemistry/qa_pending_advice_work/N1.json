@@ -1,0 +1,134 @@
+{
+ "id": "N1",
+ "rule": "N — What-next",
+ "texts": [
+  "A sky-cat hunts nightmoths at a lantern-row on the Cliff Path.",
+  "What happens to the nightmoth crowd at that lantern-row?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000066",
+   "sentence": "A sky-cat hunts nightmoths at a lantern-row on the Cliff Path.",
+   "parse": [
+    "(: sc_type (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: hunt_ev (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+    "(: hunt_ag (Agent sk_hunt_1 sk_sky_cat_1) (STV 1.0 0.99))",
+    "(: hunt_pat (Patient sk_hunt_1 night_moth) (STV 1.0 0.99))",
+    "(: moth_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: hunt_loc (Location sk_hunt_1 sk_lantern_row_1) (STV 1.0 0.99))",
+    "(: lr_type (Member sk_lantern_row_1 lantern_row) (STV 1.0 0.99))",
+    "(: lr_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: lr_on (On sk_lantern_row_1 cliff_path) (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000066",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "\"hunts nightmoths\" is given Patient, but hunting does not create, destroy, consume or physically change the moths, so the object-change test - and its \"when the test is unclear, default to Theme\" fallback - gives Theme."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is on-spec: the indefinite subject of a verbal clause as a witness, sky_cat / night_moth / lantern_row genus atoms with their noun modifiers correctly left unexposed, the bare kind filler for the non-specific bare-plural object, \"at\" as the event Location, \"on\" kept entity-attached to the lantern-row, and \"Cliff Path\" as one opaque name symbol with a separate (Member cliff_path path) kind atom and no modifier genus."
+   },
+   "adjudication": {
+    "id": "qap-000066",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Patient is licensed: the instruction set's own every-dog-chased-every-cat example emits (Patient (sk_chase $x $y) $y) for the object of a pursuit verb, and predation falls under the Patient branch's \"destroys, consumes\" clause, so the choice follows a stated precedent rather than violating the object-change test."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "pursuit / predation verbs (hunt, chase, stalk, pursue): the stated object-change test points to Theme (the prey is not itself changed by the pursuing, and \"when unclear, default to Theme\") while the instruction set's own chase example shows Patient — the boundary for this verb class is never settled, so two faithful parses can differ on it",
+     "a transparently modifier+head SOLID spelling (\"nightmoths\"): the genus atom is fixed but the compound symbol's form (nightmoth vs night_moth) is not"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "Everything else checks out: a witness for the indefinite subject of a verbal clause, the bare kind filler for the non-specific bare-plural object, sky_cat / night_moth / lantern_row genus atoms with their noun modifiers correctly unexposed, \"at\" as the event Location, \"on\" kept entity-attached to the lantern-row, and Cliff Path as one name symbol with its own (Member cliff_path path) kind atom."
+   },
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000067",
+   "sentence": "What happens to the nightmoth crowd at that lantern-row?",
+   "parse": [
+    "(: $prf (And (Member $g crowd) (GroupOf $g night_moth) (LocatedIn $g sk_lantern_row_1) (Member $e $verb) (Patient $e $g)) $tv)",
+    "(: $prf (And (Member $g crowd) (GroupOf $g night_moth) (LocatedIn $g sk_lantern_row_1) (Member $e $verb) (Theme $e $g)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000067",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The locative \"at that lantern-row\" is attached to the crowd as a static containment `(LocatedIn $g sk_lantern_row_1)` instead of to the asked-about eventuality as the event oblique `(Location $e sk_lantern_row_1)`, which is the reading the CONTEXT selects (it stores the lantern-row only as the hunt event's `Location`, never as any entity's position)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an open \"what happens to X?\" question: the predicate is unknown, so which role holds X (Patient vs Theme vs Experiencer vs Recipient) cannot be decided, and Queries licenses neither a variable in head position nor a union of role branches"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The query's group structure (`(Member $g crowd)` + `(GroupOf $g night_moth)`) follows the flock-of-birds pattern for \"the nightmoth crowd\" and correctly reuses the context kind symbol `night_moth`, but the context fills the hunt's Patient with that bare kind and has no group, so the pattern cannot reach the hunt event. The Patient/Theme pair reads as a reasonable response to the unknown-role gap rather than a defect."
+   },
+   "adjudication": {
+    "id": "qap-000067",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "CONTEXT picks the reading (*Input*; *Multiple live readings*) and this context records the lantern-row only as `(Location sk_hunt_1 sk_lantern_row_1)` and never as any entity's position, so *Queries*' \"build the pattern exactly as the matching statement\" puts the locative on the asked-about eventuality; `(LocatedIn $g sk_lantern_row_1)` instead restricts the crowd by a containment fact neither the text nor the context states."
+     }
+    ],
+    "gaps_confirmed": [
+     "an open \"what happens to X?\" question leaves the undergoer's role undecidable — Patient vs Theme vs Experiencer is fixed by the very verb the question does not name, and role storage is not among *Core patterns*' dual-storage-union instances"
+    ],
+    "new_gaps": [
+     "the context stores the moths as a bare kind filler `(Patient sk_hunt_1 night_moth)`, so a question's definite group NP (\"the nightmoth crowd\") has no licensed binding that can reach them: the prescribed collective-noun form `(Member $g crowd) (GroupOf $g night_moth)` can never unify with a kind constant, and *Input* gives no rule for re-binding a context's kind-filled role slot"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form attaches the locative to the asked-about eventuality — `(Location $e sk_lantern_row_1)`, the context symbol used directly per *Input* — in place of `(LocatedIn $g sk_lantern_row_1)` on the crowd; the rest of the query shape stands.",
+    "notes": "The reviewer's gap claim overreaches in one clause: `(Member $e $verb)` is not \"a variable in head position\" but the licensed \"What does Bob do?\" shape of *Queries*, so only the role half is a genuine gap. The two-line Patient/Theme union asserts nothing and is acceptable improvisation inside that gap."
+   },
+   "mode": "query",
+   "context": [
+    "(: sc_type (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: hunt_ev (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+    "(: hunt_ag (Agent sk_hunt_1 sk_sky_cat_1) (STV 1.0 0.99))",
+    "(: hunt_pat (Patient sk_hunt_1 night_moth) (STV 1.0 0.99))",
+    "(: moth_genus (Inheritance night_moth moth) (STV 1.0 0.99))",
+    "(: hunt_loc (Location sk_hunt_1 sk_lantern_row_1) (STV 1.0 0.99))",
+    "(: lr_type (Member sk_lantern_row_1 lantern_row) (STV 1.0 0.99))",
+    "(: lr_genus (Inheritance lantern_row row) (STV 1.0 0.99))",
+    "(: lr_on (On sk_lantern_row_1 cliff_path) (STV 1.0 0.99))",
+    "(: cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000066"
+   ]
+  }
+ ]
+}

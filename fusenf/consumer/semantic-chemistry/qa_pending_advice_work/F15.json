@@ -1,0 +1,32 @@
+{
+ "id": "F15",
+ "rule": "F — Factual recall",
+ "texts": [
+  "How many copper cauldrons are in Cauldron Hall?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000015",
+   "sentence": "How many copper cauldrons are in Cauldron Hall?",
+   "parse": [
+    "(: $prf (And (Name $h \"Cauldron Hall\") (GroupOf $g copper_cauldron) (LocatedIn $g $h) (Cardinality $g $n)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000015",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Follows the \"How many X V?\" template (group + Cardinality binding $n) with the static-locative LocatedIn for \"are in\" and Name-binding for the proper noun; copper_cauldron is a licensed material-classifier fusion. It assumes the location is stored on the group symbol, which is licensed since a group witness is an individual entity."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

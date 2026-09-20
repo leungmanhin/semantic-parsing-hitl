@@ -1,0 +1,32 @@
+{
+ "id": "W32",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does the harvest party need a spring tide?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000062",
+   "sentence": "Why does the harvest party need a spring tide?",
+   "parse": [
+    "(: $prf (And (Member $p harvest_party) (Member $e need) (Experiencer $e $p) (Stimulus $e $t) (Member $t spring_tide) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000062",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'need' fails the progressive test, so the stative-psych routing to Experiencer/Stimulus is the one the instruction set prescribes, and the definite singular subject correctly reifies an event rather than a kind-level relation (the instruction set's own 'the winch needs inspection' case). Bare simple present correctly gets no status atom, and 'harvest party' / 'spring tide' fuse as compound kinds bound by kind in the query."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

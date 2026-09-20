@@ -1,0 +1,33 @@
+{
+ "id": "C6",
+ "rule": "C — Counterfactuals",
+ "texts": [
+  "Coraline Ash is an apprentice."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000118",
+   "sentence": "Coraline Ash is an apprentice.",
+   "parse": [
+    "(: ca_name (Name coraline_ash \"Coraline Ash\") (STV 1.0 0.99))",
+    "(: ca_type (Member coraline_ash apprentice) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000118",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Copular with an individual subject takes Member, the multi-word proper noun is one opaque symbol carrying exactly one Name fact with the surface string preserved, and the present-tense clause takes no status wrapper."
+   },
+   "adjudication": null,
+   "mode": "intervention"
+  }
+ ]
+}

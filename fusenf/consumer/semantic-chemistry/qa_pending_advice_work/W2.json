@@ -1,0 +1,32 @@
+{
+ "id": "W2",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does a Keeper light a lantern with mire-essence?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000032",
+   "sentence": "Why does a Keeper light a lantern with mire-essence?",
+   "parse": [
+    "(: $prf (And (Member $k keeper) (Member $e light) (Agent $e $k) (Patient $e $lt) (Member $lt lantern) (Instrument $e mire_essence) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000032",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Single query line with the ReasonFor conjunct per Explanation questions; no status atom is correct for the habitual present, and bare mass 'mire-essence' rightly stays a constant in the Instrument slot. Patient for the lit lantern (state change) and Instrument for the substance both follow the stated tests."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

@@ -1,0 +1,101 @@
+{
+ "id": "C15",
+ "rule": "C — Counterfactuals",
+ "texts": [
+  "Forty-three Keepers are active in the present generation.",
+  "Three apprentices tend the lanterns of Aelmere."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000129",
+   "sentence": "Forty-three Keepers are active in the present generation.",
+   "parse": [
+    "(: keepers_grp (GroupOf sk_group_1 keeper) (STV 1.0 0.99))",
+    "(: keepers_card (Cardinality sk_group_1 43) (STV 1.0 0.99))",
+    "(: gen_mem (Member sk_generation_1 generation) (STV 1.0 0.99))",
+    "(: gen_mod (Member sk_generation_1 present) (STV 1.0 0.99))",
+    "(: keepers_in_gen (In sk_group_1 sk_generation_1) (STV 1.0 0.99))",
+    "(: keepers_active_rule (Implication (PartOf $x sk_group_1) (Member $x active)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000129",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 4,
+      "issue": "The frame \"in the present generation\" is hung on the group entity as (In sk_group_1 sk_generation_1) instead of on the predication it restricts — a time modifier on a copular clause is a state-reification trigger (\"Alice was ill on Friday\"), so the oblique belongs on a reified active state."
+     },
+     {
+      "statement": 5,
+      "issue": "As a consequence the distributed conclusion (Member $x active) carries no trace of the restriction, asserting each member is active without qualification — the stated restriction is silently dropped and the claim widened."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The count, the group witness, the refusal to put (Member sk_group_1 active) on the group symbol, and the per-member distribution rule at (STV 1.0 0.9) are all right, and In (not LocatedIn or During) is the correct head for this \"in\"; only its first argument is wrong."
+   },
+   "adjudication": {
+    "id": "qap-000129",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Nothing licenses an entity-attached temporal / framing 'in' — entity-attached surface prepositions cover position (non-containment) and origin, containment in a place is LocatedIn, and Time mandates that a copular clause with a time modifier reifies the state to anchor it ('Alice was ill on Friday') — so the frame belongs on the reified active state, which is also what the framing-PP form (In <what-is-claimed> ...) says."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "Core patterns forbids silently dropping a stated restriction because omitting it widens the claim, and as emitted (Implication (PartOf $x sk_group_1) (Member $x active)) makes every member active without qualification — the In atom on the group symbol never reaches the predication."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "a frame- or time-modified copular predication over a PLURAL group: the state-reification trigger and the bar on predicating a member state of the group symbol collide, and the only precedent for a per-member reified state (a Skolem-function state in the rule's conclusion) is an aside in Resultatives",
+     "a period-denoting definite NP ('the present generation') has no Time-family carrier — Time terms are calendar terms or deictic constants and During is lexically restricted to during/while/throughout — so such a frame can only ride the preposition-named oblique"
+    ],
+    "decision": "defect",
+    "defect_summary": "Both confirmed issues share one compliant form: reify the state per member inside the distribution rule and carry the frame there — (Implication (PartOf $x sk_group_1) (And (Member (sk_active $x) active) (Experiencer (sk_active $x) $x) (In (sk_active $x) sk_generation_1) (Member $x active))) (STV 1.0 0.9) — keeping the group, its Cardinality 43 and the generation's typing atoms at top level and dropping (In sk_group_1 sk_generation_1).",
+    "notes": "The count, the group witness, the refusal to put (Member sk_group_1 active) on the group symbol, and In as the head are all right; only the frame's anchor, and hence the rule's unrestricted conclusion, is wrong."
+   },
+   "mode": "intervention"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000130",
+   "sentence": "Three apprentices tend the lanterns of Aelmere.",
+   "parse": [
+    "(: apr_grp (GroupOf sk_group_1 apprentice) (STV 1.0 0.99))",
+    "(: apr_card (Cardinality sk_group_1 3) (STV 1.0 0.99))",
+    "(: lant_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: aelmere_name (Name aelmere \"Aelmere\") (STV 1.0 0.99))",
+    "(: lant_poss (Possession sk_lanterns_1 aelmere) (STV 1.0 0.99))",
+    "(: e_tend (Member sk_tend_1 tend) (STV 1.0 0.99))",
+    "(: e_agent (Agent sk_tend_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e_theme (Theme sk_tend_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: apr_tend_rule (Implication (PartOf $x sk_group_1) (And (Member (sk_tend $x) tend) (Agent (sk_tend $x) $x) (Theme (sk_tend $x) sk_lanterns_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000130",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Counted plural keeps group + Cardinality + group event and adds the per-member PartOf rule at 1.0/0.9 as Cardinality specifies; the definite plural object takes a group witness, the of-genitive the opaque Possession, and Aelmere gets its Name with no invented kind atom. 'tend' as Theme rather than Patient is borderline against the cook/clean/fix list, but the section's explicit tie-break is Theme."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  }
+ ]
+}

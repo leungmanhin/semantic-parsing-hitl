@@ -1,0 +1,58 @@
+{
+ "id": "W13",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does the harvest party harvest salt-bloom at the new-moon spring tide?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000043",
+   "sentence": "Why does the harvest party harvest salt-bloom at the new-moon spring tide?",
+   "parse": [
+    "(: $prf (And (Member $p harvest_party) (Member $e harvest) (Agent $e $p) (Theme $e salt_bloom) (Time $e new_moon_spring_tide) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000043",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The definite NP \"the new-moon spring tide\" is placed in the Time slot as a bare constant, a form the instruction set reserves for deictic or named times, instead of being bound as a definite referent by its kind (an oblique's article-bearing object NP mints a witness with its kind atom; an event-denoting noun stays an sk_ entity), so the query cannot match a statement that minted a tide witness."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a recurring natural-cycle occasion as a time adjunct (\"at the new-moon spring tide\"): the Time section supplies only calendar/clock terms, deictic constants and day-part symbols, and routes event-noun temporal anchors through Before/During, so \"at <occasion NP>\" has no stated encoding"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The explanation-question shape is right: focus event pattern plus one (ReasonFor $r $e) conjunct, no tense atom for the habitual present, definite collective bound by kind (Member $p harvest_party). Theme for the harvested salt-bloom is defensible under the \"unclear -> Theme\" default."
+   },
+   "adjudication": {
+    "id": "qap-000043",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The construction is uncovered — Time supplies calendar/clock terms, deictic-or-named constants and day-part symbols, and a habitual's recurring slot rides Time as a bare symbol ('every morning' -> (Time e morning)) — so the bare constant is graceful improvisation in gap territory: the atom is true of the sentence, well-typed, asserts nothing extra and binds the right slot, and the match risk the issue names is the gap itself, symmetric on the statement side."
+     }
+    ],
+    "gaps_confirmed": [
+     "'at <recurring natural-cycle occasion NP>' as a time adjunct: Time covers calendar/clock terms, deictics and day-parts, and routes event-noun anchors only through Before/During, so 'at the new-moon spring tide' has no stated encoding"
+    ],
+    "new_gaps": [
+     "nothing fixes whether an article-bearing occasion NP in a Time slot is stored as a bare constant or as a witness bound by its kind, so one instruction set can parse a statement and the question about it into non-matching forms"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The rest of the query is compliant: the explanation-question shape (focus event pattern plus one ReasonFor conjunct, nothing asserted), the singular collective 'the harvest party' bound by its compound kind with no distribution, no status atom for the habitual present, and Theme for salt-bloom under the 'unclear -> Theme' default."
+   },
+   "mode": "query"
+  }
+ ]
+}

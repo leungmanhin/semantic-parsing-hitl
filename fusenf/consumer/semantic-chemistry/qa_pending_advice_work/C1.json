@@ -1,0 +1,38 @@
+{
+ "id": "C1",
+ "rule": "C — Counterfactuals",
+ "texts": [
+  "The cliff-spires rise above the eastern cliff."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000113",
+   "sentence": "The cliff-spires rise above the eastern cliff.",
+   "parse": [
+    "(: cs_grp (GroupOf sk_group_1 cliff_spire) (STV 1.0 0.99))",
+    "(: cs_gen (Inheritance cliff_spire spire) (STV 1.0 0.99))",
+    "(: ec_mem (Member sk_cliff_1 eastern_cliff) (STV 1.0 0.99))",
+    "(: ec_gen (Inheritance eastern_cliff cliff) (STV 1.0 0.99))",
+    "(: ec_mod (Inheritance eastern_cliff eastern) (STV 1.0 0.99))",
+    "(: cs_above (Above sk_group_1 sk_cliff_1) (STV 1.0 0.99))",
+    "(: cs_above_rule (Implication (PartOf $x sk_group_1) (Above $x sk_cliff_1)) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000113",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The definite plural takes a group witness, both compounds decompose as specified (noun modifier cliff suppressed, positional eastern exposed like east_wing), and the position clause mints no event, keeping the surface preposition entity-attached as Above. \"rise\" is not in the enumerated postural list and appears in the scalar-change verb list, so the position routing is a judgment call, but the bare-position rule (\"no event whatever its verb\") backs it for terrain."
+   },
+   "adjudication": null,
+   "mode": "intervention"
+  }
+ ]
+}

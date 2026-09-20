@@ -1,0 +1,32 @@
+{
+ "id": "F1",
+ "rule": "F — Factual recall",
+ "texts": [
+  "What is mire-essence?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000001",
+   "sentence": "What is mire-essence?",
+   "parse": [
+    "(: $prf (Inheritance mire_essence $x) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "A kind subject takes Inheritance with the class slot as the bare wh-variable, and the compound symbol mire_essence is used without emitting its decomposition atoms, which is right for a query. Hard-coding the kind symbol follows the 'Can penguins fly?' precedent, where only named individuals bind through Name."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

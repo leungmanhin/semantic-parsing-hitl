@@ -1,0 +1,9 @@
+{"id": "qap-000074", "run": 1,
+ "q1_faithful": "no",
+ "q1_issues": [{"statement": 0, "issue": "The query relates the unknown event to the lantern with the preposition-named oblique (To $e sk_lantern_1), but a statement that answers \"what happens to the lantern\" would store the lantern in an undergoer role (Patient / Theme / Experiencer), so the pattern is not built \"exactly as the matching statement\" and can bind nothing in the KB."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["An open \"What happens to X?\" question: the instruction set supplies only the agent-side analogue (\"What does Bob do?\" -> (Member $e $verb) (Agent $e $b)) and no undergoer-side form, since the role head varies with the unknown verb, a variable is never licensed in head position, and the dual-storage-union list does not include alternative role heads."],
+ "q3_context_leak": "none",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Referent handling is right: the context identifies the lantern, so the constant sk_lantern_1 is used directly, and only a query line is emitted. To is a licensable preposition-named head, but the instruction set reserves that oblique for a PP naming what the activity is about or directed at, which \"happens to\" is not."}

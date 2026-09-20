@@ -1,0 +1,54 @@
+{
+ "id": "W34",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why did Brindle Coombe say at the Council that a hard winter would force the village to dim some lanterns?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000064",
+   "sentence": "Why did Brindle Coombe say at the Council that a hard winter would force the village to dim some lanterns?",
+   "parse": [
+    "(: $prf (And (Member $e say) (Experiencer $e $b) (Name $b \"Brindle Coombe\") (Location $e $c) (Member $c council) (Theme $e (And (Member $w winter) (Member $w hard) (Member $f force) (Agent $f $w) (Theme $f $d) (Future $f) (Member $d dim) (Agent $d $v) (Theme $d $l) (GroupOf $l lantern))) (Member $v village) (Past $e) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000064",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The lanterns are given Theme in the dim event, but dimming is an internal change of state of the object (the instruction set lists 'fade' among change-of-state verbs), so the object-change test gives Patient and the query will not match a statement parsed that way."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The rest follows the instruction set: say takes Experiencer with the finite complement sealed under Theme, embedded 'would' becomes Future inside the seal, the forced village appears only as the dim event's Agent while its definite typing projects outside the seal, and ReasonFor is conjoined per Explanation questions. Rebuilding a multi-atom sealed (And ...) depends on a conjunct order the instruction set never fixes, which makes such a query inherently fragile."
+   },
+   "adjudication": {
+    "id": "qap-000064",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The direct-object test — 'does the object itself change?' — puts a dimmed lantern in the change-of-state class (clean / fix / 'forced it open'), so the licensed role is Patient and (Theme $d $l) binds the wrong slot; the reviewer's 'fade' citation is from the intransitive-subject list, but the transitive test gives the same answer."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "a sealed multi-atom (And ...) complement is matched as one structural term, yet no rule fixes a canonical conjunct order or membership for it, so an attitude question can fail to unify with a faithfully-parsed statement purely on ordering"
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0: the dim event's object takes Patient — (Patient $d $l) in place of (Theme $d $l) — inside the sealed complement; everything else in the pattern stands.",
+    "notes": "The remainder follows the instruction set: Experiencer plus sealed Theme for 'say', embedded 'would' as Future inside the seal, the forced village appearing only as the dim event's Agent with its typing projected outside, 'the Council' as a capitalized common noun bound by kind, and ReasonFor conjoined per Explanation questions."
+   },
+   "mode": "query"
+  }
+ ]
+}

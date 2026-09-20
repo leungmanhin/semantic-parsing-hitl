@@ -1,0 +1,32 @@
+{
+ "id": "W4",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why do sky-cats descend from the cliff-spires?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000034",
+   "sentence": "Why do sky-cats descend from the cliff-spires?",
+   "parse": [
+    "(: $prf (And (Member $x sky_cat) (Member $e descend) (Agent $e $x) (GroupOf $g cliff_spire) (Source $e $g) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000034",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "One query line with (ReasonFor $r $e) conjoined on the focus event, exactly as Explanation questions prescribes; the bare-plural generic subject binds as (Member $x sky_cat), the definite plural source as (GroupOf $g cliff_spire) with Source for the whence-PP, and no status atom is right for the present habitual. Nothing is asserted."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

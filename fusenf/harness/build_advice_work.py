@@ -60,9 +60,11 @@ def main() -> None:
         if len(items) != len(keep):
             raise SystemExit(f"--items: {len(keep) - len(items)} ids not in the source json")
     by_source = {}
+    corpus_rec = {}
     for ln in open(args.corpus, encoding="utf-8"):
         r = json.loads(ln)
         by_source[r["source_id"]] = r["id"]
+        corpus_rec[r["id"]] = r
     parses = {}
     for ln in open(args.parses, encoding="utf-8"):
         p = json.loads(ln)
@@ -119,13 +121,24 @@ def main() -> None:
                 continue
             adj = adjudication_of(rid)
             n_adj += 1 if adj else 0
-            fields.append({
+            field = {
                 "field": f"t{k}", "corpus_id": rid, "sentence": sentence,
                 "parse": st, "census": census_flag(st),
                 "review": load_opt(os.path.join(FUSENF, "review",
                                                 f"{rid}__run{args.review_run}.review.json")),
                 "adjudication": adj,
-            })
+            }
+            # QA task stream (2026-09-20): the text's parse mode and, for a chained text, the
+            # CONTEXT atoms the parser was given — present only when the corpus record carries them
+            rec = corpus_rec.get(rid) or {}
+            mode = (rec.get("labels") or {}).get("mode")
+            if mode:
+                field["mode"] = mode
+            prior = (rec.get("context") or {}).get("prior") or []
+            if prior:
+                field["context"] = list(prior)
+                field["context_of"] = list((rec.get("labels") or {}).get("prior_ids") or [])
+            fields.append(field)
         n_fields += len(fields)
         with open(os.path.join(args.out_dir, f"{rnn}.json"), "w", encoding="utf-8") as fh:
             json.dump({"id": item["id"], "rule": item.get("rule"), "texts": item["texts"],

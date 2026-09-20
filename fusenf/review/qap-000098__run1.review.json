@@ -1,0 +1,9 @@
+{"id": "qap-000098", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The undergoer is pinned to `Theme` for a verb the question leaves unknown, so the query silently excludes any Patient- or Experiencer-stored eventuality affecting the station."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a \"what happens to X?\" question, where the undergoer's role (Patient / Theme / Experiencer) is fixed by the very verb the question leaves unknown — the instruction set gives the agentive \"What does Bob do?\" shape (`(Member $e $verb)`) but no role-underspecified counterpart, and role storage is not among the listed dual-storage-union instances"],
+ "q3_context_leak": "none",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"That Keeper\" is correctly resolved straight to the context constant `sk_keeper_1` with none of its atoms re-emitted, and the genitive takes the opaque `(Possession $s sk_keeper_1)` with the possessed first, as the instruction set's possessive rule requires. The definite \"station\" is bound by its kind, which is the prescribed query form."}

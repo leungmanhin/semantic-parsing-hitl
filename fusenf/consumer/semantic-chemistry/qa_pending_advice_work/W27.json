@@ -1,0 +1,32 @@
+{
+ "id": "W27",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why did the Council build the Stilllight Lantern sixty-three years ago?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000057",
+   "sentence": "Why did the Council build the Stilllight Lantern sixty-three years ago?",
+   "parse": [
+    "(: $prf (And (Member $e build) (Agent $e $c) (Member $c council) (Patient $e $l) (Name $l \"Stilllight Lantern\") (Member $l lantern) (Past $e) (BeforeBy $e now 63 year) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000057",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Council\" is correctly treated as a capitalized common noun (kind binding, no Name) while \"the Stilllight Lantern\" exceeds its bare class word and so binds by Name plus the kind word inside it; Patient for the built object, Past, and \"sixty-three years ago\" as (BeforeBy $e now 63 year) all follow the instruction set."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

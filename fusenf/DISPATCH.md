@@ -46,6 +46,7 @@ not just intended: every parse record carries `parser.prompt_sha256` + `input_sh
 | `REPARSE_run50.md` | batch-3 re-parse wave (130 fix-pack-covered defect records @ `bb7c4b71`; wave manifest `batches/parse/reparse50_wave.json`) | `raw/<ID>__run50.txt` |
 | `M1PARSE.md` | M1 stability runs, run number in wrapper | `raw/<ID>__run<N>.txt` |
 | `SOLOPARSE.md` | one item per agent (within-batch-contamination isolation) | `raw/<ID>__run<N>.txt` |
+| `QAPARSE.md` | QA task stream: statement or question per item, optional CONTEXT file (third column) | `raw/<ID>__run1.txt` |
 
 ## Context
 
@@ -54,6 +55,21 @@ this ("No CONTEXT / TODAY / DOMAIN is supplied"). If a future corpus supplies co
 batch format needs a per-item context field and the brief a matching paragraph — present it
 in the `TEXT:`/`CONTEXT:` input form `prompt.txt` §context (#18) already defines. Do not
 bolt context into the wrapper.
+
+**QA task stream (consumer `qa_pending.json`, 2026-09-20) — the first context-bearing
+corpus.** `corpora/build_qa.py` builds one record per text with `labels.mode`
+(query / statement / intervention, from the consumer's `qa.json`); a what-next (N) entry is
+CHAINED: text k carries `context.prior` = the statements already assembled for texts 1..k-1
+of the same entry (verbatim, from the parse store), so the corpus is rebuilt with
+`--prior-from` after each stage and each stage is its own parse wave. `make_batches.py
+--context-dir batches/context` writes `<ID>.ctx.txt` (the prior atoms, one per line) and adds
+a THIRD tab-separated column naming it; a line without the column is context-free. The QA
+briefs `QAPARSE.md` / `QAREVIEW.md` / `QAADJUDICATE.md` / `QAADVICE.md` are the standard
+briefs plus that column and the question → query output form (`prompt.txt` *Queries*); the
+wrappers are unchanged (only the brief path differs). The validator checks a query-mode item's
+lines as queries (C3 query shape, no C6 free-variable finding, C7 skipped for query lines)
+and flags a query line in a statement-mode item — keyed on the corpus `labels.mode`, so every
+earlier corpus validates exactly as before.
 
 ## Ops parameters (batch-1 lessons; binding until superseded)
 
@@ -259,6 +275,7 @@ dispatch. Wrappers, same two-sentence discipline:
 | one-sentence-per-agent parse | `SOLOPARSE.md` | standing |
 | Tier A corpus realization | `corpora/REALIZE.md` | standing (P2-era, still the standard) |
 | §5.2 parse reviewer | `REVIEW.md` | standing from batch 2 |
+| QA task stream parse / review / adjudication / advice | `QAPARSE.md` / `QAREVIEW.md` / `QAADJUDICATE.md` / `QAADVICE.md` | standing from 2026-09-20 (the standard briefs + the context column + question → query output) |
 | review-gate adjudicator | `ADJUDICATE.md` | authored 2026-08-24; dual-tier pilot decides the production model |
 | M1 disagreement diagnosis | `DIAGNOSE.md` | standing from batch 2 |
 | gauntlet judges (M4 / routing) | `JUDGE.md` | standing from batch 2 (authored 2026-08-19) |

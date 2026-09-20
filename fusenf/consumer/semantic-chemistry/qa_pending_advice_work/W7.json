@@ -1,0 +1,34 @@
+{
+ "id": "W7",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why do the Northcove lanterns burn through winter?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000037",
+   "sentence": "Why do the Northcove lanterns burn through winter?",
+   "parse": [
+    "(: $prf (And (Member $e burn) (Patient $e $g) (GroupOf $g lantern) (Possession $g $n) (Name $n \"Northcove\") (Time $e winter) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000037",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a \"through <period>\" extent adverbial (\"burn through winter\") - During is explicitly restricted to during/while/throughout, the interval heads Start/End need stated terms, and the named Time role carries only a point, so the throughout-the-season force has no licensed carrier"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The why-focus pattern with ReasonFor, the Possession + Name encoding of the proper-noun premodifier \"Northcove\", the definite-plural group binding and the Patient role for intransitive \"burn\" all match the instruction set. (Time $e winter) is the closest licensed form, but it widens the claim by dropping the \"through\" extent."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

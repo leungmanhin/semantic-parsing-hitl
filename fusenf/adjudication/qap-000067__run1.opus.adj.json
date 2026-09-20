@@ -1,0 +1,9 @@
+{"id": "qap-000067", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "CONTEXT picks the reading (*Input*; *Multiple live readings*) and this context records the lantern-row only as `(Location sk_hunt_1 sk_lantern_row_1)` and never as any entity's position, so *Queries*' \"build the pattern exactly as the matching statement\" puts the locative on the asked-about eventuality; `(LocatedIn $g sk_lantern_row_1)` instead restricts the crowd by a containment fact neither the text nor the context states."}],
+ "gaps_confirmed": ["an open \"what happens to X?\" question leaves the undergoer's role undecidable — Patient vs Theme vs Experiencer is fixed by the very verb the question does not name, and role storage is not among *Core patterns*' dual-storage-union instances"],
+ "new_gaps": ["the context stores the moths as a bare kind filler `(Patient sk_hunt_1 night_moth)`, so a question's definite group NP (\"the nightmoth crowd\") has no licensed binding that can reach them: the prescribed collective-noun form `(Member $g crowd) (GroupOf $g night_moth)` can never unify with a kind constant, and *Input* gives no rule for re-binding a context's kind-filled role slot"],
+ "decision": "defect",
+ "defect_summary": "The compliant form attaches the locative to the asked-about eventuality — `(Location $e sk_lantern_row_1)`, the context symbol used directly per *Input* — in place of `(LocatedIn $g sk_lantern_row_1)` on the crowd; the rest of the query shape stands.",
+ "notes": "The reviewer's gap claim overreaches in one clause: `(Member $e $verb)` is not \"a variable in head position\" but the licensed \"What does Bob do?\" shape of *Queries*, so only the role half is a genuine gap. The two-line Patient/Theme union asserts nothing and is acceptable improvisation inside that gap."}

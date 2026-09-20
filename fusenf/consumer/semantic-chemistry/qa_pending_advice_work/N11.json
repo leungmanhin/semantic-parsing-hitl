@@ -1,0 +1,105 @@
+{
+ "id": "N11",
+ "rule": "N — What-next",
+ "texts": [
+  "A wraith drains the lanterns of the West Row.",
+  "What happens to the thread harvest at the West Row?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000089",
+   "sentence": "A wraith drains the lanterns of the West Row.",
+   "parse": [
+    "(: qap89_wraith (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: qap89_drain (Member sk_drain_1 drain) (STV 1.0 0.99))",
+    "(: qap89_agent (Agent sk_drain_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: qap89_patient (Patient sk_drain_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: qap89_lanterns (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: qap89_poss (Possession sk_lantern_1 west_row) (STV 1.0 0.99))",
+    "(: qap89_row_type (Member west_row row) (STV 1.0 0.99))",
+    "(: qap89_row_name (Name west_row \"West Row\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000089",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a distributive predicate over a definite plural in OBJECT position (\"drains the lanterns\") — the per-member `(Implication (PartOf $x <group>) …)` distribution rule is specified only for the subject/agent side, so a lantern named later is not queryable as drained"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"West Row\" follows the Kestrel-River pattern exactly — one opaque symbol, one `Name`, the kind word inside the name giving `(Member west_row row)` and no `(Member west_row west)` — and the indefinite witness, definite-plural group, `Patient` for the changed object, opaque `Possession` for the of-genitive and the unmarked present tense are all as specified."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000090",
+   "sentence": "What happens to the thread harvest at the West Row?",
+   "parse": [
+    "(: $prf (And (Member $h thread_harvest) (LocatedIn $h west_row) (Member $e $verb) (Patient $e $h)) $tv)",
+    "(: $prf (And (Member $h thread_harvest) (LocatedIn $h west_row) (Member $e $verb) (Theme $e $h)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000090",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The locative \"at the West Row\" is attached to the harvest as static containment `(LocatedIn $h west_row)` rather than to the asked-about eventuality as the event oblique `(Location $e west_row)`, and if \"the thread harvest\" denotes the harvesting eventuality rather than a yield then `LocatedIn` is the wrong head for it either way (an eventuality takes `Location`, never `LocatedIn`)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an open \"what happens to X?\" question: the predicate is unknown, so which role holds X (Patient vs Theme vs Experiencer vs Recipient) cannot be decided, and Queries licenses neither a variable in head position nor a union of role branches"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The named row is correctly used as the context constant `west_row` directly, and \"thread harvest\" binds by its fused compound kind, which is right since the context names no thread harvest. The context links West Row to its lanterns by `Possession`, so nothing in the KB supplies the containment fact this query's locative conjunct demands."
+   },
+   "adjudication": {
+    "id": "qap-000090",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "*Where a THING is* licenses the entity-attached containment head for \"at\" — `(LocatedIn <entity> <place>)` — and the query binds `$h` as an entity throughout (`(Member $h thread_harvest)`, then a Patient/Theme filler), so no eventuality carries `LocatedIn`; and unlike a context that stores the place as an event `Location`, this one supplies only `(Possession sk_lantern_1 west_row)`, so nothing selects the event-attachment site over the nominal one."
+     }
+    ],
+    "gaps_confirmed": [
+     "an open \"what happens to X?\" question leaves the undergoer's role undecidable — Patient vs Theme vs Experiencer is fixed by the very verb the question does not name, and role storage is not among *Core patterns*' dual-storage-union instances"
+    ],
+    "new_gaps": [
+     "\"the thread harvest\" is lexically ambiguous between an event-noun witness (an eventuality, which would take `Location` and the *Time* event-noun handling) and a yield entity (which takes `LocatedIn`), but *Multiple live readings* bars multi-reading output for a question (\"still translated per Queries, single-form\"), so a question whose referent's event-vs-entity status is undecided has no licensed way to cover both storages"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The named row is correctly taken as the context constant `west_row` per *Input*, nothing is asserted, and the absent tense atom is the right unmarked default (an unconstrained status slot widens the match rather than narrowing it). The two-line Patient/Theme union is improvisation inside the role gap, not a defect."
+   },
+   "mode": "query",
+   "context": [
+    "(: qap89_wraith (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: qap89_drain (Member sk_drain_1 drain) (STV 1.0 0.99))",
+    "(: qap89_agent (Agent sk_drain_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: qap89_patient (Patient sk_drain_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: qap89_lanterns (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: qap89_poss (Possession sk_lantern_1 west_row) (STV 1.0 0.99))",
+    "(: qap89_row_type (Member west_row row) (STV 1.0 0.99))",
+    "(: qap89_row_name (Name west_row \"West Row\") (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000089"
+   ]
+  }
+ ]
+}

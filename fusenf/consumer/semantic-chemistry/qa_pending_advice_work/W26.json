@@ -1,0 +1,34 @@
+{
+ "id": "W26",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does an apprentice's solo count reset when the apprentice's lantern dims?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000056",
+   "sentence": "Why does an apprentice's solo count reset when the apprentice's lantern dims?",
+   "parse": [
+    "(: $prf (And (Member $e reset) (Patient $e $c) (Member $c solo_count) (Possession $c $a) (Member $a apprentice) (Member $d dim) (Patient $d $l) (Member $l lantern) (Possession $l $a) (During $e $d) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000056",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a why-question whose focus is a generic regularity rather than an occurrence — bare \"when P, Q\" with indefinite/generic participants stores an `Implication` with Skolem-function events, while `(ReasonFor $r <focus>)` needs a top-level eventuality, so there is no licensed way to ask why the rule itself holds"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Roles, coreference and the trigger link all follow the instruction set: `Patient` for both internal-change intransitives (*reset*, *dim*), one `$a` shared by \"an apprentice\" and the anaphoric \"the apprentice\", `Possession` rather than `PartOf` for both genitives, and `(During <response> <trigger>)` in the whenever order."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

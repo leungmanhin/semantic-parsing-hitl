@@ -1,0 +1,34 @@
+{
+ "id": "F2",
+ "rule": "F — Factual recall",
+ "texts": [
+  "Who is the chief Keeper of Aelmere?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000002",
+   "sentence": "Who is the chief Keeper of Aelmere?",
+   "parse": [
+    "(: $prf (And (Member $x chief_keeper) (Possession $x $a) (Name $a \"Aelmere\")) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "of-phrase on an agent-nominalization used as an office/role title ('the chief Keeper of Aelmere'): the instruction set routes a 'role' relational noun to the genitive Possession, but also routes any noun whose underlying verb would take the of-NP as object to the entity-attached surface-preposition oblique (Of ...) by the verb-paraphrase test ('the N of X' = 'what Vs X'); keeper satisfies both, and nothing says which wins"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "chief_keeper follows the role-title fusion line and the capitalized-common-noun default (no Name atom for 'Keeper'), Aelmere is bound by Name, and the wh-answer variable is correctly left bare and unnamed. The Possession-vs-Of choice is the only live risk: a statement stored with (Of ...) would not match this query."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

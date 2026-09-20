@@ -1,0 +1,34 @@
+{
+ "id": "F19",
+ "rule": "F — Factual recall",
+ "texts": [
+  "Where does the village cremate the dead?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000019",
+   "sentence": "Where does the village cremate the dead?",
+   "parse": [
+    "(: $prf (And (Member $e cremate) (Agent $e $v) (Member $v village) (Patient $e dead) (Location $e $where)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000019",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a substantival / nominalized adjective as the NP head (\"the dead\") - the instruction set gives no rule for an adjective-headed NP with no head noun, so it is undetermined whether it becomes a bare kind symbol, person witnesses carrying the property, or (being a definite plural) a group witness"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The query shape, the Location unknown for \"where\", the kind-bound definite \"the village\" and the Patient role for cremate all follow the instruction set. The residual risk is (Patient $e dead): if a matching statement stored \"the dead\" as a group witness or as person witnesses carrying a dead property, this bare-class conjunct would not bind."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

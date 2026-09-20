@@ -1,0 +1,34 @@
+{
+ "id": "W16",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why did the wraith turn away from the Stilllight Lantern on day 120 of Year 1?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000046",
+   "sentence": "Why did the wraith turn away from the Stilllight Lantern on day 120 of Year 1?",
+   "parse": [
+    "(: $prf (And (Member $e turn_away) (Agent $e $w) (Member $w wraith) (Source $e $l) (Name $l \"Stilllight Lantern\") (Time $e (Day 120)) (Time $e (Year 1)) (Past $e) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000046",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a day-of-year ordinal date in a non-Gregorian calendar ('day 120 of Year 1'): the Time section defines (Day <n>) only through Gregorian day-of-month examples and says nothing about a day numbered within a year, so whether (Day 120) is the licensed rendering is undetermined"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The why-question shape is right: focus event pattern plus one (ReasonFor $r $e) conjunct on a single line, nothing asserted. turn_away kept whole as a phrasal verb with no genus, the definite 'the wraith' bound by kind, the name bound by (Name $l \"Stilllight Lantern\"), and Past from 'did' are all per the instruction set."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

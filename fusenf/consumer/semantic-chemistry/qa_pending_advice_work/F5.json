@@ -1,0 +1,32 @@
+{
+ "id": "F5",
+ "rule": "F — Factual recall",
+ "texts": [
+  "What animal hunts nightmoths in Aelmere?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000005",
+   "sentence": "What animal hunts nightmoths in Aelmere?",
+   "parse": [
+    "(: $prf (And (Member $x animal) (Member $e hunt) (Agent $e $x) (Theme $e nightmoth) (Location $e $ae) (Name $ae \"Aelmere\")) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000005",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Wh-restrictor (Member $x animal), bare-kind object filler for the non-specific bare plural, event Location for \"in Aelmere\" with the place bound by Name, and no status atom for the habitual present all follow the instruction set. Residual risk it does not create: if the answering statement were stored as a bare relational generic (an opaque kind relation per Striking & relational generics), this event-form query could not match it, and no dual-storage branch is specified for that pair."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

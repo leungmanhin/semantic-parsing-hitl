@@ -1,0 +1,32 @@
+{
+ "id": "W5",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does every Keeper consider that sky-cats are sacred?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000035",
+   "sentence": "Why does every Keeper consider that sky-cats are sacred?",
+   "parse": [
+    "(: $prf (And (Member $x keeper) (Member $e consider) (Experiencer $e $x) (Theme $e (Inheritance sky_cat sacred)) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000035",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Follows the prescribed attitude-QA rebuild — Member/Experiencer on the consider event with the complement reconstructed as a sealed Theme term — and the bare-plural complement correctly stays the kind-level (Inheritance sky_cat sacred), asserted nowhere; ReasonFor is conjoined on the focus event per Explanation questions. 'Every Keeper' is rendered as a member-instance pattern, which is the 'query a distributed member like any event' form, so it binds only once a keeper instance exists."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

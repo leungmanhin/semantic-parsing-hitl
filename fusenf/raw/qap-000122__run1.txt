@@ -1,0 +1,4 @@
+(: solo_night_genus (Inheritance solo_night night) (STV 1.0 0.99))
+(: solo_night_mod (Inheritance solo_night solo) (STV 1.0 0.99))
+(: council_type (Member sk_council_1 council) (STV 1.0 0.99))
+(: apprentice_station_rule (Implication (And (Member $x apprentice) (Member $c complete) (Agent $c $x) (Theme $c $g) (GroupOf $g solo_night) (Cardinality $g 10)) (And (Member (sk_assign $c) assign) (Agent (sk_assign $c) sk_council_1) (Theme (sk_assign $c) $x) (Goal (sk_assign $c) (sk_station $c)) (Member (sk_station $c) station) (During (sk_assign $c) $c))) (STV 1.0 0.9))

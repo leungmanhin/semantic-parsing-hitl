@@ -1,0 +1,9 @@
+{"id": "qap-000031", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The maintained state is classed as the unlemmatized participle `burning`, where Names and casing lemmatizes a participle in predicative (non-modifier) function to its verb (`running` → `run`, so `burning` → `burn`) with progressive -ing adding `(Ongoing …)`, so the query cannot match a parse that stored the burning as a `burn` eventuality."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["\"keep + object + present participle\" maintaining an ongoing activity (\"keep lanterns burning\") — the maintenance resultative is specified only for a resultant state predicate (\"kept the gate shut\"), leaving the -ing complement's class symbol and aspect atoms undetermined"],
+ "q3_context_leak": "na",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "The bare-plural object \"lanterns\" is bound as a group witness (`GroupOf`), but the instruction set reserves the bare kind filler for non-specific objects outside an episodic clause, so this branch may miss a kind-filler storage. Everything else follows the instruction set exactly: `Theme` for *keep*, `Still` on the state witness plus `Result`, `(Time $e night)` with `(Every $e 1 day)` for the named day-part slot, and the `ReasonFor` conjunct on the focus event."}

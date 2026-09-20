@@ -1,0 +1,145 @@
+{
+ "id": "N6",
+ "rule": "N — What-next",
+ "texts": [
+  "A cold wind strikes the Cliff Path at night.",
+  "A lantern on the Cliff Path is unprepared.",
+  "What happens to the unprepared lantern?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000077",
+   "sentence": "A cold wind strikes the Cliff Path at night.",
+   "parse": [
+    "(: wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+    "(: wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+    "(: strike_ev (Member sk_strike_1 strike) (STV 1.0 0.99))",
+    "(: strike_ag (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+    "(: strike_th (Theme sk_strike_1 cliff_path) (STV 1.0 0.99))",
+    "(: path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: strike_tm (Time sk_strike_1 night) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000077",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Indefinite witness (not a generic rule) for 'a cold wind', the un-fused descriptive 'cold', the kind atom for the name-internal 'Path' with no 'cliff' genus, the day-part Time constant and the status-free habitual present are all as specified; Theme for the struck path follows the default-to-Theme rule for an unchanged object."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000078",
+   "sentence": "A lantern on the Cliff Path is unprepared.",
+   "parse": [
+    "(: lant_mem (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lant_on (On sk_lantern_1 cliff_path) (STV 1.0 0.99))",
+    "(: lant_unprep (Member sk_lantern_1 unprepared) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000078",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'On' correctly stays the entity-attached surface preposition rather than LocatedIn (containment only), and 'unprepared' is correctly a positive property at strength 1.0 since lexical antonyms are not negation. The context supplies no lantern witness, so sk_lantern_1 collides with nothing, and the named Cliff Path reuses the context symbol without re-emitting its Member/Name atoms."
+   },
+   "adjudication": null,
+   "mode": "statement",
+   "context": [
+    "(: wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+    "(: wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+    "(: strike_ev (Member sk_strike_1 strike) (STV 1.0 0.99))",
+    "(: strike_ag (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+    "(: strike_th (Theme sk_strike_1 cliff_path) (STV 1.0 0.99))",
+    "(: path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: strike_tm (Time sk_strike_1 night) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000077"
+   ]
+  },
+  {
+   "field": "t3",
+   "corpus_id": "qap-000079",
+   "sentence": "What happens to the unprepared lantern?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (To $e sk_lantern_1)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000079",
+    "run": 1,
+    "q1_faithful": "no",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The query relates the unknown event to the lantern with the preposition-named oblique (To $e sk_lantern_1), but a statement that answers \"what happens to the unprepared lantern\" would store the lantern in an undergoer role (Patient / Theme / Experiencer), so the pattern is not built \"exactly as the matching statement\" and can bind nothing in the KB."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An open \"What happens to X?\" question: the instruction set supplies only the agent-side analogue (\"What does Bob do?\" -> (Member $e $verb) (Agent $e $b)) and no undergoer-side form, since the role head varies with the unknown verb, a variable is never licensed in head position, and the dual-storage-union list does not include alternative role heads."
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Referent handling is right: \"the unprepared lantern\" is the context's sk_lantern_1 (typed unprepared there), so the constant is used directly and its restrictor is correctly not restated or re-asserted."
+   },
+   "adjudication": {
+    "id": "qap-000079",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Queries requires the pattern be built exactly as the matching statement, and no statement reporting something that happens to the unprepared lantern would store it in a To oblique (that head is reserved for a PP naming what the activity is directed at, decided by the question the PP answers), so the query binds the wrong slot and can match nothing - the context links sk_lantern_1 to no event at all."
+     }
+    ],
+    "gaps_confirmed": [
+     "No undergoer-side analogue of \"What does Bob do?\": the event-class slot may hold a variable but a role head may not, and no role-union is licensed, so \"What happens to X?\" has no complete licensed form."
+    ],
+    "new_gaps": [
+     "A licensed \"what happens to X\" form would have to carry an OPEN UNDERGOER: either an undergoer-neutral head, or a sanctioned union of query lines over Patient / Theme / Experiencer - the dual-storage-union list is closed and does not include alternative role heads."
+    ],
+    "decision": "defect",
+    "defect_summary": "The nearest licensed form drops the To oblique and binds the lantern in an undergoer role - (: $prf (And (Member $e $verb) (Patient $e sk_lantern_1)) $tv) - but since the undergoer head varies with the unknown verb and neither a variable head nor a role-union is licensed, the instruction set licenses no complete compliant form for this question.",
+    "notes": "Referent handling is right: \"the unprepared lantern\" is the context's sk_lantern_1, used as a constant with its restrictor correctly not restated or re-asserted."
+   },
+   "mode": "query",
+   "context": [
+    "(: wind_type (Member sk_wind_1 wind) (STV 1.0 0.99))",
+    "(: wind_cold (Member sk_wind_1 cold) (STV 1.0 0.99))",
+    "(: strike_ev (Member sk_strike_1 strike) (STV 1.0 0.99))",
+    "(: strike_ag (Agent sk_strike_1 sk_wind_1) (STV 1.0 0.99))",
+    "(: strike_th (Theme sk_strike_1 cliff_path) (STV 1.0 0.99))",
+    "(: path_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: path_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: strike_tm (Time sk_strike_1 night) (STV 1.0 0.99))",
+    "(: lant_mem (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: lant_on (On sk_lantern_1 cliff_path) (STV 1.0 0.99))",
+    "(: lant_unprep (Member sk_lantern_1 unprepared) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000077",
+    "qap-000078"
+   ]
+  }
+ ]
+}

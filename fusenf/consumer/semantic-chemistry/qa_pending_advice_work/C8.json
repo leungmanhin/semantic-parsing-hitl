@@ -1,0 +1,61 @@
+{
+ "id": "C8",
+ "rule": "C — Counterfactuals",
+ "texts": [
+  "Ground feathers ward lanterns against wraiths."
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000120",
+   "sentence": "Ground feathers ward lanterns against wraiths.",
+   "parse": [
+    "(: gf_genus1 (Inheritance ground_feather feather) (STV 1.0 0.99))",
+    "(: gf_genus2 (Inheritance ground_feather ground) (STV 1.0 0.99))",
+    "(: gf_ward_rule (Implication (Member $x ground_feather) (And (Member (sk_ward $x) ward) (Agent (sk_ward $x) $x) (Theme (sk_ward $x) lantern) (Against (sk_ward $x) wraith))) (STV 0.9 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000120",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 1,
+      "issue": "(Inheritance ground_feather ground) exposes a modifier genus the exposure test does not license - a noun modifier is never exposed, and a participial modifier is none of the three licensed adjectival categories (gradable, positional/cardinal, material) - so the atom asserts that ground_feather is a kind of ground."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a relational generic between two bare kinds that also carries a third argument ('ground feathers ward lanterns against wraiths') - the kind-level relation form is a binary opaque atom with no slot for the 'against' oblique, and the instruction set names no route for keeping that restriction"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The parse resolves that gap by taking the distributing-rule route, which keeps the 'against wraiths' oblique but conflicts with the stated relational-generic trigger (both arguments bare kind-denoting NPs). Everything else fits: 0.9/0.9 for a dispositional bare generic, no tense atom, bare kind fillers for the generic objects, and the preposition-named Against head."
+   },
+   "adjudication": {
+    "id": "qap-000120",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "The exposure rule's criterion is part of speech plus predication — 'The line is part of speech, not meaning' and 'Test: can the modifier be predicated of the thing?' — and Names and casing states that a participle used as a modifier IS an adjective ('a laminated worktop' → (Member … laminated)), so 'the feathers are ground' licenses (Inheritance ground_feather ground); the three listed kinds illustrate the adjectival class rather than closing it, and 'ground' here is the participial adjective, not a noun modifier."
+     }
+    ],
+    "gaps_confirmed": [
+     "a relational generic between two bare kinds that also carries a third argument ('ground feathers ward lanterns against wraiths'): the kind-level relation is a binary opaque atom with no slot for the 'against' oblique, and no route is stated for keeping that restriction"
+    ],
+    "new_gaps": [
+     "the nearest precedent for that escape — 'an adjectivally-restricted kind subject forces the distributing-rule route instead; a kind relation has no slot for it' — is written for a subject restriction only, so whether an unslottable OBLIQUE licenses the same escape from the mechanical both-arguments-bare-kinds trigger is undecided",
+     "no homograph convention for a lemmatized participial-adjective modifier whose symbol collides with a common noun: the licensed (Inheritance ground_feather ground) is indistinguishable from an IS-A on the mass noun 'ground' (earth), and 'all inflectional variants map to one symbol' gives no way to keep the two senses apart"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The rule route keeps the 'against wraiths' restriction that Core patterns forbids silently dropping, and distributing is not false here — a dispositional characteristic of the kind, which the striking-generic test keeps at 0.9. Roles, the preposition-named Against head, bare kind fillers, the definitional genus TV and the absent tense atom are all correct."
+   },
+   "mode": "intervention"
+  }
+ ]
+}

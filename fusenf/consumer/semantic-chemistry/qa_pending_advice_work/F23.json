@@ -1,0 +1,34 @@
+{
+ "id": "F23",
+ "rule": "F — Factual recall",
+ "texts": [
+  "Who arrived in Aelmere in the late summer of Year 1?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000023",
+   "sentence": "Who arrived in Aelmere in the late summer of Year 1?",
+   "parse": [
+    "(: $prf (And (Member $e arrive) (Agent $e $who) (Name $ae \"Aelmere\") (Location $e $ae) (Time $e (Year 1)) (Time $e late_summer) (Past $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000023",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a non-deictic season expression ('the late summer of Year 1'): the Time section defines structured terms only for Year/Month/Day/Weekday/Hour/Minute and bare symbols only for deictic times (last_spring, next_summer) and day-parts, so a calendar-anchored season — and a degree modifier on it ('late') — has no licensed term; the bare late_summer symbol used here is an extension by analogy with day-parts, not something the instruction set states"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Agent for 'arrive' is right for the animate 'who' (self-powered mover), though the instruction set lists 'arrive' in both the un-powered-relocation -> Theme bullet and the motion/volitional -> Agent list. Location (not Goal) for 'in Aelmere', the Name binding of the named place, the bare $who answer variable and Past are all per the Queries section."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

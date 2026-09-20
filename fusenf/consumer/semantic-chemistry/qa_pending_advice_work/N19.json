@@ -1,0 +1,72 @@
+{
+ "id": "N19",
+ "rule": "N — What-next",
+ "texts": [
+  "The Council meets at the full moon.",
+  "What does the Council do with the mire-essence reserves?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000103",
+   "sentence": "The Council meets at the full moon.",
+   "parse": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: meet_ev (Member sk_meet_1 meet) (STV 1.0 0.99))",
+    "(: meet_ag (Agent sk_meet_1 sk_council_1) (STV 1.0 0.99))",
+    "(: meet_time (Time sk_meet_1 full_moon) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000103",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"at the full moon\" as a temporal anchor - it is neither a calendar/clock term, a deictic constant, a day-part, a fiscal period nor a before/after event-noun anchor, and nothing says whether such a compound natural-phenomenon time constant takes Compound-concepts decomposition (as room_temperature does in the condition slot) or stays an opaque time symbol"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"The Council\" correctly takes the capitalized-common-noun default (typed, no Name, no GroupOf), and \"meets\" on a singular collective subject correctly stays one event with one Agent and no distribution rule. No Every/TimesPer atom is emitted for the implied recurrence, which is right since the wording states no explicit period or rate."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000104",
+   "sentence": "What does the Council do with the mire-essence reserves?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (Agent $e sk_council_1) (Theme $e $g) (GroupOf $g mire_essence_reserve)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000104",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the pro-verb frame \"what does X do WITH Y\": the instruction set splits a \"with\"-phrase only into CoAgent (animate co-participant) or Instrument (means), and separately bars a prepositional verb's object from a direct-object role — but here \"do\" stands in for the unknown verb and \"with\" belongs to the interrogative frame rather than to the answering clause's verb, so nothing licenses a choice among Theme, Patient and a preposition-named (With $e $g) oblique"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The Council is correctly taken as the context constant sk_council_1 (a capitalized common noun, no Name atom, a singular collective that does not distribute), the definite plural is bound as a group by member kind, and the fused compound mire_essence_reserve matches what a statement would mint. Theme is the instruction set's stated unclear-case default, but pinning one role means a Patient-stored or With-oblique-stored event about the reserves would not bind."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: council_type (Member sk_council_1 council) (STV 1.0 0.99))",
+    "(: meet_ev (Member sk_meet_1 meet) (STV 1.0 0.99))",
+    "(: meet_ag (Agent sk_meet_1 sk_council_1) (STV 1.0 0.99))",
+    "(: meet_time (Time sk_meet_1 full_moon) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000103"
+   ]
+  }
+ ]
+}

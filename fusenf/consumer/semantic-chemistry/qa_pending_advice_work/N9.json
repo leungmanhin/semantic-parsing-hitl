@@ -1,0 +1,75 @@
+{
+ "id": "N9",
+ "rule": "N — What-next",
+ "texts": [
+  "A sky-cat hunts through summer.",
+  "What happens at the base of the cliff by autumn?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qap-000085",
+   "sentence": "A sky-cat hunts through summer.",
+   "parse": [
+    "(: sc_type (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: hunt_ev (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+    "(: hunt_ag (Agent sk_hunt_1 sk_sky_cat_1) (STV 1.0 0.99))",
+    "(: hunt_time (Time sk_hunt_1 summer) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000085",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "durative / spanning 'through <time period>' adjunct ('hunts through summer' = across the whole season): During is licensed only for during/while/throughout over two reified eventualities, and Start/End and (Measure e duration n unit) need stated bounds or a count plus unit, so the span reading collapses onto a plain (Time e summer) point"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The indefinite subject with a verbal predicate correctly stays a witness rather than a generic, the bare simple present correctly takes no status atom, and the compound emits the head genus only (the noun modifier 'sky' is rightly not exposed). (Time sk_hunt_1 summer) is the best slot available under the instruction set; only the 'through' span nuance is lost."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qap-000086",
+   "sentence": "What happens at the base of the cliff by autumn?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (Location $e $b) (Member $b base) (PartOf $b $c) (Member $c cliff) (Time $e autumn)) $tv)",
+    "(: $prf (And (Member $e $verb) (Location $e $b) (Member $b base) (PartOf $b $c) (Member $c cliff) (TimeAtMost $e autumn)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qap-000086",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a \"by <season>\" deadline in a question: the instruction set supplies the seeded MonthNumber / WeekdayNumber lexicons for ordering months and weekdays, but nothing orders bare season (or day-part) time constants, so the exact-Time branch of the licensed dual-storage union cannot be thresholded and collapses to plain equality (Time $e autumn), which cannot reach an eventuality stored at an earlier bare constant such as the context's (Time sk_hunt_1 summer)"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"What happens\" takes the licensed (Member $e $verb) shape, \"at the base of the cliff\" the event Location plus the part-whole PartOf genitive with both definites bound by kind (neither is in the context), and \"by autumn\" the TimeAtMost deadline with its dual-storage twin. The union's coverage is narrower than \"at or before autumn\" only because no season ordering is licensed."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: sc_type (Member sk_sky_cat_1 sky_cat) (STV 1.0 0.99))",
+    "(: sc_genus (Inheritance sky_cat cat) (STV 1.0 0.99))",
+    "(: hunt_ev (Member sk_hunt_1 hunt) (STV 1.0 0.99))",
+    "(: hunt_ag (Agent sk_hunt_1 sk_sky_cat_1) (STV 1.0 0.99))",
+    "(: hunt_time (Time sk_hunt_1 summer) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qap-000085"
+   ]
+  }
+ ]
+}

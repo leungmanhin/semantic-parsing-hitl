@@ -1,0 +1,4 @@
+(: council_mem (Member sk_council_1 council) (STV 1.0 0.99))
+(: sn_gen (Inheritance solo_night night) (STV 1.0 0.99))
+(: sn_mod (Inheritance solo_night solo) (STV 1.0 0.99))
+(: whenever_complete_assign (Implication (And (Member $x apprentice) (Member (sk_complete $x) complete) (Agent (sk_complete $x) $x) (Patient (sk_complete $x) (sk_nights $x)) (GroupOf (sk_nights $x) solo_night) (Cardinality (sk_nights $x) 30)) (And (Member (sk_assign $x) assign) (Agent (sk_assign $x) sk_council_1) (Theme (sk_assign $x) $x) (Goal (sk_assign $x) (sk_station $x)) (Member (sk_station $x) station) (During (sk_assign $x) (sk_complete $x)))) (STV 1.0 0.9))

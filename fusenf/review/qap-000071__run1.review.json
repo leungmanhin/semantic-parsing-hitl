@@ -1,0 +1,10 @@
+{"id": "qap-000071", "run": 1,
+ "q1_faithful": "partial",
+ "q1_issues": [{"statement": 0, "issue": "The undergoer is pinned to `Theme` for a verb the question leaves unknown, so the query cannot bind a Patient-stored eventuality — and the instruction set's own role test puts the context's burning (burn is in its Patient list) exactly there, which is the likeliest answer for these moths."},
+               {"statement": 0, "issue": "The conjunct `(Inheritance nightmoth moth)` binds nothing and only narrows the match, so the query returns nothing against a KB that typed the moths without that compound-genus atom."}],
+ "q2_coverage": "gap",
+ "q2_gaps": ["a \"what happens to X?\" question, where the undergoer's role (Patient / Theme / Experiencer) is fixed by the very verb the question leaves unknown — the instruction set gives the agentive \"What does Bob do?\" shape (`(Member $e $verb)`) but no role-underspecified counterpart, and role storage is not among the listed dual-storage-union instances"],
+ "q3_context_leak": "none",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "\"That lantern\" is correctly resolved straight to the context constant `sk_lantern_1`, and \"at\" -> `LocatedIn` is a licensed entity-attached position head. Attaching the PP to the moths rather than to the happening is one of two coherent readings and the instruction set does not decide between them."}
