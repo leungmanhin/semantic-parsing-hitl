@@ -1,0 +1,60 @@
+{
+ "id": "F20",
+ "rule": "F — Factual recall",
+ "texts": [
+  "How many Keepers are active?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qaq-000003",
+   "sentence": "How many Keepers are active?",
+   "parse": [
+    "(: $prf (And (GroupOf $g keeper) (Cardinality $g $n) (Inheritance $g active)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000003",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "(Inheritance $g active) predicates the property of the group symbol, the form Categorical statements and Quantifiers explicitly bar (\"never a bare (Inheritance <group> <prop>) on the group symbol\"); a faithful statement sends a copular predicate on a plural through the per-member distribution rule, so this conjunct can bind nothing."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a counting question over a COPULAR predicate (\"how many X are ADJ?\") — Counting questions gives only the verbal \"How many X V?\" shape, where the group is bound through an event; there is no licensed conjunct that reads a member property off a group",
+     "counting the individuals that satisfy a predicate when no group witness carrying a Cardinality was ever minted — only FoldAll over stored group cardinalities is provided, and it is reserved for explicit aggregate-total questions"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "GroupOf/Cardinality binding and the lowercase kind lemma keeper (a capitalized plural quantified over, not referring as a name) are right; the single non-union line is correct for an unbounded how-many question."
+   },
+   "adjudication": {
+    "id": "qaq-000003",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Partitives states the one deliberate exception — a property of a subset group takes Inheritance, not Member — so (GroupOf $g keeper) (Cardinality $g $n) (Inheritance $g active) is exactly the storage a cardinal partitive (\"three of the Keepers are active\") lays down and the conjunct does bind; the quoted bar governs asserting a universal over a definite group, and the residual miss against the per-member distribution rule is the coverage gap the reviewer itself files, not a parse defect."
+     }
+    ],
+    "gaps_confirmed": [
+     "a counting question over a COPULAR predicate (\"how many X are ADJ?\") — Counting questions gives only the verbal shape, where the group binds through an event; a plural's copular predicate is stored as a per-member distribution rule, which exposes no conjunct a query can read off the group",
+     "counting the individuals that satisfy a predicate when no group witness carrying a Cardinality was ever minted — only FoldAll over stored group cardinalities is provided, and it is reserved for explicit aggregate-total questions"
+    ],
+    "new_gaps": [
+     "a plain \"how many X …?\" has no dual-storage union partner: Counting questions unions Cardinality with CardinalityAtLeast / CardinalityAtMost only for a BOUNDED question, so a group whose size is stored as a bound or as a CardinalityPhrase (\"several Keepers are active\") is unreachable by the how-many query as the instruction set writes it"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "The single line binds the partitive storage and nothing else, but with no licensed conjunct for the per-member rule that is the most the instruction set allows here. The lowercase kind lemma keeper is right for a capitalized plural being quantified over rather than referring as a name."
+   },
+   "mode": "query"
+  }
+ ]
+}

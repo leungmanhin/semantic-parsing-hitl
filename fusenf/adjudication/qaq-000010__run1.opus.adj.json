@@ -1,0 +1,12 @@
+{"id": "qaq-000010", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "\"fall on <date>\" is calendar placement, not an eventuality — the literal reading is incoherent for a harvest, so the idiom coherence test of Compound concepts rules it out, and Time's light-verb-over-event-noun rule makes the event-noun's own witness the eventuality that carries the tense and Time terms; reifying a separate fall with the harvest as Theme and hanging (Day 17) / (Year 1) on it asks the reason for a falling rather than for the harvest's date."},
+            {"index": 1,
+             "verdict": "refute",
+             "reason": "A harvest is an event-denoting noun whose witness IS an eventuality (Time, light verbs over event-nouns: \"the show\" / \"the storm\" take time relations directly), so the event oblique Location is the correct head and \"never Location on an entity\" does not reach it — the issue also contradicts issue 0, which insists the harvest be treated as the eventuality."}],
+ "gaps_confirmed": ["Time's light-verb-over-event-noun rule names only occurred / happened / took place, so the calendar idiom \"<event-noun> falls on <date>\" is not explicitly routed — the coherence test rules out the literal fall, but the dating rule has to be carried over to \"fall on\" by analogy"],
+ "new_gaps": ["a locative PP on an event-denoting noun (\"the thread harvest at the Middle Row\") has no explicit routing: Where a THING is bars Location on an entity and gives LocatedIn / surface-preposition heads for things, but the instruction set never states that an event-noun's own locative takes the event-side Location — the indecision that produced issue 1"],
+ "decision": "defect",
+ "defect_summary": "The compliant query drops the literal fall event and dates the harvest witness directly: (: $prf (And (Member $h thread_harvest) (Location $h $m) (Name $m \"Middle Row\") (Past $h) (Time $h (Day 17)) (Time $h (Year 1)) (ReasonFor $r $h)) $tv).",
+ "notes": "The structured terms (Day 17) / (Year 1), the Name binding of \"Middle Row\" with no invented kind atom, and the single ReasonFor line are all right and survive into the compliant form."}

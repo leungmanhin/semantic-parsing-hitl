@@ -1,0 +1,32 @@
+{
+ "id": "W1",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why do the lanterns of Aelmere burn every night?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qaq-000006",
+   "sentence": "Why do the lanterns of Aelmere burn every night?",
+   "parse": [
+    "(: $prf (And (Member $e burn) (Patient $e $l) (GroupOf $l lantern) (Possession $l $a) (Name $a \"Aelmere\") (Time $e night) (Every $e 1 day) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000006",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"every night\" takes the named-slot plus implied-cycle pair (Time e night) + (Every e 1 day) and the habitual correctly carries no tense atom; the definite plural binds as a group witness and the named place by Name. The \"of Aelmere\" genitive lands on the opaque Possession else-branch, which the possessive of-phrase rule licenses."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

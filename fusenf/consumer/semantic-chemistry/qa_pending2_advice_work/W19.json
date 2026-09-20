@@ -1,0 +1,58 @@
+{
+ "id": "W19",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does a surviving nightmoth flee to a dim lantern in the Hollows?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qaq-000011",
+   "sentence": "Why does a surviving nightmoth flee to a dim lantern in the Hollows?",
+   "parse": [
+    "(: $prf (And (Member $n nightmoth) (Member $n surviving) (Member $e flee) (Agent $e $n) (Goal $e $l) (Member $l lantern) (Member $l dim) (Location $e $h) (Name $h \"Hollows\") (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000011",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"in the Hollows\" is attached to the flee event as (Location $e $h), but the nearest-NP reading — the dim lantern being in the Hollows, i.e. the entity-attached containment (LocatedIn $l $h) of *Where a THING is* — is at least as natural, so the chosen conjunct may fail to match the stored form."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "which attachment site a QUESTION takes when its PP has two coherent sites: *Multiple live readings* recognises exactly this ambiguity for statements (\"sketched the fountain beside the archive\") and bars the Interpretation wrappers for questions (\"still translated per Queries, single-form\"), but gives no tie-breaker and no union for the question case"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Everything else is right: surviving kept as a modifier participle and not fused, Goal for the non-recipient \"to\", the capitalized plural label \"Hollows\" bound by Name only with no type atom, one line with ReasonFor on the focus event, and no status atom for the generic present."
+   },
+   "adjudication": {
+    "id": "qaq-000011",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "refute",
+      "reason": "Both attachment sites are licensed forms and Multiple live readings explicitly bars the Interpretation wrappers in a question (\"still translated per Queries, single-form — reading-aware answering is the downstream consumer's concern, never the translation's\"), so picking the event-side Location breaks no rule and asks the question faithfully; the reviewer's own hedge (\"may fail to match\") names a recall risk — the coverage gap it files — not a false, ill-typed or mis-slotted conjunct."
+     }
+    ],
+    "gaps_confirmed": [
+     "no tie-breaker and no union is given for a QUESTION whose PP has two coherent attachment sites: Multiple live readings handles the statement case with Interpretation wrappers and rules them out for questions without saying which site the single form should take"
+    ],
+    "new_gaps": [
+     "an explanation question over a GENERIC claim may have no reachable reason: a connective atom needs two eventuality endpoints, but a generic statement's eventualities are Skolem terms inside a rule's conclusion, so (ReasonFor $r $e) on a flat focus event binds only once the engine has instantiated that rule — the instruction set notes the missing endpoints for defeasible exceptions but never for causal connectives over generics"
+    ],
+    "decision": "accept",
+    "defect_summary": "",
+    "notes": "surviving and dim kept as separate modifier atoms (participle-as-adjective, incidental description — no fusion), Goal for the non-recipient \"to\", Name-only \"Hollows\" with no type atom, and no status atom for the unmarked generic present are all correct."
+   },
+   "mode": "query"
+  }
+ ]
+}

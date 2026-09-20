@@ -25,6 +25,7 @@ State vocabulary (#51 reshape): never-parsed / clean-unreviewed / verified (revi
 | events_pending2 | external consumer (events pending re-parse set 2; passages) | 24 | 24 | 5 (21%) | 5 | 0 | 3 | 16 | 0 | — | 2ed18b93×24 |
 | events_pending3 | external consumer (events pending re-parse set 3; passages) | 7 | 7 | 1 (14%) | 1 | 0 | 1 | 5 | 0 | — | 2ed18b93×7 |
 | qa_pending | external consumer (QA task stream: queries, N premises, C interventions; chained context) | 130 | 130 | 92 (71%) | 92 | 0 | 19 | 19 | 0 | — | 2ed18b93×130 |
+| qa_pending2 | external consumer (QA task stream set 2: 15 rewritten entries; chained context) | 16 | 16 | 13 (81%) | 13 | 0 | 2 | 1 | 0 | — | 2ed18b93×16 |
 | fixpack | validation | 7 | 0 | 0 (0%) | 0 | 7 | 0 | 0 | 0 | — | f6448eac×7 |
 | fixpack3 | validation | 10 | 0 | 0 (0%) | 0 | 10 | 0 | 0 | 0 | — | 2aa57fa8×10 |
 | fixpack31 | validation | 4 | 0 | 0 (0%) | 0 | 4 | 0 | 0 | 0 | — | bb7c4b71×4 |

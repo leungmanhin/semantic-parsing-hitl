@@ -1,0 +1,32 @@
+{
+ "id": "F5",
+ "rule": "F — Factual recall",
+ "texts": [
+  "What hunts nightmoths at a lantern-row?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qaq-000002",
+   "sentence": "What hunts nightmoths at a lantern-row?",
+   "parse": [
+    "(: $prf (And (Member $e hunt) (Agent $e $x) (Theme $e nightmoth) (Location $e $l) (Member $l lantern_row)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Agent as the bare wh-answer, Theme for an object hunting does not change, Location for the where-PP with its indefinite object bound by kind, and no status atom for the generic present all follow the instruction set. The bare kind filler nightmoth is the licensed choice for a kind-level object in a generic clause."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

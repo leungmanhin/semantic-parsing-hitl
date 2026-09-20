@@ -1,0 +1,34 @@
+{
+ "id": "W17",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why did the thread harvest at the West Row fall in Year 1?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qaq-000009",
+   "sentence": "Why did the thread harvest at the West Row fall in Year 1?",
+   "parse": [
+    "(: $prf (And (Member $h thread_harvest) (Name $wr \"West Row\") (LocatedIn $h $wr) (Member $e fall) (Theme $e $h) (Time $e (Year 1)) (Past $e) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000009",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an NP-internal locative PP on an EVENT-DENOTING noun ('the thread harvest at the West Row'): the instruction set makes the LocatedIn/Location choice turn on entity-vs-event, but an event-noun whose witness IS the eventuality (Time section) and which here also serves as the scalar-change bearer falls on both sides, and neither section says which head wins"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Scalar-change 'fall' correctly gives the subject Theme, Past and (Time (Year 1)) are right, the name binds by its Name string, and ReasonFor is attached to the fall event. The LocatedIn choice for 'at the West Row' is the entity-attached reading and is defensible, but see the gap above."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "id": "F2",
+ "rule": "F — Factual recall",
+ "texts": [
+  "Who is the chief Keeper?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qaq-000001",
+   "sentence": "Who is the chief Keeper?",
+   "parse": [
+    "(: $prf (Member $x chief_keeper) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The capitalized run is exactly the bare class word \"Keeper\", so the common-noun default (no Name atom) and the definite-common-noun kind binding of a query both apply, and \"chief Keeper\" fuses as a role-title compound. The bare wh-variable is returned unbound by any Name, as Queries requires."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

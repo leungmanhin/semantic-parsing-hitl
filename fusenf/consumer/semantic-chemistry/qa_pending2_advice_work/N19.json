@@ -1,0 +1,64 @@
+{
+ "id": "N19",
+ "rule": "N — What-next",
+ "texts": [
+  "The moon is full.",
+  "What does the Council do?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qaq-000015",
+   "sentence": "The moon is full.",
+   "parse": [
+    "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+    "(: moon_full (Member sk_moon_1 full) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000015",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Unique definite 'the moon' correctly mints a fresh typed witness (a lowercase common noun, so no Name atom), the copular adjective attaches to an individual by Member, present tense adds no wrapper, and both atoms take the individual-fact (STV 1.0 0.99)."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qaq-000016",
+   "sentence": "What does the Council do?",
+   "parse": [
+    "(: $prf (And (Member $b council) (Member $e $verb) (Agent $e $b)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000016",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Matches the Queries template for \"What does Bob do?\" with the definite common noun bound by kind per Existential, and \"the Council\" correctly treated as a capitalized common noun (no Name atom) per Names and casing. The supplied context concerns an unrelated full moon and identifies no referent of the question, so the kind binding is the right choice and nothing from context is re-emitted."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: moon_type (Member sk_moon_1 moon) (STV 1.0 0.99))",
+    "(: moon_full (Member sk_moon_1 full) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qaq-000015"
+   ]
+  }
+ ]
+}

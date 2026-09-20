@@ -1,0 +1,32 @@
+{
+ "id": "F22",
+ "rule": "F — Factual recall",
+ "texts": [
+  "What lies under the water in the Sunken Cove?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qaq-000004",
+   "sentence": "What lies under the water in the Sunken Cove?",
+   "parse": [
+    "(: $prf (And (Member $w water) (Name $c \"Sunken Cove\") (LocatedIn $w $c) (Under $x $w)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000004",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Bare position clause mints no event (postural 'lies' with no reification trigger), non-containment 'under' keeps the entity-attached surface head, containment 'in' takes LocatedIn, and the wh-variable is returned bare and untyped as specified. The PP is attached to the water NP rather than to a (non-existent) event, which is the only reading the position-atom route leaves available."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

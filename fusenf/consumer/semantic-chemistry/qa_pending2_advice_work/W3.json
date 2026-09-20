@@ -1,0 +1,32 @@
+{
+ "id": "W3",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why does a Keeper store the mire-essence that forms in the cauldron?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qaq-000007",
+   "sentence": "Why does a Keeper store the mire-essence that forms in the cauldron?",
+   "parse": [
+    "(: $prf (And (Member $k keeper) (Member $e store) (Agent $e $k) (Theme $e $m) (Member $m mire_essence) (Member $f form) (Patient $f $m) (Location $f $c) (Member $c cauldron) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000007",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Focus event is the storing and ReasonFor is conjoined to it correctly; 'store' takes Theme (unchanged object), the reduced relative 'that forms in the cauldron' is an ordinary event with a change-of-state Patient subject and an event-side Location oblique, and neither clause gets a status atom (present generic). Capitalized common noun 'Keeper' correctly stays a plain lowercase class with no Name binding."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

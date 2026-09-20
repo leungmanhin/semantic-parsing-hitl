@@ -1,0 +1,32 @@
+{
+ "id": "W23",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why did the Council discuss the sky-cat drought in Year 1?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qaq-000012",
+   "sentence": "Why did the Council discuss the sky-cat drought in Year 1?",
+   "parse": [
+    "(: $prf (And (Member $c council) (Member $e discuss) (Agent $e $c) (Theme $e $d) (Member $d sky_cat_drought) (Time $e (Year 1)) (Past $e) (ReasonFor $r $e)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000012",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"the Council\" correctly stays a common-noun kind with no Name atom and no GroupOf (singular collective, non-distributing), Theme is right for an object discussion leaves unchanged, and (Time $e (Year 1)) + (Past $e) + the single ReasonFor line match Time and Explanation questions."
+   },
+   "adjudication": null,
+   "mode": "query"
+  }
+ ]
+}

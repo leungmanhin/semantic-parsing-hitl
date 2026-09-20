@@ -1,0 +1,67 @@
+{
+ "id": "W18",
+ "rule": "W — Why-questions",
+ "texts": [
+  "Why did the thread harvest at the Middle Row fall on day 17 of Year 1?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qaq-000010",
+   "sentence": "Why did the thread harvest at the Middle Row fall on day 17 of Year 1?",
+   "parse": [
+    "(: $prf (And (Member $f fall) (Theme $f $h) (Member $h thread_harvest) (Location $h $m) (Name $m \"Middle Row\") (Past $f) (Time $f (Day 17)) (Time $f (Year 1)) (ReasonFor $r $f)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qaq-000010",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "\"fall on day 17 of Year 1\" is the calendar-placement idiom stating when the harvest took place, but the query reifies a separate literal fall eventuality with the harvest as its Theme and hangs the date terms on that fall event instead of on the harvest event-noun witness, so the pattern asks about a falling rather than about the harvest's date."
+     },
+     {
+      "statement": 0,
+      "issue": "The noun-attached locative \"at the Middle Row\" is encoded with the event-oblique head Location on the harvest referent, which the same query otherwise treats as an ordinary entity filling a Theme slot; Where a THING is bars Location on an entity and routes containment \"at\" to the entity-side head."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "the calendar idiom \"<event-noun> falls on <date>\" — Time's light-verb-over-event-noun rule names only occurred / happened / took place, so nothing in the instruction set decides between dating the event-noun directly and reifying a literal or scalar-change fall event"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"Middle Row\" correctly gets Name binding (the capitalized run exceeds the bare class word) with no invented kind atom, and (Day 17) / (Year 1) are the right structured granularity terms. The two issues above are the same underlying indecision about whether thread_harvest is an eventuality or an entity."
+   },
+   "adjudication": {
+    "id": "qaq-000010",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "\"fall on <date>\" is calendar placement, not an eventuality — the literal reading is incoherent for a harvest, so the idiom coherence test of Compound concepts rules it out, and Time's light-verb-over-event-noun rule makes the event-noun's own witness the eventuality that carries the tense and Time terms; reifying a separate fall with the harvest as Theme and hanging (Day 17) / (Year 1) on it asks the reason for a falling rather than for the harvest's date."
+     },
+     {
+      "index": 1,
+      "verdict": "refute",
+      "reason": "A harvest is an event-denoting noun whose witness IS an eventuality (Time, light verbs over event-nouns: \"the show\" / \"the storm\" take time relations directly), so the event oblique Location is the correct head and \"never Location on an entity\" does not reach it — the issue also contradicts issue 0, which insists the harvest be treated as the eventuality."
+     }
+    ],
+    "gaps_confirmed": [
+     "Time's light-verb-over-event-noun rule names only occurred / happened / took place, so the calendar idiom \"<event-noun> falls on <date>\" is not explicitly routed — the coherence test rules out the literal fall, but the dating rule has to be carried over to \"fall on\" by analogy"
+    ],
+    "new_gaps": [
+     "a locative PP on an event-denoting noun (\"the thread harvest at the Middle Row\") has no explicit routing: Where a THING is bars Location on an entity and gives LocatedIn / surface-preposition heads for things, but the instruction set never states that an event-noun's own locative takes the event-side Location — the indecision that produced issue 1"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant query drops the literal fall event and dates the harvest witness directly: (: $prf (And (Member $h thread_harvest) (Location $h $m) (Name $m \"Middle Row\") (Past $h) (Time $h (Day 17)) (Time $h (Year 1)) (ReasonFor $r $h)) $tv).",
+    "notes": "The structured terms (Day 17) / (Year 1), the Name binding of \"Middle Row\" with no invented kind atom, and the single ReasonFor line are all right and survive into the compliant form."
+   },
+   "mode": "query"
+  }
+ ]
+}
