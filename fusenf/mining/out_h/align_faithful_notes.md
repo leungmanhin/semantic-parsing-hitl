@@ -4,7 +4,8 @@ Companion to the generated `align_faithful.md` (H substrate: the 172 Tier C PAWS
 (item-E: the 84 Tier A classes plus the 180 Tier C pairs there, with the Tier A target-rule key and the control pairs), the
 record `align_faithful.jsonl` (every mapping — unit / role / residue — with its support in distinct classes, its control
 support, examples and verdict, plus one `profile` record per unit), the per-pair intermediate `align_faithful_pairs.jsonl`
-(the skolem renaming, matched / near / unmatched atoms, quality, ambiguity) and the MeTTa rendering `align_faithful.metta`
+(per pair: the two sentences, the skolem renaming, the common subgraph, the differing subgraphs aligned across the pair,
+the residue; quality, ambiguity — readable twin `align_faithful_pairs.md`, one block per pair) and the MeTTa rendering `align_faithful.metta`
 (unit mappings first, then role mappings, then residue; PASS first inside each; every unit mapping rendered as two
 implications into one provisional meta-node, a role mapping as the minority head rewriting to the majority, a residue with
 a matched context as the context rewriting to itself without the atom). The generated files are the record; this file is
@@ -80,6 +81,27 @@ paraphrase classes against 5 control classes: the participant swap — a mapping
 control column is for). Residue passes include the two designed pruning cases: `(Member $e0 decision)` (4 classes, the
 light-verb noun left over when "made a decision" aligns with "decided") and `(Degree $x0 big very)` (3 classes, "very big"
 against "huge"), beside the attachment slack of the Tier C pairs.
+
+## The per-pair view (added 2026-09-21, owner's ask: sentences / common subgraph / differing subgraphs maximally aligned / residue)
+
+`align_faithful_pairs.md` (and the same content in `align_faithful_pairs.jsonl`) lays every alignment out for reading:
+the two sentences, the COMMON subgraph (the method's identical atoms, in A's variable names), the differing subgraphs
+grouped per side (atoms sharing a node symbol the common part does not hold; a shared symbol the common part does hold
+is the subgraph's anchor) and ALIGNED across the pair in two tiers — `near` is the method's own one-substitution match,
+`partial` is a reading-only pass among the leftovers (same arity, at least one equal argument position holding a skolem
+unless the heads are equal or both are class links) — then the atoms left over inside an aligned group (A only / B only)
+and the RESIDUE proper: subgraphs with no counterpart at all. The method's outputs are untouched by the view (byte-identical).
+
+What it shows on H (172 pairs): 1,065 common atoms; 115 atoms aligned by the near match and 126 more by a partial match;
+166 left over inside aligned groups; 184 atoms in 142 residue subgraphs; 93 pairs have no residue subgraph at all. The
+partial matches are the attachment slack made explicit: 70 differ only in the centre (the same role and filler hung on
+a different event), 29 only in the filler, 21 in head plus first argument — the compound split, where one side names a
+compound kind (`(Inheritance central_arm central)`) and the other asserts the parts on the entity (`(Member x0 central)`).
+Pairs whose entities differ as constants (`olt_river` / `olt`, `madicea_river` / `madicea`) have quality 0 because constants
+lie outside the skolem renaming — a property of the method, visible here, that the view still aligns partially. On item-E
+(413 paraphrase pairs): 2,346 common, 326 near + 106 partial, 118 left over, 104 atoms in 58 residue subgraphs, 367 pairs
+residue-free; the 468 control pairs carry 854 residue atoms in 405 subgraphs — a negated or otherwise altered clause
+appears as one residue subgraph per side (e.g. the whole `(And …) ~NEG` clause against its positive counterpart).
 
 ## Reading
 

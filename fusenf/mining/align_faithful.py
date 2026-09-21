@@ -40,7 +40,11 @@ Rules      = a consistent non-identity UNIT mapping renders as two implications 
 Outputs (in --out-dir; <stem> = align_faithful):
   <stem>.jsonl            every mapping (kind unit / role / residue / profile) with support, control support,
                           examples, pass
-  <stem>_pairs.jsonl      one line per pair: the renaming, matched / near / unmatched atoms, quality [--intermediates]
+  <stem>_pairs.jsonl      one line per pair: the two sentences, the renaming, the COMMON subgraph (identical atoms), the
+                          differing subgraphs ALIGNED across the pair (the method's near matches, then partial matches among
+                          the leftovers), the atoms left over inside them, and the RESIDUE (subgraphs with no counterpart);
+                          quality, ambiguity [--intermediates]
+  <stem>_pairs.md         the same, one readable block per pair (paraphrase pairs, then control pairs)
   <stem>.metta            readable rendering: consistent non-identity unit mappings first, then role
                           mappings, then residue; PASS first inside each; never loaded
   <stem>.md               parameters, pair inventory, alignment quality, unit profiles, tables, Tier A scorecard
@@ -352,6 +356,292 @@ def unit_meta(key_a, key_b, sub):
     return "Mn" + "_".join(toks)
 
 
+# ----------------------------------------------------------------------------- per-pair view (the intermediate)
+# Everything below is a READING of one alignment, never part of the method's score: the common subgraph and the near
+# matches are the aligner's own; the grouping into subgraphs, the partial matches among the leftovers and the residue
+# split are how the intermediate file lays them out for a reader. B's atoms are rendered in A's variable names
+# (through the renaming); a B-only variable carries a prime (x2').
+PRIME = "'"
+
+
+def _lin(t):
+    return t if isinstance(t, str) else "(" + " ".join(_lin(x) for x in t) + ")"
+
+
+def _node_symbols(g):
+    """symbols that head an edge on this side: every skolem, plus every constant standing as the first argument of a
+    term (a compound kind such as central_arm in (Inheritance central_arm arm))"""
+    out = set()
+    for i in g.idxs:
+        out.update(m.group(0) for m in RE_SKOLEM.finditer(g.term[i]))
+        stack = [g.parsed[i]]
+        while stack:
+            t = stack.pop()
+            if isinstance(t, list):
+                if len(t) > 1 and isinstance(t[1], str) and not t[1].startswith('"'):
+                    out.add(t[1])
+                stack.extend(x for x in t[1:] if isinstance(x, list))
+    return out
+
+
+def _symbols_of(g, i, nodes):
+    """the node symbols one atom touches (skolems anywhere in it, node constants anywhere in it)"""
+    out = set(m.group(0) for m in RE_SKOLEM.finditer(g.term[i]))
+    stack = [g.parsed[i]]
+    while stack:
+        t = stack.pop()
+        for x in t[1:]:
+            if isinstance(x, list):
+                stack.append(x)
+            elif x in nodes:
+                out.add(x)
+    return out
+
+
+def _components(g, idxs, common_syms, nodes):
+    """connected components of the atoms idxs: two atoms connect when they share a node symbol OUTSIDE the common
+    part (a symbol the common part holds is an anchor: recorded, never merging). [(atom idxs, anchors)] in atom order."""
+    syms = {i: _symbols_of(g, i, nodes) for i in idxs}
+    parent = {i: i for i in idxs}
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+    by_conn = collections.defaultdict(list)
+    for i in idxs:
+        for s in sorted(syms[i] - common_syms):
+            by_conn[s].append(i)
+    for members in by_conn.values():
+        for i in members[1:]:
+            parent[find(i)] = find(members[0])
+    groups = collections.defaultdict(list)
+    for i in idxs:
+        groups[find(i)].append(i)
+    out = [(sorted(mem), set().union(*(syms[i] for i in mem)) & common_syms) for mem in groups.values()]
+    out.sort(key=lambda c: c[0][0])
+    return out
+
+
+def _slots(g, i, ren):
+    """(head, [top-level arguments as text], negative) with skolems renamed by ren"""
+    t = g.parsed[i]
+    return (t[0], [ren(_lin(x)) for x in t[1:]], g.neg[i])
+
+
+def _differs(sa, sb):
+    out = []
+    if sa[0] != sb[0]:
+        out.append(f"head {sa[0]}->{sb[0]}")
+    for k, (x, y) in enumerate(zip(sa[1], sb[1])):
+        if x != y:
+            out.append(f"arg{k} {x}->{y}")
+    if len(sa[1]) != len(sb[1]):
+        out.append(f"arity {len(sa[1])}->{len(sb[1])}")
+    if sa[2] != sb[2]:
+        out.append("polarity")
+    return out
+
+
+def pair_view(ga, gb, al):
+    """the intermediate's reading of one alignment: common subgraph, aligned differing subgraphs (groups), residue"""
+    inv = {b: a for a, b in al["mapping"].items()}
+
+    def ren_b(s):
+        return RE_SKOLEM.sub(lambda mm: inv.get(mm.group(0), mm.group(0) + PRIME), s)
+
+    def sym_b(s):
+        return (inv.get(s, s + PRIME) if RE_SKOLEM.fullmatch(s) else s)
+
+    def atom_b(j):
+        return ren_b(gb.term[j]) + (" ~NEG" if gb.neg[j] else "")
+    nodes_a, nodes_b = _node_symbols(ga), _node_symbols(gb)
+    ident_a = {i for i, _ in al["identical"]}
+    ident_b = {j for _, j in al["identical"]}
+    common_a = set().union(*(_symbols_of(ga, i, nodes_a) for i in ident_a)) if ident_a else set()
+    common_b = set().union(*(_symbols_of(gb, j, nodes_b) for j in ident_b)) if ident_b else set()
+    rest_a = [i for i in ga.idxs if i not in ident_a]
+    rest_b = [j for j in gb.idxs if j not in ident_b]
+    comps_a = _components(ga, rest_a, common_a, nodes_a)
+    comps_b = _components(gb, rest_b, common_b, nodes_b)
+    na = len(comps_a)
+    comp_of_a = {i: k for k, (mem, _) in enumerate(comps_a) for i in mem}
+    comp_of_b = {j: na + k for k, (mem, _) in enumerate(comps_b) for j in mem}
+    slots_a = {i: _slots(ga, i, lambda s: s) for i in rest_a}
+    slots_b = {j: _slots(gb, j, ren_b) for j in rest_b}
+    parent = list(range(na + len(comps_b)))
+
+    def find(x):
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+    linked = set()
+    links = []
+    for i, j in al["near"]:                      # tier 1: the method's own near matches (one substitution)
+        links.append((i, j, "near"))
+        ra, rb = find(comp_of_a[i]), find(comp_of_b[j])
+        parent[ra] = rb
+        linked.add(find(rb))
+    matched_a = {i for i, _, _ in links}
+    matched_b = {j for _, j, _ in links}
+    cands = []                                   # tier 2: partial matches among the leftovers
+    for i in rest_a:
+        if i in matched_a:
+            continue
+        ha, aa, _ = slots_a[i]
+        for j in rest_b:
+            if j in matched_b:
+                continue
+            hb, ab, _ = slots_b[j]
+            if len(aa) != len(ab):
+                continue
+            eq = [k for k, (x, y) in enumerate(zip(aa, ab)) if x == y]
+            if not eq or (ha != hb and not (ha in CLASS_LINKS and hb in CLASS_LINKS)
+                          and not any(RE_SKOLEM.fullmatch(aa[k]) for k in eq)):
+                continue
+            cands.append((-len(eq), ha != hb, i, j))
+    for _, _, i, j in sorted(cands):
+        if i in matched_a or j in matched_b:
+            continue
+        ra, rb = find(comp_of_a[i]), find(comp_of_b[j])
+        if ra != rb and ra in linked and rb in linked:
+            continue                             # a partial match never fuses two groups already formed
+        links.append((i, j, "partial"))
+        matched_a.add(i)
+        matched_b.add(j)
+        if ra != rb:
+            parent[ra] = rb
+        linked.add(find(rb))
+    roots = collections.defaultdict(lambda: {"a": [], "b": []})
+    for k, (mem, anc) in enumerate(comps_a):
+        roots[find(k)]["a"].append((mem, anc))
+    for k, (mem, anc) in enumerate(comps_b):
+        roots[find(na + k)]["b"].append((mem, anc))
+    groups, residue_a, residue_b = [], [], []
+    for r, sides in roots.items():
+        if r not in linked:
+            for mem, anc in sides["a"]:
+                residue_a.append({"atoms": [ga.atom_string(i) for i in mem], "anchors": sorted(anc)})
+            for mem, anc in sides["b"]:
+                residue_b.append({"atoms": [atom_b(j) for j in mem], "anchors": sorted(sym_b(s) for s in anc)})
+            continue
+        in_a = {i for mem, _ in sides["a"] for i in mem}
+        in_b = {j for mem, _ in sides["b"] for j in mem}
+        anchors = set().union(*(anc for _, anc in sides["a"])) | {sym_b(s) for _, anc in sides["b"] for s in anc}
+        groups.append({
+            "order": min(in_a),
+            "anchors": sorted(anchors),
+            "a": [[ga.atom_string(i) for i in mem] for mem, _ in sides["a"]],
+            "b": [[atom_b(j) for j in mem] for mem, _ in sides["b"]],
+            "matched": [{"a": ga.atom_string(i), "b": atom_b(j), "tier": tier, "differs": _differs(slots_a[i], slots_b[j])}
+                        for i, j, tier in sorted(links) if i in in_a],
+            "a_only": [ga.atom_string(i) for i in sorted(in_a - matched_a)],
+            "b_only": [atom_b(j) for j in sorted(in_b - matched_b)],
+        })
+    groups.sort(key=lambda g: g.pop("order"))
+    residue_a.sort(key=lambda r: r["atoms"])
+    residue_b.sort(key=lambda r: r["atoms"])
+    return {
+        "common": [ga.atom_string(i) for i in ga.idxs if i in ident_a],
+        "groups": groups,
+        "residue_a": residue_a,
+        "residue_b": residue_b,
+        "partial": sum(1 for _, _, t in links if t == "partial"),
+        "leftover_in_groups": sum(len(g["a_only"]) + len(g["b_only"]) for g in groups),
+        "residue_atoms": sum(len(r["atoms"]) for r in residue_a + residue_b),
+    }
+
+
+def write_pairs_md(path, pair_rows, args, corpora):
+    """one readable block per pair: sentences, common subgraph, aligned differing subgraphs, residue"""
+    par = [r for r in pair_rows if r["kind"] == "paraphrase"]
+    ctl = [r for r in pair_rows if r["kind"] != "paraphrase"]
+
+    def stats(rows):
+        return {
+            "pairs": len(rows), "identical": sum(1 for r in rows if r["identical_parse"]),
+            "common": sum(len(r["common"]) for r in rows), "near": sum(r["near"] for r in rows),
+            "partial": sum(r["partial"] for r in rows), "leftover": sum(r["leftover_in_groups"] for r in rows),
+            "residue_atoms": sum(r["residue_atoms"] for r in rows),
+            "residue_subgraphs": sum(len(r["residue_a"]) + len(r["residue_b"]) for r in rows),
+            "no_residue": sum(1 for r in rows if not r["residue_a"] and not r["residue_b"]),
+            "groups": sum(len(r["groups"]) for r in rows),
+        }
+
+    def sg(subgraphs):
+        return " ".join("{" + " ".join(s) + "}" for s in subgraphs) if subgraphs else "—"
+
+    def block(r):
+        un = sum(len(x["atoms"]) for x in r["residue_a"]), sum(len(x["atoms"]) for x in r["residue_b"])
+        head = (f"### {r['cls']} · {r['a']} ↔ {r['b']}" + (f" · control: {r['control_kind']}" if r["kind"] != "paraphrase" else "")
+                + f" · quality {r['quality']:.2f} · common {len(r['common'])} · aligned {r['near']} near + {r['partial']} partial"
+                f" · leftover {r['leftover_in_groups']} · residue A {len(r['residue_a'])} subgraph(s) / {un[0]} atom(s), "
+                f"B {len(r['residue_b'])} / {un[1]}" + (" · IDENTICAL PARSES" if r["identical_parse"] else "")
+                + (f" · {r['ambiguous']} renamings tied" if r["ambiguous"] > 1 else "") + (" · greedy" if r["method"] != "exact" else ""))
+        L = [head, "", f"A: {r['text_a']}", f"B: {r['text_b']}", "", "```",
+             "renaming a->b  " + " ".join(f"{k}->{v}" for k, v in sorted(r["mapping"].items())),
+             "common         " + (" ".join(r["common"]) if r["common"] else "—")]
+        for n, g in enumerate(r["groups"], 1):
+            L.append(f"group {n}        anchors {' '.join(g['anchors']) if g['anchors'] else '—'}")
+            L.append(f"  A            {sg(g['a'])}")
+            L.append(f"  B            {sg(g['b'])}")
+            for mt in g["matched"]:
+                L.append(f"  {mt['tier']:<8}     {mt['a']} ~ {mt['b']}   [{'; '.join(mt['differs']) or 'equal'}]")
+            if g["a_only"]:
+                L.append(f"  A only       {' '.join(g['a_only'])}")
+            if g["b_only"]:
+                L.append(f"  B only       {' '.join(g['b_only'])}")
+        L.append("residue A      " + (" ".join("{" + " ".join(x["atoms"]) + "}" + (f"@{','.join(x['anchors'])}" if x["anchors"] else "")
+                                               for x in r["residue_a"]) if r["residue_a"] else "—"))
+        L.append("residue B      " + (" ".join("{" + " ".join(x["atoms"]) + "}" + (f"@{','.join(x['anchors'])}" if x["anchors"] else "")
+                                               for x in r["residue_b"]) if r["residue_b"] else "—"))
+        L += ["```", ""]
+        return L
+
+    def summary(s):
+        return (f"- {s['pairs']} pairs, {s['identical']} with identical parses, {s['no_residue']} with no residue subgraph at all; "
+                f"{s['groups']} aligned groups\n"
+                f"- atoms: {s['common']} common; {s['near']} aligned by the method's near match + {s['partial']} by a partial match; "
+                f"{s['leftover']} left over inside aligned groups (A only / B only); {s['residue_atoms']} in {s['residue_subgraphs']} "
+                f"residue subgraphs (no counterpart on the other side)")
+    R = ["# §4.3.4 Paraphrase-Based Alignment — FAITHFUL arm — per-pair intermediate\n",
+         f"One block per pair from `{os.path.relpath(args.canonical, HERE)}` over {', '.join(os.path.relpath(c, HERE) for c in corpora)}: "
+         "the two sentences, the COMMON subgraph (the atoms the aligner matched identically under its skolem renaming), the differing "
+         "subgraphs ALIGNED across the pair, the atoms left over inside those, and the RESIDUE (subgraphs with no counterpart). "
+         f"The record is `{args.stem}_pairs.jsonl` (same content, one JSON object per pair); the method's outputs are `{args.stem}.jsonl / .md / .metta`.\n",
+         "## How to read a block (the view's rules, disclosed)\n",
+         "- Every atom is written in A's variable names; B's atoms are renamed through the alignment's `renaming a->b` (read it backwards); a variable "
+         "B has and A has not carries a prime (`x2'`). `~NEG` marks a negative-polarity atom. Only the aligner's eligible atoms appear "
+         "(Implication and surface atoms excluded, as in the method).",
+         "- `common` = the atoms matched identically: the maximum common subgraph the method found (its `identical` count).",
+         "- The atoms outside the common part are grouped into SUBGRAPHS per side: two atoms belong together when they share a node symbol that "
+         "the common part does not hold (a skolem, or a constant standing as a term's first argument, e.g. a compound kind); a symbol the "
+         "common part does hold is an ANCHOR — where the subgraph hangs — and never merges subgraphs. Subgraphs are written `{atom atom …}`.",
+         "- A `group` = subgraphs of A and of B aligned to each other. Tier `near` = the method's own near match (same arity, the same skolems in "
+         "the same positions, a head or constant substituted — the atoms counted in `near` and in the unit / role mappings). Tier `partial` = "
+         "this view's extra pass among the leftovers: same arity and at least one equal argument position, the equal position holding a skolem "
+         "unless the heads are equal or both are class links (Member / Inheritance / GroupOf / Name: the same lexeme asserted on both sides, e.g. a compound kind split into two Member atoms); taken greedily by (equal positions, equal head, atom order), one partner each, and never fusing two groups "
+         "the near matches already formed. `[…]` after a match lists exactly what differs (head, argument slot, arity, polarity).",
+         "- `A only` / `B only` = atoms inside an aligned group with no partner: the group's two sides render the same content with a "
+         "different number of atoms (a compound split, a role hung elsewhere).",
+         "- `residue A` / `residue B` = subgraphs with no counterpart on the other side at all, written `{…}@anchors`; these are the method's "
+         "unmatched atoms minus the partial matches and the leftovers above. The method's residue records (`kind residue` in the .jsonl) count "
+         "every unmatched atom, i.e. partial + leftover + residue here.\n",
+         "## Totals — paraphrase pairs\n", summary(stats(par)), ""]
+    if ctl:
+        R += ["## Totals — control pairs (item-E: same-polarity member × different-polarity member; a measurement column)\n", summary(stats(ctl)), ""]
+    R.append("## Paraphrase pairs\n")
+    for r in par:
+        R += block(r)
+    if ctl:
+        R.append("## Control pairs\n")
+        for r in ctl:
+            R += block(r)
+    open(path, "w", encoding="utf-8").write("\n".join(R) + "\n")
+
+
 # ----------------------------------------------------------------------------- main
 def main():
     ap = argparse.ArgumentParser()
@@ -423,10 +713,9 @@ def main():
             "mapping": al["mapping"], "method": al["method"], "renamings": al["renamings"], "ambiguous": al["ambiguous"],
             "n_a": al["n_a"], "n_b": al["n_b"], "identical": len(al["identical"]), "near": len(al["near"]),
             "quality": al["quality"], "identical_parse": al["quality"] == 1.0 and al["n_a"] == al["n_b"],
-            "near_atoms": [[ga.atom_string(i, al["mapping"]), gb.atom_string(j)] for i, j in al["near"]],
-            "unmatched_a": [ga.atom_string(i) for i in al["rest_a"]],
-            "unmatched_b": [gb.atom_string(j) for j in al["rest_b"]],
             "truncated": ga.truncated or gb.truncated,
+            "text_a": texts.get(p["a"], ""), "text_b": texts.get(p["b"], ""),
+            **pair_view(ga, gb, al),
         })
     print(f"aligned {len(pairs)} pairs ({time.time() - t0:.1f}s): exact {sum(1 for r in pair_rows if r['method'] == 'exact')}, "
           f"ambiguous {sum(1 for r in pair_rows if r['ambiguous'] > 1)}, identical parses "
@@ -494,6 +783,7 @@ def main():
         with open(os.path.join(args.out_dir, f"{args.stem}_pairs.jsonl"), "w", encoding="utf-8") as fh:
             for r in pair_rows:
                 fh.write(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n")
+        write_pairs_md(os.path.join(args.out_dir, f"{args.stem}_pairs.md"), pair_rows, args, args.corpus)
 
     # ---- Tier A scorecard (when the corpora carry target_rule labels) ----
     targets = collections.defaultdict(set)

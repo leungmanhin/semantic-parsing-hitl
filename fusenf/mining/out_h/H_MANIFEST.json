@@ -798,10 +798,11 @@
       "roles": "binary heads on an aligned event centre (class links excluded), matched by aligned centre + filler; role-lost when the other side has no atom there",
       "residue": "atoms matched on neither side, keyed by canonical form + the smallest unit instance around them whose other atoms matched; head_on_other_side = attachment slack vs true add/drop",
       "consistency": "support = distinct equivalence classes (never pairs); PASS at >= 3; identity mappings summarised per unit (self / other / lost)",
-      "rules": "unit mapping -> two implications into a provisional meta-node (Mn<shared heads>_<AltOrAlt>); role mapping -> minority head rewrites to majority (by occurrence count); residue with a matched context -> the context rewrites to itself without the atom"
+      "rules": "unit mapping -> two implications into a provisional meta-node (Mn<shared heads>_<AltOrAlt>); role mapping -> minority head rewrites to majority (by occurrence count); residue with a matched context -> the context rewrites to itself without the atom",
+      "pair_view": "the per-pair intermediate (align_faithful_pairs.jsonl + .md, one block per pair, added 2026-09-21): the two sentences, the COMMON subgraph (the method's identical atoms, in A's variable names; B renamed through the alignment, B-only variables primed), the differing subgraphs per side (atoms sharing a node symbol the common part does not hold; a symbol the common part holds is an anchor and never merges) ALIGNED across the pair in two tiers — near = the method's own one-substitution match, partial = a reading-only pass among the leftovers (same arity, >= 1 equal argument position holding a skolem unless the heads are equal or both are class links; greedy by equal positions then equal head; never fusing two near-formed groups) — the atoms left over inside aligned groups (A only / B only), and the RESIDUE = subgraphs with no counterpart at all; a view only, the method's outputs byte-identical"
      },
      "outputs": [
-      "mining/out_h/align_faithful.jsonl / .md / .metta + align_faithful_pairs.jsonl (per-pair intermediate) + align_faithful_notes.md",
+      "mining/out_h/align_faithful.jsonl / .md / .metta + align_faithful_pairs.jsonl + align_faithful_pairs.md (per-pair intermediate: sentences, common subgraph, aligned differing subgraphs, residue) + align_faithful_notes.md",
       "mining/out_ecmp/align_faithful.* (item-E twin with the Tier A scorecard)"
      ],
      "results": {
@@ -860,6 +861,16 @@
         "units_occurring": 772,
         "always_self": 496,
         "ever_other_or_lost": 276
+       },
+       "pair_view": {
+        "common_atoms": 1065,
+        "near": 115,
+        "partial": 126,
+        "leftover_in_groups": 166,
+        "residue_atoms": 184,
+        "residue_subgraphs": 142,
+        "pairs_without_residue": 93,
+        "aligned_groups": 161
        }
       },
       "item_E": {
@@ -889,7 +900,25 @@
         ]
        },
        "tierA_recall": "27/31 (misses CoAgent~GroupOf, destroy<-destruction, exhausted<-very_tired, walk<-take_a_walk; 3 by the provenance rule; 1 by a mapping with control support)",
-       "alt_targets": "dative 10/10 identical, voice 33/36"
+       "alt_targets": "dative 10/10 identical, voice 33/36",
+       "pair_view_paraphrase": {
+        "common_atoms": 2346,
+        "near": 326,
+        "partial": 106,
+        "leftover_in_groups": 118,
+        "residue_atoms": 104,
+        "residue_subgraphs": 58,
+        "pairs_without_residue": 367
+       },
+       "pair_view_control": {
+        "common_atoms": 1497,
+        "near": 417,
+        "partial": 20,
+        "leftover_in_groups": 65,
+        "residue_atoms": 854,
+        "residue_subgraphs": 405,
+        "pairs_without_residue": 214
+       }
       },
       "reading": "on H the method mostly confirms the parser (15% identical graphs; consistent non-identity mappings = the Theme/Patient/Agent wobble, corroborating §4.3.2 / #23 / §4.3.5); lexical mappings appear at support 2 and stop (172 pairs); residue = attachment slack from translator variance, made separable by the head-on-other-side and context fields; on item-E the designed swaps, converses and pruning cases are recovered with clean control columns; diff factoring not needed at unit granularity"
      },
