@@ -1,0 +1,74 @@
+{
+ "id": "N2",
+ "rule": "N — What-next",
+ "texts": [
+  "A lantern at the Sunken Cove dies before dawn.",
+  "What emerges from the water of the Sunken Cove?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qar-000001",
+   "sentence": "A lantern at the Sunken Cove dies before dawn.",
+   "parse": [
+    "(: e1_lantern (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e1_cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: e1_cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: e1_lantern_loc (LocatedIn sk_lantern_1 sunken_cove) (STV 1.0 0.99))",
+    "(: e1_die (Member sk_die_1 die) (STV 1.0 0.99))",
+    "(: e1_die_pt (Patient sk_die_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e1_die_time (TimeAtMost sk_die_1 dawn) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000001",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Name-plus-kind handling of \"the Sunken Cove\" follows the Kestrel River pattern, \"at\" correctly routes to LocatedIn as containment, the intransitive change-of-state subject takes Patient, \"before dawn\" takes the day-part TimeAtMost form verbatim from the instruction set, and no tense atom is emitted (bare present with an unanchored adjunct, no TODAY)."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qar-000002",
+   "sentence": "What emerges from the water of the Sunken Cove?",
+   "parse": [
+    "(: $prf (And (Member $w water) (PartOf $w sunken_cove) (Member $e emerge) (Agent $e $x) (Source $e $w)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000002",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Uses the context constant sunken_cove directly as Input prescribes, binds the unstated water by its kind as a query definite should, and puts 'from' in the event-side Source oblique. The intransitive subject of 'emerge' is bound as Agent (the 'when unclear, Agent' default), which will miss the answer if the stored statement gave that subject Theme or Patient as an un-powered or change-of-state mover."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: e1_lantern (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e1_cove_name (Name sunken_cove \"Sunken Cove\") (STV 1.0 0.99))",
+    "(: e1_cove_type (Member sunken_cove cove) (STV 1.0 0.99))",
+    "(: e1_lantern_loc (LocatedIn sk_lantern_1 sunken_cove) (STV 1.0 0.99))",
+    "(: e1_die (Member sk_die_1 die) (STV 1.0 0.99))",
+    "(: e1_die_pt (Patient sk_die_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e1_die_time (TimeAtMost sk_die_1 dawn) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qar-000001"
+   ]
+  }
+ ]
+}

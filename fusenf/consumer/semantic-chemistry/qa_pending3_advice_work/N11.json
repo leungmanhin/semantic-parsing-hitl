@@ -1,0 +1,198 @@
+{
+ "id": "N11",
+ "rule": "N — What-next",
+ "texts": [
+  "A wraith drains the lanterns of the West Row.",
+  "The drained lanterns attract a handful of nightmoths.",
+  "What happens to the thread harvest?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qar-000007",
+   "sentence": "A wraith drains the lanterns of the West Row.",
+   "parse": [
+    "(: q7_wraith (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: q7_drain (Member sk_drain_1 drain) (STV 1.0 0.99))",
+    "(: q7_agent (Agent sk_drain_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: q7_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: q7_patient (Patient sk_drain_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: q7_poss (Possession sk_lantern_1 west_row) (STV 1.0 0.99))",
+    "(: q7_row_type (Member west_row row) (STV 1.0 0.99))",
+    "(: q7_row_name (Name west_row \"West Row\") (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000007",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a definite plural DIRECT OBJECT of a distributive predicate ('drains the lanterns'): the per-member distribution rule (Implication (PartOf $x <group>) ...) is specified only for a group in the acting-subject role (and, separately, for a resultative's flat half), so the instruction set never says whether a group filling Patient / Theme also hands the predication down to its members"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the West Row' is correctly a proper noun (capitalized run exceeds the bare class word) as one opaque symbol with its Name string plus a separate kind atom and no modifier genus, and the definite plural correctly takes a group witness predicated as a unit. Whether 'the lanterns of the West Row' is part-whole (PartOf) rather than the opaque Possession is a genuine coin-flip under the section's single test, and the opaque fallback is defensible."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qar-000008",
+   "sentence": "The drained lanterns attract a handful of nightmoths.",
+   "parse": [
+    "(: att_ev (Member sk_attract_1 attract) (STV 1.0 0.99))",
+    "(: att_ag (Agent sk_attract_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: att_th (Theme sk_attract_1 sk_nightmoth_1) (STV 1.0 0.99))",
+    "(: moth_grp (GroupOf sk_nightmoth_1 nightmoth) (STV 1.0 0.99))",
+    "(: moth_card (CardinalityPhrase sk_nightmoth_1 \"a handful\") (STV 1.0 0.99))",
+    "(: moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: att_rule (Implication (PartOf $x sk_lantern_1) (And (Member (sk_attract $x) attract) (Agent (sk_attract $x) $x) (Theme (sk_attract $x) sk_nightmoth_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000008",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": null,
+      "issue": "The participial premodifier \"drained\" is left unencoded: a participle used as a modifier is an adjective, and a descriptive modifier on a definite plural distributes over the members as (Member $x drained), so a stated qualifier is silently dropped."
+     },
+     {
+      "statement": 6,
+      "issue": "The per-member rule gives every lantern the same sk_nightmoth_1 handful as its Theme, asserting that each lantern individually attracts the whole handful, whereas the count is stated only of the aggregate."
+     }
+    ],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The context group symbol sk_lantern_1 is correctly reused with none of its atoms re-emitted, \"a handful\" takes the vague-quantity CardinalityPhrase form, and the solid compound gets its genus (Inheritance nightmoth moth) with no modifier genus for the noun modifier \"night\". Roles (inanimate transitive subject to Agent, unchanged object to Theme) and the statusless bare simple present are right."
+   },
+   "adjudication": {
+    "id": "qar-000008",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Names and casing makes a participial premodifier an adjective (\"a laminated worktop\" -> (Member sk_worktop_1 laminated)) and Compound concepts routes a descriptive modifier on a definite plural through the distributive rule, so emitting nothing for \"drained\" silently drops a stated qualifier, which Core patterns forbids outright."
+     },
+     {
+      "index": 1,
+      "verdict": "confirm",
+      "reason": "The rule's shared constant sk_nightmoth_1 asserts that each lantern separately attracts that same counted handful, which the text states only of the aggregate, and Quantifiers, generics & scope makes a dependent existential under a universal a Skolem function ((sk_book $x), (sk_books $x) with its own count) unless a \"the same\" cue forces the shared reading, which this sentence does not give."
+     }
+    ],
+    "gaps_confirmed": [],
+    "new_gaps": [
+     "A plural subject with a distributive predicate whose object carries an AGGREGATE vague count (\"the lanterns attract a handful of nightmoths\"): the per-member rule Cardinality mandates has no licensed object term - a shared constant group asserts each member attracts the whole counted set, while a per-binding Skolem group (sk_moths $x) invents a per-member count the text states only of the aggregate; the doctrine gives no cue for suppressing the distribution rule in that case."
+    ],
+    "decision": "defect",
+    "defect_summary": "Issue 0: the compliant form adds the definite-plural distribution of the participial modifier onto the reused context group - (: lantern_drained (Implication (PartOf $x sk_lantern_1) (Member $x drained)) (STV 1.0 0.9)) - never a bare (Member sk_lantern_1 drained) on the group symbol. Issue 1: the compliant form keeps the group event with the counted object group and emits no per-member rule (the handful is the aggregate), or, if the distribution is kept, gives each binding its own Skolem-function group - (Theme (sk_attract $x) (sk_moths $x)) with (GroupOf (sk_moths $x) nightmoth) - and no shared cardinality.",
+    "notes": "Everything else checks out: the context group symbol sk_lantern_1 is reused with no context atom re-emitted and new indices do not collide, the inanimate transitive subject correctly takes Agent and the unchanged object Theme, the bare simple present correctly takes no status atom, and the solid compound nightmoth emits its head genus with none for the noun modifier \"night\"."
+   },
+   "mode": "statement",
+   "context": [
+    "(: q7_wraith (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: q7_drain (Member sk_drain_1 drain) (STV 1.0 0.99))",
+    "(: q7_agent (Agent sk_drain_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: q7_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: q7_patient (Patient sk_drain_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: q7_poss (Possession sk_lantern_1 west_row) (STV 1.0 0.99))",
+    "(: q7_row_type (Member west_row row) (STV 1.0 0.99))",
+    "(: q7_row_name (Name west_row \"West Row\") (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qar-000007"
+   ]
+  },
+  {
+   "field": "t3",
+   "corpus_id": "qar-000009",
+   "sentence": "What happens to the thread harvest?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (To $e $h) (Member $h thread_harvest)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000009",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The asked participant is attached with the preposition-named oblique (To $e $h), but \"what happens to X\" asks for the eventuality X undergoes, which the instruction set stores as Patient/Theme on X, so the pattern matches nothing a licensed statement parse would produce."
+     },
+     {
+      "statement": 0,
+      "issue": "Having abstracted the verb to $verb, the retained (To $e $h) no longer belongs to a \"happen\" frame and has the shape of the purpose connective over an event-noun witness, which the seeded PurposeOf bridge would read as the unknown event's goal."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an open participant question whose role in the answer is unknown (\"what happens to X\"): Queries supplies only the agentive pro-verb template \"What does Bob do?\" = (Member $e $verb) (Agent $e $b), and no role head may be a variable, so \"X in whatever role it plays\" cannot be asked",
+     "\"happen to\" in its befall sense: \"happen\" is addressed only as a light verb over an event-noun subject (\"the ceremony happened in March\"), never with a to-PP naming the affected entity"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The context holds no thread-harvest referent, so binding the definite by its kind rather than a context symbol is correct, and the fused thread_harvest is a licensed classifying modifier+head compound. The line is otherwise well-formed: one query, $prf/$tv wrapper, no status pin for the simple present, nothing asserted."
+   },
+   "adjudication": {
+    "id": "qar-000009",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Thematic roles puts an entity an event befalls in Patient (it changes) or Theme (it does not), so (To $e $h) binds a slot no answering statement parse would ever fill and the line asks for an event directed at the harvest rather than one that happens to it."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The frame half stands — once (Member $e $verb) abstracts the class, the To conjunct is licensed by nothing but the 'happen to' frame the abstraction discarded — but the PurposeOf half overstates, since a query line is never asserted and so no seeded bridge fires on it; the real, smaller hazard is that the line can spuriously match a stored purpose atom (To <event> <harvest-event>), 'harvest' being an event-noun."
+     }
+    ],
+    "gaps_confirmed": [
+     "\"What happens to X?\": Queries supplies only the agentive pro-verb template (Member $e $verb) (Agent $e $b), and no role head may be a variable, so a participant whose role in the answering event is unknown cannot be asked for",
+     "\"happen to\" in its befall sense is uncovered: happen is addressed only as a light verb over an event-noun subject (\"the ceremony happened in March\"), never with a to-PP naming the affected entity"
+    ],
+    "new_gaps": [
+     "To is overloaded and arity does not separate the senses: the binary purpose connective (To <main-event> <purpose-event>) and the preposition-named oblique (To <event> <entity>) share head and arity, and with an event-noun ('harvest', 'ceremony', 'show') in the second slot they are indistinguishable — the two Yet senses get an explicit arity disambiguator, To gets none",
+     "No licensed union over alternative ROLES for one asked participant: Dual-storage union enumerates alternative storage heads (exact vs bound, Time vs TimeAtLeast, …), not alternative roles, and the question is not disjunctive, so even the Patient-branch-union-Theme-branch fallback that a 'what happens to X' question needs is itself unlicensed"
+    ],
+    "decision": "defect",
+    "defect_summary": "The nearest compliant form swaps the To conjunct for the role the answering event would actually carry — (: $prf (And (Member $e $verb) (Patient $e $h) (Member $h thread_harvest)) $tv) plus the parallel Theme line — but no form the instruction set licenses can ask for the harvest in whatever role it plays (a role head cannot be a variable and no role-union device is defined), so there is no fully faithful fix; filed in new_gaps.",
+    "notes": "The rest of the line is sound: a single query, the $prf/$tv wrapper, $verb in the class slot on the \"What does Bob do?\" precedent, the definite bound by kind because the context holds no thread-harvest referent, no status pin for the simple present, and nothing asserted."
+   },
+   "mode": "query",
+   "context": [
+    "(: q7_wraith (Member sk_wraith_1 wraith) (STV 1.0 0.99))",
+    "(: q7_drain (Member sk_drain_1 drain) (STV 1.0 0.99))",
+    "(: q7_agent (Agent sk_drain_1 sk_wraith_1) (STV 1.0 0.99))",
+    "(: q7_lantern_grp (GroupOf sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: q7_patient (Patient sk_drain_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: q7_poss (Possession sk_lantern_1 west_row) (STV 1.0 0.99))",
+    "(: q7_row_type (Member west_row row) (STV 1.0 0.99))",
+    "(: q7_row_name (Name west_row \"West Row\") (STV 1.0 0.99))",
+    "(: att_ev (Member sk_attract_1 attract) (STV 1.0 0.99))",
+    "(: att_ag (Agent sk_attract_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: att_th (Theme sk_attract_1 sk_nightmoth_1) (STV 1.0 0.99))",
+    "(: moth_grp (GroupOf sk_nightmoth_1 nightmoth) (STV 1.0 0.99))",
+    "(: moth_card (CardinalityPhrase sk_nightmoth_1 \"a handful\") (STV 1.0 0.99))",
+    "(: moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))",
+    "(: att_rule (Implication (PartOf $x sk_lantern_1) (And (Member (sk_attract $x) attract) (Agent (sk_attract $x) $x) (Theme (sk_attract $x) sk_nightmoth_1))) (STV 1.0 0.9))"
+   ],
+   "context_of": [
+    "qar-000007",
+    "qar-000008"
+   ]
+  }
+ ]
+}

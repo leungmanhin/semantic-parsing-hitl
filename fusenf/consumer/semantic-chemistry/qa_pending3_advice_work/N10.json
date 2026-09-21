@@ -1,0 +1,72 @@
+{
+ "id": "N10",
+ "rule": "N — What-next",
+ "texts": [
+  "The feather store at the Watch is large.",
+  "What does each Keeper do in winter?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qar-000005",
+   "sentence": "The feather store at the Watch is large.",
+   "parse": [
+    "(: q5_store (Member sk_feather_store_1 feather_store) (STV 1.0 0.99))",
+    "(: q5_store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: q5_watch (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: q5_loc (LocatedIn sk_feather_store_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: q5_large (Member sk_feather_store_1 large) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000005",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "'the Watch' correctly takes the capitalized-common-noun default (definite witness + Member, no Name atom) because the capitalized run does not exceed the bare class word, and 'at' is on the LocatedIn containment list so the entity-attached static head is right for a noun-modifying position PP. 'feather store' fuses as a classifying modifier_noun with the head genus only, the noun modifier correctly left unexposed, and the copular property attaches by Member with no reification trigger present."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qar-000006",
+   "sentence": "What does each Keeper do in winter?",
+   "parse": [
+    "(: $prf (And (Member $x keeper) (Member $e $verb) (Agent $e $x) (Time $e winter)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000006",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "a universally-quantified wh-question over a kind ('What does each Keeper do?'): Queries only builds ground per-individual patterns, and gives no form that matches the Implication rule a generic 'each Keeper V-s' is stored as, so the query binds only if some keeper is separately individuated"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Follows the 'What does Bob do?' template with the subject bound by kind, no status atom for the bare present, and 'in winter' as a bare named-time symbol on Time (no season term exists). The context names no keeper, so kind binding rather than a context constant is correct here; 'each' has no carrier in a query and is simply dropped."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: q5_store (Member sk_feather_store_1 feather_store) (STV 1.0 0.99))",
+    "(: q5_store_genus (Inheritance feather_store store) (STV 1.0 0.99))",
+    "(: q5_watch (Member sk_watch_1 watch) (STV 1.0 0.99))",
+    "(: q5_loc (LocatedIn sk_feather_store_1 sk_watch_1) (STV 1.0 0.99))",
+    "(: q5_large (Member sk_feather_store_1 large) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qar-000005"
+   ]
+  }
+ ]
+}

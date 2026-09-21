@@ -1,0 +1,80 @@
+{
+ "id": "N12",
+ "rule": "N — What-next",
+ "texts": [
+  "A lantern on the Middle Row is untended through the night.",
+  "What happens to the lantern?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qar-000010",
+   "sentence": "A lantern on the Middle Row is untended through the night.",
+   "parse": [
+    "(: e2_lantern (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e2_row_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+    "(: e2_row_type (Member middle_row row) (STV 1.0 0.99))",
+    "(: e2_lantern_on (On sk_lantern_1 middle_row) (STV 1.0 0.99))",
+    "(: e2_untended_st (Member sk_untended_1 untended) (STV 1.0 0.99))",
+    "(: e2_untended_exp (Experiencer sk_untended_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e2_untended_time (Time sk_untended_1 night) (STV 1.0 0.99))",
+    "(: e2_untended_flat (Member sk_lantern_1 untended) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000010",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "durative \"through <a definite time period>\" frame adverbial (\"through the night\" = for the whole span): the instruction set has no carrier for the extent — During is restricted to during/while/throughout and needs a reified outer eventuality, Measure duration needs a stated count, and the bare-plural MeasureAtLeast rule does not apply to a singular definite period, so only the day-part Time atom survives and the \"whole night\" extent is dropped"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The copular time-modifier dual-emit (reified untended state + Experiencer + flat Member) is correct, \"untended\" is rightly a positive property (lexical antonym, not negation), and \"on the Middle Row\" correctly keeps the entity-attached surface preposition rather than LocatedIn. (Time sk_untended_1 night) records only the day-part, which is the closest licensed form given the gap above."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qar-000011",
+   "sentence": "What happens to the lantern?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (Patient $e sk_lantern_1)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000011",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an open-event question about a non-agentive participant ('What happens to the lantern?'): with the verb unknown the participant's thematic role cannot be read off it, and the instruction set licenses neither a variable relation head nor a role union, so one role must be guessed and the query misses a stored Theme / Experiencer / Recipient lantern"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Correctly reuses the context constant sk_lantern_1 directly per Input rather than re-binding it by kind, binds the event class with $verb on the 'What does Bob do?' template, and adds no status atom for the bare present. Patient is the best available guess for the 'happens to' undergoer, but it is a guess the instruction set does not settle."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: e2_lantern (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e2_row_name (Name middle_row \"Middle Row\") (STV 1.0 0.99))",
+    "(: e2_row_type (Member middle_row row) (STV 1.0 0.99))",
+    "(: e2_lantern_on (On sk_lantern_1 middle_row) (STV 1.0 0.99))",
+    "(: e2_untended_st (Member sk_untended_1 untended) (STV 1.0 0.99))",
+    "(: e2_untended_exp (Experiencer sk_untended_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e2_untended_time (Time sk_untended_1 night) (STV 1.0 0.99))",
+    "(: e2_untended_flat (Member sk_lantern_1 untended) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qar-000010"
+   ]
+  }
+ ]
+}

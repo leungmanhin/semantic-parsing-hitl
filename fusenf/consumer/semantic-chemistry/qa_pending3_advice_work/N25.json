@@ -1,0 +1,167 @@
+{
+ "id": "N25",
+ "rule": "N — What-next",
+ "texts": [
+  "A Keeper dims a lantern on the Cliff Path.",
+  "The dim lantern attracts a handful of nightmoths.",
+  "What happens to the thread harvest?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qar-000016",
+   "sentence": "A Keeper dims a lantern on the Cliff Path.",
+   "parse": [
+    "(: e4_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: e4_dim_ev (Member sk_dim_1 dim) (STV 1.0 0.99))",
+    "(: e4_dim_ag (Agent sk_dim_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e4_dim_pt (Patient sk_dim_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e4_lantern (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e4_lantern_on (On sk_lantern_1 cliff_path) (STV 1.0 0.99))",
+    "(: e4_cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: e4_cp_type (Member cliff_path path) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000016",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "covered",
+    "q2_gaps": [],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "\"A Keeper\" is correctly a common-noun witness with no Name atom, \"on the Cliff Path\" correctly keeps the entity-attached surface preposition, and the present tense correctly yields no status atom. The PP has a second coherent attachment site (Location on the dimming event), but that is a world-knowledge lean rather than the genuine equipoise the multiple-readings trigger requires, so the single entity-modifier reading is in order."
+   },
+   "adjudication": null,
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qar-000017",
+   "sentence": "The dim lantern attracts a handful of nightmoths.",
+   "parse": [
+    "(: e17_dim (Member sk_lantern_1 dim) (STV 1.0 0.99))",
+    "(: e17_attract (Member sk_attract_1 attract) (STV 1.0 0.99))",
+    "(: e17_attract_ag (Agent sk_attract_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e17_group (GroupOf sk_group_1 night_moth) (STV 1.0 0.99))",
+    "(: e17_group_card (CardinalityPhrase sk_group_1 \"handful\") (STV 1.0 0.99))",
+    "(: e17_attract_th (Theme sk_attract_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e17_moth_genus (Inheritance night_moth moth) (STV 1.0 0.99))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000017",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "solid-spelled compound kind ('nightmoths'): the instructions require the head genus and bar the noun modifier's genus, but never fix whether the compound symbol keeps the solid spelling (nightmoth) or is split (night_moth)",
+     "the canonical CardinalityPhrase lexicon string for a vague-quantity phrase: the instructions name the phrase as 'a handful' but defer normalization to seeded_rules.metta, so whether the article is kept in the recorded string is not stated"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Reuses sk_lantern_1 for the definite and re-emits none of its context atoms; the descriptive 'dim' is licensed by the text's own word and is a different atom from the context's dim event. The inanimate transitive subject is correctly Agent, the unaltered object group Theme, the noun modifier 'night' correctly unexposed, and the recorded phrase string is 'handful' where the prompt writes 'a handful'."
+   },
+   "adjudication": null,
+   "mode": "statement",
+   "context": [
+    "(: e4_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: e4_dim_ev (Member sk_dim_1 dim) (STV 1.0 0.99))",
+    "(: e4_dim_ag (Agent sk_dim_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e4_dim_pt (Patient sk_dim_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e4_lantern (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e4_lantern_on (On sk_lantern_1 cliff_path) (STV 1.0 0.99))",
+    "(: e4_cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: e4_cp_type (Member cliff_path path) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qar-000016"
+   ]
+  },
+  {
+   "field": "t3",
+   "corpus_id": "qar-000018",
+   "sentence": "What happens to the thread harvest?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (To $e $h) (Member $h thread_harvest)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000018",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 0,
+      "issue": "The asked participant is attached with the preposition-named oblique (To $e $h), but \"what happens to X\" asks for the eventuality X undergoes, which the instruction set stores as Patient/Theme on X, so the pattern matches nothing a licensed statement parse would produce."
+     },
+     {
+      "statement": 0,
+      "issue": "Having abstracted the verb to $verb, the retained (To $e $h) no longer belongs to a \"happen\" frame and has the shape of the purpose connective over an event-noun witness, which the seeded PurposeOf bridge would read as the unknown event's goal."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "an open participant question whose role in the answer is unknown (\"what happens to X\"): Queries supplies only the agentive pro-verb template \"What does Bob do?\" = (Member $e $verb) (Agent $e $b), and no role head may be a variable, so \"X in whatever role it plays\" cannot be asked",
+     "\"happen to\" in its befall sense: \"happen\" is addressed only as a light verb over an event-noun subject (\"the ceremony happened in March\"), never with a to-PP naming the affected entity"
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The context holds no thread-harvest referent, so binding the definite by its kind rather than a context symbol is correct, and the fused thread_harvest is a licensed classifying modifier+head compound. The line is otherwise well-formed: one query, $prf/$tv wrapper, no status pin for the simple present, nothing asserted."
+   },
+   "adjudication": {
+    "id": "qar-000018",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "Queries requires the pattern to be built exactly as the matching statement would be (same classes, roles), and an entity that undergoes an eventuality is stored as that event's Patient or Theme, so the surface-To oblique binds a slot no answer statement would fill - it asks which events are directed at the harvest rather than which eventuality befalls it."
+     },
+     {
+      "index": 1,
+      "verdict": "partial",
+      "reason": "The half that stands is structural - once the verb is abstracted to $verb the retained (To $e $h) records no \"happen to\" frame and is the very binary head the purpose connective uses - but the PurposeOf-misreading half is overstated, since a query asserts nothing into the KB and that branch could only bind a purpose-To whose second argument is itself a thread_harvest-typed referent."
+     }
+    ],
+    "gaps_confirmed": [
+     "No undergoer-side pro-verb template: Queries supplies only the agentive (Member $e $verb) (Agent $e $b) form, and no role head may be a variable, so \"X in whatever role it plays\" cannot be asked.",
+     "\"happen to\" in its befall sense is uncovered: happen appears only as a light verb over an event-noun subject (\"the ceremony happened in March\"), never with a to-PP naming the affected entity."
+    ],
+    "new_gaps": [
+     "To is an overloaded binary head - the purpose connective (To <main-event> <purpose-event>) and the preposition-named oblique (To <event> <entity>) are not separable by arity the way the unary aspectual Yet is separated from the binary adversative Yet, and the seeded PurposeOf bridge fires on the head alone, so a surface \"to\" oblique whose object is an event-denoting noun (a harvest, a ceremony) has no safely distinguishable encoding."
+    ],
+    "decision": "defect",
+    "defect_summary": "For the confirmed issue the compliant form drops the To oblique and asks the undergoer relation as a dual-storage union of two lines - (: $prf (And (Member $e $verb) (Patient $e $h) (Member $h thread_harvest)) $tv) and the same line with (Theme $e $h) - because which of the two roles stores the undergoer depends on a verb the question leaves open; the instruction set licenses the variable class slot (the \"What does Bob do?\" template) and the union device (Core patterns), but states no undergoer-side pro-verb template and permits no variable role head, so an answer storing the harvest in any other role (Recipient, Experiencer, an oblique) stays unaskable - the first confirmed gap above.",
+    "notes": "The rest of the line is right: one query, $prf/$tv wrapper, nothing asserted, no status atom for the simple present, the definite bound by its kind because the context holds no thread-harvest referent, and thread_harvest a legitimately fused classifier compound."
+   },
+   "mode": "query",
+   "context": [
+    "(: e4_keeper (Member sk_keeper_1 keeper) (STV 1.0 0.99))",
+    "(: e4_dim_ev (Member sk_dim_1 dim) (STV 1.0 0.99))",
+    "(: e4_dim_ag (Agent sk_dim_1 sk_keeper_1) (STV 1.0 0.99))",
+    "(: e4_dim_pt (Patient sk_dim_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e4_lantern (Member sk_lantern_1 lantern) (STV 1.0 0.99))",
+    "(: e4_lantern_on (On sk_lantern_1 cliff_path) (STV 1.0 0.99))",
+    "(: e4_cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: e4_cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: e17_dim (Member sk_lantern_1 dim) (STV 1.0 0.99))",
+    "(: e17_attract (Member sk_attract_1 attract) (STV 1.0 0.99))",
+    "(: e17_attract_ag (Agent sk_attract_1 sk_lantern_1) (STV 1.0 0.99))",
+    "(: e17_group (GroupOf sk_group_1 night_moth) (STV 1.0 0.99))",
+    "(: e17_group_card (CardinalityPhrase sk_group_1 \"handful\") (STV 1.0 0.99))",
+    "(: e17_attract_th (Theme sk_attract_1 sk_group_1) (STV 1.0 0.99))",
+    "(: e17_moth_genus (Inheritance night_moth moth) (STV 1.0 0.99))"
+   ],
+   "context_of": [
+    "qar-000016",
+    "qar-000017"
+   ]
+  }
+ ]
+}

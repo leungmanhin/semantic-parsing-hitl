@@ -1,0 +1,12 @@
+{"id": "qar-000008", "run": 1,
+ "issues": [{"index": 0,
+             "verdict": "confirm",
+             "reason": "Names and casing makes a participial premodifier an adjective (\"a laminated worktop\" -> (Member sk_worktop_1 laminated)) and Compound concepts routes a descriptive modifier on a definite plural through the distributive rule, so emitting nothing for \"drained\" silently drops a stated qualifier, which Core patterns forbids outright."},
+            {"index": 1,
+             "verdict": "confirm",
+             "reason": "The rule's shared constant sk_nightmoth_1 asserts that each lantern separately attracts that same counted handful, which the text states only of the aggregate, and Quantifiers, generics & scope makes a dependent existential under a universal a Skolem function ((sk_book $x), (sk_books $x) with its own count) unless a \"the same\" cue forces the shared reading, which this sentence does not give."}],
+ "gaps_confirmed": [],
+ "new_gaps": ["A plural subject with a distributive predicate whose object carries an AGGREGATE vague count (\"the lanterns attract a handful of nightmoths\"): the per-member rule Cardinality mandates has no licensed object term - a shared constant group asserts each member attracts the whole counted set, while a per-binding Skolem group (sk_moths $x) invents a per-member count the text states only of the aggregate; the doctrine gives no cue for suppressing the distribution rule in that case."],
+ "decision": "defect",
+ "defect_summary": "Issue 0: the compliant form adds the definite-plural distribution of the participial modifier onto the reused context group - (: lantern_drained (Implication (PartOf $x sk_lantern_1) (Member $x drained)) (STV 1.0 0.9)) - never a bare (Member sk_lantern_1 drained) on the group symbol. Issue 1: the compliant form keeps the group event with the counted object group and emits no per-member rule (the handful is the aggregate), or, if the distribution is kept, gives each binding its own Skolem-function group - (Theme (sk_attract $x) (sk_moths $x)) with (GroupOf (sk_moths $x) nightmoth) - and no shared cardinality.",
+ "notes": "Everything else checks out: the context group symbol sk_lantern_1 is reused with no context atom re-emitted and new indices do not collide, the inanimate transitive subject correctly takes Agent and the unchanged object Theme, the bare simple present correctly takes no status atom, and the solid compound nightmoth emits its head genus with none for the noun modifier \"night\"."}

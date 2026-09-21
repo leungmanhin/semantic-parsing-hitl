@@ -1,0 +1,7 @@
+(: att_ev (Member sk_attract_1 attract) (STV 1.0 0.99))
+(: att_ag (Agent sk_attract_1 sk_lantern_1) (STV 1.0 0.99))
+(: att_th (Theme sk_attract_1 sk_nightmoth_1) (STV 1.0 0.99))
+(: moth_grp (GroupOf sk_nightmoth_1 nightmoth) (STV 1.0 0.99))
+(: moth_card (CardinalityPhrase sk_nightmoth_1 "a handful") (STV 1.0 0.99))
+(: moth_genus (Inheritance nightmoth moth) (STV 1.0 0.99))
+(: att_rule (Implication (PartOf $x sk_lantern_1) (And (Member (sk_attract $x) attract) (Agent (sk_attract $x) $x) (Theme (sk_attract $x) sk_nightmoth_1))) (STV 1.0 0.9))

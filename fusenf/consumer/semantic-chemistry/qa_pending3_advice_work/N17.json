@@ -1,0 +1,117 @@
+{
+ "id": "N17",
+ "rule": "N — What-next",
+ "texts": [
+  "The lanterns of three Cliff Path stations burn extra mire-essence.",
+  "What happens to the lanterns of those stations?"
+ ],
+ "fields": [
+  {
+   "field": "t1",
+   "corpus_id": "qar-000012",
+   "sentence": "The lanterns of three Cliff Path stations burn extra mire-essence.",
+   "parse": [
+    "(: e3_station_grp (GroupOf sk_stations_1 station) (STV 1.0 0.99))",
+    "(: e3_station_card (Cardinality sk_stations_1 3) (STV 1.0 0.99))",
+    "(: e3_station_poss (Possession sk_stations_1 cliff_path) (STV 1.0 0.99))",
+    "(: e3_cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: e3_cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: e3_lantern_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: e3_lantern_poss (Possession sk_lanterns_1 sk_stations_1) (STV 1.0 0.99))",
+    "(: e3_burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: e3_burn_ag (Agent sk_burn_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: e3_burn_pt (Patient sk_burn_1 sk_mire_essence_1) (STV 1.0 0.99))",
+    "(: e3_me_type (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: e3_me_deg (Degree sk_mire_essence_1 quantity extra) (STV 1.0 0.99))",
+    "(: e3_me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: e3_burn_rule (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) sk_mire_essence_1))) (STV 1.0 0.9))"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000012",
+    "run": 1,
+    "q1_faithful": "partial",
+    "q1_issues": [
+     {
+      "statement": 13,
+      "issue": "The per-member distribution rule reuses the single constant sk_mire_essence_1 as each member's Patient, asserting that every lantern burns that same portion, where the object is an indefinite mass introduced under the distributed plural and so is a dependent existential (a Skolem term of $x per the dependent-existential rule)."
+     }
+    ],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "\"extra\" as an above-normal / additive quantity modifier on a mass noun: the Degree quantity-marker vocabulary is a closed three-symbol set (excessive / insufficient / sufficient) tied to too much / too little / enough, and no other carrier is defined for a comparative-quantity modifier with an elided standard"
+    ],
+    "q3_context_leak": "na",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "Statement 11 coins a fourth quantity marker, (Degree sk_mire_essence_1 quantity extra), for the gap above. The Northgate-spokesman Possession for \"Cliff Path stations\", the group+Cardinality+group-event+per-member-rule shape for the counted plural, and the mire_essence genus (noun modifier not exposed) are all correct."
+   },
+   "adjudication": {
+    "id": "qar-000012",
+    "run": 1,
+    "issues": [
+     {
+      "index": 0,
+      "verdict": "confirm",
+      "reason": "The indefinite mass object under a distributed plural is a dependent existential, which Quantifiers, generics & scope encodes as a Skolem function of the bound variable (a shared constant is reserved for 'the same Y' / 'a certain Y', and the ambiguity default gives the first — universal — quantifier wide scope), so (Patient (sk_burn $x) sk_mire_essence_1) asserts that every lantern burns one and the same portion, which the text does not state."
+     }
+    ],
+    "gaps_confirmed": [
+     "\"extra\" as an above-normal / additive quantity modifier on a mass noun: the (Degree <N> quantity <marker>) vocabulary is the closed set excessive / insufficient / sufficient tied to too much / too little / enough, and an elided-standard comparative quantity word has no other carrier — Comparatives & degree only says to drop such a comparative and record the gap"
+    ],
+    "new_gaps": [
+     "A mass object under a per-member distribution rule has no defined shape: the dependent-existential machinery is written for count witnesses, and nothing relates a member's Skolem portion (sk_mire_essence $x) to the group event's mass witness sk_mire_essence_1 — the Partitives mass apparatus (Member + PartOf + ProportionOf, no GroupOf) is not wired into distribution rules, so the two would sit unconnected",
+     "A modified bare mass object in a habitual clause has no settled filler: Existential and Coordination & plurals keep the bare kind symbol for a non-specific / kind-level object (\"grows wheat\", \"pays tax\"), but a modifier like \"extra\" needs an individual bearer and no rule says a modifier promotes the kind filler to a witness"
+    ],
+    "decision": "defect",
+    "defect_summary": "The compliant form makes the burned essence a dependent existential inside the rule — (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) (sk_mire_essence $x)) (Member (sk_mire_essence $x) mire_essence))) — with the quantity modifier likewise per member, though that modifier's own carrier stays gap-blocked.",
+    "notes": "Everything else checks out: the Northgate-style Possession for \"Cliff Path stations\", the name-internal kind atom (Member cliff_path path), group + Cardinality + group event + per-member rule for the counted plural, Patient for burn's consumed object, no tense atom on the simple-present habitual, and mire_essence carrying its genus only (a noun modifier is never exposed). I agree with the reviewer that the coined marker in (Degree sk_mire_essence_1 quantity extra) is graceful improvisation in gap territory rather than a defect — it is well-typed and true of the text, and Core patterns bars silently dropping a stated qualifier."
+   },
+   "mode": "statement"
+  },
+  {
+   "field": "t2",
+   "corpus_id": "qar-000013",
+   "sentence": "What happens to the lanterns of those stations?",
+   "parse": [
+    "(: $prf (And (Member $e $verb) (Patient $e sk_lanterns_1)) $tv)"
+   ],
+   "census": "ok",
+   "review": {
+    "id": "qar-000013",
+    "run": 1,
+    "q1_faithful": "yes",
+    "q1_issues": [],
+    "q2_coverage": "gap",
+    "q2_gaps": [
+     "An open-verb undergoer question (\"what happens to X?\"): the Queries section supplies only the agent-side \"What does X do?\" template, and with the verb left as an unknown the undergoer's role slot is verb-dependent (Patient for a change-of-state verb, Theme for displacement, Experiencer for a state), with no licensed union over role slots — the Dual-storage union pattern lists its instances explicitly and role alternation is not among them."
+    ],
+    "q3_context_leak": "none",
+    "q3_leaks": [],
+    "q4_unlicensed_heads": [],
+    "notes": "The context-identified referent \"the lanterns of those stations\" is correctly bound as the constant sk_lanterns_1 directly rather than rebuilt from its GroupOf/Possession atoms, per the Input section. Consequence of the gap: the sole Patient branch matches nothing stored under Theme or Experiencer."
+   },
+   "adjudication": null,
+   "mode": "query",
+   "context": [
+    "(: e3_station_grp (GroupOf sk_stations_1 station) (STV 1.0 0.99))",
+    "(: e3_station_card (Cardinality sk_stations_1 3) (STV 1.0 0.99))",
+    "(: e3_station_poss (Possession sk_stations_1 cliff_path) (STV 1.0 0.99))",
+    "(: e3_cp_name (Name cliff_path \"Cliff Path\") (STV 1.0 0.99))",
+    "(: e3_cp_type (Member cliff_path path) (STV 1.0 0.99))",
+    "(: e3_lantern_grp (GroupOf sk_lanterns_1 lantern) (STV 1.0 0.99))",
+    "(: e3_lantern_poss (Possession sk_lanterns_1 sk_stations_1) (STV 1.0 0.99))",
+    "(: e3_burn_ev (Member sk_burn_1 burn) (STV 1.0 0.99))",
+    "(: e3_burn_ag (Agent sk_burn_1 sk_lanterns_1) (STV 1.0 0.99))",
+    "(: e3_burn_pt (Patient sk_burn_1 sk_mire_essence_1) (STV 1.0 0.99))",
+    "(: e3_me_type (Member sk_mire_essence_1 mire_essence) (STV 1.0 0.99))",
+    "(: e3_me_deg (Degree sk_mire_essence_1 quantity extra) (STV 1.0 0.99))",
+    "(: e3_me_genus (Inheritance mire_essence essence) (STV 1.0 0.99))",
+    "(: e3_burn_rule (Implication (PartOf $x sk_lanterns_1) (And (Member (sk_burn $x) burn) (Agent (sk_burn $x) $x) (Patient (sk_burn $x) sk_mire_essence_1))) (STV 1.0 0.9))"
+   ],
+   "context_of": [
+    "qar-000012"
+   ]
+  }
+ ]
+}

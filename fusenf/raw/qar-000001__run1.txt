@@ -1,0 +1,7 @@
+(: e1_lantern (Member sk_lantern_1 lantern) (STV 1.0 0.99))
+(: e1_cove_name (Name sunken_cove "Sunken Cove") (STV 1.0 0.99))
+(: e1_cove_type (Member sunken_cove cove) (STV 1.0 0.99))
+(: e1_lantern_loc (LocatedIn sk_lantern_1 sunken_cove) (STV 1.0 0.99))
+(: e1_die (Member sk_die_1 die) (STV 1.0 0.99))
+(: e1_die_pt (Patient sk_die_1 sk_lantern_1) (STV 1.0 0.99))
+(: e1_die_time (TimeAtMost sk_die_1 dawn) (STV 1.0 0.99))

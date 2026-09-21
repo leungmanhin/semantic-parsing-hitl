@@ -63,6 +63,7 @@ CORPORA = {
     "events_pending3": ("events_pending3.jsonl", ["events_pending3.parses.jsonl"], "external consumer (events pending re-parse set 3; passages)"),
     "qa_pending": ("qa_pending.jsonl", ["qa_pending.parses.jsonl"], "external consumer (QA task stream: queries, N premises, C interventions; chained context)"),
     "qa_pending2": ("qa_pending2.jsonl", ["qa_pending2.parses.jsonl"], "external consumer (QA task stream set 2: 15 rewritten entries; chained context)"),
+    "qa_pending3": ("qa_pending3.jsonl", ["qa_pending3.parses.jsonl"], "external consumer (QA task stream set 3: 8 rewritten what-next entries; chained context)"),
     "fixpack":  ("fixpack.jsonl",  ["fixpack.parses.jsonl"], "validation"),
     "fixpack3": ("fixpack3.jsonl", ["fixpack3.parses.jsonl"], "validation"),
     "fixpack31": ("fixpack31.jsonl", ["fixpack31.parses.jsonl"], "validation"),

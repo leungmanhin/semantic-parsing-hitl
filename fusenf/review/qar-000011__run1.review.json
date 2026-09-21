@@ -1,0 +1,9 @@
+{"id": "qar-000011", "run": 1,
+ "q1_faithful": "yes",
+ "q1_issues": [],
+ "q2_coverage": "gap",
+ "q2_gaps": ["an open-event question about a non-agentive participant ('What happens to the lantern?'): with the verb unknown the participant's thematic role cannot be read off it, and the instruction set licenses neither a variable relation head nor a role union, so one role must be guessed and the query misses a stored Theme / Experiencer / Recipient lantern"],
+ "q3_context_leak": "none",
+ "q3_leaks": [],
+ "q4_unlicensed_heads": [],
+ "notes": "Correctly reuses the context constant sk_lantern_1 directly per Input rather than re-binding it by kind, binds the event class with $verb on the 'What does Bob do?' template, and adds no status atom for the bare present. Patient is the best available guess for the 'happens to' undergoer, but it is a guess the instruction set does not settle."}
