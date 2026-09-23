@@ -628,12 +628,15 @@ def write_metta(path, args, modes, thresholds, results, n_texts, dim, n_occ):
                  + (";;   ;; JSD: <value>   shared clusters: <count> e.g. {cluster members} …\n" if gate_jsd else
                     ";;   ;; cosine: <value> (gate)   JSD: <value>   shared clusters: <count> e.g. {cluster members} …\n")
                  + ";;   ;; A: <query A>\n;;   ;; B: <query B>\n"
-                 ";;   (Implication <minority slot> <the same slot relabelled to the majority head>)\n"
-                 ";;     = the merge as the rule it would become (the paper: the two slots 'fulfil the same semantic role');\n"
-                 ";;     the majority side (larger n; tie -> the alphabetically first name) is the canonical form; a role pair\n"
-                 ";;     gives the role-vocabulary collapse (<minority role> -> <majority role>); a pair whose slots already share\n"
-                 ";;     the head has no rule (the merge is done by construction) and says so; rendered for PASS and FAIL alike,\n"
-                 ";;     the verdict is on the record; naming and direction provisional, the gauntlet decides\n")
+                 ";;   the merge as the rule it would become (the paper: the two slots 'fulfil the same semantic role'), by bucket:\n"
+                 ";;     same class, different head:  (Implication <minority slot> <the same slot relabelled to the majority head>)\n"
+                 ";;       — the majority side (larger n; tie -> the alphabetically first name) is the canonical form;\n"
+                 ";;     different class and head:    (Implication <slot A> (Mn<A>Or<B> <centre> $x1))  (Implication <slot B> (Mn<A>Or<B> <centre> $x1))\n"
+                 ";;       — neither frame is relabelled; the two slots are unified under one provisional shared slot node\n"
+                 ";;       (majority side named first); the converse shape, e.g. buy.Agent and sell.Recipient;\n"
+                 ";;     same head:                    no rule (the merge is done by construction), and the record says so;\n"
+                 ";;     a role pair gives the role-vocabulary collapse (<minority role> -> <majority role>); rendered for PASS and\n"
+                 ";;     FAIL alike, the verdict is on the record; naming and direction provisional, the gauntlet decides\n")
         listing = ([";; Role pairs: every head pair."] if do_role else []) + ([
             ";; Slot pairs: every pair with >= 2 shared clusters (the gate's first condition); a pair sharing fewer\n"
             ";; clusters cannot pass and is not listed." if args.metta_fail_slots == "guard" else
@@ -657,16 +660,26 @@ def write_metta(path, args, modes, thresholds, results, n_texts, dim, n_occ):
             """the majority side (larger n; tie -> the alphabetically first name) is the canonical form"""
             return na > nb or (na == nb and name_a <= name_b)
 
+        def camel(tok):
+            return "".join(w[:1].upper() + w[1:] for w in tok.replace("<unclassed>", "any").replace("-", "_").split("_") if w)
+
         def slot_rule(kind, r):
-            """The merge as a rule: the minority slot's head relabelled to the majority slot's head, on the
-            minority slot's own class (the batch-1 role-canonicalization shape). None when both slots already
-            carry the same head (the merge the paper describes is done by construction)."""
+            """The merge as a rule. Same class, different head: the minority slot's head relabelled to the majority
+            slot's head on that class (the batch-1 role-canonicalization shape). Different class AND head (the
+            converse bucket): neither frame is relabelled — the two slots are unified under one provisional shared
+            slot node, two implications (owner 2026-09-24: the single relabel dropped the majority side's class and
+            read as 'sell's Recipient is sell's Agent'). None when both slots already carry the same head (the merge
+            the paper describes is done by construction)."""
             if r["role_a"] == r["role_b"]:
                 return None
             a_first = canonical_first(r["n_a"], r["n_b"], r["slot_a"], r["slot_b"])
-            maj_role = r["role_a"] if a_first else r["role_b"]
+            maj_cls, maj_role = (r["class_a"], r["role_a"]) if a_first else (r["class_b"], r["role_b"])
             min_cls, min_role = (r["class_b"], r["role_b"]) if a_first else (r["class_a"], r["role_a"])
-            return f"(Implication {render_slot(kind, min_cls, min_role)} {render_slot(kind, min_cls, maj_role)})"
+            if maj_cls == min_cls:
+                return f"(Implication {render_slot(kind, min_cls, min_role)} {render_slot(kind, min_cls, maj_role)})"
+            node = f"(Mn{camel(maj_cls)}{camel(maj_role)}Or{camel(min_cls)}{camel(min_role)} {'$e0' if kind == 'event' else '$x0'} $x1)"
+            return (f"(Implication {render_slot(kind, maj_cls, maj_role)} {node})\n"
+                    f"(Implication {render_slot(kind, min_cls, min_role)} {node})")
         if do_role:
             pp = []
             for r in R_["role_pairs"]:

@@ -35,12 +35,15 @@
 ;;   ;; cosine: <value> (gate)   JSD: <value>   shared clusters: <count> e.g. {cluster members} …
 ;;   ;; A: <query A>
 ;;   ;; B: <query B>
-;;   (Implication <minority slot> <the same slot relabelled to the majority head>)
-;;     = the merge as the rule it would become (the paper: the two slots 'fulfil the same semantic role');
-;;     the majority side (larger n; tie -> the alphabetically first name) is the canonical form; a role pair
-;;     gives the role-vocabulary collapse (<minority role> -> <majority role>); a pair whose slots already share
-;;     the head has no rule (the merge is done by construction) and says so; rendered for PASS and FAIL alike,
-;;     the verdict is on the record; naming and direction provisional, the gauntlet decides
+;;   the merge as the rule it would become (the paper: the two slots 'fulfil the same semantic role'), by bucket:
+;;     same class, different head:  (Implication <minority slot> <the same slot relabelled to the majority head>)
+;;       — the majority side (larger n; tie -> the alphabetically first name) is the canonical form;
+;;     different class and head:    (Implication <slot A> (Mn<A>Or<B> <centre> $x1))  (Implication <slot B> (Mn<A>Or<B> <centre> $x1))
+;;       — neither frame is relabelled; the two slots are unified under one provisional shared slot node
+;;       (majority side named first); the converse shape, e.g. buy.Agent and sell.Recipient;
+;;     same head:                    no rule (the merge is done by construction), and the record says so;
+;;     a role pair gives the role-vocabulary collapse (<minority role> -> <majority role>); rendered for PASS and
+;;     FAIL alike, the verdict is on the record; naming and direction provisional, the gauntlet decides
 ;; Slot pairs: every pair with >= 2 shared clusters (the gate's first condition); a pair sharing fewer
 ;; clusters cannot pass and is not listed.
 ;; An event slot renders as (And (Member $e0 <class>) (<Role> $e0 $x1)), an entity slot as
@@ -66,7 +69,8 @@
 ;; cosine: 1.00 (gate)   JSD: 0.0   shared clusters: 4 e.g. {pottery studio} {chef} {school} {depot}
 ;; A: (And (Member $e0 acquire) (Agent $e0 $x1))
 ;; B: (And (Member $e0 sell) (Recipient $e0 $x1))
-(Implication (And (Member $e0 sell) (Recipient $e0 $x1)) (And (Member $e0 sell) (Agent $e0 $x1)))
+(Implication (And (Member $e0 acquire) (Agent $e0 $x1)) (MnAcquireAgentOrSellRecipient $e0 $x1))
+(Implication (And (Member $e0 sell) (Recipient $e0 $x1)) (MnAcquireAgentOrSellRecipient $e0 $x1))
 
 ;; [same role, different class]  acquire.Theme ~ purchase.Theme   n 4 / 4   gate: PASS
 ;; A fillers: forklift, kiln, projector, crate ×0.5, lemon ×0.5   e.g. tierA-000010 tierA-000017
@@ -118,7 +122,8 @@
 ;; cosine: 1.00 (gate)   JSD: 0.0   shared clusters: 4 e.g. {pottery studio} {chef} {school} {depot}
 ;; A: (And (Member $e0 purchase) (Agent $e0 $x1))
 ;; B: (And (Member $e0 sell) (Recipient $e0 $x1))
-(Implication (And (Member $e0 sell) (Recipient $e0 $x1)) (And (Member $e0 sell) (Agent $e0 $x1)))
+(Implication (And (Member $e0 purchase) (Agent $e0 $x1)) (MnPurchaseAgentOrSellRecipient $e0 $x1))
+(Implication (And (Member $e0 sell) (Recipient $e0 $x1)) (MnPurchaseAgentOrSellRecipient $e0 $x1))
 
 ;; [same role, different class]  learn.Theme ~ teach.Theme   n 3 / 10   gate: PASS
 ;; A fillers: drill, glazing, song   e.g. tierA-000287 tierA-000292
@@ -243,7 +248,8 @@
 ;; cosine: 0.95 (gate)   JSD: 0.121   shared clusters: 4 e.g. {pottery studio} {school} {depot} {chef}
 ;; A: (And (Member $e0 buy) (Agent $e0 $x1))
 ;; B: (And (Member $e0 sell) (Recipient $e0 $x1))
-(Implication (And (Member $e0 sell) (Recipient $e0 $x1)) (And (Member $e0 sell) (Agent $e0 $x1)))
+(Implication (And (Member $e0 buy) (Agent $e0 $x1)) (MnBuyAgentOrSellRecipient $e0 $x1))
+(Implication (And (Member $e0 sell) (Recipient $e0 $x1)) (MnBuyAgentOrSellRecipient $e0 $x1))
 
 ;; [same role, different class]  acquire.Theme ~ buy.Theme   n 4 / 14   gate: PASS
 ;; A fillers: forklift, kiln, projector, crate ×0.5, lemon ×0.5   e.g. tierA-000010 tierA-000017
@@ -287,7 +293,8 @@
 ;; cosine: 0.94 (gate)   JSD: 0.113   shared clusters: 3 e.g. {Ravi, Armaan Jain, Ranbir Kapoor} {gallery} {crew, night crew}
 ;; A: (And (Member $e0 borrow) (Agent $e0 $x1))
 ;; B: (And (Member $e0 lend) (Recipient $e0 $x1))
-(Implication (And (Member $e0 borrow) (Agent $e0 $x1)) (And (Member $e0 borrow) (Recipient $e0 $x1)))
+(Implication (And (Member $e0 lend) (Recipient $e0 $x1)) (MnLendRecipientOrBorrowAgent $e0 $x1))
+(Implication (And (Member $e0 borrow) (Agent $e0 $x1)) (MnLendRecipientOrBorrowAgent $e0 $x1))
 
 ;; [different class and role]  borrow.Source ~ lend.Agent   n 3 / 10   gate: PASS
 ;; A fillers: depot, museum, neighbour   e.g. tierA-000307 tierA-000297
@@ -295,7 +302,8 @@
 ;; cosine: 0.94 (gate)   JSD: 0.113   shared clusters: 3 e.g. {museum} {neighbour, neighbouring} {depot}
 ;; A: (And (Member $e0 borrow) (Source $e0 $x1))
 ;; B: (And (Member $e0 lend) (Agent $e0 $x1))
-(Implication (And (Member $e0 borrow) (Source $e0 $x1)) (And (Member $e0 borrow) (Agent $e0 $x1)))
+(Implication (And (Member $e0 lend) (Agent $e0 $x1)) (MnLendAgentOrBorrowSource $e0 $x1))
+(Implication (And (Member $e0 borrow) (Source $e0 $x1)) (MnLendAgentOrBorrowSource $e0 $x1))
 
 ;; [different class and role]  learn.Agent ~ teach.Recipient   n 3 / 10   gate: PASS
 ;; A fillers: apprentice, child, squad   e.g. tierA-000287 tierA-000282
@@ -303,7 +311,8 @@
 ;; cosine: 0.94 (gate)   JSD: 0.113   shared clusters: 3 e.g. {apprentice} {child, children} {squad}
 ;; A: (And (Member $e0 learn) (Agent $e0 $x1))
 ;; B: (And (Member $e0 teach) (Recipient $e0 $x1))
-(Implication (And (Member $e0 learn) (Agent $e0 $x1)) (And (Member $e0 learn) (Recipient $e0 $x1)))
+(Implication (And (Member $e0 teach) (Recipient $e0 $x1)) (MnTeachRecipientOrLearnAgent $e0 $x1))
+(Implication (And (Member $e0 learn) (Agent $e0 $x1)) (MnTeachRecipientOrLearnAgent $e0 $x1))
 
 ;; [different class and role]  learn.Source ~ teach.Agent   n 3 / 10   gate: PASS
 ;; A fillers: coach, elder, potter   e.g. tierA-000282 tierA-000287
@@ -311,7 +320,8 @@
 ;; cosine: 0.94 (gate)   JSD: 0.113   shared clusters: 3 e.g. {potter} {elder} {coach, trainer}
 ;; A: (And (Member $e0 learn) (Source $e0 $x1))
 ;; B: (And (Member $e0 teach) (Agent $e0 $x1))
-(Implication (And (Member $e0 learn) (Source $e0 $x1)) (And (Member $e0 learn) (Agent $e0 $x1)))
+(Implication (And (Member $e0 teach) (Agent $e0 $x1)) (MnTeachAgentOrLearnSource $e0 $x1))
+(Implication (And (Member $e0 learn) (Source $e0 $x1)) (MnTeachAgentOrLearnSource $e0 $x1))
 
 ;; [same role, different class]  cause.Agent ~ destroy.Agent   n 3 / 8   gate: PASS
 ;; A fillers: fire, flood, storm   e.g. tierA-000223 tierA-000233
@@ -346,7 +356,8 @@
 ;; cosine: 0.91 (gate)   JSD: 0.196   shared clusters: 3 e.g. {coach, trainer} {school} {foreman}
 ;; A: (And (Member $e0 give) (Agent $e0 $x1))
 ;; B: (And (Member $e0 receive) (Source $e0 $x1))
-(Implication (And (Member $e0 receive) (Source $e0 $x1)) (And (Member $e0 receive) (Agent $e0 $x1)))
+(Implication (And (Member $e0 give) (Agent $e0 $x1)) (MnGiveAgentOrReceiveSource $e0 $x1))
+(Implication (And (Member $e0 receive) (Source $e0 $x1)) (MnGiveAgentOrReceiveSource $e0 $x1))
 
 ;; [different class and role]  give.Recipient ~ receive.Agent   n 12 / 3   gate: PASS
 ;; A fillers: recruit ×3, winner ×3, driver ×2, caller, foreman, query   e.g. tierA-000261 tierA-000263
@@ -354,7 +365,8 @@
 ;; cosine: 0.91 (gate)   JSD: 0.196   shared clusters: 3 e.g. {recruit} {winner, ward, win, well} {driver}
 ;; A: (And (Member $e0 give) (Recipient $e0 $x1))
 ;; B: (And (Member $e0 receive) (Agent $e0 $x1))
-(Implication (And (Member $e0 receive) (Agent $e0 $x1)) (And (Member $e0 receive) (Recipient $e0 $x1)))
+(Implication (And (Member $e0 give) (Recipient $e0 $x1)) (MnGiveRecipientOrReceiveAgent $e0 $x1))
+(Implication (And (Member $e0 receive) (Agent $e0 $x1)) (MnGiveRecipientOrReceiveAgent $e0 $x1))
 
 ;; [same role, different class]  decide.Agent ~ make.Agent   n 11 / 4   gate: PASS
 ;; A fillers: board ×3, judge ×3, committee ×2, case, family, north   e.g. tierA-000185 tierA-000189
@@ -415,7 +427,8 @@
 ;; cosine: 0.82 (gate)   JSD: 0.191   shared clusters: 2 e.g. {James Woods, Jeremy Irons} {Wilson, wilson}
 ;; A: (And (Member $e0 portray) (Theme $e0 $x1))
 ;; B: (And (Member $e0 win) (Agent $e0 $x1))
-(Implication (And (Member $e0 win) (Agent $e0 $x1)) (And (Member $e0 win) (Theme $e0 $x1)))
+(Implication (And (Member $e0 portray) (Theme $e0 $x1)) (MnPortrayThemeOrWinAgent $e0 $x1))
+(Implication (And (Member $e0 win) (Agent $e0 $x1)) (MnPortrayThemeOrWinAgent $e0 $x1))
 
 ;; [same role, different class]  begin.Patient ~ end.Patient   n 7 / 3   gate: PASS
 ;; A fillers: apple harvest ×2, dress rehearsal ×2, shoreline survey ×2, hearing   e.g. tierA-000067 tierA-000070
@@ -475,7 +488,8 @@
 ;; cosine: 0.71 (gate)   JSD: 0.308   shared clusters: 2 e.g. {Cowper, Bill Wrubel, Brian Packham, Carl Fenton, …} {governor, president}
 ;; A: (And (Member $e0 replace) (Agent $e0 $x1))
 ;; B: (And (Member $e0 succeed) (Theme $e0 $x1))
-(Implication (And (Member $e0 succeed) (Theme $e0 $x1)) (And (Member $e0 succeed) (Agent $e0 $x1)))
+(Implication (And (Member $e0 replace) (Agent $e0 $x1)) (MnReplaceAgentOrSucceedTheme $e0 $x1))
+(Implication (And (Member $e0 succeed) (Theme $e0 $x1)) (MnReplaceAgentOrSucceedTheme $e0 $x1))
 
 ;; [same role, different class]  acquire.Theme ~ sell.Theme   n 4 / 6   gate: PASS
 ;; A fillers: forklift, kiln, projector, crate ×0.5, lemon ×0.5   e.g. tierA-000010 tierA-000017
@@ -679,7 +693,8 @@
 ;; cosine: 0.32 (gate)   JSD: 0.587   shared clusters: 3 e.g. {tower} {query, search} {caller}
 ;; A: (And (Member $e0 answer) (Theme $e0 $x1))
 ;; B: (And (Member $e0 give) (Recipient $e0 $x1))
-(Implication (And (Member $e0 answer) (Theme $e0 $x1)) (And (Member $e0 answer) (Recipient $e0 $x1)))
+(Implication (And (Member $e0 give) (Recipient $e0 $x1)) (MnGiveRecipientOrAnswerTheme $e0 $x1))
+(Implication (And (Member $e0 answer) (Theme $e0 $x1)) (MnGiveRecipientOrAnswerTheme $e0 $x1))
 
 ;; [same class, different role]  discover.Agent ~ discover.Theme   n 7 / 9   gate: FAIL
 ;; A fillers: diver ×3, intern ×3, wreck   e.g. tierA-000133 tierA-000135
@@ -703,7 +718,8 @@
 ;; cosine: 0.31 (gate)   JSD: 0.613   shared clusters: 2 e.g. {manuscript} {loan application}
 ;; A: (And (Member $e0 reject) (Agent $e0 $x1))
 ;; B: (And (Member $e0 turn_down) (Theme $e0 $x1))
-(Implication (And (Member $e0 turn_down) (Theme $e0 $x1)) (And (Member $e0 turn_down) (Agent $e0 $x1)))
+(Implication (And (Member $e0 reject) (Agent $e0 $x1)) (MnRejectAgentOrTurnDownTheme $e0 $x1))
+(Implication (And (Member $e0 turn_down) (Theme $e0 $x1)) (MnRejectAgentOrTurnDownTheme $e0 $x1))
 
 ;; [different class and role]  reject.Theme ~ turn_down.Agent   n 8 / 3   gate: FAIL
 ;; A fillers: loan application ×2, manuscript ×2, proposal ×2, bank, editor   e.g. tierA-000162 tierA-000166
@@ -711,7 +727,8 @@
 ;; cosine: 0.31 (gate)   JSD: 0.613   shared clusters: 2 e.g. {editor} {bank}
 ;; A: (And (Member $e0 reject) (Theme $e0 $x1))
 ;; B: (And (Member $e0 turn_down) (Agent $e0 $x1))
-(Implication (And (Member $e0 turn_down) (Agent $e0 $x1)) (And (Member $e0 turn_down) (Theme $e0 $x1)))
+(Implication (And (Member $e0 reject) (Theme $e0 $x1)) (MnRejectThemeOrTurnDownAgent $e0 $x1))
+(Implication (And (Member $e0 turn_down) (Agent $e0 $x1)) (MnRejectThemeOrTurnDownAgent $e0 $x1))
 
 ;; [same role, different class]  appear.Agent ~ build.Agent   n 8 / 12   gate: FAIL
 ;; A fillers: person ×5, Brian Packham ×2, sister   e.g. tierC-000259 tierC-000260
@@ -737,7 +754,8 @@
 ;; cosine: 0.27 (gate)   JSD: 0.632   shared clusters: 3 e.g. {pottery studio} {chef} {depot}
 ;; A: (And (Member $e0 acquire) (Agent $e0 $x1))
 ;; B: (And (Member $e0 buy) (Theme $e0 $x1))
-(Implication (And (Member $e0 acquire) (Agent $e0 $x1)) (And (Member $e0 acquire) (Theme $e0 $x1)))
+(Implication (And (Member $e0 buy) (Theme $e0 $x1)) (MnBuyThemeOrAcquireAgent $e0 $x1))
+(Implication (And (Member $e0 acquire) (Agent $e0 $x1)) (MnBuyThemeOrAcquireAgent $e0 $x1))
 
 ;; [different class and role]  buy.Theme ~ purchase.Agent   n 14 / 4   gate: FAIL
 ;; A fillers: forklift ×3, kiln ×3, projector ×3, chef, crate, depot   e.g. tierA-000027 tierA-000021
@@ -745,7 +763,8 @@
 ;; cosine: 0.27 (gate)   JSD: 0.632   shared clusters: 3 e.g. {pottery studio} {chef} {depot}
 ;; A: (And (Member $e0 buy) (Theme $e0 $x1))
 ;; B: (And (Member $e0 purchase) (Agent $e0 $x1))
-(Implication (And (Member $e0 purchase) (Agent $e0 $x1)) (And (Member $e0 purchase) (Theme $e0 $x1)))
+(Implication (And (Member $e0 buy) (Theme $e0 $x1)) (MnBuyThemeOrPurchaseAgent $e0 $x1))
+(Implication (And (Member $e0 purchase) (Agent $e0 $x1)) (MnBuyThemeOrPurchaseAgent $e0 $x1))
 
 ;; [different class and role]  buy.Theme ~ sell.Recipient   n 14 / 4   gate: FAIL
 ;; A fillers: forklift ×3, kiln ×3, projector ×3, chef, crate, depot   e.g. tierA-000027 tierA-000021
@@ -753,7 +772,8 @@
 ;; cosine: 0.27 (gate)   JSD: 0.632   shared clusters: 3 e.g. {pottery studio} {chef} {depot}
 ;; A: (And (Member $e0 buy) (Theme $e0 $x1))
 ;; B: (And (Member $e0 sell) (Recipient $e0 $x1))
-(Implication (And (Member $e0 sell) (Recipient $e0 $x1)) (And (Member $e0 sell) (Theme $e0 $x1)))
+(Implication (And (Member $e0 buy) (Theme $e0 $x1)) (MnBuyThemeOrSellRecipient $e0 $x1))
+(Implication (And (Member $e0 sell) (Recipient $e0 $x1)) (MnBuyThemeOrSellRecipient $e0 $x1))
 
 ;; [same class, different role]  decide.Agent ~ decide.Theme   n 11 / 9   gate: FAIL
 ;; A fillers: board ×3, judge ×3, committee ×2, case, family, north   e.g. tierA-000195 tierA-000190
@@ -778,7 +798,8 @@
 ;; cosine: 0.24 (gate)   JSD: 0.662   shared clusters: 2 e.g. {neighbour, neighbouring} {depot}
 ;; A: (And (Member $e0 borrow) (Source $e0 $x1))
 ;; B: (And (Member $e0 lend) (Recipient $e0 $x1))
-(Implication (And (Member $e0 borrow) (Source $e0 $x1)) (And (Member $e0 borrow) (Recipient $e0 $x1)))
+(Implication (And (Member $e0 lend) (Recipient $e0 $x1)) (MnLendRecipientOrBorrowSource $e0 $x1))
+(Implication (And (Member $e0 borrow) (Source $e0 $x1)) (MnLendRecipientOrBorrowSource $e0 $x1))
 
 ;; [same role, different class]  learn.Agent ~ teach.Agent   n 3 / 10   gate: FAIL
 ;; A fillers: apprentice, child, squad   e.g. tierA-000287 tierA-000282
@@ -795,7 +816,8 @@
 ;; cosine: 0.24 (gate)   JSD: 0.662   shared clusters: 2 e.g. {potter} {coach, trainer}
 ;; A: (And (Member $e0 learn) (Source $e0 $x1))
 ;; B: (And (Member $e0 teach) (Recipient $e0 $x1))
-(Implication (And (Member $e0 learn) (Source $e0 $x1)) (And (Member $e0 learn) (Recipient $e0 $x1)))
+(Implication (And (Member $e0 teach) (Recipient $e0 $x1)) (MnTeachRecipientOrLearnSource $e0 $x1))
+(Implication (And (Member $e0 learn) (Source $e0 $x1)) (MnTeachRecipientOrLearnSource $e0 $x1))
 
 ;; [different class and role]  acquire.Theme ~ buy.Agent   n 4 / 14   gate: FAIL
 ;; A fillers: forklift, kiln, projector, crate ×0.5, lemon ×0.5   e.g. tierA-000017 tierA-000003
@@ -803,7 +825,8 @@
 ;; cosine: 0.23 (gate)   JSD: 0.632   shared clusters: 4 e.g. {forklift, forklifts} {kiln} {lemon, crate, lemons} {crate}
 ;; A: (And (Member $e0 acquire) (Theme $e0 $x1))
 ;; B: (And (Member $e0 buy) (Agent $e0 $x1))
-(Implication (And (Member $e0 acquire) (Theme $e0 $x1)) (And (Member $e0 acquire) (Agent $e0 $x1)))
+(Implication (And (Member $e0 buy) (Agent $e0 $x1)) (MnBuyAgentOrAcquireTheme $e0 $x1))
+(Implication (And (Member $e0 acquire) (Theme $e0 $x1)) (MnBuyAgentOrAcquireTheme $e0 $x1))
 
 ;; [different class and role]  buy.Agent ~ purchase.Theme   n 14 / 4   gate: FAIL
 ;; A fillers: depot ×3, pottery studio ×3, school ×3, chef ×2, forklift, kiln   e.g. tierA-000021 tierA-000006
@@ -811,7 +834,8 @@
 ;; cosine: 0.23 (gate)   JSD: 0.632   shared clusters: 4 e.g. {forklift, forklifts} {kiln} {lemon, crate, lemons} {crate}
 ;; A: (And (Member $e0 buy) (Agent $e0 $x1))
 ;; B: (And (Member $e0 purchase) (Theme $e0 $x1))
-(Implication (And (Member $e0 purchase) (Theme $e0 $x1)) (And (Member $e0 purchase) (Agent $e0 $x1)))
+(Implication (And (Member $e0 buy) (Agent $e0 $x1)) (MnBuyAgentOrPurchaseTheme $e0 $x1))
+(Implication (And (Member $e0 purchase) (Theme $e0 $x1)) (MnBuyAgentOrPurchaseTheme $e0 $x1))
 
 ;; [different class and role]  cause.Agent ~ destroy.Patient   n 3 / 11   gate: FAIL
 ;; A fillers: fire, flood, storm   e.g. tierA-000223 tierA-000228
@@ -819,7 +843,8 @@
 ;; cosine: 0.21 (gate)   JSD: 0.682   shared clusters: 2 e.g. {storm, hurricane} {fire}
 ;; A: (And (Member $e0 cause) (Agent $e0 $x1))
 ;; B: (And (Member $e0 destroy) (Patient $e0 $x1))
-(Implication (And (Member $e0 cause) (Agent $e0 $x1)) (And (Member $e0 cause) (Patient $e0 $x1)))
+(Implication (And (Member $e0 destroy) (Patient $e0 $x1)) (MnDestroyPatientOrCauseAgent $e0 $x1))
+(Implication (And (Member $e0 cause) (Agent $e0 $x1)) (MnDestroyPatientOrCauseAgent $e0 $x1))
 
 ;; [different class and role]  buy.Agent ~ sell.Theme   n 14 / 6   gate: FAIL
 ;; A fillers: depot ×3, pottery studio ×3, school ×3, chef ×2, forklift, kiln   e.g. tierA-000021 tierA-000006
@@ -827,7 +852,8 @@
 ;; cosine: 0.16 (gate)   JSD: 0.685   shared clusters: 4 e.g. {forklift, forklifts} {kiln} {lemon, crate, lemons} {crate}
 ;; A: (And (Member $e0 buy) (Agent $e0 $x1))
 ;; B: (And (Member $e0 sell) (Theme $e0 $x1))
-(Implication (And (Member $e0 sell) (Theme $e0 $x1)) (And (Member $e0 sell) (Agent $e0 $x1)))
+(Implication (And (Member $e0 buy) (Agent $e0 $x1)) (MnBuyAgentOrSellTheme $e0 $x1))
+(Implication (And (Member $e0 sell) (Theme $e0 $x1)) (MnBuyAgentOrSellTheme $e0 $x1))
 
 ;; [same class, different role]  give.Agent ~ give.Recipient   n 12 / 12   gate: FAIL
 ;; A fillers: school ×3, trainer ×3, foreman ×2, clerk, driver, pilot   e.g. tierA-000271 tierA-000273
@@ -851,7 +877,8 @@
 ;; cosine: 0.08 (gate)   JSD: 0.818   shared clusters: 2 e.g. {caller} {query, search}
 ;; A: (And (Member $e0 answer) (Agent $e0 $x1))
 ;; B: (And (Member $e0 give) (Recipient $e0 $x1))
-(Implication (And (Member $e0 answer) (Agent $e0 $x1)) (And (Member $e0 answer) (Recipient $e0 $x1)))
+(Implication (And (Member $e0 give) (Recipient $e0 $x1)) (MnGiveRecipientOrAnswerAgent $e0 $x1))
+(Implication (And (Member $e0 answer) (Agent $e0 $x1)) (MnGiveRecipientOrAnswerAgent $e0 $x1))
 
 ;; [different class and role]  answer.Theme ~ give.Agent   n 10 / 12   gate: FAIL
 ;; A fillers: query ×3, tower ×3, caller ×2, clerk, vet   e.g. tierA-000210 tierA-000221
@@ -859,4 +886,5 @@
 ;; cosine: 0.08 (gate)   JSD: 0.818   shared clusters: 2 e.g. {clerk} {vet, vote}
 ;; A: (And (Member $e0 answer) (Theme $e0 $x1))
 ;; B: (And (Member $e0 give) (Agent $e0 $x1))
-(Implication (And (Member $e0 answer) (Theme $e0 $x1)) (And (Member $e0 answer) (Agent $e0 $x1)))
+(Implication (And (Member $e0 give) (Agent $e0 $x1)) (MnGiveAgentOrAnswerTheme $e0 $x1))
+(Implication (And (Member $e0 answer) (Theme $e0 $x1)) (MnGiveAgentOrAnswerTheme $e0 $x1))

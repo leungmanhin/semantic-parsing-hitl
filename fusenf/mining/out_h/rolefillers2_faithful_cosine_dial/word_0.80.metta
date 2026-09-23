@@ -35,12 +35,15 @@
 ;;   ;; cosine: <value> (gate)   JSD: <value>   shared clusters: <count> e.g. {cluster members} …
 ;;   ;; A: <query A>
 ;;   ;; B: <query B>
-;;   (Implication <minority slot> <the same slot relabelled to the majority head>)
-;;     = the merge as the rule it would become (the paper: the two slots 'fulfil the same semantic role');
-;;     the majority side (larger n; tie -> the alphabetically first name) is the canonical form; a role pair
-;;     gives the role-vocabulary collapse (<minority role> -> <majority role>); a pair whose slots already share
-;;     the head has no rule (the merge is done by construction) and says so; rendered for PASS and FAIL alike,
-;;     the verdict is on the record; naming and direction provisional, the gauntlet decides
+;;   the merge as the rule it would become (the paper: the two slots 'fulfil the same semantic role'), by bucket:
+;;     same class, different head:  (Implication <minority slot> <the same slot relabelled to the majority head>)
+;;       — the majority side (larger n; tie -> the alphabetically first name) is the canonical form;
+;;     different class and head:    (Implication <slot A> (Mn<A>Or<B> <centre> $x1))  (Implication <slot B> (Mn<A>Or<B> <centre> $x1))
+;;       — neither frame is relabelled; the two slots are unified under one provisional shared slot node
+;;       (majority side named first); the converse shape, e.g. buy.Agent and sell.Recipient;
+;;     same head:                    no rule (the merge is done by construction), and the record says so;
+;;     a role pair gives the role-vocabulary collapse (<minority role> -> <majority role>); rendered for PASS and
+;;     FAIL alike, the verdict is on the record; naming and direction provisional, the gauntlet decides
 ;; Slot pairs: every pair with >= 2 shared clusters (the gate's first condition); a pair sharing fewer
 ;; clusters cannot pass and is not listed.
 ;; An event slot renders as (And (Member $e0 <class>) (<Role> $e0 $x1)), an entity slot as
@@ -57,7 +60,8 @@
 ;; cosine: 0.99 (gate)   JSD: 0.006   shared clusters: 2 e.g. {person, people} {family, family business, families}
 ;; A: (And (Member $e0 die) (Patient $e0 $x1))
 ;; B: (And (Member $e0 sleep) (Agent $e0 $x1))
-(Implication (And (Member $e0 sleep) (Agent $e0 $x1)) (And (Member $e0 sleep) (Patient $e0 $x1)))
+(Implication (And (Member $e0 die) (Patient $e0 $x1)) (MnDiePatientOrSleepAgent $e0 $x1))
+(Implication (And (Member $e0 sleep) (Agent $e0 $x1)) (MnDiePatientOrSleepAgent $e0 $x1))
 
 ;; [different class and role]  kill.Patient ~ spend.Agent   n 11 / 4   gate: PASS
 ;; A fillers: person ×6, soldier ×2, fox, gazelle, zombie   e.g. tierB-001197 tierB-000393
@@ -65,7 +69,8 @@
 ;; cosine: 0.81 (gate)   JSD: 0.335   shared clusters: 2 e.g. {person, people} {gazelle, giraffe, giraffes}
 ;; A: (And (Member $e0 kill) (Patient $e0 $x1))
 ;; B: (And (Member $e0 spend) (Agent $e0 $x1))
-(Implication (And (Member $e0 spend) (Agent $e0 $x1)) (And (Member $e0 spend) (Patient $e0 $x1)))
+(Implication (And (Member $e0 kill) (Patient $e0 $x1)) (MnKillPatientOrSpendAgent $e0 $x1))
+(Implication (And (Member $e0 spend) (Agent $e0 $x1)) (MnKillPatientOrSpendAgent $e0 $x1))
 
 ;; [same role, different class]  accompany.Agent ~ sing.Agent   n 4 / 9   gate: PASS
 ;; A fillers: person ×2, sister ×2   e.g. tierC-000127 tierC-000128
@@ -144,7 +149,8 @@
 ;; cosine: 0.66 (gate)   JSD: 0.541   shared clusters: 2 e.g. {person, people} {Nicolaus Copernicus, Tycho Brahe}
 ;; A: (And (Member $e0 bear) (Patient $e0 $x1))
 ;; B: (And (Member $e0 study) (Agent $e0 $x1))
-(Implication (And (Member $e0 bear) (Patient $e0 $x1)) (And (Member $e0 bear) (Agent $e0 $x1)))
+(Implication (And (Member $e0 study) (Agent $e0 $x1)) (MnStudyAgentOrBearPatient $e0 $x1))
+(Implication (And (Member $e0 bear) (Patient $e0 $x1)) (MnStudyAgentOrBearPatient $e0 $x1))
 
 ;; [same role, different class]  begin.Agent ~ create.Agent   n 11 / 6   gate: PASS
 ;; A fillers: european american settler ×2, David, Jessica, Mark, William, crowd   e.g. tierC-000025 tierC-000026
@@ -187,7 +193,8 @@
 ;; cosine: 0.60 (gate)   JSD: 0.38   shared clusters: 2 e.g. {Wilson, wilson} {James Woods, Jeremy Irons}
 ;; A: (And (Member $e0 portray) (Theme $e0 $x1))
 ;; B: (And (Member $e0 win) (Agent $e0 $x1))
-(Implication (And (Member $e0 portray) (Theme $e0 $x1)) (And (Member $e0 portray) (Agent $e0 $x1)))
+(Implication (And (Member $e0 win) (Agent $e0 $x1)) (MnWinAgentOrPortrayTheme $e0 $x1))
+(Implication (And (Member $e0 portray) (Theme $e0 $x1)) (MnWinAgentOrPortrayTheme $e0 $x1))
 
 ;; [same role, different class]  sleep.Agent ~ watch.Agent   n 3 / 5   gate: PASS
 ;; A fillers: person ×2, family   e.g. tierC-000041 tierC-000042
@@ -204,7 +211,8 @@
 ;; cosine: 0.57 (gate)   JSD: 0.424   shared clusters: 2 e.g. {person, people} {family, family business, families}
 ;; A: (And (Member $e0 die) (Patient $e0 $x1))
 ;; B: (And (Member $e0 watch) (Agent $e0 $x1))
-(Implication (And (Member $e0 die) (Patient $e0 $x1)) (And (Member $e0 die) (Agent $e0 $x1)))
+(Implication (And (Member $e0 watch) (Agent $e0 $x1)) (MnWatchAgentOrDiePatient $e0 $x1))
+(Implication (And (Member $e0 die) (Patient $e0 $x1)) (MnWatchAgentOrDiePatient $e0 $x1))
 
 ;; [different class and role]  hear.Experiencer ~ try.Agent   n 8 / 10   gate: PASS
 ;; A fillers: Bruno ×2, Damiano, Fadil, Flavio, James, Jonas   e.g. tierB-000681 tierB-000659
@@ -212,7 +220,8 @@
 ;; cosine: 0.56 (gate)   JSD: 0.475   shared clusters: 4 e.g. {Boldi, Bruno, Felix, Maurice, …} {Gustavo, Alberto, Martino, Pietro, …} {David, William, James} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 hear) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 try) (Agent $e0 $x1))
-(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (And (Member $e0 hear) (Agent $e0 $x1)))
+(Implication (And (Member $e0 try) (Agent $e0 $x1)) (MnTryAgentOrHearExperiencer $e0 $x1))
+(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (MnTryAgentOrHearExperiencer $e0 $x1))
 
 ;; [different class and role]  appear.Agent ~ replace.Theme   n 6 / 4   gate: PASS
 ;; A fillers: person ×3, Brian Packham ×2, sister   e.g. tierC-000259 tierC-000260
@@ -220,7 +229,8 @@
 ;; cosine: 0.55 (gate)   JSD: 0.368   shared clusters: 2 e.g. {person, people} {Bill Wrubel, Brian Packham, Carl Fenton, Colin Richardson, …}
 ;; A: (And (Member $e0 appear) (Agent $e0 $x1))
 ;; B: (And (Member $e0 replace) (Theme $e0 $x1))
-(Implication (And (Member $e0 replace) (Theme $e0 $x1)) (And (Member $e0 replace) (Agent $e0 $x1)))
+(Implication (And (Member $e0 appear) (Agent $e0 $x1)) (MnAppearAgentOrReplaceTheme $e0 $x1))
+(Implication (And (Member $e0 replace) (Theme $e0 $x1)) (MnAppearAgentOrReplaceTheme $e0 $x1))
 
 ;; [same role, different class]  buy.Agent ~ speak.Agent   n 3 / 8   gate: PASS
 ;; A fillers: Keike ×2, Regis   e.g. tierB-000367 tierB-001690
@@ -237,7 +247,8 @@
 ;; cosine: 0.52 (gate)   JSD: 0.562   shared clusters: 2 e.g. {person, people} {Jessica, Linda, Beth, Katherine, …}
 ;; A: (And (Member $e0 study) (Agent $e0 $x1))
 ;; B: (And (Member $e0 succeed) (Theme $e0 $x1))
-(Implication (And (Member $e0 succeed) (Theme $e0 $x1)) (And (Member $e0 succeed) (Agent $e0 $x1)))
+(Implication (And (Member $e0 study) (Agent $e0 $x1)) (MnStudyAgentOrSucceedTheme $e0 $x1))
+(Implication (And (Member $e0 succeed) (Theme $e0 $x1)) (MnStudyAgentOrSucceedTheme $e0 $x1))
 
 ;; [same class, different role]  become.Patient ~ become.Result   n 11 / 8   gate: PASS
 ;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierC-000241 tierC-000242
@@ -323,7 +334,8 @@
 ;; cosine: 0.48 (gate)   JSD: 0.554   shared clusters: 2 e.g. {Baya, Skura, Inomaru, Barako, …} {Yanni}
 ;; A: (And (Member $e0 ready) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 stop) (Agent $e0 $x1))
-(Implication (And (Member $e0 stop) (Agent $e0 $x1)) (And (Member $e0 stop) (Experiencer $e0 $x1)))
+(Implication (And (Member $e0 ready) (Experiencer $e0 $x1)) (MnReadyExperiencerOrStopAgent $e0 $x1))
+(Implication (And (Member $e0 stop) (Agent $e0 $x1)) (MnReadyExperiencerOrStopAgent $e0 $x1))
 
 ;; [different class and role]  change.Patient ~ good.Experiencer   n 8 / 4   gate: FAIL
 ;; A fillers: weather ×2, color, course, mind, name, rain   e.g. tierB-000517 tierB-001491
@@ -331,7 +343,8 @@
 ;; cosine: 0.47 (gate)   JSD: 0.578   shared clusters: 2 e.g. {weather, bad, weather} {thing, things, stuff, practice, thing}
 ;; A: (And (Member $e0 change) (Patient $e0 $x1))
 ;; B: (And (Member $e0 good) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 good) (Experiencer $e0 $x1)) (And (Member $e0 good) (Patient $e0 $x1)))
+(Implication (And (Member $e0 change) (Patient $e0 $x1)) (MnChangePatientOrGoodExperiencer $e0 $x1))
+(Implication (And (Member $e0 good) (Experiencer $e0 $x1)) (MnChangePatientOrGoodExperiencer $e0 $x1))
 
 ;; [different class and role]  replace.Theme ~ write.Agent   n 4 / 8   gate: FAIL
 ;; A fillers: Lex Lex Luthor, Lex Luthor, William Ewer, person   e.g. tierC-000100 tierC-000099
@@ -339,7 +352,8 @@
 ;; cosine: 0.47 (gate)   JSD: 0.471   shared clusters: 2 e.g. {person, people} {Bill Wrubel, Brian Packham, Carl Fenton, Colin Richardson, …}
 ;; A: (And (Member $e0 replace) (Theme $e0 $x1))
 ;; B: (And (Member $e0 write) (Agent $e0 $x1))
-(Implication (And (Member $e0 replace) (Theme $e0 $x1)) (And (Member $e0 replace) (Agent $e0 $x1)))
+(Implication (And (Member $e0 write) (Agent $e0 $x1)) (MnWriteAgentOrReplaceTheme $e0 $x1))
+(Implication (And (Member $e0 replace) (Theme $e0 $x1)) (MnWriteAgentOrReplaceTheme $e0 $x1))
 
 ;; [different class and role]  go.To ~ start.Theme   n 3 / 13   gate: FAIL
 ;; A fillers: talk ×2, see   e.g. tierC-000209 tierC-000210
@@ -347,7 +361,8 @@
 ;; cosine: 0.47 (gate)   JSD: 0.602   shared clusters: 2 e.g. {talk, conversation, discussion} {appear, see, display, show, …}
 ;; A: (And (Member $e0 go) (To $e0 $x1))
 ;; B: (And (Member $e0 start) (Theme $e0 $x1))
-(Implication (And (Member $e0 go) (To $e0 $x1)) (And (Member $e0 go) (Theme $e0 $x1)))
+(Implication (And (Member $e0 start) (Theme $e0 $x1)) (MnStartThemeOrGoTo $e0 $x1))
+(Implication (And (Member $e0 go) (To $e0 $x1)) (MnStartThemeOrGoTo $e0 $x1))
 
 ;; [same role, different class]  eat.Agent ~ sing.Agent   n 4 / 9   gate: FAIL
 ;; A fillers: bird, child, person, brown ×0.5, dog ×0.5   e.g. tierB-001973 tierB-000338
@@ -364,7 +379,8 @@
 ;; cosine: 0.45 (gate)   JSD: 0.661   shared clusters: 2 e.g. {bad, bad, relationship, bad, matter, bad, problem} {weather, bad, weather}
 ;; A: (And (Member $e0 bad) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 get) (Patient $e0 $x1))
-(Implication (And (Member $e0 bad) (Experiencer $e0 $x1)) (And (Member $e0 bad) (Patient $e0 $x1)))
+(Implication (And (Member $e0 get) (Patient $e0 $x1)) (MnGetPatientOrBadExperiencer $e0 $x1))
+(Implication (And (Member $e0 bad) (Experiencer $e0 $x1)) (MnGetPatientOrBadExperiencer $e0 $x1))
 
 ;; [different class and role]  find.Theme ~ get.Agent   n 10 / 6   gate: FAIL
 ;; A fillers: thing ×4, Couper ×2, Pietro, clay figurine, meteorite, paper sheet   e.g. tierC-000279 tierC-000280
@@ -372,7 +388,8 @@
 ;; cosine: 0.45 (gate)   JSD: 0.584   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {Gustavo, Alberto, Martino, Pietro, …}
 ;; A: (And (Member $e0 find) (Theme $e0 $x1))
 ;; B: (And (Member $e0 get) (Agent $e0 $x1))
-(Implication (And (Member $e0 get) (Agent $e0 $x1)) (And (Member $e0 get) (Theme $e0 $x1)))
+(Implication (And (Member $e0 find) (Theme $e0 $x1)) (MnFindThemeOrGetAgent $e0 $x1))
+(Implication (And (Member $e0 get) (Agent $e0 $x1)) (MnFindThemeOrGetAgent $e0 $x1))
 
 ;; [different class and role]  play.Agent ~ sleep.Experiencer   n 15 / 6   gate: FAIL
 ;; A fillers: child ×4, Boston Red Sox ×2, Cincinnati Reds ×2, Audrey Hepburn, Audrey Heppurn, Tony   e.g. tierB-000939 tierB-000160
@@ -380,7 +397,8 @@
 ;; cosine: 0.44 (gate)   JSD: 0.602   shared clusters: 2 e.g. {child, children, kid, baby, …} {Baya, Skura, Inomaru, Barako, …}
 ;; A: (And (Member $e0 play) (Agent $e0 $x1))
 ;; B: (And (Member $e0 sleep) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 sleep) (Experiencer $e0 $x1)) (And (Member $e0 sleep) (Agent $e0 $x1)))
+(Implication (And (Member $e0 play) (Agent $e0 $x1)) (MnPlayAgentOrSleepExperiencer $e0 $x1))
+(Implication (And (Member $e0 sleep) (Experiencer $e0 $x1)) (MnPlayAgentOrSleepExperiencer $e0 $x1))
 
 ;; [same class, different role]  portray.Agent ~ portray.Theme   n 5 / 5   gate: FAIL
 ;; A fillers: Soichiro Akizuki ×2, James Woods, Wilson, wilson   e.g. tierC-000277 tierC-000278
@@ -413,7 +431,8 @@
 ;; cosine: 0.42 (gate)   JSD: 0.569   shared clusters: 2 e.g. {child, children, kid, baby, …} {dog, dog feed}
 ;; A: (And (Member $e0 eat) (Agent $e0 $x1))
 ;; B: (And (Member $e0 sleep) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 eat) (Agent $e0 $x1)) (And (Member $e0 eat) (Experiencer $e0 $x1)))
+(Implication (And (Member $e0 sleep) (Experiencer $e0 $x1)) (MnSleepExperiencerOrEatAgent $e0 $x1))
+(Implication (And (Member $e0 eat) (Agent $e0 $x1)) (MnSleepExperiencerOrEatAgent $e0 $x1))
 
 ;; [same role, different class]  hear.Experiencer ~ want.Experiencer   n 8 / 8   gate: FAIL
 ;; A fillers: Bruno ×2, Damiano, Fadil, Flavio, James, Jonas   e.g. tierB-000756 tierB-000189
@@ -430,7 +449,8 @@
 ;; cosine: 0.41 (gate)   JSD: 0.674   shared clusters: 2 e.g. {bad, bad, relationship, bad, matter, bad, problem} {relationship, relate, relationships}
 ;; A: (And (Member $e0 bad) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 become) (Patient $e0 $x1))
-(Implication (And (Member $e0 bad) (Experiencer $e0 $x1)) (And (Member $e0 bad) (Patient $e0 $x1)))
+(Implication (And (Member $e0 become) (Patient $e0 $x1)) (MnBecomePatientOrBadExperiencer $e0 $x1))
+(Implication (And (Member $e0 bad) (Experiencer $e0 $x1)) (MnBecomePatientOrBadExperiencer $e0 $x1))
 
 ;; [same role, different class]  go.Agent ~ swim.Agent   n 15 / 5   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-000012 tierB-000313
@@ -447,7 +467,8 @@
 ;; cosine: 0.41 (gate)   JSD: 0.656   shared clusters: 2 e.g. {Boldi, Bruno, Felix, Maurice, …} {Gustavo, Alberto, Martino, Pietro, …}
 ;; A: (And (Member $e0 hear) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 walk) (Agent $e0 $x1))
-(Implication (And (Member $e0 walk) (Agent $e0 $x1)) (And (Member $e0 walk) (Experiencer $e0 $x1)))
+(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (MnHearExperiencerOrWalkAgent $e0 $x1))
+(Implication (And (Member $e0 walk) (Agent $e0 $x1)) (MnHearExperiencerOrWalkAgent $e0 $x1))
 
 ;; [different class and role]  follow.Agent ~ rule.Theme   n 9 / 3   gate: FAIL
 ;; A fillers: bhadala ×2, Alexander, Bailey, Sami, muslim house, road   e.g. tierC-000095 tierC-000096
@@ -455,7 +476,8 @@
 ;; cosine: 0.40 (gate)   JSD: 0.639   shared clusters: 2 e.g. {muslim, muslim house, muslim community, house, muslim, …} {house, home, comfortable, house, houses, …}
 ;; A: (And (Member $e0 follow) (Agent $e0 $x1))
 ;; B: (And (Member $e0 rule) (Theme $e0 $x1))
-(Implication (And (Member $e0 rule) (Theme $e0 $x1)) (And (Member $e0 rule) (Agent $e0 $x1)))
+(Implication (And (Member $e0 follow) (Agent $e0 $x1)) (MnFollowAgentOrRuleTheme $e0 $x1))
+(Implication (And (Member $e0 rule) (Theme $e0 $x1)) (MnFollowAgentOrRuleTheme $e0 $x1))
 
 ;; [same role, different class]  cry.Agent ~ walk.Agent   n 5 / 8   gate: FAIL
 ;; A fillers: Alberto, Baya, Rima, Skura, girl   e.g. tierB-000030 tierB-001538
@@ -499,7 +521,8 @@
 ;; cosine: 0.39 (gate)   JSD: 0.557   shared clusters: 2 e.g. {Boris, Ivan, Oleg, Fyodor, …} {David, William, James}
 ;; A: (And (Member $e0 give) (Agent $e0 $x1))
 ;; B: (And (Member $e0 hear) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 give) (Agent $e0 $x1)) (And (Member $e0 give) (Experiencer $e0 $x1)))
+(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (MnHearExperiencerOrGiveAgent $e0 $x1))
+(Implication (And (Member $e0 give) (Agent $e0 $x1)) (MnHearExperiencerOrGiveAgent $e0 $x1))
 
 ;; [same role, different class]  pick_up.Agent ~ try.Agent   n 3 / 10   gate: FAIL
 ;; A fillers: Jay, Santiago, camera   e.g. tierB-001072 tierB-000334
@@ -516,7 +539,8 @@
 ;; cosine: 0.37 (gate)   JSD: 0.721   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {David, William, James}
 ;; A: (And (Member $e0 hear) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 make) (Agent $e0 $x1))
-(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (And (Member $e0 hear) (Agent $e0 $x1)))
+(Implication (And (Member $e0 make) (Agent $e0 $x1)) (MnMakeAgentOrHearExperiencer $e0 $x1))
+(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (MnMakeAgentOrHearExperiencer $e0 $x1))
 
 ;; [different class and role]  hear.Experiencer ~ leave.Agent   n 8 / 10   gate: FAIL
 ;; A fillers: Bruno ×2, Damiano, Fadil, Flavio, James, Jonas   e.g. tierB-001479 tierB-000756
@@ -524,7 +548,8 @@
 ;; cosine: 0.36 (gate)   JSD: 0.626   shared clusters: 3 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Boris, Ivan, Oleg, Fyodor, …} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 hear) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 leave) (Agent $e0 $x1))
-(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (And (Member $e0 hear) (Agent $e0 $x1)))
+(Implication (And (Member $e0 leave) (Agent $e0 $x1)) (MnLeaveAgentOrHearExperiencer $e0 $x1))
+(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (MnLeaveAgentOrHearExperiencer $e0 $x1))
 
 ;; [different class and role]  hear.Experiencer ~ read.Agent   n 8 / 3   gate: FAIL
 ;; A fillers: Bruno ×2, Damiano, Fadil, Flavio, James, Jonas   e.g. tierB-001479 tierB-000756
@@ -532,7 +557,8 @@
 ;; cosine: 0.36 (gate)   JSD: 0.613   shared clusters: 2 e.g. {Boris, Ivan, Oleg, Fyodor, …} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 hear) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 read) (Agent $e0 $x1))
-(Implication (And (Member $e0 read) (Agent $e0 $x1)) (And (Member $e0 read) (Experiencer $e0 $x1)))
+(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (MnHearExperiencerOrReadAgent $e0 $x1))
+(Implication (And (Member $e0 read) (Agent $e0 $x1)) (MnHearExperiencerOrReadAgent $e0 $x1))
 
 ;; [different class and role]  lead.Agent ~ start.Patient   n 5 / 11   gate: FAIL
 ;; A fillers: thing ×2, dog, education, general   e.g. tierC-000019 tierC-000020
@@ -540,7 +566,8 @@
 ;; cosine: 0.36 (gate)   JSD: 0.7   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {dog, dog feed}
 ;; A: (And (Member $e0 lead) (Agent $e0 $x1))
 ;; B: (And (Member $e0 start) (Patient $e0 $x1))
-(Implication (And (Member $e0 lead) (Agent $e0 $x1)) (And (Member $e0 lead) (Patient $e0 $x1)))
+(Implication (And (Member $e0 start) (Patient $e0 $x1)) (MnStartPatientOrLeadAgent $e0 $x1))
+(Implication (And (Member $e0 lead) (Agent $e0 $x1)) (MnStartPatientOrLeadAgent $e0 $x1))
 
 ;; [different class and role]  become.Patient ~ take.Agent   n 11 / 9   gate: FAIL
 ;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierB-000740 tierC-000001
@@ -548,7 +575,8 @@
 ;; cosine: 0.36 (gate)   JSD: 0.728   shared clusters: 2 e.g. {person, people} {thing, things, stuff, practice, thing}
 ;; A: (And (Member $e0 become) (Patient $e0 $x1))
 ;; B: (And (Member $e0 take) (Agent $e0 $x1))
-(Implication (And (Member $e0 take) (Agent $e0 $x1)) (And (Member $e0 take) (Patient $e0 $x1)))
+(Implication (And (Member $e0 become) (Patient $e0 $x1)) (MnBecomePatientOrTakeAgent $e0 $x1))
+(Implication (And (Member $e0 take) (Agent $e0 $x1)) (MnBecomePatientOrTakeAgent $e0 $x1))
 
 ;; [same role, different class]  leave.Agent ~ travel.Agent   n 10 / 5   gate: FAIL
 ;; A fillers: Brian, Ivan, Marcus, Rodrigo, Tom, bus   e.g. tierB-000004 tierB-000747
@@ -583,7 +611,8 @@
 ;; cosine: 0.34 (gate)   JSD: 0.663   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {paper, paper factory, paper mill, paper sheet, …}
 ;; A: (And (Member $e0 build) (Patient $e0 $x1))
 ;; B: (And (Member $e0 find) (Theme $e0 $x1))
-(Implication (And (Member $e0 find) (Theme $e0 $x1)) (And (Member $e0 find) (Patient $e0 $x1)))
+(Implication (And (Member $e0 build) (Patient $e0 $x1)) (MnBuildPatientOrFindTheme $e0 $x1))
+(Implication (And (Member $e0 find) (Theme $e0 $x1)) (MnBuildPatientOrFindTheme $e0 $x1))
 
 ;; [different class and role]  find.Theme ~ take.Agent   n 10 / 9   gate: FAIL
 ;; A fillers: thing ×4, Couper ×2, Pietro, clay figurine, meteorite, paper sheet   e.g. tierC-000279 tierC-000280
@@ -591,7 +620,8 @@
 ;; cosine: 0.34 (gate)   JSD: 0.663   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {Gustavo, Alberto, Martino, Pietro, …}
 ;; A: (And (Member $e0 find) (Theme $e0 $x1))
 ;; B: (And (Member $e0 take) (Agent $e0 $x1))
-(Implication (And (Member $e0 take) (Agent $e0 $x1)) (And (Member $e0 take) (Theme $e0 $x1)))
+(Implication (And (Member $e0 find) (Theme $e0 $x1)) (MnFindThemeOrTakeAgent $e0 $x1))
+(Implication (And (Member $e0 take) (Agent $e0 $x1)) (MnFindThemeOrTakeAgent $e0 $x1))
 
 ;; [different class and role]  eat.Agent ~ have.Theme   n 4 / 43   gate: FAIL
 ;; A fillers: bird, child, person, brown ×0.5, dog ×0.5   e.g. tierB-001551 tierB-000410
@@ -599,7 +629,8 @@
 ;; cosine: 0.33 (gate)   JSD: 0.827   shared clusters: 2 e.g. {child, children, kid, baby, …} {black, blue, white, brown, …}
 ;; A: (And (Member $e0 eat) (Agent $e0 $x1))
 ;; B: (And (Member $e0 have) (Theme $e0 $x1))
-(Implication (And (Member $e0 eat) (Agent $e0 $x1)) (And (Member $e0 eat) (Theme $e0 $x1)))
+(Implication (And (Member $e0 have) (Theme $e0 $x1)) (MnHaveThemeOrEatAgent $e0 $x1))
+(Implication (And (Member $e0 eat) (Agent $e0 $x1)) (MnHaveThemeOrEatAgent $e0 $x1))
 
 ;; [same role, different class]  study.Agent ~ work.Agent   n 12 / 8   gate: FAIL
 ;; A fillers: person ×3, scientist ×2, Beth, Carlos, Fadil, Nicolaus Copernicus   e.g. tierB-000203 tierC-000253
@@ -651,7 +682,8 @@
 ;; cosine: 0.32 (gate)   JSD: 0.698   shared clusters: 2 e.g. {ship, british ship, israeli military ship, merchant ship, …} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 bring) (Theme $e0 $x1))
 ;; B: (And (Member $e0 leave) (Agent $e0 $x1))
-(Implication (And (Member $e0 bring) (Theme $e0 $x1)) (And (Member $e0 bring) (Agent $e0 $x1)))
+(Implication (And (Member $e0 leave) (Agent $e0 $x1)) (MnLeaveAgentOrBringTheme $e0 $x1))
+(Implication (And (Member $e0 bring) (Theme $e0 $x1)) (MnLeaveAgentOrBringTheme $e0 $x1))
 
 ;; [same role, different class]  enter.Agent ~ study.Agent   n 6 / 12   gate: FAIL
 ;; A fillers: Lake Sammamish ×2, Layla, Martino, muslim, person   e.g. tierB-000450 tierB-000556
@@ -695,7 +727,8 @@
 ;; cosine: 0.31 (gate)   JSD: 0.759   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {cat, cats}
 ;; A: (And (Member $e0 make) (Agent $e0 $x1))
 ;; B: (And (Member $e0 want) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (And (Member $e0 want) (Agent $e0 $x1)))
+(Implication (And (Member $e0 make) (Agent $e0 $x1)) (MnMakeAgentOrWantExperiencer $e0 $x1))
+(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (MnMakeAgentOrWantExperiencer $e0 $x1))
 
 ;; [different class and role]  have.Holder ~ need.Experiencer   n 44 / 8   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000819 tierC-000181
@@ -703,7 +736,8 @@
 ;; cosine: 0.31 (gate)   JSD: 0.777   shared clusters: 3 e.g. {Karl, Kristoffer} {Gustavo, Alberto, Martino, Pietro, …} {Algeria, Afghanistan, Iran, Morocco, …}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 need) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 need) (Experiencer $e0 $x1)) (And (Member $e0 need) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrNeedExperiencer $e0 $x1))
+(Implication (And (Member $e0 need) (Experiencer $e0 $x1)) (MnHaveHolderOrNeedExperiencer $e0 $x1))
 
 ;; [different class and role]  walk.Agent ~ want.Experiencer   n 8 / 8   gate: FAIL
 ;; A fillers: Adriano, Felix, Hanako, Leon, Michael, ant   e.g. tierB-000805 tierB-001044
@@ -711,7 +745,8 @@
 ;; cosine: 0.31 (gate)   JSD: 0.703   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Leon, Lukas}
 ;; A: (And (Member $e0 walk) (Agent $e0 $x1))
 ;; B: (And (Member $e0 want) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (And (Member $e0 want) (Agent $e0 $x1)))
+(Implication (And (Member $e0 walk) (Agent $e0 $x1)) (MnWalkAgentOrWantExperiencer $e0 $x1))
+(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (MnWalkAgentOrWantExperiencer $e0 $x1))
 
 ;; [different class and role]  go.Agent ~ sleep.Experiencer   n 15 / 6   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-001857 tierB-001183
@@ -719,7 +754,8 @@
 ;; cosine: 0.30 (gate)   JSD: 0.639   shared clusters: 3 e.g. {cat, cats} {child, children, kid, baby, …} {Baya, Skura, Inomaru, Barako, …}
 ;; A: (And (Member $e0 go) (Agent $e0 $x1))
 ;; B: (And (Member $e0 sleep) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 sleep) (Experiencer $e0 $x1)) (And (Member $e0 sleep) (Agent $e0 $x1)))
+(Implication (And (Member $e0 go) (Agent $e0 $x1)) (MnGoAgentOrSleepExperiencer $e0 $x1))
+(Implication (And (Member $e0 sleep) (Experiencer $e0 $x1)) (MnGoAgentOrSleepExperiencer $e0 $x1))
 
 ;; [same role, different class]  make.Agent ~ walk.Agent   n 18 / 8   gate: FAIL
 ;; A fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-000951 tierB-000325
@@ -772,7 +808,8 @@
 ;; cosine: 0.29 (gate)   JSD: 0.761   shared clusters: 4 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Boldi, Bruno, Felix, Maurice, …} {Boris, Ivan, Oleg, Fyodor, …} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 hear) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (And (Member $e0 hear) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrHearExperiencer $e0 $x1))
+(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (MnHaveHolderOrHearExperiencer $e0 $x1))
 
 ;; [same role, different class]  build.Agent ~ replace.Agent   n 14 / 4   gate: FAIL
 ;; A fillers: company ×8, O. R. Woodcock ×2, person ×2, community, mozabite   e.g. tierC-000119 tierC-000120
@@ -798,7 +835,8 @@
 ;; cosine: 0.28 (gate)   JSD: 0.737   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 try) (Agent $e0 $x1))
 ;; B: (And (Member $e0 want) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (And (Member $e0 want) (Agent $e0 $x1)))
+(Implication (And (Member $e0 try) (Agent $e0 $x1)) (MnTryAgentOrWantExperiencer $e0 $x1))
+(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (MnTryAgentOrWantExperiencer $e0 $x1))
 
 ;; [different class and role]  lead.Goal ~ live.Location   n 5 / 8   gate: FAIL
 ;; A fillers: happiness, home, peace, big ×0.5, cat fight ×0.5, glory ×0.5   e.g. tierB-001086 tierC-000020
@@ -806,7 +844,8 @@
 ;; cosine: 0.28 (gate)   JSD: 0.728   shared clusters: 2 e.g. {house, home, comfortable, house, houses, …} {big, large, huge, massive, …}
 ;; A: (And (Member $e0 lead) (Goal $e0 $x1))
 ;; B: (And (Member $e0 live) (Location $e0 $x1))
-(Implication (And (Member $e0 lead) (Goal $e0 $x1)) (And (Member $e0 lead) (Location $e0 $x1)))
+(Implication (And (Member $e0 live) (Location $e0 $x1)) (MnLiveLocationOrLeadGoal $e0 $x1))
+(Implication (And (Member $e0 lead) (Goal $e0 $x1)) (MnLiveLocationOrLeadGoal $e0 $x1))
 
 ;; [same role, different class]  decide.Agent ~ study.Agent   n 4 / 12   gate: FAIL
 ;; A fillers: Fyodor ×2, Beth, Elias   e.g. tierB-001544 tierB-000401
@@ -823,7 +862,8 @@
 ;; cosine: 0.27 (gate)   JSD: 0.737   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 leave) (Agent $e0 $x1))
 ;; B: (And (Member $e0 want) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (And (Member $e0 want) (Agent $e0 $x1)))
+(Implication (And (Member $e0 leave) (Agent $e0 $x1)) (MnLeaveAgentOrWantExperiencer $e0 $x1))
+(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (MnLeaveAgentOrWantExperiencer $e0 $x1))
 
 ;; [different class and role]  get.Agent ~ have.Holder   n 6 / 44   gate: FAIL
 ;; A fillers: Diego, Gabriel, Janos, Leonid, thing, man ×0.5   e.g. tierB-000770 tierB-000577
@@ -831,7 +871,8 @@
 ;; cosine: 0.27 (gate)   JSD: 0.82   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {thing, things, stuff, practice, thing}
 ;; A: (And (Member $e0 get) (Agent $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 get) (Agent $e0 $x1)) (And (Member $e0 get) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrGetAgent $e0 $x1))
+(Implication (And (Member $e0 get) (Agent $e0 $x1)) (MnHaveHolderOrGetAgent $e0 $x1))
 
 ;; [same role, different class]  build.Agent ~ write.Agent   n 14 / 8   gate: FAIL
 ;; A fillers: company ×8, O. R. Woodcock ×2, person ×2, community, mozabite   e.g. tierC-000119 tierC-000120
@@ -848,7 +889,8 @@
 ;; cosine: 0.26 (gate)   JSD: 0.773   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {Gustavo, Alberto, Martino, Pietro, …}
 ;; A: (And (Member $e0 find) (Theme $e0 $x1))
 ;; B: (And (Member $e0 make) (Agent $e0 $x1))
-(Implication (And (Member $e0 find) (Theme $e0 $x1)) (And (Member $e0 find) (Agent $e0 $x1)))
+(Implication (And (Member $e0 make) (Agent $e0 $x1)) (MnMakeAgentOrFindTheme $e0 $x1))
+(Implication (And (Member $e0 find) (Theme $e0 $x1)) (MnMakeAgentOrFindTheme $e0 $x1))
 
 ;; [different class and role]  hear.Experiencer ~ study.Agent   n 8 / 12   gate: FAIL
 ;; A fillers: Bruno ×2, Damiano, Fadil, Flavio, James, Jonas   e.g. tierB-001479 tierB-000421
@@ -856,7 +898,8 @@
 ;; cosine: 0.26 (gate)   JSD: 0.663   shared clusters: 3 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Boris, Ivan, Oleg, Fyodor, …} {Fadil, Jamil, Sami}
 ;; A: (And (Member $e0 hear) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 study) (Agent $e0 $x1))
-(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (And (Member $e0 hear) (Agent $e0 $x1)))
+(Implication (And (Member $e0 study) (Agent $e0 $x1)) (MnStudyAgentOrHearExperiencer $e0 $x1))
+(Implication (And (Member $e0 hear) (Experiencer $e0 $x1)) (MnStudyAgentOrHearExperiencer $e0 $x1))
 
 ;; [same role, different class]  help.Agent ~ leave.Agent   n 6 / 10   gate: FAIL
 ;; A fillers: Jonas, Karen, Michael, context, hothouse condition, life experience   e.g. tierB-001094 tierB-000319
@@ -873,7 +916,8 @@
 ;; cosine: 0.25 (gate)   JSD: 0.829   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {Gustavo, Alberto, Martino, Pietro, …}
 ;; A: (And (Member $e0 find) (Theme $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 find) (Theme $e0 $x1)) (And (Member $e0 find) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrFindTheme $e0 $x1))
+(Implication (And (Member $e0 find) (Theme $e0 $x1)) (MnHaveHolderOrFindTheme $e0 $x1))
 
 ;; [same role, different class]  begin.Agent ~ try.Agent   n 11 / 10   gate: FAIL
 ;; A fillers: european american settler ×2, David, Jessica, Mark, William, crowd   e.g. tierB-000173 tierB-000240
@@ -890,7 +934,8 @@
 ;; cosine: 0.24 (gate)   JSD: 0.754   shared clusters: 2 e.g. {weather, bad, weather} {thing, things, stuff, practice, thing}
 ;; A: (And (Member $e0 get) (Patient $e0 $x1))
 ;; B: (And (Member $e0 good) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 good) (Experiencer $e0 $x1)) (And (Member $e0 good) (Patient $e0 $x1)))
+(Implication (And (Member $e0 get) (Patient $e0 $x1)) (MnGetPatientOrGoodExperiencer $e0 $x1))
+(Implication (And (Member $e0 good) (Experiencer $e0 $x1)) (MnGetPatientOrGoodExperiencer $e0 $x1))
 
 ;; [same role, different class]  enter.Agent ~ serve.Agent   n 6 / 10   gate: FAIL
 ;; A fillers: Lake Sammamish ×2, Layla, Martino, muslim, person   e.g. tierB-000450 tierB-000556
@@ -916,7 +961,8 @@
 ;; cosine: 0.23 (gate)   JSD: 0.799   shared clusters: 2 e.g. {knock, kick, kick out} {thing, things, stuff, practice, thing}
 ;; A: (And (Member $e0 hear) (Stimulus $e0 $x1))
 ;; B: (And (Member $e0 start) (Patient $e0 $x1))
-(Implication (And (Member $e0 hear) (Stimulus $e0 $x1)) (And (Member $e0 hear) (Patient $e0 $x1)))
+(Implication (And (Member $e0 start) (Patient $e0 $x1)) (MnStartPatientOrHearStimulus $e0 $x1))
+(Implication (And (Member $e0 hear) (Stimulus $e0 $x1)) (MnStartPatientOrHearStimulus $e0 $x1))
 
 ;; [same role, different class]  become.Patient ~ get.Patient   n 11 / 7   gate: FAIL
 ;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierC-000241 tierC-000242
@@ -951,7 +997,8 @@
 ;; cosine: 0.22 (gate)   JSD: 0.725   shared clusters: 2 e.g. {yellow, orange} {black, blue, white, brown, …}
 ;; A: (And (Member $e0 buy) (Theme $e0 $x1))
 ;; B: (And (Member $e0 turn) (Result $e0 $x1))
-(Implication (And (Member $e0 turn) (Result $e0 $x1)) (And (Member $e0 turn) (Theme $e0 $x1)))
+(Implication (And (Member $e0 buy) (Theme $e0 $x1)) (MnBuyThemeOrTurnResult $e0 $x1))
+(Implication (And (Member $e0 turn) (Result $e0 $x1)) (MnBuyThemeOrTurnResult $e0 $x1))
 
 ;; [same role, different class]  change.Patient ~ get.Patient   n 8 / 7   gate: FAIL
 ;; A fillers: weather ×2, color, course, mind, name, rain   e.g. tierB-000517 tierB-001491
@@ -986,7 +1033,8 @@
 ;; cosine: 0.22 (gate)   JSD: 0.808   shared clusters: 2 e.g. {Jessica, Linda, Beth, Katherine, …} {big, large, huge, massive, …}
 ;; A: (And (Member $e0 make) (Patient $e0 $x1))
 ;; B: (And (Member $e0 talk) (Recipient $e0 $x1))
-(Implication (And (Member $e0 talk) (Recipient $e0 $x1)) (And (Member $e0 talk) (Patient $e0 $x1)))
+(Implication (And (Member $e0 make) (Patient $e0 $x1)) (MnMakePatientOrTalkRecipient $e0 $x1))
+(Implication (And (Member $e0 talk) (Recipient $e0 $x1)) (MnMakePatientOrTalkRecipient $e0 $x1))
 
 ;; [same role, different class]  get.Patient ~ make.Patient   n 7 / 20   gate: FAIL
 ;; A fillers: Iran, bad, big ×0.5, cheap ×0.5, day ×0.5, excuse ×0.5   e.g. tierB-000748 tierB-001910
@@ -1039,7 +1087,8 @@
 ;; cosine: 0.21 (gate)   JSD: 0.844   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {thing, things, stuff, practice, thing}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 take) (Agent $e0 $x1))
-(Implication (And (Member $e0 take) (Agent $e0 $x1)) (And (Member $e0 take) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrTakeAgent $e0 $x1))
+(Implication (And (Member $e0 take) (Agent $e0 $x1)) (MnHaveHolderOrTakeAgent $e0 $x1))
 
 ;; [same role, different class]  leave.Agent ~ try.Agent   n 10 / 10   gate: FAIL
 ;; A fillers: Brian, Ivan, Marcus, Rodrigo, Tom, bus   e.g. tierB-000004 tierB-000704
@@ -1056,7 +1105,8 @@
 ;; cosine: 0.20 (gate)   JSD: 0.795   shared clusters: 2 e.g. {cat, cats} {Baya, Skura, Inomaru, Barako, …}
 ;; A: (And (Member $e0 make) (Agent $e0 $x1))
 ;; B: (And (Member $e0 sleep) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 sleep) (Experiencer $e0 $x1)) (And (Member $e0 sleep) (Agent $e0 $x1)))
+(Implication (And (Member $e0 make) (Agent $e0 $x1)) (MnMakeAgentOrSleepExperiencer $e0 $x1))
+(Implication (And (Member $e0 sleep) (Experiencer $e0 $x1)) (MnMakeAgentOrSleepExperiencer $e0 $x1))
 
 ;; [different class and role]  build.Patient ~ have.Holder   n 18 / 44   gate: FAIL
 ;; A fillers: hotel ×4, room ×3, horn ×2, paper factory ×2, paper mill ×2, thing ×2   e.g. tierC-000045 tierC-000046
@@ -1064,7 +1114,8 @@
 ;; cosine: 0.19 (gate)   JSD: 0.827   shared clusters: 3 e.g. {hotel} {room, changing room, rooms} {thing, things, stuff, practice, thing}
 ;; A: (And (Member $e0 build) (Patient $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 build) (Patient $e0 $x1)) (And (Member $e0 build) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrBuildPatient $e0 $x1))
+(Implication (And (Member $e0 build) (Patient $e0 $x1)) (MnHaveHolderOrBuildPatient $e0 $x1))
 
 ;; [different class and role]  build.Agent ~ replace.Theme   n 14 / 4   gate: FAIL
 ;; A fillers: company ×8, O. R. Woodcock ×2, person ×2, community, mozabite   e.g. tierC-000119 tierC-000120
@@ -1072,7 +1123,8 @@
 ;; cosine: 0.19 (gate)   JSD: 0.628   shared clusters: 2 e.g. {Bill Wrubel, Brian Packham, Carl Fenton, Colin Richardson, …} {person, people}
 ;; A: (And (Member $e0 build) (Agent $e0 $x1))
 ;; B: (And (Member $e0 replace) (Theme $e0 $x1))
-(Implication (And (Member $e0 replace) (Theme $e0 $x1)) (And (Member $e0 replace) (Agent $e0 $x1)))
+(Implication (And (Member $e0 build) (Agent $e0 $x1)) (MnBuildAgentOrReplaceTheme $e0 $x1))
+(Implication (And (Member $e0 replace) (Theme $e0 $x1)) (MnBuildAgentOrReplaceTheme $e0 $x1))
 
 ;; [same role, different class]  build.Patient ~ make.Patient   n 18 / 20   gate: FAIL
 ;; A fillers: hotel ×4, room ×3, horn ×2, paper factory ×2, paper mill ×2, thing ×2   e.g. tierC-000213 tierC-000214
@@ -1089,7 +1141,8 @@
 ;; cosine: 0.18 (gate)   JSD: 0.863   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 want) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (And (Member $e0 want) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrWantExperiencer $e0 $x1))
+(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (MnHaveHolderOrWantExperiencer $e0 $x1))
 
 ;; [different class and role]  go.Goal ~ swim.Agent   n 12 / 5   gate: FAIL
 ;; A fillers: bed ×4, Loren, aesthetic salon, bathroom, hospital, place   e.g. tierC-000210 tierB-001628
@@ -1097,7 +1150,8 @@
 ;; cosine: 0.17 (gate)   JSD: 0.752   shared clusters: 2 e.g. {Jessica, Linda, Beth, Katherine, …} {school, university, campus, college, …}
 ;; A: (And (Member $e0 go) (Goal $e0 $x1))
 ;; B: (And (Member $e0 swim) (Agent $e0 $x1))
-(Implication (And (Member $e0 swim) (Agent $e0 $x1)) (And (Member $e0 swim) (Goal $e0 $x1)))
+(Implication (And (Member $e0 go) (Goal $e0 $x1)) (MnGoGoalOrSwimAgent $e0 $x1))
+(Implication (And (Member $e0 swim) (Agent $e0 $x1)) (MnGoGoalOrSwimAgent $e0 $x1))
 
 ;; [different class and role]  go.Agent ~ want.Experiencer   n 15 / 8   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-001145 tierB-001183
@@ -1105,7 +1159,8 @@
 ;; cosine: 0.17 (gate)   JSD: 0.793   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {cat, cats}
 ;; A: (And (Member $e0 go) (Agent $e0 $x1))
 ;; B: (And (Member $e0 want) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (And (Member $e0 want) (Agent $e0 $x1)))
+(Implication (And (Member $e0 go) (Agent $e0 $x1)) (MnGoAgentOrWantExperiencer $e0 $x1))
+(Implication (And (Member $e0 want) (Experiencer $e0 $x1)) (MnGoAgentOrWantExperiencer $e0 $x1))
 
 ;; [different class and role]  become.Patient ~ hear.Stimulus   n 11 / 9   gate: FAIL
 ;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierB-000740 tierB-000352
@@ -1113,7 +1168,8 @@
 ;; cosine: 0.17 (gate)   JSD: 0.837   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {noise, noises}
 ;; A: (And (Member $e0 become) (Patient $e0 $x1))
 ;; B: (And (Member $e0 hear) (Stimulus $e0 $x1))
-(Implication (And (Member $e0 hear) (Stimulus $e0 $x1)) (And (Member $e0 hear) (Patient $e0 $x1)))
+(Implication (And (Member $e0 become) (Patient $e0 $x1)) (MnBecomePatientOrHearStimulus $e0 $x1))
+(Implication (And (Member $e0 hear) (Stimulus $e0 $x1)) (MnBecomePatientOrHearStimulus $e0 $x1))
 
 ;; [same role, different class]  go.Agent ~ make.Agent   n 15 / 18   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-001857 tierB-001145
@@ -1130,7 +1186,8 @@
 ;; cosine: 0.16 (gate)   JSD: 0.843   shared clusters: 4 e.g. {thing, things, stuff, practice, thing} {Algeria, Afghanistan, Iran, Morocco, …} {bad, bad, relationship, bad, matter, bad, problem} {weather, bad, weather}
 ;; A: (And (Member $e0 get) (Patient $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 get) (Patient $e0 $x1)) (And (Member $e0 get) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrGetPatient $e0 $x1))
+(Implication (And (Member $e0 get) (Patient $e0 $x1)) (MnHaveHolderOrGetPatient $e0 $x1))
 
 ;; [different class and role]  have.Holder ~ try.Agent   n 44 / 10   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000162 tierB-000358
@@ -1138,7 +1195,8 @@
 ;; cosine: 0.16 (gate)   JSD: 0.85   shared clusters: 3 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Boldi, Bruno, Felix, Maurice, …} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 try) (Agent $e0 $x1))
-(Implication (And (Member $e0 try) (Agent $e0 $x1)) (And (Member $e0 try) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrTryAgent $e0 $x1))
+(Implication (And (Member $e0 try) (Agent $e0 $x1)) (MnHaveHolderOrTryAgent $e0 $x1))
 
 ;; [different class and role]  direct.Patient ~ have.Holder   n 5 / 44   gate: FAIL
 ;; A fillers: episode ×2, movie, thing, film ×0.5, syrian film ×0.5   e.g. tierC-000138 tierC-000010
@@ -1146,7 +1204,8 @@
 ;; cosine: 0.16 (gate)   JSD: 0.856   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {movie, film}
 ;; A: (And (Member $e0 direct) (Patient $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 direct) (Patient $e0 $x1)) (And (Member $e0 direct) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrDirectPatient $e0 $x1))
+(Implication (And (Member $e0 direct) (Patient $e0 $x1)) (MnHaveHolderOrDirectPatient $e0 $x1))
 
 ;; [different class and role]  have.Holder ~ make.Agent   n 44 / 18   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierC-000271 tierC-000272
@@ -1154,7 +1213,8 @@
 ;; cosine: 0.16 (gate)   JSD: 0.882   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {thing, things, stuff, practice, thing}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 make) (Agent $e0 $x1))
-(Implication (And (Member $e0 make) (Agent $e0 $x1)) (And (Member $e0 make) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrMakeAgent $e0 $x1))
+(Implication (And (Member $e0 make) (Agent $e0 $x1)) (MnHaveHolderOrMakeAgent $e0 $x1))
 
 ;; [same class, different role]  lead.Goal ~ lead.Theme   n 5 / 3   gate: FAIL
 ;; A fillers: happiness, home, peace, big ×0.5, cat fight ×0.5, glory ×0.5   e.g. tierC-000020 tierB-001086
@@ -1170,7 +1230,8 @@
 ;; cosine: 0.16 (gate)   JSD: 0.85   shared clusters: 3 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Boris, Ivan, Oleg, Fyodor, …} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 leave) (Agent $e0 $x1))
-(Implication (And (Member $e0 leave) (Agent $e0 $x1)) (And (Member $e0 leave) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrLeaveAgent $e0 $x1))
+(Implication (And (Member $e0 leave) (Agent $e0 $x1)) (MnHaveHolderOrLeaveAgent $e0 $x1))
 
 ;; [different class and role]  have.Holder ~ read.Agent   n 44 / 3   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-001861 tierB-000358
@@ -1178,7 +1239,8 @@
 ;; cosine: 0.16 (gate)   JSD: 0.878   shared clusters: 2 e.g. {Boris, Ivan, Oleg, Fyodor, …} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 read) (Agent $e0 $x1))
-(Implication (And (Member $e0 read) (Agent $e0 $x1)) (And (Member $e0 read) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrReadAgent $e0 $x1))
+(Implication (And (Member $e0 read) (Agent $e0 $x1)) (MnHaveHolderOrReadAgent $e0 $x1))
 
 ;; [different class and role]  good.Experiencer ~ have.Holder   n 4 / 44   gate: FAIL
 ;; A fillers: barley bread, thing, weather, windshield   e.g. tierB-000495 tierB-001238
@@ -1186,7 +1248,8 @@
 ;; cosine: 0.15 (gate)   JSD: 0.875   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {weather, bad, weather}
 ;; A: (And (Member $e0 good) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 good) (Experiencer $e0 $x1)) (And (Member $e0 good) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrGoodExperiencer $e0 $x1))
+(Implication (And (Member $e0 good) (Experiencer $e0 $x1)) (MnHaveHolderOrGoodExperiencer $e0 $x1))
 
 ;; [different class and role]  have.Holder ~ help.Agent   n 44 / 6   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000358 tierC-000182
@@ -1194,7 +1257,8 @@
 ;; cosine: 0.15 (gate)   JSD: 0.87   shared clusters: 2 e.g. {Karen, Kalman, Kerr, Ken} {Jonas, Roger, Bob, Ralph, …}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 help) (Agent $e0 $x1))
-(Implication (And (Member $e0 help) (Agent $e0 $x1)) (And (Member $e0 help) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrHelpAgent $e0 $x1))
+(Implication (And (Member $e0 help) (Agent $e0 $x1)) (MnHaveHolderOrHelpAgent $e0 $x1))
 
 ;; [same role, different class]  go.Agent ~ play.Agent   n 15 / 15   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-001857 tierB-001496
@@ -1211,7 +1275,8 @@
 ;; cosine: 0.14 (gate)   JSD: 0.821   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {child, children, kid, baby, …}
 ;; A: (And (Member $e0 go) (Agent $e0 $x1))
 ;; B: (And (Member $e0 need) (Experiencer $e0 $x1))
-(Implication (And (Member $e0 need) (Experiencer $e0 $x1)) (And (Member $e0 need) (Agent $e0 $x1)))
+(Implication (And (Member $e0 go) (Agent $e0 $x1)) (MnGoAgentOrNeedExperiencer $e0 $x1))
+(Implication (And (Member $e0 need) (Experiencer $e0 $x1)) (MnGoAgentOrNeedExperiencer $e0 $x1))
 
 ;; [same role, different class]  go.Agent ~ walk.Agent   n 15 / 8   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-001857 tierB-001145
@@ -1228,7 +1293,8 @@
 ;; cosine: 0.14 (gate)   JSD: 0.75   shared clusters: 2 e.g. {Elias, Tobias, Gabor, Gabriel} {man, guy, man, old}
 ;; A: (And (Member $e0 bear) (Patient $e0 $x1))
 ;; B: (And (Member $e0 get) (Agent $e0 $x1))
-(Implication (And (Member $e0 get) (Agent $e0 $x1)) (And (Member $e0 get) (Patient $e0 $x1)))
+(Implication (And (Member $e0 bear) (Patient $e0 $x1)) (MnBearPatientOrGetAgent $e0 $x1))
+(Implication (And (Member $e0 get) (Agent $e0 $x1)) (MnBearPatientOrGetAgent $e0 $x1))
 
 ;; [different class and role]  have.Holder ~ walk.Agent   n 44 / 8   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000162 tierB-000855
@@ -1236,7 +1302,8 @@
 ;; cosine: 0.13 (gate)   JSD: 0.883   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Boldi, Bruno, Felix, Maurice, …}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 walk) (Agent $e0 $x1))
-(Implication (And (Member $e0 walk) (Agent $e0 $x1)) (And (Member $e0 walk) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrWalkAgent $e0 $x1))
+(Implication (And (Member $e0 walk) (Agent $e0 $x1)) (MnHaveHolderOrWalkAgent $e0 $x1))
 
 ;; [different class and role]  bad.Experiencer ~ make.Patient   n 4 / 20   gate: FAIL
 ;; A fillers: bad ×2, relationship, matter ×0.5, weather ×0.5   e.g. tierB-000748 tierB-001594
@@ -1244,7 +1311,8 @@
 ;; cosine: 0.13 (gate)   JSD: 0.879   shared clusters: 2 e.g. {bad, bad, relationship, bad, matter, bad, problem} {matter, mass}
 ;; A: (And (Member $e0 bad) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 make) (Patient $e0 $x1))
-(Implication (And (Member $e0 bad) (Experiencer $e0 $x1)) (And (Member $e0 bad) (Patient $e0 $x1)))
+(Implication (And (Member $e0 make) (Patient $e0 $x1)) (MnMakePatientOrBadExperiencer $e0 $x1))
+(Implication (And (Member $e0 bad) (Experiencer $e0 $x1)) (MnMakePatientOrBadExperiencer $e0 $x1))
 
 ;; [different class and role]  buy.Theme ~ have.Holder   n 5 / 44   gate: FAIL
 ;; A fillers: computer, food, house, blue ×0.5, shirt ×0.5, trouser ×0.5   e.g. tierB-001690 tierB-000368
@@ -1252,7 +1320,8 @@
 ;; cosine: 0.12 (gate)   JSD: 0.894   shared clusters: 2 e.g. {house, home, comfortable, house, houses, …} {food, eat}
 ;; A: (And (Member $e0 buy) (Theme $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 buy) (Theme $e0 $x1)) (And (Member $e0 buy) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrBuyTheme $e0 $x1))
+(Implication (And (Member $e0 buy) (Theme $e0 $x1)) (MnHaveHolderOrBuyTheme $e0 $x1))
 
 ;; [same role, different class]  make.Agent ~ speak.Agent   n 18 / 8   gate: FAIL
 ;; A fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-000951 tierB-001182
@@ -1269,7 +1338,8 @@
 ;; cosine: 0.12 (gate)   JSD: 0.85   shared clusters: 2 e.g. {gusher} {black, blue, white, brown, …}
 ;; A: (And (Member $e0 start) (Patient $e0 $x1))
 ;; B: (And (Member $e0 turn) (Result $e0 $x1))
-(Implication (And (Member $e0 turn) (Result $e0 $x1)) (And (Member $e0 turn) (Patient $e0 $x1)))
+(Implication (And (Member $e0 start) (Patient $e0 $x1)) (MnStartPatientOrTurnResult $e0 $x1))
+(Implication (And (Member $e0 turn) (Result $e0 $x1)) (MnStartPatientOrTurnResult $e0 $x1))
 
 ;; [different class and role]  change.Patient ~ have.Holder   n 8 / 44   gate: FAIL
 ;; A fillers: weather ×2, color, course, mind, name, rain   e.g. tierB-000517 tierB-001491
@@ -1277,7 +1347,8 @@
 ;; cosine: 0.12 (gate)   JSD: 0.895   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {weather, bad, weather}
 ;; A: (And (Member $e0 change) (Patient $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 change) (Patient $e0 $x1)) (And (Member $e0 change) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrChangePatient $e0 $x1))
+(Implication (And (Member $e0 change) (Patient $e0 $x1)) (MnHaveHolderOrChangePatient $e0 $x1))
 
 ;; [different class and role]  lead.Goal ~ make.Patient   n 5 / 20   gate: FAIL
 ;; A fillers: happiness, home, peace, big ×0.5, cat fight ×0.5, glory ×0.5   e.g. tierB-001086 tierC-000020
@@ -1285,7 +1356,8 @@
 ;; cosine: 0.12 (gate)   JSD: 0.875   shared clusters: 2 e.g. {house, home, comfortable, house, houses, …} {big, large, huge, massive, …}
 ;; A: (And (Member $e0 lead) (Goal $e0 $x1))
 ;; B: (And (Member $e0 make) (Patient $e0 $x1))
-(Implication (And (Member $e0 lead) (Goal $e0 $x1)) (And (Member $e0 lead) (Patient $e0 $x1)))
+(Implication (And (Member $e0 make) (Patient $e0 $x1)) (MnMakePatientOrLeadGoal $e0 $x1))
+(Implication (And (Member $e0 lead) (Goal $e0 $x1)) (MnMakePatientOrLeadGoal $e0 $x1))
 
 ;; [same class, different role]  form.Agent ~ form.Patient   n 7 / 6   gate: FAIL
 ;; A fillers: Jon Bon Jovi ×2, Sambora ×2, labourer, technetium, complex ×0.5, simple ×0.5   e.g. tierC-000164 tierC-000163
@@ -1301,7 +1373,8 @@
 ;; cosine: 0.11 (gate)   JSD: 0.839   shared clusters: 2 e.g. {dog, dog feed} {black, blue, white, brown, …}
 ;; A: (And (Member $e0 eat) (Agent $e0 $x1))
 ;; B: (And (Member $e0 start) (Patient $e0 $x1))
-(Implication (And (Member $e0 eat) (Agent $e0 $x1)) (And (Member $e0 eat) (Patient $e0 $x1)))
+(Implication (And (Member $e0 start) (Patient $e0 $x1)) (MnStartPatientOrEatAgent $e0 $x1))
+(Implication (And (Member $e0 eat) (Agent $e0 $x1)) (MnStartPatientOrEatAgent $e0 $x1))
 
 ;; [different class and role]  beautiful.Experiencer ~ make.Patient   n 3 / 20   gate: FAIL
 ;; A fillers: beautiful, weather, moon ×0.5, room ×0.5   e.g. tierB-001920 tierB-000904
@@ -1309,7 +1382,8 @@
 ;; cosine: 0.11 (gate)   JSD: 0.881   shared clusters: 2 e.g. {beautiful, beauty, gorgeous, pretty} {room, changing room, rooms}
 ;; A: (And (Member $e0 beautiful) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 make) (Patient $e0 $x1))
-(Implication (And (Member $e0 beautiful) (Experiencer $e0 $x1)) (And (Member $e0 beautiful) (Patient $e0 $x1)))
+(Implication (And (Member $e0 make) (Patient $e0 $x1)) (MnMakePatientOrBeautifulExperiencer $e0 $x1))
+(Implication (And (Member $e0 beautiful) (Experiencer $e0 $x1)) (MnMakePatientOrBeautifulExperiencer $e0 $x1))
 
 ;; [different class and role]  build.Patient ~ sell.Theme   n 18 / 7   gate: FAIL
 ;; A fillers: hotel ×4, room ×3, horn ×2, paper factory ×2, paper mill ×2, thing ×2   e.g. tierB-001867 tierC-000119
@@ -1317,7 +1391,8 @@
 ;; cosine: 0.11 (gate)   JSD: 0.832   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {new, brand new, language, new, new, product}
 ;; A: (And (Member $e0 build) (Patient $e0 $x1))
 ;; B: (And (Member $e0 sell) (Theme $e0 $x1))
-(Implication (And (Member $e0 sell) (Theme $e0 $x1)) (And (Member $e0 sell) (Patient $e0 $x1)))
+(Implication (And (Member $e0 build) (Patient $e0 $x1)) (MnBuildPatientOrSellTheme $e0 $x1))
+(Implication (And (Member $e0 sell) (Theme $e0 $x1)) (MnBuildPatientOrSellTheme $e0 $x1))
 
 ;; [different class and role]  live.Location ~ make.Patient   n 8 / 20   gate: FAIL
 ;; A fillers: Norway ×2, house ×1.5, group, southeastern corner, suburb, comfortable ×0.5   e.g. tierB-000048 tierB-000371
@@ -1325,7 +1400,8 @@
 ;; cosine: 0.11 (gate)   JSD: 0.851   shared clusters: 3 e.g. {house, home, comfortable, house, houses, …} {big, large, huge, massive, …} {cozy, comfortable}
 ;; A: (And (Member $e0 live) (Location $e0 $x1))
 ;; B: (And (Member $e0 make) (Patient $e0 $x1))
-(Implication (And (Member $e0 live) (Location $e0 $x1)) (And (Member $e0 live) (Patient $e0 $x1)))
+(Implication (And (Member $e0 make) (Patient $e0 $x1)) (MnMakePatientOrLiveLocation $e0 $x1))
+(Implication (And (Member $e0 live) (Location $e0 $x1)) (MnMakePatientOrLiveLocation $e0 $x1))
 
 ;; [different class and role]  become.Patient ~ have.Holder   n 11 / 44   gate: FAIL
 ;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierC-000241 tierC-000242
@@ -1333,7 +1409,8 @@
 ;; cosine: 0.10 (gate)   JSD: 0.912   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {bad, bad, relationship, bad, matter, bad, problem}
 ;; A: (And (Member $e0 become) (Patient $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 become) (Patient $e0 $x1)) (And (Member $e0 become) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrBecomePatient $e0 $x1))
+(Implication (And (Member $e0 become) (Patient $e0 $x1)) (MnHaveHolderOrBecomePatient $e0 $x1))
 
 ;; [same role, different class]  go.Agent ~ serve.Agent   n 15 / 10   gate: FAIL
 ;; A fillers: Katherine ×2, Daniel, Donald, Flavio, Kalman, Linda   e.g. tierB-001145 tierB-000204
@@ -1368,7 +1445,8 @@
 ;; cosine: 0.10 (gate)   JSD: 0.891   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Karen, Kalman, Kerr, Ken}
 ;; A: (And (Member $e0 go) (Agent $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 go) (Agent $e0 $x1)) (And (Member $e0 go) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrGoAgent $e0 $x1))
+(Implication (And (Member $e0 go) (Agent $e0 $x1)) (MnHaveHolderOrGoAgent $e0 $x1))
 
 ;; [different class and role]  bear.Patient ~ make.Agent   n 6 / 18   gate: FAIL
 ;; A fillers: person ×3, Tobias, Tycho Brahe, man ×0.5, poor ×0.5   e.g. tierB-000906 tierB-001568
@@ -1376,7 +1454,8 @@
 ;; cosine: 0.09 (gate)   JSD: 0.842   shared clusters: 2 e.g. {Elias, Tobias, Gabor, Gabriel} {man, guy, man, old}
 ;; A: (And (Member $e0 bear) (Patient $e0 $x1))
 ;; B: (And (Member $e0 make) (Agent $e0 $x1))
-(Implication (And (Member $e0 bear) (Patient $e0 $x1)) (And (Member $e0 bear) (Agent $e0 $x1)))
+(Implication (And (Member $e0 make) (Agent $e0 $x1)) (MnMakeAgentOrBearPatient $e0 $x1))
+(Implication (And (Member $e0 bear) (Patient $e0 $x1)) (MnMakeAgentOrBearPatient $e0 $x1))
 
 ;; [same class, different role]  make.Patient ~ make.Result   n 20 / 7   gate: FAIL
 ;; A fillers: difference ×1.5, Afghanistan, Augustus, Isabella, big, chicken fried steak   e.g. tierB-001594 tierB-001920
@@ -1401,7 +1480,8 @@
 ;; cosine: 0.09 (gate)   JSD: 0.907   shared clusters: 2 e.g. {color} {thing, things, stuff, practice, thing}
 ;; A: (And (Member $e0 change) (Patient $e0 $x1))
 ;; B: (And (Member $e0 have) (Theme $e0 $x1))
-(Implication (And (Member $e0 change) (Patient $e0 $x1)) (And (Member $e0 change) (Theme $e0 $x1)))
+(Implication (And (Member $e0 have) (Theme $e0 $x1)) (MnHaveThemeOrChangePatient $e0 $x1))
+(Implication (And (Member $e0 change) (Patient $e0 $x1)) (MnHaveThemeOrChangePatient $e0 $x1))
 
 ;; [different class and role]  buy.Theme ~ turn.Patient   n 5 / 7   gate: FAIL
 ;; A fillers: computer, food, house, blue ×0.5, shirt ×0.5, trouser ×0.5   e.g. tierB-000367 tierB-001690
@@ -1409,7 +1489,8 @@
 ;; cosine: 0.09 (gate)   JSD: 0.849   shared clusters: 2 e.g. {black, blue, white, brown, …} {yellow, orange}
 ;; A: (And (Member $e0 buy) (Theme $e0 $x1))
 ;; B: (And (Member $e0 turn) (Patient $e0 $x1))
-(Implication (And (Member $e0 buy) (Theme $e0 $x1)) (And (Member $e0 buy) (Patient $e0 $x1)))
+(Implication (And (Member $e0 turn) (Patient $e0 $x1)) (MnTurnPatientOrBuyTheme $e0 $x1))
+(Implication (And (Member $e0 buy) (Theme $e0 $x1)) (MnTurnPatientOrBuyTheme $e0 $x1))
 
 ;; [different class and role]  have.Holder ~ study.Agent   n 44 / 12   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-001861 tierB-000855
@@ -1417,7 +1498,8 @@
 ;; cosine: 0.08 (gate)   JSD: 0.9   shared clusters: 2 e.g. {Gustavo, Alberto, Martino, Pietro, …} {Boris, Ivan, Oleg, Fyodor, …}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 study) (Agent $e0 $x1))
-(Implication (And (Member $e0 study) (Agent $e0 $x1)) (And (Member $e0 study) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrStudyAgent $e0 $x1))
+(Implication (And (Member $e0 study) (Agent $e0 $x1)) (MnHaveHolderOrStudyAgent $e0 $x1))
 
 ;; [different class and role]  beautiful.Experiencer ~ have.Holder   n 3 / 44   gate: FAIL
 ;; A fillers: beautiful, weather, moon ×0.5, room ×0.5   e.g. tierB-001920 tierB-000565
@@ -1425,7 +1507,8 @@
 ;; cosine: 0.08 (gate)   JSD: 0.914   shared clusters: 2 e.g. {room, changing room, rooms} {weather, bad, weather}
 ;; A: (And (Member $e0 beautiful) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 beautiful) (Experiencer $e0 $x1)) (And (Member $e0 beautiful) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrBeautifulExperiencer $e0 $x1))
+(Implication (And (Member $e0 beautiful) (Experiencer $e0 $x1)) (MnHaveHolderOrBeautifulExperiencer $e0 $x1))
 
 ;; [different class and role]  have.Holder ~ use.Theme   n 44 / 23   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-001264 tierB-000142
@@ -1433,7 +1516,8 @@
 ;; cosine: 0.07 (gate)   JSD: 0.908   shared clusters: 3 e.g. {room, changing room, rooms} {sentence, english sentence, sentences} {word, word processor}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 use) (Theme $e0 $x1))
-(Implication (And (Member $e0 use) (Theme $e0 $x1)) (And (Member $e0 use) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrUseTheme $e0 $x1))
+(Implication (And (Member $e0 use) (Theme $e0 $x1)) (MnHaveHolderOrUseTheme $e0 $x1))
 
 ;; [different class and role]  get.Patient ~ have.Theme   n 7 / 43   gate: FAIL
 ;; A fillers: Iran, bad, big ×0.5, cheap ×0.5, day ×0.5, excuse ×0.5   e.g. tierB-001658 tierB-000370
@@ -1441,7 +1525,8 @@
 ;; cosine: 0.07 (gate)   JSD: 0.924   shared clusters: 2 e.g. {day, days, days, short, one day} {thing, things, stuff, practice, thing}
 ;; A: (And (Member $e0 get) (Patient $e0 $x1))
 ;; B: (And (Member $e0 have) (Theme $e0 $x1))
-(Implication (And (Member $e0 get) (Patient $e0 $x1)) (And (Member $e0 get) (Theme $e0 $x1)))
+(Implication (And (Member $e0 have) (Theme $e0 $x1)) (MnHaveThemeOrGetPatient $e0 $x1))
+(Implication (And (Member $e0 get) (Patient $e0 $x1)) (MnHaveThemeOrGetPatient $e0 $x1))
 
 ;; [same role, different class]  make.Agent ~ play.Agent   n 18 / 15   gate: FAIL
 ;; A fillers: Augustus, Damiano, David, Elias, Hanako, James   e.g. tierB-000951 tierB-001457
@@ -1458,7 +1543,8 @@
 ;; cosine: 0.07 (gate)   JSD: 0.932   shared clusters: 2 e.g. {bad, bad, relationship, bad, matter, bad, problem} {weather, bad, weather}
 ;; A: (And (Member $e0 bad) (Experiencer $e0 $x1))
 ;; B: (And (Member $e0 have) (Holder $e0 $x1))
-(Implication (And (Member $e0 bad) (Experiencer $e0 $x1)) (And (Member $e0 bad) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrBadExperiencer $e0 $x1))
+(Implication (And (Member $e0 bad) (Experiencer $e0 $x1)) (MnHaveHolderOrBadExperiencer $e0 $x1))
 
 ;; [different class and role]  have.Holder ~ make.Patient   n 44 / 20   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000790 tierB-001016
@@ -1466,7 +1552,8 @@
 ;; cosine: 0.07 (gate)   JSD: 0.903   shared clusters: 4 e.g. {Algeria, Afghanistan, Iran, Morocco, …} {house, home, comfortable, house, houses, …} {room, changing room, rooms} {bad, bad, relationship, bad, matter, bad, problem}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 make) (Patient $e0 $x1))
-(Implication (And (Member $e0 make) (Patient $e0 $x1)) (And (Member $e0 make) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrMakePatient $e0 $x1))
+(Implication (And (Member $e0 make) (Patient $e0 $x1)) (MnHaveHolderOrMakePatient $e0 $x1))
 
 ;; [different class and role]  have.Holder ~ write.Patient   n 44 / 10   gate: FAIL
 ;; A fillers: Kristoffer ×4, Karen ×2, thing ×2, town ×2, Algiers, Boldi   e.g. tierB-000931 tierB-000142
@@ -1474,7 +1561,8 @@
 ;; cosine: 0.06 (gate)   JSD: 0.915   shared clusters: 2 e.g. {book, library, books} {sentence, english sentence, sentences}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 write) (Patient $e0 $x1))
-(Implication (And (Member $e0 write) (Patient $e0 $x1)) (And (Member $e0 write) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrWritePatient $e0 $x1))
+(Implication (And (Member $e0 write) (Patient $e0 $x1)) (MnHaveHolderOrWritePatient $e0 $x1))
 
 ;; [same role, different class]  become.Patient ~ make.Patient   n 11 / 20   gate: FAIL
 ;; A fillers: Lady Ashton, bad, indigenous, person, relationship, thing   e.g. tierC-000241 tierC-000242
@@ -1491,7 +1579,8 @@
 ;; cosine: 0.06 (gate)   JSD: 0.931   shared clusters: 2 e.g. {Boris, Ivan, Oleg, Fyodor, …} {old, aging, ages ago, elderly}
 ;; A: (And (Member $e0 have) (Holder $e0 $x1))
 ;; B: (And (Member $e0 work) (Agent $e0 $x1))
-(Implication (And (Member $e0 work) (Agent $e0 $x1)) (And (Member $e0 work) (Holder $e0 $x1)))
+(Implication (And (Member $e0 have) (Holder $e0 $x1)) (MnHaveHolderOrWorkAgent $e0 $x1))
+(Implication (And (Member $e0 work) (Agent $e0 $x1)) (MnHaveHolderOrWorkAgent $e0 $x1))
 
 ;; [different class and role]  have.Theme ~ make.Result   n 43 / 7   gate: FAIL
 ;; A fillers: child ×4, representation ×2, antler, beauty salon, cemetery, chance   e.g. tierB-001016 tierB-001264
@@ -1499,7 +1588,8 @@
 ;; cosine: 0.06 (gate)   JSD: 0.94   shared clusters: 2 e.g. {beautiful, beauty, gorgeous, pretty} {black, blue, white, brown, …}
 ;; A: (And (Member $e0 have) (Theme $e0 $x1))
 ;; B: (And (Member $e0 make) (Result $e0 $x1))
-(Implication (And (Member $e0 make) (Result $e0 $x1)) (And (Member $e0 make) (Theme $e0 $x1)))
+(Implication (And (Member $e0 have) (Theme $e0 $x1)) (MnHaveThemeOrMakeResult $e0 $x1))
+(Implication (And (Member $e0 make) (Result $e0 $x1)) (MnHaveThemeOrMakeResult $e0 $x1))
 
 ;; [same entity class, different head]  <unclassed>.PartOf ~ <unclassed>.Possession   n 11 / 30   gate: FAIL
 ;; A fillers: Khurda Road ×2, Yunnan, animal, cake, islamic ivory, ivy   e.g. tierC-000314 tierC-000114
@@ -1523,7 +1613,8 @@
 ;; cosine: 0.05 (gate)   JSD: 0.941   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {black, blue, white, brown, …}
 ;; A: (And (Member $e0 have) (Theme $e0 $x1))
 ;; B: (And (Member $e0 start) (Patient $e0 $x1))
-(Implication (And (Member $e0 start) (Patient $e0 $x1)) (And (Member $e0 start) (Theme $e0 $x1)))
+(Implication (And (Member $e0 have) (Theme $e0 $x1)) (MnHaveThemeOrStartPatient $e0 $x1))
+(Implication (And (Member $e0 start) (Patient $e0 $x1)) (MnHaveThemeOrStartPatient $e0 $x1))
 
 ;; [same entity class, different head]  <unclassed>.LocatedIn ~ <unclassed>.PartOf   n 46 / 11   gate: FAIL
 ;; A fillers: here ×3, Derwent Isle ×2, city ×2, class ×2, garden ×2, southern ×2   e.g. tierB-000523 tierB-001111
@@ -1539,7 +1630,8 @@
 ;; cosine: 0.05 (gate)   JSD: 0.943   shared clusters: 2 e.g. {thing, things, stuff, practice, thing} {curtain, blue, curtain, curtains}
 ;; A: (And (Member $e0 have) (Theme $e0 $x1))
 ;; B: (And (Member $e0 make) (Agent $e0 $x1))
-(Implication (And (Member $e0 make) (Agent $e0 $x1)) (And (Member $e0 make) (Theme $e0 $x1)))
+(Implication (And (Member $e0 have) (Theme $e0 $x1)) (MnHaveThemeOrMakeAgent $e0 $x1))
+(Implication (And (Member $e0 make) (Agent $e0 $x1)) (MnHaveThemeOrMakeAgent $e0 $x1))
 
 ;; [different class and role]  have.Theme ~ turn.Patient   n 43 / 7   gate: FAIL
 ;; A fillers: child ×4, representation ×2, antler, beauty salon, cemetery, chance   e.g. tierB-001264 tierB-001929
@@ -1547,7 +1639,8 @@
 ;; cosine: 0.04 (gate)   JSD: 0.943   shared clusters: 2 e.g. {leaf, foliage, leaves} {black, blue, white, brown, …}
 ;; A: (And (Member $e0 have) (Theme $e0 $x1))
 ;; B: (And (Member $e0 turn) (Patient $e0 $x1))
-(Implication (And (Member $e0 turn) (Patient $e0 $x1)) (And (Member $e0 turn) (Theme $e0 $x1)))
+(Implication (And (Member $e0 have) (Theme $e0 $x1)) (MnHaveThemeOrTurnPatient $e0 $x1))
+(Implication (And (Member $e0 turn) (Patient $e0 $x1)) (MnHaveThemeOrTurnPatient $e0 $x1))
 
 ;; [different class and role]  create.Patient ~ use.Theme   n 7 / 23   gate: FAIL
 ;; A fillers: community ×4, particle accelerator, calendar ×0.5, language ×0.5, new ×0.5, various ×0.5   e.g. tierB-000089 tierB-000728
@@ -1555,4 +1648,5 @@
 ;; cosine: 0.02 (gate)   JSD: 0.927   shared clusters: 2 e.g. {schedule, calendar} {diverse, various}
 ;; A: (And (Member $e0 create) (Patient $e0 $x1))
 ;; B: (And (Member $e0 use) (Theme $e0 $x1))
-(Implication (And (Member $e0 create) (Patient $e0 $x1)) (And (Member $e0 create) (Theme $e0 $x1)))
+(Implication (And (Member $e0 use) (Theme $e0 $x1)) (MnUseThemeOrCreatePatient $e0 $x1))
+(Implication (And (Member $e0 create) (Patient $e0 $x1)) (MnUseThemeOrCreatePatient $e0 $x1))
