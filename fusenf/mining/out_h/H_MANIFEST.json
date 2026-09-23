@@ -788,143 +788,161 @@
   },
   "4.3.4_alignment": {
    "script": "mining/align_faithful.py",
-   "date": "2026-09-19",
+   "date": "2026-09-23",
+   "reading": "validation instrument (owner 2026-09-23, replacing the 2026-09-19 inventory-keyed build): a table over structural elements — subtrees and roles — with their behaviour under paraphrase (preserved / substituted-by / one-sided) and, per substitution, its support in distinct paraphrase classes and among the control pairs; a substitution that recurs between sentences known to mean the same and never between sentences known to differ is a LICENSED unification; evidence only — rewrites come from build_candidates",
+   "substrate": "Tier A only (corpora/tierA.jsonl over out_ecmp/canonical_iteme.jsonl: 84 classes, 233 paraphrase pairs, 468 control pairs); H (Tier C PAWS) dropped as a substrate for this method; out_h/align_faithful.* removed (git history keeps the 2026-09-19 build)",
    "variants": {
     "faithful": {
      "parameters": {
-      "pairs": "every equivalence class with >= 2 members in the canonical store: paraphrase pairs = same-polarity members (H: the 172 complete Tier C PAWS pairs; item-E: 413 = Tier A variants + 180 Tier C pairs), control pairs = same x different polarity (item-E: 468; a measurement column, never a filter); control support of a mapping = classes where it occurs in a control pair but in none of the class's paraphrase pairs",
-      "alignment": "exact maximum-common-subgraph: every injective skolem renaming within each stream (e/x/f), maximising identical atoms (term + polarity) then near-identical atoms (same arity, same variables in the same positions, one head or constant differs), first renaming on a tie (ambiguity recorded); greedy assignment above 5,040 renamings (never triggered); eligible atoms = the miner's",
-      "subtrees": "the §4.3.1 faithful units instantiated on each side (k 4); a unit maps to the canonical form of its atoms' images (raw when not in the inventory)",
-      "roles": "binary heads on an aligned event centre (class links excluded), matched by aligned centre + filler; role-lost when the other side has no atom there",
-      "residue": "atoms matched on neither side, keyed by canonical form + the smallest unit instance around them whose other atoms matched; head_on_other_side = attachment slack vs true add/drop",
-      "consistency": "support = distinct equivalence classes (never pairs); PASS at >= 3; identity mappings summarised per unit (self / other / lost)",
-      "rules": "unit mapping -> two implications into a provisional meta-node (Mn<shared heads>_<AltOrAlt>); role mapping -> minority head rewrites to majority (by occurrence count); residue with a matched context -> the context rewrites to itself without the atom",
-      "pair_view": "the per-pair intermediate (align_faithful_pairs.jsonl + .md, one block per pair, added 2026-09-21): the two sentences, the COMMON subgraph (the method's identical atoms, in A's variable names; B renamed through the alignment, B-only variables primed), the differing subgraphs per side (atoms sharing a node symbol the common part does not hold; a symbol the common part holds is an anchor and never merges) ALIGNED across the pair in two tiers — near = the method's own one-substitution match, partial = a reading-only pass among the leftovers (same arity, >= 1 equal argument position holding a skolem unless the heads are equal or both are class links; greedy by equal positions then equal head; never fusing two near-formed groups) — the atoms left over inside aligned groups (A only / B only), and the RESIDUE = subgraphs with no counterpart at all; a view only, the method's outputs byte-identical"
+      "pairs": "every equivalence class with >= 2 members in the canonical store: paraphrase pairs = same-polarity members, control pairs = same x different polarity (participant-swap 86, quantity-change 41, negation 154, antonym 84, modality-shift 95, manner-near-miss 8); control support of a key = classes where it occurs in a control pair but in none of the class's paraphrase pairs (a measurement column, never a filter)",
+      "alignment": "the edit script: every injective skolem renaming within each stream (e/x/f), maximising identical atoms (term + polarity) then near atoms (same arity, same skolems in the same positions, one head or constant differs = a relabel), first renaming on a tie (ambiguity recorded); greedy assignment above 5,040 renamings (never triggered); eligible atoms = the miner's; everything else one-sided",
+      "regions": "atoms outside the common part grouped per side by shared node symbols the common part does not hold (skolems, or constants standing as a term's first argument); symbols the common part holds are anchors and never merge regions",
+      "substitutions": "regions linked across the pair by relabels, plus every same-side region hanging on the same anchors as a relabelled region (a co-dependent edit is one substitution: make + decision ~ decide, big + very ~ huge, a converse's verb swap + role swaps); recorded as each FACTOR (one relabel, symmetric key) and, when the substitution holds more than one factor or a leftover, as the JOINT key (all atoms of both sides + anchors, symmetric); a factor's record counts the classes where it is attested alone and its joint contexts",
+      "one_sided": "regions with no relabel link: diagnostic by default (a prune candidate only by an owner doctrine ruling); keyed by atoms + anchors; per-occurrence flags reattach (the other side has a one-sided region on the same anchors sharing a head) and head_on_other_side",
+      "roles": "binary heads on an aligned event centre (class links excluded), matched by aligned centre + filler; role-lost when the other side has no atom there; identity counted in the element table",
+      "elements": "every atom pattern (skolems abstracted, constants verbatim, strings/numbers masked) on either side of a paraphrase pair: preserved / substituted(by) / one-sided per class; stability = preserved / observed",
+      "consistency": "support = distinct equivalence classes (never pairs); PASS at >= 3; gates: LICENSED = pass, zero control support, (a factor) attested alone at least once; JOINT-ONLY = a factor never attested alone (licensed only inside its joint); CONTESTED = pass with control support",
+      "rules": "none — evidence only: (Unifiable A B) / (OneSided X) in the .metta rendering, never loaded; build_candidates turns licensed unifications into rewrites"
      },
      "outputs": [
-      "mining/out_h/align_faithful.jsonl / .md / .metta + align_faithful_pairs.jsonl + align_faithful_pairs.md (per-pair intermediate: sentences, common subgraph, aligned differing subgraphs, residue) + align_faithful_notes.md",
-      "mining/out_ecmp/align_faithful.* (item-E twin with the Tier A scorecard)"
+      "mining/out_ecmp/align_faithful.jsonl / .md / .metta (records: substitution-factor / substitution-joint / role / role-lost / drop / element)",
+      "mining/out_ecmp/align_faithful_pairs.jsonl / .md (per-pair intermediate: sentences, renaming, common subgraph, substitutions with factors and leftovers, one-sided regions)",
+      "mining/out_ecmp/align_faithful_notes.md (analyst reading)"
      ],
      "results": {
-      "H": {
-       "pairs": 172,
-       "identical_parses": 26,
-       "quality_median": 0.7143,
+      "tierA": {
+       "pairs": {
+        "paraphrase": 233,
+        "control": 468,
+        "records": 402,
+        "classes": 84
+       },
+       "identical_parses": 49,
+       "quality_median": 0.8,
        "quality_quartiles": [
-        0.5455,
-        0.8846
+        0.5714,
+        0.8571
        ],
-       "pairs_below_0.5": 35,
-       "ambiguous_renamings": 11,
+       "pairs_below_0.5": 24,
+       "ambiguous_renamings": 106,
        "greedy": 0,
-       "unit_mappings": {
-        "recorded": 124,
-        "pass": 3,
-        "shape_parallel": 117,
-        "passes": [
-         "Patient~Theme 5",
-         "Agent~Patient 4",
-         "Past+Patient~Past+Theme 3"
+       "paraphrase_atoms": {
+        "common": 1061,
+        "relabelled": 235,
+        "substitutions": 173,
+        "leftover_in_substitutions": 65,
+        "one_sided": 78,
+        "one_sided_regions": 32,
+        "reattached_regions": 18,
+        "pairs_without_one_sided": 215
+       },
+       "elements": {
+        "observed": 275,
+        "always_preserved": 207,
+        "substituted_once_or_more": 65,
+        "one_sided_once_or_more": 32
+       },
+       "factors": {
+        "recorded": 138,
+        "pass": 30,
+        "licensed": 16,
+        "joint_only": 13,
+        "contested": 1,
+        "licensed_list": [
+         "buy~purchase~acquire (3 pairs)",
+         "begin~commence~start (3)",
+         "cancel~call_off",
+         "discover~find_out",
+         "abandon~give_up",
+         "postpone~put_off",
+         "need~require",
+         "reject~turn_down",
+         "car~automobile",
+         "hard~difficult",
+         "big~large",
+         "doctor~physician"
+        ],
+        "joint_only_list": [
+         "sell~buy/purchase/acquire",
+         "give~receive",
+         "lend~borrow",
+         "teach~learn",
+         "make/reach~decide",
+         "give~answer",
+         "huge~big",
+         "Agent~Source",
+         "Theme~Patient (event filler)"
+        ],
+        "contested_list": [
+         "Agent~Recipient (12, control 1)"
+        ]
+       },
+       "joints": {
+        "recorded": 91,
+        "with_paraphrase_support": 18,
+        "licensed": 9,
+        "all_licensed_co_dependent": true,
+        "licensed_list": [
+         "(Agent+buy|purchase|acquire) ~ (sell+Recipient)",
+         "(Agent+receive+Source) ~ (Agent+give+Recipient)",
+         "(Agent+teach+Recipient) ~ (Agent+learn+Source)",
+         "make a decision ~ decide",
+         "reach a decision ~ decide",
+         "huge ~ very big"
         ],
         "support_2": [
-         "Theme~Goal",
-         "follow~succeed (x2)"
+         "lend~borrow (third class keyed apart by the constant ravi)",
+         "give an answer ~ answer",
+         "exhausted ~ very tired"
         ]
        },
-       "role_mappings": {
-        "recorded": 11,
-        "pass": 4,
-        "passes": [
-         "Theme~Patient 6",
-         "Agent~Patient 4",
-         "Agent~Theme 4",
-         "Agent~Experiencer 3"
+       "roles": {
+        "recorded": 13,
+        "pass": 3,
+        "licensed": [
+         "Agent~Recipient 13",
+         "Agent~Source 9"
         ],
-        "role_lost_top": [
-         "Theme 13",
-         "Agent 12",
-         "Location 8"
-        ]
-       },
-       "residue": {
-        "recorded": 556,
-        "pass": 5,
-        "passes": [
-         "(Past $e0) 6 (head elsewhere 5/7)",
-         "(Agent $e0 $x0) 4",
-         "(LocatedIn $x0 $x1) 3",
-         "(Theme $e0 $x0) 3 x2"
+        "contested": [
+         "Theme~Patient 5 (control 3)"
         ],
-        "head_on_other_side_among_support_ge_2": "27 of 43 occurrences"
+        "role_lost": [
+         "Agent 6",
+         "CoAgent 4",
+         "Theme 4"
+        ]
        },
-       "profiles": {
-        "units_occurring": 772,
-        "always_self": 496,
-        "ever_other_or_lost": 276
-       },
-       "pair_view": {
-        "common_atoms": 1065,
-        "near": 115,
-        "partial": 126,
-        "leftover_in_groups": 166,
-        "residue_atoms": 184,
-        "residue_subgraphs": 142,
-        "pairs_without_residue": 93,
-        "aligned_groups": 161
-       }
-      },
-      "item_E": {
-       "pairs": "413 paraphrase + 468 control",
-       "identical_parses": 113,
-       "quality_median": 0.8333,
-       "unit_mappings": {
-        "recorded": 1298,
-        "pass": 124,
-        "pass_kinds": "78 lexical swaps, 16 role swaps, 30 not shape-parallel",
-        "pass_with_control_support": 2
-       },
-       "role_mappings": {
-        "pass": 4,
+       "drops": {
+        "recorded": 155,
+        "pass": 2,
         "passes": [
-         "Agent~Recipient 13 (control 0)",
-         "Agent~Source 10 (control 0)",
-         "Theme~Patient 6 (control 3)",
-         "Agent~Theme 3 (control 5)"
-        ]
+         "(Agent $e0 $x0) 6 classes, 9/9 reattached",
+         "(And (Agent $e0 $x0) (Member $e0 cause) (Theme $e0 $e1)) 3 classes, 6/6 reattached"
+        ],
+        "control_only_example": "(Might $e0) control 21"
        },
-       "residue": {
-        "pass": 12,
-        "designed_cases": [
-         "(Member $e0 decision) 4",
-         "(Degree $x0 big very) 3"
-        ]
-       },
-       "tierA_recall": "27/31 (misses CoAgent~GroupOf, destroy<-destruction, exhausted<-very_tired, walk<-take_a_walk; 3 by the provenance rule; 1 by a mapping with control support)",
-       "alt_targets": "dative 10/10 identical, voice 33/36",
-       "pair_view_paraphrase": {
-        "common_atoms": 2346,
-        "near": 326,
-        "partial": 106,
-        "leftover_in_groups": 118,
-        "residue_atoms": 104,
-        "residue_subgraphs": 58,
-        "pairs_without_residue": 367
-       },
-       "pair_view_control": {
-        "common_atoms": 1497,
-        "near": 417,
-        "partial": 20,
-        "leftover_in_groups": 65,
-        "residue_atoms": 854,
-        "residue_subgraphs": 405,
-        "pairs_without_residue": 214
+       "scorecard": {
+        "recall": "28/31",
+        "by_gate": {
+         "LICENSED": 17,
+         "JOINT-ONLY": 5,
+         "CONTESTED": 0,
+         "FAIL": 6
+        },
+        "misses": [
+         "CoAgent~GroupOf",
+         "destroy<-destruction",
+         "walk<-take_a_walk"
+        ],
+        "alt_dative": "10/10",
+        "alt_voice": "33/36"
        }
-      },
-      "reading": "on H the method mostly confirms the parser (15% identical graphs; consistent non-identity mappings = the Theme/Patient/Agent wobble, corroborating §4.3.2 / #23 / §4.3.5); lexical mappings appear at support 2 and stop (172 pairs); residue = attachment slack from translator variance, made separable by the head-on-other-side and context fields; on item-E the designed swaps, converses and pruning cases are recovered with clean control columns; diff factoring not needed at unit granularity"
+      }
      },
-     "determinism": "two consecutive runs byte-identical on both substrates (8 files); ~2 s per run"
+     "reading": "synonym swaps and co-dependent edits separate without any inventory (licensed factors vs joint-only factors inside licensed joints); the control column contests Theme~Patient; passing drops are re-attachments (light-event wrappers), no prune candidate; residual gap = zero-relabel alternations (nominalisation, light verb without the core verb relabelled, conjunction distribution) = the soft-matching addition; constants as participants split keys (lend~borrow 2+1)"
     }
-   }
+   },
+   "superseded": "2026-09-19 build: §4.3.1-inventory-keyed unit/role/residue mappings on H (172 PAWS pairs) + item-E; removed 2026-09-23, in git history (commit ec3a714 and the per-pair view of 2026-09-21)"
   }
  }
 }
