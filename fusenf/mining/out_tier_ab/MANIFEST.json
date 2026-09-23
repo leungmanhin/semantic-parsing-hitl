@@ -497,6 +497,219 @@
     "patterns2_faithful.jsonl / .md / .metta",
     "patterns2_tier_split.md"
    ]
+  },
+  "4.3.2_role_fillers": {
+   "script": "mining/embeddings.py --run --mode union --reuse <merged H+item-E cache> (1 new text encoded per substrate; every other vector copied, bit-identical to its source) + mining/role_fillers2_embed.py --arm faithful --cluster-cos 0.80,0.85,0.90,0.95,1.0 (JSD gate; --gate cosine twin) + mining/tier_split_roles.py",
+   "date": "2026-09-23",
+   "params": {
+    "levels": "slot",
+    "min_n": 3,
+    "gate": "jsd <= 0.3 (cosine >= 0.5 reference twin, files suffixed _cosine)",
+    "clustering": "average linkage on cosine distance, cuts 0.80/0.85/0.90/0.95/1.00",
+    "texts": "word + subtree (Qwen3-Embedding-8B, bf16, normalized)",
+    "main_block": "word@0.85"
+   },
+   "exact_label_arm": "NOT run (augmented arm; faithful only by decision) — the side-by-side row in the .md is empty",
+   "verified": "byte-identical across two consecutive runs (88 files: md, metta, signals, slotdist, clusters)",
+   "scorecard": "none by decision",
+   "embeddings": {
+    "n_texts": 3069,
+    "n_reused": 3068,
+    "n_encoded": 1,
+    "matrix_sha256": "adcc857bce374bd13ff390d3508179f5ecf982dfe68775883614a9c54ec87099"
+   },
+   "result": {
+    "summary_by_block": {
+     "word@0.80": {
+      "clusters": "1640 (811)",
+      "cross_event": 19,
+      "cross_role": 2,
+      "cross_both": 7,
+      "entity": 0
+     },
+     "word@0.85": {
+      "clusters": "2192 (682)",
+      "cross_event": 21,
+      "cross_role": 2,
+      "cross_both": 7,
+      "entity": 0
+     },
+     "word@0.90": {
+      "clusters": "2681 (361)",
+      "cross_event": 21,
+      "cross_role": 2,
+      "cross_both": 7,
+      "entity": 0
+     },
+     "word@0.95": {
+      "clusters": "2986 (83)",
+      "cross_event": 21,
+      "cross_role": 2,
+      "cross_both": 8,
+      "entity": 0
+     },
+     "word@1.00": {
+      "clusters": "3069 (0)",
+      "cross_event": 21,
+      "cross_role": 2,
+      "cross_both": 8,
+      "entity": 0
+     },
+     "subtree@0.80": {
+      "clusters": "1640 (811)",
+      "cross_event": 19,
+      "cross_role": 2,
+      "cross_both": 7,
+      "entity": 0
+     },
+     "subtree@0.85": {
+      "clusters": "2192 (682)",
+      "cross_event": 21,
+      "cross_role": 2,
+      "cross_both": 7,
+      "entity": 0
+     },
+     "subtree@0.90": {
+      "clusters": "2681 (361)",
+      "cross_event": 21,
+      "cross_role": 2,
+      "cross_both": 7,
+      "entity": 0
+     },
+     "subtree@0.95": {
+      "clusters": "2986 (83)",
+      "cross_event": 21,
+      "cross_role": 2,
+      "cross_both": 8,
+      "entity": 0
+     },
+     "subtree@1.00": {
+      "clusters": "3069 (0)",
+      "cross_event": 21,
+      "cross_role": 2,
+      "cross_both": 7,
+      "entity": 0
+     }
+    },
+    "main_block_signals": 30,
+    "tier_buckets": {
+     "tierA-only": 15,
+     "cross": 15
+    },
+    "control_touched_pairs": 26,
+    "per_block": {
+     "cosine_subtree_0.80": {
+      "signals": 61,
+      "swap_role_pairs": 5,
+      "control_touched": 48
+     },
+     "cosine_subtree_0.85": {
+      "signals": 59,
+      "swap_role_pairs": 5,
+      "control_touched": 51
+     },
+     "cosine_subtree_0.90": {
+      "signals": 60,
+      "swap_role_pairs": 5,
+      "control_touched": 51
+     },
+     "cosine_subtree_0.95": {
+      "signals": 63,
+      "swap_role_pairs": 5,
+      "control_touched": 54
+     },
+     "cosine_subtree_1.00": {
+      "signals": 63,
+      "swap_role_pairs": 5,
+      "control_touched": 54
+     },
+     "cosine_word_0.80": {
+      "signals": 62,
+      "swap_role_pairs": 5,
+      "control_touched": 48
+     },
+     "cosine_word_0.85": {
+      "signals": 60,
+      "swap_role_pairs": 5,
+      "control_touched": 51
+     },
+     "cosine_word_0.90": {
+      "signals": 60,
+      "swap_role_pairs": 5,
+      "control_touched": 51
+     },
+     "cosine_word_0.95": {
+      "signals": 64,
+      "swap_role_pairs": 5,
+      "control_touched": 55
+     },
+     "cosine_word_1.00": {
+      "signals": 64,
+      "swap_role_pairs": 5,
+      "control_touched": 55
+     },
+     "subtree_0.80": {
+      "signals": 28,
+      "swap_role_pairs": 2,
+      "control_touched": 24
+     },
+     "subtree_0.85": {
+      "signals": 30,
+      "swap_role_pairs": 2,
+      "control_touched": 26
+     },
+     "subtree_0.90": {
+      "signals": 30,
+      "swap_role_pairs": 2,
+      "control_touched": 26
+     },
+     "subtree_0.95": {
+      "signals": 31,
+      "swap_role_pairs": 2,
+      "control_touched": 27
+     },
+     "subtree_1.00": {
+      "signals": 30,
+      "swap_role_pairs": 2,
+      "control_touched": 26
+     },
+     "word_0.80": {
+      "signals": 28,
+      "swap_role_pairs": 2,
+      "control_touched": 24
+     },
+     "word_0.85": {
+      "signals": 30,
+      "swap_role_pairs": 2,
+      "control_touched": 26
+     },
+     "word_0.90": {
+      "signals": 30,
+      "swap_role_pairs": 2,
+      "control_touched": 26
+     },
+     "word_0.95": {
+      "signals": 31,
+      "swap_role_pairs": 2,
+      "control_touched": 27
+     },
+     "word_1.00": {
+      "signals": 31,
+      "swap_role_pairs": 2,
+      "control_touched": 27
+     }
+    },
+    "swap_role_pairs": 2
+   },
+   "outputs": [
+    "rolefillers2_faithful.md / .metta (+ _dial/)",
+    "rolefillers2_faithful_cosine.md / .metta (+ _cosine_dial/)",
+    "rolefiller2_signals_faithful[_cosine]_<mode>_<cut>.jsonl",
+    "rolefiller2_slotdist_faithful_<mode>_<cut>.jsonl",
+    "rolefiller2_clusters_<mode>_<cut>.jsonl + clusters/",
+    "embeddings/ (emb_union.npy, index_union.jsonl, manifest_union.json, embed_texts.jsonl)",
+    "rolefillers2_tier_split.md"
+   ]
   }
  }
 }
