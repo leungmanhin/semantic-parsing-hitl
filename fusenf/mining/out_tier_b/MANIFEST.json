@@ -1,0 +1,64 @@
+{
+ "built": "2026-09-23",
+ "note": "Tier B alone (owner 2026-09-23): the G.2-gated H substrate rows of Tier B = H minus the 352 PAWS records; the comparison run for out_tier_ab",
+ "canon_version": "fusenf-canon/4",
+ "sources": [
+  {
+   "path": "canonical_substrate.jsonl",
+   "sha16": "bcdb7226e6e6d1b3",
+   "tier": "tierB",
+   "records_in_file": 2302,
+   "records_taken": 1950,
+   "runs": {
+    "1": 1766,
+    "2": 93,
+    "50": 60,
+    "90": 31
+   },
+   "hash_composition": {
+    "f6448eac": 1868,
+    "bb7c4b71": 82
+   },
+   "hash_source": "mining_substrate.json"
+  }
+ ],
+ "records": 1950,
+ "per_tier": {
+  "tierB": 1950
+ },
+ "atoms": 10678,
+ "canonical_jsonl": "out_tier_b/canonical_substrate.jsonl",
+ "canonical_jsonl_sha16": "111ae6ab1db2dc5c",
+ "methods": {
+  "4.3.1_frequent_subtree": {
+   "script": "mining/frequent_patterns2.py + mining/patterns2_faithful.py (the faithful view) + mining/tier_split.py (tier-split reading)",
+   "date": "2026-09-23",
+   "params": {
+    "k": 4,
+    "min_support": 3,
+    "keep_surface": false
+   },
+   "verified": "byte-identical across two consecutive runs (patterns2.jsonl / .metta / _signals.jsonl, valuations_*.jsonl, patterns2_faithful.{jsonl,md,metta})",
+   "scorecard": "none by decision (Tier A is inside the A+B substrate; no recall/precision claimed on these exploration runs)",
+   "result": {
+    "patterns": 4391,
+    "modes": {
+     "cross": 2151,
+     "kindlevel": 148,
+     "star": 2092
+    },
+    "rooted_subtree_units": 945,
+    "closed": 808,
+    "proposals": 465,
+    "proposals_support_ge_10": 48,
+    "single_atom_units": 395,
+    "records_with_a_pattern": 1799
+   },
+   "outputs": [
+    "patterns2.jsonl / .metta / _signals.jsonl",
+    "valuations_slots.jsonl / valuations_occ.jsonl",
+    "patterns2_faithful.jsonl / .md / .metta"
+   ]
+  }
+ }
+}
