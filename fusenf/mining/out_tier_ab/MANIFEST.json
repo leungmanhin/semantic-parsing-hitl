@@ -711,6 +711,52 @@
     "rolefillers2_tier_split.md"
    ],
    "rendering": "cross-both rendering FIXED 2026-09-24 (owner): a pair differing in class AND head now renders as two implications into one provisional shared slot node (Mn<A>Or<B> <centre> $x1), majority side named first, instead of relabelling the minority slot's head inside its own frame (which read 'sell's Recipient is sell's Agent'); same-class pairs keep the relabel shape; same-head pairs still no rule. Rendering only: signals / slotdist / clusters JSONL and the .md reports byte-identical; the .metta files (main + dial) re-rendered"
+  },
+  "4.3.3_mutual_information": {
+   "script": "mining/mi_faithful.py (--gate raw, the faithful arm; NMI addition NOT run) + mining/tier_split_mi.py",
+   "date": "2026-09-24",
+   "params": {
+    "mi_anchor_records": 7,
+    "cap_percentile": null,
+    "floor_records": 3,
+    "sensitivity_records": 5,
+    "as_run": "owner decision 2026-09-24: MI anchor 7 records kept; ceiling = 1.5% of records (replaces the 97th percentile of unit support, which Tier A's low-support units dragged to 0.8% on A+B)",
+    "support_cap_frac": 0.015
+   },
+   "derived": {
+    "threshold_bits": 0.0293,
+    "threshold_anchor": "perfect co-occurrence over 7 of 2352 records",
+    "ceiling_records": 35,
+    "ceiling_share_of_records": "1.5%"
+   },
+   "verified": "byte-identical across two consecutive runs (jsonl, md, metta)",
+   "scorecard": "none by decision",
+   "result": {
+    "recorded": 6459,
+    "pass": 207,
+    "part_of": 149,
+    "genuine": 58,
+    "genuine_by_tier_of_shared_records": {
+     "tierB-only": 17,
+     "cross": 4,
+     "tierA-only": 37
+    },
+    "median_jaccard_passes": 0.82,
+    "median_jaccard_genuine": 0.77
+   },
+   "ceiling_alternatives_evaluated_in_scratch": {
+    "--support-cap-frac": {
+     "0.012 (28)": "179 pass / 45 genuine (31 A-only, 10 B-only, 4 cross) / J 0.89; have-frame OUT, resultative in",
+     "0.015 (35)": "207 / 58 (37 A-only, 17 B-only, 4 cross) / J 0.82; have-frame in, resultative in",
+     "0.02 (47)": "246 / 69 (45 A-only, 19 B-only, 5 cross) / J 0.78; both in"
+    },
+    "note": "the percentile ceiling lands at 18 records on A+B (0.8%) because Tier A adds many low-support units; at 18 the natural possession frame (23 records) and the resultative (22) are over the ceiling on A+B; owner to choose the ceiling definition (percentile vs fraction of records) — files hold the default run"
+   },
+   "outputs": [
+    "mi_faithful.jsonl / .md / .metta",
+    "mi_tier_split.md"
+   ],
+   "superseded_default_run": "97th-percentile ceiling (18 on A+B: 144 pass / 31 genuine; 34 on B: 66 / 18) — replaced 2026-09-24"
   }
  }
 }
